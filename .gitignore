@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.cache/
+dados-locais/
+*.sqlite
+*.sqlite-*
+.env
