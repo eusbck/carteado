@@ -5,11 +5,11 @@ Gerado por `ferramentas/cobertura.ts`. Não edite à mão.
 | | |
 | --- | ---: |
 | Entradas (cartas dos decks + fichas e objetos auxiliares) | 547 |
-| **Implementadas, testadas e com rulings conferidos** | **264 / 547** |
-| Implementadas | 264 |
-| Com teste próprio | 264 |
-| Rulings conferidos (cartas dos decks) | 288 / 1285 |
-| Pendentes (jogáveis em modo manual) | 283 |
+| **Implementadas, testadas e com rulings conferidos** | **287 / 547** |
+| Implementadas | 287 |
+| Com teste próprio | 287 |
+| Rulings conferidos (cartas dos decks) | 321 / 1285 |
+| Pendentes (jogáveis em modo manual) | 260 |
 
 Uma carta conta como pronta quando tem definição em `cartas/defs/`, um arquivo de teste próprio
 (`cartas/defs/<nome>.test.ts`) e cada ruling registrado na definição com o teste que o cobre ou o
@@ -30,7 +30,7 @@ motivo de não se aplicar.
 | Angel of Indemnity | Lor | B | — | — | 0/10 |
 | Angelic Destiny | Sil | B | — | — | 0/2 |
 | Angelic Gift | Sil | B | sim | sim | 1/1 |
-| Anger | Lor, Ter | A | — | — | 0/1 |
+| Anger | Lor, Ter | A | sim | sim | 1/1 |
 | Anguished Unmaking | Abz, Sil | A | sim | sim | 1/1 |
 | Animate Dead | Sil | B | — | — | 0/5 |
 | Arasta of the Endless Web | Abz | A | sim | sim | 1/1 |
@@ -116,7 +116,7 @@ motivo de não se aplicar.
 | Culling Ritual | Wit | A | sim | sim | 1/1 |
 | Cultivate | Wit | A | sim | sim | 1/1 |
 | Curiosity Crafter | Pri | A | sim | sim | — |
-| Currency Converter | Lor | A | — | — | — |
+| Currency Converter | Lor | A | sim | sim | — |
 | Cursed Mirror | Pri | B | — | — | 0/8 |
 | Cyan, Vengeful Samurai | Ter | B | — | — | 0/1 |
 | Dance with Calamity | Pri | B | — | — | 0/7 |
@@ -180,7 +180,7 @@ motivo de não se aplicar.
 | Firemane Commando | Sil | A | sim | sim | 3/3 |
 | Fleshbag Marauder | Ter | A | sim | sim | 2/2 |
 | Flickering Ward | Sil | B | — | — | 0/1 |
-| Flourishing Defenses | Bli | A | — | — | 0/2 |
+| Flourishing Defenses | Bli | A | sim | sim | 2/2 |
 | Foreboding Ruins | Ter | A | sim | sim | 4/4 |
 | Forest | Abz, Bli, Wit | dados | sim | sim | — |
 | Fortified Village | Abz | A | sim | sim | 4/4 |
@@ -200,7 +200,7 @@ motivo de não se aplicar.
 | Glittering Massif | Lor | A | sim | sim | — |
 | Goblin Electromancer | Pri | B | — | — | 0/3 |
 | Gogo, Mysterious Mime | Ter | B | — | — | 0/5 |
-| Goldspan Dragon | Pri | A | — | — | 0/3 |
+| Goldspan Dragon | Pri | A | sim | sim | 3/3 |
 | Golgari Rot Farm | Bli | A | sim | sim | 1/1 |
 | Gorma, the Gullet | Wit | B | — | — | 0/1 |
 | Grave Researcher // Reanimate | Wit | B | — | — | 0/20 |
@@ -261,7 +261,7 @@ motivo de não se aplicar.
 | Lorehold Campus | Lor | A | sim | sim | — |
 | Lorehold Charm | Lor | B | — | — | 0/1 |
 | Lotus Field | Lor | A | sim | sim | 1/1 |
-| Magma Opus | Pri | A | — | — | 0/5 |
+| Magma Opus | Pri | A | sim | sim | 5/5 |
 | Mana Geyser | Pri | A | sim | sim | — |
 | Manaform Hellkite | Pri | B | — | — | 0/1 |
 | Mangara, the Diplomat | Sil | B | — | — | 0/5 |
@@ -271,7 +271,7 @@ motivo de não se aplicar.
 | Massacre Wurm | Ter | A | sim | sim | 4/4 |
 | Mazirek, Kraul Death Priest | Wit | B | — | — | 0/4 |
 | Merchant of Venom | Wit | B | — | — | 0/1 |
-| Meteor Golem | Ter | A | — | — | — |
+| Meteor Golem | Ter | A | sim | sim | — |
 | Midnight Banshee | Bli | B | — | — | — |
 | Millikin | Lor, Ter | A | sim | sim | 1/1 |
 | Mind Stone | Lor, Ter | A | sim | sim | — |
@@ -315,9 +315,9 @@ motivo de não se aplicar.
 | Pawn of Ulamog | Wit | A | sim | sim | 2/2 |
 | Pearl-Ear, Imperial Advisor | Sil | B | — | — | 0/6 |
 | Perforating Artist | Ter | B | — | — | 0/6 |
-| Perpetual Timepiece | Lor | A | — | — | 0/1 |
+| Perpetual Timepiece | Lor | A | sim | sim | 1/1 |
 | Persist | Bli | B | — | — | — |
-| Pest Infestation | Wit | A | — | — | 0/2 |
+| Pest Infestation | Wit | A | sim | sim | 2/2 |
 | Pest Rescuer | Wit | A | sim | sim | 4/4 |
 | Phoenix Down | Ter | B | — | — | 0/1 |
 | Pitiless Plunderer | Ter | A | sim | sim | 1/1 |
@@ -327,9 +327,9 @@ motivo de não se aplicar.
 | Priest of Forgotten Gods | Wit | A | sim | sim | 3/3 |
 | Primary Research | Lor | B | — | — | 0/2 |
 | Prismari Campus | Pri | A | sim | sim | — |
-| Prismari Charm | Pri | A | — | — | — |
-| Prismari Command | Pri | A | — | — | 0/2 |
-| Prismari Pianist | Pri | A | — | — | 0/3 |
+| Prismari Charm | Pri | A | sim | sim | — |
+| Prismari Command | Pri | A | sim | sim | 2/2 |
+| Prismari Pianist | Pri | A | sim | sim | 3/3 |
 | Promise of Loyalty | Sil | B | — | — | 0/3 |
 | Puca's Covenant | Bli | B | — | — | 0/1 |
 | Putrefy | Bli | A | sim | sim | 1/1 |
@@ -384,7 +384,7 @@ motivo de não se aplicar.
 | Sentinel's Eyes | Sil | B | — | — | 0/7 |
 | Serra Paragon | Lor | B | — | — | — |
 | Sevinne's Reclamation | Lor | B | — | — | 0/11 |
-| Shadow, Mysterious Assassin | Ter | A | — | — | 0/2 |
+| Shadow, Mysterious Assassin | Ter | A | sim | sim | 2/2 |
 | Shadowblood Ridge | Ter | A | sim | sim | — |
 | Shadrix Silverquill | Abz, Sil | B | — | — | 0/2 |
 | Shalai, Voice of Plenty | Abz | B | — | — | — |
@@ -412,17 +412,17 @@ motivo de não se aplicar.
 | Spinerock Tyrant | Bli | B | — | — | 0/6 |
 | Spirit Mantle | Sil | B | — | — | — |
 | Spirit of Resilience | Lor | B | — | — | 0/4 |
-| Splatter Technique | Pri | A | — | — | — |
+| Splatter Technique | Pri | A | sim | sim | — |
 | Springbloom Druid | Wit | A | sim | sim | 1/1 |
 | Squall, SeeD Mercenary | Ter | B | — | — | 0/5 |
-| Squee, Goblin Nabob | Lor | A | — | — | 0/1 |
+| Squee, Goblin Nabob | Lor | A | sim | sim | 1/1 |
 | Sram, Senior Edificer | Sil | B | — | — | 0/1 |
 | Staff of Compleation | Bli | B | — | — | — |
 | Staff of the Storyteller | Lor | B | — | — | — |
 | Starfield Mystic | Sil | B | — | — | 0/1 |
 | Stensian Sanguinist // Exsanguinate | Wit | B | — | — | 0/16 |
 | Stitch Together | Ter | B | — | — | 0/1 |
-| Stitcher's Supplier | Ter | A | — | — | — |
+| Stitcher's Supplier | Ter | A | sim | sim | — |
 | Storm-Kiln Artist | Pri | B | — | — | 0/4 |
 | Stormcatch Mentor | Pri | B | — | — | 0/2 |
 | Study Hall | Lor, Pri, Sil, Wit | B | — | — | — |
@@ -460,13 +460,13 @@ motivo de não se aplicar.
 | The Scorpion God | Bli | B | — | — | 0/2 |
 | The Warring Triad | Ter | B | — | — | 0/9 |
 | Thrill of Possibility | Ter | B | — | — | 0/1 |
-| Thrilling Discovery | Lor | A | — | — | — |
+| Thrilling Discovery | Lor | A | sim | sim | — |
 | Thunderclap Drake | Pri | B | — | — | 0/9 |
 | Tip the Scales | Abz | A | sim | sim | 2/2 |
 | Titan's Grave | Wit | A | sim | sim | — |
-| Tocasia's Welcome | Lor | A | — | — | — |
+| Tocasia's Welcome | Lor | A | sim | sim | — |
 | Tomik, Wielder of Law | Sil | B | — | — | — |
-| Tower Defense | Abz | A | — | — | 0/1 |
+| Tower Defense | Abz | A | sim | sim | 1/1 |
 | Towering Titan | Abz | B | — | — | 0/2 |
 | Toxic Deluge | Wit | B | sim | sim | 2/2 |
 | Tragic Arrogance | Lor, Ter | B | — | — | 0/2 |
@@ -474,7 +474,7 @@ motivo de não se aplicar.
 | Treasure Cruise | Pri | B | — | — | 0/3 |
 | Tree of Perdition | Bli | B | — | — | 0/3 |
 | Tree of Redemption | Abz | B | — | — | 0/3 |
-| Trove Warden | Lor | A | — | — | 0/3 |
+| Trove Warden | Lor | A | sim | sim | 3/3 |
 | Turbulent Fen | Wit | A | sim | sim | 2/2 |
 | Turbulent Moor | Sil | A | sim | sim | 2/2 |
 | Turbulent Springs | Pri | A | sim | sim | 2/2 |
@@ -493,7 +493,7 @@ motivo de não se aplicar.
 | Vernal Fen | Bli, Wit | A | sim | sim | 1/1 |
 | Veyran, Voice of Duality | Pri | B | — | — | 0/7 |
 | Victor, Valgavoth's Seneschal | Sil | B | — | — | 0/3 |
-| Vile Entomber | Ter | A | — | — | — |
+| Vile Entomber | Ter | A | sim | sim | — |
 | Village Pillagers | Bli | B | — | — | 0/1 |
 | Viridescent Bog | Wit | A | sim | sim | — |
 | Viscera Seer | Wit | A | sim | sim | 2/2 |
@@ -509,8 +509,8 @@ motivo de não se aplicar.
 | War Room | Sil | B | — | — | 0/3 |
 | Wave of Reckoning | Lor | A | sim | sim | — |
 | Weathered Sentinels | Abz | B | — | — | — |
-| Welcoming Vampire | Abz | A | — | — | 0/2 |
-| White Orchid Phantom | Lor | A | — | — | 0/2 |
+| Welcoming Vampire | Abz | A | sim | sim | 2/2 |
+| White Orchid Phantom | Lor | A | sim | sim | 2/2 |
 | Wickerbough Elder | Bli | B | — | — | 0/2 |
 | Wickersmith's Tools | Bli | B | — | — | 0/1 |
 | Wight of the Reliquary | Wit | A | sim | sim | — |
@@ -520,7 +520,7 @@ motivo de não se aplicar.
 | Witch of the Moors | Wit | B | — | — | 0/5 |
 | Witherbloom Campus | Wit | A | sim | sim | — |
 | Witherbloom Charm | Wit | A | sim | sim | 1/1 |
-| Witherbloom Command | Wit | A | — | — | 0/3 |
+| Witherbloom Command | Wit | A | sim | sim | 3/3 |
 | Woe Strider | Wit | B | — | — | 0/7 |
 | Woodland Cemetery | Abz, Bli, Wit | A | sim | sim | — |
 | Yahenni, Undying Partisan | Wit | B | — | — | 0/1 |

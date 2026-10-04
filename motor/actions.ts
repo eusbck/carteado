@@ -216,6 +216,8 @@ export function* putOntoBattlefield(g: G, reqs: EnterReq[], cause: string): Gen<
     results.push(newId);
     events.push({ type: 'zone', obj: newId, old: r.id ?? newId, from, to: 'battlefield', card, owner, controller: ev.controller, cause, token });
     if (r.id === undefined) events.push({ type: 'token', obj: newId, player: ev.controller });
+    // entrar com marcadores conta como colocar marcadores (CR 122.6, 122.6a: quem põe é o controlador)
+    for (const [kind, amount] of Object.entries(ev.counters)) if (amount > 0) events.push({ type: 'counters', target: { kind: 'obj', id: newId }, kind, amount, by: ev.controller });
     // entra atacando (CR 506.3, 508.4)
     if (r.attacking && s.combat && s.turn.active === ev.controller) {
       s.combat.attackers.push({ id: newId, target: r.attacking, blocked: false, blockers: [], removed: false });

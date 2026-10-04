@@ -148,7 +148,8 @@ function matchSpec(g: G, def: TriggeredDef, ctx: TriggerCtx, events: GameEvent[]
   } else if (on.kind === 'event') {
     for (const e of events) {
       const r = on.match(e, ctx);
-      if (r) out.push(typeof r === 'object' ? r : (e as unknown as Record<string, unknown>));
+      if (Array.isArray(r)) out.push(...r);
+      else if (r) out.push(typeof r === 'object' ? r : (e as unknown as Record<string, unknown>));
     }
   } else {
     const r = on.match(events, ctx);

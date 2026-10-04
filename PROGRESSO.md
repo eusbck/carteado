@@ -7,6 +7,7 @@ Lista de verificação das fases. É por aqui que uma sessão nova retoma o trab
 - 03/10/2026: explorar os dados, fazer o levantamento das 547 cartas e escrever a proposta (checkpoint 1).
 - 03/10/2026 (continuação): proposta aprovada (construir o motor; cartas em duas partes com servidor e cliente no meio; sem servidor XMage provisório). Começar a fase 1: núcleo do motor.
 - 04/10/2026: fase 1 concluída; começar a fase 2 (cartas, parte A).
+- 04/10/2026 (continuação): os agentes paralelos falharam por limite de uso; as cartas da parte A foram escritas direto. Fase 2 concluída; começar a fase 3 (servidor e cliente).
 
 ## Fase 0: exploração e proposta
 
@@ -35,11 +36,17 @@ Recapitulação da fase 1:
 - Verificado: 79 testes passando; 85 partidas de bots aleatórios (40 de 4 jogadores, 40 de 2, 5 de 4) sem erro, travamento nem invariante violada; reprodução por semente e retomada de checkpoint dão o mesmo estado; a vista de um jogador não contém mão nem grimório dos outros.
 - Precisa de você: nada.
 
-## Fase 2: cartas, parte A (229)
+## Fase 2: cartas, parte A — concluída em 04/10/2026
 
-- [ ] Gerador de rascunho a partir do Oracle
-- [ ] `COBERTURA.md` gerado por script
-- [ ] Cartas da parte A com teste e rulings conferidos
+- [x] Gerador de rascunho a partir do Oracle (`ferramentas/rascunho.ts`, terrenos) e ficha de Oracle + rulings (`ferramentas/ficha-carta.ts`)
+- [x] `COBERTURA.md` gerado por script (`ferramentas/cobertura.ts`)
+- [x] Cartas da parte A com teste e rulings conferidos (nenhuma da parte A pendente)
+- [x] Fichas conferidas com as fichas impressas (`cartas/fichas.test.ts`)
+
+Recapitulação da fase 2:
+- Feito: 287 das 547 entradas prontas (cartas da parte A, básicos, 34 fichas); ajustes de regra que apareceram no caminho: ficha fora do campo não volta (111.8), decaimento (702.147a), devoid (702.114a), cor das fichas (111.4), entrar com marcadores conta como colocar (122.6), gatilho que dispara uma vez por marcador.
+- Verificado: suíte inteira com 250 arquivos e 648 testes passando; `tsc` sem erros; 40 partidas de 4 bots aleatórios sem erro nem invariante violada.
+- Precisa de você: nada.
 
 ## Fase 3: servidor e cliente
 

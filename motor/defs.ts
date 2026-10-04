@@ -106,7 +106,8 @@ export interface TriggerCtx extends SCtx {
 }
 
 export type TriggerSpec =
-  | { kind: 'event'; match: (ev: GameEvent, c: TriggerCtx) => boolean | Record<string, unknown> }
+  /** devolver uma lista dispara uma vez para cada item (ex.: "para cada marcador colocado") */
+  | { kind: 'event'; match: (ev: GameEvent, c: TriggerCtx) => boolean | Record<string, unknown> | Record<string, unknown>[] }
   /** "um ou mais": dispara uma vez por lote de eventos simultâneos (CR 603.2c) */
   | { kind: 'batch'; match: (evs: GameEvent[], c: TriggerCtx) => boolean | Record<string, unknown> }
   /** "no início da [etapa]" (CR 603.2b) */
