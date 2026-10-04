@@ -5,11 +5,11 @@ Gerado por `ferramentas/cobertura.ts`. Não edite à mão.
 | | |
 | --- | ---: |
 | Entradas (cartas dos decks + fichas e objetos auxiliares) | 547 |
-| **Implementadas, testadas e com rulings conferidos** | **120 / 547** |
-| Implementadas | 149 |
-| Com teste próprio | 120 |
-| Rulings conferidos (cartas dos decks) | 140 / 1285 |
-| Pendentes (jogáveis em modo manual) | 427 |
+| **Implementadas, testadas e com rulings conferidos** | **194 / 547** |
+| Implementadas | 194 |
+| Com teste próprio | 194 |
+| Rulings conferidos (cartas dos decks) | 185 / 1285 |
+| Pendentes (jogáveis em modo manual) | 353 |
 
 Uma carta conta como pronta quando tem definição em `cartas/defs/`, um arquivo de teste próprio
 (`cartas/defs/<nome>.test.ts`) e cada ruling registrado na definição com o teste que o cobre ou o
@@ -23,15 +23,15 @@ motivo de não se aplicar.
 | Abrade | Pri | A | sim | sim | — |
 | Abstract Paintmage | Pri | B | — | — | — |
 | Abstract Performance | Pri | B | — | — | 0/6 |
-| Access Tunnel | Abz | A | — | — | 0/2 |
+| Access Tunnel | Abz | A | sim | sim | 2/2 |
 | Advanced Reconstruction | Lor | B | — | — | 0/3 |
-| Aether Gale | Pri | A | — | — | 0/1 |
+| Aether Gale | Pri | A | sim | sim | 1/1 |
 | Ajani's Chosen | Sil | B | — | — | 0/4 |
 | Angel of Indemnity | Lor | B | — | — | 0/10 |
 | Angelic Destiny | Sil | B | — | — | 0/2 |
 | Angelic Gift | Sil | B | sim | sim | 1/1 |
 | Anger | Lor, Ter | A | — | — | 0/1 |
-| Anguished Unmaking | Abz, Sil | A | — | — | 0/1 |
+| Anguished Unmaking | Abz, Sil | A | sim | sim | 1/1 |
 | Animate Dead | Sil | B | — | — | 0/5 |
 | Arasta of the Endless Web | Abz | A | — | — | 0/1 |
 | Arbor Adherent | Abz | A | — | — | — |
@@ -45,10 +45,10 @@ motivo de não se aplicar.
 | Archon of Sun's Grace | Sil | A | — | — | 0/3 |
 | Ark of Hunger | Lor | B | — | — | 0/2 |
 | Armored Skyhunter | Sil | B | — | — | 0/1 |
-| Ash Barrens | Ter | A | — | — | — |
+| Ash Barrens | Ter | A | sim | sim | — |
 | Ashling, Rekindled // Ashling, Rimebound | Pri | B | — | — | 0/10 |
 | Ashling's Command | Pri | B | — | — | 0/9 |
-| Assassin's Trophy | Bli, Wit | A | — | — | 0/6 |
+| Assassin's Trophy | Bli, Wit | A | sim | sim | 6/6 |
 | Assault Formation | Abz | B | — | — | 0/2 |
 | Augusta, Order Returned | Lor | B | — | — | 0/2 |
 | Auntie Ool, Cursewretch | Bli | B | — | — | 0/6 |
@@ -61,7 +61,7 @@ motivo de não se aplicar.
 | Banon, the Returners' Leader | Lor, Ter | B | — | — | 0/1 |
 | Bastion of Remembrance | Wit | A | — | — | 0/3 |
 | Battlefield Forge | Lor, Ter | A | sim | sim | 2/2 |
-| Bedevil | Ter | A | — | — | — |
+| Bedevil | Ter | A | sim | sim | — |
 | Behind the Scenes | Abz | B | — | — | 0/2 |
 | Beledros Witherbloom | Wit | A | — | — | — |
 | Betor, Ancestor's Voice | Abz | B | — | — | — |
@@ -76,8 +76,8 @@ motivo de não se aplicar.
 | Blossoming Bogbeast | Wit | B | — | — | 0/1 |
 | Blowfly Infestation | Bli | B | — | — | 0/2 |
 | Bogslither's Embrace | Bli | B | — | — | 0/6 |
-| Bojuka Bog | Abz, Sil, Wit | A | — | — | — |
-| Boros Charm | Lor | A | — | — | 0/2 |
+| Bojuka Bog | Abz, Sil, Wit | A | sim | sim | — |
+| Boros Charm | Lor | A | sim | sim | 2/2 |
 | Breena, the Demagogue | Sil | B | — | — | 0/3 |
 | Brudiclad, Telchor Engineer | Pri | B | — | — | 0/6 |
 | Burning Curiosity | Bli | B | — | — | 0/7 |
@@ -88,16 +88,16 @@ motivo de não se aplicar.
 | Carnifex Demon | Bli | B | — | — | 0/1 |
 | Carven Caryatid | Abz | A | — | — | — |
 | Cascade Bluffs | Pri | B | sim | sim | — |
-| Casualties of War | Wit | A | — | — | 0/2 |
-| Cathartic Pyre | Bli | A | — | — | — |
+| Casualties of War | Wit | A | sim | sim | 2/2 |
+| Cathartic Pyre | Bli | A | sim | sim | — |
 | Caves of Koilos | Sil | A | sim | sim | 2/2 |
-| Ceaseless Conflict | Lor | A | — | — | — |
+| Ceaseless Conflict | Lor | A | sim | sim | — |
 | Celes, Rune Knight | Ter | B | — | — | 0/1 |
-| Chain Reaction | Pri | A | — | — | 0/1 |
+| Chain Reaction | Pri | A | sim | sim | 1/1 |
 | Chains of Custody | Sil | B | — | — | 0/4 |
 | Changing Loyalty | Sil | B | — | — | 0/4 |
 | Channeler Initiate | Bli | B | — | — | — |
-| Chaos Warp | Pri | A | — | — | 0/5 |
+| Chaos Warp | Pri | A | sim | sim | 5/5 |
 | Chimil, the Inner Sun | Bli | B | — | — | 0/2 |
 | Cinder Glade | Bli | A | sim | sim | 3/3 |
 | Clifftop Retreat | Lor, Ter | A | sim | sim | — |
@@ -125,13 +125,13 @@ motivo de não se aplicar.
 | Darksteel Mutation | Sil | B | — | — | 0/8 |
 | Dawnhand Dissident | Bli | B | — | — | 0/8 |
 | Deadly Brew | Wit | A | — | — | 0/4 |
-| Deceptive Landscape | Abz | A | — | — | — |
+| Deceptive Landscape | Abz | A | sim | sim | — |
 | Deep Analysis | Pri | B | — | — | 0/6 |
 | Defiling Daemogoth | Wit | B | — | — | 0/1 |
-| Demolition Field | Ter | A | — | — | 0/2 |
+| Demolition Field | Ter | A | sim | sim | 2/2 |
 | Demonic Embrace | Sil | B | — | — | 0/3 |
 | Desolate Mire | Sil, Ter | A | sim | sim | — |
-| Despark | Abz | A | — | — | 0/1 |
+| Despark | Abz | A | sim | sim | 1/1 |
 | Determined Iteration | Pri | B | — | — | 0/6 |
 | Devoted Druid | Bli | B | — | — | 0/2 |
 | Dig Through Time | Pri | B | — | — | 0/3 |
@@ -151,7 +151,7 @@ motivo de não se aplicar.
 | Eiganjo Dynastorian // Replenish | Sil | B | — | — | 0/18 |
 | Eldrazi Conscription | Sil | B | — | — | 0/7 |
 | Elvish Mystic | Wit | A | sim | sim | — |
-| Emeria, the Sky Ruin | Lor | B | — | — | 0/1 |
+| Emeria, the Sky Ruin | Lor | B | sim | sim | 1/1 |
 | Eriette of the Charmed Apple | Sil | B | — | — | 0/2 |
 | Espers to Magicite | Ter | B | — | — | 0/5 |
 | Ethereal Armor | Sil | B | — | — | 0/1 |
@@ -161,21 +161,21 @@ motivo de não se aplicar.
 | Evolving Wilds | Abz, Bli, Ter | A | sim | sim | — |
 | Excava, the Risen Past | Lor | B | — | — | 0/4 |
 | Exotic Orchard | Abz, Bli, Lor, Pri, Sil, Ter, Wit | A | sim | sim | 5/5 |
-| Expel the Interlopers | Abz | A | — | — | 0/1 |
+| Expel the Interlopers | Abz | A | sim | sim | 1/1 |
 | Expressive Iteration | Pri | B | — | — | 0/3 |
-| Fabled Passage | Lor, Pri, Sil, Wit | A | — | — | 0/2 |
+| Fabled Passage | Lor, Pri, Sil, Wit | A | sim | sim | 2/2 |
 | Faeburrow Elder | Abz | A | — | — | 0/2 |
 | Faerie Mastermind | Pri | B | — | — | 0/1 |
 | Faithless Looting | Lor, Ter | B | — | — | 0/7 |
 | Fallen Ideal | Sil | B | — | — | 0/1 |
-| Feed the Swarm | Abz | A | — | — | 0/3 |
+| Feed the Swarm | Abz | A | sim | sim | 3/3 |
 | Fellwar Stone | Lor, Pri, Sil | A | — | — | 0/7 |
 | Felothar the Steadfast | Abz | B | — | — | 0/1 |
 | Ferrous Lake | Pri | A | sim | sim | — |
 | Festering Thicket | Bli, Wit | A | sim | sim | 1/1 |
 | Fetid Heath | Sil, Ter | B | sim | sim | — |
 | Fields of Strife | Lor | A | sim | sim | — |
-| Final Act | Wit | A | — | — | 0/2 |
+| Final Act | Wit | A | sim | sim | 2/2 |
 | Fire Covenant | Bli | B | — | — | 0/3 |
 | Firemane Commando | Sil | A | — | — | 0/3 |
 | Fleshbag Marauder | Ter | A | sim | sim | 2/2 |
@@ -186,7 +186,7 @@ motivo de não se aplicar.
 | Fortified Village | Abz | A | sim | sim | 4/4 |
 | Forum Filibuster | Sil | B | — | — | 0/1 |
 | Forum of Amity | Sil | A | sim | sim | — |
-| Fracture | Sil | A | — | — | — |
+| Fracture | Sil | A | sim | sim | — |
 | Frostboil Snarl | Pri | A | sim | sim | 4/4 |
 | Furycalm Snarl | Lor, Ter | A | sim | sim | 4/4 |
 | Furygale Flocking | Pri | B | — | — | 0/4 |
@@ -207,7 +207,7 @@ motivo de não se aplicar.
 | Grave Venerations | Bli | B | — | — | 0/5 |
 | Graven Cairns | Ter | B | sim | sim | 1/1 |
 | Great Forest Druid | Abz | A | — | — | — |
-| Grim Backwoods | Wit | A | — | — | — |
+| Grim Backwoods | Wit | A | sim | sim | — |
 | Grim Poppet | Bli | B | — | — | 0/1 |
 | Gristle Glutton | Bli | B | — | — | 0/6 |
 | Gruul Turf | Bli | A | sim | sim | 1/1 |
@@ -220,7 +220,7 @@ motivo de não se aplicar.
 | Haunted Mire | Wit | A | sim | sim | — |
 | Haywire Mite | Wit | A | — | — | — |
 | Herald of Amity | Sil | B | — | — | 0/4 |
-| High Market | Ter, Wit | A | — | — | — |
+| High Market | Ter, Wit | A | sim | sim | — |
 | Hofri Ghostforge | Lor | B | — | — | 0/8 |
 | Hornet Nest | Abz | A | — | — | 0/1 |
 | Ifnir Deadlands | Bli | B | — | — | 0/2 |
@@ -252,7 +252,7 @@ motivo de não se aplicar.
 | Land Tax | Sil | A | — | — | 0/3 |
 | Lasting Tarfire | Bli | B | — | — | 0/1 |
 | Laughing Mad | Ter | B | — | — | 0/6 |
-| Legions to Ashes | Ter | A | — | — | 0/2 |
+| Legions to Ashes | Ter | A | sim | sim | 2/2 |
 | Leitmotif Composer | Pri | B | — | — | 0/6 |
 | Lightning Greaves | Pri | B | — | — | 0/2 |
 | Llanowar Wastes | Wit | A | sim | sim | 2/2 |
@@ -260,7 +260,7 @@ motivo de não se aplicar.
 | Lorehold Archivist // Restore Relic | Lor | B | — | — | 0/19 |
 | Lorehold Campus | Lor | A | sim | sim | — |
 | Lorehold Charm | Lor | B | — | — | 0/1 |
-| Lotus Field | Lor | A | — | — | 0/1 |
+| Lotus Field | Lor | A | sim | sim | 1/1 |
 | Magma Opus | Pri | A | — | — | 0/5 |
 | Mana Geyser | Pri | A | — | — | — |
 | Manaform Hellkite | Pri | B | — | — | 0/1 |
@@ -276,7 +276,7 @@ motivo de não se aplicar.
 | Millikin | Lor, Ter | A | sim | sim | 1/1 |
 | Mind Stone | Lor, Ter | A | — | — | — |
 | Mire Blight | Sil | B | — | — | 0/2 |
-| Mistveil Plains | Lor | A | — | — | 0/2 |
+| Mistveil Plains | Lor | A | sim | sim | 2/2 |
 | Mog, Moogle Warrior | Ter | B | — | — | 0/1 |
 | Moldervine Reclamation | Wit | A | — | — | 0/2 |
 | Molten Tributary | Pri | A | sim | sim | — |
@@ -285,15 +285,15 @@ motivo de não se aplicar.
 | Moonshaker Cavalry | Lor | A | — | — | 0/2 |
 | Morbid Opportunist | Ter, Wit | A | — | — | 0/1 |
 | Mortality Spear | Wit | B | — | — | 0/1 |
-| Mortify | Ter | A | — | — | 0/1 |
+| Mortify | Ter | A | sim | sim | 1/1 |
 | Moseo, Vein's New Dean | Wit | B | — | — | 0/2 |
 | Mountain | Bli, Lor, Pri, Ter | dados | sim | sim | — |
 | Muddle, the Ever-Changing | Pri | B | — | — | 0/15 |
 | Mycoloth | Wit | B | — | — | 0/4 |
-| Mystic Sanctuary | Pri | A | — | — | 0/2 |
+| Mystic Sanctuary | Pri | A | sim | sim | 2/2 |
 | Necroblossom Snarl | Wit | A | sim | sim | 4/4 |
 | Necroskitter | Bli | B | — | — | 0/3 |
-| Negate | Pri | A | — | — | 0/1 |
+| Negate | Pri | A | sim | sim | 1/1 |
 | Nest of Scarabs | Bli | B | — | — | 0/2 |
 | Nesting Grounds | Bli | B | — | — | 0/4 |
 | Nether Traitor | Wit | B | — | — | 0/6 |
@@ -332,7 +332,7 @@ motivo de não se aplicar.
 | Prismari Pianist | Pri | A | — | — | 0/3 |
 | Promise of Loyalty | Sil | B | — | — | 0/3 |
 | Puca's Covenant | Bli | B | — | — | 0/1 |
-| Putrefy | Bli | A | — | — | 0/1 |
+| Putrefy | Bli | A | sim | sim | 1/1 |
 | Quintorius, Field Historian | Lor | B | — | — | 0/1 |
 | Quintorius, History Chaser | Lor | B | sim | sim | 1/1 |
 | Quintorius, Loremaster | Lor | B | — | — | 0/5 |
@@ -348,25 +348,25 @@ motivo de não se aplicar.
 | Redemption Arc | Sil | B | — | — | — |
 | Rejoin the Fight | Ter | B | — | — | — |
 | Relic Retriever | Lor | B | — | — | 0/1 |
-| Reliquary Tower | Pri | A | — | — | 0/1 |
+| Reliquary Tower | Pri | A | sim | sim | 1/1 |
 | Remorseful Cleric | Lor | A | — | — | — |
 | Renegade Bull | Pri | B | — | — | 0/7 |
 | Replication Technique | Pri | B | — | — | 0/5 |
-| Resculpt | Pri | A | — | — | — |
+| Resculpt | Pri | A | sim | sim | — |
 | Restless Spire | Pri | B | — | — | 0/2 |
 | Reunion of the House | Abz | B | — | — | 0/3 |
 | Ribtruss Roaster | Wit | B | — | — | 0/2 |
 | Rionya, Fire Dancer | Pri | B | — | — | 0/6 |
-| Rip Apart | Lor | A | — | — | — |
+| Rip Apart | Lor | A | sim | sim | — |
 | Rise of the Dark Realms | Ter | B | — | — | — |
 | Rite of Replication | Pri | B | — | — | 0/12 |
-| Riveteers Overlook | Bli | A | — | — | — |
-| Rogue's Passage | Ter | A | — | — | 0/1 |
+| Riveteers Overlook | Bli | A | sim | sim | — |
+| Rogue's Passage | Ter | A | sim | sim | 1/1 |
 | Rootbound Crag | Bli | A | sim | sim | 2/2 |
 | Rootha, Mastering the Moment | Pri | B | — | — | 0/3 |
 | Rousing Refrain | Pri | B | — | — | 0/13 |
 | Rugged Prairie | Lor, Ter | B | sim | sim | — |
-| Ruinous Ultimatum | Ter | A | — | — | — |
+| Ruinous Ultimatum | Ter | A | sim | sim | — |
 | Sacred Peaks | Lor, Ter | A | sim | sim | — |
 | Sage's Reverie | Sil | B | — | — | 0/2 |
 | Sakura-Tribe Elder | Wit | A | — | — | — |
@@ -448,7 +448,7 @@ motivo de não se aplicar.
 | Temple of Malady | Abz, Wit | A | sim | sim | — |
 | Temple of Plenty | Abz | A | sim | sim | 4/4 |
 | Temple of Silence | Abz, Sil | A | sim | sim | 4/4 |
-| Temple of the False God | Pri | A | — | — | — |
+| Temple of the False God | Pri | A | sim | sim | — |
 | Temple of Triumph | Lor | A | sim | sim | 4/4 |
 | Tend the Sprigs | Bli | A | — | — | — |
 | Tendershoot Dryad | Wit | B | — | — | 0/8 |
@@ -486,7 +486,7 @@ motivo de não se aplicar.
 | Umbral Expanse | Sil | A | sim | sim | 1/1 |
 | Vampiric Rites | Ter | A | — | — | — |
 | Vanguard of the Restless | Lor | B | — | — | 0/2 |
-| Vanishing Verse | Sil | A | — | — | 0/1 |
+| Vanishing Verse | Sil | A | sim | sim | 1/1 |
 | Veinwitch Coven | Wit | A | — | — | 0/4 |
 | Venerable Warsinger | Lor | B | — | — | — |
 | Vengeful Bloodwitch | Wit | A | — | — | 0/1 |
@@ -507,7 +507,7 @@ motivo de não se aplicar.
 | Wall of Reverence | Abz | A | — | — | 0/1 |
 | Wall of Roots | Abz | B | — | — | 0/1 |
 | War Room | Sil | B | — | — | 0/3 |
-| Wave of Reckoning | Lor | A | — | — | — |
+| Wave of Reckoning | Lor | A | sim | sim | — |
 | Weathered Sentinels | Abz | B | — | — | — |
 | Welcoming Vampire | Abz | A | — | — | 0/2 |
 | White Orchid Phantom | Lor | A | — | — | 0/2 |
@@ -526,43 +526,43 @@ motivo de não se aplicar.
 | Yahenni, Undying Partisan | Wit | B | — | — | 0/1 |
 | Zetalpa, Primal Dawn | Abz | dados | sim | sim | 1/1 |
 | Zulaport Cutthroat | Wit | A | — | — | 0/1 |
-| Bird (Bird) | — | ficha | sim | — | — |
-| Cat (Cat) | — | ficha | sim | — | — |
+| Bird (Bird) | — | ficha | sim | sim | — |
+| Cat (Cat) | — | ficha | sim | sim | — |
 | City's Blessing | — | ficha | — | — | — |
 | Contract | — | ficha | — | — | — |
 | Copy | — | ficha | — | — | — |
-| Demon (Demon) | — | ficha | sim | — | — |
-| Dragon Illusion | — | ficha | — | — | — |
-| Eldrazi Spawn (Eldrazi Spawn) | — | ficha | sim | — | — |
-| Elemental | — | ficha | — | — | — |
-| Elemental (Elemental 1/1) | — | ficha | sim | — | — |
-| Elemental (Elemental 3/3) | — | ficha | sim | — | — |
-| Elemental (Elemental 4/4) | — | ficha | sim | — | — |
-| Elf Warrior (Elf Warrior) | — | ficha | sim | — | — |
-| Goat (Goat) | — | ficha | sim | — | — |
-| Human Soldier (Human Soldier) | — | ficha | sim | — | — |
-| Inkling (Inkling) | — | ficha | sim | — | — |
-| Insect | — | ficha | — | — | — |
-| Insect (Insect) | — | ficha | sim | — | — |
+| Demon (Demon) | — | ficha | sim | sim | — |
+| Dragon Illusion (Dragon Illusion) | — | ficha | sim | sim | — |
+| Eldrazi Spawn (Eldrazi Spawn) | — | ficha | sim | sim | — |
+| Elemental (Elemental 1/1) | — | ficha | sim | sim | — |
+| Elemental (Elemental 3/3) | — | ficha | sim | sim | — |
+| Elemental (Elemental 4/4) | — | ficha | sim | sim | — |
+| Elemental (Elemental X/X) | — | ficha | sim | sim | — |
+| Elf Warrior (Elf Warrior) | — | ficha | sim | sim | — |
+| Goat (Goat) | — | ficha | sim | sim | — |
+| Human Soldier (Human Soldier) | — | ficha | sim | sim | — |
+| Inkling (Inkling) | — | ficha | sim | sim | — |
+| Insect (Insect voador) | — | ficha | sim | sim | — |
+| Insect (Insect) | — | ficha | sim | sim | — |
 | Manifest | — | ficha | — | — | — |
-| Moogle (Moogle) | — | ficha | sim | — | — |
-| Pegasus (Pegasus) | — | ficha | sim | — | — |
-| Pest | — | ficha | — | — | — |
-| Pest (Pest) | — | ficha | sim | — | — |
-| Phyrexian Germ (Phyrexian Germ) | — | ficha | sim | — | — |
-| Phyrexian Myr (Phyrexian Myr) | — | ficha | sim | — | — |
+| Moogle (Moogle) | — | ficha | sim | sim | — |
+| Pegasus (Pegasus) | — | ficha | sim | sim | — |
+| Pest (Pest (ataque)) | — | ficha | sim | sim | — |
+| Pest (Pest) | — | ficha | sim | sim | — |
+| Phyrexian Germ (Phyrexian Germ) | — | ficha | sim | sim | — |
+| Phyrexian Myr (Phyrexian Myr) | — | ficha | sim | sim | — |
 | Poison Counter | — | ficha | sim | sim | — |
-| Rogue (Rogue) | — | ficha | sim | — | — |
-| Saproling (Saproling) | — | ficha | sim | — | — |
-| Scarecrow (Scarecrow) | — | ficha | sim | — | — |
-| Snake | — | ficha | — | — | — |
-| Snake (Snake verde) | — | ficha | sim | — | — |
-| Spider (Spider) | — | ficha | sim | — | — |
-| Spirit (Spirit 1/1) | — | ficha | sim | — | — |
-| Spirit (Spirit 3/2) | — | ficha | sim | — | — |
+| Rogue (Rogue) | — | ficha | sim | sim | — |
+| Saproling (Saproling) | — | ficha | sim | sim | — |
+| Scarecrow (Scarecrow) | — | ficha | sim | sim | — |
+| Snake (Snake preta) | — | ficha | sim | sim | — |
+| Snake (Snake verde) | — | ficha | sim | sim | — |
+| Spider (Spider) | — | ficha | sim | sim | — |
+| Spirit (Spirit 1/1) | — | ficha | sim | sim | — |
+| Spirit (Spirit 3/2) | — | ficha | sim | sim | — |
 | The Monarch | — | ficha | sim | sim | — |
-| Treasure (Treasure) | — | ficha | sim | — | — |
-| Treefolk (Treefolk) | — | ficha | sim | — | — |
-| Wall (Wall) | — | ficha | sim | — | — |
-| Worm (Worm) | — | ficha | sim | — | — |
-| Zombie (Zombie) | — | ficha | sim | — | — |
+| Treasure (Treasure) | — | ficha | sim | sim | — |
+| Treefolk (Treefolk) | — | ficha | sim | sim | — |
+| Wall (Wall) | — | ficha | sim | sim | — |
+| Worm (Worm) | — | ficha | sim | sim | — |
+| Zombie (Zombie) | — | ficha | sim | sim | — |

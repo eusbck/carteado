@@ -1,7 +1,7 @@
 // Fichas (CR 111) criadas pelas cartas dos decks. Cada uma aponta para a imagem da ficha
 // correspondente em ../cartas/data (pelo nome, força/resistência e cores).
 
-import { activated, cost, defineToken, gainLife, keyword, keywords, mana, on, triggered, type AbilityDef } from '../motor/api.ts';
+import { activated, cost, decayed, defineToken, gainLife, keywords, mana, on, triggered, type AbilityDef } from '../motor/api.ts';
 import { fichasOracle } from '../motor/oracle.ts';
 import type { Color } from '../motor/types.ts';
 
@@ -14,6 +14,11 @@ function img(name: string, p: number | null, t: number | null, colors?: Color[],
 
 function token(id: string, name: string, types: string[], subtypes: string[], colors: Color[], p: number | null, t: number | null, abilities: AbilityDef[] = [], imageText?: string) {
   return defineToken({ id, name, types, subtypes, colors, power: p, toughness: t, abilities, image: img(name, p, t, colors, imageText) });
+}
+
+/** ficha X/X: a força e a resistência vêm do efeito que a cria (a impressa tem * / *) */
+function tokenXX(id: string, name: string, types: string[], subtypes: string[], colors: Color[], abilities: AbilityDef[] = []) {
+  return defineToken({ id, name, types, subtypes, colors, power: 0, toughness: 0, abilities, image: img(name, null, null, colors) });
 }
 
 // Fichas predefinidas (CR 111.10a)
@@ -45,12 +50,12 @@ export const Pegasus = token('Pegasus', 'Pegasus', ['Creature'], ['Pegasus'], ['
 export const Bird = token('Bird', 'Bird', ['Creature'], ['Bird'], ['W'], 1, 1, keywords('flying'));
 export const Demon = token('Demon', 'Demon', ['Creature'], ['Demon'], ['B'], 5, 5, keywords('flying'));
 /** Dragon Illusion X/X: força e resistência definidas na criação (cópia com exceção) */
-export const DragonIllusion = token('Dragon Illusion', 'Dragon Illusion', ['Creature'], ['Dragon', 'Illusion'], ['R'], 0, 0, keywords('flying', 'haste'));
+export const DragonIllusion = tokenXX('Dragon Illusion', 'Dragon Illusion', ['Creature'], ['Dragon', 'Illusion'], ['R'], keywords('flying', 'haste'));
 export const Elemental11 = token('Elemental 1/1', 'Elemental', ['Creature'], ['Elemental'], ['U', 'R'], 1, 1);
 export const Elemental44 = token('Elemental 4/4', 'Elemental', ['Creature'], ['Elemental'], ['U', 'R'], 4, 4);
 export const Elemental33 = token('Elemental 3/3', 'Elemental', ['Creature'], ['Elemental'], ['U', 'R'], 3, 3, keywords('flying'));
 /** Elemental X/X com voar e ímpeto (Rootha) */
-export const ElementalXX = token('Elemental X/X', 'Elemental', ['Creature'], ['Elemental'], ['U', 'R'], 0, 0, keywords('flying', 'haste'));
+export const ElementalXX = tokenXX('Elemental X/X', 'Elemental', ['Creature'], ['Elemental'], ['U', 'R'], keywords('flying', 'haste'));
 export const ElfWarrior = token('Elf Warrior', 'Elf Warrior', ['Creature'], ['Elf', 'Warrior'], ['G'], 1, 1);
 export const Goat = token('Goat', 'Goat', ['Creature'], ['Goat'], ['W'], 0, 1);
 export const HumanSoldier = token('Human Soldier', 'Human Soldier', ['Creature'], ['Human', 'Soldier'], ['W'], 1, 1);
@@ -68,6 +73,6 @@ export const Spider = token('Spider', 'Spider', ['Creature'], ['Spider'], ['G'],
 export const Treefolk = token('Treefolk', 'Treefolk', ['Creature'], ['Treefolk'], ['G'], 3, 4, keywords('reach'));
 export const Wall = token('Wall', 'Wall', ['Creature'], ['Wall'], ['W'], 1, 3, keywords('defender'));
 export const Worm = token('Worm', 'Worm', ['Creature'], ['Worm'], ['B', 'G'], 1, 1);
-export const Zombie = token('Zombie', 'Zombie', ['Creature'], ['Zombie'], ['B'], 2, 2, [keyword('decayed')]);
+export const Zombie = token('Zombie', 'Zombie', ['Creature'], ['Zombie'], ['B'], 2, 2, decayed());
 
 void activated; void cost;

@@ -42,7 +42,8 @@ const raw = dados as unknown as { cartas: Record<string, RawCard>; fichas: (RawC
 
 function face(f: RawFace, layout: string): OracleFace {
   const manaCost = f.manaCost ? parseCost(f.manaCost) : null;
-  const colors = (f.colorIndicator?.length ? f.colorIndicator : colorsOfCost(manaCost)) as Color[];
+  // ficha: as cores vêm do efeito que a cria (CR 111.4), registradas nos dados da ficha impressa
+  const colors = (layout === 'token' ? f.colors : f.colorIndicator?.length ? f.colorIndicator : colorsOfCost(manaCost)) as Color[];
   const num = (v: number | string | null) => (typeof v === 'number' ? v : null);
   return {
     name: f.name,

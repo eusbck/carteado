@@ -1,0 +1,123 @@
+// Fichas (CR 111): cada ficha confere com a ficha impressa (dados Oracle em cartas/data) e as que têm
+// habilidades são testadas em jogo.
+import { describe, expect, it } from 'vitest';
+import { setup } from '../testes/harness.ts';
+import { chars, hasKw } from '../motor/chars.ts';
+import { registry } from '../motor/defs.ts';
+import { fichasOracle } from '../motor/oracle.ts';
+import { createTokens } from '../motor/api.ts';
+import { manaOptions } from '../motor/costs.ts';
+
+// id → [nome, tipos, subtipos, cores, força, resistência, palavras-chave]
+// força/resistência null = X/X definida na criação
+const esperadas: Record<string, [string, string[], string[], string[], number | null, number | null, string[]]> = {
+  'Treasure': ['Treasure', ['Artifact'], ['Treasure'], [], null, null, []],
+  'Eldrazi Spawn': ['Eldrazi Spawn', ['Creature'], ['Eldrazi', 'Spawn'], [], 0, 1, []],
+  'Pest': ['Pest', ['Creature'], ['Pest'], ['B', 'G'], 1, 1, []],
+  'Pest (ataque)': ['Pest', ['Creature'], ['Pest'], ['B', 'G'], 1, 1, []],
+  'Inkling': ['Inkling', ['Creature'], ['Inkling'], ['B', 'W'], 2, 1, ['flying']],
+  'Spirit 3/2': ['Spirit', ['Creature'], ['Spirit'], ['R', 'W'], 3, 2, []],
+  'Spirit 1/1': ['Spirit', ['Creature'], ['Spirit'], ['W'], 1, 1, ['flying']],
+  'Cat': ['Cat', ['Creature'], ['Cat'], ['W'], 2, 2, []],
+  'Pegasus': ['Pegasus', ['Creature'], ['Pegasus'], ['W'], 2, 2, ['flying']],
+  'Bird': ['Bird', ['Creature'], ['Bird'], ['W'], 1, 1, ['flying']],
+  'Demon': ['Demon', ['Creature'], ['Demon'], ['B'], 5, 5, ['flying']],
+  'Dragon Illusion': ['Dragon Illusion', ['Creature'], ['Dragon', 'Illusion'], ['R'], null, null, ['flying', 'haste']],
+  'Elemental 1/1': ['Elemental', ['Creature'], ['Elemental'], ['R', 'U'], 1, 1, []],
+  'Elemental 4/4': ['Elemental', ['Creature'], ['Elemental'], ['R', 'U'], 4, 4, []],
+  'Elemental 3/3': ['Elemental', ['Creature'], ['Elemental'], ['R', 'U'], 3, 3, ['flying']],
+  'Elemental X/X': ['Elemental', ['Creature'], ['Elemental'], ['R', 'U'], null, null, ['flying', 'haste']],
+  'Elf Warrior': ['Elf Warrior', ['Creature'], ['Elf', 'Warrior'], ['G'], 1, 1, []],
+  'Goat': ['Goat', ['Creature'], ['Goat'], ['W'], 0, 1, []],
+  'Human Soldier': ['Human Soldier', ['Creature'], ['Human', 'Soldier'], ['W'], 1, 1, []],
+  'Insect': ['Insect', ['Creature'], ['Insect'], ['B'], 1, 1, []],
+  'Insect voador': ['Insect', ['Creature'], ['Insect'], ['G'], 1, 1, ['flying', 'deathtouch']],
+  'Moogle': ['Moogle', ['Creature'], ['Moogle'], ['W'], 1, 2, ['lifelink']],
+  'Phyrexian Germ': ['Phyrexian Germ', ['Creature'], ['Phyrexian', 'Germ'], ['B'], 0, 0, []],
+  'Phyrexian Myr': ['Phyrexian Myr', ['Artifact', 'Creature'], ['Phyrexian', 'Myr'], ['U'], 2, 1, []],
+  'Rogue': ['Rogue', ['Creature'], ['Rogue'], ['B'], 2, 2, []],
+  'Saproling': ['Saproling', ['Creature'], ['Saproling'], ['G'], 1, 1, []],
+  'Scarecrow': ['Scarecrow', ['Artifact', 'Creature'], ['Scarecrow'], [], 2, 2, []],
+  'Snake verde': ['Snake', ['Creature'], ['Snake'], ['G'], 1, 1, ['deathtouch']],
+  'Snake preta': ['Snake', ['Creature'], ['Snake'], ['B'], 1, 1, ['deathtouch']],
+  'Spider': ['Spider', ['Creature'], ['Spider'], ['G'], 1, 2, ['reach']],
+  'Treefolk': ['Treefolk', ['Creature'], ['Treefolk'], ['G'], 3, 4, ['reach']],
+  'Wall': ['Wall', ['Creature'], ['Wall'], ['W'], 1, 3, ['defender']],
+  'Worm': ['Worm', ['Creature'], ['Worm'], ['B', 'G'], 1, 1, []],
+  'Zombie': ['Zombie', ['Creature'], ['Zombie'], ['B'], 2, 2, ['decayed']],
+};
+
+describe('Fichas: características', () => {
+  it('toda ficha registrada está na tabela', () => {
+    expect([...registry.tokens.keys()].sort()).toEqual(Object.keys(esperadas).sort());
+  });
+  for (const [id, [nome, tipos, subtipos, cores, p, t, kws]] of Object.entries(esperadas)) {
+    it(`${id}: confere com a ficha impressa`, () => {
+      const def = registry.tokens.get(id)!;
+      // a ficha impressa correspondente (para a imagem) tem as mesmas características
+      const o = fichasOracle.find((f) => f.oracleId === def.image);
+      expect(o, `imagem da ficha ${id}`).toBeDefined();
+      const face = o!.faces[0];
+      expect(face.name).toBe(nome);
+      expect(face.types).toEqual(tipos);
+      expect(face.subtypes).toEqual(subtipos);
+      expect([...face.colors].sort()).toEqual(cores);
+      if (p !== null) expect([face.power, face.toughness]).toEqual([p, t]);
+      expect(o!.keywords.map((k: string) => k.toLowerCase()).sort()).toEqual([...kws].sort());
+      // e a ficha criada no jogo
+      const tg = setup({ battlefield: [[], []] });
+      const [tok] = tg.run(createTokens(tg.g, 0, id, 1));
+      if (p === null && tipos.includes('Creature')) return; // X/X sem valor morre como 0/0; testada pela carta que a cria
+      const c = chars(tg.g, tok);
+      expect(c.name).toBe(nome);
+      expect(c.types).toEqual(tipos);
+      expect(c.subtypes).toEqual(subtipos);
+      expect([...c.colors].sort()).toEqual(cores);
+      expect([c.power, c.toughness]).toEqual([p, t]);
+      for (const k of kws) expect(hasKw(tg.g, tok, k), k).toBe(true);
+    });
+  }
+});
+
+describe('Fichas: habilidades', () => {
+  it("'Treasure': {T}, sacrifique: uma mana de qualquer cor", () => {
+    const tg = setup({ battlefield: [[{ name: 'Treasure', token: true }], ['Wall of Omens']], hand: [['Swords to Plowshares'], []] });
+    const id = tg.bf('Treasure');
+    const cores = new Set(manaOptions(tg.g, 0).filter((o) => o.obj === id).flatMap((o) => o.alt));
+    expect([...cores].sort()).toEqual(['B', 'G', 'R', 'U', 'W']);
+    tg.choose('criatura alvo', ['Wall of Omens']).cast('Swords to Plowshares').resolve();
+    expect(tg.find('Treasure')).toBeNull();
+    expect(tg.find('Wall of Omens')).toBeNull();
+  });
+  it("'Eldrazi Spawn': sacrifique: adicione {C}", () => {
+    const tg = setup({ battlefield: [[{ name: 'Eldrazi Spawn', token: true }], []], hand: [['Sol Ring'], []] });
+    const id = tg.bf('Eldrazi Spawn');
+    expect(manaOptions(tg.g, 0).filter((o) => o.obj === id).map((o) => o.alt.join(''))).toEqual(['C']);
+    tg.cast('Sol Ring').resolve();
+    expect(tg.find('Eldrazi Spawn')).toBeNull();
+    expect(tg.find('Sol Ring')).not.toBeNull();
+  });
+  it("'Pest': quando morre, você ganha 1 de vida", () => {
+    const tg = setup({ battlefield: [[{ name: 'Pest', token: true }, 'Mountain', 'Mountain'], []], hand: [['Abrade'], []] });
+    tg.choose('modo', ['Causa 3 de dano à criatura alvo']).choose('criatura alvo', ['Pest']).cast('Abrade').resolve();
+    tg.resolveAll();
+    expect(tg.life(0)).toBe(41);
+  });
+  it("'Pest (ataque)': sempre que ataca, você ganha 1 de vida", () => {
+    const tg = setup({ battlefield: [[{ name: 'Pest (ataque)', token: true }], []] });
+    tg.attack([['Pest', 1]]).passTo('declareBlockers');
+    expect(tg.life(0)).toBe(41);
+  });
+  it("'Zombie': decaimento — não bloqueia; ao atacar, é sacrificado no fim do combate", () => {
+    const tg = setup({ battlefield: [[{ name: 'Zombie', token: true }], [{ name: 'Zombie', token: true }]] });
+    tg.attack([[tg.bf('Zombie', 0), 1]]).passTo('combatDamage');
+    expect(tg.life(1)).toBe(38); // o Zombie de Bruno não pode bloquear
+    tg.passTo('main2');
+    expect(tg.all('Zombie').map((id) => tg.state.objects[id].controller)).toEqual([1]);
+  });
+  it("'Zombie': sem atacar, não é sacrificado", () => {
+    const tg = setup({ battlefield: [[{ name: 'Zombie', token: true }], []] });
+    tg.passTo('main2');
+    expect(tg.find('Zombie')).not.toBeNull();
+  });
+});

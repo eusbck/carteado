@@ -152,6 +152,8 @@ export function* putOntoBattlefield(g: G, reqs: EnterReq[], cause: string): Gen<
     if (wc.types.includes('Instant') || wc.types.includes('Sorcery')) continue;
     const fromObj = r.id !== undefined ? g.state.objects[r.id] : null;
     if (r.id !== undefined && !fromObj) continue;
+    // ficha ou cópia que já saiu do campo/pilha não volta (CR 111.8, 707.10a)
+    if (fromObj && ((fromObj.isToken && fromObj.zone !== 'battlefield') || (fromObj.isCopy && fromObj.zone !== 'stack'))) continue;
     const ev: EnterEvent = {
       obj: r.id ?? -1, controller: r.controller, tapped: !!r.tapped, counters: { ...(r.counters ?? {}) },
       attachTo: r.attachTo ?? null, fromZone: fromObj?.zone ?? 'command', choices: { ...(r.choices ?? {}) },

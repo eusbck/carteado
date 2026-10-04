@@ -5,7 +5,7 @@ import { addCounters, controlledBy, creaturesOf, discard, draw, moveObjects, put
 import { chooseItems, objItem, yesNo } from './ask.ts';
 import { abilityDefs, chars, controllerOf, isCreature, isLand, nameOf } from './chars.ts';
 import { payMana } from './costs.ts';
-import { registry, type Ctx, type Gen, type ManaAbilityDef, type SCtx, type TriggeredDef } from './defs.ts';
+import { defineAbility, registry, type AbilityDef, type Ctx, type Gen, type ManaAbilityDef, type SCtx, type TriggeredDef } from './defs.ts';
 import type { G } from './game-context.ts';
 import { parseCost } from './mana.ts';
 import { BASIC_LAND_MANA, oracle, allOracleNames } from './oracle.ts';
@@ -213,6 +213,31 @@ export function countersOn(g: G, id: ObjId, kind: string): number {
 
 export function greatestPower(g: G, ids: ObjId[]): number {
   return ids.reduce((m, id) => Math.max(m, chars(g, id).power ?? 0), -Infinity);
+}
+
+// ---------------------------------------------------------------------------
+// Decaimento (CR 702.147a): "Esta criatura não pode bloquear." e
+// "Quando esta criatura atacar, sacrifique-a no fim do combate."
+// ---------------------------------------------------------------------------
+defineAbility<TriggeredDef>('kw:decayedSacrifice', {
+  kind: 'triggered', text: 'Decaimento: sacrifique esta criatura no fim do combate.',
+  // "no fim do combate" = no início da etapa de fim de combate (CR 511.2)
+  on: { kind: 'event', match: (e) => e.type === 'step' && e.step === 'endCombat' },
+  *effect(c) {
+    const obj = c.data.obj as ObjId | undefined;
+    if (obj !== undefined && c.g.state.objects[obj]?.zone === 'battlefield') yield* sacrifice(c.g, [obj]);
+  },
+});
+
+export function decayed(): AbilityDef[] {
+  return [
+    { kind: 'static', kw: 'decayed', text: 'Decaimento (esta criatura não pode bloquear; quando ela atacar, sacrifique-a no fim do combate)' },
+    {
+      kind: 'triggered', text: 'Quando esta criatura atacar, sacrifique-a no fim do combate.',
+      on: { kind: 'event', match: (e, c) => e.type === 'attackers' && e.attackers.some((a) => a.obj === c.source) },
+      *effect(c) { delayed(c, 'kw:decayedSacrifice', { data: { obj: c.source } }); },
+    },
+  ];
 }
 
 export { addCounters, isCreature };

@@ -19,6 +19,8 @@ export interface CardSpec {
   commander?: boolean;
   damage?: number;
   attachTo?: string;
+  /** é uma ficha: name é o id da ficha registrada em cartas/fichas.ts */
+  token?: boolean;
 }
 
 type Spec = string | CardSpec;
@@ -226,7 +228,13 @@ export class TestGame {
   run<T>(gen: Generator<unknown, T, unknown>): T {
     let r = gen.next();
     while (!r.done) r = gen.next(undefined);
+    this.refresh();
     return r.value;
+  }
+  /** depois de mexer no estado por fora, refaz a decisão de prioridade pendente (ações legais, gatilhos, SBAs) */
+  refresh(): this {
+    if (this.pending?.kind === 'priority') this.game = this.game.fork();
+    return this;
   }
   /** passa até chegar na etapa pedida (do turno atual ou do próximo) */
   passTo(step: Step, turnOf?: PlayerId): this {
@@ -266,14 +274,14 @@ export function setup(o: SetupOptions = {}): TestGame {
   let nextCard = 1;
   const add = (p: PlayerId, spec: Spec, zone: ZoneName) => {
     const c: CardSpec = typeof spec === 'string' ? { name: spec } : spec;
-    const cid = nextCard++;
-    state.cards[cid] = { id: cid, def: c.name, owner: p, isCommander: !!c.commander };
-    if (c.commander) state.players[p].commanders.push(cid);
+    const cid = c.token ? null : nextCard++;
+    if (cid !== null) state.cards[cid] = { id: cid, def: c.name, owner: p, isCommander: !!c.commander };
+    if (c.commander && cid !== null) state.players[p].commanders.push(cid);
     const id = state.nextId++;
     const ready = c.ready ?? true;
     state.objects[id] = blankObject(id, {
       def: c.name, owner: p, controller: p, zone, card: cid, timestamp: state.nextTimestamp++, tapped: !!c.tapped,
-      counters: { ...(c.counters ?? {}) }, damage: c.damage ?? 0, controlledSince: ready ? turn - 1 : turn,
+      counters: { ...(c.counters ?? {}) }, damage: c.damage ?? 0, controlledSince: ready ? turn - 1 : turn, isToken: !!c.token,
     });
     if (zone === 'battlefield' && state.objects[id] && registryIsPlaneswalker(c.name) && c.counters?.loyalty === undefined) {
       state.objects[id].counters.loyalty = loyaltyOf(c.name);
