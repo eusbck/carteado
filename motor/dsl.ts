@@ -374,6 +374,11 @@ export function attachedGets(mods: (c: SCtx, obj: GameObject) => Mod[], text?: s
   };
 }
 
+/** estática sobre o próprio objeto ("Esta criatura recebe +1/+1 para cada…") */
+export function selfGets(mods: (c: SCtx, obj: GameObject) => Mod[], text?: string, extra: Partial<StaticDef> = {}): StaticDef {
+  return { kind: 'static', text, affects: (c, o) => o.id === c.source, mods, ...extra };
+}
+
 /** estática "criaturas que você controla recebem…" e afins */
 export function anthem(pred: Pred, mods: (c: SCtx, obj: GameObject) => Mod[], text?: string): StaticDef {
   return { kind: 'static', text, affects: (c, o) => pred(c, o.id), mods };
@@ -398,3 +403,59 @@ export function manaCommanderIdentity(opts: { cost?: string; text?: string } = {
 export function enchant(spec: TargetSpec): TargetSpec {
   return spec;
 }
+
+// ---------------------------------------------------------------------------
+// Terrenos: padrões frequentes
+// ---------------------------------------------------------------------------
+import { dealDamage as dealDamageAct, lookAndArrange as lookAndArrangeAct, returnToHand as returnToHandAct, yesNoReveal } from './dsl-helpers.ts';
+
+function landsYouControl(c: SCtx, pred: (id: ObjId) => boolean = () => true): ObjId[] {
+  return c.g.state.zones.battlefield.filter((id) => !c.g.state.objects[id].phasedOut && controllerOf(c.g, id) === c.you && isLand(c.g, id) && pred(id));
+}
+
+export const land = {
+  /** "Este terreno entra virado." */
+  tapped: (): ReplacementDef => entersTapped(),
+  /** "…a menos que você controle dois ou mais terrenos básicos." */
+  tappedUnlessBasics: (n = 2): ReplacementDef => entersTapped((c) => landsYouControl(c, (id) => chars(c.g, id).supertypes.includes('Basic')).length >= n),
+  /** "…a menos que você controle um(a) A ou um(a) B." (checklands) */
+  tappedUnlessControl: (...subtypes: string[]): ReplacementDef => entersTapped((c) => landsYouControl(c, (id) => chars(c.g, id).subtypes.some((s) => subtypes.includes(s))).length > 0),
+  /** "…a menos que você controle dois ou mais outros terrenos." */
+  tappedUnlessOtherLands: (n: number): ReplacementDef => entersTapped((c) => landsYouControl(c).length >= n),
+  /** "…a menos que seus oponentes controlem oito ou mais terrenos." (soma entre os oponentes) */
+  tappedUnlessOpponentsLands: (n: number): ReplacementDef => entersTapped((c) => c.g.state.zones.battlefield.filter((id) => isLand(c.g, id) && c.g.isOpponent(c.you, controllerOf(c.g, id))).length >= n),
+  /** "…a menos que você controle três ou mais outros [tipo]." */
+  tappedUnlessOtherOfType: (subtype: string, n: number): ReplacementDef => entersTapped((c) => landsYouControl(c, (id) => chars(c.g, id).subtypes.includes(subtype)).length >= n),
+  /** snarl: "Ao entrar, você pode revelar um card A ou B da mão. Se não fizer, entra virado." */
+  snarl: (...subtypes: string[]): ReplacementDef => asEnters(function* (c, ev) {
+    const cands = c.g.state.zones.hand[c.you].filter((id) => id !== ev.obj && chars(c.g, id).subtypes.some((s) => subtypes.includes(s)));
+    const revealed = cands.length > 0 && (yield* yesNoReveal(c, cands, subtypes));
+    if (!revealed) ev.tapped = true;
+  }, `Ao entrar, você pode revelar uma carta ${subtypes.join(' ou ')} da mão; se não revelar, entra virado.`),
+  /** terreno de dor: "{T}: Adicione {A} ou {B}. Este terreno causa 1 de dano a você." */
+  pain: (colors: string[]): ManaAbilityDef => mana(colors, {
+    text: `{T}: Adicione ${colors.map((x) => `{${x}}`).join(' ou ')}. Este terreno causa 1 de dano a você.`,
+    *extra(c) { dealDamageAct(c.g, [{ source: c.source, target: { kind: 'player', id: c.you }, amount: 1, combat: false }]); },
+  }),
+  /** filtro: "{A/B}, {T}: Adicione {A}{A}, {A}{B} ou {B}{B}." */
+  filter: (a: string, b: string): ManaAbilityDef => mana([a + a, a + b, b + b], { cost: `{${a}/${b}}, {T}`, text: `{${a}/${b}}, {T}: Adicione {${a}}{${a}}, {${a}}{${b}} ou {${b}}{${b}}.` }),
+  /** "Quando este terreno entra, vidência 1." */
+  scryOnEnter: (): TriggeredDef => etb(function* (c) { yield* lookAndArrangeAct(c.g, c.you, 1, 'scry'); }, { text: 'Quando entra, vidência 1.' }),
+  /** "[custo], {T}: Vidência 1." */
+  scryAbility: (manaCost: string): ActivatedDef => activated(`${manaCost}, {T}`, function* (c) { yield* lookAndArrangeAct(c.g, c.you, 1, 'scry'); }, { text: `${manaCost}, {T}: Vidência 1.` }),
+  /** "[custo], {T}: Vigiar 1." */
+  surveilAbility: (manaCost: string): ActivatedDef => activated(`${manaCost}, {T}`, function* (c) { yield* lookAndArrangeAct(c.g, c.you, 1, 'surveil'); }, { text: `${manaCost}, {T}: Vigiar 1.` }),
+  /** terreno-carnário: "Quando entra, devolva um terreno que você controla para a mão do dono." */
+  bounceLand: (): TriggeredDef => etb(function* (c) {
+    const mine = landsYouControl(c);
+    if (mine.length === 0) return;
+    const [pick] = yield* askModule.chooseItems(c.g, c.you, 'Devolva um terreno que você controla para a mão', mine.map((id) => askModule.objItem(c.g, id, nameOf(c.g, id))), 1, 1);
+    yield* returnToHandAct(c.g, [Number(pick)]);
+  }, { text: 'Quando entra, devolva um terreno que você controla para a mão do dono.' }),
+  /** "{T}, Sacrifique este terreno: Procure uma carta de terreno básico, coloque-a no campo virada, depois embaralhe." */
+  fetchBasic: (): ActivatedDef => activated('{T}, Sacrifice this land', function* (c) {
+    yield* fetchBasicToBattlefield(c, 1, { prompt: 'Procure uma carta de terreno básico' });
+  }, { text: '{T}, Sacrifique este terreno: Procure uma carta de terreno básico e coloque-a no campo virada; depois embaralhe.' }),
+};
+
+import * as askModule from './ask.ts';

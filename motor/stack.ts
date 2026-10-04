@@ -70,14 +70,14 @@ export function candidateTargets(g: G, spec: TargetSpec, controller: PlayerId, s
   return out.filter((t) => isLegalTarget(g, spec, t, controller, source));
 }
 
-function specMax(g: G, spec: TargetSpec, ctx: SCtx): number {
+function specMax(g: G, spec: TargetSpec, ctx: SCtx & { x?: number }): number {
   return typeof spec.max === 'function' ? spec.max(ctx) : (spec.max ?? 1);
 }
 
 /** escolhe alvos para uma lista de especificações (CR 601.2c). null = impossível */
-export function* chooseTargets(g: G, player: PlayerId, specs: TargetSpec[], source: ObjId, label: string): Gen<TargetRef[][] | null> {
+export function* chooseTargets(g: G, player: PlayerId, specs: TargetSpec[], source: ObjId, label: string, x = 0): Gen<TargetRef[][] | null> {
   const chosen: TargetRef[][] = [];
-  const ctx: SCtx = { g, you: player, source };
+  const ctx: SCtx & { x: number } = { g, you: player, source, x };
   for (let i = 0; i < specs.length; i++) {
     const spec = specs[i];
     let cands = candidateTargets(g, spec, player, source);
@@ -277,17 +277,19 @@ function* castInner(g: G, player: PlayerId, cardId: ObjId, method: CastMethod): 
       if (r === 'or') info.paid[`${ac.key}:or`] = true;
     } else info.paid[ac.key] = true;
   }
-  const costHasX = (chars(g, spellId).manaCost ?? []).some((s) => s.k === 'X') || !!sp?.xMax || (f?.additionalCosts ?? []).some((ac) => ac.parts.some((p) => (p.k === 'life' || p.k === 'sacrifice' || p.k === 'blight') && (p as { n: unknown }).n === 'X'));
-  if (costHasX && !(method.free || method.permission?.free) ) {
+  const manaHasX = (chars(g, spellId).manaCost ?? []).some((s) => s.k === 'X');
+  const otherHasX = !!sp?.xMax || (f?.additionalCosts ?? []).some((ac) => ac.parts.some((p) => (p.k === 'life' || p.k === 'sacrifice' || p.k === 'blight') && (p as { n: unknown }).n === 'X'));
+  const free = !!(method.free || method.permission?.free);
+  // CR 107.3b: sem pagar o custo de mana, o X do custo de mana só pode ser 0; X de custos
+  // adicionais (pagar X de vida, sacrificar X…) continua sendo escolhido (ruling de Toxic Deluge)
+  if ((manaHasX && !free) || (otherHasX && !manaHasX)) {
     const cap = sp?.xMax ? sp.xMax({ g, you: player, source: spellId }) : maxX(g, player, spellId);
     info.x = yield* chooseNumber(g, player, `${label}: escolha o valor de X`, 0, Math.max(0, cap));
-  } else if (costHasX && sp?.xMax) {
-    info.x = 0; // CR 107.3b
   }
   // 601.2c: alvos
   const { specs } = spellTargetSpecs(o, info.modes, method.key);
   if (specs.length) {
-    const t = yield* chooseTargets(g, player, specs, spellId, label);
+    const t = yield* chooseTargets(g, player, specs, spellId, label, info.x);
     if (t === null) return null;
     info.targets = t;
   }
@@ -400,13 +402,15 @@ function* activateInner(g: G, player: PlayerId, sourceId: ObjId, abilityId: stri
   // 601.2c
   const { specs } = abilityTargetSpecs(def, info.modes);
   if (specs.length) {
-    const t = yield* chooseTargets(g, player, specs, sourceId, label);
+    const t = yield* chooseTargets(g, player, specs, sourceId, label, info.x);
     if (t === null) return null;
     info.targets = t;
   }
   // 601.2f-h
   const cost = withX(mp, info.x);
-  const paid = yield* payMana(g, player, cost, { purpose: { kind: 'ability', obj: ab.id }, canCancel: true, label });
+  // a fonte que vai ser virada/sacrificada no custo não pode também pagar a mana
+  const usesSource = def.cost.some((p) => p.k === 'tap' || p.k === 'untap' || p.k === 'sacrificeSelf' || p.k === 'exileSelf');
+  const paid = yield* payMana(g, player, cost, { purpose: { kind: 'ability', obj: ab.id }, canCancel: true, label, excludeSource: usesSource ? sourceId : undefined });
   if (paid === null) return null;
   const parts = def.cost.filter((p) => p.k !== 'mana');
   const r = yield* payParts(g, player, parts, sourceId, info.x);
@@ -446,7 +450,8 @@ export function canActivate(g: G, player: PlayerId, sourceId: ObjId, def: Activa
   const { specs } = abilityTargetSpecs(def, []);
   if (specs.some((sp) => (sp.min ?? 1) > 0 && candidateTargets(g, sp, player, sourceId).length < (sp.min ?? 1))) return false;
   const mp = withX(manaPart(def.cost), 0);
-  if (mp.length && !canAfford(g, player, mp, { purpose: { kind: 'ability', obj: sourceId }, excludeSource: def.cost.some((p) => p.k === 'tap') ? sourceId : undefined })) return false;
+  const usesSource = def.cost.some((p) => p.k === 'tap' || p.k === 'untap' || p.k === 'sacrificeSelf' || p.k === 'exileSelf');
+  if (mp.length && !canAfford(g, player, mp, { purpose: { kind: 'ability', obj: sourceId }, excludeSource: usesSource ? sourceId : undefined })) return false;
   return true;
 }
 

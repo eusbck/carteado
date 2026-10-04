@@ -3,12 +3,13 @@
 // ou pede o pagamento automático (o que os bots sempre fazem).
 
 import { addMana, addCounters, blight as doBlight, discard, loseLife, mill, moveObjects, removeCounters, sacrifice, tap, untap } from './actions.ts';
-import { ask, chooseItems, chooseNumber, objItem } from './ask.ts';
+import { ask, chooseColor, chooseItems, chooseNumber, objItem } from './ask.ts';
 import { abilityDefs, chars, controllerOf, hasKw, isCreature, nameOf } from './chars.ts';
 import { registry, type CostPart, type Ctx, type Gen, type ManaAbilityDef, type SCtx } from './defs.ts';
 import type { G } from './game-context.ts';
 import { formatCost, matchPool, parseCost, phyrexianCount, poolToString, type SpendContext } from './mana.ts';
 import { addPending, emit } from './triggers.ts';
+import { oracle } from './oracle.ts';
 import type { Answer, ManaSymbol, ManaType, ManaUnit, ObjId, PaymentSource, PlayerId } from './types.ts';
 
 // ---------------------------------------------------------------------------
@@ -125,8 +126,8 @@ export function manaOptions(g: G, player: PlayerId, opts: { excludeSource?: ObjI
   return out;
 }
 
-/** ativa uma habilidade de mana (CR 605.3: resolve na hora) */
-export function* activateManaAbility(g: G, player: PlayerId, opt: ManaOption): Gen<boolean> {
+/** ativa uma habilidade de mana (CR 605.3: resolve na hora). `hint` decide as cores de '*' */
+export function* activateManaAbility(g: G, player: PlayerId, opt: ManaOption, hint: ManaType[] = []): Gen<boolean> {
   const o = g.state.objects[opt.obj];
   if (!o) return false;
   const ctx: Ctx = { g, you: player, self: opt.obj, source: opt.obj, targets: [], x: 0, modes: [], paid: {}, event: {}, data: {} };
@@ -137,13 +138,22 @@ export function* activateManaAbility(g: G, player: PlayerId, opt: ManaOption): G
   const paid = yield* payParts(g, player, opt.def.cost.filter((p) => p.k !== 'mana'), opt.obj, 0, true);
   if (!paid) return false;
   if (opt.def.oncePerTurn) { const s = g.state.objects[opt.obj]; if (s) s.usedThisTurn[opt.abilityId] = g.state.turn.number; }
-  addMana(g, player, opt.alt, {
+  // "qualquer combinação de cores": cada '*' vira uma cor escolhida agora (CR 106.1a)
+  const alt: ManaType[] = [];
+  let hi = 0;
+  for (const t of opt.alt) {
+    if ((t as string) !== '*') { alt.push(t); continue; }
+    const h = hint[hi++];
+    if (h && h !== 'C') alt.push(h);
+    else alt.push(yield* chooseColor(g, player, `${nameOf(g, opt.obj)}: escolha a cor da mana`));
+  }
+  addMana(g, player, alt, {
     source: opt.obj,
     restriction: opt.def.restriction,
     untilEndOfTurn: opt.def.untilEndOfTurn,
     onSpend: opt.def.onSpend ? { abilityId: opt.def.onSpend, source: opt.obj, controller: player } : undefined,
   });
-  emit(g, [{ type: 'mana', player, source: opt.obj, produced: opt.alt }]);
+  emit(g, [{ type: 'mana', player, source: opt.obj, produced: alt }]);
   if (opt.def.extra) yield* opt.def.extra(ctx);
   return true;
 }
@@ -270,9 +280,10 @@ export function* payMana(g: G, player: PlayerId, cost: ManaSymbol[], ctx: PayCon
     if (a.cancel) return null;
     if (a.life !== undefined) lifeChoice = a.life;
     if (a.auto) {
+      const hint = colorHint(g, player, cost);
       for (const o of auto!) {
         const fresh = manaOptions(g, player, { excludeSource: ctx.excludeSource }).find((x) => x.key === o.key);
-        if (fresh) yield* activateManaAbility(g, player, fresh);
+        if (fresh) yield* activateManaAbility(g, player, fresh, hint);
       }
     } else if (a.activate) {
       const o = opts.find((x) => x.key === a.activate!.source)!;
@@ -292,6 +303,21 @@ export function* payMana(g: G, player: PlayerId, cost: ManaSymbol[], ctx: PayCon
       return { units, lifePaid: lifeChoice };
     }
   }
+}
+
+/** cores que faltam na reserva para pagar o custo (para escolher cores de mana coringa) */
+function colorHint(g: G, player: PlayerId, cost: ManaSymbol[]): ManaType[] {
+  const have = g.state.players[player].manaPool.map((u) => u.type);
+  const need: ManaType[] = [];
+  for (const s of cost) {
+    const c = s.k === 'color' || s.k === 'phyrexian' || s.k === 'monohybrid' ? s.c : s.k === 'hybrid' ? s.a : null;
+    if (!c) continue;
+    const i = have.indexOf(c);
+    if (i >= 0) have.splice(i, 1); else need.push(c);
+  }
+  const ident = g.state.players[player].commanders.flatMap((cid) => oracle(g.state.cards[cid].def).colorIdentity);
+  const filler = (ident[0] ?? 'W') as ManaType;
+  return [...need, ...Array(20).fill(filler)];
 }
 
 // ---------------------------------------------------------------------------

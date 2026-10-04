@@ -213,6 +213,21 @@ export class TestGame {
     for (let i = 0; i < 50 && this.state.zones.stack.length > 0; i++) this.resolve();
     return this;
   }
+  /** passa até a condição valer numa decisão de prioridade */
+  passUntil(pred: (tg: TestGame) => boolean, max = 400): this {
+    for (let i = 0; i < max; i++) {
+      this.settle();
+      if (this.state.gameOver || (this.pending?.kind === 'priority' && pred(this))) return this;
+      this.pass();
+    }
+    throw new Error('Condição não alcançada');
+  }
+  /** roda um gerador do motor fora de uma decisão (para montar situações de teste) */
+  run<T>(gen: Generator<unknown, T, unknown>): T {
+    let r = gen.next();
+    while (!r.done) r = gen.next(undefined);
+    return r.value;
+  }
   /** passa até chegar na etapa pedida (do turno atual ou do próximo) */
   passTo(step: Step, turnOf?: PlayerId): this {
     for (let i = 0; i < 400; i++) {

@@ -1,35 +1,13 @@
-// Gerado por ferramentas/gerar-indice.ts. Não edite à mão.
+// Carrega as fichas e todas as definições de cartas em cartas/defs (exceto testes),
+// depois registra as cartas ainda sem definição como pendentes (modo manual).
 import './fichas.ts';
-import './defs/abrade.ts';
-import './defs/angelic-gift.ts';
-import './defs/arboreal-grazer.ts';
-import './defs/arcane-signet.ts';
-import './defs/bag-of-holding.ts';
-import './defs/basicos.ts';
-import './defs/blood-artist.ts';
-import './defs/command-tower.ts';
-import './defs/counterspell.ts';
-import './defs/elvish-mystic.ts';
-import './defs/fleshbag-marauder.ts';
-import './defs/incremental-blight.ts';
-import './defs/indomitable-ancients.ts';
-import './defs/infernal-grasp.ts';
-import './defs/killian-ink-duelist.ts';
-import './defs/millikin.ts';
-import './defs/nights-whisper.ts';
-import './defs/quintorius-history-chaser.ts';
-import './defs/ravenous-chupacabra.ts';
-import './defs/reanimate.ts';
-import './defs/sol-ring.ts';
-import './defs/swiftfoot-boots.ts';
-import './defs/swords-to-plowshares.ts';
-import './defs/sylvan-caryatid.ts';
-import './defs/terminate.ts';
-import './defs/toxic-deluge.ts';
-import './defs/viscera-seer.ts';
-import './defs/wall-of-omens.ts';
-import './defs/winds-of-rath.ts';
-import './defs/zetalpa-primal-dawn.ts';
+import { readdirSync } from 'node:fs';
+import { dirname, join } from 'node:path';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { registrarPendentes } from './pendentes.ts';
 
+const pasta = join(dirname(fileURLToPath(import.meta.url)), 'defs');
+for (const f of readdirSync(pasta).filter((x) => x.endsWith('.ts') && !x.endsWith('.test.ts')).sort()) {
+  await import(pathToFileURL(join(pasta, f)).href);
+}
 registrarPendentes();

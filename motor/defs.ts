@@ -57,7 +57,7 @@ export interface TargetSpec {
   zone?: ZoneName;
   filter?: (c: SCtx, t: TargetRef) => boolean;
   min?: number;
-  max?: number | ((c: SCtx) => number);
+  max?: number | ((c: SCtx & { x?: number }) => number);
   label: string;
   /** o alvo deve ser diferente dos escolhidos para estes outros índices ("outro alvo") */
   differentFrom?: number[];

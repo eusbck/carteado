@@ -1,6 +1,7 @@
 // Ponto único de importação para as definições de cartas.
 
 export * from './dsl.ts';
+export * from './efeitos.ts';
 export {
   addCounters, removeCounters, addMana, allCreatures, attach, becomeMonarch, blight, controlledBy, createTokens, creaturesOf,
   dealDamage, destroy, discard, draw, exile, gainControl, gainLife, goad, lookAndArrange, loseLife, mill, moveObject,

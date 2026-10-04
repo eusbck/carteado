@@ -132,7 +132,8 @@ export function matchPool(cost: ManaSymbol[], pool: ManaUnit[], ctx: SpendContex
   type Slot = (t: ManaType) => boolean;
   const reqs: { alts: Slot[][]; weight: number }[] = [];
   const any: Slot = () => true;
-  const of = (c: ManaType): Slot => (t) => ctx.anyType || t === c;
+  // '*' = mana de cor ainda não escolhida (planejamento de "qualquer combinação de cores")
+  const of = (c: ManaType): Slot => (t) => ctx.anyType || t === c || ((t as string) === '*' && c !== 'C');
   for (const s of cost) {
     switch (s.k) {
       case 'generic': for (let i = 0; i < s.n; i++) reqs.push({ alts: [[any]], weight: 0 }); break;
