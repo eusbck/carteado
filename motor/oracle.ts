@@ -40,10 +40,11 @@ interface RawCard { name: string; oracleId: string; layout: string; manaValue: n
 
 const raw = dados as unknown as { cartas: Record<string, RawCard>; fichas: (RawCard & { imagem: unknown })[] };
 
-function face(f: RawFace, layout: string): OracleFace {
+function face(f: RawFace, layout: string, devoid = false): OracleFace {
   const manaCost = f.manaCost ? parseCost(f.manaCost) : null;
   // ficha: as cores vêm do efeito que a cria (CR 111.4), registradas nos dados da ficha impressa
-  const colors = (layout === 'token' ? f.colors : f.colorIndicator?.length ? f.colorIndicator : colorsOfCost(manaCost)) as Color[];
+  // devoid: "este objeto é incolor", em todas as zonas (CR 702.114a)
+  const colors = (devoid ? [] : layout === 'token' ? f.colors : f.colorIndicator?.length ? f.colorIndicator : colorsOfCost(manaCost)) as Color[];
   const num = (v: number | string | null) => (typeof v === 'number' ? v : null);
   return {
     name: f.name,
@@ -66,7 +67,7 @@ function convert(c: RawCard): OracleCard {
   return {
     name: c.name, oracleId: c.oracleId, layout: c.layout, manaValue: c.manaValue,
     colorIdentity: c.colorIdentity as Color[], keywords: c.keywords,
-    faces: c.faces.map((f) => face(f, c.layout)),
+    faces: c.faces.map((f) => face(f, c.layout, c.keywords.includes('Devoid'))),
   };
 }
 
