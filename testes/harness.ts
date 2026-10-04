@@ -37,6 +37,8 @@ export interface SetupOptions {
   exile?: Spec[][];
   command?: Spec[][];
   seed?: string;
+  /** roda antes de responder às primeiras decisões (para roteirizar escolhas iniciais) */
+  onStart?: (tg: TestGame) => void;
 }
 
 const NAMES = ['Ana', 'Bruno', 'Carla', 'Diego', 'Eva', 'Felipe'];
@@ -193,15 +195,16 @@ export class TestGame {
     this.settle();
     return this;
   }
-  /** todos passam até o topo da pilha resolver (ou a etapa terminar) */
+  /** todos passam até o objeto do topo da pilha resolver (ou a etapa terminar) */
   resolve(): this {
     this.settle();
-    const before = this.state.zones.stack.length;
+    const stack = this.state.zones.stack;
+    const top = stack[stack.length - 1];
     const step = this.state.turn.step;
     const turn = this.state.turn.number;
     for (let i = 0; i < 20; i++) {
       this.pass();
-      if (this.state.zones.stack.length < before || this.state.turn.step !== step || this.state.turn.number !== turn || this.state.gameOver) return this;
+      if (top === undefined || !this.state.zones.stack.includes(top) || this.state.turn.step !== step || this.state.turn.number !== turn || this.state.gameOver) return this;
     }
     throw new Error('A pilha não resolveu');
   }
@@ -279,6 +282,7 @@ export function setup(o: SetupOptions = {}): TestGame {
   }
   const game = Game.fromState(state);
   const tg = new TestGame(game);
+  o.onStart?.(tg);
   tg.settle();
   return tg;
 }

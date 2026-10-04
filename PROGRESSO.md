@@ -6,6 +6,7 @@ Lista de verificação das fases. É por aqui que uma sessão nova retoma o trab
 
 - 03/10/2026: explorar os dados, fazer o levantamento das 547 cartas e escrever a proposta (checkpoint 1).
 - 03/10/2026 (continuação): proposta aprovada (construir o motor; cartas em duas partes com servidor e cliente no meio; sem servidor XMage provisório). Começar a fase 1: núcleo do motor.
+- 04/10/2026: fase 1 concluída; começar a fase 2 (cartas, parte A).
 
 ## Fase 0: exploração e proposta
 
@@ -16,18 +17,23 @@ Lista de verificação das fases. É por aqui que uma sessão nova retoma o trab
 - [x] `PROPOSTA.md`
 - [x] Aprovação da proposta (03/10/2026)
 
-## Fase 1: núcleo do motor
+## Fase 1: núcleo do motor — concluída em 04/10/2026
 
-- [ ] Estrutura do repositório (motor, cartas, bots, servidor, cliente, ferramentas), TypeScript, Vitest
-- [ ] Importação dos decks e validação 903.5
-- [ ] Estado, PRNG com semente, máquina de decisões, vista por jogador
-- [ ] Turno e etapas, prioridade, pilha, mana, ações baseadas em estado
-- [ ] Gatilhos (APNAP), substituição e prevenção, camadas
-- [ ] Combate com vários defensores
-- [ ] Commander: zona de comando, imposto, dano de comandante, identidade de cor, vida 40, mulligan, saída de jogador
-- [ ] Passagem automática (CR 732)
-- [ ] Testes derivados do CR e de `dados/cenarios.json`
-- [ ] Bot aleatório e teste de estresse
+- [x] Estrutura do repositório (motor, cartas, bots, servidor, cliente, ferramentas), TypeScript (Node 24 roda .ts direto), Vitest
+- [x] Importação dos decks (`ferramentas/importar.ts` → `gerado/`) e validação 903.5 (`motor/deck.ts`): os 7 decks são legais
+- [x] Estado serializável, PRNG com semente (`motor/rng.ts`), máquina de decisões (`motor/ask.ts`, `motor/game.ts`), vista por jogador (`motor/view.ts`)
+- [x] Turno e etapas, prioridade, pilha, mana, ações baseadas em estado (`turn.ts`, `stack.ts`, `costs.ts`, `sba.ts`)
+- [x] Gatilhos APNAP com "olhar para trás" (603.10), substituições (comandante 903.9b, finalidade, flashback, entrar no campo), prevenção (proteção, escudos), camadas 1–7 (`chars.ts`)
+- [x] Combate com vários defensores (802), primeiro golpe, atropelar, menace, voar, custos e exigências de ataque (goad)
+- [x] Commander: zona de comando, imposto, retorno (903.9a/b), dano de comandante (903.10a), identidade de cor, vida 40, mulligan com o primeiro grátis em multijogador, saída de jogador (800.4)
+- [x] Passagem automática (CR 732): `motor/autopass.ts`, usada pelo servidor na fase 3
+- [x] Testes derivados do CR e de `dados/cenarios.json` (46 dos 51 cenários; os outros dependem de cartas futuras ou de mecânicas ausentes)
+- [x] Bot aleatório (`bots/aleatorio.ts`) e teste de estresse (`bots/estresse.ts`) com verificação de invariantes
+
+Recapitulação da fase 1:
+- Feito: o motor joga partidas completas de 2 e 4 jogadores com os 7 decks; cartas ainda não implementadas entram como pendentes (sem efeito).
+- Verificado: 79 testes passando; 85 partidas de bots aleatórios (40 de 4 jogadores, 40 de 2, 5 de 4) sem erro, travamento nem invariante violada; reprodução por semente e retomada de checkpoint dão o mesmo estado; a vista de um jogador não contém mão nem grimório dos outros.
+- Precisa de você: nada.
 
 ## Fase 2: cartas, parte A (229)
 

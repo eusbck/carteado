@@ -69,6 +69,23 @@ export function castOptions(g: G, p: PlayerId): CastOption[] {
   return out;
 }
 
+/**
+ * Há alvos legais para todas as especificações obrigatórias? Conta também as que pedem
+ * alvos diferentes entre si ("outra criatura alvo", CR 115.3).
+ */
+export function enoughTargets(g: G, specs: import('./defs.ts').TargetSpec[], p: PlayerId, source: ObjId): boolean {
+  for (let i = 0; i < specs.length; i++) {
+    const sp = specs[i];
+    const min = sp.min ?? 1;
+    if (min === 0) continue;
+    const cands = candidateTargets(g, sp, p, source);
+    let need = min;
+    for (const j of sp.differentFrom ?? []) need += specs[j]?.min ?? 1;
+    if (cands.length < (sp.differentFrom?.length ? need : min)) return false;
+  }
+  return true;
+}
+
 /** checagem rápida: dá para começar a conjurar e pagar? (CR 601.3) */
 export function canStartCast(g: G, p: PlayerId, opt: CastOption): boolean {
   const s = g.state;
@@ -87,7 +104,7 @@ export function canStartCast(g: G, p: PlayerId, opt: CastOption): boolean {
     void ctx;
   }
   const { specs } = spellTargetSpecs(o, [], opt.method.key);
-  if (specs.some((t) => (t.min ?? 1) > 0 && candidateTargets(g, t, p, opt.obj).length < (t.min ?? 1))) return false;
+  if (!enoughTargets(g, specs, p, opt.obj)) return false;
   // custos adicionais obrigatórios não-mana
   for (const ac of f?.additionalCosts ?? []) {
     if (ac.optional || ac.repeatable) continue;
