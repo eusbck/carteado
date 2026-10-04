@@ -33,7 +33,7 @@ export const DEFAULT_STOPS: StopSettings = {
 export function shouldAutoPass(s: GameState, d: Decision, player: PlayerId, st: StopSettings): boolean {
   if (d.kind !== 'priority' || d.player !== player) return false;
   // sem nada além de passar (e ativar mana à toa), não há o que decidir
-  const meaningful = d.actions.filter((a) => a.kind !== 'pass' && a.kind !== 'mana');
+  const meaningful = d.actions.filter((a) => a.kind !== 'pass' && a.kind !== 'mana' && a.kind !== 'manual');
   if (meaningful.length === 0) return true;
   if (st.passUntilTurnEnds !== null && st.passUntilTurnEnds === s.turn.number) {
     if (!st.stopOnOpponentStack) return true;

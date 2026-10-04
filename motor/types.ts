@@ -302,7 +302,23 @@ export interface GameConfig {
   turnLimit: number | null;
   /** partida de dois jogadores (CR 100.1a) ou multijogador (CR 100.1b) */
   multiplayer: boolean;
+  /** permite ajustes manuais (para aplicar o efeito de cartas ainda sem definição); ficam no log */
+  manualMode?: boolean;
 }
+
+/** ajuste manual feito por um jogador com prioridade (modo manual) */
+export type ManualAction =
+  | { k: 'mover'; obj: ObjId; to: 'battlefield' | 'hand' | 'graveyard' | 'exile' | 'libraryTop' | 'libraryBottom' }
+  | { k: 'vida'; player: PlayerId; delta: number }
+  | { k: 'marcadores'; target: TargetRef; kind: string; delta: number }
+  | { k: 'virar'; obj: ObjId; tapped: boolean }
+  | { k: 'ficha'; def: string; n: number; player: PlayerId }
+  | { k: 'comprar'; n: number }
+  | { k: 'moer'; n: number }
+  | { k: 'embaralhar' }
+  | { k: 'buscar'; to: 'battlefield' | 'hand' | 'graveyard' | 'exile' | 'libraryTop' }
+  | { k: 'videncia'; n: number }
+  | { k: 'vigiar'; n: number };
 
 export interface GameState {
   engineVersion: number;
@@ -400,7 +416,7 @@ export interface ChoiceItem {
 
 export interface PriorityAction {
   id: string;
-  kind: 'pass' | 'play' | 'cast' | 'activate' | 'mana' | 'special';
+  kind: 'pass' | 'play' | 'cast' | 'activate' | 'mana' | 'special' | 'manual';
   label: string;
   obj?: ObjId;
 }
@@ -430,7 +446,7 @@ export type Decision = {
 );
 
 export type Answer =
-  | { kind: 'priority'; action: string }
+  | { kind: 'priority'; action: string; manual?: ManualAction }
   | { kind: 'select'; ids: string[] }
   | { kind: 'number'; value: number }
   | { kind: 'payment'; auto?: boolean; activate?: { source: string; type?: ManaType }; pay?: boolean; life?: number; cancel?: boolean }

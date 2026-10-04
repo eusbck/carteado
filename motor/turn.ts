@@ -9,6 +9,7 @@ import { combatDamage, declareAttackers, declareBlockers, endCombat, needsFirstS
 import { registry, type Gen } from './defs.ts';
 import type { G } from './game-context.ts';
 import { legalActions, performAction } from './priority.ts';
+import { performManual, validateManual } from './manual.ts';
 import { checkGameEnd, leaveGame, performSBAs } from './sba.ts';
 import { putTriggersOnStack, resolveTop } from './stack.ts';
 import { emptyTurnStats } from './state.ts';
@@ -229,7 +230,8 @@ function* priorityLoop(g: G): Gen<void> {
     if (g.state.players[p].left) p = g.nextPlayer(p);
     g.state.priority = p;
     const actions = legalActions(g, p);
-    const a = yield* ask<Extract<Answer, { kind: 'priority' }>>(g, { kind: 'priority', player: p, prompt: 'Você tem prioridade', actions });
+    const a = yield* ask<Extract<Answer, { kind: 'priority' }>>(g, { kind: 'priority', player: p, prompt: 'Você tem prioridade', actions },
+      (ans) => (ans.action === 'manual' ? validateManual(g, p, ans.manual) : null));
     if (a.action === 'pass') {
       g.state.passesInRow++;
       if (g.state.passesInRow >= g.playersInGame().length) {
@@ -243,7 +245,7 @@ function* priorityLoop(g: G): Gen<void> {
       g.state.priority = g.nextPlayer(p); // CR 117.3d
       continue;
     }
-    const did = yield* performAction(g, p, a.action);
+    const did = a.action === 'manual' ? yield* performManual(g, p, a.manual!) : yield* performAction(g, p, a.action);
     if (did) { g.state.passesInRow = 0; g.state.priority = p; } // CR 117.3c
   }
   void s;

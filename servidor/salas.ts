@@ -1,0 +1,425 @@
+// Salas privadas (código + senha), assentos, escolha de deck, bots e condução da partida.
+// O servidor é a autoridade: valida cada resposta no motor e manda a cada conexão só a vista
+// do próprio assento (motor/view.ts), nunca o estado inteiro.
+
+import { randomBytes, randomInt, scryptSync, timingSafeEqual } from 'node:crypto';
+import { RandomBot } from '../bots/aleatorio.ts';
+import { DEFAULT_STOPS, shouldAutoPass, type StopSettings } from '../motor/autopass.ts';
+import { Game, type Checkpoint, type Input } from '../motor/game.ts';
+import type { DeckList } from '../motor/state.ts';
+import type { Answer, GameConfig, Step } from '../motor/types.ts';
+import { buildView } from '../motor/view.ts';
+import type { Banco } from './banco.ts';
+import type { Modo, MsgCliente, MsgServidor, SalaPublica, TipoAssento } from './protocolo.ts';
+
+export interface Conexao {
+  enviar(m: MsgServidor): void;
+  sala: Sala | null;
+  assento: number | null;
+}
+
+export interface Atrasos {
+  /** bot faz uma jogada que todos veem (conjurar, atacar…) */
+  botAcao: number;
+  /** bot passa a prioridade ou responde algo menor */
+  botPasse: number;
+  /** passe automático de um humano: o mesmo atraso sempre, para não revelar se havia resposta */
+  autoPasse: number;
+}
+
+export const ATRASOS_PADRAO: Atrasos = { botAcao: 700, botPasse: 90, autoPasse: 60 };
+export const SEM_ATRASO: Atrasos = { botAcao: 0, botPasse: 0, autoPasse: 0 };
+
+interface Assento {
+  tipo: TipoAssento;
+  nome: string | null;
+  deck: string | null;
+  token: string | null;
+  paradas: StopSettings;
+}
+
+interface DadosPartida {
+  config: GameConfig;
+  deckIds: string[];
+  checkpoint: Checkpoint | null;
+}
+
+interface DadosSala {
+  codigo: string;
+  senha: string;
+  modo: Modo;
+  estado: SalaPublica['estado'];
+  assentos: Assento[];
+  anfitriao: number;
+  partida: DadosPartida | null;
+}
+
+const ALFABETO = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+const PASSOS: Step[] = ['upkeep', 'draw', 'main1', 'beginCombat', 'declareAttackers', 'declareBlockers', 'combatDamage', 'endCombat', 'main2', 'end'];
+
+function hashSenha(senha: string): string {
+  const sal = randomBytes(16);
+  return `${sal.toString('hex')}:${scryptSync(senha, sal, 32).toString('hex')}`;
+}
+function confereSenha(senha: string, guardada: string): boolean {
+  const [sal, hash] = guardada.split(':');
+  const h = scryptSync(senha, Buffer.from(sal, 'hex'), 32);
+  return timingSafeEqual(h, Buffer.from(hash, 'hex'));
+}
+const novoToken = () => randomBytes(24).toString('base64url');
+const limparNome = (s: unknown) => (typeof s === 'string' ? s.replace(/\s+/g, ' ').trim().slice(0, 24) : '');
+const dorme = (ms: number) => (ms > 0 ? new Promise((r) => setTimeout(r, ms)) : Promise.resolve());
+
+function paradasValidas(p: unknown): StopSettings | null {
+  if (!p || typeof p !== 'object') return null;
+  const x = p as StopSettings;
+  const ok = (l: unknown) => Array.isArray(l) && l.every((s) => PASSOS.includes(s as Step));
+  if (!ok(x.myTurn) || !ok(x.othersTurn) || typeof x.stopOnOpponentStack !== 'boolean' || typeof x.stopOnOwnStack !== 'boolean') return null;
+  return { myTurn: [...x.myTurn], othersTurn: [...x.othersTurn], stopOnOpponentStack: x.stopOnOpponentStack, stopOnOwnStack: x.stopOnOwnStack, passUntilTurnEnds: null };
+}
+
+export class Sala {
+  d: DadosSala;
+  game: Game | null = null;
+  conexoes = new Set<Conexao>();
+  private bots = new Map<number, RandomBot>();
+  private rodando = false;
+  private salvas = 0;
+  erro: string | null = null;
+
+  private gerente: Gerente;
+
+  constructor(d: DadosSala, gerente: Gerente) { this.d = d; this.gerente = gerente; }
+
+  get codigo(): string { return this.d.codigo; }
+
+  publica(): SalaPublica {
+    const conectados = new Set([...this.conexoes].map((c) => c.assento));
+    return {
+      codigo: this.d.codigo, modo: this.d.modo, estado: this.d.estado, anfitriao: this.d.anfitriao,
+      semente: this.d.partida?.config.seed ?? null,
+      assentos: this.d.assentos.map((a, i) => ({ indice: i, tipo: a.tipo, nome: a.nome, deck: a.deck, conectado: a.tipo === 'bot' || conectados.has(i) })),
+    };
+  }
+
+  salvar(): void { this.gerente.banco.salvarSala(this.d.codigo, this.d); }
+
+  /** manda a cada conexão a sala e, se houver partida, a vista do seu assento */
+  transmitir(): void {
+    const pub = this.publica();
+    for (const c of this.conexoes) {
+      if (c.assento === null) continue;
+      c.enviar({ t: 'sala', sala: pub, voce: c.assento, token: this.d.assentos[c.assento].token ?? '' });
+      this.enviarJogo(c);
+    }
+  }
+
+  enviarJogo(c: Conexao): void {
+    if (!this.game || c.assento === null) return;
+    const vista = buildView(this.game.g, c.assento, this.game.pending);
+    c.enviar({ t: 'jogo', vista, paradas: this.d.assentos[c.assento].paradas });
+  }
+
+  // ------------------------------------------------------------------ lobby
+  sentar(c: Conexao, nome: string): number | null {
+    const i = this.d.assentos.findIndex((a) => a.tipo === 'vazio');
+    if (i < 0) return null;
+    this.d.assentos[i] = { tipo: 'humano', nome, deck: null, token: novoToken(), paradas: structuredClone(DEFAULT_STOPS) };
+    this.ligar(c, i);
+    return i;
+  }
+
+  ligar(c: Conexao, assento: number): void {
+    if (c.sala && c.sala !== this) c.sala.desligar(c);
+    c.sala = this;
+    c.assento = assento;
+    this.conexoes.add(c);
+  }
+
+  desligar(c: Conexao): void {
+    this.conexoes.delete(c);
+    c.sala = null;
+    c.assento = null;
+    this.transmitir();
+  }
+
+  tratar(c: Conexao, m: MsgCliente): string | null {
+    const i = c.assento!;
+    const anfitriao = i === this.d.anfitriao;
+    switch (m.t) {
+      case 'deck': {
+        if (this.d.estado === 'jogando') return 'A partida já começou';
+        if (!this.gerente.deck(m.deck)) return 'Deck desconhecido';
+        this.d.assentos[i].deck = m.deck;
+        break;
+      }
+      case 'bot': {
+        if (!anfitriao) return 'Só quem criou a sala pode pôr bots';
+        if (this.d.estado === 'jogando') return 'A partida já começou';
+        const a = this.d.assentos[m.assento];
+        if (!a || a.tipo === 'humano') return 'Esse assento não está livre';
+        if (m.deck === null) this.d.assentos[m.assento] = { tipo: 'vazio', nome: null, deck: null, token: null, paradas: structuredClone(DEFAULT_STOPS) };
+        else {
+          if (!this.gerente.deck(m.deck)) return 'Deck desconhecido';
+          this.d.assentos[m.assento] = { tipo: 'bot', nome: `Bot ${m.assento + 1}`, deck: m.deck, token: null, paradas: structuredClone(DEFAULT_STOPS) };
+        }
+        break;
+      }
+      case 'iniciar': case 'novaPartida': {
+        if (!anfitriao) return 'Só quem criou a sala pode começar';
+        if (this.d.estado === 'jogando') return 'A partida já começou';
+        const erro = this.iniciar();
+        if (erro) return erro;
+        break;
+      }
+      case 'sair': {
+        if (this.d.estado === 'jogando' && this.game && !this.game.isOver()) this.registrar(() => this.game!.concede(i));
+        if (this.d.estado !== 'jogando') this.d.assentos[i] = { tipo: 'vazio', nome: null, deck: null, token: null, paradas: structuredClone(DEFAULT_STOPS) };
+        c.enviar({ t: 'saiu' });
+        this.conexoes.delete(c);
+        c.sala = null;
+        c.assento = null;
+        if (i === this.d.anfitriao) {
+          const outro = this.d.assentos.findIndex((a) => a.tipo === 'humano');
+          if (outro >= 0) this.d.anfitriao = outro;
+        }
+        break;
+      }
+      case 'responder': {
+        const g = this.game;
+        if (!g || !g.pending) return 'Não há decisão pendente';
+        if (g.pending.player !== i) return 'Não é a sua vez de decidir';
+        if (g.pending.id !== m.decisao) return 'Essa decisão já passou';
+        const err = g.check(i, m.resposta as Answer);
+        if (err) return err;
+        this.registrar(() => g.answer(i, m.resposta as Answer));
+        break;
+      }
+      case 'paradas': {
+        const p = paradasValidas(m.paradas);
+        if (!p) return 'Paradas inválidas';
+        this.d.assentos[i].paradas = p;
+        break;
+      }
+      case 'passarTurno': {
+        if (!this.game) return 'Não há partida';
+        this.d.assentos[i].paradas.passUntilTurnEnds = this.game.state.turn.number;
+        break;
+      }
+      case 'conceder': {
+        if (!this.game || this.game.isOver()) return 'Não há partida em andamento';
+        this.registrar(() => this.game!.concede(i));
+        break;
+      }
+      default: return 'Mensagem desconhecida';
+    }
+    this.salvar();
+    // a vista sai no fim da condução (bots e passes automáticos), para ninguém ver uma
+    // decisão que o servidor vai passar sozinho
+    void this.avancar();
+    return null;
+  }
+
+  // ------------------------------------------------------------------ partida
+  private iniciar(): string | null {
+    const ocupados = this.d.assentos.filter((a) => a.tipo !== 'vazio');
+    if (ocupados.length !== this.d.assentos.length) return 'Ainda há assentos vazios (chame alguém ou ponha um bot)';
+    if (ocupados.some((a) => !a.deck)) return 'Todos precisam escolher um deck';
+    const semente = `${this.d.codigo}-${Date.now().toString(36)}-${randomInt(1e9).toString(36)}`;
+    const config: GameConfig = {
+      seed: semente,
+      players: this.d.assentos.map((a, i) => ({ name: a.nome ?? `Jogador ${i + 1}`, deckId: a.deck! })),
+      startingLife: 40, // CR 903.7
+      turnLimit: null,
+      multiplayer: this.d.modo === '4p',
+      manualMode: true,
+    };
+    const deckIds = this.d.assentos.map((a) => a.deck!);
+    this.d.partida = { config, deckIds, checkpoint: null };
+    this.d.estado = 'jogando';
+    this.gerente.banco.limparEntradas(this.d.codigo);
+    this.salvas = 0;
+    this.erro = null;
+    this.criarGame(null, []);
+    return null;
+  }
+
+  /** cria (ou recria, depois de um reinício) a partida a partir da semente e das entradas */
+  criarGame(cp: Checkpoint | null, entradas: Input[]): void {
+    const p = this.d.partida!;
+    const decks = p.deckIds.map((id) => this.gerente.deck(id)!);
+    this.game = cp ? Game.fromCheckpoint(cp, decks, entradas) : entradas.length ? Game.replay(p.config, decks, entradas) : Game.create(p.config, decks);
+    this.salvas = this.game.inputs.length;
+    this.bots = new Map(this.d.assentos.map((a, i) => [i, a] as const).filter(([, a]) => a.tipo === 'bot').map(([i]) => [i, new RandomBot(`${p.config.seed}:${i}`)]));
+    if (this.game.isOver()) this.d.estado = 'fim';
+  }
+
+  /** aplica uma entrada e grava as novas no banco */
+  private registrar(fn: () => unknown): void {
+    try {
+      fn();
+    } catch (e) {
+      this.falha(e);
+      return;
+    }
+    this.persistir();
+  }
+
+  private persistir(): void {
+    const g = this.game!;
+    if (g.inputs.length > this.salvas) {
+      this.gerente.banco.adicionarEntradas(this.d.codigo, this.salvas, g.inputs.slice(this.salvas));
+      // checkpoint de tempos em tempos, numa decisão de prioridade (o laço é retomável ali)
+      if (Math.floor(g.inputs.length / 40) > Math.floor(this.salvas / 40)) {
+        const cp = g.checkpoint();
+        if (cp) { this.d.partida!.checkpoint = cp; this.salvar(); }
+      }
+      this.salvas = g.inputs.length;
+    }
+    if (g.isOver() && this.d.estado === 'jogando') { this.d.estado = 'fim'; this.salvar(); }
+  }
+
+  private falha(e: unknown): void {
+    const msg = e instanceof Error ? e.message : String(e);
+    this.erro = msg;
+    console.error(`[sala ${this.d.codigo}] erro do motor:`, e);
+    for (const c of this.conexoes) c.enviar({ t: 'erro', msg: `Erro interno do motor: ${msg}. A partida foi salva até a última jogada válida.` });
+  }
+
+  /** bots respondem e passes automáticos acontecem até alguém humano precisar decidir */
+  async avancar(): Promise<void> {
+    if (this.rodando) return;
+    this.rodando = true;
+    const at = this.gerente.atrasos;
+    try {
+      for (let guarda = 0; guarda < 100000; guarda++) {
+        const g = this.game;
+        if (!g || !g.pending || g.isOver() || this.erro) break;
+        const d = g.pending;
+        const a = this.d.assentos[d.player];
+        let resposta: Answer | null = null;
+        let espera = 0;
+        if (a.tipo === 'bot') {
+          resposta = this.bots.get(d.player)!.answer(d);
+          const visivel = (d.kind === 'priority' && resposta.kind === 'priority' && resposta.action !== 'pass') || d.kind === 'attackers' || d.kind === 'blockers';
+          espera = visivel ? at.botAcao : at.botPasse;
+        } else if (shouldAutoPass(g.state, d, d.player, a.paradas)) {
+          resposta = { kind: 'priority', action: 'pass' };
+          espera = at.autoPasse;
+        }
+        if (!resposta) break;
+        if (espera > 0) {
+          // mostra a mesa antes da jogada do bot; num passe automático não, para a decisão
+          // de quem está passando não aparecer na tela por um instante
+          if (a.tipo === 'bot') this.transmitir();
+          await dorme(espera);
+          if (this.game !== g || g.pending?.id !== d.id) continue; // algo mudou enquanto esperava
+        }
+        const r = resposta;
+        this.registrar(() => {
+          const res = g.answer(d.player, r);
+          if (!res.ok) throw new Error(`Resposta automática recusada: ${res.error}`);
+        });
+      }
+    } finally {
+      this.rodando = false;
+    }
+    this.transmitir();
+  }
+}
+
+export class Gerente {
+  salas = new Map<string, Sala>();
+  private decks: Map<string, DeckList>;
+
+  banco: Banco;
+  atrasos: Atrasos;
+
+  constructor(banco: Banco, decks: DeckList[], atrasos: Atrasos = ATRASOS_PADRAO) {
+    this.banco = banco;
+    this.atrasos = atrasos;
+    this.decks = new Map(decks.map((d) => [d.id, d]));
+  }
+
+  deck(id: string): DeckList | undefined { return this.decks.get(id); }
+
+  /** recarrega as salas salvas e retoma as partidas em andamento */
+  restaurar(): void {
+    for (const { dados } of this.banco.salas()) {
+      const d = dados as DadosSala;
+      const s = new Sala(d, this);
+      this.salas.set(d.codigo, s);
+      if (d.partida && d.estado !== 'espera') {
+        try {
+          s.criarGame(d.partida.checkpoint, this.banco.entradas(d.codigo) as Input[]);
+          void s.avancar();
+        } catch (e) {
+          s.erro = e instanceof Error ? e.message : String(e);
+          console.error(`[sala ${d.codigo}] não foi possível retomar a partida:`, e);
+        }
+      }
+    }
+  }
+
+  private novoCodigo(): string {
+    for (;;) {
+      const c = Array.from({ length: 5 }, () => ALFABETO[randomInt(ALFABETO.length)]).join('');
+      if (!this.salas.has(c)) return c;
+    }
+  }
+
+  tratar(c: Conexao, m: MsgCliente): void {
+    const erro = this.tratarInterno(c, m);
+    if (erro) c.enviar({ t: 'erro', msg: erro });
+  }
+
+  private tratarInterno(c: Conexao, m: MsgCliente): string | null {
+    if (!m || typeof m !== 'object' || typeof (m as { t?: unknown }).t !== 'string') return 'Mensagem inválida';
+    switch (m.t) {
+      case 'criar': {
+        const nome = limparNome(m.nome);
+        if (!nome) return 'Escolha um nome';
+        if (typeof m.senhaSala !== 'string' || m.senhaSala.length < 3 || m.senhaSala.length > 64) return 'A senha da sala precisa ter de 3 a 64 caracteres';
+        if (m.modo !== '4p' && m.modo !== '1v1') return 'Modo inválido';
+        const codigo = this.novoCodigo();
+        const n = m.modo === '4p' ? 4 : 2;
+        const vazio = (): Assento => ({ tipo: 'vazio', nome: null, deck: null, token: null, paradas: structuredClone(DEFAULT_STOPS) });
+        const s = new Sala({ codigo, senha: hashSenha(m.senhaSala), modo: m.modo, estado: 'espera', assentos: Array.from({ length: n }, vazio), anfitriao: 0, partida: null }, this);
+        this.salas.set(codigo, s);
+        s.sentar(c, nome);
+        s.salvar();
+        s.transmitir();
+        return null;
+      }
+      case 'entrar': {
+        const s = this.salas.get(String(m.codigo ?? '').toUpperCase().trim());
+        if (!s || typeof m.senhaSala !== 'string' || !confereSenha(m.senhaSala, s.d.senha)) return 'Código ou senha da sala incorretos';
+        const nome = limparNome(m.nome);
+        if (!nome) return 'Escolha um nome';
+        if (s.d.estado === 'jogando') return 'A partida já começou; quem já está na sala pode voltar pelo mesmo aparelho';
+        if (s.sentar(c, nome) === null) return 'A sala está cheia';
+        s.salvar();
+        s.transmitir();
+        return null;
+      }
+      case 'retomar': {
+        const s = this.salas.get(String(m.codigo ?? '').toUpperCase().trim());
+        const i = s ? s.d.assentos.findIndex((a) => a.token && typeof m.token === 'string' && a.token === m.token) : -1;
+        if (!s || i < 0) return 'Não foi possível voltar à sala';
+        s.ligar(c, i);
+        s.transmitir();
+        return null;
+      }
+      default:
+        if (!c.sala || c.assento === null) return 'Entre numa sala primeiro';
+        return c.sala.tratar(c, m);
+    }
+  }
+
+  desconectar(c: Conexao): void {
+    if (c.sala) c.sala.desligar(c);
+  }
+}
+
+export function semAtraso(): Atrasos { return SEM_ATRASO; }
+export { novoToken };

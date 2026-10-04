@@ -16,7 +16,7 @@ export class RandomBot {
     const ok = (a: Answer) => !live.validate || live.validate(a) === null;
     switch (d.kind) {
       case 'priority': {
-        const nonMana = d.actions.filter((a) => a.kind !== 'mana' && a.kind !== 'pass');
+        const nonMana = d.actions.filter((a) => a.kind !== 'mana' && a.kind !== 'pass' && a.kind !== 'manual');
         if (nonMana.length === 0 || next(this.rng) < 0.35) return { kind: 'priority', action: 'pass' };
         return { kind: 'priority', action: this.pick(nonMana).id };
       }

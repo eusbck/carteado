@@ -50,10 +50,13 @@ Recapitulação da fase 2:
 
 ## Fase 3: servidor e cliente
 
-- [ ] Salas privadas com código e senha, escolha de deck
-- [ ] Partidas de quatro jogadores e um contra um, reconexão, persistência
-- [ ] Log legível, modo manual para cartas pendentes
-- [ ] Interface conferida com capturas de tela
+- [x] Servidor HTTP + WebSocket (`servidor/`): senha de acesso (cookie de sessão), imagens só para sessões autenticadas, miniaturas WebP sob demanda
+- [x] Salas privadas com código e senha, escolha de deck, bots nos lugares vazios
+- [x] Partidas de quatro jogadores e um contra um, reconexão ao mesmo lugar (token), persistência em SQLite (semente + entradas + checkpoints) que sobrevive a reinício
+- [x] Passagem automática com paradas configuráveis (CR 732), sem mostrar decisões que o servidor vai passar sozinho
+- [x] Registro legível em português (nomes das impressões em português), modo manual no motor para cartas pendentes (entradas reprodutíveis)
+- [x] Cliente Vite + Preact (`cliente/`): mesa com 4 ou 2 jogadores, mão, pilha, zona de comando, cemitério e exílio, vida e dano de comandante, decisões só por clique
+- [x] Interface conferida com capturas de tela (`ferramentas/capturas.ts`) e teste de ponta a ponta com navegadores (`ferramentas/e2e.ts`)
 
 ## Fase 4: cartas, parte B (271, inclui 37 especiais)
 

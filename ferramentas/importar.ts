@@ -23,7 +23,7 @@ interface ScryCard extends ScryFace {
 }
 interface Printing {
   id: string; lang: string; name: string; printed_name?: string | null; printed_type_line?: string | null;
-  printed_text?: string | null; local_images?: { face: string; path: string }[];
+  printed_text?: string | null; local_images?: { face: string; path: string }[]; image_status?: string;
   card_faces?: { printed_name?: string; printed_type_line?: string; printed_text?: string }[] | null;
   oracle_id: string; type_line?: string; power?: string; toughness?: string; colors?: string[]; oracle_text?: string;
 }
@@ -75,7 +75,9 @@ function portugues(printingId: string | null | undefined) {
   if (!p || p.lang !== 'pt') return null;
   const img = imagemDe(printingId);
   const faces = p.card_faces?.map((f) => ({ nome: f.printed_name ?? null, tipo: f.printed_type_line ?? null, texto: f.printed_text ?? null }));
-  return { ...img, nome: p.printed_name ?? faces?.[0]?.nome ?? null, tipo: p.printed_type_line ?? faces?.[0]?.tipo ?? null, texto: p.printed_text ?? null, faces: faces ?? null };
+  // imagem de reserva do Scryfall ("Localized Image Not Available"): fica o nome, a imagem é a inglesa
+  const reserva = p.image_status === 'placeholder';
+  return { ...img, nome: p.printed_name ?? faces?.[0]?.nome ?? null, tipo: p.printed_type_line ?? faces?.[0]?.tipo ?? null, texto: p.printed_text ?? null, faces: faces ?? null, reserva };
 }
 
 for (const pasta of readdirSync(join(fonte, 'decks')).sort()) {

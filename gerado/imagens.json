@@ -12,7 +12,8 @@
    "nome": "Presa-gélida de Ohran",
    "tipo": "Criatura da Neve — Cobra",
    "texto": "As criaturas atacantes que você controla têm toque mortífero.\nToda vez que uma criatura que você controla causar dano de combate a um jogador, compre um card.",
-   "faces": null
+   "faces": null,
+   "reserva": true
   }
  },
  "Betor, Ancestor's Voice": {
@@ -36,7 +37,8 @@
    "nome": "Floresta",
    "tipo": "Terreno Básico — Floresta",
    "texto": null,
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Command Tower": {
@@ -52,7 +54,8 @@
    "nome": "Torre de Comando",
    "tipo": "Terreno",
    "texto": "{T}: Adicione um mana de qualquer cor da identidade de cor de seu comandante.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Arcane Signet": {
@@ -68,7 +71,8 @@
    "nome": "Sinete Arcano",
    "tipo": "Artefato",
    "texto": "{T}: Adicione um mana de qualquer cor da identidade de cor de seu comandante.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Sol Ring": {
@@ -84,7 +88,8 @@
    "nome": "Anel Solar",
    "tipo": "Artefato",
    "texto": "{T}: Adicione {C}{C}.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Plains": {
@@ -100,7 +105,8 @@
    "nome": "Planície",
    "tipo": "Terreno Básico — Planície",
    "texto": null,
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Swamp": {
@@ -116,7 +122,8 @@
    "nome": "Pântano",
    "tipo": "Terreno Básico — Pântano",
    "texto": null,
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Exotic Orchard": {
@@ -132,7 +139,8 @@
    "nome": "Pomar Exótico",
    "tipo": "Terreno",
    "texto": "{T}: Adicione um mana de qualquer cor que um terreno controlado por um oponente possa gerar.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Swords to Plowshares": {
@@ -148,7 +156,8 @@
    "nome": "Espadas em Arados",
    "tipo": "Mágica Instantânea",
    "texto": "Exile a criatura alvo. Seu controlador ganha uma quantidade de pontos de vida igual ao seu poder.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Evolving Wilds": {
@@ -164,7 +173,8 @@
    "nome": "Terras em Desenvolvimento",
    "tipo": "Terreno",
    "texto": "{T}, sacrifique Terras em Desenvolvimento: Procure um card de terreno básico em seu grimório, coloque-o no campo de batalha virado e depois embaralhe.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Path of Ancestry": {
@@ -180,7 +190,8 @@
    "nome": "Caminho da Ascendência",
    "tipo": "Terreno",
    "texto": "Caminho da Ascendência entra no campo de batalha virado.\n{T}: Adicione um mana de qualquer cor da identidade de cor de seu comandante. Quando aquele mana for gasto para conjurar uma mágica de criatura que compartilhe um tipo de criatura com seu comandante, use vidência 1.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Bojuka Bog": {
@@ -196,7 +207,8 @@
    "nome": "Pântano de Bojuka",
    "tipo": "Terreno",
    "texto": "Pântano de Bojuka entra no campo de batalha virado.\nQuando Pântano de Bojuka entrar no campo de batalha, exile o cemitério do jogador alvo.\n{T}: Adicione {B}.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Sandsteppe Citadel": {
@@ -212,7 +224,8 @@
    "nome": "Cidadela da Estepe Arenosa",
    "tipo": "Terreno",
    "texto": "Cidadela da Estepe Arenosa entra no campo de batalha virada.\n{T}: Adicione {W}, {B} ou {G}.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Isolated Chapel": {
@@ -228,7 +241,8 @@
    "nome": "Capela Isolada",
    "tipo": "Terreno",
    "texto": "Capela Isolada entra no campo de batalha virada, a menos que você controle uma Planície ou um Pântano.\n{T}: Adicione {W} ou {B}.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Temple of Silence": {
@@ -244,7 +258,8 @@
    "nome": "Templo do Silêncio",
    "tipo": "Terreno",
    "texto": "Templo do Silêncio entra no campo de batalha virado.\nQuando Templo do Silêncio entrar no campo de batalha, use vidência 1.\n{T}: Adicione {W} ou {B}.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Temple of Malady": {
@@ -260,7 +275,8 @@
    "nome": "Templo da Enfermidade",
    "tipo": "Terreno",
    "texto": "Templo da Enfermidade entra no campo de batalha virado.\nQuando Templo da Enfermidade entrar no campo de batalha, use vidência 1.\n{T}: Adicione {B} ou {G}.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Woodland Cemetery": {
@@ -276,7 +292,8 @@
    "nome": "Cemitério da Floresta",
    "tipo": "Terreno",
    "texto": "Cemitério da Floresta entra no campo de batalha virado, a menos que você controle um Pântano ou uma Floresta.\n{T}: Adicione {B} ou {G}.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Reunion of the House": {
@@ -324,7 +341,8 @@
    "nome": "Alimentar o Enxame",
    "tipo": "Feitiço",
    "texto": "Destrua a criatura ou o encantamento alvo que um oponente controla. Você perde uma quantidade de pontos de vida igual ao valor de mana daquela permanente.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Wall of Limbs": {
@@ -340,7 +358,8 @@
    "nome": "Barreira de Membros",
    "tipo": "Criatura — Zumbi Barreira",
    "texto": "Defensor (Esta criatura não pode atacar.)\nToda vez que você ganhar pontos de vida, coloque um marcador +1/+1 em Barreira de Membros.\n{5}{B}{B}, Sacrifique Barreira de Membros: O jogador alvo perde X pontos de vida, sendo X o poder de Barreira de Membros.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Behind the Scenes": {
@@ -356,7 +375,8 @@
    "nome": "Nos Bastidores",
    "tipo": "Encantamento",
    "texto": "As criaturas que você controla têm esquivo. (Elas não podem ser bloqueadas por criaturas com poder superior ao delas.)\n{4}{W}: As criaturas que você controla recebem +1/+1 até o final do turno.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Blight Pile": {
@@ -372,7 +392,8 @@
    "nome": "Pilha de Praga",
    "tipo": "Criatura — Phyrexiano",
    "texto": "Defensor\n{2}{B}, {T}: Cada oponente perde X pontos de vida, sendo X o número de criaturas com defensor que você controla.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Baldin, Century Herdmaster": {
@@ -396,7 +417,8 @@
    "nome": "Expulsar os Intrusos",
    "tipo": "Feitiço",
    "texto": "Escolha um número entre 0 e 10. Destrua todas as criaturas com poder igual ou superior ao número escolhido.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Indomitable Ancients": {
@@ -412,7 +434,8 @@
    "nome": "Anciãos Indomáveis",
    "tipo": "Criatura — Ent Guerreiro",
    "texto": null,
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Infernal Grasp": {
@@ -428,7 +451,8 @@
    "nome": "Garras Infernais",
    "tipo": "Mágica Instantânea",
    "texto": "Destrua a criatura alvo. Você perde 2 pontos de vida.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Arbor Adherent": {
@@ -468,7 +492,8 @@
    "nome": "Sinete Selesnya",
    "tipo": "Artefato",
    "texto": "{1}, {T}: Adicione {G}{W}.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Tree of Redemption": {
@@ -484,7 +509,8 @@
    "nome": "Árvore da Redenção",
    "tipo": "Criatura — Planta",
    "texto": "Defensor\n{T}: Permute seu total de pontos de vida com a resistência de Árvore da Redenção.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Crashing Drawbridge": {
@@ -500,7 +526,8 @@
    "nome": "Ponte Levadiça Esmagadora",
    "tipo": "Criatura Artefato — Barreira",
    "texto": "Defensor\n{T}: As criaturas que você controla ganham ímpeto até o final do turno.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Wall of Omens": {
@@ -516,7 +543,8 @@
    "nome": "Barreira de Agouros",
    "tipo": "Criatura — Barreira",
    "texto": "Defensor\nQuando Barreira de Agouros entrar no campo de batalha, compre um card.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Sylvan Caryatid": {
@@ -532,7 +560,8 @@
    "nome": "Cariátide Silvestre",
    "tipo": "Criatura — Planta",
    "texto": "Defensor, resistência a magia\n{T}: Adicione um mana de qualquer cor à sua reserva de mana.",
-   "faces": null
+   "faces": null,
+   "reserva": true
   }
  },
  "Assault Formation": {
@@ -548,7 +577,8 @@
    "nome": "Formação de Ataque",
    "tipo": "Encantamento",
    "texto": "Cada criatura que você controla atribui dano de combate igual à sua resistência, em vez de igual ao seu poder.\n{G}: A criatura alvo com defensor pode atacar neste turno como se não tivesse defensor.\n{2}{G}: As criaturas que você controla recebem +0/+1 até o final do turno.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Overgrown Battlement": {
@@ -564,7 +594,8 @@
    "nome": "Ameia Encoberta",
    "tipo": "Criatura — Barreira",
    "texto": "Defensor\n{T}: Adicione {G} para cada criatura com defensor que você controla.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Wall of Blossoms": {
@@ -580,7 +611,8 @@
    "nome": "Barreira de Flores",
    "tipo": "Criatura — Planta Barreira",
    "texto": "Defensor\nQuando Barreira de Flores entrar no campo de batalha, compre um card.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Wall of Reverence": {
@@ -596,7 +628,8 @@
    "nome": "Barreira de Reverência",
    "tipo": "Criatura — Espírito Barreira",
    "texto": "Defensor, voar\nNo final de seu turno, você pode ganhar uma quantidade de pontos de vida igual ao poder da criatura alvo que você controla.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Weathered Sentinels": {
@@ -612,7 +645,8 @@
    "nome": "Sentinelas Calejadas",
    "tipo": "Criatura Artefato — Barreira",
    "texto": "Defensor, vigilância, alcance, atropelar\nSentinelas Calejadas pode atacar jogadores que atacaram você durante seus últimos turnos como se não tivesse defensor.\nToda vez que Sentinelas Calejadas ataca, ela recebe +3/+3 e ganha indestrutível até o final do turno.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Wingmantle Chaplain": {
@@ -628,7 +662,8 @@
    "nome": "Capelão do Manto Alado",
    "tipo": "Criatura — Humano Clérigo",
    "texto": "Defensor\nQuando Capelão do Manto Alado entrar no campo de batalha, crie uma ficha de criatura Ave branca 1/1 com voar para cada criatura com defensor que você controla.\nToda vez que outra criatura com defensor entrar no campo de batalha sob seu controle, crie uma ficha de criatura Ave branca 1/1 com voar.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Walking Bulwark": {
@@ -644,7 +679,8 @@
    "nome": "Baluarte Ambulante",
    "tipo": "Criatura Artefato — Golem",
    "texto": "Defensor\n{2}: Até o final do turno, a criatura alvo com defensor ganha ímpeto, pode atacar como se não tivesse defensor e atribui dano de combate igual à própria resistência, em vez de ao próprio poder. Ative somente como um feitiço.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Nyx-Fleece Ram": {
@@ -660,7 +696,8 @@
    "nome": "Carneiro Velocino-de-Nyx",
    "tipo": "Criatura Encantamento — Ovelha",
    "texto": "No início de sua manutenção, você ganha 1 ponto de vida.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Shalai, Voice of Plenty": {
@@ -676,7 +713,8 @@
    "nome": "Shalai, Voz da Abundância",
    "tipo": "Criatura Lendária — Anjo",
    "texto": "Voar\nVocê, os planeswalkers que você controla e as outras criaturas que você controla têm resistência a magia.\n{4}{G}{G}: Coloque um marcador +1/+1 em cada criatura que você controla.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Sidar Kondo of Jamuraa": {
@@ -692,7 +730,8 @@
    "nome": "Sidar Kondo de Jamuraa",
    "tipo": "Criatura Lendária — Humano Cavaleiro",
    "texto": "Flanquear (Toda vez que uma criatura sem flanquear bloquear esta criatura, a criatura bloqueadora receberá -1/-1 até o final do turno.)\nAs criaturas sem voar nem alcance que seus oponentes controlam não podem bloquear criaturas com poder igual ou inferior a 2.\nParceiro (Você pode ter dois comandantes se ambos tiverem parceiro.)",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Tower Defense": {
@@ -708,7 +747,8 @@
    "nome": "Defesa da Torre",
    "tipo": "Mágica Instantânea",
    "texto": "As criaturas que você controla recebem +0/+5 e ganham alcance até o final do turno.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Orzhov Signet": {
@@ -724,7 +764,8 @@
    "nome": "Sinete Orzhov",
    "tipo": "Artefato",
    "texto": "{1}, {T}: Adicione {W}{B}.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Anguished Unmaking": {
@@ -740,7 +781,8 @@
    "nome": "Desfazer Angustiado",
    "tipo": "Mágica Instantânea",
    "texto": "Exile a permanente alvo não de terreno. Você perde 3 pontos de vida.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Deceptive Landscape": {
@@ -756,7 +798,8 @@
    "nome": "Paisagem Enganadora",
    "tipo": "Terreno",
    "texto": "{T}: Adicione {C}.\n{T}, sacrifique Paisagem Enganadora: Procure em seu grimório um card de Planície, Pântano ou Floresta básico, coloque-o no campo de batalha virado e depois embaralhe.\nReciclar {W}{B}{G} ({W}{B}{G}, descarte este card: Compre um card.)",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Dragonlord Dromoka": {
@@ -772,7 +815,8 @@
    "nome": "Dromoka, Soberana Dragoa",
    "tipo": "Criatura Lendária — Dragão Ancião",
    "texto": "Dromoka, Soberana Dragoa, não pode ser anulada.\nVoar, vínculo com a vida\nSeus oponentes não podem conjurar mágicas durante o seu turno.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Swiftfoot Boots": {
@@ -788,7 +832,8 @@
    "nome": "Botas Pé-ligeiro",
    "tipo": "Artefato — Equipamento",
    "texto": "A criatura equipada tem resistência a magia e ímpeto. (Ela não pode ser alvo de mágicas nem de habilidades que seus oponentes controlam.)\nEquipar {1}",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Welcoming Vampire": {
@@ -804,7 +849,8 @@
    "nome": "Vampira da Recepção",
    "tipo": "Criatura — Vampiro",
    "texto": "Voar\nToda vez que uma ou mais outras criaturas com poder igual ou inferior a 2 entrarem no campo de batalha sob seu controle, compre um card. Esta habilidade é desencadeada apenas uma vez a cada turno.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Carven Caryatid": {
@@ -820,7 +866,8 @@
    "nome": "Cariátide Esculpida",
    "tipo": "Criatura - Espírito",
    "texto": "Defensor (Esta criatura não pode atacar.)\nQuando Cariátide Esculpida entra em jogo, compre um card.",
-   "faces": null
+   "faces": null,
+   "reserva": true
   }
  },
  "Ikra Shidiqi, the Usurper": {
@@ -836,7 +883,8 @@
    "nome": "Ikra Shidiqi, a Usurpadora",
    "tipo": "Criatura Lendária — Naga Mago",
    "texto": "Ameaçar\nToda vez que uma criatura que você controla causa dano de combate a um jogador, você ganha uma quantidade de pontos de vida igual à resistência daquela criatura.\nParceiro (Você pode ter dois comandantes se ambos tiverem parceiro.)",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Indulging Patrician": {
@@ -852,7 +900,8 @@
    "nome": "Aristocrata Indulgente",
    "tipo": "Criatura — Vampiro Nobre",
    "texto": "Voar\nVínculo com a vida (O dano causado por esta criatura também faz com que você ganhe uma quantidade equivalente de pontos de vida.)\nNo início de sua etapa final, se você ganhou 3 ou mais pontos de vida neste turno, cada oponente perde 3 pontos de vida.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Seedborn Muse": {
@@ -868,7 +917,8 @@
    "nome": "Musa Nascida da Semente",
    "tipo": "Criatura — Espírito",
    "texto": "Desvire todas as permanentes que você controla durante a etapa de desvirar de cada um dos outros jogadores.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Shadrix Silverquill": {
@@ -884,7 +934,8 @@
    "nome": "Shadrix Platinopena",
    "tipo": "Criatura Lendária — Dragão Ancião",
    "texto": "Voar, golpe duplo\nNo início do combate no seu turno, você pode escolher dois. Cada modo precisa ter como alvo um jogador diferente.\n• O jogador alvo cria uma ficha de criatura Nanquíneo branca e preta 2/1 com voar.\n• O jogador alvo compra um card e perde 1 ponto de vida.\n• O jogador alvo coloca um marcador +1/+1 em cada criatura que ele controla.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Sunpetal Grove": {
@@ -900,7 +951,8 @@
    "nome": "Bosque da Pétala Solar",
    "tipo": "Terreno",
    "texto": "Bosque da Pétala Solar entra no campo de batalha virado, a menos que você controle uma Floresta ou uma Planície.\n{T}: Adicione {G} ou {W}.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Wall of Roots": {
@@ -916,7 +968,8 @@
    "nome": "Barreira de Raízes",
    "tipo": "Criatura — Planta Barreira",
    "texto": "Defensor\nColoque um marcador -0/-1 em Barreira de Raízes: Adicione {G}. Ative apenas uma vez a cada turno.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Overgrown Farmland": {
@@ -932,7 +985,8 @@
    "nome": "Campos Baldios",
    "tipo": "Terreno",
    "texto": "Campos Baldios entra no campo de batalha virado, a menos que você controle dois ou mais outros terrenos.\n{T}: Adicione {G} ou {W}.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Faeburrow Elder": {
@@ -948,7 +1002,8 @@
    "nome": "Anciã de Toca das Fadas",
    "tipo": "Criatura — Ent Druida",
    "texto": "Vigilância\nAnciã de Toca das Fadas recebe +1/+1 para cada cor entre as permanentes que você controla.\n{T}: Para cada cor entre as permanentes que você controla, adicione um mana daquela cor.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Despark": {
@@ -964,7 +1019,8 @@
    "nome": "Descentelhar",
    "tipo": "Mágica Instantânea",
    "texto": "Exile a permanente alvo com valor de mana igual ou superior a 4.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Hornet Nest": {
@@ -980,7 +1036,8 @@
    "nome": "Vespeiro",
    "tipo": "Criatura — Inseto",
    "texto": "Defensor\nToda vez que Vespeiro sofrer dano, crie uma quantidade equivalente de fichas de criatura Inseto verde 1/1 com voar e toque mortífero.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Canopy Vista": {
@@ -996,7 +1053,8 @@
    "nome": "Vista do Dossel",
    "tipo": "Terreno — Floresta Planície",
    "texto": "({T}: Adicione {G} ou {W}.)\nVista do Dossel entra no campo de batalha virada, a menos que você controle dois ou mais terrenos básicos.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Twilight Mire": {
@@ -1012,7 +1070,8 @@
    "nome": "Lodaçal do Crepúsculo",
    "tipo": "Terreno",
    "texto": "{T}: Adicione {C}.\n{B/G}, {T}: Adicione {B}{B}, {B}{G} ou {G}{G}.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Fortified Village": {
@@ -1028,7 +1087,8 @@
    "nome": "Aldeia Fortificada",
    "tipo": "Terreno",
    "texto": "Conforme Aldeia Fortificada entra no campo de batalha, você pode revelar um card de Floresta ou Planície de sua mão. Se não fizer isso, Aldeia Fortificada entrará no campo de batalha virada.\n{T}: Adicione {G} ou {W}.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Radiant Grove": {
@@ -1044,7 +1104,8 @@
    "nome": "Bosque Radiante",
    "tipo": "Terreno — Floresta Planície",
    "texto": "({T}: Adicione {G} ou {W}.)\nBosque Radiante entra no campo de batalha virado.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Slaughter the Strong": {
@@ -1060,7 +1121,8 @@
    "nome": "Matar os Fortes",
    "tipo": "Feitiço",
    "texto": "Cada jogador escolhe qualquer número de criaturas que ele controla com total de poder igual ou inferior a 4 e, em seguida, sacrifica todas as outras criaturas que ele controla.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Towering Titan": {
@@ -1084,7 +1146,8 @@
    "nome": "Arasta da Teia Infinita",
    "tipo": "Criatura Encantamento Lendária — Aranha",
    "texto": "Alcance\nToda vez que um oponente conjurar uma mágica instantânea ou um feitiço, crie uma ficha de criatura Aranha verde 1/2 com alcance.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Temple of Plenty": {
@@ -1100,7 +1163,8 @@
    "nome": "Templo da Fartura",
    "tipo": "Terreno",
    "texto": "Templo da Fartura entra no campo de batalha virado.\nQuando Templo da Fartura entrar no campo de batalha, use vidência 1.\n{T}: Adicione {G} ou {W}.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Sungrass Prairie": {
@@ -1116,7 +1180,8 @@
    "nome": "Pradaria de Capim Solar",
    "tipo": "Terreno",
    "texto": "{1}, {T}: Adicione {G}{W}.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Arboreal Grazer": {
@@ -1132,7 +1197,8 @@
    "nome": "Herbívoro Arbóreo",
    "tipo": "Criatura — Besta",
    "texto": "Alcance\nQuando Herbívoro Arbóreo entra no campo de batalha, você pode colocar um card de terreno de sua mão no campo de batalha virado.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Axebane Guardian": {
@@ -1148,7 +1214,8 @@
    "nome": "Guardião de Danação dos Machados",
    "tipo": "Criatura — Humano Druida",
    "texto": "Defensor\n{T}: Adicione X manas em qualquer combinação de cores a sua reserva de mana, sendo X igual ao número de criaturas com defensor que você controla.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Zetalpa, Primal Dawn": {
@@ -1164,7 +1231,8 @@
    "nome": "Zetalpa, Aurora Primordial",
    "tipo": "Criatura Lendária — Dinossauro Ancião",
    "texto": "Voar, golpe duplo, vigilância, atropelar, indestrutível",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Wakestone Gargoyle": {
@@ -1180,7 +1248,8 @@
    "nome": "Gárgula de Pedra Despertada",
    "tipo": "Criatura — Gárgula",
    "texto": "Defensor (Esta criatura não pode atacar.)\nVoar\n{1}{W}: As criaturas que você controla com a habilidade de defensor podem atacar neste turno como se não tivessem essa habilidade.",
-   "faces": null
+   "faces": null,
+   "reserva": true
   }
  },
  "Access Tunnel": {
@@ -1196,7 +1265,8 @@
    "nome": "Túnel de Acesso",
    "tipo": "Terreno",
    "texto": "{T}: Adicione {C}.\n{3}, {T}: A criatura alvo com poder igual ou inferior a 3 não pode ser bloqueada neste turno.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Jaddi Offshoot": {
@@ -1212,7 +1282,8 @@
    "nome": "Ramificação de Jaddi",
    "tipo": "Criatura — Planta",
    "texto": "DefensorAterragem — Toda vez que um terreno entra no campo de batalha sob seu controle, você ganha 1 ponto de vida.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Doran, Besieged by Time": {
@@ -1260,7 +1331,8 @@
    "nome": "Ninho de Escaravelhos",
    "tipo": "Encantamento",
    "texto": "Toda vez que você colocar um ou mais marcadores -1/-1 em uma criatura, crie aquela quantidade de fichas de criatura preta 1/1 do tipo Inseto.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Staff of Compleation": {
@@ -1276,7 +1348,8 @@
    "nome": "Cajado da Completação",
    "tipo": "Artefato",
    "texto": "{T}, pague 1 ponto de vida: Destrua a permanente alvo que você possui.\n{T}, pague 2 pontos de vida: Adicione um mana de qualquer cor.\n{T}, pague 3 pontos de vida: Prolifere.\n{T}, pague 4 pontos de vida: Compre um card.\n{5}: Desvire Cajado da Completação.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Mountain": {
@@ -1292,7 +1365,8 @@
    "nome": "Montanha",
    "tipo": "Terreno Básico — Montanha",
    "texto": null,
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Tend the Sprigs": {
@@ -1380,7 +1454,8 @@
    "nome": "Necrotrotador",
    "tipo": "Criatura — Elemental",
    "texto": "Murchar (Esta fonte causa dano a criaturas na forma de marcadores -1/-1.)\nToda vez que uma criatura que um oponente controla com um marcador -1/-1 é colocada num cemitério, você pode devolver aquele card para o jogo sob o seu controle.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Blowfly Infestation": {
@@ -1396,7 +1471,8 @@
    "nome": "Infestação de Mosca-Varejeira",
    "tipo": "Encantamento",
    "texto": "Toda vez que uma criatura é colocada no cemitério vinda do jogo, se ela tiver um marcador -1/-1, coloque um marcador -1/-1 na criatura alvo.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Ignoble Hierarch": {
@@ -1412,7 +1488,8 @@
    "nome": "Hierarca Ignóbil",
    "tipo": "Criatura — Goblin Xamã",
    "texto": "Exaltado (Toda vez que uma criatura que você controla ataca sozinha, ela recebe +1/+1 até o final do turno.)\n{T}: Adicione {B}, {R} ou {G}.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Wickersmith's Tools": {
@@ -1460,7 +1537,8 @@
    "nome": "Árvore da Perdição",
    "tipo": "Criatura — Planta",
    "texto": "Defensor\n{T}: Permute o total de pontos de vida do oponente alvo com a resistência de Árvore da Perdição.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Dusk Urchins": {
@@ -1476,7 +1554,8 @@
    "nome": "Diabinhos do Crepúsculo",
    "tipo": "Criatura — Trasgo",
    "texto": "Toda vez que Diabinhos do Crepúsculo atacar ou bloquear, coloque um marcador -1/-1 nele.\nQuando Diabinhos do Crepúsculo for colocado no cemitério vindo do jogo, compre um card para cada marcador -1/-1 nele.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Black Sun's Zenith": {
@@ -1492,7 +1571,8 @@
    "nome": "Zênite do Sol Negro",
    "tipo": "Feitiço",
    "texto": "Coloque X marcadores -1/-1 sobre cada criatura. Embaralhe Zênite do Sol Negro no grimório de seu dono.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Night's Whisper": {
@@ -1508,7 +1588,8 @@
    "nome": "Sussurro da Noite",
    "tipo": "Feitiço",
    "texto": "Você compra dois cards e perde 2 pontos de vida.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Assassin's Trophy": {
@@ -1524,7 +1605,8 @@
    "nome": "Troféu do Assassino",
    "tipo": "Mágica Instantânea",
    "texto": "Destrua a permanente alvo que um oponente controla. Seu controlador pode procurar no próprio grimório um card de terreno básico, colocá-lo no campo de batalha e depois embaralhar.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "The Scorpion God": {
@@ -1540,7 +1622,8 @@
    "nome": "O Deus Escorpião",
    "tipo": "Criatura Lendária — Deus",
    "texto": "Toda vez que uma criatura com um marcador -1/-1 morrer, compre um card.\n{1}{B}{R}: Coloque um marcador -1/-1 em outra criatura alvo.\nQuando O Deus Escorpião morrer, devolva-o para a mão de seu dono no início da próxima etapa final.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Carnifex Demon": {
@@ -1556,7 +1639,8 @@
    "nome": "Demônio Carnífice",
    "tipo": "Criatura — Demônio",
    "texto": "Voar\nDemônio Carnífice entra no campo de batalha com dois marcadores -1/-1 sobre ele.\n{B}, Remova um marcador -1/-1 de Demônio Carnífice: Coloque um marcador -1/-1 em cada uma das outras criaturas.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Channeler Initiate": {
@@ -1572,7 +1656,8 @@
    "nome": "Iniciada Canalizadora",
    "tipo": "Criatura — Humano Druida",
    "texto": "Quando Iniciada Canalizadora entrar no campo de batalha, coloque três marcadores -1/-1 na criatura alvo que você controla.\n{T}, Remova um marcador -1/-1 de Iniciada Canalizadora: Adicione um mana de qualquer cor à sua reserva de mana.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Commander's Sphere": {
@@ -1588,7 +1673,8 @@
    "nome": "Esfera do Comandante",
    "tipo": "Artefato",
    "texto": "{T}: Adicione um mana de qualquer cor da identidade de cor de seu comandante.\nSacrifique Esfera do Comandante: Compre um card.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Chimil, the Inner Sun": {
@@ -1604,7 +1690,8 @@
    "nome": "Chimil, the Inner Sun",
    "tipo": "Legendary Artifact",
    "texto": "Spells you control can't be countered.\nAt the beginning of your end step, discover 5.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Cinder Glade": {
@@ -1620,7 +1707,8 @@
    "nome": "Clareira das Cinzas",
    "tipo": "Terreno — Montanha Floresta",
    "texto": "({T}: Adicione {R} ou {G}.)\nClareira das Cinzas entra no campo de batalha virada, a menos que você controle dois ou mais terrenos básicos.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Contagion Clasp": {
@@ -1636,7 +1724,8 @@
    "nome": "Gancho de Contágio",
    "tipo": "Artefato",
    "texto": "Quando Gancho de Contágio entrar no campo de batalha, coloque um marcador -1/-1 na criatura alvo.\n{4}, {T}: Prolifere. (Escolha qualquer número de permanentes e/ou jogadores. Em seguida, dê a cada um deles outro marcador de cada tipo que eles já tenham.)",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Terramorphic Expanse": {
@@ -1652,7 +1741,8 @@
    "nome": "Vastidão Morfoterrena",
    "tipo": "Terreno",
    "texto": "{T}, sacrifique Vastidão Morfoterrena: Procure um card de terreno básico em seu grimório, coloque-o no campo de batalha virado e depois embaralhe.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Evolution Sage": {
@@ -1668,7 +1758,8 @@
    "nome": "Sábio da Evolução",
    "tipo": "Criatura — Elfo Druida",
    "texto": "Aterragem — Toda vez que um terreno entra no campo de batalha sob seu controle, prolifere. (Escolha qualquer número de permanentes e/ou jogadores. Em seguida, dê a cada um deles outro marcador de cada tipo que eles já tenham.)",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Canyon Slough": {
@@ -1684,7 +1775,8 @@
    "nome": "Lamaçal do Desfiladeiro",
    "tipo": "Terreno — Pântano Montanha",
    "texto": "({T}: Adicione {B} ou {R} à sua reserva de mana.)\nLamaçal do Desfiladeiro entra no campo de batalha virado.\nReciclar {2} ({2}, Descarte este card: Compre um card.)",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Glissa Sunslayer": {
@@ -1700,7 +1792,8 @@
    "nome": "Glissa, Matadora do Sol",
    "tipo": "Criatura Lendária — Phyrexiano Zumbi Elfo",
    "texto": "Iniciativa, toque mortífero\nToda vez que Glissa, Matadora do Sol, causar dano de combate a um jogador, escolha um —\n• Você compra um card e perde 1 ponto de vida.\n• Destrua o encantamento alvo.\n• Remova até três marcadores da permanente alvo.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Lasting Tarfire": {
@@ -1732,7 +1825,8 @@
    "nome": "Putrificar",
    "tipo": "Mágica Instantânea",
    "texto": "Destrua a criatura ou o artefato alvo. Ele não pode ser regenerado.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Hapatra, Vizier of Poisons": {
@@ -1748,7 +1842,8 @@
    "nome": "Hapatra, Vizir dos Venenos",
    "tipo": "Criatura Lendária — Humano Clérigo",
    "texto": "Toda vez que Hapatra, Vizir dos Venenos, causa dano de combate a um jogador, você pode colocar um marcador -1/-1 na criatura alvo.\nToda vez que você colocar um ou mais marcadores -1/-1 em uma criatura, crie uma ficha de criatura verde 1/1 do tipo Cobra com toque mortífero.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Puca's Covenant": {
@@ -1772,7 +1867,8 @@
    "nome": "Garota-massacre, Assassina Renomada",
    "tipo": "Criatura Lendária — Humano Assassino",
    "texto": "Ameaçar\nAs criaturas que você controla têm murchar.\nToda vez que uma criatura que um oponente controla morrer, se a resistência dela era menor que 1, compre um card.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Everlasting Torment": {
@@ -1788,7 +1884,8 @@
    "nome": "Tormento Eterno",
    "tipo": "Encantamento",
    "texto": "Os jogadores não podem ganhar pontos de vida.\nNenhum dano pode ser prevenido.\nTodo dano é causado como se sua fonte tivesse murchar. (Uma fonte com murchar causa dano a criaturas na forma de marcadores -1/-1.)",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Incremental Blight": {
@@ -1804,7 +1901,8 @@
    "nome": "Ensoamento Incremental",
    "tipo": "Feitiço",
    "texto": "Coloque um marcador -1/-1 na criatura alvo, dois marcadores -1/-1 em outra criatura alvo, e três marcadores -1/-1 em uma terceira criatura alvo.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Kulrath Knight": {
@@ -1820,7 +1918,8 @@
    "nome": "Cavaleiro de Kulrath",
    "tipo": "Criatura — Elemental Cavaleiro",
    "texto": "Voar\nMurchar (Esta fonte causa dano a criaturas na forma de marcadores -1/-1.)\nAs criaturas que seus oponentes controlam com marcadores não podem atacar nem bloquear.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Flourishing Defenses": {
@@ -1836,7 +1935,8 @@
    "nome": "Defesas Florescentes",
    "tipo": "Encantamento",
    "texto": "Toda vez que um marcador -1/-1 for colocado numa criatura, você poderá colocar em jogo uma ficha de criatura verde 1/1 do tipo Elfo Guerreiro.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Rootbound Crag": {
@@ -1852,7 +1952,8 @@
    "nome": "Penhasco do Raizame",
    "tipo": "Terreno",
    "texto": "Penhasco do Raizame entra no campo de batalha virado, a menos que você controle uma Montanha ou uma Floresta.\n{T}: Adicione {R} ou {G} à sua reserva de mana.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Dragonskull Summit": {
@@ -1868,7 +1969,8 @@
    "nome": "Pico da Caveira de Dragão",
    "tipo": "Terreno",
    "texto": "Pico da Caveira de Dragão entra no campo de batalha virado, a menos que você controle um Pântano ou uma Montanha.\n{T}: Adicione {B} ou {R}.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Painful Truths": {
@@ -1884,7 +1986,8 @@
    "nome": "Verdades Dolorosas",
    "tipo": "Feitiço",
    "texto": "Convergir — Você compra X cards e perde X pontos de vida, sendo X o número de cores de mana gasto para conjurar esta mágica.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Devoted Druid": {
@@ -1900,7 +2003,8 @@
    "nome": "Druida Devotado",
    "tipo": "Criatura — Elfo Druida",
    "texto": "{T}: Adicione {G}.\nColoque um marcador -1/-1 em Druida Devotado: Desvire Druida Devotado.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Wickerbough Elder": {
@@ -1916,7 +2020,8 @@
    "nome": "Ancião Galhos-de-vime",
    "tipo": "Criatura — Ent Xamã",
    "texto": "Ancião Galhos-de-vime entra no campo de batalha com um marcador -1/-1.\n{G}, remova um marcador -1/-1 de Ancião Galhos-de-vime: Destrua o artefato ou encantamento alvo.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Terminate": {
@@ -1932,7 +2037,8 @@
    "nome": "Findar",
    "tipo": "Mágica Instantânea",
    "texto": "Destrua a criatura alvo. Ela não pode ser regenerada.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Smoldering Marsh": {
@@ -1948,7 +2054,8 @@
    "nome": "Pântano Ardente",
    "tipo": "Terreno — Pântano Montanha",
    "texto": "({T}: Adicione {B} ou {R}.)\nPântano Ardente entra no campo de batalha virado, a menos que você controle dois ou mais terrenos básicos.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Rakdos Carnarium": {
@@ -1964,7 +2071,8 @@
    "nome": "Carnarium Rakdos",
    "tipo": "Terreno",
    "texto": "Carnarium Rakdos entra no campo de batalha virado.\nQuando Carnarium Rakdos entrar no campo de batalha, devolva um terreno que você controla para a mão de seu dono.\n{T}: Adicione {B}{R}.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Vraska, Betrayal's Sting": {
@@ -1980,7 +2088,8 @@
    "nome": "Vraska, Ferrão da Traição",
    "tipo": "Planeswalker Lendário — Vraska",
    "texto": "Completado ({B/P} pode ser pago com {B} ou 2 pontos de vida. Se foram pagos pontos de vida, este planeswalker entrará com dois marcadores de lealdade a menos.)\n0: Você compra um card e perde 1 ponto de vida. Prolifere.\n−2: A criatura alvo torna-se um artefato Tesouro com \"{T}, sacrifique este artefato: Adicione um mana de qualquer cor\" e perde todos os outros tipos e habilidades.\n−9: Se o jogador alvo tiver menos de nove marcadores de veneno, ele receberá um número de marcadores de veneno igual à diferença.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Golgari Rot Farm": {
@@ -1996,7 +2105,8 @@
    "nome": "Fazenda de Podridão Golgari",
    "tipo": "Terreno",
    "texto": "Fazenda de Podridão Golgari entra no campo de batalha virada.\nQuando Fazenda de Podridão Golgari entrar no campo de batalha, devolva um terreno que você controle para a mão de seu dono.\n{T}: Adicione {B}{G}.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Nesting Grounds": {
@@ -2012,7 +2122,8 @@
    "nome": "Zona de Nidificação",
    "tipo": "Terreno",
    "texto": "{T}: Adicione {C}.\n{1}, {T}: Mova um marcador da permanente alvo que você controla para outra permanente alvo. Ative somente como um feitiço.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Midnight Banshee": {
@@ -2028,7 +2139,8 @@
    "nome": "Banshee da Meia-Noite",
    "tipo": "Criatura — Espírito",
    "texto": "Murchar (Esta fonte causa dano a criaturas na forma de marcadores -1/-1.)\nNo início de sua manutenção, coloque um marcador -1/-1 em cada criatura que não seja preta.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Grim Poppet": {
@@ -2044,7 +2156,8 @@
    "nome": "Fantoche Sinistro",
    "tipo": "Criatura Artefato — Espantalho",
    "texto": "Fantoche Sinistro entra em jogo com três marcadores -1/-1.\nRemova um marcador -1/-1 de Fantoche Sinistro: Coloque um marcador -1/-1 em outra criatura alvo.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Skinrender": {
@@ -2060,7 +2173,8 @@
    "nome": "Despelador",
    "tipo": "Criatura — Zumbi",
    "texto": "Quando Despelador entrar no campo de batalha, coloque três marcadores -1/-1 na criatura alvo.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Soul Snuffers": {
@@ -2076,7 +2190,8 @@
    "nome": "Apagadores de Alma",
    "tipo": "Criatura — Elemental Xamã",
    "texto": "Quando Apagadores de Alma entrar em jogo, coloque um marcador -1/-1 em cada criatura.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Persist": {
@@ -2092,7 +2207,8 @@
    "nome": "Persistir",
    "tipo": null,
    "texto": "Devolva o card de criatura não lendária alvo de seu cemitério para o campo de batalha com um marcador -1/-1.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Fire Covenant": {
@@ -2108,7 +2224,8 @@
    "nome": "Pacto de Fogo",
    "tipo": null,
    "texto": null,
-   "faces": null
+   "faces": null,
+   "reserva": true
   }
  },
  "Cathartic Pyre": {
@@ -2124,7 +2241,8 @@
    "nome": "Pira Catártica",
    "tipo": "Mágica Instantânea",
    "texto": "Escolha um —\n• Pira Catártica causa 3 pontos de dano à criatura ou ao planeswalker alvo.\n• Descarte até dois cards e depois compre aquela quantidade de cards.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Gruul Turf": {
@@ -2140,7 +2258,8 @@
    "nome": "Gleba Gruul",
    "tipo": "Terreno",
    "texto": "Gleba Gruul entra no campo de batalha virada.\nQuando Gleba Gruul entrar no campo de batalha, devolva um terreno que você controla para a mão de seu dono.\n{T}: Adicione {R}{G}.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Riveteers Overlook": {
@@ -2156,7 +2275,8 @@
    "nome": "Mirante dos Rebiteiros",
    "tipo": "Terreno",
    "texto": "Quando Mirante dos Rebiteiros entrar no campo de batalha, sacrifique-o. Quando fizer isso, procure em seu grimório um card de Pântano, Montanha ou Floresta básico, coloque-o no campo de batalha virado, depois embaralhe e você ganha 1 ponto de vida.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Ifnir Deadlands": {
@@ -2172,7 +2292,8 @@
    "nome": "Terras Mortas de Ifnir",
    "tipo": "Terreno — Deserto",
    "texto": "{T}: Adicione {C} à sua reserva de mana.\n{T}, pague 1 ponto de vida: Adicione {B} à sua reserva de mana.\n{2}{B}{B}, {T}, sacrifique um Deserto: Coloque dois marcadores -1/-1 na criatura alvo que um oponente controla. Ative esta habilidade somente nos momentos em que poderia conjurar um feitiço.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Savage Lands": {
@@ -2188,7 +2309,8 @@
    "nome": "Terras Selvagens",
    "tipo": "Terreno",
    "texto": "Terras Selvagens entra no campo de batalha virada.\n{T}: Adicione {B}, {R} ou {G}.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Sheltered Thicket": {
@@ -2204,7 +2326,8 @@
    "nome": "Arvoredo Resguardado",
    "tipo": "Terreno — Montanha Floresta",
    "texto": "({T}: Adicione {R} ou {G} à sua reserva de mana.)\nArvoredo Resguardado entra no campo de batalha virado.\nReciclar {2} ({2}, Descarte este card: Compre um card.)",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Darkness Descends": {
@@ -2284,7 +2407,8 @@
    "nome": "Amuleto Boros",
    "tipo": "Mágica Instantânea",
    "texto": "Escolha um — Amuleto Boros causa 4 pontos de dano ao jogador alvo; ou as permanentes que você controla são indestrutíveis neste turno; ou a criatura alvo ganha golpe duplo até o final do turno.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Thrilling Discovery": {
@@ -2300,7 +2424,8 @@
    "nome": "Descoberta Emocionante",
    "tipo": "Feitiço",
    "texto": "Você ganha 2 pontos de vida. Em seguida, você pode descartar dois cards. Se fizer isso, compre três cards.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Trove Warden": {
@@ -2316,7 +2441,8 @@
    "nome": "Guardião do Tesouro",
    "tipo": "Criatura — Felino Besta",
    "texto": "Vigilância\nAterragem — Toda vez que um terreno entrar no campo de batalha sob seu controle, exile o card de permanente alvo com custo de mana convertido igual ou inferior a 3 do seu cemitério.\nQuando Guardião do Tesouro morrer, coloque cada card de permanente exilado com ele no campo de batalha sob o controle do dono daquele card.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Bag of Holding": {
@@ -2332,7 +2458,8 @@
    "nome": "Mochila de Carga",
    "tipo": "Artefato",
    "texto": "Toda vez que você descartar um card, exile aquele card de seu cemitério.\n{2}, {T}: Compre um card e depois descarte um card.\n{4}, {T}, sacrifique Mochila de Carga: Devolva todos os cards exilados com Mochila de Carga para a mão de seu dono.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Banon, the Returners' Leader": {
@@ -2436,7 +2563,8 @@
    "nome": "Taxa de Monólogo",
    "tipo": "Encantamento",
    "texto": "Toda vez que um oponente conjura sua segunda mágica a cada turno, você cria uma ficha de Tesouro.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Staff of the Storyteller": {
@@ -2452,7 +2580,8 @@
    "nome": "Cajado do Contador de Histórias",
    "tipo": "Artefato",
    "texto": "Quando Cajado do Contador de Histórias entrar no campo de batalha, crie uma ficha de criatura Espírito branca 1/1 com voar.\nToda vez que você criar uma ou mais fichas de criatura, coloque um marcador de história em Cajado do Contador de Histórias.\n{W}, {T}, remova um marcador de história de Cajado do Contador de Histórias: Compre um card.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Path to Exile": {
@@ -2468,7 +2597,8 @@
    "nome": "Caminho para o Exílio",
    "tipo": "Mágica Instantânea",
    "texto": "Exile a criatura alvo. Seu controlador pode procurar no próprio grimório um card de terreno básico, colocá-lo no campo de batalha virado e depois embaralhar.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Archaeomancer's Map": {
@@ -2484,7 +2614,8 @@
    "nome": "Mapa do Arqueomante",
    "tipo": "Artefato",
    "texto": "Quando Mapa do Arqueomante entrar no campo de batalha, procure em seu grimório até dois cards de Planície básica, revele-os, coloque-os em sua mão e depois embaralhe.\nToda vez que um terreno entra no campo de batalha sob o controle de um oponente, se aquele jogador controla mais terrenos que você, você pode colocar um card de terreno de sua mão no campo de batalha.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Sevinne's Reclamation": {
@@ -2500,7 +2631,8 @@
    "nome": "Reivindicação de Sevinne",
    "tipo": "Feitiço",
    "texto": "Devolva o card de permanente alvo com valor de mana igual ou inferior a 3 de seu cemitério para o campo de batalha. Se esta mágica foi conjurada de um cemitério, você pode copiar esta mágica e pode escolher um novo alvo para a cópia.\nRecapitular {4}{W} (Você pode conjurar este card de seu cemitério pagando seu custo de recapitular. Depois, exile-o.)",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Quintorius, Loremaster": {
@@ -2516,7 +2648,8 @@
    "nome": "Quintorius, Mestre do Saber",
    "tipo": "Criatura Lendária — Elefante Clérigo",
    "texto": "Vigilância\nNo início de sua etapa final, exile o card não de terreno e não de criatura alvo de seu cemitério. Crie uma ficha de criatura Espírito vermelha e branca 3/2.\n{1}{R}{W}, {T}, sacrifique um Espírito: Escolha o card alvo exilado com Quintorius. Você pode conjurar aquele card neste turno sem pagar seu custo de mana. Se aquela mágica seria colocada em um cemitério, em vez disso, coloque-a no fundo do grimório de seu dono.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Quintorius, Field Historian": {
@@ -2532,7 +2665,8 @@
    "nome": "Quintorius, Historiador de Campo",
    "tipo": "Criatura Lendária — Elefante Clérigo",
    "texto": "Os Espíritos que você controla recebem +1/+0.\nToda vez que um ou mais cards deixarem seu cemitério, crie uma ficha de criatura Espírito vermelha e branca 3/2.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Primary Research": {
@@ -2564,7 +2698,8 @@
    "nome": "Cavalaria Sacode-lua",
    "tipo": "Criatura — Espírito Cavaleiro",
    "texto": "Voar\nQuando Cavalaria Sacode-lua entra no campo de batalha, as criaturas que você controla ganham voar e recebem +X/+X até o final do turno, sendo X o número de criaturas que você controla.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Fellwar Stone": {
@@ -2580,7 +2715,8 @@
    "nome": "A Pedra Fellwar",
    "tipo": "Artefato",
    "texto": "{T}: Adicione um mana de qualquer cor que um terreno controlado por um oponente possa gerar.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Anger": {
@@ -2596,7 +2732,8 @@
    "nome": "Ira",
    "tipo": "Criatura — Encarnação",
    "texto": "Ímpeto\nEnquanto Ira estiver em seu cemitério e você controlar uma Montanha, as criaturas que você controla terão ímpeto.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Faithless Looting": {
@@ -2612,7 +2749,8 @@
    "nome": "Pilhagem Infiel",
    "tipo": "Feitiço",
    "texto": "Compre dois cards e depois descarte dois cards.\nRecapitular {2}{R} (Você pode conjurar este card de seu cemitério pagando seu custo de recapitular. Depois, exile-a.)",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Fabled Passage": {
@@ -2628,7 +2766,8 @@
    "nome": "Passagem Fabulosa",
    "tipo": "Terreno",
    "texto": "{T}, sacrifique Passagem Fabulosa: Procure um card de terreno básico em seu grimório, coloque-o no campo de batalha virado e depois embaralhe seu grimório. Se você controla quatro ou mais terrenos, desvire aquele terreno.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Guardian of Faith": {
@@ -2644,7 +2783,8 @@
    "nome": "Defensor da Fé",
    "tipo": "Criatura — Espírito Cavaleiro",
    "texto": "Lampejo\nVigilância\nQuando Defensor da Fé entra no campo de batalha, qualquer número de outras criaturas alvo que você controla sai de fase. (Trate-as, assim como qualquer coisa anexada a elas, como se não existissem até o próximo turno de seu controlador.)",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Drumbellower": {
@@ -2660,7 +2800,8 @@
    "nome": "Tamberrador",
    "tipo": "Criatura — Espírito",
    "texto": "Voar\nDesvire todas as criaturas que você controla durante a etapa de desvirar de cada outro jogador.",
-   "faces": null
+   "faces": null,
+   "reserva": true
   }
  },
  "Laelia, the Blade Reforged": {
@@ -2676,7 +2817,8 @@
    "nome": "Laelia, a Lâmina Reforjada",
    "tipo": "Criatura Lendária — Espírito Guerreiro",
    "texto": "Ímpeto\nToda vez que Laelia, a Lâmina Reforjada, atacar, exile o card do topo de seu grimório. Você pode jogar aquele card neste turno.\nToda vez que um ou mais cards forem colocados no exílio vindos de seu grimório e/ou cemitério, coloque um marcador +1/+1 em Laelia.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Karmic Guide": {
@@ -2692,7 +2834,8 @@
    "nome": "Guia Cármico",
    "tipo": "Criatura — Anjo Espírito",
    "texto": "Voar, proteção contra o preto\nEco {3}{W}{W} (No início de sua manutenção, se este card passou ao seu controle desde o início de sua última manutenção, sacrifique-o, a menos que você pague seu custo de eco.)\nQuando Guia Cármico entrar no campo de batalha, devolva ao campo de batalha o card de criatura alvo de seu cemitério.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Selfless Spirit": {
@@ -2708,7 +2851,8 @@
    "nome": "Espírito Altruísta",
    "tipo": "Criatura — Espírito Clérigo",
    "texto": "Voar\nSacrifique Espírito Altruísta: As criaturas que você controla ganham indestrutível até o final do turno.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "White Orchid Phantom": {
@@ -2724,7 +2868,8 @@
    "nome": "Fantasma da Orquídea Branca",
    "tipo": "Criatura — Espírito Cavaleiro",
    "texto": "Voar, iniciativa\nQuando Fantasma da Orquídea Branca entrar no campo de batalha, destrua até um terreno não básico alvo. Seu controlador pode procurar um card de terreno básico em seu grimório, colocá-lo no campo de batalha virado e depois embaralhar.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Venerable Warsinger": {
@@ -2740,7 +2885,8 @@
    "nome": "Belicantora Venerável",
    "tipo": "Criatura — Espírito Clérigo",
    "texto": "Vigilância, atropelar\nToda vez que Belicantora Venerável causa dano de combate a um jogador, você pode devolver o card de criatura alvo com valor de mana igual ou inferior a X de seu cemitério ao campo de batalha, sendo X a quantidade de dano que Belicantora Venerável causou àquele jogador.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Hofri Ghostforge": {
@@ -2756,7 +2902,8 @@
    "nome": "Hofri Forjafantasma",
    "tipo": "Criatura Lendária — Anão Clérigo",
    "texto": "Os Espíritos que você controla recebem +1/+1 e têm atropelar e ímpeto.\nToda vez que outra criatura não ficha que você controla morrer, exile-a. Se fizer isso, crie uma ficha que é uma cópia daquela criatura, exceto que ela é um Espírito além de seus outros tipos e tem \"Quando esta criatura deixar o campo de batalha, devolva o card exilado ao seu cemitério.\"",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Seize the Spoils": {
@@ -2772,7 +2919,8 @@
    "nome": "Apreender os Espólios",
    "tipo": "Feitiço",
    "texto": "Como custo adicional para conjurar esta mágica, descarte um card.\nCompre dois cards e crie uma ficha de Tesouro. (Ela é um artefato com \"{T}, sacrifique este artefato: Adicione um mana de qualquer cor\".)",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Currency Converter": {
@@ -2788,7 +2936,8 @@
    "nome": "Conversor de Moedas",
    "tipo": "Artefato",
    "texto": "Toda vez que você descarta um card, você pode exilar aquele card de seu cemitério.\n{2}, {T}: Compre um card e depois descarte um card.\n{T}: Coloque um card exilado com Conversor de Moedas em seu cemitério. Se for um card de terreno, crie uma ficha de Tesouro. Se for um card não de terreno, crie uma ficha de criatura Ladino preta 2/2.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Mind Stone": {
@@ -2804,7 +2953,8 @@
    "nome": "Pedra da Mente",
    "tipo": "Artefato",
    "texto": "{T}: Adicione {C}.\n{1}, {T}, sacrifique Pedra da Mente: Compre um card.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Tocasia's Welcome": {
@@ -2820,7 +2970,8 @@
    "nome": "Boas-vindas de Tocasia",
    "tipo": "Encantamento",
    "texto": "Toda vez que uma ou mais criaturas com valor de mana igual ou inferior a 3 entrarem no campo de batalha sob seu controle, compre um card. Esta habilidade é desencadeada apenas uma vez a cada turno.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Millikin": {
@@ -2836,7 +2987,8 @@
    "nome": "Millikin",
    "tipo": "Criatura Artefato — Constructo",
    "texto": "{T}, triture um card: Adicione {C}. (Para triturar um card, coloque o card do topo de seu grimório em seu cemitério.)",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Lotus Field": {
@@ -2852,7 +3004,8 @@
    "nome": "Campo de Lótus",
    "tipo": "Terreno",
    "texto": "Resistência a magia\nCampo de Lótus entra no campo de batalha virado.\nQuando Campo de Lótus entrar no campo de batalha, sacrifique dois terrenos.\n{T}: Adicione três manas de uma cor à sua escolha.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Perpetual Timepiece": {
@@ -2868,7 +3021,8 @@
    "nome": "Cronômetro Perpétuo",
    "tipo": "Artefato",
    "texto": "{T}: Coloque os dois cards do topo de seu grimório em seu cemitério.\n{2}, Exile Cronômetro Perpétuo: Embaralhe qualquer número de cards alvo de seu cemitério em seu grimório.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Conspiracy Theorist": {
@@ -2884,7 +3038,8 @@
    "nome": "Teórico da Conspiração",
    "tipo": "Criatura — Humano Xamã",
    "texto": "Toda vez que Teórico da Conspiração ataca, você pode pagar {1} e descartar um card. Se fizer isso, compre um card.\nToda vez que você descarta um ou mais cards não de terreno, você pode exilar um deles de seu cemitério. Se fizer isso, você poderá conjurá-lo neste turno.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Containment Construct": {
@@ -2900,7 +3055,8 @@
    "nome": "Constructo de Contenção",
    "tipo": "Criatura Artefato — Constructo",
    "texto": "Toda vez que você descarta um card, você pode exilar aquele card de seu cemitério. Se fizer isso, você poderá jogá-lo neste turno.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Angel of Indemnity": {
@@ -2924,7 +3080,8 @@
    "nome": "Soberano Pírico",
    "tipo": "Criatura — Espírito Horror",
    "texto": "As outras criaturas vermelhas que você controla recebem +1/+1.\nAs outras criaturas brancas que você controla recebem +1/+1.\nToda vez que você joga uma mágica vermelha, Soberano Pírico causa 3 pontos de dano ao jogador alvo.\nToda vez que você joga uma mágica branca, você ganha 3 pontos de vida.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Battlefield Forge": {
@@ -2940,7 +3097,8 @@
    "nome": "Forjaria do Campo de Batalha",
    "tipo": "Terreno",
    "texto": "{T}: Adicione {C}.\n{T}: Adicione {R} ou {W}. Forjaria do Campo de Batalha causa 1 ponto de dano a você.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Teshar, Ancestor's Apostle": {
@@ -2956,7 +3114,8 @@
    "nome": "Teshar, Apóstolo da Ancestral",
    "tipo": "Criatura Lendária — Ave Clérigo",
    "texto": "Voar\nToda vez que você conjurar uma mágica histórica, devolva o card de criatura alvo com valor de mana igual ou inferior a 3 de seu cemitério para o campo de batalha. (Os artefatos, os cards lendários e as Sagas são cards históricos.)",
-   "faces": null
+   "faces": null,
+   "reserva": true
   }
  },
  "Clifftop Retreat": {
@@ -2972,7 +3131,8 @@
    "nome": "Retiro da Falésia",
    "tipo": "Terreno",
    "texto": "Retiro da Falésia entra no campo de batalha virado, a menos que você controle uma Montanha ou uma Planície.\n{T}: Adicione {R} ou {W}.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Emeria, the Sky Ruin": {
@@ -2988,7 +3148,8 @@
    "nome": "Emeria, a Ruína Celeste",
    "tipo": "Terreno",
    "texto": "Emeria, a Ruína Celeste, entra no campo de batalha virado.\nNo início de sua manutenção, se controlar sete ou mais Planícies, você poderá devolver o card de criatura alvo de seu cemitério ao campo de batalha.\n{T}: Adicione {W} à sua reserva de mana.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Serra Paragon": {
@@ -3004,7 +3165,8 @@
    "nome": "Exemplar de Serra",
    "tipo": "Criatura — Anjo",
    "texto": "Voar\nUma vez durante cada um de seus turnos, você pode jogar um terreno de seu cemitério ou conjurar uma mágica de permanente com valor de mana igual ou inferior a 3 de seu cemitério. Se você faz isso, a permanente ganha \"Quando esta permanente for colocada num cemitério vinda do campo de batalha, exile-a e você ganha 2 pontos de vida\".",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Guardian Scalelord": {
@@ -3020,7 +3182,8 @@
    "nome": "Senhor Escamado Guardião",
    "tipo": "Criatura — Dragão",
    "texto": "Apoio 1 (Quando esta criatura entrar no campo de batalha, coloque um marcador +1/+1 na criatura alvo. Se for outra criatura, ela ganha as habilidades a seguir até o final do turno.)\nVoar\nToda vez que esta criatura atacar, devolva de seu cemitério para o campo de batalha o card de permanente não de terreno alvo com valor de mana igual ou inferior a X, sendo X o poder desta criatura.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Kami of Ancient Law": {
@@ -3036,7 +3199,8 @@
    "nome": "Kami da Lei Antiga",
    "tipo": "Criatura - Espírito",
    "texto": "Sacrifique Kami da Lei Antiga: Destrói o encantamento alvo.",
-   "faces": null
+   "faces": null,
+   "reserva": true
   }
  },
  "Rugged Prairie": {
@@ -3052,7 +3216,8 @@
    "nome": "Prado Pedregoso",
    "tipo": "Terreno",
    "texto": "{T}: Adicione {C}.\n{R/W}, {T}: Adicione {R}{R}, {R}{W} ou {W}{W}.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Patchwork Banner": {
@@ -3084,7 +3249,8 @@
    "nome": "Templo do Triunfo",
    "tipo": "Terreno",
    "texto": "Templo do Triunfo entra no campo de batalha virado.\nQuando Templo do Triunfo entrar no campo de batalha, use vidência 1.\n{T}: Adicione {R} ou {W}.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Furycalm Snarl": {
@@ -3100,7 +3266,8 @@
    "nome": "Liame da Calmafuriosa",
    "tipo": "Terreno",
    "texto": "Conforme Liame da Calmafuriosa entra no campo de batalha, você pode revelar um card de Montanha ou Planície de sua mão. Se não fizer isso, Liame da Calmafuriosa entrará no campo de batalha virado.\n{T}: Adicione {R} ou {W}.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Sunscorched Divide": {
@@ -3132,7 +3299,8 @@
    "nome": "Clérigo Arrependido",
    "tipo": "Criatura — Espírito Clérigo",
    "texto": "Voar\nSacrifique Clérigo Arrependido: Exile todos os cards do cemitério do jogador alvo.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Sacred Peaks": {
@@ -3148,7 +3316,8 @@
    "nome": "Picos Sagrados",
    "tipo": "Terreno — Montanha Planície",
    "texto": "({T}: Adicione {R} ou {W}.)\nPicos Sagrados entra no campo de batalha virado.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Squee, Goblin Nabob": {
@@ -3164,7 +3333,8 @@
    "nome": "Squee, Nabobo Goblin",
    "tipo": "Criatura Lendária — Goblin",
    "texto": "No início de sua manutenção, você pode devolver Squee, Nabobo Goblin, de seu cemitério para sua mão.",
-   "faces": null
+   "faces": null,
+   "reserva": true
   }
  },
  "Sun Titan": {
@@ -3180,7 +3350,8 @@
    "nome": "Titã de Sol",
    "tipo": "Criatura — Gigante",
    "texto": "Vigilância\nToda vez que Titã de Sol entra no campo de batalha ou ataca, você pode devolver ao campo de batalha o card de permanente alvo com valor de mana igual ou inferior a 3 de seu cemitério.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Tragic Arrogance": {
@@ -3196,7 +3367,8 @@
    "nome": "Arrogância Trágica",
    "tipo": "Feitiço",
    "texto": "Para cada jogador, você escolhe um artefato, uma criatura, um encantamento e um planeswalker dentre as permanentes que aquele jogador controla. Depois, cada jogador sacrifica todas as outras permanentes não de terreno que ele controla.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Wave of Reckoning": {
@@ -3212,7 +3384,8 @@
    "nome": "Vaga de Retribuição",
    "tipo": "Feitiço",
    "texto": "Cada criatura causa a si própria uma quantidade de dano igual ao seu poder.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Mistveil Plains": {
@@ -3228,7 +3401,8 @@
    "nome": "Planície do Véu Nebuloso",
    "tipo": "Terreno — Planície",
    "texto": "({T}: Adicione {W} à sua reserva de mana.)\nPlanície do Véu Nebuloso entra em jogo virado.\n{W}, {T}: Coloque o card alvo de seu cemitério no fundo de seu grimório. Jogue esta habilidade somente se você controlar duas ou mais permanentes brancas.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Bitterthorn, Nissa's Animus": {
@@ -3244,7 +3418,8 @@
    "nome": "Espinamarga, Animus de Nissa",
    "tipo": "Artefato Lendário — Equipamento",
    "texto": "Arma viva (Quando este Equipamento entrar no campo de batalha, crie uma ficha de criatura Germe Phyrexiano preta 0/0 e anexe-o a ela.)\nA criatura equipada recebe +1/+1.\nToda vez que a criatura equipada ataca, você pode procurar um card de terreno básico em seu grimório, colocá-lo no campo de batalha virado e depois embaralhar.\nEquipar {3}",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Rip Apart": {
@@ -3260,7 +3435,8 @@
    "nome": "Fender",
    "tipo": "Feitiço",
    "texto": "Escolha um —\n• Fender causa 3 pontos de dano à criatura ou ao planeswalker alvo.\n• Destrua o artefato ou o encantamento alvo.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Lorehold Campus": {
@@ -3276,7 +3452,8 @@
    "nome": "Campus de Sapioforte",
    "tipo": "Terreno",
    "texto": "Campus de Sapioforte entra no campo de batalha virado.\n{T}: Adicione {R} ou {W}.\n{4}, {T}: Use vidência 1.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Study Hall": {
@@ -3292,7 +3469,8 @@
    "nome": "Salão de Estudos",
    "tipo": "Terreno",
    "texto": "{T}: Adicione {C}.\n{1}, {T}: Adicione um mana de qualquer cor. Quando você gastar este mana para conjurar seu comandante, use vidência X, sendo X o número de vezes em que ele foi conjurado da zona de comando neste turno.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Ark of Hunger": {
@@ -3340,7 +3518,8 @@
    "nome": "Eletromante Goblin",
    "tipo": "Criatura — Goblin Mago",
    "texto": "As mágicas instantâneas e os feitiços que você conjura custam {1} a menos para serem conjurados.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Counterspell": {
@@ -3356,7 +3535,8 @@
    "nome": "Contramágica",
    "tipo": null,
    "texto": null,
-   "faces": null
+   "faces": null,
+   "reserva": true
   }
  },
  "Negate": {
@@ -3372,7 +3552,8 @@
    "nome": "Negar",
    "tipo": "Mágica Instantânea",
    "texto": "Anule a mágica alvo não de criatura.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Ashling, Rekindled // Ashling, Rimebound": {
@@ -3516,7 +3697,8 @@
    "nome": "Técnica de Replicação",
    "tipo": "Feitiço",
    "texto": "Demonstrar (Quando você conjura esta mágica, você pode copiá-la. Se fizer isso, escolha um oponente para copiá-la também. Os jogadores podem escolher novos alvos para as próprias cópias.)\nCrie uma ficha que seja uma cópia da permanente alvo que você controla.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Rite of Replication": {
@@ -3532,7 +3714,8 @@
    "nome": "Rito de Replicação",
    "tipo": "Feitiço",
    "texto": "Reforçar {5} (Você pode pagar um custo adicional de {5} ao conjurar esta mágica.)\nCrie uma ficha que seja uma cópia da criatura alvo. Se esta mágica tiver sido reforçada, em vez disso, crie cinco dessas fichas.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Mana Geyser": {
@@ -3548,7 +3731,8 @@
    "nome": "Gêiser de Mana",
    "tipo": "Feitiço",
    "texto": "Adicione {R} para cada terreno virado que seus oponentes controlam.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Curiosity Crafter": {
@@ -3564,7 +3748,8 @@
    "nome": "Artífice de Curiosidades",
    "tipo": "Criatura — Ave Mago",
    "texto": "Voar\nNão há limite para o número máximo de cards em sua mão.\nToda vez que uma ficha de criatura que você controla causar dano de combate a um jogador, compre um card.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Faerie Mastermind": {
@@ -3580,7 +3765,8 @@
    "nome": "Mente Mestra Feérica",
    "tipo": "Criatura — Fada Ladino",
    "texto": "Lampejo\nVoar\nToda vez que um oponente compra o próprio segundo card a cada turno, você compra um card.\n{3}{U}: Cada jogador compra um card.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Goldspan Dragon": {
@@ -3596,7 +3782,8 @@
    "nome": "Dragão da Ponte Dourada",
    "tipo": "Criatura — Dragão",
    "texto": "Voar, ímpeto\nToda vez que Dragão da Ponte Dourada atacar ou se tornar o alvo de uma mágica, crie uma ficha de Tesouro.\nOs Tesouros que você controla têm \"{T}, sacrifique este artefato: Adicione dois manas de uma cor à sua escolha\".",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Big Score": {
@@ -3612,7 +3799,8 @@
    "nome": "Sorte Grande",
    "tipo": "Mágica Instantânea",
    "texto": "Como custo adicional para conjurar esta mágica, descarte um card.\nCompre dois cards e crie duas fichas de Tesouro. (Elas são artefatos com \"{T}, sacrifique este artefato: Adicione um mana de qualquer cor\".)",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Temple of the False God": {
@@ -3628,7 +3816,8 @@
    "nome": "Templo do Falso Deus",
    "tipo": "Terreno",
    "texto": "{T}: Adicione {C}{C}. Ative somente se você controlar cinco ou mais terrenos.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Chain Reaction": {
@@ -3644,7 +3833,8 @@
    "nome": "Reação em Cadeia",
    "tipo": "Feitiço",
    "texto": "Reação em Cadeia causa X pontos de dano a cada criatura, sendo X o número de criaturas no campo de batalha.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Thunderclap Drake": {
@@ -3668,7 +3858,8 @@
    "nome": "Brudiclad, Engenheiro Telchoriano",
    "tipo": "Criatura Artefato Lendária — Phyrexiano Artesão",
    "texto": "As fichas de criatura que você controla têm ímpeto.\nNo início do combate no seu turno, crie uma ficha de criatura artefato Phyrexiano Myr azul 2/1. Em seguida, você pode escolher uma ficha que você controla. Se fizer isso, cada outra ficha que você controla se torna uma cópia daquela ficha.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Reality Shift": {
@@ -3684,7 +3875,8 @@
    "nome": "Desvio de Realidade",
    "tipo": "Mágica Instantânea",
    "texto": "Exile a criatura alvo. Seu controlador manifesta o card do topo do próprio grimório. (Aquele jogador coloca o card do topo do próprio grimório no campo de batalha com a face voltada para baixo como uma criatura 2/2. Se for um card de criatura, ele pode ser voltado para cima a qualquer momento pelo custo de mana dele.)",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Storm-Kiln Artist": {
@@ -3700,7 +3892,8 @@
    "nome": "Artista da Fornalha Tempestuosa",
    "tipo": "Criatura — Anão Xamã",
    "texto": "Artista da Fornalha Tempestuosa recebe +1/+0 para cada artefato que você controla.\nMagifício — Toda vez que você conjurar ou copiar uma mágica instantânea ou um feitiço, crie uma ficha de Tesouro.",
-   "faces": null
+   "faces": null,
+   "reserva": true
   }
  },
  "Spectacle Summit": {
@@ -3724,7 +3917,8 @@
    "nome": "Técnica Criativa",
    "tipo": "Feitiço",
    "texto": "Demonstrar (Quando você conjura esta mágica, você pode copiá-la. Se fizer isso, escolha um oponente para copiá-la também.)\nEmbaralhe seu grimório e depois revele cards do topo até revelar um card não de terreno. Exile aquele card e coloque o restante no fundo de seu grimório em ordem aleatória. Você pode conjurar o card exilado sem pagar seu custo de mana.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Archmage Emeritus": {
@@ -3740,7 +3934,8 @@
    "nome": "Arquimago Emérito",
    "tipo": "Criatura — Humano Mago",
    "texto": "Magifício — Toda vez que você conjurar ou copiar uma mágica instantânea ou um feitiço, compre um card.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Blasphemous Act": {
@@ -3756,7 +3951,8 @@
    "nome": "Ato Blasfemo",
    "tipo": "Feitiço",
    "texto": "Esta mágica custa {1} a menos para ser conjurada para cada criatura no campo de batalha.\nAto Blasfemo causa 13 pontos de dano a cada criatura.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Determined Iteration": {
@@ -3772,7 +3968,8 @@
    "nome": "Iteração Determinada",
    "tipo": "Encantamento",
    "texto": "No início do combate no seu turno, povoe. A ficha criada dessa forma ganha ímpeto. Sacrifique-a no início da próxima etapa final. (Para povoar, crie uma ficha que seja uma cópia de uma ficha de criatura que você controla.)",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Dig Through Time": {
@@ -3788,7 +3985,8 @@
    "nome": "Revirar o Tempo",
    "tipo": "Mágica Instantânea",
    "texto": "Esquadrinhar (Cada card que você exila de seu cemitério quando conjura esta mágica paga por {1}.)\nOlhe os sete cards do topo de seu grimório. Coloque dois deles na sua mão e os restantes no fundo do seu grimório em qualquer ordem.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Magma Opus": {
@@ -3804,7 +4002,8 @@
    "nome": "Magma Opus",
    "tipo": "Mágica Instantânea",
    "texto": "Magma Opus causa 4 pontos de dano distribuídos à sua escolha entre qualquer número de alvos. Vire duas permanentes alvo. Crie uma ficha de criatura Elemental azul e vermelha 4/4. Compre dois cards.\n{U/R}{U/R}, descarte Magma Opus: Crie uma ficha de Tesouro.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Manaform Hellkite": {
@@ -3820,7 +4019,8 @@
    "nome": "Dragão Avérneo Manaforme",
    "tipo": "Criatura — Dragão",
    "texto": "Voar\nToda vez que você conjurar uma mágica não de criatura, crie uma ficha de criatura Dragão Ilusão vermelha X/X com voar e ímpeto, sendo X a quantidade de mana gasta para conjurar aquela mágica. Exile aquela ficha no início da próxima etapa final.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Mystic Sanctuary": {
@@ -3836,7 +4036,8 @@
    "nome": "Santuário Místico",
    "tipo": "Terreno — Ilha",
    "texto": "({T}: Adicione {U}.)\nSantuário Místico entra no campo de batalha virado, a menos que você controle três ou mais outras Ilhas.\nQuando Santuário Místico entra no campo de batalha desvirado, você pode colocar o card de mágica instantânea ou feitiço alvo de seu cemitério no topo de seu grimório.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Reliquary Tower": {
@@ -3852,7 +4053,8 @@
    "nome": "Torre do Relicário",
    "tipo": "Terreno",
    "texto": "Não há limite para o número máximo de cards em sua mão.\n{T}: Adicione {C}.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Prismari Campus": {
@@ -3868,7 +4070,8 @@
    "nome": "Campus de Prismari",
    "tipo": "Terreno",
    "texto": "Campus de Prismari entra no campo de batalha virado.\n{T}: Adicione {U} ou {R}.\n{4}, {T}: Use vidência 1.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Surge to Victory": {
@@ -3884,7 +4087,8 @@
    "nome": "Ímpeto para a Vitória",
    "tipo": "Feitiço",
    "texto": "Exile o card de mágica instantânea ou de feitiço alvo de seu cemitério. As criaturas que você controla recebem +X/+0 até o final do turno, sendo X o valor de mana daquele card. Toda vez que uma criatura que você controla causar dano de combate a um jogador neste turno, copie o card exilado. Você pode conjurar a cópia sem pagar seu custo de mana.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Sulfur Falls": {
@@ -3900,7 +4104,8 @@
    "nome": "Cascata de Enxofre",
    "tipo": "Terreno",
    "texto": "Cascata de Enxofre entra no campo de batalha virada, a menos que você controle uma Ilha ou uma Montanha.\n{T}: Adicione {U} ou {R}.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Treasure Cruise": {
@@ -3916,7 +4121,8 @@
    "nome": "Cruzeiro do Tesouro",
    "tipo": "Feitiço",
    "texto": "Esquadrinhar (Cada card que você exila de seu cemitério quando conjura esta mágica paga por {1}.)\nCompre três cards.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Volcanic Salvo": {
@@ -3932,7 +4138,8 @@
    "nome": "Salva Vulcânica",
    "tipo": "Feitiço",
    "texto": "Esta mágica custa {X} a menos para ser conjurada, sendo X o total de poder das criaturas que você controla.\nSalva Vulcânica causa 6 pontos de dano a cada uma de até duas criaturas e/ou planeswalkers alvo.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Frostboil Snarl": {
@@ -3948,7 +4155,8 @@
    "nome": "Liame da Pirogeada",
    "tipo": "Terreno",
    "texto": "Conforme Liame da Pirogeada entra no campo de batalha, você pode revelar um card de Ilha ou Montanha de sua mão. Se não fizer isso, Liame da Pirogeada entrará no campo de batalha virado.\n{T}: Adicione {U} ou {R}.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Prismari Command": {
@@ -3964,7 +4172,8 @@
    "nome": "Comando de Prismari",
    "tipo": "Mágica Instantânea",
    "texto": "Escolha dois —\n• Comando de Prismari causa 2 pontos de dano a qualquer alvo.\n• O jogador alvo compra dois cards e depois descarta dois cards.\n• O jogador alvo cria uma ficha de Tesouro.\n• Destrua o artefato alvo.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Rousing Refrain": {
@@ -3980,7 +4189,8 @@
    "nome": "Refrão Estimulante",
    "tipo": "Feitiço",
    "texto": "Adicione {R} para cada card na mão do oponente alvo. Até o final do turno, você não perde esse mana quando as etapas e fases terminam. Exile Refrão Estimulante com três marcadores temporais.\nSuspender 3 — {1}{R} (Em vez de conjurar este card da sua mão, você pode pagar {1}{R} e exilá-lo com três marcadores temporais. No início de sua manutenção, remova um marcador temporal. Quando o último for removido, conjure-o sem pagar seu custo de mana.)",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Shivan Reef": {
@@ -3996,7 +4206,8 @@
    "nome": "Recifes de Shiv",
    "tipo": "Terreno",
    "texto": "{T}: Adicione {C}.\n{T}: Adicione {U} ou {R}. Recifes de Shiv causa 1 ponto de dano a você.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Talisman of Creativity": {
@@ -4012,7 +4223,8 @@
    "nome": "Talismã da Criatividade",
    "tipo": "Artefato",
    "texto": "{T}: Adicione {C}.\n{T}: Adicione {U} ou {R}. Talismã da Criatividade causa 1 ponto de dano a você.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Twinflame": {
@@ -4028,7 +4240,8 @@
    "nome": "Gêmeo Incandescente",
    "tipo": "Feitiço",
    "texto": "Esforço — Gêmeo Incandescente custa {2}{R} a mais para ser conjurado para cada alvo além do primeiro.\nEscolha qualquer número de criaturas alvo que você controla. Para cada uma delas, coloque no campo de batalha uma ficha que seja uma cópia daquela criatura. Aquelas fichas têm ímpeto. Exile-as no início da próxima etapa final.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Rionya, Fire Dancer": {
@@ -4044,7 +4257,8 @@
    "nome": "Rionya, Dançarina do Fogo",
    "tipo": "Criatura Lendária — Humano Mago",
    "texto": "No início do combate no seu turno, crie X fichas que sejam cópias de outra criatura alvo que você controla, sendo X igual a um mais o número de mágicas instantâneas e feitiços que você conjurou neste turno. Elas ganham ímpeto. Exile-as no início da próxima etapa final.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Abrade": {
@@ -4060,7 +4274,8 @@
    "nome": "Abrasão",
    "tipo": "Mágica Instantânea",
    "texto": "Escolha um —\n• Abrasão causa 3 pontos de dano à criatura alvo.\n• Destrua o artefato alvo.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Lightning Greaves": {
@@ -4076,7 +4291,8 @@
    "nome": "Grevas Faiscantes",
    "tipo": "Artefato — Equipamento",
    "texto": "A criatura equipada tem ímpeto e manto.\nEquipar {0}",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Arcane Denial": {
@@ -4092,7 +4308,8 @@
    "nome": "Contradição Arcana",
    "tipo": "Mágica Instantânea",
    "texto": "Anule a mágica alvo. Seu controlador pode comprar até dois cards no início da manutenção do próximo turno.\nVocê compra um card no início da manutenção do próximo turno.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Cursed Mirror": {
@@ -4108,7 +4325,8 @@
    "nome": "Espelho Amaldiçoado",
    "tipo": "Artefato",
    "texto": "{T}: Adicione {R}.\nConforme Espelho Amaldiçoado entra no campo de batalha, você pode fazer com que ele se torne uma cópia de qualquer criatura no campo de batalha até o final do turno, com a exceção de ter ímpeto.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Stormcatch Mentor": {
@@ -4132,7 +4350,8 @@
    "nome": "Ribanceiras da Cascata",
    "tipo": "Terreno",
    "texto": "{T}: Adicione {C}.\n{U/R}, {T}: Adicione {U}{U}, {U}{R} ou {R}{R}.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Ferrous Lake": {
@@ -4156,7 +4375,8 @@
    "nome": "Afluente Derretido",
    "tipo": "Terreno — Ilha Montanha",
    "texto": "({T}: Adicione {U} ou {R}.)\nAfluente Derretido entra no campo de batalha virado.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Temple of Epiphany": {
@@ -4172,7 +4392,8 @@
    "nome": "Templo da Epifania",
    "tipo": "Terreno",
    "texto": "Templo da Epifania entra no campo de batalha virado.\nQuando Templo da Epifania entrar no campo de batalha, use vidência 1.\n{T}: Adicione {U} ou {R}.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Chaos Warp": {
@@ -4188,7 +4409,8 @@
    "nome": "Distorção Caótica",
    "tipo": "Mágica Instantânea",
    "texto": "O dono da permanente alvo a embaralha no próprio grimório e depois revela o card do topo do próprio grimório. Se for um card de permanente, ele o coloca no campo de batalha.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Veyran, Voice of Duality": {
@@ -4204,7 +4426,8 @@
    "nome": "Veyran, Voz da Dualidade",
    "tipo": "Criatura Lendária — Efrite Mago",
    "texto": "Magifício — Toda vez que você conjura ou copia uma mágica instantânea ou um feitiço, Veyran, Voz da Dualidade, recebe +1/+1 até o final do turno.\nSe ao conjurar ou copiar uma mágica instantânea ou um feitiço você fizer com que uma habilidade desencadeada de uma permanente que você controla seja desencadeada, aquela habilidade será desencadeada uma vez adicional.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Expressive Iteration": {
@@ -4220,7 +4443,8 @@
    "nome": "Iteração Expressiva",
    "tipo": null,
    "texto": "Olhe os três cards do topo de seu grimório. Coloque um deles em sua mão, coloque um deles no fundo de seu grimório e exile um deles. Você pode jogar o card exilado neste turno.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Resculpt": {
@@ -4236,7 +4460,8 @@
    "nome": "Reesculpir",
    "tipo": "Mágica Instantânea",
    "texto": "Exile a criatura ou o artefato alvo. Seu controlador cria uma ficha de criatura Elemental azul e vermelha 4/4.",
-   "faces": null
+   "faces": null,
+   "reserva": true
   }
  },
  "Island": {
@@ -4252,7 +4477,8 @@
    "nome": "Ilha",
    "tipo": "Terreno Básico — Ilha",
    "texto": null,
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Deep Analysis": {
@@ -4268,7 +4494,8 @@
    "nome": "Análise Profunda",
    "tipo": "Feitiço",
    "texto": "O jogador alvo compra dois cards.\nRecapitular — {1}{U}, pague 3 pontos de vida. (Você pode conjurar este card de seu cemitério pagando seu custo de recapitular. Depois, exile-o.)",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Dance with Calamity": {
@@ -4284,7 +4511,8 @@
    "nome": "Dançar com a Calamidade",
    "tipo": "Feitiço",
    "texto": "Embaralhe seu grimório. Quantas vezes escolher, você pode exilar o card do topo de seu grimório. Se o valor de mana total dos cards exilados dessa forma for igual ou inferior a 13, você pode conjurar qualquer número de mágicas dentre aqueles cards sem pagar seus custos de mana.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Aether Gale": {
@@ -4300,7 +4528,8 @@
    "nome": "Vendaval Etéreo",
    "tipo": "Feitiço",
    "texto": "Devolva seis permanentes alvo não de terreno para as mãos de seus donos.",
-   "faces": null
+   "faces": null,
+   "reserva": true
   }
  },
  "Hall of Oracles": {
@@ -4316,7 +4545,8 @@
    "nome": "Salão dos Oráculos",
    "tipo": "Terreno",
    "texto": "{T}: Adicione {C}.\n{1}, {T}: Adicione um mana de qualquer cor.\n{T}: Coloque um marcador +1/+1 na criatura alvo. Ative somente como um feitiço e apenas se você conjurou uma mágica instantânea ou um feitiço neste turno.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Restless Spire": {
@@ -4332,7 +4562,8 @@
    "nome": "Torre Inquieta",
    "tipo": "Terreno",
    "texto": "Torre Inquieta entra no campo de batalha virada.\n{T}: Adicione {U} ou {R}.\n{U}{R}: Até o final do turno, Torre Inquieta se torna uma criatura Elemental azul e vermelha 2/1 com \"Enquanto for o seu turno, esta criatura terá iniciativa\". Ela ainda é um terreno.\nToda vez que Torre Inquieta atacar, use vidência 1.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Splatter Technique": {
@@ -4380,7 +4611,8 @@
    "nome": "Abraço Demoníaco",
    "tipo": "Encantamento — Aura",
    "texto": "Encantar criatura\nA criatura encantada recebe +3/+1, tem voar e é um Demônio além de seus outros tipos.\nVocê pode conjurar Abraço Demoníaco de seu cemitério pagando 3 pontos de vida e descartando um card além de pagar seus outros custos.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Angelic Gift": {
@@ -4396,7 +4628,8 @@
    "nome": "Dádiva Angelical",
    "tipo": "Encantamento — Aura",
    "texto": "Encantar criaturaQuando Dádiva Angelical entrar no campo de batalha, compre um card.A criatura encantada tem voar.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Mire Blight": {
@@ -4412,7 +4645,8 @@
    "nome": "Lodo Deteriorante",
    "tipo": "Encantamento — Aura",
    "texto": "Encantar criatura\nQuando a criatura encantada sofrer dano, destrua-a.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Ethereal Armor": {
@@ -4428,7 +4662,8 @@
    "nome": "Armadura Etérea",
    "tipo": "Encantamento — Aura",
    "texto": "Encantar criatura\nA criatura encantada recebe +1/+1 para cada encantamento que você controla e tem iniciativa.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Victor, Valgavoth's Seneschal": {
@@ -4452,7 +4687,8 @@
    "nome": "Danitha Capashena, Paradigma",
    "tipo": "Criatura Lendária — Humano Cavaleiro",
    "texto": "Iniciativa, vigilância, vínculo com a vida\nAs mágicas de Aura e Equipamento que você conjura custam {1} a menos para serem conjuradas.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Mangara, the Diplomat": {
@@ -4468,7 +4704,8 @@
    "nome": "Mangara, o Diplomata",
    "tipo": "Criatura Lendária — Humano Clérigo",
    "texto": "Vínculo com a vida\nToda vez que um oponente atacar com criaturas, se duas ou mais daquelas criaturas estiverem atacando você e/ou planeswalkers que você controla, compre um card.\nToda vez que um oponente conjurar sua segunda mágica em cada turno, compre um card.",
-   "faces": null
+   "faces": null,
+   "reserva": true
   }
  },
  "Eiganjo Dynastorian // Replenish": {
@@ -4564,7 +4801,8 @@
    "nome": "Gritos de Dentro",
    "tipo": "Encantar Criatura",
    "texto": "A criatura encantada recebe -1/-1.\nQuando a criatura encantada for colocada num cemitério, devolva Gritos de Dentro de seu cemitério para o jogo.",
-   "faces": null
+   "faces": null,
+   "reserva": true
   }
  },
  "Raffine's Guidance": {
@@ -4580,7 +4818,8 @@
    "nome": "Orientação de Raffine",
    "tipo": "Encantamento — Aura",
    "texto": "Encantar criatura\nA criatura encantada recebe +1/+1.\nVocê pode conjurar Orientação de Raffine de seu cemitério pagando {2}{W}, em vez de pagar seu custo de mana.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Sage's Reverie": {
@@ -4596,7 +4835,8 @@
    "nome": "Devaneio do Sábio",
    "tipo": "Encantamento — Aura",
    "texto": "Encantar criatura\nQuando Devaneio do Sábio entrar no campo de batalha, compre um card para cada Aura que você controla que estiver anexada a uma criatura.\nA criatura encantada recebe +1/+1 para cada Aura que você controla anexada a uma criatura.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Sentinel's Eyes": {
@@ -4612,7 +4852,8 @@
    "nome": "Olhos de Sentinela",
    "tipo": "Encantamento — Aura",
    "texto": "Encantar criatura\nA criatura encantada recebe +1/+1 e tem vigilância.\nEscapatória — {W}, exile dois outros cards de seu cemitério. (Você pode conjurar este card de seu cemitério pagando seu custo de escapatória.)",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Parasitic Impetus": {
@@ -4628,7 +4869,8 @@
    "nome": "Ímpeto Parasitário",
    "tipo": "Encantamento — Aura",
    "texto": "Encantar criatura\nA criatura encantada recebe +2/+2 e é atiçada. (Ela ataca a cada combate se estiver apta e ataca um jogador que não seja você se estiver apta.)\nToda vez que a criatura encantada ataca, seu controlador perde 2 pontos de vida e você ganha 2 pontos de vida.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Winds of Rath": {
@@ -4644,7 +4886,8 @@
    "nome": "Ventos de Rath",
    "tipo": "Feitiço",
    "texto": "Destrua todas as criaturas que não estiverem encantadas. Elas não podem ser regeneradas.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Inkshield": {
@@ -4660,7 +4903,8 @@
    "nome": "Nanquinoscudo",
    "tipo": "Mágica Instantânea",
    "texto": "Previna todo o dano de combate que seria causado a você neste turno. Para cada 1 ponto de dano prevenido dessa forma, crie uma ficha de criatura Nanquíneo branca e preta 2/1 com voar.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Hateful Eidolon": {
@@ -4676,7 +4920,8 @@
    "nome": "Eidolon do Ódio",
    "tipo": "Criatura Encantamento — Espírito",
    "texto": "Vínculo com a vida\nToda vez que uma criatura encantada morrer, compre um card para cada Aura que você controlava que estava anexada a ela.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Doomwake Giant": {
@@ -4692,7 +4937,8 @@
    "nome": "Gigante do Rastro Funesto",
    "tipo": "Criatura Encantamento — Gigante",
    "texto": "Constelação — Toda vez que Gigante do Rastro Funesto ou outro encantamento entra no campo de batalha sob seu controle, as criaturas que seus oponentes controlam recebem -1/-1 até o final do turno.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Animate Dead": {
@@ -4708,7 +4954,8 @@
    "nome": "Reviver Cadáver",
    "tipo": null,
    "texto": null,
-   "faces": null
+   "faces": null,
+   "reserva": true
   }
  },
  "Forum of Amity": {
@@ -4740,7 +4987,8 @@
    "nome": "Ímpeto Marcial",
    "tipo": "Encantamento — Aura",
    "texto": "Encantar criatura\nA criatura encantada recebe +1/+1 e é atiçada. (Ela ataca a cada combate se estiver apta e ataca um jogador que não seja você se estiver apta.)\nToda vez que a criatura encantada ataca, cada outra criatura que está atacando um de seus oponentes recebe +1/+1 até o final do turno.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Sheltered by Ghosts": {
@@ -4764,7 +5012,8 @@
    "nome": "Ideal Caído",
    "tipo": "Encantamento — Aura",
    "texto": "Encantar Criatura\nA criatura encantada tem voar e \"Sacrifique uma criatura: Esta criatura recebe +2/+1 até o final do turno.\"\nQuando Ideal Caído for colocado no cemitério vindo do jogo, devolva-o para a mão de seu dono.",
-   "faces": null
+   "faces": null,
+   "reserva": true
   }
  },
  "Gift of Immortality": {
@@ -4780,7 +5029,8 @@
    "nome": "Dádiva da Imortalidade",
    "tipo": "Encantamento — Aura",
    "texto": "Encantar criatura\nQuando a criatura encantada morrer, devolva aquele card ao campo de batalha sob o controle de seu dono. Devolva Dádiva da Imortalidade ao campo de batalha anexada àquela criatura no início da próxima etapa final.",
-   "faces": null
+   "faces": null,
+   "reserva": true
   }
  },
  "Shielded by Faith": {
@@ -4804,7 +5054,8 @@
    "nome": "Eidolon das Batalhas Incontáveis",
    "tipo": "Criatura Encantamento — Espírito",
    "texto": "Agraciar {2}{W}{W} (Se você conjurar este card pagando seu custo de agraciar, ele será uma mágica de Aura com encantar criatura. Ele se tornará novamente uma criatura se não estiver anexado a uma criatura.)\nEidolon das Batalhas Incontáveis e a criatura encantada recebem, cada um, +1/+1 para cada criatura que você controla e +1/+1 para cada Aura que você controla.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Ghostly Prison": {
@@ -4820,7 +5071,8 @@
    "nome": "Prisão Fantasmagórica",
    "tipo": null,
    "texto": "As criaturas não podem atacá-lo, a menos que seu controlador pague {2} por cada criatura que controla que está atacando você.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Land Tax": {
@@ -4836,7 +5088,8 @@
    "nome": "Imposto Territorial",
    "tipo": "Encantamento",
    "texto": "No início de sua manutenção, se um oponente controla mais terrenos que você, você pode procurar até três cards de terreno básico em seu grimório, revelá-los, colocá-los na sua mão e embaralhar.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Transcendent Envoy": {
@@ -4852,7 +5105,8 @@
    "nome": "Enviado Transcendente",
    "tipo": "Criatura Encantamento — Grifo",
    "texto": "Voar\nAs mágicas de Aura que você conjura custam {1} a menos para serem conjuradas.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Eriette of the Charmed Apple": {
@@ -4868,7 +5122,8 @@
    "nome": "Eriette da Maçã Enfeitiçada",
    "tipo": "Criatura Lendária — Humano Bruxo",
    "texto": "Cada criatura que esteja encantada por uma Aura que você controla não pode atacar você nem planeswalkers que você controla.\nNo início de sua etapa final, cada oponente perde X pontos de vida e você ganha X pontos de vida, sendo X o número de Auras que você controla.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Killian, Ink Duelist": {
@@ -4884,7 +5139,8 @@
    "nome": "Killian, Duelista do Nanquim",
    "tipo": "Criatura Lendária — Humano Bruxo",
    "texto": "Vínculo com a vida\nAmeaçar (Esta criatura só pode ser bloqueada por duas ou mais criaturas.)\nAs mágicas que você conjura com uma criatura como alvo custam {2} a menos para serem conjuradas.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Flickering Ward": {
@@ -4900,7 +5156,8 @@
    "nome": "Proteção Oscilante",
    "tipo": null,
    "texto": null,
-   "faces": null
+   "faces": null,
+   "reserva": true
   }
  },
  "Tomik, Wielder of Law": {
@@ -4916,7 +5173,8 @@
    "nome": "Tomik, Portador da Lei",
    "tipo": "Criatura Lendária — Humano Conselheiro",
    "texto": "Afinidade por planeswalkers (Esta mágica custa {1} a menos para ser conjurada para cada planeswalker que você controla.)\nVoar, vigilância\nToda vez que um oponente ataca com criaturas, se duas ou mais dessas criaturas estiverem atacando você e/ou planeswalkers que você controla, aquele oponente perde 3 pontos de vida e você compra um card.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Pearl-Ear, Imperial Advisor": {
@@ -4932,7 +5190,8 @@
    "nome": "Orelha-de-Pérola, Conselheira Imperial",
    "tipo": "Criatura Lendária — Raposa Conselheiro",
    "texto": "Vínculo com a vida\nAs mágicas de Encantamento que você conjura têm afinidade por Auras. (Elas custam {1} a menos para serem conjuradas por cada Aura que você controla.)\nToda vez que você conjurar uma mágica de Aura que tenha como alvo uma permanente modificada que você controla, compre um card. (Os Equipamentos, as Auras que você controla e os marcadores são modificações.)",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Ajani's Chosen": {
@@ -4948,7 +5207,8 @@
    "nome": "Escolhidos de Ajani",
    "tipo": "Criatura — Felino Soldado",
    "texto": "Toda vez que um encantamento entrar no campo de batalha sob seu controle, crie uma ficha de criatura Felino branca 2/2. Se aquele encantamento for uma Aura, você poderá anexá-la à ficha.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Armored Skyhunter": {
@@ -4964,7 +5224,8 @@
    "nome": "Caçadora Celeste Armadurada",
    "tipo": "Criatura — Felino Cavaleiro",
    "texto": "Voar\nToda vez que Caçadora Celeste Armadurada atacar, olhe os seis cards do topo de seu grimório. Você pode colocar um card de Aura ou Equipamento dentre eles no campo de batalha. Se um Equipamento é colocado no campo de batalha dessa forma, você pode anexá-lo a uma criatura que você controla. Coloque o restante daqueles cards no fundo de seu grimório em ordem aleatória.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Darksteel Mutation": {
@@ -4980,7 +5241,8 @@
    "nome": "Mutação de Aço Negro",
    "tipo": "Encantamento — Aura",
    "texto": "Encantar criatura\nA criatura encantada é uma criatura artefato Inseto com poder e resistência básicos 0/1, tem indestrutível e perde todas as outras habilidades, tipos de card e tipos de criatura.",
-   "faces": null
+   "faces": null,
+   "reserva": true
   }
  },
  "Kor Spiritdancer": {
@@ -4996,7 +5258,8 @@
    "nome": "Dançarina dos Espíritos Kor",
    "tipo": "Criatura — Kor Mago",
    "texto": "Dançarina dos Espíritos Kor recebe +2/+2 para cada Aura anexada a ela.\nToda vez que conjura uma mágica de Aura, você pode comprar um card.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Chains of Custody": {
@@ -5020,7 +5283,8 @@
    "nome": "Comando Cabeleira de Fogo",
    "tipo": "Criatura — Anjo Soldado",
    "texto": "Voar\nToda vez que você atacar com duas ou mais criaturas, compre um card.\nToda vez que outro jogador ataca com duas ou mais criaturas, ele compra um card se nenhuma dessas criaturas tiver atacado você.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Songbirds' Blessing": {
@@ -5036,7 +5300,8 @@
    "nome": "Bênção dos Canoros",
    "tipo": "Encantamento — Aura",
    "texto": "Encantar criatura\nToda vez que a criatura encantada atacar, revele cards do topo de seu grimório até revelar um card de Aura. Você pode colocar aquele card no campo de batalha. Se não fizer isso, coloque-o em sua mão. Coloque o restante no fundo de seu grimório em ordem aleatória.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Spirit Mantle": {
@@ -5052,7 +5317,8 @@
    "nome": "Manto Espiritual",
    "tipo": "Encantamento — Aura",
    "texto": "Encantar criatura\nA criatura encantada recebe +1/+1 e tem proteção contra criaturas.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Promise of Loyalty": {
@@ -5068,7 +5334,8 @@
    "nome": "Promessa de Lealdade",
    "tipo": "Feitiço",
    "texto": "Cada jogador coloca um marcador de voto em uma criatura que ele controla e sacrifica o restante. Cada uma daquelas criaturas não pode atacar você nem planeswalkers que você controla enquanto tiver um marcador de voto.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Sram, Senior Edificer": {
@@ -5084,7 +5351,8 @@
    "nome": "Sram, Edificador Sênior",
    "tipo": "Criatura Lendária — Anão Conselheiro",
    "texto": "Toda vez que você conjurar uma mágica de Aura, Equipamento ou Veículo, compre um card.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Eldrazi Conscription": {
@@ -5100,7 +5368,8 @@
    "nome": "Conscrição dos Eldrazi",
    "tipo": "Encantamento Tribal — Aura Eldrazi",
    "texto": "Encantar criatura\nA criatura encantada recebe +10/+10 e tem atropelar e aniquilador 2. (Toda vez que esta criatura ataca, o jogador defensor sacrifica duas permanentes.)",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Vanishing Verse": {
@@ -5116,7 +5385,8 @@
    "nome": "Verso Desvanecedor",
    "tipo": "Mágica Instantânea",
    "texto": "Exile a permanente monocolorida alvo.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Fetid Heath": {
@@ -5132,7 +5402,8 @@
    "nome": "Matagal Fétido",
    "tipo": "Terreno",
    "texto": "{T}: Adicione {C}.\n{W/B}, {T}: Adicione {W}{W}, {W}{B} ou {B}{B}.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Talisman of Hierarchy": {
@@ -5148,7 +5419,8 @@
    "nome": "Talismã da Hierarquia",
    "tipo": "Artefato",
    "texto": "{T}: Adicione {C}.\n{T}: Adicione {W} ou {B}. Talismã da Hierarquia causa 1 ponto de dano a você.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Caves of Koilos": {
@@ -5164,7 +5436,8 @@
    "nome": "Cavernas de Koilos",
    "tipo": "Terreno",
    "texto": "{T}: Adicione {C}.\n{T}: Adicione {W} ou {B}. Cavernas de Koilos causa 1 ponto de dano a você.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Fracture": {
@@ -5180,7 +5453,8 @@
    "nome": "Fraturar",
    "tipo": "Mágica Instantânea",
    "texto": "Destrua o artefato, encantamento ou planeswalker alvo.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Shineshadow Snarl": {
@@ -5196,7 +5470,8 @@
    "nome": "Liame do Umbrolume",
    "tipo": "Terreno",
    "texto": "Conforme Liame do Umbrolume entra no campo de batalha, você pode revelar um card de Planície ou Pântano de sua mão. Se não fizer isso, Liame do Umbrolume entrará no campo de batalha virado.\n{T}: Adicione {W} ou {B}.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Angelic Destiny": {
@@ -5212,7 +5487,8 @@
    "nome": "Destino Angelical",
    "tipo": "Encantamento — Aura",
    "texto": "Encantar criatura\nA criatura encantada recebe +4/+4, tem voar e iniciativa e é um Anjo além de seus outros tipos.\nQuando a criatura encantada morrer, devolva Destino Angelical para a mão de seu dono.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Archon of Sun's Grace": {
@@ -5228,7 +5504,8 @@
    "nome": "Arconte da Graça do Sol",
    "tipo": "Criatura — Arconte",
    "texto": "Voar, vínculo com a vida\nAs criaturas do tipo Pégaso que você controla têm vínculo com a vida.\nConstelação — Toda vez que um encantamento entrar no campo de batalha sob seu controle, crie uma ficha de criatura branca Pégaso 2/2 com voar.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Breena, the Demagogue": {
@@ -5244,7 +5521,8 @@
    "nome": "Brenna, a Demagoga",
    "tipo": "Criatura Lendária — Ave Bruxo",
    "texto": "Voar\nToda vez que um jogador ataca um de seus oponentes, se aquele oponente tiver mais pontos de vida que outro de seus oponentes, aquele jogador atacante compra um card e você coloca dois marcadores +1/+1 em uma criatura que você controla.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Desolate Mire": {
@@ -5268,7 +5546,8 @@
    "nome": "Campus de Platinopena",
    "tipo": "Terreno",
    "texto": "Campus de Platinopena entra no campo de batalha virado.\n{T}: Adicione {W} ou {B}.\n{4}, {T}: Use vidência 1.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Sunlit Marsh": {
@@ -5284,7 +5563,8 @@
    "nome": "Charco Ensolarado",
    "tipo": "Terreno — Planície Pântano",
    "texto": "({T}: Adicione {W} ou {B}.)\nCharco Ensolarado entra no campo de batalha virado.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "War Room": {
@@ -5300,7 +5580,8 @@
    "nome": "Salão de Guerra",
    "tipo": "Terreno",
    "texto": "{T}: Adicione {C}.\n{3}, {T}, pague uma quantidade de pontos de vida igual ao número de cores na identidade de cor de seu comandante: Compre um card.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Starfield Mystic": {
@@ -5316,7 +5597,8 @@
    "nome": "Místico do Campo Estrelado",
    "tipo": "Criatura — Humano Clérigo",
    "texto": "As mágicas de encantamento que você conjura custam {1} a menos para serem conjuradas.\nToda vez que um encantamento que você controla for colocado em um cemitério vindo do campo de batalha, coloque um marcador +1/+1 em Místico do Campo Estrelado.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Scriv, the Obligator": {
@@ -5348,7 +5630,8 @@
    "nome": "Frisson das Possibilidades",
    "tipo": "Mágica Instantânea",
    "texto": "Como custo adicional para conjurar esta mágica, descarte um card.\nCompre dois cards.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Ash Barrens": {
@@ -5364,7 +5647,8 @@
    "nome": "Desolação Fumegante",
    "tipo": "Terreno",
    "texto": "{T}: Adicione {C}.\nReciclar terreno básico {1} ({1}, descarte este card: Procure em seu grimório um card de terreno básico, revele-o, coloque-o em sua mão e depois embaralhe.)",
-   "faces": null
+   "faces": null,
+   "reserva": true
   }
  },
  "Ravenous Chupacabra": {
@@ -5380,7 +5664,8 @@
    "nome": "Chupacabra Voraz",
    "tipo": "Criatura — Besta Horror",
    "texto": "Quando Chupacabra Voraz entrar no campo de batalha, destrua a criatura alvo que um oponente controla.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Rogue's Passage": {
@@ -5396,7 +5681,8 @@
    "nome": "Passagem do Ladino",
    "tipo": "Terreno",
    "texto": "{T}: Adicione {C}.\n{4}, {T}: A criatura alvo não pode ser bloqueada neste turno.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Nomad Outpost": {
@@ -5412,7 +5698,8 @@
    "nome": "Posto Avançado Nômade",
    "tipo": "Terreno",
    "texto": "Posto Avançado Nômade entra no campo de batalha virado.\n{T}: Adicione {R}, {W} ou {B}.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Vile Entomber": {
@@ -5428,7 +5715,8 @@
    "nome": "Sepultador Vil",
    "tipo": "Criatura — Zumbi Bruxo",
    "texto": "Toque mortífero\nQuando Sepultador Vil entrar no campo de batalha, procure em seu grimório um card, coloque-o em seu cemitério e depois embaralhe.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Morbid Opportunist": {
@@ -5444,7 +5732,8 @@
    "nome": "Oportunista Mórbida",
    "tipo": "Criatura — Humano Ladino",
    "texto": "Toda vez que uma ou mais outras criaturas morrerem, compre um card. Esta habilidade é desencadeada apenas uma vez a cada turno.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Demolition Field": {
@@ -5460,7 +5749,8 @@
    "nome": "Campo de Demolição",
    "tipo": "Terreno",
    "texto": "{T}: Adicione {C}.\n{2}, {T}, sacrifique Campo de Demolição: Destrua o terreno alvo não básico que um oponente controla. O controlador daquele terreno pode procurar no próprio grimório um card de terreno básico, colocá-lo no campo de batalha e depois embaralhar. Você pode procurar em seu grimório um card de terreno básico, colocá-lo no campo de batalha e depois embaralhar.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Sulfurous Springs": {
@@ -5476,7 +5766,8 @@
    "nome": "Fontes Sulfurosas",
    "tipo": "Terreno",
    "texto": "{T}: Adicione {C}.\n{T}: Adicione {B} ou {R}. Fontes Sulfurosas causa 1 ponto de dano a você.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Foreboding Ruins": {
@@ -5492,7 +5783,8 @@
    "nome": "Ruínas Agourentas",
    "tipo": "Terreno",
    "texto": "Conforme Ruínas Agourentas entra no campo de batalha, você pode revelar um card de Pântano ou Montanha de sua mão. Se não fizer isso, Ruínas Agourentas entrará no campo de batalha virada.\n{T}: Adicione {B} ou {R}.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Talisman of Conviction": {
@@ -5508,7 +5800,8 @@
    "nome": "Talismã da Convicção",
    "tipo": "Artefato",
    "texto": "{T}: Adicione {C}.\n{T}: Adicione {R} ou {W}. Talismã da Convicção causa 1 ponto de dano a você.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Bushmeat Poacher": {
@@ -5524,7 +5817,8 @@
    "nome": "Caçadora de Carne Selvagem",
    "tipo": "Criatura — Humano Soldado",
    "texto": "{1}, {T}, sacrifique outra criatura: Você ganha uma quantidade de pontos de vida igual à resistência da criatura sacrificada. Compre um card.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Shadowblood Ridge": {
@@ -5540,7 +5834,8 @@
    "nome": "Serra de Sanguesombra",
    "tipo": "Terreno",
    "texto": "{1}, {T}: Adicione {B}{R}.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Geothermal Bog": {
@@ -5556,7 +5851,8 @@
    "nome": "Charco Geotérmico",
    "tipo": "Terreno — Pântano Montanha",
    "texto": "({T}: Adicione {B} ou {R}.)\nCharco Geotérmico entra no campo de batalha virado.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Aurelia, the Warleader": {
@@ -5572,7 +5868,8 @@
    "nome": "Aurelia, Líder de Guerra",
    "tipo": "Criatura Lendária — Anjo",
    "texto": "Voar, vigilância, ímpeto\nToda vez que Aurélia, Líder de Guerra, atacar pela primeira vez a cada turno, desvire todas as criaturas que você controla. Depois dessa fase, há uma fase de combate adicional.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Vampiric Rites": {
@@ -5588,7 +5885,8 @@
    "nome": "Ritos Vampíricos",
    "tipo": "Encantamento",
    "texto": "{1}{B}, sacrifique uma criatura: Você ganha 1 ponto de vida e compra um card.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Perforating Artist": {
@@ -5684,7 +5982,8 @@
    "nome": "Saqueador Impiedoso",
    "tipo": null,
    "texto": "Toda vez que outra criatura que você controla morrer, crie uma ficha de Tesouro.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Phoenix Down": {
@@ -5724,7 +6023,8 @@
    "nome": "Reanimar",
    "tipo": "Feitiço",
    "texto": "Coloque o card de criatura alvo de um cemitério no campo de batalha sob seu controle. Você perde uma quantidade de pontos de vida igual ao valor de mana dele.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Stitch Together": {
@@ -5740,7 +6040,8 @@
    "nome": "Costurar",
    "tipo": "Feitiço",
    "texto": "Devolva o card de criatura alvo de seu cemitério para sua mão.\nLimiar — Se houver sete ou mais cards em seu cemitério, em vez disso, devolva aquele card de seu cemitério para o campo de batalha.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Gogo, Mysterious Mime": {
@@ -5764,7 +6065,8 @@
    "nome": "Fornecedora do Suturador",
    "tipo": "Criatura — Zumbi",
    "texto": "Quando Fornecedora do Suturador entrar no campo de batalha ou morrer, coloque os três cards do topo de seu grimório em seu cemitério.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Rise of the Dark Realms": {
@@ -5780,7 +6082,8 @@
    "nome": "Ascensão dos Reinos Sombrios",
    "tipo": "Feitiço",
    "texto": "Coloque todos os cards de criatura de todos os cemitérios no campo de batalha sob o seu controle.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Kefka, Dancing Mad": {
@@ -5804,7 +6107,8 @@
    "nome": "Arquidemônio da Depravação",
    "tipo": "Criatura — Demônio",
    "texto": "Voar\nNo início da etapa final de cada oponente, aquele jogador escolhe até duas criaturas que ele controla e sacrifica o resto.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Locke, Treasure Hunter": {
@@ -5836,7 +6140,8 @@
    "nome": "Fim Crepitante",
    "tipo": "Mágica Instantânea",
    "texto": "Fim Crepitante causa 2 pontos de dano a cada oponente. Cada oponente sacrifica uma criatura com o maior poder dentre as criaturas que ele controla.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "The Warring Triad": {
@@ -5860,7 +6165,8 @@
    "nome": "Atormentar",
    "tipo": "Mágica Instantânea",
    "texto": "Destrua o artefato, a criatura ou o planeswalker alvo.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Ruinous Ultimatum": {
@@ -5876,7 +6182,8 @@
    "nome": "Ultimato Ruinoso",
    "tipo": "Feitiço",
    "texto": "Destrua todas as permanentes que seus oponentes controlam que não sejam terrenos.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Legions to Ashes": {
@@ -5892,7 +6199,8 @@
    "nome": "De Legiões a Cinzas",
    "tipo": "Feitiço",
    "texto": "Exile a permanente não de terreno alvo que um oponente controla e todas as fichas que aquele jogador controla com o mesmo nome que aquela permanente.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Mortify": {
@@ -5908,7 +6216,8 @@
    "nome": "Mortificar",
    "tipo": "Mágica Instantânea",
    "texto": "Destrua a criatura ou o encantamento alvo.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Priest of Fell Rites": {
@@ -5924,7 +6233,8 @@
    "nome": "Sacerdotisa de Ritos Torpes",
    "tipo": "Criatura — Humano Bruxo",
    "texto": "{T}, pague 3 pontos de vida, sacrifique Sacerdotisa de Ritos Torpes: Devolva o card de criatura alvo de seu cemitério para o campo de batalha. Ative somente como um feitiço.\nDesenterrar {3}{W}{B} ({3}{W}{B}: Devolva este card de seu cemitério para o campo de batalha. Ele ganha ímpeto. Exile-o no início da próxima etapa final ou se ele for deixar o campo de batalha. Use desenterrar somente como um feitiço.)",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Key to the City": {
@@ -5940,7 +6250,8 @@
    "nome": "Chave da Cidade",
    "tipo": "Artefato",
    "texto": "{T}, descarte um card: Até uma criatura alvo não pode ser bloqueada neste turno.\nToda vez que Chave da Cidade é desvirada, você pode pagar {2}. Se fizer isso, compre um card.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Solemn Simulacrum": {
@@ -5956,7 +6267,8 @@
    "nome": "Simulacro Solene",
    "tipo": "Criatura Artefato — Golem",
    "texto": "Quando Simulacro Solene entra no campo de batalha, você pode procurar um card de terreno básico em seu grimório, colocá-lo no campo de batalha virado e depois embaralhar.\nQuando Simulacro Solene morre, você pode comprar um card.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Meteor Golem": {
@@ -5972,7 +6284,8 @@
    "nome": "Golem Meteórico",
    "tipo": "Criatura Artefato — Golem",
    "texto": "Quando Golem Meteórico entrar no campo de batalha, destrua a permanente não de terreno alvo que um oponente controla.",
-   "faces": null
+   "faces": null,
+   "reserva": true
   }
  },
  "Graven Cairns": {
@@ -5988,7 +6301,8 @@
    "nome": "Caerne Esculpido",
    "tipo": "Terreno",
    "texto": "{T}: Adicione {1} à sua reserva de mana.\n{B/R}, {T}: Adicione {B}{B}, {B}{R} ou {R}{R} à sua reserva de mana.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "High Market": {
@@ -6004,7 +6318,8 @@
    "nome": "Mercado Alto",
    "tipo": "Terreno",
    "texto": "{T}: Adicione {C}.\n{T}, sacrifique uma criatura: Você ganha 1 ponto de vida.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Joshua, Phoenix's Dominant // Phoenix, Warden of Fire": {
@@ -6036,7 +6351,8 @@
    "nome": "Vorme do Massacre",
    "tipo": "Criatura — Phyrexiano Vorme",
    "texto": "Quando Vorme do Massacre entra no campo de batalha, as criaturas que seus oponentes controlam recebem -2/-2 até o final do turno.\nToda vez que uma criatura que um oponente controla morre, aquele jogador perde 2 pontos de vida.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Talisman of Indulgence": {
@@ -6052,7 +6368,8 @@
    "nome": "Talismã da Indulgência",
    "tipo": "Artefato",
    "texto": "{T}: Adicione {C}.\n{T}: Adicione {B} ou {R}. Talismã da Indulgência causa 1 ponto de dano a você.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Fleshbag Marauder": {
@@ -6068,7 +6385,8 @@
    "nome": "Saqueador Saco-de-carne",
    "tipo": "Criatura — Zumbi Guerreiro",
    "texto": "Quando Saqueador Saco-de-carne entra no campo de batalha, cada jogador sacrifica uma criatura.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Terra, Herald of Hope": {
@@ -6092,7 +6410,8 @@
    "nome": "Alto Sacerdote Skirsdag",
    "tipo": "Criatura — Humano Clérigo",
    "texto": "Mórbido — {T}, Vire duas criaturas desviradas que você controla: Coloque no campo de batalha uma ficha de criatura preta 5/5 do tipo Demônio com voar. Ative esta habilidade somente se uma criatura tiver morrido neste turno.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Marauding Blight-Priest": {
@@ -6108,7 +6427,8 @@
    "nome": "Sacerdote da Praga Saqueador",
    "tipo": "Criatura — Vampiro Clérigo",
    "texto": "Toda vez que você ganha pontos de vida, cada oponente perde 1 ponto de vida.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Bastion of Remembrance": {
@@ -6124,7 +6444,8 @@
    "nome": "Bastião da Recordação",
    "tipo": "Encantamento",
    "texto": "Quando Bastião da Recordação entrar no campo de batalha, crie uma ficha de criatura Humano Soldado branca 1/1.\nToda vez que uma criatura que você controla morre, cada oponente perde 1 ponto de vida e você ganha 1 ponto de vida.",
-   "faces": null
+   "faces": null,
+   "reserva": true
   }
  },
  "Vengeful Bloodwitch": {
@@ -6236,7 +6557,8 @@
    "nome": "Dríade Germinadora",
    "tipo": "Criatura — Dríade",
    "texto": "Ascender (Se você controla dez ou mais permanentes, você recebe a bênção da cidade pelo restante do jogo.)\nNo início de cada manutenção, crie uma ficha de criatura verde 1/1 do tipo Saprófita.\nAs Saprófitas que você controla recebem +2/+2 enquanto você tiver a bênção da cidade.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Umbral Collar Zealot": {
@@ -6260,7 +6582,8 @@
    "nome": "Micoloth",
    "tipo": "Criatura — Fungo",
    "texto": "Devorar 2 (Conforme esta criatura entra no campo de batalha, você pode sacrificar um número qualquer de criaturas. Esta criatura entra no campo de batalha com o dobro daquela quantidade de marcadores +1/+1.)\nNo início de sua manutenção, crie uma ficha de criatura verde 1/1 do tipo Saprófita para cada marcador +1/+1 em Micoloth.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Casualties of War": {
@@ -6276,7 +6599,8 @@
    "nome": "Baixas de Guerra",
    "tipo": "Feitiço",
    "texto": "Escolha um ou mais —\n• Destrua o artefato alvo.\n• Destrua a criatura alvo.\n• Destrua o encantamento alvo.\n• Destrua o terreno alvo.\n• Destrua o planeswalker alvo.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Dina, Soul Steeper": {
@@ -6292,7 +6616,8 @@
    "nome": "Dina, Imbuidora de Almas",
    "tipo": "Criatura Lendária — Dríade Druida",
    "texto": "Toda vez que você ganha pontos de vida, cada oponente perde 1 ponto de vida.\n{1}, sacrifique outra criatura: Dina, Imbuidora de Almas, recebe +X/+0 até o final do turno, sendo X o poder da criatura sacrificada.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Zulaport Cutthroat": {
@@ -6308,7 +6633,8 @@
    "nome": "Degolador de Zulaport",
    "tipo": "Criatura — Humano Ladino Aliado",
    "texto": "Toda vez que Degolador de Zulaport ou outra criatura que você controla morre, cada oponente perde 1 ponto de vida e você ganha 1 ponto de vida.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Jadar, Ghoulcaller of Nephalia": {
@@ -6324,7 +6650,8 @@
    "nome": "Jadar, Invocador de Carniçais de Nefália",
    "tipo": "Criatura Lendária — Humano Mago",
    "texto": "No início de sua etapa final, se você não controlar nenhuma criatura com decomposto, crie uma ficha de criatura Zumbi preta 2/2 com decomposto. (Ela não pode bloquear. Quando ela atacar, sacrifique-a no final do combate.)",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Pest Infestation": {
@@ -6340,7 +6667,8 @@
    "nome": "Infestação de Praga",
    "tipo": "Feitiço",
    "texto": "Destrua até X artefatos e/ou encantamentos alvo. Crie duas vezes X fichas de criatura Peste preta e verde 1/1 com \"Quando esta criatura morre, você ganha 1 ponto de vida\".",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Elvish Mystic": {
@@ -6356,7 +6684,8 @@
    "nome": "Místico Élfico",
    "tipo": "Criatura — Elfo Druida",
    "texto": "{T}: Adicione {G}.",
-   "faces": null
+   "faces": null,
+   "reserva": true
   }
  },
  "Toxic Deluge": {
@@ -6372,7 +6701,8 @@
    "nome": "Dilúvio Tóxico",
    "tipo": "Feitiço",
    "texto": "Como custo adicional para conjurar esta mágica, pague X pontos de vida.\nTodas as criaturas recebem -X/-X até o final do turno.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Culling Ritual": {
@@ -6388,7 +6718,8 @@
    "nome": "Ritual da Ceifa",
    "tipo": "Feitiço",
    "texto": "Destrua todas as permanentes não de terreno com valor de mana igual ou inferior a 2. Adicione {B} ou {G} para cada permanente destruída desta forma.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Deadly Brew": {
@@ -6404,7 +6735,8 @@
    "nome": "Caldo Mortífero",
    "tipo": "Feitiço",
    "texto": "Cada jogador sacrifica uma criatura ou um planeswalker. Se você sacrificou uma permanente dessa forma, você pode devolver outro card de permanente de seu cemitério para sua mão.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Teacher's Pest": {
@@ -6444,7 +6776,8 @@
    "nome": "Ofiomante",
    "tipo": "Criatura — Humano Xamã",
    "texto": "No início de cada manutenção, se você não controlar nenhuma Cobra, crie uma ficha de criatura Cobra preta 1/1 com toque mortífero.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Cultivate": {
@@ -6460,7 +6793,8 @@
    "nome": "Cultivar",
    "tipo": "Feitiço",
    "texto": "Procure até dois cards de terreno básico em seu grimório, revele-os e coloque um deles no campo de batalha virado e o outro na sua mão. Depois, embaralhe.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Veinwitch Coven": {
@@ -6476,7 +6810,8 @@
    "nome": "Conventículo das Bruxas Venais",
    "tipo": "Criatura — Vampiro Bruxo",
    "texto": "Ameaçar\nToda vez que você ganha pontos de vida, você pode pagar {B}. Se fizer isso, devolva o card de criatura alvo de seu cemitério para sua mão.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Springbloom Druid": {
@@ -6492,7 +6827,8 @@
    "nome": "Druida do Florescimento",
    "tipo": "Criatura — Elfo Druida",
    "texto": "Quando Druida do Florescimento entra no campo de batalha, você pode sacrificar um terreno. Se fizer isso, procure até dois cards de terreno básico em seu grimório, coloque-os no campo de batalha virados e, depois, embaralhe seu grimório.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Mazirek, Kraul Death Priest": {
@@ -6524,7 +6860,8 @@
    "nome": "Vidente Visceral",
    "tipo": "Criatura — Vampiro Mago",
    "texto": "Sacrifique uma criatura: Use vidência 1.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Plumb the Forbidden": {
@@ -6540,7 +6877,8 @@
    "nome": "Perscrutar o Proibido",
    "tipo": "Mágica Instantânea",
    "texto": "Como custo adicional para conjurar esta mágica, você pode sacrificar uma ou mais criaturas. Quando fizer isto, copie esta mágica para cada criatura sacrificada desta forma.\nVocê compra um card e perde 1 ponto de vida.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Nether Traitor": {
@@ -6556,7 +6894,8 @@
    "nome": "Traidor Ínfero",
    "tipo": "Criatura — Espírito",
    "texto": "Ímpeto\nSombra (Esta criatura só pode bloquear ou ser bloqueada por criaturas com sombra.)\nToda vez que outra criatura for colocada em seu cemitério vinda do campo de batalha, você pode pagar {B}. Se o fizer, devolva Traidor Ínfero de seu cemitério para o campo de batalha.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Sakura-Tribe Elder": {
@@ -6572,7 +6911,8 @@
    "nome": "Ancião da Tribo Sakura",
    "tipo": "Criatura — Cobra Xamã",
    "texto": "Sacrifique Ancião da Tribo Sakura: Procure um card de terreno básico em seu grimório, coloque-o no campo de batalha virado e depois embaralhe.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Priest of Forgotten Gods": {
@@ -6588,7 +6928,8 @@
    "nome": "Sacerdotisa dos Deuses Esquecidos",
    "tipo": "Criatura — Humano Clérigo",
    "texto": "{T}, sacrifique duas outras criaturas: Qualquer número de jogadores alvo perde, cada um, 2 pontos de vida e sacrifica, cada um, uma criatura. Você adiciona {B}{B} e compra um card.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Llanowar Wastes": {
@@ -6604,7 +6945,8 @@
    "nome": "Regiões Agrestes de Llanowar",
    "tipo": "Terreno",
    "texto": "{T}: Adicione {C}.\n{T}: Adicione {B} ou {G}. Regiões Agrestes de Llanowar causa 1 ponto de dano a você.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Woe Strider": {
@@ -6620,7 +6962,8 @@
    "nome": "Andarilho das Aflições",
    "tipo": "Criatura — Horror",
    "texto": "Quando Andarilho das Aflições entrar no campo de batalha, crie uma ficha de criatura Bode branca 0/1.\nSacrifique outra criatura: Use vidência 1.\nEscapatória — {3}{B}{B}, exile quatro outros cards de seu cemitério. (Você pode conjurar este card de seu cemitério pagando seu custo de escapatória.)\nAndarilho das Aflições escapa com dois marcadores +1/+1.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Awakening Zone": {
@@ -6636,7 +6979,8 @@
    "nome": "Zona do Despertar",
    "tipo": "Encantamento",
    "texto": "No início de sua manutenção, você pode criar uma ficha de criatura Prole Eldrazi incolor 0/1. Ela tem \"Sacrifique esta criatura: Adicione {C}\".",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Pawn of Ulamog": {
@@ -6652,7 +6996,8 @@
    "nome": "Peão de Ulamog",
    "tipo": "Criatura — Vampiro Xamã",
    "texto": "Toda vez que Peão de Ulamog ou outra criatura que não seja ficha que você controla morre, você pode criar uma ficha de criatura incolor 0/1 do tipo Prole Eldrazi. Ela tem \"Sacrifique esta criatura: Adicione {C} à sua reserva de mana.\"",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Wight of the Reliquary": {
@@ -6668,7 +7013,8 @@
    "nome": "Avantesma do Relicário",
    "tipo": "Criatura — Zumbi Cavaleiro",
    "texto": "Vigilância\nAvantesma do Relicário recebe +1/+1 por cada card de criatura no seu cemitério.\n{T}, sacrifique outra criatura: Procure em seu grimório um card de terreno, coloque-o no campo de batalha virado e depois embaralhe.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Haunted Mire": {
@@ -6684,7 +7030,8 @@
    "nome": "Lodaçal Assombrado",
    "tipo": "Terreno — Pântano Floresta",
    "texto": "({T}: Adicione {B} ou {G}.)\nLodaçal Assombrado entra no campo de batalha virado.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Witherbloom Campus": {
@@ -6700,7 +7047,8 @@
    "nome": "Campus de Murchaflor",
    "tipo": "Terreno",
    "texto": "Campus de Murchaflor entra no campo de batalha virado.\n{T}: Adicione {B} ou {G}.\n{4}, {T}: Use vidência 1.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Bloodghast": {
@@ -6716,7 +7064,8 @@
    "nome": "Terror Sanguinário",
    "tipo": "Criatura — Vampiro Espírito",
    "texto": "Terror Sanguinário não pode bloquear.\nTerror Sanguinário terá ímpeto enquanto um oponente tiver 10 ou menos pontos de vida.\nAterragem — Toda vez que um terreno entra no campo de batalha sob seu controle, você pode devolver Terror Sanguinário de seu cemitério para o campo de batalha.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Witherbloom Command": {
@@ -6732,7 +7081,8 @@
    "nome": "Comando de Murchaflor",
    "tipo": "Feitiço",
    "texto": "Escolha dois —\n• O jogador alvo tritura três cards. Em seguida, você devolve um card de terreno de seu cemitério para sua mão.\n• Destrua a permanente alvo não de criatura e não de terreno com valor de mana igual ou inferior a 2.\n• A criatura alvo recebe -3/-1 até o final do turno.\n• O oponente alvo perde 2 pontos de vida e você ganha 2 pontos de vida.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Mortality Spear": {
@@ -6748,7 +7098,8 @@
    "nome": "Lança da Mortalidade",
    "tipo": "Mágica Instantânea",
    "texto": "Esta mágica custa {2} a menos para ser conjurada se você tiver ganho pontos de vida neste turno.\nDestrua a permanente alvo não de terreno.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Creakwood Liege": {
@@ -6764,7 +7115,8 @@
    "nome": "Soberano de Bosque Rangente",
    "tipo": "Criatura — Horror",
    "texto": "As outras criaturas pretas que você controla recebem +1/+1.\nAs outras criaturas verdes que você controla recebem +1/+1.\nNo início de sua manutenção, você pode colocar em jogo uma ficha de criatura preta e verde 1/1 do tipo Vorme.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Blood Artist": {
@@ -6780,7 +7132,8 @@
    "nome": "Artista do Sangue",
    "tipo": "Criatura — Vampiro",
    "texto": "Toda vez que Artista do Sangue ou outra criatura morre, o jogador alvo perde 1 ponto de vida e você ganha 1 ponto de vida.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Viridescent Bog": {
@@ -6804,7 +7157,8 @@
    "nome": "Ácaro do Curto-circuito",
    "tipo": "Criatura Artefato — Inseto",
    "texto": "Quando Ácaro do Curto-circuito morre, você ganha 2 pontos de vida.\n{G}, sacrifique Ácaro do Curto-circuito: Exile o artefato não criatura ou encantamento não criatura alvo.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Moldervine Reclamation": {
@@ -6820,7 +7174,8 @@
    "nome": "Recuperação das Gavinhas Bolorentas",
    "tipo": "Encantamento",
    "texto": "Toda vez que uma criatura que você controla morre, você ganha 1 ponto de vida e compra um card.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Necroblossom Snarl": {
@@ -6836,7 +7191,8 @@
    "nome": "Liame da Necroflorescência",
    "tipo": "Terreno",
    "texto": "Conforme Liame da Necroflorescência entra no campo de batalha, você pode revelar um card de Pântano ou Floresta de sua mão. Se não fizer isso, Liame da Necroflorescência entrará no campo de batalha virado.\n{T}: Adicione {B} ou {G}.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Beledros Witherbloom": {
@@ -6852,7 +7208,8 @@
    "nome": "Beledros Murchaflor",
    "tipo": "Criatura Lendária — Dragão Ancião",
    "texto": "Voar\nNo início de sua manutenção, crie uma ficha de criatura Peste preta e verde 1/1 com \"Quando esta criatura morre, você ganha 1 ponto de vida\".\nPague 10 pontos de vida: Desvire todos os terrenos que você controla. Ative somente uma vez a cada turno.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Grim Backwoods": {
@@ -6868,7 +7225,8 @@
    "nome": "Mata Sinistra",
    "tipo": "Terreno",
    "texto": "{T}: Adicione {C}.\n{2}{B}{G}, {T}, sacrifique uma criatura: Compre um card.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Yahenni, Undying Partisan": {
@@ -6884,7 +7242,8 @@
    "nome": "Yahenni, Guerrilheiro Imortal",
    "tipo": "Criatura Lendária — Etergênito Vampiro",
    "texto": "Ímpeto\nToda vez que uma criatura que um oponente controla morrer, coloque um marcador +1/+1 em Yahenni, Guerrilheiro Imortal.\nSacrifique outra criatura: Yahenni ganha indestrutível até o final do turno.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Blossoming Bogbeast": {
@@ -6900,7 +7259,8 @@
    "nome": "Fera-do-pântano Florescente",
    "tipo": "Criatura — Besta",
    "texto": "Toda vez que Fera-do-pântano Florescente ataca, você ganha 2 pontos de vida. Em seguida, as criaturas que você controla ganham atropelar e recebem +X/+X até o final do turno, sendo X a quantidade de pontos de vida que você ganhou neste turno.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Smothering Abomination": {
@@ -6916,7 +7276,8 @@
    "nome": "Abominação Sufocante",
    "tipo": "Criatura — Eldrazi",
    "texto": "Desprovido (Este card não tem cor.)VoarNo início de sua manutenção, sacrifique uma criatura.Toda vez que você sacrificar uma criatura, compre um card.",
-   "faces": null
+   "faces": null,
+   "reserva": false
   }
  },
  "Moseo, Vein's New Dean": {

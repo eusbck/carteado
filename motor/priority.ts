@@ -154,6 +154,7 @@ export function legalActions(g: G, p: PlayerId): PriorityAction[] {
     }
   }
   for (const m of manaOptions(g, p)) acts.push({ id: `mana:${m.key}`, kind: 'mana', label: `${nameOf(g, m.obj)}: adicionar ${m.alt.map((t) => `{${t}}`).join('')}`, obj: m.obj });
+  if (s.config.manualMode) acts.push({ id: 'manual', kind: 'manual', label: 'Ajuste manual' });
   return acts;
 }
 

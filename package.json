@@ -11,12 +11,24 @@
     "importar": "node ferramentas/importar.ts",
     "levantamento": "node ferramentas/levantamento.mjs",
     "test": "vitest run",
-    "typecheck": "tsc --noEmit -p tsconfig.json",
-    "estresse": "node bots/estresse.ts"
+    "typecheck": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p cliente/tsconfig.json",
+    "estresse": "node bots/estresse.ts",
+    "cliente:build": "vite build cliente",
+    "cliente:dev": "vite cliente",
+    "servidor": "node servidor/index.ts",
+    "capturas": "node ferramentas/capturas.ts"
   },
   "devDependencies": {
+    "@preact/preset-vite": "^2.10.6",
     "@types/node": "^26.6.4",
+    "@types/ws": "^8.18.2",
+    "playwright": "^1.63.0",
     "typescript": "^5.9.3",
     "vitest": "^5.0.3"
+  },
+  "dependencies": {
+    "preact": "^11.0.0",
+    "sharp": "^0.35.5",
+    "ws": "^8.22.0"
   }
 }
