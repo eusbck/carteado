@@ -5,11 +5,11 @@ Gerado por `ferramentas/cobertura.ts`. Não edite à mão.
 | | |
 | --- | ---: |
 | Entradas (cartas dos decks + fichas e objetos auxiliares) | 547 |
-| **Implementadas, testadas e com rulings conferidos** | **240 / 547** |
-| Implementadas | 240 |
-| Com teste próprio | 240 |
-| Rulings conferidos (cartas dos decks) | 250 / 1285 |
-| Pendentes (jogáveis em modo manual) | 307 |
+| **Implementadas, testadas e com rulings conferidos** | **264 / 547** |
+| Implementadas | 264 |
+| Com teste próprio | 264 |
+| Rulings conferidos (cartas dos decks) | 288 / 1285 |
+| Pendentes (jogáveis em modo manual) | 283 |
 
 Uma carta conta como pronta quando tem definição em `cartas/defs/`, um arquivo de teste próprio
 (`cartas/defs/<nome>.test.ts`) e cada ruling registrado na definição com o teste que o cobre ou o
@@ -33,7 +33,7 @@ motivo de não se aplicar.
 | Anger | Lor, Ter | A | — | — | 0/1 |
 | Anguished Unmaking | Abz, Sil | A | sim | sim | 1/1 |
 | Animate Dead | Sil | B | — | — | 0/5 |
-| Arasta of the Endless Web | Abz | A | — | — | 0/1 |
+| Arasta of the Endless Web | Abz | A | sim | sim | 1/1 |
 | Arbor Adherent | Abz | A | sim | sim | — |
 | Arboreal Grazer | Abz | A | sim | sim | 1/1 |
 | Arcane Denial | Pri | A | sim | sim | 1/1 |
@@ -42,7 +42,7 @@ motivo de não se aplicar.
 | Archaeomancer's Map | Lor | A | sim | sim | 1/1 |
 | Archfiend of Depravity | Ter | A | sim | sim | 2/2 |
 | Archmage Emeritus | Pri | B | — | — | 0/4 |
-| Archon of Sun's Grace | Sil | A | — | — | 0/3 |
+| Archon of Sun's Grace | Sil | A | sim | sim | 3/3 |
 | Ark of Hunger | Lor | B | — | — | 0/2 |
 | Armored Skyhunter | Sil | B | — | — | 0/1 |
 | Ash Barrens | Ter | A | sim | sim | — |
@@ -53,7 +53,7 @@ motivo de não se aplicar.
 | Augusta, Order Returned | Lor | B | — | — | 0/2 |
 | Auntie Ool, Cursewretch | Bli | B | — | — | 0/6 |
 | Aurelia, the Warleader | Ter | B | — | — | 0/1 |
-| Awakening Zone | Wit | A | — | — | — |
+| Awakening Zone | Wit | A | sim | sim | — |
 | Axebane Guardian | Abz | A | sim | sim | 1/1 |
 | Bag of Holding | Lor | A | sim | sim | 5/5 |
 | Baldin, Century Herdmaster | Abz | B | — | — | 0/1 |
@@ -63,13 +63,13 @@ motivo de não se aplicar.
 | Battlefield Forge | Lor, Ter | A | sim | sim | 2/2 |
 | Bedevil | Ter | A | sim | sim | — |
 | Behind the Scenes | Abz | B | — | — | 0/2 |
-| Beledros Witherbloom | Wit | A | — | — | — |
+| Beledros Witherbloom | Wit | A | sim | sim | — |
 | Betor, Ancestor's Voice | Abz | B | — | — | — |
 | Big Score | Pri, Ter | B | — | — | — |
 | Bitterthorn, Nissa's Animus | Lor | B | — | — | — |
 | Black Sun's Zenith | Bli | B | — | — | 0/1 |
 | Blasphemous Act | Pri | B | — | — | 0/4 |
-| Blight Pile | Abz | A | — | — | 0/1 |
+| Blight Pile | Abz | A | sim | sim | 1/1 |
 | Blight Rot | Bli | B | — | — | — |
 | Blood Artist | Wit | A | sim | sim | 1/1 |
 | Bloodghast | Wit | B | — | — | 0/4 |
@@ -86,7 +86,7 @@ motivo de não se aplicar.
 | Canopy Vista | Abz | A | sim | sim | 3/3 |
 | Canyon Slough | Bli | A | sim | sim | — |
 | Carnifex Demon | Bli | B | — | — | 0/1 |
-| Carven Caryatid | Abz | A | — | — | — |
+| Carven Caryatid | Abz | A | sim | sim | — |
 | Cascade Bluffs | Pri | B | sim | sim | — |
 | Casualties of War | Wit | A | sim | sim | 2/2 |
 | Cathartic Pyre | Bli | A | sim | sim | — |
@@ -110,12 +110,12 @@ motivo de não se aplicar.
 | Containment Construct | Lor | B | — | — | — |
 | Counterspell | Pri | A | sim | sim | — |
 | Crackling Doom | Ter | A | sim | sim | 4/4 |
-| Crashing Drawbridge | Abz | A | — | — | — |
+| Crashing Drawbridge | Abz | A | sim | sim | — |
 | Creakwood Liege | Wit | B | — | — | 0/2 |
 | Creative Technique | Pri | B | — | — | 0/5 |
 | Culling Ritual | Wit | A | sim | sim | 1/1 |
 | Cultivate | Wit | A | sim | sim | 1/1 |
-| Curiosity Crafter | Pri | A | — | — | — |
+| Curiosity Crafter | Pri | A | sim | sim | — |
 | Currency Converter | Lor | A | — | — | — |
 | Cursed Mirror | Pri | B | — | — | 0/8 |
 | Cyan, Vengeful Samurai | Ter | B | — | — | 0/1 |
@@ -138,12 +138,12 @@ motivo de não se aplicar.
 | Dina, Essence Brewer | Wit | B | — | — | 0/1 |
 | Dina, Soul Steeper | Wit | A | sim | sim | 4/4 |
 | Dirgur Focusmage // Braingeyser | Pri | B | — | — | 0/18 |
-| Doomwake Giant | Sil | A | — | — | 0/3 |
+| Doomwake Giant | Sil | A | sim | sim | 3/3 |
 | Doran, Besieged by Time | Abz | B | — | — | 0/4 |
 | Dragonlord Dromoka | Abz | A | sim | sim | — |
 | Dragonskull Summit | Bli, Ter | A | sim | sim | 2/2 |
 | Dread Tiller | Bli | B | — | — | — |
-| Drumbellower | Lor | A | — | — | 0/2 |
+| Drumbellower | Lor | A | sim | sim | 2/2 |
 | Dusk Urchins | Bli | B | — | — | 0/2 |
 | Eccentric Pestfinder // Turn Stones | Wit | B | — | — | 0/16 |
 | Eclipsed Steppe | Sil | A | sim | sim | 2/2 |
@@ -177,7 +177,7 @@ motivo de não se aplicar.
 | Fields of Strife | Lor | A | sim | sim | — |
 | Final Act | Wit | A | sim | sim | 2/2 |
 | Fire Covenant | Bli | B | — | — | 0/3 |
-| Firemane Commando | Sil | A | — | — | 0/3 |
+| Firemane Commando | Sil | A | sim | sim | 3/3 |
 | Fleshbag Marauder | Ter | A | sim | sim | 2/2 |
 | Flickering Ward | Sil | B | — | — | 0/1 |
 | Flourishing Defenses | Bli | A | — | — | 0/2 |
@@ -222,10 +222,10 @@ motivo de não se aplicar.
 | Herald of Amity | Sil | B | — | — | 0/4 |
 | High Market | Ter, Wit | A | sim | sim | — |
 | Hofri Ghostforge | Lor | B | — | — | 0/8 |
-| Hornet Nest | Abz | A | — | — | 0/1 |
+| Hornet Nest | Abz | A | sim | sim | 1/1 |
 | Ifnir Deadlands | Bli | B | — | — | 0/2 |
 | Ignoble Hierarch | Bli | B | — | — | 0/1 |
-| Ikra Shidiqi, the Usurper | Abz | A | — | — | 0/8 |
+| Ikra Shidiqi, the Usurper | Abz | A | sim | sim | 8/8 |
 | Immoral Bargain | Wit | B | — | — | — |
 | Incremental Blight | Bli | B | sim | sim | 1/1 |
 | Indomitable Ancients | Abz | dados | sim | sim | — |
@@ -236,8 +236,8 @@ motivo de não se aplicar.
 | Island | Pri | dados | sim | sim | — |
 | Isolated Chapel | Abz, Sil, Ter | A | sim | sim | — |
 | Jadar, Ghoulcaller of Nephalia | Wit | B | — | — | 0/4 |
-| Jaddi Offshoot | Abz | A | — | — | 0/3 |
-| Jaws of Defeat | Abz | A | — | — | 0/1 |
+| Jaddi Offshoot | Abz | A | sim | sim | 3/3 |
+| Jaws of Defeat | Abz | A | sim | sim | 1/1 |
 | Joshua, Phoenix's Dominant // Phoenix, Warden of Fire | Ter | B | — | — | 0/10 |
 | Kami of Ancient Law | Lor | A | sim | sim | — |
 | Karmic Guide | Lor, Ter | B | — | — | 0/2 |
@@ -282,7 +282,7 @@ motivo de não se aplicar.
 | Molten Tributary | Pri | A | sim | sim | — |
 | Molten-Core Maestro | Pri | B | — | — | 0/2 |
 | Monologue Tax | Lor | B | — | — | 0/3 |
-| Moonshaker Cavalry | Lor | A | — | — | 0/2 |
+| Moonshaker Cavalry | Lor | A | sim | sim | 2/2 |
 | Morbid Opportunist | Ter, Wit | A | sim | sim | 1/1 |
 | Mortality Spear | Wit | B | — | — | 0/1 |
 | Mortify | Ter | A | sim | sim | 1/1 |
@@ -299,11 +299,11 @@ motivo de não se aplicar.
 | Nether Traitor | Wit | B | — | — | 0/6 |
 | Night's Whisper | Bli, Ter, Wit | A | sim | sim | — |
 | Nomad Outpost | Ter | A | sim | sim | — |
-| Nyx-Fleece Ram | Abz | A | — | — | — |
+| Nyx-Fleece Ram | Abz | A | sim | sim | — |
 | Oft-Nabbed Goat | Bli | B | — | — | 0/1 |
-| Ohran Frostfang | Abz | A | — | — | 0/2 |
+| Ohran Frostfang | Abz | A | sim | sim | 2/2 |
 | Ominous Harvest | Wit | B | — | — | 0/5 |
-| Ophiomancer | Wit | A | — | — | 0/3 |
+| Ophiomancer | Wit | A | sim | sim | 3/3 |
 | Orzhov Signet | Abz | A | sim | sim | — |
 | Overgrown Battlement | Abz | A | sim | sim | 1/1 |
 | Overgrown Farmland | Abz | A | sim | sim | 1/1 |
@@ -340,7 +340,7 @@ motivo de não se aplicar.
 | Radiant Summit | Lor | A | sim | sim | 1/1 |
 | Raffine's Guidance | Sil | B | — | — | — |
 | Rakdos Carnarium | Bli | A | sim | sim | 1/1 |
-| Rampart Architect | Abz | A | — | — | — |
+| Rampart Architect | Abz | A | sim | sim | — |
 | Rapturous Moment | Pri | A | sim | sim | — |
 | Ravenous Chupacabra | Ter | A | sim | sim | — |
 | Reality Shift | Pri | B | — | — | 0/13 |
@@ -377,7 +377,7 @@ motivo de não se aplicar.
 | Screams from Within | Sil | B | — | — | 0/2 |
 | Scriv, the Obligator | Sil | B | — | — | 0/2 |
 | Scuzzback Scrounger | Bli | B | — | — | 0/6 |
-| Seedborn Muse | Abz | A | — | — | 0/2 |
+| Seedborn Muse | Abz | A | sim | sim | 2/2 |
 | Seize the Spoils | Lor | B | — | — | 0/2 |
 | Selesnya Signet | Abz | A | sim | sim | — |
 | Selfless Spirit | Lor | A | sim | sim | 1/1 |
@@ -501,10 +501,10 @@ motivo de não se aplicar.
 | Vraska, Betrayal's Sting | Bli | B | — | — | 0/5 |
 | Wakestone Gargoyle | Abz | B | — | — | 0/2 |
 | Walking Bulwark | Abz | B | — | — | 0/1 |
-| Wall of Blossoms | Abz | A | — | — | — |
+| Wall of Blossoms | Abz | A | sim | sim | — |
 | Wall of Limbs | Abz | B | — | — | 0/3 |
 | Wall of Omens | Abz | A | sim | sim | — |
-| Wall of Reverence | Abz | A | — | — | 0/1 |
+| Wall of Reverence | Abz | A | sim | sim | 1/1 |
 | Wall of Roots | Abz | B | — | — | 0/1 |
 | War Room | Sil | B | — | — | 0/3 |
 | Wave of Reckoning | Lor | A | sim | sim | — |
@@ -516,7 +516,7 @@ motivo de não se aplicar.
 | Wight of the Reliquary | Wit | A | sim | sim | — |
 | Will of the Abzan | Abz | B | — | — | 0/3 |
 | Winds of Rath | Sil | A | sim | sim | 1/1 |
-| Wingmantle Chaplain | Abz | A | — | — | 0/2 |
+| Wingmantle Chaplain | Abz | A | sim | sim | 2/2 |
 | Witch of the Moors | Wit | B | — | — | 0/5 |
 | Witherbloom Campus | Wit | A | sim | sim | — |
 | Witherbloom Charm | Wit | A | sim | sim | 1/1 |
