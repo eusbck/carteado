@@ -5,3 +5,4 @@ dados-locais/
 *.sqlite
 *.sqlite-*
 .env
+testes/dbg/

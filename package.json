@@ -1,0 +1,22 @@
+{
+  "name": "commander-da-mesa",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Commander online privado: motor de regras, servidor, cliente e bots.",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "importar": "node ferramentas/importar.ts",
+    "levantamento": "node ferramentas/levantamento.mjs",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "estresse": "node bots/estresse.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.4",
+    "typescript": "^5.9.3",
+    "vitest": "^5.0.3"
+  }
+}

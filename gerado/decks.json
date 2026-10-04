@@ -1,0 +1,2451 @@
+[
+ {
+  "id": "GlOgAc8-TnKWpvRoIoHulw",
+  "nome": "Abzan Armor",
+  "comandante": "Felothar the Steadfast",
+  "cartas": [
+   {
+    "nome": "Ohran Frostfang",
+    "quantidade": 1
+   },
+   {
+    "nome": "Betor, Ancestor's Voice",
+    "quantidade": 1
+   },
+   {
+    "nome": "Forest",
+    "quantidade": 7
+   },
+   {
+    "nome": "Command Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arcane Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Plains",
+    "quantidade": 6
+   },
+   {
+    "nome": "Swamp",
+    "quantidade": 5
+   },
+   {
+    "nome": "Exotic Orchard",
+    "quantidade": 1
+   },
+   {
+    "nome": "Swords to Plowshares",
+    "quantidade": 1
+   },
+   {
+    "nome": "Evolving Wilds",
+    "quantidade": 1
+   },
+   {
+    "nome": "Path of Ancestry",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bojuka Bog",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sandsteppe Citadel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Isolated Chapel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Temple of Silence",
+    "quantidade": 1
+   },
+   {
+    "nome": "Temple of Malady",
+    "quantidade": 1
+   },
+   {
+    "nome": "Woodland Cemetery",
+    "quantidade": 1
+   },
+   {
+    "nome": "Reunion of the House",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tip the Scales",
+    "quantidade": 1
+   },
+   {
+    "nome": "Jaws of Defeat",
+    "quantidade": 1
+   },
+   {
+    "nome": "Will of the Abzan",
+    "quantidade": 1
+   },
+   {
+    "nome": "Feed the Swarm",
+    "quantidade": 1
+   },
+   {
+    "nome": "Wall of Limbs",
+    "quantidade": 1
+   },
+   {
+    "nome": "Behind the Scenes",
+    "quantidade": 1
+   },
+   {
+    "nome": "Blight Pile",
+    "quantidade": 1
+   },
+   {
+    "nome": "Baldin, Century Herdmaster",
+    "quantidade": 1
+   },
+   {
+    "nome": "Expel the Interlopers",
+    "quantidade": 1
+   },
+   {
+    "nome": "Indomitable Ancients",
+    "quantidade": 1
+   },
+   {
+    "nome": "Infernal Grasp",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arbor Adherent",
+    "quantidade": 1
+   },
+   {
+    "nome": "Canopy Gargantuan",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rampart Architect",
+    "quantidade": 1
+   },
+   {
+    "nome": "Selesnya Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tree of Redemption",
+    "quantidade": 1
+   },
+   {
+    "nome": "Crashing Drawbridge",
+    "quantidade": 1
+   },
+   {
+    "nome": "Wall of Omens",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sylvan Caryatid",
+    "quantidade": 1
+   },
+   {
+    "nome": "Assault Formation",
+    "quantidade": 1
+   },
+   {
+    "nome": "Overgrown Battlement",
+    "quantidade": 1
+   },
+   {
+    "nome": "Wall of Blossoms",
+    "quantidade": 1
+   },
+   {
+    "nome": "Wall of Reverence",
+    "quantidade": 1
+   },
+   {
+    "nome": "Weathered Sentinels",
+    "quantidade": 1
+   },
+   {
+    "nome": "Wingmantle Chaplain",
+    "quantidade": 1
+   },
+   {
+    "nome": "Walking Bulwark",
+    "quantidade": 1
+   },
+   {
+    "nome": "Nyx-Fleece Ram",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shalai, Voice of Plenty",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sidar Kondo of Jamuraa",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tower Defense",
+    "quantidade": 1
+   },
+   {
+    "nome": "Orzhov Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Anguished Unmaking",
+    "quantidade": 1
+   },
+   {
+    "nome": "Deceptive Landscape",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dragonlord Dromoka",
+    "quantidade": 1
+   },
+   {
+    "nome": "Swiftfoot Boots",
+    "quantidade": 1
+   },
+   {
+    "nome": "Welcoming Vampire",
+    "quantidade": 1
+   },
+   {
+    "nome": "Carven Caryatid",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ikra Shidiqi, the Usurper",
+    "quantidade": 1
+   },
+   {
+    "nome": "Indulging Patrician",
+    "quantidade": 1
+   },
+   {
+    "nome": "Seedborn Muse",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shadrix Silverquill",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sunpetal Grove",
+    "quantidade": 1
+   },
+   {
+    "nome": "Wall of Roots",
+    "quantidade": 1
+   },
+   {
+    "nome": "Overgrown Farmland",
+    "quantidade": 1
+   },
+   {
+    "nome": "Faeburrow Elder",
+    "quantidade": 1
+   },
+   {
+    "nome": "Despark",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hornet Nest",
+    "quantidade": 1
+   },
+   {
+    "nome": "Canopy Vista",
+    "quantidade": 1
+   },
+   {
+    "nome": "Twilight Mire",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fortified Village",
+    "quantidade": 1
+   },
+   {
+    "nome": "Radiant Grove",
+    "quantidade": 1
+   },
+   {
+    "nome": "Slaughter the Strong",
+    "quantidade": 1
+   },
+   {
+    "nome": "Towering Titan",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arasta of the Endless Web",
+    "quantidade": 1
+   },
+   {
+    "nome": "Temple of Plenty",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sungrass Prairie",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arboreal Grazer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Axebane Guardian",
+    "quantidade": 1
+   },
+   {
+    "nome": "Zetalpa, Primal Dawn",
+    "quantidade": 1
+   },
+   {
+    "nome": "Wakestone Gargoyle",
+    "quantidade": 1
+   },
+   {
+    "nome": "Access Tunnel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Jaddi Offshoot",
+    "quantidade": 1
+   },
+   {
+    "nome": "Doran, Besieged by Time",
+    "quantidade": 1
+   },
+   {
+    "nome": "Great Forest Druid",
+    "quantidade": 1
+   },
+   {
+    "nome": "Slumbering Walker",
+    "quantidade": 1
+   }
+  ]
+ },
+ {
+  "id": "GlOgAfgTAnKDYn2lIU_Phg",
+  "nome": "Blight Curse",
+  "comandante": "Auntie Ool, Cursewretch",
+  "cartas": [
+   {
+    "nome": "Nest of Scarabs",
+    "quantidade": 1
+   },
+   {
+    "nome": "Staff of Compleation",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mountain",
+    "quantidade": 4
+   },
+   {
+    "nome": "Forest",
+    "quantidade": 6
+   },
+   {
+    "nome": "Swamp",
+    "quantidade": 8
+   },
+   {
+    "nome": "Tend the Sprigs",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dawnhand Dissident",
+    "quantidade": 1
+   },
+   {
+    "nome": "The Reaper, King No More",
+    "quantidade": 1
+   },
+   {
+    "nome": "Eventide's Shadow",
+    "quantidade": 1
+   },
+   {
+    "nome": "Aberrant Return",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sinister Gnarlbark",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dread Tiller",
+    "quantidade": 1
+   },
+   {
+    "nome": "Oft-Nabbed Goat",
+    "quantidade": 1
+   },
+   {
+    "nome": "Village Pillagers",
+    "quantidade": 1
+   },
+   {
+    "nome": "Necroskitter",
+    "quantidade": 1
+   },
+   {
+    "nome": "Blowfly Infestation",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ignoble Hierarch",
+    "quantidade": 1
+   },
+   {
+    "nome": "Wickersmith's Tools",
+    "quantidade": 1
+   },
+   {
+    "nome": "Grave Venerations",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arcane Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Command Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Festering Thicket",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vernal Fen",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tree of Perdition",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dusk Urchins",
+    "quantidade": 1
+   },
+   {
+    "nome": "Black Sun's Zenith",
+    "quantidade": 1
+   },
+   {
+    "nome": "Night's Whisper",
+    "quantidade": 1
+   },
+   {
+    "nome": "Assassin's Trophy",
+    "quantidade": 1
+   },
+   {
+    "nome": "The Scorpion God",
+    "quantidade": 1
+   },
+   {
+    "nome": "Carnifex Demon",
+    "quantidade": 1
+   },
+   {
+    "nome": "Channeler Initiate",
+    "quantidade": 1
+   },
+   {
+    "nome": "Commander's Sphere",
+    "quantidade": 1
+   },
+   {
+    "nome": "Chimil, the Inner Sun",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cinder Glade",
+    "quantidade": 1
+   },
+   {
+    "nome": "Contagion Clasp",
+    "quantidade": 1
+   },
+   {
+    "nome": "Exotic Orchard",
+    "quantidade": 1
+   },
+   {
+    "nome": "Terramorphic Expanse",
+    "quantidade": 1
+   },
+   {
+    "nome": "Evolution Sage",
+    "quantidade": 1
+   },
+   {
+    "nome": "Canyon Slough",
+    "quantidade": 1
+   },
+   {
+    "nome": "Glissa Sunslayer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lasting Tarfire",
+    "quantidade": 1
+   },
+   {
+    "nome": "Burning Curiosity",
+    "quantidade": 1
+   },
+   {
+    "nome": "Putrefy",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hapatra, Vizier of Poisons",
+    "quantidade": 1
+   },
+   {
+    "nome": "Puca's Covenant",
+    "quantidade": 1
+   },
+   {
+    "nome": "Massacre Girl, Known Killer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Everlasting Torment",
+    "quantidade": 1
+   },
+   {
+    "nome": "Path of Ancestry",
+    "quantidade": 1
+   },
+   {
+    "nome": "Incremental Blight",
+    "quantidade": 1
+   },
+   {
+    "nome": "Kulrath Knight",
+    "quantidade": 1
+   },
+   {
+    "nome": "Flourishing Defenses",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rootbound Crag",
+    "quantidade": 1
+   },
+   {
+    "nome": "Evolving Wilds",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dragonskull Summit",
+    "quantidade": 1
+   },
+   {
+    "nome": "Painful Truths",
+    "quantidade": 1
+   },
+   {
+    "nome": "Devoted Druid",
+    "quantidade": 1
+   },
+   {
+    "nome": "Wickerbough Elder",
+    "quantidade": 1
+   },
+   {
+    "nome": "Terminate",
+    "quantidade": 1
+   },
+   {
+    "nome": "Smoldering Marsh",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rakdos Carnarium",
+    "quantidade": 1
+   },
+   {
+    "nome": "Woodland Cemetery",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vraska, Betrayal's Sting",
+    "quantidade": 1
+   },
+   {
+    "nome": "Golgari Rot Farm",
+    "quantidade": 1
+   },
+   {
+    "nome": "Nesting Grounds",
+    "quantidade": 1
+   },
+   {
+    "nome": "Midnight Banshee",
+    "quantidade": 1
+   },
+   {
+    "nome": "Grim Poppet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Skinrender",
+    "quantidade": 1
+   },
+   {
+    "nome": "Soul Snuffers",
+    "quantidade": 1
+   },
+   {
+    "nome": "Persist",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fire Covenant",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cathartic Pyre",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gruul Turf",
+    "quantidade": 1
+   },
+   {
+    "nome": "Riveteers Overlook",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ifnir Deadlands",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Savage Lands",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sheltered Thicket",
+    "quantidade": 1
+   },
+   {
+    "nome": "Darkness Descends",
+    "quantidade": 1
+   },
+   {
+    "nome": "Spinerock Tyrant",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gristle Glutton",
+    "quantidade": 1
+   },
+   {
+    "nome": "Blight Rot",
+    "quantidade": 1
+   },
+   {
+    "nome": "Soul Immolation",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bogslither's Embrace",
+    "quantidade": 1
+   },
+   {
+    "nome": "Scuzzback Scrounger",
+    "quantidade": 1
+   }
+  ]
+ },
+ {
+  "id": "GlOgAZd3aH2ggq5J8q0AVg",
+  "nome": "Lorehold Spirit",
+  "comandante": "Quintorius, History Chaser",
+  "cartas": [
+   {
+    "nome": "Boros Charm",
+    "quantidade": 1
+   },
+   {
+    "nome": "Thrilling Discovery",
+    "quantidade": 1
+   },
+   {
+    "nome": "Trove Warden",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bag of Holding",
+    "quantidade": 1
+   },
+   {
+    "nome": "Banon, the Returners' Leader",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lorehold Charm",
+    "quantidade": 1
+   },
+   {
+    "nome": "Kirol, History Buff // Pack a Punch",
+    "quantidade": 1
+   },
+   {
+    "nome": "Advanced Reconstruction",
+    "quantidade": 1
+   },
+   {
+    "nome": "Relic Retriever",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vanguard of the Restless",
+    "quantidade": 1
+   },
+   {
+    "nome": "Augusta, Order Returned",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ceaseless Conflict",
+    "quantidade": 1
+   },
+   {
+    "nome": "Turbulent Steppe",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lorehold Archivist // Restore Relic",
+    "quantidade": 1
+   },
+   {
+    "nome": "Command Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Spirit of Resilience",
+    "quantidade": 1
+   },
+   {
+    "nome": "Monologue Tax",
+    "quantidade": 1
+   },
+   {
+    "nome": "Swords to Plowshares",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arcane Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Staff of the Storyteller",
+    "quantidade": 1
+   },
+   {
+    "nome": "Path to Exile",
+    "quantidade": 1
+   },
+   {
+    "nome": "Archaeomancer's Map",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sevinne's Reclamation",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Quintorius, Loremaster",
+    "quantidade": 1
+   },
+   {
+    "nome": "Quintorius, Field Historian",
+    "quantidade": 1
+   },
+   {
+    "nome": "Primary Research",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fields of Strife",
+    "quantidade": 1
+   },
+   {
+    "nome": "Moonshaker Cavalry",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fellwar Stone",
+    "quantidade": 1
+   },
+   {
+    "nome": "Anger",
+    "quantidade": 1
+   },
+   {
+    "nome": "Faithless Looting",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fabled Passage",
+    "quantidade": 1
+   },
+   {
+    "nome": "Exotic Orchard",
+    "quantidade": 1
+   },
+   {
+    "nome": "Guardian of Faith",
+    "quantidade": 1
+   },
+   {
+    "nome": "Drumbellower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Laelia, the Blade Reforged",
+    "quantidade": 1
+   },
+   {
+    "nome": "Karmic Guide",
+    "quantidade": 1
+   },
+   {
+    "nome": "Selfless Spirit",
+    "quantidade": 1
+   },
+   {
+    "nome": "White Orchid Phantom",
+    "quantidade": 1
+   },
+   {
+    "nome": "Venerable Warsinger",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hofri Ghostforge",
+    "quantidade": 1
+   },
+   {
+    "nome": "Seize the Spoils",
+    "quantidade": 1
+   },
+   {
+    "nome": "Currency Converter",
+    "quantidade": 1
+   },
+   {
+    "nome": "Terramorphic Expanse",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mind Stone",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tocasia's Welcome",
+    "quantidade": 1
+   },
+   {
+    "nome": "Millikin",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lotus Field",
+    "quantidade": 1
+   },
+   {
+    "nome": "Perpetual Timepiece",
+    "quantidade": 1
+   },
+   {
+    "nome": "Conspiracy Theorist",
+    "quantidade": 1
+   },
+   {
+    "nome": "Containment Construct",
+    "quantidade": 1
+   },
+   {
+    "nome": "Angel of Indemnity",
+    "quantidade": 1
+   },
+   {
+    "nome": "Balefire Liege",
+    "quantidade": 1
+   },
+   {
+    "nome": "Battlefield Forge",
+    "quantidade": 1
+   },
+   {
+    "nome": "Teshar, Ancestor's Apostle",
+    "quantidade": 1
+   },
+   {
+    "nome": "Clifftop Retreat",
+    "quantidade": 1
+   },
+   {
+    "nome": "Emeria, the Sky Ruin",
+    "quantidade": 1
+   },
+   {
+    "nome": "Serra Paragon",
+    "quantidade": 1
+   },
+   {
+    "nome": "Guardian Scalelord",
+    "quantidade": 1
+   },
+   {
+    "nome": "Kami of Ancient Law",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rugged Prairie",
+    "quantidade": 1
+   },
+   {
+    "nome": "Patchwork Banner",
+    "quantidade": 1
+   },
+   {
+    "nome": "Radiant Summit",
+    "quantidade": 1
+   },
+   {
+    "nome": "Temple of Triumph",
+    "quantidade": 1
+   },
+   {
+    "nome": "Furycalm Snarl",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sunscorched Divide",
+    "quantidade": 1
+   },
+   {
+    "nome": "Glittering Massif",
+    "quantidade": 1
+   },
+   {
+    "nome": "Remorseful Cleric",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sacred Peaks",
+    "quantidade": 1
+   },
+   {
+    "nome": "Squee, Goblin Nabob",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sun Titan",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tragic Arrogance",
+    "quantidade": 1
+   },
+   {
+    "nome": "Wave of Reckoning",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mistveil Plains",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bitterthorn, Nissa's Animus",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rip Apart",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lorehold Campus",
+    "quantidade": 1
+   },
+   {
+    "nome": "Study Hall",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ark of Hunger",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hardened Academic",
+    "quantidade": 1
+   },
+   {
+    "nome": "Excava, the Risen Past",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mountain",
+    "quantidade": 6
+   },
+   {
+    "nome": "Plains",
+    "quantidade": 11
+   }
+  ]
+ },
+ {
+  "id": "GlOgAfT6uXulKGLB5NBi5A",
+  "nome": "Prismari Artistry",
+  "comandante": "Rootha, Mastering the Moment",
+  "cartas": [
+   {
+    "nome": "Goblin Electromancer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Counterspell",
+    "quantidade": 1
+   },
+   {
+    "nome": "Negate",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ashling, Rekindled // Ashling, Rimebound",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ashling's Command",
+    "quantidade": 1
+   },
+   {
+    "nome": "Molten-Core Maestro",
+    "quantidade": 1
+   },
+   {
+    "nome": "Prismari Charm",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sanar, Unfinished Genius // Wild Idea",
+    "quantidade": 1
+   },
+   {
+    "nome": "Prismari Pianist",
+    "quantidade": 1
+   },
+   {
+    "nome": "Muddle, the Ever-Changing",
+    "quantidade": 1
+   },
+   {
+    "nome": "Leitmotif Composer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dirgur Focusmage // Braingeyser",
+    "quantidade": 1
+   },
+   {
+    "nome": "Furygale Flocking",
+    "quantidade": 1
+   },
+   {
+    "nome": "Scorched Geyser",
+    "quantidade": 1
+   },
+   {
+    "nome": "Coastal Peak",
+    "quantidade": 1
+   },
+   {
+    "nome": "Turbulent Springs",
+    "quantidade": 1
+   },
+   {
+    "nome": "Inspired Skypainter // Maestro's Gift",
+    "quantidade": 1
+   },
+   {
+    "nome": "Command Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Abstract Performance",
+    "quantidade": 1
+   },
+   {
+    "nome": "Renegade Bull",
+    "quantidade": 1
+   },
+   {
+    "nome": "Replication Technique",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rite of Replication",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arcane Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mana Geyser",
+    "quantidade": 1
+   },
+   {
+    "nome": "Curiosity Crafter",
+    "quantidade": 1
+   },
+   {
+    "nome": "Faerie Mastermind",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Goldspan Dragon",
+    "quantidade": 1
+   },
+   {
+    "nome": "Big Score",
+    "quantidade": 1
+   },
+   {
+    "nome": "Temple of the False God",
+    "quantidade": 1
+   },
+   {
+    "nome": "Chain Reaction",
+    "quantidade": 1
+   },
+   {
+    "nome": "Thunderclap Drake",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fellwar Stone",
+    "quantidade": 1
+   },
+   {
+    "nome": "Brudiclad, Telchor Engineer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Reality Shift",
+    "quantidade": 1
+   },
+   {
+    "nome": "Storm-Kiln Artist",
+    "quantidade": 1
+   },
+   {
+    "nome": "Spectacle Summit",
+    "quantidade": 1
+   },
+   {
+    "nome": "Creative Technique",
+    "quantidade": 1
+   },
+   {
+    "nome": "Archmage Emeritus",
+    "quantidade": 1
+   },
+   {
+    "nome": "Blasphemous Act",
+    "quantidade": 1
+   },
+   {
+    "nome": "Determined Iteration",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dig Through Time",
+    "quantidade": 1
+   },
+   {
+    "nome": "Magma Opus",
+    "quantidade": 1
+   },
+   {
+    "nome": "Manaform Hellkite",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mystic Sanctuary",
+    "quantidade": 1
+   },
+   {
+    "nome": "Reliquary Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Prismari Campus",
+    "quantidade": 1
+   },
+   {
+    "nome": "Surge to Victory",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sulfur Falls",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fabled Passage",
+    "quantidade": 1
+   },
+   {
+    "nome": "Treasure Cruise",
+    "quantidade": 1
+   },
+   {
+    "nome": "Volcanic Salvo",
+    "quantidade": 1
+   },
+   {
+    "nome": "Frostboil Snarl",
+    "quantidade": 1
+   },
+   {
+    "nome": "Prismari Command",
+    "quantidade": 1
+   },
+   {
+    "nome": "Exotic Orchard",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rousing Refrain",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shivan Reef",
+    "quantidade": 1
+   },
+   {
+    "nome": "Talisman of Creativity",
+    "quantidade": 1
+   },
+   {
+    "nome": "Twinflame",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rionya, Fire Dancer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Terramorphic Expanse",
+    "quantidade": 1
+   },
+   {
+    "nome": "Abrade",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lightning Greaves",
+    "quantidade": 1
+   },
+   {
+    "nome": "Path of Ancestry",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arcane Denial",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cursed Mirror",
+    "quantidade": 1
+   },
+   {
+    "nome": "Stormcatch Mentor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cascade Bluffs",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ferrous Lake",
+    "quantidade": 1
+   },
+   {
+    "nome": "Molten Tributary",
+    "quantidade": 1
+   },
+   {
+    "nome": "Temple of Epiphany",
+    "quantidade": 1
+   },
+   {
+    "nome": "Chaos Warp",
+    "quantidade": 1
+   },
+   {
+    "nome": "Veyran, Voice of Duality",
+    "quantidade": 1
+   },
+   {
+    "nome": "Expressive Iteration",
+    "quantidade": 1
+   },
+   {
+    "nome": "Resculpt",
+    "quantidade": 1
+   },
+   {
+    "nome": "Island",
+    "quantidade": 8
+   },
+   {
+    "nome": "Deep Analysis",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mountain",
+    "quantidade": 7
+   },
+   {
+    "nome": "Study Hall",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dance with Calamity",
+    "quantidade": 1
+   },
+   {
+    "nome": "Aether Gale",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hall of Oracles",
+    "quantidade": 1
+   },
+   {
+    "nome": "Restless Spire",
+    "quantidade": 1
+   },
+   {
+    "nome": "Splatter Technique",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rapturous Moment",
+    "quantidade": 1
+   },
+   {
+    "nome": "Abstract Paintmage",
+    "quantidade": 1
+   }
+  ]
+ },
+ {
+  "id": "G1OgAYgqlH2LnNRydDvJZA",
+  "nome": "Silverquill Influence",
+  "comandante": "Killian, Decisive Mentor",
+  "cartas": [
+   {
+    "nome": "Demonic Embrace",
+    "quantidade": 1
+   },
+   {
+    "nome": "Angelic Gift",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mire Blight",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ethereal Armor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Victor, Valgavoth's Seneschal",
+    "quantidade": 1
+   },
+   {
+    "nome": "Danitha Capashen, Paragon",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mangara, the Diplomat",
+    "quantidade": 1
+   },
+   {
+    "nome": "Eiganjo Dynastorian // Replenish",
+    "quantidade": 1
+   },
+   {
+    "nome": "Eclipsed Steppe",
+    "quantidade": 1
+   },
+   {
+    "nome": "Umbral Expanse",
+    "quantidade": 1
+   },
+   {
+    "nome": "Forum Filibuster",
+    "quantidade": 1
+   },
+   {
+    "nome": "Coercive Impetus",
+    "quantidade": 1
+   },
+   {
+    "nome": "Changing Loyalty",
+    "quantidade": 1
+   },
+   {
+    "nome": "Turbulent Moor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Herald of Amity",
+    "quantidade": 1
+   },
+   {
+    "nome": "Command Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Redemption Arc",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ghoulish Impetus",
+    "quantidade": 1
+   },
+   {
+    "nome": "Screams from Within",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arcane Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Raffine's Guidance",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sage's Reverie",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sentinel's Eyes",
+    "quantidade": 1
+   },
+   {
+    "nome": "Parasitic Impetus",
+    "quantidade": 1
+   },
+   {
+    "nome": "Winds of Rath",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Inkshield",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hateful Eidolon",
+    "quantidade": 1
+   },
+   {
+    "nome": "Doomwake Giant",
+    "quantidade": 1
+   },
+   {
+    "nome": "Animate Dead",
+    "quantidade": 1
+   },
+   {
+    "nome": "Forum of Amity",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shadrix Silverquill",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arcane Lighthouse",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fellwar Stone",
+    "quantidade": 1
+   },
+   {
+    "nome": "Martial Impetus",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sheltered by Ghosts",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fallen Ideal",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gift of Immortality",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shielded by Faith",
+    "quantidade": 1
+   },
+   {
+    "nome": "Eidolon of Countless Battles",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ghostly Prison",
+    "quantidade": 1
+   },
+   {
+    "nome": "Land Tax",
+    "quantidade": 1
+   },
+   {
+    "nome": "Transcendent Envoy",
+    "quantidade": 1
+   },
+   {
+    "nome": "Eriette of the Charmed Apple",
+    "quantidade": 1
+   },
+   {
+    "nome": "Killian, Ink Duelist",
+    "quantidade": 1
+   },
+   {
+    "nome": "Flickering Ward",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tomik, Wielder of Law",
+    "quantidade": 1
+   },
+   {
+    "nome": "Pearl-Ear, Imperial Advisor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ajani's Chosen",
+    "quantidade": 1
+   },
+   {
+    "nome": "Armored Skyhunter",
+    "quantidade": 1
+   },
+   {
+    "nome": "Darksteel Mutation",
+    "quantidade": 1
+   },
+   {
+    "nome": "Kor Spiritdancer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Chains of Custody",
+    "quantidade": 1
+   },
+   {
+    "nome": "Firemane Commando",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fabled Passage",
+    "quantidade": 1
+   },
+   {
+    "nome": "Songbirds' Blessing",
+    "quantidade": 1
+   },
+   {
+    "nome": "Spirit Mantle",
+    "quantidade": 1
+   },
+   {
+    "nome": "Promise of Loyalty",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sram, Senior Edificer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Eldrazi Conscription",
+    "quantidade": 1
+   },
+   {
+    "nome": "Anguished Unmaking",
+    "quantidade": 1
+   },
+   {
+    "nome": "Exotic Orchard",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vanishing Verse",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fetid Heath",
+    "quantidade": 1
+   },
+   {
+    "nome": "Isolated Chapel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Terramorphic Expanse",
+    "quantidade": 1
+   },
+   {
+    "nome": "Talisman of Hierarchy",
+    "quantidade": 1
+   },
+   {
+    "nome": "Caves of Koilos",
+    "quantidade": 1
+   },
+   {
+    "nome": "Temple of Silence",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fracture",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bojuka Bog",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shineshadow Snarl",
+    "quantidade": 1
+   },
+   {
+    "nome": "Path of Ancestry",
+    "quantidade": 1
+   },
+   {
+    "nome": "Angelic Destiny",
+    "quantidade": 1
+   },
+   {
+    "nome": "Archon of Sun's Grace",
+    "quantidade": 1
+   },
+   {
+    "nome": "Breena, the Demagogue",
+    "quantidade": 1
+   },
+   {
+    "nome": "Desolate Mire",
+    "quantidade": 1
+   },
+   {
+    "nome": "Silverquill Campus",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sunlit Marsh",
+    "quantidade": 1
+   },
+   {
+    "nome": "Study Hall",
+    "quantidade": 1
+   },
+   {
+    "nome": "War Room",
+    "quantidade": 1
+   },
+   {
+    "nome": "Starfield Mystic",
+    "quantidade": 1
+   },
+   {
+    "nome": "Scriv, the Obligator",
+    "quantidade": 1
+   },
+   {
+    "nome": "Swamp",
+    "quantidade": 8
+   },
+   {
+    "nome": "Plains",
+    "quantidade": 8
+   }
+  ]
+ },
+ {
+  "id": "shVPe5yzCU2zxRPfg2eOrQ",
+  "nome": "Terra",
+  "comandante": "Terra, Herald of Hope",
+  "cartas": [
+   {
+    "nome": "Arcane Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Command Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Thrill of Possibility",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ash Barrens",
+    "quantidade": 1
+   },
+   {
+    "nome": "Evolving Wilds",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ravenous Chupacabra",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rogue's Passage",
+    "quantidade": 1
+   },
+   {
+    "nome": "Commander's Sphere",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Faithless Looting",
+    "quantidade": 1
+   },
+   {
+    "nome": "Nomad Outpost",
+    "quantidade": 1
+   },
+   {
+    "nome": "Swiftfoot Boots",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mind Stone",
+    "quantidade": 1
+   },
+   {
+    "nome": "Path of Ancestry",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shineshadow Snarl",
+    "quantidade": 1
+   },
+   {
+    "nome": "Furycalm Snarl",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vile Entomber",
+    "quantidade": 1
+   },
+   {
+    "nome": "Morbid Opportunist",
+    "quantidade": 1
+   },
+   {
+    "nome": "Karmic Guide",
+    "quantidade": 1
+   },
+   {
+    "nome": "Smoldering Marsh",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sunlit Marsh",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sacred Peaks",
+    "quantidade": 1
+   },
+   {
+    "nome": "Demolition Field",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sulfurous Springs",
+    "quantidade": 1
+   },
+   {
+    "nome": "Foreboding Ruins",
+    "quantidade": 1
+   },
+   {
+    "nome": "Path to Exile",
+    "quantidade": 1
+   },
+   {
+    "nome": "Exotic Orchard",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rugged Prairie",
+    "quantidade": 1
+   },
+   {
+    "nome": "Talisman of Conviction",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sunscorched Divide",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bushmeat Poacher",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shadowblood Ridge",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dragonskull Summit",
+    "quantidade": 1
+   },
+   {
+    "nome": "Geothermal Bog",
+    "quantidade": 1
+   },
+   {
+    "nome": "Aurelia, the Warleader",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vampiric Rites",
+    "quantidade": 1
+   },
+   {
+    "nome": "Perforating Artist",
+    "quantidade": 1
+   },
+   {
+    "nome": "Celes, Rune Knight",
+    "quantidade": 1
+   },
+   {
+    "nome": "Summon: Esper Valigarmanda",
+    "quantidade": 1
+   },
+   {
+    "nome": "Squall, SeeD Mercenary",
+    "quantidade": 1
+   },
+   {
+    "nome": "General Leo Cristophe",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cyan, Vengeful Samurai",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tragic Arrogance",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sun Titan",
+    "quantidade": 1
+   },
+   {
+    "nome": "Espers to Magicite",
+    "quantidade": 1
+   },
+   {
+    "nome": "Siegfried, Famed Swordsman",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rejoin the Fight",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shadow, Mysterious Assassin",
+    "quantidade": 1
+   },
+   {
+    "nome": "Pitiless Plunderer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Phoenix Down",
+    "quantidade": 1
+   },
+   {
+    "nome": "Laughing Mad",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gau, Feral Youth",
+    "quantidade": 1
+   },
+   {
+    "nome": "Reanimate",
+    "quantidade": 1
+   },
+   {
+    "nome": "Stitch Together",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gogo, Mysterious Mime",
+    "quantidade": 1
+   },
+   {
+    "nome": "Anger",
+    "quantidade": 1
+   },
+   {
+    "nome": "Big Score",
+    "quantidade": 1
+   },
+   {
+    "nome": "Stitcher's Supplier",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rise of the Dark Realms",
+    "quantidade": 1
+   },
+   {
+    "nome": "Night's Whisper",
+    "quantidade": 1
+   },
+   {
+    "nome": "Banon, the Returners' Leader",
+    "quantidade": 1
+   },
+   {
+    "nome": "Kefka, Dancing Mad",
+    "quantidade": 1
+   },
+   {
+    "nome": "Archfiend of Depravity",
+    "quantidade": 1
+   },
+   {
+    "nome": "Locke, Treasure Hunter",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mog, Moogle Warrior",
+    "quantidade": 1
+   },
+   {
+    "nome": "Crackling Doom",
+    "quantidade": 1
+   },
+   {
+    "nome": "The Warring Triad",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bedevil",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ruinous Ultimatum",
+    "quantidade": 1
+   },
+   {
+    "nome": "Legions to Ashes",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mortify",
+    "quantidade": 1
+   },
+   {
+    "nome": "Priest of Fell Rites",
+    "quantidade": 1
+   },
+   {
+    "nome": "Key to the City",
+    "quantidade": 1
+   },
+   {
+    "nome": "Solemn Simulacrum",
+    "quantidade": 1
+   },
+   {
+    "nome": "Meteor Golem",
+    "quantidade": 1
+   },
+   {
+    "nome": "Millikin",
+    "quantidade": 1
+   },
+   {
+    "nome": "Graven Cairns",
+    "quantidade": 1
+   },
+   {
+    "nome": "Isolated Chapel",
+    "quantidade": 1
+   },
+   {
+    "nome": "High Market",
+    "quantidade": 1
+   },
+   {
+    "nome": "Joshua, Phoenix's Dominant // Phoenix, Warden of Fire",
+    "quantidade": 1
+   },
+   {
+    "nome": "Twilight Diviner",
+    "quantidade": 1
+   },
+   {
+    "nome": "Desolate Mire",
+    "quantidade": 1
+   },
+   {
+    "nome": "Massacre Wurm",
+    "quantidade": 1
+   },
+   {
+    "nome": "Clifftop Retreat",
+    "quantidade": 1
+   },
+   {
+    "nome": "Swords to Plowshares",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fetid Heath",
+    "quantidade": 1
+   },
+   {
+    "nome": "Talisman of Indulgence",
+    "quantidade": 1
+   },
+   {
+    "nome": "Battlefield Forge",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fleshbag Marauder",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mountain",
+    "quantidade": 3
+   },
+   {
+    "nome": "Swamp",
+    "quantidade": 3
+   },
+   {
+    "nome": "Plains",
+    "quantidade": 4
+   }
+  ]
+ },
+ {
+  "id": "G1OgAfZWPXGNR69mOTQcVA",
+  "nome": "Witherbloom Pestilence",
+  "comandante": "Dina, Essence Brewer",
+  "cartas": [
+   {
+    "nome": "Skirsdag High Priest",
+    "quantidade": 1
+   },
+   {
+    "nome": "Marauding Blight-Priest",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bastion of Remembrance",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vengeful Bloodwitch",
+    "quantidade": 1
+   },
+   {
+    "nome": "Grave Researcher // Reanimate",
+    "quantidade": 1
+   },
+   {
+    "nome": "Witherbloom Charm",
+    "quantidade": 1
+   },
+   {
+    "nome": "Stensian Sanguinist // Exsanguinate",
+    "quantidade": 1
+   },
+   {
+    "nome": "Pest Rescuer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Defiling Daemogoth",
+    "quantidade": 1
+   },
+   {
+    "nome": "Turbulent Fen",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ominous Harvest",
+    "quantidade": 1
+   },
+   {
+    "nome": "Command Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Merchant of Venom",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ribtruss Roaster",
+    "quantidade": 1
+   },
+   {
+    "nome": "Eccentric Pestfinder // Turn Stones",
+    "quantidade": 1
+   },
+   {
+    "nome": "Immoral Bargain",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tendershoot Dryad",
+    "quantidade": 1
+   },
+   {
+    "nome": "Umbral Collar Zealot",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arcane Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mycoloth",
+    "quantidade": 1
+   },
+   {
+    "nome": "Casualties of War",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dina, Soul Steeper",
+    "quantidade": 1
+   },
+   {
+    "nome": "Zulaport Cutthroat",
+    "quantidade": 1
+   },
+   {
+    "nome": "Jadar, Ghoulcaller of Nephalia",
+    "quantidade": 1
+   },
+   {
+    "nome": "Night's Whisper",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Pest Infestation",
+    "quantidade": 1
+   },
+   {
+    "nome": "Assassin's Trophy",
+    "quantidade": 1
+   },
+   {
+    "nome": "Elvish Mystic",
+    "quantidade": 1
+   },
+   {
+    "nome": "Toxic Deluge",
+    "quantidade": 1
+   },
+   {
+    "nome": "Culling Ritual",
+    "quantidade": 1
+   },
+   {
+    "nome": "Deadly Brew",
+    "quantidade": 1
+   },
+   {
+    "nome": "Infernal Grasp",
+    "quantidade": 1
+   },
+   {
+    "nome": "Teacher's Pest",
+    "quantidade": 1
+   },
+   {
+    "nome": "Final Act",
+    "quantidade": 1
+   },
+   {
+    "nome": "Titan's Grave",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ophiomancer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cultivate",
+    "quantidade": 1
+   },
+   {
+    "nome": "Veinwitch Coven",
+    "quantidade": 1
+   },
+   {
+    "nome": "Springbloom Druid",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mazirek, Kraul Death Priest",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fabled Passage",
+    "quantidade": 1
+   },
+   {
+    "nome": "Morbid Opportunist",
+    "quantidade": 1
+   },
+   {
+    "nome": "Exotic Orchard",
+    "quantidade": 1
+   },
+   {
+    "nome": "Witch of the Moors",
+    "quantidade": 1
+   },
+   {
+    "nome": "Viscera Seer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Plumb the Forbidden",
+    "quantidade": 1
+   },
+   {
+    "nome": "Nether Traitor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Terramorphic Expanse",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sakura-Tribe Elder",
+    "quantidade": 1
+   },
+   {
+    "nome": "Priest of Forgotten Gods",
+    "quantidade": 1
+   },
+   {
+    "nome": "Woodland Cemetery",
+    "quantidade": 1
+   },
+   {
+    "nome": "Llanowar Wastes",
+    "quantidade": 1
+   },
+   {
+    "nome": "Temple of Malady",
+    "quantidade": 1
+   },
+   {
+    "nome": "Twilight Mire",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bojuka Bog",
+    "quantidade": 1
+   },
+   {
+    "nome": "Woe Strider",
+    "quantidade": 1
+   },
+   {
+    "nome": "Path of Ancestry",
+    "quantidade": 1
+   },
+   {
+    "nome": "Awakening Zone",
+    "quantidade": 1
+   },
+   {
+    "nome": "Pawn of Ulamog",
+    "quantidade": 1
+   },
+   {
+    "nome": "Wight of the Reliquary",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vernal Fen",
+    "quantidade": 1
+   },
+   {
+    "nome": "High Market",
+    "quantidade": 1
+   },
+   {
+    "nome": "Haunted Mire",
+    "quantidade": 1
+   },
+   {
+    "nome": "Witherbloom Campus",
+    "quantidade": 1
+   },
+   {
+    "nome": "Festering Thicket",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bloodghast",
+    "quantidade": 1
+   },
+   {
+    "nome": "Witherbloom Command",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mortality Spear",
+    "quantidade": 1
+   },
+   {
+    "nome": "Creakwood Liege",
+    "quantidade": 1
+   },
+   {
+    "nome": "Blood Artist",
+    "quantidade": 1
+   },
+   {
+    "nome": "Viridescent Bog",
+    "quantidade": 1
+   },
+   {
+    "nome": "Haywire Mite",
+    "quantidade": 1
+   },
+   {
+    "nome": "Moldervine Reclamation",
+    "quantidade": 1
+   },
+   {
+    "nome": "Necroblossom Snarl",
+    "quantidade": 1
+   },
+   {
+    "nome": "Beledros Witherbloom",
+    "quantidade": 1
+   },
+   {
+    "nome": "Grim Backwoods",
+    "quantidade": 1
+   },
+   {
+    "nome": "Yahenni, Undying Partisan",
+    "quantidade": 1
+   },
+   {
+    "nome": "Blossoming Bogbeast",
+    "quantidade": 1
+   },
+   {
+    "nome": "Study Hall",
+    "quantidade": 1
+   },
+   {
+    "nome": "Smothering Abomination",
+    "quantidade": 1
+   },
+   {
+    "nome": "Moseo, Vein's New Dean",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gorma, the Gullet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Forest",
+    "quantidade": 8
+   },
+   {
+    "nome": "Swamp",
+    "quantidade": 8
+   }
+  ]
+ }
+]

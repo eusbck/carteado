@@ -5,6 +5,7 @@ Lista de verificação das fases. É por aqui que uma sessão nova retoma o trab
 ## Sessões
 
 - 03/10/2026: explorar os dados, fazer o levantamento das 547 cartas e escrever a proposta (checkpoint 1).
+- 03/10/2026 (continuação): proposta aprovada (construir o motor; cartas em duas partes com servidor e cliente no meio; sem servidor XMage provisório). Começar a fase 1: núcleo do motor.
 
 ## Fase 0: exploração e proposta
 
@@ -13,7 +14,7 @@ Lista de verificação das fases. É por aqui que uma sessão nova retoma o trab
 - [x] Levantamento das 547 cartas: `ferramentas/levantamento.mjs` gera `levantamento/LEVANTAMENTO.md` e `levantamento/cartas.json`
 - [x] Conferir no Forge e no XMage se as cartas dos decks já existem (Forge 501/502, XMage 502/502)
 - [x] `PROPOSTA.md`
-- [ ] **Aprovação da proposta: aguardando resposta**
+- [x] Aprovação da proposta (03/10/2026)
 
 ## Fase 1: núcleo do motor
 
