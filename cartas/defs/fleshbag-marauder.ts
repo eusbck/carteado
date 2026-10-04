@@ -16,4 +16,8 @@ export default defineCard({
       yield* sacrifice(c.g, chosen);
     }, { text: 'Quando entra, cada jogador sacrifica uma criatura à escolha dele.' })],
   }],
+  rulings: {
+    1: "teste: CR 101.4: cada jogador escolhe em ordem APNAP e todos sacrificam juntos",
+    2: "teste: sem outra criatura, você sacrifica o próprio Fleshbag Marauder",
+  },
 });

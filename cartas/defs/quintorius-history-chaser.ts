@@ -29,4 +29,7 @@ export default defineCard({
       }, { text: '−4: Os Espíritos que você controla ganham golpe duplo e vigilância até o fim do turno.' }),
     ],
   }],
+  rulings: {
+    1: "teste: cartas saindo do cemitério ao mesmo tempo disparam uma vez só",
+  },
 });

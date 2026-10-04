@@ -12,4 +12,5 @@ export default defineCard({
     mana(['B', 'G']),
     land.scryAbility('{4}'),
   ] }],
+  rulings: {},
 });

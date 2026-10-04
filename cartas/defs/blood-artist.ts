@@ -10,4 +10,7 @@ export default defineCard({
       gainLife(c.g, c.you, 1, c.source);
     }, { targets: [t.player()], text: 'Sempre que esta ou outra criatura morre, o jogador alvo perde 1 de vida e você ganha 1 de vida.' })],
   }],
+  rulings: {
+    1: "teste: CR 603.10a: dispara para cada criatura que morre junto com ele",
+  },
 });

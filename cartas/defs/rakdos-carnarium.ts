@@ -12,4 +12,7 @@ export default defineCard({
     land.bounceLand(),
     mana('BR'),
   ] }],
+  rulings: {
+    1: "regra geral: a escolha inclui o próprio terreno (land.bounceLand lista todos os seus terrenos)",
+  },
 });

@@ -11,4 +11,7 @@ export default defineCard({
     land.tapped(),
     cycling('{2}'),
   ] }],
+  rulings: {
+    1: "regra geral: CR 305.8 — tem dois tipos básicos e não é básico; fetchs só acham básicos (isBasicLand)",
+  },
 });

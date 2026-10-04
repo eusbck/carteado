@@ -25,4 +25,11 @@ export default defineCard({
       }, { text: '{4}, {T}, Sacrifique este artefato: Devolva para a mão do dono todas as cartas exiladas com ele.' }),
     ],
   }],
+  rulings: {
+    1: "teste: se a carta já saiu do cemitério, fica onde está",
+    2: "teste: compra e descarta na mesma resolução",
+    3: "não se aplica: nenhuma carta dos decks exila o que seria sacrificado",
+    4: "regra geral: cada Bag dispara; a primeira que resolve exila a carta e a segunda não a encontra (CR 603.6)",
+    5: "teste: os itens de uma Bag que saiu do campo ficam no exílio para sempre (vínculo é do objeto, CR 607)",
+  },
 });

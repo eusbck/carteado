@@ -10,4 +10,7 @@ export default defineCard({
     land.tappedUnlessOtherLands(2),
     mana(['G', 'W']),
   ] }],
+  rulings: {
+    1: "regra geral: CR 614.12 — a condição é checada antes de qualquer terreno entrar junto (putOntoBattlefield avalia as substituições antes de mover)",
+  },
 });

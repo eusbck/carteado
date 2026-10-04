@@ -17,4 +17,8 @@ export default defineCard({
       },
     },
   }],
+  rulings: {
+    1: "teste: CR 611.2c: criaturas que entram depois não são afetadas",
+    2: "regra geral: CR 107.3b; o X do custo adicional é escolhido mesmo sem pagar o custo de mana (motor/stack.ts)",
+  },
 });

@@ -12,4 +12,5 @@ export default defineCard({
     land.scryOnEnter(),
     mana(['U', 'R']),
   ] }],
+  rulings: {},
 });

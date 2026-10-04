@@ -8,4 +8,5 @@ export default defineCard({
   faces: [{ abilities: [
     mana('RW', { cost: '{1}, {T}' }),
   ] }],
+  rulings: {},
 });

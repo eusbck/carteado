@@ -12,4 +12,5 @@ export default defineCard({
     mana(['U', 'R']),
     land.surveilAbility('{2}{U}{R}'),
   ] }],
+  rulings: {},
 });

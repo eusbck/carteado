@@ -10,4 +10,5 @@ export default defineCard({
     land.tappedUnlessControl('Plains', 'Swamp'),
     mana(['W', 'B']),
   ] }],
+  rulings: {},
 });

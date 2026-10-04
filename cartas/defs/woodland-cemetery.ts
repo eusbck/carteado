@@ -10,4 +10,5 @@ export default defineCard({
     land.tappedUnlessControl('Swamp', 'Forest'),
     mana(['B', 'G']),
   ] }],
+  rulings: {},
 });

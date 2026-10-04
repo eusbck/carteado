@@ -16,4 +16,7 @@ export default defineCard({
       },
     },
   }],
+  rulings: {
+    1: "teste: usa a força da criatura como estava no campo (marcadores contam)",
+  },
 });

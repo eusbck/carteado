@@ -10,4 +10,5 @@ export default defineCard({
     land.tapped(),
     mana(['R', 'W', 'B']),
   ] }],
+  rulings: {},
 });

@@ -9,4 +9,7 @@ export default defineCard({
       equip('{1}'),
     ],
   }],
+  rulings: {
+    1: "teste: perder o ímpeto antes de atacar impede o ataque",
+  },
 });

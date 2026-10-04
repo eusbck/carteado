@@ -10,4 +10,5 @@ export default defineCard({
     mana('C'),
     land.pain(['B', 'R']),
   ] }],
+  rulings: {},
 });

@@ -14,4 +14,7 @@ export default defineCard({
       }, { text: 'Quando entra, você pode pôr uma carta de terreno da sua mão no campo virado.' }),
     ],
   }],
+  rulings: {
+    1: "teste: CR 305.4: pôr um terreno não conta como jogar terreno",
+  },
 });

@@ -8,4 +8,5 @@ export default defineCard({
   faces: [{ abilities: [
     land.fetchBasic(),
   ] }],
+  rulings: {},
 });

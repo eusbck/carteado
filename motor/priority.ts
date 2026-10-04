@@ -114,7 +114,10 @@ export function canStartCast(g: G, p: PlayerId, opt: CastOption): boolean {
   }
   if (opt.method.alt?.parts && !canPayParts(g, p, opt.method.alt.parts, opt.obj, 0)) return false;
   if (opt.method.permission?.parts && !canPayParts(g, p, opt.method.permission.parts, opt.obj, 0)) return false;
-  const cost = totalSpellCost(g, p, o, opt.method, { x: 0, targets: [], paid: {} });
+  // reduções que dependem do alvo (Killian, Ink Duelist): estima com os alvos possíveis; se no fim
+  // não der para pagar, a conjuração é desfeita (CR 733)
+  const targetsGuess = specs.map((t) => candidateTargets(g, t, p, opt.obj).slice(0, 4));
+  const cost = totalSpellCost(g, p, o, opt.method, { x: 0, targets: targetsGuess, paid: {} });
   return canAfford(g, p, cost, { purpose: { kind: 'spell', obj: opt.obj }, anyType: opt.method.permission?.anyType });
 }
 

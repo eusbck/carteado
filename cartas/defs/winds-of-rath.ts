@@ -11,4 +11,7 @@ export default defineCard({
       },
     },
   }],
+  rulings: {
+    1: "teste: destrói as criaturas que não estão encantadas; uma criatura com Aura fica",
+  },
 });

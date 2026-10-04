@@ -9,4 +9,5 @@ export default defineCard({
   faces: [{ abilities: [
     land.tapped(),
   ] }],
+  rulings: {},
 });

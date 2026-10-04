@@ -20,4 +20,7 @@ export default defineCard({
       },
     },
   }],
+  rulings: {
+    1: "teste: CR 115.3: precisa de três criaturas diferentes para ser conjurada",
+  },
 });

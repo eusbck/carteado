@@ -15,4 +15,9 @@ export default defineCard({
       }),
     ],
   }],
+  rulings: {
+    1: "regra geral: a redução se aplica a qualquer custo total, inclusive alternativo (CR 601.2f, motor/stack.ts totalSpellCost)",
+    2: "teste: mágica que mira criatura custa {2} a menos, mas não a parte colorida",
+    3: "regra geral: aumentos antes de reduções (CR 601.2f; motor/stack.ts totalSpellCost)",
+  },
 });

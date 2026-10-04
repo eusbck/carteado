@@ -10,4 +10,5 @@ export default defineCard({
     mana('C'),
     land.filter('B', 'G'),
   ] }],
+  rulings: {},
 });

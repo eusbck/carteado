@@ -19,7 +19,14 @@ const byName = new Map(lev.map((l) => [l.nome, l]));
 
 // testes: cartas/defs/<slug>.test.ts com pelo menos um it(), e testes de fichas
 const defsDir = join(raiz, 'cartas', 'defs');
-const testFiles = new Set(readdirSync(defsDir).filter((f) => f.endsWith('.test.ts')).filter((f) => /\bit\(/.test(readFileSync(join(defsDir, f), 'utf8'))).map((f) => f.replace(/\.test\.ts$/, '')));
+const testFiles = new Set<string>();
+for (const f of readdirSync(defsDir).filter((x) => x.endsWith('.test.ts'))) {
+  const txt = readFileSync(join(defsDir, f), 'utf8');
+  if (!/\bit\(/.test(txt)) continue;
+  testFiles.add(f.replace(/\.test\.ts$/, ''));
+  // um arquivo pode declarar que cobre outras cartas: "// cobre: Plains, Island"
+  for (const m of txt.matchAll(/^\/\/ cobre: (.+)$/gm)) for (const n of m[1].split(',')) testFiles.add(slug(n.trim()));
+}
 const fichasTeste = existsSync(join(raiz, 'cartas', 'fichas.test.ts')) ? readFileSync(join(raiz, 'cartas', 'fichas.test.ts'), 'utf8') : '';
 
 interface Row { nome: string; decks: string; tipo: 'carta' | 'ficha'; impl: boolean; teste: boolean; rulingsOk: number; rulingsTotal: number; parte: string }

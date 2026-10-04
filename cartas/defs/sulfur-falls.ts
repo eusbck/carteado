@@ -10,4 +10,5 @@ export default defineCard({
     land.tappedUnlessControl('Island', 'Mountain'),
     mana(['U', 'R']),
   ] }],
+  rulings: {},
 });

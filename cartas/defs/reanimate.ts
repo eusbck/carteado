@@ -16,4 +16,11 @@ export default defineCard({
       },
     },
   }],
+  rulings: {
+    1: "teste: põe uma criatura de qualquer cemitério sob seu controle e você perde vida igual ao valor de mana",
+    2: "teste: gatilhos de entrar resolvem depois da perda de vida",
+    3: "teste: CR 800.4a: se você sai da partida, a criatura reanimada de outro dono é exilada",
+    4: "não se aplica: nenhuma carta dos decks reage à perda de vida de quem a controla assim (Platinum Emperion)",
+    5: "regra geral: CR 107.3g (X vale 0 fora da pilha; motor/mana.ts manaValueOf)",
+  },
 });

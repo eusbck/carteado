@@ -11,4 +11,5 @@ export default defineCard({
     land.tapped(),
     cycling('{2}'),
   ] }],
+  rulings: {},
 });

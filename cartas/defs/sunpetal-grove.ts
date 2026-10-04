@@ -10,4 +10,8 @@ export default defineCard({
     land.tappedUnlessControl('Forest', 'Plains'),
     mana(['G', 'W']),
   ] }],
+  rulings: {
+    1: "regra geral: CR 614.12 — só vê terrenos que já estão no campo",
+    2: "teste: entra desvirado com o tipo de terreno (qualquer terreno com o subtipo, básico ou não)",
+  },
 });

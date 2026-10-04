@@ -10,4 +10,7 @@ export default defineCard({
     mana('C'),
     land.filter('B', 'R'),
   ] }],
+  rulings: {
+    1: "teste: CR 605: mana que produz (custo híbrido pago com qualquer das cores, CR 107.4e)",
+  },
 });
