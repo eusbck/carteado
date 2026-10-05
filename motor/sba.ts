@@ -189,6 +189,9 @@ export function leaveGame(g: G, p: PlayerId): void {
     o.controller = o.owner;
     s.zones.exile.push(id);
   }
+  // o que continua no campo sob o controle de outro (por efeito de controle) não pode voltar a quem saiu se o efeito
+  // acabar: o controle de base passa ao dono
+  for (const id of s.zones.battlefield) if (s.objects[id].controller === p) s.objects[id].controller = s.objects[id].owner;
   s.pendingTriggers = s.pendingTriggers.filter((t) => t.controller !== p); // CR 800.4d
   s.delayedTriggers = s.delayedTriggers.filter((t) => t.controller !== p);
   if (s.monarch === p) s.monarch = null;
