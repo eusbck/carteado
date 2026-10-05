@@ -220,6 +220,11 @@ export function* putOntoBattlefield(g: G, reqs: EnterReq[], cause: string): Gen<
     const entraPreparado = ev.choices.prepared === true;
     if (ev.spell) n.data.spell = ev.spell;
     if (r.data) Object.assign(n.data, r.data);
+    // efeitos que valem desde a entrada (CR 614.1c, 707.2): aplicados antes dos eventos, então os gatilhos de entrar os veem
+    for (const ef of ev.enterEffects ?? []) {
+      const dur = ef.duration.kind === 'whileOnBattlefield' ? { kind: 'whileOnBattlefield' as const, obj: newId } : ef.duration;
+      addEffect(g, { source: newId, sourceDef: ef.sourceDef, controller: ef.controller, duration: dur, affected: [newId], mods: ef.mods });
+    }
     if (ev.attachTo !== null) n.timestamp = newTimestamp(g);
     results.push(newId);
     if (entraPreparado) prepare(g, newId); // "entra preparado" (CR 722.3a)

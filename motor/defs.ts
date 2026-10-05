@@ -3,7 +3,7 @@
 // a partir destes tipos. As funções ficam aqui (código); o estado só guarda ids.
 
 import type {
-  Answer, Chars, Color, Decision, GameObject, ManaSymbol, ManaType, Mod, ObjId, PlayerId, Step,
+  Answer, Chars, Color, Decision, Duration, GameObject, ManaSymbol, ManaType, Mod, ObjId, PlayerId, Step,
   TargetRef, ZoneName,
 } from './types.ts';
 import type { G } from './game-context.ts';
@@ -236,6 +236,8 @@ export interface EnterEvent {
   faceDown?: boolean;
   /** valores da mágica que virou este permanente (CR 400.7d) */
   spell?: { x: number; paid: Record<string, number | boolean>; method?: string; manaSpent?: Ctx['manaSpent']; castFrom?: ZoneName };
+  /** efeitos que começam junto com a entrada (Cursed Mirror: "ao entrar, vira uma cópia … até o fim do turno") */
+  enterEffects?: { mods: Mod[]; duration: Duration; controller: PlayerId; sourceDef: string }[];
 }
 
 export interface ReplacementDef extends AbilityCommon {

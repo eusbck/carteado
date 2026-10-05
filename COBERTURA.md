@@ -5,11 +5,11 @@ Gerado por `ferramentas/cobertura.ts`. Não edite à mão.
 | | |
 | --- | ---: |
 | Entradas (cartas dos decks + fichas e objetos auxiliares) | 547 |
-| **Implementadas, testadas e com rulings conferidos** | **517 / 547** |
-| Implementadas | 517 |
-| Com teste próprio | 517 |
-| Rulings conferidos (cartas dos decks) | 1079 / 1285 |
-| Pendentes (jogáveis em modo manual) | 30 |
+| **Implementadas, testadas e com rulings conferidos** | **525 / 547** |
+| Implementadas | 525 |
+| Com teste próprio | 525 |
+| Rulings conferidos (cartas dos decks) | 1126 / 1285 |
+| Pendentes (jogáveis em modo manual) | 22 |
 
 Uma carta conta como pronta quando tem definição em `cartas/defs/`, um arquivo de teste próprio
 (`cartas/defs/<nome>.test.ts`) e cada ruling registrado na definição com o teste que o cobre ou o
@@ -79,7 +79,7 @@ motivo de não se aplicar.
 | Bojuka Bog | Abz, Sil, Wit | A | sim | sim | — |
 | Boros Charm | Lor | A | sim | sim | 2/2 |
 | Breena, the Demagogue | Sil | B | — | — | 0/3 |
-| Brudiclad, Telchor Engineer | Pri | B | — | — | 0/6 |
+| Brudiclad, Telchor Engineer | Pri | B | sim | sim | 6/6 |
 | Burning Curiosity | Bli | B | sim | sim | 7/7 |
 | Bushmeat Poacher | Ter | A | sim | sim | 2/2 |
 | Canopy Gargantuan | Abz | B | sim | sim | — |
@@ -117,13 +117,13 @@ motivo de não se aplicar.
 | Cultivate | Wit | A | sim | sim | 1/1 |
 | Curiosity Crafter | Pri | A | sim | sim | — |
 | Currency Converter | Lor | A | sim | sim | — |
-| Cursed Mirror | Pri | B | — | — | 0/8 |
+| Cursed Mirror | Pri | B | sim | sim | 8/8 |
 | Cyan, Vengeful Samurai | Ter | B | sim | sim | 1/1 |
-| Dance with Calamity | Pri | B | — | — | 0/7 |
+| Dance with Calamity | Pri | B | sim | sim | 7/7 |
 | Danitha Capashen, Paragon | Sil | B | sim | sim | — |
 | Darkness Descends | Bli | B | sim | sim | — |
 | Darksteel Mutation | Sil | B | sim | sim | 8/8 |
-| Dawnhand Dissident | Bli | B | — | — | 0/8 |
+| Dawnhand Dissident | Bli | B | sim | sim | 8/8 |
 | Deadly Brew | Wit | A | sim | sim | 4/4 |
 | Deceptive Landscape | Abz | A | sim | sim | — |
 | Deep Analysis | Pri | B | sim | sim | 6/6 |
@@ -153,10 +153,10 @@ motivo de não se aplicar.
 | Elvish Mystic | Wit | A | sim | sim | — |
 | Emeria, the Sky Ruin | Lor | B | sim | sim | 1/1 |
 | Eriette of the Charmed Apple | Sil | B | sim | sim | 2/2 |
-| Espers to Magicite | Ter | B | — | — | 0/5 |
+| Espers to Magicite | Ter | B | sim | sim | 5/5 |
 | Ethereal Armor | Sil | B | sim | sim | 1/1 |
 | Eventide's Shadow | Bli | B | sim | sim | 1/1 |
-| Everlasting Torment | Bli | B | — | — | 0/8 |
+| Everlasting Torment | Bli | B | sim | sim | 8/8 |
 | Evolution Sage | Bli | B | sim | sim | 9/9 |
 | Evolving Wilds | Abz, Bli, Ter | A | sim | sim | — |
 | Excava, the Risen Past | Lor | B | sim | sim | 4/4 |
@@ -199,7 +199,7 @@ motivo de não se aplicar.
 | Glissa Sunslayer | Bli | B | sim | sim | 1/1 |
 | Glittering Massif | Lor | A | sim | sim | — |
 | Goblin Electromancer | Pri | B | sim | sim | 3/3 |
-| Gogo, Mysterious Mime | Ter | B | — | — | 0/5 |
+| Gogo, Mysterious Mime | Ter | B | sim | sim | 5/5 |
 | Goldspan Dragon | Pri | A | sim | sim | 3/3 |
 | Golgari Rot Farm | Bli | A | sim | sim | 1/1 |
 | Gorma, the Gullet | Wit | B | sim | sim | 1/1 |
@@ -226,7 +226,7 @@ motivo de não se aplicar.
 | Ifnir Deadlands | Bli | B | sim | sim | 2/2 |
 | Ignoble Hierarch | Bli | B | sim | sim | 1/1 |
 | Ikra Shidiqi, the Usurper | Abz | A | sim | sim | 8/8 |
-| Immoral Bargain | Wit | B | — | — | — |
+| Immoral Bargain | Wit | B | sim | sim | — |
 | Incremental Blight | Bli | B | sim | sim | 1/1 |
 | Indomitable Ancients | Abz | dados | sim | sim | — |
 | Indulging Patrician | Abz | B | sim | sim | 4/4 |

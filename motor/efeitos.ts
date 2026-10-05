@@ -44,8 +44,8 @@ export function delayed(c: Ctx, abilityId: string, opts: { data?: Record<string,
 }
 
 /** CR 603.12: "Quando você fizer isso, …" — dispara agora e vai para a pilha na próxima vez que alguém receberia prioridade */
-export function reflexive(c: Ctx, abilityId: string, data: Record<string, unknown> = {}): void {
-  addPending(c.g, abilityId, c.source, c.you, {}, data);
+export function reflexive(c: Ctx, abilityId: string, data: Record<string, unknown> = {}, event: Record<string, unknown> = {}): void {
+  addPending(c.g, abilityId, c.source, c.you, event, data);
 }
 
 /** contexto do gatilho atrasado: quando foi criado */
