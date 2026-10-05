@@ -2,7 +2,8 @@
 // (CR 603.3), alvos (CR 115) e resolução (CR 608).
 
 import { addEffect, createObject, destroyObject, moveRaw, newTimestamp } from './state.ts';
-import { chooseItems, chooseNumber, objItem, playerItem } from './ask.ts';
+import { chooseItems, chooseNumber, objItem, playerItem, yesNo } from './ask.ts';
+import type { GameEvent } from './events.ts';
 import { moveObject, moveObjects, protectionMatches, putOntoBattlefield, enchantCandidates } from './actions.ts';
 import { abilityDefs, chars, controllerOf, hasKw, hooks, isType, kwParams, nameOf, printedChars, currentFace } from './chars.ts';
 import { canAfford, canPayParts, manaOptions, manaPart, payMana, payParts, type PayContext } from './costs.ts';
@@ -617,6 +618,37 @@ export function* resolveTop(g: G): Gen<void> {
 }
 
 /** anula uma mágica ou habilidade (CR 701.6) */
+/**
+ * Copia uma mágica na pilha (CR 707.10): a cópia tem as mesmas escolhas (modos, X, alvos,
+ * custos adicionais pagos, divisão) e é controlada por quem copiou. Se o efeito permitir,
+ * quem copiou pode escolher novos alvos (707.10c). Não é conjurada (707.10).
+ */
+export function* copySpell(g: G, spellId: ObjId, controller: PlayerId, opts: { newTargets?: boolean } = {}): Gen<ObjId | null> {
+  // a mágica pode já ter saído da pilha (replicar, CR 702.56: copia mesmo assim, pela última informação)
+  const o = g.state.objects[spellId]?.zone === 'stack' ? g.state.objects[spellId] : g.state.lki[spellId]?.obj;
+  if (!o || o.stack?.kind !== 'spell') return null;
+  const st = o.stack;
+  const copia = createObject(g, { def: o.def, owner: controller, controller, zone: 'stack', isCopy: true, copyOf: o.copyOf ? structuredClone(o.copyOf) : null, face: o.face });
+  const dados = structuredClone(st.data);
+  delete dados.exileOnLeave;
+  delete dados.bottomInsteadOfGraveyard;
+  // a cópia não foi conjurada (CR 707.10): não tem zona de origem
+  copia.stack = { ...structuredClone(st), controller, isCopy: true, data: dados, castFrom: undefined };
+  g.log(`${g.state.players[controller].name} copia ${nameOf(g, spellId)}.`, { rule: '707.10' });
+  if (opts.newTargets && st.targets.flat().length > 0) {
+    const { specs } = spellTargetSpecs(copia, st.modes, st.method);
+    if (specs.length && (yield* yesNo(g, controller, `Escolher novos alvos para a cópia de ${nameOf(g, spellId)}?`))) {
+      const novos = yield* chooseTargets(g, controller, specs, copia.id, `cópia de ${nameOf(g, spellId)}`, st.x);
+      if (novos) copia.stack.targets = novos;
+    }
+  }
+  g.bump();
+  const evs: GameEvent[] = [{ type: 'copySpell', obj: copia.id, player: controller }];
+  for (const t of copia.stack.targets.flat()) evs.push({ type: 'target', target: t, by: copia.id, controller, spell: true });
+  emit(g, evs);
+  return copia.id;
+}
+
 export function* counter(g: G, id: ObjId): Gen<boolean> {
   const o = g.state.objects[id];
   if (!o || o.zone !== 'stack') return false;

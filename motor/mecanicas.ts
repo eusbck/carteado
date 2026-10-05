@@ -3,12 +3,12 @@
 
 import { addCounters, blight } from './actions.ts';
 import { chooseItems, objItem, playerItem, yesNo } from './ask.ts';
-import { chars, controllerOf, currentFace, isCreature, isTransform, nameOf } from './chars.ts';
-import { defineAbility, type AbilityDef, type Gen, type TriggeredDef } from './defs.ts';
+import { chars, controllerOf, currentFace, isCreature, isLand, isTransform, nameOf } from './chars.ts';
+import { defineAbility, type AbilityDef, type AdditionalCostDef, type Gen, type TriggeredDef } from './defs.ts';
 import { keyword, on, triggered } from './dsl.ts';
 import { mayPay } from './efeitos.ts';
 import type { G } from './game-context.ts';
-import { counter } from './stack.ts';
+import { castSpell, copySpell, counter } from './stack.ts';
 import { emit } from './triggers.ts';
 import type { ChoiceItem, CopyValues, ObjId, PlayerId } from './types.ts';
 
@@ -126,4 +126,71 @@ export function copiableValues(g: G, id: ObjId): CopyValues {
   if (ultima && ultima.k === 'copy') return structuredClone(ultima.of);
   if (o.copyOf) return structuredClone(o.copyOf);
   return { def: o.def, face: currentFace(o) };
+}
+
+// ---------------------------------------------------------------------------
+// Conjurar sem pagar e gatilhos de conjuração
+// ---------------------------------------------------------------------------
+/** "Você pode conjurar [a carta] sem pagar o custo de mana" durante uma resolução (CR 608.2g, 118.9) */
+export function* mayCastFree(g: G, p: PlayerId, card: ObjId, prompt?: string): Gen<boolean> {
+  const o = g.state.objects[card];
+  if (!o || isLand(g, card)) return false;
+  if (!(yield* yesNo(g, p, prompt ?? `Conjurar ${nameOf(g, card)} sem pagar o custo de mana?`))) return false;
+  const r = yield* castSpell(g, p, card, { key: 'free', label: 'sem pagar o custo de mana', zone: o.zone, free: true, duringResolution: true });
+  return r !== null;
+}
+
+/** "Quando você conjura esta mágica" (a habilidade funciona na pilha, CR 113.6c) */
+export function onCastThis(effect: TriggeredDef['effect'], text: string): TriggeredDef {
+  return triggered(on.custom((e, c) => (e.type === 'cast' && e.obj === c.source ? { spell: e.obj } : false)), effect, { zones: ['stack'], text });
+}
+
+/** quantas vezes um custo adicional foi pago, olhando a mágica (ou a última informação dela) */
+export function timesPaid(g: G, spell: ObjId, key: string): number {
+  const o = g.state.objects[spell] ?? g.state.lki[spell]?.obj;
+  const v = o?.stack?.paid[key];
+  return typeof v === 'number' ? v : v ? 1 : 0;
+}
+
+/** Replicar [custo] (CR 702.56): custo adicional repetível + gatilho de conjuração que copia */
+export function replicate(custo: string): { cost: AdditionalCostDef; trigger: TriggeredDef } {
+  return {
+    cost: { key: 'replicar', label: `replicar ${custo}`, parts: [{ k: 'mana', cost: custo }], optional: true, repeatable: true },
+    trigger: onCastThis(function* (c) {
+      const n = timesPaid(c.g, c.source, 'replicar');
+      for (let i = 0; i < n; i++) yield* copySpell(c.g, c.source, c.you, { newTargets: true });
+    }, `Replicar ${custo} (quando você conjura esta mágica, copie-a para cada vez que pagou o custo de replicar; as cópias podem ter novos alvos).`),
+  };
+}
+
+/** Demonstrar (CR 702.144): você pode copiar; se copiar, um oponente que você escolhe também copia */
+export function demonstrate(): TriggeredDef {
+  return onCastThis(function* (c) {
+    if (!(yield* yesNo(c.g, c.you, `Demonstrar: copiar ${nameOf(c.g, c.source)}?`))) return;
+    yield* copySpell(c.g, c.source, c.you, { newTargets: true });
+    const ops = c.g.opponents(c.you);
+    if (ops.length === 0) return;
+    const [op] = yield* chooseItems(c.g, c.you, 'Demonstrar: escolha um oponente para também copiar a mágica', ops.map((p) => playerItem(c.g, p)), 1, 1);
+    const quem = Number(op.slice(1));
+    yield* copySpell(c.g, c.source, quem, { newTargets: true });
+  }, 'Demonstrar (quando você conjura esta mágica, você pode copiá-la; se fizer isso, escolha um oponente para também copiá-la).');
+}
+
+/** Gravestorm (CR 702.69): copia para cada permanente que foi do campo para um cemitério neste turno */
+export function gravestorm(): TriggeredDef {
+  return onCastThis(function* (c) {
+    const n = c.g.state.players.reduce((t, p) => t + (c.g.state.turnStats[p.id]?.permanentsToGraveyard ?? 0), 0);
+    for (let i = 0; i < n; i++) yield* copySpell(c.g, c.source, c.you, { newTargets: true });
+  }, 'Gravestorm (quando você conjura esta mágica, copie-a para cada permanente que foi do campo para um cemitério neste turno).');
+}
+
+/** mágica instantânea ou feitiço (para magecraft e afins) */
+export function isInstantOrSorcery(g: G, id: ObjId): boolean {
+  const c = g.state.objects[id] ? chars(g, id) : g.state.lki[id]?.chars;
+  return !!c && (c.types.includes('Instant') || c.types.includes('Sorcery'));
+}
+
+/** Magecraft: "sempre que você conjura ou copia uma mágica instantânea ou feitiço" */
+export function magecraft(effect: TriggeredDef['effect'], text: string): TriggeredDef {
+  return triggered(on.custom((e, c) => ((e.type === 'cast' || e.type === 'copySpell') && e.player === c.you && isInstantOrSorcery(c.g, e.obj) ? { spell: e.obj } : false)), effect, { text: `Magecraft — ${text}` });
 }

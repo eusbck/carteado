@@ -13,7 +13,7 @@ export {
   nameOf, power, toughness, printedChars,
 } from './chars.ts';
 export { ask, chooseColor, chooseItems, chooseNumber, chooseOne, objItem, playerItem, yesNo, COLOR_NAMES } from './ask.ts';
-export { counter, castSpell, candidateTargets, isLegalTarget } from './stack.ts';
+export { counter, castSpell, candidateTargets, isLegalTarget, copySpell } from './stack.ts';
 export { addEffect, createObject, destroyObject, newTimestamp, objOrLki } from './state.ts';
 export { emit, addPending } from './triggers.ts';
 export { payMana, payParts } from './costs.ts';

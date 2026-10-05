@@ -279,6 +279,8 @@ export interface TurnStats {
   attackedPlayers: PlayerId[];
   countersPutOnCreatures: number;
   creaturesDied: number;
+  /** permanentes deste controlador que foram do campo para um cemitério (gravestorm conta todos) */
+  permanentsToGraveyard: number;
   /** cartas que foram para o cemitério deste jogador neste turno vindas de fora do campo (Banon) */
   toGraveyardNotFromBattlefield: CardId[];
   sacrificedCreature: boolean;

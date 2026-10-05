@@ -5,11 +5,11 @@ Gerado por `ferramentas/cobertura.ts`. Não edite à mão.
 | | |
 | --- | ---: |
 | Entradas (cartas dos decks + fichas e objetos auxiliares) | 547 |
-| **Implementadas, testadas e com rulings conferidos** | **310 / 547** |
-| Implementadas | 310 |
-| Com teste próprio | 310 |
-| Rulings conferidos (cartas dos decks) | 382 / 1285 |
-| Pendentes (jogáveis em modo manual) | 237 |
+| **Implementadas, testadas e com rulings conferidos** | **318 / 547** |
+| Implementadas | 318 |
+| Com teste próprio | 318 |
+| Rulings conferidos (cartas dos decks) | 422 / 1285 |
+| Pendentes (jogáveis em modo manual) | 229 |
 
 Uma carta conta como pronta quando tem definição em `cartas/defs/`, um arquivo de teste próprio
 (`cartas/defs/<nome>.test.ts`) e cada ruling registrado na definição com o teste que o cobre ou o
@@ -41,7 +41,7 @@ motivo de não se aplicar.
 | Arcane Signet | Abz, Bli, Lor, Pri, Sil, Ter, Wit | B | sim | sim | 3/3 |
 | Archaeomancer's Map | Lor | A | sim | sim | 1/1 |
 | Archfiend of Depravity | Ter | A | sim | sim | 2/2 |
-| Archmage Emeritus | Pri | B | — | — | 0/4 |
+| Archmage Emeritus | Pri | B | sim | sim | 4/4 |
 | Archon of Sun's Grace | Sil | A | sim | sim | 3/3 |
 | Ark of Hunger | Lor | B | sim | sim | 2/2 |
 | Armored Skyhunter | Sil | B | sim | sim | 1/1 |
@@ -95,7 +95,7 @@ motivo de não se aplicar.
 | Celes, Rune Knight | Ter | B | — | — | 0/1 |
 | Chain Reaction | Pri | A | sim | sim | 1/1 |
 | Chains of Custody | Sil | B | — | — | 0/4 |
-| Changing Loyalty | Sil | B | — | — | 0/4 |
+| Changing Loyalty | Sil | B | sim | sim | 4/4 |
 | Channeler Initiate | Bli | B | — | — | — |
 | Chaos Warp | Pri | A | sim | sim | 5/5 |
 | Chimil, the Inner Sun | Bli | B | — | — | 0/2 |
@@ -112,7 +112,7 @@ motivo de não se aplicar.
 | Crackling Doom | Ter | A | sim | sim | 4/4 |
 | Crashing Drawbridge | Abz | A | sim | sim | — |
 | Creakwood Liege | Wit | B | — | — | 0/2 |
-| Creative Technique | Pri | B | — | — | 0/5 |
+| Creative Technique | Pri | B | sim | sim | 5/5 |
 | Culling Ritual | Wit | A | sim | sim | 1/1 |
 | Cultivate | Wit | A | sim | sim | 1/1 |
 | Curiosity Crafter | Pri | A | sim | sim | — |
@@ -302,7 +302,7 @@ motivo de não se aplicar.
 | Nyx-Fleece Ram | Abz | A | sim | sim | — |
 | Oft-Nabbed Goat | Bli | B | — | — | 0/1 |
 | Ohran Frostfang | Abz | A | sim | sim | 2/2 |
-| Ominous Harvest | Wit | B | — | — | 0/5 |
+| Ominous Harvest | Wit | B | sim | sim | 5/5 |
 | Ophiomancer | Wit | A | sim | sim | 3/3 |
 | Orzhov Signet | Abz | A | sim | sim | — |
 | Overgrown Battlement | Abz | A | sim | sim | 1/1 |
@@ -322,7 +322,7 @@ motivo de não se aplicar.
 | Phoenix Down | Ter | B | — | — | 0/1 |
 | Pitiless Plunderer | Ter | A | sim | sim | 1/1 |
 | Plains | Abz, Lor, Sil, Ter | dados | sim | sim | — |
-| Plumb the Forbidden | Wit | B | — | — | 0/2 |
+| Plumb the Forbidden | Wit | B | sim | sim | 2/2 |
 | Priest of Fell Rites | Ter | B | — | — | 0/3 |
 | Priest of Forgotten Gods | Wit | A | sim | sim | 3/3 |
 | Primary Research | Lor | B | — | — | 0/2 |
@@ -351,7 +351,7 @@ motivo de não se aplicar.
 | Reliquary Tower | Pri | A | sim | sim | 1/1 |
 | Remorseful Cleric | Lor | A | sim | sim | — |
 | Renegade Bull | Pri | B | — | — | 0/7 |
-| Replication Technique | Pri | B | — | — | 0/5 |
+| Replication Technique | Pri | B | sim | sim | 5/5 |
 | Resculpt | Pri | A | sim | sim | — |
 | Restless Spire | Pri | B | — | — | 0/2 |
 | Reunion of the House | Abz | B | — | — | 0/3 |
@@ -383,7 +383,7 @@ motivo de não se aplicar.
 | Selfless Spirit | Lor | A | sim | sim | 1/1 |
 | Sentinel's Eyes | Sil | B | — | — | 0/7 |
 | Serra Paragon | Lor | B | — | — | — |
-| Sevinne's Reclamation | Lor | B | — | — | 0/11 |
+| Sevinne's Reclamation | Lor | B | sim | sim | 11/11 |
 | Shadow, Mysterious Assassin | Ter | A | sim | sim | 2/2 |
 | Shadowblood Ridge | Ter | A | sim | sim | — |
 | Shadrix Silverquill | Abz, Sil | B | — | — | 0/2 |
@@ -423,7 +423,7 @@ motivo de não se aplicar.
 | Stensian Sanguinist // Exsanguinate | Wit | B | — | — | 0/16 |
 | Stitch Together | Ter | B | — | — | 0/1 |
 | Stitcher's Supplier | Ter | A | sim | sim | — |
-| Storm-Kiln Artist | Pri | B | — | — | 0/4 |
+| Storm-Kiln Artist | Pri | B | sim | sim | 4/4 |
 | Stormcatch Mentor | Pri | B | — | — | 0/2 |
 | Study Hall | Lor, Pri, Sil, Wit | B | — | — | — |
 | Sulfur Falls | Pri | A | sim | sim | — |

@@ -33,6 +33,7 @@ function updateStats(g: G, events: GameEvent[]): void {
         if (e.from === 'graveyard' && !e.token) st[e.owner].cardsLeftGraveyard++;
         if (e.to === 'graveyard' && e.from !== 'battlefield' && e.card !== null) st[e.owner].toGraveyardNotFromBattlefield.push(e.card);
         if (e.from === 'battlefield' && e.to === 'graveyard') {
+          st[e.controller].permanentsToGraveyard++;
           const lki = g.state.lki[e.old];
           if (lki?.chars.types.includes('Creature')) st[e.controller].creaturesDied++;
         }
@@ -77,12 +78,12 @@ export function emit(g: G, events: GameEvent[]): void {
   }
   const off = offZone();
   if (off.size > 0) {
-    for (const zone of ['graveyard', 'hand', 'exile', 'command', 'library'] as ZoneName[]) {
+    for (const zone of ['graveyard', 'hand', 'exile', 'command', 'library', 'stack'] as ZoneName[]) {
       const ids = zone === 'graveyard' || zone === 'hand' || zone === 'library' ? s.zones[zone].flat() : s.zones[zone];
       for (const id of ids) {
         const o = s.objects[id];
         const c = chars(g, id);
-        if (c.abilities.some((a) => off.has(a.id))) sources.push({ obj: o, chars: c, zone, departed: false, controller: o.owner });
+        if (c.abilities.some((a) => off.has(a.id))) sources.push({ obj: o, chars: c, zone, departed: false, controller: zone === 'stack' ? (o.stack?.controller ?? o.controller) : o.owner });
       }
     }
   }
