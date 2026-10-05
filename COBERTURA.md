@@ -5,11 +5,11 @@ Gerado por `ferramentas/cobertura.ts`. Não edite à mão.
 | | |
 | --- | ---: |
 | Entradas (cartas dos decks + fichas e objetos auxiliares) | 547 |
-| **Implementadas, testadas e com rulings conferidos** | **542 / 547** |
-| Implementadas | 542 |
-| Com teste próprio | 542 |
-| Rulings conferidos (cartas dos decks) | 1241 / 1285 |
-| Pendentes (jogáveis em modo manual) | 5 |
+| **Implementadas, testadas e com rulings conferidos** | **547 / 547** |
+| Implementadas | 547 |
+| Com teste próprio | 547 |
+| Rulings conferidos (cartas dos decks) | 1285 / 1285 |
+| Pendentes (jogáveis em modo manual) | 0 |
 
 Uma carta conta como pronta quando tem definição em `cartas/defs/`, um arquivo de teste próprio
 (`cartas/defs/<nome>.test.ts`) e cada ruling registrado na definição com o teste que o cobre ou o
@@ -24,7 +24,7 @@ motivo de não se aplicar.
 | Abstract Paintmage | Pri | B | sim | sim | — |
 | Abstract Performance | Pri | B | sim | sim | 6/6 |
 | Access Tunnel | Abz | A | sim | sim | 2/2 |
-| Advanced Reconstruction | Lor | B | — | — | 0/3 |
+| Advanced Reconstruction | Lor | B | sim | sim | 3/3 |
 | Aether Gale | Pri | A | sim | sim | 1/1 |
 | Ajani's Chosen | Sil | B | sim | sim | 4/4 |
 | Angel of Indemnity | Lor | B | sim | sim | 10/10 |
@@ -32,7 +32,7 @@ motivo de não se aplicar.
 | Angelic Gift | Sil | B | sim | sim | 1/1 |
 | Anger | Lor, Ter | A | sim | sim | 1/1 |
 | Anguished Unmaking | Abz, Sil | A | sim | sim | 1/1 |
-| Animate Dead | Sil | B | — | — | 0/5 |
+| Animate Dead | Sil | B | sim | sim | 5/5 |
 | Arasta of the Endless Web | Abz | A | sim | sim | 1/1 |
 | Arbor Adherent | Abz | A | sim | sim | — |
 | Arboreal Grazer | Abz | A | sim | sim | 1/1 |
@@ -238,7 +238,7 @@ motivo de não se aplicar.
 | Jadar, Ghoulcaller of Nephalia | Wit | B | sim | sim | 4/4 |
 | Jaddi Offshoot | Abz | A | sim | sim | 3/3 |
 | Jaws of Defeat | Abz | A | sim | sim | 1/1 |
-| Joshua, Phoenix's Dominant // Phoenix, Warden of Fire | Ter | B | — | — | 0/10 |
+| Joshua, Phoenix's Dominant // Phoenix, Warden of Fire | Ter | B | sim | sim | 10/10 |
 | Kami of Ancient Law | Lor | A | sim | sim | — |
 | Karmic Guide | Lor, Ter | B | sim | sim | 2/2 |
 | Kefka, Dancing Mad | Ter | B | sim | sim | 5/5 |
@@ -288,7 +288,7 @@ motivo de não se aplicar.
 | Mortify | Ter | A | sim | sim | 1/1 |
 | Moseo, Vein's New Dean | Wit | B | sim | sim | 2/2 |
 | Mountain | Bli, Lor, Pri, Ter | dados | sim | sim | — |
-| Muddle, the Ever-Changing | Pri | B | — | — | 0/15 |
+| Muddle, the Ever-Changing | Pri | B | sim | sim | 15/15 |
 | Mycoloth | Wit | B | sim | sim | 4/4 |
 | Mystic Sanctuary | Pri | A | sim | sim | 2/2 |
 | Necroblossom Snarl | Wit | A | sim | sim | 4/4 |
@@ -428,7 +428,7 @@ motivo de não se aplicar.
 | Study Hall | Lor, Pri, Sil, Wit | B | sim | sim | — |
 | Sulfur Falls | Pri | A | sim | sim | — |
 | Sulfurous Springs | Ter | A | sim | sim | — |
-| Summon: Esper Valigarmanda | Ter | B | — | — | 0/11 |
+| Summon: Esper Valigarmanda | Ter | B | sim | sim | 11/11 |
 | Sun Titan | Lor, Ter | B | sim | sim | 4/4 |
 | Sungrass Prairie | Abz | A | sim | sim | — |
 | Sunlit Marsh | Sil, Ter | A | sim | sim | — |

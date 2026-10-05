@@ -279,7 +279,15 @@ function* castInner(g: G, player: PlayerId, cardId: ObjId, method: CastMethod): 
   }
   for (const ac of f?.additionalCosts ?? []) {
     if (ac.repeatable) {
-      const n = yield* chooseNumber(g, player, `${label}: quantas vezes pagar ${ac.label}?`, ac.optional ? 0 : 1, 10);
+      // não dá para repetir mais vezes do que é possível pagar (sacrificar: quantos permanentes servem)
+      let vezes = 10;
+      for (const p of ac.parts) {
+        if (p.k !== 'sacrifice' || typeof p.n !== 'number' || p.n <= 0) continue;
+        const ctx = { g, you: player, source: spellId };
+        const servem = g.state.zones.battlefield.filter((id) => controllerOf(g, id) === player && id !== spellId && p.filter(ctx, id)).length;
+        vezes = Math.min(vezes, Math.floor(servem / p.n));
+      }
+      const n = yield* chooseNumber(g, player, `${label}: quantas vezes pagar ${ac.label}?`, ac.optional ? 0 : Math.min(1, vezes), Math.max(ac.optional ? 0 : 1, vezes));
       info.paid[ac.key] = n;
     } else if (ac.optional) {
       const items = [{ id: 'no', label: 'Não pagar' }, { id: 'yes', label: `Pagar: ${ac.label}` }];

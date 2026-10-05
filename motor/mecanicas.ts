@@ -483,3 +483,80 @@ export function exchangeLifeAndToughness(c: { g: G; you: PlayerId; source: ObjId
   else if (vida > resist) loseLife(g, player, vida - resist, c.source);
   g.log(`${pl.name} troca o total de vida (${vida}) pela resistência de ${nameOf(g, creature)} (${resist}).`, { rule: '701.12c' });
 }
+
+/** "Você pode conjurar [a carta]" durante uma resolução, pagando os custos (CR 608.2g); anyType: mana de qualquer tipo */
+export function* mayCastDuringResolution(g: G, p: PlayerId, card: ObjId, opts: { anyType?: boolean; prompt?: string } = {}): Gen<boolean> {
+  const o = g.state.objects[card];
+  if (!o || isLand(g, card)) return false;
+  if (!(yield* yesNo(g, p, opts.prompt ?? `Conjurar ${nameOf(g, card)}?`))) return false;
+  const r = yield* castSpell(g, p, card, {
+    key: 'resolucao', label: 'durante a resolução', zone: o.zone, duringResolution: true,
+    permission: opts.anyType ? { key: 'qualquer-tipo', label: 'mana de qualquer tipo', anyType: true } : undefined,
+  });
+  return r !== null;
+}
+
+// ---------------------------------------------------------------------------
+// Sagas (CR 714)
+// ---------------------------------------------------------------------------
+/** CR 714.3a: ao entrar, a Saga recebe um marcador de conhecimento (sem usar a pilha) */
+export function sagaEnters(): ReplacementDef {
+  return asEnters((_c, ev) => { ev.counters.lore = (ev.counters.lore ?? 0) + 1; }, 'Ao entrar, recebe um marcador de conhecimento.');
+}
+
+/**
+ * CR 714.2: habilidade de capítulo — dispara quando um marcador de conhecimento faz o total passar de menos que N para
+ * N ou mais (714.2b-c). Um disparo por capítulo atingido.
+ */
+export function chapter(numbers: number[], effect: TriggeredDef['effect'], opts: { text: string; targets?: TriggeredDef['targets'] }): TriggeredDef {
+  const def = triggered(on.custom((e, c) => {
+    if (e.type !== 'counters' || e.kind !== 'lore' || e.target.kind !== 'obj' || e.target.id !== c.source) return false;
+    const agora = c.g.state.objects[c.source]?.counters.lore ?? 0;
+    const antes = agora - e.amount;
+    return numbers.filter((n) => antes < n && agora >= n).map((n) => ({ capitulo: n }));
+  }), effect, { targets: opts.targets, text: opts.text });
+  def.chapters = numbers;
+  return def;
+}
+
+// ---------------------------------------------------------------------------
+// Miríade (CR 702.116)
+// ---------------------------------------------------------------------------
+const EXILA_MIRIADE = defineAbility('kw:myriad:exila', triggered({
+  kind: 'event',
+  match: (e) => e.type === 'step' && e.step === 'endCombat',
+}, function* (c) {
+  const fichas = ((c.data.fichas ?? []) as ObjId[]).filter((id) => c.g.state.objects[id]?.zone === 'battlefield');
+  if (fichas.length) yield* exile(c.g, fichas);
+}, { text: 'No fim do combate, exile as fichas criadas pela miríade.' }));
+
+/**
+ * CR 702.116a: "Sempre que esta criatura ataca, para cada oponente que não seja o jogador defensor, você pode criar uma
+ * ficha que é cópia dela, virada e atacando esse jogador ou um planeswalker que ele controla. Exile as fichas no fim do
+ * combate." Id da habilidade para conceder (Muddle, the Ever-Changing).
+ */
+export const MYRIAD = defineAbility('kw:myriad', triggered(on.selfAttacks(), function* (c) {
+  const s = c.g.state;
+  const a = s.combat?.attackers.find((x) => x.id === c.source && !x.removed);
+  if (!a) return;
+  const defensor = a.target.kind === 'player' ? a.target.id : controllerOf(c.g, a.target.id);
+  const fichas: ObjId[] = [];
+  const reqs: { alvo: { kind: 'player' | 'obj'; id: number } }[] = [];
+  for (const p of c.g.apnap().filter((x) => c.g.isOpponent(c.you, x) && x !== defensor)) {
+    if (!(yield* yesNo(c.g, c.you, `Miríade: criar uma cópia atacando ${s.players[p].name}?`))) continue;
+    // CR 702.116a: o jogador ou um planeswalker que ele controla
+    const pws = s.zones.battlefield.filter((id) => controllerOf(c.g, id) === p && chars(c.g, id).types.includes('Planeswalker'));
+    let alvo: { kind: 'player' | 'obj'; id: number } = { kind: 'player', id: p };
+    if (pws.length) {
+      const [esc] = yield* chooseItems(c.g, c.you, 'Miríade: a cópia ataca quem?', [playerItem(c.g, p), ...pws.map((id) => objItem(c.g, id, nameOf(c.g, id)))], 1, 1);
+      if (!esc.startsWith('p')) alvo = { kind: 'obj', id: Number(esc) };
+    }
+    reqs.push({ alvo });
+  }
+  // CR 702.116a: todas entram ao mesmo tempo
+  if (reqs.length) {
+    const v = copiableValues(c.g, c.source);
+    fichas.push(...(yield* putOntoBattlefield(c.g, reqs.map((r) => ({ controller: c.you, token: { copyOf: v }, tapped: true, attacking: r.alvo })), 'token')));
+  }
+  if (fichas.length) delayed(c, EXILA_MIRIADE.id!, { data: { fichas }, expiresTurn: s.turn.number });
+}, { text: 'Miríade (sempre que esta criatura ataca, para cada oponente que não seja o jogador defensor, você pode criar uma ficha cópia dela virada e atacando esse jogador ou um planeswalker dele; exile as fichas no fim do combate).' }));

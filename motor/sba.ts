@@ -3,7 +3,7 @@
 import { moveObjects, removeFromCombat } from './actions.ts';
 import { chooseItems, objItem, yesNo } from './ask.ts';
 import { chars, controllerOf, hasKw, isBestowed, isCreature, nameOf } from './chars.ts';
-import type { Gen } from './defs.ts';
+import { registry, type Gen } from './defs.ts';
 import type { G } from './game-context.ts';
 import { destroyObject } from './state.ts';
 import { enchantCandidates } from './actions.ts';
@@ -72,7 +72,8 @@ export function* performSBAs(g: G): Gen<boolean> {
     }
     if (o.attachedTo !== null) {
       const target = s.objects[o.attachedTo];
-      const ok = !!target && target.zone === 'battlefield' && !target.phasedOut;
+      // Aura presa a uma carta fora do campo só é legal se a habilidade de encantar aceitar essa carta (Animate Dead)
+      const ok = !!target && ((target.zone === 'battlefield' && !target.phasedOut) || (target.zone !== 'battlefield' && c.subtypes.includes('Aura') && !isBestowed(o)));
       if (isBestowed(o) && (!ok || !isCreature(g, o.attachedTo))) {
         unattach.push(id); // CR 702.103e: Aura de bestow solta vira criatura, não vai ao cemitério
       } else if (c.subtypes.includes('Aura')) {
@@ -93,11 +94,15 @@ export function* performSBAs(g: G): Gen<boolean> {
       g.bump();
       performed = true;
     }
-    // CR 704.5s: Saga com marcadores de conhecimento >= capítulo final
+    // CR 704.5s / 714.4: Saga com marcadores de conhecimento >= capítulo final, sem habilidade de capítulo dela na
+    // pilha ou esperando para ir para a pilha
     if (c.subtypes.includes('Saga')) {
-      const final = (o.data.finalChapter as number | undefined) ?? 0;
-      const onStack = s.zones.stack.some((sid) => s.objects[sid].stack?.source === id && s.objects[sid].stack?.kind === 'triggered');
-      if (final > 0 && (o.counters.lore ?? 0) >= final && !onStack) o.data.sagaSacrifice = true;
+      const capitulos = (abilityId: string | undefined) => (abilityId ? (registry.abilities.get(abilityId) as { chapters?: number[] } | undefined)?.chapters : undefined);
+      let final = (o.data.finalChapter as number | undefined) ?? 0;
+      for (const a of c.abilities) for (const n of capitulos(a.id) ?? []) final = Math.max(final, n);
+      const onStack = s.zones.stack.some((sid) => s.objects[sid].stack?.source === id && s.objects[sid].stack?.kind === 'triggered' && !!capitulos(s.objects[sid].stack?.abilityId));
+      const pending = s.pendingTriggers.some((p) => p.source === id && !!capitulos(p.abilityId));
+      if (final > 0 && (o.counters.lore ?? 0) >= final && !onStack && !pending) o.data.sagaSacrifice = true;
     }
   }
   // "desde a última verificação" (CR 704.5h): a marca de toque mortífero vale uma vez

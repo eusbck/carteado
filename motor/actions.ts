@@ -111,6 +111,8 @@ export interface EnterReq {
   attacking?: TargetRef;
   /** valores extras guardados no objeto */
   data?: Record<string, unknown>;
+  /** face que fica para cima ao entrar ("volta ao campo transformado", CR 712.14) */
+  face?: number;
 }
 
 function wouldBeChars(g: G, r: EnterReq) {
@@ -119,14 +121,26 @@ function wouldBeChars(g: G, r: EnterReq) {
   const o = g.obj(r.id!);
   if (r.copyOf) return printedChars(r.copyOf.def, r.copyOf.face, o.owner);
   if (r.faceDown) return { ...printedChars(o.def, 0, o.owner), types: ['Creature'], abilities: [] };
-  return printedChars(o.copyOf?.def ?? o.def, o.copyOf?.face ?? (o.zone === 'stack' ? o.face : 0), o.owner);
+  return printedChars(o.copyOf?.def ?? o.def, r.face ?? o.copyOf?.face ?? (o.zone === 'stack' ? o.face : 0), o.owner);
 }
 
 /** alvos legais para uma Aura (encantar) */
 export function enchantCandidates(g: G, auraDef: string, face: number, controller: PlayerId, exclude: ObjId[] = [], auraId?: ObjId): ObjId[] {
+  // "encantar a criatura posta no campo com esta Aura" (Animate Dead): substitui a habilidade de encantar impressa
+  const fixo = auraId !== undefined ? (g.state.objects[auraId]?.data.enchantOverride as ObjId | undefined) : undefined;
+  if (fixo !== undefined) {
+    const f = g.state.objects[fixo];
+    return f && f.zone === 'battlefield' && !f.phasedOut && !exclude.includes(fixo) && !protectionBlocksAttach(g, fixo, auraDef, auraId) ? [fixo] : [];
+  }
   const spec = registry.cards.get(auraDef)?.faces[face]?.enchant ?? registry.tokens.get(auraDef)?.enchant; // ficha de Aura (Contract)
   if (!spec) return [];
-  const ctx: SCtx = { g, you: controller, source: -1 };
+  const ctx: SCtx = { g, you: controller, source: auraId ?? -1 };
+  // "encantar carta de criatura num cemitério" (CR 303.4a): candidatos na zona da especificação
+  if (spec.what === 'card') {
+    const zona = spec.zone ?? 'graveyard';
+    const ids = zona === 'graveyard' || zona === 'hand' || zona === 'library' ? g.state.zones[zona].flat() : g.state.zones[zona];
+    return ids.filter((id) => !exclude.includes(id) && (!spec.filter || spec.filter(ctx, { kind: 'obj', id })));
+  }
   return g.state.zones.battlefield.filter((id) => !exclude.includes(id) && !g.state.objects[id].phasedOut && (!spec.filter || spec.filter(ctx, { kind: 'obj', id })) && !protectionBlocksAttach(g, id, auraDef, auraId));
 }
 
@@ -202,7 +216,7 @@ export function* putOntoBattlefield(g: G, reqs: EnterReq[], cause: string): Gen<
       token = o.isToken;
       newId = moveRaw(g, r.id, 'battlefield', {
         controller: ev.controller, tapped: ev.tapped, counters: ev.counters, attachTo: ev.attachTo, faceDown: !!ev.faceDown, keepCopy: !!o.copyOf,
-        face: o.zone === 'stack' ? o.face : 0,
+        face: r.face ?? (o.zone === 'stack' ? o.face : 0),
       });
       const n = s.objects[newId];
       if (r.copyOf) n.copyOf = r.copyOf;
@@ -638,7 +652,7 @@ export function attach(g: G, attachment: ObjId, to: ObjId): boolean {
   if (ac.subtypes.includes('Equipment') && !isCreature(g, to)) return false; // CR 301.5
   if (ac.subtypes.includes('Aura')) {
     const def = a.copyOf?.def ?? a.def;
-    if (!enchantCandidates(g, def, 0, controllerOf(g, attachment)).includes(to)) return false; // CR 303.4j
+    if (!enchantCandidates(g, def, 0, controllerOf(g, attachment), [], attachment).includes(to)) return false; // CR 303.4j
   }
   if (a.attachedTo === to) return true;
   a.attachedTo = to;

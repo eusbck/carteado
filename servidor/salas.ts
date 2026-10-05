@@ -4,6 +4,7 @@
 
 import { randomBytes, randomInt, scryptSync, timingSafeEqual } from 'node:crypto';
 import { RandomBot } from '../bots/aleatorio.ts';
+import { defaultAnswer } from '../motor/ask.ts';
 import { DEFAULT_STOPS, shouldAutoPass, type StopSettings } from '../motor/autopass.ts';
 import { Game, type Checkpoint, type Input } from '../motor/game.ts';
 import type { DeckList } from '../motor/state.ts';
@@ -317,7 +318,9 @@ export class Sala {
         }
         const r = resposta;
         this.registrar(() => {
-          const res = g.answer(d.player, r);
+          let res = g.answer(d.player, r);
+          // rede de segurança: resposta de bot recusada vira a resposta neutra do motor
+          if (!res.ok && a.tipo === 'bot') res = g.answer(d.player, defaultAnswer(d));
           if (!res.ok) throw new Error(`Resposta automática recusada: ${res.error}`);
         });
       }

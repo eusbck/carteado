@@ -94,6 +94,14 @@ function maxObeyed(g: G, id: ObjId, targets: TargetRef[]): number {
   return best;
 }
 
+/** alvos que cumprem o máximo de exigências da criatura sem pagar custos (CR 508.1d); vazio se ela não tem exigências */
+export function requiredTargets(g: G, id: ObjId, targets: TargetRef[]): TargetRef[] {
+  const max = maxObeyed(g, id, targets);
+  if (max === 0) return [];
+  const reqs = requirements(g, id);
+  return targets.filter((t) => attackCostFor(g, id, t) === 0 && obeyed(reqs, t) === max);
+}
+
 export function validateAttack(g: G, player: PlayerId, attacks: [ObjId, TargetRef][]): string | null {
   const cands = attackCandidates(g, player);
   const seen = new Set<ObjId>();
@@ -124,7 +132,8 @@ export function* declareAttackers(g: G): Gen<void> {
   if (cands.length > 0) {
     for (;;) {
       const a = yield* ask<Extract<Answer, { kind: 'attackers' }>>(g, {
-        kind: 'attackers', player, prompt: 'Declare os atacantes', candidates: cands.map((c) => ({ obj: c.obj, targets: c.targets })),
+        kind: 'attackers', player, prompt: 'Declare os atacantes',
+        candidates: cands.map((c) => { const r = requiredTargets(g, c.obj, c.targets); return r.length ? { obj: c.obj, targets: c.targets, required: r } : { obj: c.obj, targets: c.targets }; }),
       }, (ans) => validateAttack(g, player, ans.attacks));
       attacks = a.attacks;
       // custos para atacar (CR 508.1h-j)

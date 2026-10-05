@@ -20,7 +20,8 @@ export default defineCard({
         if (!ops.length) return;
         const [op] = ops.length === 1 ? [String(ops[0])] : yield* chooseItems(c.g, c.you, 'Abstract Performance: escolha o oponente que escolhe a pilha', ops.map((p) => playerItem(c.g, p)), 1, 1);
         // ruling 4: o oponente não vê a pilha virada para baixo
-        const [pilha] = yield* chooseItems(c.g, Number(op), 'Abstract Performance: escolha a pilha que vai para o cemitério', [
+        const quem = op.startsWith('p') ? Number(op.slice(1)) : Number(op);
+        const [pilha] = yield* chooseItems(c.g, quem, 'Abstract Performance: escolha a pilha que vai para o cemitério', [
           { id: 'fechada', label: `Pilha virada para baixo (${fechada.length} cartas)` },
           { id: 'aberta', label: `Pilha virada para cima: ${aberta.map((id) => nameOf(c.g, id)).join(', ') || 'vazia'}` },
         ], 1, 1);

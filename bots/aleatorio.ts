@@ -23,9 +23,13 @@ export class RandomBot {
       case 'select': {
         const items = d.items.filter((i) => !i.disabled);
         const max = Math.min(d.max, items.length);
-        const n = d.min + int(this.rng, Math.max(1, max - d.min + 1));
-        const ids = shuffle(this.rng, items.map((i) => i.id)).slice(0, Math.min(n, max));
-        return { kind: 'select', ids };
+        // escolhas com restrição (zero ou dois modos, soma de força…): tenta ao acaso e confere com o motor
+        for (let i = 0; i < 40; i++) {
+          const n = d.min + int(this.rng, Math.max(1, max - d.min + 1));
+          const a: Answer = { kind: 'select', ids: shuffle(this.rng, items.map((it) => it.id)).slice(0, Math.min(n, max)) };
+          if (ok(a)) return a;
+        }
+        return { kind: 'select', ids: items.slice(0, d.min).map((it) => it.id) };
       }
       case 'number': {
         const span = d.max - d.min;
@@ -40,7 +44,11 @@ export class RandomBot {
       case 'attackers': {
         for (let i = 0; i < 40; i++) {
           const attacks: [ObjId, TargetRef][] = [];
-          for (const c of d.candidates) if (next(this.rng) < 0.5) attacks.push([c.obj, this.pick(c.targets)]);
+          // quem tem exigência de ataque (CR 508.1d) ataca um dos alvos que a cumprem; os outros, ao acaso
+          for (const c of d.candidates) {
+            if (c.required?.length) attacks.push([c.obj, this.pick(c.required)]);
+            else if (next(this.rng) < 0.5) attacks.push([c.obj, this.pick(c.targets)]);
+          }
           const a: Answer = { kind: 'attackers', attacks };
           if (ok(a)) return a;
         }

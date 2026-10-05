@@ -444,7 +444,7 @@ export type Decision = {
   | { kind: 'select'; items: ChoiceItem[]; min: number; max: number; ordered?: boolean }
   | { kind: 'number'; min: number; max: number }
   | { kind: 'payment'; cost: string; remaining: string; sources: PaymentSource[]; canAuto: boolean; lifeOptions: number; canCancel: boolean }
-  | { kind: 'attackers'; candidates: { obj: ObjId; targets: TargetRef[] }[]; error?: string }
+  | { kind: 'attackers'; candidates: { obj: ObjId; targets: TargetRef[]; /** alvos que cumprem as exigências de ataque (CR 508.1d); ausente se não houver */ required?: TargetRef[] }[]; error?: string }
   | { kind: 'blockers'; candidates: { obj: ObjId; canBlock: ObjId[] }[]; attackers: ObjId[]; error?: string }
   | { kind: 'damage'; attacker: ObjId; amount: number; recipients: TargetRef[]; lethal: number[]; trample: boolean; error?: string }
   | { kind: 'arrange'; items: ChoiceItem[]; destinations: ('top' | 'bottom' | 'graveyard')[] }

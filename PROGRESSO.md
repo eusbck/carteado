@@ -10,6 +10,7 @@ Lista de verificação das fases. É por aqui que uma sessão nova retoma o trab
 - 04/10/2026 (continuação): os agentes paralelos falharam por limite de uso; as cartas da parte A foram escritas direto. Fase 2 concluída; começar a fase 3 (servidor e cliente).
 - 04/10/2026 (continuação): fase 3 concluída; começar a fase 4 (cartas, parte B).
 - 05/10/2026: retomada depois do limite de uso da sessão anterior; fechar o lote 3e (cartas R, sem commit) e seguir com as cartas S–Z e as especiais.
+- 05/10/2026 (continuação): fase 4 concluída (547/547); começar a fase 5 (bots).
 
 ## Fase 0: exploração e proposta
 
@@ -65,14 +66,19 @@ Recapitulação da fase 3 (04/10/2026):
 - Verificado: 253 arquivos e 661 testes passando (inclui salas, reinício e informação oculta no servidor, e o modo manual com reprodução por semente); `npm run typecheck` sem erros; `node ferramentas/e2e.ts` passou inteiro (1v1 entre dois navegadores com o servidor derrubado e religado no turno 4, a partida voltou no mesmo turno e foi até o fim; partida de 4 pessoas em 4 navegadores até o turno 9 e concessões até sobrar uma); capturas conferidas.
 - Precisa de você: nada por enquanto. A hospedagem (fase 6) vai pedir sua confirmação antes de criar conta ou publicar.
 
-## Fase 4: cartas, parte B (271, inclui 37 especiais)
+## Fase 4: cartas, parte B (271, inclui 37 especiais) — concluída em 05/10/2026
 
-- [x] Mecanismos raros no motor (transformar, resguardo, cópia de mágica, delve, preparar, bestow, aniquilador, sair de fase, apoio, exaltado, eco, devorar, manifestar, desenterrar, suspender, ficha de Aura, bravura, flanqueamento, ascensão, Strive, trocar vida e resistência, gatilho extra)
-- [x] Cartas comuns da parte B (A–Y) com teste e rulings conferidos: 517/547 em 05/10/2026 (commit 80f2bcc)
-- [ ] As 30 cartas especiais restantes (lista em `COBERTURA.md`, linhas com "—")
-- [ ] `COBERTURA.md` em 547/547
+- [x] Mecanismos raros no motor (transformar, resguardo, cópia de mágica, delve, preparar, bestow, aniquilador, sair de fase, apoio, exaltado, eco, devorar, manifestar, desenterrar, suspender, ficha de Aura, bravura, flanqueamento, ascensão, Strive, trocar vida e resistência, gatilho extra, Sagas, Classe, miríade, cópia ao entrar, Aura em carta do cemitério)
+- [x] Cartas comuns da parte B (A–Y) com teste e rulings conferidos
+- [x] As cartas especiais
+- [x] `COBERTURA.md` em 547/547
 
-Notas para retomar: lotes de 8 a 20 cartas; depois de cada lote, `npx tsc --noEmit -p tsconfig.json`, os testes do lote, `npx vitest run` inteiro **sem mexer em arquivos durante a execução** (a suíte importa todas as definições e falha em massa se pegar um arquivo pela metade), `node ferramentas/cobertura.ts` e commit. Leia o Oracle e os rulings com `node ferramentas/ficha-carta.ts "<nome>"`.
+Recapitulação da fase 4 (05/10/2026):
+- Feito: todas as 547 entradas prontas (cartas dos 7 decks, fichas e recursos auxiliares), cada carta com teste próprio e os 1285 rulings com disposição registrada; nenhuma carta depende mais do modo manual. Correções no caminho: jogar terreno por permissão de outra carta (a chave era cortada), `attach()` respeitando "encantar a criatura posta no campo", custo repetível limitado ao que dá para pagar, a decisão de ataque passa a dizer quais alvos cumprem as exigências (CR 508.1d), o servidor usa a resposta neutra do motor se um bot errar, e o harness de testes ficou mais rigoroso (responde a ordem de gatilhos antes de resolver a pilha; "até a limpeza" para no fim do turno em vez de jogar até o fim da partida).
+- Verificado: `npm run typecheck` sem erros; suíte inteira com 507 arquivos e 1064 testes passando; `COBERTURA.md` 547/547 e rulings 1285/1285; estresse com bots aleatórios: 80 partidas de 4 jogadores (sementes fase4 e fase4c) e 40 de 1v1 (fase4b) sem erro, travamento nem invariante violada (antes das correções, 11 das 40 primeiras falhavam).
+- Precisa de você: nada.
+
+Notas para retomar: depois de mexer no motor, rode `npx tsc --noEmit -p tsconfig.json`, os testes afetados, `npx vitest run` inteiro **sem mexer em arquivos durante a execução** (a suíte importa todas as definições e falha em massa se pegar um arquivo pela metade) e `node bots/estresse.ts 40 4 aleatorio <semente>`. Falhas do estresse ficam em `.cache/falhas/` e se reproduzem com `node .cache/repro-falha.ts <semente>`.
 
 ## Fase 5: bots
 

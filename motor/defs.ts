@@ -170,6 +170,8 @@ export interface TriggeredDef extends AbilityCommon {
   oncePerTurn?: boolean;
   /** habilidade de mana engatilhada (CR 605.1b) */
   mana?: boolean;
+  /** capítulos de uma Saga que esta habilidade representa (CR 714.2) */
+  chapters?: number[];
 }
 
 export interface RuleHooks {

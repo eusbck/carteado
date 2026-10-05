@@ -4,7 +4,7 @@
 
 import type { Gen } from './defs.ts';
 import type { G } from './game-context.ts';
-import type { Answer, ChoiceItem, Color, Decision, ObjId, PlayerId } from './types.ts';
+import type { Answer, ChoiceItem, Color, Decision, ObjId, PlayerId, TargetRef } from './types.ts';
 
 export type DecisionInput = Omit<Decision, 'id'> extends infer D ? (D extends unknown ? Omit<D, never> : never) : never;
 
@@ -29,7 +29,8 @@ export function defaultAnswer(d: Decision): Answer {
     case 'select': return { kind: 'select', ids: d.items.filter((i) => !i.disabled).slice(0, d.min).map((i) => i.id) };
     case 'number': return { kind: 'number', value: d.min };
     case 'payment': return d.canCancel ? { kind: 'payment', cancel: true } : { kind: 'payment', auto: true };
-    case 'attackers': return { kind: 'attackers', attacks: [] };
+    // quem tem exigência de ataque (CR 508.1d) ataca um alvo que a cumpre
+    case 'attackers': return { kind: 'attackers', attacks: d.candidates.flatMap((c) => (c.required?.length ? [[c.obj, c.required[0]] as [ObjId, TargetRef]] : [])) };
     case 'blockers': return { kind: 'blockers', blocks: [] };
     case 'damage': return { kind: 'damage', assign: d.lethal.slice() };
     case 'arrange': return { kind: 'arrange', placement: Object.fromEntries(d.items.map((i) => [i.id, d.destinations[0]])), order: d.items.map((i) => i.id) };
