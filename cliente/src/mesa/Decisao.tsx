@@ -158,6 +158,13 @@ function Atacantes({ d, ui, nomeObj, nomeAlvo }: { d: D<'attackers'>; ui: Estado
     ui.setAtaques(novo);
   };
   const lista = Object.entries(ui.ataques).map(([o, t]) => [Number(o), t] as [ObjId, TargetRef]);
+  // criaturas com exigência de ataque (goad, "ataca se puder"): CR 508.1d
+  const obrigadas = d.candidates.filter((c) => c.required?.length);
+  const marcarObrigadas = () => {
+    const novo = { ...ui.ataques };
+    for (const c of obrigadas) if (!novo[c.obj] || !c.required!.some((t) => mesmoAlvo(t, novo[c.obj]))) novo[c.obj] = c.required![0];
+    ui.setAtaques(novo);
+  };
   return (
     <div class="decisao">
       <p class="decisao-titulo">Declare os atacantes</p>
@@ -165,7 +172,7 @@ function Atacantes({ d, ui, nomeObj, nomeAlvo }: { d: D<'attackers'>; ui: Estado
       <div class="linhas">
         {d.candidates.map((c) => (
           <div class="linha" key={c.obj}>
-            <span class="linha-nome">{nomeObj(c.obj)}</span>
+            <span class="linha-nome">{nomeObj(c.obj)}{c.required?.length ? <span class="linha-aviso"> · precisa atacar</span> : null}</span>
             <span class="linha-botoes">
               {c.targets.map((t) => (
                 <button key={`${t.kind}${t.id}`} class={`botao pequeno ${ui.ataques[c.obj] && mesmoAlvo(ui.ataques[c.obj], t) ? 'ativo' : ''}`} onClick={() => alternar(c.obj, t)}>{nomeAlvo(t)}</button>
@@ -176,6 +183,7 @@ function Atacantes({ d, ui, nomeObj, nomeAlvo }: { d: D<'attackers'>; ui: Estado
       </div>
       <div class="botoes-linha">
         <button class="botao principal" onClick={() => responder(d, { kind: 'attackers', attacks: lista })}>{lista.length ? `Atacar com ${lista.length}` : 'Não atacar'}</button>
+        {obrigadas.length > 0 && <button class="botao" onClick={marcarObrigadas}>Marcar quem precisa atacar</button>}
         {lista.length > 0 && <button class="botao" onClick={() => ui.setAtaques({})}>Limpar</button>}
       </div>
     </div>

@@ -32,14 +32,15 @@ Variáveis opcionais:
 
 1. Entre com a senha do servidor.
 2. Escolha um nome, crie uma sala (quatro jogadores ou um contra um) com uma senha e passe o
-   código e a senha para os outros. Lugares vazios podem receber bots.
+   código e a senha para os outros. Lugares vazios podem receber bots, que jogam com os mesmos decks e
+   veem só o que um jogador veria.
 3. Cada um escolhe um deck; quem criou a sala começa a partida.
 4. Durante a partida, a decisão pendente aparece no painel da direita. Clique numa carta para ver
    o que dá para fazer com ela. O botão "Paradas" define em que etapas o jogo espera você; fora
    delas, ele passa a prioridade sozinho.
-5. Cartas marcadas como "manual" ainda não têm o efeito automatizado: depois de jogá-las, use
-   "Ajuste manual" para aplicar o efeito (mover cartas, vida, marcadores, fichas…). Todo ajuste
-   aparece no registro para todos.
+5. Todas as cartas dos sete decks têm o efeito automatizado. O botão "Ajuste manual" continua
+   disponível para corrigir alguma situação à mão (mover cartas, vida, marcadores, fichas…), e todo
+   ajuste aparece no registro para todos.
 
 Se a conexão cair ou o servidor reiniciar, a página reconecta sozinha e volta ao mesmo lugar.
 
@@ -50,7 +51,9 @@ Se a conexão cair ou o servidor reiniciar, a página reconecta sozinha e volta 
 | `npm test` | toda a suíte de testes (motor, cartas, servidor) |
 | `npm run typecheck` | checagem de tipos do servidor e do cliente |
 | `npm run cliente:dev` | cliente com recarga automática (precisa do servidor rodando) |
-| `npm run estresse` | partidas de bots aleatórios procurando erros do motor |
+| `npm run estresse` | partidas de bots procurando erros do motor (`node bots/estresse.ts [partidas] [jogadores] [aleatorio ou heuristico] [semente]`) |
+| `node bots/comparar.ts` | força do bot: o heurístico no assento 0 contra aleatórios (ou todos heurísticos) |
+| `node ferramentas/humano-e-bots.ts` | uma partida inteira no servidor com uma pessoa simulada e 3 bots |
 | `node ferramentas/capturas.ts` | capturas de tela da interface em `.cache/capturas/` |
 | `node ferramentas/e2e.ts` | partidas de ponta a ponta com navegadores (1v1, 4 jogadores, reinício do servidor) |
 | `node ferramentas/cobertura.ts` | atualiza `COBERTURA.md` |

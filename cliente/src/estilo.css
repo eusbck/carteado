@@ -209,6 +209,7 @@ details.mana summary { cursor: pointer; color: var(--suave); font-size: .9rem; m
 .linha-carta { grid-template-columns: 40px 1fr; align-items: center; }
 .linha-carta .linha-botoes { grid-column: 1 / -1; }
 .linha-nome { font-weight: 600; }
+.linha-aviso { font-weight: 400; color: var(--ambar); font-size: .85rem; }
 .linha-botoes { display: flex; flex-wrap: wrap; gap: 4px; }
 .mini { width: 40px; aspect-ratio: 63 / 88; object-fit: cover; border-radius: 2px; }
 .pilha ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 5px; max-height: 26vh; overflow: auto; }

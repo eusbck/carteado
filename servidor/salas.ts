@@ -3,7 +3,7 @@
 // do próprio assento (motor/view.ts), nunca o estado inteiro.
 
 import { randomBytes, randomInt, scryptSync, timingSafeEqual } from 'node:crypto';
-import { RandomBot } from '../bots/aleatorio.ts';
+import { HeuristicBot } from '../bots/heuristico.ts';
 import { defaultAnswer } from '../motor/ask.ts';
 import { DEFAULT_STOPS, shouldAutoPass, type StopSettings } from '../motor/autopass.ts';
 import { Game, type Checkpoint, type Input } from '../motor/game.ts';
@@ -26,10 +26,13 @@ export interface Atrasos {
   botPasse: number;
   /** passe automático de um humano: o mesmo atraso sempre, para não revelar se havia resposta */
   autoPasse: number;
+  /** simulações do bot heurístico por decisão (força e tempo de resposta) */
+  simulacoesBot: number;
 }
 
-export const ATRASOS_PADRAO: Atrasos = { botAcao: 700, botPasse: 90, autoPasse: 60 };
-export const SEM_ATRASO: Atrasos = { botAcao: 0, botPasse: 0, autoPasse: 0 };
+export const ATRASOS_PADRAO: Atrasos = { botAcao: 700, botPasse: 90, autoPasse: 60, simulacoesBot: 24 };
+// testes do servidor: sem atrasos e com bots que pensam pouco (o fluxo da sala é o que importa)
+export const SEM_ATRASO: Atrasos = { botAcao: 0, botPasse: 0, autoPasse: 0, simulacoesBot: 3 };
 
 interface Assento {
   tipo: TipoAssento;
@@ -83,7 +86,7 @@ export class Sala {
   d: DadosSala;
   game: Game | null = null;
   conexoes = new Set<Conexao>();
-  private bots = new Map<number, RandomBot>();
+  private bots = new Map<number, HeuristicBot>();
   private rodando = false;
   private salvas = 0;
   erro: string | null = null;
@@ -251,7 +254,7 @@ export class Sala {
     const decks = p.deckIds.map((id) => this.gerente.deck(id)!);
     this.game = cp ? Game.fromCheckpoint(cp, decks, entradas) : entradas.length ? Game.replay(p.config, decks, entradas) : Game.create(p.config, decks);
     this.salvas = this.game.inputs.length;
-    this.bots = new Map(this.d.assentos.map((a, i) => [i, a] as const).filter(([, a]) => a.tipo === 'bot').map(([i]) => [i, new RandomBot(`${p.config.seed}:${i}`)]));
+    this.bots = new Map(this.d.assentos.map((a, i) => [i, a] as const).filter(([, a]) => a.tipo === 'bot').map(([i]) => [i, new HeuristicBot(`${p.config.seed}:${i}`, i, { simulacoes: this.gerente.atrasos.simulacoesBot })]));
     if (this.game.isOver()) this.d.estado = 'fim';
   }
 
@@ -301,7 +304,7 @@ export class Sala {
         let resposta: Answer | null = null;
         let espera = 0;
         if (a.tipo === 'bot') {
-          resposta = this.bots.get(d.player)!.answer(d);
+          resposta = this.bots.get(d.player)!.answer(d, g);
           const visivel = (d.kind === 'priority' && resposta.kind === 'priority' && resposta.action !== 'pass') || d.kind === 'attackers' || d.kind === 'blockers';
           espera = visivel ? at.botAcao : at.botPasse;
         } else if (shouldAutoPass(g.state, d, d.player, a.paradas)) {

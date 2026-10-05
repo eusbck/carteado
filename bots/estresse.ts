@@ -13,6 +13,7 @@ import { int, seedFrom } from '../motor/rng.ts';
 import type { DeckList } from '../motor/state.ts';
 import type { Answer, Decision } from '../motor/types.ts';
 import { RandomBot } from './aleatorio.ts';
+import { HeuristicBot } from './heuristico.ts';
 
 export interface BotLike { answer(d: Decision, game: Game): Answer }
 
@@ -76,13 +77,21 @@ const isMain = process.argv[1] && fileURLToPath(import.meta.url) === process.arg
 if (isMain) {
   const n = Number(process.argv[2] ?? 20);
   const players = Number(process.argv[3] ?? 4);
+  const tipo = process.argv[4] ?? 'aleatorio';
   const base = process.argv[5] ?? 'estresse';
+  // simulações por decisão dos bots heurísticos; no estresse, menos que no servidor
+  const simulacoes = Number(process.env.SIMULACOES ?? 16);
+  const inicio = Number(process.env.INICIO ?? 0);
   let ok = 0;
   const t0 = Date.now();
   let totalDecisions = 0;
-  for (let i = 0; i < n; i++) {
+  for (let i = inicio; i < inicio + n; i++) {
     const seed = `${base}-${players}p-${i}`;
-    const r = runGame(seed, players, (p, s) => { const b = new RandomBot(`${s}:${p}`); return { answer: (d) => b.answer(d) }; });
+    const r = runGame(seed, players, (p, s) => {
+      if (tipo === 'heuristico') { const b = new HeuristicBot(`${s}:${p}`, p, { simulacoes }); return { answer: (d, game) => b.answer(d, game) }; }
+      const b = new RandomBot(`${s}:${p}`);
+      return { answer: (d) => b.answer(d) };
+    });
     totalDecisions += r.decisions;
     if (r.ok) { ok++; console.log(`${seed}: ok — ${r.turns} turnos, ${r.decisions} decisões, ${r.draw ? 'empate' : `vencedor ${r.winners.join(',')}`} (${r.reason}), ${r.ms} ms`); }
     else console.log(`${seed}: FALHOU — ${r.error}`);

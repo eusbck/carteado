@@ -82,9 +82,16 @@ Notas para retomar: depois de mexer no motor, rode `npx tsc --noEmit -p tsconfig
 
 ## Fase 5: bots
 
-- [ ] Heurísticas e busca rasa com informação determinizada
-- [ ] 3 bots + 1 humano
+- [x] Heurísticas e busca rasa com informação determinizada (`bots/heuristico.ts`, `bots/simulacao.ts`, `bots/avaliacao.ts`)
+- [x] 3 bots + 1 humano (servidor usa o bot heurístico nos lugares de bot; `ferramentas/humano-e-bots.ts`; cenário novo em `ferramentas/e2e.ts`)
 - [ ] 200 partidas seguidas com 4 bots, sem erro, travamento ou estado ilegal
+
+Como o bot decide: nos momentos que importam (fases principais do próprio turno, etapa final dos oponentes e quando
+um oponente põe algo na pilha), simula cada jogada candidata numa cópia da partida em que a mão e o grimório dos
+oponentes são redistribuídos ao acaso e o próprio grimório é embaralhado, deixa a pilha resolver e avalia (vida,
+mesa, cartas, dano de comandante, veneno). As escolhas da melhor simulação (alvos, modos, X) viram o plano seguido na
+partida. Combate, mulligan, vidência e escolhas forçadas usam heurísticas. O número de simulações por decisão é fixo
+(determinístico): 24 no servidor, 16 no estresse.
 
 ## Fase 6: hospedagem
 

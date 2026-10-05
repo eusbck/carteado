@@ -128,7 +128,7 @@ describe('servidor: salas', () => {
     const intruso = new Falsa();
     g2.tratar(intruso, { t: 'retomar', codigo, token: 'x' });
     expect(intruso.ultima('erro')).toBeDefined();
-  }, 30000);
+  }, 120000); // os bots heurísticos pensam a cada jogada; com a suíte inteira rodando junto, demora mais
 
   it('1v1 com bot vai até o fim quando Ana concede', async () => {
     const g = new Gerente(new Banco(':memory:'), DECKS, SEM_ATRASO);
@@ -139,5 +139,5 @@ describe('servidor: salas', () => {
     await espera();
     expect(ana.ultima('jogo')!.vista.gameOver?.winners).toEqual([1]);
     expect(g.salas.get(codigo)!.d.estado).toBe('fim');
-  });
+  }, 120000); // o bot heurístico simula cada jogada
 });

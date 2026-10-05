@@ -133,7 +133,11 @@ export function* declareAttackers(g: G): Gen<void> {
     for (;;) {
       const a = yield* ask<Extract<Answer, { kind: 'attackers' }>>(g, {
         kind: 'attackers', player, prompt: 'Declare os atacantes',
-        candidates: cands.map((c) => { const r = requiredTargets(g, c.obj, c.targets); return r.length ? { obj: c.obj, targets: c.targets, required: r } : { obj: c.obj, targets: c.targets }; }),
+        candidates: cands.map((c) => {
+          const r = requiredTargets(g, c.obj, c.targets);
+          const custos = c.targets.map((t) => attackCostFor(g, c.obj, t));
+          return { obj: c.obj, targets: c.targets, ...(r.length ? { required: r } : {}), ...(custos.some((n) => n > 0) ? { costs: custos } : {}) };
+        }),
       }, (ans) => validateAttack(g, player, ans.attacks));
       attacks = a.attacks;
       // custos para atacar (CR 508.1h-j)

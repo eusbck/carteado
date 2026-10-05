@@ -204,6 +204,26 @@ try {
   await pessoas[0].getByText('Fim de partida').waitFor({ timeout: 20000 });
   verificar(await pessoas[0].getByText('Venceu: Carla.').isVisible(), 'a partida de 4 termina com a vitória de quem sobrou');
   for (const p of pessoas.slice(1)) verificar(await p.getByText('Fim de partida').isVisible(), 'todos veem o fim da partida');
+  for (const p of pessoas) await p.context().close();
+
+  // ------------------------------------------------ uma pessoa e três bots
+  const gil = await novaPessoa(nav, 'Gil');
+  await criarSala(gil, '4p');
+  for (let i = 1; i < 4; i++) {
+    await gil.locator('.assento').nth(i).getByLabel('Pôr bot com').selectOption({ index: i + 1 });
+    await gil.locator('.assento').nth(i).getByText('bot', { exact: true }).waitFor({ timeout: 10000 });
+  }
+  await gil.locator('.deck').nth(0).click();
+  await gil.waitForTimeout(300);
+  await gil.getByRole('button', { name: 'Começar a partida' }).click();
+  await gil.locator('.turno-linha').waitFor({ timeout: 30000 });
+  verificar(true, 'a partida de uma pessoa com três bots começa');
+  await jogarAte([gil], 9, 900000);
+  verificar(true, 'a partida com uma pessoa e três bots chegou ao turno 9 pela interface');
+  const registro = (await gil.locator('.registro').textContent()) ?? '';
+  verificar(/Bot \d|joga |conjura /.test(registro) && (registro.match(/ joga /g) ?? []).length >= 3, 'os bots jogaram terrenos e mágicas pela vez deles');
+  verificar((await gil.locator('.mao-cartas .carta').count()) > 0 && !(await gil.getByText('Erro interno do motor').isVisible().catch(() => false)), 'a pessoa continua vendo a própria mão e nenhum erro do motor apareceu');
+  await gil.screenshot({ path: join(SAIDA, 'bots-gil.png') });
   console.log('\nTodas as verificações de ponta a ponta passaram.');
 } catch (e) {
   for (const [i, p] of todas.entries()) {
