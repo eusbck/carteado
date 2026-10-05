@@ -341,7 +341,7 @@ export function additionalCost(key: string, label: string, parts: CostPart[], op
   return { key, label, parts, optional: false, ...opts };
 }
 
-export function modal(min: number, max: number, modes: ModeSpec['modes'], extra: Partial<ModeSpec> = {}): ModeSpec {
+export function modal(min: number, max: ModeSpec['max'], modes: ModeSpec['modes'], extra: Partial<ModeSpec> = {}): ModeSpec {
   return { min, max, modes, ...extra };
 }
 

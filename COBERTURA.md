@@ -5,11 +5,11 @@ Gerado por `ferramentas/cobertura.ts`. Não edite à mão.
 | | |
 | --- | ---: |
 | Entradas (cartas dos decks + fichas e objetos auxiliares) | 547 |
-| **Implementadas, testadas e com rulings conferidos** | **502 / 547** |
-| Implementadas | 502 |
-| Com teste próprio | 502 |
-| Rulings conferidos (cartas dos decks) | 1038 / 1285 |
-| Pendentes (jogáveis em modo manual) | 45 |
+| **Implementadas, testadas e com rulings conferidos** | **517 / 547** |
+| Implementadas | 517 |
+| Com teste próprio | 517 |
+| Rulings conferidos (cartas dos decks) | 1079 / 1285 |
+| Pendentes (jogáveis em modo manual) | 30 |
 
 Uma carta conta como pronta quando tem definição em `cartas/defs/`, um arquivo de teste próprio
 (`cartas/defs/<nome>.test.ts`) e cada ruling registrado na definição com o teste que o cobre ou o
@@ -494,36 +494,36 @@ motivo de não se aplicar.
 | Veyran, Voice of Duality | Pri | B | sim | sim | 7/7 |
 | Victor, Valgavoth's Seneschal | Sil | B | sim | sim | 3/3 |
 | Vile Entomber | Ter | A | sim | sim | — |
-| Village Pillagers | Bli | B | — | — | 0/1 |
+| Village Pillagers | Bli | B | sim | sim | 1/1 |
 | Viridescent Bog | Wit | A | sim | sim | — |
 | Viscera Seer | Wit | A | sim | sim | 2/2 |
-| Volcanic Salvo | Pri | B | — | — | 0/6 |
-| Vraska, Betrayal's Sting | Bli | B | — | — | 0/5 |
-| Wakestone Gargoyle | Abz | B | — | — | 0/2 |
-| Walking Bulwark | Abz | B | — | — | 0/1 |
+| Volcanic Salvo | Pri | B | sim | sim | 6/6 |
+| Vraska, Betrayal's Sting | Bli | B | sim | sim | 5/5 |
+| Wakestone Gargoyle | Abz | B | sim | sim | 2/2 |
+| Walking Bulwark | Abz | B | sim | sim | 1/1 |
 | Wall of Blossoms | Abz | A | sim | sim | — |
-| Wall of Limbs | Abz | B | — | — | 0/3 |
+| Wall of Limbs | Abz | B | sim | sim | 3/3 |
 | Wall of Omens | Abz | A | sim | sim | — |
 | Wall of Reverence | Abz | A | sim | sim | 1/1 |
-| Wall of Roots | Abz | B | — | — | 0/1 |
-| War Room | Sil | B | — | — | 0/3 |
+| Wall of Roots | Abz | B | sim | sim | 1/1 |
+| War Room | Sil | B | sim | sim | 3/3 |
 | Wave of Reckoning | Lor | A | sim | sim | — |
-| Weathered Sentinels | Abz | B | — | — | — |
+| Weathered Sentinels | Abz | B | sim | sim | — |
 | Welcoming Vampire | Abz | A | sim | sim | 2/2 |
 | White Orchid Phantom | Lor | A | sim | sim | 2/2 |
-| Wickerbough Elder | Bli | B | — | — | 0/2 |
-| Wickersmith's Tools | Bli | B | — | — | 0/1 |
+| Wickerbough Elder | Bli | B | sim | sim | 2/2 |
+| Wickersmith's Tools | Bli | B | sim | sim | 1/1 |
 | Wight of the Reliquary | Wit | A | sim | sim | — |
-| Will of the Abzan | Abz | B | — | — | 0/3 |
+| Will of the Abzan | Abz | B | sim | sim | 3/3 |
 | Winds of Rath | Sil | A | sim | sim | 1/1 |
 | Wingmantle Chaplain | Abz | A | sim | sim | 2/2 |
-| Witch of the Moors | Wit | B | — | — | 0/5 |
+| Witch of the Moors | Wit | B | sim | sim | 5/5 |
 | Witherbloom Campus | Wit | A | sim | sim | — |
 | Witherbloom Charm | Wit | A | sim | sim | 1/1 |
 | Witherbloom Command | Wit | A | sim | sim | 3/3 |
-| Woe Strider | Wit | B | — | — | 0/7 |
+| Woe Strider | Wit | B | sim | sim | 7/7 |
 | Woodland Cemetery | Abz, Bli, Wit | A | sim | sim | — |
-| Yahenni, Undying Partisan | Wit | B | — | — | 0/1 |
+| Yahenni, Undying Partisan | Wit | B | sim | sim | 1/1 |
 | Zetalpa, Primal Dawn | Abz | dados | sim | sim | 1/1 |
 | Zulaport Cutthroat | Wit | A | sim | sim | 1/1 |
 | Bird (Bird) | — | ficha | sim | sim | — |

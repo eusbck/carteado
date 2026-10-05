@@ -239,9 +239,12 @@ export class TestGame {
   }
   /** passa até chegar na etapa pedida (do turno atual ou do próximo) */
   passTo(step: Step, turnOf?: PlayerId): this {
+    // a limpeza normalmente não dá prioridade (CR 514.3): "até a limpeza" para logo depois que o turno acaba
+    const inicio = this.state.turn.number;
     for (let i = 0; i < 400; i++) {
       this.settle();
       if (this.state.gameOver) return this;
+      if (step === 'cleanup' && this.state.turn.number > inicio && this.pending?.kind === 'priority') return this;
       if (this.state.turn.step === step && (turnOf === undefined || this.state.turn.active === turnOf) && this.pending?.kind === 'priority' && this.state.zones.stack.length === 0 && this.state.passesInRow === 0) return this;
       this.pass();
     }
