@@ -167,6 +167,8 @@ export type Mod =
   | { k: 'loseAllAbilities' }
   | { k: 'loseKeyword'; kw: string }
   | { k: 'setPT'; p: number; t: number }
+  /** só a resistência passa a ser N (camada 7b) */
+  | { k: 'setT'; t: number }
   | { k: 'pt'; p: number; t: number }
   | { k: 'rule'; id: string; params?: Record<string, unknown> };
 

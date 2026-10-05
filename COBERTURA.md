@@ -5,11 +5,11 @@ Gerado por `ferramentas/cobertura.ts`. Não edite à mão.
 | | |
 | --- | ---: |
 | Entradas (cartas dos decks + fichas e objetos auxiliares) | 547 |
-| **Implementadas, testadas e com rulings conferidos** | **481 / 547** |
-| Implementadas | 481 |
-| Com teste próprio | 481 |
-| Rulings conferidos (cartas dos decks) | 972 / 1285 |
-| Pendentes (jogáveis em modo manual) | 66 |
+| **Implementadas, testadas e com rulings conferidos** | **502 / 547** |
+| Implementadas | 502 |
+| Com teste próprio | 502 |
+| Rulings conferidos (cartas dos decks) | 1038 / 1285 |
+| Pendentes (jogáveis em modo manual) | 45 |
 
 Uma carta conta como pronta quando tem definição em `cartas/defs/`, um arquivo de teste próprio
 (`cartas/defs/<nome>.test.ts`) e cada ruling registrado na definição com o teste que o cobre ou o
@@ -443,7 +443,7 @@ motivo de não se aplicar.
 | Talisman of Creativity | Pri | A | sim | sim | — |
 | Talisman of Hierarchy | Sil | A | sim | sim | — |
 | Talisman of Indulgence | Ter | A | sim | sim | — |
-| Teacher's Pest | Wit | B | — | — | — |
+| Teacher's Pest | Wit | B | sim | sim | — |
 | Temple of Epiphany | Pri | A | sim | sim | — |
 | Temple of Malady | Abz, Wit | A | sim | sim | — |
 | Temple of Plenty | Abz | A | sim | sim | 4/4 |
@@ -451,48 +451,48 @@ motivo de não se aplicar.
 | Temple of the False God | Pri | A | sim | sim | — |
 | Temple of Triumph | Lor | A | sim | sim | 4/4 |
 | Tend the Sprigs | Bli | A | sim | sim | — |
-| Tendershoot Dryad | Wit | B | — | — | 0/8 |
+| Tendershoot Dryad | Wit | B | sim | sim | 8/8 |
 | Terminate | Bli | A | sim | sim | — |
 | Terra, Herald of Hope | Ter | B | — | — | 0/1 |
 | Terramorphic Expanse | Bli, Lor, Pri, Sil, Wit | A | sim | sim | — |
-| Teshar, Ancestor's Apostle | Lor | B | — | — | 0/5 |
-| The Reaper, King No More | Bli | B | — | — | — |
-| The Scorpion God | Bli | B | — | — | 0/2 |
+| Teshar, Ancestor's Apostle | Lor | B | sim | sim | 5/5 |
+| The Reaper, King No More | Bli | B | sim | sim | — |
+| The Scorpion God | Bli | B | sim | sim | 2/2 |
 | The Warring Triad | Ter | B | — | — | 0/9 |
-| Thrill of Possibility | Ter | B | — | — | 0/1 |
+| Thrill of Possibility | Ter | B | sim | sim | 1/1 |
 | Thrilling Discovery | Lor | A | sim | sim | — |
-| Thunderclap Drake | Pri | B | — | — | 0/9 |
+| Thunderclap Drake | Pri | B | sim | sim | 9/9 |
 | Tip the Scales | Abz | A | sim | sim | 2/2 |
 | Titan's Grave | Wit | A | sim | sim | — |
 | Tocasia's Welcome | Lor | A | sim | sim | — |
-| Tomik, Wielder of Law | Sil | B | — | — | — |
+| Tomik, Wielder of Law | Sil | B | sim | sim | — |
 | Tower Defense | Abz | A | sim | sim | 1/1 |
-| Towering Titan | Abz | B | — | — | 0/2 |
+| Towering Titan | Abz | B | sim | sim | 2/2 |
 | Toxic Deluge | Wit | B | sim | sim | 2/2 |
-| Tragic Arrogance | Lor, Ter | B | — | — | 0/2 |
-| Transcendent Envoy | Sil | B | — | — | — |
-| Treasure Cruise | Pri | B | — | — | 0/3 |
-| Tree of Perdition | Bli | B | — | — | 0/3 |
-| Tree of Redemption | Abz | B | — | — | 0/3 |
+| Tragic Arrogance | Lor, Ter | B | sim | sim | 2/2 |
+| Transcendent Envoy | Sil | B | sim | sim | — |
+| Treasure Cruise | Pri | B | sim | sim | 3/3 |
+| Tree of Perdition | Bli | B | sim | sim | 3/3 |
+| Tree of Redemption | Abz | B | sim | sim | 3/3 |
 | Trove Warden | Lor | A | sim | sim | 3/3 |
 | Turbulent Fen | Wit | A | sim | sim | 2/2 |
 | Turbulent Moor | Sil | A | sim | sim | 2/2 |
 | Turbulent Springs | Pri | A | sim | sim | 2/2 |
 | Turbulent Steppe | Lor | A | sim | sim | 2/2 |
-| Twilight Diviner | Ter | B | — | — | 0/4 |
+| Twilight Diviner | Ter | B | sim | sim | 4/4 |
 | Twilight Mire | Abz, Wit | B | sim | sim | — |
-| Twinflame | Pri | B | — | — | 0/12 |
+| Twinflame | Pri | B | sim | sim | 12/12 |
 | Umbral Collar Zealot | Wit | A | sim | sim | — |
 | Umbral Expanse | Sil | A | sim | sim | 1/1 |
 | Vampiric Rites | Ter | A | sim | sim | — |
-| Vanguard of the Restless | Lor | B | — | — | 0/2 |
+| Vanguard of the Restless | Lor | B | sim | sim | 2/2 |
 | Vanishing Verse | Sil | A | sim | sim | 1/1 |
 | Veinwitch Coven | Wit | A | sim | sim | 4/4 |
-| Venerable Warsinger | Lor | B | — | — | — |
+| Venerable Warsinger | Lor | B | sim | sim | — |
 | Vengeful Bloodwitch | Wit | A | sim | sim | 1/1 |
 | Vernal Fen | Bli, Wit | A | sim | sim | 1/1 |
-| Veyran, Voice of Duality | Pri | B | — | — | 0/7 |
-| Victor, Valgavoth's Seneschal | Sil | B | — | — | 0/3 |
+| Veyran, Voice of Duality | Pri | B | sim | sim | 7/7 |
+| Victor, Valgavoth's Seneschal | Sil | B | sim | sim | 3/3 |
 | Vile Entomber | Ter | A | sim | sim | — |
 | Village Pillagers | Bli | B | — | — | 0/1 |
 | Viridescent Bog | Wit | A | sim | sim | — |
@@ -528,7 +528,7 @@ motivo de não se aplicar.
 | Zulaport Cutthroat | Wit | A | sim | sim | 1/1 |
 | Bird (Bird) | — | ficha | sim | sim | — |
 | Cat (Cat) | — | ficha | sim | sim | — |
-| City's Blessing | — | ficha | — | — | — |
+| City's Blessing | — | ficha | sim | sim | — |
 | Contract (Contract) | — | ficha | sim | sim | — |
 | Copy | — | ficha | sim | sim | — |
 | Demon (Demon) | — | ficha | sim | sim | — |

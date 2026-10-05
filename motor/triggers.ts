@@ -136,7 +136,12 @@ export function emit(g: G, events: GameEvent[]): void {
 }
 
 function matchSpec(g: G, def: TriggeredDef, ctx: TriggerCtx, events: GameEvent[]): Record<string, unknown>[] {
-  const out: Record<string, unknown>[] = [];
+  return matchWithCause(g, def, ctx, events).map((x) => x.r);
+}
+
+/** disparos com o evento que causou cada um (null para lotes e etapas) */
+function matchWithCause(g: G, def: TriggeredDef, ctx: TriggerCtx, events: GameEvent[]): { r: Record<string, unknown>; cause: GameEvent | null }[] {
+  const out: { r: Record<string, unknown>; cause: GameEvent | null }[] = [];
   const on = def.on;
   if (on.kind === 'step') {
     for (const e of events) {
@@ -144,18 +149,18 @@ function matchSpec(g: G, def: TriggeredDef, ctx: TriggerCtx, events: GameEvent[]
       if (on.firstMain && !e.firstMain) continue;
       if (on.whose === 'you' && e.active !== ctx.you) continue;
       if (on.whose === 'opponent' && !g.isOpponent(ctx.you, e.active)) continue;
-      out.push({ step: e.step, active: e.active });
+      out.push({ r: { step: e.step, active: e.active }, cause: null });
     }
   } else if (on.kind === 'event') {
     for (const e of events) {
       const r = on.match(e, ctx);
-      if (Array.isArray(r)) out.push(...r);
-      else if (r) out.push(typeof r === 'object' ? r : (e as unknown as Record<string, unknown>));
+      if (Array.isArray(r)) out.push(...r.map((x) => ({ r: x, cause: e })));
+      else if (r) out.push({ r: typeof r === 'object' ? r : (e as unknown as Record<string, unknown>), cause: e });
     }
   } else {
     const r = on.match(events, ctx);
-    if (Array.isArray(r)) out.push(...r);
-    else if (r) out.push(typeof r === 'object' ? r : {});
+    if (Array.isArray(r)) out.push(...r.map((x) => ({ r: x, cause: null })));
+    else if (r) out.push({ r: typeof r === 'object' ? r : {}, cause: null });
   }
   return out;
 }
@@ -163,8 +168,8 @@ function matchSpec(g: G, def: TriggeredDef, ctx: TriggerCtx, events: GameEvent[]
 function checkAbility(g: G, def: TriggeredDef, src: Source, events: GameEvent[]): void {
   const s = g.state;
   const ctx: TriggerCtx = { g, you: src.controller, source: src.obj.id, obj: src.obj, chars: src.chars };
-  const results = matchSpec(g, def, ctx, events);
-  for (const r of results) {
+  const results = matchWithCause(g, def, ctx, events);
+  for (const { r, cause } of results) {
     if (def.oncePerTurn) {
       const o = s.objects[src.obj.id];
       const key = def.id!;
@@ -173,7 +178,7 @@ function checkAbility(g: G, def: TriggeredDef, src: Source, events: GameEvent[])
     }
     if (def.condition && !def.condition({ g, you: src.controller, source: src.obj.id, event: r })) continue;
     let times = 1;
-    for (const h of hooks(g, 'extraTriggers')) times += h.fn(h.ctx, { abilityId: def.id!, source: src.obj.id, controller: src.controller, event: r });
+    for (const h of hooks(g, 'extraTriggers')) times += h.fn(h.ctx, { abilityId: def.id!, source: src.obj.id, controller: src.controller, event: r, cause });
     for (let i = 0; i < times; i++) addPending(g, def.id!, src.obj.id, src.controller, r, {});
   }
 }

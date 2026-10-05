@@ -208,7 +208,11 @@ export function totalSpellCost(g: G, player: PlayerId, o: GameObject, method: Ca
   if (method.zone === 'command') cost = addGeneric(cost, commanderTax(g, player, o));
   // aumentos e reduções (CR 601.2f): primeiro aumentos, depois reduções
   let reduce = 0, increase = 0;
-  if (f?.selfCost) { const r = f.selfCost({ g, you: player, source: o.id }, { targets: info.targets, x: info.x }); reduce += r.reduce ?? 0; increase += r.increase ?? 0; }
+  if (f?.selfCost) {
+    const r = f.selfCost({ g, you: player, source: o.id }, { targets: info.targets, x: info.x });
+    reduce += r.reduce ?? 0; increase += r.increase ?? 0;
+    if (r.add) cost = [...cost, ...parseCost(r.add)];
+  }
   for (const h of hooks(g, 'costModifier')) {
     const r = h.fn(h.ctx, { obj: o.id, controller: player, chars: c, targets: info.targets, castFrom: method.zone, method: method.key });
     if (r) { reduce += r.reduce ?? 0; increase += r.increase ?? 0; }

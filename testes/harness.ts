@@ -212,6 +212,7 @@ export class TestGame {
   }
   /** resolve a pilha toda */
   resolveAll(): this {
+    this.settle(); // gatilhos esperando ordem ou alvos ainda não estão na pilha
     for (let i = 0; i < 50 && this.state.zones.stack.length > 0; i++) this.resolve();
     return this;
   }

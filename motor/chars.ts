@@ -27,6 +27,7 @@ export function modLayer(m: Mod, cda = false): Layer | null {
     case 'setColors': return '5';
     case 'addKeyword': case 'addAbility': case 'loseAllAbilities': case 'loseKeyword': return '6';
     case 'setPT': return cda ? '7a' : '7b';
+    case 'setT': return '7b';
     case 'pt': return '7c';
     case 'rule': return null;
   }
@@ -170,6 +171,7 @@ function applyMod(c: Chars, m: Mod): void {
     case 'loseAllAbilities': c.abilities = []; break;
     case 'loseKeyword': c.abilities = c.abilities.filter((a) => a.kw !== m.kw); break;
     case 'setPT': c.power = m.p; c.toughness = m.t; break;
+    case 'setT': c.toughness = m.t; break;
     case 'pt':
       if (c.power !== null) c.power += m.p;
       if (c.toughness !== null) c.toughness += m.t;

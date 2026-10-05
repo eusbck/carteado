@@ -23,6 +23,17 @@ export function* performSBAs(g: G): Gen<boolean> {
     else if (Object.values(pl.commanderDamage).some((d) => d >= 21)) losers.push({ p, reason: '21 de dano de combate do mesmo comandante', rule: '704.6c' });
   }
   for (const pl of s.players) pl.drewFromEmpty = false;
+  // CR 702.131b-c: ascensão num permanente — não usa a pilha e vale antes das outras ações de estado (ruling de Tendershoot Dryad)
+  for (const p of g.playersInGame()) {
+    const pl = s.players[p];
+    if (pl.citysBlessing) continue;
+    const meus = s.zones.battlefield.filter((id) => !s.objects[id].phasedOut && controllerOf(g, id) === p);
+    if (meus.length >= 10 && meus.some((id) => hasKw(g, id, 'ascend'))) {
+      pl.citysBlessing = true;
+      g.log(`${pl.name} recebe a bênção da cidade.`, { rule: '702.131c' });
+      g.bump();
+    }
+  }
 
   // objetos
   const toGraveyard: ObjId[] = [];

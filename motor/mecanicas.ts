@@ -1,7 +1,7 @@
 // Mecânicas com palavra própria usadas pelas cartas da parte B: transformar, proliferar,
 // resguardo. Cada uma segue a regra citada.
 
-import { addCounters, blight, exile, moveObjects, putOntoBattlefield, removeCounters, removeFromCombat, sacrifice } from './actions.ts';
+import { addCounters, blight, exile, gainLife, loseLife, moveObjects, putOntoBattlefield, removeCounters, removeFromCombat, sacrifice } from './actions.ts';
 import { parseCost } from './mana.ts';
 import { addEffect } from './state.ts';
 import { shuffle } from './rng.ts';
@@ -463,4 +463,23 @@ export function prowess(): AbilityDef[] {
       if (c.g.state.objects[c.source]?.zone === 'battlefield') untilEndOfTurn(c, [c.source], [{ k: 'pt', p: 1, t: 1 }]);
     }, { text: 'Bravura (sempre que você conjura uma mágica que não é de criatura, esta criatura recebe +1/+1 até o fim do turno).' }),
   ];
+}
+
+// ---------------------------------------------------------------------------
+// Trocar total de vida e resistência (CR 701.12c)
+// ---------------------------------------------------------------------------
+/**
+ * A resistência da criatura passa a ser o total de vida anterior do jogador (camada 7b, depois vêm marcadores e
+ * modificadores) e o jogador ganha ou perde a diferença até ficar com a resistência anterior.
+ */
+export function exchangeLifeAndToughness(c: { g: G; you: PlayerId; source: ObjId }, player: PlayerId, creature: ObjId): void {
+  const g = c.g;
+  const pl = g.state.players[player];
+  if (!g.state.objects[creature] || g.state.objects[creature].zone !== 'battlefield' || pl.left) return;
+  const vida = pl.life;
+  const resist = chars(g, creature).toughness ?? 0;
+  addEffect(g, { source: c.source, sourceDef: '', controller: c.you, duration: { kind: 'whileOnBattlefield', obj: creature }, affected: [creature], mods: [{ k: 'setT', t: vida }] });
+  if (resist > vida) gainLife(g, player, resist - vida, c.source);
+  else if (vida > resist) loseLife(g, player, vida - resist, c.source);
+  g.log(`${pl.name} troca o total de vida (${vida}) pela resistência de ${nameOf(g, creature)} (${resist}).`, { rule: '701.12c' });
 }

@@ -189,7 +189,7 @@ export interface RuleHooks {
   cantCastSpells?: (c: SCtx, player: PlayerId) => boolean;
   loseHexproof?: (c: SCtx, obj: ObjId) => boolean;
   lifeGainBonus?: (c: SCtx, player: PlayerId) => number;
-  extraTriggers?: (c: SCtx, trigger: { abilityId: string; source: ObjId; controller: PlayerId; event: Record<string, unknown> }) => number;
+  extraTriggers?: (c: SCtx, trigger: { abilityId: string; source: ObjId; controller: PlayerId; event: Record<string, unknown>; cause: GameEvent | null }) => number;
   mayPlayFrom?: (c: SCtx, player: PlayerId, card: ObjId) => CastPermission | null;
   canBeBlockedBy?: (c: SCtx, attacker: ObjId, blocker: ObjId) => boolean;
   /** substituição de outros permanentes sobre como algo entra (CR 614.1d): altera o evento */
@@ -318,7 +318,7 @@ export interface FaceDef {
   additionalCosts?: AdditionalCostDef[];
   altCosts?: AltCastDef[];
   /** redução/aumento do próprio custo ("custa {1} a menos para cada…") */
-  selfCost?: (c: SCtx, info: { targets: TargetRef[][]; x: number }) => { reduce?: number; increase?: number };
+  selfCost?: (c: SCtx, info: { targets: TargetRef[][]; x: number }) => { reduce?: number; increase?: number; add?: string };
   cantBeCountered?: boolean;
   /** Delve (CR 702.66): cartas exiladas do cemitério pagam {1} cada */
   delve?: boolean;
