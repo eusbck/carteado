@@ -5,11 +5,11 @@ Gerado por `ferramentas/cobertura.ts`. Não edite à mão.
 | | |
 | --- | ---: |
 | Entradas (cartas dos decks + fichas e objetos auxiliares) | 547 |
-| **Implementadas, testadas e com rulings conferidos** | **287 / 547** |
-| Implementadas | 287 |
-| Com teste próprio | 287 |
-| Rulings conferidos (cartas dos decks) | 321 / 1285 |
-| Pendentes (jogáveis em modo manual) | 260 |
+| **Implementadas, testadas e com rulings conferidos** | **310 / 547** |
+| Implementadas | 310 |
+| Com teste próprio | 310 |
+| Rulings conferidos (cartas dos decks) | 382 / 1285 |
+| Pendentes (jogáveis em modo manual) | 237 |
 
 Uma carta conta como pronta quando tem definição em `cartas/defs/`, um arquivo de teste próprio
 (`cartas/defs/<nome>.test.ts`) e cada ruling registrado na definição com o teste que o cobre ou o
@@ -19,16 +19,16 @@ motivo de não se aplicar.
 
 | Carta | Decks | Parte | Implementada | Teste | Rulings |
 | --- | --- | --- | :---: | :---: | ---: |
-| Aberrant Return | Bli | B | — | — | — |
+| Aberrant Return | Bli | B | sim | sim | — |
 | Abrade | Pri | A | sim | sim | — |
-| Abstract Paintmage | Pri | B | — | — | — |
+| Abstract Paintmage | Pri | B | sim | sim | — |
 | Abstract Performance | Pri | B | — | — | 0/6 |
 | Access Tunnel | Abz | A | sim | sim | 2/2 |
 | Advanced Reconstruction | Lor | B | — | — | 0/3 |
 | Aether Gale | Pri | A | sim | sim | 1/1 |
-| Ajani's Chosen | Sil | B | — | — | 0/4 |
-| Angel of Indemnity | Lor | B | — | — | 0/10 |
-| Angelic Destiny | Sil | B | — | — | 0/2 |
+| Ajani's Chosen | Sil | B | sim | sim | 4/4 |
+| Angel of Indemnity | Lor | B | sim | sim | 10/10 |
+| Angelic Destiny | Sil | B | sim | sim | 2/2 |
 | Angelic Gift | Sil | B | sim | sim | 1/1 |
 | Anger | Lor, Ter | A | sim | sim | 1/1 |
 | Anguished Unmaking | Abz, Sil | A | sim | sim | 1/1 |
@@ -37,40 +37,40 @@ motivo de não se aplicar.
 | Arbor Adherent | Abz | A | sim | sim | — |
 | Arboreal Grazer | Abz | A | sim | sim | 1/1 |
 | Arcane Denial | Pri | A | sim | sim | 1/1 |
-| Arcane Lighthouse | Sil | B | — | — | 0/3 |
+| Arcane Lighthouse | Sil | B | sim | sim | 3/3 |
 | Arcane Signet | Abz, Bli, Lor, Pri, Sil, Ter, Wit | B | sim | sim | 3/3 |
 | Archaeomancer's Map | Lor | A | sim | sim | 1/1 |
 | Archfiend of Depravity | Ter | A | sim | sim | 2/2 |
 | Archmage Emeritus | Pri | B | — | — | 0/4 |
 | Archon of Sun's Grace | Sil | A | sim | sim | 3/3 |
-| Ark of Hunger | Lor | B | — | — | 0/2 |
-| Armored Skyhunter | Sil | B | — | — | 0/1 |
+| Ark of Hunger | Lor | B | sim | sim | 2/2 |
+| Armored Skyhunter | Sil | B | sim | sim | 1/1 |
 | Ash Barrens | Ter | A | sim | sim | — |
-| Ashling, Rekindled // Ashling, Rimebound | Pri | B | — | — | 0/10 |
-| Ashling's Command | Pri | B | — | — | 0/9 |
+| Ashling, Rekindled // Ashling, Rimebound | Pri | B | sim | sim | 10/10 |
+| Ashling's Command | Pri | B | sim | sim | 9/9 |
 | Assassin's Trophy | Bli, Wit | A | sim | sim | 6/6 |
-| Assault Formation | Abz | B | — | — | 0/2 |
-| Augusta, Order Returned | Lor | B | — | — | 0/2 |
-| Auntie Ool, Cursewretch | Bli | B | — | — | 0/6 |
-| Aurelia, the Warleader | Ter | B | — | — | 0/1 |
+| Assault Formation | Abz | B | sim | sim | 2/2 |
+| Augusta, Order Returned | Lor | B | sim | sim | 2/2 |
+| Auntie Ool, Cursewretch | Bli | B | sim | sim | 6/6 |
+| Aurelia, the Warleader | Ter | B | sim | sim | 1/1 |
 | Awakening Zone | Wit | A | sim | sim | — |
 | Axebane Guardian | Abz | A | sim | sim | 1/1 |
 | Bag of Holding | Lor | A | sim | sim | 5/5 |
-| Baldin, Century Herdmaster | Abz | B | — | — | 0/1 |
-| Balefire Liege | Lor | B | — | — | 0/1 |
+| Baldin, Century Herdmaster | Abz | B | sim | sim | 1/1 |
+| Balefire Liege | Lor | B | sim | sim | 1/1 |
 | Banon, the Returners' Leader | Lor, Ter | B | — | — | 0/1 |
 | Bastion of Remembrance | Wit | A | sim | sim | 3/3 |
 | Battlefield Forge | Lor, Ter | A | sim | sim | 2/2 |
 | Bedevil | Ter | A | sim | sim | — |
-| Behind the Scenes | Abz | B | — | — | 0/2 |
+| Behind the Scenes | Abz | B | sim | sim | 2/2 |
 | Beledros Witherbloom | Wit | A | sim | sim | — |
-| Betor, Ancestor's Voice | Abz | B | — | — | — |
-| Big Score | Pri, Ter | B | — | — | — |
-| Bitterthorn, Nissa's Animus | Lor | B | — | — | — |
-| Black Sun's Zenith | Bli | B | — | — | 0/1 |
-| Blasphemous Act | Pri | B | — | — | 0/4 |
+| Betor, Ancestor's Voice | Abz | B | sim | sim | — |
+| Big Score | Pri, Ter | B | sim | sim | — |
+| Bitterthorn, Nissa's Animus | Lor | B | sim | sim | — |
+| Black Sun's Zenith | Bli | B | sim | sim | 1/1 |
+| Blasphemous Act | Pri | B | sim | sim | 4/4 |
 | Blight Pile | Abz | A | sim | sim | 1/1 |
-| Blight Rot | Bli | B | — | — | — |
+| Blight Rot | Bli | B | sim | sim | — |
 | Blood Artist | Wit | A | sim | sim | 1/1 |
 | Bloodghast | Wit | B | — | — | 0/4 |
 | Blossoming Bogbeast | Wit | B | — | — | 0/1 |

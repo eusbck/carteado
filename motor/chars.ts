@@ -41,7 +41,7 @@ export function abilitiesOfDef(defName: string, face: number): AbilityInst[] {
   return list.map((a) => ({ id: a.id!, kw: a.kw, param: a.param }));
 }
 
-function isTransform(defName: string): boolean {
+export function isTransform(defName: string): boolean {
   return hasOracle(defName) && oracle(defName).layout === 'transform';
 }
 

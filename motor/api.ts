@@ -20,3 +20,5 @@ export { payMana, payParts } from './costs.ts';
 export { parseCost, formatCost, manaValueOf } from './mana.ts';
 export type { G } from './game-context.ts';
 export type { Chars, Color, GameObject, ManaType, Mod, ObjId, PlayerId, TargetRef, ZoneName } from './types.ts';
+export * from './mecanicas.ts';
+export { addCombatPhaseAfterCurrent } from './turn.ts';

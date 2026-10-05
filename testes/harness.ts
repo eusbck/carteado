@@ -264,8 +264,12 @@ export function setup(o: SetupOptions = {}): TestGame {
   state.turnOrder = Array.from({ length: n }, (_, i) => i);
   const active = o.active ?? 0;
   const turn = o.turn ?? 3;
-  state.turn = { number: turn, active, step: o.step ?? 'main1', queue: [], stepBegun: true, mainPhaseCount: 1, combatCount: 0, landsPlayed: 0 };
   const STEPS: Step[] = ['untap', 'upkeep', 'draw', 'main1', 'beginCombat', 'declareAttackers', 'declareBlockers', 'combatDamage', 'endCombat', 'main2', 'end', 'cleanup'];
+  // fases já vistas neste turno, conforme a etapa em que o teste começa
+  const ix = STEPS.indexOf(o.step ?? 'main1');
+  const mainPhaseCount = ix >= STEPS.indexOf('main2') ? 2 : ix >= STEPS.indexOf('main1') ? 1 : 0;
+  const combatCount = ix >= STEPS.indexOf('beginCombat') ? 1 : 0;
+  state.turn = { number: turn, active, step: o.step ?? 'main1', queue: [], stepBegun: true, mainPhaseCount, combatCount, landsPlayed: 0 };
   state.turn.queue = STEPS.slice(STEPS.indexOf(state.turn.step) + 1);
   state.started = true;
   state.priority = active;
