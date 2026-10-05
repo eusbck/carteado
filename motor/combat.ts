@@ -4,7 +4,7 @@ import { dealDamage, removeFromCombat, tap, type DamageReq } from './actions.ts'
 import { ask } from './ask.ts';
 import { chars, controllerOf, hasKw, hooks, isCreature, isType, kwParams, nameOf, power, toughness } from './chars.ts';
 import { summoningSick, payMana } from './costs.ts';
-import type { Gen } from './defs.ts';
+import { registry, type Gen } from './defs.ts';
 import type { G } from './game-context.ts';
 import { protectionMatches } from './actions.ts';
 import { emit } from './triggers.ts';
@@ -325,7 +325,16 @@ export function* combatDamage(g: G, first: boolean): Gen<void> {
   if (first) {
     combat.firstStrikers = [...combat.attackers.filter((a) => !a.removed && dealsNow(a.id)).map((a) => a.id), ...combat.blockers.filter((b) => dealsNow(b.id)).map((b) => b.id)];
   }
+  const prevAntes = new Map(s.effects.map((e) => [e.id, (e as { prevented?: number }).prevented ?? 0]));
   dealDamage(g, reqs); // CR 510.2: simultâneo
+  // CR 615.5: a parte do efeito de prevenção que conta o dano prevenido acontece logo depois
+  for (const e of [...s.effects]) for (const m of e.mods) {
+    const depois = m.k === 'rule' && m.id === 'rule:preventCombatDamageToPlayer' ? m.params?.depois : undefined;
+    if (typeof depois !== 'string') continue;
+    const n = ((e as { prevented?: number }).prevented ?? 0) - (prevAntes.get(e.id) ?? 0);
+    const fn = registry.fns.get(depois) as ((g: G, p: PlayerId, n: number) => Gen<void>) | undefined;
+    if (n > 0 && fn) yield* fn(g, e.controller, n);
+  }
   const dealt = reqs.filter((r) => r.target.kind === 'player');
   if (reqs.length) g.log(`Dano de combate: ${reqs.map((r) => `${nameOf(g, r.source)} causa ${r.amount} a ${r.target.kind === 'player' ? s.players[r.target.id].name : nameOf(g, r.target.id)}`).join('; ')}.`, { rule: '510.2' });
   void dealt;

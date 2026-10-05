@@ -23,9 +23,11 @@ export function permissionsFor(g: G, p: PlayerId, card: ObjId): CastPermission[]
   const out: CastPermission[] = [];
   for (const e of g.state.effects) for (const m of e.mods) {
     if (m.k !== 'rule' || m.id !== 'rule:mayPlay') continue;
-    const prm = m.params as { objs: ObjId[]; player: PlayerId; free?: boolean; anyType?: boolean; key?: string; bottomInstead?: boolean } | undefined;
+    const prm = m.params as { objs: ObjId[]; player: PlayerId; free?: boolean; anyType?: boolean; key?: string; bottomInstead?: boolean; once?: boolean; spellsOnly?: boolean } | undefined;
     if (!prm || prm.player !== p || !prm.objs.includes(card)) continue;
-    out.push({ key: prm.key ?? `eff${e.id}`, label: 'permissão', free: prm.free, anyType: prm.anyType, land: true, bottomInstead: prm.bottomInstead });
+    // "conjure uma mágica dentre elas": a permissão acaba ao ser usada (Locke)
+    const onUse = prm.once ? (c: { g: G }) => { c.g.state.effects = c.g.state.effects.filter((x) => x.id !== e.id); c.g.bump(); } : undefined;
+    out.push({ key: prm.key ?? `eff${e.id}`, label: 'permissão', free: prm.free, anyType: prm.anyType, land: !prm.spellsOnly, bottomInstead: prm.bottomInstead, onUse });
   }
   for (const h of hooks(g, 'mayPlayFrom')) {
     const r = h.fn(h.ctx, p, card);

@@ -5,11 +5,11 @@ Gerado por `ferramentas/cobertura.ts`. Não edite à mão.
 | | |
 | --- | ---: |
 | Entradas (cartas dos decks + fichas e objetos auxiliares) | 547 |
-| **Implementadas, testadas e com rulings conferidos** | **387 / 547** |
-| Implementadas | 387 |
-| Com teste próprio | 387 |
-| Rulings conferidos (cartas dos decks) | 682 / 1285 |
-| Pendentes (jogáveis em modo manual) | 160 |
+| **Implementadas, testadas e com rulings conferidos** | **420 / 547** |
+| Implementadas | 420 |
+| Com teste próprio | 420 |
+| Rulings conferidos (cartas dos decks) | 778 / 1285 |
+| Pendentes (jogáveis em modo manual) | 127 |
 
 Uma carta conta como pronta quando tem definição em `cartas/defs/`, um arquivo de teste próprio
 (`cartas/defs/<nome>.test.ts`) e cada ruling registrado na definição com o teste que o cobre ou o
@@ -221,81 +221,81 @@ motivo de não se aplicar.
 | Haywire Mite | Wit | A | sim | sim | — |
 | Herald of Amity | Sil | B | sim | sim | 4/4 |
 | High Market | Ter, Wit | A | sim | sim | — |
-| Hofri Ghostforge | Lor | B | — | — | 0/8 |
+| Hofri Ghostforge | Lor | B | sim | sim | 8/8 |
 | Hornet Nest | Abz | A | sim | sim | 1/1 |
-| Ifnir Deadlands | Bli | B | — | — | 0/2 |
-| Ignoble Hierarch | Bli | B | — | — | 0/1 |
+| Ifnir Deadlands | Bli | B | sim | sim | 2/2 |
+| Ignoble Hierarch | Bli | B | sim | sim | 1/1 |
 | Ikra Shidiqi, the Usurper | Abz | A | sim | sim | 8/8 |
 | Immoral Bargain | Wit | B | — | — | — |
 | Incremental Blight | Bli | B | sim | sim | 1/1 |
 | Indomitable Ancients | Abz | dados | sim | sim | — |
-| Indulging Patrician | Abz | B | — | — | 0/4 |
+| Indulging Patrician | Abz | B | sim | sim | 4/4 |
 | Infernal Grasp | Abz, Wit | A | sim | sim | — |
-| Inkshield | Sil | B | — | — | 0/1 |
+| Inkshield | Sil | B | sim | sim | 1/1 |
 | Inspired Skypainter // Maestro's Gift | Pri | B | — | — | 0/19 |
 | Island | Pri | dados | sim | sim | — |
 | Isolated Chapel | Abz, Sil, Ter | A | sim | sim | — |
-| Jadar, Ghoulcaller of Nephalia | Wit | B | — | — | 0/4 |
+| Jadar, Ghoulcaller of Nephalia | Wit | B | sim | sim | 4/4 |
 | Jaddi Offshoot | Abz | A | sim | sim | 3/3 |
 | Jaws of Defeat | Abz | A | sim | sim | 1/1 |
 | Joshua, Phoenix's Dominant // Phoenix, Warden of Fire | Ter | B | — | — | 0/10 |
 | Kami of Ancient Law | Lor | A | sim | sim | — |
-| Karmic Guide | Lor, Ter | B | — | — | 0/2 |
+| Karmic Guide | Lor, Ter | B | sim | sim | 2/2 |
 | Kefka, Dancing Mad | Ter | B | — | — | 0/5 |
 | Key to the City | Ter | A | sim | sim | 4/4 |
 | Killian, Decisive Mentor | Sil | B | — | — | 0/5 |
 | Killian, Ink Duelist | Sil | B | sim | sim | 3/3 |
 | Kirol, History Buff // Pack a Punch | Lor | B | — | — | 0/16 |
-| Kor Spiritdancer | Sil | B | — | — | 0/2 |
-| Kulrath Knight | Bli | B | — | — | 0/1 |
-| Laelia, the Blade Reforged | Lor | B | — | — | 0/7 |
+| Kor Spiritdancer | Sil | B | sim | sim | 2/2 |
+| Kulrath Knight | Bli | B | sim | sim | 1/1 |
+| Laelia, the Blade Reforged | Lor | B | sim | sim | 7/7 |
 | Land Tax | Sil | A | sim | sim | 3/3 |
-| Lasting Tarfire | Bli | B | — | — | 0/1 |
-| Laughing Mad | Ter | B | — | — | 0/6 |
+| Lasting Tarfire | Bli | B | sim | sim | 1/1 |
+| Laughing Mad | Ter | B | sim | sim | 6/6 |
 | Legions to Ashes | Ter | A | sim | sim | 2/2 |
-| Leitmotif Composer | Pri | B | — | — | 0/6 |
-| Lightning Greaves | Pri | B | — | — | 0/2 |
+| Leitmotif Composer | Pri | B | sim | sim | 6/6 |
+| Lightning Greaves | Pri | B | sim | sim | 2/2 |
 | Llanowar Wastes | Wit | A | sim | sim | 2/2 |
-| Locke, Treasure Hunter | Ter | B | — | — | 0/6 |
+| Locke, Treasure Hunter | Ter | B | sim | sim | 6/6 |
 | Lorehold Archivist // Restore Relic | Lor | B | — | — | 0/19 |
 | Lorehold Campus | Lor | A | sim | sim | — |
-| Lorehold Charm | Lor | B | — | — | 0/1 |
+| Lorehold Charm | Lor | B | sim | sim | 1/1 |
 | Lotus Field | Lor | A | sim | sim | 1/1 |
 | Magma Opus | Pri | A | sim | sim | 5/5 |
 | Mana Geyser | Pri | A | sim | sim | — |
-| Manaform Hellkite | Pri | B | — | — | 0/1 |
-| Mangara, the Diplomat | Sil | B | — | — | 0/5 |
+| Manaform Hellkite | Pri | B | sim | sim | 1/1 |
+| Mangara, the Diplomat | Sil | B | sim | sim | 5/5 |
 | Marauding Blight-Priest | Wit | A | sim | sim | 4/4 |
-| Martial Impetus | Sil | B | — | — | 0/5 |
-| Massacre Girl, Known Killer | Bli | B | — | — | 0/2 |
+| Martial Impetus | Sil | B | sim | sim | 5/5 |
+| Massacre Girl, Known Killer | Bli | B | sim | sim | 2/2 |
 | Massacre Wurm | Ter | A | sim | sim | 4/4 |
-| Mazirek, Kraul Death Priest | Wit | B | — | — | 0/4 |
-| Merchant of Venom | Wit | B | — | — | 0/1 |
+| Mazirek, Kraul Death Priest | Wit | B | sim | sim | 4/4 |
+| Merchant of Venom | Wit | B | sim | sim | 1/1 |
 | Meteor Golem | Ter | A | sim | sim | — |
-| Midnight Banshee | Bli | B | — | — | — |
+| Midnight Banshee | Bli | B | sim | sim | — |
 | Millikin | Lor, Ter | A | sim | sim | 1/1 |
 | Mind Stone | Lor, Ter | A | sim | sim | — |
-| Mire Blight | Sil | B | — | — | 0/2 |
+| Mire Blight | Sil | B | sim | sim | 2/2 |
 | Mistveil Plains | Lor | A | sim | sim | 2/2 |
-| Mog, Moogle Warrior | Ter | B | — | — | 0/1 |
+| Mog, Moogle Warrior | Ter | B | sim | sim | 1/1 |
 | Moldervine Reclamation | Wit | A | sim | sim | 2/2 |
 | Molten Tributary | Pri | A | sim | sim | — |
-| Molten-Core Maestro | Pri | B | — | — | 0/2 |
-| Monologue Tax | Lor | B | — | — | 0/3 |
+| Molten-Core Maestro | Pri | B | sim | sim | 2/2 |
+| Monologue Tax | Lor | B | sim | sim | 3/3 |
 | Moonshaker Cavalry | Lor | A | sim | sim | 2/2 |
 | Morbid Opportunist | Ter, Wit | A | sim | sim | 1/1 |
-| Mortality Spear | Wit | B | — | — | 0/1 |
+| Mortality Spear | Wit | B | sim | sim | 1/1 |
 | Mortify | Ter | A | sim | sim | 1/1 |
-| Moseo, Vein's New Dean | Wit | B | — | — | 0/2 |
+| Moseo, Vein's New Dean | Wit | B | sim | sim | 2/2 |
 | Mountain | Bli, Lor, Pri, Ter | dados | sim | sim | — |
 | Muddle, the Ever-Changing | Pri | B | — | — | 0/15 |
-| Mycoloth | Wit | B | — | — | 0/4 |
+| Mycoloth | Wit | B | sim | sim | 4/4 |
 | Mystic Sanctuary | Pri | A | sim | sim | 2/2 |
 | Necroblossom Snarl | Wit | A | sim | sim | 4/4 |
-| Necroskitter | Bli | B | — | — | 0/3 |
+| Necroskitter | Bli | B | sim | sim | 3/3 |
 | Negate | Pri | A | sim | sim | 1/1 |
-| Nest of Scarabs | Bli | B | — | — | 0/2 |
-| Nesting Grounds | Bli | B | — | — | 0/4 |
+| Nest of Scarabs | Bli | B | sim | sim | 2/2 |
+| Nesting Grounds | Bli | B | sim | sim | 4/4 |
 | Nether Traitor | Wit | B | — | — | 0/6 |
 | Night's Whisper | Bli, Ter, Wit | A | sim | sim | — |
 | Nomad Outpost | Ter | A | sim | sim | — |

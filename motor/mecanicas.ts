@@ -6,8 +6,8 @@ import { addEffect } from './state.ts';
 import { shuffle } from './rng.ts';
 import { chooseItems, objItem, playerItem, yesNo } from './ask.ts';
 import { chars, controllerOf, currentFace, isCreature, isLand, isTransform, nameOf } from './chars.ts';
-import { defineAbility, type AbilityDef, type AdditionalCostDef, type Gen, type StaticDef, type TriggeredDef } from './defs.ts';
-import { keyword, on, t, tgt, triggered } from './dsl.ts';
+import { defineAbility, type AbilityDef, type AdditionalCostDef, type Gen, type ReplacementDef, type StaticDef, type TriggeredDef } from './defs.ts';
+import { asEnters, keyword, on, t, tgt, triggered } from './dsl.ts';
 import { mayPay, untilEndOfTurn } from './efeitos.ts';
 import type { G } from './game-context.ts';
 import { castSpell, copySpell, counter } from './stack.ts';
@@ -201,7 +201,7 @@ export function magecraft(effect: TriggeredDef['effect'], text: string): Trigger
 // Permissões e afins
 // ---------------------------------------------------------------------------
 /** "você pode jogar/conjurar essas cartas [até ...]" (CR 601.2a, 305.1) */
-export function allowPlay(g: G, controller: PlayerId, source: ObjId, cards: ObjId[], duration: Duration, opts: { free?: boolean; anyType?: boolean } = {}): void {
+export function allowPlay(g: G, controller: PlayerId, source: ObjId, cards: ObjId[], duration: Duration, opts: { free?: boolean; anyType?: boolean; once?: boolean; spellsOnly?: boolean } = {}): void {
   if (cards.length === 0) return;
   addEffect(g, { source, sourceDef: '', controller, duration, affected: null, mods: [{ k: 'rule', id: 'rule:mayPlay', params: { objs: cards, player: controller, ...opts } }] });
 }
@@ -294,4 +294,52 @@ export function backup(n: number, grants: () => Mod[]): TriggeredDef {
     addCounters(c.g, { kind: 'obj', id }, '+1/+1', n, c.you);
     if (id !== c.source) untilEndOfTurn(c, [id], grants());
   }, { targets: [t.creature(undefined, 'criatura alvo do apoio')], text: `Apoio ${n} (quando entra, coloque ${n} marcador(es) +1/+1 na criatura alvo; se for outra criatura, ela ganha as habilidades abaixo até o fim do turno)` });
+}
+
+/**
+ * CR 702.83: Exaltado — sempre que uma criatura que você controla ataca sozinha (é a única
+ * declarada como atacante, 702.83b), ela recebe +1/+1 até o fim do turno. Cada instância dispara.
+ */
+export function exalted(): TriggeredDef {
+  const a = triggered(on.custom((e, c) => (e.type === 'attackers' && e.player === c.you && e.attackers.length === 1 ? { criatura: e.attackers[0].obj } : false)), function* (c) {
+    const id = c.event.criatura as ObjId;
+    if (c.g.state.objects[id]?.zone === 'battlefield') untilEndOfTurn(c, [id], [{ k: 'pt', p: 1, t: 1 }]);
+  }, { text: 'Exaltado (sempre que uma criatura que você controla ataca sozinha, ela recebe +1/+1 até o fim do turno)' });
+  a.kw = 'exalted';
+  return a;
+}
+
+/**
+ * CR 702.82: Devorar N — ao entrar, você pode sacrificar quantas criaturas quiser (só as que já
+ * estão no campo, nunca ela mesma); ela entra com N marcadores +1/+1 por criatura sacrificada.
+ */
+export function devour(n: number): ReplacementDef {
+  return asEnters(function* (c, ev) {
+    const s = c.g.state;
+    const cands = s.zones.battlefield.filter((id) => !s.objects[id].phasedOut && id !== ev.obj && isCreature(c.g, id) && controllerOf(c.g, id) === ev.controller);
+    if (!cands.length) return;
+    const esc = (yield* chooseItems(c.g, ev.controller, `Devorar ${n}: escolha as criaturas para sacrificar (${n} marcador(es) +1/+1 por criatura)`, cands.map((id) => objItem(c.g, id, nameOf(c.g, id))), 0, cands.length)).map(Number);
+    if (!esc.length) return;
+    const sac = (yield* sacrifice(c.g, esc)).filter((x) => x !== null);
+    ev.counters['+1/+1'] = (ev.counters['+1/+1'] ?? 0) + n * sac.length;
+    ev.choices.devorou = sac.length;
+  }, `Devorar ${n} (ao entrar, você pode sacrificar quantas criaturas quiser; ela entra com ${n} marcador(es) +1/+1 por criatura sacrificada)`);
+}
+
+/**
+ * CR 702.30: Eco [custo] — no início da sua manutenção, se o permanente ficou sob seu controle
+ * desde o início da sua última manutenção, sacrifique-o a menos que pague o custo. "Desde a
+ * última manutenção" = ainda não passou por uma manutenção sua sob o controle atual.
+ */
+export function echo(custo: string): TriggeredDef {
+  const pendente = (c: { g: G; source: ObjId }): boolean => {
+    const o = c.g.state.objects[c.source];
+    return !!o && o.data.ecoVisto !== o.controlledSince;
+  };
+  return triggered(on.upkeep('you'), function* (c) {
+    const o = c.g.state.objects[c.source];
+    if (!o) return;
+    o.data.ecoVisto = o.controlledSince;
+    if (!(yield* mayPay(c, c.you, custo, `pagar o eco de ${nameOf(c.g, c.source)}`))) yield* sacrifice(c.g, [c.source]);
+  }, { condition: pendente, text: `Eco ${custo} (no início da sua manutenção, se isto ficou sob seu controle desde a sua última manutenção, sacrifique-o a menos que pague o custo de eco)` });
 }
