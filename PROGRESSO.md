@@ -9,6 +9,7 @@ Lista de verificação das fases. É por aqui que uma sessão nova retoma o trab
 - 04/10/2026: fase 1 concluída; começar a fase 2 (cartas, parte A).
 - 04/10/2026 (continuação): os agentes paralelos falharam por limite de uso; as cartas da parte A foram escritas direto. Fase 2 concluída; começar a fase 3 (servidor e cliente).
 - 04/10/2026 (continuação): fase 3 concluída; começar a fase 4 (cartas, parte B).
+- 05/10/2026: retomada depois do limite de uso da sessão anterior; fechar o lote 3e (cartas R, sem commit) e seguir com as cartas S–Z e as especiais.
 
 ## Fase 0: exploração e proposta
 

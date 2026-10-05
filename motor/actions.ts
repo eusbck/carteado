@@ -451,7 +451,7 @@ export function addCounters(g: G, target: TargetRef, kind: string, n: number, by
     p.counters[kind] = (p.counters[kind] ?? 0) + n;
   } else {
     const o = g.state.objects[target.id];
-    if (!o || o.zone !== 'battlefield') return 0;
+    if (!o || (o.zone !== 'battlefield' && o.zone !== 'exile')) return 0; // CR 122.1: marcadores de tempo no exílio (suspender)
     o.counters[kind] = (o.counters[kind] ?? 0) + n;
   }
   g.bump();

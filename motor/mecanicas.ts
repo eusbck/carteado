@@ -1,7 +1,8 @@
 // Mecânicas com palavra própria usadas pelas cartas da parte B: transformar, proliferar,
 // resguardo. Cada uma segue a regra citada.
 
-import { addCounters, blight, exile, moveObjects, putOntoBattlefield, removeFromCombat, sacrifice } from './actions.ts';
+import { addCounters, blight, exile, moveObjects, putOntoBattlefield, removeCounters, removeFromCombat, sacrifice } from './actions.ts';
+import { parseCost } from './mana.ts';
 import { addEffect } from './state.ts';
 import { shuffle } from './rng.ts';
 import { chooseItems, objItem, playerItem, yesNo } from './ask.ts';
@@ -360,6 +361,51 @@ export function* turnFaceUp(g: G, p: PlayerId, id: ObjId): Gen<boolean> {
   g.bump();
   g.log(`${g.state.players[p].name} vira para cima ${nameOf(g, id)}.`, { rule: '701.40a' });
   emit(g, [{ type: 'turnedFaceUp', obj: id }]);
+  return true;
+}
+
+/**
+ * CR 702.62: Suspender N—[custo]. Três habilidades: a estática que permite exilar da mão com N
+ * marcadores de tempo pagando o custo (ação especial, 116.2f), o gatilho de manutenção que
+ * remove um marcador e o gatilho que, ao sair o último, permite conjurá-la sem pagar (702.62a).
+ */
+export function suspend(n: number, custo: string): AbilityDef[] {
+  return [
+    { kind: 'static', kw: 'suspend', param: { n, custo }, text: `Suspender ${n}—${custo} (em vez de conjurar da mão, pague ${custo} e exile-a com ${n} marcadores de tempo; na sua manutenção, remova um; ao remover o último, você pode conjurá-la sem pagar o custo de mana)` },
+    triggered(on.upkeep('you'), function* (c) {
+      removeCounters(c.g, { kind: 'obj', id: c.source }, 'time', 1);
+    }, {
+      zones: ['exile'],
+      condition: (c) => { const o = c.g.state.objects[c.source]; return !!o && o.zone === 'exile' && (o.counters.time ?? 0) > 0; },
+      text: 'No início da sua manutenção, se esta carta estiver suspensa, remova um marcador de tempo dela.',
+    }),
+    // ruling: não importa por que o último marcador saiu
+    triggered(on.custom((e, c) => e.type === 'countersRemoved' && e.kind === 'time' && e.target.kind === 'obj' && e.target.id === c.source && (c.g.state.objects[c.source]?.counters.time ?? 0) === 0), function* (c) {
+      // ignora o tempo de feitiço; sem pagar o custo de mana (X = 0)
+      if (c.g.state.objects[c.source]?.zone === 'exile') yield* mayCastFree(c.g, c.you, c.source);
+    }, { zones: ['exile'], text: 'Quando o último marcador de tempo for removido, você pode conjurá-la sem pagar o custo de mana.' }),
+  ];
+}
+
+/** parâmetros de suspender da carta na mão, se tiver */
+export function suspendParams(g: G, id: ObjId): { n: number; custo: string } | null {
+  const o = g.state.objects[id];
+  if (!o) return null;
+  const k = chars(g, id).abilities.find((a) => a.kw === 'suspend');
+  return (k?.param as { n: number; custo: string } | undefined) ?? null;
+}
+
+/** ação especial de suspender (CR 116.2f): paga o custo e exila com os marcadores de tempo */
+export function* doSuspend(g: G, p: PlayerId, id: ObjId): Gen<boolean> {
+  const prm = suspendParams(g, id);
+  const o = g.state.objects[id];
+  if (!prm || !o || o.zone !== 'hand' || o.owner !== p) return false;
+  const pago = yield* payMana(g, p, parseCost(prm.custo), { purpose: { kind: 'effect' }, canCancel: true, label: `suspender ${nameOf(g, id)}` });
+  if (pago === null) return false;
+  const [ex] = yield* exile(g, [id]);
+  if (ex === null || ex === undefined) return true;
+  addCounters(g, { kind: 'obj', id: ex }, 'time', prm.n, p);
+  g.log(`${g.state.players[p].name} suspende ${nameOf(g, ex)} com ${prm.n} marcadores de tempo.`, { rule: '702.62a' });
   return true;
 }
 

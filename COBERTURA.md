@@ -5,11 +5,11 @@ Gerado por `ferramentas/cobertura.ts`. Não edite à mão.
 | | |
 | --- | ---: |
 | Entradas (cartas dos decks + fichas e objetos auxiliares) | 547 |
-| **Implementadas, testadas e com rulings conferidos** | **436 / 547** |
-| Implementadas | 436 |
-| Com teste próprio | 436 |
-| Rulings conferidos (cartas dos decks) | 846 / 1285 |
-| Pendentes (jogáveis em modo manual) | 111 |
+| **Implementadas, testadas e com rulings conferidos** | **444 / 547** |
+| Implementadas | 444 |
+| Com teste próprio | 444 |
+| Rulings conferidos (cartas dos decks) | 894 / 1285 |
+| Pendentes (jogáveis em modo manual) | 103 |
 
 Uma carta conta como pronta quando tem definição em `cartas/defs/`, um arquivo de teste próprio
 (`cartas/defs/<nome>.test.ts`) e cada ruling registrado na definição com o teste que o cobre ou o
@@ -350,21 +350,21 @@ motivo de não se aplicar.
 | Relic Retriever | Lor | B | sim | sim | 1/1 |
 | Reliquary Tower | Pri | A | sim | sim | 1/1 |
 | Remorseful Cleric | Lor | A | sim | sim | — |
-| Renegade Bull | Pri | B | — | — | 0/7 |
+| Renegade Bull | Pri | B | sim | sim | 7/7 |
 | Replication Technique | Pri | B | sim | sim | 5/5 |
 | Resculpt | Pri | A | sim | sim | — |
-| Restless Spire | Pri | B | — | — | 0/2 |
-| Reunion of the House | Abz | B | — | — | 0/3 |
-| Ribtruss Roaster | Wit | B | — | — | 0/2 |
-| Rionya, Fire Dancer | Pri | B | — | — | 0/6 |
+| Restless Spire | Pri | B | sim | sim | 2/2 |
+| Reunion of the House | Abz | B | sim | sim | 3/3 |
+| Ribtruss Roaster | Wit | B | sim | sim | 2/2 |
+| Rionya, Fire Dancer | Pri | B | sim | sim | 6/6 |
 | Rip Apart | Lor | A | sim | sim | — |
 | Rise of the Dark Realms | Ter | B | — | — | — |
-| Rite of Replication | Pri | B | — | — | 0/12 |
+| Rite of Replication | Pri | B | sim | sim | 12/12 |
 | Riveteers Overlook | Bli | A | sim | sim | — |
 | Rogue's Passage | Ter | A | sim | sim | 1/1 |
 | Rootbound Crag | Bli | A | sim | sim | 2/2 |
-| Rootha, Mastering the Moment | Pri | B | — | — | 0/3 |
-| Rousing Refrain | Pri | B | — | — | 0/13 |
+| Rootha, Mastering the Moment | Pri | B | sim | sim | 3/3 |
+| Rousing Refrain | Pri | B | sim | sim | 13/13 |
 | Rugged Prairie | Lor, Ter | B | sim | sim | — |
 | Ruinous Ultimatum | Ter | A | sim | sim | — |
 | Sacred Peaks | Lor, Ter | A | sim | sim | — |

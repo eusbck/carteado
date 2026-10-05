@@ -5,8 +5,8 @@ import { abilityDefs, chars, controllerOf, hasKw, hooks, nameOf } from './chars.
 import { activateManaAbility, canAfford, canPayParts, manaOptions, manaPart } from './costs.ts';
 import { cardDef, type ActivatedDef, type CastPermission, type Gen, type SCtx } from './defs.ts';
 import type { G } from './game-context.ts';
-import { formatCost, reduceGeneric } from './mana.ts';
-import { manifestFaceUpCost, turnFaceUp } from './mecanicas.ts';
+import { formatCost, parseCost, reduceGeneric } from './mana.ts';
+import { doSuspend, manifestFaceUpCost, suspendParams, turnFaceUp } from './mecanicas.ts';
 import { activateAbility, candidateTargets, canActivate, castSpell, chooseModes, spellTargetSpecs, totalSpellCost, faceDefOf, type CastMethod } from './stack.ts';
 import type { ObjId, PlayerId, PriorityAction, ZoneName } from './types.ts';
 
@@ -160,6 +160,14 @@ export function legalActions(g: G, p: PlayerId): PriorityAction[] {
     }
   }
   for (const m of manaOptions(g, p)) acts.push({ id: `mana:${m.key}`, kind: 'mana', label: `${nameOf(g, m.obj)}: adicionar ${m.alt.map((t) => `{${t}}`).join('')}`, obj: m.obj });
+  // ação especial: suspender uma carta da mão quando poderia conjurá-la (CR 116.2f, 702.62a)
+  for (const id of s.zones.hand[p]) {
+    const prm = suspendParams(g, id);
+    if (!prm) continue;
+    const c = chars(g, id);
+    const quando = c.types.includes('Instant') || hasKw(g, id, 'flash') || timing.sorcery;
+    if (quando && canAfford(g, p, parseCost(prm.custo), { purpose: { kind: 'effect' } })) acts.push({ id: `suspend:${id}`, kind: 'special', label: `Suspender ${nameOf(g, id)} (${prm.custo})`, obj: id });
+  }
   // ação especial: virar para cima uma permanente manifestada (CR 116.2b, 701.40a)
   for (const id of s.zones.battlefield) {
     if (controllerOf(g, id) !== p) continue;
@@ -201,6 +209,7 @@ export function* performAction(g: G, p: PlayerId, actionId: string): Gen<boolean
     return r !== null;
   }
   if (kind === 'faceup') return yield* turnFaceUp(g, p, Number(a));
+  if (kind === 'suspend') return yield* doSuspend(g, p, Number(a));
   if (kind === 'mana') {
     const key = actionId.slice(5);
     const opt = manaOptions(g, p).find((m) => m.key === key);

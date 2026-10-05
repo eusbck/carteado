@@ -2,7 +2,7 @@
 // (CR 603.3), alvos (CR 115) e resolução (CR 608).
 
 import { addEffect, createObject, destroyObject, moveRaw, newTimestamp } from './state.ts';
-import { chooseItems, chooseNumber, objItem, playerItem, yesNo } from './ask.ts';
+import { ask, chooseItems, chooseNumber, objItem, playerItem, yesNo } from './ask.ts';
 import type { GameEvent } from './events.ts';
 import { moveObject, moveObjects, protectionMatches, putOntoBattlefield, enchantCandidates } from './actions.ts';
 import { abilityDefs, chars, controllerOf, hasKw, hooks, isType, kwParams, nameOf, printedChars, currentFace } from './chars.ts';
@@ -14,7 +14,7 @@ import {
 import type { G } from './game-context.ts';
 import { addGeneric, formatCost, manaValueOf, parseCost, reduceGeneric, withX } from './mana.ts';
 import { emit } from './triggers.ts';
-import type { GameObject, GameState, ManaSymbol, ObjId, PlayerId, StackInfo, TargetRef, ZoneName } from './types.ts';
+import type { Answer, GameObject, GameState, ManaSymbol, ObjId, PlayerId, StackInfo, TargetRef, ZoneName } from './types.ts';
 
 // ---------------------------------------------------------------------------
 // Alvos (CR 115, 608.2b)
@@ -91,12 +91,11 @@ export function* chooseTargets(g: G, player: PlayerId, specs: TargetSpec[], sour
     if (cands.length < min) return null;
     if (max === 0) { chosen.push([]); continue; }
     const items = cands.map((t) => (t.kind === 'player' ? playerItem(g, t.id) : objItem(g, t.id, targetLabel(g, t))));
-    let ids: string[];
-    for (;;) {
-      ids = yield* chooseItems(g, player, `${label}: escolha ${spec.label}${max > 1 ? ` (até ${max})` : ''}`, items, min, max);
-      const set = ids.map((id) => cands[items.findIndex((it) => it.id === id)]);
-      if (!spec.validateSet || spec.validateSet(ctx, set)) break;
-    }
+    // conjunto de alvos com restrição (soma de força, jogadores diferentes…): resposta inválida é recusada
+    const conjunto = (ids: string[]) => ids.map((id) => cands[items.findIndex((it) => it.id === id)]);
+    const valida = spec.validateSet ? (a: Answer) => (a.kind === 'select' && !spec.validateSet!(ctx, conjunto(a.ids)) ? 'Essa combinação de alvos não é permitida' : null) : undefined;
+    const resp = yield* ask<Extract<Answer, { kind: 'select' }>>(g, { kind: 'select', player, prompt: `${label}: escolha ${spec.label}${max > 1 ? ` (até ${max})` : ''}`, items, min, max }, valida);
+    const ids = resp.ids;
     chosen.push(ids.map((id) => cands[items.findIndex((it) => it.id === id)]));
   }
   return chosen;
