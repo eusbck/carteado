@@ -2,7 +2,7 @@
 
 import { moveObjects, removeFromCombat } from './actions.ts';
 import { chooseItems, objItem, yesNo } from './ask.ts';
-import { chars, controllerOf, hasKw, isCreature, nameOf } from './chars.ts';
+import { chars, controllerOf, hasKw, isBestowed, isCreature, nameOf } from './chars.ts';
 import type { Gen } from './defs.ts';
 import type { G } from './game-context.ts';
 import { destroyObject } from './state.ts';
@@ -62,10 +62,12 @@ export function* performSBAs(g: G): Gen<boolean> {
     if (o.attachedTo !== null) {
       const target = s.objects[o.attachedTo];
       const ok = !!target && target.zone === 'battlefield' && !target.phasedOut;
-      if (c.subtypes.includes('Aura')) {
+      if (isBestowed(o) && (!ok || !isCreature(g, o.attachedTo))) {
+        unattach.push(id); // CR 702.103e: Aura de bestow solta vira criatura, não vai ao cemitério
+      } else if (c.subtypes.includes('Aura')) {
         // CR 704.5m: Aura presa a objeto ilegal ou a nada
         const def = o.copyOf?.def ?? o.def;
-        if (!ok || isCreature(g, id) || !enchantCandidates(g, def, 0, controllerOf(g, id)).includes(o.attachedTo)) toGraveyard.push(id);
+        if (!ok || isCreature(g, id) || !enchantCandidates(g, def, 0, controllerOf(g, id), [], id).includes(o.attachedTo)) toGraveyard.push(id);
       } else if (c.subtypes.includes('Equipment')) {
         if (!ok || !isCreature(g, o.attachedTo) || isCreature(g, id)) unattach.push(id); // CR 704.5n
       } else unattach.push(id); // CR 704.5p

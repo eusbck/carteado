@@ -1,7 +1,7 @@
 // Mecânicas com palavra própria usadas pelas cartas da parte B: transformar, proliferar,
 // resguardo. Cada uma segue a regra citada.
 
-import { addCounters, blight, moveObjects } from './actions.ts';
+import { addCounters, blight, moveObjects, sacrifice } from './actions.ts';
 import { addEffect } from './state.ts';
 import { shuffle } from './rng.ts';
 import { chooseItems, objItem, playerItem, yesNo } from './ask.ts';
@@ -226,4 +226,39 @@ export function* discover(g: G, p: PlayerId, n: number): Gen<void> {
   }
   const resto = shuffle(s.rng, novos.filter((id) => id !== achada && s.objects[id]?.zone === 'exile'));
   if (resto.length) yield* moveObjects(g, resto.map((id) => ({ id, to: 'library' as const, position: 'bottom' as const })), 'discover');
+}
+
+// ---------------------------------------------------------------------------
+// Aniquilador (CR 702.86)
+// ---------------------------------------------------------------------------
+function gatilhoAniquilador(n: number): TriggeredDef {
+  return triggered(on.selfAttacks(), function* (c) {
+    const cb = c.g.state.combat?.attackers.find((a) => a.id === c.source);
+    if (!cb) return;
+    // jogador defensor: o atacado, ou o controlador do planeswalker atacado (CR 506.2, 508.5)
+    const def = cb.target.kind === 'player' ? cb.target.id : c.g.state.objects[cb.target.id] ? controllerOf(c.g, cb.target.id) : null;
+    if (def === null || c.g.state.players[def].left) return;
+    const meus = c.g.state.zones.battlefield.filter((id) => controllerOf(c.g, id) === def && !c.g.state.objects[id].phasedOut);
+    if (meus.length === 0) return;
+    const k = Math.min(n, meus.length);
+    const pick = meus.length <= n ? meus.map(String) : yield* chooseItems(c.g, def, `Aniquilador ${n}: sacrifique ${n} permanentes`, meus.map((id) => objItem(c.g, id, nameOf(c.g, id))), k, k);
+    yield* sacrifice(c.g, pick.map(Number));
+  }, { text: `Aniquilador ${n} (sempre que esta criatura ataca, o jogador defensor sacrifica ${n} permanentes).` });
+}
+
+/** aniquilador impresso */
+export function annihilator(n: number): AbilityDef[] {
+  return [keyword('annihilator', n), gatilhoAniquilador(n)];
+}
+
+const aniquiladoresConcedidos = new Map<number, string>();
+/** id do gatilho de aniquilador para conceder (Eldrazi Conscription) */
+export function annihilatorGranted(n: number): string {
+  let id = aniquiladoresConcedidos.get(n);
+  if (!id) {
+    id = `kw:annihilator:${n}`;
+    defineAbility(id, gatilhoAniquilador(n));
+    aniquiladoresConcedidos.set(n, id);
+  }
+  return id;
 }

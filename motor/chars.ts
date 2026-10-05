@@ -5,7 +5,7 @@
 import { ability, cardDef, registry, type AbilityDef, type RuleHooks, type SCtx, type StaticDef } from './defs.ts';
 import type { G } from './game-context.ts';
 import { manaValueOf } from './mana.ts';
-import { BASIC_LAND_MANA, faceManaValue, hasOracle, oracle } from './oracle.ts';
+import { BASIC_LAND_MANA, faceManaValue, hasOracle, oracle, CREATURE_SUBTYPES } from './oracle.ts';
 import type { AbilityInst, Chars, Color, CopyValues, GameObject, Layer, Mod, ObjId, PlayerId, ZoneName } from './types.ts';
 
 export interface ActiveStatic {
@@ -100,6 +100,12 @@ export function copyValuesChars(v: CopyValues, owner: PlayerId): Chars {
 }
 
 /** face em uso: cartas que transformam só mostram o verso no campo e na pilha (CR 712.8a) */
+/** permanente que entrou como Aura por bestow (CR 702.103) */
+export function isBestowed(o: GameObject): boolean {
+  return (o.data.spell as { method?: string } | undefined)?.method === 'bestow';
+}
+
+
 export function currentFace(o: GameObject): number {
   if (o.copyOf) return o.copyOf.face;
   if (isTransform(o.def) && (o.zone === 'battlefield' || o.zone === 'stack')) return o.face;
@@ -127,6 +133,15 @@ function layer1(g: G, o: GameObject): Chars {
     for (const e of copies) for (const m of e.mods) if (m.k === 'copy') c = copyValuesChars(m.of, o.owner);
   }
   c.controller = o.controller;
+  // Bestow (CR 702.103b, 702.103e-f): como mágica conjurada por bestow, e como permanente enquanto
+  // anexada, é uma Aura (encantamento) e não criatura; solta, volta a ser criatura
+  const bestowAura = (o.zone === 'stack' && !!o.stack?.data.bestow) || (o.zone === 'battlefield' && isBestowed(o) && o.attachedTo !== null);
+  if (bestowAura) {
+    c.types = c.types.filter((t) => t !== 'Creature');
+    c.subtypes = [...c.subtypes.filter((t) => !CREATURE_SUBTYPES.has(t)), 'Aura'];
+    c.power = null;
+    c.toughness = null;
+  }
   if (o.zone === 'stack' && o.stack && c.manaCost) c.manaValue = manaValueOf(c.manaCost, o.stack.x);
   if (o.zone === 'battlefield' && c.types.includes('Planeswalker')) c.loyalty = o.counters.loyalty ?? 0;
   return c;

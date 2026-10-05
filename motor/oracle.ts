@@ -101,3 +101,8 @@ export const BASIC_LAND_MANA: Record<string, Color> = { Plains: 'W', Island: 'U'
 export function oracleLayout(name: string): string | null {
   return cartas.get(name)?.layout ?? null;
 }
+
+/** subtipos que são tipos de criatura (CR 205.3m), tirados das faces de criatura e kindred dos dados */
+export const CREATURE_SUBTYPES: Set<string> = new Set(
+  [...cartas.values(), ...fichasOracle].flatMap((c) => c.faces.filter((f) => f.types.includes('Creature') || f.types.includes('Kindred')).flatMap((f) => f.subtypes)),
+);

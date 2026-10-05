@@ -123,19 +123,25 @@ function wouldBeChars(g: G, r: EnterReq) {
 }
 
 /** alvos legais para uma Aura (encantar) */
-export function enchantCandidates(g: G, auraDef: string, face: number, controller: PlayerId, exclude: ObjId[] = []): ObjId[] {
+export function enchantCandidates(g: G, auraDef: string, face: number, controller: PlayerId, exclude: ObjId[] = [], auraId?: ObjId): ObjId[] {
   const spec = registry.cards.get(auraDef)?.faces[face]?.enchant;
   if (!spec) return [];
   const ctx: SCtx = { g, you: controller, source: -1 };
-  return g.state.zones.battlefield.filter((id) => !exclude.includes(id) && !g.state.objects[id].phasedOut && (!spec.filter || spec.filter(ctx, { kind: 'obj', id })) && !protectionBlocksAttach(g, id, auraDef));
+  return g.state.zones.battlefield.filter((id) => !exclude.includes(id) && !g.state.objects[id].phasedOut && (!spec.filter || spec.filter(ctx, { kind: 'obj', id })) && !protectionBlocksAttach(g, id, auraDef, auraId));
 }
 
-function protectionBlocksAttach(g: G, target: ObjId, auraDef: string): boolean {
-  const colors = printedChars(auraDef, 0, 0).colors;
-  return kwParams(g, target, 'protection').some((p) => protectionMatches(g, p, { colors, types: printedChars(auraDef, 0, 0).types }));
+function protectionBlocksAttach(g: G, target: ObjId, auraDef: string, auraId?: ObjId): boolean {
+  const colors = auraId !== undefined && g.state.objects[auraId] ? chars(g, auraId).colors : printedChars(auraDef, 0, 0).colors;
+  return kwParams(g, target, 'protection').some((p) => protectionMatches(g, p, { colors, types: printedChars(auraDef, 0, 0).types, id: auraId }));
 }
 
 export function protectionMatches(g: G, quality: unknown, src: { colors: Color[]; types: string[]; id?: ObjId }): boolean {
+  // proteção com exceção de um objeto ("este efeito não remove esta Aura", Flickering Ward)
+  if (quality && typeof quality === 'object' && 'base' in quality) {
+    const q = quality as { base: string; exceto?: ObjId };
+    if (q.exceto !== undefined && src.id === q.exceto) return false;
+    return protectionMatches(g, q.base, src);
+  }
   if (typeof quality !== 'string') return false;
   if (quality.startsWith('color:')) return src.colors.includes(quality.slice(6) as Color);
   if (quality === 'creatures') return src.types.includes('Creature');

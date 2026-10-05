@@ -5,11 +5,11 @@ Gerado por `ferramentas/cobertura.ts`. Não edite à mão.
 | | |
 | --- | ---: |
 | Entradas (cartas dos decks + fichas e objetos auxiliares) | 547 |
-| **Implementadas, testadas e com rulings conferidos** | **349 / 547** |
-| Implementadas | 349 |
-| Com teste próprio | 349 |
-| Rulings conferidos (cartas dos decks) | 506 / 1285 |
-| Pendentes (jogáveis em modo manual) | 198 |
+| **Implementadas, testadas e com rulings conferidos** | **368 / 547** |
+| Implementadas | 368 |
+| Com teste próprio | 368 |
+| Rulings conferidos (cartas dos decks) | 611 / 1285 |
+| Pendentes (jogáveis em modo manual) | 179 |
 
 Uma carta conta como pronta quando tem definição em `cartas/defs/`, um arquivo de teste próprio
 (`cartas/defs/<nome>.test.ts`) e cada ruling registrado na definição com o teste que o cobre ou o
@@ -137,7 +137,7 @@ motivo de não se aplicar.
 | Dig Through Time | Pri | B | sim | sim | 3/3 |
 | Dina, Essence Brewer | Wit | B | sim | sim | 1/1 |
 | Dina, Soul Steeper | Wit | A | sim | sim | 4/4 |
-| Dirgur Focusmage // Braingeyser | Pri | B | — | — | 0/18 |
+| Dirgur Focusmage // Braingeyser | Pri | B | sim | sim | 18/18 |
 | Doomwake Giant | Sil | A | sim | sim | 3/3 |
 | Doran, Besieged by Time | Abz | B | sim | sim | 4/4 |
 | Dragonlord Dromoka | Abz | A | sim | sim | — |
@@ -145,51 +145,51 @@ motivo de não se aplicar.
 | Dread Tiller | Bli | B | sim | sim | — |
 | Drumbellower | Lor | A | sim | sim | 2/2 |
 | Dusk Urchins | Bli | B | sim | sim | 2/2 |
-| Eccentric Pestfinder // Turn Stones | Wit | B | — | — | 0/16 |
+| Eccentric Pestfinder // Turn Stones | Wit | B | sim | sim | 16/16 |
 | Eclipsed Steppe | Sil | A | sim | sim | 2/2 |
-| Eidolon of Countless Battles | Sil | B | — | — | 0/7 |
-| Eiganjo Dynastorian // Replenish | Sil | B | — | — | 0/18 |
-| Eldrazi Conscription | Sil | B | — | — | 0/7 |
+| Eidolon of Countless Battles | Sil | B | sim | sim | 7/7 |
+| Eiganjo Dynastorian // Replenish | Sil | B | sim | sim | 18/18 |
+| Eldrazi Conscription | Sil | B | sim | sim | 7/7 |
 | Elvish Mystic | Wit | A | sim | sim | — |
 | Emeria, the Sky Ruin | Lor | B | sim | sim | 1/1 |
-| Eriette of the Charmed Apple | Sil | B | — | — | 0/2 |
+| Eriette of the Charmed Apple | Sil | B | sim | sim | 2/2 |
 | Espers to Magicite | Ter | B | — | — | 0/5 |
-| Ethereal Armor | Sil | B | — | — | 0/1 |
-| Eventide's Shadow | Bli | B | — | — | 0/1 |
+| Ethereal Armor | Sil | B | sim | sim | 1/1 |
+| Eventide's Shadow | Bli | B | sim | sim | 1/1 |
 | Everlasting Torment | Bli | B | — | — | 0/8 |
-| Evolution Sage | Bli | B | — | — | 0/9 |
+| Evolution Sage | Bli | B | sim | sim | 9/9 |
 | Evolving Wilds | Abz, Bli, Ter | A | sim | sim | — |
-| Excava, the Risen Past | Lor | B | — | — | 0/4 |
+| Excava, the Risen Past | Lor | B | sim | sim | 4/4 |
 | Exotic Orchard | Abz, Bli, Lor, Pri, Sil, Ter, Wit | A | sim | sim | 5/5 |
 | Expel the Interlopers | Abz | A | sim | sim | 1/1 |
-| Expressive Iteration | Pri | B | — | — | 0/3 |
+| Expressive Iteration | Pri | B | sim | sim | 3/3 |
 | Fabled Passage | Lor, Pri, Sil, Wit | A | sim | sim | 2/2 |
 | Faeburrow Elder | Abz | A | sim | sim | 2/2 |
-| Faerie Mastermind | Pri | B | — | — | 0/1 |
-| Faithless Looting | Lor, Ter | B | — | — | 0/7 |
-| Fallen Ideal | Sil | B | — | — | 0/1 |
+| Faerie Mastermind | Pri | B | sim | sim | 1/1 |
+| Faithless Looting | Lor, Ter | B | sim | sim | 7/7 |
+| Fallen Ideal | Sil | B | sim | sim | 1/1 |
 | Feed the Swarm | Abz | A | sim | sim | 3/3 |
 | Fellwar Stone | Lor, Pri, Sil | A | sim | sim | 7/7 |
-| Felothar the Steadfast | Abz | B | — | — | 0/1 |
+| Felothar the Steadfast | Abz | B | sim | sim | 1/1 |
 | Ferrous Lake | Pri | A | sim | sim | — |
 | Festering Thicket | Bli, Wit | A | sim | sim | 1/1 |
 | Fetid Heath | Sil, Ter | B | sim | sim | — |
 | Fields of Strife | Lor | A | sim | sim | — |
 | Final Act | Wit | A | sim | sim | 2/2 |
-| Fire Covenant | Bli | B | — | — | 0/3 |
+| Fire Covenant | Bli | B | sim | sim | 3/3 |
 | Firemane Commando | Sil | A | sim | sim | 3/3 |
 | Fleshbag Marauder | Ter | A | sim | sim | 2/2 |
-| Flickering Ward | Sil | B | — | — | 0/1 |
+| Flickering Ward | Sil | B | sim | sim | 1/1 |
 | Flourishing Defenses | Bli | A | sim | sim | 2/2 |
 | Foreboding Ruins | Ter | A | sim | sim | 4/4 |
 | Forest | Abz, Bli, Wit | dados | sim | sim | — |
 | Fortified Village | Abz | A | sim | sim | 4/4 |
-| Forum Filibuster | Sil | B | — | — | 0/1 |
+| Forum Filibuster | Sil | B | sim | sim | 1/1 |
 | Forum of Amity | Sil | A | sim | sim | — |
 | Fracture | Sil | A | sim | sim | — |
 | Frostboil Snarl | Pri | A | sim | sim | 4/4 |
 | Furycalm Snarl | Lor, Ter | A | sim | sim | 4/4 |
-| Furygale Flocking | Pri | B | — | — | 0/4 |
+| Furygale Flocking | Pri | B | sim | sim | 4/4 |
 | Gau, Feral Youth | Ter | B | — | — | 0/2 |
 | General Leo Cristophe | Ter | B | — | — | 0/2 |
 | Geothermal Bog | Ter | A | sim | sim | — |
