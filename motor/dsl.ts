@@ -292,7 +292,7 @@ export const on = {
   /** Landfall: "Sempre que um terreno que você controla entra" */
   landfall: (): TriggerSpec => ({ kind: 'event', match: (e, c) => e.type === 'zone' && e.to === 'battlefield' && !!c.g.state.objects[e.obj] && isLand(c.g, e.obj) && controllerOf(c.g, e.obj) === c.you }),
   custom: (match: (e: GameEvent, c: TriggerCtx) => boolean | Record<string, unknown> | Record<string, unknown>[]): TriggerSpec => ({ kind: 'event', match }),
-  batch: (match: (evs: GameEvent[], c: TriggerCtx) => boolean | Record<string, unknown>): TriggerSpec => ({ kind: 'batch', match }),
+  batch: (match: (evs: GameEvent[], c: TriggerCtx) => boolean | Record<string, unknown> | Record<string, unknown>[]): TriggerSpec => ({ kind: 'batch', match }),
 };
 
 // ---------------------------------------------------------------------------

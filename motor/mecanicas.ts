@@ -1,18 +1,18 @@
 // Mecânicas com palavra própria usadas pelas cartas da parte B: transformar, proliferar,
 // resguardo. Cada uma segue a regra citada.
 
-import { addCounters, blight, moveObjects, sacrifice } from './actions.ts';
+import { addCounters, blight, moveObjects, removeFromCombat, sacrifice } from './actions.ts';
 import { addEffect } from './state.ts';
 import { shuffle } from './rng.ts';
 import { chooseItems, objItem, playerItem, yesNo } from './ask.ts';
 import { chars, controllerOf, currentFace, isCreature, isLand, isTransform, nameOf } from './chars.ts';
 import { defineAbility, type AbilityDef, type AdditionalCostDef, type Gen, type StaticDef, type TriggeredDef } from './defs.ts';
-import { keyword, on, triggered } from './dsl.ts';
-import { mayPay } from './efeitos.ts';
+import { keyword, on, t, tgt, triggered } from './dsl.ts';
+import { mayPay, untilEndOfTurn } from './efeitos.ts';
 import type { G } from './game-context.ts';
 import { castSpell, copySpell, counter } from './stack.ts';
 import { emit } from './triggers.ts';
-import type { ChoiceItem, CopyValues, Duration, ObjId, PlayerId } from './types.ts';
+import type { ChoiceItem, CopyValues, Duration, Mod, ObjId, PlayerId } from './types.ts';
 
 // ---------------------------------------------------------------------------
 // Transformar (CR 701.28)
@@ -261,4 +261,37 @@ export function annihilatorGranted(n: number): string {
     aniquiladoresConcedidos.set(n, id);
   }
   return id;
+}
+
+/**
+ * CR 702.26: sair de fase. O que estiver anexado sai junto, indiretamente (702.26g), e volta
+ * com o hospedeiro na etapa de desvirar do controlador dele. Sai do combate (CR 506.4).
+ */
+export function phaseOut(g: G, ids: ObjId[]): void {
+  const s = g.state;
+  const fora: ObjId[] = [];
+  const sai = (id: ObjId, por: PlayerId): void => {
+    const o = s.objects[id];
+    if (!o || o.zone !== 'battlefield' || o.phasedOut) return;
+    o.phasedOut = true;
+    o.data.phasedOutBy = por;
+    fora.push(id);
+    removeFromCombat(g, id);
+    for (const a of s.zones.battlefield) if (s.objects[a].attachedTo === id) sai(a, por);
+  };
+  for (const id of ids) sai(id, controllerOf(g, id));
+  if (fora.length) { emit(g, fora.map((obj) => ({ type: 'phaseOut' as const, obj }))); g.bump(); }
+}
+
+/**
+ * CR 702.165: Apoio N — quando entra, N marcadores +1/+1 na criatura alvo; se for outra criatura,
+ * ela ganha até o fim do turno as habilidades impressas abaixo do apoio (702.165a, rulings 3-4).
+ */
+export function backup(n: number, grants: () => Mod[]): TriggeredDef {
+  return triggered(on.selfEnters(), function* (c) {
+    const id = tgt(c);
+    if (id === null) return;
+    addCounters(c.g, { kind: 'obj', id }, '+1/+1', n, c.you);
+    if (id !== c.source) untilEndOfTurn(c, [id], grants());
+  }, { targets: [t.creature(undefined, 'criatura alvo do apoio')], text: `Apoio ${n} (quando entra, coloque ${n} marcador(es) +1/+1 na criatura alvo; se for outra criatura, ela ganha as habilidades abaixo até o fim do turno)` });
 }

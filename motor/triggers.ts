@@ -154,7 +154,8 @@ function matchSpec(g: G, def: TriggeredDef, ctx: TriggerCtx, events: GameEvent[]
     }
   } else {
     const r = on.match(events, ctx);
-    if (r) out.push(typeof r === 'object' ? r : {});
+    if (Array.isArray(r)) out.push(...r);
+    else if (r) out.push(typeof r === 'object' ? r : {});
   }
   return out;
 }

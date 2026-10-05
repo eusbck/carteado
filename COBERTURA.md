@@ -5,11 +5,11 @@ Gerado por `ferramentas/cobertura.ts`. Não edite à mão.
 | | |
 | --- | ---: |
 | Entradas (cartas dos decks + fichas e objetos auxiliares) | 547 |
-| **Implementadas, testadas e com rulings conferidos** | **368 / 547** |
-| Implementadas | 368 |
-| Com teste próprio | 368 |
-| Rulings conferidos (cartas dos decks) | 611 / 1285 |
-| Pendentes (jogáveis em modo manual) | 179 |
+| **Implementadas, testadas e com rulings conferidos** | **387 / 547** |
+| Implementadas | 387 |
+| Com teste próprio | 387 |
+| Rulings conferidos (cartas dos decks) | 682 / 1285 |
+| Pendentes (jogáveis em modo manual) | 160 |
 
 Uma carta conta como pronta quando tem definição em `cartas/defs/`, um arquivo de teste próprio
 (`cartas/defs/<nome>.test.ts`) e cada ruling registrado na definição com o teste que o cobre ou o
@@ -190,36 +190,36 @@ motivo de não se aplicar.
 | Frostboil Snarl | Pri | A | sim | sim | 4/4 |
 | Furycalm Snarl | Lor, Ter | A | sim | sim | 4/4 |
 | Furygale Flocking | Pri | B | sim | sim | 4/4 |
-| Gau, Feral Youth | Ter | B | — | — | 0/2 |
-| General Leo Cristophe | Ter | B | — | — | 0/2 |
+| Gau, Feral Youth | Ter | B | sim | sim | 2/2 |
+| General Leo Cristophe | Ter | B | sim | sim | 2/2 |
 | Geothermal Bog | Ter | A | sim | sim | — |
-| Ghostly Prison | Sil | B | — | — | 0/2 |
-| Ghoulish Impetus | Sil | B | — | — | 0/4 |
-| Gift of Immortality | Sil | B | — | — | 0/2 |
-| Glissa Sunslayer | Bli | B | — | — | 0/1 |
+| Ghostly Prison | Sil | B | sim | sim | 2/2 |
+| Ghoulish Impetus | Sil | B | sim | sim | 4/4 |
+| Gift of Immortality | Sil | B | sim | sim | 2/2 |
+| Glissa Sunslayer | Bli | B | sim | sim | 1/1 |
 | Glittering Massif | Lor | A | sim | sim | — |
-| Goblin Electromancer | Pri | B | — | — | 0/3 |
+| Goblin Electromancer | Pri | B | sim | sim | 3/3 |
 | Gogo, Mysterious Mime | Ter | B | — | — | 0/5 |
 | Goldspan Dragon | Pri | A | sim | sim | 3/3 |
 | Golgari Rot Farm | Bli | A | sim | sim | 1/1 |
-| Gorma, the Gullet | Wit | B | — | — | 0/1 |
-| Grave Researcher // Reanimate | Wit | B | — | — | 0/20 |
-| Grave Venerations | Bli | B | — | — | 0/5 |
+| Gorma, the Gullet | Wit | B | sim | sim | 1/1 |
+| Grave Researcher // Reanimate | Wit | B | sim | sim | 20/20 |
+| Grave Venerations | Bli | B | sim | sim | 5/5 |
 | Graven Cairns | Ter | B | sim | sim | 1/1 |
 | Great Forest Druid | Abz | A | sim | sim | — |
 | Grim Backwoods | Wit | A | sim | sim | — |
-| Grim Poppet | Bli | B | — | — | 0/1 |
-| Gristle Glutton | Bli | B | — | — | 0/6 |
+| Grim Poppet | Bli | B | sim | sim | 1/1 |
+| Gristle Glutton | Bli | B | sim | sim | 6/6 |
 | Gruul Turf | Bli | A | sim | sim | 1/1 |
-| Guardian of Faith | Lor | B | — | — | 0/8 |
-| Guardian Scalelord | Lor | B | — | — | 0/5 |
-| Hall of Oracles | Pri | B | — | — | — |
-| Hapatra, Vizier of Poisons | Bli | B | — | — | 0/2 |
-| Hardened Academic | Lor | B | — | — | 0/1 |
-| Hateful Eidolon | Sil | B | — | — | 0/2 |
+| Guardian of Faith | Lor | B | sim | sim | 8/8 |
+| Guardian Scalelord | Lor | B | sim | sim | 5/5 |
+| Hall of Oracles | Pri | B | sim | sim | — |
+| Hapatra, Vizier of Poisons | Bli | B | sim | sim | 2/2 |
+| Hardened Academic | Lor | B | sim | sim | 1/1 |
+| Hateful Eidolon | Sil | B | sim | sim | 2/2 |
 | Haunted Mire | Wit | A | sim | sim | — |
 | Haywire Mite | Wit | A | sim | sim | — |
-| Herald of Amity | Sil | B | — | — | 0/4 |
+| Herald of Amity | Sil | B | sim | sim | 4/4 |
 | High Market | Ter, Wit | A | sim | sim | — |
 | Hofri Ghostforge | Lor | B | — | — | 0/8 |
 | Hornet Nest | Abz | A | sim | sim | 1/1 |
