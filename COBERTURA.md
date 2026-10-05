@@ -5,11 +5,11 @@ Gerado por `ferramentas/cobertura.ts`. Não edite à mão.
 | | |
 | --- | ---: |
 | Entradas (cartas dos decks + fichas e objetos auxiliares) | 547 |
-| **Implementadas, testadas e com rulings conferidos** | **420 / 547** |
-| Implementadas | 420 |
-| Com teste próprio | 420 |
-| Rulings conferidos (cartas dos decks) | 778 / 1285 |
-| Pendentes (jogáveis em modo manual) | 127 |
+| **Implementadas, testadas e com rulings conferidos** | **436 / 547** |
+| Implementadas | 436 |
+| Com teste próprio | 436 |
+| Rulings conferidos (cartas dos decks) | 846 / 1285 |
+| Pendentes (jogáveis em modo manual) | 111 |
 
 Uma carta conta como pronta quando tem definição em `cartas/defs/`, um arquivo de teste próprio
 (`cartas/defs/<nome>.test.ts`) e cada ruling registrado na definição com o teste que o cobre ou o
@@ -296,46 +296,46 @@ motivo de não se aplicar.
 | Negate | Pri | A | sim | sim | 1/1 |
 | Nest of Scarabs | Bli | B | sim | sim | 2/2 |
 | Nesting Grounds | Bli | B | sim | sim | 4/4 |
-| Nether Traitor | Wit | B | — | — | 0/6 |
+| Nether Traitor | Wit | B | sim | sim | 6/6 |
 | Night's Whisper | Bli, Ter, Wit | A | sim | sim | — |
 | Nomad Outpost | Ter | A | sim | sim | — |
 | Nyx-Fleece Ram | Abz | A | sim | sim | — |
-| Oft-Nabbed Goat | Bli | B | — | — | 0/1 |
+| Oft-Nabbed Goat | Bli | B | sim | sim | 1/1 |
 | Ohran Frostfang | Abz | A | sim | sim | 2/2 |
 | Ominous Harvest | Wit | B | sim | sim | 5/5 |
 | Ophiomancer | Wit | A | sim | sim | 3/3 |
 | Orzhov Signet | Abz | A | sim | sim | — |
 | Overgrown Battlement | Abz | A | sim | sim | 1/1 |
 | Overgrown Farmland | Abz | A | sim | sim | 1/1 |
-| Painful Truths | Bli | B | — | — | 0/5 |
-| Parasitic Impetus | Sil | B | — | — | 0/7 |
+| Painful Truths | Bli | B | sim | sim | 5/5 |
+| Parasitic Impetus | Sil | B | sim | sim | 7/7 |
 | Patchwork Banner | Lor | A | sim | sim | 1/1 |
-| Path of Ancestry | Abz, Bli, Pri, Sil, Ter, Wit | B | — | — | 0/7 |
+| Path of Ancestry | Abz, Bli, Pri, Sil, Ter, Wit | B | sim | sim | 7/7 |
 | Path to Exile | Lor, Ter | A | sim | sim | 2/2 |
 | Pawn of Ulamog | Wit | A | sim | sim | 2/2 |
-| Pearl-Ear, Imperial Advisor | Sil | B | — | — | 0/6 |
-| Perforating Artist | Ter | B | — | — | 0/6 |
+| Pearl-Ear, Imperial Advisor | Sil | B | sim | sim | 6/6 |
+| Perforating Artist | Ter | B | sim | sim | 6/6 |
 | Perpetual Timepiece | Lor | A | sim | sim | 1/1 |
 | Persist | Bli | B | — | — | — |
 | Pest Infestation | Wit | A | sim | sim | 2/2 |
 | Pest Rescuer | Wit | A | sim | sim | 4/4 |
-| Phoenix Down | Ter | B | — | — | 0/1 |
+| Phoenix Down | Ter | B | sim | sim | 1/1 |
 | Pitiless Plunderer | Ter | A | sim | sim | 1/1 |
 | Plains | Abz, Lor, Sil, Ter | dados | sim | sim | — |
 | Plumb the Forbidden | Wit | B | sim | sim | 2/2 |
-| Priest of Fell Rites | Ter | B | — | — | 0/3 |
+| Priest of Fell Rites | Ter | B | sim | sim | 3/3 |
 | Priest of Forgotten Gods | Wit | A | sim | sim | 3/3 |
-| Primary Research | Lor | B | — | — | 0/2 |
+| Primary Research | Lor | B | sim | sim | 2/2 |
 | Prismari Campus | Pri | A | sim | sim | — |
 | Prismari Charm | Pri | A | sim | sim | — |
 | Prismari Command | Pri | A | sim | sim | 2/2 |
 | Prismari Pianist | Pri | A | sim | sim | 3/3 |
-| Promise of Loyalty | Sil | B | — | — | 0/3 |
-| Puca's Covenant | Bli | B | — | — | 0/1 |
+| Promise of Loyalty | Sil | B | sim | sim | 3/3 |
+| Puca's Covenant | Bli | B | sim | sim | 1/1 |
 | Putrefy | Bli | A | sim | sim | 1/1 |
-| Quintorius, Field Historian | Lor | B | — | — | 0/1 |
+| Quintorius, Field Historian | Lor | B | sim | sim | 1/1 |
 | Quintorius, History Chaser | Lor | B | sim | sim | 1/1 |
-| Quintorius, Loremaster | Lor | B | — | — | 0/5 |
+| Quintorius, Loremaster | Lor | B | sim | sim | 5/5 |
 | Radiant Grove | Abz | A | sim | sim | — |
 | Radiant Summit | Lor | A | sim | sim | 1/1 |
 | Raffine's Guidance | Sil | B | — | — | — |
@@ -343,11 +343,11 @@ motivo de não se aplicar.
 | Rampart Architect | Abz | A | sim | sim | — |
 | Rapturous Moment | Pri | A | sim | sim | — |
 | Ravenous Chupacabra | Ter | A | sim | sim | — |
-| Reality Shift | Pri | B | — | — | 0/13 |
+| Reality Shift | Pri | B | sim | sim | 13/13 |
 | Reanimate | Ter | B | sim | sim | 5/5 |
 | Redemption Arc | Sil | B | — | — | — |
 | Rejoin the Fight | Ter | B | — | — | — |
-| Relic Retriever | Lor | B | — | — | 0/1 |
+| Relic Retriever | Lor | B | sim | sim | 1/1 |
 | Reliquary Tower | Pri | A | sim | sim | 1/1 |
 | Remorseful Cleric | Lor | A | sim | sim | — |
 | Renegade Bull | Pri | B | — | — | 0/7 |

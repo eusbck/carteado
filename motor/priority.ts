@@ -5,7 +5,8 @@ import { abilityDefs, chars, controllerOf, hasKw, hooks, nameOf } from './chars.
 import { activateManaAbility, canAfford, canPayParts, manaOptions, manaPart } from './costs.ts';
 import { cardDef, type ActivatedDef, type CastPermission, type Gen, type SCtx } from './defs.ts';
 import type { G } from './game-context.ts';
-import { reduceGeneric } from './mana.ts';
+import { formatCost, reduceGeneric } from './mana.ts';
+import { manifestFaceUpCost, turnFaceUp } from './mecanicas.ts';
 import { activateAbility, candidateTargets, canActivate, castSpell, chooseModes, spellTargetSpecs, totalSpellCost, faceDefOf, type CastMethod } from './stack.ts';
 import type { ObjId, PlayerId, PriorityAction, ZoneName } from './types.ts';
 
@@ -159,6 +160,12 @@ export function legalActions(g: G, p: PlayerId): PriorityAction[] {
     }
   }
   for (const m of manaOptions(g, p)) acts.push({ id: `mana:${m.key}`, kind: 'mana', label: `${nameOf(g, m.obj)}: adicionar ${m.alt.map((t) => `{${t}}`).join('')}`, obj: m.obj });
+  // ação especial: virar para cima uma permanente manifestada (CR 116.2b, 701.40a)
+  for (const id of s.zones.battlefield) {
+    if (controllerOf(g, id) !== p) continue;
+    const custo = manifestFaceUpCost(g, id);
+    if (custo && canAfford(g, p, custo, { purpose: { kind: 'effect' } })) acts.push({ id: `faceup:${id}`, kind: 'special', label: `Virar para cima ${nameOf(g, id)} (${formatCost(custo)})`, obj: id });
+  }
   if (s.config.manualMode) acts.push({ id: 'manual', kind: 'manual', label: 'Ajuste manual' });
   return acts;
 }
@@ -193,6 +200,7 @@ export function* performAction(g: G, p: PlayerId, actionId: string): Gen<boolean
     const r = yield* activateAbility(g, p, id, abilityId);
     return r !== null;
   }
+  if (kind === 'faceup') return yield* turnFaceUp(g, p, Number(a));
   if (kind === 'mana') {
     const key = actionId.slice(5);
     const opt = manaOptions(g, p).find((m) => m.key === key);

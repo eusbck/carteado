@@ -33,6 +33,7 @@ export type GameEvent =
   | { type: 'prepared'; obj: ObjId }
   | { type: 'phaseOut'; obj: ObjId }
   | { type: 'phaseIn'; obj: ObjId }
+  | { type: 'turnedFaceUp'; obj: ObjId }
   | { type: 'resolved'; obj: ObjId; abilityId?: string; controller: PlayerId }
   | { type: 'mana'; player: PlayerId; source: ObjId; produced: ManaType[] }
   | { type: 'leave'; player: PlayerId }

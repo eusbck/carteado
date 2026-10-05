@@ -29,9 +29,9 @@ function sourceQualities(g: G, source: ObjId) {
 }
 
 /** o alvo é legal para esta especificação, vindo de uma mágica/habilidade controlada por `controller`? */
-export function isLegalTarget(g: G, spec: TargetSpec, t: TargetRef, controller: PlayerId, source: ObjId, sourceIsSpell = true): boolean {
+export function isLegalTarget(g: G, spec: TargetSpec, t: TargetRef, controller: PlayerId, source: ObjId, sourceIsSpell = true, event?: Record<string, unknown>): boolean {
   const s = g.state;
-  const ctx: SCtx = { g, you: controller, source };
+  const ctx: SCtx = { g, you: controller, source, event };
   if (t.kind === 'player') {
     if (spec.what !== 'player' && spec.what !== 'any') return false;
     if (s.players[t.id]?.left !== false) return false;
@@ -57,7 +57,7 @@ export function isLegalTarget(g: G, spec: TargetSpec, t: TargetRef, controller: 
   return !spec.filter || spec.filter(ctx, t);
 }
 
-export function candidateTargets(g: G, spec: TargetSpec, controller: PlayerId, source: ObjId): TargetRef[] {
+export function candidateTargets(g: G, spec: TargetSpec, controller: PlayerId, source: ObjId, event?: Record<string, unknown>): TargetRef[] {
   const s = g.state;
   const out: TargetRef[] = [];
   if (spec.what === 'player' || spec.what === 'any') for (const p of g.playersInGame()) out.push({ kind: 'player', id: p });
@@ -68,7 +68,7 @@ export function candidateTargets(g: G, spec: TargetSpec, controller: PlayerId, s
     const ids = zone === 'graveyard' || zone === 'hand' || zone === 'library' ? s.zones[zone].flat() : s.zones[zone];
     for (const id of ids) out.push({ kind: 'obj', id });
   }
-  return out.filter((t) => isLegalTarget(g, spec, t, controller, source));
+  return out.filter((t) => isLegalTarget(g, spec, t, controller, source, true, event));
 }
 
 function specMax(g: G, spec: TargetSpec, ctx: SCtx & { x?: number }): number {
@@ -76,12 +76,12 @@ function specMax(g: G, spec: TargetSpec, ctx: SCtx & { x?: number }): number {
 }
 
 /** escolhe alvos para uma lista de especificações (CR 601.2c). null = impossível */
-export function* chooseTargets(g: G, player: PlayerId, specs: TargetSpec[], source: ObjId, label: string, x = 0): Gen<TargetRef[][] | null> {
+export function* chooseTargets(g: G, player: PlayerId, specs: TargetSpec[], source: ObjId, label: string, x = 0, event?: Record<string, unknown>): Gen<TargetRef[][] | null> {
   const chosen: TargetRef[][] = [];
-  const ctx: SCtx & { x: number } = { g, you: player, source, x };
+  const ctx: SCtx & { x: number } = { g, you: player, source, x, event };
   for (let i = 0; i < specs.length; i++) {
     const spec = specs[i];
-    let cands = candidateTargets(g, spec, player, source);
+    let cands = candidateTargets(g, spec, player, source, event);
     if (spec.differentFrom) {
       const used = spec.differentFrom.flatMap((j) => chosen[j] ?? []);
       cands = cands.filter((t) => !used.some((u) => u.kind === t.kind && u.id === t.id));
@@ -514,7 +514,7 @@ export function* putTriggerOnStack(g: G, abilityId: string, source: ObjId, contr
   }
   const { specs } = abilityTargetSpecs(def, info.modes);
   if (specs.length) {
-    const t = yield* chooseTargets(g, controller, specs, source, label);
+    const t = yield* chooseTargets(g, controller, specs, source, label, 0, event);
     if (t === null) { destroyObject(g, ab.id); return null; } // CR 603.3d
     info.targets = t;
   }
@@ -540,7 +540,7 @@ function makeCtx(g: G, o: GameObject, targets: (TargetRef | null)[][], source: O
 function checkTargets(g: G, o: GameObject, specs: TargetSpec[], source: ObjId): (TargetRef | null)[][] | null {
   const st = o.stack!;
   if (specs.length === 0 || st.targets.flat().length === 0) return st.targets.map((grp) => [...grp]);
-  const res = st.targets.map((grp, i) => grp.map((t) => (specs[i] && isLegalTarget(g, specs[i], t, st.controller, source) ? t : null)));
+  const res = st.targets.map((grp, i) => grp.map((t) => (specs[i] && isLegalTarget(g, specs[i], t, st.controller, source, true, st.kind === 'triggered' ? st.event : undefined) ? t : null)));
   const any = st.targets.flat().length > 0;
   const allIllegal = any && res.flat().every((t) => t === null);
   return allIllegal ? null : res;

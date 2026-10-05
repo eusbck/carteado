@@ -395,8 +395,8 @@ export function commanderIdentity(g: G, p: PlayerId): Color[] {
 }
 
 /** mana de uma cor da identidade do comandante (Arcane Signet, Command Tower) — CR 903.4f */
-export function manaCommanderIdentity(opts: { cost?: string; text?: string } = {}): ManaAbilityDef {
-  return mana((c) => commanderIdentity(c.g, c.you).map((col) => [col]), { cost: opts.cost, text: opts.text ?? '{T}: Adicione uma mana de qualquer cor da identidade de cor do seu comandante.' });
+export function manaCommanderIdentity(opts: { cost?: string; text?: string; onSpend?: string } = {}): ManaAbilityDef {
+  return mana((c) => commanderIdentity(c.g, c.you).map((col) => [col]), { cost: opts.cost, onSpend: opts.onSpend, text: opts.text ?? '{T}: Adicione uma mana de qualquer cor da identidade de cor do seu comandante.' });
 }
 
 /** Encantar [especificação] (CR 702.5) */

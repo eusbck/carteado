@@ -43,6 +43,8 @@ export interface SCtx {
   g: G;
   you: PlayerId;
   source: ObjId;
+  /** evento que disparou a habilidade (alvos de gatilhos que dependem dele) */
+  event?: Record<string, unknown>;
 }
 
 export type EffectFn = (c: Ctx) => Gen<void>;

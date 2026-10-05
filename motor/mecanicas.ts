@@ -1,18 +1,20 @@
 // Mecânicas com palavra própria usadas pelas cartas da parte B: transformar, proliferar,
 // resguardo. Cada uma segue a regra citada.
 
-import { addCounters, blight, moveObjects, removeFromCombat, sacrifice } from './actions.ts';
+import { addCounters, blight, exile, moveObjects, putOntoBattlefield, removeFromCombat, sacrifice } from './actions.ts';
 import { addEffect } from './state.ts';
 import { shuffle } from './rng.ts';
 import { chooseItems, objItem, playerItem, yesNo } from './ask.ts';
-import { chars, controllerOf, currentFace, isCreature, isLand, isTransform, nameOf } from './chars.ts';
-import { defineAbility, type AbilityDef, type AdditionalCostDef, type Gen, type ReplacementDef, type StaticDef, type TriggeredDef } from './defs.ts';
-import { asEnters, keyword, on, t, tgt, triggered } from './dsl.ts';
-import { mayPay, untilEndOfTurn } from './efeitos.ts';
+import { chars, controllerOf, currentFace, isCreature, isLand, isTransform, nameOf, printedChars } from './chars.ts';
+import { payMana } from './costs.ts';
+
+import { defineAbility, type AbilityDef, type ActivatedDef, type AdditionalCostDef, type Gen, type ReplacementDef, type StaticDef, type TriggeredDef } from './defs.ts';
+import { activated, asEnters, keyword, on, t, tgt, triggered } from './dsl.ts';
+import { delayed, mayPay, nextEndStepTrigger, untilEndOfTurn } from './efeitos.ts';
 import type { G } from './game-context.ts';
 import { castSpell, copySpell, counter } from './stack.ts';
 import { emit } from './triggers.ts';
-import type { ChoiceItem, CopyValues, Duration, Mod, ObjId, PlayerId } from './types.ts';
+import type { ChoiceItem, CopyValues, Duration, ManaSymbol, Mod, ObjId, PlayerId } from './types.ts';
 
 // ---------------------------------------------------------------------------
 // Transformar (CR 701.28)
@@ -201,7 +203,7 @@ export function magecraft(effect: TriggeredDef['effect'], text: string): Trigger
 // Permissões e afins
 // ---------------------------------------------------------------------------
 /** "você pode jogar/conjurar essas cartas [até ...]" (CR 601.2a, 305.1) */
-export function allowPlay(g: G, controller: PlayerId, source: ObjId, cards: ObjId[], duration: Duration, opts: { free?: boolean; anyType?: boolean; once?: boolean; spellsOnly?: boolean } = {}): void {
+export function allowPlay(g: G, controller: PlayerId, source: ObjId, cards: ObjId[], duration: Duration, opts: { free?: boolean; anyType?: boolean; once?: boolean; spellsOnly?: boolean; bottomInstead?: boolean } = {}): void {
   if (cards.length === 0) return;
   addEffect(g, { source, sourceDef: '', controller, duration, affected: null, mods: [{ k: 'rule', id: 'rule:mayPlay', params: { objs: cards, player: controller, ...opts } }] });
 }
@@ -324,6 +326,66 @@ export function devour(n: number): ReplacementDef {
     ev.counters['+1/+1'] = (ev.counters['+1/+1'] ?? 0) + n * sac.length;
     ev.choices.devorou = sac.length;
   }, `Devorar ${n} (ao entrar, você pode sacrificar quantas criaturas quiser; ela entra com ${n} marcador(es) +1/+1 por criatura sacrificada)`);
+}
+
+/** CR 701.40a: manifestar — a carta do topo do grimório entra virada para baixo como criatura 2/2 */
+export function* manifest(g: G, p: PlayerId): Gen<ObjId | null> {
+  const topo = g.state.zones.library[p][0];
+  if (topo === undefined || g.state.players[p].left) return null;
+  const [id] = yield* putOntoBattlefield(g, [{ id: topo, controller: p, faceDown: true, data: { manifestada: true } }], 'manifest');
+  if (id !== undefined) g.log(`${g.state.players[p].name} manifesta a carta do topo do grimório.`, { rule: '701.40' });
+  return id ?? null;
+}
+
+/**
+ * CR 701.40a, 116.2b: custo de mana para virar para cima uma permanente manifestada, se a carta
+ * for de criatura (ruling: vale mesmo que tenha perdido as habilidades); null se não pode.
+ */
+export function manifestFaceUpCost(g: G, id: ObjId): ManaSymbol[] | null {
+  const o = g.state.objects[id];
+  if (!o || o.zone !== 'battlefield' || !o.faceDown || !o.data.manifestada) return null;
+  const pc = printedChars(o.def, 0, o.owner);
+  return pc.types.includes('Creature') && pc.manaCost ? pc.manaCost : null;
+}
+
+/** ação especial de virar para cima (CR 116.2b, 708.8): não usa a pilha e não é "entrar no campo" */
+export function* turnFaceUp(g: G, p: PlayerId, id: ObjId): Gen<boolean> {
+  const custo = manifestFaceUpCost(g, id);
+  if (custo === null || controllerOf(g, id) !== p) return false;
+  const pago = yield* payMana(g, p, custo, { purpose: { kind: 'effect' }, canCancel: true, label: `virar ${nameOf(g, id)} para cima` });
+  if (pago === null) return false;
+  const o = g.state.objects[id];
+  o.faceDown = false;
+  delete o.data.manifestada;
+  g.bump();
+  g.log(`${g.state.players[p].name} vira para cima ${nameOf(g, id)}.`, { rule: '701.40a' });
+  emit(g, [{ type: 'turnedFaceUp', obj: id }]);
+  return true;
+}
+
+/** fim do desenterrar: exila no início da próxima etapa final (CR 702.84a) */
+const DESENTERRAR_EXILA = defineAbility('kw:unearthExile', nextEndStepTrigger(function* (c) {
+  const id = c.data.obj as ObjId;
+  if (c.g.state.objects[id]?.zone === 'battlefield') yield* exile(c.g, [id]);
+}, 'Exile a criatura desenterrada.'));
+
+/**
+ * CR 702.84: Desenterrar [custo] — do cemitério, só como feitiço: volta ao campo com ímpeto; é
+ * exilada no início da próxima etapa final ou se fosse sair do campo (substituição, 702.84a).
+ */
+export function unearth(custo: string): ActivatedDef {
+  const a = activated(custo, function* (c) {
+    if (c.g.state.objects[c.source]?.zone !== 'graveyard') return;
+    const [novo] = yield* putOntoBattlefield(c.g, [{ id: c.source, controller: c.you }], 'effect');
+    if (novo === undefined) return;
+    addEffect(c.g, {
+      source: novo, sourceDef: '', controller: c.you, duration: { kind: 'whileOnBattlefield', obj: novo }, affected: [novo],
+      mods: [{ k: 'addKeyword', kw: 'haste' }, { k: 'rule', id: 'rule:exileIfLeaves' }],
+    });
+    delayed(c, DESENTERRAR_EXILA.id!, { data: { obj: novo } });
+  }, { zones: ['graveyard'], timing: 'sorcery', text: `Desenterrar ${custo} (${custo}: devolva esta carta do seu cemitério ao campo. Ela ganha ímpeto. Exile-a no início da próxima etapa final ou se fosse sair do campo. Só como feitiço.)` });
+  a.kw = 'unearth';
+  return a;
 }
 
 /**
