@@ -6,7 +6,7 @@ export {
   addCounters, removeCounters, addMana, allCreatures, attach, becomeMonarch, blight, controlledBy, createTokens, creaturesOf,
   dealDamage, destroy, discard, draw, exile, gainControl, gainLife, goad, lookAndArrange, loseLife, mill, moveObject,
   moveObjects, permanentsMatching, putOntoBattlefield, returnToHand, sacrifice, searchLibrary, shuffleLibrary, tap, untap,
-  enchantCandidates,
+  enchantCandidates, prepare, unprepare,
 } from './actions.ts';
 export {
   chars, controllerOf, hasKw, hooks, isCreature, isLand, isLegendary, isPermanentCard, isSubtype, isType, kwParams, manaValue,

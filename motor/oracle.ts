@@ -96,3 +96,8 @@ export function faceManaValue(card: OracleCard, faceIndex: number): number {
 }
 
 export const BASIC_LAND_MANA: Record<string, Color> = { Plains: 'W', Island: 'U', Swamp: 'B', Mountain: 'R', Forest: 'G' };
+
+/** layout da carta nos dados Oracle ('normal', 'transform', 'prepare'…); null para fichas */
+export function oracleLayout(name: string): string | null {
+  return cartas.get(name)?.layout ?? null;
+}

@@ -9,6 +9,7 @@ import type { G } from './game-context.ts';
 import { shuffle as shuffleArr } from './rng.ts';
 import { addEffect, createObject, destroyObject, moveRaw, newTimestamp, objOrLki, recordLki, type Position } from './state.ts';
 import { emit } from './triggers.ts';
+import { oracleLayout } from './oracle.ts';
 import type { Answer, CardId, Color, CopyValues, Duration, GameObject, ManaType, ManaUnit, ObjId, PlayerId, TargetRef, ZoneName } from './types.ts';
 
 // ---------------------------------------------------------------------------
@@ -210,10 +211,12 @@ export function* putOntoBattlefield(g: G, reqs: EnterReq[], cause: string): Gen<
     }
     const n = s.objects[newId];
     n.choices = { ...ev.choices };
+    const entraPreparado = ev.choices.prepared === true;
     if (ev.spell) n.data.spell = ev.spell;
     if (r.data) Object.assign(n.data, r.data);
     if (ev.attachTo !== null) n.timestamp = newTimestamp(g);
     results.push(newId);
+    if (entraPreparado) prepare(g, newId); // "entra preparado" (CR 722.3a)
     events.push({ type: 'zone', obj: newId, old: r.id ?? newId, from, to: 'battlefield', card, owner, controller: ev.controller, cause, token });
     if (r.id === undefined) events.push({ type: 'token', obj: newId, player: ev.controller });
     // entrar com marcadores conta como colocar marcadores (CR 122.6, 122.6a: quem põe é o controlador)
@@ -226,6 +229,43 @@ export function* putOntoBattlefield(g: G, reqs: EnterReq[], cause: string): Gen<
   g.bump();
   emit(g, events);
   return results;
+}
+
+// ---------------------------------------------------------------------------
+// Preparação (CR 722.3)
+// ---------------------------------------------------------------------------
+/** o permanente tem um feitiço preparado nos valores copiáveis? (CR 722.2b) */
+function temFeiticoPreparado(g: G, id: ObjId): { def: string } | null {
+  const o = g.state.objects[id];
+  const def = o.copyOf?.def ?? o.def;
+  return oracleLayout(def) === 'prepare' ? { def } : null;
+}
+
+/**
+ * Torna o permanente preparado (CR 722.3a, 722.3c): só se tiver feitiço preparado e ainda não
+ * estiver preparado; o controlador cria no exílio uma cópia com as características do feitiço.
+ */
+export function prepare(g: G, id: ObjId): boolean {
+  const o = g.state.objects[id];
+  if (!o || o.zone !== 'battlefield' || o.prepared || o.phasedOut) return false;
+  const f = temFeiticoPreparado(g, id);
+  if (!f) return false;
+  o.prepared = true;
+  const ctrl = controllerOf(g, id);
+  const copia = createObject(g, { def: f.def, owner: ctrl, controller: ctrl, zone: 'exile', isCopy: true, copyOf: { def: f.def, face: 1 }, face: 1 });
+  copia.data.preparedBy = id;
+  g.log(`${nameOf(g, id)} fica preparado.`, { rule: '722.3' });
+  g.bump();
+  emit(g, [{ type: 'prepared', obj: id }]);
+  return true;
+}
+
+/** tira a designação de preparado (CR 722.3b); a cópia no exílio deixa de existir (704.5e) */
+export function unprepare(g: G, id: ObjId): void {
+  const o = g.state.objects[id];
+  if (!o || !o.prepared) return;
+  o.prepared = false;
+  g.bump();
 }
 
 /** cria fichas (CR 111, 701.7) */
