@@ -176,7 +176,7 @@ export class TestGame {
   }
   /** conjura uma carta pelo nome (da mão, por padrão) */
   cast(name: string, method = 'hand'): this {
-    this.priorityAction((a) => a.id.startsWith('cast:') && a.id.endsWith(`:${method}`) && a.obj !== undefined && this.state.objects[a.obj] && (this.state.objects[a.obj].def === name || nameOf(this.g, a.obj) === name), `conjurar ${name}`);
+    this.priorityAction((a) => a.id.startsWith('cast:') && (method === '*' || a.id.endsWith(`:${method}`)) && a.obj !== undefined && this.state.objects[a.obj] && (this.state.objects[a.obj].def === name || nameOf(this.g, a.obj) === name), `conjurar ${name}`);
     return this;
   }
   play(name: string): this {

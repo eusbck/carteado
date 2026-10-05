@@ -194,6 +194,8 @@ export interface RuleHooks {
   canAttackPlayer?: (c: SCtx, attacker: ObjId, player: PlayerId) => boolean;
   /** permanentes deste jogador desviram durante a etapa de desvirar de outro (Seedborn Muse) */
   untapDuringOthers?: (c: SCtx, player: PlayerId) => boolean;
+  /** goad contínuo ("a criatura encantada está goadada", CR 701.15): c.you goada a criatura */
+  goads?: (c: SCtx, creature: ObjId) => boolean;
 }
 
 export interface SpellInfoForCost {
@@ -314,6 +316,8 @@ export interface FaceDef {
   /** redução/aumento do próprio custo ("custa {1} a menos para cada…") */
   selfCost?: (c: SCtx, info: { targets: TargetRef[][]; x: number }) => { reduce?: number; increase?: number };
   cantBeCountered?: boolean;
+  /** Delve (CR 702.66): cartas exiladas do cemitério pagam {1} cada */
+  delve?: boolean;
   /** pode ser conjurada como se tivesse flash nesta situação */
   flash?: boolean;
 }

@@ -1,7 +1,7 @@
 // Vista de um jogador: só o que ele pode ver (CR 400.2, 401.2, 402.3, 406.3, 708).
 // O servidor nunca envia o estado inteiro; envia isto.
 
-import { chars, controllerOf, hasKw } from './chars.ts';
+import { chars, controllerOf, hasKw, hooks } from './chars.ts';
 import { summoningSick } from './costs.ts';
 import { registry } from './defs.ts';
 import type { G } from './game-context.ts';
@@ -141,7 +141,7 @@ export function objView(g: G, id: ObjId, viewer: PlayerId | null): ObjView {
     sick: o.zone === 'battlefield' && summoningSick(g, id),
     prepared: o.prepared,
     classLevel: o.classLevel,
-    goaded: o.goadedBy.length > 0,
+    goaded: o.goadedBy.length > 0 || (o.zone === 'battlefield' && hooks(g, 'goads').some((h) => h.fn(h.ctx, id))),
   };
 }
 

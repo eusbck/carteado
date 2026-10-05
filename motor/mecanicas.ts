@@ -1,16 +1,18 @@
 // Mecânicas com palavra própria usadas pelas cartas da parte B: transformar, proliferar,
 // resguardo. Cada uma segue a regra citada.
 
-import { addCounters, blight } from './actions.ts';
+import { addCounters, blight, moveObjects } from './actions.ts';
+import { addEffect } from './state.ts';
+import { shuffle } from './rng.ts';
 import { chooseItems, objItem, playerItem, yesNo } from './ask.ts';
 import { chars, controllerOf, currentFace, isCreature, isLand, isTransform, nameOf } from './chars.ts';
-import { defineAbility, type AbilityDef, type AdditionalCostDef, type Gen, type TriggeredDef } from './defs.ts';
+import { defineAbility, type AbilityDef, type AdditionalCostDef, type Gen, type StaticDef, type TriggeredDef } from './defs.ts';
 import { keyword, on, triggered } from './dsl.ts';
 import { mayPay } from './efeitos.ts';
 import type { G } from './game-context.ts';
 import { castSpell, copySpell, counter } from './stack.ts';
 import { emit } from './triggers.ts';
-import type { ChoiceItem, CopyValues, ObjId, PlayerId } from './types.ts';
+import type { ChoiceItem, CopyValues, Duration, ObjId, PlayerId } from './types.ts';
 
 // ---------------------------------------------------------------------------
 // Transformar (CR 701.28)
@@ -193,4 +195,35 @@ export function isInstantOrSorcery(g: G, id: ObjId): boolean {
 /** Magecraft: "sempre que você conjura ou copia uma mágica instantânea ou feitiço" */
 export function magecraft(effect: TriggeredDef['effect'], text: string): TriggeredDef {
   return triggered(on.custom((e, c) => ((e.type === 'cast' || e.type === 'copySpell') && e.player === c.you && isInstantOrSorcery(c.g, e.obj) ? { spell: e.obj } : false)), effect, { text: `Magecraft — ${text}` });
+}
+
+// ---------------------------------------------------------------------------
+// Permissões e afins
+// ---------------------------------------------------------------------------
+/** "você pode jogar/conjurar essas cartas [até ...]" (CR 601.2a, 305.1) */
+export function allowPlay(g: G, controller: PlayerId, source: ObjId, cards: ObjId[], duration: Duration, opts: { free?: boolean; anyType?: boolean } = {}): void {
+  if (cards.length === 0) return;
+  addEffect(g, { source, sourceDef: '', controller, duration, affected: null, mods: [{ k: 'rule', id: 'rule:mayPlay', params: { objs: cards, player: controller, ...opts } }] });
+}
+
+/** Aura que goada a criatura encantada enquanto estiver anexada (CR 701.15) */
+export function goadsEnchanted(text = 'A criatura encantada está goadada (ataca a cada combate se puder, e ataca um jogador que não você se puder).'): StaticDef {
+  return { kind: 'static', text, rules: { goads: (c, obj) => c.g.state.objects[c.source]?.attachedTo === obj } };
+}
+
+/** Descobrir N (CR 701.57) */
+export function* discover(g: G, p: PlayerId, n: number): Gen<void> {
+  const s = g.state;
+  const lib = s.zones.library[p];
+  const i = lib.findIndex((id) => !isLand(g, id) && chars(g, id).manaValue <= n);
+  const tiradas = i < 0 ? [...lib] : lib.slice(0, i + 1);
+  g.log(`${s.players[p].name} descobre ${n}: exila ${tiradas.map((id) => nameOf(g, id)).join(', ') || 'nada'}.`, { rule: '701.57' });
+  const novos = (yield* moveObjects(g, tiradas.map((id) => ({ id, to: 'exile' as const })), 'discover')).filter((x): x is ObjId => x !== null);
+  const achada = i < 0 ? null : novos[novos.length - 1] ?? null;
+  if (achada !== null) {
+    const conjurou = yield* mayCastFree(g, p, achada, `Descobrir: conjurar ${nameOf(g, achada)} sem pagar o custo de mana? (senão, ela vai para a sua mão)`);
+    if (!conjurou && g.state.objects[achada]?.zone === 'exile') yield* moveObjects(g, [{ id: achada, to: 'hand' }], 'discover');
+  }
+  const resto = shuffle(s.rng, novos.filter((id) => id !== achada && s.objects[id]?.zone === 'exile'));
+  if (resto.length) yield* moveObjects(g, resto.map((id) => ({ id, to: 'library' as const, position: 'bottom' as const })), 'discover');
 }

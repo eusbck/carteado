@@ -314,7 +314,21 @@ function* castInner(g: G, player: PlayerId, cardId: ObjId, method: CastMethod): 
   // 601.2e: legalidade (proibições, CR 601.3)
   if (hooks(g, 'cantCastSpells').some((h) => h.fn(h.ctx, player))) return null;
   // 601.2f: custo total
-  const cost = totalSpellCost(g, player, o, method, info);
+  let cost = totalSpellCost(g, player, o, method, info);
+  // Delve (CR 702.66a): exilar cartas do cemitério paga genérico, ao pagar o custo total
+  if (f?.delve) {
+    const generico = cost.reduce((t, s) => t + (s.k === 'generic' ? s.n : 0), 0);
+    const cem = g.state.zones.graveyard[player];
+    const max = Math.min(generico, cem.length);
+    if (max > 0) {
+      const n = yield* chooseNumber(g, player, `Delve: quantas cartas do cemitério exilar para pagar o genérico de ${label}?`, 0, max);
+      if (n > 0) {
+        const ids = yield* chooseItems(g, player, `Delve: escolha ${n} carta(s) do seu cemitério para exilar`, cem.map((id) => objItem(g, id, nameOf(g, id))), n, n);
+        yield* moveObjects(g, ids.map((i) => ({ id: Number(i), to: 'exile' as ZoneName })), 'delve', player);
+        cost = reduceGeneric(cost, n);
+      }
+    }
+  }
   // 601.2g-h: mana, depois as outras partes
   const pay: PayContext & { canCancel: boolean; label: string } = { purpose: { kind: 'spell', obj: spellId }, canCancel: !method.duringResolution || true, label, anyType: method.permission?.anyType };
   const paidMana = yield* payMana(g, player, cost, pay);

@@ -5,6 +5,7 @@ import { abilityDefs, chars, controllerOf, hasKw, hooks, nameOf } from './chars.
 import { activateManaAbility, canAfford, canPayParts, manaOptions, manaPart } from './costs.ts';
 import { cardDef, type ActivatedDef, type CastPermission, type Gen, type SCtx } from './defs.ts';
 import type { G } from './game-context.ts';
+import { reduceGeneric } from './mana.ts';
 import { activateAbility, candidateTargets, canActivate, castSpell, chooseModes, spellTargetSpecs, totalSpellCost, faceDefOf, type CastMethod } from './stack.ts';
 import type { ObjId, PlayerId, PriorityAction, ZoneName } from './types.ts';
 
@@ -117,7 +118,9 @@ export function canStartCast(g: G, p: PlayerId, opt: CastOption): boolean {
   // reduções que dependem do alvo (Killian, Ink Duelist): estima com os alvos possíveis; se no fim
   // não der para pagar, a conjuração é desfeita (CR 733)
   const targetsGuess = specs.map((t) => candidateTargets(g, t, p, opt.obj).slice(0, 4));
-  const cost = totalSpellCost(g, p, o, opt.method, { x: 0, targets: targetsGuess, paid: {} });
+  let cost = totalSpellCost(g, p, o, opt.method, { x: 0, targets: targetsGuess, paid: {} });
+  // delve: cada carta do cemitério pode pagar {1} do genérico (CR 702.66a)
+  if (faceDefOf(o)?.delve) cost = reduceGeneric(cost, g.state.zones.graveyard[p].filter((id) => id !== opt.obj).length);
   return canAfford(g, p, cost, { purpose: { kind: 'spell', obj: opt.obj }, anyType: opt.method.permission?.anyType });
 }
 

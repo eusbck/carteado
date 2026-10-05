@@ -5,11 +5,11 @@ Gerado por `ferramentas/cobertura.ts`. Não edite à mão.
 | | |
 | --- | ---: |
 | Entradas (cartas dos decks + fichas e objetos auxiliares) | 547 |
-| **Implementadas, testadas e com rulings conferidos** | **318 / 547** |
-| Implementadas | 318 |
-| Com teste próprio | 318 |
-| Rulings conferidos (cartas dos decks) | 422 / 1285 |
-| Pendentes (jogáveis em modo manual) | 229 |
+| **Implementadas, testadas e com rulings conferidos** | **349 / 547** |
+| Implementadas | 349 |
+| Com teste próprio | 349 |
+| Rulings conferidos (cartas dos decks) | 506 / 1285 |
+| Pendentes (jogáveis em modo manual) | 198 |
 
 Uma carta conta como pronta quando tem definição em `cartas/defs/`, um arquivo de teste próprio
 (`cartas/defs/<nome>.test.ts`) e cada ruling registrado na definição com o teste que o cobre ou o
@@ -72,79 +72,79 @@ motivo de não se aplicar.
 | Blight Pile | Abz | A | sim | sim | 1/1 |
 | Blight Rot | Bli | B | sim | sim | — |
 | Blood Artist | Wit | A | sim | sim | 1/1 |
-| Bloodghast | Wit | B | — | — | 0/4 |
-| Blossoming Bogbeast | Wit | B | — | — | 0/1 |
-| Blowfly Infestation | Bli | B | — | — | 0/2 |
-| Bogslither's Embrace | Bli | B | — | — | 0/6 |
+| Bloodghast | Wit | B | sim | sim | 4/4 |
+| Blossoming Bogbeast | Wit | B | sim | sim | 1/1 |
+| Blowfly Infestation | Bli | B | sim | sim | 2/2 |
+| Bogslither's Embrace | Bli | B | sim | sim | 6/6 |
 | Bojuka Bog | Abz, Sil, Wit | A | sim | sim | — |
 | Boros Charm | Lor | A | sim | sim | 2/2 |
 | Breena, the Demagogue | Sil | B | — | — | 0/3 |
 | Brudiclad, Telchor Engineer | Pri | B | — | — | 0/6 |
-| Burning Curiosity | Bli | B | — | — | 0/7 |
+| Burning Curiosity | Bli | B | sim | sim | 7/7 |
 | Bushmeat Poacher | Ter | A | sim | sim | 2/2 |
-| Canopy Gargantuan | Abz | B | — | — | — |
+| Canopy Gargantuan | Abz | B | sim | sim | — |
 | Canopy Vista | Abz | A | sim | sim | 3/3 |
 | Canyon Slough | Bli | A | sim | sim | — |
-| Carnifex Demon | Bli | B | — | — | 0/1 |
+| Carnifex Demon | Bli | B | sim | sim | 1/1 |
 | Carven Caryatid | Abz | A | sim | sim | — |
 | Cascade Bluffs | Pri | B | sim | sim | — |
 | Casualties of War | Wit | A | sim | sim | 2/2 |
 | Cathartic Pyre | Bli | A | sim | sim | — |
 | Caves of Koilos | Sil | A | sim | sim | 2/2 |
 | Ceaseless Conflict | Lor | A | sim | sim | — |
-| Celes, Rune Knight | Ter | B | — | — | 0/1 |
+| Celes, Rune Knight | Ter | B | sim | sim | 1/1 |
 | Chain Reaction | Pri | A | sim | sim | 1/1 |
-| Chains of Custody | Sil | B | — | — | 0/4 |
+| Chains of Custody | Sil | B | sim | sim | 4/4 |
 | Changing Loyalty | Sil | B | sim | sim | 4/4 |
-| Channeler Initiate | Bli | B | — | — | — |
+| Channeler Initiate | Bli | B | sim | sim | — |
 | Chaos Warp | Pri | A | sim | sim | 5/5 |
-| Chimil, the Inner Sun | Bli | B | — | — | 0/2 |
+| Chimil, the Inner Sun | Bli | B | sim | sim | 2/2 |
 | Cinder Glade | Bli | A | sim | sim | 3/3 |
 | Clifftop Retreat | Lor, Ter | A | sim | sim | — |
 | Coastal Peak | Pri | A | sim | sim | 1/1 |
-| Coercive Impetus | Sil | B | — | — | 0/5 |
+| Coercive Impetus | Sil | B | sim | sim | 5/5 |
 | Command Tower | Abz, Bli, Lor, Pri, Sil, Ter, Wit | B | sim | sim | 3/3 |
-| Commander's Sphere | Bli, Ter | B | — | — | 0/3 |
-| Conspiracy Theorist | Lor | B | — | — | 0/2 |
-| Contagion Clasp | Bli | B | — | — | 0/7 |
-| Containment Construct | Lor | B | — | — | — |
+| Commander's Sphere | Bli, Ter | B | sim | sim | 3/3 |
+| Conspiracy Theorist | Lor | B | sim | sim | 2/2 |
+| Contagion Clasp | Bli | B | sim | sim | 7/7 |
+| Containment Construct | Lor | B | sim | sim | — |
 | Counterspell | Pri | A | sim | sim | — |
 | Crackling Doom | Ter | A | sim | sim | 4/4 |
 | Crashing Drawbridge | Abz | A | sim | sim | — |
-| Creakwood Liege | Wit | B | — | — | 0/2 |
+| Creakwood Liege | Wit | B | sim | sim | 2/2 |
 | Creative Technique | Pri | B | sim | sim | 5/5 |
 | Culling Ritual | Wit | A | sim | sim | 1/1 |
 | Cultivate | Wit | A | sim | sim | 1/1 |
 | Curiosity Crafter | Pri | A | sim | sim | — |
 | Currency Converter | Lor | A | sim | sim | — |
 | Cursed Mirror | Pri | B | — | — | 0/8 |
-| Cyan, Vengeful Samurai | Ter | B | — | — | 0/1 |
+| Cyan, Vengeful Samurai | Ter | B | sim | sim | 1/1 |
 | Dance with Calamity | Pri | B | — | — | 0/7 |
-| Danitha Capashen, Paragon | Sil | B | — | — | — |
-| Darkness Descends | Bli | B | — | — | — |
-| Darksteel Mutation | Sil | B | — | — | 0/8 |
+| Danitha Capashen, Paragon | Sil | B | sim | sim | — |
+| Darkness Descends | Bli | B | sim | sim | — |
+| Darksteel Mutation | Sil | B | sim | sim | 8/8 |
 | Dawnhand Dissident | Bli | B | — | — | 0/8 |
 | Deadly Brew | Wit | A | sim | sim | 4/4 |
 | Deceptive Landscape | Abz | A | sim | sim | — |
-| Deep Analysis | Pri | B | — | — | 0/6 |
-| Defiling Daemogoth | Wit | B | — | — | 0/1 |
+| Deep Analysis | Pri | B | sim | sim | 6/6 |
+| Defiling Daemogoth | Wit | B | sim | sim | 1/1 |
 | Demolition Field | Ter | A | sim | sim | 2/2 |
-| Demonic Embrace | Sil | B | — | — | 0/3 |
+| Demonic Embrace | Sil | B | sim | sim | 3/3 |
 | Desolate Mire | Sil, Ter | A | sim | sim | — |
 | Despark | Abz | A | sim | sim | 1/1 |
-| Determined Iteration | Pri | B | — | — | 0/6 |
-| Devoted Druid | Bli | B | — | — | 0/2 |
-| Dig Through Time | Pri | B | — | — | 0/3 |
-| Dina, Essence Brewer | Wit | B | — | — | 0/1 |
+| Determined Iteration | Pri | B | sim | sim | 6/6 |
+| Devoted Druid | Bli | B | sim | sim | 2/2 |
+| Dig Through Time | Pri | B | sim | sim | 3/3 |
+| Dina, Essence Brewer | Wit | B | sim | sim | 1/1 |
 | Dina, Soul Steeper | Wit | A | sim | sim | 4/4 |
 | Dirgur Focusmage // Braingeyser | Pri | B | — | — | 0/18 |
 | Doomwake Giant | Sil | A | sim | sim | 3/3 |
-| Doran, Besieged by Time | Abz | B | — | — | 0/4 |
+| Doran, Besieged by Time | Abz | B | sim | sim | 4/4 |
 | Dragonlord Dromoka | Abz | A | sim | sim | — |
 | Dragonskull Summit | Bli, Ter | A | sim | sim | 2/2 |
-| Dread Tiller | Bli | B | — | — | — |
+| Dread Tiller | Bli | B | sim | sim | — |
 | Drumbellower | Lor | A | sim | sim | 2/2 |
-| Dusk Urchins | Bli | B | — | — | 0/2 |
+| Dusk Urchins | Bli | B | sim | sim | 2/2 |
 | Eccentric Pestfinder // Turn Stones | Wit | B | — | — | 0/16 |
 | Eclipsed Steppe | Sil | A | sim | sim | 2/2 |
 | Eidolon of Countless Battles | Sil | B | — | — | 0/7 |

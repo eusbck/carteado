@@ -69,6 +69,7 @@ function requirements(g: G, id: ObjId): ((t: TargetRef | null) => boolean)[] {
   const attacks = (t: TargetRef | null) => t !== null;
   const notPlayer = (p: PlayerId) => (t: TargetRef | null) => t !== null && t.kind === 'player' && t.id !== p;
   for (const gd of o.goadedBy) { reqs.push(attacks); reqs.push(notPlayer(gd.player)); }
+  for (const h of hooks(g, 'goads')) if (h.fn(h.ctx, id)) { reqs.push(attacks); reqs.push(notPlayer(h.ctx.you)); }
   for (const e of g.state.effects) for (const m of e.mods) {
     if (m.k !== 'rule' || !e.affected?.includes(id)) continue;
     if (m.id === 'rule:attacksIfAble') {

@@ -193,7 +193,7 @@ function* turnBasedActions(g: G): Gen<void> {
       }
       // CR 514.2: remove dano e encerra efeitos "até o fim do turno"
       for (const id of s.zones.battlefield) { s.objects[id].damage = 0; }
-      s.effects = s.effects.filter((e) => e.duration.kind !== 'endOfTurn');
+      s.effects = s.effects.filter((e) => e.duration.kind !== 'endOfTurn' && !(e.duration.kind === 'endOfYourNextTurn' && e.duration.player === active && s.turn.number > e.duration.afterTurn));
       s.delayedTriggers = s.delayedTriggers.filter((d) => d.expiresTurn === null || d.expiresTurn > s.turn.number);
       for (const p of s.players) p.manaPool = p.manaPool.filter((u) => !u.untilEndOfTurn);
       g.bump();

@@ -147,6 +147,8 @@ export type Duration =
   | { kind: 'endOfTurn' }
   | { kind: 'endOfCombat' }
   | { kind: 'untilYourNextTurn'; player: PlayerId; sinceTurn: number }
+  /** "até o fim do seu próximo turno": acaba na limpeza do próximo turno desse jogador */
+  | { kind: 'endOfYourNextTurn'; player: PlayerId; afterTurn: number }
   | { kind: 'whileOnBattlefield'; obj: ObjId }
   | { kind: 'whileControlled'; obj: ObjId; player: PlayerId }
   | { kind: 'permanent' };
