@@ -451,3 +451,16 @@ export function echo(custo: string): TriggeredDef {
     if (!(yield* mayPay(c, c.you, custo, `pagar o eco de ${nameOf(c.g, c.source)}`))) yield* sacrifice(c.g, [c.source]);
   }, { condition: pendente, text: `Eco ${custo} (no início da sua manutenção, se isto ficou sob seu controle desde a sua última manutenção, sacrifique-o a menos que pague o custo de eco)` });
 }
+
+// ---------------------------------------------------------------------------
+// Bravura (CR 702.108)
+// ---------------------------------------------------------------------------
+/** CR 702.108a: "Sempre que você conjura uma mágica que não é de criatura, esta criatura recebe +1/+1 até o fim do turno" */
+export function prowess(): AbilityDef[] {
+  return [
+    keyword('prowess'),
+    triggered(on.custom((e, c) => e.type === 'cast' && e.player === c.you && !!c.g.state.objects[e.obj] && !isCreature(c.g, e.obj)), function* (c) {
+      if (c.g.state.objects[c.source]?.zone === 'battlefield') untilEndOfTurn(c, [c.source], [{ k: 'pt', p: 1, t: 1 }]);
+    }, { text: 'Bravura (sempre que você conjura uma mágica que não é de criatura, esta criatura recebe +1/+1 até o fim do turno).' }),
+  ];
+}

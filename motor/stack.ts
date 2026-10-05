@@ -117,11 +117,7 @@ export function spellTargetSpecs(o: GameObject, modes: number[], method?: string
   const groups: { mode: number | null; start: number; count: number }[] = [];
   const sp = f?.spell;
   if (sp?.targets) { groups.push({ mode: null, start: 0, count: sp.targets.length }); specs.push(...sp.targets); }
-  if (sp?.modes) for (const m of modes) {
-    const t = sp.modes.modes[m].targets ?? [];
-    groups.push({ mode: m, start: specs.length, count: t.length });
-    specs.push(...t);
-  }
+  if (sp?.modes) pushModeSpecs(sp.modes, modes, specs, groups);
   const isAura = f?.enchant && (method === 'bestow' || !f.altCosts?.some((a) => a.asAura));
   if (isAura && f?.enchant) { groups.push({ mode: -1, start: specs.length, count: 1 }); specs.push(f.enchant); }
   return { specs, groups };
@@ -131,12 +127,21 @@ function abilityTargetSpecs(def: ActivatedDef | TriggeredDef, modes: number[]): 
   const specs: TargetSpec[] = [];
   const groups: { mode: number | null; start: number; count: number }[] = [];
   if (def.targets) { groups.push({ mode: null, start: 0, count: def.targets.length }); specs.push(...def.targets); }
-  if (def.modes) for (const m of modes) {
-    const t = def.modes.modes[m].targets ?? [];
-    groups.push({ mode: m, start: specs.length, count: t.length });
-    specs.push(...t);
-  }
+  if (def.modes) pushModeSpecs(def.modes, modes, specs, groups);
   return { specs, groups };
+}
+
+/** alvos dos modos escolhidos; com differentPlayers, cada modo mira um jogador diferente dos anteriores */
+function pushModeSpecs(ms: ModeSpec, modes: number[], specs: TargetSpec[], groups: { mode: number | null; start: number; count: number }[]): void {
+  const anteriores: number[] = [];
+  for (const m of modes) {
+    const t = ms.modes[m].targets ?? [];
+    groups.push({ mode: m, start: specs.length, count: t.length });
+    for (const spec of t) {
+      specs.push(ms.differentPlayers && anteriores.length ? { ...spec, differentFrom: [...(spec.differentFrom ?? []), ...anteriores] } : spec);
+    }
+    for (let i = 0; i < t.length; i++) anteriores.push(specs.length - t.length + i);
+  }
 }
 
 /** escolhe modos (CR 700.2): só modos com alvos possíveis podem ser escolhidos */
@@ -149,6 +154,16 @@ export function* chooseModes(g: G, player: PlayerId, ms: ModeSpec, source: ObjId
   const avail = items.filter((i) => !i.disabled).length;
   const max = Math.min(forceMax ?? (typeof ms.max === 'function' ? ms.max(ctx) : ms.max), avail);
   if (avail < ms.min) return null;
+  if (ms.counts) {
+    // CR 700.2: "escolha zero ou dois" — só as quantidades listadas
+    const ok = ms.counts.filter((n) => n <= max);
+    if (ok.length === 0) return null;
+    const lo = Math.min(...ok);
+    const hi = Math.max(...ok);
+    const valida = (a: Answer) => (a.kind === 'select' && !ok.includes(a.ids.length) ? `Escolha ${ok.join(' ou ')} modo(s)` : null);
+    const r = yield* ask<Extract<Answer, { kind: 'select' }>>(g, { kind: 'select', player, prompt: `${label}: escolha ${ok.join(' ou ')} modo(s)`, items, min: lo, max: hi }, valida);
+    return r.ids.map(Number).sort((a, b) => a - b);
+  }
   const ids = yield* chooseItems(g, player, `${label}: escolha ${ms.min === max ? max : `de ${ms.min} a ${max}`} modo(s)`, items, ms.min, max);
   return ids.map(Number).sort((a, b) => a - b);
 }
@@ -601,6 +616,11 @@ export function* resolveTop(g: G): Gen<void> {
     const spell = { x: st.x, paid: st.paid, method: st.method, manaSpent: st.manaSpent, castFrom: st.castFrom };
     const res = yield* putOntoBattlefield(g, [{ id, controller: st.controller, attachTo, spell }], 'resolve');
     if (res.length === 0 && g.state.objects[id]) yield* moveObject(g, id, 'graveyard', 'resolve'); // CR 608.3e
+    // habilidades concedidas à mágica que continuam no permanente (Serra Paragon: "ela ganha …")
+    const conceder = st.data.grantOnEnter as string[] | undefined;
+    if (conceder?.length && res[0] !== undefined) {
+      addEffect(g, { source: res[0], sourceDef: '', controller: st.controller, duration: { kind: 'whileOnBattlefield', obj: res[0] }, affected: [res[0]], mods: conceder.map((a) => ({ k: 'addAbility' as const, id: a })) });
+    }
     return;
   }
   const targets = checkTargets(g, o, specs, id);

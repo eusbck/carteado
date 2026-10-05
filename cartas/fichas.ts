@@ -1,7 +1,7 @@
 // Fichas (CR 111) criadas pelas cartas dos decks. Cada uma aponta para a imagem da ficha
 // correspondente em ../cartas/data (pelo nome, força/resistência e cores).
 
-import { activated, cost, decayed, defineToken, gainLife, keywords, mana, on, triggered, type AbilityDef } from '../motor/api.ts';
+import { activated, controllerOf, cost, decayed, defineToken, gainLife, keywords, loseLife, mana, on, t, triggered, untilEndOfTurn, type AbilityDef } from '../motor/api.ts';
 import { fichasOracle } from '../motor/oracle.ts';
 import type { Color } from '../motor/types.ts';
 
@@ -74,5 +74,30 @@ export const Treefolk = token('Treefolk', 'Treefolk', ['Creature'], ['Treefolk']
 export const Wall = token('Wall', 'Wall', ['Creature'], ['Wall'], ['W'], 1, 3, keywords('defender'));
 export const Worm = token('Worm', 'Worm', ['Creature'], ['Worm'], ['B', 'G'], 1, 1);
 export const Zombie = token('Zombie', 'Zombie', ['Creature'], ['Zombie'], ['B'], 2, 2, decayed());
+
+/**
+ * Contract (Scriv, the Obligator): Aura que encanta criatura. "Sempre que a criatura encantada ataca, ela recebe +2/+0
+ * até o fim do turno se estiver atacando um dos seus oponentes. Caso contrário, o controlador dela perde 2 de vida."
+ */
+export const Contract = defineToken({
+  id: 'Contract', name: 'Contract', types: ['Enchantment'], subtypes: ['Aura'], colors: ['W'], power: null, toughness: null,
+  enchant: t.creature(undefined, 'criatura'),
+  abilities: [
+    triggered(on.custom((e, c) => {
+      const enc = c.g.state.objects[c.source]?.attachedTo;
+      if (e.type !== 'attackers' || enc == null) return false;
+      const a = e.attackers.find((x) => x.obj === enc);
+      return a ? { criatura: enc, alvo: a.target } : false;
+    }), function* (c) {
+      const id = c.event.criatura as number;
+      const alvo = c.event.alvo as { kind: string; id: number };
+      // "um dos seus oponentes": o jogador atacado (não um planeswalker) é oponente do controlador da Aura
+      if (alvo.kind === 'player' && c.g.isOpponent(c.you, alvo.id)) {
+        if (c.g.state.objects[id]?.zone === 'battlefield') untilEndOfTurn(c, [id], [{ k: 'pt', p: 2, t: 0 }]);
+      } else if (c.g.state.objects[id]) loseLife(c.g, controllerOf(c.g, id), 2, c.source);
+    }, { text: 'Sempre que a criatura encantada ataca, ela recebe +2/+0 até o fim do turno se estiver atacando um dos seus oponentes. Caso contrário, o controlador dela perde 2 de vida.' }),
+  ],
+  image: fichasOracle.find((f) => f.name === 'Contract')?.oracleId,
+});
 
 void activated; void cost;

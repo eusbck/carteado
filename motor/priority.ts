@@ -180,7 +180,8 @@ export function legalActions(g: G, p: PlayerId): PriorityAction[] {
 
 /** executa a ação escolhida; devolve true se alguma coisa aconteceu (zera a contagem de passes) */
 export function* performAction(g: G, p: PlayerId, actionId: string): Gen<boolean> {
-  const [kind, a, b] = actionId.split(':');
+  const [kind, a] = actionId.split(':');
+  const b = actionId.split(':').slice(2).join(':'); // 'perm:<chave>' pode conter ':'
   if (kind === 'play') {
     const id = Number(a);
     const o = g.state.objects[id];

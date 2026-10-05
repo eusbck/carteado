@@ -124,7 +124,7 @@ function wouldBeChars(g: G, r: EnterReq) {
 
 /** alvos legais para uma Aura (encantar) */
 export function enchantCandidates(g: G, auraDef: string, face: number, controller: PlayerId, exclude: ObjId[] = [], auraId?: ObjId): ObjId[] {
-  const spec = registry.cards.get(auraDef)?.faces[face]?.enchant;
+  const spec = registry.cards.get(auraDef)?.faces[face]?.enchant ?? registry.tokens.get(auraDef)?.enchant; // ficha de Aura (Contract)
   if (!spec) return [];
   const ctx: SCtx = { g, you: controller, source: -1 };
   return g.state.zones.battlefield.filter((id) => !exclude.includes(id) && !g.state.objects[id].phasedOut && (!spec.filter || spec.filter(ctx, { kind: 'obj', id })) && !protectionBlocksAttach(g, id, auraDef, auraId));

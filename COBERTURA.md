@@ -5,11 +5,11 @@ Gerado por `ferramentas/cobertura.ts`. Não edite à mão.
 | | |
 | --- | ---: |
 | Entradas (cartas dos decks + fichas e objetos auxiliares) | 547 |
-| **Implementadas, testadas e com rulings conferidos** | **444 / 547** |
-| Implementadas | 444 |
-| Com teste próprio | 444 |
-| Rulings conferidos (cartas dos decks) | 894 / 1285 |
-| Pendentes (jogáveis em modo manual) | 103 |
+| **Implementadas, testadas e com rulings conferidos** | **481 / 547** |
+| Implementadas | 481 |
+| Com teste próprio | 481 |
+| Rulings conferidos (cartas dos decks) | 972 / 1285 |
+| Pendentes (jogáveis em modo manual) | 66 |
 
 Uma carta conta como pronta quando tem definição em `cartas/defs/`, um arquivo de teste próprio
 (`cartas/defs/<nome>.test.ts`) e cada ruling registrado na definição com o teste que o cobre ou o
@@ -368,73 +368,73 @@ motivo de não se aplicar.
 | Rugged Prairie | Lor, Ter | B | sim | sim | — |
 | Ruinous Ultimatum | Ter | A | sim | sim | — |
 | Sacred Peaks | Lor, Ter | A | sim | sim | — |
-| Sage's Reverie | Sil | B | — | — | 0/2 |
+| Sage's Reverie | Sil | B | sim | sim | 2/2 |
 | Sakura-Tribe Elder | Wit | A | sim | sim | — |
 | Sanar, Unfinished Genius // Wild Idea | Pri | B | — | — | 0/15 |
 | Sandsteppe Citadel | Abz | A | sim | sim | — |
 | Savage Lands | Bli | A | sim | sim | — |
 | Scorched Geyser | Pri | A | sim | sim | 2/2 |
-| Screams from Within | Sil | B | — | — | 0/2 |
-| Scriv, the Obligator | Sil | B | — | — | 0/2 |
-| Scuzzback Scrounger | Bli | B | — | — | 0/6 |
+| Screams from Within | Sil | B | sim | sim | 2/2 |
+| Scriv, the Obligator | Sil | B | sim | sim | 2/2 |
+| Scuzzback Scrounger | Bli | B | sim | sim | 6/6 |
 | Seedborn Muse | Abz | A | sim | sim | 2/2 |
-| Seize the Spoils | Lor | B | — | — | 0/2 |
+| Seize the Spoils | Lor | B | sim | sim | 2/2 |
 | Selesnya Signet | Abz | A | sim | sim | — |
 | Selfless Spirit | Lor | A | sim | sim | 1/1 |
-| Sentinel's Eyes | Sil | B | — | — | 0/7 |
-| Serra Paragon | Lor | B | — | — | — |
+| Sentinel's Eyes | Sil | B | sim | sim | 7/7 |
+| Serra Paragon | Lor | B | sim | sim | — |
 | Sevinne's Reclamation | Lor | B | sim | sim | 11/11 |
 | Shadow, Mysterious Assassin | Ter | A | sim | sim | 2/2 |
 | Shadowblood Ridge | Ter | A | sim | sim | — |
-| Shadrix Silverquill | Abz, Sil | B | — | — | 0/2 |
-| Shalai, Voice of Plenty | Abz | B | — | — | — |
-| Sheltered by Ghosts | Sil | B | — | — | 0/3 |
+| Shadrix Silverquill | Abz, Sil | B | sim | sim | 2/2 |
+| Shalai, Voice of Plenty | Abz | B | sim | sim | — |
+| Sheltered by Ghosts | Sil | B | sim | sim | 3/3 |
 | Sheltered Thicket | Bli | A | sim | sim | — |
-| Shielded by Faith | Sil | B | — | — | — |
+| Shielded by Faith | Sil | B | sim | sim | — |
 | Shineshadow Snarl | Sil, Ter | A | sim | sim | 4/4 |
 | Shivan Reef | Pri | A | sim | sim | 2/2 |
-| Sidar Kondo of Jamuraa | Abz | B | — | — | 0/9 |
-| Siegfried, Famed Swordsman | Ter | B | — | — | 0/1 |
+| Sidar Kondo of Jamuraa | Abz | B | sim | sim | 9/9 |
+| Siegfried, Famed Swordsman | Ter | B | sim | sim | 1/1 |
 | Silverquill Campus | Sil | A | sim | sim | — |
-| Sinister Gnarlbark | Bli | B | — | — | — |
-| Skinrender | Bli | B | — | — | 0/1 |
-| Skirsdag High Priest | Wit | B | — | — | 0/1 |
-| Slaughter the Strong | Abz | B | — | — | 0/3 |
-| Slumbering Walker | Abz | B | — | — | 0/1 |
+| Sinister Gnarlbark | Bli | B | sim | sim | — |
+| Skinrender | Bli | B | sim | sim | 1/1 |
+| Skirsdag High Priest | Wit | B | sim | sim | 1/1 |
+| Slaughter the Strong | Abz | B | sim | sim | 3/3 |
+| Slumbering Walker | Abz | B | sim | sim | 1/1 |
 | Smoldering Marsh | Bli, Ter | A | sim | sim | 3/3 |
 | Smothering Abomination | Wit | A | sim | sim | 8/8 |
 | Sol Ring | Abz, Bli, Lor, Pri, Sil, Ter, Wit | A | sim | sim | — |
 | Solemn Simulacrum | Ter | A | sim | sim | — |
-| Songbirds' Blessing | Sil | B | — | — | 0/1 |
-| Soul Immolation | Bli | B | — | — | 0/6 |
-| Soul Snuffers | Bli | B | — | — | 0/1 |
+| Songbirds' Blessing | Sil | B | sim | sim | 1/1 |
+| Soul Immolation | Bli | B | sim | sim | 6/6 |
+| Soul Snuffers | Bli | B | sim | sim | 1/1 |
 | Spectacle Summit | Pri | A | sim | sim | — |
-| Spinerock Tyrant | Bli | B | — | — | 0/6 |
-| Spirit Mantle | Sil | B | — | — | — |
-| Spirit of Resilience | Lor | B | — | — | 0/4 |
+| Spinerock Tyrant | Bli | B | sim | sim | 6/6 |
+| Spirit Mantle | Sil | B | sim | sim | — |
+| Spirit of Resilience | Lor | B | sim | sim | 4/4 |
 | Splatter Technique | Pri | A | sim | sim | — |
 | Springbloom Druid | Wit | A | sim | sim | 1/1 |
-| Squall, SeeD Mercenary | Ter | B | — | — | 0/5 |
+| Squall, SeeD Mercenary | Ter | B | sim | sim | 5/5 |
 | Squee, Goblin Nabob | Lor | A | sim | sim | 1/1 |
-| Sram, Senior Edificer | Sil | B | — | — | 0/1 |
-| Staff of Compleation | Bli | B | — | — | — |
-| Staff of the Storyteller | Lor | B | — | — | — |
-| Starfield Mystic | Sil | B | — | — | 0/1 |
+| Sram, Senior Edificer | Sil | B | sim | sim | 1/1 |
+| Staff of Compleation | Bli | B | sim | sim | — |
+| Staff of the Storyteller | Lor | B | sim | sim | — |
+| Starfield Mystic | Sil | B | sim | sim | 1/1 |
 | Stensian Sanguinist // Exsanguinate | Wit | B | — | — | 0/16 |
-| Stitch Together | Ter | B | — | — | 0/1 |
+| Stitch Together | Ter | B | sim | sim | 1/1 |
 | Stitcher's Supplier | Ter | A | sim | sim | — |
 | Storm-Kiln Artist | Pri | B | sim | sim | 4/4 |
-| Stormcatch Mentor | Pri | B | — | — | 0/2 |
-| Study Hall | Lor, Pri, Sil, Wit | B | — | — | — |
+| Stormcatch Mentor | Pri | B | sim | sim | 2/2 |
+| Study Hall | Lor, Pri, Sil, Wit | B | sim | sim | — |
 | Sulfur Falls | Pri | A | sim | sim | — |
 | Sulfurous Springs | Ter | A | sim | sim | — |
 | Summon: Esper Valigarmanda | Ter | B | — | — | 0/11 |
-| Sun Titan | Lor, Ter | B | — | — | 0/4 |
+| Sun Titan | Lor, Ter | B | sim | sim | 4/4 |
 | Sungrass Prairie | Abz | A | sim | sim | — |
 | Sunlit Marsh | Sil, Ter | A | sim | sim | — |
 | Sunpetal Grove | Abz | A | sim | sim | 2/2 |
 | Sunscorched Divide | Lor, Ter | A | sim | sim | — |
-| Surge to Victory | Pri | B | — | — | 0/4 |
+| Surge to Victory | Pri | B | sim | sim | 4/4 |
 | Swamp | Abz, Bli, Sil, Ter, Wit | dados | sim | sim | — |
 | Swiftfoot Boots | Abz, Ter | B | sim | sim | 1/1 |
 | Swords to Plowshares | Abz, Lor, Ter | A | sim | sim | 1/1 |
@@ -529,8 +529,8 @@ motivo de não se aplicar.
 | Bird (Bird) | — | ficha | sim | sim | — |
 | Cat (Cat) | — | ficha | sim | sim | — |
 | City's Blessing | — | ficha | — | — | — |
-| Contract | — | ficha | — | — | — |
-| Copy | — | ficha | — | — | — |
+| Contract (Contract) | — | ficha | sim | sim | — |
+| Copy | — | ficha | sim | sim | — |
 | Demon (Demon) | — | ficha | sim | sim | — |
 | Dragon Illusion (Dragon Illusion) | — | ficha | sim | sim | — |
 | Eldrazi Spawn (Eldrazi Spawn) | — | ficha | sim | sim | — |
@@ -544,7 +544,7 @@ motivo de não se aplicar.
 | Inkling (Inkling) | — | ficha | sim | sim | — |
 | Insect (Insect voador) | — | ficha | sim | sim | — |
 | Insect (Insect) | — | ficha | sim | sim | — |
-| Manifest | — | ficha | — | — | — |
+| Manifest | — | ficha | sim | sim | — |
 | Moogle (Moogle) | — | ficha | sim | sim | — |
 | Pegasus (Pegasus) | — | ficha | sim | sim | — |
 | Pest (Pest (ataque)) | — | ficha | sim | sim | — |

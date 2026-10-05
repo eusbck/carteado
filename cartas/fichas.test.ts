@@ -45,6 +45,7 @@ const esperadas: Record<string, [string, string[], string[], string[], number | 
   'Wall': ['Wall', ['Creature'], ['Wall'], ['W'], 1, 3, ['defender']],
   'Worm': ['Worm', ['Creature'], ['Worm'], ['B', 'G'], 1, 1, []],
   'Zombie': ['Zombie', ['Creature'], ['Zombie'], ['B'], 2, 2, ['decayed']],
+  'Contract': ['Contract', ['Enchantment'], ['Aura'], ['W'], null, null, ['enchant']],
 };
 
 describe('Fichas: características', () => {
@@ -64,7 +65,8 @@ describe('Fichas: características', () => {
       expect([...face.colors].sort()).toEqual(cores);
       if (p !== null) expect([face.power, face.toughness]).toEqual([p, t]);
       expect(o!.keywords.map((k: string) => k.toLowerCase()).sort()).toEqual([...kws].sort());
-      // e a ficha criada no jogo
+      // e a ficha criada no jogo (Aura só entra presa a algo; testada pela carta que a cria)
+      if (subtipos.includes('Aura')) return;
       const tg = setup({ battlefield: [[], []] });
       const [tok] = tg.run(createTokens(tg.g, 0, id, 1));
       if (p === null && tipos.includes('Creature')) return; // X/X sem valor morre como 0/0; testada pela carta que a cria

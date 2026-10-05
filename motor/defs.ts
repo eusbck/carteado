@@ -73,6 +73,8 @@ export interface ModeSpec {
   modes: { text: string; targets?: TargetSpec[]; effect: EffectFn }[];
   /** cada modo escolhido precisa de alvo de jogador diferente (Shadrix) */
   differentPlayers?: boolean;
+  /** quantidades de modos permitidas, quando não é um intervalo ("zero ou dois", Shadrix) */
+  counts?: number[];
 }
 
 // ---------------------------------------------------------------------------
@@ -343,6 +345,8 @@ export interface TokenDef {
   power: number | null;
   toughness: number | null;
   abilities: AbilityDef[];
+  /** ficha de Aura: o que ela pode encantar (CR 303.4) */
+  enchant?: TargetSpec;
   /** id Oracle da ficha em cartas/data, para a imagem */
   image?: string;
 }
