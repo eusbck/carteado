@@ -67,9 +67,12 @@ Recapitulação da fase 3 (04/10/2026):
 
 ## Fase 4: cartas, parte B (271, inclui 37 especiais)
 
-- [ ] Mecanismos raros no motor
-- [ ] Cartas da parte B com teste e rulings conferidos
+- [x] Mecanismos raros no motor (transformar, resguardo, cópia de mágica, delve, preparar, bestow, aniquilador, sair de fase, apoio, exaltado, eco, devorar, manifestar, desenterrar, suspender, ficha de Aura, bravura, flanqueamento, ascensão, Strive, trocar vida e resistência, gatilho extra)
+- [x] Cartas comuns da parte B (A–Y) com teste e rulings conferidos: 517/547 em 05/10/2026 (commit 80f2bcc)
+- [ ] As 30 cartas especiais restantes (lista em `COBERTURA.md`, linhas com "—")
 - [ ] `COBERTURA.md` em 547/547
+
+Notas para retomar: lotes de 8 a 20 cartas; depois de cada lote, `npx tsc --noEmit -p tsconfig.json`, os testes do lote, `npx vitest run` inteiro **sem mexer em arquivos durante a execução** (a suíte importa todas as definições e falha em massa se pegar um arquivo pela metade), `node ferramentas/cobertura.ts` e commit. Leia o Oracle e os rulings com `node ferramentas/ficha-carta.ts "<nome>"`.
 
 ## Fase 5: bots
 
