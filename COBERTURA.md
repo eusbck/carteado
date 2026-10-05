@@ -5,11 +5,11 @@ Gerado por `ferramentas/cobertura.ts`. Não edite à mão.
 | | |
 | --- | ---: |
 | Entradas (cartas dos decks + fichas e objetos auxiliares) | 547 |
-| **Implementadas, testadas e com rulings conferidos** | **525 / 547** |
-| Implementadas | 525 |
-| Com teste próprio | 525 |
-| Rulings conferidos (cartas dos decks) | 1126 / 1285 |
-| Pendentes (jogáveis em modo manual) | 22 |
+| **Implementadas, testadas e com rulings conferidos** | **542 / 547** |
+| Implementadas | 542 |
+| Com teste próprio | 542 |
+| Rulings conferidos (cartas dos decks) | 1241 / 1285 |
+| Pendentes (jogáveis em modo manual) | 5 |
 
 Uma carta conta como pronta quando tem definição em `cartas/defs/`, um arquivo de teste próprio
 (`cartas/defs/<nome>.test.ts`) e cada ruling registrado na definição com o teste que o cobre ou o
@@ -22,7 +22,7 @@ motivo de não se aplicar.
 | Aberrant Return | Bli | B | sim | sim | — |
 | Abrade | Pri | A | sim | sim | — |
 | Abstract Paintmage | Pri | B | sim | sim | — |
-| Abstract Performance | Pri | B | — | — | 0/6 |
+| Abstract Performance | Pri | B | sim | sim | 6/6 |
 | Access Tunnel | Abz | A | sim | sim | 2/2 |
 | Advanced Reconstruction | Lor | B | — | — | 0/3 |
 | Aether Gale | Pri | A | sim | sim | 1/1 |
@@ -58,7 +58,7 @@ motivo de não se aplicar.
 | Bag of Holding | Lor | A | sim | sim | 5/5 |
 | Baldin, Century Herdmaster | Abz | B | sim | sim | 1/1 |
 | Balefire Liege | Lor | B | sim | sim | 1/1 |
-| Banon, the Returners' Leader | Lor, Ter | B | — | — | 0/1 |
+| Banon, the Returners' Leader | Lor, Ter | B | sim | sim | 1/1 |
 | Bastion of Remembrance | Wit | A | sim | sim | 3/3 |
 | Battlefield Forge | Lor, Ter | A | sim | sim | 2/2 |
 | Bedevil | Ter | A | sim | sim | — |
@@ -78,7 +78,7 @@ motivo de não se aplicar.
 | Bogslither's Embrace | Bli | B | sim | sim | 6/6 |
 | Bojuka Bog | Abz, Sil, Wit | A | sim | sim | — |
 | Boros Charm | Lor | A | sim | sim | 2/2 |
-| Breena, the Demagogue | Sil | B | — | — | 0/3 |
+| Breena, the Demagogue | Sil | B | sim | sim | 3/3 |
 | Brudiclad, Telchor Engineer | Pri | B | sim | sim | 6/6 |
 | Burning Curiosity | Bli | B | sim | sim | 7/7 |
 | Bushmeat Poacher | Ter | A | sim | sim | 2/2 |
@@ -232,7 +232,7 @@ motivo de não se aplicar.
 | Indulging Patrician | Abz | B | sim | sim | 4/4 |
 | Infernal Grasp | Abz, Wit | A | sim | sim | — |
 | Inkshield | Sil | B | sim | sim | 1/1 |
-| Inspired Skypainter // Maestro's Gift | Pri | B | — | — | 0/19 |
+| Inspired Skypainter // Maestro's Gift | Pri | B | sim | sim | 19/19 |
 | Island | Pri | dados | sim | sim | — |
 | Isolated Chapel | Abz, Sil, Ter | A | sim | sim | — |
 | Jadar, Ghoulcaller of Nephalia | Wit | B | sim | sim | 4/4 |
@@ -241,11 +241,11 @@ motivo de não se aplicar.
 | Joshua, Phoenix's Dominant // Phoenix, Warden of Fire | Ter | B | — | — | 0/10 |
 | Kami of Ancient Law | Lor | A | sim | sim | — |
 | Karmic Guide | Lor, Ter | B | sim | sim | 2/2 |
-| Kefka, Dancing Mad | Ter | B | — | — | 0/5 |
+| Kefka, Dancing Mad | Ter | B | sim | sim | 5/5 |
 | Key to the City | Ter | A | sim | sim | 4/4 |
-| Killian, Decisive Mentor | Sil | B | — | — | 0/5 |
+| Killian, Decisive Mentor | Sil | B | sim | sim | 5/5 |
 | Killian, Ink Duelist | Sil | B | sim | sim | 3/3 |
-| Kirol, History Buff // Pack a Punch | Lor | B | — | — | 0/16 |
+| Kirol, History Buff // Pack a Punch | Lor | B | sim | sim | 16/16 |
 | Kor Spiritdancer | Sil | B | sim | sim | 2/2 |
 | Kulrath Knight | Bli | B | sim | sim | 1/1 |
 | Laelia, the Blade Reforged | Lor | B | sim | sim | 7/7 |
@@ -257,7 +257,7 @@ motivo de não se aplicar.
 | Lightning Greaves | Pri | B | sim | sim | 2/2 |
 | Llanowar Wastes | Wit | A | sim | sim | 2/2 |
 | Locke, Treasure Hunter | Ter | B | sim | sim | 6/6 |
-| Lorehold Archivist // Restore Relic | Lor | B | — | — | 0/19 |
+| Lorehold Archivist // Restore Relic | Lor | B | sim | sim | 19/19 |
 | Lorehold Campus | Lor | A | sim | sim | — |
 | Lorehold Charm | Lor | B | sim | sim | 1/1 |
 | Lotus Field | Lor | A | sim | sim | 1/1 |
@@ -316,7 +316,7 @@ motivo de não se aplicar.
 | Pearl-Ear, Imperial Advisor | Sil | B | sim | sim | 6/6 |
 | Perforating Artist | Ter | B | sim | sim | 6/6 |
 | Perpetual Timepiece | Lor | A | sim | sim | 1/1 |
-| Persist | Bli | B | — | — | — |
+| Persist | Bli | B | sim | sim | — |
 | Pest Infestation | Wit | A | sim | sim | 2/2 |
 | Pest Rescuer | Wit | A | sim | sim | 4/4 |
 | Phoenix Down | Ter | B | sim | sim | 1/1 |
@@ -338,15 +338,15 @@ motivo de não se aplicar.
 | Quintorius, Loremaster | Lor | B | sim | sim | 5/5 |
 | Radiant Grove | Abz | A | sim | sim | — |
 | Radiant Summit | Lor | A | sim | sim | 1/1 |
-| Raffine's Guidance | Sil | B | — | — | — |
+| Raffine's Guidance | Sil | B | sim | sim | — |
 | Rakdos Carnarium | Bli | A | sim | sim | 1/1 |
 | Rampart Architect | Abz | A | sim | sim | — |
 | Rapturous Moment | Pri | A | sim | sim | — |
 | Ravenous Chupacabra | Ter | A | sim | sim | — |
 | Reality Shift | Pri | B | sim | sim | 13/13 |
 | Reanimate | Ter | B | sim | sim | 5/5 |
-| Redemption Arc | Sil | B | — | — | — |
-| Rejoin the Fight | Ter | B | — | — | — |
+| Redemption Arc | Sil | B | sim | sim | — |
+| Rejoin the Fight | Ter | B | sim | sim | — |
 | Relic Retriever | Lor | B | sim | sim | 1/1 |
 | Reliquary Tower | Pri | A | sim | sim | 1/1 |
 | Remorseful Cleric | Lor | A | sim | sim | — |
@@ -358,7 +358,7 @@ motivo de não se aplicar.
 | Ribtruss Roaster | Wit | B | sim | sim | 2/2 |
 | Rionya, Fire Dancer | Pri | B | sim | sim | 6/6 |
 | Rip Apart | Lor | A | sim | sim | — |
-| Rise of the Dark Realms | Ter | B | — | — | — |
+| Rise of the Dark Realms | Ter | B | sim | sim | — |
 | Rite of Replication | Pri | B | sim | sim | 12/12 |
 | Riveteers Overlook | Bli | A | sim | sim | — |
 | Rogue's Passage | Ter | A | sim | sim | 1/1 |
@@ -370,7 +370,7 @@ motivo de não se aplicar.
 | Sacred Peaks | Lor, Ter | A | sim | sim | — |
 | Sage's Reverie | Sil | B | sim | sim | 2/2 |
 | Sakura-Tribe Elder | Wit | A | sim | sim | — |
-| Sanar, Unfinished Genius // Wild Idea | Pri | B | — | — | 0/15 |
+| Sanar, Unfinished Genius // Wild Idea | Pri | B | sim | sim | 15/15 |
 | Sandsteppe Citadel | Abz | A | sim | sim | — |
 | Savage Lands | Bli | A | sim | sim | — |
 | Scorched Geyser | Pri | A | sim | sim | 2/2 |
@@ -420,7 +420,7 @@ motivo de não se aplicar.
 | Staff of Compleation | Bli | B | sim | sim | — |
 | Staff of the Storyteller | Lor | B | sim | sim | — |
 | Starfield Mystic | Sil | B | sim | sim | 1/1 |
-| Stensian Sanguinist // Exsanguinate | Wit | B | — | — | 0/16 |
+| Stensian Sanguinist // Exsanguinate | Wit | B | sim | sim | 16/16 |
 | Stitch Together | Ter | B | sim | sim | 1/1 |
 | Stitcher's Supplier | Ter | A | sim | sim | — |
 | Storm-Kiln Artist | Pri | B | sim | sim | 4/4 |
@@ -453,12 +453,12 @@ motivo de não se aplicar.
 | Tend the Sprigs | Bli | A | sim | sim | — |
 | Tendershoot Dryad | Wit | B | sim | sim | 8/8 |
 | Terminate | Bli | A | sim | sim | — |
-| Terra, Herald of Hope | Ter | B | — | — | 0/1 |
+| Terra, Herald of Hope | Ter | B | sim | sim | 1/1 |
 | Terramorphic Expanse | Bli, Lor, Pri, Sil, Wit | A | sim | sim | — |
 | Teshar, Ancestor's Apostle | Lor | B | sim | sim | 5/5 |
 | The Reaper, King No More | Bli | B | sim | sim | — |
 | The Scorpion God | Bli | B | sim | sim | 2/2 |
-| The Warring Triad | Ter | B | — | — | 0/9 |
+| The Warring Triad | Ter | B | sim | sim | 9/9 |
 | Thrill of Possibility | Ter | B | sim | sim | 1/1 |
 | Thrilling Discovery | Lor | A | sim | sim | — |
 | Thunderclap Drake | Pri | B | sim | sim | 9/9 |
