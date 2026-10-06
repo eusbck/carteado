@@ -90,6 +90,11 @@ export class HeuristicBot {
     const chave = `${s.turn.number}|${s.turn.step}|${s.zones.stack.join(',')}|${s.zones.hand[this.eu].length}|${acoes.map((a) => a.id).join(',')}`;
     if (this.passouEm.has(chave)) return PASSAR;
 
+    // acima de 150 objetos (fichas que se multiplicam a cada mágica), simular fica caro demais: o bot para de agir
+    // e deixa o combate decidir a partida
+    const objetos = s.zones.battlefield.length;
+    if (objetos > 150) return PASSAR;
+
     const inicio = performance.now();
     // base: passar. Com a pilha vazia, o estado atual; com algo na pilha, a pilha resolvendo sem resposta
     let base = avaliar(game.g, this.eu);
@@ -100,11 +105,13 @@ export class HeuristicBot {
     const candidatas = ordenar(acoes, game);
     let melhor: { valor: number; acao: string | null; plano: Answer[] } = { valor: base + 0.5, acao: null, plano: [] };
     let feitas = 0;
+    // mesa enorme (fichas em cadeia): cada simulação custa mais; reduz a quantidade, sem perder o determinismo
+    const limite = objetos <= 60 ? this.simulacoes : Math.max(3, Math.round(this.simulacoes * 60 / objetos));
     // primeiro uma simulação por jogada (com as heurísticas); depois variantes, enquanto houver orçamento
     for (let v = 0; v < this.variantes; v++) {
       for (const a of candidatas) {
         if (v > 0 && a.kind === 'play') continue;
-        if (feitas >= this.simulacoes || performance.now() - inicio > this.orcamento) break;
+        if (feitas >= limite || performance.now() - inicio > this.orcamento) break;
         feitas++;
         const f = determinizar(game, this.eu, this.rng);
         const r = simular(f, this.eu, { kind: 'priority', action: a.id }, this.minha(v > 0), outros);

@@ -108,7 +108,9 @@ async function rotear(req: IncomingMessage, res: ServerResponse): Promise<void> 
   res.setHeader('referrer-policy', 'no-referrer');
 
   if (p === '/api/entrar' && req.method === 'POST') {
-    const ip = req.socket.remoteAddress ?? '?';
+    // atrás do túnel/proxy (HTTPS=1) todos chegam pelo mesmo endereço local: usa o IP real informado pelo proxy
+    const encaminhado = HTTPS ? String(req.headers['cf-connecting-ip'] ?? req.headers['x-forwarded-for'] ?? '').split(',')[0].trim() : '';
+    const ip = encaminhado || req.socket.remoteAddress || '?';
     if (muitasTentativas(ip)) return json(res, 429, { erro: 'Muitas tentativas; espere um minuto' });
     let senha = '';
     try { senha = String(JSON.parse(await lerCorpo(req)).senha ?? ''); } catch { return json(res, 400, { erro: 'Pedido inválido' }); }
@@ -165,8 +167,8 @@ const wss = new WebSocketServer({ noServer: true, maxPayload: 64 * 1024 });
 http.on('upgrade', (req, socket, head) => {
   const url = new URL(req.url ?? '/', 'http://x');
   if (url.pathname !== '/ws' || !autenticado(req)) {
-    socket.write('HTTP/1.1 401 Unauthorized\r\n\r\n');
-    socket.destroy();
+    // resposta completa antes de fechar (atrás do túnel, fechar no meio às vezes vira erro 500)
+    socket.end('HTTP/1.1 401 Unauthorized\r\nConnection: close\r\nContent-Length: 0\r\n\r\n');
     return;
   }
   wss.handleUpgrade(req, socket, head, (ws) => wss.emit('connection', ws, req));

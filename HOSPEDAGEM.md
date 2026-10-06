@@ -1,8 +1,22 @@
 # Hospedagem
 
-Como deixar o jogo acessível para o grupo pela internet. Nada aqui foi feito ainda: cada opção
-pede uma conta ou deixa o servidor visível na internet, então só sigo em frente com a escolha e a
-confirmação de vocês.
+Como deixar o jogo acessível para o grupo pela internet.
+
+**Escolha do grupo (05/10/2026): opção A, no computador do Caio, com o túnel rápido da Cloudflare.**
+Já está instalado e testado. Para jogar:
+
+1. Clique duas vezes em `jogo/Abrir a mesa.cmd`.
+2. A janela mostra o **endereço** (`https://….trycloudflare.com`) e a **senha de acesso**. Mande
+   os dois para o grupo. No seu computador, dá para usar `http://localhost:8080`.
+3. Deixe a janela aberta durante a partida. Aperte Enter nela para fechar a mesa.
+
+O endereço muda cada vez que a mesa abre. A senha de acesso fica em
+`jogo/dados-locais/senha-acesso.txt`; para trocar, apague o arquivo (o servidor cria outra) ou
+escreva a nova senha nele. Para conferir a instalação sem abrir para o grupo, rode
+`powershell -ExecutionPolicy Bypass -File jogo/abrir-mesa.ps1 -Teste`. Ele abre o túnel, testa
+pela internet a página, o login, a senha errada e o WebSocket, e fecha em seguida.
+
+As outras opções ficam abaixo, para quando quiserem trocar.
 
 ## O que o servidor precisa
 

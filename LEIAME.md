@@ -28,6 +28,12 @@ Variáveis opcionais:
 | `DADOS` | pasta do banco (salas e partidas) | `dados-locais/` |
 | `HTTPS` | `1` quando estiver atrás de um proxy com HTTPS (cookie seguro) | desligado |
 
+## Abrir a mesa para o grupo pela internet
+
+Clique duas vezes em `Abrir a mesa.cmd`. Ele sobe o servidor e abre um túnel da Cloudflare; a
+janela mostra o endereço `https://` e a senha de acesso para mandar ao grupo. Detalhes em
+`HOSPEDAGEM.md`.
+
 ## Como se joga
 
 1. Entre com a senha do servidor.
