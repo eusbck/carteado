@@ -13,6 +13,7 @@ Lista de verificação das fases. É por aqui que uma sessão nova retoma o trab
 - 05/10/2026 (continuação): fase 4 concluída (547/547); começar a fase 5 (bots).
 - 05–06/10/2026 (outra conta, depois do limite): fase 5 concluída (bot heurístico, correções do estresse, bateria final 200/200); fase 6 concluída pela opção A (computador do Caio + túnel). Todas as fases do prompt estão feitas.
 - 06/10/2026: fase 7 (mesa nova): protótipo aprovado (mulligan livre até 3 vezes; oponentes em cima e você embaixo; todos veem a arrumação de cada um); visual, interação, menus e mulligan feitos.
+- 06/10/2026 (depois de uma queda do computador): ajuste pendente fechado (reserva de mana ao lado da vida na sua área), conferido com capturas.
 
 ## Fase 0: exploração e proposta
 
