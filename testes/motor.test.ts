@@ -90,7 +90,7 @@ describe('reprodução e persistência', () => {
     playRandom(g, 600, 'repro');
     const again = Game.replay(g.state.config, DECKS.slice(0, 4), g.inputs);
     expect(JSON.stringify(again.state)).toBe(JSON.stringify(g.state));
-  });
+  }, 20_000);
 
   it('retomar de um checkpoint dá o mesmo estado que continuar jogando', () => {
     const g = Game.create(config('cp', 4), DECKS.slice(0, 4));

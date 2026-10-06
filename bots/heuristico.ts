@@ -292,6 +292,19 @@ function atacar(d: D<'attackers'>, game: Game, eu: PlayerId, ok: (a: Answer) => 
     const atacouMe = (s.lastTurnAttackedPlayers[p.id] ?? []).includes(eu) ? 15 : 0;
     ameaca.set(p.id, mesa + 0.3 * p.life + atacouMe);
   }
+  // ataque letal: se as criaturas que podem atacar um oponente passam da vida dele mesmo que ele bloqueie as mais
+  // fortes (um bloqueador para cada), ataca esse oponente com todas
+  const podeBloquear = (p: PlayerId) => s.zones.battlefield.filter((b) => !s.objects[b].tapped && !s.objects[b].phasedOut && controllerOf(g, b) === p && isCreature(g, b)).length;
+  for (const p of s.players) {
+    if (p.id === eu || p.left || p.lost) continue;
+    const contra = d.candidates.filter((c) => c.targets.some((t, i) => t.kind === 'player' && t.id === p.id && !(c.costs?.[i] ?? 0)) && (!c.required?.length || c.required.some((t) => t.kind === 'player' && t.id === p.id)));
+    const forcas = contra.map((c) => Math.max(0, power(g, c.obj))).sort((a, b) => b - a);
+    const livre = forcas.slice(podeBloquear(p.id)).reduce((t, n) => t + n, 0);
+    if (forcas.length && livre >= p.life) {
+      const todos: Answer = { kind: 'attackers', attacks: contra.map((c) => [c.obj, { kind: 'player', id: p.id }] as [ObjId, TargetRef]) };
+      if (ok(todos)) return todos;
+    }
+  }
   // com pouca vida, segura uma parte das criaturas para bloquear
   const minhaVida = s.players[eu].life;
   let reserva = minhaVida <= 10 ? Math.ceil(d.candidates.length / 2) : 0;

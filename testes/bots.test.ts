@@ -71,6 +71,16 @@ describe('bot heurístico', () => {
     expect(tg.life(1)).toBe(40);
   });
 
+  it('ataca com tudo quando o dano passa da vida do oponente mesmo com os bloqueios', () => {
+    const tg = setup({ battlefield: [[...Array(6).fill({ name: 'Elvish Mystic', ready: true })], ['Glissa Sunslayer']], library: [['Plains'], ['Plains']] });
+    tg.state.players[1].life = 4;
+    tg.refresh();
+    const bot = new HeuristicBot('t', 0, { simulacoes: 4 });
+    jogar(tg, bot, (x) => x.state.turn.step === 'main2' || x.game.isOver(), 200);
+    expect(tg.game.isOver()).toBe(true);
+    expect(tg.state.gameOver?.winners).toEqual([0]);
+  });
+
   it('a determinização não muda a própria mão nem as quantidades escondidas', () => {
     const tg = setup({ hand: [['Forest', 'Island'], ['Plains', 'Swamp', 'Mountain']], library: [['Plains', 'Plains'], ['Island', 'Island', 'Forest']] });
     const f = determinizar(tg.game, 0, seedFrom('d'));
