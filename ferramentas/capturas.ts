@@ -186,6 +186,19 @@ try {
   await jogarUmPouco(p, 24);
   await jogarAteMinhaPrioridade(p, 80);
   await foto(p, '11-mesa-depois');
+  // com prioridade, clicar numa fonte de mana gera a mana: a reserva aparece do lado da vida
+  const fontes = p.locator('.area-eu .campo .carta.realce-acao');
+  for (let i = await fontes.count() - 1; i >= 0; i--) {
+    await fontes.nth(i).click({ timeout: 3000 }).catch(() => {});
+    const adicionar = p.locator('.menu-acoes').getByRole('menuitem', { name: /adicionar/ }).first();
+    if (await adicionar.isVisible().catch(() => false)) await adicionar.click({ timeout: 3000 }).catch(() => {});
+    else await p.locator('.menu-acoes').getByRole('button', { name: 'Cancelar' }).click({ timeout: 2000 }).catch(() => {});
+    if (await p.locator('.area-eu .selo.reserva').isVisible().catch(() => false)) {
+      await p.mouse.move(5, 500);
+      await foto(p, '11d-reserva');
+      break;
+    }
+  }
   // mover uma permanente para outro lugar da área
   const minha = p.locator('.area-eu .campo .carta').first();
   const cm = await minha.boundingBox().catch(() => null);

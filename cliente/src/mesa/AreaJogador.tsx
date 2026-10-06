@@ -108,6 +108,8 @@ export function AreaJogador(p: AreaProps) {
   const danoCmd = j.commanderDamage.filter((d) => d.amount > 0);
   const classes = ['area', p.eu ? 'area-eu' : 'area-oponente', p.ativo ? 'area-ativa' : '', p.decidindo ? 'area-decidindo' : '', j.left ? 'area-fora' : '', p.compacta ? 'compacta' : '', p.jogadorRealce ? `alvo-${p.jogadorRealce}` : ''].filter(Boolean).join(' ');
   const topoCemiterio = j.graveyard[j.graveyard.length - 1];
+  // na sua área, a reserva fica do lado da vida (à esquerda ela cairia embaixo da faixa de fases)
+  const reserva = <span class="selo reserva" title="Reserva de mana"><span class="rot">Reserva</span><Simbolos custo={j.manaPool} tam={16} /></span>;
   const topoExilio = p.exilio[p.exilio.length - 1];
 
   // leque da mão: cabe entre os grupos de zonas
@@ -127,13 +129,14 @@ export function AreaJogador(p: AreaProps) {
         <div class="area-selos">
           <button type="button" class="tag-jogador" onClick={p.onJogador} disabled={!p.onJogador} aria-label={`${j.name}, ${j.life} de vida`}>{j.name}</button>
           {p.ativo && <span class="selo turno">turno</span>}
-          {p.decidindo && <span class="selo decidindo">decidindo</span>}
+          {p.decidindo && !p.eu && <span class="selo decidindo">decidindo</span>}
           {j.monarch && <span class="selo">monarca</span>}
           {j.left && <span class="selo etiqueta alerta">{j.won ? 'venceu' : 'fora da partida'}</span>}
           {contadores.map(([k, q]) => <span class="selo" key={k}>{q} {NOME_CONTADOR[k] ?? k}</span>)}
-          {j.manaPool && <span class="selo reserva" title="Reserva de mana"><span class="rot">Reserva</span><Simbolos custo={j.manaPool} tam={16} /></span>}
+          {j.manaPool && !p.eu && reserva}
         </div>
         <div class="vida">
+          {j.manaPool && p.eu && reserva}
           <button type="button" class="vida-n" onClick={p.onJogador} disabled={!p.onJogador} title="Vida" aria-label={`Vida de ${j.name}: ${j.life}`}><IconeVida />{j.life}</button>
           {danoCmd.length > 0 && (
             <div class="dano-cmd" title="Dano de comandante recebido (CR 903.10a)">
