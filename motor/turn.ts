@@ -15,7 +15,7 @@ import { putTriggersOnStack, resolveTop } from './stack.ts';
 import { emptyTurnStats } from './state.ts';
 import { shuffle } from './rng.ts';
 import { emit } from './triggers.ts';
-import type { Answer, ObjId, PlayerId, Step } from './types.ts';
+import { MULLIGANS_LIVRES, type Answer, type ObjId, type PlayerId, type Step } from './types.ts';
 
 export const TURN_STEPS: Step[] = ['untap', 'upkeep', 'draw', 'main1', 'beginCombat', 'declareAttackers', 'declareBlockers', 'combatDamage', 'endCombat', 'main2', 'end', 'cleanup'];
 const COMBAT_STEPS: Step[] = ['beginCombat', 'declareAttackers', 'declareBlockers', 'combatDamage', 'endCombat'];
@@ -36,6 +36,7 @@ function* startGame(g: G): Gen<void> {
   g.log(`Ordem dos assentos: ${order.map((p) => s.players[p].name).join(', ')}. ${s.players[order[0]].name} começa.`, { rule: '103.1' });
   for (const p of order) yield* draw(g, p, 7); // CR 103.5 (não conta como compra de etapa)
   for (const p of order) s.turnStats[p] = emptyTurnStats();
+  const livre = s.config.mulligan === 'livre';
   for (;;) {
     const deciding = order.filter((p) => !s.players[p].kept && !s.players[p].left);
     if (deciding.length === 0) break;
@@ -43,8 +44,9 @@ function* startGame(g: G): Gen<void> {
     for (const p of deciding) {
       const pl = s.players[p];
       // CR 103.5: pode fazer mulligan até a mão inicial chegar a zero cartas
+      // (no mulligan livre, a mão continua com sete e o limite é o número de trocas)
       const free = s.config.multiplayer ? 1 : 0;
-      if (7 - Math.max(0, pl.mulligans + 1 - free) < 0) { pl.kept = true; continue; }
+      if (livre ? pl.mulligans >= MULLIGANS_LIVRES : 7 - Math.max(0, pl.mulligans + 1 - free) < 0) { pl.kept = true; continue; }
       const a = yield* ask<Extract<Answer, { kind: 'mulligan' }>>(g, { kind: 'mulligan', player: p, prompt: pl.mulligans === 0 ? 'Manter a mão inicial ou fazer mulligan?' : 'Manter esta mão ou fazer mulligan de novo?', handSize: s.zones.hand[p].length, mulligans: pl.mulligans });
       if (a.keep) pl.kept = true;
       else mull.push(p);
@@ -57,9 +59,9 @@ function* startGame(g: G): Gen<void> {
       for (const id of [...s.zones.hand[p]]) { s.zones.hand[p].splice(s.zones.hand[p].indexOf(id), 1); s.objects[id].zone = 'library'; s.zones.library[p].push(id); }
       shuffle(s.rng, s.zones.library[p]);
       g.bump();
-      g.log(`${pl.name} faz mulligan.`, { rule: '103.5' });
+      g.log(livre ? `${pl.name} faz mulligan livre (${pl.mulligans} de ${MULLIGANS_LIVRES}).` : `${pl.name} faz mulligan.`, livre ? {} : { rule: '103.5' });
       yield* draw(g, p, 7);
-      const n = Math.max(0, pl.mulligans - (s.config.multiplayer ? 1 : 0));
+      const n = livre ? 0 : Math.max(0, pl.mulligans - (s.config.multiplayer ? 1 : 0));
       const hand = s.zones.hand[p];
       if (n > 0 && hand.length > 0) {
         const k = Math.min(n, hand.length);

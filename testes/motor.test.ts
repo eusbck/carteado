@@ -5,6 +5,7 @@ import { RandomBot } from '../bots/aleatorio.ts';
 import { validateDeck } from '../motor/deck.ts';
 import { Game } from '../motor/game.ts';
 import type { DeckList } from '../motor/state.ts';
+import { MULLIGANS_LIVRES } from '../motor/types.ts';
 import { buildView } from '../motor/view.ts';
 import { setup } from './harness.ts';
 
@@ -70,6 +71,24 @@ describe('início da partida', () => {
     g.answer(first, { kind: 'mulligan', keep: false });
     g.answer(g.pending!.player, { kind: 'mulligan', keep: true });
     expect(g.pending).toMatchObject({ kind: 'select', player: first });
+  });
+
+  it('mulligan livre (regra da casa): troca a mão inteira por sete, sem pôr nada no fundo, até 3 vezes', () => {
+    const g = Game.create({ ...config('livre', 2), mulligan: 'livre' }, DECKS.slice(0, 2));
+    const first = g.pending!.player;
+    const outro = g.state.turnOrder.find((p) => p !== first)!;
+    for (let i = 1; i <= MULLIGANS_LIVRES; i++) {
+      expect(g.pending).toMatchObject({ kind: 'mulligan', player: first });
+      g.answer(first, { kind: 'mulligan', keep: false });
+      if (i === 1) g.answer(outro, { kind: 'mulligan', keep: true });
+      // nada de escolher cartas para o fundo: a mão continua com sete
+      expect(g.state.zones.hand[first].length).toBe(7);
+      expect(g.state.zones.library[first].length).toBe(92);
+    }
+    // depois da terceira troca, a mão fica (não pergunta de novo)
+    expect(g.pending?.kind).not.toBe('mulligan');
+    expect(g.state.players[first].mulligans).toBe(MULLIGANS_LIVRES);
+    expect(g.state.log.some((l) => l.text.includes('mulligan livre (3 de 3)'))).toBe(true);
   });
 
   it('CR 103.8a/103.8c: quem começa compra no primeiro turno só em multijogador (Q42, Q43)', () => {

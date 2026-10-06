@@ -310,7 +310,15 @@ export interface GameConfig {
   multiplayer: boolean;
   /** permite ajustes manuais (para aplicar o efeito de cartas ainda sem definição); ficam no log */
   manualMode?: boolean;
+  /**
+   * regra de mulligan escolhida na sala: 'londres' (CR 103.5, o padrão) ou 'livre' (regra da casa:
+   * troca a mão inteira por sete cartas novas, sem pôr nada no fundo, até MULLIGANS_LIVRES vezes)
+   */
+  mulligan?: 'londres' | 'livre';
 }
+
+/** quantas vezes dá para trocar a mão no mulligan livre */
+export const MULLIGANS_LIVRES = 3;
 
 /** ajuste manual feito por um jogador com prioridade (modo manual) */
 export type ManualAction =

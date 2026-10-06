@@ -29,7 +29,7 @@ export interface RunResult {
   ms: number;
 }
 
-export function runGame(seed: string, players: number, makeBot: (p: number, seed: string) => BotLike, opts: { turnLimit?: number; maxDecisions?: number; invariants?: boolean } = {}): RunResult {
+export function runGame(seed: string, players: number, makeBot: (p: number, seed: string) => BotLike, opts: { turnLimit?: number; maxDecisions?: number; invariants?: boolean; mulligan?: 'londres' | 'livre' } = {}): RunResult {
   const rng = seedFrom(`decks:${seed}`);
   const all = decks as DeckList[];
   const chosen: DeckList[] = [];
@@ -37,6 +37,7 @@ export function runGame(seed: string, players: number, makeBot: (p: number, seed
   const config = {
     seed, players: chosen.map((d, i) => ({ name: `Bot ${i + 1}`, deckId: d.id })),
     startingLife: 40, turnLimit: opts.turnLimit ?? (players > 2 ? 60 : 40), multiplayer: players > 2,
+    ...(opts.mulligan ? { mulligan: opts.mulligan } : {}),
   };
   const t0 = Date.now();
   const bots = chosen.map((_, i) => makeBot(i, seed));
@@ -79,6 +80,8 @@ if (isMain) {
   const players = Number(process.argv[3] ?? 4);
   const tipo = process.argv[4] ?? 'aleatorio';
   const base = process.argv[5] ?? 'estresse';
+  // regra de mulligan: MULLIGAN=livre (o padrão é o de Londres)
+  const mulligan = process.env.MULLIGAN === 'livre' ? 'livre' : undefined;
   // simulações por decisão dos bots heurísticos; no estresse, menos que no servidor
   const simulacoes = Number(process.env.SIMULACOES ?? 16);
   const inicio = Number(process.env.INICIO ?? 0);
@@ -91,7 +94,7 @@ if (isMain) {
       if (tipo === 'heuristico') { const b = new HeuristicBot(`${s}:${p}`, p, { simulacoes }); return { answer: (d, game) => b.answer(d, game) }; }
       const b = new RandomBot(`${s}:${p}`);
       return { answer: (d) => b.answer(d) };
-    });
+    }, { mulligan });
     totalDecisions += r.decisions;
     if (r.ok) { ok++; console.log(`${seed}: ok — ${r.turns} turnos, ${r.decisions} decisões, ${r.draw ? 'empate' : `vencedor ${r.winners.join(',')}`} (${r.reason}), ${r.ms} ms`); }
     else console.log(`${seed}: FALHOU — ${r.error}`);
