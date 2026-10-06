@@ -14,6 +14,7 @@ Lista de verificação das fases. É por aqui que uma sessão nova retoma o trab
 - 05–06/10/2026 (outra conta, depois do limite): fase 5 concluída (bot heurístico, correções do estresse, bateria final 200/200); fase 6 concluída pela opção A (computador do Caio + túnel). Todas as fases do prompt estão feitas.
 - 06/10/2026: fase 7 (mesa nova): protótipo aprovado (mulligan livre até 3 vezes; oponentes em cima e você embaixo; todos veem a arrumação de cada um); visual, interação, menus e mulligan feitos.
 - 06/10/2026 (depois de uma queda do computador): ajuste pendente fechado (reserva de mana ao lado da vida na sua área), conferido com capturas.
+- 06/10/2026 (noite): fase 8 (mesa real), pedida em `../PROMPT-FASE-8.md` depois da primeira partida com a mesa nova. Bugs da seção 1 corrigidos; proposta das seções 2 a 4 (com o levantamento da 2.5) publicada para aprovação.
 
 ## Fase 0: exploração e proposta
 
@@ -168,4 +169,44 @@ Recapitulação da fase 7 (06/10/2026):
   mais lenta. Não é erro do motor nem do mulligan (uma pessoa escolheria outro alvo e pararia o laço), mas o motor
   não detecta laço obrigatório sem fim (CR 104.4b). Fica para decidir se vale tratar.
 - Precisa de você: jogar uma partida de verdade com a mesa nova e dizer o que ajustar.
+
+## Fase 8: mesa real (menos ajuda do sistema) — em andamento
+
+Pedido em `../PROMPT-FASE-8.md`. Princípio: a interface ajuda menos e o jogador decide mais; toda ajuda vira auxílio
+opcional, desligado por padrão; o motor continua conferindo as regras.
+
+- [x] 1.1 e 1.2: janelas da barra lateral e barra recolhida (detalhes abaixo)
+- [x] Proposta das seções 2 a 4 com o levantamento da 2.5: https://claude.ai/artifact/HkRAV2wkWt3XfaYiERRAMu
+- [ ] Aprovação da proposta (4 decisões: o que conta como jogada no Desfazer, parar sem jogada possível, alvo padrão do
+  ataque em 4 jogadores, desfazer mais de uma vez)
+- [ ] 2: auxílios (níveis e Personalizado em `preferencias.ts`, regra da sala, pagamento automático recusado pelo servidor)
+- [ ] 3: combate por cliques e animações de dano, vida e morte
+- [ ] 4: Desfazer com aceite da mesa (servidor refaz a partida pelas entradas; testes de aceite, recusa, prazo e jogadas
+  de outros)
+- [ ] 5: sons (Web Audio) e efeitos visuais configuráveis
+- [ ] 6: hover na mão inicial e faixa de fases mais fina
+- [ ] Capturas pedidas, `ferramentas/e2e.ts`, `PROGRESSO.md` e commit
+
+Seção 1 (06/10/2026):
+- Causa: as janelas ficavam dentro da grade de `.mesa`. A do Ajuste manual vinha embrulhada numa `div` comum, que virava
+  uma segunda linha da grade: o tabuleiro encolhia e sobrava uma faixa preta embaixo (bem maior com a barra recolhida).
+  Esc e clique fora não fechavam Paradas, Conceder nem Ajuste manual, e o Ajuste manual sumia ao perder a prioridade e
+  voltava sozinho na seguinte.
+- Correção: componente `cliente/src/Janela.tsx` (centralizada, acima de tudo, rolagem por dentro, fecha pelo X, Esc e
+  clique fora) para todas as janelas da mesa, desenhadas fora de `.mesa`; a grade da mesa tem uma linha só
+  (`grid-template-rows`); o Ajuste manual fecha quando a prioridade vai embora.
+- Verificado no Chromium e no Edge (também numa janela maximizada de verdade), 1280×800 e 1920×1080, barra aberta e
+  recolhida. `ferramentas/capturas.ts` ganhou as capturas 10b (janela com a barra recolhida, 1920), 11b (mesa recolhida,
+  1920), 14b e 14c (1v1 recolhido e Configurações, 1280) e confere sozinho que a mesa ocupa a tela toda e que a janela
+  fica no centro com o X clicável; a parte de 4 jogadores passou a ser em 1920×1080.
+- Não reproduzido: "janela presa no topo, sem clique" (no Edge daqui Paradas e Configurações já abriam no centro). Se
+  voltar, falta saber o navegador e o zoom da página.
+- Observação: `abrir-mesa.ps1` só compila o cliente quando `cliente/dist` não existe, então uma mudança no cliente não
+  chega à mesa sem `npm run cliente:build` (já rodado nesta sessão). Proposta: compilar quando os fontes forem mais
+  novos que `dist`. O arquivo tem uma mudança de outra sessão ainda sem commit (fecha mesa antiga órfã).
+
+Protótipo (fora do repositório, em `.cache/prototipo8/`): `gerar-cenarios.ts` joga partidas com bots até uma situação
+(ataque em 4 jogadores, bloqueio em 1v1, pagamento, fase principal, pedido de desfazer) e grava salas prontas num banco;
+`telas.ts` abre essas salas no navegador, desenha os elementos novos por cima e fotografa. A mesma ideia serve para as
+capturas finais de combate e desfazer.
 

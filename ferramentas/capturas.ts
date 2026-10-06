@@ -15,6 +15,8 @@ const PORTA = 8091;
 const URL = `http://localhost:${PORTA}`;
 
 rmSync(DADOS, { recursive: true, force: true });
+// imagens de uma rodada anterior saem (nomes que mudaram não ficam para trás)
+rmSync(SAIDA, { recursive: true, force: true });
 mkdirSync(SAIDA, { recursive: true });
 
 const servidor = spawn(process.execPath, [join(RAIZ, 'servidor', 'index.ts')], {
@@ -32,6 +34,29 @@ async function foto(p: Page, nome: string): Promise<void> {
   await p.waitForTimeout(400);
   await p.screenshot({ path: join(SAIDA, `${nome}.png`) });
   console.log(`captura: ${nome}.png`);
+}
+
+/** a mesa ocupa a tela inteira (sem faixa preta embaixo nem corte), com ou sem janela aberta */
+async function conferirMesa(p: Page, quando: string): Promise<void> {
+  const r = await p.evaluate(() => {
+    const t = document.querySelector('.tabuleiro')!.getBoundingClientRect();
+    const l = document.querySelector('.lateral')!.getBoundingClientRect();
+    return { vw: innerWidth, vh: innerHeight, th: t.height, tw: t.width, lh: l.height, lw: l.width };
+  });
+  if (Math.abs(r.th - r.vh) > 1 || Math.abs(r.lh - r.vh) > 1 || Math.abs(r.tw + r.lw - r.vw) > 1) throw new Error(`mesa fora do lugar (${quando}): ${JSON.stringify(r)}`);
+}
+
+/** a janela aberta está no centro da tela e o X dela recebe o clique */
+async function conferirJanela(p: Page, quando: string): Promise<void> {
+  await p.locator('.janela-caixa').waitFor();
+  await p.waitForTimeout(300); // fim da animação de entrada
+  const r = await p.evaluate(() => {
+    const c = document.querySelector('.janela-caixa')!.getBoundingClientRect();
+    const x = document.querySelector('.janela-caixa .janela-x')!.getBoundingClientRect();
+    const sob = document.elementFromPoint(x.left + x.width / 2, x.top + x.height / 2)?.closest('button')?.getAttribute('aria-label');
+    return { dx: c.left + c.width / 2 - innerWidth / 2, dy: c.top + c.height / 2 - innerHeight / 2, sob };
+  });
+  if (Math.abs(r.dx) > 2 || Math.abs(r.dy) > 2 || r.sob !== 'Fechar') throw new Error(`janela fora do lugar (${quando}): ${JSON.stringify(r)}`);
 }
 
 const paginas: Page[] = [];
@@ -105,7 +130,7 @@ async function jogarUmPouco(p: Page, rodadas: number): Promise<void> {
 
 try {
   // ---------------- quatro jogadores
-  const ctx = await navegador.newContext({ viewport: { width: 1600, height: 950 } });
+  const ctx = await navegador.newContext({ viewport: { width: 1920, height: 1080 } });
   ctx.setDefaultTimeout(20000);
   const p = await ctx.newPage();
   await p.goto(URL);
@@ -180,8 +205,21 @@ try {
   await foto(p, '09-ajuste-ficha');
   await p.getByRole('button', { name: 'Fechar' }).click();
   await p.getByRole('button', { name: 'Paradas' }).click();
+  await conferirJanela(p, 'paradas');
   await foto(p, '10-paradas');
-  await p.getByRole('button', { name: 'Fechar' }).click();
+  await p.keyboard.press('Escape');
+  // janela da barra lateral com a barra recolhida (antes cortava a mesa e deixava uma faixa preta)
+  await p.getByRole('button', { name: 'Recolher a barra' }).click();
+  await p.waitForTimeout(400);
+  await conferirMesa(p, 'barra recolhida');
+  await p.getByRole('button', { name: 'Ajuste manual' }).click();
+  await conferirJanela(p, 'ajuste manual com a barra recolhida');
+  await conferirMesa(p, 'ajuste manual com a barra recolhida');
+  await foto(p, '10b-janela-barra-recolhida-1920');
+  await p.mouse.click(12, 1068);
+  await p.getByRole('button', { name: 'Abrir a barra' }).click();
+  await p.waitForTimeout(400);
+  await conferirMesa(p, 'barra aberta de novo');
   // algumas voltas da mesa com os bots
   await jogarUmPouco(p, 24);
   await jogarAteMinhaPrioridade(p, 80);
@@ -211,7 +249,9 @@ try {
     await foto(p, '11c-carta-movida');
   }
   await p.getByRole('button', { name: 'Recolher a barra' }).click();
-  await foto(p, '11b-mesa-recolhida');
+  await p.waitForTimeout(400);
+  await conferirMesa(p, 'mesa recolhida');
+  await foto(p, '11b-mesa-recolhida-1920');
   await p.getByRole('button', { name: 'Abrir a barra' }).click();
   await p.locator('.botao-zona').first().click();
   await foto(p, '12-cemiterio');
@@ -243,6 +283,16 @@ try {
   await jogarUmPouco(q, 10);
   await jogarAteMinhaPrioridade(q, 40);
   await foto(q, '14-duelo-depois');
+  await q.getByRole('button', { name: 'Recolher a barra' }).click();
+  await q.waitForTimeout(400);
+  await conferirMesa(q, 'duelo recolhido');
+  await foto(q, '14b-duelo-recolhida-1280');
+  await q.getByRole('button', { name: 'Configurações' }).click();
+  await conferirJanela(q, 'configurações no duelo');
+  await conferirMesa(q, 'configurações no duelo');
+  await foto(q, '14c-janela-1280');
+  await q.locator('.janela-x').click();
+  await q.getByRole('button', { name: 'Abrir a barra' }).click();
   await ctx2.close();
 } catch (e) {
   for (const [i, p] of paginas.entries()) if (!p.isClosed()) await p.screenshot({ path: join(SAIDA, `falha-${i}.png`) }).catch(() => {});

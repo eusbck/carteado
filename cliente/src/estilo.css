@@ -79,8 +79,8 @@ label { display: grid; gap: 6px; color: var(--suave); font-size: 13px; font-weig
 .etiqueta.destaque { border-color: rgba(34, 211, 107, .55); color: var(--verde); }
 .etiqueta.decidindo { border-color: rgba(246, 196, 69, .6); color: var(--amarelo); }
 .etiqueta.alerta { border-color: var(--vermelho); color: var(--vermelho); }
-.aviso-erro { position: fixed; left: 50%; top: 14px; transform: translateX(-50%); background: #2a1212; border: 1px solid var(--vermelho); color: #ffd2d2; padding: 10px 16px; border-radius: 12px; z-index: 100; max-width: 90vw; box-shadow: var(--sombra); font-weight: 500; }
-.aviso-conexao { position: fixed; left: 14px; bottom: 14px; background: var(--vidro); border: 1px solid var(--amarelo); color: var(--amarelo); padding: 8px 14px; border-radius: 10px; z-index: 100; font-weight: 600; }
+.aviso-erro { position: fixed; left: 50%; top: 14px; transform: translateX(-50%); background: #2a1212; border: 1px solid var(--vermelho); color: #ffd2d2; padding: 10px 16px; border-radius: 12px; z-index: 300; max-width: 90vw; box-shadow: var(--sombra); font-weight: 500; }
+.aviso-conexao { position: fixed; left: 14px; bottom: 14px; background: var(--vidro); border: 1px solid var(--amarelo); color: var(--amarelo); padding: 8px 14px; border-radius: 10px; z-index: 300; font-weight: 600; }
 
 /* ---------------------------------------------------------------- telas de fora da mesa */
 .tela-fundo {
@@ -185,7 +185,8 @@ label { display: grid; gap: 6px; color: var(--suave); font-size: 13px; font-weig
 .campo .carta.clicavel:hover, .zonas .carta.clicavel:hover { translate: 0 -3px; scale: 1.05; z-index: 50 !important; }
 
 /* ---------------------------------------------------------------- mesa */
-.mesa { display: grid; grid-template-columns: minmax(0, 1fr) var(--lateral); height: 100vh; overflow: clip; transition: grid-template-columns .22s ease; }
+.mesa { display: grid; grid-template-columns: minmax(0, 1fr) var(--lateral); grid-template-rows: minmax(0, 1fr); height: 100vh; height: 100dvh; overflow: clip; transition: grid-template-columns .22s ease; }
+.mesa > .tabuleiro, .mesa > .lateral { grid-row: 1; }
 .mesa.recolhida { --lateral: 64px; }
 .tabuleiro { --divisa: 41%; position: relative; display: grid; grid-template-rows: minmax(0, 41fr) minmax(0, 59fr); gap: 2px; background: #000; min-height: 0; min-width: 0; overflow: clip; container-type: inline-size; }
 .mesa-duelo .tabuleiro { --divisa: 46%; grid-template-rows: minmax(0, 46fr) minmax(0, 54fr); }
@@ -367,9 +368,10 @@ button.etapa:hover { background: rgba(34, 211, 107, .1); }
 .faixa-pegar { position: fixed; left: 50%; top: 14px; transform: translateX(-50%); background: var(--vidro); border: 1px solid var(--amarelo); color: var(--amarelo); padding: 8px 10px 8px 16px; display: flex; gap: 12px; align-items: center; z-index: 95; border-radius: 12px; box-shadow: var(--sombra); font-weight: 600; }
 
 /* zoom */
-.zoom { position: fixed; top: 16px; width: 290px; z-index: 85; pointer-events: none; background: var(--vidro); border: 1px solid var(--linha-forte); border-radius: 16px; padding: 8px; box-shadow: 0 24px 60px rgba(0, 0, 0, .75); backdrop-filter: blur(12px); }
+.zoom { position: fixed; top: 16px; width: 290px; z-index: 250; pointer-events: none; background: var(--vidro); border: 1px solid var(--linha-forte); border-radius: 16px; padding: 8px; box-shadow: 0 24px 60px rgba(0, 0, 0, .75); backdrop-filter: blur(12px); }
 .zoom.esq { left: 16px; }
 .zoom.dir { right: calc(var(--lateral) + 16px); }
+.camada-zoom.recolhida { --lateral: 64px; }
 .zoom img { width: 100%; border-radius: 12px; }
 .zoom-sem-arte { aspect-ratio: 63 / 88; display: grid; place-items: center; background: var(--painel-2); border-radius: 12px; }
 .zoom-texto { font-size: 12.5px; padding: 8px 4px 2px; color: var(--suave); }
@@ -402,12 +404,17 @@ button.etapa:hover { background: rgba(34, 211, 107, .1); }
 .recolhida .menu-lateral button { justify-content: center; padding: 0; }
 .recolhida .recolher svg { rotate: 180deg; }
 
-/* janelas modais */
-.modal { position: fixed; inset: 0; background: rgba(4, 5, 5, .74); backdrop-filter: blur(3px); display: grid; place-items: center; z-index: 80; padding: 16px; }
-.modal-caixa { background: var(--painel); border: 1px solid var(--linha-forte); border-radius: 18px; padding: 20px; width: min(580px, 100%); max-height: 88vh; overflow: auto; box-shadow: var(--sombra); display: grid; gap: 12px; align-content: start; }
-.modal-caixa.larga { width: min(1040px, 100%); }
-.modal-caixa h2 { font-size: 17px; font-weight: 800; }
-.modal-topo { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+/* janelas: fora da grade da mesa, centralizadas e acima de tudo; se forem altas, rolam por dentro */
+.janela-fundo { position: fixed; inset: 0; z-index: 200; display: flex; padding: 24px 16px; overflow: auto; background: rgba(4, 5, 5, .74); backdrop-filter: blur(3px); animation: janela-fundo .15s ease-out; }
+.janela-caixa { margin: auto; width: min(580px, 100%); max-height: calc(100vh - 48px); max-height: calc(100dvh - 48px); display: flex; flex-direction: column; background: var(--painel); border: 1px solid var(--linha-forte); border-radius: 18px; box-shadow: var(--sombra); outline: none; animation: janela-caixa .18s ease-out; }
+.janela-caixa.larga { width: min(1040px, 100%); }
+.janela-topo { flex: 0 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 14px 12px 12px 20px; border-bottom: 1px solid var(--linha); }
+.janela-topo h2 { font-size: 17px; font-weight: 800; min-width: 0; }
+.janela-x { width: 34px; min-height: 34px; border-radius: 9px; }
+.janela-x svg { width: 18px; height: 18px; }
+.janela-corpo { min-height: 0; overflow: auto; padding: 16px 20px 20px; display: grid; gap: 12px; align-content: start; }
+@keyframes janela-fundo { from { opacity: 0; } }
+@keyframes janela-caixa { from { opacity: 0; translate: 0 8px; scale: .98; } }
 .grade-cartas { display: flex; flex-wrap: wrap; gap: 10px; }
 .grade-cartas .carta { --w: 120px; }
 .abas { display: flex; flex-wrap: wrap; gap: 2px; border-bottom: 1px solid var(--linha-forte); }
@@ -486,7 +493,8 @@ button.etapa:hover { background: rgba(34, 211, 107, .1); }
 .revelada b { color: var(--cor); }
 .revelada img { width: 210px; border-radius: 10px; }
 
-.carta-info { width: min(420px, 100%); justify-items: center; }
+.janela-caixa.carta-info { width: min(420px, 100%); }
+.carta-info .janela-corpo { justify-items: center; }
 .zoom-fixo { display: grid; gap: 8px; width: 100%; }
 .zoom-fixo img { width: 100%; border-radius: 14px; }
 .zoom-fixo .zoom-texto { font-size: 13px; color: var(--suave); }

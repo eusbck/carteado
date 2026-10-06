@@ -4,6 +4,7 @@ import { useState } from 'preact/hooks';
 import type { ManualAction, ObjId, TargetRef } from '../../../motor/types.ts';
 import type { GameView } from '../../../motor/view.ts';
 import { fichas, urlImagem } from '../cartas.ts';
+import { Janela } from '../Janela.tsx';
 import { loja } from '../loja.ts';
 
 export type Tipo = 'mover' | 'vida' | 'marcadores' | 'virar' | 'ficha' | 'comprar' | 'moer' | 'embaralhar' | 'buscar' | 'videncia' | 'vigiar';
@@ -30,6 +31,8 @@ interface Props {
   fechar: () => void;
   pegar: (p: PegarCarta | null) => void;
   nomeObj: (id: ObjId) => string;
+  /** escondida enquanto você escolhe uma carta na mesa */
+  escondida?: boolean;
 }
 
 function Passo({ n, set, min = 1, max = 20 }: { n: number; set: (x: number) => void; min?: number; max?: number }) {
@@ -44,7 +47,7 @@ function Passo({ n, set, min = 1, max = 20 }: { n: number; set: (x: number) => v
   );
 }
 
-export function Manual({ v, decisao, fechar, pegar, nomeObj, tipoInicial }: Props) {
+export function Manual({ v, decisao, fechar, pegar, nomeObj, tipoInicial, escondida }: Props) {
   const [tipo, setTipo] = useState<Tipo>(tipoInicial ?? 'mover');
   const [obj, setObj] = useState<ObjId | null>(null);
   const [jogador, setJogador] = useState<number>(v.you ?? 0);
@@ -146,18 +149,12 @@ export function Manual({ v, decisao, fechar, pegar, nomeObj, tipoInicial }: Prop
   }
 
   return (
-    <div class="modal" role="dialog" aria-label="Ajuste manual">
-      <div class="modal-caixa">
-        <header class="modal-topo">
-          <h2>Ajuste manual</h2>
-          <button class="botao" onClick={fechar}>Fechar</button>
-        </header>
-        <p class="suave">Use para aplicar o efeito de cartas marcadas como "manual". Todo ajuste aparece no registro para todos.</p>
-        <div class="abas">
-          {TIPOS.map((t) => <button key={t.id} class={`aba ${tipo === t.id ? 'ativa' : ''}`} onClick={() => { setTipo(t.id); setN(1); setDelta(t.id === 'marcadores' ? 1 : -1); }}>{t.nome}</button>)}
-        </div>
-        <div class="manual-corpo">{corpo}</div>
+    <Janela titulo="Ajuste manual" fechar={fechar} escondida={escondida}>
+      <p class="suave">Use para aplicar o efeito de cartas marcadas como "manual". Todo ajuste aparece no registro para todos.</p>
+      <div class="abas">
+        {TIPOS.map((t) => <button key={t.id} class={`aba ${tipo === t.id ? 'ativa' : ''}`} onClick={() => { setTipo(t.id); setN(1); setDelta(t.id === 'marcadores' ? 1 : -1); }}>{t.nome}</button>)}
       </div>
-    </div>
+      <div class="manual-corpo">{corpo}</div>
+    </Janela>
   );
 }

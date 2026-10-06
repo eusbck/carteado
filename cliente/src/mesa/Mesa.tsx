@@ -9,6 +9,7 @@ import { nomeCarta, traduzir, urlArte, urlImagem } from '../cartas.ts';
 import { IconeAjuste, IconeConceder, IconeRecolher as IconeSeta, IconeConfig, IconeFimTurno, IconeParadas, IconePassar, IconeRecolher, IconeRegistro, IconeSair, Marca } from '../icones.tsx';
 import { loja, useLoja } from '../loja.ts';
 import { reservaPaga } from '../mana.ts';
+import { Janela } from '../Janela.tsx';
 import { mudarPreferencias, usePreferencias } from '../preferencias.ts';
 import { ETAPAS, FASES } from '../pt.ts';
 import { acompanharArrasto, dentro, mostrarFantasma, useFantasma } from './arrastar.ts';
@@ -282,6 +283,8 @@ export function Mesa() {
   const autoFeito = useRef(new Set<number>());
   useEffect(() => { setSel([]); setAtaques({}); setBloqueios({}); setBloqueadorAtivo(null); setMenu(null); }, [d?.id]);
   const recolher = (x: boolean) => { setRecolhida(x); guardarRecolhida(x); };
+  // a carta sob o mouse some junto com a janela (o mouseleave não chega)
+  useEffect(() => { setZoom(null); }, [modal]);
 
   const ui: EstadoUi = { sel, setSel, ataques, setAtaques, bloqueios, setBloqueios, bloqueadorAtivo, setBloqueadorAtivo };
   const minhaReserva = v.players[eu]?.manaPool ?? '';
@@ -680,10 +683,12 @@ export function Mesa() {
   const logRef = useRef<HTMLOListElement>(null);
   useEffect(() => { const el = logRef.current; if (el) el.scrollTop = el.scrollHeight; }, [v.log.length, registroAberto, recolhida]);
   const decisaoManual = d?.kind === 'priority' && d.actions.some((a) => a.kind === 'manual') ? d.id : null;
+  // sem prioridade, o ajuste manual fecha (antes ele sumia e voltava sozinho na prioridade seguinte)
+  useEffect(() => { if (decisaoManual === null) { setManualAberto(false); setManualTipo(undefined); setPegar(null); } }, [decisaoManual]);
   const preJogo = v.turn.number === 0 && !v.gameOver;
   const mostrarDecisao = d && !v.gameOver && !enviando && !preJogo && (d.kind !== 'priority' || acoesSoltas.length > 0);
 
-  return (
+  return (<>
     <div class={`mesa ${duelo ? 'mesa-duelo' : ''} ${recolhida ? 'recolhida' : ''}`} onClick={() => setMenu(null)}>
       <main class="tabuleiro" onContextMenu={(ev) => ev.preventDefault()}>
         <div class={`oponentes n${oponentes.length}`}>{oponentes.map((j) => area(j, true))}</div>
@@ -729,7 +734,6 @@ export function Mesa() {
           )}
         </div>
 
-        {zoom && !arrastando && <Zoom o={zoom.o} lado={zoom.lado} />}
         {e.reveladas.length > 0 && (
           <div class="reveladas" aria-live="polite">
             {e.reveladas.map((r) => {
@@ -746,7 +750,6 @@ export function Mesa() {
         )}
         {preJogo && <MaoInicial v={v} d={d} enviando={enviando} regra={sala.mulligan ?? 'londres'} multiplayer={sala.modo === '4p'} sel={sel} setSel={setSel} />}
       </main>
-      <CamadaArrasto />
 
       <aside class="lateral" aria-label="Menu da partida">
         <div class="marca-jogo"><Marca /><span>COMMANDER DA MESA</span></div>
@@ -770,78 +773,65 @@ export function Mesa() {
           </ol>
         </section>
       </aside>
-
-      {menu && <MenuFlutuante menu={menu} fechar={() => setMenu(null)} />}
-
-      {pegar && (
-        <div class="faixa-pegar">
-          <span>{pegar.prompt}</span>
-          <button class="botao pequeno" onClick={() => { setPegar(null); }}>Cancelar</button>
-        </div>
-      )}
-
-      {modal?.tipo === 'zona' && (() => {
-        const j = v.players[modal.jogador];
-        const cartas = modal.zona === 'graveyard' ? j.graveyard : v.exile.filter((o) => o.owner === j.id);
-        return (
-          <div class="modal" role="dialog" onClick={() => setModal(null)}>
-            <div class="modal-caixa larga" onClick={(ev) => ev.stopPropagation()}>
-              <header class="modal-topo">
-                <h2>{modal.zona === 'graveyard' ? 'Cemitério' : 'Exílio'} de {j.name} ({cartas.length})</h2>
-                <button class="botao" onClick={() => setModal(null)}>Fechar</button>
-              </header>
-              <div class="grade-cartas">
-                {cartas.length === 0 && <p class="suave">Vazio.</p>}
-                {[...cartas].reverse().map((o) => <Carta key={o.id} o={o} realce={realce(o)} onClick={(x, r) => { clicarCarta(x, r); if (pegar || d?.kind === 'priority') setModal(null); }} onZoom={mostrarZoom} />)}
-              </div>
-            </div>
-          </div>
-        );
-      })()}
-
-      {modal?.tipo === 'paradas' && e.paradas && <Paradas atual={e.paradas} fechar={() => setModal(null)} />}
-
-      {modal?.tipo === 'carta' && (
-        <div class="modal" role="dialog" aria-label="Informações da carta" onClick={() => setModal(null)}>
-          <div class="modal-caixa carta-info" onClick={(ev) => ev.stopPropagation()}>
-            <Zoom o={modal.o} fixo />
-            <button class="botao" onClick={() => setModal(null)}>Fechar</button>
-          </div>
-        </div>
-      )}
-
-      {modal?.tipo === 'config' && (
-        <div class="modal" role="dialog" aria-label="Configurações" onClick={() => setModal(null)}>
-          <div class="modal-caixa" onClick={(ev) => ev.stopPropagation()}>
-            <header class="modal-topo"><h2>Configurações</h2><button class="botao" onClick={() => setModal(null)}>Fechar</button></header>
-            <label class="caixa"><input type="checkbox" checked={pref.pagarAuto} onChange={() => mudarPreferencias({ pagarAuto: !pref.pagarAuto })} /> Pagar automaticamente por padrão</label>
-            <p class="suave">Desligado, você paga clicando nos seus terrenos. Ligado, o jogo escolhe as fontes sozinho sempre que der. Vale só neste navegador.</p>
-            <div class="linha-config">
-              <div><strong>Arrumação do campo</strong><p class="suave">Volta todas as suas permanentes para a arrumação padrão.</p></div>
-              <button class="botao" onClick={() => { setPosLocal({}); loja.enviar({ t: 'posicao', limpar: true }); setModal(null); }}>Reorganizar meu campo</button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {modal?.tipo === 'conceder' && (
-        <div class="modal" role="dialog">
-          <div class="modal-caixa">
-            <h2>Conceder a partida?</h2>
-            <p class="suave">Você sai da partida e os outros continuam (CR 104.3a, 800.4a).</p>
-            <div class="botoes-linha">
-              <button class="botao perigo" onClick={() => { loja.enviar({ t: 'conceder' }); setModal(null); }}>Conceder</button>
-              <button class="botao" onClick={() => setModal(null)}>Voltar</button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {manualAberto && decisaoManual !== null && (
-        <div class={pegar ? 'escondido' : ''}>
-          <Manual v={v} decisao={decisaoManual} tipoInicial={manualTipo} fechar={() => { setManualAberto(false); setManualTipo(undefined); setPegar(null); }} pegar={setPegar} nomeObj={nomeObj} />
-        </div>
-      )}
     </div>
-  );
+
+    {/* camadas por cima da mesa ficam fora da grade dela (dentro, viravam linhas novas e cortavam o tabuleiro) */}
+    <CamadaArrasto />
+    {/* o zoom fica acima das janelas (ex.: ler uma carta do cemitério com a janela aberta) */}
+    {zoom && !arrastando && <div class={`camada-zoom ${recolhida ? 'recolhida' : ''}`}><Zoom o={zoom.o} lado={zoom.lado} /></div>}
+    {menu && <MenuFlutuante menu={menu} fechar={() => setMenu(null)} />}
+
+    {pegar && (
+      <div class="faixa-pegar">
+        <span>{pegar.prompt}</span>
+        <button class="botao pequeno" onClick={() => { setPegar(null); }}>Cancelar</button>
+      </div>
+    )}
+
+    {modal?.tipo === 'zona' && (() => {
+      const j = v.players[modal.jogador];
+      const cartas = modal.zona === 'graveyard' ? j.graveyard : v.exile.filter((o) => o.owner === j.id);
+      return (
+        <Janela titulo={`${modal.zona === 'graveyard' ? 'Cemitério' : 'Exílio'} de ${j.name} (${cartas.length})`} larga fechar={() => setModal(null)}>
+          <div class="grade-cartas">
+            {cartas.length === 0 && <p class="suave">Vazio.</p>}
+            {[...cartas].reverse().map((o) => <Carta key={o.id} o={o} realce={realce(o)} onZoom={mostrarZoom} onClick={(x, r) => { clicarCarta(x, r); if (pegar || d?.kind === 'priority') setModal(null); }} />)}
+          </div>
+        </Janela>
+      );
+    })()}
+
+    {modal?.tipo === 'paradas' && e.paradas && <Paradas atual={e.paradas} fechar={() => setModal(null)} />}
+
+    {modal?.tipo === 'carta' && (
+      <Janela titulo={nomeObj(modal.o.id)} classe="carta-info" fechar={() => setModal(null)}>
+        <Zoom o={modal.o} fixo />
+      </Janela>
+    )}
+
+    {modal?.tipo === 'config' && (
+      <Janela titulo="Configurações" fechar={() => setModal(null)}>
+        <label class="caixa"><input type="checkbox" checked={pref.pagarAuto} onChange={() => mudarPreferencias({ pagarAuto: !pref.pagarAuto })} /> Pagar automaticamente por padrão</label>
+        <p class="suave">Desligado, você paga clicando nos seus terrenos. Ligado, o jogo escolhe as fontes sozinho sempre que der. Vale só neste navegador.</p>
+        <div class="linha-config">
+          <div><strong>Arrumação do campo</strong><p class="suave">Volta todas as suas permanentes para a arrumação padrão.</p></div>
+          <button class="botao" onClick={() => { setPosLocal({}); loja.enviar({ t: 'posicao', limpar: true }); setModal(null); }}>Reorganizar meu campo</button>
+        </div>
+      </Janela>
+    )}
+
+    {modal?.tipo === 'conceder' && (
+      <Janela titulo="Conceder a partida?" fechar={() => setModal(null)}>
+        <p class="suave">Você sai da partida e os outros continuam (CR 104.3a, 800.4a).</p>
+        <div class="botoes-linha">
+          <button class="botao perigo" onClick={() => { loja.enviar({ t: 'conceder' }); setModal(null); }}>Conceder</button>
+          <button class="botao" onClick={() => setModal(null)}>Voltar</button>
+        </div>
+      </Janela>
+    )}
+
+    {manualAberto && decisaoManual !== null && (
+      <Manual v={v} decisao={decisaoManual} tipoInicial={manualTipo} escondida={!!pegar} fechar={() => { setManualAberto(false); setManualTipo(undefined); setPegar(null); }} pegar={setPegar} nomeObj={nomeObj} />
+    )}
+  </>);
 }

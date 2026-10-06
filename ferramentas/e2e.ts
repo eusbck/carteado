@@ -189,7 +189,7 @@ try {
   await bruno.screenshot({ path: join(SAIDA, '1v1-bruno.png') });
   // Bruno concede: Ana vence
   await bruno.getByRole('button', { name: 'Conceder' }).click();
-  await bruno.locator('.modal').getByRole('button', { name: 'Conceder' }).click();
+  await bruno.locator('.janela-caixa').getByRole('button', { name: 'Conceder' }).click();
   await ana.getByText('Fim de partida').waitFor({ timeout: 15000 });
   verificar(await ana.getByText('Venceu: Ana.').isVisible(), '1v1 termina com a vitória de Ana');
   await bruno.getByText('Fim de partida').waitFor({ timeout: 15000 });
@@ -214,7 +214,7 @@ try {
   // três concedem, uma de cada vez; os outros continuam (CR 800.4a)
   for (const p of pessoas.slice(1)) {
     await p.getByRole('button', { name: 'Conceder' }).click();
-    await p.locator('.modal').getByRole('button', { name: 'Conceder' }).click();
+    await p.locator('.janela-caixa').getByRole('button', { name: 'Conceder' }).click();
     await p.locator('.area-eu .etiqueta.alerta').waitFor({ timeout: 10000 });
     for (const q of pessoas) await agir(q);
   }
