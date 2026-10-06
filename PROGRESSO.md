@@ -11,6 +11,7 @@ Lista de verificação das fases. É por aqui que uma sessão nova retoma o trab
 - 04/10/2026 (continuação): fase 3 concluída; começar a fase 4 (cartas, parte B).
 - 05/10/2026: retomada depois do limite de uso da sessão anterior; fechar o lote 3e (cartas R, sem commit) e seguir com as cartas S–Z e as especiais.
 - 05/10/2026 (continuação): fase 4 concluída (547/547); começar a fase 5 (bots).
+- 05–06/10/2026 (outra conta, depois do limite): fase 5 concluída (bot heurístico, correções do estresse, bateria final 200/200); fase 6 concluída pela opção A (computador do Caio + túnel). Todas as fases do prompt estão feitas.
 
 ## Fase 0: exploração e proposta
 
@@ -80,11 +81,11 @@ Recapitulação da fase 4 (05/10/2026):
 
 Notas para retomar: depois de mexer no motor, rode `npx tsc --noEmit -p tsconfig.json`, os testes afetados, `npx vitest run` inteiro **sem mexer em arquivos durante a execução** (a suíte importa todas as definições e falha em massa se pegar um arquivo pela metade) e `node bots/estresse.ts 40 4 aleatorio <semente>`. Falhas do estresse ficam em `.cache/falhas/` e se reproduzem com `node .cache/repro-falha.ts <semente>`.
 
-## Fase 5: bots
+## Fase 5: bots — concluída em 06/10/2026
 
 - [x] Heurísticas e busca rasa com informação determinizada (`bots/heuristico.ts`, `bots/simulacao.ts`, `bots/avaliacao.ts`)
 - [x] 3 bots + 1 humano (servidor usa o bot heurístico nos lugares de bot; `ferramentas/humano-e-bots.ts`; cenário novo em `ferramentas/e2e.ts`)
-- [ ] 200 partidas seguidas com 4 bots, sem erro, travamento ou estado ilegal
+- [x] 200 partidas seguidas com 4 bots, sem erro, travamento ou estado ilegal
 
 Como o bot decide: nos momentos que importam (fases principais do próprio turno, etapa final dos oponentes e quando
 um oponente põe algo na pilha), simula cada jogada candidata numa cópia da partida em que a mão e o grimório dos
@@ -93,6 +94,28 @@ mesa, cartas, dano de comandante, veneno). As escolhas da melhor simulação (al
 partida. Combate, mulligan, vidência e escolhas forçadas usam heurísticas. O número de simulações por decisão é fixo
 (determinístico): 24 no servidor, 16 no estresse.
 
-## Fase 6: hospedagem
+Recapitulação da fase 5 (06/10/2026):
+- Feito: bot heurístico com busca rasa jogando no servidor nos lugares vazios; ataque letal com tudo quando o dano
+  passa da vida de um oponente mesmo com os bloqueios; com o campo muito cheio (mais de 150 objetos), o bot passa em
+  vez de simular, e com mais de 60 objetos simula menos. Correções que o estresse achou: custo de ataque (Ghostly Prison)
+  e custo repetível sem laço, escolhas do bot conferidas pelos validadores da decisão, ataque obrigatório (Furygale),
+  controle de base ao sair da partida (CR 800.4a), capítulo final da Saga, Animate Dead, miríade dobrada.
+- Verificado: suíte inteira (509 arquivos, 1073 testes) e `npm run typecheck`; contra bots aleatórios, o heurístico
+  ganha 7 de 10; **bateria final `bateria3`: 200/200 partidas de 4 bots heurísticos sem erro, travamento nem invariante
+  violada** (6 processos, cerca de 69 min; média de 44 turnos, 179 com vencedor e 21 empates pelo limite de 60 turnos;
+  a partida mais longa levou 7 min); `ferramentas/humano-e-bots.ts` em 4p (fim no turno 47) e 1v1 (turno 23) sem
+  vazamento de informação oculta; `node ferramentas/e2e.ts` passou inteiro, inclusive uma pessoa com três bots pela
+  interface.
+- Precisa de você: nada. Se algum bot parecer lento numa partida de verdade, o número de simulações fica em
+  `servidor/salas.ts` (`simulacoesBot`).
 
-- [ ] Deploy e instruções (com confirmação antes de criar conta, publicar ou gerar custo)
+## Fase 6: hospedagem — concluída em 05/10/2026 (opção A)
+
+- [x] Opções escritas em `HOSPEDAGEM.md` (A: computador de vocês + túnel; B: Tailscale; C: servidor sempre ligado)
+- [x] Opção A escolhida pelo grupo (05/10/2026): `cloudflared` instalado no computador do Caio, `Abrir a mesa.cmd` sobe o servidor com HTTPS e o túnel rápido e mostra endereço e senha
+- [x] Teste pela internet (`abrir-mesa.ps1 -Teste`): página, login com cookie seguro, senha errada recusada, WebSocket com e sem sessão
+
+Recapitulação da fase 6 (05/10/2026):
+- Feito: a mesa abre com dois cliques e fecha com Enter. Atrás do túnel, o limite de tentativas de senha usa o IP real do visitante, e o WebSocket sem sessão recebe 401 completo.
+- Verificado: `abrir-mesa.ps1 -Teste` passou de ponta a ponta por um endereço `trycloudflare.com` (aberto só durante o teste e fechado em seguida).
+- Precisa de você: abrir a mesa numa noite de jogo e mandar endereço e senha ao grupo. O endereço muda a cada abertura; endereço fixo pede conta na Cloudflare e domínio (só com sua confirmação).
