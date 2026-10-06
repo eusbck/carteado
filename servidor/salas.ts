@@ -9,9 +9,10 @@ import { DEFAULT_STOPS, shouldAutoPass, type StopSettings } from '../motor/autop
 import { Game, type Checkpoint, type Input } from '../motor/game.ts';
 import type { DeckList } from '../motor/state.ts';
 import type { Answer, GameConfig, Step } from '../motor/types.ts';
+import { controllerOf } from '../motor/chars.ts';
 import { buildView } from '../motor/view.ts';
 import type { Banco } from './banco.ts';
-import type { Modo, MsgCliente, MsgServidor, SalaPublica, TipoAssento } from './protocolo.ts';
+import type { Modo, MsgCliente, MsgServidor, Posicoes, RegraMulligan, SalaPublica, TipoAssento } from './protocolo.ts';
 
 export interface Conexao {
   enviar(m: MsgServidor): void;
@@ -46,6 +47,8 @@ interface DadosPartida {
   config: GameConfig;
   deckIds: string[];
   checkpoint: Checkpoint | null;
+  /** onde cada pessoa arrumou as próprias permanentes (só visual, fora do motor) */
+  posicoes?: Posicoes;
 }
 
 interface DadosSala {
@@ -56,6 +59,7 @@ interface DadosSala {
   assentos: Assento[];
   anfitriao: number;
   partida: DadosPartida | null;
+  mulligan?: RegraMulligan;
 }
 
 const ALFABETO = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
@@ -100,7 +104,7 @@ export class Sala {
   publica(): SalaPublica {
     const conectados = new Set([...this.conexoes].map((c) => c.assento));
     return {
-      codigo: this.d.codigo, modo: this.d.modo, estado: this.d.estado, anfitriao: this.d.anfitriao,
+      codigo: this.d.codigo, modo: this.d.modo, estado: this.d.estado, anfitriao: this.d.anfitriao, mulligan: this.d.mulligan ?? 'londres',
       semente: this.d.partida?.config.seed ?? null,
       assentos: this.d.assentos.map((a, i) => ({ indice: i, tipo: a.tipo, nome: a.nome, deck: a.deck, conectado: a.tipo === 'bot' || conectados.has(i) })),
     };
@@ -121,7 +125,14 @@ export class Sala {
   enviarJogo(c: Conexao): void {
     if (!this.game || c.assento === null) return;
     const vista = buildView(this.game.g, c.assento, this.game.pending);
-    c.enviar({ t: 'jogo', vista, paradas: this.d.assentos[c.assento].paradas });
+    c.enviar({ t: 'jogo', vista, paradas: this.d.assentos[c.assento].paradas, posicoes: this.posicoesNoCampo() });
+  }
+
+  /** só as posições de objetos que continuam no campo */
+  private posicoesNoCampo(): Posicoes {
+    const todas = this.d.partida?.posicoes ?? {};
+    const campo = new Set(this.game?.state.zones.battlefield ?? []);
+    return Object.fromEntries(Object.entries(todas).filter(([id]) => campo.has(Number(id))));
   }
 
   // ------------------------------------------------------------------ lobby
@@ -215,6 +226,49 @@ export class Sala {
         this.registrar(() => this.game!.concede(i));
         break;
       }
+      case 'mulligan': {
+        if (!anfitriao) return 'Só quem criou a sala escolhe a regra de mulligan';
+        if (this.d.estado === 'jogando') return 'A partida já começou';
+        if (m.regra !== 'londres' && m.regra !== 'livre') return 'Regra desconhecida';
+        this.d.mulligan = m.regra;
+        break;
+      }
+      case 'revelar': {
+        const g = this.game;
+        if (!g || g.isOver()) return 'Não há partida em andamento';
+        const obj = Number(m.obj);
+        if (!g.state.zones.hand[i]?.includes(obj)) return 'Essa carta não está na sua mão';
+        const para = m.para === 'todos' ? 'todos' : Array.isArray(m.para) ? [...new Set(m.para.map(Number))].filter((p) => p !== i && g.state.players[p]) : null;
+        if (!para || (para !== 'todos' && para.length === 0)) return 'Escolha para quem mostrar';
+        const o = g.state.objects[obj];
+        const aviso: MsgServidor = { t: 'revelada', de: i, def: o.def, nome: o.def, para };
+        for (const c of this.conexoes) if (c.assento === i || para === 'todos' || para.includes(c.assento!)) c.enviar(aviso);
+        return null;
+      }
+      case 'posicao': {
+        const g = this.game;
+        if (!g || !this.d.partida) return 'Não há partida';
+        const pos = this.d.partida.posicoes ??= {};
+        if (m.limpar && m.obj !== undefined) {
+          const o = g.state.objects[Number(m.obj)];
+          if (o && controllerOf(g.g, Number(m.obj)) === i) delete pos[String(m.obj)];
+        } else if (m.limpar) {
+          for (const id of Object.keys(pos)) if (!g.state.objects[Number(id)] || controllerOf(g.g, Number(id)) === i) delete pos[id];
+        } else {
+          const obj = Number(m.obj);
+          const ok = (n: unknown) => typeof n === 'number' && Number.isFinite(n) && n >= -0.05 && n <= 1.05;
+          if (!Number.isInteger(obj) || !ok(m.x) || !ok(m.y)) return 'Posição inválida';
+          const o = g.state.objects[obj];
+          if (!o || o.zone !== 'battlefield' || controllerOf(g.g, obj) !== i) return 'Você só arruma as suas permanentes';
+          // limpa as entradas de objetos que já saíram do campo
+          for (const id of Object.keys(pos)) if (g.state.objects[Number(id)]?.zone !== 'battlefield') delete pos[id];
+          pos[String(obj)] = [Math.round(m.x! * 1000) / 1000, Math.round(m.y! * 1000) / 1000];
+        }
+        // só visual: grava e mostra a todos na hora, sem passar pela condução da partida
+        this.salvar();
+        this.transmitir();
+        return null;
+      }
       default: return 'Mensagem desconhecida';
     }
     this.salvar();
@@ -237,6 +291,7 @@ export class Sala {
       turnLimit: null,
       multiplayer: this.d.modo === '4p',
       manualMode: true,
+      mulligan: this.d.mulligan ?? 'londres',
     };
     const deckIds = this.d.assentos.map((a) => a.deck!);
     this.d.partida = { config, deckIds, checkpoint: null };

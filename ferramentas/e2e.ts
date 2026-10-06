@@ -43,6 +43,7 @@ function verificar(cond: unknown, msg: string): void {
 const todas: Page[] = [];
 async function novaPessoa(nav: Browser, nome: string): Promise<Page> {
   const ctx = await nav.newContext({ viewport: { width: 1500, height: 900 } });
+  ctx.setDefaultTimeout(20000);
   const p = await ctx.newPage();
   todas.push(p);
   p.on('pageerror', (e) => console.error(`[${nome}] ${e.message}`));
@@ -71,16 +72,32 @@ async function clicar(p: Page, nome: string | RegExp): Promise<boolean> {
   return false;
 }
 
+/** clica numa carta da mão com brilho e escolhe a ação do menu que combina com o texto */
+async function jogarDaMao(p: Page, acao: RegExp): Promise<boolean> {
+  const cartas = p.locator('.mao-cartas .carta.realce-acao');
+  const n = await cartas.count();
+  for (let i = 0; i < n; i++) {
+    // no leque, cada carta fica coberta pela vizinha da direita: clica na borda esquerda
+    await cartas.nth(i).click({ position: { x: 8, y: 40 }, timeout: 3000 }).catch(() => {});
+    const b = p.locator('.menu-acoes button').filter({ hasText: acao }).first();
+    if (await b.isVisible().catch(() => false)) { await b.click(); return true; }
+    await p.locator('.menu-acoes').getByRole('button', { name: 'Cancelar' }).click({ timeout: 3000 }).catch(() => {});
+  }
+  return false;
+}
+
 /** uma ação simples para a decisão pendente da pessoa (se houver); devolve true se agiu */
 async function agir(p: Page): Promise<boolean> {
-  const painel = p.locator('.lateral .decisao');
-  if (!(await painel.isVisible().catch(() => false))) return false;
-  const titulo = (await p.locator('.decisao-titulo').first().textContent().catch(() => '')) ?? '';
-  if (titulo.includes('Você tem prioridade')) {
-    if (await clicar(p, /^Jogar /)) return true;
-    if (Math.random() < 0.5 && await clicar(p, /^Conjurar: /)) return true;
+  if (await p.getByText('Você tem prioridade').isVisible().catch(() => false)) {
+    if (await jogarDaMao(p, /^Jogar /)) return true;
+    if (Math.random() < 0.5 && await jogarDaMao(p, /^Conjurar: /)) return true;
     return clicar(p, 'Passar');
   }
+  // mão inicial: fica com as sete
+  if (await p.locator('.tela-mulligan').isVisible().catch(() => false)) return clicar(p, 'Manter');
+  const painel = p.locator('.coluna-dir .decisao');
+  if (!(await painel.isVisible().catch(() => false))) return false;
+  const titulo = (await p.locator('.coluna-dir .decisao-titulo').first().textContent().catch(() => '')) ?? '';
   if (titulo.includes('atacantes')) {
     const linhas = p.locator('.decisao .linha');
     const n = await linhas.count();

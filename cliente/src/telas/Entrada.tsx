@@ -1,4 +1,5 @@
 import { useState } from 'preact/hooks';
+import { Marca } from '../icones.tsx';
 import { loja } from '../loja.ts';
 
 export function Entrada() {
@@ -8,16 +9,21 @@ export function Entrada() {
     if (senha) void loja.entrar(senha);
   };
   return (
-    <main class="tela-estreita">
-      <h1 class="titulo">Commander da Mesa</h1>
-      <p class="suave">Mesa privada. Entre com a senha do servidor.</p>
-      <form class="formulario" onSubmit={enviar}>
-        <label>
-          Senha do servidor
-          <input type="password" autocomplete="current-password" value={senha} onInput={(e) => setSenha((e.target as HTMLInputElement).value)} autofocus />
-        </label>
-        <button class="botao principal" type="submit">Entrar</button>
-      </form>
-    </main>
+    <div class="tela-fundo">
+      <main class="janela tela-estreita mini">
+        <div class="marca-jogo"><Marca /><span>COMMANDER DA MESA</span></div>
+        <div>
+          <h1 class="titulo">Mesa privada</h1>
+          <p class="suave">Entre com a senha do servidor.</p>
+        </div>
+        <form class="formulario" onSubmit={enviar}>
+          <label>
+            Senha do servidor
+            <input type="password" autocomplete="current-password" value={senha} onInput={(e) => setSenha((e.target as HTMLInputElement).value)} autofocus />
+          </label>
+          <button class="botao principal grande" type="submit">Entrar</button>
+        </form>
+      </main>
+    </div>
   );
 }

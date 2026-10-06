@@ -1,5 +1,7 @@
 // Nomes em português para o que vem do motor em inglês (palavras-chave, tipos, etapas).
 
+import type { Step } from '../../motor/types.ts';
+
 const PALAVRAS: Record<string, string> = {
   flying: 'voar', haste: 'ímpeto', vigilance: 'vigilância', reach: 'alcance', deathtouch: 'toque mortífero',
   lifelink: 'vínculo com a vida', defender: 'defensor', 'first strike': 'primeiro golpe', 'double strike': 'golpe duplo',
@@ -21,9 +23,21 @@ export function tipo(t: string): string {
   return TIPOS[t] ?? t;
 }
 
-export const ETAPAS: { id: string; nome: string }[] = [
-  { id: 'untap', nome: 'Desvirar' }, { id: 'upkeep', nome: 'Manutenção' }, { id: 'draw', nome: 'Compra' },
-  { id: 'main1', nome: 'Principal 1' }, { id: 'beginCombat', nome: 'Início do combate' }, { id: 'declareAttackers', nome: 'Atacantes' },
-  { id: 'declareBlockers', nome: 'Bloqueadores' }, { id: 'firstStrikeDamage', nome: 'Primeiro golpe' }, { id: 'combatDamage', nome: 'Dano' },
-  { id: 'endCombat', nome: 'Fim do combate' }, { id: 'main2', nome: 'Principal 2' }, { id: 'end', nome: 'Final' }, { id: 'cleanup', nome: 'Limpeza' },
+export const ETAPAS: { id: Step; nome: string; curto: string }[] = [
+  { id: 'untap', nome: 'Desvirar', curto: 'Desvirar' }, { id: 'upkeep', nome: 'Manutenção', curto: 'Manutenção' }, { id: 'draw', nome: 'Compra', curto: 'Compra' },
+  { id: 'main1', nome: 'Fase principal pré-combate', curto: 'Principal' },
+  { id: 'beginCombat', nome: 'Início do combate', curto: 'Início' }, { id: 'declareAttackers', nome: 'Declarar atacantes', curto: 'Atacantes' },
+  { id: 'declareBlockers', nome: 'Declarar bloqueadores', curto: 'Bloqueadores' }, { id: 'firstStrikeDamage', nome: 'Dano de primeiro golpe', curto: '1º golpe' },
+  { id: 'combatDamage', nome: 'Dano de combate', curto: 'Dano' }, { id: 'endCombat', nome: 'Fim do combate', curto: 'Fim' },
+  { id: 'main2', nome: 'Fase principal pós-combate', curto: 'Principal' },
+  { id: 'end', nome: 'Etapa final', curto: 'Etapa final' }, { id: 'cleanup', nome: 'Limpeza', curto: 'Limpeza' },
+];
+
+/** as cinco fases do turno (CR 500.1) e as etapas de cada uma */
+export const FASES: { id: string; nome: string; curto: string; etapas: Step[] }[] = [
+  { id: 'inicial', nome: 'Fase Inicial', curto: 'Inicial', etapas: ['untap', 'upkeep', 'draw'] },
+  { id: 'principal1', nome: 'Fase Principal Pré-Combate', curto: 'Pré-combate', etapas: ['main1'] },
+  { id: 'combate', nome: 'Fase de Combate', curto: 'Combate', etapas: ['beginCombat', 'declareAttackers', 'declareBlockers', 'firstStrikeDamage', 'combatDamage', 'endCombat'] },
+  { id: 'principal2', nome: 'Fase Principal Pós-Combate', curto: 'Pós-combate', etapas: ['main2'] },
+  { id: 'final', nome: 'Fase Final', curto: 'Final', etapas: ['end', 'cleanup'] },
 ];

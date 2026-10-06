@@ -47,6 +47,31 @@ export class Imagens {
     return p;
   }
 
+  /**
+   * Arte recortada da carta (para o fundo da área do jogador), tirada da imagem local da frente.
+   * A caixa cobre a arte das molduras comuns sem pegar o nome nem a linha de tipo.
+   */
+  async arte(id: string): Promise<string | null> {
+    if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/.test(id)) return null;
+    const original = join(this.pastaCartas, 'assets', 'cards', id, 'front.png');
+    if (!existsSync(original)) return null;
+    const destino = join(this.cache, `${id}-arte.webp`);
+    if (existsSync(destino)) return destino;
+    let p = this.gerando.get(destino);
+    if (!p) {
+      p = (async () => {
+        const { width: w = 745, height: h = 1040 } = await sharp(original).metadata();
+        await sharp(original)
+          .extract({ left: Math.round(w * .08), top: Math.round(h * .12), width: Math.round(w * .84), height: Math.round(h * .35) })
+          .resize({ width: 1000 }).webp({ quality: 78 }).toFile(destino);
+        return destino;
+      })().catch((e) => { console.error('arte:', e); return null; });
+      this.gerando.set(destino, p);
+      void p.finally(() => this.gerando.delete(destino));
+    }
+    return p;
+  }
+
   /** símbolo de mana pelo código ("W", "U-R", "2-B", "T"…) */
   simbolo(codigo: string): string | null {
     return this.simbolos.get(codigo) ?? null;

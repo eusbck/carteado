@@ -5,7 +5,8 @@ import type { Answer, Decision, ObjId, PriorityAction, TargetRef } from '../../.
 import type { GameView } from '../../../motor/view.ts';
 import { traduzir, urlImagem } from '../cartas.ts';
 import { loja } from '../loja.ts';
-import { TextoComSimbolos } from './Simbolos.tsx';
+import { reservaPaga } from '../mana.ts';
+import { Simbolos, TextoComSimbolos } from './Simbolos.tsx';
 
 export interface EstadoUi {
   sel: string[];
@@ -24,7 +25,10 @@ interface Props {
   ui: EstadoUi;
   nomeObj: (id: ObjId) => string;
   nomeAlvo: (t: TargetRef) => string;
-  abrirManual: () => void;
+  /** ações de prioridade que não estão presas a nenhuma carta à vista */
+  acoesSoltas: PriorityAction[];
+  /** a sua reserva de mana */
+  reserva: string;
   /** o objeto já aparece na mesa ou na mão (então o painel mostra só o nome) */
   visivel: (id: ObjId) => boolean;
 }
@@ -34,34 +38,15 @@ type D<K extends Decision['kind']> = Extract<Decision, { kind: K }>;
 const responder = (d: Decision, a: Answer) => loja.responder(d.id, a);
 const mesmoAlvo = (a: TargetRef, b: TargetRef) => a.kind === b.kind && a.id === b.id;
 
-function Prioridade({ d, abrirManual }: { d: D<'priority'>; abrirManual: () => void }) {
-  const [mana, setMana] = useState(false);
-  const acoes = d.actions.filter((a) => a.kind !== 'pass' && a.kind !== 'mana' && a.kind !== 'manual');
-  const manas = d.actions.filter((a) => a.kind === 'mana');
-  const manual = d.actions.some((a) => a.kind === 'manual');
-  const fazer = (a: PriorityAction) => responder(d, { kind: 'priority', action: a.id });
+/** ações que não estão presas a nenhuma carta à vista (as outras se fazem clicando na carta) */
+function Prioridade({ d, acoes }: { d: D<'priority'>; acoes: PriorityAction[] }) {
   return (
     <div class="decisao">
-      <p class="decisao-titulo">Você tem prioridade</p>
-      <div class="botoes-linha">
-        <button class="botao principal grande" onClick={() => responder(d, { kind: 'priority', action: 'pass' })}>Passar</button>
-        <button class="botao" onClick={() => { loja.enviar({ t: 'passarTurno' }); responder(d, { kind: 'priority', action: 'pass' }); }}>Passar até o fim do turno</button>
+      <p class="decisao-titulo">Outras ações</p>
+      <div class="lista-acoes">
+        {acoes.map((a) => <button key={a.id} class="botao acao" onClick={() => responder(d, { kind: 'priority', action: a.id })}><TextoComSimbolos texto={traduzir(a.label)} /></button>)}
       </div>
-      {acoes.length > 0 && (
-        <div class="lista-acoes">
-          {acoes.map((a) => <button key={a.id} class="botao acao" onClick={() => fazer(a)}><TextoComSimbolos texto={traduzir(a.label)} /></button>)}
-        </div>
-      )}
-      {manas.length > 0 && (
-        <details class="mana" open={mana} onToggle={(e) => setMana((e.target as HTMLDetailsElement).open)}>
-          <summary>Gerar mana antes de conjurar ({manas.length})</summary>
-          <div class="lista-acoes">
-            {manas.map((a) => <button key={a.id} class="botao acao" onClick={() => fazer(a)}><TextoComSimbolos texto={traduzir(a.label)} /></button>)}
-          </div>
-        </details>
-      )}
-      {manual && <button class="botao" onClick={abrirManual}>Ajuste manual…</button>}
-      <p class="dica">Clique numa carta para ver o que dá para fazer com ela.</p>
+      <p class="dica">As cartas que dá para usar agora ficam com brilho verde: clique nelas.</p>
     </div>
   );
 }
@@ -118,17 +103,19 @@ function Numero({ d }: { d: D<'number'> }) {
   );
 }
 
-function Pagamento({ d }: { d: D<'payment'> }) {
+function Pagamento({ d, reserva, visivel }: { d: D<'payment'>; reserva: string; visivel: (id: ObjId) => boolean }) {
   const [vida, setVida] = useState(0);
+  const paga = reservaPaga(d.cost, reserva);
+  // fontes que não estão à vista na mesa (raro) ficam como botões aqui
+  const soltas = d.sources.filter((s) => !visivel(s.obj));
   return (
     <div class="decisao">
       <p class="decisao-titulo"><TextoComSimbolos texto={traduzir(d.prompt)} /></p>
-      <p class="suave"><TextoComSimbolos texto={`Falta: ${d.remaining}`} /></p>
-      <div class="botoes-linha">
-        {d.canAuto && <button class="botao principal" onClick={() => responder(d, { kind: 'payment', auto: true })}>Pagar automaticamente</button>}
-        <button class="botao" onClick={() => responder(d, { kind: 'payment', pay: true })}>Pagar com a reserva</button>
-        {d.canCancel && <button class="botao" onClick={() => responder(d, { kind: 'payment', cancel: true })}>Cancelar</button>}
+      <div class="pagamento">
+        <span class="rot">Custo</span><Simbolos custo={d.cost} tam={18} />
+        <span class="rot">Reserva</span>{reserva ? <Simbolos custo={reserva} tam={18} /> : <span class="suave">vazia</span>}
       </div>
+      <p class="dica">{d.sources.length ? 'Clique nos terrenos com brilho verde. Quando a reserva cobrir o custo, o pagamento sai sozinho.' : 'Não há fontes de mana para virar agora.'}</p>
       {d.lifeOptions > 0 && (
         <div class="contador-grande">
           <span>Símbolos phyrexianos pagos com 2 de vida:</span>
@@ -138,14 +125,16 @@ function Pagamento({ d }: { d: D<'payment'> }) {
           <button class="botao" onClick={() => responder(d, { kind: 'payment', life: vida })}>Aplicar</button>
         </div>
       )}
-      {d.sources.length > 0 && (
-        <>
-          <p class="suave">Ou gere mana fonte por fonte:</p>
-          <div class="lista-acoes">
-            {d.sources.map((s) => <button key={s.id} class="botao acao" onClick={() => responder(d, { kind: 'payment', activate: { source: s.id } })}><TextoComSimbolos texto={traduzir(s.label)} /></button>)}
-          </div>
-        </>
+      {soltas.length > 0 && (
+        <div class="lista-acoes">
+          {soltas.map((s) => <button key={s.id} class="botao acao" onClick={() => responder(d, { kind: 'payment', activate: { source: s.id } })}><TextoComSimbolos texto={traduzir(s.label)} /></button>)}
+        </div>
       )}
+      <div class="botoes-linha">
+        <button class="botao principal" disabled={paga === false} onClick={() => responder(d, { kind: 'payment', pay: true })}>Pagar com a reserva</button>
+        {d.canAuto && <button class="botao" onClick={() => responder(d, { kind: 'payment', auto: true })}>Pagar automaticamente</button>}
+        {d.canCancel && <button class="botao fantasma" onClick={() => responder(d, { kind: 'payment', cancel: true })}>Cancelar</button>}
+      </div>
     </div>
   );
 }
@@ -310,10 +299,10 @@ function Mulligan({ d }: { d: D<'mulligan'> }) {
 export function Decisao(p: Props) {
   const d = p.d;
   switch (d.kind) {
-    case 'priority': return <Prioridade d={d} abrirManual={p.abrirManual} />;
+    case 'priority': return <Prioridade d={d} acoes={p.acoesSoltas} />;
     case 'select': return <Selecao d={d} ui={p.ui} nomeObj={p.nomeObj} visivel={p.visivel} />;
     case 'number': return <Numero d={d} />;
-    case 'payment': return <Pagamento d={d} />;
+    case 'payment': return <Pagamento d={d} reserva={p.reserva} visivel={p.visivel} />;
     case 'attackers': return <Atacantes d={d} ui={p.ui} nomeObj={p.nomeObj} nomeAlvo={p.nomeAlvo} />;
     case 'blockers': return <Bloqueadores d={d} ui={p.ui} nomeObj={p.nomeObj} />;
     case 'damage': return <Dano d={d} nomeAlvo={p.nomeAlvo} />;

@@ -5,7 +5,7 @@ import { useEffect, useState } from 'preact/hooks';
 import type { StopSettings } from '../../motor/autopass.ts';
 import type { Answer, ManualAction } from '../../motor/types.ts';
 import type { GameView } from '../../motor/view.ts';
-import type { DeckResumo, MsgCliente, MsgServidor, SalaPublica } from '../../servidor/protocolo.ts';
+import type { DeckResumo, MsgCliente, MsgServidor, Posicoes, SalaPublica } from '../../servidor/protocolo.ts';
 import { carregarCartas } from './cartas.ts';
 
 export interface Estado {
@@ -15,6 +15,10 @@ export interface Estado {
   voce: number | null;
   vista: GameView | null;
   paradas: StopSettings | null;
+  /** onde cada pessoa arrumou as próprias permanentes */
+  posicoes: Posicoes;
+  /** cartas que alguém mostrou da mão, por alguns segundos */
+  reveladas: { id: number; de: number; def: string; para: number[] | 'todos' }[];
   erro: string | null;
   decks: DeckResumo[];
   /** decisão já respondida, esperando a próxima vista (evita clique duplo) */
@@ -39,12 +43,13 @@ function guardarSala(v: { codigo: string; token: string } | null): void {
 }
 
 class Loja {
-  e: Estado = { fase: 'carregando', conectado: false, sala: null, voce: null, vista: null, paradas: null, erro: null, decks: [], respondida: null };
+  e: Estado = { fase: 'carregando', conectado: false, sala: null, voce: null, vista: null, paradas: null, posicoes: {}, reveladas: [], erro: null, decks: [], respondida: null };
   private ouvintes = new Set<() => void>();
   private ws: WebSocket | null = null;
   private fila: MsgCliente[] = [];
   private tentativas = 0;
   private timerErro: ReturnType<typeof setTimeout> | null = null;
+  private seqRevelada = 0;
 
   mudar(p: Partial<Estado>): void {
     this.e = { ...this.e, ...p };
@@ -127,8 +132,14 @@ class Loja {
         this.mudar({ sala: m.sala, voce: m.voce, fase: 'sala', vista: m.sala.estado === 'espera' ? null : this.e.vista });
         break;
       case 'jogo':
-        this.mudar({ vista: m.vista, paradas: m.paradas, respondida: m.vista.decision?.id === this.e.respondida ? this.e.respondida : null });
+        this.mudar({ vista: m.vista, paradas: m.paradas, posicoes: m.posicoes ?? {}, respondida: m.vista.decision?.id === this.e.respondida ? this.e.respondida : null });
         break;
+      case 'revelada': {
+        const id = ++this.seqRevelada;
+        this.mudar({ reveladas: [...this.e.reveladas, { id, de: m.de, def: m.def, para: m.para }].slice(-3) });
+        setTimeout(() => this.mudar({ reveladas: this.e.reveladas.filter((r) => r.id !== id) }), 8000);
+        break;
+      }
       case 'saiu':
         guardarSala(null);
         this.mudar({ sala: null, voce: null, vista: null, fase: 'inicio' });

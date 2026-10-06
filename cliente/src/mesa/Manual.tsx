@@ -6,7 +6,7 @@ import type { GameView } from '../../../motor/view.ts';
 import { fichas, urlImagem } from '../cartas.ts';
 import { loja } from '../loja.ts';
 
-type Tipo = 'mover' | 'vida' | 'marcadores' | 'virar' | 'ficha' | 'comprar' | 'moer' | 'embaralhar' | 'buscar' | 'videncia' | 'vigiar';
+export type Tipo = 'mover' | 'vida' | 'marcadores' | 'virar' | 'ficha' | 'comprar' | 'moer' | 'embaralhar' | 'buscar' | 'videncia' | 'vigiar';
 const TIPOS: { id: Tipo; nome: string }[] = [
   { id: 'mover', nome: 'Mover carta' }, { id: 'vida', nome: 'Vida' }, { id: 'marcadores', nome: 'Marcadores' },
   { id: 'virar', nome: 'Virar ou desvirar' }, { id: 'ficha', nome: 'Criar ficha' }, { id: 'comprar', nome: 'Comprar' },
@@ -24,6 +24,8 @@ export interface PegarCarta { prompt: string; cb: (obj: ObjId) => void }
 
 interface Props {
   v: GameView;
+  /** aba que abre primeiro */
+  tipoInicial?: Tipo;
   decisao: number;
   fechar: () => void;
   pegar: (p: PegarCarta | null) => void;
@@ -42,8 +44,8 @@ function Passo({ n, set, min = 1, max = 20 }: { n: number; set: (x: number) => v
   );
 }
 
-export function Manual({ v, decisao, fechar, pegar, nomeObj }: Props) {
-  const [tipo, setTipo] = useState<Tipo>('mover');
+export function Manual({ v, decisao, fechar, pegar, nomeObj, tipoInicial }: Props) {
+  const [tipo, setTipo] = useState<Tipo>(tipoInicial ?? 'mover');
   const [obj, setObj] = useState<ObjId | null>(null);
   const [jogador, setJogador] = useState<number>(v.you ?? 0);
   const [alvoJogador, setAlvoJogador] = useState(false);

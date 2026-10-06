@@ -3,6 +3,7 @@ import { describe, expect, it } from 'vitest';
 import '../cartas/index.ts';
 import decksJson from '../gerado/decks.json' with { type: 'json' };
 import type { DeckList } from '../motor/state.ts';
+import { registry } from '../motor/defs.ts';
 import { Banco } from '../servidor/banco.ts';
 import type { MsgCliente, MsgServidor } from '../servidor/protocolo.ts';
 import { Gerente, SEM_ATRASO, type Conexao } from '../servidor/salas.ts';
@@ -140,4 +141,85 @@ describe('servidor: salas', () => {
     expect(ana.ultima('jogo')!.vista.gameOver?.winners).toEqual([1]);
     expect(g.salas.get(codigo)!.d.estado).toBe('fim');
   }, 120000); // o bot heurístico simula cada jogada
+});
+
+/** responde o padrão até a pessoa ter prioridade com ajuste manual disponível */
+async function ateAPrioridade(g: Gerente, p: Falsa, limite = 80) {
+  for (let i = 0; i < limite; i++) {
+    await espera();
+    const d = p.ultima('jogo')?.vista.decision;
+    if (d?.kind === 'priority' && d.actions.some((a) => a.kind === 'manual')) return d;
+    if (d) await jogarAna(g, p, 1);
+  }
+  throw new Error('a prioridade não chegou');
+}
+
+describe('servidor: mesa nova (regra de mulligan, posições, revelar)', () => {
+  it('só quem criou a sala escolhe a regra de mulligan, e ela vai para a partida', async () => {
+    const g = new Gerente(new Banco(':memory:'), DECKS, SEM_ATRASO);
+    const ana = new Falsa();
+    g.tratar(ana, { t: 'criar', nome: 'Ana', senhaSala: 'segredo', modo: '1v1' });
+    const codigo = ana.ultima('sala')!.sala.codigo;
+    expect(ana.ultima('sala')!.sala.mulligan).toBe('londres');
+    const bruno = new Falsa();
+    g.tratar(bruno, { t: 'entrar', codigo, senhaSala: 'segredo', nome: 'Bruno' });
+    g.tratar(bruno, { t: 'mulligan', regra: 'livre' });
+    expect(bruno.ultima('erro')?.msg).toMatch(/criou a sala/);
+    g.tratar(ana, { t: 'mulligan', regra: 'livre' });
+    await espera();
+    expect(bruno.ultima('sala')!.sala.mulligan).toBe('livre');
+    g.tratar(ana, { t: 'deck', deck: DECKS[0].id });
+    g.tratar(bruno, { t: 'deck', deck: DECKS[1].id });
+    g.tratar(ana, { t: 'iniciar' });
+    await espera();
+    expect(g.salas.get(codigo)!.game!.state.config.mulligan).toBe('livre');
+    g.tratar(ana, { t: 'mulligan', regra: 'londres' });
+    expect(ana.ultima('erro')?.msg).toMatch(/já começou/);
+  });
+
+  it('cada um arruma só as próprias permanentes; as posições vão para todos e podem ser limpas', async () => {
+    const g = new Gerente(new Banco(':memory:'), DECKS, SEM_ATRASO);
+    const { ana, codigo } = await salaComBots(g, '1v1');
+    g.tratar(ana, { t: 'iniciar' });
+    const d = await ateAPrioridade(g, ana);
+    const ficha = [...registry.tokens.keys()][0];
+    g.tratar(ana, { t: 'responder', decisao: d.id, resposta: { kind: 'priority', action: 'manual', manual: { k: 'ficha', def: ficha, n: 1, player: 0 } } });
+    await espera();
+    const sala = g.salas.get(codigo)!;
+    const minha = sala.game!.state.zones.battlefield.find((id) => sala.game!.state.objects[id].controller === 0)!;
+    expect(minha).toBeDefined();
+    g.tratar(ana, { t: 'posicao', obj: minha, x: 0.5, y: 0.25 });
+    expect(ana.ultima('jogo')!.posicoes[String(minha)]).toEqual([0.5, 0.25]);
+    g.tratar(ana, { t: 'posicao', obj: 99999, x: 0.1, y: 0.1 });
+    expect(ana.ultima('erro')?.msg).toMatch(/suas permanentes/);
+    g.tratar(ana, { t: 'posicao', obj: minha, x: 7, y: 0.1 });
+    expect(ana.ultima('erro')?.msg).toMatch(/inválida/);
+    g.tratar(ana, { t: 'posicao', limpar: true });
+    expect(ana.ultima('jogo')!.posicoes).toEqual({});
+  }, 60000);
+
+  it('revelar mostra a carta da mão só para quem foi escolhido', async () => {
+    const g = new Gerente(new Banco(':memory:'), DECKS, SEM_ATRASO);
+    const ana = new Falsa();
+    g.tratar(ana, { t: 'criar', nome: 'Ana', senhaSala: 'segredo', modo: '4p' });
+    const codigo = ana.ultima('sala')!.sala.codigo;
+    const bruno = new Falsa();
+    g.tratar(bruno, { t: 'entrar', codigo, senhaSala: 'segredo', nome: 'Bruno' });
+    const carla = new Falsa();
+    g.tratar(carla, { t: 'entrar', codigo, senhaSala: 'segredo', nome: 'Carla' });
+    g.tratar(ana, { t: 'bot', assento: 3, deck: DECKS[3].id });
+    for (const [i, p] of [ana, bruno, carla].entries()) g.tratar(p, { t: 'deck', deck: DECKS[i].id });
+    g.tratar(ana, { t: 'iniciar' });
+    await espera();
+    const carta = ana.ultima('jogo')!.vista.hand[0];
+    g.tratar(ana, { t: 'revelar', obj: carta.id, para: [1] });
+    expect(bruno.ultima('revelada')).toMatchObject({ de: 0, def: carta.def });
+    expect(ana.ultima('revelada')).toMatchObject({ de: 0, para: [1] });
+    expect(carla.ultima('revelada')).toBeUndefined();
+    g.tratar(ana, { t: 'revelar', obj: carta.id, para: 'todos' });
+    expect(carla.ultima('revelada')?.def).toBe(carta.def);
+    const deBruno = bruno.ultima('jogo')!.vista.hand[0];
+    g.tratar(ana, { t: 'revelar', obj: deBruno.id, para: 'todos' });
+    expect(ana.ultima('erro')?.msg).toMatch(/não está na sua mão/);
+  });
 });

@@ -134,6 +134,12 @@ async function rotear(req: IncomingMessage, res: ServerResponse): Promise<void> 
     if (!caminho) return json(res, 404, { erro: 'Imagem não encontrada' });
     return arquivo(res, caminho, 'private, max-age=604800, immutable');
   }
+  m = p.match(/^\/img\/([0-9a-f-]{36})\/arte$/);
+  if (m) {
+    const caminho = await imagens.arte(m[1]);
+    if (!caminho) return json(res, 404, { erro: 'Imagem não encontrada' });
+    return arquivo(res, caminho, 'private, max-age=604800, immutable');
+  }
   m = p.match(/^\/simbolo\/([A-Z0-9-]{1,12})$/);
   if (m) {
     const caminho = imagens.simbolo(m[1]);

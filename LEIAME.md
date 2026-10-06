@@ -40,13 +40,26 @@ janela mostra o endereço `https://` e a senha de acesso para mandar ao grupo. D
 2. Escolha um nome, crie uma sala (quatro jogadores ou um contra um) com uma senha e passe o
    código e a senha para os outros. Lugares vazios podem receber bots, que jogam com os mesmos decks e
    veem só o que um jogador veria.
-3. Cada um escolhe um deck; quem criou a sala começa a partida.
-4. Durante a partida, a decisão pendente aparece no painel da direita. Clique numa carta para ver
-   o que dá para fazer com ela. O botão "Paradas" define em que etapas o jogo espera você; fora
-   delas, ele passa a prioridade sozinho.
-5. Todas as cartas dos sete decks têm o efeito automatizado. O botão "Ajuste manual" continua
-   disponível para corrigir alguma situação à mão (mover cartas, vida, marcadores, fichas…), e todo
-   ajuste aparece no registro para todos.
+3. Cada um escolhe um deck; quem criou a sala escolhe a regra de mulligan (Londres, o padrão, ou
+   Livre: troca a mão inteira, até 3 vezes, sem pôr nada no fundo) e começa a partida.
+4. Na mesa:
+   - **Jogar uma carta da mão:** arraste para o seu campo, dê duplo clique ou clique nela e escolha
+     no menu. Se não der para jogar agora, o motivo aparece.
+   - **Pagar:** clique nos seus terrenos com brilho verde; quando a reserva cobre o custo, o
+     pagamento sai sozinho. Com prioridade, clicar num terreno gera a mana antes de conjurar. Em
+     "Configurações" dá para ligar o pagamento automático.
+   - **Arrumar o campo:** arraste as suas permanentes para onde quiser; todos veem a sua arrumação.
+     "Reorganizar meu campo" (clique direito no campo vazio) volta à arrumação padrão.
+   - **Combate:** clique nas criaturas para atacar (em 4 jogadores, escolha quem atacar no menu) ou
+     arraste a criatura até a área do oponente; para bloquear, arraste o bloqueador até o atacante.
+   - **Clique direito:** nas cartas, ver informações, revelar uma carta da mão e o ajuste manual
+     (virar, marcadores, mover); no seu campo vazio, desvirar tudo, criar ficha e marcadores de jogador.
+   - A faixa no meio da mesa mostra o turno, as cinco fases com as etapas e o botão Passar. Clicar
+     numa etapa liga ou desliga a parada nela; "Paradas" na barra lateral tem todas as opções.
+   - A barra lateral recolhe (último botão) e abre de novo; as decisões aparecem à direita da mesa.
+5. Todas as cartas dos sete decks têm o efeito automatizado. O ajuste manual continua disponível
+   para corrigir alguma situação à mão, só quando você tem prioridade, e todo ajuste aparece no
+   registro para todos.
 
 Se a conexão cair ou o servidor reiniciar, a página reconecta sozinha e volta ao mesmo lugar.
 

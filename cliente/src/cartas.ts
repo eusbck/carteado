@@ -23,6 +23,12 @@ export function urlImagem(def: string, face = 0, tam: Tam = 'p'): string | null 
   return `/img/${i.f}/frente/${tam}`;
 }
 
+/** arte recortada da carta (fundo da área do jogador); null se não houver imagem */
+export function urlArte(def: string): string | null {
+  const i = INFO[def];
+  return i?.f ? `/img/${i.f}/arte` : null;
+}
+
 /** nome para mostrar: a impressão em português quando houver */
 export function nomeCarta(def: string, nome: string): string {
   return INFO[def]?.pt ?? nome;

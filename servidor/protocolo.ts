@@ -5,6 +5,7 @@ import type { Answer } from '../motor/types.ts';
 import type { GameView } from '../motor/view.ts';
 
 export type Modo = '4p' | '1v1';
+export type RegraMulligan = 'londres' | 'livre';
 export type TipoAssento = 'humano' | 'bot' | 'vazio';
 
 export interface AssentoPublico {
@@ -21,6 +22,8 @@ export interface SalaPublica {
   estado: 'espera' | 'jogando' | 'fim';
   assentos: AssentoPublico[];
   anfitriao: number;
+  /** regra de mulligan escolhida por quem criou a sala */
+  mulligan: RegraMulligan;
   /** semente da partida em andamento (registrada para reprodução) */
   semente: string | null;
 }
@@ -62,10 +65,20 @@ export type MsgCliente =
   | { t: 'passarTurno' }
   | { t: 'conceder' }
   | { t: 'sair' }
-  | { t: 'novaPartida' };
+  | { t: 'novaPartida' }
+  /** posição de uma permanente sua na sua área (x e y de 0 a 1); limpar: volta a arrumação padrão (de uma ou de todas) */
+  | { t: 'posicao'; obj?: number; x?: number; y?: number; limpar?: boolean }
+  | { t: 'mulligan'; regra: RegraMulligan }
+  /** mostrar uma carta da sua mão a todos ou a alguns jogadores */
+  | { t: 'revelar'; obj: number; para: number[] | 'todos' };
+
+/** posição escolhida para cada permanente, pelo id do objeto: [x, y] de 0 a 1 dentro da área de quem a controla */
+export type Posicoes = Record<string, [number, number]>;
 
 export type MsgServidor =
   | { t: 'sala'; sala: SalaPublica; voce: number; token: string }
-  | { t: 'jogo'; vista: GameView; paradas: StopSettings }
+  | { t: 'jogo'; vista: GameView; paradas: StopSettings; posicoes: Posicoes }
   | { t: 'saiu' }
+  /** alguém mostrou uma carta da mão (para quem recebeu e para quem mostrou) */
+  | { t: 'revelada'; de: number; def: string; nome: string; para: number[] | 'todos' }
   | { t: 'erro'; msg: string };
