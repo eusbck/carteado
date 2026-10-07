@@ -18,6 +18,7 @@ import { acompanharArrasto, dentro, mostrarFantasma, useFantasma } from './arras
 import { useMusica } from '../musica.ts';
 import { AreaJogador, type EstadoCombate } from './AreaJogador.tsx';
 import { ConfigSom } from './ConfigSom.tsx';
+import { cliqueBloqueio, respostaBloqueio } from './bloqueio.ts';
 import { Carta, type Realce } from './Carta.tsx';
 import { Decisao, type EstadoUi } from './Decisao.tsx';
 import { PedidoDesfazer } from './Desfazer.tsx';
@@ -416,7 +417,7 @@ export function Mesa() {
   };
   const confirmarBloqueio = () => {
     if (d?.kind !== 'blockers' || enviando) return;
-    loja.responder(d.id, { kind: 'blockers', blocks: Object.entries(bloqueios).map(([b, a]) => [Number(b), a] as [ObjId, ObjId]) });
+    loja.responder(d.id, respostaBloqueio(bloqueios));
   };
   const ui: EstadoUi = { sel, setSel, ataques, setAtaques, bloqueios, setBloqueios, bloqueadorAtivo, setBloqueadorAtivo, confirmarAtaque, confirmarBloqueio };
   const minhaReserva = v.players[eu]?.manaPool ?? '';
@@ -803,17 +804,10 @@ export function Mesa() {
       if (o.controller === eu && o.types.includes('Creature')) loja.recusar('Essa criatura não pode atacar agora');
       return;
     }
-    if (bloqueadoresCand) {
-      if (atacando.has(o.id)) {
-        if (bloqueadorAtivo !== null && bloqueadoresCand.get(bloqueadorAtivo)?.includes(o.id)) {
-          setBloqueios({ ...bloqueios, [bloqueadorAtivo]: o.id });
-          setBloqueadorAtivo(null);
-        } else loja.recusar(bloqueadorAtivo === null ? 'Clique antes na sua criatura que vai bloquear' : 'Ela não pode bloquear essa criatura');
-        return;
-      }
-      if (bloqueios[o.id] !== undefined) { const n = { ...bloqueios }; delete n[o.id]; setBloqueios(n); return; }
-      if (bloqueadoresCand.get(o.id)?.length) { setBloqueadorAtivo(o.id === bloqueadorAtivo ? null : o.id); return; }
-      if (o.controller === eu && o.types.includes('Creature')) loja.recusar('Essa criatura não pode bloquear');
+    if (d.kind === 'blockers') {
+      const r = cliqueBloqueio(d, { bloqueios, ativo: bloqueadorAtivo }, { id: o.id, atacando: atacando.has(o.id), minhaCriatura: o.controller === eu && o.types.includes('Creature') });
+      if (r && 'recusa' in r) loja.recusar(r.recusa);
+      else if (r) { setBloqueios(r.bloqueios); setBloqueadorAtivo(r.ativo); }
     }
   };
   const clicarJogador = (p: number) => {

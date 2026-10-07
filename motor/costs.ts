@@ -186,8 +186,10 @@ function canSpendFn(g: G, ctx: PayContext): (u: ManaUnit) => boolean {
 /**
  * Procura um conjunto de habilidades de mana que, ativadas, deixam a reserva capaz de pagar
  * o custo. Busca em profundidade com preferência por terrenos sem efeito colateral.
+ * `enxuto`: tira do plano as fontes que não fazem falta (quem vai pagar de verdade usa isso; para
+ * saber se dá para pagar, basta achar um plano qualquer).
  */
-export function planPayment(g: G, player: PlayerId, cost: ManaSymbol[], ctx: PayContext, life = 0): ManaOption[] | null {
+export function planPayment(g: G, player: PlayerId, cost: ManaSymbol[], ctx: PayContext, life = 0, enxuto = false): ManaOption[] | null {
   const spend: SpendContext = { canSpend: canSpendFn(g, ctx), anyType: ctx.anyType, lifeForPhyrexian: life };
   const pool0 = g.state.players[player].manaPool.slice();
   if (matchPool(cost, pool0, spend)) return [];
@@ -237,7 +239,30 @@ export function planPayment(g: G, player: PlayerId, cost: ManaSymbol[], ctx: Pay
     }
     return dfs(gi + 1, pool);
   }
-  return dfs(0, pool0) ? plan : null;
+  if (!dfs(0, pool0)) return null;
+  if (!enxuto) return plan;
+  // a busca vai acrescentando fontes na ordem de preferência até a conta fechar, e com isso virava
+  // terrenos que no fim não pagavam nada (ex.: {W} com Forest, Swamp e Plains virava os três, e {G}{B}
+  // sobrava na reserva). Tira uma de cada vez, das menos preferidas para as mais, enquanto o resto pagar.
+  const reservaCom = (lista: ManaOption[]): ManaUnit[] | null => {
+    let pool = pool0;
+    for (const o of lista) {
+      if (o.manaCost.length) {
+        const m = matchPool(o.manaCost, pool);
+        if (!m) return null;
+        pool = pool.filter((_, i) => !m.includes(i));
+      }
+      pool = [...pool, ...o.alt.map((t) => ({ type: t, source: o.obj, restriction: o.def.restriction } as ManaUnit))];
+    }
+    return pool;
+  };
+  const final = [...plan];
+  for (let i = final.length - 1; i >= 0; i--) {
+    const sem = [...final.slice(0, i), ...final.slice(i + 1)];
+    const pool = reservaCom(sem);
+    if (pool && matchPool(cost, pool, spend)) final.splice(i, 1);
+  }
+  return final;
 }
 
 export function canAfford(g: G, player: PlayerId, cost: ManaSymbol[], ctx: PayContext): boolean {
@@ -262,7 +287,7 @@ export function* payMana(g: G, player: PlayerId, cost: ManaSymbol[], ctx: PayCon
   for (;;) {
     const spend: SpendContext = { canSpend: canSpendFn(g, ctx), anyType: ctx.anyType, lifeForPhyrexian: lifeChoice };
     const opts = manaOptions(g, player, { excludeSource: ctx.excludeSource });
-    const auto = planPayment(g, player, cost, ctx, lifeChoice);
+    const auto = planPayment(g, player, cost, ctx, lifeChoice, true);
     const sources: PaymentSource[] = opts.map((o) => ({ id: o.key, obj: o.obj, label: `${nameOf(g, o.obj)}: ${o.alt.map((t) => `{${t}}`).join('')}`, produces: o.alt }));
     const a = yield* ask<Extract<Answer, { kind: 'payment' }>>(g, {
       kind: 'payment', player, prompt: `Pague ${formatCost(cost)} para ${ctx.label}`,

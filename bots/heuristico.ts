@@ -815,33 +815,38 @@ export function bloquear(d: D<'blockers'>, g: G, eu: PlayerId, ok: (a: Answer) =
   const blocks: [ObjId, ObjId][] = [];
   const podem = (a: ObjId) => d.candidates.filter((c) => c.canBlock.includes(a) && !usados.has(c.obj)).map((c) => c.obj);
   const bloqueado = new Set<ObjId>();
+  // primeiro golpe (CR 702.7): quem bate antes e mata não leva o dano de volta
+  const antes = (x: ObjId) => hasKw(g, x, 'first strike') || hasKw(g, x, 'double strike');
+  const derruba = (de: ObjId, em: ObjId) => mata(g, de, em) && !(antes(em) && !antes(de) && mata(g, em, de));
   // bloqueios bons: mata e sobrevive; trocas favoráveis
   for (const a of atacantes) {
     const cands = podem(a).sort((x, y) => valorPermanente(g, x) - valorPermanente(g, y));
-    const bom = cands.find((b) => mata(g, b, a) && !mata(g, a, b));
-    const troca = cands.find((b) => mata(g, b, a) && valorPermanente(g, b) < valorPermanente(g, a));
+    const bom = cands.find((b) => derruba(b, a) && !derruba(a, b));
+    const troca = cands.find((b) => derruba(b, a) && valorPermanente(g, b) < valorPermanente(g, a));
     const b = bom ?? troca;
     if (b !== undefined) { blocks.push([b, a]); usados.add(b); bloqueado.add(a); }
   }
-  // não morrer: bloqueia os maiores com as criaturas menos valiosas
+  // não morrer: bloqueia os maiores com as criaturas menos valiosas (com ameaça, duas: CR 702.111b)
   let entrando = atacantes.filter((a) => !bloqueado.has(a)).reduce((t, a) => t + Math.max(0, power(g, a)), 0);
   for (const a of atacantes) {
     if (entrando < vida) break;
     if (bloqueado.has(a)) continue;
     const cands = podem(a).sort((x, y) => valorPermanente(g, x) - valorPermanente(g, y));
-    if (!cands.length) continue;
-    blocks.push([cands[0], a]);
-    usados.add(cands[0]);
+    const n = hasKw(g, a, 'menace') ? 2 : 1;
+    if (cands.length < n) continue;
+    for (const b of cands.slice(0, n)) { blocks.push([b, a]); usados.add(b); }
     bloqueado.add(a);
     if (!hasKw(g, a, 'trample')) entrando -= Math.max(0, power(g, a));
   }
-  // bloqueios inválidos (ameaça etc.): tira um de cada vez
-  while (blocks.length) {
-    const a: Answer = { kind: 'blockers', blocks: [...blocks] };
-    if (ok(a)) return a;
-    blocks.pop();
+  // bloqueios inválidos (ameaça com um bloqueador só etc.): fica com os de cada atacante que valem junto com os
+  // anteriores. Antes tirava do fim da lista, e um bloqueio inválido no começo (o maior atacante vem primeiro)
+  // levava embora todos os outros
+  const valem: [ObjId, ObjId][] = [];
+  for (const a of atacantes) {
+    const deste = blocks.filter(([, x]) => x === a);
+    if (deste.length && ok({ kind: 'blockers', blocks: [...valem, ...deste] })) valem.push(...deste);
   }
-  return { kind: 'blockers', blocks: [] };
+  return { kind: 'blockers', blocks: valem };
 }
 
 /** Iniciante: bloqueia para não morrer e, às vezes, quando o bloqueador mata e sobrevive */
