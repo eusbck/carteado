@@ -1,6 +1,7 @@
 // Busca do Magic God (fase 9): Monte Carlo com informação oculta, parecida com o ISMCTS de um observador.
 //
-// 1. Pré-seleção rasa, como a Cartomante (as candidatas nos mesmos mundos sorteados), com cerca de um terço do tempo.
+// 1. Pré-seleção rasa, como a da Cartomante e com pelo menos o mesmo tanto de análise (as candidatas nos mesmos mundos
+//    sorteados, mais mundos que ela), com até metade do tempo.
 //    Ela dá a escolha "de partida": a melhor candidata, se passar da margem, ou passar.
 // 2. As melhores candidatas e "passar" são jogadas até o fim do turno seguinte, em mundos sorteados a cada rodada
 //    (com a leitura da mesa da Cartomante): todos jogam terrenos e mágicas, atacam e bloqueiam com políticas rápidas,
@@ -23,7 +24,7 @@ export function buscar(bot: HeuristicBot, ctx: Contexto, acoes: D<'priority'>['a
   const inicio = performance.now();
   const total = Math.max(0, ctx.prazo - inicio);
   const fixas = bot.jogadasBusca;
-  const rasa = bot.avaliarCandidatas(ctx, acoes, 14, fixas !== null ? Infinity : inicio + 0.35 * total);
+  const rasa = bot.avaliarCandidatas(ctx, acoes, 14, fixas !== null ? Infinity : inicio + 0.5 * total);
   if (!rasa || !ctx.copia) return PASSAR;
   const top = [...rasa.lista].sort((a, b) => b.valor - a.valor).slice(0, 3);
   if (!top.length) return PASSAR;
