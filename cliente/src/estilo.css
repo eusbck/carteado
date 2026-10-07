@@ -315,8 +315,23 @@ button.etapa:hover { background: rgba(34, 211, 107, .1); }
 .fases-acao .botao.cheio { padding: 0 14px; font-size: 13px; font-weight: 600; }
 .fases-acao .botao.desfazer { border-color: rgba(246, 196, 69, .45); color: var(--amarelo); }
 .fases-acao .botao.desfazer:hover { background: var(--amarelo-fundo); }
+/* fase 9: parada nas mágicas dos oponentes, à vista; e o aviso grande quando a mesa espera você fora do seu turno */
+.parar-pilha { position: relative; display: flex; align-items: center; gap: 5px; height: 28px; padding: 0 9px; border: 1px dashed var(--linha); border-radius: 8px; background: none; color: var(--apagado); font: inherit; font-size: 11px; cursor: pointer; white-space: nowrap; }
+.parar-pilha svg { width: 13px; height: 13px; }
+.parar-pilha:hover { color: var(--suave); background: rgba(255, 255, 255, .04); }
+.parar-pilha.ligada { border-style: solid; border-color: rgba(246, 196, 69, .5); color: var(--amarelo); }
+.fases.esperando-voce { border-color: rgba(246, 196, 69, .75); box-shadow: 0 0 0 1px rgba(246, 196, 69, .35), 0 0 22px rgba(246, 196, 69, .3), 0 8px 24px rgba(0, 0, 0, .42); }
+.fases.esperando-voce .fases-acao .botao.cheio { animation: chamar 1.4s ease-in-out infinite; }
+@keyframes chamar { 50% { box-shadow: 0 0 0 4px rgba(246, 196, 69, .35); } }
+.aviso-prioridade {
+  position: absolute; left: 50%; top: calc(100% + 8px); transform: translateX(-50%); padding: 7px 14px; border-radius: 10px; white-space: nowrap; max-width: 90vw; overflow: hidden; text-overflow: ellipsis;
+  background: rgba(10, 12, 11, .92); border: 1px solid rgba(246, 196, 69, .6); color: var(--texto); font-size: 14px; box-shadow: 0 8px 24px rgba(0, 0, 0, .5); animation: entrar-aviso-prioridade .25s ease-out; pointer-events: none;
+}
+.aviso-prioridade b { color: var(--cor, var(--amarelo)); font-weight: 700; }
+@keyframes entrar-aviso-prioridade { from { opacity: 0; translate: 0 -6px; } }
 /* telas estreitas: a faixa encolhe para não cobrir o seu nome nem a sua vida */
 @container (max-width: 1200px) {
+  .parar-pilha span { display: none; }
   .fase.atual .longo { display: none; }
   .fase.atual .curto { display: inline; }
   .fase { padding: 0 8px; }

@@ -6,7 +6,7 @@ import { ability, cardDef, registry, type AbilityDef, type RuleHooks, type SCtx,
 import type { G } from './game-context.ts';
 import { manaValueOf } from './mana.ts';
 import { BASIC_LAND_MANA, faceManaValue, hasOracle, oracle, CREATURE_SUBTYPES } from './oracle.ts';
-import type { AbilityInst, Chars, Color, CopyValues, GameObject, Layer, Mod, ObjId, PlayerId, ZoneName } from './types.ts';
+import type { AbilityInst, Chars, Color, CopyValues, GameObject, GameState, Layer, Mod, ObjId, PlayerId, ZoneName } from './types.ts';
 
 export interface ActiveStatic {
   def: StaticDef;
@@ -46,8 +46,30 @@ export function isTransform(defName: string): boolean {
   return hasOracle(defName) && oracle(defName).layout === 'transform';
 }
 
+/** modelos das características impressas por definição e face (só leitura): recalcular a cada passada das camadas
+ *  pesava nas simulações dos bots. Valem enquanto o registro de definições não muda de tamanho. */
+const impressas = new Map<string, Chars>();
+let impressasChave = '';
+
 /** características impressas de uma definição (carta ou ficha) e face */
 export function printedChars(defName: string, face: number, owner: PlayerId): Chars {
+  const chave = `${registry.cards.size}:${registry.tokens.size}:${registry.abilities.size}`;
+  if (chave !== impressasChave) { impressas.clear(); impressasChave = chave; }
+  const k = `${defName}|${face}`;
+  let m = impressas.get(k);
+  if (!m) { m = printedCharsNovas(defName, face, owner); impressas.set(k, m); }
+  return {
+    ...m, controller: owner, colors: [...m.colors], supertypes: [...m.supertypes], types: [...m.types], subtypes: [...m.subtypes],
+    abilities: m.abilities.map((a) => ({ ...a })),
+  };
+}
+
+/** a definição impressa tem alguma estática que funciona fora do campo? */
+function impressaFunciona(defName: string, face: number, off: Set<string>): boolean {
+  return printedChars(defName, face, 0).abilities.some((a) => off.has(a.id));
+}
+
+function printedCharsNovas(defName: string, face: number, owner: PlayerId): Chars {
   const token = registry.tokens.get(defName);
   if (token) {
     return {
@@ -118,6 +140,22 @@ function faceDownChars(owner: PlayerId): Chars {
   return { name: '', manaCost: null, manaValue: 0, colors: [], supertypes: [], types: ['Creature'], subtypes: [], abilities: [], power: 2, toughness: 2, loyalty: null, controller: owner };
 }
 
+/** efeitos de cópia (camada 1a) de cada objeto, calculados uma vez por versão do estado */
+const indiceCopias = new WeakMap<G, { versao: number; efeitos: GameState['effects']; mapa: Map<ObjId, GameState['effects']> }>();
+function copiasDe(g: G, id: ObjId): GameState['effects'] {
+  let ix = indiceCopias.get(g);
+  if (!ix || ix.versao !== g.state.version || ix.efeitos !== g.state.effects) {
+    const mapa = new Map<ObjId, GameState['effects']>();
+    for (const e of g.state.effects) {
+      if (!e.affected || !e.mods.some((m) => m.k === 'copy')) continue;
+      for (const a of e.affected) { const l = mapa.get(a); if (l) l.push(e); else mapa.set(a, [e]); }
+    }
+    ix = { versao: g.state.version, efeitos: g.state.effects, mapa };
+    indiceCopias.set(g, ix);
+  }
+  return [...(ix.mapa.get(id) ?? [])];
+}
+
 function layer1(g: G, o: GameObject): Chars {
   if (o.def === '') {
     // habilidade na pilha: só tem o texto da habilidade (CR 405.4)
@@ -129,7 +167,7 @@ function layer1(g: G, o: GameObject): Chars {
   else c = printedChars(o.def, currentFace(o), o.owner);
   // efeitos de cópia (camada 1a) em ordem de registro de data e hora
   if (!o.faceDown) {
-    const copies = g.state.effects.filter((e) => e.affected?.includes(o.id) && e.mods.some((m) => m.k === 'copy'));
+    const copies = copiasDe(g, o.id);
     copies.sort((a, b) => a.timestamp - b.timestamp);
     for (const e of copies) for (const m of e.mods) if (m.k === 'copy') c = copyValuesChars(m.of, o.owner);
   }
@@ -234,7 +272,10 @@ function computeAll(g: G): void {
       for (const zone of ['graveyard', 'hand', 'exile', 'command'] as ZoneName[]) {
         const ids = zone === 'graveyard' ? s.zones.graveyard.flat() : zone === 'hand' ? s.zones.hand.flat() : s.zones[zone as 'exile' | 'command'];
         for (const id of ids) {
-          const c = layer1(g, s.objects[id]);
+          const o = s.objects[id];
+          // sem cópia, as habilidades são as impressas: se nenhuma funciona fora do campo, não precisa calcular
+          if (!o.copyOf && !o.faceDown && !copiasDe(g, id).length && !impressaFunciona(o.def, currentFace(o), off)) continue;
+          const c = layer1(g, o);
           if (c.abilities.some((a) => off.has(a.id))) staticsFrom(g, id, c, zone, statics);
         }
       }

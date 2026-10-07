@@ -6,7 +6,7 @@ import '../cartas/index.ts';
 import decksJson from '../gerado/decks.json' with { type: 'json' };
 import { HeuristicBot } from '../bots/heuristico.ts';
 import { defaultAnswer } from '../motor/ask.ts';
-import { DEFAULT_STOPS } from '../motor/autopass.ts';
+import { PARADAS_PADRAO } from '../servidor/salas.ts';
 import { Game } from '../motor/game.ts';
 import type { DeckList } from '../motor/state.ts';
 import type { Decision, GameConfig } from '../motor/types.ts';
@@ -51,7 +51,7 @@ export function gerarSalas(banco: Banco, codigos: string[]): string[] {
         if (!r.ok) game.answer(d.player, defaultAnswer(d));
       }
       if (!chegou) continue;
-      const assentos = nomes.map((nome, i) => ({ tipo: i === 0 ? 'humano' : 'bot', nome, deck: DECKS[c.decks[i]].id, token: i === 0 ? `token-${c.codigo}` : null, paradas: structuredClone(DEFAULT_STOPS) }));
+      const assentos = nomes.map((nome, i) => ({ tipo: i === 0 ? 'humano' : 'bot', nome, deck: DECKS[c.decks[i]].id, token: i === 0 ? `token-${c.codigo}` : null, paradas: structuredClone(PARADAS_PADRAO) }));
       banco.salvarSala(c.codigo, { codigo: c.codigo, senha: '00:00', modo: c.modo, estado: 'jogando', assentos, anfitriao: 0, partida: { config, deckIds: decks.map((d) => d.id), checkpoint: null, posicoes: {} }, mulligan: 'londres' });
       banco.adicionarEntradas(c.codigo, 0, game.inputs);
       prontas.push(c.codigo);

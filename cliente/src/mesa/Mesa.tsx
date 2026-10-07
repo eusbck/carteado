@@ -24,6 +24,7 @@ import { Setas, type Seta } from './Setas.tsx';
 import { MaoInicial } from './MaoInicial.tsx';
 import { Manual, type PegarCarta, type Tipo as TipoManual } from './Manual.tsx';
 import { Paradas } from './Paradas.tsx';
+import { avisoPrioridade } from './prioridade.ts';
 import { TextoComSimbolos } from './Simbolos.tsx';
 import { Zoom } from './Zoom.tsx';
 
@@ -175,6 +176,15 @@ function FaixaFases({ v, eu, d, enviando, paradas, cor, desfazivel, parada }: Fa
   const desfazer = desfazivel && !v.gameOver
     ? <button class="botao icone desfazer" title="Desfazer a minha última jogada" aria-label="Desfazer a minha última jogada" onClick={() => loja.enviar({ t: 'desfazer' })}><IconeDesfazer /></button>
     : null;
+  // parada nas mágicas dos oponentes: à vista na faixa, porque fora dela a mesa anda sozinha no turno dos outros
+  const pilhaOponente = !!paradas?.stopOnOpponentStack;
+  const alternarPilha = () => {
+    if (!paradas) return;
+    const novo = { ...paradas, stopOnOpponentStack: !pilhaOponente };
+    loja.mudar({ paradas: novo });
+    loja.enviar({ t: 'paradas', paradas: novo });
+  };
+  const aviso = parada || enviando ? null : avisoPrioridade(v, eu, d);
   let acao;
   if (v.gameOver) acao = <span class="prioridade">Partida<b>encerrada</b></span>;
   else if (parada) acao = <span class="prioridade">Mesa <b>parada</b></span>;
@@ -191,7 +201,7 @@ function FaixaFases({ v, eu, d, enviando, paradas, cor, desfazivel, parada }: Fa
   else if (desfazer) acao = desfazer;
 
   return (
-    <div class="fases" aria-label="Fases do turno">
+    <div class={`fases ${aviso ? 'esperando-voce' : ''}`} aria-label="Fases do turno">
       <div class="fases-turno turno-linha" title={`Turno de ${v.players[v.turn.active].name}`}><span class="rot">Turno</span><strong>{v.turn.number}</strong></div>
       <ol class="fases-lista">
         {FASES.map((f, i) => {
@@ -219,7 +229,16 @@ function FaixaFases({ v, eu, d, enviando, paradas, cor, desfazivel, parada }: Fa
           );
         })}
       </ol>
+      <button type="button" class={`parar-pilha ${pilhaOponente ? 'ligada' : ''}`} aria-pressed={pilhaOponente} onClick={alternarPilha}
+        title={pilhaOponente ? 'A mesa para quando um oponente conjura uma mágica ou ativa uma habilidade. Clique para não parar.' : 'A mesa não para nas mágicas dos oponentes. Clique para parar e poder responder.'}>
+        <IconeParadas /><span>Mágicas dos oponentes</span>
+      </button>
       {acao && <div class="fases-acao">{acao}</div>}
+      {aviso && (
+        <div class="aviso-prioridade" role="status" style={{ '--cor': cor(aviso.jogador) }}>
+          {aviso.texto}<b>{aviso.destaque}</b>{aviso.resto}
+        </div>
+      )}
     </div>
   );
 }

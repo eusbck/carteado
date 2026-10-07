@@ -4,13 +4,16 @@
 
 import { randomBytes, randomInt, scryptSync, timingSafeEqual } from 'node:crypto';
 import { HeuristicBot } from '../bots/heuristico.ts';
+import { NIVEL_PADRAO, nivelValido, type NivelBot } from '../bots/niveis.ts';
 import { defaultAnswer } from '../motor/ask.ts';
-import { DEFAULT_STOPS, shouldAutoPass, type StopSettings } from '../motor/autopass.ts';
+import { shouldAutoPass, type StopSettings } from '../motor/autopass.ts';
 import { Game, type Checkpoint, type Input } from '../motor/game.ts';
 import type { DeckList } from '../motor/state.ts';
 import type { Answer, GameConfig, Step } from '../motor/types.ts';
 import { controllerOf } from '../motor/chars.ts';
 import { buildView } from '../motor/view.ts';
+import { Pensadores } from './pensadores.ts';
+import { NOMES_BOTS } from './nomes.ts';
 import type { Banco } from './banco.ts';
 import { alvoDesfazer, linhasDesfeitas, reconstruir, type MetaEntrada } from './desfazer.ts';
 import type { LinhaDesfeita, Modo, MsgCliente, MsgServidor, PedidoDesfazer, Posicoes, RegraAuxilios, RegraMulligan, SalaPublica, TipoAssento } from './protocolo.ts';
@@ -28,19 +31,25 @@ export interface Atrasos {
   botPasse: number;
   /** passe automático de um humano: o mesmo atraso sempre, para não revelar se havia resposta */
   autoPasse: number;
-  /** simulações do bot heurístico por decisão (força e tempo de resposta) */
-  simulacoesBot: number;
+  /** simulações por decisão de todos os bots, no lugar das do nível (testes: bots fracos e rápidos); null = do nível */
+  simulacoesBot: number | null;
+  /** threads de pensar dos bots, para todas as salas juntas (0: pensam na linha principal, como nos testes) */
+  threads: number;
+  /** a partir de quantos ms pensando a mesa avisa "Fulano está pensando…" */
+  avisoPensando: number;
   /** quanto tempo os outros têm para aceitar um pedido de desfazer */
   prazoDesfazer: number;
 }
 
-export const ATRASOS_PADRAO: Atrasos = { botAcao: 700, botPasse: 90, autoPasse: 60, simulacoesBot: 24, prazoDesfazer: 30000 };
+export const ATRASOS_PADRAO: Atrasos = { botAcao: 700, botPasse: 90, autoPasse: 60, simulacoesBot: null, prazoDesfazer: 30000, threads: 2, avisoPensando: 1000 };
 // testes do servidor: sem atrasos e com bots que pensam pouco (o fluxo da sala é o que importa)
-export const SEM_ATRASO: Atrasos = { botAcao: 0, botPasse: 0, autoPasse: 0, simulacoesBot: 3, prazoDesfazer: 30000 };
+export const SEM_ATRASO: Atrasos = { botAcao: 0, botPasse: 0, autoPasse: 0, simulacoesBot: 3, prazoDesfazer: 30000, threads: 0, avisoPensando: 1000 };
 
 interface Assento {
   tipo: TipoAssento;
   nome: string | null;
+  /** nível do bot (fase 9); quem não tem é Intermediário, o bot das fases anteriores */
+  nivel?: NivelBot;
   deck: string | null;
   token: string | null;
   paradas: StopSettings;
@@ -79,6 +88,26 @@ interface Pedido {
 }
 
 const ALFABETO = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+
+/**
+ * Paradas de quem senta (fase 9): só no próprio turno. No turno dos outros a mesa anda sozinha; quem quiser
+ * responder marca a etapa final dos outros ou "mágicas dos oponentes" na faixa de fases. (Antes paravam também na
+ * etapa final de cada oponente e a cada mágica de oponente; na mesa real, que para mesmo sem jogada, parecia que os
+ * bots tinham travado.)
+ */
+export const PARADAS_PADRAO: StopSettings = {
+  myTurn: ['main1', 'beginCombat', 'main2'],
+  othersTurn: [],
+  stopOnOpponentStack: false,
+  stopOnOwnStack: false,
+  passUntilTurnEnds: null,
+};
+const paradasPadrao = (): StopSettings => structuredClone(PARADAS_PADRAO);
+
+/** as paradas padrão de antes da fase 9, que ninguém escolheu: as salas antigas passam para as novas */
+function paradasAntigas(p: StopSettings): boolean {
+  return p.myTurn.join() === 'main1,beginCombat,main2' && p.othersTurn.join() === 'end' && p.stopOnOpponentStack && !p.stopOnOwnStack;
+}
 const PASSOS: Step[] = ['upkeep', 'draw', 'main1', 'beginCombat', 'declareAttackers', 'declareBlockers', 'combatDamage', 'endCombat', 'main2', 'end'];
 
 function hashSenha(senha: string): string {
@@ -109,6 +138,11 @@ export class Sala {
   conexoes = new Set<Conexao>();
   private bots = new Map<number, HeuristicBot>();
   private rodando = false;
+  /** muda quando os bots são recriados (partida nova, retomada, desfazer): respostas pensadas antes não valem */
+  private geracao = 0;
+  /** bot pensando há mais de um segundo (a mesa mostra "Fulano está pensando…") */
+  private pensando: number | null = null;
+  private esperandoBot = false;
   private salvas = 0;
   /** de cada entrada da partida: turno e se foi a pessoa (alinhado com game.inputs) */
   private metas: (MetaEntrada | null)[] = [];
@@ -128,7 +162,7 @@ export class Sala {
     return {
       codigo: this.d.codigo, modo: this.d.modo, estado: this.d.estado, anfitriao: this.d.anfitriao, mulligan: this.d.mulligan ?? 'londres', auxilios: this.d.auxilios ?? 'permitidos',
       semente: this.d.partida?.config.seed ?? null,
-      assentos: this.d.assentos.map((a, i) => ({ indice: i, tipo: a.tipo, nome: a.nome, deck: a.deck, conectado: a.tipo === 'bot' || conectados.has(i) })),
+      assentos: this.d.assentos.map((a, i) => ({ indice: i, tipo: a.tipo, nome: a.nome, deck: a.deck, conectado: a.tipo === 'bot' || conectados.has(i), nivel: a.tipo === 'bot' ? a.nivel ?? NIVEL_PADRAO : null })),
     };
   }
 
@@ -169,7 +203,9 @@ export class Sala {
   sentar(c: Conexao, nome: string): number | null {
     const i = this.d.assentos.findIndex((a) => a.tipo === 'vazio');
     if (i < 0) return null;
-    this.d.assentos[i] = { tipo: 'humano', nome, deck: null, token: novoToken(), paradas: structuredClone(DEFAULT_STOPS) };
+    this.d.assentos[i] = { tipo: 'humano', nome, deck: null, token: novoToken(), paradas: paradasPadrao() };
+    // um bot com o mesmo nome da pessoa ganha outro
+    for (const [k, a] of this.d.assentos.entries()) if (a.tipo === 'bot' && a.nome?.toUpperCase() === nome.toUpperCase()) a.nome = this.sortearNome(k);
     this.ligar(c, i);
     return i;
   }
@@ -203,10 +239,13 @@ export class Sala {
         if (this.d.estado === 'jogando') return 'A partida já começou';
         const a = this.d.assentos[m.assento];
         if (!a || a.tipo === 'humano') return 'Esse assento não está livre';
-        if (m.deck === null) this.d.assentos[m.assento] = { tipo: 'vazio', nome: null, deck: null, token: null, paradas: structuredClone(DEFAULT_STOPS) };
+        if (m.deck === null) this.d.assentos[m.assento] = { tipo: 'vazio', nome: null, deck: null, token: null, paradas: paradasPadrao() };
         else {
           if (!this.gerente.deck(m.deck)) return 'Deck desconhecido';
-          this.d.assentos[m.assento] = { tipo: 'bot', nome: `Bot ${m.assento + 1}`, deck: m.deck, token: null, paradas: structuredClone(DEFAULT_STOPS) };
+          if (m.nivel !== undefined && !nivelValido(m.nivel)) return 'Nível de bot desconhecido';
+          // o nome é sorteado quando o bot entra no assento e fica com ele (trocar o deck ou o nível não muda)
+          const nome = a.tipo === 'bot' && a.nome ? a.nome : this.sortearNome(m.assento);
+          this.d.assentos[m.assento] = { tipo: 'bot', nome, nivel: m.nivel ?? (a.tipo === 'bot' ? a.nivel : undefined) ?? NIVEL_PADRAO, deck: m.deck, token: null, paradas: paradasPadrao() };
         }
         break;
       }
@@ -220,7 +259,7 @@ export class Sala {
       case 'sair': {
         if (this.pedido) this.encerrarPedido(null);
         if (this.d.estado === 'jogando' && this.game && !this.game.isOver()) this.registrar(() => this.game!.concede(i));
-        if (this.d.estado !== 'jogando') this.d.assentos[i] = { tipo: 'vazio', nome: null, deck: null, token: null, paradas: structuredClone(DEFAULT_STOPS) };
+        if (this.d.estado !== 'jogando') this.d.assentos[i] = { tipo: 'vazio', nome: null, deck: null, token: null, paradas: paradasPadrao() };
         c.enviar({ t: 'saiu' });
         this.conexoes.delete(c);
         c.sala = null;
@@ -379,8 +418,19 @@ export class Sala {
 
   private criarBots(): void {
     const seed = this.d.partida!.config.seed;
-    this.bots = new Map(this.d.assentos.map((a, i) => [i, a] as const).filter(([, a]) => a.tipo === 'bot').map(([i]) => [i, new HeuristicBot(`${seed}:${i}`, i, { simulacoes: this.gerente.atrasos.simulacoesBot })]));
+    const sims = this.gerente.atrasos.simulacoesBot;
+    this.bots = new Map(this.d.assentos.map((a, i) => [i, a] as const).filter(([, a]) => a.tipo === 'bot')
+      .map(([i, a]) => [i, new HeuristicBot(`${seed}:${i}`, i, { nivel: a.nivel ?? NIVEL_PADRAO, ...(sims !== null ? { simulacoes: sims } : {}) })]));
+    this.geracao++;
   }
+
+  /** um nome de bot que ainda não está na sala (nem de bot nem de pessoa) */
+  private sortearNome(assento: number): string {
+    const usados = new Set(this.d.assentos.filter((_, k) => k !== assento).map((a) => a.nome?.toUpperCase()).filter(Boolean));
+    const livres = NOMES_BOTS.filter((n) => !usados.has(n));
+    return livres.length ? livres[randomInt(livres.length)] : `BOT ${assento + 1}`;
+  }
+
 
   private nome(i: number): string { return this.game?.state.players[i]?.name ?? this.d.assentos[i]?.nome ?? `Jogador ${i + 1}`; }
 
@@ -397,6 +447,8 @@ export class Sala {
       ok = false;
     }
     for (let k = n0; k < g.inputs.length; k++) this.metas[k] = { turno, humana };
+    // Cartomante e Magic God: leem a mesa a cada jogada (só o que é público)
+    for (const b of this.bots.values()) if (b.e.memoria) b.observar(g.g);
     if (ok) this.persistir();
   }
 
@@ -417,7 +469,7 @@ export class Sala {
       const cp = g.checkpoint();
       if (cp) { this.cps.push(cp); if (this.cps.length > 3) this.cps.shift(); }
     }
-    if (g.isOver() && this.d.estado === 'jogando') { this.d.estado = 'fim'; this.salvar(); }
+    if (g.isOver() && this.d.estado === 'jogando') { this.d.estado = 'fim'; this.salvar(); this.gerente.pensadores?.esquecer(this.d.codigo); }
   }
 
   // ------------------------------------------------------------------ desfazer
@@ -494,6 +546,37 @@ export class Sala {
     for (const c of this.conexoes) c.enviar({ t: 'aviso', msg });
   }
 
+  /**
+   * Um bot pensa uma decisão: numa thread de pensar (servidor) ou aqui mesmo (testes, threads = 0). Só manda o
+   * checkpoint mais recente e as entradas; a thread refaz a partida e decide no mundo do bot (bots/pensar.ts).
+   */
+  private async pensarBot(bot: HeuristicBot, decisao: number, g: Game): Promise<Answer | null> {
+    const pens = this.gerente.pensadores!;
+    const cps = [...this.cps, this.d.partida!.checkpoint].filter((c): c is Checkpoint => !!c && c.inputIndex <= g.inputs.length);
+    const cp = cps.sort((a, b) => b.inputIndex - a.inputIndex)[0] ?? null;
+    const sims = this.gerente.atrasos.simulacoesBot;
+    const assento = bot.eu;
+    const aviso = setTimeout(() => { this.pensando = assento; this.avisarPensando(); }, this.gerente.atrasos.avisoPensando);
+    try {
+      const r = await pens.pensar({
+        sala: this.d.codigo, geracao: this.geracao, cp, entradas: g.inputs, deckIds: this.d.partida!.deckIds,
+        tarefa: { nivel: bot.nivel, eu: assento, estado: bot.e, decisao, jaImediata: true, config: this.d.partida!.config, ...(sims !== null ? { opcoes: { simulacoes: sims } } : {}) },
+      });
+      if (r && this.bots.get(assento) === bot) bot.e = r.estado;
+      return r?.resposta ?? null;
+    } catch (e) {
+      console.error(`[sala ${this.d.codigo}] o bot ${this.nome(assento)} não conseguiu pensar:`, e);
+      return null;
+    } finally {
+      clearTimeout(aviso);
+      if (this.pensando === assento) { this.pensando = null; this.avisarPensando(); }
+    }
+  }
+
+  private avisarPensando(): void {
+    for (const c of this.conexoes) c.enviar({ t: 'pensando', assento: this.pensando });
+  }
+
   private falha(e: unknown): void {
     const msg = e instanceof Error ? e.message : String(e);
     this.erro = msg;
@@ -503,7 +586,8 @@ export class Sala {
 
   /** bots respondem e passes automáticos acontecem até alguém humano precisar decidir */
   async avancar(): Promise<void> {
-    if (this.rodando) return;
+    // um bot está pensando numa thread: a mesa está parada nele, então dá para mostrar o que mudou (paradas, posições…)
+    if (this.rodando) { if (this.esperandoBot) this.transmitir(); return; }
     this.rodando = true;
     const at = this.gerente.atrasos;
     try {
@@ -515,7 +599,20 @@ export class Sala {
         let resposta: Answer | null = null;
         let espera = 0;
         if (a.tipo === 'bot') {
-          resposta = this.bots.get(d.player)!.answer(d, g);
+          const bot = this.bots.get(d.player)!;
+          const geracao = this.geracao;
+          // decisão óbvia: sai da vista do bot (a mesma que uma pessoa naquele assento recebe), sem pensar
+          resposta = bot.imediata(d, buildView(g.g, d.player, d), (x) => g.check(d.player, x) === null);
+          if (!resposta && !this.gerente.pensadores) {
+            // sem threads (testes): pensa aqui mesmo, sem soltar a linha (o fluxo da sala fica igual ao de antes)
+            bot.rastro.observar(g);
+            resposta = bot.decidir(bot.contextoLocal(d, g));
+          } else if (!resposta) {
+            this.esperandoBot = true;
+            try { resposta = await this.pensarBot(bot, d.id, g); } finally { this.esperandoBot = false; }
+            if (this.game !== g || g.pending?.id !== d.id || this.pedido || this.geracao !== geracao) continue; // algo mudou enquanto pensava
+            if (!resposta) resposta = defaultAnswer(d);
+          }
           const visivel = (d.kind === 'priority' && resposta.kind === 'priority' && resposta.action !== 'pass') || d.kind === 'attackers' || d.kind === 'blockers';
           espera = visivel ? at.botAcao : at.botPasse;
         } else if (shouldAutoPass(g.state, d, d.player, this.paradasEfetivas(a))) {
@@ -552,9 +649,13 @@ export class Gerente {
   banco: Banco;
   atrasos: Atrasos;
 
+  /** threads de pensar dos bots, divididas por todas as salas (null: pensam na linha principal) */
+  readonly pensadores: Pensadores | null;
+
   constructor(banco: Banco, decks: DeckList[], atrasos: Atrasos = ATRASOS_PADRAO) {
     this.banco = banco;
     this.atrasos = atrasos;
+    this.pensadores = atrasos.threads > 0 ? new Pensadores(atrasos.threads) : null;
     this.decks = new Map(decks.map((d) => [d.id, d]));
   }
 
@@ -564,6 +665,7 @@ export class Gerente {
   restaurar(): void {
     for (const { dados } of this.banco.salas()) {
       const d = dados as DadosSala;
+      for (const a of d.assentos) if (paradasAntigas(a.paradas)) a.paradas = { ...paradasPadrao(), skipWhenNothing: a.paradas.skipWhenNothing };
       const s = new Sala(d, this);
       this.salas.set(d.codigo, s);
       if (d.partida && d.estado !== 'espera') {
@@ -600,7 +702,7 @@ export class Gerente {
         if (m.modo !== '4p' && m.modo !== '1v1') return 'Modo inválido';
         const codigo = this.novoCodigo();
         const n = m.modo === '4p' ? 4 : 2;
-        const vazio = (): Assento => ({ tipo: 'vazio', nome: null, deck: null, token: null, paradas: structuredClone(DEFAULT_STOPS) });
+        const vazio = (): Assento => ({ tipo: 'vazio', nome: null, deck: null, token: null, paradas: paradasPadrao() });
         const s = new Sala({ codigo, senha: hashSenha(m.senhaSala), modo: m.modo, estado: 'espera', assentos: Array.from({ length: n }, vazio), anfitriao: 0, partida: null }, this);
         this.salas.set(codigo, s);
         s.sentar(c, nome);

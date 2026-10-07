@@ -1,20 +1,23 @@
 // Partida completa no servidor (sem rede): uma pessoa (simulada, respondendo pela vista que recebe) e 3 bots
 // heurísticos com a força de verdade. Confere que a sala chega ao fim sem erro do motor e que a vista da pessoa
 // nunca mostra a mão dos outros.
-// Uso: node ferramentas/humano-e-bots.ts [semente] [modo: 4p|1v1]
+// Uso: node ferramentas/humano-e-bots.ts [semente] [modo: 4p|1v1] [níveis dos bots, ex.: magicgod,cartomante,dificil]
+// Os bots pensam nas threads de pensar, como no servidor de verdade (fase 9).
 import '../cartas/index.ts';
 import { readFileSync } from 'node:fs';
 import { RandomBot } from '../bots/aleatorio.ts';
+import type { NivelBot } from '../bots/niveis.ts';
 import { defaultAnswer } from '../motor/ask.ts';
 import type { DeckList } from '../motor/state.ts';
 import type { Answer, Decision } from '../motor/types.ts';
 import { Banco } from '../servidor/banco.ts';
 import type { MsgServidor } from '../servidor/protocolo.ts';
-import { ATRASOS_PADRAO, Gerente, type Conexao } from '../servidor/salas.ts';
+import { ATRASOS_PADRAO, Gerente, PARADAS_PADRAO, type Conexao } from '../servidor/salas.ts';
 
 const DECKS = JSON.parse(readFileSync(new URL('../gerado/decks.json', import.meta.url), 'utf8')) as DeckList[];
 const semente = process.argv[2] ?? 'humano';
 const modo = (process.argv[3] ?? '4p') as '4p' | '1v1';
+const niveis = (process.argv[4] ?? 'intermediario').split(',') as NivelBot[];
 
 class Pessoa implements Conexao {
   sala: Conexao['sala'] = null;
@@ -34,7 +37,9 @@ g.tratar(ana, { t: 'criar', nome: 'Ana', senhaSala: 'segredo', modo });
 const codigo = ana.ultima('sala')!.sala.codigo;
 g.tratar(ana, { t: 'deck', deck: DECKS[0].id });
 const n = modo === '4p' ? 4 : 2;
-for (let i = 1; i < n; i++) g.tratar(ana, { t: 'bot', assento: i, deck: DECKS[(i * 2) % DECKS.length].id });
+for (let i = 1; i < n; i++) g.tratar(ana, { t: 'bot', assento: i, deck: DECKS[(i * 2) % DECKS.length].id, nivel: niveis[(i - 1) % niveis.length] });
+// mesa real (fase 8): a pessoa para nas paradas mesmo sem jogada; as paradas são as padrão de quem senta
+{ const p = ana.ultima('jogo')?.paradas ?? PARADAS_PADRAO; g.tratar(ana, { t: 'paradas', paradas: { ...p, skipWhenNothing: false } }); }
 g.tratar(ana, { t: 'iniciar' });
 
 const pessoa = new RandomBot(`pessoa:${semente}`);
@@ -44,6 +49,8 @@ let ultimaId = -1;
 let vazamentos = 0;
 let ultimaQtd = 0;
 let paradas = 0;
+/** fase 9 (1.1): com as paradas padrão, a mesa não pode esperar Ana no turno dos bots (cliques extras) */
+let cliquesExtras = 0;
 for (let volta = 0; volta < 2000000; volta++) {
   await espera();
   // travamento: nada novo chega para Ana por muito tempo
@@ -68,6 +75,7 @@ for (let volta = 0; volta < 2000000; volta++) {
   const d = v.decision as Decision | null;
   if (!d || d.id === ultimaId) continue;
   ultimaId = d.id;
+  if (d.kind === 'priority' && v.turn.active !== v.you) { cliquesExtras++; console.log(`clique extra: turno ${v.turn.number} (${v.players[v.turn.active].name}), ${v.turn.step}, pilha ${v.stack.length}`); }
   const antes = ana.msgs.length;
   let resposta: Answer = pessoa.answer(d);
   g.tratar(ana, { t: 'responder', decisao: d.id, resposta });
@@ -80,5 +88,5 @@ for (let volta = 0; volta < 2000000; volta++) {
   respondidas++;
 }
 const v = ana.ultima('jogo')!.vista;
-console.log(`${modo}: fim no turno ${v.turn.number} — ${v.gameOver?.draw ? 'empate' : `vencedor ${v.gameOver?.winners.join(',')}`} (${v.gameOver?.reason}); ${respondidas} decisões de Ana; ${((Date.now() - t0) / 1000).toFixed(1)} s; vazamentos: ${vazamentos}`);
-process.exit(v.gameOver && vazamentos === 0 ? 0 : 1);
+console.log(`${modo}: fim no turno ${v.turn.number} — ${v.gameOver?.draw ? 'empate' : `vencedor ${v.gameOver?.winners.join(',')}`} (${v.gameOver?.reason}); ${respondidas} decisões de Ana; ${((Date.now() - t0) / 1000).toFixed(1)} s; vazamentos: ${vazamentos}; cliques extras no turno dos bots: ${cliquesExtras}`);
+process.exit(v.gameOver && vazamentos === 0 && cliquesExtras === 0 ? 0 : 1);

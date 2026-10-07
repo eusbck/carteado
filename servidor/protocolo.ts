@@ -1,5 +1,6 @@
 // Mensagens entre cliente e servidor (WebSocket, JSON). O cliente importa só os tipos.
 
+import type { NivelBot } from '../bots/niveis.ts';
 import type { StopSettings } from '../motor/autopass.ts';
 import type { Answer } from '../motor/types.ts';
 import type { GameView } from '../motor/view.ts';
@@ -16,6 +17,8 @@ export interface AssentoPublico {
   nome: string | null;
   deck: string | null;
   conectado: boolean;
+  /** nível do bot (null para pessoas e assentos vazios) */
+  nivel?: NivelBot | null;
 }
 
 export interface SalaPublica {
@@ -80,7 +83,8 @@ export type MsgCliente =
   | { t: 'entrar'; codigo: string; senhaSala: string; nome: string }
   | { t: 'retomar'; codigo: string; token: string }
   | { t: 'deck'; deck: string }
-  | { t: 'bot'; assento: number; deck: string | null }
+  /** pôr (ou trocar o deck ou o nível de) um bot num assento; deck null tira o bot */
+  | { t: 'bot'; assento: number; deck: string | null; nivel?: NivelBot }
   | { t: 'iniciar' }
   | { t: 'responder'; decisao: number; resposta: Answer }
   | { t: 'paradas'; paradas: StopSettings }
@@ -110,4 +114,6 @@ export type MsgServidor =
   | { t: 'saiu' }
   /** alguém mostrou uma carta da mão (para quem recebeu e para quem mostrou) */
   | { t: 'revelada'; de: number; def: string; nome: string; para: number[] | 'todos' }
+  /** um bot está pensando há mais de um segundo (null: ninguém) */
+  | { t: 'pensando'; assento: number | null }
   | { t: 'erro'; msg: string };
