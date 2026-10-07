@@ -50,7 +50,7 @@ const ORCAMENTO: Record<NivelBot, OpcoesBot> = {
   facil: { orcamento: 1e9, simulacoes: 4 },
   intermediario: { orcamento: 1e9, simulacoes: 6 },
   dificil: { orcamento: 1e9, simulacoes: 8, mundos: 2 },
-  cartomante: { orcamento: 1e9, simulacoes: 8, mundos: 2 },
+  cartomante: { orcamento: 1e9, simulacoes: 8, mundos: 2, jogadasBusca: 1 },
   magicgod: { orcamento: 1e9, simulacoes: 8, mundos: 2, jogadasBusca: 1 },
 };
 
