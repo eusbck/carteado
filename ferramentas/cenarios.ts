@@ -8,6 +8,7 @@ import { HeuristicBot } from '../bots/heuristico.ts';
 import { defaultAnswer } from '../motor/ask.ts';
 import { PARADAS_PADRAO } from '../servidor/salas.ts';
 import { Game } from '../motor/game.ts';
+import { buildView } from '../motor/view.ts';
 import type { DeckList } from '../motor/state.ts';
 import type { Decision, GameConfig } from '../motor/types.ts';
 import type { Banco } from '../servidor/banco.ts';
@@ -31,6 +32,14 @@ export const CENARIOS: Cenario[] = [
   { codigo: 'BLOQU', modo: '1v1', decks: [3, 1], sementes: ['prototipo8-BLOQU-0'], minTurno: 7, pred: (g, d) => d.player === 0 && d.kind === 'blockers' && d.candidates.filter((c) => c.canBlock.length).length >= 2 },
   // fase 9: Ana ataca e ordena pelo menos três gatilhos (a janela de escolha em fila); depois a busca e a vidência pelo ajuste manual
   { codigo: 'ORDEM', modo: '1v1', decks: [4, 0], sementes: ['gatilhos-1v1-4-0'], minTurno: 10, pred: (g, d) => d.player === 0 && d.kind === 'select' && !!d.ordered && d.min === d.items.length && d.items.length >= 3 },
+  // fase 9: Ana no começo da própria fase principal, com pelo menos 7 permanentes para arrumar (3 terrenos
+  // desvirados) e um terreno na mão para arrastar até o campo
+  { codigo: 'ARRUM', modo: '1v1', decks: [0, 1], sementes: ['fase9-ARRUM-0'], minTurno: 7, pred: (g, d) => {
+    if (d.player !== 0 || d.kind !== 'priority' || g.state.turn.active !== 0 || g.state.turn.step !== 'main1' || g.state.turn.landsPlayed > 0) return false;
+    const v = buildView(g.g, 0, d);
+    const minhas = v.battlefield.filter((o) => o.controller === 0);
+    return minhas.length >= 7 && minhas.filter((o) => o.types.includes('Land') && !o.tapped).length >= 3 && v.hand.some((o) => o.types.includes('Land'));
+  } },
 ];
 
 /** grava as salas pedidas no banco; devolve os códigos que ficaram prontos */

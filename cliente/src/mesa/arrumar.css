@@ -1,0 +1,17 @@
+/* Arrumar o seu campo (mesa/mover.ts): mover cartas e selecionar com um retângulo. Este arquivo
+   entra antes de estilo.css, então os seletores começam em .tabuleiro para valer por cima dele. */
+
+/* a carta arrastada anda direto (sem a transição de left/top), por cima das outras e com o mesmo
+   "levantar" do hover, para o ponto pego ficar sob o ponteiro do começo ao fim */
+.tabuleiro .area .campo > .carta.movendo { transition: none; translate: 0 -3px; scale: 1.05; z-index: 400 !important; box-shadow: 0 18px 32px rgba(0, 0, 0, .7), 0 0 0 2px rgba(255, 255, 255, .6); }
+body.movendo-cartas, body.movendo-cartas * { cursor: grabbing !important; }
+body.movendo-cartas .tabuleiro .campo > .carta:not(.movendo) { pointer-events: none; }
+body.movendo-cartas .camada-zoom { display: none; }
+
+/* cartas selecionadas, e as que o retângulo está tocando enquanto você arrasta */
+.tabuleiro .campo > .carta.selecionada, .tabuleiro .campo > .carta.na-selecao { outline: 2px solid var(--roxo); outline-offset: 3px; }
+.retangulo-selecao { position: fixed; z-index: 95; pointer-events: none; border: 1.5px solid rgba(181, 124, 255, .95); background: rgba(181, 124, 255, .12); border-radius: 3px; }
+
+/* arrastar no campo não seleciona texto (uma seleção de texto viraria um arraste do navegador e
+   cancelaria o próximo retângulo) */
+.tabuleiro .campo { -webkit-user-select: none; user-select: none; }

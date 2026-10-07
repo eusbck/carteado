@@ -92,8 +92,9 @@ export type MsgCliente =
   | { t: 'conceder' }
   | { t: 'sair' }
   | { t: 'novaPartida' }
-  /** posição de uma permanente sua na sua área (x e y de 0 a 1); limpar: volta a arrumação padrão (de uma ou de todas) */
-  | { t: 'posicao'; obj?: number; x?: number; y?: number; limpar?: boolean }
+  /** posição de uma permanente sua na sua área (x e y de 0 a 1), ou de várias de uma vez (`lista`, grupo
+   * selecionado); limpar: volta a arrumação padrão (de uma ou de todas) */
+  | { t: 'posicao'; obj?: number; x?: number; y?: number; limpar?: boolean; lista?: { obj: number; x: number; y: number }[] }
   | { t: 'mulligan'; regra: RegraMulligan }
   | { t: 'auxilios'; regra: RegraAuxilios }
   /** pedir para desfazer a sua última jogada deste turno; responder ou cancelar um pedido aberto */

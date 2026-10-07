@@ -6,7 +6,7 @@ import type { ObjId } from '../../../motor/types.ts';
 import type { ObjView, PlayerView } from '../../../motor/view.ts';
 import { nomeCarta } from '../cartas.ts';
 import { IconeVida } from '../icones.tsx';
-import { arrumar } from './arrumacao.ts';
+import { arrumarCampo } from './arrumacao.ts';
 import { Carta, type Realce, type Selo } from './Carta.tsx';
 import { Simbolos } from './Simbolos.tsx';
 
@@ -50,6 +50,12 @@ export interface AreaProps {
   arrastando?: ObjId | null;
   /** começo de arrasto de uma permanente sua no campo */
   onPegarCampo?: (o: ObjView, ev: PointerEvent, el: HTMLElement) => void;
+  /** botão apertado no espaço vazio do seu campo (retângulo de seleção) */
+  onPegarCampoVazio?: (ev: PointerEvent, campo: HTMLElement) => void;
+  /** permanentes suas selecionadas (ficam marcadas, com os anexos delas) */
+  selecionadas?: ReadonlySet<ObjId>;
+  /** ordem em que você soltou as cartas que arrumou (a maior fica por cima) */
+  ordemZ?: Record<string, number>;
   /** começo de arrasto e duplo clique numa carta da sua mão */
   onPegarMao?: (o: ObjView, ev: PointerEvent, el: HTMLElement) => void;
   onDuploMao?: (o: ObjView, r: DOMRect) => void;
@@ -93,25 +99,16 @@ export function AreaJogador(p: AreaProps) {
   const baixo = p.mao ? Math.max(zonasH + 4, Math.round(wm * PROPORCAO * .78) + 22) : zonasH;
   const campoW = Math.max(0, tam.w - 24 - (p.reservaDireita ?? 0));
   const campoH = Math.max(0, tam.h - topo - baixo);
+  // as posições escolhidas são proporcionais ao campo inteiro (a reserva à direita só vale para a
+  // arrumação padrão): é a mesma conta de quando a carta é solta, então ela fica onde foi solta
+  const livreW = Math.max(0, tam.w - 24);
   const wBase = p.compacta ? (p.duelo ? limitar(54, tam.h * .19, 84) : limitar(40, tam.h * .15, 62)) : limitar(62, tam.h * .17, 92);
 
   // quem tem posição escolhida fica onde a pessoa pôs; os outros seguem a arrumação padrão
   const posicoes = p.posicoes ?? {};
-  const livres = useMemo(() => p.objs.filter((o) => !posicoes[o.id]), [p.objs, posicoes]);
-  const arr = useMemo(() => {
-    const a = arrumar(livres, p.anexos, campoW, campoH, wBase, p.compacta ? 28 : 40);
-    const passoAnexo = Math.round(a.w * .2);
-    let z = 200;
-    for (const o of p.objs) {
-      const q = posicoes[o.id];
-      if (!q) continue;
-      const presos = p.anexos.get(o.id) ?? [];
-      const x = Math.round(q[0] * campoW), y = Math.round(q[1] * campoH);
-      presos.forEach((an, i) => a.pos.set(an.id, { x, y: y - (presos.length - i) * passoAnexo, z: z++ }));
-      a.pos.set(o.id, { x, y, z: z++ });
-    }
-    return a;
-  }, [livres, p.objs, p.anexos, posicoes, campoW, campoH, wBase, p.compacta]);
+  const ordemZ = p.ordemZ ?? {};
+  const arr = useMemo(() => arrumarCampo(p.objs, p.anexos, posicoes, ordemZ, { W: campoW, livreW, H: campoH, wBase, wMin: p.compacta ? 28 : 40 }),
+    [p.objs, p.anexos, posicoes, ordemZ, campoW, livreW, campoH, wBase, p.compacta]);
   const todosNoCampo = useMemo(() => [...p.objs, ...p.objs.flatMap((o) => p.anexos.get(o.id) ?? [])], [p.objs, p.anexos]);
 
   const contadores = Object.entries(j.counters).filter(([, n]) => n > 0);
@@ -157,21 +154,27 @@ export function AreaJogador(p: AreaProps) {
         </div>
       </header>
 
-      <div class="campo" aria-label="Campo de batalha">
+      <div class="campo" aria-label="Campo de batalha" data-larg={livreW} data-alt={campoH} data-carta-w={arr.w}
+        onPointerDown={p.onPegarCampoVazio ? (e) => { if (!(e.target as HTMLElement).closest('[data-obj]')) p.onPegarCampoVazio!(e, e.currentTarget as HTMLElement); } : undefined}>
         {todosNoCampo.map((o) => {
           const pos = arr.pos.get(o.id);
           if (!pos) return null;
           const c = p.combate(o);
-          const classe = [p.arrastando === o.id ? 'sendo-arrastada' : '', c?.inclinada ? 'inclinada' : '', c?.ativa ? 'combate-ativa' : ''].filter(Boolean).join(' ');
+          const selecionada = !!p.selecionadas && (p.selecionadas.has(o.id) || (o.attachedTo !== null && p.selecionadas.has(o.attachedTo)));
+          const classe = [p.arrastando === o.id ? 'sendo-arrastada' : '', c?.inclinada ? 'inclinada' : '', c?.ativa ? 'combate-ativa' : '', selecionada ? 'selecionada' : ''].filter(Boolean).join(' ');
           return (
             <Carta key={o.id} o={o} realce={p.realce(o)} selo={c?.selo} onClick={p.onCarta} onZoom={p.onZoom} onMenu={p.onMenuCarta}
               onPointerDown={p.onPegarCampo} classe={classe || undefined}
               estilo={{ left: `${pos.x}px`, top: `${pos.y}px`, zIndex: pos.z, '--w': `${arr.w}px` }} />
           );
         })}
-        {arr.leques.map((g, i) => <span key={i} class="grupo-n" style={{ left: `${g.x}px`, top: `${g.y}px` }}>×{g.n}</span>)}
+        {arr.leques.map((g, i) => {
+          // as do leque que foram postas noutro lugar não contam
+          const n = g.ids.filter((id) => !posicoes[id]).length;
+          return n > 1 && <span key={i} class="grupo-n" style={{ left: `${g.x}px`, top: `${g.y}px` }}>×{n}</span>;
+        })}
         {p.conjurando && (
-          <Carta o={p.conjurando.o} classe="conjurando" estilo={{ left: `${Math.round(p.conjurando.x * campoW)}px`, top: `${Math.round(p.conjurando.y * campoH)}px`, zIndex: 450, '--w': `${Math.round(arr.w * 1.1)}px` }} />
+          <Carta o={p.conjurando.o} classe="conjurando" estilo={{ left: `${p.conjurando.x * livreW}px`, top: `${p.conjurando.y * campoH}px`, zIndex: 450, '--w': `${arr.w}px` }} />
         )}
         {p.objs.length === 0 && !p.compacta && <p class="campo-vazio">Nenhum permanente</p>}
       </div>

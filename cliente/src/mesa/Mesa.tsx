@@ -28,6 +28,8 @@ import { useEfeitos } from './Efeitos.tsx';
 import { Setas, type Seta } from './Setas.tsx';
 import { MaoInicial } from './MaoInicial.tsx';
 import { Manual, type PegarCarta, type Tipo as TipoManual } from './Manual.tsx';
+import { moverCartas, posicaoAoSoltar, selecionarArea, useArrumar, type NovaPosicao } from './mover.ts';
+import { semConfirmadas } from './posicionar.ts';
 import { Paradas } from './Paradas.tsx';
 import { avisoPrioridade } from './prioridade.ts';
 import { NIVEL_PADRAO, nomeNivel } from '../../../bots/niveis.ts';
@@ -446,8 +448,12 @@ export function Mesa() {
     loja.manual(d.id, fila[0]);
     setFila(fila.slice(1));
   }, [d?.id, enviando, fila]);
-  // a confirmação do servidor substitui a posição local
-  useEffect(() => { setPosLocal({}); }, [e.posicoes]);
+  // a confirmação do servidor substitui a posição local; uma vista que chega antes dela (um bot
+  // jogando) não desfaz o que você acabou de soltar
+  useEffect(() => {
+    const minhas = new Set(v.battlefield.filter((o) => o.controller === eu).map((o) => String(o.id)));
+    setPosLocal((a) => semConfirmadas(a, e.posicoes, (id) => minhas.has(id)));
+  }, [e.posicoes]);
   const posicoes = useMemo(() => ({ ...e.posicoes, ...posLocal }), [e.posicoes, posLocal]);
 
   // índice de objetos visíveis
@@ -607,7 +613,9 @@ export function Mesa() {
     acompanharArrasto(ev, () => {
       const r0 = el.getBoundingClientRect();
       const w = el.offsetWidth, h = el.offsetHeight;
-      const dx = ev.clientX - r0.left, dy = ev.clientY - r0.top;
+      // ponto pego em fração da carta como ela aparece (com o hover da mão): vale para o fantasma e para a carta no campo
+      const fx = (ev.clientX - r0.left) / r0.width, fy = (ev.clientY - r0.top) / r0.height;
+      const dx = fx * w, dy = fy * h;
       const campo = document.querySelector('.area-eu .campo') as HTMLElement | null;
       const alvo = campo?.getBoundingClientRect() ?? null;
       const j = jogadasDe(o);
@@ -621,7 +629,7 @@ export function Mesa() {
         soltar: (x: number, y: number) => {
           if (dentro(alvo, x, y) && j.length) {
             mostrarFantasma(null); setArrastando(null);
-            const pos = alvo ? { x: Math.min(1, Math.max(0, (x - dx - alvo.left) / alvo.width)), y: Math.min(1, Math.max(0, (y - dy - alvo.top) / alvo.height)) } : undefined;
+            const pos = campo ? posicaoAoSoltar(campo, x, y, fx, fy) : undefined;
             jogar(o, new DOMRect(x - dx, y - dy, w, h), pos);
             return;
           }
@@ -670,31 +678,32 @@ export function Mesa() {
     return true;
   };
 
-  // mover uma permanente sua para outro lugar da sua área
+  // mover permanentes suas no seu campo (mover.ts): a carta pega com os anexos dela ou, se ela
+  // está na seleção, a seleção inteira; a posição vale na hora aqui e vai para a sala numa mensagem
   const pegarCampo = (o: ObjView, ev: PointerEvent, el: HTMLElement) => {
     if (pegar) return;
     if (pegarCombate(o, ev, el)) return;
-    acompanharArrasto(ev, () => {
-      const campo = el.closest('.campo') as HTMLElement;
-      const rc = campo.getBoundingClientRect();
-      const r0 = el.getBoundingClientRect();
-      const w = el.offsetWidth, h = el.offsetHeight;
-      // o centro da carta segue o ponteiro (vale também para a carta virada)
-      const cx = ev.clientX - (r0.left + r0.width / 2), cy = ev.clientY - (r0.top + r0.height / 2);
-      const canto = (x: number, y: number) => ({ x: x - cx - w / 2, y: y - cy - h / 2 });
-      const base = { o, w, alvo: rc, texto: '', valido: true, virada: o.tapped };
-      return {
-        inicio: () => { setMenu(null); setZoom(null); setArrastando(o.id); mostrarFantasma({ ...base, ...canto(ev.clientX, ev.clientY) }); },
-        mover: (x: number, y: number) => mostrarFantasma({ ...base, ...canto(x, y) }),
-        soltar: (x: number, y: number) => {
-          const c = canto(x, y);
-          const nx = Math.min(1, Math.max(0, (c.x - rc.left) / rc.width)), ny = Math.min(1, Math.max(0, (c.y - rc.top) / rc.height));
-          setPosLocal((a) => ({ ...a, [o.id]: [nx, ny] }));
-          loja.enviar({ t: 'posicao', obj: o.id, x: nx, y: ny });
-          mostrarFantasma(null); setArrastando(null);
-        },
-        cancelar: () => { mostrarFantasma(null); setArrastando(null); },
-      };
+    const dono = arrumar.dono(o.id) ?? o.id;
+    const guardar = arrumar.selecao.has(dono) ? [...arrumar.selecao] : [dono];
+    const mover = guardar.flatMap((id) => [...(anexos.get(id) ?? []).map((a) => a.id), id]);
+    moverCartas(ev, el, mover, guardar, {
+      inicio: () => { setMenu(null); setZoom(null); },
+      soltar: (novas: NovaPosicao[]) => {
+        if (!novas.length) return;
+        setPosLocal((a) => { const n = { ...a }; for (const q of novas) n[q.obj] = [q.x, q.y]; return n; });
+        arrumar.trazerParaFrente(novas.map((q) => q.obj));
+        loja.enviar(novas.length === 1 ? { t: 'posicao', ...novas[0] } : { t: 'posicao', lista: novas });
+      },
+    });
+  };
+  // botão apertado no espaço vazio do seu campo: retângulo de seleção (com Shift, soma à seleção);
+  // um clique sem arrastar desfaz a seleção
+  const pegarCampoVazio = (ev: PointerEvent, campo: HTMLElement) => {
+    if (pegar || v.gameOver) return;
+    const somar = ev.shiftKey;
+    selecionarArea(ev, campo, arrumar.dono, (ids) => {
+      if (ids === null) arrumar.limpar();
+      else { setMenu(null); arrumar.selecionar(ids, somar); }
     });
   };
 
@@ -832,6 +841,8 @@ export function Mesa() {
     }
     return m;
   }, [v.battlefield]);
+  // seleção por arrasto e ordem das cartas que você arrumou (só neste navegador)
+  const arrumar = useArrumar(objsPorJogador.get(eu), anexos);
   const fundoDe = (p: number) => {
     const deck = e.decks.find((x) => x.id === sala.assentos[p]?.deck);
     return deck ? urlFundo(deck.comandante) : null;
@@ -874,6 +885,9 @@ export function Mesa() {
         posicoes={posicoes}
         arrastando={arrastando}
         onPegarCampo={j.id === eu && !v.gameOver ? pegarCampo : undefined}
+        onPegarCampoVazio={j.id === eu && !v.gameOver ? pegarCampoVazio : undefined}
+        selecionadas={j.id === eu ? arrumar.selecao : undefined}
+        ordemZ={j.id === eu ? arrumar.ordemZ : undefined}
         onPegarMao={j.id === eu ? pegarMao : undefined}
         onDuploMao={j.id === eu ? jogar : undefined}
         onMenuCarta={menuCarta}
