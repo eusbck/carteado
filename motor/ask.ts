@@ -22,6 +22,23 @@ export function* ask<A extends Answer>(g: G, d: WithoutId<Decision>, validate?: 
   return a as A;
 }
 
+/**
+ * divisão neutra do dano de um atacante bloqueado por mais de uma criatura (ou com atropelar): dano letal
+ * em cada bloqueador, na ordem, e o resto no último recebedor (com atropelar, quem está sendo atacado).
+ * Soma sempre o dano todo; antes devolvia só os valores letais, que quase nunca somavam o poder.
+ */
+export function danoPadrao(d: Extract<Decision, { kind: 'damage' }>): number[] {
+  const assign = d.recipients.map(() => 0);
+  let resto = d.amount;
+  for (let i = 0; i < assign.length - 1 && resto > 0; i++) {
+    const n = Math.min(resto, d.lethal[i]);
+    assign[i] = n;
+    resto -= n;
+  }
+  if (assign.length) assign[assign.length - 1] += resto;
+  return assign;
+}
+
 /** resposta neutra, usada para quem saiu da partida e pelos testes */
 export function defaultAnswer(d: Decision): Answer {
   switch (d.kind) {
@@ -32,7 +49,7 @@ export function defaultAnswer(d: Decision): Answer {
     // quem tem exigência de ataque (CR 508.1d) ataca um alvo que a cumpre
     case 'attackers': return { kind: 'attackers', attacks: d.candidates.flatMap((c) => (c.required?.length ? [[c.obj, c.required[0]] as [ObjId, TargetRef]] : [])) };
     case 'blockers': return { kind: 'blockers', blocks: [] };
-    case 'damage': return { kind: 'damage', assign: d.lethal.slice() };
+    case 'damage': return { kind: 'damage', assign: danoPadrao(d) };
     case 'arrange': return { kind: 'arrange', placement: Object.fromEntries(d.items.map((i) => [i.id, d.destinations[0]])), order: d.items.map((i) => i.id) };
     case 'mulligan': return { kind: 'mulligan', keep: true };
   }
