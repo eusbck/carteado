@@ -481,5 +481,23 @@ Auditoria do bloqueio por cliques, caso a caso (testes em `testes/bloqueios.test
     (e de olhar até o fim do combate), não da busca longa, que fica só com o Magic God. É a configuração final.
   - Tempo: as comparações de combate passaram a parar no prazo (uma decisão da Cartomante tinha chegado a 6 s).
 - Testes: `testes/fase9-servidor.test.ts` (nomes sorteados diferentes e nunca o de uma pessoa; trocar nível ou deck mantém
-  o nome; nível e nome salvos com a sala depois de reiniciar, com a partida em andamento; fila com uma thread; a mesa
-  respondendo enquanto um Magic God pensa e o aviso "pensando").
+  o nome; nível e nome salvos com a sala depois de reiniciar, com a partida em andamento; com Iniciante, Difícil,
+  Cartomante e Magic God, o bot aceita o desfazer e a partida refeita depois de reiniciar é igual; fila com uma thread;
+  a mesa respondendo enquanto um Magic God pensa, com a linha principal livre, e o aviso "pensando").
+
+### Conferência da fase 9
+- Junção: as quatro branches dos subagentes entraram no `main` (com sua permissão); conflitos só em `Mesa.tsx` (imports),
+  `ferramentas/capturas.ts` e `ferramentas/cenarios.ts` (blocos de cada um, mantidos todos). O `bloquear` corrigido no
+  `fase9-a` entrou na versão nova do bot sem perda.
+- Suíte inteira depois da junção: 521 arquivos e 1170 testes passando; `npm run typecheck` sem erros.
+- `ferramentas/capturas.ts`: rodada completa com 94 capturas, conferidas imagem por imagem (por um subagente). Correções
+  que saíram da conferência: o roteiro ficou mais robusto depois da junção (mulligan quando a mão inicial não tem
+  terreno, resposta às janelas de escolha, ponto vazio de verdade no campo); no saguão o nome do bot não é mais cortado
+  ("UBIRAJARA · Intermediário"); a faixa de fases encolhe antes por causa do botão novo; em 4 jogadores a 1280 o
+  "Exílio" dos oponentes saía cortado; o aviso "Sua vez de…" quebra a linha em vez de cobrir a coluna; os avisos de
+  jogada não bloqueiam cliques e somem enquanto a janela de escolha está aberta (a mesa está esperando você, e eles
+  cobriam cartas da janela); "ROBSON está pensando…" continua na faixa a 1280 com a barra aberta.
+- `ferramentas/e2e.ts`: passou inteiro (1v1 com reinício do servidor, 4 pessoas, uma pessoa com três bots).
+- `ferramentas/humano-e-bots.ts` 1v1 contra um Magic God, pelas threads de pensar: fim no turno 20, nenhum clique extra
+  no turno do bot, nenhum vazamento; o Magic God pensou 67 decisões, média 2,5 s e máximo 6,3 s, sem espera na fila;
+  pico de memória do processo 303 MB (heap das threads de pensar 89 MB).
