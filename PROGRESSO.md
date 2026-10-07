@@ -441,7 +441,8 @@ Auditoria do bloqueio por cliques, caso a caso (testes em `testes/bloqueios.test
     65%). Só lê o que é público. Como a leitura sozinha não deu vantagem nos testes (contra bots, que não guardam mana
     de propósito, "passou com terrenos desvirados" quase sempre era falso), a Cartomante também olha mais longe que o
     Difícil: na fase principal antes do combate do próprio turno, cada jogada é simulada até o fim do combate (ataques
-    e bloqueios pela heurística), e usa 6 mundos em vez de 3 (até 180 simulações, dentro dos 3 s).
+    e bloqueios pela heurística); usa 6 mundos em vez de 3 (até 180 simulações) e uma versão leve da busca do Magic God
+    (as 2 melhores jogadas e "passar" jogadas até o fim do turno seguinte), tudo dentro dos 3 s.
   - Magic God: Cartomante mais a busca de `bots/busca.ts` (Monte Carlo com informação oculta): pré-seleção rasa como a da
     Cartomante, com mais mundos (8) e até metade do tempo; depois as 3 melhores candidatas e "passar" são jogadas até o
     fim do turno seguinte em mundos sorteados a cada rodada (todos jogam terreno e mágicas, atacam e bloqueiam com
@@ -468,8 +469,12 @@ Auditoria do bloqueio por cliques, caso a caso (testes em `testes/bloqueios.test
     (62,5%); Cartomante 18 × 22 Difícil (só a leitura da mesa e mais simulações não bastaram).
   - 2ª rodada (Iniciante errando mais; Cartomante olhando até o fim do combate; leitura de instantânea mais exigente):
     Fácil 22 × 17 Iniciante (55%); Cartomante 22 × 18 Difícil (55%).
-  - 3ª rodada: Iniciante sem os ataques "seguros" e quase sem o bloqueio de graça; Cartomante com 6 mundos; Magic God
-    com a pré-seleção no mínimo igual à da Cartomante.
+  - 3ª rodada (Iniciante sem os ataques "seguros" e quase sem o bloqueio de graça; Cartomante com 6 mundos; Magic God
+    com a pré-seleção no mínimo igual à da Cartomante): Fácil 31 × 5 Iniciante (77,5%, 4 empates); Intermediário 26 ×
+    14 Fácil (65%); Magic God 15 × 9 Cartomante (62,5%, 24 partidas); Cartomante 20 × 20 Difícil.
+  - O que separou o Magic God da Cartomante foi olhar até o fim do turno seguinte; então a Cartomante ganhou essa busca
+    numa versão leve (2 candidatas em vez de 3, 60% dos 3 s na pré-seleção e o resto nas jogadas longas), e o combate
+    da Cartomante e do Magic God passou a ser comparado em 5 mundos (o Difícil, 3).
 - Testes: `testes/fase9-servidor.test.ts` (nomes sorteados diferentes e nunca o de uma pessoa; trocar nível ou deck mantém
   o nome; nível e nome salvos com a sala depois de reiniciar, com a partida em andamento; fila com uma thread; a mesa
   respondendo enquanto um Magic God pensa e o aviso "pensando").
