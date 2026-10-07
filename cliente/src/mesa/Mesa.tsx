@@ -381,10 +381,13 @@ export function Mesa() {
   const recusas = useRef(e.recusa);
   useEffect(() => { if (e.recusa !== recusas.current) { recusas.current = e.recusa; tremer(ultimoToque.current); } }, [e.recusa]);
 
-  // "passar sozinho sem jogada" segue o auxílio das cartas jogáveis (o servidor é quem passa)
+  // "passar sozinho sem jogada" segue o auxílio das cartas jogáveis (o servidor é quem passa).
+  // Manda uma vez por mudança: um servidor de antes da fase 8 descarta o campo e não pode virar um laço
+  const pularEnviado = useRef<boolean | null>(null);
   useEffect(() => {
     const p = e.paradas;
-    if (!p || (p.skipWhenNothing ?? true) === aux.jogaveis) return;
+    if (!p || (p.skipWhenNothing ?? true) === aux.jogaveis || pularEnviado.current === aux.jogaveis) return;
+    pularEnviado.current = aux.jogaveis;
     const novo = { ...p, skipWhenNothing: aux.jogaveis };
     loja.mudar({ paradas: novo });
     loja.enviar({ t: 'paradas', paradas: novo });
