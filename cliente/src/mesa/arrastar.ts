@@ -39,8 +39,8 @@ export interface Gesto {
   cancelar?: () => void;
 }
 
-/** chame no pointerdown; devolve sem fazer nada se não for o botão principal */
-export function acompanharArrasto(ev: PointerEvent, gesto: () => Gesto): void {
+/** chame no pointerdown; devolve sem fazer nada se não for o botão principal. `semArrasto`: soltou sem passar do limite (foi um clique) */
+export function acompanharArrasto(ev: PointerEvent, gesto: () => Gesto, semArrasto?: () => void): void {
   if (ev.button !== 0 || !ev.isPrimary) return;
   const x0 = ev.clientX, y0 = ev.clientY;
   let g: Gesto | null = null;
@@ -57,7 +57,7 @@ export function acompanharArrasto(ev: PointerEvent, gesto: () => Gesto): void {
     removeEventListener('pointermove', mover);
     removeEventListener('pointerup', fim);
     removeEventListener('pointercancel', cancelar);
-    if (!g) return;
+    if (!g) { semArrasto?.(); return; }
     // o navegador ainda manda um clique depois do arrasto: esse não vale
     const engolir = (c: MouseEvent) => { c.stopPropagation(); c.preventDefault(); };
     addEventListener('click', engolir, { capture: true, once: true });

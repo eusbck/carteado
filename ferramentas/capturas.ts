@@ -29,6 +29,16 @@ mkdirSync(SAIDA, { recursive: true });
   banco.fechar();
   if (prontas.length < 2) throw new Error(`cenários de combate não ficaram prontos: ${prontas.join(', ')}`);
 }
+// --- fase 9: posicionar e seleção por arrasto ---
+// sala pronta com o campo de Ana cheio, na fase principal dela (ARRUM). CAPTURAS_SO=posicionar roda só este bloco.
+const SO_POSICIONAR = process.env.CAPTURAS_SO === 'posicionar';
+{
+  const banco = new Banco(join(DADOS, 'jogo.sqlite'));
+  const prontas = gerarSalas(banco, ['ARRUM']);
+  banco.fechar();
+  if (!prontas.length) throw new Error('cenário de arrumar o campo (ARRUM) não ficou pronto');
+}
+// --- fim (fase 9: posicionar) ---
 
 const servidor = spawn(process.execPath, [join(RAIZ, 'servidor', 'index.ts')], {
   env: { ...process.env, PORTA: String(PORTA), DADOS, SENHA_ACESSO: 'teste-capturas' },
@@ -150,6 +160,126 @@ async function jogarUmPouco(p: Page, rodadas: number): Promise<void> {
     await clicar(p, 'Passar até o fim do turno');
   }
 }
+
+// --- fase 9: posicionar e seleção por arrasto ---
+/**
+ * Itens 1.3 e 2.4: carta pega pelo canto e solta (a mira marca onde o ponteiro soltou), retângulo de
+ * seleção, grupo selecionado e grupo movido, em 1280×800 e 1920×1080. Também mede: o ponto pego tem
+ * de ficar sob o ponteiro (menos de 0,5 px) e o grupo anda junto sem mexer nas outras cartas.
+ */
+async function capturasPosicionar(): Promise<void> {
+  type Info = { x: number; y: number; virada: boolean; sel: boolean; vis: { x: number; y: number; w: number; h: number } };
+  const cartas = (pg: Page) => pg.evaluate(() => Object.fromEntries([...document.querySelectorAll('.area-eu .campo > .carta[data-obj]')].map((e) => {
+    const h = e as HTMLElement, r = h.getBoundingClientRect();
+    return [h.dataset.obj!, { x: parseFloat(h.style.left), y: parseFloat(h.style.top), virada: h.classList.contains('virada'), sel: h.classList.contains('selecionada'), vis: { x: r.left, y: r.top, w: r.width, h: r.height } }];
+  }))) as Promise<Record<string, Info>>;
+  // a mira faz o papel do ponteiro (a captura de tela não mostra o mouse)
+  const mira = (pg: Page, x: number, y: number) => pg.evaluate(([mx, my]) => {
+    let m = document.getElementById('mira-captura');
+    if (!m) {
+      m = document.createElement('div');
+      m.id = 'mira-captura';
+      m.style.cssText = 'position:fixed;z-index:9999;pointer-events:none;width:24px;height:24px;margin:-12px 0 0 -12px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1.5px #000,inset 0 0 0 1.5px #000;background:radial-gradient(circle,#ff3b3b 0 3px,transparent 3.5px)';
+      document.body.appendChild(m);
+    }
+    m.style.left = `${mx}px`;
+    m.style.top = `${my}px`;
+  }, [x, y]);
+  const semMira = (pg: Page) => pg.evaluate(() => document.getElementById('mira-captura')?.remove());
+  const arrastar = async (pg: Page, x0: number, y0: number, x1: number, y1: number, antesDeSoltar?: () => Promise<void>) => {
+    await pg.mouse.move(x0, y0);
+    await pg.waitForTimeout(300);
+    await pg.mouse.down();
+    for (let k = 1; k <= 14; k++) await pg.mouse.move(x0 + (x1 - x0) * k / 14, y0 + (y1 - y0) * k / 14);
+    if (antesDeSoltar) await antesDeSoltar();
+    await pg.mouse.up();
+    await pg.waitForTimeout(700);
+  };
+
+  for (const [largura, altura] of [[1280, 800], [1920, 1080]]) {
+    const c = await navegador.newContext({ viewport: { width: largura, height: altura } });
+    c.setDefaultTimeout(20000);
+    const pg = await c.newPage();
+    paginas.push(pg);
+    pg.on('pageerror', (e) => console.error(`[navegador] ${e.message}`));
+    await pg.goto(URL);
+    await pg.evaluate(() => localStorage.setItem('commander-da-mesa:sala', JSON.stringify({ codigo: 'ARRUM', token: 'token-ARRUM' })));
+    await pg.getByLabel('Senha do servidor').fill('teste-capturas');
+    await pg.getByRole('button', { name: 'Entrar' }).click();
+    await pg.locator('.mesa').waitFor();
+    await pg.waitForTimeout(1200);
+    const campo = (await pg.locator('.area-eu .campo').boundingBox())!;
+    // começa da arrumação padrão (a rodada da outra tela deixou cartas postas): clique direito num ponto vazio do campo
+    const vazio = await pg.evaluate(() => {
+      const c = document.querySelector('.area-eu .campo')!, r = c.getBoundingClientRect();
+      for (const fy of [.5, .3, .7, .15, .85]) for (const fx of [.6, .5, .7, .4, .8]) {
+        const x = r.left + r.width * fx, y = r.top + r.height * fy;
+        if (document.elementFromPoint(x, y) === c) return { x, y };
+      }
+      return null;
+    });
+    if (!vazio) throw new Error(`campo sem espaço vazio (${largura})`);
+    await pg.mouse.click(vazio.x, vazio.y, { button: 'right' });
+    await pg.locator('.menu-acoes').getByText('Reorganizar meu campo').click();
+    await pg.waitForTimeout(600);
+    const sufixo = `-${largura}`;
+
+    // 1.3: pega uma criatura pelo canto de cima à esquerda e solta mais à direita e abaixo
+    let c0 = await cartas(pg);
+    const [id, carta] = Object.entries(c0).filter(([, x]) => !x.virada).sort((a, b) => a[1].y - b[1].y || a[1].x - b[1].x)[0];
+    await pg.mouse.move(carta.vis.x + 6, carta.vis.y + 6);
+    await pg.waitForTimeout(300);
+    const v0 = (await cartas(pg))[id].vis;
+    const gx = carta.vis.x + 6, gy = carta.vis.y + 6;
+    const fx = (gx - v0.x) / v0.w, fy = (gy - v0.y) / v0.h;
+    const tx = campo.x + campo.width * .42, ty = campo.y + campo.height * .38;
+    await arrastar(pg, gx, gy, tx, ty, async () => { await mira(pg, tx, ty); await foto(pg, `40-posicionar-pega-pelo-canto${sufixo}`); });
+    const v1 = (await cartas(pg))[id];
+    const erro = [v1.vis.x + fx * v1.vis.w - tx, v1.vis.y + fy * v1.vis.h - ty];
+    if (Math.hypot(erro[0], erro[1]) > 0.5) throw new Error(`carta solta fora do ponteiro (${largura}): ${erro.map((n) => n.toFixed(2)).join(', ')} px`);
+    const outras = Object.keys(c0).filter((x) => x !== id);
+    const c1 = await cartas(pg);
+    if (outras.some((x) => c1[x].x !== c0[x].x || c1[x].y !== c0[x].y)) throw new Error(`soltar a carta mexeu nas outras (${largura})`);
+    await foto(pg, `40b-posicionar-solta${sufixo}`);
+    console.log(`   posicionar ${largura}: ponto pego a ${erro.map((n) => n.toFixed(2)).join(', ')} px do ponteiro`);
+    await semMira(pg);
+
+    // 2.4: retângulo do espaço vazio embaixo à direita até o meio do campo: pega os terrenos e a carta que
+    // acabou de ser posta (a criatura de cima fica de fora)
+    c0 = await cartas(pg);
+    const ax = campo.x + campo.width * .58, ay = campo.y + campo.height * .97;
+    await arrastar(pg, ax, ay, campo.x + 6, campo.y + campo.height * .45, async () => {
+      if (!await pg.locator('.retangulo-selecao').count() || !await pg.locator('.area-eu .carta.na-selecao').count()) throw new Error(`retângulo de seleção não apareceu (${largura})`);
+      await foto(pg, `41-selecao-retangulo${sufixo}`);
+    });
+    await pg.mouse.move(campo.x + campo.width * .6, campo.y + 4);
+    c0 = await cartas(pg);
+    const sel = Object.keys(c0).filter((x) => c0[x].sel);
+    if (sel.length < 3) throw new Error(`seleção com poucas cartas (${largura}): ${sel.length}`);
+    await foto(pg, `41b-selecao-grupo${sufixo}`);
+    // arrasta uma das selecionadas pelo canto: todas andam juntas
+    const pega = c0[sel[sel.length - 1]];
+    const dx = campo.width * .18, dy = -campo.height * .15;
+    await arrastar(pg, pega.vis.x + 8, pega.vis.y + 8, pega.vis.x + 8 + dx, pega.vis.y + 8 + dy);
+    await pg.mouse.move(campo.x + campo.width * .6, campo.y + 4);
+    await pg.waitForTimeout(300);
+    const c2 = await cartas(pg);
+    const desvio = Math.max(...sel.map((x) => Math.hypot(c2[x].x - c0[x].x - dx, c2[x].y - c0[x].y - dy)));
+    if (desvio > 0.5 || sel.some((x) => !c2[x].sel)) throw new Error(`grupo não andou junto (${largura}): desvio de ${desvio.toFixed(2)} px`);
+    if (Object.keys(c0).filter((x) => !sel.includes(x)).some((x) => c2[x].x !== c0[x].x || c2[x].y !== c0[x].y)) throw new Error(`mover o grupo mexeu nas outras (${largura})`);
+    await foto(pg, `41c-selecao-grupo-movido${sufixo}`);
+    console.log(`   seleção ${largura}: ${sel.length} cartas andaram juntas (desvio máximo ${desvio.toFixed(2)} px)`);
+    await c.close();
+  }
+}
+if (SO_POSICIONAR) {
+  try { await capturasPosicionar(); } catch (e) {
+    for (const [i, p] of paginas.entries()) if (!p.isClosed()) await p.screenshot({ path: join(SAIDA, `falha-${i}.png`) }).catch(() => {});
+    throw e;
+  } finally { await navegador.close(); servidor.kill(); }
+  process.exit(0);
+}
+// --- fim (fase 9: posicionar) ---
 
 try {
   // ---------------- quatro jogadores
@@ -482,6 +612,10 @@ try {
   await bloqueio.screenshot({ path: join(SAIDA, '31b-dano.png') });
   console.log('captura: 31b-dano.png');
   await bloqueio.context().close();
+
+  // --- fase 9: posicionar e seleção por arrasto ---
+  await capturasPosicionar();
+  // --- fim (fase 9: posicionar) ---
 
 } catch (e) {
   for (const [i, p] of paginas.entries()) if (!p.isClosed()) await p.screenshot({ path: join(SAIDA, `falha-${i}.png`) }).catch(() => {});

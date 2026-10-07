@@ -315,14 +315,23 @@ export class Sala {
         } else if (m.limpar) {
           for (const id of Object.keys(pos)) if (!g.state.objects[Number(id)] || controllerOf(g.g, Number(id)) === i) delete pos[id];
         } else {
-          const obj = Number(m.obj);
+          // uma carta, ou várias de uma vez (grupo selecionado): vale tudo ou nada
+          const itens: unknown[] = m.lista !== undefined ? (Array.isArray(m.lista) ? m.lista : []) : [{ obj: m.obj, x: m.x, y: m.y }];
+          if (!itens.length || itens.length > 300) return 'Posição inválida';
           const ok = (n: unknown) => typeof n === 'number' && Number.isFinite(n) && n >= -0.05 && n <= 1.05;
-          if (!Number.isInteger(obj) || !ok(m.x) || !ok(m.y)) return 'Posição inválida';
-          const o = g.state.objects[obj];
-          if (!o || o.zone !== 'battlefield' || controllerOf(g.g, obj) !== i) return 'Você só arruma as suas permanentes';
+          const novas: [string, [number, number]][] = [];
+          for (const it of itens) {
+            const q = (it ?? {}) as { obj?: unknown; x?: unknown; y?: unknown };
+            const obj = Number(q.obj);
+            if (!Number.isInteger(obj) || !ok(q.x) || !ok(q.y)) return 'Posição inválida';
+            const o = g.state.objects[obj];
+            if (!o || o.zone !== 'battlefield' || controllerOf(g.g, obj) !== i) return 'Você só arruma as suas permanentes';
+            // 4 casas: menos de 0,2 px numa tela grande (a carta fica onde foi solta)
+            novas.push([String(obj), [Math.round((q.x as number) * 10000) / 10000, Math.round((q.y as number) * 10000) / 10000]]);
+          }
           // limpa as entradas de objetos que já saíram do campo
           for (const id of Object.keys(pos)) if (g.state.objects[Number(id)]?.zone !== 'battlefield') delete pos[id];
-          pos[String(obj)] = [Math.round(m.x! * 1000) / 1000, Math.round(m.y! * 1000) / 1000];
+          for (const [id, q] of novas) pos[id] = q;
         }
         // só visual: grava e mostra a todos na hora, sem passar pela condução da partida
         this.salvar();

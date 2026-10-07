@@ -10,8 +10,8 @@ export interface Arrumacao {
   /** largura das cartas, em pixels */
   w: number;
   pos: Map<ObjId, Posicao>;
-  /** contagem dos leques com mais de uma carta, para o selo "×n" */
-  leques: { x: number; y: number; n: number }[];
+  /** contagem dos leques com mais de uma carta, para o selo "×n" (com as cartas de cada um) */
+  leques: { x: number; y: number; n: number; ids: ObjId[] }[];
 }
 
 const PROPORCAO = 88 / 63;
@@ -55,7 +55,7 @@ function tentar(cima: Peca[], baixo: Peca[], W: number, H: number, w: number): {
     const topoCarta = base - (p.objs[0].tapped ? w : h);
     p.anexos.forEach((a, i) => colocar(a, x, topoCarta - (p.anexos.length - i) * passoAnexo));
     p.objs.forEach((o, i) => colocar(o, x + i * passoLeque, topoCarta));
-    if (p.objs.length > 1) leques.push({ x: x - 4, y: topoCarta - 8, n: p.objs.length });
+    if (p.objs.length > 1) leques.push({ x: x - 4, y: topoCarta - 8, n: p.objs.length, ids: p.objs.map((o) => o.id) });
   };
 
   // de cima para baixo
@@ -98,6 +98,30 @@ function tentar(cima: Peca[], baixo: Peca[], W: number, H: number, w: number): {
   }
   const cabe = fundoCima + (cima.length && baixo.length ? gap : 0) <= topoBaixo && topoBaixo >= 0;
   return { arr: { w, pos, leques }, cabe };
+}
+
+/**
+ * O campo de um jogador: a arrumação padrão, com as permanentes que a pessoa pôs num lugar (x e y de
+ * 0 a 1 do campo inteiro, `livreW` × `H`) por cima. A arrumação conta todas as permanentes, inclusive
+ * as postas num lugar (o espaço delas fica guardado): assim mover uma carta não empurra as outras
+ * nem muda o tamanho delas. As postas ficam por cima, na ordem de `ordemZ` (a maior por cima).
+ */
+export function arrumarCampo(objs: ObjView[], anexos: Map<ObjId, ObjView[]>, posicoes: Record<string, [number, number]>, ordemZ: Record<string, number>,
+  m: { W: number; livreW: number; H: number; wBase: number; wMin: number }): Arrumacao {
+  const a = arrumar(objs, anexos, m.W, m.H, m.wBase, m.wMin);
+  const passoAnexo = Math.round(a.w * .2);
+  // a carta virada gira em torno do centro; os anexos ficam acima do canto dela como está, igual à arrumação
+  const giro = (o: ObjView) => (o.tapped ? (Math.round(a.w * PROPORCAO) - a.w) / 2 : 0);
+  let z = 200;
+  const postas = objs.filter((o) => posicoes[o.id]).sort((p, q) => (ordemZ[p.id] ?? 0) - (ordemZ[q.id] ?? 0));
+  for (const o of postas) {
+    const q = posicoes[o.id];
+    const presos = anexos.get(o.id) ?? [];
+    const x = q[0] * m.livreW, y = q[1] * m.H;
+    presos.forEach((an, i) => a.pos.set(an.id, { x: x - giro(o) + giro(an), y: y + giro(o) - giro(an) - (presos.length - i) * passoAnexo, z: z++ }));
+    a.pos.set(o.id, { x, y, z: z++ });
+  }
+  return a;
 }
 
 export function arrumar(objs: ObjView[], anexos: Map<ObjId, ObjView[]>, W: number, H: number, wBase: number, wMin: number): Arrumacao {
