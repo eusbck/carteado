@@ -329,7 +329,7 @@ export class HeuristicBot {
       const mv = manaValue(g, a.obj!);
       if (info.instante && !isCreature(g, a.obj!)) return this.chance(0.1) ? mv : -1;
       if (isCreature(g, a.obj!)) return 30 + mv;
-      if (!ehPermanente(g, a.obj!)) return this.chance(0.4) ? 10 + mv : -1;
+      if (!ehPermanente(g, a.obj!)) return this.chance(0.25) ? 10 + mv : -1;
       return 20 + mv;
     };
     const opcoes = acoes.map((a) => ({ a, w: peso(a) })).filter((x) => x.w >= 0).sort((x, y) => y.w - x.w);
@@ -804,7 +804,8 @@ function atacarObvio(d: D<'attackers'>, g: G, eu: PlayerId, ok: (a: Answer) => b
   for (const c of d.candidates) {
     if (c.required?.length) { ataques.push([c.obj, c.required[0]]); continue; }
     if (power(g, c.obj) <= 0 || next(rng) < esquece) continue;
-    const livres = c.targets.filter((t, i) => t.kind === 'player' && !(c.costs?.[i] ?? 0) && bloqueadoresDe(g, t.id, c.obj).every((b) => !mata(g, b, c.obj)));
+    // óbvio: ninguém do outro lado pode bloquear esta criatura
+    const livres = c.targets.filter((t, i) => t.kind === 'player' && !(c.costs?.[i] ?? 0) && bloqueadoresDe(g, t.id, c.obj).length === 0);
     if (!livres.length) continue;
     livres.sort((a, b) => s.players[a.id].life - s.players[b.id].life);
     ataques.push([c.obj, livres[0]]);
@@ -862,9 +863,10 @@ function bloquearObvio(d: D<'blockers'>, g: G, eu: PlayerId, ok: (a: Answer) => 
   const usados = new Set<ObjId>();
   const blocks: [ObjId, ObjId][] = [];
   const podem = (a: ObjId) => d.candidates.filter((c) => c.canBlock.includes(a) && !usados.has(c.obj)).map((c) => c.obj);
+  // bloqueio "de graça" (mata e sobrevive): às vezes nem vê
   for (const a of atacantes) {
     const b = podem(a).find((b) => mata(g, b, a) && !mata(g, a, b));
-    if (b !== undefined && next(rng) < 0.6) { blocks.push([b, a]); usados.add(b); }
+    if (b !== undefined && next(rng) < 0.3) { blocks.push([b, a]); usados.add(b); }
   }
   let entrando = atacantes.filter((a) => !blocks.some(([, x]) => x === a)).reduce((t, a) => t + Math.max(0, power(g, a)), 0);
   for (const a of atacantes) {
