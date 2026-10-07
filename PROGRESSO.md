@@ -489,7 +489,8 @@ Auditoria do bloqueio por cliques, caso a caso (testes em `testes/bloqueios.test
 - Junção: as quatro branches dos subagentes entraram no `main` (com sua permissão); conflitos só em `Mesa.tsx` (imports),
   `ferramentas/capturas.ts` e `ferramentas/cenarios.ts` (blocos de cada um, mantidos todos). O `bloquear` corrigido no
   `fase9-a` entrou na versão nova do bot sem perda.
-- Suíte inteira depois da junção: 521 arquivos e 1170 testes passando; `npm run typecheck` sem erros.
+- Suíte inteira depois da junção: 521 arquivos e 1170 testes passando; na rodada final, com os últimos ajustes, 1174
+  testes passando; `npm run typecheck` sem erros.
 - `ferramentas/capturas.ts`: rodada completa com 94 capturas, conferidas imagem por imagem (por um subagente). Correções
   que saíram da conferência: o roteiro ficou mais robusto depois da junção (mulligan quando a mão inicial não tem
   terreno, resposta às janelas de escolha, ponto vazio de verdade no campo); no saguão o nome do bot não é mais cortado
@@ -529,6 +530,19 @@ Tempo por decisão nas baterias (um processo por partida, sem as threads do serv
 | Difícil | 139 ms | 466 ms | 3,9 s | 3 s |
 | Cartomante | (rodando) | | | 3 s |
 | Magic God | (rodando) | | | 6 s |
+
+Processador e memória numa partida de 4 jogadores com três Magic Gods, pelo servidor e as threads de pensar
+(`node ferramentas/humano-e-bots.ts medir3mg 4p magicgod,magicgod,magicgod`; fim no turno 49, 20 min, nenhum clique
+extra, nenhum vazamento):
+- processador do processo inteiro: em média 99% de uma thread, 8% das 12 threads do notebook (numa mesa só um bot pensa
+  por vez, então a segunda thread fica livre para outra sala);
+- memória do processo: pico de 365 MB; média por quarto da partida 277 → 320 → 358 → 339 MB (sobe no começo, com as
+  cartas carregadas nas threads, e para de crescer); heap das threads de pensar no máximo 105 MB, longe do teto de
+  448 MB por thread;
+- Magic God: 295 decisões pensadas, média 4,0 s, máximo 6,3 s, nenhuma espera na fila.
+
+Os números de partida ficam como estão (2 threads, tetos de 0,3/0,5/2/3/3/6 s): a medição não mostrou necessidade de
+menos, e mais tempo deixaria os bots altos lentos para jogar contra.
 
 "Pensaram": decisões com mais de 5 ms (as óbvias saem antes). O teto é conferido entre uma simulação e outra; o máximo
 passa dele quando uma simulação sozinha é longa (campo cheio) e com a máquina ocupada pelas baterias. No servidor, pela
