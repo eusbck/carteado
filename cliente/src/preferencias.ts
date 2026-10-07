@@ -25,26 +25,32 @@ export const NIVEIS: { id: Nivel; nome: string; descricao: string }[] = [
 export type Auxilios = Record<Auxilio, boolean>;
 const NENHUM: Auxilios = { jogaveis: false, alvos: false, terrenos: false, avisos: false, pagarAuto: false };
 
-export type Som = 'turno' | 'dano' | 'vida';
+/** turnoMeu: começou o seu turno; turnoAdversario: começou o turno de outro jogador */
+export type Som = 'turnoMeu' | 'turnoAdversario' | 'dano' | 'vida';
 
 export interface Preferencias {
   nivel: Nivel;
   /** as caixas do nível Personalizado */
   personalizado: Auxilios;
-  /** volume geral, de 0 a 1 */
+  /** volume dos efeitos sonoros, de 0 a 1 */
   volume: number;
   sons: Record<Som, boolean>;
+  /** música de fundo da mesa (cliente/src/musica.ts) e o volume dela, de 0 a 1, separado dos efeitos */
+  musica: boolean;
+  volumeMusica: number;
   /** tremida, brilho, números flutuando, ataques avançando, cartas indo para o cemitério */
   efeitos: boolean;
 }
 
 const CHAVE = 'commander-da-mesa:preferencias';
-const PADRAO: Preferencias = { nivel: 'real', personalizado: { ...NENHUM }, volume: 0.7, sons: { turno: true, dano: true, vida: true }, efeitos: true };
+const PADRAO: Preferencias = { nivel: 'real', personalizado: { ...NENHUM }, volume: 0.7, sons: { turnoMeu: true, turnoAdversario: true, dano: true, vida: true }, musica: true, volumeMusica: 0.4, efeitos: true };
 
 function ler(): Preferencias {
   try {
     const s = JSON.parse(localStorage.getItem(CHAVE) ?? '{}') as Partial<Preferencias> & { pagarAuto?: boolean };
-    const p: Preferencias = { ...PADRAO, ...s, personalizado: { ...NENHUM, ...s.personalizado }, sons: { ...PADRAO.sons, ...s.sons } };
+    // até a fase 8 havia um som só para a troca de turno: quem o desligou fica com os dois desligados
+    const { turno, ...sons } = (s.sons ?? {}) as Partial<Record<Som | 'turno', boolean>>;
+    const p: Preferencias = { ...PADRAO, ...s, personalizado: { ...NENHUM, ...s.personalizado }, sons: { ...PADRAO.sons, ...(turno === false ? { turnoMeu: false, turnoAdversario: false } : {}), ...sons } };
     // da fase 7: quem tinha ligado "pagar automaticamente por padrão" continua pagando sozinho
     if (!s.nivel && s.pagarAuto) { p.nivel = 'personalizado'; p.personalizado = { ...NENHUM, pagarAuto: true }; }
     if (!NIVEIS.some((n) => n.id === p.nivel)) p.nivel = 'real';

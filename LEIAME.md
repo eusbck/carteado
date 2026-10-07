@@ -6,7 +6,9 @@ Jogo de Commander online e privado para o grupo, com as regras aplicadas pelo se
 ## Rodar no seu computador
 
 Precisa do Node.js 24 ou mais novo. A pasta `jogo/` tem de ficar ao lado de `cartas/` (as
-imagens são lidas de lá; nada é copiado).
+imagens das cartas são lidas de lá; nada é copiado). A arte dos comandantes para o fundo da mesa,
+em qualidade maior, já vem baixada em `gerado/artes/` (`node ferramentas/baixar-artes.ts` baixa de
+novo da Scryfall, se um deck novo entrar).
 
 ```
 cd jogo
@@ -67,8 +69,11 @@ janela mostra o endereço `https://` e a senha de acesso para mandar ao grupo. D
      (virar, marcadores, mover); no seu campo vazio, desvirar tudo, criar ficha e marcadores de jogador.
    - A faixa no meio da mesa mostra o turno, as cinco fases com as etapas e o botão Passar. Clicar
      numa etapa liga ou desliga a parada nela; "Paradas" na barra lateral tem todas as opções.
-   - "Configurações" também tem o volume, os sons (passar o turno, dano, ganhar vida) e os efeitos
-     visuais, que valem em qualquer sala.
+   - "Configurações" também tem o volume dos efeitos, os sons (começo do seu turno, que chama
+     atenção; começo do turno de um adversário, mais discreto; dano; ganhar vida; cada um com um
+     botão para ouvir) e os efeitos visuais, que valem em qualquer sala, e a música de fundo, com
+     volume próprio. A música começa ligada e baixa, e só toca depois do primeiro clique ou tecla na
+     página (regra do navegador).
    - A barra lateral recolhe (último botão) e abre de novo; as decisões aparecem à direita da mesa.
 5. Todas as cartas dos sete decks têm o efeito automatizado. O ajuste manual continua disponível
    para corrigir alguma situação à mão, só quando você tem prioridade, e todo ajuste aparece no
@@ -89,5 +94,14 @@ Se a conexão cair ou o servidor reiniciar, a página reconecta sozinha e volta 
 | `node ferramentas/capturas.ts` | capturas de tela da interface em `.cache/capturas/` |
 | `node ferramentas/e2e.ts` | partidas de ponta a ponta com navegadores (1v1, 4 jogadores, reinício do servidor) |
 | `node ferramentas/cobertura.ts` | atualiza `COBERTURA.md` |
+| `node ferramentas/baixar-artes.ts` | baixa da Scryfall a arte dos comandantes em `gerado/artes/` (uma vez; `--forcar` baixa de novo) |
 
 O progresso das fases está em `PROGRESSO.md`.
+
+## Créditos
+
+- Música da mesa: "The Snow Queen", de Kevin MacLeod (incompetech.com), licenciada sob Creative
+  Commons: By Attribution 4.0 (https://creativecommons.org/licenses/by/4.0/). Fonte, arquivo
+  original e o que foi alterado em `cliente/src/musica/CREDITOS.md`.
+- Imagens e artes das cartas: Scryfall (https://scryfall.com); as artes são dos seus ilustradores e
+  da Wizards of the Coast. A origem de cada arte de comandante está em `gerado/artes/fontes.json`.

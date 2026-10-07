@@ -7,7 +7,7 @@ import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'preact/ho
 import type { StopSettings } from '../../../motor/autopass.ts';
 import type { Decision, ManualAction, ObjId, PaymentSource, PriorityAction, Step, TargetRef } from '../../../motor/types.ts';
 import type { GameView, ObjView, PlayerView } from '../../../motor/view.ts';
-import { nomeCarta, traduzir, urlArte, urlImagem } from '../cartas.ts';
+import { nomeCarta, traduzir, urlFundo, urlImagem } from '../cartas.ts';
 import { IconeAjuste, IconeConceder, IconeRecolher as IconeSeta, IconeConfig, IconeDesfazer, IconeFimTurno, IconeParadas, IconePassar, IconeRecolher, IconeRegistro, IconeSair, Marca } from '../icones.tsx';
 import { loja, useLoja } from '../loja.ts';
 import { reservaPaga } from '../mana.ts';
@@ -15,7 +15,9 @@ import { Janela } from '../Janela.tsx';
 import { AUXILIOS, auxiliosAtivos, auxiliosDoNivel, mudarPreferencias, NIVEIS, usePreferencias, type Auxilios, type Preferencias } from '../preferencias.ts';
 import { ETAPAS, FASES } from '../pt.ts';
 import { acompanharArrasto, dentro, mostrarFantasma, useFantasma } from './arrastar.ts';
+import { useMusica } from '../musica.ts';
 import { AreaJogador, type EstadoCombate } from './AreaJogador.tsx';
+import { ConfigSom } from './ConfigSom.tsx';
 import { Carta, type Realce } from './Carta.tsx';
 import { Decisao, type EstadoUi } from './Decisao.tsx';
 import { PedidoDesfazer } from './Desfazer.tsx';
@@ -309,21 +311,7 @@ function Configuracoes({ pref, salaProibe, fechar, reorganizar }: { pref: Prefer
           ))}
         </div>
       </section>
-      <section class="bloco-config" aria-labelledby="cfg-sons">
-        <p class="rot" id="cfg-sons">Efeitos e sons <span class="rot-nota">valem em qualquer sala</span></p>
-        <label class="volume">
-          <span>Volume</span>
-          <input type="range" id="cfg-volume" min="0" max="100" step="5" value={Math.round(pref.volume * 100)} onInput={(ev) => mudarPreferencias({ volume: Number((ev.target as HTMLInputElement).value) / 100 })} />
-          <output>{Math.round(pref.volume * 100)}%</output>
-        </label>
-        <div class="sons">
-          {([['turno', 'Som ao passar o turno'], ['dano', 'Som de dano'], ['vida', 'Som de ganhar vida']] as const).map(([k, nome]) => (
-            <label key={k} class="caixa"><input type="checkbox" id={`cfg-som-${k}`} checked={pref.sons[k]} onChange={() => mudarPreferencias({ sons: { ...pref.sons, [k]: !pref.sons[k] } })} /> {nome}</label>
-          ))}
-          <label class="caixa"><input type="checkbox" id="cfg-efeitos" checked={pref.efeitos} onChange={() => mudarPreferencias({ efeitos: !pref.efeitos })} /> Efeitos visuais (tremida, brilho, números)</label>
-        </div>
-        <p class="suave">Com "reduzir movimento" ligado no sistema, os efeitos ficam sem tremida nem deslocamento.</p>
-      </section>
+      <ConfigSom pref={pref} />
       <section class="bloco-config linha-config">
         <div><strong>Arrumação do campo</strong><p class="suave">Volta todas as suas permanentes para a arrumação padrão.</p></div>
         <button class="botao" onClick={reorganizar}>Reorganizar meu campo</button>
@@ -339,6 +327,7 @@ export function Mesa() {
   const eu = v.you!;
   const d = v.decision;
   const enviando = !!d && e.respondida === d.id;
+  useMusica();
 
   // estado da interface que vale só para a decisão atual
   const [sel, setSel] = useState<string[]>([]);
@@ -831,7 +820,7 @@ export function Mesa() {
   }, [v.battlefield]);
   const fundoDe = (p: number) => {
     const deck = e.decks.find((x) => x.id === sala.assentos[p]?.deck);
-    return deck ? urlArte(deck.comandante) : null;
+    return deck ? urlFundo(deck.comandante) : null;
   };
 
   const duelo = sala.modo === '1v1';

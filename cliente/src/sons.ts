@@ -1,22 +1,52 @@
-// Sons curtos gerados na hora com Web Audio, sem arquivos: passar o turno, tomar dano e ganhar
-// vida. O volume e cada som se ligam e desligam nas Configurações.
+// Sons curtos gerados na hora com Web Audio, sem arquivos: começo do seu turno, começo do turno de
+// um adversário, tomar dano e ganhar vida. O volume e cada som se ligam e desligam nas
+// Configurações. O contexto de áudio é o mesmo da música (cliente/src/musica.ts).
+//
+// Os dois sons de turno ficam em sol, o tom da música (The Snow Queen, sol menor), e são fáceis de
+// distinguir sem olhar:
+// - seu turno: chamada de trompas subindo (ré, sol e o ré agudo sustentado sobre sol, uma quinta
+//   aberta), com tímpano e um brilho de sino; forte e mais longo, chama atenção;
+// - turno de um adversário: dois toques de harpa descendo (sol, ré), curtos, abafados e baixos.
 
 import { preferencias, type Som } from './preferencias.ts';
 
 let ctx: AudioContext | null = null;
 let ruido: AudioBuffer | null = null;
+const aoDestravar = new Set<() => void>();
 
-function contexto(): AudioContext | null {
+/**
+ * O contexto de áudio da página; null antes do primeiro clique ou tecla da pessoa (o navegador só
+ * deixa tocar depois de um gesto, e criar o contexto antes disso deixa aviso no console).
+ */
+export function contexto(): AudioContext | null {
   if (typeof AudioContext === 'undefined') return null;
-  ctx ??= new AudioContext();
+  if (!ctx && typeof navigator !== 'undefined' && navigator.userActivation && !navigator.userActivation.hasBeenActive) return null;
+  if (!ctx) {
+    const c = new AudioContext();
+    ctx = c;
+    // quem esperava o áudio (a música) começa quando o contexto passa a rodar
+    c.addEventListener('statechange', () => { if (c.state === 'running') avisar(); });
+  }
   if (ctx.state === 'suspended') void ctx.resume().catch(() => {});
   return ctx;
 }
 
-// o navegador só deixa tocar depois de um gesto da pessoa: o primeiro clique ou tecla destrava
+function avisar(): void {
+  for (const f of [...aoDestravar]) { aoDestravar.delete(f); f(); }
+}
+
+/** chama `f` quando o áudio estiver liberado: na hora, se já estiver, ou depois do primeiro gesto */
+export function quandoLiberado(f: () => void): void {
+  if (ctx?.state === 'running') f();
+  else aoDestravar.add(f);
+}
+
+// o primeiro clique ou tecla destrava o áudio (cria ou retoma o contexto dentro do gesto)
 if (typeof window !== 'undefined') {
   const destravar = () => {
-    contexto();
+    const c = contexto();
+    if (!c) return;
+    if (c.state === 'running') avisar();
     removeEventListener('pointerdown', destravar);
     removeEventListener('keydown', destravar);
   };
@@ -25,7 +55,7 @@ if (typeof window !== 'undefined') {
 }
 
 /** uma nota com ataque rápido e queda suave */
-function nota(c: AudioContext, saida: AudioNode, freq: number, inicio: number, duracao: number, volume: number, tipo: OscillatorType = 'sine', freqFim?: number): void {
+function nota(c: BaseAudioContext, saida: AudioNode, freq: number, inicio: number, duracao: number, volume: number, tipo: OscillatorType = 'sine', freqFim?: number): void {
   const o = c.createOscillator();
   const g = c.createGain();
   o.type = tipo;
@@ -39,8 +69,46 @@ function nota(c: AudioContext, saida: AudioNode, freq: number, inicio: number, d
   o.stop(inicio + duracao + 0.03);
 }
 
-/** um sopro de ruído filtrado (o "baque" do dano) */
-function sopro(c: AudioContext, saida: AudioNode, inicio: number, duracao: number, volume: number, corte: number): void {
+/**
+ * Uma nota de metal (trompa): duas ondas dente de serra levemente desafinadas num filtro que abre no
+ * ataque e fecha devagar, como o sopro de um metal.
+ */
+function trompa(c: BaseAudioContext, saida: AudioNode, freq: number, inicio: number, duracao: number, volume: number): void {
+  const f = c.createBiquadFilter();
+  f.type = 'lowpass';
+  f.Q.value = 0.8;
+  f.frequency.setValueAtTime(freq * 1.2, inicio);
+  f.frequency.exponentialRampToValueAtTime(freq * 5, inicio + 0.07);
+  f.frequency.exponentialRampToValueAtTime(freq * 2.2, inicio + duracao);
+  const g = c.createGain();
+  g.gain.setValueAtTime(0.0001, inicio);
+  g.gain.exponentialRampToValueAtTime(volume, inicio + 0.035);
+  g.gain.setValueAtTime(volume * 0.85, inicio + Math.max(0.05, duracao - 0.18));
+  g.gain.exponentialRampToValueAtTime(0.0001, inicio + duracao);
+  f.connect(g).connect(saida);
+  for (const desafino of [-6, 6]) {
+    const o = c.createOscillator();
+    o.type = 'sawtooth';
+    o.frequency.value = freq;
+    o.detune.value = desafino;
+    o.connect(f);
+    o.start(inicio);
+    o.stop(inicio + duracao + 0.03);
+  }
+}
+
+/** um toque de harpa: triângulo abafado, queda longa */
+function harpa(c: BaseAudioContext, saida: AudioNode, freq: number, inicio: number, duracao: number, volume: number): void {
+  const f = c.createBiquadFilter();
+  f.type = 'lowpass';
+  f.frequency.value = 1100;
+  f.connect(saida);
+  nota(c, f, freq, inicio, duracao, volume, 'triangle');
+  nota(c, f, freq * 2, inicio, duracao * 0.5, volume * 0.25, 'sine');
+}
+
+/** um sopro de ruído filtrado (o "baque" do dano, a pele do tímpano) */
+function sopro(c: BaseAudioContext, saida: AudioNode, inicio: number, duracao: number, volume: number, corte: number): void {
   if (!ruido) {
     ruido = c.createBuffer(1, Math.round(c.sampleRate * 0.4), c.sampleRate);
     const d = ruido.getChannelData(0);
@@ -59,20 +127,46 @@ function sopro(c: AudioContext, saida: AudioNode, inicio: number, duracao: numbe
   s.stop(inicio + duracao + 0.02);
 }
 
+// sol: as notas dos sons de turno (sem a terça, servem a sol maior e a sol menor)
+const SOL2 = 98, SOL3 = 196, RE4 = 293.66, SOL4 = 392, RE5 = 587.33, SOL5 = 783.99;
+
 /** toca um som se ele estiver ligado; `forca` de 0 a 1 (o dano em você soa mais forte que nos outros) */
 export function tocar(som: Som, forca = 1): void {
+  if (preferencias().sons[som]) gerar(som, forca);
+}
+
+/** o botão de ouvir das Configurações: toca mesmo com o som desligado (no volume dos efeitos) */
+export function ouvir(som: Som): void {
+  gerar(som, 1);
+}
+
+function gerar(som: Som, forca: number): void {
   const p = preferencias();
-  if (!p.sons[som] || p.volume <= 0) return;
+  if (p.volume <= 0) return;
   const c = contexto();
   if (!c || c.state !== 'running') return;
   const mestre = c.createGain();
   mestre.gain.value = Math.min(1, p.volume) * 0.55 * Math.max(0.2, Math.min(1, forca));
   mestre.connect(c.destination);
-  const t = c.currentTime + 0.01;
+  desenharSom(c, mestre, som, c.currentTime + 0.01);
+}
+
+/** monta o som em `mestre` começando em `t` (separado de `gerar` para dar para gravar num OfflineAudioContext) */
+export function desenharSom(c: BaseAudioContext, mestre: AudioNode, som: Som, t: number): void {
   switch (som) {
-    case 'turno': // dois toques suaves, como um sino de mesa
-      nota(c, mestre, 659.25, t, 0.45, 0.35);
-      nota(c, mestre, 987.77, t + 0.12, 0.6, 0.3);
+    case 'turnoMeu': // chamada de trompas: ré, sol, e o ré agudo sustentado sobre sol, com tímpano e sino
+      trompa(c, mestre, RE4, t, 0.16, 0.16);
+      trompa(c, mestre, SOL4, t + 0.15, 0.16, 0.17);
+      trompa(c, mestre, RE5, t + 0.3, 0.85, 0.15);
+      trompa(c, mestre, SOL4, t + 0.3, 0.85, 0.12);
+      trompa(c, mestre, SOL3, t + 0.3, 0.85, 0.09);
+      nota(c, mestre, SOL2 * 1.5, t + 0.3, 0.5, 0.45, 'sine', SOL2);
+      sopro(c, mestre, t + 0.3, 0.09, 0.18, 500);
+      nota(c, mestre, SOL5 * 2, t + 0.32, 0.9, 0.05, 'sine');
+      break;
+    case 'turnoAdversario': // dois toques de harpa descendo, abafados e discretos
+      harpa(c, mestre, SOL4, t, 0.55, 0.2);
+      harpa(c, mestre, RE4, t + 0.13, 0.7, 0.18);
       break;
     case 'dano': // baque grave e curto
       nota(c, mestre, 150, t, 0.24, 0.6, 'sine', 48);

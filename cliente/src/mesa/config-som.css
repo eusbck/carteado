@@ -1,0 +1,17 @@
+/* Configurações › Efeitos e sons, e Música (mesa/ConfigSom.tsx) */
+.sons-lista { align-items: start; }
+.som-linha { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-width: 0; }
+.som-linha .caixa { align-items: flex-start; min-width: 0; }
+.som-linha .caixa input { margin-top: 3px; }
+.som-linha .caixa span { display: grid; gap: 1px; }
+.som-linha .caixa small { font-size: 11.5px; color: var(--suave); }
+.ouvir {
+  flex: none; display: grid; place-items: center; width: 28px; height: 28px; padding: 0; border-radius: 8px;
+  border: 1px solid var(--linha-forte); background: transparent; color: var(--suave); cursor: pointer;
+}
+.ouvir svg { width: 15px; height: 15px; }
+.ouvir:hover { color: var(--verde); border-color: var(--verde); }
+.ouvir:focus-visible { outline: 2px solid var(--verde); outline-offset: 2px; }
+.credito-musica { margin: 0; font-size: 12px; line-height: 1.45; color: var(--apagado); }
+.credito-musica a { color: var(--suave); }
+.credito-musica a:hover { color: var(--verde); }
