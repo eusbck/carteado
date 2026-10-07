@@ -10,6 +10,7 @@ import { mkdirSync, rmSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { chromium, type BrowserContext, type Page } from 'playwright';
+import { hasOracle, oracle } from '../motor/oracle.ts';
 import { Banco } from '../servidor/banco.ts';
 import { gerarSalas } from './cenarios.ts';
 
@@ -121,6 +122,30 @@ async function clicar(p: Page, nome: string | RegExp): Promise<boolean> {
   return false;
 }
 
+/**
+ * Terrenos na mão inicial à vista (pela imagem de cada carta do leque). Com a mão sem terreno, Ana passava a
+ * partida inteira sem jogar e as capturas de jogada (07, 17, 11c, 11d) eram puladas sem aviso.
+ */
+async function terrenosNaMaoInicial(p: Page): Promise<number> {
+  const defs = await p.evaluate(async () => {
+    const info: Record<string, { f: string | null }> = await fetch('/api/cartas').then((r) => r.json());
+    const porImagem = new Map(Object.entries(info).filter(([, i]) => i.f).map(([d, i]) => [i.f!, d]));
+    return [...document.querySelectorAll('.leque .carta img')].map((im) => porImagem.get(im.getAttribute('src')!.split('/')[2]) ?? '');
+  });
+  return defs.filter((d) => hasOracle(d) && oracle(d).faces[0].types.includes('Land')).length;
+}
+/** espera a vez de decidir a mão e pede mulligan enquanto ela tiver menos de dois terrenos */
+async function mulliganSemTerreno(p: Page, vezes: number): Promise<void> {
+  for (let k = 0; k < vezes; k++) {
+    if (!await p.getByRole('button', { name: 'Mulligan' }).waitFor({ timeout: 20000 }).then(() => true, () => false)) return;
+    const n = await terrenosNaMaoInicial(p);
+    if (n >= 2) return;
+    console.log(`  mão inicial com ${n} terreno(s): mulligan`);
+    await p.getByRole('button', { name: 'Mulligan' }).click();
+    await p.waitForTimeout(800);
+  }
+}
+
 let fotoPagamento = false;
 
 /** responde as decisões pendentes de forma simples; para quando Ana tem prioridade */
@@ -140,13 +165,24 @@ async function jogarAteMinhaPrioridade(p: Page, limite = 40): Promise<void> {
       }
       continue;
     }
-    if (await p.locator('.janela-escolha .item:not([disabled])').first().isVisible().catch(() => false)) {
-      await p.locator('.janela-escolha .item:not([disabled])').first().click();
-      await clicar(p, 'Confirmar');
-      continue;
-    }
+    if (await responderJanela(p)) continue;
     for (const nome of ['Manter', 'Pagar automaticamente', 'Confirmar', 'Não atacar', 'Não bloquear', 'Nenhum', /^Confirmar/]) if (await clicar(p, nome)) break;
   }
+}
+
+/**
+ * Responde a janela de escolha aberta: confirma se a quantidade marcada já vale ("Nenhum" numa escolha
+ * opcional); senão marca mais uma opção. Marcar sempre a primeira e confirmar travava a rodada: o Shadrix
+ * Platinopena pede "0 ou 2 modos", a janela aceita 1 (mín. 0, máx. 2), o motor recusa e o clique seguinte
+ * desmarcava a opção. Devolve se havia janela.
+ */
+async function responderJanela(p: Page): Promise<boolean> {
+  const janela = p.locator('.janela-escolha:not(.recolhida)');
+  if (!await janela.isVisible().catch(() => false)) return false;
+  const confirmar = janela.getByRole('button', { name: /^(Confirmar|Nenhum)/ }).first();
+  if (!await confirmar.isEnabled({ timeout: 300 }).catch(() => false)) await janela.locator('.item:not([disabled]):not(.escolhido)').first().click({ timeout: 2000 }).catch(() => {});
+  await confirmar.click({ timeout: 1000 }).catch(() => {});
+  return true;
 }
 
 /** clica numa carta da mão com brilho e escolhe a ação do menu que começa com o texto pedido */
@@ -428,6 +464,8 @@ try {
   await p.locator('.leque .carta').nth(3).hover();
   await foto(p, '04b-mulligan-hover');
   await p.mouse.move(5, 500);
+  // em 4 jogadores o primeiro mulligan é grátis (sem escolher cartas para o fundo)
+  await mulliganSemTerreno(p, 1);
   await jogarAteMinhaPrioridade(p);
   await foto(p, '05-mesa-prioridade');
   const carta = p.locator('.mao-cartas .carta').first();
@@ -440,19 +478,27 @@ try {
     await p.locator('.menu-acoes').getByRole('button', { name: 'Cancelar' }).click();
   }
   // arrastar uma carta da mão até o campo (fotografa no meio do caminho)
+  // passa o mouse antes: a carta sobe, endireita e fica por cima das vizinhas; pega pelo meio dela (a da ponta
+  // do leque fica inclinada e o canto da caixa caía fora da carta: o arrasto não começava)
   const jogavel = p.locator('.mao-cartas .carta.realce-acao').first();
   const campo = await p.locator('.area-eu .campo').boundingBox();
+  await jogavel.hover({ position: { x: 12, y: 40 }, timeout: 3000 }).catch(() => {});
+  await p.waitForTimeout(350);
   const caixa = await jogavel.boundingBox().catch(() => null);
   if (caixa && campo) {
-    await p.mouse.move(caixa.x + 10, caixa.y + 40);
+    const x0 = caixa.x + caixa.width / 2, y0 = caixa.y + caixa.height * .3;
+    await p.mouse.move(x0, y0);
     await p.mouse.down();
-    for (let k = 1; k <= 8; k++) await p.mouse.move(caixa.x + 10 + (campo.x + campo.width * .45 - caixa.x) * k / 8, caixa.y + 40 + (campo.y + campo.height * .4 - caixa.y) * k / 8);
+    for (let k = 1; k <= 8; k++) await p.mouse.move(x0 + (campo.x + campo.width * .45 - x0) * k / 8, y0 + (campo.y + campo.height * .4 - y0) * k / 8);
     await foto(p, '07b-arrastar-da-mao');
     await p.mouse.up();
     await jogarAteMinhaPrioridade(p, 30);
     await foto(p, '07c-depois-de-soltar');
   }
-  // clique direito: numa permanente sua, no espaço vazio do seu campo e numa carta da mão
+  // clique direito: numa permanente sua, no espaço vazio do seu campo e numa carta da mão. Com a prioridade
+  // de Ana: o menu fecha quando chega uma decisão nova (no turno dos bots ele sumia antes da foto) e os
+  // ajustes manuais só valem com prioridade
+  await jogarAteMinhaPrioridade(p, 80);
   const permanente = p.locator('.area-eu .campo .carta').last();
   if (await permanente.isVisible().catch(() => false)) {
     await permanente.click({ button: 'right', timeout: 3000 }).catch(() => {});
@@ -462,9 +508,17 @@ try {
     await p.keyboard.press('Escape');
     await p.locator('.menu-acoes').getByRole('button', { name: 'Cancelar' }).click({ timeout: 3000 }).catch(() => {});
   }
-  const campoMeu = await p.locator('.area-eu .campo').boundingBox();
+  // um ponto vazio de verdade (desde a fase 9 a carta fica onde foi solta, no meio do campo)
+  const campoMeu = await p.evaluate(() => {
+    const c = document.querySelector('.area-eu .campo')!, r = c.getBoundingClientRect();
+    for (const fy of [.35, .2, .5, .65]) for (const fx of [.5, .3, .7, .2, .8]) {
+      const x = r.left + r.width * fx, y = r.top + r.height * fy;
+      if (document.elementFromPoint(x, y) === c) return { x, y };
+    }
+    return null;
+  });
   if (campoMeu) {
-    await p.mouse.click(campoMeu.x + campoMeu.width * .5, campoMeu.y + campoMeu.height * .35, { button: 'right' });
+    await p.mouse.click(campoMeu.x, campoMeu.y, { button: 'right' });
     await foto(p, '18-menu-direito-campo');
     await p.locator('.menu-acoes').getByRole('button', { name: 'Cancelar' }).click({ timeout: 3000 }).catch(() => {});
   }
@@ -529,18 +583,25 @@ try {
   await p.getByRole('radio', { name: /Personalizado/ }).click();
   await p.locator('#aux-pagarAuto').check();
   await p.keyboard.press('Escape');
-  // algumas voltas da mesa com os bots
-  await jogarUmPouco(p, 24);
+  // algumas voltas da mesa com os bots. Desde a fase 9 as paradas padrão ficam só no próprio turno: cada
+  // "passar até o fim do turno" anda a mesa inteira, e com 24 voltas Ana às vezes morria (turno 36) e as
+  // capturas 11c e 11d eram puladas
+  await jogarUmPouco(p, 14);
   await jogarAteMinhaPrioridade(p, 80);
+  if (await p.locator('.area-eu .selo.alerta').isVisible().catch(() => false)) console.log('aviso: Ana saiu da partida (11c e 11d puladas)');
   await foto(p, '11-mesa-depois');
-  // com prioridade, clicar numa fonte de mana gera a mana: a reserva aparece do lado da vida
-  const fontes = p.locator('.area-eu .campo .carta.realce-acao');
+  // com prioridade, clicar numa fonte de mana gera a mana: a reserva aparece do lado da vida. Terreno que só
+  // gera mana não brilha (o brilho é das jogadas) e vira direto no clique; com mais habilidades abre o menu
+  const fontes = p.locator('.area-eu .campo .carta:not(.virada):not(:has(.carta-pt))');
   for (let i = await fontes.count() - 1; i >= 0; i--) {
     await fontes.nth(i).click({ timeout: 3000 }).catch(() => {});
     const adicionar = p.locator('.menu-acoes').getByRole('menuitem', { name: /adicionar/ }).first();
-    if (await adicionar.isVisible().catch(() => false)) await adicionar.click({ timeout: 3000 }).catch(() => {});
-    else await p.locator('.menu-acoes').getByRole('button', { name: 'Cancelar' }).click({ timeout: 2000 }).catch(() => {});
-    if (await p.locator('.area-eu .selo.reserva').isVisible().catch(() => false)) {
+    const menu = await p.locator('.menu-acoes').isVisible().catch(() => false);
+    const gerou = !menu || await adicionar.isVisible().catch(() => false);
+    if (menu && gerou) await adicionar.click({ timeout: 3000 }).catch(() => {});
+    else if (menu) await p.locator('.menu-acoes').getByRole('button', { name: 'Cancelar' }).click({ timeout: 2000 }).catch(() => {});
+    // a reserva só aparece quando a resposta do servidor chega
+    if (await p.locator('.area-eu .selo.reserva').waitFor({ timeout: gerou ? 2500 : 300 }).then(() => true, () => false)) {
       await p.mouse.move(5, 500);
       await foto(p, '11d-reserva');
       break;
@@ -590,6 +651,8 @@ try {
   await q.getByRole('button', { name: 'Mulligan' }).click();
   await q.waitForTimeout(800);
   await foto(q, '13c-depois-do-mulligan-livre');
+  // mulligan livre: troca a mão inteira, sem cartas para o fundo
+  await mulliganSemTerreno(q, 2);
   await jogarAteMinhaPrioridade(q);
   await foto(q, '13-duelo');
   await jogarUmPouco(q, 10);
@@ -1079,10 +1142,7 @@ try {
       }
       if (await q.getByText('Você tem prioridade').isVisible().catch(() => false)) { await clicar(q, 'Passar'); continue; }
       for (const nome of ['Manter', 'Não atacar', 'Não bloquear', 'Confirmar', 'Nenhum']) if (await clicar(q, nome)) break;
-      if (await q.locator('.janela-escolha .item:not([disabled])').first().isVisible().catch(() => false)) {
-        await q.locator('.janela-escolha .item:not([disabled])').first().click();
-        await clicar(q, 'Confirmar');
-      }
+      await responderJanela(q);
     }
     if (!pensando) throw new Error('o aviso "está pensando…" não apareceu');
     if (!aviso) console.log('aviso: a mesa não chegou a esperar Ana fora do turno dela nesta partida (captura 94 opcional)');

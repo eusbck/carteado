@@ -121,14 +121,17 @@ label { display: grid; gap: 6px; color: var(--suave); font-size: 13px; font-weig
 .assento { display: grid; grid-template-columns: 52px minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 8px; border-radius: 12px; background: rgba(255, 255, 255, .03); border: 1px solid var(--linha); }
 .assento-arte { width: 52px; height: 40px; border-radius: 8px; background: rgba(255, 255, 255, .05) center 30% / cover; border: 1px dashed var(--linha-forte); }
 .assento-arte.com-arte { border: 0; }
-.assento-nome { font-weight: 700; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+/* o nome quebra a linha em vez de cortar: com o nível do bot ("UBIRAJARA · Intermediário") e as etiquetas, um
+   nome sorteado comprido não cabia numa linha e o fim saía como "…" */
+.assento-nome { font-weight: 700; display: block; overflow-wrap: anywhere; }
 .assento-deck { color: var(--suave); font-size: 12.5px; }
 .assento-bot { grid-column: 1 / -1; }
-.assento-bot label { grid-template-columns: auto 1fr; align-items: center; gap: 10px; }
+.assento-bot label { grid-template-columns: minmax(0, 1fr); gap: 4px; }
 .assento-bot select { padding: 6px 9px; }
-/* fase 9: dois seletores (deck e nível) lado a lado */
-.assento-bot { display: grid; grid-template-columns: 1fr auto; gap: 10px; }
-.nivel-bot { color: var(--suave); font-weight: 500; }
+/* fase 9: dois seletores (deck e nível) lado a lado, com o rótulo em cima (com o rótulo na frente, o seletor
+   de deck ficava estreito e o nome do deck saía cortado) */
+.assento-bot { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px; align-items: end; }
+.nivel-bot { color: var(--suave); font-weight: 500; white-space: nowrap; }
 .sala-acoes { margin-top: auto; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
 .sala-acoes .botao.grande { flex: 1; }
 .sala-dir { padding: 34px 30px; display: flex; flex-direction: column; gap: 18px; min-width: 0; }
@@ -338,14 +341,16 @@ button.etapa:hover { background: rgba(34, 211, 107, .1); }
 .prioridade.pensando b { display: inline; }
 .prioridade.pensando, .selo.pensando { animation: pulsar-leve 1.6s ease-in-out infinite; }
 @keyframes pulsar-leve { 50% { opacity: .55; } }
-/* telas estreitas: a faixa encolhe para não cobrir o seu nome nem a sua vida */
-@container (max-width: 1200px) {
+/* telas estreitas: a faixa encolhe para não cobrir o seu nome nem a sua vida. Os limites contam a mesa sem a
+   barra (1280×800 com a barra recolhida ou o registro escondido deixa a mesa com 1216 px) e o botão das
+   mágicas dos oponentes (fase 9), que alarga a faixa */
+@container (max-width: 1480px) {
   .parar-pilha span { display: none; }
   .fase.atual .longo { display: none; }
   .fase.atual .curto { display: inline; }
   .fase { padding: 0 8px; }
 }
-@container (max-width: 1100px) {
+@container (max-width: 1240px) {
   .etapa:not(.atual) { display: none; }
   .fases-turno { padding: 0 8px 0 4px; }
   /* some da tela, mas continua para leitores de tela */
