@@ -12,12 +12,14 @@ import { IconeAjuste, IconeConceder, IconeRecolher as IconeSeta, IconeConfig, Ic
 import { loja, useLoja } from '../loja.ts';
 import { reservaPaga } from '../mana.ts';
 import { Janela } from '../Janela.tsx';
-import { AUXILIOS, auxiliosAtivos, auxiliosDoNivel, mudarPreferencias, NIVEIS, usePreferencias, type Auxilios, type Preferencias } from '../preferencias.ts';
+import { AUXILIOS, auxiliosAtivos, auxiliosDoNivel, mudarPreferencias, NIVEIS, registroVisivel, usePreferencias, type Auxilios, type Preferencias } from '../preferencias.ts';
 import { ETAPAS, FASES } from '../pt.ts';
 import { acompanharArrasto, dentro, mostrarFantasma, useFantasma } from './arrastar.ts';
 import { AreaJogador, type EstadoCombate } from './AreaJogador.tsx';
 import { Carta, type Realce } from './Carta.tsx';
 import { Decisao, type EstadoUi } from './Decisao.tsx';
+import { ehEscolha } from './escolhas.ts';
+import { EscolhaRecolhida, JanelaEscolha } from './JanelaEscolha.tsx';
 import { PedidoDesfazer } from './Desfazer.tsx';
 import { useEfeitos } from './Efeitos.tsx';
 import { Setas, type Seta } from './Setas.tsx';
@@ -117,7 +119,6 @@ function MenuFlutuante({ menu, fechar }: { menu: Menu; fechar: () => void }) {
 /** cor de cada jogador na sua tela: você em amarelo, os outros na ordem dos assentos */
 const CORES = ['var(--amarelo)', 'var(--vermelho)', 'var(--azul)', 'var(--roxo)'];
 const PARAVEIS = new Set<Step>(ETAPAS.map((e) => e.id).filter((s) => !['untap', 'cleanup', 'firstStrikeDamage'].includes(s)));
-const CHAVE_LATERAL = 'commander-da-mesa:lateral-recolhida';
 
 /** o tremido discreto de "isso não pode" (sem explicação na mesa real) */
 export function tremer(el: Element | null | undefined): void {
@@ -126,13 +127,6 @@ export function tremer(el: Element | null | undefined): void {
 }
 const elCarta = (id: ObjId) => document.querySelector(`[data-obj="${id}"]`);
 const mesmoAlvo = (a: TargetRef, b: TargetRef) => a.kind === b.kind && a.id === b.id;
-
-function lerRecolhida(): boolean {
-  try { return localStorage.getItem(CHAVE_LATERAL) === '1'; } catch { return false; }
-}
-function guardarRecolhida(v: boolean): void {
-  try { localStorage.setItem(CHAVE_LATERAL, v ? '1' : '0'); } catch { /* sem armazenamento */ }
-}
 
 function rotuloDecisao(d: Decision): string {
   switch (d.kind) {
@@ -356,8 +350,6 @@ export function Mesa() {
   const [modal, setModal] = useState<Modal>(null);
   const [pegar, setPegar] = useState<PegarCarta | null>(null);
   const [manualAberto, setManualAberto] = useState(false);
-  const [recolhida, setRecolhida] = useState(lerRecolhida);
-  const [registroAberto, setRegistroAberto] = useState(true);
   const [arrastando, setArrastando] = useState<ObjId | null>(null);
   // ajustes manuais em sequência (ex.: desvirar tudo): um por decisão de prioridade
   const [fila, setFila] = useState<ManualAction[]>([]);
@@ -365,6 +357,11 @@ export function Mesa() {
   // posição que você acabou de escolher, até o servidor confirmar
   const [posLocal, setPosLocal] = useState<Record<string, [number, number]>>({});
   const pref = usePreferencias();
+  // registro escondido: a barra lateral fica só com os ícones e a mesa ocupa o resto (guardado no navegador)
+  const recolhida = !registroVisivel(pref);
+  // janela de escolha recolhida para olhar a mesa (volta aberta a cada decisão nova)
+  const [escolhaRecolhida, setEscolhaRecolhida] = useState(false);
+  useEffect(() => { setEscolhaRecolhida(false); }, [d?.id]);
   const autoFeito = useRef(new Set<number>());
   useEffect(() => { setSel([]); setAtaques({}); setAtacanteAtivo(null); setUltimoAlvo(null); setBloqueios({}); setBloqueadorAtivo(null); setMenu(null); }, [d?.id]);
   const salaProibe = sala.auxilios === 'proibidos';
@@ -392,7 +389,7 @@ export function Mesa() {
     loja.mudar({ paradas: novo });
     loja.enviar({ t: 'paradas', paradas: novo });
   }, [e.paradas, aux.jogaveis]);
-  const recolher = (x: boolean) => { setRecolhida(x); guardarRecolhida(x); };
+  const recolher = (x: boolean) => mudarPreferencias({ registro: !x });
   // a carta sob o mouse some junto com a janela (o mouseleave não chega)
   useEffect(() => { setZoom(null); }, [modal]);
 
@@ -880,12 +877,13 @@ export function Mesa() {
   const oponentes = ordem.slice(1).map((p) => v.players[p]);
   const minha = v.players[eu];
   const logRef = useRef<HTMLOListElement>(null);
-  useEffect(() => { const el = logRef.current; if (el) el.scrollTop = el.scrollHeight; }, [v.log.length, registroAberto, recolhida]);
+  useEffect(() => { const el = logRef.current; if (el) el.scrollTop = el.scrollHeight; }, [v.log.length, recolhida]);
   const decisaoManual = d?.kind === 'priority' && d.actions.some((a) => a.kind === 'manual') ? d.id : null;
   // sem prioridade, o ajuste manual fecha (antes ele sumia e voltava sozinho na prioridade seguinte)
   useEffect(() => { if (decisaoManual === null) { setManualAberto(false); setManualTipo(undefined); setPegar(null); } }, [decisaoManual]);
   const preJogo = v.turn.number === 0 && !v.gameOver;
-  const mostrarDecisao = d && !v.gameOver && !enviando && !preJogo && (d.kind !== 'priority' || acoesSoltas.length > 0);
+  const mostrarDecisao = d && !v.gameOver && !enviando && !preJogo && !ehEscolha(d) && (d.kind !== 'priority' || acoesSoltas.length > 0);
+  const escolha = d && !v.gameOver && !enviando && !preJogo && ehEscolha(d) ? d : null;
 
   return (<>
     <div class={`mesa ${duelo ? 'mesa-duelo' : ''} ${recolhida ? 'recolhida' : ''} ${aux.jogaveis ? 'aux-jogaveis' : ''} ${e.desfazer ? 'parada' : ''}`} onClick={() => setMenu(null)}>
@@ -927,6 +925,7 @@ export function Mesa() {
               </ol>
             </section>
           )}
+          {escolha && escolhaRecolhida && <EscolhaRecolhida d={escolha} ui={ui} voltar={() => setEscolhaRecolhida(false)} />}
           {d && mostrarDecisao && (
             <div class="cartao">
               <p class="rot">{rotuloDecisao(d)}</p>
@@ -949,6 +948,10 @@ export function Mesa() {
             })}
           </div>
         )}
+        {escolha && (
+          <JanelaEscolha v={v} d={escolha} ui={ui} todos={todos} cor={cor} aux={aux} recolhida={escolhaRecolhida} recolher={setEscolhaRecolhida}
+            reservaDireita={v.stack.length > 0 ? 336 : 0} onZoom={mostrarZoom} />
+        )}
         {preJogo && <MaoInicial v={v} d={d} enviando={enviando} regra={sala.mulligan ?? 'londres'} multiplayer={sala.modo === '4p'} sel={sel} setSel={setSel} />}
       </main>
 
@@ -960,7 +963,7 @@ export function Mesa() {
           {salaProibe && <span class="selo-sala" title="Quem criou a sala proibiu os auxílios: todos jogam em Mesa real">Sala sem auxílios</span>}
         </div>
         <ul class="menu-lateral">
-          <li><button class={registroAberto && !recolhida ? 'ativo' : ''} title="Registro" aria-label="Registro" onClick={() => { if (recolhida) { recolher(false); setRegistroAberto(true); } else setRegistroAberto(!registroAberto); }}><IconeRegistro /><span class="rotulo">Registro</span></button></li>
+          <li><button class={recolhida ? '' : 'ativo'} title={recolhida ? 'Mostrar o registro' : 'Esconder o registro (a mesa fica mais larga)'} aria-label="Registro" aria-pressed={!recolhida} onClick={() => recolher(!recolhida)}><IconeRegistro /><span class="rotulo">Registro</span></button></li>
           <li><button title="Paradas" aria-label="Paradas" onClick={() => setModal({ tipo: 'paradas' })}><IconeParadas /><span class="rotulo">Paradas</span></button></li>
           <li><button title="Ajuste manual" aria-label="Ajuste manual" disabled={decisaoManual === null} onClick={() => setManualAberto(true)}><IconeAjuste /><span class="rotulo">Ajuste manual</span></button></li>
           <li><button title="Configurações" aria-label="Configurações" onClick={() => setModal({ tipo: 'config' })}><IconeConfig /><span class="rotulo">Configurações</span></button></li>
@@ -968,7 +971,7 @@ export function Mesa() {
           <li><button title="Sair" aria-label="Sair" onClick={() => loja.enviar({ t: 'sair' })}><IconeSair /><span class="rotulo">Sair</span></button></li>
           <li><button class="recolher" title={recolhida ? 'Abrir a barra' : 'Recolher a barra'} aria-label={recolhida ? 'Abrir a barra' : 'Recolher a barra'} onClick={() => recolher(!recolhida)}><IconeRecolher /><span class="rotulo">Recolher</span></button></li>
         </ul>
-        <section class={`registro ${registroAberto ? '' : 'escondido'}`} aria-label="Registro da partida">
+        <section class="registro" aria-label="Registro da partida">
           <h2>Registro</h2>
           <ol ref={logRef}>
             {v.log.map((l, i) => <li key={i} class={l.text.includes('(ajuste manual)') ? 'manual' : ''}><span class="registro-turno">{l.turn}</span> {traduzir(l.text)}{l.rule ? <span class="regra"> (CR {l.rule})</span> : null}</li>)}

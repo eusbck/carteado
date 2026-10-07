@@ -102,9 +102,10 @@ async function agir(p: Page): Promise<boolean> {
   }
   // mão inicial: fica com as sete
   if (await p.locator('.tela-mulligan').isVisible().catch(() => false)) return clicar(p, 'Manter');
-  const painel = p.locator('.coluna-dir .decisao');
+  // combate e pagamento ficam na coluna da direita; as escolhas, na janela do meio da mesa (fase 9)
+  const painel = p.locator('.coluna-dir .decisao, .janela-escolha').first();
   if (!(await painel.isVisible().catch(() => false))) return false;
-  const titulo = (await p.locator('.coluna-dir .decisao-titulo').first().textContent().catch(() => '')) ?? '';
+  const titulo = (await p.locator('.coluna-dir .decisao-titulo, .janela-escolha .decisao-titulo').first().textContent().catch(() => '')) ?? '';
   // painéis de combate da fase 8 ("Ataque" e "Bloqueio"); com os auxílios ligados, a lista tem um botão por alvo
   if (titulo.includes('Ataque')) {
     const linhas = p.locator('.decisao .linha');
@@ -113,7 +114,7 @@ async function agir(p: Page): Promise<boolean> {
     return clicar(p, /^(Confirmar ataque|Não atacar)/);
   }
   if (titulo.includes('Bloqueio')) return clicar(p, /^Não bloquear/);
-  const item = p.locator('.decisao .item:not([disabled])').first();
+  const item = p.locator('.janela-escolha .item:not([disabled])').first();
   if (await item.isVisible().catch(() => false)) {
     await item.click();
     if (await clicar(p, /^Confirmar/)) return true;

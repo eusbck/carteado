@@ -382,14 +382,19 @@ button.etapa:hover { background: rgba(34, 211, 107, .1); }
 .menu-acoes .botao:hover { background: rgba(255, 255, 255, .08); }
 .faixa-pegar { position: fixed; left: 50%; top: 14px; transform: translateX(-50%); background: var(--vidro); border: 1px solid var(--amarelo); color: var(--amarelo); padding: 8px 10px 8px 16px; display: flex; gap: 12px; align-items: center; z-index: 95; border-radius: 12px; box-shadow: var(--sombra); font-weight: 600; }
 
-/* zoom */
-.zoom { position: fixed; top: 16px; width: 290px; z-index: 250; pointer-events: none; background: var(--vidro); border: 1px solid var(--linha-forte); border-radius: 16px; padding: 8px; box-shadow: 0 24px 60px rgba(0, 0, 0, .75); backdrop-filter: blur(12px); }
+/* zoom: colado à esquerda ou à direita da mesa e centralizado na altura; o topo, a largura da imagem
+   (--zi), a do texto e o modo (texto embaixo ou ao lado) vêm de mesa/medidaZoom.ts */
+.zoom { --zi: 300px; --ze: 1; position: fixed; top: 16px; z-index: 250; pointer-events: none; display: flex; flex-direction: column; align-items: center; background: var(--vidro); border: 1px solid var(--linha-forte); border-radius: 16px; padding: 8px; box-shadow: 0 24px 60px rgba(0, 0, 0, .75); backdrop-filter: blur(12px); }
 .zoom.esq { left: 16px; }
 .zoom.dir { right: calc(var(--lateral) + 16px); }
+.zoom[data-modo="lado"] { flex-direction: row; gap: 10px; }
+.zoom.dir[data-modo="lado"] { flex-direction: row-reverse; }
 .camada-zoom.recolhida { --lateral: 64px; }
-.zoom img { width: 100%; border-radius: 12px; }
+.zoom .zoom-imagem { width: var(--zi); flex: 0 0 auto; border-radius: 12px; background: center / cover no-repeat; }
+.zoom img { width: 100%; aspect-ratio: 63 / 88; border-radius: 12px; }
 .zoom-sem-arte { aspect-ratio: 63 / 88; display: grid; place-items: center; background: var(--painel-2); border-radius: 12px; }
 .zoom-texto { font-size: 12.5px; padding: 8px 4px 2px; color: var(--suave); }
+.zoom .zoom-texto { flex: 0 0 auto; font-size: calc(clamp(12.5px, 1.3vh, 15px) * var(--ze)); padding: 6px 4px 0; }
 .zoom-texto strong { color: var(--texto); }
 .zoom-texto p { margin: 4px 0; }
 .pendente-aviso { color: var(--amarelo); }
@@ -598,3 +603,127 @@ button.etapa:hover { background: rgba(34, 211, 107, .1); }
 .fantasma-efeito { position: fixed; z-index: 235; pointer-events: none; border-radius: 6px; overflow: hidden; box-shadow: 0 12px 30px rgba(0, 0, 0, .6); }
 .fantasma-efeito img { width: 100%; height: 100%; object-fit: cover; }
 @media (prefers-reduced-motion: reduce) { .numero-efeito { animation: numero-some 1.2s ease-out forwards !important; } }
+
+/* ---------------------------------------------------------------- fase 9: janela de escolha (mesa/JanelaEscolha.tsx) */
+/* no meio da mesa, centrada na divisa (o topo vem do JS); cresce com o conteúdo até caber e rola por dentro.
+   Não escurece a mesa: as cartas da mesa continuam clicáveis em volta. */
+.janela-escolha {
+  --reserva: 0px; --n: 1; --largura-escolha: 640px; --wc: 150px;
+  /* esquerda e direita fixas com margem automática: centrada na mesa (sem a coluna da pilha) e a largura
+     "do conteúdo" pode usar a mesa inteira */
+  position: absolute; z-index: 80; top: 12px; left: 16px; right: calc(var(--reserva) + 16px); margin-inline: auto;
+  width: min(var(--largura-escolha), calc(100% - var(--reserva) - 32px)); max-height: calc(100% - 24px);
+  display: flex; flex-direction: column; min-height: 0;
+  background: rgba(13, 16, 15, .96); backdrop-filter: blur(14px); border: 1px solid var(--linha-forte); border-radius: 18px;
+  box-shadow: 0 26px 80px rgba(0, 0, 0, .75), 0 0 0 1px rgba(0, 0, 0, .5);
+  animation: escolha-entra .18s ease-out; transition: opacity .12s ease;
+}
+@keyframes escolha-entra { from { opacity: 0; scale: .97; } }
+/* o que os outros fazem continua à vista por cima da janela: avisos e pilha da coluna, cartas reveladas e o
+   pedido de desfazer (que precisa de resposta) */
+.tabuleiro:has(> .janela-escolha:not(.recolhida)) > .coluna-dir { z-index: 82; }
+.tabuleiro:has(> .janela-escolha) > .reveladas { z-index: 85; }
+.mesa.parada .janela-escolha { z-index: 70; }
+.janela-escolha.recolhida { display: none; }
+.janela-escolha.espiando { opacity: 0; pointer-events: none; }
+.janela-escolha.f-simnao, .janela-escolha.f-numero { --largura-escolha: 560px; }
+.janela-escolha.f-opcoes { --largura-escolha: 720px; }
+.janela-escolha.f-fila { --largura-escolha: 780px; }
+.janela-escolha.f-grade { --largura-escolha: 1400px; }
+.janela-escolha.f-arranjo { --largura-escolha: 1240px; }
+.janela-escolha.f-cartas { width: fit-content; min-width: min(480px, calc(100% - var(--reserva) - 32px)); max-width: calc(100% - var(--reserva) - 32px); }
+
+.escolha-topo { flex: 0 0 auto; display: flex; justify-content: space-between; align-items: flex-start; gap: 14px; padding: 14px 14px 12px 20px; border-bottom: 1px solid var(--linha); }
+.escolha-titulos { display: grid; gap: 3px; min-width: 0; }
+.escolha-titulos .rot { color: var(--verde); }
+.escolha-topo .decisao-titulo { font-size: 17px; font-weight: 800; line-height: 1.3; }
+.ver-mesa { flex: 0 0 auto; color: var(--suave); }
+.ver-mesa svg { width: 15px; height: 15px; }
+.escolha-barra { flex: 0 0 auto; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; padding: 10px 20px; border-bottom: 1px solid var(--linha); font-size: 13px; }
+.escolha-filtro { flex: 0 1 320px; padding: 8px 12px; border-radius: 9px; border: 1.5px solid var(--linha-forte); background: rgba(255, 255, 255, .04); color: var(--texto); }
+.escolha-filtro:focus { outline: none; border-color: var(--verde); }
+.escolha-filtro::placeholder { color: var(--apagado); }
+.escolha-barra .caixa { font-size: 13px; }
+.escolha-corpo { flex: 1 1 auto; min-height: 0; overflow: auto; padding: 16px 20px; display: grid; gap: 14px; align-content: start; }
+.escolha-rodape { flex: 0 0 auto; display: flex; align-items: center; flex-wrap: wrap; gap: 10px; padding: 12px 20px 14px; border-top: 1px solid var(--linha); }
+.escolha-rodape .botoes-linha { margin-left: auto; }
+.escolha-rodape .botao { min-height: 38px; }
+.escolha-rodape .botao.cheio { padding: 0 22px; }
+.escolha-conta { font-size: 13px; }
+.escolha-conta b { color: var(--texto); }
+.escolha-legenda { font-size: 13px; }
+.escolha-vazia { text-align: center; padding: 24px 0; }
+
+/* itens: cartas grandes (linha ou grade), jogadores e opções de texto */
+.janela-escolha .item { position: relative; color: var(--texto); }
+.item-carta-grande { width: calc(var(--wc) + 16px); padding: 8px; display: grid; justify-items: center; align-content: start; gap: 6px; border-radius: 14px; border: 2px solid transparent; background: rgba(255, 255, 255, .035); text-align: center; }
+.item-carta-grande .carta { --w: var(--wc); }
+.item-carta-grande:hover:not(:disabled) { border-color: rgba(255, 255, 255, .3); background: rgba(255, 255, 255, .06); }
+.item-carta-grande.escolhido { border-color: var(--amarelo); background: var(--amarelo-fundo); }
+.item-carta-grande.escolhido .carta { box-shadow: 0 0 0 2px var(--amarelo), 0 0 18px rgba(246, 196, 69, .45); }
+.item-carta-grande:disabled { opacity: .32; }
+.item-nome { font-size: 13px; font-weight: 600; line-height: 1.25; max-width: 100%; overflow-wrap: anywhere; }
+.item-nota { font-size: 11.5px; color: var(--suave); margin-top: -3px; }
+.item-qtd { position: absolute; right: 2px; top: 2px; z-index: 3; font-size: 12px; font-weight: 800; padding: 1px 8px; line-height: 20px; border-radius: 8px; background: #0c0e0d; border: 1px solid var(--linha-forte); color: #fff; box-shadow: 0 2px 6px rgba(0, 0, 0, .6); }
+.item-qtd.com-marca { background: var(--amarelo); border-color: var(--amarelo); color: #1e1500; }
+.item-ordem { position: absolute; left: 2px; top: 2px; z-index: 3; min-width: 24px; height: 24px; border-radius: 12px; display: grid; place-items: center; font-size: 13px; font-weight: 800; background: var(--amarelo); color: #1e1500; }
+.escolha-cartas { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+.janela-escolha.f-cartas { --wc: clamp(132px, min(calc((100cqw - var(--reserva) - 96px - (var(--n) - 1) * 28px) / var(--n)), 30vh), 250px); }
+.escolha-grade { display: grid; grid-template-columns: repeat(auto-fill, calc(var(--wc) + 16px)); gap: 10px; justify-content: center; }
+.janela-escolha.f-grade { --wc: clamp(112px, 10cqw, 180px); }
+.escolha-jogadores { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.item-jogador { --cor: var(--texto); min-width: 170px; padding: 12px 18px; display: grid; justify-items: center; gap: 4px; border-radius: 14px; border: 2px solid color-mix(in srgb, var(--cor) 55%, transparent); background: rgba(255, 255, 255, .035); cursor: pointer; font-size: 15px; }
+.item-jogador b { color: var(--cor); }
+.item-vida { display: inline-flex; align-items: center; gap: 6px; font-size: 20px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.item-vida svg { width: 15px; height: 15px; color: var(--vermelho); }
+.item-jogador:hover:not(:disabled) { background: rgba(255, 255, 255, .07); }
+.item-jogador.escolhido { border-color: var(--amarelo); background: var(--amarelo-fundo); box-shadow: 0 0 18px rgba(246, 196, 69, .35); }
+.item-jogador:disabled { opacity: .35; cursor: default; }
+.escolha-opcoes { display: grid; gap: 8px; }
+.item-opcao { display: block; width: 100%; padding: 12px 16px; border-radius: 12px; border: 1.5px solid var(--linha-forte); background: rgba(255, 255, 255, .035); font-size: 14.5px; line-height: 1.45; text-align: left; cursor: pointer; }
+.item-opcao:has(.item-ordem) { padding-left: 44px; }
+.item-opcao .item-ordem { left: 11px; top: 11px; }
+.item-opcao:hover:not(:disabled) { border-color: rgba(255, 255, 255, .35); background: rgba(255, 255, 255, .06); }
+.item-opcao.escolhido { border-color: var(--amarelo); background: var(--amarelo-fundo); }
+.item-opcao:disabled { opacity: .38; cursor: default; }
+.escolha-opcoes .item-carta-grande { --wc: 64px; width: 100%; grid-template-columns: 64px minmax(0, 1fr); justify-items: start; align-items: center; text-align: left; }
+.escolha-simnao { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; padding: 6px 0 4px; }
+.item-simnao { min-width: 150px; min-height: 52px; padding: 10px 26px; border-radius: 12px; border: 1.5px solid var(--linha-forte); background: rgba(255, 255, 255, .035); font-size: 16px; font-weight: 700; cursor: pointer; }
+.item-simnao.primeira { border-color: var(--verde); color: var(--verde); }
+.item-simnao:hover:not(:disabled) { background: rgba(255, 255, 255, .07); }
+.item-simnao.primeira:hover:not(:disabled) { background: var(--verde-fundo); }
+.item-simnao:disabled { opacity: .38; cursor: default; }
+.escolha-numero { justify-content: center; gap: 10px; padding: 8px 0; }
+.escolha-numero output { font-size: 2.2rem; min-width: 3.2ch; }
+
+/* fila de gatilhos: como a pilha (o de cima resolve primeiro) */
+.fila { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.fila-linha { position: relative; display: grid; grid-template-columns: 16px 30px auto minmax(0, 1fr) auto; align-items: center; gap: 12px; padding: 8px 10px; border-radius: 12px; border: 1px solid var(--linha-forte); background: rgba(255, 255, 255, .035); cursor: grab; font-size: 13.5px; }
+.fila-linha:first-child { border-color: rgba(34, 211, 107, .55); background: var(--verde-fundo); }
+.fila-linha.arrastando { opacity: .4; }
+.fila-linha.solta-acima::before, .fila-linha.solta-abaixo::after { content: ''; position: absolute; left: 8px; right: 8px; height: 3px; border-radius: 2px; background: var(--verde); }
+.fila-linha.solta-acima::before { top: -6px; }
+.fila-linha.solta-abaixo::after { bottom: -6px; }
+.fila-pega { color: var(--apagado); font-size: 14px; letter-spacing: -3px; }
+.fila-pos { font-weight: 800; color: var(--verde); font-variant-numeric: tabular-nums; }
+.fila-linha .carta { --w: 64px; }
+.fila-texto { display: grid; gap: 2px; min-width: 0; color: #dfe4e1; line-height: 1.4; }
+.fila-texto b { color: var(--texto); }
+.fila-linha:not(:has(.carta)) { grid-template-columns: 16px 30px minmax(0, 1fr) auto; }
+
+/* vidência e vigiar: uma faixa por destino, lado a lado (cada uma cabe todas as cartas) */
+.janela-escolha.f-arranjo { --wc: clamp(104px, min(calc(((min(1240px, 100cqw - var(--reserva) - 32px) - 54px) / 2 - 23px - (var(--n) - 1) * 14px) / var(--n) - 8px), 17vh), 180px); }
+.f-arranjo .escolha-corpo { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@container (max-width: 760px) { .f-arranjo .escolha-corpo { grid-template-columns: minmax(0, 1fr); } }
+.faixa-arranjo { display: grid; gap: 6px; align-content: start; }
+.faixa-cartas { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; min-height: calc(var(--wc) * 1.4 + 74px); padding: 10px; border: 1.5px dashed var(--linha-forte); border-radius: 14px; }
+.faixa-cartas.recebe { border-color: rgba(34, 211, 107, .6); }
+.arranjo-carta { width: calc(var(--wc) + 8px); display: grid; justify-items: center; gap: 6px; cursor: grab; text-align: center; }
+.arranjo-carta .carta { --w: var(--wc); }
+.arranjo-botoes { display: flex; gap: 4px; flex-wrap: wrap; justify-content: center; }
+.arranjo-botoes .botao.icone { width: 28px; }
+.faixa-vazia { align-self: center; color: var(--apagado); font-size: 13px; }
+
+/* recolhida: a decisão continua pendente, num cartão da coluna da direita */
+.escolha-recolhida { border-color: rgba(246, 196, 69, .6); gap: 8px; }
+.escolha-recolhida > .rot { color: var(--amarelo); margin-bottom: 0; }

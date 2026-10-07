@@ -29,6 +29,8 @@ export const CENARIOS: Cenario[] = [
   { codigo: 'ATACA', modo: '4p', decks: [0, 2, 4, 5], sementes: ['prototipo8-ATACA-7'], minTurno: 9, pred: (g, d) => d.player === 0 && d.kind === 'attackers' && d.candidates.length >= 3 },
   // Ana declara bloqueadores num 1v1, com pelo menos 2 criaturas que podem bloquear
   { codigo: 'BLOQU', modo: '1v1', decks: [3, 1], sementes: ['prototipo8-BLOQU-0'], minTurno: 7, pred: (g, d) => d.player === 0 && d.kind === 'blockers' && d.candidates.filter((c) => c.canBlock.length).length >= 2 },
+  // fase 9: Ana ataca e ordena pelo menos três gatilhos (a janela de escolha em fila); depois a busca e a vidência pelo ajuste manual
+  { codigo: 'ORDEM', modo: '1v1', decks: [4, 0], sementes: ['gatilhos-1v1-4-0'], minTurno: 10, pred: (g, d) => d.player === 0 && d.kind === 'select' && !!d.ordered && d.min === d.items.length && d.items.length >= 3 },
 ];
 
 /** grava as salas pedidas no banco; devolve os códigos que ficaram prontos */
