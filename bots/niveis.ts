@@ -75,6 +75,6 @@ export const PARAMETROS: Record<NivelBot, Parametros> = {
   facil: { ...BASE, simulacoes: 8, variantes: 1, tempo: 500, margem: 1.2, erro: 0.25, responde: 0.3, esquece: 0.15 },
   intermediario: { ...BASE },
   dificil: { ...BASE, simulacoes: 60, mundos: 3, tempo: 3000, combate: 'simulado', agirNoCombate: true, oponenteResponde: true, lider: true, escolhaSimulada: true },
-  cartomante: { ...BASE, simulacoes: 180, mundos: 6, tempo: 3000, combate: 'simulado', agirNoCombate: true, oponenteResponde: true, lider: true, escolhaSimulada: true, memoria: true, olharCombate: true, busca: true, buscaCandidatas: 2, buscaPreSelecao: 0.6, buscaConfianca: 1 },
+  cartomante: { ...BASE, simulacoes: 180, mundos: 6, tempo: 3000, combate: 'simulado', agirNoCombate: true, oponenteResponde: true, lider: true, escolhaSimulada: true, memoria: true, olharCombate: true },
   magicgod: { ...BASE, simulacoes: 240, mundos: 8, tempo: 6000, combate: 'simulado', agirNoCombate: true, oponenteResponde: true, lider: true, escolhaSimulada: true, memoria: true, olharCombate: true, busca: true },
 };

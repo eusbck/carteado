@@ -495,6 +495,8 @@ export class HeuristicBot {
       if (melhor && (ctx.restante() < 0 || (sims > 0 && ctx.restante() < K * (gasto / sims)))) break;
       const valores: number[] = [];
       for (let k = 0; k < K; k++) {
+        // o prazo acabou no meio de uma opção: ela fica de fora (a heurística, a primeira, é a resposta padrão)
+        if (k > 0 && ctx.restante() < 0) break;
         const t0 = performance.now();
         const f = ctx.copia!(mundos[k]);
         if (!f) return padrao;
@@ -504,6 +506,7 @@ export class HeuristicBot {
         gasto += performance.now() - t0;
         sims++;
       }
+      if (valores.length < K && melhor) break;
       if (valores.some((x) => !Number.isFinite(x))) continue;
       const valor = media(valores);
       if (!melhor || valor > melhor.valor + 1e-9) melhor = { a, valor };

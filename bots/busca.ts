@@ -1,5 +1,4 @@
-// Busca do Magic God (fase 9): Monte Carlo com informação oculta, parecida com o ISMCTS de um observador. A Cartomante
-// usa uma versão leve (2 candidatas, metade do tempo do Magic God, menos mundos na pré-seleção).
+// Busca do Magic God (fase 9): Monte Carlo com informação oculta, parecida com o ISMCTS de um observador.
 //
 // 1. Pré-seleção rasa, como a da Cartomante e com pelo menos o mesmo tanto de análise (as candidatas nos mesmos mundos
 //    sorteados, mais mundos que ela), com até metade do tempo.
