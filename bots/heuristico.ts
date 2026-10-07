@@ -413,15 +413,22 @@ export class HeuristicBot {
     }
     const base = media(bases);
     const lista: { acao: string; valor: number; plano: Answer[]; valores: number[] }[] = [];
+    // custo médio de uma simulação: uma candidata só começa se der para jogar todos os mundos dela até o prazo
+    let gasto = 0;
+    let sims = 0;
+    const cabe = () => sims === 0 || performance.now() + K * (gasto / sims) <= prazo;
     for (let v = 0; v < this.p.variantes; v++) {
       for (const a of candidatas) {
         if (v > 0 && a.kind === 'play') continue;
-        if (!tempoOk() || feitas + K > limite + K - 1) break;
+        if (!tempoOk() || !cabe() || feitas + K > limite + K - 1) break;
         const valores: number[] = [];
         let plano: Answer[] = [];
         for (let k = 0; k < K; k++) {
           feitas++;
+          const t0 = performance.now();
           const r = simulaEm(k, { kind: 'priority', action: a.id }, v);
+          gasto += performance.now() - t0;
+          sims++;
           if (!r) continue;
           valores.push(r.valor);
           if (k === 0) plano = r.plano;
@@ -474,15 +481,21 @@ export class HeuristicBot {
     const mundos = Array.from({ length: K }, (_, k) => ramo(this.e.rng, `o${k}`));
     const opts = { horizonte, avaliacao: this.avaliacao() };
     let melhor: { a: Answer; valor: number } | null = null;
+    let gasto = 0;
+    let sims = 0;
     for (const a of opcoes) {
-      if (ctx.restante() < 0) break;
+      // a opção só começa se der para jogar todos os mundos dela até o prazo (a primeira, a heurística, sempre)
+      if (melhor && (ctx.restante() < 0 || (sims > 0 && ctx.restante() < K * (gasto / sims)))) break;
       const valores: number[] = [];
       for (let k = 0; k < K; k++) {
+        const t0 = performance.now();
         const f = ctx.copia!(mundos[k]);
         if (!f) return padrao;
         const r2 = seedFrom(`q${k}:${mundos[k].join(':')}`);
         const r = simular(f, this.eu, a, this.politicaMinha(0, r2), this.politicaOutros(r2), opts);
         valores.push(r.valor);
+        gasto += performance.now() - t0;
+        sims++;
       }
       if (valores.some((x) => !Number.isFinite(x))) continue;
       const valor = media(valores);

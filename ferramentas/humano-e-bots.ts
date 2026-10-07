@@ -44,6 +44,11 @@ g.tratar(ana, { t: 'iniciar' });
 
 const pessoa = new RandomBot(`pessoa:${semente}`);
 const t0 = Date.now();
+// medição (fase 9, item 4.5): processador do processo inteiro (linha principal + threads de pensar) e memória
+const cpu0 = process.cpuUsage();
+let picoRss = 0;
+const amostra = setInterval(() => { picoRss = Math.max(picoRss, process.memoryUsage().rss); }, 500);
+amostra.unref();
 let respondidas = 0;
 let ultimaId = -1;
 let vazamentos = 0;
@@ -88,5 +93,12 @@ for (let volta = 0; volta < 2000000; volta++) {
   respondidas++;
 }
 const v = ana.ultima('jogo')!.vista;
+{
+  const cpu = process.cpuUsage(cpu0);
+  const seg = (Date.now() - t0) / 1000;
+  const nucleos = (await import('node:os')).availableParallelism();
+  console.log(`processador: ${((cpu.user + cpu.system) / 1e6 / seg * 100).toFixed(0)}% de uma thread em média (${((cpu.user + cpu.system) / 1e6 / seg / nucleos * 100).toFixed(1)}% das ${nucleos} threads); pico de memória do processo ${(picoRss / 2 ** 20).toFixed(0)} MB; pico do heap das threads de pensar ${((g.pensadores?.picoMemoria ?? 0) / 2 ** 20).toFixed(0)} MB`);
+  for (const [nv, e] of Object.entries(g.pensadores?.estatisticas ?? {})) console.log(`  ${nv}: ${e.n} decisões pensadas, média ${(e.soma / e.n).toFixed(0)} ms, máximo ${e.max.toFixed(0)} ms; espera na fila média ${(e.espera / e.n).toFixed(0)} ms, máxima ${e.esperaMax.toFixed(0)} ms`);
+}
 console.log(`${modo}: fim no turno ${v.turn.number} — ${v.gameOver?.draw ? 'empate' : `vencedor ${v.gameOver?.winners.join(',')}`} (${v.gameOver?.reason}); ${respondidas} decisões de Ana; ${((Date.now() - t0) / 1000).toFixed(1)} s; vazamentos: ${vazamentos}; cliques extras no turno dos bots: ${cliquesExtras}`);
 process.exit(v.gameOver && vazamentos === 0 && cliquesExtras === 0 ? 0 : 1);

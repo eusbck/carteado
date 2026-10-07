@@ -25,8 +25,9 @@ export function buscar(bot: HeuristicBot, ctx: Contexto, acoes: D<'priority'>['a
   if (!rasa || !ctx.copia) return PASSAR;
   const top = [...rasa.lista].sort((a, b) => b.valor - a.valor).slice(0, 3);
   if (!top.length) return PASSAR;
-  // decisão óbvia: uma jogada muito acima das outras e de passar
-  if (top.length === 1 && top[0].valor > rasa.base + 8) { bot.e.plano = top[0].plano; return { kind: 'priority', action: top[0].acao }; }
+  // decisão óbvia: uma jogada bem acima da segunda e de passar (o tempo é teto, não meta)
+  const segunda = top[1]?.valor ?? -Infinity;
+  if (top[0].valor > rasa.base + 6 && top[0].valor > segunda + 4) { bot.e.plano = top[0].plano; return { kind: 'priority', action: top[0].acao }; }
   const opcoes: Answer[] = [PASSAR, ...top.map((c) => ({ kind: 'priority', action: c.acao }) as Answer)];
   const somas = opcoes.map(() => 0);
   let rodadas = 0;

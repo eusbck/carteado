@@ -84,8 +84,8 @@ Se a conexão cair ou o servidor reiniciar, a página reconecta sozinha e volta 
 | `npm run typecheck` | checagem de tipos do servidor e do cliente |
 | `npm run cliente:dev` | cliente com recarga automática (precisa do servidor rodando) |
 | `npm run estresse` | partidas de bots procurando erros do motor (`node bots/estresse.ts [partidas] [jogadores] [aleatorio ou heuristico] [semente]`) |
-| `node bots/comparar.ts` | força do bot: o heurístico no assento 0 contra aleatórios (ou todos heurísticos) |
-| `node ferramentas/humano-e-bots.ts` | uma partida inteira no servidor com uma pessoa simulada e 3 bots |
+| `node bots/comparar.ts <nívelA> <nívelB> [partidas] [semente] [processos]` | força dos níveis de bot: partidas 1v1 espelhadas (mesmos decks, assentos trocados), em até 6 processos; `mesa <n1,n2,n3,n4>` para 4 jogadores |
+| `node ferramentas/humano-e-bots.ts [semente] [4p|1v1] [níveis]` | uma partida inteira no servidor com uma pessoa simulada e bots pensando nas threads de verdade; mostra cliques extras no turno dos bots, processador e memória |
 | `node ferramentas/capturas.ts` | capturas de tela da interface em `.cache/capturas/` |
 | `node ferramentas/e2e.ts` | partidas de ponta a ponta com navegadores (1v1, 4 jogadores, reinício do servidor) |
 | `node ferramentas/cobertura.ts` | atualiza `COBERTURA.md` |

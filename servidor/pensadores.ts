@@ -37,7 +37,7 @@ export interface Pensado {
 
 interface Trabalhador {
   w: Worker;
-  tarefa: { id: number; pedido: PedidoPensar; ok: (r: Pensado | null) => void; falha: (e: Error) => void; reenviada: boolean } | null;
+  tarefa: { id: number; pedido: PedidoPensar; ok: (r: Pensado | null) => void; falha: (e: Error) => void; reenviada: boolean; desde: number; inicio: number } | null;
   /** o que esta thread guardou de cada sala */
   cache: Map<string, { geracao: number; indice: number }>;
   memoria: number;
@@ -46,11 +46,13 @@ interface Trabalhador {
 export class Pensadores {
   readonly threads: number;
   private ts: Trabalhador[] = [];
-  private fila: { id: number; pedido: PedidoPensar; ok: (r: Pensado | null) => void; falha: (e: Error) => void }[] = [];
+  private fila: { id: number; pedido: PedidoPensar; ok: (r: Pensado | null) => void; falha: (e: Error) => void; desde: number }[] = [];
   private seq = 0;
   private fechado = false;
-  /** maior memória usada por uma thread (bytes do heap), para as medições */
+  /** maior memória usada pelas threads juntas (bytes do heap), para as medições */
   picoMemoria = 0;
+  /** tempo de cada decisão pensada, por nível (só o pensar; a espera na fila à parte) */
+  estatisticas: Record<string, { n: number; soma: number; max: number; espera: number; esperaMax: number }> = {};
 
   constructor(threads = 2) {
     this.threads = threads;
@@ -83,7 +85,7 @@ export class Pensadores {
   pensar(pedido: PedidoPensar): Promise<Pensado | null> {
     if (this.fechado) return Promise.reject(new Error('threads de pensar fechadas'));
     return new Promise((ok, falha) => {
-      this.fila.push({ id: ++this.seq, pedido, ok, falha });
+      this.fila.push({ id: ++this.seq, pedido, ok, falha, desde: performance.now() });
       this.despachar();
     });
   }
@@ -107,7 +109,7 @@ export class Pensadores {
       const f = this.fila.shift()!;
       // de preferência a thread que já tem a sala guardada (refaz menos)
       const t = livres.find((x) => this.cacheServe(x, f.pedido) !== null) ?? livres[0];
-      t.tarefa = { ...f, reenviada: false };
+      t.tarefa = { ...f, reenviada: false, inicio: performance.now() };
       this.enviar(t, false);
     }
   }
@@ -142,6 +144,9 @@ export class Pensadores {
     else {
       if (r.cpIndice !== null) t.cache.set(tarefa.pedido.sala, { geracao: tarefa.pedido.geracao, indice: r.cpIndice });
       t.memoria = r.memoria;
+      const e = (this.estatisticas[tarefa.pedido.tarefa.nivel] ??= { n: 0, soma: 0, max: 0, espera: 0, esperaMax: 0 });
+      const espera = tarefa.inicio - tarefa.desde;
+      e.n++; e.soma += r.ms; e.max = Math.max(e.max, r.ms); e.espera += espera; e.esperaMax = Math.max(e.esperaMax, espera);
       this.picoMemoria = Math.max(this.picoMemoria, this.ts.reduce((s, x) => s + x.memoria, 0));
       tarefa.ok({ resposta: r.resposta, estado: r.estado, ms: r.ms });
     }
