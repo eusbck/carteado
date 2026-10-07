@@ -560,5 +560,6 @@ partida de 4 jogadores acima: Difícil 0,9 s de média, Cartomante 1,5 s, Magic 
     oponentes" na faixa.
   - Se voltar a ver mana de um terreno virado pagando à mão na mesa real, dizer qual terreno e o nível de auxílio.
   - Partidas abertas antes desta atualização podem não retomar (o pagamento automático mudou): termine ou recomece.
-  - As pastas `../jogo-wt-a` a `../jogo-wt-d` (worktrees dos subagentes, já juntadas) podem ser apagadas com
-    `git worktree remove --force ../jogo-wt-a` (etc.); dentro delas, `node_modules` é só um atalho para o do `jogo`.
+  - As pastas `../jogo-wt-a` a `../jogo-wt-d` (worktrees dos subagentes, já juntadas) podem ser apagadas. Dentro delas,
+    `node_modules` é um atalho (junção) para o do `jogo`: tire o atalho primeiro, com `cmd /c rmdir ..\jogo-wt-a\node_modules`
+    (apaga só o atalho), e depois `git worktree remove --force ../jogo-wt-a` (o mesmo para b, c e d).
