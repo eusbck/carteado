@@ -285,9 +285,9 @@ try {
   await p.locator('form').filter({ hasText: 'Criar sala' }).getByLabel('Senha da sala').fill('mesa');
   await p.getByRole('button', { name: 'Criar', exact: true }).click();
   await p.getByRole('heading', { name: 'Lugares' }).waitFor();
-  const selects = p.locator('select');
+  // o seletor de deck de cada assento (com bot, o assento ganha também o seletor de nível)
   for (let i = 0; i < 3; i++) {
-    await selects.nth(i).selectOption({ index: i + 2 });
+    await p.locator('.assento').nth(i + 1).getByLabel(/Pôr bot com|Deck do bot/).selectOption({ index: i + 2 });
     await p.waitForTimeout(150);
   }
   await p.locator('.deck').first().click();
@@ -875,6 +875,90 @@ try {
     await c9.close();
   }
   // --- fim da fase 9 ---
+
+  // --- fase 9: níveis dos bots, "está pensando…" e o aviso de quem a mesa espera ---
+  // CAPTURAS_SO=niveis roda só este bloco.
+  if (!SO || SO === 'niveis') {
+    const TELAS = [{ width: 1920, height: 1080 }, { width: 1280, height: 800 }];
+    const cn = await navegador.newContext({ viewport: TELAS[0] });
+    cn.setDefaultTimeout(20000);
+    const pn = await cn.newPage();
+    await entrar(pn);
+    await pn.getByLabel('Seu nome na mesa').fill('Ana');
+    await pn.locator('form').filter({ hasText: 'Criar sala' }).getByLabel('Senha da sala').fill('mesa');
+    await pn.getByRole('button', { name: 'Criar', exact: true }).click();
+    await pn.getByRole('heading', { name: 'Lugares' }).waitFor();
+    // três bots com níveis diferentes: o nome sorteado aparece com o nível ("ROBSON · Cartomante")
+    const niveis = ['Magic God', 'Cartomante', 'Iniciante'];
+    for (let i = 0; i < 3; i++) {
+      const assento = pn.locator('.assento').nth(i + 1);
+      await assento.getByLabel('Pôr bot com').selectOption({ index: i + 1 });
+      await assento.getByLabel('Nível').waitFor();
+      await assento.getByLabel('Nível').selectOption({ label: niveis[i] });
+      await pn.waitForTimeout(200);
+    }
+    await pn.locator('.deck').nth(2).click();
+    for (let i = 0; i < 3; i++) {
+      const texto = await pn.locator('.assento').nth(i + 1).locator('.assento-nome').innerText();
+      if (!/^[A-ZÁÉÍÓÚÂÊÔÃÕÇ]+ · /.test(texto) || !texto.includes(niveis[i])) throw new Error(`assento ${i + 1} sem nome · nível: ${texto}`);
+    }
+    for (const t of TELAS) { await pn.setViewportSize(t); await foto(pn, `92-saguao-niveis-${t.width}`); }
+    await cn.close();
+
+    // 1v1 contra um Magic God: "está pensando…" quando ele pensa mais de 1 s; e, com "Mágicas dos oponentes"
+    // e a etapa final dos outros marcadas, o aviso grande de que a mesa espera Ana
+    const cp = await navegador.newContext({ viewport: TELAS[0] });
+    cp.setDefaultTimeout(20000);
+    const q = await cp.newPage();
+    await entrar(q);
+    await q.getByLabel('Seu nome na mesa').fill('Ana');
+    await q.getByRole('button', { name: 'Um contra um' }).click();
+    await q.locator('form').filter({ hasText: 'Criar sala' }).getByLabel('Senha da sala').fill('mesa');
+    await q.getByRole('button', { name: 'Criar', exact: true }).click();
+    await q.getByRole('heading', { name: 'Lugares' }).waitFor();
+    await q.locator('.assento').nth(1).getByLabel('Pôr bot com').selectOption({ index: 2 });
+    await q.locator('.assento').nth(1).getByLabel('Nível').selectOption({ label: 'Magic God' });
+    await q.locator('.deck').nth(4).click();
+    await q.getByRole('button', { name: 'Começar a partida' }).click();
+    await q.getByText('Mão inicial').waitFor({ timeout: 30000 });
+    await clicar(q, 'Manter');
+    let pensando = false;
+    let aviso = false;
+    let marcou = false;
+    for (let i = 0; i < 1200 && !(pensando && aviso); i++) {
+      await q.waitForTimeout(250);
+      if (!pensando && await q.locator('.fases .prioridade.pensando').isVisible().catch(() => false)) {
+        pensando = true;
+        for (const t of TELAS) { await q.setViewportSize(t); await foto(q, `93-bot-pensando-${t.width}`); }
+        await q.setViewportSize(TELAS[0]);
+        continue;
+      }
+      if (await q.locator('.aviso-prioridade').isVisible().catch(() => false)) {
+        if (!aviso) {
+          aviso = true;
+          for (const t of TELAS) { await q.setViewportSize(t); await foto(q, `94-aviso-sua-vez-${t.width}`); }
+          await q.setViewportSize(TELAS[0]);
+        }
+        await clicar(q, 'Passar');
+        continue;
+      }
+      // depois do primeiro aviso de pensando: liga as paradas do turno dos outros (mágicas e etapa final)
+      if (pensando && !marcou && await q.getByRole('button', { name: 'Mágicas dos oponentes' }).isVisible().catch(() => false)) {
+        marcou = true;
+        await q.getByRole('button', { name: 'Mágicas dos oponentes' }).click();
+        await q.getByTitle(/Parar aqui no turno dos outros/).first().click().catch(() => {});
+      }
+      if (await q.getByText('Você tem prioridade').isVisible().catch(() => false)) { await clicar(q, 'Passar'); continue; }
+      for (const nome of ['Manter', 'Não atacar', 'Não bloquear', 'Confirmar', 'Nenhum']) if (await clicar(q, nome)) break;
+      if (await q.locator('.janela-escolha .item:not([disabled])').first().isVisible().catch(() => false)) {
+        await q.locator('.janela-escolha .item:not([disabled])').first().click();
+        await clicar(q, 'Confirmar');
+      }
+    }
+    if (!pensando) throw new Error('o aviso "está pensando…" não apareceu');
+    if (!aviso) console.log('aviso: a mesa não chegou a esperar Ana fora do turno dela nesta partida (captura 94 opcional)');
+    await cp.close();
+  }
 
 } catch (e) {
   for (const [i, p] of paginas.entries()) if (!p.isClosed()) await p.screenshot({ path: join(SAIDA, `falha-${i}.png`) }).catch(() => {});
