@@ -93,6 +93,46 @@ describe('fase 9: nível e nome dos bots na sala', () => {
   }, 120000);
 });
 
+describe('fase 9: desfazer e reinício com qualquer nível', () => {
+  for (const nivel of ['iniciante', 'dificil', 'cartomante', 'magicgod'] as const) {
+    it(`${nivel}: o bot aceita o desfazer na hora, e a partida retomada depois de reiniciar fica igual`, async () => {
+      const banco = new Banco(':memory:');
+      const g = new Gerente(banco, DECKS, SEM_ATRASO);
+      const ana = new Falsa();
+      g.tratar(ana, { t: 'criar', nome: 'Ana', senhaSala: 'segredo', modo: '1v1' });
+      const codigo = ana.ultima('sala')!.sala.codigo;
+      g.tratar(ana, { t: 'deck', deck: DECKS[0].id });
+      g.tratar(ana, { t: 'bot', assento: 1, deck: DECKS[1].id, nivel });
+      g.tratar(ana, { t: 'paradas', paradas: { ...g.salas.get(codigo)!.d.assentos[0].paradas, skipWhenNothing: false } });
+      g.tratar(ana, { t: 'iniciar' });
+      // Ana passa até ter um terreno para jogar no próprio turno (o bot joga os turnos dele)
+      let jogou: { mao: number[]; def: string } | null = null;
+      for (let k = 0; k < 3000 && !jogou; k++) {
+        await espera();
+        const v = ana.ultima('jogo')?.vista;
+        const d = v?.decision;
+        if (!v || !d) continue;
+        const terreno = d.kind === 'priority' && v.turn.active === v.you && v.turn.number >= 3 ? d.actions.find((a) => a.kind === 'play') : undefined;
+        if (terreno) {
+          jogou = { mao: v.hand.map((c) => c.id), def: v.hand.find((c) => c.id === terreno.obj)!.def };
+          g.tratar(ana, { t: 'responder', decisao: d.id, resposta: { kind: 'priority', action: terreno.id } });
+        } else g.tratar(ana, resposta(d));
+      }
+      expect(jogou).not.toBeNull();
+      await espera();
+      g.tratar(ana, { t: 'desfazer' });
+      await espera();
+      expect(ana.ultima('jogo')!.desfazer).toBeNull();
+      expect(ana.ultima('jogo')!.vista.hand.map((c) => c.id).sort()).toEqual([...jogou!.mao].sort());
+      // reinício: a partida refeita das entradas gravadas é a mesma
+      const antes = JSON.stringify(g.salas.get(codigo)!.game!.state);
+      const g2 = new Gerente(banco, DECKS, SEM_ATRASO);
+      g2.restaurar();
+      expect(JSON.stringify(g2.salas.get(codigo)!.game!.state)).toBe(antes);
+    }, 180000);
+  }
+});
+
 describe('fase 9: threads de pensar dos bots', () => {
   const abertas: Gerente[] = [];
   afterAll(async () => { for (const g of abertas) await g.pensadores?.fechar(); });

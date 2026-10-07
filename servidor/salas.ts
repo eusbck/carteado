@@ -35,6 +35,8 @@ export interface Atrasos {
   simulacoesBot: number | null;
   /** threads de pensar dos bots, para todas as salas juntas (0: pensam na linha principal, como nos testes) */
   threads: number;
+  /** teto de tempo por decisão de todos os bots, no lugar do do nível (testes); null = do nível */
+  tempoBot?: number | null;
   /** a partir de quantos ms pensando a mesa avisa "Fulano está pensando…" */
   avisoPensando: number;
   /** quanto tempo os outros têm para aceitar um pedido de desfazer */
@@ -43,7 +45,7 @@ export interface Atrasos {
 
 export const ATRASOS_PADRAO: Atrasos = { botAcao: 700, botPasse: 90, autoPasse: 60, simulacoesBot: null, prazoDesfazer: 30000, threads: 2, avisoPensando: 1000 };
 // testes do servidor: sem atrasos e com bots que pensam pouco (o fluxo da sala é o que importa)
-export const SEM_ATRASO: Atrasos = { botAcao: 0, botPasse: 0, autoPasse: 0, simulacoesBot: 3, prazoDesfazer: 30000, threads: 0, avisoPensando: 1000 };
+export const SEM_ATRASO: Atrasos = { botAcao: 0, botPasse: 0, autoPasse: 0, simulacoesBot: 3, prazoDesfazer: 30000, threads: 0, avisoPensando: 1000, tempoBot: 300 };
 
 interface Assento {
   tipo: TipoAssento;
@@ -428,8 +430,9 @@ export class Sala {
   private criarBots(): void {
     const seed = this.d.partida!.config.seed;
     const sims = this.gerente.atrasos.simulacoesBot;
+    const tempo = this.gerente.atrasos.tempoBot ?? null;
     this.bots = new Map(this.d.assentos.map((a, i) => [i, a] as const).filter(([, a]) => a.tipo === 'bot')
-      .map(([i, a]) => [i, new HeuristicBot(`${seed}:${i}`, i, { nivel: a.nivel ?? NIVEL_PADRAO, ...(sims !== null ? { simulacoes: sims } : {}) })]));
+      .map(([i, a]) => [i, new HeuristicBot(`${seed}:${i}`, i, { nivel: a.nivel ?? NIVEL_PADRAO, ...(sims !== null ? { simulacoes: sims } : {}), ...(tempo !== null ? { orcamento: tempo } : {}) })]));
     this.geracao++;
   }
 
@@ -569,7 +572,7 @@ export class Sala {
     try {
       const r = await pens.pensar({
         sala: this.d.codigo, geracao: this.geracao, cp, entradas: g.inputs, deckIds: this.d.partida!.deckIds,
-        tarefa: { nivel: bot.nivel, eu: assento, estado: bot.e, decisao, jaImediata: true, config: this.d.partida!.config, ...(sims !== null ? { opcoes: { simulacoes: sims } } : {}) },
+        tarefa: { nivel: bot.nivel, eu: assento, estado: bot.e, decisao, jaImediata: true, config: this.d.partida!.config, ...(sims !== null ? { opcoes: { simulacoes: sims } } : {}), ...(this.gerente.atrasos.tempoBot ? { tempo: this.gerente.atrasos.tempoBot } : {}) },
       });
       if (r && this.bots.get(assento) === bot) bot.e = r.estado;
       return r?.resposta ?? null;
