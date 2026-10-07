@@ -294,6 +294,56 @@ Divisão do trabalho: 1.1, 1.5 e a seção 4 no repositório principal; com suba
   do bot e o aviso diz por quê; migração das salas antigas). `ferramentas/humano-e-bots.ts` conta os "cliques extras" no
   turno dos bots e falha se houver algum (1v1 contra o Intermediário: fim no turno 23, nenhum clique extra).
 
+### 1.2 Terreno que entra virado conta na reserva (`fase9-a`)
+- Tentativas de reproduzir ao pé da letra, sem o sintoma: no motor, cada um dos 56 terrenos dos decks que entram virados
+  (reserva vazia, o terreno nunca vira fonte de mana); partidas inteiras de bots conferindo a cada resposta; no
+  navegador (duplo clique, arrastar, menu). O cliente não deduz mana pela diferença de estado: mostra o `manaPool` da
+  vista.
+- O que reproduziu: numa partida no servidor (pessoa com pagamento automático e bots), reserva com mana fora de
+  pagamento, por exemplo "Ana joga Radiant Grove. / Ana conjura Faeburrow Elder." deixando {G}{G} na reserva.
+- Causa: `planPayment` (`motor/costs.ts`) acrescentava fontes na ordem de preferência até a conta fechar e nunca tirava
+  as que sobravam; o pagamento automático virava terrenos que não pagavam nada e a mana deles ficava na reserva até o
+  fim da etapa. Logo depois de jogar um terreno virado e conjurar, parece a mana dele. Atinge os bots (que sempre pagam
+  no automático) e quem usa o auxílio "Pagar automaticamente".
+- Correção: plano de pagamento enxuto (tira, das menos preferidas para as mais, as fontes sem as quais o resto ainda
+  paga). Testes em `testes/terreno-virado.test.ts` (todo terreno que entra virado: reserva vazia, não é fonte, desvira
+  no próximo turno do dono; Radiant Grove + Faeburrow Elder no automático; casos do plano enxuto).
+- Em aberto: se você voltar a ver mana de um terreno virado pagando à mão na mesa real, preciso saber qual terreno e o
+  nível de auxílio.
+- Atenção: como o pagamento automático mudou, uma partida salva no meio pode não retomar depois da atualização
+  ("Reprodução divergiu") se o refazer passar por pagamentos automáticos; termine ou recomece as partidas abertas.
+
+### 1.3 Posicionar cartas no campo (`fase9-b`)
+- Reproduzido com Playwright (sala pronta `ARRUM` em `ferramentas/cenarios.ts`): arrastando pelo canto, a carta ficava
+  de 53 a 105 px antes de onde foi solta (horizontal) e 3 px acima; as outras cartas eram empurradas; ela deslizava até
+  o lugar; e uma vista nova chegando antes da confirmação a devolvia à origem.
+- Causas: a posição era desenhada multiplicada pela largura do campo menos a coluna da direita (336 px) mas calculada no
+  campo inteiro; âncora pelo centro da caixa com o "levantar" do hover; transição de 0,25 s em `left`/`top`; a carta
+  posta saía da arrumação padrão e as outras se rearrumavam; cada vista nova apagava a posição otimista; o servidor
+  guardava 3 casas.
+- Correção: arraste direto no DOM (`cliente/src/mesa/mover.ts`), o ponto pego fica sob o ponteiro (de pé ou virada),
+  mesma referência ao desenhar e ao soltar, a carta posta guarda o espaço dela na arrumação (nada é empurrado; fica um
+  "buraco" onde ela estava até ela sair do campo ou você reorganizar), posição otimista até o servidor confirmar, 4
+  casas no servidor. Arrastar uma Aura ou Equipamento move a carta em que está preso; da mão para o campo também vale o
+  ponto pego. Erro medido depois: 0,0 a 0,1 px.
+
+### 1.4 Bloqueios (`fase9-a`)
+Auditoria do bloqueio por cliques, caso a caso (testes em `testes/bloqueios.test.ts`, `bloqueio-cliente.test.ts`,
+`bloqueio-servidor.test.ts`; a lógica do clique saiu de `Mesa.tsx` para `cliente/src/mesa/bloqueio.ts`):
+1. Um bloqueador: funciona.
+2. Vários bloqueadores: funciona. Desde Foundations (2024) não há ordem de dano: quem ataca divide como quiser (CR
+   510.1c), e é o que o motor faz. Corrigido: a resposta padrão da divisão de dano (`motor/ask.ts`) somava só o letal e
+   era recusada (usada para quem saiu da partida e na rede de segurança do servidor).
+3. Voar e alcance: funciona.
+4. Ameaça: funciona no motor (um bloqueador só é recusado); na mesa, o motor recusa e a mesa treme (ou mostra o motivo
+   com o auxílio de avisos).
+5. Primeiro golpe e golpe duplo: funciona no motor. Corrigido no bot: ele "trocava" com quem tem primeiro golpe e
+   perdia a criatura sem causar dano.
+6. Atropelar: funciona.
+7. 4 jogadores: funciona; só os atacados decidem, cada um vê só quem o ataca, e a mesa recusa marcar atacantes de outros.
+8. Bot bloqueando e você bloqueando o bot: o seu lado funciona. Corrigido no bot: com um bloqueio inválido (ameaça) ele
+   desfazia todos os outros; para não morrer, agora bloqueia a ameaça com duas criaturas; leva em conta primeiro golpe.
+
 ### 1.5 O bot nunca vê a mão de ninguém
 - Como era: o bot recebia a partida inteira. A busca rasa sorteava de novo a mão e o grimório dos oponentes, mas partindo
   da ordem verdadeira (trocar as cartas da mão mudava o sorteio), a cópia guardava a última informação conhecida (LKI)
@@ -310,13 +360,70 @@ Divisão do trabalho: 1.1, 1.5 e a seção 4 no repositório principal; com suba
   resposta também, pelo caminho do servidor e pelo da partida local. Conferido que o teste pega o vazamento: com o
   sorteio desligado, ele falha.
 
+### 2.1 Janelas de escolha (`fase9-c`)
+- As escolhas (`select`, `number`, `arrange`) saíram da coluna da direita e abrem `cliente/src/mesa/JanelaEscolha.tsx`,
+  centrada na divisa entre os oponentes e você; cresce com o conteúdo até a altura da mesa e só então rola por dentro
+  (título e botões fixos). Com algo na pilha, deixa a coluna da pilha à vista. Não escurece a mesa: as cartas em volta
+  continuam clicáveis. Prioridade, pagamento, ataque, bloqueio, dano e mulligan continuam na coluna.
+- Formato de cada escolha (`mesa/escolhas.ts`):
+  - **grade** (mais de 8 cartas, como uma busca no grimório): rolagem, filtro por nome em português ou inglês e pelo
+    texto, sem acento; cartas iguais viram um item "×N" (os básicos ocupam poucos quadros);
+  - **cartas** (até 8 cartas ou jogadores: alvos, descarte, regra da lenda): cartas grandes lado a lado, cada uma
+    dizendo onde está ("de Bruno · virada", "na sua mão"); jogadores com nome e vida; clicar na mesa também marca;
+  - **fila** (ordenar gatilhos): arrastar ou ↑/↓, mostrada como a pilha (o de cima resolve primeiro), com a carta de
+    origem e o texto;
+  - **opções** (modos, custos): um botão largo por linha com o texto inteiro;
+  - **sim ou não** (até 3 opções curtas): janela compacta, um clique responde;
+  - **número**: mín., −, valor, +, máx.;
+  - **arranjo** (vidência, vigiar): duas faixas (Topo e Fundo, ou Topo e Cemitério) com as cartas grandes.
+- Recolher: "Ver a mesa" vira um cartão "Escolha pendente" na coluna (dá para clicar nas cartas da mesa como alvo);
+  segurar Espaço esconde a janela enquanto a tecla está apertada.
+
+### 2.2 Zoom (`fase9-c`)
+- Sempre à esquerda ou à direita (no lado oposto ao da carta), centralizado na altura; a imagem tem cerca de 40% da
+  altura da tela (no máximo 30% da largura da mesa e 620 px). Com muito texto (`mesa/medidaZoom.ts`): a carta encolhe até
+  80%, depois o texto vai para o lado, por fim a letra diminui até 60%; nunca sai da tela.
+
+### 2.3 Registro escondido (`fase9-c`)
+- O botão Registro esconde e mostra o registro; escondido, a barra fica só com os ícones (64 px) e a mesa ocupa o resto
+  (em 1920, de 1672 para 1856 px). Guardado em `preferencias.ts`. "Recolher a barra" virou o mesmo estado.
+
+### 2.4 Seleção por arrasto (`fase9-b`)
+- No espaço vazio do seu campo, segurar e arrastar desenha um retângulo roxo; as suas cartas que ele **toca** ficam
+  selecionadas (Shift soma). Arrastar uma selecionada move o grupo inteiro com a precisão do 1.3 (o grupo para inteiro
+  na borda); arrastar uma não selecionada move só ela. Clique no vazio ou Esc desfaz. O arraste só começa depois de
+  7 px: clique, virar terreno para pagar, combate por cliques e o menu do clique direito continuam iguais. O servidor
+  aceita as posições do grupo numa mensagem só (`posicao` com `lista`, tudo ou nada).
+
+### 2.5 Fundo de cada jogador (`fase9-d`)
+- Antes: recorte de 626×364 da imagem local, ampliado, com `blur(1px)`. Nenhuma fonte passa de 745 px de largura (a png
+  da Scryfall é 745×1040; o `art_crop` tem 626×457). Escolhido: recorte na largura toda da png da impressão com a arte
+  sem borda ou estendida (744×442; Quintorius 744×378), guardado em `gerado/artes/` (2,5 MB, origem de cada um em
+  `fontes.json`; script `ferramentas/baixar-artes.ts`). Servido em `/img/<id>/fundo` (mesma sessão das outras imagens),
+  ampliado para 2560 px com lanczos3 e nitidez leve; saiu o `blur`.
+
+### 3.1 Som da troca de turno (`fase9-d`)
+- "Seu turno": trompas subindo (ré, sol, ré agudo) com tímpano e sino, em sol como a música, que abaixa um instante.
+  "Turno de um adversário": dois toques de harpa descendo, abafados (cerca de 8 dB mais baixo e metade da duração). Cada
+  navegador decide pelo próprio assento (`cliente/src/somTurno.ts`); em Configurações, cada som liga e desliga separado,
+  com botão de ouvir. Testes em `testes/fase9-sons.test.ts` (partida de 4 assentos: a cada turno novo, só o jogador do
+  turno ouve "seu turno" e os outros três o de adversário).
+
+### 3.2 Música (`fase9-d`)
+- "The Snow Queen", de Kevin MacLeod (incompetech.com), licença CC BY 4.0, conferida na página da obra; registro em
+  `cliente/src/musica/CREDITOS.md`, no `LEIAME.md` e na janela de Configurações. MP3 de 4,2 MB servido pelo nosso
+  servidor. Laço sem corte: Web Audio, com a volta seguinte marcada no relógio do áudio, um compasso depois do acorde
+  final, por cima da cauda. Só começa depois do primeiro clique (sem erro no console). Começa ligada em 40%; volume
+  separado dos efeitos, guardado no navegador e ajustável no meio da partida.
+
 ### 4. Níveis de dificuldade
 - Níveis em `bots/niveis.ts`: Iniciante, Fácil, Intermediário (padrão), Difícil, Cartomante, Magic God. Um só bot
   (`bots/heuristico.ts`) com parâmetros por nível:
   - Iniciante: regras (terreno; a criatura ou permanente mais cara que der; instantânea quase nunca; feitiço às vezes),
-    nunca age no turno dos outros, ataca só com quem não tem bloqueador que o mate, bloqueia para não morrer, esquece
-    ataques (30%) e às vezes erra o alvo da remoção (35%, sempre numa coisa de oponente).
-  - Fácil: o bot de antes com 6 simulações, às vezes a 2ª ou 3ª melhor jogada (35%), vantagem mínima 1,5 em vez de 0,5,
+    nunca age no turno dos outros, ataca só com quem não tem bloqueador que o mate, bloqueia para não morrer; erra como
+    quem está começando: esquece de jogar o terreno (15% por fase principal), conjura outra coisa que não a melhor
+    (25%), esquece ataques (30%) e às vezes erra o alvo da remoção (35%, sempre numa coisa de oponente).
+  - Fácil: o bot de antes com 8 simulações, às vezes a 2ª ou 3ª melhor jogada (25%), vantagem mínima 1,5 em vez de 0,5,
     responde só 30% das vezes, esquece ataques (15%).
   - Intermediário: o bot das fases anteriores (24 simulações, 2 s), agora decidindo no mundo do bot.
   - Difícil: as candidatas são jogadas nos **mesmos mundos sorteados** e vale a média (a diferença entre elas não depende

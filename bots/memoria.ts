@@ -24,11 +24,11 @@ export interface DadosMemoria {
   semTerreno: Record<number, number>;
   truque: Record<number, number>;
   /** turno em andamento visto pela última vez, e o que o jogador ativo fez nele */
-  turno: { numero: number; ativo: number; terrenos: number; mao: number; desvirados: number; proximoId: number };
+  turno: { numero: number; ativo: number; terrenos: number; mao: number; desvirados: number; magias: number; proximoId: number };
 }
 
 export function memoriaVazia(): DadosMemoria {
-  return { linhas: 0, lki: [], naMao: {}, semTerreno: {}, truque: {}, turno: { numero: -1, ativo: -1, terrenos: 0, mao: 0, desvirados: 0, proximoId: 0 } };
+  return { linhas: 0, lki: [], naMao: {}, semTerreno: {}, truque: {}, turno: { numero: -1, ativo: -1, terrenos: 0, mao: 0, desvirados: 0, magias: 0, proximoId: 0 } };
 }
 
 function tirar(lista: string[] | undefined, nome: string): void {
@@ -86,13 +86,15 @@ export function observar(m: DadosMemoria, g: G, eu: PlayerId): void {
     if (t.numero >= 0 && t.ativo !== eu && s.players[t.ativo]) {
       const q = t.ativo;
       if (t.terrenos === 0 && t.mao > 0) m.semTerreno[q] = t.proximoId; else delete m.semTerreno[q];
-      if (t.desvirados >= 2 && t.mao > 0) m.truque[q] = t.proximoId; else delete m.truque[q];
+      // passou o próprio turno sem conjurar nada, com mana sobrando e cartas na mão: guarda algo para o turno dos outros
+      if (t.magias === 0 && t.desvirados >= 2 && t.mao > 0) m.truque[q] = t.proximoId; else delete m.truque[q];
     }
-    m.turno = { numero: s.turn.number, ativo: s.turn.active, terrenos: 0, mao: 0, desvirados: 0, proximoId: 0 };
+    m.turno = { numero: s.turn.number, ativo: s.turn.active, terrenos: 0, mao: 0, desvirados: 0, magias: 0, proximoId: 0 };
   }
   const a = s.turn.active;
   if (a !== eu) {
     m.turno.terrenos = Math.max(m.turno.terrenos, s.turn.landsPlayed);
+    m.turno.magias = Math.max(m.turno.magias, s.turnStats[a]?.spellsCast ?? 0);
     m.turno.mao = s.zones.hand[a].length;
     m.turno.desvirados = s.zones.battlefield.filter((id) => !s.objects[id].tapped && isLand(g, id) && controllerOf(g, id) === a).length;
     m.turno.proximoId = s.nextId;

@@ -367,7 +367,10 @@ export class HeuristicBot {
     const objetos = s.zones.battlefield.length;
     // mesa enorme (fichas em cadeia): cada simulação custa mais; reduz a quantidade, sem perder o determinismo
     const limite = objetos <= 60 ? this.p.simulacoes : Math.max(3, Math.round(this.p.simulacoes * 60 / objetos));
-    const horizonte: Horizonte = this.p.agirNoCombate && s.combat && ['declareAttackers', 'declareBlockers'].includes(s.turn.step) ? 'combate' : 'pilha';
+    const noCombate = this.p.agirNoCombate && !!s.combat && ['declareAttackers', 'declareBlockers'].includes(s.turn.step);
+    // Cartomante em diante: antes do combate do próprio turno, a jogada é avaliada depois dos ataques e bloqueios
+    const antesDoCombate = this.p.olharCombate && s.turn.active === this.eu && s.turn.step === 'main1';
+    const horizonte: Horizonte = noCombate || antesDoCombate ? 'combate' : 'pilha';
     const opts = { horizonte, avaliacao: this.avaliacao() };
     const candidatas = ordenar(acoes, g).slice(0, limiteCandidatas);
     const K = Math.max(1, this.p.mundos);

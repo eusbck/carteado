@@ -53,13 +53,15 @@ export interface Parametros {
   escolhaSimulada: boolean;
   /** lembra do que foi revelado e lê a mesa (Cartomante) */
   memoria: boolean;
+  /** na fase principal antes do combate, simula até o fim do combate seguinte (Cartomante em diante) */
+  olharCombate: boolean;
   /** busca Monte Carlo até o fim do turno seguinte (Magic God): parte do tempo vai para ela */
   busca: boolean;
 }
 
 const BASE: Parametros = {
   regras: false, simulacoes: 24, mundos: 1, variantes: 2, tempo: 2000, margem: 0.5, erro: 0, responde: 1, esquece: 0,
-  combate: 'heuristico', agirNoCombate: false, oponenteResponde: false, lider: false, escolhaSimulada: false, memoria: false, busca: false,
+  combate: 'heuristico', agirNoCombate: false, oponenteResponde: false, lider: false, escolhaSimulada: false, memoria: false, olharCombate: false, busca: false,
 };
 
 export const PARAMETROS: Record<NivelBot, Parametros> = {
@@ -67,6 +69,6 @@ export const PARAMETROS: Record<NivelBot, Parametros> = {
   facil: { ...BASE, simulacoes: 8, variantes: 1, tempo: 500, margem: 1.5, erro: 0.25, responde: 0.3, esquece: 0.15 },
   intermediario: { ...BASE },
   dificil: { ...BASE, simulacoes: 60, mundos: 3, tempo: 3000, combate: 'simulado', agirNoCombate: true, oponenteResponde: true, lider: true, escolhaSimulada: true },
-  cartomante: { ...BASE, simulacoes: 120, mundos: 5, tempo: 3000, combate: 'simulado', agirNoCombate: true, oponenteResponde: true, lider: true, escolhaSimulada: true, memoria: true },
-  magicgod: { ...BASE, simulacoes: 120, mundos: 5, tempo: 6000, combate: 'simulado', agirNoCombate: true, oponenteResponde: true, lider: true, escolhaSimulada: true, memoria: true, busca: true },
+  cartomante: { ...BASE, simulacoes: 120, mundos: 5, tempo: 3000, combate: 'simulado', agirNoCombate: true, oponenteResponde: true, lider: true, escolhaSimulada: true, memoria: true, olharCombate: true },
+  magicgod: { ...BASE, simulacoes: 120, mundos: 5, tempo: 6000, combate: 'simulado', agirNoCombate: true, oponenteResponde: true, lider: true, escolhaSimulada: true, memoria: true, olharCombate: true, busca: true },
 };
