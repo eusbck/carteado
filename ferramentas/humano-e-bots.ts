@@ -47,7 +47,9 @@ const t0 = Date.now();
 // medição (fase 9, item 4.5): processador do processo inteiro (linha principal + threads de pensar) e memória
 const cpu0 = process.cpuUsage();
 let picoRss = 0;
-const amostra = setInterval(() => { picoRss = Math.max(picoRss, process.memoryUsage().rss); }, 500);
+/** memória do processo ao longo da partida (para ver se cresce) */
+const rss: number[] = [];
+const amostra = setInterval(() => { const m = process.memoryUsage().rss; picoRss = Math.max(picoRss, m); rss.push(m); }, 500);
 amostra.unref();
 let respondidas = 0;
 let ultimaId = -1;
@@ -97,6 +99,8 @@ const v = ana.ultima('jogo')!.vista;
   const cpu = process.cpuUsage(cpu0);
   const seg = (Date.now() - t0) / 1000;
   const nucleos = (await import('node:os')).availableParallelism();
+  const quarto = (q: number) => { const l = rss.slice(Math.floor(rss.length * q / 4), Math.floor(rss.length * (q + 1) / 4)); return l.length ? l.reduce((t, x) => t + x, 0) / l.length / 2 ** 20 : 0; };
+  console.log(`memória do processo por quarto da partida (média): ${[0, 1, 2, 3].map((q) => `${quarto(q).toFixed(0)} MB`).join(' → ')}`);
   console.log(`processador: ${((cpu.user + cpu.system) / 1e6 / seg * 100).toFixed(0)}% de uma thread em média (${((cpu.user + cpu.system) / 1e6 / seg / nucleos * 100).toFixed(1)}% das ${nucleos} threads); pico de memória do processo ${(picoRss / 2 ** 20).toFixed(0)} MB; pico do heap das threads de pensar ${((g.pensadores?.picoMemoria ?? 0) / 2 ** 20).toFixed(0)} MB`);
   for (const [nv, e] of Object.entries(g.pensadores?.estatisticas ?? {})) console.log(`  ${nv}: ${e.n} decisões pensadas, média ${(e.soma / e.n).toFixed(0)} ms, máximo ${e.max.toFixed(0)} ms; espera na fila média ${(e.espera / e.n).toFixed(0)} ms, máxima ${e.esperaMax.toFixed(0)} ms`);
 }
