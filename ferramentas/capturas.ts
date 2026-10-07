@@ -3,6 +3,7 @@
 // As partes antigas jogam com todos os auxílios ligados (usam o brilho para achar o que jogar);
 // as da fase 8 mostram a mesa real, o combate por cliques e o desfazer.
 // Uso: node ferramentas/capturas.ts   → imagens em .cache/capturas/
+//      CAPTURAS_SO=janelas node ferramentas/capturas.ts   → só as da fase 9 (janelas de escolha, zoom e log)
 
 import { spawn } from 'node:child_process';
 import { mkdirSync, rmSync } from 'node:fs';
@@ -30,6 +31,16 @@ mkdirSync(SAIDA, { recursive: true });
   banco.fechar();
   if (prontas.length < 2) throw new Error(`cenários de combate não ficaram prontos: ${prontas.join(', ')}`);
 }
+// --- fase 9: janelas de escolha, zoom e log ---
+// CAPTURAS_SO=<bloco> roda só aquele bloco (as capturas antigas ficam de fora)
+const SO = process.env.CAPTURAS_SO ?? '';
+{
+  const banco = new Banco(join(DADOS, 'jogo.sqlite'));
+  const prontas = gerarSalas(banco, ['ORDEM']);
+  banco.fechar();
+  if (!prontas.length) throw new Error('o cenário dos gatilhos (ORDEM) não ficou pronto');
+}
+// --- fim da fase 9 ---
 
 const servidor = spawn(process.execPath, [join(RAIZ, 'servidor', 'index.ts')], {
   env: { ...process.env, PORTA: String(PORTA), DADOS, SENHA_ACESSO: 'teste-capturas' },
@@ -119,8 +130,8 @@ async function jogarAteMinhaPrioridade(p: Page, limite = 40): Promise<void> {
       }
       continue;
     }
-    if (await p.locator('.coluna-dir .decisao .item:not([disabled])').first().isVisible().catch(() => false)) {
-      await p.locator('.coluna-dir .decisao .item:not([disabled])').first().click();
+    if (await p.locator('.janela-escolha .item:not([disabled])').first().isVisible().catch(() => false)) {
+      await p.locator('.janela-escolha .item:not([disabled])').first().click();
       await clicar(p, 'Confirmar');
       continue;
     }
@@ -260,6 +271,7 @@ if (!SO_CAPTURAS || SO_CAPTURAS === 'fundos') {
 // --- fim do bloco da fase 9 ---
 
 try {
+  if (!SO) { // capturas das fases 7 e 8 (CAPTURAS_SO pula)
   // ---------------- quatro jogadores
   const ctx = await navegador.newContext({ viewport: { width: 1920, height: 1080 } });
   ctx.setDefaultTimeout(20000);
@@ -421,6 +433,8 @@ try {
   await conferirMesa(p, 'mesa recolhida');
   await foto(p, '11b-mesa-recolhida-1920');
   await p.getByRole('button', { name: 'Abrir a barra' }).click();
+  // a janela de escolha (fase 9) fica no meio da mesa: responde o que estiver pendente antes de abrir o cemitério
+  await jogarAteMinhaPrioridade(p, 80);
   await p.locator('.botao-zona').first().click();
   await foto(p, '12-cemiterio');
   await ctx.close();
@@ -590,6 +604,277 @@ try {
   await bloqueio.screenshot({ path: join(SAIDA, '31b-dano.png') });
   console.log('captura: 31b-dano.png');
   await bloqueio.context().close();
+  } // fim das capturas das fases 7 e 8
+
+  // --- fase 9: janelas de escolha, zoom e log ---
+  // sala pronta (ferramentas/cenarios.ts, ORDEM): Ana atacou e ordena três gatilhos; depois, pelo ajuste
+  // manual, a busca no grimório inteiro (grade), a janela recolhida e o Espaço; o zoom (pouco e muito
+  // texto); o registro escondido; alvos de uma Aura (cartas grandes); sim ou não (comandante); a vidência
+  // e o descarte. Cada captura em 1920×1080 e 1280×800, conferida (posição, tamanho, nada cortado).
+  if (!SO || SO === 'janelas') {
+    const TELAS = [{ width: 1920, height: 1080 }, { width: 1280, height: 800 }];
+    const c9 = await navegador.newContext({ viewport: TELAS[0] });
+    c9.setDefaultTimeout(20000);
+    const pg = await c9.newPage();
+    paginas.push(pg);
+    pg.on('pageerror', (e) => console.error(`[navegador] ${e.message}`));
+    const entrarNaMesa = async () => {
+      if (await pg.getByLabel('Senha do servidor').isVisible().catch(() => false)) {
+        await pg.getByLabel('Senha do servidor').fill('teste-capturas');
+        await pg.getByRole('button', { name: 'Entrar' }).click();
+      }
+      await pg.locator('.mesa').waitFor();
+      await pg.waitForTimeout(1200);
+    };
+    await pg.goto(URL);
+    await pg.evaluate((k) => localStorage.setItem('commander-da-mesa:sala', JSON.stringify({ codigo: k, token: `token-${k}` })), 'ORDEM');
+    await entrarNaMesa();
+    const tela = async (t: { width: number; height: number }) => { await pg.setViewportSize(t); await pg.waitForTimeout(450); };
+
+    /** a janela de escolha cabe na mesa, fica centrada na divisa (ou encostada numa margem, se for alta) e o "Ver a mesa" recebe o clique */
+    const conferirEscolha = async (quando: string) => {
+      const j = pg.locator('.janela-escolha:not(.recolhida)');
+      await j.waitFor();
+      await j.evaluate((e) => Promise.all(e.getAnimations().map((a) => a.finished)));
+      await pg.waitForTimeout(80);
+      const r = await pg.evaluate(() => {
+        const mesa = document.querySelector('.tabuleiro') as HTMLElement;
+        const t = mesa.getBoundingClientRect();
+        const c = document.querySelector('.janela-escolha')!.getBoundingClientRect();
+        const divisa = t.top + t.height * parseFloat(getComputedStyle(mesa).getPropertyValue('--divisa')) / 100;
+        const b = document.querySelector('.janela-escolha .ver-mesa')!.getBoundingClientRect();
+        const sob = !!document.elementFromPoint(b.left + b.width / 2, b.top + b.height / 2)?.closest('.ver-mesa');
+        const corpo = document.querySelector('.janela-escolha .escolha-corpo')!;
+        return { topo: c.top - t.top, baixo: t.bottom - c.bottom, esq: c.left - t.left, dir: t.right - c.right, centro: Math.round(c.top + c.height / 2 - divisa), sob, rola: corpo.scrollHeight > corpo.clientHeight + 1, w: Math.round(c.width), h: Math.round(c.height) };
+      });
+      const fora = r.topo < 11 || r.baixo < 11 || r.esq < 15 || r.dir < 15;
+      const centrada = Math.abs(r.centro) <= 2 || r.topo <= 13 || r.baixo <= 13;
+      if (fora || !centrada || !r.sob) throw new Error(`janela de escolha fora do lugar (${quando}): ${JSON.stringify(r)}`);
+      console.log(`  janela (${quando}): ${r.w}×${r.h}, ${r.rola ? 'rola por dentro' : 'sem rolagem'}, centro ${r.centro} px da divisa`);
+    };
+    /** o zoom fica dentro da tela, centralizado na altura e sem nada cortado */
+    const conferirZoom = async (quando: string) => {
+      await pg.locator('.zoom').waitFor({ timeout: 3000 });
+      const r = await pg.evaluate(() => {
+        const z = document.querySelector('.zoom') as HTMLElement;
+        const c = z.getBoundingClientRect();
+        const tx = z.querySelector('.zoom-texto') as HTMLElement;
+        return { topo: Math.round(c.top), baixo: Math.round(innerHeight - c.bottom), esq: Math.round(c.left), dir: Math.round(innerWidth - c.right), w: Math.round(c.width), h: Math.round(c.height), modo: z.dataset.modo, corta: z.scrollHeight > z.clientHeight + 1 || tx.scrollHeight > tx.clientHeight + 1, letras: tx.textContent!.length };
+      });
+      if (r.topo < 15 || r.baixo < 15 || r.esq < 15 || r.dir < 15 || Math.abs(r.topo - r.baixo) > 2 || r.corta) throw new Error(`zoom fora do lugar (${quando}): ${JSON.stringify(r)}`);
+      console.log(`  zoom (${quando}): ${r.w}×${r.h}, texto ${r.modo === 'lado' ? 'ao lado' : 'embaixo'}, ${r.letras} letras`);
+    };
+    /** responde o que vier (gatilhos na ordem, primeira opção) até Ana ter a prioridade */
+    const ateAPrioridade = async () => {
+      for (let k = 0; k < 120; k++) {
+        if (await pg.getByText('Você tem prioridade').isVisible().catch(() => false)) return;
+        const janela = pg.locator('.janela-escolha:not(.recolhida)');
+        if (await janela.isVisible().catch(() => false)) {
+          const item = janela.locator('.item:not([disabled])').first();
+          if (!await janela.locator('.item.escolhido').count() && await item.isVisible().catch(() => false)) await item.click().catch(() => {});
+          await janela.getByRole('button', { name: /^(Confirmar|Nenhum)/ }).click({ timeout: 1000 }).catch(() => {});
+        } else for (const nome of [/^Confirmar/, 'Não atacar', 'Não bloquear', 'Cancelar']) if (await clicar(pg, nome)) break;
+        await pg.waitForTimeout(250);
+      }
+      throw new Error('Ana não recebeu a prioridade');
+    };
+    const ajusteManual = async (aba: string) => {
+      await pg.getByRole('button', { name: 'Ajuste manual' }).click();
+      await pg.locator('.janela-caixa .aba').filter({ hasText: aba }).click();
+    };
+
+    // ordem dos gatilhos: arrasta o último para o topo da fila (o de cima resolve primeiro)
+    const fila = pg.locator('.janela-escolha.f-fila .fila-linha');
+    await fila.first().waitFor({ timeout: 30000 });
+    const antes = await fila.first().textContent();
+    await fila.last().dragTo(fila.first());
+    if (await fila.first().textContent() === antes) throw new Error('arrastar na fila de gatilhos não mudou a ordem');
+    for (const t of TELAS) { await tela(t); await conferirEscolha(`gatilhos ${t.width}`); await foto(pg, `40-ordem-gatilhos-${t.width}`); }
+    await tela(TELAS[0]);
+    await pg.locator('.janela-escolha').getByRole('button', { name: 'Confirmar' }).click();
+    await ateAPrioridade();
+
+    // busca no grimório inteiro (Ajuste manual › Procurar no grimório › Mão): grade com filtro
+    await ajusteManual('Procurar no grimório');
+    await pg.locator('.janela-caixa').getByRole('button', { name: 'Mão', exact: true }).click();
+    const grade = pg.locator('.janela-escolha.f-grade');
+    await grade.waitFor();
+    const nCartas = await grade.locator('.item').count();
+    console.log(`  busca: ${nCartas} itens na grade`);
+    for (const t of TELAS) {
+      await tela(t);
+      await conferirEscolha(`busca ${t.width}`);
+      await pg.mouse.move(5, 5);
+      await foto(pg, `41-busca-grimorio-${t.width}`);
+    }
+    // o zoom por cima da grade (passando o mouse numa carta da janela)
+    await grade.locator('.item .carta').nth(2).hover();
+    await conferirZoom('carta da busca 1280');
+    await foto(pg, '41b-busca-zoom-1280');
+    await grade.locator('.escolha-filtro').fill('pântano');
+    await pg.waitForTimeout(200);
+    const filtradas = await grade.locator('.item').count();
+    if (filtradas >= nCartas) throw new Error('o filtro da busca não filtrou');
+    await foto(pg, '41c-busca-filtro-1280');
+    await grade.locator('.escolha-filtro').fill('');
+
+    // recolher para olhar a mesa: a decisão continua pendente num cartão da coluna da direita
+    await grade.getByRole('button', { name: 'Ver a mesa' }).click();
+    await pg.locator('.escolha-recolhida').waitFor();
+    if (await grade.isVisible()) throw new Error('a janela recolhida continua à vista');
+    for (const t of [...TELAS].reverse()) {
+      await tela(t);
+      await conferirMesa(pg, `escolha recolhida ${t.width}`);
+      await foto(pg, `42-escolha-recolhida-${t.width}`);
+    }
+    await pg.getByRole('button', { name: 'Voltar à escolha' }).click();
+    await conferirEscolha('busca de volta 1920');
+    // segurar Espaço esconde a janela enquanto a tecla está apertada
+    await pg.mouse.move(5, 5);
+    await pg.keyboard.down('Space');
+    await pg.waitForTimeout(200);
+    if (!await pg.locator('.janela-escolha.espiando').count()) throw new Error('segurar Espaço não escondeu a janela');
+    await foto(pg, '42b-espiando-com-espaco-1920');
+    await pg.keyboard.up('Space');
+    await pg.waitForTimeout(200);
+    if (await pg.locator('.janela-escolha.espiando').count()) throw new Error('soltar Espaço não trouxe a janela de volta');
+    await grade.locator('.item:not([disabled])').first().click();
+    await grade.getByRole('button', { name: 'Confirmar' }).click();
+    await ateAPrioridade();
+
+    // zoom: a carta com menos texto e a com mais texto da mesa (o nome no zoom confere com a carta)
+    const cartas = pg.locator('.campo .carta, .zonas .slot .carta');
+    const medidas: { i: number; letras: number; nome: string }[] = [];
+    for (let i = 0; i < await cartas.count(); i++) {
+      const nome = (await cartas.nth(i).getAttribute('aria-label')) ?? '';
+      await pg.mouse.move(5, 5);
+      await cartas.nth(i).hover({ force: true, timeout: 1500 }).catch(() => {});
+      await pg.waitForTimeout(80);
+      const z = await pg.locator('.zoom .zoom-texto').evaluate((e) => ({ nome: e.querySelector('strong')?.textContent ?? '', letras: e.textContent!.length }), undefined, { timeout: 400 }).catch(() => null);
+      if (z && z.nome === nome) medidas.push({ i, letras: z.letras, nome });
+    }
+    medidas.sort((a, b) => a.letras - b.letras);
+    if (medidas.length < 2) throw new Error('não deu para medir o zoom das cartas da mesa');
+    const pouco = medidas[0], muito = medidas[medidas.length - 1];
+    console.log(`  zoom: pouco texto = ${pouco.nome} (${pouco.letras} letras), muito texto = ${muito.nome} (${muito.letras} letras)`);
+    for (const t of TELAS) {
+      await tela(t);
+      for (const [m, nome] of [[pouco, 'pouco'], [muito, 'muito']] as const) {
+        await pg.mouse.move(5, 5);
+        await cartas.nth(m.i).hover({ force: true });
+        await conferirZoom(`${nome} texto ${t.width}`);
+        await foto(pg, `43-zoom-${nome}-texto-${t.width}`);
+      }
+    }
+    // notebook (1366×768 menos a barra do navegador): a carta com mais texto continua inteira e centralizada
+    await tela({ width: 1366, height: 657 });
+    await pg.mouse.move(5, 5);
+    await cartas.nth(muito.i).hover({ force: true });
+    await conferirZoom('muito texto 1366×657');
+    await foto(pg, '43-zoom-muito-texto-1366x657');
+    // tela baixa (1080p com escala de 150% no Windows): o texto vai para o lado da carta
+    await tela({ width: 1280, height: 600 });
+    await pg.mouse.move(5, 5);
+    await cartas.nth(muito.i).hover({ force: true });
+    await conferirZoom('muito texto 1280×600');
+    await foto(pg, '43-zoom-muito-texto-1280x600');
+    await pg.mouse.move(5, 5);
+
+    // registro escondido: a barra fica só com os ícones, a mesa ocupa o resto e a escolha fica guardada
+    await tela(TELAS[0]);
+    const larguraMesa = await pg.locator('.tabuleiro').evaluate((e) => e.getBoundingClientRect().width);
+    await pg.getByRole('button', { name: 'Registro', exact: true }).click();
+    await pg.waitForTimeout(400);
+    for (const t of TELAS) {
+      await tela(t);
+      await conferirMesa(pg, `registro escondido ${t.width}`);
+      const lat = await pg.locator('.lateral').evaluate((e) => e.getBoundingClientRect().width);
+      if (lat > 70 || await pg.locator('.registro').isVisible()) throw new Error(`registro escondido, mas a barra tem ${lat} px`);
+      await foto(pg, `44-registro-escondido-${t.width}`);
+    }
+    await tela(TELAS[0]);
+    if (await pg.locator('.tabuleiro').evaluate((e) => e.getBoundingClientRect().width) <= larguraMesa) throw new Error('a mesa não cresceu com o registro escondido');
+    await pg.reload();
+    await entrarNaMesa();
+    if (await pg.locator('.registro').isVisible()) throw new Error('o registro escondido não ficou guardado no navegador');
+    await pg.getByRole('button', { name: 'Registro', exact: true }).click();
+    await pg.locator('.registro').waitFor();
+    await ateAPrioridade();
+
+    // alvos: conjurar da mão uma carta que pede alvo; a janela mostra as cartas da mesa (e os jogadores) grandes
+    let comAlvo = false;
+    const mao = pg.locator('.mao-cartas .carta');
+    for (let i = 0; i < await mao.count() && !comAlvo; i++) {
+      await mao.nth(i).click({ button: 'right', position: { x: 8, y: 40 }, timeout: 3000 }).catch(() => {});
+      const conjurar = pg.locator('.menu-acoes .menu-item.acao').filter({ hasText: /^Conjurar/ }).first();
+      if (!await conjurar.isVisible().catch(() => false)) { await pg.locator('.menu-acoes').getByRole('button', { name: 'Cancelar' }).click({ timeout: 800 }).catch(() => {}); continue; }
+      await conjurar.click();
+      await pg.waitForTimeout(800);
+      const j = pg.locator('.janela-escolha:not(.recolhida)');
+      if (await j.isVisible().catch(() => false) && await j.locator('.item-carta-grande, .item-jogador').count()) { comAlvo = true; break; }
+      // não pediu alvo: desiste no pagamento
+      await pg.locator('.coluna-dir').getByRole('button', { name: 'Cancelar' }).click({ timeout: 2000 }).catch(() => {});
+      await ateAPrioridade();
+    }
+    if (comAlvo) {
+      for (const t of TELAS) { await tela(t); await conferirEscolha(`alvos ${t.width}`); await pg.mouse.move(5, 5); await foto(pg, `47-alvos-${t.width}`); }
+      // escolhe na janela e recolhe: a carta escolhida aparece marcada na mesa e a decisão fica no cartão da direita
+      await pg.locator('.janela-escolha .item:not([disabled])').first().click();
+      await pg.locator('.janela-escolha').getByRole('button', { name: 'Ver a mesa' }).click();
+      await pg.locator('.escolha-recolhida').waitFor();
+      await pg.mouse.move(5, 5);
+      await foto(pg, '47b-alvo-escolhido-recolhida-1280');
+      await pg.locator('.escolha-recolhida').getByRole('button', { name: 'Confirmar' }).click();
+      await pg.locator('.coluna-dir').getByRole('button', { name: 'Cancelar' }).click({ timeout: 5000 }).catch(() => {});
+      await ateAPrioridade();
+      await tela(TELAS[0]);
+    } else console.log('  alvos: nenhuma carta da mão pediu alvo agora (captura 47 pulada)');
+
+    // sim ou não: o comandante vai para o cemitério pelo ajuste manual e o motor pergunta se ele volta ao comando
+    const comandante = pg.locator('.area-eu .campo .carta[aria-label^="Killian"]').first();
+    if (await comandante.isVisible().catch(() => false)) {
+      await comandante.click({ button: 'right', force: true });
+      await pg.locator('.menu-acoes').getByRole('menuitem', { name: 'Mover para…' }).click();
+      await pg.locator('.menu-acoes.submenu').getByRole('menuitem', { name: 'Cemitério' }).click();
+      const simNao = pg.locator('.janela-escolha.f-simnao');
+      await simNao.waitFor();
+      for (const t of TELAS) { await tela(t); await conferirEscolha(`sim ou não ${t.width}`); await pg.mouse.move(5, 5); await foto(pg, `48-sim-nao-${t.width}`); }
+      await tela(TELAS[0]);
+      await simNao.locator('.item').first().click();
+      await ateAPrioridade();
+    } else console.log('  sim ou não: o comandante não está no campo (captura 48 pulada)');
+
+    // vidência 3: faixas de topo e fundo, com uma carta mandada para o fundo
+    await ajusteManual('Vidência');
+    for (let k = 0; k < 2; k++) await pg.locator('.janela-caixa').getByRole('button', { name: '+', exact: true }).click();
+    await pg.locator('.janela-caixa').getByRole('button', { name: /^Vidência 3/ }).click();
+    const arranjo = pg.locator('.janela-escolha.f-arranjo');
+    await arranjo.waitFor();
+    await arranjo.locator('.arranjo-carta').first().getByRole('button', { name: 'Fundo' }).click();
+    for (const t of TELAS) { await tela(t); await conferirEscolha(`vidência ${t.width}`); await pg.mouse.move(5, 5); await foto(pg, `45-videncia-${t.width}`); }
+    await tela(TELAS[0]);
+    await arranjo.getByRole('button', { name: 'Confirmar' }).click();
+    await ateAPrioridade();
+
+    // descarte na limpeza com 8 cartas na mão: linha de cartas grandes
+    const naMao = await pg.locator('.mao-cartas .carta').count();
+    if (naMao < 8) {
+      await ajusteManual('Comprar');
+      for (let k = 1; k < 8 - naMao; k++) await pg.locator('.janela-caixa').getByRole('button', { name: '+', exact: true }).click();
+      await pg.locator('.janela-caixa').getByRole('button', { name: /^Comprar \d/ }).click();
+      await ateAPrioridade();
+    }
+    await pg.getByRole('button', { name: 'Passar até o fim do turno' }).click();
+    const descarte = pg.locator('.janela-escolha').filter({ hasText: 'Descarte' });
+    for (let k = 0; k < 120 && !await descarte.isVisible().catch(() => false); k++) {
+      if (await pg.getByText('Você tem prioridade').isVisible().catch(() => false)) await clicar(pg, 'Passar');
+      await pg.waitForTimeout(250);
+    }
+    await descarte.waitFor({ timeout: 5000 });
+    for (const t of TELAS) { await tela(t); await conferirEscolha(`descarte ${t.width}`); await pg.mouse.move(5, 5); await foto(pg, `46-descarte-${t.width}`); }
+    await c9.close();
+  }
+  // --- fim da fase 9 ---
 
 } catch (e) {
   for (const [i, p] of paginas.entries()) if (!p.isClosed()) await p.screenshot({ path: join(SAIDA, `falha-${i}.png`) }).catch(() => {});

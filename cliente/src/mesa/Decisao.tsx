@@ -1,10 +1,12 @@
-// Painel da decisão pendente do jogador. Toda escolha é por clique (nunca é preciso digitar).
-// Na mesa real o painel não orienta: listas completas, sugestões e motivos dependem dos auxílios.
+// Painel da decisão pendente do jogador na coluna da mesa: prioridade, pagamento e combate. Toda
+// escolha é por clique (nunca é preciso digitar). As escolhas de itens, números e vidência ficam
+// na janela do meio da mesa (JanelaEscolha.tsx). Na mesa real o painel não orienta: listas
+// completas, sugestões e motivos dependem dos auxílios.
 
 import { useEffect, useState } from 'preact/hooks';
 import type { Answer, Decision, ObjId, PriorityAction, TargetRef } from '../../../motor/types.ts';
 import type { GameView } from '../../../motor/view.ts';
-import { traduzir, urlImagem } from '../cartas.ts';
+import { traduzir } from '../cartas.ts';
 import { IconeEscudo, IconeEspada } from '../icones.tsx';
 import { loja } from '../loja.ts';
 import { reservaPaga } from '../mana.ts';
@@ -54,58 +56,6 @@ function Prioridade({ d, acoes }: { d: D<'priority'>; acoes: PriorityAction[] })
       <div class="lista-acoes">
         {acoes.map((a) => <button key={a.id} class="botao acao" onClick={() => responder(d, { kind: 'priority', action: a.id })}><TextoComSimbolos texto={traduzir(a.label)} /></button>)}
       </div>
-    </div>
-  );
-}
-
-function Selecao({ d, ui, nomeObj, visivel, aux }: { d: D<'select'>; ui: EstadoUi; nomeObj: (id: ObjId) => string; visivel: (id: ObjId) => boolean; aux: Auxilios }) {
-  const n = ui.sel.length;
-  const ok = n >= d.min && n <= d.max;
-  const alternar = (id: string) => {
-    if (ui.sel.includes(id)) ui.setSel(ui.sel.filter((x) => x !== id));
-    else if (d.max === 1) ui.setSel([id]);
-    else if (n < d.max) ui.setSel([...ui.sel, id]);
-  };
-  const faixa = d.min === d.max ? `Escolha ${d.min}` : d.min === 0 ? `Escolha até ${d.max}` : `Escolha de ${d.min} a ${d.max}`;
-  return (
-    <div class="decisao">
-      <p class="decisao-titulo">{traduzir(d.prompt)}</p>
-      <p class="suave">{faixa}{d.ordered ? ', na ordem desejada' : ''}.</p>
-      <div class="itens">
-        {d.items.map((it) => {
-          const img = it.card && !(it.obj !== undefined && visivel(it.obj)) ? urlImagem(it.card.def, it.card.face ?? 0, 'p') : null;
-          const pos = ui.sel.indexOf(it.id);
-          return (
-            <button key={it.id} type="button" class={`item ${pos >= 0 ? 'escolhido' : ''} ${img ? 'item-carta' : ''}`} disabled={it.disabled && aux.alvos} onClick={() => alternar(it.id)}>
-              {img && <img src={img} alt="" loading="lazy" />}
-              <span>{d.ordered && pos >= 0 ? `${pos + 1}. ` : ''}{it.obj !== undefined && visivel(it.obj) ? nomeObj(it.obj) : traduzir(it.label)}</span>
-            </button>
-          );
-        })}
-      </div>
-      <div class="botoes-linha">
-        <button class="botao principal" disabled={!ok} onClick={() => responder(d, { kind: 'select', ids: ui.sel })}>{n === 0 && d.min === 0 ? 'Nenhum' : 'Confirmar'}</button>
-        {n > 0 && <button class="botao" onClick={() => ui.setSel([])}>Limpar</button>}
-      </div>
-    </div>
-  );
-}
-
-function Numero({ d }: { d: D<'number'> }) {
-  const [x, setX] = useState(d.min);
-  useEffect(() => setX(d.min), [d.id]);
-  const muda = (k: number) => setX(Math.max(d.min, Math.min(d.max, x + k)));
-  return (
-    <div class="decisao">
-      <p class="decisao-titulo">{traduzir(d.prompt)}</p>
-      <div class="contador-grande">
-        <button class="botao" onClick={() => setX(d.min)} disabled={x === d.min}>mín.</button>
-        <button class="botao" onClick={() => muda(-1)} disabled={x <= d.min} aria-label="menos um">−</button>
-        <output aria-live="polite">{x}</output>
-        <button class="botao" onClick={() => muda(1)} disabled={x >= d.max} aria-label="mais um">+</button>
-        <button class="botao" onClick={() => setX(d.max)} disabled={x === d.max}>máx. ({d.max})</button>
-      </div>
-      <button class="botao principal" onClick={() => responder(d, { kind: 'number', value: x })}>Confirmar {x}</button>
     </div>
   );
 }
@@ -275,46 +225,6 @@ function Dano({ d, nomeAlvo, aux }: { d: D<'damage'>; nomeAlvo: (t: TargetRef) =
   );
 }
 
-function Arranjo({ d }: { d: D<'arrange'> }) {
-  const [ordem, setOrdem] = useState(d.items.map((i) => i.id));
-  const [lugar, setLugar] = useState<Record<string, 'top' | 'bottom' | 'graveyard'>>(Object.fromEntries(d.items.map((i) => [i.id, 'top'])));
-  useEffect(() => { setOrdem(d.items.map((i) => i.id)); setLugar(Object.fromEntries(d.items.map((i) => [i.id, 'top']))); }, [d.id]);
-  const nomes: Record<string, string> = { top: 'topo', bottom: 'fundo', graveyard: 'cemitério' };
-  const mover = (i: number, k: number) => {
-    const j = i + k;
-    if (j < 0 || j >= ordem.length) return;
-    const o = [...ordem];
-    [o[i], o[j]] = [o[j], o[i]];
-    setOrdem(o);
-  };
-  return (
-    <div class="decisao">
-      <p class="decisao-titulo">{traduzir(d.prompt)}</p>
-      <p class="suave">A primeira da lista fica mais em cima.</p>
-      <div class="linhas">
-        {ordem.map((id, i) => {
-          const it = d.items.find((x) => x.id === id)!;
-          const img = it.card ? urlImagem(it.card.def, it.card.face ?? 0, 'p') : null;
-          return (
-            <div class="linha linha-carta" key={id}>
-              {img && <img src={img} alt="" class="mini" />}
-              <span class="linha-nome">{traduzir(it.label)}</span>
-              <span class="linha-botoes">
-                <button class="botao pequeno" onClick={() => mover(i, -1)} disabled={i === 0} aria-label="subir">↑</button>
-                <button class="botao pequeno" onClick={() => mover(i, 1)} disabled={i === ordem.length - 1} aria-label="descer">↓</button>
-                {d.destinations.map((dest) => (
-                  <button key={dest} class={`botao pequeno ${lugar[id] === dest ? 'ativo' : ''}`} onClick={() => setLugar({ ...lugar, [id]: dest })}>{nomes[dest]}</button>
-                ))}
-              </span>
-            </div>
-          );
-        })}
-      </div>
-      <button class="botao principal" onClick={() => responder(d, { kind: 'arrange', placement: lugar, order: ordem })}>Confirmar</button>
-    </div>
-  );
-}
-
 function Mulligan({ d }: { d: D<'mulligan'> }) {
   return (
     <div class="decisao">
@@ -332,13 +242,12 @@ export function Decisao(p: Props) {
   const d = p.d;
   switch (d.kind) {
     case 'priority': return <Prioridade d={d} acoes={p.acoesSoltas} />;
-    case 'select': return <Selecao d={d} ui={p.ui} nomeObj={p.nomeObj} visivel={p.visivel} aux={p.aux} />;
-    case 'number': return <Numero d={d} />;
     case 'payment': return <Pagamento d={d} reserva={p.reserva} visivel={p.visivel} aux={p.aux} />;
     case 'attackers': return <Atacantes d={d} ui={p.ui} nomeObj={p.nomeObj} nomeAlvo={p.nomeAlvo} aux={p.aux} />;
     case 'blockers': return <Bloqueadores d={d} ui={p.ui} nomeObj={p.nomeObj} aux={p.aux} />;
     case 'damage': return <Dano d={d} nomeAlvo={p.nomeAlvo} aux={p.aux} />;
-    case 'arrange': return <Arranjo d={d} />;
+    // escolhas (selecionar, número, vidência) ficam na janela do meio da mesa: JanelaEscolha.tsx
+    case 'select': case 'number': case 'arrange': return null;
     case 'mulligan': return <Mulligan d={d} />;
   }
 }

@@ -30,6 +30,8 @@ export type Som = 'turnoMeu' | 'turnoAdversario' | 'dano' | 'vida';
 
 export interface Preferencias {
   nivel: Nivel;
+  /** registro da partida à vista (sem valor: segue a barra da fase 7); veja registroVisivel() */
+  registro?: boolean;
   /** as caixas do nível Personalizado */
   personalizado: Auxilios;
   /** volume dos efeitos sonoros, de 0 a 1 */
@@ -73,6 +75,14 @@ export function usePreferencias(): Preferencias {
   const [, forcar] = useState(0);
   useEffect(() => { const f = () => forcar((x) => x + 1); ouvintes.add(f); return () => { ouvintes.delete(f); }; }, []);
   return atual;
+}
+
+/** onde a fase 7 guardava a barra lateral recolhida (recolhida = registro escondido) */
+const CHAVE_LATERAL_ANTIGA = 'commander-da-mesa:lateral-recolhida';
+/** o registro está à vista? Escondido, a barra lateral fica só com os ícones e a mesa ocupa o resto */
+export function registroVisivel(p: Preferencias): boolean {
+  if (p.registro !== undefined) return p.registro;
+  try { return localStorage.getItem(CHAVE_LATERAL_ANTIGA) !== '1'; } catch { return true; }
 }
 
 /** os auxílios de um nível (no Personalizado, as caixas marcadas) */
