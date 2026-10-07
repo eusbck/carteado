@@ -15,7 +15,7 @@ import { gerarSalas } from './cenarios.ts';
 const RAIZ = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SAIDA = join(RAIZ, '.cache', 'capturas');
 const DADOS = join(RAIZ, '.cache', 'capturas-dados');
-const PORTA = 8091;
+const PORTA = Number(process.env.PORTA_CAPTURAS ?? 8091);
 const URL = `http://localhost:${PORTA}`;
 
 rmSync(DADOS, { recursive: true, force: true });

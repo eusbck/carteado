@@ -12,7 +12,7 @@ import { chromium, type Browser, type Page } from 'playwright';
 const RAIZ = join(dirname(fileURLToPath(import.meta.url)), '..');
 const DADOS = join(RAIZ, '.cache', 'e2e-dados');
 const SAIDA = join(RAIZ, '.cache', 'e2e');
-const PORTA = 8092;
+const PORTA = Number(process.env.PORTA_E2E ?? 8092);
 const URL = `http://localhost:${PORTA}`;
 const SENHA = 'teste-e2e';
 
