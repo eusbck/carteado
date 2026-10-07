@@ -441,13 +441,14 @@ Auditoria do bloqueio por cliques, caso a caso (testes em `testes/bloqueios.test
     65%). Só lê o que é público. Como a leitura sozinha não deu vantagem nos testes (contra bots, que não guardam mana
     de propósito, "passou com terrenos desvirados" quase sempre era falso), a Cartomante também olha mais longe que o
     Difícil: na fase principal antes do combate do próprio turno, cada jogada é simulada até o fim do combate (ataques
-    e bloqueios pela heurística); usa 6 mundos em vez de 3 (até 180 simulações) e uma versão leve da busca do Magic God
-    (as 2 melhores jogadas e "passar" jogadas até o fim do turno seguinte), tudo dentro dos 3 s.
+    e bloqueios pela heurística); usa 6 mundos em vez de 3 nas jogadas (até 180 simulações) e compara as opções de
+    ataque, bloqueio e escolhas em 5 mundos em vez de 3, tudo dentro dos 3 s.
   - Magic God: Cartomante mais a busca de `bots/busca.ts` (Monte Carlo com informação oculta): pré-seleção rasa como a da
-    Cartomante, com mais mundos (8) e até metade do tempo; depois as 3 melhores candidatas e "passar" são jogadas até o
-    fim do turno seguinte em mundos sorteados a cada rodada (todos jogam terreno e mágicas, atacam e bloqueiam com
-    políticas rápidas, os oponentes respondem com a mão sorteada). A escolha da pré-seleção só muda se as jogadas longas
-    mostrarem outra opção melhor com folga (diferença pareada por rodada acima de um erro-padrão e de 0,5).
+    Cartomante, com mais mundos (8, até 240 simulações) e até 40% do tempo; depois as 3 melhores candidatas e "passar"
+    são jogadas até o fim do turno seguinte em mundos sorteados a cada rodada (todos jogam terreno e mágicas, atacam e
+    bloqueiam com políticas rápidas, os oponentes respondem com a mão sorteada), até o prazo. A escolha da pré-seleção
+    só muda se as jogadas longas mostrarem outra opção melhor (diferença pareada por rodada acima de 0,3 mais meio
+    erro-padrão, com pelo menos 3 rodadas).
 - Threads de pensar (`servidor/pensadores.ts`, `servidor/pensador.ts`): 2 threads para todas as salas juntas, criadas ao
   subir o servidor; fila quando há mais bots pensando que threads livres; teto de 448 MB de heap por thread. A linha
   principal manda o checkpoint mais recente e as entradas; a thread refaz a partida (`bots/pensar.ts`) e guarda o
@@ -472,9 +473,13 @@ Auditoria do bloqueio por cliques, caso a caso (testes em `testes/bloqueios.test
   - 3ª rodada (Iniciante sem os ataques "seguros" e quase sem o bloqueio de graça; Cartomante com 6 mundos; Magic God
     com a pré-seleção no mínimo igual à da Cartomante): Fácil 31 × 5 Iniciante (77,5%, 4 empates); Intermediário 26 ×
     14 Fácil (65%); Magic God 15 × 9 Cartomante (62,5%, 24 partidas); Cartomante 20 × 20 Difícil.
-  - O que separou o Magic God da Cartomante foi olhar até o fim do turno seguinte; então a Cartomante ganhou essa busca
-    numa versão leve (2 candidatas em vez de 3, 60% dos 3 s na pré-seleção e o resto nas jogadas longas), e o combate
-    da Cartomante e do Magic God passou a ser comparado em 5 mundos (o Difícil, 3).
+  - 4ª rodada: a Cartomante ganhou uma versão leve da busca longa do Magic God, e o combate da Cartomante e do Magic God
+    passou a ser comparado em 5 mundos (o Difícil, 3): Cartomante 26 × 14 Difícil (65%), mas o Magic God ficou parelho
+    com ela (7 × 7; depois de dar mais rodadas longas ao Magic God, 10 × 14).
+  - 5ª rodada (experiência): Cartomante sem a busca longa, mantendo o combate em 5 mundos: Cartomante 25 × 15 Difícil
+    (62,5%) e Magic God 15 × 9 Cartomante (62,5%). A vantagem da Cartomante vinha do combate comparado em mais mundos
+    (e de olhar até o fim do combate), não da busca longa, que fica só com o Magic God. É a configuração final.
+  - Tempo: as comparações de combate passaram a parar no prazo (uma decisão da Cartomante tinha chegado a 6 s).
 - Testes: `testes/fase9-servidor.test.ts` (nomes sorteados diferentes e nunca o de uma pessoa; trocar nível ou deck mantém
   o nome; nível e nome salvos com a sala depois de reiniciar, com a partida em andamento; fila com uma thread; a mesa
   respondendo enquanto um Magic God pensa e o aviso "pensando").
