@@ -61,11 +61,13 @@ export interface Parametros {
   buscaCandidatas: number;
   /** fração do tempo para a pré-seleção rasa; o resto vai para as jogadas longas */
   buscaPreSelecao: number;
+  /** quantos erros-padrão a vantagem nas jogadas longas precisa ter para trocar a escolha da pré-seleção */
+  buscaConfianca: number;
 }
 
 const BASE: Parametros = {
   regras: false, simulacoes: 24, mundos: 1, variantes: 2, tempo: 2000, margem: 0.5, erro: 0, responde: 1, esquece: 0,
-  combate: 'heuristico', agirNoCombate: false, oponenteResponde: false, lider: false, escolhaSimulada: false, memoria: false, olharCombate: false, busca: false, buscaCandidatas: 3, buscaPreSelecao: 0.5,
+  combate: 'heuristico', agirNoCombate: false, oponenteResponde: false, lider: false, escolhaSimulada: false, memoria: false, olharCombate: false, busca: false, buscaCandidatas: 3, buscaPreSelecao: 0.4, buscaConfianca: 0.5,
 };
 
 export const PARAMETROS: Record<NivelBot, Parametros> = {
@@ -73,6 +75,6 @@ export const PARAMETROS: Record<NivelBot, Parametros> = {
   facil: { ...BASE, simulacoes: 8, variantes: 1, tempo: 500, margem: 1.2, erro: 0.25, responde: 0.3, esquece: 0.15 },
   intermediario: { ...BASE },
   dificil: { ...BASE, simulacoes: 60, mundos: 3, tempo: 3000, combate: 'simulado', agirNoCombate: true, oponenteResponde: true, lider: true, escolhaSimulada: true },
-  cartomante: { ...BASE, simulacoes: 180, mundos: 6, tempo: 3000, combate: 'simulado', agirNoCombate: true, oponenteResponde: true, lider: true, escolhaSimulada: true, memoria: true, olharCombate: true, busca: true, buscaCandidatas: 2, buscaPreSelecao: 0.6 },
+  cartomante: { ...BASE, simulacoes: 180, mundos: 6, tempo: 3000, combate: 'simulado', agirNoCombate: true, oponenteResponde: true, lider: true, escolhaSimulada: true, memoria: true, olharCombate: true, busca: true, buscaCandidatas: 2, buscaPreSelecao: 0.6, buscaConfianca: 1 },
   magicgod: { ...BASE, simulacoes: 240, mundos: 8, tempo: 6000, combate: 'simulado', agirNoCombate: true, oponenteResponde: true, lider: true, escolhaSimulada: true, memoria: true, olharCombate: true, busca: true },
 };

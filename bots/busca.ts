@@ -9,7 +9,8 @@
 //    e os oponentes respondem com o que têm na mão sorteada. Cada rodada joga todas as opções no mesmo mundo, então a
 //    diferença entre duas opções numa rodada não depende da sorte do sorteio.
 // 3. A escolha de partida só muda se as jogadas longas mostrarem outra opção claramente melhor: a diferença média
-//    (pareada por rodada) acima de um erro-padrão. Sem evidência, fica a da pré-seleção.
+//    (pareada por rodada) acima de 0,3 mais uma margem de erros-padrão (Cartomante 1; Magic God, que joga mais rodadas,
+//    0,5). Sem evidência, fica a da pré-seleção.
 
 import { seedFrom } from '../motor/rng.ts';
 import type { Answer, Decision } from '../motor/types.ts';
@@ -64,7 +65,7 @@ export function buscar(bot: HeuristicBot, ctx: Contexto, acoes: D<'priority'>['a
       const m = dif.reduce((t, x) => t + x, 0) / dif.length;
       const dp = Math.sqrt(dif.reduce((t, x) => t + (x - m) ** 2, 0) / Math.max(1, dif.length - 1));
       const ep = dp / Math.sqrt(dif.length);
-      if (m - ep > 0.5 && m > melhor) { melhor = m; escolha = i; }
+      if (m - bot.p.buscaConfianca * ep > 0.3 && m > melhor) { melhor = m; escolha = i; }
     }
   }
   if (escolha === 0) return PASSAR;
