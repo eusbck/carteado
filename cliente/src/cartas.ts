@@ -23,10 +23,16 @@ export function urlImagem(def: string, face = 0, tam: Tam = 'p'): string | null 
   return `/img/${i.f}/frente/${tam}`;
 }
 
-/** arte recortada da carta (fundo da área do jogador); null se não houver imagem */
+/** arte recortada da carta (miniatura do deck no saguão); null se não houver imagem */
 export function urlArte(def: string): string | null {
   const i = INFO[def];
   return i?.f ? `/img/${i.f}/arte` : null;
+}
+
+/** arte do comandante em alta qualidade, ampliada para o fundo da área do jogador */
+export function urlFundo(def: string): string | null {
+  const i = INFO[def];
+  return i?.f ? `/img/${i.f}/fundo` : null;
 }
 
 /** nome para mostrar: a impressão em português quando houver */

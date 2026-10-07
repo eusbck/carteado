@@ -19,8 +19,9 @@ const PORTA = Number(process.env.PORTA_CAPTURAS ?? 8091);
 const URL = `http://localhost:${PORTA}`;
 
 rmSync(DADOS, { recursive: true, force: true });
-// imagens de uma rodada anterior saem (nomes que mudaram não ficam para trás)
-rmSync(SAIDA, { recursive: true, force: true });
+// imagens de uma rodada anterior saem (nomes que mudaram não ficam para trás); rodando só um bloco
+// (CAPTURAS_SO), as outras ficam
+if (!process.env.CAPTURAS_SO) rmSync(SAIDA, { recursive: true, force: true });
 mkdirSync(SAIDA, { recursive: true });
 // salas prontas para as capturas de combate (ataque em 4 jogadores, bloqueio em 1v1)
 {
@@ -150,6 +151,113 @@ async function jogarUmPouco(p: Page, rodadas: number): Promise<void> {
     await clicar(p, 'Passar até o fim do turno');
   }
 }
+
+// --- fase 9: fundos, sons e música ---
+// Fundos dos comandantes em 1280×800, 1920×1080 e 2560×1440 (4 jogadores na sala ATACA e 1v1 na
+// BLOQU, só olhando: as salas continuam iguais para o resto do roteiro) e Configurações com a
+// música e os dois sons de turno. Com CAPTURAS_SO=fundos, roda só este bloco (e não apaga as
+// outras capturas). Também anota o tamanho de cada área e da imagem de fundo servida.
+const SO_CAPTURAS = process.env.CAPTURAS_SO ?? '';
+async function capturasFase9(): Promise<void> {
+  const telas = [[1280, 800], [1920, 1080], [2560, 1440]] as const;
+  for (const [cod, nome] of [['ATACA', '4j'], ['BLOQU', '1v1']] as const) {
+    for (const [w, h] of telas) {
+      const c = await navegador.newContext({ viewport: { width: w, height: h } });
+      c.setDefaultTimeout(20000);
+      const pg = await c.newPage();
+      paginas.push(pg);
+      pg.on('console', (m) => { if (m.type() === 'error') console.error(`[navegador] ${m.text()}`); });
+      pg.on('pageerror', (e) => console.error(`[navegador] ${e.message}`));
+      await pg.goto(URL);
+      await pg.evaluate((k) => localStorage.setItem('commander-da-mesa:sala', JSON.stringify({ codigo: k, token: `token-${k}` })), cod);
+      await pg.getByLabel('Senha do servidor').fill('teste-capturas');
+      await pg.getByRole('button', { name: 'Entrar' }).click();
+      await pg.locator('.mesa').waitFor();
+      // espera as imagens de fundo carregarem (a primeira vez o servidor ainda gera cada uma)
+      await pg.locator('.area-fundo').first().waitFor();
+      await pg.evaluate(async () => {
+        await Promise.all([...document.querySelectorAll<HTMLElement>('.area-fundo')].map((f) => new Promise<void>((ok) => {
+          const img = new Image();
+          img.onload = img.onerror = () => ok();
+          img.src = f.style.backgroundImage.replace(/^url\("?|"?\)$/g, '');
+        })));
+      });
+      await pg.mouse.move(5, h / 2);
+      await pg.waitForTimeout(600);
+      const medidas = await pg.evaluate(async () => Promise.all([...document.querySelectorAll<HTMLElement>('.area')].map(async (a) => {
+        const f = a.querySelector<HTMLElement>('.area-fundo');
+        const src = f?.style.backgroundImage.replace(/^url\("?|"?\)$/g, '') ?? '';
+        const img = new Image();
+        img.src = src;
+        await img.decode().catch(() => {});
+        const r = a.getBoundingClientRect();
+        return `${Math.round(r.width)}×${Math.round(r.height)} ← ${img.naturalWidth}×${img.naturalHeight}`;
+      })));
+      console.log(`fundos ${nome} ${w}×${h}: ${medidas.join('; ')}`);
+      await foto(pg, `90-fundos-${nome}-${w}`);
+      // a música: tocando depois do clique em "Entrar"; recarregada a página (sem gesto nenhum), espera
+      // o primeiro clique sem erro nem aviso no console; depois as Configurações com ela e os sons de turno
+      if (nome === '1v1' && w !== 2560) {
+        const musica = () => pg.evaluate(() => document.documentElement.dataset.musica ?? 'sem estado');
+        const avisos: string[] = [];
+        pg.on('console', (m) => { if (m.type() === 'error' || m.type() === 'warning') avisos.push(m.text()); });
+        await pg.waitForFunction(() => document.documentElement.dataset.musica === 'tocando', null, { timeout: 45000 }).catch(() => {});
+        if (await musica() !== 'tocando') throw new Error(`a música não começou depois do clique em Entrar: ${await musica()}`);
+        // qualquer consulta do Playwright à página (evaluate, locator) conta como gesto para o navegador:
+        // depois de recarregar, nada de consultar; só se olha a rede (a faixa não pode ser pedida)
+        const pedidos: string[] = [];
+        pg.on('request', (r) => { if (/\.mp3$/.test(new globalThis.URL(r.url()).pathname)) pedidos.push(r.url()); });
+        await pg.reload();
+        await pg.waitForTimeout(4000);
+        if (pedidos.length) throw new Error(`sem gesto, a música não devia nem carregar: ${pedidos.join(', ')}`);
+        // a consulta dá a ativação, mas sem clique nem tecla nada acontece: a música continua esperando
+        if (await musica() !== 'esperando') throw new Error(`sem gesto, a música devia esperar: ${await musica()}`);
+        const marca = await pg.locator('.marca-jogo').boundingBox();
+        await pg.mouse.click(marca!.x + marca!.width / 2, marca!.y + marca!.height / 2);
+        const t0 = Date.now();
+        // baixar e decodificar a faixa (4 MB) leva um instante; com a máquina cheia, mais
+        await pg.waitForFunction(() => document.documentElement.dataset.musica === 'tocando', null, { timeout: 45000 }).catch(() => {});
+        if (await musica() !== 'tocando') throw new Error(`a música não começou depois do primeiro clique: ${await musica()}`);
+        const demora = Date.now() - t0;
+        if (avisos.length) throw new Error(`erro ou aviso no console com a música: ${avisos.join(' | ')}`);
+        console.log(`música ${w}×${h}: tocando depois do clique (em ${demora} ms), esperando sem gesto, sem aviso no console`);
+        await pg.getByRole('button', { name: 'Configurações' }).click();
+        await conferirJanela(pg, `configurações › música ${w}`);
+        await pg.locator('.credito-musica').scrollIntoViewIfNeeded();
+        await foto(pg, `91-config-musica-${w}`);
+        // volume da música no meio da partida (separado do dos efeitos), depois desligar a música e o som
+        // de adversário: a música para e as escolhas ficam guardadas
+        await pg.locator('#cfg-volume-musica').fill('20');
+        if (await musica() !== 'tocando') throw new Error(`mudar o volume parou a música: ${await musica()}`);
+        await pg.locator('#cfg-musica').uncheck();
+        await pg.locator('#cfg-som-turnoAdversario').uncheck();
+        await pg.waitForTimeout(1500);
+        const guardado = await pg.evaluate(() => JSON.parse(localStorage.getItem('commander-da-mesa:preferencias') ?? '{}'));
+        if (await musica() !== 'parada' || guardado.musica !== false || guardado.volumeMusica !== 0.2 || guardado.volume !== 0.7 || guardado.sons?.turnoAdversario !== false || guardado.sons?.turnoMeu !== true) {
+          throw new Error(`desligar a música ou o som de adversário não valeu: ${await musica()} ${JSON.stringify(guardado)}`);
+        }
+        await foto(pg, `91b-config-musica-desligada-${w}`);
+      }
+      await c.close();
+    }
+  }
+}
+if (!SO_CAPTURAS || SO_CAPTURAS === 'fundos') {
+  try {
+    await capturasFase9();
+  } catch (e) {
+    for (const [i, p] of paginas.entries()) if (!p.isClosed()) await p.screenshot({ path: join(SAIDA, `falha-fase9-${i}.png`) }).catch(() => {});
+    await navegador.close();
+    servidor.kill();
+    throw e;
+  }
+  if (SO_CAPTURAS) {
+    await navegador.close();
+    servidor.kill();
+    process.exit(0);
+  }
+}
+// --- fim do bloco da fase 9 ---
 
 try {
   // ---------------- quatro jogadores

@@ -5,6 +5,9 @@
 
 import { useLayoutEffect, useRef } from 'preact/hooks';
 import type { GameView, ObjView } from '../../../motor/view.ts';
+import { abafarMusica } from '../musica.ts';
+import { preferencias } from '../preferencias.ts';
+import { somDaTroca } from '../somTurno.ts';
 import { tocar } from '../sons.ts';
 
 const movimentoReduzido = () => typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -93,7 +96,11 @@ export function useEfeitos(v: GameView, eu: number, efeitos: boolean): void {
     };
     if (!a || a === v) { fotografar(); return; }
 
-    if (a.turn.number > 0 && v.turn.number !== a.turn.number) tocar('turno', v.turn.active === eu ? 1 : 0.7);
+    // troca de turno: o som do seu turno ou o de adversário, decidido pelo assento deste navegador
+    const somTurno = somDaTroca(a.turn, v.turn, eu, preferencias().sons);
+    if (somTurno) tocar(somTurno === 'meu' ? 'turnoMeu' : 'turnoAdversario');
+    // o aviso do seu turno passa por cima da música: ela abaixa por um instante
+    if (somTurno === 'meu' && preferencias().volume > 0) abafarMusica();
 
     const reduzir = movimentoReduzido();
     const vidaAntes = new Map(a.players.map((p) => [p.id, p.life]));

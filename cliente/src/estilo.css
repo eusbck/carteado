@@ -210,7 +210,8 @@ label { display: grid; gap: 6px; color: var(--suave); font-size: 13px; font-weig
 /* área de um jogador */
 /* overflow: clip (e não hidden): a área não pode rolar quando uma carta da mão recebe o foco */
 .area { --cor: var(--amarelo); position: relative; overflow: clip; min-height: 0; min-width: 0; isolation: isolate; background: #101211; }
-.area-fundo { position: absolute; inset: -12px; background: center 28% / cover no-repeat; filter: brightness(.5) saturate(.95) blur(1px); z-index: -2; }
+/* a arte já vem ampliada e com nitidez do servidor (/img/<id>/fundo): sem desfoque, só escurecida */
+.area-fundo { position: absolute; inset: 0; background: center 28% / cover no-repeat; filter: brightness(.5) saturate(.95); z-index: -2; }
 .area::after {
   content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
   background: radial-gradient(ellipse at 50% 45%, transparent 35%, rgba(0, 0, 0, .5)), linear-gradient(to bottom, rgba(0, 0, 0, .45), transparent 22%, transparent 66%, rgba(0, 0, 0, .7));

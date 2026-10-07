@@ -80,6 +80,7 @@ function confereSenhaAcesso(s: string): boolean {
 const TIPOS: Record<string, string> = {
   '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8',
   '.svg': 'image/svg+xml', '.png': 'image/png', '.webp': 'image/webp', '.json': 'application/json', '.woff2': 'font/woff2', '.ico': 'image/x-icon',
+  '.mp3': 'audio/mpeg', '.ogg': 'audio/ogg',
 };
 
 function json(res: ServerResponse, status: number, corpo: unknown, extra: Record<string, string> = {}): void {
@@ -134,9 +135,10 @@ async function rotear(req: IncomingMessage, res: ServerResponse): Promise<void> 
     if (!caminho) return json(res, 404, { erro: 'Imagem não encontrada' });
     return arquivo(res, caminho, 'private, max-age=604800, immutable');
   }
-  m = p.match(/^\/img\/([0-9a-f-]{36})\/arte$/);
+  // arte do comandante: `arte` para a miniatura do deck, `fundo` (maior) para a área do jogador
+  m = p.match(/^\/img\/([0-9a-f-]{36})\/(arte|fundo)$/);
   if (m) {
-    const caminho = await imagens.arte(m[1]);
+    const caminho = await imagens.arte(m[1], m[2] as 'arte' | 'fundo');
     if (!caminho) return json(res, 404, { erro: 'Imagem não encontrada' });
     return arquivo(res, caminho, 'private, max-age=604800, immutable');
   }
