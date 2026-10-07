@@ -501,3 +501,64 @@ Auditoria do bloqueio por cliques, caso a caso (testes em `testes/bloqueios.test
 - `ferramentas/humano-e-bots.ts` 1v1 contra um Magic God, pelas threads de pensar: fim no turno 20, nenhum clique extra
   no turno do bot, nenhum vazamento; o Magic God pensou 67 decisões, média 2,5 s e máximo 6,3 s, sem espera na fila;
   pico de memória do processo 303 MB (heap das threads de pensar 89 MB).
+- `ferramentas/humano-e-bots.ts` 4 jogadores (pessoa, Magic God, Cartomante, Difícil): fim no turno 57, venceu o Magic
+  God; nenhum clique extra no turno dos bots, nenhum vazamento. Decisões pensadas: Difícil 102 (média 0,9 s, máximo
+  3,0 s), Cartomante 110 (média 1,5 s, máximo 3,1 s), Magic God 160 (média 3,3 s, máximo 6,6 s); nenhuma espera na fila;
+  pico de memória do processo 449 MB (heap das threads 94 MB).
+
+### 4.5 Força e custo dos níveis (baterias finais)
+1v1, 100 partidas por par com sementes fixas (`final-2p-0` a `final-2p-49`), cada semente jogada duas vezes com os
+assentos trocados (mesmos decks e embaralhamento), em 6 processos (metade das threads), sem limite de turnos além do
+padrão de 40 (empate):
+
+| Par | Vitórias do nível de cima | do de baixo | Empates | Meta (≥ 60%) |
+|---|---|---|---|---|
+| Fácil × Iniciante | 83 | 13 | 4 | ✓ |
+| Intermediário × Fácil | 61 | 39 | 0 | ✓ |
+| Difícil × Intermediário | 62 | 38 | 0 | ✓ |
+| Cartomante × Difícil | (rodando) | | | |
+| Magic God × Cartomante | (rodando) | | | |
+
+Tempo por decisão nas baterias (um processo por partida, sem as threads do servidor):
+
+| Nível | Média (todas) | Média (as que pensaram) | Máximo | Teto do nível |
+|---|---|---|---|---|
+| Iniciante | 4,7 ms | 16 ms | 189 ms | 0,3 s |
+| Fácil | 15,8 a 30 ms | 61 a 109 ms | 1,9 s | 0,5 s |
+| Intermediário | 31 a 36 ms | 107 a 124 ms | 2,5 s | 2 s |
+| Difícil | 139 ms | 466 ms | 3,9 s | 3 s |
+| Cartomante | (rodando) | | | 3 s |
+| Magic God | (rodando) | | | 6 s |
+
+"Pensaram": decisões com mais de 5 ms (as óbvias saem antes). O teto é conferido entre uma simulação e outra; o máximo
+passa dele quando uma simulação sozinha é longa (campo cheio) e com a máquina ocupada pelas baterias. No servidor, pela
+partida de 4 jogadores acima: Difícil 0,9 s de média, Cartomante 1,5 s, Magic God 3,3 s.
+
+### Recapitulação da fase 9
+- Feito:
+  - 1.1: a mesa só espera você nas paradas do seu turno (padrão novo), "Mágicas dos oponentes" à vista na faixa, aviso
+    grande quando a mesa espera você fora do seu turno, "ROBSON está pensando…".
+  - 1.2: o pagamento automático não vira mais terrenos que não pagam nada (a sobra ia para a reserva); o literal "terreno
+    que entra virado gera mana" não se reproduziu.
+  - 1.3 e 2.4: a carta fica exatamente onde foi solta, pelo ponto pego; seleção por arrasto e grupo movido junto.
+  - 1.4: auditoria dos oito casos de bloqueio; corrigidos a divisão de dano padrão e três falhas do bot ao bloquear.
+  - 1.5: os bots decidem num mundo em que o escondido é sorteado de novo; teste que pega vazamento, para os seis níveis.
+  - 2.1 a 2.3: janelas de escolha no meio da mesa, no formato de cada escolha e recolhíveis; zoom centralizado; registro
+    escondido.
+  - 2.5: fundos na melhor resolução que existe (745 px de largura), guardados no repositório, ampliados com nitidez.
+  - 3.1 e 3.2: dois sons de turno bem diferentes, cada um ligável; música "The Snow Queen" (Kevin MacLeod, CC BY 4.0) em
+    laço sem corte, com volume próprio.
+  - 4: seis níveis, threads de pensar com limite global de 2, nomes sorteados, nível no saguão e na mesa, medições.
+- Verificado: ver "Conferência da fase 9" e "4.5" acima.
+- Precisa de você:
+  - Jogar e sentir o posicionamento e a seleção por arrasto (pelo canto e pelo meio, de pé e virada, perto das bordas,
+    Shift, mover grupo, Esc e clique no vazio) e dizer se o "buraco" que a carta posta deixa na arrumação incomoda.
+  - Uma partida contra cada nível, do Iniciante ao Magic God, para dizer se a escada ficou bem distribuída (nas baterias,
+    o Fácil ganhou 83% do Iniciante: a diferença ali é a maior).
+  - Ouvir os dois sons de turno e a música (volume inicial de 40%, emenda do laço).
+  - Por padrão a mesa não para mais no turno dos outros: se quiser responder às mágicas dos oponentes, ligue "Mágicas dos
+    oponentes" na faixa.
+  - Se voltar a ver mana de um terreno virado pagando à mão na mesa real, dizer qual terreno e o nível de auxílio.
+  - Partidas abertas antes desta atualização podem não retomar (o pagamento automático mudou): termine ou recomece.
+  - As pastas `../jogo-wt-a` a `../jogo-wt-d` (worktrees dos subagentes, já juntadas) podem ser apagadas com
+    `git worktree remove --force ../jogo-wt-a` (etc.); dentro delas, `node_modules` é só um atalho para o do `jogo`.
