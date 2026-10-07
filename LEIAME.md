@@ -68,13 +68,28 @@ janela mostra o endereço `https://` e a senha de acesso para mandar ao grupo. D
    - **Clique direito:** nas cartas, ver informações, revelar uma carta da mão e o ajuste manual
      (virar, marcadores, mover); no seu campo vazio, desvirar tudo, criar ficha e marcadores de jogador.
    - A faixa no meio da mesa mostra o turno, as cinco fases com as etapas e o botão Passar. Clicar
-     numa etapa liga ou desliga a parada nela; "Paradas" na barra lateral tem todas as opções.
+     numa etapa liga ou desliga a parada nela; "Paradas" na barra lateral tem todas as opções. Por
+     padrão a mesa só para no seu turno; no turno dos outros ela anda sozinha. Para responder às
+     mágicas dos oponentes, ligue "Mágicas dos oponentes" na faixa (ou marque a etapa final no turno
+     de um oponente). Quando a mesa espera você fora do seu turno, a faixa fica amarela e diz por quê
+     ("Sua vez de responder a …"). Bot pensando há mais de um segundo: "ROBSON está pensando…".
+   - Arrumar o campo: arraste as suas cartas para onde quiser (elas ficam exatamente onde você
+     soltou). Segurando o botão no espaço vazio do seu campo e arrastando, você seleciona várias e
+     move o grupo junto; clique no vazio ou Esc desfaz a seleção.
+   - Escolhas (buscar no grimório, alvos, modos, ordem dos gatilhos, vidência) aparecem numa janela
+     no meio da mesa. "Ver a mesa" recolhe a janela num cartão à direita; segurar Espaço esconde a
+     janela por um momento.
    - "Configurações" também tem o volume dos efeitos, os sons (começo do seu turno, que chama
      atenção; começo do turno de um adversário, mais discreto; dano; ganhar vida; cada um com um
      botão para ouvir) e os efeitos visuais, que valem em qualquer sala, e a música de fundo, com
      volume próprio. A música começa ligada e baixa, e só toca depois do primeiro clique ou tecla na
      página (regra do navegador).
-   - A barra lateral recolhe (último botão) e abre de novo; as decisões aparecem à direita da mesa.
+   - O botão Registro esconde o registro da partida (a barra fica só com os ícones e a mesa mais
+     larga); a escolha fica guardada no navegador. As outras decisões (prioridade, pagamento,
+     combate) aparecem à direita da mesa.
+   - No saguão, quem criou a sala põe bots nos lugares livres e escolhe o nível de cada um:
+     Iniciante, Fácil, Intermediário (padrão), Difícil, Cartomante ou Magic God. Cada bot ganha um
+     nome sorteado (ROBSON, CLEITON…), que aparece com o nível ("ROBSON · Cartomante").
 5. Todas as cartas dos sete decks têm o efeito automatizado. O ajuste manual continua disponível
    para corrigir alguma situação à mão, só quando você tem prioridade, e todo ajuste aparece no
    registro para todos.
