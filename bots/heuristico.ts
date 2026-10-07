@@ -483,7 +483,8 @@ export class HeuristicBot {
   }
 
   private melhorOpcao(ctx: Contexto, opcoes: Answer[], horizonte: Horizonte, padrao: Answer): Answer {
-    const K = Math.max(2, Math.min(3, this.p.mundos));
+    // combate e escolhas: o Difícil compara em 3 mundos; Cartomante e Magic God, em 5
+    const K = Math.max(2, Math.min(5, this.p.mundos));
     const mundos = Array.from({ length: K }, (_, k) => ramo(this.e.rng, `o${k}`));
     const opts = { horizonte, avaliacao: this.avaliacao() };
     let melhor: { a: Answer; valor: number } | null = null;

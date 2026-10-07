@@ -48,7 +48,7 @@ export function buscar(bot: HeuristicBot, ctx: Contexto, acoes: D<'priority'>['a
       const minhaPrioridade: Politica = (d, g) => (d.kind === 'priority' ? politicaRapida(d, g, r2) ?? PASSAR : PASSAR);
       const r = simular(f, eu, a, bot.politicaMinha(0, r2), bot.politicaOutros(r2, true), { horizonte: 'proximo', avaliacao, minhaPrioridade });
       valores.push(Number.isFinite(r.valor) ? r.valor : -1e6);
-      if (fixas === null && performance.now() >= ctx.prazo + 0.25 * total) break; // trava: não passa muito do prazo
+      if (fixas === null && performance.now() >= ctx.prazo) break; // rodada incompleta no prazo: fica de fora
     }
     if (valores.length < opcoes.length) break;
     rodadas.push(valores);
