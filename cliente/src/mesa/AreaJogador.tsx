@@ -23,6 +23,10 @@ export interface AreaProps {
   eu: boolean;
   ativo: boolean;
   decidindo: boolean;
+  /** bot pensando há mais de um segundo (fase 9) */
+  pensando?: boolean;
+  /** nível do bot, mostrado junto do nome ("ROBSON · Cartomante") */
+  nivel?: string | null;
   compacta: boolean;
   duelo: boolean;
   cor: string;
@@ -134,9 +138,9 @@ export function AreaJogador(p: AreaProps) {
       {p.fundo && <div class="area-fundo" style={{ backgroundImage: `url(${p.fundo})` }} />}
       <header class="area-topo">
         <div class="area-selos">
-          <button type="button" class="tag-jogador" onClick={p.onJogador} disabled={!p.onJogador} aria-label={`${j.name}, ${j.life} de vida`}>{j.name}</button>
+          <button type="button" class="tag-jogador" onClick={p.onJogador} disabled={!p.onJogador} aria-label={`${j.name}${p.nivel ? `, bot ${p.nivel}` : ''}, ${j.life} de vida`}>{j.name}{p.nivel && <span class="nivel-bot"> · {p.nivel}</span>}</button>
           {p.ativo && <span class="selo turno">turno</span>}
-          {p.decidindo && !p.eu && <span class="selo decidindo">decidindo</span>}
+          {p.pensando && !p.eu ? <span class="selo decidindo pensando">pensando…</span> : p.decidindo && !p.eu && <span class="selo decidindo">decidindo</span>}
           {j.monarch && <span class="selo">monarca</span>}
           {j.left && <span class="selo etiqueta alerta">{j.won ? 'venceu' : 'fora da partida'}</span>}
           {contadores.map(([k, q]) => <span class="selo" key={k}>{q} {NOME_CONTADOR[k] ?? k}</span>)}

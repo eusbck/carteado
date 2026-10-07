@@ -32,6 +32,8 @@ export interface Estado {
   avisos: { id: number; texto: string }[];
   /** conta as recusas sem texto (auxílio de avisos desligado): a mesa treme o que você acabou de tocar */
   recusa: number;
+  /** assento do bot que está pensando há mais de um segundo (a mesa mostra "Fulano está pensando…") */
+  pensando: number | null;
 }
 
 const CHAVE = 'commander-da-mesa:sala';
@@ -52,7 +54,7 @@ function guardarSala(v: { codigo: string; token: string } | null): void {
 }
 
 class Loja {
-  e: Estado = { fase: 'carregando', conectado: false, sala: null, voce: null, vista: null, paradas: null, posicoes: {}, reveladas: [], erro: null, decks: [], respondida: null, desfazivel: false, desfazer: null, avisos: [], recusa: 0 };
+  e: Estado = { fase: 'carregando', conectado: false, sala: null, voce: null, vista: null, paradas: null, posicoes: {}, reveladas: [], erro: null, decks: [], respondida: null, desfazivel: false, desfazer: null, avisos: [], recusa: 0, pensando: null };
   private ouvintes = new Set<() => void>();
   private ws: WebSocket | null = null;
   private fila: MsgCliente[] = [];
@@ -166,6 +168,9 @@ class Loja {
         setTimeout(() => this.mudar({ reveladas: this.e.reveladas.filter((r) => r.id !== id) }), 8000);
         break;
       }
+      case 'pensando':
+        this.mudar({ pensando: m.assento });
+        break;
       case 'saiu':
         guardarSala(null);
         this.mudar({ sala: null, voce: null, vista: null, fase: 'inicio' });

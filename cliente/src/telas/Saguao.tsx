@@ -2,6 +2,7 @@ import { loja, useLoja } from '../loja.ts';
 import { nomeCarta, urlArte } from '../cartas.ts';
 import { Simbolos } from '../mesa/Simbolos.tsx';
 import type { DeckResumo } from '../../../servidor/protocolo.ts';
+import { NIVEIS_BOT, NIVEL_PADRAO, nomeNivel, type NivelBot } from '../../../bots/niveis.ts';
 
 const cores = (d: DeckResumo) => d.cores.map((c) => `{${c}}`).join('');
 
@@ -48,7 +49,7 @@ export function Saguao() {
                   <span class={`assento-arte ${arte ? 'com-arte' : ''}`} style={arte ? { backgroundImage: `url(${arte})` } : undefined} />
                   <span>
                     <span class="assento-nome">
-                      {a.tipo === 'vazio' ? <em class="suave">livre</em> : a.nome}
+                      {a.tipo === 'vazio' ? <em class="suave">livre</em> : a.tipo === 'bot' ? <>{a.nome} <span class="nivel-bot">· {nomeNivel(a.nivel ?? NIVEL_PADRAO)}</span></> : a.nome}
                       {a.tipo === 'bot' && <span class="etiqueta">bot</span>}
                       {a.indice === sala.anfitriao && <span class="etiqueta destaque">anfitrião</span>}
                       {a.tipo === 'humano' && !a.conectado && <span class="etiqueta alerta">desconectado</span>}
@@ -68,6 +69,16 @@ export function Saguao() {
                           {e.decks.map((d) => <option value={d.id}>{d.nome}</option>)}
                         </select>
                       </label>
+                      {a.tipo === 'bot' && (
+                        <label>
+                          Nível
+                          <select value={a.nivel ?? NIVEL_PADRAO} title={NIVEIS_BOT.find((n) => n.id === (a.nivel ?? NIVEL_PADRAO))?.descricao} onChange={(ev) => {
+                            loja.enviar({ t: 'bot', assento: a.indice, deck: a.deck, nivel: (ev.target as HTMLSelectElement).value as NivelBot });
+                          }}>
+                            {NIVEIS_BOT.map((n) => <option value={n.id} title={n.descricao}>{n.nome}</option>)}
+                          </select>
+                        </label>
+                      )}
                     </span>
                   )}
                 </li>

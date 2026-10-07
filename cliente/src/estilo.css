@@ -126,6 +126,9 @@ label { display: grid; gap: 6px; color: var(--suave); font-size: 13px; font-weig
 .assento-bot { grid-column: 1 / -1; }
 .assento-bot label { grid-template-columns: auto 1fr; align-items: center; gap: 10px; }
 .assento-bot select { padding: 6px 9px; }
+/* fase 9: dois seletores (deck e nível) lado a lado */
+.assento-bot { display: grid; grid-template-columns: 1fr auto; gap: 10px; }
+.nivel-bot { color: var(--suave); font-weight: 500; }
 .sala-acoes { margin-top: auto; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
 .sala-acoes .botao.grande { flex: 1; }
 .sala-dir { padding: 34px 30px; display: flex; flex-direction: column; gap: 18px; min-width: 0; }
@@ -329,6 +332,11 @@ button.etapa:hover { background: rgba(34, 211, 107, .1); }
 }
 .aviso-prioridade b { color: var(--cor, var(--amarelo)); font-weight: 700; }
 @keyframes entrar-aviso-prioridade { from { opacity: 0; translate: 0 -6px; } }
+/* bot pensando há mais de um segundo: não parece travado */
+.prioridade.pensando { font-size: 11px; color: var(--texto); }
+.prioridade.pensando b { display: inline; }
+.prioridade.pensando, .selo.pensando { animation: pulsar-leve 1.6s ease-in-out infinite; }
+@keyframes pulsar-leve { 50% { opacity: .55; } }
 /* telas estreitas: a faixa encolhe para não cobrir o seu nome nem a sua vida */
 @container (max-width: 1200px) {
   .parar-pilha span { display: none; }

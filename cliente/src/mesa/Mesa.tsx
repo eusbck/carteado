@@ -25,6 +25,7 @@ import { MaoInicial } from './MaoInicial.tsx';
 import { Manual, type PegarCarta, type Tipo as TipoManual } from './Manual.tsx';
 import { Paradas } from './Paradas.tsx';
 import { avisoPrioridade } from './prioridade.ts';
+import { NIVEL_PADRAO, nomeNivel } from '../../../bots/niveis.ts';
 import { TextoComSimbolos } from './Simbolos.tsx';
 import { Zoom } from './Zoom.tsx';
 
@@ -156,9 +157,11 @@ interface FaixaProps {
   desfazivel: boolean;
   /** pedido de desfazer aberto: a mesa está parada */
   parada: boolean;
+  /** bot pensando há mais de um segundo */
+  pensando: number | null;
 }
 
-function FaixaFases({ v, eu, d, enviando, paradas, cor, desfazivel, parada }: FaixaProps) {
+function FaixaFases({ v, eu, d, enviando, paradas, cor, desfazivel, parada, pensando }: FaixaProps) {
   const passo = v.turn.step;
   const iFase = FASES.findIndex((f) => f.etapas.includes(passo));
   const contexto = v.turn.active === eu ? 'myTurn' : 'othersTurn';
@@ -197,6 +200,7 @@ function FaixaFases({ v, eu, d, enviando, paradas, cor, desfazivel, parada }: Fa
       <button class="botao icone" title="Passar até o fim do turno" aria-label="Passar até o fim do turno" onClick={() => { loja.enviar({ t: 'passarTurno' }); loja.responder(d.id, { kind: 'priority', action: 'pass' }); }}><IconeFimTurno /></button>
     </>);
   } else if (d) acao = <><span class="prioridade">Sua vez de <b>decidir</b></span>{desfazer}</>;
+  else if (v.waiting && pensando === v.waiting.player) acao = <><span class="prioridade pensando" style={{ '--cor': cor(v.waiting.player) }}><b>{v.players[v.waiting.player]?.name}</b> está pensando…</span>{desfazer}</>;
   else if (v.waiting) acao = <><span class="prioridade" style={{ '--cor': cor(v.waiting.player) }}>Esperando <b>{v.players[v.waiting.player]?.name}…</b></span>{desfazer}</>;
   else if (desfazer) acao = desfazer;
 
@@ -870,6 +874,8 @@ export function Mesa() {
         eu={j.id === eu}
         ativo={v.turn.active === j.id}
         decidindo={v.waiting?.player === j.id}
+        pensando={e.pensando === j.id && v.waiting?.player === j.id}
+        nivel={sala.assentos[j.id]?.tipo === 'bot' ? nomeNivel(sala.assentos[j.id].nivel ?? NIVEL_PADRAO) : null}
         compacta={compacta}
         duelo={duelo}
         cor={cor(j.id)}
@@ -912,7 +918,7 @@ export function Mesa() {
         <div class={`oponentes n${oponentes.length}`}>{oponentes.map((j) => area(j, true))}</div>
         {area(minha, false)}
         <Setas setas={setas} versao={v} />
-        <FaixaFases v={v} eu={eu} d={d} enviando={enviando} paradas={e.paradas} cor={cor} desfazivel={e.desfazivel} parada={!!e.desfazer} />
+        <FaixaFases v={v} eu={eu} d={d} enviando={enviando} paradas={e.paradas} cor={cor} desfazivel={e.desfazivel} parada={!!e.desfazer} pensando={e.pensando} />
         {e.desfazer && <PedidoDesfazer p={e.desfazer} eu={eu} nomes={v.players.map((p) => p.name)} cor={cor} />}
 
         <div class="coluna-dir">
