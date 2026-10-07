@@ -420,10 +420,11 @@ Auditoria do bloqueio por cliques, caso a caso (testes em `testes/bloqueios.test
 - Níveis em `bots/niveis.ts`: Iniciante, Fácil, Intermediário (padrão), Difícil, Cartomante, Magic God. Um só bot
   (`bots/heuristico.ts`) com parâmetros por nível:
   - Iniciante: regras (terreno; a criatura ou permanente mais cara que der; instantânea quase nunca; feitiço às vezes),
-    nunca age no turno dos outros, ataca só com quem não tem bloqueador que o mate, bloqueia para não morrer; erra como
-    quem está começando: esquece de jogar o terreno (15% por fase principal), conjura outra coisa que não a melhor
-    (25%), esquece ataques (30%) e às vezes erra o alvo da remoção (35%, sempre numa coisa de oponente).
-  - Fácil: o bot de antes com 8 simulações, às vezes a 2ª ou 3ª melhor jogada (25%), vantagem mínima 1,5 em vez de 0,5,
+    nunca age no turno dos outros, ataca só quando o oponente não tem como bloquear aquela criatura, bloqueia para não
+    morrer (o bloqueio "de graça" ele só vê 30% das vezes); erra como quem está começando: esquece de jogar o terreno
+    (15% por fase principal), conjura outra coisa que não a melhor (25%), feitiço só às vezes (25%), esquece ataques
+    (30%) e às vezes erra o alvo da remoção (35%, sempre numa coisa de oponente).
+  - Fácil: o bot de antes com 8 simulações, às vezes a 2ª ou 3ª melhor jogada (25%), vantagem mínima 1,2 em vez de 0,5,
     responde só 30% das vezes, esquece ataques (15%).
   - Intermediário: o bot das fases anteriores (24 simulações, 2 s), agora decidindo no mundo do bot.
   - Difícil: as candidatas são jogadas nos **mesmos mundos sorteados** e vale a média (a diferença entre elas não depende
@@ -435,12 +436,17 @@ Auditoria do bloqueio por cliques, caso a caso (testes em `testes/bloqueios.test
     avaliação; escolhas (sacrificar, alvos de efeito, sim ou não) comparadas em simulação no lugar das palavras do texto.
   - Cartomante: Difícil mais a leitura da mesa (`bots/memoria.ts`): lembra das cartas que voltaram de uma zona pública
     para a mão e das reveladas que foram para a mão, até aparecerem de novo; no fim do turno de cada oponente, "não jogou
-    terreno com cartas na mão" (o sorteio põe só não-terrenos nas cartas que já estavam na mão, 85%) e "passou com 2+
-    terrenos desvirados" (põe uma instantânea ou lampejo na mão sorteada, 65%). Só lê o que é público.
-  - Magic God: Cartomante mais a busca de `bots/busca.ts` (Monte Carlo com informação oculta): pré-seleção rasa com cerca
-    de um terço do tempo; depois as 3 melhores candidatas e "passar" são jogadas até o fim do turno seguinte em mundos
-    sorteados a cada rodada (todos jogam terreno e mágicas, atacam e bloqueiam com políticas rápidas, os oponentes
-    respondem com a mão sorteada); fica a melhor média.
+    terreno com cartas na mão" (o sorteio põe só não-terrenos nas cartas que já estavam na mão, 85%) e "passou o turno
+    sem conjurar nada, com 2+ terrenos desvirados e cartas na mão" (põe uma instantânea ou lampejo na mão sorteada,
+    65%). Só lê o que é público. Como a leitura sozinha não deu vantagem nos testes (contra bots, que não guardam mana
+    de propósito, "passou com terrenos desvirados" quase sempre era falso), a Cartomante também olha mais longe que o
+    Difícil: na fase principal antes do combate do próprio turno, cada jogada é simulada até o fim do combate (ataques
+    e bloqueios pela heurística), e usa 6 mundos em vez de 3 (até 180 simulações, dentro dos 3 s).
+  - Magic God: Cartomante mais a busca de `bots/busca.ts` (Monte Carlo com informação oculta): pré-seleção rasa como a da
+    Cartomante, com mais mundos (8) e até metade do tempo; depois as 3 melhores candidatas e "passar" são jogadas até o
+    fim do turno seguinte em mundos sorteados a cada rodada (todos jogam terreno e mágicas, atacam e bloqueiam com
+    políticas rápidas, os oponentes respondem com a mão sorteada). A escolha da pré-seleção só muda se as jogadas longas
+    mostrarem outra opção melhor com folga (diferença pareada por rodada acima de um erro-padrão e de 0,5).
 - Threads de pensar (`servidor/pensadores.ts`, `servidor/pensador.ts`): 2 threads para todas as salas juntas, criadas ao
   subir o servidor; fila quando há mais bots pensando que threads livres; teto de 448 MB de heap por thread. A linha
   principal manda o checkpoint mais recente e as entradas; a thread refaz a partida (`bots/pensar.ts`) e guarda o
@@ -456,6 +462,14 @@ Auditoria do bloqueio por cliques, caso a caso (testes em `testes/bloqueios.test
 - Motor: só desempenho, sem mudar regra (`motor/chars.ts`): modelo das características impressas por carta e face,
   índice dos efeitos de cópia por versão, e a passada das camadas não calcula objetos fora do campo sem estáticas que
   funcionem ali. Uma jogada até o fim do turno seguinte em 4 jogadores caiu de ~156 ms para ~80 ms.
+- Calibração (`node bots/comparar.ts`, partidas 1v1 espelhadas: cada semente duas vezes com os assentos trocados; 6
+  processos). Rodadas curtas de 40 partidas antes das baterias finais:
+  - 1ª rodada: Fácil 23 × 16 Iniciante (57,5%); Intermediário 26 × 14 Fácil (65%); Difícil 25 × 15 Intermediário
+    (62,5%); Cartomante 18 × 22 Difícil (só a leitura da mesa e mais simulações não bastaram).
+  - 2ª rodada (Iniciante errando mais; Cartomante olhando até o fim do combate; leitura de instantânea mais exigente):
+    Fácil 22 × 17 Iniciante (55%); Cartomante 22 × 18 Difícil (55%).
+  - 3ª rodada: Iniciante sem os ataques "seguros" e quase sem o bloqueio de graça; Cartomante com 6 mundos; Magic God
+    com a pré-seleção no mínimo igual à da Cartomante.
 - Testes: `testes/fase9-servidor.test.ts` (nomes sorteados diferentes e nunca o de uma pessoa; trocar nível ou deck mantém
   o nome; nível e nome salvos com a sala depois de reiniciar, com a partida em andamento; fila com uma thread; a mesa
   respondendo enquanto um Magic God pensa e o aviso "pensando").
