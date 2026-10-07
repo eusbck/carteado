@@ -64,7 +64,7 @@ const BASE: Parametros = {
 
 export const PARAMETROS: Record<NivelBot, Parametros> = {
   iniciante: { ...BASE, regras: true, simulacoes: 0, tempo: 300, responde: 0, esquece: 0.3, combate: 'obvio', erro: 0.35 },
-  facil: { ...BASE, simulacoes: 6, variantes: 1, tempo: 500, margem: 1.5, erro: 0.35, responde: 0.3, esquece: 0.15 },
+  facil: { ...BASE, simulacoes: 8, variantes: 1, tempo: 500, margem: 1.5, erro: 0.25, responde: 0.3, esquece: 0.15 },
   intermediario: { ...BASE },
   dificil: { ...BASE, simulacoes: 60, mundos: 3, tempo: 3000, combate: 'simulado', agirNoCombate: true, oponenteResponde: true, lider: true, escolhaSimulada: true },
   cartomante: { ...BASE, simulacoes: 120, mundos: 5, tempo: 3000, combate: 'simulado', agirNoCombate: true, oponenteResponde: true, lider: true, escolhaSimulada: true, memoria: true },

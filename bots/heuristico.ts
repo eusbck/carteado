@@ -317,8 +317,9 @@ export class HeuristicBot {
     const g = ctx.g;
     const s = g.state;
     if (s.turn.active !== this.eu || (s.turn.step !== 'main1' && s.turn.step !== 'main2') || s.zones.stack.length) return PASSAR;
+    // erros de quem está começando: às vezes esquece de jogar o terreno, às vezes conjura outra coisa que não a melhor
     const terreno = acoes.find((a) => a.kind === 'play');
-    if (terreno) return { kind: 'priority', action: terreno.id };
+    if (terreno && !this.chance(0.15)) return { kind: 'priority', action: terreno.id };
     const peso = (a: D<'priority'>['actions'][number]): number => {
       if (a.kind !== 'cast') return -1;
       if (a.id.endsWith(':command')) return 50;
@@ -331,8 +332,10 @@ export class HeuristicBot {
       if (!ehPermanente(g, a.obj!)) return this.chance(0.4) ? 10 + mv : -1;
       return 20 + mv;
     };
-    const melhor = acoes.map((a) => ({ a, w: peso(a) })).filter((x) => x.w >= 0).sort((x, y) => y.w - x.w)[0];
-    return melhor ? { kind: 'priority', action: melhor.a.id } : PASSAR;
+    const opcoes = acoes.map((a) => ({ a, w: peso(a) })).filter((x) => x.w >= 0).sort((x, y) => y.w - x.w);
+    if (!opcoes.length) return PASSAR;
+    const escolhida = opcoes.length > 1 && this.chance(0.25) ? opcoes[1 + int(this.e.rng, opcoes.length - 1)] : opcoes[0];
+    return { kind: 'priority', action: escolhida.a.id };
   }
 
   /** busca rasa: cada candidata simulada até a pilha esvaziar (ou até o fim do combate, quando o bot age no combate) */
