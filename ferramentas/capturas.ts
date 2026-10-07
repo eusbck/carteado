@@ -964,7 +964,7 @@ try {
     await cartas.nth(muito.i).hover({ force: true });
     await conferirZoom('muito texto 1366×657');
     await foto(pg, '43-zoom-muito-texto-1366x657');
-    // tela baixa (1080p com escala de 150% no Windows): o texto vai para o lado da carta
+    // tela baixa (1080p com escala de 150% no Windows): a carta encolhe e o texto fica embaixo, inteiro
     await tela({ width: 1280, height: 600 });
     await pg.mouse.move(5, 5);
     await cartas.nth(muito.i).hover({ force: true });

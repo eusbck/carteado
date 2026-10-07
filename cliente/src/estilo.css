@@ -274,6 +274,12 @@ button.zona:hover .slot { border-color: rgba(255, 255, 255, .45); }
 .slot-imposto { position: absolute; left: 50%; bottom: -6px; transform: translateX(-50%); font-size: 10.5px; font-weight: 800; padding: 0 6px; line-height: 17px; border-radius: 6px; background: var(--amarelo); color: #1e1500; white-space: nowrap; z-index: 2; }
 .compacta .zonas { padding: 0 10px 6px; }
 .compacta .zonas-grupo { gap: 8px; }
+/* a mão fechada do oponente (o único .zona fora de um grupo) encolhe quando falta espaço, escondendo as costas
+   da esquerda (a de cima fica inteira): em 4 jogadores a 1280×800 a fileira passava da área e o "Exílio (2)"
+   saía cortado na borda */
+.zonas > .zona { min-width: 0; grid-template-columns: minmax(0, 1fr); }
+.zonas > .zona .mao-fechada { min-width: 0; max-width: 100%; overflow: hidden; justify-content: flex-end; }
+.mao-fechada .carta { flex-shrink: 0; }
 .compacta .zona-rotulo { font-size: 10.5px; }
 .mao-fechada { display: flex; }
 .mao-fechada .carta { --w: var(--wz, 40px); }
@@ -334,6 +340,9 @@ button.etapa:hover { background: rgba(34, 211, 107, .1); }
   position: absolute; left: 50%; top: calc(100% + 8px); transform: translateX(-50%); padding: 7px 14px; border-radius: 10px; white-space: nowrap; max-width: 90vw; overflow: hidden; text-overflow: ellipsis;
   background: rgba(10, 12, 11, .92); border: 1px solid rgba(246, 196, 69, .6); color: var(--texto); font-size: 14px; box-shadow: 0 8px 24px rgba(0, 0, 0, .5); animation: entrar-aviso-prioridade .25s ease-out; pointer-events: none;
 }
+/* não passa por cima da coluna da direita (pilha e avisos, 336 px de cada lado do centro da mesa): em 1280×800
+   ele cobria o começo do cartão da pilha e dos avisos; numa mesa estreita quebra em duas linhas */
+.aviso-prioridade { width: max-content; max-width: max(240px, calc(100cqw - 2 * 352px)); white-space: normal; text-align: center; }
 .aviso-prioridade b { color: var(--cor, var(--amarelo)); font-weight: 700; }
 @keyframes entrar-aviso-prioridade { from { opacity: 0; translate: 0 -6px; } }
 /* bot pensando há mais de um segundo: não parece travado */
@@ -355,6 +364,10 @@ button.etapa:hover { background: rgba(34, 211, 107, .1); }
   .fases-turno { padding: 0 8px 0 4px; }
   /* some da tela, mas continua para leitores de tela */
   .prioridade { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; padding: 0; }
+}
+/* "ROBSON está pensando…" continua à vista enquanto cabe (1280×800 com a barra aberta) */
+@container (min-width: 1000px) and (max-width: 1240px) {
+  .prioridade.pensando { position: static; width: auto; height: auto; overflow: visible; clip: auto; padding: 0 4px; }
 }
 
 /* coluna da direita: fim de partida, pilha, decisão */
@@ -505,7 +518,9 @@ button.etapa:hover { background: rgba(34, 211, 107, .1); }
 .linha-config { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-top: 12px; border-top: 1px solid var(--linha); }
 .linha-config > div { display: grid; gap: 2px; }
 /* na falta de espaço, a pilha encolhe antes da decisão (que rola por dentro) */
-.coluna-dir > .avisos { flex: 0 0 auto; }
+/* os avisos só informam: o clique passa por eles (com a janela de escolha aberta, eles ficam por cima dela e
+   tapavam o clique nas cartas de baixo por 5 s) */
+.coluna-dir > .avisos { flex: 0 0 auto; pointer-events: none; }
 .coluna-dir > .pilha { flex-shrink: 3; min-height: 64px; }
 .coluna-dir > .cartao:not(.pilha) { flex-shrink: 1; min-height: 120px; }
 .opcao { display: grid; gap: 8px; }
@@ -651,6 +666,8 @@ button.etapa:hover { background: rgba(34, 211, 107, .1); }
 /* o que os outros fazem continua à vista por cima da janela: avisos e pilha da coluna, cartas reveladas e o
    pedido de desfazer (que precisa de resposta) */
 .tabuleiro:has(> .janela-escolha:not(.recolhida)) > .coluna-dir { z-index: 82; }
+/* enquanto você escolhe, a mesa espera você: os avisos de jogada (quase sempre a sua própria) não cobrem a janela */
+.tabuleiro:has(> .janela-escolha:not(.recolhida)) > .coluna-dir > .avisos { opacity: 0; transition: opacity .2s; }
 .tabuleiro:has(> .janela-escolha) > .reveladas { z-index: 85; }
 .mesa.parada .janela-escolha { z-index: 70; }
 .janela-escolha.recolhida { display: none; }
