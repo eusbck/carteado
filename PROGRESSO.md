@@ -265,7 +265,7 @@ Recapitulação da fase 8 (06/10/2026):
   jogadores ficou pesado demais, ou o volume e os sons). Para abrir a mesa nova é só usar "Abrir a mesa.cmd": ele
   recompila a interface sozinho.
 
-## Fase 9: ajustes depois das partidas contra bots — em andamento (07/10/2026)
+## Fase 9: ajustes depois das partidas contra bots — feita em 07/10/2026, falta fechar a bateria de cima (4.5)
 
 Pedido em `../PROMPT-FASE-9.md`. O princípio da fase 8 continua: mesa real, o jogador decide mais, as regras com o motor.
 Divisão do trabalho: 1.1, 1.5 e a seção 4 no repositório principal; com subagentes, cada um na sua worktree: 1.2 e 1.4
@@ -517,8 +517,15 @@ padrão de 40 (empate):
 | Fácil × Iniciante | 83 | 13 | 4 | ✓ |
 | Intermediário × Fácil | 61 | 39 | 0 | ✓ |
 | Difícil × Intermediário | 62 | 38 | 0 | ✓ |
-| Cartomante × Difícil | (rodando) | | | |
-| Magic God × Cartomante | (rodando) | | | |
+| Cartomante × Difícil | 39 | 34 | 0 | ✗ 53% em 73 partidas (interrompida) |
+| Magic God × Cartomante | — | — | — | não rodou (calibração: 15 × 9, 62,5% em 24) |
+
+A bateria final de cima foi interrompida pelo Claude Code com o sistema sem memória (6 processos com Cartomante e
+Magic God juntos, mais o resto do computador; sobraram 4,5 GB livres de 15,7 GB): Cartomante × Difícil parou em 73 de
+100 partidas, e Magic God × Cartomante e a mesa de 4 jogadores não começaram. Na calibração (40 partidas) a Cartomante
+tinha feito 25 × 15 (62,5%); com 73 partidas na final, 53%: a vantagem dela sobre o Difícil existe, mas é menor que a
+meta. A primeira tentativa desta bateria, com a suíte e outra medição rodando junto, estava 8 × 8 e foi descartada (os
+níveis altos dependem de tempo e perdem força com a máquina ocupada).
 
 Tempo por decisão nas baterias (um processo por partida, sem as threads do servidor):
 
@@ -528,8 +535,10 @@ Tempo por decisão nas baterias (um processo por partida, sem as threads do serv
 | Fácil | 15,8 a 30 ms | 61 a 109 ms | 1,9 s | 0,5 s |
 | Intermediário | 31 a 36 ms | 107 a 124 ms | 2,5 s | 2 s |
 | Difícil | 139 ms | 466 ms | 3,9 s | 3 s |
-| Cartomante | (rodando) | | | 3 s |
-| Magic God | (rodando) | | | 6 s |
+| Cartomante | 296 ms | 953 ms | 6,1 s (antes da trava no combate) | 3 s |
+| Magic God | 658 ms | 2,6 s | 6,5 s | 6 s |
+
+(Cartomante e Magic God: da calibração de 40 e 24 partidas da 5ª rodada, a mesma configuração da final.)
 
 Processador e memória numa partida de 4 jogadores com três Magic Gods, pelo servidor e as threads de pensar
 (`node ferramentas/humano-e-bots.ts medir3mg 4p magicgod,magicgod,magicgod`; fim no turno 49, 20 min, nenhum clique
@@ -563,8 +572,12 @@ partida de 4 jogadores acima: Difícil 0,9 s de média, Cartomante 1,5 s, Magic 
   - 3.1 e 3.2: dois sons de turno bem diferentes, cada um ligável; música "The Snow Queen" (Kevin MacLeod, CC BY 4.0) em
     laço sem corte, com volume próprio.
   - 4: seis níveis, threads de pensar com limite global de 2, nomes sorteados, nível no saguão e na mesa, medições.
-- Verificado: ver "Conferência da fase 9" e "4.5" acima.
+- Verificado: ver "Conferência da fase 9" e "4.5" acima. Três dos cinco degraus da escada passaram da meta em 100
+  partidas; Cartomante × Difícil ficou em 53% (73 partidas) e Magic God × Cartomante só tem a calibração (62,5% em 24).
 - Precisa de você:
+  - Decidir se rodo de novo a bateria de cima (Cartomante × Difícil, Magic God × Cartomante e a mesa de 4 jogadores)
+    com menos processos (4 em vez de 6, para caber na memória; leva umas 3 a 4 horas) e se continuo reforçando a
+    Cartomante, que hoje fica só um pouco acima do Difícil.
   - Jogar e sentir o posicionamento e a seleção por arrasto (pelo canto e pelo meio, de pé e virada, perto das bordas,
     Shift, mover grupo, Esc e clique no vazio) e dizer se o "buraco" que a carta posta deixa na arrumação incomoda.
   - Uma partida contra cada nível, do Iniciante ao Magic God, para dizer se a escada ficou bem distribuída (nas baterias,
