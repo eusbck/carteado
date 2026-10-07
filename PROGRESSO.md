@@ -15,6 +15,7 @@ Lista de verificação das fases. É por aqui que uma sessão nova retoma o trab
 - 06/10/2026: fase 7 (mesa nova): protótipo aprovado (mulligan livre até 3 vezes; oponentes em cima e você embaixo; todos veem a arrumação de cada um); visual, interação, menus e mulligan feitos.
 - 06/10/2026 (depois de uma queda do computador): ajuste pendente fechado (reserva de mana ao lado da vida na sua área), conferido com capturas.
 - 06/10/2026 (noite): fase 8 (mesa real), pedida em `../PROMPT-FASE-8.md` depois da primeira partida com a mesa nova. Bugs da seção 1 corrigidos; proposta das seções 2 a 4 (com o levantamento da 2.5) publicada para aprovação.
+- 06/10/2026 (noite, continuação): proposta aprovada; seções 2 a 6 implementadas e conferidas.
 
 ## Fase 0: exploração e proposta
 
@@ -170,22 +171,68 @@ Recapitulação da fase 7 (06/10/2026):
   não detecta laço obrigatório sem fim (CR 104.4b). Fica para decidir se vale tratar.
 - Precisa de você: jogar uma partida de verdade com a mesa nova e dizer o que ajustar.
 
-## Fase 8: mesa real (menos ajuda do sistema) — em andamento
+## Fase 8: mesa real (menos ajuda do sistema) — concluída em 06/10/2026
 
 Pedido em `../PROMPT-FASE-8.md`. Princípio: a interface ajuda menos e o jogador decide mais; toda ajuda vira auxílio
-opcional, desligado por padrão; o motor continua conferindo as regras.
+opcional, desligado por padrão; o motor continua conferindo as regras. Proposta aprovada ("continue", com as quatro
+propostas marcadas): https://claude.ai/artifact/HkRAV2wkWt3XfaYiERRAMu
 
 - [x] 1.1 e 1.2: janelas da barra lateral e barra recolhida (detalhes abaixo)
-- [x] Proposta das seções 2 a 4 com o levantamento da 2.5: https://claude.ai/artifact/HkRAV2wkWt3XfaYiERRAMu
-- [ ] Aprovação da proposta (4 decisões: o que conta como jogada no Desfazer, parar sem jogada possível, alvo padrão do
-  ataque em 4 jogadores, desfazer mais de uma vez)
-- [ ] 2: auxílios (níveis e Personalizado em `preferencias.ts`, regra da sala, pagamento automático recusado pelo servidor)
-- [ ] 3: combate por cliques e animações de dano, vida e morte
-- [ ] 4: Desfazer com aceite da mesa (servidor refaz a partida pelas entradas; testes de aceite, recusa, prazo e jogadas
-  de outros)
-- [ ] 5: sons (Web Audio) e efeitos visuais configuráveis
-- [ ] 6: hover na mão inicial e faixa de fases mais fina
-- [ ] Capturas pedidas, `ferramentas/e2e.ts`, `PROGRESSO.md` e commit
+- [x] Proposta das seções 2 a 4 com o levantamento da 2.5, aprovada
+- [x] 2: auxílios (`cliente/src/preferencias.ts`): níveis Mesa real (padrão), Leve, Completo e Personalizado; os itens
+  do levantamento entram nos cinco auxílios; regra da sala no saguão (`auxilios` em `servidor/salas.ts`); o servidor
+  recusa o pagamento automático quando a sala proíbe
+- [x] 3: combate por cliques (`mesa/Mesa.tsx`, `mesa/Setas.tsx`) e efeitos de dano, vida e morte (`mesa/Efeitos.tsx`)
+- [x] 4: Desfazer com aceite da mesa (`servidor/desfazer.ts`, `mesa/Desfazer.tsx`)
+- [x] 5: sons com Web Audio (`cliente/src/sons.ts`, sem arquivos) e efeitos visuais configuráveis
+- [x] 6: hover na mão inicial e faixa de fases mais fina
+- [x] Capturas pedidas, `ferramentas/e2e.ts`, `PROGRESSO.md`, `LEIAME.md` e commit
+
+Decisões (propostas aprovadas):
+1. No Desfazer, "jogada" é tudo o que a pessoa fez, inclusive passar a prioridade; os passes automáticos do servidor e
+   as respostas dos bots não contam. A jogada começa na resposta de prioridade, ataque ou bloqueio e leva junto as
+   respostas seguintes da mesma pessoa (alvos, pagamento).
+2. "Passar sozinho quando não há jogada possível" virou parte do auxílio "Brilho nas cartas jogáveis": em Mesa real a
+   mesa para nas suas paradas mesmo sem jogada (campo novo `skipWhenNothing` em `StopSettings`); sala sem auxílios
+   força isso para todos.
+3. Em 4 jogadores, a criatura marcada vai no mesmo oponente da anterior até a pessoa clicar em outro (em 1v1 o alvo é
+   automático).
+4. Dá para pedir Desfazer de novo, um pedido por vez, sempre com aceite e só dentro do turno.
+
+Como os auxílios se dividem (levantamento 2.5):
+- Brilho nas cartas jogáveis: contorno verde no que dá para usar; criatura com enjoo apagada e o texto no zoom; passar
+  sozinho sem jogada.
+- Brilho nos alvos válidos: brilho de alvos, atacantes, bloqueadores e oponentes atacáveis; lista completa no painel de
+  combate e "Marcar quem precisa atacar"; opções inválidas apagadas nas listas de escolha.
+- Brilho nos terrenos ao pagar: fontes brilham, pagamento fecha sozinho quando a reserva cobre, "Confirmar
+  pagamento" apagado quando falta mana.
+- Aviso de por que não dá: motivo em texto (do cliente e as recusas do motor), "Solte para…" ao arrastar, dano letal
+  pré-distribuído e "(letal: N)".
+- Pagar automaticamente.
+- Saíram para todos os textos de orientação ("As cartas que dá para usar…", "Clique nos terrenos com brilho verde…",
+  "Você também pode clicar nas cartas da mesa"). Ficaram para todos: menu de jogadas da carta, arrumação automática,
+  avisos do que os outros fizeram, estado do jogo (imposto, dano de comandante, reserva, força/resistência), zoom,
+  registro e as regras automáticas (desvirar, comprar, limpeza).
+- Sem auxílio de avisos, uma recusa (do motor ou da interface) treme o que a pessoa acabou de tocar, sem texto.
+  Erros do servidor que não são recusa de jogada continuam aparecendo.
+
+Desfazer (servidor):
+- Cada entrada da partida guarda o turno e se foi a pessoa (coluna nova `meta` em `entradas`, criada sozinha em bancos
+  antigos; entradas gravadas antes da fase 8 não se desfazem).
+- O servidor guarda na memória o estado no começo dos últimos turnos e refaz a partida até antes da jogada
+  (`Game.fromCheckpoint`/`Game.replay` com as entradas gravadas): o motor não muda. Aceito, as entradas do banco a
+  partir da jogada são apagadas, os bots são recriados e as posições de permanentes que deixaram de existir saem.
+- Enquanto o pedido está aberto, a mesa fica parada (respostas recusadas, bots esperam). Os outros humanos têm 30 s
+  (`prazoDesfazer` em `Atrasos`); bots aceitam na hora; recusa, prazo, cancelamento, concessão ou saída fecham o
+  pedido. Avisos para a mesa saem pela mensagem nova `aviso`.
+- Concessão depois da jogada impede desfazer (traria a pessoa de volta).
+
+Mudanças no motor: só `motor/autopass.ts` (campo opcional `skipWhenNothing`, padrão igual ao de antes). Regras intactas.
+
+Outros ajustes: `abrir-mesa.ps1` recompila a interface quando o código dela é mais novo que a versão compilada (antes
+só compilava na primeira vez), junto com a mudança de outra sessão que fecha uma mesa antiga esquecida aberta.
+`ferramentas/cenarios.ts` gera salas prontas numa situação de jogo (bots jogam até lá, sementes fixas) para as capturas
+de combate.
 
 Seção 1 (06/10/2026):
 - Causa: as janelas ficavam dentro da grade de `.mesa`. A do Ajuste manual vinha embrulhada numa `div` comum, que virava
@@ -193,20 +240,25 @@ Seção 1 (06/10/2026):
   Esc e clique fora não fechavam Paradas, Conceder nem Ajuste manual, e o Ajuste manual sumia ao perder a prioridade e
   voltava sozinho na seguinte.
 - Correção: componente `cliente/src/Janela.tsx` (centralizada, acima de tudo, rolagem por dentro, fecha pelo X, Esc e
-  clique fora) para todas as janelas da mesa, desenhadas fora de `.mesa`; a grade da mesa tem uma linha só
-  (`grid-template-rows`); o Ajuste manual fecha quando a prioridade vai embora.
-- Verificado no Chromium e no Edge (também numa janela maximizada de verdade), 1280×800 e 1920×1080, barra aberta e
-  recolhida. `ferramentas/capturas.ts` ganhou as capturas 10b (janela com a barra recolhida, 1920), 11b (mesa recolhida,
-  1920), 14b e 14c (1v1 recolhido e Configurações, 1280) e confere sozinho que a mesa ocupa a tela toda e que a janela
-  fica no centro com o X clicável; a parte de 4 jogadores passou a ser em 1920×1080.
+  clique fora) para todas as janelas da mesa, desenhadas fora de `.mesa`; a grade da mesa tem uma linha só; o Ajuste
+  manual fecha quando a prioridade vai embora; o zoom fica acima das janelas.
 - Não reproduzido: "janela presa no topo, sem clique" (no Edge daqui Paradas e Configurações já abriam no centro). Se
   voltar, falta saber o navegador e o zoom da página.
-- Observação: `abrir-mesa.ps1` só compila o cliente quando `cliente/dist` não existe, então uma mudança no cliente não
-  chega à mesa sem `npm run cliente:build` (já rodado nesta sessão). Proposta: compilar quando os fontes forem mais
-  novos que `dist`. O arquivo tem uma mudança de outra sessão ainda sem commit (fecha mesa antiga órfã).
 
-Protótipo (fora do repositório, em `.cache/prototipo8/`): `gerar-cenarios.ts` joga partidas com bots até uma situação
-(ataque em 4 jogadores, bloqueio em 1v1, pagamento, fase principal, pedido de desfazer) e grava salas prontas num banco;
-`telas.ts` abre essas salas no navegador, desenha os elementos novos por cima e fotografa. A mesma ideia serve para as
-capturas finais de combate e desfazer.
-
+Recapitulação da fase 8 (06/10/2026):
+- Feito: tudo da lista acima; o motor só ganhou o campo opcional do passe automático.
+- Verificado: `npm run typecheck`; suíte inteira com 510 arquivos e 1086 testes (9 novos em `testes/fase8.test.ts`: regra
+  de auxílios da sala e pagamento automático recusado, parada sem jogada, desfazer aceito com o banco cortado e a partida
+  igual depois de reiniciar, recusado, sem resposta no prazo, jogadas de outros desfeitas junto, fora do turno e contra
+  bots); `node ferramentas/capturas.ts` com 40 capturas conferidas imagem por imagem (uma é opcional e depende da partida sorteada) (janelas e barra recolhida em
+  1280×800 e 1920×1080, Configurações › Auxílios e travada pela sala, Mesa real e Completo, hover no mulligan, ataque
+  marcado e com alvo, bloqueio, dano, ganho de vida, pedido de desfazer visto por quem pede e por quem responde, e o
+  resultado); `node ferramentas/e2e.ts` passou inteiro; `ferramentas/humano-e-bots.ts` em 4 jogadores (2 partidas) e 1v1
+  (5 partidas) até o fim, sem erro, travamento nem vazamento. No caminho, o e2e precisou de dois ajustes: os títulos
+  novos do painel de combate ("Ataque", "Bloqueio") e ler o turno antes do reinício só com a mesa esperando alguém
+  (com passes automáticos em andamento, a partida podia virar o turno entre a leitura e o reinício). Uma rodada feita
+  junto com as capturas e as partidas de bots falhou por tempo (a concessão demorou mais de 10 s com a máquina cheia);
+  sozinho ele passa, e um teste avulso no servidor confirmou a concessão de quem está com a prioridade.
+- Precisa de você: jogar uma partida em Mesa real e dizer o que ajustar (por exemplo, se parar sem jogada em 4
+  jogadores ficou pesado demais, ou o volume e os sons). Para abrir a mesa nova é só usar "Abrir a mesa.cmd": ele
+  recompila a interface sozinho.

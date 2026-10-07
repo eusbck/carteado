@@ -19,13 +19,33 @@ if ($cmd) { $cf = $cmd.Source }
 foreach ($p in @('C:\Program Files (x86)\cloudflared\cloudflared.exe', 'C:\Program Files\cloudflared\cloudflared.exe')) { if (-not $cf -and (Test-Path $p)) { $cf = $p } }
 if (-not $cf) { Write-Host 'cloudflared nao encontrado. Instale com: winget install --id Cloudflare.cloudflared -e'; exit 1 }
 
-# a porta precisa estar livre
-if (Get-NetTCPConnection -LocalPort $Porta -State Listen -ErrorAction SilentlyContinue) { Write-Host "A porta $Porta ja esta em uso (o jogo ja esta aberto?)."; exit 1 }
+# mesa antiga esquecida: fechar a janela no X nao roda o finally, e o servidor e o tunel ficam escondidos.
+# So fecha o que ficou orfao (a janela que abriu ja nao existe); uma mesa aberta em outra janela continua.
+function Test-Orfao($proc) { -not (Get-Process -Id $proc.ParentProcessId -ErrorAction SilentlyContinue) }
+$escuta = Get-NetTCPConnection -LocalPort $Porta -State Listen -ErrorAction SilentlyContinue | Select-Object -First 1
+if ($escuta) {
+  $dono = Get-CimInstance Win32_Process -Filter "ProcessId=$($escuta.OwningProcess)"
+  if ($dono -and $dono.Name -eq 'node.exe' -and $dono.CommandLine -match 'servidor[/\\]index\.ts' -and (Test-Orfao $dono)) {
+    Write-Host 'Fechando uma mesa antiga que tinha ficado aberta...'
+    Get-CimInstance Win32_Process -Filter "Name='cloudflared.exe'" |
+      Where-Object { $_.CommandLine -match "localhost:$Porta\b" -and (Test-Orfao $_) } |
+      ForEach-Object { Stop-Process -Id $_.ProcessId -Force -ErrorAction SilentlyContinue }
+    Stop-Process -Id $dono.ProcessId -Force -ErrorAction SilentlyContinue
+    for ($i = 0; $i -lt 20 -and (Get-NetTCPConnection -LocalPort $Porta -State Listen -ErrorAction SilentlyContinue); $i++) { Start-Sleep -Milliseconds 250 }
+  }
+}
 
-# cliente compilado
-if (-not (Test-Path (Join-Path $raiz 'cliente\dist\index.html'))) {
-  Write-Host 'Preparando a interface (so na primeira vez)...'
+# a porta precisa estar livre
+if (Get-NetTCPConnection -LocalPort $Porta -State Listen -ErrorAction SilentlyContinue) { Write-Host "A porta $Porta ja esta em uso (a mesa ja esta aberta em outra janela?)."; exit 1 }
+
+# cliente compilado: compila na primeira vez e sempre que o codigo da interface for mais novo que a versao compilada
+$compilado = Join-Path $raiz 'cliente\dist\index.html'
+$fontes = @(Get-ChildItem (Join-Path $raiz 'cliente\src'), (Join-Path $raiz 'cliente\public') -Recurse -File) + @(Get-Item (Join-Path $raiz 'cliente\index.html'))
+$maisNovo = ($fontes | Measure-Object -Property LastWriteTime -Maximum).Maximum
+if (-not (Test-Path $compilado) -or (Get-Item $compilado).LastWriteTime -lt $maisNovo) {
+  Write-Host 'Preparando a interface...'
   npm run cliente:build | Out-Null
+  if ($LASTEXITCODE -ne 0) { Write-Host 'Nao foi possivel compilar a interface (rode: npm run cliente:build).'; exit 1 }
 }
 
 $logServidor = Join-Path $cache 'mesa-servidor.log'

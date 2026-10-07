@@ -16,6 +16,11 @@ export interface StopSettings {
   stopOnOwnStack: boolean;
   /** "passar até o fim do turno": vale até o fim do turno com este número */
   passUntilTurnEnds: number | null;
+  /**
+   * passar sozinho quando não há nada além de passar, mesmo numa parada (padrão: sim). A mesa
+   * real da fase 8 desliga: a mesa para e a pessoa passa, sem o sistema entregar que não havia jogada.
+   */
+  skipWhenNothing?: boolean;
 }
 
 export const DEFAULT_STOPS: StopSettings = {
@@ -34,7 +39,7 @@ export function shouldAutoPass(s: GameState, d: Decision, player: PlayerId, st: 
   if (d.kind !== 'priority' || d.player !== player) return false;
   // sem nada além de passar (e ativar mana à toa), não há o que decidir
   const meaningful = d.actions.filter((a) => a.kind !== 'pass' && a.kind !== 'mana' && a.kind !== 'manual');
-  if (meaningful.length === 0) return true;
+  if (meaningful.length === 0 && st.skipWhenNothing !== false) return true;
   if (st.passUntilTurnEnds !== null && st.passUntilTurnEnds === s.turn.number) {
     if (!st.stopOnOpponentStack) return true;
     const top = s.zones.stack[s.zones.stack.length - 1];

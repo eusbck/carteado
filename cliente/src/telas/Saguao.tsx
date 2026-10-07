@@ -83,7 +83,17 @@ export function Saguao() {
                   onClick={() => loja.enviar({ t: 'mulligan', regra: id })}>{nome}<small>{dica}</small></button>
               ))}
             </div>
-            {!anfitriao && <p class="suave dica-opcao">Quem criou a sala escolhe.</p>}
+          </div>
+
+          <div class="opcao">
+            <h2 class="rot">Auxílios</h2>
+            <div class="segmentado" role="radiogroup" aria-label="Auxílios">
+              {([['permitidos', 'Permitidos', 'cada um escolhe nas Configurações'], ['proibidos', 'Proibidos', 'todos jogam em Mesa real']] as const).map(([id, nome, dica]) => (
+                <button key={id} type="button" role="radio" aria-checked={sala.auxilios === id} class={sala.auxilios === id ? 'ativo' : ''} disabled={!anfitriao}
+                  onClick={() => loja.enviar({ t: 'auxilios', regra: id })}>{nome}<small>{dica}</small></button>
+              ))}
+            </div>
+            {!anfitriao && <p class="suave dica-opcao">Quem criou a sala escolhe as regras.</p>}
           </div>
 
           <footer class="sala-acoes">

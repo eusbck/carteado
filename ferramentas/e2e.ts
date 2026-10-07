@@ -44,6 +44,13 @@ const todas: Page[] = [];
 async function novaPessoa(nav: Browser, nome: string): Promise<Page> {
   const ctx = await nav.newContext({ viewport: { width: 1500, height: 900 } });
   ctx.setDefaultTimeout(20000);
+  // todos os auxílios ligados (fase 8): o roteiro acha as jogadas pelo brilho e paga automaticamente
+  await ctx.addInitScript(() => {
+    if (!sessionStorage.getItem('e2e:prefs')) {
+      sessionStorage.setItem('e2e:prefs', '1');
+      localStorage.setItem('commander-da-mesa:preferencias', JSON.stringify({ nivel: 'personalizado', personalizado: { jogaveis: true, alvos: true, terrenos: true, avisos: true, pagarAuto: true } }));
+    }
+  });
   const p = await ctx.newPage();
   todas.push(p);
   p.on('pageerror', (e) => console.error(`[${nome}] ${e.message}`));
@@ -98,13 +105,14 @@ async function agir(p: Page): Promise<boolean> {
   const painel = p.locator('.coluna-dir .decisao');
   if (!(await painel.isVisible().catch(() => false))) return false;
   const titulo = (await p.locator('.coluna-dir .decisao-titulo').first().textContent().catch(() => '')) ?? '';
-  if (titulo.includes('atacantes')) {
+  // painéis de combate da fase 8 ("Ataque" e "Bloqueio"); com os auxílios ligados, a lista tem um botão por alvo
+  if (titulo.includes('Ataque')) {
     const linhas = p.locator('.decisao .linha');
     const n = await linhas.count();
     for (let i = 0; i < n; i++) await linhas.nth(i).locator('button').first().click().catch(() => {});
-    return clicar(p, /^(Atacar com|Não atacar)/);
+    return clicar(p, /^(Confirmar ataque|Não atacar)/);
   }
-  if (titulo.includes('bloqueadores')) return clicar(p, /^Não bloquear/);
+  if (titulo.includes('Bloqueio')) return clicar(p, /^Não bloquear/);
   const item = p.locator('.decisao .item:not([disabled])').first();
   if (await item.isVisible().catch(() => false)) {
     await item.click();
@@ -174,6 +182,15 @@ try {
   verificar(maoAna === 7 && maoBruno === 7, 'cada um vê as próprias 7 cartas');
   await jogarAte([ana, bruno], 4);
   verificar(true, 'a partida 1v1 chegou ao turno 4 pela interface');
+  // o turno só é lido com a mesa esperando uma pessoa decidir: com passes automáticos em andamento,
+  // a partida podia virar o turno entre a leitura e o reinício
+  for (let k = 0; k < 150; k++) {
+    let esperando = false;
+    for (const p of [ana, bruno]) if (await p.getByText(/Você tem prioridade|Sua vez de decidir/).first().isVisible().catch(() => false)) esperando = true;
+    if (esperando) break;
+    await ana.waitForTimeout(100);
+  }
+  await ana.waitForTimeout(400);
   const antes = await turno(ana);
   // reinício do servidor no meio da partida
   await derrubarServidor();

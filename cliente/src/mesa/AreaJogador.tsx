@@ -7,10 +7,11 @@ import type { ObjView, PlayerView } from '../../../motor/view.ts';
 import { nomeCarta } from '../cartas.ts';
 import { IconeVida } from '../icones.tsx';
 import { arrumar } from './arrumacao.ts';
-import { Carta, type Realce } from './Carta.tsx';
+import { Carta, type Realce, type Selo } from './Carta.tsx';
 import { Simbolos } from './Simbolos.tsx';
 
-export interface Legenda { texto: string; bloqueio: boolean }
+/** como a carta aparece no combate: selo e, para quem você está marcando para atacar, inclinada */
+export interface EstadoCombate { selo: Selo; inclinada?: boolean; ativa?: boolean }
 
 export interface AreaProps {
   j: PlayerView;
@@ -27,11 +28,13 @@ export interface AreaProps {
   cor: string;
   fundo: string | null;
   realce: (o: ObjView) => Realce;
-  legenda: (o: ObjView) => Legenda | undefined;
+  combate: (o: ObjView) => EstadoCombate | undefined;
   onCarta: (o: ObjView, r: DOMRect) => void;
   onZoom: (o: ObjView | null, r?: DOMRect) => void;
   jogadorRealce: 'escolhivel' | 'escolhido' | null;
   onJogador?: () => void;
+  /** clique no espaço da área (não numa carta): escolher este jogador como alvo de um ataque */
+  onCliqueArea?: () => void;
   onZona: (zona: 'graveyard' | 'exile') => void;
   /** a sua mão (só na sua área) */
   mao?: ObjView[];
@@ -46,6 +49,8 @@ export interface AreaProps {
   /** começo de arrasto e duplo clique numa carta da sua mão */
   onPegarMao?: (o: ObjView, ev: PointerEvent, el: HTMLElement) => void;
   onDuploMao?: (o: ObjView, r: DOMRect) => void;
+  /** carta que você está conjurando, tracejada onde você soltou (x e y de 0 a 1 no campo) */
+  conjurando?: { o: ObjView; x: number; y: number } | null;
   /** clique direito numa carta, e no espaço vazio da área */
   onMenuCarta?: (o: ObjView, ev: MouseEvent) => void;
   onMenuArea?: (ev: MouseEvent) => void;
@@ -79,7 +84,8 @@ export function AreaJogador(p: AreaProps) {
   const wz = p.compacta ? (p.duelo ? limitar(44, tam.h * .13, 56) : limitar(34, tam.h * .1, 42)) : limitar(54, tam.h * .13, 76);
   const zonasH = Math.round(wz * PROPORCAO) + 26;
   const wm = limitar(78, tam.h * .21, 120);
-  const topo = p.compacta ? 44 : 50;
+  // a sua área começa abaixo da faixa de fases (os selos de combate sobem um pouco acima das cartas)
+  const topo = p.compacta ? 44 : 58;
   const baixo = p.mao ? Math.max(zonasH + 4, Math.round(wm * PROPORCAO * .78) + 22) : zonasH;
   const campoW = Math.max(0, tam.w - 24 - (p.reservaDireita ?? 0));
   const campoH = Math.max(0, tam.h - topo - baixo);
@@ -122,7 +128,8 @@ export function AreaJogador(p: AreaProps) {
   const curva = meio > 0 ? Math.min(2.4, 22 / (meio * meio)) : 0;
 
   return (
-    <section ref={ref} class={classes} data-jogador={j.id} style={{ '--cor': p.cor, '--zonas-h': `${baixo}px`, '--wz': `${wz}px` }} aria-label={`Área de ${j.name}`}
+    <section ref={ref} class={`${classes} ${p.onCliqueArea ? 'area-clicavel' : ''}`} data-jogador={j.id} style={{ '--cor': p.cor, '--zonas-h': `${baixo}px`, '--wz': `${wz}px` }} aria-label={`Área de ${j.name}`}
+      onClick={p.onCliqueArea ? (e) => { if (!(e.target as HTMLElement).closest('[data-obj], button')) p.onCliqueArea!(); } : undefined}
       onContextMenu={p.onMenuArea ? (e) => { e.preventDefault(); p.onMenuArea!(e); } : undefined}>
       {p.fundo && <div class="area-fundo" style={{ backgroundImage: `url(${p.fundo})` }} />}
       <header class="area-topo">
@@ -150,14 +157,18 @@ export function AreaJogador(p: AreaProps) {
         {todosNoCampo.map((o) => {
           const pos = arr.pos.get(o.id);
           if (!pos) return null;
-          const l = p.legenda(o);
+          const c = p.combate(o);
+          const classe = [p.arrastando === o.id ? 'sendo-arrastada' : '', c?.inclinada ? 'inclinada' : '', c?.ativa ? 'combate-ativa' : ''].filter(Boolean).join(' ');
           return (
-            <Carta key={o.id} o={o} realce={p.realce(o)} legenda={l?.texto} legendaBloqueio={l?.bloqueio} onClick={p.onCarta} onZoom={p.onZoom} onMenu={p.onMenuCarta}
-              onPointerDown={p.onPegarCampo} classe={p.arrastando === o.id ? 'sendo-arrastada' : undefined}
+            <Carta key={o.id} o={o} realce={p.realce(o)} selo={c?.selo} onClick={p.onCarta} onZoom={p.onZoom} onMenu={p.onMenuCarta}
+              onPointerDown={p.onPegarCampo} classe={classe || undefined}
               estilo={{ left: `${pos.x}px`, top: `${pos.y}px`, zIndex: pos.z, '--w': `${arr.w}px` }} />
           );
         })}
         {arr.leques.map((g, i) => <span key={i} class="grupo-n" style={{ left: `${g.x}px`, top: `${g.y}px` }}>×{g.n}</span>)}
+        {p.conjurando && (
+          <Carta o={p.conjurando.o} classe="conjurando" estilo={{ left: `${Math.round(p.conjurando.x * campoW)}px`, top: `${Math.round(p.conjurando.y * campoH)}px`, zIndex: 450, '--w': `${Math.round(arr.w * 1.1)}px` }} />
+        )}
         {p.objs.length === 0 && !p.compacta && <p class="campo-vazio">Nenhum permanente</p>}
       </div>
 

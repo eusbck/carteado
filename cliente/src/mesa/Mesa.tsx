@@ -1,21 +1,26 @@
 // A mesa: as áreas dos jogadores (com a sua mão), a faixa de fases, a coluna com a pilha e a
-// decisão pendente, e a barra lateral retrátil com o registro.
+// decisão pendente, e a barra lateral retrátil com o registro. Na mesa real (padrão) a interface
+// não orienta: brilhos, avisos e pagamento automático são auxílios que cada um liga nas
+// Configurações (ou que a sala proíbe). As regras continuam no motor.
 
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'preact/hooks';
 import type { StopSettings } from '../../../motor/autopass.ts';
 import type { Decision, ManualAction, ObjId, PaymentSource, PriorityAction, Step, TargetRef } from '../../../motor/types.ts';
 import type { GameView, ObjView, PlayerView } from '../../../motor/view.ts';
 import { nomeCarta, traduzir, urlArte, urlImagem } from '../cartas.ts';
-import { IconeAjuste, IconeConceder, IconeRecolher as IconeSeta, IconeConfig, IconeFimTurno, IconeParadas, IconePassar, IconeRecolher, IconeRegistro, IconeSair, Marca } from '../icones.tsx';
+import { IconeAjuste, IconeConceder, IconeRecolher as IconeSeta, IconeConfig, IconeDesfazer, IconeFimTurno, IconeParadas, IconePassar, IconeRecolher, IconeRegistro, IconeSair, Marca } from '../icones.tsx';
 import { loja, useLoja } from '../loja.ts';
 import { reservaPaga } from '../mana.ts';
 import { Janela } from '../Janela.tsx';
-import { mudarPreferencias, usePreferencias } from '../preferencias.ts';
+import { AUXILIOS, auxiliosAtivos, auxiliosDoNivel, mudarPreferencias, NIVEIS, usePreferencias, type Auxilios, type Preferencias } from '../preferencias.ts';
 import { ETAPAS, FASES } from '../pt.ts';
 import { acompanharArrasto, dentro, mostrarFantasma, useFantasma } from './arrastar.ts';
-import { AreaJogador, type Legenda } from './AreaJogador.tsx';
+import { AreaJogador, type EstadoCombate } from './AreaJogador.tsx';
 import { Carta, type Realce } from './Carta.tsx';
 import { Decisao, type EstadoUi } from './Decisao.tsx';
+import { PedidoDesfazer } from './Desfazer.tsx';
+import { useEfeitos } from './Efeitos.tsx';
+import { Setas, type Seta } from './Setas.tsx';
 import { MaoInicial } from './MaoInicial.tsx';
 import { Manual, type PegarCarta, type Tipo as TipoManual } from './Manual.tsx';
 import { Paradas } from './Paradas.tsx';
@@ -114,6 +119,14 @@ const CORES = ['var(--amarelo)', 'var(--vermelho)', 'var(--azul)', 'var(--roxo)'
 const PARAVEIS = new Set<Step>(ETAPAS.map((e) => e.id).filter((s) => !['untap', 'cleanup', 'firstStrikeDamage'].includes(s)));
 const CHAVE_LATERAL = 'commander-da-mesa:lateral-recolhida';
 
+/** o tremido discreto de "isso não pode" (sem explicação na mesa real) */
+export function tremer(el: Element | null | undefined): void {
+  if (!el || !('animate' in el)) return;
+  (el as HTMLElement).animate([{ transform: 'translateX(0)' }, { transform: 'translateX(-5px)' }, { transform: 'translateX(5px)' }, { transform: 'translateX(-3px)' }, { transform: 'translateX(2px)' }, { transform: 'translateX(0)' }], { duration: 340, easing: 'ease-out' });
+}
+const elCarta = (id: ObjId) => document.querySelector(`[data-obj="${id}"]`);
+const mesmoAlvo = (a: TargetRef, b: TargetRef) => a.kind === b.kind && a.id === b.id;
+
 function lerRecolhida(): boolean {
   try { return localStorage.getItem(CHAVE_LATERAL) === '1'; } catch { return false; }
 }
@@ -138,9 +151,13 @@ interface FaixaProps {
   enviando: boolean;
   paradas: StopSettings | null;
   cor: (p: number) => string;
+  /** há jogada sua deste turno para desfazer */
+  desfazivel: boolean;
+  /** pedido de desfazer aberto: a mesa está parada */
+  parada: boolean;
 }
 
-function FaixaFases({ v, eu, d, enviando, paradas, cor }: FaixaProps) {
+function FaixaFases({ v, eu, d, enviando, paradas, cor, desfazivel, parada }: FaixaProps) {
   const passo = v.turn.step;
   const iFase = FASES.findIndex((f) => f.etapas.includes(passo));
   const contexto = v.turn.active === eu ? 'myTurn' : 'othersTurn';
@@ -155,17 +172,23 @@ function FaixaFases({ v, eu, d, enviando, paradas, cor }: FaixaProps) {
   const dica = (s: Step) => `${temParada(s) ? 'Não parar' : 'Parar'} aqui ${contexto === 'myTurn' ? 'no seu turno' : 'no turno dos outros'}`;
   const nomeEtapa = (s: Step) => ETAPAS.find((e) => e.id === s)!;
 
+  const desfazer = desfazivel && !v.gameOver
+    ? <button class="botao icone desfazer" title="Desfazer a minha última jogada" aria-label="Desfazer a minha última jogada" onClick={() => loja.enviar({ t: 'desfazer' })}><IconeDesfazer /></button>
+    : null;
   let acao;
   if (v.gameOver) acao = <span class="prioridade">Partida<b>encerrada</b></span>;
+  else if (parada) acao = <span class="prioridade">Mesa <b>parada</b></span>;
   else if (d && enviando) acao = <span class="prioridade"><b>Enviando…</b></span>;
   else if (d?.kind === 'priority') {
     acao = (<>
       <span class="prioridade">Você tem <b>prioridade</b></span>
+      {desfazer}
       <button class="botao cheio" onClick={() => loja.responder(d.id, { kind: 'priority', action: 'pass' })}><IconePassar />Passar</button>
       <button class="botao icone" title="Passar até o fim do turno" aria-label="Passar até o fim do turno" onClick={() => { loja.enviar({ t: 'passarTurno' }); loja.responder(d.id, { kind: 'priority', action: 'pass' }); }}><IconeFimTurno /></button>
     </>);
-  } else if (d) acao = <span class="prioridade">Sua vez de <b>decidir</b></span>;
-  else if (v.waiting) acao = <span class="prioridade" style={{ '--cor': cor(v.waiting.player) }}>Esperando <b>{v.players[v.waiting.player]?.name}…</b></span>;
+  } else if (d) acao = <><span class="prioridade">Sua vez de <b>decidir</b></span>{desfazer}</>;
+  else if (v.waiting) acao = <><span class="prioridade" style={{ '--cor': cor(v.waiting.player) }}>Esperando <b>{v.players[v.waiting.player]?.name}…</b></span>{desfazer}</>;
+  else if (desfazer) acao = desfazer;
 
   return (
     <div class="fases" aria-label="Fases do turno">
@@ -202,7 +225,7 @@ function FaixaFases({ v, eu, d, enviando, paradas, cor }: FaixaProps) {
 }
 
 /** avisos curtos do que acabou de acontecer (jogadas, ataques, ajustes manuais) */
-function Avisos({ v, cor }: { v: GameView; cor: (p: number) => string }) {
+function Avisos({ v, cor, doServidor }: { v: GameView; cor: (p: number) => string; doServidor: { id: number; texto: string }[] }) {
   const [lista, setLista] = useState<{ id: number; texto: string; quem: number | null }[]>([]);
   const anterior = useRef<GameView['log'] | null>(null);
   const seq = useRef(0);
@@ -210,6 +233,8 @@ function Avisos({ v, cor }: { v: GameView; cor: (p: number) => string }) {
     const ant = anterior.current;
     anterior.current = v.log;
     if (!ant) return;
+    // o registro encolheu (uma jogada foi desfeita): os avisos do que voltou saem
+    if (v.log.length < ant.length) { setLista([]); return; }
     const ultima = ant[ant.length - 1];
     let k = -1;
     if (ultima) for (let i = v.log.length - 1; i >= 0; i--) if (v.log[i].turn === ultima.turn && v.log[i].text === ultima.text) { k = i; break; }
@@ -220,9 +245,10 @@ function Avisos({ v, cor }: { v: GameView; cor: (p: number) => string }) {
     const ids = new Set(itens.map((i) => i.id));
     setTimeout(() => setLista((a) => a.filter((x) => !ids.has(x.id))), 5000);
   }, [v.log]);
-  if (!lista.length) return null;
+  if (!lista.length && !doServidor.length) return null;
   return (
     <div class="avisos" aria-live="polite">
+      {doServidor.map((a) => <div key={`s${a.id}`} class="aviso aviso-mesa">{traduzir(a.texto)}</div>)}
       {lista.map((a) => {
         const nome = a.quem !== null ? v.players[a.quem].name : null;
         return (
@@ -236,7 +262,7 @@ function Avisos({ v, cor }: { v: GameView; cor: (p: number) => string }) {
 }
 
 /** a carta que segue o ponteiro durante um arrasto, e a área onde soltar */
-function CamadaArrasto() {
+function CamadaArrasto({ neutra }: { neutra: boolean }) {
   const f = useFantasma();
   if (!f) return null;
   return (
@@ -246,10 +272,63 @@ function CamadaArrasto() {
           <span>{f.texto}</span>
         </div>
       )}
-      <div class={`arrasto-fantasma ${f.voltando ? 'voltando' : ''}`} style={{ left: `${f.x}px`, top: `${f.y}px` }}>
+      <div class={`arrasto-fantasma ${f.voltando ? 'voltando' : ''} ${neutra ? 'neutra' : ''}`} style={{ left: `${f.x}px`, top: `${f.y}px` }}>
         <Carta o={{ ...f.o, tapped: !!f.virada }} estilo={{ '--w': `${f.w}px` }} />
       </div>
     </>
+  );
+}
+
+/** Configurações › Auxílios, Efeitos e sons, Mesa */
+function Configuracoes({ pref, salaProibe, fechar, reorganizar }: { pref: Preferencias; salaProibe: boolean; fechar: () => void; reorganizar: () => void }) {
+  const marcados = auxiliosDoNivel(pref.nivel, pref.personalizado);
+  const editavel = pref.nivel === 'personalizado' && !salaProibe;
+  const escolherNivel = (n: Preferencias['nivel']) => {
+    // ao passar para Personalizado, as caixas começam como o nível que estava valendo
+    if (n === 'personalizado' && pref.nivel !== 'personalizado') mudarPreferencias({ nivel: n, personalizado: marcados });
+    else mudarPreferencias({ nivel: n });
+  };
+  return (
+    <Janela titulo="Configurações" classe="config" fechar={fechar}>
+      <section class="bloco-config" aria-labelledby="cfg-aux">
+        <p class="rot" id="cfg-aux">Auxílios <span class="rot-nota">só para você, guardado neste navegador</span></p>
+        {salaProibe && <p class="aviso-sala"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" /></svg>Esta sala não permite auxílios: todos jogam em Mesa real.</p>}
+        <div class={`niveis ${salaProibe ? 'travado' : ''}`} role="radiogroup" aria-label="Nível de auxílios">
+          {NIVEIS.map((n) => (
+            <button key={n.id} type="button" role="radio" aria-checked={pref.nivel === n.id} class={`nivel ${pref.nivel === n.id ? 'ativo' : ''}`} disabled={salaProibe} onClick={() => escolherNivel(n.id)}>
+              <b>{n.nome}</b><small>{n.descricao}</small>
+            </button>
+          ))}
+        </div>
+        <div class={`auxilios ${salaProibe ? 'travado' : ''}`}>
+          {AUXILIOS.map((a) => (
+            <label key={a.id} class={`auxilio ${editavel ? '' : 'fixo'}`}>
+              <input type="checkbox" id={`aux-${a.id}`} checked={!salaProibe && marcados[a.id]} disabled={!editavel} onChange={() => mudarPreferencias({ personalizado: { ...pref.personalizado, [a.id]: !pref.personalizado[a.id] } })} />
+              <span><b>{a.nome}</b><span>{a.descricao}</span></span>
+            </label>
+          ))}
+        </div>
+      </section>
+      <section class="bloco-config" aria-labelledby="cfg-sons">
+        <p class="rot" id="cfg-sons">Efeitos e sons <span class="rot-nota">valem em qualquer sala</span></p>
+        <label class="volume">
+          <span>Volume</span>
+          <input type="range" id="cfg-volume" min="0" max="100" step="5" value={Math.round(pref.volume * 100)} onInput={(ev) => mudarPreferencias({ volume: Number((ev.target as HTMLInputElement).value) / 100 })} />
+          <output>{Math.round(pref.volume * 100)}%</output>
+        </label>
+        <div class="sons">
+          {([['turno', 'Som ao passar o turno'], ['dano', 'Som de dano'], ['vida', 'Som de ganhar vida']] as const).map(([k, nome]) => (
+            <label key={k} class="caixa"><input type="checkbox" id={`cfg-som-${k}`} checked={pref.sons[k]} onChange={() => mudarPreferencias({ sons: { ...pref.sons, [k]: !pref.sons[k] } })} /> {nome}</label>
+          ))}
+          <label class="caixa"><input type="checkbox" id="cfg-efeitos" checked={pref.efeitos} onChange={() => mudarPreferencias({ efeitos: !pref.efeitos })} /> Efeitos visuais (tremida, brilho, números)</label>
+        </div>
+        <p class="suave">Com "reduzir movimento" ligado no sistema, os efeitos ficam sem tremida nem deslocamento.</p>
+      </section>
+      <section class="bloco-config linha-config">
+        <div><strong>Arrumação do campo</strong><p class="suave">Volta todas as suas permanentes para a arrumação padrão.</p></div>
+        <button class="botao" onClick={reorganizar}>Reorganizar meu campo</button>
+      </section>
+    </Janela>
   );
 }
 
@@ -263,7 +342,13 @@ export function Mesa() {
 
   // estado da interface que vale só para a decisão atual
   const [sel, setSel] = useState<string[]>([]);
-  const [ataques, setAtaques] = useState<Record<number, TargetRef>>({});
+  const [ataques, setAtaques] = useState<Record<number, TargetRef | null>>({});
+  // a criatura que você acabou de marcar para atacar (o próximo oponente clicado vale para ela)
+  const [atacanteAtivo, setAtacanteAtivo] = useState<ObjId | null>(null);
+  const [ultimoAlvo, setUltimoAlvo] = useState<TargetRef | null>(null);
+  // carta que você soltou no campo e está conjurando: aparece tracejada ali até pagar
+  const [conjurando, setConjurando] = useState<{ o: ObjView; x: number; y: number } | null>(null);
+  const posPendente = useRef<{ def: string; x: number; y: number; antes: Set<ObjId> } | null>(null);
   const [bloqueios, setBloqueios] = useState<Record<number, ObjId>>({});
   const [bloqueadorAtivo, setBloqueadorAtivo] = useState<ObjId | null>(null);
   const [menu, setMenu] = useState<Menu | null>(null);
@@ -281,20 +366,68 @@ export function Mesa() {
   const [posLocal, setPosLocal] = useState<Record<string, [number, number]>>({});
   const pref = usePreferencias();
   const autoFeito = useRef(new Set<number>());
-  useEffect(() => { setSel([]); setAtaques({}); setBloqueios({}); setBloqueadorAtivo(null); setMenu(null); }, [d?.id]);
+  useEffect(() => { setSel([]); setAtaques({}); setAtacanteAtivo(null); setUltimoAlvo(null); setBloqueios({}); setBloqueadorAtivo(null); setMenu(null); }, [d?.id]);
+  const salaProibe = sala.auxilios === 'proibidos';
+  const aux: Auxilios = auxiliosAtivos(pref, salaProibe);
+  useEfeitos(v, eu, pref.efeitos);
+
+  // recusa sem texto (mesa real): treme o que você acabou de tocar
+  const ultimoToque = useRef<Element | null>(null);
+  useEffect(() => {
+    const f = (ev: PointerEvent) => { ultimoToque.current = (ev.target as Element | null)?.closest('button, [data-obj]') ?? null; };
+    addEventListener('pointerdown', f, true);
+    return () => removeEventListener('pointerdown', f, true);
+  }, []);
+  const recusas = useRef(e.recusa);
+  useEffect(() => { if (e.recusa !== recusas.current) { recusas.current = e.recusa; tremer(ultimoToque.current); } }, [e.recusa]);
+
+  // "passar sozinho sem jogada" segue o auxílio das cartas jogáveis (o servidor é quem passa)
+  useEffect(() => {
+    const p = e.paradas;
+    if (!p || (p.skipWhenNothing ?? true) === aux.jogaveis) return;
+    const novo = { ...p, skipWhenNothing: aux.jogaveis };
+    loja.mudar({ paradas: novo });
+    loja.enviar({ t: 'paradas', paradas: novo });
+  }, [e.paradas, aux.jogaveis]);
   const recolher = (x: boolean) => { setRecolhida(x); guardarRecolhida(x); };
   // a carta sob o mouse some junto com a janela (o mouseleave não chega)
   useEffect(() => { setZoom(null); }, [modal]);
 
-  const ui: EstadoUi = { sel, setSel, ataques, setAtaques, bloqueios, setBloqueios, bloqueadorAtivo, setBloqueadorAtivo };
+  const confirmarAtaque = () => {
+    if (d?.kind !== 'attackers' || enviando) return;
+    const sem = Object.entries(ataques).filter(([, t]) => t === null).map(([o]) => Number(o));
+    if (sem.length) { for (const o of sem) tremer(elCarta(o)); loja.recusar('Escolha quem cada criatura marcada vai atacar'); return; }
+    loja.responder(d.id, { kind: 'attackers', attacks: Object.entries(ataques).map(([o, t]) => [Number(o), t!] as [ObjId, TargetRef]) });
+  };
+  const confirmarBloqueio = () => {
+    if (d?.kind !== 'blockers' || enviando) return;
+    loja.responder(d.id, { kind: 'blockers', blocks: Object.entries(bloqueios).map(([b, a]) => [Number(b), a] as [ObjId, ObjId]) });
+  };
+  const ui: EstadoUi = { sel, setSel, ataques, setAtaques, bloqueios, setBloqueios, bloqueadorAtivo, setBloqueadorAtivo, confirmarAtaque, confirmarBloqueio };
   const minhaReserva = v.players[eu]?.manaPool ?? '';
 
-  // pagamento: automático se a pessoa preferir; senão confirma sozinho quando a reserva cobre o custo
+  // pagamento: com os auxílios, automático ou confirmado sozinho quando a reserva cobre o custo;
+  // na mesa real, você vira os terrenos e confirma
   useEffect(() => {
     if (d?.kind !== 'payment' || enviando || autoFeito.current.has(d.id)) return;
-    if (pref.pagarAuto && d.canAuto) { autoFeito.current.add(d.id); loja.responder(d.id, { kind: 'payment', auto: true }); return; }
-    if (d.lifeOptions === 0 && minhaReserva && reservaPaga(d.cost, minhaReserva) === true) { autoFeito.current.add(d.id); loja.responder(d.id, { kind: 'payment', pay: true }); }
-  }, [d?.id, enviando, minhaReserva, pref.pagarAuto]);
+    if (aux.pagarAuto && d.canAuto) { autoFeito.current.add(d.id); loja.responder(d.id, { kind: 'payment', auto: true }); return; }
+    if (aux.terrenos && d.lifeOptions === 0 && minhaReserva && reservaPaga(d.cost, minhaReserva) === true) { autoFeito.current.add(d.id); loja.responder(d.id, { kind: 'payment', pay: true }); }
+  }, [d?.id, enviando, minhaReserva, aux.pagarAuto, aux.terrenos]);
+  // a permanente que você soltou no campo entra onde você soltou; se a conjuração não vingou, esquece
+  useEffect(() => {
+    const p = posPendente.current;
+    if (!p) return;
+    const nova = v.battlefield.find((o) => !p.antes.has(o.id) && o.def === p.def && o.controller === eu);
+    if (nova) {
+      posPendente.current = null;
+      setConjurando(null);
+      setPosLocal((a) => ({ ...a, [nova.id]: [p.x, p.y] }));
+      loja.enviar({ t: 'posicao', obj: nova.id, x: p.x, y: p.y });
+      return;
+    }
+    const naPilha = v.stack.some((s) => s.controller === eu && s.def === p.def);
+    if (!naPilha && !(d && d.player === eu && d.kind !== 'priority')) { posPendente.current = null; setConjurando(null); }
+  }, [v]);
   useEffect(() => {
     if (!fila.length || enviando || d?.kind !== 'priority' || !d.actions.some((a) => a.kind === 'manual')) return;
     loja.manual(d.id, fila[0]);
@@ -323,14 +456,14 @@ export function Mesa() {
   // o que cada carta pode fazer na decisão atual
   const itemPorObj = useMemo(() => {
     const m = new Map<ObjId, string>();
-    if (d?.kind === 'select') for (const it of d.items) if (it.obj !== undefined && !it.disabled) m.set(it.obj, it.id);
+    if (d?.kind === 'select') for (const it of d.items) if (it.obj !== undefined && (!it.disabled || !aux.alvos)) m.set(it.obj, it.id);
     return m;
-  }, [d]);
+  }, [d, aux.alvos]);
   const itemPorJogador = useMemo(() => {
     const m = new Map<number, string>();
-    if (d?.kind === 'select') for (const it of d.items) if (it.player !== undefined && !it.disabled) m.set(it.player, it.id);
+    if (d?.kind === 'select') for (const it of d.items) if (it.player !== undefined && (!it.disabled || !aux.alvos)) m.set(it.player, it.id);
     return m;
-  }, [d]);
+  }, [d, aux.alvos]);
   const acoesPorObj = useMemo(() => {
     const m = new Map<ObjId, PriorityAction[]>();
     if (d?.kind === 'priority') for (const a of d.actions) if (a.obj !== undefined) m.set(a.obj, [...(m.get(a.obj) ?? []), a]);
@@ -348,32 +481,69 @@ export function Mesa() {
   const atacando = new Map((v.combat?.attackers ?? []).map((a) => [a.id, a]));
   const bloqueando = new Map((v.combat?.attackers ?? []).flatMap((a) => a.blockers.map((b) => [b, a.id] as const)));
 
+  // alvos de ataque que valem para a criatura marcada agora (ou para as marcadas sem alvo)
+  const quemRecebeAlvo = (): ObjId[] => {
+    const semAlvo = Object.entries(ataques).filter(([, t]) => t === null).map(([o]) => Number(o));
+    return atacanteAtivo !== null && atacanteAtivo in ataques ? [atacanteAtivo, ...semAlvo.filter((o) => o !== atacanteAtivo)] : semAlvo;
+  };
+  const podeSerAlvo = (t: TargetRef) => quemRecebeAlvo().some((o) => atacantesCand?.get(o)?.some((x) => mesmoAlvo(x, t)));
+
   const realce = (o: ObjView): Realce => {
     if (pegar) return 'escolhivel';
     if (d?.kind === 'select') {
       const id = itemPorObj.get(o.id);
       if (id === undefined) return null;
-      return sel.includes(id) ? 'escolhido' : 'escolhivel';
+      return sel.includes(id) ? 'escolhido' : aux.alvos ? 'escolhivel' : null;
     }
-    if (d?.kind === 'payment') return !enviando && fontesPorObj.has(o.id) ? 'acao' : null;
-    if (d?.kind === 'priority') return acoesPorObj.get(o.id)?.some((a) => a.kind !== 'mana') ? 'acao' : null;
-    if (atacantesCand) return ataques[o.id] ? 'atacante' : atacantesCand.has(o.id) ? 'escolhivel' : null;
+    if (d?.kind === 'payment') return aux.terrenos && !enviando && fontesPorObj.has(o.id) ? 'acao' : null;
+    if (d?.kind === 'priority') return aux.jogaveis && acoesPorObj.get(o.id)?.some((a) => a.kind !== 'mana') ? 'acao' : null;
+    if (atacantesCand) {
+      if (o.id in ataques) return 'atacante';
+      if (aux.alvos && atacantesCand.has(o.id)) return 'escolhivel';
+      if (aux.alvos && podeSerAlvo({ kind: 'obj', id: o.id })) return 'mira';
+      return null;
+    }
     if (bloqueadoresCand) {
       if (bloqueadorAtivo === o.id) return 'ativo';
       if (bloqueios[o.id] !== undefined) return 'bloqueador';
-      if (bloqueadorAtivo !== null && bloqueadoresCand.get(bloqueadorAtivo)?.includes(o.id)) return 'mira';
-      if (bloqueadoresCand.get(o.id)?.length) return 'escolhivel';
+      if (aux.alvos && bloqueadorAtivo !== null && bloqueadoresCand.get(bloqueadorAtivo)?.includes(o.id)) return 'mira';
+      if (aux.alvos && bloqueadoresCand.get(o.id)?.length) return 'escolhivel';
     }
     if (atacando.has(o.id)) return 'atacante';
     if (bloqueando.has(o.id)) return 'bloqueador';
     return null;
   };
-  const legenda = (o: ObjView): Legenda | undefined => {
-    const at = ataques[o.id] ?? atacando.get(o.id)?.target;
-    if (at) return { texto: `ataca ${nomeAlvo(at)}`, bloqueio: false };
-    const b = bloqueios[o.id] ?? bloqueando.get(o.id);
-    if (b !== undefined) return { texto: `bloqueia ${nomeObj(b)}`, bloqueio: true };
+  // selos e inclinação: o que você está marcando agora e o combate já declarado (todos veem)
+  const combate = (o: ObjView): EstadoCombate | undefined => {
+    if (atacantesCand && o.id in ataques) return { selo: ataques[o.id] ? 'espada' : 'espera', inclinada: true, ativa: atacanteAtivo === o.id };
+    if (bloqueadoresCand && bloqueios[o.id] !== undefined) return { selo: 'escudo' };
+    if (bloqueadoresCand && bloqueadorAtivo === o.id) return { selo: 'escudo', ativa: true };
+    if (atacando.has(o.id)) return { selo: 'espada' };
+    if (bloqueando.has(o.id)) return { selo: 'escudo' };
     return undefined;
+  };
+  const setas = useMemo((): Seta[] => {
+    const l: Seta[] = [];
+    if (atacantesCand) for (const [o, t] of Object.entries(ataques)) if (t) l.push({ de: Number(o), para: t, tipo: 'ataque' });
+    for (const at of v.combat?.attackers ?? []) {
+      l.push({ de: at.id, para: at.target, tipo: 'ataque' });
+      for (const b of at.blockers) l.push({ de: b, para: { kind: 'obj', id: at.id }, tipo: 'bloqueio' });
+    }
+    if (bloqueadoresCand) for (const [b, a] of Object.entries(bloqueios)) l.push({ de: Number(b), para: { kind: 'obj', id: a }, tipo: 'bloqueio' });
+    return l;
+  }, [ataques, bloqueios, v.combat, d?.id]);
+  /** o oponente (ou planeswalker/batalha) clicado vira o alvo da criatura marcada agora */
+  const alvoAtaque = (t: TargetRef): boolean => {
+    if (!atacantesCand || enviando) return false;
+    const quem = quemRecebeAlvo();
+    if (!quem.length) return false;
+    const novo = { ...ataques };
+    let algum = false;
+    for (const o of quem) if (atacantesCand.get(o)?.some((x) => mesmoAlvo(x, t))) { novo[o] = t; algum = true; }
+    if (!algum) { loja.recusar('Ela não pode atacar esse alvo'); return true; }
+    setAtaques(novo);
+    setUltimoAlvo(t);
+    return true;
   };
 
   const fazerAcao = (a: PriorityAction) => { if (d) loja.responder(d.id, { kind: 'priority', action: a.id }); };
@@ -404,12 +574,20 @@ export function Mesa() {
     if (!rapida && (!meuTurno || !principal || v.stack.length)) return 'Só na sua fase principal, com a pilha vazia';
     return 'Falta mana, alvo válido ou outra condição para conjurar agora';
   };
-  const jogar = (o: ObjView, r: DOMRect) => {
+  /** `pos`: onde a carta foi solta no seu campo (de 0 a 1); ela aparece ali tracejada até pagar */
+  const jogar = (o: ObjView, r: DOMRect, pos?: { x: number; y: number }) => {
     const j = jogadasDe(o);
     setMenu(null);
-    if (j.length === 1) fazerAcao(j[0]);
-    else if (j.length > 1) abrirMenu(nomeObj(o.id), legais(j.map((a) => ({ id: a.id, label: a.label, fazer: () => fazerAcao(a) }))), r);
-    else loja.erro(motivo(o));
+    const fazer = (a: PriorityAction) => {
+      if (pos && o.def) {
+        posPendente.current = { def: o.def, x: pos.x, y: pos.y, antes: new Set(v.battlefield.map((b) => b.id)) };
+        setConjurando({ o, ...pos });
+      }
+      fazerAcao(a);
+    };
+    if (j.length === 1) fazer(j[0]);
+    else if (j.length > 1) abrirMenu(nomeObj(o.id), legais(j.map((a) => ({ id: a.id, label: a.label, fazer: () => fazer(a) }))), r);
+    else loja.recusar(motivo(o));
   };
   const pegarMao = (o: ObjView, ev: PointerEvent, el: HTMLElement) => {
     if (pegar) return;
@@ -422,20 +600,22 @@ export function Mesa() {
       const j = jogadasDe(o);
       const nome = nomeObj(o.id);
       const texto = j.length ? `Solte para ${o.types.includes('Land') ? 'jogar' : 'conjurar'} ${nome}` : motivo(o);
-      const base = { o, w, alvo, texto, valido: j.length > 0 };
+      // na mesa real, nada de área destacada nem "Solte para…"
+      const base = { o, w, alvo: aux.avisos ? alvo : null, texto: aux.avisos ? texto : '', valido: j.length > 0 };
       return {
         inicio: () => { setMenu(null); setZoom(null); setArrastando(o.id); mostrarFantasma({ ...base, x: ev.clientX - dx, y: ev.clientY - dy }); },
         mover: (x: number, y: number) => mostrarFantasma({ ...base, x: x - dx, y: y - dy }),
         soltar: (x: number, y: number) => {
           if (dentro(alvo, x, y) && j.length) {
             mostrarFantasma(null); setArrastando(null);
-            jogar(o, new DOMRect(x - dx, y - dy, w, h));
+            const pos = alvo ? { x: Math.min(1, Math.max(0, (x - dx - alvo.left) / alvo.width)), y: Math.min(1, Math.max(0, (y - dy - alvo.top) / alvo.height)) } : undefined;
+            jogar(o, new DOMRect(x - dx, y - dy, w, h), pos);
             return;
           }
-          if (dentro(alvo, x, y)) loja.erro(base.texto);
-          // volta para a mão
+          // volta para a mão (e, se você tentou jogar o que não pode, treme ao chegar)
+          const tentou = dentro(alvo, x, y);
           mostrarFantasma({ ...base, x: r0.left, y: r0.top, voltando: true });
-          setTimeout(() => { mostrarFantasma(null); setArrastando(null); }, 220);
+          setTimeout(() => { mostrarFantasma(null); setArrastando(null); if (tentou) loja.recusar(texto); }, 220);
         },
         cancelar: () => { mostrarFantasma(null); setArrastando(null); },
       };
@@ -465,7 +645,7 @@ export function Mesa() {
             const area = sob.map((e) => e.closest('[data-jogador]') as HTMLElement | null).find(Boolean);
             const t = carta ? alvosAtaque.find((a) => a.kind === 'obj' && a.id === Number(carta.dataset.obj))
               : area ? alvosAtaque.find((a) => a.kind === 'player' && a.id === Number(area.dataset.jogador)) : undefined;
-            if (t) setAtaques({ ...ataques, [o.id]: t });
+            if (t) { setAtaques({ ...ataques, [o.id]: t }); setUltimoAlvo(t); }
             return;
           }
           const carta = sob.map((e) => e.closest('[data-obj]') as HTMLElement | null).find((e) => e && bloqueaveis!.includes(Number(e.dataset.obj)));
@@ -574,10 +754,11 @@ export function Mesa() {
       else if (sel.length < d.max) setSel([...sel, id]);
       return;
     }
+    const sua = o.controller === eu || v.hand.some((x) => x.id === o.id);
     if (d.kind === 'payment') {
       // virar a fonte na mesa: com uma habilidade só, vira direto; com várias, você escolhe
       const fontes = fontesPorObj.get(o.id);
-      if (!fontes?.length) return;
+      if (!fontes?.length) { if (sua) loja.recusar('Essa carta não gera mana agora'); return; }
       const ativar = (f: PaymentSource) => loja.responder(d.id, { kind: 'payment', activate: { source: f.id } });
       if (fontes.length === 1) ativar(fontes[0]);
       else abrirMenu(nomeObj(o.id), legais(fontes.map((f) => ({ id: f.id, label: f.label, fazer: () => ativar(f) }))), r);
@@ -585,7 +766,7 @@ export function Mesa() {
     }
     if (d.kind === 'priority') {
       const acoes = acoesPorObj.get(o.id);
-      if (!acoes?.length) return;
+      if (!acoes?.length) { if (sua) loja.recusar(v.hand.some((x) => x.id === o.id) ? motivo(o) : 'Essa carta não tem o que fazer agora'); return; }
       // terreno com uma habilidade de mana só: vira e a mana vai para a reserva
       if (acoes.length === 1 && acoes[0].kind === 'mana') { fazerAcao(acoes[0]); return; }
       abrirMenu(nomeObj(o.id), legais(acoes.map((a) => ({ id: a.id, label: a.label, fazer: () => fazerAcao(a) }))), r);
@@ -593,21 +774,31 @@ export function Mesa() {
     }
     if (atacantesCand) {
       const alvos = atacantesCand.get(o.id);
-      if (!alvos) return;
-      if (ataques[o.id]) { const n = { ...ataques }; delete n[o.id]; setAtaques(n); return; }
-      // sem escolha a fazer: um alvo só (ex.: um contra um)
-      if (alvos.length === 1) { setAtaques({ ...ataques, [o.id]: alvos[0] }); return; }
-      abrirMenu(nomeObj(o.id), alvos.map((t) => ({ id: `${t.kind}${t.id}`, label: `Atacar ${nomeAlvo(t)}`, legal: true, fazer: () => setAtaques({ ...ataques, [o.id]: t }) })), r);
+      if (alvos) {
+        // clique de novo desmarca
+        if (o.id in ataques) { const n = { ...ataques }; delete n[o.id]; setAtaques(n); if (atacanteAtivo === o.id) setAtacanteAtivo(null); return; }
+        // um alvo só (um contra um) é automático; senão vai no mesmo oponente da anterior, até você clicar em outro
+        const padrao = alvos.length === 1 ? alvos[0] : ultimoAlvo && alvos.some((x) => mesmoAlvo(x, ultimoAlvo)) ? ultimoAlvo : null;
+        setAtaques({ ...ataques, [o.id]: padrao });
+        setAtacanteAtivo(o.id);
+        return;
+      }
+      // planeswalker ou batalha de um oponente
+      if (o.controller !== eu && alvoAtaque({ kind: 'obj', id: o.id })) return;
+      if (o.controller === eu && o.types.includes('Creature')) loja.recusar('Essa criatura não pode atacar agora');
       return;
     }
     if (bloqueadoresCand) {
-      if (bloqueadorAtivo !== null && bloqueadoresCand.get(bloqueadorAtivo)?.includes(o.id)) {
-        setBloqueios({ ...bloqueios, [bloqueadorAtivo]: o.id });
-        setBloqueadorAtivo(null);
+      if (atacando.has(o.id)) {
+        if (bloqueadorAtivo !== null && bloqueadoresCand.get(bloqueadorAtivo)?.includes(o.id)) {
+          setBloqueios({ ...bloqueios, [bloqueadorAtivo]: o.id });
+          setBloqueadorAtivo(null);
+        } else loja.recusar(bloqueadorAtivo === null ? 'Clique antes na sua criatura que vai bloquear' : 'Ela não pode bloquear essa criatura');
         return;
       }
       if (bloqueios[o.id] !== undefined) { const n = { ...bloqueios }; delete n[o.id]; setBloqueios(n); return; }
-      if (bloqueadoresCand.get(o.id)?.length) setBloqueadorAtivo(o.id === bloqueadorAtivo ? null : o.id);
+      if (bloqueadoresCand.get(o.id)?.length) { setBloqueadorAtivo(o.id === bloqueadorAtivo ? null : o.id); return; }
+      if (o.controller === eu && o.types.includes('Creature')) loja.recusar('Essa criatura não pode bloquear');
     }
   };
   const clicarJogador = (p: number) => {
@@ -643,6 +834,9 @@ export function Mesa() {
   const duelo = sala.modo === '1v1';
   const area = (j: PlayerView, compacta: boolean) => {
     const itemJ = itemPorJogador.get(j.id);
+    // declarando ataque: clicar no oponente (área, nome ou vida) escolhe quem a criatura marcada ataca
+    const atacarJ = !!atacantesCand && j.id !== eu && Object.keys(ataques).length > 0;
+    const alvoJogador = atacarJ && aux.alvos && podeSerAlvo({ kind: 'player', id: j.id });
     return (
       <AreaJogador
         key={j.id}
@@ -659,11 +853,13 @@ export function Mesa() {
         cor={cor(j.id)}
         fundo={fundoDe(j.id)}
         realce={realce}
-        legenda={legenda}
+        combate={combate}
         onCarta={clicarCarta}
         onZoom={mostrarZoom}
-        jogadorRealce={itemJ === undefined ? null : sel.includes(itemJ) ? 'escolhido' : 'escolhivel'}
-        onJogador={itemJ !== undefined ? () => clicarJogador(j.id) : undefined}
+        jogadorRealce={itemJ !== undefined ? (sel.includes(itemJ) ? 'escolhido' : aux.alvos ? 'escolhivel' : null) : alvoJogador ? 'escolhivel' : null}
+        onJogador={itemJ !== undefined ? () => clicarJogador(j.id) : atacarJ ? () => alvoAtaque({ kind: 'player', id: j.id }) : undefined}
+        onCliqueArea={atacarJ ? () => alvoAtaque({ kind: 'player', id: j.id }) : undefined}
+        conjurando={j.id === eu && conjurando && d && d.player === eu && d.kind !== 'priority' && v.stack.some((x) => x.controller === eu && x.def === conjurando.o.def) ? conjurando : null}
         onZona={(zona) => setModal({ tipo: 'zona', jogador: j.id, zona })}
         mao={j.id === eu ? v.hand : undefined}
         reservaDireita={j.id === eu ? 336 : 0}
@@ -689,14 +885,16 @@ export function Mesa() {
   const mostrarDecisao = d && !v.gameOver && !enviando && !preJogo && (d.kind !== 'priority' || acoesSoltas.length > 0);
 
   return (<>
-    <div class={`mesa ${duelo ? 'mesa-duelo' : ''} ${recolhida ? 'recolhida' : ''}`} onClick={() => setMenu(null)}>
+    <div class={`mesa ${duelo ? 'mesa-duelo' : ''} ${recolhida ? 'recolhida' : ''} ${aux.jogaveis ? 'aux-jogaveis' : ''} ${e.desfazer ? 'parada' : ''}`} onClick={() => setMenu(null)}>
       <main class="tabuleiro" onContextMenu={(ev) => ev.preventDefault()}>
         <div class={`oponentes n${oponentes.length}`}>{oponentes.map((j) => area(j, true))}</div>
         {area(minha, false)}
-        <FaixaFases v={v} eu={eu} d={d} enviando={enviando} paradas={e.paradas} cor={cor} />
+        <Setas setas={setas} versao={v} />
+        <FaixaFases v={v} eu={eu} d={d} enviando={enviando} paradas={e.paradas} cor={cor} desfazivel={e.desfazivel} parada={!!e.desfazer} />
+        {e.desfazer && <PedidoDesfazer p={e.desfazer} eu={eu} nomes={v.players.map((p) => p.name)} cor={cor} />}
 
         <div class="coluna-dir">
-          <Avisos v={v} cor={cor} />
+          <Avisos v={v} cor={cor} doServidor={e.avisos} />
           {v.gameOver && (
             <div class="cartao fim">
               <p class="decisao-titulo">Fim de partida</p>
@@ -729,7 +927,7 @@ export function Mesa() {
           {d && mostrarDecisao && (
             <div class="cartao">
               <p class="rot">{rotuloDecisao(d)}</p>
-              <Decisao v={v} d={d} ui={ui} nomeObj={nomeObj} nomeAlvo={nomeAlvo} visivel={(id) => todos.has(id)} acoesSoltas={acoesSoltas} reserva={minhaReserva} />
+              <Decisao v={v} d={d} ui={ui} nomeObj={nomeObj} nomeAlvo={nomeAlvo} visivel={(id) => todos.has(id)} acoesSoltas={acoesSoltas} reserva={minhaReserva} aux={aux} />
             </div>
           )}
         </div>
@@ -756,6 +954,7 @@ export function Mesa() {
         <div class="lateral-turno" style={{ '--cor': cor(v.turn.active) }}>
           <span class="rot">Turno</span><strong>{v.turn.number || '–'}</strong>
           <span class="vez">{v.turn.number ? <>vez de <span>{v.players[v.turn.active].name}</span></> : 'antes do 1º turno'}</span>
+          {salaProibe && <span class="selo-sala" title="Quem criou a sala proibiu os auxílios: todos jogam em Mesa real">Sala sem auxílios</span>}
         </div>
         <ul class="menu-lateral">
           <li><button class={registroAberto && !recolhida ? 'ativo' : ''} title="Registro" aria-label="Registro" onClick={() => { if (recolhida) { recolher(false); setRegistroAberto(true); } else setRegistroAberto(!registroAberto); }}><IconeRegistro /><span class="rotulo">Registro</span></button></li>
@@ -776,9 +975,9 @@ export function Mesa() {
     </div>
 
     {/* camadas por cima da mesa ficam fora da grade dela (dentro, viravam linhas novas e cortavam o tabuleiro) */}
-    <CamadaArrasto />
+    <CamadaArrasto neutra={!aux.avisos} />
     {/* o zoom fica acima das janelas (ex.: ler uma carta do cemitério com a janela aberta) */}
-    {zoom && !arrastando && <div class={`camada-zoom ${recolhida ? 'recolhida' : ''}`}><Zoom o={zoom.o} lado={zoom.lado} /></div>}
+    {zoom && !arrastando && <div class={`camada-zoom ${recolhida ? 'recolhida' : ''}`}><Zoom o={zoom.o} lado={zoom.lado} enjoo={aux.jogaveis} /></div>}
     {menu && <MenuFlutuante menu={menu} fechar={() => setMenu(null)} />}
 
     {pegar && (
@@ -805,19 +1004,12 @@ export function Mesa() {
 
     {modal?.tipo === 'carta' && (
       <Janela titulo={nomeObj(modal.o.id)} classe="carta-info" fechar={() => setModal(null)}>
-        <Zoom o={modal.o} fixo />
+        <Zoom o={modal.o} fixo enjoo={aux.jogaveis} />
       </Janela>
     )}
 
     {modal?.tipo === 'config' && (
-      <Janela titulo="Configurações" fechar={() => setModal(null)}>
-        <label class="caixa"><input type="checkbox" checked={pref.pagarAuto} onChange={() => mudarPreferencias({ pagarAuto: !pref.pagarAuto })} /> Pagar automaticamente por padrão</label>
-        <p class="suave">Desligado, você paga clicando nos seus terrenos. Ligado, o jogo escolhe as fontes sozinho sempre que der. Vale só neste navegador.</p>
-        <div class="linha-config">
-          <div><strong>Arrumação do campo</strong><p class="suave">Volta todas as suas permanentes para a arrumação padrão.</p></div>
-          <button class="botao" onClick={() => { setPosLocal({}); loja.enviar({ t: 'posicao', limpar: true }); setModal(null); }}>Reorganizar meu campo</button>
-        </div>
-      </Janela>
+      <Configuracoes pref={pref} salaProibe={salaProibe} fechar={() => setModal(null)} reorganizar={() => { setPosLocal({}); loja.enviar({ t: 'posicao', limpar: true }); setModal(null); }} />
     )}
 
     {modal?.tipo === 'conceder' && (

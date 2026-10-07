@@ -1,22 +1,29 @@
 // Painel da decisão pendente do jogador. Toda escolha é por clique (nunca é preciso digitar).
+// Na mesa real o painel não orienta: listas completas, sugestões e motivos dependem dos auxílios.
 
 import { useEffect, useState } from 'preact/hooks';
 import type { Answer, Decision, ObjId, PriorityAction, TargetRef } from '../../../motor/types.ts';
 import type { GameView } from '../../../motor/view.ts';
 import { traduzir, urlImagem } from '../cartas.ts';
+import { IconeEscudo, IconeEspada } from '../icones.tsx';
 import { loja } from '../loja.ts';
 import { reservaPaga } from '../mana.ts';
+import type { Auxilios } from '../preferencias.ts';
 import { Simbolos, TextoComSimbolos } from './Simbolos.tsx';
 
 export interface EstadoUi {
   sel: string[];
   setSel: (s: string[]) => void;
-  ataques: Record<number, TargetRef>;
-  setAtaques: (a: Record<number, TargetRef>) => void;
+  /** criaturas marcadas para atacar; null = marcada, ainda sem alvo */
+  ataques: Record<number, TargetRef | null>;
+  setAtaques: (a: Record<number, TargetRef | null>) => void;
   bloqueios: Record<number, ObjId>;
   setBloqueios: (b: Record<number, ObjId>) => void;
   bloqueadorAtivo: ObjId | null;
   setBloqueadorAtivo: (b: ObjId | null) => void;
+  /** confirmam a declaração (a mesa confere o que falta e treme o que não dá) */
+  confirmarAtaque: () => void;
+  confirmarBloqueio: () => void;
 }
 
 interface Props {
@@ -31,6 +38,7 @@ interface Props {
   reserva: string;
   /** o objeto já aparece na mesa ou na mão (então o painel mostra só o nome) */
   visivel: (id: ObjId) => boolean;
+  aux: Auxilios;
 }
 
 type D<K extends Decision['kind']> = Extract<Decision, { kind: K }>;
@@ -46,12 +54,11 @@ function Prioridade({ d, acoes }: { d: D<'priority'>; acoes: PriorityAction[] })
       <div class="lista-acoes">
         {acoes.map((a) => <button key={a.id} class="botao acao" onClick={() => responder(d, { kind: 'priority', action: a.id })}><TextoComSimbolos texto={traduzir(a.label)} /></button>)}
       </div>
-      <p class="dica">As cartas que dá para usar agora ficam com brilho verde: clique nelas.</p>
     </div>
   );
 }
 
-function Selecao({ d, ui, nomeObj, visivel }: { d: D<'select'>; ui: EstadoUi; nomeObj: (id: ObjId) => string; visivel: (id: ObjId) => boolean }) {
+function Selecao({ d, ui, nomeObj, visivel, aux }: { d: D<'select'>; ui: EstadoUi; nomeObj: (id: ObjId) => string; visivel: (id: ObjId) => boolean; aux: Auxilios }) {
   const n = ui.sel.length;
   const ok = n >= d.min && n <= d.max;
   const alternar = (id: string) => {
@@ -63,13 +70,13 @@ function Selecao({ d, ui, nomeObj, visivel }: { d: D<'select'>; ui: EstadoUi; no
   return (
     <div class="decisao">
       <p class="decisao-titulo">{traduzir(d.prompt)}</p>
-      <p class="suave">{faixa}{d.ordered ? ', na ordem desejada' : ''}. Você também pode clicar nas cartas da mesa.</p>
+      <p class="suave">{faixa}{d.ordered ? ', na ordem desejada' : ''}.</p>
       <div class="itens">
         {d.items.map((it) => {
           const img = it.card && !(it.obj !== undefined && visivel(it.obj)) ? urlImagem(it.card.def, it.card.face ?? 0, 'p') : null;
           const pos = ui.sel.indexOf(it.id);
           return (
-            <button key={it.id} type="button" class={`item ${pos >= 0 ? 'escolhido' : ''} ${img ? 'item-carta' : ''}`} disabled={it.disabled} onClick={() => alternar(it.id)}>
+            <button key={it.id} type="button" class={`item ${pos >= 0 ? 'escolhido' : ''} ${img ? 'item-carta' : ''}`} disabled={it.disabled && aux.alvos} onClick={() => alternar(it.id)}>
               {img && <img src={img} alt="" loading="lazy" />}
               <span>{d.ordered && pos >= 0 ? `${pos + 1}. ` : ''}{it.obj !== undefined && visivel(it.obj) ? nomeObj(it.obj) : traduzir(it.label)}</span>
             </button>
@@ -103,7 +110,7 @@ function Numero({ d }: { d: D<'number'> }) {
   );
 }
 
-function Pagamento({ d, reserva, visivel }: { d: D<'payment'>; reserva: string; visivel: (id: ObjId) => boolean }) {
+function Pagamento({ d, reserva, visivel, aux }: { d: D<'payment'>; reserva: string; visivel: (id: ObjId) => boolean; aux: Auxilios }) {
   const [vida, setVida] = useState(0);
   const paga = reservaPaga(d.cost, reserva);
   // fontes que não estão à vista na mesa (raro) ficam como botões aqui
@@ -115,7 +122,6 @@ function Pagamento({ d, reserva, visivel }: { d: D<'payment'>; reserva: string; 
         <span class="rot">Custo</span><Simbolos custo={d.cost} tam={18} />
         <span class="rot">Reserva</span>{reserva ? <Simbolos custo={reserva} tam={18} /> : <span class="suave">vazia</span>}
       </div>
-      <p class="dica">{d.sources.length ? 'Clique nos terrenos com brilho verde. Quando a reserva cobrir o custo, o pagamento sai sozinho.' : 'Não há fontes de mana para virar agora.'}</p>
       {d.lifeOptions > 0 && (
         <div class="contador-grande">
           <span>Símbolos phyrexianos pagos com 2 de vida:</span>
@@ -131,55 +137,68 @@ function Pagamento({ d, reserva, visivel }: { d: D<'payment'>; reserva: string; 
         </div>
       )}
       <div class="botoes-linha">
-        <button class="botao principal" disabled={paga === false} onClick={() => responder(d, { kind: 'payment', pay: true })}>Pagar com a reserva</button>
-        {d.canAuto && <button class="botao" onClick={() => responder(d, { kind: 'payment', auto: true })}>Pagar automaticamente</button>}
+        <button class="botao cheio" disabled={aux.terrenos && paga === false} onClick={() => responder(d, { kind: 'payment', pay: true })}>Confirmar pagamento</button>
+        {aux.pagarAuto && d.canAuto && <button class="botao" onClick={() => responder(d, { kind: 'payment', auto: true })}>Pagar automaticamente</button>}
         {d.canCancel && <button class="botao fantasma" onClick={() => responder(d, { kind: 'payment', cancel: true })}>Cancelar</button>}
       </div>
     </div>
   );
 }
 
-function Atacantes({ d, ui, nomeObj, nomeAlvo }: { d: D<'attackers'>; ui: EstadoUi; nomeObj: (id: ObjId) => string; nomeAlvo: (t: TargetRef) => string }) {
+/** ataque: o resumo do que você marcou na mesa; com "Brilho nos alvos válidos", a lista inteira com os alvos */
+function Atacantes({ d, ui, nomeObj, nomeAlvo, aux }: { d: D<'attackers'>; ui: EstadoUi; nomeObj: (id: ObjId) => string; nomeAlvo: (t: TargetRef) => string; aux: Auxilios }) {
   const alternar = (obj: ObjId, t: TargetRef) => {
     const atual = ui.ataques[obj];
     const novo = { ...ui.ataques };
     if (atual && mesmoAlvo(atual, t)) delete novo[obj]; else novo[obj] = t;
     ui.setAtaques(novo);
   };
-  const lista = Object.entries(ui.ataques).map(([o, t]) => [Number(o), t] as [ObjId, TargetRef]);
+  const marcadas = Object.entries(ui.ataques).map(([o, t]) => [Number(o), t] as [ObjId, TargetRef | null]);
   // criaturas com exigência de ataque (goad, "ataca se puder"): CR 508.1d
   const obrigadas = d.candidates.filter((c) => c.required?.length);
   const marcarObrigadas = () => {
     const novo = { ...ui.ataques };
-    for (const c of obrigadas) if (!novo[c.obj] || !c.required!.some((t) => mesmoAlvo(t, novo[c.obj]))) novo[c.obj] = c.required![0];
+    for (const c of obrigadas) { const t = novo[c.obj]; if (!t || !c.required!.some((r) => mesmoAlvo(r, t))) novo[c.obj] = c.required![0]; }
     ui.setAtaques(novo);
   };
   return (
-    <div class="decisao">
-      <p class="decisao-titulo">Declare os atacantes</p>
-      {d.error && <p class="erro-decisao">{d.error}</p>}
-      <div class="linhas">
-        {d.candidates.map((c) => (
-          <div class="linha" key={c.obj}>
-            <span class="linha-nome">{nomeObj(c.obj)}{c.required?.length ? <span class="linha-aviso"> · precisa atacar</span> : null}</span>
-            <span class="linha-botoes">
-              {c.targets.map((t) => (
-                <button key={`${t.kind}${t.id}`} class={`botao pequeno ${ui.ataques[c.obj] && mesmoAlvo(ui.ataques[c.obj], t) ? 'ativo' : ''}`} onClick={() => alternar(c.obj, t)}>{nomeAlvo(t)}</button>
-              ))}
-            </span>
-          </div>
-        ))}
-      </div>
+    <div class="decisao combate">
+      <p class="decisao-titulo">Ataque</p>
+      {aux.avisos && d.error && <p class="erro-decisao">{d.error}</p>}
+      {aux.alvos ? (
+        <div class="linhas">
+          {d.candidates.map((c) => (
+            <div class="linha" key={c.obj}>
+              <span class="linha-nome">{nomeObj(c.obj)}{c.required?.length ? <span class="linha-aviso"> · precisa atacar</span> : null}</span>
+              <span class="linha-botoes">
+                {c.targets.map((t) => (
+                  <button key={`${t.kind}${t.id}`} class={`botao pequeno ${ui.ataques[c.obj] && mesmoAlvo(ui.ataques[c.obj]!, t) ? 'ativo' : ''}`} onClick={() => alternar(c.obj, t)}>{nomeAlvo(t)}</button>
+                ))}
+              </span>
+            </div>
+          ))}
+        </div>
+      ) : marcadas.length > 0 && (
+        <div class="linhas-combate">
+          {marcadas.map(([o, t]) => (
+            <div class="linha-combate" key={o}>
+              <i class={`mini-selo ${t ? 'espada' : 'espera'}`}><IconeEspada /></i>
+              <span>{nomeObj(o)} <span class="alvo">→ <b>{t ? nomeAlvo(t) : '?'}</b></span></span>
+            </div>
+          ))}
+        </div>
+      )}
       <div class="botoes-linha">
-        <button class="botao principal" onClick={() => responder(d, { kind: 'attackers', attacks: lista })}>{lista.length ? `Atacar com ${lista.length}` : 'Não atacar'}</button>
-        {obrigadas.length > 0 && <button class="botao" onClick={marcarObrigadas}>Marcar quem precisa atacar</button>}
-        {lista.length > 0 && <button class="botao" onClick={() => ui.setAtaques({})}>Limpar</button>}
+        <button class="botao cheio" onClick={ui.confirmarAtaque}>{marcadas.length ? 'Confirmar ataque' : 'Não atacar'}</button>
+        {aux.alvos && obrigadas.length > 0 && <button class="botao" onClick={marcarObrigadas}>Marcar quem precisa atacar</button>}
+        {marcadas.length > 0 && <button class="botao" onClick={() => ui.setAtaques({})}>Limpar</button>}
       </div>
     </div>
   );
 }
 
-function Bloqueadores({ d, ui, nomeObj }: { d: D<'blockers'>; ui: EstadoUi; nomeObj: (id: ObjId) => string }) {
+/** bloqueio: o resumo do que você ligou na mesa; com "Brilho nos alvos válidos", a lista inteira */
+function Bloqueadores({ d, ui, nomeObj, aux }: { d: D<'blockers'>; ui: EstadoUi; nomeObj: (id: ObjId) => string; aux: Auxilios }) {
   const alternar = (b: ObjId, a: ObjId) => {
     const novo = { ...ui.bloqueios };
     if (novo[b] === a) delete novo[b]; else novo[b] = a;
@@ -187,31 +206,44 @@ function Bloqueadores({ d, ui, nomeObj }: { d: D<'blockers'>; ui: EstadoUi; nome
   };
   const lista = Object.entries(ui.bloqueios).map(([b, a]) => [Number(b), a] as [ObjId, ObjId]);
   return (
-    <div class="decisao">
-      <p class="decisao-titulo">Declare os bloqueadores</p>
-      {d.error && <p class="erro-decisao">{d.error}</p>}
-      <div class="linhas">
-        {d.candidates.filter((c) => c.canBlock.length > 0).map((c) => (
-          <div class="linha" key={c.obj}>
-            <span class="linha-nome">{nomeObj(c.obj)}</span>
-            <span class="linha-botoes">
-              {c.canBlock.map((a) => (
-                <button key={a} class={`botao pequeno ${ui.bloqueios[c.obj] === a ? 'ativo' : ''}`} onClick={() => alternar(c.obj, a)}>bloquear {nomeObj(a)}</button>
-              ))}
-            </span>
-          </div>
-        ))}
-      </div>
+    <div class="decisao combate">
+      <p class="decisao-titulo">Bloqueio</p>
+      {aux.avisos && d.error && <p class="erro-decisao">{d.error}</p>}
+      {aux.alvos ? (
+        <div class="linhas">
+          {d.candidates.filter((c) => c.canBlock.length > 0).map((c) => (
+            <div class="linha" key={c.obj}>
+              <span class="linha-nome">{nomeObj(c.obj)}</span>
+              <span class="linha-botoes">
+                {c.canBlock.map((a) => (
+                  <button key={a} class={`botao pequeno ${ui.bloqueios[c.obj] === a ? 'ativo' : ''}`} onClick={() => alternar(c.obj, a)}>bloquear {nomeObj(a)}</button>
+                ))}
+              </span>
+            </div>
+          ))}
+        </div>
+      ) : lista.length > 0 && (
+        <div class="linhas-combate">
+          {lista.map(([b, a]) => (
+            <div class="linha-combate" key={b}>
+              <i class="mini-selo escudo"><IconeEscudo /></i>
+              <span>{nomeObj(b)} <span class="alvo">bloqueia <b>{nomeObj(a)}</b></span></span>
+            </div>
+          ))}
+        </div>
+      )}
       <div class="botoes-linha">
-        <button class="botao principal" onClick={() => responder(d, { kind: 'blockers', blocks: lista })}>{lista.length ? `Bloquear com ${lista.length}` : 'Não bloquear'}</button>
+        <button class="botao cheio" onClick={ui.confirmarBloqueio}>{lista.length ? 'Confirmar bloqueio' : 'Não bloquear'}</button>
         {lista.length > 0 && <button class="botao" onClick={() => ui.setBloqueios({})}>Limpar</button>}
       </div>
     </div>
   );
 }
 
-function Dano({ d, nomeAlvo }: { d: D<'damage'>; nomeAlvo: (t: TargetRef) => string }) {
+function Dano({ d, nomeAlvo, aux }: { d: D<'damage'>; nomeAlvo: (t: TargetRef) => string; aux: Auxilios }) {
+  // sem auxílio, você distribui do zero; com "Aviso de por que não dá", começa pelo dano letal
   const inicial = () => {
+    if (!aux.avisos) return d.recipients.map(() => 0);
     const a = d.recipients.map(() => 0);
     let resto = d.amount;
     d.lethal.forEach((l, i) => { const x = Math.min(resto, i === d.lethal.length - 1 ? resto : l); a[i] = x; resto -= x; });
@@ -219,17 +251,17 @@ function Dano({ d, nomeAlvo }: { d: D<'damage'>; nomeAlvo: (t: TargetRef) => str
     return a;
   };
   const [a, setA] = useState(inicial);
-  useEffect(() => setA(inicial()), [d.id]);
+  useEffect(() => setA(inicial()), [d.id, aux.avisos]);
   const soma = a.reduce((x, y) => x + y, 0);
   const muda = (i: number, k: number) => setA(a.map((x, j) => (j === i ? Math.max(0, x + k) : x)));
   return (
     <div class="decisao">
       <p class="decisao-titulo">{traduzir(d.prompt)}</p>
-      {d.error && <p class="erro-decisao">{d.error}</p>}
+      {aux.avisos && d.error && <p class="erro-decisao">{d.error}</p>}
       <div class="linhas">
         {d.recipients.map((t, i) => (
           <div class="linha" key={i}>
-            <span class="linha-nome">{nomeAlvo(t)} <span class="suave">(letal: {d.lethal[i]})</span></span>
+            <span class="linha-nome">{nomeAlvo(t)}{aux.avisos && <span class="suave"> (letal: {d.lethal[i]})</span>}</span>
             <span class="contador">
               <button class="botao pequeno" onClick={() => muda(i, -1)} disabled={a[i] === 0}>−</button>
               <output>{a[i]}</output>
@@ -300,12 +332,12 @@ export function Decisao(p: Props) {
   const d = p.d;
   switch (d.kind) {
     case 'priority': return <Prioridade d={d} acoes={p.acoesSoltas} />;
-    case 'select': return <Selecao d={d} ui={p.ui} nomeObj={p.nomeObj} visivel={p.visivel} />;
+    case 'select': return <Selecao d={d} ui={p.ui} nomeObj={p.nomeObj} visivel={p.visivel} aux={p.aux} />;
     case 'number': return <Numero d={d} />;
-    case 'payment': return <Pagamento d={d} reserva={p.reserva} visivel={p.visivel} />;
-    case 'attackers': return <Atacantes d={d} ui={p.ui} nomeObj={p.nomeObj} nomeAlvo={p.nomeAlvo} />;
-    case 'blockers': return <Bloqueadores d={d} ui={p.ui} nomeObj={p.nomeObj} />;
-    case 'damage': return <Dano d={d} nomeAlvo={p.nomeAlvo} />;
+    case 'payment': return <Pagamento d={d} reserva={p.reserva} visivel={p.visivel} aux={p.aux} />;
+    case 'attackers': return <Atacantes d={d} ui={p.ui} nomeObj={p.nomeObj} nomeAlvo={p.nomeAlvo} aux={p.aux} />;
+    case 'blockers': return <Bloqueadores d={d} ui={p.ui} nomeObj={p.nomeObj} aux={p.aux} />;
+    case 'damage': return <Dano d={d} nomeAlvo={p.nomeAlvo} aux={p.aux} />;
     case 'arrange': return <Arranjo d={d} />;
     case 'mulligan': return <Mulligan d={d} />;
   }

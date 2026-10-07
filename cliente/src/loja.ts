@@ -5,8 +5,9 @@ import { useEffect, useState } from 'preact/hooks';
 import type { StopSettings } from '../../motor/autopass.ts';
 import type { Answer, ManualAction } from '../../motor/types.ts';
 import type { GameView } from '../../motor/view.ts';
-import type { DeckResumo, MsgCliente, MsgServidor, Posicoes, SalaPublica } from '../../servidor/protocolo.ts';
+import type { DeckResumo, MsgCliente, MsgServidor, PedidoDesfazer, Posicoes, SalaPublica } from '../../servidor/protocolo.ts';
 import { carregarCartas } from './cartas.ts';
+import { auxiliosAtivos, preferencias } from './preferencias.ts';
 
 export interface Estado {
   fase: 'carregando' | 'entrada' | 'inicio' | 'sala';
@@ -23,6 +24,14 @@ export interface Estado {
   decks: DeckResumo[];
   /** decisão já respondida, esperando a próxima vista (evita clique duplo) */
   respondida: number | null;
+  /** há jogada sua deste turno para desfazer */
+  desfazivel: boolean;
+  /** pedido de desfazer aberto, com a hora local em que expira */
+  desfazer: (PedidoDesfazer & { ate: number }) | null;
+  /** avisos curtos do servidor para a mesa */
+  avisos: { id: number; texto: string }[];
+  /** conta as recusas sem texto (auxílio de avisos desligado): a mesa treme o que você acabou de tocar */
+  recusa: number;
 }
 
 const CHAVE = 'commander-da-mesa:sala';
@@ -43,7 +52,7 @@ function guardarSala(v: { codigo: string; token: string } | null): void {
 }
 
 class Loja {
-  e: Estado = { fase: 'carregando', conectado: false, sala: null, voce: null, vista: null, paradas: null, posicoes: {}, reveladas: [], erro: null, decks: [], respondida: null };
+  e: Estado = { fase: 'carregando', conectado: false, sala: null, voce: null, vista: null, paradas: null, posicoes: {}, reveladas: [], erro: null, decks: [], respondida: null, desfazivel: false, desfazer: null, avisos: [], recusa: 0 };
   private ouvintes = new Set<() => void>();
   private ws: WebSocket | null = null;
   private fila: MsgCliente[] = [];
@@ -59,6 +68,14 @@ class Loja {
     this.ouvintes.add(f);
     return () => this.ouvintes.delete(f);
   }
+
+  /** jogada que não pode: com o auxílio de avisos, o motivo; sem ele, só um tremido */
+  recusar(motivo: string): void {
+    if (this.avisosLigados()) this.erro(motivo);
+    else this.mudar({ recusa: this.e.recusa + 1 });
+  }
+
+  avisosLigados(): boolean { return auxiliosAtivos(preferencias(), this.e.sala?.auxilios === 'proibidos').avisos; }
 
   erro(msg: string): void {
     this.mudar({ erro: msg });
@@ -132,8 +149,17 @@ class Loja {
         this.mudar({ sala: m.sala, voce: m.voce, fase: 'sala', vista: m.sala.estado === 'espera' ? null : this.e.vista });
         break;
       case 'jogo':
-        this.mudar({ vista: m.vista, paradas: m.paradas, posicoes: m.posicoes ?? {}, respondida: m.vista.decision?.id === this.e.respondida ? this.e.respondida : null });
+        this.mudar({
+          vista: m.vista, paradas: m.paradas, posicoes: m.posicoes ?? {}, respondida: m.vista.decision?.id === this.e.respondida ? this.e.respondida : null,
+          desfazivel: !!m.desfazivel, desfazer: m.desfazer ? { ...m.desfazer, ate: Date.now() + m.desfazer.restanteMs } : null,
+        });
         break;
+      case 'aviso': {
+        const id = ++this.seqRevelada;
+        this.mudar({ avisos: [...this.e.avisos, { id, texto: m.msg }].slice(-3) });
+        setTimeout(() => this.mudar({ avisos: this.e.avisos.filter((a) => a.id !== id) }), 7000);
+        break;
+      }
       case 'revelada': {
         const id = ++this.seqRevelada;
         this.mudar({ reveladas: [...this.e.reveladas, { id, de: m.de, def: m.def, para: m.para }].slice(-3) });
@@ -148,6 +174,8 @@ class Loja {
         // resposta a uma decisão que já mudou (clique atrasado): nada a avisar
         if (/já passou|Não é a sua vez de decidir/.test(m.msg)) { this.mudar({ respondida: null }); break; }
         if (/voltar à sala/.test(m.msg)) { guardarSala(null); this.mudar({ fase: 'inicio' }); }
+        // resposta recusada pelo motor (falta mana, alvo que não vale…): na mesa real, sem explicação
+        if (this.e.respondida !== null && !this.avisosLigados() && !/Erro interno/.test(m.msg)) { this.mudar({ respondida: null, recusa: this.e.recusa + 1 }); break; }
         this.mudar({ respondida: null });
         this.erro(m.msg);
         break;

@@ -12,7 +12,8 @@ import type { Answer, GameConfig, Step } from '../motor/types.ts';
 import { controllerOf } from '../motor/chars.ts';
 import { buildView } from '../motor/view.ts';
 import type { Banco } from './banco.ts';
-import type { Modo, MsgCliente, MsgServidor, Posicoes, RegraMulligan, SalaPublica, TipoAssento } from './protocolo.ts';
+import { alvoDesfazer, linhasDesfeitas, reconstruir, type MetaEntrada } from './desfazer.ts';
+import type { LinhaDesfeita, Modo, MsgCliente, MsgServidor, PedidoDesfazer, Posicoes, RegraAuxilios, RegraMulligan, SalaPublica, TipoAssento } from './protocolo.ts';
 
 export interface Conexao {
   enviar(m: MsgServidor): void;
@@ -29,11 +30,13 @@ export interface Atrasos {
   autoPasse: number;
   /** simulações do bot heurístico por decisão (força e tempo de resposta) */
   simulacoesBot: number;
+  /** quanto tempo os outros têm para aceitar um pedido de desfazer */
+  prazoDesfazer: number;
 }
 
-export const ATRASOS_PADRAO: Atrasos = { botAcao: 700, botPasse: 90, autoPasse: 60, simulacoesBot: 24 };
+export const ATRASOS_PADRAO: Atrasos = { botAcao: 700, botPasse: 90, autoPasse: 60, simulacoesBot: 24, prazoDesfazer: 30000 };
 // testes do servidor: sem atrasos e com bots que pensam pouco (o fluxo da sala é o que importa)
-export const SEM_ATRASO: Atrasos = { botAcao: 0, botPasse: 0, autoPasse: 0, simulacoesBot: 3 };
+export const SEM_ATRASO: Atrasos = { botAcao: 0, botPasse: 0, autoPasse: 0, simulacoesBot: 3, prazoDesfazer: 30000 };
 
 interface Assento {
   tipo: TipoAssento;
@@ -60,6 +63,19 @@ interface DadosSala {
   anfitriao: number;
   partida: DadosPartida | null;
   mulligan?: RegraMulligan;
+  auxilios?: RegraAuxilios;
+}
+
+interface Pedido {
+  de: number;
+  /** posição da entrada onde a jogada começa: tudo dali em diante volta */
+  alvo: number;
+  voltar: Game;
+  linhas: LinhaDesfeita[];
+  aceitaram: Set<number>;
+  faltam: Set<number>;
+  prazo: number;
+  timer: ReturnType<typeof setTimeout>;
 }
 
 const ALFABETO = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
@@ -83,7 +99,8 @@ function paradasValidas(p: unknown): StopSettings | null {
   const x = p as StopSettings;
   const ok = (l: unknown) => Array.isArray(l) && l.every((s) => PASSOS.includes(s as Step));
   if (!ok(x.myTurn) || !ok(x.othersTurn) || typeof x.stopOnOpponentStack !== 'boolean' || typeof x.stopOnOwnStack !== 'boolean') return null;
-  return { myTurn: [...x.myTurn], othersTurn: [...x.othersTurn], stopOnOpponentStack: x.stopOnOpponentStack, stopOnOwnStack: x.stopOnOwnStack, passUntilTurnEnds: null };
+  if (x.skipWhenNothing !== undefined && typeof x.skipWhenNothing !== 'boolean') return null;
+  return { myTurn: [...x.myTurn], othersTurn: [...x.othersTurn], stopOnOpponentStack: x.stopOnOpponentStack, stopOnOwnStack: x.stopOnOwnStack, passUntilTurnEnds: null, skipWhenNothing: x.skipWhenNothing ?? true };
 }
 
 export class Sala {
@@ -93,6 +110,11 @@ export class Sala {
   private bots = new Map<number, HeuristicBot>();
   private rodando = false;
   private salvas = 0;
+  /** de cada entrada da partida: turno e se foi a pessoa (alinhado com game.inputs) */
+  private metas: (MetaEntrada | null)[] = [];
+  /** estado no começo dos últimos turnos (o desfazer refaz a partida a partir daqui) */
+  private cps: Checkpoint[] = [];
+  private pedido: Pedido | null = null;
   erro: string | null = null;
 
   private gerente: Gerente;
@@ -104,7 +126,7 @@ export class Sala {
   publica(): SalaPublica {
     const conectados = new Set([...this.conexoes].map((c) => c.assento));
     return {
-      codigo: this.d.codigo, modo: this.d.modo, estado: this.d.estado, anfitriao: this.d.anfitriao, mulligan: this.d.mulligan ?? 'londres',
+      codigo: this.d.codigo, modo: this.d.modo, estado: this.d.estado, anfitriao: this.d.anfitriao, mulligan: this.d.mulligan ?? 'londres', auxilios: this.d.auxilios ?? 'permitidos',
       semente: this.d.partida?.config.seed ?? null,
       assentos: this.d.assentos.map((a, i) => ({ indice: i, tipo: a.tipo, nome: a.nome, deck: a.deck, conectado: a.tipo === 'bot' || conectados.has(i) })),
     };
@@ -125,7 +147,15 @@ export class Sala {
   enviarJogo(c: Conexao): void {
     if (!this.game || c.assento === null) return;
     const vista = buildView(this.game.g, c.assento, this.game.pending);
-    c.enviar({ t: 'jogo', vista, paradas: this.d.assentos[c.assento].paradas, posicoes: this.posicoesNoCampo() });
+    const desfazivel = !this.pedido && !this.game.isOver() && this.alvoDesfazer(c.assento) !== null;
+    c.enviar({ t: 'jogo', vista, paradas: this.d.assentos[c.assento].paradas, posicoes: this.posicoesNoCampo(), desfazivel, desfazer: this.pedidoPublico() });
+  }
+
+  private get semAuxilios(): boolean { return this.d.auxilios === 'proibidos'; }
+
+  /** sala sem auxílios: ninguém passa sozinho só por não ter jogada (isso entregaria a informação) */
+  private paradasEfetivas(a: Assento): StopSettings {
+    return this.semAuxilios ? { ...a.paradas, skipWhenNothing: false } : a.paradas;
   }
 
   /** só as posições de objetos que continuam no campo */
@@ -188,6 +218,7 @@ export class Sala {
         break;
       }
       case 'sair': {
+        if (this.pedido) this.encerrarPedido(null);
         if (this.d.estado === 'jogando' && this.game && !this.game.isOver()) this.registrar(() => this.game!.concede(i));
         if (this.d.estado !== 'jogando') this.d.assentos[i] = { tipo: 'vazio', nome: null, deck: null, token: null, paradas: structuredClone(DEFAULT_STOPS) };
         c.enviar({ t: 'saiu' });
@@ -203,11 +234,14 @@ export class Sala {
       case 'responder': {
         const g = this.game;
         if (!g || !g.pending) return 'Não há decisão pendente';
+        if (this.pedido) return 'A mesa está parada esperando o pedido de desfazer';
         if (g.pending.player !== i) return 'Não é a sua vez de decidir';
         if (g.pending.id !== m.decisao) return 'Essa decisão já passou';
-        const err = g.check(i, m.resposta as Answer);
+        const resposta = m.resposta as Answer;
+        if (this.semAuxilios && resposta?.kind === 'payment' && resposta.auto) return 'Esta sala não permite pagamento automático';
+        const err = g.check(i, resposta);
         if (err) return err;
-        this.registrar(() => g.answer(i, m.resposta as Answer));
+        this.registrar(() => g.answer(i, resposta), true);
         break;
       }
       case 'paradas': {
@@ -223,6 +257,7 @@ export class Sala {
       }
       case 'conceder': {
         if (!this.game || this.game.isOver()) return 'Não há partida em andamento';
+        if (this.pedido) this.encerrarPedido(null);
         this.registrar(() => this.game!.concede(i));
         break;
       }
@@ -232,6 +267,31 @@ export class Sala {
         if (m.regra !== 'londres' && m.regra !== 'livre') return 'Regra desconhecida';
         this.d.mulligan = m.regra;
         break;
+      }
+      case 'auxilios': {
+        if (!anfitriao) return 'Só quem criou a sala escolhe a regra de auxílios';
+        if (this.d.estado === 'jogando') return 'A partida já começou';
+        if (m.regra !== 'permitidos' && m.regra !== 'proibidos') return 'Regra desconhecida';
+        this.d.auxilios = m.regra;
+        break;
+      }
+      case 'desfazer': return this.pedirDesfazer(i);
+      case 'desfazerResposta': {
+        const p = this.pedido;
+        if (!p) return 'Não há pedido de desfazer aberto';
+        if (!p.faltam.has(i)) return p.de === i ? 'O pedido é seu' : 'Você já respondeu';
+        if (!m.aceitar) { this.encerrarPedido(`${this.nome(i)} recusou desfazer a jogada de ${this.nome(p.de)}.`); return null; }
+        p.faltam.delete(i);
+        p.aceitaram.add(i);
+        if (p.faltam.size === 0) this.aplicarDesfazer();
+        else this.transmitir();
+        return null;
+      }
+      case 'desfazerCancelar': {
+        if (!this.pedido) return 'Não há pedido de desfazer aberto';
+        if (this.pedido.de !== i) return 'Só quem pediu pode cancelar';
+        this.encerrarPedido(`${this.nome(i)} cancelou o pedido de desfazer.`);
+        return null;
       }
       case 'revelar': {
         const g = this.game;
@@ -304,30 +364,46 @@ export class Sala {
   }
 
   /** cria (ou recria, depois de um reinício) a partida a partir da semente e das entradas */
-  criarGame(cp: Checkpoint | null, entradas: Input[]): void {
+  criarGame(cp: Checkpoint | null, entradas: Input[], metas: (MetaEntrada | null)[] = []): void {
     const p = this.d.partida!;
-    const decks = p.deckIds.map((id) => this.gerente.deck(id)!);
+    const decks = this.decks();
     this.game = cp ? Game.fromCheckpoint(cp, decks, entradas) : entradas.length ? Game.replay(p.config, decks, entradas) : Game.create(p.config, decks);
     this.salvas = this.game.inputs.length;
-    this.bots = new Map(this.d.assentos.map((a, i) => [i, a] as const).filter(([, a]) => a.tipo === 'bot').map(([i]) => [i, new HeuristicBot(`${p.config.seed}:${i}`, i, { simulacoes: this.gerente.atrasos.simulacoesBot })]));
+    this.metas = this.game.inputs.map((_, k) => metas[k] ?? null);
+    this.cps = [];
+    this.criarBots();
     if (this.game.isOver()) this.d.estado = 'fim';
   }
 
-  /** aplica uma entrada e grava as novas no banco */
-  private registrar(fn: () => unknown): void {
+  private decks(): DeckList[] { return this.d.partida!.deckIds.map((id) => this.gerente.deck(id)!); }
+
+  private criarBots(): void {
+    const seed = this.d.partida!.config.seed;
+    this.bots = new Map(this.d.assentos.map((a, i) => [i, a] as const).filter(([, a]) => a.tipo === 'bot').map(([i]) => [i, new HeuristicBot(`${seed}:${i}`, i, { simulacoes: this.gerente.atrasos.simulacoesBot })]));
+  }
+
+  private nome(i: number): string { return this.game?.state.players[i]?.name ?? this.d.assentos[i]?.nome ?? `Jogador ${i + 1}`; }
+
+  /** aplica uma entrada e grava as novas no banco; `humana`: foi a pessoa que fez (conta para o desfazer) */
+  private registrar(fn: () => unknown, humana = false): void {
+    const g = this.game!;
+    const turno = g.state.turn.number;
+    const n0 = g.inputs.length;
+    let ok = true;
     try {
       fn();
     } catch (e) {
       this.falha(e);
-      return;
+      ok = false;
     }
-    this.persistir();
+    for (let k = n0; k < g.inputs.length; k++) this.metas[k] = { turno, humana };
+    if (ok) this.persistir();
   }
 
   private persistir(): void {
     const g = this.game!;
     if (g.inputs.length > this.salvas) {
-      this.gerente.banco.adicionarEntradas(this.d.codigo, this.salvas, g.inputs.slice(this.salvas));
+      this.gerente.banco.adicionarEntradas(this.d.codigo, this.salvas, g.inputs.slice(this.salvas), this.metas.slice(this.salvas));
       // checkpoint de tempos em tempos, numa decisão de prioridade (o laço é retomável ali)
       if (Math.floor(g.inputs.length / 40) > Math.floor(this.salvas / 40)) {
         const cp = g.checkpoint();
@@ -335,7 +411,87 @@ export class Sala {
       }
       this.salvas = g.inputs.length;
     }
+    // começo de cada turno guardado na memória: o desfazer refaz a partida a partir dele
+    const ultimo = this.cps[this.cps.length - 1];
+    if (g.pending?.kind === 'priority' && (!ultimo || ultimo.state.turn.number !== g.state.turn.number)) {
+      const cp = g.checkpoint();
+      if (cp) { this.cps.push(cp); if (this.cps.length > 3) this.cps.shift(); }
+    }
     if (g.isOver() && this.d.estado === 'jogando') { this.d.estado = 'fim'; this.salvar(); }
+  }
+
+  // ------------------------------------------------------------------ desfazer
+  private alvoDesfazer(i: number): number | null {
+    const g = this.game;
+    if (!g || this.d.assentos[i]?.tipo !== 'humano') return null;
+    return alvoDesfazer(g.inputs, this.metas, i, g.state.turn.number);
+  }
+
+  private pedidoPublico(): PedidoDesfazer | null {
+    const p = this.pedido;
+    if (!p) return null;
+    return { de: p.de, linhas: p.linhas, aceitaram: [...p.aceitaram], faltam: [...p.faltam], restanteMs: Math.max(0, p.prazo - Date.now()), totalMs: this.gerente.atrasos.prazoDesfazer };
+  }
+
+  private pedirDesfazer(i: number): string | null {
+    const g = this.game;
+    if (!g || g.isOver() || this.d.estado !== 'jogando') return 'Não há partida em andamento';
+    if (this.pedido) return 'Já há um pedido de desfazer aberto';
+    const alvo = this.alvoDesfazer(i);
+    if (alvo === null) return 'Não há jogada sua para desfazer neste turno';
+    let voltar: Game;
+    try {
+      voltar = reconstruir(this.d.partida!.config, this.decks(), g.inputs, [...this.cps, this.d.partida!.checkpoint], alvo);
+    } catch (e) {
+      console.error(`[sala ${this.d.codigo}] não foi possível refazer a partida para desfazer:`, e);
+      return 'Não foi possível voltar a partida para antes dessa jogada';
+    }
+    const outros = this.d.assentos.map((_, k) => k).filter((k) => k !== i && !g.state.players[k]?.left);
+    const faltam = new Set(outros.filter((k) => this.d.assentos[k].tipo === 'humano'));
+    // os bots aceitam na hora
+    const aceitaram = new Set(outros.filter((k) => this.d.assentos[k].tipo === 'bot'));
+    const prazo = Date.now() + this.gerente.atrasos.prazoDesfazer;
+    const timer = setTimeout(() => { if (this.pedido?.timer === timer) this.encerrarPedido(`O pedido de desfazer de ${this.nome(i)} não teve resposta a tempo.`); }, this.gerente.atrasos.prazoDesfazer);
+    this.pedido = { de: i, alvo, voltar, linhas: linhasDesfeitas(g, voltar, g.inputs[alvo]), aceitaram, faltam, prazo, timer };
+    if (faltam.size === 0) this.aplicarDesfazer();
+    else this.transmitir();
+    return null;
+  }
+
+  /** fecha o pedido sem desfazer nada, e a mesa segue */
+  private encerrarPedido(msg: string | null): void {
+    const p = this.pedido;
+    if (!p) return;
+    clearTimeout(p.timer);
+    this.pedido = null;
+    if (msg) this.avisar(msg);
+    this.transmitir();
+    void this.avancar();
+  }
+
+  private aplicarDesfazer(): void {
+    const p = this.pedido!;
+    clearTimeout(p.timer);
+    this.pedido = null;
+    const partida = this.d.partida!;
+    this.game = p.voltar;
+    this.metas = this.metas.slice(0, p.alvo);
+    this.salvas = p.alvo;
+    this.cps = this.cps.filter((c) => c.inputIndex <= p.alvo);
+    this.gerente.banco.truncarEntradas(this.d.codigo, p.alvo);
+    if (partida.checkpoint && partida.checkpoint.inputIndex > p.alvo) partida.checkpoint = this.cps[this.cps.length - 1] ?? null;
+    // posições de permanentes que deixaram de existir saem (os números de objeto voltam a ser usados)
+    const campo = new Set(this.game.state.zones.battlefield);
+    for (const id of Object.keys(partida.posicoes ?? {})) if (!campo.has(Number(id))) delete partida.posicoes![id];
+    this.criarBots();
+    this.salvar();
+    this.avisar(`${this.nome(p.de)} desfez: ${p.linhas[0]?.texto ?? 'a última jogada'}`);
+    this.transmitir();
+    void this.avancar();
+  }
+
+  private avisar(msg: string): void {
+    for (const c of this.conexoes) c.enviar({ t: 'aviso', msg });
   }
 
   private falha(e: unknown): void {
@@ -353,7 +509,7 @@ export class Sala {
     try {
       for (let guarda = 0; guarda < 100000; guarda++) {
         const g = this.game;
-        if (!g || !g.pending || g.isOver() || this.erro) break;
+        if (!g || !g.pending || g.isOver() || this.erro || this.pedido) break;
         const d = g.pending;
         const a = this.d.assentos[d.player];
         let resposta: Answer | null = null;
@@ -362,7 +518,7 @@ export class Sala {
           resposta = this.bots.get(d.player)!.answer(d, g);
           const visivel = (d.kind === 'priority' && resposta.kind === 'priority' && resposta.action !== 'pass') || d.kind === 'attackers' || d.kind === 'blockers';
           espera = visivel ? at.botAcao : at.botPasse;
-        } else if (shouldAutoPass(g.state, d, d.player, a.paradas)) {
+        } else if (shouldAutoPass(g.state, d, d.player, this.paradasEfetivas(a))) {
           resposta = { kind: 'priority', action: 'pass' };
           espera = at.autoPasse;
         }
@@ -372,7 +528,7 @@ export class Sala {
           // de quem está passando não aparecer na tela por um instante
           if (a.tipo === 'bot') this.transmitir();
           await dorme(espera);
-          if (this.game !== g || g.pending?.id !== d.id) continue; // algo mudou enquanto esperava
+          if (this.game !== g || g.pending?.id !== d.id || this.pedido) continue; // algo mudou enquanto esperava
         }
         const r = resposta;
         this.registrar(() => {
@@ -412,7 +568,7 @@ export class Gerente {
       this.salas.set(d.codigo, s);
       if (d.partida && d.estado !== 'espera') {
         try {
-          s.criarGame(d.partida.checkpoint, this.banco.entradas(d.codigo) as Input[]);
+          s.criarGame(d.partida.checkpoint, this.banco.entradas(d.codigo) as Input[], this.banco.metas(d.codigo) as (MetaEntrada | null)[]);
           void s.avancar();
         } catch (e) {
           s.erro = e instanceof Error ? e.message : String(e);

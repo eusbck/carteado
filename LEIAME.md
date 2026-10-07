@@ -41,21 +41,34 @@ janela mostra o endereço `https://` e a senha de acesso para mandar ao grupo. D
    código e a senha para os outros. Lugares vazios podem receber bots, que jogam com os mesmos decks e
    veem só o que um jogador veria.
 3. Cada um escolhe um deck; quem criou a sala escolhe a regra de mulligan (Londres, o padrão, ou
-   Livre: troca a mão inteira, até 3 vezes, sem pôr nada no fundo) e começa a partida.
-4. Na mesa:
-   - **Jogar uma carta da mão:** arraste para o seu campo, dê duplo clique ou clique nela e escolha
-     no menu. Se não der para jogar agora, o motivo aparece.
-   - **Pagar:** clique nos seus terrenos com brilho verde; quando a reserva cobre o custo, o
-     pagamento sai sozinho. Com prioridade, clicar num terreno gera a mana antes de conjurar. Em
-     "Configurações" dá para ligar o pagamento automático.
+   Livre: troca a mão inteira, até 3 vezes, sem pôr nada no fundo), a regra de auxílios
+   (permitidos ou proibidos) e começa a partida.
+4. Na mesa (o padrão é a **mesa real**: nada brilha e a mesa não explica o que não pode; tentou algo
+   que não vale, a carta volta com um tremido):
+   - **Auxílios:** em "Configurações", cada um escolhe Mesa real, Leve (só o brilho nas cartas
+     jogáveis), Completo (tudo, menos pagar automaticamente) ou Personalizado. Vale na hora, só para
+     você, e fica guardado no navegador. Se a sala proíbe, todos jogam em Mesa real.
+   - **Jogar uma carta da mão:** arraste para o seu campo, dê duplo clique ou clique direito e escolha
+     no menu. A carta fica tracejada onde você soltou até pagar, e a permanente entra ali.
+   - **Pagar:** clique nos seus terrenos para virar (a mana vai para a reserva) e em "Confirmar
+     pagamento". "Cancelar" devolve a carta para a mão e desvira os terrenos virados para ela. Com
+     prioridade, clicar num terreno gera a mana antes de conjurar.
    - **Arrumar o campo:** arraste as suas permanentes para onde quiser; todos veem a sua arrumação.
      "Reorganizar meu campo" (clique direito no campo vazio) volta à arrumação padrão.
-   - **Combate:** clique nas criaturas para atacar (em 4 jogadores, escolha quem atacar no menu) ou
-     arraste a criatura até a área do oponente; para bloquear, arraste o bloqueador até o atacante.
+   - **Atacar:** clique na criatura (ela inclina e ganha uma espada; clique de novo para desmarcar) e,
+     em 4 jogadores, no oponente que ela ataca (a próxima marcada vai no mesmo oponente até você
+     clicar em outro). "Confirmar ataque" vira as criaturas. Arrastar até o oponente também vale.
+   - **Bloquear:** clique na sua criatura e depois no atacante (escudo e linha azul) e em "Confirmar
+     bloqueio". Setas, dano, ganho de vida e criaturas indo para o cemitério aparecem para todos.
+   - **Desfazer:** o botão com a seta curva, ao lado de Passar, pede para voltar a sua última jogada
+     deste turno (o que os outros fizeram depois volta junto). Os outros têm 30 segundos para aceitar;
+     os bots aceitam na hora; uma recusa ou o prazo cancela. A mesa fica parada enquanto isso.
    - **Clique direito:** nas cartas, ver informações, revelar uma carta da mão e o ajuste manual
      (virar, marcadores, mover); no seu campo vazio, desvirar tudo, criar ficha e marcadores de jogador.
    - A faixa no meio da mesa mostra o turno, as cinco fases com as etapas e o botão Passar. Clicar
      numa etapa liga ou desliga a parada nela; "Paradas" na barra lateral tem todas as opções.
+   - "Configurações" também tem o volume, os sons (passar o turno, dano, ganhar vida) e os efeitos
+     visuais, que valem em qualquer sala.
    - A barra lateral recolhe (último botão) e abre de novo; as decisões aparecem à direita da mesa.
 5. Todas as cartas dos sete decks têm o efeito automatizado. O ajuste manual continua disponível
    para corrigir alguma situação à mão, só quando você tem prioridade, e todo ajuste aparece no

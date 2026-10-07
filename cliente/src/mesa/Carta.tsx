@@ -3,17 +3,20 @@
 import type { CSSProperties } from 'preact';
 import type { ObjView } from '../../../motor/view.ts';
 import { info, nomeCarta, urlImagem } from '../cartas.ts';
+import { IconeEscudo, IconeEspada } from '../icones.tsx';
 
 export type Realce = 'acao' | 'escolhivel' | 'escolhido' | 'atacante' | 'bloqueador' | 'ativo' | 'mira' | null;
+/** selo de combate: atacando, bloqueando, ou marcada para atacar mas ainda sem alvo */
+export type Selo = 'espada' | 'escudo' | 'espera';
+
+const NOME_SELO: Record<Selo, string> = { espada: 'atacando', escudo: 'bloqueando', espera: 'marcada para atacar, sem alvo' };
 
 const MARCADORES: Record<string, string> = { '+1/+1': '+1/+1', '-1/-1': '−1/−1', loyalty: 'lealdade', poison: 'veneno', charge: 'carga', time: 'tempo', oil: 'óleo', stun: 'atordoamento', shield: 'escudo' };
 
 export interface CartaProps {
   o: ObjView;
   realce?: Realce;
-  legenda?: string;
-  /** a legenda é de bloqueio (cor diferente da de ataque) */
-  legendaBloqueio?: boolean;
+  selo?: Selo;
   /** recebe também o retângulo da carta na tela (para abrir o menu ao lado dela) */
   onClick?: (o: ObjView, r: DOMRect) => void;
   onZoom?: (o: ObjView | null, r?: DOMRect) => void;
@@ -26,7 +29,7 @@ export interface CartaProps {
   classe?: string;
 }
 
-export function Carta({ o, realce = null, legenda, legendaBloqueio, onClick, onZoom, onPointerDown, onDoubleClick, onMenu, estilo, classe }: CartaProps) {
+export function Carta({ o, realce = null, selo, onClick, onZoom, onPointerDown, onDoubleClick, onMenu, estilo, classe }: CartaProps) {
   const oculta = !o.def;
   const img = oculta ? null : urlImagem(o.copyOfDef ?? o.def, o.face, 'p');
   const nome = oculta ? o.name : nomeCarta(o.def, o.name);
@@ -70,7 +73,7 @@ export function Carta({ o, realce = null, legenda, legendaBloqueio, onClick, onZ
         </div>
       )}
       {criatura && o.power !== null && img && <span class="carta-pt">{o.power}/{o.toughness}</span>}
-      {legenda && <span class={`carta-legenda ${legendaBloqueio ? 'bloqueio' : ''}`}>{legenda}</span>}
+      {selo && <span class={`selo-combate ${selo}`} title={NOME_SELO[selo]}>{selo === 'escudo' ? <IconeEscudo /> : <IconeEspada />}</span>}
     </div>
   );
 }
