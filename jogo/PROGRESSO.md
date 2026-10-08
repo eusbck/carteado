@@ -770,3 +770,20 @@ imagens, para os amigos clonarem e saírem jogando.
 - `README.md` na raiz (a página do repositório no GitHub); `LEIAME.md` e `HOSPEDAGEM.md` atualizados.
 - A pasta raiz foi criada por outro usuário do Windows (`CodexSandboxOffline`), e o git recusava o repositório por
   isso; ele foi liberado com `git config --global --add safe.directory C:/Users/icaio/Documents/Magic-Commander`.
+
+Verificado num clone do repositório novo, numa pasta à parte:
+- 4.937 arquivos, 1,1 GB, nada pendente. Fora de `jogo/`, tudo idêntico byte a byte à pasta original (`diff -r`), e
+  `python coletar.py --verify` confirma a integridade de `cartas/`. `Abrir a mesa.cmd` sai com CRLF.
+- `npm ci`, `npm run typecheck` e `npm run cliente:build` sem erros.
+- Servidor do clone: login com a senha, imagem grande (PNG) e miniatura (WebP) de uma carta dos 7 decks e de uma carta
+  importada, e 9 decks no saguão.
+- Suíte inteira: 655 de 656 arquivos; as 2 falhas são de `testes/fase8.test.ts` (desfazer), que é instável desde antes:
+  no clone feito antes destas mudanças, o mesmo arquivo falhou 1 de 5 vezes; no novo, 3 de 5.
+- O script de abrir a mesa não rodou inteiro, porque abriria o túnel público; o Node.js já instalado, o `npm ci` e a
+  compilação foram conferidos à parte, e o script não tem erro de sintaxe.
+
+Precisa de você:
+- Criar um repositório **privado e vazio** no GitHub e enviar: na pasta `Magic-Commander`,
+  `git remote add origin <endereço>` e `git push -u origin main` (cerca de 1,1 GB). Depois, convidar os amigos em
+  *Settings → Collaborators*.
+- Se quiser, apagar as worktrees antigas (instruções na seção anterior) e a pasta vazia `jogo/.git`, com o VS Code fechado.
