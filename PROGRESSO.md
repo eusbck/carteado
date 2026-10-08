@@ -20,6 +20,9 @@ Lista de verificação das fases. É por aqui que uma sessão nova retoma o trab
   subagentes em worktrees irmãs (`../jogo-wt-a` a `../jogo-wt-d`, branches `fase9-a` a `fase9-d`).
 - 07/10/2026 (noite): decks do Moxfield pelo link (importar e atualizar), pedido na conversa; plano aprovado em
   `~/.claude/plans/fa-a-com-que-seja-snuggly-hummingbird.md`.
+- 08/10/2026: completar o deck do Jace (64 cartas), importar e completar o deck da Gisa (59 cartas) e conferir a
+  importação por link. Trabalho dividido com 7 subagentes em worktrees (`../jogo-wt-a` a `../jogo-wt-g`, branches
+  `cartas-a` a `cartas-g`), juntados no `main`.
 
 ## Fase 0: exploração e proposta
 
@@ -673,3 +676,75 @@ Recapitulação (07/10/2026):
   - Reabrir a mesa ("Abrir a mesa.cmd") para usar a tela Decks: a mesa que estava aberta continua com o código antigo.
   - Quando quiser o deck do Jace no saguão, pedir para implementar as 64 cartas que faltam
     (`node ferramentas/decks.ts pendentes` mostra a lista).
+
+## Decks do Jace e da Gisa completos — 08/10/2026
+
+Pedido na conversa: implementar as 64 cartas que faltavam no deck do Jace
+(`https://moxfield.com/decks/HAKhAXl1RHyly2_QGDPvzg`), importar e completar
+`https://moxfield.com/decks/HAKhAUw1_Xqr0ZxAoQgsCg` e ver se a importação por link aparece e funciona.
+
+Contagem, pelos links do Moxfield (08/10):
+- **Multiverse Reforged** (Jace, Multiverse Architect): 100 cartas, 93 nomes (11 básicos), 29 já com regras, faltavam 64.
+- **Wretched Ranks** (Ghoulcaller Gisa, precon de Foundations Commander): 100 cartas, 69 nomes (32 Swamps), 10 já com
+  regras, faltavam 59. Total: 123 cartas novas.
+
+Importação por link:
+- Funciona: o segundo deck foi importado pela própria tela Decks (servidor de teste e Playwright): prévia em 2,3 s,
+  confirmação em 78 s, "ficou em preparação: faltam regras para 59 cartas".
+- Achado: o botão Decks só existia na tela inicial. Quem abre a mesa com uma sala guardada cai direto nela e não via
+  o botão. Agora há um botão **Decks** no saguão (ao lado de "N decks da mesa"); o Voltar leva de volta para a sala, e
+  a tela Decks continua aberta quando alguém entra na sala ou troca de deck (só a partida começando leva à mesa).
+
+Como ficou:
+- **123 cartas** em `cartas/defs/` (626 no total), cada uma com testes e todos os rulings. Os dois decks saíram de
+  "em preparação" para o saguão (`node ferramentas/decks.ts gerar`): **9 decks jogáveis**.
+- Fichas novas em `cartas/fichas.ts`: Zombie 2/2 (sem decaimento; a `Zombie` antiga é a com decaimento), Zombie Army,
+  Soldier, Warrior, Human, Citizen, Insect 2/1, Angel, Kobolds of Kher Keep, Goblin, Phyrexian Goblin, Myr, Shark,
+  Map (com explorar), Jace (planeswalker, com `empowerJace`), Incubator (duas faces) e Phyrexian Mite.
+- **Motor** (recursos novos, gerais, com testes em `testes/regras-*.test.ts`):
+  - presente/gift (CR 702.174), convoke (702.51), substituição ao sair do campo (`leavesBattlefield`, 614.6 e 616.1:
+    Kalitas), resguardo pago com vida (Zul Ashur, Ovika), custo alternativo da mão com condição (Flawless Maneuver),
+    alvo "mágica ou permanente" (Fatehold Charm), mágicas não criatura no turno (Plan for All Outcomes), virar a
+    própria criatura no custo (Cryptbreaker);
+  - tóxico e veneno (702.164), corrompido, emblemas (114), "não pode perder o jogo" (104.3), marcadores de
+    atordoamento (122.1d), proteção contra tipo de carta e proteção de jogador (702.16), mana não gasta que vira
+    incolor (Omnath), monarca que sai passa ao jogador ativo (725.4);
+  - fichas de duas faces que transformam, incubar (701.53), iminente/impending (702.176), eminência, restrição de
+    ataque a planeswalkers (Jace), habilidades de lealdade emprestadas (Nicol Bolas, Dragon-God);
+  - correções: habilidade que define P/T vale fora do campo (604.3: Soulless One); "Aura" e "Saga" saíram da lista de
+    tipos de criatura (205.3g-k: Crippling Fear, Patchwork Banner); rótulo do custo de sacrificar em português e com cor.
+- **Cliente**: emblemas na zona de comando à parte do comandante (texto no zoom); verso da ficha de duas faces
+  (Incubator transformado); zoom sem P/T para o que não é criatura (Overlord iminente); palavras-chave novas em
+  português.
+- Guia `cartas/COMO-IMPLEMENTAR.md` com os recursos novos.
+
+Verificado:
+- `npx tsc` (motor e cliente) sem erros; **suíte inteira: 656 arquivos, 1769 testes passando** (com as 123 cartas).
+- Partidas de bots sempre com os decks novos na mesa (invariantes a cada resposta; script desta sessão, fora do
+  repositório; `node bots/estresse.ts` já sorteia os decks novos): **25 de 25 sem erro**
+  (Gisa 1v1 ×4 e 4 jogadores ×3; Jace × Gisa ×6; 4 jogadores com os dois ×6; Jace 1v1 ×6).
+- Emblema na mesa conferido em 1280×800 e 1920×1080 (emblema injetado na vista, a partida em si não chega lá fácil).
+- `node ferramentas/e2e.ts`: todas as verificações de ponta a ponta passaram (com o cliente compilado de novo).
+- `node bots/estresse.ts 60 4 aleatorio novos08` e `60 2`: **120 de 120 partidas sem erro** (bots aleatórios, que fazem
+  escolhas estranhas; sorteiam entre os 9 decks).
+
+Observações (não corrigidas, ficam para decidir):
+- **O bot joga o deck do Jace mal**: perdeu 11 de 12 partidas 1v1. Numa partida analisada ele não conjurou o Dimir
+  Signet podendo desde o turno 5 e guardou o Command Tower na mão. Não é regressão destas mudanças (Terra × Abzan
+  Armor deu exatamente as mesmas partidas antes e depois); é o estilo conservador do bot heurístico, que pesa menos
+  num deck lento de cinco cores. Se quiser, dá para ensinar o bot a priorizar pedras de mana e terrenos que fazem
+  as cores que faltam.
+- Achados do motor sem efeito nos decks de hoje: dano de infectar a jogador vira perda de vida em vez de veneno
+  (CR 120.3b; nenhuma carta com infectar causa dano a jogador nos decks); as substituições `lifeGain`, `damage`,
+  `counters` e `enterOther` declaradas em `motor/defs.ts` não são aplicadas (só "ao entrar" e a nova de sair do
+  campo); não há redução de custo para habilidades ativadas (Razorlash Transmogrant tem duas versões da habilidade,
+  uma para cada caso).
+- Os nomes dos decks importados são compridos ("Multiverse Reforged (Reality Fracture Commander Decklist)"): o
+  saguão corta com "…". Renomeando no Moxfield e usando "Atualizar" na tela Decks, o nome muda aqui.
+- Worktrees desta sessão (`../jogo-wt-a` a `../jogo-wt-g`, branches `cartas-a` a `cartas-g` e `integra`) já estão
+  juntadas e podem ser apagadas: `node_modules` dentro delas é um atalho (junção). Para cada uma,
+  `cmd /c rmdir ..\jogo-wt-X\node_modules` (apaga só o atalho) e depois `git worktree remove --force ../jogo-wt-X`.
+
+Precisa de você:
+- Reabrir a mesa ("Abrir a mesa.cmd") para os decks novos e o botão Decks no saguão aparecerem.
+- Jogar com os dois decks e dizer se alguma carta se comportou diferente do esperado.
