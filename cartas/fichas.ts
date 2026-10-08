@@ -162,6 +162,22 @@ export const MapToken = defineToken({
 });
 
 /**
+ * Incubator (incubar, CR 701.53): ficha de duas faces (CR 111.10i). Frente: artefato Incubator incolor com "{2}:
+ * Transforme esta ficha"; verso: criatura artefato Phyrexian 0/0 incolor chamada Phyrexian Token (nome do CR 111.10i;
+ * a ficha impressa diz só "Phyrexian"). Os marcadores +1/+1 do incubar ficam na ficha quando ela transforma (CR 712.18).
+ */
+import { transformFrom } from '../motor/api.ts';
+export const Incubator = defineToken({
+  id: 'Incubator', name: 'Incubator', types: ['Artifact'], subtypes: ['Incubator'], colors: [], power: null, toughness: null,
+  abilities: [
+    // CR 701.27f: só transforma se não transformou desde que a habilidade foi para a pilha
+    activated('{2}', function* (c) { transformFrom(c.g, c.source, 0); }, { kw: 'transform', text: '{2}: Transforme este artefato.' }),
+  ],
+  back: { name: 'Phyrexian Token', types: ['Artifact', 'Creature'], subtypes: ['Phyrexian'], colors: [], power: 0, toughness: 0, abilities: [] },
+  image: fichasOracle.find((f) => f.name === 'Incubator // Phyrexian')?.oracleId,
+});
+
+/**
  * Contract (Scriv, the Obligator): Aura que encanta criatura. "Sempre que a criatura encantada ataca, ela recebe +2/+0
  * até o fim do turno se estiver atacando um dos seus oponentes. Caso contrário, o controlador dela perde 2 de vida."
  */

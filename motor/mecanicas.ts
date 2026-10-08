@@ -46,6 +46,22 @@ export function transformFrom(g: G, id: ObjId, face: number): boolean {
 }
 
 // ---------------------------------------------------------------------------
+// Incubar (CR 701.53)
+// ---------------------------------------------------------------------------
+/**
+ * CR 701.53a: incubar N — cria uma ficha Incubator que entra com N marcadores +1/+1 (com N = 0, entra sem
+ * marcadores). É uma ficha de duas faces (CR 111.10i, 701.53b), registrada em cartas/fichas.ts: a frente é um
+ * artefato Incubator com "{2}: Transforme esta ficha" e o verso uma criatura artefato Phyrexian 0/0 incolor.
+ */
+export function* incubate(g: G, p: PlayerId, n: number): Gen<ObjId | null> {
+  if (g.state.players[p].left) return null;
+  const [id] = yield* putOntoBattlefield(g, [{ controller: p, token: { def: 'Incubator' }, counters: n > 0 ? { '+1/+1': n } : {} }], 'token');
+  if (id === undefined) return null;
+  g.log(`${g.state.players[p].name} incuba ${n}.`, { rule: '701.53a' });
+  return id;
+}
+
+// ---------------------------------------------------------------------------
 // Proliferar (CR 701.34)
 // ---------------------------------------------------------------------------
 /** escolha qualquer número de permanentes e/ou jogadores com marcadores; cada um ganha mais um de cada tipo que já tem */
@@ -427,6 +443,46 @@ export function* doSuspend(g: G, p: PlayerId, id: ObjId): Gen<boolean> {
   addCounters(g, { kind: 'obj', id: ex }, 'time', prm.n, p);
   g.log(`${g.state.players[p].name} suspende ${nameOf(g, ex)} com ${prm.n} marcadores de tempo.`, { rule: '702.62a' });
   return true;
+}
+
+// ---------------------------------------------------------------------------
+// Iminente (CR 702.176)
+// ---------------------------------------------------------------------------
+import type { AltCastDef } from './defs.ts';
+import type { GameObject } from './types.ts';
+
+/** o permanente veio de uma mágica conjurada pelo custo iminente (CR 702.176a) */
+export function impendingPaid(o: GameObject | null | undefined): boolean {
+  return (o?.data.spell as { method?: string } | undefined)?.method === 'impending';
+}
+
+/**
+ * CR 702.176a: Iminente N—[custo] são quatro habilidades. (1) O custo alternativo, que vale na pilha (CR 118.9; a
+ * mágica continua sendo de criatura e só pode ser conjurada quando a mágica de criatura poderia). (2) A substituição
+ * "se o custo iminente foi pago, entra com N marcadores de tempo" (CR 614.1c). (3) A estática "enquanto o custo
+ * iminente foi pago e ele tem um marcador de tempo, não é criatura" (camada 4). (4) O gatilho "no início da sua
+ * etapa final, se o custo iminente foi pago e ele tem um marcador de tempo, remova um marcador de tempo dele"
+ * (cláusula "se" interveniente, CR 603.4). Um objeto que entra como cópia do permanente não teve o custo pago:
+ * entra sem marcadores e é criatura.
+ */
+export function impending(n: number, custo: string): { altCost: AltCastDef; abilities: AbilityDef[] } {
+  const ativo = (c: { g: G; source: ObjId }): boolean => {
+    const o = c.g.state.objects[c.source];
+    return !!o && o.zone === 'battlefield' && impendingPaid(o) && (o.counters.time ?? 0) > 0;
+  };
+  const entra = asEnters((_c, ev) => {
+    if (ev.spell?.method === 'impending') ev.counters.time = (ev.counters.time ?? 0) + n;
+  }, `Iminente ${n}—${custo} (se você conjurar esta mágica pelo custo iminente, ela entra com ${n} marcadores de tempo e não é criatura até o último ser removido; no início da sua etapa final, remova um marcador de tempo dela)`);
+  entra.kw = 'impending';
+  entra.param = { n, custo };
+  const naoCriatura: StaticDef = {
+    kind: 'static', condition: ativo, affects: (c, o) => o.id === c.source, mods: () => [{ k: 'removeTypes', types: ['Creature'] }],
+    text: 'Enquanto o custo iminente tiver sido pago e este permanente tiver um marcador de tempo, ele não é criatura.',
+  };
+  const removeUm = triggered(on.endStep('you'), function* (c) {
+    removeCounters(c.g, { kind: 'obj', id: c.source }, 'time', 1);
+  }, { condition: ativo, text: 'No início da sua etapa final, se o custo iminente tiver sido pago e este permanente tiver um marcador de tempo, remova um marcador de tempo dele.' });
+  return { altCost: { key: 'impending', label: `iminente ${custo}`, zone: 'hand', mana: custo }, abilities: [entra, naoCriatura, removeUm] };
 }
 
 /** fim do desenterrar: exila no início da próxima etapa final (CR 702.84a) */

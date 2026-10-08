@@ -38,12 +38,13 @@ export function modLayer(m: Mod, cda = false): Layer | null {
 // ---------------------------------------------------------------------------
 export function abilitiesOfDef(defName: string, face: number): AbilityInst[] {
   const token = registry.tokens.get(defName);
-  const list: AbilityDef[] = token ? token.abilities : (cardDef(defName)?.faces[face]?.abilities ?? []);
+  const list: AbilityDef[] = token ? (face === 1 && token.back ? token.back.abilities : token.abilities) : (cardDef(defName)?.faces[face]?.abilities ?? []);
   return list.map((a) => ({ id: a.id!, kw: a.kw, param: a.param }));
 }
 
+/** carta que transforma, ou ficha de duas faces (Incubator, CR 111.10i, 701.27a) */
 export function isTransform(defName: string): boolean {
-  return hasOracle(defName) && oracle(defName).layout === 'transform';
+  return (hasOracle(defName) && oracle(defName).layout === 'transform') || !!registry.tokens.get(defName)?.back;
 }
 
 /** modelos das características impressas por definição e face (só leitura): recalcular a cada passada das camadas
@@ -72,10 +73,12 @@ function impressaFunciona(defName: string, face: number, off: Set<string>): bool
 function printedCharsNovas(defName: string, face: number, owner: PlayerId): Chars {
   const token = registry.tokens.get(defName);
   if (token) {
+    // ficha de duas faces com o verso para cima: só as características do verso (CR 712.8e)
+    const f = face === 1 && token.back ? token.back : token;
     return {
-      name: token.name, manaCost: null, manaValue: 0, colors: [...token.colors],
-      supertypes: [...(token.supertypes ?? [])], types: [...token.types], subtypes: [...token.subtypes],
-      abilities: abilitiesOfDef(defName, 0), power: token.power, toughness: token.toughness, loyalty: null, controller: owner,
+      name: f.name, manaCost: null, manaValue: 0, colors: [...f.colors],
+      supertypes: [...(f.supertypes ?? [])], types: [...f.types], subtypes: [...f.subtypes],
+      abilities: abilitiesOfDef(defName, face), power: f.power, toughness: f.toughness, loyalty: null, controller: owner,
     };
   }
   const card = oracle(defName);

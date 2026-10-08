@@ -60,6 +60,7 @@ const esperadas: Record<string, [string, string[], string[], string[], number | 
   'Shark': ['Shark', ['Creature'], ['Shark'], ['U'], null, null, ['flying']],
   'Map': ['Map', ['Artifact'], ['Map'], [], null, null, ['explore']],
   'Jace': ['Jace', ['Planeswalker'], ['Jace'], ['U'], null, null, ['surveil']],
+  'Incubator': ['Incubator', ['Artifact'], ['Incubator'], [], null, null, ['transform']],
   'Contract': ['Contract', ['Enchantment'], ['Aura'], ['W'], null, null, ['enchant']],
 };
 

@@ -366,6 +366,8 @@ export interface TokenDef {
   enchant?: TargetSpec;
   /** id Oracle da ficha em cartas/data, para a imagem */
   image?: string;
+  /** ficha de duas faces (CR 111.10i, 712): o verso, que vale quando a ficha transforma (712.8e) */
+  back?: Omit<TokenDef, 'id' | 'image' | 'back' | 'enchant'>;
 }
 
 // ---------------------------------------------------------------------------
@@ -397,6 +399,7 @@ export function defineCard(def: CardDef): CardDef {
 
 export function defineToken(def: TokenDef): TokenDef {
   registerAbilities(`token:${def.id}`, def.abilities, '#');
+  registerAbilities(`token:${def.id}`, def.back?.abilities, '#1.');
   registry.tokens.set(def.id, def);
   return def;
 }
