@@ -386,12 +386,22 @@ export function chars(g: G, id: ObjId): Chars {
     throw new Error(`Objeto inexistente: ${id}`);
   }
   c = layer1(g, o);
+  // guardado antes das habilidades que definem características: uma que conta a própria carta (Soulless One no
+  // cemitério) lê os tipos impressos, sem recursão
+  d.chars.set(id, c);
+  // habilidades que definem características funcionam em todas as zonas (CR 604.3)
+  for (const inst of c.abilities) {
+    const def = registry.abilities.get(inst.id);
+    if (def?.kind !== 'static' || !def.cda || !def.mods) continue;
+    const ctx: SCtx = { g, you: o.owner, source: id };
+    if (def.affects && !def.affects(ctx, o)) continue;
+    try { for (const m of def.mods(ctx, o)) applyMod(c, m); } catch { /* sem as características esperadas fora do campo */ }
+  }
   // efeitos resolvidos que afetam diretamente objetos fora do campo (ex.: mágica na pilha que ganha wither)
   for (const L of LAYERS) for (const e of g.state.effects) {
     if (!e.affected?.includes(id)) continue;
     for (const m of e.mods) if (modLayer(m) === L) applyMod(c, m);
   }
-  d.chars.set(id, c);
   return c;
 }
 

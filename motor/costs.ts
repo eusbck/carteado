@@ -81,7 +81,7 @@ export function canPayParts(g: G, player: PlayerId, parts: CostPart[], source: O
         break;
       }
       case 'mill': if (s.zones.library[player].length < p.n) return false; break; // CR 701.17b
-      case 'tapCreatures': if (s.zones.battlefield.filter((id) => id !== source && controllerOf(g, id) === player && isCreature(g, id) && !s.objects[id].tapped && (!p.filter || p.filter(ctx, id))).length < p.n) return false; break;
+      case 'tapCreatures': if (s.zones.battlefield.filter((id) => (p.includeSelf || id !== source) && controllerOf(g, id) === player && isCreature(g, id) && !s.objects[id].tapped && (!p.filter || p.filter(ctx, id))).length < p.n) return false; break;
       case 'loyalty': {
         const n = p.n === 'X' ? -x : p.n;
         if (n < 0 && (!o || (o.counters.loyalty ?? 0) < -n)) return false; // CR 606.6
@@ -424,8 +424,8 @@ export function* payParts(g: G, player: PlayerId, parts: CostPart[], source: Obj
       }
       case 'mill': info.milled = yield* mill(g, player, p.n); break;
       case 'tapCreatures': {
-        const cands = s.zones.battlefield.filter((id) => id !== source && controllerOf(g, id) === player && isCreature(g, id) && !s.objects[id].tapped && (!p.filter || p.filter(ctx, id)));
-        const ids = yield* chooseItems(g, player, `Vire ${p.n} criatura(s) desvirada(s) que você controla`, cands.map((id) => objItem(g, id, nameOf(g, id))), p.n, p.n);
+        const cands = s.zones.battlefield.filter((id) => (p.includeSelf || id !== source) && controllerOf(g, id) === player && isCreature(g, id) && !s.objects[id].tapped && (!p.filter || p.filter(ctx, id)));
+        const ids = yield* chooseItems(g, player, `Vire ${p.n} ${p.label ?? 'criatura(s) desvirada(s)'} que você controla`, cands.map((id) => objItem(g, id, nameOf(g, id))), p.n, p.n);
         for (const id of ids) tap(g, Number(id));
         break;
       }

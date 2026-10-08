@@ -1,9 +1,10 @@
 // Fichas (CR 111) criadas pelas cartas dos decks. Cada uma aponta para a imagem da ficha
 // correspondente em ../cartas/data (pelo nome, força/resistência e cores).
 
-import { activated, controllerOf, cost, decayed, defineToken, gainLife, keywords, loseLife, mana, on, t, triggered, untilEndOfTurn, type AbilityDef } from '../motor/api.ts';
+import { activated, addCounters, chars, chooseItems, controlledBy, controllerOf, cost, createTokens, decayed, defineToken, draw, gainLife, is, isLand, isType, keywords, lkiChars, lookAndArrange, loseLife, mana, moveObjects, nameOf, objItem, on, t, tgt, triggered, untilEndOfTurn, yesNo, type AbilityDef, type G, type Gen } from '../motor/api.ts';
+import type { Ctx } from '../motor/defs.ts';
 import { fichasOracle } from '../motor/oracle.ts';
-import type { Color } from '../motor/types.ts';
+import type { Color, ObjId } from '../motor/types.ts';
 
 function img(name: string, p: number | null, t: number | null, colors?: Color[], text?: string): string | undefined {
   const cands = fichasOracle.filter((f) => f.faces[0].name === name && f.faces[0].power === p && f.faces[0].toughness === t);
@@ -93,6 +94,72 @@ export const Goblin = token('Goblin', 'Goblin', ['Creature'], ['Goblin'], ['R'],
 export const PhyrexianGoblin = token('Phyrexian Goblin', 'Phyrexian Goblin', ['Creature'], ['Phyrexian', 'Goblin'], ['R'], 1, 1);
 export const Myr = token('Myr', 'Myr', ['Artifact', 'Creature'], ['Myr'], [], 1, 1);
 export const Shark = tokenXX('Shark', 'Shark', ['Creature'], ['Shark'], ['U'], keywords('flying'));
+/**
+ * Jace (CR 701.71a, "empower Jace"): planeswalker azul com 0 de lealdade, "[−1]: Vigiar 1" e "[−3]: Compre uma carta".
+ * Lealdade 0 impressa: quem a cria põe os marcadores logo em seguida. A palavra-chave 'surveil' segue a lista da ficha
+ * impressa (Scryfall); vigiar é uma ação de palavra-chave (CR 701.25), não muda nada nas regras.
+ */
+export const Jace = token('Jace', 'Jace', ['Planeswalker'], ['Jace'], ['U'], null, null, [
+  activated('−1', function* (c) { yield* lookAndArrange(c.g, c.you, 1, 'surveil'); }, { kw: 'surveil', text: '−1: Vigiar 1.' }),
+  activated('−3', function* (c) { yield* draw(c.g, c.you, 1); }, { text: '−3: Compre uma carta.' }),
+]);
+
+/**
+ * Fortalecer Jace N (empower Jace): sem uma ficha de planeswalker Jace sua, crie a ficha Jace acima; depois escolha uma
+ * ficha de planeswalker Jace sua e ponha N marcadores de lealdade nela. Jace que não é ficha não serve, e com uma
+ * ficha já no campo não se cria outra (rulings de Fatehold Charm e Plan for All Outcomes).
+ */
+export function* empowerJace(c: Ctx, n: number): Gen<void> {
+  const fichas = () => controlledBy(c.g, c.you, (id) => c.g.state.objects[id].isToken && isType(c.g, id, 'Planeswalker') && chars(c.g, id).subtypes.includes('Jace'));
+  if (!fichas().length) yield* createTokens(c.g, c.you, 'Jace', 1);
+  const opcoes = fichas();
+  if (!opcoes.length) return;
+  let alvo = opcoes[0];
+  if (opcoes.length > 1) {
+    const [id] = yield* chooseItems(c.g, c.you, `Fortalecer Jace ${n}: escolha a ficha de Jace que recebe os marcadores de lealdade`, opcoes.map((x) => objItem(c.g, x, nameOf(c.g, x))), 1, 1);
+    alvo = Number(id);
+  }
+  addCounters(c.g, { kind: 'obj', id: alvo }, 'loyalty', n, c.you);
+  c.g.log(`${c.g.state.players[c.you].name} fortalece Jace ${n}.`);
+}
+
+/**
+ * Explorar (CR 701.44a): o controlador do permanente revela a carta do topo do grimório. Se for carta de terreno,
+ * põe na mão; senão, põe um marcador +1/+1 no permanente e pode pôr a carta revelada no cemitério.
+ */
+export function* explore(g: G, id: ObjId): Gen<void> {
+  // CR 701.44c: se o permanente já saiu do campo, a última informação conhecida diz quem o controlava
+  const lki = lkiChars(g, id);
+  if (!lki) return;
+  const p = g.state.objects[id] ? controllerOf(g, id) : lki.controller;
+  const top = g.state.zones.library[p][0];
+  if (top !== undefined) {
+    g.log(`${g.state.players[p].name} revela ${nameOf(g, top)} do topo do grimório (explorar).`, { rule: '701.44a' });
+    if (isLand(g, top)) { yield* moveObjects(g, [{ id: top, to: 'hand' }], 'explore'); return; }
+  }
+  // sem carta de terreno revelada (nem com o grimório vazio): marcador +1/+1, se ainda estiver no campo (CR 701.44b)
+  if (g.state.objects[id]?.zone === 'battlefield') addCounters(g, { kind: 'obj', id }, '+1/+1', 1, p);
+  if (top === undefined || g.state.zones.library[p][0] !== top) return;
+  if (yield* yesNo(g, p, `Explorar: pôr ${nameOf(g, top)} no cemitério? Senão, a carta fica no topo do grimório.`, 'Pôr no cemitério', 'Deixar no topo')) {
+    yield* moveObjects(g, [{ id: top, to: 'graveyard' }], 'explore');
+  }
+}
+
+/** Map (CR 111.10s): "{1}, {T}, Sacrifique esta ficha: A criatura alvo que você controla explora. Ative só como feitiço." */
+export const MapToken = defineToken({
+  id: 'Map', name: 'Map', types: ['Artifact'], subtypes: ['Map'], colors: [], power: null, toughness: null,
+  abilities: [
+    // kw 'explore': a ficha impressa lista explorar entre as palavras-chave (cartas/fichas.test.ts confere)
+    activated('{1}, {T}, Sacrifice this artifact', function* (c) {
+      const alvo = tgt(c);
+      if (alvo !== null) yield* explore(c.g, alvo);
+    }, {
+      kw: 'explore', timing: 'sorcery', targets: [t.creature(is.yours, 'criatura alvo que você controla')],
+      text: '{1}, {T}, Sacrifique este artefato: A criatura alvo que você controla explora. Ative apenas como um feitiço.',
+    }),
+  ],
+  image: fichasOracle.find((f) => f.name === 'Map')?.oracleId,
+});
 
 /**
  * Contract (Scriv, the Obligator): Aura que encanta criatura. "Sempre que a criatura encantada ataca, ela recebe +2/+0

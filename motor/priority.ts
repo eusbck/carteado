@@ -50,7 +50,7 @@ export function castOptions(g: G, p: PlayerId): CastOption[] {
     const f = faceDefOf(o);
     if (zone === 'hand') {
       out.push({ obj: id, method: { key: 'hand', label: 'conjurar', zone } });
-      for (const alt of f?.altCosts ?? []) if (alt.zone === 'hand') out.push({ obj: id, method: { key: alt.key, label: alt.label, zone, alt } });
+      for (const alt of f?.altCosts ?? []) if (alt.zone === 'hand' && (!alt.condition || alt.condition({ g, you: p, source: id }))) out.push({ obj: id, method: { key: alt.key, label: alt.label, zone, alt } });
     } else if (zone === 'command') {
       if (o.owner === p && o.card !== null && s.cards[o.card].isCommander) out.push({ obj: id, method: { key: 'command', label: 'conjurar da zona de comando', zone } });
     } else {

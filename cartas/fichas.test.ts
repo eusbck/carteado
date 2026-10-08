@@ -58,6 +58,8 @@ const esperadas: Record<string, [string, string[], string[], string[], number | 
   'Phyrexian Goblin': ['Phyrexian Goblin', ['Creature'], ['Phyrexian', 'Goblin'], ['R'], 1, 1, []],
   'Myr': ['Myr', ['Artifact', 'Creature'], ['Myr'], [], 1, 1, []],
   'Shark': ['Shark', ['Creature'], ['Shark'], ['U'], null, null, ['flying']],
+  'Map': ['Map', ['Artifact'], ['Map'], [], null, null, ['explore']],
+  'Jace': ['Jace', ['Planeswalker'], ['Jace'], ['U'], null, null, ['surveil']],
   'Contract': ['Contract', ['Enchantment'], ['Aura'], ['W'], null, null, ['enchant']],
 };
 
@@ -134,5 +136,78 @@ describe('Fichas: habilidades', () => {
     const tg = setup({ battlefield: [[{ name: 'Zombie', token: true }], []] });
     tg.passTo('main2');
     expect(tg.find('Zombie')).not.toBeNull();
+  });
+  it("'Map': {1}, {T}, sacrifique: a criatura alvo que você controla explora — CR 701.44a: terreno revelado vai para a mão", () => {
+    const tg = setup({ battlefield: [[{ name: 'Map', token: true }, 'Wall of Omens', 'Sol Ring'], ['Indomitable Ancients']], library: [['Forest', 'Island'], []] });
+    let alvos: string[] = [];
+    tg.script.push((d) => {
+      if (d.kind !== 'select' || !d.prompt.includes('criatura alvo que você controla')) return null;
+      alvos = d.items.filter((i) => !i.disabled).map((i) => i.label);
+      return { kind: 'select', ids: [d.items.find((i) => i.label === 'Wall of Omens')!.id] };
+    });
+    tg.activate('Map').resolve();
+    expect(alvos).toEqual(['Wall of Omens']);
+    expect(tg.find('Map')).toBeNull();
+    expect(tg.state.objects[tg.bf('Sol Ring')].tapped).toBe(true);
+    expect(tg.names(0, 'hand')).toEqual(['Forest']);
+    expect(tg.names(0, 'library')).toEqual(['Island']);
+    expect(tg.state.objects[tg.bf('Wall of Omens')].counters['+1/+1'] ?? 0).toBe(0);
+  });
+  it("'Map': CR 701.44a: carta não terreno — marcador +1/+1 e o controlador decide se ela vai para o cemitério", () => {
+    for (const cemiterio of [true, false]) {
+      const tg = setup({ battlefield: [[{ name: 'Map', token: true }, 'Wall of Omens', 'Sol Ring'], []], library: [['Counterspell', 'Island'], []] });
+      tg.yes('Explorar: pôr Counterspell no cemitério', cemiterio);
+      tg.choose('criatura alvo', ['Wall of Omens']).activate('Map').resolve();
+      const wall = tg.bf('Wall of Omens');
+      expect(tg.state.objects[wall].counters['+1/+1']).toBe(1);
+      expect(tg.pt(wall)).toEqual([1, 5]);
+      expect(tg.names(0, 'hand')).toEqual([]);
+      expect(tg.names(0, 'graveyard')).toEqual(cemiterio ? ['Counterspell'] : []);
+      expect(tg.names(0, 'library')).toEqual(cemiterio ? ['Island'] : ['Counterspell', 'Island']);
+    }
+  });
+  it("'Map': com o grimório vazio, a criatura explora e recebe o marcador +1/+1", () => {
+    const tg = setup({ battlefield: [[{ name: 'Map', token: true }, 'Wall of Omens', 'Sol Ring'], []], library: [[], []] });
+    tg.choose('criatura alvo', ['Wall of Omens']).activate('Map').resolve();
+    expect(tg.state.objects[tg.bf('Wall of Omens')].counters['+1/+1']).toBe(1);
+  });
+  it("'Map': ative apenas como um feitiço", () => {
+    const podeAtivar = (tg: ReturnType<typeof setup>) => tg.pending?.kind === 'priority' && tg.pending.actions.some((a) => a.id.startsWith('act:') && a.label.startsWith('Map:'));
+    const campo = [[{ name: 'Map', token: true }, 'Wall of Omens', 'Sol Ring', 'Island'], []];
+    expect(podeAtivar(setup({ battlefield: campo }))).toBe(true);
+    expect(podeAtivar(setup({ battlefield: campo, step: 'beginCombat' }))).toBe(false);
+    // no turno de Bruno, Ana recebe a prioridade na fase principal dele com a pilha vazia
+    const outro = setup({ battlefield: campo, active: 1 }).pass();
+    expect(outro.pending?.player).toBe(0);
+    expect(podeAtivar(outro)).toBe(false);
+    // com algo na pilha, também não
+    const tg = setup({ battlefield: campo, hand: [['Brainstorm'], []], library: [['Forest', 'Forest', 'Forest'], []] });
+    tg.cast('Brainstorm');
+    expect(podeAtivar(tg)).toBe(false);
+  });
+  it("'Jace': −1: vigiar 1; só uma habilidade de lealdade por turno (CR 606.3)", () => {
+    const tg = setup({ battlefield: [[{ name: 'Jace', token: true, counters: { loyalty: 4 } }], []], library: [['Island', 'Swamp'], []] });
+    const jace = tg.bf('Jace');
+    tg.script.push((d) => (d.kind === 'arrange' ? { kind: 'arrange', placement: Object.fromEntries(d.items.map((i) => [i.id, 'graveyard'])), order: d.items.map((i) => i.id) } : null));
+    tg.activate('Jace', '−1').resolve();
+    expect(tg.state.objects[jace].counters.loyalty).toBe(3);
+    expect(tg.names(0, 'graveyard')).toEqual(['Island']);
+    expect(tg.names(0, 'library')).toEqual(['Swamp']);
+    expect(tg.actionIds().some((a) => a.startsWith(`act:${jace}:`))).toBe(false);
+  });
+  it("'Jace': −3: compre uma carta; com 0 de lealdade, a ficha deixa o campo (CR 704.5i)", () => {
+    const tg = setup({ battlefield: [[{ name: 'Jace', token: true, counters: { loyalty: 3 } }], []], library: [['Island', 'Swamp'], []] });
+    tg.activate('Jace', '−3').resolve();
+    expect(tg.names(0, 'hand')).toEqual(['Island']);
+    expect(tg.find('Jace')).toBeNull();
+    // criada sem marcadores (lealdade impressa 0), também deixa o campo
+    tg.run(createTokens(tg.g, 0, 'Jace', 1));
+    expect(tg.find('Jace')).toBeNull();
+  });
+  it("'Jace': as habilidades de lealdade são só como feitiço", () => {
+    const tg = setup({ active: 1, battlefield: [[{ name: 'Jace', token: true, counters: { loyalty: 4 } }], []], library: [['Island'], ['Island']] });
+    tg.pass();
+    expect(tg.pending?.player).toBe(0);
+    expect(tg.actionIds().some((a) => a.startsWith('act:'))).toBe(false);
   });
 });

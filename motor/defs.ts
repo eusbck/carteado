@@ -54,8 +54,9 @@ export type EffectFn = (c: Ctx) => Gen<void>;
 // ---------------------------------------------------------------------------
 export interface TargetSpec {
   /** 'object' = permanente (padrão); 'player'; 'any' = criatura, planeswalker ou jogador (115.4);
-   *  'spell' = mágica na pilha; 'card' = carta numa zona (cemitério…) */
-  what: 'object' | 'player' | 'any' | 'spell' | 'card';
+   *  'spell' = mágica na pilha; 'card' = carta numa zona (cemitério…); 'spellOrPermanent' = mágica na pilha ou
+   *  permanente ("mágica ou criatura alvo"; o filtro separa os dois) */
+  what: 'object' | 'player' | 'any' | 'spell' | 'card' | 'spellOrPermanent';
   zone?: ZoneName;
   filter?: (c: SCtx, t: TargetRef) => boolean;
   min?: number;
@@ -98,7 +99,7 @@ export type CostPart =
   | { k: 'addCounterSelf'; kind: string; n: number }
   | { k: 'blight'; n: number | 'X' }
   | { k: 'mill'; n: number }
-  | { k: 'tapCreatures'; n: number; filter?: (c: SCtx, o: ObjId) => boolean }
+  | { k: 'tapCreatures'; n: number; filter?: (c: SCtx, o: ObjId) => boolean; label?: string; includeSelf?: boolean }
   | { k: 'loyalty'; n: number | 'X' }
   | { k: 'returnLand' };
 

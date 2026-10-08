@@ -41,7 +41,7 @@ export function isLegalTarget(g: G, spec: TargetSpec, t: TargetRef, controller: 
   const o = s.objects[t.id];
   if (!o) return false;
   if (spec.what === 'player') return false;
-  if (spec.what === 'spell') { if (o.zone !== 'stack' || o.stack?.kind !== 'spell') return false; if (t.id === source) return false; } // CR 115.5
+  if (spec.what === 'spell' || (spec.what === 'spellOrPermanent' && o.zone === 'stack')) { if (o.zone !== 'stack' || o.stack?.kind !== 'spell') return false; if (t.id === source) return false; } // CR 115.5
   else if (spec.what === 'card') { if (o.zone !== (spec.zone ?? 'graveyard')) return false; }
   else {
     if (o.zone !== 'battlefield' || o.phasedOut) return false;
@@ -61,8 +61,8 @@ export function candidateTargets(g: G, spec: TargetSpec, controller: PlayerId, s
   const s = g.state;
   const out: TargetRef[] = [];
   if (spec.what === 'player' || spec.what === 'any') for (const p of g.playersInGame()) out.push({ kind: 'player', id: p });
-  if (spec.what === 'object' || spec.what === 'any') for (const id of s.zones.battlefield) out.push({ kind: 'obj', id });
-  if (spec.what === 'spell') for (const id of s.zones.stack) out.push({ kind: 'obj', id });
+  if (spec.what === 'object' || spec.what === 'any' || spec.what === 'spellOrPermanent') for (const id of s.zones.battlefield) out.push({ kind: 'obj', id });
+  if (spec.what === 'spell' || spec.what === 'spellOrPermanent') for (const id of s.zones.stack) out.push({ kind: 'obj', id });
   if (spec.what === 'card') {
     const zone = spec.zone ?? 'graveyard';
     const ids = zone === 'graveyard' || zone === 'hand' || zone === 'library' ? s.zones[zone].flat() : s.zones[zone];
@@ -417,6 +417,7 @@ function* castInner(g: G, player: PlayerId, cardId: ObjId, method: CastMethod): 
   const st = g.state.turnStats[player];
   st.spellsCast++;
   const c = chars(g, spellId);
+  if (!c.types.includes('Creature')) st.noncreatureSpellsCast = (st.noncreatureSpellsCast ?? 0) + 1;
   if (c.types.includes('Instant') || c.types.includes('Sorcery')) {
     st.instantSorceryCast++;
     st.greatestInstantSorceryMV = Math.max(st.greatestInstantSorceryMV, c.manaValue);
