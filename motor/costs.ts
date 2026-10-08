@@ -3,6 +3,7 @@
 // ou pede o pagamento automático (o que os bots sempre fazem).
 
 import { addMana, addCounters, blight as doBlight, discard, loseLife, mill, moveObjects, removeCounters, sacrifice, tap, untap } from './actions.ts';
+import { blightCandidates } from './actions.ts';
 import { ask, chooseColor, chooseItems, chooseNumber, objItem } from './ask.ts';
 import { abilityDefs, chars, controllerOf, hasKw, isCreature, nameOf } from './chars.ts';
 import { registry, type CostPart, type Ctx, type Gen, type ManaAbilityDef, type SCtx } from './defs.ts';
@@ -77,7 +78,7 @@ export function canPayParts(g: G, player: PlayerId, parts: CostPart[], source: O
       }
       case 'addCounterSelf': if (!o || o.zone !== 'battlefield') return false; break;
       case 'blight': {
-        if (!s.zones.battlefield.some((id) => controllerOf(g, id) === player && isCreature(g, id))) return false;
+        if (blightCandidates(g, player).length === 0) return false; // CR 701.68b
         break;
       }
       case 'mill': if (s.zones.library[player].length < p.n) return false; break; // CR 701.17b

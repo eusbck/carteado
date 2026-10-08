@@ -5,10 +5,10 @@
 import { describe, expect, it } from 'vitest';
 import { setup, type TestGame } from './harness.ts';
 import {
-  addCounters, addEffect, addMana, attach, corrupted, createEmblem, dealDamage, defineAbility, defineEmblem, isEmblem,
+  addCounters, addEffect, addMana, attach, blight, corrupted, createEmblem, dealDamage, defineAbility, defineEmblem, isEmblem,
   on, putOntoBattlefield, staticAbility, toxicValue, triggered, gainLife, untap,
 } from '../motor/api.ts';
-import { protectionMatches } from '../motor/actions.ts';
+import { blightCandidates, protectionMatches } from '../motor/actions.ts';
 import { chars, hasKw, kwParams } from '../motor/chars.ts';
 import { validateManual } from '../motor/manual.ts';
 import { legalActions } from '../motor/priority.ts';
@@ -171,6 +171,14 @@ describe('não pode receber marcadores (CR 122)', () => {
     const elder = tg.find('Wickerbough Elder', 'hand')!;
     const [novo] = tg.run(putOntoBattlefield(tg.g, [{ id: elder, controller: 0, counters: { '-1/-1': 2 } }], 'effect'));
     expect(tg.state.objects[novo].counters).toEqual({});
+  });
+
+  it('CR 701.68b: sem criatura que possa receber marcadores -1/-1, não há blight', () => {
+    const tg = setup({ battlefield: [['Wall of Omens'], ['Indomitable Ancients']] });
+    regra(tg, 'teste:semMenos');
+    expect(blightCandidates(tg.g, 0)).toEqual([]);
+    expect(tg.run(blight(tg.g, 0, 1))).toBeNull();
+    expect(blightCandidates(tg.g, 1)).toEqual([tg.bf('Indomitable Ancients')]);
   });
 });
 

@@ -68,4 +68,15 @@ describe(ANJO, () => {
     expect(tg.state.objects[elder].counters).toEqual({});
     expect(tg.pt(elder)).toEqual([4, 4]);
   });
+
+  it('CR 701.68b: sem criatura que possa receber os marcadores, você não pode fazer blight (resguardo de Auntie Ool)', () => {
+    const tg = setup({ battlefield: [[ANJO, 'Wall of Omens', 'Plains'], ['Auntie Ool, Cursewretch']], hand: [['Swords to Plowshares'], []] });
+    let perguntou = false;
+    tg.script.push((d) => { if (d.kind === 'select' && d.prompt.includes('blight')) perguntou = true; return null; });
+    tg.choose('criatura alvo', ['Auntie Ool, Cursewretch']).cast('Swords to Plowshares').resolveAll();
+    expect(perguntou).toBe(false);
+    expect(tg.find('Auntie Ool, Cursewretch')).not.toBeNull();
+    expect(tg.names(0, 'graveyard')).toEqual(['Swords to Plowshares']);
+    expect(tg.state.objects[tg.bf('Wall of Omens')].counters).toEqual({});
+  });
 });

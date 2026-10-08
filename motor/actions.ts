@@ -518,10 +518,16 @@ export function removeCounters(g: G, target: TargetRef, kind: string, n: number)
   return rem;
 }
 
+/** criaturas em que o jogador pode fazer blight: as dele que podem receber marcadores -1/-1 (CR 701.68a-b, 122) */
+export function blightCandidates(g: G, player: PlayerId): ObjId[] {
+  return g.state.zones.battlefield.filter((id) => isCreature(g, id) && controllerOf(g, id) === player && !g.state.objects[id].phasedOut &&
+    !hooks(g, 'cantHaveCountersPut').some((h) => h.fn(h.ctx, '-1/-1', { controller: player, chars: chars(g, id) })));
+}
+
 /** CR 701.68: blight N — pôr N marcadores -1/-1 numa criatura que você controla */
 export function* blight(g: G, player: PlayerId, n: number, optional = false): Gen<ObjId | null> {
   if (n <= 0) return null;
-  const mine = g.state.zones.battlefield.filter((id) => isCreature(g, id) && controllerOf(g, id) === player && !g.state.objects[id].phasedOut);
+  const mine = blightCandidates(g, player);
   if (mine.length === 0) return null; // CR 701.68b
   const pick = yield* chooseItems(g, player, `Escolha uma criatura sua para receber ${n} marcador(es) -1/-1 (blight ${n})`, mine.map((id) => objItem(g, id, nameOf(g, id))), optional ? 0 : 1, 1);
   if (pick.length === 0) return null;
