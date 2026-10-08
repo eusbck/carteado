@@ -75,6 +75,25 @@ export const Wall = token('Wall', 'Wall', ['Creature'], ['Wall'], ['W'], 1, 3, k
 export const Worm = token('Worm', 'Worm', ['Creature'], ['Worm'], ['B', 'G'], 1, 1);
 export const Zombie = token('Zombie', 'Zombie', ['Creature'], ['Zombie'], ['B'], 2, 2, decayed());
 
+// fichas dos decks importados pelo Moxfield (Multiverse Reforged e Wretched Ranks)
+/** Zombie 2/2 preta sem habilidades (a 'Zombie' acima é a com decaimento) */
+export const Zombie22 = defineToken({
+  id: 'Zombie 2/2', name: 'Zombie', types: ['Creature'], subtypes: ['Zombie'], colors: ['B'], power: 2, toughness: 2, abilities: [],
+  image: fichasOracle.find((f) => f.faces[0].name === 'Zombie' && f.faces[0].power === 2 && f.faces[0].toughness === 2 && !f.faces[0].oracleText)?.oracleId,
+});
+export const ZombieArmy = token('Zombie Army', 'Zombie Army', ['Creature'], ['Zombie', 'Army'], ['B'], 0, 0);
+export const Soldier = token('Soldier', 'Soldier', ['Creature'], ['Soldier'], ['W'], 1, 1);
+export const Warrior = token('Warrior', 'Warrior', ['Creature'], ['Warrior'], ['W'], 1, 1);
+export const Human = token('Human', 'Human', ['Creature'], ['Human'], ['W'], 1, 1);
+export const Citizen = token('Citizen', 'Citizen', ['Creature'], ['Citizen'], ['G', 'W'], 1, 1);
+export const InsectWhite = token('Insect 2/1', 'Insect', ['Creature'], ['Insect'], ['W'], 2, 1, keywords('flying'));
+export const Angel = token('Angel', 'Angel', ['Creature'], ['Angel'], ['W'], 4, 4, keywords('flying'));
+export const KoboldsOfKherKeep = token('Kobolds of Kher Keep', 'Kobolds of Kher Keep', ['Creature'], ['Kobold'], ['R'], 0, 1);
+export const Goblin = token('Goblin', 'Goblin', ['Creature'], ['Goblin'], ['R'], 1, 1);
+export const PhyrexianGoblin = token('Phyrexian Goblin', 'Phyrexian Goblin', ['Creature'], ['Phyrexian', 'Goblin'], ['R'], 1, 1);
+export const Myr = token('Myr', 'Myr', ['Artifact', 'Creature'], ['Myr'], [], 1, 1);
+export const Shark = tokenXX('Shark', 'Shark', ['Creature'], ['Shark'], ['U'], keywords('flying'));
+
 /**
  * Contract (Scriv, the Obligator): Aura que encanta criatura. "Sempre que a criatura encantada ataca, ela recebe +2/+0
  * até o fim do turno se estiver atacando um dos seus oponentes. Caso contrário, o controlador dela perde 2 de vida."
