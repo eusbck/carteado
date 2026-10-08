@@ -51,7 +51,8 @@ export function Zoom({ o, lado = 'esq', fixo = false, enjoo = true }: { o: ObjVi
       <div class="zoom-texto" ref={texto}>
         <strong>{nomeCarta(def, o.name)}</strong>
         {i?.pendente && <p class="pendente-aviso">Carta em modo manual: aplique o efeito com "Ajuste manual". O texto está na própria carta.</p>}
-        {o.power !== null && <p>Força e resistência atuais: {o.power}/{o.toughness}</p>}
+        {/* o que não é criatura não tem força nem resistência (CR 208.3: Overlord iminente, Veículo parado) */}
+        {o.power !== null && o.types.includes('Creature') && <p>Força e resistência atuais: {o.power}/{o.toughness}</p>}
         {enjoo && o.sick && o.types.includes('Creature') && <p>Enjoo de invocação: ainda não pode atacar nem usar habilidades com {'{T}'}.</p>}
         {o.loyalty !== null && o.counters.loyalty !== undefined && <p>Lealdade: {o.counters.loyalty}</p>}
         {o.keywords.length > 0 && <p>Palavras-chave: {o.keywords.map(palavraChave).join(', ')}</p>}

@@ -21,7 +21,8 @@ export function infoCartas(): Record<string, InfoCarta> {
   }
   for (const t of registry.tokens.values()) {
     const f = FICHAS.find((x) => x.oracleId === t.image);
-    out[t.id] = { f: f?.imagem?.id ?? null, v: null, pt: null, pendente: false, ficha: true, nome: `${t.name} ${t.power ?? ''}${t.power !== null ? '/' : ''}${t.toughness ?? ''}`.trim(), oracle: t.abilities.map((a) => a.text ?? a.kw ?? '').filter(Boolean).join('\n') };
+    // ficha de duas faces (Incubator // Phyrexian): o verso vem da mesma impressão
+    out[t.id] = { f: f?.imagem?.id ?? null, v: f?.imagem?.verso ? f.imagem.id : null, pt: null, pendente: false, ficha: true, nome: `${t.name} ${t.power ?? ''}${t.power !== null ? '/' : ''}${t.toughness ?? ''}`.trim(), oracle: t.abilities.map((a) => a.text ?? a.kw ?? '').filter(Boolean).join('\n') };
   }
   return out;
 }
