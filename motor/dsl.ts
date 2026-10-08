@@ -119,11 +119,35 @@ export function tgtsAll(c: Ctx, i = 0): ObjId[] {
 // ---------------------------------------------------------------------------
 const NUM: Record<string, number> = { a: 1, an: 1, one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7 };
 
+const COR_EN: Record<string, Color> = { white: 'W', blue: 'U', black: 'B', red: 'R', green: 'G' };
+const TIPO_PT: Record<string, string> = { creature: 'criatura', artifact: 'artefato', land: 'terreno', enchantment: 'encantamento', permanent: 'permanente' };
+const COR_PT: Record<Color, string> = { W: 'branca', U: 'azul', B: 'preta', R: 'vermelha', G: 'verde' };
+
+/** rótulo em português do que se sacrifica ("creature or artifact" → "criatura ou artefato"); subtipos ficam como estão */
+function rotuloTipos(words: string): string {
+  return words.split(' or ').map((part) => {
+    const w = part.trim();
+    const plural = /s$/.test(w) && !!TIPO_PT[w.replace(/s$/, '').replace(/^(white|blue|black|red|green) /, '')];
+    const base = plural ? w.replace(/s$/, '') : w;
+    if (base === 'creature with defender') return 'criatura com defensor';
+    const cor = base.match(/^(white|blue|black|red|green) (\w+)$/);
+    if (cor && TIPO_PT[cor[2]]) return `${TIPO_PT[cor[2]]}${plural ? 's' : ''} ${COR_PT[COR_EN[cor[1]]]}${plural ? 's' : ''}`;
+    return TIPO_PT[base] ? `${TIPO_PT[base]}${plural ? 's' : ''}` : w;
+  }).join(' ou ');
+}
+
 function typePred(words: string): Pred {
   const w = words.toLowerCase().trim();
   const preds: Pred[] = [];
   for (const part of w.split(' or ')) {
     const p = part.trim().replace(/s$/, '');
+    // "black creature": tipo com cor
+    const cor = p.match(/^(white|blue|black|red|green) (.+)$/);
+    if (cor && TIPO_PT[cor[2]]) {
+      const tipo = typePred(cor[2]);
+      preds.push(and(tipo, is.color(COR_EN[cor[1]])));
+      continue;
+    }
     if (p === 'creature') preds.push(is.creature);
     else if (p === 'artifact') preds.push(is.artifact);
     else if (p === 'land') preds.push(is.land);
@@ -154,7 +178,7 @@ export function cost(text: string): CostPart[] {
       const another = m[1] === 'another' || !!m[2];
       const n = m[1] === 'X' ? 'X' : (NUM[m[1]] ?? 1);
       const tp = typePred(m[3]);
-      parts.push({ k: 'sacrifice', n, label: m[3], filter: another ? (c, id) => id !== c.source && tp(c, id) : tp });
+      parts.push({ k: 'sacrifice', n, label: rotuloTipos(m[3]), filter: another ? (c, id) => id !== c.source && tp(c, id) : tp });
     } else if (s === 'Discard a card') parts.push({ k: 'discard', n: 1 });
     else if (/^Discard this card/.test(s)) parts.push({ k: 'discardSelf' });
     else if ((m = s.match(/^Pay (\d+|X) life$/))) parts.push({ k: 'life', n: m[1] === 'X' ? 'X' : Number(m[1]) });
