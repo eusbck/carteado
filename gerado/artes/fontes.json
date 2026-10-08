@@ -200,5 +200,30 @@
    "frc/1 borderless"
   ],
   "baixadoEm": "2026-10-08T02:05:16.812Z"
+ },
+ "Ghoulcaller Gisa": {
+  "imagemLocal": "909e62fa-4585-495e-812b-5df56af24610",
+  "impressao": {
+   "id": "909e62fa-4585-495e-812b-5df56af24610",
+   "colecao": "fdc",
+   "numero": "6",
+   "moldura": "2015 borderless legendary inverted",
+   "artista": "Miguel Mercado",
+   "url": "https://cards.scryfall.io/png/front/9/0/909e62fa-4585-495e-812b-5df56af24610.png?1789752353"
+  },
+  "recorte": {
+   "x": 0,
+   "y": 135,
+   "largura": 744,
+   "altura": 442
+  },
+  "tamanho": [
+   744,
+   442
+  ],
+  "candidatas": [
+   "fdc/6 borderless legendary+inverted"
+  ],
+  "baixadoEm": "2026-10-08T06:09:28.315Z"
  }
 }

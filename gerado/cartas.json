@@ -248,6 +248,36 @@
     }
    ]
   },
+  "Ambition's Cost": {
+   "name": "Ambition's Cost",
+   "oracleId": "84de4fec-2f38-4293-93d3-b3882c5aac14",
+   "layout": "normal",
+   "manaValue": 4,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Ambition's Cost",
+     "manaCost": "{3}{B}",
+     "typeLine": "Sorcery",
+     "supertypes": [],
+     "types": [
+      "Sorcery"
+     ],
+     "subtypes": [],
+     "oracleText": "You draw three cards and lose 3 life.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Angel of Indemnity": {
    "name": "Angel of Indemnity",
    "oracleId": "4f57a320-b6b5-49de-af0a-f2e2649758a7",
@@ -951,6 +981,38 @@
     }
    ]
   },
+  "Army of the Damned": {
+   "name": "Army of the Damned",
+   "oracleId": "75d667ec-86f4-4850-a3b6-e7a9fc7053b0",
+   "layout": "normal",
+   "manaValue": 8,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [
+    "Flashback"
+   ],
+   "faces": [
+    {
+     "name": "Army of the Damned",
+     "manaCost": "{5}{B}{B}{B}",
+     "typeLine": "Sorcery",
+     "supertypes": [],
+     "types": [
+      "Sorcery"
+     ],
+     "subtypes": [],
+     "oracleText": "Create thirteen tapped 2/2 black Zombie creature tokens.\nFlashback {7}{B}{B}{B} (You may cast this card from your graveyard for its flashback cost. Then exile it.)",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Ash Barrens": {
    "name": "Ash Barrens",
    "oracleId": "58257464-278e-45fa-8e0b-bcd9a7500bc1",
@@ -1366,6 +1428,41 @@
     }
    ]
   },
+  "Ayara, First of Locthwain": {
+   "name": "Ayara, First of Locthwain",
+   "oracleId": "388168b3-ec68-4af2-b88c-6a5ec88c15f6",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Ayara, First of Locthwain",
+     "manaCost": "{B}{B}{B}",
+     "typeLine": "Legendary Creature — Elf Noble",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Elf",
+      "Noble"
+     ],
+     "oracleText": "Whenever Ayara or another black creature you control enters, each opponent loses 1 life and you gain 1 life.\n{T}, Sacrifice another black creature: Draw a card.",
+     "power": 2,
+     "toughness": 3,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Azorius Signet": {
    "name": "Azorius Signet",
    "oracleId": "e018773f-95b3-49a3-9674-6f04ddef2092",
@@ -1527,6 +1624,36 @@
       "R",
       "W"
      ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Barren Moor": {
+   "name": "Barren Moor",
+   "oracleId": "326ba371-124c-4949-a048-3a0c8962e567",
+   "layout": "normal",
+   "manaValue": 0,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [
+    "Cycling"
+   ],
+   "faces": [
+    {
+     "name": "Barren Moor",
+     "manaCost": "",
+     "typeLine": "Land",
+     "supertypes": [],
+     "types": [
+      "Land"
+     ],
+     "subtypes": [],
+     "oracleText": "This land enters tapped.\n{T}: Add {B}.\nCycling {B} ({B}, Discard this card: Draw a card.)",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [],
      "colorIndicator": null
     }
    ]
@@ -1990,6 +2117,38 @@
     }
    ]
   },
+  "Bloodline Bidding": {
+   "name": "Bloodline Bidding",
+   "oracleId": "bdb9e933-f679-4930-b669-0d123db09d16",
+   "layout": "normal",
+   "manaValue": 8,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [
+    "Convoke"
+   ],
+   "faces": [
+    {
+     "name": "Bloodline Bidding",
+     "manaCost": "{6}{B}{B}",
+     "typeLine": "Sorcery",
+     "supertypes": [],
+     "types": [
+      "Sorcery"
+     ],
+     "subtypes": [],
+     "oracleText": "Convoke (Your creatures can help cast this spell. Each creature you tap while casting this spell pays for {1} or one mana of that creature's color.)\nChoose a creature type. Return all creature cards of the chosen type from your graveyard to the battlefield.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Blossoming Bogbeast": {
    "name": "Blossoming Bogbeast",
    "oracleId": "30f3c3be-0fe9-463d-a245-e44701aec7f2",
@@ -2104,6 +2263,34 @@
      ],
      "subtypes": [],
      "oracleText": "This land enters tapped.\nWhen this land enters, exile target player's graveyard.\n{T}: Add {B}.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Bontu's Monument": {
+   "name": "Bontu's Monument",
+   "oracleId": "940ba435-7abc-40f8-a5af-c1c653b3284e",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Bontu's Monument",
+     "manaCost": "{3}",
+     "typeLine": "Legendary Artifact",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Artifact"
+     ],
+     "subtypes": [],
+     "oracleText": "Black creature spells you cast cost {1} less to cast.\nWhenever you cast a creature spell, each opponent loses 1 life and you gain 1 life.",
      "power": null,
      "toughness": null,
      "loyalty": null,
@@ -2482,6 +2669,38 @@
     }
    ]
   },
+  "Carrion Feeder": {
+   "name": "Carrion Feeder",
+   "oracleId": "a1cc5e37-b09a-4b7f-afd5-77c1c35aa425",
+   "layout": "normal",
+   "manaValue": 1,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Carrion Feeder",
+     "manaCost": "{B}",
+     "typeLine": "Creature — Zombie",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Zombie"
+     ],
+     "oracleText": "This creature can't block.\nSacrifice a creature: Put a +1/+1 counter on this creature.",
+     "power": 1,
+     "toughness": 1,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Carven Caryatid": {
    "name": "Carven Caryatid",
    "oracleId": "bddf5e9a-7c41-45a8-8fa1-18093c408e15",
@@ -2537,6 +2756,34 @@
      ],
      "subtypes": [],
      "oracleText": "{T}: Add {C}.\n{U/R}, {T}: Add {U}{U}, {U}{R}, or {R}{R}.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Castle Locthwain": {
+   "name": "Castle Locthwain",
+   "oracleId": "be811e70-aaaa-41f3-bf9e-5d3f9f719b49",
+   "layout": "normal",
+   "manaValue": 0,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Castle Locthwain",
+     "manaCost": "",
+     "typeLine": "Land",
+     "supertypes": [],
+     "types": [
+      "Land"
+     ],
+     "subtypes": [],
+     "oracleText": "This land enters tapped unless you control a Swamp.\n{T}: Add {B}.\n{1}{B}{B}, {T}: Draw a card, then you lose life equal to the number of cards in your hand.",
      "power": null,
      "toughness": null,
      "loyalty": null,
@@ -2706,6 +2953,68 @@
     }
    ]
   },
+  "Cemetery Reaper": {
+   "name": "Cemetery Reaper",
+   "oracleId": "70fa209f-5e79-44de-81ce-1d8d0d8c1006",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Cemetery Reaper",
+     "manaCost": "{1}{B}{B}",
+     "typeLine": "Creature — Zombie",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Zombie"
+     ],
+     "oracleText": "Other Zombie creatures you control get +1/+1.\n{2}{B}, {T}: Exile target creature card from a graveyard. Create a 2/2 black Zombie creature token.",
+     "power": 2,
+     "toughness": 2,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Cemetery Recruitment": {
+   "name": "Cemetery Recruitment",
+   "oracleId": "07792d72-d5db-41b9-871c-e720e12ce659",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Cemetery Recruitment",
+     "manaCost": "{1}{B}",
+     "typeLine": "Sorcery",
+     "supertypes": [],
+     "types": [
+      "Sorcery"
+     ],
+     "subtypes": [],
+     "oracleText": "Return target creature card from your graveyard to your hand. If it's a Zombie card, draw a card.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Chain Reaction": {
    "name": "Chain Reaction",
    "oracleId": "086b2564-9114-4ba2-94fd-b490f98f38a7",
@@ -2765,6 +3074,38 @@
      "loyalty": null,
      "colors": [
       "W"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Champion of the Perished": {
+   "name": "Champion of the Perished",
+   "oracleId": "f3654fbd-16a5-4953-84ac-534e8421032f",
+   "layout": "normal",
+   "manaValue": 1,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Champion of the Perished",
+     "manaCost": "{B}",
+     "typeLine": "Creature — Zombie",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Zombie"
+     ],
+     "oracleText": "Whenever another Zombie you control enters, put a +1/+1 counter on this creature.",
+     "power": 1,
+     "toughness": 1,
+     "loyalty": null,
+     "colors": [
+      "B"
      ],
      "colorIndicator": null
     }
@@ -2865,6 +3206,34 @@
      "colors": [
       "R"
      ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Charcoal Diamond": {
+   "name": "Charcoal Diamond",
+   "oracleId": "1386d111-a2a7-4df1-91d7-947664126989",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Charcoal Diamond",
+     "manaCost": "{2}",
+     "typeLine": "Artifact",
+     "supertypes": [],
+     "types": [
+      "Artifact"
+     ],
+     "subtypes": [],
+     "oracleText": "This artifact enters tapped.\n{T}: Add {B}.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [],
      "colorIndicator": null
     }
    ]
@@ -3140,6 +3509,68 @@
     }
    ]
   },
+  "Consumed by Greed": {
+   "name": "Consumed by Greed",
+   "oracleId": "b548578c-4910-402c-8e78-498924e0a9be",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [
+    "Gift"
+   ],
+   "faces": [
+    {
+     "name": "Consumed by Greed",
+     "manaCost": "{1}{B}{B}",
+     "typeLine": "Instant",
+     "supertypes": [],
+     "types": [
+      "Instant"
+     ],
+     "subtypes": [],
+     "oracleText": "Gift a card (You may promise an opponent a gift as you cast this spell. If you do, they draw a card before its other effects.)\nTarget opponent sacrifices a creature with the greatest power among creatures they control. If the gift was promised, return target creature card from your graveyard to your hand.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Consuming Corruption": {
+   "name": "Consuming Corruption",
+   "oracleId": "3bc0bd36-70be-4180-9fb3-b10ce054107b",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Consuming Corruption",
+     "manaCost": "{B}{B}",
+     "typeLine": "Instant",
+     "supertypes": [],
+     "types": [
+      "Instant"
+     ],
+     "subtypes": [],
+     "oracleText": "Consuming Corruption deals X damage to target creature or planeswalker and you gain X life, where X is the number of Swamps you control.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Contagion Clasp": {
    "name": "Contagion Clasp",
    "oracleId": "43f2d81e-aa01-4fa9-9046-6a27a05dbd2d",
@@ -3385,6 +3816,68 @@
      "loyalty": null,
      "colors": [
       "R"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Crippling Fear": {
+   "name": "Crippling Fear",
+   "oracleId": "e7a7ba65-ad14-41d5-889b-9bbeae9ab3f7",
+   "layout": "normal",
+   "manaValue": 4,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Crippling Fear",
+     "manaCost": "{2}{B}{B}",
+     "typeLine": "Sorcery",
+     "supertypes": [],
+     "types": [
+      "Sorcery"
+     ],
+     "subtypes": [],
+     "oracleText": "Choose a creature type. Creatures that aren't of the chosen type get -3/-3 until end of turn.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Cryptbreaker": {
+   "name": "Cryptbreaker",
+   "oracleId": "16f75a65-d067-4f79-81b9-833c373cf4d2",
+   "layout": "normal",
+   "manaValue": 1,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Cryptbreaker",
+     "manaCost": "{B}",
+     "typeLine": "Creature — Zombie",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Zombie"
+     ],
+     "oracleText": "{1}{B}, {T}, Discard a card: Create a 2/2 black Zombie creature token.\nTap three untapped Zombies you control: You draw a card and lose 1 life.",
+     "power": 1,
+     "toughness": 1,
+     "loyalty": null,
+     "colors": [
+      "B"
      ],
      "colorIndicator": null
     }
@@ -3815,6 +4308,39 @@
     }
    ]
   },
+  "Death Baron": {
+   "name": "Death Baron",
+   "oracleId": "99024aa8-5687-4d38-8a4b-feef42d6c1ff",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Death Baron",
+     "manaCost": "{1}{B}{B}",
+     "typeLine": "Creature — Zombie Wizard",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Zombie",
+      "Wizard"
+     ],
+     "oracleText": "Skeletons you control and other Zombies you control get +1/+1 and have deathtouch. (Any amount of damage they deal to a creature is enough to destroy it.)",
+     "power": 2,
+     "toughness": 2,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Deceptive Landscape": {
    "name": "Deceptive Landscape",
    "oracleId": "1831fe12-dbe0-437f-8fc8-f01bbb701fe1",
@@ -3935,6 +4461,41 @@
      "toughness": null,
      "loyalty": null,
      "colors": [],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Demon of Catastrophes": {
+   "name": "Demon of Catastrophes",
+   "oracleId": "2e0b838d-c858-4aa5-999e-c4ef9d29571b",
+   "layout": "normal",
+   "manaValue": 4,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [
+    "Flying",
+    "Trample"
+   ],
+   "faces": [
+    {
+     "name": "Demon of Catastrophes",
+     "manaCost": "{2}{B}{B}",
+     "typeLine": "Creature — Demon",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Demon"
+     ],
+     "oracleText": "As an additional cost to cast this spell, sacrifice a creature.\nFlying, trample",
+     "power": 6,
+     "toughness": 6,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
      "colorIndicator": null
     }
    ]
@@ -4229,6 +4790,39 @@
      "colors": [
       "B",
       "G"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Diregraf Colossus": {
+   "name": "Diregraf Colossus",
+   "oracleId": "fd62ad01-601f-4250-bc2a-8ef3982e45c4",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Diregraf Colossus",
+     "manaCost": "{2}{B}",
+     "typeLine": "Creature — Zombie Giant",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Zombie",
+      "Giant"
+     ],
+     "oracleText": "This creature enters with a +1/+1 counter on it for each Zombie card in your graveyard.\nWhenever you cast a Zombie spell, create a tapped 2/2 black Zombie creature token.",
+     "power": 2,
+     "toughness": 2,
+     "loyalty": null,
+     "colors": [
+      "B"
      ],
      "colorIndicator": null
     }
@@ -4915,6 +5509,36 @@
     }
    ]
   },
+  "Endless Ranks of the Dead": {
+   "name": "Endless Ranks of the Dead",
+   "oracleId": "69d4ecac-4735-4667-bfc1-c8800b436d08",
+   "layout": "normal",
+   "manaValue": 4,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Endless Ranks of the Dead",
+     "manaCost": "{2}{B}{B}",
+     "typeLine": "Enchantment",
+     "supertypes": [],
+     "types": [
+      "Enchantment"
+     ],
+     "subtypes": [],
+     "oracleText": "At the beginning of your upkeep, create X 2/2 black Zombie creature tokens, where X is half the number of Zombies you control, rounded down.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Eriette of the Charmed Apple": {
    "name": "Eriette of the Charmed Apple",
    "oracleId": "f43f5855-f297-4433-984b-18263b734cfc",
@@ -4974,6 +5598,38 @@
      "oracleText": "Exile each opponent's graveyard. When you do, choose up to one target creature card exiled this way. Create a token that's a copy of that card, except it's an artifact and it loses all other card types.",
      "power": null,
      "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Eternal Taskmaster": {
+   "name": "Eternal Taskmaster",
+   "oracleId": "a7c000a8-1864-4bb2-80fa-a61d74dbd966",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Eternal Taskmaster",
+     "manaCost": "{1}{B}",
+     "typeLine": "Creature — Zombie",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Zombie"
+     ],
+     "oracleText": "This creature enters tapped.\nWhenever this creature attacks, you may pay {2}{B}. If you do, return target creature card from your graveyard to your hand.",
+     "power": 2,
+     "toughness": 3,
      "loyalty": null,
      "colors": [
       "B"
@@ -5263,6 +5919,36 @@
      "colors": [
       "R",
       "U"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Exsanguinate": {
+   "name": "Exsanguinate",
+   "oracleId": "8164b1e8-3350-465e-8a17-75f57d326344",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Exsanguinate",
+     "manaCost": "{X}{B}{B}",
+     "typeLine": "Sorcery",
+     "supertypes": [],
+     "types": [
+      "Sorcery"
+     ],
+     "subtypes": [],
+     "oracleText": "Each opponent loses X life. You gain life equal to the life lost this way.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "B"
      ],
      "colorIndicator": null
     }
@@ -6217,6 +6903,34 @@
     }
    ]
   },
+  "Geier Reach Sanitarium": {
+   "name": "Geier Reach Sanitarium",
+   "oracleId": "7b9fafe7-d26a-4ed5-b4c4-ce13763770b5",
+   "layout": "normal",
+   "manaValue": 0,
+   "colorIdentity": [],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Geier Reach Sanitarium",
+     "manaCost": "",
+     "typeLine": "Legendary Land",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Land"
+     ],
+     "subtypes": [],
+     "oracleText": "{T}: Add {C}.\n{2}, {T}: Each player draws a card, then discards a card.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [],
+     "colorIndicator": null
+    }
+   ]
+  },
   "General Leo Cristophe": {
    "name": "General Leo Cristophe",
    "oracleId": "088166b8-5b0b-4ba9-9b0d-358ae523f336",
@@ -6309,6 +7023,41 @@
      "loyalty": null,
      "colors": [
       "W"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Ghoulcaller Gisa": {
+   "name": "Ghoulcaller Gisa",
+   "oracleId": "0dd894cb-1968-471c-af08-ea7ec5ce8428",
+   "layout": "normal",
+   "manaValue": 5,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Ghoulcaller Gisa",
+     "manaCost": "{3}{B}{B}",
+     "typeLine": "Legendary Creature — Human Wizard",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Human",
+      "Wizard"
+     ],
+     "oracleText": "{B}, {T}, Sacrifice another creature: Create X 2/2 black Zombie creature tokens, where X is the sacrificed creature's power.",
+     "power": 3,
+     "toughness": 4,
+     "loyalty": null,
+     "colors": [
+      "B"
      ],
      "colorIndicator": null
     }
@@ -6487,6 +7236,36 @@
     }
    ]
   },
+  "Go for the Throat": {
+   "name": "Go for the Throat",
+   "oracleId": "2f092562-9e17-43cd-aeb8-d0567f99363e",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Go for the Throat",
+     "manaCost": "{1}{B}",
+     "typeLine": "Instant",
+     "supertypes": [],
+     "types": [
+      "Instant"
+     ],
+     "subtypes": [],
+     "oracleText": "Destroy target nonartifact creature.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Goblin Electromancer": {
    "name": "Goblin Electromancer",
    "oracleId": "81f06f84-1580-43c0-89d5-08d34541a519",
@@ -6517,6 +7296,43 @@
      "colors": [
       "R",
       "U"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "God-Eternal Bontu": {
+   "name": "God-Eternal Bontu",
+   "oracleId": "183891b0-b5ec-47f4-8d09-b9d3cfc4e7f1",
+   "layout": "normal",
+   "manaValue": 5,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [
+    "Menace"
+   ],
+   "faces": [
+    {
+     "name": "God-Eternal Bontu",
+     "manaCost": "{3}{B}{B}",
+     "typeLine": "Legendary Creature — Zombie God",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Zombie",
+      "God"
+     ],
+     "oracleText": "Menace\nWhen God-Eternal Bontu enters, sacrifice any number of other permanents, then draw that many cards.\nWhen God-Eternal Bontu dies or is put into exile from the battlefield, you may put her into her owner's library third from the top.",
+     "power": 5,
+     "toughness": 6,
+     "loyalty": null,
+     "colors": [
+      "B"
      ],
      "colorIndicator": null
     }
@@ -6660,6 +7476,36 @@
     }
    ]
   },
+  "Graf Harvest": {
+   "name": "Graf Harvest",
+   "oracleId": "d3ba6922-c2f7-45ab-87a3-d4bbd770d1ba",
+   "layout": "normal",
+   "manaValue": 1,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Graf Harvest",
+     "manaCost": "{B}",
+     "typeLine": "Enchantment",
+     "supertypes": [],
+     "types": [
+      "Enchantment"
+     ],
+     "subtypes": [],
+     "oracleText": "Zombies you control have menace. (They can't be blocked except by two or more creatures.)\n{3}{B}, Exile a creature card from your graveyard: Create a 2/2 black Zombie creature token.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Grand Crescendo": {
    "name": "Grand Crescendo",
    "oracleId": "dc600c06-8239-409e-b53d-20f813a3f5e7",
@@ -6740,6 +7586,40 @@
     }
    ]
   },
+  "Grave Titan": {
+   "name": "Grave Titan",
+   "oracleId": "f3abd4d1-a975-4e85-8684-aa0fce029670",
+   "layout": "normal",
+   "manaValue": 6,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [
+    "Deathtouch"
+   ],
+   "faces": [
+    {
+     "name": "Grave Titan",
+     "manaCost": "{4}{B}{B}",
+     "typeLine": "Creature — Giant",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Giant"
+     ],
+     "oracleText": "Deathtouch\nWhenever this creature enters or attacks, create two 2/2 black Zombie creature tokens.",
+     "power": 6,
+     "toughness": 6,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Grave Venerations": {
    "name": "Grave Venerations",
    "oracleId": "1cb71772-592d-4dd1-91af-816933af760c",
@@ -6762,6 +7642,71 @@
      "oracleText": "When this enchantment enters, you become the monarch.\nAt the beginning of your end step, if you're the monarch, return up to one target creature card from your graveyard to your hand.\nWhenever a creature you control dies, each opponent loses 1 life and you gain 1 life.",
      "power": null,
      "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Graveborn Muse": {
+   "name": "Graveborn Muse",
+   "oracleId": "d2a65ff4-ab82-42f7-9d90-feb29132121e",
+   "layout": "normal",
+   "manaValue": 4,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Graveborn Muse",
+     "manaCost": "{2}{B}{B}",
+     "typeLine": "Creature — Zombie Spirit",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Zombie",
+      "Spirit"
+     ],
+     "oracleText": "At the beginning of your upkeep, you draw X cards and lose X life, where X is the number of Zombies you control.",
+     "power": 3,
+     "toughness": 3,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Gravecrawler": {
+   "name": "Gravecrawler",
+   "oracleId": "09ff28b1-b6c9-48e6-b12e-2f0e644f709f",
+   "layout": "normal",
+   "manaValue": 1,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Gravecrawler",
+     "manaCost": "{B}",
+     "typeLine": "Creature — Zombie",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Zombie"
+     ],
+     "oracleText": "This creature can't block.\nYou may cast this card from your graveyard as long as you control a Zombie.",
+     "power": 2,
+     "toughness": 1,
      "loyalty": null,
      "colors": [
       "B"
@@ -6795,6 +7740,38 @@
      "toughness": null,
      "loyalty": null,
      "colors": [],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Gray Merchant of Asphodel": {
+   "name": "Gray Merchant of Asphodel",
+   "oracleId": "38f3b157-0df4-409b-89cc-086e1531cd5b",
+   "layout": "normal",
+   "manaValue": 5,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Gray Merchant of Asphodel",
+     "manaCost": "{3}{B}{B}",
+     "typeLine": "Creature — Zombie",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Zombie"
+     ],
+     "oracleText": "When this creature enters, each opponent loses X life, where X is your devotion to black. You gain life equal to the life lost this way. (Each {B} in the mana costs of permanents you control counts toward your devotion to black.)",
+     "power": 2,
+     "toughness": 4,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
      "colorIndicator": null
     }
    ]
@@ -7224,6 +8201,38 @@
     }
    ]
   },
+  "Headless Rider": {
+   "name": "Headless Rider",
+   "oracleId": "d4fdacd7-3101-44e2-a880-dde7326137a4",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Headless Rider",
+     "manaCost": "{2}{B}",
+     "typeLine": "Creature — Zombie",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Zombie"
+     ],
+     "oracleText": "Whenever this creature or another nontoken Zombie you control dies, create a 2/2 black Zombie creature token.",
+     "power": 3,
+     "toughness": 1,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Herald of Amity": {
    "name": "Herald of Amity",
    "oracleId": "6c25c6b5-d98c-4eb4-aacd-b6960a8779a9",
@@ -7254,6 +8263,32 @@
      "colors": [
       "W"
      ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Heraldic Banner": {
+   "name": "Heraldic Banner",
+   "oracleId": "3525e263-e29a-49bf-a29f-fb3ce43bbd33",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Heraldic Banner",
+     "manaCost": "{3}",
+     "typeLine": "Artifact",
+     "supertypes": [],
+     "types": [
+      "Artifact"
+     ],
+     "subtypes": [],
+     "oracleText": "As this artifact enters, choose a color.\nCreatures you control of the chosen color get +1/+0.\n{T}: Add one mana of the chosen color.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [],
      "colorIndicator": null
     }
    ]
@@ -8078,6 +9113,43 @@
     }
    ]
   },
+  "Kalitas, Traitor of Ghet": {
+   "name": "Kalitas, Traitor of Ghet",
+   "oracleId": "e1cfd1cb-44a5-429f-a5c1-e6d29bad1c71",
+   "layout": "normal",
+   "manaValue": 4,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [
+    "Lifelink"
+   ],
+   "faces": [
+    {
+     "name": "Kalitas, Traitor of Ghet",
+     "manaCost": "{2}{B}{B}",
+     "typeLine": "Legendary Creature — Vampire Warrior",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Vampire",
+      "Warrior"
+     ],
+     "oracleText": "Lifelink\nIf a nontoken creature an opponent controls would die, instead exile that card and create a 2/2 black Zombie creature token.\n{2}{B}, Sacrifice another Vampire or Zombie: Put two +1/+1 counters on Kalitas.",
+     "power": 3,
+     "toughness": 4,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Kami of Ancient Law": {
    "name": "Kami of Ancient Law",
    "oracleId": "e937e0f5-ca35-4dce-9f05-8f2075731628",
@@ -8667,6 +9739,70 @@
     }
    ]
   },
+  "Liliana's Mastery": {
+   "name": "Liliana's Mastery",
+   "oracleId": "bd104c7e-311e-4b03-98d3-5f20f3a99d26",
+   "layout": "normal",
+   "manaValue": 5,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Liliana's Mastery",
+     "manaCost": "{3}{B}{B}",
+     "typeLine": "Enchantment",
+     "supertypes": [],
+     "types": [
+      "Enchantment"
+     ],
+     "subtypes": [],
+     "oracleText": "Zombies you control get +1/+1.\nWhen this enchantment enters, create two 2/2 black Zombie creature tokens.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Liliana's Reaver": {
+   "name": "Liliana's Reaver",
+   "oracleId": "97332d4e-a55c-4e4f-9040-bf426a7c8e39",
+   "layout": "normal",
+   "manaValue": 4,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [
+    "Deathtouch"
+   ],
+   "faces": [
+    {
+     "name": "Liliana's Reaver",
+     "manaCost": "{2}{B}{B}",
+     "typeLine": "Creature — Zombie",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Zombie"
+     ],
+     "oracleText": "Deathtouch\nWhenever this creature deals combat damage to a player, that player discards a card and you create a tapped 2/2 black Zombie creature token.",
+     "power": 4,
+     "toughness": 3,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Lingering Souls": {
    "name": "Lingering Souls",
    "oracleId": "0b8c3337-04dd-4798-8203-6d8b8cfb936b",
@@ -8765,6 +9901,70 @@
      "colors": [
       "B",
       "R"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Lord of the Accursed": {
+   "name": "Lord of the Accursed",
+   "oracleId": "3f372107-6c52-4f1f-8bf0-7b3fa21b2cae",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Lord of the Accursed",
+     "manaCost": "{2}{B}",
+     "typeLine": "Creature — Zombie",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Zombie"
+     ],
+     "oracleText": "Other Zombies you control get +1/+1.\n{1}{B}, {T}: All Zombies gain menace until end of turn.",
+     "power": 2,
+     "toughness": 3,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Lord of the Undead": {
+   "name": "Lord of the Undead",
+   "oracleId": "7714af0e-41d9-4609-967f-27233b46055f",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Lord of the Undead",
+     "manaCost": "{1}{B}{B}",
+     "typeLine": "Creature — Zombie",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Zombie"
+     ],
+     "oracleText": "Other Zombie creatures get +1/+1.\n{1}{B}, {T}: Return target Zombie card from your graveyard to your hand.",
+     "power": 2,
+     "toughness": 2,
+     "loyalty": null,
+     "colors": [
+      "B"
      ],
      "colorIndicator": null
     }
@@ -9317,6 +10517,34 @@
     }
    ]
   },
+  "Memorial to Folly": {
+   "name": "Memorial to Folly",
+   "oracleId": "2bc38f14-0314-4351-8138-e2b8bf041404",
+   "layout": "normal",
+   "manaValue": 0,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Memorial to Folly",
+     "manaCost": "",
+     "typeLine": "Land",
+     "supertypes": [],
+     "types": [
+      "Land"
+     ],
+     "subtypes": [],
+     "oracleText": "This land enters tapped.\n{T}: Add {B}.\n{2}{B}, {T}, Sacrifice this land: Return target creature card from your graveyard to your hand.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Merchant of Venom": {
    "name": "Merchant of Venom",
    "oracleId": "3918eaa7-5a34-4d6a-be93-a95e733d041b",
@@ -9407,6 +10635,39 @@
      "oracleText": "Wither (This deals damage to creatures in the form of -1/-1 counters.)\nAt the beginning of your upkeep, put a -1/-1 counter on each nonblack creature.",
      "power": 5,
      "toughness": 5,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Midnight Reaper": {
+   "name": "Midnight Reaper",
+   "oracleId": "e8c7566d-7cc0-48af-a986-83223ec7e06c",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Midnight Reaper",
+     "manaCost": "{2}{B}",
+     "typeLine": "Creature — Zombie Knight",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Zombie",
+      "Knight"
+     ],
+     "oracleText": "Whenever a nontoken creature you control dies, this creature deals 1 damage to you and you draw a card.",
+     "power": 3,
+     "toughness": 2,
      "loyalty": null,
      "colors": [
       "B"
@@ -9949,6 +11210,36 @@
     }
    ]
   },
+  "Mutilate": {
+   "name": "Mutilate",
+   "oracleId": "698e79ec-c2bc-4973-a095-f3c57b50e39c",
+   "layout": "normal",
+   "manaValue": 4,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Mutilate",
+     "manaCost": "{2}{B}{B}",
+     "typeLine": "Sorcery",
+     "supertypes": [],
+     "types": [
+      "Sorcery"
+     ],
+     "subtypes": [],
+     "oracleText": "All creatures get -1/-1 until end of turn for each Swamp you control.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Mycoloth": {
    "name": "Mycoloth",
    "oracleId": "d7fd16ce-282d-49cd-b2b4-0d25935e7a72",
@@ -10097,6 +11388,36 @@
      "oracleText": "Wither (This deals damage to creatures in the form of -1/-1 counters.)\nWhenever a creature an opponent controls with a -1/-1 counter on it dies, you may return that card to the battlefield under your control.",
      "power": 1,
      "toughness": 4,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Necrotic Hex": {
+   "name": "Necrotic Hex",
+   "oracleId": "a6e720a2-9819-40ec-a811-7812898b531a",
+   "layout": "normal",
+   "manaValue": 7,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Necrotic Hex",
+     "manaCost": "{6}{B}",
+     "typeLine": "Sorcery",
+     "supertypes": [],
+     "types": [
+      "Sorcery"
+     ],
+     "subtypes": [],
+     "oracleText": "Each player sacrifices six creatures of their choice. You create six tapped 2/2 black Zombie creature tokens.",
+     "power": null,
+     "toughness": null,
      "loyalty": null,
      "colors": [
       "B"
@@ -10404,6 +11725,38 @@
      "toughness": null,
      "loyalty": null,
      "colors": [],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Noxious Ghoul": {
+   "name": "Noxious Ghoul",
+   "oracleId": "602e421e-afab-4488-8a52-af66b4fdce4b",
+   "layout": "normal",
+   "manaValue": 5,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Noxious Ghoul",
+     "manaCost": "{3}{B}{B}",
+     "typeLine": "Creature — Zombie",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Zombie"
+     ],
+     "oracleText": "Whenever this creature or another Zombie enters, all non-Zombie creatures get -1/-1 until end of turn.",
+     "power": 3,
+     "toughness": 3,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
      "colorIndicator": null
     }
    ]
@@ -10793,6 +12146,36 @@
      "loyalty": null,
      "colors": [
       "W"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Oversold Cemetery": {
+   "name": "Oversold Cemetery",
+   "oracleId": "ed4cd3a1-688b-4c05-948d-39d3336e00c0",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Oversold Cemetery",
+     "manaCost": "{1}{B}",
+     "typeLine": "Enchantment",
+     "supertypes": [],
+     "types": [
+      "Enchantment"
+     ],
+     "subtypes": [],
+     "oracleText": "At the beginning of your upkeep, if you have four or more creature cards in your graveyard, you may return target creature card from your graveyard to your hand.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "B"
      ],
      "colorIndicator": null
     }
@@ -11274,6 +12657,36 @@
      "loyalty": null,
      "colors": [
       "W"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Phyrexian Arena": {
+   "name": "Phyrexian Arena",
+   "oracleId": "ee579a32-a048-4335-b966-231ba731cdea",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Phyrexian Arena",
+     "manaCost": "{1}{B}{B}",
+     "typeLine": "Enchantment",
+     "supertypes": [],
+     "types": [
+      "Enchantment"
+     ],
+     "subtypes": [],
+     "oracleText": "At the beginning of your upkeep, you draw a card and lose 1 life.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "B"
      ],
      "colorIndicator": null
     }
@@ -12187,6 +13600,37 @@
      "colors": [
       "B"
      ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Razorlash Transmogrant": {
+   "name": "Razorlash Transmogrant",
+   "oracleId": "580996d4-db9a-4b57-a0e1-a2dbb524121a",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Razorlash Transmogrant",
+     "manaCost": "{2}",
+     "typeLine": "Artifact Creature — Zombie",
+     "supertypes": [],
+     "types": [
+      "Artifact",
+      "Creature"
+     ],
+     "subtypes": [
+      "Zombie"
+     ],
+     "oracleText": "This creature can't block.\n{4}{B}{B}: Return this card from your graveyard to the battlefield with a +1/+1 counter on it. This ability costs {4} less to activate if an opponent controls four or more nonbasic lands.",
+     "power": 3,
+     "toughness": 1,
+     "loyalty": null,
+     "colors": [],
      "colorIndicator": null
     }
    ]
@@ -14067,6 +15511,36 @@
     }
    ]
   },
+  "Sign in Blood": {
+   "name": "Sign in Blood",
+   "oracleId": "c6207f6a-a624-4754-88f5-dbe700c841ff",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Sign in Blood",
+     "manaCost": "{B}{B}",
+     "typeLine": "Sorcery",
+     "supertypes": [],
+     "types": [
+      "Sorcery"
+     ],
+     "subtypes": [],
+     "oracleText": "Target player draws two cards and loses 2 life.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Silverquill Campus": {
    "name": "Silverquill Campus",
    "oracleId": "2b65eb80-6fb7-429f-81f2-2fe125eba634",
@@ -14505,6 +15979,39 @@
      "oracleText": "When this creature enters, put a -1/-1 counter on each creature.",
      "power": 3,
      "toughness": 3,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Soulless One": {
+   "name": "Soulless One",
+   "oracleId": "27d98b94-a8a1-442b-8940-4ffab51b5164",
+   "layout": "normal",
+   "manaValue": 4,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Soulless One",
+     "manaCost": "{3}{B}",
+     "typeLine": "Creature — Zombie Avatar",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Zombie",
+      "Avatar"
+     ],
+     "oracleText": "Soulless One's power and toughness are each equal to the number of Zombies on the battlefield plus the number of Zombie cards in all graveyards.",
+     "power": "*",
+     "toughness": "*",
      "loyalty": null,
      "colors": [
       "B"
@@ -16152,6 +17659,36 @@
     }
    ]
   },
+  "Tendrils of Corruption": {
+   "name": "Tendrils of Corruption",
+   "oracleId": "84ee0da2-d886-4603-9aaa-bc5326a424d7",
+   "layout": "normal",
+   "manaValue": 4,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Tendrils of Corruption",
+     "manaCost": "{3}{B}",
+     "typeLine": "Instant",
+     "supertypes": [],
+     "types": [
+      "Instant"
+     ],
+     "subtypes": [],
+     "oracleText": "Tendrils of Corruption deals X damage to target creature and you gain X life, where X is the number of Swamps you control.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Terminate": {
    "name": "Terminate",
    "oracleId": "6257c2fd-005f-41e3-8a72-af76df1eb134",
@@ -16794,6 +18331,38 @@
     }
    ]
   },
+  "Tragic Slip": {
+   "name": "Tragic Slip",
+   "oracleId": "fa6e2a47-a8cb-4224-ae3e-f61c90477285",
+   "layout": "normal",
+   "manaValue": 1,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [
+    "Morbid"
+   ],
+   "faces": [
+    {
+     "name": "Tragic Slip",
+     "manaCost": "{B}",
+     "typeLine": "Instant",
+     "supertypes": [],
+     "types": [
+      "Instant"
+     ],
+     "subtypes": [],
+     "oracleText": "Target creature gets -1/-1 until end of turn.\nMorbid — That creature gets -13/-13 until end of turn instead if a creature died this turn.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Transcendent Envoy": {
    "name": "Transcendent Envoy",
    "oracleId": "f08f7814-4585-41dd-b82e-ed2ef5e24242",
@@ -17354,6 +18923,105 @@
     }
    ]
   },
+  "Undead Augur": {
+   "name": "Undead Augur",
+   "oracleId": "c26887e1-27f4-4550-921b-53460e43c079",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Undead Augur",
+     "manaCost": "{B}{B}",
+     "typeLine": "Creature — Zombie Wizard",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Zombie",
+      "Wizard"
+     ],
+     "oracleText": "Whenever this creature or another Zombie you control dies, you draw a card and lose 1 life.",
+     "power": 2,
+     "toughness": 2,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Undead Butler": {
+   "name": "Undead Butler",
+   "oracleId": "426fa8e8-b0f9-4b6c-b22b-04ec2073187a",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [
+    "Mill"
+   ],
+   "faces": [
+    {
+     "name": "Undead Butler",
+     "manaCost": "{1}{B}",
+     "typeLine": "Creature — Zombie",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Zombie"
+     ],
+     "oracleText": "When this creature enters, mill three cards. (Put the top three cards of your library into your graveyard.)\nWhen this creature dies, you may exile it. When you do, return target creature card from your graveyard to your hand.",
+     "power": 1,
+     "toughness": 2,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Undead Warchief": {
+   "name": "Undead Warchief",
+   "oracleId": "e6af56bf-bd78-4801-8f6e-033cdd68de3d",
+   "layout": "normal",
+   "manaValue": 4,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Undead Warchief",
+     "manaCost": "{2}{B}{B}",
+     "typeLine": "Creature — Zombie",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Zombie"
+     ],
+     "oracleText": "Zombie spells you cast cost {1} less to cast.\nZombie creatures you control get +2/+1.",
+     "power": 1,
+     "toughness": 1,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Underground River": {
    "name": "Underground River",
    "oracleId": "857febd9-cdd7-4f8e-a852-d88084b0cfbc",
@@ -17586,6 +19254,38 @@
     }
    ]
   },
+  "Vengeful Dead": {
+   "name": "Vengeful Dead",
+   "oracleId": "277c8ee9-0157-4e45-96ad-1b67716955ee",
+   "layout": "normal",
+   "manaValue": 4,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Vengeful Dead",
+     "manaCost": "{3}{B}",
+     "typeLine": "Creature — Zombie",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Zombie"
+     ],
+     "oracleText": "Whenever this creature or another Zombie dies, each opponent loses 1 life.",
+     "power": 3,
+     "toughness": 2,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Vernal Fen": {
    "name": "Vernal Fen",
    "oracleId": "40544d12-0391-4a61-af95-9b8ec01ed8fc",
@@ -17763,6 +19463,36 @@
      "loyalty": null,
      "colors": [
       "R"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Village Rites": {
+   "name": "Village Rites",
+   "oracleId": "365548fb-5acc-4a8a-b20b-26d28b7d029f",
+   "layout": "normal",
+   "manaValue": 1,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Village Rites",
+     "manaCost": "{B}",
+     "typeLine": "Instant",
+     "supertypes": [],
+     "types": [
+      "Instant"
+     ],
+     "subtypes": [],
+     "oracleText": "As an additional cost to cast this spell, sacrifice a creature.\nDraw two cards.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "B"
      ],
      "colorIndicator": null
     }
@@ -18423,6 +20153,38 @@
     }
    ]
   },
+  "Wight of Precinct Six": {
+   "name": "Wight of Precinct Six",
+   "oracleId": "6397c046-4c59-4f0b-9b44-2a804eb95edf",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Wight of Precinct Six",
+     "manaCost": "{1}{B}",
+     "typeLine": "Creature — Zombie",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Zombie"
+     ],
+     "oracleText": "This creature gets +1/+1 for each creature card in your opponents' graveyards.",
+     "power": 1,
+     "toughness": 1,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Wight of the Reliquary": {
    "name": "Wight of the Reliquary",
    "oracleId": "4507df69-6bf7-43d6-a609-c032b61835d5",
@@ -18622,6 +20384,36 @@
     }
    ]
   },
+  "Witch's Cottage": {
+   "name": "Witch's Cottage",
+   "oracleId": "6c8f276e-4e7b-4974-ab02-9356cc0ffb2b",
+   "layout": "normal",
+   "manaValue": 0,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Witch's Cottage",
+     "manaCost": "",
+     "typeLine": "Land — Swamp",
+     "supertypes": [],
+     "types": [
+      "Land"
+     ],
+     "subtypes": [
+      "Swamp"
+     ],
+     "oracleText": "({T}: Add {B}.)\nThis land enters tapped unless you control three or more other Swamps.\nWhen this land enters untapped, you may put target creature card from your graveyard on top of your library.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Witherbloom Campus": {
    "name": "Witherbloom Campus",
    "oracleId": "6cd58a88-6434-4c55-bf93-a739b5ed9bc1",
@@ -18714,6 +20506,36 @@
      "colors": [
       "B",
       "G"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Withering Torment": {
+   "name": "Withering Torment",
+   "oracleId": "ffce81c5-1b58-4882-a4e7-6f8d7cb170de",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Withering Torment",
+     "manaCost": "{2}{B}",
+     "typeLine": "Instant",
+     "supertypes": [],
+     "types": [
+      "Instant"
+     ],
+     "subtypes": [],
+     "oracleText": "Destroy target creature or enchantment. You lose 2 life.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "B"
      ],
      "colorIndicator": null
     }
@@ -18856,6 +20678,43 @@
      "loyalty": null,
      "colors": [
       "W"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Zul Ashur, Lich Lord": {
+   "name": "Zul Ashur, Lich Lord",
+   "oracleId": "a7c6c9b3-91f2-4ecf-b2b0-b0edd96974d9",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [
+    "Ward"
+   ],
+   "faces": [
+    {
+     "name": "Zul Ashur, Lich Lord",
+     "manaCost": "{1}{B}",
+     "typeLine": "Legendary Creature — Zombie Warlock",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Zombie",
+      "Warlock"
+     ],
+     "oracleText": "Ward—Pay 2 life. (Whenever this creature becomes the target of a spell or ability an opponent controls, counter it unless that player pays 2 life.)\n{T}: You may cast target Zombie creature card from your graveyard this turn.",
+     "power": 2,
+     "toughness": 2,
+     "loyalty": null,
+     "colors": [
+      "B"
      ],
      "colorIndicator": null
     }
@@ -21004,6 +22863,43 @@
    "imagem": {
     "id": "1159d02c-0291-42de-91e6-e9a49d5ed968",
     "frente": "imagens/1159d02c-0291-42de-91e6-e9a49d5ed968/front.png",
+    "verso": null
+   }
+  },
+  {
+   "name": "Zombie",
+   "oracleId": "ddc8c973-c31e-463f-be45-f3fa7d632362",
+   "layout": "token",
+   "manaValue": 0,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Zombie",
+     "manaCost": "",
+     "typeLine": "Token Creature — Zombie",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Zombie"
+     ],
+     "oracleText": "",
+     "power": 2,
+     "toughness": 2,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ],
+   "imagem": {
+    "id": "f7a49477-b7b5-4f0e-885f-e1d2b580c52e",
+    "frente": "imagens/f7a49477-b7b5-4f0e-885f-e1d2b580c52e/front.png",
     "verso": null
    }
   }

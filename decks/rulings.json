@@ -820,6 +820,548 @@
     "comment": "Empower Jace won't let you put loyalty counters on nontoken Jace planeswalkers. However, if you control a Jace planeswalker token that you got another way (such as an effect that creates a token that's a copy of a permanent), empower Jace will put loyalty counters on that."
    }
   ],
-  "6067b8d0-5b00-402c-967d-e35a1304fafc": []
+  "6067b8d0-5b00-402c-967d-e35a1304fafc": [],
+  "0dd894cb-1968-471c-af08-ea7ec5ce8428": [],
+  "388168b3-ec68-4af2-b88c-6a5ec88c15f6": [
+   {
+    "source": "wotc",
+    "published_at": "2019-10-04",
+    "comment": "In a Two-Headed Giant game, Ayara's first ability causes the opposing team to lose 1 life twice, and you gain 1 life once."
+   }
+  ],
+  "be811e70-aaaa-41f3-bf9e-5d3f9f719b49": [
+   {
+    "source": "wotc",
+    "published_at": "2019-10-04",
+    "comment": "No player may take actions between the time you draw a card and the time you lose life."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2019-10-04",
+    "comment": "Once the common lands (such as Mystic Sanctuary) enter the battlefield tapped, there's no way to untap them with a spell or ability to make their last ability trigger."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2019-10-04",
+    "comment": "Although the common lands have basic land types, they aren't basic lands."
+   }
+  ],
+  "3525e263-e29a-49bf-a29f-fb3ce43bbd33": [
+   {
+    "source": "wotc",
+    "published_at": "2019-10-04",
+    "comment": "You must choose white, blue, black, red, or green for Heraldic Banner's ability. You can't choose \"multicolor,\" \"gold,\" or \"colorless.\""
+   },
+   {
+    "source": "wotc",
+    "published_at": "2019-10-04",
+    "comment": "If there is somehow no chosen color, Heraldic Banner's static ability has no effect, and its mana ability produces no mana if you activate it. Colorless creatures won't get +1/+0, and you won't add {C}."
+   }
+  ],
+  "6c8f276e-4e7b-4974-ab02-9356cc0ffb2b": [
+   {
+    "source": "wotc",
+    "published_at": "2019-10-04",
+    "comment": "As these lands are entering the battlefield, they check for lands that are already on the battlefield. They won't see lands that are entering the battlefield at the same time (due to Scapeshift, for example)."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2019-10-04",
+    "comment": "If another effect puts these lands onto the battlefield tapped, they enter tapped, even if you control enough lands with the appropriate basic land type."
+   }
+  ],
+  "326ba371-124c-4949-a048-3a0c8962e567": [
+   {
+    "source": "wotc",
+    "published_at": "2008-10-01",
+    "comment": "Cycling is an activated ability. Effects that interact with activated abilities (such as Stifle or Rings of Brighthearth) will interact with cycling. Effects that interact with spells (such as Remove Soul or Faerie Tauntings) will not."
+   }
+  ],
+  "a1cc5e37-b09a-4b7f-afd5-77c1c35aa425": [],
+  "8164b1e8-3350-465e-8a17-75f57d326344": [
+   {
+    "source": "wotc",
+    "published_at": "2011-01-01",
+    "comment": "Players can lose more life than they have. For example, say you're playing a multiplayer game in which one of your opponents has 3 life and your other opponent has 10 life. If you cast Exsanguinate with X of 4, your opponents will wind up at -1 life and 6 life, respectively. You'll gain 8 life."
+   }
+  ],
+  "2f092562-9e17-43cd-aeb8-d0567f99363e": [
+   {
+    "source": "wotc",
+    "published_at": "2022-10-14",
+    "comment": "If the targeted creature is also an artifact when Go for the Throat tries to resolve, it won't resolve."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2011-06-01",
+    "comment": "If the targeted creature is also an artifact when Go for the Throat tries to resolve, it won't resolve."
+   }
+  ],
+  "09ff28b1-b6c9-48e6-b12e-2f0e644f709f": [
+   {
+    "source": "wotc",
+    "published_at": "2011-01-22",
+    "comment": "Gravecrawler's ability doesn't change when you could cast it."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2011-01-22",
+    "comment": "Once you've cast Gravecrawler and it's on the stack, it doesn't matter if you lose control of the other Zombie."
+   }
+  ],
+  "f3abd4d1-a975-4e85-8684-aa0fce029670": [],
+  "38f3b157-0df4-409b-89cc-086e1531cd5b": [
+   {
+    "source": "wotc",
+    "published_at": "2021-03-19",
+    "comment": "The amount of life you gain is the total amount of life lost, not simply the value of X."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2020-01-24",
+    "comment": "Hybrid mana symbols, monocolored hybrid mana symbols, and Phyrexian mana symbols do count toward your devotion to their color(s)."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2020-01-24",
+    "comment": "Colorless and generic mana symbols ({C}, {0}, {1}, {2}, {X}, and so on) in mana costs of permanents you control don't count toward your devotion to any color."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2020-01-24",
+    "comment": "Mana symbols in the text boxes of permanents you control don't count toward your devotion to any color."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2020-01-24",
+    "comment": "If an activated ability or triggered ability has an effect that depends on your devotion to a color, you count the number of mana symbols of that color among the mana costs of permanents you control as the ability resolves. The permanent with that ability will be counted if it's still on the battlefield at that time."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2020-01-24",
+    "comment": "If you put an Aura on an opponent's permanent, you still control the Aura, and mana symbols in its mana cost count towards your devotion."
+   }
+  ],
+  "3f372107-6c52-4f1f-8bf0-7b3fa21b2cae": [],
+  "ee579a32-a048-4335-b966-231ba731cdea": [],
+  "84ee0da2-d886-4603-9aaa-bc5326a424d7": [
+   {
+    "source": "wotc",
+    "published_at": "2021-03-19",
+    "comment": "If the target creature is an illegal target by the time Tendrils of Corruption tries to resolve, the spell doesn't resolve. You don't gain X life."
+   }
+  ],
+  "fa6e2a47-a8cb-4224-ae3e-f61c90477285": [],
+  "6397c046-4c59-4f0b-9b44-2a804eb95edf": [
+   {
+    "source": "wotc",
+    "published_at": "2017-11-17",
+    "comment": "Wight of Precinct Six’s ability applies only while it’s on the battlefield. In all other zones, it’s a 1/1 creature."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2017-11-17",
+    "comment": "If Wight of Precinct Six is dealt lethal damage at the same time as a creature an opponent controls, they’re destroyed at the same time. It won’t get an additional +1/+1 from its ability in time to save it."
+   }
+  ],
+  "84de4fec-2f38-4293-93d3-b3882c5aac14": [],
+  "365548fb-5acc-4a8a-b20b-26d28b7d029f": [
+   {
+    "source": "wotc",
+    "published_at": "2021-02-05",
+    "comment": "You must sacrifice exactly one creature to cast this spell; you can't cast it without sacrificing a creature, and you can't sacrifice additional creatures."
+   }
+  ],
+  "bd104c7e-311e-4b03-98d3-5f20f3a99d26": [],
+  "16f75a65-d067-4f79-81b9-833c373cf4d2": [
+   {
+    "source": "wotc",
+    "published_at": "2016-07-13",
+    "comment": "You can tap any three untapped Zombies you control, including ones you haven’t controlled continuously since the beginning of your most recent turn, to pay the cost of Cryptbreaker’s second activated ability. This includes Cryptbreaker itself."
+   }
+  ],
+  "c6207f6a-a624-4754-88f5-dbe700c841ff": [],
+  "7b9fafe7-d26a-4ed5-b4c4-ce13763770b5": [
+   {
+    "source": "wotc",
+    "published_at": "2016-07-13",
+    "comment": "When you activate Geier Reach Sanitarium's last ability, first each player draws a card. Then the player whose turn it is selects a card from their hand and sets it aside without revealing it; proceeding in turn order, each other player does the same. Then the cards that were set aside are discarded at once."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2016-07-13",
+    "comment": "If more than one player discards a card with madness simultaneously, the player whose turn it is puts their madness abilities onto the stack first, then each other player does the same in turn order. The last one put onto the stack resolves first, and a spell cast this way will resolve before resolving the next madness ability."
+   }
+  ],
+  "2bc38f14-0314-4351-8138-e2b8bf041404": [],
+  "698e79ec-c2bc-4973-a095-f3c57b50e39c": [
+   {
+    "source": "wotc",
+    "published_at": "2012-07-01",
+    "comment": "The effect is based on the number of Swamps you control when Mutilate resolves. Only creatures on the battlefield at that time will be affected. The effect won't change later in the turn, even if the number of Swamps you control changes."
+   }
+  ],
+  "75d667ec-86f4-4850-a3b6-e7a9fc7053b0": [
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "\"Flashback [cost]\" means \"You may cast this card from your graveyard by paying [cost] rather than paying its mana cost\" and \"If the flashback cost was paid, exile this card instead of putting it anywhere else any time it would leave the stack.\""
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "You must still follow any timing restrictions and permissions, including those based on the card's type. For instance, you can cast a sorcery using flashback only when you could normally cast a sorcery."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "To determine the total cost of a spell, start with the mana cost or alternative cost (such as a flashback cost) you're paying, add any cost increases, then apply any cost reductions. The mana value of the spell is determined only by its mana cost, no matter what the total cost to cast the spell was."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "A spell cast using flashback will always be exiled afterward, whether it resolves, is countered, or leaves the stack in some other way."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "You can cast a spell using flashback even if it was somehow put into your graveyard without having been cast."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "If a card with flashback is put into your graveyard during your turn, you can cast it if it's legal to do so before any other player can take any actions."
+   }
+  ],
+  "fd62ad01-601f-4250-bc2a-8ef3982e45c4": [
+   {
+    "source": "wotc",
+    "published_at": "2016-04-08",
+    "comment": "If Diregraf Colossus enters the battlefield from your graveyard, its first ability will count itself among the Zombie cards in your graveyard. Similarly, if it enters the battlefield at the same time as another Zombie card enters the battlefield from your graveyard, the ability will count that other Zombie."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2016-04-08",
+    "comment": "Diregraf Colossus's last ability won't trigger when you cast it because it's not on the battlefield yet."
+   }
+  ],
+  "07792d72-d5db-41b9-871c-e720e12ce659": [
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "If the target creature card is an illegal target as Cemetery Recruitment tries to resolve, it won't resolve and none of its effects will happen. You won't draw a card even if the target creature card was a Zombie card."
+   }
+  ],
+  "d3ba6922-c2f7-45ab-87a3-d4bbd770d1ba": [],
+  "e8c7566d-7cc0-48af-a986-83223ec7e06c": [
+   {
+    "source": "wotc",
+    "published_at": "2018-10-05",
+    "comment": "Midnight Reaper's ability triggers when it dies if it's not a token."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-10-05",
+    "comment": "If Midnight Reaper dies at the same time as one or more other nontoken creatures you control, Midnight Reaper's ability triggers for each of them."
+   }
+  ],
+  "d2a65ff4-ab82-42f7-9d90-feb29132121e": [],
+  "7714af0e-41d9-4609-967f-27233b46055f": [
+   {
+    "source": "wotc",
+    "published_at": "2005-08-01",
+    "comment": "Lord of the Undead now has the Zombie creature type and its first ability has been reworded to affect *other* Zombies. This means that if two Lord of the Undead are on the battlefield, each gives the other a bonus."
+   }
+  ],
+  "e6af56bf-bd78-4801-8f6e-033cdd68de3d": [],
+  "277c8ee9-0157-4e45-96ad-1b67716955ee": [],
+  "183891b0-b5ec-47f4-8d09-b9d3cfc4e7f1": [
+   {
+    "source": "wotc",
+    "published_at": "2019-05-03",
+    "comment": "If any abilities trigger as you sacrifice other permanents, those abilities won't be put onto the stack until after you've drawn cards."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2019-05-03",
+    "comment": "As Bontu's first triggered ability resolves, you may choose to sacrifice zero other permanents."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2019-05-03",
+    "comment": "If a second God-Eternal Bontu enters the battlefield under your control, you'll put one into your graveyard before you can sacrifice anything to the new Bontu's triggered ability."
+   }
+  ],
+  "a7c000a8-1864-4bb2-80fa-a61d74dbd966": [
+   {
+    "source": "wotc",
+    "published_at": "2019-05-03",
+    "comment": "You can't pay {2}{B} more than once each time Eternal Taskmaster's ability resolves."
+   }
+  ],
+  "c26887e1-27f4-4550-921b-53460e43c079": [
+   {
+    "source": "wotc",
+    "published_at": "2019-06-14",
+    "comment": "If Undead Augur dies at the same time as one or more other Zombies you control, Undead Augur's ability triggers for each of them."
+   }
+  ],
+  "940ba435-7abc-40f8-a5af-c1c653b3284e": [
+   {
+    "source": "wotc",
+    "published_at": "2017-04-18",
+    "comment": "In a Two-Headed Giant game, the triggered ability of Bontu's Monument causes the opposing team to lose 2 life and you gain 1 life."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2017-04-18",
+    "comment": "Each Monument has one ability that reduces the cost of creature spells of a certain color, and a triggered ability that triggers whenever you cast any creature spell—not just a creature spell of that color."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2017-04-18",
+    "comment": "A creature spell that's multiple colors is each of those colors. For example, Ahn-Crop Champion is a white creature and a green creature, so it can benefit from either Oketra's Monument or Rhonas's Monument—or both at once."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2017-04-18",
+    "comment": "To determine the total cost of a creature spell, start with the mana cost or alternative cost you're paying, add any cost increases, then apply any cost reductions. The mana value of the creature remains unchanged, no matter what the total cost to cast it was."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2017-04-18",
+    "comment": "Each Monument's triggered ability triggers as the creature spell is cast and resolves before that creature spell resolves. The ability will resolve even if that creature spell is countered."
+   }
+  ],
+  "70fa209f-5e79-44de-81ce-1d8d0d8c1006": [
+   {
+    "source": "wotc",
+    "published_at": "2009-10-01",
+    "comment": "Cemetery Reaper grants +1/+1 to all other Zombie creatures you control, not just the ones its ability puts onto the battlefield."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2009-10-01",
+    "comment": "The creature card in a graveyard is exiled as part of the activated ability's effect, not as a cost. If that card has left the graveyard by the time the ability would resolve, the ability doesn't resolve and you don't get a Zombie token."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2009-10-01",
+    "comment": "A \"creature card\" is any card with the type creature, even if it has other types such as artifact, enchantment, or land. Older cards of type summon are also creature cards."
+   }
+  ],
+  "99024aa8-5687-4d38-8a4b-feef42d6c1ff": [
+   {
+    "source": "wotc",
+    "published_at": "2018-07-13",
+    "comment": "A creature that's both a Skeleton and a Zombie will get the bonus only once."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-07-13",
+    "comment": "Death Baron doesn't normally affect itself. If you manage to turn it into a Skeleton, however, then it will give itself +1/+1 and deathtouch."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-07-13",
+    "comment": "Because damage remains marked on a creature until it's removed as the turn ends, nonlethal damage dealt to a Skeleton or Zombie you control may become lethal if Death Baron leaves the battlefield during that turn."
+   }
+  ],
+  "602e421e-afab-4488-8a52-af66b4fdce4b": [],
+  "1386d111-a2a7-4df1-91d7-947664126989": [],
+  "97332d4e-a55c-4e4f-9040-bf426a7c8e39": [
+   {
+    "source": "wotc",
+    "published_at": "2013-07-01",
+    "comment": "If the player’s hand is empty when the triggered ability resolves, you’ll still put a Zombie token onto the battlefield."
+   }
+  ],
+  "ed4cd3a1-688b-4c05-948d-39d3336e00c0": [
+   {
+    "source": "wotc",
+    "published_at": "2022-12-08",
+    "comment": "Oversold Cemetery’s ability will check your graveyard as your upkeep begins, before any player has the opportunity to take any actions. If you have fewer than four creature cards in your graveyard at that time, the ability won’t trigger at all. If the ability does trigger, it will check again as it tries to resolve. If you have fewer than four creature cards in your graveyard at that point, the ability won’t have any effect."
+   }
+  ],
+  "27d98b94-a8a1-442b-8940-4ffab51b5164": [],
+  "2e0b838d-c858-4aa5-999e-c4ef9d29571b": [
+   {
+    "source": "wotc",
+    "published_at": "2018-07-13",
+    "comment": "You must sacrifice exactly one creature to cast Demon of Catastrophes; you can’t cast it without sacrificing a creature, and you can’t sacrifice additional creatures."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-07-13",
+    "comment": "Players can respond only after Demon of Catastrophes has been cast and all its costs have been paid. No one can try to destroy the creature you sacrificed to prevent you from casting this spell."
+   }
+  ],
+  "e1cfd1cb-44a5-429f-a5c1-e6d29bad1c71": [
+   {
+    "source": "wotc",
+    "published_at": "2016-01-22",
+    "comment": "Abilities that trigger whenever a creature an opponent controls dies won't trigger unless that creature is a token (see below)."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2016-01-22",
+    "comment": "If a creature token an opponent controls dies, it goes to that player's graveyard as normal before ceasing to exist."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2016-01-22",
+    "comment": "If Kalitas dies at the same time as creatures your opponents control, those creature cards will be exiled and you'll get that many Zombies."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2016-01-22",
+    "comment": "You can't sacrifice Kalitas to activate the last ability, even if it's somehow become a Zombie."
+   }
+  ],
+  "69d4ecac-4735-4667-bfc1-c8800b436d08": [
+   {
+    "source": "wotc",
+    "published_at": "2011-09-22",
+    "comment": "If you control fewer than two Zombies, you won't get any tokens."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2011-09-22",
+    "comment": "The number of Zombies you control is counted when the ability resolves. If you control multiple Endless Ranks of the Dead, the tokens you get when the first ability resolves will count for the subsequent abilities (if the tokens are still under your control at that time)."
+   }
+  ],
+  "a6e720a2-9819-40ec-a811-7812898b531a": [
+   {
+    "source": "wotc",
+    "published_at": "2020-11-10",
+    "comment": "Let's say everyone controls lots of creatures. As Necrotc Hex resolves, first the player whose turn it is (likely you) chooses which six creatures they'll sacrifice, then each other player in turn order does the same, knowing the choices of players before them. Then all creatures are sacrificed simultaneously. Finally, you'll create the six tapped Zombies."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2020-11-10",
+    "comment": "You'll create six tapped Zombies no matter how many creatures you sacrifice."
+   }
+  ],
+  "e7a7ba65-ad14-41d5-889b-9bbeae9ab3f7": [
+   {
+    "source": "wotc",
+    "published_at": "2021-02-05",
+    "comment": "You choose the creature type as Crippling Fear resolves, and then creatures not of that type get -3/-3. Once Crippling Fear starts to resolve, players can't respond to the choice or take any actions until Crippling Fear finishes resolving."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2021-02-05",
+    "comment": "You must choose an existing creature type, such as Fish or Artificer. You can't choose card types (e.g., artifact) or supertypes (e.g., snow)."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2021-02-05",
+    "comment": "Crippling Fear affects only creatures that aren't of the chosen type that are on the battlefield as it resolves. It won't affect creatures that enter the battlefield later in the turn, regardless of creature type. If a creature changes creature types later in the turn, Crippling Fear won't start or stop affecting that creature."
+   }
+  ],
+  "f3654fbd-16a5-4953-84ac-534e8421032f": [],
+  "426fa8e8-b0f9-4b6c-b22b-04ec2073187a": [],
+  "d4fdacd7-3101-44e2-a880-dde7326137a4": [],
+  "580996d4-db9a-4b57-a0e1-a2dbb524121a": [],
+  "3bc0bd36-70be-4180-9fb3-b10ce054107b": [
+   {
+    "source": "wotc",
+    "published_at": "2024-06-07",
+    "comment": "The value of X is calculated only once, as Consuming Corruption resolves."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-06-07",
+    "comment": "If the target creature or planeswalker is an illegal target as Consuming Corruption tries to resolve, it won't resolve and none of its effects will happen. You won't gain life."
+   }
+  ],
+  "b548578c-4910-402c-8e78-498924e0a9be": [
+   {
+    "source": "wotc",
+    "published_at": "2024-07-26",
+    "comment": "If the target opponent has multiple creatures tied for the greatest power, that player chooses which one to sacrifice."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-07-26",
+    "comment": "As an additional cost to cast a spell with gift, you can promise the listed gift to an opponent. That opponent is chosen as part of that additional cost. The gift isn’t given at this time; rather, it’s given at a later time based on whether or not the spell is a permanent spell."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-07-26",
+    "comment": "For permanent spells with gift, an ability triggers when that permanent enters if the gift was promised. When that ability resolves, the gift is given to the appropriate opponent."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-07-26",
+    "comment": "For instants and sorceries with gift, the gift is given to the appropriate opponent as part of the resolution of the spell. This happens before any of the spell’s other effects would take place."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-07-26",
+    "comment": "If a spell for which the gift was promised is countered, doesn’t resolve (perhaps because all of its targets are illegal), or is otherwise removed from the stack, the gift won’t be given. None of its other effects will happen either."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-07-26",
+    "comment": "You can’t pay a gift cost more than once."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-07-26",
+    "comment": "If you copy a spell for which the gift was promised, the gift was also promised to the same opponent for the copy. If a card or token enters as a copy of a permanent that’s already on the battlefield, the gift isn’t promised for that new permanent, even if it was promised for the original."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-07-26",
+    "comment": "Some instant or sorcery spells require alternative or additional targets if the gift was promised. You ignore these targeting requirements if the gifts aren’t promised for those spells. On the other hand, you can promise a gift for a permanent spell even if you won’t be able to choose targets for an enters ability of that permanent once the spell resolves."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-07-26",
+    "comment": "In the main set, there are four different kinds of gifts. “Gift a Food” causes the chosen opponent to create a Food token, while “Gift a Treasure” causes the chosen opponent to create a Treasure token. “Gift a card” causes them to draw a card, and “Gift a tapped Fish” causes them to create a tapped 1/1 blue Fish creature token. The Commander decks contain two more kinds of gifts: “Gift an Octopus,” which causes the chosen opponent to create an 8/8 blue Octopus creature token, and “Gift an extra turn,” which causes them to take an extra turn after the current turn ends."
+   }
+  ],
+  "ffce81c5-1b58-4882-a4e7-6f8d7cb170de": [
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "If the target creature or enchantment is an illegal target as Withering Torment tries to resolve, it won't resolve and none of its effects will happen. You won't lose life."
+   }
+  ],
+  "a7c6c9b3-91f2-4ecf-b2b0-b0edd96974d9": [
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "You pay all costs and follow all normal timing rules for Zombie creature cards cast with the permission granted by Zul Ashur's last ability."
+   }
+  ],
+  "bdb9e933-f679-4930-b669-0d123db09d16": [
+   {
+    "source": "wotc",
+    "published_at": "2025-11-17",
+    "comment": "Tapping an untapped creature that's attacking or blocking to convoke a spell won't cause that creature to stop attacking or blocking."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2025-11-17",
+    "comment": "You choose the creature type as Bloodline Bidding resolves. Once Bloodline Bidding starts to resolve, players can't respond to the choice or take any actions until Bloodline Bidding finishes resolving."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2025-11-17",
+    "comment": "If a creature you control has a mana ability with {T} in the cost, activating that ability while casting a spell with convoke will result in the creature being tapped before you pay the spell's costs. You won't be able to tap it again for convoke. Similarly, if you sacrifice a creature to activate a mana ability while casting a spell with convoke, that creature won't be on the battlefield when you pay the spell's costs, so you won't be able to tap it for convoke."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2025-11-17",
+    "comment": "When calculating a spell's total cost, include any alternative costs, additional costs, or anything else that increases or reduces the cost to cast the spell. Convoke applies after the total cost is calculated. Convoke doesn't change a spell's mana cost or mana value."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2025-11-17",
+    "comment": "You can tap any untapped creature you control to convoke a spell, even one you haven't controlled continuously since the beginning of your most recent turn."
+   }
+  ]
  }
 }

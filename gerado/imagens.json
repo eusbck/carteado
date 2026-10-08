@@ -8229,5 +8229,972 @@
    "verso": null
   },
   "pt": null
+ },
+ "Ghoulcaller Gisa": {
+  "en": {
+   "id": "909e62fa-4585-495e-812b-5df56af24610",
+   "frente": "imagens/909e62fa-4585-495e-812b-5df56af24610/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "6ea4ad08-ada9-409e-9ae5-1a3e4e4d37cb",
+   "frente": null,
+   "verso": null,
+   "nome": "Gisa, Invocadora de Carniçais",
+   "tipo": "Criatura Lendária — Humano Mago",
+   "texto": "{B}, {T}, sacrifique outra criatura: Crie X fichas de criatura Zumbi preta 2/2, sendo X o poder da criatura sacrificada.",
+   "faces": null,
+   "reserva": true
+  }
+ },
+ "Ayara, First of Locthwain": {
+  "en": {
+   "id": "58c50444-3660-4039-ae18-278b92d32132",
+   "frente": "imagens/58c50444-3660-4039-ae18-278b92d32132/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "a505d8cc-3a0c-4240-ada5-54b194d65c3a",
+   "frente": "imagens/a505d8cc-3a0c-4240-ada5-54b194d65c3a/front.png",
+   "verso": null,
+   "nome": "Ayara, Primeira de Locthwain",
+   "tipo": "Criatura Lendária — Elfo Nobre",
+   "texto": "Toda vez que Ayara, Primeira de Locthwain, ou outra criatura preta entra no campo de batalha sob seu controle, cada oponente perde 1 ponto de vida e você ganha 1 ponto de vida.\n{T}, sacrifique outra criatura preta: Compre um card.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Castle Locthwain": {
+  "en": {
+   "id": "61fdb579-86f3-4f8d-a0b1-fd545917105d",
+   "frente": "imagens/61fdb579-86f3-4f8d-a0b1-fd545917105d/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "93c81eb5-3c3c-461f-811f-3b0469dfdd59",
+   "frente": "imagens/93c81eb5-3c3c-461f-811f-3b0469dfdd59/front.png",
+   "verso": null,
+   "nome": "Castelo de Locthwain",
+   "tipo": "Terreno",
+   "texto": "Castelo de Locthwain entra no campo de batalha virado, a menos que você controle um Pântano.\n{T}: Adicione {B}.\n{1}{B}{B}, {T}: Compre um card. Em seguida, você perde uma quantidade de pontos de vida igual ao número de cards em sua mão.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Heraldic Banner": {
+  "en": {
+   "id": "b6a1f042-b8e5-4a80-b76d-23f2f3baacf7",
+   "frente": "imagens/b6a1f042-b8e5-4a80-b76d-23f2f3baacf7/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "635b070a-f6da-4165-9893-92dcffdf4c75",
+   "frente": "imagens/635b070a-f6da-4165-9893-92dcffdf4c75/front.png",
+   "verso": null,
+   "nome": "Estandarte Heráldico",
+   "tipo": "Artefato",
+   "texto": "Conforme Estandarte Heráldico entrar no campo de batalha, escolha uma cor.\nAs criaturas que você controla da cor escolhida recebem +1/+0.\n{T}: Adicione um mana da cor escolhida.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Witch's Cottage": {
+  "en": {
+   "id": "316398d0-cf0a-43ed-a419-aaf0ea44b9c1",
+   "frente": "imagens/316398d0-cf0a-43ed-a419-aaf0ea44b9c1/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "7198c27e-7fc5-48df-905d-902c40904afa",
+   "frente": "imagens/7198c27e-7fc5-48df-905d-902c40904afa/front.png",
+   "verso": null,
+   "nome": "Casebre da Bruxa",
+   "tipo": "Terreno — Pântano",
+   "texto": "({T}: Adicione {B}.)\nCasebre da Bruxa entra no campo de batalha virado, a menos que você controle três ou mais outros Pântanos.\nQuando Casebre da Bruxa entra no campo de batalha desvirado, você pode colocar o card de criatura alvo de seu cemitério no topo de seu grimório.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Barren Moor": {
+  "en": {
+   "id": "b4f6c5d3-9dce-48dc-aa0c-9324d6e2e77f",
+   "frente": "imagens/b4f6c5d3-9dce-48dc-aa0c-9324d6e2e77f/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "ad2ec636-132c-430c-8de3-d31c40d3bb80",
+   "frente": "imagens/ad2ec636-132c-430c-8de3-d31c40d3bb80/front.png",
+   "verso": null,
+   "nome": "Charneca Estéril",
+   "tipo": "Terreno",
+   "texto": "Charneca Estéril entra no campo de batalha virada.\n{T}: Adicione {B}.\nReciclar {B} ({B}, descarte este card: Compre um card.)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Carrion Feeder": {
+  "en": {
+   "id": "b6b2df2b-7436-4359-9246-2d5a471621fb",
+   "frente": "imagens/b6b2df2b-7436-4359-9246-2d5a471621fb/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "4c0adba5-028e-4e37-a91f-6d9cda62103e",
+   "frente": "imagens/4c0adba5-028e-4e37-a91f-6d9cda62103e/front.png",
+   "verso": null,
+   "nome": "Comedor de Podridão",
+   "tipo": "Criatura — Zumbi",
+   "texto": "Comedor de Podridão não pode bloquear.\nSacrifique uma criatura: Coloque um marcador +1/+1 em Comedor de Podridão.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Exsanguinate": {
+  "en": {
+   "id": "333c8e71-fe90-408c-aabd-c5b7d83d0f03",
+   "frente": "imagens/333c8e71-fe90-408c-aabd-c5b7d83d0f03/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "bbe98ef6-a639-42ba-8db9-911354ccd2f1",
+   "frente": null,
+   "verso": null,
+   "nome": "Dessangrar",
+   "tipo": "Feitiço",
+   "texto": "Cada oponente perde X pontos de vida. Você ganha uma quantidade de pontos de vida igual ao total de pontos de vida perdidos dessa maneira.",
+   "faces": null,
+   "reserva": true
+  }
+ },
+ "Go for the Throat": {
+  "en": {
+   "id": "239015f1-02ba-49d0-b11e-1d9729e9d57e",
+   "frente": "imagens/239015f1-02ba-49d0-b11e-1d9729e9d57e/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "d52c63e7-89f5-431f-a66b-b74a6f795d1b",
+   "frente": "imagens/d52c63e7-89f5-431f-a66b-b74a6f795d1b/front.png",
+   "verso": null,
+   "nome": "Atacar na Jugular",
+   "tipo": "Mágica Instantânea",
+   "texto": "Destrua a criatura não artefato alvo.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Gravecrawler": {
+  "en": {
+   "id": "7625fff5-9080-4590-be75-14df86d5ba3c",
+   "frente": "imagens/7625fff5-9080-4590-be75-14df86d5ba3c/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "92095a02-857e-4463-bf9e-cf2811b5ebad",
+   "frente": "imagens/92095a02-857e-4463-bf9e-cf2811b5ebad/front.png",
+   "verso": null,
+   "nome": "Rastejador de Túmulo",
+   "tipo": "Criatura — Zumbi",
+   "texto": "Rastejador de Túmulo não pode bloquear.\nVocê pode conjurar Rastejador de Túmulo de seu cemitério enquanto controlar um Zumbi.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Grave Titan": {
+  "en": {
+   "id": "5bde28a1-635f-48f8-bed8-444921d5912c",
+   "frente": "imagens/5bde28a1-635f-48f8-bed8-444921d5912c/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "703e4e0a-ad33-4b54-8e5e-b88e6472d589",
+   "frente": "imagens/703e4e0a-ad33-4b54-8e5e-b88e6472d589/front.png",
+   "verso": null,
+   "nome": "Titã do Túmulo",
+   "tipo": "Criatura — Gigante",
+   "texto": "Toque mortífero\nToda vez que Titã do Túmulo entrar no campo de batalha ou atacar, coloque no campo de batalha duas fichas de criatura pretas 2/2 do tipo Zumbi.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Gray Merchant of Asphodel": {
+  "en": {
+   "id": "58251ceb-aadb-4e1f-b1f1-428e5f94e7bc",
+   "frente": "imagens/58251ceb-aadb-4e1f-b1f1-428e5f94e7bc/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "d51dba09-06b5-449d-9d0e-384e620fb1fc",
+   "frente": "imagens/d51dba09-06b5-449d-9d0e-384e620fb1fc/front.png",
+   "verso": null,
+   "nome": "Mercador Cinzento de Asfódelos",
+   "tipo": "Criatura — Zumbi",
+   "texto": "Quando Mercador Cinzento de Asfódelos entra no campo de batalha, cada oponente perde X pontos de vida, sendo X sua devoção ao preto. Você ganha uma quantidade de pontos de vida igual aos pontos de vida perdidos dessa maneira. (Cada {B} nos custos de mana de permanentes que você controla conta para sua devoção ao preto.)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Lord of the Accursed": {
+  "en": {
+   "id": "1992d081-a3f9-4349-bc71-770372af2adf",
+   "frente": "imagens/1992d081-a3f9-4349-bc71-770372af2adf/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "7d0831c7-4a34-4297-a44c-83a62bbd4efe",
+   "frente": "imagens/7d0831c7-4a34-4297-a44c-83a62bbd4efe/front.png",
+   "verso": null,
+   "nome": "Senhora dos Amaldiçoados",
+   "tipo": "Criatura — Zumbi",
+   "texto": "Os outros Zumbis que você controla recebem +1/+1.\n{1}{B}, {T}: Todos os Zumbis ganham ameaçar até o final do turno.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Phyrexian Arena": {
+  "en": {
+   "id": "e6db1ad2-ed85-4084-976e-da1933f4d008",
+   "frente": "imagens/e6db1ad2-ed85-4084-976e-da1933f4d008/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "ccc8da91-c7a2-4779-9d4c-7fb94e50477d",
+   "frente": "imagens/ccc8da91-c7a2-4779-9d4c-7fb94e50477d/front.png",
+   "verso": null,
+   "nome": "Arena Phyrexiana",
+   "tipo": "Encantamento",
+   "texto": "No início de sua manutenção, você compra um card e perde 1 ponto de vida.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Tendrils of Corruption": {
+  "en": {
+   "id": "cf71a124-6112-4094-9541-dc0d384cc4de",
+   "frente": "imagens/cf71a124-6112-4094-9541-dc0d384cc4de/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "5e88d2bf-27c4-460b-95f7-b74c647cbb2b",
+   "frente": "imagens/5e88d2bf-27c4-460b-95f7-b74c647cbb2b/front.png",
+   "verso": null,
+   "nome": "Gavinhas da Corrupção",
+   "tipo": "Mágica Instantânea",
+   "texto": "Gavinhas da Corrupção causa X pontos de dano à criatura alvo e você ganha X pontos de vida, sendo X o número de Pântanos que você controla.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Tragic Slip": {
+  "en": {
+   "id": "e620908f-6158-43a5-b7e1-0b2aa8d90396",
+   "frente": "imagens/e620908f-6158-43a5-b7e1-0b2aa8d90396/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "d9c1c401-b548-486f-93f0-1c367e602fd6",
+   "frente": "imagens/d9c1c401-b548-486f-93f0-1c367e602fd6/front.png",
+   "verso": null,
+   "nome": "Escorregão Trágico",
+   "tipo": null,
+   "texto": "A criatura alvo recebe -1/-1 até o final do turno.\nMórbido — Se uma criatura tiver morrido neste turno, em vez disso, aquela criatura receberá -13/-13 até o final do turno.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Wight of Precinct Six": {
+  "en": {
+   "id": "e9d9f150-dc54-4dcd-9bd8-809a0b87b266",
+   "frente": "imagens/e9d9f150-dc54-4dcd-9bd8-809a0b87b266/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "e9a5e3b4-4fdb-4aa4-977e-619acc04efd8",
+   "frente": "imagens/e9a5e3b4-4fdb-4aa4-977e-619acc04efd8/front.png",
+   "verso": null,
+   "nome": "Monstro da Jurisdição Seis",
+   "tipo": "Criatura — Zumbi",
+   "texto": "Monstro da Jurisdição Seis recebe +1/+1 para cada card de criatura no cemitério de seus oponentes.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Ambition's Cost": {
+  "en": {
+   "id": "2f7c9824-b7b0-47f9-ad3f-59037871b7ca",
+   "frente": "imagens/2f7c9824-b7b0-47f9-ad3f-59037871b7ca/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "95166301-7614-41c2-9561-7bb0b267c15e",
+   "frente": "imagens/95166301-7614-41c2-9561-7bb0b267c15e/front.png",
+   "verso": null,
+   "nome": "Custo da Ambição",
+   "tipo": "Feitiço",
+   "texto": "Você compra três cards e perde 3 pontos de vida.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Village Rites": {
+  "en": {
+   "id": "82f82cb3-f01b-40b9-99ae-6215a580bd95",
+   "frente": "imagens/82f82cb3-f01b-40b9-99ae-6215a580bd95/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "26e11e1b-24a6-493c-b39b-b250d834d673",
+   "frente": "imagens/26e11e1b-24a6-493c-b39b-b250d834d673/front.png",
+   "verso": null,
+   "nome": "Ritos da Vila",
+   "tipo": "Mágica Instantânea",
+   "texto": "Como custo adicional para conjurar esta mágica, sacrifique uma criatura.\nCompre dois cards.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Liliana's Mastery": {
+  "en": {
+   "id": "8d107d3f-1f6f-41dc-999f-b18bb55bf892",
+   "frente": "imagens/8d107d3f-1f6f-41dc-999f-b18bb55bf892/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "11614e15-0d87-4243-8a23-e14be1494039",
+   "frente": "imagens/11614e15-0d87-4243-8a23-e14be1494039/front.png",
+   "verso": null,
+   "nome": "Maestria de Liliana",
+   "tipo": "Encantamento",
+   "texto": "Os Zumbis que você controla recebem +1/+1.\nQuando Maestria de Liliana entrar no campo de batalha, crie duas fichas de criatura Zumbi preta 2/2.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Cryptbreaker": {
+  "en": {
+   "id": "c9d70cc4-379d-41db-8eb0-10643d2aafd1",
+   "frente": "imagens/c9d70cc4-379d-41db-8eb0-10643d2aafd1/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "e0cf0570-cbfb-455e-88f5-b28afec232d0",
+   "frente": "imagens/e0cf0570-cbfb-455e-88f5-b28afec232d0/front.png",
+   "verso": null,
+   "nome": "Fugitivo da Cripta",
+   "tipo": "Criatura — Zumbi",
+   "texto": "{1}{B}, {T}, Descarte um card: Coloque no campo de batalha uma ficha de criatura preta 2/2 do tipo Zumbi.\nVire três Zumbis desvirados que você controla: Você compra um card e perde 1 ponto de vida.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Sign in Blood": {
+  "en": {
+   "id": "0111bf5d-7132-4cf2-b27d-efba3ad9477a",
+   "frente": "imagens/0111bf5d-7132-4cf2-b27d-efba3ad9477a/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "18019adc-f414-4561-8c3f-4551a1cd76dd",
+   "frente": "imagens/18019adc-f414-4561-8c3f-4551a1cd76dd/front.png",
+   "verso": null,
+   "nome": "Assinar com Sangue",
+   "tipo": "Feitiço",
+   "texto": "O jogador alvo compra dois cards e perde 2 pontos de vida.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Geier Reach Sanitarium": {
+  "en": {
+   "id": "6f5b3931-580a-4471-9b5d-25bcf5803a73",
+   "frente": "imagens/6f5b3931-580a-4471-9b5d-25bcf5803a73/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "0f507650-be66-4097-950a-8054686e7b64",
+   "frente": "imagens/0f507650-be66-4097-950a-8054686e7b64/front.png",
+   "verso": null,
+   "nome": "Sanatório da Cordilheira de Geier",
+   "tipo": "Terreno Lendário",
+   "texto": "{T}: Adicione {C}.\n{2}, {T}: Cada jogador compra um card e depois descarta um card.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Memorial to Folly": {
+  "en": {
+   "id": "3ce8bd32-5c35-4696-bdda-addc576925f6",
+   "frente": "imagens/3ce8bd32-5c35-4696-bdda-addc576925f6/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "1b135f0b-5ff3-4c93-8ebc-3f56d9d7a5b8",
+   "frente": "imagens/1b135f0b-5ff3-4c93-8ebc-3f56d9d7a5b8/front.png",
+   "verso": null,
+   "nome": "Memorial à Loucura",
+   "tipo": "Terreno",
+   "texto": "Memorial à Loucura entra no campo de batalha virado.\n{T}: Adicione {B}.\n{2}{B}, {T}, sacrifique Memorial à Loucura: Devolva o card de criatura alvo de seu cemitério para sua mão.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Mutilate": {
+  "en": {
+   "id": "c2038b12-30b8-42ff-a15d-87cbbf72c939",
+   "frente": "imagens/c2038b12-30b8-42ff-a15d-87cbbf72c939/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "65179db5-f6e7-433a-ad20-e932a878bfce",
+   "frente": "imagens/65179db5-f6e7-433a-ad20-e932a878bfce/front.png",
+   "verso": null,
+   "nome": "Mutilar",
+   "tipo": "Feitiço",
+   "texto": "Todas as criaturas recebem -1/-1 até o final do turno para cada Pântano que você controla.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Army of the Damned": {
+  "en": {
+   "id": "33c01126-1918-4c67-8ee8-14ffc1325b97",
+   "frente": "imagens/33c01126-1918-4c67-8ee8-14ffc1325b97/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "fc03d949-0cdd-43fb-a274-74041ff9fb69",
+   "frente": "imagens/fc03d949-0cdd-43fb-a274-74041ff9fb69/front.png",
+   "verso": null,
+   "nome": "Exército dos Malditos",
+   "tipo": "Feitiço",
+   "texto": "Crie treze fichas de criatura Zumbi preta 2/2 viradas.\nRecapitular {7}{B}{B}{B} (Você pode conjurar este card de seu cemitério pagando seu custo de recapitular. Depois, exile-o.)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Diregraf Colossus": {
+  "en": {
+   "id": "89a24a9c-ad0d-49df-b7d8-e898da567e51",
+   "frente": "imagens/89a24a9c-ad0d-49df-b7d8-e898da567e51/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "e86f8156-2321-41da-8ce4-50d4c9d4a3b1",
+   "frente": "imagens/e86f8156-2321-41da-8ce4-50d4c9d4a3b1/front.png",
+   "verso": null,
+   "nome": "Colosso do Cemitério do Terror",
+   "tipo": "Criatura — Zumbi Gigante",
+   "texto": "Colosso do Cemitério do Terror entra no campo de batalha com um marcador +1/+1 para cada card de Zumbi em seu cemitério.\nToda vez que você conjurar uma mágica de Zumbi, crie uma ficha de criatura Zumbi preta 2/2 virada.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Cemetery Recruitment": {
+  "en": {
+   "id": "69c60f2e-b313-4139-9708-1a0e0f1ca63e",
+   "frente": "imagens/69c60f2e-b313-4139-9708-1a0e0f1ca63e/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "bf78d780-8502-40c2-9c4f-012b458ffa83",
+   "frente": "imagens/bf78d780-8502-40c2-9c4f-012b458ffa83/front.png",
+   "verso": null,
+   "nome": "Recrutamento no Cemitério",
+   "tipo": "Feitiço",
+   "texto": "Devolva o card de criatura alvo de seu cemitério para sua mão. Se for um card de Zumbi, compre um card.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Graf Harvest": {
+  "en": {
+   "id": "83f2413f-987f-4eab-96c1-f662821546a5",
+   "frente": "imagens/83f2413f-987f-4eab-96c1-f662821546a5/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "5bcbbe46-9fb7-4532-af85-adc427750a70",
+   "frente": "imagens/5bcbbe46-9fb7-4532-af85-adc427750a70/front.png",
+   "verso": null,
+   "nome": "Colheita do Cemitério",
+   "tipo": "Encantamento",
+   "texto": "Os Zumbis que você controla têm ameaçar. (Eles só podem ser bloqueados por duas ou mais criaturas.)\n{3}{B}, Exile um card de criatura de seu cemitério: Coloque no campo de batalha uma ficha de criatura preta 2/2 do tipo Zumbi.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Midnight Reaper": {
+  "en": {
+   "id": "95bea61d-986c-4e01-a82d-25e47986375e",
+   "frente": "imagens/95bea61d-986c-4e01-a82d-25e47986375e/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "83227ad2-3bd1-496e-8be2-0b450db53e00",
+   "frente": "imagens/83227ad2-3bd1-496e-8be2-0b450db53e00/front.png",
+   "verso": null,
+   "nome": "Ceifador da Meia-noite",
+   "tipo": "Criatura — Zumbi Cavaleiro",
+   "texto": "Toda vez que uma criatura não ficha que você controla morre, Ceifador da Meia-noite causa 1 ponto de dano a você e você compra um card.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Graveborn Muse": {
+  "en": {
+   "id": "49b8e4af-5a44-4aec-a386-729443af4140",
+   "frente": "imagens/49b8e4af-5a44-4aec-a386-729443af4140/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "df17cc5c-40ef-4220-92cb-6cf92149025d",
+   "frente": "imagens/df17cc5c-40ef-4220-92cb-6cf92149025d/front.png",
+   "verso": null,
+   "nome": "Musa Nascida do Túmulo",
+   "tipo": "Criatura — Zumbi Espírito",
+   "texto": "No início de sua manutenção, você compra X cards e perde X pontos de vida, sendo X igual ao número de Zumbis que você controla.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Lord of the Undead": {
+  "en": {
+   "id": "09a16104-26d5-422e-b86d-6c008ac2c903",
+   "frente": "imagens/09a16104-26d5-422e-b86d-6c008ac2c903/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "a5079d9b-2b6c-4045-b16f-4caf9e754c96",
+   "frente": "imagens/a5079d9b-2b6c-4045-b16f-4caf9e754c96/front.png",
+   "verso": null,
+   "nome": "Senhor dos Mortos-vivos",
+   "tipo": "Criatura — Zumbi",
+   "texto": "As outras criaturas do tipo Zumbi recebem +1/+1.\n{1}{B}, {T}: Devolva o card alvo de Zumbi de seu cemitério para a sua mão.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Undead Warchief": {
+  "en": {
+   "id": "f9139c01-ab89-445f-b564-dce1abf2c79f",
+   "frente": "imagens/f9139c01-ab89-445f-b564-dce1abf2c79f/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "b0599b1b-2c60-4201-a96d-5994b147fa37",
+   "frente": null,
+   "verso": null,
+   "nome": "Comandante de Guerra Morto-Vivo",
+   "tipo": "Criatura — Zumbi",
+   "texto": "As suas mágicas de Zumbi custam {1} a menos para jogar.\nOs Zumbis que você controla recebem +2/+1.",
+   "faces": null,
+   "reserva": true
+  }
+ },
+ "Vengeful Dead": {
+  "en": {
+   "id": "81197564-19bb-423d-87d4-3d83deac85a2",
+   "frente": "imagens/81197564-19bb-423d-87d4-3d83deac85a2/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "9e077450-2dac-47a4-b4ae-fd79708d37a8",
+   "frente": null,
+   "verso": null,
+   "nome": "Morto Vingativo",
+   "tipo": "Criatura — Zumbi",
+   "texto": "Toda vez que Morto Vingativo ou qualquer outro Zumbi for colocado num cemitério vindo de jogo, cada oponente perde 1 ponto de vida.",
+   "faces": null,
+   "reserva": true
+  }
+ },
+ "God-Eternal Bontu": {
+  "en": {
+   "id": "0070d335-d42d-4ccc-b828-405b7dd00868",
+   "frente": "imagens/0070d335-d42d-4ccc-b828-405b7dd00868/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "11da674a-a233-41fc-b2a7-3ef02638742e",
+   "frente": "imagens/11da674a-a233-41fc-b2a7-3ef02638742e/front.png",
+   "verso": null,
+   "nome": "Eterna-deusa Bontu",
+   "tipo": "Criatura Lendária — Zumbi Deus",
+   "texto": "Ameaçar\nQuando Eterna-deusa Bontu entrar no campo de batalha, sacrifique qualquer número de outras permanentes e depois compre aquela quantidade de cards.\nQuando Eterna-deusa Bontu morre ou é colocada no exílio vinda do campo de batalha, você pode colocá-la no topo do grimório de seu dono na terceira posição.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Eternal Taskmaster": {
+  "en": {
+   "id": "ccb7deab-cec1-453a-8257-8204c883c9f6",
+   "frente": "imagens/ccb7deab-cec1-453a-8257-8204c883c9f6/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "48e184cf-b562-457a-9ef6-d3469956414b",
+   "frente": "imagens/48e184cf-b562-457a-9ef6-d3469956414b/front.png",
+   "verso": null,
+   "nome": "Capataz dos Eternos",
+   "tipo": "Criatura — Zumbi",
+   "texto": "Capataz dos Eternos entra no campo de batalha virado.\nToda vez que Capataz dos Eternos ataca, você pode pagar {2}{B}. Se fizer isso, devolva o card de criatura alvo de seu cemitério para sua mão.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Undead Augur": {
+  "en": {
+   "id": "63df1c6a-98b8-41c1-ac06-c816b50cb07c",
+   "frente": "imagens/63df1c6a-98b8-41c1-ac06-c816b50cb07c/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "e47b647a-30b9-4d0f-93ae-cede6c0788a3",
+   "frente": "imagens/e47b647a-30b9-4d0f-93ae-cede6c0788a3/front.png",
+   "verso": null,
+   "nome": "Áugure Morto-vivo",
+   "tipo": "Criatura — Zumbi Mago",
+   "texto": "Toda vez que Áugure Morto-vivo ou outro Zumbi que você controla morre, você compra um card e perde 1 ponto de vida.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Bontu's Monument": {
+  "en": {
+   "id": "b4d4daca-34ef-4a5a-97e6-21f7f6a2f481",
+   "frente": "imagens/b4d4daca-34ef-4a5a-97e6-21f7f6a2f481/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "eeb0248f-b2b3-4967-8864-2897bcb32666",
+   "frente": "imagens/eeb0248f-b2b3-4967-8864-2897bcb32666/front.png",
+   "verso": null,
+   "nome": "Monumento de Bontu",
+   "tipo": "Artefato Lendário",
+   "texto": "As mágicas de criatura pretas que você conjura custam {1} a menos para serem conjuradas.\nToda vez que você conjura uma mágica de criatura, cada oponente perde 1 ponto de vida e você ganha 1 ponto de vida.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Cemetery Reaper": {
+  "en": {
+   "id": "c179dd0e-4904-457f-b11e-7d267d0bb9eb",
+   "frente": "imagens/c179dd0e-4904-457f-b11e-7d267d0bb9eb/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "7e3f41bb-ed0c-43d5-a513-648e6bf83a67",
+   "frente": "imagens/7e3f41bb-ed0c-43d5-a513-648e6bf83a67/front.png",
+   "verso": null,
+   "nome": "Colhedor de Cemitério",
+   "tipo": "Criatura — Zumbi",
+   "texto": "As outras criaturas Zumbi que você controla recebem +1/+1.\n{2}{B}, {T}: Exile o card de criatura alvo de um cemitério. Crie uma ficha de criatura Zumbi preta 2/2.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Death Baron": {
+  "en": {
+   "id": "ddfc57da-6cfd-4b81-8fc0-51270edc0200",
+   "frente": "imagens/ddfc57da-6cfd-4b81-8fc0-51270edc0200/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "50121e25-41f8-4fd0-be79-787458576d50",
+   "frente": "imagens/50121e25-41f8-4fd0-be79-787458576d50/front.png",
+   "verso": null,
+   "nome": "Barão da Morte",
+   "tipo": "Criatura — Zumbi Mago",
+   "texto": "Os Esqueletos que você controla e outros Zumbis que você controla recebem +1/+1 e têm toque mortífero.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Noxious Ghoul": {
+  "en": {
+   "id": "551de81f-35e9-4467-b575-ae5bf79d4e7c",
+   "frente": "imagens/551de81f-35e9-4467-b575-ae5bf79d4e7c/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "a4172883-502f-4b15-9757-f32bf32d21db",
+   "frente": null,
+   "verso": null,
+   "nome": "Carniçal Mefítico",
+   "tipo": "Criatura — Zumbi",
+   "texto": "Toda vez que Carniçal Mefítico ou outro Zumbi entrar em jogo, todas as criaturas que não forem Zumbis recebem -1/-1 até o final do turno.",
+   "faces": null,
+   "reserva": true
+  }
+ },
+ "Charcoal Diamond": {
+  "en": {
+   "id": "970593fe-747f-48d3-a964-e18a1fa2cf0f",
+   "frente": "imagens/970593fe-747f-48d3-a964-e18a1fa2cf0f/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "be3396d8-6c23-4ff9-93f5-57f83f112323",
+   "frente": "imagens/be3396d8-6c23-4ff9-93f5-57f83f112323/front.png",
+   "verso": null,
+   "nome": "Diamante de Carvão",
+   "tipo": "Artefato",
+   "texto": "Diamante de Carvão entra no campo de batalha virado.\n{T}: Adicione {B}.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Liliana's Reaver": {
+  "en": {
+   "id": "2ee81094-87e3-45a2-8ad8-2610ca52d357",
+   "frente": "imagens/2ee81094-87e3-45a2-8ad8-2610ca52d357/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "65bb5ade-0f79-4376-91e1-c4f6cf7438d6",
+   "frente": "imagens/65bb5ade-0f79-4376-91e1-c4f6cf7438d6/front.png",
+   "verso": null,
+   "nome": "Despojador de Liliana",
+   "tipo": "Criatura — Zumbi",
+   "texto": "Toque mortífero (Qualquer quantidade de dano que esta criatura cause a uma criatura é suficiente para destruí-la.)Toda vez que Despojador de Liliana causa dano de combate a um jogador, aquele jogador descarta um card e você coloca uma ficha de criatura preta 2/2 do tipo Zumbi no campo de batalha virada.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Oversold Cemetery": {
+  "en": {
+   "id": "21733d61-25c1-4844-9385-a2c01f82ea9f",
+   "frente": "imagens/21733d61-25c1-4844-9385-a2c01f82ea9f/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "6353bc36-27dc-480d-8652-18f9e5f33161",
+   "frente": "imagens/6353bc36-27dc-480d-8652-18f9e5f33161/front.png",
+   "verso": null,
+   "nome": "Cemitério Lotado",
+   "tipo": "Encantamento",
+   "texto": "No início de sua manutenção, se você tiver quatro ou mais cards de criatura em seu cemitério, você pode devolver o card de criatura alvo de seu cemitério para sua mão.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Soulless One": {
+  "en": {
+   "id": "cb759501-d634-430b-b5c9-24338e2d7367",
+   "frente": "imagens/cb759501-d634-430b-b5c9-24338e2d7367/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "d657502b-f676-4259-9d51-afc7c938e7bc",
+   "frente": null,
+   "verso": null,
+   "nome": "O Desalmado",
+   "tipo": "Criatura — Avatar Zumbi",
+   "texto": "O poder e a resistência de O Desalmado são iguais ao número de Zumbis em jogo mais o número de cards de Zumbis em todos os cemitérios.",
+   "faces": null,
+   "reserva": true
+  }
+ },
+ "Demon of Catastrophes": {
+  "en": {
+   "id": "d50f9563-7bf8-4c3c-ac82-327221e56551",
+   "frente": "imagens/d50f9563-7bf8-4c3c-ac82-327221e56551/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "4bb76a8c-94bd-4194-958c-b6933fbe13be",
+   "frente": "imagens/4bb76a8c-94bd-4194-958c-b6933fbe13be/front.png",
+   "verso": null,
+   "nome": "Demônio das Catástrofes",
+   "tipo": "Criatura — Demônio",
+   "texto": "Como custo adicional para conjurar esta mágica, sacrifique uma criatura.\nVoar, atropelar",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Kalitas, Traitor of Ghet": {
+  "en": {
+   "id": "d188a93a-cd9b-4a0b-80fb-738907b228cf",
+   "frente": "imagens/d188a93a-cd9b-4a0b-80fb-738907b228cf/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "8f79cf5d-c397-4a60-bd8b-1018826c3335",
+   "frente": "imagens/8f79cf5d-c397-4a60-bd8b-1018826c3335/front.png",
+   "verso": null,
+   "nome": "Kalitas, Traidor de Ghet",
+   "tipo": "Criatura Lendária — Vampiro Guerreiro",
+   "texto": "Vínculo com a vida\nSe uma criatura que um oponente controla que não seja uma ficha morreria, em vez disso, exile aquele card e coloque no campo de batalha uma ficha de criatura preta 2/2 do tipo Zumbi.\n{2}{B}, Sacrifique outro Vampiro ou Zumbi: Coloque dois marcadores +1/+1 em Kalitas, Traidor de Ghet.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Endless Ranks of the Dead": {
+  "en": {
+   "id": "859a3a66-dae9-4a67-936d-2681397a6bc2",
+   "frente": "imagens/859a3a66-dae9-4a67-936d-2681397a6bc2/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "2d699e27-463a-4f6d-88e1-ce1d591b061e",
+   "frente": "imagens/2d699e27-463a-4f6d-88e1-ce1d591b061e/front.png",
+   "verso": null,
+   "nome": "Fileira Interminável de Mortos",
+   "tipo": "Encantamento",
+   "texto": "No início de sua manutenção, crie X fichas de criatura Zumbi preta 2/2, sendo X a metade da quantidade de Zumbis que você controla, arredondada para baixo.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Necrotic Hex": {
+  "en": {
+   "id": "815334d8-8f4b-47dd-b24a-07ac297e14c8",
+   "frente": "imagens/815334d8-8f4b-47dd-b24a-07ac297e14c8/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "b1a1ce08-0c92-45cb-b5ab-c4414235bba5",
+   "frente": "imagens/b1a1ce08-0c92-45cb-b5ab-c4414235bba5/front.png",
+   "verso": null,
+   "nome": "Bruxaria Necrótica",
+   "tipo": "Feitiço",
+   "texto": "Cada jogador sacrifica seis criaturas. Você cria seis fichas de criatura preta 2/2 do tipo Zumbi viradas.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Crippling Fear": {
+  "en": {
+   "id": "d74c3f9b-5df9-4d74-8c27-a2a9966bfe8c",
+   "frente": "imagens/d74c3f9b-5df9-4d74-8c27-a2a9966bfe8c/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "61691af0-65ef-4320-9c68-88ff94de2227",
+   "frente": "imagens/61691af0-65ef-4320-9c68-88ff94de2227/front.png",
+   "verso": null,
+   "nome": "Medo Debilitante",
+   "tipo": "Feitiço",
+   "texto": "Escolha um tipo de criatura. As criaturas que não são do tipo escolhido recebem -3/-3 até o final do turno.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Champion of the Perished": {
+  "en": {
+   "id": "d3bfa5bc-bcb9-4649-96b8-3cded84a25a2",
+   "frente": "imagens/d3bfa5bc-bcb9-4649-96b8-3cded84a25a2/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "c83c08a9-9abe-4dc9-bbb7-e1d6191db00d",
+   "frente": "imagens/c83c08a9-9abe-4dc9-bbb7-e1d6191db00d/front.png",
+   "verso": null,
+   "nome": "Campeão dos Perecidos",
+   "tipo": "Criatura — Zumbi",
+   "texto": "Toda vez que outro Zumbi entrar no campo de batalha sob seu controle, coloque um marcador +1/+1 em Campeão dos Perecidos.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Undead Butler": {
+  "en": {
+   "id": "da046d5a-9a44-4efb-af0f-229898edc051",
+   "frente": "imagens/da046d5a-9a44-4efb-af0f-229898edc051/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "d120e8d9-429d-4ff3-b8fd-84c31654ec8f",
+   "frente": "imagens/d120e8d9-429d-4ff3-b8fd-84c31654ec8f/front.png",
+   "verso": null,
+   "nome": "Mordomo Morto-vivo",
+   "tipo": "Criatura — Zumbi",
+   "texto": "Quando Mordomo Morto-vivo entrar no campo de batalha, triture três cards. (Coloque os três cards do topo de seu grimório em seu cemitério.)\nQuando Mordomo Morto-vivo morre, você pode exilá-lo. Quando fizer isso, devolva o card de criatura alvo de seu cemitério para sua mão.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Headless Rider": {
+  "en": {
+   "id": "54280b46-470f-46bd-9407-5bb5e34302b1",
+   "frente": "imagens/54280b46-470f-46bd-9407-5bb5e34302b1/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "008bc58f-3b20-4308-8719-e5385bf5e07c",
+   "frente": "imagens/008bc58f-3b20-4308-8719-e5385bf5e07c/front.png",
+   "verso": null,
+   "nome": "Ginete sem Cabeça",
+   "tipo": "Criatura — Zumbi",
+   "texto": "Toda vez que Ginete sem Cabeça ou outro Zumbi não ficha que você controla morrer, crie uma ficha de criatura Zumbi preta 2/2.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Razorlash Transmogrant": {
+  "en": {
+   "id": "a789aea2-bf82-430e-ab6d-8beac52964a8",
+   "frente": "imagens/a789aea2-bf82-430e-ab6d-8beac52964a8/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "db9e0573-ce4e-48cd-98a7-f27e6fb08d15",
+   "frente": "imagens/db9e0573-ce4e-48cd-98a7-f27e6fb08d15/front.png",
+   "verso": null,
+   "nome": "Transmutado Laminaçoite",
+   "tipo": "Criatura Artefato — Zumbi",
+   "texto": "Transmutado Laminaçoite não pode bloquear.\n{4}{B}{B}: Devolva Transmutado Laminaçoite de seu cemitério para o campo de batalha com um marcador +1/+1. Esta habilidade custa {4} a menos para ser ativada se um oponente controla quatro ou mais terrenos não básicos.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Consuming Corruption": {
+  "en": {
+   "id": "1d175191-6946-434d-90c8-73412472a543",
+   "frente": "imagens/1d175191-6946-434d-90c8-73412472a543/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "f159dccc-25e0-4411-b211-e36919ee8279",
+   "frente": "imagens/f159dccc-25e0-4411-b211-e36919ee8279/front.png",
+   "verso": null,
+   "nome": "Corrupção Consumidora",
+   "tipo": "Mágica Instantânea",
+   "texto": "Corrupção Consumidora causa X pontos de dano à criatura ou ao planeswalker alvo e você ganha X pontos de vida, sendo X o número de Pântanos que você controla.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Consumed by Greed": {
+  "en": {
+   "id": "dc334dac-bd40-44f2-8550-c80f73056ade",
+   "frente": "imagens/dc334dac-bd40-44f2-8550-c80f73056ade/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Withering Torment": {
+  "en": {
+   "id": "0868f94e-235d-4f65-a7af-8aacd58dd61e",
+   "frente": "imagens/0868f94e-235d-4f65-a7af-8aacd58dd61e/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Zul Ashur, Lich Lord": {
+  "en": {
+   "id": "e92dcd69-8978-4afe-b83d-c9224dfb6a9e",
+   "frente": "imagens/e92dcd69-8978-4afe-b83d-c9224dfb6a9e/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Bloodline Bidding": {
+  "en": {
+   "id": "30644004-5ff9-4b74-804e-502991302d6b",
+   "frente": "imagens/30644004-5ff9-4b74-804e-502991302d6b/front.png",
+   "verso": null
+  },
+  "pt": null
  }
 }

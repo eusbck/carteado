@@ -1,0 +1,292 @@
+{
+ "formato": 1,
+ "id": "HAKhAUw1_Xqr0ZxAoQgsCg",
+ "ordem": 8,
+ "nome": "Wretched Ranks (Foundations Commander Precon Decklist)",
+ "link": "https://moxfield.com/decks/HAKhAUw1_Xqr0ZxAoQgsCg",
+ "importadoEm": "2026-10-08T06:08:11.043Z",
+ "verificadoEm": "2026-10-08T06:08:11.043Z",
+ "atual": null,
+ "preparacao": {
+  "comandante": "Ghoulcaller Gisa",
+  "cartas": [
+   {
+    "nome": "Swamp",
+    "quantidade": 32
+   },
+   {
+    "nome": "Arcane Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ayara, First of Locthwain",
+    "quantidade": 1
+   },
+   {
+    "nome": "Castle Locthwain",
+    "quantidade": 1
+   },
+   {
+    "nome": "Heraldic Banner",
+    "quantidade": 1
+   },
+   {
+    "nome": "Witch's Cottage",
+    "quantidade": 1
+   },
+   {
+    "nome": "Barren Moor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bojuka Bog",
+    "quantidade": 1
+   },
+   {
+    "nome": "Carrion Feeder",
+    "quantidade": 1
+   },
+   {
+    "nome": "Exsanguinate",
+    "quantidade": 1
+   },
+   {
+    "nome": "Go for the Throat",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gravecrawler",
+    "quantidade": 1
+   },
+   {
+    "nome": "Grave Titan",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gray Merchant of Asphodel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lord of the Accursed",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mind Stone",
+    "quantidade": 1
+   },
+   {
+    "nome": "Night's Whisper",
+    "quantidade": 1
+   },
+   {
+    "nome": "Phyrexian Arena",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tendrils of Corruption",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tragic Slip",
+    "quantidade": 1
+   },
+   {
+    "nome": "Wight of Precinct Six",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ambition's Cost",
+    "quantidade": 1
+   },
+   {
+    "nome": "Village Rites",
+    "quantidade": 1
+   },
+   {
+    "nome": "Liliana's Mastery",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cryptbreaker",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fleshbag Marauder",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sign in Blood",
+    "quantidade": 1
+   },
+   {
+    "nome": "Swiftfoot Boots",
+    "quantidade": 1
+   },
+   {
+    "nome": "Geier Reach Sanitarium",
+    "quantidade": 1
+   },
+   {
+    "nome": "Memorial to Folly",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mutilate",
+    "quantidade": 1
+   },
+   {
+    "nome": "Army of the Damned",
+    "quantidade": 1
+   },
+   {
+    "nome": "Diregraf Colossus",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cemetery Recruitment",
+    "quantidade": 1
+   },
+   {
+    "nome": "Graf Harvest",
+    "quantidade": 1
+   },
+   {
+    "nome": "Midnight Reaper",
+    "quantidade": 1
+   },
+   {
+    "nome": "Graveborn Muse",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lord of the Undead",
+    "quantidade": 1
+   },
+   {
+    "nome": "Undead Warchief",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vengeful Dead",
+    "quantidade": 1
+   },
+   {
+    "nome": "God-Eternal Bontu",
+    "quantidade": 1
+   },
+   {
+    "nome": "Eternal Taskmaster",
+    "quantidade": 1
+   },
+   {
+    "nome": "Undead Augur",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bontu's Monument",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cemetery Reaper",
+    "quantidade": 1
+   },
+   {
+    "nome": "Death Baron",
+    "quantidade": 1
+   },
+   {
+    "nome": "Noxious Ghoul",
+    "quantidade": 1
+   },
+   {
+    "nome": "Charcoal Diamond",
+    "quantidade": 1
+   },
+   {
+    "nome": "Liliana's Reaver",
+    "quantidade": 1
+   },
+   {
+    "nome": "Oversold Cemetery",
+    "quantidade": 1
+   },
+   {
+    "nome": "Soulless One",
+    "quantidade": 1
+   },
+   {
+    "nome": "Demon of Catastrophes",
+    "quantidade": 1
+   },
+   {
+    "nome": "Kalitas, Traitor of Ghet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Endless Ranks of the Dead",
+    "quantidade": 1
+   },
+   {
+    "nome": "Necrotic Hex",
+    "quantidade": 1
+   },
+   {
+    "nome": "Crippling Fear",
+    "quantidade": 1
+   },
+   {
+    "nome": "Champion of the Perished",
+    "quantidade": 1
+   },
+   {
+    "nome": "Undead Butler",
+    "quantidade": 1
+   },
+   {
+    "nome": "Headless Rider",
+    "quantidade": 1
+   },
+   {
+    "nome": "Razorlash Transmogrant",
+    "quantidade": 1
+   },
+   {
+    "nome": "Consuming Corruption",
+    "quantidade": 1
+   },
+   {
+    "nome": "Consumed by Greed",
+    "quantidade": 1
+   },
+   {
+    "nome": "Patchwork Banner",
+    "quantidade": 1
+   },
+   {
+    "nome": "Withering Torment",
+    "quantidade": 1
+   },
+   {
+    "nome": "Zul Ashur, Lich Lord",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bloodline Bidding",
+    "quantidade": 1
+   },
+   {
+    "nome": "Feed the Swarm",
+    "quantidade": 1
+   }
+  ],
+  "origem": {
+   "versao": 21,
+   "atualizadoEm": "2026-10-08T01:23:54.147Z"
+  },
+  "desde": "2026-10-08T06:08:11.043Z"
+ }
+}
