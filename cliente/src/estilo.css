@@ -272,6 +272,10 @@ button.zona { cursor: pointer; }
 .slot .carta-pt, .slot .carta-etiquetas { display: none; }
 .slot-pilha > .carta + .carta { inset: auto; left: 4px; top: 4px; }
 button.zona:hover .slot { border-color: rgba(255, 255, 255, .45); }
+.emblemas { display: flex; flex-direction: column; gap: 4px; max-width: 120px; }
+.emblema { display: flex; align-items: center; gap: 5px; font: inherit; font-size: 11px; font-weight: 700; line-height: 1.2; text-align: left; color: #fff; background: rgba(12, 14, 13, .85); border: 1px solid var(--amarelo); border-radius: 8px; padding: 4px 7px; cursor: help; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 120px; }
+.emblema:hover { background: rgba(40, 34, 10, .95); }
+.emblema-icone { color: var(--amarelo); }
 .slot-imposto { position: absolute; left: 50%; bottom: -6px; transform: translateX(-50%); font-size: 10.5px; font-weight: 800; padding: 0 6px; line-height: 17px; border-radius: 6px; background: var(--amarelo); color: #1e1500; white-space: nowrap; z-index: 2; }
 .compacta .zonas { padding: 0 10px 6px; }
 .compacta .zonas-grupo { gap: 8px; }

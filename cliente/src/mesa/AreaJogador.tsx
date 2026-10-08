@@ -88,6 +88,8 @@ function useTamanho<T extends HTMLElement>(): [{ current: T | null }, { w: numbe
 
 export function AreaJogador(p: AreaProps) {
   const { j } = p;
+  const comandantes = p.comandantes.filter((o) => !o.emblem);
+  const emblemas = p.comandantes.filter((o) => o.emblem);
   const [ref, tam] = useTamanho<HTMLElement>();
 
   // medidas que dependem do tamanho da área
@@ -183,11 +185,26 @@ export function AreaJogador(p: AreaProps) {
         <div class="zonas-grupo">
           <div class="zona" aria-label="Zona de comando">
             <span class="zona-rotulo">Comando</span>
-            <div class={`slot ${p.comandantes.length > 1 ? 'slot-pilha' : ''}`}>
-              {p.comandantes.map((o) => <Carta key={o.id} o={o} realce={p.realce(o)} onClick={p.onCarta} onZoom={p.onZoom} onMenu={p.onMenuCarta} />)}
+            <div class={`slot ${comandantes.length > 1 ? 'slot-pilha' : ''}`}>
+              {comandantes.map((o) => <Carta key={o.id} o={o} realce={p.realce(o)} onClick={p.onCarta} onZoom={p.onZoom} onMenu={p.onMenuCarta} />)}
               {j.commanderTax > 0 && <span class="slot-imposto" title="Imposto de comandante (CR 903.8)">+{j.commanderTax}</span>}
             </div>
           </div>
+          {/* emblemas (CR 114): não são cartas; o nome e as habilidades aparecem no zoom */}
+          {emblemas.length > 0 && (
+            <div class="zona" aria-label="Emblemas">
+              <span class="zona-rotulo">{emblemas.length > 1 ? <>Emblemas <b>({emblemas.length})</b></> : 'Emblema'}</span>
+              <div class="emblemas">
+                {emblemas.map((o) => (
+                  <button key={o.id} type="button" class="emblema" aria-label={`Emblema: ${o.abilities.join(' ')}`}
+                    onMouseEnter={(e) => p.onZoom(o, (e.currentTarget as HTMLElement).getBoundingClientRect())} onMouseLeave={() => p.onZoom(null)}
+                    onClick={(e) => p.onZoom(o, (e.currentTarget as HTMLElement).getBoundingClientRect())}>
+                    <span class="emblema-icone" aria-hidden="true">✦</span>{o.name.replace(/^Emblema d[aeo] /, '')}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
         {!p.eu && (
           <div class="zona" aria-label={`Mão de ${j.name}`}>

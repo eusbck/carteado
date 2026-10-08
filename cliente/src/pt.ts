@@ -11,7 +11,7 @@ const PALAVRAS: Record<string, string> = {
   infect: 'infectar', wither: 'murchar', prowess: 'destreza', changeling: 'polimorfo', convoke: 'convocar', landwalk: 'travessia',
   explore: 'explorar', toxic: 'tóxico', gift: 'presente', impending: 'iminente', undaunted: 'destemido', eminence: 'eminência',
   plainscycling: 'ciclagem de planície', 'basic landcycling': 'ciclagem de terreno básico', transform: 'transformar',
-  surveil: 'vigiar',
+  surveil: 'vigiar', cantBlock: 'não pode bloquear',
 };
 
 export function palavraChave(k: string): string {
