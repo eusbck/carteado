@@ -787,3 +787,8 @@ Precisa de você:
   `git remote add origin <endereço>` e `git push -u origin main` (cerca de 1,1 GB). Depois, convidar os amigos em
   *Settings → Collaborators*.
 - Se quiser, apagar as worktrees antigas (instruções na seção anterior) e a pasta vazia `jogo/.git`, com o VS Code fechado.
+
+Enviado em 08/10/2026 para **https://github.com/eusbck/carteado** (privado). O GitHub tinha criado um README de uma
+linha; ele foi juntado ao histórico (merge), e o README do projeto ficou. Este projeto envia com a conta `eusbck`
+(o endereço do `origin` leva o usuário); a conta guardada como padrão no computador é outra (`computer-co`).
+Falta: convidar os amigos em *Settings → Collaborators*.
