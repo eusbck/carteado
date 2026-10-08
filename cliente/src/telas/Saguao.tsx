@@ -119,7 +119,10 @@ export function Saguao() {
         <section class="sala-dir">
           <div class="sala-dir-topo">
             <h2 class="titulo-verde">Escolha seu deck</h2>
-            <span class="suave">{e.decks.length} decks da mesa</span>
+            <span class="sala-dir-decks">
+              <span class="suave">{e.decks.length} decks da mesa</span>
+              <button type="button" class="botao pequeno" onClick={() => void loja.abrirDecks()} title="Importar um deck pelo link do Moxfield ou atualizar os da mesa">Decks</button>
+            </span>
           </div>
           <div class="decks">
             {[...e.decks].sort((a, b) => a.nome.localeCompare(b.nome)).map((d) => <Deck key={d.id} d={d} ativo={d.id === meuDeck} onClick={() => loja.enviar({ t: 'deck', deck: d.id })} />)}

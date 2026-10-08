@@ -149,7 +149,8 @@ class Loja {
 
   voltarDoCatalogo(): void {
     const andando = this.e.minhaTarefaEstado?.estado === 'andando';
-    this.mudar({ fase: 'inicio', minhaTarefa: andando ? this.e.minhaTarefa : null, minhaTarefaEstado: andando ? this.e.minhaTarefaEstado : null });
+    // aberta pelo saguão: volta para a sala
+    this.mudar({ fase: this.e.sala ? 'sala' : 'inicio', minhaTarefa: andando ? this.e.minhaTarefa : null, minhaTarefaEstado: andando ? this.e.minhaTarefaEstado : null });
   }
 
   /** guarda a tarefa de qualquer pessoa e, se for a desta tela, o estado dela */
@@ -213,7 +214,8 @@ class Loja {
     switch (m.t) {
       case 'sala':
         guardarSala({ codigo: m.sala.codigo, token: m.token });
-        this.mudar({ sala: m.sala, voce: m.voce, fase: 'sala', vista: m.sala.estado === 'espera' ? null : this.e.vista });
+        // a tela Decks aberta pelo saguão continua aberta enquanto a partida não começa (alguém entrou, trocou de deck…)
+        this.mudar({ sala: m.sala, voce: m.voce, fase: this.e.fase === 'decks' && m.sala.estado !== 'jogando' ? 'decks' : 'sala', vista: m.sala.estado === 'espera' ? null : this.e.vista });
         break;
       case 'jogo':
         this.mudar({

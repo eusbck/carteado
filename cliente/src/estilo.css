@@ -136,6 +136,7 @@ label { display: grid; gap: 6px; color: var(--suave); font-size: 13px; font-weig
 .sala-acoes .botao.grande { flex: 1; }
 .sala-dir { padding: 34px 30px; display: flex; flex-direction: column; gap: 18px; min-width: 0; }
 .sala-dir-topo { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.sala-dir-decks { display: flex; align-items: baseline; gap: 12px; }
 .titulo-verde { color: var(--verde); font-size: 21px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; }
 .decks { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; }
 .deck { position: relative; aspect-ratio: 16 / 11; border-radius: 14px; overflow: hidden; background: var(--painel-2) center 30% / cover; border: 1.5px solid var(--linha-forte); cursor: pointer; padding: 0; text-align: left; color: var(--texto); }
