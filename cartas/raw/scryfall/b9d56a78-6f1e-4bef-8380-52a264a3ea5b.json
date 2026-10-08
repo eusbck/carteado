@@ -1,0 +1,131 @@
+{
+  "object": "card",
+  "id": "b9d56a78-6f1e-4bef-8380-52a264a3ea5b",
+  "oracle_id": "163baf58-b35d-4f2b-aa53-8384b8b5800a",
+  "multiverse_ids": [
+    518853
+  ],
+  "name": "Replication Technique",
+  "printed_name": "Técnica de Replicação",
+  "lang": "pt",
+  "released_at": "2021-04-23",
+  "uri": "https://api.scryfall.com/cards/b9d56a78-6f1e-4bef-8380-52a264a3ea5b",
+  "scryfall_uri": "https://scryfall.com/card/c21/31/pt/t%C3%A9cnica-de-replica%C3%A7%C3%A3o-(replication-technique)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-01T06:42:04Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/b/9/b9d56a78-6f1e-4bef-8380-52a264a3ea5b.jpg?1782888124",
+    "normal": "https://cards.scryfall.io/normal/front/b/9/b9d56a78-6f1e-4bef-8380-52a264a3ea5b.jpg?1782888124",
+    "large": "https://cards.scryfall.io/large/front/b/9/b9d56a78-6f1e-4bef-8380-52a264a3ea5b.jpg?1782888124",
+    "png": "https://cards.scryfall.io/png/front/b/9/b9d56a78-6f1e-4bef-8380-52a264a3ea5b.png?1782888124",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/b/9/b9d56a78-6f1e-4bef-8380-52a264a3ea5b.jpg?1782888124",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/b/9/b9d56a78-6f1e-4bef-8380-52a264a3ea5b.jpg?1782888124",
+    "thumb": "https://cards.scryfall.io/thumb/front/b/9/b9d56a78-6f1e-4bef-8380-52a264a3ea5b.webp?1782888124",
+    "grid": "https://cards.scryfall.io/grid/front/b/9/b9d56a78-6f1e-4bef-8380-52a264a3ea5b.webp?1782888124",
+    "display": "https://cards.scryfall.io/display/front/b/9/b9d56a78-6f1e-4bef-8380-52a264a3ea5b.webp?1782888124",
+    "art": "https://cards.scryfall.io/art/front/b/9/b9d56a78-6f1e-4bef-8380-52a264a3ea5b.webp?1782888124",
+    "crop": "https://cards.scryfall.io/crop/front/b/9/b9d56a78-6f1e-4bef-8380-52a264a3ea5b.webp?1782888124"
+  },
+  "mana_cost": "{4}{U}",
+  "cmc": 5.0,
+  "type_line": "Sorcery",
+  "printed_type_line": "Feitiço",
+  "oracle_text": "Demonstrate (When you cast this spell, you may copy it. If you do, choose an opponent to also copy it. Players may choose new targets for their copies.)\nCreate a token that's a copy of target permanent you control.",
+  "printed_text": "Demonstrar (Quando você conjura esta mágica, você pode copiá-la. Se fizer isso, escolha um oponente para copiá-la também. Os jogadores podem escolher novos alvos para as próprias cópias.)\nCrie uma ficha que seja uma cópia da permanente alvo que você controla.",
+  "colors": [
+    "U"
+  ],
+  "color_identity": [
+    "U"
+  ],
+  "keywords": [
+    "Demonstrate"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "27bf6dbd-a9e1-4904-afa7-d28fc7745c4f",
+  "set": "c21",
+  "set_name": "Commander 2021",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/27bf6dbd-a9e1-4904-afa7-d28fc7745c4f",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Ac21&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/c21?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/b9d56a78-6f1e-4bef-8380-52a264a3ea5b/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A163baf58-b35d-4f2b-aa53-8384b8b5800a&unique=prints",
+  "collector_number": "31",
+  "digital": false,
+  "rarity": "rare",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Viko Menezes",
+  "artist_ids": [
+    "92dfef2a-d0fa-42fd-bdd6-bc4c9286cb56"
+  ],
+  "illustration_id": "d9339c89-3d98-4cce-bf01-e0095dc2d418",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 4287,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=518853&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DReplication%2BTechnique",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DReplication%2BTechnique",
+    "edhrec": "https://edhrec.com/route/?cc=Replication+Technique"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DReplication%2BTechnique%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Replication+Technique&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Replication+Technique&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

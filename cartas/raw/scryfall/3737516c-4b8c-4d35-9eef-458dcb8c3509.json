@@ -1,0 +1,137 @@
+{
+  "object": "card",
+  "id": "3737516c-4b8c-4d35-9eef-458dcb8c3509",
+  "oracle_id": "faa01ed1-ccfa-4e58-951f-cd81f9068027",
+  "multiverse_ids": [
+    622501
+  ],
+  "cardmarket_id": 717370,
+  "name": "Mortify",
+  "printed_name": "Mortificar",
+  "lang": "pt",
+  "released_at": "2023-06-23",
+  "uri": "https://api.scryfall.com/cards/3737516c-4b8c-4d35-9eef-458dcb8c3509",
+  "scryfall_uri": "https://scryfall.com/card/ltc/269/pt/mortificar-(mortify)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T11:26:33Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/3/7/3737516c-4b8c-4d35-9eef-458dcb8c3509.jpg?1782818793",
+    "normal": "https://cards.scryfall.io/normal/front/3/7/3737516c-4b8c-4d35-9eef-458dcb8c3509.jpg?1782818793",
+    "large": "https://cards.scryfall.io/large/front/3/7/3737516c-4b8c-4d35-9eef-458dcb8c3509.jpg?1782818793",
+    "png": "https://cards.scryfall.io/png/front/3/7/3737516c-4b8c-4d35-9eef-458dcb8c3509.png?1782818793",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/3/7/3737516c-4b8c-4d35-9eef-458dcb8c3509.jpg?1782818793",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/3/7/3737516c-4b8c-4d35-9eef-458dcb8c3509.jpg?1782818793",
+    "thumb": "https://cards.scryfall.io/thumb/front/3/7/3737516c-4b8c-4d35-9eef-458dcb8c3509.webp?1782818793",
+    "grid": "https://cards.scryfall.io/grid/front/3/7/3737516c-4b8c-4d35-9eef-458dcb8c3509.webp?1782818793",
+    "display": "https://cards.scryfall.io/display/front/3/7/3737516c-4b8c-4d35-9eef-458dcb8c3509.webp?1782818793",
+    "art": "https://cards.scryfall.io/art/front/3/7/3737516c-4b8c-4d35-9eef-458dcb8c3509.webp?1782818793",
+    "crop": "https://cards.scryfall.io/crop/front/3/7/3737516c-4b8c-4d35-9eef-458dcb8c3509.webp?1782818793"
+  },
+  "mana_cost": "{1}{W}{B}",
+  "cmc": 3.0,
+  "type_line": "Instant",
+  "printed_type_line": "Mágica Instantânea",
+  "oracle_text": "Destroy target creature or enchantment.",
+  "printed_text": "Destrua a criatura ou o encantamento alvo.",
+  "colors": [
+    "B",
+    "W"
+  ],
+  "color_identity": [
+    "B",
+    "W"
+  ],
+  "keywords": [],
+  "legalities": {
+    "standard": "legal",
+    "future": "legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "e567c19c-0fe4-446e-a7bf-fce8a150cd2e",
+  "set": "ltc",
+  "set_name": "Tales of Middle-earth Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/e567c19c-0fe4-446e-a7bf-fce8a150cd2e",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Altc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/ltc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/3737516c-4b8c-4d35-9eef-458dcb8c3509/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Afaa01ed1-ccfa-4e58-951f-cd81f9068027&unique=prints",
+  "collector_number": "269",
+  "digital": false,
+  "rarity": "uncommon",
+  "flavor_text": "Logo os coelhos estavam cortados e cozinhavam nas panelas com as ervas.",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Ilker Yildiz",
+  "artist_ids": [
+    "304b49a5-1469-469f-888f-870acea0883d"
+  ],
+  "illustration_id": "b3059631-f2cb-4ba0-8642-3698ea19a8cd",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "triangle",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "promo_types": [
+    "universesbeyond"
+  ],
+  "edhrec_rank": 575,
+  "penny_rank": 3286,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": "0.20",
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=622501&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DMortify",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DMortify",
+    "edhrec": "https://edhrec.com/route/?cc=Mortify"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DMortify%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=717370&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Mortify&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

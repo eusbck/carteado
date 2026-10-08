@@ -1,0 +1,264 @@
+{
+  "object": "card",
+  "id": "c72ceae7-72d6-41dc-82cc-b86e845d7aa6",
+  "oracle_id": "37c4adc8-7455-4725-95fb-169a8b0254e5",
+  "multiverse_ids": [],
+  "name": "Pest",
+  "lang": "en",
+  "released_at": "2026-04-24",
+  "uri": "https://api.scryfall.com/cards/c72ceae7-72d6-41dc-82cc-b86e845d7aa6",
+  "scryfall_uri": "https://scryfall.com/card/tsoc/23/pest?utm_source=api",
+  "layout": "token",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T00:46:08Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/c/7/c72ceae7-72d6-41dc-82cc-b86e845d7aa6.jpg?1783903568",
+    "normal": "https://cards.scryfall.io/normal/front/c/7/c72ceae7-72d6-41dc-82cc-b86e845d7aa6.jpg?1783903568",
+    "large": "https://cards.scryfall.io/large/front/c/7/c72ceae7-72d6-41dc-82cc-b86e845d7aa6.jpg?1783903568",
+    "png": "https://cards.scryfall.io/png/front/c/7/c72ceae7-72d6-41dc-82cc-b86e845d7aa6.png?1783903568",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/c/7/c72ceae7-72d6-41dc-82cc-b86e845d7aa6.jpg?1783903568",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/c/7/c72ceae7-72d6-41dc-82cc-b86e845d7aa6.jpg?1783903568",
+    "thumb": "https://cards.scryfall.io/thumb/front/c/7/c72ceae7-72d6-41dc-82cc-b86e845d7aa6.webp?1783903568",
+    "grid": "https://cards.scryfall.io/grid/front/c/7/c72ceae7-72d6-41dc-82cc-b86e845d7aa6.webp?1783903568",
+    "display": "https://cards.scryfall.io/display/front/c/7/c72ceae7-72d6-41dc-82cc-b86e845d7aa6.webp?1783903568",
+    "art": "https://cards.scryfall.io/art/front/c/7/c72ceae7-72d6-41dc-82cc-b86e845d7aa6.webp?1783903568",
+    "crop": "https://cards.scryfall.io/crop/front/c/7/c72ceae7-72d6-41dc-82cc-b86e845d7aa6.webp?1783903568"
+  },
+  "mana_cost": "",
+  "cmc": 0.0,
+  "type_line": "Token Creature — Pest",
+  "oracle_text": "When this creature dies, you gain 1 life.",
+  "power": "1",
+  "toughness": "1",
+  "colors": [
+    "B",
+    "G"
+  ],
+  "color_identity": [
+    "B",
+    "G"
+  ],
+  "keywords": [],
+  "all_parts": [
+    {
+      "object": "related_card",
+      "id": "edc0937e-c39b-4fd5-afc2-7c7f6ce7c8c2",
+      "component": "combo_piece",
+      "name": "Pest Rescuer",
+      "type_line": "Creature — Dryad Druid",
+      "uri": "https://api.scryfall.com/cards/edc0937e-c39b-4fd5-afc2-7c7f6ce7c8c2"
+    },
+    {
+      "object": "related_card",
+      "id": "0dcca120-b72e-4007-98e1-cb22e7b9a705",
+      "component": "combo_piece",
+      "name": "Containment Breach",
+      "type_line": "Sorcery — Lesson",
+      "uri": "https://api.scryfall.com/cards/0dcca120-b72e-4007-98e1-cb22e7b9a705"
+    },
+    {
+      "object": "related_card",
+      "id": "c9b8626d-d3d8-4460-9adf-112f48f173f6",
+      "component": "combo_piece",
+      "name": "Pest Infestation",
+      "type_line": "Sorcery",
+      "uri": "https://api.scryfall.com/cards/c9b8626d-d3d8-4460-9adf-112f48f173f6"
+    },
+    {
+      "object": "related_card",
+      "id": "f4b23f65-3c5a-4911-bf08-dcfc5e844832",
+      "component": "combo_piece",
+      "name": "Sedgemoor Witch",
+      "type_line": "Creature — Human Warlock",
+      "uri": "https://api.scryfall.com/cards/f4b23f65-3c5a-4911-bf08-dcfc5e844832"
+    },
+    {
+      "object": "related_card",
+      "id": "c72ceae7-72d6-41dc-82cc-b86e845d7aa6",
+      "component": "token",
+      "name": "Pest",
+      "type_line": "Token Creature — Pest",
+      "uri": "https://api.scryfall.com/cards/c72ceae7-72d6-41dc-82cc-b86e845d7aa6"
+    },
+    {
+      "object": "related_card",
+      "id": "8ff0f47f-75cb-42b0-ba4d-78522cad9861",
+      "component": "combo_piece",
+      "name": "Hunt for Specimens",
+      "type_line": "Sorcery",
+      "uri": "https://api.scryfall.com/cards/8ff0f47f-75cb-42b0-ba4d-78522cad9861"
+    },
+    {
+      "object": "related_card",
+      "id": "902bc049-5348-47c3-95ad-d9dc935838cb",
+      "component": "combo_piece",
+      "name": "Valentin, Dean of the Vein // Lisette, Dean of the Root",
+      "type_line": "Legendary Creature — Vampire Warlock // Legendary Creature — Human Druid",
+      "uri": "https://api.scryfall.com/cards/902bc049-5348-47c3-95ad-d9dc935838cb"
+    },
+    {
+      "object": "related_card",
+      "id": "42b9e5f2-323c-4747-a8ec-c594f58693b0",
+      "component": "combo_piece",
+      "name": "Pestilent Cauldron // Restorative Burst",
+      "type_line": "Artifact // Sorcery",
+      "uri": "https://api.scryfall.com/cards/42b9e5f2-323c-4747-a8ec-c594f58693b0"
+    },
+    {
+      "object": "related_card",
+      "id": "9c67874d-ddb3-41a3-8262-8edf70c6b517",
+      "component": "combo_piece",
+      "name": "Ribtruss Roaster",
+      "type_line": "Creature — Troll Druid",
+      "uri": "https://api.scryfall.com/cards/9c67874d-ddb3-41a3-8262-8edf70c6b517"
+    },
+    {
+      "object": "related_card",
+      "id": "144c2886-3d37-4a8a-8e37-99ccff66599e",
+      "component": "combo_piece",
+      "name": "Beledros Witherbloom",
+      "type_line": "Legendary Creature — Elder Dragon",
+      "uri": "https://api.scryfall.com/cards/144c2886-3d37-4a8a-8e37-99ccff66599e"
+    },
+    {
+      "object": "related_card",
+      "id": "640f0f9a-926d-422a-84d4-14ea0a76533c",
+      "component": "combo_piece",
+      "name": "Callous Bloodmage",
+      "type_line": "Creature — Vampire Warlock",
+      "uri": "https://api.scryfall.com/cards/640f0f9a-926d-422a-84d4-14ea0a76533c"
+    },
+    {
+      "object": "related_card",
+      "id": "8f43ed93-008d-44db-8204-ef2cc3b7cf8a",
+      "component": "combo_piece",
+      "name": "Tend the Pests",
+      "type_line": "Instant",
+      "uri": "https://api.scryfall.com/cards/8f43ed93-008d-44db-8204-ef2cc3b7cf8a"
+    },
+    {
+      "object": "related_card",
+      "id": "8347f2e8-ef70-4879-860a-12f7cab25902",
+      "component": "combo_piece",
+      "name": "Professor of Zoomancy",
+      "type_line": "Creature — Bear Druid",
+      "uri": "https://api.scryfall.com/cards/8347f2e8-ef70-4879-860a-12f7cab25902"
+    },
+    {
+      "object": "related_card",
+      "id": "c6c3172f-caff-443a-a024-8d5024c0dbf0",
+      "component": "combo_piece",
+      "name": "Feral Appetite",
+      "type_line": "Enchantment",
+      "uri": "https://api.scryfall.com/cards/c6c3172f-caff-443a-a024-8d5024c0dbf0"
+    },
+    {
+      "object": "related_card",
+      "id": "dc060028-e01c-4bc7-8b52-7d0e2a350061",
+      "component": "combo_piece",
+      "name": "Blight Mound",
+      "type_line": "Enchantment",
+      "uri": "https://api.scryfall.com/cards/dc060028-e01c-4bc7-8b52-7d0e2a350061"
+    },
+    {
+      "object": "related_card",
+      "id": "d9e6b777-e0f6-47e1-808e-81850039d891",
+      "component": "combo_piece",
+      "name": "Eccentric Pestfinder // Turn Stones",
+      "type_line": "Creature — Troll Druid // Sorcery",
+      "uri": "https://api.scryfall.com/cards/d9e6b777-e0f6-47e1-808e-81850039d891"
+    },
+    {
+      "object": "related_card",
+      "id": "6267e19a-a777-4767-8433-86b6624362b6",
+      "component": "combo_piece",
+      "name": "Pest Summoning",
+      "type_line": "Sorcery — Lesson",
+      "uri": "https://api.scryfall.com/cards/6267e19a-a777-4767-8433-86b6624362b6"
+    }
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "not_legal",
+    "pauper": "not_legal",
+    "vintage": "not_legal",
+    "penny": "not_legal",
+    "commander": "not_legal",
+    "oathbreaker": "not_legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "not_legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "cb590d57-927c-437a-934c-7f774881d1c9",
+  "set": "tsoc",
+  "set_name": "Secrets of Strixhaven Commander Tokens",
+  "set_type": "token",
+  "set_uri": "https://api.scryfall.com/sets/cb590d57-927c-437a-934c-7f774881d1c9",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Atsoc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/tsoc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/c72ceae7-72d6-41dc-82cc-b86e845d7aa6/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A37c4adc8-7455-4725-95fb-169a8b0254e5&unique=prints",
+  "collector_number": "23",
+  "digital": false,
+  "rarity": "common",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Nino Vecia",
+  "artist_ids": [
+    "21466232-678a-4836-89fd-82cb15f52366"
+  ],
+  "illustration_id": "4c34983e-28f8-43a9-8cf6-28393d756225",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DPest",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DPest",
+    "edhrec": "https://edhrec.com/route/?cc=Pest"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DPest%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Pest&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Pest&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

@@ -1,0 +1,136 @@
+{
+  "object": "card",
+  "id": "93156b96-3e6d-462c-a605-bb5b6aa86476",
+  "oracle_id": "48a99dce-0aa9-4aac-81df-cec5f94c639d",
+  "multiverse_ids": [
+    633977
+  ],
+  "name": "Archon of Sun's Grace",
+  "printed_name": "Arconte da Graça do Sol",
+  "lang": "pt",
+  "released_at": "2023-09-08",
+  "uri": "https://api.scryfall.com/cards/93156b96-3e6d-462c-a605-bb5b6aa86476",
+  "scryfall_uri": "https://scryfall.com/card/woc/61/pt/arconte-da-gra%C3%A7a-do-sol-(archon-of-suns-grace)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T09:45:21Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/9/3/93156b96-3e6d-462c-a605-bb5b6aa86476.jpg?1782812721",
+    "normal": "https://cards.scryfall.io/normal/front/9/3/93156b96-3e6d-462c-a605-bb5b6aa86476.jpg?1782812721",
+    "large": "https://cards.scryfall.io/large/front/9/3/93156b96-3e6d-462c-a605-bb5b6aa86476.jpg?1782812721",
+    "png": "https://cards.scryfall.io/png/front/9/3/93156b96-3e6d-462c-a605-bb5b6aa86476.png?1782812721",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/9/3/93156b96-3e6d-462c-a605-bb5b6aa86476.jpg?1782812721",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/9/3/93156b96-3e6d-462c-a605-bb5b6aa86476.jpg?1782812721",
+    "thumb": "https://cards.scryfall.io/thumb/front/9/3/93156b96-3e6d-462c-a605-bb5b6aa86476.webp?1782812721",
+    "grid": "https://cards.scryfall.io/grid/front/9/3/93156b96-3e6d-462c-a605-bb5b6aa86476.webp?1782812721",
+    "display": "https://cards.scryfall.io/display/front/9/3/93156b96-3e6d-462c-a605-bb5b6aa86476.webp?1782812721",
+    "art": "https://cards.scryfall.io/art/front/9/3/93156b96-3e6d-462c-a605-bb5b6aa86476.webp?1782812721",
+    "crop": "https://cards.scryfall.io/crop/front/9/3/93156b96-3e6d-462c-a605-bb5b6aa86476.webp?1782812721"
+  },
+  "mana_cost": "{2}{W}{W}",
+  "cmc": 4.0,
+  "type_line": "Creature — Archon",
+  "printed_type_line": "Criatura — Arconte",
+  "oracle_text": "Flying\nLifelink (Damage dealt by this creature also causes you to gain that much life.)\nPegasus creatures you control have lifelink.\nConstellation — Whenever an enchantment you control enters, create a 2/2 white Pegasus creature token with flying.",
+  "printed_text": "Voar, vínculo com a vida\nAs criaturas do tipo Pégaso que você controla têm vínculo com a vida.\nConstelação — Toda vez que um encantamento entrar no campo de batalha sob seu controle, crie uma ficha de criatura branca Pégaso 2/2 com voar.",
+  "power": "3",
+  "toughness": "4",
+  "colors": [
+    "W"
+  ],
+  "color_identity": [
+    "W"
+  ],
+  "keywords": [
+    "Flying",
+    "Lifelink",
+    "Constellation"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "51c0814a-2db2-4182-9aac-77340e9a540d",
+  "set": "woc",
+  "set_name": "Wilds of Eldraine Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/51c0814a-2db2-4182-9aac-77340e9a540d",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Awoc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/woc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/93156b96-3e6d-462c-a605-bb5b6aa86476/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A48a99dce-0aa9-4aac-81df-cec5f94c639d&unique=prints",
+  "collector_number": "61",
+  "digital": false,
+  "rarity": "rare",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Matt Stewart",
+  "artist_ids": [
+    "20871267-2d8a-41d5-b03a-be3d557c5734"
+  ],
+  "illustration_id": "12655b1b-2813-4261-bb3d-db90d3f01d28",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 1228,
+  "penny_rank": 2814,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=633977&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DArchon%2Bof%2BSun%2527s%2BGrace",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DArchon%2Bof%2BSun%2527s%2BGrace",
+    "edhrec": "https://edhrec.com/route/?cc=Archon+of+Sun%27s+Grace"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DArchon%2Bof%2BSun%2527s%2BGrace%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Archon+of+Sun%27s+Grace&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Archon+of+Sun%27s+Grace&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

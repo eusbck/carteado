@@ -1,0 +1,133 @@
+{
+  "object": "card",
+  "id": "2dbd4540-8567-48a7-ba96-b7baa3a1a4e0",
+  "oracle_id": "5effaa94-7f87-4485-8959-473d584c5034",
+  "multiverse_ids": [
+    484412
+  ],
+  "name": "Grim Backwoods",
+  "printed_name": "Mata Sinistra",
+  "lang": "pt",
+  "released_at": "2020-04-17",
+  "uri": "https://api.scryfall.com/cards/2dbd4540-8567-48a7-ba96-b7baa3a1a4e0",
+  "scryfall_uri": "https://scryfall.com/card/c20/278/pt/mata-sinistra-(grim-backwoods)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-01T12:23:08Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/2/d/2dbd4540-8567-48a7-ba96-b7baa3a1a4e0.jpg?1782908588",
+    "normal": "https://cards.scryfall.io/normal/front/2/d/2dbd4540-8567-48a7-ba96-b7baa3a1a4e0.jpg?1782908588",
+    "large": "https://cards.scryfall.io/large/front/2/d/2dbd4540-8567-48a7-ba96-b7baa3a1a4e0.jpg?1782908588",
+    "png": "https://cards.scryfall.io/png/front/2/d/2dbd4540-8567-48a7-ba96-b7baa3a1a4e0.png?1782908588",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/2/d/2dbd4540-8567-48a7-ba96-b7baa3a1a4e0.jpg?1782908588",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/2/d/2dbd4540-8567-48a7-ba96-b7baa3a1a4e0.jpg?1782908588",
+    "thumb": "https://cards.scryfall.io/thumb/front/2/d/2dbd4540-8567-48a7-ba96-b7baa3a1a4e0.webp?1782908588",
+    "grid": "https://cards.scryfall.io/grid/front/2/d/2dbd4540-8567-48a7-ba96-b7baa3a1a4e0.webp?1782908588",
+    "display": "https://cards.scryfall.io/display/front/2/d/2dbd4540-8567-48a7-ba96-b7baa3a1a4e0.webp?1782908588",
+    "art": "https://cards.scryfall.io/art/front/2/d/2dbd4540-8567-48a7-ba96-b7baa3a1a4e0.webp?1782908588",
+    "crop": "https://cards.scryfall.io/crop/front/2/d/2dbd4540-8567-48a7-ba96-b7baa3a1a4e0.webp?1782908588"
+  },
+  "mana_cost": "",
+  "cmc": 0.0,
+  "type_line": "Land",
+  "printed_type_line": "Terreno",
+  "oracle_text": "{T}: Add {C}.\n{2}{B}{G}, {T}, Sacrifice a creature: Draw a card.",
+  "printed_text": "{T}: Adicione {C}.\n{2}{B}{G}, {T}, sacrifique uma criatura: Compre um card.",
+  "colors": [],
+  "color_identity": [
+    "B",
+    "G"
+  ],
+  "keywords": [],
+  "produced_mana": [
+    "C"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "f60ec786-1f8d-42f7-9abc-0d880fe243f6",
+  "set": "c20",
+  "set_name": "Commander 2020",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/f60ec786-1f8d-42f7-9abc-0d880fe243f6",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Ac20&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/c20?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/2dbd4540-8567-48a7-ba96-b7baa3a1a4e0/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A5effaa94-7f87-4485-8959-473d584c5034&unique=prints",
+  "collector_number": "278",
+  "digital": false,
+  "rarity": "rare",
+  "flavor_text": "\"Adorei o que fizeram com esse lugar.\"\n— Liliana Vess",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Vincent Proce",
+  "artist_ids": [
+    "d82b1138-76d3-49f7-9d8c-bc2e2d3e0b0a"
+  ],
+  "illustration_id": "d284bac0-5b98-4f16-a939-6dd1305e4373",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 2087,
+  "penny_rank": 5725,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=484412&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DGrim%2BBackwoods",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DGrim%2BBackwoods",
+    "edhrec": "https://edhrec.com/route/?cc=Grim+Backwoods"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DGrim%2BBackwoods%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Grim+Backwoods&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Grim+Backwoods&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

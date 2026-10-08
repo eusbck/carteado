@@ -1,0 +1,135 @@
+{
+  "object": "card",
+  "id": "1d7e5d84-1000-494b-b121-69b489321457",
+  "oracle_id": "119d9671-61ba-4629-89b1-f94bdec5cb74",
+  "multiverse_ids": [
+    642300
+  ],
+  "name": "Chimil, the Inner Sun",
+  "printed_name": "Chimil, the Inner Sun",
+  "lang": "pt",
+  "released_at": "2023-11-17",
+  "uri": "https://api.scryfall.com/cards/1d7e5d84-1000-494b-b121-69b489321457",
+  "scryfall_uri": "https://scryfall.com/card/lcc/106/pt/chimil-the-inner-sun-(chimil-the-inner-sun)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T09:09:30Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/1/d/1d7e5d84-1000-494b-b121-69b489321457.jpg?1782810570",
+    "normal": "https://cards.scryfall.io/normal/front/1/d/1d7e5d84-1000-494b-b121-69b489321457.jpg?1782810570",
+    "large": "https://cards.scryfall.io/large/front/1/d/1d7e5d84-1000-494b-b121-69b489321457.jpg?1782810570",
+    "png": "https://cards.scryfall.io/png/front/1/d/1d7e5d84-1000-494b-b121-69b489321457.png?1782810570",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/1/d/1d7e5d84-1000-494b-b121-69b489321457.jpg?1782810570",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/1/d/1d7e5d84-1000-494b-b121-69b489321457.jpg?1782810570",
+    "thumb": "https://cards.scryfall.io/thumb/front/1/d/1d7e5d84-1000-494b-b121-69b489321457.webp?1782810570",
+    "grid": "https://cards.scryfall.io/grid/front/1/d/1d7e5d84-1000-494b-b121-69b489321457.webp?1782810570",
+    "display": "https://cards.scryfall.io/display/front/1/d/1d7e5d84-1000-494b-b121-69b489321457.webp?1782810570",
+    "art": "https://cards.scryfall.io/art/front/1/d/1d7e5d84-1000-494b-b121-69b489321457.webp?1782810570",
+    "crop": "https://cards.scryfall.io/crop/front/1/d/1d7e5d84-1000-494b-b121-69b489321457.webp?1782810570"
+  },
+  "mana_cost": "{6}",
+  "cmc": 6.0,
+  "type_line": "Legendary Artifact",
+  "printed_type_line": "Legendary Artifact",
+  "oracle_text": "Spells you control can't be countered.\nAt the beginning of your end step, discover 5. (Exile cards from the top of your library until you exile a nonland card with mana value 5 or less. Cast it without paying its mana cost or put it into your hand. Put the rest on the bottom in a random order.)",
+  "printed_text": "Spells you control can't be countered.\nAt the beginning of your end step, discover 5.",
+  "colors": [],
+  "color_identity": [],
+  "keywords": [
+    "Discover"
+  ],
+  "legalities": {
+    "standard": "legal",
+    "future": "legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "d253edc3-5bc7-4cf1-9446-a8540dedffa5",
+  "set": "lcc",
+  "set_name": "The Lost Caverns of Ixalan Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/d253edc3-5bc7-4cf1-9446-a8540dedffa5",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Alcc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/lcc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/1d7e5d84-1000-494b-b121-69b489321457/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A119d9671-61ba-4629-89b1-f94bdec5cb74&unique=prints",
+  "collector_number": "106",
+  "digital": false,
+  "rarity": "mythic",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Gaboleps",
+  "artist_ids": [
+    "0c37cdfe-5651-4ae6-a3c8-e7153509f970"
+  ],
+  "illustration_id": "8ca531b0-a78e-4939-afa5-51dbc546170f",
+  "border_color": "borderless",
+  "frame": "2015",
+  "frame_effects": [
+    "legendary",
+    "inverted"
+  ],
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "promo_types": [
+    "boxtopper"
+  ],
+  "edhrec_rank": 748,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=642300&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DChimil%252C%2Bthe%2BInner%2BSun",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DChimil%252C%2Bthe%2BInner%2BSun",
+    "edhrec": "https://edhrec.com/route/?cc=Chimil%2C+the+Inner+Sun"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DChimil%252C%2Bthe%2BInner%2BSun%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Chimil%2C+the+Inner+Sun&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Chimil%2C+the+Inner+Sun&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

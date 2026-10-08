@@ -1,0 +1,137 @@
+[
+  {
+    "id": "cr",
+    "title": "Comprehensive Rules 25/09/2026 — TXT",
+    "url": "https://media.wizards.com/2026/downloads/MagicCompRules%2020260925.txt",
+    "accessed_on": "2026-10-03",
+    "local_snapshot": "fontes-oficiais/MagicCompRules-2026-09-25.txt",
+    "status": "consultada online",
+    "publisher": "Wizards of the Coast"
+  },
+  {
+    "id": "cr-pdf",
+    "title": "Comprehensive Rules 25/09/2026 — PDF, 312 páginas",
+    "url": "https://media.wizards.com/2026/downloads/MagicCompRules%2020260925.pdf",
+    "accessed_on": "2026-10-03",
+    "local_snapshot": null,
+    "status": "consultada online",
+    "publisher": "Wizards of the Coast"
+  },
+  {
+    "id": "rules",
+    "title": "Central de regras",
+    "url": "https://magic.wizards.com/en/rules",
+    "accessed_on": "2026-10-03",
+    "local_snapshot": null,
+    "status": "consultada online",
+    "publisher": "Wizards of the Coast"
+  },
+  {
+    "id": "commander",
+    "title": "Página atual do formato Commander",
+    "url": "https://magic.wizards.com/en/formats/commander",
+    "accessed_on": "2026-10-03",
+    "local_snapshot": null,
+    "status": "consultada online",
+    "publisher": "Wizards of the Coast"
+  },
+  {
+    "id": "bans",
+    "title": "Lista atual de banidas por formato",
+    "url": "https://magic.wizards.com/en/banned-restricted-list",
+    "accessed_on": "2026-10-03",
+    "local_snapshot": "dados/banidas-commander.json",
+    "status": "consultada online",
+    "publisher": "Wizards of the Coast"
+  },
+  {
+    "id": "basics-pt",
+    "title": "Como jogar — português",
+    "url": "https://magic.wizards.com/pt-BR/how-to-play",
+    "accessed_on": "2026-10-03",
+    "local_snapshot": null,
+    "status": "consultada online",
+    "publisher": "Wizards of the Coast"
+  },
+  {
+    "id": "keywords-pt",
+    "title": "Palavras-chave comuns — português",
+    "url": "https://magic.wizards.com/pt-BR/keyword-glossary",
+    "accessed_on": "2026-10-03",
+    "local_snapshot": null,
+    "status": "consultada online",
+    "publisher": "Wizards of the Coast"
+  },
+  {
+    "id": "oracle",
+    "title": "Gatherer — consultar Oracle e rulings por carta",
+    "url": "https://gatherer.wizards.com/",
+    "accessed_on": "2026-10-03",
+    "local_snapshot": null,
+    "status": "referência de consulta por carta; não copiada",
+    "publisher": "Wizards of the Coast"
+  },
+  {
+    "id": "wpn",
+    "title": "Documentos de regras e política de eventos",
+    "url": "https://wpn.wizards.com/en/rules-documents",
+    "accessed_on": "2026-10-03",
+    "local_snapshot": null,
+    "status": "consultada online",
+    "publisher": "Wizards of the Coast"
+  },
+  {
+    "id": "mtr",
+    "title": "Tournament Rules — documento disponibilizado pela WPN",
+    "url": "https://media.wizards.com/ContentResources/WPN/MTG_MTR_2026_Feb27_EN.pdf",
+    "accessed_on": "2026-10-03",
+    "local_snapshot": null,
+    "status": "consultada online",
+    "publisher": "Wizards of the Coast"
+  },
+  {
+    "id": "bans-update",
+    "title": "Mudanças de banidas — 09/02/2026",
+    "url": "https://magic.wizards.com/en/news/announcements/commander-banned-and-restricted-february-9-2026",
+    "accessed_on": "2026-10-03",
+    "local_snapshot": null,
+    "status": "consultada online",
+    "publisher": "Wizards of the Coast"
+  },
+  {
+    "id": "brackets-update",
+    "title": "Brackets — 09/02/2026",
+    "url": "https://magic.wizards.com/en/news/announcements/commander-brackets-beta-update-february-9-2026",
+    "accessed_on": "2026-10-03",
+    "local_snapshot": null,
+    "status": "consultada online",
+    "publisher": "Wizards of the Coast"
+  },
+  {
+    "id": "brackets-definitions",
+    "title": "Definições de brackets — 21/10/2025",
+    "url": "https://magic.wizards.com/en/news/announcements/commander-brackets-beta-update-october-21-2025",
+    "accessed_on": "2026-10-03",
+    "local_snapshot": null,
+    "status": "consultada online",
+    "publisher": "Wizards of the Coast"
+  },
+  {
+    "id": "vehicles-update",
+    "title": "Edge of Eternities — mudanças de comandante",
+    "url": "https://magic.wizards.com/en/news/announcements/edge-of-eternities-update-bulletin",
+    "accessed_on": "2026-10-03",
+    "local_snapshot": null,
+    "status": "consultada online",
+    "publisher": "Wizards of the Coast"
+  },
+  {
+    "id": "latest-update",
+    "title": "Reality Fracture — boletim de regras",
+    "url": "https://magic.wizards.com/en/news/announcements/reality-fracture-update-bulletin",
+    "accessed_on": "2026-10-03",
+    "local_snapshot": null,
+    "status": "consultada online",
+    "publisher": "Wizards of the Coast"
+  }
+]

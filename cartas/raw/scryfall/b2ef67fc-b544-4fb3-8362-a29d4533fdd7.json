@@ -1,0 +1,234 @@
+{
+  "object": "card",
+  "id": "b2ef67fc-b544-4fb3-8362-a29d4533fdd7",
+  "oracle_id": "fbdbff76-c1ea-47ea-bfcc-7c64c23dad70",
+  "multiverse_ids": [],
+  "name": "Inkling",
+  "lang": "en",
+  "released_at": "2026-04-24",
+  "uri": "https://api.scryfall.com/cards/b2ef67fc-b544-4fb3-8362-a29d4533fdd7",
+  "scryfall_uri": "https://scryfall.com/card/tsoc/22/inkling?utm_source=api",
+  "layout": "token",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T00:46:09Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/b/2/b2ef67fc-b544-4fb3-8362-a29d4533fdd7.jpg?1783903569",
+    "normal": "https://cards.scryfall.io/normal/front/b/2/b2ef67fc-b544-4fb3-8362-a29d4533fdd7.jpg?1783903569",
+    "large": "https://cards.scryfall.io/large/front/b/2/b2ef67fc-b544-4fb3-8362-a29d4533fdd7.jpg?1783903569",
+    "png": "https://cards.scryfall.io/png/front/b/2/b2ef67fc-b544-4fb3-8362-a29d4533fdd7.png?1783903569",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/b/2/b2ef67fc-b544-4fb3-8362-a29d4533fdd7.jpg?1783903569",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/b/2/b2ef67fc-b544-4fb3-8362-a29d4533fdd7.jpg?1783903569",
+    "thumb": "https://cards.scryfall.io/thumb/front/b/2/b2ef67fc-b544-4fb3-8362-a29d4533fdd7.webp?1783903569",
+    "grid": "https://cards.scryfall.io/grid/front/b/2/b2ef67fc-b544-4fb3-8362-a29d4533fdd7.webp?1783903569",
+    "display": "https://cards.scryfall.io/display/front/b/2/b2ef67fc-b544-4fb3-8362-a29d4533fdd7.webp?1783903569",
+    "art": "https://cards.scryfall.io/art/front/b/2/b2ef67fc-b544-4fb3-8362-a29d4533fdd7.webp?1783903569",
+    "crop": "https://cards.scryfall.io/crop/front/b/2/b2ef67fc-b544-4fb3-8362-a29d4533fdd7.webp?1783903569"
+  },
+  "mana_cost": "",
+  "cmc": 0.0,
+  "type_line": "Token Creature — Inkling",
+  "oracle_text": "Flying",
+  "power": "2",
+  "toughness": "1",
+  "colors": [
+    "B",
+    "W"
+  ],
+  "color_identity": [
+    "B",
+    "W"
+  ],
+  "keywords": [
+    "Flying"
+  ],
+  "all_parts": [
+    {
+      "object": "related_card",
+      "id": "214a695b-208e-4fd5-9ceb-23c882eadcf7",
+      "component": "combo_piece",
+      "name": "Shadrix Silverquill",
+      "type_line": "Legendary Creature — Elder Dragon",
+      "uri": "https://api.scryfall.com/cards/214a695b-208e-4fd5-9ceb-23c882eadcf7"
+    },
+    {
+      "object": "related_card",
+      "id": "9dbfddcb-6f88-4d6a-9f03-248d7b86e567",
+      "component": "combo_piece",
+      "name": "Fain, the Broker",
+      "type_line": "Legendary Creature — Human Warlock",
+      "uri": "https://api.scryfall.com/cards/9dbfddcb-6f88-4d6a-9f03-248d7b86e567"
+    },
+    {
+      "object": "related_card",
+      "id": "18b8abf0-e8c3-4c19-bdf1-18aabe75a3de",
+      "component": "combo_piece",
+      "name": "Felisa, Fang of Silverquill",
+      "type_line": "Legendary Creature — Vampire Wizard",
+      "uri": "https://api.scryfall.com/cards/18b8abf0-e8c3-4c19-bdf1-18aabe75a3de"
+    },
+    {
+      "object": "related_card",
+      "id": "5e3a5d72-afc2-47e7-a3a7-039afaf6f2a2",
+      "component": "combo_piece",
+      "name": "Forum Filibuster",
+      "type_line": "Enchantment",
+      "uri": "https://api.scryfall.com/cards/5e3a5d72-afc2-47e7-a3a7-039afaf6f2a2"
+    },
+    {
+      "object": "related_card",
+      "id": "d60c64aa-57a9-4082-82f4-af0d89c1a52d",
+      "component": "combo_piece",
+      "name": "Intermediate Chirography",
+      "type_line": "Enchantment — Class",
+      "uri": "https://api.scryfall.com/cards/d60c64aa-57a9-4082-82f4-af0d89c1a52d"
+    },
+    {
+      "object": "related_card",
+      "id": "04a8a5b8-9743-4d1a-89e9-61bdf180b2e0",
+      "component": "combo_piece",
+      "name": "Inkling Summoning",
+      "type_line": "Sorcery — Lesson",
+      "uri": "https://api.scryfall.com/cards/04a8a5b8-9743-4d1a-89e9-61bdf180b2e0"
+    },
+    {
+      "object": "related_card",
+      "id": "76425962-bdc9-4ea7-9c96-dd21a1dd5644",
+      "component": "combo_piece",
+      "name": "Mascot Exhibition",
+      "type_line": "Sorcery — Lesson",
+      "uri": "https://api.scryfall.com/cards/76425962-bdc9-4ea7-9c96-dd21a1dd5644"
+    },
+    {
+      "object": "related_card",
+      "id": "3fbd0921-e953-492b-ad73-c8a8bfaa750b",
+      "component": "combo_piece",
+      "name": "Umbral Juke",
+      "type_line": "Instant",
+      "uri": "https://api.scryfall.com/cards/3fbd0921-e953-492b-ad73-c8a8bfaa750b"
+    },
+    {
+      "object": "related_card",
+      "id": "3362ade8-d585-40be-8486-382cad6efaf8",
+      "component": "combo_piece",
+      "name": "Inkshield",
+      "type_line": "Instant",
+      "uri": "https://api.scryfall.com/cards/3362ade8-d585-40be-8486-382cad6efaf8"
+    },
+    {
+      "object": "related_card",
+      "id": "64bb5f5d-0356-4567-9419-2b72b6bab6c2",
+      "component": "combo_piece",
+      "name": "Blot Out the Sky",
+      "type_line": "Sorcery",
+      "uri": "https://api.scryfall.com/cards/64bb5f5d-0356-4567-9419-2b72b6bab6c2"
+    },
+    {
+      "object": "related_card",
+      "id": "a870c4f1-7e69-402b-a000-2168d8b9ae01",
+      "component": "combo_piece",
+      "name": "Dramatic Finale",
+      "type_line": "Enchantment",
+      "uri": "https://api.scryfall.com/cards/a870c4f1-7e69-402b-a000-2168d8b9ae01"
+    },
+    {
+      "object": "related_card",
+      "id": "3c154814-72e4-4cca-a927-66c58602ae80",
+      "component": "combo_piece",
+      "name": "Combat Calligrapher",
+      "type_line": "Creature — Bird Cleric",
+      "uri": "https://api.scryfall.com/cards/3c154814-72e4-4cca-a927-66c58602ae80"
+    },
+    {
+      "object": "related_card",
+      "id": "b2ef67fc-b544-4fb3-8362-a29d4533fdd7",
+      "component": "token",
+      "name": "Inkling",
+      "type_line": "Token Creature — Inkling",
+      "uri": "https://api.scryfall.com/cards/b2ef67fc-b544-4fb3-8362-a29d4533fdd7"
+    }
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "not_legal",
+    "pauper": "not_legal",
+    "vintage": "not_legal",
+    "penny": "not_legal",
+    "commander": "not_legal",
+    "oathbreaker": "not_legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "not_legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "cb590d57-927c-437a-934c-7f774881d1c9",
+  "set": "tsoc",
+  "set_name": "Secrets of Strixhaven Commander Tokens",
+  "set_type": "token",
+  "set_uri": "https://api.scryfall.com/sets/cb590d57-927c-437a-934c-7f774881d1c9",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Atsoc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/tsoc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/b2ef67fc-b544-4fb3-8362-a29d4533fdd7/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Afbdbff76-c1ea-47ea-bfcc-7c64c23dad70&unique=prints",
+  "collector_number": "22",
+  "digital": false,
+  "rarity": "common",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Nia Kovalevski",
+  "artist_ids": [
+    "f6e3c13a-cdee-49ea-af7f-66001f4963ce"
+  ],
+  "illustration_id": "b8b583bc-2424-49dc-9a60-3a6c3fc5d055",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DInkling",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DInkling",
+    "edhrec": "https://edhrec.com/route/?cc=Inkling"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DInkling%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Inkling&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Inkling&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

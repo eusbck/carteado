@@ -1,0 +1,152 @@
+{
+  "object": "card",
+  "id": "cc4693c6-f532-4726-b51a-21b04f820448",
+  "oracle_id": "123d2b6e-114e-4767-860d-50790382ca4a",
+  "multiverse_ids": [
+    696415
+  ],
+  "mtgo_id": 138455,
+  "tcgplayer_id": 624642,
+  "cardmarket_id": 818841,
+  "name": "Hornet Nest",
+  "lang": "en",
+  "released_at": "2025-04-11",
+  "uri": "https://api.scryfall.com/cards/cc4693c6-f532-4726-b51a-21b04f820448",
+  "scryfall_uri": "https://scryfall.com/card/tdc/259/hornet-nest?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-13T01:44:04Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/c/c/cc4693c6-f532-4726-b51a-21b04f820448.jpg?1783907044",
+    "normal": "https://cards.scryfall.io/normal/front/c/c/cc4693c6-f532-4726-b51a-21b04f820448.jpg?1783907044",
+    "large": "https://cards.scryfall.io/large/front/c/c/cc4693c6-f532-4726-b51a-21b04f820448.jpg?1783907044",
+    "png": "https://cards.scryfall.io/png/front/c/c/cc4693c6-f532-4726-b51a-21b04f820448.png?1783907044",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/c/c/cc4693c6-f532-4726-b51a-21b04f820448.jpg?1783907044",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/c/c/cc4693c6-f532-4726-b51a-21b04f820448.jpg?1783907044",
+    "thumb": "https://cards.scryfall.io/thumb/front/c/c/cc4693c6-f532-4726-b51a-21b04f820448.webp?1783907044",
+    "grid": "https://cards.scryfall.io/grid/front/c/c/cc4693c6-f532-4726-b51a-21b04f820448.webp?1783907044",
+    "display": "https://cards.scryfall.io/display/front/c/c/cc4693c6-f532-4726-b51a-21b04f820448.webp?1783907044",
+    "art": "https://cards.scryfall.io/art/front/c/c/cc4693c6-f532-4726-b51a-21b04f820448.webp?1783907044",
+    "crop": "https://cards.scryfall.io/crop/front/c/c/cc4693c6-f532-4726-b51a-21b04f820448.webp?1783907044"
+  },
+  "mana_cost": "{2}{G}",
+  "cmc": 3.0,
+  "type_line": "Creature — Insect",
+  "oracle_text": "Defender (This creature can't attack.)\nWhenever this creature is dealt damage, create that many 1/1 green Insect creature tokens with flying and deathtouch. (Any amount of damage a creature with deathtouch deals to a creature is enough to destroy it.)",
+  "power": "0",
+  "toughness": "2",
+  "colors": [
+    "G"
+  ],
+  "color_identity": [
+    "G"
+  ],
+  "keywords": [
+    "Defender"
+  ],
+  "all_parts": [
+    {
+      "object": "related_card",
+      "id": "cc4693c6-f532-4726-b51a-21b04f820448",
+      "component": "combo_piece",
+      "name": "Hornet Nest",
+      "type_line": "Creature — Insect",
+      "uri": "https://api.scryfall.com/cards/cc4693c6-f532-4726-b51a-21b04f820448"
+    },
+    {
+      "object": "related_card",
+      "id": "e17b804f-4dca-4101-ba8f-b732504ac488",
+      "component": "token",
+      "name": "Insect",
+      "type_line": "Token Creature — Insect",
+      "uri": "https://api.scryfall.com/cards/e17b804f-4dca-4101-ba8f-b732504ac488"
+    }
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "bca9779c-0a0b-4ac1-8794-f3fc25549cf4",
+  "set": "tdc",
+  "set_name": "Tarkir: Dragonstorm Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/bca9779c-0a0b-4ac1-8794-f3fc25549cf4",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Atdc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/tdc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/cc4693c6-f532-4726-b51a-21b04f820448/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A123d2b6e-114e-4767-860d-50790382ca4a&unique=prints",
+  "collector_number": "259",
+  "digital": false,
+  "rarity": "rare",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Adam Paquette",
+  "artist_ids": [
+    "89023dad-e6c0-41e0-83fb-eb2bfbbdc3f2"
+  ],
+  "illustration_id": "cf72bb8a-1d7b-4fc7-9209-ad5fd79c9fca",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 2803,
+  "penny_rank": 5449,
+  "prices": {
+    "usd": "0.41",
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": "0.54",
+    "eur_foil": null,
+    "tix": "0.11"
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=696415&printed=false",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DHornet%2BNest",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DHornet%2BNest",
+    "edhrec": "https://edhrec.com/route/?cc=Hornet+Nest"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F624642%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=818841&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards/138455?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

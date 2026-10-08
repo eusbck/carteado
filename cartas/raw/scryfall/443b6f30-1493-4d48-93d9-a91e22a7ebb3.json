@@ -1,0 +1,153 @@
+{
+  "object": "card",
+  "id": "443b6f30-1493-4d48-93d9-a91e22a7ebb3",
+  "oracle_id": "05d7222b-cc08-4f1f-8e35-6058599572ba",
+  "multiverse_ids": [],
+  "resource_id": "A233879F9B196B447744693BDE4F2A21D55F447622FFE8789B3C9D1CC80550E2",
+  "mtgo_id": 146633,
+  "arena_id": 98442,
+  "tcgplayer_id": 671768,
+  "cardmarket_id": 865863,
+  "name": "Twilight Diviner",
+  "lang": "en",
+  "released_at": "2026-01-23",
+  "uri": "https://api.scryfall.com/cards/443b6f30-1493-4d48-93d9-a91e22a7ebb3",
+  "scryfall_uri": "https://scryfall.com/card/ecl/122/twilight-diviner?utm_source=api",
+  "layout": "normal",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T01:00:55Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/4/4/443b6f30-1493-4d48-93d9-a91e22a7ebb3.jpg?1783904455",
+    "normal": "https://cards.scryfall.io/normal/front/4/4/443b6f30-1493-4d48-93d9-a91e22a7ebb3.jpg?1783904455",
+    "large": "https://cards.scryfall.io/large/front/4/4/443b6f30-1493-4d48-93d9-a91e22a7ebb3.jpg?1783904455",
+    "png": "https://cards.scryfall.io/png/front/4/4/443b6f30-1493-4d48-93d9-a91e22a7ebb3.png?1783904455",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/4/4/443b6f30-1493-4d48-93d9-a91e22a7ebb3.jpg?1783904455",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/4/4/443b6f30-1493-4d48-93d9-a91e22a7ebb3.jpg?1783904455",
+    "thumb": "https://cards.scryfall.io/thumb/front/4/4/443b6f30-1493-4d48-93d9-a91e22a7ebb3.webp?1783904455",
+    "grid": "https://cards.scryfall.io/grid/front/4/4/443b6f30-1493-4d48-93d9-a91e22a7ebb3.webp?1783904455",
+    "display": "https://cards.scryfall.io/display/front/4/4/443b6f30-1493-4d48-93d9-a91e22a7ebb3.webp?1783904455",
+    "art": "https://cards.scryfall.io/art/front/4/4/443b6f30-1493-4d48-93d9-a91e22a7ebb3.webp?1783904455",
+    "crop": "https://cards.scryfall.io/crop/front/4/4/443b6f30-1493-4d48-93d9-a91e22a7ebb3.webp?1783904455"
+  },
+  "mana_cost": "{2}{B}",
+  "cmc": 3.0,
+  "type_line": "Creature — Elf Cleric",
+  "oracle_text": "When this creature enters, surveil 2. (Look at the top two cards of your library, then put any number of them into your graveyard and the rest on top of your library in any order.)\nWhenever one or more other creatures you control enter, if they entered or were cast from a graveyard, create a token that's a copy of one of them. This ability triggers only once each turn.",
+  "power": "3",
+  "toughness": "3",
+  "colors": [
+    "B"
+  ],
+  "color_identity": [
+    "B"
+  ],
+  "keywords": [
+    "Surveil"
+  ],
+  "all_parts": [
+    {
+      "object": "related_card",
+      "id": "40e615a7-93a9-4753-a96c-a18237ab240b",
+      "component": "combo_piece",
+      "name": "Twilight Diviner",
+      "type_line": "Creature — Elf Cleric",
+      "uri": "https://api.scryfall.com/cards/40e615a7-93a9-4753-a96c-a18237ab240b"
+    },
+    {
+      "object": "related_card",
+      "id": "f4e87a11-b3b1-47b2-bd73-f4c78d6fbe6c",
+      "component": "token",
+      "name": "Copy",
+      "type_line": "Token",
+      "uri": "https://api.scryfall.com/cards/f4e87a11-b3b1-47b2-bd73-f4c78d6fbe6c"
+    }
+  ],
+  "legalities": {
+    "standard": "legal",
+    "future": "legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "arena",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "5d293ad8-a749-4725-bd5c-c4e1db828bd0",
+  "set": "ecl",
+  "set_name": "Lorwyn Eclipsed",
+  "set_type": "expansion",
+  "set_uri": "https://api.scryfall.com/sets/5d293ad8-a749-4725-bd5c-c4e1db828bd0",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Aecl&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/ecl?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/443b6f30-1493-4d48-93d9-a91e22a7ebb3/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A05d7222b-cc08-4f1f-8e35-6058599572ba&unique=prints",
+  "collector_number": "122",
+  "digital": false,
+  "rarity": "rare",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Pauline Voss",
+  "artist_ids": [
+    "d0d814a5-f4bc-4383-afe5-a3f329b68dce"
+  ],
+  "illustration_id": "7249f0f7-4aa7-42cb-9e7b-25dd448ff2ee",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "edhrec_rank": 2949,
+  "penny_rank": 2169,
+  "prices": {
+    "usd": "2.29",
+    "usd_foil": "2.22",
+    "usd_etched": null,
+    "eur": "2.96",
+    "eur_foil": "3.56",
+    "tix": "0.02"
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DTwilight%2BDiviner",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DTwilight%2BDiviner",
+    "edhrec": "https://edhrec.com/route/?cc=Twilight+Diviner"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F671768%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=865863&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards/146633?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

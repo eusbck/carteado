@@ -1,0 +1,154 @@
+{
+  "object": "card",
+  "id": "d19e17fc-ae3e-4533-ab94-70d5f2e1b8cd",
+  "oracle_id": "a8ddea1c-8d80-49c1-a5b4-630d5e51d66e",
+  "multiverse_ids": [],
+  "resource_id": "99523FF77A783C59259B40243DEF0ED4507B99BD9C985FC60BCE7B89C1A83F09",
+  "mtgo_id": 146181,
+  "tcgplayer_id": 671268,
+  "cardmarket_id": 865055,
+  "name": "Hapatra, Vizier of Poisons",
+  "lang": "en",
+  "released_at": "2026-01-23",
+  "uri": "https://api.scryfall.com/cards/d19e17fc-ae3e-4533-ab94-70d5f2e1b8cd",
+  "scryfall_uri": "https://scryfall.com/card/ecc/123/hapatra-vizier-of-poisons?utm_source=api",
+  "layout": "normal",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T01:02:19Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/d/1/d19e17fc-ae3e-4533-ab94-70d5f2e1b8cd.jpg?1783904539",
+    "normal": "https://cards.scryfall.io/normal/front/d/1/d19e17fc-ae3e-4533-ab94-70d5f2e1b8cd.jpg?1783904539",
+    "large": "https://cards.scryfall.io/large/front/d/1/d19e17fc-ae3e-4533-ab94-70d5f2e1b8cd.jpg?1783904539",
+    "png": "https://cards.scryfall.io/png/front/d/1/d19e17fc-ae3e-4533-ab94-70d5f2e1b8cd.png?1783904539",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/d/1/d19e17fc-ae3e-4533-ab94-70d5f2e1b8cd.jpg?1783904539",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/d/1/d19e17fc-ae3e-4533-ab94-70d5f2e1b8cd.jpg?1783904539",
+    "thumb": "https://cards.scryfall.io/thumb/front/d/1/d19e17fc-ae3e-4533-ab94-70d5f2e1b8cd.webp?1783904539",
+    "grid": "https://cards.scryfall.io/grid/front/d/1/d19e17fc-ae3e-4533-ab94-70d5f2e1b8cd.webp?1783904539",
+    "display": "https://cards.scryfall.io/display/front/d/1/d19e17fc-ae3e-4533-ab94-70d5f2e1b8cd.webp?1783904539",
+    "art": "https://cards.scryfall.io/art/front/d/1/d19e17fc-ae3e-4533-ab94-70d5f2e1b8cd.webp?1783904539",
+    "crop": "https://cards.scryfall.io/crop/front/d/1/d19e17fc-ae3e-4533-ab94-70d5f2e1b8cd.webp?1783904539"
+  },
+  "mana_cost": "{B}{G}",
+  "cmc": 2.0,
+  "type_line": "Legendary Creature — Human Cleric",
+  "oracle_text": "Whenever Hapatra deals combat damage to a player, you may put a -1/-1 counter on target creature.\nWhenever you put one or more -1/-1 counters on a creature, create a 1/1 green Snake creature token with deathtouch.",
+  "power": "2",
+  "toughness": "2",
+  "colors": [
+    "B",
+    "G"
+  ],
+  "color_identity": [
+    "B",
+    "G"
+  ],
+  "keywords": [],
+  "all_parts": [
+    {
+      "object": "related_card",
+      "id": "d19e17fc-ae3e-4533-ab94-70d5f2e1b8cd",
+      "component": "combo_piece",
+      "name": "Hapatra, Vizier of Poisons",
+      "type_line": "Legendary Creature — Human Cleric",
+      "uri": "https://api.scryfall.com/cards/d19e17fc-ae3e-4533-ab94-70d5f2e1b8cd"
+    },
+    {
+      "object": "related_card",
+      "id": "9a9380a8-8f38-47cd-8648-20626c06b9b3",
+      "component": "token",
+      "name": "Snake",
+      "type_line": "Token Creature — Snake",
+      "uri": "https://api.scryfall.com/cards/9a9380a8-8f38-47cd-8648-20626c06b9b3"
+    }
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "805b5a0c-f8bb-4555-86ea-eb9ec36a011a",
+  "set": "ecc",
+  "set_name": "Lorwyn Eclipsed Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/805b5a0c-f8bb-4555-86ea-eb9ec36a011a",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Aecc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/ecc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/d19e17fc-ae3e-4533-ab94-70d5f2e1b8cd/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Aa8ddea1c-8d80-49c1-a5b4-630d5e51d66e&unique=prints",
+  "collector_number": "123",
+  "digital": false,
+  "rarity": "rare",
+  "flavor_text": "Her subtle smile is suffused with venom.",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Tyler Jacobson",
+  "artist_ids": [
+    "522af130-8db4-4b4b-950c-6e2b246339cf"
+  ],
+  "illustration_id": "2172019b-43b2-4589-96cb-cdd9bc3b0095",
+  "border_color": "black",
+  "frame": "2015",
+  "frame_effects": [
+    "legendary"
+  ],
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 3893,
+  "penny_rank": 5933,
+  "prices": {
+    "usd": "0.33",
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": "0.39",
+    "eur_foil": null,
+    "tix": "0.19"
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DHapatra%252C%2BVizier%2Bof%2BPoisons",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DHapatra%252C%2BVizier%2Bof%2BPoisons",
+    "edhrec": "https://edhrec.com/route/?cc=Hapatra%2C+Vizier+of+Poisons"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F671268%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=865055&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards/146181?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

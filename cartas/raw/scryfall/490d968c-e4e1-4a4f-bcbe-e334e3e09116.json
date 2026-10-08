@@ -1,0 +1,132 @@
+{
+  "object": "card",
+  "id": "490d968c-e4e1-4a4f-bcbe-e334e3e09116",
+  "oracle_id": "e4ed7935-0263-4cde-8118-ac18fffce3ef",
+  "multiverse_ids": [
+    598609
+  ],
+  "cardmarket_id": 652434,
+  "name": "Determined Iteration",
+  "printed_name": "Iteração Determinada",
+  "lang": "pt",
+  "released_at": "2022-04-29",
+  "uri": "https://api.scryfall.com/cards/490d968c-e4e1-4a4f-bcbe-e334e3e09116",
+  "scryfall_uri": "https://scryfall.com/card/ncc/45/pt/itera%C3%A7%C3%A3o-determinada-(determined-iteration)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T22:44:54Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/4/9/490d968c-e4e1-4a4f-bcbe-e334e3e09116.jpg?1782859494",
+    "normal": "https://cards.scryfall.io/normal/front/4/9/490d968c-e4e1-4a4f-bcbe-e334e3e09116.jpg?1782859494",
+    "large": "https://cards.scryfall.io/large/front/4/9/490d968c-e4e1-4a4f-bcbe-e334e3e09116.jpg?1782859494",
+    "png": "https://cards.scryfall.io/png/front/4/9/490d968c-e4e1-4a4f-bcbe-e334e3e09116.png?1782859494",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/4/9/490d968c-e4e1-4a4f-bcbe-e334e3e09116.jpg?1782859494",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/4/9/490d968c-e4e1-4a4f-bcbe-e334e3e09116.jpg?1782859494",
+    "thumb": "https://cards.scryfall.io/thumb/front/4/9/490d968c-e4e1-4a4f-bcbe-e334e3e09116.webp?1782859494",
+    "grid": "https://cards.scryfall.io/grid/front/4/9/490d968c-e4e1-4a4f-bcbe-e334e3e09116.webp?1782859494",
+    "display": "https://cards.scryfall.io/display/front/4/9/490d968c-e4e1-4a4f-bcbe-e334e3e09116.webp?1782859494",
+    "art": "https://cards.scryfall.io/art/front/4/9/490d968c-e4e1-4a4f-bcbe-e334e3e09116.webp?1782859494",
+    "crop": "https://cards.scryfall.io/crop/front/4/9/490d968c-e4e1-4a4f-bcbe-e334e3e09116.webp?1782859494"
+  },
+  "mana_cost": "{1}{R}",
+  "cmc": 2.0,
+  "type_line": "Enchantment",
+  "printed_type_line": "Encantamento",
+  "oracle_text": "At the beginning of combat on your turn, populate. The token created this way gains haste. Sacrifice it at the beginning of the next end step. (To populate, create a token that's a copy of a creature token you control.)",
+  "printed_text": "No início do combate no seu turno, povoe. A ficha criada dessa forma ganha ímpeto. Sacrifique-a no início da próxima etapa final. (Para povoar, crie uma ficha que seja uma cópia de uma ficha de criatura que você controla.)",
+  "colors": [
+    "R"
+  ],
+  "color_identity": [
+    "R"
+  ],
+  "keywords": [
+    "Populate"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "c51de34b-d4d6-4179-a432-573744ded119",
+  "set": "ncc",
+  "set_name": "New Capenna Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/c51de34b-d4d6-4179-a432-573744ded119",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Ancc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/ncc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/490d968c-e4e1-4a4f-bcbe-e334e3e09116/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Ae4ed7935-0263-4cde-8118-ac18fffce3ef&unique=prints",
+  "collector_number": "45",
+  "digital": false,
+  "rarity": "rare",
+  "flavor_text": "\"Apenas um tolo acha que não há mais nada a aprender.\"",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Zoltan Boros",
+  "artist_ids": [
+    "1885e6cb-c827-4896-994e-3d0a027d602f"
+  ],
+  "illustration_id": "a7affa33-238c-4107-b58e-13e2c02cec81",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 3889,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": "3.17",
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=598609&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DDetermined%2BIteration",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DDetermined%2BIteration",
+    "edhrec": "https://edhrec.com/route/?cc=Determined+Iteration"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DDetermined%2BIteration%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=652434&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Determined+Iteration&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

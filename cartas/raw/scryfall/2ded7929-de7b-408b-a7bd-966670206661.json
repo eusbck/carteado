@@ -1,0 +1,135 @@
+{
+  "object": "card",
+  "id": "2ded7929-de7b-408b-a7bd-966670206661",
+  "oracle_id": "ecd8d7f4-7b11-4097-afc0-ef3c81edd90c",
+  "multiverse_ids": [
+    576339
+  ],
+  "name": "Serra Paragon",
+  "printed_name": "Exemplar de Serra",
+  "lang": "pt",
+  "released_at": "2022-09-09",
+  "uri": "https://api.scryfall.com/cards/2ded7929-de7b-408b-a7bd-966670206661",
+  "scryfall_uri": "https://scryfall.com/card/dmu/32/pt/exemplar-de-serra-(serra-paragon)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T18:45:24Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/2/d/2ded7929-de7b-408b-a7bd-966670206661.jpg?1782845124",
+    "normal": "https://cards.scryfall.io/normal/front/2/d/2ded7929-de7b-408b-a7bd-966670206661.jpg?1782845124",
+    "large": "https://cards.scryfall.io/large/front/2/d/2ded7929-de7b-408b-a7bd-966670206661.jpg?1782845124",
+    "png": "https://cards.scryfall.io/png/front/2/d/2ded7929-de7b-408b-a7bd-966670206661.png?1782845124",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/2/d/2ded7929-de7b-408b-a7bd-966670206661.jpg?1782845124",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/2/d/2ded7929-de7b-408b-a7bd-966670206661.jpg?1782845124",
+    "thumb": "https://cards.scryfall.io/thumb/front/2/d/2ded7929-de7b-408b-a7bd-966670206661.webp?1782845124",
+    "grid": "https://cards.scryfall.io/grid/front/2/d/2ded7929-de7b-408b-a7bd-966670206661.webp?1782845124",
+    "display": "https://cards.scryfall.io/display/front/2/d/2ded7929-de7b-408b-a7bd-966670206661.webp?1782845124",
+    "art": "https://cards.scryfall.io/art/front/2/d/2ded7929-de7b-408b-a7bd-966670206661.webp?1782845124",
+    "crop": "https://cards.scryfall.io/crop/front/2/d/2ded7929-de7b-408b-a7bd-966670206661.webp?1782845124"
+  },
+  "mana_cost": "{2}{W}{W}",
+  "cmc": 4.0,
+  "type_line": "Creature — Angel",
+  "printed_type_line": "Criatura — Anjo",
+  "oracle_text": "Flying\nOnce during each of your turns, you may play a land from your graveyard or cast a permanent spell with mana value 3 or less from your graveyard. If you do, it gains \"When this permanent is put into a graveyard from the battlefield, exile it and you gain 2 life.\"",
+  "printed_text": "Voar\nUma vez durante cada um de seus turnos, você pode jogar um terreno de seu cemitério ou conjurar uma mágica de permanente com valor de mana igual ou inferior a 3 de seu cemitério. Se você faz isso, a permanente ganha \"Quando esta permanente for colocada num cemitério vinda do campo de batalha, exile-a e você ganha 2 pontos de vida\".",
+  "power": "3",
+  "toughness": "4",
+  "colors": [
+    "W"
+  ],
+  "color_identity": [
+    "W"
+  ],
+  "keywords": [
+    "Flying"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "arena",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "4e47a6cd-cdeb-4b0f-8f24-cfe1a0127cb3",
+  "set": "dmu",
+  "set_name": "Dominaria United",
+  "set_type": "expansion",
+  "set_uri": "https://api.scryfall.com/sets/4e47a6cd-cdeb-4b0f-8f24-cfe1a0127cb3",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Admu&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/dmu?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/2ded7929-de7b-408b-a7bd-966670206661/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Aecd8d7f4-7b11-4097-afc0-ef3c81edd90c&unique=prints",
+  "collector_number": "32",
+  "digital": false,
+  "rarity": "mythic",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Heonhwa",
+  "artist_ids": [
+    "ce415f9e-8a20-4d64-bcba-2b1b7e94012e"
+  ],
+  "illustration_id": "7b2035fd-e884-4419-a98c-36bc2bca7f6b",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "edhrec_rank": 3416,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=576339&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DSerra%2BParagon",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DSerra%2BParagon",
+    "edhrec": "https://edhrec.com/route/?cc=Serra+Paragon"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DSerra%2BParagon%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Serra+Paragon&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Serra+Paragon&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

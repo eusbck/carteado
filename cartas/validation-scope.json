@@ -1,0 +1,94 @@
+{
+  "validated_at": "2026-10-04T01:08:51.253903+00:00",
+  "collector_version": "1.0.3",
+  "scope": "real_profile_lists_card_metadata_selection_and_cached_images",
+  "result": "passed",
+  "decks": [
+    {
+      "name": "Terra",
+      "card_instances": 100,
+      "primary_printings": 93,
+      "auxiliary_printings": 4,
+      "original_ids_preserved": true,
+      "quantities_preserved": true,
+      "auxiliary_scope_matches_source": true,
+      "source_sha256": "f4c4973b43b6218f66e24c63a611681df20fb133d20f9691c9ed61fa370b53fa"
+    },
+    {
+      "name": "Witherbloom Pestilence",
+      "card_instances": 100,
+      "primary_printings": 86,
+      "auxiliary_printings": 11,
+      "original_ids_preserved": true,
+      "quantities_preserved": true,
+      "auxiliary_scope_matches_source": true,
+      "source_sha256": "cf3c9b8f65f64daba166479705863d7616a350cf4241a0fc170db69e214727e2"
+    },
+    {
+      "name": "Silverquill Influence",
+      "card_instances": 100,
+      "primary_printings": 86,
+      "auxiliary_printings": 4,
+      "original_ids_preserved": true,
+      "quantities_preserved": true,
+      "auxiliary_scope_matches_source": true,
+      "source_sha256": "52ebf3775d4ad4ba21afe4034f904aef6c5c3bb9accee00c6a88aaf171dcf55b"
+    },
+    {
+      "name": "Prismari Artistry",
+      "card_instances": 100,
+      "primary_printings": 87,
+      "auxiliary_printings": 11,
+      "original_ids_preserved": true,
+      "quantities_preserved": true,
+      "auxiliary_scope_matches_source": true,
+      "source_sha256": "2cb94a6437d8cfa9ac939eef3cfa2080d56a144559dfc7b44f04d3b1b03b5eac"
+    },
+    {
+      "name": "Lorehold Spirit",
+      "card_instances": 100,
+      "primary_printings": 85,
+      "auxiliary_printings": 6,
+      "original_ids_preserved": true,
+      "quantities_preserved": true,
+      "auxiliary_scope_matches_source": true,
+      "source_sha256": "3fd4c08d1ea37e9e6496783bf5420d568976f7ceaf6908276cb27901848ac5a4"
+    },
+    {
+      "name": "Blight Curse",
+      "card_instances": 100,
+      "primary_printings": 85,
+      "auxiliary_printings": 8,
+      "original_ids_preserved": true,
+      "quantities_preserved": true,
+      "auxiliary_scope_matches_source": true,
+      "source_sha256": "3eecb17e22bed54785b40dc2c8bf203f6741231e9fa301214543555221d90c18"
+    },
+    {
+      "name": "Abzan Armor",
+      "card_instances": 100,
+      "primary_printings": 85,
+      "auxiliary_printings": 5,
+      "original_ids_preserved": true,
+      "quantities_preserved": true,
+      "auxiliary_scope_matches_source": true,
+      "source_sha256": "70a8b7024cf20141f8da53439a28555985544cd7bb1b17ba1eb1ceef17734eeb"
+    }
+  ],
+  "deck_count": 7,
+  "card_instances": 700,
+  "original_printings": 576,
+  "selected_printings": 990,
+  "gameplay_identities": 547,
+  "selected_languages": {
+    "en": 621,
+    "pt": 369
+  },
+  "images_expected": 992,
+  "images_verified": 48,
+  "images_remaining": 944,
+  "selection_plan_sha256": "c972c9fcf13020796f89f8a7c5f4ef2554194dd2bb7ffbbb620fc6343a8f86f8",
+  "treasure_backlinks_preserved_but_not_followed": 374,
+  "network_used": false,
+  "download_complete": false
+}

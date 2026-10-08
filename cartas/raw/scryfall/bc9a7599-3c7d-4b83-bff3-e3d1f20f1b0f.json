@@ -1,0 +1,133 @@
+{
+  "object": "card",
+  "id": "bc9a7599-3c7d-4b83-bff3-e3d1f20f1b0f",
+  "oracle_id": "a984db23-40ea-428d-829f-e944267280f8",
+  "multiverse_ids": [],
+  "resource_id": "B18DB7E6CD4B1EBA4FACAB59EC7041A4E1DFEC24400BC2D2A0DB60311326F6EA",
+  "mtgo_id": 148699,
+  "tcgplayer_id": 687365,
+  "cardmarket_id": 881436,
+  "name": "Faerie Mastermind",
+  "lang": "en",
+  "released_at": "2026-04-24",
+  "uri": "https://api.scryfall.com/cards/bc9a7599-3c7d-4b83-bff3-e3d1f20f1b0f",
+  "scryfall_uri": "https://scryfall.com/card/soc/114/faerie-mastermind?utm_source=api",
+  "layout": "normal",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T00:50:20Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/b/c/bc9a7599-3c7d-4b83-bff3-e3d1f20f1b0f.jpg?1783903820",
+    "normal": "https://cards.scryfall.io/normal/front/b/c/bc9a7599-3c7d-4b83-bff3-e3d1f20f1b0f.jpg?1783903820",
+    "large": "https://cards.scryfall.io/large/front/b/c/bc9a7599-3c7d-4b83-bff3-e3d1f20f1b0f.jpg?1783903820",
+    "png": "https://cards.scryfall.io/png/front/b/c/bc9a7599-3c7d-4b83-bff3-e3d1f20f1b0f.png?1783903820",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/b/c/bc9a7599-3c7d-4b83-bff3-e3d1f20f1b0f.jpg?1783903820",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/b/c/bc9a7599-3c7d-4b83-bff3-e3d1f20f1b0f.jpg?1783903820",
+    "thumb": "https://cards.scryfall.io/thumb/front/b/c/bc9a7599-3c7d-4b83-bff3-e3d1f20f1b0f.webp?1783903820",
+    "grid": "https://cards.scryfall.io/grid/front/b/c/bc9a7599-3c7d-4b83-bff3-e3d1f20f1b0f.webp?1783903820",
+    "display": "https://cards.scryfall.io/display/front/b/c/bc9a7599-3c7d-4b83-bff3-e3d1f20f1b0f.webp?1783903820",
+    "art": "https://cards.scryfall.io/art/front/b/c/bc9a7599-3c7d-4b83-bff3-e3d1f20f1b0f.webp?1783903820",
+    "crop": "https://cards.scryfall.io/crop/front/b/c/bc9a7599-3c7d-4b83-bff3-e3d1f20f1b0f.webp?1783903820"
+  },
+  "mana_cost": "{1}{U}",
+  "cmc": 2.0,
+  "type_line": "Creature — Faerie Rogue",
+  "oracle_text": "Flash\nFlying\nWhenever an opponent draws their second card each turn, you draw a card.\n{3}{U}: Each player draws a card.",
+  "power": "2",
+  "toughness": "1",
+  "colors": [
+    "U"
+  ],
+  "color_identity": [
+    "U"
+  ],
+  "keywords": [
+    "Flying",
+    "Flash"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "97fab8d1-480a-419d-ab14-663968e29b9c",
+  "set": "soc",
+  "set_name": "Secrets of Strixhaven Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/97fab8d1-480a-419d-ab14-663968e29b9c",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Asoc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/soc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/bc9a7599-3c7d-4b83-bff3-e3d1f20f1b0f/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Aa984db23-40ea-428d-829f-e944267280f8&unique=prints",
+  "collector_number": "114",
+  "digital": false,
+  "rarity": "rare",
+  "flavor_text": "Omenpaths bring new students and new tactics to the field.",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Kai Carpenter",
+  "artist_ids": [
+    "dcd3cf0d-67b7-4b73-8e62-1d318bf6209c"
+  ],
+  "illustration_id": "3088445a-c789-4255-9f8f-21e887dbbf07",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 288,
+  "prices": {
+    "usd": "11.59",
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": "11.20",
+    "eur_foil": null,
+    "tix": "0.49"
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DFaerie%2BMastermind",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DFaerie%2BMastermind",
+    "edhrec": "https://edhrec.com/route/?cc=Faerie+Mastermind"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F687365%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=881436&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards/148699?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

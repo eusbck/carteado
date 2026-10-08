@@ -1,0 +1,139 @@
+{
+  "object": "card",
+  "id": "83cb9850-e556-4721-a11b-0ca7f1f433c8",
+  "oracle_id": "6c326439-5620-4ec6-a56a-fe9c3d5d2a46",
+  "multiverse_ids": [
+    622517
+  ],
+  "cardmarket_id": 717394,
+  "name": "Talisman of Conviction",
+  "printed_name": "Talismã da Convicção",
+  "lang": "pt",
+  "released_at": "2023-06-23",
+  "uri": "https://api.scryfall.com/cards/83cb9850-e556-4721-a11b-0ca7f1f433c8",
+  "scryfall_uri": "https://scryfall.com/card/ltc/285/pt/talism%C3%A3-da-convic%C3%A7%C3%A3o-(talisman-of-conviction)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T11:25:27Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/8/3/83cb9850-e556-4721-a11b-0ca7f1f433c8.jpg?1782818727",
+    "normal": "https://cards.scryfall.io/normal/front/8/3/83cb9850-e556-4721-a11b-0ca7f1f433c8.jpg?1782818727",
+    "large": "https://cards.scryfall.io/large/front/8/3/83cb9850-e556-4721-a11b-0ca7f1f433c8.jpg?1782818727",
+    "png": "https://cards.scryfall.io/png/front/8/3/83cb9850-e556-4721-a11b-0ca7f1f433c8.png?1782818727",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/8/3/83cb9850-e556-4721-a11b-0ca7f1f433c8.jpg?1782818727",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/8/3/83cb9850-e556-4721-a11b-0ca7f1f433c8.jpg?1782818727",
+    "thumb": "https://cards.scryfall.io/thumb/front/8/3/83cb9850-e556-4721-a11b-0ca7f1f433c8.webp?1782818727",
+    "grid": "https://cards.scryfall.io/grid/front/8/3/83cb9850-e556-4721-a11b-0ca7f1f433c8.webp?1782818727",
+    "display": "https://cards.scryfall.io/display/front/8/3/83cb9850-e556-4721-a11b-0ca7f1f433c8.webp?1782818727",
+    "art": "https://cards.scryfall.io/art/front/8/3/83cb9850-e556-4721-a11b-0ca7f1f433c8.webp?1782818727",
+    "crop": "https://cards.scryfall.io/crop/front/8/3/83cb9850-e556-4721-a11b-0ca7f1f433c8.webp?1782818727"
+  },
+  "mana_cost": "{2}",
+  "cmc": 2.0,
+  "type_line": "Artifact",
+  "printed_type_line": "Artefato",
+  "oracle_text": "{T}: Add {C}.\n{T}: Add {R} or {W}. This artifact deals 1 damage to you.",
+  "printed_text": "{T}: Adicione {C}.\n{T}: Adicione {R} ou {W}. Talismã da Convicção causa 1 ponto de dano a você.",
+  "colors": [],
+  "color_identity": [
+    "R",
+    "W"
+  ],
+  "keywords": [],
+  "produced_mana": [
+    "C",
+    "R",
+    "W"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "not_legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "e567c19c-0fe4-446e-a7bf-fce8a150cd2e",
+  "set": "ltc",
+  "set_name": "Tales of Middle-earth Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/e567c19c-0fe4-446e-a7bf-fce8a150cd2e",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Altc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/ltc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/83cb9850-e556-4721-a11b-0ca7f1f433c8/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A6c326439-5620-4ec6-a56a-fe9c3d5d2a46&unique=prints",
+  "collector_number": "285",
+  "digital": false,
+  "rarity": "uncommon",
+  "flavor_text": "Faramir e Éowyn se adiantaram e deram as mãos; e todos brindaram, beberam e se alegraram.",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Tatiana Veryayskaya",
+  "artist_ids": [
+    "9dc3cb79-1f1d-4246-b56e-ce164022a8ae"
+  ],
+  "illustration_id": "0f2795bd-8d0d-49ef-8220-2e2b9ac373f2",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "triangle",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "promo_types": [
+    "universesbeyond"
+  ],
+  "edhrec_rank": 151,
+  "penny_rank": 2188,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": "0.51",
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=622517&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DTalisman%2Bof%2BConviction",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DTalisman%2Bof%2BConviction",
+    "edhrec": "https://edhrec.com/route/?cc=Talisman+of+Conviction"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DTalisman%2Bof%2BConviction%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=717394&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Talisman+of+Conviction&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

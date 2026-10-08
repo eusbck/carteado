@@ -1,0 +1,131 @@
+{
+  "object": "card",
+  "id": "9031fca6-517f-4920-a54c-0dd7444a7ede",
+  "oracle_id": "bd16434d-55ea-4c5a-a9ef-752971a4af16",
+  "multiverse_ids": [
+    614256
+  ],
+  "name": "Despark",
+  "printed_name": "Descentelhar",
+  "lang": "pt",
+  "released_at": "2023-04-21",
+  "uri": "https://api.scryfall.com/cards/9031fca6-517f-4920-a54c-0dd7444a7ede",
+  "scryfall_uri": "https://scryfall.com/card/moc/322/pt/descentelhar-(despark)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T13:33:36Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/9/0/9031fca6-517f-4920-a54c-0dd7444a7ede.jpg?1782826416",
+    "normal": "https://cards.scryfall.io/normal/front/9/0/9031fca6-517f-4920-a54c-0dd7444a7ede.jpg?1782826416",
+    "large": "https://cards.scryfall.io/large/front/9/0/9031fca6-517f-4920-a54c-0dd7444a7ede.jpg?1782826416",
+    "png": "https://cards.scryfall.io/png/front/9/0/9031fca6-517f-4920-a54c-0dd7444a7ede.png?1782826416",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/9/0/9031fca6-517f-4920-a54c-0dd7444a7ede.jpg?1782826416",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/9/0/9031fca6-517f-4920-a54c-0dd7444a7ede.jpg?1782826416",
+    "thumb": "https://cards.scryfall.io/thumb/front/9/0/9031fca6-517f-4920-a54c-0dd7444a7ede.webp?1782826416",
+    "grid": "https://cards.scryfall.io/grid/front/9/0/9031fca6-517f-4920-a54c-0dd7444a7ede.webp?1782826416",
+    "display": "https://cards.scryfall.io/display/front/9/0/9031fca6-517f-4920-a54c-0dd7444a7ede.webp?1782826416",
+    "art": "https://cards.scryfall.io/art/front/9/0/9031fca6-517f-4920-a54c-0dd7444a7ede.webp?1782826416",
+    "crop": "https://cards.scryfall.io/crop/front/9/0/9031fca6-517f-4920-a54c-0dd7444a7ede.webp?1782826416"
+  },
+  "mana_cost": "{W}{B}",
+  "cmc": 2.0,
+  "type_line": "Instant",
+  "printed_type_line": "Mágica Instantânea",
+  "oracle_text": "Exile target permanent with mana value 4 or greater.",
+  "printed_text": "Exile a permanente alvo com valor de mana igual ou superior a 4.",
+  "colors": [
+    "B",
+    "W"
+  ],
+  "color_identity": [
+    "B",
+    "W"
+  ],
+  "keywords": [],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "6bba5de9-5afb-42af-a7eb-24ac854bf671",
+  "set": "moc",
+  "set_name": "March of the Machine Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/6bba5de9-5afb-42af-a7eb-24ac854bf671",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Amoc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/moc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/9031fca6-517f-4920-a54c-0dd7444a7ede/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Abd16434d-55ea-4c5a-a9ef-752971a4af16&unique=prints",
+  "collector_number": "322",
+  "digital": false,
+  "rarity": "uncommon",
+  "flavor_text": "Liliana sussurrou ao restante de consciência em Bontu e Oketra. \"Vocês são as deusas. Ele é o usurpador. Vocês sabem o que fazer.\"",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Slawomir Maniak",
+  "artist_ids": [
+    "d887bc66-2779-416c-a1ff-d8720242063e"
+  ],
+  "illustration_id": "2855eed8-2e02-4b00-92bc-52613666ef1b",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 411,
+  "penny_rank": 4928,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=614256&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DDespark",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DDespark",
+    "edhrec": "https://edhrec.com/route/?cc=Despark"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DDespark%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Despark&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Despark&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

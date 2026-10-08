@@ -1,0 +1,132 @@
+{
+  "object": "card",
+  "id": "8f01046b-a981-4c78-9e75-002c5aeaaaa6",
+  "oracle_id": "f7e55117-69fb-412e-b16e-d92e0f95f629",
+  "multiverse_ids": [
+    537121
+  ],
+  "name": "Cathartic Pyre",
+  "printed_name": "Pira Catártica",
+  "lang": "pt",
+  "released_at": "2021-09-24",
+  "uri": "https://api.scryfall.com/cards/8f01046b-a981-4c78-9e75-002c5aeaaaa6",
+  "scryfall_uri": "https://scryfall.com/card/mid/133/pt/pira-cat%C3%A1rtica-(cathartic-pyre)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-01T02:11:07Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/8/f/8f01046b-a981-4c78-9e75-002c5aeaaaa6.jpg?1782871867",
+    "normal": "https://cards.scryfall.io/normal/front/8/f/8f01046b-a981-4c78-9e75-002c5aeaaaa6.jpg?1782871867",
+    "large": "https://cards.scryfall.io/large/front/8/f/8f01046b-a981-4c78-9e75-002c5aeaaaa6.jpg?1782871867",
+    "png": "https://cards.scryfall.io/png/front/8/f/8f01046b-a981-4c78-9e75-002c5aeaaaa6.png?1782871867",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/8/f/8f01046b-a981-4c78-9e75-002c5aeaaaa6.jpg?1782871867",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/8/f/8f01046b-a981-4c78-9e75-002c5aeaaaa6.jpg?1782871867",
+    "thumb": "https://cards.scryfall.io/thumb/front/8/f/8f01046b-a981-4c78-9e75-002c5aeaaaa6.webp?1782871867",
+    "grid": "https://cards.scryfall.io/grid/front/8/f/8f01046b-a981-4c78-9e75-002c5aeaaaa6.webp?1782871867",
+    "display": "https://cards.scryfall.io/display/front/8/f/8f01046b-a981-4c78-9e75-002c5aeaaaa6.webp?1782871867",
+    "art": "https://cards.scryfall.io/art/front/8/f/8f01046b-a981-4c78-9e75-002c5aeaaaa6.webp?1782871867",
+    "crop": "https://cards.scryfall.io/crop/front/8/f/8f01046b-a981-4c78-9e75-002c5aeaaaa6.webp?1782871867"
+  },
+  "mana_cost": "{1}{R}",
+  "cmc": 2.0,
+  "type_line": "Instant",
+  "printed_type_line": "Mágica Instantânea",
+  "oracle_text": "Choose one —\n• Cathartic Pyre deals 3 damage to target creature or planeswalker.\n• Discard up to two cards, then draw that many cards.",
+  "printed_text": "Escolha um —\n• Pira Catártica causa 3 pontos de dano à criatura ou ao planeswalker alvo.\n• Descarte até dois cards e depois compre aquela quantidade de cards.",
+  "colors": [
+    "R"
+  ],
+  "color_identity": [
+    "R"
+  ],
+  "keywords": [],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "arena",
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "44b8eb8f-fa23-401a-98b5-1fbb9871128e",
+  "set": "mid",
+  "set_name": "Innistrad: Midnight Hunt",
+  "set_type": "expansion",
+  "set_uri": "https://api.scryfall.com/sets/44b8eb8f-fa23-401a-98b5-1fbb9871128e",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Amid&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/mid?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/8f01046b-a981-4c78-9e75-002c5aeaaaa6/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Af7e55117-69fb-412e-b16e-d92e0f95f629&unique=prints",
+  "collector_number": "133",
+  "digital": false,
+  "rarity": "uncommon",
+  "flavor_text": "\"Deixe os pesares desse corpo para trás. Abençoado seja, ser de luz.\"",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Ryan Yee",
+  "artist_ids": [
+    "8955dca7-3e37-42b4-83a9-167c78a2178f"
+  ],
+  "illustration_id": "dc2a3a71-cad6-4c41-bc8f-aace8cb96912",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "edhrec_rank": 4147,
+  "penny_rank": 1349,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=537121&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DCathartic%2BPyre",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DCathartic%2BPyre",
+    "edhrec": "https://edhrec.com/route/?cc=Cathartic+Pyre"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DCathartic%2BPyre%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Cathartic+Pyre&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Cathartic+Pyre&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

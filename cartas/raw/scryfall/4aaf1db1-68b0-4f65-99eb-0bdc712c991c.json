@@ -1,0 +1,133 @@
+{
+  "object": "card",
+  "id": "4aaf1db1-68b0-4f65-99eb-0bdc712c991c",
+  "oracle_id": "a3b3b9ae-1e48-481d-80a5-7e2a26cf2f50",
+  "multiverse_ids": [
+    75922
+  ],
+  "name": "Screams from Within",
+  "printed_name": "Gritos de Dentro",
+  "lang": "pt",
+  "released_at": "2004-02-06",
+  "uri": "https://api.scryfall.com/cards/4aaf1db1-68b0-4f65-99eb-0bdc712c991c",
+  "scryfall_uri": "https://scryfall.com/card/dst/52/pt/gritos-de-dentro-(screams-from-within)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "placeholder",
+  "image_updated_at": "2026-07-02T20:57:02Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/4/a/4aaf1db1-68b0-4f65-99eb-0bdc712c991c.jpg?1783025822",
+    "normal": "https://cards.scryfall.io/normal/front/4/a/4aaf1db1-68b0-4f65-99eb-0bdc712c991c.jpg?1783025822",
+    "large": "https://cards.scryfall.io/large/front/4/a/4aaf1db1-68b0-4f65-99eb-0bdc712c991c.jpg?1783025822",
+    "png": "https://cards.scryfall.io/png/front/4/a/4aaf1db1-68b0-4f65-99eb-0bdc712c991c.png?1783025822",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/4/a/4aaf1db1-68b0-4f65-99eb-0bdc712c991c.jpg?1783025822",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/4/a/4aaf1db1-68b0-4f65-99eb-0bdc712c991c.jpg?1783025822",
+    "thumb": "https://cards.scryfall.io/thumb/front/4/a/4aaf1db1-68b0-4f65-99eb-0bdc712c991c.webp?1783025822",
+    "grid": "https://cards.scryfall.io/grid/front/4/a/4aaf1db1-68b0-4f65-99eb-0bdc712c991c.webp?1783025822",
+    "display": "https://cards.scryfall.io/display/front/4/a/4aaf1db1-68b0-4f65-99eb-0bdc712c991c.webp?1783025822",
+    "art": "https://cards.scryfall.io/art/front/4/a/4aaf1db1-68b0-4f65-99eb-0bdc712c991c.webp?1783025822",
+    "crop": "https://cards.scryfall.io/crop/front/4/a/4aaf1db1-68b0-4f65-99eb-0bdc712c991c.webp?1783025822"
+  },
+  "mana_cost": "{1}{B}{B}",
+  "cmc": 3.0,
+  "type_line": "Enchantment — Aura",
+  "printed_type_line": "Encantar Criatura",
+  "oracle_text": "Enchant creature\nEnchanted creature gets -1/-1.\nWhen enchanted creature dies, return this card from your graveyard to the battlefield.",
+  "printed_text": "A criatura encantada recebe -1/-1.\nQuando a criatura encantada for colocada num cemitério, devolva Gritos de Dentro de seu cemitério para o jogo.",
+  "colors": [
+    "B"
+  ],
+  "color_identity": [
+    "B"
+  ],
+  "keywords": [
+    "Enchant"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "e29cb2dd-1345-4032-abfe-e52e8c8ce074",
+  "set": "dst",
+  "set_name": "Darksteel",
+  "set_type": "expansion",
+  "set_uri": "https://api.scryfall.com/sets/e29cb2dd-1345-4032-abfe-e52e8c8ce074",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Adst&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/dst?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/4aaf1db1-68b0-4f65-99eb-0bdc712c991c/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Aa3b3b9ae-1e48-481d-80a5-7e2a26cf2f50&unique=prints",
+  "collector_number": "52",
+  "digital": false,
+  "rarity": "uncommon",
+  "flavor_text": "Não há como escapar de um inimigo que vive dentro da tua cabeça.",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Hugh Jamieson",
+  "artist_ids": [
+    "ae735af7-4895-45e0-aeb5-58c82343942e"
+  ],
+  "illustration_id": "21b8dbbf-7519-4d2d-acda-b0e038764091",
+  "border_color": "black",
+  "frame": "2003",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "edhrec_rank": 8054,
+  "penny_rank": 12128,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=75922&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DScreams%2Bfrom%2BWithin",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DScreams%2Bfrom%2BWithin",
+    "edhrec": "https://edhrec.com/route/?cc=Screams+from+Within"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DScreams%2Bfrom%2BWithin%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Screams+from+Within&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Screams+from+Within&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

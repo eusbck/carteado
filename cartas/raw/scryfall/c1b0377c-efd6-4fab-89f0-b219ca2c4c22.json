@@ -1,0 +1,150 @@
+{
+  "object": "card",
+  "id": "c1b0377c-efd6-4fab-89f0-b219ca2c4c22",
+  "oracle_id": "9bcaf141-1f1f-491f-aced-13dc093b9e2c",
+  "multiverse_ids": [],
+  "resource_id": "96AFB7DEB62509EC9BE5E68E042F91B8040B492C2922A7D6976375863B705BFC",
+  "mtgo_id": 148913,
+  "tcgplayer_id": 687478,
+  "cardmarket_id": 881542,
+  "name": "Pawn of Ulamog",
+  "lang": "en",
+  "released_at": "2026-04-24",
+  "uri": "https://api.scryfall.com/cards/c1b0377c-efd6-4fab-89f0-b219ca2c4c22",
+  "scryfall_uri": "https://scryfall.com/card/soc/223/pawn-of-ulamog?utm_source=api",
+  "layout": "normal",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T00:49:41Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/c/1/c1b0377c-efd6-4fab-89f0-b219ca2c4c22.jpg?1783903781",
+    "normal": "https://cards.scryfall.io/normal/front/c/1/c1b0377c-efd6-4fab-89f0-b219ca2c4c22.jpg?1783903781",
+    "large": "https://cards.scryfall.io/large/front/c/1/c1b0377c-efd6-4fab-89f0-b219ca2c4c22.jpg?1783903781",
+    "png": "https://cards.scryfall.io/png/front/c/1/c1b0377c-efd6-4fab-89f0-b219ca2c4c22.png?1783903781",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/c/1/c1b0377c-efd6-4fab-89f0-b219ca2c4c22.jpg?1783903781",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/c/1/c1b0377c-efd6-4fab-89f0-b219ca2c4c22.jpg?1783903781",
+    "thumb": "https://cards.scryfall.io/thumb/front/c/1/c1b0377c-efd6-4fab-89f0-b219ca2c4c22.webp?1783903781",
+    "grid": "https://cards.scryfall.io/grid/front/c/1/c1b0377c-efd6-4fab-89f0-b219ca2c4c22.webp?1783903781",
+    "display": "https://cards.scryfall.io/display/front/c/1/c1b0377c-efd6-4fab-89f0-b219ca2c4c22.webp?1783903781",
+    "art": "https://cards.scryfall.io/art/front/c/1/c1b0377c-efd6-4fab-89f0-b219ca2c4c22.webp?1783903781",
+    "crop": "https://cards.scryfall.io/crop/front/c/1/c1b0377c-efd6-4fab-89f0-b219ca2c4c22.webp?1783903781"
+  },
+  "mana_cost": "{1}{B}{B}",
+  "cmc": 3.0,
+  "type_line": "Creature — Vampire Shaman",
+  "oracle_text": "Whenever this creature or another nontoken creature you control dies, you may create a 0/1 colorless Eldrazi Spawn creature token. It has \"Sacrifice this token: Add {C}.\"",
+  "power": "2",
+  "toughness": "2",
+  "colors": [
+    "B"
+  ],
+  "color_identity": [
+    "B"
+  ],
+  "keywords": [],
+  "produced_mana": [
+    "C"
+  ],
+  "all_parts": [
+    {
+      "object": "related_card",
+      "id": "96b0ffdf-351e-4b89-92f2-79b20420b3bc",
+      "component": "token",
+      "name": "Eldrazi Spawn",
+      "type_line": "Token Creature — Eldrazi Spawn",
+      "uri": "https://api.scryfall.com/cards/96b0ffdf-351e-4b89-92f2-79b20420b3bc"
+    },
+    {
+      "object": "related_card",
+      "id": "c1b0377c-efd6-4fab-89f0-b219ca2c4c22",
+      "component": "combo_piece",
+      "name": "Pawn of Ulamog",
+      "type_line": "Creature — Vampire Shaman",
+      "uri": "https://api.scryfall.com/cards/c1b0377c-efd6-4fab-89f0-b219ca2c4c22"
+    }
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "97fab8d1-480a-419d-ab14-663968e29b9c",
+  "set": "soc",
+  "set_name": "Secrets of Strixhaven Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/97fab8d1-480a-419d-ab14-663968e29b9c",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Asoc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/soc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/c1b0377c-efd6-4fab-89f0-b219ca2c4c22/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A9bcaf141-1f1f-491f-aced-13dc093b9e2c&unique=prints",
+  "collector_number": "223",
+  "digital": false,
+  "rarity": "uncommon",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Daarken",
+  "artist_ids": [
+    "e607a0d4-fc12-4c01-9e3f-501f5269b9cb"
+  ],
+  "illustration_id": "22b83a2a-cc1f-484d-bf9a-172802aab36b",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 1537,
+  "penny_rank": 6370,
+  "prices": {
+    "usd": "0.56",
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": "1.11",
+    "eur_foil": null,
+    "tix": "0.09"
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DPawn%2Bof%2BUlamog",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DPawn%2Bof%2BUlamog",
+    "edhrec": "https://edhrec.com/route/?cc=Pawn+of+Ulamog"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F687478%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=881542&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards/148913?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

@@ -1,0 +1,132 @@
+{
+  "object": "card",
+  "id": "816df9ba-684f-41cc-a26e-af159c194e47",
+  "oracle_id": "2c11c72f-5b04-47d8-bdf8-8d9d197ebc1b",
+  "multiverse_ids": [
+    375558
+  ],
+  "name": "Gift of Immortality",
+  "printed_name": "Dádiva da Imortalidade",
+  "lang": "pt",
+  "released_at": "2013-09-27",
+  "uri": "https://api.scryfall.com/cards/816df9ba-684f-41cc-a26e-af159c194e47",
+  "scryfall_uri": "https://scryfall.com/card/ths/14/pt/d%C3%A1diva-da-imortalidade-(gift-of-immortality)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "placeholder",
+  "image_updated_at": "2026-07-02T06:59:47Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/8/1/816df9ba-684f-41cc-a26e-af159c194e47.jpg?1782975587",
+    "normal": "https://cards.scryfall.io/normal/front/8/1/816df9ba-684f-41cc-a26e-af159c194e47.jpg?1782975587",
+    "large": "https://cards.scryfall.io/large/front/8/1/816df9ba-684f-41cc-a26e-af159c194e47.jpg?1782975587",
+    "png": "https://cards.scryfall.io/png/front/8/1/816df9ba-684f-41cc-a26e-af159c194e47.png?1782975587",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/8/1/816df9ba-684f-41cc-a26e-af159c194e47.jpg?1782975587",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/8/1/816df9ba-684f-41cc-a26e-af159c194e47.jpg?1782975587",
+    "thumb": "https://cards.scryfall.io/thumb/front/8/1/816df9ba-684f-41cc-a26e-af159c194e47.webp?1782975587",
+    "grid": "https://cards.scryfall.io/grid/front/8/1/816df9ba-684f-41cc-a26e-af159c194e47.webp?1782975587",
+    "display": "https://cards.scryfall.io/display/front/8/1/816df9ba-684f-41cc-a26e-af159c194e47.webp?1782975587",
+    "art": "https://cards.scryfall.io/art/front/8/1/816df9ba-684f-41cc-a26e-af159c194e47.webp?1782975587",
+    "crop": "https://cards.scryfall.io/crop/front/8/1/816df9ba-684f-41cc-a26e-af159c194e47.webp?1782975587"
+  },
+  "mana_cost": "{2}{W}",
+  "cmc": 3.0,
+  "type_line": "Enchantment — Aura",
+  "printed_type_line": "Encantamento — Aura",
+  "oracle_text": "Enchant creature\nWhen enchanted creature dies, return that card to the battlefield under its owner's control. Return this card to the battlefield attached to that creature at the beginning of the next end step.",
+  "printed_text": "Encantar criatura\nQuando a criatura encantada morrer, devolva aquele card ao campo de batalha sob o controle de seu dono. Devolva Dádiva da Imortalidade ao campo de batalha anexada àquela criatura no início da próxima etapa final.",
+  "colors": [
+    "W"
+  ],
+  "color_identity": [
+    "W"
+  ],
+  "keywords": [
+    "Enchant"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "69093d6f-e25a-41a4-8cf5-688d7f11c0fb",
+  "set": "ths",
+  "set_name": "Theros",
+  "set_type": "expansion",
+  "set_uri": "https://api.scryfall.com/sets/69093d6f-e25a-41a4-8cf5-688d7f11c0fb",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Aths&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/ths?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/816df9ba-684f-41cc-a26e-af159c194e47/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A2c11c72f-5b04-47d8-bdf8-8d9d197ebc1b&unique=prints",
+  "collector_number": "14",
+  "digital": false,
+  "rarity": "rare",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Matt Stewart",
+  "artist_ids": [
+    "20871267-2d8a-41d5-b03a-be3d557c5734"
+  ],
+  "illustration_id": "e465251b-0a63-471e-8c73-44bceeb45f43",
+  "border_color": "black",
+  "frame": "2003",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "edhrec_rank": 1892,
+  "penny_rank": 5693,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=375558&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DGift%2Bof%2BImmortality",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DGift%2Bof%2BImmortality",
+    "edhrec": "https://edhrec.com/route/?cc=Gift+of+Immortality"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DGift%2Bof%2BImmortality%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Gift+of+Immortality&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Gift+of+Immortality&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

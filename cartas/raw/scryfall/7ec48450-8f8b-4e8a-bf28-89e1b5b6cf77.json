@@ -1,0 +1,145 @@
+{
+  "object": "card",
+  "id": "7ec48450-8f8b-4e8a-bf28-89e1b5b6cf77",
+  "oracle_id": "2143f413-7baa-4fd6-a7ca-32f52bfa553f",
+  "multiverse_ids": [
+    517476
+  ],
+  "name": "Shadrix Silverquill",
+  "printed_name": "Shadrix Platinopena",
+  "lang": "pt",
+  "released_at": "2021-04-23",
+  "uri": "https://api.scryfall.com/cards/7ec48450-8f8b-4e8a-bf28-89e1b5b6cf77",
+  "scryfall_uri": "https://scryfall.com/card/stx/280/pt/shadrix-platinopena-(shadrix-silverquill)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-01T05:13:24Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/7/e/7ec48450-8f8b-4e8a-bf28-89e1b5b6cf77.jpg?1782882804",
+    "normal": "https://cards.scryfall.io/normal/front/7/e/7ec48450-8f8b-4e8a-bf28-89e1b5b6cf77.jpg?1782882804",
+    "large": "https://cards.scryfall.io/large/front/7/e/7ec48450-8f8b-4e8a-bf28-89e1b5b6cf77.jpg?1782882804",
+    "png": "https://cards.scryfall.io/png/front/7/e/7ec48450-8f8b-4e8a-bf28-89e1b5b6cf77.png?1782882804",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/7/e/7ec48450-8f8b-4e8a-bf28-89e1b5b6cf77.jpg?1782882804",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/7/e/7ec48450-8f8b-4e8a-bf28-89e1b5b6cf77.jpg?1782882804",
+    "thumb": "https://cards.scryfall.io/thumb/front/7/e/7ec48450-8f8b-4e8a-bf28-89e1b5b6cf77.webp?1782882804",
+    "grid": "https://cards.scryfall.io/grid/front/7/e/7ec48450-8f8b-4e8a-bf28-89e1b5b6cf77.webp?1782882804",
+    "display": "https://cards.scryfall.io/display/front/7/e/7ec48450-8f8b-4e8a-bf28-89e1b5b6cf77.webp?1782882804",
+    "art": "https://cards.scryfall.io/art/front/7/e/7ec48450-8f8b-4e8a-bf28-89e1b5b6cf77.webp?1782882804",
+    "crop": "https://cards.scryfall.io/crop/front/7/e/7ec48450-8f8b-4e8a-bf28-89e1b5b6cf77.webp?1782882804"
+  },
+  "mana_cost": "{3}{W}{B}",
+  "cmc": 5.0,
+  "type_line": "Legendary Creature — Elder Dragon",
+  "printed_type_line": "Criatura Lendária — Dragão Ancião",
+  "oracle_text": "Flying, double strike\nAt the beginning of combat on your turn, you may choose two. Each mode must target a different player.\n• Target player creates a 2/1 white and black Inkling creature token with flying.\n• Target player draws a card and loses 1 life.\n• Target player puts a +1/+1 counter on each creature they control.",
+  "printed_text": "Voar, golpe duplo\nNo início do combate no seu turno, você pode escolher dois. Cada modo precisa ter como alvo um jogador diferente.\n• O jogador alvo cria uma ficha de criatura Nanquíneo branca e preta 2/1 com voar.\n• O jogador alvo compra um card e perde 1 ponto de vida.\n• O jogador alvo coloca um marcador +1/+1 em cada criatura que ele controla.",
+  "power": "2",
+  "toughness": "5",
+  "colors": [
+    "B",
+    "W"
+  ],
+  "color_identity": [
+    "B",
+    "W"
+  ],
+  "keywords": [
+    "Flying",
+    "Double strike"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "541c3c28-8747-40e5-a231-8e8f33234859",
+  "set": "stx",
+  "set_name": "Strixhaven: School of Mages",
+  "set_type": "expansion",
+  "set_uri": "https://api.scryfall.com/sets/541c3c28-8747-40e5-a231-8e8f33234859",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Astx&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/stx?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/7ec48450-8f8b-4e8a-bf28-89e1b5b6cf77/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A2143f413-7baa-4fd6-a7ca-32f52bfa553f&unique=prints",
+  "collector_number": "280",
+  "digital": false,
+  "rarity": "mythic",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Kekai Kotaki",
+  "artist_ids": [
+    "4b771085-c049-4308-930d-ec9665f803a4"
+  ],
+  "illustration_id": "7a8e2f36-0ea8-4c77-9a49-bd85392c8528",
+  "border_color": "borderless",
+  "frame": "2015",
+  "frame_effects": [
+    "legendary",
+    "inverted"
+  ],
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "promo_types": [
+    "boosterfun"
+  ],
+  "edhrec_rank": 2667,
+  "penny_rank": 14325,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=517476&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DShadrix%2BSilverquill",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DShadrix%2BSilverquill",
+    "edhrec": "https://edhrec.com/route/?cc=Shadrix+Silverquill"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DShadrix%2BSilverquill%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Shadrix+Silverquill&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Shadrix+Silverquill&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

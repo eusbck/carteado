@@ -1,0 +1,134 @@
+{
+  "object": "card",
+  "id": "470290d2-f930-4d90-88c6-c51367a8a923",
+  "oracle_id": "b4dbbf56-d7df-4183-bb48-cfc6b4d0468f",
+  "multiverse_ids": [
+    499697
+  ],
+  "name": "Armored Skyhunter",
+  "printed_name": "Caçadora Celeste Armadurada",
+  "lang": "pt",
+  "released_at": "2020-11-20",
+  "uri": "https://api.scryfall.com/cards/470290d2-f930-4d90-88c6-c51367a8a923",
+  "scryfall_uri": "https://scryfall.com/card/cmr/11/pt/ca%C3%A7adora-celeste-armadurada-(armored-skyhunter)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-01T09:38:48Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/4/7/470290d2-f930-4d90-88c6-c51367a8a923.jpg?1782898728",
+    "normal": "https://cards.scryfall.io/normal/front/4/7/470290d2-f930-4d90-88c6-c51367a8a923.jpg?1782898728",
+    "large": "https://cards.scryfall.io/large/front/4/7/470290d2-f930-4d90-88c6-c51367a8a923.jpg?1782898728",
+    "png": "https://cards.scryfall.io/png/front/4/7/470290d2-f930-4d90-88c6-c51367a8a923.png?1782898728",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/4/7/470290d2-f930-4d90-88c6-c51367a8a923.jpg?1782898728",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/4/7/470290d2-f930-4d90-88c6-c51367a8a923.jpg?1782898728",
+    "thumb": "https://cards.scryfall.io/thumb/front/4/7/470290d2-f930-4d90-88c6-c51367a8a923.webp?1782898728",
+    "grid": "https://cards.scryfall.io/grid/front/4/7/470290d2-f930-4d90-88c6-c51367a8a923.webp?1782898728",
+    "display": "https://cards.scryfall.io/display/front/4/7/470290d2-f930-4d90-88c6-c51367a8a923.webp?1782898728",
+    "art": "https://cards.scryfall.io/art/front/4/7/470290d2-f930-4d90-88c6-c51367a8a923.webp?1782898728",
+    "crop": "https://cards.scryfall.io/crop/front/4/7/470290d2-f930-4d90-88c6-c51367a8a923.webp?1782898728"
+  },
+  "mana_cost": "{3}{W}",
+  "cmc": 4.0,
+  "type_line": "Creature — Cat Knight",
+  "printed_type_line": "Criatura — Felino Cavaleiro",
+  "oracle_text": "Flying\nWhenever this creature attacks, look at the top six cards of your library. You may put an Aura or Equipment card from among them onto the battlefield. If an Equipment is put onto the battlefield this way, you may attach it to a creature you control. Put the rest of those cards on the bottom of your library in a random order.",
+  "printed_text": "Voar\nToda vez que Caçadora Celeste Armadurada atacar, olhe os seis cards do topo de seu grimório. Você pode colocar um card de Aura ou Equipamento dentre eles no campo de batalha. Se um Equipamento é colocado no campo de batalha dessa forma, você pode anexá-lo a uma criatura que você controla. Coloque o restante daqueles cards no fundo de seu grimório em ordem aleatória.",
+  "power": "3",
+  "toughness": "3",
+  "colors": [
+    "W"
+  ],
+  "color_identity": [
+    "W"
+  ],
+  "keywords": [
+    "Flying"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "39de6fbf-1f11-48d0-8f04-f0407f6a0732",
+  "set": "cmr",
+  "set_name": "Commander Legends",
+  "set_type": "draft_innovation",
+  "set_uri": "https://api.scryfall.com/sets/39de6fbf-1f11-48d0-8f04-f0407f6a0732",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Acmr&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/cmr?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/470290d2-f930-4d90-88c6-c51367a8a923/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Ab4dbbf56-d7df-4183-bb48-cfc6b4d0468f&unique=prints",
+  "collector_number": "11",
+  "digital": false,
+  "rarity": "rare",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Denman Rooke",
+  "artist_ids": [
+    "5eedbc4b-34a3-4ca5-b3f5-9ac2f6b6adf7"
+  ],
+  "illustration_id": "f75ae02a-bd73-4412-bdb6-aed83eaf80fb",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "edhrec_rank": 2542,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=499697&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DArmored%2BSkyhunter",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DArmored%2BSkyhunter",
+    "edhrec": "https://edhrec.com/route/?cc=Armored+Skyhunter"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DArmored%2BSkyhunter%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Armored+Skyhunter&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Armored+Skyhunter&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

@@ -1,0 +1,138 @@
+{
+  "object": "card",
+  "id": "9ae0b1e0-a481-4a98-b67b-0cf8bac53fdd",
+  "oracle_id": "660de988-b6fb-4f36-8006-42af3e7f908d",
+  "multiverse_ids": [
+    680754
+  ],
+  "mtgo_id": 134566,
+  "arena_id": 94043,
+  "tcgplayer_id": 591018,
+  "cardmarket_id": 795922,
+  "name": "Vampiric Rites",
+  "lang": "en",
+  "released_at": "2024-11-15",
+  "uri": "https://api.scryfall.com/cards/9ae0b1e0-a481-4a98-b67b-0cf8bac53fdd",
+  "scryfall_uri": "https://scryfall.com/card/fdn/615/vampiric-rites?utm_source=api",
+  "layout": "normal",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T02:15:26Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/9/a/9ae0b1e0-a481-4a98-b67b-0cf8bac53fdd.jpg?1783908926",
+    "normal": "https://cards.scryfall.io/normal/front/9/a/9ae0b1e0-a481-4a98-b67b-0cf8bac53fdd.jpg?1783908926",
+    "large": "https://cards.scryfall.io/large/front/9/a/9ae0b1e0-a481-4a98-b67b-0cf8bac53fdd.jpg?1783908926",
+    "png": "https://cards.scryfall.io/png/front/9/a/9ae0b1e0-a481-4a98-b67b-0cf8bac53fdd.png?1783908926",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/9/a/9ae0b1e0-a481-4a98-b67b-0cf8bac53fdd.jpg?1783908926",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/9/a/9ae0b1e0-a481-4a98-b67b-0cf8bac53fdd.jpg?1783908926",
+    "thumb": "https://cards.scryfall.io/thumb/front/9/a/9ae0b1e0-a481-4a98-b67b-0cf8bac53fdd.webp?1783908926",
+    "grid": "https://cards.scryfall.io/grid/front/9/a/9ae0b1e0-a481-4a98-b67b-0cf8bac53fdd.webp?1783908926",
+    "display": "https://cards.scryfall.io/display/front/9/a/9ae0b1e0-a481-4a98-b67b-0cf8bac53fdd.webp?1783908926",
+    "art": "https://cards.scryfall.io/art/front/9/a/9ae0b1e0-a481-4a98-b67b-0cf8bac53fdd.webp?1783908926",
+    "crop": "https://cards.scryfall.io/crop/front/9/a/9ae0b1e0-a481-4a98-b67b-0cf8bac53fdd.webp?1783908926"
+  },
+  "mana_cost": "{B}",
+  "cmc": 1.0,
+  "type_line": "Enchantment",
+  "oracle_text": "{1}{B}, Sacrifice a creature: You gain 1 life and draw a card.",
+  "colors": [
+    "B"
+  ],
+  "color_identity": [
+    "B"
+  ],
+  "keywords": [],
+  "legalities": {
+    "standard": "legal",
+    "future": "legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "arena",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "a7ecb771-d1b6-4dec-8cf5-8d45179f21e0",
+  "set": "fdn",
+  "set_name": "Foundations",
+  "set_type": "core",
+  "set_uri": "https://api.scryfall.com/sets/a7ecb771-d1b6-4dec-8cf5-8d45179f21e0",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Afdn&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/fdn?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/9ae0b1e0-a481-4a98-b67b-0cf8bac53fdd/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A660de988-b6fb-4f36-8006-42af3e7f908d&unique=prints",
+  "collector_number": "615",
+  "digital": false,
+  "rarity": "uncommon",
+  "flavor_text": "Scions of the Markov line take particular pleasure in the perversion of humans' holy rituals.",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Anastasia Ovchinnikova",
+  "artist_ids": [
+    "3605d81f-5c97-4958-9dcc-d44a85e10305"
+  ],
+  "illustration_id": "630985e0-fbc8-4fd7-90f4-cc67ea45a92c",
+  "border_color": "black",
+  "frame": "2015",
+  "frame_effects": [
+    "enchantment"
+  ],
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "promo_types": [
+    "startercollection"
+  ],
+  "edhrec_rank": 1384,
+  "penny_rank": 2733,
+  "prices": {
+    "usd": "0.15",
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": "0.18",
+    "eur_foil": null,
+    "tix": "0.02"
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=680754&printed=false",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DVampiric%2BRites",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DVampiric%2BRites",
+    "edhrec": "https://edhrec.com/route/?cc=Vampiric+Rites"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F591018%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=795922&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards/134566?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

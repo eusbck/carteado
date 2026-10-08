@@ -1,0 +1,135 @@
+{
+  "object": "card",
+  "id": "dcda6c04-6253-4ef2-9ee7-2a669b04bc21",
+  "oracle_id": "b45fdeab-00cc-4422-af9f-66f30a880a7c",
+  "multiverse_ids": [
+    642012
+  ],
+  "name": "Evolution Sage",
+  "printed_name": "Sábio da Evolução",
+  "lang": "pt",
+  "released_at": "2023-11-17",
+  "uri": "https://api.scryfall.com/cards/dcda6c04-6253-4ef2-9ee7-2a669b04bc21",
+  "scryfall_uri": "https://scryfall.com/card/lcc/240/pt/s%C3%A1bio-da-evolu%C3%A7%C3%A3o-(evolution-sage)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T08:58:21Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/d/c/dcda6c04-6253-4ef2-9ee7-2a669b04bc21.jpg?1782809901",
+    "normal": "https://cards.scryfall.io/normal/front/d/c/dcda6c04-6253-4ef2-9ee7-2a669b04bc21.jpg?1782809901",
+    "large": "https://cards.scryfall.io/large/front/d/c/dcda6c04-6253-4ef2-9ee7-2a669b04bc21.jpg?1782809901",
+    "png": "https://cards.scryfall.io/png/front/d/c/dcda6c04-6253-4ef2-9ee7-2a669b04bc21.png?1782809901",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/d/c/dcda6c04-6253-4ef2-9ee7-2a669b04bc21.jpg?1782809901",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/d/c/dcda6c04-6253-4ef2-9ee7-2a669b04bc21.jpg?1782809901",
+    "thumb": "https://cards.scryfall.io/thumb/front/d/c/dcda6c04-6253-4ef2-9ee7-2a669b04bc21.webp?1782809901",
+    "grid": "https://cards.scryfall.io/grid/front/d/c/dcda6c04-6253-4ef2-9ee7-2a669b04bc21.webp?1782809901",
+    "display": "https://cards.scryfall.io/display/front/d/c/dcda6c04-6253-4ef2-9ee7-2a669b04bc21.webp?1782809901",
+    "art": "https://cards.scryfall.io/art/front/d/c/dcda6c04-6253-4ef2-9ee7-2a669b04bc21.webp?1782809901",
+    "crop": "https://cards.scryfall.io/crop/front/d/c/dcda6c04-6253-4ef2-9ee7-2a669b04bc21.webp?1782809901"
+  },
+  "mana_cost": "{2}{G}",
+  "cmc": 3.0,
+  "type_line": "Creature — Elf Druid",
+  "printed_type_line": "Criatura — Elfo Druida",
+  "oracle_text": "Landfall — Whenever a land you control enters, proliferate. (Choose any number of permanents and/or players, then give each another counter of each kind already there.)",
+  "printed_text": "Aterragem — Toda vez que um terreno entra no campo de batalha sob seu controle, prolifere. (Escolha qualquer número de permanentes e/ou jogadores. Em seguida, dê a cada um deles outro marcador de cada tipo que eles já tenham.)",
+  "power": "3",
+  "toughness": "2",
+  "colors": [
+    "G"
+  ],
+  "color_identity": [
+    "G"
+  ],
+  "keywords": [
+    "Proliferate",
+    "Landfall"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "d253edc3-5bc7-4cf1-9446-a8540dedffa5",
+  "set": "lcc",
+  "set_name": "The Lost Caverns of Ixalan Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/d253edc3-5bc7-4cf1-9446-a8540dedffa5",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Alcc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/lcc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/dcda6c04-6253-4ef2-9ee7-2a669b04bc21/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Ab45fdeab-00cc-4422-af9f-66f30a880a7c&unique=prints",
+  "collector_number": "240",
+  "digital": false,
+  "rarity": "uncommon",
+  "flavor_text": "\"Para cuidar de si, cultive o mundo. Para cuidar do mundo, cultive-se.\"",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Simon Dominic",
+  "artist_ids": [
+    "b0e80135-db5a-4b88-a0bc-815a0e94faa1"
+  ],
+  "illustration_id": "486fb401-aba9-4403-8c0a-ce17b286344c",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 403,
+  "penny_rank": 4156,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=642012&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DEvolution%2BSage",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DEvolution%2BSage",
+    "edhrec": "https://edhrec.com/route/?cc=Evolution+Sage"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DEvolution%2BSage%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Evolution+Sage&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Evolution+Sage&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

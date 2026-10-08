@@ -1,0 +1,133 @@
+{
+  "object": "card",
+  "id": "fd0f447e-4730-4896-9441-f214e110c502",
+  "oracle_id": "0a28dff0-2bd6-4105-b73a-b6c4735833fd",
+  "multiverse_ids": [
+    634083
+  ],
+  "name": "Sungrass Prairie",
+  "printed_name": "Pradaria de Capim Solar",
+  "lang": "pt",
+  "released_at": "2023-09-08",
+  "uri": "https://api.scryfall.com/cards/fd0f447e-4730-4896-9441-f214e110c502",
+  "scryfall_uri": "https://scryfall.com/card/woc/167/pt/pradaria-de-capim-solar-(sungrass-prairie)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T09:38:24Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/f/d/fd0f447e-4730-4896-9441-f214e110c502.jpg?1782812304",
+    "normal": "https://cards.scryfall.io/normal/front/f/d/fd0f447e-4730-4896-9441-f214e110c502.jpg?1782812304",
+    "large": "https://cards.scryfall.io/large/front/f/d/fd0f447e-4730-4896-9441-f214e110c502.jpg?1782812304",
+    "png": "https://cards.scryfall.io/png/front/f/d/fd0f447e-4730-4896-9441-f214e110c502.png?1782812304",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/f/d/fd0f447e-4730-4896-9441-f214e110c502.jpg?1782812304",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/f/d/fd0f447e-4730-4896-9441-f214e110c502.jpg?1782812304",
+    "thumb": "https://cards.scryfall.io/thumb/front/f/d/fd0f447e-4730-4896-9441-f214e110c502.webp?1782812304",
+    "grid": "https://cards.scryfall.io/grid/front/f/d/fd0f447e-4730-4896-9441-f214e110c502.webp?1782812304",
+    "display": "https://cards.scryfall.io/display/front/f/d/fd0f447e-4730-4896-9441-f214e110c502.webp?1782812304",
+    "art": "https://cards.scryfall.io/art/front/f/d/fd0f447e-4730-4896-9441-f214e110c502.webp?1782812304",
+    "crop": "https://cards.scryfall.io/crop/front/f/d/fd0f447e-4730-4896-9441-f214e110c502.webp?1782812304"
+  },
+  "mana_cost": "",
+  "cmc": 0.0,
+  "type_line": "Land",
+  "printed_type_line": "Terreno",
+  "oracle_text": "{1}, {T}: Add {G}{W}.",
+  "printed_text": "{1}, {T}: Adicione {G}{W}.",
+  "colors": [],
+  "color_identity": [
+    "G",
+    "W"
+  ],
+  "keywords": [],
+  "produced_mana": [
+    "G",
+    "W"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "legal",
+    "predh": "legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "51c0814a-2db2-4182-9aac-77340e9a540d",
+  "set": "woc",
+  "set_name": "Wilds of Eldraine Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/51c0814a-2db2-4182-9aac-77340e9a540d",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Awoc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/woc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/fd0f447e-4730-4896-9441-f214e110c502/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A0a28dff0-2bd6-4105-b73a-b6c4735833fd&unique=prints",
+  "collector_number": "167",
+  "digital": false,
+  "rarity": "rare",
+  "flavor_text": "Em Otaria, a paz e a harmonia são raras. Locais que oferecem ambas são tratados com muito zelo.",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Ron Spencer",
+  "artist_ids": [
+    "dab52c11-0564-4207-a4a1-c1735c946a65"
+  ],
+  "illustration_id": "c5edaf10-b6c4-4a3e-be74-6035f871494f",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 432,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=634083&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DSungrass%2BPrairie",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DSungrass%2BPrairie",
+    "edhrec": "https://edhrec.com/route/?cc=Sungrass+Prairie"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DSungrass%2BPrairie%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Sungrass+Prairie&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Sungrass+Prairie&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

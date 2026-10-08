@@ -1,0 +1,133 @@
+{
+  "object": "card",
+  "id": "4176d9a8-caf2-42b5-b9d2-76c2f88bf0c5",
+  "oracle_id": "1b301478-b14f-4ef8-94e6-9647d582eabe",
+  "multiverse_ids": [
+    520814
+  ],
+  "name": "Golgari Rot Farm",
+  "printed_name": "Fazenda de Podridão Golgari",
+  "lang": "pt",
+  "released_at": "2021-04-23",
+  "uri": "https://api.scryfall.com/cards/4176d9a8-caf2-42b5-b9d2-76c2f88bf0c5",
+  "scryfall_uri": "https://scryfall.com/card/c21/291/pt/fazenda-de-podrid%C3%A3o-golgari-(golgari-rot-farm)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-01T06:09:41Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/4/1/4176d9a8-caf2-42b5-b9d2-76c2f88bf0c5.jpg?1782886181",
+    "normal": "https://cards.scryfall.io/normal/front/4/1/4176d9a8-caf2-42b5-b9d2-76c2f88bf0c5.jpg?1782886181",
+    "large": "https://cards.scryfall.io/large/front/4/1/4176d9a8-caf2-42b5-b9d2-76c2f88bf0c5.jpg?1782886181",
+    "png": "https://cards.scryfall.io/png/front/4/1/4176d9a8-caf2-42b5-b9d2-76c2f88bf0c5.png?1782886181",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/4/1/4176d9a8-caf2-42b5-b9d2-76c2f88bf0c5.jpg?1782886181",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/4/1/4176d9a8-caf2-42b5-b9d2-76c2f88bf0c5.jpg?1782886181",
+    "thumb": "https://cards.scryfall.io/thumb/front/4/1/4176d9a8-caf2-42b5-b9d2-76c2f88bf0c5.webp?1782886181",
+    "grid": "https://cards.scryfall.io/grid/front/4/1/4176d9a8-caf2-42b5-b9d2-76c2f88bf0c5.webp?1782886181",
+    "display": "https://cards.scryfall.io/display/front/4/1/4176d9a8-caf2-42b5-b9d2-76c2f88bf0c5.webp?1782886181",
+    "art": "https://cards.scryfall.io/art/front/4/1/4176d9a8-caf2-42b5-b9d2-76c2f88bf0c5.webp?1782886181",
+    "crop": "https://cards.scryfall.io/crop/front/4/1/4176d9a8-caf2-42b5-b9d2-76c2f88bf0c5.webp?1782886181"
+  },
+  "mana_cost": "",
+  "cmc": 0.0,
+  "type_line": "Land",
+  "printed_type_line": "Terreno",
+  "oracle_text": "This land enters tapped.\nWhen this land enters, return a land you control to its owner's hand.\n{T}: Add {B}{G}.",
+  "printed_text": "Fazenda de Podridão Golgari entra no campo de batalha virada.\nQuando Fazenda de Podridão Golgari entrar no campo de batalha, devolva um terreno que você controle para a mão de seu dono.\n{T}: Adicione {B}{G}.",
+  "colors": [],
+  "color_identity": [
+    "B",
+    "G"
+  ],
+  "keywords": [],
+  "produced_mana": [
+    "B",
+    "G"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "27bf6dbd-a9e1-4904-afa7-d28fc7745c4f",
+  "set": "c21",
+  "set_name": "Commander 2021",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/27bf6dbd-a9e1-4904-afa7-d28fc7745c4f",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Ac21&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/c21?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/4176d9a8-caf2-42b5-b9d2-76c2f88bf0c5/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A1b301478-b14f-4ef8-94e6-9647d582eabe&unique=prints",
+  "collector_number": "291",
+  "digital": false,
+  "rarity": "uncommon",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "John Avon",
+  "artist_ids": [
+    "798f3932-30e0-4420-aa3f-db4d613f89ca"
+  ],
+  "illustration_id": "da8d15ad-16b5-4bfb-b8b6-8d4d36d70be8",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 336,
+  "penny_rank": 2131,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=520814&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DGolgari%2BRot%2BFarm",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DGolgari%2BRot%2BFarm",
+    "edhrec": "https://edhrec.com/route/?cc=Golgari+Rot+Farm"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DGolgari%2BRot%2BFarm%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Golgari+Rot+Farm&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Golgari+Rot+Farm&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

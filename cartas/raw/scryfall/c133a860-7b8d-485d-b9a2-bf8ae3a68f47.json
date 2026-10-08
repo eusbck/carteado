@@ -1,0 +1,159 @@
+{
+  "object": "card",
+  "id": "c133a860-7b8d-485d-b9a2-bf8ae3a68f47",
+  "oracle_id": "64c986f0-e786-419c-9b51-8c316c8fae0e",
+  "multiverse_ids": [],
+  "resource_id": "1933DC0BB25E70E43BEF9A224C5ADC773B44526F4765EC0BF6E8E2A391E276B5",
+  "mtgo_id": 148585,
+  "arena_id": 102844,
+  "tcgplayer_id": 687522,
+  "cardmarket_id": 881359,
+  "name": "Scriv, the Obligator",
+  "lang": "en",
+  "released_at": "2026-04-24",
+  "uri": "https://api.scryfall.com/cards/c133a860-7b8d-485d-b9a2-bf8ae3a68f47",
+  "scryfall_uri": "https://scryfall.com/card/soc/9/scriv-the-obligator?utm_source=api",
+  "layout": "normal",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T00:51:07Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/c/1/c133a860-7b8d-485d-b9a2-bf8ae3a68f47.jpg?1783903867",
+    "normal": "https://cards.scryfall.io/normal/front/c/1/c133a860-7b8d-485d-b9a2-bf8ae3a68f47.jpg?1783903867",
+    "large": "https://cards.scryfall.io/large/front/c/1/c133a860-7b8d-485d-b9a2-bf8ae3a68f47.jpg?1783903867",
+    "png": "https://cards.scryfall.io/png/front/c/1/c133a860-7b8d-485d-b9a2-bf8ae3a68f47.png?1783903867",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/c/1/c133a860-7b8d-485d-b9a2-bf8ae3a68f47.jpg?1783903867",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/c/1/c133a860-7b8d-485d-b9a2-bf8ae3a68f47.jpg?1783903867",
+    "thumb": "https://cards.scryfall.io/thumb/front/c/1/c133a860-7b8d-485d-b9a2-bf8ae3a68f47.webp?1783903867",
+    "grid": "https://cards.scryfall.io/grid/front/c/1/c133a860-7b8d-485d-b9a2-bf8ae3a68f47.webp?1783903867",
+    "display": "https://cards.scryfall.io/display/front/c/1/c133a860-7b8d-485d-b9a2-bf8ae3a68f47.webp?1783903867",
+    "art": "https://cards.scryfall.io/art/front/c/1/c133a860-7b8d-485d-b9a2-bf8ae3a68f47.webp?1783903867",
+    "crop": "https://cards.scryfall.io/crop/front/c/1/c133a860-7b8d-485d-b9a2-bf8ae3a68f47.webp?1783903867"
+  },
+  "mana_cost": "{2}{W}{B}",
+  "cmc": 4.0,
+  "type_line": "Legendary Creature — Inkling Bird",
+  "oracle_text": "Flying, deathtouch\nWhenever Scriv enters or attacks, create a white Aura enchantment token named Contract attached to target creature an opponent controls. The token has enchant creature and \"Whenever enchanted creature attacks, it gets +2/+0 until end of turn if it's attacking one of your opponents. Otherwise, its controller loses 2 life.\"",
+  "power": "2",
+  "toughness": "3",
+  "colors": [
+    "B",
+    "W"
+  ],
+  "color_identity": [
+    "B",
+    "W"
+  ],
+  "keywords": [
+    "Deathtouch",
+    "Flying"
+  ],
+  "all_parts": [
+    {
+      "object": "related_card",
+      "id": "c133a860-7b8d-485d-b9a2-bf8ae3a68f47",
+      "component": "combo_piece",
+      "name": "Scriv, the Obligator",
+      "type_line": "Legendary Creature — Inkling Bird",
+      "uri": "https://api.scryfall.com/cards/c133a860-7b8d-485d-b9a2-bf8ae3a68f47"
+    },
+    {
+      "object": "related_card",
+      "id": "4c5e0caa-a043-41de-acbf-cdf3a6b6ab18",
+      "component": "token",
+      "name": "Contract",
+      "type_line": "Token Enchantment — Aura",
+      "uri": "https://api.scryfall.com/cards/4c5e0caa-a043-41de-acbf-cdf3a6b6ab18"
+    }
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo",
+    "arena"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "97fab8d1-480a-419d-ab14-663968e29b9c",
+  "set": "soc",
+  "set_name": "Secrets of Strixhaven Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/97fab8d1-480a-419d-ab14-663968e29b9c",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Asoc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/soc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/c133a860-7b8d-485d-b9a2-bf8ae3a68f47/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A64c986f0-e786-419c-9b51-8c316c8fae0e&unique=prints",
+  "collector_number": "9",
+  "digital": false,
+  "rarity": "mythic",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Brian Valeza",
+  "artist_ids": [
+    "bb2a9339-bbe4-445f-9736-3c43379ee076"
+  ],
+  "illustration_id": "1164ada0-758a-4fdd-8fd0-fbc5d86a950b",
+  "border_color": "borderless",
+  "frame": "2015",
+  "frame_effects": [
+    "legendary",
+    "inverted"
+  ],
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 7840,
+  "prices": {
+    "usd": "0.61",
+    "usd_foil": "0.42",
+    "usd_etched": null,
+    "eur": "0.85",
+    "eur_foil": "0.81",
+    "tix": "4.23"
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DScriv%252C%2Bthe%2BObligator",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DScriv%252C%2Bthe%2BObligator",
+    "edhrec": "https://edhrec.com/route/?cc=Scriv%2C+the+Obligator"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F687522%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=881359&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards/148585?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

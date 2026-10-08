@@ -1,0 +1,139 @@
+{
+  "object": "card",
+  "id": "7bee811c-3432-4df9-a4b7-0dd74f508757",
+  "oracle_id": "9bdc1e63-1cf9-4ddb-a7d5-f2a2eb91bdfd",
+  "multiverse_ids": [
+    663607
+  ],
+  "name": "Pearl-Ear, Imperial Advisor",
+  "printed_name": "Orelha-de-Pérola, Conselheira Imperial",
+  "lang": "pt",
+  "released_at": "2024-06-14",
+  "uri": "https://api.scryfall.com/cards/7bee811c-3432-4df9-a4b7-0dd74f508757",
+  "scryfall_uri": "https://scryfall.com/card/mh3/39/pt/orelha-de-p%C3%A9rola-conselheira-imperial-(pearl-ear-imperial-advisor)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T04:34:27Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/7/b/7bee811c-3432-4df9-a4b7-0dd74f508757.jpg?1782794067",
+    "normal": "https://cards.scryfall.io/normal/front/7/b/7bee811c-3432-4df9-a4b7-0dd74f508757.jpg?1782794067",
+    "large": "https://cards.scryfall.io/large/front/7/b/7bee811c-3432-4df9-a4b7-0dd74f508757.jpg?1782794067",
+    "png": "https://cards.scryfall.io/png/front/7/b/7bee811c-3432-4df9-a4b7-0dd74f508757.png?1782794067",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/7/b/7bee811c-3432-4df9-a4b7-0dd74f508757.jpg?1782794067",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/7/b/7bee811c-3432-4df9-a4b7-0dd74f508757.jpg?1782794067",
+    "thumb": "https://cards.scryfall.io/thumb/front/7/b/7bee811c-3432-4df9-a4b7-0dd74f508757.webp?1782794067",
+    "grid": "https://cards.scryfall.io/grid/front/7/b/7bee811c-3432-4df9-a4b7-0dd74f508757.webp?1782794067",
+    "display": "https://cards.scryfall.io/display/front/7/b/7bee811c-3432-4df9-a4b7-0dd74f508757.webp?1782794067",
+    "art": "https://cards.scryfall.io/art/front/7/b/7bee811c-3432-4df9-a4b7-0dd74f508757.webp?1782794067",
+    "crop": "https://cards.scryfall.io/crop/front/7/b/7bee811c-3432-4df9-a4b7-0dd74f508757.webp?1782794067"
+  },
+  "mana_cost": "{1}{W}{W}",
+  "cmc": 3.0,
+  "type_line": "Legendary Creature — Fox Advisor",
+  "printed_type_line": "Criatura Lendária — Raposa Conselheiro",
+  "oracle_text": "Lifelink\nEnchantment spells you cast have affinity for Auras. (They cost {1} less to cast for each Aura you control.)\nWhenever you cast an Aura spell that targets a modified permanent you control, draw a card. (Equipment, Auras you control, and counters are modifications.)",
+  "printed_text": "Vínculo com a vida\nAs mágicas de Encantamento que você conjura têm afinidade por Auras. (Elas custam {1} a menos para serem conjuradas por cada Aura que você controla.)\nToda vez que você conjurar uma mágica de Aura que tenha como alvo uma permanente modificada que você controla, compre um card. (Os Equipamentos, as Auras que você controla e os marcadores são modificações.)",
+  "power": "3",
+  "toughness": "4",
+  "colors": [
+    "W"
+  ],
+  "color_identity": [
+    "W"
+  ],
+  "keywords": [
+    "Lifelink"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "not_legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo",
+    "arena"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "3ed80bb6-77e8-4aa7-8262-95377a38aba1",
+  "set": "mh3",
+  "set_name": "Modern Horizons 3",
+  "set_type": "draft_innovation",
+  "set_uri": "https://api.scryfall.com/sets/3ed80bb6-77e8-4aa7-8262-95377a38aba1",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Amh3&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/mh3?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/7bee811c-3432-4df9-a4b7-0dd74f508757/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A9bdc1e63-1cf9-4ddb-a7d5-f2a2eb91bdfd&unique=prints",
+  "collector_number": "39",
+  "digital": false,
+  "rarity": "rare",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Fajareka Setiawan",
+  "artist_ids": [
+    "0cc534e0-be18-4cb1-8521-50fabd0dac6f"
+  ],
+  "illustration_id": "8db1221a-06fc-45bb-bd91-77cca603bf1b",
+  "border_color": "black",
+  "frame": "2015",
+  "frame_effects": [
+    "legendary"
+  ],
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "edhrec_rank": 2080,
+  "penny_rank": 10630,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=663607&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DPearl-Ear%252C%2BImperial%2BAdvisor",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DPearl-Ear%252C%2BImperial%2BAdvisor",
+    "edhrec": "https://edhrec.com/route/?cc=Pearl-Ear%2C+Imperial+Advisor"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DPearl-Ear%252C%2BImperial%2BAdvisor%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Pearl-Ear%2C+Imperial+Advisor&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Pearl-Ear%2C+Imperial+Advisor&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

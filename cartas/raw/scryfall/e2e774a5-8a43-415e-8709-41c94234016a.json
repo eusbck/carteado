@@ -1,0 +1,135 @@
+{
+  "object": "card",
+  "id": "e2e774a5-8a43-415e-8709-41c94234016a",
+  "oracle_id": "b2e950fb-cb7e-40a0-a311-5bbdd0477b29",
+  "multiverse_ids": [
+    633993
+  ],
+  "name": "Sun Titan",
+  "printed_name": "Titã de Sol",
+  "lang": "pt",
+  "released_at": "2023-09-08",
+  "uri": "https://api.scryfall.com/cards/e2e774a5-8a43-415e-8709-41c94234016a",
+  "scryfall_uri": "https://scryfall.com/card/woc/77/pt/tit%C3%A3-de-sol-(sun-titan)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T09:44:25Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/e/2/e2e774a5-8a43-415e-8709-41c94234016a.jpg?1782812665",
+    "normal": "https://cards.scryfall.io/normal/front/e/2/e2e774a5-8a43-415e-8709-41c94234016a.jpg?1782812665",
+    "large": "https://cards.scryfall.io/large/front/e/2/e2e774a5-8a43-415e-8709-41c94234016a.jpg?1782812665",
+    "png": "https://cards.scryfall.io/png/front/e/2/e2e774a5-8a43-415e-8709-41c94234016a.png?1782812665",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/e/2/e2e774a5-8a43-415e-8709-41c94234016a.jpg?1782812665",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/e/2/e2e774a5-8a43-415e-8709-41c94234016a.jpg?1782812665",
+    "thumb": "https://cards.scryfall.io/thumb/front/e/2/e2e774a5-8a43-415e-8709-41c94234016a.webp?1782812665",
+    "grid": "https://cards.scryfall.io/grid/front/e/2/e2e774a5-8a43-415e-8709-41c94234016a.webp?1782812665",
+    "display": "https://cards.scryfall.io/display/front/e/2/e2e774a5-8a43-415e-8709-41c94234016a.webp?1782812665",
+    "art": "https://cards.scryfall.io/art/front/e/2/e2e774a5-8a43-415e-8709-41c94234016a.webp?1782812665",
+    "crop": "https://cards.scryfall.io/crop/front/e/2/e2e774a5-8a43-415e-8709-41c94234016a.webp?1782812665"
+  },
+  "mana_cost": "{4}{W}{W}",
+  "cmc": 6.0,
+  "type_line": "Creature — Giant",
+  "printed_type_line": "Criatura — Gigante",
+  "oracle_text": "Vigilance\nWhenever this creature enters or attacks, you may return target permanent card with mana value 3 or less from your graveyard to the battlefield.",
+  "printed_text": "Vigilância\nToda vez que Titã de Sol entra no campo de batalha ou ataca, você pode devolver ao campo de batalha o card de permanente alvo com valor de mana igual ou inferior a 3 de seu cemitério.",
+  "power": "6",
+  "toughness": "6",
+  "colors": [
+    "W"
+  ],
+  "color_identity": [
+    "W"
+  ],
+  "keywords": [
+    "Vigilance"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "not_legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "51c0814a-2db2-4182-9aac-77340e9a540d",
+  "set": "woc",
+  "set_name": "Wilds of Eldraine Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/51c0814a-2db2-4182-9aac-77340e9a540d",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Awoc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/woc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/e2e774a5-8a43-415e-8709-41c94234016a/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Ab2e950fb-cb7e-40a0-a311-5bbdd0477b29&unique=prints",
+  "collector_number": "77",
+  "digital": false,
+  "rarity": "mythic",
+  "flavor_text": "Um sol flamejante que nunca se põe.",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Todd Lockwood",
+  "artist_ids": [
+    "d0b9f3cc-13fb-42b6-bc43-b034728e5c7b"
+  ],
+  "illustration_id": "dd5a7ad8-2b13-406e-89f7-3c10953d72cf",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 311,
+  "penny_rank": 2916,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=633993&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DSun%2BTitan",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DSun%2BTitan",
+    "edhrec": "https://edhrec.com/route/?cc=Sun+Titan"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DSun%2BTitan%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Sun+Titan&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Sun+Titan&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "object": "card",
+  "id": "2cc47504-12e9-4f93-85df-168df0bfa9bd",
+  "oracle_id": "ad3bf726-e0c2-4038-a66e-9a9dff439563",
+  "multiverse_ids": [
+    557053
+  ],
+  "name": "Raffine's Guidance",
+  "printed_name": "Orientação de Raffine",
+  "lang": "pt",
+  "released_at": "2022-04-29",
+  "uri": "https://api.scryfall.com/cards/2cc47504-12e9-4f93-85df-168df0bfa9bd",
+  "scryfall_uri": "https://scryfall.com/card/snc/25/pt/orienta%C3%A7%C3%A3o-de-raffine-(raffines-guidance)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T21:58:23Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/2/c/2cc47504-12e9-4f93-85df-168df0bfa9bd.jpg?1782856703",
+    "normal": "https://cards.scryfall.io/normal/front/2/c/2cc47504-12e9-4f93-85df-168df0bfa9bd.jpg?1782856703",
+    "large": "https://cards.scryfall.io/large/front/2/c/2cc47504-12e9-4f93-85df-168df0bfa9bd.jpg?1782856703",
+    "png": "https://cards.scryfall.io/png/front/2/c/2cc47504-12e9-4f93-85df-168df0bfa9bd.png?1782856703",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/2/c/2cc47504-12e9-4f93-85df-168df0bfa9bd.jpg?1782856703",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/2/c/2cc47504-12e9-4f93-85df-168df0bfa9bd.jpg?1782856703",
+    "thumb": "https://cards.scryfall.io/thumb/front/2/c/2cc47504-12e9-4f93-85df-168df0bfa9bd.webp?1782856703",
+    "grid": "https://cards.scryfall.io/grid/front/2/c/2cc47504-12e9-4f93-85df-168df0bfa9bd.webp?1782856703",
+    "display": "https://cards.scryfall.io/display/front/2/c/2cc47504-12e9-4f93-85df-168df0bfa9bd.webp?1782856703",
+    "art": "https://cards.scryfall.io/art/front/2/c/2cc47504-12e9-4f93-85df-168df0bfa9bd.webp?1782856703",
+    "crop": "https://cards.scryfall.io/crop/front/2/c/2cc47504-12e9-4f93-85df-168df0bfa9bd.webp?1782856703"
+  },
+  "mana_cost": "{W}",
+  "cmc": 1.0,
+  "type_line": "Enchantment — Aura",
+  "printed_type_line": "Encantamento — Aura",
+  "oracle_text": "Enchant creature\nEnchanted creature gets +1/+1.\nYou may cast this card from your graveyard by paying {2}{W} rather than paying its mana cost.",
+  "printed_text": "Encantar criatura\nA criatura encantada recebe +1/+1.\nVocê pode conjurar Orientação de Raffine de seu cemitério pagando {2}{W}, em vez de pagar seu custo de mana.",
+  "colors": [
+    "W"
+  ],
+  "color_identity": [
+    "W"
+  ],
+  "keywords": [
+    "Enchant"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo",
+    "arena"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "df837242-8c15-42e4-b049-c933a02dc501",
+  "set": "snc",
+  "set_name": "Streets of New Capenna",
+  "set_type": "expansion",
+  "set_uri": "https://api.scryfall.com/sets/df837242-8c15-42e4-b049-c933a02dc501",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Asnc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/snc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/2cc47504-12e9-4f93-85df-168df0bfa9bd/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Aad3bf726-e0c2-4038-a66e-9a9dff439563&unique=prints",
+  "collector_number": "25",
+  "digital": false,
+  "rarity": "common",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Rémi Jacquot",
+  "artist_ids": [
+    "95678eed-9760-4962-b380-ded14232ea3e"
+  ],
+  "illustration_id": "507e67da-90ca-48f6-b4db-62cfae8c14a8",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "edhrec_rank": 13456,
+  "penny_rank": 8932,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=557053&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DRaffine%2527s%2BGuidance",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DRaffine%2527s%2BGuidance",
+    "edhrec": "https://edhrec.com/route/?cc=Raffine%27s+Guidance"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DRaffine%2527s%2BGuidance%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Raffine%27s+Guidance&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Raffine%27s+Guidance&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

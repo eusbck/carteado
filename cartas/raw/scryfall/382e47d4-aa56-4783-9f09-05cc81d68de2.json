@@ -1,0 +1,131 @@
+{
+  "object": "card",
+  "id": "382e47d4-aa56-4783-9f09-05cc81d68de2",
+  "oracle_id": "657243dd-e479-4f4b-99d2-09b55d833a35",
+  "multiverse_ids": [
+    569182
+  ],
+  "name": "Gruul Turf",
+  "printed_name": "Gleba Gruul",
+  "lang": "pt",
+  "released_at": "2022-06-10",
+  "uri": "https://api.scryfall.com/cards/382e47d4-aa56-4783-9f09-05cc81d68de2",
+  "scryfall_uri": "https://scryfall.com/card/clb/895/pt/gleba-gruul-(gruul-turf)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T19:39:04Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/3/8/382e47d4-aa56-4783-9f09-05cc81d68de2.jpg?1782848344",
+    "normal": "https://cards.scryfall.io/normal/front/3/8/382e47d4-aa56-4783-9f09-05cc81d68de2.jpg?1782848344",
+    "large": "https://cards.scryfall.io/large/front/3/8/382e47d4-aa56-4783-9f09-05cc81d68de2.jpg?1782848344",
+    "png": "https://cards.scryfall.io/png/front/3/8/382e47d4-aa56-4783-9f09-05cc81d68de2.png?1782848344",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/3/8/382e47d4-aa56-4783-9f09-05cc81d68de2.jpg?1782848344",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/3/8/382e47d4-aa56-4783-9f09-05cc81d68de2.jpg?1782848344",
+    "thumb": "https://cards.scryfall.io/thumb/front/3/8/382e47d4-aa56-4783-9f09-05cc81d68de2.webp?1782848344",
+    "grid": "https://cards.scryfall.io/grid/front/3/8/382e47d4-aa56-4783-9f09-05cc81d68de2.webp?1782848344",
+    "display": "https://cards.scryfall.io/display/front/3/8/382e47d4-aa56-4783-9f09-05cc81d68de2.webp?1782848344",
+    "art": "https://cards.scryfall.io/art/front/3/8/382e47d4-aa56-4783-9f09-05cc81d68de2.webp?1782848344",
+    "crop": "https://cards.scryfall.io/crop/front/3/8/382e47d4-aa56-4783-9f09-05cc81d68de2.webp?1782848344"
+  },
+  "mana_cost": "",
+  "cmc": 0.0,
+  "type_line": "Land",
+  "printed_type_line": "Terreno",
+  "oracle_text": "This land enters tapped.\nWhen this land enters, return a land you control to its owner's hand.\n{T}: Add {R}{G}.",
+  "printed_text": "Gleba Gruul entra no campo de batalha virada.\nQuando Gleba Gruul entrar no campo de batalha, devolva um terreno que você controla para a mão de seu dono.\n{T}: Adicione {R}{G}.",
+  "colors": [],
+  "color_identity": [
+    "G",
+    "R"
+  ],
+  "keywords": [],
+  "produced_mana": [
+    "G",
+    "R"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "5e4c3fe8-fd57-4b20-ad56-c03790a16cea",
+  "set": "clb",
+  "set_name": "Commander Legends: Battle for Baldur's Gate",
+  "set_type": "draft_innovation",
+  "set_uri": "https://api.scryfall.com/sets/5e4c3fe8-fd57-4b20-ad56-c03790a16cea",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Aclb&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/clb?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/382e47d4-aa56-4783-9f09-05cc81d68de2/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A657243dd-e479-4f4b-99d2-09b55d833a35&unique=prints",
+  "collector_number": "895",
+  "digital": false,
+  "rarity": "uncommon",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "John Avon",
+  "artist_ids": [
+    "798f3932-30e0-4420-aa3f-db4d613f89ca"
+  ],
+  "illustration_id": "d34cc09a-743f-419c-8796-d6c0358b64a9",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 460,
+  "penny_rank": 1657,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=569182&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DGruul%2BTurf",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DGruul%2BTurf",
+    "edhrec": "https://edhrec.com/route/?cc=Gruul+Turf"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DGruul%2BTurf%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Gruul+Turf&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Gruul+Turf&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

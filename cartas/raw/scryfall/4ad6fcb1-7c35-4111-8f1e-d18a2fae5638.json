@@ -1,0 +1,135 @@
+{
+  "object": "card",
+  "id": "4ad6fcb1-7c35-4111-8f1e-d18a2fae5638",
+  "oracle_id": "441b51b0-ecd0-466d-9ca8-e754eb563aec",
+  "multiverse_ids": [],
+  "resource_id": "C21920A600304B0A06EB245C11D066DE01F4D6B6A0BE81A993393BC5541E260E",
+  "mtgo_id": 148759,
+  "tcgplayer_id": 687405,
+  "cardmarket_id": 881466,
+  "name": "Eidolon of Countless Battles",
+  "lang": "en",
+  "released_at": "2026-04-24",
+  "uri": "https://api.scryfall.com/cards/4ad6fcb1-7c35-4111-8f1e-d18a2fae5638",
+  "scryfall_uri": "https://scryfall.com/card/soc/144/eidolon-of-countless-battles?utm_source=api",
+  "layout": "normal",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T00:50:08Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/4/a/4ad6fcb1-7c35-4111-8f1e-d18a2fae5638.jpg?1783903808",
+    "normal": "https://cards.scryfall.io/normal/front/4/a/4ad6fcb1-7c35-4111-8f1e-d18a2fae5638.jpg?1783903808",
+    "large": "https://cards.scryfall.io/large/front/4/a/4ad6fcb1-7c35-4111-8f1e-d18a2fae5638.jpg?1783903808",
+    "png": "https://cards.scryfall.io/png/front/4/a/4ad6fcb1-7c35-4111-8f1e-d18a2fae5638.png?1783903808",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/4/a/4ad6fcb1-7c35-4111-8f1e-d18a2fae5638.jpg?1783903808",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/4/a/4ad6fcb1-7c35-4111-8f1e-d18a2fae5638.jpg?1783903808",
+    "thumb": "https://cards.scryfall.io/thumb/front/4/a/4ad6fcb1-7c35-4111-8f1e-d18a2fae5638.webp?1783903808",
+    "grid": "https://cards.scryfall.io/grid/front/4/a/4ad6fcb1-7c35-4111-8f1e-d18a2fae5638.webp?1783903808",
+    "display": "https://cards.scryfall.io/display/front/4/a/4ad6fcb1-7c35-4111-8f1e-d18a2fae5638.webp?1783903808",
+    "art": "https://cards.scryfall.io/art/front/4/a/4ad6fcb1-7c35-4111-8f1e-d18a2fae5638.webp?1783903808",
+    "crop": "https://cards.scryfall.io/crop/front/4/a/4ad6fcb1-7c35-4111-8f1e-d18a2fae5638.webp?1783903808"
+  },
+  "mana_cost": "{1}{W}{W}",
+  "cmc": 3.0,
+  "type_line": "Enchantment Creature — Spirit",
+  "oracle_text": "Bestow {2}{W}{W} (If you cast this card for its bestow cost, it's an Aura spell with enchant creature. It becomes a creature again if it's not attached.)\nThis creature and enchanted creature each get +1/+1 for each creature you control and +1/+1 for each Aura you control.",
+  "power": "0",
+  "toughness": "0",
+  "colors": [
+    "W"
+  ],
+  "color_identity": [
+    "W"
+  ],
+  "keywords": [
+    "Bestow"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "97fab8d1-480a-419d-ab14-663968e29b9c",
+  "set": "soc",
+  "set_name": "Secrets of Strixhaven Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/97fab8d1-480a-419d-ab14-663968e29b9c",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Asoc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/soc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/4ad6fcb1-7c35-4111-8f1e-d18a2fae5638/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A441b51b0-ecd0-466d-9ca8-e754eb563aec&unique=prints",
+  "collector_number": "144",
+  "digital": false,
+  "rarity": "rare",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Raymond Swanland",
+  "artist_ids": [
+    "e956bacc-077d-4c12-b6bc-ba798b718af9"
+  ],
+  "illustration_id": "2995fefc-15c0-4ff1-91f6-a2075a208f7b",
+  "border_color": "black",
+  "frame": "2015",
+  "frame_effects": [
+    "enchantment"
+  ],
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 3436,
+  "penny_rank": 6475,
+  "prices": {
+    "usd": "0.30",
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": "0.28",
+    "eur_foil": null,
+    "tix": "0.08"
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DEidolon%2Bof%2BCountless%2BBattles",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DEidolon%2Bof%2BCountless%2BBattles",
+    "edhrec": "https://edhrec.com/route/?cc=Eidolon+of+Countless+Battles"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F687405%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=881466&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards/148759?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

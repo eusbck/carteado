@@ -1,0 +1,144 @@
+{
+  "object": "card",
+  "id": "f130171f-a3e2-4dac-806a-1f2c428ac9fc",
+  "oracle_id": "246d7a00-288d-448e-9b77-8af41e40a44d",
+  "multiverse_ids": [],
+  "name": "Pegasus",
+  "lang": "en",
+  "released_at": "2026-04-24",
+  "uri": "https://api.scryfall.com/cards/f130171f-a3e2-4dac-806a-1f2c428ac9fc",
+  "scryfall_uri": "https://scryfall.com/card/tsoc/5/pegasus?utm_source=api",
+  "layout": "token",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T00:46:14Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/f/1/f130171f-a3e2-4dac-806a-1f2c428ac9fc.jpg?1783903574",
+    "normal": "https://cards.scryfall.io/normal/front/f/1/f130171f-a3e2-4dac-806a-1f2c428ac9fc.jpg?1783903574",
+    "large": "https://cards.scryfall.io/large/front/f/1/f130171f-a3e2-4dac-806a-1f2c428ac9fc.jpg?1783903574",
+    "png": "https://cards.scryfall.io/png/front/f/1/f130171f-a3e2-4dac-806a-1f2c428ac9fc.png?1783903574",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/f/1/f130171f-a3e2-4dac-806a-1f2c428ac9fc.jpg?1783903574",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/f/1/f130171f-a3e2-4dac-806a-1f2c428ac9fc.jpg?1783903574",
+    "thumb": "https://cards.scryfall.io/thumb/front/f/1/f130171f-a3e2-4dac-806a-1f2c428ac9fc.webp?1783903574",
+    "grid": "https://cards.scryfall.io/grid/front/f/1/f130171f-a3e2-4dac-806a-1f2c428ac9fc.webp?1783903574",
+    "display": "https://cards.scryfall.io/display/front/f/1/f130171f-a3e2-4dac-806a-1f2c428ac9fc.webp?1783903574",
+    "art": "https://cards.scryfall.io/art/front/f/1/f130171f-a3e2-4dac-806a-1f2c428ac9fc.webp?1783903574",
+    "crop": "https://cards.scryfall.io/crop/front/f/1/f130171f-a3e2-4dac-806a-1f2c428ac9fc.webp?1783903574"
+  },
+  "mana_cost": "",
+  "cmc": 0.0,
+  "type_line": "Token Creature — Pegasus",
+  "oracle_text": "Flying",
+  "power": "2",
+  "toughness": "2",
+  "colors": [
+    "W"
+  ],
+  "color_identity": [
+    "W"
+  ],
+  "keywords": [
+    "Flying"
+  ],
+  "all_parts": [
+    {
+      "object": "related_card",
+      "id": "f130171f-a3e2-4dac-806a-1f2c428ac9fc",
+      "component": "token",
+      "name": "Pegasus",
+      "type_line": "Token Creature — Pegasus",
+      "uri": "https://api.scryfall.com/cards/f130171f-a3e2-4dac-806a-1f2c428ac9fc"
+    },
+    {
+      "object": "related_card",
+      "id": "0d3af89d-d22c-45e8-9fec-170ac9bb0a34",
+      "component": "combo_piece",
+      "name": "Archon of Sun's Grace",
+      "type_line": "Creature — Archon",
+      "uri": "https://api.scryfall.com/cards/0d3af89d-d22c-45e8-9fec-170ac9bb0a34"
+    }
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "not_legal",
+    "pauper": "not_legal",
+    "vintage": "not_legal",
+    "penny": "not_legal",
+    "commander": "not_legal",
+    "oathbreaker": "not_legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "not_legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "cb590d57-927c-437a-934c-7f774881d1c9",
+  "set": "tsoc",
+  "set_name": "Secrets of Strixhaven Commander Tokens",
+  "set_type": "token",
+  "set_uri": "https://api.scryfall.com/sets/cb590d57-927c-437a-934c-7f774881d1c9",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Atsoc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/tsoc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/f130171f-a3e2-4dac-806a-1f2c428ac9fc/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A246d7a00-288d-448e-9b77-8af41e40a44d&unique=prints",
+  "collector_number": "5",
+  "digital": false,
+  "rarity": "common",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Lars Grant-West",
+  "artist_ids": [
+    "21ed6499-c4d3-4965-ab02-6c7228275bec"
+  ],
+  "illustration_id": "53aea631-db21-4292-a2aa-f060d010c7e6",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DPegasus",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DPegasus",
+    "edhrec": "https://edhrec.com/route/?cc=Pegasus"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DPegasus%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Pegasus&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Pegasus&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

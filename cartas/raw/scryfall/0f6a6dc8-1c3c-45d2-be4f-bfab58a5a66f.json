@@ -1,0 +1,353 @@
+{
+  "object": "card",
+  "id": "0f6a6dc8-1c3c-45d2-be4f-bfab58a5a66f",
+  "oracle_id": "73d60ab9-1c38-4592-a5b5-ab84788bcc84",
+  "multiverse_ids": [],
+  "name": "City's Blessing",
+  "lang": "en",
+  "released_at": "2026-04-24",
+  "uri": "https://api.scryfall.com/cards/0f6a6dc8-1c3c-45d2-be4f-bfab58a5a66f",
+  "scryfall_uri": "https://scryfall.com/card/tsoc/29/citys-blessing?utm_source=api",
+  "layout": "token",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T00:46:07Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/0/f/0f6a6dc8-1c3c-45d2-be4f-bfab58a5a66f.jpg?1783903567",
+    "normal": "https://cards.scryfall.io/normal/front/0/f/0f6a6dc8-1c3c-45d2-be4f-bfab58a5a66f.jpg?1783903567",
+    "large": "https://cards.scryfall.io/large/front/0/f/0f6a6dc8-1c3c-45d2-be4f-bfab58a5a66f.jpg?1783903567",
+    "png": "https://cards.scryfall.io/png/front/0/f/0f6a6dc8-1c3c-45d2-be4f-bfab58a5a66f.png?1783903567",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/0/f/0f6a6dc8-1c3c-45d2-be4f-bfab58a5a66f.jpg?1783903567",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/0/f/0f6a6dc8-1c3c-45d2-be4f-bfab58a5a66f.jpg?1783903567",
+    "thumb": "https://cards.scryfall.io/thumb/front/0/f/0f6a6dc8-1c3c-45d2-be4f-bfab58a5a66f.webp?1783903567",
+    "grid": "https://cards.scryfall.io/grid/front/0/f/0f6a6dc8-1c3c-45d2-be4f-bfab58a5a66f.webp?1783903567",
+    "display": "https://cards.scryfall.io/display/front/0/f/0f6a6dc8-1c3c-45d2-be4f-bfab58a5a66f.webp?1783903567",
+    "art": "https://cards.scryfall.io/art/front/0/f/0f6a6dc8-1c3c-45d2-be4f-bfab58a5a66f.webp?1783903567",
+    "crop": "https://cards.scryfall.io/crop/front/0/f/0f6a6dc8-1c3c-45d2-be4f-bfab58a5a66f.webp?1783903567"
+  },
+  "mana_cost": "",
+  "cmc": 0.0,
+  "type_line": "Card",
+  "oracle_text": "",
+  "colors": [],
+  "color_identity": [],
+  "keywords": [],
+  "all_parts": [
+    {
+      "object": "related_card",
+      "id": "d1d03bfb-c3bf-4837-b4df-e6339997dedb",
+      "component": "combo_piece",
+      "name": "Radiant Destiny",
+      "type_line": "Enchantment",
+      "uri": "https://api.scryfall.com/cards/d1d03bfb-c3bf-4837-b4df-e6339997dedb"
+    },
+    {
+      "object": "related_card",
+      "id": "e5d3a158-659e-4d25-ae73-54b566521e8b",
+      "component": "combo_piece",
+      "name": "Skymarcher Aspirant",
+      "type_line": "Creature — Vampire Soldier",
+      "uri": "https://api.scryfall.com/cards/e5d3a158-659e-4d25-ae73-54b566521e8b"
+    },
+    {
+      "object": "related_card",
+      "id": "9bf37b66-1f00-4887-924d-35afdea72e83",
+      "component": "combo_piece",
+      "name": "Detective of the Month",
+      "type_line": "Creature — Human Detective",
+      "uri": "https://api.scryfall.com/cards/9bf37b66-1f00-4887-924d-35afdea72e83"
+    },
+    {
+      "object": "related_card",
+      "id": "076c5abd-6ae5-4c59-b1f4-f18eeb9159d9",
+      "component": "combo_piece",
+      "name": "Wayward Swordtooth",
+      "type_line": "Creature — Dinosaur",
+      "uri": "https://api.scryfall.com/cards/076c5abd-6ae5-4c59-b1f4-f18eeb9159d9"
+    },
+    {
+      "object": "related_card",
+      "id": "581dcadd-7de4-4b39-bab0-d3567194a252",
+      "component": "combo_piece",
+      "name": "Arch of Orazca",
+      "type_line": "Land",
+      "uri": "https://api.scryfall.com/cards/581dcadd-7de4-4b39-bab0-d3567194a252"
+    },
+    {
+      "object": "related_card",
+      "id": "03a2c40d-6adb-4ad7-ba8e-3954d33f0e09",
+      "component": "combo_piece",
+      "name": "The Golden City of Orazca",
+      "type_line": "Plane — Ixalan",
+      "uri": "https://api.scryfall.com/cards/03a2c40d-6adb-4ad7-ba8e-3954d33f0e09"
+    },
+    {
+      "object": "related_card",
+      "id": "262f3c10-f29a-494f-88c6-0d44b2cbdc82",
+      "component": "combo_piece",
+      "name": "Slippery Scoundrel",
+      "type_line": "Creature — Human Pirate",
+      "uri": "https://api.scryfall.com/cards/262f3c10-f29a-494f-88c6-0d44b2cbdc82"
+    },
+    {
+      "object": "related_card",
+      "id": "fd9e5b05-11b5-46fc-a1c8-484f41a0cee6",
+      "component": "combo_piece",
+      "name": "Orazca Relic",
+      "type_line": "Artifact",
+      "uri": "https://api.scryfall.com/cards/fd9e5b05-11b5-46fc-a1c8-484f41a0cee6"
+    },
+    {
+      "object": "related_card",
+      "id": "7093bd0e-3b98-4f46-9717-202ddd277bf5",
+      "component": "combo_piece",
+      "name": "Storm Fleet Swashbuckler",
+      "type_line": "Creature — Human Pirate",
+      "uri": "https://api.scryfall.com/cards/7093bd0e-3b98-4f46-9717-202ddd277bf5"
+    },
+    {
+      "object": "related_card",
+      "id": "c4536a7c-8373-4b4a-bba9-c4f9568423db",
+      "component": "combo_piece",
+      "name": "Illustrious Wanderglyph",
+      "type_line": "Artifact Creature — Golem",
+      "uri": "https://api.scryfall.com/cards/c4536a7c-8373-4b4a-bba9-c4f9568423db"
+    },
+    {
+      "object": "related_card",
+      "id": "0f6a6dc8-1c3c-45d2-be4f-bfab58a5a66f",
+      "component": "combo_piece",
+      "name": "City's Blessing",
+      "type_line": "Card",
+      "uri": "https://api.scryfall.com/cards/0f6a6dc8-1c3c-45d2-be4f-bfab58a5a66f"
+    },
+    {
+      "object": "related_card",
+      "id": "32067e8a-4d68-494c-95fa-6e8172496f0d",
+      "component": "combo_piece",
+      "name": "Tilonalli's Summoner",
+      "type_line": "Creature — Human Shaman",
+      "uri": "https://api.scryfall.com/cards/32067e8a-4d68-494c-95fa-6e8172496f0d"
+    },
+    {
+      "object": "related_card",
+      "id": "def3571c-01dd-4eee-8f60-0ac4d1928d33",
+      "component": "combo_piece",
+      "name": "Tendershoot Dryad",
+      "type_line": "Creature — Dryad",
+      "uri": "https://api.scryfall.com/cards/def3571c-01dd-4eee-8f60-0ac4d1928d33"
+    },
+    {
+      "object": "related_card",
+      "id": "050ca791-265a-4e7b-9640-4fd5a6d8cd3a",
+      "component": "combo_piece",
+      "name": "Twilight Prophet",
+      "type_line": "Creature — Vampire Cleric",
+      "uri": "https://api.scryfall.com/cards/050ca791-265a-4e7b-9640-4fd5a6d8cd3a"
+    },
+    {
+      "object": "related_card",
+      "id": "6cd96279-6c8f-4713-b537-84d0c508e43a",
+      "component": "combo_piece",
+      "name": "Expel from Orazca",
+      "type_line": "Instant",
+      "uri": "https://api.scryfall.com/cards/6cd96279-6c8f-4713-b537-84d0c508e43a"
+    },
+    {
+      "object": "related_card",
+      "id": "acb1ab66-f2ce-4094-b2dd-1fc63d78eea2",
+      "component": "combo_piece",
+      "name": "Deadeye Brawler",
+      "type_line": "Creature — Human Pirate",
+      "uri": "https://api.scryfall.com/cards/acb1ab66-f2ce-4094-b2dd-1fc63d78eea2"
+    },
+    {
+      "object": "related_card",
+      "id": "efbc5ec8-91ac-4a59-8f4d-577dc2d350c1",
+      "component": "combo_piece",
+      "name": "Ocelot Pride",
+      "type_line": "Creature — Cat",
+      "uri": "https://api.scryfall.com/cards/efbc5ec8-91ac-4a59-8f4d-577dc2d350c1"
+    },
+    {
+      "object": "related_card",
+      "id": "e9ee862f-c007-4685-af83-dec508d8ec80",
+      "component": "combo_piece",
+      "name": "Andúril, Narsil Reforged",
+      "type_line": "Legendary Artifact — Equipment",
+      "uri": "https://api.scryfall.com/cards/e9ee862f-c007-4685-af83-dec508d8ec80"
+    },
+    {
+      "object": "related_card",
+      "id": "54b40f3c-d75e-483f-b978-8b3bf30cc7ce",
+      "component": "combo_piece",
+      "name": "Mausoleum Harpy",
+      "type_line": "Creature — Harpy",
+      "uri": "https://api.scryfall.com/cards/54b40f3c-d75e-483f-b978-8b3bf30cc7ce"
+    },
+    {
+      "object": "related_card",
+      "id": "2a08f978-380c-4443-bbb8-3eb8ad2f513a",
+      "component": "combo_piece",
+      "name": "Secrets of the Golden City",
+      "type_line": "Sorcery",
+      "uri": "https://api.scryfall.com/cards/2a08f978-380c-4443-bbb8-3eb8ad2f513a"
+    },
+    {
+      "object": "related_card",
+      "id": "086afafe-6b6c-4a54-8ce7-0040295d309c",
+      "component": "combo_piece",
+      "name": "Timestream Navigator",
+      "type_line": "Creature — Human Pirate Wizard",
+      "uri": "https://api.scryfall.com/cards/086afafe-6b6c-4a54-8ce7-0040295d309c"
+    },
+    {
+      "object": "related_card",
+      "id": "ccb6e7af-5317-4b7f-aaee-c6ea420d0431",
+      "component": "combo_piece",
+      "name": "Vona's Hunger",
+      "type_line": "Instant",
+      "uri": "https://api.scryfall.com/cards/ccb6e7af-5317-4b7f-aaee-c6ea420d0431"
+    },
+    {
+      "object": "related_card",
+      "id": "012bdc02-fe5f-4e87-b840-53090f78c649",
+      "component": "combo_piece",
+      "name": "Dusk Charger",
+      "type_line": "Creature — Horse",
+      "uri": "https://api.scryfall.com/cards/012bdc02-fe5f-4e87-b840-53090f78c649"
+    },
+    {
+      "object": "related_card",
+      "id": "ff0a769c-6602-4f6f-a388-f5aa15fb3c90",
+      "component": "combo_piece",
+      "name": "Pride of Conquerors",
+      "type_line": "Instant",
+      "uri": "https://api.scryfall.com/cards/ff0a769c-6602-4f6f-a388-f5aa15fb3c90"
+    },
+    {
+      "object": "related_card",
+      "id": "88bb420a-8bf1-4504-b1b5-2d929be978be",
+      "component": "combo_piece",
+      "name": "Golden Demise",
+      "type_line": "Sorcery",
+      "uri": "https://api.scryfall.com/cards/88bb420a-8bf1-4504-b1b5-2d929be978be"
+    },
+    {
+      "object": "related_card",
+      "id": "aca438d7-1134-4fee-9fad-85c3b1abe8ed",
+      "component": "combo_piece",
+      "name": "Spire Winder",
+      "type_line": "Creature — Snake",
+      "uri": "https://api.scryfall.com/cards/aca438d7-1134-4fee-9fad-85c3b1abe8ed"
+    },
+    {
+      "object": "related_card",
+      "id": "96f2b208-ea5e-42d2-ba7c-f7d41e9b0bc9",
+      "component": "combo_piece",
+      "name": "Kumena's Awakening",
+      "type_line": "Enchantment",
+      "uri": "https://api.scryfall.com/cards/96f2b208-ea5e-42d2-ba7c-f7d41e9b0bc9"
+    },
+    {
+      "object": "related_card",
+      "id": "915f2ad9-fd39-465c-8261-bfa34116cbcc",
+      "component": "combo_piece",
+      "name": "Resplendent Griffin",
+      "type_line": "Creature — Griffin",
+      "uri": "https://api.scryfall.com/cards/915f2ad9-fd39-465c-8261-bfa34116cbcc"
+    },
+    {
+      "object": "related_card",
+      "id": "77642e28-24db-4082-971c-e7137c305a39",
+      "component": "combo_piece",
+      "name": "Snubhorn Sentry",
+      "type_line": "Creature — Dinosaur",
+      "uri": "https://api.scryfall.com/cards/77642e28-24db-4082-971c-e7137c305a39"
+    }
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "not_legal",
+    "pauper": "not_legal",
+    "vintage": "not_legal",
+    "penny": "not_legal",
+    "commander": "not_legal",
+    "oathbreaker": "not_legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "not_legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "cb590d57-927c-437a-934c-7f774881d1c9",
+  "set": "tsoc",
+  "set_name": "Secrets of Strixhaven Commander Tokens",
+  "set_type": "token",
+  "set_uri": "https://api.scryfall.com/sets/cb590d57-927c-437a-934c-7f774881d1c9",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Atsoc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/tsoc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/0f6a6dc8-1c3c-45d2-be4f-bfab58a5a66f/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A73d60ab9-1c38-4592-a5b5-ab84788bcc84&unique=prints",
+  "collector_number": "29",
+  "digital": false,
+  "rarity": "common",
+  "flavor_text": "Once you have ascended to the highest temple of Orazca, the power of the Immortal Sun is yours to wield forever.",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Yeong-Hao Han",
+  "artist_ids": [
+    "f8e7f8d6-6dde-4059-973c-30f1fd1bbe4e"
+  ],
+  "illustration_id": "8c1be4a0-ecd2-42ca-bb5e-712668e6a831",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DCity%2527s%2BBlessing",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DCity%2527s%2BBlessing",
+    "edhrec": "https://edhrec.com/route/?cc=City%27s+Blessing"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DCity%2527s%2BBlessing%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=City%27s+Blessing&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=City%27s+Blessing&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

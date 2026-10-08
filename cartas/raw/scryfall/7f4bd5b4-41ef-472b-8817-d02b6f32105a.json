@@ -1,0 +1,129 @@
+{
+  "object": "card",
+  "id": "7f4bd5b4-41ef-472b-8817-d02b6f32105a",
+  "oracle_id": "0c4e2c90-c17b-42cc-b4d7-cf75970fbe90",
+  "multiverse_ids": [
+    605788
+  ],
+  "name": "Staff of the Storyteller",
+  "printed_name": "Cajado do Contador de Histórias",
+  "lang": "pt",
+  "released_at": "2023-02-10",
+  "uri": "https://api.scryfall.com/cards/7f4bd5b4-41ef-472b-8817-d02b6f32105a",
+  "scryfall_uri": "https://scryfall.com/card/onc/10/pt/cajado-do-contador-de-hist%C3%B3rias-(staff-of-the-storyteller)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T14:51:00Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/7/f/7f4bd5b4-41ef-472b-8817-d02b6f32105a.jpg?1782831060",
+    "normal": "https://cards.scryfall.io/normal/front/7/f/7f4bd5b4-41ef-472b-8817-d02b6f32105a.jpg?1782831060",
+    "large": "https://cards.scryfall.io/large/front/7/f/7f4bd5b4-41ef-472b-8817-d02b6f32105a.jpg?1782831060",
+    "png": "https://cards.scryfall.io/png/front/7/f/7f4bd5b4-41ef-472b-8817-d02b6f32105a.png?1782831060",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/7/f/7f4bd5b4-41ef-472b-8817-d02b6f32105a.jpg?1782831060",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/7/f/7f4bd5b4-41ef-472b-8817-d02b6f32105a.jpg?1782831060",
+    "thumb": "https://cards.scryfall.io/thumb/front/7/f/7f4bd5b4-41ef-472b-8817-d02b6f32105a.webp?1782831060",
+    "grid": "https://cards.scryfall.io/grid/front/7/f/7f4bd5b4-41ef-472b-8817-d02b6f32105a.webp?1782831060",
+    "display": "https://cards.scryfall.io/display/front/7/f/7f4bd5b4-41ef-472b-8817-d02b6f32105a.webp?1782831060",
+    "art": "https://cards.scryfall.io/art/front/7/f/7f4bd5b4-41ef-472b-8817-d02b6f32105a.webp?1782831060",
+    "crop": "https://cards.scryfall.io/crop/front/7/f/7f4bd5b4-41ef-472b-8817-d02b6f32105a.webp?1782831060"
+  },
+  "mana_cost": "{1}{W}",
+  "cmc": 2.0,
+  "type_line": "Artifact",
+  "printed_type_line": "Artefato",
+  "oracle_text": "When this artifact enters, create a 1/1 white Spirit creature token with flying.\nWhenever you create one or more creature tokens, put a story counter on this artifact.\n{W}, {T}, Remove a story counter from this artifact: Draw a card.",
+  "printed_text": "Quando Cajado do Contador de Histórias entrar no campo de batalha, crie uma ficha de criatura Espírito branca 1/1 com voar.\nToda vez que você criar uma ou mais fichas de criatura, coloque um marcador de história em Cajado do Contador de Histórias.\n{W}, {T}, remova um marcador de história de Cajado do Contador de Histórias: Compre um card.",
+  "colors": [
+    "W"
+  ],
+  "color_identity": [
+    "W"
+  ],
+  "keywords": [],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "8c5e86d4-ae2d-42f7-a0e5-0e4141eb953d",
+  "set": "onc",
+  "set_name": "Phyrexia: All Will Be One Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/8c5e86d4-ae2d-42f7-a0e5-0e4141eb953d",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Aonc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/onc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/7f4bd5b4-41ef-472b-8817-d02b6f32105a/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A0c4e2c90-c17b-42cc-b4d7-cf75970fbe90&unique=prints",
+  "collector_number": "10",
+  "digital": false,
+  "rarity": "rare",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Dan Murayama Scott",
+  "artist_ids": [
+    "f852fa13-137e-40f2-bbc1-0f01df09c0e0"
+  ],
+  "illustration_id": "5c72ecc4-a2f7-4b1f-9a16-e20b18848bd4",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 2969,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=605788&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DStaff%2Bof%2Bthe%2BStoryteller",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DStaff%2Bof%2Bthe%2BStoryteller",
+    "edhrec": "https://edhrec.com/route/?cc=Staff+of+the+Storyteller"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DStaff%2Bof%2Bthe%2BStoryteller%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Staff+of+the+Storyteller&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Staff+of+the+Storyteller&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "object": "card",
+  "id": "b0646a26-42dd-449c-baf2-ec121f8c7a73",
+  "oracle_id": "f955bc96-d602-4142-a9a2-87009cc7028c",
+  "multiverse_ids": [
+    561395
+  ],
+  "name": "Awakening Zone",
+  "printed_name": "Zona do Despertar",
+  "lang": "pt",
+  "released_at": "2022-04-29",
+  "uri": "https://api.scryfall.com/cards/b0646a26-42dd-449c-baf2-ec121f8c7a73",
+  "scryfall_uri": "https://scryfall.com/card/ncc/281/pt/zona-do-despertar-(awakening-zone)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T22:22:25Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/b/0/b0646a26-42dd-449c-baf2-ec121f8c7a73.jpg?1782858145",
+    "normal": "https://cards.scryfall.io/normal/front/b/0/b0646a26-42dd-449c-baf2-ec121f8c7a73.jpg?1782858145",
+    "large": "https://cards.scryfall.io/large/front/b/0/b0646a26-42dd-449c-baf2-ec121f8c7a73.jpg?1782858145",
+    "png": "https://cards.scryfall.io/png/front/b/0/b0646a26-42dd-449c-baf2-ec121f8c7a73.png?1782858145",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/b/0/b0646a26-42dd-449c-baf2-ec121f8c7a73.jpg?1782858145",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/b/0/b0646a26-42dd-449c-baf2-ec121f8c7a73.jpg?1782858145",
+    "thumb": "https://cards.scryfall.io/thumb/front/b/0/b0646a26-42dd-449c-baf2-ec121f8c7a73.webp?1782858145",
+    "grid": "https://cards.scryfall.io/grid/front/b/0/b0646a26-42dd-449c-baf2-ec121f8c7a73.webp?1782858145",
+    "display": "https://cards.scryfall.io/display/front/b/0/b0646a26-42dd-449c-baf2-ec121f8c7a73.webp?1782858145",
+    "art": "https://cards.scryfall.io/art/front/b/0/b0646a26-42dd-449c-baf2-ec121f8c7a73.webp?1782858145",
+    "crop": "https://cards.scryfall.io/crop/front/b/0/b0646a26-42dd-449c-baf2-ec121f8c7a73.webp?1782858145"
+  },
+  "mana_cost": "{2}{G}",
+  "cmc": 3.0,
+  "type_line": "Enchantment",
+  "printed_type_line": "Encantamento",
+  "oracle_text": "At the beginning of your upkeep, you may create a 0/1 colorless Eldrazi Spawn creature token. It has \"Sacrifice this token: Add {C}.\"",
+  "printed_text": "No início de sua manutenção, você pode criar uma ficha de criatura Prole Eldrazi incolor 0/1. Ela tem \"Sacrifique esta criatura: Adicione {C}\".",
+  "colors": [
+    "G"
+  ],
+  "color_identity": [
+    "G"
+  ],
+  "keywords": [],
+  "produced_mana": [
+    "C"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "c51de34b-d4d6-4179-a432-573744ded119",
+  "set": "ncc",
+  "set_name": "New Capenna Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/c51de34b-d4d6-4179-a432-573744ded119",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Ancc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/ncc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/b0646a26-42dd-449c-baf2-ec121f8c7a73/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Af955bc96-d602-4142-a9a2-87009cc7028c&unique=prints",
+  "collector_number": "281",
+  "digital": false,
+  "rarity": "rare",
+  "flavor_text": "O solo rompeu-se no momento em que o edro tamborilou, um lamento dos últimos dias.",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Johann Bodin",
+  "artist_ids": [
+    "d92e2dd9-9ef6-43f6-81f8-df87f9066983"
+  ],
+  "illustration_id": "e9e474d5-a347-4b1e-b369-7d1109a47a9d",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 1589,
+  "penny_rank": 6986,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=561395&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DAwakening%2BZone",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DAwakening%2BZone",
+    "edhrec": "https://edhrec.com/route/?cc=Awakening+Zone"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DAwakening%2BZone%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Awakening+Zone&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Awakening+Zone&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

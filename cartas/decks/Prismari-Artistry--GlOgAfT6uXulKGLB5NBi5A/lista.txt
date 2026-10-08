@@ -1,0 +1,122 @@
+[mainboard]
+
+1 Goblin Electromancer (GRN) 174
+1 Counterspell (6ED) 61
+1 Negate (FDN) 710
+1 Ashling, Rekindled // Ashling, Rimebound (ECL) 124
+1 Ashling's Command (PECL) 205p
+1 Molten-Core Maestro (SOS) 125
+1 Prismari Charm (SOS) 211
+1 Sanar, Unfinished Genius // Wild Idea (SOS) 223
+1 Prismari Pianist (SOC) 34
+1 Muddle, the Ever-Changing (SOC) 5
+1 Leitmotif Composer (SOC) 20
+1 Dirgur Focusmage // Braingeyser (SOC) 18
+1 Furygale Flocking (SOC) 32
+1 Scorched Geyser (SOC) 54
+1 Coastal Peak (SOC) 52
+1 Turbulent Springs (SOC) 57
+1 Inspired Skypainter // Maestro's Gift (SOC) 48
+1 Command Tower (SOC) 129
+1 Abstract Performance (SOC) 17
+1 Renegade Bull (SOC) 36
+1 Replication Technique (SOC) 200
+1 Rite of Replication (SOC) 202
+1 Arcane Signet (SOC) 127
+1 Mana Geyser (SOC) 247
+1 Curiosity Crafter (SOC) 191
+1 Faerie Mastermind (SOC) 114
+1 Sol Ring (SOC) 128
+1 Goldspan Dragon (SOC) 245
+1 Big Score (SOC) 237
+1 Temple of the False God (SOC) 416
+1 Chain Reaction (SOC) 121
+1 Thunderclap Drake (SOC) 204
+1 Fellwar Stone (SOC) 347
+1 Brudiclad, Telchor Engineer (SOC) 299
+1 Reality Shift (SOC) 199
+1 Storm-Kiln Artist (SOC) 255
+1 Spectacle Summit (SOS) 262
+1 Creative Technique (SOC) 241
+1 Archmage Emeritus (SOC) 188
+1 Blasphemous Act (SOC) 238
+1 Determined Iteration (SOC) 122
+1 Dig Through Time (SOC) 195
+1 Magma Opus (SOC) 318
+1 Manaform Hellkite (SOC) 248
+1 Mystic Sanctuary (SOC) 388
+1 Reliquary Tower (SOC) 398
+1 Prismari Campus (SOC) 394
+1 Surge to Victory (SOC) 256
+1 Sulfur Falls (SOC) 408
+1 Fabled Passage (SOC) 130
+1 Treasure Cruise (SOC) 205
+1 Volcanic Salvo (SOC) 259
+1 Frostboil Snarl (SOC) 374
+1 Prismari Command (SOC) 323
+1 Exotic Orchard (SOC) 369
+1 Rousing Refrain (SOC) 253
+1 Shivan Reef (SOC) 404
+1 Talisman of Creativity (SOC) 357
+1 Twinflame (SOC) 258
+1 Rionya, Fire Dancer (SOC) 252
+1 Terramorphic Expanse (SOS) 265
+1 Abrade (SOC) 234
+1 Lightning Greaves (SOC) 350
+1 Path of Ancestry (SOC) 393
+1 Arcane Denial (SOC) 187
+1 Cursed Mirror (SOC) 242
+1 Stormcatch Mentor (SOC) 331
+1 Cascade Bluffs (SOC) 364
+1 Ferrous Lake (SOC) 370
+1 Molten Tributary (SOC) 387
+1 Temple of Epiphany (SOC) 412
+1 Chaos Warp (SOC) 239
+1 Veyran, Voice of Duality (SOC) 337
+1 Expressive Iteration (SOC) 309
+1 Resculpt (SOC) 201
+8 Island (SOS) 275
+1 Deep Analysis (SOC) 194
+7 Mountain (SOS) 279
+1 Study Hall (SOC) 407
+1 Dance with Calamity (SOC) 243
+1 Aether Gale (SOC) 186
+1 Hall of Oracles (SOC) 378
+1 Restless Spire (SOC) 399
+1 Splatter Technique (SOS) 231
+1 Rapturous Moment (SOS) 219
+1 Abstract Paintmage (SOS) 171
+
+[sideboard]
+
+
+[maybeboard]
+
+
+[commanders]
+
+1 Rootha, Mastering the Moment (SOC) 8
+
+[companions]
+
+
+[signatureSpells]
+
+
+[attractions]
+
+
+[stickers]
+
+
+[contraptions]
+
+
+[planes]
+
+
+[schemes]
+
+
+[tokens]
+

@@ -1,0 +1,132 @@
+{
+  "object": "card",
+  "id": "1d312b2e-c529-42ac-ad9e-73573e5f1c34",
+  "oracle_id": "ff3de07d-86c3-49e1-9de0-97c85301ff93",
+  "multiverse_ids": [],
+  "resource_id": "082DEAD975AED9055CFC1C0056DEFD0ED2F30DB03794C7CBF5E593F7212159D5",
+  "mtgo_id": 148911,
+  "tcgplayer_id": 687472,
+  "cardmarket_id": 881541,
+  "name": "Parasitic Impetus",
+  "lang": "en",
+  "released_at": "2026-04-24",
+  "uri": "https://api.scryfall.com/cards/1d312b2e-c529-42ac-ad9e-73573e5f1c34",
+  "scryfall_uri": "https://scryfall.com/card/soc/222/parasitic-impetus?utm_source=api",
+  "layout": "normal",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T00:49:43Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/1/d/1d312b2e-c529-42ac-ad9e-73573e5f1c34.jpg?1783903783",
+    "normal": "https://cards.scryfall.io/normal/front/1/d/1d312b2e-c529-42ac-ad9e-73573e5f1c34.jpg?1783903783",
+    "large": "https://cards.scryfall.io/large/front/1/d/1d312b2e-c529-42ac-ad9e-73573e5f1c34.jpg?1783903783",
+    "png": "https://cards.scryfall.io/png/front/1/d/1d312b2e-c529-42ac-ad9e-73573e5f1c34.png?1783903783",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/1/d/1d312b2e-c529-42ac-ad9e-73573e5f1c34.jpg?1783903783",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/1/d/1d312b2e-c529-42ac-ad9e-73573e5f1c34.jpg?1783903783",
+    "thumb": "https://cards.scryfall.io/thumb/front/1/d/1d312b2e-c529-42ac-ad9e-73573e5f1c34.webp?1783903783",
+    "grid": "https://cards.scryfall.io/grid/front/1/d/1d312b2e-c529-42ac-ad9e-73573e5f1c34.webp?1783903783",
+    "display": "https://cards.scryfall.io/display/front/1/d/1d312b2e-c529-42ac-ad9e-73573e5f1c34.webp?1783903783",
+    "art": "https://cards.scryfall.io/art/front/1/d/1d312b2e-c529-42ac-ad9e-73573e5f1c34.webp?1783903783",
+    "crop": "https://cards.scryfall.io/crop/front/1/d/1d312b2e-c529-42ac-ad9e-73573e5f1c34.webp?1783903783"
+  },
+  "mana_cost": "{2}{B}",
+  "cmc": 3.0,
+  "type_line": "Enchantment — Aura",
+  "oracle_text": "Enchant creature\nEnchanted creature gets +2/+2 and is goaded. (It attacks each combat if able and attacks a player other than you if able.)\nWhenever enchanted creature attacks, its controller loses 2 life and you gain 2 life.",
+  "colors": [
+    "B"
+  ],
+  "color_identity": [
+    "B"
+  ],
+  "keywords": [
+    "Goad",
+    "Enchant"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "legal",
+    "pauper": "legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "97fab8d1-480a-419d-ab14-663968e29b9c",
+  "set": "soc",
+  "set_name": "Secrets of Strixhaven Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/97fab8d1-480a-419d-ab14-663968e29b9c",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Asoc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/soc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/1d312b2e-c529-42ac-ad9e-73573e5f1c34/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Aff3de07d-86c3-49e1-9de0-97c85301ff93&unique=prints",
+  "collector_number": "222",
+  "digital": false,
+  "rarity": "common",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Mila Pesic",
+  "artist_ids": [
+    "81c5ec23-220b-4efa-b7df-9e49dd371e8d"
+  ],
+  "illustration_id": "9bd86646-7511-43d3-841b-a4c933955a0d",
+  "border_color": "black",
+  "frame": "2015",
+  "frame_effects": [
+    "enchantment"
+  ],
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 2818,
+  "prices": {
+    "usd": "0.34",
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": "0.17",
+    "eur_foil": null,
+    "tix": "1.20"
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DParasitic%2BImpetus",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DParasitic%2BImpetus",
+    "edhrec": "https://edhrec.com/route/?cc=Parasitic+Impetus"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F687472%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=881541&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards/148911?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

@@ -1,0 +1,132 @@
+{
+  "object": "card",
+  "id": "b68c5080-eeeb-476b-b53f-96d3cf3a26cf",
+  "oracle_id": "bc71ebf6-2056-41f7-be35-b2e5c34afa99",
+  "multiverse_ids": [
+    661026
+  ],
+  "name": "Plains",
+  "printed_name": "Planície",
+  "lang": "pt",
+  "released_at": "2024-06-14",
+  "uri": "https://api.scryfall.com/cards/b68c5080-eeeb-476b-b53f-96d3cf3a26cf",
+  "scryfall_uri": "https://scryfall.com/card/mh3/311/pt/plan%C3%ADcie-(plains)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T04:05:25Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/b/6/b68c5080-eeeb-476b-b53f-96d3cf3a26cf.jpg?1782792325",
+    "normal": "https://cards.scryfall.io/normal/front/b/6/b68c5080-eeeb-476b-b53f-96d3cf3a26cf.jpg?1782792325",
+    "large": "https://cards.scryfall.io/large/front/b/6/b68c5080-eeeb-476b-b53f-96d3cf3a26cf.jpg?1782792325",
+    "png": "https://cards.scryfall.io/png/front/b/6/b68c5080-eeeb-476b-b53f-96d3cf3a26cf.png?1782792325",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/b/6/b68c5080-eeeb-476b-b53f-96d3cf3a26cf.jpg?1782792325",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/b/6/b68c5080-eeeb-476b-b53f-96d3cf3a26cf.jpg?1782792325",
+    "thumb": "https://cards.scryfall.io/thumb/front/b/6/b68c5080-eeeb-476b-b53f-96d3cf3a26cf.webp?1782792325",
+    "grid": "https://cards.scryfall.io/grid/front/b/6/b68c5080-eeeb-476b-b53f-96d3cf3a26cf.webp?1782792325",
+    "display": "https://cards.scryfall.io/display/front/b/6/b68c5080-eeeb-476b-b53f-96d3cf3a26cf.webp?1782792325",
+    "art": "https://cards.scryfall.io/art/front/b/6/b68c5080-eeeb-476b-b53f-96d3cf3a26cf.webp?1782792325",
+    "crop": "https://cards.scryfall.io/crop/front/b/6/b68c5080-eeeb-476b-b53f-96d3cf3a26cf.webp?1782792325"
+  },
+  "mana_cost": "",
+  "cmc": 0.0,
+  "type_line": "Basic Land — Plains",
+  "printed_type_line": "Terreno Básico — Planície",
+  "oracle_text": "({T}: Add {W}.)",
+  "colors": [],
+  "color_identity": [
+    "W"
+  ],
+  "keywords": [],
+  "produced_mana": [
+    "W"
+  ],
+  "legalities": {
+    "standard": "legal",
+    "future": "legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "legal",
+    "paupercommander": "legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "legal",
+    "predh": "legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo",
+    "arena"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "3ed80bb6-77e8-4aa7-8262-95377a38aba1",
+  "set": "mh3",
+  "set_name": "Modern Horizons 3",
+  "set_type": "draft_innovation",
+  "set_uri": "https://api.scryfall.com/sets/3ed80bb6-77e8-4aa7-8262-95377a38aba1",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Amh3&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/mh3?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/b68c5080-eeeb-476b-b53f-96d3cf3a26cf/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Abc71ebf6-2056-41f7-be35-b2e5c34afa99&unique=prints",
+  "collector_number": "311",
+  "digital": false,
+  "rarity": "common",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Lius Lasahido",
+  "artist_ids": [
+    "0a0e9093-ce44-4a69-93a7-09b63e7c330d"
+  ],
+  "illustration_id": "9200394e-5c1d-4b3e-9756-87cb07c02395",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "promo_types": [
+    "bundle"
+  ],
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=661026&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DPlains",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DPlains",
+    "edhrec": "https://edhrec.com/route/?cc=Plains"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DPlains%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Plains&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Plains&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

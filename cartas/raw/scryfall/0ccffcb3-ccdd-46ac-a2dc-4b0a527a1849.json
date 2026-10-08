@@ -1,0 +1,137 @@
+{
+  "object": "card",
+  "id": "0ccffcb3-ccdd-46ac-a2dc-4b0a527a1849",
+  "oracle_id": "af247e2f-b271-4f5b-ab98-4579d2c17c21",
+  "multiverse_ids": [
+    393275
+  ],
+  "name": "Archfiend of Depravity",
+  "printed_name": "Arquidemônio da Depravação",
+  "lang": "pt",
+  "released_at": "2015-01-23",
+  "uri": "https://api.scryfall.com/cards/0ccffcb3-ccdd-46ac-a2dc-4b0a527a1849",
+  "scryfall_uri": "https://scryfall.com/card/frf/62/pt/arquidem%C3%B4nio-da-deprava%C3%A7%C3%A3o-(archfiend-of-depravity)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-02T04:03:26Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/0/c/0ccffcb3-ccdd-46ac-a2dc-4b0a527a1849.jpg?1782965006",
+    "normal": "https://cards.scryfall.io/normal/front/0/c/0ccffcb3-ccdd-46ac-a2dc-4b0a527a1849.jpg?1782965006",
+    "large": "https://cards.scryfall.io/large/front/0/c/0ccffcb3-ccdd-46ac-a2dc-4b0a527a1849.jpg?1782965006",
+    "png": "https://cards.scryfall.io/png/front/0/c/0ccffcb3-ccdd-46ac-a2dc-4b0a527a1849.png?1782965006",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/0/c/0ccffcb3-ccdd-46ac-a2dc-4b0a527a1849.jpg?1782965006",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/0/c/0ccffcb3-ccdd-46ac-a2dc-4b0a527a1849.jpg?1782965006",
+    "thumb": "https://cards.scryfall.io/thumb/front/0/c/0ccffcb3-ccdd-46ac-a2dc-4b0a527a1849.webp?1782965006",
+    "grid": "https://cards.scryfall.io/grid/front/0/c/0ccffcb3-ccdd-46ac-a2dc-4b0a527a1849.webp?1782965006",
+    "display": "https://cards.scryfall.io/display/front/0/c/0ccffcb3-ccdd-46ac-a2dc-4b0a527a1849.webp?1782965006",
+    "art": "https://cards.scryfall.io/art/front/0/c/0ccffcb3-ccdd-46ac-a2dc-4b0a527a1849.webp?1782965006",
+    "crop": "https://cards.scryfall.io/crop/front/0/c/0ccffcb3-ccdd-46ac-a2dc-4b0a527a1849.webp?1782965006"
+  },
+  "mana_cost": "{3}{B}{B}",
+  "cmc": 5.0,
+  "type_line": "Creature — Demon",
+  "printed_type_line": "Criatura — Demônio",
+  "oracle_text": "Flying\nAt the beginning of each opponent's end step, that player chooses up to two creatures they control, then sacrifices the rest.",
+  "printed_text": "Voar\nNo início da etapa final de cada oponente, aquele jogador escolhe até duas criaturas que ele controla e sacrifica o resto.",
+  "power": "5",
+  "toughness": "4",
+  "colors": [
+    "B"
+  ],
+  "color_identity": [
+    "B"
+  ],
+  "keywords": [
+    "Flying"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "7bb5cb2b-081a-4c8c-b7e1-494046e6baa1",
+  "set": "frf",
+  "set_name": "Fate Reforged",
+  "set_type": "expansion",
+  "set_uri": "https://api.scryfall.com/sets/7bb5cb2b-081a-4c8c-b7e1-494046e6baa1",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Afrf&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/frf?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/0ccffcb3-ccdd-46ac-a2dc-4b0a527a1849/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Aaf247e2f-b271-4f5b-ab98-4579d2c17c21&unique=prints",
+  "collector_number": "62",
+  "digital": false,
+  "rarity": "rare",
+  "watermark": "sultai",
+  "flavor_text": "\"E por que eu mataria vocês? Se o fizesse, quem restaria para me adorar?\"",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Daarken",
+  "artist_ids": [
+    "e607a0d4-fc12-4c01-9e3f-501f5269b9cb"
+  ],
+  "illustration_id": "190cb7f9-e2cd-4858-9acc-76176df211ed",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "edhrec_rank": 1579,
+  "penny_rank": 12219,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=393275&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DArchfiend%2Bof%2BDepravity",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DArchfiend%2Bof%2BDepravity",
+    "edhrec": "https://edhrec.com/route/?cc=Archfiend+of+Depravity"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DArchfiend%2Bof%2BDepravity%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Archfiend+of+Depravity&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Archfiend+of+Depravity&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

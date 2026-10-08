@@ -1,0 +1,136 @@
+{
+  "object": "card",
+  "id": "865b32d0-5a60-44d6-950a-df93a852a77e",
+  "oracle_id": "2031b17c-0536-446f-a9aa-b46fe79b7ea7",
+  "multiverse_ids": [
+    428824
+  ],
+  "name": "Canyon Slough",
+  "printed_name": "Lamaçal do Desfiladeiro",
+  "lang": "pt",
+  "released_at": "2017-04-28",
+  "uri": "https://api.scryfall.com/cards/865b32d0-5a60-44d6-950a-df93a852a77e",
+  "scryfall_uri": "https://scryfall.com/card/akh/239/pt/lama%C3%A7al-do-desfiladeiro-(canyon-slough)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-01T21:38:01Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/8/6/865b32d0-5a60-44d6-950a-df93a852a77e.jpg?1782941881",
+    "normal": "https://cards.scryfall.io/normal/front/8/6/865b32d0-5a60-44d6-950a-df93a852a77e.jpg?1782941881",
+    "large": "https://cards.scryfall.io/large/front/8/6/865b32d0-5a60-44d6-950a-df93a852a77e.jpg?1782941881",
+    "png": "https://cards.scryfall.io/png/front/8/6/865b32d0-5a60-44d6-950a-df93a852a77e.png?1782941881",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/8/6/865b32d0-5a60-44d6-950a-df93a852a77e.jpg?1782941881",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/8/6/865b32d0-5a60-44d6-950a-df93a852a77e.jpg?1782941881",
+    "thumb": "https://cards.scryfall.io/thumb/front/8/6/865b32d0-5a60-44d6-950a-df93a852a77e.webp?1782941881",
+    "grid": "https://cards.scryfall.io/grid/front/8/6/865b32d0-5a60-44d6-950a-df93a852a77e.webp?1782941881",
+    "display": "https://cards.scryfall.io/display/front/8/6/865b32d0-5a60-44d6-950a-df93a852a77e.webp?1782941881",
+    "art": "https://cards.scryfall.io/art/front/8/6/865b32d0-5a60-44d6-950a-df93a852a77e.webp?1782941881",
+    "crop": "https://cards.scryfall.io/crop/front/8/6/865b32d0-5a60-44d6-950a-df93a852a77e.webp?1782941881"
+  },
+  "mana_cost": "",
+  "cmc": 0.0,
+  "type_line": "Land — Swamp Mountain",
+  "printed_type_line": "Terreno — Pântano Montanha",
+  "oracle_text": "({T}: Add {B} or {R}.)\nThis land enters tapped.\nCycling {2} ({2}, Discard this card: Draw a card.)",
+  "printed_text": "({T}: Adicione {B} ou {R} à sua reserva de mana.)\nLamaçal do Desfiladeiro entra no campo de batalha virado.\nReciclar {2} ({2}, Descarte este card: Compre um card.)",
+  "colors": [],
+  "color_identity": [
+    "B",
+    "R"
+  ],
+  "keywords": [
+    "Cycling"
+  ],
+  "produced_mana": [
+    "B",
+    "R"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "02d1c536-68bc-4208-9b65-7741ef1f9da8",
+  "set": "akh",
+  "set_name": "Amonkhet",
+  "set_type": "expansion",
+  "set_uri": "https://api.scryfall.com/sets/02d1c536-68bc-4208-9b65-7741ef1f9da8",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Aakh&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/akh?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/865b32d0-5a60-44d6-950a-df93a852a77e/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A2031b17c-0536-446f-a9aa-b46fe79b7ea7&unique=prints",
+  "collector_number": "239",
+  "digital": false,
+  "rarity": "rare",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Titus Lunter",
+  "artist_ids": [
+    "b11e6b3a-f4ca-4cf1-8fd7-475696de5f5c"
+  ],
+  "illustration_id": "630f2d3f-e948-4152-a54b-82a63eea2239",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "edhrec_rank": 686,
+  "penny_rank": 330,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=428824&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DCanyon%2BSlough",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DCanyon%2BSlough",
+    "edhrec": "https://edhrec.com/route/?cc=Canyon+Slough"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DCanyon%2BSlough%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Canyon+Slough&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Canyon+Slough&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

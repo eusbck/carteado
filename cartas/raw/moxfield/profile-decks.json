@@ -1,0 +1,488 @@
+{
+  "retrieved_at": "2026-10-04T01:16:16.892599+00:00",
+  "expected_total": 7,
+  "decks": [
+    {
+      "matchTypes": [],
+      "matchedCards": [],
+      "id": "VavPrB",
+      "name": "Terra",
+      "hasPrimer": false,
+      "format": "commander",
+      "areCommentsEnabled": true,
+      "visibility": "public",
+      "publicUrl": "https://moxfield.com/decks/shVPe5yzCU2zxRPfg2eOrQ",
+      "publicId": "shVPe5yzCU2zxRPfg2eOrQ",
+      "likeCount": 0,
+      "viewCount": 11,
+      "commentCount": 0,
+      "sfwCommentCount": 0,
+      "bookmarkCount": 0,
+      "isLegal": true,
+      "authorsCanEdit": false,
+      "isShared": false,
+      "mainCardId": "EWNJl",
+      "mainCardIdIsCardFace": false,
+      "mainCardIdIsBackFace": false,
+      "createdByUser": {
+        "userName": "nvvvm",
+        "displayName": "nvvvm",
+        "badges": []
+      },
+      "authors": [
+        {
+          "userName": "nvvvm",
+          "displayName": "nvvvm",
+          "badges": []
+        }
+      ],
+      "createdAtUtc": "2026-09-30T15:35:20.297Z",
+      "lastUpdatedAtUtc": "2026-09-30T16:14:41.387Z",
+      "mainboardCount": 100,
+      "sideboardCount": 0,
+      "maybeboardCount": 0,
+      "hubNames": [],
+      "colors": [
+        "W",
+        "B",
+        "R"
+      ],
+      "colorPercentages": {
+        "white": 0.29,
+        "blue": 0,
+        "black": 0.43,
+        "red": 0.29,
+        "green": 0
+      },
+      "colorIdentity": [
+        "W",
+        "B",
+        "R"
+      ],
+      "colorIdentityPercentages": {
+        "white": 0.29,
+        "blue": 0,
+        "black": 0.39,
+        "red": 0.32,
+        "green": 0
+      },
+      "commanders": [],
+      "signatureSpells": [],
+      "bracket": 2,
+      "autoBracket": 2,
+      "ignoreBrackets": false
+    },
+    {
+      "matchTypes": [],
+      "matchedCards": [],
+      "id": "KBZw2g",
+      "name": "Witherbloom Pestilence",
+      "hasPrimer": false,
+      "format": "commander",
+      "areCommentsEnabled": true,
+      "visibility": "public",
+      "publicUrl": "https://moxfield.com/decks/G1OgAfZWPXGNR69mOTQcVA",
+      "publicId": "G1OgAfZWPXGNR69mOTQcVA",
+      "likeCount": 0,
+      "viewCount": 12,
+      "commentCount": 0,
+      "sfwCommentCount": 0,
+      "bookmarkCount": 0,
+      "isLegal": true,
+      "authorsCanEdit": false,
+      "isShared": false,
+      "mainCardId": "r4pNn",
+      "mainCardIdIsCardFace": false,
+      "mainCardIdIsBackFace": false,
+      "createdByUser": {
+        "userName": "nvvvm",
+        "displayName": "nvvvm",
+        "badges": []
+      },
+      "authors": [
+        {
+          "userName": "nvvvm",
+          "displayName": "nvvvm",
+          "badges": []
+        }
+      ],
+      "createdAtUtc": "2026-08-30T14:38:15.8Z",
+      "lastUpdatedAtUtc": "2026-08-30T15:25:42.253Z",
+      "mainboardCount": 100,
+      "sideboardCount": 0,
+      "maybeboardCount": 0,
+      "hubNames": [],
+      "colors": [
+        "B",
+        "G"
+      ],
+      "colorPercentages": {
+        "white": 0,
+        "blue": 0,
+        "black": 0.6,
+        "red": 0,
+        "green": 0.4
+      },
+      "colorIdentity": [
+        "B",
+        "G"
+      ],
+      "colorIdentityPercentages": {
+        "white": 0,
+        "blue": 0,
+        "black": 0.57,
+        "red": 0,
+        "green": 0.43
+      },
+      "commanders": [],
+      "signatureSpells": [],
+      "bracket": 2,
+      "autoBracket": 2,
+      "ignoreBrackets": false
+    },
+    {
+      "matchTypes": [],
+      "matchedCards": [],
+      "id": "1o2NG3",
+      "name": "Silverquill Influence",
+      "hasPrimer": false,
+      "format": "commander",
+      "areCommentsEnabled": true,
+      "visibility": "public",
+      "publicUrl": "https://moxfield.com/decks/G1OgAYgqlH2LnNRydDvJZA",
+      "publicId": "G1OgAYgqlH2LnNRydDvJZA",
+      "likeCount": 0,
+      "viewCount": 12,
+      "commentCount": 0,
+      "sfwCommentCount": 0,
+      "bookmarkCount": 0,
+      "isLegal": true,
+      "authorsCanEdit": false,
+      "isShared": false,
+      "mainCardId": "VB1O3",
+      "mainCardIdIsCardFace": false,
+      "mainCardIdIsBackFace": false,
+      "createdByUser": {
+        "userName": "nvvvm",
+        "displayName": "nvvvm",
+        "badges": []
+      },
+      "authors": [
+        {
+          "userName": "nvvvm",
+          "displayName": "nvvvm",
+          "badges": []
+        }
+      ],
+      "createdAtUtc": "2026-08-30T14:38:04.423Z",
+      "lastUpdatedAtUtc": "2026-08-30T15:25:39.697Z",
+      "mainboardCount": 100,
+      "sideboardCount": 0,
+      "maybeboardCount": 0,
+      "hubNames": [],
+      "colors": [
+        "W",
+        "B"
+      ],
+      "colorPercentages": {
+        "white": 0.68,
+        "blue": 0,
+        "black": 0.32,
+        "red": 0,
+        "green": 0
+      },
+      "colorIdentity": [
+        "W",
+        "B"
+      ],
+      "colorIdentityPercentages": {
+        "white": 0.62,
+        "blue": 0,
+        "black": 0.38,
+        "red": 0,
+        "green": 0
+      },
+      "commanders": [],
+      "signatureSpells": [],
+      "bracket": 2,
+      "autoBracket": 2,
+      "ignoreBrackets": false
+    },
+    {
+      "matchTypes": [],
+      "matchedCards": [],
+      "id": "3zbOpK",
+      "name": "Prismari Artistry",
+      "hasPrimer": false,
+      "format": "commander",
+      "areCommentsEnabled": true,
+      "visibility": "public",
+      "publicUrl": "https://moxfield.com/decks/GlOgAfT6uXulKGLB5NBi5A",
+      "publicId": "GlOgAfT6uXulKGLB5NBi5A",
+      "likeCount": 0,
+      "viewCount": 12,
+      "commentCount": 0,
+      "sfwCommentCount": 0,
+      "bookmarkCount": 0,
+      "isLegal": true,
+      "authorsCanEdit": false,
+      "isShared": false,
+      "mainCardId": "vPpN1",
+      "mainCardIdIsCardFace": false,
+      "mainCardIdIsBackFace": false,
+      "createdByUser": {
+        "userName": "nvvvm",
+        "displayName": "nvvvm",
+        "badges": []
+      },
+      "authors": [
+        {
+          "userName": "nvvvm",
+          "displayName": "nvvvm",
+          "badges": []
+        }
+      ],
+      "createdAtUtc": "2026-08-30T14:37:52.243Z",
+      "lastUpdatedAtUtc": "2026-08-30T15:25:37.83Z",
+      "mainboardCount": 100,
+      "sideboardCount": 0,
+      "maybeboardCount": 0,
+      "hubNames": [],
+      "colors": [
+        "U",
+        "R"
+      ],
+      "colorPercentages": {
+        "white": 0,
+        "blue": 0.46,
+        "black": 0,
+        "red": 0.54,
+        "green": 0
+      },
+      "colorIdentity": [
+        "U",
+        "R"
+      ],
+      "colorIdentityPercentages": {
+        "white": 0,
+        "blue": 0.48,
+        "black": 0,
+        "red": 0.52,
+        "green": 0
+      },
+      "commanders": [],
+      "signatureSpells": [],
+      "bracket": 2,
+      "autoBracket": 2,
+      "ignoreBrackets": false
+    },
+    {
+      "matchTypes": [],
+      "matchedCards": [],
+      "id": "nr01dZ",
+      "name": "Lorehold Spirit",
+      "hasPrimer": false,
+      "format": "commander",
+      "areCommentsEnabled": true,
+      "visibility": "public",
+      "publicUrl": "https://moxfield.com/decks/GlOgAZd3aH2ggq5J8q0AVg",
+      "publicId": "GlOgAZd3aH2ggq5J8q0AVg",
+      "likeCount": 0,
+      "viewCount": 13,
+      "commentCount": 0,
+      "sfwCommentCount": 0,
+      "bookmarkCount": 0,
+      "isLegal": true,
+      "authorsCanEdit": false,
+      "isShared": false,
+      "mainCardId": "3G7W1",
+      "mainCardIdIsCardFace": false,
+      "mainCardIdIsBackFace": false,
+      "createdByUser": {
+        "userName": "nvvvm",
+        "displayName": "nvvvm",
+        "badges": []
+      },
+      "authors": [
+        {
+          "userName": "nvvvm",
+          "displayName": "nvvvm",
+          "badges": []
+        }
+      ],
+      "createdAtUtc": "2026-08-30T14:37:18.617Z",
+      "lastUpdatedAtUtc": "2026-08-30T15:25:36.047Z",
+      "mainboardCount": 100,
+      "sideboardCount": 0,
+      "maybeboardCount": 0,
+      "hubNames": [],
+      "colors": [
+        "W",
+        "R"
+      ],
+      "colorPercentages": {
+        "white": 0.65,
+        "blue": 0,
+        "black": 0,
+        "red": 0.35,
+        "green": 0
+      },
+      "colorIdentity": [
+        "W",
+        "R"
+      ],
+      "colorIdentityPercentages": {
+        "white": 0.61,
+        "blue": 0,
+        "black": 0,
+        "red": 0.39,
+        "green": 0
+      },
+      "commanders": [],
+      "signatureSpells": [],
+      "bracket": 2,
+      "autoBracket": 2,
+      "ignoreBrackets": false
+    },
+    {
+      "matchTypes": [],
+      "matchedCards": [],
+      "id": "No5wan",
+      "name": "Blight Curse",
+      "hasPrimer": false,
+      "format": "commander",
+      "areCommentsEnabled": true,
+      "visibility": "public",
+      "publicUrl": "https://moxfield.com/decks/GlOgAfgTAnKDYn2lIU_Phg",
+      "publicId": "GlOgAfgTAnKDYn2lIU_Phg",
+      "likeCount": 0,
+      "viewCount": 11,
+      "commentCount": 0,
+      "sfwCommentCount": 0,
+      "bookmarkCount": 0,
+      "isLegal": true,
+      "authorsCanEdit": false,
+      "isShared": false,
+      "mainCardId": "yD9e6",
+      "mainCardIdIsCardFace": false,
+      "mainCardIdIsBackFace": false,
+      "createdByUser": {
+        "userName": "nvvvm",
+        "displayName": "nvvvm",
+        "badges": []
+      },
+      "authors": [
+        {
+          "userName": "nvvvm",
+          "displayName": "nvvvm",
+          "badges": []
+        }
+      ],
+      "createdAtUtc": "2026-08-30T14:36:53.113Z",
+      "lastUpdatedAtUtc": "2026-08-30T15:25:34.02Z",
+      "mainboardCount": 100,
+      "sideboardCount": 0,
+      "maybeboardCount": 0,
+      "hubNames": [],
+      "colors": [
+        "B",
+        "R",
+        "G"
+      ],
+      "colorPercentages": {
+        "white": 0,
+        "blue": 0,
+        "black": 0.55,
+        "red": 0.22,
+        "green": 0.23
+      },
+      "colorIdentity": [
+        "B",
+        "R",
+        "G"
+      ],
+      "colorIdentityPercentages": {
+        "white": 0,
+        "blue": 0,
+        "black": 0.48,
+        "red": 0.26,
+        "green": 0.26
+      },
+      "commanders": [],
+      "signatureSpells": [],
+      "bracket": 2,
+      "autoBracket": 2,
+      "ignoreBrackets": false
+    },
+    {
+      "matchTypes": [],
+      "matchedCards": [],
+      "id": "R3KwNz",
+      "name": "Abzan Armor",
+      "hasPrimer": false,
+      "format": "commander",
+      "areCommentsEnabled": true,
+      "visibility": "public",
+      "publicUrl": "https://moxfield.com/decks/GlOgAc8-TnKWpvRoIoHulw",
+      "publicId": "GlOgAc8-TnKWpvRoIoHulw",
+      "likeCount": 0,
+      "viewCount": 12,
+      "commentCount": 0,
+      "sfwCommentCount": 0,
+      "bookmarkCount": 0,
+      "isLegal": true,
+      "authorsCanEdit": false,
+      "isShared": false,
+      "mainCardId": "VBArq",
+      "mainCardIdIsCardFace": false,
+      "mainCardIdIsBackFace": false,
+      "createdByUser": {
+        "userName": "nvvvm",
+        "displayName": "nvvvm",
+        "badges": []
+      },
+      "authors": [
+        {
+          "userName": "nvvvm",
+          "displayName": "nvvvm",
+          "badges": []
+        }
+      ],
+      "createdAtUtc": "2026-08-30T14:37:04.08Z",
+      "lastUpdatedAtUtc": "2026-08-30T15:25:32.053Z",
+      "mainboardCount": 100,
+      "sideboardCount": 0,
+      "maybeboardCount": 0,
+      "hubNames": [],
+      "colors": [
+        "W",
+        "B",
+        "G"
+      ],
+      "colorPercentages": {
+        "white": 0.37,
+        "blue": 0,
+        "black": 0.24,
+        "red": 0,
+        "green": 0.39
+      },
+      "colorIdentity": [
+        "W",
+        "B",
+        "G"
+      ],
+      "colorIdentityPercentages": {
+        "white": 0.37,
+        "blue": 0,
+        "black": 0.25,
+        "red": 0,
+        "green": 0.38
+      },
+      "commanders": [],
+      "signatureSpells": [],
+      "bracket": 3,
+      "autoBracket": 3,
+      "ignoreBrackets": false
+    }
+  ]
+}

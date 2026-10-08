@@ -1,0 +1,134 @@
+{
+  "object": "card",
+  "id": "4deccee0-5840-49b5-b577-a69dccdd39dd",
+  "oracle_id": "03dee43b-6377-4f7b-956b-a384160322e4",
+  "multiverse_ids": [
+    554059
+  ],
+  "name": "Drumbellower",
+  "printed_name": "Tamberrador",
+  "lang": "pt",
+  "released_at": "2022-02-18",
+  "uri": "https://api.scryfall.com/cards/4deccee0-5840-49b5-b577-a69dccdd39dd",
+  "scryfall_uri": "https://scryfall.com/card/nec/6/pt/tamberrador-(drumbellower)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "placeholder",
+  "image_updated_at": "2026-07-01T00:07:07Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/4/d/4deccee0-5840-49b5-b577-a69dccdd39dd.jpg?1782864427",
+    "normal": "https://cards.scryfall.io/normal/front/4/d/4deccee0-5840-49b5-b577-a69dccdd39dd.jpg?1782864427",
+    "large": "https://cards.scryfall.io/large/front/4/d/4deccee0-5840-49b5-b577-a69dccdd39dd.jpg?1782864427",
+    "png": "https://cards.scryfall.io/png/front/4/d/4deccee0-5840-49b5-b577-a69dccdd39dd.png?1782864427",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/4/d/4deccee0-5840-49b5-b577-a69dccdd39dd.jpg?1782864427",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/4/d/4deccee0-5840-49b5-b577-a69dccdd39dd.jpg?1782864427",
+    "thumb": "https://cards.scryfall.io/thumb/front/4/d/4deccee0-5840-49b5-b577-a69dccdd39dd.webp?1782864427",
+    "grid": "https://cards.scryfall.io/grid/front/4/d/4deccee0-5840-49b5-b577-a69dccdd39dd.webp?1782864427",
+    "display": "https://cards.scryfall.io/display/front/4/d/4deccee0-5840-49b5-b577-a69dccdd39dd.webp?1782864427",
+    "art": "https://cards.scryfall.io/art/front/4/d/4deccee0-5840-49b5-b577-a69dccdd39dd.webp?1782864427",
+    "crop": "https://cards.scryfall.io/crop/front/4/d/4deccee0-5840-49b5-b577-a69dccdd39dd.webp?1782864427"
+  },
+  "mana_cost": "{2}{W}",
+  "cmc": 3.0,
+  "type_line": "Creature — Spirit",
+  "printed_type_line": "Criatura — Espírito",
+  "oracle_text": "Flying\nUntap all creatures you control during each other player's untap step.",
+  "printed_text": "Voar\nDesvire todas as criaturas que você controla durante a etapa de desvirar de cada outro jogador.",
+  "power": "2",
+  "toughness": "1",
+  "colors": [
+    "W"
+  ],
+  "color_identity": [
+    "W"
+  ],
+  "keywords": [
+    "Flying"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "5b4d929d-bdf9-4bbf-858e-e248f53325ad",
+  "set": "nec",
+  "set_name": "Neon Dynasty Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/5b4d929d-bdf9-4bbf-858e-e248f53325ad",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Anec&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/nec?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/4deccee0-5840-49b5-b577-a69dccdd39dd/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A03dee43b-6377-4f7b-956b-a384160322e4&unique=prints",
+  "collector_number": "6",
+  "digital": false,
+  "rarity": "rare",
+  "flavor_text": "O estoque de protetores de ouvido nas lojas da cidade esgotou duas noites após a chegada dos kami.",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Lie Setiawan",
+  "artist_ids": [
+    "6f771d3f-310e-4aa4-841f-5ba4ba9f025a"
+  ],
+  "illustration_id": "898c4749-adea-424b-82da-a4c37c2b5795",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 1919,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=554059&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DDrumbellower",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DDrumbellower",
+    "edhrec": "https://edhrec.com/route/?cc=Drumbellower"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DDrumbellower%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Drumbellower&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Drumbellower&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

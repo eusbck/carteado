@@ -1,0 +1,264 @@
+{
+  "object": "card",
+  "id": "b0d6fd21-48f0-4151-9671-762c25d95592",
+  "oracle_id": "888fef82-b8be-434a-9be2-609e1ded9a5e",
+  "multiverse_ids": [],
+  "name": "Zombie",
+  "lang": "en",
+  "released_at": "2026-04-24",
+  "uri": "https://api.scryfall.com/cards/b0d6fd21-48f0-4151-9671-762c25d95592",
+  "scryfall_uri": "https://scryfall.com/card/tsoc/12/zombie?utm_source=api",
+  "layout": "token",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T00:46:13Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/b/0/b0d6fd21-48f0-4151-9671-762c25d95592.jpg?1783903573",
+    "normal": "https://cards.scryfall.io/normal/front/b/0/b0d6fd21-48f0-4151-9671-762c25d95592.jpg?1783903573",
+    "large": "https://cards.scryfall.io/large/front/b/0/b0d6fd21-48f0-4151-9671-762c25d95592.jpg?1783903573",
+    "png": "https://cards.scryfall.io/png/front/b/0/b0d6fd21-48f0-4151-9671-762c25d95592.png?1783903573",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/b/0/b0d6fd21-48f0-4151-9671-762c25d95592.jpg?1783903573",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/b/0/b0d6fd21-48f0-4151-9671-762c25d95592.jpg?1783903573",
+    "thumb": "https://cards.scryfall.io/thumb/front/b/0/b0d6fd21-48f0-4151-9671-762c25d95592.webp?1783903573",
+    "grid": "https://cards.scryfall.io/grid/front/b/0/b0d6fd21-48f0-4151-9671-762c25d95592.webp?1783903573",
+    "display": "https://cards.scryfall.io/display/front/b/0/b0d6fd21-48f0-4151-9671-762c25d95592.webp?1783903573",
+    "art": "https://cards.scryfall.io/art/front/b/0/b0d6fd21-48f0-4151-9671-762c25d95592.webp?1783903573",
+    "crop": "https://cards.scryfall.io/crop/front/b/0/b0d6fd21-48f0-4151-9671-762c25d95592.webp?1783903573"
+  },
+  "mana_cost": "",
+  "cmc": 0.0,
+  "type_line": "Token Creature — Zombie",
+  "oracle_text": "Decayed (This creature can't block. When it attacks, sacrifice it at end of combat.)",
+  "power": "2",
+  "toughness": "2",
+  "colors": [
+    "B"
+  ],
+  "color_identity": [
+    "B"
+  ],
+  "keywords": [
+    "Decayed"
+  ],
+  "all_parts": [
+    {
+      "object": "related_card",
+      "id": "8bbd81c3-e51d-42c2-b740-6342a89d0fd2",
+      "component": "combo_piece",
+      "name": "Curse of the Restless Dead",
+      "type_line": "Enchantment — Aura Curse",
+      "uri": "https://api.scryfall.com/cards/8bbd81c3-e51d-42c2-b740-6342a89d0fd2"
+    },
+    {
+      "object": "related_card",
+      "id": "b13cc06c-5f5e-4feb-8a44-a468d6e6c07d",
+      "component": "combo_piece",
+      "name": "Rotten Reunion",
+      "type_line": "Instant",
+      "uri": "https://api.scryfall.com/cards/b13cc06c-5f5e-4feb-8a44-a468d6e6c07d"
+    },
+    {
+      "object": "related_card",
+      "id": "40e5e0e9-bc54-4a23-b880-a1b5ec740a8c",
+      "component": "combo_piece",
+      "name": "Falcon Abomination",
+      "type_line": "Creature — Zombie Bird",
+      "uri": "https://api.scryfall.com/cards/40e5e0e9-bc54-4a23-b880-a1b5ec740a8c"
+    },
+    {
+      "object": "related_card",
+      "id": "27bc8c78-199d-4068-90c5-14ab84e4a482",
+      "component": "combo_piece",
+      "name": "Crowded Crypt",
+      "type_line": "Artifact",
+      "uri": "https://api.scryfall.com/cards/27bc8c78-199d-4068-90c5-14ab84e4a482"
+    },
+    {
+      "object": "related_card",
+      "id": "387abaa4-88e5-4eff-802e-2f842127b94f",
+      "component": "combo_piece",
+      "name": "Ghoulish Procession",
+      "type_line": "Enchantment",
+      "uri": "https://api.scryfall.com/cards/387abaa4-88e5-4eff-802e-2f842127b94f"
+    },
+    {
+      "object": "related_card",
+      "id": "81a06f1c-3c81-412d-bb80-dafae71a359d",
+      "component": "combo_piece",
+      "name": "Startle",
+      "type_line": "Instant",
+      "uri": "https://api.scryfall.com/cards/81a06f1c-3c81-412d-bb80-dafae71a359d"
+    },
+    {
+      "object": "related_card",
+      "id": "b0d6fd21-48f0-4151-9671-762c25d95592",
+      "component": "token",
+      "name": "Zombie",
+      "type_line": "Token Creature — Zombie",
+      "uri": "https://api.scryfall.com/cards/b0d6fd21-48f0-4151-9671-762c25d95592"
+    },
+    {
+      "object": "related_card",
+      "id": "7a26a71d-ad61-47cd-9ed2-f7b7eedbee11",
+      "component": "combo_piece",
+      "name": "Tainted Adversary",
+      "type_line": "Creature — Zombie",
+      "uri": "https://api.scryfall.com/cards/7a26a71d-ad61-47cd-9ed2-f7b7eedbee11"
+    },
+    {
+      "object": "related_card",
+      "id": "90cd492a-dbe6-49a5-92fd-ee2fa1b2f115",
+      "component": "combo_piece",
+      "name": "No Way Out",
+      "type_line": "Sorcery",
+      "uri": "https://api.scryfall.com/cards/90cd492a-dbe6-49a5-92fd-ee2fa1b2f115"
+    },
+    {
+      "object": "related_card",
+      "id": "83052fa8-bfb5-4d09-8235-a0e112ff3b4a",
+      "component": "combo_piece",
+      "name": "Hobbling Zombie",
+      "type_line": "Creature — Zombie",
+      "uri": "https://api.scryfall.com/cards/83052fa8-bfb5-4d09-8235-a0e112ff3b4a"
+    },
+    {
+      "object": "related_card",
+      "id": "78198be2-41e4-4e0b-ac21-9e2db577af01",
+      "component": "combo_piece",
+      "name": "Flip the Switch",
+      "type_line": "Instant",
+      "uri": "https://api.scryfall.com/cards/78198be2-41e4-4e0b-ac21-9e2db577af01"
+    },
+    {
+      "object": "related_card",
+      "id": "28d49fcb-20bb-4a9d-a9f7-e39138bb1ac8",
+      "component": "combo_piece",
+      "name": "Ghoulcaller's Harvest",
+      "type_line": "Sorcery",
+      "uri": "https://api.scryfall.com/cards/28d49fcb-20bb-4a9d-a9f7-e39138bb1ac8"
+    },
+    {
+      "object": "related_card",
+      "id": "8abac131-f8b2-428e-bda8-a84f3ad8f1ba",
+      "component": "combo_piece",
+      "name": "Poppet Stitcher // Poppet Factory",
+      "type_line": "Creature — Human Wizard // Artifact",
+      "uri": "https://api.scryfall.com/cards/8abac131-f8b2-428e-bda8-a84f3ad8f1ba"
+    },
+    {
+      "object": "related_card",
+      "id": "401edb61-83f1-4a8d-ae91-58b62a9ced9c",
+      "component": "combo_piece",
+      "name": "Revenge of the Drowned",
+      "type_line": "Instant",
+      "uri": "https://api.scryfall.com/cards/401edb61-83f1-4a8d-ae91-58b62a9ced9c"
+    },
+    {
+      "object": "related_card",
+      "id": "5f969e42-fd00-4bda-801a-7930d5ef67d5",
+      "component": "combo_piece",
+      "name": "Diregraf Horde",
+      "type_line": "Creature — Zombie",
+      "uri": "https://api.scryfall.com/cards/5f969e42-fd00-4bda-801a-7930d5ef67d5"
+    },
+    {
+      "object": "related_card",
+      "id": "a90a9691-b131-44e9-b39a-c68ef10b18d3",
+      "component": "combo_piece",
+      "name": "Wilhelt, the Rotcleaver",
+      "type_line": "Legendary Creature — Zombie Warrior",
+      "uri": "https://api.scryfall.com/cards/a90a9691-b131-44e9-b39a-c68ef10b18d3"
+    },
+    {
+      "object": "related_card",
+      "id": "49d5d62b-72ed-446a-b280-ad04c38bdd0c",
+      "component": "combo_piece",
+      "name": "Jadar, Ghoulcaller of Nephalia",
+      "type_line": "Legendary Creature — Human Wizard",
+      "uri": "https://api.scryfall.com/cards/49d5d62b-72ed-446a-b280-ad04c38bdd0c"
+    }
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "not_legal",
+    "pauper": "not_legal",
+    "vintage": "not_legal",
+    "penny": "not_legal",
+    "commander": "not_legal",
+    "oathbreaker": "not_legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "not_legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "cb590d57-927c-437a-934c-7f774881d1c9",
+  "set": "tsoc",
+  "set_name": "Secrets of Strixhaven Commander Tokens",
+  "set_type": "token",
+  "set_uri": "https://api.scryfall.com/sets/cb590d57-927c-437a-934c-7f774881d1c9",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Atsoc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/tsoc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/b0d6fd21-48f0-4151-9671-762c25d95592/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A888fef82-b8be-434a-9be2-609e1ded9a5e&unique=prints",
+  "collector_number": "12",
+  "digital": false,
+  "rarity": "common",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Sam White",
+  "artist_ids": [
+    "66756146-32f8-4513-9aae-75a8e5117585"
+  ],
+  "illustration_id": "8e7e722f-9049-4454-b3b3-d73be470ffbb",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DZombie",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DZombie",
+    "edhrec": "https://edhrec.com/route/?cc=Zombie"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DZombie%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Zombie&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Zombie&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

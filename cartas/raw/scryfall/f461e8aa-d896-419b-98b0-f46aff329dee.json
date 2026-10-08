@@ -1,0 +1,131 @@
+{
+  "object": "card",
+  "id": "f461e8aa-d896-419b-98b0-f46aff329dee",
+  "oracle_id": "4d6d3e6d-f958-4c17-b117-960fb8033601",
+  "multiverse_ids": [
+    396609
+  ],
+  "name": "Assault Formation",
+  "printed_name": "Formação de Ataque",
+  "lang": "pt",
+  "released_at": "2015-03-27",
+  "uri": "https://api.scryfall.com/cards/f461e8aa-d896-419b-98b0-f46aff329dee",
+  "scryfall_uri": "https://scryfall.com/card/dtk/173/pt/forma%C3%A7%C3%A3o-de-ataque-(assault-formation)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-02T03:29:22Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/f/4/f461e8aa-d896-419b-98b0-f46aff329dee.jpg?1782962962",
+    "normal": "https://cards.scryfall.io/normal/front/f/4/f461e8aa-d896-419b-98b0-f46aff329dee.jpg?1782962962",
+    "large": "https://cards.scryfall.io/large/front/f/4/f461e8aa-d896-419b-98b0-f46aff329dee.jpg?1782962962",
+    "png": "https://cards.scryfall.io/png/front/f/4/f461e8aa-d896-419b-98b0-f46aff329dee.png?1782962962",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/f/4/f461e8aa-d896-419b-98b0-f46aff329dee.jpg?1782962962",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/f/4/f461e8aa-d896-419b-98b0-f46aff329dee.jpg?1782962962",
+    "thumb": "https://cards.scryfall.io/thumb/front/f/4/f461e8aa-d896-419b-98b0-f46aff329dee.webp?1782962962",
+    "grid": "https://cards.scryfall.io/grid/front/f/4/f461e8aa-d896-419b-98b0-f46aff329dee.webp?1782962962",
+    "display": "https://cards.scryfall.io/display/front/f/4/f461e8aa-d896-419b-98b0-f46aff329dee.webp?1782962962",
+    "art": "https://cards.scryfall.io/art/front/f/4/f461e8aa-d896-419b-98b0-f46aff329dee.webp?1782962962",
+    "crop": "https://cards.scryfall.io/crop/front/f/4/f461e8aa-d896-419b-98b0-f46aff329dee.webp?1782962962"
+  },
+  "mana_cost": "{1}{G}",
+  "cmc": 2.0,
+  "type_line": "Enchantment",
+  "printed_type_line": "Encantamento",
+  "oracle_text": "Each creature you control assigns combat damage equal to its toughness rather than its power.\n{G}: Target creature with defender can attack this turn as though it didn't have defender.\n{2}{G}: Creatures you control get +0/+1 until end of turn.",
+  "printed_text": "Cada criatura que você controla atribui dano de combate igual à sua resistência, em vez de igual ao seu poder.\n{G}: A criatura alvo com defensor pode atacar neste turno como se não tivesse defensor.\n{2}{G}: As criaturas que você controla recebem +0/+1 até o final do turno.",
+  "colors": [
+    "G"
+  ],
+  "color_identity": [
+    "G"
+  ],
+  "keywords": [],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "7e72625f-f320-4552-a719-d11e2f1853bd",
+  "set": "dtk",
+  "set_name": "Dragons of Tarkir",
+  "set_type": "expansion",
+  "set_uri": "https://api.scryfall.com/sets/7e72625f-f320-4552-a719-d11e2f1853bd",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Adtk&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/dtk?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/f461e8aa-d896-419b-98b0-f46aff329dee/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A4d6d3e6d-f958-4c17-b117-960fb8033601&unique=prints",
+  "collector_number": "173",
+  "digital": false,
+  "rarity": "rare",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Kieran Yanner",
+  "artist_ids": [
+    "aa7e89ed-d294-4633-9057-ce04dacfcfa4"
+  ],
+  "illustration_id": "af6f9c22-1e42-491d-bc6f-ed8ffb211411",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "edhrec_rank": 2539,
+  "penny_rank": 4401,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=396609&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DAssault%2BFormation",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DAssault%2BFormation",
+    "edhrec": "https://edhrec.com/route/?cc=Assault+Formation"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DAssault%2BFormation%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Assault+Formation&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Assault+Formation&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

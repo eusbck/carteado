@@ -1,0 +1,135 @@
+{
+  "object": "card",
+  "id": "3ed79f15-beeb-4157-a567-eac0772f950a",
+  "oracle_id": "20faefbd-059c-4aae-81e3-31683bf9f7bf",
+  "multiverse_ids": [
+    696416
+  ],
+  "mtgo_id": 138457,
+  "tcgplayer_id": 624652,
+  "cardmarket_id": 818842,
+  "name": "Jaddi Offshoot",
+  "lang": "en",
+  "released_at": "2025-04-11",
+  "uri": "https://api.scryfall.com/cards/3ed79f15-beeb-4157-a567-eac0772f950a",
+  "scryfall_uri": "https://scryfall.com/card/tdc/260/jaddi-offshoot?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-13T01:44:05Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/3/e/3ed79f15-beeb-4157-a567-eac0772f950a.jpg?1783907045",
+    "normal": "https://cards.scryfall.io/normal/front/3/e/3ed79f15-beeb-4157-a567-eac0772f950a.jpg?1783907045",
+    "large": "https://cards.scryfall.io/large/front/3/e/3ed79f15-beeb-4157-a567-eac0772f950a.jpg?1783907045",
+    "png": "https://cards.scryfall.io/png/front/3/e/3ed79f15-beeb-4157-a567-eac0772f950a.png?1783907045",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/3/e/3ed79f15-beeb-4157-a567-eac0772f950a.jpg?1783907045",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/3/e/3ed79f15-beeb-4157-a567-eac0772f950a.jpg?1783907045",
+    "thumb": "https://cards.scryfall.io/thumb/front/3/e/3ed79f15-beeb-4157-a567-eac0772f950a.webp?1783907045",
+    "grid": "https://cards.scryfall.io/grid/front/3/e/3ed79f15-beeb-4157-a567-eac0772f950a.webp?1783907045",
+    "display": "https://cards.scryfall.io/display/front/3/e/3ed79f15-beeb-4157-a567-eac0772f950a.webp?1783907045",
+    "art": "https://cards.scryfall.io/art/front/3/e/3ed79f15-beeb-4157-a567-eac0772f950a.webp?1783907045",
+    "crop": "https://cards.scryfall.io/crop/front/3/e/3ed79f15-beeb-4157-a567-eac0772f950a.webp?1783907045"
+  },
+  "mana_cost": "{G}",
+  "cmc": 1.0,
+  "type_line": "Creature — Plant",
+  "oracle_text": "Defender\nLandfall — Whenever a land you control enters, you gain 1 life.",
+  "power": "0",
+  "toughness": "3",
+  "colors": [
+    "G"
+  ],
+  "color_identity": [
+    "G"
+  ],
+  "keywords": [
+    "Defender",
+    "Landfall"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "bca9779c-0a0b-4ac1-8794-f3fc25549cf4",
+  "set": "tdc",
+  "set_name": "Tarkir: Dragonstorm Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/bca9779c-0a0b-4ac1-8794-f3fc25549cf4",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Atdc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/tdc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/3ed79f15-beeb-4157-a567-eac0772f950a/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A20faefbd-059c-4aae-81e3-31683bf9f7bf&unique=prints",
+  "collector_number": "260",
+  "digital": false,
+  "rarity": "uncommon",
+  "flavor_text": "On Murasa, even the trees grow trees.",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Daarken",
+  "artist_ids": [
+    "e607a0d4-fc12-4c01-9e3f-501f5269b9cb"
+  ],
+  "illustration_id": "5ae8d8d4-6305-4d9c-a78a-b63bb6724b10",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 5310,
+  "penny_rank": 4767,
+  "prices": {
+    "usd": "0.28",
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": "0.25",
+    "eur_foil": null,
+    "tix": "0.09"
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=696416&printed=false",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DJaddi%2BOffshoot",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DJaddi%2BOffshoot",
+    "edhrec": "https://edhrec.com/route/?cc=Jaddi+Offshoot"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F624652%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=818842&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards/138457?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

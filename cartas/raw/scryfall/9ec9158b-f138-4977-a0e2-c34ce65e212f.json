@@ -1,0 +1,135 @@
+{
+  "object": "card",
+  "id": "9ec9158b-f138-4977-a0e2-c34ce65e212f",
+  "oracle_id": "6f16c3ac-a9b8-47e6-b18b-ae37c74d44a0",
+  "multiverse_ids": [
+    511226
+  ],
+  "name": "Nether Traitor",
+  "printed_name": "Traidor Ínfero",
+  "lang": "pt",
+  "released_at": "2021-03-19",
+  "uri": "https://api.scryfall.com/cards/9ec9158b-f138-4977-a0e2-c34ce65e212f",
+  "scryfall_uri": "https://scryfall.com/card/tsr/127/pt/traidor-%C3%ADnfero-(nether-traitor)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-01T07:19:26Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/9/e/9ec9158b-f138-4977-a0e2-c34ce65e212f.jpg?1782890366",
+    "normal": "https://cards.scryfall.io/normal/front/9/e/9ec9158b-f138-4977-a0e2-c34ce65e212f.jpg?1782890366",
+    "large": "https://cards.scryfall.io/large/front/9/e/9ec9158b-f138-4977-a0e2-c34ce65e212f.jpg?1782890366",
+    "png": "https://cards.scryfall.io/png/front/9/e/9ec9158b-f138-4977-a0e2-c34ce65e212f.png?1782890366",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/9/e/9ec9158b-f138-4977-a0e2-c34ce65e212f.jpg?1782890366",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/9/e/9ec9158b-f138-4977-a0e2-c34ce65e212f.jpg?1782890366",
+    "thumb": "https://cards.scryfall.io/thumb/front/9/e/9ec9158b-f138-4977-a0e2-c34ce65e212f.webp?1782890366",
+    "grid": "https://cards.scryfall.io/grid/front/9/e/9ec9158b-f138-4977-a0e2-c34ce65e212f.webp?1782890366",
+    "display": "https://cards.scryfall.io/display/front/9/e/9ec9158b-f138-4977-a0e2-c34ce65e212f.webp?1782890366",
+    "art": "https://cards.scryfall.io/art/front/9/e/9ec9158b-f138-4977-a0e2-c34ce65e212f.webp?1782890366",
+    "crop": "https://cards.scryfall.io/crop/front/9/e/9ec9158b-f138-4977-a0e2-c34ce65e212f.webp?1782890366"
+  },
+  "mana_cost": "{B}{B}",
+  "cmc": 2.0,
+  "type_line": "Creature — Spirit",
+  "printed_type_line": "Criatura — Espírito",
+  "oracle_text": "Haste\nShadow (This creature can block or be blocked by only creatures with shadow.)\nWhenever another creature is put into your graveyard from the battlefield, you may pay {B}. If you do, return this card from your graveyard to the battlefield.",
+  "printed_text": "Ímpeto\nSombra (Esta criatura só pode bloquear ou ser bloqueada por criaturas com sombra.)\nToda vez que outra criatura for colocada em seu cemitério vinda do campo de batalha, você pode pagar {B}. Se o fizer, devolva Traidor Ínfero de seu cemitério para o campo de batalha.",
+  "power": "1",
+  "toughness": "1",
+  "colors": [
+    "B"
+  ],
+  "color_identity": [
+    "B"
+  ],
+  "keywords": [
+    "Shadow",
+    "Haste"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "11e90d1b-0502-43e6-b056-e24836523c13",
+  "set": "tsr",
+  "set_name": "Time Spiral Remastered",
+  "set_type": "masters",
+  "set_uri": "https://api.scryfall.com/sets/11e90d1b-0502-43e6-b056-e24836523c13",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Atsr&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/tsr?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/9ec9158b-f138-4977-a0e2-c34ce65e212f/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A6f16c3ac-a9b8-47e6-b18b-ae37c74d44a0&unique=prints",
+  "collector_number": "127",
+  "digital": false,
+  "rarity": "rare",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Vance Kovacs",
+  "artist_ids": [
+    "b5516011-4722-4fc8-8542-102cecc52b71"
+  ],
+  "illustration_id": "53adbd9d-5158-4fd0-a34b-f3a18af270be",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "edhrec_rank": 2370,
+  "penny_rank": 4325,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=511226&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DNether%2BTraitor",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DNether%2BTraitor",
+    "edhrec": "https://edhrec.com/route/?cc=Nether+Traitor"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DNether%2BTraitor%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Nether+Traitor&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Nether+Traitor&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

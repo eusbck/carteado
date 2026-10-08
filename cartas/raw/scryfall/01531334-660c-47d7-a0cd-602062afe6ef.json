@@ -1,0 +1,140 @@
+{
+  "object": "card",
+  "id": "01531334-660c-47d7-a0cd-602062afe6ef",
+  "oracle_id": "a98ea782-1c49-4207-a130-41329087fdf6",
+  "multiverse_ids": [
+    428745
+  ],
+  "name": "Channeler Initiate",
+  "printed_name": "Iniciada Canalizadora",
+  "lang": "pt",
+  "released_at": "2017-04-28",
+  "uri": "https://api.scryfall.com/cards/01531334-660c-47d7-a0cd-602062afe6ef",
+  "scryfall_uri": "https://scryfall.com/card/akh/160/pt/iniciada-canalizadora-(channeler-initiate)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-01T21:48:23Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/0/1/01531334-660c-47d7-a0cd-602062afe6ef.jpg?1782942503",
+    "normal": "https://cards.scryfall.io/normal/front/0/1/01531334-660c-47d7-a0cd-602062afe6ef.jpg?1782942503",
+    "large": "https://cards.scryfall.io/large/front/0/1/01531334-660c-47d7-a0cd-602062afe6ef.jpg?1782942503",
+    "png": "https://cards.scryfall.io/png/front/0/1/01531334-660c-47d7-a0cd-602062afe6ef.png?1782942503",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/0/1/01531334-660c-47d7-a0cd-602062afe6ef.jpg?1782942503",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/0/1/01531334-660c-47d7-a0cd-602062afe6ef.jpg?1782942503",
+    "thumb": "https://cards.scryfall.io/thumb/front/0/1/01531334-660c-47d7-a0cd-602062afe6ef.webp?1782942503",
+    "grid": "https://cards.scryfall.io/grid/front/0/1/01531334-660c-47d7-a0cd-602062afe6ef.webp?1782942503",
+    "display": "https://cards.scryfall.io/display/front/0/1/01531334-660c-47d7-a0cd-602062afe6ef.webp?1782942503",
+    "art": "https://cards.scryfall.io/art/front/0/1/01531334-660c-47d7-a0cd-602062afe6ef.webp?1782942503",
+    "crop": "https://cards.scryfall.io/crop/front/0/1/01531334-660c-47d7-a0cd-602062afe6ef.webp?1782942503"
+  },
+  "mana_cost": "{1}{G}",
+  "cmc": 2.0,
+  "type_line": "Creature — Human Druid",
+  "printed_type_line": "Criatura — Humano Druida",
+  "oracle_text": "When this creature enters, put three -1/-1 counters on target creature you control.\n{T}, Remove a -1/-1 counter from this creature: Add one mana of any color.",
+  "printed_text": "Quando Iniciada Canalizadora entrar no campo de batalha, coloque três marcadores -1/-1 na criatura alvo que você controla.\n{T}, Remova um marcador -1/-1 de Iniciada Canalizadora: Adicione um mana de qualquer cor à sua reserva de mana.",
+  "power": "3",
+  "toughness": "4",
+  "colors": [
+    "G"
+  ],
+  "color_identity": [
+    "G"
+  ],
+  "keywords": [],
+  "produced_mana": [
+    "B",
+    "G",
+    "R",
+    "U",
+    "W"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "02d1c536-68bc-4208-9b65-7741ef1f9da8",
+  "set": "akh",
+  "set_name": "Amonkhet",
+  "set_type": "expansion",
+  "set_uri": "https://api.scryfall.com/sets/02d1c536-68bc-4208-9b65-7741ef1f9da8",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Aakh&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/akh?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/01531334-660c-47d7-a0cd-602062afe6ef/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Aa98ea782-1c49-4207-a130-41329087fdf6&unique=prints",
+  "collector_number": "160",
+  "digital": false,
+  "rarity": "rare",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Yongjae Choi",
+  "artist_ids": [
+    "5ab91c3b-a6da-4751-a56e-81d0f61a67ab"
+  ],
+  "illustration_id": "baf96e89-7338-450d-9f83-0ae51d44af18",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "edhrec_rank": 5828,
+  "penny_rank": 3831,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=428745&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DChanneler%2BInitiate",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DChanneler%2BInitiate",
+    "edhrec": "https://edhrec.com/route/?cc=Channeler+Initiate"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DChanneler%2BInitiate%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Channeler+Initiate&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Channeler+Initiate&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

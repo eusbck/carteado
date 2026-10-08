@@ -1,0 +1,143 @@
+{
+  "object": "card",
+  "id": "ac169c4b-623e-4f3d-b986-1a47c21f4eaf",
+  "oracle_id": "05d09c55-f551-4cb4-a8d2-4811dccc848d",
+  "multiverse_ids": [
+    604211
+  ],
+  "name": "Vraska, Betrayal's Sting",
+  "printed_name": "Vraska, Ferrão da Traição",
+  "lang": "pt",
+  "released_at": "2023-02-10",
+  "uri": "https://api.scryfall.com/cards/ac169c4b-623e-4f3d-b986-1a47c21f4eaf",
+  "scryfall_uri": "https://scryfall.com/card/one/115/pt/vraska-ferr%C3%A3o-da-trai%C3%A7%C3%A3o-(vraska-betrayals-sting)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T14:27:19Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/a/c/ac169c4b-623e-4f3d-b986-1a47c21f4eaf.jpg?1782829639",
+    "normal": "https://cards.scryfall.io/normal/front/a/c/ac169c4b-623e-4f3d-b986-1a47c21f4eaf.jpg?1782829639",
+    "large": "https://cards.scryfall.io/large/front/a/c/ac169c4b-623e-4f3d-b986-1a47c21f4eaf.jpg?1782829639",
+    "png": "https://cards.scryfall.io/png/front/a/c/ac169c4b-623e-4f3d-b986-1a47c21f4eaf.png?1782829639",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/a/c/ac169c4b-623e-4f3d-b986-1a47c21f4eaf.jpg?1782829639",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/a/c/ac169c4b-623e-4f3d-b986-1a47c21f4eaf.jpg?1782829639",
+    "thumb": "https://cards.scryfall.io/thumb/front/a/c/ac169c4b-623e-4f3d-b986-1a47c21f4eaf.webp?1782829639",
+    "grid": "https://cards.scryfall.io/grid/front/a/c/ac169c4b-623e-4f3d-b986-1a47c21f4eaf.webp?1782829639",
+    "display": "https://cards.scryfall.io/display/front/a/c/ac169c4b-623e-4f3d-b986-1a47c21f4eaf.webp?1782829639",
+    "art": "https://cards.scryfall.io/art/front/a/c/ac169c4b-623e-4f3d-b986-1a47c21f4eaf.webp?1782829639",
+    "crop": "https://cards.scryfall.io/crop/front/a/c/ac169c4b-623e-4f3d-b986-1a47c21f4eaf.webp?1782829639"
+  },
+  "mana_cost": "{4}{B}{B/P}",
+  "cmc": 6.0,
+  "type_line": "Legendary Planeswalker — Vraska",
+  "printed_type_line": "Planeswalker Lendário — Vraska",
+  "oracle_text": "Compleated ({B/P} can be paid with {B} or 2 life. If life was paid, this planeswalker enters with two fewer loyalty counters.)\n0: You draw a card and lose 1 life. Proliferate.\n−2: Target creature becomes a Treasure artifact with \"{T}, Sacrifice this artifact: Add one mana of any color\" and loses all other card types and abilities.\n−9: If target player has fewer than nine poison counters, they get a number of poison counters equal to the difference.",
+  "printed_text": "Completado ({B/P} pode ser pago com {B} ou 2 pontos de vida. Se foram pagos pontos de vida, este planeswalker entrará com dois marcadores de lealdade a menos.)\n0: Você compra um card e perde 1 ponto de vida. Prolifere.\n−2: A criatura alvo torna-se um artefato Tesouro com \"{T}, sacrifique este artefato: Adicione um mana de qualquer cor\" e perde todos os outros tipos e habilidades.\n−9: Se o jogador alvo tiver menos de nove marcadores de veneno, ele receberá um número de marcadores de veneno igual à diferença.",
+  "loyalty": "6",
+  "colors": [
+    "B"
+  ],
+  "color_identity": [
+    "B"
+  ],
+  "keywords": [
+    "Proliferate",
+    "Compleated"
+  ],
+  "produced_mana": [
+    "B",
+    "G",
+    "R",
+    "U",
+    "W"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo",
+    "arena"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "04bef644-343f-4230-95ee-255f29aa67a2",
+  "set": "one",
+  "set_name": "Phyrexia: All Will Be One",
+  "set_type": "expansion",
+  "set_uri": "https://api.scryfall.com/sets/04bef644-343f-4230-95ee-255f29aa67a2",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Aone&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/one?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/ac169c4b-623e-4f3d-b986-1a47c21f4eaf/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A05d09c55-f551-4cb4-a8d2-4811dccc848d&unique=prints",
+  "collector_number": "115",
+  "digital": false,
+  "rarity": "mythic",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Chase Stone",
+  "artist_ids": [
+    "2d753f61-5f5b-468e-97ea-8e0fdd347340"
+  ],
+  "illustration_id": "830d16d5-5f4c-4987-8395-f6e8980a3856",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "edhrec_rank": 1307,
+  "penny_rank": 3387,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=604211&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DVraska%252C%2BBetrayal%2527s%2BSting",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DVraska%252C%2BBetrayal%2527s%2BSting",
+    "edhrec": "https://edhrec.com/route/?cc=Vraska%2C+Betrayal%27s+Sting"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DVraska%252C%2BBetrayal%2527s%2BSting%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Vraska%2C+Betrayal%27s+Sting&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Vraska%2C+Betrayal%27s+Sting&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

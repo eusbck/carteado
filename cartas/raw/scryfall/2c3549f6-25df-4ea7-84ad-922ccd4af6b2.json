@@ -1,0 +1,142 @@
+{
+  "object": "card",
+  "id": "2c3549f6-25df-4ea7-84ad-922ccd4af6b2",
+  "oracle_id": "2b3f791a-d672-46fb-a03a-96e19f2c3121",
+  "multiverse_ids": [
+    695723
+  ],
+  "mtgo_id": 138025,
+  "arena_id": 96568,
+  "tcgplayer_id": 623911,
+  "cardmarket_id": 817899,
+  "name": "Felothar the Steadfast",
+  "lang": "en",
+  "released_at": "2025-04-11",
+  "uri": "https://api.scryfall.com/cards/2c3549f6-25df-4ea7-84ad-922ccd4af6b2",
+  "scryfall_uri": "https://scryfall.com/card/tdc/4/felothar-the-steadfast?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-13T01:46:30Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/2/c/2c3549f6-25df-4ea7-84ad-922ccd4af6b2.jpg?1783907190",
+    "normal": "https://cards.scryfall.io/normal/front/2/c/2c3549f6-25df-4ea7-84ad-922ccd4af6b2.jpg?1783907190",
+    "large": "https://cards.scryfall.io/large/front/2/c/2c3549f6-25df-4ea7-84ad-922ccd4af6b2.jpg?1783907190",
+    "png": "https://cards.scryfall.io/png/front/2/c/2c3549f6-25df-4ea7-84ad-922ccd4af6b2.png?1783907190",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/2/c/2c3549f6-25df-4ea7-84ad-922ccd4af6b2.jpg?1783907190",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/2/c/2c3549f6-25df-4ea7-84ad-922ccd4af6b2.jpg?1783907190",
+    "thumb": "https://cards.scryfall.io/thumb/front/2/c/2c3549f6-25df-4ea7-84ad-922ccd4af6b2.webp?1783907190",
+    "grid": "https://cards.scryfall.io/grid/front/2/c/2c3549f6-25df-4ea7-84ad-922ccd4af6b2.webp?1783907190",
+    "display": "https://cards.scryfall.io/display/front/2/c/2c3549f6-25df-4ea7-84ad-922ccd4af6b2.webp?1783907190",
+    "art": "https://cards.scryfall.io/art/front/2/c/2c3549f6-25df-4ea7-84ad-922ccd4af6b2.webp?1783907190",
+    "crop": "https://cards.scryfall.io/crop/front/2/c/2c3549f6-25df-4ea7-84ad-922ccd4af6b2.webp?1783907190"
+  },
+  "mana_cost": "{1}{W}{B}{G}",
+  "cmc": 4.0,
+  "type_line": "Legendary Creature — Human Warrior",
+  "oracle_text": "Each creature you control assigns combat damage equal to its toughness rather than its power.\nCreatures you control can attack as though they didn't have defender.\n{3}, {T}, Sacrifice another creature: Draw cards equal to the sacrificed creature's toughness, then discard cards equal to its power.",
+  "power": "0",
+  "toughness": "5",
+  "colors": [
+    "B",
+    "G",
+    "W"
+  ],
+  "color_identity": [
+    "B",
+    "G",
+    "W"
+  ],
+  "keywords": [],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo",
+    "arena"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "bca9779c-0a0b-4ac1-8794-f3fc25549cf4",
+  "set": "tdc",
+  "set_name": "Tarkir: Dragonstorm Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/bca9779c-0a0b-4ac1-8794-f3fc25549cf4",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Atdc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/tdc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/2c3549f6-25df-4ea7-84ad-922ccd4af6b2/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A2b3f791a-d672-46fb-a03a-96e19f2c3121&unique=prints",
+  "collector_number": "4",
+  "digital": false,
+  "rarity": "mythic",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Zoltan Boros",
+  "artist_ids": [
+    "1885e6cb-c827-4896-994e-3d0a027d602f"
+  ],
+  "illustration_id": "f60efc0f-0bc1-4ef8-9b11-c5aa783cc75d",
+  "border_color": "borderless",
+  "frame": "2015",
+  "frame_effects": [
+    "legendary",
+    "inverted"
+  ],
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 4088,
+  "prices": {
+    "usd": "3.20",
+    "usd_foil": "1.43",
+    "usd_etched": null,
+    "eur": "2.19",
+    "eur_foil": "2.41",
+    "tix": "2.00"
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=695723&printed=false",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DFelothar%2Bthe%2BSteadfast",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DFelothar%2Bthe%2BSteadfast",
+    "edhrec": "https://edhrec.com/route/?cc=Felothar+the+Steadfast"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F623911%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=817899&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards/138025?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

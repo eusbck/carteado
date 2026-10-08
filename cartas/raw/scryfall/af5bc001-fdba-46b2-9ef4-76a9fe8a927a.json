@@ -1,0 +1,132 @@
+{
+  "object": "card",
+  "id": "af5bc001-fdba-46b2-9ef4-76a9fe8a927a",
+  "oracle_id": "4b1bf05e-753e-4350-a913-894cf3cecc0c",
+  "multiverse_ids": [
+    540045
+  ],
+  "name": "Fleshbag Marauder",
+  "printed_name": "Saqueador Saco-de-carne",
+  "lang": "pt",
+  "released_at": "2021-09-24",
+  "uri": "https://api.scryfall.com/cards/af5bc001-fdba-46b2-9ef4-76a9fe8a927a",
+  "scryfall_uri": "https://scryfall.com/card/mic/118/pt/saqueador-saco-de-carne-(fleshbag-marauder)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-01T01:28:56Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/a/f/af5bc001-fdba-46b2-9ef4-76a9fe8a927a.jpg?1782869336",
+    "normal": "https://cards.scryfall.io/normal/front/a/f/af5bc001-fdba-46b2-9ef4-76a9fe8a927a.jpg?1782869336",
+    "large": "https://cards.scryfall.io/large/front/a/f/af5bc001-fdba-46b2-9ef4-76a9fe8a927a.jpg?1782869336",
+    "png": "https://cards.scryfall.io/png/front/a/f/af5bc001-fdba-46b2-9ef4-76a9fe8a927a.png?1782869336",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/a/f/af5bc001-fdba-46b2-9ef4-76a9fe8a927a.jpg?1782869336",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/a/f/af5bc001-fdba-46b2-9ef4-76a9fe8a927a.jpg?1782869336",
+    "thumb": "https://cards.scryfall.io/thumb/front/a/f/af5bc001-fdba-46b2-9ef4-76a9fe8a927a.webp?1782869336",
+    "grid": "https://cards.scryfall.io/grid/front/a/f/af5bc001-fdba-46b2-9ef4-76a9fe8a927a.webp?1782869336",
+    "display": "https://cards.scryfall.io/display/front/a/f/af5bc001-fdba-46b2-9ef4-76a9fe8a927a.webp?1782869336",
+    "art": "https://cards.scryfall.io/art/front/a/f/af5bc001-fdba-46b2-9ef4-76a9fe8a927a.webp?1782869336",
+    "crop": "https://cards.scryfall.io/crop/front/a/f/af5bc001-fdba-46b2-9ef4-76a9fe8a927a.webp?1782869336"
+  },
+  "mana_cost": "{2}{B}",
+  "cmc": 3.0,
+  "type_line": "Creature — Zombie Warrior",
+  "printed_type_line": "Criatura — Zumbi Guerreiro",
+  "oracle_text": "When this creature enters, each player sacrifices a creature of their choice.",
+  "printed_text": "Quando Saqueador Saco-de-carne entra no campo de batalha, cada jogador sacrifica uma criatura.",
+  "power": "3",
+  "toughness": "1",
+  "colors": [
+    "B"
+  ],
+  "color_identity": [
+    "B"
+  ],
+  "keywords": [],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "7f9a4deb-715e-47d2-afac-3843ef92f39b",
+  "set": "mic",
+  "set_name": "Midnight Hunt Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/7f9a4deb-715e-47d2-afac-3843ef92f39b",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Amic&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/mic?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/af5bc001-fdba-46b2-9ef4-76a9fe8a927a/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A4b1bf05e-753e-4350-a913-894cf3cecc0c&unique=prints",
+  "collector_number": "118",
+  "digital": false,
+  "rarity": "uncommon",
+  "flavor_text": "Grixis é um mundo onde as únicas coisas que existem em abundância são a morte e a putrefação. Cadáveres, inteiros ou em pedaços, são a moeda padrão dos necromantes e demônios.",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Mark Zug",
+  "artist_ids": [
+    "48e2b98c-5467-4671-bd42-4c3746115117"
+  ],
+  "illustration_id": "736feb15-417b-4bf2-b471-edfd135a974a",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 806,
+  "penny_rank": 3103,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=540045&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DFleshbag%2BMarauder",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DFleshbag%2BMarauder",
+    "edhrec": "https://edhrec.com/route/?cc=Fleshbag+Marauder"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DFleshbag%2BMarauder%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Fleshbag+Marauder&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Fleshbag+Marauder&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

@@ -1,0 +1,150 @@
+{
+  "object": "card",
+  "id": "a1e34ec4-6a85-4e22-9be9-f27dda5752d6",
+  "oracle_id": "54b44499-398b-47ad-b790-bd5b5994d1a6",
+  "multiverse_ids": [],
+  "resource_id": "C92F92CE84F46D7909BAF2946E314EF7BF3E411CA49083197F89D12C84E1078A",
+  "mtgo_id": 146001,
+  "tcgplayer_id": 671223,
+  "cardmarket_id": 864969,
+  "name": "Village Pillagers",
+  "lang": "en",
+  "released_at": "2026-01-23",
+  "uri": "https://api.scryfall.com/cards/a1e34ec4-6a85-4e22-9be9-f27dda5752d6",
+  "scryfall_uri": "https://scryfall.com/card/ecc/14/village-pillagers?utm_source=api",
+  "layout": "normal",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T01:03:22Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/a/1/a1e34ec4-6a85-4e22-9be9-f27dda5752d6.jpg?1783904602",
+    "normal": "https://cards.scryfall.io/normal/front/a/1/a1e34ec4-6a85-4e22-9be9-f27dda5752d6.jpg?1783904602",
+    "large": "https://cards.scryfall.io/large/front/a/1/a1e34ec4-6a85-4e22-9be9-f27dda5752d6.jpg?1783904602",
+    "png": "https://cards.scryfall.io/png/front/a/1/a1e34ec4-6a85-4e22-9be9-f27dda5752d6.png?1783904602",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/a/1/a1e34ec4-6a85-4e22-9be9-f27dda5752d6.jpg?1783904602",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/a/1/a1e34ec4-6a85-4e22-9be9-f27dda5752d6.jpg?1783904602",
+    "thumb": "https://cards.scryfall.io/thumb/front/a/1/a1e34ec4-6a85-4e22-9be9-f27dda5752d6.webp?1783904602",
+    "grid": "https://cards.scryfall.io/grid/front/a/1/a1e34ec4-6a85-4e22-9be9-f27dda5752d6.webp?1783904602",
+    "display": "https://cards.scryfall.io/display/front/a/1/a1e34ec4-6a85-4e22-9be9-f27dda5752d6.webp?1783904602",
+    "art": "https://cards.scryfall.io/art/front/a/1/a1e34ec4-6a85-4e22-9be9-f27dda5752d6.webp?1783904602",
+    "crop": "https://cards.scryfall.io/crop/front/a/1/a1e34ec4-6a85-4e22-9be9-f27dda5752d6.webp?1783904602"
+  },
+  "mana_cost": "{3}{R}{R}",
+  "cmc": 5.0,
+  "type_line": "Creature — Goblin Warrior",
+  "oracle_text": "Wither (This deals damage to creatures in the form of -1/-1 counters.)\nWhen this creature enters, it deals 1 damage to each creature your opponents control.\nWhenever a creature an opponent controls with a counter on it dies, you create a tapped Treasure token.",
+  "power": "5",
+  "toughness": "5",
+  "colors": [
+    "R"
+  ],
+  "color_identity": [
+    "R"
+  ],
+  "keywords": [
+    "Treasure",
+    "Wither"
+  ],
+  "all_parts": [
+    {
+      "object": "related_card",
+      "id": "ac4384b7-853c-417d-b3b4-f54cd0b5d361",
+      "component": "token",
+      "name": "Treasure",
+      "type_line": "Token Artifact — Treasure",
+      "uri": "https://api.scryfall.com/cards/ac4384b7-853c-417d-b3b4-f54cd0b5d361"
+    },
+    {
+      "object": "related_card",
+      "id": "616b606a-e7c2-461c-989c-b5e74b424849",
+      "component": "combo_piece",
+      "name": "Village Pillagers",
+      "type_line": "Creature — Goblin Warrior",
+      "uri": "https://api.scryfall.com/cards/616b606a-e7c2-461c-989c-b5e74b424849"
+    }
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "805b5a0c-f8bb-4555-86ea-eb9ec36a011a",
+  "set": "ecc",
+  "set_name": "Lorwyn Eclipsed Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/805b5a0c-f8bb-4555-86ea-eb9ec36a011a",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Aecc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/ecc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/a1e34ec4-6a85-4e22-9be9-f27dda5752d6/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A54b44499-398b-47ad-b790-bd5b5994d1a6&unique=prints",
+  "collector_number": "14",
+  "digital": false,
+  "rarity": "rare",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Paolo Parente",
+  "artist_ids": [
+    "d48dd097-720d-476a-8722-6a02854ae28b"
+  ],
+  "illustration_id": "d9194665-9a19-47ae-a07a-298e629c1efa",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 5512,
+  "prices": {
+    "usd": "0.28",
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": "0.45",
+    "eur_foil": null,
+    "tix": "2.07"
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DVillage%2BPillagers",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DVillage%2BPillagers",
+    "edhrec": "https://edhrec.com/route/?cc=Village+Pillagers"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F671223%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=864969&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards/146001?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

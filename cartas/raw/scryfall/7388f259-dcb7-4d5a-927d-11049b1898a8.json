@@ -1,0 +1,133 @@
+{
+  "object": "card",
+  "id": "7388f259-dcb7-4d5a-927d-11049b1898a8",
+  "oracle_id": "9bcaf141-1f1f-491f-aced-13dc093b9e2c",
+  "multiverse_ids": [
+    434906
+  ],
+  "name": "Pawn of Ulamog",
+  "printed_name": "Peão de Ulamog",
+  "lang": "pt",
+  "released_at": "2017-08-25",
+  "uri": "https://api.scryfall.com/cards/7388f259-dcb7-4d5a-927d-11049b1898a8",
+  "scryfall_uri": "https://scryfall.com/card/c17/120/pt/pe%C3%A3o-de-ulamog-(pawn-of-ulamog)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-01T20:56:37Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/7/3/7388f259-dcb7-4d5a-927d-11049b1898a8.jpg?1782939397",
+    "normal": "https://cards.scryfall.io/normal/front/7/3/7388f259-dcb7-4d5a-927d-11049b1898a8.jpg?1782939397",
+    "large": "https://cards.scryfall.io/large/front/7/3/7388f259-dcb7-4d5a-927d-11049b1898a8.jpg?1782939397",
+    "png": "https://cards.scryfall.io/png/front/7/3/7388f259-dcb7-4d5a-927d-11049b1898a8.png?1782939397",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/7/3/7388f259-dcb7-4d5a-927d-11049b1898a8.jpg?1782939397",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/7/3/7388f259-dcb7-4d5a-927d-11049b1898a8.jpg?1782939397",
+    "thumb": "https://cards.scryfall.io/thumb/front/7/3/7388f259-dcb7-4d5a-927d-11049b1898a8.webp?1782939397",
+    "grid": "https://cards.scryfall.io/grid/front/7/3/7388f259-dcb7-4d5a-927d-11049b1898a8.webp?1782939397",
+    "display": "https://cards.scryfall.io/display/front/7/3/7388f259-dcb7-4d5a-927d-11049b1898a8.webp?1782939397",
+    "art": "https://cards.scryfall.io/art/front/7/3/7388f259-dcb7-4d5a-927d-11049b1898a8.webp?1782939397",
+    "crop": "https://cards.scryfall.io/crop/front/7/3/7388f259-dcb7-4d5a-927d-11049b1898a8.webp?1782939397"
+  },
+  "mana_cost": "{1}{B}{B}",
+  "cmc": 3.0,
+  "type_line": "Creature — Vampire Shaman",
+  "printed_type_line": "Criatura — Vampiro Xamã",
+  "oracle_text": "Whenever this creature or another nontoken creature you control dies, you may create a 0/1 colorless Eldrazi Spawn creature token. It has \"Sacrifice this token: Add {C}.\"",
+  "printed_text": "Toda vez que Peão de Ulamog ou outra criatura que não seja ficha que você controla morre, você pode criar uma ficha de criatura incolor 0/1 do tipo Prole Eldrazi. Ela tem \"Sacrifique esta criatura: Adicione {C} à sua reserva de mana.\"",
+  "power": "2",
+  "toughness": "2",
+  "colors": [
+    "B"
+  ],
+  "color_identity": [
+    "B"
+  ],
+  "keywords": [],
+  "produced_mana": [
+    "C"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "5caec427-0c78-4c37-b4ec-30f7e0ba9abf",
+  "set": "c17",
+  "set_name": "Commander 2017",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/5caec427-0c78-4c37-b4ec-30f7e0ba9abf",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Ac17&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/c17?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/7388f259-dcb7-4d5a-927d-11049b1898a8/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A9bcaf141-1f1f-491f-aced-13dc093b9e2c&unique=prints",
+  "collector_number": "120",
+  "digital": false,
+  "rarity": "uncommon",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Daarken",
+  "artist_ids": [
+    "e607a0d4-fc12-4c01-9e3f-501f5269b9cb"
+  ],
+  "illustration_id": "22b83a2a-cc1f-484d-bf9a-172802aab36b",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 1537,
+  "penny_rank": 6370,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=434906&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DPawn%2Bof%2BUlamog",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DPawn%2Bof%2BUlamog",
+    "edhrec": "https://edhrec.com/route/?cc=Pawn+of+Ulamog"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DPawn%2Bof%2BUlamog%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Pawn+of+Ulamog&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Pawn+of+Ulamog&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

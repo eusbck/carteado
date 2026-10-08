@@ -1,0 +1,143 @@
+{
+  "object": "card",
+  "id": "97500834-3c22-4d03-a772-6f97a2b991b1",
+  "oracle_id": "ccb39f4a-2684-4eb7-9066-aad81ae08962",
+  "multiverse_ids": [
+    649638
+  ],
+  "name": "Massacre Girl, Known Killer",
+  "printed_name": "Garota-massacre, Assassina Renomada",
+  "lang": "pt",
+  "released_at": "2024-02-09",
+  "uri": "https://api.scryfall.com/cards/97500834-3c22-4d03-a772-6f97a2b991b1",
+  "scryfall_uri": "https://scryfall.com/card/mkm/344/pt/garota-massacre-assassina-renomada-(massacre-girl-known-killer)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T06:33:24Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/9/7/97500834-3c22-4d03-a772-6f97a2b991b1.jpg?1782801204",
+    "normal": "https://cards.scryfall.io/normal/front/9/7/97500834-3c22-4d03-a772-6f97a2b991b1.jpg?1782801204",
+    "large": "https://cards.scryfall.io/large/front/9/7/97500834-3c22-4d03-a772-6f97a2b991b1.jpg?1782801204",
+    "png": "https://cards.scryfall.io/png/front/9/7/97500834-3c22-4d03-a772-6f97a2b991b1.png?1782801204",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/9/7/97500834-3c22-4d03-a772-6f97a2b991b1.jpg?1782801204",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/9/7/97500834-3c22-4d03-a772-6f97a2b991b1.jpg?1782801204",
+    "thumb": "https://cards.scryfall.io/thumb/front/9/7/97500834-3c22-4d03-a772-6f97a2b991b1.webp?1782801204",
+    "grid": "https://cards.scryfall.io/grid/front/9/7/97500834-3c22-4d03-a772-6f97a2b991b1.webp?1782801204",
+    "display": "https://cards.scryfall.io/display/front/9/7/97500834-3c22-4d03-a772-6f97a2b991b1.webp?1782801204",
+    "art": "https://cards.scryfall.io/art/front/9/7/97500834-3c22-4d03-a772-6f97a2b991b1.webp?1782801204",
+    "crop": "https://cards.scryfall.io/crop/front/9/7/97500834-3c22-4d03-a772-6f97a2b991b1.webp?1782801204"
+  },
+  "mana_cost": "{2}{B}{B}",
+  "cmc": 4.0,
+  "type_line": "Legendary Creature — Human Assassin",
+  "printed_type_line": "Criatura Lendária — Humano Assassino",
+  "oracle_text": "Menace\nCreatures you control have wither. (They deal damage to creatures in the form of -1/-1 counters.)\nWhenever a creature an opponent controls dies, if its toughness was less than 1, draw a card.",
+  "printed_text": "Ameaçar\nAs criaturas que você controla têm murchar.\nToda vez que uma criatura que um oponente controla morrer, se a resistência dela era menor que 1, compre um card.",
+  "power": "4",
+  "toughness": "4",
+  "colors": [
+    "B"
+  ],
+  "color_identity": [
+    "B"
+  ],
+  "keywords": [
+    "Menace"
+  ],
+  "legalities": {
+    "standard": "legal",
+    "future": "legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "arena",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "2b17794b-15c3-4796-ad6f-0887a0eceeca",
+  "set": "mkm",
+  "set_name": "Murders at Karlov Manor",
+  "set_type": "expansion",
+  "set_uri": "https://api.scryfall.com/sets/2b17794b-15c3-4796-ad6f-0887a0eceeca",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Amkm&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/mkm?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/97500834-3c22-4d03-a772-6f97a2b991b1/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Accb39f4a-2684-4eb7-9066-aad81ae08962&unique=prints",
+  "collector_number": "344",
+  "digital": false,
+  "rarity": "mythic",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Jack Hughes",
+  "artist_ids": [
+    "ac1a1722-4d2b-499b-b8a9-2d642d3292cc"
+  ],
+  "illustration_id": "34bd17fa-05ad-48ad-8008-8b83f865a356",
+  "border_color": "black",
+  "frame": "2015",
+  "frame_effects": [
+    "legendary"
+  ],
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "promo_types": [
+    "dossier",
+    "boosterfun"
+  ],
+  "edhrec_rank": 1700,
+  "penny_rank": 7713,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=649638&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DMassacre%2BGirl%252C%2BKnown%2BKiller",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DMassacre%2BGirl%252C%2BKnown%2BKiller",
+    "edhrec": "https://edhrec.com/route/?cc=Massacre+Girl%2C+Known+Killer"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DMassacre%2BGirl%252C%2BKnown%2BKiller%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Massacre+Girl%2C+Known+Killer&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Massacre+Girl%2C+Known+Killer&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

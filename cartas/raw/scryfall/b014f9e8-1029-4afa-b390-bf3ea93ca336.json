@@ -1,0 +1,131 @@
+{
+  "object": "card",
+  "id": "b014f9e8-1029-4afa-b390-bf3ea93ca336",
+  "oracle_id": "af698bd5-5f56-4d2a-9f02-8c3e781210cd",
+  "multiverse_ids": [
+    432261
+  ],
+  "name": "Ifnir Deadlands",
+  "printed_name": "Terras Mortas de Ifnir",
+  "lang": "pt",
+  "released_at": "2017-07-14",
+  "uri": "https://api.scryfall.com/cards/b014f9e8-1029-4afa-b390-bf3ea93ca336",
+  "scryfall_uri": "https://scryfall.com/card/hou/179/pt/terras-mortas-de-ifnir-(ifnir-deadlands)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-01T21:09:01Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/b/0/b014f9e8-1029-4afa-b390-bf3ea93ca336.jpg?1782940141",
+    "normal": "https://cards.scryfall.io/normal/front/b/0/b014f9e8-1029-4afa-b390-bf3ea93ca336.jpg?1782940141",
+    "large": "https://cards.scryfall.io/large/front/b/0/b014f9e8-1029-4afa-b390-bf3ea93ca336.jpg?1782940141",
+    "png": "https://cards.scryfall.io/png/front/b/0/b014f9e8-1029-4afa-b390-bf3ea93ca336.png?1782940141",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/b/0/b014f9e8-1029-4afa-b390-bf3ea93ca336.jpg?1782940141",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/b/0/b014f9e8-1029-4afa-b390-bf3ea93ca336.jpg?1782940141",
+    "thumb": "https://cards.scryfall.io/thumb/front/b/0/b014f9e8-1029-4afa-b390-bf3ea93ca336.webp?1782940141",
+    "grid": "https://cards.scryfall.io/grid/front/b/0/b014f9e8-1029-4afa-b390-bf3ea93ca336.webp?1782940141",
+    "display": "https://cards.scryfall.io/display/front/b/0/b014f9e8-1029-4afa-b390-bf3ea93ca336.webp?1782940141",
+    "art": "https://cards.scryfall.io/art/front/b/0/b014f9e8-1029-4afa-b390-bf3ea93ca336.webp?1782940141",
+    "crop": "https://cards.scryfall.io/crop/front/b/0/b014f9e8-1029-4afa-b390-bf3ea93ca336.webp?1782940141"
+  },
+  "mana_cost": "",
+  "cmc": 0.0,
+  "type_line": "Land — Desert",
+  "printed_type_line": "Terreno — Deserto",
+  "oracle_text": "{T}: Add {C}.\n{T}, Pay 1 life: Add {B}.\n{2}{B}{B}, {T}, Sacrifice a Desert: Put two -1/-1 counters on target creature an opponent controls. Activate only as a sorcery.",
+  "printed_text": "{T}: Adicione {C} à sua reserva de mana.\n{T}, pague 1 ponto de vida: Adicione {B} à sua reserva de mana.\n{2}{B}{B}, {T}, sacrifique um Deserto: Coloque dois marcadores -1/-1 na criatura alvo que um oponente controla. Ative esta habilidade somente nos momentos em que poderia conjurar um feitiço.",
+  "colors": [],
+  "color_identity": [
+    "B"
+  ],
+  "keywords": [],
+  "produced_mana": [
+    "B",
+    "C"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "65ff168b-bb94-47a5-a8f9-4ec6c213e768",
+  "set": "hou",
+  "set_name": "Hour of Devastation",
+  "set_type": "expansion",
+  "set_uri": "https://api.scryfall.com/sets/65ff168b-bb94-47a5-a8f9-4ec6c213e768",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Ahou&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/hou?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/b014f9e8-1029-4afa-b390-bf3ea93ca336/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Aaf698bd5-5f56-4d2a-9f02-8c3e781210cd&unique=prints",
+  "collector_number": "179",
+  "digital": false,
+  "rarity": "uncommon",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Jonas De Ro",
+  "artist_ids": [
+    "561ebf9e-8d93-4b57-8156-8826d0c19601"
+  ],
+  "illustration_id": "b165637e-643c-4955-b0be-4523f110987a",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "edhrec_rank": 4445,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=432261&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DIfnir%2BDeadlands",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DIfnir%2BDeadlands",
+    "edhrec": "https://edhrec.com/route/?cc=Ifnir+Deadlands"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DIfnir%2BDeadlands%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Ifnir+Deadlands&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Ifnir+Deadlands&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

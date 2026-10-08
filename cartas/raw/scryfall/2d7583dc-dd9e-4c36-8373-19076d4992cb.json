@@ -1,0 +1,136 @@
+{
+  "object": "card",
+  "id": "2d7583dc-dd9e-4c36-8373-19076d4992cb",
+  "oracle_id": "20faefbd-059c-4aae-81e3-31683bf9f7bf",
+  "multiverse_ids": [
+    404320
+  ],
+  "name": "Jaddi Offshoot",
+  "printed_name": "Ramificação de Jaddi",
+  "lang": "pt",
+  "released_at": "2015-10-02",
+  "uri": "https://api.scryfall.com/cards/2d7583dc-dd9e-4c36-8373-19076d4992cb",
+  "scryfall_uri": "https://scryfall.com/card/bfz/176/pt/ramifica%C3%A7%C3%A3o-de-jaddi-(jaddi-offshoot)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-02T02:04:49Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/2/d/2d7583dc-dd9e-4c36-8373-19076d4992cb.jpg?1782957889",
+    "normal": "https://cards.scryfall.io/normal/front/2/d/2d7583dc-dd9e-4c36-8373-19076d4992cb.jpg?1782957889",
+    "large": "https://cards.scryfall.io/large/front/2/d/2d7583dc-dd9e-4c36-8373-19076d4992cb.jpg?1782957889",
+    "png": "https://cards.scryfall.io/png/front/2/d/2d7583dc-dd9e-4c36-8373-19076d4992cb.png?1782957889",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/2/d/2d7583dc-dd9e-4c36-8373-19076d4992cb.jpg?1782957889",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/2/d/2d7583dc-dd9e-4c36-8373-19076d4992cb.jpg?1782957889",
+    "thumb": "https://cards.scryfall.io/thumb/front/2/d/2d7583dc-dd9e-4c36-8373-19076d4992cb.webp?1782957889",
+    "grid": "https://cards.scryfall.io/grid/front/2/d/2d7583dc-dd9e-4c36-8373-19076d4992cb.webp?1782957889",
+    "display": "https://cards.scryfall.io/display/front/2/d/2d7583dc-dd9e-4c36-8373-19076d4992cb.webp?1782957889",
+    "art": "https://cards.scryfall.io/art/front/2/d/2d7583dc-dd9e-4c36-8373-19076d4992cb.webp?1782957889",
+    "crop": "https://cards.scryfall.io/crop/front/2/d/2d7583dc-dd9e-4c36-8373-19076d4992cb.webp?1782957889"
+  },
+  "mana_cost": "{G}",
+  "cmc": 1.0,
+  "type_line": "Creature — Plant",
+  "printed_type_line": "Criatura — Planta",
+  "oracle_text": "Defender\nLandfall — Whenever a land you control enters, you gain 1 life.",
+  "printed_text": "DefensorAterragem — Toda vez que um terreno entra no campo de batalha sob seu controle, você ganha 1 ponto de vida.",
+  "power": "0",
+  "toughness": "3",
+  "colors": [
+    "G"
+  ],
+  "color_identity": [
+    "G"
+  ],
+  "keywords": [
+    "Defender",
+    "Landfall"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "91719374-7ac5-4afa-ada8-5da964dcf1d4",
+  "set": "bfz",
+  "set_name": "Battle for Zendikar",
+  "set_type": "expansion",
+  "set_uri": "https://api.scryfall.com/sets/91719374-7ac5-4afa-ada8-5da964dcf1d4",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Abfz&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/bfz?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/2d7583dc-dd9e-4c36-8373-19076d4992cb/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A20faefbd-059c-4aae-81e3-31683bf9f7bf&unique=prints",
+  "collector_number": "176",
+  "digital": false,
+  "rarity": "uncommon",
+  "flavor_text": "Em Murasa, até nas árvores crescem árvores.",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Daarken",
+  "artist_ids": [
+    "e607a0d4-fc12-4c01-9e3f-501f5269b9cb"
+  ],
+  "illustration_id": "5ae8d8d4-6305-4d9c-a78a-b63bb6724b10",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "edhrec_rank": 5310,
+  "penny_rank": 4767,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=404320&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DJaddi%2BOffshoot",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DJaddi%2BOffshoot",
+    "edhrec": "https://edhrec.com/route/?cc=Jaddi+Offshoot"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DJaddi%2BOffshoot%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Jaddi+Offshoot&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Jaddi+Offshoot&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

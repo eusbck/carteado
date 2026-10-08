@@ -1,0 +1,136 @@
+{
+  "object": "card",
+  "id": "e4e7d3b7-9b0c-463d-975c-ef81d7fd8dad",
+  "oracle_id": "3a21a6ae-b2f2-4f0c-acfd-5f3e8d63fd2f",
+  "multiverse_ids": [
+    696434
+  ],
+  "mtgo_id": 138493,
+  "tcgplayer_id": 624619,
+  "cardmarket_id": 818857,
+  "name": "Wall of Roots",
+  "lang": "en",
+  "released_at": "2025-04-11",
+  "uri": "https://api.scryfall.com/cards/e4e7d3b7-9b0c-463d-975c-ef81d7fd8dad",
+  "scryfall_uri": "https://scryfall.com/card/tdc/278/wall-of-roots?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-13T01:43:54Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/e/4/e4e7d3b7-9b0c-463d-975c-ef81d7fd8dad.jpg?1783907034",
+    "normal": "https://cards.scryfall.io/normal/front/e/4/e4e7d3b7-9b0c-463d-975c-ef81d7fd8dad.jpg?1783907034",
+    "large": "https://cards.scryfall.io/large/front/e/4/e4e7d3b7-9b0c-463d-975c-ef81d7fd8dad.jpg?1783907034",
+    "png": "https://cards.scryfall.io/png/front/e/4/e4e7d3b7-9b0c-463d-975c-ef81d7fd8dad.png?1783907034",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/e/4/e4e7d3b7-9b0c-463d-975c-ef81d7fd8dad.jpg?1783907034",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/e/4/e4e7d3b7-9b0c-463d-975c-ef81d7fd8dad.jpg?1783907034",
+    "thumb": "https://cards.scryfall.io/thumb/front/e/4/e4e7d3b7-9b0c-463d-975c-ef81d7fd8dad.webp?1783907034",
+    "grid": "https://cards.scryfall.io/grid/front/e/4/e4e7d3b7-9b0c-463d-975c-ef81d7fd8dad.webp?1783907034",
+    "display": "https://cards.scryfall.io/display/front/e/4/e4e7d3b7-9b0c-463d-975c-ef81d7fd8dad.webp?1783907034",
+    "art": "https://cards.scryfall.io/art/front/e/4/e4e7d3b7-9b0c-463d-975c-ef81d7fd8dad.webp?1783907034",
+    "crop": "https://cards.scryfall.io/crop/front/e/4/e4e7d3b7-9b0c-463d-975c-ef81d7fd8dad.webp?1783907034"
+  },
+  "mana_cost": "{1}{G}",
+  "cmc": 2.0,
+  "type_line": "Creature — Plant Wall",
+  "oracle_text": "Defender\nPut a -0/-1 counter on this creature: Add {G}. Activate only once each turn.",
+  "power": "0",
+  "toughness": "5",
+  "colors": [
+    "G"
+  ],
+  "color_identity": [
+    "G"
+  ],
+  "keywords": [
+    "Defender"
+  ],
+  "produced_mana": [
+    "G"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "legal",
+    "predh": "legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "bca9779c-0a0b-4ac1-8794-f3fc25549cf4",
+  "set": "tdc",
+  "set_name": "Tarkir: Dragonstorm Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/bca9779c-0a0b-4ac1-8794-f3fc25549cf4",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Atdc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/tdc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/e4e7d3b7-9b0c-463d-975c-ef81d7fd8dad/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A3a21a6ae-b2f2-4f0c-acfd-5f3e8d63fd2f&unique=prints",
+  "collector_number": "278",
+  "digital": false,
+  "rarity": "common",
+  "flavor_text": "\"Mana grows and changes like the roots of a plant. Like a plant, it must be nurtured.\"\n—Nissa Revane",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Matt Stewart",
+  "artist_ids": [
+    "20871267-2d8a-41d5-b03a-be3d557c5734"
+  ],
+  "illustration_id": "6d297367-b6e1-4b4f-a157-d7bb7d94a205",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 3597,
+  "prices": {
+    "usd": "0.28",
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": "0.30",
+    "eur_foil": null,
+    "tix": "5.82"
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=696434&printed=false",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DWall%2Bof%2BRoots",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DWall%2Bof%2BRoots",
+    "edhrec": "https://edhrec.com/route/?cc=Wall+of+Roots"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F624619%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=818857&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards/138493?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

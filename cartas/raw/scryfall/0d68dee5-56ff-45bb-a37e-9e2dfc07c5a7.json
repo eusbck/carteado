@@ -1,0 +1,132 @@
+{
+  "object": "card",
+  "id": "0d68dee5-56ff-45bb-a37e-9e2dfc07c5a7",
+  "oracle_id": "7cc81fb3-495c-47cd-8c56-96197d87e9e0",
+  "multiverse_ids": [],
+  "resource_id": "ED0C79ACD25407F9F44D8F411C2A8F3F292DB7283BEAEBACC13614242270515A",
+  "mtgo_id": 149145,
+  "tcgplayer_id": 687660,
+  "cardmarket_id": 881673,
+  "name": "Witherbloom Command",
+  "lang": "en",
+  "released_at": "2026-04-24",
+  "uri": "https://api.scryfall.com/cards/0d68dee5-56ff-45bb-a37e-9e2dfc07c5a7",
+  "scryfall_uri": "https://scryfall.com/card/soc/339/witherbloom-command?utm_source=api",
+  "layout": "normal",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T00:49:02Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/0/d/0d68dee5-56ff-45bb-a37e-9e2dfc07c5a7.jpg?1783903742",
+    "normal": "https://cards.scryfall.io/normal/front/0/d/0d68dee5-56ff-45bb-a37e-9e2dfc07c5a7.jpg?1783903742",
+    "large": "https://cards.scryfall.io/large/front/0/d/0d68dee5-56ff-45bb-a37e-9e2dfc07c5a7.jpg?1783903742",
+    "png": "https://cards.scryfall.io/png/front/0/d/0d68dee5-56ff-45bb-a37e-9e2dfc07c5a7.png?1783903742",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/0/d/0d68dee5-56ff-45bb-a37e-9e2dfc07c5a7.jpg?1783903742",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/0/d/0d68dee5-56ff-45bb-a37e-9e2dfc07c5a7.jpg?1783903742",
+    "thumb": "https://cards.scryfall.io/thumb/front/0/d/0d68dee5-56ff-45bb-a37e-9e2dfc07c5a7.webp?1783903742",
+    "grid": "https://cards.scryfall.io/grid/front/0/d/0d68dee5-56ff-45bb-a37e-9e2dfc07c5a7.webp?1783903742",
+    "display": "https://cards.scryfall.io/display/front/0/d/0d68dee5-56ff-45bb-a37e-9e2dfc07c5a7.webp?1783903742",
+    "art": "https://cards.scryfall.io/art/front/0/d/0d68dee5-56ff-45bb-a37e-9e2dfc07c5a7.webp?1783903742",
+    "crop": "https://cards.scryfall.io/crop/front/0/d/0d68dee5-56ff-45bb-a37e-9e2dfc07c5a7.webp?1783903742"
+  },
+  "mana_cost": "{B}{G}",
+  "cmc": 2.0,
+  "type_line": "Sorcery",
+  "oracle_text": "Choose two —\n• Target player mills three cards, then you return a land card from your graveyard to your hand.\n• Destroy target noncreature, nonland permanent with mana value 2 or less.\n• Target creature gets -3/-1 until end of turn.\n• Target opponent loses 2 life and you gain 2 life.",
+  "colors": [
+    "B",
+    "G"
+  ],
+  "color_identity": [
+    "B",
+    "G"
+  ],
+  "keywords": [
+    "Mill"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "97fab8d1-480a-419d-ab14-663968e29b9c",
+  "set": "soc",
+  "set_name": "Secrets of Strixhaven Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/97fab8d1-480a-419d-ab14-663968e29b9c",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Asoc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/soc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/0d68dee5-56ff-45bb-a37e-9e2dfc07c5a7/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A7cc81fb3-495c-47cd-8c56-96197d87e9e0&unique=prints",
+  "collector_number": "339",
+  "digital": false,
+  "rarity": "rare",
+  "watermark": "witherbloom",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Dmitry Burmak",
+  "artist_ids": [
+    "9872f5c0-274a-48ce-a9ad-6f0d5654e29c"
+  ],
+  "illustration_id": "d8883b12-2daa-4b7f-9f03-4bd722cdacef",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 8549,
+  "prices": {
+    "usd": "0.36",
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": "0.30",
+    "eur_foil": null,
+    "tix": "0.36"
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DWitherbloom%2BCommand",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DWitherbloom%2BCommand",
+    "edhrec": "https://edhrec.com/route/?cc=Witherbloom+Command"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F687660%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=881673&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards/149145?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

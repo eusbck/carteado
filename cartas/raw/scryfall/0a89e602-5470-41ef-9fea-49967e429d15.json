@@ -1,0 +1,134 @@
+{
+  "object": "card",
+  "id": "0a89e602-5470-41ef-9fea-49967e429d15",
+  "oracle_id": "be4f47e9-1bd2-4aa9-bc85-3f203ad21639",
+  "multiverse_ids": [
+    518877
+  ],
+  "name": "Rionya, Fire Dancer",
+  "printed_name": "Rionya, Dançarina do Fogo",
+  "lang": "pt",
+  "released_at": "2021-04-23",
+  "uri": "https://api.scryfall.com/cards/0a89e602-5470-41ef-9fea-49967e429d15",
+  "scryfall_uri": "https://scryfall.com/card/c21/55/pt/rionya-dan%C3%A7arina-do-fogo-(rionya-fire-dancer)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-01T06:38:58Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/0/a/0a89e602-5470-41ef-9fea-49967e429d15.jpg?1782887938",
+    "normal": "https://cards.scryfall.io/normal/front/0/a/0a89e602-5470-41ef-9fea-49967e429d15.jpg?1782887938",
+    "large": "https://cards.scryfall.io/large/front/0/a/0a89e602-5470-41ef-9fea-49967e429d15.jpg?1782887938",
+    "png": "https://cards.scryfall.io/png/front/0/a/0a89e602-5470-41ef-9fea-49967e429d15.png?1782887938",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/0/a/0a89e602-5470-41ef-9fea-49967e429d15.jpg?1782887938",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/0/a/0a89e602-5470-41ef-9fea-49967e429d15.jpg?1782887938",
+    "thumb": "https://cards.scryfall.io/thumb/front/0/a/0a89e602-5470-41ef-9fea-49967e429d15.webp?1782887938",
+    "grid": "https://cards.scryfall.io/grid/front/0/a/0a89e602-5470-41ef-9fea-49967e429d15.webp?1782887938",
+    "display": "https://cards.scryfall.io/display/front/0/a/0a89e602-5470-41ef-9fea-49967e429d15.webp?1782887938",
+    "art": "https://cards.scryfall.io/art/front/0/a/0a89e602-5470-41ef-9fea-49967e429d15.webp?1782887938",
+    "crop": "https://cards.scryfall.io/crop/front/0/a/0a89e602-5470-41ef-9fea-49967e429d15.webp?1782887938"
+  },
+  "mana_cost": "{3}{R}{R}",
+  "cmc": 5.0,
+  "type_line": "Legendary Creature — Human Wizard",
+  "printed_type_line": "Criatura Lendária — Humano Mago",
+  "oracle_text": "At the beginning of combat on your turn, create X tokens that are copies of another target creature you control, where X is one plus the number of instant and sorcery spells you've cast this turn. They gain haste. Exile them at the beginning of the next end step.",
+  "printed_text": "No início do combate no seu turno, crie X fichas que sejam cópias de outra criatura alvo que você controla, sendo X igual a um mais o número de mágicas instantâneas e feitiços que você conjurou neste turno. Elas ganham ímpeto. Exile-as no início da próxima etapa final.",
+  "power": "3",
+  "toughness": "4",
+  "colors": [
+    "R"
+  ],
+  "color_identity": [
+    "R"
+  ],
+  "keywords": [],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "27bf6dbd-a9e1-4904-afa7-d28fc7745c4f",
+  "set": "c21",
+  "set_name": "Commander 2021",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/27bf6dbd-a9e1-4904-afa7-d28fc7745c4f",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Ac21&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/c21?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/0a89e602-5470-41ef-9fea-49967e429d15/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Abe4f47e9-1bd2-4aa9-bc85-3f203ad21639&unique=prints",
+  "collector_number": "55",
+  "digital": false,
+  "rarity": "rare",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Heonhwa",
+  "artist_ids": [
+    "ce415f9e-8a20-4d64-bcba-2b1b7e94012e"
+  ],
+  "illustration_id": "30942169-f40c-4ade-821c-a4f623d2fa74",
+  "border_color": "black",
+  "frame": "2015",
+  "frame_effects": [
+    "legendary"
+  ],
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 2821,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=518877&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DRionya%252C%2BFire%2BDancer",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DRionya%252C%2BFire%2BDancer",
+    "edhrec": "https://edhrec.com/route/?cc=Rionya%2C+Fire+Dancer"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DRionya%252C%2BFire%2BDancer%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Rionya%2C+Fire+Dancer&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Rionya%2C+Fire+Dancer&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

@@ -1,0 +1,136 @@
+{
+  "object": "card",
+  "id": "cc543c4a-16c7-4157-bfab-c7f94bcfa931",
+  "oracle_id": "a336c10a-b5bd-47ff-ba2d-31e27af1e15a",
+  "multiverse_ids": [
+    441225
+  ],
+  "name": "Tendershoot Dryad",
+  "printed_name": "Dríade Germinadora",
+  "lang": "pt",
+  "released_at": "2018-01-19",
+  "uri": "https://api.scryfall.com/cards/cc543c4a-16c7-4157-bfab-c7f94bcfa931",
+  "scryfall_uri": "https://scryfall.com/card/rix/147/pt/dr%C3%ADade-germinadora-(tendershoot-dryad)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-01T19:41:10Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/c/c/cc543c4a-16c7-4157-bfab-c7f94bcfa931.jpg?1782934870",
+    "normal": "https://cards.scryfall.io/normal/front/c/c/cc543c4a-16c7-4157-bfab-c7f94bcfa931.jpg?1782934870",
+    "large": "https://cards.scryfall.io/large/front/c/c/cc543c4a-16c7-4157-bfab-c7f94bcfa931.jpg?1782934870",
+    "png": "https://cards.scryfall.io/png/front/c/c/cc543c4a-16c7-4157-bfab-c7f94bcfa931.png?1782934870",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/c/c/cc543c4a-16c7-4157-bfab-c7f94bcfa931.jpg?1782934870",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/c/c/cc543c4a-16c7-4157-bfab-c7f94bcfa931.jpg?1782934870",
+    "thumb": "https://cards.scryfall.io/thumb/front/c/c/cc543c4a-16c7-4157-bfab-c7f94bcfa931.webp?1782934870",
+    "grid": "https://cards.scryfall.io/grid/front/c/c/cc543c4a-16c7-4157-bfab-c7f94bcfa931.webp?1782934870",
+    "display": "https://cards.scryfall.io/display/front/c/c/cc543c4a-16c7-4157-bfab-c7f94bcfa931.webp?1782934870",
+    "art": "https://cards.scryfall.io/art/front/c/c/cc543c4a-16c7-4157-bfab-c7f94bcfa931.webp?1782934870",
+    "crop": "https://cards.scryfall.io/crop/front/c/c/cc543c4a-16c7-4157-bfab-c7f94bcfa931.webp?1782934870"
+  },
+  "mana_cost": "{4}{G}",
+  "cmc": 5.0,
+  "type_line": "Creature — Dryad",
+  "printed_type_line": "Criatura — Dríade",
+  "oracle_text": "Ascend (If you control ten or more permanents, you get the city's blessing for the rest of the game.)\nAt the beginning of each upkeep, create a 1/1 green Saproling creature token.\nSaprolings you control get +2/+2 as long as you have the city's blessing.",
+  "printed_text": "Ascender (Se você controla dez ou mais permanentes, você recebe a bênção da cidade pelo restante do jogo.)\nNo início de cada manutenção, crie uma ficha de criatura verde 1/1 do tipo Saprófita.\nAs Saprófitas que você controla recebem +2/+2 enquanto você tiver a bênção da cidade.",
+  "power": "2",
+  "toughness": "2",
+  "colors": [
+    "G"
+  ],
+  "color_identity": [
+    "G"
+  ],
+  "keywords": [
+    "Ascend"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "arena",
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "2f7e40fc-772d-4a85-bfdd-01653c41d0fa",
+  "set": "rix",
+  "set_name": "Rivals of Ixalan",
+  "set_type": "expansion",
+  "set_uri": "https://api.scryfall.com/sets/2f7e40fc-772d-4a85-bfdd-01653c41d0fa",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Arix&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/rix?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/cc543c4a-16c7-4157-bfab-c7f94bcfa931/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Aa336c10a-b5bd-47ff-ba2d-31e27af1e15a&unique=prints",
+  "collector_number": "147",
+  "digital": false,
+  "rarity": "rare",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Yongjae Choi",
+  "artist_ids": [
+    "5ab91c3b-a6da-4751-a56e-81d0f61a67ab"
+  ],
+  "illustration_id": "1b8a78d7-ac25-483d-bfdc-5f2f02c6b23e",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "edhrec_rank": 1305,
+  "penny_rank": 9264,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=441225&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DTendershoot%2BDryad",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DTendershoot%2BDryad",
+    "edhrec": "https://edhrec.com/route/?cc=Tendershoot+Dryad"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DTendershoot%2BDryad%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Tendershoot+Dryad&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Tendershoot+Dryad&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

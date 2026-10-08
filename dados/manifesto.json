@@ -1,0 +1,37 @@
+{
+  "accessed_on": "2026-10-03",
+  "rules_effective_on": "2026-09-25",
+  "publisher": "Wizards of the Coast",
+  "source_url": "https://media.wizards.com/2026/downloads/MagicCompRules%2020260925.txt",
+  "source_extraction": "Todas as linhas numeradas expostas pela leitura web do TXT oficial; quebras normalizadas",
+  "source_line_count": 8017,
+  "source_line_gaps": [],
+  "local_sha256": "af015993e3c7ad9025f032067dff599f257fd903d9d704a90d1e1ead079e3ac0",
+  "local_sha256_is_original_download_hash": false,
+  "indexed_rule_entries": 3312,
+  "glossary_entries": 738,
+  "keyword_subsections": 266,
+  "practice_scenarios": 51,
+  "named_bans": 42,
+  "simulator_scope": [
+    "priority",
+    "stack_top_resolution",
+    "normal_timing",
+    "land_limit",
+    "loyalty_limit",
+    "turn_step_windows",
+    "initial_draw_skip",
+    "cleanup_trigger_example"
+  ],
+  "simulator_not_implemented": [
+    "real_decks",
+    "card_oracle_execution",
+    "combat_damage_calculation",
+    "mana_payment",
+    "layers",
+    "arbitrary_replacement_effects",
+    "defeat_and_elimination"
+  ],
+  "official_card_rulings_copied": false,
+  "original_pdf_downloaded": false
+}

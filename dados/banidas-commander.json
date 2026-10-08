@@ -1,0 +1,61 @@
+{
+  "accessed_on": "2026-10-03",
+  "source": "https://magic.wizards.com/en/banned-restricted-list",
+  "banned_by_name": [
+    "Ancestral Recall",
+    "Balance",
+    "Black Lotus",
+    "Chaos Orb",
+    "Channel",
+    "Dockside Extortionist",
+    "Emrakul, the Aeons Torn",
+    "Erayo, Soratami Ascendant",
+    "Falling Star",
+    "Fastbond",
+    "Flash",
+    "Golos, Tireless Pilgrim",
+    "Griselbrand",
+    "Hullbreacher",
+    "Iona, Shield of Emeria",
+    "Karakas",
+    "Jeweled Lotus",
+    "Leovold, Emissary of Trest",
+    "Library of Alexandria",
+    "Limited Resources",
+    "Mana Crypt",
+    "Mox Emerald",
+    "Mox Jet",
+    "Mox Pearl",
+    "Mox Ruby",
+    "Mox Sapphire",
+    "Nadu, Winged Wisdom",
+    "Paradox Engine",
+    "Primeval Titan",
+    "Prophet of Kruphix",
+    "Recurring Nightmare",
+    "Rofellos, Llanowar Emissary",
+    "Shahrazad",
+    "Sundering Titan",
+    "Sylvan Primordial",
+    "Time Vault",
+    "Time Walk",
+    "Tinker",
+    "Tolarian Academy",
+    "Trade Secrets",
+    "Upheaval",
+    "Yawgmoth's Bargain"
+  ],
+  "banned_as_companion_only": [
+    "Lutri, the Spellchaser"
+  ],
+  "banned_categories": [
+    "Conspiracy cards",
+    "Cards that refer to playing for ante",
+    "Cards banned in all formats for racially or culturally offensive content"
+  ],
+  "explicitly_unbanned_2026_02_09": [
+    "Biorhythm",
+    "Lutri, the Spellchaser (deck/commander only)"
+  ],
+  "notes": "Não é um validador completo: identidade, singleton, elegibilidade, acorn/playtest, nomes intercambiáveis e demais regras também precisam de validação."
+}

@@ -1,0 +1,125 @@
+{
+  "object": "card",
+  "id": "ba946711-7e11-4bb8-ae18-e8d47d0ff20b",
+  "oracle_id": "3e2ae59a-40a1-46ca-8f24-3231ebd4e4eb",
+  "multiverse_ids": [],
+  "name": "Flickering Ward",
+  "printed_name": "Proteção Oscilante",
+  "lang": "pt",
+  "released_at": "1997-10-14",
+  "uri": "https://api.scryfall.com/cards/ba946711-7e11-4bb8-ae18-e8d47d0ff20b",
+  "scryfall_uri": "https://scryfall.com/card/tmp/19/pt/prote%C3%A7%C3%A3o-oscilante-(flickering-ward)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "placeholder",
+  "image_updated_at": "2026-07-03T04:09:48Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/b/a/ba946711-7e11-4bb8-ae18-e8d47d0ff20b.jpg?1783051788",
+    "normal": "https://cards.scryfall.io/normal/front/b/a/ba946711-7e11-4bb8-ae18-e8d47d0ff20b.jpg?1783051788",
+    "large": "https://cards.scryfall.io/large/front/b/a/ba946711-7e11-4bb8-ae18-e8d47d0ff20b.jpg?1783051788",
+    "png": "https://cards.scryfall.io/png/front/b/a/ba946711-7e11-4bb8-ae18-e8d47d0ff20b.png?1783051788",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/b/a/ba946711-7e11-4bb8-ae18-e8d47d0ff20b.jpg?1783051788",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/b/a/ba946711-7e11-4bb8-ae18-e8d47d0ff20b.jpg?1783051788",
+    "thumb": "https://cards.scryfall.io/thumb/front/b/a/ba946711-7e11-4bb8-ae18-e8d47d0ff20b.webp?1783051788",
+    "grid": "https://cards.scryfall.io/grid/front/b/a/ba946711-7e11-4bb8-ae18-e8d47d0ff20b.webp?1783051788",
+    "display": "https://cards.scryfall.io/display/front/b/a/ba946711-7e11-4bb8-ae18-e8d47d0ff20b.webp?1783051788",
+    "art": "https://cards.scryfall.io/art/front/b/a/ba946711-7e11-4bb8-ae18-e8d47d0ff20b.webp?1783051788",
+    "crop": "https://cards.scryfall.io/crop/front/b/a/ba946711-7e11-4bb8-ae18-e8d47d0ff20b.webp?1783051788"
+  },
+  "mana_cost": "{W}",
+  "cmc": 1.0,
+  "type_line": "Enchantment — Aura",
+  "oracle_text": "Enchant creature\nAs this Aura enters, choose a color.\nEnchanted creature has protection from the chosen color. This effect doesn't remove this Aura.\n{W}: Return this Aura to its owner's hand.",
+  "colors": [
+    "W"
+  ],
+  "color_identity": [
+    "W"
+  ],
+  "keywords": [
+    "Enchant"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "legal",
+    "predh": "legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "10df3a67-178e-4363-8668-34f0e6edf2a7",
+  "set": "tmp",
+  "set_name": "Tempest",
+  "set_type": "expansion",
+  "set_uri": "https://api.scryfall.com/sets/10df3a67-178e-4363-8668-34f0e6edf2a7",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Atmp&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/tmp?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/ba946711-7e11-4bb8-ae18-e8d47d0ff20b/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A3e2ae59a-40a1-46ca-8f24-3231ebd4e4eb&unique=prints",
+  "collector_number": "19",
+  "digital": false,
+  "rarity": "uncommon",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Greg Simanson",
+  "artist_ids": [
+    "13f79e83-d576-4017-93b5-54c47313ed88"
+  ],
+  "illustration_id": "81ed0a13-daf0-4a49-aec6-9ae96fdbf28d",
+  "border_color": "black",
+  "frame": "1997",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "edhrec_rank": 4440,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DFlickering%2BWard",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DFlickering%2BWard",
+    "edhrec": "https://edhrec.com/route/?cc=Flickering+Ward"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DFlickering%2BWard%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Flickering+Ward&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Flickering+Ward&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

@@ -1,0 +1,132 @@
+{
+  "object": "card",
+  "id": "715ff2c6-60b4-42b1-b4ea-c698303db1da",
+  "oracle_id": "3407fe41-fdd3-4119-8f70-4bc4590a379f",
+  "multiverse_ids": [
+    609453
+  ],
+  "name": "Negate",
+  "printed_name": "Negar",
+  "lang": "pt",
+  "released_at": "2023-04-21",
+  "uri": "https://api.scryfall.com/cards/715ff2c6-60b4-42b1-b4ea-c698303db1da",
+  "scryfall_uri": "https://scryfall.com/card/mom/68/pt/negar-(negate)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T13:15:14Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/7/1/715ff2c6-60b4-42b1-b4ea-c698303db1da.jpg?1782825314",
+    "normal": "https://cards.scryfall.io/normal/front/7/1/715ff2c6-60b4-42b1-b4ea-c698303db1da.jpg?1782825314",
+    "large": "https://cards.scryfall.io/large/front/7/1/715ff2c6-60b4-42b1-b4ea-c698303db1da.jpg?1782825314",
+    "png": "https://cards.scryfall.io/png/front/7/1/715ff2c6-60b4-42b1-b4ea-c698303db1da.png?1782825314",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/7/1/715ff2c6-60b4-42b1-b4ea-c698303db1da.jpg?1782825314",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/7/1/715ff2c6-60b4-42b1-b4ea-c698303db1da.jpg?1782825314",
+    "thumb": "https://cards.scryfall.io/thumb/front/7/1/715ff2c6-60b4-42b1-b4ea-c698303db1da.webp?1782825314",
+    "grid": "https://cards.scryfall.io/grid/front/7/1/715ff2c6-60b4-42b1-b4ea-c698303db1da.webp?1782825314",
+    "display": "https://cards.scryfall.io/display/front/7/1/715ff2c6-60b4-42b1-b4ea-c698303db1da.webp?1782825314",
+    "art": "https://cards.scryfall.io/art/front/7/1/715ff2c6-60b4-42b1-b4ea-c698303db1da.webp?1782825314",
+    "crop": "https://cards.scryfall.io/crop/front/7/1/715ff2c6-60b4-42b1-b4ea-c698303db1da.webp?1782825314"
+  },
+  "mana_cost": "{1}{U}",
+  "cmc": 2.0,
+  "type_line": "Instant",
+  "printed_type_line": "Mágica Instantânea",
+  "oracle_text": "Counter target noncreature spell.",
+  "printed_text": "Anule a mágica alvo não de criatura.",
+  "colors": [
+    "U"
+  ],
+  "color_identity": [
+    "U"
+  ],
+  "keywords": [],
+  "legalities": {
+    "standard": "legal",
+    "future": "legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "legal",
+    "paupercommander": "legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo",
+    "arena"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "392f7315-dc53-40a3-a2cc-5482dbd498b3",
+  "set": "mom",
+  "set_name": "March of the Machine",
+  "set_type": "expansion",
+  "set_uri": "https://api.scryfall.com/sets/392f7315-dc53-40a3-a2cc-5482dbd498b3",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Amom&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/mom?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/715ff2c6-60b4-42b1-b4ea-c698303db1da/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A3407fe41-fdd3-4119-8f70-4bc4590a379f&unique=prints",
+  "collector_number": "68",
+  "digital": false,
+  "rarity": "common",
+  "flavor_text": "Teferi lhes deu tempo. Karn lhes deu uma chance. Mas foi Melira quem pagou o preço para libertar Ajani das garras de Phyrexia.",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Viko Menezes",
+  "artist_ids": [
+    "92dfef2a-d0fa-42fd-bdd6-bc4c9286cb56"
+  ],
+  "illustration_id": "a2b79ac9-c348-4366-8866-5f9e16eca585",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": true,
+  "edhrec_rank": 56,
+  "penny_rank": 185,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=609453&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DNegate",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DNegate",
+    "edhrec": "https://edhrec.com/route/?cc=Negate"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DNegate%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Negate&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Negate&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

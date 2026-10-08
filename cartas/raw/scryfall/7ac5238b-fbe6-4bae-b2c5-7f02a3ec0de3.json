@@ -1,0 +1,135 @@
+{
+  "object": "card",
+  "id": "7ac5238b-fbe6-4bae-b2c5-7f02a3ec0de3",
+  "oracle_id": "1831fe12-dbe0-437f-8fc8-f01bbb701fe1",
+  "multiverse_ids": [
+    663787
+  ],
+  "name": "Deceptive Landscape",
+  "printed_name": "Paisagem Enganadora",
+  "lang": "pt",
+  "released_at": "2024-06-14",
+  "uri": "https://api.scryfall.com/cards/7ac5238b-fbe6-4bae-b2c5-7f02a3ec0de3",
+  "scryfall_uri": "https://scryfall.com/card/mh3/219/pt/paisagem-enganadora-(deceptive-landscape)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T04:16:12Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/7/a/7ac5238b-fbe6-4bae-b2c5-7f02a3ec0de3.jpg?1782792972",
+    "normal": "https://cards.scryfall.io/normal/front/7/a/7ac5238b-fbe6-4bae-b2c5-7f02a3ec0de3.jpg?1782792972",
+    "large": "https://cards.scryfall.io/large/front/7/a/7ac5238b-fbe6-4bae-b2c5-7f02a3ec0de3.jpg?1782792972",
+    "png": "https://cards.scryfall.io/png/front/7/a/7ac5238b-fbe6-4bae-b2c5-7f02a3ec0de3.png?1782792972",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/7/a/7ac5238b-fbe6-4bae-b2c5-7f02a3ec0de3.jpg?1782792972",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/7/a/7ac5238b-fbe6-4bae-b2c5-7f02a3ec0de3.jpg?1782792972",
+    "thumb": "https://cards.scryfall.io/thumb/front/7/a/7ac5238b-fbe6-4bae-b2c5-7f02a3ec0de3.webp?1782792972",
+    "grid": "https://cards.scryfall.io/grid/front/7/a/7ac5238b-fbe6-4bae-b2c5-7f02a3ec0de3.webp?1782792972",
+    "display": "https://cards.scryfall.io/display/front/7/a/7ac5238b-fbe6-4bae-b2c5-7f02a3ec0de3.webp?1782792972",
+    "art": "https://cards.scryfall.io/art/front/7/a/7ac5238b-fbe6-4bae-b2c5-7f02a3ec0de3.webp?1782792972",
+    "crop": "https://cards.scryfall.io/crop/front/7/a/7ac5238b-fbe6-4bae-b2c5-7f02a3ec0de3.webp?1782792972"
+  },
+  "mana_cost": "",
+  "cmc": 0.0,
+  "type_line": "Land",
+  "printed_type_line": "Terreno",
+  "oracle_text": "{T}: Add {C}.\n{T}, Sacrifice this land: Search your library for a basic Plains, Swamp, or Forest card, put it onto the battlefield tapped, then shuffle.\nCycling {W}{B}{G} ({W}{B}{G}, Discard this card: Draw a card.)",
+  "printed_text": "{T}: Adicione {C}.\n{T}, sacrifique Paisagem Enganadora: Procure em seu grimório um card de Planície, Pântano ou Floresta básico, coloque-o no campo de batalha virado e depois embaralhe.\nReciclar {W}{B}{G} ({W}{B}{G}, descarte este card: Compre um card.)",
+  "colors": [],
+  "color_identity": [
+    "B",
+    "G",
+    "W"
+  ],
+  "keywords": [
+    "Cycling"
+  ],
+  "produced_mana": [
+    "C"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "not_legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo",
+    "arena"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "3ed80bb6-77e8-4aa7-8262-95377a38aba1",
+  "set": "mh3",
+  "set_name": "Modern Horizons 3",
+  "set_type": "draft_innovation",
+  "set_uri": "https://api.scryfall.com/sets/3ed80bb6-77e8-4aa7-8262-95377a38aba1",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Amh3&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/mh3?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/7ac5238b-fbe6-4bae-b2c5-7f02a3ec0de3/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A1831fe12-dbe0-437f-8fc8-f01bbb701fe1&unique=prints",
+  "collector_number": "219",
+  "digital": false,
+  "rarity": "common",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Erikas Perl",
+  "artist_ids": [
+    "39cb50cf-0223-43c7-bd96-afb5f05c7e43"
+  ],
+  "illustration_id": "bd0e9cd3-f7c8-4b42-9a2e-0c2fa76b08bf",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "edhrec_rank": 2258,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=663787&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DDeceptive%2BLandscape",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DDeceptive%2BLandscape",
+    "edhrec": "https://edhrec.com/route/?cc=Deceptive+Landscape"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DDeceptive%2BLandscape%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Deceptive+Landscape&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Deceptive+Landscape&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

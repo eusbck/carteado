@@ -1,0 +1,159 @@
+{
+  "object": "card",
+  "id": "0fd4a0f7-ba03-4158-95cd-4effe798aec0",
+  "oracle_id": "985f9dd7-e693-48ff-9dd6-a1a3cbaa236b",
+  "multiverse_ids": [],
+  "resource_id": "43516F17987333A9F54A9277D17E946AD87AA3A7D2C7FC441CB05C46CBBF915B",
+  "mtgo_id": 149103,
+  "tcgplayer_id": 687638,
+  "cardmarket_id": 881652,
+  "name": "Magma Opus",
+  "lang": "en",
+  "released_at": "2026-04-24",
+  "uri": "https://api.scryfall.com/cards/0fd4a0f7-ba03-4158-95cd-4effe798aec0",
+  "scryfall_uri": "https://scryfall.com/card/soc/318/magma-opus?utm_source=api",
+  "layout": "normal",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T00:49:10Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/0/f/0fd4a0f7-ba03-4158-95cd-4effe798aec0.jpg?1783903750",
+    "normal": "https://cards.scryfall.io/normal/front/0/f/0fd4a0f7-ba03-4158-95cd-4effe798aec0.jpg?1783903750",
+    "large": "https://cards.scryfall.io/large/front/0/f/0fd4a0f7-ba03-4158-95cd-4effe798aec0.jpg?1783903750",
+    "png": "https://cards.scryfall.io/png/front/0/f/0fd4a0f7-ba03-4158-95cd-4effe798aec0.png?1783903750",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/0/f/0fd4a0f7-ba03-4158-95cd-4effe798aec0.jpg?1783903750",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/0/f/0fd4a0f7-ba03-4158-95cd-4effe798aec0.jpg?1783903750",
+    "thumb": "https://cards.scryfall.io/thumb/front/0/f/0fd4a0f7-ba03-4158-95cd-4effe798aec0.webp?1783903750",
+    "grid": "https://cards.scryfall.io/grid/front/0/f/0fd4a0f7-ba03-4158-95cd-4effe798aec0.webp?1783903750",
+    "display": "https://cards.scryfall.io/display/front/0/f/0fd4a0f7-ba03-4158-95cd-4effe798aec0.webp?1783903750",
+    "art": "https://cards.scryfall.io/art/front/0/f/0fd4a0f7-ba03-4158-95cd-4effe798aec0.webp?1783903750",
+    "crop": "https://cards.scryfall.io/crop/front/0/f/0fd4a0f7-ba03-4158-95cd-4effe798aec0.webp?1783903750"
+  },
+  "mana_cost": "{6}{U}{R}",
+  "cmc": 8.0,
+  "type_line": "Instant",
+  "oracle_text": "Magma Opus deals 4 damage divided as you choose among any number of targets. Tap two target permanents. Create a 4/4 blue and red Elemental creature token. Draw two cards.\n{U/R}{U/R}, Discard this card: Create a Treasure token.",
+  "colors": [
+    "R",
+    "U"
+  ],
+  "color_identity": [
+    "R",
+    "U"
+  ],
+  "keywords": [
+    "Treasure"
+  ],
+  "all_parts": [
+    {
+      "object": "related_card",
+      "id": "b4f61b5e-9c53-40b1-b93e-3ffa351ff052",
+      "component": "token",
+      "name": "Treasure",
+      "type_line": "Token Artifact — Treasure",
+      "uri": "https://api.scryfall.com/cards/b4f61b5e-9c53-40b1-b93e-3ffa351ff052"
+    },
+    {
+      "object": "related_card",
+      "id": "0fd4a0f7-ba03-4158-95cd-4effe798aec0",
+      "component": "combo_piece",
+      "name": "Magma Opus",
+      "type_line": "Instant",
+      "uri": "https://api.scryfall.com/cards/0fd4a0f7-ba03-4158-95cd-4effe798aec0"
+    },
+    {
+      "object": "related_card",
+      "id": "8ba20bb4-a476-448d-bb39-23f8dd59e5a8",
+      "component": "token",
+      "name": "Elemental",
+      "type_line": "Token Creature — Elemental",
+      "uri": "https://api.scryfall.com/cards/8ba20bb4-a476-448d-bb39-23f8dd59e5a8"
+    }
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "97fab8d1-480a-419d-ab14-663968e29b9c",
+  "set": "soc",
+  "set_name": "Secrets of Strixhaven Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/97fab8d1-480a-419d-ab14-663968e29b9c",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Asoc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/soc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/0fd4a0f7-ba03-4158-95cd-4effe798aec0/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A985f9dd7-e693-48ff-9dd6-a1a3cbaa236b&unique=prints",
+  "collector_number": "318",
+  "digital": false,
+  "rarity": "mythic",
+  "watermark": "prismari",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Liiga Smilshkalne",
+  "artist_ids": [
+    "5a50ced2-b301-4195-8af4-f7e1bae07d28"
+  ],
+  "illustration_id": "bd4b7096-5e35-49e9-97c0-96d63400abac",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 4947,
+  "penny_rank": 601,
+  "prices": {
+    "usd": "0.30",
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": "0.35",
+    "eur_foil": null,
+    "tix": "0.17"
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DMagma%2BOpus",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DMagma%2BOpus",
+    "edhrec": "https://edhrec.com/route/?cc=Magma+Opus"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F687638%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=881652&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards/149103?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "object": "card",
+  "id": "aa23e922-f44b-4af8-8ce0-bc1bc1e65bad",
+  "oracle_id": "61747805-0c34-4beb-8cbf-97bac7a998d0",
+  "multiverse_ids": [],
+  "resource_id": "DF7B04695FF96C0C9CD76C25708378AE7BCAB98B509C3E1660A5AD486DF7ADF6",
+  "mtgo_id": 148639,
+  "tcgplayer_id": 687367,
+  "cardmarket_id": 881291,
+  "name": "Renegade Bull",
+  "lang": "en",
+  "released_at": "2026-04-24",
+  "uri": "https://api.scryfall.com/cards/aa23e922-f44b-4af8-8ce0-bc1bc1e65bad",
+  "scryfall_uri": "https://scryfall.com/card/soc/36/renegade-bull?utm_source=api",
+  "layout": "normal",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T00:50:55Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/a/a/aa23e922-f44b-4af8-8ce0-bc1bc1e65bad.jpg?1783903855",
+    "normal": "https://cards.scryfall.io/normal/front/a/a/aa23e922-f44b-4af8-8ce0-bc1bc1e65bad.jpg?1783903855",
+    "large": "https://cards.scryfall.io/large/front/a/a/aa23e922-f44b-4af8-8ce0-bc1bc1e65bad.jpg?1783903855",
+    "png": "https://cards.scryfall.io/png/front/a/a/aa23e922-f44b-4af8-8ce0-bc1bc1e65bad.png?1783903855",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/a/a/aa23e922-f44b-4af8-8ce0-bc1bc1e65bad.jpg?1783903855",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/a/a/aa23e922-f44b-4af8-8ce0-bc1bc1e65bad.jpg?1783903855",
+    "thumb": "https://cards.scryfall.io/thumb/front/a/a/aa23e922-f44b-4af8-8ce0-bc1bc1e65bad.webp?1783903855",
+    "grid": "https://cards.scryfall.io/grid/front/a/a/aa23e922-f44b-4af8-8ce0-bc1bc1e65bad.webp?1783903855",
+    "display": "https://cards.scryfall.io/display/front/a/a/aa23e922-f44b-4af8-8ce0-bc1bc1e65bad.webp?1783903855",
+    "art": "https://cards.scryfall.io/art/front/a/a/aa23e922-f44b-4af8-8ce0-bc1bc1e65bad.webp?1783903855",
+    "crop": "https://cards.scryfall.io/crop/front/a/a/aa23e922-f44b-4af8-8ce0-bc1bc1e65bad.webp?1783903855"
+  },
+  "mana_cost": "{4}{R}",
+  "cmc": 5.0,
+  "type_line": "Creature — Ox",
+  "oracle_text": "Trample\nWhenever you cast an instant or sorcery spell, this creature gets +X/+0 until end of turn, where X is that spell's mana value.\nWhenever this creature attacks, exile up to one target instant or sorcery card from your graveyard and copy it. You may cast the copy without paying its mana cost.",
+  "power": "0",
+  "toughness": "5",
+  "colors": [
+    "R"
+  ],
+  "color_identity": [
+    "R"
+  ],
+  "keywords": [
+    "Trample"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "97fab8d1-480a-419d-ab14-663968e29b9c",
+  "set": "soc",
+  "set_name": "Secrets of Strixhaven Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/97fab8d1-480a-419d-ab14-663968e29b9c",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Asoc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/soc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/aa23e922-f44b-4af8-8ce0-bc1bc1e65bad/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A61747805-0c34-4beb-8cbf-97bac7a998d0&unique=prints",
+  "collector_number": "36",
+  "digital": false,
+  "rarity": "rare",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Adrián Rodríguez Pérez",
+  "artist_ids": [
+    "24f88106-bd8e-4fea-963d-c523bd8b8137"
+  ],
+  "illustration_id": "2759a0bb-5f54-4c50-84f6-f1fcb69e216d",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 14011,
+  "prices": {
+    "usd": "0.23",
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": "0.20",
+    "eur_foil": null,
+    "tix": "1.90"
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DRenegade%2BBull",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DRenegade%2BBull",
+    "edhrec": "https://edhrec.com/route/?cc=Renegade+Bull"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F687367%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=881291&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards/148639?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "object": "card",
+  "id": "a8883ff5-653c-472c-92b5-e36e94ae3492",
+  "oracle_id": "ec6ccd8f-cc75-4a50-8639-f4ec31a280aa",
+  "multiverse_ids": [
+    524111
+  ],
+  "name": "Priest of Fell Rites",
+  "printed_name": "Sacerdotisa de Ritos Torpes",
+  "lang": "pt",
+  "released_at": "2021-06-18",
+  "uri": "https://api.scryfall.com/cards/a8883ff5-653c-472c-92b5-e36e94ae3492",
+  "scryfall_uri": "https://scryfall.com/card/mh2/208/pt/sacerdotisa-de-ritos-torpes-(priest-of-fell-rites)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-01T04:39:45Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/a/8/a8883ff5-653c-472c-92b5-e36e94ae3492.jpg?1782880785",
+    "normal": "https://cards.scryfall.io/normal/front/a/8/a8883ff5-653c-472c-92b5-e36e94ae3492.jpg?1782880785",
+    "large": "https://cards.scryfall.io/large/front/a/8/a8883ff5-653c-472c-92b5-e36e94ae3492.jpg?1782880785",
+    "png": "https://cards.scryfall.io/png/front/a/8/a8883ff5-653c-472c-92b5-e36e94ae3492.png?1782880785",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/a/8/a8883ff5-653c-472c-92b5-e36e94ae3492.jpg?1782880785",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/a/8/a8883ff5-653c-472c-92b5-e36e94ae3492.jpg?1782880785",
+    "thumb": "https://cards.scryfall.io/thumb/front/a/8/a8883ff5-653c-472c-92b5-e36e94ae3492.webp?1782880785",
+    "grid": "https://cards.scryfall.io/grid/front/a/8/a8883ff5-653c-472c-92b5-e36e94ae3492.webp?1782880785",
+    "display": "https://cards.scryfall.io/display/front/a/8/a8883ff5-653c-472c-92b5-e36e94ae3492.webp?1782880785",
+    "art": "https://cards.scryfall.io/art/front/a/8/a8883ff5-653c-472c-92b5-e36e94ae3492.webp?1782880785",
+    "crop": "https://cards.scryfall.io/crop/front/a/8/a8883ff5-653c-472c-92b5-e36e94ae3492.webp?1782880785"
+  },
+  "mana_cost": "{W}{B}",
+  "cmc": 2.0,
+  "type_line": "Creature — Human Warlock",
+  "printed_type_line": "Criatura — Humano Bruxo",
+  "oracle_text": "{T}, Pay 3 life, Sacrifice this creature: Return target creature card from your graveyard to the battlefield. Activate only as a sorcery.\nUnearth {3}{W}{B} ({3}{W}{B}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)",
+  "printed_text": "{T}, pague 3 pontos de vida, sacrifique Sacerdotisa de Ritos Torpes: Devolva o card de criatura alvo de seu cemitério para o campo de batalha. Ative somente como um feitiço.\nDesenterrar {3}{W}{B} ({3}{W}{B}: Devolva este card de seu cemitério para o campo de batalha. Ele ganha ímpeto. Exile-o no início da próxima etapa final ou se ele for deixar o campo de batalha. Use desenterrar somente como um feitiço.)",
+  "power": "2",
+  "toughness": "2",
+  "colors": [
+    "B",
+    "W"
+  ],
+  "color_identity": [
+    "B",
+    "W"
+  ],
+  "keywords": [
+    "Unearth"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "not_legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "c1c7eb8c-f205-40ab-a609-767cb296544e",
+  "set": "mh2",
+  "set_name": "Modern Horizons 2",
+  "set_type": "draft_innovation",
+  "set_uri": "https://api.scryfall.com/sets/c1c7eb8c-f205-40ab-a609-767cb296544e",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Amh2&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/mh2?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/a8883ff5-653c-472c-92b5-e36e94ae3492/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Aec6ccd8f-cc75-4a50-8639-f4ec31a280aa&unique=prints",
+  "collector_number": "208",
+  "digital": false,
+  "rarity": "rare",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Pauline Voss",
+  "artist_ids": [
+    "d0d814a5-f4bc-4383-afe5-a3f329b68dce"
+  ],
+  "illustration_id": "87e353c3-f7da-48c8-aaaf-d4bbb4cb1ac3",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "edhrec_rank": 2591,
+  "penny_rank": 1436,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=524111&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DPriest%2Bof%2BFell%2BRites",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DPriest%2Bof%2BFell%2BRites",
+    "edhrec": "https://edhrec.com/route/?cc=Priest+of+Fell+Rites"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DPriest%2Bof%2BFell%2BRites%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Priest+of+Fell+Rites&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Priest+of+Fell+Rites&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "object": "card",
+  "id": "f6fdb814-45c6-4d14-afff-7f5bd1bd10a1",
+  "oracle_id": "51af3da5-0970-436e-baa6-3171889a40e0",
+  "multiverse_ids": [],
+  "resource_id": "D82BB0DF39B642AA8972CD083ABDCE9626CB8CCF982C513F70DBFDFC7CD43E60",
+  "mtgo_id": 149551,
+  "arena_id": 102485,
+  "tcgplayer_id": 686697,
+  "cardmarket_id": 881761,
+  "name": "Primary Research",
+  "lang": "en",
+  "released_at": "2026-04-24",
+  "uri": "https://api.scryfall.com/cards/f6fdb814-45c6-4d14-afff-7f5bd1bd10a1",
+  "scryfall_uri": "https://scryfall.com/card/sos/26/primary-research?utm_source=api",
+  "layout": "normal",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T00:48:20Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/f/6/f6fdb814-45c6-4d14-afff-7f5bd1bd10a1.jpg?1783903700",
+    "normal": "https://cards.scryfall.io/normal/front/f/6/f6fdb814-45c6-4d14-afff-7f5bd1bd10a1.jpg?1783903700",
+    "large": "https://cards.scryfall.io/large/front/f/6/f6fdb814-45c6-4d14-afff-7f5bd1bd10a1.jpg?1783903700",
+    "png": "https://cards.scryfall.io/png/front/f/6/f6fdb814-45c6-4d14-afff-7f5bd1bd10a1.png?1783903700",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/f/6/f6fdb814-45c6-4d14-afff-7f5bd1bd10a1.jpg?1783903700",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/f/6/f6fdb814-45c6-4d14-afff-7f5bd1bd10a1.jpg?1783903700",
+    "thumb": "https://cards.scryfall.io/thumb/front/f/6/f6fdb814-45c6-4d14-afff-7f5bd1bd10a1.webp?1783903700",
+    "grid": "https://cards.scryfall.io/grid/front/f/6/f6fdb814-45c6-4d14-afff-7f5bd1bd10a1.webp?1783903700",
+    "display": "https://cards.scryfall.io/display/front/f/6/f6fdb814-45c6-4d14-afff-7f5bd1bd10a1.webp?1783903700",
+    "art": "https://cards.scryfall.io/art/front/f/6/f6fdb814-45c6-4d14-afff-7f5bd1bd10a1.webp?1783903700",
+    "crop": "https://cards.scryfall.io/crop/front/f/6/f6fdb814-45c6-4d14-afff-7f5bd1bd10a1.webp?1783903700"
+  },
+  "mana_cost": "{4}{W}",
+  "cmc": 5.0,
+  "type_line": "Enchantment",
+  "oracle_text": "When this enchantment enters, return target nonland permanent card with mana value 3 or less from your graveyard to the battlefield.\nAt the beginning of your end step, if a card left your graveyard this turn, draw a card.",
+  "colors": [
+    "W"
+  ],
+  "color_identity": [
+    "W"
+  ],
+  "keywords": [],
+  "legalities": {
+    "standard": "legal",
+    "future": "legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo",
+    "arena"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "e487c9ce-5e76-4756-bcd0-e4b7db5c38a3",
+  "set": "sos",
+  "set_name": "Secrets of Strixhaven",
+  "set_type": "expansion",
+  "set_uri": "https://api.scryfall.com/sets/e487c9ce-5e76-4756-bcd0-e4b7db5c38a3",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Asos&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/sos?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/f6fdb814-45c6-4d14-afff-7f5bd1bd10a1/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A51af3da5-0970-436e-baa6-3171889a40e0&unique=prints",
+  "collector_number": "26",
+  "digital": false,
+  "rarity": "uncommon",
+  "flavor_text": "Witnessing something firsthand is somehow both the best and the worst way to learn.",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Michal Ivan",
+  "artist_ids": [
+    "89ba58cb-84a6-480b-a86c-d8ae57df2834"
+  ],
+  "illustration_id": "dc5b3f01-5319-4b87-9fc7-010696279208",
+  "border_color": "black",
+  "frame": "2015",
+  "frame_effects": [
+    "enchantment"
+  ],
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 11185,
+  "prices": {
+    "usd": "0.24",
+    "usd_foil": "0.25",
+    "usd_etched": null,
+    "eur": "0.06",
+    "eur_foil": "0.07",
+    "tix": "0.03"
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DPrimary%2BResearch",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DPrimary%2BResearch",
+    "edhrec": "https://edhrec.com/route/?cc=Primary+Research"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F686697%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=881761&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards/149551?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

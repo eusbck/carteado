@@ -1,0 +1,133 @@
+{
+  "object": "card",
+  "id": "c759ae32-c58a-4fdb-88ec-8c5e43ea7798",
+  "oracle_id": "2975590d-6a5b-41e5-8a3b-e9325e71226a",
+  "multiverse_ids": [
+    633992
+  ],
+  "name": "Starfield Mystic",
+  "printed_name": "Místico do Campo Estrelado",
+  "lang": "pt",
+  "released_at": "2023-09-08",
+  "uri": "https://api.scryfall.com/cards/c759ae32-c58a-4fdb-88ec-8c5e43ea7798",
+  "scryfall_uri": "https://scryfall.com/card/woc/76/pt/m%C3%ADstico-do-campo-estrelado-(starfield-mystic)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T09:44:27Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/c/7/c759ae32-c58a-4fdb-88ec-8c5e43ea7798.jpg?1782812667",
+    "normal": "https://cards.scryfall.io/normal/front/c/7/c759ae32-c58a-4fdb-88ec-8c5e43ea7798.jpg?1782812667",
+    "large": "https://cards.scryfall.io/large/front/c/7/c759ae32-c58a-4fdb-88ec-8c5e43ea7798.jpg?1782812667",
+    "png": "https://cards.scryfall.io/png/front/c/7/c759ae32-c58a-4fdb-88ec-8c5e43ea7798.png?1782812667",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/c/7/c759ae32-c58a-4fdb-88ec-8c5e43ea7798.jpg?1782812667",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/c/7/c759ae32-c58a-4fdb-88ec-8c5e43ea7798.jpg?1782812667",
+    "thumb": "https://cards.scryfall.io/thumb/front/c/7/c759ae32-c58a-4fdb-88ec-8c5e43ea7798.webp?1782812667",
+    "grid": "https://cards.scryfall.io/grid/front/c/7/c759ae32-c58a-4fdb-88ec-8c5e43ea7798.webp?1782812667",
+    "display": "https://cards.scryfall.io/display/front/c/7/c759ae32-c58a-4fdb-88ec-8c5e43ea7798.webp?1782812667",
+    "art": "https://cards.scryfall.io/art/front/c/7/c759ae32-c58a-4fdb-88ec-8c5e43ea7798.webp?1782812667",
+    "crop": "https://cards.scryfall.io/crop/front/c/7/c759ae32-c58a-4fdb-88ec-8c5e43ea7798.webp?1782812667"
+  },
+  "mana_cost": "{1}{W}",
+  "cmc": 2.0,
+  "type_line": "Creature — Human Cleric",
+  "printed_type_line": "Criatura — Humano Clérigo",
+  "oracle_text": "Enchantment spells you cast cost {1} less to cast.\nWhenever an enchantment you control is put into a graveyard from the battlefield, put a +1/+1 counter on this creature.",
+  "printed_text": "As mágicas de encantamento que você conjura custam {1} a menos para serem conjuradas.\nToda vez que um encantamento que você controla for colocado em um cemitério vindo do campo de batalha, coloque um marcador +1/+1 em Místico do Campo Estrelado.",
+  "power": "2",
+  "toughness": "2",
+  "colors": [
+    "W"
+  ],
+  "color_identity": [
+    "W"
+  ],
+  "keywords": [],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "51c0814a-2db2-4182-9aac-77340e9a540d",
+  "set": "woc",
+  "set_name": "Wilds of Eldraine Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/51c0814a-2db2-4182-9aac-77340e9a540d",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Awoc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/woc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/c759ae32-c58a-4fdb-88ec-8c5e43ea7798/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A2975590d-6a5b-41e5-8a3b-e9325e71226a&unique=prints",
+  "collector_number": "76",
+  "digital": false,
+  "rarity": "rare",
+  "flavor_text": "\"O reino dos deuses se abre diante de mim!\"",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Eric Deschamps",
+  "artist_ids": [
+    "37970e22-9cee-44c1-af44-5ee27cf26b76"
+  ],
+  "illustration_id": "ae2bcadf-de62-4a49-97a4-ea25bf832619",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 1208,
+  "penny_rank": 6297,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=633992&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DStarfield%2BMystic",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DStarfield%2BMystic",
+    "edhrec": "https://edhrec.com/route/?cc=Starfield+Mystic"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DStarfield%2BMystic%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Starfield+Mystic&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Starfield+Mystic&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

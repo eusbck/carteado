@@ -1,0 +1,136 @@
+{
+  "object": "card",
+  "id": "f3140950-1ce2-41b8-91f9-da53bfbee963",
+  "oracle_id": "d22ea32b-2128-4dcc-8b1c-c4c52f0b2f45",
+  "multiverse_ids": [],
+  "resource_id": "BCAA26F3FD267E9F8B74368D302104EB16A310AF3DBD4BBAF3E3100E5071B862",
+  "mtgo_id": 140089,
+  "tcgplayer_id": 631567,
+  "cardmarket_id": 824581,
+  "name": "Rejoin the Fight",
+  "lang": "en",
+  "released_at": "2025-06-13",
+  "uri": "https://api.scryfall.com/cards/f3140950-1ce2-41b8-91f9-da53bfbee963",
+  "scryfall_uri": "https://scryfall.com/card/fic/49/rejoin-the-fight?utm_source=api",
+  "layout": "normal",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T01:32:38Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/f/3/f3140950-1ce2-41b8-91f9-da53bfbee963.jpg?1783906358",
+    "normal": "https://cards.scryfall.io/normal/front/f/3/f3140950-1ce2-41b8-91f9-da53bfbee963.jpg?1783906358",
+    "large": "https://cards.scryfall.io/large/front/f/3/f3140950-1ce2-41b8-91f9-da53bfbee963.jpg?1783906358",
+    "png": "https://cards.scryfall.io/png/front/f/3/f3140950-1ce2-41b8-91f9-da53bfbee963.png?1783906358",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/f/3/f3140950-1ce2-41b8-91f9-da53bfbee963.jpg?1783906358",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/f/3/f3140950-1ce2-41b8-91f9-da53bfbee963.jpg?1783906358",
+    "thumb": "https://cards.scryfall.io/thumb/front/f/3/f3140950-1ce2-41b8-91f9-da53bfbee963.webp?1783906358",
+    "grid": "https://cards.scryfall.io/grid/front/f/3/f3140950-1ce2-41b8-91f9-da53bfbee963.webp?1783906358",
+    "display": "https://cards.scryfall.io/display/front/f/3/f3140950-1ce2-41b8-91f9-da53bfbee963.webp?1783906358",
+    "art": "https://cards.scryfall.io/art/front/f/3/f3140950-1ce2-41b8-91f9-da53bfbee963.webp?1783906358",
+    "crop": "https://cards.scryfall.io/crop/front/f/3/f3140950-1ce2-41b8-91f9-da53bfbee963.webp?1783906358"
+  },
+  "mana_cost": "{5}{B}",
+  "cmc": 6.0,
+  "type_line": "Sorcery",
+  "oracle_text": "Mill three cards. Then starting with the next opponent in turn order, each opponent chooses a creature card in your graveyard that hasn't been chosen. Return each card chosen this way to the battlefield under your control.",
+  "colors": [
+    "B"
+  ],
+  "color_identity": [
+    "B"
+  ],
+  "keywords": [
+    "Mill"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "30659956-4558-4cbf-a65f-34cd00c89579",
+  "set": "fic",
+  "set_name": "Final Fantasy Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/30659956-4558-4cbf-a65f-34cd00c89579",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Afic&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/fic?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/f3140950-1ce2-41b8-91f9-da53bfbee963/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Ad22ea32b-2128-4dcc-8b1c-c4c52f0b2f45&unique=prints",
+  "collector_number": "49",
+  "digital": false,
+  "rarity": "rare",
+  "flavor_text": "\"I have to fight... to protect the people I love, and to make the world a safe place for new lives!\"",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "YASUNARI HIRASAKA",
+  "artist_ids": [
+    "fe57ad5e-a5e0-454a-8733-f2bcd0588567"
+  ],
+  "illustration_id": "8a478cc8-11e1-4199-b4ef-f39d0e6719b8",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "triangle",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "promo_types": [
+    "surgefoil",
+    "ffvi",
+    "universesbeyond"
+  ],
+  "edhrec_rank": 8297,
+  "prices": {
+    "usd": "0.18",
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": "0.24",
+    "eur_foil": null,
+    "tix": "2.39"
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DRejoin%2Bthe%2BFight",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DRejoin%2Bthe%2BFight",
+    "edhrec": "https://edhrec.com/route/?cc=Rejoin+the+Fight"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F631567%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=824581&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards/140089?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

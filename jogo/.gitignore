@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.cache/
+# banco, senha de acesso e caches de cada anfitrião; as imagens das cartas importadas pela tela Decks vão
+# junto, para quem clona jogar com elas
+dados-locais/*
+!dados-locais/imagens/
+*.sqlite
+*.sqlite-*
+.env
+testes/dbg/
+
+decks/.trava
+decks/*.novo

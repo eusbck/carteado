@@ -1,0 +1,131 @@
+{
+  "object": "card",
+  "id": "6f270edc-1859-4ef2-822b-94fe35e5461f",
+  "oracle_id": "3d6fa57a-aa53-4b5c-b8af-a7612c823117",
+  "multiverse_ids": [
+    641997
+  ],
+  "name": "Faithless Looting",
+  "printed_name": "Pilhagem Infiel",
+  "lang": "pt",
+  "released_at": "2023-11-17",
+  "uri": "https://api.scryfall.com/cards/6f270edc-1859-4ef2-822b-94fe35e5461f",
+  "scryfall_uri": "https://scryfall.com/card/lcc/225/pt/pilhagem-infiel-(faithless-looting)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T08:59:31Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/6/f/6f270edc-1859-4ef2-822b-94fe35e5461f.jpg?1782809971",
+    "normal": "https://cards.scryfall.io/normal/front/6/f/6f270edc-1859-4ef2-822b-94fe35e5461f.jpg?1782809971",
+    "large": "https://cards.scryfall.io/large/front/6/f/6f270edc-1859-4ef2-822b-94fe35e5461f.jpg?1782809971",
+    "png": "https://cards.scryfall.io/png/front/6/f/6f270edc-1859-4ef2-822b-94fe35e5461f.png?1782809971",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/6/f/6f270edc-1859-4ef2-822b-94fe35e5461f.jpg?1782809971",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/6/f/6f270edc-1859-4ef2-822b-94fe35e5461f.jpg?1782809971",
+    "thumb": "https://cards.scryfall.io/thumb/front/6/f/6f270edc-1859-4ef2-822b-94fe35e5461f.webp?1782809971",
+    "grid": "https://cards.scryfall.io/grid/front/6/f/6f270edc-1859-4ef2-822b-94fe35e5461f.webp?1782809971",
+    "display": "https://cards.scryfall.io/display/front/6/f/6f270edc-1859-4ef2-822b-94fe35e5461f.webp?1782809971",
+    "art": "https://cards.scryfall.io/art/front/6/f/6f270edc-1859-4ef2-822b-94fe35e5461f.webp?1782809971",
+    "crop": "https://cards.scryfall.io/crop/front/6/f/6f270edc-1859-4ef2-822b-94fe35e5461f.webp?1782809971"
+  },
+  "mana_cost": "{R}",
+  "cmc": 1.0,
+  "type_line": "Sorcery",
+  "printed_type_line": "Feitiço",
+  "oracle_text": "Draw two cards, then discard two cards.\nFlashback {2}{R} (You may cast this card from your graveyard for its flashback cost. Then exile it.)",
+  "printed_text": "Compre dois cards e depois descarte dois cards.\nRecapitular {2}{R} (Você pode conjurar este card de seu cemitério pagando seu custo de recapitular. Depois, exile-a.)",
+  "colors": [
+    "R"
+  ],
+  "color_identity": [
+    "R"
+  ],
+  "keywords": [
+    "Flashback"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "not_legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "d253edc3-5bc7-4cf1-9446-a8540dedffa5",
+  "set": "lcc",
+  "set_name": "The Lost Caverns of Ixalan Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/d253edc3-5bc7-4cf1-9446-a8540dedffa5",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Alcc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/lcc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/6f270edc-1859-4ef2-822b-94fe35e5461f/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A3d6fa57a-aa53-4b5c-b8af-a7612c823117&unique=prints",
+  "collector_number": "225",
+  "digital": false,
+  "rarity": "common",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Karl Kopinski",
+  "artist_ids": [
+    "0fad2c48-a56e-4a0b-b512-224f6f238f20"
+  ],
+  "illustration_id": "acbb66cb-1b01-4520-9596-0d406384caab",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 98,
+  "penny_rank": 50,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=641997&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DFaithless%2BLooting",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DFaithless%2BLooting",
+    "edhrec": "https://edhrec.com/route/?cc=Faithless+Looting"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DFaithless%2BLooting%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Faithless+Looting&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Faithless+Looting&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

@@ -1,0 +1,136 @@
+{
+  "object": "card",
+  "id": "b52c5830-7759-4e44-ba1c-d0cccf30b9ad",
+  "oracle_id": "7cc81fb3-495c-47cd-8c56-96197d87e9e0",
+  "multiverse_ids": [
+    515777
+  ],
+  "name": "Witherbloom Command",
+  "printed_name": "Comando de Murchaflor",
+  "lang": "pt",
+  "released_at": "2021-04-23",
+  "uri": "https://api.scryfall.com/cards/b52c5830-7759-4e44-ba1c-d0cccf30b9ad",
+  "scryfall_uri": "https://scryfall.com/card/stx/248/pt/comando-de-murchaflor-(witherbloom-command)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-01T05:16:59Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/b/5/b52c5830-7759-4e44-ba1c-d0cccf30b9ad.jpg?1782883019",
+    "normal": "https://cards.scryfall.io/normal/front/b/5/b52c5830-7759-4e44-ba1c-d0cccf30b9ad.jpg?1782883019",
+    "large": "https://cards.scryfall.io/large/front/b/5/b52c5830-7759-4e44-ba1c-d0cccf30b9ad.jpg?1782883019",
+    "png": "https://cards.scryfall.io/png/front/b/5/b52c5830-7759-4e44-ba1c-d0cccf30b9ad.png?1782883019",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/b/5/b52c5830-7759-4e44-ba1c-d0cccf30b9ad.jpg?1782883019",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/b/5/b52c5830-7759-4e44-ba1c-d0cccf30b9ad.jpg?1782883019",
+    "thumb": "https://cards.scryfall.io/thumb/front/b/5/b52c5830-7759-4e44-ba1c-d0cccf30b9ad.webp?1782883019",
+    "grid": "https://cards.scryfall.io/grid/front/b/5/b52c5830-7759-4e44-ba1c-d0cccf30b9ad.webp?1782883019",
+    "display": "https://cards.scryfall.io/display/front/b/5/b52c5830-7759-4e44-ba1c-d0cccf30b9ad.webp?1782883019",
+    "art": "https://cards.scryfall.io/art/front/b/5/b52c5830-7759-4e44-ba1c-d0cccf30b9ad.webp?1782883019",
+    "crop": "https://cards.scryfall.io/crop/front/b/5/b52c5830-7759-4e44-ba1c-d0cccf30b9ad.webp?1782883019"
+  },
+  "mana_cost": "{B}{G}",
+  "cmc": 2.0,
+  "type_line": "Sorcery",
+  "printed_type_line": "Feitiço",
+  "oracle_text": "Choose two —\n• Target player mills three cards, then you return a land card from your graveyard to your hand.\n• Destroy target noncreature, nonland permanent with mana value 2 or less.\n• Target creature gets -3/-1 until end of turn.\n• Target opponent loses 2 life and you gain 2 life.",
+  "printed_text": "Escolha dois —\n• O jogador alvo tritura três cards. Em seguida, você devolve um card de terreno de seu cemitério para sua mão.\n• Destrua a permanente alvo não de criatura e não de terreno com valor de mana igual ou inferior a 2.\n• A criatura alvo recebe -3/-1 até o final do turno.\n• O oponente alvo perde 2 pontos de vida e você ganha 2 pontos de vida.",
+  "colors": [
+    "B",
+    "G"
+  ],
+  "color_identity": [
+    "B",
+    "G"
+  ],
+  "keywords": [
+    "Mill"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "arena",
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "541c3c28-8747-40e5-a231-8e8f33234859",
+  "set": "stx",
+  "set_name": "Strixhaven: School of Mages",
+  "set_type": "expansion",
+  "set_uri": "https://api.scryfall.com/sets/541c3c28-8747-40e5-a231-8e8f33234859",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Astx&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/stx?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/b52c5830-7759-4e44-ba1c-d0cccf30b9ad/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A7cc81fb3-495c-47cd-8c56-96197d87e9e0&unique=prints",
+  "collector_number": "248",
+  "digital": false,
+  "rarity": "rare",
+  "watermark": "witherbloom",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Dmitry Burmak",
+  "artist_ids": [
+    "9872f5c0-274a-48ce-a9ad-6f0d5654e29c"
+  ],
+  "illustration_id": "d8883b12-2daa-4b7f-9f03-4bd722cdacef",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "edhrec_rank": 8549,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=515777&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DWitherbloom%2BCommand",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DWitherbloom%2BCommand",
+    "edhrec": "https://edhrec.com/route/?cc=Witherbloom+Command"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DWitherbloom%2BCommand%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Witherbloom+Command&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Witherbloom+Command&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

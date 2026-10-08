@@ -1,0 +1,133 @@
+{
+  "object": "card",
+  "id": "ad7f87dd-1c43-4b6f-9d68-cc09ef76dbc2",
+  "oracle_id": "db8d8643-3d0b-4f20-bf53-f4cd26a0e8df",
+  "multiverse_ids": [],
+  "resource_id": "BCF9C0138DC8CFABCE9BAB0A91FFCD4B53027F46229ACF08B9213D20FB71F83C",
+  "mtgo_id": 146269,
+  "tcgplayer_id": 671232,
+  "cardmarket_id": 865099,
+  "name": "Sheltered Thicket",
+  "lang": "en",
+  "released_at": "2026-01-23",
+  "uri": "https://api.scryfall.com/cards/ad7f87dd-1c43-4b6f-9d68-cc09ef76dbc2",
+  "scryfall_uri": "https://scryfall.com/card/ecc/167/sheltered-thicket?utm_source=api",
+  "layout": "normal",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T01:01:59Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/a/d/ad7f87dd-1c43-4b6f-9d68-cc09ef76dbc2.jpg?1783904519",
+    "normal": "https://cards.scryfall.io/normal/front/a/d/ad7f87dd-1c43-4b6f-9d68-cc09ef76dbc2.jpg?1783904519",
+    "large": "https://cards.scryfall.io/large/front/a/d/ad7f87dd-1c43-4b6f-9d68-cc09ef76dbc2.jpg?1783904519",
+    "png": "https://cards.scryfall.io/png/front/a/d/ad7f87dd-1c43-4b6f-9d68-cc09ef76dbc2.png?1783904519",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/a/d/ad7f87dd-1c43-4b6f-9d68-cc09ef76dbc2.jpg?1783904519",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/a/d/ad7f87dd-1c43-4b6f-9d68-cc09ef76dbc2.jpg?1783904519",
+    "thumb": "https://cards.scryfall.io/thumb/front/a/d/ad7f87dd-1c43-4b6f-9d68-cc09ef76dbc2.webp?1783904519",
+    "grid": "https://cards.scryfall.io/grid/front/a/d/ad7f87dd-1c43-4b6f-9d68-cc09ef76dbc2.webp?1783904519",
+    "display": "https://cards.scryfall.io/display/front/a/d/ad7f87dd-1c43-4b6f-9d68-cc09ef76dbc2.webp?1783904519",
+    "art": "https://cards.scryfall.io/art/front/a/d/ad7f87dd-1c43-4b6f-9d68-cc09ef76dbc2.webp?1783904519",
+    "crop": "https://cards.scryfall.io/crop/front/a/d/ad7f87dd-1c43-4b6f-9d68-cc09ef76dbc2.webp?1783904519"
+  },
+  "mana_cost": "",
+  "cmc": 0.0,
+  "type_line": "Land — Mountain Forest",
+  "oracle_text": "({T}: Add {R} or {G}.)\nThis land enters tapped.\nCycling {2} ({2}, Discard this card: Draw a card.)",
+  "colors": [],
+  "color_identity": [
+    "G",
+    "R"
+  ],
+  "keywords": [
+    "Cycling"
+  ],
+  "produced_mana": [
+    "G",
+    "R"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "805b5a0c-f8bb-4555-86ea-eb9ec36a011a",
+  "set": "ecc",
+  "set_name": "Lorwyn Eclipsed Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/805b5a0c-f8bb-4555-86ea-eb9ec36a011a",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Aecc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/ecc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/ad7f87dd-1c43-4b6f-9d68-cc09ef76dbc2/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Adb8d8643-3d0b-4f20-bf53-f4cd26a0e8df&unique=prints",
+  "collector_number": "167",
+  "digital": false,
+  "rarity": "rare",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Sung Choi",
+  "artist_ids": [
+    "4b149402-618d-4f54-9db8-788e4a5bce70"
+  ],
+  "illustration_id": "89b25f52-7ec7-4e9e-9206-d241757f8d68",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 652,
+  "penny_rank": 423,
+  "prices": {
+    "usd": "0.25",
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": "0.14",
+    "eur_foil": null,
+    "tix": "0.09"
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DSheltered%2BThicket",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DSheltered%2BThicket",
+    "edhrec": "https://edhrec.com/route/?cc=Sheltered+Thicket"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F671232%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=865099&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards/146269?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

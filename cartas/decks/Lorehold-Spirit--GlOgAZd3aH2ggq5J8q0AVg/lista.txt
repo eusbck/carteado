@@ -1,0 +1,120 @@
+[mainboard]
+
+1 Boros Charm (GTC) 148
+1 Thrilling Discovery (STX) 243
+1 Trove Warden (J22) 259
+1 Bag of Holding (J22) 756
+1 Banon, the Returners' Leader (FIC) 78
+1 Lorehold Charm (SOS) 200
+1 Kirol, History Buff // Pack a Punch (SOS) 198
+1 Advanced Reconstruction (SOC) 30
+1 Relic Retriever (SOC) 35
+1 Vanguard of the Restless (SOC) 16
+1 Augusta, Order Returned (SOC) 11
+1 Ceaseless Conflict (SOC) 12
+1 Turbulent Steppe (SOC) 58
+1 Lorehold Archivist // Restore Relic (SOC) 49
+1 Command Tower (SOC) 129
+1 Spirit of Resilience (SOC) 37
+1 Monologue Tax (SOC) 157
+1 Swords to Plowshares (SOC) 179
+1 Arcane Signet (SOC) 127
+1 Staff of the Storyteller (SOC) 111
+1 Path to Exile (SOC) 159
+1 Archaeomancer's Map (SOC) 136
+1 Sevinne's Reclamation (SOC) 170
+1 Sol Ring (SOC) 128
+1 Quintorius, Loremaster (SOC) 327
+1 Quintorius, Field Historian (SOC) 326
+1 Primary Research (SOS) 26
+1 Fields of Strife (SOS) 255
+1 Moonshaker Cavalry (SOC) 110
+1 Fellwar Stone (SOC) 347
+1 Anger (SOC) 235
+1 Faithless Looting (SOC) 244
+1 Fabled Passage (SOC) 130
+1 Exotic Orchard (SOC) 369
+1 Guardian of Faith (SOC) 148
+1 Drumbellower (SOC) 143
+1 Laelia, the Blade Reforged (SOC) 246
+1 Karmic Guide (SOC) 151
+1 Selfless Spirit (SOC) 167
+1 White Orchid Phantom (SOC) 184
+1 Venerable Warsinger (SOC) 336
+1 Hofri Ghostforge (SOC) 314
+1 Seize the Spoils (SOS) 129
+1 Currency Converter (SOC) 345
+1 Terramorphic Expanse (SOS) 265
+1 Mind Stone (SOC) 352
+1 Tocasia's Welcome (SOC) 181
+1 Millikin (SOC) 351
+1 Lotus Field (SOC) 385
+1 Perpetual Timepiece (SOC) 354
+1 Conspiracy Theorist (SOC) 240
+1 Containment Construct (SOC) 344
+1 Angel of Indemnity (SOC) 133
+1 Balefire Liege (SOC) 295
+1 Battlefield Forge (SOC) 362
+1 Teshar, Ancestor's Apostle (SOC) 180
+1 Clifftop Retreat (SOC) 366
+1 Emeria, the Sky Ruin (SOC) 368
+1 Serra Paragon (SOC) 169
+1 Guardian Scalelord (SOC) 149
+1 Kami of Ancient Law (SOC) 150
+1 Rugged Prairie (SOC) 401
+1 Patchwork Banner (SOC) 353
+1 Radiant Summit (SOC) 396
+1 Temple of Triumph (SOC) 417
+1 Furycalm Snarl (SOC) 375
+1 Sunscorched Divide (SOC) 410
+1 Glittering Massif (SOC) 376
+1 Remorseful Cleric (SOC) 164
+1 Sacred Peaks (SOC) 402
+1 Squee, Goblin Nabob (SOC) 254
+1 Sun Titan (SOC) 178
+1 Tragic Arrogance (SOC) 182
+1 Wave of Reckoning (SOC) 112
+1 Mistveil Plains (SOC) 386
+1 Bitterthorn, Nissa's Animus (SOC) 343
+1 Rip Apart (SOC) 328
+1 Lorehold Campus (SOC) 384
+1 Study Hall (SOC) 407
+1 Ark of Hunger (SOS) 173
+1 Hardened Academic (PSOS) 194p
+1 Excava, the Risen Past (SOC) 2
+6 Mountain (SOS) 279
+11 Plains (SOS) 273
+
+[sideboard]
+
+
+[maybeboard]
+
+
+[commanders]
+
+1 Quintorius, History Chaser (SOC) 7
+
+[companions]
+
+
+[signatureSpells]
+
+
+[attractions]
+
+
+[stickers]
+
+
+[contraptions]
+
+
+[planes]
+
+
+[schemes]
+
+
+[tokens]
+

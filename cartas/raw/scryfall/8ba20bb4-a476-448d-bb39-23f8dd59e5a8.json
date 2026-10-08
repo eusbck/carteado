@@ -1,0 +1,208 @@
+{
+  "object": "card",
+  "id": "8ba20bb4-a476-448d-bb39-23f8dd59e5a8",
+  "oracle_id": "f81c047d-de36-4aed-806b-f14a290771a4",
+  "multiverse_ids": [],
+  "name": "Elemental",
+  "lang": "en",
+  "released_at": "2026-04-24",
+  "uri": "https://api.scryfall.com/cards/8ba20bb4-a476-448d-bb39-23f8dd59e5a8",
+  "scryfall_uri": "https://scryfall.com/card/tsoc/20/elemental?utm_source=api",
+  "layout": "token",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T00:46:10Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/8/b/8ba20bb4-a476-448d-bb39-23f8dd59e5a8.jpg?1783903570",
+    "normal": "https://cards.scryfall.io/normal/front/8/b/8ba20bb4-a476-448d-bb39-23f8dd59e5a8.jpg?1783903570",
+    "large": "https://cards.scryfall.io/large/front/8/b/8ba20bb4-a476-448d-bb39-23f8dd59e5a8.jpg?1783903570",
+    "png": "https://cards.scryfall.io/png/front/8/b/8ba20bb4-a476-448d-bb39-23f8dd59e5a8.png?1783903570",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/8/b/8ba20bb4-a476-448d-bb39-23f8dd59e5a8.jpg?1783903570",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/8/b/8ba20bb4-a476-448d-bb39-23f8dd59e5a8.jpg?1783903570",
+    "thumb": "https://cards.scryfall.io/thumb/front/8/b/8ba20bb4-a476-448d-bb39-23f8dd59e5a8.webp?1783903570",
+    "grid": "https://cards.scryfall.io/grid/front/8/b/8ba20bb4-a476-448d-bb39-23f8dd59e5a8.webp?1783903570",
+    "display": "https://cards.scryfall.io/display/front/8/b/8ba20bb4-a476-448d-bb39-23f8dd59e5a8.webp?1783903570",
+    "art": "https://cards.scryfall.io/art/front/8/b/8ba20bb4-a476-448d-bb39-23f8dd59e5a8.webp?1783903570",
+    "crop": "https://cards.scryfall.io/crop/front/8/b/8ba20bb4-a476-448d-bb39-23f8dd59e5a8.webp?1783903570"
+  },
+  "mana_cost": "",
+  "cmc": 0.0,
+  "type_line": "Token Creature — Elemental",
+  "oracle_text": "",
+  "power": "4",
+  "toughness": "4",
+  "colors": [
+    "R",
+    "U"
+  ],
+  "color_identity": [
+    "R",
+    "U"
+  ],
+  "keywords": [],
+  "all_parts": [
+    {
+      "object": "related_card",
+      "id": "692de35a-b239-49ba-b53f-7e699937ba6d",
+      "component": "combo_piece",
+      "name": "Zaffai, Thunder Conductor",
+      "type_line": "Legendary Creature — Human Shaman",
+      "uri": "https://api.scryfall.com/cards/692de35a-b239-49ba-b53f-7e699937ba6d"
+    },
+    {
+      "object": "related_card",
+      "id": "5443f46d-03f9-468e-a78d-a059529b1151",
+      "component": "combo_piece",
+      "name": "Resculpt",
+      "type_line": "Instant",
+      "uri": "https://api.scryfall.com/cards/5443f46d-03f9-468e-a78d-a059529b1151"
+    },
+    {
+      "object": "related_card",
+      "id": "0fd4a0f7-ba03-4158-95cd-4effe798aec0",
+      "component": "combo_piece",
+      "name": "Magma Opus",
+      "type_line": "Instant",
+      "uri": "https://api.scryfall.com/cards/0fd4a0f7-ba03-4158-95cd-4effe798aec0"
+    },
+    {
+      "object": "related_card",
+      "id": "76425962-bdc9-4ea7-9c96-dd21a1dd5644",
+      "component": "combo_piece",
+      "name": "Mascot Exhibition",
+      "type_line": "Sorcery — Lesson",
+      "uri": "https://api.scryfall.com/cards/76425962-bdc9-4ea7-9c96-dd21a1dd5644"
+    },
+    {
+      "object": "related_card",
+      "id": "b71b23e7-4f4c-46bc-a512-4e2e6ff303cd",
+      "component": "combo_piece",
+      "name": "Multiple Choice",
+      "type_line": "Sorcery",
+      "uri": "https://api.scryfall.com/cards/b71b23e7-4f4c-46bc-a512-4e2e6ff303cd"
+    },
+    {
+      "object": "related_card",
+      "id": "3f22608c-8575-45ac-9f1d-b87f0a1276ac",
+      "component": "combo_piece",
+      "name": "Rowan, Scholar of Sparks // Will, Scholar of Frost",
+      "type_line": "Legendary Planeswalker — Rowan // Legendary Planeswalker — Will",
+      "uri": "https://api.scryfall.com/cards/3f22608c-8575-45ac-9f1d-b87f0a1276ac"
+    },
+    {
+      "object": "related_card",
+      "id": "b92b7ea9-d60b-445c-b603-d160811a4e99",
+      "component": "combo_piece",
+      "name": "Elemental Expressionist",
+      "type_line": "Creature — Orc Wizard",
+      "uri": "https://api.scryfall.com/cards/b92b7ea9-d60b-445c-b603-d160811a4e99"
+    },
+    {
+      "object": "related_card",
+      "id": "4331a7a6-e98e-4517-b0f9-ace379426a94",
+      "component": "combo_piece",
+      "name": "Elemental Masterpiece",
+      "type_line": "Sorcery",
+      "uri": "https://api.scryfall.com/cards/4331a7a6-e98e-4517-b0f9-ace379426a94"
+    },
+    {
+      "object": "related_card",
+      "id": "8ba20bb4-a476-448d-bb39-23f8dd59e5a8",
+      "component": "token",
+      "name": "Elemental",
+      "type_line": "Token Creature — Elemental",
+      "uri": "https://api.scryfall.com/cards/8ba20bb4-a476-448d-bb39-23f8dd59e5a8"
+    },
+    {
+      "object": "related_card",
+      "id": "ea51991c-1589-4c62-965b-5ae8d233520b",
+      "component": "combo_piece",
+      "name": "Elemental Summoning",
+      "type_line": "Sorcery — Lesson",
+      "uri": "https://api.scryfall.com/cards/ea51991c-1589-4c62-965b-5ae8d233520b"
+    }
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "not_legal",
+    "pauper": "not_legal",
+    "vintage": "not_legal",
+    "penny": "not_legal",
+    "commander": "not_legal",
+    "oathbreaker": "not_legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "not_legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "cb590d57-927c-437a-934c-7f774881d1c9",
+  "set": "tsoc",
+  "set_name": "Secrets of Strixhaven Commander Tokens",
+  "set_type": "token",
+  "set_uri": "https://api.scryfall.com/sets/cb590d57-927c-437a-934c-7f774881d1c9",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Atsoc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/tsoc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/8ba20bb4-a476-448d-bb39-23f8dd59e5a8/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Af81c047d-de36-4aed-806b-f14a290771a4&unique=prints",
+  "collector_number": "20",
+  "digital": false,
+  "rarity": "common",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Mila Pesic",
+  "artist_ids": [
+    "81c5ec23-220b-4efa-b7df-9e49dd371e8d"
+  ],
+  "illustration_id": "e3d00958-b40b-4257-ad18-919b8bd1bb15",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DElemental",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DElemental",
+    "edhrec": "https://edhrec.com/route/?cc=Elemental"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DElemental%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Elemental&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Elemental&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

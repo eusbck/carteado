@@ -1,0 +1,144 @@
+{
+  "object": "card",
+  "id": "4d7fc4e6-e229-431f-8f8d-8464fb410724",
+  "oracle_id": "70a6f08e-854d-4e2f-9d8c-c45ec3231157",
+  "multiverse_ids": [
+    696445
+  ],
+  "mtgo_id": 138519,
+  "tcgplayer_id": 624630,
+  "cardmarket_id": 818866,
+  "name": "Faeburrow Elder",
+  "lang": "en",
+  "released_at": "2025-04-11",
+  "uri": "https://api.scryfall.com/cards/4d7fc4e6-e229-431f-8f8d-8464fb410724",
+  "scryfall_uri": "https://scryfall.com/card/tdc/289/faeburrow-elder?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-13T01:43:48Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/4/d/4d7fc4e6-e229-431f-8f8d-8464fb410724.jpg?1783907028",
+    "normal": "https://cards.scryfall.io/normal/front/4/d/4d7fc4e6-e229-431f-8f8d-8464fb410724.jpg?1783907028",
+    "large": "https://cards.scryfall.io/large/front/4/d/4d7fc4e6-e229-431f-8f8d-8464fb410724.jpg?1783907028",
+    "png": "https://cards.scryfall.io/png/front/4/d/4d7fc4e6-e229-431f-8f8d-8464fb410724.png?1783907028",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/4/d/4d7fc4e6-e229-431f-8f8d-8464fb410724.jpg?1783907028",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/4/d/4d7fc4e6-e229-431f-8f8d-8464fb410724.jpg?1783907028",
+    "thumb": "https://cards.scryfall.io/thumb/front/4/d/4d7fc4e6-e229-431f-8f8d-8464fb410724.webp?1783907028",
+    "grid": "https://cards.scryfall.io/grid/front/4/d/4d7fc4e6-e229-431f-8f8d-8464fb410724.webp?1783907028",
+    "display": "https://cards.scryfall.io/display/front/4/d/4d7fc4e6-e229-431f-8f8d-8464fb410724.webp?1783907028",
+    "art": "https://cards.scryfall.io/art/front/4/d/4d7fc4e6-e229-431f-8f8d-8464fb410724.webp?1783907028",
+    "crop": "https://cards.scryfall.io/crop/front/4/d/4d7fc4e6-e229-431f-8f8d-8464fb410724.webp?1783907028"
+  },
+  "mana_cost": "{1}{G}{W}",
+  "cmc": 3.0,
+  "type_line": "Creature — Treefolk Druid",
+  "oracle_text": "Vigilance\nThis creature gets +1/+1 for each color among permanents you control.\n{T}: For each color among permanents you control, add one mana of that color.",
+  "power": "0",
+  "toughness": "0",
+  "colors": [
+    "G",
+    "W"
+  ],
+  "color_identity": [
+    "G",
+    "W"
+  ],
+  "keywords": [
+    "Vigilance"
+  ],
+  "produced_mana": [
+    "B",
+    "G",
+    "R",
+    "U",
+    "W"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "bca9779c-0a0b-4ac1-8794-f3fc25549cf4",
+  "set": "tdc",
+  "set_name": "Tarkir: Dragonstorm Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/bca9779c-0a0b-4ac1-8794-f3fc25549cf4",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Atdc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/tdc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/4d7fc4e6-e229-431f-8f8d-8464fb410724/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A70a6f08e-854d-4e2f-9d8c-c45ec3231157&unique=prints",
+  "collector_number": "289",
+  "digital": false,
+  "rarity": "rare",
+  "flavor_text": "Its wide-reaching roots draw more than water.",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Raoul Vitale",
+  "artist_ids": [
+    "c7c15d49-f84b-4d98-9a34-e80e8347b756"
+  ],
+  "illustration_id": "57910119-ad55-4379-ad49-ea1df558cc37",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 496,
+  "penny_rank": 6139,
+  "prices": {
+    "usd": "0.50",
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": "0.69",
+    "eur_foil": null,
+    "tix": "0.07"
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=696445&printed=false",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DFaeburrow%2BElder",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DFaeburrow%2BElder",
+    "edhrec": "https://edhrec.com/route/?cc=Faeburrow+Elder"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F624630%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=818866&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards/138519?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

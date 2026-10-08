@@ -1,0 +1,131 @@
+{
+  "object": "card",
+  "id": "4d8ffbdb-a410-4852-8dc0-a00c3bf2994b",
+  "oracle_id": "e5223a09-f732-4747-8914-e6546ab0ef4c",
+  "multiverse_ids": [
+    372628
+  ],
+  "name": "Rise of the Dark Realms",
+  "printed_name": "Ascensão dos Reinos Sombrios",
+  "lang": "pt",
+  "released_at": "2013-07-19",
+  "uri": "https://api.scryfall.com/cards/4d8ffbdb-a410-4852-8dc0-a00c3bf2994b",
+  "scryfall_uri": "https://scryfall.com/card/m14/111/pt/ascens%C3%A3o-dos-reinos-sombrios-(rise-of-the-dark-realms)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-02T07:16:58Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/4/d/4d8ffbdb-a410-4852-8dc0-a00c3bf2994b.jpg?1782976618",
+    "normal": "https://cards.scryfall.io/normal/front/4/d/4d8ffbdb-a410-4852-8dc0-a00c3bf2994b.jpg?1782976618",
+    "large": "https://cards.scryfall.io/large/front/4/d/4d8ffbdb-a410-4852-8dc0-a00c3bf2994b.jpg?1782976618",
+    "png": "https://cards.scryfall.io/png/front/4/d/4d8ffbdb-a410-4852-8dc0-a00c3bf2994b.png?1782976618",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/4/d/4d8ffbdb-a410-4852-8dc0-a00c3bf2994b.jpg?1782976618",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/4/d/4d8ffbdb-a410-4852-8dc0-a00c3bf2994b.jpg?1782976618",
+    "thumb": "https://cards.scryfall.io/thumb/front/4/d/4d8ffbdb-a410-4852-8dc0-a00c3bf2994b.webp?1782976618",
+    "grid": "https://cards.scryfall.io/grid/front/4/d/4d8ffbdb-a410-4852-8dc0-a00c3bf2994b.webp?1782976618",
+    "display": "https://cards.scryfall.io/display/front/4/d/4d8ffbdb-a410-4852-8dc0-a00c3bf2994b.webp?1782976618",
+    "art": "https://cards.scryfall.io/art/front/4/d/4d8ffbdb-a410-4852-8dc0-a00c3bf2994b.webp?1782976618",
+    "crop": "https://cards.scryfall.io/crop/front/4/d/4d8ffbdb-a410-4852-8dc0-a00c3bf2994b.webp?1782976618"
+  },
+  "mana_cost": "{7}{B}{B}",
+  "cmc": 9.0,
+  "type_line": "Sorcery",
+  "printed_type_line": "Feitiço",
+  "oracle_text": "Put all creature cards from all graveyards onto the battlefield under your control.",
+  "printed_text": "Coloque todos os cards de criatura de todos os cemitérios no campo de batalha sob o seu controle.",
+  "colors": [
+    "B"
+  ],
+  "color_identity": [
+    "B"
+  ],
+  "keywords": [],
+  "legalities": {
+    "standard": "legal",
+    "future": "legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "e03ee1c0-ecd2-4fcc-ac3c-e8fdb103a847",
+  "set": "m14",
+  "set_name": "Magic 2014",
+  "set_type": "core",
+  "set_uri": "https://api.scryfall.com/sets/e03ee1c0-ecd2-4fcc-ac3c-e8fdb103a847",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Am14&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/m14?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/4d8ffbdb-a410-4852-8dc0-a00c3bf2994b/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Ae5223a09-f732-4747-8914-e6546ab0ef4c&unique=prints",
+  "collector_number": "111",
+  "digital": false,
+  "rarity": "mythic",
+  "flavor_text": "\"Para cada pessoa viva, há gerações de mortos. Qual reino você gostaria de governar?\"— Liliana Vess",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Michael Komarck",
+  "artist_ids": [
+    "96a53b95-fe5f-4fbb-9411-ccf4ee150aca"
+  ],
+  "illustration_id": "bbd642e1-f709-419a-b2e2-0abd41f3c691",
+  "border_color": "black",
+  "frame": "2003",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "edhrec_rank": 491,
+  "penny_rank": 15097,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=372628&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DRise%2Bof%2Bthe%2BDark%2BRealms",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DRise%2Bof%2Bthe%2BDark%2BRealms",
+    "edhrec": "https://edhrec.com/route/?cc=Rise+of+the+Dark+Realms"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DRise%2Bof%2Bthe%2BDark%2BRealms%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Rise+of+the+Dark+Realms&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Rise+of+the+Dark+Realms&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

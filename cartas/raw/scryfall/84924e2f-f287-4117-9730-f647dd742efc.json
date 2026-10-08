@@ -1,0 +1,133 @@
+{
+  "object": "card",
+  "id": "84924e2f-f287-4117-9730-f647dd742efc",
+  "oracle_id": "25c983e0-a8c9-4784-91a4-8fe04c6df882",
+  "multiverse_ids": [
+    585181
+  ],
+  "name": "Tocasia's Welcome",
+  "printed_name": "Boas-vindas de Tocasia",
+  "lang": "pt",
+  "released_at": "2022-11-18",
+  "uri": "https://api.scryfall.com/cards/84924e2f-f287-4117-9730-f647dd742efc",
+  "scryfall_uri": "https://scryfall.com/card/bro/30/pt/boas-vindas-de-tocasia-(tocasias-welcome)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T17:33:44Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/8/4/84924e2f-f287-4117-9730-f647dd742efc.jpg?1782840824",
+    "normal": "https://cards.scryfall.io/normal/front/8/4/84924e2f-f287-4117-9730-f647dd742efc.jpg?1782840824",
+    "large": "https://cards.scryfall.io/large/front/8/4/84924e2f-f287-4117-9730-f647dd742efc.jpg?1782840824",
+    "png": "https://cards.scryfall.io/png/front/8/4/84924e2f-f287-4117-9730-f647dd742efc.png?1782840824",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/8/4/84924e2f-f287-4117-9730-f647dd742efc.jpg?1782840824",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/8/4/84924e2f-f287-4117-9730-f647dd742efc.jpg?1782840824",
+    "thumb": "https://cards.scryfall.io/thumb/front/8/4/84924e2f-f287-4117-9730-f647dd742efc.webp?1782840824",
+    "grid": "https://cards.scryfall.io/grid/front/8/4/84924e2f-f287-4117-9730-f647dd742efc.webp?1782840824",
+    "display": "https://cards.scryfall.io/display/front/8/4/84924e2f-f287-4117-9730-f647dd742efc.webp?1782840824",
+    "art": "https://cards.scryfall.io/art/front/8/4/84924e2f-f287-4117-9730-f647dd742efc.webp?1782840824",
+    "crop": "https://cards.scryfall.io/crop/front/8/4/84924e2f-f287-4117-9730-f647dd742efc.webp?1782840824"
+  },
+  "mana_cost": "{2}{W}",
+  "cmc": 3.0,
+  "type_line": "Enchantment",
+  "printed_type_line": "Encantamento",
+  "oracle_text": "Whenever one or more creatures you control with mana value 3 or less enter, draw a card. This ability triggers only once each turn.",
+  "printed_text": "Toda vez que uma ou mais criaturas com valor de mana igual ou inferior a 3 entrarem no campo de batalha sob seu controle, compre um card. Esta habilidade é desencadeada apenas uma vez a cada turno.",
+  "colors": [
+    "W"
+  ],
+  "color_identity": [
+    "W"
+  ],
+  "keywords": [],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "arena",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "4219a14e-6701-4ddd-a185-21dc054ab19b",
+  "set": "bro",
+  "set_name": "The Brothers' War",
+  "set_type": "expansion",
+  "set_uri": "https://api.scryfall.com/sets/4219a14e-6701-4ddd-a185-21dc054ab19b",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Abro&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/bro?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/84924e2f-f287-4117-9730-f647dd742efc/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A25c983e0-a8c9-4784-91a4-8fe04c6df882&unique=prints",
+  "collector_number": "30",
+  "digital": false,
+  "rarity": "rare",
+  "flavor_text": "\"Seu pai foi um amigo querido a quem eu devo muito. Ele queria que eu cuidasse de vocês se algo acontecesse com ele.\"",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Johan Grenier",
+  "artist_ids": [
+    "465e38b8-7eed-4d22-a6d2-d3603ee0c00b"
+  ],
+  "illustration_id": "4b13c8e1-9d48-4f11-bd65-e16149ee46c2",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": true,
+  "edhrec_rank": 825,
+  "penny_rank": 12178,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=585181&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DTocasia%2527s%2BWelcome",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DTocasia%2527s%2BWelcome",
+    "edhrec": "https://edhrec.com/route/?cc=Tocasia%27s+Welcome"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DTocasia%2527s%2BWelcome%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Tocasia%27s+Welcome&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Tocasia%27s+Welcome&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

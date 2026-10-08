@@ -1,0 +1,152 @@
+{
+  "object": "card",
+  "id": "0d3af89d-d22c-45e8-9fec-170ac9bb0a34",
+  "oracle_id": "48a99dce-0aa9-4aac-81df-cec5f94c639d",
+  "multiverse_ids": [],
+  "resource_id": "72121665F3CF76E2F7A86E11D1E33FC26D4E2C5811ACCAD018553E6A3A464E81",
+  "mtgo_id": 148745,
+  "tcgplayer_id": 687377,
+  "cardmarket_id": 881459,
+  "name": "Archon of Sun's Grace",
+  "lang": "en",
+  "released_at": "2026-04-24",
+  "uri": "https://api.scryfall.com/cards/0d3af89d-d22c-45e8-9fec-170ac9bb0a34",
+  "scryfall_uri": "https://scryfall.com/card/soc/137/archon-of-suns-grace?utm_source=api",
+  "layout": "normal",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T00:50:12Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/0/d/0d3af89d-d22c-45e8-9fec-170ac9bb0a34.jpg?1783903812",
+    "normal": "https://cards.scryfall.io/normal/front/0/d/0d3af89d-d22c-45e8-9fec-170ac9bb0a34.jpg?1783903812",
+    "large": "https://cards.scryfall.io/large/front/0/d/0d3af89d-d22c-45e8-9fec-170ac9bb0a34.jpg?1783903812",
+    "png": "https://cards.scryfall.io/png/front/0/d/0d3af89d-d22c-45e8-9fec-170ac9bb0a34.png?1783903812",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/0/d/0d3af89d-d22c-45e8-9fec-170ac9bb0a34.jpg?1783903812",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/0/d/0d3af89d-d22c-45e8-9fec-170ac9bb0a34.jpg?1783903812",
+    "thumb": "https://cards.scryfall.io/thumb/front/0/d/0d3af89d-d22c-45e8-9fec-170ac9bb0a34.webp?1783903812",
+    "grid": "https://cards.scryfall.io/grid/front/0/d/0d3af89d-d22c-45e8-9fec-170ac9bb0a34.webp?1783903812",
+    "display": "https://cards.scryfall.io/display/front/0/d/0d3af89d-d22c-45e8-9fec-170ac9bb0a34.webp?1783903812",
+    "art": "https://cards.scryfall.io/art/front/0/d/0d3af89d-d22c-45e8-9fec-170ac9bb0a34.webp?1783903812",
+    "crop": "https://cards.scryfall.io/crop/front/0/d/0d3af89d-d22c-45e8-9fec-170ac9bb0a34.webp?1783903812"
+  },
+  "mana_cost": "{2}{W}{W}",
+  "cmc": 4.0,
+  "type_line": "Creature — Archon",
+  "oracle_text": "Flying\nLifelink (Damage dealt by this creature also causes you to gain that much life.)\nPegasus creatures you control have lifelink.\nConstellation — Whenever an enchantment you control enters, create a 2/2 white Pegasus creature token with flying.",
+  "power": "3",
+  "toughness": "4",
+  "colors": [
+    "W"
+  ],
+  "color_identity": [
+    "W"
+  ],
+  "keywords": [
+    "Flying",
+    "Lifelink",
+    "Constellation"
+  ],
+  "all_parts": [
+    {
+      "object": "related_card",
+      "id": "f130171f-a3e2-4dac-806a-1f2c428ac9fc",
+      "component": "token",
+      "name": "Pegasus",
+      "type_line": "Token Creature — Pegasus",
+      "uri": "https://api.scryfall.com/cards/f130171f-a3e2-4dac-806a-1f2c428ac9fc"
+    },
+    {
+      "object": "related_card",
+      "id": "0d3af89d-d22c-45e8-9fec-170ac9bb0a34",
+      "component": "combo_piece",
+      "name": "Archon of Sun's Grace",
+      "type_line": "Creature — Archon",
+      "uri": "https://api.scryfall.com/cards/0d3af89d-d22c-45e8-9fec-170ac9bb0a34"
+    }
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "97fab8d1-480a-419d-ab14-663968e29b9c",
+  "set": "soc",
+  "set_name": "Secrets of Strixhaven Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/97fab8d1-480a-419d-ab14-663968e29b9c",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Asoc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/soc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/0d3af89d-d22c-45e8-9fec-170ac9bb0a34/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A48a99dce-0aa9-4aac-81df-cec5f94c639d&unique=prints",
+  "collector_number": "137",
+  "digital": false,
+  "rarity": "rare",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Matt Stewart",
+  "artist_ids": [
+    "20871267-2d8a-41d5-b03a-be3d557c5734"
+  ],
+  "illustration_id": "12655b1b-2813-4261-bb3d-db90d3f01d28",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 1228,
+  "penny_rank": 2814,
+  "prices": {
+    "usd": "0.33",
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": "0.36",
+    "eur_foil": null,
+    "tix": "0.13"
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DArchon%2Bof%2BSun%2527s%2BGrace",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DArchon%2Bof%2BSun%2527s%2BGrace",
+    "edhrec": "https://edhrec.com/route/?cc=Archon+of+Sun%27s+Grace"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F687377%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=881459&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards/148745?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

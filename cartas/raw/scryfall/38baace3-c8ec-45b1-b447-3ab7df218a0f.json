@@ -1,0 +1,136 @@
+{
+  "object": "card",
+  "id": "38baace3-c8ec-45b1-b447-3ab7df218a0f",
+  "oracle_id": "2ad8ff62-d090-4835-9274-3b755ba0f8e6",
+  "multiverse_ids": [
+    644843
+  ],
+  "name": "Priest of Forgotten Gods",
+  "printed_name": "Sacerdotisa dos Deuses Esquecidos",
+  "lang": "pt",
+  "released_at": "2024-01-12",
+  "uri": "https://api.scryfall.com/cards/38baace3-c8ec-45b1-b447-3ab7df218a0f",
+  "scryfall_uri": "https://scryfall.com/card/rvr/90/pt/sacerdotisa-dos-deuses-esquecidos-(priest-of-forgotten-gods)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T07:55:19Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/3/8/38baace3-c8ec-45b1-b447-3ab7df218a0f.jpg?1782806119",
+    "normal": "https://cards.scryfall.io/normal/front/3/8/38baace3-c8ec-45b1-b447-3ab7df218a0f.jpg?1782806119",
+    "large": "https://cards.scryfall.io/large/front/3/8/38baace3-c8ec-45b1-b447-3ab7df218a0f.jpg?1782806119",
+    "png": "https://cards.scryfall.io/png/front/3/8/38baace3-c8ec-45b1-b447-3ab7df218a0f.png?1782806119",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/3/8/38baace3-c8ec-45b1-b447-3ab7df218a0f.jpg?1782806119",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/3/8/38baace3-c8ec-45b1-b447-3ab7df218a0f.jpg?1782806119",
+    "thumb": "https://cards.scryfall.io/thumb/front/3/8/38baace3-c8ec-45b1-b447-3ab7df218a0f.webp?1782806119",
+    "grid": "https://cards.scryfall.io/grid/front/3/8/38baace3-c8ec-45b1-b447-3ab7df218a0f.webp?1782806119",
+    "display": "https://cards.scryfall.io/display/front/3/8/38baace3-c8ec-45b1-b447-3ab7df218a0f.webp?1782806119",
+    "art": "https://cards.scryfall.io/art/front/3/8/38baace3-c8ec-45b1-b447-3ab7df218a0f.webp?1782806119",
+    "crop": "https://cards.scryfall.io/crop/front/3/8/38baace3-c8ec-45b1-b447-3ab7df218a0f.webp?1782806119"
+  },
+  "mana_cost": "{1}{B}",
+  "cmc": 2.0,
+  "type_line": "Creature — Human Cleric",
+  "printed_type_line": "Criatura — Humano Clérigo",
+  "oracle_text": "{T}, Sacrifice two other creatures: Any number of target players each lose 2 life and sacrifice a creature of their choice. You add {B}{B} and draw a card. (Activate only as an instant.)",
+  "printed_text": "{T}, sacrifique duas outras criaturas: Qualquer número de jogadores alvo perde, cada um, 2 pontos de vida e sacrifica, cada um, uma criatura. Você adiciona {B}{B} e compra um card.",
+  "power": "1",
+  "toughness": "2",
+  "colors": [
+    "B"
+  ],
+  "color_identity": [
+    "B"
+  ],
+  "keywords": [],
+  "produced_mana": [
+    "B"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "fed2c8cd-ab92-44f6-808a-41e7809bcfe2",
+  "set": "rvr",
+  "set_name": "Ravnica Remastered",
+  "set_type": "masters",
+  "set_uri": "https://api.scryfall.com/sets/fed2c8cd-ab92-44f6-808a-41e7809bcfe2",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Arvr&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/rvr?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/38baace3-c8ec-45b1-b447-3ab7df218a0f/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A2ad8ff62-d090-4835-9274-3b755ba0f8e6&unique=prints",
+  "collector_number": "90",
+  "digital": false,
+  "rarity": "rare",
+  "flavor_text": "Os Orzhov não são a única tradição religiosa em Ravnica, nem a mais antiga.",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Zack Stella",
+  "artist_ids": [
+    "17bc7f55-958b-43f4-bb40-09746d05b3f9"
+  ],
+  "illustration_id": "148deb6a-96ef-4513-abb0-853c31ca36df",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "edhrec_rank": 1390,
+  "penny_rank": 1193,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=644843&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DPriest%2Bof%2BForgotten%2BGods",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DPriest%2Bof%2BForgotten%2BGods",
+    "edhrec": "https://edhrec.com/route/?cc=Priest+of+Forgotten+Gods"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DPriest%2Bof%2BForgotten%2BGods%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Priest+of+Forgotten+Gods&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Priest+of+Forgotten+Gods&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

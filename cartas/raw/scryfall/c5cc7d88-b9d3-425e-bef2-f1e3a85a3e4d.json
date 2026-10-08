@@ -1,0 +1,132 @@
+{
+  "object": "card",
+  "id": "c5cc7d88-b9d3-425e-bef2-f1e3a85a3e4d",
+  "oracle_id": "ab478ac9-af59-4df1-afef-5e9806c06643",
+  "multiverse_ids": [],
+  "resource_id": "F7EC22C79C1CFE0FD7342B6369FC0AA6BB96C2F3B2062D5A62546B6F2FB2A820",
+  "mtgo_id": 148923,
+  "tcgplayer_id": 687501,
+  "cardmarket_id": 881547,
+  "name": "Veinwitch Coven",
+  "lang": "en",
+  "released_at": "2026-04-24",
+  "uri": "https://api.scryfall.com/cards/c5cc7d88-b9d3-425e-bef2-f1e3a85a3e4d",
+  "scryfall_uri": "https://scryfall.com/card/soc/228/veinwitch-coven?utm_source=api",
+  "layout": "normal",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T00:49:40Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/c/5/c5cc7d88-b9d3-425e-bef2-f1e3a85a3e4d.jpg?1783903780",
+    "normal": "https://cards.scryfall.io/normal/front/c/5/c5cc7d88-b9d3-425e-bef2-f1e3a85a3e4d.jpg?1783903780",
+    "large": "https://cards.scryfall.io/large/front/c/5/c5cc7d88-b9d3-425e-bef2-f1e3a85a3e4d.jpg?1783903780",
+    "png": "https://cards.scryfall.io/png/front/c/5/c5cc7d88-b9d3-425e-bef2-f1e3a85a3e4d.png?1783903780",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/c/5/c5cc7d88-b9d3-425e-bef2-f1e3a85a3e4d.jpg?1783903780",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/c/5/c5cc7d88-b9d3-425e-bef2-f1e3a85a3e4d.jpg?1783903780",
+    "thumb": "https://cards.scryfall.io/thumb/front/c/5/c5cc7d88-b9d3-425e-bef2-f1e3a85a3e4d.webp?1783903780",
+    "grid": "https://cards.scryfall.io/grid/front/c/5/c5cc7d88-b9d3-425e-bef2-f1e3a85a3e4d.webp?1783903780",
+    "display": "https://cards.scryfall.io/display/front/c/5/c5cc7d88-b9d3-425e-bef2-f1e3a85a3e4d.webp?1783903780",
+    "art": "https://cards.scryfall.io/art/front/c/5/c5cc7d88-b9d3-425e-bef2-f1e3a85a3e4d.webp?1783903780",
+    "crop": "https://cards.scryfall.io/crop/front/c/5/c5cc7d88-b9d3-425e-bef2-f1e3a85a3e4d.webp?1783903780"
+  },
+  "mana_cost": "{2}{B}",
+  "cmc": 3.0,
+  "type_line": "Creature — Vampire Warlock",
+  "oracle_text": "Menace\nWhenever you gain life, you may pay {B}. If you do, return target creature card from your graveyard to your hand.",
+  "power": "3",
+  "toughness": "3",
+  "colors": [
+    "B"
+  ],
+  "color_identity": [
+    "B"
+  ],
+  "keywords": [
+    "Menace"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "97fab8d1-480a-419d-ab14-663968e29b9c",
+  "set": "soc",
+  "set_name": "Secrets of Strixhaven Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/97fab8d1-480a-419d-ab14-663968e29b9c",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Asoc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/soc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/c5cc7d88-b9d3-425e-bef2-f1e3a85a3e4d/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Aab478ac9-af59-4df1-afef-5e9806c06643&unique=prints",
+  "collector_number": "228",
+  "digital": false,
+  "rarity": "rare",
+  "flavor_text": "Some Strixhaven study groups are more welcoming than others.",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Caio Monteiro",
+  "artist_ids": [
+    "d5053eb6-af72-47a0-b6e8-023cc3b9aefb"
+  ],
+  "illustration_id": "1f9f6e78-12f0-4e97-aa99-0a1417eb8e26",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 4189,
+  "prices": {
+    "usd": "0.32",
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": "0.28",
+    "eur_foil": null,
+    "tix": "0.37"
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DVeinwitch%2BCoven",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DVeinwitch%2BCoven",
+    "edhrec": "https://edhrec.com/route/?cc=Veinwitch+Coven"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F687501%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=881547&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards/148923?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

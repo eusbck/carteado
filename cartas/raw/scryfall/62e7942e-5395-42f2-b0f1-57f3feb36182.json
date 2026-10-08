@@ -1,0 +1,136 @@
+{
+  "object": "card",
+  "id": "62e7942e-5395-42f2-b0f1-57f3feb36182",
+  "oracle_id": "0cdece2a-0bdf-4e6d-9ddc-4a8d58b2ec29",
+  "multiverse_ids": [
+    416189
+  ],
+  "name": "Tree of Perdition",
+  "printed_name": "Árvore da Perdição",
+  "lang": "pt",
+  "released_at": "2016-07-22",
+  "uri": "https://api.scryfall.com/cards/62e7942e-5395-42f2-b0f1-57f3feb36182",
+  "scryfall_uri": "https://scryfall.com/card/emn/109/pt/%C3%A1rvore-da-perdi%C3%A7%C3%A3o-(tree-of-perdition)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-02T00:04:15Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/6/2/62e7942e-5395-42f2-b0f1-57f3feb36182.jpg?1782950655",
+    "normal": "https://cards.scryfall.io/normal/front/6/2/62e7942e-5395-42f2-b0f1-57f3feb36182.jpg?1782950655",
+    "large": "https://cards.scryfall.io/large/front/6/2/62e7942e-5395-42f2-b0f1-57f3feb36182.jpg?1782950655",
+    "png": "https://cards.scryfall.io/png/front/6/2/62e7942e-5395-42f2-b0f1-57f3feb36182.png?1782950655",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/6/2/62e7942e-5395-42f2-b0f1-57f3feb36182.jpg?1782950655",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/6/2/62e7942e-5395-42f2-b0f1-57f3feb36182.jpg?1782950655",
+    "thumb": "https://cards.scryfall.io/thumb/front/6/2/62e7942e-5395-42f2-b0f1-57f3feb36182.webp?1782950655",
+    "grid": "https://cards.scryfall.io/grid/front/6/2/62e7942e-5395-42f2-b0f1-57f3feb36182.webp?1782950655",
+    "display": "https://cards.scryfall.io/display/front/6/2/62e7942e-5395-42f2-b0f1-57f3feb36182.webp?1782950655",
+    "art": "https://cards.scryfall.io/art/front/6/2/62e7942e-5395-42f2-b0f1-57f3feb36182.webp?1782950655",
+    "crop": "https://cards.scryfall.io/crop/front/6/2/62e7942e-5395-42f2-b0f1-57f3feb36182.webp?1782950655"
+  },
+  "mana_cost": "{3}{B}",
+  "cmc": 4.0,
+  "type_line": "Creature — Plant",
+  "printed_type_line": "Criatura — Planta",
+  "oracle_text": "Defender\n{T}: Exchange target opponent's life total with this creature's toughness.",
+  "printed_text": "Defensor\n{T}: Permute o total de pontos de vida do oponente alvo com a resistência de Árvore da Perdição.",
+  "power": "0",
+  "toughness": "13",
+  "colors": [
+    "B"
+  ],
+  "color_identity": [
+    "B"
+  ],
+  "keywords": [
+    "Defender"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "5f0e4093-334f-4439-bbb5-a0affafd0ffc",
+  "set": "emn",
+  "set_name": "Eldritch Moon",
+  "set_type": "expansion",
+  "set_uri": "https://api.scryfall.com/sets/5f0e4093-334f-4439-bbb5-a0affafd0ffc",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Aemn&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/emn?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/62e7942e-5395-42f2-b0f1-57f3feb36182/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A0cdece2a-0bdf-4e6d-9ddc-4a8d58b2ec29&unique=prints",
+  "collector_number": "109",
+  "digital": false,
+  "rarity": "mythic",
+  "flavor_text": "Não haverá absolvição.",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Jung Park",
+  "artist_ids": [
+    "269392ac-4c06-4650-98e2-d49a5a7f2371"
+  ],
+  "illustration_id": "5faaa109-c5f2-42e3-82a9-88436204171a",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "edhrec_rank": 1905,
+  "penny_rank": 8158,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=416189&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DTree%2Bof%2BPerdition",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DTree%2Bof%2BPerdition",
+    "edhrec": "https://edhrec.com/route/?cc=Tree+of+Perdition"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DTree%2Bof%2BPerdition%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Tree+of+Perdition&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Tree+of+Perdition&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

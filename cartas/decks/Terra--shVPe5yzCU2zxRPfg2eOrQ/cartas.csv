@@ -1,0 +1,94 @@
+﻿zone,quantity,name,card_id,printing_id,edition,collector_number,language,finish,image_front,image_back,resolution_method
+mainboard,1,Arcane Signet,0bc7f093-bef0-4f1a-852c-4b75ebf54838,84128e98-87d6-4c2f-909b-9435a7833e63,eld,331,en,nonFoil,assets/cards/84128e98-87d6-4c2f-909b-9435a7833e63/front.png,,scryfall_id
+mainboard,1,Command Tower,0895c9b7-ae7d-4bb3-af17-3b75deb50a25,ec1f1041-f667-4b73-b1f2-e5bcae84095e,eld,333,en,nonFoil,assets/cards/ec1f1041-f667-4b73-b1f2-e5bcae84095e/front.png,,scryfall_id
+mainboard,1,Thrill of Possibility,1cb0610b-a731-42c2-b93f-0a29f63cebf4,c9021f85-7ab4-4a78-a398-1611fe09cd14,eld,146,en,nonFoil,assets/cards/c9021f85-7ab4-4a78-a398-1611fe09cd14/front.png,,scryfall_id
+mainboard,1,Ash Barrens,58257464-278e-45fa-8e0b-bcd9a7500bc1,6a0c7279-5dfb-4038-ac37-47b39b0340bf,plst,CM2-235,en,nonFoil,assets/cards/6a0c7279-5dfb-4038-ac37-47b39b0340bf/front.png,,scryfall_id
+mainboard,1,Evolving Wilds,a75445d3-1303-4bb5-89ad-26ea93fecd48,a561453e-499a-4455-b01d-26e3f58b189e,plst,C18-245,en,nonFoil,assets/cards/a561453e-499a-4455-b01d-26e3f58b189e/front.png,,scryfall_id
+mainboard,1,Ravenous Chupacabra,7b459306-149b-4f43-abc1-2dd70c748c0e,06c5f722-949d-41c9-9444-c9c9f1d3baf5,plst,RIX-82,en,nonFoil,assets/cards/06c5f722-949d-41c9-9444-c9c9f1d3baf5/front.png,,scryfall_id
+mainboard,1,Rogue's Passage,f29dc596-2121-4421-8463-15f6c2e8b9b3,bd7c49d3-a0c7-4df3-b732-53e4f562c201,plst,C17-272,en,nonFoil,assets/cards/bd7c49d3-a0c7-4df3-b732-53e4f562c201/front.png,,scryfall_id
+mainboard,1,Commander's Sphere,0b67c4e2-f88b-4e01-85a1-9d5f5b8db13b,6a628aff-7db5-4df9-9c3d-c58b0d7232a6,c19,212,en,nonFoil,assets/cards/6a628aff-7db5-4df9-9c3d-c58b0d7232a6/front.png,,scryfall_id
+mainboard,1,Sol Ring,6ad8011d-3471-4369-9d68-b264cc027487,e672d408-997c-4a19-810a-3da8411eecf2,c19,221,en,nonFoil,assets/cards/e672d408-997c-4a19-810a-3da8411eecf2/front.png,,scryfall_id
+mainboard,1,Faithless Looting,3d6fa57a-aa53-4b5c-b8af-a7612c823117,734278b4-74ae-4df5-97d7-745e56189e1b,ema,128,en,nonFoil,assets/cards/734278b4-74ae-4df5-97d7-745e56189e1b/front.png,,scryfall_id
+mainboard,1,Nomad Outpost,4619de7e-3d6e-4c6b-8e6e-e24db324839d,f32ff85d-0a5d-4bab-adc3-27a140ebef1d,c20,294,en,nonFoil,assets/cards/f32ff85d-0a5d-4bab-adc3-27a140ebef1d/front.png,,scryfall_id
+mainboard,1,Swiftfoot Boots,c8b143ad-43ec-4e0d-a440-e348daa31391,5819a8bc-1e4f-4274-b1ee-e583337acdf8,c20,254,en,nonFoil,assets/cards/5819a8bc-1e4f-4274-b1ee-e583337acdf8/front.png,,scryfall_id
+mainboard,1,Mind Stone,c97361b5-af16-4a7b-af85-a429dbaf4ad2,c54814f1-3598-4859-b956-b39d8335e6d3,ima,219,en,nonFoil,assets/cards/c54814f1-3598-4859-b956-b39d8335e6d3/front.png,,scryfall_id
+mainboard,1,Path of Ancestry,b473e293-59e3-4e04-acf2-622604aeb25f,1852c1e1-fbea-4b14-9927-4b1849f9b8a3,cmr,353,en,nonFoil,assets/cards/1852c1e1-fbea-4b14-9927-4b1849f9b8a3/front.png,,scryfall_id
+mainboard,1,Shineshadow Snarl,c9fc13d6-bd10-47bc-b2b6-7f67a1f3371e,84a46ebf-6938-4100-8f5f-0605ad2be4fc,stx,272,en,nonFoil,assets/cards/84a46ebf-6938-4100-8f5f-0605ad2be4fc/front.png,,scryfall_id
+mainboard,1,Furycalm Snarl,651dea9c-2375-4e44-8e65-ba8e40f0c0ef,53e33f37-7fd1-4431-a032-cd61b644401c,stx,266,en,nonFoil,assets/cards/53e33f37-7fd1-4431-a032-cd61b644401c/front.png,,scryfall_id
+mainboard,1,Vile Entomber,556dd333-4066-41f7-98f6-41794754de71,d890ae71-da2b-44fa-8cfa-9c3016c9f696,mh2,108,en,nonFoil,assets/cards/d890ae71-da2b-44fa-8cfa-9c3016c9f696/front.png,,scryfall_id
+mainboard,1,Morbid Opportunist,322f44f0-e6da-4ee0-b474-e7d5e9a461c5,5a53982e-3d66-4808-bcb5-46ff40567872,mid,113,en,nonFoil,assets/cards/5a53982e-3d66-4808-bcb5-46ff40567872/front.png,,scryfall_id
+mainboard,1,Karmic Guide,8c31fec9-e4b3-4761-990e-7be38eb05604,f550f0dd-9e20-4faf-a374-9d1c5830a52f,voc,90,en,nonFoil,assets/cards/f550f0dd-9e20-4faf-a374-9d1c5830a52f/front.png,,scryfall_id
+mainboard,1,Smoldering Marsh,390f1b56-264e-4336-83be-dc1fe79bfdcf,c2cf99ba-19c4-4f03-901b-69b754b6c48a,voc,183,en,nonFoil,assets/cards/c2cf99ba-19c4-4f03-901b-69b754b6c48a/front.png,,scryfall_id
+mainboard,1,Sunlit Marsh,a5e5a259-5fa7-4b01-93cb-a2b4aaf80927,f0588fbf-3c05-452a-b3f7-67604c1f921d,dmu,257,en,nonFoil,assets/cards/f0588fbf-3c05-452a-b3f7-67604c1f921d/front.png,,scryfall_id
+mainboard,1,Sacred Peaks,fb69bc57-f05a-41c2-9b7b-9a9761ef0cd3,24957d64-ad17-4d4f-8a00-3cdd83e1ce88,dmu,254,en,nonFoil,assets/cards/24957d64-ad17-4d4f-8a00-3cdd83e1ce88/front.png,,scryfall_id
+mainboard,1,Demolition Field,93953926-a644-49bb-9b5a-4c8f19114c7e,d9c88546-13c9-4d7e-a618-cb2ccd1dbc0f,bro,260,en,nonFoil,assets/cards/d9c88546-13c9-4d7e-a618-cb2ccd1dbc0f/front.png,,scryfall_id
+mainboard,1,Sulfurous Springs,f5c38c01-4a40-469f-91a0-7479daf4e8e7,119ea61b-8575-4491-a422-2eadebe8b261,ltc,334,en,nonFoil,assets/cards/119ea61b-8575-4491-a422-2eadebe8b261/front.png,,scryfall_id
+mainboard,1,Foreboding Ruins,5c87e2fa-77f1-4978-b25f-f14d227301d1,f1724c72-8e0e-4380-82ba-1f9ec8e45f01,who,279,en,nonFoil,assets/cards/f1724c72-8e0e-4380-82ba-1f9ec8e45f01/front.png,,scryfall_id
+mainboard,1,Path to Exile,d683d985-9888-4d21-8b5f-69e69ce4a03b,08c59dfa-361d-4ff1-a15d-6b0cb66571a3,mkc,78,en,nonFoil,assets/cards/08c59dfa-361d-4ff1-a15d-6b0cb66571a3/front.png,,scryfall_id
+mainboard,1,Exotic Orchard,27b047e3-0d41-45e2-98e9-9391d7923a1e,75f07a84-2788-4f5b-bd76-701bab10f01b,pip,264,en,nonFoil,assets/cards/75f07a84-2788-4f5b-bd76-701bab10f01b/front.png,,scryfall_id
+mainboard,1,Rugged Prairie,8e7641e1-e814-4d5a-9cb3-71ad2f4ceee8,5db20e33-061f-455e-825f-22272b8ee0c6,otc,314,en,nonFoil,assets/cards/5db20e33-061f-455e-825f-22272b8ee0c6/front.png,,scryfall_id
+mainboard,1,Talisman of Conviction,6c326439-5620-4ec6-a56a-fe9c3d5d2a46,76f14077-b398-44ad-bf05-408c0bcf138b,m3c,307,en,nonFoil,assets/cards/76f14077-b398-44ad-bf05-408c0bcf138b/front.png,,scryfall_id
+mainboard,1,Sunscorched Divide,8d2b2675-19df-4f40-9e8e-196ec097b91c,2bc3a2d6-986e-4b66-a68c-847174657f36,blc,336,en,nonFoil,assets/cards/2bc3a2d6-986e-4b66-a68c-847174657f36/front.png,,scryfall_id
+mainboard,1,Bushmeat Poacher,0287d541-3f73-4c8b-9a77-87f99898758d,a68472cd-65f0-465d-a8fd-a4fbfc689181,plst,GN3-44,en,nonFoil,assets/cards/a68472cd-65f0-465d-a8fd-a4fbfc689181/front.png,,scryfall_id
+mainboard,1,Shadowblood Ridge,15687ee3-3cdb-4a8f-a726-46b73bceb792,d7af1d6b-ff13-4886-a212-4a6e09153475,dsc,296,en,nonFoil,assets/cards/d7af1d6b-ff13-4886-a212-4a6e09153475/front.png,,scryfall_id
+mainboard,1,Dragonskull Summit,63398c02-6fb1-481d-9d9f-81063532fbc0,3b96a40e-828a-4cec-99cd-130dbcbdc67c,dsc,271,en,nonFoil,assets/cards/3b96a40e-828a-4cec-99cd-130dbcbdc67c/front.png,,scryfall_id
+mainboard,1,Geothermal Bog,e3b67368-1dd6-419b-a95d-7131b1dba23f,6da04570-5d3c-4e9f-a9c1-20589a4bcc24,dsc,278,en,nonFoil,assets/cards/6da04570-5d3c-4e9f-a9c1-20589a4bcc24/front.png,,scryfall_id
+mainboard,1,"Aurelia, the Warleader",0f5a3a09-2f07-4774-9e0f-e99d9a444166,bc6ffc1c-575b-4116-83c9-d13b29886c35,fdn,651,en,nonFoil,assets/cards/bc6ffc1c-575b-4116-83c9-d13b29886c35/front.png,,scryfall_id
+mainboard,1,Vampiric Rites,660de988-b6fb-4f36-8006-42af3e7f908d,9ae0b1e0-a481-4a98-b67b-0cf8bac53fdd,fdn,615,en,nonFoil,assets/cards/9ae0b1e0-a481-4a98-b67b-0cf8bac53fdd/front.png,,scryfall_id
+mainboard,1,Perforating Artist,a3643f66-dfa2-4275-a093-23e162496354,72980409-53f0-43c1-965e-06f22e7bb608,fdn,124,en,nonFoil,assets/cards/72980409-53f0-43c1-965e-06f22e7bb608/front.png,,scryfall_id
+mainboard,1,"Celes, Rune Knight",aea8345a-191d-4c62-8d15-a716a9934b66,30584c53-533b-4dc7-b07c-8600164a99b3,fic,1,en,nonFoil,assets/cards/30584c53-533b-4dc7-b07c-8600164a99b3/front.png,,scryfall_id
+mainboard,1,Summon: Esper Valigarmanda,cecd2f49-8ccb-472d-9cf1-fd0f4d93546d,7f0298b4-c7ca-49b8-baaa-b9fad4c2bfd5,fic,60,en,nonFoil,assets/cards/7f0298b4-c7ca-49b8-baaa-b9fad4c2bfd5/front.png,,scryfall_id
+mainboard,1,"Squall, SeeD Mercenary",e2348e0e-eeca-47b5-9417-bf4470ec29bb,cc4e5234-fb41-48f7-91f4-039710542bc3,fin,243,en,nonFoil,assets/cards/cc4e5234-fb41-48f7-91f4-039710542bc3/front.png,,scryfall_id
+mainboard,1,General Leo Cristophe,088166b8-5b0b-4ba9-9b0d-358ae523f336,39384ab7-54da-43e3-8fbc-5c171b7ca7f4,fic,20,en,nonFoil,assets/cards/39384ab7-54da-43e3-8fbc-5c171b7ca7f4/front.png,,scryfall_id
+mainboard,1,"Cyan, Vengeful Samurai",5a2fa420-c27f-4c14-b285-e0bb2828e053,a1e779b4-32dd-406b-8b68-48f6df458005,fic,16,en,nonFoil,assets/cards/a1e779b4-32dd-406b-8b68-48f6df458005/front.png,,scryfall_id
+mainboard,1,Tragic Arrogance,8a29bd35-33ef-4317-9fe5-8aaff5d7d64d,a479784c-3f94-4950-8928-6a1e57bb6627,fic,258,en,nonFoil,assets/cards/a479784c-3f94-4950-8928-6a1e57bb6627/front.png,,scryfall_id
+mainboard,1,Sun Titan,b2e950fb-cb7e-40a0-a311-5bbdd0477b29,e135d544-2a3e-4b22-ae4d-6c2203769e2a,fic,254,en,nonFoil,assets/cards/e135d544-2a3e-4b22-ae4d-6c2203769e2a/front.png,,scryfall_id
+mainboard,1,Espers to Magicite,06f7ec6d-d70e-44d8-bf43-ae667d244ab4,6cb18871-dd23-4ce8-a535-16adefae63c0,fic,43,en,nonFoil,assets/cards/6cb18871-dd23-4ce8-a535-16adefae63c0/front.png,,scryfall_id
+mainboard,1,"Siegfried, Famed Swordsman",a7cac6c3-cbb1-41f4-905d-2eb581e8e2e0,69dadb0c-413e-4658-9cdc-23a65df7a800,fic,51,en,nonFoil,assets/cards/69dadb0c-413e-4658-9cdc-23a65df7a800/front.png,,scryfall_id
+mainboard,1,Rejoin the Fight,d22ea32b-2128-4dcc-8b1c-c4c52f0b2f45,f3140950-1ce2-41b8-91f9-da53bfbee963,fic,49,en,nonFoil,assets/cards/f3140950-1ce2-41b8-91f9-da53bfbee963/front.png,,scryfall_id
+mainboard,1,"Shadow, Mysterious Assassin",13ca49a2-8a78-4be4-976a-b684086864bb,f88d81d9-8ded-4c20-8237-2218046595fb,fic,50,en,nonFoil,assets/cards/f88d81d9-8ded-4c20-8237-2218046595fb/front.png,,scryfall_id
+mainboard,1,Pitiless Plunderer,a784481f-eccb-4112-bb38-04a659319660,8ba8b02a-8a05-40cd-8b83-51fd0cc0a7a5,fic,281,en,nonFoil,assets/cards/8ba8b02a-8a05-40cd-8b83-51fd0cc0a7a5/front.png,,scryfall_id
+mainboard,1,Phoenix Down,8cc7e418-cc5e-4aef-9757-874223fccd74,62e299b0-9ef6-49d3-aa79-384325fed89e,fin,29,en,nonFoil,assets/cards/62e299b0-9ef6-49d3-aa79-384325fed89e/front.png,,scryfall_id
+mainboard,1,Laughing Mad,4f65e6a9-0d90-44b9-9b76-00814db2dbd8,cd5b9daf-6325-4eb4-a069-4a8cc7807884,fin,143,en,nonFoil,assets/cards/cd5b9daf-6325-4eb4-a069-4a8cc7807884/front.png,,scryfall_id
+mainboard,1,"Gau, Feral Youth",9e96d12b-8381-4706-8089-3521aa2b5422,89175ce1-0746-4ba1-970e-617d134b0527,fic,55,en,nonFoil,assets/cards/89175ce1-0746-4ba1-970e-617d134b0527/front.png,,scryfall_id
+mainboard,1,Reanimate,a044474a-cd72-4e9d-bd8d-a08f2de9cdc0,58838b71-404f-41ad-9a9b-2c7f875bab06,fic,282,en,nonFoil,assets/cards/58838b71-404f-41ad-9a9b-2c7f875bab06/front.png,,scryfall_id
+mainboard,1,Stitch Together,bc3d5911-3580-4132-9daf-2826495b5739,73f1aa13-b3bc-480e-826c-6bded7ee1ca6,fic,286,en,nonFoil,assets/cards/73f1aa13-b3bc-480e-826c-6bded7ee1ca6/front.png,,scryfall_id
+mainboard,1,"Gogo, Mysterious Mime",6fdcb563-9279-4365-8a78-26e75fbfd917,0db05dc8-03f8-4ab4-9ca3-2aaaa0099eb4,fic,56,en,nonFoil,assets/cards/0db05dc8-03f8-4ab4-9ca3-2aaaa0099eb4/front.png,,scryfall_id
+mainboard,1,Anger,eaabd151-2160-4bff-82c0-3fa88659be98,484ade24-6c2c-4f7e-b561-da802a80e0bb,fic,289,en,nonFoil,assets/cards/484ade24-6c2c-4f7e-b561-da802a80e0bb/front.png,,scryfall_id
+mainboard,1,Big Score,a5cbd257-c836-493e-bb1a-76242619dea2,67d41ba2-a908-4613-b275-6ffe4165e48a,fic,290,en,nonFoil,assets/cards/67d41ba2-a908-4613-b275-6ffe4165e48a/front.png,,scryfall_id
+mainboard,1,Stitcher's Supplier,7fd61a18-6e4f-40c5-aa00-3d101ec1ec82,fa6c734a-672b-44cb-9232-5688e3534ccc,fic,287,en,nonFoil,assets/cards/fa6c734a-672b-44cb-9232-5688e3534ccc/front.png,,scryfall_id
+mainboard,1,Rise of the Dark Realms,e5223a09-f732-4747-8914-e6546ab0ef4c,953c7338-e30d-452c-89ff-0c5fca690b2f,fic,283,en,nonFoil,assets/cards/953c7338-e30d-452c-89ff-0c5fca690b2f/front.png,,scryfall_id
+mainboard,1,Night's Whisper,7ffae8f8-3006-4969-a339-6d30678f87ea,47dfd4bd-a7a0-40bd-80e8-16c5ddd91091,fic,280,en,nonFoil,assets/cards/47dfd4bd-a7a0-40bd-80e8-16c5ddd91091/front.png,,scryfall_id
+mainboard,1,"Banon, the Returners' Leader",1b62e88f-d544-4c01-a5a2-1c185a3c9c1e,63e84ece-b129-457d-84ed-b4280120f08b,fic,78,en,nonFoil,assets/cards/63e84ece-b129-457d-84ed-b4280120f08b/front.png,,scryfall_id
+mainboard,1,"Kefka, Dancing Mad",fe5690d3-547b-4ce9-8e94-77fdc0e9c5c6,21cfc161-11b8-4253-a872-3b08a13b6991,fic,84,en,nonFoil,assets/cards/21cfc161-11b8-4253-a872-3b08a13b6991/front.png,,scryfall_id
+mainboard,1,Archfiend of Depravity,af247e2f-b271-4f5b-ab98-4579d2c17c21,aa0ba9cb-e45c-4c23-baab-38e01391ec6b,fic,273,en,nonFoil,assets/cards/aa0ba9cb-e45c-4c23-baab-38e01391ec6b/front.png,,scryfall_id
+mainboard,1,"Locke, Treasure Hunter",a800bec4-bacc-43f9-a773-dd795959935b,42cd66f2-0704-4c8e-b5de-6df93f4a8bed,fic,87,en,nonFoil,assets/cards/42cd66f2-0704-4c8e-b5de-6df93f4a8bed/front.png,,scryfall_id
+mainboard,1,"Mog, Moogle Warrior",f18cce8c-8fb6-49a7-8f79-2529c0ee3ecc,e9cb8ac9-64a0-455d-a8dd-1579ee321bbd,fic,89,en,nonFoil,assets/cards/e9cb8ac9-64a0-455d-a8dd-1579ee321bbd/front.png,,scryfall_id
+mainboard,1,Crackling Doom,ee81f37b-2a81-46d7-8d2f-9091123846c4,e7674039-7640-4f70-84e9-d1fa76a59dbe,fic,322,en,nonFoil,assets/cards/e7674039-7640-4f70-84e9-d1fa76a59dbe/front.png,,scryfall_id
+mainboard,1,The Warring Triad,df0b5995-117b-4ba8-964d-ea3c592621ef,99fd1cd5-4740-4a0f-b773-3d3b66861d77,fic,99,en,nonFoil,assets/cards/99fd1cd5-4740-4a0f-b773-3d3b66861d77/front.png,,scryfall_id
+mainboard,1,Bedevil,bceecc64-96f1-4e7b-8904-0aef90377764,284fe591-88e6-46f0-8b9c-9ec7d143a2d0,fic,319,en,nonFoil,assets/cards/284fe591-88e6-46f0-8b9c-9ec7d143a2d0/front.png,,scryfall_id
+mainboard,1,Ruinous Ultimatum,a6f38908-aa4f-4f99-a28e-85d11dab52e4,930bc0f5-758a-49a7-ab23-5b74802bcddb,fic,329,en,nonFoil,assets/cards/930bc0f5-758a-49a7-ab23-5b74802bcddb/front.png,,scryfall_id
+mainboard,1,Legions to Ashes,dc29cb25-57f5-4cac-9764-efa644b41296,39fe8402-2f70-4498-a0b6-6a9dd0e2848f,fic,326,en,nonFoil,assets/cards/39fe8402-2f70-4498-a0b6-6a9dd0e2848f/front.png,,scryfall_id
+mainboard,1,Mortify,faa01ed1-ccfa-4e58-951f-cd81f9068027,5f4fa21b-4733-49a6-b751-779b8325c4d2,fic,327,en,nonFoil,assets/cards/5f4fa21b-4733-49a6-b751-779b8325c4d2/front.png,,scryfall_id
+mainboard,1,Priest of Fell Rites,ec6ccd8f-cc75-4a50-8639-f4ec31a280aa,1131c841-d736-4c97-9c80-7e61fa30079d,fic,328,en,nonFoil,assets/cards/1131c841-d736-4c97-9c80-7e61fa30079d/front.png,,scryfall_id
+mainboard,1,Key to the City,a242c9bf-dab6-4996-bb3a-b4356f9ed0c9,df087751-b8bf-4db0-a571-fb32f596fc2e,fic,348,en,nonFoil,assets/cards/df087751-b8bf-4db0-a571-fb32f596fc2e/front.png,,scryfall_id
+mainboard,1,Solemn Simulacrum,00c0543c-2a1f-4425-8283-4062d74a1637,64d2d473-9157-408a-b088-1489306c1912,fic,360,en,nonFoil,assets/cards/64d2d473-9157-408a-b088-1489306c1912/front.png,,scryfall_id
+mainboard,1,Meteor Golem,d9f11aa1-9219-42a8-85a9-a8f204160706,7aeddfc1-38b0-4491-92f1-0a9989a53439,fic,351,en,nonFoil,assets/cards/7aeddfc1-38b0-4491-92f1-0a9989a53439/front.png,,scryfall_id
+mainboard,1,Millikin,fa4dffda-6f04-4d0b-829d-28a1a5794dee,717b0d6b-fa62-46d2-a061-7161d3255c98,fic,352,en,nonFoil,assets/cards/717b0d6b-fa62-46d2-a061-7161d3255c98/front.png,,scryfall_id
+mainboard,1,Graven Cairns,5004b84a-33b7-4f6f-b2c2-7086b9087535,7f33cce1-1484-43da-a825-b090eb5403a4,fic,401,en,nonFoil,assets/cards/7f33cce1-1484-43da-a825-b090eb5403a4/front.png,,scryfall_id
+mainboard,1,Isolated Chapel,7e5d9efe-48a9-434b-bb09-056e0e09cc9a,8ca61142-d0ed-42cb-9a51-0e44151f2b44,fic,405,en,nonFoil,assets/cards/8ca61142-d0ed-42cb-9a51-0e44151f2b44/front.png,,scryfall_id
+mainboard,1,High Market,86fb3749-37d6-48a6-8524-71e996850307,09eeb9f5-4149-47c6-bfd0-472237043672,fic,402,en,nonFoil,assets/cards/09eeb9f5-4149-47c6-bfd0-472237043672/front.png,,scryfall_id
+mainboard,1,"Joshua, Phoenix's Dominant // Phoenix, Warden of Fire",f4629329-a79b-4460-a1bc-9ae0f59adf5a,457fdbb9-5439-460f-8e37-176f8919362c,fin,229,en,nonFoil,assets/cards/457fdbb9-5439-460f-8e37-176f8919362c/front.png,assets/cards/457fdbb9-5439-460f-8e37-176f8919362c/back.png,scryfall_id
+mainboard,1,Twilight Diviner,05d7222b-cc08-4f1f-8e35-6058599572ba,443b6f30-1493-4d48-93d9-a91e22a7ebb3,ecl,122,en,nonFoil,assets/cards/443b6f30-1493-4d48-93d9-a91e22a7ebb3/front.png,,scryfall_id
+mainboard,1,Desolate Mire,3edf9201-265f-4cd9-b27b-8073bf1a4cf2,6a261c7d-38a4-4000-97b2-76e7ab9989c5,soc,367,en,nonFoil,assets/cards/6a261c7d-38a4-4000-97b2-76e7ab9989c5/front.png,,scryfall_id
+mainboard,1,Massacre Wurm,93cf50cf-0ecc-4d3e-abea-778c1ebacec4,670a36cc-34e1-4d11-808e-1b6bc88eb5d8,fdn,754,en,nonFoil,assets/cards/670a36cc-34e1-4d11-808e-1b6bc88eb5d8/front.png,,scryfall_id
+mainboard,1,Clifftop Retreat,d7faa3c8-46cf-46b2-bfa4-89000307cf18,4a7f7767-1959-4812-8654-0a22634096b1,msc,231,en,nonFoil,assets/cards/4a7f7767-1959-4812-8654-0a22634096b1/front.png,,scryfall_id
+mainboard,1,Swords to Plowshares,b1544f21-7e98-461b-aed5-e748b0168c52,f7e12477-d59f-442b-a678-1be746d0b7be,frc,37,en,nonFoil,assets/cards/f7e12477-d59f-442b-a678-1be746d0b7be/front.png,,scryfall_id
+mainboard,1,Fetid Heath,42bf259d-4bb9-49c3-b4ec-223dca62f4d6,ae07ff9f-d5a8-4220-b08f-fe8fad5adcb7,frc,72,en,nonFoil,assets/cards/ae07ff9f-d5a8-4220-b08f-fe8fad5adcb7/front.png,,scryfall_id
+mainboard,1,Talisman of Indulgence,1d9aeaaa-66f6-41cb-9bac-162d6fd8662c,36bd614f-ab3b-4ad1-ab5c-a7ca0a641f32,frc,63,en,nonFoil,assets/cards/36bd614f-ab3b-4ad1-ab5c-a7ca0a641f32/front.png,,scryfall_id
+mainboard,1,Battlefield Forge,6b75b94e-83b7-457e-ac41-7ca90b5a59aa,ef7d3676-b1db-4329-9201-18f8a6c54ea6,frc,65,en,nonFoil,assets/cards/ef7d3676-b1db-4329-9201-18f8a6c54ea6/front.png,,scryfall_id
+mainboard,1,Fleshbag Marauder,4b1bf05e-753e-4350-a913-894cf3cecc0c,04848d8c-2294-4ca6-850c-1eadaa3ca93f,fdc,99,en,nonFoil,assets/cards/04848d8c-2294-4ca6-850c-1eadaa3ca93f/front.png,,scryfall_id
+mainboard,3,Mountain,a3fb7228-e76b-4e96-a40e-20b5fed75685,a3a4da7d-a703-4f91-9ef7-ce269c0b63fb,j25,90,en,nonFoil,assets/cards/a3a4da7d-a703-4f91-9ef7-ce269c0b63fb/front.png,,scryfall_id
+mainboard,3,Swamp,56719f6a-1a6c-4c0a-8d21-18f7d7350b68,02fe3fdf-1d21-4e35-b0f3-3bcde7b05e23,j25,89,en,nonFoil,assets/cards/02fe3fdf-1d21-4e35-b0f3-3bcde7b05e23/front.png,,scryfall_id
+mainboard,4,Plains,bc71ebf6-2056-41f7-be35-b2e5c34afa99,a4446149-341b-449b-86e2-2b6b47b7a75e,j25,81,en,nonFoil,assets/cards/a4446149-341b-449b-86e2-2b6b47b7a75e/front.png,,scryfall_id
+commanders,1,"Terra, Herald of Hope",25d40d28-1b46-4055-959a-45719040ed30,5aa1a2d7-6133-41a9-9662-9008d1309935,fic,4,en,nonFoil,assets/cards/5aa1a2d7-6133-41a9-9662-9008d1309935/front.png,,scryfall_id

@@ -1,0 +1,136 @@
+{
+  "object": "card",
+  "id": "929e926c-44b7-4bfd-bdfa-3edbafb929cc",
+  "oracle_id": "ef833546-f755-4ac5-867a-3926984e68a0",
+  "multiverse_ids": [
+    642295
+  ],
+  "name": "Archaeomancer's Map",
+  "printed_name": "Mapa do Arqueomante",
+  "lang": "pt",
+  "released_at": "2023-11-17",
+  "uri": "https://api.scryfall.com/cards/929e926c-44b7-4bfd-bdfa-3edbafb929cc",
+  "scryfall_uri": "https://scryfall.com/card/lcc/101/pt/mapa-do-arqueomante-(archaeomancers-map)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T09:10:01Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/9/2/929e926c-44b7-4bfd-bdfa-3edbafb929cc.jpg?1782810601",
+    "normal": "https://cards.scryfall.io/normal/front/9/2/929e926c-44b7-4bfd-bdfa-3edbafb929cc.jpg?1782810601",
+    "large": "https://cards.scryfall.io/large/front/9/2/929e926c-44b7-4bfd-bdfa-3edbafb929cc.jpg?1782810601",
+    "png": "https://cards.scryfall.io/png/front/9/2/929e926c-44b7-4bfd-bdfa-3edbafb929cc.png?1782810601",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/9/2/929e926c-44b7-4bfd-bdfa-3edbafb929cc.jpg?1782810601",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/9/2/929e926c-44b7-4bfd-bdfa-3edbafb929cc.jpg?1782810601",
+    "thumb": "https://cards.scryfall.io/thumb/front/9/2/929e926c-44b7-4bfd-bdfa-3edbafb929cc.webp?1782810601",
+    "grid": "https://cards.scryfall.io/grid/front/9/2/929e926c-44b7-4bfd-bdfa-3edbafb929cc.webp?1782810601",
+    "display": "https://cards.scryfall.io/display/front/9/2/929e926c-44b7-4bfd-bdfa-3edbafb929cc.webp?1782810601",
+    "art": "https://cards.scryfall.io/art/front/9/2/929e926c-44b7-4bfd-bdfa-3edbafb929cc.webp?1782810601",
+    "crop": "https://cards.scryfall.io/crop/front/9/2/929e926c-44b7-4bfd-bdfa-3edbafb929cc.webp?1782810601"
+  },
+  "mana_cost": "{2}{W}",
+  "cmc": 3.0,
+  "type_line": "Artifact",
+  "printed_type_line": "Artefato",
+  "oracle_text": "When this artifact enters, search your library for up to two basic Plains cards, reveal them, put them into your hand, then shuffle.\nWhenever a land an opponent controls enters, if that player controls more lands than you, you may put a land card from your hand onto the battlefield.",
+  "printed_text": "Quando Mapa do Arqueomante entrar no campo de batalha, procure em seu grimório até dois cards de Planície básica, revele-os, coloque-os em sua mão e depois embaralhe.\nToda vez que um terreno entra no campo de batalha sob o controle de um oponente, se aquele jogador controla mais terrenos que você, você pode colocar um card de terreno de sua mão no campo de batalha.",
+  "colors": [
+    "W"
+  ],
+  "color_identity": [
+    "W"
+  ],
+  "keywords": [],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "d253edc3-5bc7-4cf1-9446-a8540dedffa5",
+  "set": "lcc",
+  "set_name": "The Lost Caverns of Ixalan Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/d253edc3-5bc7-4cf1-9446-a8540dedffa5",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Alcc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/lcc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/929e926c-44b7-4bfd-bdfa-3edbafb929cc/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Aef833546-f755-4ac5-867a-3926984e68a0&unique=prints",
+  "collector_number": "101",
+  "digital": false,
+  "rarity": "rare",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Jonas De Ro",
+  "artist_ids": [
+    "561ebf9e-8d93-4b57-8156-8826d0c19601"
+  ],
+  "illustration_id": "b21b371b-15fa-4af9-89a5-ecd3e967d66a",
+  "border_color": "borderless",
+  "frame": "2015",
+  "frame_effects": [
+    "inverted"
+  ],
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "promo_types": [
+    "boxtopper"
+  ],
+  "edhrec_rank": 700,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=642295&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DArchaeomancer%2527s%2BMap",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DArchaeomancer%2527s%2BMap",
+    "edhrec": "https://edhrec.com/route/?cc=Archaeomancer%27s+Map"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DArchaeomancer%2527s%2BMap%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Archaeomancer%27s+Map&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Archaeomancer%27s+Map&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

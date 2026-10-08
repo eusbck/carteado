@@ -1,0 +1,139 @@
+{
+  "object": "card",
+  "id": "b0befe79-bc00-4f30-9a2c-f45f25120adf",
+  "oracle_id": "0bc7f093-bef0-4f1a-852c-4b75ebf54838",
+  "multiverse_ids": [
+    642298
+  ],
+  "name": "Arcane Signet",
+  "printed_name": "Sinete Arcano",
+  "lang": "pt",
+  "released_at": "2023-11-17",
+  "uri": "https://api.scryfall.com/cards/b0befe79-bc00-4f30-9a2c-f45f25120adf",
+  "scryfall_uri": "https://scryfall.com/card/lcc/104/pt/sinete-arcano-(arcane-signet)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T09:09:44Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/b/0/b0befe79-bc00-4f30-9a2c-f45f25120adf.jpg?1782810584",
+    "normal": "https://cards.scryfall.io/normal/front/b/0/b0befe79-bc00-4f30-9a2c-f45f25120adf.jpg?1782810584",
+    "large": "https://cards.scryfall.io/large/front/b/0/b0befe79-bc00-4f30-9a2c-f45f25120adf.jpg?1782810584",
+    "png": "https://cards.scryfall.io/png/front/b/0/b0befe79-bc00-4f30-9a2c-f45f25120adf.png?1782810584",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/b/0/b0befe79-bc00-4f30-9a2c-f45f25120adf.jpg?1782810584",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/b/0/b0befe79-bc00-4f30-9a2c-f45f25120adf.jpg?1782810584",
+    "thumb": "https://cards.scryfall.io/thumb/front/b/0/b0befe79-bc00-4f30-9a2c-f45f25120adf.webp?1782810584",
+    "grid": "https://cards.scryfall.io/grid/front/b/0/b0befe79-bc00-4f30-9a2c-f45f25120adf.webp?1782810584",
+    "display": "https://cards.scryfall.io/display/front/b/0/b0befe79-bc00-4f30-9a2c-f45f25120adf.webp?1782810584",
+    "art": "https://cards.scryfall.io/art/front/b/0/b0befe79-bc00-4f30-9a2c-f45f25120adf.webp?1782810584",
+    "crop": "https://cards.scryfall.io/crop/front/b/0/b0befe79-bc00-4f30-9a2c-f45f25120adf.webp?1782810584"
+  },
+  "mana_cost": "{2}",
+  "cmc": 2.0,
+  "type_line": "Artifact",
+  "printed_type_line": "Artefato",
+  "oracle_text": "{T}: Add one mana of any color in your commander's color identity.",
+  "printed_text": "{T}: Adicione um mana de qualquer cor da identidade de cor de seu comandante.",
+  "colors": [],
+  "color_identity": [],
+  "keywords": [],
+  "produced_mana": [
+    "B",
+    "G",
+    "R",
+    "U",
+    "W"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "legal",
+    "paupercommander": "legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "d253edc3-5bc7-4cf1-9446-a8540dedffa5",
+  "set": "lcc",
+  "set_name": "The Lost Caverns of Ixalan Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/d253edc3-5bc7-4cf1-9446-a8540dedffa5",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Alcc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/lcc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/b0befe79-bc00-4f30-9a2c-f45f25120adf/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A0bc7f093-bef0-4f1a-852c-4b75ebf54838&unique=prints",
+  "collector_number": "104",
+  "digital": false,
+  "rarity": "uncommon",
+  "flavor_text": "\"Embora apagadas, as marcas no punho se assemelham a glifos familiares de Komon Winaq. Relíquia recuperada para estudos posteriores.\"\n— Pesquisa arqueológica dos Oltec",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "J.P. Targete",
+  "artist_ids": [
+    "75a48ae5-d1d0-4a98-98a8-2ca5fd9e0cd9"
+  ],
+  "illustration_id": "6630a86e-8f38-46de-9ef4-3c6efd66532e",
+  "border_color": "borderless",
+  "frame": "2015",
+  "frame_effects": [
+    "inverted"
+  ],
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "promo_types": [
+    "boxtopper"
+  ],
+  "edhrec_rank": 3,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=642298&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DArcane%2BSignet",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DArcane%2BSignet",
+    "edhrec": "https://edhrec.com/route/?cc=Arcane+Signet"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DArcane%2BSignet%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Arcane+Signet&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Arcane+Signet&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

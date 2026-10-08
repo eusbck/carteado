@@ -1,0 +1,129 @@
+{
+  "object": "card",
+  "id": "778d7ac0-eb96-44ab-bff6-63ba491b6d46",
+  "oracle_id": "e1d294e8-67b1-4a4a-86b8-f98f28a327d9",
+  "multiverse_ids": [
+    614134
+  ],
+  "name": "Promise of Loyalty",
+  "printed_name": "Promessa de Lealdade",
+  "lang": "pt",
+  "released_at": "2023-04-21",
+  "uri": "https://api.scryfall.com/cards/778d7ac0-eb96-44ab-bff6-63ba491b6d46",
+  "scryfall_uri": "https://scryfall.com/card/moc/200/pt/promessa-de-lealdade-(promise-of-loyalty)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T13:45:15Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/7/7/778d7ac0-eb96-44ab-bff6-63ba491b6d46.jpg?1782827115",
+    "normal": "https://cards.scryfall.io/normal/front/7/7/778d7ac0-eb96-44ab-bff6-63ba491b6d46.jpg?1782827115",
+    "large": "https://cards.scryfall.io/large/front/7/7/778d7ac0-eb96-44ab-bff6-63ba491b6d46.jpg?1782827115",
+    "png": "https://cards.scryfall.io/png/front/7/7/778d7ac0-eb96-44ab-bff6-63ba491b6d46.png?1782827115",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/7/7/778d7ac0-eb96-44ab-bff6-63ba491b6d46.jpg?1782827115",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/7/7/778d7ac0-eb96-44ab-bff6-63ba491b6d46.jpg?1782827115",
+    "thumb": "https://cards.scryfall.io/thumb/front/7/7/778d7ac0-eb96-44ab-bff6-63ba491b6d46.webp?1782827115",
+    "grid": "https://cards.scryfall.io/grid/front/7/7/778d7ac0-eb96-44ab-bff6-63ba491b6d46.webp?1782827115",
+    "display": "https://cards.scryfall.io/display/front/7/7/778d7ac0-eb96-44ab-bff6-63ba491b6d46.webp?1782827115",
+    "art": "https://cards.scryfall.io/art/front/7/7/778d7ac0-eb96-44ab-bff6-63ba491b6d46.webp?1782827115",
+    "crop": "https://cards.scryfall.io/crop/front/7/7/778d7ac0-eb96-44ab-bff6-63ba491b6d46.webp?1782827115"
+  },
+  "mana_cost": "{4}{W}",
+  "cmc": 5.0,
+  "type_line": "Sorcery",
+  "printed_type_line": "Feitiço",
+  "oracle_text": "Each player puts a vow counter on a creature they control and sacrifices the rest. Each of those creatures can't attack you or planeswalkers you control for as long as it has a vow counter on it.",
+  "printed_text": "Cada jogador coloca um marcador de voto em uma criatura que ele controla e sacrifica o restante. Cada uma daquelas criaturas não pode atacar você nem planeswalkers que você controla enquanto tiver um marcador de voto.",
+  "colors": [
+    "W"
+  ],
+  "color_identity": [
+    "W"
+  ],
+  "keywords": [],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "6bba5de9-5afb-42af-a7eb-24ac854bf671",
+  "set": "moc",
+  "set_name": "March of the Machine Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/6bba5de9-5afb-42af-a7eb-24ac854bf671",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Amoc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/moc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/778d7ac0-eb96-44ab-bff6-63ba491b6d46/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Ae1d294e8-67b1-4a4a-86b8-f98f28a327d9&unique=prints",
+  "collector_number": "200",
+  "digital": false,
+  "rarity": "rare",
+  "flavor_text": "\"Nós contra o mundo. Para sempre.\"",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Sara Winters",
+  "artist_ids": [
+    "56be33dc-a2da-40e9-a4f7-94077dcea31e"
+  ],
+  "illustration_id": "63b87e17-f4dd-4966-a26e-dba2b111698e",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 942,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=614134&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DPromise%2Bof%2BLoyalty",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DPromise%2Bof%2BLoyalty",
+    "edhrec": "https://edhrec.com/route/?cc=Promise+of+Loyalty"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DPromise%2Bof%2BLoyalty%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Promise+of+Loyalty&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Promise+of+Loyalty&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

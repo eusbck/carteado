@@ -1,0 +1,137 @@
+{
+  "object": "card",
+  "id": "54585945-fc6f-4c53-94f2-0660f7729728",
+  "oracle_id": "b3f16f34-d78c-4b61-821b-05fc6bd0da37",
+  "multiverse_ids": [
+    631088
+  ],
+  "name": "Moonshaker Cavalry",
+  "printed_name": "Cavalaria Sacode-lua",
+  "lang": "pt",
+  "released_at": "2023-09-08",
+  "uri": "https://api.scryfall.com/cards/54585945-fc6f-4c53-94f2-0660f7729728",
+  "scryfall_uri": "https://scryfall.com/card/woe/21/pt/cavalaria-sacode-lua-(moonshaker-cavalry)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T10:16:00Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/5/4/54585945-fc6f-4c53-94f2-0660f7729728.jpg?1782814560",
+    "normal": "https://cards.scryfall.io/normal/front/5/4/54585945-fc6f-4c53-94f2-0660f7729728.jpg?1782814560",
+    "large": "https://cards.scryfall.io/large/front/5/4/54585945-fc6f-4c53-94f2-0660f7729728.jpg?1782814560",
+    "png": "https://cards.scryfall.io/png/front/5/4/54585945-fc6f-4c53-94f2-0660f7729728.png?1782814560",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/5/4/54585945-fc6f-4c53-94f2-0660f7729728.jpg?1782814560",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/5/4/54585945-fc6f-4c53-94f2-0660f7729728.jpg?1782814560",
+    "thumb": "https://cards.scryfall.io/thumb/front/5/4/54585945-fc6f-4c53-94f2-0660f7729728.webp?1782814560",
+    "grid": "https://cards.scryfall.io/grid/front/5/4/54585945-fc6f-4c53-94f2-0660f7729728.webp?1782814560",
+    "display": "https://cards.scryfall.io/display/front/5/4/54585945-fc6f-4c53-94f2-0660f7729728.webp?1782814560",
+    "art": "https://cards.scryfall.io/art/front/5/4/54585945-fc6f-4c53-94f2-0660f7729728.webp?1782814560",
+    "crop": "https://cards.scryfall.io/crop/front/5/4/54585945-fc6f-4c53-94f2-0660f7729728.webp?1782814560"
+  },
+  "mana_cost": "{5}{W}{W}{W}",
+  "cmc": 8.0,
+  "type_line": "Creature — Spirit Knight",
+  "printed_type_line": "Criatura — Espírito Cavaleiro",
+  "oracle_text": "Flying\nWhen this creature enters, creatures you control gain flying and get +X/+X until end of turn, where X is the number of creatures you control.",
+  "printed_text": "Voar\nQuando Cavalaria Sacode-lua entra no campo de batalha, as criaturas que você controla ganham voar e recebem +X/+X até o final do turno, sendo X o número de criaturas que você controla.",
+  "power": "6",
+  "toughness": "6",
+  "colors": [
+    "W"
+  ],
+  "color_identity": [
+    "W"
+  ],
+  "keywords": [
+    "Flying"
+  ],
+  "legalities": {
+    "standard": "legal",
+    "future": "legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "arena",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "79139661-13ee-43c4-8bad-a8c069f1a1df",
+  "set": "woe",
+  "set_name": "Wilds of Eldraine",
+  "set_type": "expansion",
+  "set_uri": "https://api.scryfall.com/sets/79139661-13ee-43c4-8bad-a8c069f1a1df",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Awoe&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/woe?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/54585945-fc6f-4c53-94f2-0660f7729728/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Ab3f16f34-d78c-4b61-821b-05fc6bd0da37&unique=prints",
+  "collector_number": "21",
+  "digital": false,
+  "rarity": "mythic",
+  "flavor_text": "Os exércitos do Alto Rei Kenrith o seguiram no pós-vida, prontos para atacar ao seu comando.",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Aldo Domínguez",
+  "artist_ids": [
+    "b701136e-c578-4a48-9383-1c2a5381ecb2"
+  ],
+  "illustration_id": "aaec089e-94a3-4e00-a92b-451f7984f372",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "edhrec_rank": 1193,
+  "penny_rank": 7059,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=631088&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DMoonshaker%2BCavalry",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DMoonshaker%2BCavalry",
+    "edhrec": "https://edhrec.com/route/?cc=Moonshaker+Cavalry"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DMoonshaker%2BCavalry%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Moonshaker+Cavalry&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Moonshaker+Cavalry&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

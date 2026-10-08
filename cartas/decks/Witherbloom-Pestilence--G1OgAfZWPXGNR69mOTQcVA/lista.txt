@@ -1,0 +1,121 @@
+[mainboard]
+
+1 Skirsdag High Priest (C14) 163
+1 Marauding Blight-Priest (J22) 439
+1 Bastion of Remembrance (PLST) IKO-73
+1 Vengeful Bloodwitch (FDN) 325
+1 Grave Researcher // Reanimate (SOS) 85
+1 Witherbloom Charm (SOS) 244
+1 Stensian Sanguinist // Exsanguinate (SOC) 29
+1 Pest Rescuer (SOC) 42
+1 Defiling Daemogoth (SOC) 25
+1 Turbulent Fen (SOC) 55
+1 Ominous Harvest (SOC) 28
+1 Command Tower (SOC) 129
+1 Merchant of Venom (SOC) 27
+1 Ribtruss Roaster (SOC) 43
+1 Eccentric Pestfinder // Turn Stones (SOC) 46
+1 Immoral Bargain (SOC) 47
+1 Tendershoot Dryad (SOC) 125
+1 Umbral Collar Zealot (SOC) 227
+1 Arcane Signet (SOC) 127
+1 Mycoloth (SOC) 276
+1 Casualties of War (SOC) 300
+1 Dina, Soul Steeper (SOC) 305
+1 Zulaport Cutthroat (SOC) 233
+1 Jadar, Ghoulcaller of Nephalia (SOC) 217
+1 Night's Whisper (SOC) 221
+1 Sol Ring (SOC) 128
+1 Pest Infestation (SOC) 282
+1 Assassin's Trophy (SOC) 294
+1 Elvish Mystic (SOC) 266
+1 Toxic Deluge (SOC) 120
+1 Culling Ritual (SOC) 302
+1 Deadly Brew (SOC) 303
+1 Infernal Grasp (SOC) 216
+1 Teacher's Pest (SOS) 238
+1 Final Act (SOC) 213
+1 Titan's Grave (SOS) 266
+1 Ophiomancer (SOC) 118
+1 Cultivate (SOC) 265
+1 Veinwitch Coven (SOC) 228
+1 Springbloom Druid (SOC) 287
+1 Mazirek, Kraul Death Priest (SOC) 319
+1 Fabled Passage (SOC) 130
+1 Morbid Opportunist (SOC) 219
+1 Exotic Orchard (SOC) 369
+1 Witch of the Moors (SOC) 230
+1 Viscera Seer (SOC) 229
+1 Plumb the Forbidden (SOC) 224
+1 Nether Traitor (SOC) 220
+1 Terramorphic Expanse (SOS) 265
+1 Sakura-Tribe Elder (SOC) 285
+1 Priest of Forgotten Gods (SOC) 225
+1 Woodland Cemetery (SOC) 424
+1 Llanowar Wastes (SOC) 383
+1 Temple of Malady (SOC) 413
+1 Twilight Mire (SOC) 418
+1 Bojuka Bog (SOC) 363
+1 Woe Strider (SOC) 231
+1 Path of Ancestry (SOC) 393
+1 Awakening Zone (SOC) 262
+1 Pawn of Ulamog (SOC) 223
+1 Wight of the Reliquary (SOC) 338
+1 Vernal Fen (SOC) 419
+1 High Market (SOC) 380
+1 Haunted Mire (SOC) 379
+1 Witherbloom Campus (SOC) 423
+1 Festering Thicket (SOC) 371
+1 Bloodghast (SOC) 210
+1 Witherbloom Command (SOC) 339
+1 Mortality Spear (SOC) 321
+1 Creakwood Liege (SOC) 301
+1 Blood Artist (SOC) 209
+1 Viridescent Bog (SOC) 421
+1 Haywire Mite (SOC) 349
+1 Moldervine Reclamation (SOC) 320
+1 Necroblossom Snarl (SOC) 389
+1 Beledros Witherbloom (SOC) 296
+1 Grim Backwoods (SOC) 377
+1 Yahenni, Undying Partisan (SOC) 232
+1 Blossoming Bogbeast (SOC) 264
+1 Study Hall (SOC) 407
+1 Smothering Abomination (SOC) 226
+1 Moseo, Vein's New Dean (PSOS) 91p
+1 Gorma, the Gullet (SOC) 3
+8 Forest (SOS) 281
+8 Swamp (SOS) 277
+
+[sideboard]
+
+
+[maybeboard]
+
+
+[commanders]
+
+1 Dina, Essence Brewer (SOC) 1
+
+[companions]
+
+
+[signatureSpells]
+
+
+[attractions]
+
+
+[stickers]
+
+
+[contraptions]
+
+
+[planes]
+
+
+[schemes]
+
+
+[tokens]
+

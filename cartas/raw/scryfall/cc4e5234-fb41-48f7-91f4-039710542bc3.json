@@ -1,0 +1,143 @@
+{
+  "object": "card",
+  "id": "cc4e5234-fb41-48f7-91f4-039710542bc3",
+  "oracle_id": "e2348e0e-eeca-47b5-9417-bf4470ec29bb",
+  "multiverse_ids": [],
+  "resource_id": "552B24709CCB2E620CB7E95738A81AC773C3AC35EBA1CF22C27FCEE2C60CF3EA",
+  "mtgo_id": 141449,
+  "arena_id": 96119,
+  "tcgplayer_id": 631012,
+  "cardmarket_id": 824164,
+  "name": "Squall, SeeD Mercenary",
+  "lang": "en",
+  "released_at": "2025-06-13",
+  "uri": "https://api.scryfall.com/cards/cc4e5234-fb41-48f7-91f4-039710542bc3",
+  "scryfall_uri": "https://scryfall.com/card/fin/243/squall-seed-mercenary?utm_source=api",
+  "layout": "normal",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T01:36:03Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/c/c/cc4e5234-fb41-48f7-91f4-039710542bc3.jpg?1783906563",
+    "normal": "https://cards.scryfall.io/normal/front/c/c/cc4e5234-fb41-48f7-91f4-039710542bc3.jpg?1783906563",
+    "large": "https://cards.scryfall.io/large/front/c/c/cc4e5234-fb41-48f7-91f4-039710542bc3.jpg?1783906563",
+    "png": "https://cards.scryfall.io/png/front/c/c/cc4e5234-fb41-48f7-91f4-039710542bc3.png?1783906563",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/c/c/cc4e5234-fb41-48f7-91f4-039710542bc3.jpg?1783906563",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/c/c/cc4e5234-fb41-48f7-91f4-039710542bc3.jpg?1783906563",
+    "thumb": "https://cards.scryfall.io/thumb/front/c/c/cc4e5234-fb41-48f7-91f4-039710542bc3.webp?1783906563",
+    "grid": "https://cards.scryfall.io/grid/front/c/c/cc4e5234-fb41-48f7-91f4-039710542bc3.webp?1783906563",
+    "display": "https://cards.scryfall.io/display/front/c/c/cc4e5234-fb41-48f7-91f4-039710542bc3.webp?1783906563",
+    "art": "https://cards.scryfall.io/art/front/c/c/cc4e5234-fb41-48f7-91f4-039710542bc3.webp?1783906563",
+    "crop": "https://cards.scryfall.io/crop/front/c/c/cc4e5234-fb41-48f7-91f4-039710542bc3.webp?1783906563"
+  },
+  "mana_cost": "{2}{W}{B}",
+  "cmc": 4.0,
+  "type_line": "Legendary Creature — Human Knight Mercenary",
+  "oracle_text": "Rough Divide — Whenever a creature you control attacks alone, it gains double strike until end of turn.\nWhenever Squall deals combat damage to a player, return target permanent card with mana value 3 or less from your graveyard to the battlefield.",
+  "power": "3",
+  "toughness": "4",
+  "colors": [
+    "B",
+    "W"
+  ],
+  "color_identity": [
+    "B",
+    "W"
+  ],
+  "keywords": [
+    "Rough Divide"
+  ],
+  "legalities": {
+    "standard": "legal",
+    "future": "legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "arena",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "d7beb4b7-e1ff-4d35-ab07-5700f17ea1ea",
+  "set": "fin",
+  "set_name": "Final Fantasy",
+  "set_type": "expansion",
+  "set_uri": "https://api.scryfall.com/sets/d7beb4b7-e1ff-4d35-ab07-5700f17ea1ea",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Afin&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/fin?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/cc4e5234-fb41-48f7-91f4-039710542bc3/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Ae2348e0e-eeca-47b5-9417-bf4470ec29bb&unique=prints",
+  "collector_number": "243",
+  "digital": false,
+  "rarity": "rare",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Yuu Fujiki",
+  "artist_ids": [
+    "9903f026-75fa-439c-b586-2bd9f431192a"
+  ],
+  "illustration_id": "632e3169-ed74-4bcf-8469-757ce88dffb4",
+  "border_color": "black",
+  "frame": "2015",
+  "frame_effects": [
+    "legendary"
+  ],
+  "security_stamp": "triangle",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "promo_types": [
+    "universesbeyond",
+    "ffviii"
+  ],
+  "edhrec_rank": 3593,
+  "prices": {
+    "usd": "1.06",
+    "usd_foil": "1.92",
+    "usd_etched": null,
+    "eur": "0.60",
+    "eur_foil": "1.37",
+    "tix": "0.02"
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DSquall%252C%2BSeeD%2BMercenary",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DSquall%252C%2BSeeD%2BMercenary",
+    "edhrec": "https://edhrec.com/route/?cc=Squall%2C+SeeD+Mercenary"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F631012%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=824164&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards/141449?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

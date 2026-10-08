@@ -1,0 +1,129 @@
+{
+  "object": "card",
+  "id": "6f4de209-5795-4cc6-b01f-46f6273bed6c",
+  "oracle_id": "8ea414c1-88cf-46d4-9a54-6dee9847c537",
+  "multiverse_ids": [
+    518880
+  ],
+  "name": "Surge to Victory",
+  "printed_name": "Ímpeto para a Vitória",
+  "lang": "pt",
+  "released_at": "2021-04-23",
+  "uri": "https://api.scryfall.com/cards/6f4de209-5795-4cc6-b01f-46f6273bed6c",
+  "scryfall_uri": "https://scryfall.com/card/c21/58/pt/%C3%ADmpeto-para-a-vit%C3%B3ria-(surge-to-victory)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-01T06:38:37Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/6/f/6f4de209-5795-4cc6-b01f-46f6273bed6c.jpg?1782887917",
+    "normal": "https://cards.scryfall.io/normal/front/6/f/6f4de209-5795-4cc6-b01f-46f6273bed6c.jpg?1782887917",
+    "large": "https://cards.scryfall.io/large/front/6/f/6f4de209-5795-4cc6-b01f-46f6273bed6c.jpg?1782887917",
+    "png": "https://cards.scryfall.io/png/front/6/f/6f4de209-5795-4cc6-b01f-46f6273bed6c.png?1782887917",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/6/f/6f4de209-5795-4cc6-b01f-46f6273bed6c.jpg?1782887917",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/6/f/6f4de209-5795-4cc6-b01f-46f6273bed6c.jpg?1782887917",
+    "thumb": "https://cards.scryfall.io/thumb/front/6/f/6f4de209-5795-4cc6-b01f-46f6273bed6c.webp?1782887917",
+    "grid": "https://cards.scryfall.io/grid/front/6/f/6f4de209-5795-4cc6-b01f-46f6273bed6c.webp?1782887917",
+    "display": "https://cards.scryfall.io/display/front/6/f/6f4de209-5795-4cc6-b01f-46f6273bed6c.webp?1782887917",
+    "art": "https://cards.scryfall.io/art/front/6/f/6f4de209-5795-4cc6-b01f-46f6273bed6c.webp?1782887917",
+    "crop": "https://cards.scryfall.io/crop/front/6/f/6f4de209-5795-4cc6-b01f-46f6273bed6c.webp?1782887917"
+  },
+  "mana_cost": "{4}{R}{R}",
+  "cmc": 6.0,
+  "type_line": "Sorcery",
+  "printed_type_line": "Feitiço",
+  "oracle_text": "Exile target instant or sorcery card from your graveyard. Creatures you control get +X/+0 until end of turn, where X is that card's mana value. Whenever a creature you control deals combat damage to a player this turn, copy the exiled card. You may cast the copy without paying its mana cost.",
+  "printed_text": "Exile o card de mágica instantânea ou de feitiço alvo de seu cemitério. As criaturas que você controla recebem +X/+0 até o final do turno, sendo X o valor de mana daquele card. Toda vez que uma criatura que você controla causar dano de combate a um jogador neste turno, copie o card exilado. Você pode conjurar a cópia sem pagar seu custo de mana.",
+  "colors": [
+    "R"
+  ],
+  "color_identity": [
+    "R"
+  ],
+  "keywords": [],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "27bf6dbd-a9e1-4904-afa7-d28fc7745c4f",
+  "set": "c21",
+  "set_name": "Commander 2021",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/27bf6dbd-a9e1-4904-afa7-d28fc7745c4f",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Ac21&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/c21?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/6f4de209-5795-4cc6-b01f-46f6273bed6c/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A8ea414c1-88cf-46d4-9a54-6dee9847c537&unique=prints",
+  "collector_number": "58",
+  "digital": false,
+  "rarity": "rare",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Grzegorz Rutkowski",
+  "artist_ids": [
+    "b5f49d0d-8056-48e3-b614-090e656b4f9c"
+  ],
+  "illustration_id": "d75c42fd-953b-417b-be9c-bdcdfbe1b721",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 4770,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=518880&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DSurge%2Bto%2BVictory",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DSurge%2Bto%2BVictory",
+    "edhrec": "https://edhrec.com/route/?cc=Surge+to+Victory"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DSurge%2Bto%2BVictory%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Surge+to+Victory&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Surge+to+Victory&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "object": "card",
+  "id": "4fb49236-a298-441c-8e73-7dde7de2398b",
+  "oracle_id": "93cf50cf-0ecc-4d3e-abea-778c1ebacec4",
+  "multiverse_ids": [
+    614190
+  ],
+  "name": "Massacre Wurm",
+  "printed_name": "Vorme do Massacre",
+  "lang": "pt",
+  "released_at": "2023-04-21",
+  "uri": "https://api.scryfall.com/cards/4fb49236-a298-441c-8e73-7dde7de2398b",
+  "scryfall_uri": "https://scryfall.com/card/moc/256/pt/vorme-do-massacre-(massacre-wurm)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T13:39:52Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/4/f/4fb49236-a298-441c-8e73-7dde7de2398b.jpg?1782826792",
+    "normal": "https://cards.scryfall.io/normal/front/4/f/4fb49236-a298-441c-8e73-7dde7de2398b.jpg?1782826792",
+    "large": "https://cards.scryfall.io/large/front/4/f/4fb49236-a298-441c-8e73-7dde7de2398b.jpg?1782826792",
+    "png": "https://cards.scryfall.io/png/front/4/f/4fb49236-a298-441c-8e73-7dde7de2398b.png?1782826792",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/4/f/4fb49236-a298-441c-8e73-7dde7de2398b.jpg?1782826792",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/4/f/4fb49236-a298-441c-8e73-7dde7de2398b.jpg?1782826792",
+    "thumb": "https://cards.scryfall.io/thumb/front/4/f/4fb49236-a298-441c-8e73-7dde7de2398b.webp?1782826792",
+    "grid": "https://cards.scryfall.io/grid/front/4/f/4fb49236-a298-441c-8e73-7dde7de2398b.webp?1782826792",
+    "display": "https://cards.scryfall.io/display/front/4/f/4fb49236-a298-441c-8e73-7dde7de2398b.webp?1782826792",
+    "art": "https://cards.scryfall.io/art/front/4/f/4fb49236-a298-441c-8e73-7dde7de2398b.webp?1782826792",
+    "crop": "https://cards.scryfall.io/crop/front/4/f/4fb49236-a298-441c-8e73-7dde7de2398b.webp?1782826792"
+  },
+  "mana_cost": "{3}{B}{B}{B}",
+  "cmc": 6.0,
+  "type_line": "Creature — Phyrexian Wurm",
+  "printed_type_line": "Criatura — Phyrexiano Vorme",
+  "oracle_text": "When this creature enters, creatures your opponents control get -2/-2 until end of turn.\nWhenever a creature an opponent controls dies, that player loses 2 life.",
+  "printed_text": "Quando Vorme do Massacre entra no campo de batalha, as criaturas que seus oponentes controlam recebem -2/-2 até o final do turno.\nToda vez que uma criatura que um oponente controla morre, aquele jogador perde 2 pontos de vida.",
+  "power": "6",
+  "toughness": "5",
+  "colors": [
+    "B"
+  ],
+  "color_identity": [
+    "B"
+  ],
+  "keywords": [],
+  "legalities": {
+    "standard": "legal",
+    "future": "legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "6bba5de9-5afb-42af-a7eb-24ac854bf671",
+  "set": "moc",
+  "set_name": "March of the Machine Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/6bba5de9-5afb-42af-a7eb-24ac854bf671",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Amoc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/moc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/4fb49236-a298-441c-8e73-7dde7de2398b/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A93cf50cf-0ecc-4d3e-abea-778c1ebacec4&unique=prints",
+  "collector_number": "256",
+  "digital": false,
+  "rarity": "mythic",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Jason Chan",
+  "artist_ids": [
+    "8062d5a9-51b6-4822-933f-fa9e9dba8416"
+  ],
+  "illustration_id": "f937d422-655c-4614-9206-b1dceb86711f",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 513,
+  "penny_rank": 1945,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=614190&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DMassacre%2BWurm",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DMassacre%2BWurm",
+    "edhrec": "https://edhrec.com/route/?cc=Massacre+Wurm"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DMassacre%2BWurm%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Massacre+Wurm&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Massacre+Wurm&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

@@ -1,0 +1,136 @@
+{
+  "object": "card",
+  "id": "cb83ad3d-0a05-4ffd-8dc9-5df31c0eccd2",
+  "oracle_id": "f426aa1a-e1dc-4563-b450-2e23d6bd980b",
+  "multiverse_ids": [
+    543240
+  ],
+  "name": "Manaform Hellkite",
+  "printed_name": "Dragão Avérneo Manaforme",
+  "lang": "pt",
+  "released_at": "2021-11-19",
+  "uri": "https://api.scryfall.com/cards/cb83ad3d-0a05-4ffd-8dc9-5df31c0eccd2",
+  "scryfall_uri": "https://scryfall.com/card/vow/170/pt/drag%C3%A3o-av%C3%A9rneo-manaforme-(manaform-hellkite)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-01T00:34:33Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/c/b/cb83ad3d-0a05-4ffd-8dc9-5df31c0eccd2.jpg?1782866073",
+    "normal": "https://cards.scryfall.io/normal/front/c/b/cb83ad3d-0a05-4ffd-8dc9-5df31c0eccd2.jpg?1782866073",
+    "large": "https://cards.scryfall.io/large/front/c/b/cb83ad3d-0a05-4ffd-8dc9-5df31c0eccd2.jpg?1782866073",
+    "png": "https://cards.scryfall.io/png/front/c/b/cb83ad3d-0a05-4ffd-8dc9-5df31c0eccd2.png?1782866073",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/c/b/cb83ad3d-0a05-4ffd-8dc9-5df31c0eccd2.jpg?1782866073",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/c/b/cb83ad3d-0a05-4ffd-8dc9-5df31c0eccd2.jpg?1782866073",
+    "thumb": "https://cards.scryfall.io/thumb/front/c/b/cb83ad3d-0a05-4ffd-8dc9-5df31c0eccd2.webp?1782866073",
+    "grid": "https://cards.scryfall.io/grid/front/c/b/cb83ad3d-0a05-4ffd-8dc9-5df31c0eccd2.webp?1782866073",
+    "display": "https://cards.scryfall.io/display/front/c/b/cb83ad3d-0a05-4ffd-8dc9-5df31c0eccd2.webp?1782866073",
+    "art": "https://cards.scryfall.io/art/front/c/b/cb83ad3d-0a05-4ffd-8dc9-5df31c0eccd2.webp?1782866073",
+    "crop": "https://cards.scryfall.io/crop/front/c/b/cb83ad3d-0a05-4ffd-8dc9-5df31c0eccd2.webp?1782866073"
+  },
+  "mana_cost": "{2}{R}{R}",
+  "cmc": 4.0,
+  "type_line": "Creature — Dragon",
+  "printed_type_line": "Criatura — Dragão",
+  "oracle_text": "Flying\nWhenever you cast a noncreature spell, create an X/X red Dragon Illusion creature token with flying and haste, where X is the amount of mana spent to cast that spell. Exile that token at the beginning of the next end step.",
+  "printed_text": "Voar\nToda vez que você conjurar uma mágica não de criatura, crie uma ficha de criatura Dragão Ilusão vermelha X/X com voar e ímpeto, sendo X a quantidade de mana gasta para conjurar aquela mágica. Exile aquela ficha no início da próxima etapa final.",
+  "power": "4",
+  "toughness": "4",
+  "colors": [
+    "R"
+  ],
+  "color_identity": [
+    "R"
+  ],
+  "keywords": [
+    "Flying"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "arena",
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "8144b676-569f-4716-8005-bc8f0778f3fa",
+  "set": "vow",
+  "set_name": "Innistrad: Crimson Vow",
+  "set_type": "expansion",
+  "set_uri": "https://api.scryfall.com/sets/8144b676-569f-4716-8005-bc8f0778f3fa",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Avow&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/vow?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/cb83ad3d-0a05-4ffd-8dc9-5df31c0eccd2/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Af426aa1a-e1dc-4563-b450-2e23d6bd980b&unique=prints",
+  "collector_number": "170",
+  "digital": false,
+  "rarity": "mythic",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Andrew Mar",
+  "artist_ids": [
+    "adad79bf-cd52-456a-b170-740ed8bff0fc"
+  ],
+  "illustration_id": "0e5abfe1-c94b-4dca-b340-05afba3bc8a2",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "edhrec_rank": 5327,
+  "penny_rank": 5224,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=543240&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DManaform%2BHellkite",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DManaform%2BHellkite",
+    "edhrec": "https://edhrec.com/route/?cc=Manaform+Hellkite"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DManaform%2BHellkite%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Manaform+Hellkite&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Manaform+Hellkite&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

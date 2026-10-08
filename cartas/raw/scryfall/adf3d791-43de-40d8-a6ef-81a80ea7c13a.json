@@ -1,0 +1,143 @@
+{
+  "object": "card",
+  "id": "adf3d791-43de-40d8-a6ef-81a80ea7c13a",
+  "oracle_id": "13d4c46b-c2d6-44cc-a252-4a991d471854",
+  "multiverse_ids": [
+    375616
+  ],
+  "name": "Sylvan Caryatid",
+  "printed_name": "Cariátide Silvestre",
+  "lang": "pt",
+  "released_at": "2013-09-27",
+  "uri": "https://api.scryfall.com/cards/adf3d791-43de-40d8-a6ef-81a80ea7c13a",
+  "scryfall_uri": "https://scryfall.com/card/ths/180/pt/cari%C3%A1tide-silvestre-(sylvan-caryatid)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "placeholder",
+  "image_updated_at": "2026-07-02T06:43:01Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/a/d/adf3d791-43de-40d8-a6ef-81a80ea7c13a.jpg?1782974581",
+    "normal": "https://cards.scryfall.io/normal/front/a/d/adf3d791-43de-40d8-a6ef-81a80ea7c13a.jpg?1782974581",
+    "large": "https://cards.scryfall.io/large/front/a/d/adf3d791-43de-40d8-a6ef-81a80ea7c13a.jpg?1782974581",
+    "png": "https://cards.scryfall.io/png/front/a/d/adf3d791-43de-40d8-a6ef-81a80ea7c13a.png?1782974581",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/a/d/adf3d791-43de-40d8-a6ef-81a80ea7c13a.jpg?1782974581",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/a/d/adf3d791-43de-40d8-a6ef-81a80ea7c13a.jpg?1782974581",
+    "thumb": "https://cards.scryfall.io/thumb/front/a/d/adf3d791-43de-40d8-a6ef-81a80ea7c13a.webp?1782974581",
+    "grid": "https://cards.scryfall.io/grid/front/a/d/adf3d791-43de-40d8-a6ef-81a80ea7c13a.webp?1782974581",
+    "display": "https://cards.scryfall.io/display/front/a/d/adf3d791-43de-40d8-a6ef-81a80ea7c13a.webp?1782974581",
+    "art": "https://cards.scryfall.io/art/front/a/d/adf3d791-43de-40d8-a6ef-81a80ea7c13a.webp?1782974581",
+    "crop": "https://cards.scryfall.io/crop/front/a/d/adf3d791-43de-40d8-a6ef-81a80ea7c13a.webp?1782974581"
+  },
+  "mana_cost": "{1}{G}",
+  "cmc": 2.0,
+  "type_line": "Creature — Plant",
+  "printed_type_line": "Criatura — Planta",
+  "oracle_text": "Defender, hexproof\n{T}: Add one mana of any color.",
+  "printed_text": "Defensor, resistência a magia\n{T}: Adicione um mana de qualquer cor à sua reserva de mana.",
+  "power": "0",
+  "toughness": "3",
+  "colors": [
+    "G"
+  ],
+  "color_identity": [
+    "G"
+  ],
+  "keywords": [
+    "Hexproof",
+    "Defender"
+  ],
+  "produced_mana": [
+    "B",
+    "G",
+    "R",
+    "U",
+    "W"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "69093d6f-e25a-41a4-8cf5-688d7f11c0fb",
+  "set": "ths",
+  "set_name": "Theros",
+  "set_type": "expansion",
+  "set_uri": "https://api.scryfall.com/sets/69093d6f-e25a-41a4-8cf5-688d7f11c0fb",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Aths&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/ths?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/adf3d791-43de-40d8-a6ef-81a80ea7c13a/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A13d4c46b-c2d6-44cc-a252-4a991d471854&unique=prints",
+  "collector_number": "180",
+  "digital": false,
+  "rarity": "rare",
+  "flavor_text": "Os que entram no arvoredo jamais saem. Lá eles encontram a paz e criam raízes, tornando-se parte do bosque em constante crescimento.",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Chase Stone",
+  "artist_ids": [
+    "2d753f61-5f5b-468e-97ea-8e0fdd347340"
+  ],
+  "illustration_id": "26007842-c2ca-46ec-bfa0-669e2e012ed6",
+  "border_color": "black",
+  "frame": "2003",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "edhrec_rank": 1899,
+  "penny_rank": 664,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=375616&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DSylvan%2BCaryatid",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DSylvan%2BCaryatid",
+    "edhrec": "https://edhrec.com/route/?cc=Sylvan+Caryatid"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DSylvan%2BCaryatid%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Sylvan+Caryatid&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Sylvan+Caryatid&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

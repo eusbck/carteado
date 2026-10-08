@@ -1,0 +1,11 @@
+{
+  "object": "bulk_data",
+  "id": "922288cb-4bef-45e1-bb30-0c2bd3d3534f",
+  "type": "all_cards",
+  "updated_at": "2026-10-03T21:18:35.360+00:00",
+  "uri": "https://api.scryfall.com/bulk-data/922288cb-4bef-45e1-bb30-0c2bd3d3534f",
+  "name": "All Cards",
+  "description": "A JSON file containing every card object on Scryfall in every language.",
+  "jsonl_download_uri": "https://data.scryfall.io/all-cards/all-cards-20261003211835.jsonl.gz",
+  "compressed_size": 395352588
+}

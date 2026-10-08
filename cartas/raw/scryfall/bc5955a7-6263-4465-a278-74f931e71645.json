@@ -1,0 +1,156 @@
+{
+  "object": "card",
+  "id": "bc5955a7-6263-4465-a278-74f931e71645",
+  "oracle_id": "c2e2f21a-0338-44d7-96a5-5a277f0ec419",
+  "multiverse_ids": [],
+  "tcgplayer_id": 689876,
+  "cardmarket_id": 883314,
+  "name": "Moseo, Vein's New Dean",
+  "lang": "en",
+  "released_at": "2026-04-24",
+  "uri": "https://api.scryfall.com/cards/bc5955a7-6263-4465-a278-74f931e71645",
+  "scryfall_uri": "https://scryfall.com/card/psos/91p/moseo-veins-new-dean?utm_source=api",
+  "layout": "normal",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T00:45:48Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/b/c/bc5955a7-6263-4465-a278-74f931e71645.jpg?1783903548",
+    "normal": "https://cards.scryfall.io/normal/front/b/c/bc5955a7-6263-4465-a278-74f931e71645.jpg?1783903548",
+    "large": "https://cards.scryfall.io/large/front/b/c/bc5955a7-6263-4465-a278-74f931e71645.jpg?1783903548",
+    "png": "https://cards.scryfall.io/png/front/b/c/bc5955a7-6263-4465-a278-74f931e71645.png?1783903548",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/b/c/bc5955a7-6263-4465-a278-74f931e71645.jpg?1783903548",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/b/c/bc5955a7-6263-4465-a278-74f931e71645.jpg?1783903548",
+    "thumb": "https://cards.scryfall.io/thumb/front/b/c/bc5955a7-6263-4465-a278-74f931e71645.webp?1783903548",
+    "grid": "https://cards.scryfall.io/grid/front/b/c/bc5955a7-6263-4465-a278-74f931e71645.webp?1783903548",
+    "display": "https://cards.scryfall.io/display/front/b/c/bc5955a7-6263-4465-a278-74f931e71645.webp?1783903548",
+    "art": "https://cards.scryfall.io/art/front/b/c/bc5955a7-6263-4465-a278-74f931e71645.webp?1783903548",
+    "crop": "https://cards.scryfall.io/crop/front/b/c/bc5955a7-6263-4465-a278-74f931e71645.webp?1783903548"
+  },
+  "mana_cost": "{2}{B}",
+  "cmc": 3.0,
+  "type_line": "Legendary Creature — Bird Skeleton Warlock",
+  "oracle_text": "Flying\nWhen Moseo enters, create a 1/1 black and green Pest creature token with \"Whenever this token attacks, you gain 1 life.\"\nInfusion — At the beginning of your end step, if you gained life this turn, return up to one target creature card with mana value X or less from your graveyard to the battlefield, where X is the amount of life you gained this turn.",
+  "power": "2",
+  "toughness": "1",
+  "colors": [
+    "B"
+  ],
+  "color_identity": [
+    "B"
+  ],
+  "keywords": [
+    "Infusion",
+    "Flying"
+  ],
+  "all_parts": [
+    {
+      "object": "related_card",
+      "id": "bc5955a7-6263-4465-a278-74f931e71645",
+      "component": "combo_piece",
+      "name": "Moseo, Vein's New Dean",
+      "type_line": "Legendary Creature — Bird Skeleton Warlock",
+      "uri": "https://api.scryfall.com/cards/bc5955a7-6263-4465-a278-74f931e71645"
+    },
+    {
+      "object": "related_card",
+      "id": "40b22872-7b7b-4a6d-a343-4152e552b00a",
+      "component": "token",
+      "name": "Pest",
+      "type_line": "Token Creature — Pest",
+      "uri": "https://api.scryfall.com/cards/40b22872-7b7b-4a6d-a343-4152e552b00a"
+    }
+  ],
+  "legalities": {
+    "standard": "legal",
+    "future": "legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": true,
+  "reprint": true,
+  "variation": false,
+  "set_id": "ad780626-4b50-4b92-b5c1-49e060bd597d",
+  "set": "psos",
+  "set_name": "Secrets of Strixhaven Promos",
+  "set_type": "promo",
+  "set_uri": "https://api.scryfall.com/sets/ad780626-4b50-4b92-b5c1-49e060bd597d",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Apsos&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/psos?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/bc5955a7-6263-4465-a278-74f931e71645/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Ac2e2f21a-0338-44d7-96a5-5a277f0ec419&unique=prints",
+  "collector_number": "91p",
+  "digital": false,
+  "rarity": "rare",
+  "watermark": "witherbloom",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Abz J Harding",
+  "artist_ids": [
+    "2e541c44-40bb-4883-a578-3dcc2af41888"
+  ],
+  "illustration_id": "334ae803-d0f2-448b-86a5-c444d5cde358",
+  "border_color": "black",
+  "frame": "2015",
+  "frame_effects": [
+    "legendary"
+  ],
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "promo_types": [
+    "promopack",
+    "stamped"
+  ],
+  "edhrec_rank": 4268,
+  "prices": {
+    "usd": "0.68",
+    "usd_foil": "3.03",
+    "usd_etched": null,
+    "eur": "0.68",
+    "eur_foil": "0.75",
+    "tix": null
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DMoseo%252C%2BVein%2527s%2BNew%2BDean",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DMoseo%252C%2BVein%2527s%2BNew%2BDean",
+    "edhrec": "https://edhrec.com/route/?cc=Moseo%2C+Vein%27s+New+Dean"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F689876%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=883314&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Moseo%2C+Vein%27s+New+Dean&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

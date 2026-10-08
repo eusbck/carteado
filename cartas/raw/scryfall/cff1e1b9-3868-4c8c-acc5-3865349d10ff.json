@@ -1,0 +1,130 @@
+{
+  "object": "card",
+  "id": "cff1e1b9-3868-4c8c-acc5-3865349d10ff",
+  "oracle_id": "b21d6482-1b3a-47e6-98a5-3067f5f3818b",
+  "multiverse_ids": [
+    623886
+  ],
+  "name": "Aether Gale",
+  "printed_name": "Vendaval Etéreo",
+  "lang": "pt",
+  "released_at": "2023-08-04",
+  "uri": "https://api.scryfall.com/cards/cff1e1b9-3868-4c8c-acc5-3865349d10ff",
+  "scryfall_uri": "https://scryfall.com/card/cmm/72/pt/vendaval-et%C3%A9reo-(aether-gale)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "placeholder",
+  "image_updated_at": "2026-06-30T11:15:40Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/c/f/cff1e1b9-3868-4c8c-acc5-3865349d10ff.jpg?1782818140",
+    "normal": "https://cards.scryfall.io/normal/front/c/f/cff1e1b9-3868-4c8c-acc5-3865349d10ff.jpg?1782818140",
+    "large": "https://cards.scryfall.io/large/front/c/f/cff1e1b9-3868-4c8c-acc5-3865349d10ff.jpg?1782818140",
+    "png": "https://cards.scryfall.io/png/front/c/f/cff1e1b9-3868-4c8c-acc5-3865349d10ff.png?1782818140",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/c/f/cff1e1b9-3868-4c8c-acc5-3865349d10ff.jpg?1782818140",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/c/f/cff1e1b9-3868-4c8c-acc5-3865349d10ff.jpg?1782818140",
+    "thumb": "https://cards.scryfall.io/thumb/front/c/f/cff1e1b9-3868-4c8c-acc5-3865349d10ff.webp?1782818140",
+    "grid": "https://cards.scryfall.io/grid/front/c/f/cff1e1b9-3868-4c8c-acc5-3865349d10ff.webp?1782818140",
+    "display": "https://cards.scryfall.io/display/front/c/f/cff1e1b9-3868-4c8c-acc5-3865349d10ff.webp?1782818140",
+    "art": "https://cards.scryfall.io/art/front/c/f/cff1e1b9-3868-4c8c-acc5-3865349d10ff.webp?1782818140",
+    "crop": "https://cards.scryfall.io/crop/front/c/f/cff1e1b9-3868-4c8c-acc5-3865349d10ff.webp?1782818140"
+  },
+  "mana_cost": "{3}{U}{U}",
+  "cmc": 5.0,
+  "type_line": "Sorcery",
+  "printed_type_line": "Feitiço",
+  "oracle_text": "Return six target nonland permanents to their owners' hands.",
+  "printed_text": "Devolva seis permanentes alvo não de terreno para as mãos de seus donos.",
+  "colors": [
+    "U"
+  ],
+  "color_identity": [
+    "U"
+  ],
+  "keywords": [],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "cd05036f-2698-43e6-a48e-5c8d82f0a551",
+  "set": "cmm",
+  "set_name": "Commander Masters",
+  "set_type": "masters",
+  "set_uri": "https://api.scryfall.com/sets/cd05036f-2698-43e6-a48e-5c8d82f0a551",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Acmm&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/cmm?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/cff1e1b9-3868-4c8c-acc5-3865349d10ff/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Ab21d6482-1b3a-47e6-98a5-3067f5f3818b&unique=prints",
+  "collector_number": "72",
+  "digital": false,
+  "rarity": "uncommon",
+  "flavor_text": "A milícia se posicionou na praça central à espera da investida, mas os gigantes nunca chegaram até lá.",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Jack Wang",
+  "artist_ids": [
+    "331942ac-401c-4af3-9d70-85f67717496c"
+  ],
+  "illustration_id": "f4d41b4f-8cc5-49ab-ae59-0a7ef03e1b1f",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "edhrec_rank": 3685,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=623886&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DAether%2BGale",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DAether%2BGale",
+    "edhrec": "https://edhrec.com/route/?cc=Aether+Gale"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DAether%2BGale%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Aether+Gale&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Aether+Gale&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

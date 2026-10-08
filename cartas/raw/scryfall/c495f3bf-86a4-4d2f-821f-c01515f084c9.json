@@ -1,0 +1,138 @@
+{
+  "object": "card",
+  "id": "c495f3bf-86a4-4d2f-821f-c01515f084c9",
+  "oracle_id": "46327e52-b04a-4155-bda6-9559e46fb9ed",
+  "multiverse_ids": [
+    695956
+  ],
+  "mtgo_id": 138071,
+  "tcgplayer_id": 624643,
+  "cardmarket_id": 818688,
+  "name": "Jaws of Defeat",
+  "lang": "en",
+  "released_at": "2025-04-11",
+  "uri": "https://api.scryfall.com/cards/c495f3bf-86a4-4d2f-821f-c01515f084c9",
+  "scryfall_uri": "https://scryfall.com/card/tdc/27/jaws-of-defeat?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-13T01:46:17Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/c/4/c495f3bf-86a4-4d2f-821f-c01515f084c9.jpg?1783907177",
+    "normal": "https://cards.scryfall.io/normal/front/c/4/c495f3bf-86a4-4d2f-821f-c01515f084c9.jpg?1783907177",
+    "large": "https://cards.scryfall.io/large/front/c/4/c495f3bf-86a4-4d2f-821f-c01515f084c9.jpg?1783907177",
+    "png": "https://cards.scryfall.io/png/front/c/4/c495f3bf-86a4-4d2f-821f-c01515f084c9.png?1783907177",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/c/4/c495f3bf-86a4-4d2f-821f-c01515f084c9.jpg?1783907177",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/c/4/c495f3bf-86a4-4d2f-821f-c01515f084c9.jpg?1783907177",
+    "thumb": "https://cards.scryfall.io/thumb/front/c/4/c495f3bf-86a4-4d2f-821f-c01515f084c9.webp?1783907177",
+    "grid": "https://cards.scryfall.io/grid/front/c/4/c495f3bf-86a4-4d2f-821f-c01515f084c9.webp?1783907177",
+    "display": "https://cards.scryfall.io/display/front/c/4/c495f3bf-86a4-4d2f-821f-c01515f084c9.webp?1783907177",
+    "art": "https://cards.scryfall.io/art/front/c/4/c495f3bf-86a4-4d2f-821f-c01515f084c9.webp?1783907177",
+    "crop": "https://cards.scryfall.io/crop/front/c/4/c495f3bf-86a4-4d2f-821f-c01515f084c9.webp?1783907177"
+  },
+  "mana_cost": "{3}{B}",
+  "cmc": 4.0,
+  "type_line": "Enchantment",
+  "oracle_text": "Whenever a creature you control enters, target opponent loses life equal to the difference between that creature's power and its toughness.",
+  "colors": [
+    "B"
+  ],
+  "color_identity": [
+    "B"
+  ],
+  "keywords": [],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "bca9779c-0a0b-4ac1-8794-f3fc25549cf4",
+  "set": "tdc",
+  "set_name": "Tarkir: Dragonstorm Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/bca9779c-0a0b-4ac1-8794-f3fc25549cf4",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Atdc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/tdc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/c495f3bf-86a4-4d2f-821f-c01515f084c9/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A46327e52-b04a-4155-bda6-9559e46fb9ed&unique=prints",
+  "collector_number": "27",
+  "digital": false,
+  "rarity": "rare",
+  "flavor_text": "\"The Jeskai like talking about their Way? Let's see them talk their way out of this dilemma.\"\n—Girdah, Abzan beastrider",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Andreas Zafiratos",
+  "artist_ids": [
+    "e2f13a9a-57c5-40de-81d4-3b0723899cdf"
+  ],
+  "illustration_id": "99d91662-18cf-4de1-a527-05db198065ec",
+  "border_color": "black",
+  "frame": "2015",
+  "frame_effects": [
+    "enchantment"
+  ],
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 4244,
+  "preview": {
+    "source": "Commander At Home",
+    "source_uri": "https://youtu.be/fdSa63e9yuE",
+    "previewed_at": "2025-03-25"
+  },
+  "prices": {
+    "usd": "0.75",
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": "1.14",
+    "eur_foil": null,
+    "tix": "2.00"
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=695956&printed=false",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DJaws%2Bof%2BDefeat",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DJaws%2Bof%2BDefeat",
+    "edhrec": "https://edhrec.com/route/?cc=Jaws+of+Defeat"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F624643%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=818688&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards/138071?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

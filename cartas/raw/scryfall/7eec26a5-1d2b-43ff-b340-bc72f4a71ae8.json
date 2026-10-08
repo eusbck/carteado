@@ -1,0 +1,133 @@
+{
+  "object": "card",
+  "id": "7eec26a5-1d2b-43ff-b340-bc72f4a71ae8",
+  "oracle_id": "527e4eec-0983-46a9-a4f7-451080200aea",
+  "multiverse_ids": [],
+  "resource_id": "B900ECF990359A348339BDB0E6FFC2C31BF4C7A70093259B9CAEE4669CD0A0E6",
+  "mtgo_id": 146079,
+  "tcgplayer_id": 671140,
+  "cardmarket_id": 865004,
+  "name": "Carnifex Demon",
+  "lang": "en",
+  "released_at": "2026-01-23",
+  "uri": "https://api.scryfall.com/cards/7eec26a5-1d2b-43ff-b340-bc72f4a71ae8",
+  "scryfall_uri": "https://scryfall.com/card/ecc/72/carnifex-demon?utm_source=api",
+  "layout": "normal",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T01:02:42Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/7/e/7eec26a5-1d2b-43ff-b340-bc72f4a71ae8.jpg?1783904562",
+    "normal": "https://cards.scryfall.io/normal/front/7/e/7eec26a5-1d2b-43ff-b340-bc72f4a71ae8.jpg?1783904562",
+    "large": "https://cards.scryfall.io/large/front/7/e/7eec26a5-1d2b-43ff-b340-bc72f4a71ae8.jpg?1783904562",
+    "png": "https://cards.scryfall.io/png/front/7/e/7eec26a5-1d2b-43ff-b340-bc72f4a71ae8.png?1783904562",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/7/e/7eec26a5-1d2b-43ff-b340-bc72f4a71ae8.jpg?1783904562",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/7/e/7eec26a5-1d2b-43ff-b340-bc72f4a71ae8.jpg?1783904562",
+    "thumb": "https://cards.scryfall.io/thumb/front/7/e/7eec26a5-1d2b-43ff-b340-bc72f4a71ae8.webp?1783904562",
+    "grid": "https://cards.scryfall.io/grid/front/7/e/7eec26a5-1d2b-43ff-b340-bc72f4a71ae8.webp?1783904562",
+    "display": "https://cards.scryfall.io/display/front/7/e/7eec26a5-1d2b-43ff-b340-bc72f4a71ae8.webp?1783904562",
+    "art": "https://cards.scryfall.io/art/front/7/e/7eec26a5-1d2b-43ff-b340-bc72f4a71ae8.webp?1783904562",
+    "crop": "https://cards.scryfall.io/crop/front/7/e/7eec26a5-1d2b-43ff-b340-bc72f4a71ae8.webp?1783904562"
+  },
+  "mana_cost": "{4}{B}{B}",
+  "cmc": 6.0,
+  "type_line": "Creature — Phyrexian Demon",
+  "oracle_text": "Flying\nThis creature enters with two -1/-1 counters on it.\n{B}, Remove a -1/-1 counter from this creature: Put a -1/-1 counter on each other creature.",
+  "power": "6",
+  "toughness": "6",
+  "colors": [
+    "B"
+  ],
+  "color_identity": [
+    "B"
+  ],
+  "keywords": [
+    "Flying"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "not_legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "805b5a0c-f8bb-4555-86ea-eb9ec36a011a",
+  "set": "ecc",
+  "set_name": "Lorwyn Eclipsed Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/805b5a0c-f8bb-4555-86ea-eb9ec36a011a",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Aecc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/ecc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/7eec26a5-1d2b-43ff-b340-bc72f4a71ae8/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A527e4eec-0983-46a9-a4f7-451080200aea&unique=prints",
+  "collector_number": "72",
+  "digital": false,
+  "rarity": "rare",
+  "flavor_text": "Every contagion has a host.",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Aleksi Briclot",
+  "artist_ids": [
+    "5e470014-31cb-41b0-b054-e23374484449"
+  ],
+  "illustration_id": "c0d362e8-b93c-4c5f-ab99-21fc4a09dab9",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 4997,
+  "penny_rank": 8771,
+  "prices": {
+    "usd": "0.22",
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": "0.17",
+    "eur_foil": null,
+    "tix": "0.19"
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DCarnifex%2BDemon",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DCarnifex%2BDemon",
+    "edhrec": "https://edhrec.com/route/?cc=Carnifex+Demon"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F671140%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=865004&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards/146079?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

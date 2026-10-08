@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="pt-BR">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Biblioteca de decks — nvvvm</title>
+<style>
+:root{font-family:system-ui,sans-serif;color:#e9edf3;background:#151a23;color-scheme:dark}*{box-sizing:border-box}body{margin:0;padding:28px;max-width:1700px;margin:auto}h1{font-size:28px;margin:0 0 8px}p{line-height:1.5}header{margin-bottom:22px}.status{background:#243144;border-radius:8px;padding:12px 16px}nav{display:flex;flex-wrap:wrap;gap:12px;margin:18px 0}label{display:grid;gap:5px;font-size:13px}select,input{font:inherit;background:#202b3c;color:#fff;border:1px solid #536176;padding:10px;border-radius:5px;max-width:100%}#search{min-width:220px}#description{white-space:pre-wrap;font-size:14px;color:#b8c6d9}#grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:20px}.card{background:#202936;padding:14px;border:1px solid #344259;border-radius:10px}.pictures{display:flex;gap:7px;overflow:auto;align-items:flex-start}.pictures img{width:100%;min-width:100%;height:auto;border-radius:9px}.card h2{font-size:18px;margin:12px 0 7px}.meta{font-size:12px;color:#bac7d8}.text{font-size:14px;line-height:1.5;white-space:pre-wrap}.text strong{display:block;color:#a7c7ff;font-size:12px;margin:12px 0 4px}.empty{padding:30px;color:#c5d0df}summary{cursor:pointer;margin-top:14px;font-size:13px}a{color:#a7c7ff}footer{font-size:12px;color:#bcc8d7;margin-top:32px}@media(max-width:600px){body{padding:16px}nav{display:grid}#grid{grid-template-columns:1fr}}
+</style>
+<header><h1>Biblioteca de decks — nvvvm</h1><p>Listas, imagens e textos das cartas, disponíveis nesta pasta.</p><div id="status" class="status"></div></header>
+<nav aria-label="Filtros">
+<label>Deck<select id="deck"></select></label>
+<label>Zona<select id="zone"><option value="all">Todas</option></select></label>
+<label>Idioma<select id="language"><option value="original">Edição original</option><option value="en">Inglês</option><option value="pt">Português, quando disponível</option></select></label>
+<label>Buscar carta<input id="search" type="search" placeholder="Nome em inglês ou português"></label>
+</nav>
+<p id="counts"></p><p id="description"></p><main id="grid"></main>
+<footer>Imagens e dados: Scryfall. Listas: Moxfield ou exportações locais. Magic: The Gathering e as cartas pertencem à Wizards of the Coast; os créditos dos artistas estão preservados nas imagens. Textos em português reproduzem a impressão da carta; o texto Oracle em inglês é a referência para regras.</footer>
+<script>
+"use strict";
+const archive = __ARCHIVE_DATA__;
+const $ = id => document.getElementById(id);
+function element(tag, text, cls) {const e=document.createElement(tag);if(text!=null)e.textContent=text;if(cls)e.className=cls;return e;}
+function option(value,text){const e=element('option',text);e.value=value;return e;}
+const deckSelect=$('deck'), zoneSelect=$('zone'), langSelect=$('language');
+archive.decks.sort((a,b)=>a.name.localeCompare(b.name,'pt-BR')).forEach(d=>deckSelect.append(option(d.id,d.name)));
+$('status').textContent=archive.status==='complete'?'Coleta concluída. As imagens exibidas são arquivos locais.':archive.status==='planned'?'Listas e textos preparados. O download das imagens e dos arquivos complementares ainda precisa ser concluído pelo BAIXAR-DECKS.cmd.':'Coleta parcial ou interrompida. Consulte manifest.json para identificar as pendências.';
+function chosenDeck(){return archive.decks.find(d=>d.id===deckSelect.value);}
+function showZones(){const d=chosenDeck();zoneSelect.replaceChildren(option('all','Todas'));if(d){Object.keys(d.counts).forEach(z=>zoneSelect.append(option(z,`${z} (${d.counts[z]})`)));if(d.support_printing_ids?.length)zoneSelect.append(option('support','Fichas, emblemas e objetos auxiliares'));}render();}
+function textBlock(container,label,text){if(!text)return;const p=element('div',null,'text');p.append(element('strong',label),document.createTextNode(text));container.append(p);}
+function render(){const d=chosenDeck(), grid=$('grid');grid.replaceChildren();if(!d){grid.append(element('p','Nenhum deck coletado.','empty'));return;}
+$('counts').textContent=Object.entries(d.counts).map(([z,n])=>`${z}: ${n}`).join(' · ');
+$('description').textContent=d.description||'Sem descrição pública do autor.';
+const support=(d.support_printing_ids||[]).map(id=>({zone:'support',quantity:null,name:archive.printings[id]?.name||id,printing_id:id,language_variants:d.support_language_variants?.[id]||{}}));
+const entries=[...d.entries,...support];let shown=0;
+for(const entry of entries){if(zoneSelect.value!=='all'&&entry.zone!==zoneSelect.value)continue;
+const lang=langSelect.value, requested=lang==='original'?entry.printing_id:entry.language_variants?.[lang];
+const original=archive.printings[entry.printing_id];
+const matching=lang==='original'||requested?null:Object.values(archive.printings).find(p=>p.oracle_id&&p.oracle_id===original?.oracle_id&&p.lang===lang);
+const p=archive.printings[requested]||matching||original;
+const search=$('search').value.trim().toLocaleLowerCase('pt-BR');if(search&&![entry.name,p?.name,p?.printed_name,...(p?.card_faces||[]).map(f=>f.printed_name)].some(n=>n?.toLocaleLowerCase('pt-BR').includes(search)))continue;
+shown++;const tile=element('article',null,'card');grid.append(tile);
+const pictures=element('div',null,'pictures');tile.append(pictures);
+for(const image of p?.local_images||[]){const img=element('img');img.src=image.path;img.alt=`${p.printed_name||p.name} — ${image.face}`;img.loading='lazy';pictures.append(img);}
+if(!p?.local_images?.length)pictures.append(element('p','Imagem não baixada.','empty'));
+tile.append(element('h2',`${entry.quantity==null?'':entry.quantity+' × '}${p?.printed_name||p?.name||entry.name}`));
+tile.append(element('p',`${entry.zone} · ${p?.set?.toUpperCase()||'edição pendente'} ${p?.collector_number||''} · ${p?.lang||'idioma pendente'}`,'meta'));
+if(lang==='pt'&&p?.lang!=='pt')tile.append(element('p','Impressão em português indisponível; exibindo a edição de referência.','meta'));
+if(p){const faces=p.card_faces?.length?p.card_faces:[p];for(const face of faces){if(faces.length>1)textBlock(tile,'Face',face.printed_name||face.name);textBlock(tile,'Tipo',face.printed_type_line||face.type_line);textBlock(tile,'Custo de mana',face.mana_cost);if(p.lang!=='en')textBlock(tile,`Texto impresso (${p.lang})`,face.printed_text);textBlock(tile,'Texto Oracle (inglês)',face.oracle_text);const stats=['power','toughness','loyalty','defense'].filter(k=>face[k]!=null).map(k=>`${k}: ${face[k]}`).join(' · ');if(stats)textBlock(tile,'Atributos',stats);}
+const details=element('details'), summary=element('summary','Identificadores e créditos');details.append(summary);textBlock(details,'Scryfall ID',p.id);textBlock(details,'Oracle ID',p.oracle_id);textBlock(details,'Artista',p.artist||(p.card_faces||[]).map(f=>f.artist).filter(Boolean).join(' / '));tile.append(details);}}
+if(!shown)grid.append(element('p','Nenhuma carta corresponde aos filtros.','empty'));}
+deckSelect.addEventListener('change',showZones);[zoneSelect,langSelect].forEach(e=>e.addEventListener('change',render));$('search').addEventListener('input',render);showZones();
+</script>
+</html>

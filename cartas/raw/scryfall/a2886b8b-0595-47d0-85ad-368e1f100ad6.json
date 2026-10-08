@@ -1,0 +1,133 @@
+{
+  "object": "card",
+  "id": "a2886b8b-0595-47d0-85ad-368e1f100ad6",
+  "oracle_id": "463865bc-087e-477b-9e86-84e77f1ad931",
+  "multiverse_ids": [
+    472537
+  ],
+  "name": "Seedborn Muse",
+  "printed_name": "Musa Nascida da Semente",
+  "lang": "pt",
+  "released_at": "2019-08-23",
+  "uri": "https://api.scryfall.com/cards/a2886b8b-0595-47d0-85ad-368e1f100ad6",
+  "scryfall_uri": "https://scryfall.com/card/c19/179/pt/musa-nascida-da-semente-(seedborn-muse)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-01T14:08:04Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/a/2/a2886b8b-0595-47d0-85ad-368e1f100ad6.jpg?1782914884",
+    "normal": "https://cards.scryfall.io/normal/front/a/2/a2886b8b-0595-47d0-85ad-368e1f100ad6.jpg?1782914884",
+    "large": "https://cards.scryfall.io/large/front/a/2/a2886b8b-0595-47d0-85ad-368e1f100ad6.jpg?1782914884",
+    "png": "https://cards.scryfall.io/png/front/a/2/a2886b8b-0595-47d0-85ad-368e1f100ad6.png?1782914884",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/a/2/a2886b8b-0595-47d0-85ad-368e1f100ad6.jpg?1782914884",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/a/2/a2886b8b-0595-47d0-85ad-368e1f100ad6.jpg?1782914884",
+    "thumb": "https://cards.scryfall.io/thumb/front/a/2/a2886b8b-0595-47d0-85ad-368e1f100ad6.webp?1782914884",
+    "grid": "https://cards.scryfall.io/grid/front/a/2/a2886b8b-0595-47d0-85ad-368e1f100ad6.webp?1782914884",
+    "display": "https://cards.scryfall.io/display/front/a/2/a2886b8b-0595-47d0-85ad-368e1f100ad6.webp?1782914884",
+    "art": "https://cards.scryfall.io/art/front/a/2/a2886b8b-0595-47d0-85ad-368e1f100ad6.webp?1782914884",
+    "crop": "https://cards.scryfall.io/crop/front/a/2/a2886b8b-0595-47d0-85ad-368e1f100ad6.webp?1782914884"
+  },
+  "mana_cost": "{3}{G}{G}",
+  "cmc": 5.0,
+  "type_line": "Creature — Spirit",
+  "printed_type_line": "Criatura — Espírito",
+  "oracle_text": "Untap all permanents you control during each other player's untap step.",
+  "printed_text": "Desvire todas as permanentes que você controla durante a etapa de desvirar de cada um dos outros jogadores.",
+  "power": "2",
+  "toughness": "4",
+  "colors": [
+    "G"
+  ],
+  "color_identity": [
+    "G"
+  ],
+  "keywords": [],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "legal",
+    "predh": "legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": true,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "0fa3ccbb-d86d-4a2e-a55e-c4979c4feeb2",
+  "set": "c19",
+  "set_name": "Commander 2019",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/0fa3ccbb-d86d-4a2e-a55e-c4979c4feeb2",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Ac19&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/c19?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/a2886b8b-0595-47d0-85ad-368e1f100ad6/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A463865bc-087e-477b-9e86-84e77f1ad931&unique=prints",
+  "collector_number": "179",
+  "digital": false,
+  "rarity": "rare",
+  "flavor_text": "\"Sua voz é a natureza, selvagem e pura.\"\n— Kamahl, acólito druida",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Adam Rex",
+  "artist_ids": [
+    "445bd2fb-4a70-4599-87a4-83cf5979fc56"
+  ],
+  "illustration_id": "3be1444d-2890-467c-ae41-28f60365a858",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 286,
+  "penny_rank": 7947,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=472537&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DSeedborn%2BMuse",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DSeedborn%2BMuse",
+    "edhrec": "https://edhrec.com/route/?cc=Seedborn+Muse"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DSeedborn%2BMuse%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Seedborn+Muse&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Seedborn+Muse&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

@@ -1,0 +1,135 @@
+{
+  "object": "card",
+  "id": "6e80198c-cfae-46f9-84cb-584d091014c5",
+  "oracle_id": "d4193f50-33b5-4201-ba03-eb135eced7ff",
+  "multiverse_ids": [],
+  "resource_id": "8FABB9C8B1E1FE81C0BDF9CB001E1C2A13499BD933BD178E7F0DE1D73B5E509E",
+  "mtgo_id": 148829,
+  "tcgplayer_id": 687552,
+  "cardmarket_id": 881501,
+  "name": "Teshar, Ancestor's Apostle",
+  "lang": "en",
+  "released_at": "2026-04-24",
+  "uri": "https://api.scryfall.com/cards/6e80198c-cfae-46f9-84cb-584d091014c5",
+  "scryfall_uri": "https://scryfall.com/card/soc/180/teshar-ancestors-apostle?utm_source=api",
+  "layout": "normal",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T00:49:57Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/6/e/6e80198c-cfae-46f9-84cb-584d091014c5.jpg?1783903797",
+    "normal": "https://cards.scryfall.io/normal/front/6/e/6e80198c-cfae-46f9-84cb-584d091014c5.jpg?1783903797",
+    "large": "https://cards.scryfall.io/large/front/6/e/6e80198c-cfae-46f9-84cb-584d091014c5.jpg?1783903797",
+    "png": "https://cards.scryfall.io/png/front/6/e/6e80198c-cfae-46f9-84cb-584d091014c5.png?1783903797",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/6/e/6e80198c-cfae-46f9-84cb-584d091014c5.jpg?1783903797",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/6/e/6e80198c-cfae-46f9-84cb-584d091014c5.jpg?1783903797",
+    "thumb": "https://cards.scryfall.io/thumb/front/6/e/6e80198c-cfae-46f9-84cb-584d091014c5.webp?1783903797",
+    "grid": "https://cards.scryfall.io/grid/front/6/e/6e80198c-cfae-46f9-84cb-584d091014c5.webp?1783903797",
+    "display": "https://cards.scryfall.io/display/front/6/e/6e80198c-cfae-46f9-84cb-584d091014c5.webp?1783903797",
+    "art": "https://cards.scryfall.io/art/front/6/e/6e80198c-cfae-46f9-84cb-584d091014c5.webp?1783903797",
+    "crop": "https://cards.scryfall.io/crop/front/6/e/6e80198c-cfae-46f9-84cb-584d091014c5.webp?1783903797"
+  },
+  "mana_cost": "{3}{W}",
+  "cmc": 4.0,
+  "type_line": "Legendary Creature — Bird Cleric",
+  "oracle_text": "Flying\nWhenever you cast a historic spell, return target creature card with mana value 3 or less from your graveyard to the battlefield. (Artifacts, legendaries, and Sagas are historic.)",
+  "power": "2",
+  "toughness": "2",
+  "colors": [
+    "W"
+  ],
+  "color_identity": [
+    "W"
+  ],
+  "keywords": [
+    "Flying"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "97fab8d1-480a-419d-ab14-663968e29b9c",
+  "set": "soc",
+  "set_name": "Secrets of Strixhaven Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/97fab8d1-480a-419d-ab14-663968e29b9c",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Asoc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/soc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/6e80198c-cfae-46f9-84cb-584d091014c5/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Ad4193f50-33b5-4201-ba03-eb135eced7ff&unique=prints",
+  "collector_number": "180",
+  "digital": false,
+  "rarity": "uncommon",
+  "flavor_text": "\"The Ancestor saved us for a purpose.\"",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Even Amundsen",
+  "artist_ids": [
+    "127faa6a-6c02-49a0-beba-ae76d06dd153"
+  ],
+  "illustration_id": "fc7531ca-2062-4c23-a3f0-99b9de2d95af",
+  "border_color": "black",
+  "frame": "2015",
+  "frame_effects": [
+    "legendary"
+  ],
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 1937,
+  "penny_rank": 4882,
+  "prices": {
+    "usd": "0.34",
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": "0.20",
+    "eur_foil": null,
+    "tix": "0.06"
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DTeshar%252C%2BAncestor%2527s%2BApostle",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DTeshar%252C%2BAncestor%2527s%2BApostle",
+    "edhrec": "https://edhrec.com/route/?cc=Teshar%2C+Ancestor%27s+Apostle"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F687552%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=881501&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards/148829?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

@@ -1,0 +1,135 @@
+{
+  "object": "card",
+  "id": "de1f7e5e-a503-4f99-91a1-2fdabb7d5e89",
+  "oracle_id": "e521322b-0e83-458c-8936-7021a80ee279",
+  "multiverse_ids": [
+    696561
+  ],
+  "mtgo_id": 138751,
+  "tcgplayer_id": 624606,
+  "cardmarket_id": 818962,
+  "name": "Temple of Plenty",
+  "lang": "en",
+  "released_at": "2025-04-11",
+  "uri": "https://api.scryfall.com/cards/de1f7e5e-a503-4f99-91a1-2fdabb7d5e89",
+  "scryfall_uri": "https://scryfall.com/card/tdc/405/temple-of-plenty?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-13T01:42:42Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/d/e/de1f7e5e-a503-4f99-91a1-2fdabb7d5e89.jpg?1783906962",
+    "normal": "https://cards.scryfall.io/normal/front/d/e/de1f7e5e-a503-4f99-91a1-2fdabb7d5e89.jpg?1783906962",
+    "large": "https://cards.scryfall.io/large/front/d/e/de1f7e5e-a503-4f99-91a1-2fdabb7d5e89.jpg?1783906962",
+    "png": "https://cards.scryfall.io/png/front/d/e/de1f7e5e-a503-4f99-91a1-2fdabb7d5e89.png?1783906962",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/d/e/de1f7e5e-a503-4f99-91a1-2fdabb7d5e89.jpg?1783906962",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/d/e/de1f7e5e-a503-4f99-91a1-2fdabb7d5e89.jpg?1783906962",
+    "thumb": "https://cards.scryfall.io/thumb/front/d/e/de1f7e5e-a503-4f99-91a1-2fdabb7d5e89.webp?1783906962",
+    "grid": "https://cards.scryfall.io/grid/front/d/e/de1f7e5e-a503-4f99-91a1-2fdabb7d5e89.webp?1783906962",
+    "display": "https://cards.scryfall.io/display/front/d/e/de1f7e5e-a503-4f99-91a1-2fdabb7d5e89.webp?1783906962",
+    "art": "https://cards.scryfall.io/art/front/d/e/de1f7e5e-a503-4f99-91a1-2fdabb7d5e89.webp?1783906962",
+    "crop": "https://cards.scryfall.io/crop/front/d/e/de1f7e5e-a503-4f99-91a1-2fdabb7d5e89.webp?1783906962"
+  },
+  "mana_cost": "",
+  "cmc": 0.0,
+  "type_line": "Land",
+  "oracle_text": "This land enters tapped.\nWhen this land enters, scry 1. (Look at the top card of your library. You may put that card on the bottom.)\n{T}: Add {G} or {W}.",
+  "colors": [],
+  "color_identity": [
+    "G",
+    "W"
+  ],
+  "keywords": [
+    "Scry"
+  ],
+  "produced_mana": [
+    "G",
+    "W"
+  ],
+  "legalities": {
+    "standard": "legal",
+    "future": "legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "bca9779c-0a0b-4ac1-8794-f3fc25549cf4",
+  "set": "tdc",
+  "set_name": "Tarkir: Dragonstorm Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/bca9779c-0a0b-4ac1-8794-f3fc25549cf4",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Atdc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/tdc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/de1f7e5e-a503-4f99-91a1-2fdabb7d5e89/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Ae521322b-0e83-458c-8936-7021a80ee279&unique=prints",
+  "collector_number": "405",
+  "digital": false,
+  "rarity": "rare",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Chris Ostrowski",
+  "artist_ids": [
+    "b5f1bd34-abee-40c9-99f7-a6ee089fb30b"
+  ],
+  "illustration_id": "846b14b7-34e8-4f0c-86bb-8bf5dc45bd00",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 501,
+  "penny_rank": 1590,
+  "prices": {
+    "usd": "0.34",
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": "0.13",
+    "eur_foil": null,
+    "tix": "0.12"
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=696561&printed=false",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DTemple%2Bof%2BPlenty",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DTemple%2Bof%2BPlenty",
+    "edhrec": "https://edhrec.com/route/?cc=Temple+of+Plenty"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F624606%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=818962&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards/138751?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

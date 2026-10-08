@@ -1,0 +1,133 @@
+{
+  "object": "card",
+  "id": "e2b17017-54ae-4121-b5da-bed265e19aa6",
+  "oracle_id": "e5e04968-d9b7-4bd5-b826-be9502360cd3",
+  "multiverse_ids": [
+    404204
+  ],
+  "name": "Angelic Gift",
+  "printed_name": "Dádiva Angelical",
+  "lang": "pt",
+  "released_at": "2015-10-02",
+  "uri": "https://api.scryfall.com/cards/e2b17017-54ae-4121-b5da-bed265e19aa6",
+  "scryfall_uri": "https://scryfall.com/card/bfz/19/pt/d%C3%A1diva-angelical-(angelic-gift)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-02T02:23:45Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/e/2/e2b17017-54ae-4121-b5da-bed265e19aa6.jpg?1782959025",
+    "normal": "https://cards.scryfall.io/normal/front/e/2/e2b17017-54ae-4121-b5da-bed265e19aa6.jpg?1782959025",
+    "large": "https://cards.scryfall.io/large/front/e/2/e2b17017-54ae-4121-b5da-bed265e19aa6.jpg?1782959025",
+    "png": "https://cards.scryfall.io/png/front/e/2/e2b17017-54ae-4121-b5da-bed265e19aa6.png?1782959025",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/e/2/e2b17017-54ae-4121-b5da-bed265e19aa6.jpg?1782959025",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/e/2/e2b17017-54ae-4121-b5da-bed265e19aa6.jpg?1782959025",
+    "thumb": "https://cards.scryfall.io/thumb/front/e/2/e2b17017-54ae-4121-b5da-bed265e19aa6.webp?1782959025",
+    "grid": "https://cards.scryfall.io/grid/front/e/2/e2b17017-54ae-4121-b5da-bed265e19aa6.webp?1782959025",
+    "display": "https://cards.scryfall.io/display/front/e/2/e2b17017-54ae-4121-b5da-bed265e19aa6.webp?1782959025",
+    "art": "https://cards.scryfall.io/art/front/e/2/e2b17017-54ae-4121-b5da-bed265e19aa6.webp?1782959025",
+    "crop": "https://cards.scryfall.io/crop/front/e/2/e2b17017-54ae-4121-b5da-bed265e19aa6.webp?1782959025"
+  },
+  "mana_cost": "{1}{W}",
+  "cmc": 2.0,
+  "type_line": "Enchantment — Aura",
+  "printed_type_line": "Encantamento — Aura",
+  "oracle_text": "Enchant creature\nWhen this Aura enters, draw a card.\nEnchanted creature has flying.",
+  "printed_text": "Encantar criaturaQuando Dádiva Angelical entrar no campo de batalha, compre um card.A criatura encantada tem voar.",
+  "colors": [
+    "W"
+  ],
+  "color_identity": [
+    "W"
+  ],
+  "keywords": [
+    "Enchant"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "91719374-7ac5-4afa-ada8-5da964dcf1d4",
+  "set": "bfz",
+  "set_name": "Battle for Zendikar",
+  "set_type": "expansion",
+  "set_uri": "https://api.scryfall.com/sets/91719374-7ac5-4afa-ada8-5da964dcf1d4",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Abfz&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/bfz?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/e2b17017-54ae-4121-b5da-bed265e19aa6/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Ae5e04968-d9b7-4bd5-b826-be9502360cd3&unique=prints",
+  "collector_number": "19",
+  "digital": false,
+  "rarity": "common",
+  "flavor_text": "\"Zendikar triunfará hoje, e os nossos exércitos voarão com os anjos.\"",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Josu Hernaiz",
+  "artist_ids": [
+    "74246024-92b4-43d0-a5af-a3f9f2a35d5f"
+  ],
+  "illustration_id": "610e5f49-369b-4d40-93ce-4f01ecd510ae",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "edhrec_rank": 3667,
+  "penny_rank": 3532,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=404204&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DAngelic%2BGift",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DAngelic%2BGift",
+    "edhrec": "https://edhrec.com/route/?cc=Angelic+Gift"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DAngelic%2BGift%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Angelic+Gift&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Angelic+Gift&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

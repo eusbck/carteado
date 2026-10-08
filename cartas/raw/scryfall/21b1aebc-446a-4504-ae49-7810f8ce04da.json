@@ -1,0 +1,133 @@
+{
+  "object": "card",
+  "id": "21b1aebc-446a-4504-ae49-7810f8ce04da",
+  "oracle_id": "e937e0f5-ca35-4dce-9f05-8f2075731628",
+  "multiverse_ids": [
+    86833
+  ],
+  "name": "Kami of Ancient Law",
+  "printed_name": "Kami da Lei Antiga",
+  "lang": "pt",
+  "released_at": "2004-10-01",
+  "uri": "https://api.scryfall.com/cards/21b1aebc-446a-4504-ae49-7810f8ce04da",
+  "scryfall_uri": "https://scryfall.com/card/chk/21/pt/kami-da-lei-antiga-(kami-of-ancient-law)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "placeholder",
+  "image_updated_at": "2026-07-02T20:35:30Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/2/1/21b1aebc-446a-4504-ae49-7810f8ce04da.jpg?1783024530",
+    "normal": "https://cards.scryfall.io/normal/front/2/1/21b1aebc-446a-4504-ae49-7810f8ce04da.jpg?1783024530",
+    "large": "https://cards.scryfall.io/large/front/2/1/21b1aebc-446a-4504-ae49-7810f8ce04da.jpg?1783024530",
+    "png": "https://cards.scryfall.io/png/front/2/1/21b1aebc-446a-4504-ae49-7810f8ce04da.png?1783024530",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/2/1/21b1aebc-446a-4504-ae49-7810f8ce04da.jpg?1783024530",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/2/1/21b1aebc-446a-4504-ae49-7810f8ce04da.jpg?1783024530",
+    "thumb": "https://cards.scryfall.io/thumb/front/2/1/21b1aebc-446a-4504-ae49-7810f8ce04da.webp?1783024530",
+    "grid": "https://cards.scryfall.io/grid/front/2/1/21b1aebc-446a-4504-ae49-7810f8ce04da.webp?1783024530",
+    "display": "https://cards.scryfall.io/display/front/2/1/21b1aebc-446a-4504-ae49-7810f8ce04da.webp?1783024530",
+    "art": "https://cards.scryfall.io/art/front/2/1/21b1aebc-446a-4504-ae49-7810f8ce04da.webp?1783024530",
+    "crop": "https://cards.scryfall.io/crop/front/2/1/21b1aebc-446a-4504-ae49-7810f8ce04da.webp?1783024530"
+  },
+  "mana_cost": "{1}{W}",
+  "cmc": 2.0,
+  "type_line": "Creature — Spirit",
+  "printed_type_line": "Criatura - Espírito",
+  "oracle_text": "Sacrifice this creature: Destroy target enchantment.",
+  "printed_text": "Sacrifique Kami da Lei Antiga: Destrói o encantamento alvo.",
+  "power": "2",
+  "toughness": "2",
+  "colors": [
+    "W"
+  ],
+  "color_identity": [
+    "W"
+  ],
+  "keywords": [],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "6183d21f-a0af-4118-ba58-aca1d8719c01",
+  "set": "chk",
+  "set_name": "Champions of Kamigawa",
+  "set_type": "expansion",
+  "set_uri": "https://api.scryfall.com/sets/6183d21f-a0af-4118-ba58-aca1d8719c01",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Achk&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/chk?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/21b1aebc-446a-4504-ae49-7810f8ce04da/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Ae937e0f5-ca35-4dce-9f05-8f2075731628&unique=prints",
+  "collector_number": "21",
+  "digital": false,
+  "rarity": "common",
+  "flavor_text": "\"O dever e a lei são a fundação sobre a qual a civilização se sustenta. Eles não podem cair, pois quando caem levam tudo com eles\".— Senhor Konda",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Mark Tedin",
+  "artist_ids": [
+    "9ee9a9cc-c09e-486f-918b-69f80cbc4188"
+  ],
+  "illustration_id": "a23340fb-7c6f-48ac-89d5-05752952bf1b",
+  "border_color": "black",
+  "frame": "2003",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "edhrec_rank": 14311,
+  "penny_rank": 11210,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=86833&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DKami%2Bof%2BAncient%2BLaw",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DKami%2Bof%2BAncient%2BLaw",
+    "edhrec": "https://edhrec.com/route/?cc=Kami+of+Ancient+Law"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DKami%2Bof%2BAncient%2BLaw%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Kami+of+Ancient+Law&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Kami+of+Ancient+Law&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

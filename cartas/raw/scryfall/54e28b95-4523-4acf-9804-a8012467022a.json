@@ -1,0 +1,129 @@
+{
+  "object": "card",
+  "id": "54e28b95-4523-4acf-9804-a8012467022a",
+  "oracle_id": "b1544f21-7e98-461b-aed5-e748b0168c52",
+  "multiverse_ids": [
+    641909
+  ],
+  "name": "Swords to Plowshares",
+  "printed_name": "Espadas em Arados",
+  "lang": "pt",
+  "released_at": "2023-11-17",
+  "uri": "https://api.scryfall.com/cards/54e28b95-4523-4acf-9804-a8012467022a",
+  "scryfall_uri": "https://scryfall.com/card/lcc/137/pt/espadas-em-arados-(swords-to-plowshares)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T09:07:02Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/5/4/54e28b95-4523-4acf-9804-a8012467022a.jpg?1782810422",
+    "normal": "https://cards.scryfall.io/normal/front/5/4/54e28b95-4523-4acf-9804-a8012467022a.jpg?1782810422",
+    "large": "https://cards.scryfall.io/large/front/5/4/54e28b95-4523-4acf-9804-a8012467022a.jpg?1782810422",
+    "png": "https://cards.scryfall.io/png/front/5/4/54e28b95-4523-4acf-9804-a8012467022a.png?1782810422",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/5/4/54e28b95-4523-4acf-9804-a8012467022a.jpg?1782810422",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/5/4/54e28b95-4523-4acf-9804-a8012467022a.jpg?1782810422",
+    "thumb": "https://cards.scryfall.io/thumb/front/5/4/54e28b95-4523-4acf-9804-a8012467022a.webp?1782810422",
+    "grid": "https://cards.scryfall.io/grid/front/5/4/54e28b95-4523-4acf-9804-a8012467022a.webp?1782810422",
+    "display": "https://cards.scryfall.io/display/front/5/4/54e28b95-4523-4acf-9804-a8012467022a.webp?1782810422",
+    "art": "https://cards.scryfall.io/art/front/5/4/54e28b95-4523-4acf-9804-a8012467022a.webp?1782810422",
+    "crop": "https://cards.scryfall.io/crop/front/5/4/54e28b95-4523-4acf-9804-a8012467022a.webp?1782810422"
+  },
+  "mana_cost": "{W}",
+  "cmc": 1.0,
+  "type_line": "Instant",
+  "printed_type_line": "Mágica Instantânea",
+  "oracle_text": "Exile target creature. Its controller gains life equal to its power.",
+  "printed_text": "Exile a criatura alvo. Seu controlador ganha uma quantidade de pontos de vida igual ao seu poder.",
+  "colors": [
+    "W"
+  ],
+  "color_identity": [
+    "W"
+  ],
+  "keywords": [],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "banned",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "legal",
+    "predh": "legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "d253edc3-5bc7-4cf1-9446-a8540dedffa5",
+  "set": "lcc",
+  "set_name": "The Lost Caverns of Ixalan Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/d253edc3-5bc7-4cf1-9446-a8540dedffa5",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Alcc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/lcc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/54e28b95-4523-4acf-9804-a8012467022a/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Ab1544f21-7e98-461b-aed5-e748b0168c52&unique=prints",
+  "collector_number": "137",
+  "digital": false,
+  "rarity": "uncommon",
+  "flavor_text": "\"O arco de minha lâmina esculpiu um caminho de luz para a paz que virá.\"",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Jesper Ejsing",
+  "artist_ids": [
+    "a5f8354a-8b51-4e59-96b2-0e3aeae4fa1d"
+  ],
+  "illustration_id": "3c970964-2c63-4189-9c60-7bb63a7c42ea",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 11,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=641909&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DSwords%2Bto%2BPlowshares",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DSwords%2Bto%2BPlowshares",
+    "edhrec": "https://edhrec.com/route/?cc=Swords+to+Plowshares"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DSwords%2Bto%2BPlowshares%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Swords+to+Plowshares&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Swords+to+Plowshares&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

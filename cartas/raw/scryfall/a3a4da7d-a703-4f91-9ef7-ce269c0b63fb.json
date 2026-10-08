@@ -1,0 +1,128 @@
+{
+  "object": "card",
+  "id": "a3a4da7d-a703-4f91-9ef7-ce269c0b63fb",
+  "oracle_id": "a3fb7228-e76b-4e96-a40e-20b5fed75685",
+  "multiverse_ids": [
+    681245
+  ],
+  "arena_id": 95175,
+  "tcgplayer_id": 590281,
+  "cardmarket_id": 795511,
+  "name": "Mountain",
+  "lang": "en",
+  "released_at": "2024-11-15",
+  "uri": "https://api.scryfall.com/cards/a3a4da7d-a703-4f91-9ef7-ce269c0b63fb",
+  "scryfall_uri": "https://scryfall.com/card/j25/90/mountain?utm_source=api",
+  "layout": "normal",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T02:14:01Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/a/3/a3a4da7d-a703-4f91-9ef7-ce269c0b63fb.jpg?1783908841",
+    "normal": "https://cards.scryfall.io/normal/front/a/3/a3a4da7d-a703-4f91-9ef7-ce269c0b63fb.jpg?1783908841",
+    "large": "https://cards.scryfall.io/large/front/a/3/a3a4da7d-a703-4f91-9ef7-ce269c0b63fb.jpg?1783908841",
+    "png": "https://cards.scryfall.io/png/front/a/3/a3a4da7d-a703-4f91-9ef7-ce269c0b63fb.png?1783908841",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/a/3/a3a4da7d-a703-4f91-9ef7-ce269c0b63fb.jpg?1783908841",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/a/3/a3a4da7d-a703-4f91-9ef7-ce269c0b63fb.jpg?1783908841",
+    "thumb": "https://cards.scryfall.io/thumb/front/a/3/a3a4da7d-a703-4f91-9ef7-ce269c0b63fb.webp?1783908841",
+    "grid": "https://cards.scryfall.io/grid/front/a/3/a3a4da7d-a703-4f91-9ef7-ce269c0b63fb.webp?1783908841",
+    "display": "https://cards.scryfall.io/display/front/a/3/a3a4da7d-a703-4f91-9ef7-ce269c0b63fb.webp?1783908841",
+    "art": "https://cards.scryfall.io/art/front/a/3/a3a4da7d-a703-4f91-9ef7-ce269c0b63fb.webp?1783908841",
+    "crop": "https://cards.scryfall.io/crop/front/a/3/a3a4da7d-a703-4f91-9ef7-ce269c0b63fb.webp?1783908841"
+  },
+  "mana_cost": "",
+  "cmc": 0.0,
+  "type_line": "Basic Land — Mountain",
+  "oracle_text": "({T}: Add {R}.)",
+  "colors": [],
+  "color_identity": [
+    "R"
+  ],
+  "keywords": [],
+  "produced_mana": [
+    "R"
+  ],
+  "legalities": {
+    "standard": "legal",
+    "future": "legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "legal",
+    "paupercommander": "legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "legal",
+    "predh": "legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "arena"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "9201567c-bab5-4720-aac9-260e6741f115",
+  "set": "j25",
+  "set_name": "Foundations Jumpstart",
+  "set_type": "draft_innovation",
+  "set_uri": "https://api.scryfall.com/sets/9201567c-bab5-4720-aac9-260e6741f115",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Aj25&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/j25?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/a3a4da7d-a703-4f91-9ef7-ce269c0b63fb/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Aa3fb7228-e76b-4e96-a40e-20b5fed75685&unique=prints",
+  "collector_number": "90",
+  "digital": false,
+  "rarity": "common",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Min Yum",
+  "artist_ids": [
+    "9cb65d6f-8851-4d56-9add-9eefa274bd1b"
+  ],
+  "illustration_id": "60ba0c0f-cf8e-47bc-8202-25f807f214c0",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "prices": {
+    "usd": "0.23",
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": "0.13",
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=681245&printed=false",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DMountain",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DMountain",
+    "edhrec": "https://edhrec.com/route/?cc=Mountain"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F590281%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=795511&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Mountain&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

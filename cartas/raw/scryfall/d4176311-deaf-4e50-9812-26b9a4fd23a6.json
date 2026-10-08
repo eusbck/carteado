@@ -1,0 +1,143 @@
+{
+  "object": "card",
+  "id": "d4176311-deaf-4e50-9812-26b9a4fd23a6",
+  "oracle_id": "0ca4e80e-c19c-4b74-b531-c5a4dc5a8ba9",
+  "multiverse_ids": [
+    631779
+  ],
+  "name": "Restless Spire",
+  "printed_name": "Torre Inquieta",
+  "lang": "pt",
+  "released_at": "2023-09-08",
+  "uri": "https://api.scryfall.com/cards/d4176311-deaf-4e50-9812-26b9a4fd23a6",
+  "scryfall_uri": "https://scryfall.com/card/woe/306/pt/torre-inquieta-(restless-spire)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T09:52:53Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/d/4/d4176311-deaf-4e50-9812-26b9a4fd23a6.jpg?1782813173",
+    "normal": "https://cards.scryfall.io/normal/front/d/4/d4176311-deaf-4e50-9812-26b9a4fd23a6.jpg?1782813173",
+    "large": "https://cards.scryfall.io/large/front/d/4/d4176311-deaf-4e50-9812-26b9a4fd23a6.jpg?1782813173",
+    "png": "https://cards.scryfall.io/png/front/d/4/d4176311-deaf-4e50-9812-26b9a4fd23a6.png?1782813173",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/d/4/d4176311-deaf-4e50-9812-26b9a4fd23a6.jpg?1782813173",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/d/4/d4176311-deaf-4e50-9812-26b9a4fd23a6.jpg?1782813173",
+    "thumb": "https://cards.scryfall.io/thumb/front/d/4/d4176311-deaf-4e50-9812-26b9a4fd23a6.webp?1782813173",
+    "grid": "https://cards.scryfall.io/grid/front/d/4/d4176311-deaf-4e50-9812-26b9a4fd23a6.webp?1782813173",
+    "display": "https://cards.scryfall.io/display/front/d/4/d4176311-deaf-4e50-9812-26b9a4fd23a6.webp?1782813173",
+    "art": "https://cards.scryfall.io/art/front/d/4/d4176311-deaf-4e50-9812-26b9a4fd23a6.webp?1782813173",
+    "crop": "https://cards.scryfall.io/crop/front/d/4/d4176311-deaf-4e50-9812-26b9a4fd23a6.webp?1782813173"
+  },
+  "mana_cost": "",
+  "cmc": 0.0,
+  "type_line": "Land",
+  "printed_type_line": "Terreno",
+  "oracle_text": "This land enters tapped.\n{T}: Add {U} or {R}.\n{U}{R}: Until end of turn, this land becomes a 2/1 blue and red Elemental creature with \"During your turn, this creature has first strike.\" It's still a land.\nWhenever this land attacks, scry 1.",
+  "printed_text": "Torre Inquieta entra no campo de batalha virada.\n{T}: Adicione {U} ou {R}.\n{U}{R}: Até o final do turno, Torre Inquieta se torna uma criatura Elemental azul e vermelha 2/1 com \"Enquanto for o seu turno, esta criatura terá iniciativa\". Ela ainda é um terreno.\nToda vez que Torre Inquieta atacar, use vidência 1.",
+  "colors": [],
+  "color_identity": [
+    "R",
+    "U"
+  ],
+  "keywords": [
+    "Scry"
+  ],
+  "produced_mana": [
+    "R",
+    "U"
+  ],
+  "legalities": {
+    "standard": "legal",
+    "future": "legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "arena",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "79139661-13ee-43c4-8bad-a8c069f1a1df",
+  "set": "woe",
+  "set_name": "Wilds of Eldraine",
+  "set_type": "expansion",
+  "set_uri": "https://api.scryfall.com/sets/79139661-13ee-43c4-8bad-a8c069f1a1df",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Awoe&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/woe?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/d4176311-deaf-4e50-9812-26b9a4fd23a6/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A0ca4e80e-c19c-4b74-b531-c5a4dc5a8ba9&unique=prints",
+  "collector_number": "306",
+  "digital": false,
+  "rarity": "rare",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Sergey Glushakov",
+  "artist_ids": [
+    "8df4596a-1d88-4b6a-9ce8-5c8089c3946c"
+  ],
+  "illustration_id": "cacb49f6-d70a-4afa-82f8-fd8ebb06648a",
+  "border_color": "borderless",
+  "frame": "2015",
+  "frame_effects": [
+    "inverted"
+  ],
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "promo_types": [
+    "boosterfun"
+  ],
+  "edhrec_rank": 4610,
+  "penny_rank": 675,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=631779&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DRestless%2BSpire",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DRestless%2BSpire",
+    "edhrec": "https://edhrec.com/route/?cc=Restless+Spire"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DRestless%2BSpire%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Restless+Spire&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Restless+Spire&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

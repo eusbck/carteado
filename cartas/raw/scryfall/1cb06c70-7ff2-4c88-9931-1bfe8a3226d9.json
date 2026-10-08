@@ -1,0 +1,137 @@
+{
+  "object": "card",
+  "id": "1cb06c70-7ff2-4c88-9931-1bfe8a3226d9",
+  "oracle_id": "d57a6b19-bd06-4b07-8ee1-0b45612ba9e4",
+  "multiverse_ids": [],
+  "resource_id": "BDDD7994A6CAABE856557A0FAFFCE5D0441D1F165C6051745B0363244EA2A0A8",
+  "mtgo_id": 149141,
+  "tcgplayer_id": 687658,
+  "cardmarket_id": 881671,
+  "name": "Veyran, Voice of Duality",
+  "lang": "en",
+  "released_at": "2026-04-24",
+  "uri": "https://api.scryfall.com/cards/1cb06c70-7ff2-4c88-9931-1bfe8a3226d9",
+  "scryfall_uri": "https://scryfall.com/card/soc/337/veyran-voice-of-duality?utm_source=api",
+  "layout": "normal",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T00:49:02Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/1/c/1cb06c70-7ff2-4c88-9931-1bfe8a3226d9.jpg?1783903742",
+    "normal": "https://cards.scryfall.io/normal/front/1/c/1cb06c70-7ff2-4c88-9931-1bfe8a3226d9.jpg?1783903742",
+    "large": "https://cards.scryfall.io/large/front/1/c/1cb06c70-7ff2-4c88-9931-1bfe8a3226d9.jpg?1783903742",
+    "png": "https://cards.scryfall.io/png/front/1/c/1cb06c70-7ff2-4c88-9931-1bfe8a3226d9.png?1783903742",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/1/c/1cb06c70-7ff2-4c88-9931-1bfe8a3226d9.jpg?1783903742",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/1/c/1cb06c70-7ff2-4c88-9931-1bfe8a3226d9.jpg?1783903742",
+    "thumb": "https://cards.scryfall.io/thumb/front/1/c/1cb06c70-7ff2-4c88-9931-1bfe8a3226d9.webp?1783903742",
+    "grid": "https://cards.scryfall.io/grid/front/1/c/1cb06c70-7ff2-4c88-9931-1bfe8a3226d9.webp?1783903742",
+    "display": "https://cards.scryfall.io/display/front/1/c/1cb06c70-7ff2-4c88-9931-1bfe8a3226d9.webp?1783903742",
+    "art": "https://cards.scryfall.io/art/front/1/c/1cb06c70-7ff2-4c88-9931-1bfe8a3226d9.webp?1783903742",
+    "crop": "https://cards.scryfall.io/crop/front/1/c/1cb06c70-7ff2-4c88-9931-1bfe8a3226d9.webp?1783903742"
+  },
+  "mana_cost": "{1}{U}{R}",
+  "cmc": 3.0,
+  "type_line": "Legendary Creature — Efreet Wizard",
+  "oracle_text": "Magecraft — Whenever you cast or copy an instant or sorcery spell, Veyran gets +1/+1 until end of turn.\nIf you casting or copying an instant or sorcery spell causes a triggered ability of a permanent you control to trigger, that ability triggers an additional time.",
+  "power": "2",
+  "toughness": "2",
+  "colors": [
+    "R",
+    "U"
+  ],
+  "color_identity": [
+    "R",
+    "U"
+  ],
+  "keywords": [
+    "Magecraft"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "97fab8d1-480a-419d-ab14-663968e29b9c",
+  "set": "soc",
+  "set_name": "Secrets of Strixhaven Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/97fab8d1-480a-419d-ab14-663968e29b9c",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Asoc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/soc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/1cb06c70-7ff2-4c88-9931-1bfe8a3226d9/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Ad57a6b19-bd06-4b07-8ee1-0b45612ba9e4&unique=prints",
+  "collector_number": "337",
+  "digital": false,
+  "rarity": "mythic",
+  "watermark": "prismari",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Mathias Kollros",
+  "artist_ids": [
+    "2ae0dd12-047c-4efb-80d7-bccc3bac5fba"
+  ],
+  "illustration_id": "b0932e3f-263b-4663-9588-0197e2252295",
+  "border_color": "black",
+  "frame": "2015",
+  "frame_effects": [
+    "legendary"
+  ],
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 756,
+  "prices": {
+    "usd": "1.50",
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": "2.67",
+    "eur_foil": null,
+    "tix": "3.51"
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DVeyran%252C%2BVoice%2Bof%2BDuality",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DVeyran%252C%2BVoice%2Bof%2BDuality",
+    "edhrec": "https://edhrec.com/route/?cc=Veyran%2C+Voice+of+Duality"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F687658%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=881671&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards/149141?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

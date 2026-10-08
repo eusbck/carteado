@@ -1,0 +1,139 @@
+{
+  "object": "card",
+  "id": "ed8bcd7d-f3cd-488d-8803-82c2865a80b0",
+  "oracle_id": "6b75b94e-83b7-457e-ac41-7ca90b5a59aa",
+  "multiverse_ids": [
+    622528
+  ],
+  "cardmarket_id": 717442,
+  "name": "Battlefield Forge",
+  "printed_name": "Forjaria do Campo de Batalha",
+  "lang": "pt",
+  "released_at": "2023-06-23",
+  "uri": "https://api.scryfall.com/cards/ed8bcd7d-f3cd-488d-8803-82c2865a80b0",
+  "scryfall_uri": "https://scryfall.com/card/ltc/296/pt/forjaria-do-campo-de-batalha-(battlefield-forge)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T11:24:41Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/e/d/ed8bcd7d-f3cd-488d-8803-82c2865a80b0.jpg?1782818681",
+    "normal": "https://cards.scryfall.io/normal/front/e/d/ed8bcd7d-f3cd-488d-8803-82c2865a80b0.jpg?1782818681",
+    "large": "https://cards.scryfall.io/large/front/e/d/ed8bcd7d-f3cd-488d-8803-82c2865a80b0.jpg?1782818681",
+    "png": "https://cards.scryfall.io/png/front/e/d/ed8bcd7d-f3cd-488d-8803-82c2865a80b0.png?1782818681",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/e/d/ed8bcd7d-f3cd-488d-8803-82c2865a80b0.jpg?1782818681",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/e/d/ed8bcd7d-f3cd-488d-8803-82c2865a80b0.jpg?1782818681",
+    "thumb": "https://cards.scryfall.io/thumb/front/e/d/ed8bcd7d-f3cd-488d-8803-82c2865a80b0.webp?1782818681",
+    "grid": "https://cards.scryfall.io/grid/front/e/d/ed8bcd7d-f3cd-488d-8803-82c2865a80b0.webp?1782818681",
+    "display": "https://cards.scryfall.io/display/front/e/d/ed8bcd7d-f3cd-488d-8803-82c2865a80b0.webp?1782818681",
+    "art": "https://cards.scryfall.io/art/front/e/d/ed8bcd7d-f3cd-488d-8803-82c2865a80b0.webp?1782818681",
+    "crop": "https://cards.scryfall.io/crop/front/e/d/ed8bcd7d-f3cd-488d-8803-82c2865a80b0.webp?1782818681"
+  },
+  "mana_cost": "",
+  "cmc": 0.0,
+  "type_line": "Land",
+  "printed_type_line": "Terreno",
+  "oracle_text": "{T}: Add {C}.\n{T}: Add {R} or {W}. This land deals 1 damage to you.",
+  "printed_text": "{T}: Adicione {C}.\n{T}: Adicione {R} ou {W}. Forjaria do Campo de Batalha causa 1 ponto de dano a você.",
+  "colors": [],
+  "color_identity": [
+    "R",
+    "W"
+  ],
+  "keywords": [],
+  "produced_mana": [
+    "C",
+    "R",
+    "W"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "legal",
+    "predh": "legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "e567c19c-0fe4-446e-a7bf-fce8a150cd2e",
+  "set": "ltc",
+  "set_name": "Tales of Middle-earth Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/e567c19c-0fe4-446e-a7bf-fce8a150cd2e",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Altc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/ltc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/ed8bcd7d-f3cd-488d-8803-82c2865a80b0/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A6b75b94e-83b7-457e-ac41-7ca90b5a59aa&unique=prints",
+  "collector_number": "296",
+  "digital": false,
+  "rarity": "rare",
+  "flavor_text": "\"Pela manhã seguirei para Edoras, para a reunião da Marca.\"\n— Théoden",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Victor Harmatiuk",
+  "artist_ids": [
+    "651b47a5-b8c7-45eb-94db-baff516c3f00"
+  ],
+  "illustration_id": "76953619-34f3-4db7-94dd-41841de166c8",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "triangle",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "promo_types": [
+    "universesbeyond"
+  ],
+  "edhrec_rank": 121,
+  "penny_rank": 189,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": "0.81",
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=622528&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DBattlefield%2BForge",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DBattlefield%2BForge",
+    "edhrec": "https://edhrec.com/route/?cc=Battlefield+Forge"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DBattlefield%2BForge%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=717442&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Battlefield+Forge&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

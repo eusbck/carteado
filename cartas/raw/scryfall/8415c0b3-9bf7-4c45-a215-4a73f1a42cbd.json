@@ -1,0 +1,132 @@
+{
+  "object": "card",
+  "id": "8415c0b3-9bf7-4c45-a215-4a73f1a42cbd",
+  "oracle_id": "d6c7d7a6-2d38-4c06-ab83-bee9cc18de52",
+  "multiverse_ids": [],
+  "resource_id": "2C53536AED12BA5D0DEB62FA222AFF624EDF7298F09D03A471225F002CECB983",
+  "mtgo_id": 148769,
+  "tcgplayer_id": 687427,
+  "cardmarket_id": 881471,
+  "name": "Guardian Scalelord",
+  "lang": "en",
+  "released_at": "2026-04-24",
+  "uri": "https://api.scryfall.com/cards/8415c0b3-9bf7-4c45-a215-4a73f1a42cbd",
+  "scryfall_uri": "https://scryfall.com/card/soc/149/guardian-scalelord?utm_source=api",
+  "layout": "normal",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T00:50:09Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/8/4/8415c0b3-9bf7-4c45-a215-4a73f1a42cbd.jpg?1783903809",
+    "normal": "https://cards.scryfall.io/normal/front/8/4/8415c0b3-9bf7-4c45-a215-4a73f1a42cbd.jpg?1783903809",
+    "large": "https://cards.scryfall.io/large/front/8/4/8415c0b3-9bf7-4c45-a215-4a73f1a42cbd.jpg?1783903809",
+    "png": "https://cards.scryfall.io/png/front/8/4/8415c0b3-9bf7-4c45-a215-4a73f1a42cbd.png?1783903809",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/8/4/8415c0b3-9bf7-4c45-a215-4a73f1a42cbd.jpg?1783903809",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/8/4/8415c0b3-9bf7-4c45-a215-4a73f1a42cbd.jpg?1783903809",
+    "thumb": "https://cards.scryfall.io/thumb/front/8/4/8415c0b3-9bf7-4c45-a215-4a73f1a42cbd.webp?1783903809",
+    "grid": "https://cards.scryfall.io/grid/front/8/4/8415c0b3-9bf7-4c45-a215-4a73f1a42cbd.webp?1783903809",
+    "display": "https://cards.scryfall.io/display/front/8/4/8415c0b3-9bf7-4c45-a215-4a73f1a42cbd.webp?1783903809",
+    "art": "https://cards.scryfall.io/art/front/8/4/8415c0b3-9bf7-4c45-a215-4a73f1a42cbd.webp?1783903809",
+    "crop": "https://cards.scryfall.io/crop/front/8/4/8415c0b3-9bf7-4c45-a215-4a73f1a42cbd.webp?1783903809"
+  },
+  "mana_cost": "{4}{W}",
+  "cmc": 5.0,
+  "type_line": "Creature — Dragon",
+  "oracle_text": "Backup 1 (When this creature enters, put a +1/+1 counter on target creature. If that's another creature, it gains the following abilities until end of turn.)\nFlying\nWhenever this creature attacks, return target nonland permanent card with mana value X or less from your graveyard to the battlefield, where X is this creature's power.",
+  "power": "3",
+  "toughness": "4",
+  "colors": [
+    "W"
+  ],
+  "color_identity": [
+    "W"
+  ],
+  "keywords": [
+    "Flying",
+    "Backup"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "97fab8d1-480a-419d-ab14-663968e29b9c",
+  "set": "soc",
+  "set_name": "Secrets of Strixhaven Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/97fab8d1-480a-419d-ab14-663968e29b9c",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Asoc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/soc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/8415c0b3-9bf7-4c45-a215-4a73f1a42cbd/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Ad6c7d7a6-2d38-4c06-ab83-bee9cc18de52&unique=prints",
+  "collector_number": "149",
+  "digital": false,
+  "rarity": "rare",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Victor Adame Minguez",
+  "artist_ids": [
+    "bd8f7368-5b10-4554-b6b8-d052c6aca89f"
+  ],
+  "illustration_id": "482e60f8-2f57-433a-8d8d-b0bb23ba6112",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 4709,
+  "prices": {
+    "usd": "0.31",
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": "0.42",
+    "eur_foil": null,
+    "tix": "0.83"
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DGuardian%2BScalelord",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DGuardian%2BScalelord",
+    "edhrec": "https://edhrec.com/route/?cc=Guardian+Scalelord"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F687427%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=881471&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards/148769?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

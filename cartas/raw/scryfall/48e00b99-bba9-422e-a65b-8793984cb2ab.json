@@ -1,0 +1,132 @@
+{
+  "object": "card",
+  "id": "48e00b99-bba9-422e-a65b-8793984cb2ab",
+  "oracle_id": "038c0165-32b6-4e81-8180-604b49905207",
+  "multiverse_ids": [
+    241494
+  ],
+  "name": "Black Sun's Zenith",
+  "printed_name": "Zênite do Sol Negro",
+  "lang": "pt",
+  "released_at": "2011-02-04",
+  "uri": "https://api.scryfall.com/cards/48e00b99-bba9-422e-a65b-8793984cb2ab",
+  "scryfall_uri": "https://scryfall.com/card/mbs/39/pt/z%C3%AAnite-do-sol-negro-(black-suns-zenith)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-02T11:59:20Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/4/8/48e00b99-bba9-422e-a65b-8793984cb2ab.jpg?1782993560",
+    "normal": "https://cards.scryfall.io/normal/front/4/8/48e00b99-bba9-422e-a65b-8793984cb2ab.jpg?1782993560",
+    "large": "https://cards.scryfall.io/large/front/4/8/48e00b99-bba9-422e-a65b-8793984cb2ab.jpg?1782993560",
+    "png": "https://cards.scryfall.io/png/front/4/8/48e00b99-bba9-422e-a65b-8793984cb2ab.png?1782993560",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/4/8/48e00b99-bba9-422e-a65b-8793984cb2ab.jpg?1782993560",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/4/8/48e00b99-bba9-422e-a65b-8793984cb2ab.jpg?1782993560",
+    "thumb": "https://cards.scryfall.io/thumb/front/4/8/48e00b99-bba9-422e-a65b-8793984cb2ab.webp?1782993560",
+    "grid": "https://cards.scryfall.io/grid/front/4/8/48e00b99-bba9-422e-a65b-8793984cb2ab.webp?1782993560",
+    "display": "https://cards.scryfall.io/display/front/4/8/48e00b99-bba9-422e-a65b-8793984cb2ab.webp?1782993560",
+    "art": "https://cards.scryfall.io/art/front/4/8/48e00b99-bba9-422e-a65b-8793984cb2ab.webp?1782993560",
+    "crop": "https://cards.scryfall.io/crop/front/4/8/48e00b99-bba9-422e-a65b-8793984cb2ab.webp?1782993560"
+  },
+  "mana_cost": "{X}{B}{B}",
+  "cmc": 2.0,
+  "type_line": "Sorcery",
+  "printed_type_line": "Feitiço",
+  "oracle_text": "Put X -1/-1 counters on each creature. Shuffle Black Sun's Zenith into its owner's library.",
+  "printed_text": "Coloque X marcadores -1/-1 sobre cada criatura. Embaralhe Zênite do Sol Negro no grimório de seu dono.",
+  "colors": [
+    "B"
+  ],
+  "color_identity": [
+    "B"
+  ],
+  "keywords": [],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "not_legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "f46c57e3-9301-4006-a6ca-06f3f65961fb",
+  "set": "mbs",
+  "set_name": "Mirrodin Besieged",
+  "set_type": "expansion",
+  "set_uri": "https://api.scryfall.com/sets/f46c57e3-9301-4006-a6ca-06f3f65961fb",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Ambs&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/mbs?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/48e00b99-bba9-422e-a65b-8793984cb2ab/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A038c0165-32b6-4e81-8180-604b49905207&unique=prints",
+  "collector_number": "39",
+  "digital": false,
+  "rarity": "rare",
+  "watermark": "phyrexian",
+  "flavor_text": "\"Sob os sóis, Mirrodin ajoelha-se e nos implora pela perfeição.\" — Geth, Senhor da Câmara",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Daniel Ljunggren",
+  "artist_ids": [
+    "0fbd4798-76eb-46d5-a5d4-1e3a25870e34"
+  ],
+  "illustration_id": "c670b7ba-a1a0-483b-9d18-4c464869a294",
+  "border_color": "black",
+  "frame": "2003",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "edhrec_rank": 1933,
+  "penny_rank": 2556,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=241494&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DBlack%2BSun%2527s%2BZenith",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DBlack%2BSun%2527s%2BZenith",
+    "edhrec": "https://edhrec.com/route/?cc=Black+Sun%27s+Zenith"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DBlack%2BSun%2527s%2BZenith%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Black+Sun%27s+Zenith&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Black+Sun%27s+Zenith&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

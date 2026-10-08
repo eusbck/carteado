@@ -1,0 +1,132 @@
+{
+  "object": "card",
+  "id": "5515393a-7d4d-454f-a550-156862ab02f1",
+  "oracle_id": "bd92cacd-c7d8-43a2-a261-ea4754fefdc5",
+  "multiverse_ids": [],
+  "resource_id": "308D4CE62366781EB968F29F82AB400EE8D12198CDDB017618E2D8988EF7980D",
+  "mtgo_id": 148799,
+  "tcgplayer_id": 687497,
+  "cardmarket_id": 881486,
+  "name": "Sage's Reverie",
+  "lang": "en",
+  "released_at": "2026-04-24",
+  "uri": "https://api.scryfall.com/cards/5515393a-7d4d-454f-a550-156862ab02f1",
+  "scryfall_uri": "https://scryfall.com/card/soc/165/sages-reverie?utm_source=api",
+  "layout": "normal",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T00:50:03Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/5/5/5515393a-7d4d-454f-a550-156862ab02f1.jpg?1783903803",
+    "normal": "https://cards.scryfall.io/normal/front/5/5/5515393a-7d4d-454f-a550-156862ab02f1.jpg?1783903803",
+    "large": "https://cards.scryfall.io/large/front/5/5/5515393a-7d4d-454f-a550-156862ab02f1.jpg?1783903803",
+    "png": "https://cards.scryfall.io/png/front/5/5/5515393a-7d4d-454f-a550-156862ab02f1.png?1783903803",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/5/5/5515393a-7d4d-454f-a550-156862ab02f1.jpg?1783903803",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/5/5/5515393a-7d4d-454f-a550-156862ab02f1.jpg?1783903803",
+    "thumb": "https://cards.scryfall.io/thumb/front/5/5/5515393a-7d4d-454f-a550-156862ab02f1.webp?1783903803",
+    "grid": "https://cards.scryfall.io/grid/front/5/5/5515393a-7d4d-454f-a550-156862ab02f1.webp?1783903803",
+    "display": "https://cards.scryfall.io/display/front/5/5/5515393a-7d4d-454f-a550-156862ab02f1.webp?1783903803",
+    "art": "https://cards.scryfall.io/art/front/5/5/5515393a-7d4d-454f-a550-156862ab02f1.webp?1783903803",
+    "crop": "https://cards.scryfall.io/crop/front/5/5/5515393a-7d4d-454f-a550-156862ab02f1.webp?1783903803"
+  },
+  "mana_cost": "{3}{W}",
+  "cmc": 4.0,
+  "type_line": "Enchantment — Aura",
+  "oracle_text": "Enchant creature\nWhen this Aura enters, draw a card for each Aura you control that's attached to a creature.\nEnchanted creature gets +1/+1 for each Aura you control that's attached to a creature.",
+  "colors": [
+    "W"
+  ],
+  "color_identity": [
+    "W"
+  ],
+  "keywords": [
+    "Enchant"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "97fab8d1-480a-419d-ab14-663968e29b9c",
+  "set": "soc",
+  "set_name": "Secrets of Strixhaven Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/97fab8d1-480a-419d-ab14-663968e29b9c",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Asoc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/soc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/5515393a-7d4d-454f-a550-156862ab02f1/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Abd92cacd-c7d8-43a2-a261-ea4754fefdc5&unique=prints",
+  "collector_number": "165",
+  "digital": false,
+  "rarity": "uncommon",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Jason Rainville",
+  "artist_ids": [
+    "6ed7e669-579b-443d-b223-e5cbcb2a7483"
+  ],
+  "illustration_id": "f4159520-7251-4dd8-94f1-8b34ea979f19",
+  "border_color": "black",
+  "frame": "2015",
+  "frame_effects": [
+    "enchantment"
+  ],
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 1844,
+  "penny_rank": 8012,
+  "prices": {
+    "usd": "0.30",
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": "0.27",
+    "eur_foil": null,
+    "tix": "0.05"
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DSage%2527s%2BReverie",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DSage%2527s%2BReverie",
+    "edhrec": "https://edhrec.com/route/?cc=Sage%27s+Reverie"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F687497%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=881486&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards/148799?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "object": "card",
+  "id": "599f87c8-643e-4224-93a5-853c0bd4e497",
+  "oracle_id": "d11e627b-8a48-411d-a261-2c9a02a758ba",
+  "multiverse_ids": [],
+  "resource_id": "3F050266328321117C8E309A1D320C649D0CDF2FBCC9F1EAF216F49060664A76",
+  "mtgo_id": 149061,
+  "tcgplayer_id": 687612,
+  "cardmarket_id": 881631,
+  "name": "Breena, the Demagogue",
+  "lang": "en",
+  "released_at": "2026-04-24",
+  "uri": "https://api.scryfall.com/cards/599f87c8-643e-4224-93a5-853c0bd4e497",
+  "scryfall_uri": "https://scryfall.com/card/soc/298/breena-the-demagogue?utm_source=api",
+  "layout": "normal",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T00:49:16Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/5/9/599f87c8-643e-4224-93a5-853c0bd4e497.jpg?1783903756",
+    "normal": "https://cards.scryfall.io/normal/front/5/9/599f87c8-643e-4224-93a5-853c0bd4e497.jpg?1783903756",
+    "large": "https://cards.scryfall.io/large/front/5/9/599f87c8-643e-4224-93a5-853c0bd4e497.jpg?1783903756",
+    "png": "https://cards.scryfall.io/png/front/5/9/599f87c8-643e-4224-93a5-853c0bd4e497.png?1783903756",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/5/9/599f87c8-643e-4224-93a5-853c0bd4e497.jpg?1783903756",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/5/9/599f87c8-643e-4224-93a5-853c0bd4e497.jpg?1783903756",
+    "thumb": "https://cards.scryfall.io/thumb/front/5/9/599f87c8-643e-4224-93a5-853c0bd4e497.webp?1783903756",
+    "grid": "https://cards.scryfall.io/grid/front/5/9/599f87c8-643e-4224-93a5-853c0bd4e497.webp?1783903756",
+    "display": "https://cards.scryfall.io/display/front/5/9/599f87c8-643e-4224-93a5-853c0bd4e497.webp?1783903756",
+    "art": "https://cards.scryfall.io/art/front/5/9/599f87c8-643e-4224-93a5-853c0bd4e497.webp?1783903756",
+    "crop": "https://cards.scryfall.io/crop/front/5/9/599f87c8-643e-4224-93a5-853c0bd4e497.webp?1783903756"
+  },
+  "mana_cost": "{1}{W}{B}",
+  "cmc": 3.0,
+  "type_line": "Legendary Creature — Bird Warlock",
+  "oracle_text": "Flying\nWhenever a player attacks one of your opponents, if that opponent has more life than another of your opponents, that attacking player draws a card and you put two +1/+1 counters on a creature you control.",
+  "power": "1",
+  "toughness": "3",
+  "colors": [
+    "B",
+    "W"
+  ],
+  "color_identity": [
+    "B",
+    "W"
+  ],
+  "keywords": [
+    "Flying"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "97fab8d1-480a-419d-ab14-663968e29b9c",
+  "set": "soc",
+  "set_name": "Secrets of Strixhaven Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/97fab8d1-480a-419d-ab14-663968e29b9c",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Asoc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/soc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/599f87c8-643e-4224-93a5-853c0bd4e497/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Ad11e627b-8a48-411d-a261-2c9a02a758ba&unique=prints",
+  "collector_number": "298",
+  "digital": false,
+  "rarity": "mythic",
+  "watermark": "silverquill",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Simon Dominic",
+  "artist_ids": [
+    "b0e80135-db5a-4b88-a0bc-815a0e94faa1"
+  ],
+  "illustration_id": "5a57eac5-625d-40d4-9f12-c8c3bf0fbf99",
+  "border_color": "black",
+  "frame": "2015",
+  "frame_effects": [
+    "legendary"
+  ],
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 1881,
+  "prices": {
+    "usd": "0.98",
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": "0.95",
+    "eur_foil": null,
+    "tix": "3.11"
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DBreena%252C%2Bthe%2BDemagogue",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DBreena%252C%2Bthe%2BDemagogue",
+    "edhrec": "https://edhrec.com/route/?cc=Breena%2C+the+Demagogue"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F687612%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=881631&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards/149061?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

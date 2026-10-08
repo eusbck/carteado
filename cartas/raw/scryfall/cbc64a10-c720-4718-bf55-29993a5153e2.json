@@ -1,0 +1,138 @@
+{
+  "object": "card",
+  "id": "cbc64a10-c720-4718-bf55-29993a5153e2",
+  "oracle_id": "c7aecca5-2f67-4245-ab2d-e723d8b23a67",
+  "multiverse_ids": [],
+  "resource_id": "8471C77647BC6F3E395258648F92194DA97C396A30C62B4B03038AF37A7C4E8A",
+  "name": "Expressive Iteration",
+  "printed_name": "Iteração Expressiva",
+  "lang": "pt",
+  "released_at": "2024-06-14",
+  "uri": "https://api.scryfall.com/cards/cbc64a10-c720-4718-bf55-29993a5153e2",
+  "scryfall_uri": "https://scryfall.com/card/spg/43/pt/itera%C3%A7%C3%A3o-expressiva-(expressive-iteration)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-22T00:04:18Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/c/b/cbc64a10-c720-4718-bf55-29993a5153e2.jpg?1784678658",
+    "normal": "https://cards.scryfall.io/normal/front/c/b/cbc64a10-c720-4718-bf55-29993a5153e2.jpg?1784678658",
+    "large": "https://cards.scryfall.io/large/front/c/b/cbc64a10-c720-4718-bf55-29993a5153e2.jpg?1784678658",
+    "png": "https://cards.scryfall.io/png/front/c/b/cbc64a10-c720-4718-bf55-29993a5153e2.png?1784678658",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/c/b/cbc64a10-c720-4718-bf55-29993a5153e2.jpg?1784678658",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/c/b/cbc64a10-c720-4718-bf55-29993a5153e2.jpg?1784678658",
+    "thumb": "https://cards.scryfall.io/thumb/front/c/b/cbc64a10-c720-4718-bf55-29993a5153e2.webp?1784678658",
+    "grid": "https://cards.scryfall.io/grid/front/c/b/cbc64a10-c720-4718-bf55-29993a5153e2.webp?1784678658",
+    "display": "https://cards.scryfall.io/display/front/c/b/cbc64a10-c720-4718-bf55-29993a5153e2.webp?1784678658",
+    "art": "https://cards.scryfall.io/art/front/c/b/cbc64a10-c720-4718-bf55-29993a5153e2.webp?1784678658",
+    "crop": "https://cards.scryfall.io/crop/front/c/b/cbc64a10-c720-4718-bf55-29993a5153e2.webp?1784678658"
+  },
+  "mana_cost": "{U}{R}",
+  "cmc": 2.0,
+  "type_line": "Sorcery",
+  "oracle_text": "Look at the top three cards of your library. Put one of them into your hand, put one of them on the bottom of your library, and exile one of them. You may play the exiled card this turn.",
+  "printed_text": "Olhe os três cards do topo de seu grimório. Coloque um deles em sua mão, coloque um deles no fundo de seu grimório e exile um deles. Você pode jogar o card exilado neste turno.",
+  "colors": [
+    "R",
+    "U"
+  ],
+  "color_identity": [
+    "R",
+    "U"
+  ],
+  "keywords": [],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "banned",
+    "modern": "legal",
+    "legacy": "banned",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "arena",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "c01003a2-b3e2-4e7f-a26d-2348144c8056",
+  "set": "spg",
+  "set_name": "Special Guests",
+  "set_type": "masterpiece",
+  "set_uri": "https://api.scryfall.com/sets/c01003a2-b3e2-4e7f-a26d-2348144c8056",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Aspg&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/spg?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/cbc64a10-c720-4718-bf55-29993a5153e2/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Ac7aecca5-2f67-4245-ab2d-e723d8b23a67&unique=prints",
+  "collector_number": "43",
+  "digital": false,
+  "rarity": "mythic",
+  "flavor_text": "\"A arte expõe a verdade. Cada passo da minha dança me aproxima dos segredos do universo.\"",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Kai Carpenter",
+  "artist_ids": [
+    "dcd3cf0d-67b7-4b73-8e62-1d318bf6209c"
+  ],
+  "illustration_id": "584840cb-b831-4795-a6a9-b00c4c25aa6f",
+  "border_color": "borderless",
+  "frame": "2015",
+  "frame_effects": [
+    "inverted"
+  ],
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "promo_types": [
+    "boosterfun"
+  ],
+  "edhrec_rank": 878,
+  "penny_rank": 253,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DExpressive%2BIteration",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DExpressive%2BIteration",
+    "edhrec": "https://edhrec.com/route/?cc=Expressive+Iteration"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DExpressive%2BIteration%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Expressive+Iteration&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Expressive+Iteration&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

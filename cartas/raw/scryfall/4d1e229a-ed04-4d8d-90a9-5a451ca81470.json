@@ -1,0 +1,132 @@
+{
+  "object": "card",
+  "id": "4d1e229a-ed04-4d8d-90a9-5a451ca81470",
+  "oracle_id": "2598294c-a9a7-4bef-a562-23f297a80536",
+  "multiverse_ids": [],
+  "resource_id": "773350E86953DB291EE2C17E106B04F7FA1E0295606E7810C3E38F3A7502BF8B",
+  "mtgo_id": 148817,
+  "tcgplayer_id": 687533,
+  "cardmarket_id": 881495,
+  "name": "Songbirds' Blessing",
+  "lang": "en",
+  "released_at": "2026-04-24",
+  "uri": "https://api.scryfall.com/cards/4d1e229a-ed04-4d8d-90a9-5a451ca81470",
+  "scryfall_uri": "https://scryfall.com/card/soc/174/songbirds-blessing?utm_source=api",
+  "layout": "normal",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T00:49:59Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/4/d/4d1e229a-ed04-4d8d-90a9-5a451ca81470.jpg?1783903799",
+    "normal": "https://cards.scryfall.io/normal/front/4/d/4d1e229a-ed04-4d8d-90a9-5a451ca81470.jpg?1783903799",
+    "large": "https://cards.scryfall.io/large/front/4/d/4d1e229a-ed04-4d8d-90a9-5a451ca81470.jpg?1783903799",
+    "png": "https://cards.scryfall.io/png/front/4/d/4d1e229a-ed04-4d8d-90a9-5a451ca81470.png?1783903799",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/4/d/4d1e229a-ed04-4d8d-90a9-5a451ca81470.jpg?1783903799",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/4/d/4d1e229a-ed04-4d8d-90a9-5a451ca81470.jpg?1783903799",
+    "thumb": "https://cards.scryfall.io/thumb/front/4/d/4d1e229a-ed04-4d8d-90a9-5a451ca81470.webp?1783903799",
+    "grid": "https://cards.scryfall.io/grid/front/4/d/4d1e229a-ed04-4d8d-90a9-5a451ca81470.webp?1783903799",
+    "display": "https://cards.scryfall.io/display/front/4/d/4d1e229a-ed04-4d8d-90a9-5a451ca81470.webp?1783903799",
+    "art": "https://cards.scryfall.io/art/front/4/d/4d1e229a-ed04-4d8d-90a9-5a451ca81470.webp?1783903799",
+    "crop": "https://cards.scryfall.io/crop/front/4/d/4d1e229a-ed04-4d8d-90a9-5a451ca81470.webp?1783903799"
+  },
+  "mana_cost": "{3}{W}",
+  "cmc": 4.0,
+  "type_line": "Enchantment — Aura",
+  "oracle_text": "Enchant creature\nWhenever enchanted creature attacks, reveal cards from the top of your library until you reveal an Aura card. You may put that card onto the battlefield. If you don't, put it into your hand. Put the rest on the bottom of your library in a random order.",
+  "colors": [
+    "W"
+  ],
+  "color_identity": [
+    "W"
+  ],
+  "keywords": [
+    "Enchant"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "97fab8d1-480a-419d-ab14-663968e29b9c",
+  "set": "soc",
+  "set_name": "Secrets of Strixhaven Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/97fab8d1-480a-419d-ab14-663968e29b9c",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Asoc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/soc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/4d1e229a-ed04-4d8d-90a9-5a451ca81470/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A2598294c-a9a7-4bef-a562-23f297a80536&unique=prints",
+  "collector_number": "174",
+  "digital": false,
+  "rarity": "rare",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Eelis Kyttanen",
+  "artist_ids": [
+    "699b24be-cde0-4da8-bc0f-7a3ecd60ab01"
+  ],
+  "illustration_id": "e746eced-85bc-4f56-a1d7-dab16ae991aa",
+  "border_color": "black",
+  "frame": "2015",
+  "frame_effects": [
+    "enchantment"
+  ],
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 3371,
+  "prices": {
+    "usd": "0.43",
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": "0.72",
+    "eur_foil": null,
+    "tix": "0.22"
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DSongbirds%2527%2BBlessing",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DSongbirds%2527%2BBlessing",
+    "edhrec": "https://edhrec.com/route/?cc=Songbirds%27+Blessing"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F687533%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=881495&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards/148817?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

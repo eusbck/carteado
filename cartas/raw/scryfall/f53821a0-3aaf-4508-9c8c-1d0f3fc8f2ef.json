@@ -1,0 +1,136 @@
+{
+  "object": "card",
+  "id": "f53821a0-3aaf-4508-9c8c-1d0f3fc8f2ef",
+  "oracle_id": "11284767-7095-4e0e-bc60-c69d58098348",
+  "multiverse_ids": [
+    123662
+  ],
+  "name": "Wakestone Gargoyle",
+  "printed_name": "Gárgula de Pedra Despertada",
+  "lang": "pt",
+  "released_at": "2006-05-05",
+  "uri": "https://api.scryfall.com/cards/f53821a0-3aaf-4508-9c8c-1d0f3fc8f2ef",
+  "scryfall_uri": "https://scryfall.com/card/dis/21/pt/g%C3%A1rgula-de-pedra-despertada-(wakestone-gargoyle)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "placeholder",
+  "image_updated_at": "2026-07-02T18:35:51Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/f/5/f53821a0-3aaf-4508-9c8c-1d0f3fc8f2ef.jpg?1783017351",
+    "normal": "https://cards.scryfall.io/normal/front/f/5/f53821a0-3aaf-4508-9c8c-1d0f3fc8f2ef.jpg?1783017351",
+    "large": "https://cards.scryfall.io/large/front/f/5/f53821a0-3aaf-4508-9c8c-1d0f3fc8f2ef.jpg?1783017351",
+    "png": "https://cards.scryfall.io/png/front/f/5/f53821a0-3aaf-4508-9c8c-1d0f3fc8f2ef.png?1783017351",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/f/5/f53821a0-3aaf-4508-9c8c-1d0f3fc8f2ef.jpg?1783017351",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/f/5/f53821a0-3aaf-4508-9c8c-1d0f3fc8f2ef.jpg?1783017351",
+    "thumb": "https://cards.scryfall.io/thumb/front/f/5/f53821a0-3aaf-4508-9c8c-1d0f3fc8f2ef.webp?1783017351",
+    "grid": "https://cards.scryfall.io/grid/front/f/5/f53821a0-3aaf-4508-9c8c-1d0f3fc8f2ef.webp?1783017351",
+    "display": "https://cards.scryfall.io/display/front/f/5/f53821a0-3aaf-4508-9c8c-1d0f3fc8f2ef.webp?1783017351",
+    "art": "https://cards.scryfall.io/art/front/f/5/f53821a0-3aaf-4508-9c8c-1d0f3fc8f2ef.webp?1783017351",
+    "crop": "https://cards.scryfall.io/crop/front/f/5/f53821a0-3aaf-4508-9c8c-1d0f3fc8f2ef.webp?1783017351"
+  },
+  "mana_cost": "{3}{W}",
+  "cmc": 4.0,
+  "type_line": "Creature — Gargoyle",
+  "printed_type_line": "Criatura — Gárgula",
+  "oracle_text": "Defender, flying\n{1}{W}: Creatures you control with defender can attack this turn as though they didn't have defender.",
+  "printed_text": "Defensor (Esta criatura não pode atacar.)\nVoar\n{1}{W}: As criaturas que você controla com a habilidade de defensor podem atacar neste turno como se não tivessem essa habilidade.",
+  "power": "3",
+  "toughness": "4",
+  "colors": [
+    "W"
+  ],
+  "color_identity": [
+    "W"
+  ],
+  "keywords": [
+    "Flying",
+    "Defender"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "fdebeda1-b95f-4343-8a94-d125821e6b5c",
+  "set": "dis",
+  "set_name": "Dissension",
+  "set_type": "expansion",
+  "set_uri": "https://api.scryfall.com/sets/fdebeda1-b95f-4343-8a94-d125821e6b5c",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Adis&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/dis?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/f53821a0-3aaf-4508-9c8c-1d0f3fc8f2ef/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A11284767-7095-4e0e-bc60-c69d58098348&unique=prints",
+  "collector_number": "21",
+  "digital": false,
+  "rarity": "rare",
+  "flavor_text": "Seu grito latejante rompe elos de aço, granito e servidão.",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Jim Murray",
+  "artist_ids": [
+    "1c906f9b-5bbe-4643-8f5c-90eb1c7f0c43"
+  ],
+  "illustration_id": "6975ac81-9fd8-49a7-ae63-312ed7c855b9",
+  "border_color": "black",
+  "frame": "2003",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "edhrec_rank": 10896,
+  "penny_rank": 13320,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=123662&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DWakestone%2BGargoyle",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DWakestone%2BGargoyle",
+    "edhrec": "https://edhrec.com/route/?cc=Wakestone+Gargoyle"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DWakestone%2BGargoyle%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Wakestone+Gargoyle&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Wakestone+Gargoyle&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

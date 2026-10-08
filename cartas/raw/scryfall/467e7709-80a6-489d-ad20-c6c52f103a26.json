@@ -1,0 +1,133 @@
+{
+  "object": "card",
+  "id": "467e7709-80a6-489d-ad20-c6c52f103a26",
+  "oracle_id": "367d4cf2-270f-4236-af10-7d5e8ea8c9fe",
+  "multiverse_ids": [],
+  "resource_id": "355BEE016007469792B107778F33299E5ADF8F3980B136EAF423A047A2087DFE",
+  "name": "Persist",
+  "printed_name": "Persistir",
+  "lang": "pt",
+  "released_at": "2024-06-14",
+  "uri": "https://api.scryfall.com/cards/467e7709-80a6-489d-ad20-c6c52f103a26",
+  "scryfall_uri": "https://scryfall.com/card/spg/42/pt/persistir-(persist)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-22T00:03:28Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/4/6/467e7709-80a6-489d-ad20-c6c52f103a26.jpg?1784678608",
+    "normal": "https://cards.scryfall.io/normal/front/4/6/467e7709-80a6-489d-ad20-c6c52f103a26.jpg?1784678608",
+    "large": "https://cards.scryfall.io/large/front/4/6/467e7709-80a6-489d-ad20-c6c52f103a26.jpg?1784678608",
+    "png": "https://cards.scryfall.io/png/front/4/6/467e7709-80a6-489d-ad20-c6c52f103a26.png?1784678608",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/4/6/467e7709-80a6-489d-ad20-c6c52f103a26.jpg?1784678608",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/4/6/467e7709-80a6-489d-ad20-c6c52f103a26.jpg?1784678608",
+    "thumb": "https://cards.scryfall.io/thumb/front/4/6/467e7709-80a6-489d-ad20-c6c52f103a26.webp?1784678608",
+    "grid": "https://cards.scryfall.io/grid/front/4/6/467e7709-80a6-489d-ad20-c6c52f103a26.webp?1784678608",
+    "display": "https://cards.scryfall.io/display/front/4/6/467e7709-80a6-489d-ad20-c6c52f103a26.webp?1784678608",
+    "art": "https://cards.scryfall.io/art/front/4/6/467e7709-80a6-489d-ad20-c6c52f103a26.webp?1784678608",
+    "crop": "https://cards.scryfall.io/crop/front/4/6/467e7709-80a6-489d-ad20-c6c52f103a26.webp?1784678608"
+  },
+  "mana_cost": "{1}{B}",
+  "cmc": 2.0,
+  "type_line": "Sorcery",
+  "oracle_text": "Return target nonlegendary creature card from your graveyard to the battlefield with a -1/-1 counter on it.",
+  "printed_text": "Devolva o card de criatura não lendária alvo de seu cemitério para o campo de batalha com um marcador -1/-1.",
+  "colors": [
+    "B"
+  ],
+  "color_identity": [
+    "B"
+  ],
+  "keywords": [],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "not_legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "arena",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "c01003a2-b3e2-4e7f-a26d-2348144c8056",
+  "set": "spg",
+  "set_name": "Special Guests",
+  "set_type": "masterpiece",
+  "set_uri": "https://api.scryfall.com/sets/c01003a2-b3e2-4e7f-a26d-2348144c8056",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Aspg&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/spg?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/467e7709-80a6-489d-ad20-c6c52f103a26/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A367d4cf2-270f-4236-af10-7d5e8ea8c9fe&unique=prints",
+  "collector_number": "42",
+  "digital": false,
+  "rarity": "mythic",
+  "flavor_text": "\"Eu paguei o preço a alguém que não direi o nome, para escapar do abismo. Um pouco da minha alma por uma segunda chance. E faria isso de novo, e mais uma vez—até que não tivesse mais alma para dar em troca\".\n— Tinua, cultista Skirsdag",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Jarel Threat",
+  "artist_ids": [
+    "0fd89fbd-bd59-4ded-890e-731a8982f278"
+  ],
+  "illustration_id": "93ab2ad9-90b7-473e-b53b-f3957c48935f",
+  "border_color": "borderless",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "promo_types": [
+    "boosterfun"
+  ],
+  "edhrec_rank": 1356,
+  "penny_rank": 247,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DPersist",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DPersist",
+    "edhrec": "https://edhrec.com/route/?cc=Persist"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DPersist%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Persist&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Persist&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

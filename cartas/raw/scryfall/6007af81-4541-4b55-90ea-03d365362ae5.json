@@ -1,0 +1,560 @@
+{
+  "object": "card",
+  "id": "6007af81-4541-4b55-90ea-03d365362ae5",
+  "oracle_id": "a4095286-d51b-4527-b6ce-23aa539fc23a",
+  "multiverse_ids": [],
+  "name": "Human Soldier",
+  "lang": "en",
+  "released_at": "2026-08-14",
+  "uri": "https://api.scryfall.com/cards/6007af81-4541-4b55-90ea-03d365362ae5",
+  "scryfall_uri": "https://scryfall.com/card/thob/2/human-soldier?utm_source=api",
+  "layout": "token",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-31T11:34:13Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/6/0/6007af81-4541-4b55-90ea-03d365362ae5.jpg?1785497653",
+    "normal": "https://cards.scryfall.io/normal/front/6/0/6007af81-4541-4b55-90ea-03d365362ae5.jpg?1785497653",
+    "large": "https://cards.scryfall.io/large/front/6/0/6007af81-4541-4b55-90ea-03d365362ae5.jpg?1785497653",
+    "png": "https://cards.scryfall.io/png/front/6/0/6007af81-4541-4b55-90ea-03d365362ae5.png?1785497653",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/6/0/6007af81-4541-4b55-90ea-03d365362ae5.jpg?1785497653",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/6/0/6007af81-4541-4b55-90ea-03d365362ae5.jpg?1785497653",
+    "thumb": "https://cards.scryfall.io/thumb/front/6/0/6007af81-4541-4b55-90ea-03d365362ae5.webp?1785497653",
+    "grid": "https://cards.scryfall.io/grid/front/6/0/6007af81-4541-4b55-90ea-03d365362ae5.webp?1785497653",
+    "display": "https://cards.scryfall.io/display/front/6/0/6007af81-4541-4b55-90ea-03d365362ae5.webp?1785497653",
+    "art": "https://cards.scryfall.io/art/front/6/0/6007af81-4541-4b55-90ea-03d365362ae5.webp?1785497653",
+    "crop": "https://cards.scryfall.io/crop/front/6/0/6007af81-4541-4b55-90ea-03d365362ae5.webp?1785497653"
+  },
+  "mana_cost": "",
+  "cmc": 0.0,
+  "type_line": "Token Creature — Human Soldier",
+  "oracle_text": "",
+  "power": "1",
+  "toughness": "1",
+  "colors": [
+    "W"
+  ],
+  "color_identity": [
+    "W"
+  ],
+  "keywords": [],
+  "all_parts": [
+    {
+      "object": "related_card",
+      "id": "24e2f681-918e-4f1f-afb1-0f9587c0d7bf",
+      "component": "combo_piece",
+      "name": "Commanding Presence",
+      "type_line": "Enchantment — Aura",
+      "uri": "https://api.scryfall.com/cards/24e2f681-918e-4f1f-afb1-0f9587c0d7bf"
+    },
+    {
+      "object": "related_card",
+      "id": "80306d10-0da7-4ee7-b975-ef6c9b535a2a",
+      "component": "combo_piece",
+      "name": "Nightsquad Commando",
+      "type_line": "Creature — Human Soldier",
+      "uri": "https://api.scryfall.com/cards/80306d10-0da7-4ee7-b975-ef6c9b535a2a"
+    },
+    {
+      "object": "related_card",
+      "id": "b3733812-32e5-407d-82f0-089983777e09",
+      "component": "combo_piece",
+      "name": "Omen of the Sun",
+      "type_line": "Enchantment",
+      "uri": "https://api.scryfall.com/cards/b3733812-32e5-407d-82f0-089983777e09"
+    },
+    {
+      "object": "related_card",
+      "id": "34334971-c1b7-4506-a6dd-77f66b3ae4e7",
+      "component": "combo_piece",
+      "name": "Knight Luminary",
+      "type_line": "Creature — Human Knight",
+      "uri": "https://api.scryfall.com/cards/34334971-c1b7-4506-a6dd-77f66b3ae4e7"
+    },
+    {
+      "object": "related_card",
+      "id": "2652ad78-4ed1-4914-880c-d2afca4b8a13",
+      "component": "combo_piece",
+      "name": "Lossarnach Captain",
+      "type_line": "Creature — Human Soldier",
+      "uri": "https://api.scryfall.com/cards/2652ad78-4ed1-4914-880c-d2afca4b8a13"
+    },
+    {
+      "object": "related_card",
+      "id": "9854e673-1816-4a76-b9db-bb399ac7489f",
+      "component": "combo_piece",
+      "name": "Hero of the Nyxborn",
+      "type_line": "Enchantment Creature — Human Soldier",
+      "uri": "https://api.scryfall.com/cards/9854e673-1816-4a76-b9db-bb399ac7489f"
+    },
+    {
+      "object": "related_card",
+      "id": "6839fd15-5656-4006-a11b-d0e1cbea05b3",
+      "component": "combo_piece",
+      "name": "Denethor, Ruling Steward",
+      "type_line": "Legendary Creature — Human Noble",
+      "uri": "https://api.scryfall.com/cards/6839fd15-5656-4006-a11b-d0e1cbea05b3"
+    },
+    {
+      "object": "related_card",
+      "id": "f918b740-1984-4090-8886-9e290a698b95",
+      "component": "token",
+      "name": "Dinosaur",
+      "type_line": "Token Creature — Dinosaur",
+      "uri": "https://api.scryfall.com/cards/f918b740-1984-4090-8886-9e290a698b95"
+    },
+    {
+      "object": "related_card",
+      "id": "68f4893d-e9a5-4f89-ade3-9ab78a834ad5",
+      "component": "combo_piece",
+      "name": "The Mountain-king's Return",
+      "type_line": "Enchantment — Saga",
+      "uri": "https://api.scryfall.com/cards/68f4893d-e9a5-4f89-ade3-9ab78a834ad5"
+    },
+    {
+      "object": "related_card",
+      "id": "4a015ab6-4eb3-42e3-bb19-a0668e9f7ff0",
+      "component": "combo_piece",
+      "name": "White Glove Gourmand",
+      "type_line": "Creature — Human Noble",
+      "uri": "https://api.scryfall.com/cards/4a015ab6-4eb3-42e3-bb19-a0668e9f7ff0"
+    },
+    {
+      "object": "related_card",
+      "id": "1b868c39-0fdc-4152-991e-3bc60a90d1ec",
+      "component": "combo_piece",
+      "name": "Aragorn, the Uniter",
+      "type_line": "Legendary Creature — Human Noble",
+      "uri": "https://api.scryfall.com/cards/1b868c39-0fdc-4152-991e-3bc60a90d1ec"
+    },
+    {
+      "object": "related_card",
+      "id": "1cf7ebef-014e-4305-851d-28659306bab8",
+      "component": "combo_piece",
+      "name": "Oath of Eorl",
+      "type_line": "Enchantment — Saga",
+      "uri": "https://api.scryfall.com/cards/1cf7ebef-014e-4305-851d-28659306bab8"
+    },
+    {
+      "object": "related_card",
+      "id": "a08fb8ec-6890-48f9-97db-0584a9a77578",
+      "component": "combo_piece",
+      "name": "Strength of Arms",
+      "type_line": "Instant",
+      "uri": "https://api.scryfall.com/cards/a08fb8ec-6890-48f9-97db-0584a9a77578"
+    },
+    {
+      "object": "related_card",
+      "id": "17d566bd-f272-49d1-bffb-588f2a42046a",
+      "component": "combo_piece",
+      "name": "Daysquad Marshal",
+      "type_line": "Creature — Human Soldier",
+      "uri": "https://api.scryfall.com/cards/17d566bd-f272-49d1-bffb-588f2a42046a"
+    },
+    {
+      "object": "related_card",
+      "id": "f4180f30-38c2-4836-a748-4ecb5f186458",
+      "component": "combo_piece",
+      "name": "Faramir, Steward of Gondor",
+      "type_line": "Legendary Creature — Human Noble",
+      "uri": "https://api.scryfall.com/cards/f4180f30-38c2-4836-a748-4ecb5f186458"
+    },
+    {
+      "object": "related_card",
+      "id": "d563f5af-6735-4541-8d5f-d58ab8389e8b",
+      "component": "combo_piece",
+      "name": "Prince Imrahil the Fair",
+      "type_line": "Legendary Creature — Human Noble",
+      "uri": "https://api.scryfall.com/cards/d563f5af-6735-4541-8d5f-d58ab8389e8b"
+    },
+    {
+      "object": "related_card",
+      "id": "7da171be-cfa3-44d3-b473-a318d87d7b90",
+      "component": "combo_piece",
+      "name": "The First Iroan Games",
+      "type_line": "Enchantment — Saga",
+      "uri": "https://api.scryfall.com/cards/7da171be-cfa3-44d3-b473-a318d87d7b90"
+    },
+    {
+      "object": "related_card",
+      "id": "7ca1300a-0ac3-413b-9617-5e8d1b5f1ca2",
+      "component": "combo_piece",
+      "name": "Bard's Company",
+      "type_line": "Creature — Human Citizen",
+      "uri": "https://api.scryfall.com/cards/7ca1300a-0ac3-413b-9617-5e8d1b5f1ca2"
+    },
+    {
+      "object": "related_card",
+      "id": "88a7bf3a-9c87-4937-a6e1-dfbc589c8e35",
+      "component": "combo_piece",
+      "name": "Ulvenwald Mysteries",
+      "type_line": "Enchantment",
+      "uri": "https://api.scryfall.com/cards/88a7bf3a-9c87-4937-a6e1-dfbc589c8e35"
+    },
+    {
+      "object": "related_card",
+      "id": "0229a5ce-196b-494e-bc6f-a71daedf05cc",
+      "component": "combo_piece",
+      "name": "Thraben Standard Bearer",
+      "type_line": "Creature — Human Soldier",
+      "uri": "https://api.scryfall.com/cards/0229a5ce-196b-494e-bc6f-a71daedf05cc"
+    },
+    {
+      "object": "related_card",
+      "id": "05a6ab03-f0b9-4738-a5f9-5d95bb22de75",
+      "component": "combo_piece",
+      "name": "Honored Knight-Captain",
+      "type_line": "Creature — Human Advisor Knight",
+      "uri": "https://api.scryfall.com/cards/05a6ab03-f0b9-4738-a5f9-5d95bb22de75"
+    },
+    {
+      "object": "related_card",
+      "id": "17844223-f9fb-4cd8-ba8e-d1db07e5ba55",
+      "component": "combo_piece",
+      "name": "Call the Coppercoats",
+      "type_line": "Instant",
+      "uri": "https://api.scryfall.com/cards/17844223-f9fb-4cd8-ba8e-d1db07e5ba55"
+    },
+    {
+      "object": "related_card",
+      "id": "168d7532-c925-4a96-a756-2ce4dd0fec33",
+      "component": "combo_piece",
+      "name": "Trynn, Champion of Freedom",
+      "type_line": "Legendary Creature — Human Soldier",
+      "uri": "https://api.scryfall.com/cards/168d7532-c925-4a96-a756-2ce4dd0fec33"
+    },
+    {
+      "object": "related_card",
+      "id": "741caee0-03c7-4b72-8f71-234e66eb6609",
+      "component": "combo_piece",
+      "name": "Vault 101: Birthday Party",
+      "type_line": "Enchantment — Saga",
+      "uri": "https://api.scryfall.com/cards/741caee0-03c7-4b72-8f71-234e66eb6609"
+    },
+    {
+      "object": "related_card",
+      "id": "c08c7bf9-a2ed-45c6-8b48-15122d9d9e37",
+      "component": "combo_piece",
+      "name": "Rayblade Trooper",
+      "type_line": "Creature — Human Soldier",
+      "uri": "https://api.scryfall.com/cards/c08c7bf9-a2ed-45c6-8b48-15122d9d9e37"
+    },
+    {
+      "object": "related_card",
+      "id": "f1b34868-c8f0-4e55-beac-8068af672618",
+      "component": "combo_piece",
+      "name": "Sigarda, Heron's Grace",
+      "type_line": "Legendary Creature — Angel",
+      "uri": "https://api.scryfall.com/cards/f1b34868-c8f0-4e55-beac-8068af672618"
+    },
+    {
+      "object": "related_card",
+      "id": "ed59f238-378d-4545-8371-ceef27d6a9e3",
+      "component": "combo_piece",
+      "name": "Rally at the Hornburg",
+      "type_line": "Sorcery",
+      "uri": "https://api.scryfall.com/cards/ed59f238-378d-4545-8371-ceef27d6a9e3"
+    },
+    {
+      "object": "related_card",
+      "id": "573f67b0-6ce8-4857-a703-4a5728640736",
+      "component": "combo_piece",
+      "name": "Esgaroth Garrison",
+      "type_line": "Creature — Human Soldier",
+      "uri": "https://api.scryfall.com/cards/573f67b0-6ce8-4857-a703-4a5728640736"
+    },
+    {
+      "object": "related_card",
+      "id": "7565ff54-15be-4365-826a-2fcbd40f2ee9",
+      "component": "combo_piece",
+      "name": "Horn of Gondor",
+      "type_line": "Legendary Artifact",
+      "uri": "https://api.scryfall.com/cards/7565ff54-15be-4365-826a-2fcbd40f2ee9"
+    },
+    {
+      "object": "related_card",
+      "id": "9adb1528-dc72-4ec7-bcb4-a043bcd8d9d2",
+      "component": "combo_piece",
+      "name": "Siona, Captain of the Pyleas",
+      "type_line": "Legendary Creature — Human Soldier",
+      "uri": "https://api.scryfall.com/cards/9adb1528-dc72-4ec7-bcb4-a043bcd8d9d2"
+    },
+    {
+      "object": "related_card",
+      "id": "2c44ab34-99fe-47be-9fef-d49a25989bfb",
+      "component": "combo_piece",
+      "name": "Faramir, Prince of Ithilien",
+      "type_line": "Legendary Creature — Human Noble",
+      "uri": "https://api.scryfall.com/cards/2c44ab34-99fe-47be-9fef-d49a25989bfb"
+    },
+    {
+      "object": "related_card",
+      "id": "b4836c47-ba54-46a5-a186-92c1efbda4f8",
+      "component": "combo_piece",
+      "name": "Reverent Hoplite",
+      "type_line": "Creature — Human Soldier",
+      "uri": "https://api.scryfall.com/cards/b4836c47-ba54-46a5-a186-92c1efbda4f8"
+    },
+    {
+      "object": "related_card",
+      "id": "3fa2050a-711f-4c6e-8b01-5353bd2a4234",
+      "component": "combo_piece",
+      "name": "General's Enforcer",
+      "type_line": "Creature — Human Soldier",
+      "uri": "https://api.scryfall.com/cards/3fa2050a-711f-4c6e-8b01-5353bd2a4234"
+    },
+    {
+      "object": "related_card",
+      "id": "4cff1878-3f23-4a0a-ad79-28a44921cca8",
+      "component": "combo_piece",
+      "name": "The Queen of Dale",
+      "type_line": "Legendary Creature — Human Noble",
+      "uri": "https://api.scryfall.com/cards/4cff1878-3f23-4a0a-ad79-28a44921cca8"
+    },
+    {
+      "object": "related_card",
+      "id": "6007af81-4541-4b55-90ea-03d365362ae5",
+      "component": "token",
+      "name": "Human Soldier",
+      "type_line": "Token Creature — Human Soldier",
+      "uri": "https://api.scryfall.com/cards/6007af81-4541-4b55-90ea-03d365362ae5"
+    },
+    {
+      "object": "related_card",
+      "id": "cd5af94d-6321-4834-8e5f-e5d0261b3ef3",
+      "component": "combo_piece",
+      "name": "Long Lake Nuisance",
+      "type_line": "Creature — Bird",
+      "uri": "https://api.scryfall.com/cards/cd5af94d-6321-4834-8e5f-e5d0261b3ef3"
+    },
+    {
+      "object": "related_card",
+      "id": "49dcf2f3-328e-42ba-b274-7ed041e57723",
+      "component": "combo_piece",
+      "name": "Faramir, Field Commander",
+      "type_line": "Legendary Creature — Human Soldier",
+      "uri": "https://api.scryfall.com/cards/49dcf2f3-328e-42ba-b274-7ed041e57723"
+    },
+    {
+      "object": "related_card",
+      "id": "6e660d42-f5d3-452a-9662-74e18a1ae9e4",
+      "component": "combo_piece",
+      "name": "Jirina Kudro",
+      "type_line": "Legendary Creature — Human Soldier",
+      "uri": "https://api.scryfall.com/cards/6e660d42-f5d3-452a-9662-74e18a1ae9e4"
+    },
+    {
+      "object": "related_card",
+      "id": "e4800508-8bb9-41bb-8712-b55fba7a80a5",
+      "component": "combo_piece",
+      "name": "Patient Instructor",
+      "type_line": "Creature — Human Citizen",
+      "uri": "https://api.scryfall.com/cards/e4800508-8bb9-41bb-8712-b55fba7a80a5"
+    },
+    {
+      "object": "related_card",
+      "id": "99dbdd3b-8e96-47f4-bbb5-a0d520b8c288",
+      "component": "combo_piece",
+      "name": "Éomer of the Riddermark",
+      "type_line": "Legendary Creature — Human Knight",
+      "uri": "https://api.scryfall.com/cards/99dbdd3b-8e96-47f4-bbb5-a0d520b8c288"
+    },
+    {
+      "object": "related_card",
+      "id": "e4b35111-2c74-4dda-b156-d1bf9f3c2947",
+      "component": "combo_piece",
+      "name": "Riders of the Mark",
+      "type_line": "Creature — Human Knight",
+      "uri": "https://api.scryfall.com/cards/e4b35111-2c74-4dda-b156-d1bf9f3c2947"
+    },
+    {
+      "object": "related_card",
+      "id": "6fe6ccad-e303-48f9-9dfa-0db7c1878031",
+      "component": "combo_piece",
+      "name": "Bastion of Remembrance",
+      "type_line": "Enchantment",
+      "uri": "https://api.scryfall.com/cards/6fe6ccad-e303-48f9-9dfa-0db7c1878031"
+    },
+    {
+      "object": "related_card",
+      "id": "a2b13ff6-67e9-4760-aef4-a8548ea44344",
+      "component": "combo_piece",
+      "name": "Valiant Rescuer",
+      "type_line": "Creature — Human Soldier",
+      "uri": "https://api.scryfall.com/cards/a2b13ff6-67e9-4760-aef4-a8548ea44344"
+    },
+    {
+      "object": "related_card",
+      "id": "71143c99-1362-471c-96a9-02890d32f4ff",
+      "component": "combo_piece",
+      "name": "Protector of Gondor",
+      "type_line": "Creature — Human Soldier",
+      "uri": "https://api.scryfall.com/cards/71143c99-1362-471c-96a9-02890d32f4ff"
+    },
+    {
+      "object": "related_card",
+      "id": "178c4cf6-6b11-40e4-9673-c560d6818a6b",
+      "component": "combo_piece",
+      "name": "Lake-town Lookout",
+      "type_line": "Creature — Human Scout",
+      "uri": "https://api.scryfall.com/cards/178c4cf6-6b11-40e4-9673-c560d6818a6b"
+    },
+    {
+      "object": "related_card",
+      "id": "d2b59872-0e11-41c3-9858-3e2dd5a1c3c3",
+      "component": "combo_piece",
+      "name": "Great Gilded Boat",
+      "type_line": "Artifact — Vehicle",
+      "uri": "https://api.scryfall.com/cards/d2b59872-0e11-41c3-9858-3e2dd5a1c3c3"
+    },
+    {
+      "object": "related_card",
+      "id": "42fbd61d-e1a6-465d-b1a3-f5ee0869d3af",
+      "component": "combo_piece",
+      "name": "Celebrate the Mountain-king",
+      "type_line": "Enchantment",
+      "uri": "https://api.scryfall.com/cards/42fbd61d-e1a6-465d-b1a3-f5ee0869d3af"
+    },
+    {
+      "object": "related_card",
+      "id": "ae39803e-e67a-4d1b-a3fe-2e255d502656",
+      "component": "combo_piece",
+      "name": "Forbidden Friendship",
+      "type_line": "Sorcery",
+      "uri": "https://api.scryfall.com/cards/ae39803e-e67a-4d1b-a3fe-2e255d502656"
+    },
+    {
+      "object": "related_card",
+      "id": "dd32a1dd-3541-4572-a717-1deabc14b827",
+      "component": "combo_piece",
+      "name": "Sound the Trumpets",
+      "type_line": "Instant",
+      "uri": "https://api.scryfall.com/cards/dd32a1dd-3541-4572-a717-1deabc14b827"
+    },
+    {
+      "object": "related_card",
+      "id": "375a3fb0-386d-40ba-97c0-534a6c289078",
+      "component": "combo_piece",
+      "name": "Vault 11: Voter's Dilemma",
+      "type_line": "Enchantment — Saga",
+      "uri": "https://api.scryfall.com/cards/375a3fb0-386d-40ba-97c0-534a6c289078"
+    },
+    {
+      "object": "related_card",
+      "id": "c53b0e0c-716c-477d-9206-0f8e6de5c100",
+      "component": "combo_piece",
+      "name": "Cosmogrand Zenith",
+      "type_line": "Creature — Human Soldier",
+      "uri": "https://api.scryfall.com/cards/c53b0e0c-716c-477d-9206-0f8e6de5c100"
+    },
+    {
+      "object": "related_card",
+      "id": "e7ff8345-227c-43b4-bed5-af3a34c0a990",
+      "component": "combo_piece",
+      "name": "Garrison Cat",
+      "type_line": "Creature — Cat",
+      "uri": "https://api.scryfall.com/cards/e7ff8345-227c-43b4-bed5-af3a34c0a990"
+    },
+    {
+      "object": "related_card",
+      "id": "8a8b9457-68ae-47ce-a650-32520292b361",
+      "component": "combo_piece",
+      "name": "Elspeth, Sun's Nemesis",
+      "type_line": "Legendary Planeswalker — Elspeth",
+      "uri": "https://api.scryfall.com/cards/8a8b9457-68ae-47ce-a650-32520292b361"
+    },
+    {
+      "object": "related_card",
+      "id": "85536624-f44a-4b0f-bcc2-cf64957a81b6",
+      "component": "combo_piece",
+      "name": "Quarrel's End",
+      "type_line": "Sorcery",
+      "uri": "https://api.scryfall.com/cards/85536624-f44a-4b0f-bcc2-cf64957a81b6"
+    }
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "not_legal",
+    "pauper": "not_legal",
+    "vintage": "not_legal",
+    "penny": "not_legal",
+    "commander": "not_legal",
+    "oathbreaker": "not_legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "not_legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "4be6c17a-b478-4a20-b1a7-4b7905323074",
+  "set": "thob",
+  "set_name": "The Hobbit Tokens",
+  "set_type": "token",
+  "set_uri": "https://api.scryfall.com/sets/4be6c17a-b478-4a20-b1a7-4b7905323074",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Athob&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/thob?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/6007af81-4541-4b55-90ea-03d365362ae5/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Aa4095286-d51b-4527-b6ce-23aa539fc23a&unique=prints",
+  "collector_number": "2",
+  "digital": false,
+  "rarity": "common",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Jarel Threat",
+  "artist_ids": [
+    "0fd89fbd-bd59-4ded-890e-731a8982f278"
+  ],
+  "illustration_id": "983fa769-f545-408f-94dd-a25eb01436c0",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "promo_types": [
+    "universesbeyond"
+  ],
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DHuman%2BSoldier",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DHuman%2BSoldier",
+    "edhrec": "https://edhrec.com/route/?cc=Human+Soldier"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DHuman%2BSoldier%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Human+Soldier&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Human+Soldier&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

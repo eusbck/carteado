@@ -1,0 +1,139 @@
+{
+  "object": "card",
+  "id": "a74736c2-16ed-4352-b3b0-e6f97968cf03",
+  "oracle_id": "b99ada26-9a61-4175-9fb8-15a106960220",
+  "multiverse_ids": [
+    624710
+  ],
+  "name": "Ohran Frostfang",
+  "printed_name": "Presa-gélida de Ohran",
+  "lang": "pt",
+  "released_at": "2023-08-04",
+  "uri": "https://api.scryfall.com/cards/a74736c2-16ed-4352-b3b0-e6f97968cf03",
+  "scryfall_uri": "https://scryfall.com/card/cmm/650/pt/presa-g%C3%A9lida-de-ohran-(ohran-frostfang)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "placeholder",
+  "image_updated_at": "2026-06-30T10:35:56Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/a/7/a74736c2-16ed-4352-b3b0-e6f97968cf03.jpg?1782815756",
+    "normal": "https://cards.scryfall.io/normal/front/a/7/a74736c2-16ed-4352-b3b0-e6f97968cf03.jpg?1782815756",
+    "large": "https://cards.scryfall.io/large/front/a/7/a74736c2-16ed-4352-b3b0-e6f97968cf03.jpg?1782815756",
+    "png": "https://cards.scryfall.io/png/front/a/7/a74736c2-16ed-4352-b3b0-e6f97968cf03.png?1782815756",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/a/7/a74736c2-16ed-4352-b3b0-e6f97968cf03.jpg?1782815756",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/a/7/a74736c2-16ed-4352-b3b0-e6f97968cf03.jpg?1782815756",
+    "thumb": "https://cards.scryfall.io/thumb/front/a/7/a74736c2-16ed-4352-b3b0-e6f97968cf03.webp?1782815756",
+    "grid": "https://cards.scryfall.io/grid/front/a/7/a74736c2-16ed-4352-b3b0-e6f97968cf03.webp?1782815756",
+    "display": "https://cards.scryfall.io/display/front/a/7/a74736c2-16ed-4352-b3b0-e6f97968cf03.webp?1782815756",
+    "art": "https://cards.scryfall.io/art/front/a/7/a74736c2-16ed-4352-b3b0-e6f97968cf03.webp?1782815756",
+    "crop": "https://cards.scryfall.io/crop/front/a/7/a74736c2-16ed-4352-b3b0-e6f97968cf03.webp?1782815756"
+  },
+  "mana_cost": "{3}{G}{G}",
+  "cmc": 5.0,
+  "type_line": "Snow Creature — Snake",
+  "printed_type_line": "Criatura da Neve — Cobra",
+  "oracle_text": "Attacking creatures you control have deathtouch.\nWhenever a creature you control deals combat damage to a player, draw a card.",
+  "printed_text": "As criaturas atacantes que você controla têm toque mortífero.\nToda vez que uma criatura que você controla causar dano de combate a um jogador, compre um card.",
+  "power": "2",
+  "toughness": "6",
+  "colors": [
+    "G"
+  ],
+  "color_identity": [
+    "G"
+  ],
+  "keywords": [],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "cd05036f-2698-43e6-a48e-5c8d82f0a551",
+  "set": "cmm",
+  "set_name": "Commander Masters",
+  "set_type": "masters",
+  "set_uri": "https://api.scryfall.com/sets/cd05036f-2698-43e6-a48e-5c8d82f0a551",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Acmm&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/cmm?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/a74736c2-16ed-4352-b3b0-e6f97968cf03/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Ab99ada26-9a61-4175-9fb8-15a106960220&unique=prints",
+  "collector_number": "650",
+  "digital": false,
+  "rarity": "rare",
+  "flavor_text": "\"Bobagem! Todos sabem que as cobras ficam lentas e dóceis quando estão com frio!\"\n— Últimas palavras de Bodrick, o Superconfiante",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Ron Spears",
+  "artist_ids": [
+    "fce9030b-86bd-4439-b06a-920a1eeb184c"
+  ],
+  "illustration_id": "772b8fd9-8af6-4701-b6b7-c45f77df559a",
+  "border_color": "borderless",
+  "frame": "2015",
+  "frame_effects": [
+    "inverted"
+  ],
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "promo_types": [
+    "boosterfun"
+  ],
+  "edhrec_rank": 446,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=624710&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DOhran%2BFrostfang",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DOhran%2BFrostfang",
+    "edhrec": "https://edhrec.com/route/?cc=Ohran+Frostfang"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DOhran%2BFrostfang%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Ohran+Frostfang&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Ohran+Frostfang&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

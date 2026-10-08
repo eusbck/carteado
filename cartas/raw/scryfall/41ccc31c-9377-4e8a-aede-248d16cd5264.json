@@ -1,0 +1,132 @@
+{
+  "object": "card",
+  "id": "41ccc31c-9377-4e8a-aede-248d16cd5264",
+  "oracle_id": "c8decfdf-1421-4649-acde-5215e7f08bb9",
+  "multiverse_ids": [],
+  "resource_id": "D80742FCF7F79779DB2EE0C5143F7E34B585D306BFF63D29D6CF54530F487749",
+  "mtgo_id": 148781,
+  "tcgplayer_id": 687447,
+  "cardmarket_id": 881477,
+  "name": "Martial Impetus",
+  "lang": "en",
+  "released_at": "2026-04-24",
+  "uri": "https://api.scryfall.com/cards/41ccc31c-9377-4e8a-aede-248d16cd5264",
+  "scryfall_uri": "https://scryfall.com/card/soc/156/martial-impetus?utm_source=api",
+  "layout": "normal",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T00:50:06Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/4/1/41ccc31c-9377-4e8a-aede-248d16cd5264.jpg?1783903806",
+    "normal": "https://cards.scryfall.io/normal/front/4/1/41ccc31c-9377-4e8a-aede-248d16cd5264.jpg?1783903806",
+    "large": "https://cards.scryfall.io/large/front/4/1/41ccc31c-9377-4e8a-aede-248d16cd5264.jpg?1783903806",
+    "png": "https://cards.scryfall.io/png/front/4/1/41ccc31c-9377-4e8a-aede-248d16cd5264.png?1783903806",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/4/1/41ccc31c-9377-4e8a-aede-248d16cd5264.jpg?1783903806",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/4/1/41ccc31c-9377-4e8a-aede-248d16cd5264.jpg?1783903806",
+    "thumb": "https://cards.scryfall.io/thumb/front/4/1/41ccc31c-9377-4e8a-aede-248d16cd5264.webp?1783903806",
+    "grid": "https://cards.scryfall.io/grid/front/4/1/41ccc31c-9377-4e8a-aede-248d16cd5264.webp?1783903806",
+    "display": "https://cards.scryfall.io/display/front/4/1/41ccc31c-9377-4e8a-aede-248d16cd5264.webp?1783903806",
+    "art": "https://cards.scryfall.io/art/front/4/1/41ccc31c-9377-4e8a-aede-248d16cd5264.webp?1783903806",
+    "crop": "https://cards.scryfall.io/crop/front/4/1/41ccc31c-9377-4e8a-aede-248d16cd5264.webp?1783903806"
+  },
+  "mana_cost": "{2}{W}",
+  "cmc": 3.0,
+  "type_line": "Enchantment — Aura",
+  "oracle_text": "Enchant creature\nEnchanted creature gets +1/+1 and is goaded. (It attacks each combat if able and attacks a player other than you if able.)\nWhenever enchanted creature attacks, each other creature that's attacking one of your opponents gets +1/+1 until end of turn.",
+  "colors": [
+    "W"
+  ],
+  "color_identity": [
+    "W"
+  ],
+  "keywords": [
+    "Goad",
+    "Enchant"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "legal",
+    "pauper": "legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "97fab8d1-480a-419d-ab14-663968e29b9c",
+  "set": "soc",
+  "set_name": "Secrets of Strixhaven Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/97fab8d1-480a-419d-ab14-663968e29b9c",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Asoc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/soc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/41ccc31c-9377-4e8a-aede-248d16cd5264/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Ac8decfdf-1421-4649-acde-5215e7f08bb9&unique=prints",
+  "collector_number": "156",
+  "digital": false,
+  "rarity": "common",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Aaron Miller",
+  "artist_ids": [
+    "fc021f3d-773a-4706-bbe7-f602324f511f"
+  ],
+  "illustration_id": "a0db02d7-0a83-4e72-b0ae-0dc001bff128",
+  "border_color": "black",
+  "frame": "2015",
+  "frame_effects": [
+    "enchantment"
+  ],
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 3802,
+  "prices": {
+    "usd": "0.32",
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": "0.15",
+    "eur_foil": null,
+    "tix": "0.22"
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DMartial%2BImpetus",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DMartial%2BImpetus",
+    "edhrec": "https://edhrec.com/route/?cc=Martial+Impetus"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F687447%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=881477&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards/148781?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

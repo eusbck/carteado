@@ -1,0 +1,470 @@
+[
+  {
+    "label": "Prioridade",
+    "aliases": [
+      "prioridade",
+      "responder",
+      "resposta",
+      "priority",
+      "timing"
+    ],
+    "refs": [
+      "117",
+      "116"
+    ]
+  },
+  {
+    "label": "Pilha",
+    "aliases": [
+      "pilha",
+      "stack",
+      "resolucao",
+      "resolver"
+    ],
+    "refs": [
+      "405",
+      "608",
+      "117"
+    ]
+  },
+  {
+    "label": "Turnos",
+    "aliases": [
+      "turno",
+      "turnos",
+      "fases",
+      "etapas",
+      "passar turno"
+    ],
+    "refs": [
+      "500",
+      "501",
+      "502",
+      "503",
+      "504",
+      "505",
+      "506",
+      "507",
+      "508",
+      "509",
+      "510",
+      "511",
+      "512",
+      "513",
+      "514"
+    ]
+  },
+  {
+    "label": "Comandante",
+    "aliases": [
+      "comandante",
+      "commander",
+      "commander damage",
+      "taxa",
+      "dano de comandante"
+    ],
+    "refs": [
+      "903",
+      "702.124"
+    ]
+  },
+  {
+    "label": "Terrenos",
+    "aliases": [
+      "terreno",
+      "terrenos",
+      "land"
+    ],
+    "refs": [
+      "305"
+    ]
+  },
+  {
+    "label": "Mana e custos",
+    "aliases": [
+      "mana",
+      "custo",
+      "custos"
+    ],
+    "refs": [
+      "106",
+      "107",
+      "118",
+      "601",
+      "605"
+    ]
+  },
+  {
+    "label": "Combate",
+    "aliases": [
+      "combate",
+      "ataque",
+      "atacar",
+      "bloquear",
+      "bloqueio",
+      "combat"
+    ],
+    "refs": [
+      "506",
+      "507",
+      "508",
+      "509",
+      "510",
+      "511",
+      "802"
+    ]
+  },
+  {
+    "label": "Tipos de carta",
+    "aliases": [
+      "tipos",
+      "cartas",
+      "tipos de cartas",
+      "tipos de carta"
+    ],
+    "refs": [
+      "205",
+      "300",
+      "301",
+      "302",
+      "303",
+      "304",
+      "305",
+      "306",
+      "307",
+      "308",
+      "309",
+      "310",
+      "311",
+      "312",
+      "313",
+      "314",
+      "315"
+    ]
+  },
+  {
+    "label": "Habilidades",
+    "aliases": [
+      "habilidade",
+      "habilidades",
+      "gatilhos",
+      "gatilho",
+      "etb"
+    ],
+    "refs": [
+      "113",
+      "602",
+      "603",
+      "604",
+      "605",
+      "606"
+    ]
+  },
+  {
+    "label": "Alvos",
+    "aliases": [
+      "alvo",
+      "alvos",
+      "target"
+    ],
+    "refs": [
+      "115",
+      "608.2b"
+    ]
+  },
+  {
+    "label": "Ações de estado",
+    "aliases": [
+      "acao de estado",
+      "acoes de estado",
+      "sba",
+      "morte",
+      "morrer",
+      "derrota"
+    ],
+    "refs": [
+      "704",
+      "104",
+      "903.9"
+    ]
+  },
+  {
+    "label": "Multiplayer",
+    "aliases": [
+      "multiplayer",
+      "multijogador",
+      "sair do jogo",
+      "eliminacao"
+    ],
+    "refs": [
+      "800",
+      "806",
+      "802"
+    ]
+  },
+  {
+    "label": "Mulligan",
+    "aliases": [
+      "mulligan",
+      "mao inicial"
+    ],
+    "refs": [
+      "103.5"
+    ]
+  },
+  {
+    "label": "Zonas",
+    "aliases": [
+      "zona",
+      "zonas",
+      "exilio",
+      "cemiterio",
+      "grimorio",
+      "mao"
+    ],
+    "refs": [
+      "400",
+      "401",
+      "402",
+      "403",
+      "404",
+      "405",
+      "406",
+      "408"
+    ]
+  },
+  {
+    "label": "Limpeza",
+    "aliases": [
+      "limpeza",
+      "fim do turno",
+      "etapa final",
+      "final do turno"
+    ],
+    "refs": [
+      "513",
+      "514"
+    ]
+  },
+  {
+    "label": "Anulação",
+    "aliases": [
+      "anulacao",
+      "anular",
+      "counterspell"
+    ],
+    "refs": [
+      "701.6",
+      "608.2b"
+    ]
+  },
+  {
+    "label": "Camadas e cópias",
+    "aliases": [
+      "camadas",
+      "copias",
+      "copia",
+      "layers",
+      "copy"
+    ],
+    "refs": [
+      "613",
+      "707"
+    ]
+  },
+  {
+    "label": "Substituição",
+    "aliases": [
+      "substituicao",
+      "prevencao",
+      "replacement"
+    ],
+    "refs": [
+      "614",
+      "615",
+      "616"
+    ]
+  },
+  {
+    "label": "Lealdade",
+    "aliases": [
+      "lealdade",
+      "planeswalker"
+    ],
+    "refs": [
+      "306",
+      "606"
+    ]
+  },
+  {
+    "label": "Indestrutível",
+    "aliases": [
+      "indestrutivel"
+    ],
+    "refs": [
+      "702.12",
+      "704.5f",
+      "704.5g",
+      "704.5h"
+    ]
+  },
+  {
+    "label": "Voar e alcance",
+    "aliases": [
+      "voar",
+      "voo",
+      "alcance"
+    ],
+    "refs": [
+      "702.9",
+      "702.17"
+    ]
+  },
+  {
+    "label": "Atropelar",
+    "aliases": [
+      "atropelar"
+    ],
+    "refs": [
+      "702.19",
+      "510.1c"
+    ]
+  },
+  {
+    "label": "Proteção e ward",
+    "aliases": [
+      "protecao",
+      "salvaguarda",
+      "resistencia a magia",
+      "manto"
+    ],
+    "refs": [
+      "702.16",
+      "702.21",
+      "702.11",
+      "702.18"
+    ]
+  },
+  {
+    "label": "Vínculo com a vida",
+    "aliases": [
+      "vinculo com a vida",
+      "lifelink"
+    ],
+    "refs": [
+      "702.15",
+      "120"
+    ]
+  },
+  {
+    "label": "Veneno",
+    "aliases": [
+      "veneno",
+      "infectar",
+      "toxico"
+    ],
+    "refs": [
+      "104.3d",
+      "702.90",
+      "702.164"
+    ]
+  },
+  {
+    "label": "Monarca e iniciativa",
+    "aliases": [
+      "monarca",
+      "iniciativa",
+      "undercity"
+    ],
+    "refs": [
+      "725",
+      "726",
+      "702.7"
+    ]
+  },
+  {
+    "label": "Goad",
+    "aliases": [
+      "incitar",
+      "goad"
+    ],
+    "refs": [
+      "701.15",
+      "508.1"
+    ]
+  },
+  {
+    "label": "Veículos e Espaçonaves",
+    "aliases": [
+      "veiculo",
+      "veiculos",
+      "espaconave",
+      "tripular",
+      "station",
+      "crew"
+    ],
+    "refs": [
+      "301",
+      "702.122",
+      "702.184",
+      "721",
+      "903.3"
+    ]
+  },
+  {
+    "label": "Palavras-chave",
+    "aliases": [
+      "mecanica",
+      "mecanicas",
+      "palavras-chave",
+      "keywords"
+    ],
+    "refs": [
+      "701",
+      "702"
+    ]
+  },
+  {
+    "label": "Atalhos e loops",
+    "aliases": [
+      "atalho",
+      "atalhos",
+      "loop",
+      "loops",
+      "infinito"
+    ],
+    "refs": [
+      "732",
+      "104.4b"
+    ]
+  },
+  {
+    "label": "Cartas de duas faces",
+    "aliases": [
+      "duas faces",
+      "transformar",
+      "adventure",
+      "aventura"
+    ],
+    "refs": [
+      "709",
+      "710",
+      "712",
+      "715"
+    ]
+  },
+  {
+    "label": "Fichas",
+    "aliases": [
+      "ficha",
+      "fichas",
+      "tesouro",
+      "pista",
+      "comida",
+      "sangue"
+    ],
+    "refs": [
+      "111"
+    ]
+  }
+]

@@ -1,0 +1,132 @@
+{
+  "object": "card",
+  "id": "3b34a196-52bf-4c99-8020-94dacd0ba6ea",
+  "oracle_id": "4b8183e6-4ff2-4254-9ee0-0ebbf8cef4a3",
+  "multiverse_ids": [
+    133829
+  ],
+  "name": "Fallen Ideal",
+  "printed_name": "Ideal Caído",
+  "lang": "pt",
+  "released_at": "2006-10-06",
+  "uri": "https://api.scryfall.com/cards/3b34a196-52bf-4c99-8020-94dacd0ba6ea",
+  "scryfall_uri": "https://scryfall.com/card/tsp/109/pt/ideal-ca%C3%ADdo-(fallen-ideal)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "placeholder",
+  "image_updated_at": "2026-07-02T17:48:00Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/3/b/3b34a196-52bf-4c99-8020-94dacd0ba6ea.jpg?1783014480",
+    "normal": "https://cards.scryfall.io/normal/front/3/b/3b34a196-52bf-4c99-8020-94dacd0ba6ea.jpg?1783014480",
+    "large": "https://cards.scryfall.io/large/front/3/b/3b34a196-52bf-4c99-8020-94dacd0ba6ea.jpg?1783014480",
+    "png": "https://cards.scryfall.io/png/front/3/b/3b34a196-52bf-4c99-8020-94dacd0ba6ea.png?1783014480",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/3/b/3b34a196-52bf-4c99-8020-94dacd0ba6ea.jpg?1783014480",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/3/b/3b34a196-52bf-4c99-8020-94dacd0ba6ea.jpg?1783014480",
+    "thumb": "https://cards.scryfall.io/thumb/front/3/b/3b34a196-52bf-4c99-8020-94dacd0ba6ea.webp?1783014480",
+    "grid": "https://cards.scryfall.io/grid/front/3/b/3b34a196-52bf-4c99-8020-94dacd0ba6ea.webp?1783014480",
+    "display": "https://cards.scryfall.io/display/front/3/b/3b34a196-52bf-4c99-8020-94dacd0ba6ea.webp?1783014480",
+    "art": "https://cards.scryfall.io/art/front/3/b/3b34a196-52bf-4c99-8020-94dacd0ba6ea.webp?1783014480",
+    "crop": "https://cards.scryfall.io/crop/front/3/b/3b34a196-52bf-4c99-8020-94dacd0ba6ea.webp?1783014480"
+  },
+  "mana_cost": "{2}{B}",
+  "cmc": 3.0,
+  "type_line": "Enchantment — Aura",
+  "printed_type_line": "Encantamento — Aura",
+  "oracle_text": "Enchant creature\nEnchanted creature has flying and \"Sacrifice a creature: This creature gets +2/+1 until end of turn.\"\nWhen this Aura is put into a graveyard from the battlefield, return it to its owner's hand.",
+  "printed_text": "Encantar Criatura\nA criatura encantada tem voar e \"Sacrifique uma criatura: Esta criatura recebe +2/+1 até o final do turno.\"\nQuando Ideal Caído for colocado no cemitério vindo do jogo, devolva-o para a mão de seu dono.",
+  "colors": [
+    "B"
+  ],
+  "color_identity": [
+    "B"
+  ],
+  "keywords": [
+    "Enchant"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "c1d109bc-ffd8-428f-8d7d-3f8d7e648046",
+  "set": "tsp",
+  "set_name": "Time Spiral",
+  "set_type": "expansion",
+  "set_uri": "https://api.scryfall.com/sets/c1d109bc-ffd8-428f-8d7d-3f8d7e648046",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Atsp&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/tsp?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/3b34a196-52bf-4c99-8020-94dacd0ba6ea/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A4b8183e6-4ff2-4254-9ee0-0ebbf8cef4a3&unique=prints",
+  "collector_number": "109",
+  "digital": false,
+  "rarity": "uncommon",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Anson Maddocks",
+  "artist_ids": [
+    "634430a7-b5c3-4e4a-b2ac-164e084e47c9"
+  ],
+  "illustration_id": "01be0673-742f-4177-8710-e9a175154dfa",
+  "border_color": "black",
+  "frame": "2003",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "edhrec_rank": 8357,
+  "penny_rank": 11966,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=133829&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DFallen%2BIdeal",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DFallen%2BIdeal",
+    "edhrec": "https://edhrec.com/route/?cc=Fallen+Ideal"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DFallen%2BIdeal%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Fallen+Ideal&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Fallen+Ideal&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

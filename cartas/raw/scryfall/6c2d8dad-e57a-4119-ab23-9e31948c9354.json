@@ -1,0 +1,133 @@
+{
+  "object": "card",
+  "id": "6c2d8dad-e57a-4119-ab23-9e31948c9354",
+  "oracle_id": "5f601f48-d24b-4883-9fde-b3f620e7c9ea",
+  "multiverse_ids": [
+    533730
+  ],
+  "name": "Wall of Omens",
+  "printed_name": "Barreira de Agouros",
+  "lang": "pt",
+  "released_at": "2021-07-23",
+  "uri": "https://api.scryfall.com/cards/6c2d8dad-e57a-4119-ab23-9e31948c9354",
+  "scryfall_uri": "https://scryfall.com/card/afc/77/pt/barreira-de-agouros-(wall-of-omens)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-01T03:02:06Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/6/c/6c2d8dad-e57a-4119-ab23-9e31948c9354.jpg?1782874926",
+    "normal": "https://cards.scryfall.io/normal/front/6/c/6c2d8dad-e57a-4119-ab23-9e31948c9354.jpg?1782874926",
+    "large": "https://cards.scryfall.io/large/front/6/c/6c2d8dad-e57a-4119-ab23-9e31948c9354.jpg?1782874926",
+    "png": "https://cards.scryfall.io/png/front/6/c/6c2d8dad-e57a-4119-ab23-9e31948c9354.png?1782874926",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/6/c/6c2d8dad-e57a-4119-ab23-9e31948c9354.jpg?1782874926",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/6/c/6c2d8dad-e57a-4119-ab23-9e31948c9354.jpg?1782874926",
+    "thumb": "https://cards.scryfall.io/thumb/front/6/c/6c2d8dad-e57a-4119-ab23-9e31948c9354.webp?1782874926",
+    "grid": "https://cards.scryfall.io/grid/front/6/c/6c2d8dad-e57a-4119-ab23-9e31948c9354.webp?1782874926",
+    "display": "https://cards.scryfall.io/display/front/6/c/6c2d8dad-e57a-4119-ab23-9e31948c9354.webp?1782874926",
+    "art": "https://cards.scryfall.io/art/front/6/c/6c2d8dad-e57a-4119-ab23-9e31948c9354.webp?1782874926",
+    "crop": "https://cards.scryfall.io/crop/front/6/c/6c2d8dad-e57a-4119-ab23-9e31948c9354.webp?1782874926"
+  },
+  "mana_cost": "{1}{W}",
+  "cmc": 2.0,
+  "type_line": "Creature — Wall",
+  "printed_type_line": "Criatura — Barreira",
+  "oracle_text": "Defender\nWhen this creature enters, draw a card.",
+  "printed_text": "Defensor\nQuando Barreira de Agouros entrar no campo de batalha, compre um card.",
+  "power": "0",
+  "toughness": "4",
+  "colors": [
+    "W"
+  ],
+  "color_identity": [
+    "W"
+  ],
+  "keywords": [
+    "Defender"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "not_legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "db1b46f9-893c-4623-9465-985ff6e4472c",
+  "set": "afc",
+  "set_name": "Forgotten Realms Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/db1b46f9-893c-4623-9465-985ff6e4472c",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Aafc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/afc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/6c2d8dad-e57a-4119-ab23-9e31948c9354/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A5f601f48-d24b-4883-9fde-b3f620e7c9ea&unique=prints",
+  "collector_number": "77",
+  "digital": false,
+  "rarity": "uncommon",
+  "flavor_text": "\"Procuro uma visão de Zendikar que não inclua os Eldrazi.\"\n— Trecho do diário da expedição",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "James Paick",
+  "artist_ids": [
+    "1a7be0a2-d8ac-45c7-b0a0-eb0886f47b5f"
+  ],
+  "illustration_id": "61c3b1f9-6077-4910-b7d8-746e06da94a6",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 1107,
+  "penny_rank": 419,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=533730&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DWall%2Bof%2BOmens",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DWall%2Bof%2BOmens",
+    "edhrec": "https://edhrec.com/route/?cc=Wall+of+Omens"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DWall%2Bof%2BOmens%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Wall+of+Omens&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Wall+of+Omens&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

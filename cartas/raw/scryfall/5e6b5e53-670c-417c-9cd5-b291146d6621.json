@@ -1,0 +1,138 @@
+{
+  "object": "card",
+  "id": "5e6b5e53-670c-417c-9cd5-b291146d6621",
+  "oracle_id": "5b8f0cdf-572d-4025-b930-79291f7c35be",
+  "multiverse_ids": [
+    658192
+  ],
+  "name": "Vanishing Verse",
+  "printed_name": "Verso Desvanecedor",
+  "lang": "pt",
+  "released_at": "2024-04-19",
+  "uri": "https://api.scryfall.com/cards/5e6b5e53-670c-417c-9cd5-b291146d6621",
+  "scryfall_uri": "https://scryfall.com/card/otp/57/pt/verso-desvanecedor-(vanishing-verse)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T04:56:16Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/5/e/5e6b5e53-670c-417c-9cd5-b291146d6621.jpg?1782795376",
+    "normal": "https://cards.scryfall.io/normal/front/5/e/5e6b5e53-670c-417c-9cd5-b291146d6621.jpg?1782795376",
+    "large": "https://cards.scryfall.io/large/front/5/e/5e6b5e53-670c-417c-9cd5-b291146d6621.jpg?1782795376",
+    "png": "https://cards.scryfall.io/png/front/5/e/5e6b5e53-670c-417c-9cd5-b291146d6621.png?1782795376",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/5/e/5e6b5e53-670c-417c-9cd5-b291146d6621.jpg?1782795376",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/5/e/5e6b5e53-670c-417c-9cd5-b291146d6621.jpg?1782795376",
+    "thumb": "https://cards.scryfall.io/thumb/front/5/e/5e6b5e53-670c-417c-9cd5-b291146d6621.webp?1782795376",
+    "grid": "https://cards.scryfall.io/grid/front/5/e/5e6b5e53-670c-417c-9cd5-b291146d6621.webp?1782795376",
+    "display": "https://cards.scryfall.io/display/front/5/e/5e6b5e53-670c-417c-9cd5-b291146d6621.webp?1782795376",
+    "art": "https://cards.scryfall.io/art/front/5/e/5e6b5e53-670c-417c-9cd5-b291146d6621.webp?1782795376",
+    "crop": "https://cards.scryfall.io/crop/front/5/e/5e6b5e53-670c-417c-9cd5-b291146d6621.webp?1782795376"
+  },
+  "mana_cost": "{W}{B}",
+  "cmc": 2.0,
+  "type_line": "Instant",
+  "printed_type_line": "Mágica Instantânea",
+  "oracle_text": "Exile target monocolored permanent.",
+  "printed_text": "Exile a permanente monocolorida alvo.",
+  "colors": [
+    "B",
+    "W"
+  ],
+  "color_identity": [
+    "B",
+    "W"
+  ],
+  "keywords": [],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo",
+    "arena"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "8b51294d-fc54-410c-83b2-0168837ede87",
+  "set": "otp",
+  "set_name": "Breaking News",
+  "set_type": "masterpiece",
+  "set_uri": "https://api.scryfall.com/sets/8b51294d-fc54-410c-83b2-0168837ede87",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Aotp&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/otp?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/5e6b5e53-670c-417c-9cd5-b291146d6621/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A5b8f0cdf-572d-4025-b930-79291f7c35be&unique=prints",
+  "collector_number": "57",
+  "digital": false,
+  "rarity": "rare",
+  "flavor_text": "Novo show de matar assombra assombração local",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Sean Murray",
+  "artist_ids": [
+    "aa53c0ff-b486-4291-bef3-656343547811"
+  ],
+  "illustration_id": "bac13e41-ec7a-49fc-a87c-36b04f3dffb6",
+  "border_color": "borderless",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "promo_types": [
+    "boosterfun"
+  ],
+  "edhrec_rank": 4279,
+  "penny_rank": 1708,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=658192&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DVanishing%2BVerse",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DVanishing%2BVerse",
+    "edhrec": "https://edhrec.com/route/?cc=Vanishing+Verse"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DVanishing%2BVerse%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Vanishing+Verse&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Vanishing+Verse&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "object": "card",
+  "id": "b59b7154-8ece-4bfc-9ac6-7c33cb6788bb",
+  "oracle_id": "5825997b-10d7-4a36-972c-a80ddd90b8ed",
+  "multiverse_ids": [
+    641970
+  ],
+  "name": "Feed the Swarm",
+  "printed_name": "Alimentar o Enxame",
+  "lang": "pt",
+  "released_at": "2023-11-17",
+  "uri": "https://api.scryfall.com/cards/b59b7154-8ece-4bfc-9ac6-7c33cb6788bb",
+  "scryfall_uri": "https://scryfall.com/card/lcc/198/pt/alimentar-o-enxame-(feed-the-swarm)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T09:02:07Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/b/5/b59b7154-8ece-4bfc-9ac6-7c33cb6788bb.jpg?1782810127",
+    "normal": "https://cards.scryfall.io/normal/front/b/5/b59b7154-8ece-4bfc-9ac6-7c33cb6788bb.jpg?1782810127",
+    "large": "https://cards.scryfall.io/large/front/b/5/b59b7154-8ece-4bfc-9ac6-7c33cb6788bb.jpg?1782810127",
+    "png": "https://cards.scryfall.io/png/front/b/5/b59b7154-8ece-4bfc-9ac6-7c33cb6788bb.png?1782810127",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/b/5/b59b7154-8ece-4bfc-9ac6-7c33cb6788bb.jpg?1782810127",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/b/5/b59b7154-8ece-4bfc-9ac6-7c33cb6788bb.jpg?1782810127",
+    "thumb": "https://cards.scryfall.io/thumb/front/b/5/b59b7154-8ece-4bfc-9ac6-7c33cb6788bb.webp?1782810127",
+    "grid": "https://cards.scryfall.io/grid/front/b/5/b59b7154-8ece-4bfc-9ac6-7c33cb6788bb.webp?1782810127",
+    "display": "https://cards.scryfall.io/display/front/b/5/b59b7154-8ece-4bfc-9ac6-7c33cb6788bb.webp?1782810127",
+    "art": "https://cards.scryfall.io/art/front/b/5/b59b7154-8ece-4bfc-9ac6-7c33cb6788bb.webp?1782810127",
+    "crop": "https://cards.scryfall.io/crop/front/b/5/b59b7154-8ece-4bfc-9ac6-7c33cb6788bb.webp?1782810127"
+  },
+  "mana_cost": "{1}{B}",
+  "cmc": 2.0,
+  "type_line": "Sorcery",
+  "printed_type_line": "Feitiço",
+  "oracle_text": "Destroy target creature or enchantment an opponent controls. You lose life equal to that permanent's mana value.",
+  "printed_text": "Destrua a criatura ou o encantamento alvo que um oponente controla. Você perde uma quantidade de pontos de vida igual ao valor de mana daquela permanente.",
+  "colors": [
+    "B"
+  ],
+  "color_identity": [
+    "B"
+  ],
+  "keywords": [],
+  "legalities": {
+    "standard": "legal",
+    "future": "legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "legal",
+    "paupercommander": "legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "d253edc3-5bc7-4cf1-9446-a8540dedffa5",
+  "set": "lcc",
+  "set_name": "The Lost Caverns of Ixalan Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/d253edc3-5bc7-4cf1-9446-a8540dedffa5",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Alcc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/lcc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/b59b7154-8ece-4bfc-9ac6-7c33cb6788bb/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A5825997b-10d7-4a36-972c-a80ddd90b8ed&unique=prints",
+  "collector_number": "198",
+  "digital": false,
+  "rarity": "common",
+  "flavor_text": "\"Em vis asas e sangrentos ventos, o enxame ascenderá.\"\n— Epígrafe no Enclave Celeste",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Andrey Kuzinskiy",
+  "artist_ids": [
+    "c04ff0b2-67a1-4238-82f7-6c67de734b56"
+  ],
+  "illustration_id": "73e671d6-e2bc-4c02-b99a-18e5cb9ed048",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 91,
+  "penny_rank": 319,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=641970&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DFeed%2Bthe%2BSwarm",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DFeed%2Bthe%2BSwarm",
+    "edhrec": "https://edhrec.com/route/?cc=Feed+the+Swarm"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DFeed%2Bthe%2BSwarm%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Feed+the+Swarm&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Feed+the+Swarm&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

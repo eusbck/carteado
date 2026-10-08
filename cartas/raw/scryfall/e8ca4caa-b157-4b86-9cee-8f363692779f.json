@@ -1,0 +1,134 @@
+{
+  "object": "card",
+  "id": "e8ca4caa-b157-4b86-9cee-8f363692779f",
+  "oracle_id": "9056eba4-612b-4e82-8689-fe098241b007",
+  "multiverse_ids": [
+    495931
+  ],
+  "name": "Trove Warden",
+  "printed_name": "Guardião do Tesouro",
+  "lang": "pt",
+  "released_at": "2020-09-25",
+  "uri": "https://api.scryfall.com/cards/e8ca4caa-b157-4b86-9cee-8f363692779f",
+  "scryfall_uri": "https://scryfall.com/card/znc/3/pt/guardi%C3%A3o-do-tesouro-(trove-warden)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-01T10:43:12Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/e/8/e8ca4caa-b157-4b86-9cee-8f363692779f.jpg?1782902592",
+    "normal": "https://cards.scryfall.io/normal/front/e/8/e8ca4caa-b157-4b86-9cee-8f363692779f.jpg?1782902592",
+    "large": "https://cards.scryfall.io/large/front/e/8/e8ca4caa-b157-4b86-9cee-8f363692779f.jpg?1782902592",
+    "png": "https://cards.scryfall.io/png/front/e/8/e8ca4caa-b157-4b86-9cee-8f363692779f.png?1782902592",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/e/8/e8ca4caa-b157-4b86-9cee-8f363692779f.jpg?1782902592",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/e/8/e8ca4caa-b157-4b86-9cee-8f363692779f.jpg?1782902592",
+    "thumb": "https://cards.scryfall.io/thumb/front/e/8/e8ca4caa-b157-4b86-9cee-8f363692779f.webp?1782902592",
+    "grid": "https://cards.scryfall.io/grid/front/e/8/e8ca4caa-b157-4b86-9cee-8f363692779f.webp?1782902592",
+    "display": "https://cards.scryfall.io/display/front/e/8/e8ca4caa-b157-4b86-9cee-8f363692779f.webp?1782902592",
+    "art": "https://cards.scryfall.io/art/front/e/8/e8ca4caa-b157-4b86-9cee-8f363692779f.webp?1782902592",
+    "crop": "https://cards.scryfall.io/crop/front/e/8/e8ca4caa-b157-4b86-9cee-8f363692779f.webp?1782902592"
+  },
+  "mana_cost": "{2}{W}{W}",
+  "cmc": 4.0,
+  "type_line": "Creature — Cat Beast",
+  "printed_type_line": "Criatura — Felino Besta",
+  "oracle_text": "Vigilance\nLandfall — Whenever a land you control enters, exile target permanent card with mana value 3 or less from your graveyard.\nWhen this creature dies, put each permanent card exiled with it onto the battlefield under the control of that card's owner.",
+  "printed_text": "Vigilância\nAterragem — Toda vez que um terreno entrar no campo de batalha sob seu controle, exile o card de permanente alvo com custo de mana convertido igual ou inferior a 3 do seu cemitério.\nQuando Guardião do Tesouro morrer, coloque cada card de permanente exilado com ele no campo de batalha sob o controle do dono daquele card.",
+  "power": "3",
+  "toughness": "4",
+  "colors": [
+    "W"
+  ],
+  "color_identity": [
+    "W"
+  ],
+  "keywords": [
+    "Vigilance",
+    "Landfall"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "25c6bd9b-4e10-40a4-b9b5-0f4d9b5852a1",
+  "set": "znc",
+  "set_name": "Zendikar Rising Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/25c6bd9b-4e10-40a4-b9b5-0f4d9b5852a1",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Aznc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/znc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/e8ca4caa-b157-4b86-9cee-8f363692779f/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A9056eba4-612b-4e82-8689-fe098241b007&unique=prints",
+  "collector_number": "3",
+  "digital": false,
+  "rarity": "rare",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Lars Grant-West",
+  "artist_ids": [
+    "21ed6499-c4d3-4965-ab02-6c7228275bec"
+  ],
+  "illustration_id": "19f6b866-f515-40dc-b8a5-e6be9f9cf74e",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 11240,
+  "penny_rank": 10300,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=495931&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DTrove%2BWarden",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DTrove%2BWarden",
+    "edhrec": "https://edhrec.com/route/?cc=Trove+Warden"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DTrove%2BWarden%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Trove+Warden&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Trove+Warden&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

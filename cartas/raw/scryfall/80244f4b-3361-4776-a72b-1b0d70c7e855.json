@@ -1,0 +1,166 @@
+{
+  "object": "card",
+  "id": "80244f4b-3361-4776-a72b-1b0d70c7e855",
+  "oracle_id": "9acbc363-827c-4146-a004-81be179a8c28",
+  "multiverse_ids": [],
+  "name": "Rogue",
+  "lang": "en",
+  "released_at": "2026-04-24",
+  "uri": "https://api.scryfall.com/cards/80244f4b-3361-4776-a72b-1b0d70c7e855",
+  "scryfall_uri": "https://scryfall.com/card/tsoc/10/rogue?utm_source=api",
+  "layout": "token",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T00:46:14Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/8/0/80244f4b-3361-4776-a72b-1b0d70c7e855.jpg?1783903574",
+    "normal": "https://cards.scryfall.io/normal/front/8/0/80244f4b-3361-4776-a72b-1b0d70c7e855.jpg?1783903574",
+    "large": "https://cards.scryfall.io/large/front/8/0/80244f4b-3361-4776-a72b-1b0d70c7e855.jpg?1783903574",
+    "png": "https://cards.scryfall.io/png/front/8/0/80244f4b-3361-4776-a72b-1b0d70c7e855.png?1783903574",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/8/0/80244f4b-3361-4776-a72b-1b0d70c7e855.jpg?1783903574",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/8/0/80244f4b-3361-4776-a72b-1b0d70c7e855.jpg?1783903574",
+    "thumb": "https://cards.scryfall.io/thumb/front/8/0/80244f4b-3361-4776-a72b-1b0d70c7e855.webp?1783903574",
+    "grid": "https://cards.scryfall.io/grid/front/8/0/80244f4b-3361-4776-a72b-1b0d70c7e855.webp?1783903574",
+    "display": "https://cards.scryfall.io/display/front/8/0/80244f4b-3361-4776-a72b-1b0d70c7e855.webp?1783903574",
+    "art": "https://cards.scryfall.io/art/front/8/0/80244f4b-3361-4776-a72b-1b0d70c7e855.webp?1783903574",
+    "crop": "https://cards.scryfall.io/crop/front/8/0/80244f4b-3361-4776-a72b-1b0d70c7e855.webp?1783903574"
+  },
+  "mana_cost": "",
+  "cmc": 0.0,
+  "type_line": "Token Creature — Rogue",
+  "oracle_text": "",
+  "power": "2",
+  "toughness": "2",
+  "colors": [
+    "B"
+  ],
+  "color_identity": [
+    "B"
+  ],
+  "keywords": [],
+  "all_parts": [
+    {
+      "object": "related_card",
+      "id": "4bfd6449-31a1-4572-8f9c-3f6f4670dc9d",
+      "component": "combo_piece",
+      "name": "Girder Goons",
+      "type_line": "Creature — Ogre Warrior",
+      "uri": "https://api.scryfall.com/cards/4bfd6449-31a1-4572-8f9c-3f6f4670dc9d"
+    },
+    {
+      "object": "related_card",
+      "id": "7532c735-237d-47e0-9597-f103de059840",
+      "component": "combo_piece",
+      "name": "Waste Management",
+      "type_line": "Instant",
+      "uri": "https://api.scryfall.com/cards/7532c735-237d-47e0-9597-f103de059840"
+    },
+    {
+      "object": "related_card",
+      "id": "2413e7e1-f9a5-4657-9375-2c30d32d7853",
+      "component": "combo_piece",
+      "name": "Currency Converter",
+      "type_line": "Artifact",
+      "uri": "https://api.scryfall.com/cards/2413e7e1-f9a5-4657-9375-2c30d32d7853"
+    },
+    {
+      "object": "related_card",
+      "id": "80244f4b-3361-4776-a72b-1b0d70c7e855",
+      "component": "token",
+      "name": "Rogue",
+      "type_line": "Token Creature — Rogue",
+      "uri": "https://api.scryfall.com/cards/80244f4b-3361-4776-a72b-1b0d70c7e855"
+    },
+    {
+      "object": "related_card",
+      "id": "4c25261b-6806-4d88-9000-4695d8f482fb",
+      "component": "combo_piece",
+      "name": "Misfortune Teller",
+      "type_line": "Creature — Human Warlock",
+      "uri": "https://api.scryfall.com/cards/4c25261b-6806-4d88-9000-4695d8f482fb"
+    }
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "not_legal",
+    "pauper": "not_legal",
+    "vintage": "not_legal",
+    "penny": "not_legal",
+    "commander": "not_legal",
+    "oathbreaker": "not_legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "not_legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "cb590d57-927c-437a-934c-7f774881d1c9",
+  "set": "tsoc",
+  "set_name": "Secrets of Strixhaven Commander Tokens",
+  "set_type": "token",
+  "set_uri": "https://api.scryfall.com/sets/cb590d57-927c-437a-934c-7f774881d1c9",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Atsoc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/tsoc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/80244f4b-3361-4776-a72b-1b0d70c7e855/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A9acbc363-827c-4146-a004-81be179a8c28&unique=prints",
+  "collector_number": "10",
+  "digital": false,
+  "rarity": "common",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Maria Poliakova",
+  "artist_ids": [
+    "c136266d-67bb-44fa-ad13-8556efd9caec"
+  ],
+  "illustration_id": "44db2d7a-a73a-401f-8144-80932565dedf",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DRogue",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DRogue",
+    "edhrec": "https://edhrec.com/route/?cc=Rogue"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DRogue%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Rogue&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Rogue&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

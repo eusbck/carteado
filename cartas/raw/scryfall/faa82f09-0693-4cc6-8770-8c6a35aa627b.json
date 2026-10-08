@@ -1,0 +1,131 @@
+{
+  "object": "card",
+  "id": "faa82f09-0693-4cc6-8770-8c6a35aa627b",
+  "oracle_id": "58a2d15f-1b4b-4303-b524-8cc0d1b3e7d2",
+  "multiverse_ids": [],
+  "resource_id": "5F4412DD93917F5245E36F40E4903E73D971D5B978A9B089D5F837DA03536BCC",
+  "mtgo_id": 146099,
+  "tcgplayer_id": 671159,
+  "cardmarket_id": 865014,
+  "name": "Painful Truths",
+  "lang": "en",
+  "released_at": "2026-01-23",
+  "uri": "https://api.scryfall.com/cards/faa82f09-0693-4cc6-8770-8c6a35aa627b",
+  "scryfall_uri": "https://scryfall.com/card/ecc/82/painful-truths?utm_source=api",
+  "layout": "normal",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T01:02:38Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/f/a/faa82f09-0693-4cc6-8770-8c6a35aa627b.jpg?1783904558",
+    "normal": "https://cards.scryfall.io/normal/front/f/a/faa82f09-0693-4cc6-8770-8c6a35aa627b.jpg?1783904558",
+    "large": "https://cards.scryfall.io/large/front/f/a/faa82f09-0693-4cc6-8770-8c6a35aa627b.jpg?1783904558",
+    "png": "https://cards.scryfall.io/png/front/f/a/faa82f09-0693-4cc6-8770-8c6a35aa627b.png?1783904558",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/f/a/faa82f09-0693-4cc6-8770-8c6a35aa627b.jpg?1783904558",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/f/a/faa82f09-0693-4cc6-8770-8c6a35aa627b.jpg?1783904558",
+    "thumb": "https://cards.scryfall.io/thumb/front/f/a/faa82f09-0693-4cc6-8770-8c6a35aa627b.webp?1783904558",
+    "grid": "https://cards.scryfall.io/grid/front/f/a/faa82f09-0693-4cc6-8770-8c6a35aa627b.webp?1783904558",
+    "display": "https://cards.scryfall.io/display/front/f/a/faa82f09-0693-4cc6-8770-8c6a35aa627b.webp?1783904558",
+    "art": "https://cards.scryfall.io/art/front/f/a/faa82f09-0693-4cc6-8770-8c6a35aa627b.webp?1783904558",
+    "crop": "https://cards.scryfall.io/crop/front/f/a/faa82f09-0693-4cc6-8770-8c6a35aa627b.webp?1783904558"
+  },
+  "mana_cost": "{2}{B}",
+  "cmc": 3.0,
+  "type_line": "Sorcery",
+  "oracle_text": "Converge — You draw X cards and lose X life, where X is the number of colors of mana spent to cast this spell.",
+  "colors": [
+    "B"
+  ],
+  "color_identity": [
+    "B"
+  ],
+  "keywords": [
+    "Converge"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "805b5a0c-f8bb-4555-86ea-eb9ec36a011a",
+  "set": "ecc",
+  "set_name": "Lorwyn Eclipsed Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/805b5a0c-f8bb-4555-86ea-eb9ec36a011a",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Aecc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/ecc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/faa82f09-0693-4cc6-8770-8c6a35aa627b/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A58a2d15f-1b4b-4303-b524-8cc0d1b3e7d2&unique=prints",
+  "collector_number": "82",
+  "digital": false,
+  "rarity": "rare",
+  "flavor_text": "As the Eldrazi spread, no secret that could give Zendikar's defenders an advantage was considered too dangerous to seek.",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Winona Nelson",
+  "artist_ids": [
+    "e45fe8d3-75d6-42c9-a2df-e945ad81ea27"
+  ],
+  "illustration_id": "41ae26ab-b12e-4757-bf31-964d3644b5dc",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 1723,
+  "penny_rank": 1959,
+  "prices": {
+    "usd": "0.28",
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": "0.19",
+    "eur_foil": null,
+    "tix": "0.17"
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DPainful%2BTruths",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DPainful%2BTruths",
+    "edhrec": "https://edhrec.com/route/?cc=Painful+Truths"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F671159%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=865014&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards/146099?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "object": "card",
+  "id": "2413e7e1-f9a5-4657-9375-2c30d32d7853",
+  "oracle_id": "981298e6-ddee-49c0-9377-f47f019b4138",
+  "multiverse_ids": [],
+  "resource_id": "B236A6E4040B1123E9BC1EDD2561B917168FC436BED7A8DA449AE2564C654262",
+  "mtgo_id": 149157,
+  "tcgplayer_id": 687590,
+  "cardmarket_id": 881679,
+  "name": "Currency Converter",
+  "lang": "en",
+  "released_at": "2026-04-24",
+  "uri": "https://api.scryfall.com/cards/2413e7e1-f9a5-4657-9375-2c30d32d7853",
+  "scryfall_uri": "https://scryfall.com/card/soc/345/currency-converter?utm_source=api",
+  "layout": "normal",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T00:49:00Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/2/4/2413e7e1-f9a5-4657-9375-2c30d32d7853.jpg?1783903740",
+    "normal": "https://cards.scryfall.io/normal/front/2/4/2413e7e1-f9a5-4657-9375-2c30d32d7853.jpg?1783903740",
+    "large": "https://cards.scryfall.io/large/front/2/4/2413e7e1-f9a5-4657-9375-2c30d32d7853.jpg?1783903740",
+    "png": "https://cards.scryfall.io/png/front/2/4/2413e7e1-f9a5-4657-9375-2c30d32d7853.png?1783903740",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/2/4/2413e7e1-f9a5-4657-9375-2c30d32d7853.jpg?1783903740",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/2/4/2413e7e1-f9a5-4657-9375-2c30d32d7853.jpg?1783903740",
+    "thumb": "https://cards.scryfall.io/thumb/front/2/4/2413e7e1-f9a5-4657-9375-2c30d32d7853.webp?1783903740",
+    "grid": "https://cards.scryfall.io/grid/front/2/4/2413e7e1-f9a5-4657-9375-2c30d32d7853.webp?1783903740",
+    "display": "https://cards.scryfall.io/display/front/2/4/2413e7e1-f9a5-4657-9375-2c30d32d7853.webp?1783903740",
+    "art": "https://cards.scryfall.io/art/front/2/4/2413e7e1-f9a5-4657-9375-2c30d32d7853.webp?1783903740",
+    "crop": "https://cards.scryfall.io/crop/front/2/4/2413e7e1-f9a5-4657-9375-2c30d32d7853.webp?1783903740"
+  },
+  "mana_cost": "{1}",
+  "cmc": 1.0,
+  "type_line": "Artifact",
+  "oracle_text": "Whenever you discard a card, you may exile that card from your graveyard.\n{2}, {T}: Draw a card, then discard a card.\n{T}: Put a card exiled with this artifact into its owner's graveyard. If it's a land card, create a Treasure token. If it's a nonland card, create a 2/2 black Rogue creature token.",
+  "colors": [],
+  "color_identity": [],
+  "keywords": [
+    "Treasure"
+  ],
+  "all_parts": [
+    {
+      "object": "related_card",
+      "id": "b4f61b5e-9c53-40b1-b93e-3ffa351ff052",
+      "component": "token",
+      "name": "Treasure",
+      "type_line": "Token Artifact — Treasure",
+      "uri": "https://api.scryfall.com/cards/b4f61b5e-9c53-40b1-b93e-3ffa351ff052"
+    },
+    {
+      "object": "related_card",
+      "id": "2413e7e1-f9a5-4657-9375-2c30d32d7853",
+      "component": "combo_piece",
+      "name": "Currency Converter",
+      "type_line": "Artifact",
+      "uri": "https://api.scryfall.com/cards/2413e7e1-f9a5-4657-9375-2c30d32d7853"
+    },
+    {
+      "object": "related_card",
+      "id": "80244f4b-3361-4776-a72b-1b0d70c7e855",
+      "component": "token",
+      "name": "Rogue",
+      "type_line": "Token Creature — Rogue",
+      "uri": "https://api.scryfall.com/cards/80244f4b-3361-4776-a72b-1b0d70c7e855"
+    }
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "97fab8d1-480a-419d-ab14-663968e29b9c",
+  "set": "soc",
+  "set_name": "Secrets of Strixhaven Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/97fab8d1-480a-419d-ab14-663968e29b9c",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Asoc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/soc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/2413e7e1-f9a5-4657-9375-2c30d32d7853/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A981298e6-ddee-49c0-9377-f47f019b4138&unique=prints",
+  "collector_number": "345",
+  "digital": false,
+  "rarity": "rare",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Sean Murray",
+  "artist_ids": [
+    "aa53c0ff-b486-4291-bef3-656343547811"
+  ],
+  "illustration_id": "b1524e4c-8d28-42ef-9893-b8fb364efa46",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 2520,
+  "prices": {
+    "usd": "1.08",
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": "1.02",
+    "eur_foil": null,
+    "tix": "2.68"
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DCurrency%2BConverter",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DCurrency%2BConverter",
+    "edhrec": "https://edhrec.com/route/?cc=Currency+Converter"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F687590%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=881679&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards/149157?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

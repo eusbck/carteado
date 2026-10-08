@@ -1,0 +1,138 @@
+{
+  "object": "card",
+  "id": "76f14077-b398-44ad-bf05-408c0bcf138b",
+  "oracle_id": "6c326439-5620-4ec6-a56a-fe9c3d5d2a46",
+  "multiverse_ids": [
+    665721
+  ],
+  "mtgo_id": 127159,
+  "tcgplayer_id": 552928,
+  "cardmarket_id": 772289,
+  "name": "Talisman of Conviction",
+  "lang": "en",
+  "released_at": "2024-06-14",
+  "uri": "https://api.scryfall.com/cards/76f14077-b398-44ad-bf05-408c0bcf138b",
+  "scryfall_uri": "https://scryfall.com/card/m3c/307/talisman-of-conviction?utm_source=api",
+  "layout": "normal",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T02:55:44Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/7/6/76f14077-b398-44ad-bf05-408c0bcf138b.jpg?1783911344",
+    "normal": "https://cards.scryfall.io/normal/front/7/6/76f14077-b398-44ad-bf05-408c0bcf138b.jpg?1783911344",
+    "large": "https://cards.scryfall.io/large/front/7/6/76f14077-b398-44ad-bf05-408c0bcf138b.jpg?1783911344",
+    "png": "https://cards.scryfall.io/png/front/7/6/76f14077-b398-44ad-bf05-408c0bcf138b.png?1783911344",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/7/6/76f14077-b398-44ad-bf05-408c0bcf138b.jpg?1783911344",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/7/6/76f14077-b398-44ad-bf05-408c0bcf138b.jpg?1783911344",
+    "thumb": "https://cards.scryfall.io/thumb/front/7/6/76f14077-b398-44ad-bf05-408c0bcf138b.webp?1783911344",
+    "grid": "https://cards.scryfall.io/grid/front/7/6/76f14077-b398-44ad-bf05-408c0bcf138b.webp?1783911344",
+    "display": "https://cards.scryfall.io/display/front/7/6/76f14077-b398-44ad-bf05-408c0bcf138b.webp?1783911344",
+    "art": "https://cards.scryfall.io/art/front/7/6/76f14077-b398-44ad-bf05-408c0bcf138b.webp?1783911344",
+    "crop": "https://cards.scryfall.io/crop/front/7/6/76f14077-b398-44ad-bf05-408c0bcf138b.webp?1783911344"
+  },
+  "mana_cost": "{2}",
+  "cmc": 2.0,
+  "type_line": "Artifact",
+  "oracle_text": "{T}: Add {C}.\n{T}: Add {R} or {W}. This artifact deals 1 damage to you.",
+  "colors": [],
+  "color_identity": [
+    "R",
+    "W"
+  ],
+  "keywords": [],
+  "produced_mana": [
+    "C",
+    "R",
+    "W"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "not_legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "f5e00721-cf99-43ba-bf16-b22d56d12c73",
+  "set": "m3c",
+  "set_name": "Modern Horizons 3 Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/f5e00721-cf99-43ba-bf16-b22d56d12c73",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Am3c&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/m3c?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/76f14077-b398-44ad-bf05-408c0bcf138b/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A6c326439-5620-4ec6-a56a-fe9c3d5d2a46&unique=prints",
+  "collector_number": "307",
+  "digital": false,
+  "rarity": "uncommon",
+  "flavor_text": "\"The sun banishes darkness every morning. I too will rise with such assuredness.\"\n—Huatli",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Lindsey Look",
+  "artist_ids": [
+    "95bc132d-37aa-4063-8ed8-04d489e826cd"
+  ],
+  "illustration_id": "d8d0773a-7887-44f4-81f5-e71a9db75aa5",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "promo_types": [
+    "ripplefoil"
+  ],
+  "edhrec_rank": 151,
+  "penny_rank": 2188,
+  "prices": {
+    "usd": "0.38",
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": "0.35",
+    "eur_foil": "1.16",
+    "tix": "0.12"
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=665721&printed=false",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DTalisman%2Bof%2BConviction",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DTalisman%2Bof%2BConviction",
+    "edhrec": "https://edhrec.com/route/?cc=Talisman+of+Conviction"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F552928%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=772289&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards/127159?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

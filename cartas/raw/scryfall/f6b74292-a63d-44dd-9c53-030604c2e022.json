@@ -1,0 +1,136 @@
+{
+  "object": "card",
+  "id": "f6b74292-a63d-44dd-9c53-030604c2e022",
+  "oracle_id": "0810983f-818a-43e6-a7b5-ebe0bc8b9f6a",
+  "multiverse_ids": [
+    193268
+  ],
+  "name": "Wall of Reverence",
+  "printed_name": "Barreira de Reverência",
+  "lang": "pt",
+  "released_at": "2009-02-06",
+  "uri": "https://api.scryfall.com/cards/f6b74292-a63d-44dd-9c53-030604c2e022",
+  "scryfall_uri": "https://scryfall.com/card/con/20/pt/barreira-de-rever%C3%AAncia-(wall-of-reverence)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-02T14:43:38Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/f/6/f6b74292-a63d-44dd-9c53-030604c2e022.jpg?1783003418",
+    "normal": "https://cards.scryfall.io/normal/front/f/6/f6b74292-a63d-44dd-9c53-030604c2e022.jpg?1783003418",
+    "large": "https://cards.scryfall.io/large/front/f/6/f6b74292-a63d-44dd-9c53-030604c2e022.jpg?1783003418",
+    "png": "https://cards.scryfall.io/png/front/f/6/f6b74292-a63d-44dd-9c53-030604c2e022.png?1783003418",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/f/6/f6b74292-a63d-44dd-9c53-030604c2e022.jpg?1783003418",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/f/6/f6b74292-a63d-44dd-9c53-030604c2e022.jpg?1783003418",
+    "thumb": "https://cards.scryfall.io/thumb/front/f/6/f6b74292-a63d-44dd-9c53-030604c2e022.webp?1783003418",
+    "grid": "https://cards.scryfall.io/grid/front/f/6/f6b74292-a63d-44dd-9c53-030604c2e022.webp?1783003418",
+    "display": "https://cards.scryfall.io/display/front/f/6/f6b74292-a63d-44dd-9c53-030604c2e022.webp?1783003418",
+    "art": "https://cards.scryfall.io/art/front/f/6/f6b74292-a63d-44dd-9c53-030604c2e022.webp?1783003418",
+    "crop": "https://cards.scryfall.io/crop/front/f/6/f6b74292-a63d-44dd-9c53-030604c2e022.webp?1783003418"
+  },
+  "mana_cost": "{3}{W}",
+  "cmc": 4.0,
+  "type_line": "Creature — Spirit Wall",
+  "printed_type_line": "Criatura — Espírito Barreira",
+  "oracle_text": "Defender, flying\nAt the beginning of your end step, you may gain life equal to the power of target creature you control.",
+  "printed_text": "Defensor, voar\nNo final de seu turno, você pode ganhar uma quantidade de pontos de vida igual ao poder da criatura alvo que você controla.",
+  "power": "1",
+  "toughness": "6",
+  "colors": [
+    "W"
+  ],
+  "color_identity": [
+    "W"
+  ],
+  "keywords": [
+    "Flying",
+    "Defender"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "76b2db58-904c-4e49-8580-9f62f7b3cca4",
+  "set": "con",
+  "set_name": "Conflux",
+  "set_type": "expansion",
+  "set_uri": "https://api.scryfall.com/sets/76b2db58-904c-4e49-8580-9f62f7b3cca4",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Acon&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/con?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/f6b74292-a63d-44dd-9c53-030604c2e022/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A0810983f-818a-43e6-a7b5-ebe0bc8b9f6a&unique=prints",
+  "collector_number": "20",
+  "digital": false,
+  "rarity": "rare",
+  "flavor_text": "A vida dos elfos é longa, mas suas memórias o são ainda mais. Mesmo após a morte, eles não abandonam seus lares.",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Wayne Reynolds",
+  "artist_ids": [
+    "afc47cec-3ccc-404e-a8c6-4d83dd504271"
+  ],
+  "illustration_id": "b848a89b-c5b7-4528-aad7-3355c75b8775",
+  "border_color": "black",
+  "frame": "2003",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "edhrec_rank": 4365,
+  "penny_rank": 9828,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=193268&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DWall%2Bof%2BReverence",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DWall%2Bof%2BReverence",
+    "edhrec": "https://edhrec.com/route/?cc=Wall+of+Reverence"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DWall%2Bof%2BReverence%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Wall+of+Reverence&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Wall+of+Reverence&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

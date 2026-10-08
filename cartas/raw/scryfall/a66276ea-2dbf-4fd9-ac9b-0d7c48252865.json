@@ -1,0 +1,134 @@
+{
+  "object": "card",
+  "id": "a66276ea-2dbf-4fd9-ac9b-0d7c48252865",
+  "oracle_id": "ab478ac9-af59-4df1-afef-5e9806c06643",
+  "multiverse_ids": [
+    518868
+  ],
+  "name": "Veinwitch Coven",
+  "printed_name": "Conventículo das Bruxas Venais",
+  "lang": "pt",
+  "released_at": "2021-04-23",
+  "uri": "https://api.scryfall.com/cards/a66276ea-2dbf-4fd9-ac9b-0d7c48252865",
+  "scryfall_uri": "https://scryfall.com/card/c21/46/pt/convent%C3%ADculo-das-bruxas-venais-(veinwitch-coven)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-01T06:40:07Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/a/6/a66276ea-2dbf-4fd9-ac9b-0d7c48252865.jpg?1782888007",
+    "normal": "https://cards.scryfall.io/normal/front/a/6/a66276ea-2dbf-4fd9-ac9b-0d7c48252865.jpg?1782888007",
+    "large": "https://cards.scryfall.io/large/front/a/6/a66276ea-2dbf-4fd9-ac9b-0d7c48252865.jpg?1782888007",
+    "png": "https://cards.scryfall.io/png/front/a/6/a66276ea-2dbf-4fd9-ac9b-0d7c48252865.png?1782888007",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/a/6/a66276ea-2dbf-4fd9-ac9b-0d7c48252865.jpg?1782888007",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/a/6/a66276ea-2dbf-4fd9-ac9b-0d7c48252865.jpg?1782888007",
+    "thumb": "https://cards.scryfall.io/thumb/front/a/6/a66276ea-2dbf-4fd9-ac9b-0d7c48252865.webp?1782888007",
+    "grid": "https://cards.scryfall.io/grid/front/a/6/a66276ea-2dbf-4fd9-ac9b-0d7c48252865.webp?1782888007",
+    "display": "https://cards.scryfall.io/display/front/a/6/a66276ea-2dbf-4fd9-ac9b-0d7c48252865.webp?1782888007",
+    "art": "https://cards.scryfall.io/art/front/a/6/a66276ea-2dbf-4fd9-ac9b-0d7c48252865.webp?1782888007",
+    "crop": "https://cards.scryfall.io/crop/front/a/6/a66276ea-2dbf-4fd9-ac9b-0d7c48252865.webp?1782888007"
+  },
+  "mana_cost": "{2}{B}",
+  "cmc": 3.0,
+  "type_line": "Creature — Vampire Warlock",
+  "printed_type_line": "Criatura — Vampiro Bruxo",
+  "oracle_text": "Menace\nWhenever you gain life, you may pay {B}. If you do, return target creature card from your graveyard to your hand.",
+  "printed_text": "Ameaçar\nToda vez que você ganha pontos de vida, você pode pagar {B}. Se fizer isso, devolva o card de criatura alvo de seu cemitério para sua mão.",
+  "power": "3",
+  "toughness": "3",
+  "colors": [
+    "B"
+  ],
+  "color_identity": [
+    "B"
+  ],
+  "keywords": [
+    "Menace"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "27bf6dbd-a9e1-4904-afa7-d28fc7745c4f",
+  "set": "c21",
+  "set_name": "Commander 2021",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/27bf6dbd-a9e1-4904-afa7-d28fc7745c4f",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Ac21&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/c21?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/a66276ea-2dbf-4fd9-ac9b-0d7c48252865/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Aab478ac9-af59-4df1-afef-5e9806c06643&unique=prints",
+  "collector_number": "46",
+  "digital": false,
+  "rarity": "rare",
+  "flavor_text": "Alguns grupos de estudo de Strixhaven são mais acolhedores que outros.",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Caio Monteiro",
+  "artist_ids": [
+    "d5053eb6-af72-47a0-b6e8-023cc3b9aefb"
+  ],
+  "illustration_id": "1f9f6e78-12f0-4e97-aa99-0a1417eb8e26",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 4189,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=518868&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DVeinwitch%2BCoven",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DVeinwitch%2BCoven",
+    "edhrec": "https://edhrec.com/route/?cc=Veinwitch+Coven"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DVeinwitch%2BCoven%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Veinwitch+Coven&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Veinwitch+Coven&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "object": "card",
+  "id": "fffc19d3-5e54-45a6-91a2-a9079016790e",
+  "oracle_id": "d7fd16ce-282d-49cd-b2b4-0d25935e7a72",
+  "multiverse_ids": [
+    422881
+  ],
+  "name": "Mycoloth",
+  "printed_name": "Micoloth",
+  "lang": "pt",
+  "released_at": "2016-11-11",
+  "uri": "https://api.scryfall.com/cards/fffc19d3-5e54-45a6-91a2-a9079016790e",
+  "scryfall_uri": "https://scryfall.com/card/c16/158/pt/micoloth-(mycoloth)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-01T22:57:45Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/f/f/fffc19d3-5e54-45a6-91a2-a9079016790e.jpg?1782946665",
+    "normal": "https://cards.scryfall.io/normal/front/f/f/fffc19d3-5e54-45a6-91a2-a9079016790e.jpg?1782946665",
+    "large": "https://cards.scryfall.io/large/front/f/f/fffc19d3-5e54-45a6-91a2-a9079016790e.jpg?1782946665",
+    "png": "https://cards.scryfall.io/png/front/f/f/fffc19d3-5e54-45a6-91a2-a9079016790e.png?1782946665",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/f/f/fffc19d3-5e54-45a6-91a2-a9079016790e.jpg?1782946665",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/f/f/fffc19d3-5e54-45a6-91a2-a9079016790e.jpg?1782946665",
+    "thumb": "https://cards.scryfall.io/thumb/front/f/f/fffc19d3-5e54-45a6-91a2-a9079016790e.webp?1782946665",
+    "grid": "https://cards.scryfall.io/grid/front/f/f/fffc19d3-5e54-45a6-91a2-a9079016790e.webp?1782946665",
+    "display": "https://cards.scryfall.io/display/front/f/f/fffc19d3-5e54-45a6-91a2-a9079016790e.webp?1782946665",
+    "art": "https://cards.scryfall.io/art/front/f/f/fffc19d3-5e54-45a6-91a2-a9079016790e.webp?1782946665",
+    "crop": "https://cards.scryfall.io/crop/front/f/f/fffc19d3-5e54-45a6-91a2-a9079016790e.webp?1782946665"
+  },
+  "mana_cost": "{3}{G}{G}",
+  "cmc": 5.0,
+  "type_line": "Creature — Fungus",
+  "printed_type_line": "Criatura — Fungo",
+  "oracle_text": "Devour 2 (As this creature enters, you may sacrifice any number of creatures. It enters with twice that many +1/+1 counters on it.)\nAt the beginning of your upkeep, create a 1/1 green Saproling creature token for each +1/+1 counter on this creature.",
+  "printed_text": "Devorar 2 (Conforme esta criatura entra no campo de batalha, você pode sacrificar um número qualquer de criaturas. Esta criatura entra no campo de batalha com o dobro daquela quantidade de marcadores +1/+1.)\nNo início de sua manutenção, crie uma ficha de criatura verde 1/1 do tipo Saprófita para cada marcador +1/+1 em Micoloth.",
+  "power": "4",
+  "toughness": "4",
+  "colors": [
+    "G"
+  ],
+  "color_identity": [
+    "G"
+  ],
+  "keywords": [
+    "Devour"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "3e0d713a-b5cb-4287-81b9-a57d4dcaf415",
+  "set": "c16",
+  "set_name": "Commander 2016",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/3e0d713a-b5cb-4287-81b9-a57d4dcaf415",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Ac16&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/c16?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/fffc19d3-5e54-45a6-91a2-a9079016790e/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Ad7fd16ce-282d-49cd-b2b4-0d25935e7a72&unique=prints",
+  "collector_number": "158",
+  "digital": false,
+  "rarity": "rare",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Raymond Swanland",
+  "artist_ids": [
+    "e956bacc-077d-4c12-b6bc-ba798b718af9"
+  ],
+  "illustration_id": "568923b1-ab5c-4950-98c0-2fad2fb3a4d3",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 2097,
+  "penny_rank": 10254,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=422881&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DMycoloth",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DMycoloth",
+    "edhrec": "https://edhrec.com/route/?cc=Mycoloth"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DMycoloth%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Mycoloth&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Mycoloth&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

@@ -1,0 +1,145 @@
+{
+  "object": "card",
+  "id": "44b7c73d-80a0-4a27-b0a2-317164362449",
+  "oracle_id": "33b8ab7a-1c27-46f0-a682-7c9d7e9f43a6",
+  "multiverse_ids": [],
+  "name": "Dragon Illusion",
+  "lang": "en",
+  "released_at": "2026-04-24",
+  "uri": "https://api.scryfall.com/cards/44b7c73d-80a0-4a27-b0a2-317164362449",
+  "scryfall_uri": "https://scryfall.com/card/tsoc/13/dragon-illusion?utm_source=api",
+  "layout": "token",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T00:46:13Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/4/4/44b7c73d-80a0-4a27-b0a2-317164362449.jpg?1783903573",
+    "normal": "https://cards.scryfall.io/normal/front/4/4/44b7c73d-80a0-4a27-b0a2-317164362449.jpg?1783903573",
+    "large": "https://cards.scryfall.io/large/front/4/4/44b7c73d-80a0-4a27-b0a2-317164362449.jpg?1783903573",
+    "png": "https://cards.scryfall.io/png/front/4/4/44b7c73d-80a0-4a27-b0a2-317164362449.png?1783903573",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/4/4/44b7c73d-80a0-4a27-b0a2-317164362449.jpg?1783903573",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/4/4/44b7c73d-80a0-4a27-b0a2-317164362449.jpg?1783903573",
+    "thumb": "https://cards.scryfall.io/thumb/front/4/4/44b7c73d-80a0-4a27-b0a2-317164362449.webp?1783903573",
+    "grid": "https://cards.scryfall.io/grid/front/4/4/44b7c73d-80a0-4a27-b0a2-317164362449.webp?1783903573",
+    "display": "https://cards.scryfall.io/display/front/4/4/44b7c73d-80a0-4a27-b0a2-317164362449.webp?1783903573",
+    "art": "https://cards.scryfall.io/art/front/4/4/44b7c73d-80a0-4a27-b0a2-317164362449.webp?1783903573",
+    "crop": "https://cards.scryfall.io/crop/front/4/4/44b7c73d-80a0-4a27-b0a2-317164362449.webp?1783903573"
+  },
+  "mana_cost": "",
+  "cmc": 0.0,
+  "type_line": "Token Creature — Dragon Illusion",
+  "oracle_text": "Flying, haste",
+  "power": "*",
+  "toughness": "*",
+  "colors": [
+    "R"
+  ],
+  "color_identity": [
+    "R"
+  ],
+  "keywords": [
+    "Flying",
+    "Haste"
+  ],
+  "all_parts": [
+    {
+      "object": "related_card",
+      "id": "44b7c73d-80a0-4a27-b0a2-317164362449",
+      "component": "token",
+      "name": "Dragon Illusion",
+      "type_line": "Token Creature — Dragon Illusion",
+      "uri": "https://api.scryfall.com/cards/44b7c73d-80a0-4a27-b0a2-317164362449"
+    },
+    {
+      "object": "related_card",
+      "id": "0a559655-0967-41b9-8248-170f95c05f84",
+      "component": "combo_piece",
+      "name": "Manaform Hellkite",
+      "type_line": "Creature — Dragon",
+      "uri": "https://api.scryfall.com/cards/0a559655-0967-41b9-8248-170f95c05f84"
+    }
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "not_legal",
+    "pauper": "not_legal",
+    "vintage": "not_legal",
+    "penny": "not_legal",
+    "commander": "not_legal",
+    "oathbreaker": "not_legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "not_legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "cb590d57-927c-437a-934c-7f774881d1c9",
+  "set": "tsoc",
+  "set_name": "Secrets of Strixhaven Commander Tokens",
+  "set_type": "token",
+  "set_uri": "https://api.scryfall.com/sets/cb590d57-927c-437a-934c-7f774881d1c9",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Atsoc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/tsoc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/44b7c73d-80a0-4a27-b0a2-317164362449/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A33b8ab7a-1c27-46f0-a682-7c9d7e9f43a6&unique=prints",
+  "collector_number": "13",
+  "digital": false,
+  "rarity": "common",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Andrew Mar",
+  "artist_ids": [
+    "adad79bf-cd52-456a-b170-740ed8bff0fc"
+  ],
+  "illustration_id": "43989a54-86ce-429f-b6c1-81639ff10a2f",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DDragon%2BIllusion",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DDragon%2BIllusion",
+    "edhrec": "https://edhrec.com/route/?cc=Dragon+Illusion"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DDragon%2BIllusion%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Dragon+Illusion&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Dragon+Illusion&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

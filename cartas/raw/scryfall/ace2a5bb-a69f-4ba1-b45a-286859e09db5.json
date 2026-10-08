@@ -1,0 +1,141 @@
+{
+  "object": "card",
+  "id": "ace2a5bb-a69f-4ba1-b45a-286859e09db5",
+  "oracle_id": "58f83528-9110-4895-b5ea-51b90af30a8d",
+  "multiverse_ids": [
+    505868
+  ],
+  "name": "Seize the Spoils",
+  "printed_name": "Apreender os Espólios",
+  "lang": "pt",
+  "released_at": "2021-02-05",
+  "uri": "https://api.scryfall.com/cards/ace2a5bb-a69f-4ba1-b45a-286859e09db5",
+  "scryfall_uri": "https://scryfall.com/card/khm/149/pt/apreender-os-esp%C3%B3lios-(seize-the-spoils)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-01T08:02:28Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/a/c/ace2a5bb-a69f-4ba1-b45a-286859e09db5.jpg?1782892948",
+    "normal": "https://cards.scryfall.io/normal/front/a/c/ace2a5bb-a69f-4ba1-b45a-286859e09db5.jpg?1782892948",
+    "large": "https://cards.scryfall.io/large/front/a/c/ace2a5bb-a69f-4ba1-b45a-286859e09db5.jpg?1782892948",
+    "png": "https://cards.scryfall.io/png/front/a/c/ace2a5bb-a69f-4ba1-b45a-286859e09db5.png?1782892948",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/a/c/ace2a5bb-a69f-4ba1-b45a-286859e09db5.jpg?1782892948",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/a/c/ace2a5bb-a69f-4ba1-b45a-286859e09db5.jpg?1782892948",
+    "thumb": "https://cards.scryfall.io/thumb/front/a/c/ace2a5bb-a69f-4ba1-b45a-286859e09db5.webp?1782892948",
+    "grid": "https://cards.scryfall.io/grid/front/a/c/ace2a5bb-a69f-4ba1-b45a-286859e09db5.webp?1782892948",
+    "display": "https://cards.scryfall.io/display/front/a/c/ace2a5bb-a69f-4ba1-b45a-286859e09db5.webp?1782892948",
+    "art": "https://cards.scryfall.io/art/front/a/c/ace2a5bb-a69f-4ba1-b45a-286859e09db5.webp?1782892948",
+    "crop": "https://cards.scryfall.io/crop/front/a/c/ace2a5bb-a69f-4ba1-b45a-286859e09db5.webp?1782892948"
+  },
+  "mana_cost": "{2}{R}",
+  "cmc": 3.0,
+  "type_line": "Sorcery",
+  "printed_type_line": "Feitiço",
+  "oracle_text": "As an additional cost to cast this spell, discard a card.\nDraw two cards and create a Treasure token. (It's an artifact with \"{T}, Sacrifice this token: Add one mana of any color.\")",
+  "printed_text": "Como custo adicional para conjurar esta mágica, descarte um card.\nCompre dois cards e crie uma ficha de Tesouro. (Ela é um artefato com \"{T}, sacrifique este artefato: Adicione um mana de qualquer cor\".)",
+  "colors": [
+    "R"
+  ],
+  "color_identity": [
+    "R"
+  ],
+  "keywords": [
+    "Treasure"
+  ],
+  "produced_mana": [
+    "B",
+    "G",
+    "R",
+    "U",
+    "W"
+  ],
+  "legalities": {
+    "standard": "legal",
+    "future": "legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "legal",
+    "paupercommander": "legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "arena",
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "43057fad-b1c1-437f-bc48-0045bce6d8c9",
+  "set": "khm",
+  "set_name": "Kaldheim",
+  "set_type": "expansion",
+  "set_uri": "https://api.scryfall.com/sets/43057fad-b1c1-437f-bc48-0045bce6d8c9",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Akhm&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/khm?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/ace2a5bb-a69f-4ba1-b45a-286859e09db5/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A58f83528-9110-4895-b5ea-51b90af30a8d&unique=prints",
+  "collector_number": "149",
+  "digital": false,
+  "rarity": "common",
+  "flavor_text": "\"Peguem o que quiserem e queimem o resto. Não deixem nada para trás.\"",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Jesper Ejsing",
+  "artist_ids": [
+    "a5f8354a-8b51-4e59-96b2-0e3aeae4fa1d"
+  ],
+  "illustration_id": "1afab0bc-6584-47cc-9cad-72a9ccd2d817",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "edhrec_rank": 757,
+  "penny_rank": 4684,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=505868&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DSeize%2Bthe%2BSpoils",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DSeize%2Bthe%2BSpoils",
+    "edhrec": "https://edhrec.com/route/?cc=Seize+the+Spoils"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DSeize%2Bthe%2BSpoils%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Seize+the+Spoils&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Seize+the+Spoils&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

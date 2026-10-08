@@ -1,0 +1,130 @@
+{
+  "object": "card",
+  "id": "eea394a0-2034-4329-b56e-7a1310418301",
+  "oracle_id": "17b60106-a4c7-410a-8ac3-ec8e74e29a7c",
+  "multiverse_ids": [
+    513100
+  ],
+  "name": "Mystic Sanctuary",
+  "printed_name": "Santuário Místico",
+  "lang": "pt",
+  "released_at": "2021-03-19",
+  "uri": "https://api.scryfall.com/cards/eea394a0-2034-4329-b56e-7a1310418301",
+  "scryfall_uri": "https://scryfall.com/card/tsr/408/pt/santu%C3%A1rio-m%C3%ADstico-(mystic-sanctuary)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-01T06:46:07Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/e/e/eea394a0-2034-4329-b56e-7a1310418301.jpg?1782888367",
+    "normal": "https://cards.scryfall.io/normal/front/e/e/eea394a0-2034-4329-b56e-7a1310418301.jpg?1782888367",
+    "large": "https://cards.scryfall.io/large/front/e/e/eea394a0-2034-4329-b56e-7a1310418301.jpg?1782888367",
+    "png": "https://cards.scryfall.io/png/front/e/e/eea394a0-2034-4329-b56e-7a1310418301.png?1782888367",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/e/e/eea394a0-2034-4329-b56e-7a1310418301.jpg?1782888367",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/e/e/eea394a0-2034-4329-b56e-7a1310418301.jpg?1782888367",
+    "thumb": "https://cards.scryfall.io/thumb/front/e/e/eea394a0-2034-4329-b56e-7a1310418301.webp?1782888367",
+    "grid": "https://cards.scryfall.io/grid/front/e/e/eea394a0-2034-4329-b56e-7a1310418301.webp?1782888367",
+    "display": "https://cards.scryfall.io/display/front/e/e/eea394a0-2034-4329-b56e-7a1310418301.webp?1782888367",
+    "art": "https://cards.scryfall.io/art/front/e/e/eea394a0-2034-4329-b56e-7a1310418301.webp?1782888367",
+    "crop": "https://cards.scryfall.io/crop/front/e/e/eea394a0-2034-4329-b56e-7a1310418301.webp?1782888367"
+  },
+  "mana_cost": "",
+  "cmc": 0.0,
+  "type_line": "Land — Island",
+  "printed_type_line": "Terreno — Ilha",
+  "oracle_text": "({T}: Add {U}.)\nThis land enters tapped unless you control three or more other Islands.\nWhen this land enters untapped, you may put target instant or sorcery card from your graveyard on top of your library.",
+  "printed_text": "({T}: Adicione {U}.)\nSantuário Místico entra no campo de batalha virado, a menos que você controle três ou mais outras Ilhas.\nQuando Santuário Místico entra no campo de batalha desvirado, você pode colocar o card de mágica instantânea ou feitiço alvo de seu cemitério no topo de seu grimório.",
+  "colors": [],
+  "color_identity": [
+    "U"
+  ],
+  "keywords": [],
+  "produced_mana": [
+    "U"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "banned",
+    "legacy": "legal",
+    "pauper": "banned",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "11e90d1b-0502-43e6-b056-e24836523c13",
+  "set": "tsr",
+  "set_name": "Time Spiral Remastered",
+  "set_type": "masters",
+  "set_uri": "https://api.scryfall.com/sets/11e90d1b-0502-43e6-b056-e24836523c13",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Atsr&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/tsr?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/eea394a0-2034-4329-b56e-7a1310418301/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A17b60106-a4c7-410a-8ac3-ec8e74e29a7c&unique=prints",
+  "collector_number": "408",
+  "digital": false,
+  "rarity": "special",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Randy Vargas",
+  "artist_ids": [
+    "d20672ca-0555-4238-a984-fd171d36b247"
+  ],
+  "illustration_id": "a640e5a6-041c-4a51-8066-c0a08fe090ce",
+  "border_color": "black",
+  "frame": "1997",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "edhrec_rank": 174,
+  "penny_rank": 112,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=513100&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DMystic%2BSanctuary",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DMystic%2BSanctuary",
+    "edhrec": "https://edhrec.com/route/?cc=Mystic+Sanctuary"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DMystic%2BSanctuary%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Mystic+Sanctuary&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Mystic+Sanctuary&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

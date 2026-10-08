@@ -1,0 +1,131 @@
+{
+  "object": "card",
+  "id": "c09aa8b6-c8c8-4a91-98c0-23bcc9d3a1ec",
+  "oracle_id": "e828b189-0e8f-43b8-b909-4c23e742e028",
+  "multiverse_ids": [],
+  "resource_id": "626F354A616782E8781055F875ACA0C91C31B955AE7948D4E78810764417D6A5",
+  "name": "Ghostly Prison",
+  "printed_name": "Prisão Fantasmagórica",
+  "lang": "pt",
+  "released_at": "2024-02-09",
+  "uri": "https://api.scryfall.com/cards/c09aa8b6-c8c8-4a91-98c0-23bcc9d3a1ec",
+  "scryfall_uri": "https://scryfall.com/card/spg/19/pt/pris%C3%A3o-fantasmag%C3%B3rica-(ghostly-prison)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-21T23:45:21Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/c/0/c09aa8b6-c8c8-4a91-98c0-23bcc9d3a1ec.jpg?1784677521",
+    "normal": "https://cards.scryfall.io/normal/front/c/0/c09aa8b6-c8c8-4a91-98c0-23bcc9d3a1ec.jpg?1784677521",
+    "large": "https://cards.scryfall.io/large/front/c/0/c09aa8b6-c8c8-4a91-98c0-23bcc9d3a1ec.jpg?1784677521",
+    "png": "https://cards.scryfall.io/png/front/c/0/c09aa8b6-c8c8-4a91-98c0-23bcc9d3a1ec.png?1784677521",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/c/0/c09aa8b6-c8c8-4a91-98c0-23bcc9d3a1ec.jpg?1784677521",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/c/0/c09aa8b6-c8c8-4a91-98c0-23bcc9d3a1ec.jpg?1784677521",
+    "thumb": "https://cards.scryfall.io/thumb/front/c/0/c09aa8b6-c8c8-4a91-98c0-23bcc9d3a1ec.webp?1784677521",
+    "grid": "https://cards.scryfall.io/grid/front/c/0/c09aa8b6-c8c8-4a91-98c0-23bcc9d3a1ec.webp?1784677521",
+    "display": "https://cards.scryfall.io/display/front/c/0/c09aa8b6-c8c8-4a91-98c0-23bcc9d3a1ec.webp?1784677521",
+    "art": "https://cards.scryfall.io/art/front/c/0/c09aa8b6-c8c8-4a91-98c0-23bcc9d3a1ec.webp?1784677521",
+    "crop": "https://cards.scryfall.io/crop/front/c/0/c09aa8b6-c8c8-4a91-98c0-23bcc9d3a1ec.webp?1784677521"
+  },
+  "mana_cost": "{2}{W}",
+  "cmc": 3.0,
+  "type_line": "Enchantment",
+  "oracle_text": "Creatures can't attack you unless their controller pays {2} for each creature they control that's attacking you.",
+  "printed_text": "As criaturas não podem atacá-lo, a menos que seu controlador pague {2} por cada criatura que controla que está atacando você.",
+  "colors": [
+    "W"
+  ],
+  "color_identity": [
+    "W"
+  ],
+  "keywords": [],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "not_legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "arena",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "c01003a2-b3e2-4e7f-a26d-2348144c8056",
+  "set": "spg",
+  "set_name": "Special Guests",
+  "set_type": "masterpiece",
+  "set_uri": "https://api.scryfall.com/sets/c01003a2-b3e2-4e7f-a26d-2348144c8056",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Aspg&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/spg?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/c09aa8b6-c8c8-4a91-98c0-23bcc9d3a1ec/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Ae828b189-0e8f-43b8-b909-4c23e742e028&unique=prints",
+  "collector_number": "19",
+  "digital": false,
+  "rarity": "mythic",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Volkan Baǵa",
+  "artist_ids": [
+    "93bec3c0-0260-4d31-8064-5d01efb4153f"
+  ],
+  "illustration_id": "be51d670-4209-40a5-9cf3-240528ebb2e5",
+  "border_color": "borderless",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "promo_types": [
+    "boosterfun"
+  ],
+  "edhrec_rank": 160,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DGhostly%2BPrison",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DGhostly%2BPrison",
+    "edhrec": "https://edhrec.com/route/?cc=Ghostly+Prison"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DGhostly%2BPrison%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Ghostly+Prison&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Ghostly+Prison&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

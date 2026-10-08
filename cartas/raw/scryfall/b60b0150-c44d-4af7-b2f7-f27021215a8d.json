@@ -1,0 +1,139 @@
+{
+  "object": "card",
+  "id": "b60b0150-c44d-4af7-b2f7-f27021215a8d",
+  "oracle_id": "544acde0-850d-4c4f-8389-e22930d87345",
+  "multiverse_ids": [
+    517533
+  ],
+  "name": "Mortality Spear",
+  "printed_name": "Lança da Mortalidade",
+  "lang": "pt",
+  "released_at": "2021-04-23",
+  "uri": "https://api.scryfall.com/cards/b60b0150-c44d-4af7-b2f7-f27021215a8d",
+  "scryfall_uri": "https://scryfall.com/card/stx/380/pt/lan%C3%A7a-da-mortalidade-(mortality-spear)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-01T05:07:02Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/b/6/b60b0150-c44d-4af7-b2f7-f27021215a8d.jpg?1782882422",
+    "normal": "https://cards.scryfall.io/normal/front/b/6/b60b0150-c44d-4af7-b2f7-f27021215a8d.jpg?1782882422",
+    "large": "https://cards.scryfall.io/large/front/b/6/b60b0150-c44d-4af7-b2f7-f27021215a8d.jpg?1782882422",
+    "png": "https://cards.scryfall.io/png/front/b/6/b60b0150-c44d-4af7-b2f7-f27021215a8d.png?1782882422",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/b/6/b60b0150-c44d-4af7-b2f7-f27021215a8d.jpg?1782882422",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/b/6/b60b0150-c44d-4af7-b2f7-f27021215a8d.jpg?1782882422",
+    "thumb": "https://cards.scryfall.io/thumb/front/b/6/b60b0150-c44d-4af7-b2f7-f27021215a8d.webp?1782882422",
+    "grid": "https://cards.scryfall.io/grid/front/b/6/b60b0150-c44d-4af7-b2f7-f27021215a8d.webp?1782882422",
+    "display": "https://cards.scryfall.io/display/front/b/6/b60b0150-c44d-4af7-b2f7-f27021215a8d.webp?1782882422",
+    "art": "https://cards.scryfall.io/art/front/b/6/b60b0150-c44d-4af7-b2f7-f27021215a8d.webp?1782882422",
+    "crop": "https://cards.scryfall.io/crop/front/b/6/b60b0150-c44d-4af7-b2f7-f27021215a8d.webp?1782882422"
+  },
+  "mana_cost": "{2}{B}{G}",
+  "cmc": 4.0,
+  "type_line": "Instant",
+  "printed_type_line": "Mágica Instantânea",
+  "oracle_text": "This spell costs {2} less to cast if you gained life this turn.\nDestroy target nonland permanent.",
+  "printed_text": "Esta mágica custa {2} a menos para ser conjurada se você tiver ganho pontos de vida neste turno.\nDestrua a permanente alvo não de terreno.",
+  "colors": [
+    "B",
+    "G"
+  ],
+  "color_identity": [
+    "B",
+    "G"
+  ],
+  "keywords": [],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "arena",
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": true,
+  "reprint": false,
+  "variation": false,
+  "set_id": "541c3c28-8747-40e5-a231-8e8f33234859",
+  "set": "stx",
+  "set_name": "Strixhaven: School of Mages",
+  "set_type": "expansion",
+  "set_uri": "https://api.scryfall.com/sets/541c3c28-8747-40e5-a231-8e8f33234859",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Astx&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/stx?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/b60b0150-c44d-4af7-b2f7-f27021215a8d/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A544acde0-850d-4c4f-8389-e22930d87345&unique=prints",
+  "collector_number": "380",
+  "digital": false,
+  "rarity": "uncommon",
+  "watermark": "planeswalker",
+  "flavor_text": "\"A morte é o trabalho de minha vida.\"",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "PINDURSKI",
+  "artist_ids": [
+    "f333a7f0-7330-40e9-8c58-667eea2f0f60"
+  ],
+  "illustration_id": "af09f91e-e262-4cde-849a-8d2b8897df03",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "promo_types": [
+    "promopack"
+  ],
+  "edhrec_rank": 3358,
+  "penny_rank": 6819,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=517533&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DMortality%2BSpear",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DMortality%2BSpear",
+    "edhrec": "https://edhrec.com/route/?cc=Mortality+Spear"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DMortality%2BSpear%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Mortality+Spear&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Mortality+Spear&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

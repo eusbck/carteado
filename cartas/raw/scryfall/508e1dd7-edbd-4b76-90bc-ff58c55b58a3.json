@@ -1,0 +1,174 @@
+{
+  "object": "card",
+  "id": "508e1dd7-edbd-4b76-90bc-ff58c55b58a3",
+  "oracle_id": "dfaa02d4-4f3c-4e5d-b9e5-283a45395a53",
+  "multiverse_ids": [],
+  "resource_id": "FCA7750AA701A765D7B0F221BF03E95326826A3AD097160DAC0A38540709025B",
+  "mtgo_id": 148659,
+  "tcgplayer_id": 687580,
+  "cardmarket_id": 881370,
+  "name": "Eccentric Pestfinder // Turn Stones",
+  "lang": "en",
+  "released_at": "2026-04-24",
+  "uri": "https://api.scryfall.com/cards/508e1dd7-edbd-4b76-90bc-ff58c55b58a3",
+  "scryfall_uri": "https://scryfall.com/card/soc/46/eccentric-pestfinder-turn-stones?utm_source=api",
+  "layout": "prepare",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T00:50:50Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/5/0/508e1dd7-edbd-4b76-90bc-ff58c55b58a3.jpg?1783903850",
+    "normal": "https://cards.scryfall.io/normal/front/5/0/508e1dd7-edbd-4b76-90bc-ff58c55b58a3.jpg?1783903850",
+    "large": "https://cards.scryfall.io/large/front/5/0/508e1dd7-edbd-4b76-90bc-ff58c55b58a3.jpg?1783903850",
+    "png": "https://cards.scryfall.io/png/front/5/0/508e1dd7-edbd-4b76-90bc-ff58c55b58a3.png?1783903850",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/5/0/508e1dd7-edbd-4b76-90bc-ff58c55b58a3.jpg?1783903850",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/5/0/508e1dd7-edbd-4b76-90bc-ff58c55b58a3.jpg?1783903850",
+    "thumb": "https://cards.scryfall.io/thumb/front/5/0/508e1dd7-edbd-4b76-90bc-ff58c55b58a3.webp?1783903850",
+    "grid": "https://cards.scryfall.io/grid/front/5/0/508e1dd7-edbd-4b76-90bc-ff58c55b58a3.webp?1783903850",
+    "display": "https://cards.scryfall.io/display/front/5/0/508e1dd7-edbd-4b76-90bc-ff58c55b58a3.webp?1783903850",
+    "art": "https://cards.scryfall.io/art/front/5/0/508e1dd7-edbd-4b76-90bc-ff58c55b58a3.webp?1783903850",
+    "crop": "https://cards.scryfall.io/crop/front/5/0/508e1dd7-edbd-4b76-90bc-ff58c55b58a3.webp?1783903850"
+  },
+  "mana_cost": "{2}{B}{G} // {B}{G}",
+  "cmc": 4.0,
+  "type_line": "Creature — Troll Druid // Sorcery",
+  "power": "5",
+  "toughness": "5",
+  "colors": [
+    "B",
+    "G"
+  ],
+  "color_identity": [
+    "B",
+    "G"
+  ],
+  "keywords": [
+    "Trample",
+    "Prepared"
+  ],
+  "card_faces": [
+    {
+      "object": "card_face",
+      "name": "Eccentric Pestfinder",
+      "mana_cost": "{2}{B}{G}",
+      "type_line": "Creature — Troll Druid",
+      "oracle_text": "Trample\nAt the beginning of each end step, if you gained life this turn, this creature becomes prepared. (While it's prepared, you may cast a copy of its spell. Doing so unprepares it.)",
+      "power": "5",
+      "toughness": "5",
+      "artist": "Nereida",
+      "artist_id": "bcab6d8a-e3eb-4502-9cc4-23b92bc8c4d1",
+      "illustration_id": "773a9d41-921c-4b72-a81b-ea9cc35b8305"
+    },
+    {
+      "object": "card_face",
+      "name": "Turn Stones",
+      "mana_cost": "{B}{G}",
+      "type_line": "Sorcery",
+      "oracle_text": "For each opponent, you create a 1/1 black and green Pest creature token with \"When this token dies, you gain 1 life.\"",
+      "artist": "Nereida",
+      "artist_id": "bcab6d8a-e3eb-4502-9cc4-23b92bc8c4d1"
+    }
+  ],
+  "all_parts": [
+    {
+      "object": "related_card",
+      "id": "c72ceae7-72d6-41dc-82cc-b86e845d7aa6",
+      "component": "token",
+      "name": "Pest",
+      "type_line": "Token Creature — Pest",
+      "uri": "https://api.scryfall.com/cards/c72ceae7-72d6-41dc-82cc-b86e845d7aa6"
+    },
+    {
+      "object": "related_card",
+      "id": "d9e6b777-e0f6-47e1-808e-81850039d891",
+      "component": "combo_piece",
+      "name": "Eccentric Pestfinder // Turn Stones",
+      "type_line": "Creature — Troll Druid // Sorcery",
+      "uri": "https://api.scryfall.com/cards/d9e6b777-e0f6-47e1-808e-81850039d891"
+    }
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "97fab8d1-480a-419d-ab14-663968e29b9c",
+  "set": "soc",
+  "set_name": "Secrets of Strixhaven Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/97fab8d1-480a-419d-ab14-663968e29b9c",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Asoc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/soc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/508e1dd7-edbd-4b76-90bc-ff58c55b58a3/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Adfaa02d4-4f3c-4e5d-b9e5-283a45395a53&unique=prints",
+  "collector_number": "46",
+  "digital": false,
+  "rarity": "rare",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Nereida",
+  "artist_ids": [
+    "bcab6d8a-e3eb-4502-9cc4-23b92bc8c4d1"
+  ],
+  "illustration_id": "773a9d41-921c-4b72-a81b-ea9cc35b8305",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 7219,
+  "prices": {
+    "usd": "0.33",
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": "0.47",
+    "eur_foil": null,
+    "tix": "2.63"
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DEccentric%2BPestfinder%2B%252F%252F%2BTurn%2BStones",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DEccentric%2BPestfinder%2B%252F%252F%2BTurn%2BStones",
+    "edhrec": "https://edhrec.com/route/?cc=Eccentric+Pestfinder"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F687580%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=881370&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards/148659?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

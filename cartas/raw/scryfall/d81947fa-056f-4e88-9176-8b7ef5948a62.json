@@ -1,0 +1,137 @@
+{
+  "object": "card",
+  "id": "d81947fa-056f-4e88-9176-8b7ef5948a62",
+  "oracle_id": "a984db23-40ea-428d-829f-e944267280f8",
+  "multiverse_ids": [
+    609438
+  ],
+  "name": "Faerie Mastermind",
+  "printed_name": "Mente Mestra Feérica",
+  "lang": "pt",
+  "released_at": "2023-04-21",
+  "uri": "https://api.scryfall.com/cards/d81947fa-056f-4e88-9176-8b7ef5948a62",
+  "scryfall_uri": "https://scryfall.com/card/mom/58/pt/mente-mestra-fe%C3%A9rica-(faerie-mastermind)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T13:16:26Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/d/8/d81947fa-056f-4e88-9176-8b7ef5948a62.jpg?1782825386",
+    "normal": "https://cards.scryfall.io/normal/front/d/8/d81947fa-056f-4e88-9176-8b7ef5948a62.jpg?1782825386",
+    "large": "https://cards.scryfall.io/large/front/d/8/d81947fa-056f-4e88-9176-8b7ef5948a62.jpg?1782825386",
+    "png": "https://cards.scryfall.io/png/front/d/8/d81947fa-056f-4e88-9176-8b7ef5948a62.png?1782825386",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/d/8/d81947fa-056f-4e88-9176-8b7ef5948a62.jpg?1782825386",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/d/8/d81947fa-056f-4e88-9176-8b7ef5948a62.jpg?1782825386",
+    "thumb": "https://cards.scryfall.io/thumb/front/d/8/d81947fa-056f-4e88-9176-8b7ef5948a62.webp?1782825386",
+    "grid": "https://cards.scryfall.io/grid/front/d/8/d81947fa-056f-4e88-9176-8b7ef5948a62.webp?1782825386",
+    "display": "https://cards.scryfall.io/display/front/d/8/d81947fa-056f-4e88-9176-8b7ef5948a62.webp?1782825386",
+    "art": "https://cards.scryfall.io/art/front/d/8/d81947fa-056f-4e88-9176-8b7ef5948a62.webp?1782825386",
+    "crop": "https://cards.scryfall.io/crop/front/d/8/d81947fa-056f-4e88-9176-8b7ef5948a62.webp?1782825386"
+  },
+  "mana_cost": "{1}{U}",
+  "cmc": 2.0,
+  "type_line": "Creature — Faerie Rogue",
+  "printed_type_line": "Criatura — Fada Ladino",
+  "oracle_text": "Flash\nFlying\nWhenever an opponent draws their second card each turn, you draw a card.\n{3}{U}: Each player draws a card.",
+  "printed_text": "Lampejo\nVoar\nToda vez que um oponente compra o próprio segundo card a cada turno, você compra um card.\n{3}{U}: Cada jogador compra um card.",
+  "power": "2",
+  "toughness": "1",
+  "colors": [
+    "U"
+  ],
+  "color_identity": [
+    "U"
+  ],
+  "keywords": [
+    "Flying",
+    "Flash"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo",
+    "arena"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "392f7315-dc53-40a3-a2cc-5482dbd498b3",
+  "set": "mom",
+  "set_name": "March of the Machine",
+  "set_type": "expansion",
+  "set_uri": "https://api.scryfall.com/sets/392f7315-dc53-40a3-a2cc-5482dbd498b3",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Amom&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/mom?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/d81947fa-056f-4e88-9176-8b7ef5948a62/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Aa984db23-40ea-428d-829f-e944267280f8&unique=prints",
+  "collector_number": "58",
+  "digital": false,
+  "rarity": "rare",
+  "flavor_text": "Yuta Takahashi, 27º Campeão Mundial",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Joshua Raphael",
+  "artist_ids": [
+    "553b2a73-780f-414b-b2d7-3b7888821082"
+  ],
+  "illustration_id": "67103915-70fb-4923-9bce-7d805e49558d",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "edhrec_rank": 288,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=609438&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DFaerie%2BMastermind",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DFaerie%2BMastermind",
+    "edhrec": "https://edhrec.com/route/?cc=Faerie+Mastermind"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DFaerie%2BMastermind%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Faerie+Mastermind&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Faerie+Mastermind&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

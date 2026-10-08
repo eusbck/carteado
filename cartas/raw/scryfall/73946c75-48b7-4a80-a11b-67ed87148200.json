@@ -1,0 +1,136 @@
+{
+  "object": "card",
+  "id": "73946c75-48b7-4a80-a11b-67ed87148200",
+  "oracle_id": "5a20113c-7ea8-4edf-af9f-148ccd326a88",
+  "multiverse_ids": [
+    381783
+  ],
+  "name": "Nyx-Fleece Ram",
+  "printed_name": "Carneiro Velocino-de-Nyx",
+  "lang": "pt",
+  "released_at": "2014-05-02",
+  "uri": "https://api.scryfall.com/cards/73946c75-48b7-4a80-a11b-67ed87148200",
+  "scryfall_uri": "https://scryfall.com/card/jou/18/pt/carneiro-velocino-de-nyx-(nyx-fleece-ram)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-02T05:57:38Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/7/3/73946c75-48b7-4a80-a11b-67ed87148200.jpg?1782971858",
+    "normal": "https://cards.scryfall.io/normal/front/7/3/73946c75-48b7-4a80-a11b-67ed87148200.jpg?1782971858",
+    "large": "https://cards.scryfall.io/large/front/7/3/73946c75-48b7-4a80-a11b-67ed87148200.jpg?1782971858",
+    "png": "https://cards.scryfall.io/png/front/7/3/73946c75-48b7-4a80-a11b-67ed87148200.png?1782971858",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/7/3/73946c75-48b7-4a80-a11b-67ed87148200.jpg?1782971858",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/7/3/73946c75-48b7-4a80-a11b-67ed87148200.jpg?1782971858",
+    "thumb": "https://cards.scryfall.io/thumb/front/7/3/73946c75-48b7-4a80-a11b-67ed87148200.webp?1782971858",
+    "grid": "https://cards.scryfall.io/grid/front/7/3/73946c75-48b7-4a80-a11b-67ed87148200.webp?1782971858",
+    "display": "https://cards.scryfall.io/display/front/7/3/73946c75-48b7-4a80-a11b-67ed87148200.webp?1782971858",
+    "art": "https://cards.scryfall.io/art/front/7/3/73946c75-48b7-4a80-a11b-67ed87148200.webp?1782971858",
+    "crop": "https://cards.scryfall.io/crop/front/7/3/73946c75-48b7-4a80-a11b-67ed87148200.webp?1782971858"
+  },
+  "mana_cost": "{1}{W}",
+  "cmc": 2.0,
+  "type_line": "Enchantment Creature — Sheep",
+  "printed_type_line": "Criatura Encantamento — Ovelha",
+  "oracle_text": "At the beginning of your upkeep, you gain 1 life.",
+  "printed_text": "No início de sua manutenção, você ganha 1 ponto de vida.",
+  "power": "0",
+  "toughness": "5",
+  "colors": [
+    "W"
+  ],
+  "color_identity": [
+    "W"
+  ],
+  "keywords": [],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "204d2dca-1887-4721-9558-164aa7bbeb4f",
+  "set": "jou",
+  "set_name": "Journey into Nyx",
+  "set_type": "expansion",
+  "set_uri": "https://api.scryfall.com/sets/204d2dca-1887-4721-9558-164aa7bbeb4f",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Ajou&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/jou?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/73946c75-48b7-4a80-a11b-67ed87148200/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A5a20113c-7ea8-4edf-af9f-148ccd326a88&unique=prints",
+  "collector_number": "18",
+  "digital": false,
+  "rarity": "uncommon",
+  "flavor_text": "Os deuses são fascinados pela inocência. Provavelmente porque essa é uma qualidade que eles próprios não têm.",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Terese Nielsen",
+  "artist_ids": [
+    "eb55171c-2342-45f4-a503-2d5a75baf752"
+  ],
+  "illustration_id": "86d50469-096d-4ce6-84fa-2ab7c8cf1996",
+  "border_color": "black",
+  "frame": "2003",
+  "frame_effects": [
+    "enchantment"
+  ],
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "edhrec_rank": 4510,
+  "penny_rank": 5226,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=381783&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DNyx-Fleece%2BRam",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DNyx-Fleece%2BRam",
+    "edhrec": "https://edhrec.com/route/?cc=Nyx-Fleece+Ram"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DNyx-Fleece%2BRam%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Nyx-Fleece+Ram&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Nyx-Fleece+Ram&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

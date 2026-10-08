@@ -1,0 +1,136 @@
+{
+  "object": "card",
+  "id": "a62e1245-4adf-453a-bfc6-79e769c0814f",
+  "oracle_id": "a3b39590-34b7-4fd0-877f-748e6df30e88",
+  "multiverse_ids": [
+    478130
+  ],
+  "name": "Hateful Eidolon",
+  "printed_name": "Eidolon do Ódio",
+  "lang": "pt",
+  "released_at": "2020-01-24",
+  "uri": "https://api.scryfall.com/cards/a62e1245-4adf-453a-bfc6-79e769c0814f",
+  "scryfall_uri": "https://scryfall.com/card/thb/101/pt/eidolon-do-%C3%B3dio-(hateful-eidolon)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-01T13:10:19Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/a/6/a62e1245-4adf-453a-bfc6-79e769c0814f.jpg?1782911419",
+    "normal": "https://cards.scryfall.io/normal/front/a/6/a62e1245-4adf-453a-bfc6-79e769c0814f.jpg?1782911419",
+    "large": "https://cards.scryfall.io/large/front/a/6/a62e1245-4adf-453a-bfc6-79e769c0814f.jpg?1782911419",
+    "png": "https://cards.scryfall.io/png/front/a/6/a62e1245-4adf-453a-bfc6-79e769c0814f.png?1782911419",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/a/6/a62e1245-4adf-453a-bfc6-79e769c0814f.jpg?1782911419",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/a/6/a62e1245-4adf-453a-bfc6-79e769c0814f.jpg?1782911419",
+    "thumb": "https://cards.scryfall.io/thumb/front/a/6/a62e1245-4adf-453a-bfc6-79e769c0814f.webp?1782911419",
+    "grid": "https://cards.scryfall.io/grid/front/a/6/a62e1245-4adf-453a-bfc6-79e769c0814f.webp?1782911419",
+    "display": "https://cards.scryfall.io/display/front/a/6/a62e1245-4adf-453a-bfc6-79e769c0814f.webp?1782911419",
+    "art": "https://cards.scryfall.io/art/front/a/6/a62e1245-4adf-453a-bfc6-79e769c0814f.webp?1782911419",
+    "crop": "https://cards.scryfall.io/crop/front/a/6/a62e1245-4adf-453a-bfc6-79e769c0814f.webp?1782911419"
+  },
+  "mana_cost": "{B}",
+  "cmc": 1.0,
+  "type_line": "Enchantment Creature — Spirit",
+  "printed_type_line": "Criatura Encantamento — Espírito",
+  "oracle_text": "Lifelink\nWhenever an enchanted creature dies, draw a card for each Aura you controlled that was attached to it.",
+  "printed_text": "Vínculo com a vida\nToda vez que uma criatura encantada morrer, compre um card para cada Aura que você controlava que estava anexada a ela.",
+  "power": "1",
+  "toughness": "2",
+  "colors": [
+    "B"
+  ],
+  "color_identity": [
+    "B"
+  ],
+  "keywords": [
+    "Lifelink"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "arena",
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "5f23a78d-cda1-462a-8be3-a62b40c34913",
+  "set": "thb",
+  "set_name": "Theros Beyond Death",
+  "set_type": "expansion",
+  "set_uri": "https://api.scryfall.com/sets/5f23a78d-cda1-462a-8be3-a62b40c34913",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Athb&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/thb?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/a62e1245-4adf-453a-bfc6-79e769c0814f/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Aa3b39590-34b7-4fd0-877f-748e6df30e88&unique=prints",
+  "collector_number": "101",
+  "digital": false,
+  "rarity": "uncommon",
+  "flavor_text": "Dos ecos de uma vida violenta nasce um inimigo terrível.",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Daniel Ljunggren",
+  "artist_ids": [
+    "0fbd4798-76eb-46d5-a5d4-1e3a25870e34"
+  ],
+  "illustration_id": "5285b527-4e28-4dcc-bf33-332455234963",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "edhrec_rank": 4855,
+  "penny_rank": 4278,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=478130&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DHateful%2BEidolon",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DHateful%2BEidolon",
+    "edhrec": "https://edhrec.com/route/?cc=Hateful+Eidolon"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DHateful%2BEidolon%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Hateful+Eidolon&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Hateful+Eidolon&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

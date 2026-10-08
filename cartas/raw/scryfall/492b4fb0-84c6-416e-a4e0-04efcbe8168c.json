@@ -1,0 +1,131 @@
+{
+  "object": "card",
+  "id": "492b4fb0-84c6-416e-a4e0-04efcbe8168c",
+  "oracle_id": "bd92cacd-c7d8-43a2-a261-ea4754fefdc5",
+  "multiverse_ids": [
+    633989
+  ],
+  "name": "Sage's Reverie",
+  "printed_name": "Devaneio do Sábio",
+  "lang": "pt",
+  "released_at": "2023-09-08",
+  "uri": "https://api.scryfall.com/cards/492b4fb0-84c6-416e-a4e0-04efcbe8168c",
+  "scryfall_uri": "https://scryfall.com/card/woc/73/pt/devaneio-do-s%C3%A1bio-(sages-reverie)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T09:44:38Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/4/9/492b4fb0-84c6-416e-a4e0-04efcbe8168c.jpg?1782812678",
+    "normal": "https://cards.scryfall.io/normal/front/4/9/492b4fb0-84c6-416e-a4e0-04efcbe8168c.jpg?1782812678",
+    "large": "https://cards.scryfall.io/large/front/4/9/492b4fb0-84c6-416e-a4e0-04efcbe8168c.jpg?1782812678",
+    "png": "https://cards.scryfall.io/png/front/4/9/492b4fb0-84c6-416e-a4e0-04efcbe8168c.png?1782812678",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/4/9/492b4fb0-84c6-416e-a4e0-04efcbe8168c.jpg?1782812678",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/4/9/492b4fb0-84c6-416e-a4e0-04efcbe8168c.jpg?1782812678",
+    "thumb": "https://cards.scryfall.io/thumb/front/4/9/492b4fb0-84c6-416e-a4e0-04efcbe8168c.webp?1782812678",
+    "grid": "https://cards.scryfall.io/grid/front/4/9/492b4fb0-84c6-416e-a4e0-04efcbe8168c.webp?1782812678",
+    "display": "https://cards.scryfall.io/display/front/4/9/492b4fb0-84c6-416e-a4e0-04efcbe8168c.webp?1782812678",
+    "art": "https://cards.scryfall.io/art/front/4/9/492b4fb0-84c6-416e-a4e0-04efcbe8168c.webp?1782812678",
+    "crop": "https://cards.scryfall.io/crop/front/4/9/492b4fb0-84c6-416e-a4e0-04efcbe8168c.webp?1782812678"
+  },
+  "mana_cost": "{3}{W}",
+  "cmc": 4.0,
+  "type_line": "Enchantment — Aura",
+  "printed_type_line": "Encantamento — Aura",
+  "oracle_text": "Enchant creature\nWhen this Aura enters, draw a card for each Aura you control that's attached to a creature.\nEnchanted creature gets +1/+1 for each Aura you control that's attached to a creature.",
+  "printed_text": "Encantar criatura\nQuando Devaneio do Sábio entrar no campo de batalha, compre um card para cada Aura que você controla que estiver anexada a uma criatura.\nA criatura encantada recebe +1/+1 para cada Aura que você controla anexada a uma criatura.",
+  "colors": [
+    "W"
+  ],
+  "color_identity": [
+    "W"
+  ],
+  "keywords": [
+    "Enchant"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "51c0814a-2db2-4182-9aac-77340e9a540d",
+  "set": "woc",
+  "set_name": "Wilds of Eldraine Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/51c0814a-2db2-4182-9aac-77340e9a540d",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Awoc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/woc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/492b4fb0-84c6-416e-a4e0-04efcbe8168c/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Abd92cacd-c7d8-43a2-a261-ea4754fefdc5&unique=prints",
+  "collector_number": "73",
+  "digital": false,
+  "rarity": "uncommon",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Jason Rainville",
+  "artist_ids": [
+    "6ed7e669-579b-443d-b223-e5cbcb2a7483"
+  ],
+  "illustration_id": "f4159520-7251-4dd8-94f1-8b34ea979f19",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 1844,
+  "penny_rank": 8012,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=633989&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DSage%2527s%2BReverie",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DSage%2527s%2BReverie",
+    "edhrec": "https://edhrec.com/route/?cc=Sage%27s+Reverie"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DSage%2527s%2BReverie%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Sage%27s+Reverie&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Sage%27s+Reverie&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

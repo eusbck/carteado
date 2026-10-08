@@ -1,0 +1,136 @@
+{
+  "object": "card",
+  "id": "2dc12b76-13ea-415f-8951-46083c3c52d9",
+  "oracle_id": "d683d985-9888-4d21-8b5f-69e69ce4a03b",
+  "multiverse_ids": [
+    658141
+  ],
+  "name": "Path to Exile",
+  "printed_name": "Caminho para o Exílio",
+  "lang": "pt",
+  "released_at": "2024-04-19",
+  "uri": "https://api.scryfall.com/cards/2dc12b76-13ea-415f-8951-46083c3c52d9",
+  "scryfall_uri": "https://scryfall.com/card/otp/6/pt/caminho-para-o-ex%C3%ADlio-(path-to-exile)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T05:01:42Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/2/d/2dc12b76-13ea-415f-8951-46083c3c52d9.jpg?1782795702",
+    "normal": "https://cards.scryfall.io/normal/front/2/d/2dc12b76-13ea-415f-8951-46083c3c52d9.jpg?1782795702",
+    "large": "https://cards.scryfall.io/large/front/2/d/2dc12b76-13ea-415f-8951-46083c3c52d9.jpg?1782795702",
+    "png": "https://cards.scryfall.io/png/front/2/d/2dc12b76-13ea-415f-8951-46083c3c52d9.png?1782795702",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/2/d/2dc12b76-13ea-415f-8951-46083c3c52d9.jpg?1782795702",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/2/d/2dc12b76-13ea-415f-8951-46083c3c52d9.jpg?1782795702",
+    "thumb": "https://cards.scryfall.io/thumb/front/2/d/2dc12b76-13ea-415f-8951-46083c3c52d9.webp?1782795702",
+    "grid": "https://cards.scryfall.io/grid/front/2/d/2dc12b76-13ea-415f-8951-46083c3c52d9.webp?1782795702",
+    "display": "https://cards.scryfall.io/display/front/2/d/2dc12b76-13ea-415f-8951-46083c3c52d9.webp?1782795702",
+    "art": "https://cards.scryfall.io/art/front/2/d/2dc12b76-13ea-415f-8951-46083c3c52d9.webp?1782795702",
+    "crop": "https://cards.scryfall.io/crop/front/2/d/2dc12b76-13ea-415f-8951-46083c3c52d9.webp?1782795702"
+  },
+  "mana_cost": "{W}",
+  "cmc": 1.0,
+  "type_line": "Instant",
+  "printed_type_line": "Mágica Instantânea",
+  "oracle_text": "Exile target creature. Its controller may search their library for a basic land card, put that card onto the battlefield tapped, then shuffle.",
+  "printed_text": "Exile a criatura alvo. Seu controlador pode procurar no próprio grimório um card de terreno básico, colocá-lo no campo de batalha virado e depois embaralhar.",
+  "colors": [
+    "W"
+  ],
+  "color_identity": [
+    "W"
+  ],
+  "keywords": [],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "not_legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo",
+    "arena"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "8b51294d-fc54-410c-83b2-0168837ede87",
+  "set": "otp",
+  "set_name": "Breaking News",
+  "set_type": "masterpiece",
+  "set_uri": "https://api.scryfall.com/sets/8b51294d-fc54-410c-83b2-0168837ede87",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Aotp&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/otp?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/2dc12b76-13ea-415f-8951-46083c3c52d9/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Ad683d985-9888-4d21-8b5f-69e69ce4a03b&unique=prints",
+  "collector_number": "6",
+  "digital": false,
+  "rarity": "rare",
+  "flavor_text": "Visitante misterioso salva a cidade e desaparece",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Calder Moore",
+  "artist_ids": [
+    "af6862b1-2e08-445f-b709-37ef4c00c4db"
+  ],
+  "illustration_id": "9ebebdbd-1206-4d6b-9ff5-f336468cd209",
+  "border_color": "borderless",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "promo_types": [
+    "boosterfun"
+  ],
+  "edhrec_rank": 15,
+  "penny_rank": 5,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=658141&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DPath%2Bto%2BExile",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DPath%2Bto%2BExile",
+    "edhrec": "https://edhrec.com/route/?cc=Path+to+Exile"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DPath%2Bto%2BExile%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Path+to+Exile&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Path+to+Exile&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

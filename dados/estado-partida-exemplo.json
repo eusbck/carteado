@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "rules_version": "2026-09-25",
+  "purpose": "Modelo para uma futura simulação de decks, além do motor didático",
+  "format": "Commander",
+  "initial_player_count": 4,
+  "turn_order": [
+    "A",
+    "B",
+    "C",
+    "D"
+  ],
+  "active_player": "A",
+  "priority_holder": "A",
+  "turn": {
+    "number": 1,
+    "phase": "beginning",
+    "step": "upkeep",
+    "consecutive_passes": 0,
+    "extra_turns": []
+  },
+  "players": [
+    {
+      "id": "A",
+      "life": 40,
+      "poison": 0,
+      "decklist": null,
+      "commander_card_ids": [],
+      "mana_pool": [],
+      "land_plays_used": 0,
+      "max_hand_size": 7
+    },
+    {
+      "id": "B",
+      "life": 40,
+      "poison": 0,
+      "decklist": null,
+      "commander_card_ids": [],
+      "mana_pool": [],
+      "land_plays_used": 0,
+      "max_hand_size": 7
+    },
+    {
+      "id": "C",
+      "life": 40,
+      "poison": 0,
+      "decklist": null,
+      "commander_card_ids": [],
+      "mana_pool": [],
+      "land_plays_used": 0,
+      "max_hand_size": 7
+    },
+    {
+      "id": "D",
+      "life": 40,
+      "poison": 0,
+      "decklist": null,
+      "commander_card_ids": [],
+      "mana_pool": [],
+      "land_plays_used": 0,
+      "max_hand_size": 7
+    }
+  ],
+  "objects": [],
+  "stack": [],
+  "pending_triggers": [],
+  "continuous_effects": [],
+  "replacement_effects": [],
+  "commander_casts_from_command_zone": {},
+  "commander_combat_damage_to_players": {},
+  "event_log": [],
+  "missing_inputs": [
+    "Comandantes da mesa",
+    "Listas completas dos decks",
+    "Rule 0 combinado",
+    "Texto Oracle e implementação das cartas"
+  ]
+}

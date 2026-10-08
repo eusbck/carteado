@@ -1,0 +1,133 @@
+{
+  "object": "card",
+  "id": "06d24573-5aa4-4199-84c2-4d6975778b81",
+  "oracle_id": "9c77eb0a-543a-41db-ba1f-aa0163837ae0",
+  "multiverse_ids": [
+    633975
+  ],
+  "name": "Ajani's Chosen",
+  "printed_name": "Escolhidos de Ajani",
+  "lang": "pt",
+  "released_at": "2023-09-08",
+  "uri": "https://api.scryfall.com/cards/06d24573-5aa4-4199-84c2-4d6975778b81",
+  "scryfall_uri": "https://scryfall.com/card/woc/59/pt/escolhidos-de-ajani-(ajanis-chosen)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T09:45:28Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/0/6/06d24573-5aa4-4199-84c2-4d6975778b81.jpg?1782812728",
+    "normal": "https://cards.scryfall.io/normal/front/0/6/06d24573-5aa4-4199-84c2-4d6975778b81.jpg?1782812728",
+    "large": "https://cards.scryfall.io/large/front/0/6/06d24573-5aa4-4199-84c2-4d6975778b81.jpg?1782812728",
+    "png": "https://cards.scryfall.io/png/front/0/6/06d24573-5aa4-4199-84c2-4d6975778b81.png?1782812728",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/0/6/06d24573-5aa4-4199-84c2-4d6975778b81.jpg?1782812728",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/0/6/06d24573-5aa4-4199-84c2-4d6975778b81.jpg?1782812728",
+    "thumb": "https://cards.scryfall.io/thumb/front/0/6/06d24573-5aa4-4199-84c2-4d6975778b81.webp?1782812728",
+    "grid": "https://cards.scryfall.io/grid/front/0/6/06d24573-5aa4-4199-84c2-4d6975778b81.webp?1782812728",
+    "display": "https://cards.scryfall.io/display/front/0/6/06d24573-5aa4-4199-84c2-4d6975778b81.webp?1782812728",
+    "art": "https://cards.scryfall.io/art/front/0/6/06d24573-5aa4-4199-84c2-4d6975778b81.webp?1782812728",
+    "crop": "https://cards.scryfall.io/crop/front/0/6/06d24573-5aa4-4199-84c2-4d6975778b81.webp?1782812728"
+  },
+  "mana_cost": "{2}{W}{W}",
+  "cmc": 4.0,
+  "type_line": "Creature — Cat Soldier",
+  "printed_type_line": "Criatura — Felino Soldado",
+  "oracle_text": "Whenever an enchantment you control enters, create a 2/2 white Cat creature token. If that enchantment is an Aura, you may attach it to the token.",
+  "printed_text": "Toda vez que um encantamento entrar no campo de batalha sob seu controle, crie uma ficha de criatura Felino branca 2/2. Se aquele encantamento for uma Aura, você poderá anexá-la à ficha.",
+  "power": "3",
+  "toughness": "3",
+  "colors": [
+    "W"
+  ],
+  "color_identity": [
+    "W"
+  ],
+  "keywords": [],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "51c0814a-2db2-4182-9aac-77340e9a540d",
+  "set": "woc",
+  "set_name": "Wilds of Eldraine Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/51c0814a-2db2-4182-9aac-77340e9a540d",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Awoc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/woc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/06d24573-5aa4-4199-84c2-4d6975778b81/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A9c77eb0a-543a-41db-ba1f-aa0163837ae0&unique=prints",
+  "collector_number": "59",
+  "digital": false,
+  "rarity": "rare",
+  "flavor_text": "\"Unidos, nosso rugido derrubará montanhas.\"",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Wayne Reynolds",
+  "artist_ids": [
+    "afc47cec-3ccc-404e-a8c6-4d83dd504271"
+  ],
+  "illustration_id": "22b7f526-97d3-4481-bb91-b01ad8fcadbb",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 4056,
+  "penny_rank": 10711,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=633975&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DAjani%2527s%2BChosen",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DAjani%2527s%2BChosen",
+    "edhrec": "https://edhrec.com/route/?cc=Ajani%27s+Chosen"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DAjani%2527s%2BChosen%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Ajani%27s+Chosen&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Ajani%27s+Chosen&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

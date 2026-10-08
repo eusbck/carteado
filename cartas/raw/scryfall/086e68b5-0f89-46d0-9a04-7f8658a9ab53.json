@@ -1,0 +1,151 @@
+{
+  "object": "card",
+  "id": "086e68b5-0f89-46d0-9a04-7f8658a9ab53",
+  "oracle_id": "be4f47e9-1bd2-4aa9-bc85-3f203ad21639",
+  "multiverse_ids": [],
+  "resource_id": "E2B2BD24DD581419636C8DE4909F8AFD381675340FDAF19B960C37FB6E2450B9",
+  "mtgo_id": 148971,
+  "tcgplayer_id": 687423,
+  "cardmarket_id": 881571,
+  "name": "Rionya, Fire Dancer",
+  "lang": "en",
+  "released_at": "2026-04-24",
+  "uri": "https://api.scryfall.com/cards/086e68b5-0f89-46d0-9a04-7f8658a9ab53",
+  "scryfall_uri": "https://scryfall.com/card/soc/252/rionya-fire-dancer?utm_source=api",
+  "layout": "normal",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T00:49:32Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/0/8/086e68b5-0f89-46d0-9a04-7f8658a9ab53.jpg?1783903772",
+    "normal": "https://cards.scryfall.io/normal/front/0/8/086e68b5-0f89-46d0-9a04-7f8658a9ab53.jpg?1783903772",
+    "large": "https://cards.scryfall.io/large/front/0/8/086e68b5-0f89-46d0-9a04-7f8658a9ab53.jpg?1783903772",
+    "png": "https://cards.scryfall.io/png/front/0/8/086e68b5-0f89-46d0-9a04-7f8658a9ab53.png?1783903772",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/0/8/086e68b5-0f89-46d0-9a04-7f8658a9ab53.jpg?1783903772",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/0/8/086e68b5-0f89-46d0-9a04-7f8658a9ab53.jpg?1783903772",
+    "thumb": "https://cards.scryfall.io/thumb/front/0/8/086e68b5-0f89-46d0-9a04-7f8658a9ab53.webp?1783903772",
+    "grid": "https://cards.scryfall.io/grid/front/0/8/086e68b5-0f89-46d0-9a04-7f8658a9ab53.webp?1783903772",
+    "display": "https://cards.scryfall.io/display/front/0/8/086e68b5-0f89-46d0-9a04-7f8658a9ab53.webp?1783903772",
+    "art": "https://cards.scryfall.io/art/front/0/8/086e68b5-0f89-46d0-9a04-7f8658a9ab53.webp?1783903772",
+    "crop": "https://cards.scryfall.io/crop/front/0/8/086e68b5-0f89-46d0-9a04-7f8658a9ab53.webp?1783903772"
+  },
+  "mana_cost": "{3}{R}{R}",
+  "cmc": 5.0,
+  "type_line": "Legendary Creature — Human Wizard",
+  "oracle_text": "At the beginning of combat on your turn, create X tokens that are copies of another target creature you control, where X is one plus the number of instant and sorcery spells you've cast this turn. They gain haste. Exile them at the beginning of the next end step.",
+  "power": "3",
+  "toughness": "4",
+  "colors": [
+    "R"
+  ],
+  "color_identity": [
+    "R"
+  ],
+  "keywords": [],
+  "all_parts": [
+    {
+      "object": "related_card",
+      "id": "4e119457-948d-4ef8-8c27-59fa675f766f",
+      "component": "token",
+      "name": "Copy",
+      "type_line": "Token",
+      "uri": "https://api.scryfall.com/cards/4e119457-948d-4ef8-8c27-59fa675f766f"
+    },
+    {
+      "object": "related_card",
+      "id": "086e68b5-0f89-46d0-9a04-7f8658a9ab53",
+      "component": "combo_piece",
+      "name": "Rionya, Fire Dancer",
+      "type_line": "Legendary Creature — Human Wizard",
+      "uri": "https://api.scryfall.com/cards/086e68b5-0f89-46d0-9a04-7f8658a9ab53"
+    }
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "97fab8d1-480a-419d-ab14-663968e29b9c",
+  "set": "soc",
+  "set_name": "Secrets of Strixhaven Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/97fab8d1-480a-419d-ab14-663968e29b9c",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Asoc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/soc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/086e68b5-0f89-46d0-9a04-7f8658a9ab53/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Abe4f47e9-1bd2-4aa9-bc85-3f203ad21639&unique=prints",
+  "collector_number": "252",
+  "digital": false,
+  "rarity": "rare",
+  "watermark": "prismari",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Heonhwa",
+  "artist_ids": [
+    "ce415f9e-8a20-4d64-bcba-2b1b7e94012e"
+  ],
+  "illustration_id": "30942169-f40c-4ade-821c-a4f623d2fa74",
+  "border_color": "black",
+  "frame": "2015",
+  "frame_effects": [
+    "legendary"
+  ],
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 2821,
+  "prices": {
+    "usd": "0.47",
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": "1.08",
+    "eur_foil": null,
+    "tix": "0.92"
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DRionya%252C%2BFire%2BDancer",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DRionya%252C%2BFire%2BDancer",
+    "edhrec": "https://edhrec.com/route/?cc=Rionya%2C+Fire+Dancer"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F687423%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=881571&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards/148971?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

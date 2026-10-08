@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Commander — laboratório de regras</title><link rel="stylesheet" href="estilo.css">
+<script defer src="dados.js"></script><script defer src="motor.js"></script><script defer src="app.js"></script></head>
+<body>
+<header class="top"><a href="../ABRA-AQUI.html" class="brand">MAGIC / COMMANDER</a><span>Pesquisa 03.10.2026 · CR 25.09.2026</span></header>
+<main>
+<div class="intro"><p class="eyebrow">ESTUDO PARA A MESA</p><h1>Entenda a janela.<br>Escolha a resposta.</h1><p>Pratique turnos, prioridade e pilha. Consulte as regras oficiais completas, inclusive as exceções.</p></div>
+<nav class="tabs" aria-label="Seções do laboratório"><button data-tab="lab" aria-selected="true">Turnos e pilha</button><button data-tab="quiz" aria-selected="false">Situações de mesa</button><button data-tab="rules" aria-selected="false">Buscar regras oficiais</button><a href="../guia/GUIA-PARA-IMPRIMIR.html">Ler o guia ↗</a></nav>
+<section id="lab" class="tab-panel">
+<details class="scope"><summary>Como funciona este exemplo</summary><p>Custos e recursos estão disponíveis por premissa. Cada jogador tem acesso a cartas fictícias e a um planeswalker de treino. O motor verifica as janelas demonstradas; efeitos das cartas, mana detalhada, combate efetivo e derrota não são calculados. As declarações de combate são pré-configuradas e acontecem antes da prioridade exibida. Para regras além desse recorte, use o guia e os exercícios.</p></details>
+<div class="config"><label>Jogadores <select id="count"><option>2</option><option>3</option><option selected>4</option><option>5</option><option>6</option></select></label><label><input id="has-attackers" type="checkbox" checked> Há atacantes</label><label><input id="first-strike" type="checkbox"> Duas etapas de dano</label><label><input id="cleanup-trigger" type="checkbox"> Gatilho na limpeza</label><button id="reset" class="quiet">Reiniciar com estas opções</button></div>
+<div id="players" class="players" aria-label="Mesa"></div>
+<div class="lab-grid"><div>
+<article class="panel turn"><p class="eyebrow" id="turn-label"></p><h2 id="step-label"></h2><p id="step-note"></p><div class="timeline" id="timeline" aria-label="Etapas do turno"></div><p class="rule-tag" id="step-rule"></p></article>
+<article class="panel"><div class="row"><h2>Ações de treino</h2><label>Quem age? <select id="actor"></select></label></div><p class="hint">Clique também numa ação fora de sua janela para entender por que ela é recusada.</p><label class="target-label">Alvo da anulação <select id="counter-target"></select></label><div id="actions" class="action-grid"></div><div id="message" class="message" role="status" aria-live="polite">Escolha uma ação ou passe prioridade.</div></article>
+<article class="panel"><h2>Passes e avanço</h2><p id="passes-label"></p><div class="controls"><button id="pass" class="primary">Passar prioridade</button><button id="all-pass">Todos passam uma vez</button><button id="undo" class="quiet">Desfazer</button></div><p class="hint">Todos passam com objeto na pilha: só o topo resolve. Com pilha vazia: avança uma etapa. Depois de resolver, a prioridade retorna ao jogador ativo.</p></article>
+</div><aside>
+<article class="panel"><p class="eyebrow">ÚLTIMO A ENTRAR, PRIMEIRO A RESOLVER</p><h2>Pilha <span id="stack-count"></span></h2><div id="stack" class="stack"></div></article>
+<article class="panel"><div class="row"><h2>Histórico</h2><button id="export" class="quiet small">Salvar JSON</button></div><ol id="history" class="history"></ol></article>
+</aside></div></section>
+<section id="quiz" class="tab-panel" hidden><div class="row"><div><p class="eyebrow">EXERCÍCIOS COM EXPLICAÇÃO</p><h2>Situações que aparecem no jogo</h2></div><label>Assunto <select id="quiz-filter"><option value="">Todos</option></select></label></div><p id="quiz-progress" class="hint"></p><div id="quiz-list" class="quiz-list"></div></section>
+<section id="rules" class="tab-panel" hidden><p class="eyebrow">MANUAL OFICIAL INTEGRAL · INGLÊS</p><h2>Encontre a regra e suas exceções</h2><p>Pesquise por número, palavra em inglês ou assunto em português. Exemplos: <button class="search-example" data-query="117.4">117.4</button>, <button class="search-example" data-query="comandante">comandante</button>, <button class="search-example" data-query="ward">ward</button>, <button class="search-example" data-query="combate">combate</button>.</p><label class="search-label">Buscar <input id="search" type="search" placeholder="Prioridade, 903.9, trample, sacrifice…" autocomplete="off"></label><p id="search-status" class="hint"></p><div id="topic-links" class="topic-links"></div><div id="search-results"></div></section>
+<footer><p>Guia em português + base oficial integral. <a href="../fontes-oficiais/LEIA-ME.md">Fontes e limites</a> · <a href="../fontes-oficiais/MagicCompRules-2026-09-25.txt">Manual completo offline</a> · <a href="https://gatherer.wizards.com/" target="_blank" rel="noopener">Oracle / Gatherer ↗</a></p></footer>
+</main></body></html>

@@ -1,0 +1,131 @@
+{
+  "object": "card",
+  "id": "707e9d2e-3934-4b90-878d-4699ac1cbe89",
+  "oracle_id": "b4dbbf56-d7df-4183-bb48-cfc6b4d0468f",
+  "multiverse_ids": [],
+  "resource_id": "B3C0A9BA3F736D6162AAE5B1EDE281D66DE0A46B5B4075334DC2DE0D839AB7D0",
+  "mtgo_id": 148747,
+  "tcgplayer_id": 687380,
+  "cardmarket_id": 881460,
+  "name": "Armored Skyhunter",
+  "lang": "en",
+  "released_at": "2026-04-24",
+  "uri": "https://api.scryfall.com/cards/707e9d2e-3934-4b90-878d-4699ac1cbe89",
+  "scryfall_uri": "https://scryfall.com/card/soc/138/armored-skyhunter?utm_source=api",
+  "layout": "normal",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T00:50:13Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/7/0/707e9d2e-3934-4b90-878d-4699ac1cbe89.jpg?1783903813",
+    "normal": "https://cards.scryfall.io/normal/front/7/0/707e9d2e-3934-4b90-878d-4699ac1cbe89.jpg?1783903813",
+    "large": "https://cards.scryfall.io/large/front/7/0/707e9d2e-3934-4b90-878d-4699ac1cbe89.jpg?1783903813",
+    "png": "https://cards.scryfall.io/png/front/7/0/707e9d2e-3934-4b90-878d-4699ac1cbe89.png?1783903813",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/7/0/707e9d2e-3934-4b90-878d-4699ac1cbe89.jpg?1783903813",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/7/0/707e9d2e-3934-4b90-878d-4699ac1cbe89.jpg?1783903813",
+    "thumb": "https://cards.scryfall.io/thumb/front/7/0/707e9d2e-3934-4b90-878d-4699ac1cbe89.webp?1783903813",
+    "grid": "https://cards.scryfall.io/grid/front/7/0/707e9d2e-3934-4b90-878d-4699ac1cbe89.webp?1783903813",
+    "display": "https://cards.scryfall.io/display/front/7/0/707e9d2e-3934-4b90-878d-4699ac1cbe89.webp?1783903813",
+    "art": "https://cards.scryfall.io/art/front/7/0/707e9d2e-3934-4b90-878d-4699ac1cbe89.webp?1783903813",
+    "crop": "https://cards.scryfall.io/crop/front/7/0/707e9d2e-3934-4b90-878d-4699ac1cbe89.webp?1783903813"
+  },
+  "mana_cost": "{3}{W}",
+  "cmc": 4.0,
+  "type_line": "Creature — Cat Knight",
+  "oracle_text": "Flying\nWhenever this creature attacks, look at the top six cards of your library. You may put an Aura or Equipment card from among them onto the battlefield. If an Equipment is put onto the battlefield this way, you may attach it to a creature you control. Put the rest of those cards on the bottom of your library in a random order.",
+  "power": "3",
+  "toughness": "3",
+  "colors": [
+    "W"
+  ],
+  "color_identity": [
+    "W"
+  ],
+  "keywords": [
+    "Flying"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "97fab8d1-480a-419d-ab14-663968e29b9c",
+  "set": "soc",
+  "set_name": "Secrets of Strixhaven Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/97fab8d1-480a-419d-ab14-663968e29b9c",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Asoc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/soc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/707e9d2e-3934-4b90-878d-4699ac1cbe89/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Ab4dbbf56-d7df-4183-bb48-cfc6b4d0468f&unique=prints",
+  "collector_number": "138",
+  "digital": false,
+  "rarity": "rare",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Denman Rooke",
+  "artist_ids": [
+    "5eedbc4b-34a3-4ca5-b3f5-9ac2f6b6adf7"
+  ],
+  "illustration_id": "f75ae02a-bd73-4412-bdb6-aed83eaf80fb",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 2542,
+  "prices": {
+    "usd": "0.36",
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": "0.55",
+    "eur_foil": null,
+    "tix": "3.42"
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DArmored%2BSkyhunter",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DArmored%2BSkyhunter",
+    "edhrec": "https://edhrec.com/route/?cc=Armored+Skyhunter"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F687380%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=881460&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards/148747?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

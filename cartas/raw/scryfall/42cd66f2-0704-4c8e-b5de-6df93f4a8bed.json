@@ -1,0 +1,164 @@
+{
+  "object": "card",
+  "id": "42cd66f2-0704-4c8e-b5de-6df93f4a8bed",
+  "oracle_id": "a800bec4-bacc-43f9-a773-dd795959935b",
+  "multiverse_ids": [],
+  "resource_id": "50A16D3A9C3F553E5154598739BB67752F62A6534B34D1ED5676D8DC764F64C6",
+  "mtgo_id": 140167,
+  "arena_id": 98136,
+  "tcgplayer_id": 631170,
+  "cardmarket_id": 824716,
+  "name": "Locke, Treasure Hunter",
+  "lang": "en",
+  "released_at": "2025-06-13",
+  "uri": "https://api.scryfall.com/cards/42cd66f2-0704-4c8e-b5de-6df93f4a8bed",
+  "scryfall_uri": "https://scryfall.com/card/fic/87/locke-treasure-hunter?utm_source=api",
+  "layout": "normal",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T01:32:24Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/4/2/42cd66f2-0704-4c8e-b5de-6df93f4a8bed.jpg?1783906344",
+    "normal": "https://cards.scryfall.io/normal/front/4/2/42cd66f2-0704-4c8e-b5de-6df93f4a8bed.jpg?1783906344",
+    "large": "https://cards.scryfall.io/large/front/4/2/42cd66f2-0704-4c8e-b5de-6df93f4a8bed.jpg?1783906344",
+    "png": "https://cards.scryfall.io/png/front/4/2/42cd66f2-0704-4c8e-b5de-6df93f4a8bed.png?1783906344",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/4/2/42cd66f2-0704-4c8e-b5de-6df93f4a8bed.jpg?1783906344",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/4/2/42cd66f2-0704-4c8e-b5de-6df93f4a8bed.jpg?1783906344",
+    "thumb": "https://cards.scryfall.io/thumb/front/4/2/42cd66f2-0704-4c8e-b5de-6df93f4a8bed.webp?1783906344",
+    "grid": "https://cards.scryfall.io/grid/front/4/2/42cd66f2-0704-4c8e-b5de-6df93f4a8bed.webp?1783906344",
+    "display": "https://cards.scryfall.io/display/front/4/2/42cd66f2-0704-4c8e-b5de-6df93f4a8bed.webp?1783906344",
+    "art": "https://cards.scryfall.io/art/front/4/2/42cd66f2-0704-4c8e-b5de-6df93f4a8bed.webp?1783906344",
+    "crop": "https://cards.scryfall.io/crop/front/4/2/42cd66f2-0704-4c8e-b5de-6df93f4a8bed.webp?1783906344"
+  },
+  "mana_cost": "{1}{B}{R}",
+  "cmc": 3.0,
+  "type_line": "Legendary Creature — Human Rogue",
+  "oracle_text": "Locke can't be blocked by creatures with greater power.\nMug — Whenever Locke attacks, each player mills a card. If a land card was milled this way, create a Treasure token. Until end of turn, you may cast a spell from among those cards.",
+  "power": "2",
+  "toughness": "3",
+  "colors": [
+    "B",
+    "R"
+  ],
+  "color_identity": [
+    "B",
+    "R"
+  ],
+  "keywords": [
+    "Treasure",
+    "Mill",
+    "Mug"
+  ],
+  "all_parts": [
+    {
+      "object": "related_card",
+      "id": "e5f4f810-f95a-41ac-9c3b-47254c03e766",
+      "component": "token",
+      "name": "Treasure",
+      "type_line": "Token Artifact — Treasure",
+      "uri": "https://api.scryfall.com/cards/e5f4f810-f95a-41ac-9c3b-47254c03e766"
+    },
+    {
+      "object": "related_card",
+      "id": "af4481b1-43b0-43e6-a9ea-f4ec0a551e61",
+      "component": "combo_piece",
+      "name": "Locke, Treasure Hunter",
+      "type_line": "Legendary Creature — Human Rogue",
+      "uri": "https://api.scryfall.com/cards/af4481b1-43b0-43e6-a9ea-f4ec0a551e61"
+    }
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "arena",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "30659956-4558-4cbf-a65f-34cd00c89579",
+  "set": "fic",
+  "set_name": "Final Fantasy Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/30659956-4558-4cbf-a65f-34cd00c89579",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Afic&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/fic?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/42cd66f2-0704-4c8e-b5de-6df93f4a8bed/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Aa800bec4-bacc-43f9-a773-dd795959935b&unique=prints",
+  "collector_number": "87",
+  "digital": false,
+  "rarity": "rare",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "AKAGI",
+  "artist_ids": [
+    "84c7086f-5e33-40cc-90bc-620e07d1ed17"
+  ],
+  "illustration_id": "5d5dbc0a-dfb0-4d01-8212-41d541b54657",
+  "border_color": "black",
+  "frame": "2015",
+  "frame_effects": [
+    "legendary"
+  ],
+  "security_stamp": "triangle",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "promo_types": [
+    "surgefoil",
+    "ffvi",
+    "universesbeyond"
+  ],
+  "edhrec_rank": 4210,
+  "prices": {
+    "usd": "0.27",
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": "0.35",
+    "eur_foil": null,
+    "tix": "1.54"
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DLocke%252C%2BTreasure%2BHunter",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DLocke%252C%2BTreasure%2BHunter",
+    "edhrec": "https://edhrec.com/route/?cc=Locke%2C+Treasure+Hunter"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F631170%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=824716&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards/140167?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

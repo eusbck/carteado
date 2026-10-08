@@ -1,0 +1,139 @@
+{
+  "object": "card",
+  "id": "1852c1e1-fbea-4b14-9927-4b1849f9b8a3",
+  "oracle_id": "b473e293-59e3-4e04-acf2-622604aeb25f",
+  "multiverse_ids": [
+    497873
+  ],
+  "mtgo_id": 85488,
+  "tcgplayer_id": 226808,
+  "cardmarket_id": 510595,
+  "name": "Path of Ancestry",
+  "lang": "en",
+  "released_at": "2020-11-20",
+  "uri": "https://api.scryfall.com/cards/1852c1e1-fbea-4b14-9927-4b1849f9b8a3",
+  "scryfall_uri": "https://scryfall.com/card/cmr/353/path-of-ancestry?utm_source=api",
+  "layout": "normal",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T07:45:41Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/1/8/1852c1e1-fbea-4b14-9927-4b1849f9b8a3.jpg?1783928741",
+    "normal": "https://cards.scryfall.io/normal/front/1/8/1852c1e1-fbea-4b14-9927-4b1849f9b8a3.jpg?1783928741",
+    "large": "https://cards.scryfall.io/large/front/1/8/1852c1e1-fbea-4b14-9927-4b1849f9b8a3.jpg?1783928741",
+    "png": "https://cards.scryfall.io/png/front/1/8/1852c1e1-fbea-4b14-9927-4b1849f9b8a3.png?1783928741",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/1/8/1852c1e1-fbea-4b14-9927-4b1849f9b8a3.jpg?1783928741",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/1/8/1852c1e1-fbea-4b14-9927-4b1849f9b8a3.jpg?1783928741",
+    "thumb": "https://cards.scryfall.io/thumb/front/1/8/1852c1e1-fbea-4b14-9927-4b1849f9b8a3.webp?1783928741",
+    "grid": "https://cards.scryfall.io/grid/front/1/8/1852c1e1-fbea-4b14-9927-4b1849f9b8a3.webp?1783928741",
+    "display": "https://cards.scryfall.io/display/front/1/8/1852c1e1-fbea-4b14-9927-4b1849f9b8a3.webp?1783928741",
+    "art": "https://cards.scryfall.io/art/front/1/8/1852c1e1-fbea-4b14-9927-4b1849f9b8a3.webp?1783928741",
+    "crop": "https://cards.scryfall.io/crop/front/1/8/1852c1e1-fbea-4b14-9927-4b1849f9b8a3.webp?1783928741"
+  },
+  "mana_cost": "",
+  "cmc": 0.0,
+  "type_line": "Land",
+  "oracle_text": "This land enters tapped.\n{T}: Add one mana of any color in your commander's color identity. When that mana is spent to cast a creature spell that shares a creature type with your commander, scry 1. (Look at the top card of your library. You may put that card on the bottom.)",
+  "colors": [],
+  "color_identity": [],
+  "keywords": [
+    "Scry"
+  ],
+  "produced_mana": [
+    "B",
+    "G",
+    "R",
+    "U",
+    "W"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "legal",
+    "pauper": "legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "39de6fbf-1f11-48d0-8f04-f0407f6a0732",
+  "set": "cmr",
+  "set_name": "Commander Legends",
+  "set_type": "draft_innovation",
+  "set_uri": "https://api.scryfall.com/sets/39de6fbf-1f11-48d0-8f04-f0407f6a0732",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Acmr&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/cmr?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/1852c1e1-fbea-4b14-9927-4b1849f9b8a3/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Ab473e293-59e3-4e04-acf2-622604aeb25f&unique=prints",
+  "collector_number": "353",
+  "digital": false,
+  "rarity": "common",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Alayna Danner",
+  "artist_ids": [
+    "bb677b1a-ce51-4888-83d6-5a94de461ff9"
+  ],
+  "illustration_id": "588f6d6f-e78a-4468-8067-dfbdf29c5a49",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "edhrec_rank": 14,
+  "preview": {
+    "source": "Fazendo Nerdice",
+    "source_uri": "https://www.youtube.com/watch?v=4pszQeupFUc",
+    "previewed_at": "2020-10-29"
+  },
+  "prices": {
+    "usd": "0.35",
+    "usd_foil": "0.40",
+    "usd_etched": null,
+    "eur": "0.16",
+    "eur_foil": "0.43",
+    "tix": "0.04"
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=497873&printed=false",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DPath%2Bof%2BAncestry",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DPath%2Bof%2BAncestry",
+    "edhrec": "https://edhrec.com/route/?cc=Path+of+Ancestry"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F226808%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=510595&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards/85488?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

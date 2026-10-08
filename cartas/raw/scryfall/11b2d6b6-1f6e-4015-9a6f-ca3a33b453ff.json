@@ -1,0 +1,133 @@
+{
+  "object": "card",
+  "id": "11b2d6b6-1f6e-4015-9a6f-ca3a33b453ff",
+  "oracle_id": "a8dba58b-2956-492e-ae30-49db2ae68e53",
+  "multiverse_ids": [
+    520699
+  ],
+  "name": "Mana Geyser",
+  "printed_name": "Gêiser de Mana",
+  "lang": "pt",
+  "released_at": "2021-04-23",
+  "uri": "https://api.scryfall.com/cards/11b2d6b6-1f6e-4015-9a6f-ca3a33b453ff",
+  "scryfall_uri": "https://scryfall.com/card/c21/176/pt/g%C3%AAiser-de-mana-(mana-geyser)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-01T06:23:53Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/1/1/11b2d6b6-1f6e-4015-9a6f-ca3a33b453ff.jpg?1782887033",
+    "normal": "https://cards.scryfall.io/normal/front/1/1/11b2d6b6-1f6e-4015-9a6f-ca3a33b453ff.jpg?1782887033",
+    "large": "https://cards.scryfall.io/large/front/1/1/11b2d6b6-1f6e-4015-9a6f-ca3a33b453ff.jpg?1782887033",
+    "png": "https://cards.scryfall.io/png/front/1/1/11b2d6b6-1f6e-4015-9a6f-ca3a33b453ff.png?1782887033",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/1/1/11b2d6b6-1f6e-4015-9a6f-ca3a33b453ff.jpg?1782887033",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/1/1/11b2d6b6-1f6e-4015-9a6f-ca3a33b453ff.jpg?1782887033",
+    "thumb": "https://cards.scryfall.io/thumb/front/1/1/11b2d6b6-1f6e-4015-9a6f-ca3a33b453ff.webp?1782887033",
+    "grid": "https://cards.scryfall.io/grid/front/1/1/11b2d6b6-1f6e-4015-9a6f-ca3a33b453ff.webp?1782887033",
+    "display": "https://cards.scryfall.io/display/front/1/1/11b2d6b6-1f6e-4015-9a6f-ca3a33b453ff.webp?1782887033",
+    "art": "https://cards.scryfall.io/art/front/1/1/11b2d6b6-1f6e-4015-9a6f-ca3a33b453ff.webp?1782887033",
+    "crop": "https://cards.scryfall.io/crop/front/1/1/11b2d6b6-1f6e-4015-9a6f-ca3a33b453ff.webp?1782887033"
+  },
+  "mana_cost": "{3}{R}{R}",
+  "cmc": 5.0,
+  "type_line": "Sorcery",
+  "printed_type_line": "Feitiço",
+  "oracle_text": "Add {R} for each tapped land your opponents control.",
+  "printed_text": "Adicione {R} para cada terreno virado que seus oponentes controlam.",
+  "colors": [
+    "R"
+  ],
+  "color_identity": [
+    "R"
+  ],
+  "keywords": [],
+  "produced_mana": [
+    "R"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "banned",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "27bf6dbd-a9e1-4904-afa7-d28fc7745c4f",
+  "set": "c21",
+  "set_name": "Commander 2021",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/27bf6dbd-a9e1-4904-afa7-d28fc7745c4f",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Ac21&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/c21?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/11b2d6b6-1f6e-4015-9a6f-ca3a33b453ff/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Aa8dba58b-2956-492e-ae30-49db2ae68e53&unique=prints",
+  "collector_number": "176",
+  "digital": false,
+  "rarity": "common",
+  "flavor_text": "O Mar de Mercúrio ferveu e borbulhou ante à indignidade. O xamã vulshoque apenas sorriu.",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Martina Pilcerova",
+  "artist_ids": [
+    "30fead7c-da53-4c1b-b514-4be6e5ce487c"
+  ],
+  "illustration_id": "bb2ef064-5db1-407f-9d17-53a984b4c68a",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 289,
+  "penny_rank": 13140,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=520699&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DMana%2BGeyser",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DMana%2BGeyser",
+    "edhrec": "https://edhrec.com/route/?cc=Mana+Geyser"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DMana%2BGeyser%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Mana+Geyser&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Mana+Geyser&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "object": "card",
+  "id": "bbeba6c1-4e9d-4ba8-ab64-c08ca3e6796b",
+  "oracle_id": "b473e293-59e3-4e04-acf2-622604aeb25f",
+  "multiverse_ids": [
+    642118
+  ],
+  "name": "Path of Ancestry",
+  "printed_name": "Caminho da Ascendência",
+  "lang": "pt",
+  "released_at": "2023-11-17",
+  "uri": "https://api.scryfall.com/cards/bbeba6c1-4e9d-4ba8-ab64-c08ca3e6796b",
+  "scryfall_uri": "https://scryfall.com/card/lcc/346/pt/caminho-da-ascend%C3%AAncia-(path-of-ancestry)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T08:49:40Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/b/b/bbeba6c1-4e9d-4ba8-ab64-c08ca3e6796b.jpg?1782809380",
+    "normal": "https://cards.scryfall.io/normal/front/b/b/bbeba6c1-4e9d-4ba8-ab64-c08ca3e6796b.jpg?1782809380",
+    "large": "https://cards.scryfall.io/large/front/b/b/bbeba6c1-4e9d-4ba8-ab64-c08ca3e6796b.jpg?1782809380",
+    "png": "https://cards.scryfall.io/png/front/b/b/bbeba6c1-4e9d-4ba8-ab64-c08ca3e6796b.png?1782809380",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/b/b/bbeba6c1-4e9d-4ba8-ab64-c08ca3e6796b.jpg?1782809380",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/b/b/bbeba6c1-4e9d-4ba8-ab64-c08ca3e6796b.jpg?1782809380",
+    "thumb": "https://cards.scryfall.io/thumb/front/b/b/bbeba6c1-4e9d-4ba8-ab64-c08ca3e6796b.webp?1782809380",
+    "grid": "https://cards.scryfall.io/grid/front/b/b/bbeba6c1-4e9d-4ba8-ab64-c08ca3e6796b.webp?1782809380",
+    "display": "https://cards.scryfall.io/display/front/b/b/bbeba6c1-4e9d-4ba8-ab64-c08ca3e6796b.webp?1782809380",
+    "art": "https://cards.scryfall.io/art/front/b/b/bbeba6c1-4e9d-4ba8-ab64-c08ca3e6796b.webp?1782809380",
+    "crop": "https://cards.scryfall.io/crop/front/b/b/bbeba6c1-4e9d-4ba8-ab64-c08ca3e6796b.webp?1782809380"
+  },
+  "mana_cost": "",
+  "cmc": 0.0,
+  "type_line": "Land",
+  "printed_type_line": "Terreno",
+  "oracle_text": "This land enters tapped.\n{T}: Add one mana of any color in your commander's color identity. When that mana is spent to cast a creature spell that shares a creature type with your commander, scry 1. (Look at the top card of your library. You may put that card on the bottom.)",
+  "printed_text": "Caminho da Ascendência entra no campo de batalha virado.\n{T}: Adicione um mana de qualquer cor da identidade de cor de seu comandante. Quando aquele mana for gasto para conjurar uma mágica de criatura que compartilhe um tipo de criatura com seu comandante, use vidência 1.",
+  "colors": [],
+  "color_identity": [],
+  "keywords": [
+    "Scry"
+  ],
+  "produced_mana": [
+    "B",
+    "G",
+    "R",
+    "U",
+    "W"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "legal",
+    "pauper": "legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "d253edc3-5bc7-4cf1-9446-a8540dedffa5",
+  "set": "lcc",
+  "set_name": "The Lost Caverns of Ixalan Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/d253edc3-5bc7-4cf1-9446-a8540dedffa5",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Alcc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/lcc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/bbeba6c1-4e9d-4ba8-ab64-c08ca3e6796b/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Ab473e293-59e3-4e04-acf2-622604aeb25f&unique=prints",
+  "collector_number": "346",
+  "digital": false,
+  "rarity": "common",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Alayna Danner",
+  "artist_ids": [
+    "bb677b1a-ce51-4888-83d6-5a94de461ff9"
+  ],
+  "illustration_id": "588f6d6f-e78a-4468-8067-dfbdf29c5a49",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 14,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=642118&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DPath%2Bof%2BAncestry",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DPath%2Bof%2BAncestry",
+    "edhrec": "https://edhrec.com/route/?cc=Path+of+Ancestry"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DPath%2Bof%2BAncestry%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Path+of+Ancestry&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Path+of+Ancestry&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

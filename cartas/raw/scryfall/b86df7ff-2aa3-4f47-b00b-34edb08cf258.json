@@ -1,0 +1,140 @@
+{
+  "object": "card",
+  "id": "b86df7ff-2aa3-4f47-b00b-34edb08cf258",
+  "oracle_id": "d11e627b-8a48-411d-a261-2c9a02a758ba",
+  "multiverse_ids": [
+    518367
+  ],
+  "name": "Breena, the Demagogue",
+  "printed_name": "Brenna, a Demagoga",
+  "lang": "pt",
+  "released_at": "2021-04-23",
+  "uri": "https://api.scryfall.com/cards/b86df7ff-2aa3-4f47-b00b-34edb08cf258",
+  "scryfall_uri": "https://scryfall.com/card/c21/1/pt/brenna-a-demagoga-(breena-the-demagogue)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-01T06:45:45Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/b/8/b86df7ff-2aa3-4f47-b00b-34edb08cf258.jpg?1782888345",
+    "normal": "https://cards.scryfall.io/normal/front/b/8/b86df7ff-2aa3-4f47-b00b-34edb08cf258.jpg?1782888345",
+    "large": "https://cards.scryfall.io/large/front/b/8/b86df7ff-2aa3-4f47-b00b-34edb08cf258.jpg?1782888345",
+    "png": "https://cards.scryfall.io/png/front/b/8/b86df7ff-2aa3-4f47-b00b-34edb08cf258.png?1782888345",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/b/8/b86df7ff-2aa3-4f47-b00b-34edb08cf258.jpg?1782888345",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/b/8/b86df7ff-2aa3-4f47-b00b-34edb08cf258.jpg?1782888345",
+    "thumb": "https://cards.scryfall.io/thumb/front/b/8/b86df7ff-2aa3-4f47-b00b-34edb08cf258.webp?1782888345",
+    "grid": "https://cards.scryfall.io/grid/front/b/8/b86df7ff-2aa3-4f47-b00b-34edb08cf258.webp?1782888345",
+    "display": "https://cards.scryfall.io/display/front/b/8/b86df7ff-2aa3-4f47-b00b-34edb08cf258.webp?1782888345",
+    "art": "https://cards.scryfall.io/art/front/b/8/b86df7ff-2aa3-4f47-b00b-34edb08cf258.webp?1782888345",
+    "crop": "https://cards.scryfall.io/crop/front/b/8/b86df7ff-2aa3-4f47-b00b-34edb08cf258.webp?1782888345"
+  },
+  "mana_cost": "{1}{W}{B}",
+  "cmc": 3.0,
+  "type_line": "Legendary Creature — Bird Warlock",
+  "printed_type_line": "Criatura Lendária — Ave Bruxo",
+  "oracle_text": "Flying\nWhenever a player attacks one of your opponents, if that opponent has more life than another of your opponents, that attacking player draws a card and you put two +1/+1 counters on a creature you control.",
+  "printed_text": "Voar\nToda vez que um jogador ataca um de seus oponentes, se aquele oponente tiver mais pontos de vida que outro de seus oponentes, aquele jogador atacante compra um card e você coloca dois marcadores +1/+1 em uma criatura que você controla.",
+  "power": "1",
+  "toughness": "3",
+  "colors": [
+    "B",
+    "W"
+  ],
+  "color_identity": [
+    "B",
+    "W"
+  ],
+  "keywords": [
+    "Flying"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "27bf6dbd-a9e1-4904-afa7-d28fc7745c4f",
+  "set": "c21",
+  "set_name": "Commander 2021",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/27bf6dbd-a9e1-4904-afa7-d28fc7745c4f",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Ac21&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/c21?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/b86df7ff-2aa3-4f47-b00b-34edb08cf258/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Ad11e627b-8a48-411d-a261-2c9a02a758ba&unique=prints",
+  "collector_number": "1",
+  "digital": false,
+  "rarity": "mythic",
+  "watermark": "silverquill",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Simon Dominic",
+  "artist_ids": [
+    "b0e80135-db5a-4b88-a0bc-815a0e94faa1"
+  ],
+  "illustration_id": "5a57eac5-625d-40d4-9f12-c8c3bf0fbf99",
+  "border_color": "black",
+  "frame": "2015",
+  "frame_effects": [
+    "legendary"
+  ],
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 1881,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=518367&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DBreena%252C%2Bthe%2BDemagogue",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DBreena%252C%2Bthe%2BDemagogue",
+    "edhrec": "https://edhrec.com/route/?cc=Breena%2C+the+Demagogue"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DBreena%252C%2Bthe%2BDemagogue%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Breena%2C+the+Demagogue&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Breena%2C+the+Demagogue&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

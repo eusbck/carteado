@@ -1,0 +1,135 @@
+{
+  "object": "card",
+  "id": "363a88de-c9ae-41b8-a8d8-321a1b95a427",
+  "oracle_id": "f08f7814-4585-41dd-b82e-ed2ef5e24242",
+  "multiverse_ids": [],
+  "resource_id": "18BB390422062DA603AB4BAC79710D5010551F6EEFF2ACCFAAC1F644E28C3EE1",
+  "mtgo_id": 148835,
+  "tcgplayer_id": 687562,
+  "cardmarket_id": 881504,
+  "name": "Transcendent Envoy",
+  "lang": "en",
+  "released_at": "2026-04-24",
+  "uri": "https://api.scryfall.com/cards/363a88de-c9ae-41b8-a8d8-321a1b95a427",
+  "scryfall_uri": "https://scryfall.com/card/soc/183/transcendent-envoy?utm_source=api",
+  "layout": "normal",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T00:49:56Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/3/6/363a88de-c9ae-41b8-a8d8-321a1b95a427.jpg?1783903796",
+    "normal": "https://cards.scryfall.io/normal/front/3/6/363a88de-c9ae-41b8-a8d8-321a1b95a427.jpg?1783903796",
+    "large": "https://cards.scryfall.io/large/front/3/6/363a88de-c9ae-41b8-a8d8-321a1b95a427.jpg?1783903796",
+    "png": "https://cards.scryfall.io/png/front/3/6/363a88de-c9ae-41b8-a8d8-321a1b95a427.png?1783903796",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/3/6/363a88de-c9ae-41b8-a8d8-321a1b95a427.jpg?1783903796",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/3/6/363a88de-c9ae-41b8-a8d8-321a1b95a427.jpg?1783903796",
+    "thumb": "https://cards.scryfall.io/thumb/front/3/6/363a88de-c9ae-41b8-a8d8-321a1b95a427.webp?1783903796",
+    "grid": "https://cards.scryfall.io/grid/front/3/6/363a88de-c9ae-41b8-a8d8-321a1b95a427.webp?1783903796",
+    "display": "https://cards.scryfall.io/display/front/3/6/363a88de-c9ae-41b8-a8d8-321a1b95a427.webp?1783903796",
+    "art": "https://cards.scryfall.io/art/front/3/6/363a88de-c9ae-41b8-a8d8-321a1b95a427.webp?1783903796",
+    "crop": "https://cards.scryfall.io/crop/front/3/6/363a88de-c9ae-41b8-a8d8-321a1b95a427.webp?1783903796"
+  },
+  "mana_cost": "{1}{W}",
+  "cmc": 2.0,
+  "type_line": "Enchantment Creature — Griffin",
+  "oracle_text": "Flying\nAura spells you cast cost {1} less to cast.",
+  "power": "1",
+  "toughness": "2",
+  "colors": [
+    "W"
+  ],
+  "color_identity": [
+    "W"
+  ],
+  "keywords": [
+    "Flying"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "97fab8d1-480a-419d-ab14-663968e29b9c",
+  "set": "soc",
+  "set_name": "Secrets of Strixhaven Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/97fab8d1-480a-419d-ab14-663968e29b9c",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Asoc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/soc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/363a88de-c9ae-41b8-a8d8-321a1b95a427/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Af08f7814-4585-41dd-b82e-ed2ef5e24242&unique=prints",
+  "collector_number": "183",
+  "digital": false,
+  "rarity": "common",
+  "flavor_text": "\"The first griffins were made by the gods to capture falling stars; they were given the keenest eyes and the swiftest wings, and sent to keep watch above the clouds.\"\n—*The Cosmogony*",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Zezhou Chen",
+  "artist_ids": [
+    "810677e5-a502-4c03-b726-78cd808a75d4"
+  ],
+  "illustration_id": "d7e143d6-9652-42b5-894c-e61698e57aed",
+  "border_color": "black",
+  "frame": "2015",
+  "frame_effects": [
+    "enchantment"
+  ],
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 2853,
+  "penny_rank": 8308,
+  "prices": {
+    "usd": "0.33",
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": "0.15",
+    "eur_foil": null,
+    "tix": "0.05"
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DTranscendent%2BEnvoy",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DTranscendent%2BEnvoy",
+    "edhrec": "https://edhrec.com/route/?cc=Transcendent+Envoy"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F687562%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=881504&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards/148835?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

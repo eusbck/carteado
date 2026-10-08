@@ -1,0 +1,133 @@
+{
+  "object": "card",
+  "id": "cdd91d09-61e5-4bfd-9ce0-624ad5618eaa",
+  "oracle_id": "ac675899-25bb-4f06-9c8c-bf188024495f",
+  "multiverse_ids": [
+    615379
+  ],
+  "name": "Firemane Commando",
+  "printed_name": "Comando Cabeleira de Fogo",
+  "lang": "pt",
+  "released_at": "2023-04-21",
+  "uri": "https://api.scryfall.com/cards/cdd91d09-61e5-4bfd-9ce0-624ad5618eaa",
+  "scryfall_uri": "https://scryfall.com/card/moc/73/pt/comando-cabeleira-de-fogo-(firemane-commando)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T13:56:13Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/c/d/cdd91d09-61e5-4bfd-9ce0-624ad5618eaa.jpg?1782827773",
+    "normal": "https://cards.scryfall.io/normal/front/c/d/cdd91d09-61e5-4bfd-9ce0-624ad5618eaa.jpg?1782827773",
+    "large": "https://cards.scryfall.io/large/front/c/d/cdd91d09-61e5-4bfd-9ce0-624ad5618eaa.jpg?1782827773",
+    "png": "https://cards.scryfall.io/png/front/c/d/cdd91d09-61e5-4bfd-9ce0-624ad5618eaa.png?1782827773",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/c/d/cdd91d09-61e5-4bfd-9ce0-624ad5618eaa.jpg?1782827773",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/c/d/cdd91d09-61e5-4bfd-9ce0-624ad5618eaa.jpg?1782827773",
+    "thumb": "https://cards.scryfall.io/thumb/front/c/d/cdd91d09-61e5-4bfd-9ce0-624ad5618eaa.webp?1782827773",
+    "grid": "https://cards.scryfall.io/grid/front/c/d/cdd91d09-61e5-4bfd-9ce0-624ad5618eaa.webp?1782827773",
+    "display": "https://cards.scryfall.io/display/front/c/d/cdd91d09-61e5-4bfd-9ce0-624ad5618eaa.webp?1782827773",
+    "art": "https://cards.scryfall.io/art/front/c/d/cdd91d09-61e5-4bfd-9ce0-624ad5618eaa.webp?1782827773",
+    "crop": "https://cards.scryfall.io/crop/front/c/d/cdd91d09-61e5-4bfd-9ce0-624ad5618eaa.webp?1782827773"
+  },
+  "mana_cost": "{3}{W}",
+  "cmc": 4.0,
+  "type_line": "Creature — Angel Soldier",
+  "printed_type_line": "Criatura — Anjo Soldado",
+  "oracle_text": "Flying\nWhenever you attack with two or more creatures, draw a card.\nWhenever another player attacks with two or more creatures, they draw a card if none of those creatures attacked you.",
+  "printed_text": "Voar\nToda vez que você atacar com duas ou mais criaturas, compre um card.\nToda vez que outro jogador ataca com duas ou mais criaturas, ele compra um card se nenhuma dessas criaturas tiver atacado você.",
+  "power": "4",
+  "toughness": "3",
+  "colors": [
+    "W"
+  ],
+  "color_identity": [
+    "W"
+  ],
+  "keywords": [
+    "Flying"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "6bba5de9-5afb-42af-a7eb-24ac854bf671",
+  "set": "moc",
+  "set_name": "March of the Machine Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/6bba5de9-5afb-42af-a7eb-24ac854bf671",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Amoc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/moc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/cdd91d09-61e5-4bfd-9ce0-624ad5618eaa/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Aac675899-25bb-4f06-9c8c-bf188024495f&unique=prints",
+  "collector_number": "73",
+  "digital": false,
+  "rarity": "rare",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Andrew Mar",
+  "artist_ids": [
+    "adad79bf-cd52-456a-b170-740ed8bff0fc"
+  ],
+  "illustration_id": "2278e5a6-ab2d-4e0d-b621-acb6752127a0",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 1830,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=615379&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DFiremane%2BCommando",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DFiremane%2BCommando",
+    "edhrec": "https://edhrec.com/route/?cc=Firemane+Commando"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DFiremane%2BCommando%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Firemane+Commando&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Firemane+Commando&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

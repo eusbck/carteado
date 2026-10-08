@@ -1,0 +1,132 @@
+{
+  "object": "card",
+  "id": "29c46875-e124-4633-89ea-43500cf6db77",
+  "oracle_id": "6257c2fd-005f-41e3-8a72-af76df1eb134",
+  "multiverse_ids": [
+    579652
+  ],
+  "name": "Terminate",
+  "printed_name": "Findar",
+  "lang": "pt",
+  "released_at": "2022-09-09",
+  "uri": "https://api.scryfall.com/cards/29c46875-e124-4633-89ea-43500cf6db77",
+  "scryfall_uri": "https://scryfall.com/card/dmc/172/pt/findar-(terminate)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T18:53:59Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/2/9/29c46875-e124-4633-89ea-43500cf6db77.jpg?1782845639",
+    "normal": "https://cards.scryfall.io/normal/front/2/9/29c46875-e124-4633-89ea-43500cf6db77.jpg?1782845639",
+    "large": "https://cards.scryfall.io/large/front/2/9/29c46875-e124-4633-89ea-43500cf6db77.jpg?1782845639",
+    "png": "https://cards.scryfall.io/png/front/2/9/29c46875-e124-4633-89ea-43500cf6db77.png?1782845639",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/2/9/29c46875-e124-4633-89ea-43500cf6db77.jpg?1782845639",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/2/9/29c46875-e124-4633-89ea-43500cf6db77.jpg?1782845639",
+    "thumb": "https://cards.scryfall.io/thumb/front/2/9/29c46875-e124-4633-89ea-43500cf6db77.webp?1782845639",
+    "grid": "https://cards.scryfall.io/grid/front/2/9/29c46875-e124-4633-89ea-43500cf6db77.webp?1782845639",
+    "display": "https://cards.scryfall.io/display/front/2/9/29c46875-e124-4633-89ea-43500cf6db77.webp?1782845639",
+    "art": "https://cards.scryfall.io/art/front/2/9/29c46875-e124-4633-89ea-43500cf6db77.webp?1782845639",
+    "crop": "https://cards.scryfall.io/crop/front/2/9/29c46875-e124-4633-89ea-43500cf6db77.webp?1782845639"
+  },
+  "mana_cost": "{B}{R}",
+  "cmc": 2.0,
+  "type_line": "Instant",
+  "printed_type_line": "Mágica Instantânea",
+  "oracle_text": "Destroy target creature. It can't be regenerated.",
+  "printed_text": "Destrua a criatura alvo. Ela não pode ser regenerada.",
+  "colors": [
+    "B",
+    "R"
+  ],
+  "color_identity": [
+    "B",
+    "R"
+  ],
+  "keywords": [],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "not_legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "legal",
+    "predh": "legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "78076b27-f888-4723-b27c-44074accd261",
+  "set": "dmc",
+  "set_name": "Dominaria United Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/78076b27-f888-4723-b27c-44074accd261",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Admc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/dmc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/29c46875-e124-4633-89ea-43500cf6db77/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A6257c2fd-005f-41e3-8a72-af76df1eb134&unique=prints",
+  "collector_number": "172",
+  "digital": false,
+  "rarity": "common",
+  "flavor_text": "Como a própria mãe, Darigaaz deu a vida defendendo Dominária da tirania de \"deuses\" autoproclamados.",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "DiTerlizzi",
+  "artist_ids": [
+    "ed44dce4-30cf-4c2c-b2e1-a19ba2295690"
+  ],
+  "illustration_id": "9aa617c0-0471-41e4-a397-200047006af9",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 225,
+  "penny_rank": 275,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=579652&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DTerminate",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DTerminate",
+    "edhrec": "https://edhrec.com/route/?cc=Terminate"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DTerminate%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Terminate&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Terminate&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

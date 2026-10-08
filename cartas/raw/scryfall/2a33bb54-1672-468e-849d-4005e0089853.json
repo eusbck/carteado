@@ -1,0 +1,135 @@
+{
+  "object": "card",
+  "id": "2a33bb54-1672-468e-849d-4005e0089853",
+  "oracle_id": "e6e6fce8-0f6a-4b84-865e-d4e4a4182f9f",
+  "multiverse_ids": [
+    642130
+  ],
+  "name": "Temple of Silence",
+  "printed_name": "Templo do Silêncio",
+  "lang": "pt",
+  "released_at": "2023-11-17",
+  "uri": "https://api.scryfall.com/cards/2a33bb54-1672-468e-849d-4005e0089853",
+  "scryfall_uri": "https://scryfall.com/card/lcc/358/pt/templo-do-sil%C3%AAncio-(temple-of-silence)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T08:48:47Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/2/a/2a33bb54-1672-468e-849d-4005e0089853.jpg?1782809327",
+    "normal": "https://cards.scryfall.io/normal/front/2/a/2a33bb54-1672-468e-849d-4005e0089853.jpg?1782809327",
+    "large": "https://cards.scryfall.io/large/front/2/a/2a33bb54-1672-468e-849d-4005e0089853.jpg?1782809327",
+    "png": "https://cards.scryfall.io/png/front/2/a/2a33bb54-1672-468e-849d-4005e0089853.png?1782809327",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/2/a/2a33bb54-1672-468e-849d-4005e0089853.jpg?1782809327",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/2/a/2a33bb54-1672-468e-849d-4005e0089853.jpg?1782809327",
+    "thumb": "https://cards.scryfall.io/thumb/front/2/a/2a33bb54-1672-468e-849d-4005e0089853.webp?1782809327",
+    "grid": "https://cards.scryfall.io/grid/front/2/a/2a33bb54-1672-468e-849d-4005e0089853.webp?1782809327",
+    "display": "https://cards.scryfall.io/display/front/2/a/2a33bb54-1672-468e-849d-4005e0089853.webp?1782809327",
+    "art": "https://cards.scryfall.io/art/front/2/a/2a33bb54-1672-468e-849d-4005e0089853.webp?1782809327",
+    "crop": "https://cards.scryfall.io/crop/front/2/a/2a33bb54-1672-468e-849d-4005e0089853.webp?1782809327"
+  },
+  "mana_cost": "",
+  "cmc": 0.0,
+  "type_line": "Land",
+  "printed_type_line": "Terreno",
+  "oracle_text": "This land enters tapped.\nWhen this land enters, scry 1. (Look at the top card of your library. You may put that card on the bottom.)\n{T}: Add {W} or {B}.",
+  "printed_text": "Templo do Silêncio entra no campo de batalha virado.\nQuando Templo do Silêncio entrar no campo de batalha, use vidência 1.\n{T}: Adicione {W} ou {B}.",
+  "colors": [],
+  "color_identity": [
+    "B",
+    "W"
+  ],
+  "keywords": [
+    "Scry"
+  ],
+  "produced_mana": [
+    "B",
+    "W"
+  ],
+  "legalities": {
+    "standard": "legal",
+    "future": "legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "d253edc3-5bc7-4cf1-9446-a8540dedffa5",
+  "set": "lcc",
+  "set_name": "The Lost Caverns of Ixalan Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/d253edc3-5bc7-4cf1-9446-a8540dedffa5",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Alcc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/lcc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/2a33bb54-1672-468e-849d-4005e0089853/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Ae6e6fce8-0f6a-4b84-865e-d4e4a4182f9f&unique=prints",
+  "collector_number": "358",
+  "digital": false,
+  "rarity": "rare",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Adam Paquette",
+  "artist_ids": [
+    "89023dad-e6c0-41e0-83fb-eb2bfbbdc3f2"
+  ],
+  "illustration_id": "54c84926-47de-42ed-a384-6f2ffa574b03",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 306,
+  "penny_rank": 407,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=642130&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DTemple%2Bof%2BSilence",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DTemple%2Bof%2BSilence",
+    "edhrec": "https://edhrec.com/route/?cc=Temple+of+Silence"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DTemple%2Bof%2BSilence%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Temple+of+Silence&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Temple+of+Silence&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

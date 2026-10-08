@@ -1,0 +1,135 @@
+{
+  "object": "card",
+  "id": "f15183b5-0e24-4e67-a875-3728f59c1345",
+  "oracle_id": "1372dd15-cdb9-470c-b3e8-3423697e46e8",
+  "multiverse_ids": [
+    272842
+  ],
+  "name": "Tree of Redemption",
+  "printed_name": "Árvore da Redenção",
+  "lang": "pt",
+  "released_at": "2011-09-30",
+  "uri": "https://api.scryfall.com/cards/f15183b5-0e24-4e67-a875-3728f59c1345",
+  "scryfall_uri": "https://scryfall.com/card/isd/207/pt/%C3%A1rvore-da-reden%C3%A7%C3%A3o-(tree-of-redemption)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-02T10:10:55Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/f/1/f15183b5-0e24-4e67-a875-3728f59c1345.jpg?1782987055",
+    "normal": "https://cards.scryfall.io/normal/front/f/1/f15183b5-0e24-4e67-a875-3728f59c1345.jpg?1782987055",
+    "large": "https://cards.scryfall.io/large/front/f/1/f15183b5-0e24-4e67-a875-3728f59c1345.jpg?1782987055",
+    "png": "https://cards.scryfall.io/png/front/f/1/f15183b5-0e24-4e67-a875-3728f59c1345.png?1782987055",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/f/1/f15183b5-0e24-4e67-a875-3728f59c1345.jpg?1782987055",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/f/1/f15183b5-0e24-4e67-a875-3728f59c1345.jpg?1782987055",
+    "thumb": "https://cards.scryfall.io/thumb/front/f/1/f15183b5-0e24-4e67-a875-3728f59c1345.webp?1782987055",
+    "grid": "https://cards.scryfall.io/grid/front/f/1/f15183b5-0e24-4e67-a875-3728f59c1345.webp?1782987055",
+    "display": "https://cards.scryfall.io/display/front/f/1/f15183b5-0e24-4e67-a875-3728f59c1345.webp?1782987055",
+    "art": "https://cards.scryfall.io/art/front/f/1/f15183b5-0e24-4e67-a875-3728f59c1345.webp?1782987055",
+    "crop": "https://cards.scryfall.io/crop/front/f/1/f15183b5-0e24-4e67-a875-3728f59c1345.webp?1782987055"
+  },
+  "mana_cost": "{3}{G}",
+  "cmc": 4.0,
+  "type_line": "Creature — Plant",
+  "printed_type_line": "Criatura — Planta",
+  "oracle_text": "Defender\n{T}: Exchange your life total with this creature's toughness.",
+  "printed_text": "Defensor\n{T}: Permute seu total de pontos de vida com a resistência de Árvore da Redenção.",
+  "power": "0",
+  "toughness": "13",
+  "colors": [
+    "G"
+  ],
+  "color_identity": [
+    "G"
+  ],
+  "keywords": [
+    "Defender"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "d1026945-2969-42b9-be53-f941405a58cb",
+  "set": "isd",
+  "set_name": "Innistrad",
+  "set_type": "expansion",
+  "set_uri": "https://api.scryfall.com/sets/d1026945-2969-42b9-be53-f941405a58cb",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Aisd&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/isd?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/f15183b5-0e24-4e67-a875-3728f59c1345/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A1372dd15-cdb9-470c-b3e8-3423697e46e8&unique=prints",
+  "collector_number": "207",
+  "digital": false,
+  "rarity": "mythic",
+  "flavor_text": "A árvore do carrasco na Catedral de Thraben tem o poder de absolver mais do que as almas dos enforcados.",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Vincent Proce",
+  "artist_ids": [
+    "d82b1138-76d3-49f7-9d8c-bc2e2d3e0b0a"
+  ],
+  "illustration_id": "b2401e23-79f1-4e3d-871a-d5854d944226",
+  "border_color": "black",
+  "frame": "2003",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "edhrec_rank": 3309,
+  "penny_rank": 11567,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=272842&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DTree%2Bof%2BRedemption",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DTree%2Bof%2BRedemption",
+    "edhrec": "https://edhrec.com/route/?cc=Tree+of+Redemption"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DTree%2Bof%2BRedemption%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Tree+of+Redemption&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Tree+of+Redemption&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

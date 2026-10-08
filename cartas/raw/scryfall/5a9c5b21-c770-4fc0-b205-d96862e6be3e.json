@@ -1,0 +1,240 @@
+{
+  "object": "card",
+  "id": "5a9c5b21-c770-4fc0-b205-d96862e6be3e",
+  "oracle_id": "994879c3-48a7-4da5-9a42-46561fafdd69",
+  "multiverse_ids": [],
+  "name": "Spirit",
+  "lang": "en",
+  "released_at": "2026-04-24",
+  "uri": "https://api.scryfall.com/cards/5a9c5b21-c770-4fc0-b205-d96862e6be3e",
+  "scryfall_uri": "https://scryfall.com/card/tsoc/25/spirit?utm_source=api",
+  "layout": "token",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T00:46:07Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/5/a/5a9c5b21-c770-4fc0-b205-d96862e6be3e.jpg?1783903567",
+    "normal": "https://cards.scryfall.io/normal/front/5/a/5a9c5b21-c770-4fc0-b205-d96862e6be3e.jpg?1783903567",
+    "large": "https://cards.scryfall.io/large/front/5/a/5a9c5b21-c770-4fc0-b205-d96862e6be3e.jpg?1783903567",
+    "png": "https://cards.scryfall.io/png/front/5/a/5a9c5b21-c770-4fc0-b205-d96862e6be3e.png?1783903567",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/5/a/5a9c5b21-c770-4fc0-b205-d96862e6be3e.jpg?1783903567",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/5/a/5a9c5b21-c770-4fc0-b205-d96862e6be3e.jpg?1783903567",
+    "thumb": "https://cards.scryfall.io/thumb/front/5/a/5a9c5b21-c770-4fc0-b205-d96862e6be3e.webp?1783903567",
+    "grid": "https://cards.scryfall.io/grid/front/5/a/5a9c5b21-c770-4fc0-b205-d96862e6be3e.webp?1783903567",
+    "display": "https://cards.scryfall.io/display/front/5/a/5a9c5b21-c770-4fc0-b205-d96862e6be3e.webp?1783903567",
+    "art": "https://cards.scryfall.io/art/front/5/a/5a9c5b21-c770-4fc0-b205-d96862e6be3e.webp?1783903567",
+    "crop": "https://cards.scryfall.io/crop/front/5/a/5a9c5b21-c770-4fc0-b205-d96862e6be3e.webp?1783903567"
+  },
+  "mana_cost": "",
+  "cmc": 0.0,
+  "type_line": "Token Creature — Spirit",
+  "oracle_text": "",
+  "power": "3",
+  "toughness": "2",
+  "colors": [
+    "R",
+    "W"
+  ],
+  "color_identity": [
+    "R",
+    "W"
+  ],
+  "keywords": [],
+  "all_parts": [
+    {
+      "object": "related_card",
+      "id": "43105beb-46f3-4914-8222-4907bd76d48f",
+      "component": "combo_piece",
+      "name": "Lorehold Excavation",
+      "type_line": "Enchantment",
+      "uri": "https://api.scryfall.com/cards/43105beb-46f3-4914-8222-4907bd76d48f"
+    },
+    {
+      "object": "related_card",
+      "id": "a5483d5c-14c2-4e33-b676-62f16af9d24e",
+      "component": "combo_piece",
+      "name": "Lorehold Command",
+      "type_line": "Instant",
+      "uri": "https://api.scryfall.com/cards/a5483d5c-14c2-4e33-b676-62f16af9d24e"
+    },
+    {
+      "object": "related_card",
+      "id": "7e937830-3804-44e8-b9d0-3e5f5cf39eab",
+      "component": "combo_piece",
+      "name": "Make Your Mark",
+      "type_line": "Instant",
+      "uri": "https://api.scryfall.com/cards/7e937830-3804-44e8-b9d0-3e5f5cf39eab"
+    },
+    {
+      "object": "related_card",
+      "id": "8e3c7f00-e997-4b07-98af-45b9ea35d2d7",
+      "component": "combo_piece",
+      "name": "Quintorius, Field Historian",
+      "type_line": "Legendary Creature — Elephant Cleric",
+      "uri": "https://api.scryfall.com/cards/8e3c7f00-e997-4b07-98af-45b9ea35d2d7"
+    },
+    {
+      "object": "related_card",
+      "id": "f8d6abe4-0008-4cdd-89b5-dfbb9389a587",
+      "component": "combo_piece",
+      "name": "Ceaseless Conflict",
+      "type_line": "Sorcery",
+      "uri": "https://api.scryfall.com/cards/f8d6abe4-0008-4cdd-89b5-dfbb9389a587"
+    },
+    {
+      "object": "related_card",
+      "id": "56cc4e7d-3b06-4938-9023-d903912350c0",
+      "component": "combo_piece",
+      "name": "Illustrious Historian",
+      "type_line": "Creature — Human Shaman",
+      "uri": "https://api.scryfall.com/cards/56cc4e7d-3b06-4938-9023-d903912350c0"
+    },
+    {
+      "object": "related_card",
+      "id": "0742f19d-179c-43c4-ab95-4160c56b4384",
+      "component": "combo_piece",
+      "name": "Quintorius, History Chaser",
+      "type_line": "Legendary Planeswalker — Quintorius",
+      "uri": "https://api.scryfall.com/cards/0742f19d-179c-43c4-ab95-4160c56b4384"
+    },
+    {
+      "object": "related_card",
+      "id": "61e97112-d794-4629-87f0-41c9b2493fd7",
+      "component": "combo_piece",
+      "name": "Reduce to Memory",
+      "type_line": "Sorcery — Lesson",
+      "uri": "https://api.scryfall.com/cards/61e97112-d794-4629-87f0-41c9b2493fd7"
+    },
+    {
+      "object": "related_card",
+      "id": "f25fc84b-b721-4b5b-84c4-9f4635b7ee56",
+      "component": "combo_piece",
+      "name": "Quintorius Kand",
+      "type_line": "Legendary Planeswalker — Quintorius",
+      "uri": "https://api.scryfall.com/cards/f25fc84b-b721-4b5b-84c4-9f4635b7ee56"
+    },
+    {
+      "object": "related_card",
+      "id": "5a9c5b21-c770-4fc0-b205-d96862e6be3e",
+      "component": "token",
+      "name": "Spirit",
+      "type_line": "Token Creature — Spirit",
+      "uri": "https://api.scryfall.com/cards/5a9c5b21-c770-4fc0-b205-d96862e6be3e"
+    },
+    {
+      "object": "related_card",
+      "id": "76425962-bdc9-4ea7-9c96-dd21a1dd5644",
+      "component": "combo_piece",
+      "name": "Mascot Exhibition",
+      "type_line": "Sorcery — Lesson",
+      "uri": "https://api.scryfall.com/cards/76425962-bdc9-4ea7-9c96-dd21a1dd5644"
+    },
+    {
+      "object": "related_card",
+      "id": "74be6236-4095-419c-9927-fbd874df21f8",
+      "component": "combo_piece",
+      "name": "Spirit Summoning",
+      "type_line": "Sorcery — Lesson",
+      "uri": "https://api.scryfall.com/cards/74be6236-4095-419c-9927-fbd874df21f8"
+    },
+    {
+      "object": "related_card",
+      "id": "7a609e56-667d-48b5-a6e6-629f1d7a2f72",
+      "component": "combo_piece",
+      "name": "Quintorius, Loremaster",
+      "type_line": "Legendary Creature — Elephant Cleric",
+      "uri": "https://api.scryfall.com/cards/7a609e56-667d-48b5-a6e6-629f1d7a2f72"
+    },
+    {
+      "object": "related_card",
+      "id": "58eb668c-4974-4e28-b006-87e478fb2ea0",
+      "component": "combo_piece",
+      "name": "Illuminate History",
+      "type_line": "Sorcery — Lesson",
+      "uri": "https://api.scryfall.com/cards/58eb668c-4974-4e28-b006-87e478fb2ea0"
+    }
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "not_legal",
+    "pauper": "not_legal",
+    "vintage": "not_legal",
+    "penny": "not_legal",
+    "commander": "not_legal",
+    "oathbreaker": "not_legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "not_legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "cb590d57-927c-437a-934c-7f774881d1c9",
+  "set": "tsoc",
+  "set_name": "Secrets of Strixhaven Commander Tokens",
+  "set_type": "token",
+  "set_uri": "https://api.scryfall.com/sets/cb590d57-927c-437a-934c-7f774881d1c9",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Atsoc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/tsoc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/5a9c5b21-c770-4fc0-b205-d96862e6be3e/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A994879c3-48a7-4da5-9a42-46561fafdd69&unique=prints",
+  "collector_number": "25",
+  "digital": false,
+  "rarity": "common",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Flavio Greco Paglia",
+  "artist_ids": [
+    "9c5d82ee-a27b-47e4-8226-cd8647cc0b05"
+  ],
+  "illustration_id": "7fce3550-5c52-4745-ba0e-912a5ee5316c",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DSpirit",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DSpirit",
+    "edhrec": "https://edhrec.com/route/?cc=Spirit"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DSpirit%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Spirit&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Spirit&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

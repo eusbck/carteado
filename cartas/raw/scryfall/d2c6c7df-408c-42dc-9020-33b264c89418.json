@@ -1,0 +1,137 @@
+{
+  "object": "card",
+  "id": "d2c6c7df-408c-42dc-9020-33b264c89418",
+  "oracle_id": "695eea46-1535-48c5-bbb6-0b8379e77bfc",
+  "multiverse_ids": [
+    569104
+  ],
+  "name": "Arasta of the Endless Web",
+  "printed_name": "Arasta da Teia Infinita",
+  "lang": "pt",
+  "released_at": "2022-06-10",
+  "uri": "https://api.scryfall.com/cards/d2c6c7df-408c-42dc-9020-33b264c89418",
+  "scryfall_uri": "https://scryfall.com/card/clb/817/pt/arasta-da-teia-infinita-(arasta-of-the-endless-web)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T19:47:57Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/d/2/d2c6c7df-408c-42dc-9020-33b264c89418.jpg?1782848877",
+    "normal": "https://cards.scryfall.io/normal/front/d/2/d2c6c7df-408c-42dc-9020-33b264c89418.jpg?1782848877",
+    "large": "https://cards.scryfall.io/large/front/d/2/d2c6c7df-408c-42dc-9020-33b264c89418.jpg?1782848877",
+    "png": "https://cards.scryfall.io/png/front/d/2/d2c6c7df-408c-42dc-9020-33b264c89418.png?1782848877",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/d/2/d2c6c7df-408c-42dc-9020-33b264c89418.jpg?1782848877",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/d/2/d2c6c7df-408c-42dc-9020-33b264c89418.jpg?1782848877",
+    "thumb": "https://cards.scryfall.io/thumb/front/d/2/d2c6c7df-408c-42dc-9020-33b264c89418.webp?1782848877",
+    "grid": "https://cards.scryfall.io/grid/front/d/2/d2c6c7df-408c-42dc-9020-33b264c89418.webp?1782848877",
+    "display": "https://cards.scryfall.io/display/front/d/2/d2c6c7df-408c-42dc-9020-33b264c89418.webp?1782848877",
+    "art": "https://cards.scryfall.io/art/front/d/2/d2c6c7df-408c-42dc-9020-33b264c89418.webp?1782848877",
+    "crop": "https://cards.scryfall.io/crop/front/d/2/d2c6c7df-408c-42dc-9020-33b264c89418.webp?1782848877"
+  },
+  "mana_cost": "{2}{G}{G}",
+  "cmc": 4.0,
+  "type_line": "Legendary Enchantment Creature — Spider",
+  "printed_type_line": "Criatura Encantamento Lendária — Aranha",
+  "oracle_text": "Reach\nWhenever an opponent casts an instant or sorcery spell, create a 1/2 green Spider creature token with reach.",
+  "printed_text": "Alcance\nToda vez que um oponente conjurar uma mágica instantânea ou um feitiço, crie uma ficha de criatura Aranha verde 1/2 com alcance.",
+  "power": "3",
+  "toughness": "5",
+  "colors": [
+    "G"
+  ],
+  "color_identity": [
+    "G"
+  ],
+  "keywords": [
+    "Reach"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "5e4c3fe8-fd57-4b20-ad56-c03790a16cea",
+  "set": "clb",
+  "set_name": "Commander Legends: Battle for Baldur's Gate",
+  "set_type": "draft_innovation",
+  "set_uri": "https://api.scryfall.com/sets/5e4c3fe8-fd57-4b20-ad56-c03790a16cea",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Aclb&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/clb?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/d2c6c7df-408c-42dc-9020-33b264c89418/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A695eea46-1535-48c5-bbb6-0b8379e77bfc&unique=prints",
+  "collector_number": "817",
+  "digital": false,
+  "rarity": "rare",
+  "flavor_text": "Suas teias, tecidas de seus próprios cabelos, estendem-se de Nyx ao mundo mortal, e até mesmo ao Submundo.",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Sam Rowan",
+  "artist_ids": [
+    "22dbb488-6195-43cc-9927-73bfd239fe30"
+  ],
+  "illustration_id": "0978fab6-d9af-4d60-89ce-e2a994687479",
+  "border_color": "black",
+  "frame": "2015",
+  "frame_effects": [
+    "legendary"
+  ],
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 1020,
+  "penny_rank": 4331,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=569104&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DArasta%2Bof%2Bthe%2BEndless%2BWeb",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DArasta%2Bof%2Bthe%2BEndless%2BWeb",
+    "edhrec": "https://edhrec.com/route/?cc=Arasta+of+the+Endless+Web"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DArasta%2Bof%2Bthe%2BEndless%2BWeb%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Arasta+of+the+Endless+Web&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Arasta+of+the+Endless+Web&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

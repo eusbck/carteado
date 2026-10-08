@@ -1,0 +1,131 @@
+{
+  "object": "card",
+  "id": "eb6e15d6-e8be-42fc-a55b-90b4f66a6c0c",
+  "oracle_id": "788a4896-3414-40bf-b391-d2efea2fb5f9",
+  "multiverse_ids": [
+    508982
+  ],
+  "name": "Springbloom Druid",
+  "printed_name": "Druida do Florescimento",
+  "lang": "pt",
+  "released_at": "2021-02-05",
+  "uri": "https://api.scryfall.com/cards/eb6e15d6-e8be-42fc-a55b-90b4f66a6c0c",
+  "scryfall_uri": "https://scryfall.com/card/khc/74/pt/druida-do-florescimento-(springbloom-druid)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-01T08:26:59Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/e/b/eb6e15d6-e8be-42fc-a55b-90b4f66a6c0c.jpg?1782894419",
+    "normal": "https://cards.scryfall.io/normal/front/e/b/eb6e15d6-e8be-42fc-a55b-90b4f66a6c0c.jpg?1782894419",
+    "large": "https://cards.scryfall.io/large/front/e/b/eb6e15d6-e8be-42fc-a55b-90b4f66a6c0c.jpg?1782894419",
+    "png": "https://cards.scryfall.io/png/front/e/b/eb6e15d6-e8be-42fc-a55b-90b4f66a6c0c.png?1782894419",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/e/b/eb6e15d6-e8be-42fc-a55b-90b4f66a6c0c.jpg?1782894419",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/e/b/eb6e15d6-e8be-42fc-a55b-90b4f66a6c0c.jpg?1782894419",
+    "thumb": "https://cards.scryfall.io/thumb/front/e/b/eb6e15d6-e8be-42fc-a55b-90b4f66a6c0c.webp?1782894419",
+    "grid": "https://cards.scryfall.io/grid/front/e/b/eb6e15d6-e8be-42fc-a55b-90b4f66a6c0c.webp?1782894419",
+    "display": "https://cards.scryfall.io/display/front/e/b/eb6e15d6-e8be-42fc-a55b-90b4f66a6c0c.webp?1782894419",
+    "art": "https://cards.scryfall.io/art/front/e/b/eb6e15d6-e8be-42fc-a55b-90b4f66a6c0c.webp?1782894419",
+    "crop": "https://cards.scryfall.io/crop/front/e/b/eb6e15d6-e8be-42fc-a55b-90b4f66a6c0c.webp?1782894419"
+  },
+  "mana_cost": "{2}{G}",
+  "cmc": 3.0,
+  "type_line": "Creature — Elf Druid",
+  "printed_type_line": "Criatura — Elfo Druida",
+  "oracle_text": "When this creature enters, you may sacrifice a land. If you do, search your library for up to two basic land cards, put them onto the battlefield tapped, then shuffle.",
+  "printed_text": "Quando Druida do Florescimento entra no campo de batalha, você pode sacrificar um terreno. Se fizer isso, procure até dois cards de terreno básico em seu grimório, coloque-os no campo de batalha virados e, depois, embaralhe seu grimório.",
+  "power": "1",
+  "toughness": "1",
+  "colors": [
+    "G"
+  ],
+  "color_identity": [
+    "G"
+  ],
+  "keywords": [],
+  "legalities": {
+    "standard": "legal",
+    "future": "legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "legal",
+    "paupercommander": "legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "d532ef25-e52b-4276-941a-3a1c095544b0",
+  "set": "khc",
+  "set_name": "Kaldheim Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/d532ef25-e52b-4276-941a-3a1c095544b0",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Akhc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/khc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/eb6e15d6-e8be-42fc-a55b-90b4f66a6c0c/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A788a4896-3414-40bf-b391-d2efea2fb5f9&unique=prints",
+  "collector_number": "74",
+  "digital": false,
+  "rarity": "common",
+  "flavor_text": "\"O crescimento de novos brotos é um cataplasma para feridas há muito cicatrizadas.\"",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Randy Gallegos",
+  "artist_ids": [
+    "a5048cc7-438a-4378-98e4-da99b78e1db0"
+  ],
+  "illustration_id": "9f3e11b7-c6cc-4b1b-80c4-ed63e894d205",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 780,
+  "penny_rank": 1784,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=508982&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DSpringbloom%2BDruid",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DSpringbloom%2BDruid",
+    "edhrec": "https://edhrec.com/route/?cc=Springbloom+Druid"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DSpringbloom%2BDruid%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Springbloom+Druid&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Springbloom+Druid&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

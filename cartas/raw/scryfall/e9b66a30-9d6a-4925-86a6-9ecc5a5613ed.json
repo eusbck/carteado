@@ -1,0 +1,131 @@
+{
+  "object": "card",
+  "id": "e9b66a30-9d6a-4925-86a6-9ecc5a5613ed",
+  "oracle_id": "7a2484a9-04fd-41a0-8224-610c1c07ed10",
+  "multiverse_ids": [
+    641988
+  ],
+  "name": "Blasphemous Act",
+  "printed_name": "Ato Blasfemo",
+  "lang": "pt",
+  "released_at": "2023-11-17",
+  "uri": "https://api.scryfall.com/cards/e9b66a30-9d6a-4925-86a6-9ecc5a5613ed",
+  "scryfall_uri": "https://scryfall.com/card/lcc/216/pt/ato-blasfemo-(blasphemous-act)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T09:00:17Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/e/9/e9b66a30-9d6a-4925-86a6-9ecc5a5613ed.jpg?1782810017",
+    "normal": "https://cards.scryfall.io/normal/front/e/9/e9b66a30-9d6a-4925-86a6-9ecc5a5613ed.jpg?1782810017",
+    "large": "https://cards.scryfall.io/large/front/e/9/e9b66a30-9d6a-4925-86a6-9ecc5a5613ed.jpg?1782810017",
+    "png": "https://cards.scryfall.io/png/front/e/9/e9b66a30-9d6a-4925-86a6-9ecc5a5613ed.png?1782810017",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/e/9/e9b66a30-9d6a-4925-86a6-9ecc5a5613ed.jpg?1782810017",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/e/9/e9b66a30-9d6a-4925-86a6-9ecc5a5613ed.jpg?1782810017",
+    "thumb": "https://cards.scryfall.io/thumb/front/e/9/e9b66a30-9d6a-4925-86a6-9ecc5a5613ed.webp?1782810017",
+    "grid": "https://cards.scryfall.io/grid/front/e/9/e9b66a30-9d6a-4925-86a6-9ecc5a5613ed.webp?1782810017",
+    "display": "https://cards.scryfall.io/display/front/e/9/e9b66a30-9d6a-4925-86a6-9ecc5a5613ed.webp?1782810017",
+    "art": "https://cards.scryfall.io/art/front/e/9/e9b66a30-9d6a-4925-86a6-9ecc5a5613ed.webp?1782810017",
+    "crop": "https://cards.scryfall.io/crop/front/e/9/e9b66a30-9d6a-4925-86a6-9ecc5a5613ed.webp?1782810017"
+  },
+  "mana_cost": "{8}{R}",
+  "cmc": 9.0,
+  "type_line": "Sorcery",
+  "printed_type_line": "Feitiço",
+  "oracle_text": "This spell costs {1} less to cast for each creature on the battlefield.\nBlasphemous Act deals 13 damage to each creature.",
+  "printed_text": "Esta mágica custa {1} a menos para ser conjurada para cada criatura no campo de batalha.\nAto Blasfemo causa 13 pontos de dano a cada criatura.",
+  "colors": [
+    "R"
+  ],
+  "color_identity": [
+    "R"
+  ],
+  "keywords": [],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "not_legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "d253edc3-5bc7-4cf1-9446-a8540dedffa5",
+  "set": "lcc",
+  "set_name": "The Lost Caverns of Ixalan Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/d253edc3-5bc7-4cf1-9446-a8540dedffa5",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Alcc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/lcc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/e9b66a30-9d6a-4925-86a6-9ecc5a5613ed/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A7a2484a9-04fd-41a0-8224-610c1c07ed10&unique=prints",
+  "collector_number": "216",
+  "digital": false,
+  "rarity": "rare",
+  "flavor_text": "\"Os lugares sagrados não são mais refúgios contra a morte, e a morte não é mais refúgio contra nada.\"\n— Thalia, Cátara Cavaleira",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Daarken",
+  "artist_ids": [
+    "e607a0d4-fc12-4c01-9e3f-501f5269b9cb"
+  ],
+  "illustration_id": "6ea08730-d12d-445f-b31f-8f55374f194d",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 22,
+  "penny_rank": 3118,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=641988&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DBlasphemous%2BAct",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DBlasphemous%2BAct",
+    "edhrec": "https://edhrec.com/route/?cc=Blasphemous+Act"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DBlasphemous%2BAct%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Blasphemous+Act&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Blasphemous+Act&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

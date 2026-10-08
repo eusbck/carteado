@@ -1,0 +1,795 @@
+[
+  {
+    "id": "Q01",
+    "topic": "Prioridade",
+    "question": "É a principal de Ana. Ela conjura uma mágica. Quem recebe prioridade ao terminar a conjuração?",
+    "options": [
+      "Bruno automaticamente",
+      "Ana, que acabou de conjurar",
+      "Ninguém até resolver"
+    ],
+    "answer": 1,
+    "explanation": "Quem conjurou com prioridade recebe prioridade novamente e pode mantê-la para outra ação legal.",
+    "rules": [
+      "117.3c"
+    ]
+  },
+  {
+    "id": "Q02",
+    "topic": "Prioridade",
+    "question": "Há três objetos na pilha e todos passam consecutivamente. O que resolve?",
+    "options": [
+      "Toda a pilha",
+      "Apenas o objeto do topo",
+      "O objeto mais antigo"
+    ],
+    "answer": 1,
+    "explanation": "Resolve só o topo. Depois há ações de estado, gatilhos e prioridade do ativo.",
+    "rules": [
+      "117.4",
+      "117.5"
+    ]
+  },
+  {
+    "id": "Q03",
+    "topic": "Prioridade",
+    "question": "Você passou. Carla colocou uma resposta na pilha. Quando a prioridade voltar, você pode agir?",
+    "options": [
+      "Sim, houve uma ação nova",
+      "Não, seu passe vale até acabar a pilha",
+      "Só no seu turno"
+    ],
+    "answer": 0,
+    "explanation": "A ação nova interrompe a sequência de passes. Passar uma vez não impede respostas futuras.",
+    "rules": [
+      "117.4"
+    ]
+  },
+  {
+    "id": "Q04",
+    "topic": "Prioridade",
+    "question": "Quem recebe prioridade depois que resolve uma mágica de Bruno no turno de Ana?",
+    "options": [
+      "Bruno",
+      "Ana, após as verificações pertinentes",
+      "Quem estava sentado depois de Bruno"
+    ],
+    "answer": 1,
+    "explanation": "O ativo recebe prioridade após a resolução de uma mágica/habilidade que não seja de mana.",
+    "rules": [
+      "117.3b"
+    ]
+  },
+  {
+    "id": "Q05",
+    "topic": "Prioridade",
+    "question": "Todos passam com a pilha vazia durante uma principal. O que acontece?",
+    "options": [
+      "O turno inteiro acaba",
+      "A fase atual termina e o jogo segue a estrutura do turno",
+      "O ativo precisa jogar uma carta"
+    ],
+    "answer": 1,
+    "explanation": "Pilha vazia e passes consecutivos encerram a etapa/fase, não necessariamente o turno.",
+    "rules": [
+      "117.4",
+      "500"
+    ]
+  },
+  {
+    "id": "Q06",
+    "topic": "Prioridade",
+    "question": "Uma mágica está resolvendo e manda comprar duas cartas. Posso conjurar entre as compras?",
+    "options": [
+      "Normalmente não",
+      "Sim, sempre",
+      "Só se tenho mana"
+    ],
+    "answer": 0,
+    "explanation": "Não há prioridade durante a resolução; compras separadas não são janelas de resposta.",
+    "rules": [
+      "117.2e",
+      "121.2"
+    ]
+  },
+  {
+    "id": "Q07",
+    "topic": "Turnos",
+    "question": "Posso responder a uma permanente desvirando na etapa de desvirar?",
+    "options": [
+      "Sim",
+      "Não; ninguém tem prioridade nessa etapa",
+      "Só com flash"
+    ],
+    "answer": 1,
+    "explanation": "A etapa de desvirar não dá prioridade. A janela normal seguinte é a manutenção.",
+    "rules": [
+      "117.3a",
+      "502"
+    ]
+  },
+  {
+    "id": "Q08",
+    "topic": "Turnos",
+    "question": "Quero agir antes da compra normal do turno adversário. Qual janela usar?",
+    "options": [
+      "Manutenção",
+      "Depois que ele compra na etapa de compra",
+      "Durante o pagamento da compra"
+    ],
+    "answer": 0,
+    "explanation": "A compra normal da etapa acontece antes da prioridade. Na manutenção ainda pode agir antes dela.",
+    "rules": [
+      "503",
+      "504.1"
+    ]
+  },
+  {
+    "id": "Q09",
+    "topic": "Turnos",
+    "question": "Na etapa final, uma criatura ainda tem dano marcado do combate?",
+    "options": [
+      "Normalmente sim; a limpeza vem depois",
+      "Não; a etapa final já limpou tudo",
+      "Só se é comandante"
+    ],
+    "answer": 0,
+    "explanation": "O dano é removido na limpeza, não automaticamente no início da etapa final.",
+    "rules": [
+      "514.2",
+      "513"
+    ]
+  },
+  {
+    "id": "Q10",
+    "topic": "Turnos",
+    "question": "Descartar na limpeza disparou uma habilidade. Há oportunidade de responder?",
+    "options": [
+      "Não, nunca há prioridade na limpeza",
+      "Sim, aplica-se a exceção; haverá outra limpeza depois",
+      "O gatilho espera a manutenção seguinte"
+    ],
+    "answer": 1,
+    "explanation": "CR 514.3a abre prioridade nesse caso e determina outra limpeza após esvaziar a pilha e os passes.",
+    "rules": [
+      "514.3a"
+    ]
+  },
+  {
+    "id": "Q11",
+    "topic": "Terrenos e mana",
+    "question": "Posso jogar meu terreno no turno de Carla só porque tenho prioridade?",
+    "options": [
+      "Sim",
+      "Não pela regra normal",
+      "Sim se ele produz mana"
+    ],
+    "answer": 1,
+    "explanation": "Terreno exige seu turno, sua principal, pilha vazia e jogada disponível.",
+    "rules": [
+      "305.1",
+      "305.3"
+    ]
+  },
+  {
+    "id": "Q12",
+    "topic": "Terrenos e mana",
+    "question": "Joguei um terreno na principal 1. A principal 2 permite outro automaticamente?",
+    "options": [
+      "Sim",
+      "Não; o limite é do turno inteiro",
+      "Só se passei prioridade"
+    ],
+    "answer": 1,
+    "explanation": "As duas principais compartilham o mesmo limite do turno; permissões adicionais são outra questão.",
+    "rules": [
+      "305.2"
+    ]
+  },
+  {
+    "id": "Q13",
+    "topic": "Terrenos e mana",
+    "question": "Posso anular o terreno que foi jogado como se fosse uma mágica?",
+    "options": [
+      "Não: a jogada não usa pilha",
+      "Sim, qualquer anulação",
+      "Só terrenos não básicos"
+    ],
+    "answer": 0,
+    "explanation": "Jogar terreno é ação especial. Eventuais gatilhos da entrada são objetos distintos.",
+    "rules": [
+      "305.1",
+      "116.2a"
+    ]
+  },
+  {
+    "id": "Q14",
+    "topic": "Terrenos e mana",
+    "question": "Passar prioridade esvazia a mana não usada?",
+    "options": [
+      "Sim",
+      "Não; em regra ela se perde ao fim de etapa/fase",
+      "Só mana colorida"
+    ],
+    "answer": 1,
+    "explanation": "Passar prioridade não muda por si só a etapa/fase e não esvazia a reserva.",
+    "rules": [
+      "106.4"
+    ]
+  },
+  {
+    "id": "Q15",
+    "topic": "Terrenos e mana",
+    "question": "O que exige um símbolo {C} em um custo?",
+    "options": [
+      "Qualquer mana",
+      "Mana incolor",
+      "Mana da identidade do comandante"
+    ],
+    "answer": 1,
+    "explanation": "{C} exige incolor; um número genérico como {1} pode ser pago com mana de qualquer tipo.",
+    "rules": [
+      "107.4"
+    ]
+  },
+  {
+    "id": "Q16",
+    "topic": "Terrenos e mana",
+    "question": "Uma ativada adiciona mana, mas também mói carta como custo. É habilidade de mana na regra atual?",
+    "options": [
+      "Sim, toda produtora de mana é",
+      "Não satisfaz o critério atual por mover carta do grimório",
+      "Só se não tenho cartas"
+    ],
+    "answer": 1,
+    "explanation": "CR 605.1a também exige que custo e efeito não movam cartas para ou de grimório.",
+    "rules": [
+      "605.1a"
+    ]
+  },
+  {
+    "id": "Q17",
+    "topic": "Custos e habilidades",
+    "question": "Sacrifico uma criatura como custo de ativação. O oponente pode removê-la depois para impedir esse pagamento?",
+    "options": [
+      "Não; o custo já foi pago antes da resposta",
+      "Sim, os custos ficam na pilha",
+      "Sim, se tem prioridade depois"
+    ],
+    "answer": 0,
+    "explanation": "A janela de resposta surge depois do processo de ativação e pagamento. A criatura já saiu.",
+    "rules": [
+      "602.2",
+      "118"
+    ]
+  },
+  {
+    "id": "Q18",
+    "topic": "Custos e habilidades",
+    "question": "Uma anulação removeu minha mágica da pilha. Recebo de volta a mana e o custo adicional?",
+    "options": [
+      "Sim",
+      "Não",
+      "Só a taxa de comandante"
+    ],
+    "answer": 1,
+    "explanation": "Anular não desfaz custos que foram legalmente pagos.",
+    "rules": [
+      "118",
+      "601.2h",
+      "701.6"
+    ]
+  },
+  {
+    "id": "Q19",
+    "topic": "Custos e habilidades",
+    "question": "Removi a criatura que era fonte de uma habilidade já ativada na pilha. A habilidade é anulada automaticamente?",
+    "options": [
+      "Não, normalmente tem existência independente",
+      "Sim, sempre",
+      "Só se era meu comandante"
+    ],
+    "answer": 0,
+    "explanation": "A habilidade normalmente permanece; o texto pode impor condições específicas e usar última informação conhecida.",
+    "rules": [
+      "113.7a",
+      "608.2h"
+    ]
+  },
+  {
+    "id": "Q20",
+    "topic": "Custos e habilidades",
+    "question": "Na minha principal, há um gatilho na pilha. Posso ativar lealdade pela regra normal?",
+    "options": [
+      "Sim, porque é minha principal",
+      "Não; também precisa da pilha vazia",
+      "Só se o planeswalker acabou de entrar"
+    ],
+    "answer": 1,
+    "explanation": "Lealdade tem timing próprio, incluindo pilha vazia e limite por permanente por turno.",
+    "rules": [
+      "606.3"
+    ]
+  },
+  {
+    "id": "Q21",
+    "topic": "Alvos e permanentes",
+    "question": "O único alvo de minha mágica ficou ilegal antes da resolução. O efeito de comprar que também estava nela ocorre?",
+    "options": [
+      "Sim, sempre",
+      "Não; a mágica não resolve",
+      "Posso escolher outro alvo livremente"
+    ],
+    "answer": 1,
+    "explanation": "Quando todos os alvos ficam ilegais, o objeto não resolve e seus demais efeitos não acontecem.",
+    "rules": [
+      "608.2b"
+    ]
+  },
+  {
+    "id": "Q22",
+    "topic": "Alvos e permanentes",
+    "question": "Minha mágica tem dois alvos; um ainda é legal. Qual a regra geral?",
+    "options": [
+      "Não resolve nada",
+      "Resolve o que puder sem afetar o alvo ilegal",
+      "O alvo ilegal é substituído por outro"
+    ],
+    "answer": 1,
+    "explanation": "Pelo menos um alvo legal normalmente permite resolver as instruções aplicáveis.",
+    "rules": [
+      "608.2b"
+    ]
+  },
+  {
+    "id": "Q23",
+    "topic": "Alvos e permanentes",
+    "question": "Hexproof por si só impede uma destruição global que não visa?",
+    "options": [
+      "Sim",
+      "Não",
+      "Só se é lendária"
+    ],
+    "answer": 1,
+    "explanation": "Hexproof impede alvos pertinentes, não todos os efeitos que afetam a permanente.",
+    "rules": [
+      "702.11",
+      "115"
+    ]
+  },
+  {
+    "id": "Q24",
+    "topic": "Alvos e permanentes",
+    "question": "Indestrutível salva uma criatura que ficou com resistência zero?",
+    "options": [
+      "Sim",
+      "Não; isso não é destruição",
+      "Só se recebeu dano antes"
+    ],
+    "answer": 1,
+    "explanation": "A ação de estado por resistência zero manda ao cemitério sem destruir.",
+    "rules": [
+      "704.5f",
+      "702.12"
+    ]
+  },
+  {
+    "id": "Q25",
+    "topic": "Alvos e permanentes",
+    "question": "Ana e Bruno controlam cada um uma lendária do mesmo nome. A regra de lendas elimina uma?",
+    "options": [
+      "Sim",
+      "Não só por isso; precisa do mesmo controlador",
+      "Só a que entrou depois"
+    ],
+    "answer": 1,
+    "explanation": "A regra considera duas ou mais lendárias do mesmo nome sob controle do mesmo jogador.",
+    "rules": [
+      "704.5j"
+    ]
+  },
+  {
+    "id": "Q26",
+    "topic": "Combate",
+    "question": "Minha criatura entrou agora. Pode bloquear uma atacante legal?",
+    "options": [
+      "Sim, se estiver apta ao bloqueio",
+      "Não, está com enjoo",
+      "Só se tiver haste"
+    ],
+    "answer": 0,
+    "explanation": "Enjoo restringe atacar e os símbolos de virar/desvirar de criaturas; não é uma proibição de bloqueio.",
+    "rules": [
+      "302.6",
+      "509"
+    ]
+  },
+  {
+    "id": "Q27",
+    "topic": "Combate",
+    "question": "A atacante foi bloqueada e depois o único bloqueador saiu. Sem atropelar, ela acerta o jogador?",
+    "options": [
+      "Sim",
+      "Normalmente não; continua bloqueada",
+      "Só com golpe duplo"
+    ],
+    "answer": 1,
+    "explanation": "A atacante continua bloqueada e normalmente não atribui dano ao jogador sem exceção pertinente.",
+    "rules": [
+      "509.1h",
+      "510.1c"
+    ]
+  },
+  {
+    "id": "Q28",
+    "topic": "Combate",
+    "question": "Posso agir entre a atribuição e a aplicação do dano de combate?",
+    "options": [
+      "Não",
+      "Sim, o dano fica na pilha",
+      "Só com instantânea"
+    ],
+    "answer": 0,
+    "explanation": "Ambas são ações automáticas sem essa janela intermediária.",
+    "rules": [
+      "510.2"
+    ]
+  },
+  {
+    "id": "Q29",
+    "topic": "Combate",
+    "question": "Uma atacante é bloqueada por duas criaturas. Na regra atual, é obrigatório ordenar os bloqueadores para atribuição comum?",
+    "options": [
+      "Sim",
+      "Não; o dano pode ser dividido como o controlador escolher",
+      "Só se são lendárias"
+    ],
+    "answer": 1,
+    "explanation": "A antiga ordem foi removida. Atropelar ainda tem exigência particular de letal antes de passar dano ao destinatário.",
+    "rules": [
+      "510.1c",
+      "702.19b"
+    ]
+  },
+  {
+    "id": "Q30",
+    "topic": "Combate",
+    "question": "Há iniciativa ou golpe duplo elegível. Pode haver respostas entre as etapas de dano?",
+    "options": [
+      "Sim, após o primeiro dano e verificações",
+      "Não, todo o combate é simultâneo",
+      "Só o defensor responde"
+    ],
+    "answer": 0,
+    "explanation": "Há prioridade após a primeira etapa antes de a segunda começar.",
+    "rules": [
+      "510.4",
+      "117"
+    ]
+  },
+  {
+    "id": "Q31",
+    "topic": "Combate",
+    "question": "Virei a bloqueadora depois de ela ser declarada. O bloqueio é cancelado?",
+    "options": [
+      "Sim",
+      "Não por esse motivo",
+      "Sim, se ela não tem vigilância"
+    ],
+    "answer": 1,
+    "explanation": "Virar/desvirar depois da declaração não remove automaticamente do combate.",
+    "rules": [
+      "506.4b"
+    ]
+  },
+  {
+    "id": "Q32",
+    "topic": "Combate",
+    "question": "Uma criatura foi colocada no campo já atacando. Ela foi declarada atacante para seu gatilho de atacar?",
+    "options": [
+      "Normalmente não",
+      "Sim",
+      "Só em multiplayer"
+    ],
+    "answer": 0,
+    "explanation": "Entrar atacando e ser declarada atacante são eventos diferentes.",
+    "rules": [
+      "508.4"
+    ]
+  },
+  {
+    "id": "Q33",
+    "topic": "Commander",
+    "question": "Meu comandante foi anulado após ser conjurado da zona de comando. A próxima conjuração de lá paga taxa maior?",
+    "options": [
+      "Sim",
+      "Não, ele não chegou ao campo",
+      "Só se morreu depois"
+    ],
+    "answer": 0,
+    "explanation": "A taxa conta conjurações anteriores da zona de comando, incluindo as anuladas.",
+    "rules": [
+      "903.8"
+    ]
+  },
+  {
+    "id": "Q34",
+    "topic": "Commander",
+    "question": "Reanimei meu comandante do cemitério sem conjurar. Isso acrescenta uma conjuração para a taxa?",
+    "options": [
+      "Não",
+      "Sim, entrou de novo",
+      "Só se é lendário"
+    ],
+    "answer": 0,
+    "explanation": "Pôr no campo sem conjurar não é conjuração da zona de comando.",
+    "rules": [
+      "903.8"
+    ]
+  },
+  {
+    "id": "Q35",
+    "topic": "Commander",
+    "question": "O comandante morreu. Pela opção usual, ele deixa de chegar ao cemitério?",
+    "options": [
+      "Sim",
+      "Não; chega e o dono pode movê-lo por ação de estado",
+      "Só se tinha indestrutível"
+    ],
+    "answer": 1,
+    "explanation": "O retorno usual de cemitério/exílio ocorre na verificação de estado, permitindo o evento de morrer pertinente.",
+    "rules": [
+      "903.9a"
+    ]
+  },
+  {
+    "id": "Q36",
+    "topic": "Commander",
+    "question": "Deixei meu comandante no cemitério na verificação pertinente. Posso movê-lo à zona de comando quando quiser?",
+    "options": [
+      "Não por aquela mesma mudança antiga",
+      "Sim, sempre",
+      "Sim, pagando dois"
+    ],
+    "answer": 0,
+    "explanation": "A opção depende de ter entrado na zona desde a última verificação. Não é uma ativação permanente disponível.",
+    "rules": [
+      "903.9a"
+    ]
+  },
+  {
+    "id": "Q37",
+    "topic": "Commander",
+    "question": "Uma cópia de meu comandante é automaticamente comandante?",
+    "options": [
+      "Não",
+      "Sim",
+      "Só se tem o mesmo nome"
+    ],
+    "answer": 0,
+    "explanation": "A designação é atributo da carta e não um valor copiável. O comandante real continua comandante ao copiar outra carta.",
+    "rules": [
+      "903.3"
+    ]
+  },
+  {
+    "id": "Q38",
+    "topic": "Commander",
+    "question": "Recebi 12 de combate de um parceiro e 9 do outro. Isso soma 21 do mesmo comandante?",
+    "options": [
+      "Sim",
+      "Não; os danos das duas cartas são separados",
+      "Só se controlados pela mesma pessoa"
+    ],
+    "answer": 1,
+    "explanation": "Cada comandante tem seu próprio total contra cada jogador.",
+    "rules": [
+      "702.124d",
+      "903.10a"
+    ]
+  },
+  {
+    "id": "Q39",
+    "topic": "Commander",
+    "question": "Um comandante me causou 7 de dano por uma habilidade. Isso entra no total de 21?",
+    "options": [
+      "Não; precisa ser dano de combate",
+      "Sim, porque veio do comandante",
+      "Só se perdi vida"
+    ],
+    "answer": 0,
+    "explanation": "Dano de habilidade e de briga não são dano de combate.",
+    "rules": [
+      "903.10a",
+      "701.14"
+    ]
+  },
+  {
+    "id": "Q40",
+    "topic": "Commander",
+    "question": "Ganhei vida depois de receber dano de comandante. O total de comandante diminui?",
+    "options": [
+      "Não",
+      "Sim, pelo mesmo valor",
+      "Só se ganho até 40"
+    ],
+    "answer": 0,
+    "explanation": "Vida e histórico de dano de combate por comandante são rastreados separadamente.",
+    "rules": [
+      "903.10a"
+    ]
+  },
+  {
+    "id": "Q41",
+    "topic": "Commander",
+    "question": "Uma carta tem mana híbrida branca/verde. Pode entrar em um comandante só verde por eu pagar verde?",
+    "options": [
+      "Normalmente não",
+      "Sim",
+      "Só se não a conjuro"
+    ],
+    "answer": 0,
+    "explanation": "A identidade inclui ambas as cores híbridas. Texto de lembrete é uma exceção de cálculo diferente.",
+    "rules": [
+      "903.4",
+      "903.5c"
+    ]
+  },
+  {
+    "id": "Q42",
+    "topic": "Multiplayer e derrota",
+    "question": "A partida começou com quatro jogadores. Ana, a primeira, compra no primeiro turno?",
+    "options": [
+      "Sim",
+      "Não",
+      "Só se pediu mulligan"
+    ],
+    "answer": 0,
+    "explanation": "Em multiplayer sem a exceção de turnos de equipe, ninguém pula essa compra inicial.",
+    "rules": [
+      "103.8c"
+    ]
+  },
+  {
+    "id": "Q43",
+    "topic": "Multiplayer e derrota",
+    "question": "A partida começou com apenas dois jogadores em Commander padrão. Quem começa compra no primeiro turno?",
+    "options": [
+      "Não; pula a etapa de compra inicial",
+      "Sim, Commander sempre compra",
+      "Só se o grupo está no bracket 3"
+    ],
+    "answer": 0,
+    "explanation": "A regra de duas pessoas é diferente da regra de multiplayer; não confunda com Duel Commander.",
+    "rules": [
+      "103.8a",
+      "903.2"
+    ]
+  },
+  {
+    "id": "Q44",
+    "topic": "Multiplayer e derrota",
+    "question": "Commander normalmente exige quantos marcadores de veneno para perder?",
+    "options": [
+      "10",
+      "20",
+      "40"
+    ],
+    "answer": 0,
+    "explanation": "O início com 40 de vida não altera o limite normal de dez marcadores de veneno.",
+    "rules": [
+      "104.3d"
+    ]
+  },
+  {
+    "id": "Q45",
+    "topic": "Multiplayer e derrota",
+    "question": "Meu grimório está vazio, mas ainda não tentei comprar de lá. Isso sozinho me faz perder?",
+    "options": [
+      "Não",
+      "Sim",
+      "Só no meu turno"
+    ],
+    "answer": 0,
+    "explanation": "A condição normal de derrota exige uma tentativa de compra que não pôde ser cumprida.",
+    "rules": [
+      "104.3c",
+      "121"
+    ]
+  },
+  {
+    "id": "Q46",
+    "topic": "Multiplayer e derrota",
+    "question": "Bruno sai do jogo enquanto Carla controla uma carta de propriedade dele. O objeto permanece só porque Carla controla?",
+    "options": [
+      "Não; os objetos dele deixam o jogo",
+      "Sim",
+      "Vira propriedade de Carla"
+    ],
+    "answer": 0,
+    "explanation": "Propriedade e controle são diferentes. Os objetos do jogador que sai deixam o jogo.",
+    "rules": [
+      "800.4a"
+    ]
+  },
+  {
+    "id": "Q47",
+    "topic": "Multiplayer e derrota",
+    "question": "Bruno perde durante seu próprio turno. Esse turno acaba imediatamente?",
+    "options": [
+      "Não; continua até concluir sem jogador ativo",
+      "Sim",
+      "Volta ao começo de Ana"
+    ],
+    "answer": 0,
+    "explanation": "A regra multiplayer define continuidade e prioridade especial para o restante desse turno.",
+    "rules": [
+      "800.4j"
+    ]
+  },
+  {
+    "id": "Q48",
+    "topic": "Gatilhos e exceções",
+    "question": "Gatilhos de todos dispararam juntos no turno de Ana. Em geral, como entram na pilha?",
+    "options": [
+      "Ativo põe os seus; outros põem os seus na ordem do turno",
+      "Todos resolvem sem pilha",
+      "O mais rápido a falar escolhe"
+    ],
+    "answer": 0,
+    "explanation": "APNAP organiza a colocação, e cada jogador ordena os próprios gatilhos. Os últimos colocados ficam no topo.",
+    "rules": [
+      "603.3b",
+      "101.4"
+    ]
+  },
+  {
+    "id": "Q49",
+    "topic": "Gatilhos e exceções",
+    "question": "Uma criatura com lifelink causa dano enquanto eu recebo dano simultâneo. O ganho de vida espera um gatilho na pilha?",
+    "options": [
+      "Não; faz parte do resultado do dano",
+      "Sim",
+      "Só se é comandante"
+    ],
+    "answer": 0,
+    "explanation": "Lifelink é habilidade estática que modifica os resultados do dano, não o antigo gatilho de ganho posterior.",
+    "rules": [
+      "702.15",
+      "120"
+    ]
+  },
+  {
+    "id": "Q50",
+    "topic": "Gatilhos e exceções",
+    "question": "Um efeito exila e devolve meu comandante durante a mesma resolução. A opção usual por exílio permite interromper a resolução?",
+    "options": [
+      "Não; a verificação de estado espera a resolução terminar",
+      "Sim, escolho no meio e todos respondem",
+      "Sim, pagando a taxa"
+    ],
+    "answer": 0,
+    "explanation": "Se ele já voltou antes da verificação, não está no exílio para aquela ação de estado. Uma volta por gatilho posterior é diferente.",
+    "rules": [
+      "903.9a",
+      "117.5",
+      "704"
+    ]
+  },
+  {
+    "id": "Q51",
+    "topic": "Gatilhos e exceções",
+    "question": "Uma criatura com enjoo pode ser virada para pagar crew de um Veículo?",
+    "options": [
+      "Sim, se é uma criatura desvirada apropriada",
+      "Não, crew exige haste",
+      "Só se é artefato"
+    ],
+    "answer": 0,
+    "explanation": "Crew não usa o símbolo de virar de uma habilidade da própria criatura usada no custo.",
+    "rules": [
+      "702.122",
+      "302.6"
+    ]
+  }
+]

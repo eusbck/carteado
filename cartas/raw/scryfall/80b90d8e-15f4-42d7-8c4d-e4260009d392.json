@@ -1,0 +1,145 @@
+{
+  "object": "card",
+  "id": "80b90d8e-15f4-42d7-8c4d-e4260009d392",
+  "oracle_id": "2ef0961a-0543-4371-8c2a-333881b735e5",
+  "multiverse_ids": [
+    649003
+  ],
+  "name": "Tomik, Wielder of Law",
+  "printed_name": "Tomik, Portador da Lei",
+  "lang": "pt",
+  "released_at": "2024-02-09",
+  "uri": "https://api.scryfall.com/cards/80b90d8e-15f4-42d7-8c4d-e4260009d392",
+  "scryfall_uri": "https://scryfall.com/card/mkm/431/pt/tomik-portador-da-lei-(tomik-wielder-of-law)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T06:27:35Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/8/0/80b90d8e-15f4-42d7-8c4d-e4260009d392.jpg?1782800855",
+    "normal": "https://cards.scryfall.io/normal/front/8/0/80b90d8e-15f4-42d7-8c4d-e4260009d392.jpg?1782800855",
+    "large": "https://cards.scryfall.io/large/front/8/0/80b90d8e-15f4-42d7-8c4d-e4260009d392.jpg?1782800855",
+    "png": "https://cards.scryfall.io/png/front/8/0/80b90d8e-15f4-42d7-8c4d-e4260009d392.png?1782800855",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/8/0/80b90d8e-15f4-42d7-8c4d-e4260009d392.jpg?1782800855",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/8/0/80b90d8e-15f4-42d7-8c4d-e4260009d392.jpg?1782800855",
+    "thumb": "https://cards.scryfall.io/thumb/front/8/0/80b90d8e-15f4-42d7-8c4d-e4260009d392.webp?1782800855",
+    "grid": "https://cards.scryfall.io/grid/front/8/0/80b90d8e-15f4-42d7-8c4d-e4260009d392.webp?1782800855",
+    "display": "https://cards.scryfall.io/display/front/8/0/80b90d8e-15f4-42d7-8c4d-e4260009d392.webp?1782800855",
+    "art": "https://cards.scryfall.io/art/front/8/0/80b90d8e-15f4-42d7-8c4d-e4260009d392.webp?1782800855",
+    "crop": "https://cards.scryfall.io/crop/front/8/0/80b90d8e-15f4-42d7-8c4d-e4260009d392.webp?1782800855"
+  },
+  "mana_cost": "{1}{W}{B}",
+  "cmc": 3.0,
+  "type_line": "Legendary Creature — Human Advisor",
+  "printed_type_line": "Criatura Lendária — Humano Conselheiro",
+  "oracle_text": "Affinity for planeswalkers (This spell costs {1} less to cast for each planeswalker you control.)\nFlying, vigilance\nWhenever an opponent attacks with creatures, if two or more of those creatures are attacking you and/or planeswalkers you control, that opponent loses 3 life and you draw a card.",
+  "printed_text": "Afinidade por planeswalkers (Esta mágica custa {1} a menos para ser conjurada para cada planeswalker que você controla.)\nVoar, vigilância\nToda vez que um oponente ataca com criaturas, se duas ou mais dessas criaturas estiverem atacando você e/ou planeswalkers que você controla, aquele oponente perde 3 pontos de vida e você compra um card.",
+  "power": "2",
+  "toughness": "4",
+  "colors": [
+    "B",
+    "W"
+  ],
+  "color_identity": [
+    "B",
+    "W"
+  ],
+  "keywords": [
+    "Flying",
+    "Affinity",
+    "Vigilance"
+  ],
+  "legalities": {
+    "standard": "legal",
+    "future": "legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "arena",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": true,
+  "reprint": false,
+  "variation": false,
+  "set_id": "2b17794b-15c3-4796-ad6f-0887a0eceeca",
+  "set": "mkm",
+  "set_name": "Murders at Karlov Manor",
+  "set_type": "expansion",
+  "set_uri": "https://api.scryfall.com/sets/2b17794b-15c3-4796-ad6f-0887a0eceeca",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Amkm&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/mkm?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/80b90d8e-15f4-42d7-8c4d-e4260009d392/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A2ef0961a-0543-4371-8c2a-333881b735e5&unique=prints",
+  "collector_number": "431",
+  "digital": false,
+  "rarity": "mythic",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Valera Lutfullina",
+  "artist_ids": [
+    "76bc57c7-47c6-40c5-8797-8ffcce430ac7"
+  ],
+  "illustration_id": "7a6bfd5f-8881-4061-9790-3627cc5b01d6",
+  "border_color": "black",
+  "frame": "2015",
+  "frame_effects": [
+    "legendary"
+  ],
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "promo_types": [
+    "prerelease"
+  ],
+  "edhrec_rank": 7004,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=649003&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DTomik%252C%2BWielder%2Bof%2BLaw",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DTomik%252C%2BWielder%2Bof%2BLaw",
+    "edhrec": "https://edhrec.com/route/?cc=Tomik%2C+Wielder+of+Law"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DTomik%252C%2BWielder%2Bof%2BLaw%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Tomik%2C+Wielder+of+Law&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Tomik%2C+Wielder+of+Law&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

@@ -1,0 +1,132 @@
+{
+  "object": "card",
+  "id": "a62bf473-6cbc-49ef-b36a-d290bc220496",
+  "oracle_id": "0a023964-2905-4928-9c3e-dc63e6ebd218",
+  "multiverse_ids": [
+    579706
+  ],
+  "name": "Rakdos Carnarium",
+  "printed_name": "Carnarium Rakdos",
+  "lang": "pt",
+  "released_at": "2022-09-09",
+  "uri": "https://api.scryfall.com/cards/a62bf473-6cbc-49ef-b36a-d290bc220496",
+  "scryfall_uri": "https://scryfall.com/card/dmc/226/pt/carnarium-rakdos-(rakdos-carnarium)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T18:49:18Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/a/6/a62bf473-6cbc-49ef-b36a-d290bc220496.jpg?1782845358",
+    "normal": "https://cards.scryfall.io/normal/front/a/6/a62bf473-6cbc-49ef-b36a-d290bc220496.jpg?1782845358",
+    "large": "https://cards.scryfall.io/large/front/a/6/a62bf473-6cbc-49ef-b36a-d290bc220496.jpg?1782845358",
+    "png": "https://cards.scryfall.io/png/front/a/6/a62bf473-6cbc-49ef-b36a-d290bc220496.png?1782845358",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/a/6/a62bf473-6cbc-49ef-b36a-d290bc220496.jpg?1782845358",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/a/6/a62bf473-6cbc-49ef-b36a-d290bc220496.jpg?1782845358",
+    "thumb": "https://cards.scryfall.io/thumb/front/a/6/a62bf473-6cbc-49ef-b36a-d290bc220496.webp?1782845358",
+    "grid": "https://cards.scryfall.io/grid/front/a/6/a62bf473-6cbc-49ef-b36a-d290bc220496.webp?1782845358",
+    "display": "https://cards.scryfall.io/display/front/a/6/a62bf473-6cbc-49ef-b36a-d290bc220496.webp?1782845358",
+    "art": "https://cards.scryfall.io/art/front/a/6/a62bf473-6cbc-49ef-b36a-d290bc220496.webp?1782845358",
+    "crop": "https://cards.scryfall.io/crop/front/a/6/a62bf473-6cbc-49ef-b36a-d290bc220496.webp?1782845358"
+  },
+  "mana_cost": "",
+  "cmc": 0.0,
+  "type_line": "Land",
+  "printed_type_line": "Terreno",
+  "oracle_text": "This land enters tapped.\nWhen this land enters, return a land you control to its owner's hand.\n{T}: Add {B}{R}.",
+  "printed_text": "Carnarium Rakdos entra no campo de batalha virado.\nQuando Carnarium Rakdos entrar no campo de batalha, devolva um terreno que você controla para a mão de seu dono.\n{T}: Adicione {B}{R}.",
+  "colors": [],
+  "color_identity": [
+    "B",
+    "R"
+  ],
+  "keywords": [],
+  "produced_mana": [
+    "B",
+    "R"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "78076b27-f888-4723-b27c-44074accd261",
+  "set": "dmc",
+  "set_name": "Dominaria United Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/78076b27-f888-4723-b27c-44074accd261",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Admc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/dmc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/a62bf473-6cbc-49ef-b36a-d290bc220496/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A0a023964-2905-4928-9c3e-dc63e6ebd218&unique=prints",
+  "collector_number": "226",
+  "digital": false,
+  "rarity": "uncommon",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "John Avon",
+  "artist_ids": [
+    "798f3932-30e0-4420-aa3f-db4d613f89ca"
+  ],
+  "illustration_id": "6aba0005-6bff-41bd-87db-766589d1387b",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 512,
+  "penny_rank": 1835,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=579706&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DRakdos%2BCarnarium",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DRakdos%2BCarnarium",
+    "edhrec": "https://edhrec.com/route/?cc=Rakdos+Carnarium"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DRakdos%2BCarnarium%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Rakdos+Carnarium&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Rakdos+Carnarium&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

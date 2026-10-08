@@ -1,0 +1,135 @@
+{
+  "object": "card",
+  "id": "e307e173-c063-4842-b4ff-7ce25ea5a65c",
+  "oracle_id": "605c1ee0-5e8a-4e0a-a99b-42a38873f822",
+  "multiverse_ids": [
+    641912
+  ],
+  "name": "Welcoming Vampire",
+  "printed_name": "Vampira da Recepção",
+  "lang": "pt",
+  "released_at": "2023-11-17",
+  "uri": "https://api.scryfall.com/cards/e307e173-c063-4842-b4ff-7ce25ea5a65c",
+  "scryfall_uri": "https://scryfall.com/card/lcc/140/pt/vampira-da-recep%C3%A7%C3%A3o-(welcoming-vampire)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T09:06:49Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/e/3/e307e173-c063-4842-b4ff-7ce25ea5a65c.jpg?1782810409",
+    "normal": "https://cards.scryfall.io/normal/front/e/3/e307e173-c063-4842-b4ff-7ce25ea5a65c.jpg?1782810409",
+    "large": "https://cards.scryfall.io/large/front/e/3/e307e173-c063-4842-b4ff-7ce25ea5a65c.jpg?1782810409",
+    "png": "https://cards.scryfall.io/png/front/e/3/e307e173-c063-4842-b4ff-7ce25ea5a65c.png?1782810409",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/e/3/e307e173-c063-4842-b4ff-7ce25ea5a65c.jpg?1782810409",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/e/3/e307e173-c063-4842-b4ff-7ce25ea5a65c.jpg?1782810409",
+    "thumb": "https://cards.scryfall.io/thumb/front/e/3/e307e173-c063-4842-b4ff-7ce25ea5a65c.webp?1782810409",
+    "grid": "https://cards.scryfall.io/grid/front/e/3/e307e173-c063-4842-b4ff-7ce25ea5a65c.webp?1782810409",
+    "display": "https://cards.scryfall.io/display/front/e/3/e307e173-c063-4842-b4ff-7ce25ea5a65c.webp?1782810409",
+    "art": "https://cards.scryfall.io/art/front/e/3/e307e173-c063-4842-b4ff-7ce25ea5a65c.webp?1782810409",
+    "crop": "https://cards.scryfall.io/crop/front/e/3/e307e173-c063-4842-b4ff-7ce25ea5a65c.webp?1782810409"
+  },
+  "mana_cost": "{2}{W}",
+  "cmc": 3.0,
+  "type_line": "Creature — Vampire",
+  "printed_type_line": "Criatura — Vampiro",
+  "oracle_text": "Flying\nWhenever one or more other creatures you control with power 2 or less enter, draw a card. This ability triggers only once each turn.",
+  "printed_text": "Voar\nToda vez que uma ou mais outras criaturas com poder igual ou inferior a 2 entrarem no campo de batalha sob seu controle, compre um card. Esta habilidade é desencadeada apenas uma vez a cada turno.",
+  "power": "2",
+  "toughness": "3",
+  "colors": [
+    "W"
+  ],
+  "color_identity": [
+    "W"
+  ],
+  "keywords": [
+    "Flying"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "d253edc3-5bc7-4cf1-9446-a8540dedffa5",
+  "set": "lcc",
+  "set_name": "The Lost Caverns of Ixalan Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/d253edc3-5bc7-4cf1-9446-a8540dedffa5",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Alcc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/lcc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/e307e173-c063-4842-b4ff-7ce25ea5a65c/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A605c1ee0-5e8a-4e0a-a99b-42a38873f822&unique=prints",
+  "collector_number": "140",
+  "digital": false,
+  "rarity": "rare",
+  "flavor_text": "Desde sua chegada, os convidados eram recebidos com pompa e circunstância.",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Lorenzo Mastroianni",
+  "artist_ids": [
+    "70213e7d-47e0-4543-a1ae-451009053e2d"
+  ],
+  "illustration_id": "4454362b-0c81-4cce-b233-e0022e898152",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 427,
+  "penny_rank": 10497,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=641912&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DWelcoming%2BVampire",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DWelcoming%2BVampire",
+    "edhrec": "https://edhrec.com/route/?cc=Welcoming+Vampire"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DWelcoming%2BVampire%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Welcoming+Vampire&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Welcoming+Vampire&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

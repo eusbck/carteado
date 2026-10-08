@@ -1,0 +1,142 @@
+{
+  "object": "card",
+  "id": "a62224d4-b6b9-44a5-b27b-1497f0f6ea44",
+  "oracle_id": "8859a692-d107-4de2-9110-4681fc2761c7",
+  "multiverse_ids": [
+    604298
+  ],
+  "name": "Glissa Sunslayer",
+  "printed_name": "Glissa, Matadora do Sol",
+  "lang": "pt",
+  "released_at": "2023-02-10",
+  "uri": "https://api.scryfall.com/cards/a62224d4-b6b9-44a5-b27b-1497f0f6ea44",
+  "scryfall_uri": "https://scryfall.com/card/one/202/pt/glissa-matadora-do-sol-(glissa-sunslayer)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T14:19:14Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/a/6/a62224d4-b6b9-44a5-b27b-1497f0f6ea44.jpg?1782829154",
+    "normal": "https://cards.scryfall.io/normal/front/a/6/a62224d4-b6b9-44a5-b27b-1497f0f6ea44.jpg?1782829154",
+    "large": "https://cards.scryfall.io/large/front/a/6/a62224d4-b6b9-44a5-b27b-1497f0f6ea44.jpg?1782829154",
+    "png": "https://cards.scryfall.io/png/front/a/6/a62224d4-b6b9-44a5-b27b-1497f0f6ea44.png?1782829154",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/a/6/a62224d4-b6b9-44a5-b27b-1497f0f6ea44.jpg?1782829154",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/a/6/a62224d4-b6b9-44a5-b27b-1497f0f6ea44.jpg?1782829154",
+    "thumb": "https://cards.scryfall.io/thumb/front/a/6/a62224d4-b6b9-44a5-b27b-1497f0f6ea44.webp?1782829154",
+    "grid": "https://cards.scryfall.io/grid/front/a/6/a62224d4-b6b9-44a5-b27b-1497f0f6ea44.webp?1782829154",
+    "display": "https://cards.scryfall.io/display/front/a/6/a62224d4-b6b9-44a5-b27b-1497f0f6ea44.webp?1782829154",
+    "art": "https://cards.scryfall.io/art/front/a/6/a62224d4-b6b9-44a5-b27b-1497f0f6ea44.webp?1782829154",
+    "crop": "https://cards.scryfall.io/crop/front/a/6/a62224d4-b6b9-44a5-b27b-1497f0f6ea44.webp?1782829154"
+  },
+  "mana_cost": "{1}{B}{G}",
+  "cmc": 3.0,
+  "type_line": "Legendary Creature — Phyrexian Zombie Elf",
+  "printed_type_line": "Criatura Lendária — Phyrexiano Zumbi Elfo",
+  "oracle_text": "First strike, deathtouch\nWhenever Glissa Sunslayer deals combat damage to a player, choose one —\n• You draw a card and lose 1 life.\n• Destroy target enchantment.\n• Remove up to three counters from target permanent.",
+  "printed_text": "Iniciativa, toque mortífero\nToda vez que Glissa, Matadora do Sol, causar dano de combate a um jogador, escolha um —\n• Você compra um card e perde 1 ponto de vida.\n• Destrua o encantamento alvo.\n• Remova até três marcadores da permanente alvo.",
+  "power": "3",
+  "toughness": "3",
+  "colors": [
+    "B",
+    "G"
+  ],
+  "color_identity": [
+    "B",
+    "G"
+  ],
+  "keywords": [
+    "First strike",
+    "Deathtouch"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo",
+    "arena"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "04bef644-343f-4230-95ee-255f29aa67a2",
+  "set": "one",
+  "set_name": "Phyrexia: All Will Be One",
+  "set_type": "expansion",
+  "set_uri": "https://api.scryfall.com/sets/04bef644-343f-4230-95ee-255f29aa67a2",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Aone&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/one?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/a62224d4-b6b9-44a5-b27b-1497f0f6ea44/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A8859a692-d107-4de2-9110-4681fc2761c7&unique=prints",
+  "collector_number": "202",
+  "digital": false,
+  "rarity": "rare",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Krharts",
+  "artist_ids": [
+    "15fdfc66-dccf-4ea7-a4c2-cd37ffcbf960"
+  ],
+  "illustration_id": "c7f0d0b6-6210-4f4f-a614-8c657e31dbb4",
+  "border_color": "black",
+  "frame": "2015",
+  "frame_effects": [
+    "legendary"
+  ],
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "edhrec_rank": 1376,
+  "penny_rank": 800,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=604298&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DGlissa%2BSunslayer",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DGlissa%2BSunslayer",
+    "edhrec": "https://edhrec.com/route/?cc=Glissa+Sunslayer"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DGlissa%2BSunslayer%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Glissa+Sunslayer&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Glissa+Sunslayer&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "object": "card",
+  "id": "58d34b2d-1792-4d72-afc0-224d98001571",
+  "oracle_id": "cb814e16-acf7-41d5-a357-1323dcc369f3",
+  "multiverse_ids": [
+    561400
+  ],
+  "name": "Devoted Druid",
+  "printed_name": "Druida Devotado",
+  "lang": "pt",
+  "released_at": "2022-04-29",
+  "uri": "https://api.scryfall.com/cards/58d34b2d-1792-4d72-afc0-224d98001571",
+  "scryfall_uri": "https://scryfall.com/card/ncc/286/pt/druida-devotado-(devoted-druid)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T22:21:48Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/5/8/58d34b2d-1792-4d72-afc0-224d98001571.jpg?1782858108",
+    "normal": "https://cards.scryfall.io/normal/front/5/8/58d34b2d-1792-4d72-afc0-224d98001571.jpg?1782858108",
+    "large": "https://cards.scryfall.io/large/front/5/8/58d34b2d-1792-4d72-afc0-224d98001571.jpg?1782858108",
+    "png": "https://cards.scryfall.io/png/front/5/8/58d34b2d-1792-4d72-afc0-224d98001571.png?1782858108",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/5/8/58d34b2d-1792-4d72-afc0-224d98001571.jpg?1782858108",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/5/8/58d34b2d-1792-4d72-afc0-224d98001571.jpg?1782858108",
+    "thumb": "https://cards.scryfall.io/thumb/front/5/8/58d34b2d-1792-4d72-afc0-224d98001571.webp?1782858108",
+    "grid": "https://cards.scryfall.io/grid/front/5/8/58d34b2d-1792-4d72-afc0-224d98001571.webp?1782858108",
+    "display": "https://cards.scryfall.io/display/front/5/8/58d34b2d-1792-4d72-afc0-224d98001571.webp?1782858108",
+    "art": "https://cards.scryfall.io/art/front/5/8/58d34b2d-1792-4d72-afc0-224d98001571.webp?1782858108",
+    "crop": "https://cards.scryfall.io/crop/front/5/8/58d34b2d-1792-4d72-afc0-224d98001571.webp?1782858108"
+  },
+  "mana_cost": "{1}{G}",
+  "cmc": 2.0,
+  "type_line": "Creature — Elf Druid",
+  "printed_type_line": "Criatura — Elfo Druida",
+  "oracle_text": "{T}: Add {G}.\nPut a -1/-1 counter on this creature: Untap this creature.",
+  "printed_text": "{T}: Adicione {G}.\nColoque um marcador -1/-1 em Druida Devotado: Desvire Druida Devotado.",
+  "power": "0",
+  "toughness": "2",
+  "colors": [
+    "G"
+  ],
+  "color_identity": [
+    "G"
+  ],
+  "keywords": [],
+  "produced_mana": [
+    "G"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "banned",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "not_legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "c51de34b-d4d6-4179-a432-573744ded119",
+  "set": "ncc",
+  "set_name": "New Capenna Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/c51de34b-d4d6-4179-a432-573744ded119",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Ancc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/ncc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/58d34b2d-1792-4d72-afc0-224d98001571/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Acb814e16-acf7-41d5-a357-1323dcc369f3&unique=prints",
+  "collector_number": "286",
+  "digital": false,
+  "rarity": "uncommon",
+  "flavor_text": "\"O mana espreita em todas as coisas, mesmo nas profundezas do próprio coração.\"",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Kimonas Theodossiou",
+  "artist_ids": [
+    "fa058291-5283-4b33-a65e-d4911cb319bb"
+  ],
+  "illustration_id": "546554d1-777e-4be9-8740-23561e673c97",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 967,
+  "penny_rank": 1603,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=561400&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DDevoted%2BDruid",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DDevoted%2BDruid",
+    "edhrec": "https://edhrec.com/route/?cc=Devoted+Druid"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DDevoted%2BDruid%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Devoted+Druid&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Devoted+Druid&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

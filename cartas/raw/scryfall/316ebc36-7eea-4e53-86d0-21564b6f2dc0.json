@@ -1,0 +1,131 @@
+{
+  "object": "card",
+  "id": "316ebc36-7eea-4e53-86d0-21564b6f2dc0",
+  "oracle_id": "814e321d-16fd-4f7b-a8d8-2b089be76f2c",
+  "multiverse_ids": [
+    623929
+  ],
+  "name": "Resculpt",
+  "printed_name": "Reesculpir",
+  "lang": "pt",
+  "released_at": "2023-08-04",
+  "uri": "https://api.scryfall.com/cards/316ebc36-7eea-4e53-86d0-21564b6f2dc0",
+  "scryfall_uri": "https://scryfall.com/card/cmm/115/pt/reesculpir-(resculpt)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "placeholder",
+  "image_updated_at": "2026-06-30T11:12:38Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/3/1/316ebc36-7eea-4e53-86d0-21564b6f2dc0.jpg?1782817958",
+    "normal": "https://cards.scryfall.io/normal/front/3/1/316ebc36-7eea-4e53-86d0-21564b6f2dc0.jpg?1782817958",
+    "large": "https://cards.scryfall.io/large/front/3/1/316ebc36-7eea-4e53-86d0-21564b6f2dc0.jpg?1782817958",
+    "png": "https://cards.scryfall.io/png/front/3/1/316ebc36-7eea-4e53-86d0-21564b6f2dc0.png?1782817958",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/3/1/316ebc36-7eea-4e53-86d0-21564b6f2dc0.jpg?1782817958",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/3/1/316ebc36-7eea-4e53-86d0-21564b6f2dc0.jpg?1782817958",
+    "thumb": "https://cards.scryfall.io/thumb/front/3/1/316ebc36-7eea-4e53-86d0-21564b6f2dc0.webp?1782817958",
+    "grid": "https://cards.scryfall.io/grid/front/3/1/316ebc36-7eea-4e53-86d0-21564b6f2dc0.webp?1782817958",
+    "display": "https://cards.scryfall.io/display/front/3/1/316ebc36-7eea-4e53-86d0-21564b6f2dc0.webp?1782817958",
+    "art": "https://cards.scryfall.io/art/front/3/1/316ebc36-7eea-4e53-86d0-21564b6f2dc0.webp?1782817958",
+    "crop": "https://cards.scryfall.io/crop/front/3/1/316ebc36-7eea-4e53-86d0-21564b6f2dc0.webp?1782817958"
+  },
+  "mana_cost": "{1}{U}",
+  "cmc": 2.0,
+  "type_line": "Instant",
+  "printed_type_line": "Mágica Instantânea",
+  "oracle_text": "Exile target artifact or creature. Its controller creates a 4/4 blue and red Elemental creature token.",
+  "printed_text": "Exile a criatura ou o artefato alvo. Seu controlador cria uma ficha de criatura Elemental azul e vermelha 4/4.",
+  "colors": [
+    "U"
+  ],
+  "color_identity": [
+    "U"
+  ],
+  "keywords": [],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "cd05036f-2698-43e6-a48e-5c8d82f0a551",
+  "set": "cmm",
+  "set_name": "Commander Masters",
+  "set_type": "masters",
+  "set_uri": "https://api.scryfall.com/sets/cd05036f-2698-43e6-a48e-5c8d82f0a551",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Acmm&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/cmm?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/316ebc36-7eea-4e53-86d0-21564b6f2dc0/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A814e321d-16fd-4f7b-a8d8-2b089be76f2c&unique=prints",
+  "collector_number": "115",
+  "digital": false,
+  "rarity": "common",
+  "flavor_text": "Os críticos foram surpresos primeiramente pela graça inesperada do elemental e, depois, por seus punhos.",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Torstein Nordstrand",
+  "artist_ids": [
+    "d72fed18-68fb-4a66-b369-978ae372fa07"
+  ],
+  "illustration_id": "00359f2e-3a1a-4cfc-8571-c46f1ecc6604",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "edhrec_rank": 915,
+  "penny_rank": 12443,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=623929&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DResculpt",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DResculpt",
+    "edhrec": "https://edhrec.com/route/?cc=Resculpt"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DResculpt%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Resculpt&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Resculpt&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

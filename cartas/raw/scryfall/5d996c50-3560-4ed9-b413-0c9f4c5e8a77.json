@@ -1,0 +1,132 @@
+{
+  "object": "card",
+  "id": "5d996c50-3560-4ed9-b413-0c9f4c5e8a77",
+  "oracle_id": "83cf1169-5853-4332-b897-7b17d72d76ab",
+  "multiverse_ids": [
+    381843
+  ],
+  "name": "Twinflame",
+  "printed_name": "Gêmeo Incandescente",
+  "lang": "pt",
+  "released_at": "2014-05-02",
+  "uri": "https://api.scryfall.com/cards/5d996c50-3560-4ed9-b413-0c9f4c5e8a77",
+  "scryfall_uri": "https://scryfall.com/card/jou/115/pt/g%C3%AAmeo-incandescente-(twinflame)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-02T05:47:30Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/5/d/5d996c50-3560-4ed9-b413-0c9f4c5e8a77.jpg?1782971250",
+    "normal": "https://cards.scryfall.io/normal/front/5/d/5d996c50-3560-4ed9-b413-0c9f4c5e8a77.jpg?1782971250",
+    "large": "https://cards.scryfall.io/large/front/5/d/5d996c50-3560-4ed9-b413-0c9f4c5e8a77.jpg?1782971250",
+    "png": "https://cards.scryfall.io/png/front/5/d/5d996c50-3560-4ed9-b413-0c9f4c5e8a77.png?1782971250",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/5/d/5d996c50-3560-4ed9-b413-0c9f4c5e8a77.jpg?1782971250",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/5/d/5d996c50-3560-4ed9-b413-0c9f4c5e8a77.jpg?1782971250",
+    "thumb": "https://cards.scryfall.io/thumb/front/5/d/5d996c50-3560-4ed9-b413-0c9f4c5e8a77.webp?1782971250",
+    "grid": "https://cards.scryfall.io/grid/front/5/d/5d996c50-3560-4ed9-b413-0c9f4c5e8a77.webp?1782971250",
+    "display": "https://cards.scryfall.io/display/front/5/d/5d996c50-3560-4ed9-b413-0c9f4c5e8a77.webp?1782971250",
+    "art": "https://cards.scryfall.io/art/front/5/d/5d996c50-3560-4ed9-b413-0c9f4c5e8a77.webp?1782971250",
+    "crop": "https://cards.scryfall.io/crop/front/5/d/5d996c50-3560-4ed9-b413-0c9f4c5e8a77.webp?1782971250"
+  },
+  "mana_cost": "{1}{R}",
+  "cmc": 2.0,
+  "type_line": "Sorcery",
+  "printed_type_line": "Feitiço",
+  "oracle_text": "Strive — This spell costs {2}{R} more to cast for each target beyond the first.\nChoose any number of target creatures you control. For each of them, create a token that's a copy of that creature, except it has haste. Exile those tokens at the beginning of the next end step.",
+  "printed_text": "Esforço — Gêmeo Incandescente custa {2}{R} a mais para ser conjurado para cada alvo além do primeiro.\nEscolha qualquer número de criaturas alvo que você controla. Para cada uma delas, coloque no campo de batalha uma ficha que seja uma cópia daquela criatura. Aquelas fichas têm ímpeto. Exile-as no início da próxima etapa final.",
+  "colors": [
+    "R"
+  ],
+  "color_identity": [
+    "R"
+  ],
+  "keywords": [
+    "Strive"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "204d2dca-1887-4721-9558-164aa7bbeb4f",
+  "set": "jou",
+  "set_name": "Journey into Nyx",
+  "set_type": "expansion",
+  "set_uri": "https://api.scryfall.com/sets/204d2dca-1887-4721-9558-164aa7bbeb4f",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Ajou&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/jou?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/5d996c50-3560-4ed9-b413-0c9f4c5e8a77/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A83cf1169-5853-4332-b897-7b17d72d76ab&unique=prints",
+  "collector_number": "115",
+  "digital": false,
+  "rarity": "rare",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Chase Stone",
+  "artist_ids": [
+    "2d753f61-5f5b-468e-97ea-8e0fdd347340"
+  ],
+  "illustration_id": "cc7ddbed-f5b2-4b97-990a-255a3f2a8f3d",
+  "border_color": "black",
+  "frame": "2003",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "edhrec_rank": 1259,
+  "penny_rank": 3314,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=381843&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DTwinflame",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DTwinflame",
+    "edhrec": "https://edhrec.com/route/?cc=Twinflame"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DTwinflame%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Twinflame&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Twinflame&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

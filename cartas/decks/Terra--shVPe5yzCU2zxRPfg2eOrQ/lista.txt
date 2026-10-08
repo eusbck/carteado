@@ -1,0 +1,128 @@
+[mainboard]
+
+1 Arcane Signet (ELD) 331
+1 Command Tower (ELD) 333
+1 Thrill of Possibility (ELD) 146
+1 Ash Barrens (PLST) CM2-235
+1 Evolving Wilds (PLST) C18-245
+1 Ravenous Chupacabra (PLST) RIX-82
+1 Rogue's Passage (PLST) C17-272
+1 Commander's Sphere (C19) 212
+1 Sol Ring (C19) 221
+1 Faithless Looting (EMA) 128
+1 Nomad Outpost (C20) 294
+1 Swiftfoot Boots (C20) 254
+1 Mind Stone (IMA) 219
+1 Path of Ancestry (CMR) 353
+1 Shineshadow Snarl (STX) 272
+1 Furycalm Snarl (STX) 266
+1 Vile Entomber (MH2) 108
+1 Morbid Opportunist (MID) 113
+1 Karmic Guide (VOC) 90
+1 Smoldering Marsh (VOC) 183
+1 Sunlit Marsh (DMU) 257
+1 Sacred Peaks (DMU) 254
+1 Demolition Field (BRO) 260
+1 Sulfurous Springs (LTC) 334
+1 Foreboding Ruins (WHO) 279
+1 Path to Exile (MKC) 78
+1 Exotic Orchard (PIP) 264
+1 Rugged Prairie (OTC) 314
+1 Talisman of Conviction (M3C) 307
+1 Sunscorched Divide (BLC) 336
+1 Bushmeat Poacher (PLST) GN3-44
+1 Shadowblood Ridge (DSC) 296
+1 Dragonskull Summit (DSC) 271
+1 Geothermal Bog (DSC) 278
+1 Aurelia, the Warleader (FDN) 651
+1 Vampiric Rites (FDN) 615
+1 Perforating Artist (FDN) 124
+1 Celes, Rune Knight (FIC) 1
+1 Summon: Esper Valigarmanda (FIC) 60
+1 Squall, SeeD Mercenary (FIN) 243
+1 General Leo Cristophe (FIC) 20
+1 Cyan, Vengeful Samurai (FIC) 16
+1 Tragic Arrogance (FIC) 258
+1 Sun Titan (FIC) 254
+1 Espers to Magicite (FIC) 43
+1 Siegfried, Famed Swordsman (FIC) 51
+1 Rejoin the Fight (FIC) 49
+1 Shadow, Mysterious Assassin (FIC) 50
+1 Pitiless Plunderer (FIC) 281
+1 Phoenix Down (FIN) 29
+1 Laughing Mad (FIN) 143
+1 Gau, Feral Youth (FIC) 55
+1 Reanimate (FIC) 282
+1 Stitch Together (FIC) 286
+1 Gogo, Mysterious Mime (FIC) 56
+1 Anger (FIC) 289
+1 Big Score (FIC) 290
+1 Stitcher's Supplier (FIC) 287
+1 Rise of the Dark Realms (FIC) 283
+1 Night's Whisper (FIC) 280
+1 Banon, the Returners' Leader (FIC) 78
+1 Kefka, Dancing Mad (FIC) 84
+1 Archfiend of Depravity (FIC) 273
+1 Locke, Treasure Hunter (FIC) 87
+1 Mog, Moogle Warrior (FIC) 89
+1 Crackling Doom (FIC) 322
+1 The Warring Triad (FIC) 99
+1 Bedevil (FIC) 319
+1 Ruinous Ultimatum (FIC) 329
+1 Legions to Ashes (FIC) 326
+1 Mortify (FIC) 327
+1 Priest of Fell Rites (FIC) 328
+1 Key to the City (FIC) 348
+1 Solemn Simulacrum (FIC) 360
+1 Meteor Golem (FIC) 351
+1 Millikin (FIC) 352
+1 Graven Cairns (FIC) 401
+1 Isolated Chapel (FIC) 405
+1 High Market (FIC) 402
+1 Joshua, Phoenix's Dominant // Phoenix, Warden of Fire (FIN) 229
+1 Twilight Diviner (ECL) 122
+1 Desolate Mire (SOC) 367
+1 Massacre Wurm (FDN) 754
+1 Clifftop Retreat (MSC) 231
+1 Swords to Plowshares (FRC) 37
+1 Fetid Heath (FRC) 72
+1 Talisman of Indulgence (FRC) 63
+1 Battlefield Forge (FRC) 65
+1 Fleshbag Marauder (FDC) 99
+3 Mountain (J25) 90
+3 Swamp (J25) 89
+4 Plains (J25) 81
+
+[sideboard]
+
+
+[maybeboard]
+
+
+[commanders]
+
+1 Terra, Herald of Hope (FIC) 4
+
+[companions]
+
+
+[signatureSpells]
+
+
+[attractions]
+
+
+[stickers]
+
+
+[contraptions]
+
+
+[planes]
+
+
+[schemes]
+
+
+[tokens]
+

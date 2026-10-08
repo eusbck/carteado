@@ -1,0 +1,830 @@
+{
+  "object": "card",
+  "id": "248ade83-ac57-42d6-985c-1e4cc3639f36",
+  "oracle_id": "2b7dba01-b08c-4218-9fc1-da55559d9155",
+  "multiverse_ids": [],
+  "name": "Saproling",
+  "lang": "en",
+  "released_at": "2026-04-24",
+  "uri": "https://api.scryfall.com/cards/248ade83-ac57-42d6-985c-1e4cc3639f36",
+  "scryfall_uri": "https://scryfall.com/card/tsoc/18/saproling?utm_source=api",
+  "layout": "token",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T00:46:10Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/2/4/248ade83-ac57-42d6-985c-1e4cc3639f36.jpg?1783903570",
+    "normal": "https://cards.scryfall.io/normal/front/2/4/248ade83-ac57-42d6-985c-1e4cc3639f36.jpg?1783903570",
+    "large": "https://cards.scryfall.io/large/front/2/4/248ade83-ac57-42d6-985c-1e4cc3639f36.jpg?1783903570",
+    "png": "https://cards.scryfall.io/png/front/2/4/248ade83-ac57-42d6-985c-1e4cc3639f36.png?1783903570",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/2/4/248ade83-ac57-42d6-985c-1e4cc3639f36.jpg?1783903570",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/2/4/248ade83-ac57-42d6-985c-1e4cc3639f36.jpg?1783903570",
+    "thumb": "https://cards.scryfall.io/thumb/front/2/4/248ade83-ac57-42d6-985c-1e4cc3639f36.webp?1783903570",
+    "grid": "https://cards.scryfall.io/grid/front/2/4/248ade83-ac57-42d6-985c-1e4cc3639f36.webp?1783903570",
+    "display": "https://cards.scryfall.io/display/front/2/4/248ade83-ac57-42d6-985c-1e4cc3639f36.webp?1783903570",
+    "art": "https://cards.scryfall.io/art/front/2/4/248ade83-ac57-42d6-985c-1e4cc3639f36.webp?1783903570",
+    "crop": "https://cards.scryfall.io/crop/front/2/4/248ade83-ac57-42d6-985c-1e4cc3639f36.webp?1783903570"
+  },
+  "mana_cost": "",
+  "cmc": 0.0,
+  "type_line": "Token Creature — Saproling",
+  "oracle_text": "",
+  "power": "1",
+  "toughness": "1",
+  "colors": [
+    "G"
+  ],
+  "color_identity": [
+    "G"
+  ],
+  "keywords": [],
+  "all_parts": [
+    {
+      "object": "related_card",
+      "id": "727a589a-2248-478f-825f-932bfb456675",
+      "component": "combo_piece",
+      "name": "Fungal Infection",
+      "type_line": "Instant",
+      "uri": "https://api.scryfall.com/cards/727a589a-2248-478f-825f-932bfb456675"
+    },
+    {
+      "object": "related_card",
+      "id": "57a96041-1b20-464e-9119-93c19675ac46",
+      "component": "combo_piece",
+      "name": "Sporoloth Ancient",
+      "type_line": "Creature — Fungus",
+      "uri": "https://api.scryfall.com/cards/57a96041-1b20-464e-9119-93c19675ac46"
+    },
+    {
+      "object": "related_card",
+      "id": "cc306b05-d991-4048-8390-6f404268d249",
+      "component": "combo_piece",
+      "name": "Fungal Plots",
+      "type_line": "Enchantment",
+      "uri": "https://api.scryfall.com/cards/cc306b05-d991-4048-8390-6f404268d249"
+    },
+    {
+      "object": "related_card",
+      "id": "fbd215e0-0de9-4382-9d8f-9b8d1ec5449d",
+      "component": "combo_piece",
+      "name": "Undercellar Myconid",
+      "type_line": "Creature — Fungus",
+      "uri": "https://api.scryfall.com/cards/fbd215e0-0de9-4382-9d8f-9b8d1ec5449d"
+    },
+    {
+      "object": "related_card",
+      "id": "b32224ef-cfd4-42ef-857a-24386590c360",
+      "component": "combo_piece",
+      "name": "Saurian Symbiote",
+      "type_line": "Creature — Fungus Dinosaur",
+      "uri": "https://api.scryfall.com/cards/b32224ef-cfd4-42ef-857a-24386590c360"
+    },
+    {
+      "object": "related_card",
+      "id": "c00f6b2c-8340-4b22-9553-252bb2905c6e",
+      "component": "combo_piece",
+      "name": "Roots of All Evil",
+      "type_line": "Scheme",
+      "uri": "https://api.scryfall.com/cards/c00f6b2c-8340-4b22-9553-252bb2905c6e"
+    },
+    {
+      "object": "related_card",
+      "id": "31bddc53-fa0c-4aa5-a92a-fa247e5330db",
+      "component": "combo_piece",
+      "name": "Aura Mutation",
+      "type_line": "Instant",
+      "uri": "https://api.scryfall.com/cards/31bddc53-fa0c-4aa5-a92a-fa247e5330db"
+    },
+    {
+      "object": "related_card",
+      "id": "90594c9c-95a5-4d3c-9005-863fa710cdbd",
+      "component": "combo_piece",
+      "name": "Sporemound",
+      "type_line": "Creature — Fungus",
+      "uri": "https://api.scryfall.com/cards/90594c9c-95a5-4d3c-9005-863fa710cdbd"
+    },
+    {
+      "object": "related_card",
+      "id": "799e835b-98ad-41b2-a8a9-a7c661efd86f",
+      "component": "combo_piece",
+      "name": "Thallid Germinator",
+      "type_line": "Creature — Fungus",
+      "uri": "https://api.scryfall.com/cards/799e835b-98ad-41b2-a8a9-a7c661efd86f"
+    },
+    {
+      "object": "related_card",
+      "id": "92fab6e3-29a5-42e0-872e-5c2f4f72bfc5",
+      "component": "combo_piece",
+      "name": "Spore Burst",
+      "type_line": "Sorcery",
+      "uri": "https://api.scryfall.com/cards/92fab6e3-29a5-42e0-872e-5c2f4f72bfc5"
+    },
+    {
+      "object": "related_card",
+      "id": "248ade83-ac57-42d6-985c-1e4cc3639f36",
+      "component": "token",
+      "name": "Saproling",
+      "type_line": "Token Creature — Saproling",
+      "uri": "https://api.scryfall.com/cards/248ade83-ac57-42d6-985c-1e4cc3639f36"
+    },
+    {
+      "object": "related_card",
+      "id": "7f297c91-a31f-4e60-adc6-731e73b86e7c",
+      "component": "combo_piece",
+      "name": "Sporeweb Weaver",
+      "type_line": "Creature — Spider",
+      "uri": "https://api.scryfall.com/cards/7f297c91-a31f-4e60-adc6-731e73b86e7c"
+    },
+    {
+      "object": "related_card",
+      "id": "862a2871-57be-42f5-9097-d821013d3b58",
+      "component": "combo_piece",
+      "name": "Fists of Ironwood",
+      "type_line": "Enchantment — Aura",
+      "uri": "https://api.scryfall.com/cards/862a2871-57be-42f5-9097-d821013d3b58"
+    },
+    {
+      "object": "related_card",
+      "id": "97413ae3-037e-4786-85a3-e92604acd771",
+      "component": "combo_piece",
+      "name": "Fungal Sprouting",
+      "type_line": "Sorcery",
+      "uri": "https://api.scryfall.com/cards/97413ae3-037e-4786-85a3-e92604acd771"
+    },
+    {
+      "object": "related_card",
+      "id": "a87cbbdb-3bbc-48da-b5e3-fcdbddebec81",
+      "component": "combo_piece",
+      "name": "Savage Thallid",
+      "type_line": "Creature — Fungus",
+      "uri": "https://api.scryfall.com/cards/a87cbbdb-3bbc-48da-b5e3-fcdbddebec81"
+    },
+    {
+      "object": "related_card",
+      "id": "8f31b7c1-e4b5-4d2e-8ff7-09bf7bc66e0a",
+      "component": "combo_piece",
+      "name": "Night Soil",
+      "type_line": "Enchantment",
+      "uri": "https://api.scryfall.com/cards/8f31b7c1-e4b5-4d2e-8ff7-09bf7bc66e0a"
+    },
+    {
+      "object": "related_card",
+      "id": "839d969b-b1f7-4978-b00c-db0766161f63",
+      "component": "combo_piece",
+      "name": "Sporogenesis",
+      "type_line": "Enchantment",
+      "uri": "https://api.scryfall.com/cards/839d969b-b1f7-4978-b00c-db0766161f63"
+    },
+    {
+      "object": "related_card",
+      "id": "e2803fdc-2ae1-438c-b5b1-559817e85fdb",
+      "component": "combo_piece",
+      "name": "Psychotrope Thallid",
+      "type_line": "Creature — Fungus",
+      "uri": "https://api.scryfall.com/cards/e2803fdc-2ae1-438c-b5b1-559817e85fdb"
+    },
+    {
+      "object": "related_card",
+      "id": "74c1b368-6fb0-4430-807e-d124f3077361",
+      "component": "combo_piece",
+      "name": "Deathspore Thallid",
+      "type_line": "Creature — Zombie Fungus",
+      "uri": "https://api.scryfall.com/cards/74c1b368-6fb0-4430-807e-d124f3077361"
+    },
+    {
+      "object": "related_card",
+      "id": "681224b6-ddf1-4405-8720-951c0fce44a5",
+      "component": "combo_piece",
+      "name": "Saproling Cluster",
+      "type_line": "Enchantment",
+      "uri": "https://api.scryfall.com/cards/681224b6-ddf1-4405-8720-951c0fce44a5"
+    },
+    {
+      "object": "related_card",
+      "id": "8d03f6eb-a146-45e8-a8e0-a46ec0c20c1d",
+      "component": "combo_piece",
+      "name": "Golgari Germination",
+      "type_line": "Enchantment",
+      "uri": "https://api.scryfall.com/cards/8d03f6eb-a146-45e8-a8e0-a46ec0c20c1d"
+    },
+    {
+      "object": "related_card",
+      "id": "6967363f-1e05-4484-8790-47f7be68455c",
+      "component": "combo_piece",
+      "name": "Sprout",
+      "type_line": "Instant",
+      "uri": "https://api.scryfall.com/cards/6967363f-1e05-4484-8790-47f7be68455c"
+    },
+    {
+      "object": "related_card",
+      "id": "ae7eb7e9-288e-447e-919d-a91a40717eb6",
+      "component": "combo_piece",
+      "name": "Yavimaya Sapherd",
+      "type_line": "Creature — Fungus",
+      "uri": "https://api.scryfall.com/cards/ae7eb7e9-288e-447e-919d-a91a40717eb6"
+    },
+    {
+      "object": "related_card",
+      "id": "69d20d28-76e9-4e6e-95c3-f88c51dfabfd",
+      "component": "combo_piece",
+      "name": "Thallid",
+      "type_line": "Creature — Fungus",
+      "uri": "https://api.scryfall.com/cards/69d20d28-76e9-4e6e-95c3-f88c51dfabfd"
+    },
+    {
+      "object": "related_card",
+      "id": "9e1fd5ff-79a2-43d9-bd69-94be175d19b4",
+      "component": "combo_piece",
+      "name": "Thallid Shell-Dweller",
+      "type_line": "Creature — Fungus",
+      "uri": "https://api.scryfall.com/cards/9e1fd5ff-79a2-43d9-bd69-94be175d19b4"
+    },
+    {
+      "object": "related_card",
+      "id": "5664e121-d3f1-4ff5-9576-ef515e22bde7",
+      "component": "combo_piece",
+      "name": "Utopia Mycon",
+      "type_line": "Creature — Fungus",
+      "uri": "https://api.scryfall.com/cards/5664e121-d3f1-4ff5-9576-ef515e22bde7"
+    },
+    {
+      "object": "related_card",
+      "id": "2d929bda-150c-484a-910e-eee19297c77e",
+      "component": "combo_piece",
+      "name": "Selesnya Evangel",
+      "type_line": "Creature — Elf Shaman",
+      "uri": "https://api.scryfall.com/cards/2d929bda-150c-484a-910e-eee19297c77e"
+    },
+    {
+      "object": "related_card",
+      "id": "d7f3c92b-5a31-450e-8cff-9289d266050a",
+      "component": "combo_piece",
+      "name": "Last Stand",
+      "type_line": "Sorcery",
+      "uri": "https://api.scryfall.com/cards/d7f3c92b-5a31-450e-8cff-9289d266050a"
+    },
+    {
+      "object": "related_card",
+      "id": "b88cd231-d2f3-4871-869b-ab5ba299f7f9",
+      "component": "combo_piece",
+      "name": "Pollenbright Wings",
+      "type_line": "Enchantment — Aura",
+      "uri": "https://api.scryfall.com/cards/b88cd231-d2f3-4871-869b-ab5ba299f7f9"
+    },
+    {
+      "object": "related_card",
+      "id": "c6f777b0-2f35-4333-8f54-7ceeeac2ec83",
+      "component": "combo_piece",
+      "name": "Slimefoot and Squee",
+      "type_line": "Legendary Creature — Fungus Goblin",
+      "uri": "https://api.scryfall.com/cards/c6f777b0-2f35-4333-8f54-7ceeeac2ec83"
+    },
+    {
+      "object": "related_card",
+      "id": "d60e3465-46ae-486f-8deb-6e2f1ac71a1b",
+      "component": "combo_piece",
+      "name": "Nemata, Grove Guardian",
+      "type_line": "Legendary Creature — Treefolk",
+      "uri": "https://api.scryfall.com/cards/d60e3465-46ae-486f-8deb-6e2f1ac71a1b"
+    },
+    {
+      "object": "related_card",
+      "id": "5386a61c-4928-4bd1-babe-5b089ab8b2d9",
+      "component": "combo_piece",
+      "name": "Aether Mutation",
+      "type_line": "Sorcery",
+      "uri": "https://api.scryfall.com/cards/5386a61c-4928-4bd1-babe-5b089ab8b2d9"
+    },
+    {
+      "object": "related_card",
+      "id": "8253dab6-d6a7-4a1c-b5f6-5a2ee051a128",
+      "component": "combo_piece",
+      "name": "Saproling Symbiosis",
+      "type_line": "Sorcery",
+      "uri": "https://api.scryfall.com/cards/8253dab6-d6a7-4a1c-b5f6-5a2ee051a128"
+    },
+    {
+      "object": "related_card",
+      "id": "4271f5b2-32ca-4349-9a09-afffbdacf636",
+      "component": "combo_piece",
+      "name": "Thelonite Hermit",
+      "type_line": "Creature — Elf Shaman",
+      "uri": "https://api.scryfall.com/cards/4271f5b2-32ca-4349-9a09-afffbdacf636"
+    },
+    {
+      "object": "related_card",
+      "id": "c7c721a5-9fcf-42dc-9b6d-a50cdca839ac",
+      "component": "combo_piece",
+      "name": "Jade Mage",
+      "type_line": "Creature — Human Shaman",
+      "uri": "https://api.scryfall.com/cards/c7c721a5-9fcf-42dc-9b6d-a50cdca839ac"
+    },
+    {
+      "object": "related_card",
+      "id": "01f33e98-e024-422f-9f18-a938ba1f76af",
+      "component": "combo_piece",
+      "name": "Death Mutation",
+      "type_line": "Sorcery",
+      "uri": "https://api.scryfall.com/cards/01f33e98-e024-422f-9f18-a938ba1f76af"
+    },
+    {
+      "object": "related_card",
+      "id": "ccc796ae-360f-4a3f-83d3-610ff3162b9a",
+      "component": "combo_piece",
+      "name": "Druidic Satchel",
+      "type_line": "Artifact",
+      "uri": "https://api.scryfall.com/cards/ccc796ae-360f-4a3f-83d3-610ff3162b9a"
+    },
+    {
+      "object": "related_card",
+      "id": "8ecb8a87-85d9-48ae-b0b3-84b9420ae082",
+      "component": "combo_piece",
+      "name": "Ulasht, the Hate Seed",
+      "type_line": "Legendary Creature — Hellion Hydra",
+      "uri": "https://api.scryfall.com/cards/8ecb8a87-85d9-48ae-b0b3-84b9420ae082"
+    },
+    {
+      "object": "related_card",
+      "id": "0a72a7ae-8c40-4c8e-8fb5-f5f2e1a71792",
+      "component": "combo_piece",
+      "name": "Verdant Force",
+      "type_line": "Creature — Elemental",
+      "uri": "https://api.scryfall.com/cards/0a72a7ae-8c40-4c8e-8fb5-f5f2e1a71792"
+    },
+    {
+      "object": "related_card",
+      "id": "e2a54461-1f75-4304-b6d7-635171419456",
+      "component": "combo_piece",
+      "name": "The Weatherseed Treaty",
+      "type_line": "Enchantment — Saga",
+      "uri": "https://api.scryfall.com/cards/e2a54461-1f75-4304-b6d7-635171419456"
+    },
+    {
+      "object": "related_card",
+      "id": "4b3e632e-21dc-4cc3-9c80-4b3d8b8e5795",
+      "component": "combo_piece",
+      "name": "Verdeloth the Ancient",
+      "type_line": "Legendary Creature — Treefolk",
+      "uri": "https://api.scryfall.com/cards/4b3e632e-21dc-4cc3-9c80-4b3d8b8e5795"
+    },
+    {
+      "object": "related_card",
+      "id": "3f69a25f-4e76-4c74-a95a-8d3241df6e04",
+      "component": "combo_piece",
+      "name": "Infested Thrinax",
+      "type_line": "Creature — Lizard",
+      "uri": "https://api.scryfall.com/cards/3f69a25f-4e76-4c74-a95a-8d3241df6e04"
+    },
+    {
+      "object": "related_card",
+      "id": "e5c879af-a092-4cc4-a53d-760553d94864",
+      "component": "combo_piece",
+      "name": "Fertile Imagination",
+      "type_line": "Sorcery",
+      "uri": "https://api.scryfall.com/cards/e5c879af-a092-4cc4-a53d-760553d94864"
+    },
+    {
+      "object": "related_card",
+      "id": "5630193b-4956-4f64-9dae-7aa7452d8989",
+      "component": "combo_piece",
+      "name": "Vitu-Ghazi, the City-Tree",
+      "type_line": "Land",
+      "uri": "https://api.scryfall.com/cards/5630193b-4956-4f64-9dae-7aa7452d8989"
+    },
+    {
+      "object": "related_card",
+      "id": "cad14bc9-b90e-48e0-9e72-173874dab6bc",
+      "component": "combo_piece",
+      "name": "Vitaspore Thallid",
+      "type_line": "Creature — Fungus",
+      "uri": "https://api.scryfall.com/cards/cad14bc9-b90e-48e0-9e72-173874dab6bc"
+    },
+    {
+      "object": "related_card",
+      "id": "08c648f3-6c69-4416-9fa4-77b45ac04ca5",
+      "component": "combo_piece",
+      "name": "Sprout Swarm",
+      "type_line": "Instant",
+      "uri": "https://api.scryfall.com/cards/08c648f3-6c69-4416-9fa4-77b45ac04ca5"
+    },
+    {
+      "object": "related_card",
+      "id": "f5a9ab6c-d4e6-461b-b760-037b7c2b7f42",
+      "component": "combo_piece",
+      "name": "Spore Swarm",
+      "type_line": "Instant",
+      "uri": "https://api.scryfall.com/cards/f5a9ab6c-d4e6-461b-b760-037b7c2b7f42"
+    },
+    {
+      "object": "related_card",
+      "id": "954b8e86-284a-4a6f-ac35-896afd414f8a",
+      "component": "combo_piece",
+      "name": "Selesnya Guildmage",
+      "type_line": "Creature — Elf Wizard",
+      "uri": "https://api.scryfall.com/cards/954b8e86-284a-4a6f-ac35-896afd414f8a"
+    },
+    {
+      "object": "related_card",
+      "id": "9e37a5d9-2b6f-4412-aec2-0d6161e2a7d2",
+      "component": "combo_piece",
+      "name": "Elvish Farmer",
+      "type_line": "Creature — Elf",
+      "uri": "https://api.scryfall.com/cards/9e37a5d9-2b6f-4412-aec2-0d6161e2a7d2"
+    },
+    {
+      "object": "related_card",
+      "id": "1c0a3c92-826e-491a-8e80-7861e5b199c2",
+      "component": "combo_piece",
+      "name": "Rith, the Awakener",
+      "type_line": "Legendary Creature — Dragon",
+      "uri": "https://api.scryfall.com/cards/1c0a3c92-826e-491a-8e80-7861e5b199c2"
+    },
+    {
+      "object": "related_card",
+      "id": "0a353fed-e01c-4eaf-afb5-446644628284",
+      "component": "combo_piece",
+      "name": "Rith's Charm",
+      "type_line": "Instant",
+      "uri": "https://api.scryfall.com/cards/0a353fed-e01c-4eaf-afb5-446644628284"
+    },
+    {
+      "object": "related_card",
+      "id": "cec16eaa-ae9c-4301-a813-3db0328ca270",
+      "component": "combo_piece",
+      "name": "Overgrown Armasaur",
+      "type_line": "Creature — Dinosaur",
+      "uri": "https://api.scryfall.com/cards/cec16eaa-ae9c-4301-a813-3db0328ca270"
+    },
+    {
+      "object": "related_card",
+      "id": "def3571c-01dd-4eee-8f60-0ac4d1928d33",
+      "component": "combo_piece",
+      "name": "Tendershoot Dryad",
+      "type_line": "Creature — Dryad",
+      "uri": "https://api.scryfall.com/cards/def3571c-01dd-4eee-8f60-0ac4d1928d33"
+    },
+    {
+      "object": "related_card",
+      "id": "0a664cd2-3778-4344-addc-72341889e871",
+      "component": "combo_piece",
+      "name": "Ferrafor, Young Yew",
+      "type_line": "Legendary Creature — Treefolk Druid",
+      "uri": "https://api.scryfall.com/cards/0a664cd2-3778-4344-addc-72341889e871"
+    },
+    {
+      "object": "related_card",
+      "id": "66e5fde1-d99e-4d64-a567-736efd8cac15",
+      "component": "combo_piece",
+      "name": "Tana, the Bloodsower",
+      "type_line": "Legendary Creature — Elf Druid",
+      "uri": "https://api.scryfall.com/cards/66e5fde1-d99e-4d64-a567-736efd8cac15"
+    },
+    {
+      "object": "related_card",
+      "id": "684ebc3a-e3b4-4dee-92ff-4a85556e0571",
+      "component": "combo_piece",
+      "name": "Morbid Bloom",
+      "type_line": "Sorcery",
+      "uri": "https://api.scryfall.com/cards/684ebc3a-e3b4-4dee-92ff-4a85556e0571"
+    },
+    {
+      "object": "related_card",
+      "id": "c348fb8f-f151-4ade-8cb3-b994219340c0",
+      "component": "combo_piece",
+      "name": "Bramble Elemental",
+      "type_line": "Creature — Elemental",
+      "uri": "https://api.scryfall.com/cards/c348fb8f-f151-4ade-8cb3-b994219340c0"
+    },
+    {
+      "object": "related_card",
+      "id": "32a50be8-3937-458b-a2f9-e75569016665",
+      "component": "combo_piece",
+      "name": "Necrogenesis",
+      "type_line": "Enchantment",
+      "uri": "https://api.scryfall.com/cards/32a50be8-3937-458b-a2f9-e75569016665"
+    },
+    {
+      "object": "related_card",
+      "id": "cca60d13-137f-4438-bc51-7ea02ec3c515",
+      "component": "combo_piece",
+      "name": "Mycologist",
+      "type_line": "Creature — Human Druid",
+      "uri": "https://api.scryfall.com/cards/cca60d13-137f-4438-bc51-7ea02ec3c515"
+    },
+    {
+      "object": "related_card",
+      "id": "37622ca4-5627-4cae-af60-c4a2a4368cec",
+      "component": "combo_piece",
+      "name": "Korozda Guildmage",
+      "type_line": "Creature — Elf Shaman",
+      "uri": "https://api.scryfall.com/cards/37622ca4-5627-4cae-af60-c4a2a4368cec"
+    },
+    {
+      "object": "related_card",
+      "id": "1a392801-bdc8-4342-8cdd-48f874e22afa",
+      "component": "combo_piece",
+      "name": "Thallid Devourer",
+      "type_line": "Creature — Fungus",
+      "uri": "https://api.scryfall.com/cards/1a392801-bdc8-4342-8cdd-48f874e22afa"
+    },
+    {
+      "object": "related_card",
+      "id": "52abf994-78d6-40dd-9d43-19ae8176e3bd",
+      "component": "combo_piece",
+      "name": "Fungal Rebirth",
+      "type_line": "Instant",
+      "uri": "https://api.scryfall.com/cards/52abf994-78d6-40dd-9d43-19ae8176e3bd"
+    },
+    {
+      "object": "related_card",
+      "id": "52589a1d-bb98-4af2-8813-8598fb20b4f2",
+      "component": "combo_piece",
+      "name": "Saproling Migration",
+      "type_line": "Sorcery",
+      "uri": "https://api.scryfall.com/cards/52589a1d-bb98-4af2-8813-8598fb20b4f2"
+    },
+    {
+      "object": "related_card",
+      "id": "39f59d34-8166-4ac9-8684-33efa315e4db",
+      "component": "combo_piece",
+      "name": "Scatter the Seeds",
+      "type_line": "Instant",
+      "uri": "https://api.scryfall.com/cards/39f59d34-8166-4ac9-8684-33efa315e4db"
+    },
+    {
+      "object": "related_card",
+      "id": "d90794bf-2d48-4a53-8197-b931d26292fb",
+      "component": "combo_piece",
+      "name": "Tukatongue Thallid",
+      "type_line": "Creature — Fungus",
+      "uri": "https://api.scryfall.com/cards/d90794bf-2d48-4a53-8197-b931d26292fb"
+    },
+    {
+      "object": "related_card",
+      "id": "e60890ef-daf7-4542-9813-6c6a6e0ab222",
+      "component": "combo_piece",
+      "name": "Tribune of Rot",
+      "type_line": "Creature — Elf Shaman",
+      "uri": "https://api.scryfall.com/cards/e60890ef-daf7-4542-9813-6c6a6e0ab222"
+    },
+    {
+      "object": "related_card",
+      "id": "bbe74b50-a2a9-4ace-95ed-4ad5d12e3f2e",
+      "component": "combo_piece",
+      "name": "Deathbloom Thallid",
+      "type_line": "Creature — Fungus",
+      "uri": "https://api.scryfall.com/cards/bbe74b50-a2a9-4ace-95ed-4ad5d12e3f2e"
+    },
+    {
+      "object": "related_card",
+      "id": "ee8c962f-11b0-48f7-bbba-a2212e41990f",
+      "component": "combo_piece",
+      "name": "Jund Battlemage",
+      "type_line": "Creature — Human Shaman",
+      "uri": "https://api.scryfall.com/cards/ee8c962f-11b0-48f7-bbba-a2212e41990f"
+    },
+    {
+      "object": "related_card",
+      "id": "ce5765cb-00cd-4920-9fe8-68791048ec4a",
+      "component": "combo_piece",
+      "name": "Spontaneous Generation",
+      "type_line": "Sorcery",
+      "uri": "https://api.scryfall.com/cards/ce5765cb-00cd-4920-9fe8-68791048ec4a"
+    },
+    {
+      "object": "related_card",
+      "id": "d4628887-bda4-47e4-84d1-d31a8298f9e5",
+      "component": "combo_piece",
+      "name": "Supply // Demand",
+      "type_line": "Sorcery // Sorcery",
+      "uri": "https://api.scryfall.com/cards/d4628887-bda4-47e4-84d1-d31a8298f9e5"
+    },
+    {
+      "object": "related_card",
+      "id": "924976cf-9b46-4cbf-ab27-07ca72a21608",
+      "component": "combo_piece",
+      "name": "Mycoloth",
+      "type_line": "Creature — Fungus",
+      "uri": "https://api.scryfall.com/cards/924976cf-9b46-4cbf-ab27-07ca72a21608"
+    },
+    {
+      "object": "related_card",
+      "id": "6ef36eb5-b9a9-4c8d-92d4-847a8ed8933f",
+      "component": "combo_piece",
+      "name": "Dreampod Druid",
+      "type_line": "Creature — Human Druid",
+      "uri": "https://api.scryfall.com/cards/6ef36eb5-b9a9-4c8d-92d4-847a8ed8933f"
+    },
+    {
+      "object": "related_card",
+      "id": "8642e530-914c-4149-944a-c4966ee27299",
+      "component": "combo_piece",
+      "name": "Saproling Infestation",
+      "type_line": "Enchantment",
+      "uri": "https://api.scryfall.com/cards/8642e530-914c-4149-944a-c4966ee27299"
+    },
+    {
+      "object": "related_card",
+      "id": "babc8043-bfed-45e3-9d04-1967534f77b2",
+      "component": "combo_piece",
+      "name": "Sporesower Thallid",
+      "type_line": "Creature — Fungus",
+      "uri": "https://api.scryfall.com/cards/babc8043-bfed-45e3-9d04-1967534f77b2"
+    },
+    {
+      "object": "related_card",
+      "id": "9ed9f270-4da6-439e-b13a-70da6e7f424a",
+      "component": "combo_piece",
+      "name": "Shroofus Sproutsire",
+      "type_line": "Legendary Creature — Saproling",
+      "uri": "https://api.scryfall.com/cards/9ed9f270-4da6-439e-b13a-70da6e7f424a"
+    },
+    {
+      "object": "related_card",
+      "id": "03cb1519-1cab-4c59-9cf9-d5c44074bbce",
+      "component": "combo_piece",
+      "name": "Ghave, Guru of Spores",
+      "type_line": "Legendary Creature — Fungus Shaman",
+      "uri": "https://api.scryfall.com/cards/03cb1519-1cab-4c59-9cf9-d5c44074bbce"
+    },
+    {
+      "object": "related_card",
+      "id": "29a2a28e-c241-4228-9ece-2e49d4d3733a",
+      "component": "combo_piece",
+      "name": "Pallid Mycoderm",
+      "type_line": "Creature — Fungus",
+      "uri": "https://api.scryfall.com/cards/29a2a28e-c241-4228-9ece-2e49d4d3733a"
+    },
+    {
+      "object": "related_card",
+      "id": "fed09083-a259-4ab5-bb85-aeab9d0b1f7c",
+      "component": "combo_piece",
+      "name": "Artifact Mutation",
+      "type_line": "Instant",
+      "uri": "https://api.scryfall.com/cards/fed09083-a259-4ab5-bb85-aeab9d0b1f7c"
+    },
+    {
+      "object": "related_card",
+      "id": "41b05cf1-1bc2-43e1-b383-9cbb69517389",
+      "component": "combo_piece",
+      "name": "Sprouting Thrinax",
+      "type_line": "Creature — Lizard",
+      "uri": "https://api.scryfall.com/cards/41b05cf1-1bc2-43e1-b383-9cbb69517389"
+    },
+    {
+      "object": "related_card",
+      "id": "b71c63da-dfe3-475f-88d9-20008c01163a",
+      "component": "combo_piece",
+      "name": "Flash Foliage",
+      "type_line": "Instant",
+      "uri": "https://api.scryfall.com/cards/b71c63da-dfe3-475f-88d9-20008c01163a"
+    },
+    {
+      "object": "related_card",
+      "id": "b36f2399-bf72-48ab-9314-834b69194d5d",
+      "component": "combo_piece",
+      "name": "Verdant Embrace",
+      "type_line": "Enchantment — Aura",
+      "uri": "https://api.scryfall.com/cards/b36f2399-bf72-48ab-9314-834b69194d5d"
+    },
+    {
+      "object": "related_card",
+      "id": "9df82a20-309e-4581-9f3f-e9ba9250747b",
+      "component": "combo_piece",
+      "name": "Brightcap Badger // Fungus Frolic",
+      "type_line": "Creature — Badger Druid // Instant — Adventure",
+      "uri": "https://api.scryfall.com/cards/9df82a20-309e-4581-9f3f-e9ba9250747b"
+    },
+    {
+      "object": "related_card",
+      "id": "b37a6cf7-f239-4bca-b4c3-a48932ef56b5",
+      "component": "combo_piece",
+      "name": "Sarpadian Empires, Vol. VII",
+      "type_line": "Artifact — Book",
+      "uri": "https://api.scryfall.com/cards/b37a6cf7-f239-4bca-b4c3-a48932ef56b5"
+    },
+    {
+      "object": "related_card",
+      "id": "ad580fd5-a2b6-4ef4-90ff-9d1eb000b97b",
+      "component": "combo_piece",
+      "name": "Nemata, Primeval Warden",
+      "type_line": "Legendary Creature — Treefolk",
+      "uri": "https://api.scryfall.com/cards/ad580fd5-a2b6-4ef4-90ff-9d1eb000b97b"
+    },
+    {
+      "object": "related_card",
+      "id": "55c3222e-ac18-4f57-9c9e-50deb0a69db3",
+      "component": "combo_piece",
+      "name": "Greener Pastures",
+      "type_line": "Enchantment",
+      "uri": "https://api.scryfall.com/cards/55c3222e-ac18-4f57-9c9e-50deb0a69db3"
+    },
+    {
+      "object": "related_card",
+      "id": "3dfccef2-4d55-423f-8375-4e349bbf615e",
+      "component": "combo_piece",
+      "name": "Grand Ossuary",
+      "type_line": "Plane — Ravnica",
+      "uri": "https://api.scryfall.com/cards/3dfccef2-4d55-423f-8375-4e349bbf615e"
+    },
+    {
+      "object": "related_card",
+      "id": "33af31cf-d730-4f54-a0be-3229cdccf60c",
+      "component": "combo_piece",
+      "name": "Seed Spark",
+      "type_line": "Instant",
+      "uri": "https://api.scryfall.com/cards/33af31cf-d730-4f54-a0be-3229cdccf60c"
+    },
+    {
+      "object": "related_card",
+      "id": "c649e923-dcd1-45d7-90bd-4e2fe55c8ce7",
+      "component": "combo_piece",
+      "name": "Slimefoot, the Stowaway",
+      "type_line": "Legendary Creature — Fungus",
+      "uri": "https://api.scryfall.com/cards/c649e923-dcd1-45d7-90bd-4e2fe55c8ce7"
+    }
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "not_legal",
+    "pauper": "not_legal",
+    "vintage": "not_legal",
+    "penny": "not_legal",
+    "commander": "not_legal",
+    "oathbreaker": "not_legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "not_legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "cb590d57-927c-437a-934c-7f774881d1c9",
+  "set": "tsoc",
+  "set_name": "Secrets of Strixhaven Commander Tokens",
+  "set_type": "token",
+  "set_uri": "https://api.scryfall.com/sets/cb590d57-927c-437a-934c-7f774881d1c9",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Atsoc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/tsoc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/248ade83-ac57-42d6-985c-1e4cc3639f36/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A2b7dba01-b08c-4218-9fc1-da55559d9155&unique=prints",
+  "collector_number": "18",
+  "digital": false,
+  "rarity": "common",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Joseph Meehan",
+  "artist_ids": [
+    "6befd6d5-7f8d-4b7c-87e3-5511391a3359"
+  ],
+  "illustration_id": "328aab39-17fb-48ef-a40e-b692d07e4d5e",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DSaproling",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DSaproling",
+    "edhrec": "https://edhrec.com/route/?cc=Saproling"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DSaproling%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Saproling&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Saproling&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

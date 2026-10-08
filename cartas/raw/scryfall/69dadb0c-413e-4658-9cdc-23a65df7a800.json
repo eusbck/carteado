@@ -1,0 +1,142 @@
+{
+  "object": "card",
+  "id": "69dadb0c-413e-4658-9cdc-23a65df7a800",
+  "oracle_id": "a7cac6c3-cbb1-41f4-905d-2eb581e8e2e0",
+  "multiverse_ids": [],
+  "resource_id": "C7E26277B921F5154F9FA5272E5A40BEA92CA361B6FF517065410C5CBAC24BFD",
+  "mtgo_id": 140093,
+  "tcgplayer_id": 631120,
+  "cardmarket_id": 824583,
+  "name": "Siegfried, Famed Swordsman",
+  "lang": "en",
+  "released_at": "2025-06-13",
+  "uri": "https://api.scryfall.com/cards/69dadb0c-413e-4658-9cdc-23a65df7a800",
+  "scryfall_uri": "https://scryfall.com/card/fic/51/siegfried-famed-swordsman?utm_source=api",
+  "layout": "normal",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T01:32:37Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/6/9/69dadb0c-413e-4658-9cdc-23a65df7a800.jpg?1783906357",
+    "normal": "https://cards.scryfall.io/normal/front/6/9/69dadb0c-413e-4658-9cdc-23a65df7a800.jpg?1783906357",
+    "large": "https://cards.scryfall.io/large/front/6/9/69dadb0c-413e-4658-9cdc-23a65df7a800.jpg?1783906357",
+    "png": "https://cards.scryfall.io/png/front/6/9/69dadb0c-413e-4658-9cdc-23a65df7a800.png?1783906357",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/6/9/69dadb0c-413e-4658-9cdc-23a65df7a800.jpg?1783906357",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/6/9/69dadb0c-413e-4658-9cdc-23a65df7a800.jpg?1783906357",
+    "thumb": "https://cards.scryfall.io/thumb/front/6/9/69dadb0c-413e-4658-9cdc-23a65df7a800.webp?1783906357",
+    "grid": "https://cards.scryfall.io/grid/front/6/9/69dadb0c-413e-4658-9cdc-23a65df7a800.webp?1783906357",
+    "display": "https://cards.scryfall.io/display/front/6/9/69dadb0c-413e-4658-9cdc-23a65df7a800.webp?1783906357",
+    "art": "https://cards.scryfall.io/art/front/6/9/69dadb0c-413e-4658-9cdc-23a65df7a800.webp?1783906357",
+    "crop": "https://cards.scryfall.io/crop/front/6/9/69dadb0c-413e-4658-9cdc-23a65df7a800.webp?1783906357"
+  },
+  "mana_cost": "{3}{B}",
+  "cmc": 4.0,
+  "type_line": "Legendary Creature — Human Warrior Rogue",
+  "oracle_text": "Menace\nWhen Siegfried enters, mill three cards. Then put X +1/+1 counters on Siegfried, where X is twice the number of creature cards in your graveyard.",
+  "power": "2",
+  "toughness": "2",
+  "colors": [
+    "B"
+  ],
+  "color_identity": [
+    "B"
+  ],
+  "keywords": [
+    "Menace",
+    "Mill"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "30659956-4558-4cbf-a65f-34cd00c89579",
+  "set": "fic",
+  "set_name": "Final Fantasy Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/30659956-4558-4cbf-a65f-34cd00c89579",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Afic&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/fic?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/69dadb0c-413e-4658-9cdc-23a65df7a800/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Aa7cac6c3-cbb1-41f4-905d-2eb581e8e2e0&unique=prints",
+  "collector_number": "51",
+  "digital": false,
+  "rarity": "rare",
+  "flavor_text": "Recent rumors speak of an impostor that shows up and masquerades as Siegfried himself.",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Crystal Fae",
+  "artist_ids": [
+    "544b1939-736e-4033-bc3b-dea426166ab0"
+  ],
+  "illustration_id": "2942cd7d-67fd-437c-b331-0ba1e92ac716",
+  "border_color": "black",
+  "frame": "2015",
+  "frame_effects": [
+    "legendary"
+  ],
+  "security_stamp": "triangle",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "promo_types": [
+    "surgefoil",
+    "ffvi",
+    "universesbeyond"
+  ],
+  "edhrec_rank": 7415,
+  "prices": {
+    "usd": "0.24",
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": "0.19",
+    "eur_foil": null,
+    "tix": "1.71"
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DSiegfried%252C%2BFamed%2BSwordsman",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DSiegfried%252C%2BFamed%2BSwordsman",
+    "edhrec": "https://edhrec.com/route/?cc=Siegfried%2C+Famed+Swordsman"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F631120%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=824583&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards/140093?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

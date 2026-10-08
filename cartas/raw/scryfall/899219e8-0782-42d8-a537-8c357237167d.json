@@ -1,0 +1,131 @@
+{
+  "object": "card",
+  "id": "899219e8-0782-42d8-a537-8c357237167d",
+  "oracle_id": "f1b26eb1-6337-42d6-a475-53ad6427f00f",
+  "multiverse_ids": [
+    172183
+  ],
+  "name": "Flourishing Defenses",
+  "printed_name": "Defesas Florescentes",
+  "lang": "pt",
+  "released_at": "2008-05-02",
+  "uri": "https://api.scryfall.com/cards/899219e8-0782-42d8-a537-8c357237167d",
+  "scryfall_uri": "https://scryfall.com/card/shm/114/pt/defesas-florescentes-(flourishing-defenses)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-02T15:40:04Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/8/9/899219e8-0782-42d8-a537-8c357237167d.jpg?1783006804",
+    "normal": "https://cards.scryfall.io/normal/front/8/9/899219e8-0782-42d8-a537-8c357237167d.jpg?1783006804",
+    "large": "https://cards.scryfall.io/large/front/8/9/899219e8-0782-42d8-a537-8c357237167d.jpg?1783006804",
+    "png": "https://cards.scryfall.io/png/front/8/9/899219e8-0782-42d8-a537-8c357237167d.png?1783006804",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/8/9/899219e8-0782-42d8-a537-8c357237167d.jpg?1783006804",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/8/9/899219e8-0782-42d8-a537-8c357237167d.jpg?1783006804",
+    "thumb": "https://cards.scryfall.io/thumb/front/8/9/899219e8-0782-42d8-a537-8c357237167d.webp?1783006804",
+    "grid": "https://cards.scryfall.io/grid/front/8/9/899219e8-0782-42d8-a537-8c357237167d.webp?1783006804",
+    "display": "https://cards.scryfall.io/display/front/8/9/899219e8-0782-42d8-a537-8c357237167d.webp?1783006804",
+    "art": "https://cards.scryfall.io/art/front/8/9/899219e8-0782-42d8-a537-8c357237167d.webp?1783006804",
+    "crop": "https://cards.scryfall.io/crop/front/8/9/899219e8-0782-42d8-a537-8c357237167d.webp?1783006804"
+  },
+  "mana_cost": "{4}{G}",
+  "cmc": 5.0,
+  "type_line": "Enchantment",
+  "printed_type_line": "Encantamento",
+  "oracle_text": "Whenever a -1/-1 counter is put on a creature, you may create a 1/1 green Elf Warrior creature token.",
+  "printed_text": "Toda vez que um marcador -1/-1 for colocado numa criatura, você poderá colocar em jogo uma ficha de criatura verde 1/1 do tipo Elfo Guerreiro.",
+  "colors": [
+    "G"
+  ],
+  "color_identity": [
+    "G"
+  ],
+  "keywords": [],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "c18c0ba1-2081-4808-9b2e-549bc3a666f3",
+  "set": "shm",
+  "set_name": "Shadowmoor",
+  "set_type": "expansion",
+  "set_uri": "https://api.scryfall.com/sets/c18c0ba1-2081-4808-9b2e-549bc3a666f3",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Ashm&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/shm?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/899219e8-0782-42d8-a537-8c357237167d/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Af1b26eb1-6337-42d6-a475-53ad6427f00f&unique=prints",
+  "collector_number": "114",
+  "digital": false,
+  "rarity": "uncommon",
+  "flavor_text": "Muitos horrores mordem a isca dos bravos elfos voluntários que caminham solitários, e logo se deparam com as lâminas dos defensores que espreitam ao redor.",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Dan Murayama Scott",
+  "artist_ids": [
+    "f852fa13-137e-40f2-bbc1-0f01df09c0e0"
+  ],
+  "illustration_id": "4e33e0a7-d2ac-45ba-881f-b57016cff940",
+  "border_color": "black",
+  "frame": "2003",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "edhrec_rank": 3873,
+  "penny_rank": 10054,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=172183&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DFlourishing%2BDefenses",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DFlourishing%2BDefenses",
+    "edhrec": "https://edhrec.com/route/?cc=Flourishing+Defenses"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DFlourishing%2BDefenses%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Flourishing+Defenses&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Flourishing+Defenses&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

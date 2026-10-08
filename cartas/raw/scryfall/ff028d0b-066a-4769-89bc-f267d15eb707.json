@@ -1,0 +1,135 @@
+{
+  "object": "card",
+  "id": "ff028d0b-066a-4769-89bc-f267d15eb707",
+  "oracle_id": "a3b39590-34b7-4fd0-877f-748e6df30e88",
+  "multiverse_ids": [],
+  "resource_id": "35E09676F3EC7509FD66B678B39A490EE732605C5EC50CA2D8551BE733FD17AE",
+  "mtgo_id": 148897,
+  "tcgplayer_id": 687419,
+  "cardmarket_id": 881534,
+  "name": "Hateful Eidolon",
+  "lang": "en",
+  "released_at": "2026-04-24",
+  "uri": "https://api.scryfall.com/cards/ff028d0b-066a-4769-89bc-f267d15eb707",
+  "scryfall_uri": "https://scryfall.com/card/soc/215/hateful-eidolon?utm_source=api",
+  "layout": "normal",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T00:49:45Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/f/f/ff028d0b-066a-4769-89bc-f267d15eb707.jpg?1783903785",
+    "normal": "https://cards.scryfall.io/normal/front/f/f/ff028d0b-066a-4769-89bc-f267d15eb707.jpg?1783903785",
+    "large": "https://cards.scryfall.io/large/front/f/f/ff028d0b-066a-4769-89bc-f267d15eb707.jpg?1783903785",
+    "png": "https://cards.scryfall.io/png/front/f/f/ff028d0b-066a-4769-89bc-f267d15eb707.png?1783903785",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/f/f/ff028d0b-066a-4769-89bc-f267d15eb707.jpg?1783903785",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/f/f/ff028d0b-066a-4769-89bc-f267d15eb707.jpg?1783903785",
+    "thumb": "https://cards.scryfall.io/thumb/front/f/f/ff028d0b-066a-4769-89bc-f267d15eb707.webp?1783903785",
+    "grid": "https://cards.scryfall.io/grid/front/f/f/ff028d0b-066a-4769-89bc-f267d15eb707.webp?1783903785",
+    "display": "https://cards.scryfall.io/display/front/f/f/ff028d0b-066a-4769-89bc-f267d15eb707.webp?1783903785",
+    "art": "https://cards.scryfall.io/art/front/f/f/ff028d0b-066a-4769-89bc-f267d15eb707.webp?1783903785",
+    "crop": "https://cards.scryfall.io/crop/front/f/f/ff028d0b-066a-4769-89bc-f267d15eb707.webp?1783903785"
+  },
+  "mana_cost": "{B}",
+  "cmc": 1.0,
+  "type_line": "Enchantment Creature — Spirit",
+  "oracle_text": "Lifelink\nWhenever an enchanted creature dies, draw a card for each Aura you controlled that was attached to it.",
+  "power": "1",
+  "toughness": "2",
+  "colors": [
+    "B"
+  ],
+  "color_identity": [
+    "B"
+  ],
+  "keywords": [
+    "Lifelink"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "97fab8d1-480a-419d-ab14-663968e29b9c",
+  "set": "soc",
+  "set_name": "Secrets of Strixhaven Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/97fab8d1-480a-419d-ab14-663968e29b9c",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Asoc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/soc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/ff028d0b-066a-4769-89bc-f267d15eb707/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Aa3b39590-34b7-4fd0-877f-748e6df30e88&unique=prints",
+  "collector_number": "215",
+  "digital": false,
+  "rarity": "uncommon",
+  "flavor_text": "From the echoes of a violent life, a terrible foe is born.",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Daniel Ljunggren",
+  "artist_ids": [
+    "0fbd4798-76eb-46d5-a5d4-1e3a25870e34"
+  ],
+  "illustration_id": "5285b527-4e28-4dcc-bf33-332455234963",
+  "border_color": "black",
+  "frame": "2015",
+  "frame_effects": [
+    "enchantment"
+  ],
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 4855,
+  "penny_rank": 4278,
+  "prices": {
+    "usd": "0.29",
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": "0.20",
+    "eur_foil": null,
+    "tix": "0.04"
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DHateful%2BEidolon",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DHateful%2BEidolon",
+    "edhrec": "https://edhrec.com/route/?cc=Hateful+Eidolon"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F687419%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=881534&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards/148897?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

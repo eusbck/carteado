@@ -1,0 +1,133 @@
+{
+  "object": "card",
+  "id": "fe9a18a1-bbf9-47a1-b5c4-3315339c53f9",
+  "oracle_id": "58257464-278e-45fa-8e0b-bcd9a7500bc1",
+  "multiverse_ids": [
+    629053
+  ],
+  "name": "Ash Barrens",
+  "printed_name": "Desolação Fumegante",
+  "lang": "pt",
+  "released_at": "2023-08-04",
+  "uri": "https://api.scryfall.com/cards/fe9a18a1-bbf9-47a1-b5c4-3315339c53f9",
+  "scryfall_uri": "https://scryfall.com/card/cmm/419/pt/desola%C3%A7%C3%A3o-fumegante-(ash-barrens)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "placeholder",
+  "image_updated_at": "2026-06-30T10:52:11Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/f/e/fe9a18a1-bbf9-47a1-b5c4-3315339c53f9.jpg?1782816731",
+    "normal": "https://cards.scryfall.io/normal/front/f/e/fe9a18a1-bbf9-47a1-b5c4-3315339c53f9.jpg?1782816731",
+    "large": "https://cards.scryfall.io/large/front/f/e/fe9a18a1-bbf9-47a1-b5c4-3315339c53f9.jpg?1782816731",
+    "png": "https://cards.scryfall.io/png/front/f/e/fe9a18a1-bbf9-47a1-b5c4-3315339c53f9.png?1782816731",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/f/e/fe9a18a1-bbf9-47a1-b5c4-3315339c53f9.jpg?1782816731",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/f/e/fe9a18a1-bbf9-47a1-b5c4-3315339c53f9.jpg?1782816731",
+    "thumb": "https://cards.scryfall.io/thumb/front/f/e/fe9a18a1-bbf9-47a1-b5c4-3315339c53f9.webp?1782816731",
+    "grid": "https://cards.scryfall.io/grid/front/f/e/fe9a18a1-bbf9-47a1-b5c4-3315339c53f9.webp?1782816731",
+    "display": "https://cards.scryfall.io/display/front/f/e/fe9a18a1-bbf9-47a1-b5c4-3315339c53f9.webp?1782816731",
+    "art": "https://cards.scryfall.io/art/front/f/e/fe9a18a1-bbf9-47a1-b5c4-3315339c53f9.webp?1782816731",
+    "crop": "https://cards.scryfall.io/crop/front/f/e/fe9a18a1-bbf9-47a1-b5c4-3315339c53f9.webp?1782816731"
+  },
+  "mana_cost": "",
+  "cmc": 0.0,
+  "type_line": "Land",
+  "printed_type_line": "Terreno",
+  "oracle_text": "{T}: Add {C}.\nBasic landcycling {1} ({1}, Discard this card: Search your library for a basic land card, reveal it, put it into your hand, then shuffle.)",
+  "printed_text": "{T}: Adicione {C}.\nReciclar terreno básico {1} ({1}, descarte este card: Procure em seu grimório um card de terreno básico, revele-o, coloque-o em sua mão e depois embaralhe.)",
+  "colors": [],
+  "color_identity": [],
+  "keywords": [
+    "Landcycling",
+    "Basic landcycling",
+    "Typecycling",
+    "Cycling"
+  ],
+  "produced_mana": [
+    "C"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "legal",
+    "pauper": "legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "cd05036f-2698-43e6-a48e-5c8d82f0a551",
+  "set": "cmm",
+  "set_name": "Commander Masters",
+  "set_type": "masters",
+  "set_uri": "https://api.scryfall.com/sets/cd05036f-2698-43e6-a48e-5c8d82f0a551",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Acmm&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/cmm?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/fe9a18a1-bbf9-47a1-b5c4-3315339c53f9/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A58257464-278e-45fa-8e0b-bcd9a7500bc1&unique=prints",
+  "collector_number": "419",
+  "digital": false,
+  "rarity": "common",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Jonas De Ro",
+  "artist_ids": [
+    "561ebf9e-8d93-4b57-8156-8826d0c19601"
+  ],
+  "illustration_id": "f23b7492-f9f7-42ad-834e-e2c80c79d6f8",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "edhrec_rank": 210,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=629053&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DAsh%2BBarrens",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DAsh%2BBarrens",
+    "edhrec": "https://edhrec.com/route/?cc=Ash+Barrens"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DAsh%2BBarrens%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Ash+Barrens&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Ash+Barrens&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

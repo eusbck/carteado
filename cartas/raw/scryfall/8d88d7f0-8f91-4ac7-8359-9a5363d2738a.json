@@ -1,0 +1,130 @@
+{
+  "object": "card",
+  "id": "8d88d7f0-8f91-4ac7-8359-9a5363d2738a",
+  "oracle_id": "5a57fba3-01e3-4852-8c45-7c910502bd03",
+  "multiverse_ids": [
+    612374
+  ],
+  "name": "Bitterthorn, Nissa's Animus",
+  "printed_name": "Espinamarga, Animus de Nissa",
+  "lang": "pt",
+  "released_at": "2023-04-21",
+  "uri": "https://api.scryfall.com/cards/8d88d7f0-8f91-4ac7-8359-9a5363d2738a",
+  "scryfall_uri": "https://scryfall.com/card/moc/45/pt/espinamarga-animus-de-nissa-(bitterthorn-nissas-animus)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T13:59:49Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/8/d/8d88d7f0-8f91-4ac7-8359-9a5363d2738a.jpg?1782827989",
+    "normal": "https://cards.scryfall.io/normal/front/8/d/8d88d7f0-8f91-4ac7-8359-9a5363d2738a.jpg?1782827989",
+    "large": "https://cards.scryfall.io/large/front/8/d/8d88d7f0-8f91-4ac7-8359-9a5363d2738a.jpg?1782827989",
+    "png": "https://cards.scryfall.io/png/front/8/d/8d88d7f0-8f91-4ac7-8359-9a5363d2738a.png?1782827989",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/8/d/8d88d7f0-8f91-4ac7-8359-9a5363d2738a.jpg?1782827989",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/8/d/8d88d7f0-8f91-4ac7-8359-9a5363d2738a.jpg?1782827989",
+    "thumb": "https://cards.scryfall.io/thumb/front/8/d/8d88d7f0-8f91-4ac7-8359-9a5363d2738a.webp?1782827989",
+    "grid": "https://cards.scryfall.io/grid/front/8/d/8d88d7f0-8f91-4ac7-8359-9a5363d2738a.webp?1782827989",
+    "display": "https://cards.scryfall.io/display/front/8/d/8d88d7f0-8f91-4ac7-8359-9a5363d2738a.webp?1782827989",
+    "art": "https://cards.scryfall.io/art/front/8/d/8d88d7f0-8f91-4ac7-8359-9a5363d2738a.webp?1782827989",
+    "crop": "https://cards.scryfall.io/crop/front/8/d/8d88d7f0-8f91-4ac7-8359-9a5363d2738a.webp?1782827989"
+  },
+  "mana_cost": "{3}",
+  "cmc": 3.0,
+  "type_line": "Legendary Artifact — Equipment",
+  "printed_type_line": "Artefato Lendário — Equipamento",
+  "oracle_text": "Living weapon (When this Equipment enters, create a 0/0 black Phyrexian Germ creature token, then attach this to it.)\nEquipped creature gets +1/+1.\nWhenever equipped creature attacks, you may search your library for a basic land card, put it onto the battlefield tapped, then shuffle.\nEquip {3}",
+  "printed_text": "Arma viva (Quando este Equipamento entrar no campo de batalha, crie uma ficha de criatura Germe Phyrexiano preta 0/0 e anexe-o a ela.)\nA criatura equipada recebe +1/+1.\nToda vez que a criatura equipada ataca, você pode procurar um card de terreno básico em seu grimório, colocá-lo no campo de batalha virado e depois embaralhar.\nEquipar {3}",
+  "colors": [],
+  "color_identity": [],
+  "keywords": [
+    "Equip",
+    "Living weapon"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "6bba5de9-5afb-42af-a7eb-24ac854bf671",
+  "set": "moc",
+  "set_name": "March of the Machine Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/6bba5de9-5afb-42af-a7eb-24ac854bf671",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Amoc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/moc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/8d88d7f0-8f91-4ac7-8359-9a5363d2738a/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A5a57fba3-01e3-4852-8c45-7c910502bd03&unique=prints",
+  "collector_number": "45",
+  "digital": false,
+  "rarity": "rare",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Titus Lunter",
+  "artist_ids": [
+    "b11e6b3a-f4ca-4cf1-8fd7-475696de5f5c"
+  ],
+  "illustration_id": "35ec85d5-f4c8-4117-bf71-b570080bcbc4",
+  "border_color": "black",
+  "frame": "2015",
+  "frame_effects": [
+    "legendary"
+  ],
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 1940,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=612374&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DBitterthorn%252C%2BNissa%2527s%2BAnimus",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DBitterthorn%252C%2BNissa%2527s%2BAnimus",
+    "edhrec": "https://edhrec.com/route/?cc=Bitterthorn%2C+Nissa%27s+Animus"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DBitterthorn%252C%2BNissa%2527s%2BAnimus%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Bitterthorn%2C+Nissa%27s+Animus&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Bitterthorn%2C+Nissa%27s+Animus&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "validated_at": "2026-10-04T00:28:17.156181+00:00",
+  "kind": "actual_moxfield_list_validation",
+  "decks_saved": 7,
+  "card_instances": 700,
+  "unique_selected_printings": 576,
+  "decks": [
+    {
+      "name": "Terra",
+      "mainboard": 99,
+      "commanders": 1,
+      "commander_names": [
+        "Terra, Herald of Hope"
+      ]
+    },
+    {
+      "name": "Witherbloom Pestilence",
+      "mainboard": 99,
+      "commanders": 1,
+      "commander_names": [
+        "Dina, Essence Brewer"
+      ]
+    },
+    {
+      "name": "Silverquill Influence",
+      "mainboard": 99,
+      "commanders": 1,
+      "commander_names": [
+        "Killian, Decisive Mentor"
+      ]
+    },
+    {
+      "name": "Prismari Artistry",
+      "mainboard": 99,
+      "commanders": 1,
+      "commander_names": [
+        "Rootha, Mastering the Moment"
+      ]
+    },
+    {
+      "name": "Lorehold Spirit",
+      "mainboard": 99,
+      "commanders": 1,
+      "commander_names": [
+        "Quintorius, History Chaser"
+      ]
+    },
+    {
+      "name": "Blight Curse",
+      "mainboard": 99,
+      "commanders": 1,
+      "commander_names": [
+        "Auntie Ool, Cursewretch"
+      ]
+    },
+    {
+      "name": "Abzan Armor",
+      "mainboard": 99,
+      "commanders": 1,
+      "commander_names": [
+        "Felothar the Steadfast"
+      ]
+    }
+  ],
+  "validation_scope": "deck_lists_and_quantities"
+}

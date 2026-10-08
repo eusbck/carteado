@@ -1,0 +1,162 @@
+{
+  "object": "card",
+  "id": "67d41ba2-a908-4613-b275-6ffe4165e48a",
+  "oracle_id": "a5cbd257-c836-493e-bb1a-76242619dea2",
+  "multiverse_ids": [],
+  "resource_id": "69BF4C0648D9252EB88BE01B79F215B75D7F7CF6F3386982C12FEB2F58234810",
+  "mtgo_id": 140321,
+  "tcgplayer_id": 631561,
+  "cardmarket_id": 824633,
+  "name": "Big Score",
+  "lang": "en",
+  "released_at": "2025-06-13",
+  "uri": "https://api.scryfall.com/cards/67d41ba2-a908-4613-b275-6ffe4165e48a",
+  "scryfall_uri": "https://scryfall.com/card/fic/290/big-score?utm_source=api",
+  "layout": "normal",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T01:31:05Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/6/7/67d41ba2-a908-4613-b275-6ffe4165e48a.jpg?1783906265",
+    "normal": "https://cards.scryfall.io/normal/front/6/7/67d41ba2-a908-4613-b275-6ffe4165e48a.jpg?1783906265",
+    "large": "https://cards.scryfall.io/large/front/6/7/67d41ba2-a908-4613-b275-6ffe4165e48a.jpg?1783906265",
+    "png": "https://cards.scryfall.io/png/front/6/7/67d41ba2-a908-4613-b275-6ffe4165e48a.png?1783906265",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/6/7/67d41ba2-a908-4613-b275-6ffe4165e48a.jpg?1783906265",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/6/7/67d41ba2-a908-4613-b275-6ffe4165e48a.jpg?1783906265",
+    "thumb": "https://cards.scryfall.io/thumb/front/6/7/67d41ba2-a908-4613-b275-6ffe4165e48a.webp?1783906265",
+    "grid": "https://cards.scryfall.io/grid/front/6/7/67d41ba2-a908-4613-b275-6ffe4165e48a.webp?1783906265",
+    "display": "https://cards.scryfall.io/display/front/6/7/67d41ba2-a908-4613-b275-6ffe4165e48a.webp?1783906265",
+    "art": "https://cards.scryfall.io/art/front/6/7/67d41ba2-a908-4613-b275-6ffe4165e48a.webp?1783906265",
+    "crop": "https://cards.scryfall.io/crop/front/6/7/67d41ba2-a908-4613-b275-6ffe4165e48a.webp?1783906265"
+  },
+  "mana_cost": "{3}{R}",
+  "cmc": 4.0,
+  "type_line": "Instant",
+  "oracle_text": "As an additional cost to cast this spell, discard a card.\nDraw two cards and create two Treasure tokens. (They're artifacts with \"{T}, Sacrifice this token: Add one mana of any color.\")",
+  "colors": [
+    "R"
+  ],
+  "color_identity": [
+    "R"
+  ],
+  "keywords": [
+    "Treasure"
+  ],
+  "produced_mana": [
+    "B",
+    "G",
+    "R",
+    "U",
+    "W"
+  ],
+  "all_parts": [
+    {
+      "object": "related_card",
+      "id": "e5f4f810-f95a-41ac-9c3b-47254c03e766",
+      "component": "token",
+      "name": "Treasure",
+      "type_line": "Token Artifact — Treasure",
+      "uri": "https://api.scryfall.com/cards/e5f4f810-f95a-41ac-9c3b-47254c03e766"
+    },
+    {
+      "object": "related_card",
+      "id": "67d41ba2-a908-4613-b275-6ffe4165e48a",
+      "component": "combo_piece",
+      "name": "Big Score",
+      "type_line": "Instant",
+      "uri": "https://api.scryfall.com/cards/67d41ba2-a908-4613-b275-6ffe4165e48a"
+    }
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "30659956-4558-4cbf-a65f-34cd00c89579",
+  "set": "fic",
+  "set_name": "Final Fantasy Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/30659956-4558-4cbf-a65f-34cd00c89579",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Afic&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/fic?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/67d41ba2-a908-4613-b275-6ffe4165e48a/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Aa5cbd257-c836-493e-bb1a-76242619dea2&unique=prints",
+  "collector_number": "290",
+  "digital": false,
+  "rarity": "common",
+  "flavor_text": "\"Look, I finally found it... The legendary treasure that can undo death itself.\"",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Toni Infante",
+  "artist_ids": [
+    "958bbc4a-3420-439a-b261-c988b8e4b580"
+  ],
+  "illustration_id": "ea544825-b3e0-47ff-ab2e-5e0a67087a9b",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "triangle",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "promo_types": [
+    "surgefoil",
+    "ffvi",
+    "universesbeyond"
+  ],
+  "edhrec_rank": 139,
+  "penny_rank": 2148,
+  "prices": {
+    "usd": "0.47",
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": "0.86",
+    "eur_foil": null,
+    "tix": "0.87"
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DBig%2BScore",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DBig%2BScore",
+    "edhrec": "https://edhrec.com/route/?cc=Big+Score"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F631561%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=824633&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards/140321?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

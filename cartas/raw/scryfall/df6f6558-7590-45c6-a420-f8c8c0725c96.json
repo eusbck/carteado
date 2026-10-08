@@ -1,0 +1,133 @@
+{
+  "object": "card",
+  "id": "df6f6558-7590-45c6-a420-f8c8c0725c96",
+  "oracle_id": "7ffae8f8-3006-4969-a339-6d30678f87ea",
+  "multiverse_ids": [
+    622437
+  ],
+  "name": "Night's Whisper",
+  "printed_name": "Sussurro da Noite",
+  "lang": "pt",
+  "released_at": "2023-06-23",
+  "uri": "https://api.scryfall.com/cards/df6f6558-7590-45c6-a420-f8c8c0725c96",
+  "scryfall_uri": "https://scryfall.com/card/ltc/205/pt/sussurro-da-noite-(nights-whisper)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T11:31:11Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/d/f/df6f6558-7590-45c6-a420-f8c8c0725c96.jpg?1782819071",
+    "normal": "https://cards.scryfall.io/normal/front/d/f/df6f6558-7590-45c6-a420-f8c8c0725c96.jpg?1782819071",
+    "large": "https://cards.scryfall.io/large/front/d/f/df6f6558-7590-45c6-a420-f8c8c0725c96.jpg?1782819071",
+    "png": "https://cards.scryfall.io/png/front/d/f/df6f6558-7590-45c6-a420-f8c8c0725c96.png?1782819071",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/d/f/df6f6558-7590-45c6-a420-f8c8c0725c96.jpg?1782819071",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/d/f/df6f6558-7590-45c6-a420-f8c8c0725c96.jpg?1782819071",
+    "thumb": "https://cards.scryfall.io/thumb/front/d/f/df6f6558-7590-45c6-a420-f8c8c0725c96.webp?1782819071",
+    "grid": "https://cards.scryfall.io/grid/front/d/f/df6f6558-7590-45c6-a420-f8c8c0725c96.webp?1782819071",
+    "display": "https://cards.scryfall.io/display/front/d/f/df6f6558-7590-45c6-a420-f8c8c0725c96.webp?1782819071",
+    "art": "https://cards.scryfall.io/art/front/d/f/df6f6558-7590-45c6-a420-f8c8c0725c96.webp?1782819071",
+    "crop": "https://cards.scryfall.io/crop/front/d/f/df6f6558-7590-45c6-a420-f8c8c0725c96.webp?1782819071"
+  },
+  "mana_cost": "{1}{B}",
+  "cmc": 2.0,
+  "type_line": "Sorcery",
+  "printed_type_line": "Feitiço",
+  "oracle_text": "You draw two cards and lose 2 life.",
+  "printed_text": "Você compra dois cards e perde 2 pontos de vida.",
+  "colors": [
+    "B"
+  ],
+  "color_identity": [
+    "B"
+  ],
+  "keywords": [],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "not_legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "e567c19c-0fe4-446e-a7bf-fce8a150cd2e",
+  "set": "ltc",
+  "set_name": "Tales of Middle-earth Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/e567c19c-0fe4-446e-a7bf-fce8a150cd2e",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Altc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/ltc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/df6f6558-7590-45c6-a420-f8c8c0725c96/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A7ffae8f8-3006-4969-a339-6d30678f87ea&unique=prints",
+  "collector_number": "205",
+  "digital": false,
+  "rarity": "common",
+  "flavor_text": "Frodo estava quase tão aterrorizado quanto seus companheiros; ele tremia como se sentisse frio, mas seu terror foi devorado uma tentação repentina de colocar o Anel.",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Miranda Meeks",
+  "artist_ids": [
+    "6c9ca5a9-5ac6-4478-9606-075fd10a8f01"
+  ],
+  "illustration_id": "00f11d6f-daff-48b8-9b0b-a7ea2ffe301b",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "triangle",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "promo_types": [
+    "universesbeyond"
+  ],
+  "edhrec_rank": 182,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=622437&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DNight%2527s%2BWhisper",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DNight%2527s%2BWhisper",
+    "edhrec": "https://edhrec.com/route/?cc=Night%27s+Whisper"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DNight%2527s%2BWhisper%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Night%27s+Whisper&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Night%27s+Whisper&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

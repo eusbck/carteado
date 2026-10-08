@@ -1,0 +1,133 @@
+{
+  "object": "card",
+  "id": "d1813b2d-6ca4-4b69-a962-4fd8a8ebb4a6",
+  "oracle_id": "da93264e-4e04-401a-9809-e4e1056cf604",
+  "multiverse_ids": [
+    518893
+  ],
+  "name": "Inkshield",
+  "printed_name": "Nanquinoscudo",
+  "lang": "pt",
+  "released_at": "2021-04-23",
+  "uri": "https://api.scryfall.com/cards/d1813b2d-6ca4-4b69-a962-4fd8a8ebb4a6",
+  "scryfall_uri": "https://scryfall.com/card/c21/71/pt/nanquinoscudo-(inkshield)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-01T06:36:59Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/d/1/d1813b2d-6ca4-4b69-a962-4fd8a8ebb4a6.jpg?1782887819",
+    "normal": "https://cards.scryfall.io/normal/front/d/1/d1813b2d-6ca4-4b69-a962-4fd8a8ebb4a6.jpg?1782887819",
+    "large": "https://cards.scryfall.io/large/front/d/1/d1813b2d-6ca4-4b69-a962-4fd8a8ebb4a6.jpg?1782887819",
+    "png": "https://cards.scryfall.io/png/front/d/1/d1813b2d-6ca4-4b69-a962-4fd8a8ebb4a6.png?1782887819",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/d/1/d1813b2d-6ca4-4b69-a962-4fd8a8ebb4a6.jpg?1782887819",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/d/1/d1813b2d-6ca4-4b69-a962-4fd8a8ebb4a6.jpg?1782887819",
+    "thumb": "https://cards.scryfall.io/thumb/front/d/1/d1813b2d-6ca4-4b69-a962-4fd8a8ebb4a6.webp?1782887819",
+    "grid": "https://cards.scryfall.io/grid/front/d/1/d1813b2d-6ca4-4b69-a962-4fd8a8ebb4a6.webp?1782887819",
+    "display": "https://cards.scryfall.io/display/front/d/1/d1813b2d-6ca4-4b69-a962-4fd8a8ebb4a6.webp?1782887819",
+    "art": "https://cards.scryfall.io/art/front/d/1/d1813b2d-6ca4-4b69-a962-4fd8a8ebb4a6.webp?1782887819",
+    "crop": "https://cards.scryfall.io/crop/front/d/1/d1813b2d-6ca4-4b69-a962-4fd8a8ebb4a6.webp?1782887819"
+  },
+  "mana_cost": "{3}{W}{B}",
+  "cmc": 5.0,
+  "type_line": "Instant",
+  "printed_type_line": "Mágica Instantânea",
+  "oracle_text": "Prevent all combat damage that would be dealt to you this turn. For each 1 damage prevented this way, create a 2/1 white and black Inkling creature token with flying.",
+  "printed_text": "Previna todo o dano de combate que seria causado a você neste turno. Para cada 1 ponto de dano prevenido dessa forma, crie uma ficha de criatura Nanquíneo branca e preta 2/1 com voar.",
+  "colors": [
+    "B",
+    "W"
+  ],
+  "color_identity": [
+    "B",
+    "W"
+  ],
+  "keywords": [],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "27bf6dbd-a9e1-4904-afa7-d28fc7745c4f",
+  "set": "c21",
+  "set_name": "Commander 2021",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/27bf6dbd-a9e1-4904-afa7-d28fc7745c4f",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Ac21&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/c21?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/d1813b2d-6ca4-4b69-a962-4fd8a8ebb4a6/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Ada93264e-4e04-401a-9809-e4e1056cf604&unique=prints",
+  "collector_number": "71",
+  "digital": false,
+  "rarity": "rare",
+  "watermark": "silverquill",
+  "flavor_text": "A elite de Platinopena sabe como dar uma resposta contundente sem dizer uma palavra.",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Jarel Threat",
+  "artist_ids": [
+    "0fd89fbd-bd59-4ded-890e-731a8982f278"
+  ],
+  "illustration_id": "a44f6f17-aa2a-48bd-8d46-96857c963f15",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 784,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=518893&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DInkshield",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DInkshield",
+    "edhrec": "https://edhrec.com/route/?cc=Inkshield"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DInkshield%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Inkshield&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Inkshield&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

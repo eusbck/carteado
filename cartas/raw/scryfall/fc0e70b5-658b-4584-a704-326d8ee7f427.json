@@ -1,0 +1,136 @@
+{
+  "object": "card",
+  "id": "fc0e70b5-658b-4584-a704-326d8ee7f427",
+  "oracle_id": "15e5136e-ed15-49a8-b027-e09436673fb4",
+  "multiverse_ids": [
+    606553
+  ],
+  "name": "Culling Ritual",
+  "printed_name": "Ritual da Ceifa",
+  "lang": "pt",
+  "released_at": "2023-02-10",
+  "uri": "https://api.scryfall.com/cards/fc0e70b5-658b-4584-a704-326d8ee7f427",
+  "scryfall_uri": "https://scryfall.com/card/onc/117/pt/ritual-da-ceifa-(culling-ritual)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T14:43:14Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/f/c/fc0e70b5-658b-4584-a704-326d8ee7f427.jpg?1782830594",
+    "normal": "https://cards.scryfall.io/normal/front/f/c/fc0e70b5-658b-4584-a704-326d8ee7f427.jpg?1782830594",
+    "large": "https://cards.scryfall.io/large/front/f/c/fc0e70b5-658b-4584-a704-326d8ee7f427.jpg?1782830594",
+    "png": "https://cards.scryfall.io/png/front/f/c/fc0e70b5-658b-4584-a704-326d8ee7f427.png?1782830594",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/f/c/fc0e70b5-658b-4584-a704-326d8ee7f427.jpg?1782830594",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/f/c/fc0e70b5-658b-4584-a704-326d8ee7f427.jpg?1782830594",
+    "thumb": "https://cards.scryfall.io/thumb/front/f/c/fc0e70b5-658b-4584-a704-326d8ee7f427.webp?1782830594",
+    "grid": "https://cards.scryfall.io/grid/front/f/c/fc0e70b5-658b-4584-a704-326d8ee7f427.webp?1782830594",
+    "display": "https://cards.scryfall.io/display/front/f/c/fc0e70b5-658b-4584-a704-326d8ee7f427.webp?1782830594",
+    "art": "https://cards.scryfall.io/art/front/f/c/fc0e70b5-658b-4584-a704-326d8ee7f427.webp?1782830594",
+    "crop": "https://cards.scryfall.io/crop/front/f/c/fc0e70b5-658b-4584-a704-326d8ee7f427.webp?1782830594"
+  },
+  "mana_cost": "{2}{B}{G}",
+  "cmc": 4.0,
+  "type_line": "Sorcery",
+  "printed_type_line": "Feitiço",
+  "oracle_text": "Destroy each nonland permanent with mana value 2 or less. Add {B} or {G} for each permanent destroyed this way.",
+  "printed_text": "Destrua todas as permanentes não de terreno com valor de mana igual ou inferior a 2. Adicione {B} ou {G} para cada permanente destruída desta forma.",
+  "colors": [
+    "B",
+    "G"
+  ],
+  "color_identity": [
+    "B",
+    "G"
+  ],
+  "keywords": [],
+  "produced_mana": [
+    "B",
+    "G"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "8c5e86d4-ae2d-42f7-a0e5-0e4141eb953d",
+  "set": "onc",
+  "set_name": "Phyrexia: All Will Be One Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/8c5e86d4-ae2d-42f7-a0e5-0e4141eb953d",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Aonc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/onc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/fc0e70b5-658b-4584-a704-326d8ee7f427/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A15e5136e-ed15-49a8-b027-e09436673fb4&unique=prints",
+  "collector_number": "117",
+  "digital": false,
+  "rarity": "rare",
+  "flavor_text": "\"Sua própria fragilidade é sua desgraça. Eu apenas a exponho.\"",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Lorenzo Mastroianni",
+  "artist_ids": [
+    "70213e7d-47e0-4543-a1ae-451009053e2d"
+  ],
+  "illustration_id": "04dca913-33dd-45ee-8d82-27c187b7d74d",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 587,
+  "penny_rank": 1274,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=606553&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DCulling%2BRitual",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DCulling%2BRitual",
+    "edhrec": "https://edhrec.com/route/?cc=Culling+Ritual"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DCulling%2BRitual%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Culling+Ritual&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Culling+Ritual&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

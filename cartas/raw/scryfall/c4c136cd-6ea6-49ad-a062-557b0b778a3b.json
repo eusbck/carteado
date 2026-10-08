@@ -1,0 +1,131 @@
+{
+  "object": "card",
+  "id": "c4c136cd-6ea6-49ad-a062-557b0b778a3b",
+  "oracle_id": "ff3de07d-86c3-49e1-9de0-97c85301ff93",
+  "multiverse_ids": [
+    565543
+  ],
+  "name": "Parasitic Impetus",
+  "printed_name": "Ímpeto Parasitário",
+  "lang": "pt",
+  "released_at": "2022-06-10",
+  "uri": "https://api.scryfall.com/cards/c4c136cd-6ea6-49ad-a062-557b0b778a3b",
+  "scryfall_uri": "https://scryfall.com/card/clb/140/pt/%C3%ADmpeto-parasit%C3%A1rio-(parasitic-impetus)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T20:54:28Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/c/4/c4c136cd-6ea6-49ad-a062-557b0b778a3b.jpg?1782852868",
+    "normal": "https://cards.scryfall.io/normal/front/c/4/c4c136cd-6ea6-49ad-a062-557b0b778a3b.jpg?1782852868",
+    "large": "https://cards.scryfall.io/large/front/c/4/c4c136cd-6ea6-49ad-a062-557b0b778a3b.jpg?1782852868",
+    "png": "https://cards.scryfall.io/png/front/c/4/c4c136cd-6ea6-49ad-a062-557b0b778a3b.png?1782852868",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/c/4/c4c136cd-6ea6-49ad-a062-557b0b778a3b.jpg?1782852868",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/c/4/c4c136cd-6ea6-49ad-a062-557b0b778a3b.jpg?1782852868",
+    "thumb": "https://cards.scryfall.io/thumb/front/c/4/c4c136cd-6ea6-49ad-a062-557b0b778a3b.webp?1782852868",
+    "grid": "https://cards.scryfall.io/grid/front/c/4/c4c136cd-6ea6-49ad-a062-557b0b778a3b.webp?1782852868",
+    "display": "https://cards.scryfall.io/display/front/c/4/c4c136cd-6ea6-49ad-a062-557b0b778a3b.webp?1782852868",
+    "art": "https://cards.scryfall.io/art/front/c/4/c4c136cd-6ea6-49ad-a062-557b0b778a3b.webp?1782852868",
+    "crop": "https://cards.scryfall.io/crop/front/c/4/c4c136cd-6ea6-49ad-a062-557b0b778a3b.webp?1782852868"
+  },
+  "mana_cost": "{2}{B}",
+  "cmc": 3.0,
+  "type_line": "Enchantment — Aura",
+  "printed_type_line": "Encantamento — Aura",
+  "oracle_text": "Enchant creature\nEnchanted creature gets +2/+2 and is goaded. (It attacks each combat if able and attacks a player other than you if able.)\nWhenever enchanted creature attacks, its controller loses 2 life and you gain 2 life.",
+  "printed_text": "Encantar criatura\nA criatura encantada recebe +2/+2 e é atiçada. (Ela ataca a cada combate se estiver apta e ataca um jogador que não seja você se estiver apta.)\nToda vez que a criatura encantada ataca, seu controlador perde 2 pontos de vida e você ganha 2 pontos de vida.",
+  "colors": [
+    "B"
+  ],
+  "color_identity": [
+    "B"
+  ],
+  "keywords": [
+    "Goad",
+    "Enchant"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "legal",
+    "pauper": "legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "5e4c3fe8-fd57-4b20-ad56-c03790a16cea",
+  "set": "clb",
+  "set_name": "Commander Legends: Battle for Baldur's Gate",
+  "set_type": "draft_innovation",
+  "set_uri": "https://api.scryfall.com/sets/5e4c3fe8-fd57-4b20-ad56-c03790a16cea",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Aclb&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/clb?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/c4c136cd-6ea6-49ad-a062-557b0b778a3b/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Aff3de07d-86c3-49e1-9de0-97c85301ff93&unique=prints",
+  "collector_number": "140",
+  "digital": false,
+  "rarity": "common",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Francis Tneh",
+  "artist_ids": [
+    "87cde7a9-7da8-4ebd-abb3-49ca146085bf"
+  ],
+  "illustration_id": "a17ace38-f883-4987-9ddd-f7ed401af539",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "edhrec_rank": 2818,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=565543&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DParasitic%2BImpetus",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DParasitic%2BImpetus",
+    "edhrec": "https://edhrec.com/route/?cc=Parasitic+Impetus"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DParasitic%2BImpetus%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Parasitic+Impetus&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Parasitic+Impetus&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

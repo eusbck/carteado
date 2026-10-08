@@ -1,0 +1,148 @@
+{
+  "object": "card",
+  "id": "85c863ef-b266-410d-87b3-ced791f99966",
+  "oracle_id": "83cf1169-5853-4332-b897-7b17d72d76ab",
+  "multiverse_ids": [],
+  "resource_id": "1BE4372D4576727A59F9974BFDB32A5CE3714759B4AEBBAB10001B64C88F458F",
+  "mtgo_id": 148983,
+  "tcgplayer_id": 687235,
+  "cardmarket_id": 881579,
+  "name": "Twinflame",
+  "lang": "en",
+  "released_at": "2026-04-24",
+  "uri": "https://api.scryfall.com/cards/85c863ef-b266-410d-87b3-ced791f99966",
+  "scryfall_uri": "https://scryfall.com/card/soc/258/twinflame?utm_source=api",
+  "layout": "normal",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T00:49:29Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/8/5/85c863ef-b266-410d-87b3-ced791f99966.jpg?1783903769",
+    "normal": "https://cards.scryfall.io/normal/front/8/5/85c863ef-b266-410d-87b3-ced791f99966.jpg?1783903769",
+    "large": "https://cards.scryfall.io/large/front/8/5/85c863ef-b266-410d-87b3-ced791f99966.jpg?1783903769",
+    "png": "https://cards.scryfall.io/png/front/8/5/85c863ef-b266-410d-87b3-ced791f99966.png?1783903769",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/8/5/85c863ef-b266-410d-87b3-ced791f99966.jpg?1783903769",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/8/5/85c863ef-b266-410d-87b3-ced791f99966.jpg?1783903769",
+    "thumb": "https://cards.scryfall.io/thumb/front/8/5/85c863ef-b266-410d-87b3-ced791f99966.webp?1783903769",
+    "grid": "https://cards.scryfall.io/grid/front/8/5/85c863ef-b266-410d-87b3-ced791f99966.webp?1783903769",
+    "display": "https://cards.scryfall.io/display/front/8/5/85c863ef-b266-410d-87b3-ced791f99966.webp?1783903769",
+    "art": "https://cards.scryfall.io/art/front/8/5/85c863ef-b266-410d-87b3-ced791f99966.webp?1783903769",
+    "crop": "https://cards.scryfall.io/crop/front/8/5/85c863ef-b266-410d-87b3-ced791f99966.webp?1783903769"
+  },
+  "mana_cost": "{1}{R}",
+  "cmc": 2.0,
+  "type_line": "Sorcery",
+  "oracle_text": "Strive — This spell costs {2}{R} more to cast for each target beyond the first.\nChoose any number of target creatures you control. For each of them, create a token that's a copy of that creature, except it has haste. Exile those tokens at the beginning of the next end step.",
+  "colors": [
+    "R"
+  ],
+  "color_identity": [
+    "R"
+  ],
+  "keywords": [
+    "Strive"
+  ],
+  "all_parts": [
+    {
+      "object": "related_card",
+      "id": "85c863ef-b266-410d-87b3-ced791f99966",
+      "component": "combo_piece",
+      "name": "Twinflame",
+      "type_line": "Sorcery",
+      "uri": "https://api.scryfall.com/cards/85c863ef-b266-410d-87b3-ced791f99966"
+    },
+    {
+      "object": "related_card",
+      "id": "4e119457-948d-4ef8-8c27-59fa675f766f",
+      "component": "token",
+      "name": "Copy",
+      "type_line": "Token",
+      "uri": "https://api.scryfall.com/cards/4e119457-948d-4ef8-8c27-59fa675f766f"
+    }
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "97fab8d1-480a-419d-ab14-663968e29b9c",
+  "set": "soc",
+  "set_name": "Secrets of Strixhaven Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/97fab8d1-480a-419d-ab14-663968e29b9c",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Asoc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/soc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/85c863ef-b266-410d-87b3-ced791f99966/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A83cf1169-5853-4332-b897-7b17d72d76ab&unique=prints",
+  "collector_number": "258",
+  "digital": false,
+  "rarity": "rare",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Chase Stone",
+  "artist_ids": [
+    "2d753f61-5f5b-468e-97ea-8e0fdd347340"
+  ],
+  "illustration_id": "cc7ddbed-f5b2-4b97-990a-255a3f2a8f3d",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 1259,
+  "penny_rank": 3314,
+  "prices": {
+    "usd": "0.81",
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": "1.18",
+    "eur_foil": null,
+    "tix": "0.17"
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DTwinflame",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DTwinflame",
+    "edhrec": "https://edhrec.com/route/?cc=Twinflame"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F687235%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=881579&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards/148983?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

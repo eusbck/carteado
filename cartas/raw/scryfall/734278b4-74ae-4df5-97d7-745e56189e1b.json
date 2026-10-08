@@ -1,0 +1,134 @@
+{
+  "object": "card",
+  "id": "734278b4-74ae-4df5-97d7-745e56189e1b",
+  "oracle_id": "3d6fa57a-aa53-4b5c-b8af-a7612c823117",
+  "multiverse_ids": [
+    413670
+  ],
+  "mtgo_id": 60739,
+  "mtgo_foil_id": 60740,
+  "tcgplayer_id": 118709,
+  "cardmarket_id": 290412,
+  "name": "Faithless Looting",
+  "lang": "en",
+  "released_at": "2016-06-10",
+  "uri": "https://api.scryfall.com/cards/734278b4-74ae-4df5-97d7-745e56189e1b",
+  "scryfall_uri": "https://scryfall.com/card/ema/128/faithless-looting?utm_source=api",
+  "layout": "normal",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T10:13:01Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/7/3/734278b4-74ae-4df5-97d7-745e56189e1b.jpg?1783937581",
+    "normal": "https://cards.scryfall.io/normal/front/7/3/734278b4-74ae-4df5-97d7-745e56189e1b.jpg?1783937581",
+    "large": "https://cards.scryfall.io/large/front/7/3/734278b4-74ae-4df5-97d7-745e56189e1b.jpg?1783937581",
+    "png": "https://cards.scryfall.io/png/front/7/3/734278b4-74ae-4df5-97d7-745e56189e1b.png?1783937581",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/7/3/734278b4-74ae-4df5-97d7-745e56189e1b.jpg?1783937581",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/7/3/734278b4-74ae-4df5-97d7-745e56189e1b.jpg?1783937581",
+    "thumb": "https://cards.scryfall.io/thumb/front/7/3/734278b4-74ae-4df5-97d7-745e56189e1b.webp?1783937581",
+    "grid": "https://cards.scryfall.io/grid/front/7/3/734278b4-74ae-4df5-97d7-745e56189e1b.webp?1783937581",
+    "display": "https://cards.scryfall.io/display/front/7/3/734278b4-74ae-4df5-97d7-745e56189e1b.webp?1783937581",
+    "art": "https://cards.scryfall.io/art/front/7/3/734278b4-74ae-4df5-97d7-745e56189e1b.webp?1783937581",
+    "crop": "https://cards.scryfall.io/crop/front/7/3/734278b4-74ae-4df5-97d7-745e56189e1b.webp?1783937581"
+  },
+  "mana_cost": "{R}",
+  "cmc": 1.0,
+  "type_line": "Sorcery",
+  "oracle_text": "Draw two cards, then discard two cards.\nFlashback {2}{R} (You may cast this card from your graveyard for its flashback cost. Then exile it.)",
+  "colors": [
+    "R"
+  ],
+  "color_identity": [
+    "R"
+  ],
+  "keywords": [
+    "Flashback"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "not_legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "1f29f022-3ace-4c96-85e8-1f7b63aadf7e",
+  "set": "ema",
+  "set_name": "Eternal Masters",
+  "set_type": "masters",
+  "set_uri": "https://api.scryfall.com/sets/1f29f022-3ace-4c96-85e8-1f7b63aadf7e",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Aema&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/ema?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/734278b4-74ae-4df5-97d7-745e56189e1b/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A3d6fa57a-aa53-4b5c-b8af-a7612c823117&unique=prints",
+  "collector_number": "128",
+  "digital": false,
+  "rarity": "common",
+  "flavor_text": "\"Avacyn has abandoned us! We have nothing left except what we can take!\"",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Gabor Szikszai",
+  "artist_ids": [
+    "44c3877f-8771-43dc-9e40-f4c765f59d2e"
+  ],
+  "illustration_id": "bb0864c2-f379-41d1-9910-1ce13551b4c2",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "edhrec_rank": 98,
+  "penny_rank": 50,
+  "prices": {
+    "usd": "0.44",
+    "usd_foil": "2.56",
+    "usd_etched": null,
+    "eur": "0.45",
+    "eur_foil": "0.79",
+    "tix": "0.04"
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=413670&printed=false",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DFaithless%2BLooting",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DFaithless%2BLooting",
+    "edhrec": "https://edhrec.com/route/?cc=Faithless+Looting"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F118709%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=290412&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards/60739?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

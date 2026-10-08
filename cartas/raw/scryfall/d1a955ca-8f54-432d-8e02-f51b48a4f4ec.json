@@ -1,0 +1,140 @@
+{
+  "object": "card",
+  "id": "d1a955ca-8f54-432d-8e02-f51b48a4f4ec",
+  "oracle_id": "a0be9bb2-3234-4c6c-b8ce-0879b1f43003",
+  "multiverse_ids": [
+    664312
+  ],
+  "name": "Laelia, the Blade Reforged",
+  "printed_name": "Laelia, a Lâmina Reforjada",
+  "lang": "pt",
+  "released_at": "2024-06-14",
+  "uri": "https://api.scryfall.com/cards/d1a955ca-8f54-432d-8e02-f51b48a4f4ec",
+  "scryfall_uri": "https://scryfall.com/card/mh3/281/pt/laelia-a-l%C3%A2mina-reforjada-(laelia-the-blade-reforged)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T04:08:26Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/d/1/d1a955ca-8f54-432d-8e02-f51b48a4f4ec.jpg?1782792506",
+    "normal": "https://cards.scryfall.io/normal/front/d/1/d1a955ca-8f54-432d-8e02-f51b48a4f4ec.jpg?1782792506",
+    "large": "https://cards.scryfall.io/large/front/d/1/d1a955ca-8f54-432d-8e02-f51b48a4f4ec.jpg?1782792506",
+    "png": "https://cards.scryfall.io/png/front/d/1/d1a955ca-8f54-432d-8e02-f51b48a4f4ec.png?1782792506",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/d/1/d1a955ca-8f54-432d-8e02-f51b48a4f4ec.jpg?1782792506",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/d/1/d1a955ca-8f54-432d-8e02-f51b48a4f4ec.jpg?1782792506",
+    "thumb": "https://cards.scryfall.io/thumb/front/d/1/d1a955ca-8f54-432d-8e02-f51b48a4f4ec.webp?1782792506",
+    "grid": "https://cards.scryfall.io/grid/front/d/1/d1a955ca-8f54-432d-8e02-f51b48a4f4ec.webp?1782792506",
+    "display": "https://cards.scryfall.io/display/front/d/1/d1a955ca-8f54-432d-8e02-f51b48a4f4ec.webp?1782792506",
+    "art": "https://cards.scryfall.io/art/front/d/1/d1a955ca-8f54-432d-8e02-f51b48a4f4ec.webp?1782792506",
+    "crop": "https://cards.scryfall.io/crop/front/d/1/d1a955ca-8f54-432d-8e02-f51b48a4f4ec.webp?1782792506"
+  },
+  "mana_cost": "{2}{R}",
+  "cmc": 3.0,
+  "type_line": "Legendary Creature — Spirit Warrior",
+  "printed_type_line": "Criatura Lendária — Espírito Guerreiro",
+  "oracle_text": "Haste\nWhenever Laelia attacks, exile the top card of your library. You may play that card this turn.\nWhenever one or more cards are put into exile from your library and/or your graveyard, put a +1/+1 counter on Laelia.",
+  "printed_text": "Ímpeto\nToda vez que Laelia, a Lâmina Reforjada, atacar, exile o card do topo de seu grimório. Você pode jogar aquele card neste turno.\nToda vez que um ou mais cards forem colocados no exílio vindos de seu grimório e/ou cemitério, coloque um marcador +1/+1 em Laelia.",
+  "power": "2",
+  "toughness": "2",
+  "colors": [
+    "R"
+  ],
+  "color_identity": [
+    "R"
+  ],
+  "keywords": [
+    "Haste"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "not_legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo",
+    "arena"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "3ed80bb6-77e8-4aa7-8262-95377a38aba1",
+  "set": "mh3",
+  "set_name": "Modern Horizons 3",
+  "set_type": "draft_innovation",
+  "set_uri": "https://api.scryfall.com/sets/3ed80bb6-77e8-4aa7-8262-95377a38aba1",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Amh3&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/mh3?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/d1a955ca-8f54-432d-8e02-f51b48a4f4ec/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Aa0be9bb2-3234-4c6c-b8ce-0879b1f43003&unique=prints",
+  "collector_number": "281",
+  "digital": false,
+  "rarity": "rare",
+  "watermark": "set",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Wisnu Tan",
+  "artist_ids": [
+    "f2d36cdd-a4e9-43ba-b2ad-9d514f6706d4"
+  ],
+  "illustration_id": "47baffa1-86b9-431c-bd91-8c1a30b18259",
+  "border_color": "black",
+  "frame": "2015",
+  "frame_effects": [
+    "legendary"
+  ],
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "edhrec_rank": 1338,
+  "penny_rank": 418,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=664312&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DLaelia%252C%2Bthe%2BBlade%2BReforged",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DLaelia%252C%2Bthe%2BBlade%2BReforged",
+    "edhrec": "https://edhrec.com/route/?cc=Laelia%2C+the+Blade+Reforged"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DLaelia%252C%2Bthe%2BBlade%2BReforged%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Laelia%2C+the+Blade+Reforged&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Laelia%2C+the+Blade+Reforged&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "object": "card",
+  "id": "dd01a2cf-88ff-49f1-9e5a-648530d64b96",
+  "oracle_id": "fa3e28b1-131c-4223-81e0-18dfbab22c26",
+  "multiverse_ids": [
+    642051
+  ],
+  "name": "Prismari Command",
+  "printed_name": "Comando de Prismari",
+  "lang": "pt",
+  "released_at": "2023-11-17",
+  "uri": "https://api.scryfall.com/cards/dd01a2cf-88ff-49f1-9e5a-648530d64b96",
+  "scryfall_uri": "https://scryfall.com/card/lcc/279/pt/comando-de-prismari-(prismari-command)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T08:55:12Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/d/d/dd01a2cf-88ff-49f1-9e5a-648530d64b96.jpg?1782809712",
+    "normal": "https://cards.scryfall.io/normal/front/d/d/dd01a2cf-88ff-49f1-9e5a-648530d64b96.jpg?1782809712",
+    "large": "https://cards.scryfall.io/large/front/d/d/dd01a2cf-88ff-49f1-9e5a-648530d64b96.jpg?1782809712",
+    "png": "https://cards.scryfall.io/png/front/d/d/dd01a2cf-88ff-49f1-9e5a-648530d64b96.png?1782809712",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/d/d/dd01a2cf-88ff-49f1-9e5a-648530d64b96.jpg?1782809712",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/d/d/dd01a2cf-88ff-49f1-9e5a-648530d64b96.jpg?1782809712",
+    "thumb": "https://cards.scryfall.io/thumb/front/d/d/dd01a2cf-88ff-49f1-9e5a-648530d64b96.webp?1782809712",
+    "grid": "https://cards.scryfall.io/grid/front/d/d/dd01a2cf-88ff-49f1-9e5a-648530d64b96.webp?1782809712",
+    "display": "https://cards.scryfall.io/display/front/d/d/dd01a2cf-88ff-49f1-9e5a-648530d64b96.webp?1782809712",
+    "art": "https://cards.scryfall.io/art/front/d/d/dd01a2cf-88ff-49f1-9e5a-648530d64b96.webp?1782809712",
+    "crop": "https://cards.scryfall.io/crop/front/d/d/dd01a2cf-88ff-49f1-9e5a-648530d64b96.webp?1782809712"
+  },
+  "mana_cost": "{1}{U}{R}",
+  "cmc": 3.0,
+  "type_line": "Instant",
+  "printed_type_line": "Mágica Instantânea",
+  "oracle_text": "Choose two —\n• Prismari Command deals 2 damage to any target.\n• Target player draws two cards, then discards two cards.\n• Target player creates a Treasure token.\n• Destroy target artifact.",
+  "printed_text": "Escolha dois —\n• Comando de Prismari causa 2 pontos de dano a qualquer alvo.\n• O jogador alvo compra dois cards e depois descarta dois cards.\n• O jogador alvo cria uma ficha de Tesouro.\n• Destrua o artefato alvo.",
+  "colors": [
+    "R",
+    "U"
+  ],
+  "color_identity": [
+    "R",
+    "U"
+  ],
+  "keywords": [
+    "Treasure"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "d253edc3-5bc7-4cf1-9446-a8540dedffa5",
+  "set": "lcc",
+  "set_name": "The Lost Caverns of Ixalan Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/d253edc3-5bc7-4cf1-9446-a8540dedffa5",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Alcc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/lcc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/dd01a2cf-88ff-49f1-9e5a-648530d64b96/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Afa3e28b1-131c-4223-81e0-18dfbab22c26&unique=prints",
+  "collector_number": "279",
+  "digital": false,
+  "rarity": "rare",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Johannes Voss",
+  "artist_ids": [
+    "3593dd7e-c547-4a32-81cd-7da725f60118"
+  ],
+  "illustration_id": "85385d8b-21b2-4c64-91d9-c9cf8b00ba8a",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 1108,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=642051&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DPrismari%2BCommand",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DPrismari%2BCommand",
+    "edhrec": "https://edhrec.com/route/?cc=Prismari+Command"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DPrismari%2BCommand%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Prismari+Command&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Prismari+Command&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

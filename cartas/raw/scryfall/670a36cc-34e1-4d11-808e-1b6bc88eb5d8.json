@@ -1,0 +1,132 @@
+{
+  "object": "card",
+  "id": "670a36cc-34e1-4d11-808e-1b6bc88eb5d8",
+  "oracle_id": "93cf50cf-0ecc-4d3e-abea-778c1ebacec4",
+  "multiverse_ids": [],
+  "tcgplayer_id": 695538,
+  "cardmarket_id": 904206,
+  "name": "Massacre Wurm",
+  "lang": "en",
+  "released_at": "2026-04-24",
+  "uri": "https://api.scryfall.com/cards/670a36cc-34e1-4d11-808e-1b6bc88eb5d8",
+  "scryfall_uri": "https://scryfall.com/card/fdn/754/massacre-wurm?utm_source=api",
+  "layout": "normal",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-08-24T09:15:00Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/6/7/670a36cc-34e1-4d11-808e-1b6bc88eb5d8.jpg?1787562900",
+    "normal": "https://cards.scryfall.io/normal/front/6/7/670a36cc-34e1-4d11-808e-1b6bc88eb5d8.jpg?1787562900",
+    "large": "https://cards.scryfall.io/large/front/6/7/670a36cc-34e1-4d11-808e-1b6bc88eb5d8.jpg?1787562900",
+    "png": "https://cards.scryfall.io/png/front/6/7/670a36cc-34e1-4d11-808e-1b6bc88eb5d8.png?1787562900",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/6/7/670a36cc-34e1-4d11-808e-1b6bc88eb5d8.jpg?1787562900",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/6/7/670a36cc-34e1-4d11-808e-1b6bc88eb5d8.jpg?1787562900",
+    "thumb": "https://cards.scryfall.io/thumb/front/6/7/670a36cc-34e1-4d11-808e-1b6bc88eb5d8.webp?1787562900",
+    "grid": "https://cards.scryfall.io/grid/front/6/7/670a36cc-34e1-4d11-808e-1b6bc88eb5d8.webp?1787562900",
+    "display": "https://cards.scryfall.io/display/front/6/7/670a36cc-34e1-4d11-808e-1b6bc88eb5d8.webp?1787562900",
+    "art": "https://cards.scryfall.io/art/front/6/7/670a36cc-34e1-4d11-808e-1b6bc88eb5d8.webp?1787562900",
+    "crop": "https://cards.scryfall.io/crop/front/6/7/670a36cc-34e1-4d11-808e-1b6bc88eb5d8.webp?1787562900"
+  },
+  "mana_cost": "{3}{B}{B}{B}",
+  "cmc": 6.0,
+  "type_line": "Creature — Phyrexian Wurm",
+  "oracle_text": "When this creature enters, creatures your opponents control get -2/-2 until end of turn.\nWhenever a creature an opponent controls dies, that player loses 2 life.",
+  "power": "6",
+  "toughness": "5",
+  "colors": [
+    "B"
+  ],
+  "color_identity": [
+    "B"
+  ],
+  "keywords": [],
+  "legalities": {
+    "standard": "legal",
+    "future": "legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "arena",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "a7ecb771-d1b6-4dec-8cf5-8d45179f21e0",
+  "set": "fdn",
+  "set_name": "Foundations",
+  "set_type": "core",
+  "set_uri": "https://api.scryfall.com/sets/a7ecb771-d1b6-4dec-8cf5-8d45179f21e0",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Afdn&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/fdn?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/670a36cc-34e1-4d11-808e-1b6bc88eb5d8/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A93cf50cf-0ecc-4d3e-abea-778c1ebacec4&unique=prints",
+  "collector_number": "754",
+  "digital": false,
+  "rarity": "mythic",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Jason Chan",
+  "artist_ids": [
+    "8062d5a9-51b6-4822-933f-fa9e9dba8416"
+  ],
+  "illustration_id": "f937d422-655c-4614-9206-b1dceb86711f",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "promo_types": [
+    "setextension"
+  ],
+  "edhrec_rank": 513,
+  "penny_rank": 1945,
+  "prices": {
+    "usd": "1.94",
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": "2.81",
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DMassacre%2BWurm",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DMassacre%2BWurm",
+    "edhrec": "https://edhrec.com/route/?cc=Massacre+Wurm"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F695538%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=904206&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Massacre+Wurm&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

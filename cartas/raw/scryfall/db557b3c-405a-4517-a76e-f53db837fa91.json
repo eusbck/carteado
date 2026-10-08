@@ -1,0 +1,138 @@
+{
+  "object": "card",
+  "id": "db557b3c-405a-4517-a76e-f53db837fa91",
+  "oracle_id": "d2d9ecea-7925-420e-98b9-2f87f41f387c",
+  "multiverse_ids": [
+    632815
+  ],
+  "name": "Land Tax",
+  "printed_name": "Imposto Territorial",
+  "lang": "pt",
+  "released_at": "2023-09-08",
+  "uri": "https://api.scryfall.com/cards/db557b3c-405a-4517-a76e-f53db837fa91",
+  "scryfall_uri": "https://scryfall.com/card/wot/9/pt/imposto-territorial-(land-tax)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T09:37:19Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/d/b/db557b3c-405a-4517-a76e-f53db837fa91.jpg?1782812239",
+    "normal": "https://cards.scryfall.io/normal/front/d/b/db557b3c-405a-4517-a76e-f53db837fa91.jpg?1782812239",
+    "large": "https://cards.scryfall.io/large/front/d/b/db557b3c-405a-4517-a76e-f53db837fa91.jpg?1782812239",
+    "png": "https://cards.scryfall.io/png/front/d/b/db557b3c-405a-4517-a76e-f53db837fa91.png?1782812239",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/d/b/db557b3c-405a-4517-a76e-f53db837fa91.jpg?1782812239",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/d/b/db557b3c-405a-4517-a76e-f53db837fa91.jpg?1782812239",
+    "thumb": "https://cards.scryfall.io/thumb/front/d/b/db557b3c-405a-4517-a76e-f53db837fa91.webp?1782812239",
+    "grid": "https://cards.scryfall.io/grid/front/d/b/db557b3c-405a-4517-a76e-f53db837fa91.webp?1782812239",
+    "display": "https://cards.scryfall.io/display/front/d/b/db557b3c-405a-4517-a76e-f53db837fa91.webp?1782812239",
+    "art": "https://cards.scryfall.io/art/front/d/b/db557b3c-405a-4517-a76e-f53db837fa91.webp?1782812239",
+    "crop": "https://cards.scryfall.io/crop/front/d/b/db557b3c-405a-4517-a76e-f53db837fa91.webp?1782812239"
+  },
+  "mana_cost": "{W}",
+  "cmc": 1.0,
+  "type_line": "Enchantment",
+  "printed_type_line": "Encantamento",
+  "oracle_text": "At the beginning of your upkeep, if an opponent controls more lands than you, you may search your library for up to three basic land cards, reveal them, put them into your hand, then shuffle.",
+  "printed_text": "No início de sua manutenção, se um oponente controla mais terrenos que você, você pode procurar até três cards de terreno básico em seu grimório, revelá-los, colocá-los na sua mão e embaralhar.",
+  "colors": [
+    "W"
+  ],
+  "color_identity": [
+    "W"
+  ],
+  "keywords": [],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "banned",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "banned",
+    "predh": "legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo",
+    "arena"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "d1eba841-452b-4f81-88c9-b32973ac8176",
+  "set": "wot",
+  "set_name": "Wilds of Eldraine: Enchanting Tales",
+  "set_type": "masterpiece",
+  "set_uri": "https://api.scryfall.com/sets/d1eba841-452b-4f81-88c9-b32973ac8176",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Awot&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/wot?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/db557b3c-405a-4517-a76e-f53db837fa91/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Ad2d9ecea-7925-420e-98b9-2f87f41f387c&unique=prints",
+  "collector_number": "9",
+  "digital": false,
+  "rarity": "mythic",
+  "flavor_text": "\"'Aquela cidadezinha mal educada está atrapalhando a minha vista!', disse a bruxa. O gigante curvou-se e sorriu.\"\n— A Mamãe Ganso e Outras Histórias",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Francoyovich",
+  "artist_ids": [
+    "1ec032d4-7f6f-45c9-8beb-81df7ccab722"
+  ],
+  "illustration_id": "9ada118a-09c4-480f-90d5-c25dec4913b0",
+  "border_color": "borderless",
+  "frame": "2015",
+  "frame_effects": [
+    "inverted"
+  ],
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "promo_types": [
+    "boosterfun"
+  ],
+  "edhrec_rank": 360,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=632815&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DLand%2BTax",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DLand%2BTax",
+    "edhrec": "https://edhrec.com/route/?cc=Land+Tax"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DLand%2BTax%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Land+Tax&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Land+Tax&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

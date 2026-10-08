@@ -1,0 +1,131 @@
+{
+  "object": "card",
+  "id": "bb625c38-7a9c-413f-9ffd-ad2149e9f9a6",
+  "oracle_id": "1f21cf59-6390-44b4-ab2e-ef290dfd8c85",
+  "multiverse_ids": [
+    428686
+  ],
+  "name": "Nest of Scarabs",
+  "printed_name": "Ninho de Escaravelhos",
+  "lang": "pt",
+  "released_at": "2017-04-28",
+  "uri": "https://api.scryfall.com/cards/bb625c38-7a9c-413f-9ffd-ad2149e9f9a6",
+  "scryfall_uri": "https://scryfall.com/card/akh/101/pt/ninho-de-escaravelhos-(nest-of-scarabs)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-01T21:56:23Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/b/b/bb625c38-7a9c-413f-9ffd-ad2149e9f9a6.jpg?1782942983",
+    "normal": "https://cards.scryfall.io/normal/front/b/b/bb625c38-7a9c-413f-9ffd-ad2149e9f9a6.jpg?1782942983",
+    "large": "https://cards.scryfall.io/large/front/b/b/bb625c38-7a9c-413f-9ffd-ad2149e9f9a6.jpg?1782942983",
+    "png": "https://cards.scryfall.io/png/front/b/b/bb625c38-7a9c-413f-9ffd-ad2149e9f9a6.png?1782942983",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/b/b/bb625c38-7a9c-413f-9ffd-ad2149e9f9a6.jpg?1782942983",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/b/b/bb625c38-7a9c-413f-9ffd-ad2149e9f9a6.jpg?1782942983",
+    "thumb": "https://cards.scryfall.io/thumb/front/b/b/bb625c38-7a9c-413f-9ffd-ad2149e9f9a6.webp?1782942983",
+    "grid": "https://cards.scryfall.io/grid/front/b/b/bb625c38-7a9c-413f-9ffd-ad2149e9f9a6.webp?1782942983",
+    "display": "https://cards.scryfall.io/display/front/b/b/bb625c38-7a9c-413f-9ffd-ad2149e9f9a6.webp?1782942983",
+    "art": "https://cards.scryfall.io/art/front/b/b/bb625c38-7a9c-413f-9ffd-ad2149e9f9a6.webp?1782942983",
+    "crop": "https://cards.scryfall.io/crop/front/b/b/bb625c38-7a9c-413f-9ffd-ad2149e9f9a6.webp?1782942983"
+  },
+  "mana_cost": "{2}{B}",
+  "cmc": 3.0,
+  "type_line": "Enchantment",
+  "printed_type_line": "Encantamento",
+  "oracle_text": "Whenever you put one or more -1/-1 counters on a creature, create that many 1/1 black Insect creature tokens.",
+  "printed_text": "Toda vez que você colocar um ou mais marcadores -1/-1 em uma criatura, crie aquela quantidade de fichas de criatura preta 1/1 do tipo Inseto.",
+  "colors": [
+    "B"
+  ],
+  "color_identity": [
+    "B"
+  ],
+  "keywords": [],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "02d1c536-68bc-4208-9b65-7741ef1f9da8",
+  "set": "akh",
+  "set_name": "Amonkhet",
+  "set_type": "expansion",
+  "set_uri": "https://api.scryfall.com/sets/02d1c536-68bc-4208-9b65-7741ef1f9da8",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Aakh&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/akh?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/bb625c38-7a9c-413f-9ffd-ad2149e9f9a6/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A1f21cf59-6390-44b4-ab2e-ef290dfd8c85&unique=prints",
+  "collector_number": "101",
+  "digital": false,
+  "rarity": "uncommon",
+  "flavor_text": "\"Eles são pequenos, mas querem sempre mais. Aprenda com eles.\" — Bontu, deusa da ambição",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Jason A. Engle",
+  "artist_ids": [
+    "02e2b5de-4341-464c-8fdb-a1adbf873bc0"
+  ],
+  "illustration_id": "425a0732-9b4a-429f-aed9-70b671aff8de",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "edhrec_rank": 3482,
+  "penny_rank": 2540,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=428686&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DNest%2Bof%2BScarabs",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DNest%2Bof%2BScarabs",
+    "edhrec": "https://edhrec.com/route/?cc=Nest+of+Scarabs"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DNest%2Bof%2BScarabs%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Nest+of+Scarabs&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Nest+of+Scarabs&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

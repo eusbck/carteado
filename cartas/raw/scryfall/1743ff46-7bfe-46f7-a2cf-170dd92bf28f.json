@@ -1,0 +1,133 @@
+{
+  "object": "card",
+  "id": "1743ff46-7bfe-46f7-a2cf-170dd92bf28f",
+  "oracle_id": "536f7c92-2f1e-49e7-98de-47382a9488f1",
+  "multiverse_ids": [],
+  "resource_id": "10A72420D71DDD4615A6D04261D47942D12C485912EEC987591B349C1164E3BC",
+  "mtgo_id": 146031,
+  "tcgplayer_id": 671133,
+  "cardmarket_id": 864983,
+  "name": "Necroskitter",
+  "lang": "en",
+  "released_at": "2026-01-23",
+  "uri": "https://api.scryfall.com/cards/1743ff46-7bfe-46f7-a2cf-170dd92bf28f",
+  "scryfall_uri": "https://scryfall.com/card/ecc/48/necroskitter?utm_source=api",
+  "layout": "normal",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T02:58:45Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/1/7/1743ff46-7bfe-46f7-a2cf-170dd92bf28f.jpg?1783911525",
+    "normal": "https://cards.scryfall.io/normal/front/1/7/1743ff46-7bfe-46f7-a2cf-170dd92bf28f.jpg?1783911525",
+    "large": "https://cards.scryfall.io/large/front/1/7/1743ff46-7bfe-46f7-a2cf-170dd92bf28f.jpg?1783911525",
+    "png": "https://cards.scryfall.io/png/front/1/7/1743ff46-7bfe-46f7-a2cf-170dd92bf28f.png?1783911525",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/1/7/1743ff46-7bfe-46f7-a2cf-170dd92bf28f.jpg?1783911525",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/1/7/1743ff46-7bfe-46f7-a2cf-170dd92bf28f.jpg?1783911525",
+    "thumb": "https://cards.scryfall.io/thumb/front/1/7/1743ff46-7bfe-46f7-a2cf-170dd92bf28f.webp?1783911525",
+    "grid": "https://cards.scryfall.io/grid/front/1/7/1743ff46-7bfe-46f7-a2cf-170dd92bf28f.webp?1783911525",
+    "display": "https://cards.scryfall.io/display/front/1/7/1743ff46-7bfe-46f7-a2cf-170dd92bf28f.webp?1783911525",
+    "art": "https://cards.scryfall.io/art/front/1/7/1743ff46-7bfe-46f7-a2cf-170dd92bf28f.webp?1783911525",
+    "crop": "https://cards.scryfall.io/crop/front/1/7/1743ff46-7bfe-46f7-a2cf-170dd92bf28f.webp?1783911525"
+  },
+  "mana_cost": "{1}{B}{B}",
+  "cmc": 3.0,
+  "type_line": "Creature — Elemental",
+  "oracle_text": "Wither (This deals damage to creatures in the form of -1/-1 counters.)\nWhenever a creature an opponent controls with a -1/-1 counter on it dies, you may return that card to the battlefield under your control.",
+  "power": "1",
+  "toughness": "4",
+  "colors": [
+    "B"
+  ],
+  "color_identity": [
+    "B"
+  ],
+  "keywords": [
+    "Wither"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "805b5a0c-f8bb-4555-86ea-eb9ec36a011a",
+  "set": "ecc",
+  "set_name": "Lorwyn Eclipsed Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/805b5a0c-f8bb-4555-86ea-eb9ec36a011a",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Aecc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/ecc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/1743ff46-7bfe-46f7-a2cf-170dd92bf28f/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A536f7c92-2f1e-49e7-98de-47382a9488f1&unique=prints",
+  "collector_number": "48",
+  "digital": false,
+  "rarity": "rare",
+  "flavor_text": "A swarm ever grows in its wake.",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Thomas M. Baxa",
+  "artist_ids": [
+    "ff346569-557d-4043-ae44-97c2c7cabd7d"
+  ],
+  "illustration_id": "c6f56c9d-190b-4b56-8802-911178470b4d",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 2936,
+  "penny_rank": 8368,
+  "prices": {
+    "usd": "0.36",
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": "1.45",
+    "eur_foil": null,
+    "tix": "0.03"
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DNecroskitter",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DNecroskitter",
+    "edhrec": "https://edhrec.com/route/?cc=Necroskitter"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F671133%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=864983&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards/146031?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

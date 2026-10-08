@@ -1,0 +1,1332 @@
+[
+  {
+    "id": "701.1",
+    "name": "Most actions described in a card’s rules text use the standard English definitions of the verbs within, but some specialized verbs are used whose meanings may not be clear. These “keywords” are game terms; sometimes reminder text summarizes their meanings.",
+    "kind": "action"
+  },
+  {
+    "id": "701.2",
+    "name": "Activate",
+    "kind": "action"
+  },
+  {
+    "id": "701.3",
+    "name": "Attach",
+    "kind": "action"
+  },
+  {
+    "id": "701.4",
+    "name": "Behold",
+    "kind": "action"
+  },
+  {
+    "id": "701.5",
+    "name": "Cast",
+    "kind": "action"
+  },
+  {
+    "id": "701.6",
+    "name": "Counter",
+    "kind": "action"
+  },
+  {
+    "id": "701.7",
+    "name": "Create",
+    "kind": "action"
+  },
+  {
+    "id": "701.8",
+    "name": "Destroy",
+    "kind": "action"
+  },
+  {
+    "id": "701.9",
+    "name": "Discard",
+    "kind": "action"
+  },
+  {
+    "id": "701.10",
+    "name": "Double",
+    "kind": "action"
+  },
+  {
+    "id": "701.11",
+    "name": "Triple",
+    "kind": "action"
+  },
+  {
+    "id": "701.12",
+    "name": "Exchange",
+    "kind": "action"
+  },
+  {
+    "id": "701.13",
+    "name": "Exile",
+    "kind": "action"
+  },
+  {
+    "id": "701.14",
+    "name": "Fight",
+    "kind": "action"
+  },
+  {
+    "id": "701.15",
+    "name": "Goad",
+    "kind": "action"
+  },
+  {
+    "id": "701.16",
+    "name": "Investigate",
+    "kind": "action"
+  },
+  {
+    "id": "701.17",
+    "name": "Mill",
+    "kind": "action"
+  },
+  {
+    "id": "701.18",
+    "name": "Play",
+    "kind": "action"
+  },
+  {
+    "id": "701.19",
+    "name": "Regenerate",
+    "kind": "action"
+  },
+  {
+    "id": "701.20",
+    "name": "Reveal",
+    "kind": "action"
+  },
+  {
+    "id": "701.21",
+    "name": "Sacrifice",
+    "kind": "action"
+  },
+  {
+    "id": "701.22",
+    "name": "Scry",
+    "kind": "action"
+  },
+  {
+    "id": "701.23",
+    "name": "Search",
+    "kind": "action"
+  },
+  {
+    "id": "701.24",
+    "name": "Shuffle",
+    "kind": "action"
+  },
+  {
+    "id": "701.25",
+    "name": "Surveil",
+    "kind": "action"
+  },
+  {
+    "id": "701.26",
+    "name": "Tap and Untap",
+    "kind": "action"
+  },
+  {
+    "id": "701.27",
+    "name": "Transform",
+    "kind": "action"
+  },
+  {
+    "id": "701.28",
+    "name": "Convert",
+    "kind": "action"
+  },
+  {
+    "id": "701.29",
+    "name": "Fateseal",
+    "kind": "action"
+  },
+  {
+    "id": "701.30",
+    "name": "Clash",
+    "kind": "action"
+  },
+  {
+    "id": "701.31",
+    "name": "Planeswalk",
+    "kind": "action"
+  },
+  {
+    "id": "701.32",
+    "name": "Set in Motion",
+    "kind": "action"
+  },
+  {
+    "id": "701.33",
+    "name": "Abandon",
+    "kind": "action"
+  },
+  {
+    "id": "701.34",
+    "name": "Proliferate",
+    "kind": "action"
+  },
+  {
+    "id": "701.35",
+    "name": "Detain",
+    "kind": "action"
+  },
+  {
+    "id": "701.36",
+    "name": "Populate",
+    "kind": "action"
+  },
+  {
+    "id": "701.37",
+    "name": "Monstrosity",
+    "kind": "action"
+  },
+  {
+    "id": "701.38",
+    "name": "Vote",
+    "kind": "action"
+  },
+  {
+    "id": "701.39",
+    "name": "Bolster",
+    "kind": "action"
+  },
+  {
+    "id": "701.40",
+    "name": "Manifest",
+    "kind": "action"
+  },
+  {
+    "id": "701.41",
+    "name": "Support",
+    "kind": "action"
+  },
+  {
+    "id": "701.42",
+    "name": "Meld",
+    "kind": "action"
+  },
+  {
+    "id": "701.43",
+    "name": "Exert",
+    "kind": "action"
+  },
+  {
+    "id": "701.44",
+    "name": "Explore",
+    "kind": "action"
+  },
+  {
+    "id": "701.45",
+    "name": "Assemble",
+    "kind": "action"
+  },
+  {
+    "id": "701.46",
+    "name": "Adapt",
+    "kind": "action"
+  },
+  {
+    "id": "701.47",
+    "name": "Amass",
+    "kind": "action"
+  },
+  {
+    "id": "701.48",
+    "name": "Learn",
+    "kind": "action"
+  },
+  {
+    "id": "701.49",
+    "name": "Venture into the Dungeon",
+    "kind": "action"
+  },
+  {
+    "id": "701.50",
+    "name": "Connive",
+    "kind": "action"
+  },
+  {
+    "id": "701.51",
+    "name": "Open an Attraction",
+    "kind": "action"
+  },
+  {
+    "id": "701.52",
+    "name": "Roll to Visit Your Attractions",
+    "kind": "action"
+  },
+  {
+    "id": "701.53",
+    "name": "Incubate",
+    "kind": "action"
+  },
+  {
+    "id": "701.54",
+    "name": "The Ring Tempts You",
+    "kind": "action"
+  },
+  {
+    "id": "701.55",
+    "name": "Face a Villainous Choice",
+    "kind": "action"
+  },
+  {
+    "id": "701.56",
+    "name": "Time Travel",
+    "kind": "action"
+  },
+  {
+    "id": "701.57",
+    "name": "Discover",
+    "kind": "action"
+  },
+  {
+    "id": "701.58",
+    "name": "Cloak",
+    "kind": "action"
+  },
+  {
+    "id": "701.59",
+    "name": "Collect Evidence",
+    "kind": "action"
+  },
+  {
+    "id": "701.60",
+    "name": "Suspect",
+    "kind": "action"
+  },
+  {
+    "id": "701.61",
+    "name": "Forage",
+    "kind": "action"
+  },
+  {
+    "id": "701.62",
+    "name": "Manifest Dread",
+    "kind": "action"
+  },
+  {
+    "id": "701.63",
+    "name": "Endure",
+    "kind": "action"
+  },
+  {
+    "id": "701.64",
+    "name": "Harness",
+    "kind": "action"
+  },
+  {
+    "id": "701.65",
+    "name": "Airbend",
+    "kind": "action"
+  },
+  {
+    "id": "701.66",
+    "name": "Earthbend",
+    "kind": "action"
+  },
+  {
+    "id": "701.67",
+    "name": "Waterbend",
+    "kind": "action"
+  },
+  {
+    "id": "701.68",
+    "name": "Blight",
+    "kind": "action"
+  },
+  {
+    "id": "701.69",
+    "name": "Heal",
+    "kind": "action"
+  },
+  {
+    "id": "701.70",
+    "name": "Recruit",
+    "kind": "action"
+  },
+  {
+    "id": "701.71",
+    "name": "Empower Jace",
+    "kind": "action"
+  },
+  {
+    "id": "702.1",
+    "name": "Most abilities describe exactly what they do in the card’s rules text. Some, though, are very common or would require too much space to define on the card. In these cases, the object lists only the name of the ability as a “keyword”; sometimes reminder text summarizes the game rule.",
+    "kind": "ability"
+  },
+  {
+    "id": "702.2",
+    "name": "Deathtouch",
+    "kind": "ability"
+  },
+  {
+    "id": "702.3",
+    "name": "Defender",
+    "kind": "ability"
+  },
+  {
+    "id": "702.4",
+    "name": "Double Strike",
+    "kind": "ability"
+  },
+  {
+    "id": "702.5",
+    "name": "Enchant",
+    "kind": "ability"
+  },
+  {
+    "id": "702.6",
+    "name": "Equip",
+    "kind": "ability"
+  },
+  {
+    "id": "702.7",
+    "name": "First Strike",
+    "kind": "ability"
+  },
+  {
+    "id": "702.8",
+    "name": "Flash",
+    "kind": "ability"
+  },
+  {
+    "id": "702.9",
+    "name": "Flying",
+    "kind": "ability"
+  },
+  {
+    "id": "702.10",
+    "name": "Haste",
+    "kind": "ability"
+  },
+  {
+    "id": "702.11",
+    "name": "Hexproof",
+    "kind": "ability"
+  },
+  {
+    "id": "702.12",
+    "name": "Indestructible",
+    "kind": "ability"
+  },
+  {
+    "id": "702.13",
+    "name": "Intimidate",
+    "kind": "ability"
+  },
+  {
+    "id": "702.14",
+    "name": "Landwalk",
+    "kind": "ability"
+  },
+  {
+    "id": "702.15",
+    "name": "Lifelink",
+    "kind": "ability"
+  },
+  {
+    "id": "702.16",
+    "name": "Protection",
+    "kind": "ability"
+  },
+  {
+    "id": "702.17",
+    "name": "Reach",
+    "kind": "ability"
+  },
+  {
+    "id": "702.18",
+    "name": "Shroud",
+    "kind": "ability"
+  },
+  {
+    "id": "702.19",
+    "name": "Trample",
+    "kind": "ability"
+  },
+  {
+    "id": "702.20",
+    "name": "Vigilance",
+    "kind": "ability"
+  },
+  {
+    "id": "702.21",
+    "name": "Ward",
+    "kind": "ability"
+  },
+  {
+    "id": "702.22",
+    "name": "Banding",
+    "kind": "ability"
+  },
+  {
+    "id": "702.23",
+    "name": "Rampage",
+    "kind": "ability"
+  },
+  {
+    "id": "702.24",
+    "name": "Cumulative Upkeep",
+    "kind": "ability"
+  },
+  {
+    "id": "702.25",
+    "name": "Flanking",
+    "kind": "ability"
+  },
+  {
+    "id": "702.26",
+    "name": "Phasing",
+    "kind": "ability"
+  },
+  {
+    "id": "702.27",
+    "name": "Buyback",
+    "kind": "ability"
+  },
+  {
+    "id": "702.28",
+    "name": "Shadow",
+    "kind": "ability"
+  },
+  {
+    "id": "702.29",
+    "name": "Cycling",
+    "kind": "ability"
+  },
+  {
+    "id": "702.30",
+    "name": "Echo",
+    "kind": "ability"
+  },
+  {
+    "id": "702.31",
+    "name": "Horsemanship",
+    "kind": "ability"
+  },
+  {
+    "id": "702.32",
+    "name": "Fading",
+    "kind": "ability"
+  },
+  {
+    "id": "702.33",
+    "name": "Kicker",
+    "kind": "ability"
+  },
+  {
+    "id": "702.34",
+    "name": "Flashback",
+    "kind": "ability"
+  },
+  {
+    "id": "702.35",
+    "name": "Madness",
+    "kind": "ability"
+  },
+  {
+    "id": "702.36",
+    "name": "Fear",
+    "kind": "ability"
+  },
+  {
+    "id": "702.37",
+    "name": "Morph",
+    "kind": "ability"
+  },
+  {
+    "id": "702.38",
+    "name": "Amplify",
+    "kind": "ability"
+  },
+  {
+    "id": "702.39",
+    "name": "Provoke",
+    "kind": "ability"
+  },
+  {
+    "id": "702.40",
+    "name": "Storm",
+    "kind": "ability"
+  },
+  {
+    "id": "702.41",
+    "name": "Affinity",
+    "kind": "ability"
+  },
+  {
+    "id": "702.42",
+    "name": "Entwine",
+    "kind": "ability"
+  },
+  {
+    "id": "702.43",
+    "name": "Modular",
+    "kind": "ability"
+  },
+  {
+    "id": "702.44",
+    "name": "Sunburst",
+    "kind": "ability"
+  },
+  {
+    "id": "702.45",
+    "name": "Bushido",
+    "kind": "ability"
+  },
+  {
+    "id": "702.46",
+    "name": "Soulshift",
+    "kind": "ability"
+  },
+  {
+    "id": "702.47",
+    "name": "Splice",
+    "kind": "ability"
+  },
+  {
+    "id": "702.48",
+    "name": "Offering",
+    "kind": "ability"
+  },
+  {
+    "id": "702.49",
+    "name": "Ninjutsu",
+    "kind": "ability"
+  },
+  {
+    "id": "702.50",
+    "name": "Epic",
+    "kind": "ability"
+  },
+  {
+    "id": "702.51",
+    "name": "Convoke",
+    "kind": "ability"
+  },
+  {
+    "id": "702.52",
+    "name": "Dredge",
+    "kind": "ability"
+  },
+  {
+    "id": "702.53",
+    "name": "Transmute",
+    "kind": "ability"
+  },
+  {
+    "id": "702.54",
+    "name": "Bloodthirst",
+    "kind": "ability"
+  },
+  {
+    "id": "702.55",
+    "name": "Haunt",
+    "kind": "ability"
+  },
+  {
+    "id": "702.56",
+    "name": "Replicate",
+    "kind": "ability"
+  },
+  {
+    "id": "702.57",
+    "name": "Forecast",
+    "kind": "ability"
+  },
+  {
+    "id": "702.58",
+    "name": "Graft",
+    "kind": "ability"
+  },
+  {
+    "id": "702.59",
+    "name": "Recover",
+    "kind": "ability"
+  },
+  {
+    "id": "702.60",
+    "name": "Ripple",
+    "kind": "ability"
+  },
+  {
+    "id": "702.61",
+    "name": "Split Second",
+    "kind": "ability"
+  },
+  {
+    "id": "702.62",
+    "name": "Suspend",
+    "kind": "ability"
+  },
+  {
+    "id": "702.63",
+    "name": "Vanishing",
+    "kind": "ability"
+  },
+  {
+    "id": "702.64",
+    "name": "Absorb",
+    "kind": "ability"
+  },
+  {
+    "id": "702.65",
+    "name": "Aura Swap",
+    "kind": "ability"
+  },
+  {
+    "id": "702.66",
+    "name": "Delve",
+    "kind": "ability"
+  },
+  {
+    "id": "702.67",
+    "name": "Fortify",
+    "kind": "ability"
+  },
+  {
+    "id": "702.68",
+    "name": "Frenzy",
+    "kind": "ability"
+  },
+  {
+    "id": "702.69",
+    "name": "Gravestorm",
+    "kind": "ability"
+  },
+  {
+    "id": "702.70",
+    "name": "Poisonous",
+    "kind": "ability"
+  },
+  {
+    "id": "702.71",
+    "name": "Transfigure",
+    "kind": "ability"
+  },
+  {
+    "id": "702.72",
+    "name": "Champion",
+    "kind": "ability"
+  },
+  {
+    "id": "702.73",
+    "name": "Changeling",
+    "kind": "ability"
+  },
+  {
+    "id": "702.74",
+    "name": "Evoke",
+    "kind": "ability"
+  },
+  {
+    "id": "702.75",
+    "name": "Hideaway",
+    "kind": "ability"
+  },
+  {
+    "id": "702.76",
+    "name": "Prowl",
+    "kind": "ability"
+  },
+  {
+    "id": "702.77",
+    "name": "Reinforce",
+    "kind": "ability"
+  },
+  {
+    "id": "702.78",
+    "name": "Conspire",
+    "kind": "ability"
+  },
+  {
+    "id": "702.79",
+    "name": "Persist",
+    "kind": "ability"
+  },
+  {
+    "id": "702.80",
+    "name": "Wither",
+    "kind": "ability"
+  },
+  {
+    "id": "702.81",
+    "name": "Retrace",
+    "kind": "ability"
+  },
+  {
+    "id": "702.82",
+    "name": "Devour",
+    "kind": "ability"
+  },
+  {
+    "id": "702.83",
+    "name": "Exalted",
+    "kind": "ability"
+  },
+  {
+    "id": "702.84",
+    "name": "Unearth",
+    "kind": "ability"
+  },
+  {
+    "id": "702.85",
+    "name": "Cascade",
+    "kind": "ability"
+  },
+  {
+    "id": "702.86",
+    "name": "Annihilator",
+    "kind": "ability"
+  },
+  {
+    "id": "702.87",
+    "name": "Level Up",
+    "kind": "ability"
+  },
+  {
+    "id": "702.88",
+    "name": "Rebound",
+    "kind": "ability"
+  },
+  {
+    "id": "702.89",
+    "name": "Umbra Armor",
+    "kind": "ability"
+  },
+  {
+    "id": "702.90",
+    "name": "Infect",
+    "kind": "ability"
+  },
+  {
+    "id": "702.91",
+    "name": "Battle Cry",
+    "kind": "ability"
+  },
+  {
+    "id": "702.92",
+    "name": "Living Weapon",
+    "kind": "ability"
+  },
+  {
+    "id": "702.93",
+    "name": "Undying",
+    "kind": "ability"
+  },
+  {
+    "id": "702.94",
+    "name": "Miracle",
+    "kind": "ability"
+  },
+  {
+    "id": "702.95",
+    "name": "Soulbond",
+    "kind": "ability"
+  },
+  {
+    "id": "702.96",
+    "name": "Overload",
+    "kind": "ability"
+  },
+  {
+    "id": "702.97",
+    "name": "Scavenge",
+    "kind": "ability"
+  },
+  {
+    "id": "702.98",
+    "name": "Unleash",
+    "kind": "ability"
+  },
+  {
+    "id": "702.99",
+    "name": "Cipher",
+    "kind": "ability"
+  },
+  {
+    "id": "702.100",
+    "name": "Evolve",
+    "kind": "ability"
+  },
+  {
+    "id": "702.101",
+    "name": "Extort",
+    "kind": "ability"
+  },
+  {
+    "id": "702.102",
+    "name": "Fuse",
+    "kind": "ability"
+  },
+  {
+    "id": "702.103",
+    "name": "Bestow",
+    "kind": "ability"
+  },
+  {
+    "id": "702.104",
+    "name": "Tribute",
+    "kind": "ability"
+  },
+  {
+    "id": "702.105",
+    "name": "Dethrone",
+    "kind": "ability"
+  },
+  {
+    "id": "702.106",
+    "name": "Hidden Agenda",
+    "kind": "ability"
+  },
+  {
+    "id": "702.107",
+    "name": "Outlast",
+    "kind": "ability"
+  },
+  {
+    "id": "702.108",
+    "name": "Prowess",
+    "kind": "ability"
+  },
+  {
+    "id": "702.109",
+    "name": "Dash",
+    "kind": "ability"
+  },
+  {
+    "id": "702.110",
+    "name": "Exploit",
+    "kind": "ability"
+  },
+  {
+    "id": "702.111",
+    "name": "Menace",
+    "kind": "ability"
+  },
+  {
+    "id": "702.112",
+    "name": "Renown",
+    "kind": "ability"
+  },
+  {
+    "id": "702.113",
+    "name": "Awaken",
+    "kind": "ability"
+  },
+  {
+    "id": "702.114",
+    "name": "Devoid",
+    "kind": "ability"
+  },
+  {
+    "id": "702.115",
+    "name": "Ingest",
+    "kind": "ability"
+  },
+  {
+    "id": "702.116",
+    "name": "Myriad",
+    "kind": "ability"
+  },
+  {
+    "id": "702.117",
+    "name": "Surge",
+    "kind": "ability"
+  },
+  {
+    "id": "702.118",
+    "name": "Skulk",
+    "kind": "ability"
+  },
+  {
+    "id": "702.119",
+    "name": "Emerge",
+    "kind": "ability"
+  },
+  {
+    "id": "702.120",
+    "name": "Escalate",
+    "kind": "ability"
+  },
+  {
+    "id": "702.121",
+    "name": "Melee",
+    "kind": "ability"
+  },
+  {
+    "id": "702.122",
+    "name": "Crew",
+    "kind": "ability"
+  },
+  {
+    "id": "702.123",
+    "name": "Fabricate",
+    "kind": "ability"
+  },
+  {
+    "id": "702.124",
+    "name": "Partner",
+    "kind": "ability"
+  },
+  {
+    "id": "702.125",
+    "name": "Undaunted",
+    "kind": "ability"
+  },
+  {
+    "id": "702.126",
+    "name": "Improvise",
+    "kind": "ability"
+  },
+  {
+    "id": "702.127",
+    "name": "Aftermath",
+    "kind": "ability"
+  },
+  {
+    "id": "702.128",
+    "name": "Embalm",
+    "kind": "ability"
+  },
+  {
+    "id": "702.129",
+    "name": "Eternalize",
+    "kind": "ability"
+  },
+  {
+    "id": "702.130",
+    "name": "Afflict",
+    "kind": "ability"
+  },
+  {
+    "id": "702.131",
+    "name": "Ascend",
+    "kind": "ability"
+  },
+  {
+    "id": "702.132",
+    "name": "Assist",
+    "kind": "ability"
+  },
+  {
+    "id": "702.133",
+    "name": "Jump-Start",
+    "kind": "ability"
+  },
+  {
+    "id": "702.134",
+    "name": "Mentor",
+    "kind": "ability"
+  },
+  {
+    "id": "702.135",
+    "name": "Afterlife",
+    "kind": "ability"
+  },
+  {
+    "id": "702.136",
+    "name": "Riot",
+    "kind": "ability"
+  },
+  {
+    "id": "702.137",
+    "name": "Spectacle",
+    "kind": "ability"
+  },
+  {
+    "id": "702.138",
+    "name": "Escape",
+    "kind": "ability"
+  },
+  {
+    "id": "702.139",
+    "name": "Companion",
+    "kind": "ability"
+  },
+  {
+    "id": "702.140",
+    "name": "Mutate",
+    "kind": "ability"
+  },
+  {
+    "id": "702.141",
+    "name": "Encore",
+    "kind": "ability"
+  },
+  {
+    "id": "702.142",
+    "name": "Boast",
+    "kind": "ability"
+  },
+  {
+    "id": "702.143",
+    "name": "Foretell",
+    "kind": "ability"
+  },
+  {
+    "id": "702.144",
+    "name": "Demonstrate",
+    "kind": "ability"
+  },
+  {
+    "id": "702.145",
+    "name": "Daybound and Nightbound",
+    "kind": "ability"
+  },
+  {
+    "id": "702.146",
+    "name": "Disturb",
+    "kind": "ability"
+  },
+  {
+    "id": "702.147",
+    "name": "Decayed",
+    "kind": "ability"
+  },
+  {
+    "id": "702.148",
+    "name": "Cleave",
+    "kind": "ability"
+  },
+  {
+    "id": "702.149",
+    "name": "Training",
+    "kind": "ability"
+  },
+  {
+    "id": "702.150",
+    "name": "Compleated",
+    "kind": "ability"
+  },
+  {
+    "id": "702.151",
+    "name": "Reconfigure",
+    "kind": "ability"
+  },
+  {
+    "id": "702.152",
+    "name": "Blitz",
+    "kind": "ability"
+  },
+  {
+    "id": "702.153",
+    "name": "Casualty",
+    "kind": "ability"
+  },
+  {
+    "id": "702.154",
+    "name": "Enlist",
+    "kind": "ability"
+  },
+  {
+    "id": "702.155",
+    "name": "Read Ahead",
+    "kind": "ability"
+  },
+  {
+    "id": "702.156",
+    "name": "Ravenous",
+    "kind": "ability"
+  },
+  {
+    "id": "702.157",
+    "name": "Squad",
+    "kind": "ability"
+  },
+  {
+    "id": "702.158",
+    "name": "Space Sculptor",
+    "kind": "ability"
+  },
+  {
+    "id": "702.159",
+    "name": "Visit",
+    "kind": "ability"
+  },
+  {
+    "id": "702.160",
+    "name": "Prototype",
+    "kind": "ability"
+  },
+  {
+    "id": "702.161",
+    "name": "Living Metal",
+    "kind": "ability"
+  },
+  {
+    "id": "702.162",
+    "name": "More Than Meets the Eye",
+    "kind": "ability"
+  },
+  {
+    "id": "702.163",
+    "name": "For Mirrodin!",
+    "kind": "ability"
+  },
+  {
+    "id": "702.164",
+    "name": "Toxic",
+    "kind": "ability"
+  },
+  {
+    "id": "702.165",
+    "name": "Backup",
+    "kind": "ability"
+  },
+  {
+    "id": "702.166",
+    "name": "Bargain",
+    "kind": "ability"
+  },
+  {
+    "id": "702.167",
+    "name": "Craft",
+    "kind": "ability"
+  },
+  {
+    "id": "702.168",
+    "name": "Disguise",
+    "kind": "ability"
+  },
+  {
+    "id": "702.169",
+    "name": "Solved",
+    "kind": "ability"
+  },
+  {
+    "id": "702.170",
+    "name": "Plot",
+    "kind": "ability"
+  },
+  {
+    "id": "702.171",
+    "name": "Saddle",
+    "kind": "ability"
+  },
+  {
+    "id": "702.172",
+    "name": "Spree",
+    "kind": "ability"
+  },
+  {
+    "id": "702.173",
+    "name": "Freerunning",
+    "kind": "ability"
+  },
+  {
+    "id": "702.174",
+    "name": "Gift",
+    "kind": "ability"
+  },
+  {
+    "id": "702.175",
+    "name": "Offspring",
+    "kind": "ability"
+  },
+  {
+    "id": "702.176",
+    "name": "Impending",
+    "kind": "ability"
+  },
+  {
+    "id": "702.177",
+    "name": "Exhaust",
+    "kind": "ability"
+  },
+  {
+    "id": "702.178",
+    "name": "Max Speed",
+    "kind": "ability"
+  },
+  {
+    "id": "702.179",
+    "name": "Start Your Engines!",
+    "kind": "ability"
+  },
+  {
+    "id": "702.180",
+    "name": "Harmonize",
+    "kind": "ability"
+  },
+  {
+    "id": "702.181",
+    "name": "Mobilize",
+    "kind": "ability"
+  },
+  {
+    "id": "702.182",
+    "name": "Job Select",
+    "kind": "ability"
+  },
+  {
+    "id": "702.183",
+    "name": "Tiered",
+    "kind": "ability"
+  },
+  {
+    "id": "702.184",
+    "name": "Station",
+    "kind": "ability"
+  },
+  {
+    "id": "702.185",
+    "name": "Warp",
+    "kind": "ability"
+  },
+  {
+    "id": "702.186",
+    "name": "∞ (Infinity)",
+    "kind": "ability"
+  },
+  {
+    "id": "702.187",
+    "name": "Mayhem",
+    "kind": "ability"
+  },
+  {
+    "id": "702.188",
+    "name": "Web-slinging",
+    "kind": "ability"
+  },
+  {
+    "id": "702.189",
+    "name": "Firebending",
+    "kind": "ability"
+  },
+  {
+    "id": "702.190",
+    "name": "Sneak",
+    "kind": "ability"
+  },
+  {
+    "id": "702.191",
+    "name": "Increment",
+    "kind": "ability"
+  },
+  {
+    "id": "702.192",
+    "name": "Paradigm",
+    "kind": "ability"
+  },
+  {
+    "id": "702.193",
+    "name": "Power-up",
+    "kind": "ability"
+  },
+  {
+    "id": "702.194",
+    "name": "Teamwork",
+    "kind": "ability"
+  },
+  {
+    "id": "702.195",
+    "name": "Storied",
+    "kind": "ability"
+  }
+]

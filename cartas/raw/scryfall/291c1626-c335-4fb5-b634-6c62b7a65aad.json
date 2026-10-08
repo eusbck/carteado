@@ -1,0 +1,128 @@
+{
+  "object": "card",
+  "id": "291c1626-c335-4fb5-b634-6c62b7a65aad",
+  "oracle_id": "ab1cc360-b9de-48d9-9983-4dfe4a7d2a37",
+  "multiverse_ids": [
+    634000
+  ],
+  "name": "Arcane Denial",
+  "printed_name": "Contradição Arcana",
+  "lang": "pt",
+  "released_at": "2023-09-08",
+  "uri": "https://api.scryfall.com/cards/291c1626-c335-4fb5-b634-6c62b7a65aad",
+  "scryfall_uri": "https://scryfall.com/card/woc/84/pt/contradi%C3%A7%C3%A3o-arcana-(arcane-denial)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T09:44:01Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/2/9/291c1626-c335-4fb5-b634-6c62b7a65aad.jpg?1782812641",
+    "normal": "https://cards.scryfall.io/normal/front/2/9/291c1626-c335-4fb5-b634-6c62b7a65aad.jpg?1782812641",
+    "large": "https://cards.scryfall.io/large/front/2/9/291c1626-c335-4fb5-b634-6c62b7a65aad.jpg?1782812641",
+    "png": "https://cards.scryfall.io/png/front/2/9/291c1626-c335-4fb5-b634-6c62b7a65aad.png?1782812641",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/2/9/291c1626-c335-4fb5-b634-6c62b7a65aad.jpg?1782812641",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/2/9/291c1626-c335-4fb5-b634-6c62b7a65aad.jpg?1782812641",
+    "thumb": "https://cards.scryfall.io/thumb/front/2/9/291c1626-c335-4fb5-b634-6c62b7a65aad.webp?1782812641",
+    "grid": "https://cards.scryfall.io/grid/front/2/9/291c1626-c335-4fb5-b634-6c62b7a65aad.webp?1782812641",
+    "display": "https://cards.scryfall.io/display/front/2/9/291c1626-c335-4fb5-b634-6c62b7a65aad.webp?1782812641",
+    "art": "https://cards.scryfall.io/art/front/2/9/291c1626-c335-4fb5-b634-6c62b7a65aad.webp?1782812641",
+    "crop": "https://cards.scryfall.io/crop/front/2/9/291c1626-c335-4fb5-b634-6c62b7a65aad.webp?1782812641"
+  },
+  "mana_cost": "{1}{U}",
+  "cmc": 2.0,
+  "type_line": "Instant",
+  "printed_type_line": "Mágica Instantânea",
+  "oracle_text": "Counter target spell. Its controller may draw up to two cards at the beginning of the next turn's upkeep.\nYou draw a card at the beginning of the next turn's upkeep.",
+  "printed_text": "Anule a mágica alvo. Seu controlador pode comprar até dois cards no início da manutenção do próximo turno.\nVocê compra um card no início da manutenção do próximo turno.",
+  "colors": [
+    "U"
+  ],
+  "color_identity": [
+    "U"
+  ],
+  "keywords": [],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "legal",
+    "pauper": "legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "legal",
+    "predh": "legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "51c0814a-2db2-4182-9aac-77340e9a540d",
+  "set": "woc",
+  "set_name": "Wilds of Eldraine Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/51c0814a-2db2-4182-9aac-77340e9a540d",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Awoc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/woc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/291c1626-c335-4fb5-b634-6c62b7a65aad/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Aab1cc360-b9de-48d9-9983-4dfe4a7d2a37&unique=prints",
+  "collector_number": "84",
+  "digital": false,
+  "rarity": "common",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Xi Zhang",
+  "artist_ids": [
+    "f83575d5-d9e0-4163-8fe2-05000b435e8c"
+  ],
+  "illustration_id": "af9e846a-eddf-4922-af71-c937d4febad6",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 52,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=634000&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DArcane%2BDenial",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DArcane%2BDenial",
+    "edhrec": "https://edhrec.com/route/?cc=Arcane+Denial"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DArcane%2BDenial%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Arcane+Denial&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Arcane+Denial&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

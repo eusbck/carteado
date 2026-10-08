@@ -1,0 +1,138 @@
+{
+  "object": "card",
+  "id": "92ebc3b7-619c-44da-b094-8e96e24babd6",
+  "oracle_id": "f3d1b2e9-6ede-416d-937b-2063ea278d2f",
+  "multiverse_ids": [
+    172259
+  ],
+  "name": "Kulrath Knight",
+  "printed_name": "Cavaleiro de Kulrath",
+  "lang": "pt",
+  "released_at": "2008-05-02",
+  "uri": "https://api.scryfall.com/cards/92ebc3b7-619c-44da-b094-8e96e24babd6",
+  "scryfall_uri": "https://scryfall.com/card/shm/190/pt/cavaleiro-de-kulrath-(kulrath-knight)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-02T15:33:41Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/9/2/92ebc3b7-619c-44da-b094-8e96e24babd6.jpg?1783006421",
+    "normal": "https://cards.scryfall.io/normal/front/9/2/92ebc3b7-619c-44da-b094-8e96e24babd6.jpg?1783006421",
+    "large": "https://cards.scryfall.io/large/front/9/2/92ebc3b7-619c-44da-b094-8e96e24babd6.jpg?1783006421",
+    "png": "https://cards.scryfall.io/png/front/9/2/92ebc3b7-619c-44da-b094-8e96e24babd6.png?1783006421",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/9/2/92ebc3b7-619c-44da-b094-8e96e24babd6.jpg?1783006421",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/9/2/92ebc3b7-619c-44da-b094-8e96e24babd6.jpg?1783006421",
+    "thumb": "https://cards.scryfall.io/thumb/front/9/2/92ebc3b7-619c-44da-b094-8e96e24babd6.webp?1783006421",
+    "grid": "https://cards.scryfall.io/grid/front/9/2/92ebc3b7-619c-44da-b094-8e96e24babd6.webp?1783006421",
+    "display": "https://cards.scryfall.io/display/front/9/2/92ebc3b7-619c-44da-b094-8e96e24babd6.webp?1783006421",
+    "art": "https://cards.scryfall.io/art/front/9/2/92ebc3b7-619c-44da-b094-8e96e24babd6.webp?1783006421",
+    "crop": "https://cards.scryfall.io/crop/front/9/2/92ebc3b7-619c-44da-b094-8e96e24babd6.webp?1783006421"
+  },
+  "mana_cost": "{3}{B/R}{B/R}",
+  "cmc": 5.0,
+  "type_line": "Creature — Elemental Knight",
+  "printed_type_line": "Criatura — Elemental Cavaleiro",
+  "oracle_text": "Flying\nWither (This deals damage to creatures in the form of -1/-1 counters.)\nCreatures your opponents control with counters on them can't attack or block.",
+  "printed_text": "Voar\nMurchar (Esta fonte causa dano a criaturas na forma de marcadores -1/-1.)\nAs criaturas que seus oponentes controlam com marcadores não podem atacar nem bloquear.",
+  "power": "3",
+  "toughness": "3",
+  "colors": [
+    "B",
+    "R"
+  ],
+  "color_identity": [
+    "B",
+    "R"
+  ],
+  "keywords": [
+    "Flying",
+    "Wither"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "c18c0ba1-2081-4808-9b2e-549bc3a666f3",
+  "set": "shm",
+  "set_name": "Shadowmoor",
+  "set_type": "expansion",
+  "set_uri": "https://api.scryfall.com/sets/c18c0ba1-2081-4808-9b2e-549bc3a666f3",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Ashm&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/shm?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/92ebc3b7-619c-44da-b094-8e96e24babd6/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Af3d1b2e9-6ede-416d-937b-2063ea278d2f&unique=prints",
+  "collector_number": "190",
+  "digital": false,
+  "rarity": "uncommon",
+  "flavor_text": "Cinzeríneos montados circundam o deteriorado pico de Kulrath, em busca da Extintora.",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Daarken",
+  "artist_ids": [
+    "e607a0d4-fc12-4c01-9e3f-501f5269b9cb"
+  ],
+  "illustration_id": "5eed419e-917e-4355-a37c-9dd95ee9d6a6",
+  "border_color": "black",
+  "frame": "2003",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "edhrec_rank": 5513,
+  "penny_rank": 11007,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=172259&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DKulrath%2BKnight",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DKulrath%2BKnight",
+    "edhrec": "https://edhrec.com/route/?cc=Kulrath+Knight"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DKulrath%2BKnight%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Kulrath+Knight&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Kulrath+Knight&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

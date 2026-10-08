@@ -1,0 +1,136 @@
+{
+  "object": "card",
+  "id": "8671d465-292b-4703-bbf8-c2120e91ee23",
+  "oracle_id": "0ef760f4-bbec-4735-8d60-fc24d973452a",
+  "multiverse_ids": [
+    628892
+  ],
+  "name": "Squee, Goblin Nabob",
+  "printed_name": "Squee, Nabobo Goblin",
+  "lang": "pt",
+  "released_at": "2023-08-04",
+  "uri": "https://api.scryfall.com/cards/8671d465-292b-4703-bbf8-c2120e91ee23",
+  "scryfall_uri": "https://scryfall.com/card/cmm/258/pt/squee-nabobo-goblin-(squee-goblin-nabob)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "placeholder",
+  "image_updated_at": "2026-06-30T11:02:28Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/8/6/8671d465-292b-4703-bbf8-c2120e91ee23.jpg?1782817348",
+    "normal": "https://cards.scryfall.io/normal/front/8/6/8671d465-292b-4703-bbf8-c2120e91ee23.jpg?1782817348",
+    "large": "https://cards.scryfall.io/large/front/8/6/8671d465-292b-4703-bbf8-c2120e91ee23.jpg?1782817348",
+    "png": "https://cards.scryfall.io/png/front/8/6/8671d465-292b-4703-bbf8-c2120e91ee23.png?1782817348",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/8/6/8671d465-292b-4703-bbf8-c2120e91ee23.jpg?1782817348",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/8/6/8671d465-292b-4703-bbf8-c2120e91ee23.jpg?1782817348",
+    "thumb": "https://cards.scryfall.io/thumb/front/8/6/8671d465-292b-4703-bbf8-c2120e91ee23.webp?1782817348",
+    "grid": "https://cards.scryfall.io/grid/front/8/6/8671d465-292b-4703-bbf8-c2120e91ee23.webp?1782817348",
+    "display": "https://cards.scryfall.io/display/front/8/6/8671d465-292b-4703-bbf8-c2120e91ee23.webp?1782817348",
+    "art": "https://cards.scryfall.io/art/front/8/6/8671d465-292b-4703-bbf8-c2120e91ee23.webp?1782817348",
+    "crop": "https://cards.scryfall.io/crop/front/8/6/8671d465-292b-4703-bbf8-c2120e91ee23.webp?1782817348"
+  },
+  "mana_cost": "{2}{R}",
+  "cmc": 3.0,
+  "type_line": "Legendary Creature — Goblin",
+  "printed_type_line": "Criatura Lendária — Goblin",
+  "oracle_text": "At the beginning of your upkeep, you may return this card from your graveyard to your hand.",
+  "printed_text": "No início de sua manutenção, você pode devolver Squee, Nabobo Goblin, de seu cemitério para sua mão.",
+  "power": "1",
+  "toughness": "1",
+  "colors": [
+    "R"
+  ],
+  "color_identity": [
+    "R"
+  ],
+  "keywords": [],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "legal",
+    "predh": "legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "cd05036f-2698-43e6-a48e-5c8d82f0a551",
+  "set": "cmm",
+  "set_name": "Commander Masters",
+  "set_type": "masters",
+  "set_uri": "https://api.scryfall.com/sets/cd05036f-2698-43e6-a48e-5c8d82f0a551",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Acmm&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/cmm?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/8671d465-292b-4703-bbf8-c2120e91ee23/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A0ef760f4-bbec-4735-8d60-fc24d973452a&unique=prints",
+  "collector_number": "258",
+  "digital": false,
+  "rarity": "uncommon",
+  "flavor_text": "\"Alguns goblins são descartáveis. De outros é impossível se livrar. Mas ele é as duas coisas... ao mesmo tempo!\"\n— Starke",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Greg Staples",
+  "artist_ids": [
+    "93d65564-bf00-447b-8406-e2031f03b6b1"
+  ],
+  "illustration_id": "94d0e602-c599-4427-863d-800619ea51ed",
+  "border_color": "black",
+  "frame": "2015",
+  "frame_effects": [
+    "legendary"
+  ],
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "edhrec_rank": 3908,
+  "penny_rank": 2094,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=628892&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DSquee%252C%2BGoblin%2BNabob",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DSquee%252C%2BGoblin%2BNabob",
+    "edhrec": "https://edhrec.com/route/?cc=Squee%2C+Goblin+Nabob"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DSquee%252C%2BGoblin%2BNabob%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Squee%2C+Goblin+Nabob&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Squee%2C+Goblin+Nabob&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

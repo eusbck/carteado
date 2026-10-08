@@ -1,0 +1,139 @@
+{
+  "object": "card",
+  "id": "be1f001f-defb-4f6b-810c-244140ede8e9",
+  "oracle_id": "189131b7-ed59-4750-a4ed-453e4497a5c8",
+  "multiverse_ids": [
+    487355
+  ],
+  "name": "Indulging Patrician",
+  "printed_name": "Aristocrata Indulgente",
+  "lang": "pt",
+  "released_at": "2020-07-03",
+  "uri": "https://api.scryfall.com/cards/be1f001f-defb-4f6b-810c-244140ede8e9",
+  "scryfall_uri": "https://scryfall.com/card/m21/219/pt/aristocrata-indulgente-(indulging-patrician)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-01T11:16:14Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/b/e/be1f001f-defb-4f6b-810c-244140ede8e9.jpg?1782904574",
+    "normal": "https://cards.scryfall.io/normal/front/b/e/be1f001f-defb-4f6b-810c-244140ede8e9.jpg?1782904574",
+    "large": "https://cards.scryfall.io/large/front/b/e/be1f001f-defb-4f6b-810c-244140ede8e9.jpg?1782904574",
+    "png": "https://cards.scryfall.io/png/front/b/e/be1f001f-defb-4f6b-810c-244140ede8e9.png?1782904574",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/b/e/be1f001f-defb-4f6b-810c-244140ede8e9.jpg?1782904574",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/b/e/be1f001f-defb-4f6b-810c-244140ede8e9.jpg?1782904574",
+    "thumb": "https://cards.scryfall.io/thumb/front/b/e/be1f001f-defb-4f6b-810c-244140ede8e9.webp?1782904574",
+    "grid": "https://cards.scryfall.io/grid/front/b/e/be1f001f-defb-4f6b-810c-244140ede8e9.webp?1782904574",
+    "display": "https://cards.scryfall.io/display/front/b/e/be1f001f-defb-4f6b-810c-244140ede8e9.webp?1782904574",
+    "art": "https://cards.scryfall.io/art/front/b/e/be1f001f-defb-4f6b-810c-244140ede8e9.webp?1782904574",
+    "crop": "https://cards.scryfall.io/crop/front/b/e/be1f001f-defb-4f6b-810c-244140ede8e9.webp?1782904574"
+  },
+  "mana_cost": "{1}{W}{B}",
+  "cmc": 3.0,
+  "type_line": "Creature — Vampire Noble",
+  "printed_type_line": "Criatura — Vampiro Nobre",
+  "oracle_text": "Flying\nLifelink (Damage dealt by this creature also causes you to gain that much life.)\nAt the beginning of your end step, if you gained 3 or more life this turn, each opponent loses 3 life.",
+  "printed_text": "Voar\nVínculo com a vida (O dano causado por esta criatura também faz com que você ganhe uma quantidade equivalente de pontos de vida.)\nNo início de sua etapa final, se você ganhou 3 ou mais pontos de vida neste turno, cada oponente perde 3 pontos de vida.",
+  "power": "1",
+  "toughness": "4",
+  "colors": [
+    "B",
+    "W"
+  ],
+  "color_identity": [
+    "B",
+    "W"
+  ],
+  "keywords": [
+    "Flying",
+    "Lifelink"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "arena",
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "bc94aba1-7376-4e02-a12d-3a2efb66ab0f",
+  "set": "m21",
+  "set_name": "Core Set 2021",
+  "set_type": "core",
+  "set_uri": "https://api.scryfall.com/sets/bc94aba1-7376-4e02-a12d-3a2efb66ab0f",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Am21&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/m21?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/be1f001f-defb-4f6b-810c-244140ede8e9/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A189131b7-ed59-4750-a4ed-453e4497a5c8&unique=prints",
+  "collector_number": "219",
+  "digital": false,
+  "rarity": "uncommon",
+  "flavor_text": "\"Só um petisquinho por enquanto. Não quero ficar sem apetite.\"",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Miranda Meeks",
+  "artist_ids": [
+    "6c9ca5a9-5ac6-4478-9606-075fd10a8f01"
+  ],
+  "illustration_id": "c470386b-81b0-45c8-97a4-34caccf4969d",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "edhrec_rank": 4302,
+  "penny_rank": 7771,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=487355&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DIndulging%2BPatrician",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DIndulging%2BPatrician",
+    "edhrec": "https://edhrec.com/route/?cc=Indulging+Patrician"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DIndulging%2BPatrician%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Indulging+Patrician&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Indulging+Patrician&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

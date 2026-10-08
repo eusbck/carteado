@@ -1,0 +1,134 @@
+{
+  "object": "card",
+  "id": "fc018483-69a7-4c4c-adfe-44071f53a7de",
+  "oracle_id": "14493624-fdc7-4630-9b1e-f35668651108",
+  "multiverse_ids": [
+    696266
+  ],
+  "mtgo_id": 138157,
+  "tcgplayer_id": 624651,
+  "cardmarket_id": 818724,
+  "name": "Baldin, Century Herdmaster",
+  "lang": "en",
+  "released_at": "2025-04-11",
+  "uri": "https://api.scryfall.com/cards/fc018483-69a7-4c4c-adfe-44071f53a7de",
+  "scryfall_uri": "https://scryfall.com/card/tdc/110/baldin-century-herdmaster?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-13T01:45:30Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/f/c/fc018483-69a7-4c4c-adfe-44071f53a7de.jpg?1783907130",
+    "normal": "https://cards.scryfall.io/normal/front/f/c/fc018483-69a7-4c4c-adfe-44071f53a7de.jpg?1783907130",
+    "large": "https://cards.scryfall.io/large/front/f/c/fc018483-69a7-4c4c-adfe-44071f53a7de.jpg?1783907130",
+    "png": "https://cards.scryfall.io/png/front/f/c/fc018483-69a7-4c4c-adfe-44071f53a7de.png?1783907130",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/f/c/fc018483-69a7-4c4c-adfe-44071f53a7de.jpg?1783907130",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/f/c/fc018483-69a7-4c4c-adfe-44071f53a7de.jpg?1783907130",
+    "thumb": "https://cards.scryfall.io/thumb/front/f/c/fc018483-69a7-4c4c-adfe-44071f53a7de.webp?1783907130",
+    "grid": "https://cards.scryfall.io/grid/front/f/c/fc018483-69a7-4c4c-adfe-44071f53a7de.webp?1783907130",
+    "display": "https://cards.scryfall.io/display/front/f/c/fc018483-69a7-4c4c-adfe-44071f53a7de.webp?1783907130",
+    "art": "https://cards.scryfall.io/art/front/f/c/fc018483-69a7-4c4c-adfe-44071f53a7de.webp?1783907130",
+    "crop": "https://cards.scryfall.io/crop/front/f/c/fc018483-69a7-4c4c-adfe-44071f53a7de.webp?1783907130"
+  },
+  "mana_cost": "{4}{W}{W}",
+  "cmc": 6.0,
+  "type_line": "Legendary Creature — Human Warrior",
+  "oracle_text": "During your turn, each creature assigns combat damage equal to its toughness rather than its power.\nWhenever Baldin attacks, up to one hundred target creatures each get +0/+X until end of turn, where X is the number of cards in your hand.",
+  "power": "0",
+  "toughness": "7",
+  "colors": [
+    "W"
+  ],
+  "color_identity": [
+    "W"
+  ],
+  "keywords": [],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "bca9779c-0a0b-4ac1-8794-f3fc25549cf4",
+  "set": "tdc",
+  "set_name": "Tarkir: Dragonstorm Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/bca9779c-0a0b-4ac1-8794-f3fc25549cf4",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Atdc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/tdc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/fc018483-69a7-4c4c-adfe-44071f53a7de/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A14493624-fdc7-4630-9b1e-f35668651108&unique=prints",
+  "collector_number": "110",
+  "digital": false,
+  "rarity": "rare",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Zoltan Boros",
+  "artist_ids": [
+    "1885e6cb-c827-4896-994e-3d0a027d602f"
+  ],
+  "illustration_id": "861b71d4-dbf9-411f-96f7-a5d0087cf06a",
+  "border_color": "black",
+  "frame": "2015",
+  "frame_effects": [
+    "legendary"
+  ],
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 3827,
+  "prices": {
+    "usd": "0.33",
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": "0.65",
+    "eur_foil": null,
+    "tix": "2.31"
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=696266&printed=false",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DBaldin%252C%2BCentury%2BHerdmaster",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DBaldin%252C%2BCentury%2BHerdmaster",
+    "edhrec": "https://edhrec.com/route/?cc=Baldin%2C+Century+Herdmaster"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F624651%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=818724&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards/138157?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

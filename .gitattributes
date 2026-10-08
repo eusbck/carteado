@@ -1,4 +1,4 @@
-* text=auto eol=lf
-*.png binary
-*.jpg binary
-*.webp binary
+# Fora de jogo/, os arquivos vão byte a byte, sem conversão de fim de linha: o coletor confere o SHA-256
+# de cada arquivo (cartas/checksums.json) e o manifesto das regras guarda o do texto oficial
+# (dados/manifesto.json). O jogo tem as próprias regras em jogo/.gitattributes.
+* -text

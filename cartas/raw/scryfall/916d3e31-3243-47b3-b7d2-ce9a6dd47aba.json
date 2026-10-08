@@ -1,0 +1,156 @@
+{
+  "object": "card",
+  "id": "916d3e31-3243-47b3-b7d2-ce9a6dd47aba",
+  "oracle_id": "9a8f6e5e-6cde-49df-861c-a26cb09c9b12",
+  "multiverse_ids": [],
+  "resource_id": "AEC99442BE231B7B2C3CC870D9A20F81CB947ED75F6FB714E5EA7FE01508F96D",
+  "mtgo_id": 148577,
+  "arena_id": 102840,
+  "tcgplayer_id": 687511,
+  "cardmarket_id": 881318,
+  "name": "Muddle, the Ever-Changing",
+  "lang": "en",
+  "released_at": "2026-04-24",
+  "uri": "https://api.scryfall.com/cards/916d3e31-3243-47b3-b7d2-ce9a6dd47aba",
+  "scryfall_uri": "https://scryfall.com/card/soc/5/muddle-the-ever-changing?utm_source=api",
+  "layout": "normal",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T00:51:07Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/9/1/916d3e31-3243-47b3-b7d2-ce9a6dd47aba.jpg?1783903867",
+    "normal": "https://cards.scryfall.io/normal/front/9/1/916d3e31-3243-47b3-b7d2-ce9a6dd47aba.jpg?1783903867",
+    "large": "https://cards.scryfall.io/large/front/9/1/916d3e31-3243-47b3-b7d2-ce9a6dd47aba.jpg?1783903867",
+    "png": "https://cards.scryfall.io/png/front/9/1/916d3e31-3243-47b3-b7d2-ce9a6dd47aba.png?1783903867",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/9/1/916d3e31-3243-47b3-b7d2-ce9a6dd47aba.jpg?1783903867",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/9/1/916d3e31-3243-47b3-b7d2-ce9a6dd47aba.jpg?1783903867",
+    "thumb": "https://cards.scryfall.io/thumb/front/9/1/916d3e31-3243-47b3-b7d2-ce9a6dd47aba.webp?1783903867",
+    "grid": "https://cards.scryfall.io/grid/front/9/1/916d3e31-3243-47b3-b7d2-ce9a6dd47aba.webp?1783903867",
+    "display": "https://cards.scryfall.io/display/front/9/1/916d3e31-3243-47b3-b7d2-ce9a6dd47aba.webp?1783903867",
+    "art": "https://cards.scryfall.io/art/front/9/1/916d3e31-3243-47b3-b7d2-ce9a6dd47aba.webp?1783903867",
+    "crop": "https://cards.scryfall.io/crop/front/9/1/916d3e31-3243-47b3-b7d2-ce9a6dd47aba.webp?1783903867"
+  },
+  "mana_cost": "{2}{U}{R}",
+  "cmc": 4.0,
+  "type_line": "Legendary Creature — Elemental Otter Shapeshifter",
+  "oracle_text": "Whenever you cast an instant or sorcery spell, Muddle becomes a copy of up to one target nonlegendary creature you control until end of turn, except it has myriad. (Whenever it attacks, for each opponent other than defending player, you may create a token copy that's tapped and attacking that player or a planeswalker they control. Exile the tokens at end of combat.)",
+  "power": "3",
+  "toughness": "3",
+  "colors": [
+    "R",
+    "U"
+  ],
+  "color_identity": [
+    "R",
+    "U"
+  ],
+  "keywords": [],
+  "all_parts": [
+    {
+      "object": "related_card",
+      "id": "4e119457-948d-4ef8-8c27-59fa675f766f",
+      "component": "token",
+      "name": "Copy",
+      "type_line": "Token",
+      "uri": "https://api.scryfall.com/cards/4e119457-948d-4ef8-8c27-59fa675f766f"
+    },
+    {
+      "object": "related_card",
+      "id": "916d3e31-3243-47b3-b7d2-ce9a6dd47aba",
+      "component": "combo_piece",
+      "name": "Muddle, the Ever-Changing",
+      "type_line": "Legendary Creature — Elemental Otter Shapeshifter",
+      "uri": "https://api.scryfall.com/cards/916d3e31-3243-47b3-b7d2-ce9a6dd47aba"
+    }
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo",
+    "arena"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "97fab8d1-480a-419d-ab14-663968e29b9c",
+  "set": "soc",
+  "set_name": "Secrets of Strixhaven Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/97fab8d1-480a-419d-ab14-663968e29b9c",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Asoc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/soc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/916d3e31-3243-47b3-b7d2-ce9a6dd47aba/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A9a8f6e5e-6cde-49df-861c-a26cb09c9b12&unique=prints",
+  "collector_number": "5",
+  "digital": false,
+  "rarity": "mythic",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Andrew Mar",
+  "artist_ids": [
+    "adad79bf-cd52-456a-b170-740ed8bff0fc"
+  ],
+  "illustration_id": "ec3edc2a-aea7-4c03-b7af-c57bdb3de69b",
+  "border_color": "borderless",
+  "frame": "2015",
+  "frame_effects": [
+    "legendary",
+    "inverted"
+  ],
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 10365,
+  "prices": {
+    "usd": "0.88",
+    "usd_foil": "0.49",
+    "usd_etched": null,
+    "eur": "0.44",
+    "eur_foil": "0.52",
+    "tix": "4.29"
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DMuddle%252C%2Bthe%2BEver-Changing",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DMuddle%252C%2Bthe%2BEver-Changing",
+    "edhrec": "https://edhrec.com/route/?cc=Muddle%2C+the+Ever-Changing"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F687511%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=881318&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards/148577?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

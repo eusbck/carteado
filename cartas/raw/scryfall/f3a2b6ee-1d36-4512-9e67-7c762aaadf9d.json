@@ -1,0 +1,139 @@
+{
+  "object": "card",
+  "id": "f3a2b6ee-1d36-4512-9e67-7c762aaadf9d",
+  "oracle_id": "28b64167-b7ea-4b4f-8434-061298050366",
+  "multiverse_ids": [
+    515749
+  ],
+  "name": "Quintorius, Field Historian",
+  "printed_name": "Quintorius, Historiador de Campo",
+  "lang": "pt",
+  "released_at": "2021-04-23",
+  "uri": "https://api.scryfall.com/cards/f3a2b6ee-1d36-4512-9e67-7c762aaadf9d",
+  "scryfall_uri": "https://scryfall.com/card/stx/220/pt/quintorius-historiador-de-campo-(quintorius-field-historian)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-01T05:20:12Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/f/3/f3a2b6ee-1d36-4512-9e67-7c762aaadf9d.jpg?1782883212",
+    "normal": "https://cards.scryfall.io/normal/front/f/3/f3a2b6ee-1d36-4512-9e67-7c762aaadf9d.jpg?1782883212",
+    "large": "https://cards.scryfall.io/large/front/f/3/f3a2b6ee-1d36-4512-9e67-7c762aaadf9d.jpg?1782883212",
+    "png": "https://cards.scryfall.io/png/front/f/3/f3a2b6ee-1d36-4512-9e67-7c762aaadf9d.png?1782883212",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/f/3/f3a2b6ee-1d36-4512-9e67-7c762aaadf9d.jpg?1782883212",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/f/3/f3a2b6ee-1d36-4512-9e67-7c762aaadf9d.jpg?1782883212",
+    "thumb": "https://cards.scryfall.io/thumb/front/f/3/f3a2b6ee-1d36-4512-9e67-7c762aaadf9d.webp?1782883212",
+    "grid": "https://cards.scryfall.io/grid/front/f/3/f3a2b6ee-1d36-4512-9e67-7c762aaadf9d.webp?1782883212",
+    "display": "https://cards.scryfall.io/display/front/f/3/f3a2b6ee-1d36-4512-9e67-7c762aaadf9d.webp?1782883212",
+    "art": "https://cards.scryfall.io/art/front/f/3/f3a2b6ee-1d36-4512-9e67-7c762aaadf9d.webp?1782883212",
+    "crop": "https://cards.scryfall.io/crop/front/f/3/f3a2b6ee-1d36-4512-9e67-7c762aaadf9d.webp?1782883212"
+  },
+  "mana_cost": "{3}{R}{W}",
+  "cmc": 5.0,
+  "type_line": "Legendary Creature — Elephant Cleric",
+  "printed_type_line": "Criatura Lendária — Elefante Clérigo",
+  "oracle_text": "Spirits you control get +1/+0.\nWhenever one or more cards leave your graveyard, create a 3/2 red and white Spirit creature token.",
+  "printed_text": "Os Espíritos que você controla recebem +1/+0.\nToda vez que um ou mais cards deixarem seu cemitério, crie uma ficha de criatura Espírito vermelha e branca 3/2.",
+  "power": "2",
+  "toughness": "4",
+  "colors": [
+    "R",
+    "W"
+  ],
+  "color_identity": [
+    "R",
+    "W"
+  ],
+  "keywords": [],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "arena",
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "541c3c28-8747-40e5-a231-8e8f33234859",
+  "set": "stx",
+  "set_name": "Strixhaven: School of Mages",
+  "set_type": "expansion",
+  "set_uri": "https://api.scryfall.com/sets/541c3c28-8747-40e5-a231-8e8f33234859",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Astx&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/stx?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/f3a2b6ee-1d36-4512-9e67-7c762aaadf9d/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A28b64167-b7ea-4b4f-8434-061298050366&unique=prints",
+  "collector_number": "220",
+  "digital": false,
+  "rarity": "uncommon",
+  "watermark": "lorehold",
+  "flavor_text": "\"Toda vida tem uma história para contar. Não deixarei que sejam esquecidas.\"",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Bryan Sola",
+  "artist_ids": [
+    "e6879299-a28b-48bc-8db1-9cafcf36de09"
+  ],
+  "illustration_id": "3b5decb6-de42-4609-9c86-be7b122d0279",
+  "border_color": "black",
+  "frame": "2015",
+  "frame_effects": [
+    "legendary"
+  ],
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "edhrec_rank": 9181,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=515749&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DQuintorius%252C%2BField%2BHistorian",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DQuintorius%252C%2BField%2BHistorian",
+    "edhrec": "https://edhrec.com/route/?cc=Quintorius%2C+Field+Historian"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DQuintorius%252C%2BField%2BHistorian%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Quintorius%2C+Field+Historian&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Quintorius%2C+Field+Historian&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

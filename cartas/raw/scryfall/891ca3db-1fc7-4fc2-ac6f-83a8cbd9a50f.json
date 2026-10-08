@@ -1,0 +1,134 @@
+{
+  "object": "card",
+  "id": "891ca3db-1fc7-4fc2-ac6f-83a8cbd9a50f",
+  "oracle_id": "1aabb6bd-8061-42a5-9a71-f9eac718bd22",
+  "multiverse_ids": [
+    385705
+  ],
+  "name": "Wall of Limbs",
+  "printed_name": "Barreira de Membros",
+  "lang": "pt",
+  "released_at": "2014-07-18",
+  "uri": "https://api.scryfall.com/cards/891ca3db-1fc7-4fc2-ac6f-83a8cbd9a50f",
+  "scryfall_uri": "https://scryfall.com/card/m15/121/pt/barreira-de-membros-(wall-of-limbs)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-02T05:24:55Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/8/9/891ca3db-1fc7-4fc2-ac6f-83a8cbd9a50f.jpg?1782969895",
+    "normal": "https://cards.scryfall.io/normal/front/8/9/891ca3db-1fc7-4fc2-ac6f-83a8cbd9a50f.jpg?1782969895",
+    "large": "https://cards.scryfall.io/large/front/8/9/891ca3db-1fc7-4fc2-ac6f-83a8cbd9a50f.jpg?1782969895",
+    "png": "https://cards.scryfall.io/png/front/8/9/891ca3db-1fc7-4fc2-ac6f-83a8cbd9a50f.png?1782969895",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/8/9/891ca3db-1fc7-4fc2-ac6f-83a8cbd9a50f.jpg?1782969895",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/8/9/891ca3db-1fc7-4fc2-ac6f-83a8cbd9a50f.jpg?1782969895",
+    "thumb": "https://cards.scryfall.io/thumb/front/8/9/891ca3db-1fc7-4fc2-ac6f-83a8cbd9a50f.webp?1782969895",
+    "grid": "https://cards.scryfall.io/grid/front/8/9/891ca3db-1fc7-4fc2-ac6f-83a8cbd9a50f.webp?1782969895",
+    "display": "https://cards.scryfall.io/display/front/8/9/891ca3db-1fc7-4fc2-ac6f-83a8cbd9a50f.webp?1782969895",
+    "art": "https://cards.scryfall.io/art/front/8/9/891ca3db-1fc7-4fc2-ac6f-83a8cbd9a50f.webp?1782969895",
+    "crop": "https://cards.scryfall.io/crop/front/8/9/891ca3db-1fc7-4fc2-ac6f-83a8cbd9a50f.webp?1782969895"
+  },
+  "mana_cost": "{2}{B}",
+  "cmc": 3.0,
+  "type_line": "Creature — Zombie Wall",
+  "printed_type_line": "Criatura — Zumbi Barreira",
+  "oracle_text": "Defender (This creature can't attack.)\nWhenever you gain life, put a +1/+1 counter on this creature.\n{5}{B}{B}, Sacrifice this creature: Target player loses X life, where X is this creature's power.",
+  "printed_text": "Defensor (Esta criatura não pode atacar.)\nToda vez que você ganhar pontos de vida, coloque um marcador +1/+1 em Barreira de Membros.\n{5}{B}{B}, Sacrifique Barreira de Membros: O jogador alvo perde X pontos de vida, sendo X o poder de Barreira de Membros.",
+  "power": "0",
+  "toughness": "3",
+  "colors": [
+    "B"
+  ],
+  "color_identity": [
+    "B"
+  ],
+  "keywords": [
+    "Defender"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "6ce49890-3b37-42a5-8932-dbeef1d7b62c",
+  "set": "m15",
+  "set_name": "Magic 2015",
+  "set_type": "core",
+  "set_uri": "https://api.scryfall.com/sets/6ce49890-3b37-42a5-8932-dbeef1d7b62c",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Am15&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/m15?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/891ca3db-1fc7-4fc2-ac6f-83a8cbd9a50f/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A1aabb6bd-8061-42a5-9a71-f9eac718bd22&unique=prints",
+  "collector_number": "121",
+  "digital": false,
+  "rarity": "uncommon",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Yeong-Hao Han",
+  "artist_ids": [
+    "f8e7f8d6-6dde-4059-973c-30f1fd1bbe4e"
+  ],
+  "illustration_id": "88bb17aa-ff77-4fb2-96c1-51f7d97a4997",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "edhrec_rank": 11934,
+  "penny_rank": 10309,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=385705&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DWall%2Bof%2BLimbs",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DWall%2Bof%2BLimbs",
+    "edhrec": "https://edhrec.com/route/?cc=Wall+of+Limbs"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DWall%2Bof%2BLimbs%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Wall+of+Limbs&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Wall+of+Limbs&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

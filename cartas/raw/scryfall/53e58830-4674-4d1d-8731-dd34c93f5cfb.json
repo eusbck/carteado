@@ -1,0 +1,130 @@
+{
+  "object": "card",
+  "id": "53e58830-4674-4d1d-8731-dd34c93f5cfb",
+  "oracle_id": "8b755881-a72d-4e21-a369-d2924eb4585a",
+  "multiverse_ids": [
+    642007
+  ],
+  "name": "Cultivate",
+  "printed_name": "Cultivar",
+  "lang": "pt",
+  "released_at": "2023-11-17",
+  "uri": "https://api.scryfall.com/cards/53e58830-4674-4d1d-8731-dd34c93f5cfb",
+  "scryfall_uri": "https://scryfall.com/card/lcc/235/pt/cultivar-(cultivate)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T08:58:45Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/5/3/53e58830-4674-4d1d-8731-dd34c93f5cfb.jpg?1782809925",
+    "normal": "https://cards.scryfall.io/normal/front/5/3/53e58830-4674-4d1d-8731-dd34c93f5cfb.jpg?1782809925",
+    "large": "https://cards.scryfall.io/large/front/5/3/53e58830-4674-4d1d-8731-dd34c93f5cfb.jpg?1782809925",
+    "png": "https://cards.scryfall.io/png/front/5/3/53e58830-4674-4d1d-8731-dd34c93f5cfb.png?1782809925",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/5/3/53e58830-4674-4d1d-8731-dd34c93f5cfb.jpg?1782809925",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/5/3/53e58830-4674-4d1d-8731-dd34c93f5cfb.jpg?1782809925",
+    "thumb": "https://cards.scryfall.io/thumb/front/5/3/53e58830-4674-4d1d-8731-dd34c93f5cfb.webp?1782809925",
+    "grid": "https://cards.scryfall.io/grid/front/5/3/53e58830-4674-4d1d-8731-dd34c93f5cfb.webp?1782809925",
+    "display": "https://cards.scryfall.io/display/front/5/3/53e58830-4674-4d1d-8731-dd34c93f5cfb.webp?1782809925",
+    "art": "https://cards.scryfall.io/art/front/5/3/53e58830-4674-4d1d-8731-dd34c93f5cfb.webp?1782809925",
+    "crop": "https://cards.scryfall.io/crop/front/5/3/53e58830-4674-4d1d-8731-dd34c93f5cfb.webp?1782809925"
+  },
+  "mana_cost": "{2}{G}",
+  "cmc": 3.0,
+  "type_line": "Sorcery",
+  "printed_type_line": "Feitiço",
+  "oracle_text": "Search your library for up to two basic land cards, reveal those cards, put one onto the battlefield tapped and the other into your hand, then shuffle.",
+  "printed_text": "Procure até dois cards de terreno básico em seu grimório, revele-os e coloque um deles no campo de batalha virado e o outro na sua mão. Depois, embaralhe.",
+  "colors": [
+    "G"
+  ],
+  "color_identity": [
+    "G"
+  ],
+  "keywords": [],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "d253edc3-5bc7-4cf1-9446-a8540dedffa5",
+  "set": "lcc",
+  "set_name": "The Lost Caverns of Ixalan Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/d253edc3-5bc7-4cf1-9446-a8540dedffa5",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Alcc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/lcc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/53e58830-4674-4d1d-8731-dd34c93f5cfb/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A8b755881-a72d-4e21-a369-d2924eb4585a&unique=prints",
+  "collector_number": "235",
+  "digital": false,
+  "rarity": "common",
+  "flavor_text": "Todas as sementes possuem um elo em comum que as une através da eternidade.",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Justyna Dura",
+  "artist_ids": [
+    "d2340aef-8ca9-4e0d-864c-6a4e8d5e350a"
+  ],
+  "illustration_id": "607bb997-0fc0-4c47-90b4-e8273fd5a636",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 20,
+  "penny_rank": 1471,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=642007&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DCultivate",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DCultivate",
+    "edhrec": "https://edhrec.com/route/?cc=Cultivate"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DCultivate%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Cultivate&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Cultivate&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "object": "card",
+  "id": "4105b74b-dbd5-4de9-9db4-8253c431f271",
+  "oracle_id": "8a29bd35-33ef-4317-9fe5-8aaff5d7d64d",
+  "multiverse_ids": [
+    520632
+  ],
+  "name": "Tragic Arrogance",
+  "printed_name": "Arrogância Trágica",
+  "lang": "pt",
+  "released_at": "2021-04-23",
+  "uri": "https://api.scryfall.com/cards/4105b74b-dbd5-4de9-9db4-8253c431f271",
+  "scryfall_uri": "https://scryfall.com/card/c21/109/pt/arrog%C3%A2ncia-tr%C3%A1gica-(tragic-arrogance)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-01T06:32:15Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/4/1/4105b74b-dbd5-4de9-9db4-8253c431f271.jpg?1782887535",
+    "normal": "https://cards.scryfall.io/normal/front/4/1/4105b74b-dbd5-4de9-9db4-8253c431f271.jpg?1782887535",
+    "large": "https://cards.scryfall.io/large/front/4/1/4105b74b-dbd5-4de9-9db4-8253c431f271.jpg?1782887535",
+    "png": "https://cards.scryfall.io/png/front/4/1/4105b74b-dbd5-4de9-9db4-8253c431f271.png?1782887535",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/4/1/4105b74b-dbd5-4de9-9db4-8253c431f271.jpg?1782887535",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/4/1/4105b74b-dbd5-4de9-9db4-8253c431f271.jpg?1782887535",
+    "thumb": "https://cards.scryfall.io/thumb/front/4/1/4105b74b-dbd5-4de9-9db4-8253c431f271.webp?1782887535",
+    "grid": "https://cards.scryfall.io/grid/front/4/1/4105b74b-dbd5-4de9-9db4-8253c431f271.webp?1782887535",
+    "display": "https://cards.scryfall.io/display/front/4/1/4105b74b-dbd5-4de9-9db4-8253c431f271.webp?1782887535",
+    "art": "https://cards.scryfall.io/art/front/4/1/4105b74b-dbd5-4de9-9db4-8253c431f271.webp?1782887535",
+    "crop": "https://cards.scryfall.io/crop/front/4/1/4105b74b-dbd5-4de9-9db4-8253c431f271.webp?1782887535"
+  },
+  "mana_cost": "{3}{W}{W}",
+  "cmc": 5.0,
+  "type_line": "Sorcery",
+  "printed_type_line": "Feitiço",
+  "oracle_text": "For each player, you choose from among the permanents that player controls an artifact, a creature, an enchantment, and a planeswalker. Then each player sacrifices all other nonland permanents they control.",
+  "printed_text": "Para cada jogador, você escolhe um artefato, uma criatura, um encantamento e um planeswalker dentre as permanentes que aquele jogador controla. Depois, cada jogador sacrifica todas as outras permanentes não de terreno que ele controla.",
+  "colors": [
+    "W"
+  ],
+  "color_identity": [
+    "W"
+  ],
+  "keywords": [],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "27bf6dbd-a9e1-4904-afa7-d28fc7745c4f",
+  "set": "c21",
+  "set_name": "Commander 2021",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/27bf6dbd-a9e1-4904-afa7-d28fc7745c4f",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Ac21&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/c21?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/4105b74b-dbd5-4de9-9db4-8253c431f271/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A8a29bd35-33ef-4317-9fe5-8aaff5d7d64d&unique=prints",
+  "collector_number": "109",
+  "digital": false,
+  "rarity": "rare",
+  "flavor_text": "A lança arremessada pelas próprias mãos de Quiteon foi a arma que matou seus amigos.",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Winona Nelson",
+  "artist_ids": [
+    "e45fe8d3-75d6-42c9-a2df-e945ad81ea27"
+  ],
+  "illustration_id": "5f9483fa-bec8-4b12-980c-5cab40eddd0a",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 2812,
+  "penny_rank": 5213,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=520632&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DTragic%2BArrogance",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DTragic%2BArrogance",
+    "edhrec": "https://edhrec.com/route/?cc=Tragic+Arrogance"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DTragic%2BArrogance%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Tragic+Arrogance&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Tragic+Arrogance&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

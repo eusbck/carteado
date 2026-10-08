@@ -1,0 +1,140 @@
+{
+  "object": "card",
+  "id": "86f97dd8-8647-4938-aee0-690bb715f88b",
+  "oracle_id": "ae5f30cc-a22e-4fbb-9510-e9429de3623c",
+  "multiverse_ids": [],
+  "resource_id": "74C42C0D41705E9E43F7249A7AA59567362758D79C7A999E7D8C3F42B368D53B",
+  "mtgo_id": 148573,
+  "arena_id": 102838,
+  "tcgplayer_id": 687507,
+  "cardmarket_id": 881316,
+  "name": "Gorma, the Gullet",
+  "lang": "en",
+  "released_at": "2026-04-24",
+  "uri": "https://api.scryfall.com/cards/86f97dd8-8647-4938-aee0-690bb715f88b",
+  "scryfall_uri": "https://scryfall.com/card/soc/3/gorma-the-gullet?utm_source=api",
+  "layout": "normal",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T00:51:08Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/8/6/86f97dd8-8647-4938-aee0-690bb715f88b.jpg?1783903868",
+    "normal": "https://cards.scryfall.io/normal/front/8/6/86f97dd8-8647-4938-aee0-690bb715f88b.jpg?1783903868",
+    "large": "https://cards.scryfall.io/large/front/8/6/86f97dd8-8647-4938-aee0-690bb715f88b.jpg?1783903868",
+    "png": "https://cards.scryfall.io/png/front/8/6/86f97dd8-8647-4938-aee0-690bb715f88b.png?1783903868",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/8/6/86f97dd8-8647-4938-aee0-690bb715f88b.jpg?1783903868",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/8/6/86f97dd8-8647-4938-aee0-690bb715f88b.jpg?1783903868",
+    "thumb": "https://cards.scryfall.io/thumb/front/8/6/86f97dd8-8647-4938-aee0-690bb715f88b.webp?1783903868",
+    "grid": "https://cards.scryfall.io/grid/front/8/6/86f97dd8-8647-4938-aee0-690bb715f88b.webp?1783903868",
+    "display": "https://cards.scryfall.io/display/front/8/6/86f97dd8-8647-4938-aee0-690bb715f88b.webp?1783903868",
+    "art": "https://cards.scryfall.io/art/front/8/6/86f97dd8-8647-4938-aee0-690bb715f88b.webp?1783903868",
+    "crop": "https://cards.scryfall.io/crop/front/8/6/86f97dd8-8647-4938-aee0-690bb715f88b.webp?1783903868"
+  },
+  "mana_cost": "{1}{B}{G}",
+  "cmc": 3.0,
+  "type_line": "Legendary Creature — Pest Frog",
+  "oracle_text": "Lifelink\nWhenever another creature you control dies, put a +1/+1 counter on Gorma.\nNontoken creatures you control enter with an additional +1/+1 counter on them for each creature that died under your control this turn.",
+  "power": "1",
+  "toughness": "1",
+  "colors": [
+    "B",
+    "G"
+  ],
+  "color_identity": [
+    "B",
+    "G"
+  ],
+  "keywords": [
+    "Lifelink"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo",
+    "arena"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "97fab8d1-480a-419d-ab14-663968e29b9c",
+  "set": "soc",
+  "set_name": "Secrets of Strixhaven Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/97fab8d1-480a-419d-ab14-663968e29b9c",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Asoc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/soc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/86f97dd8-8647-4938-aee0-690bb715f88b/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Aae5f30cc-a22e-4fbb-9510-e9429de3623c&unique=prints",
+  "collector_number": "3",
+  "digital": false,
+  "rarity": "mythic",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Brian Valeza",
+  "artist_ids": [
+    "bb2a9339-bbe4-445f-9736-3c43379ee076"
+  ],
+  "illustration_id": "5735d398-f72e-40b2-9d22-1f906c4a74b2",
+  "border_color": "borderless",
+  "frame": "2015",
+  "frame_effects": [
+    "legendary",
+    "inverted"
+  ],
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 7421,
+  "prices": {
+    "usd": "1.91",
+    "usd_foil": "0.54",
+    "usd_etched": null,
+    "eur": "1.09",
+    "eur_foil": "0.83",
+    "tix": "6.99"
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DGorma%252C%2Bthe%2BGullet",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DGorma%252C%2Bthe%2BGullet",
+    "edhrec": "https://edhrec.com/route/?cc=Gorma%2C+the+Gullet"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F687507%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=881316&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards/148573?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

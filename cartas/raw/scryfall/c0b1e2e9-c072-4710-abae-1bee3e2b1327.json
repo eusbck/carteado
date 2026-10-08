@@ -1,0 +1,133 @@
+{
+  "object": "card",
+  "id": "c0b1e2e9-c072-4710-abae-1bee3e2b1327",
+  "oracle_id": "14d2979d-5728-42d7-a027-0eb1f754655d",
+  "multiverse_ids": [
+    569163
+  ],
+  "name": "Talisman of Creativity",
+  "printed_name": "Talismã da Criatividade",
+  "lang": "pt",
+  "released_at": "2022-06-10",
+  "uri": "https://api.scryfall.com/cards/c0b1e2e9-c072-4710-abae-1bee3e2b1327",
+  "scryfall_uri": "https://scryfall.com/card/clb/876/pt/talism%C3%A3-da-criatividade-(talisman-of-creativity)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T19:41:19Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/c/0/c0b1e2e9-c072-4710-abae-1bee3e2b1327.jpg?1782848479",
+    "normal": "https://cards.scryfall.io/normal/front/c/0/c0b1e2e9-c072-4710-abae-1bee3e2b1327.jpg?1782848479",
+    "large": "https://cards.scryfall.io/large/front/c/0/c0b1e2e9-c072-4710-abae-1bee3e2b1327.jpg?1782848479",
+    "png": "https://cards.scryfall.io/png/front/c/0/c0b1e2e9-c072-4710-abae-1bee3e2b1327.png?1782848479",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/c/0/c0b1e2e9-c072-4710-abae-1bee3e2b1327.jpg?1782848479",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/c/0/c0b1e2e9-c072-4710-abae-1bee3e2b1327.jpg?1782848479",
+    "thumb": "https://cards.scryfall.io/thumb/front/c/0/c0b1e2e9-c072-4710-abae-1bee3e2b1327.webp?1782848479",
+    "grid": "https://cards.scryfall.io/grid/front/c/0/c0b1e2e9-c072-4710-abae-1bee3e2b1327.webp?1782848479",
+    "display": "https://cards.scryfall.io/display/front/c/0/c0b1e2e9-c072-4710-abae-1bee3e2b1327.webp?1782848479",
+    "art": "https://cards.scryfall.io/art/front/c/0/c0b1e2e9-c072-4710-abae-1bee3e2b1327.webp?1782848479",
+    "crop": "https://cards.scryfall.io/crop/front/c/0/c0b1e2e9-c072-4710-abae-1bee3e2b1327.webp?1782848479"
+  },
+  "mana_cost": "{2}",
+  "cmc": 2.0,
+  "type_line": "Artifact",
+  "printed_type_line": "Artefato",
+  "oracle_text": "{T}: Add {C}.\n{T}: Add {U} or {R}. This artifact deals 1 damage to you.",
+  "printed_text": "{T}: Adicione {C}.\n{T}: Adicione {U} ou {R}. Talismã da Criatividade causa 1 ponto de dano a você.",
+  "colors": [],
+  "color_identity": [
+    "R",
+    "U"
+  ],
+  "keywords": [],
+  "produced_mana": [
+    "C",
+    "R",
+    "U"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "not_legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "5e4c3fe8-fd57-4b20-ad56-c03790a16cea",
+  "set": "clb",
+  "set_name": "Commander Legends: Battle for Baldur's Gate",
+  "set_type": "draft_innovation",
+  "set_uri": "https://api.scryfall.com/sets/5e4c3fe8-fd57-4b20-ad56-c03790a16cea",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Aclb&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/clb?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/c0b1e2e9-c072-4710-abae-1bee3e2b1327/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A14d2979d-5728-42d7-a027-0eb1f754655d&unique=prints",
+  "collector_number": "876",
+  "digital": false,
+  "rarity": "uncommon",
+  "flavor_text": "\"As boas ideias não vêm com o tempo. Elas vêm depois de um monte de ideias ruins.\"\n— Ral Zarek",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Lindsey Look",
+  "artist_ids": [
+    "95bc132d-37aa-4063-8ed8-04d489e826cd"
+  ],
+  "illustration_id": "3b98077a-02a3-4502-9443-f0d1308bc58d",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 126,
+  "penny_rank": 798,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=569163&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DTalisman%2Bof%2BCreativity",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DTalisman%2Bof%2BCreativity",
+    "edhrec": "https://edhrec.com/route/?cc=Talisman+of+Creativity"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DTalisman%2Bof%2BCreativity%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Talisman+of+Creativity&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Talisman+of+Creativity&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

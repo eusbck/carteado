@@ -1,0 +1,121 @@
+[mainboard]
+
+1 Demonic Embrace (M21) 95
+1 Angelic Gift (BFZ) 19
+1 Mire Blight (ZEN) 104
+1 Ethereal Armor (PLST) Q06-2
+1 Victor, Valgavoth's Seneschal (PDSK) 238p
+1 Danitha Capashen, Paragon (J25) 59
+1 Mangara, the Diplomat (TDC) 124
+1 Eiganjo Dynastorian // Replenish (SOC) 13
+1 Eclipsed Steppe (SOC) 53
+1 Umbral Expanse (SOC) 60
+1 Forum Filibuster (SOC) 14
+1 Coercive Impetus (SOC) 24
+1 Changing Loyalty (SOC) 23
+1 Turbulent Moor (SOC) 56
+1 Herald of Amity (SOC) 15
+1 Command Tower (SOC) 129
+1 Redemption Arc (SOC) 163
+1 Ghoulish Impetus (SOC) 214
+1 Screams from Within (SOC) 119
+1 Arcane Signet (SOC) 127
+1 Raffine's Guidance (SOC) 162
+1 Sage's Reverie (SOC) 165
+1 Sentinel's Eyes (SOC) 168
+1 Parasitic Impetus (SOC) 222
+1 Winds of Rath (SOC) 185
+1 Sol Ring (SOC) 128
+1 Inkshield (SOC) 316
+1 Hateful Eidolon (SOC) 215
+1 Doomwake Giant (SOC) 212
+1 Animate Dead (SOC) 207
+1 Forum of Amity (SOS) 256
+1 Shadrix Silverquill (SOC) 330
+1 Arcane Lighthouse (SOC) 361
+1 Fellwar Stone (SOC) 347
+1 Martial Impetus (SOC) 156
+1 Sheltered by Ghosts (SOC) 171
+1 Fallen Ideal (SOC) 117
+1 Gift of Immortality (SOC) 147
+1 Shielded by Faith (SOC) 172
+1 Eidolon of Countless Battles (SOC) 144
+1 Ghostly Prison (SOC) 146
+1 Land Tax (SOC) 153
+1 Transcendent Envoy (SOC) 183
+1 Eriette of the Charmed Apple (SOC) 307
+1 Killian, Ink Duelist (SOC) 317
+1 Flickering Ward (SOC) 109
+1 Tomik, Wielder of Law (SOC) 333
+1 Pearl-Ear, Imperial Advisor (SOC) 160
+1 Ajani's Chosen (SOC) 132
+1 Armored Skyhunter (SOC) 138
+1 Darksteel Mutation (SOC) 142
+1 Kor Spiritdancer (SOC) 152
+1 Chains of Custody (SOC) 139
+1 Firemane Commando (SOC) 145
+1 Fabled Passage (SOC) 130
+1 Songbirds' Blessing (SOC) 174
+1 Spirit Mantle (SOC) 175
+1 Promise of Loyalty (SOC) 161
+1 Sram, Senior Edificer (SOC) 176
+1 Eldrazi Conscription (SOC) 131
+1 Anguished Unmaking (SOC) 293
+1 Exotic Orchard (SOC) 369
+1 Vanishing Verse (SOC) 335
+1 Fetid Heath (SOC) 372
+1 Isolated Chapel (SOC) 382
+1 Terramorphic Expanse (SOS) 265
+1 Talisman of Hierarchy (SOC) 358
+1 Caves of Koilos (SOC) 365
+1 Temple of Silence (SOC) 415
+1 Fracture (SOC) 310
+1 Bojuka Bog (SOC) 363
+1 Shineshadow Snarl (SOC) 403
+1 Path of Ancestry (SOC) 393
+1 Angelic Destiny (SOC) 134
+1 Archon of Sun's Grace (SOC) 137
+1 Breena, the Demagogue (SOC) 298
+1 Desolate Mire (SOC) 367
+1 Silverquill Campus (SOC) 405
+1 Sunlit Marsh (SOC) 409
+1 Study Hall (SOC) 407
+1 War Room (SOC) 422
+1 Starfield Mystic (SOC) 177
+1 Scriv, the Obligator (SOC) 9
+8 Swamp (SOS) 277
+8 Plains (SOS) 273
+
+[sideboard]
+
+
+[maybeboard]
+
+
+[commanders]
+
+1 Killian, Decisive Mentor (SOC) 4
+
+[companions]
+
+
+[signatureSpells]
+
+
+[attractions]
+
+
+[stickers]
+
+
+[contraptions]
+
+
+[planes]
+
+
+[schemes]
+
+
+[tokens]
+

@@ -1,0 +1,144 @@
+{
+  "object": "card",
+  "id": "7f0298b4-c7ca-49b8-baaa-b9fad4c2bfd5",
+  "oracle_id": "cecd2f49-8ccb-472d-9cf1-fd0f4d93546d",
+  "multiverse_ids": [],
+  "resource_id": "6E6C8078FDA17AFC28520C08752CA24646ABA68D1519FEC8E0297A1645459413",
+  "mtgo_id": 140111,
+  "tcgplayer_id": 630975,
+  "cardmarket_id": 824198,
+  "name": "Summon: Esper Valigarmanda",
+  "lang": "en",
+  "released_at": "2025-06-13",
+  "uri": "https://api.scryfall.com/cards/7f0298b4-c7ca-49b8-baaa-b9fad4c2bfd5",
+  "scryfall_uri": "https://scryfall.com/card/fic/60/summon:-esper-valigarmanda?utm_source=api",
+  "layout": "saga",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T01:32:34Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/7/f/7f0298b4-c7ca-49b8-baaa-b9fad4c2bfd5.jpg?1783906354",
+    "normal": "https://cards.scryfall.io/normal/front/7/f/7f0298b4-c7ca-49b8-baaa-b9fad4c2bfd5.jpg?1783906354",
+    "large": "https://cards.scryfall.io/large/front/7/f/7f0298b4-c7ca-49b8-baaa-b9fad4c2bfd5.jpg?1783906354",
+    "png": "https://cards.scryfall.io/png/front/7/f/7f0298b4-c7ca-49b8-baaa-b9fad4c2bfd5.png?1783906354",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/7/f/7f0298b4-c7ca-49b8-baaa-b9fad4c2bfd5.jpg?1783906354",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/7/f/7f0298b4-c7ca-49b8-baaa-b9fad4c2bfd5.jpg?1783906354",
+    "thumb": "https://cards.scryfall.io/thumb/front/7/f/7f0298b4-c7ca-49b8-baaa-b9fad4c2bfd5.webp?1783906354",
+    "grid": "https://cards.scryfall.io/grid/front/7/f/7f0298b4-c7ca-49b8-baaa-b9fad4c2bfd5.webp?1783906354",
+    "display": "https://cards.scryfall.io/display/front/7/f/7f0298b4-c7ca-49b8-baaa-b9fad4c2bfd5.webp?1783906354",
+    "art": "https://cards.scryfall.io/art/front/7/f/7f0298b4-c7ca-49b8-baaa-b9fad4c2bfd5.webp?1783906354",
+    "crop": "https://cards.scryfall.io/crop/front/7/f/7f0298b4-c7ca-49b8-baaa-b9fad4c2bfd5.webp?1783906354"
+  },
+  "mana_cost": "{3}{R}",
+  "cmc": 4.0,
+  "type_line": "Enchantment Creature — Saga Drake",
+  "oracle_text": "(As this Saga enters and after your draw step, add a lore counter. Sacrifice after IV.)\nI — Exile an instant or sorcery card from each graveyard.\nII, III, IV — Add {R} for each lore counter on this Saga. You may cast an instant or sorcery card exiled with this Saga, and mana of any type can be spent to cast that spell.\nFlying, haste",
+  "power": "3",
+  "toughness": "3",
+  "colors": [
+    "R"
+  ],
+  "color_identity": [
+    "R"
+  ],
+  "keywords": [
+    "Flying",
+    "Haste"
+  ],
+  "produced_mana": [
+    "R"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "30659956-4558-4cbf-a65f-34cd00c89579",
+  "set": "fic",
+  "set_name": "Final Fantasy Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/30659956-4558-4cbf-a65f-34cd00c89579",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Afic&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/fic?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/7f0298b4-c7ca-49b8-baaa-b9fad4c2bfd5/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Acecd2f49-8ccb-472d-9cf1-fd0f4d93546d&unique=prints",
+  "collector_number": "60",
+  "digital": false,
+  "rarity": "rare",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Fiona Hsieh",
+  "artist_ids": [
+    "22211c1d-e15e-4db3-9350-e4a9862928bb"
+  ],
+  "illustration_id": "2bd02e77-bec3-4018-8bce-9b0b9c6f62ad",
+  "border_color": "black",
+  "frame": "2015",
+  "frame_effects": [
+    "enchantment"
+  ],
+  "security_stamp": "triangle",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "promo_types": [
+    "surgefoil",
+    "ffvi",
+    "universesbeyond"
+  ],
+  "edhrec_rank": 5246,
+  "prices": {
+    "usd": "0.25",
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": "0.28",
+    "eur_foil": null,
+    "tix": "2.79"
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DSummon%253A%2BEsper%2BValigarmanda",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DSummon%253A%2BEsper%2BValigarmanda",
+    "edhrec": "https://edhrec.com/route/?cc=Summon%3A+Esper+Valigarmanda"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F630975%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=824198&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards/140111?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "object": "card",
+  "id": "72f311c0-c52c-41d9-97f1-0a7239cb7688",
+  "oracle_id": "c3db28e5-6162-4642-a1c9-a7ace0737950",
+  "multiverse_ids": [
+    404436
+  ],
+  "name": "Smothering Abomination",
+  "printed_name": "Abominação Sufocante",
+  "lang": "pt",
+  "released_at": "2015-10-02",
+  "uri": "https://api.scryfall.com/cards/72f311c0-c52c-41d9-97f1-0a7239cb7688",
+  "scryfall_uri": "https://scryfall.com/card/bfz/99/pt/abomina%C3%A7%C3%A3o-sufocante-(smothering-abomination)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-02T02:14:18Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/7/2/72f311c0-c52c-41d9-97f1-0a7239cb7688.jpg?1782958458",
+    "normal": "https://cards.scryfall.io/normal/front/7/2/72f311c0-c52c-41d9-97f1-0a7239cb7688.jpg?1782958458",
+    "large": "https://cards.scryfall.io/large/front/7/2/72f311c0-c52c-41d9-97f1-0a7239cb7688.jpg?1782958458",
+    "png": "https://cards.scryfall.io/png/front/7/2/72f311c0-c52c-41d9-97f1-0a7239cb7688.png?1782958458",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/7/2/72f311c0-c52c-41d9-97f1-0a7239cb7688.jpg?1782958458",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/7/2/72f311c0-c52c-41d9-97f1-0a7239cb7688.jpg?1782958458",
+    "thumb": "https://cards.scryfall.io/thumb/front/7/2/72f311c0-c52c-41d9-97f1-0a7239cb7688.webp?1782958458",
+    "grid": "https://cards.scryfall.io/grid/front/7/2/72f311c0-c52c-41d9-97f1-0a7239cb7688.webp?1782958458",
+    "display": "https://cards.scryfall.io/display/front/7/2/72f311c0-c52c-41d9-97f1-0a7239cb7688.webp?1782958458",
+    "art": "https://cards.scryfall.io/art/front/7/2/72f311c0-c52c-41d9-97f1-0a7239cb7688.webp?1782958458",
+    "crop": "https://cards.scryfall.io/crop/front/7/2/72f311c0-c52c-41d9-97f1-0a7239cb7688.webp?1782958458"
+  },
+  "mana_cost": "{2}{B}{B}",
+  "cmc": 4.0,
+  "type_line": "Creature — Eldrazi",
+  "printed_type_line": "Criatura — Eldrazi",
+  "oracle_text": "Devoid (This card has no color.)\nFlying\nAt the beginning of your upkeep, sacrifice a creature.\nWhenever you sacrifice a creature, draw a card.",
+  "printed_text": "Desprovido (Este card não tem cor.)VoarNo início de sua manutenção, sacrifique uma criatura.Toda vez que você sacrificar uma criatura, compre um card.",
+  "power": "4",
+  "toughness": "3",
+  "colors": [],
+  "color_identity": [
+    "B"
+  ],
+  "keywords": [
+    "Flying",
+    "Devoid"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "91719374-7ac5-4afa-ada8-5da964dcf1d4",
+  "set": "bfz",
+  "set_name": "Battle for Zendikar",
+  "set_type": "expansion",
+  "set_uri": "https://api.scryfall.com/sets/91719374-7ac5-4afa-ada8-5da964dcf1d4",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Abfz&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/bfz?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/72f311c0-c52c-41d9-97f1-0a7239cb7688/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Ac3db28e5-6162-4642-a1c9-a7ace0737950&unique=prints",
+  "collector_number": "99",
+  "digital": false,
+  "rarity": "rare",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Aleksi Briclot",
+  "artist_ids": [
+    "5e470014-31cb-41b0-b054-e23374484449"
+  ],
+  "illustration_id": "799c14a0-5ca3-4d4f-98c3-22083f432aed",
+  "border_color": "black",
+  "frame": "2015",
+  "frame_effects": [
+    "devoid"
+  ],
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "edhrec_rank": 3865,
+  "penny_rank": 6460,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=404436&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DSmothering%2BAbomination",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DSmothering%2BAbomination",
+    "edhrec": "https://edhrec.com/route/?cc=Smothering+Abomination"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DSmothering%2BAbomination%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Smothering+Abomination&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Smothering+Abomination&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

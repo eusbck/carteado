@@ -1,0 +1,131 @@
+{
+  "object": "card",
+  "id": "047d6bcb-3f2b-4609-82b2-9975cf9010fc",
+  "oracle_id": "5b6bdf5a-2742-4851-92cd-a857a3852836",
+  "multiverse_ids": [
+    561351
+  ],
+  "name": "Treasure Cruise",
+  "printed_name": "Cruzeiro do Tesouro",
+  "lang": "pt",
+  "released_at": "2022-04-29",
+  "uri": "https://api.scryfall.com/cards/047d6bcb-3f2b-4609-82b2-9975cf9010fc",
+  "scryfall_uri": "https://scryfall.com/card/ncc/237/pt/cruzeiro-do-tesouro-(treasure-cruise)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T22:27:38Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/0/4/047d6bcb-3f2b-4609-82b2-9975cf9010fc.jpg?1782858458",
+    "normal": "https://cards.scryfall.io/normal/front/0/4/047d6bcb-3f2b-4609-82b2-9975cf9010fc.jpg?1782858458",
+    "large": "https://cards.scryfall.io/large/front/0/4/047d6bcb-3f2b-4609-82b2-9975cf9010fc.jpg?1782858458",
+    "png": "https://cards.scryfall.io/png/front/0/4/047d6bcb-3f2b-4609-82b2-9975cf9010fc.png?1782858458",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/0/4/047d6bcb-3f2b-4609-82b2-9975cf9010fc.jpg?1782858458",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/0/4/047d6bcb-3f2b-4609-82b2-9975cf9010fc.jpg?1782858458",
+    "thumb": "https://cards.scryfall.io/thumb/front/0/4/047d6bcb-3f2b-4609-82b2-9975cf9010fc.webp?1782858458",
+    "grid": "https://cards.scryfall.io/grid/front/0/4/047d6bcb-3f2b-4609-82b2-9975cf9010fc.webp?1782858458",
+    "display": "https://cards.scryfall.io/display/front/0/4/047d6bcb-3f2b-4609-82b2-9975cf9010fc.webp?1782858458",
+    "art": "https://cards.scryfall.io/art/front/0/4/047d6bcb-3f2b-4609-82b2-9975cf9010fc.webp?1782858458",
+    "crop": "https://cards.scryfall.io/crop/front/0/4/047d6bcb-3f2b-4609-82b2-9975cf9010fc.webp?1782858458"
+  },
+  "mana_cost": "{7}{U}",
+  "cmc": 8.0,
+  "type_line": "Sorcery",
+  "printed_type_line": "Feitiço",
+  "oracle_text": "Delve (Each card you exile from your graveyard while casting this spell pays for {1}.)\nDraw three cards.",
+  "printed_text": "Esquadrinhar (Cada card que você exila de seu cemitério quando conjura esta mágica paga por {1}.)\nCompre três cards.",
+  "colors": [
+    "U"
+  ],
+  "color_identity": [
+    "U"
+  ],
+  "keywords": [
+    "Delve"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "banned",
+    "legacy": "banned",
+    "pauper": "banned",
+    "vintage": "restricted",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "legal",
+    "duel": "banned",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "c51de34b-d4d6-4179-a432-573744ded119",
+  "set": "ncc",
+  "set_name": "New Capenna Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/c51de34b-d4d6-4179-a432-573744ded119",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Ancc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/ncc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/047d6bcb-3f2b-4609-82b2-9975cf9010fc/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A5b6bdf5a-2742-4851-92cd-a857a3852836&unique=prints",
+  "collector_number": "237",
+  "digital": false,
+  "rarity": "common",
+  "flavor_text": "Enquanto incontáveis prazeres flutuam na superfície, planos malignos correm por baixo.",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Cynthia Sheppard",
+  "artist_ids": [
+    "9dfbdd58-65e6-40cf-951a-80e141061939"
+  ],
+  "illustration_id": "6601826b-90b2-4362-8a52-61280a3bb7bb",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 638,
+  "penny_rank": 13,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=561351&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DTreasure%2BCruise",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DTreasure%2BCruise",
+    "edhrec": "https://edhrec.com/route/?cc=Treasure+Cruise"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DTreasure%2BCruise%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Treasure+Cruise&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Treasure+Cruise&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

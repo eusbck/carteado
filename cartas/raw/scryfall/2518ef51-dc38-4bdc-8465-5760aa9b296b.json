@@ -1,0 +1,135 @@
+{
+  "object": "card",
+  "id": "2518ef51-dc38-4bdc-8465-5760aa9b296b",
+  "oracle_id": "579cbd92-797f-4cdf-91ed-fca7a523eae5",
+  "multiverse_ids": [
+    664299
+  ],
+  "name": "Deep Analysis",
+  "printed_name": "Análise Profunda",
+  "lang": "pt",
+  "released_at": "2024-06-14",
+  "uri": "https://api.scryfall.com/cards/2518ef51-dc38-4bdc-8465-5760aa9b296b",
+  "scryfall_uri": "https://scryfall.com/card/mh3/268/pt/an%C3%A1lise-profunda-(deep-analysis)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T04:09:42Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/2/5/2518ef51-dc38-4bdc-8465-5760aa9b296b.jpg?1782792582",
+    "normal": "https://cards.scryfall.io/normal/front/2/5/2518ef51-dc38-4bdc-8465-5760aa9b296b.jpg?1782792582",
+    "large": "https://cards.scryfall.io/large/front/2/5/2518ef51-dc38-4bdc-8465-5760aa9b296b.jpg?1782792582",
+    "png": "https://cards.scryfall.io/png/front/2/5/2518ef51-dc38-4bdc-8465-5760aa9b296b.png?1782792582",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/2/5/2518ef51-dc38-4bdc-8465-5760aa9b296b.jpg?1782792582",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/2/5/2518ef51-dc38-4bdc-8465-5760aa9b296b.jpg?1782792582",
+    "thumb": "https://cards.scryfall.io/thumb/front/2/5/2518ef51-dc38-4bdc-8465-5760aa9b296b.webp?1782792582",
+    "grid": "https://cards.scryfall.io/grid/front/2/5/2518ef51-dc38-4bdc-8465-5760aa9b296b.webp?1782792582",
+    "display": "https://cards.scryfall.io/display/front/2/5/2518ef51-dc38-4bdc-8465-5760aa9b296b.webp?1782792582",
+    "art": "https://cards.scryfall.io/art/front/2/5/2518ef51-dc38-4bdc-8465-5760aa9b296b.webp?1782792582",
+    "crop": "https://cards.scryfall.io/crop/front/2/5/2518ef51-dc38-4bdc-8465-5760aa9b296b.webp?1782792582"
+  },
+  "mana_cost": "{3}{U}",
+  "cmc": 4.0,
+  "type_line": "Sorcery",
+  "printed_type_line": "Feitiço",
+  "oracle_text": "Target player draws two cards.\nFlashback—{1}{U}, Pay 3 life. (You may cast this card from your graveyard for its flashback cost. Then exile it.)",
+  "printed_text": "O jogador alvo compra dois cards.\nRecapitular — {1}{U}, pague 3 pontos de vida. (Você pode conjurar este card de seu cemitério pagando seu custo de recapitular. Depois, exile-o.)",
+  "colors": [
+    "U"
+  ],
+  "color_identity": [
+    "U"
+  ],
+  "keywords": [
+    "Flashback"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "not_legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "legal",
+    "predh": "legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo",
+    "arena"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "3ed80bb6-77e8-4aa7-8262-95377a38aba1",
+  "set": "mh3",
+  "set_name": "Modern Horizons 3",
+  "set_type": "draft_innovation",
+  "set_uri": "https://api.scryfall.com/sets/3ed80bb6-77e8-4aa7-8262-95377a38aba1",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Amh3&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/mh3?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/2518ef51-dc38-4bdc-8465-5760aa9b296b/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A579cbd92-797f-4cdf-91ed-fca7a523eae5&unique=prints",
+  "collector_number": "268",
+  "digital": false,
+  "rarity": "uncommon",
+  "watermark": "set",
+  "flavor_text": "\"Nenhum fato me escapa. O que faz você pensar que consegue?\"",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Jesper Ejsing",
+  "artist_ids": [
+    "a5f8354a-8b51-4e59-96b2-0e3aeae4fa1d"
+  ],
+  "illustration_id": "a71a542c-c07a-4593-8fc3-15ac63dc3e11",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "edhrec_rank": 1447,
+  "penny_rank": 685,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=664299&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DDeep%2BAnalysis",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DDeep%2BAnalysis",
+    "edhrec": "https://edhrec.com/route/?cc=Deep+Analysis"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DDeep%2BAnalysis%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Deep+Analysis&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Deep+Analysis&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

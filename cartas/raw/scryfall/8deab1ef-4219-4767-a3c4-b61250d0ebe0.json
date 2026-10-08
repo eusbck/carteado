@@ -1,0 +1,130 @@
+{
+  "object": "card",
+  "id": "8deab1ef-4219-4767-a3c4-b61250d0ebe0",
+  "oracle_id": "1b9f9f5b-8712-4f00-90cb-1b7b9970eccc",
+  "multiverse_ids": [],
+  "resource_id": "A02E8E9E6765FCFF37D7D8CAB8923DF30AED647CE2E8986F64D579D01749A41F",
+  "mtgo_id": 148809,
+  "tcgplayer_id": 687520,
+  "cardmarket_id": 881491,
+  "name": "Sevinne's Reclamation",
+  "lang": "en",
+  "released_at": "2026-04-24",
+  "uri": "https://api.scryfall.com/cards/8deab1ef-4219-4767-a3c4-b61250d0ebe0",
+  "scryfall_uri": "https://scryfall.com/card/soc/170/sevinnes-reclamation?utm_source=api",
+  "layout": "normal",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T00:50:00Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/8/d/8deab1ef-4219-4767-a3c4-b61250d0ebe0.jpg?1783903800",
+    "normal": "https://cards.scryfall.io/normal/front/8/d/8deab1ef-4219-4767-a3c4-b61250d0ebe0.jpg?1783903800",
+    "large": "https://cards.scryfall.io/large/front/8/d/8deab1ef-4219-4767-a3c4-b61250d0ebe0.jpg?1783903800",
+    "png": "https://cards.scryfall.io/png/front/8/d/8deab1ef-4219-4767-a3c4-b61250d0ebe0.png?1783903800",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/8/d/8deab1ef-4219-4767-a3c4-b61250d0ebe0.jpg?1783903800",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/8/d/8deab1ef-4219-4767-a3c4-b61250d0ebe0.jpg?1783903800",
+    "thumb": "https://cards.scryfall.io/thumb/front/8/d/8deab1ef-4219-4767-a3c4-b61250d0ebe0.webp?1783903800",
+    "grid": "https://cards.scryfall.io/grid/front/8/d/8deab1ef-4219-4767-a3c4-b61250d0ebe0.webp?1783903800",
+    "display": "https://cards.scryfall.io/display/front/8/d/8deab1ef-4219-4767-a3c4-b61250d0ebe0.webp?1783903800",
+    "art": "https://cards.scryfall.io/art/front/8/d/8deab1ef-4219-4767-a3c4-b61250d0ebe0.webp?1783903800",
+    "crop": "https://cards.scryfall.io/crop/front/8/d/8deab1ef-4219-4767-a3c4-b61250d0ebe0.webp?1783903800"
+  },
+  "mana_cost": "{2}{W}",
+  "cmc": 3.0,
+  "type_line": "Sorcery",
+  "oracle_text": "Return target permanent card with mana value 3 or less from your graveyard to the battlefield. If this spell was cast from a graveyard, you may copy this spell and may choose a new target for the copy.\nFlashback {4}{W} (You may cast this card from your graveyard for its flashback cost. Then exile it.)",
+  "colors": [
+    "W"
+  ],
+  "color_identity": [
+    "W"
+  ],
+  "keywords": [
+    "Flashback"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "not_legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "97fab8d1-480a-419d-ab14-663968e29b9c",
+  "set": "soc",
+  "set_name": "Secrets of Strixhaven Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/97fab8d1-480a-419d-ab14-663968e29b9c",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Asoc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/soc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/8deab1ef-4219-4767-a3c4-b61250d0ebe0/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A1b9f9f5b-8712-4f00-90cb-1b7b9970eccc&unique=prints",
+  "collector_number": "170",
+  "digital": false,
+  "rarity": "rare",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Zoltan Boros",
+  "artist_ids": [
+    "1885e6cb-c827-4896-994e-3d0a027d602f"
+  ],
+  "illustration_id": "3451d9e7-5f45-4988-b078-db626e2461f1",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 341,
+  "penny_rank": 1811,
+  "prices": {
+    "usd": "0.41",
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": "0.43",
+    "eur_foil": null,
+    "tix": "0.12"
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DSevinne%2527s%2BReclamation",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DSevinne%2527s%2BReclamation",
+    "edhrec": "https://edhrec.com/route/?cc=Sevinne%27s+Reclamation"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F687520%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=881491&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards/148809?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

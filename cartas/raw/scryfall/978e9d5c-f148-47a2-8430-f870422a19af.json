@@ -1,0 +1,139 @@
+{
+  "object": "card",
+  "id": "978e9d5c-f148-47a2-8430-f870422a19af",
+  "oracle_id": "d57a6b19-bd06-4b07-8ee1-0b45612ba9e4",
+  "multiverse_ids": [
+    518369
+  ],
+  "name": "Veyran, Voice of Duality",
+  "printed_name": "Veyran, Voz da Dualidade",
+  "lang": "pt",
+  "released_at": "2021-04-23",
+  "uri": "https://api.scryfall.com/cards/978e9d5c-f148-47a2-8430-f870422a19af",
+  "scryfall_uri": "https://scryfall.com/card/c21/3/pt/veyran-voz-da-dualidade-(veyran-voice-of-duality)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-01T06:45:31Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/9/7/978e9d5c-f148-47a2-8430-f870422a19af.jpg?1782888331",
+    "normal": "https://cards.scryfall.io/normal/front/9/7/978e9d5c-f148-47a2-8430-f870422a19af.jpg?1782888331",
+    "large": "https://cards.scryfall.io/large/front/9/7/978e9d5c-f148-47a2-8430-f870422a19af.jpg?1782888331",
+    "png": "https://cards.scryfall.io/png/front/9/7/978e9d5c-f148-47a2-8430-f870422a19af.png?1782888331",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/9/7/978e9d5c-f148-47a2-8430-f870422a19af.jpg?1782888331",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/9/7/978e9d5c-f148-47a2-8430-f870422a19af.jpg?1782888331",
+    "thumb": "https://cards.scryfall.io/thumb/front/9/7/978e9d5c-f148-47a2-8430-f870422a19af.webp?1782888331",
+    "grid": "https://cards.scryfall.io/grid/front/9/7/978e9d5c-f148-47a2-8430-f870422a19af.webp?1782888331",
+    "display": "https://cards.scryfall.io/display/front/9/7/978e9d5c-f148-47a2-8430-f870422a19af.webp?1782888331",
+    "art": "https://cards.scryfall.io/art/front/9/7/978e9d5c-f148-47a2-8430-f870422a19af.webp?1782888331",
+    "crop": "https://cards.scryfall.io/crop/front/9/7/978e9d5c-f148-47a2-8430-f870422a19af.webp?1782888331"
+  },
+  "mana_cost": "{1}{U}{R}",
+  "cmc": 3.0,
+  "type_line": "Legendary Creature — Efreet Wizard",
+  "printed_type_line": "Criatura Lendária — Efrite Mago",
+  "oracle_text": "Magecraft — Whenever you cast or copy an instant or sorcery spell, Veyran gets +1/+1 until end of turn.\nIf you casting or copying an instant or sorcery spell causes a triggered ability of a permanent you control to trigger, that ability triggers an additional time.",
+  "printed_text": "Magifício — Toda vez que você conjura ou copia uma mágica instantânea ou um feitiço, Veyran, Voz da Dualidade, recebe +1/+1 até o final do turno.\nSe ao conjurar ou copiar uma mágica instantânea ou um feitiço você fizer com que uma habilidade desencadeada de uma permanente que você controla seja desencadeada, aquela habilidade será desencadeada uma vez adicional.",
+  "power": "2",
+  "toughness": "2",
+  "colors": [
+    "R",
+    "U"
+  ],
+  "color_identity": [
+    "R",
+    "U"
+  ],
+  "keywords": [
+    "Magecraft"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "27bf6dbd-a9e1-4904-afa7-d28fc7745c4f",
+  "set": "c21",
+  "set_name": "Commander 2021",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/27bf6dbd-a9e1-4904-afa7-d28fc7745c4f",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Ac21&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/c21?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/978e9d5c-f148-47a2-8430-f870422a19af/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Ad57a6b19-bd06-4b07-8ee1-0b45612ba9e4&unique=prints",
+  "collector_number": "3",
+  "digital": false,
+  "rarity": "mythic",
+  "watermark": "prismari",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Mathias Kollros",
+  "artist_ids": [
+    "2ae0dd12-047c-4efb-80d7-bccc3bac5fba"
+  ],
+  "illustration_id": "b0932e3f-263b-4663-9588-0197e2252295",
+  "border_color": "black",
+  "frame": "2015",
+  "frame_effects": [
+    "legendary"
+  ],
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 756,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=518369&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DVeyran%252C%2BVoice%2Bof%2BDuality",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DVeyran%252C%2BVoice%2Bof%2BDuality",
+    "edhrec": "https://edhrec.com/route/?cc=Veyran%2C+Voice+of+Duality"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DVeyran%252C%2BVoice%2Bof%2BDuality%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Veyran%2C+Voice+of+Duality&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Veyran%2C+Voice+of+Duality&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

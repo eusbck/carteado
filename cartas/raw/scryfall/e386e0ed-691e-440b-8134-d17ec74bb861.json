@@ -1,0 +1,131 @@
+{
+  "object": "card",
+  "id": "e386e0ed-691e-440b-8134-d17ec74bb861",
+  "oracle_id": "5c6c8fe7-3520-423b-a224-1c0af516871a",
+  "multiverse_ids": [
+    508991
+  ],
+  "name": "Casualties of War",
+  "printed_name": "Baixas de Guerra",
+  "lang": "pt",
+  "released_at": "2021-02-05",
+  "uri": "https://api.scryfall.com/cards/e386e0ed-691e-440b-8134-d17ec74bb861",
+  "scryfall_uri": "https://scryfall.com/card/khc/83/pt/baixas-de-guerra-(casualties-of-war)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-01T08:26:03Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/e/3/e386e0ed-691e-440b-8134-d17ec74bb861.jpg?1782894363",
+    "normal": "https://cards.scryfall.io/normal/front/e/3/e386e0ed-691e-440b-8134-d17ec74bb861.jpg?1782894363",
+    "large": "https://cards.scryfall.io/large/front/e/3/e386e0ed-691e-440b-8134-d17ec74bb861.jpg?1782894363",
+    "png": "https://cards.scryfall.io/png/front/e/3/e386e0ed-691e-440b-8134-d17ec74bb861.png?1782894363",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/e/3/e386e0ed-691e-440b-8134-d17ec74bb861.jpg?1782894363",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/e/3/e386e0ed-691e-440b-8134-d17ec74bb861.jpg?1782894363",
+    "thumb": "https://cards.scryfall.io/thumb/front/e/3/e386e0ed-691e-440b-8134-d17ec74bb861.webp?1782894363",
+    "grid": "https://cards.scryfall.io/grid/front/e/3/e386e0ed-691e-440b-8134-d17ec74bb861.webp?1782894363",
+    "display": "https://cards.scryfall.io/display/front/e/3/e386e0ed-691e-440b-8134-d17ec74bb861.webp?1782894363",
+    "art": "https://cards.scryfall.io/art/front/e/3/e386e0ed-691e-440b-8134-d17ec74bb861.webp?1782894363",
+    "crop": "https://cards.scryfall.io/crop/front/e/3/e386e0ed-691e-440b-8134-d17ec74bb861.webp?1782894363"
+  },
+  "mana_cost": "{2}{B}{B}{G}{G}",
+  "cmc": 6.0,
+  "type_line": "Sorcery",
+  "printed_type_line": "Feitiço",
+  "oracle_text": "Choose one or more —\n• Destroy target artifact.\n• Destroy target creature.\n• Destroy target enchantment.\n• Destroy target land.\n• Destroy target planeswalker.",
+  "printed_text": "Escolha um ou mais —\n• Destrua o artefato alvo.\n• Destrua a criatura alvo.\n• Destrua o encantamento alvo.\n• Destrua o terreno alvo.\n• Destrua o planeswalker alvo.",
+  "colors": [
+    "B",
+    "G"
+  ],
+  "color_identity": [
+    "B",
+    "G"
+  ],
+  "keywords": [],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "d532ef25-e52b-4276-941a-3a1c095544b0",
+  "set": "khc",
+  "set_name": "Kaldheim Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/d532ef25-e52b-4276-941a-3a1c095544b0",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Akhc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/khc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/e386e0ed-691e-440b-8134-d17ec74bb861/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A5c6c8fe7-3520-423b-a224-1c0af516871a&unique=prints",
+  "collector_number": "83",
+  "digital": false,
+  "rarity": "rare",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Tomasz Jedruszek",
+  "artist_ids": [
+    "bba69285-2445-4a4b-a847-59397be972ea"
+  ],
+  "illustration_id": "1df7cb5d-4a2b-4a67-812c-0b0664e3b9ad",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 1833,
+  "penny_rank": 4067,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=508991&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DCasualties%2Bof%2BWar",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DCasualties%2Bof%2BWar",
+    "edhrec": "https://edhrec.com/route/?cc=Casualties+of+War"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DCasualties%2Bof%2BWar%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Casualties+of+War&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Casualties+of+War&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

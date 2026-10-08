@@ -1,11 +1,19 @@
-node_modules/
-dist/
-.cache/
-dados-locais/
-*.sqlite
-*.sqlite-*
-.env
-testes/dbg/
+# O jogo tem as próprias regras em jogo/.gitignore (dependências, compilados, banco e caches).
 
-decks/.trava
-decks/*.novo
+# cópias de trabalho temporárias do jogo (git worktree), usadas para trabalhar em paralelo
+jogo-wt-*/
+
+node_modules/
+__pycache__/
+*.pyc
+
+# coletor de cartas: caches e sobras. O banco do Scryfall (395 MB) é baixado de novo pelo coletor
+# quando preciso; as sobras de coletas antigas e as conferências locais não fazem parte dos decks.
+cartas/.cache/
+cartas/.recovery/
+cartas/.local/
+cartas/.collector.lock
+
+# Windows
+Thumbs.db
+desktop.ini

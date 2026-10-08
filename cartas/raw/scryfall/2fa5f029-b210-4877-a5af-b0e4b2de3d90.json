@@ -1,0 +1,130 @@
+{
+  "object": "card",
+  "id": "2fa5f029-b210-4877-a5af-b0e4b2de3d90",
+  "oracle_id": "bc3d5911-3580-4132-9daf-2826495b5739",
+  "multiverse_ids": [
+    452562
+  ],
+  "name": "Stitch Together",
+  "printed_name": "Costurar",
+  "lang": "pt",
+  "released_at": "2018-08-10",
+  "uri": "https://api.scryfall.com/cards/2fa5f029-b210-4877-a5af-b0e4b2de3d90",
+  "scryfall_uri": "https://scryfall.com/card/c18/119/pt/costurar-(stitch-together)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-01T17:58:05Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/2/f/2fa5f029-b210-4877-a5af-b0e4b2de3d90.jpg?1782928685",
+    "normal": "https://cards.scryfall.io/normal/front/2/f/2fa5f029-b210-4877-a5af-b0e4b2de3d90.jpg?1782928685",
+    "large": "https://cards.scryfall.io/large/front/2/f/2fa5f029-b210-4877-a5af-b0e4b2de3d90.jpg?1782928685",
+    "png": "https://cards.scryfall.io/png/front/2/f/2fa5f029-b210-4877-a5af-b0e4b2de3d90.png?1782928685",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/2/f/2fa5f029-b210-4877-a5af-b0e4b2de3d90.jpg?1782928685",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/2/f/2fa5f029-b210-4877-a5af-b0e4b2de3d90.jpg?1782928685",
+    "thumb": "https://cards.scryfall.io/thumb/front/2/f/2fa5f029-b210-4877-a5af-b0e4b2de3d90.webp?1782928685",
+    "grid": "https://cards.scryfall.io/grid/front/2/f/2fa5f029-b210-4877-a5af-b0e4b2de3d90.webp?1782928685",
+    "display": "https://cards.scryfall.io/display/front/2/f/2fa5f029-b210-4877-a5af-b0e4b2de3d90.webp?1782928685",
+    "art": "https://cards.scryfall.io/art/front/2/f/2fa5f029-b210-4877-a5af-b0e4b2de3d90.webp?1782928685",
+    "crop": "https://cards.scryfall.io/crop/front/2/f/2fa5f029-b210-4877-a5af-b0e4b2de3d90.webp?1782928685"
+  },
+  "mana_cost": "{B}{B}",
+  "cmc": 2.0,
+  "type_line": "Sorcery",
+  "printed_type_line": "Feitiço",
+  "oracle_text": "Return target creature card from your graveyard to your hand.\nThreshold — Return that card from your graveyard to the battlefield instead if there are seven or more cards in your graveyard.",
+  "printed_text": "Devolva o card de criatura alvo de seu cemitério para sua mão.\nLimiar — Se houver sete ou mais cards em seu cemitério, em vez disso, devolva aquele card de seu cemitério para o campo de batalha.",
+  "colors": [
+    "B"
+  ],
+  "color_identity": [
+    "B"
+  ],
+  "keywords": [
+    "Threshold"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "legal",
+    "predh": "legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "06ce6bc2-85cd-4cca-85b1-8c620d3e0902",
+  "set": "c18",
+  "set_name": "Commander 2018",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/06ce6bc2-85cd-4cca-85b1-8c620d3e0902",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Ac18&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/c18?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/2fa5f029-b210-4877-a5af-b0e4b2de3d90/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Abc3d5911-3580-4132-9daf-2826495b5739&unique=prints",
+  "collector_number": "119",
+  "digital": false,
+  "rarity": "uncommon",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Arnie Swekel",
+  "artist_ids": [
+    "af10ecf2-eb82-4100-97b2-6c236b0fa644"
+  ],
+  "illustration_id": "e59bcf2f-c273-4784-ab30-1104189bca3b",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 1615,
+  "penny_rank": 2274,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=452562&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DStitch%2BTogether",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DStitch%2BTogether",
+    "edhrec": "https://edhrec.com/route/?cc=Stitch+Together"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DStitch%2BTogether%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Stitch+Together&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Stitch+Together&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

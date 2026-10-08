@@ -1,0 +1,120 @@
+[mainboard]
+
+1 Ohran Frostfang (MKC) 180
+1 Betor, Ancestor's Voice (TDC) 1
+7 Forest (TDM) 285
+1 Command Tower (TDC) 107
+1 Arcane Signet (TDC) 105
+1 Sol Ring (TDC) 106
+6 Plains (TDM) 277
+5 Swamp (TDM) 281
+1 Exotic Orchard (TDC) 360
+1 Swords to Plowshares (TDC) 134
+1 Evolving Wilds (TDM) 255
+1 Path of Ancestry (TDC) 382
+1 Bojuka Bog (TDC) 341
+1 Sandsteppe Citadel (TDM) 266
+1 Isolated Chapel (TDC) 373
+1 Temple of Silence (TDC) 406
+1 Temple of Malady (TDC) 403
+1 Woodland Cemetery (TDC) 412
+1 Reunion of the House (TDC) 15
+1 Tip the Scales (TDC) 29
+1 Jaws of Defeat (TDC) 27
+1 Will of the Abzan (TDC) 31
+1 Feed the Swarm (TDC) 180
+1 Wall of Limbs (TDC) 200
+1 Behind the Scenes (TDC) 172
+1 Blight Pile (TDC) 174
+1 Baldin, Century Herdmaster (TDC) 110
+1 Expel the Interlopers (TDC) 115
+1 Indomitable Ancients (TDC) 121
+1 Infernal Grasp (TDC) 182
+1 Arbor Adherent (TDC) 42
+1 Canopy Gargantuan (TDC) 45
+1 Rampart Architect (TDC) 47
+1 Selesnya Signet (TDC) 324
+1 Tree of Redemption (TDC) 97
+1 Crashing Drawbridge (TDC) 316
+1 Wall of Omens (TDC) 138
+1 Sylvan Caryatid (TDC) 272
+1 Assault Formation (TDC) 246
+1 Overgrown Battlement (TDC) 264
+1 Wall of Blossoms (TDC) 277
+1 Wall of Reverence (TDC) 139
+1 Weathered Sentinels (TDC) 336
+1 Wingmantle Chaplain (TDC) 141
+1 Walking Bulwark (TDC) 334
+1 Nyx-Fleece Ram (TDC) 126
+1 Shalai, Voice of Plenty (TDC) 130
+1 Sidar Kondo of Jamuraa (TDC) 303
+1 Tower Defense (TDC) 275
+1 Orzhov Signet (TDC) 323
+1 Anguished Unmaking (TDC) 279
+1 Deceptive Landscape (TDC) 356
+1 Dragonlord Dromoka (TDC) 286
+1 Swiftfoot Boots (TDC) 328
+1 Welcoming Vampire (TDC) 140
+1 Carven Caryatid (TDC) 250
+1 Ikra Shidiqi, the Usurper (TDC) 100
+1 Indulging Patrician (TDC) 292
+1 Seedborn Muse (TDC) 268
+1 Shadrix Silverquill (TDC) 302
+1 Sunpetal Grove (TDC) 399
+1 Wall of Roots (TDC) 278
+1 Overgrown Farmland (TDC) 381
+1 Faeburrow Elder (TDC) 289
+1 Despark (TDC) 284
+1 Hornet Nest (TDC) 259
+1 Canopy Vista (TDC) 343
+1 Twilight Mire (TDC) 409
+1 Fortified Village (TDC) 366
+1 Radiant Grove (TDC) 385
+1 Slaughter the Strong (TDC) 131
+1 Towering Titan (TDC) 276
+1 Arasta of the Endless Web (TDC) 244
+1 Temple of Plenty (TDC) 405
+1 Sungrass Prairie (TDC) 397
+1 Arboreal Grazer (TDC) 245
+1 Axebane Guardian (TDC) 248
+1 Zetalpa, Primal Dawn (TDC) 142
+1 Wakestone Gargoyle (TDC) 137
+1 Access Tunnel (TDC) 337
+1 Jaddi Offshoot (TDC) 260
+1 Doran, Besieged by Time (ECL) 215
+1 Great Forest Druid (ECL) 178
+1 Slumbering Walker (ECL) 35
+
+[sideboard]
+
+
+[maybeboard]
+
+
+[commanders]
+
+1 Felothar the Steadfast (TDC) 4
+
+[companions]
+
+
+[signatureSpells]
+
+
+[attractions]
+
+
+[stickers]
+
+
+[contraptions]
+
+
+[planes]
+
+
+[schemes]
+
+
+[tokens]
+

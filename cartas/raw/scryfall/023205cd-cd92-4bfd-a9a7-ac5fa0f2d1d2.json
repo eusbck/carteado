@@ -1,0 +1,132 @@
+{
+  "object": "card",
+  "id": "023205cd-cd92-4bfd-a9a7-ac5fa0f2d1d2",
+  "oracle_id": "b099fc54-cdbc-46cb-b4e4-7c2ca77b115b",
+  "multiverse_ids": [
+    515595
+  ],
+  "name": "Plumb the Forbidden",
+  "printed_name": "Perscrutar o Proibido",
+  "lang": "pt",
+  "released_at": "2021-04-23",
+  "uri": "https://api.scryfall.com/cards/023205cd-cd92-4bfd-a9a7-ac5fa0f2d1d2",
+  "scryfall_uri": "https://scryfall.com/card/stx/81/pt/perscrutar-o-proibido-(plumb-the-forbidden)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-01T05:38:35Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/0/2/023205cd-cd92-4bfd-a9a7-ac5fa0f2d1d2.jpg?1782884315",
+    "normal": "https://cards.scryfall.io/normal/front/0/2/023205cd-cd92-4bfd-a9a7-ac5fa0f2d1d2.jpg?1782884315",
+    "large": "https://cards.scryfall.io/large/front/0/2/023205cd-cd92-4bfd-a9a7-ac5fa0f2d1d2.jpg?1782884315",
+    "png": "https://cards.scryfall.io/png/front/0/2/023205cd-cd92-4bfd-a9a7-ac5fa0f2d1d2.png?1782884315",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/0/2/023205cd-cd92-4bfd-a9a7-ac5fa0f2d1d2.jpg?1782884315",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/0/2/023205cd-cd92-4bfd-a9a7-ac5fa0f2d1d2.jpg?1782884315",
+    "thumb": "https://cards.scryfall.io/thumb/front/0/2/023205cd-cd92-4bfd-a9a7-ac5fa0f2d1d2.webp?1782884315",
+    "grid": "https://cards.scryfall.io/grid/front/0/2/023205cd-cd92-4bfd-a9a7-ac5fa0f2d1d2.webp?1782884315",
+    "display": "https://cards.scryfall.io/display/front/0/2/023205cd-cd92-4bfd-a9a7-ac5fa0f2d1d2.webp?1782884315",
+    "art": "https://cards.scryfall.io/art/front/0/2/023205cd-cd92-4bfd-a9a7-ac5fa0f2d1d2.webp?1782884315",
+    "crop": "https://cards.scryfall.io/crop/front/0/2/023205cd-cd92-4bfd-a9a7-ac5fa0f2d1d2.webp?1782884315"
+  },
+  "mana_cost": "{1}{B}",
+  "cmc": 2.0,
+  "type_line": "Instant",
+  "printed_type_line": "Mágica Instantânea",
+  "oracle_text": "As an additional cost to cast this spell, you may sacrifice one or more creatures. When you do, copy this spell for each creature sacrificed this way.\nYou draw a card and lose 1 life.",
+  "printed_text": "Como custo adicional para conjurar esta mágica, você pode sacrificar uma ou mais criaturas. Quando fizer isto, copie esta mágica para cada criatura sacrificada desta forma.\nVocê compra um card e perde 1 ponto de vida.",
+  "colors": [
+    "B"
+  ],
+  "color_identity": [
+    "B"
+  ],
+  "keywords": [],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "arena",
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "541c3c28-8747-40e5-a231-8e8f33234859",
+  "set": "stx",
+  "set_name": "Strixhaven: School of Mages",
+  "set_type": "expansion",
+  "set_uri": "https://api.scryfall.com/sets/541c3c28-8747-40e5-a231-8e8f33234859",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Astx&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/stx?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/023205cd-cd92-4bfd-a9a7-ac5fa0f2d1d2/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Ab099fc54-cdbc-46cb-b4e4-7c2ca77b115b&unique=prints",
+  "collector_number": "81",
+  "digital": false,
+  "rarity": "uncommon",
+  "flavor_text": "Strixhaven proibiu toda a magia da Idade do Sangue, por isso foi lá que Extus começou sua pesquisa.",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Andrey Kuzinskiy",
+  "artist_ids": [
+    "c04ff0b2-67a1-4238-82f7-6c67de734b56"
+  ],
+  "illustration_id": "2b9c4caa-dcd3-4b80-bb8a-178cb51ebba4",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": true,
+  "edhrec_rank": 1149,
+  "penny_rank": 4682,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=515595&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DPlumb%2Bthe%2BForbidden",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DPlumb%2Bthe%2BForbidden",
+    "edhrec": "https://edhrec.com/route/?cc=Plumb+the+Forbidden"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DPlumb%2Bthe%2BForbidden%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Plumb+the+Forbidden&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Plumb+the+Forbidden&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

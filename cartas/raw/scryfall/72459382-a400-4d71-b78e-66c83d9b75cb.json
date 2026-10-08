@@ -1,0 +1,132 @@
+{
+  "object": "card",
+  "id": "72459382-a400-4d71-b78e-66c83d9b75cb",
+  "oracle_id": "f8b17b89-26ce-4208-874a-9e1d66514640",
+  "multiverse_ids": [
+    634004
+  ],
+  "name": "Dig Through Time",
+  "printed_name": "Revirar o Tempo",
+  "lang": "pt",
+  "released_at": "2023-09-08",
+  "uri": "https://api.scryfall.com/cards/72459382-a400-4d71-b78e-66c83d9b75cb",
+  "scryfall_uri": "https://scryfall.com/card/woc/88/pt/revirar-o-tempo-(dig-through-time)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T09:43:47Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/7/2/72459382-a400-4d71-b78e-66c83d9b75cb.jpg?1782812627",
+    "normal": "https://cards.scryfall.io/normal/front/7/2/72459382-a400-4d71-b78e-66c83d9b75cb.jpg?1782812627",
+    "large": "https://cards.scryfall.io/large/front/7/2/72459382-a400-4d71-b78e-66c83d9b75cb.jpg?1782812627",
+    "png": "https://cards.scryfall.io/png/front/7/2/72459382-a400-4d71-b78e-66c83d9b75cb.png?1782812627",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/7/2/72459382-a400-4d71-b78e-66c83d9b75cb.jpg?1782812627",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/7/2/72459382-a400-4d71-b78e-66c83d9b75cb.jpg?1782812627",
+    "thumb": "https://cards.scryfall.io/thumb/front/7/2/72459382-a400-4d71-b78e-66c83d9b75cb.webp?1782812627",
+    "grid": "https://cards.scryfall.io/grid/front/7/2/72459382-a400-4d71-b78e-66c83d9b75cb.webp?1782812627",
+    "display": "https://cards.scryfall.io/display/front/7/2/72459382-a400-4d71-b78e-66c83d9b75cb.webp?1782812627",
+    "art": "https://cards.scryfall.io/art/front/7/2/72459382-a400-4d71-b78e-66c83d9b75cb.webp?1782812627",
+    "crop": "https://cards.scryfall.io/crop/front/7/2/72459382-a400-4d71-b78e-66c83d9b75cb.webp?1782812627"
+  },
+  "mana_cost": "{6}{U}{U}",
+  "cmc": 8.0,
+  "type_line": "Instant",
+  "printed_type_line": "Mágica Instantânea",
+  "oracle_text": "Delve (Each card you exile from your graveyard while casting this spell pays for {1}.)\nLook at the top seven cards of your library. Put two of them into your hand and the rest on the bottom of your library in any order.",
+  "printed_text": "Esquadrinhar (Cada card que você exila de seu cemitério quando conjura esta mágica paga por {1}.)\nOlhe os sete cards do topo de seu grimório. Coloque dois deles na sua mão e os restantes no fundo do seu grimório em qualquer ordem.",
+  "colors": [
+    "U"
+  ],
+  "color_identity": [
+    "U"
+  ],
+  "keywords": [
+    "Delve"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "banned",
+    "legacy": "banned",
+    "pauper": "not_legal",
+    "vintage": "restricted",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "banned",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "51c0814a-2db2-4182-9aac-77340e9a540d",
+  "set": "woc",
+  "set_name": "Wilds of Eldraine Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/51c0814a-2db2-4182-9aac-77340e9a540d",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Awoc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/woc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/72459382-a400-4d71-b78e-66c83d9b75cb/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Af8b17b89-26ce-4208-874a-9e1d66514640&unique=prints",
+  "collector_number": "88",
+  "digital": false,
+  "rarity": "rare",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Ryan Yee",
+  "artist_ids": [
+    "8955dca7-3e37-42b4-83a9-167c78a2178f"
+  ],
+  "illustration_id": "4324b35c-f758-4bfb-95f0-f464edc7513f",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 626,
+  "penny_rank": 35,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=634004&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DDig%2BThrough%2BTime",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DDig%2BThrough%2BTime",
+    "edhrec": "https://edhrec.com/route/?cc=Dig+Through+Time"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DDig%2BThrough%2BTime%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Dig+Through+Time&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Dig+Through+Time&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

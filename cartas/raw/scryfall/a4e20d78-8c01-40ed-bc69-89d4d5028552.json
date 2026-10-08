@@ -1,0 +1,133 @@
+{
+  "object": "card",
+  "id": "a4e20d78-8c01-40ed-bc69-89d4d5028552",
+  "oracle_id": "2764741c-1f3e-459a-a487-54cbac2c84a6",
+  "multiverse_ids": [
+    696277
+  ],
+  "mtgo_id": 138179,
+  "tcgplayer_id": 624654,
+  "cardmarket_id": 818735,
+  "name": "Indomitable Ancients",
+  "lang": "en",
+  "released_at": "2025-04-11",
+  "uri": "https://api.scryfall.com/cards/a4e20d78-8c01-40ed-bc69-89d4d5028552",
+  "scryfall_uri": "https://scryfall.com/card/tdc/121/indomitable-ancients?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-13T01:45:23Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/a/4/a4e20d78-8c01-40ed-bc69-89d4d5028552.jpg?1783907123",
+    "normal": "https://cards.scryfall.io/normal/front/a/4/a4e20d78-8c01-40ed-bc69-89d4d5028552.jpg?1783907123",
+    "large": "https://cards.scryfall.io/large/front/a/4/a4e20d78-8c01-40ed-bc69-89d4d5028552.jpg?1783907123",
+    "png": "https://cards.scryfall.io/png/front/a/4/a4e20d78-8c01-40ed-bc69-89d4d5028552.png?1783907123",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/a/4/a4e20d78-8c01-40ed-bc69-89d4d5028552.jpg?1783907123",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/a/4/a4e20d78-8c01-40ed-bc69-89d4d5028552.jpg?1783907123",
+    "thumb": "https://cards.scryfall.io/thumb/front/a/4/a4e20d78-8c01-40ed-bc69-89d4d5028552.webp?1783907123",
+    "grid": "https://cards.scryfall.io/grid/front/a/4/a4e20d78-8c01-40ed-bc69-89d4d5028552.webp?1783907123",
+    "display": "https://cards.scryfall.io/display/front/a/4/a4e20d78-8c01-40ed-bc69-89d4d5028552.webp?1783907123",
+    "art": "https://cards.scryfall.io/art/front/a/4/a4e20d78-8c01-40ed-bc69-89d4d5028552.webp?1783907123",
+    "crop": "https://cards.scryfall.io/crop/front/a/4/a4e20d78-8c01-40ed-bc69-89d4d5028552.webp?1783907123"
+  },
+  "mana_cost": "{2}{W}{W}",
+  "cmc": 4.0,
+  "type_line": "Creature — Treefolk Warrior",
+  "oracle_text": "",
+  "power": "2",
+  "toughness": "10",
+  "colors": [
+    "W"
+  ],
+  "color_identity": [
+    "W"
+  ],
+  "keywords": [],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "bca9779c-0a0b-4ac1-8794-f3fc25549cf4",
+  "set": "tdc",
+  "set_name": "Tarkir: Dragonstorm Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/bca9779c-0a0b-4ac1-8794-f3fc25549cf4",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Atdc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/tdc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/a4e20d78-8c01-40ed-bc69-89d4d5028552/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A2764741c-1f3e-459a-a487-54cbac2c84a6&unique=prints",
+  "collector_number": "121",
+  "digital": false,
+  "rarity": "rare",
+  "flavor_text": "\"Odum and Broadbark were the only beings mighty enough to challenge the giant Moran the Destroyer. Their battle lasted a hundred dawns, until Moran became so exhausted that he fell into namesleep. He awoke as Moran the Gardener.\"\n—*The Tale of Odum and Broadbark*",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Pete Venters",
+  "artist_ids": [
+    "d54c4a1a-c0c5-4834-84db-125d341f3ad8"
+  ],
+  "illustration_id": "96110168-5147-45ca-a630-960bad2af19e",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 4458,
+  "penny_rank": 9909,
+  "prices": {
+    "usd": "0.36",
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": "0.44",
+    "eur_foil": null,
+    "tix": "0.14"
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=696277&printed=false",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DIndomitable%2BAncients",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DIndomitable%2BAncients",
+    "edhrec": "https://edhrec.com/route/?cc=Indomitable+Ancients"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F624654%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=818735&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards/138179?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

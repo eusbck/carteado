@@ -1,0 +1,120 @@
+[mainboard]
+
+1 Nest of Scarabs (AKH) 101
+1 Staff of Compleation (ONE) 242
+4 Mountain (ECL) 272
+6 Forest (ECL) 273
+8 Swamp (ECL) 271
+1 Tend the Sprigs (ECL) 197
+1 Dawnhand Dissident (ECL) 98
+1 The Reaper, King No More (ECC) 4
+1 Eventide's Shadow (ECC) 8
+1 Aberrant Return (ECC) 7
+1 Sinister Gnarlbark (ECC) 12
+1 Dread Tiller (ECC) 20
+1 Oft-Nabbed Goat (ECC) 11
+1 Village Pillagers (ECC) 14
+1 Necroskitter (ECC) 48
+1 Blowfly Infestation (ECC) 46
+1 Ignoble Hierarch (ECC) 52
+1 Wickersmith's Tools (ECC) 21
+1 Grave Venerations (ECC) 9
+1 Arcane Signet (ECC) 56
+1 Command Tower (ECC) 60
+1 Festering Thicket (ECC) 61
+1 Vernal Fen (ECC) 63
+1 Tree of Perdition (ECC) 49
+1 Dusk Urchins (ECC) 73
+1 Black Sun's Zenith (ECC) 71
+1 Night's Whisper (ECC) 81
+1 Assassin's Trophy (ECC) 119
+1 The Scorpion God (ECC) 133
+1 Carnifex Demon (ECC) 72
+1 Channeler Initiate (ECC) 101
+1 Commander's Sphere (ECC) 139
+1 Chimil, the Inner Sun (ECC) 137
+1 Cinder Glade (ECC) 146
+1 Contagion Clasp (ECC) 140
+1 Exotic Orchard (ECC) 148
+1 Terramorphic Expanse (ECC) 169
+1 Evolution Sage (ECC) 105
+1 Canyon Slough (ECC) 145
+1 Glissa Sunslayer (ECC) 122
+1 Lasting Tarfire (ECL) 149
+1 Burning Curiosity (ECL) 129
+1 Putrefy (ECC) 131
+1 Hapatra, Vizier of Poisons (ECC) 123
+1 Puca's Covenant (ECC) 18
+1 Massacre Girl, Known Killer (ECC) 79
+1 Everlasting Torment (ECC) 121
+1 Path of Ancestry (ECC) 158
+1 Incremental Blight (ECC) 76
+1 Kulrath Knight (ECC) 126
+1 Flourishing Defenses (ECC) 107
+1 Rootbound Crag (ECC) 163
+1 Evolving Wilds (ECL) 264
+1 Dragonskull Summit (ECC) 147
+1 Painful Truths (ECC) 82
+1 Devoted Druid (ECC) 104
+1 Wickerbough Elder (ECC) 118
+1 Terminate (ECC) 134
+1 Smoldering Marsh (ECC) 168
+1 Rakdos Carnarium (ECC) 161
+1 Woodland Cemetery (ECC) 176
+1 Vraska, Betrayal's Sting (ECC) 88
+1 Golgari Rot Farm (ECC) 151
+1 Nesting Grounds (ECC) 155
+1 Midnight Banshee (ECC) 80
+1 Grim Poppet (ECC) 142
+1 Skinrender (ECC) 86
+1 Soul Snuffers (ECC) 87
+1 Persist (ECC) 83
+1 Fire Covenant (ECC) 54
+1 Cathartic Pyre (ECC) 90
+1 Gruul Turf (ECC) 152
+1 Riveteers Overlook (ECC) 162
+1 Ifnir Deadlands (ECC) 153
+1 Sol Ring (ECC) 58
+1 Savage Lands (ECC) 165
+1 Sheltered Thicket (ECC) 167
+1 Darkness Descends (ECL) 97
+1 Spinerock Tyrant (ECL) 159
+1 Gristle Glutton (ECL) 144
+1 Blight Rot (ECL) 89
+1 Soul Immolation (ECL) 321
+1 Bogslither's Embrace (ECL) 94
+1 Scuzzback Scrounger (PECL) 153p
+
+[sideboard]
+
+
+[maybeboard]
+
+
+[commanders]
+
+1 Auntie Ool, Cursewretch (ECC) 2
+
+[companions]
+
+
+[signatureSpells]
+
+
+[attractions]
+
+
+[stickers]
+
+
+[contraptions]
+
+
+[planes]
+
+
+[schemes]
+
+
+[tokens]
+

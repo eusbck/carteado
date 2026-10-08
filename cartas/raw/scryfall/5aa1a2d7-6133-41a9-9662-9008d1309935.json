@@ -1,0 +1,151 @@
+{
+  "object": "card",
+  "id": "5aa1a2d7-6133-41a9-9662-9008d1309935",
+  "oracle_id": "25d40d28-1b46-4055-959a-45719040ed30",
+  "multiverse_ids": [],
+  "resource_id": "115B1E29717C8D76ABC17A95687718D21785EA722CDFDAC834A3FDD16972193B",
+  "mtgo_id": 139999,
+  "arena_id": 96870,
+  "tcgplayer_id": 618872,
+  "cardmarket_id": 824193,
+  "name": "Terra, Herald of Hope",
+  "lang": "en",
+  "released_at": "2025-06-13",
+  "uri": "https://api.scryfall.com/cards/5aa1a2d7-6133-41a9-9662-9008d1309935",
+  "scryfall_uri": "https://scryfall.com/card/fic/4/terra-herald-of-hope?utm_source=api",
+  "layout": "normal",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T01:32:53Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/5/a/5aa1a2d7-6133-41a9-9662-9008d1309935.jpg?1783906373",
+    "normal": "https://cards.scryfall.io/normal/front/5/a/5aa1a2d7-6133-41a9-9662-9008d1309935.jpg?1783906373",
+    "large": "https://cards.scryfall.io/large/front/5/a/5aa1a2d7-6133-41a9-9662-9008d1309935.jpg?1783906373",
+    "png": "https://cards.scryfall.io/png/front/5/a/5aa1a2d7-6133-41a9-9662-9008d1309935.png?1783906373",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/5/a/5aa1a2d7-6133-41a9-9662-9008d1309935.jpg?1783906373",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/5/a/5aa1a2d7-6133-41a9-9662-9008d1309935.jpg?1783906373",
+    "thumb": "https://cards.scryfall.io/thumb/front/5/a/5aa1a2d7-6133-41a9-9662-9008d1309935.webp?1783906373",
+    "grid": "https://cards.scryfall.io/grid/front/5/a/5aa1a2d7-6133-41a9-9662-9008d1309935.webp?1783906373",
+    "display": "https://cards.scryfall.io/display/front/5/a/5aa1a2d7-6133-41a9-9662-9008d1309935.webp?1783906373",
+    "art": "https://cards.scryfall.io/art/front/5/a/5aa1a2d7-6133-41a9-9662-9008d1309935.webp?1783906373",
+    "crop": "https://cards.scryfall.io/crop/front/5/a/5aa1a2d7-6133-41a9-9662-9008d1309935.webp?1783906373"
+  },
+  "mana_cost": "{R}{W}{B}",
+  "cmc": 3.0,
+  "type_line": "Legendary Creature — Human Wizard Warrior",
+  "oracle_text": "Trance — At the beginning of combat on your turn, mill two cards. Terra gains flying until end of turn.\nWhenever Terra deals combat damage to a player, you may pay {2}. When you do, return target creature card with power 3 or less from your graveyard to the battlefield tapped.",
+  "power": "3",
+  "toughness": "3",
+  "colors": [
+    "B",
+    "R",
+    "W"
+  ],
+  "color_identity": [
+    "B",
+    "R",
+    "W"
+  ],
+  "keywords": [
+    "Mill",
+    "Trance"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "arena",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "30659956-4558-4cbf-a65f-34cd00c89579",
+  "set": "fic",
+  "set_name": "Final Fantasy Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/30659956-4558-4cbf-a65f-34cd00c89579",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Afic&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/fic?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/5aa1a2d7-6133-41a9-9662-9008d1309935/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A25d40d28-1b46-4055-959a-45719040ed30&unique=prints",
+  "collector_number": "4",
+  "digital": false,
+  "rarity": "mythic",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Marta Nael",
+  "artist_ids": [
+    "266ab861-ed64-4ba5-865c-f18758421cc3"
+  ],
+  "illustration_id": "00c8b50c-7e98-49f2-bc56-3f374037dbf7",
+  "border_color": "black",
+  "frame": "2015",
+  "frame_effects": [
+    "legendary"
+  ],
+  "security_stamp": "triangle",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "promo_types": [
+    "ffvi",
+    "universesbeyond"
+  ],
+  "edhrec_rank": 5258,
+  "preview": {
+    "source": "IGN",
+    "source_uri": "https://www.ign.com/articles/magic-the-gathering-final-fantasy-commander-deck-reveal-spoilers",
+    "previewed_at": "2025-02-17"
+  },
+  "prices": {
+    "usd": "1.13",
+    "usd_foil": "0.36",
+    "usd_etched": null,
+    "eur": "0.77",
+    "eur_foil": "0.34",
+    "tix": "3.49"
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DTerra%252C%2BHerald%2Bof%2BHope",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DTerra%252C%2BHerald%2Bof%2BHope",
+    "edhrec": "https://edhrec.com/route/?cc=Terra%2C+Herald+of+Hope"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F618872%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=824193&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards/139999?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

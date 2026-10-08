@@ -1,0 +1,131 @@
+{
+  "object": "card",
+  "id": "3484b0bb-f305-404b-b4a9-430296061365",
+  "oracle_id": "5acff7a3-bc84-4251-bd37-80231396ac38",
+  "multiverse_ids": [],
+  "resource_id": "BA4301E65F79F16F231CCA2123BF13F709C400F2FA4ACA2CD411EDBE4BE9AF88",
+  "mtgo_id": 148749,
+  "tcgplayer_id": 687384,
+  "cardmarket_id": 881461,
+  "name": "Chains of Custody",
+  "lang": "en",
+  "released_at": "2026-04-24",
+  "uri": "https://api.scryfall.com/cards/3484b0bb-f305-404b-b4a9-430296061365",
+  "scryfall_uri": "https://scryfall.com/card/soc/139/chains-of-custody?utm_source=api",
+  "layout": "normal",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T00:50:12Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/3/4/3484b0bb-f305-404b-b4a9-430296061365.jpg?1783903812",
+    "normal": "https://cards.scryfall.io/normal/front/3/4/3484b0bb-f305-404b-b4a9-430296061365.jpg?1783903812",
+    "large": "https://cards.scryfall.io/large/front/3/4/3484b0bb-f305-404b-b4a9-430296061365.jpg?1783903812",
+    "png": "https://cards.scryfall.io/png/front/3/4/3484b0bb-f305-404b-b4a9-430296061365.png?1783903812",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/3/4/3484b0bb-f305-404b-b4a9-430296061365.jpg?1783903812",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/3/4/3484b0bb-f305-404b-b4a9-430296061365.jpg?1783903812",
+    "thumb": "https://cards.scryfall.io/thumb/front/3/4/3484b0bb-f305-404b-b4a9-430296061365.webp?1783903812",
+    "grid": "https://cards.scryfall.io/grid/front/3/4/3484b0bb-f305-404b-b4a9-430296061365.webp?1783903812",
+    "display": "https://cards.scryfall.io/display/front/3/4/3484b0bb-f305-404b-b4a9-430296061365.webp?1783903812",
+    "art": "https://cards.scryfall.io/art/front/3/4/3484b0bb-f305-404b-b4a9-430296061365.webp?1783903812",
+    "crop": "https://cards.scryfall.io/crop/front/3/4/3484b0bb-f305-404b-b4a9-430296061365.webp?1783903812"
+  },
+  "mana_cost": "{2}{W}",
+  "cmc": 3.0,
+  "type_line": "Enchantment — Aura",
+  "oracle_text": "Enchant creature you control\nWhen this Aura enters, exile target nonland permanent an opponent controls until this Aura leaves the battlefield.\nEnchanted creature has ward {2}. (Whenever it becomes the target of a spell or ability an opponent controls, counter it unless that player pays {2}.)",
+  "colors": [
+    "W"
+  ],
+  "color_identity": [
+    "W"
+  ],
+  "keywords": [
+    "Enchant"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "legal",
+    "pauper": "legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "97fab8d1-480a-419d-ab14-663968e29b9c",
+  "set": "soc",
+  "set_name": "Secrets of Strixhaven Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/97fab8d1-480a-419d-ab14-663968e29b9c",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Asoc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/soc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/3484b0bb-f305-404b-b4a9-430296061365/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A5acff7a3-bc84-4251-bd37-80231396ac38&unique=prints",
+  "collector_number": "139",
+  "digital": false,
+  "rarity": "common",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Bruno Biazotto",
+  "artist_ids": [
+    "18947a30-a1b4-4b0d-979e-ef1f2a080f35"
+  ],
+  "illustration_id": "70043d4f-52c3-459a-a43c-6fa6ca975742",
+  "border_color": "black",
+  "frame": "2015",
+  "frame_effects": [
+    "enchantment"
+  ],
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 5161,
+  "prices": {
+    "usd": "0.29",
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": "0.14",
+    "eur_foil": null,
+    "tix": "4.09"
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DChains%2Bof%2BCustody",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DChains%2Bof%2BCustody",
+    "edhrec": "https://edhrec.com/route/?cc=Chains+of+Custody"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F687384%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=881461&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards/148749?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

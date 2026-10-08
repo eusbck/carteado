@@ -1,0 +1,136 @@
+{
+  "object": "card",
+  "id": "d0087805-c050-4dd6-8293-a116ef3fa873",
+  "oracle_id": "a044474a-cd72-4e9d-bd8d-a08f2de9cdc0",
+  "multiverse_ids": [
+    658153
+  ],
+  "name": "Reanimate",
+  "printed_name": "Reanimar",
+  "lang": "pt",
+  "released_at": "2024-04-19",
+  "uri": "https://api.scryfall.com/cards/d0087805-c050-4dd6-8293-a116ef3fa873",
+  "scryfall_uri": "https://scryfall.com/card/otp/18/pt/reanimar-(reanimate)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T05:00:11Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/d/0/d0087805-c050-4dd6-8293-a116ef3fa873.jpg?1782795611",
+    "normal": "https://cards.scryfall.io/normal/front/d/0/d0087805-c050-4dd6-8293-a116ef3fa873.jpg?1782795611",
+    "large": "https://cards.scryfall.io/large/front/d/0/d0087805-c050-4dd6-8293-a116ef3fa873.jpg?1782795611",
+    "png": "https://cards.scryfall.io/png/front/d/0/d0087805-c050-4dd6-8293-a116ef3fa873.png?1782795611",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/d/0/d0087805-c050-4dd6-8293-a116ef3fa873.jpg?1782795611",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/d/0/d0087805-c050-4dd6-8293-a116ef3fa873.jpg?1782795611",
+    "thumb": "https://cards.scryfall.io/thumb/front/d/0/d0087805-c050-4dd6-8293-a116ef3fa873.webp?1782795611",
+    "grid": "https://cards.scryfall.io/grid/front/d/0/d0087805-c050-4dd6-8293-a116ef3fa873.webp?1782795611",
+    "display": "https://cards.scryfall.io/display/front/d/0/d0087805-c050-4dd6-8293-a116ef3fa873.webp?1782795611",
+    "art": "https://cards.scryfall.io/art/front/d/0/d0087805-c050-4dd6-8293-a116ef3fa873.webp?1782795611",
+    "crop": "https://cards.scryfall.io/crop/front/d/0/d0087805-c050-4dd6-8293-a116ef3fa873.webp?1782795611"
+  },
+  "mana_cost": "{B}",
+  "cmc": 1.0,
+  "type_line": "Sorcery",
+  "printed_type_line": "Feitiço",
+  "oracle_text": "Put target creature card from a graveyard onto the battlefield under your control. You lose life equal to that card's mana value.",
+  "printed_text": "Coloque o card de criatura alvo de um cemitério no campo de batalha sob seu controle. Você perde uma quantidade de pontos de vida igual ao valor de mana dele.",
+  "colors": [
+    "B"
+  ],
+  "color_identity": [
+    "B"
+  ],
+  "keywords": [],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "banned",
+    "timeless": "legal",
+    "gladiator": "banned",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "banned",
+    "oldschool": "not_legal",
+    "premodern": "legal",
+    "predh": "legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo",
+    "arena"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "8b51294d-fc54-410c-83b2-0168837ede87",
+  "set": "otp",
+  "set_name": "Breaking News",
+  "set_type": "masterpiece",
+  "set_uri": "https://api.scryfall.com/sets/8b51294d-fc54-410c-83b2-0168837ede87",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Aotp&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/otp?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/d0087805-c050-4dd6-8293-a116ef3fa873/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Aa044474a-cd72-4e9d-bd8d-a08f2de9cdc0&unique=prints",
+  "collector_number": "18",
+  "digital": false,
+  "rarity": "rare",
+  "flavor_text": "Cidadão desafia a morte. Coveiros perplexos!",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Michal Ivan",
+  "artist_ids": [
+    "89ba58cb-84a6-480b-a86c-d8ae57df2834"
+  ],
+  "illustration_id": "c0aba299-27e1-4f0c-88bd-83065d5fd603",
+  "border_color": "borderless",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "promo_types": [
+    "boosterfun"
+  ],
+  "edhrec_rank": 54,
+  "penny_rank": 142,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=658153&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DReanimate",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DReanimate",
+    "edhrec": "https://edhrec.com/route/?cc=Reanimate"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DReanimate%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Reanimate&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Reanimate&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

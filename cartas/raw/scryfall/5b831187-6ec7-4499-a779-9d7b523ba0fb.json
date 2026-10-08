@@ -1,0 +1,130 @@
+{
+  "object": "card",
+  "id": "5b831187-6ec7-4499-a779-9d7b523ba0fb",
+  "oracle_id": "e3afc704-220f-498f-9eaa-0821b17dc24c",
+  "multiverse_ids": [
+    569119
+  ],
+  "name": "Sakura-Tribe Elder",
+  "printed_name": "Ancião da Tribo Sakura",
+  "lang": "pt",
+  "released_at": "2022-06-10",
+  "uri": "https://api.scryfall.com/cards/5b831187-6ec7-4499-a779-9d7b523ba0fb",
+  "scryfall_uri": "https://scryfall.com/card/clb/832/pt/anci%C3%A3o-da-tribo-sakura-(sakura-tribe-elder)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T19:46:21Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/5/b/5b831187-6ec7-4499-a779-9d7b523ba0fb.jpg?1782848781",
+    "normal": "https://cards.scryfall.io/normal/front/5/b/5b831187-6ec7-4499-a779-9d7b523ba0fb.jpg?1782848781",
+    "large": "https://cards.scryfall.io/large/front/5/b/5b831187-6ec7-4499-a779-9d7b523ba0fb.jpg?1782848781",
+    "png": "https://cards.scryfall.io/png/front/5/b/5b831187-6ec7-4499-a779-9d7b523ba0fb.png?1782848781",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/5/b/5b831187-6ec7-4499-a779-9d7b523ba0fb.jpg?1782848781",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/5/b/5b831187-6ec7-4499-a779-9d7b523ba0fb.jpg?1782848781",
+    "thumb": "https://cards.scryfall.io/thumb/front/5/b/5b831187-6ec7-4499-a779-9d7b523ba0fb.webp?1782848781",
+    "grid": "https://cards.scryfall.io/grid/front/5/b/5b831187-6ec7-4499-a779-9d7b523ba0fb.webp?1782848781",
+    "display": "https://cards.scryfall.io/display/front/5/b/5b831187-6ec7-4499-a779-9d7b523ba0fb.webp?1782848781",
+    "art": "https://cards.scryfall.io/art/front/5/b/5b831187-6ec7-4499-a779-9d7b523ba0fb.webp?1782848781",
+    "crop": "https://cards.scryfall.io/crop/front/5/b/5b831187-6ec7-4499-a779-9d7b523ba0fb.webp?1782848781"
+  },
+  "mana_cost": "{1}{G}",
+  "cmc": 2.0,
+  "type_line": "Creature — Snake Shaman",
+  "printed_type_line": "Criatura — Cobra Xamã",
+  "oracle_text": "Sacrifice this creature: Search your library for a basic land card, put that card onto the battlefield tapped, then shuffle.",
+  "printed_text": "Sacrifique Ancião da Tribo Sakura: Procure um card de terreno básico em seu grimório, coloque-o no campo de batalha virado e depois embaralhe.",
+  "power": "1",
+  "toughness": "1",
+  "colors": [
+    "G"
+  ],
+  "color_identity": [
+    "G"
+  ],
+  "keywords": [],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "5e4c3fe8-fd57-4b20-ad56-c03790a16cea",
+  "set": "clb",
+  "set_name": "Commander Legends: Battle for Baldur's Gate",
+  "set_type": "draft_innovation",
+  "set_uri": "https://api.scryfall.com/sets/5e4c3fe8-fd57-4b20-ad56-c03790a16cea",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Aclb&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/clb?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/5b831187-6ec7-4499-a779-9d7b523ba0fb/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Ae3afc704-220f-498f-9eaa-0821b17dc24c&unique=prints",
+  "collector_number": "832",
+  "digital": false,
+  "rarity": "common",
+  "flavor_text": "Não havia lápides no território dos orochis. Os guerreiros mortos eram enterrados com brotos de árvores, para que depois da morte se tornassem parte da floresta.",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Carl Critchlow",
+  "artist_ids": [
+    "17948f16-611a-44b8-8d10-9895a0bdfff1"
+  ],
+  "illustration_id": "6c8e4e05-f8f2-4026-8752-a5a3534e0c8d",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 113,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=569119&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DSakura-Tribe%2BElder",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DSakura-Tribe%2BElder",
+    "edhrec": "https://edhrec.com/route/?cc=Sakura-Tribe+Elder"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DSakura-Tribe%2BElder%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Sakura-Tribe+Elder&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Sakura-Tribe+Elder&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

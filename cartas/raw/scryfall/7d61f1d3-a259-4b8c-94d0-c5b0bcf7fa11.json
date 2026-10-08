@@ -1,0 +1,132 @@
+{
+  "object": "card",
+  "id": "7d61f1d3-a259-4b8c-94d0-c5b0bcf7fa11",
+  "oracle_id": "e84837bd-4f94-43e1-876e-d82cae6ee247",
+  "multiverse_ids": [
+    412487
+  ],
+  "name": "Behind the Scenes",
+  "printed_name": "Nos Bastidores",
+  "lang": "pt",
+  "released_at": "2016-04-08",
+  "uri": "https://api.scryfall.com/cards/7d61f1d3-a259-4b8c-94d0-c5b0bcf7fa11",
+  "scryfall_uri": "https://scryfall.com/card/soi/100/pt/nos-bastidores-(behind-the-scenes)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-02T00:53:56Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/7/d/7d61f1d3-a259-4b8c-94d0-c5b0bcf7fa11.jpg?1782953636",
+    "normal": "https://cards.scryfall.io/normal/front/7/d/7d61f1d3-a259-4b8c-94d0-c5b0bcf7fa11.jpg?1782953636",
+    "large": "https://cards.scryfall.io/large/front/7/d/7d61f1d3-a259-4b8c-94d0-c5b0bcf7fa11.jpg?1782953636",
+    "png": "https://cards.scryfall.io/png/front/7/d/7d61f1d3-a259-4b8c-94d0-c5b0bcf7fa11.png?1782953636",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/7/d/7d61f1d3-a259-4b8c-94d0-c5b0bcf7fa11.jpg?1782953636",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/7/d/7d61f1d3-a259-4b8c-94d0-c5b0bcf7fa11.jpg?1782953636",
+    "thumb": "https://cards.scryfall.io/thumb/front/7/d/7d61f1d3-a259-4b8c-94d0-c5b0bcf7fa11.webp?1782953636",
+    "grid": "https://cards.scryfall.io/grid/front/7/d/7d61f1d3-a259-4b8c-94d0-c5b0bcf7fa11.webp?1782953636",
+    "display": "https://cards.scryfall.io/display/front/7/d/7d61f1d3-a259-4b8c-94d0-c5b0bcf7fa11.webp?1782953636",
+    "art": "https://cards.scryfall.io/art/front/7/d/7d61f1d3-a259-4b8c-94d0-c5b0bcf7fa11.webp?1782953636",
+    "crop": "https://cards.scryfall.io/crop/front/7/d/7d61f1d3-a259-4b8c-94d0-c5b0bcf7fa11.webp?1782953636"
+  },
+  "mana_cost": "{2}{B}",
+  "cmc": 3.0,
+  "type_line": "Enchantment",
+  "printed_type_line": "Encantamento",
+  "oracle_text": "Creatures you control have skulk. (They can't be blocked by creatures with greater power.)\n{4}{W}: Creatures you control get +1/+1 until end of turn.",
+  "printed_text": "As criaturas que você controla têm esquivo. (Elas não podem ser bloqueadas por criaturas com poder superior ao delas.)\n{4}{W}: As criaturas que você controla recebem +1/+1 até o final do turno.",
+  "colors": [
+    "B"
+  ],
+  "color_identity": [
+    "B",
+    "W"
+  ],
+  "keywords": [],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "5e914d7e-c1e9-446c-a33d-d093c02b2743",
+  "set": "soi",
+  "set_name": "Shadows over Innistrad",
+  "set_type": "expansion",
+  "set_uri": "https://api.scryfall.com/sets/5e914d7e-c1e9-446c-a33d-d093c02b2743",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Asoi&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/soi?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/7d61f1d3-a259-4b8c-94d0-c5b0bcf7fa11/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Ae84837bd-4f94-43e1-876e-d82cae6ee247&unique=prints",
+  "collector_number": "100",
+  "digital": false,
+  "rarity": "uncommon",
+  "flavor_text": "Não adianta barricar o portão quando o inimigo já está do lado de dentro.",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "David Gaillet",
+  "artist_ids": [
+    "3496c5b4-57bf-4e5e-8bac-a1e05a911a2d"
+  ],
+  "illustration_id": "d16bd1f9-875b-47c7-b35f-bc06ba6fe5cd",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "edhrec_rank": 4907,
+  "penny_rank": 11617,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=412487&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DBehind%2Bthe%2BScenes",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DBehind%2Bthe%2BScenes",
+    "edhrec": "https://edhrec.com/route/?cc=Behind+the+Scenes"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DBehind%2Bthe%2BScenes%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Behind+the+Scenes&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Behind+the+Scenes&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

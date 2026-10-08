@@ -1,0 +1,147 @@
+{
+  "object": "card",
+  "id": "0c67d781-ee3d-4751-8f94-574830b2f8c6",
+  "oracle_id": "0f5a3a09-2f07-4774-9e0f-e99d9a444166",
+  "multiverse_ids": [
+    611795
+  ],
+  "name": "Aurelia, the Warleader",
+  "printed_name": "Aurelia, Líder de Guerra",
+  "lang": "pt",
+  "released_at": "2023-04-21",
+  "uri": "https://api.scryfall.com/cards/0c67d781-ee3d-4751-8f94-574830b2f8c6",
+  "scryfall_uri": "https://scryfall.com/card/mul/35/pt/aurelia-l%C3%ADder-de-guerra-(aurelia-the-warleader)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T12:42:26Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/0/c/0c67d781-ee3d-4751-8f94-574830b2f8c6.jpg?1782823346",
+    "normal": "https://cards.scryfall.io/normal/front/0/c/0c67d781-ee3d-4751-8f94-574830b2f8c6.jpg?1782823346",
+    "large": "https://cards.scryfall.io/large/front/0/c/0c67d781-ee3d-4751-8f94-574830b2f8c6.jpg?1782823346",
+    "png": "https://cards.scryfall.io/png/front/0/c/0c67d781-ee3d-4751-8f94-574830b2f8c6.png?1782823346",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/0/c/0c67d781-ee3d-4751-8f94-574830b2f8c6.jpg?1782823346",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/0/c/0c67d781-ee3d-4751-8f94-574830b2f8c6.jpg?1782823346",
+    "thumb": "https://cards.scryfall.io/thumb/front/0/c/0c67d781-ee3d-4751-8f94-574830b2f8c6.webp?1782823346",
+    "grid": "https://cards.scryfall.io/grid/front/0/c/0c67d781-ee3d-4751-8f94-574830b2f8c6.webp?1782823346",
+    "display": "https://cards.scryfall.io/display/front/0/c/0c67d781-ee3d-4751-8f94-574830b2f8c6.webp?1782823346",
+    "art": "https://cards.scryfall.io/art/front/0/c/0c67d781-ee3d-4751-8f94-574830b2f8c6.webp?1782823346",
+    "crop": "https://cards.scryfall.io/crop/front/0/c/0c67d781-ee3d-4751-8f94-574830b2f8c6.webp?1782823346"
+  },
+  "mana_cost": "{2}{R}{R}{W}{W}",
+  "cmc": 6.0,
+  "type_line": "Legendary Creature — Angel",
+  "printed_type_line": "Criatura Lendária — Anjo",
+  "oracle_text": "Flying, vigilance, haste\nWhenever Aurelia attacks for the first time each turn, untap all creatures you control. After this phase, there is an additional combat phase.",
+  "printed_text": "Voar, vigilância, ímpeto\nToda vez que Aurélia, Líder de Guerra, atacar pela primeira vez a cada turno, desvire todas as criaturas que você controla. Depois dessa fase, há uma fase de combate adicional.",
+  "power": "3",
+  "toughness": "4",
+  "colors": [
+    "R",
+    "W"
+  ],
+  "color_identity": [
+    "R",
+    "W"
+  ],
+  "keywords": [
+    "Flying",
+    "Vigilance",
+    "Haste"
+  ],
+  "legalities": {
+    "standard": "legal",
+    "future": "legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "arena",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "a3f8daea-b24e-4e5c-a4d9-ec8910e9078a",
+  "set": "mul",
+  "set_name": "Multiverse Legends",
+  "set_type": "masterpiece",
+  "set_uri": "https://api.scryfall.com/sets/a3f8daea-b24e-4e5c-a4d9-ec8910e9078a",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Amul&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/mul?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/0c67d781-ee3d-4751-8f94-574830b2f8c6/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A0f5a3a09-2f07-4774-9e0f-e99d9a444166&unique=prints",
+  "collector_number": "35",
+  "digital": false,
+  "rarity": "mythic",
+  "flavor_text": "Liderar pela retaguarda nunca foi seu estilo.",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Alex Dos Diaz",
+  "artist_ids": [
+    "d11a1b18-57ff-41d3-a3a5-9ac3914b42d1"
+  ],
+  "illustration_id": "66459a4b-80f3-42b4-b5a2-8248500a425a",
+  "border_color": "black",
+  "frame": "2015",
+  "frame_effects": [
+    "legendary"
+  ],
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "promo_types": [
+    "ravnicacity"
+  ],
+  "edhrec_rank": 822,
+  "penny_rank": 3998,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=611795&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DAurelia%252C%2Bthe%2BWarleader",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DAurelia%252C%2Bthe%2BWarleader",
+    "edhrec": "https://edhrec.com/route/?cc=Aurelia%2C+the+Warleader"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DAurelia%252C%2Bthe%2BWarleader%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Aurelia%2C+the+Warleader&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Aurelia%2C+the+Warleader&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

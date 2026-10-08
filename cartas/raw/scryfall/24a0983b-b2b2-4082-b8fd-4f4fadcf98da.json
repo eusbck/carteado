@@ -1,0 +1,142 @@
+{
+  "object": "card",
+  "id": "24a0983b-b2b2-4082-b8fd-4f4fadcf98da",
+  "oracle_id": "a784481f-eccb-4112-bb38-04a659319660",
+  "multiverse_ids": [],
+  "resource_id": "4B635CB44B5AA37AFB357F13B29AD414F8D820E1D1B9D2F88C35730AEA223DBB",
+  "name": "Pitiless Plunderer",
+  "printed_name": "Saqueador Impiedoso",
+  "lang": "pt",
+  "released_at": "2023-11-17",
+  "uri": "https://api.scryfall.com/cards/24a0983b-b2b2-4082-b8fd-4f4fadcf98da",
+  "scryfall_uri": "https://scryfall.com/card/spg/5/pt/saqueador-impiedoso-(pitiless-plunderer)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-21T23:34:59Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/2/4/24a0983b-b2b2-4082-b8fd-4f4fadcf98da.jpg?1784676899",
+    "normal": "https://cards.scryfall.io/normal/front/2/4/24a0983b-b2b2-4082-b8fd-4f4fadcf98da.jpg?1784676899",
+    "large": "https://cards.scryfall.io/large/front/2/4/24a0983b-b2b2-4082-b8fd-4f4fadcf98da.jpg?1784676899",
+    "png": "https://cards.scryfall.io/png/front/2/4/24a0983b-b2b2-4082-b8fd-4f4fadcf98da.png?1784676899",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/2/4/24a0983b-b2b2-4082-b8fd-4f4fadcf98da.jpg?1784676899",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/2/4/24a0983b-b2b2-4082-b8fd-4f4fadcf98da.jpg?1784676899",
+    "thumb": "https://cards.scryfall.io/thumb/front/2/4/24a0983b-b2b2-4082-b8fd-4f4fadcf98da.webp?1784676899",
+    "grid": "https://cards.scryfall.io/grid/front/2/4/24a0983b-b2b2-4082-b8fd-4f4fadcf98da.webp?1784676899",
+    "display": "https://cards.scryfall.io/display/front/2/4/24a0983b-b2b2-4082-b8fd-4f4fadcf98da.webp?1784676899",
+    "art": "https://cards.scryfall.io/art/front/2/4/24a0983b-b2b2-4082-b8fd-4f4fadcf98da.webp?1784676899",
+    "crop": "https://cards.scryfall.io/crop/front/2/4/24a0983b-b2b2-4082-b8fd-4f4fadcf98da.webp?1784676899"
+  },
+  "mana_cost": "{3}{B}",
+  "cmc": 4.0,
+  "type_line": "Creature — Human Pirate",
+  "oracle_text": "Whenever another creature you control dies, create a Treasure token. (It's an artifact with \"{T}, Sacrifice this token: Add one mana of any color.\")",
+  "printed_text": "Toda vez que outra criatura que você controla morrer, crie uma ficha de Tesouro.",
+  "power": "1",
+  "toughness": "4",
+  "colors": [
+    "B"
+  ],
+  "color_identity": [
+    "B"
+  ],
+  "keywords": [
+    "Treasure"
+  ],
+  "produced_mana": [
+    "B",
+    "G",
+    "R",
+    "U",
+    "W"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "c01003a2-b3e2-4e7f-a26d-2348144c8056",
+  "set": "spg",
+  "set_name": "Special Guests",
+  "set_type": "masterpiece",
+  "set_uri": "https://api.scryfall.com/sets/c01003a2-b3e2-4e7f-a26d-2348144c8056",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Aspg&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/spg?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/24a0983b-b2b2-4082-b8fd-4f4fadcf98da/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Aa784481f-eccb-4112-bb38-04a659319660&unique=prints",
+  "collector_number": "5",
+  "digital": false,
+  "rarity": "uncommon",
+  "flavor_text": "\"O truque para conseguir a maior parte é ser o último de pé.\"",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Johan Grenier",
+  "artist_ids": [
+    "465e38b8-7eed-4d22-a6d2-d3603ee0c00b"
+  ],
+  "illustration_id": "a05ffea1-4660-4d56-b890-965700259047",
+  "border_color": "borderless",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "promo_types": [
+    "boosterfun"
+  ],
+  "edhrec_rank": 224,
+  "penny_rank": 7136,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DPitiless%2BPlunderer",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DPitiless%2BPlunderer",
+    "edhrec": "https://edhrec.com/route/?cc=Pitiless+Plunderer"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DPitiless%2BPlunderer%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Pitiless+Plunderer&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Pitiless+Plunderer&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

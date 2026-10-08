@@ -1,0 +1,397 @@
+{
+  "object": "card",
+  "id": "96b0ffdf-351e-4b89-92f2-79b20420b3bc",
+  "oracle_id": "3aaf906a-e749-4e86-ac79-97650b92f271",
+  "multiverse_ids": [],
+  "name": "Eldrazi Spawn",
+  "lang": "en",
+  "released_at": "2026-04-24",
+  "uri": "https://api.scryfall.com/cards/96b0ffdf-351e-4b89-92f2-79b20420b3bc",
+  "scryfall_uri": "https://scryfall.com/card/tsoc/1/eldrazi-spawn?utm_source=api",
+  "layout": "token",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T00:46:17Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/9/6/96b0ffdf-351e-4b89-92f2-79b20420b3bc.jpg?1783903577",
+    "normal": "https://cards.scryfall.io/normal/front/9/6/96b0ffdf-351e-4b89-92f2-79b20420b3bc.jpg?1783903577",
+    "large": "https://cards.scryfall.io/large/front/9/6/96b0ffdf-351e-4b89-92f2-79b20420b3bc.jpg?1783903577",
+    "png": "https://cards.scryfall.io/png/front/9/6/96b0ffdf-351e-4b89-92f2-79b20420b3bc.png?1783903577",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/9/6/96b0ffdf-351e-4b89-92f2-79b20420b3bc.jpg?1783903577",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/9/6/96b0ffdf-351e-4b89-92f2-79b20420b3bc.jpg?1783903577",
+    "thumb": "https://cards.scryfall.io/thumb/front/9/6/96b0ffdf-351e-4b89-92f2-79b20420b3bc.webp?1783903577",
+    "grid": "https://cards.scryfall.io/grid/front/9/6/96b0ffdf-351e-4b89-92f2-79b20420b3bc.webp?1783903577",
+    "display": "https://cards.scryfall.io/display/front/9/6/96b0ffdf-351e-4b89-92f2-79b20420b3bc.webp?1783903577",
+    "art": "https://cards.scryfall.io/art/front/9/6/96b0ffdf-351e-4b89-92f2-79b20420b3bc.webp?1783903577",
+    "crop": "https://cards.scryfall.io/crop/front/9/6/96b0ffdf-351e-4b89-92f2-79b20420b3bc.webp?1783903577"
+  },
+  "mana_cost": "",
+  "cmc": 0.0,
+  "type_line": "Token Creature — Eldrazi Spawn",
+  "oracle_text": "Sacrifice this creature: Add {C}.",
+  "power": "0",
+  "toughness": "1",
+  "colors": [],
+  "color_identity": [],
+  "keywords": [],
+  "produced_mana": [
+    "C"
+  ],
+  "all_parts": [
+    {
+      "object": "related_card",
+      "id": "2b5f3a1a-8514-4598-be3d-c3be719f6951",
+      "component": "combo_piece",
+      "name": "Warped Tusker",
+      "type_line": "Creature — Eldrazi Boar Beast",
+      "uri": "https://api.scryfall.com/cards/2b5f3a1a-8514-4598-be3d-c3be719f6951"
+    },
+    {
+      "object": "related_card",
+      "id": "afb0e442-cd29-4dde-a7c5-6eed5df5cfe9",
+      "component": "combo_piece",
+      "name": "Glaring Fleshraker",
+      "type_line": "Creature — Eldrazi Drone",
+      "uri": "https://api.scryfall.com/cards/afb0e442-cd29-4dde-a7c5-6eed5df5cfe9"
+    },
+    {
+      "object": "related_card",
+      "id": "e442d1cf-3e17-4719-8d5b-512749c9eee8",
+      "component": "combo_piece",
+      "name": "Emrakul's Hatcher",
+      "type_line": "Creature — Eldrazi Drone",
+      "uri": "https://api.scryfall.com/cards/e442d1cf-3e17-4719-8d5b-512749c9eee8"
+    },
+    {
+      "object": "related_card",
+      "id": "9e4b508a-9204-4bed-8b80-9ac35c187efe",
+      "component": "combo_piece",
+      "name": "Kozilek's Command",
+      "type_line": "Kindred Instant — Eldrazi",
+      "uri": "https://api.scryfall.com/cards/9e4b508a-9204-4bed-8b80-9ac35c187efe"
+    },
+    {
+      "object": "related_card",
+      "id": "ecac9885-6f4e-4413-90dc-c8b44f883357",
+      "component": "combo_piece",
+      "name": "Spawn-Gang Commander",
+      "type_line": "Creature — Eldrazi Goblin",
+      "uri": "https://api.scryfall.com/cards/ecac9885-6f4e-4413-90dc-c8b44f883357"
+    },
+    {
+      "object": "related_card",
+      "id": "96b0ffdf-351e-4b89-92f2-79b20420b3bc",
+      "component": "token",
+      "name": "Eldrazi Spawn",
+      "type_line": "Token Creature — Eldrazi Spawn",
+      "uri": "https://api.scryfall.com/cards/96b0ffdf-351e-4b89-92f2-79b20420b3bc"
+    },
+    {
+      "object": "related_card",
+      "id": "6f8e20d5-36b0-4ed9-a896-38dc9d811d4d",
+      "component": "combo_piece",
+      "name": "Rapacious One",
+      "type_line": "Creature — Eldrazi Drone",
+      "uri": "https://api.scryfall.com/cards/6f8e20d5-36b0-4ed9-a896-38dc9d811d4d"
+    },
+    {
+      "object": "related_card",
+      "id": "fa828bc7-0f5a-45de-9608-da42dda8f3f9",
+      "component": "combo_piece",
+      "name": "Kozilek's Predator",
+      "type_line": "Creature — Eldrazi Drone",
+      "uri": "https://api.scryfall.com/cards/fa828bc7-0f5a-45de-9608-da42dda8f3f9"
+    },
+    {
+      "object": "related_card",
+      "id": "f0715429-0b15-47fc-adf4-fdb5c8dfb029",
+      "component": "combo_piece",
+      "name": "Corpsehatch",
+      "type_line": "Sorcery",
+      "uri": "https://api.scryfall.com/cards/f0715429-0b15-47fc-adf4-fdb5c8dfb029"
+    },
+    {
+      "object": "related_card",
+      "id": "f95b8eb1-4dbb-4bb9-aa31-b7a12e3b4618",
+      "component": "combo_piece",
+      "name": "Unfathomable Truths",
+      "type_line": "Instant",
+      "uri": "https://api.scryfall.com/cards/f95b8eb1-4dbb-4bb9-aa31-b7a12e3b4618"
+    },
+    {
+      "object": "related_card",
+      "id": "d8a6849b-6391-4c2c-97bd-267a31e57b38",
+      "component": "combo_piece",
+      "name": "Growth Spasm",
+      "type_line": "Sorcery",
+      "uri": "https://api.scryfall.com/cards/d8a6849b-6391-4c2c-97bd-267a31e57b38"
+    },
+    {
+      "object": "related_card",
+      "id": "a3a3b943-7b38-4316-87d9-15e0c08abea5",
+      "component": "combo_piece",
+      "name": "Skittering Precursor",
+      "type_line": "Creature — Eldrazi Drone",
+      "uri": "https://api.scryfall.com/cards/a3a3b943-7b38-4316-87d9-15e0c08abea5"
+    },
+    {
+      "object": "related_card",
+      "id": "a66b54eb-6dc8-460e-952f-31056df8f4ea",
+      "component": "combo_piece",
+      "name": "Glimpse the Impossible",
+      "type_line": "Sorcery",
+      "uri": "https://api.scryfall.com/cards/a66b54eb-6dc8-460e-952f-31056df8f4ea"
+    },
+    {
+      "object": "related_card",
+      "id": "7faf5812-2067-4386-bb83-150723d67d02",
+      "component": "combo_piece",
+      "name": "Drownyard Lurker",
+      "type_line": "Creature — Eldrazi Trilobite",
+      "uri": "https://api.scryfall.com/cards/7faf5812-2067-4386-bb83-150723d67d02"
+    },
+    {
+      "object": "related_card",
+      "id": "90ec1540-e8cb-4edc-a3b3-f71423cb46fc",
+      "component": "combo_piece",
+      "name": "Spawning Breath",
+      "type_line": "Instant",
+      "uri": "https://api.scryfall.com/cards/90ec1540-e8cb-4edc-a3b3-f71423cb46fc"
+    },
+    {
+      "object": "related_card",
+      "id": "4f5b2d89-d641-4815-8e6c-5dba0d31419e",
+      "component": "combo_piece",
+      "name": "Propagator Drone",
+      "type_line": "Creature — Eldrazi Drone",
+      "uri": "https://api.scryfall.com/cards/4f5b2d89-d641-4815-8e6c-5dba0d31419e"
+    },
+    {
+      "object": "related_card",
+      "id": "c1b0377c-efd6-4fab-89f0-b219ca2c4c22",
+      "component": "combo_piece",
+      "name": "Pawn of Ulamog",
+      "type_line": "Creature — Vampire Shaman",
+      "uri": "https://api.scryfall.com/cards/c1b0377c-efd6-4fab-89f0-b219ca2c4c22"
+    },
+    {
+      "object": "related_card",
+      "id": "6367090f-9291-4ef6-9864-025ce0eb0eca",
+      "component": "combo_piece",
+      "name": "Nest Invader",
+      "type_line": "Creature — Eldrazi Drone",
+      "uri": "https://api.scryfall.com/cards/6367090f-9291-4ef6-9864-025ce0eb0eca"
+    },
+    {
+      "object": "related_card",
+      "id": "b199a31d-5e2d-411d-961a-ff7633030767",
+      "component": "combo_piece",
+      "name": "Basking Broodscale",
+      "type_line": "Creature — Eldrazi Lizard",
+      "uri": "https://api.scryfall.com/cards/b199a31d-5e2d-411d-961a-ff7633030767"
+    },
+    {
+      "object": "related_card",
+      "id": "37f79ba7-7b65-4387-b498-f770816ce8dd",
+      "component": "combo_piece",
+      "name": "Eldrazi Repurposer",
+      "type_line": "Creature — Eldrazi Drone",
+      "uri": "https://api.scryfall.com/cards/37f79ba7-7b65-4387-b498-f770816ce8dd"
+    },
+    {
+      "object": "related_card",
+      "id": "d5e1ff6d-190a-497f-89c3-35e0979c93b5",
+      "component": "combo_piece",
+      "name": "Idol of False Gods",
+      "type_line": "Kindred Artifact — Eldrazi",
+      "uri": "https://api.scryfall.com/cards/d5e1ff6d-190a-497f-89c3-35e0979c93b5"
+    },
+    {
+      "object": "related_card",
+      "id": "29ef119f-e777-42e7-be43-ea1f31d7ce59",
+      "component": "combo_piece",
+      "name": "Dread Drone",
+      "type_line": "Creature — Eldrazi Drone",
+      "uri": "https://api.scryfall.com/cards/29ef119f-e777-42e7-be43-ea1f31d7ce59"
+    },
+    {
+      "object": "related_card",
+      "id": "9ff46819-bfb3-4448-ab4f-f22ff9e2b2b4",
+      "component": "combo_piece",
+      "name": "Spawnsire of Ulamog",
+      "type_line": "Creature — Eldrazi",
+      "uri": "https://api.scryfall.com/cards/9ff46819-bfb3-4448-ab4f-f22ff9e2b2b4"
+    },
+    {
+      "object": "related_card",
+      "id": "e6b44ffe-db9e-4db5-9806-098411c9ece0",
+      "component": "combo_piece",
+      "name": "Kozilek's Unsealing",
+      "type_line": "Enchantment",
+      "uri": "https://api.scryfall.com/cards/e6b44ffe-db9e-4db5-9806-098411c9ece0"
+    },
+    {
+      "object": "related_card",
+      "id": "ec5fe7d0-b444-4488-b058-f3916e404cac",
+      "component": "combo_piece",
+      "name": "Chittering Dispatcher",
+      "type_line": "Creature — Eldrazi Drone",
+      "uri": "https://api.scryfall.com/cards/ec5fe7d0-b444-4488-b058-f3916e404cac"
+    },
+    {
+      "object": "related_card",
+      "id": "b9cf2116-7ae5-4b6a-830a-919a55235690",
+      "component": "combo_piece",
+      "name": "Essence Feed",
+      "type_line": "Sorcery",
+      "uri": "https://api.scryfall.com/cards/b9cf2116-7ae5-4b6a-830a-919a55235690"
+    },
+    {
+      "object": "related_card",
+      "id": "0bf49859-c1ef-43ca-aa0a-6f4116825b7d",
+      "component": "combo_piece",
+      "name": "Skittering Invasion",
+      "type_line": "Kindred Sorcery — Eldrazi",
+      "uri": "https://api.scryfall.com/cards/0bf49859-c1ef-43ca-aa0a-6f4116825b7d"
+    },
+    {
+      "object": "related_card",
+      "id": "5095db22-3eb2-4c1c-bf22-72096b648cf3",
+      "component": "combo_piece",
+      "name": "Writhing Chrysalis",
+      "type_line": "Creature — Eldrazi Drone",
+      "uri": "https://api.scryfall.com/cards/5095db22-3eb2-4c1c-bf22-72096b648cf3"
+    },
+    {
+      "object": "related_card",
+      "id": "a178cfe8-f9fa-4255-88d0-54a0bed079f5",
+      "component": "combo_piece",
+      "name": "Malevolent Rumble",
+      "type_line": "Sorcery",
+      "uri": "https://api.scryfall.com/cards/a178cfe8-f9fa-4255-88d0-54a0bed079f5"
+    },
+    {
+      "object": "related_card",
+      "id": "7a1d3c1d-1373-4ac4-bb26-9780976efc4f",
+      "component": "combo_piece",
+      "name": "Drowner of Truth // Drowned Jungle",
+      "type_line": "Creature — Eldrazi // Land",
+      "uri": "https://api.scryfall.com/cards/7a1d3c1d-1373-4ac4-bb26-9780976efc4f"
+    },
+    {
+      "object": "related_card",
+      "id": "0e44f7ff-1cfa-4bc4-a0f7-9d71ba48a97a",
+      "component": "combo_piece",
+      "name": "Brood Birthing",
+      "type_line": "Sorcery",
+      "uri": "https://api.scryfall.com/cards/0e44f7ff-1cfa-4bc4-a0f7-9d71ba48a97a"
+    },
+    {
+      "object": "related_card",
+      "id": "edff0f40-4157-49e0-9370-aad2acf9e1fa",
+      "component": "combo_piece",
+      "name": "Path of Annihilation",
+      "type_line": "Enchantment",
+      "uri": "https://api.scryfall.com/cards/edff0f40-4157-49e0-9370-aad2acf9e1fa"
+    },
+    {
+      "object": "related_card",
+      "id": "cd6642fc-72a2-43b8-96fb-7fcec56e9167",
+      "component": "combo_piece",
+      "name": "Emrakul's Messenger",
+      "type_line": "Creature — Eldrazi Faerie Rogue",
+      "uri": "https://api.scryfall.com/cards/cd6642fc-72a2-43b8-96fb-7fcec56e9167"
+    },
+    {
+      "object": "related_card",
+      "id": "13724768-83d3-4da2-82d7-35787c4f9877",
+      "component": "combo_piece",
+      "name": "Awakening Zone",
+      "type_line": "Enchantment",
+      "uri": "https://api.scryfall.com/cards/13724768-83d3-4da2-82d7-35787c4f9877"
+    }
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "not_legal",
+    "pauper": "not_legal",
+    "vintage": "not_legal",
+    "penny": "not_legal",
+    "commander": "not_legal",
+    "oathbreaker": "not_legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "not_legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "cb590d57-927c-437a-934c-7f774881d1c9",
+  "set": "tsoc",
+  "set_name": "Secrets of Strixhaven Commander Tokens",
+  "set_type": "token",
+  "set_uri": "https://api.scryfall.com/sets/cb590d57-927c-437a-934c-7f774881d1c9",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Atsoc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/tsoc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/96b0ffdf-351e-4b89-92f2-79b20420b3bc/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A3aaf906a-e749-4e86-ac79-97650b92f271&unique=prints",
+  "collector_number": "1",
+  "digital": false,
+  "rarity": "common",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Aleksi Briclot",
+  "artist_ids": [
+    "5e470014-31cb-41b0-b054-e23374484449"
+  ],
+  "illustration_id": "c92785ab-6d39-468a-a99a-a1cc87a35ab8",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DEldrazi%2BSpawn",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DEldrazi%2BSpawn",
+    "edhrec": "https://edhrec.com/route/?cc=Eldrazi+Spawn"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DEldrazi%2BSpawn%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Eldrazi+Spawn&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Eldrazi+Spawn&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "object": "card",
+  "id": "cd5b9daf-6325-4eb4-a069-4a8cc7807884",
+  "oracle_id": "4f65e6a9-0d90-44b9-9b76-00814db2dbd8",
+  "multiverse_ids": [],
+  "resource_id": "E0851F5BA488DEFBCAA1A3FFD342E85E576E22F5B49AD8EA1EC19E58F7986FAF",
+  "mtgo_id": 141223,
+  "arena_id": 96008,
+  "tcgplayer_id": 631602,
+  "cardmarket_id": 824949,
+  "name": "Laughing Mad",
+  "lang": "en",
+  "released_at": "2025-06-13",
+  "uri": "https://api.scryfall.com/cards/cd5b9daf-6325-4eb4-a069-4a8cc7807884",
+  "scryfall_uri": "https://scryfall.com/card/fin/143/laughing-mad?utm_source=api",
+  "layout": "normal",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T01:36:43Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/c/d/cd5b9daf-6325-4eb4-a069-4a8cc7807884.jpg?1783906603",
+    "normal": "https://cards.scryfall.io/normal/front/c/d/cd5b9daf-6325-4eb4-a069-4a8cc7807884.jpg?1783906603",
+    "large": "https://cards.scryfall.io/large/front/c/d/cd5b9daf-6325-4eb4-a069-4a8cc7807884.jpg?1783906603",
+    "png": "https://cards.scryfall.io/png/front/c/d/cd5b9daf-6325-4eb4-a069-4a8cc7807884.png?1783906603",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/c/d/cd5b9daf-6325-4eb4-a069-4a8cc7807884.jpg?1783906603",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/c/d/cd5b9daf-6325-4eb4-a069-4a8cc7807884.jpg?1783906603",
+    "thumb": "https://cards.scryfall.io/thumb/front/c/d/cd5b9daf-6325-4eb4-a069-4a8cc7807884.webp?1783906603",
+    "grid": "https://cards.scryfall.io/grid/front/c/d/cd5b9daf-6325-4eb4-a069-4a8cc7807884.webp?1783906603",
+    "display": "https://cards.scryfall.io/display/front/c/d/cd5b9daf-6325-4eb4-a069-4a8cc7807884.webp?1783906603",
+    "art": "https://cards.scryfall.io/art/front/c/d/cd5b9daf-6325-4eb4-a069-4a8cc7807884.webp?1783906603",
+    "crop": "https://cards.scryfall.io/crop/front/c/d/cd5b9daf-6325-4eb4-a069-4a8cc7807884.webp?1783906603"
+  },
+  "mana_cost": "{2}{R}",
+  "cmc": 3.0,
+  "type_line": "Instant",
+  "oracle_text": "As an additional cost to cast this spell, discard a card.\nDraw two cards.\nFlashback {3}{R} (You may cast this card from your graveyard for its flashback cost and any additional costs. Then exile it.)",
+  "colors": [
+    "R"
+  ],
+  "color_identity": [
+    "R"
+  ],
+  "keywords": [
+    "Flashback"
+  ],
+  "legalities": {
+    "standard": "legal",
+    "future": "legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "legal",
+    "paupercommander": "legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "arena",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "d7beb4b7-e1ff-4d35-ab07-5700f17ea1ea",
+  "set": "fin",
+  "set_name": "Final Fantasy",
+  "set_type": "expansion",
+  "set_uri": "https://api.scryfall.com/sets/d7beb4b7-e1ff-4d35-ab07-5700f17ea1ea",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Afin&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/fin?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/cd5b9daf-6325-4eb4-a069-4a8cc7807884/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A4f65e6a9-0d90-44b9-9b76-00814db2dbd8&unique=prints",
+  "collector_number": "143",
+  "digital": false,
+  "rarity": "common",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "RARE ENGINE",
+  "artist_ids": [
+    "cb637888-fac2-4148-8403-6646572657c9"
+  ],
+  "illustration_id": "f6f4b8ea-4acc-498a-b521-bec0ba251a57",
+  "border_color": "black",
+  "frame": "2015",
+  "security_stamp": "triangle",
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "promo_types": [
+    "ffvi",
+    "universesbeyond"
+  ],
+  "edhrec_rank": 2240,
+  "penny_rank": 4420,
+  "prices": {
+    "usd": "0.18",
+    "usd_foil": "0.30",
+    "usd_etched": null,
+    "eur": "0.13",
+    "eur_foil": "0.20",
+    "tix": "0.03"
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DLaughing%2BMad",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DLaughing%2BMad",
+    "edhrec": "https://edhrec.com/route/?cc=Laughing+Mad"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F631602%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=824949&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards/141223?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

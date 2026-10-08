@@ -1,0 +1,138 @@
+{
+  "object": "card",
+  "id": "682b1b62-338a-49d1-9d4e-2d8ee2e6fc76",
+  "oracle_id": "8859a692-d107-4de2-9110-4681fc2761c7",
+  "multiverse_ids": [],
+  "resource_id": "607BE7A86D47FC9EEE6EAD2A90C35506D0B94050249477B2A9957D2FAB5094EF",
+  "mtgo_id": 146179,
+  "tcgplayer_id": 671267,
+  "cardmarket_id": 865054,
+  "name": "Glissa Sunslayer",
+  "lang": "en",
+  "released_at": "2026-01-23",
+  "uri": "https://api.scryfall.com/cards/682b1b62-338a-49d1-9d4e-2d8ee2e6fc76",
+  "scryfall_uri": "https://scryfall.com/card/ecc/122/glissa-sunslayer?utm_source=api",
+  "layout": "normal",
+  "highres_image": true,
+  "image_status": "highres_scan",
+  "image_updated_at": "2026-07-13T01:02:24Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/6/8/682b1b62-338a-49d1-9d4e-2d8ee2e6fc76.jpg?1783904544",
+    "normal": "https://cards.scryfall.io/normal/front/6/8/682b1b62-338a-49d1-9d4e-2d8ee2e6fc76.jpg?1783904544",
+    "large": "https://cards.scryfall.io/large/front/6/8/682b1b62-338a-49d1-9d4e-2d8ee2e6fc76.jpg?1783904544",
+    "png": "https://cards.scryfall.io/png/front/6/8/682b1b62-338a-49d1-9d4e-2d8ee2e6fc76.png?1783904544",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/6/8/682b1b62-338a-49d1-9d4e-2d8ee2e6fc76.jpg?1783904544",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/6/8/682b1b62-338a-49d1-9d4e-2d8ee2e6fc76.jpg?1783904544",
+    "thumb": "https://cards.scryfall.io/thumb/front/6/8/682b1b62-338a-49d1-9d4e-2d8ee2e6fc76.webp?1783904544",
+    "grid": "https://cards.scryfall.io/grid/front/6/8/682b1b62-338a-49d1-9d4e-2d8ee2e6fc76.webp?1783904544",
+    "display": "https://cards.scryfall.io/display/front/6/8/682b1b62-338a-49d1-9d4e-2d8ee2e6fc76.webp?1783904544",
+    "art": "https://cards.scryfall.io/art/front/6/8/682b1b62-338a-49d1-9d4e-2d8ee2e6fc76.webp?1783904544",
+    "crop": "https://cards.scryfall.io/crop/front/6/8/682b1b62-338a-49d1-9d4e-2d8ee2e6fc76.webp?1783904544"
+  },
+  "mana_cost": "{1}{B}{G}",
+  "cmc": 3.0,
+  "type_line": "Legendary Creature — Phyrexian Zombie Elf",
+  "oracle_text": "First strike, deathtouch\nWhenever Glissa Sunslayer deals combat damage to a player, choose one —\n• You draw a card and lose 1 life.\n• Destroy target enchantment.\n• Remove up to three counters from target permanent.",
+  "power": "3",
+  "toughness": "3",
+  "colors": [
+    "B",
+    "G"
+  ],
+  "color_identity": [
+    "B",
+    "G"
+  ],
+  "keywords": [
+    "First strike",
+    "Deathtouch"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "805b5a0c-f8bb-4555-86ea-eb9ec36a011a",
+  "set": "ecc",
+  "set_name": "Lorwyn Eclipsed Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/805b5a0c-f8bb-4555-86ea-eb9ec36a011a",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Aecc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/ecc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/682b1b62-338a-49d1-9d4e-2d8ee2e6fc76/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A8859a692-d107-4de2-9110-4681fc2761c7&unique=prints",
+  "collector_number": "122",
+  "digital": false,
+  "rarity": "rare",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Krharts",
+  "artist_ids": [
+    "15fdfc66-dccf-4ea7-a4c2-cd37ffcbf960"
+  ],
+  "illustration_id": "c7f0d0b6-6210-4f4f-a614-8c657e31dbb4",
+  "border_color": "black",
+  "frame": "2015",
+  "frame_effects": [
+    "legendary"
+  ],
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 1376,
+  "penny_rank": 800,
+  "prices": {
+    "usd": "0.62",
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": "0.87",
+    "eur_foil": null,
+    "tix": "0.29"
+  },
+  "related_uris": {
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DGlissa%2BSunslayer",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DGlissa%2BSunslayer",
+    "edhrec": "https://edhrec.com/route/?cc=Glissa+Sunslayer"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F671267%3Fpage%3D1",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=865054&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards/146179?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

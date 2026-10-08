@@ -1,0 +1,133 @@
+{
+  "object": "card",
+  "id": "84e494f0-ce55-490c-8bcc-f1a5fccc6f7f",
+  "oracle_id": "81a51328-b995-4f3b-90bc-a20ae21dd254",
+  "multiverse_ids": [
+    501729
+  ],
+  "name": "Spirit Mantle",
+  "printed_name": "Manto Espiritual",
+  "lang": "pt",
+  "released_at": "2020-11-20",
+  "uri": "https://api.scryfall.com/cards/84e494f0-ce55-490c-8bcc-f1a5fccc6f7f",
+  "scryfall_uri": "https://scryfall.com/card/cmr/385/pt/manto-espiritual-(spirit-mantle)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-01T09:02:19Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/8/4/84e494f0-ce55-490c-8bcc-f1a5fccc6f7f.jpg?1782896539",
+    "normal": "https://cards.scryfall.io/normal/front/8/4/84e494f0-ce55-490c-8bcc-f1a5fccc6f7f.jpg?1782896539",
+    "large": "https://cards.scryfall.io/large/front/8/4/84e494f0-ce55-490c-8bcc-f1a5fccc6f7f.jpg?1782896539",
+    "png": "https://cards.scryfall.io/png/front/8/4/84e494f0-ce55-490c-8bcc-f1a5fccc6f7f.png?1782896539",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/8/4/84e494f0-ce55-490c-8bcc-f1a5fccc6f7f.jpg?1782896539",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/8/4/84e494f0-ce55-490c-8bcc-f1a5fccc6f7f.jpg?1782896539",
+    "thumb": "https://cards.scryfall.io/thumb/front/8/4/84e494f0-ce55-490c-8bcc-f1a5fccc6f7f.webp?1782896539",
+    "grid": "https://cards.scryfall.io/grid/front/8/4/84e494f0-ce55-490c-8bcc-f1a5fccc6f7f.webp?1782896539",
+    "display": "https://cards.scryfall.io/display/front/8/4/84e494f0-ce55-490c-8bcc-f1a5fccc6f7f.webp?1782896539",
+    "art": "https://cards.scryfall.io/art/front/8/4/84e494f0-ce55-490c-8bcc-f1a5fccc6f7f.webp?1782896539",
+    "crop": "https://cards.scryfall.io/crop/front/8/4/84e494f0-ce55-490c-8bcc-f1a5fccc6f7f.webp?1782896539"
+  },
+  "mana_cost": "{1}{W}",
+  "cmc": 2.0,
+  "type_line": "Enchantment — Aura",
+  "printed_type_line": "Encantamento — Aura",
+  "oracle_text": "Enchant creature\nEnchanted creature gets +1/+1 and has protection from creatures.",
+  "printed_text": "Encantar criatura\nA criatura encantada recebe +1/+1 e tem proteção contra criaturas.",
+  "colors": [
+    "W"
+  ],
+  "color_identity": [
+    "W"
+  ],
+  "keywords": [
+    "Enchant"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "not_legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "39de6fbf-1f11-48d0-8f04-f0407f6a0732",
+  "set": "cmr",
+  "set_name": "Commander Legends",
+  "set_type": "draft_innovation",
+  "set_uri": "https://api.scryfall.com/sets/39de6fbf-1f11-48d0-8f04-f0407f6a0732",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Acmr&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/cmr?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/84e494f0-ce55-490c-8bcc-f1a5fccc6f7f/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A81a51328-b995-4f3b-90bc-a20ae21dd254&unique=prints",
+  "collector_number": "385",
+  "digital": false,
+  "rarity": "uncommon",
+  "flavor_text": "O escudo de pureza irrepreensível é tão forte quanto qualquer outro forjado na bigorna.",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Izzy",
+  "artist_ids": [
+    "2c3d2473-ff5d-4309-8194-e0b2def2ab65"
+  ],
+  "illustration_id": "ac0e55a1-cd04-447a-b1ab-70aa548e4e38",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 1699,
+  "penny_rank": 1989,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=501729&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DSpirit%2BMantle",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DSpirit%2BMantle",
+    "edhrec": "https://edhrec.com/route/?cc=Spirit+Mantle"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DSpirit%2BMantle%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Spirit+Mantle&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Spirit+Mantle&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

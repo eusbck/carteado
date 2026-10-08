@@ -1,0 +1,132 @@
+{
+  "object": "card",
+  "id": "d34acd18-ad99-468d-b503-b0f58516a13a",
+  "oracle_id": "b2c6aa39-2d2a-459c-a555-fb48ba993373",
+  "multiverse_ids": [
+    660956
+  ],
+  "name": "Island",
+  "printed_name": "Ilha",
+  "lang": "pt",
+  "released_at": "2024-06-14",
+  "uri": "https://api.scryfall.com/cards/d34acd18-ad99-468d-b503-b0f58516a13a",
+  "scryfall_uri": "https://scryfall.com/card/mh3/305/pt/ilha-(island)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T04:05:58Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/d/3/d34acd18-ad99-468d-b503-b0f58516a13a.jpg?1782792358",
+    "normal": "https://cards.scryfall.io/normal/front/d/3/d34acd18-ad99-468d-b503-b0f58516a13a.jpg?1782792358",
+    "large": "https://cards.scryfall.io/large/front/d/3/d34acd18-ad99-468d-b503-b0f58516a13a.jpg?1782792358",
+    "png": "https://cards.scryfall.io/png/front/d/3/d34acd18-ad99-468d-b503-b0f58516a13a.png?1782792358",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/d/3/d34acd18-ad99-468d-b503-b0f58516a13a.jpg?1782792358",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/d/3/d34acd18-ad99-468d-b503-b0f58516a13a.jpg?1782792358",
+    "thumb": "https://cards.scryfall.io/thumb/front/d/3/d34acd18-ad99-468d-b503-b0f58516a13a.webp?1782792358",
+    "grid": "https://cards.scryfall.io/grid/front/d/3/d34acd18-ad99-468d-b503-b0f58516a13a.webp?1782792358",
+    "display": "https://cards.scryfall.io/display/front/d/3/d34acd18-ad99-468d-b503-b0f58516a13a.webp?1782792358",
+    "art": "https://cards.scryfall.io/art/front/d/3/d34acd18-ad99-468d-b503-b0f58516a13a.webp?1782792358",
+    "crop": "https://cards.scryfall.io/crop/front/d/3/d34acd18-ad99-468d-b503-b0f58516a13a.webp?1782792358"
+  },
+  "mana_cost": "",
+  "cmc": 0.0,
+  "type_line": "Basic Land — Island",
+  "printed_type_line": "Terreno Básico — Ilha",
+  "oracle_text": "({T}: Add {U}.)",
+  "colors": [],
+  "color_identity": [
+    "U"
+  ],
+  "keywords": [],
+  "produced_mana": [
+    "U"
+  ],
+  "legalities": {
+    "standard": "legal",
+    "future": "legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "legal",
+    "paupercommander": "legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "legal",
+    "predh": "legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo",
+    "arena"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "3ed80bb6-77e8-4aa7-8262-95377a38aba1",
+  "set": "mh3",
+  "set_name": "Modern Horizons 3",
+  "set_type": "draft_innovation",
+  "set_uri": "https://api.scryfall.com/sets/3ed80bb6-77e8-4aa7-8262-95377a38aba1",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Amh3&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/mh3?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/d34acd18-ad99-468d-b503-b0f58516a13a/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Ab2c6aa39-2d2a-459c-a555-fb48ba993373&unique=prints",
+  "collector_number": "305",
+  "digital": false,
+  "rarity": "common",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Samuele Bandini",
+  "artist_ids": [
+    "f16f5903-990f-4ffe-88fb-fd54d0d8752b"
+  ],
+  "illustration_id": "e149b206-1e32-461a-9595-94c1b659d702",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": true,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "promo_types": [
+    "boosterfun"
+  ],
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=660956&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DIsland",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DIsland",
+    "edhrec": "https://edhrec.com/route/?cc=Island"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DIsland%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Island&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Island&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

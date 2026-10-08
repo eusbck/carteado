@@ -1,0 +1,138 @@
+{
+  "object": "card",
+  "id": "e7d74d04-331b-4db7-9f69-6efc3f088b4c",
+  "oracle_id": "ba069664-9f92-47c7-b556-9e5143a22579",
+  "multiverse_ids": [
+    381725
+  ],
+  "name": "Doomwake Giant",
+  "printed_name": "Gigante do Rastro Funesto",
+  "lang": "pt",
+  "released_at": "2014-05-02",
+  "uri": "https://api.scryfall.com/cards/e7d74d04-331b-4db7-9f69-6efc3f088b4c",
+  "scryfall_uri": "https://scryfall.com/card/jou/66/pt/gigante-do-rastro-funesto-(doomwake-giant)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-07-02T05:52:36Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/e/7/e7d74d04-331b-4db7-9f69-6efc3f088b4c.jpg?1782971556",
+    "normal": "https://cards.scryfall.io/normal/front/e/7/e7d74d04-331b-4db7-9f69-6efc3f088b4c.jpg?1782971556",
+    "large": "https://cards.scryfall.io/large/front/e/7/e7d74d04-331b-4db7-9f69-6efc3f088b4c.jpg?1782971556",
+    "png": "https://cards.scryfall.io/png/front/e/7/e7d74d04-331b-4db7-9f69-6efc3f088b4c.png?1782971556",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/e/7/e7d74d04-331b-4db7-9f69-6efc3f088b4c.jpg?1782971556",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/e/7/e7d74d04-331b-4db7-9f69-6efc3f088b4c.jpg?1782971556",
+    "thumb": "https://cards.scryfall.io/thumb/front/e/7/e7d74d04-331b-4db7-9f69-6efc3f088b4c.webp?1782971556",
+    "grid": "https://cards.scryfall.io/grid/front/e/7/e7d74d04-331b-4db7-9f69-6efc3f088b4c.webp?1782971556",
+    "display": "https://cards.scryfall.io/display/front/e/7/e7d74d04-331b-4db7-9f69-6efc3f088b4c.webp?1782971556",
+    "art": "https://cards.scryfall.io/art/front/e/7/e7d74d04-331b-4db7-9f69-6efc3f088b4c.webp?1782971556",
+    "crop": "https://cards.scryfall.io/crop/front/e/7/e7d74d04-331b-4db7-9f69-6efc3f088b4c.webp?1782971556"
+  },
+  "mana_cost": "{4}{B}",
+  "cmc": 5.0,
+  "type_line": "Enchantment Creature — Giant",
+  "printed_type_line": "Criatura Encantamento — Gigante",
+  "oracle_text": "Constellation — Whenever this creature or another enchantment you control enters, creatures your opponents control get -1/-1 until end of turn.",
+  "printed_text": "Constelação — Toda vez que Gigante do Rastro Funesto ou outro encantamento entra no campo de batalha sob seu controle, as criaturas que seus oponentes controlam recebem -1/-1 até o final do turno.",
+  "power": "4",
+  "toughness": "6",
+  "colors": [
+    "B"
+  ],
+  "color_identity": [
+    "B"
+  ],
+  "keywords": [
+    "Constellation"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "not_legal",
+    "timeless": "not_legal",
+    "gladiator": "not_legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "not_legal",
+    "competitivebrawl": "not_legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "not_legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": false,
+  "variation": false,
+  "set_id": "204d2dca-1887-4721-9558-164aa7bbeb4f",
+  "set": "jou",
+  "set_name": "Journey into Nyx",
+  "set_type": "expansion",
+  "set_uri": "https://api.scryfall.com/sets/204d2dca-1887-4721-9558-164aa7bbeb4f",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Ajou&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/jou?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/e7d74d04-331b-4db7-9f69-6efc3f088b4c/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Aba069664-9f92-47c7-b556-9e5143a22579&unique=prints",
+  "collector_number": "66",
+  "digital": false,
+  "rarity": "rare",
+  "flavor_text": "O pavor o precede. Um cheiro pútrido o acompanha. A morte segue em seu rastro.",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Kev Walker",
+  "artist_ids": [
+    "f366a0ee-a0cd-466d-ba6a-90058c7a31a6"
+  ],
+  "illustration_id": "ca116a57-78c2-45fb-9eed-d9097192bb0a",
+  "border_color": "black",
+  "frame": "2003",
+  "frame_effects": [
+    "enchantment"
+  ],
+  "full_art": false,
+  "textless": false,
+  "booster": true,
+  "story_spotlight": false,
+  "edhrec_rank": 1845,
+  "penny_rank": 4463,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=381725&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DDoomwake%2BGiant",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DDoomwake%2BGiant",
+    "edhrec": "https://edhrec.com/route/?cc=Doomwake+Giant"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DDoomwake%2BGiant%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Doomwake+Giant&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Doomwake+Giant&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

@@ -1,0 +1,136 @@
+{
+  "object": "card",
+  "id": "b963552b-f2b8-4d72-bc81-54671bdfb9d2",
+  "oracle_id": "1b704798-0c69-4c18-ac7e-42933ce90028",
+  "multiverse_ids": [
+    658165
+  ],
+  "name": "Pest Infestation",
+  "printed_name": "Infestação de Praga",
+  "lang": "pt",
+  "released_at": "2024-04-19",
+  "uri": "https://api.scryfall.com/cards/b963552b-f2b8-4d72-bc81-54671bdfb9d2",
+  "scryfall_uri": "https://scryfall.com/card/otp/30/pt/infesta%C3%A7%C3%A3o-de-praga-(pest-infestation)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T04:58:59Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/b/9/b963552b-f2b8-4d72-bc81-54671bdfb9d2.jpg?1782795539",
+    "normal": "https://cards.scryfall.io/normal/front/b/9/b963552b-f2b8-4d72-bc81-54671bdfb9d2.jpg?1782795539",
+    "large": "https://cards.scryfall.io/large/front/b/9/b963552b-f2b8-4d72-bc81-54671bdfb9d2.jpg?1782795539",
+    "png": "https://cards.scryfall.io/png/front/b/9/b963552b-f2b8-4d72-bc81-54671bdfb9d2.png?1782795539",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/b/9/b963552b-f2b8-4d72-bc81-54671bdfb9d2.jpg?1782795539",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/b/9/b963552b-f2b8-4d72-bc81-54671bdfb9d2.jpg?1782795539",
+    "thumb": "https://cards.scryfall.io/thumb/front/b/9/b963552b-f2b8-4d72-bc81-54671bdfb9d2.webp?1782795539",
+    "grid": "https://cards.scryfall.io/grid/front/b/9/b963552b-f2b8-4d72-bc81-54671bdfb9d2.webp?1782795539",
+    "display": "https://cards.scryfall.io/display/front/b/9/b963552b-f2b8-4d72-bc81-54671bdfb9d2.webp?1782795539",
+    "art": "https://cards.scryfall.io/art/front/b/9/b963552b-f2b8-4d72-bc81-54671bdfb9d2.webp?1782795539",
+    "crop": "https://cards.scryfall.io/crop/front/b/9/b963552b-f2b8-4d72-bc81-54671bdfb9d2.webp?1782795539"
+  },
+  "mana_cost": "{X}{X}{G}",
+  "cmc": 1.0,
+  "type_line": "Sorcery",
+  "printed_type_line": "Feitiço",
+  "oracle_text": "Destroy up to X target artifacts and/or enchantments. Create twice X 1/1 black and green Pest creature tokens with \"When this token dies, you gain 1 life.\"",
+  "printed_text": "Destrua até X artefatos e/ou encantamentos alvo. Crie duas vezes X fichas de criatura Peste preta e verde 1/1 com \"Quando esta criatura morre, você ganha 1 ponto de vida\".",
+  "colors": [
+    "G"
+  ],
+  "color_identity": [
+    "G"
+  ],
+  "keywords": [],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "not_legal",
+    "modern": "not_legal",
+    "legacy": "legal",
+    "pauper": "not_legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "not_legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo",
+    "arena"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": true,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil",
+    "foil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "8b51294d-fc54-410c-83b2-0168837ede87",
+  "set": "otp",
+  "set_name": "Breaking News",
+  "set_type": "masterpiece",
+  "set_uri": "https://api.scryfall.com/sets/8b51294d-fc54-410c-83b2-0168837ede87",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Aotp&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/otp?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/b963552b-f2b8-4d72-bc81-54671bdfb9d2/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A1b704798-0c69-4c18-ac7e-42933ce90028&unique=prints",
+  "collector_number": "30",
+  "digital": false,
+  "rarity": "rare",
+  "flavor_text": "Problema com pragas ameaça restaurante. \"Nunca pensei que fosse sentir falta dos ratos\", lamenta proprietário",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Michael Walsh",
+  "artist_ids": [
+    "6a86bcd5-4829-4bc6-ad82-a4448b28d089"
+  ],
+  "illustration_id": "f41ae7ab-619d-4474-afb2-d12cd280e14e",
+  "border_color": "borderless",
+  "frame": "2015",
+  "security_stamp": "oval",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "promo_types": [
+    "boosterfun"
+  ],
+  "edhrec_rank": 1067,
+  "penny_rank": 469,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=658165&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DPest%2BInfestation",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DPest%2BInfestation",
+    "edhrec": "https://edhrec.com/route/?cc=Pest+Infestation"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DPest%2BInfestation%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Pest+Infestation&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Pest+Infestation&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

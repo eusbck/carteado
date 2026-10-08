@@ -1,0 +1,137 @@
+{
+  "object": "card",
+  "id": "8a4f197b-6528-4e75-b237-937be1bfb44c",
+  "oracle_id": "f08f7814-4585-41dd-b82e-ed2ef5e24242",
+  "multiverse_ids": [
+    633997
+  ],
+  "name": "Transcendent Envoy",
+  "printed_name": "Enviado Transcendente",
+  "lang": "pt",
+  "released_at": "2023-09-08",
+  "uri": "https://api.scryfall.com/cards/8a4f197b-6528-4e75-b237-937be1bfb44c",
+  "scryfall_uri": "https://scryfall.com/card/woc/81/pt/enviado-transcendente-(transcendent-envoy)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T09:44:10Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/8/a/8a4f197b-6528-4e75-b237-937be1bfb44c.jpg?1782812650",
+    "normal": "https://cards.scryfall.io/normal/front/8/a/8a4f197b-6528-4e75-b237-937be1bfb44c.jpg?1782812650",
+    "large": "https://cards.scryfall.io/large/front/8/a/8a4f197b-6528-4e75-b237-937be1bfb44c.jpg?1782812650",
+    "png": "https://cards.scryfall.io/png/front/8/a/8a4f197b-6528-4e75-b237-937be1bfb44c.png?1782812650",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/8/a/8a4f197b-6528-4e75-b237-937be1bfb44c.jpg?1782812650",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/8/a/8a4f197b-6528-4e75-b237-937be1bfb44c.jpg?1782812650",
+    "thumb": "https://cards.scryfall.io/thumb/front/8/a/8a4f197b-6528-4e75-b237-937be1bfb44c.webp?1782812650",
+    "grid": "https://cards.scryfall.io/grid/front/8/a/8a4f197b-6528-4e75-b237-937be1bfb44c.webp?1782812650",
+    "display": "https://cards.scryfall.io/display/front/8/a/8a4f197b-6528-4e75-b237-937be1bfb44c.webp?1782812650",
+    "art": "https://cards.scryfall.io/art/front/8/a/8a4f197b-6528-4e75-b237-937be1bfb44c.webp?1782812650",
+    "crop": "https://cards.scryfall.io/crop/front/8/a/8a4f197b-6528-4e75-b237-937be1bfb44c.webp?1782812650"
+  },
+  "mana_cost": "{1}{W}",
+  "cmc": 2.0,
+  "type_line": "Enchantment Creature — Griffin",
+  "printed_type_line": "Criatura Encantamento — Grifo",
+  "oracle_text": "Flying\nAura spells you cast cost {1} less to cast.",
+  "printed_text": "Voar\nAs mágicas de Aura que você conjura custam {1} a menos para serem conjuradas.",
+  "power": "1",
+  "toughness": "2",
+  "colors": [
+    "W"
+  ],
+  "color_identity": [
+    "W"
+  ],
+  "keywords": [
+    "Flying"
+  ],
+  "legalities": {
+    "standard": "not_legal",
+    "future": "not_legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "not_legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "not_legal",
+    "paupercommander": "legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "51c0814a-2db2-4182-9aac-77340e9a540d",
+  "set": "woc",
+  "set_name": "Wilds of Eldraine Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/51c0814a-2db2-4182-9aac-77340e9a540d",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Awoc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/woc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/8a4f197b-6528-4e75-b237-937be1bfb44c/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Af08f7814-4585-41dd-b82e-ed2ef5e24242&unique=prints",
+  "collector_number": "81",
+  "digital": false,
+  "rarity": "common",
+  "flavor_text": "\"Os primeiros grifos foram criados pelos deuses para capturar estrelas cadentes. A eles foram dados os olhos mais aguçados e as asas mais velozes, e eles foram enviados a velar acima das nuvens.\"\n— Cosmogonia",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Zezhou Chen",
+  "artist_ids": [
+    "810677e5-a502-4c03-b726-78cd808a75d4"
+  ],
+  "illustration_id": "d7e143d6-9652-42b5-894c-e61698e57aed",
+  "border_color": "black",
+  "frame": "2015",
+  "frame_effects": [
+    "enchantment"
+  ],
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 2853,
+  "penny_rank": 8308,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=633997&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DTranscendent%2BEnvoy",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DTranscendent%2BEnvoy",
+    "edhrec": "https://edhrec.com/route/?cc=Transcendent+Envoy"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DTranscendent%2BEnvoy%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Transcendent+Envoy&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Transcendent+Envoy&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}

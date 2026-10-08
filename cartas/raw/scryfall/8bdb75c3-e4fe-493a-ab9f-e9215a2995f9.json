@@ -1,0 +1,132 @@
+{
+  "object": "card",
+  "id": "8bdb75c3-e4fe-493a-ab9f-e9215a2995f9",
+  "oracle_id": "dbba75f5-2404-4bd5-982b-f6c4effa5316",
+  "multiverse_ids": [
+    633983
+  ],
+  "name": "Ethereal Armor",
+  "printed_name": "Armadura Etérea",
+  "lang": "pt",
+  "released_at": "2023-09-08",
+  "uri": "https://api.scryfall.com/cards/8bdb75c3-e4fe-493a-ab9f-e9215a2995f9",
+  "scryfall_uri": "https://scryfall.com/card/woc/67/pt/armadura-et%C3%A9rea-(ethereal-armor)?utm_source=api",
+  "layout": "normal",
+  "highres_image": false,
+  "image_status": "lowres",
+  "image_updated_at": "2026-06-30T09:44:58Z",
+  "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/8/b/8bdb75c3-e4fe-493a-ab9f-e9215a2995f9.jpg?1782812698",
+    "normal": "https://cards.scryfall.io/normal/front/8/b/8bdb75c3-e4fe-493a-ab9f-e9215a2995f9.jpg?1782812698",
+    "large": "https://cards.scryfall.io/large/front/8/b/8bdb75c3-e4fe-493a-ab9f-e9215a2995f9.jpg?1782812698",
+    "png": "https://cards.scryfall.io/png/front/8/b/8bdb75c3-e4fe-493a-ab9f-e9215a2995f9.png?1782812698",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/8/b/8bdb75c3-e4fe-493a-ab9f-e9215a2995f9.jpg?1782812698",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/8/b/8bdb75c3-e4fe-493a-ab9f-e9215a2995f9.jpg?1782812698",
+    "thumb": "https://cards.scryfall.io/thumb/front/8/b/8bdb75c3-e4fe-493a-ab9f-e9215a2995f9.webp?1782812698",
+    "grid": "https://cards.scryfall.io/grid/front/8/b/8bdb75c3-e4fe-493a-ab9f-e9215a2995f9.webp?1782812698",
+    "display": "https://cards.scryfall.io/display/front/8/b/8bdb75c3-e4fe-493a-ab9f-e9215a2995f9.webp?1782812698",
+    "art": "https://cards.scryfall.io/art/front/8/b/8bdb75c3-e4fe-493a-ab9f-e9215a2995f9.webp?1782812698",
+    "crop": "https://cards.scryfall.io/crop/front/8/b/8bdb75c3-e4fe-493a-ab9f-e9215a2995f9.webp?1782812698"
+  },
+  "mana_cost": "{W}",
+  "cmc": 1.0,
+  "type_line": "Enchantment — Aura",
+  "printed_type_line": "Encantamento — Aura",
+  "oracle_text": "Enchant creature\nEnchanted creature gets +1/+1 for each enchantment you control and has first strike.",
+  "printed_text": "Encantar criatura\nA criatura encantada recebe +1/+1 para cada encantamento que você controla e tem iniciativa.",
+  "colors": [
+    "W"
+  ],
+  "color_identity": [
+    "W"
+  ],
+  "keywords": [
+    "Enchant"
+  ],
+  "legalities": {
+    "standard": "legal",
+    "future": "legal",
+    "historic": "legal",
+    "timeless": "legal",
+    "gladiator": "legal",
+    "pioneer": "legal",
+    "modern": "legal",
+    "legacy": "legal",
+    "pauper": "legal",
+    "vintage": "legal",
+    "penny": "not_legal",
+    "commander": "legal",
+    "oathbreaker": "legal",
+    "standardbrawl": "legal",
+    "brawl": "legal",
+    "competitivebrawl": "legal",
+    "alchemy": "legal",
+    "paupercommander": "legal",
+    "duel": "legal",
+    "oldschool": "not_legal",
+    "premodern": "not_legal",
+    "predh": "not_legal",
+    "tlr": "legal"
+  },
+  "games": [
+    "paper",
+    "mtgo"
+  ],
+  "reserved": false,
+  "game_changer": false,
+  "foil": false,
+  "nonfoil": true,
+  "finishes": [
+    "nonfoil"
+  ],
+  "oversized": false,
+  "promo": false,
+  "reprint": true,
+  "variation": false,
+  "set_id": "51c0814a-2db2-4182-9aac-77340e9a540d",
+  "set": "woc",
+  "set_name": "Wilds of Eldraine Commander",
+  "set_type": "commander",
+  "set_uri": "https://api.scryfall.com/sets/51c0814a-2db2-4182-9aac-77340e9a540d",
+  "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Awoc&unique=prints",
+  "scryfall_set_uri": "https://scryfall.com/sets/woc?utm_source=api",
+  "rulings_uri": "https://api.scryfall.com/cards/8bdb75c3-e4fe-493a-ab9f-e9215a2995f9/rulings",
+  "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Adbba75f5-2404-4bd5-982b-f6c4effa5316&unique=prints",
+  "collector_number": "67",
+  "digital": false,
+  "rarity": "common",
+  "flavor_text": "O metal é escasso, os ferreiros são caros e armaduras de placas são pesadas.",
+  "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  "artist": "Daarken",
+  "artist_ids": [
+    "e607a0d4-fc12-4c01-9e3f-501f5269b9cb"
+  ],
+  "illustration_id": "c6c7678b-e428-4537-9b6f-59b35834d68e",
+  "border_color": "black",
+  "frame": "2015",
+  "full_art": false,
+  "textless": false,
+  "booster": false,
+  "story_spotlight": false,
+  "edhrec_rank": 1101,
+  "penny_rank": 919,
+  "prices": {
+    "usd": null,
+    "usd_foil": null,
+    "usd_etched": null,
+    "eur": null,
+    "eur_foil": null,
+    "tix": null
+  },
+  "related_uris": {
+    "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=633983&printed=true",
+    "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DEthereal%2BArmor",
+    "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DEthereal%2BArmor",
+    "edhrec": "https://edhrec.com/route/?cc=Ethereal+Armor"
+  },
+  "purchase_uris": {
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DEthereal%2BArmor%26view%3Dgrid",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Ethereal+Armor&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Ethereal+Armor&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+  }
+}
