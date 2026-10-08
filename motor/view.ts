@@ -40,6 +40,8 @@ export interface ObjView {
   prepared: boolean;
   classLevel: number;
   goaded: boolean;
+  /** emblema na zona de comando (CR 114): não é carta; mostrar com as habilidades (abilities) */
+  emblem?: boolean;
 }
 
 export interface StackView {
@@ -142,6 +144,7 @@ export function objView(g: G, id: ObjId, viewer: PlayerId | null): ObjView {
     prepared: o.prepared,
     classLevel: o.classLevel,
     goaded: o.goadedBy.length > 0 || (o.zone === 'battlefield' && hooks(g, 'goads').some((h) => h.fn(h.ctx, id))),
+    ...(registry.emblems.has(o.def) ? { emblem: true } : {}),
   };
 }
 

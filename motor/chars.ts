@@ -38,7 +38,7 @@ export function modLayer(m: Mod, cda = false): Layer | null {
 // ---------------------------------------------------------------------------
 export function abilitiesOfDef(defName: string, face: number): AbilityInst[] {
   const token = registry.tokens.get(defName);
-  const list: AbilityDef[] = token ? token.abilities : (cardDef(defName)?.faces[face]?.abilities ?? []);
+  const list: AbilityDef[] = token ? token.abilities : (cardDef(defName)?.faces[face]?.abilities ?? registry.emblems.get(defName)?.abilities ?? []);
   return list.map((a) => ({ id: a.id!, kw: a.kw, param: a.param }));
 }
 
@@ -78,6 +78,9 @@ function printedCharsNovas(defName: string, face: number, owner: PlayerId): Char
       abilities: abilitiesOfDef(defName, 0), power: token.power, toughness: token.toughness, loyalty: null, controller: owner,
     };
   }
+  // emblema (CR 114.3): sem tipos, custo nem cor; só as habilidades
+  const emblema = registry.emblems.get(defName);
+  if (emblema) return { name: emblema.name, manaCost: null, manaValue: 0, colors: [], supertypes: [], types: [], subtypes: [], abilities: abilitiesOfDef(defName, 0), power: null, toughness: null, loyalty: null, controller: owner };
   const card = oracle(defName);
   const f = card.faces[face] ?? card.faces[0];
   const abilities = abilitiesOfDef(defName, face);

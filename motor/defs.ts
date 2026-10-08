@@ -202,6 +202,14 @@ export interface RuleHooks {
   untapDuringOthers?: (c: SCtx, player: PlayerId) => boolean;
   /** goad contínuo ("a criatura encantada está goadada", CR 701.15): c.you goada a criatura */
   goads?: (c: SCtx, creature: ObjId) => boolean;
+  /** "Você não pode perder o jogo" (CR 104.3, 704.5a-c, 704.6c): as ações de estado não fazem o jogador perder */
+  cantLoseGame?: (c: SCtx, player: PlayerId) => boolean;
+  /** "[permanentes] não podem receber marcadores [tipo]" (CR 122): vale também para os que entram com marcadores */
+  cantHaveCountersPut?: (c: SCtx, kind: string, target: { controller: PlayerId; chars: Chars }) => boolean;
+  /** proteção de um jogador (CR 702.16b, 702.16e): qualidades no formato de protectionMatches ('type:Creature'…) */
+  playerProtection?: (c: SCtx, player: PlayerId) => unknown[];
+  /** "Se você fosse perder mana não gasta, ela se torna incolor" (Omnath, Locus of the Void; CR 106.4, 500.5) */
+  unspentManaBecomesColorless?: (c: SCtx, player: PlayerId) => boolean;
 }
 
 export interface SpellInfoForCost {
@@ -355,6 +363,14 @@ export interface TokenDef {
   image?: string;
 }
 
+/** emblema (CR 114): só tem as habilidades, que funcionam na zona de comando (114.3, 114.4) */
+export interface EmblemDef {
+  id: string;
+  /** nome para a mesa e o registro (a maioria dos emblemas não tem nome, CR 114.3) */
+  name: string;
+  abilities: AbilityDef[];
+}
+
 // ---------------------------------------------------------------------------
 // Registro
 // ---------------------------------------------------------------------------
@@ -364,6 +380,7 @@ export const registry = {
   abilities: new Map<string, AbilityDef>(),
   /** funções nomeadas usadas por efeitos guardados no estado (restrições de mana etc.) */
   fns: new Map<string, (...args: never[]) => unknown>(),
+  emblems: new Map<string, EmblemDef>(),
 };
 
 function registerAbilities(owner: string, list: AbilityDef[] | undefined, prefix: string): void {
@@ -385,6 +402,14 @@ export function defineCard(def: CardDef): CardDef {
 export function defineToken(def: TokenDef): TokenDef {
   registerAbilities(`token:${def.id}`, def.abilities, '#');
   registry.tokens.set(def.id, def);
+  return def;
+}
+
+/** emblema (CR 114.4): as habilidades funcionam na zona de comando */
+export function defineEmblem(def: EmblemDef): EmblemDef {
+  for (const a of def.abilities) a.zones = ['command'];
+  registerAbilities(`emblem:${def.id}`, def.abilities, '#');
+  registry.emblems.set(def.id, def);
   return def;
 }
 
