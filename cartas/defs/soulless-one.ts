@@ -17,7 +17,7 @@ export default defineCard({
   faces: [{
     abilities: [
       // habilidade que define característica: camada 7a (CR 604.3, 613.4a); efeitos de outras camadas vêm depois.
-      // O motor aplica estáticas só a permanentes: fora do campo a força/resistência fica sem valor (ver relatório)
+      // Vale em todas as zonas (na mão, no cemitério e na pilha também)
       selfGets((c) => { const n = contagem(c); return [{ k: 'setPT', p: n, t: n }]; },
         'A força e a resistência de Soulless One são iguais ao número de Zombies no campo mais o número de cartas de Zombie em todos os cemitérios.',
         { cda: true }),

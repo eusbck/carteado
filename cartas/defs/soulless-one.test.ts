@@ -23,6 +23,12 @@ describe('Soulless One', () => {
     // Stitcher's Supplier agora é carta no cemitério; a ficha deixou de existir
     expect(tg.pt(tg.bf('Soulless One'))).toEqual([2, 2]);
   });
+  it('CR 604.3: fora do campo também — na mão e no cemitério', () => {
+    const tg = setup({ battlefield: [[{ name: 'Zombie 2/2', token: true }], []], hand: [['Soulless One'], []], graveyard: [['Undead Augur'], ['Soulless One']] });
+    // campo: a ficha (1); cemitérios: Undead Augur e o Soulless One de Bruno (2)
+    expect(tg.pt(tg.find('Soulless One', 'hand', 0)!)).toEqual([3, 3]);
+    expect(tg.pt(tg.find('Soulless One', 'graveyard', 1)!)).toEqual([3, 3]);
+  });
   it('CR 613.4a: camada 7a; bônus de outras camadas somam por cima', () => {
     const tg = setup({ battlefield: [['Soulless One', 'Lord of the Undead'], []] });
     const s = tg.bf('Soulless One');
