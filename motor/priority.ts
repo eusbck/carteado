@@ -1,11 +1,11 @@
 // Ações possíveis com prioridade (CR 117.1) e sua execução.
 
 import { putOntoBattlefield } from './actions.ts';
-import { abilityDefs, chars, controllerOf, hasKw, hooks, nameOf } from './chars.ts';
+import { abilityDefs, chars, colorsOf, controllerOf, hasKw, hooks, nameOf } from './chars.ts';
 import { activateManaAbility, canAfford, canPayParts, manaOptions, manaPart } from './costs.ts';
 import { cardDef, type ActivatedDef, type CastPermission, type Gen, type SCtx } from './defs.ts';
 import type { G } from './game-context.ts';
-import { formatCost, parseCost, reduceGeneric } from './mana.ts';
+import { convokeAll, formatCost, parseCost, reduceGeneric } from './mana.ts';
 import { doSuspend, manifestFaceUpCost, suspendParams, turnFaceUp } from './mecanicas.ts';
 import { activateAbility, candidateTargets, canActivate, castSpell, chooseModes, spellTargetSpecs, totalSpellCost, faceDefOf, type CastMethod } from './stack.ts';
 import type { ObjId, PlayerId, PriorityAction, ZoneName } from './types.ts';
@@ -124,6 +124,12 @@ export function canStartCast(g: G, p: PlayerId, opt: CastOption): boolean {
   let cost = totalSpellCost(g, p, o, opt.method, { x: 0, targets: targetsGuess, paid: {} });
   // delve: cada carta do cemitério pode pagar {1} do genérico (CR 702.66a)
   if (faceDefOf(o)?.delve) cost = reduceGeneric(cost, g.state.zones.graveyard[p].filter((id) => id !== opt.obj).length);
+  // convoke: as criaturas desviradas também pagam (CR 702.51a)
+  if (faceDefOf(o)?.convoke) {
+    const cores = g.state.zones.battlefield.filter((id) => controllerOf(g, id) === p && chars(g, id).types.includes('Creature') && !s.objects[id].tapped)
+      .map((id) => colorsOf(g, id)).sort((a, b) => a.length - b.length);
+    cost = convokeAll(cost, cores).cost;
+  }
   return canAfford(g, p, cost, { purpose: { kind: 'spell', obj: opt.obj }, anyType: opt.method.permission?.anyType });
 }
 

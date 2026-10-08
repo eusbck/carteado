@@ -7,7 +7,7 @@ import { addEffect } from './state.ts';
 import { shuffle } from './rng.ts';
 import { chooseItems, objItem, playerItem, yesNo } from './ask.ts';
 import { chars, controllerOf, currentFace, isCreature, isLand, isTransform, nameOf, printedChars } from './chars.ts';
-import { payMana } from './costs.ts';
+import { canAfford, payMana } from './costs.ts';
 
 import { defineAbility, type AbilityDef, type ActivatedDef, type AdditionalCostDef, type Gen, type ReplacementDef, type StaticDef, type TriggeredDef } from './defs.ts';
 import { activated, asEnters, keyword, on, t, tgt, triggered } from './dsl.ts';
@@ -71,10 +71,19 @@ export function* proliferate(g: G, p: PlayerId): Gen<void> {
 // ---------------------------------------------------------------------------
 // Resguardo (CR 702.21)
 // ---------------------------------------------------------------------------
-/** custo de resguardo: custo de mana ("{2}") ou "blight:N" (Ward—Blight N) */
+/** custo de resguardo: custo de mana ("{2}"), "blight:N" (Ward—Blight N) ou com vida, como no Oracle ("Pay 2 life",
+ *  "{3}, Pay 3 life") */
 function textoCusto(custo: string): string {
   const b = custo.match(/^blight:(\d+)$/);
-  return b ? `blight ${b[1]}` : custo;
+  if (b) return `blight ${b[1]}`;
+  const { mana, vida } = custoComVida(custo);
+  if (vida === 0) return custo;
+  return mana ? `${mana} e pagar ${vida} de vida` : `pagar ${vida} de vida`;
+}
+
+function custoComVida(custo: string): { mana: string; vida: number } {
+  const v = custo.match(/Pay (\d+) life/i);
+  return { mana: custo.replace(/,?\s*Pay \d+ life/i, '').trim(), vida: v ? Number(v[1]) : 0 };
 }
 
 function gatilhoResguardo(custo: string): TriggeredDef {
@@ -93,6 +102,17 @@ function gatilhoResguardo(custo: string): TriggeredDef {
       const temCriatura = c.g.state.zones.battlefield.some((id) => isCreature(c.g, id) && controllerOf(c.g, id) === quem);
       if (temCriatura && (yield* yesNo(c.g, quem, `Resguardo de ${nameOf(c.g, c.source)}: fazer blight ${b[1]} para não ter a mágica ou habilidade anulada?`))) {
         pagou = (yield* blight(c.g, quem, Number(b[1]))) !== null;
+      }
+    } else if (custoComVida(custo).vida > 0) {
+      // pagar vida só com vida suficiente (CR 119.4); a mana e a vida são pagas juntas
+      const { mana, vida } = custoComVida(custo);
+      const temMana = !mana || canAfford(c.g, quem, parseCost(mana), { purpose: { kind: 'effect' } });
+      if (temMana && c.g.state.players[quem].life >= vida && (yield* yesNo(c.g, quem, `Resguardo de ${nameOf(c.g, c.source)}: ${textoCusto(custo)} para não ter a mágica ou habilidade anulada?`))) {
+        const pagouMana = !mana || (yield* payMana(c.g, quem, parseCost(mana), { purpose: { kind: 'effect' }, canCancel: true, label: `o resguardo de ${nameOf(c.g, c.source)}` })) !== null;
+        if (pagouMana && c.g.state.players[quem].life >= vida) {
+          loseLife(c.g, quem, vida, null);
+          pagou = true;
+        }
       }
     } else {
       pagou = yield* mayPay(c, quem, custo, `o resguardo de ${nameOf(c.g, c.source)}`);

@@ -81,6 +81,25 @@ export function genericOf(cost: ManaSymbol[]): number {
 }
 
 /** CR 118.7a: reduz só a parte genérica */
+/**
+ * Convoke (CR 702.51a): uma criatura virada paga uma mana colorida de uma cor dela ou {1} do genérico. Paga primeiro
+ * um símbolo colorido que ela possa pagar (nunca é pior: o genérico qualquer mana paga). Devolve null se não ajuda.
+ */
+export function convokeOne(cost: ManaSymbol[], colors: Color[]): ManaSymbol[] | null {
+  const i = cost.findIndex((s) => ((s.k === 'color' || s.k === 'phyrexian' || s.k === 'monohybrid') && colors.includes(s.c)) || (s.k === 'hybrid' && (colors.includes(s.a) || colors.includes(s.b))));
+  if (i >= 0) return [...cost.slice(0, i), ...cost.slice(i + 1)];
+  if (genericOf(cost) > 0) return reduceGeneric(cost, 1);
+  return null;
+}
+
+/** custo depois de virar estas criaturas para o convoke (cores de cada uma), na ordem */
+export function convokeAll(cost: ManaSymbol[], creatures: Color[][]): { cost: ManaSymbol[]; used: number[] } {
+  let c = cost;
+  const used: number[] = [];
+  creatures.forEach((cores, i) => { const n = convokeOne(c, cores); if (n) { c = n; used.push(i); } });
+  return { cost: c, used };
+}
+
 export function reduceGeneric(cost: ManaSymbol[], amount: number): ManaSymbol[] {
   if (amount <= 0) return cost;
   let left = amount;

@@ -5,7 +5,7 @@ import { attach, controlledBy, draw, moveObjects, searchLibrary, shuffleLibrary,
 import { chars, controllerOf, hasKw, isCreature, isLand, isType, manaValue, nameOf, power, toughness } from './chars.ts';
 import type {
   ActivatedDef, CostPart, Ctx, EffectFn, Gen, ManaAbilityDef, ReplacementDef, SCtx, StaticDef, TargetSpec, TriggerCtx,
-  TriggeredDef, TriggerSpec, AltCastDef, AdditionalCostDef, ModeSpec, EnterEvent,
+  TriggeredDef, TriggerSpec, AltCastDef, AdditionalCostDef, ModeSpec, EnterEvent, FaceDef,
 } from './defs.ts';
 import type { GameEvent } from './events.ts';
 import type { G } from './game-context.ts';
@@ -330,6 +330,11 @@ export function basicLandcycling(costText: string): ActivatedDef {
 /** Retrospectiva (CR 702.34) */
 export function flashback(manaCost: string, parts: CostPart[] = []): AltCastDef {
   return { key: 'flashback', label: `retrospectiva ${manaCost}`, zone: 'graveyard', mana: manaCost, parts, exileAfter: true };
+}
+
+/** "Gift a card" (CR 702.174e): o oponente escolhido compra uma carta. Vai em `gift` da face. */
+export function giftCard(): NonNullable<FaceDef['gift']> {
+  return { label: 'uma carta', *give(c, to) { yield* draw(c.g, to, 1); } };
 }
 
 /** Fuga (CR 702.138) */

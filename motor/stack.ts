@@ -4,15 +4,15 @@
 import { addEffect, createObject, destroyObject, moveRaw, newTimestamp } from './state.ts';
 import { ask, chooseItems, chooseNumber, objItem, playerItem, yesNo } from './ask.ts';
 import type { GameEvent } from './events.ts';
-import { moveObject, moveObjects, protectionMatches, putOntoBattlefield, enchantCandidates } from './actions.ts';
-import { abilityDefs, chars, controllerOf, hasKw, hooks, isType, kwParams, nameOf, printedChars, currentFace } from './chars.ts';
+import { moveObject, moveObjects, protectionMatches, putOntoBattlefield, enchantCandidates, tap } from './actions.ts';
+import { abilityDefs, chars, colorsOf, controllerOf, hasKw, hooks, isType, kwParams, nameOf, printedChars, currentFace } from './chars.ts';
 import { canAfford, canPayParts, manaOptions, manaPart, payMana, payParts, type PayContext } from './costs.ts';
 import {
   ability, cardDef, registry, type ActivatedDef, type AltCastDef, type CastPermission, type Ctx, type FaceDef, type Gen,
   type ModeSpec, type SCtx, type SpellDef, type TargetSpec, type TriggeredDef,
 } from './defs.ts';
 import type { G } from './game-context.ts';
-import { addGeneric, formatCost, manaValueOf, parseCost, reduceGeneric, withX } from './mana.ts';
+import { addGeneric, convokeOne, formatCost, manaValueOf, parseCost, reduceGeneric, withX } from './mana.ts';
 import { emit } from './triggers.ts';
 import type { Answer, GameObject, GameState, ManaSymbol, ObjId, PlayerId, StackInfo, TargetRef, ZoneName } from './types.ts';
 
@@ -116,7 +116,8 @@ export function spellTargetSpecs(o: GameObject, modes: number[], method?: string
   const specs: TargetSpec[] = [];
   const groups: { mode: number | null; start: number; count: number }[] = [];
   const sp = f?.spell;
-  if (sp?.targets) { groups.push({ mode: null, start: 0, count: sp.targets.length }); specs.push(...sp.targets); }
+  // sem o presente prometido, os alvos da parte do presente não são escolhidos (CR 702.174m)
+  if (sp?.targets) { groups.push({ mode: null, start: 0, count: sp.targets.length }); specs.push(...sp.targets.map((t) => (t.gift && !o.stack?.paid.gift ? { ...t, min: 0, max: 0 } : t))); }
   if (sp?.modes) pushModeSpecs(sp.modes, modes, specs, groups);
   const isAura = f?.enchant && (method === 'bestow' || !f.altCosts?.some((a) => a.asAura));
   if (isAura && f?.enchant) { groups.push({ mode: -1, start: specs.length, count: 1 }); specs.push(f.enchant); }
@@ -277,6 +278,19 @@ function* castInner(g: G, player: PlayerId, cardId: ObjId, method: CastMethod): 
     if (modes === null) return null;
     info.modes = modes;
   }
+  // Gift (CR 702.174a): custo adicional opcional de escolher um oponente que vai receber o presente
+  if (f?.gift) {
+    const ops = g.opponents(player).filter((p) => !g.state.players[p].left);
+    // prometido, os alvos da parte do presente passam a ser obrigatórios (CR 702.174m): sem alvo, não dá para prometer
+    const semAlvo = (sp?.targets ?? []).some((t) => t.gift && candidateTargets(g, t, player, spellId).length < (t.min ?? 1));
+    if (ops.length) {
+      const [r] = yield* chooseItems(g, player, `${label}: prometer ${f.gift.label} de presente a um oponente?`, [
+        { id: 'nao', label: 'Não prometer' },
+        ...ops.map((p) => ({ id: String(p), label: `Prometer a ${g.state.players[p].name}${semAlvo ? ' (sem alvo para a parte do presente)' : ''}`, disabled: semAlvo })),
+      ], 1, 1);
+      if (r !== 'nao') { info.paid.gift = true; info.data.giftTo = Number(r); }
+    }
+  }
   for (const ac of f?.additionalCosts ?? []) {
     if (ac.repeatable) {
       // não dá para repetir mais vezes do que é possível pagar (sacrificar: quantos permanentes servem)
@@ -352,6 +366,24 @@ function* castInner(g: G, player: PlayerId, cardId: ObjId, method: CastMethod): 
         const ids = yield* chooseItems(g, player, `Delve: escolha ${n} carta(s) do seu cemitério para exilar`, cem.map((id) => objItem(g, id, nameOf(g, id))), n, n);
         yield* moveObjects(g, ids.map((i) => ({ id: Number(i), to: 'exile' as ZoneName })), 'delve', player);
         cost = reduceGeneric(cost, n);
+      }
+    }
+  }
+  // Convoke (CR 702.51a): virar criaturas suas paga {1} ou uma mana da cor de cada uma, depois do custo total (ruling)
+  if (f?.convoke) {
+    const criaturas = g.state.zones.battlefield.filter((id) => controllerOf(g, id) === player && isType(g, id, 'Creature') && !g.state.objects[id].tapped);
+    const ajudam = criaturas.filter((id) => convokeOne(cost, colorsOf(g, id)) !== null);
+    if (ajudam.length) {
+      const total = cost.reduce((t, s) => t + (s.k === 'generic' ? s.n : s.k === 'X' ? 0 : 1), 0);
+      const ids = yield* chooseItems(g, player, `Convocar: vire criaturas suas para ajudar a pagar ${label} (cada uma paga {1} ou uma mana da cor dela)`,
+        ajudam.map((id) => objItem(g, id, nameOf(g, id))), 0, Math.min(ajudam.length, total));
+      // as de uma cor só pagam primeiro (as de várias cores ficam para o que sobrar)
+      const escolhidas = ids.map(Number).sort((a, b) => colorsOf(g, a).length - colorsOf(g, b).length);
+      for (const id of escolhidas) {
+        const novo = convokeOne(cost, colorsOf(g, id));
+        if (!novo) continue;
+        cost = novo;
+        tap(g, id);
       }
     }
   }
@@ -644,6 +676,12 @@ export function* resolveTop(g: G): Gen<void> {
   const f = faceDefOf(o);
   const sp = f?.spell;
   const ctx = makeCtx(g, o, targets, id);
+  // Gift (CR 702.174j): o oponente escolhido recebe o presente antes dos outros efeitos da mágica
+  const presenteado = st.paid.gift ? (st.data.giftTo as PlayerId | undefined) : undefined;
+  if (f?.gift && presenteado !== undefined && !g.state.players[presenteado].left) {
+    g.log(`${g.state.players[presenteado].name} recebe o presente de ${c.name}: ${f.gift.label}.`, { rule: '702.174j' });
+    yield* f.gift.give(ctx, presenteado);
+  }
   if (sp?.effect) {
     const base = groups.find((x) => x.mode === null);
     yield* sp.effect({ ...ctx, targets: base ? targets.slice(base.start, base.start + base.count) : [] });

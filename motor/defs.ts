@@ -65,6 +65,8 @@ export interface TargetSpec {
   differentFrom?: number[];
   /** escolhas extras com restrição entre os alvos escolhidos (soma de valores etc.) */
   validateSet?: (c: SCtx, chosen: TargetRef[]) => boolean;
+  /** alvo da parte que só vale se o presente foi prometido: sem presente, não se escolhe (CR 702.174m) */
+  gift?: boolean;
 }
 
 export interface ModeSpec {
@@ -202,6 +204,11 @@ export interface RuleHooks {
   untapDuringOthers?: (c: SCtx, player: PlayerId) => boolean;
   /** goad contínuo ("a criatura encantada está goadada", CR 701.15): c.you goada a criatura */
   goads?: (c: SCtx, creature: ObjId) => boolean;
+  /**
+   * substituição de um permanente que sairia do campo (CR 614.1a, 614.6: "morreria" = iria do campo para o cemitério):
+   * devolve o novo destino e, se for o caso, o que acontece junto ("exile em vez disso e crie uma ficha", Kalitas)
+   */
+  leavesBattlefield?: (c: SCtx, obj: GameObject, dest: ZoneName) => { dest: ZoneName; then?: () => Gen<void>; label?: string } | null;
 }
 
 export interface SpellInfoForCost {
@@ -326,6 +333,11 @@ export interface FaceDef {
   cantBeCountered?: boolean;
   /** Delve (CR 702.66): cartas exiladas do cemitério pagam {1} cada */
   delve?: boolean;
+  /** Convoke (CR 702.51): cada criatura virada ao conjurar paga {1} ou uma mana da cor dela */
+  convoke?: boolean;
+  /** Gift (CR 702.174): ao conjurar, pode prometer o presente a um oponente; em instantânea e feitiço ele o recebe
+   *  antes dos outros efeitos (702.174j). `give` dá o presente ao jogador escolhido. */
+  gift?: { label: string; give: (c: Ctx, to: PlayerId) => Gen<void> };
   /** pode ser conjurada como se tivesse flash nesta situação */
   flash?: boolean;
 }

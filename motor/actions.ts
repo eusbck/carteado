@@ -27,8 +27,8 @@ function isCommanderCard(g: G, o: GameObject): boolean {
   return o.card !== null && !!g.state.cards[o.card]?.isCommander;
 }
 
-/** destino final depois das substituições (CR 614, 616) */
-function* finalDestination(g: G, o: GameObject, to: ZoneName, cause: string): Gen<ZoneName> {
+/** destino final depois das substituições (CR 614, 616); o que a substituição faz junto vai para `depois` */
+function* finalDestination(g: G, o: GameObject, to: ZoneName, cause: string, depois: (() => Gen<void>)[] = []): Gen<ZoneName> {
   let dest = to;
   // carta de ficha de "flashback": sai da pilha para o exílio (CR 702.34a)
   if (o.zone === 'stack' && o.stack?.data.exileOnLeave && to !== 'battlefield') dest = 'exile';
@@ -39,6 +39,22 @@ function* finalDestination(g: G, o: GameObject, to: ZoneName, cause: string): Ge
     if (dest === 'graveyard' && (o.counters.finality ?? 0) > 0) dest = 'exile';
     // "exile-o se fosse sair do campo" (desenterrar e similares)
     if (g.state.effects.some((e) => e.affected?.includes(o.id) && e.mods.some((m) => m.k === 'rule' && m.id === 'rule:exileIfLeaves'))) dest = 'exile';
+    // substituições de outros permanentes (Kalitas: "se morreria, exile em vez disso…"). Com mais de uma, quem
+    // controla o permanente afetado escolhe qual aplicar (CR 616.1); cada uma se aplica só uma vez (616.1f)
+    const usadas = new Set<number>();
+    for (;;) {
+      const opcoes = hooks(g, 'leavesBattlefield').map((h, i) => ({ i, r: h.fn(h.ctx, o, dest), fonte: h.ctx.source })).filter((x) => x.r && !usadas.has(x.i));
+      if (!opcoes.length) break;
+      let esc = opcoes[0];
+      if (opcoes.length > 1) {
+        const [id] = yield* chooseItems(g, controllerOf(g, o.id), `${nameOf(g, o.id)} vai sair do campo: escolha a substituição a aplicar primeiro (CR 616.1)`,
+          opcoes.map((x) => ({ id: String(x.i), label: x.r!.label ?? nameOf(g, x.fonte) })), 1, 1);
+        esc = opcoes.find((x) => String(x.i) === id) ?? opcoes[0];
+      }
+      usadas.add(esc.i);
+      dest = esc.r!.dest;
+      if (esc.r!.then) depois.push(esc.r!.then);
+    }
   }
   // comandante iria para mão ou grimório: o dono pode pô-lo na zona de comando (CR 903.9b)
   if ((dest === 'hand' || dest === 'library') && isCommanderCard(g, o) && cause !== 'cast') {
@@ -56,10 +72,11 @@ export function* moveObjects(g: G, reqs: MoveReq[], cause: string, by?: PlayerId
   const out: (ObjId | null)[] = [];
   const events: GameEvent[] = [];
   const plans: { o: GameObject; dest: ZoneName; req: MoveReq }[] = [];
+  const depois: (() => Gen<void>)[] = [];
   for (const r of reqs) {
     const o = g.state.objects[r.id];
     if (!o) { plans.push({ o: null as unknown as GameObject, dest: r.to, req: r }); continue; }
-    const dest = yield* finalDestination(g, o, r.to, cause);
+    const dest = yield* finalDestination(g, o, r.to, cause, depois);
     plans.push({ o, dest, req: r });
   }
   for (const { o, dest, req } of plans) {
@@ -77,6 +94,8 @@ export function* moveObjects(g: G, reqs: MoveReq[], cause: string, by?: PlayerId
     if (from === 'battlefield') removeFromCombat(g, o.id);
   }
   emit(g, events);
+  // o resto do evento de substituição (a ficha do Kalitas), depois de mover
+  for (const f of depois) yield* f();
   return out;
 }
 
