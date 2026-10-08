@@ -19,7 +19,7 @@ export interface DeckList {
 
 export function emptyTurnStats(): TurnStats {
   return {
-    lifeGained: 0, lifeLost: 0, spellsCast: 0, instantSorceryCast: 0, greatestInstantSorceryMV: 0,
+    lifeGained: 0, lifeLost: 0, spellsCast: 0, noncreatureSpellsCast: 0, instantSorceryCast: 0, greatestInstantSorceryMV: 0,
     cardsDrawn: 0, cardsLeftGraveyard: 0, attacked: false, attackedPlayers: [], countersPutOnCreatures: 0,
     creaturesDied: 0, permanentsToGraveyard: 0, toGraveyardNotFromBattlefield: [], sacrificedCreature: false,
   };

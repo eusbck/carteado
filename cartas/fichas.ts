@@ -1,7 +1,8 @@
 // Fichas (CR 111) criadas pelas cartas dos decks. Cada uma aponta para a imagem da ficha
 // correspondente em ../cartas/data (pelo nome, força/resistência e cores).
 
-import { activated, addCounters, controllerOf, cost, decayed, defineToken, draw, gainLife, is, isLand, keywords, lkiChars, lookAndArrange, loseLife, mana, moveObjects, nameOf, on, t, tgt, triggered, untilEndOfTurn, yesNo, type AbilityDef, type G, type Gen } from '../motor/api.ts';
+import { activated, addCounters, chars, chooseItems, controlledBy, controllerOf, cost, createTokens, decayed, defineToken, draw, gainLife, is, isLand, isType, keywords, lkiChars, lookAndArrange, loseLife, mana, moveObjects, nameOf, objItem, on, t, tgt, triggered, untilEndOfTurn, yesNo, type AbilityDef, type G, type Gen } from '../motor/api.ts';
+import type { Ctx } from '../motor/defs.ts';
 import { fichasOracle } from '../motor/oracle.ts';
 import type { Color, ObjId } from '../motor/types.ts';
 
@@ -102,6 +103,25 @@ export const Jace = token('Jace', 'Jace', ['Planeswalker'], ['Jace'], ['U'], nul
   activated('−1', function* (c) { yield* lookAndArrange(c.g, c.you, 1, 'surveil'); }, { kw: 'surveil', text: '−1: Vigiar 1.' }),
   activated('−3', function* (c) { yield* draw(c.g, c.you, 1); }, { text: '−3: Compre uma carta.' }),
 ]);
+
+/**
+ * Fortalecer Jace N (empower Jace): sem uma ficha de planeswalker Jace sua, crie a ficha Jace acima; depois escolha uma
+ * ficha de planeswalker Jace sua e ponha N marcadores de lealdade nela. Jace que não é ficha não serve, e com uma
+ * ficha já no campo não se cria outra (rulings de Fatehold Charm e Plan for All Outcomes).
+ */
+export function* empowerJace(c: Ctx, n: number): Gen<void> {
+  const fichas = () => controlledBy(c.g, c.you, (id) => c.g.state.objects[id].isToken && isType(c.g, id, 'Planeswalker') && chars(c.g, id).subtypes.includes('Jace'));
+  if (!fichas().length) yield* createTokens(c.g, c.you, 'Jace', 1);
+  const opcoes = fichas();
+  if (!opcoes.length) return;
+  let alvo = opcoes[0];
+  if (opcoes.length > 1) {
+    const [id] = yield* chooseItems(c.g, c.you, `Fortalecer Jace ${n}: escolha a ficha de Jace que recebe os marcadores de lealdade`, opcoes.map((x) => objItem(c.g, x, nameOf(c.g, x))), 1, 1);
+    alvo = Number(id);
+  }
+  addCounters(c.g, { kind: 'obj', id: alvo }, 'loyalty', n, c.you);
+  c.g.log(`${c.g.state.players[c.you].name} fortalece Jace ${n}.`);
+}
 
 /**
  * Explorar (CR 701.44a): o controlador do permanente revela a carta do topo do grimório. Se for carta de terreno,

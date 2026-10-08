@@ -8,7 +8,7 @@ import { payMana } from './costs.ts';
 import { defineAbility, registry, type AbilityDef, type Ctx, type Gen, type ManaAbilityDef, type SCtx, type TriggeredDef } from './defs.ts';
 import type { G } from './game-context.ts';
 import { parseCost } from './mana.ts';
-import { BASIC_LAND_MANA, oracle, allOracleNames } from './oracle.ts';
+import { BASIC_LAND_MANA, NON_CREATURE_SUBTYPES, oracle, allOracleNames } from './oracle.ts';
 import { addEffect } from './state.ts';
 import { addPending } from './triggers.ts';
 import type { Duration, ManaType, Mod, ObjId, PlayerId, ZoneName } from './types.ts';
@@ -185,7 +185,8 @@ export function allCreatureTypes(): string[] {
     const set = new Set<string>();
     for (const n of allOracleNames()) for (const f of oracle(n).faces) if (f.types.includes('Creature') || f.types.includes('Kindred')) for (const st of f.subtypes) set.add(st);
     for (const t of registry.tokens.values()) if (t.types.includes('Creature')) for (const st of t.subtypes) set.add(st);
-    creatureTypes = [...set].sort();
+    // CR 205.3m: só tipos de criatura (Eldrazi Conscription é "Kindred Enchantment — Eldrazi Aura")
+    creatureTypes = [...set].filter((st) => !NON_CREATURE_SUBTYPES.has(st)).sort();
   }
   return creatureTypes;
 }

@@ -105,7 +105,18 @@ export function oracleLayout(name: string): string | null {
   return cartas.get(name)?.layout ?? null;
 }
 
-/** subtipos que são tipos de criatura (CR 205.3m), tirados das faces de criatura e kindred dos dados */
+/** subtipos que não são tipos de criatura: de artefato, encantamento, terreno e mágica (CR 205.3g-i, 205.3k) */
+export const NON_CREATURE_SUBTYPES: Set<string> = new Set([
+  'Attraction', 'Blood', 'Bobblehead', 'Book', 'Clue', 'Contraption', 'Equipment', 'Food', 'Fortification', 'Gold', 'Heartwood', 'Incubator',
+  'Infinity', 'Junk', 'Lander', 'Map', 'Mutagen', 'Powerstone', 'Spacecraft', 'Stone', 'Treasure', 'Vehicle', 'Vibranium',
+  'Aura', 'Background', 'Cartouche', 'Case', 'Class', 'Curse', 'Plan', 'Role', 'Room', 'Rune', 'Saga', 'Shard', 'Shrine',
+  'Cave', 'Desert', 'Forest', 'Gate', 'Island', 'Lair', 'Locus', 'Mine', 'Mountain', 'Plains', 'Planet', 'Power-Plant', 'Sphere', 'Swamp', 'Tower', 'Town', "Urza's",
+  'Adventure', 'Arcane', 'Lesson', 'Omen', 'Trap',
+]);
+
+/** subtipos que são tipos de criatura (CR 205.3m), tirados das faces de criatura e kindred dos dados (uma face
+ *  "Kindred Enchantment — Eldrazi Aura" ou uma Saga criatura também têm subtipos de encantamento: ficam de fora) */
 export const CREATURE_SUBTYPES: Set<string> = new Set(
-  [...cartas.values(), ...fichasOracle].flatMap((c) => c.faces.filter((f) => f.types.includes('Creature') || f.types.includes('Kindred')).flatMap((f) => f.subtypes)),
+  [...cartas.values(), ...fichasOracle].flatMap((c) => c.faces.filter((f) => f.types.includes('Creature') || f.types.includes('Kindred')).flatMap((f) => f.subtypes))
+    .filter((st) => !NON_CREATURE_SUBTYPES.has(st)),
 );
