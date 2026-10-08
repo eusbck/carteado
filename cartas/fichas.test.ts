@@ -59,6 +59,7 @@ const esperadas: Record<string, [string, string[], string[], string[], number | 
   'Myr': ['Myr', ['Artifact', 'Creature'], ['Myr'], [], 1, 1, []],
   'Shark': ['Shark', ['Creature'], ['Shark'], ['U'], null, null, ['flying']],
   'Map': ['Map', ['Artifact'], ['Map'], [], null, null, ['explore']],
+  'Jace': ['Jace', ['Planeswalker'], ['Jace'], ['U'], null, null, ['surveil']],
   'Contract': ['Contract', ['Enchantment'], ['Aura'], ['W'], null, null, ['enchant']],
 };
 
@@ -183,5 +184,30 @@ describe('Fichas: habilidades', () => {
     const tg = setup({ battlefield: campo, hand: [['Brainstorm'], []], library: [['Forest', 'Forest', 'Forest'], []] });
     tg.cast('Brainstorm');
     expect(podeAtivar(tg)).toBe(false);
+  });
+  it("'Jace': −1: vigiar 1; só uma habilidade de lealdade por turno (CR 606.3)", () => {
+    const tg = setup({ battlefield: [[{ name: 'Jace', token: true, counters: { loyalty: 4 } }], []], library: [['Island', 'Swamp'], []] });
+    const jace = tg.bf('Jace');
+    tg.script.push((d) => (d.kind === 'arrange' ? { kind: 'arrange', placement: Object.fromEntries(d.items.map((i) => [i.id, 'graveyard'])), order: d.items.map((i) => i.id) } : null));
+    tg.activate('Jace', '−1').resolve();
+    expect(tg.state.objects[jace].counters.loyalty).toBe(3);
+    expect(tg.names(0, 'graveyard')).toEqual(['Island']);
+    expect(tg.names(0, 'library')).toEqual(['Swamp']);
+    expect(tg.actionIds().some((a) => a.startsWith(`act:${jace}:`))).toBe(false);
+  });
+  it("'Jace': −3: compre uma carta; com 0 de lealdade, a ficha deixa o campo (CR 704.5i)", () => {
+    const tg = setup({ battlefield: [[{ name: 'Jace', token: true, counters: { loyalty: 3 } }], []], library: [['Island', 'Swamp'], []] });
+    tg.activate('Jace', '−3').resolve();
+    expect(tg.names(0, 'hand')).toEqual(['Island']);
+    expect(tg.find('Jace')).toBeNull();
+    // criada sem marcadores (lealdade impressa 0), também deixa o campo
+    tg.run(createTokens(tg.g, 0, 'Jace', 1));
+    expect(tg.find('Jace')).toBeNull();
+  });
+  it("'Jace': as habilidades de lealdade são só como feitiço", () => {
+    const tg = setup({ active: 1, battlefield: [[{ name: 'Jace', token: true, counters: { loyalty: 4 } }], []], library: [['Island'], ['Island']] });
+    tg.pass();
+    expect(tg.pending?.player).toBe(0);
+    expect(tg.actionIds().some((a) => a.startsWith('act:'))).toBe(false);
   });
 });

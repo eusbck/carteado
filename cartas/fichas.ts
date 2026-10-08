@@ -1,7 +1,7 @@
 // Fichas (CR 111) criadas pelas cartas dos decks. Cada uma aponta para a imagem da ficha
 // correspondente em ../cartas/data (pelo nome, força/resistência e cores).
 
-import { activated, addCounters, controllerOf, cost, decayed, defineToken, gainLife, is, isLand, keywords, lkiChars, loseLife, mana, moveObjects, nameOf, on, t, tgt, triggered, untilEndOfTurn, yesNo, type AbilityDef, type G, type Gen } from '../motor/api.ts';
+import { activated, addCounters, controllerOf, cost, decayed, defineToken, draw, gainLife, is, isLand, keywords, lkiChars, lookAndArrange, loseLife, mana, moveObjects, nameOf, on, t, tgt, triggered, untilEndOfTurn, yesNo, type AbilityDef, type G, type Gen } from '../motor/api.ts';
 import { fichasOracle } from '../motor/oracle.ts';
 import type { Color, ObjId } from '../motor/types.ts';
 
@@ -93,6 +93,15 @@ export const Goblin = token('Goblin', 'Goblin', ['Creature'], ['Goblin'], ['R'],
 export const PhyrexianGoblin = token('Phyrexian Goblin', 'Phyrexian Goblin', ['Creature'], ['Phyrexian', 'Goblin'], ['R'], 1, 1);
 export const Myr = token('Myr', 'Myr', ['Artifact', 'Creature'], ['Myr'], [], 1, 1);
 export const Shark = tokenXX('Shark', 'Shark', ['Creature'], ['Shark'], ['U'], keywords('flying'));
+/**
+ * Jace (CR 701.71a, "empower Jace"): planeswalker azul com 0 de lealdade, "[−1]: Vigiar 1" e "[−3]: Compre uma carta".
+ * Lealdade 0 impressa: quem a cria põe os marcadores logo em seguida. A palavra-chave 'surveil' segue a lista da ficha
+ * impressa (Scryfall); vigiar é uma ação de palavra-chave (CR 701.25), não muda nada nas regras.
+ */
+export const Jace = token('Jace', 'Jace', ['Planeswalker'], ['Jace'], ['U'], null, null, [
+  activated('−1', function* (c) { yield* lookAndArrange(c.g, c.you, 1, 'surveil'); }, { kw: 'surveil', text: '−1: Vigiar 1.' }),
+  activated('−3', function* (c) { yield* draw(c.g, c.you, 1); }, { text: '−3: Compre uma carta.' }),
+]);
 
 /**
  * Explorar (CR 701.44a): o controlador do permanente revela a carta do topo do grimório. Se for carta de terreno,
