@@ -6,8 +6,7 @@
  "link": "https://moxfield.com/decks/HAKhAXl1RHyly2_QGDPvzg",
  "importadoEm": "2026-10-08T02:03:25.329Z",
  "verificadoEm": "2026-10-08T02:03:25.329Z",
- "atual": null,
- "preparacao": {
+ "atual": {
   "comandante": "Jace, Multiverse Architect",
   "cartas": [
    {
@@ -384,5 +383,6 @@
    "atualizadoEm": "2026-10-06T20:04:30.657Z"
   },
   "desde": "2026-10-08T02:03:25.329Z"
- }
+ },
+ "preparacao": null
 }

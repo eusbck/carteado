@@ -2447,5 +2447,659 @@
     "quantidade": 8
    }
   ]
+ },
+ {
+  "id": "HAKhAXl1RHyly2_QGDPvzg",
+  "nome": "Multiverse Reforged (Reality Fracture Commander Decklist)",
+  "comandante": "Jace, Multiverse Architect",
+  "cartas": [
+   {
+    "nome": "Island",
+    "quantidade": 3
+   },
+   {
+    "nome": "Mountain",
+    "quantidade": 2
+   },
+   {
+    "nome": "Swamp",
+    "quantidade": 2
+   },
+   {
+    "nome": "Plains",
+    "quantidade": 4
+   },
+   {
+    "nome": "Arcane Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Command Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fabled Passage",
+    "quantidade": 1
+   },
+   {
+    "nome": "Brainstorm",
+    "quantidade": 1
+   },
+   {
+    "nome": "Chromatic Lantern",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lingering Souls",
+    "quantidade": 1
+   },
+   {
+    "nome": "Path to Exile",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Swords to Plowshares",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fellwar Stone",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dimir Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Exotic Orchard",
+    "quantidade": 1
+   },
+   {
+    "nome": "Underground River",
+    "quantidade": 1
+   },
+   {
+    "nome": "Path of Ancestry",
+    "quantidade": 1
+   },
+   {
+    "nome": "Prairie Stream",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sulfurous Springs",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shivan Reef",
+    "quantidade": 1
+   },
+   {
+    "nome": "Martial Coup",
+    "quantidade": 1
+   },
+   {
+    "nome": "Kher Keep",
+    "quantidade": 1
+   },
+   {
+    "nome": "Archfiend of Despair",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rakdos Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Izzet Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Azorius Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fetid Heath",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sunken Ruins",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mystic Gate",
+    "quantidade": 1
+   },
+   {
+    "nome": "Battlefield Forge",
+    "quantidade": 1
+   },
+   {
+    "nome": "Caves of Koilos",
+    "quantidade": 1
+   },
+   {
+    "nome": "Talisman of Progress",
+    "quantidade": 1
+   },
+   {
+    "nome": "Drowned Catacomb",
+    "quantidade": 1
+   },
+   {
+    "nome": "Glacial Fortress",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mass Polymorph",
+    "quantidade": 1
+   },
+   {
+    "nome": "Talisman of Dominance",
+    "quantidade": 1
+   },
+   {
+    "nome": "Reflecting Pool",
+    "quantidade": 1
+   },
+   {
+    "nome": "Nicol Bolas, Dragon-God",
+    "quantidade": 1
+   },
+   {
+    "nome": "Despark",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dreadhorde Invasion",
+    "quantidade": 1
+   },
+   {
+    "nome": "Talisman of Creativity",
+    "quantidade": 1
+   },
+   {
+    "nome": "Flawless Maneuver",
+    "quantidade": 1
+   },
+   {
+    "nome": "Talisman of Indulgence",
+    "quantidade": 1
+   },
+   {
+    "nome": "Isolated Chapel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Polymorph",
+    "quantidade": 1
+   },
+   {
+    "nome": "Synthetic Destiny",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shark Typhoon",
+    "quantidade": 1
+   },
+   {
+    "nome": "Whirlwind of Thought",
+    "quantidade": 1
+   },
+   {
+    "nome": "Elspeth, Sun's Champion",
+    "quantidade": 1
+   },
+   {
+    "nome": "Secure the Wastes",
+    "quantidade": 1
+   },
+   {
+    "nome": "Divergent Transformations",
+    "quantidade": 1
+   },
+   {
+    "nome": "Clifftop Retreat",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sulfur Falls",
+    "quantidade": 1
+   },
+   {
+    "nome": "Proteus Staff",
+    "quantidade": 1
+   },
+   {
+    "nome": "Angel of the Ruins",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cursed Mirror",
+    "quantidade": 1
+   },
+   {
+    "nome": "Serra's Emissary",
+    "quantidade": 1
+   },
+   {
+    "nome": "Archon of Cruelty",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hullbreaker Horror",
+    "quantidade": 1
+   },
+   {
+    "nome": "Occult Epiphany",
+    "quantidade": 1
+   },
+   {
+    "nome": "Grand Crescendo",
+    "quantidade": 1
+   },
+   {
+    "nome": "Skrelv's Hive",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ovika, Enigma Goliath",
+    "quantidade": 1
+   },
+   {
+    "nome": "White Sun's Twilight",
+    "quantidade": 1
+   },
+   {
+    "nome": "Staff of the Storyteller",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sunfall",
+    "quantidade": 1
+   },
+   {
+    "nome": "Stroke of Midnight",
+    "quantidade": 1
+   },
+   {
+    "nome": "Restless Spire",
+    "quantidade": 1
+   },
+   {
+    "nome": "Restless Anchorage",
+    "quantidade": 1
+   },
+   {
+    "nome": "Brainsurge",
+    "quantidade": 1
+   },
+   {
+    "nome": "Contaminated Landscape",
+    "quantidade": 1
+   },
+   {
+    "nome": "Perilous Landscape",
+    "quantidade": 1
+   },
+   {
+    "nome": "Overlord of the Mistmoors",
+    "quantidade": 1
+   },
+   {
+    "nome": "Windcrag Siege",
+    "quantidade": 1
+   },
+   {
+    "nome": "Radiant Summit",
+    "quantidade": 1
+   },
+   {
+    "nome": "Darksteel Angel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fatehold Charm",
+    "quantidade": 1
+   },
+   {
+    "nome": "The Ur-Sphinx",
+    "quantidade": 1
+   },
+   {
+    "nome": "Niv-Mizzet, Ghost Counsel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tamiyo, Upriser Crowned",
+    "quantidade": 1
+   },
+   {
+    "nome": "Avacyn, Angel of Horror",
+    "quantidade": 1
+   },
+   {
+    "nome": "Memnarch, the Warden",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ob Nixilis, the Ascended",
+    "quantidade": 1
+   },
+   {
+    "nome": "Jhoira, Weatherlight Corsair",
+    "quantidade": 1
+   },
+   {
+    "nome": "Omnath, Locus of the Void",
+    "quantidade": 1
+   },
+   {
+    "nome": "Turbulent Shore",
+    "quantidade": 1
+   },
+   {
+    "nome": "Turbulent Crater",
+    "quantidade": 1
+   },
+   {
+    "nome": "Turbulent Wetlands",
+    "quantidade": 1
+   },
+   {
+    "nome": "Plan for All Outcomes",
+    "quantidade": 1
+   },
+   {
+    "nome": "Negate",
+    "quantidade": 1
+   },
+   {
+    "nome": "Nissa, Leyline Tamer",
+    "quantidade": 1
+   }
+  ]
+ },
+ {
+  "id": "HAKhAUw1_Xqr0ZxAoQgsCg",
+  "nome": "Wretched Ranks (Foundations Commander Precon Decklist)",
+  "comandante": "Ghoulcaller Gisa",
+  "cartas": [
+   {
+    "nome": "Swamp",
+    "quantidade": 32
+   },
+   {
+    "nome": "Arcane Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ayara, First of Locthwain",
+    "quantidade": 1
+   },
+   {
+    "nome": "Castle Locthwain",
+    "quantidade": 1
+   },
+   {
+    "nome": "Heraldic Banner",
+    "quantidade": 1
+   },
+   {
+    "nome": "Witch's Cottage",
+    "quantidade": 1
+   },
+   {
+    "nome": "Barren Moor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bojuka Bog",
+    "quantidade": 1
+   },
+   {
+    "nome": "Carrion Feeder",
+    "quantidade": 1
+   },
+   {
+    "nome": "Exsanguinate",
+    "quantidade": 1
+   },
+   {
+    "nome": "Go for the Throat",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gravecrawler",
+    "quantidade": 1
+   },
+   {
+    "nome": "Grave Titan",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gray Merchant of Asphodel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lord of the Accursed",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mind Stone",
+    "quantidade": 1
+   },
+   {
+    "nome": "Night's Whisper",
+    "quantidade": 1
+   },
+   {
+    "nome": "Phyrexian Arena",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tendrils of Corruption",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tragic Slip",
+    "quantidade": 1
+   },
+   {
+    "nome": "Wight of Precinct Six",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ambition's Cost",
+    "quantidade": 1
+   },
+   {
+    "nome": "Village Rites",
+    "quantidade": 1
+   },
+   {
+    "nome": "Liliana's Mastery",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cryptbreaker",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fleshbag Marauder",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sign in Blood",
+    "quantidade": 1
+   },
+   {
+    "nome": "Swiftfoot Boots",
+    "quantidade": 1
+   },
+   {
+    "nome": "Geier Reach Sanitarium",
+    "quantidade": 1
+   },
+   {
+    "nome": "Memorial to Folly",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mutilate",
+    "quantidade": 1
+   },
+   {
+    "nome": "Army of the Damned",
+    "quantidade": 1
+   },
+   {
+    "nome": "Diregraf Colossus",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cemetery Recruitment",
+    "quantidade": 1
+   },
+   {
+    "nome": "Graf Harvest",
+    "quantidade": 1
+   },
+   {
+    "nome": "Midnight Reaper",
+    "quantidade": 1
+   },
+   {
+    "nome": "Graveborn Muse",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lord of the Undead",
+    "quantidade": 1
+   },
+   {
+    "nome": "Undead Warchief",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vengeful Dead",
+    "quantidade": 1
+   },
+   {
+    "nome": "God-Eternal Bontu",
+    "quantidade": 1
+   },
+   {
+    "nome": "Eternal Taskmaster",
+    "quantidade": 1
+   },
+   {
+    "nome": "Undead Augur",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bontu's Monument",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cemetery Reaper",
+    "quantidade": 1
+   },
+   {
+    "nome": "Death Baron",
+    "quantidade": 1
+   },
+   {
+    "nome": "Noxious Ghoul",
+    "quantidade": 1
+   },
+   {
+    "nome": "Charcoal Diamond",
+    "quantidade": 1
+   },
+   {
+    "nome": "Liliana's Reaver",
+    "quantidade": 1
+   },
+   {
+    "nome": "Oversold Cemetery",
+    "quantidade": 1
+   },
+   {
+    "nome": "Soulless One",
+    "quantidade": 1
+   },
+   {
+    "nome": "Demon of Catastrophes",
+    "quantidade": 1
+   },
+   {
+    "nome": "Kalitas, Traitor of Ghet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Endless Ranks of the Dead",
+    "quantidade": 1
+   },
+   {
+    "nome": "Necrotic Hex",
+    "quantidade": 1
+   },
+   {
+    "nome": "Crippling Fear",
+    "quantidade": 1
+   },
+   {
+    "nome": "Champion of the Perished",
+    "quantidade": 1
+   },
+   {
+    "nome": "Undead Butler",
+    "quantidade": 1
+   },
+   {
+    "nome": "Headless Rider",
+    "quantidade": 1
+   },
+   {
+    "nome": "Razorlash Transmogrant",
+    "quantidade": 1
+   },
+   {
+    "nome": "Consuming Corruption",
+    "quantidade": 1
+   },
+   {
+    "nome": "Consumed by Greed",
+    "quantidade": 1
+   },
+   {
+    "nome": "Patchwork Banner",
+    "quantidade": 1
+   },
+   {
+    "nome": "Withering Torment",
+    "quantidade": 1
+   },
+   {
+    "nome": "Zul Ashur, Lich Lord",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bloodline Bidding",
+    "quantidade": 1
+   },
+   {
+    "nome": "Feed the Swarm",
+    "quantidade": 1
+   }
+  ]
  }
 ]
