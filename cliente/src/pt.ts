@@ -9,6 +9,8 @@ const PALAVRAS: Record<string, string> = {
   protection: 'proteção', decayed: 'decaimento', devoid: 'vácuo', ward: 'resguardo', partner: 'parceiro', equip: 'equipar',
   cycling: 'ciclagem', flashback: 'recapitular', escape: 'fuga', shroud: 'manto', fear: 'medo', intimidate: 'intimidar',
   infect: 'infectar', wither: 'murchar', prowess: 'destreza', changeling: 'polimorfo', convoke: 'convocar', landwalk: 'travessia',
+  explore: 'explorar', toxic: 'tóxico', gift: 'presente', impending: 'iminente', undaunted: 'destemido', eminence: 'eminência',
+  plainscycling: 'ciclagem de planície', 'basic landcycling': 'ciclagem de terreno básico',
 };
 
 export function palavraChave(k: string): string {
