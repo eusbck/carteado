@@ -1,9 +1,9 @@
 // Fichas (CR 111) criadas pelas cartas dos decks. Cada uma aponta para a imagem da ficha
 // correspondente em ../cartas/data (pelo nome, força/resistência e cores).
 
-import { activated, controllerOf, cost, decayed, defineToken, gainLife, keywords, loseLife, mana, on, t, triggered, untilEndOfTurn, type AbilityDef } from '../motor/api.ts';
+import { activated, addCounters, controllerOf, cost, decayed, defineToken, gainLife, is, isLand, keywords, lkiChars, loseLife, mana, moveObjects, nameOf, on, t, tgt, triggered, untilEndOfTurn, yesNo, type AbilityDef, type G, type Gen } from '../motor/api.ts';
 import { fichasOracle } from '../motor/oracle.ts';
-import type { Color } from '../motor/types.ts';
+import type { Color, ObjId } from '../motor/types.ts';
 
 function img(name: string, p: number | null, t: number | null, colors?: Color[], text?: string): string | undefined {
   const cands = fichasOracle.filter((f) => f.faces[0].name === name && f.faces[0].power === p && f.faces[0].toughness === t);
@@ -93,6 +93,44 @@ export const Goblin = token('Goblin', 'Goblin', ['Creature'], ['Goblin'], ['R'],
 export const PhyrexianGoblin = token('Phyrexian Goblin', 'Phyrexian Goblin', ['Creature'], ['Phyrexian', 'Goblin'], ['R'], 1, 1);
 export const Myr = token('Myr', 'Myr', ['Artifact', 'Creature'], ['Myr'], [], 1, 1);
 export const Shark = tokenXX('Shark', 'Shark', ['Creature'], ['Shark'], ['U'], keywords('flying'));
+
+/**
+ * Explorar (CR 701.44a): o controlador do permanente revela a carta do topo do grimório. Se for carta de terreno,
+ * põe na mão; senão, põe um marcador +1/+1 no permanente e pode pôr a carta revelada no cemitério.
+ */
+export function* explore(g: G, id: ObjId): Gen<void> {
+  // CR 701.44c: se o permanente já saiu do campo, a última informação conhecida diz quem o controlava
+  const lki = lkiChars(g, id);
+  if (!lki) return;
+  const p = g.state.objects[id] ? controllerOf(g, id) : lki.controller;
+  const top = g.state.zones.library[p][0];
+  if (top !== undefined) {
+    g.log(`${g.state.players[p].name} revela ${nameOf(g, top)} do topo do grimório (explorar).`, { rule: '701.44a' });
+    if (isLand(g, top)) { yield* moveObjects(g, [{ id: top, to: 'hand' }], 'explore'); return; }
+  }
+  // sem carta de terreno revelada (nem com o grimório vazio): marcador +1/+1, se ainda estiver no campo (CR 701.44b)
+  if (g.state.objects[id]?.zone === 'battlefield') addCounters(g, { kind: 'obj', id }, '+1/+1', 1, p);
+  if (top === undefined || g.state.zones.library[p][0] !== top) return;
+  if (yield* yesNo(g, p, `Explorar: pôr ${nameOf(g, top)} no cemitério? Senão, a carta fica no topo do grimório.`, 'Pôr no cemitério', 'Deixar no topo')) {
+    yield* moveObjects(g, [{ id: top, to: 'graveyard' }], 'explore');
+  }
+}
+
+/** Map (CR 111.10s): "{1}, {T}, Sacrifique esta ficha: A criatura alvo que você controla explora. Ative só como feitiço." */
+export const MapToken = defineToken({
+  id: 'Map', name: 'Map', types: ['Artifact'], subtypes: ['Map'], colors: [], power: null, toughness: null,
+  abilities: [
+    // kw 'explore': a ficha impressa lista explorar entre as palavras-chave (cartas/fichas.test.ts confere)
+    activated('{1}, {T}, Sacrifice this artifact', function* (c) {
+      const alvo = tgt(c);
+      if (alvo !== null) yield* explore(c.g, alvo);
+    }, {
+      kw: 'explore', timing: 'sorcery', targets: [t.creature(is.yours, 'criatura alvo que você controla')],
+      text: '{1}, {T}, Sacrifique este artefato: A criatura alvo que você controla explora. Ative apenas como um feitiço.',
+    }),
+  ],
+  image: fichasOracle.find((f) => f.name === 'Map')?.oracleId,
+});
 
 /**
  * Contract (Scriv, the Obligator): Aura que encanta criatura. "Sempre que a criatura encantada ataca, ela recebe +2/+0
