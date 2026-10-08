@@ -3,11 +3,11 @@
 import { readFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { rulingsPorOracle } from '../servidor/catalogo/base.ts';
 
 const raiz = join(dirname(fileURLToPath(import.meta.url)), '..');
-const fonte = join(raiz, '..', 'cartas', 'data');
 const dados = JSON.parse(readFileSync(join(raiz, 'gerado', 'cartas.json'), 'utf8')) as { cartas: Record<string, { name: string; oracleId: string; faces: { name: string; manaCost: string; typeLine: string; oracleText: string; power: unknown; toughness: unknown; loyalty: unknown }[] }> };
-const rulings = JSON.parse(readFileSync(join(fonte, 'rulings.json'), 'utf8')).by_oracle_id as Record<string, { comment: string }[]>;
+const rulings = rulingsPorOracle();
 const semRulings = process.argv.includes('--sem-rulings');
 for (const n of process.argv.slice(2).filter((a) => a !== '--sem-rulings')) {
   const c = dados.cartas[n];

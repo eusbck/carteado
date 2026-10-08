@@ -175,5 +175,30 @@
    "soc/1 borderless legendary+inverted"
   ],
   "baixadoEm": "2026-10-07T15:33:24.396Z"
+ },
+ "Jace, Multiverse Architect": {
+  "imagemLocal": "55cd03d9-2535-4cf3-a8b2-1418e1190f4a",
+  "impressao": {
+   "id": "55cd03d9-2535-4cf3-a8b2-1418e1190f4a",
+   "colecao": "frc",
+   "numero": "1",
+   "moldura": "2015 borderless",
+   "artista": "Volkan Baǵa",
+   "url": "https://cards.scryfall.io/png/front/5/5/55cd03d9-2535-4cf3-a8b2-1418e1190f4a.png?1789644316"
+  },
+  "recorte": {
+   "x": 0,
+   "y": 120,
+   "largura": 744,
+   "altura": 378
+  },
+  "tamanho": [
+   744,
+   378
+  ],
+  "candidatas": [
+   "frc/1 borderless"
+  ],
+  "baixadoEm": "2026-10-08T02:05:16.812Z"
  }
 }

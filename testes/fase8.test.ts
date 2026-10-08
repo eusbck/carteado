@@ -2,7 +2,7 @@
 // banco em memória, sem atrasos).
 import { describe, expect, it } from 'vitest';
 import '../cartas/index.ts';
-import decksJson from '../gerado/decks.json' with { type: 'json' };
+import decksJson from './decks-teste.json' with { type: 'json' };
 import { defaultAnswer } from '../motor/ask.ts';
 import { DEFAULT_STOPS } from '../motor/autopass.ts';
 import type { DeckList } from '../motor/state.ts';

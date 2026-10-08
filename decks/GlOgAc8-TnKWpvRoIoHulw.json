@@ -1,0 +1,356 @@
+{
+ "formato": 1,
+ "id": "GlOgAc8-TnKWpvRoIoHulw",
+ "ordem": 0,
+ "nome": "Abzan Armor",
+ "link": "https://moxfield.com/decks/GlOgAc8-TnKWpvRoIoHulw",
+ "importadoEm": "2026-10-04T01:33:17.486Z",
+ "verificadoEm": null,
+ "atual": {
+  "comandante": "Felothar the Steadfast",
+  "cartas": [
+   {
+    "nome": "Ohran Frostfang",
+    "quantidade": 1
+   },
+   {
+    "nome": "Betor, Ancestor's Voice",
+    "quantidade": 1
+   },
+   {
+    "nome": "Forest",
+    "quantidade": 7
+   },
+   {
+    "nome": "Command Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arcane Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Plains",
+    "quantidade": 6
+   },
+   {
+    "nome": "Swamp",
+    "quantidade": 5
+   },
+   {
+    "nome": "Exotic Orchard",
+    "quantidade": 1
+   },
+   {
+    "nome": "Swords to Plowshares",
+    "quantidade": 1
+   },
+   {
+    "nome": "Evolving Wilds",
+    "quantidade": 1
+   },
+   {
+    "nome": "Path of Ancestry",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bojuka Bog",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sandsteppe Citadel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Isolated Chapel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Temple of Silence",
+    "quantidade": 1
+   },
+   {
+    "nome": "Temple of Malady",
+    "quantidade": 1
+   },
+   {
+    "nome": "Woodland Cemetery",
+    "quantidade": 1
+   },
+   {
+    "nome": "Reunion of the House",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tip the Scales",
+    "quantidade": 1
+   },
+   {
+    "nome": "Jaws of Defeat",
+    "quantidade": 1
+   },
+   {
+    "nome": "Will of the Abzan",
+    "quantidade": 1
+   },
+   {
+    "nome": "Feed the Swarm",
+    "quantidade": 1
+   },
+   {
+    "nome": "Wall of Limbs",
+    "quantidade": 1
+   },
+   {
+    "nome": "Behind the Scenes",
+    "quantidade": 1
+   },
+   {
+    "nome": "Blight Pile",
+    "quantidade": 1
+   },
+   {
+    "nome": "Baldin, Century Herdmaster",
+    "quantidade": 1
+   },
+   {
+    "nome": "Expel the Interlopers",
+    "quantidade": 1
+   },
+   {
+    "nome": "Indomitable Ancients",
+    "quantidade": 1
+   },
+   {
+    "nome": "Infernal Grasp",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arbor Adherent",
+    "quantidade": 1
+   },
+   {
+    "nome": "Canopy Gargantuan",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rampart Architect",
+    "quantidade": 1
+   },
+   {
+    "nome": "Selesnya Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tree of Redemption",
+    "quantidade": 1
+   },
+   {
+    "nome": "Crashing Drawbridge",
+    "quantidade": 1
+   },
+   {
+    "nome": "Wall of Omens",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sylvan Caryatid",
+    "quantidade": 1
+   },
+   {
+    "nome": "Assault Formation",
+    "quantidade": 1
+   },
+   {
+    "nome": "Overgrown Battlement",
+    "quantidade": 1
+   },
+   {
+    "nome": "Wall of Blossoms",
+    "quantidade": 1
+   },
+   {
+    "nome": "Wall of Reverence",
+    "quantidade": 1
+   },
+   {
+    "nome": "Weathered Sentinels",
+    "quantidade": 1
+   },
+   {
+    "nome": "Wingmantle Chaplain",
+    "quantidade": 1
+   },
+   {
+    "nome": "Walking Bulwark",
+    "quantidade": 1
+   },
+   {
+    "nome": "Nyx-Fleece Ram",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shalai, Voice of Plenty",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sidar Kondo of Jamuraa",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tower Defense",
+    "quantidade": 1
+   },
+   {
+    "nome": "Orzhov Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Anguished Unmaking",
+    "quantidade": 1
+   },
+   {
+    "nome": "Deceptive Landscape",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dragonlord Dromoka",
+    "quantidade": 1
+   },
+   {
+    "nome": "Swiftfoot Boots",
+    "quantidade": 1
+   },
+   {
+    "nome": "Welcoming Vampire",
+    "quantidade": 1
+   },
+   {
+    "nome": "Carven Caryatid",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ikra Shidiqi, the Usurper",
+    "quantidade": 1
+   },
+   {
+    "nome": "Indulging Patrician",
+    "quantidade": 1
+   },
+   {
+    "nome": "Seedborn Muse",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shadrix Silverquill",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sunpetal Grove",
+    "quantidade": 1
+   },
+   {
+    "nome": "Wall of Roots",
+    "quantidade": 1
+   },
+   {
+    "nome": "Overgrown Farmland",
+    "quantidade": 1
+   },
+   {
+    "nome": "Faeburrow Elder",
+    "quantidade": 1
+   },
+   {
+    "nome": "Despark",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hornet Nest",
+    "quantidade": 1
+   },
+   {
+    "nome": "Canopy Vista",
+    "quantidade": 1
+   },
+   {
+    "nome": "Twilight Mire",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fortified Village",
+    "quantidade": 1
+   },
+   {
+    "nome": "Radiant Grove",
+    "quantidade": 1
+   },
+   {
+    "nome": "Slaughter the Strong",
+    "quantidade": 1
+   },
+   {
+    "nome": "Towering Titan",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arasta of the Endless Web",
+    "quantidade": 1
+   },
+   {
+    "nome": "Temple of Plenty",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sungrass Prairie",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arboreal Grazer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Axebane Guardian",
+    "quantidade": 1
+   },
+   {
+    "nome": "Zetalpa, Primal Dawn",
+    "quantidade": 1
+   },
+   {
+    "nome": "Wakestone Gargoyle",
+    "quantidade": 1
+   },
+   {
+    "nome": "Access Tunnel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Jaddi Offshoot",
+    "quantidade": 1
+   },
+   {
+    "nome": "Doran, Besieged by Time",
+    "quantidade": 1
+   },
+   {
+    "nome": "Great Forest Druid",
+    "quantidade": 1
+   },
+   {
+    "nome": "Slumbering Walker",
+    "quantidade": 1
+   }
+  ],
+  "origem": {
+   "versao": 0,
+   "atualizadoEm": "2026-08-30T15:25:32.053Z"
+  },
+  "desde": "2026-10-04T01:33:17.486Z"
+ },
+ "preparacao": null
+}

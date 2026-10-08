@@ -11,11 +11,17 @@ import { dirname, extname, join, normalize, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { WebSocketServer, type WebSocket } from 'ws';
 import '../cartas/index.ts';
-import decksJson from '../gerado/decks.json' with { type: 'json' };
 import { oracle } from '../motor/oracle.ts';
 import type { DeckList } from '../motor/state.ts';
 import { Banco } from './banco.ts';
 import { infoCartas } from './cartas-info.ts';
+import { pastasPadrao } from './catalogo/caminhos.ts';
+import { Catalogo, infoDoDisco } from './catalogo/catalogo.ts';
+import { regenerar } from './catalogo/gerar.ts';
+import { cartaPronta } from './catalogo/prontidao.ts';
+import { redeReal } from './catalogo/rede.ts';
+import { RotasCatalogo } from './catalogo/rotas.ts';
+import { TarefasDecks } from './catalogo/tarefas.ts';
 import { Imagens, type Tamanho } from './imagens.ts';
 import type { DeckResumo, MsgCliente, MsgServidor } from './protocolo.ts';
 import { Gerente, type Conexao } from './salas.ts';
@@ -39,12 +45,44 @@ function senhaDeAcesso(): string {
 
 const SENHA = senhaDeAcesso();
 const banco = new Banco(join(DADOS, 'jogo.sqlite'));
-const DECKS = decksJson as DeckList[];
-const gerente = new Gerente(banco, DECKS);
+
+// decks da mesa: decks/ (um arquivo por deck), importados ou atualizados pela tela Decks. Só entram no saguão os que
+// têm regras para todas as cartas; as partidas guardam as listas com que começaram.
+const pastas = pastasPadrao();
+const catalogo = new Catalogo({ pasta: pastas.decks, pronta: cartaPronta });
+if (!catalogo.todos().length) console.warn('Nenhum deck em decks/: rode node ferramentas/decks.ts migrar');
+const gerente = new Gerente(banco, catalogo.listasJogaveis());
 gerente.restaurar();
-const imagens = new Imagens(join(RAIZ, '..', 'cartas'), join(RAIZ, '.cache', 'miniaturas'));
+// versões que esperavam cartas e agora têm todas prontas (implementadas desde a última vez) entram no saguão
+// depois de restaurar: as salas antigas guardam antes as listas com que começaram
+const aplicados = catalogo.aplicarPreparacoesProntas();
+if (aplicados.length) {
+  regenerar(pastas, catalogo.todos());
+  gerente.trocarDecks(catalogo.listasJogaveis());
+  console.log(`Decks que ficaram prontos: ${aplicados.join(', ')}`);
+}
+const imagens = new Imagens(join(RAIZ, '..', 'cartas'), join(RAIZ, '.cache', 'miniaturas'), undefined, [pastas.imagens]);
 const INFO = JSON.stringify(infoCartas());
-const RESUMO_DECKS: DeckResumo[] = DECKS.map((d) => ({ id: d.id, nome: d.nome, comandante: d.comandante, cores: oracle(d.comandante).colorIdentity }));
+const resumir = (decks: DeckList[]): DeckResumo[] => decks.map((d) => ({ id: d.id, nome: d.nome, comandante: d.comandante, cores: oracle(d.comandante).colorIdentity }));
+let resumoDecks = resumir(catalogo.listasJogaveis());
+
+const tarefas: TarefasDecks = new TarefasDecks({
+  pastas,
+  rede: redeReal(),
+  catalogo,
+  pronta: cartaPronta,
+  aoMudar: (listasMudaram) => {
+    if (listasMudaram) {
+      const listas = catalogo.listasJogaveis();
+      gerente.trocarDecks(listas);
+      resumoDecks = resumir(listas);
+      anunciar({ t: 'decks', decks: resumoDecks });
+    }
+    anunciar({ t: 'catalogo', tarefa: tarefas.tarefa, mudou: true });
+  },
+  aoAndamento: (t) => anunciar({ t: 'catalogo', tarefa: t, mudou: false }),
+});
+const rotasCatalogo = new RotasCatalogo({ catalogo, tarefas, info: infoDoDisco(pastas.gerado) });
 
 // ---------------------------------------------------------------------------
 // sessões
@@ -66,6 +104,12 @@ function muitasTentativas(ip: string): boolean {
   l.push(agora);
   tentativas.set(ip, l);
   return l.length > 10;
+}
+
+/** atrás do túnel/proxy (HTTPS=1) todos chegam pelo mesmo endereço local: usa o IP real informado pelo proxy */
+function ipDe(req: IncomingMessage): string {
+  const encaminhado = HTTPS ? String(req.headers['cf-connecting-ip'] ?? req.headers['x-forwarded-for'] ?? '').split(',')[0].trim() : '';
+  return encaminhado || req.socket.remoteAddress || '?';
 }
 
 function confereSenhaAcesso(s: string): boolean {
@@ -109,9 +153,7 @@ async function rotear(req: IncomingMessage, res: ServerResponse): Promise<void> 
   res.setHeader('referrer-policy', 'no-referrer');
 
   if (p === '/api/entrar' && req.method === 'POST') {
-    // atrás do túnel/proxy (HTTPS=1) todos chegam pelo mesmo endereço local: usa o IP real informado pelo proxy
-    const encaminhado = HTTPS ? String(req.headers['cf-connecting-ip'] ?? req.headers['x-forwarded-for'] ?? '').split(',')[0].trim() : '';
-    const ip = encaminhado || req.socket.remoteAddress || '?';
+    const ip = ipDe(req);
     if (muitasTentativas(ip)) return json(res, 429, { erro: 'Muitas tentativas; espere um minuto' });
     let senha = '';
     try { senha = String(JSON.parse(await lerCorpo(req)).senha ?? ''); } catch { return json(res, 400, { erro: 'Pedido inválido' }); }
@@ -126,8 +168,16 @@ async function rotear(req: IncomingMessage, res: ServerResponse): Promise<void> 
   const precisaSessao = p.startsWith('/api/') || p.startsWith('/img/') || p.startsWith('/simbolo/');
   if (precisaSessao && !autenticado(req)) return json(res, 401, { erro: 'Entre com a senha do servidor' });
 
-  if (p === '/api/decks') return json(res, 200, RESUMO_DECKS);
+  if (p === '/api/decks') return json(res, 200, resumoDecks);
   if (p === '/api/cartas') return json(res, 200, INFO);
+  if (p === '/api/catalogo' || p.startsWith('/api/catalogo/')) {
+    let corpo = '';
+    if (req.method === 'POST') {
+      try { corpo = await lerCorpo(req); } catch { return json(res, 413, { erro: 'Pedido grande demais' }); }
+    }
+    const r = rotasCatalogo.tratar(req.method ?? 'GET', p, corpo, ipDe(req));
+    if (r) return json(res, r.status, r.corpo);
+  }
 
   let m = p.match(/^\/img\/([0-9a-f-]{36})\/(frente|verso)\/(p|m|g)$/);
   if (m) {
@@ -197,6 +247,12 @@ wss.on('connection', (ws: WebSocket) => {
   });
   ws.on('close', () => gerente.desconectar(con));
 });
+
+/** mensagem para todas as conexões (telas Decks e saguões abertos) */
+function anunciar(m: MsgServidor): void {
+  const texto = JSON.stringify(m);
+  for (const ws of wss.clients) if (ws.readyState === ws.OPEN) ws.send(texto);
+}
 
 setInterval(() => {
   for (const ws of wss.clients) {

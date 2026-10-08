@@ -33,7 +33,10 @@ export function Inicio() {
   return (
     <div class="tela-fundo">
       <main class="janela tela-estreita">
-        <div class="marca-jogo"><Marca /><span>COMMANDER DA MESA</span></div>
+        <header class="cat-topo">
+          <div class="marca-jogo"><Marca /><span>COMMANDER DA MESA</span></div>
+          <button type="button" class="botao" onClick={() => void loja.abrirDecks()}>Decks</button>
+        </header>
         <h1 class="titulo">Escolha sua mesa</h1>
         <label class="campo-nome">
           Seu nome na mesa

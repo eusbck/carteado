@@ -85,3 +85,21 @@ describe('Infernal Grasp', () => {
 - Consultas: `tg.find(nome, zona?, jogador?)`, `tg.bf(nome)`, `tg.names(jogador, zona)`, `tg.life(p)`, `tg.pt(id)`, `tg.state`, `tg.g`.
 - Cartas usadas como figurantes precisam existir: veja `cartas/defs/` (as pendentes entram sem habilidades). Boas figurantes: `Indomitable Ancients` (2/10 sem texto), `Wall of Omens`, `Zetalpa, Primal Dawn`, `Sol Ring`, terrenos básicos.
 - Teste o comportamento do Oracle, não a implementação: o que muda no jogo (zonas, vida, marcadores, fichas, quem decide o quê).
+
+## Completar um deck em preparação (decks importados pelo Moxfield)
+
+Um deck importado ou atualizado pela tela Decks só entra no saguão quando todas as cartas têm definição aqui.
+Quando o anfitrião pedir "complete os decks em preparação":
+
+1. `node ferramentas/decks.ts pendentes` lista, por deck, as cartas que faltam com custo, tipo, texto Oracle, número
+   de rulings, fichas que a carta cria e o nome do arquivo (`cartas/defs/<slug>.ts`). Carta com alerta de layout
+   (modal de duas faces, split, aventura, meld…) ou parceiro pode precisar de recurso novo no motor: anote no
+   relatório, não improvise.
+2. Implemente cada carta como acima. Os dados Oracle das cartas novas já estão em `gerado/cartas.json`, e
+   `node ferramentas/ficha-carta.ts "Nome"` e `node ferramentas/rulings.ts "Nome"` funcionam para elas (os rulings
+   vêm de `decks/rulings.json`). Terrenos simples: `node ferramentas/rascunho.ts --dry` mostra os que o gerador
+   cobre. Fichas novas entram em `cartas/fichas.ts` e na tabela de `cartas/fichas.test.ts`.
+3. `node ferramentas/decks.ts gerar` põe no saguão as versões cujas cartas ficaram todas prontas (o servidor faz o
+   mesmo ao subir) e regera `gerado/decks.json`.
+4. Rode `npx tsc --noEmit -p tsconfig.json` e a suíte inteira (`npx vitest run`), e faça commit de `cartas/defs/`,
+   `decks/` e `gerado/`.

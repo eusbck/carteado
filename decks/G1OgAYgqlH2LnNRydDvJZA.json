@@ -1,0 +1,360 @@
+{
+ "formato": 1,
+ "id": "G1OgAYgqlH2LnNRydDvJZA",
+ "ordem": 4,
+ "nome": "Silverquill Influence",
+ "link": "https://moxfield.com/decks/G1OgAYgqlH2LnNRydDvJZA",
+ "importadoEm": "2026-10-04T01:33:17.430Z",
+ "verificadoEm": null,
+ "atual": {
+  "comandante": "Killian, Decisive Mentor",
+  "cartas": [
+   {
+    "nome": "Demonic Embrace",
+    "quantidade": 1
+   },
+   {
+    "nome": "Angelic Gift",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mire Blight",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ethereal Armor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Victor, Valgavoth's Seneschal",
+    "quantidade": 1
+   },
+   {
+    "nome": "Danitha Capashen, Paragon",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mangara, the Diplomat",
+    "quantidade": 1
+   },
+   {
+    "nome": "Eiganjo Dynastorian // Replenish",
+    "quantidade": 1
+   },
+   {
+    "nome": "Eclipsed Steppe",
+    "quantidade": 1
+   },
+   {
+    "nome": "Umbral Expanse",
+    "quantidade": 1
+   },
+   {
+    "nome": "Forum Filibuster",
+    "quantidade": 1
+   },
+   {
+    "nome": "Coercive Impetus",
+    "quantidade": 1
+   },
+   {
+    "nome": "Changing Loyalty",
+    "quantidade": 1
+   },
+   {
+    "nome": "Turbulent Moor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Herald of Amity",
+    "quantidade": 1
+   },
+   {
+    "nome": "Command Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Redemption Arc",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ghoulish Impetus",
+    "quantidade": 1
+   },
+   {
+    "nome": "Screams from Within",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arcane Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Raffine's Guidance",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sage's Reverie",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sentinel's Eyes",
+    "quantidade": 1
+   },
+   {
+    "nome": "Parasitic Impetus",
+    "quantidade": 1
+   },
+   {
+    "nome": "Winds of Rath",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Inkshield",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hateful Eidolon",
+    "quantidade": 1
+   },
+   {
+    "nome": "Doomwake Giant",
+    "quantidade": 1
+   },
+   {
+    "nome": "Animate Dead",
+    "quantidade": 1
+   },
+   {
+    "nome": "Forum of Amity",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shadrix Silverquill",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arcane Lighthouse",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fellwar Stone",
+    "quantidade": 1
+   },
+   {
+    "nome": "Martial Impetus",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sheltered by Ghosts",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fallen Ideal",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gift of Immortality",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shielded by Faith",
+    "quantidade": 1
+   },
+   {
+    "nome": "Eidolon of Countless Battles",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ghostly Prison",
+    "quantidade": 1
+   },
+   {
+    "nome": "Land Tax",
+    "quantidade": 1
+   },
+   {
+    "nome": "Transcendent Envoy",
+    "quantidade": 1
+   },
+   {
+    "nome": "Eriette of the Charmed Apple",
+    "quantidade": 1
+   },
+   {
+    "nome": "Killian, Ink Duelist",
+    "quantidade": 1
+   },
+   {
+    "nome": "Flickering Ward",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tomik, Wielder of Law",
+    "quantidade": 1
+   },
+   {
+    "nome": "Pearl-Ear, Imperial Advisor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ajani's Chosen",
+    "quantidade": 1
+   },
+   {
+    "nome": "Armored Skyhunter",
+    "quantidade": 1
+   },
+   {
+    "nome": "Darksteel Mutation",
+    "quantidade": 1
+   },
+   {
+    "nome": "Kor Spiritdancer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Chains of Custody",
+    "quantidade": 1
+   },
+   {
+    "nome": "Firemane Commando",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fabled Passage",
+    "quantidade": 1
+   },
+   {
+    "nome": "Songbirds' Blessing",
+    "quantidade": 1
+   },
+   {
+    "nome": "Spirit Mantle",
+    "quantidade": 1
+   },
+   {
+    "nome": "Promise of Loyalty",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sram, Senior Edificer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Eldrazi Conscription",
+    "quantidade": 1
+   },
+   {
+    "nome": "Anguished Unmaking",
+    "quantidade": 1
+   },
+   {
+    "nome": "Exotic Orchard",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vanishing Verse",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fetid Heath",
+    "quantidade": 1
+   },
+   {
+    "nome": "Isolated Chapel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Terramorphic Expanse",
+    "quantidade": 1
+   },
+   {
+    "nome": "Talisman of Hierarchy",
+    "quantidade": 1
+   },
+   {
+    "nome": "Caves of Koilos",
+    "quantidade": 1
+   },
+   {
+    "nome": "Temple of Silence",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fracture",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bojuka Bog",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shineshadow Snarl",
+    "quantidade": 1
+   },
+   {
+    "nome": "Path of Ancestry",
+    "quantidade": 1
+   },
+   {
+    "nome": "Angelic Destiny",
+    "quantidade": 1
+   },
+   {
+    "nome": "Archon of Sun's Grace",
+    "quantidade": 1
+   },
+   {
+    "nome": "Breena, the Demagogue",
+    "quantidade": 1
+   },
+   {
+    "nome": "Desolate Mire",
+    "quantidade": 1
+   },
+   {
+    "nome": "Silverquill Campus",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sunlit Marsh",
+    "quantidade": 1
+   },
+   {
+    "nome": "Study Hall",
+    "quantidade": 1
+   },
+   {
+    "nome": "War Room",
+    "quantidade": 1
+   },
+   {
+    "nome": "Starfield Mystic",
+    "quantidade": 1
+   },
+   {
+    "nome": "Scriv, the Obligator",
+    "quantidade": 1
+   },
+   {
+    "nome": "Swamp",
+    "quantidade": 8
+   },
+   {
+    "nome": "Plains",
+    "quantidade": 8
+   }
+  ],
+  "origem": {
+   "versao": 0,
+   "atualizadoEm": "2026-08-30T15:25:39.697Z"
+  },
+  "desde": "2026-10-04T01:33:17.430Z"
+ },
+ "preparacao": null
+}

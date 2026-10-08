@@ -7303,5 +7303,931 @@
    "verso": null
   },
   "pt": null
+ },
+ "Jace, Multiverse Architect": {
+  "en": {
+   "id": "55cd03d9-2535-4cf3-a8b2-1418e1190f4a",
+   "frente": "imagens/55cd03d9-2535-4cf3-a8b2-1418e1190f4a/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Brainstorm": {
+  "en": {
+   "id": "ec7d6864-7b6b-4f74-8474-9b9ec96b1d33",
+   "frente": "imagens/ec7d6864-7b6b-4f74-8474-9b9ec96b1d33/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "4b10f440-b2c1-4d3e-a61d-f22a963c30e7",
+   "frente": "imagens/4b10f440-b2c1-4d3e-a61d-f22a963c30e7/front.png",
+   "verso": null,
+   "nome": "Tempestade Cerebral",
+   "tipo": "Mágica Instantânea",
+   "texto": "Compre três cards. Depois, coloque dois cards de sua mão no topo do seu grimório em qualquer ordem.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Chromatic Lantern": {
+  "en": {
+   "id": "424c40b0-49d8-4a6f-a0ef-545738224ec9",
+   "frente": "imagens/424c40b0-49d8-4a6f-a0ef-545738224ec9/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "fa74ddb4-7dda-4b6e-b574-50e351346a0b",
+   "frente": "imagens/fa74ddb4-7dda-4b6e-b574-50e351346a0b/front.png",
+   "verso": null,
+   "nome": "Lanterna Cromática",
+   "tipo": "Artefato",
+   "texto": "Os terrenos que você controla têm: \"{T}: Adicione um mana de qualquer cor\".\n{T}: Adicione um mana de qualquer cor.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Lingering Souls": {
+  "en": {
+   "id": "e5b16141-d185-4be2-97c1-5b0ef5483728",
+   "frente": "imagens/e5b16141-d185-4be2-97c1-5b0ef5483728/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "0d547bb0-350c-4ca7-82d8-ad2986b88fd8",
+   "frente": "imagens/0d547bb0-350c-4ca7-82d8-ad2986b88fd8/front.png",
+   "verso": null,
+   "nome": "Almas Penadas",
+   "tipo": "Feitiço",
+   "texto": "Crie duas fichas de criatura branca 1/1 do tipo Espírito com voar.\nRecapitular {1}{B} (Você pode conjurar este card de seu cemitério pagando seu custo de recapitular. Depois, exile-o.)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Dimir Signet": {
+  "en": {
+   "id": "0862060d-3198-4eeb-af8c-efeb27f42a99",
+   "frente": "imagens/0862060d-3198-4eeb-af8c-efeb27f42a99/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "8678b05c-96fb-48fe-b16d-93573462debb",
+   "frente": "imagens/8678b05c-96fb-48fe-b16d-93573462debb/front.png",
+   "verso": null,
+   "nome": "Sinete Dimir",
+   "tipo": "Artefato",
+   "texto": "{1}, {T}: Adicione {U}{B}.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Underground River": {
+  "en": {
+   "id": "e8b05f37-815f-4854-bf82-ca544ca67532",
+   "frente": "imagens/e8b05f37-815f-4854-bf82-ca544ca67532/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "34186428-d6f3-45a1-9c7c-8a6ea39d0dd0",
+   "frente": "imagens/34186428-d6f3-45a1-9c7c-8a6ea39d0dd0/front.png",
+   "verso": null,
+   "nome": "Rio Subterrâneo",
+   "tipo": "Terreno",
+   "texto": "{T}: Adicione {C}.\n{T}: Adicione {U} ou {B}. Rio Subterrâneo causa 1 ponto de dano a você.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Prairie Stream": {
+  "en": {
+   "id": "a93c2e0b-3fca-476e-ae5b-a331ccacae19",
+   "frente": "imagens/a93c2e0b-3fca-476e-ae5b-a331ccacae19/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "d44d4236-78b7-43d9-9aef-d61affa54dd8",
+   "frente": "imagens/d44d4236-78b7-43d9-9aef-d61affa54dd8/front.png",
+   "verso": null,
+   "nome": "Riacho da Pradaria",
+   "tipo": "Terreno — Planície Ilha",
+   "texto": "({T}: Adicione {W} ou {U}.)\nRiacho da Pradaria entra no campo de batalha virado, a menos que você controle dois ou mais terrenos básicos.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Martial Coup": {
+  "en": {
+   "id": "5c4d0ad9-4d57-4e5c-b478-059220f5b1dd",
+   "frente": "imagens/5c4d0ad9-4d57-4e5c-b478-059220f5b1dd/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "1396adad-216b-4601-b97b-56925fb71bea",
+   "frente": "imagens/1396adad-216b-4601-b97b-56925fb71bea/front.png",
+   "verso": null,
+   "nome": "Golpe Marcial",
+   "tipo": "Feitiço",
+   "texto": "Crie X fichas de criatura Soldado branca 1/1. Se X for igual ou superior a 5, destrua todas as outras criaturas.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Kher Keep": {
+  "en": {
+   "id": "15ca0b68-33a1-4d25-b622-d3f5ba05b0a5",
+   "frente": "imagens/15ca0b68-33a1-4d25-b622-d3f5ba05b0a5/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "5b58922e-1e51-47e6-9027-7abbeb7359ff",
+   "frente": "imagens/5b58922e-1e51-47e6-9027-7abbeb7359ff/front.png",
+   "verso": null,
+   "nome": "Fortaleza de Kher",
+   "tipo": "Terreno Lendário",
+   "texto": "{T}: Adicione {C}.\n{1}{R}, {T}: Crie uma ficha de criatura Kobold vermelha 0/1 com o nome Kobolds da Fortaleza de Kher.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Archfiend of Despair": {
+  "en": {
+   "id": "137b69ad-3296-49f1-bddf-24818a03830f",
+   "frente": "imagens/137b69ad-3296-49f1-bddf-24818a03830f/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "834956fd-6989-4735-b31a-3aec43215c24",
+   "frente": null,
+   "verso": null,
+   "nome": "Arquidemônio do Desespero",
+   "tipo": "Criatura — Demônio",
+   "texto": "Voar\nSeus oponentes não podem ganhar pontos de vida.\nNo início de cada etapa final, cada oponente perde uma quantidade de pontos de vida igual aos pontos de vida que aquele jogador perdeu neste turno. (Dano causa perda de pontos de vida.)",
+   "faces": null,
+   "reserva": true
+  }
+ },
+ "Rakdos Signet": {
+  "en": {
+   "id": "a263e71d-953f-4648-b326-33133cfa7e00",
+   "frente": "imagens/a263e71d-953f-4648-b326-33133cfa7e00/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "dccb1d1f-58b6-4ce0-9621-56cab8feca7a",
+   "frente": "imagens/dccb1d1f-58b6-4ce0-9621-56cab8feca7a/front.png",
+   "verso": null,
+   "nome": "Sinete Rakdos",
+   "tipo": "Artefato",
+   "texto": "{1}, {T}: Adicione {B}{R}.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Izzet Signet": {
+  "en": {
+   "id": "d5e141ad-5cb8-416b-9acf-bce1baeb6b6b",
+   "frente": "imagens/d5e141ad-5cb8-416b-9acf-bce1baeb6b6b/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "ce39926e-30c5-4042-84df-0d615cac3d6f",
+   "frente": "imagens/ce39926e-30c5-4042-84df-0d615cac3d6f/front.png",
+   "verso": null,
+   "nome": "Sinete Izzet",
+   "tipo": "Artefato",
+   "texto": "{1}, {T}: Adicione {U}{R}.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Azorius Signet": {
+  "en": {
+   "id": "af690536-b0bc-4d85-8bb8-f6856b9f927b",
+   "frente": "imagens/af690536-b0bc-4d85-8bb8-f6856b9f927b/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "525463b9-6f98-41a0-b55b-010e0ae446fb",
+   "frente": "imagens/525463b9-6f98-41a0-b55b-010e0ae446fb/front.png",
+   "verso": null,
+   "nome": "Sinete Azorius",
+   "tipo": "Artefato",
+   "texto": "{1}, {T}: Adicione {W}{U}.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Sunken Ruins": {
+  "en": {
+   "id": "b8652a52-d9f6-42ad-9746-6827845b540e",
+   "frente": "imagens/b8652a52-d9f6-42ad-9746-6827845b540e/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "cdf6ef17-d08f-4b43-b3e3-f643543e5b1e",
+   "frente": "imagens/cdf6ef17-d08f-4b43-b3e3-f643543e5b1e/front.png",
+   "verso": null,
+   "nome": "Ruínas Submersas",
+   "tipo": "Terreno",
+   "texto": "{T}: Adicione {1} à sua reserva de mana.\n{U/B}, {T}: Adicione {U}{U}, {U}{B} ou {B}{B} à sua reserva de mana.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Mystic Gate": {
+  "en": {
+   "id": "fa32d90e-1153-42ab-b8ff-0eb82698692c",
+   "frente": "imagens/fa32d90e-1153-42ab-b8ff-0eb82698692c/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "d1ad9319-b686-448e-ba2e-8909e25a80a6",
+   "frente": "imagens/d1ad9319-b686-448e-ba2e-8909e25a80a6/front.png",
+   "verso": null,
+   "nome": "Portão Místico",
+   "tipo": "Terreno",
+   "texto": "{T}: Adicione {1} à sua reserva de mana.\n{W/U}, {T}: Adicione {W}{W}, {W}{U} ou {U}{U} à sua reserva de mana.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Talisman of Progress": {
+  "en": {
+   "id": "454ed9c8-3ec1-4b65-bf3f-29a186742aed",
+   "frente": "imagens/454ed9c8-3ec1-4b65-bf3f-29a186742aed/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "27ea67ed-ba70-47a7-a945-7f93c467bfdd",
+   "frente": "imagens/27ea67ed-ba70-47a7-a945-7f93c467bfdd/front.png",
+   "verso": null,
+   "nome": "Talismã do Progresso",
+   "tipo": "Artefato",
+   "texto": "{T}: Adicione {C}.\n{T}: Adicione {W} ou {U}. Talismã do Progresso causa 1 ponto de dano a você.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Drowned Catacomb": {
+  "en": {
+   "id": "4acb0f92-74be-40e8-b70e-61c4aaaeb47b",
+   "frente": "imagens/4acb0f92-74be-40e8-b70e-61c4aaaeb47b/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "b469b02b-4f7e-4d4f-81da-5baf3d45b253",
+   "frente": "imagens/b469b02b-4f7e-4d4f-81da-5baf3d45b253/front.png",
+   "verso": null,
+   "nome": "Catacumba Submersa",
+   "tipo": "Terreno",
+   "texto": "Catacumba Submersa entra no campo de batalha virada, a menos que você controle uma Ilha ou um Pântano.\n{T}: Adicione {U} ou {B}.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Glacial Fortress": {
+  "en": {
+   "id": "3c726a60-8de7-4d5e-8ad5-8405e6ac36b5",
+   "frente": "imagens/3c726a60-8de7-4d5e-8ad5-8405e6ac36b5/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "dfdd0a37-b1a4-4e13-a2cb-5d643eaa2caf",
+   "frente": "imagens/dfdd0a37-b1a4-4e13-a2cb-5d643eaa2caf/front.png",
+   "verso": null,
+   "nome": "Fortaleza Glacial",
+   "tipo": "Terreno",
+   "texto": "Fortaleza Glacial entra no campo de batalha virada, a menos que você controle uma Planície ou uma Ilha.\n{T}: Adicione {W} ou {U}.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Mass Polymorph": {
+  "en": {
+   "id": "b29db023-28d0-411d-864a-8f1e22ae1f74",
+   "frente": "imagens/b29db023-28d0-411d-864a-8f1e22ae1f74/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "b67f4284-3fd2-4a8a-9b74-9abaa62372af",
+   "frente": "imagens/b67f4284-3fd2-4a8a-9b74-9abaa62372af/front.png",
+   "verso": null,
+   "nome": "Polimorfismo de Massa",
+   "tipo": "Feitiço",
+   "texto": "Exile todas as criaturas que você controla, depois revele cards do topo de seu grimório até revelar uma quantidade equivalente de cards de criatura. Coloque todos os cards de criatura revelados dessa maneira no campo de batalha, depois embaralhe o restante dos cards revelados no seu grimório.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Talisman of Dominance": {
+  "en": {
+   "id": "78d5366f-eb6d-4ec1-880b-111872863766",
+   "frente": "imagens/78d5366f-eb6d-4ec1-880b-111872863766/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "0c1f2b4e-61a7-4d71-9a14-684b8def9c56",
+   "frente": "imagens/0c1f2b4e-61a7-4d71-9a14-684b8def9c56/front.png",
+   "verso": null,
+   "nome": "Talismã da Dominação",
+   "tipo": "Artefato",
+   "texto": "{T}: Adicione {C}.\n{T}: Adicione {U} ou {B}. Talismã da Dominação causa 1 ponto de dano a você.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Reflecting Pool": {
+  "en": {
+   "id": "cbc4281a-b70d-4f96-b309-38e986484829",
+   "frente": "imagens/cbc4281a-b70d-4f96-b309-38e986484829/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "8145cc8c-8eb4-4e4b-81db-ef3cb9ef7a00",
+   "frente": "imagens/8145cc8c-8eb4-4e4b-81db-ef3cb9ef7a00/front.png",
+   "verso": null,
+   "nome": "Lagoa Espelhada",
+   "tipo": "Terreno",
+   "texto": "{T}: Adicione um mana de qualquer tipo que um terreno que você controla possa gerar.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Nicol Bolas, Dragon-God": {
+  "en": {
+   "id": "c5408607-af8f-48fe-bc40-32828d1976de",
+   "frente": "imagens/c5408607-af8f-48fe-bc40-32828d1976de/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "f8bee232-3eae-4e0a-8405-3f0acf94eada",
+   "frente": "imagens/f8bee232-3eae-4e0a-8405-3f0acf94eada/front.png",
+   "verso": null,
+   "nome": "Nicol Bolas, Dragão-deus",
+   "tipo": "Planeswalker Lendário — Nicol Bolas",
+   "texto": "Nicol Bolas, Dragão-deus, tem todas as habilidades de lealdade de todos os outros planeswalkers no campo de batalha.\n+1: Você compra um card. Cada oponente exila um card da própria mão ou uma permanente que ele controla.\n−3: Destrua a criatura ou planeswalker alvo.\n−8: Cada oponente que não controla uma criatura lendária nem um planeswalker lendário perde o jogo.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Dreadhorde Invasion": {
+  "en": {
+   "id": "9bbfad2d-a3b5-4119-aea4-0793b7a9da88",
+   "frente": "imagens/9bbfad2d-a3b5-4119-aea4-0793b7a9da88/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "389f3215-93ac-4535-863c-9acfc240b7df",
+   "frente": "imagens/389f3215-93ac-4535-863c-9acfc240b7df/front.png",
+   "verso": null,
+   "nome": "Invasão da Horda Medonha",
+   "tipo": "Encantamento",
+   "texto": "No início de sua manutenção, você perde 1 ponto de vida e arregimenta 1. (Coloque um marcador +1/+1 em um Exército que você controla. Se você não controlar um, crie antes uma ficha de criatura Zumbi Exército preta 0/0.)\nToda vez que uma ficha de Zumbi que você controla com poder igual ou superior a 6 ataca, ela ganha vínculo com a vida até o final do turno.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Flawless Maneuver": {
+  "en": {
+   "id": "3ffe82a4-584e-4ebd-9551-a745bed01e26",
+   "frente": "imagens/3ffe82a4-584e-4ebd-9551-a745bed01e26/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "f10ac8ac-1008-4bea-b852-bb271e30187b",
+   "frente": null,
+   "verso": null,
+   "nome": "Manobra Impecável",
+   "tipo": "Mágica Instantânea",
+   "texto": "Se você controla um comandante, você pode conjurar esta mágica sem pagar seu custo de mana.\nAs criaturas que você controla ganham indestrutível até o final do turno.",
+   "faces": null,
+   "reserva": true
+  }
+ },
+ "Polymorph": {
+  "en": {
+   "id": "a681a355-a5e8-4ed2-8983-9c29ab34819b",
+   "frente": "imagens/a681a355-a5e8-4ed2-8983-9c29ab34819b/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "ada21eb1-6d5b-4268-bbe8-e0d3c3b05e88",
+   "frente": null,
+   "verso": null,
+   "nome": "Polimorfismo",
+   "tipo": "Feitiço",
+   "texto": "Destrói a criatura alvo. Ela não pode ser regenerada. O controlador daquela criatura revela cards do topo de seu próprio grimório até revelar um card de criatura. O jogador coloca aquele card em jogo e embaralha todos os outros cards revelados dessa maneira em seu próprio grimório.",
+   "faces": null,
+   "reserva": true
+  }
+ },
+ "Synthetic Destiny": {
+  "en": {
+   "id": "78ab1d69-da01-424b-9d09-ef985aef4cbd",
+   "frente": "imagens/78ab1d69-da01-424b-9d09-ef985aef4cbd/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "14eb9161-53b2-4a25-8cce-e0b7a5ef68a5",
+   "frente": "imagens/14eb9161-53b2-4a25-8cce-e0b7a5ef68a5/front.png",
+   "verso": null,
+   "nome": "Destino Sintético",
+   "tipo": "Mágica Instantânea",
+   "texto": "Exile todas as criaturas que você controla. No início da próxima etapa final, revele cards do topo de seu grimório até revelar a mesma quantidade de cards de criatura. Coloque todos os cards de criatura revelados desta forma no campo de batalha e embaralhe o restante dos cards revelados em seu grimório.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Shark Typhoon": {
+  "en": {
+   "id": "605ca3c0-7c9a-4bc1-9795-82aeb6f552ee",
+   "frente": "imagens/605ca3c0-7c9a-4bc1-9795-82aeb6f552ee/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "a446f88d-8121-4165-9ed8-2b19f5427578",
+   "frente": "imagens/a446f88d-8121-4165-9ed8-2b19f5427578/front.png",
+   "verso": null,
+   "nome": "Tufão de Tubarões",
+   "tipo": "Encantamento",
+   "texto": "Toda vez que você conjurar uma mágica que não seja de criatura, crie uma ficha de criatura azul X/X do tipo Tubarão com voar, sendo X o custo de mana convertido daquela mágica.\nReciclar {X}{1}{U} ({X}{1}{U}, descarte este card: Compre um card.)\nQuando reciclar Tufão de Tubarões, crie uma ficha de criatura azul X/X do tipo Tubarão com voar.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Whirlwind of Thought": {
+  "en": {
+   "id": "e1de5fb8-7206-44a6-b827-5c6a21c25296",
+   "frente": "imagens/e1de5fb8-7206-44a6-b827-5c6a21c25296/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "2f52d297-2dde-484f-bafd-1af7eda4081a",
+   "frente": "imagens/2f52d297-2dde-484f-bafd-1af7eda4081a/front.png",
+   "verso": null,
+   "nome": "Redemoinho de Pensamentos",
+   "tipo": "Encantamento",
+   "texto": "Toda vez que você conjurar uma mágica não de criatura, compre um card.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Elspeth, Sun's Champion": {
+  "en": {
+   "id": "a91d9163-c1f2-4eae-acab-5dabbc71d7d4",
+   "frente": "imagens/a91d9163-c1f2-4eae-acab-5dabbc71d7d4/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "feee5638-f794-49f6-a725-fca49a859c46",
+   "frente": "imagens/feee5638-f794-49f6-a725-fca49a859c46/front.png",
+   "verso": null,
+   "nome": "Elspeth, Campeã do Sol",
+   "tipo": "Planeswalker Lendário — Elspeth",
+   "texto": "+1: Crie três fichas de criatura Soldado branca 1/1.\n-3: Destrua todas as criaturas com poder igual ou superior a 4.\n-7: Você recebe um emblema com \"As criaturas que você controla recebem +2/+2 e têm voar\".",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Secure the Wastes": {
+  "en": {
+   "id": "83a01121-e5cd-45ba-97c2-7bd7d50158e6",
+   "frente": "imagens/83a01121-e5cd-45ba-97c2-7bd7d50158e6/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "06227e0f-2580-41de-a055-4bd508bb1867",
+   "frente": "imagens/06227e0f-2580-41de-a055-4bd508bb1867/front.png",
+   "verso": null,
+   "nome": "Proteger os Ermos",
+   "tipo": "Mágica Instantânea",
+   "texto": "Crie X fichas de criatura Guerreiro branca 1/1.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Divergent Transformations": {
+  "en": {
+   "id": "a1cd7456-71dd-463f-98a2-2d6a9cfb7395",
+   "frente": "imagens/a1cd7456-71dd-463f-98a2-2d6a9cfb7395/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "2ee9bd2e-dfc5-43e1-bd6a-63cd71561322",
+   "frente": null,
+   "verso": null,
+   "nome": "Transformações Divergentes",
+   "tipo": "Mágica Instantânea",
+   "texto": "Inabalável (Esta mágica custa {1} a menos por cada oponente para ser conjurada.)\nExile duas criaturas alvo. Para cada uma dessas criaturas, seu controlador revela cards do topo do próprio grimório até revelar um card de criatura, coloca aquele card no campo de batalha e, em seguida, embaralha os demais no próprio grimório.",
+   "faces": null,
+   "reserva": true
+  }
+ },
+ "Proteus Staff": {
+  "en": {
+   "id": "e6fcedb4-4152-47c3-a97e-34f4483ff94d",
+   "frente": "imagens/e6fcedb4-4152-47c3-a97e-34f4483ff94d/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "c2c3e190-4b9f-4010-bd56-3406a6f44328",
+   "frente": null,
+   "verso": null,
+   "nome": "Cajado de Proteus",
+   "tipo": "Artefato",
+   "texto": "{2}{U}, {T}: Coloca a criatura alvo no fundo do grimório de seu dono. O controlador daquela criatura revela cards do topo de seu próprio grimório até revelar um card de criatura. O jogador coloca aquele card em jogo e o restante no fundo de seu próprio grimório, em qualquer ordem. Use esta habilidade somente quando pudesse jogar um feitiço.",
+   "faces": null,
+   "reserva": true
+  }
+ },
+ "Angel of the Ruins": {
+  "en": {
+   "id": "fd9c99f0-390d-4ab1-ac0a-b18f1b0af12c",
+   "frente": "imagens/fd9c99f0-390d-4ab1-ac0a-b18f1b0af12c/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "18269929-f9eb-4476-b789-55b2b1a0ebd5",
+   "frente": "imagens/18269929-f9eb-4476-b789-55b2b1a0ebd5/front.png",
+   "verso": null,
+   "nome": "Anjo das Ruínas",
+   "tipo": "Criatura Artefato — Anjo",
+   "texto": "Voar\nQuando Anjo das Ruínas entrar no campo de batalha, exile até dois artefatos e/ou encantamentos alvo.\nReciclar Planície {2} ({2}, descarte este card: Procure em seu grimório um card de Planície, revele-o, coloque-o em sua mão e depois embaralhe.)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Serra's Emissary": {
+  "en": {
+   "id": "0a69b668-7b7c-4da9-af49-e8cbc13797cc",
+   "frente": "imagens/0a69b668-7b7c-4da9-af49-e8cbc13797cc/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "616da355-89cc-491f-89c6-8877882418c6",
+   "frente": "imagens/616da355-89cc-491f-89c6-8877882418c6/front.png",
+   "verso": null,
+   "nome": "Emissária de Serra",
+   "tipo": "Criatura — Anjo",
+   "texto": "Voar\nConforme Emissária de Serra entrar no campo de batalha, escolha um tipo de card.\nVocê e as criaturas que você controla têm proteção contra o tipo de card escolhido.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Archon of Cruelty": {
+  "en": {
+   "id": "95ff951b-a098-409c-86c8-373b6c9f8331",
+   "frente": "imagens/95ff951b-a098-409c-86c8-373b6c9f8331/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "8e8a58c8-955c-4800-b67f-a07c27cdb3d2",
+   "frente": "imagens/8e8a58c8-955c-4800-b67f-a07c27cdb3d2/front.png",
+   "verso": null,
+   "nome": "Arconte da Crueldade",
+   "tipo": "Criatura — Arconte",
+   "texto": "Voar\nToda vez que Arconte da Crueldade entra no campo de batalha ou ataca, o oponente alvo sacrifica uma criatura ou um planeswalker, descarta um card e perde 3 pontos de vida. Você compra um card e ganha 3 pontos de vida.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Hullbreaker Horror": {
+  "en": {
+   "id": "fe03a9aa-f11c-4470-b604-b63a5dd496b8",
+   "frente": "imagens/fe03a9aa-f11c-4470-b604-b63a5dd496b8/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "04ca85a8-ecee-4b98-8fb1-5d7a1daa4730",
+   "frente": "imagens/04ca85a8-ecee-4b98-8fb1-5d7a1daa4730/front.png",
+   "verso": null,
+   "nome": "Horror Quebra-casco",
+   "tipo": "Criatura — Kraken Horror",
+   "texto": "Lampejo\nEsta mágica não pode ser anulada.\nToda vez que você conjurar uma mágica, escolha até um —\n• Devolva a mágica alvo que você não controla para a mão de seu dono.\n• Devolva a permanente alvo não de terreno para a mão de seu dono.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Occult Epiphany": {
+  "en": {
+   "id": "e5fcfaff-2fd0-46d8-b863-ad25558c9e95",
+   "frente": "imagens/e5fcfaff-2fd0-46d8-b863-ad25558c9e95/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "965f38d1-da70-4fc1-b10d-b443f2ba0bfa",
+   "frente": "imagens/965f38d1-da70-4fc1-b10d-b443f2ba0bfa/front.png",
+   "verso": null,
+   "nome": "Epifania Oculta",
+   "tipo": "Mágica Instantânea",
+   "texto": "Compre X cards e depois descarte X cards. Crie uma ficha de criatura Espírito branca 1/1 com voar para cada tipo de card entre os dos cards descartados dessa forma.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Grand Crescendo": {
+  "en": {
+   "id": "a60834b0-38ab-40c9-9fd9-db3a23b13076",
+   "frente": "imagens/a60834b0-38ab-40c9-9fd9-db3a23b13076/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "a2e35251-2ded-4e35-93da-231a2078ac4c",
+   "frente": "imagens/a2e35251-2ded-4e35-93da-231a2078ac4c/front.png",
+   "verso": null,
+   "nome": "Grande Crescendo",
+   "tipo": "Mágica Instantânea",
+   "texto": "Crie X fichas de criatura Cidadão verde e branca 1/1. As criaturas que você controla ganham indestrutível até o final do turno.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Skrelv's Hive": {
+  "en": {
+   "id": "e2652c4d-38a7-4014-94bb-7efd277de992",
+   "frente": "imagens/e2652c4d-38a7-4014-94bb-7efd277de992/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "cdc04e46-54a4-4a0c-9a47-7feccfef3376",
+   "frente": "imagens/cdc04e46-54a4-4a0c-9a47-7feccfef3376/front.png",
+   "verso": null,
+   "nome": "Colmeia de Skrelv",
+   "tipo": "Encantamento",
+   "texto": "No início de sua manutenção você perde 1 ponto de vida e cria uma ficha de criatura artefato Phyrexiano Ácaro incolor 1/1 com tóxico 1 e \"Esta criatura não pode bloquear\".\nCorrompido — Enquanto um oponente tiver três ou mais marcadores de veneno, as criaturas que você controla com tóxico terão vínculo com a vida.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Ovika, Enigma Goliath": {
+  "en": {
+   "id": "54819d7a-eec6-49e6-a0bb-d9d07d42b4a6",
+   "frente": "imagens/54819d7a-eec6-49e6-a0bb-d9d07d42b4a6/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "44277dbf-68b8-4c78-9f46-efd87b345b6f",
+   "frente": "imagens/44277dbf-68b8-4c78-9f46-efd87b345b6f/front.png",
+   "verso": null,
+   "nome": "Ovika, Golias do Enigma",
+   "tipo": "Criatura Lendária — Phyrexiano Pesadelo",
+   "texto": "Voar\nSalvaguarda — {3}, pague 3 pontos de vida.\nToda vez que você conjurar uma mágica não de criatura, crie X fichas de criatura Phyrexiano Goblin vermelha 1/1, sendo X o valor de mana daquela mágica. Elas ganham ímpeto até o final do turno.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "White Sun's Twilight": {
+  "en": {
+   "id": "ae7a778c-f4a7-447f-90f0-146997e03398",
+   "frente": "imagens/ae7a778c-f4a7-447f-90f0-146997e03398/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "49ba9555-bf3e-42e5-b9d7-c9f0cbbd59fb",
+   "frente": "imagens/49ba9555-bf3e-42e5-b9d7-c9f0cbbd59fb/front.png",
+   "verso": null,
+   "nome": "Crepúsculo do Sol Branco",
+   "tipo": "Feitiço",
+   "texto": "Você ganha X pontos de vida. Crie X fichas de criatura artefato Phyrexiano Ácaro incolor 1/1 com tóxico 1 e \"Esta criatura não pode bloquear\". Se X for igual ou superior a 5, destrua todas as outras criaturas. (Os jogadores que sofrem dano de combate de uma criatura com tóxico 1 também recebem um marcador de veneno.)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Sunfall": {
+  "en": {
+   "id": "a560b9a7-4c00-4c0c-b63d-774d3f6b9aa9",
+   "frente": "imagens/a560b9a7-4c00-4c0c-b63d-774d3f6b9aa9/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "6f835b58-85b0-4c46-9571-81db91cc4667",
+   "frente": "imagens/6f835b58-85b0-4c46-9571-81db91cc4667/front.png",
+   "verso": null,
+   "nome": "Queda Solar",
+   "tipo": "Feitiço",
+   "texto": "Exile todas as criaturas. Incube X, sendo X o número de criaturas exiladas dessa forma. (Crie uma ficha de Incubadora com X marcadores +1/+1 e \"{2}: Transforme este artefato\". Ele se transforma em uma criatura artefato Phyrexiano 0/0.)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Stroke of Midnight": {
+  "en": {
+   "id": "d42b9f9e-2df2-491e-b6ac-3b2bac8a8d8e",
+   "frente": "imagens/d42b9f9e-2df2-491e-b6ac-3b2bac8a8d8e/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "cb346737-60b2-4558-9067-38c659ce17c7",
+   "frente": "imagens/cb346737-60b2-4558-9067-38c659ce17c7/front.png",
+   "verso": null,
+   "nome": "Batida da Meia-noite",
+   "tipo": "Mágica Instantânea",
+   "texto": "Destrua a permanente não de terreno alvo. Seu controlador cria uma ficha de criatura Humano branca 1/1.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Restless Anchorage": {
+  "en": {
+   "id": "109900a9-6dcb-4f89-b84c-0ce0a0175e8f",
+   "frente": "imagens/109900a9-6dcb-4f89-b84c-0ce0a0175e8f/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "a65ccb20-da63-4c00-9d6e-ad9afd34cbcb",
+   "frente": "imagens/a65ccb20-da63-4c00-9d6e-ad9afd34cbcb/front.png",
+   "verso": null,
+   "nome": "Ancoradouro Inquieto",
+   "tipo": "Terreno",
+   "texto": "Ancoradouro Inquieto entra no campo de batalha virado.\n{T}: Adicione {W} ou {U}.\n{1}{W}{U}: Até o final do turno, Ancoradouro Inquieto torna-se uma criatura Ave branca e azul 2/3 com voar. Ela ainda é um terreno.\nToda vez que Ancoradouro Inquieto atacar, crie uma ficha de Mapa.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Brainsurge": {
+  "en": {
+   "id": "2dc20172-4cf0-4ada-a4f3-4ef951cb8207",
+   "frente": "imagens/2dc20172-4cf0-4ada-a4f3-4ef951cb8207/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "514ef7fc-d1ff-4860-ae0c-d05adaf252b0",
+   "frente": "imagens/514ef7fc-d1ff-4860-ae0c-d05adaf252b0/front.png",
+   "verso": null,
+   "nome": "Erupção Cerebral",
+   "tipo": "Mágica Instantânea",
+   "texto": "Compre quatro cards e, depois, coloque dois cards de sua mão no topo do seu grimório em qualquer ordem.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Contaminated Landscape": {
+  "en": {
+   "id": "f9274fad-3f30-454a-8d61-d487165090d7",
+   "frente": "imagens/f9274fad-3f30-454a-8d61-d487165090d7/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "7774454d-5b25-4091-ac4c-cae3581ab3ff",
+   "frente": "imagens/7774454d-5b25-4091-ac4c-cae3581ab3ff/front.png",
+   "verso": null,
+   "nome": "Paisagem Contaminada",
+   "tipo": "Terreno",
+   "texto": "{T}: Adicione {C}.\n{T}, sacrifique Paisagem Contaminada: Procure em seu grimório um card de Planície, Ilha ou Pântano básico, coloque-o no campo de batalha virado e depois embaralhe.\nReciclar {W}{U}{B} ({W}{U}{B}, descarte este card: Compre um card.)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Perilous Landscape": {
+  "en": {
+   "id": "fec4ca25-ef4c-4500-9bec-60d29c060b83",
+   "frente": "imagens/fec4ca25-ef4c-4500-9bec-60d29c060b83/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "8a7e9868-2a0e-40c6-ad04-de04766dcb7b",
+   "frente": "imagens/8a7e9868-2a0e-40c6-ad04-de04766dcb7b/front.png",
+   "verso": null,
+   "nome": "Paisagem Perigosa",
+   "tipo": "Terreno",
+   "texto": "{T}: Adicione {C}.\n{T}, sacrifique Paisagem Perigosa: Procure em seu grimório um card de Ilha, Montanha ou Planície básico, coloque-o no campo de batalha virado e depois embaralhe.\nReciclar {U}{R}{W} ({U}{R}{W}, descarte este card: Compre um card.)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Overlord of the Mistmoors": {
+  "en": {
+   "id": "152d9e61-40f4-489a-b94d-af17a3674441",
+   "frente": "imagens/152d9e61-40f4-489a-b94d-af17a3674441/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Windcrag Siege": {
+  "en": {
+   "id": "235f5564-0928-411f-ade8-53838890f720",
+   "frente": "imagens/235f5564-0928-411f-ade8-53838890f720/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Darksteel Angel": {
+  "en": {
+   "id": "0c33024e-9473-4d5b-8433-9898380282c4",
+   "frente": "imagens/0c33024e-9473-4d5b-8433-9898380282c4/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Fatehold Charm": {
+  "en": {
+   "id": "cfc54011-647e-4428-bcdb-59400e1da49d",
+   "frente": "imagens/cfc54011-647e-4428-bcdb-59400e1da49d/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "The Ur-Sphinx": {
+  "en": {
+   "id": "d9e9d9a8-86c2-4e58-b818-466247725259",
+   "frente": "imagens/d9e9d9a8-86c2-4e58-b818-466247725259/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Niv-Mizzet, Ghost Counsel": {
+  "en": {
+   "id": "0ad0e168-ac5c-4e1b-83f2-0488067a58d7",
+   "frente": "imagens/0ad0e168-ac5c-4e1b-83f2-0488067a58d7/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Tamiyo, Upriser Crowned": {
+  "en": {
+   "id": "0d52b0fd-60a4-4e90-bc4a-3200493779d3",
+   "frente": "imagens/0d52b0fd-60a4-4e90-bc4a-3200493779d3/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Avacyn, Angel of Horror": {
+  "en": {
+   "id": "ff65f46b-0f82-49b8-93b9-7ac0243ce941",
+   "frente": "imagens/ff65f46b-0f82-49b8-93b9-7ac0243ce941/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Memnarch, the Warden": {
+  "en": {
+   "id": "60d05210-c2b1-4248-a470-e0f8123d33f8",
+   "frente": "imagens/60d05210-c2b1-4248-a470-e0f8123d33f8/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Ob Nixilis, the Ascended": {
+  "en": {
+   "id": "a022d35a-9d24-4818-9ff3-a522cfcb178e",
+   "frente": "imagens/a022d35a-9d24-4818-9ff3-a522cfcb178e/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Jhoira, Weatherlight Corsair": {
+  "en": {
+   "id": "1874c58d-00ce-4973-a318-50ce21d1a675",
+   "frente": "imagens/1874c58d-00ce-4973-a318-50ce21d1a675/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Omnath, Locus of the Void": {
+  "en": {
+   "id": "727511d8-be1a-4c2e-92f6-5cc9d67a2b0c",
+   "frente": "imagens/727511d8-be1a-4c2e-92f6-5cc9d67a2b0c/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Turbulent Shore": {
+  "en": {
+   "id": "92039341-152a-4797-a3df-e89e8d5145d3",
+   "frente": "imagens/92039341-152a-4797-a3df-e89e8d5145d3/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Turbulent Crater": {
+  "en": {
+   "id": "0cb04417-063e-45f7-86d3-7648111d04d7",
+   "frente": "imagens/0cb04417-063e-45f7-86d3-7648111d04d7/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Turbulent Wetlands": {
+  "en": {
+   "id": "8d86f7f8-492d-4e19-8b61-39084c6299ac",
+   "frente": "imagens/8d86f7f8-492d-4e19-8b61-39084c6299ac/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Plan for All Outcomes": {
+  "en": {
+   "id": "c4effc17-0d0e-423a-b5f2-597ea6c71f67",
+   "frente": "imagens/c4effc17-0d0e-423a-b5f2-597ea6c71f67/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Nissa, Leyline Tamer": {
+  "en": {
+   "id": "e969d1f3-9595-498b-81cb-6cf4df2cad5d",
+   "frente": "imagens/e969d1f3-9595-498b-81cb-6cf4df2cad5d/front.png",
+   "verso": null
+  },
+  "pt": null
  }
 }

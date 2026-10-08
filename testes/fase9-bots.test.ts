@@ -4,7 +4,7 @@
 // resposta tem de ser a mesma, pelo caminho do servidor (bots/pensar.ts) e pelo da partida local (bot.answer).
 import { describe, expect, it } from 'vitest';
 import '../cartas/index.ts';
-import decksJson from '../gerado/decks.json' with { type: 'json' };
+import decksJson from './decks-teste.json' with { type: 'json' };
 import { HeuristicBot, type OpcoesBot } from '../bots/heuristico.ts';
 import { NIVEIS_BOT, type NivelBot } from '../bots/niveis.ts';
 import { pensar } from '../bots/pensar.ts';

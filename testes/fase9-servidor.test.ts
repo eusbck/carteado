@@ -2,7 +2,7 @@
 // pensar com limite global, a mesa respondendo enquanto um bot pensa e o aviso "está pensando…".
 import { afterAll, describe, expect, it } from 'vitest';
 import '../cartas/index.ts';
-import decksJson from '../gerado/decks.json' with { type: 'json' };
+import decksJson from './decks-teste.json' with { type: 'json' };
 import { NOMES_BOTS } from '../servidor/nomes.ts';
 import { defaultAnswer } from '../motor/ask.ts';
 import type { DeckList } from '../motor/state.ts';
@@ -147,7 +147,7 @@ describe('fase 9: threads de pensar dos bots', () => {
     const d = game.pending!;
     const { HeuristicBot } = await import('../bots/heuristico.ts');
     const bot = new HeuristicBot('x', d.player, { nivel: 'intermediario' });
-    const pedido = { sala: 'S1', geracao: 1, cp: null, entradas: [], deckIds: [DECKS[0].id, DECKS[1].id], tarefa: { nivel: 'intermediario' as const, eu: d.player, estado: bot.e, decisao: d.id, config } };
+    const pedido = { sala: 'S1', geracao: 1, cp: null, entradas: [], listas: [DECKS[0], DECKS[1]], tarefa: { nivel: 'intermediario' as const, eu: d.player, estado: bot.e, decisao: d.id, config } };
     const a = p.pensar(pedido);
     const b = p.pensar({ ...pedido, sala: 'S2' });
     expect(p.ocupacao).toEqual({ pensando: 1, esperando: 1 });

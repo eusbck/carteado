@@ -3,13 +3,10 @@
 
 import { parentPort } from 'node:worker_threads';
 import '../cartas/index.ts';
-import decksJson from '../gerado/decks.json' with { type: 'json' };
 import type { Checkpoint } from '../motor/game.ts';
-import type { DeckList } from '../motor/state.ts';
 import { pensar } from '../bots/pensar.ts';
 import type { MsgPensar, RespPensar } from './pensadores.ts';
 
-const DECKS = new Map((decksJson as DeckList[]).map((d) => [d.id, d]));
 const cache = new Map<string, { geracao: number; cp: Checkpoint }>();
 
 parentPort!.on('message', (m: MsgPensar) => {
@@ -22,8 +19,7 @@ parentPort!.on('message', (m: MsgPensar) => {
       if (!c || c.geracao !== m.geracao || c.cp.inputIndex !== m.desde) { responder({ id: m.id, erro: 'sem-base' }); return; }
       cp = c.cp;
     }
-    const decks = m.deckIds.map((id) => DECKS.get(id)!);
-    const r = pensar({ ...m.tarefa, cp, entradas: m.entradas }, decks);
+    const r = pensar({ ...m.tarefa, cp, entradas: m.entradas }, m.listas);
     if (r.cp) cache.set(m.sala, { geracao: m.geracao, cp: r.cp });
     responder({ id: m.id, resposta: r.resposta, estado: r.estado, cpIndice: r.cp?.inputIndex ?? null, ms: r.ms, memoria: process.memoryUsage().heapUsed });
   } catch (e) {

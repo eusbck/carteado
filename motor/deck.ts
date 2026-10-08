@@ -1,14 +1,15 @@
 // Validação de deck de Commander (CR 903.3, 903.4, 903.5).
 
-import { BASIC_LAND_MANA, oracle } from './oracle.ts';
+import { BASIC_LAND_MANA, oracle, type OracleCard } from './oracle.ts';
 import type { DeckList } from './state.ts';
 import type { Color } from './types.ts';
 
 export interface DeckProblem { rule: string; message: string }
 
-export function validateDeck(deck: DeckList): DeckProblem[] {
+/** `buscar` troca a fonte dos dados Oracle (importação: cartas que ainda não estão em gerado/) */
+export function validateDeck(deck: DeckList, buscar: (name: string) => OracleCard = oracle): DeckProblem[] {
   const out: DeckProblem[] = [];
-  const cmd = oracle(deck.comandante);
+  const cmd = buscar(deck.comandante);
   const f = cmd.faces[0];
   // CR 903.3: comandante lendário e criatura (ou "pode ser seu comandante", 903.3a)
   const canBe = f.oracleText.includes('can be your commander');
@@ -20,7 +21,7 @@ export function validateDeck(deck: DeckList): DeckProblem[] {
   if (total !== 100) out.push({ rule: '903.5a', message: `O deck tem ${total} cartas (precisa de 100)` });
   const identity = new Set<Color>(cmd.colorIdentity);
   for (const e of deck.cartas) {
-    const c = oracle(e.nome);
+    const c = buscar(e.nome);
     const basic = c.faces[0].supertypes.includes('Basic') && c.faces[0].types.includes('Land');
     // CR 903.5b: singleton, exceto terrenos básicos
     if (!basic && e.quantidade > 1) out.push({ rule: '903.5b', message: `${e.nome} aparece ${e.quantidade} vezes` });

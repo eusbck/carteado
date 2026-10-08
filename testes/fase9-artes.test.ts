@@ -8,6 +8,7 @@ import { join } from 'node:path';
 import sharp from 'sharp';
 import { afterAll, describe, expect, it } from 'vitest';
 import decksJson from '../gerado/decks.json' with { type: 'json' };
+import decksTeste from './decks-teste.json' with { type: 'json' };
 import imagensJson from '../gerado/imagens.json' with { type: 'json' };
 import { Imagens } from '../servidor/imagens.ts';
 
@@ -79,10 +80,13 @@ describe('arte do comandante para o fundo da área', () => {
 
 describe('artes guardadas no repositório (gerado/artes)', () => {
   const pasta = join(import.meta.dirname, '..', 'gerado', 'artes');
-  const fontes = JSON.parse(readFileSync(join(pasta, 'fontes.json'), 'utf8')) as Record<string, { imagemLocal: string; tamanho: [number, number]; impressao: { url: string } }>;
+  const fontes = JSON.parse(readFileSync(join(pasta, 'fontes.json'), 'utf8')) as Record<string, { imagemLocal: string; tamanho: [number, number]; impressao: { url: string }; recorte: unknown }>;
+  const originais = new Set((decksTeste as { comandante: string }[]).map((d) => d.comandante));
   type Img = { id: string; reserva?: boolean } | null;
   const IMG = imagensJson as unknown as Record<string, { en: Img; pt: Img }>;
 
+  // os 7 decks originais têm arte de largura toda; um deck importado pode ter só o art_crop (626 px), quando o
+  // comandante não tem impressão sem borda
   it('cada comandante dos decks tem a arte, com a origem registrada e mais larga que o recorte antigo (626 px)', async () => {
     for (const d of decksJson as { comandante: string }[]) {
       const i = IMG[d.comandante];
@@ -96,7 +100,7 @@ describe('artes guardadas no repositório (gerado/artes)', () => {
       expect(existsSync(arquivo), d.comandante).toBe(true);
       const m = await sharp(arquivo).metadata();
       expect([m.width, m.height]).toEqual(f.tamanho);
-      expect(m.width).toBeGreaterThan(700);
+      if (originais.has(d.comandante) || f.recorte !== 'art_crop') expect(m.width).toBeGreaterThan(700);
     }
   });
 });

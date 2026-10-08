@@ -1,14 +1,17 @@
 # Commander da Mesa
 
-Jogo de Commander online e privado para o grupo, com as regras aplicadas pelo servidor e os
-7 decks de `../cartas/`.
+Jogo de Commander online e privado para o grupo, com as regras aplicadas pelo servidor. Os decks
+vêm do Moxfield: os 7 primeiros foram coletados em `../cartas/`, e outros entram (ou são atualizados)
+pelo link, na tela **Decks**.
 
 ## Rodar no seu computador
 
 Precisa do Node.js 24 ou mais novo. A pasta `jogo/` tem de ficar ao lado de `cartas/` (as
-imagens das cartas são lidas de lá; nada é copiado). A arte dos comandantes para o fundo da mesa,
-em qualidade maior, já vem baixada em `gerado/artes/` (`node ferramentas/baixar-artes.ts` baixa de
-novo da Scryfall, se um deck novo entrar).
+imagens das cartas dos 7 decks originais são lidas de lá; nada é copiado). As imagens das cartas que
+entraram depois pela tela Decks ficam em `dados-locais/imagens/` (`node ferramentas/decks.ts imagens`
+baixa de novo as que faltarem). A arte dos comandantes para o fundo da mesa, em qualidade maior, fica
+em `gerado/artes/` (a importação baixa a do deck novo; `node ferramentas/baixar-artes.ts` baixa de
+novo da Scryfall).
 
 ```
 cd jogo
@@ -28,6 +31,7 @@ Variáveis opcionais:
 | `PORTA` | porta HTTP | `8080` |
 | `SENHA_ACESSO` | senha para entrar no site | gerada na primeira vez |
 | `DADOS` | pasta do banco (salas e partidas) | `dados-locais/` |
+| `IMAGENS` | imagens das cartas que entraram pela tela Decks | `dados-locais/imagens/` |
 | `HTTPS` | `1` quando estiver atrás de um proxy com HTTPS (cookie seguro) | desligado |
 
 ## Abrir a mesa para o grupo pela internet
@@ -90,11 +94,39 @@ janela mostra o endereço `https://` e a senha de acesso para mandar ao grupo. D
    - No saguão, quem criou a sala põe bots nos lugares livres e escolhe o nível de cada um:
      Iniciante, Fácil, Intermediário (padrão), Difícil, Cartomante ou Magic God. Cada bot ganha um
      nome sorteado (ROBSON, CLEITON…), que aparece com o nível ("ROBSON · Cartomante").
-5. Todas as cartas dos sete decks têm o efeito automatizado. O ajuste manual continua disponível
+5. Todas as cartas dos decks do saguão têm o efeito automatizado. O ajuste manual continua disponível
    para corrigir alguma situação à mão, só quando você tem prioridade, e todo ajuste aparece no
    registro para todos.
 
 Se a conexão cair ou o servidor reiniciar, a página reconecta sozinha e volta ao mesmo lugar.
+
+## Decks: importar e atualizar pelo Moxfield
+
+Na tela inicial, o botão **Decks** mostra todos os decks da mesa. Qualquer pessoa que entrou com a senha
+do servidor pode usar:
+
+1. **Importar:** cole o link do deck no Moxfield (`https://moxfield.com/decks/…`; o deck precisa ser
+   público ou não listado) e clique em "Buscar deck". O servidor busca a lista e os dados das cartas
+   (Scryfall), confere as regras de deck do Commander (comandante, 100 cartas, uma de cada, identidade
+   de cor) e mostra uma prévia. Confirmando, ele baixa as imagens e a arte do comandante.
+2. **Atualizar:** o botão "Atualizar" de cada deck busca o deck de novo no Moxfield e mostra o que
+   **entra** e o que **sai**. Colar de novo o link de um deck que já está na mesa faz o mesmo.
+3. **Só entra no saguão o deck com todas as cartas com regras.** As regras de cada carta são escritas à
+   mão (`cartas/defs/`). Se o deck tem cartas que o jogo ainda não tem, ele fica **em preparação**
+   ("29 de 93 cartas com regras"), com a lista do que falta. Numa atualização com cartas novas, a
+   versão nova fica guardada e o deck continua no saguão com a lista anterior.
+4. **Completar um deck em preparação:** o anfitrião abre o Claude Code na pasta do projeto e pede
+   "complete os decks em preparação". As cartas que faltam são implementadas com testes (veja
+   `cartas/COMO-IMPLEMENTAR.md`); na próxima vez que a mesa abrir, o deck (ou a atualização) entra
+   sozinho.
+5. Partidas em andamento guardam a lista com que começaram: atualizar um deck não muda a partida.
+
+O que a importação grava: `decks/<id>.json` (a lista de cada deck, a atual e a que espera cartas),
+`decks/cartas.json` e `decks/rulings.json` (dados das cartas novas), `gerado/` (o que o jogo lê) e
+`gerado/artes/`. Faça commit dessas pastas depois de importar. A mesma coisa pela linha de comando:
+`node ferramentas/decks.ts` (veja a tabela abaixo). Se o Moxfield recusar os pedidos do servidor, abra
+`https://api2.moxfield.com/v3/decks/all/<id>` no navegador, salve o JSON e use
+`node ferramentas/decks.ts importar --arquivo deck.json --confirmar`.
 
 ## Desenvolvimento
 
@@ -110,6 +142,10 @@ Se a conexão cair ou o servidor reiniciar, a página reconecta sozinha e volta 
 | `node ferramentas/e2e.ts` | partidas de ponta a ponta com navegadores (1v1, 4 jogadores, reinício do servidor) |
 | `node ferramentas/cobertura.ts` | atualiza `COBERTURA.md` |
 | `node ferramentas/baixar-artes.ts` | baixa da Scryfall a arte dos comandantes em `gerado/artes/` (uma vez; `--forcar` baixa de novo) |
+| `node ferramentas/decks.ts pendentes` | decks em preparação e as cartas que faltam implementar (Oracle, rulings, fichas, nome do arquivo) |
+| `node ferramentas/decks.ts importar <link> [--confirmar]` | importa um deck do Moxfield (sem `--confirmar`, só mostra a prévia) |
+| `node ferramentas/decks.ts atualizar <id\|todos> [--confirmar]` | busca de novo e mostra o que entra e sai |
+| `node ferramentas/decks.ts gerar` | regera `gerado/` a partir de `../cartas` e `decks/`, e põe no saguão as versões em preparação que ficaram prontas |
 
 O progresso das fases está em `PROGRESSO.md`.
 

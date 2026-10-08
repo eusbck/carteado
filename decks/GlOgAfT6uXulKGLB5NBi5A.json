@@ -1,0 +1,364 @@
+{
+ "formato": 1,
+ "id": "GlOgAfT6uXulKGLB5NBi5A",
+ "ordem": 3,
+ "nome": "Prismari Artistry",
+ "link": "https://moxfield.com/decks/GlOgAfT6uXulKGLB5NBi5A",
+ "importadoEm": "2026-10-04T01:33:17.445Z",
+ "verificadoEm": null,
+ "atual": {
+  "comandante": "Rootha, Mastering the Moment",
+  "cartas": [
+   {
+    "nome": "Goblin Electromancer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Counterspell",
+    "quantidade": 1
+   },
+   {
+    "nome": "Negate",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ashling, Rekindled // Ashling, Rimebound",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ashling's Command",
+    "quantidade": 1
+   },
+   {
+    "nome": "Molten-Core Maestro",
+    "quantidade": 1
+   },
+   {
+    "nome": "Prismari Charm",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sanar, Unfinished Genius // Wild Idea",
+    "quantidade": 1
+   },
+   {
+    "nome": "Prismari Pianist",
+    "quantidade": 1
+   },
+   {
+    "nome": "Muddle, the Ever-Changing",
+    "quantidade": 1
+   },
+   {
+    "nome": "Leitmotif Composer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dirgur Focusmage // Braingeyser",
+    "quantidade": 1
+   },
+   {
+    "nome": "Furygale Flocking",
+    "quantidade": 1
+   },
+   {
+    "nome": "Scorched Geyser",
+    "quantidade": 1
+   },
+   {
+    "nome": "Coastal Peak",
+    "quantidade": 1
+   },
+   {
+    "nome": "Turbulent Springs",
+    "quantidade": 1
+   },
+   {
+    "nome": "Inspired Skypainter // Maestro's Gift",
+    "quantidade": 1
+   },
+   {
+    "nome": "Command Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Abstract Performance",
+    "quantidade": 1
+   },
+   {
+    "nome": "Renegade Bull",
+    "quantidade": 1
+   },
+   {
+    "nome": "Replication Technique",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rite of Replication",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arcane Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mana Geyser",
+    "quantidade": 1
+   },
+   {
+    "nome": "Curiosity Crafter",
+    "quantidade": 1
+   },
+   {
+    "nome": "Faerie Mastermind",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Goldspan Dragon",
+    "quantidade": 1
+   },
+   {
+    "nome": "Big Score",
+    "quantidade": 1
+   },
+   {
+    "nome": "Temple of the False God",
+    "quantidade": 1
+   },
+   {
+    "nome": "Chain Reaction",
+    "quantidade": 1
+   },
+   {
+    "nome": "Thunderclap Drake",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fellwar Stone",
+    "quantidade": 1
+   },
+   {
+    "nome": "Brudiclad, Telchor Engineer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Reality Shift",
+    "quantidade": 1
+   },
+   {
+    "nome": "Storm-Kiln Artist",
+    "quantidade": 1
+   },
+   {
+    "nome": "Spectacle Summit",
+    "quantidade": 1
+   },
+   {
+    "nome": "Creative Technique",
+    "quantidade": 1
+   },
+   {
+    "nome": "Archmage Emeritus",
+    "quantidade": 1
+   },
+   {
+    "nome": "Blasphemous Act",
+    "quantidade": 1
+   },
+   {
+    "nome": "Determined Iteration",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dig Through Time",
+    "quantidade": 1
+   },
+   {
+    "nome": "Magma Opus",
+    "quantidade": 1
+   },
+   {
+    "nome": "Manaform Hellkite",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mystic Sanctuary",
+    "quantidade": 1
+   },
+   {
+    "nome": "Reliquary Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Prismari Campus",
+    "quantidade": 1
+   },
+   {
+    "nome": "Surge to Victory",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sulfur Falls",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fabled Passage",
+    "quantidade": 1
+   },
+   {
+    "nome": "Treasure Cruise",
+    "quantidade": 1
+   },
+   {
+    "nome": "Volcanic Salvo",
+    "quantidade": 1
+   },
+   {
+    "nome": "Frostboil Snarl",
+    "quantidade": 1
+   },
+   {
+    "nome": "Prismari Command",
+    "quantidade": 1
+   },
+   {
+    "nome": "Exotic Orchard",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rousing Refrain",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shivan Reef",
+    "quantidade": 1
+   },
+   {
+    "nome": "Talisman of Creativity",
+    "quantidade": 1
+   },
+   {
+    "nome": "Twinflame",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rionya, Fire Dancer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Terramorphic Expanse",
+    "quantidade": 1
+   },
+   {
+    "nome": "Abrade",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lightning Greaves",
+    "quantidade": 1
+   },
+   {
+    "nome": "Path of Ancestry",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arcane Denial",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cursed Mirror",
+    "quantidade": 1
+   },
+   {
+    "nome": "Stormcatch Mentor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cascade Bluffs",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ferrous Lake",
+    "quantidade": 1
+   },
+   {
+    "nome": "Molten Tributary",
+    "quantidade": 1
+   },
+   {
+    "nome": "Temple of Epiphany",
+    "quantidade": 1
+   },
+   {
+    "nome": "Chaos Warp",
+    "quantidade": 1
+   },
+   {
+    "nome": "Veyran, Voice of Duality",
+    "quantidade": 1
+   },
+   {
+    "nome": "Expressive Iteration",
+    "quantidade": 1
+   },
+   {
+    "nome": "Resculpt",
+    "quantidade": 1
+   },
+   {
+    "nome": "Island",
+    "quantidade": 8
+   },
+   {
+    "nome": "Deep Analysis",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mountain",
+    "quantidade": 7
+   },
+   {
+    "nome": "Study Hall",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dance with Calamity",
+    "quantidade": 1
+   },
+   {
+    "nome": "Aether Gale",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hall of Oracles",
+    "quantidade": 1
+   },
+   {
+    "nome": "Restless Spire",
+    "quantidade": 1
+   },
+   {
+    "nome": "Splatter Technique",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rapturous Moment",
+    "quantidade": 1
+   },
+   {
+    "nome": "Abstract Paintmage",
+    "quantidade": 1
+   }
+  ],
+  "origem": {
+   "versao": 0,
+   "atualizadoEm": "2026-08-30T15:25:37.83Z"
+  },
+  "desde": "2026-10-04T01:33:17.445Z"
+ },
+ "preparacao": null
+}

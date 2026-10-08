@@ -1,0 +1,360 @@
+{
+ "formato": 1,
+ "id": "G1OgAfZWPXGNR69mOTQcVA",
+ "ordem": 6,
+ "nome": "Witherbloom Pestilence",
+ "link": "https://moxfield.com/decks/G1OgAfZWPXGNR69mOTQcVA",
+ "importadoEm": "2026-10-04T01:33:17.419Z",
+ "verificadoEm": null,
+ "atual": {
+  "comandante": "Dina, Essence Brewer",
+  "cartas": [
+   {
+    "nome": "Skirsdag High Priest",
+    "quantidade": 1
+   },
+   {
+    "nome": "Marauding Blight-Priest",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bastion of Remembrance",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vengeful Bloodwitch",
+    "quantidade": 1
+   },
+   {
+    "nome": "Grave Researcher // Reanimate",
+    "quantidade": 1
+   },
+   {
+    "nome": "Witherbloom Charm",
+    "quantidade": 1
+   },
+   {
+    "nome": "Stensian Sanguinist // Exsanguinate",
+    "quantidade": 1
+   },
+   {
+    "nome": "Pest Rescuer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Defiling Daemogoth",
+    "quantidade": 1
+   },
+   {
+    "nome": "Turbulent Fen",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ominous Harvest",
+    "quantidade": 1
+   },
+   {
+    "nome": "Command Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Merchant of Venom",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ribtruss Roaster",
+    "quantidade": 1
+   },
+   {
+    "nome": "Eccentric Pestfinder // Turn Stones",
+    "quantidade": 1
+   },
+   {
+    "nome": "Immoral Bargain",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tendershoot Dryad",
+    "quantidade": 1
+   },
+   {
+    "nome": "Umbral Collar Zealot",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arcane Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mycoloth",
+    "quantidade": 1
+   },
+   {
+    "nome": "Casualties of War",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dina, Soul Steeper",
+    "quantidade": 1
+   },
+   {
+    "nome": "Zulaport Cutthroat",
+    "quantidade": 1
+   },
+   {
+    "nome": "Jadar, Ghoulcaller of Nephalia",
+    "quantidade": 1
+   },
+   {
+    "nome": "Night's Whisper",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Pest Infestation",
+    "quantidade": 1
+   },
+   {
+    "nome": "Assassin's Trophy",
+    "quantidade": 1
+   },
+   {
+    "nome": "Elvish Mystic",
+    "quantidade": 1
+   },
+   {
+    "nome": "Toxic Deluge",
+    "quantidade": 1
+   },
+   {
+    "nome": "Culling Ritual",
+    "quantidade": 1
+   },
+   {
+    "nome": "Deadly Brew",
+    "quantidade": 1
+   },
+   {
+    "nome": "Infernal Grasp",
+    "quantidade": 1
+   },
+   {
+    "nome": "Teacher's Pest",
+    "quantidade": 1
+   },
+   {
+    "nome": "Final Act",
+    "quantidade": 1
+   },
+   {
+    "nome": "Titan's Grave",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ophiomancer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cultivate",
+    "quantidade": 1
+   },
+   {
+    "nome": "Veinwitch Coven",
+    "quantidade": 1
+   },
+   {
+    "nome": "Springbloom Druid",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mazirek, Kraul Death Priest",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fabled Passage",
+    "quantidade": 1
+   },
+   {
+    "nome": "Morbid Opportunist",
+    "quantidade": 1
+   },
+   {
+    "nome": "Exotic Orchard",
+    "quantidade": 1
+   },
+   {
+    "nome": "Witch of the Moors",
+    "quantidade": 1
+   },
+   {
+    "nome": "Viscera Seer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Plumb the Forbidden",
+    "quantidade": 1
+   },
+   {
+    "nome": "Nether Traitor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Terramorphic Expanse",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sakura-Tribe Elder",
+    "quantidade": 1
+   },
+   {
+    "nome": "Priest of Forgotten Gods",
+    "quantidade": 1
+   },
+   {
+    "nome": "Woodland Cemetery",
+    "quantidade": 1
+   },
+   {
+    "nome": "Llanowar Wastes",
+    "quantidade": 1
+   },
+   {
+    "nome": "Temple of Malady",
+    "quantidade": 1
+   },
+   {
+    "nome": "Twilight Mire",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bojuka Bog",
+    "quantidade": 1
+   },
+   {
+    "nome": "Woe Strider",
+    "quantidade": 1
+   },
+   {
+    "nome": "Path of Ancestry",
+    "quantidade": 1
+   },
+   {
+    "nome": "Awakening Zone",
+    "quantidade": 1
+   },
+   {
+    "nome": "Pawn of Ulamog",
+    "quantidade": 1
+   },
+   {
+    "nome": "Wight of the Reliquary",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vernal Fen",
+    "quantidade": 1
+   },
+   {
+    "nome": "High Market",
+    "quantidade": 1
+   },
+   {
+    "nome": "Haunted Mire",
+    "quantidade": 1
+   },
+   {
+    "nome": "Witherbloom Campus",
+    "quantidade": 1
+   },
+   {
+    "nome": "Festering Thicket",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bloodghast",
+    "quantidade": 1
+   },
+   {
+    "nome": "Witherbloom Command",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mortality Spear",
+    "quantidade": 1
+   },
+   {
+    "nome": "Creakwood Liege",
+    "quantidade": 1
+   },
+   {
+    "nome": "Blood Artist",
+    "quantidade": 1
+   },
+   {
+    "nome": "Viridescent Bog",
+    "quantidade": 1
+   },
+   {
+    "nome": "Haywire Mite",
+    "quantidade": 1
+   },
+   {
+    "nome": "Moldervine Reclamation",
+    "quantidade": 1
+   },
+   {
+    "nome": "Necroblossom Snarl",
+    "quantidade": 1
+   },
+   {
+    "nome": "Beledros Witherbloom",
+    "quantidade": 1
+   },
+   {
+    "nome": "Grim Backwoods",
+    "quantidade": 1
+   },
+   {
+    "nome": "Yahenni, Undying Partisan",
+    "quantidade": 1
+   },
+   {
+    "nome": "Blossoming Bogbeast",
+    "quantidade": 1
+   },
+   {
+    "nome": "Study Hall",
+    "quantidade": 1
+   },
+   {
+    "nome": "Smothering Abomination",
+    "quantidade": 1
+   },
+   {
+    "nome": "Moseo, Vein's New Dean",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gorma, the Gullet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Forest",
+    "quantidade": 8
+   },
+   {
+    "nome": "Swamp",
+    "quantidade": 8
+   }
+  ],
+  "origem": {
+   "versao": 0,
+   "atualizadoEm": "2026-08-30T15:25:42.253Z"
+  },
+  "desde": "2026-10-04T01:33:17.419Z"
+ },
+ "preparacao": null
+}

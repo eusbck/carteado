@@ -1,0 +1,388 @@
+{
+ "formato": 1,
+ "id": "shVPe5yzCU2zxRPfg2eOrQ",
+ "ordem": 5,
+ "nome": "Terra",
+ "link": "https://moxfield.com/decks/shVPe5yzCU2zxRPfg2eOrQ",
+ "importadoEm": "2026-10-04T01:33:17.404Z",
+ "verificadoEm": null,
+ "atual": {
+  "comandante": "Terra, Herald of Hope",
+  "cartas": [
+   {
+    "nome": "Arcane Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Command Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Thrill of Possibility",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ash Barrens",
+    "quantidade": 1
+   },
+   {
+    "nome": "Evolving Wilds",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ravenous Chupacabra",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rogue's Passage",
+    "quantidade": 1
+   },
+   {
+    "nome": "Commander's Sphere",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Faithless Looting",
+    "quantidade": 1
+   },
+   {
+    "nome": "Nomad Outpost",
+    "quantidade": 1
+   },
+   {
+    "nome": "Swiftfoot Boots",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mind Stone",
+    "quantidade": 1
+   },
+   {
+    "nome": "Path of Ancestry",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shineshadow Snarl",
+    "quantidade": 1
+   },
+   {
+    "nome": "Furycalm Snarl",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vile Entomber",
+    "quantidade": 1
+   },
+   {
+    "nome": "Morbid Opportunist",
+    "quantidade": 1
+   },
+   {
+    "nome": "Karmic Guide",
+    "quantidade": 1
+   },
+   {
+    "nome": "Smoldering Marsh",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sunlit Marsh",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sacred Peaks",
+    "quantidade": 1
+   },
+   {
+    "nome": "Demolition Field",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sulfurous Springs",
+    "quantidade": 1
+   },
+   {
+    "nome": "Foreboding Ruins",
+    "quantidade": 1
+   },
+   {
+    "nome": "Path to Exile",
+    "quantidade": 1
+   },
+   {
+    "nome": "Exotic Orchard",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rugged Prairie",
+    "quantidade": 1
+   },
+   {
+    "nome": "Talisman of Conviction",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sunscorched Divide",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bushmeat Poacher",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shadowblood Ridge",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dragonskull Summit",
+    "quantidade": 1
+   },
+   {
+    "nome": "Geothermal Bog",
+    "quantidade": 1
+   },
+   {
+    "nome": "Aurelia, the Warleader",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vampiric Rites",
+    "quantidade": 1
+   },
+   {
+    "nome": "Perforating Artist",
+    "quantidade": 1
+   },
+   {
+    "nome": "Celes, Rune Knight",
+    "quantidade": 1
+   },
+   {
+    "nome": "Summon: Esper Valigarmanda",
+    "quantidade": 1
+   },
+   {
+    "nome": "Squall, SeeD Mercenary",
+    "quantidade": 1
+   },
+   {
+    "nome": "General Leo Cristophe",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cyan, Vengeful Samurai",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tragic Arrogance",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sun Titan",
+    "quantidade": 1
+   },
+   {
+    "nome": "Espers to Magicite",
+    "quantidade": 1
+   },
+   {
+    "nome": "Siegfried, Famed Swordsman",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rejoin the Fight",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shadow, Mysterious Assassin",
+    "quantidade": 1
+   },
+   {
+    "nome": "Pitiless Plunderer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Phoenix Down",
+    "quantidade": 1
+   },
+   {
+    "nome": "Laughing Mad",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gau, Feral Youth",
+    "quantidade": 1
+   },
+   {
+    "nome": "Reanimate",
+    "quantidade": 1
+   },
+   {
+    "nome": "Stitch Together",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gogo, Mysterious Mime",
+    "quantidade": 1
+   },
+   {
+    "nome": "Anger",
+    "quantidade": 1
+   },
+   {
+    "nome": "Big Score",
+    "quantidade": 1
+   },
+   {
+    "nome": "Stitcher's Supplier",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rise of the Dark Realms",
+    "quantidade": 1
+   },
+   {
+    "nome": "Night's Whisper",
+    "quantidade": 1
+   },
+   {
+    "nome": "Banon, the Returners' Leader",
+    "quantidade": 1
+   },
+   {
+    "nome": "Kefka, Dancing Mad",
+    "quantidade": 1
+   },
+   {
+    "nome": "Archfiend of Depravity",
+    "quantidade": 1
+   },
+   {
+    "nome": "Locke, Treasure Hunter",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mog, Moogle Warrior",
+    "quantidade": 1
+   },
+   {
+    "nome": "Crackling Doom",
+    "quantidade": 1
+   },
+   {
+    "nome": "The Warring Triad",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bedevil",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ruinous Ultimatum",
+    "quantidade": 1
+   },
+   {
+    "nome": "Legions to Ashes",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mortify",
+    "quantidade": 1
+   },
+   {
+    "nome": "Priest of Fell Rites",
+    "quantidade": 1
+   },
+   {
+    "nome": "Key to the City",
+    "quantidade": 1
+   },
+   {
+    "nome": "Solemn Simulacrum",
+    "quantidade": 1
+   },
+   {
+    "nome": "Meteor Golem",
+    "quantidade": 1
+   },
+   {
+    "nome": "Millikin",
+    "quantidade": 1
+   },
+   {
+    "nome": "Graven Cairns",
+    "quantidade": 1
+   },
+   {
+    "nome": "Isolated Chapel",
+    "quantidade": 1
+   },
+   {
+    "nome": "High Market",
+    "quantidade": 1
+   },
+   {
+    "nome": "Joshua, Phoenix's Dominant // Phoenix, Warden of Fire",
+    "quantidade": 1
+   },
+   {
+    "nome": "Twilight Diviner",
+    "quantidade": 1
+   },
+   {
+    "nome": "Desolate Mire",
+    "quantidade": 1
+   },
+   {
+    "nome": "Massacre Wurm",
+    "quantidade": 1
+   },
+   {
+    "nome": "Clifftop Retreat",
+    "quantidade": 1
+   },
+   {
+    "nome": "Swords to Plowshares",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fetid Heath",
+    "quantidade": 1
+   },
+   {
+    "nome": "Talisman of Indulgence",
+    "quantidade": 1
+   },
+   {
+    "nome": "Battlefield Forge",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fleshbag Marauder",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mountain",
+    "quantidade": 3
+   },
+   {
+    "nome": "Swamp",
+    "quantidade": 3
+   },
+   {
+    "nome": "Plains",
+    "quantidade": 4
+   }
+  ],
+  "origem": {
+   "versao": 24,
+   "atualizadoEm": "2026-09-30T16:14:41.387Z"
+  },
+  "desde": "2026-10-04T01:33:17.404Z"
+ },
+ "preparacao": null
+}

@@ -8,7 +8,7 @@
     "node": ">=24"
   },
   "scripts": {
-    "importar": "node ferramentas/importar.ts",
+    "importar": "node ferramentas/decks.ts gerar",
     "levantamento": "node ferramentas/levantamento.mjs",
     "test": "vitest run",
     "typecheck": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p cliente/tsconfig.json",
@@ -16,7 +16,8 @@
     "cliente:build": "vite build cliente",
     "cliente:dev": "vite cliente",
     "servidor": "node servidor/index.ts",
-    "capturas": "node ferramentas/capturas.ts"
+    "capturas": "node ferramentas/capturas.ts",
+    "decks": "node ferramentas/decks.ts"
   },
   "devDependencies": {
     "@preact/preset-vite": "^2.10.6",

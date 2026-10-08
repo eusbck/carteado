@@ -31,12 +31,12 @@ export interface OracleCard {
   faces: OracleFace[];
 }
 
-interface RawFace {
+export interface RawFace {
   name: string; manaCost: string; typeLine: string; supertypes: string[]; types: string[]; subtypes: string[];
   oracleText: string; power: number | string | null; toughness: number | string | null; loyalty: number | string | null;
   colors: string[]; colorIndicator: string[] | null;
 }
-interface RawCard { name: string; oracleId: string; layout: string; manaValue: number; colorIdentity: string[]; keywords: string[]; faces: RawFace[] }
+export interface RawCard { name: string; oracleId: string; layout: string; manaValue: number; colorIdentity: string[]; keywords: string[]; faces: RawFace[] }
 
 const raw = dados as unknown as { cartas: Record<string, RawCard>; fichas: (RawCard & { imagem: unknown })[] };
 
@@ -70,6 +70,9 @@ function convert(c: RawCard): OracleCard {
     faces: c.faces.map((f) => face(f, c.layout, c.keywords.includes('Devoid'))),
   };
 }
+
+/** dados de uma carta no formato de gerado/cartas.json, convertidos (importação de decks) */
+export const oracleDeDados = convert;
 
 const cartas = new Map<string, OracleCard>();
 for (const [nome, c] of Object.entries(raw.cartas)) cartas.set(nome, convert(c));

@@ -4,7 +4,7 @@
 // do motor, com 4 jogadores e vários turnos.
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import '../cartas/index.ts';
-import decksJson from '../gerado/decks.json' with { type: 'json' };
+import decksJson from './decks-teste.json' with { type: 'json' };
 import { RandomBot } from '../bots/aleatorio.ts';
 import { defaultAnswer } from '../motor/ask.ts';
 import { Game } from '../motor/game.ts';

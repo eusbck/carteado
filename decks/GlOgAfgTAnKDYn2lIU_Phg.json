@@ -1,0 +1,356 @@
+{
+ "formato": 1,
+ "id": "GlOgAfgTAnKDYn2lIU_Phg",
+ "ordem": 1,
+ "nome": "Blight Curse",
+ "link": "https://moxfield.com/decks/GlOgAfgTAnKDYn2lIU_Phg",
+ "importadoEm": "2026-10-04T01:33:17.474Z",
+ "verificadoEm": null,
+ "atual": {
+  "comandante": "Auntie Ool, Cursewretch",
+  "cartas": [
+   {
+    "nome": "Nest of Scarabs",
+    "quantidade": 1
+   },
+   {
+    "nome": "Staff of Compleation",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mountain",
+    "quantidade": 4
+   },
+   {
+    "nome": "Forest",
+    "quantidade": 6
+   },
+   {
+    "nome": "Swamp",
+    "quantidade": 8
+   },
+   {
+    "nome": "Tend the Sprigs",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dawnhand Dissident",
+    "quantidade": 1
+   },
+   {
+    "nome": "The Reaper, King No More",
+    "quantidade": 1
+   },
+   {
+    "nome": "Eventide's Shadow",
+    "quantidade": 1
+   },
+   {
+    "nome": "Aberrant Return",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sinister Gnarlbark",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dread Tiller",
+    "quantidade": 1
+   },
+   {
+    "nome": "Oft-Nabbed Goat",
+    "quantidade": 1
+   },
+   {
+    "nome": "Village Pillagers",
+    "quantidade": 1
+   },
+   {
+    "nome": "Necroskitter",
+    "quantidade": 1
+   },
+   {
+    "nome": "Blowfly Infestation",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ignoble Hierarch",
+    "quantidade": 1
+   },
+   {
+    "nome": "Wickersmith's Tools",
+    "quantidade": 1
+   },
+   {
+    "nome": "Grave Venerations",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arcane Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Command Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Festering Thicket",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vernal Fen",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tree of Perdition",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dusk Urchins",
+    "quantidade": 1
+   },
+   {
+    "nome": "Black Sun's Zenith",
+    "quantidade": 1
+   },
+   {
+    "nome": "Night's Whisper",
+    "quantidade": 1
+   },
+   {
+    "nome": "Assassin's Trophy",
+    "quantidade": 1
+   },
+   {
+    "nome": "The Scorpion God",
+    "quantidade": 1
+   },
+   {
+    "nome": "Carnifex Demon",
+    "quantidade": 1
+   },
+   {
+    "nome": "Channeler Initiate",
+    "quantidade": 1
+   },
+   {
+    "nome": "Commander's Sphere",
+    "quantidade": 1
+   },
+   {
+    "nome": "Chimil, the Inner Sun",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cinder Glade",
+    "quantidade": 1
+   },
+   {
+    "nome": "Contagion Clasp",
+    "quantidade": 1
+   },
+   {
+    "nome": "Exotic Orchard",
+    "quantidade": 1
+   },
+   {
+    "nome": "Terramorphic Expanse",
+    "quantidade": 1
+   },
+   {
+    "nome": "Evolution Sage",
+    "quantidade": 1
+   },
+   {
+    "nome": "Canyon Slough",
+    "quantidade": 1
+   },
+   {
+    "nome": "Glissa Sunslayer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lasting Tarfire",
+    "quantidade": 1
+   },
+   {
+    "nome": "Burning Curiosity",
+    "quantidade": 1
+   },
+   {
+    "nome": "Putrefy",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hapatra, Vizier of Poisons",
+    "quantidade": 1
+   },
+   {
+    "nome": "Puca's Covenant",
+    "quantidade": 1
+   },
+   {
+    "nome": "Massacre Girl, Known Killer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Everlasting Torment",
+    "quantidade": 1
+   },
+   {
+    "nome": "Path of Ancestry",
+    "quantidade": 1
+   },
+   {
+    "nome": "Incremental Blight",
+    "quantidade": 1
+   },
+   {
+    "nome": "Kulrath Knight",
+    "quantidade": 1
+   },
+   {
+    "nome": "Flourishing Defenses",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rootbound Crag",
+    "quantidade": 1
+   },
+   {
+    "nome": "Evolving Wilds",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dragonskull Summit",
+    "quantidade": 1
+   },
+   {
+    "nome": "Painful Truths",
+    "quantidade": 1
+   },
+   {
+    "nome": "Devoted Druid",
+    "quantidade": 1
+   },
+   {
+    "nome": "Wickerbough Elder",
+    "quantidade": 1
+   },
+   {
+    "nome": "Terminate",
+    "quantidade": 1
+   },
+   {
+    "nome": "Smoldering Marsh",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rakdos Carnarium",
+    "quantidade": 1
+   },
+   {
+    "nome": "Woodland Cemetery",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vraska, Betrayal's Sting",
+    "quantidade": 1
+   },
+   {
+    "nome": "Golgari Rot Farm",
+    "quantidade": 1
+   },
+   {
+    "nome": "Nesting Grounds",
+    "quantidade": 1
+   },
+   {
+    "nome": "Midnight Banshee",
+    "quantidade": 1
+   },
+   {
+    "nome": "Grim Poppet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Skinrender",
+    "quantidade": 1
+   },
+   {
+    "nome": "Soul Snuffers",
+    "quantidade": 1
+   },
+   {
+    "nome": "Persist",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fire Covenant",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cathartic Pyre",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gruul Turf",
+    "quantidade": 1
+   },
+   {
+    "nome": "Riveteers Overlook",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ifnir Deadlands",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Savage Lands",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sheltered Thicket",
+    "quantidade": 1
+   },
+   {
+    "nome": "Darkness Descends",
+    "quantidade": 1
+   },
+   {
+    "nome": "Spinerock Tyrant",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gristle Glutton",
+    "quantidade": 1
+   },
+   {
+    "nome": "Blight Rot",
+    "quantidade": 1
+   },
+   {
+    "nome": "Soul Immolation",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bogslither's Embrace",
+    "quantidade": 1
+   },
+   {
+    "nome": "Scuzzback Scrounger",
+    "quantidade": 1
+   }
+  ],
+  "origem": {
+   "versao": 0,
+   "atualizadoEm": "2026-08-30T15:25:34.02Z"
+  },
+  "desde": "2026-10-04T01:33:17.474Z"
+ },
+ "preparacao": null
+}

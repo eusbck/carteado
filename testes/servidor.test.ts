@@ -1,7 +1,7 @@
 // Salas e condução da partida no servidor, sem rede (conexões falsas e banco em memória).
 import { describe, expect, it } from 'vitest';
 import '../cartas/index.ts';
-import decksJson from '../gerado/decks.json' with { type: 'json' };
+import decksJson from './decks-teste.json' with { type: 'json' };
 import type { DeckList } from '../motor/state.ts';
 import { registry } from '../motor/defs.ts';
 import { Banco } from '../servidor/banco.ts';

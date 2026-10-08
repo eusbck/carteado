@@ -1,0 +1,141 @@
+{
+ "object": "card",
+ "id": "457fdbb9-5439-460f-8e37-176f8919362c",
+ "oracle_id": "f4629329-a79b-4460-a1bc-9ae0f59adf5a",
+ "name": "Joshua, Phoenix's Dominant // Phoenix, Warden of Fire",
+ "lang": "en",
+ "released_at": "2025-06-13",
+ "uri": "https://api.scryfall.com/cards/457fdbb9-5439-460f-8e37-176f8919362c",
+ "scryfall_uri": "https://scryfall.com/card/fin/229/joshua-phoenixs-dominant-phoenix-warden-of-fire?utm_source=api",
+ "layout": "transform",
+ "highres_image": true,
+ "image_status": "highres_scan",
+ "image_updated_at": "2026-07-13T01:36:14Z",
+ "cmc": 3,
+ "type_line": "Legendary Creature — Human Noble Wizard // Legendary Enchantment Creature — Saga Phoenix",
+ "color_identity": [
+  "R",
+  "W"
+ ],
+ "keywords": [
+  "Flying",
+  "Lifelink",
+  "Transform"
+ ],
+ "card_faces": [
+  {
+   "object": "card_face",
+   "name": "Joshua, Phoenix's Dominant",
+   "mana_cost": "{1}{R}{W}",
+   "type_line": "Legendary Creature — Human Noble Wizard",
+   "oracle_text": "When Joshua enters, discard up to two cards, then draw that many cards.\n{3}{R}{W}, {T}: Exile Joshua, then return it to the battlefield transformed under its owner's control. Activate only as a sorcery.",
+   "colors": [
+    "R",
+    "W"
+   ],
+   "power": "3",
+   "toughness": "4",
+   "flavor_text": "\"In ashen grip, let ember glow, to kindle flames anew.\"",
+   "artist": "Lius Lasahido",
+   "artist_id": "0a0e9093-ce44-4a69-93a7-09b63e7c330d",
+   "illustration_id": "d0c7d90b-1f0e-492a-8731-1e4781e0ee02",
+   "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/4/5/457fdbb9-5439-460f-8e37-176f8919362c.jpg?1783906574",
+    "normal": "https://cards.scryfall.io/normal/front/4/5/457fdbb9-5439-460f-8e37-176f8919362c.jpg?1783906574",
+    "large": "https://cards.scryfall.io/large/front/4/5/457fdbb9-5439-460f-8e37-176f8919362c.jpg?1783906574",
+    "png": "https://cards.scryfall.io/png/front/4/5/457fdbb9-5439-460f-8e37-176f8919362c.png?1783906574",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/4/5/457fdbb9-5439-460f-8e37-176f8919362c.jpg?1783906574",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/4/5/457fdbb9-5439-460f-8e37-176f8919362c.jpg?1783906574",
+    "thumb": "https://cards.scryfall.io/thumb/front/4/5/457fdbb9-5439-460f-8e37-176f8919362c.webp?1783906574",
+    "grid": "https://cards.scryfall.io/grid/front/4/5/457fdbb9-5439-460f-8e37-176f8919362c.webp?1783906574",
+    "display": "https://cards.scryfall.io/display/front/4/5/457fdbb9-5439-460f-8e37-176f8919362c.webp?1783906574",
+    "art": "https://cards.scryfall.io/art/front/4/5/457fdbb9-5439-460f-8e37-176f8919362c.webp?1783906574",
+    "crop": "https://cards.scryfall.io/crop/front/4/5/457fdbb9-5439-460f-8e37-176f8919362c.webp?1783906574"
+   }
+  },
+  {
+   "object": "card_face",
+   "name": "Phoenix, Warden of Fire",
+   "mana_cost": "",
+   "type_line": "Legendary Enchantment Creature — Saga Phoenix",
+   "oracle_text": "(As this Saga enters and after your draw step, add a lore counter.)\nI, II — Rising Flames — Phoenix deals 2 damage to each opponent.\nIII — Flames of Rebirth — Return any number of target creature cards with total mana value 6 or less from your graveyard to the battlefield. Exile Phoenix, then return it to the battlefield (front face up).\nFlying, lifelink",
+   "colors": [
+    "R",
+    "W"
+   ],
+   "color_indicator": [
+    "R",
+    "W"
+   ],
+   "power": "4",
+   "toughness": "4",
+   "artist": "Lius Lasahido",
+   "artist_id": "0a0e9093-ce44-4a69-93a7-09b63e7c330d",
+   "illustration_id": "79e67408-a32d-43e0-8062-5f5275d2fa7c",
+   "image_uris": {
+    "small": "https://cards.scryfall.io/small/back/4/5/457fdbb9-5439-460f-8e37-176f8919362c.jpg?1783906574",
+    "normal": "https://cards.scryfall.io/normal/back/4/5/457fdbb9-5439-460f-8e37-176f8919362c.jpg?1783906574",
+    "large": "https://cards.scryfall.io/large/back/4/5/457fdbb9-5439-460f-8e37-176f8919362c.jpg?1783906574",
+    "png": "https://cards.scryfall.io/png/back/4/5/457fdbb9-5439-460f-8e37-176f8919362c.png?1783906574",
+    "art_crop": "https://cards.scryfall.io/art_crop/back/4/5/457fdbb9-5439-460f-8e37-176f8919362c.jpg?1783906574",
+    "border_crop": "https://cards.scryfall.io/border_crop/back/4/5/457fdbb9-5439-460f-8e37-176f8919362c.jpg?1783906574",
+    "thumb": "https://cards.scryfall.io/thumb/back/4/5/457fdbb9-5439-460f-8e37-176f8919362c.webp?1783906574",
+    "grid": "https://cards.scryfall.io/grid/back/4/5/457fdbb9-5439-460f-8e37-176f8919362c.webp?1783906574",
+    "display": "https://cards.scryfall.io/display/back/4/5/457fdbb9-5439-460f-8e37-176f8919362c.webp?1783906574",
+    "art": "https://cards.scryfall.io/art/back/4/5/457fdbb9-5439-460f-8e37-176f8919362c.webp?1783906574",
+    "crop": "https://cards.scryfall.io/crop/back/4/5/457fdbb9-5439-460f-8e37-176f8919362c.webp?1783906574"
+   }
+  }
+ ],
+ "games": [
+  "paper",
+  "arena",
+  "mtgo"
+ ],
+ "reserved": false,
+ "game_changer": false,
+ "foil": true,
+ "nonfoil": true,
+ "finishes": [
+  "nonfoil",
+  "foil"
+ ],
+ "oversized": false,
+ "promo": false,
+ "reprint": false,
+ "variation": false,
+ "set_id": "d7beb4b7-e1ff-4d35-ab07-5700f17ea1ea",
+ "set": "fin",
+ "set_name": "Final Fantasy",
+ "set_type": "expansion",
+ "set_uri": "https://api.scryfall.com/sets/d7beb4b7-e1ff-4d35-ab07-5700f17ea1ea",
+ "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Afin&unique=prints",
+ "scryfall_set_uri": "https://scryfall.com/sets/fin?utm_source=api",
+ "rulings_uri": "https://api.scryfall.com/cards/457fdbb9-5439-460f-8e37-176f8919362c/rulings",
+ "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Af4629329-a79b-4460-a1bc-9ae0f59adf5a&unique=prints",
+ "collector_number": "229",
+ "digital": false,
+ "rarity": "rare",
+ "artist": "Lius Lasahido",
+ "artist_ids": [
+  "0a0e9093-ce44-4a69-93a7-09b63e7c330d"
+ ],
+ "border_color": "black",
+ "frame": "2015",
+ "frame_effects": [
+  "enchantment",
+  "legendary"
+ ],
+ "security_stamp": "triangle",
+ "full_art": false,
+ "textless": false,
+ "booster": true,
+ "story_spotlight": false,
+ "promo_types": [
+  "ffxvi",
+  "universesbeyond"
+ ],
+ "legalities": {
+  "commander": "legal"
+ }
+}

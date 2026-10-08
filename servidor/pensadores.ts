@@ -7,10 +7,11 @@ import { Worker } from 'node:worker_threads';
 import type { EstadoBot } from '../bots/heuristico.ts';
 import type { Tarefa } from '../bots/pensar.ts';
 import type { Checkpoint, Input } from '../motor/game.ts';
+import type { DeckList } from '../motor/state.ts';
 import type { Answer } from '../motor/types.ts';
 
 export type MsgPensar =
-  | { t: 'pensar'; id: number; sala: string; geracao: number; base: Checkpoint | null; desde: number | null; entradas: Input[]; deckIds: string[]; tarefa: Omit<Tarefa, 'cp' | 'entradas'> }
+  | { t: 'pensar'; id: number; sala: string; geracao: number; base: Checkpoint | null; desde: number | null; entradas: Input[]; listas: DeckList[]; tarefa: Omit<Tarefa, 'cp' | 'entradas'> }
   | { t: 'esquecer'; sala: string };
 
 export type RespPensar =
@@ -25,7 +26,8 @@ export interface PedidoPensar {
   cp: Checkpoint | null;
   /** todas as entradas da partida até agora */
   entradas: Input[];
-  deckIds: string[];
+  /** listas dos decks da partida (as guardadas quando ela começou) */
+  listas: DeckList[];
   tarefa: Omit<Tarefa, 'cp' | 'entradas'>;
 }
 
@@ -125,8 +127,8 @@ export class Pensadores {
     const { id, pedido: p } = t.tarefa!;
     const desde = semCache ? null : this.cacheServe(t, p);
     const m: MsgPensar = desde !== null
-      ? { t: 'pensar', id, sala: p.sala, geracao: p.geracao, base: null, desde, entradas: p.entradas.slice(desde), deckIds: p.deckIds, tarefa: p.tarefa }
-      : { t: 'pensar', id, sala: p.sala, geracao: p.geracao, base: p.cp, desde: null, entradas: p.entradas.slice(p.cp?.inputIndex ?? 0), deckIds: p.deckIds, tarefa: p.tarefa };
+      ? { t: 'pensar', id, sala: p.sala, geracao: p.geracao, base: null, desde, entradas: p.entradas.slice(desde), listas: p.listas, tarefa: p.tarefa }
+      : { t: 'pensar', id, sala: p.sala, geracao: p.geracao, base: p.cp, desde: null, entradas: p.entradas.slice(p.cp?.inputIndex ?? 0), listas: p.listas, tarefa: p.tarefa };
     t.w.postMessage(m);
   }
 

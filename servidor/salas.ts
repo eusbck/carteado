@@ -60,6 +60,9 @@ interface Assento {
 interface DadosPartida {
   config: GameConfig;
   deckIds: string[];
+  /** a lista de cada assento quando a partida começou: atualizar um deck não muda a partida (que se refaz pela
+   * semente e pelas entradas). Salas de antes da importação de decks recebem a lista atual em `restaurar`. */
+  listas?: DeckList[];
   checkpoint: Checkpoint | null;
   /** onde cada pessoa arrumou as próprias permanentes (só visual, fora do motor) */
   posicoes?: Posicoes;
@@ -404,7 +407,9 @@ export class Sala {
       mulligan: this.d.mulligan ?? 'londres',
     };
     const deckIds = this.d.assentos.map((a) => a.deck!);
-    this.d.partida = { config, deckIds, checkpoint: null };
+    const listas = deckIds.map((id) => this.gerente.deck(id));
+    if (listas.some((l) => !l)) return 'Um dos decks escolhidos não está mais disponível; escolha outro';
+    this.d.partida = { config, deckIds, listas: structuredClone(listas as DeckList[]), checkpoint: null };
     this.d.estado = 'jogando';
     this.gerente.banco.limparEntradas(this.d.codigo);
     this.salvas = 0;
@@ -425,7 +430,11 @@ export class Sala {
     if (this.game.isOver()) this.d.estado = 'fim';
   }
 
-  private decks(): DeckList[] { return this.d.partida!.deckIds.map((id) => this.gerente.deck(id)!); }
+  private decks(): DeckList[] {
+    const p = this.d.partida!;
+    if (!p.listas && !preencherListas(p, (id) => this.gerente.deck(id))) throw new Error('Um dos decks da partida não está mais disponível');
+    return p.listas!;
+  }
 
   private criarBots(): void {
     const seed = this.d.partida!.config.seed;
@@ -571,7 +580,7 @@ export class Sala {
     const aviso = setTimeout(() => { this.pensando = assento; this.avisarPensando(); }, this.gerente.atrasos.avisoPensando);
     try {
       const r = await pens.pensar({
-        sala: this.d.codigo, geracao: this.geracao, cp, entradas: g.inputs, deckIds: this.d.partida!.deckIds,
+        sala: this.d.codigo, geracao: this.geracao, cp, entradas: g.inputs, listas: this.decks(),
         tarefa: { nivel: bot.nivel, eu: assento, estado: bot.e, decisao, jaImediata: true, config: this.d.partida!.config, ...(sims !== null ? { opcoes: { simulacoes: sims } } : {}), ...(this.gerente.atrasos.tempoBot ? { tempo: this.gerente.atrasos.tempoBot } : {}) },
       });
       if (r && this.bots.get(assento) === bot) bot.e = r.estado;
@@ -673,6 +682,11 @@ export class Gerente {
 
   deck(id: string): DeckList | undefined { return this.decks.get(id); }
 
+  /** decks do saguão depois de uma importação ou atualização (as partidas em andamento guardam as listas delas) */
+  trocarDecks(decks: DeckList[]): void {
+    this.decks = new Map(decks.map((d) => [d.id, d]));
+  }
+
   /** recarrega as salas salvas e retoma as partidas em andamento */
   restaurar(): void {
     for (const { dados } of this.banco.salas()) {
@@ -680,6 +694,7 @@ export class Gerente {
       for (const a of d.assentos) if (paradasAntigas(a.paradas)) a.paradas = { ...paradasPadrao(), skipWhenNothing: a.paradas.skipWhenNothing };
       const s = new Sala(d, this);
       this.salas.set(d.codigo, s);
+      if (d.partida && !d.partida.listas && preencherListas(d.partida, (id) => this.deck(id))) s.salvar();
       if (d.partida && d.estado !== 'espera') {
         try {
           s.criarGame(d.partida.checkpoint, this.banco.entradas(d.codigo) as Input[], this.banco.metas(d.codigo) as (MetaEntrada | null)[]);
@@ -753,4 +768,26 @@ export class Gerente {
 }
 
 export function semAtraso(): Atrasos { return SEM_ATRASO; }
+
+/** guarda na partida a lista atual de cada assento (salas salvas antes da importação de decks) */
+function preencherListas(p: DadosPartida, deck: (id: string) => DeckList | undefined): boolean {
+  const listas = p.deckIds.map(deck);
+  if (listas.some((l) => !l)) return false;
+  p.listas = structuredClone(listas as DeckList[]);
+  return true;
+}
+
+/**
+ * Para a linha de comando, antes de trocar uma lista com o servidor desligado: as salas salvas sem as listas
+ * recebem as atuais (o servidor faz o mesmo ao subir). Devolve quantas salas mudaram.
+ */
+export function preencherListasSalvas(banco: Banco, decks: DeckList[]): number {
+  const m = new Map(decks.map((d) => [d.id, d]));
+  let n = 0;
+  for (const { codigo, dados } of banco.salas()) {
+    const d = dados as DadosSala;
+    if (d.partida && !d.partida.listas && preencherListas(d.partida, (id) => m.get(id))) { banco.salvarSala(codigo, d); n++; }
+  }
+  return n;
+}
 export { novoToken };

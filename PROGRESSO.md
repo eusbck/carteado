@@ -18,6 +18,8 @@ Lista de verificação das fases. É por aqui que uma sessão nova retoma o trab
 - 06/10/2026 (noite, continuação): proposta aprovada; seções 2 a 6 implementadas e conferidas.
 - 07/10/2026: fase 9 (ajustes depois das partidas contra bots), pedida em `../PROMPT-FASE-9.md`. Trabalho dividido com
   subagentes em worktrees irmãs (`../jogo-wt-a` a `../jogo-wt-d`, branches `fase9-a` a `fase9-d`).
+- 07/10/2026 (noite): decks do Moxfield pelo link (importar e atualizar), pedido na conversa; plano aprovado em
+  `~/.claude/plans/fa-a-com-que-seja-snuggly-hummingbird.md`.
 
 ## Fase 0: exploração e proposta
 
@@ -590,3 +592,84 @@ partida de 4 jogadores acima: Difícil 0,9 s de média, Cartomante 1,5 s, Magic 
   - As pastas `../jogo-wt-a` a `../jogo-wt-d` (worktrees dos subagentes, já juntadas) podem ser apagadas. Dentro delas,
     `node_modules` é um atalho (junção) para o do `jogo`: tire o atalho primeiro, com `cmd /c rmdir ..\jogo-wt-a\node_modules`
     (apaga só o atalho), e depois `git worktree remove --force ../jogo-wt-a` (o mesmo para b, c e d).
+
+## Decks do Moxfield: importar pelo link e atualizar — 07/10/2026
+
+Pedido na conversa: puxar decks do Moxfield pelo link (ex.: `https://moxfield.com/decks/HAKhAXl1RHyly2_QGDPvzg`) e
+atualizar um deck quando ele mudar lá, trocando só as cartas que mudaram. Decisões suas:
+- tela **Decks** na própria mesa, para qualquer pessoa que entrou com a senha;
+- o deck **só entra no saguão completo** (todas as cartas com regras); o que falta fica "em preparação";
+- quem implementa as cartas que faltam é o Claude Code, **quando você pedir** ("complete os decks em preparação");
+- atualização com cartas novas fica guardada e o deck segue jogável com a lista antiga até elas ficarem prontas;
+- as 64 cartas novas do deck do link (Jace, Multiverse Architect) ficam para um pedido separado.
+
+Como ficou:
+- **Fonte dos decks: `decks/`** (no repositório). Um arquivo por deck (`<id do Moxfield>.json`) com a lista jogável
+  (`atual`) e a que espera cartas (`preparacao`), o link, a ordem fixa e as datas. Os 7 decks de `../cartas` foram
+  migrados (`node ferramentas/decks.ts migrar`, ordem 0 a 6) e também podem ser atualizados. As cartas que `../cartas`
+  não tem ficam em `decks/cartas.json` (mesmo formato de `../cartas/data`, só cresce) e os rulings delas em
+  `decks/rulings.json`; as imagens, em `dados-locais/imagens/` (fora do git; `decks.ts imagens` baixa de novo).
+- **`gerado/`** continua sendo o que o motor lê, agora gerado de `../cartas` + `decks/` (`servidor/catalogo/gerar.ts`;
+  `ferramentas/importar.ts` virou um atalho para ele). `gerado/cartas.json` guarda toda carta que já esteve num deck
+  (partidas salvas nunca perdem uma carta); `gerado/decks.json` só os decks jogáveis, na ordem fixa. Logo depois da
+  migração, `git diff gerado/` saiu vazio.
+- **Servidor** (`servidor/catalogo/`): `moxfield.ts` (link e API v3, com a v2 se a v3 não achar; usa comandante e deck
+  principal, recusa parceiros, companheiro e zonas que o jogo não tem), `scryfall.ts` (cartas desconhecidas em lotes de
+  75, impressão em português pela mesma regra do coletor, rulings, fichas que a carta cria, imagens), `validar.ts`
+  (CR 903.3 e 903.5 antes de gravar; banidas viram aviso), `tarefas.ts` (verificar → prévia com token por 30 min →
+  confirmar; uma tarefa por vez; uma falha no meio não muda o arquivo do deck), `catalogo.ts`, `trava.ts` (a tela e a
+  linha de comando nunca gravam juntas), `rotas.ts` (`/api/catalogo`, só com sessão, limite por endereço) e
+  `artes.ts` (extraído de `baixar-artes.ts`: a importação baixa a arte do comandante).
+- **Ao vivo:** confirmar uma lista pronta troca os decks do saguão na hora (`Gerente.trocarDecks`) e avisa as telas
+  abertas (mensagens `decks` e `catalogo` no WebSocket). O andamento e a prévia chegam pelo WebSocket (rotas que
+  esperassem a importação inteira esbarrariam no prazo do túnel).
+- **Partidas guardam as listas com que começaram** (`partida.listas` em `servidor/salas.ts`); refazer depois de um
+  reinício, o desfazer e as threads dos bots usam essa cópia. Salas salvas antes disso recebem a lista atual ao subir
+  (e na linha de comando, antes de trocar uma lista). Deck que saiu do saguão não começa partida.
+- **Ao subir**, o servidor põe no saguão as versões em preparação cujas cartas ficaram prontas (implementadas desde a
+  última vez); `node ferramentas/decks.ts gerar` faz o mesmo pela linha de comando.
+- **Tela Decks** (`cliente/src/telas/Decks.tsx`, botão "Decks" no início): cartões com a arte do comandante e o estado
+  (No saguão, Em preparação N/M, Atualização esperando N cartas), campo do link, andamento, prévia (comandante, cartas
+  com regras, o que falta, entram e saem, erros de regra e avisos), detalhes de cada deck e "Atualizar". O saguão
+  ordena os decks por nome.
+- **Linha de comando** `node ferramentas/decks.ts`: `migrar`, `gerar`, `pendentes [--json]` (o que falta implementar,
+  com Oracle, rulings, fichas, nome do arquivo e alerta de layout que o motor ainda não tem), `importar <link>
+  [--confirmar]`, `importar --arquivo resposta.json` (quando o Moxfield recusar o servidor), `atualizar <id|todos>
+  [--confirmar]` e `imagens`. `rulings.ts`, `ficha-carta.ts`, `rulings-padrao.ts`, `rulings-terrenos.ts` e
+  `rascunho.ts` passaram a enxergar as cartas importadas. Passo a passo em `cartas/COMO-IMPLEMENTAR.md`.
+- Achados no caminho: o Moxfield recusa (403) o `fetch` do Node (os cabeçalhos de navegador que ele põe sozinho), mas
+  aceita o mesmo pedido honesto pelo `node:https`, como já aceitava o coletor em Python; o Scryfall responde 403 a um
+  User-Agent com acento. O transporte é o `node:https` e o User-Agent é só ASCII.
+- Testes: `testes/decks-teste.json` é a cópia congelada da lista de decks de hoje, usada pelos testes que jogam
+  partidas com semente (atualizar um deck de verdade não muda esses resultados); novos em `testes/catalogo/` (rede,
+  Moxfield, Scryfall, gerar, catálogo, tarefas de ponta a ponta com rede falsa, imagens da pasta extra, dados reais) e
+  `testes/listas-salvas.test.ts`.
+- Achados na conferência: a janela de resultado sumia se o catálogo fosse recarregado com outra tarefa no servidor
+  (o cliente agora guarda o estado da própria tarefa à parte); as imagens das cartas importadas dependiam da pasta do
+  banco (`DADOS`) e davam 404 num servidor de teste (agora ficam sempre em `dados-locais/imagens`, ou em `IMAGENS`), e
+  imagem que não carrega vira o quadro tracejado. Da revisão das capturas: resumo da prévia em vermelho quando a lista
+  quebra uma regra de deck (antes dizia que o deck entraria no saguão), concordância com 1 carta, aviso das zonas que
+  ficam de fora, botões "Fechar" iguais, campo e botão da busca alinhados, nome comprido do deck cortado com "…".
+
+Recapitulação (07/10/2026):
+- Feito: tela Decks com importar e atualizar pelo link; decks só no saguão quando completos; atualização com carta nova
+  guardada; partidas guardam as listas; linha de comando `ferramentas/decks.ts`; os 7 decks migrados para `decks/`.
+- Deck do link importado de verdade pela tela: "Multiverse Reforged (Reality Fracture Commander Decklist)", comandante
+  Jace, Multiverse Architect, **em preparação: 29 de 93 cartas com regras, faltam 64** (nenhuma com layout que o motor
+  ainda não tenha; 21 criam fichas). Prévia em 2 s, confirmação em 112 s (64 cartas, 46 com impressão em português,
+  143 rulings, 16 fichas novas, 121 imagens em `dados-locais/imagens`, arte do Jace 744×378). Nenhuma carta, ficha ou
+  imagem que já existia em `gerado/` mudou (só acréscimos). Os 7 decks: "Nenhuma carta mudou" no Moxfield.
+- Verificado: `npm run typecheck`; suíte inteira com 530 arquivos e 1218 testes passando, antes da importação real e de
+  novo no fim (com o deck do Jace em `gerado/` e as correções da revisão);
+  `node ferramentas/e2e.ts` passou inteiro; `ferramentas/humano-e-bots.ts` em 1v1 (Intermediário, fim no turno 16) e em
+  4 jogadores (Difícil, Intermediário, Fácil; fim no turno 48), sem erro, vazamento nem clique extra; capturas da tela
+  Decks (`CAPTURAS_SO=decks node ferramentas/capturas.ts`, 22 imagens em 1280×800 e 1920×1080, conferidas uma a uma
+  por um subagente e as corrigidas de novo por mim; nenhuma grava em `decks/` nem `gerado/`).
+- Observação: os testes do desfazer em `testes/fase8.test.ts` falham de vez em quando (a semente da partida vem de
+  `Date.now()` em `Sala.iniciar`, e algumas mãos sorteadas levam a outra decisão depois de jogar o terreno). Já
+  acontecia antes desta mudança (1 em 8 rodadas na versão do último commit). Fica para decidir se vale fixar a semente
+  nesses testes.
+- Precisa de você:
+  - Reabrir a mesa ("Abrir a mesa.cmd") para usar a tela Decks: a mesa que estava aberta continua com o código antigo.
+  - Quando quiser o deck do Jace no saguão, pedir para implementar as 64 cartas que faltam
+    (`node ferramentas/decks.ts pendentes` mostra a lista).

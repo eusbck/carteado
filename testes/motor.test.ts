@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import '../cartas/index.ts';
-import decks from '../gerado/decks.json' with { type: 'json' };
+import decks from './decks-teste.json' with { type: 'json' };
 import { RandomBot } from '../bots/aleatorio.ts';
 import { validateDeck } from '../motor/deck.ts';
 import { Game } from '../motor/game.ts';

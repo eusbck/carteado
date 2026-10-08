@@ -6,12 +6,12 @@ import '../cartas/index.ts';
 import { readFileSync, writeFileSync, readdirSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { cartasPorNome, rulingsPorOracle } from '../servidor/catalogo/base.ts';
 
 const raiz = join(dirname(fileURLToPath(import.meta.url)), '..');
-const fonte = join(raiz, '..', 'cartas', 'data');
-const cards = JSON.parse(readFileSync(join(fonte, 'cards.json'), 'utf8')) as Record<string, { name: string; oracle_id: string }>;
-const rulings = JSON.parse(readFileSync(join(fonte, 'rulings.json'), 'utf8')).by_oracle_id as Record<string, { comment: string }[]>;
-const byName = new Map(Object.values(cards).map((c) => [c.name, c]));
+// ../cartas e as cartas novas dos decks importados (decks/cartas.json e decks/rulings.json)
+const rulings = rulingsPorOracle();
+const byName = cartasPorNome();
 
 const PADROES: [RegExp, string][] = [
   [/not counted when determining if this land enters the battlefield tapped/i, 'regra geral: CR 614.12 — a condição é checada antes de qualquer terreno entrar junto (putOntoBattlefield avalia as substituições antes de mover)'],

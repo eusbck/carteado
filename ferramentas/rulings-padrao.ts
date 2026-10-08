@@ -3,15 +3,11 @@
 // conferência manual.
 // Uso: node ferramentas/rulings-padrao.ts "Nome da Carta" ["Outra"...]
 
-import { readFileSync } from 'node:fs';
-import { dirname, join } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { cartasPorNome, rulingsPorOracle } from '../servidor/catalogo/base.ts';
 
-const raiz = join(dirname(fileURLToPath(import.meta.url)), '..');
-const fonte = join(raiz, '..', 'cartas', 'data');
-const cards = JSON.parse(readFileSync(join(fonte, 'cards.json'), 'utf8')) as Record<string, { name: string; oracle_id: string }>;
-const rulings = JSON.parse(readFileSync(join(fonte, 'rulings.json'), 'utf8')).by_oracle_id as Record<string, { comment: string }[]>;
-const porNome = new Map(Object.values(cards).map((c) => [c.name, c]));
+// ../cartas e as cartas novas dos decks importados (decks/cartas.json e decks/rulings.json)
+const rulings = rulingsPorOracle();
+const porNome = cartasPorNome();
 
 export const PADROES: [RegExp, string][] = [
   // preparação (CR 722)

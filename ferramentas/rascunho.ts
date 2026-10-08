@@ -155,7 +155,8 @@ function translate(name: string): Out | null {
   return o;
 }
 
-const lev = JSON.parse(readFileSync(join(raiz, 'levantamento', 'cartas.json'), 'utf8')) as { nome: string; tipo: string; ficha_ou_auxiliar: boolean; basico: boolean }[];
+// todas as cartas dos decks (gerado/cartas.json), inclusive as de decks importados pela tela Decks
+const lev = Object.values(dados).map((c) => ({ nome: c.name, tipo: c.faces.map((f) => f.typeLine).join(' // '), ficha_ou_auxiliar: false, basico: c.faces[0].typeLine.startsWith('Basic') }));
 let made = 0;
 const skipped: string[] = [];
 for (const l of lev) {

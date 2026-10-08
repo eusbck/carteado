@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest';
 import { setup, type TestGame } from './harness.ts';
 import { Game } from '../motor/game.ts';
 import '../cartas/index.ts';
-import decksJson from '../gerado/decks.json' with { type: 'json' };
+import decksJson from './decks-teste.json' with { type: 'json' };
 import type { DeckList } from '../motor/state.ts';
 import type { ManualAction } from '../motor/types.ts';
 

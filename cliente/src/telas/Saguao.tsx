@@ -66,7 +66,7 @@ export function Saguao() {
                           loja.enviar({ t: 'bot', assento: a.indice, deck: v || null });
                         }}>
                           <option value="">{a.tipo === 'bot' ? 'tirar o bot' : 'escolha um deck'}</option>
-                          {e.decks.map((d) => <option value={d.id}>{d.nome}</option>)}
+                          {[...e.decks].sort((a, b) => a.nome.localeCompare(b.nome)).map((d) => <option value={d.id}>{d.nome}</option>)}
                         </select>
                       </label>
                       {a.tipo === 'bot' && (
@@ -122,7 +122,7 @@ export function Saguao() {
             <span class="suave">{e.decks.length} decks da mesa</span>
           </div>
           <div class="decks">
-            {e.decks.map((d) => <Deck d={d} ativo={d.id === meuDeck} onClick={() => loja.enviar({ t: 'deck', deck: d.id })} />)}
+            {[...e.decks].sort((a, b) => a.nome.localeCompare(b.nome)).map((d) => <Deck key={d.id} d={d} ativo={d.id === meuDeck} onClick={() => loja.enviar({ t: 'deck', deck: d.id })} />)}
           </div>
         </section>
       </main>

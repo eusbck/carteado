@@ -7,8 +7,8 @@ import { registry } from '../motor/defs.ts';
 import { hasOracle, oracle } from '../motor/oracle.ts';
 import type { InfoCarta } from './protocolo.ts';
 
-type Img = { id: string; frente: string; verso: string | null; nome?: string; reserva?: boolean } | null;
-const IMG = imagens as Record<string, { en: Img; pt: Img }>;
+type Img = { id: string; frente: string | null; verso: string | null; nome?: string | null; reserva?: boolean } | null;
+const IMG = imagens as unknown as Record<string, { en: Img; pt: Img }>;
 const FICHAS = (dados as unknown as { fichas: { oracleId: string; imagem: { id: string; verso: string | null } | null }[] }).fichas;
 
 export function infoCartas(): Record<string, InfoCarta> {

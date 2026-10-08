@@ -2,7 +2,7 @@
 // mensagem de posição em grupo no servidor.
 import { describe, expect, it } from 'vitest';
 import '../cartas/index.ts';
-import decksJson from '../gerado/decks.json' with { type: 'json' };
+import decksJson from './decks-teste.json' with { type: 'json' };
 import { arrumarCampo } from '../cliente/src/mesa/arrumacao.ts';
 import { caixaVisual, limitarDeslocamento, limites, proporcional, retangulo, semConfirmadas, tocaRetangulo, type Caixa } from '../cliente/src/mesa/posicionar.ts';
 import { registry } from '../motor/defs.ts';

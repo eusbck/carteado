@@ -6,3 +6,6 @@ dados-locais/
 *.sqlite-*
 .env
 testes/dbg/
+
+decks/.trava
+decks/*.novo

@@ -42,6 +42,91 @@ export interface DeckResumo {
   cores: string[];
 }
 
+/** uma carta na tela Decks */
+export interface CartaCatalogo {
+  nome: string;
+  quantidade: number;
+  /** nome da impressão em português, se houver */
+  pt: string | null;
+  /** id da imagem (/img/<id>/frente/p), se houver */
+  img: string | null;
+  tipo: string;
+  /** a carta já tem regras no jogo */
+  pronta: boolean;
+}
+
+/** um deck na tela Decks (jogável ou não) */
+export interface DeckCatalogo {
+  id: string;
+  nome: string;
+  link: string;
+  comandante: string;
+  comandantePt: string | null;
+  cores: string[];
+  /** id da imagem do comandante (arte de fundo do cartão) */
+  arte: string | null;
+  /** pronto: no saguão; preparacao: falta implementar cartas; atualizacao: jogável, com uma versão nova esperando cartas */
+  estado: 'pronto' | 'preparacao' | 'atualizacao';
+  importadoEm: string;
+  verificadoEm: string | null;
+  /** data da versão no Moxfield */
+  atualizadoEm: string | null;
+  /** cartas diferentes da lista (com o comandante) */
+  total: number;
+  /** versão que espera cartas: um deck novo ou uma atualização */
+  preparacao: {
+    prontas: number;
+    total: number;
+    faltam: CartaCatalogo[];
+    entram: CartaCatalogo[];
+    saem: CartaCatalogo[];
+    comandante: { de: string; para: string } | null;
+    recebidaEm: string;
+  } | null;
+}
+
+/** o que confirmar a importação ou a atualização vai fazer (passo 1, nada gravado ainda) */
+export interface Proposta {
+  token: string;
+  id: string;
+  nome: string;
+  link: string;
+  /** o deck ainda não está na mesa */
+  novo: boolean;
+  comandante: string;
+  comandantePt: string | null;
+  /** cartas diferentes da lista nova (com o comandante) e quantas já têm regras */
+  total: number;
+  prontas: number;
+  faltam: CartaCatalogo[];
+  /** diferença para a lista atual (ou para a em preparação, num deck que ainda não está na mesa) */
+  entram: CartaCatalogo[];
+  saem: CartaCatalogo[];
+  trocaComandante: { de: string; para: string } | null;
+  /** jogavel: entra no saguão ao confirmar; preparacao: fica esperando as cartas; nada: não mudou nada */
+  destino: 'jogavel' | 'preparacao' | 'nada';
+  /** o que confirmar faz, em uma frase */
+  resumo: string;
+  /** regras de deck que a lista não cumpre: impedem confirmar */
+  erros: string[];
+  avisos: string[];
+}
+
+/** importação ou atualização em andamento (uma por vez para a mesa toda) */
+export interface TarefaPublica {
+  id: number;
+  tipo: 'verificar' | 'confirmar';
+  deck: string | null;
+  nome: string | null;
+  etapa: string;
+  feito: number;
+  total: number;
+  estado: 'andando' | 'pronta' | 'erro';
+  erro?: string;
+  proposta?: Proposta;
+  resultado?: { id: string; destino: 'jogavel' | 'preparacao' | 'nada'; texto: string };
+}
+
 /** imagem de cada carta/ficha pelo nome da definição */
 export interface InfoCarta {
   /** id da imagem da frente (pasta em cartas/assets/cards) */
@@ -117,4 +202,8 @@ export type MsgServidor =
   | { t: 'revelada'; de: number; def: string; nome: string; para: number[] | 'todos' }
   /** um bot está pensando há mais de um segundo (null: ninguém) */
   | { t: 'pensando'; assento: number | null }
+  /** a lista de decks do saguão mudou (deck importado ou atualizado) */
+  | { t: 'decks'; decks: DeckResumo[] }
+  /** andamento de uma importação ou atualização de deck (null: nenhuma); `mudou`: o catálogo mudou */
+  | { t: 'catalogo'; tarefa: TarefaPublica | null; mudou: boolean }
   | { t: 'erro'; msg: string };

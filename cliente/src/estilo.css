@@ -773,3 +773,57 @@ button.etapa:hover { background: rgba(34, 211, 107, .1); }
 /* recolhida: a decisão continua pendente, num cartão da coluna da direita */
 .escolha-recolhida { border-color: rgba(246, 196, 69, .6); gap: 8px; }
 .escolha-recolhida > .rot { color: var(--amarelo); margin-bottom: 0; }
+
+/* ---------------------------------------------------------------- tela Decks (importar e atualizar pelo Moxfield) */
+.cat-topo { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.cat-tela { width: min(1320px, 100%); padding: 30px 32px 34px; display: grid; gap: 20px; align-content: start; min-height: min(820px, calc(100vh - 64px)); }
+.cat-titulo { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.cat-importar { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px 12px; align-items: end; }
+.cat-importar input, .cat-importar .botao { height: 42px; min-height: 42px; }
+.cat-dica, .cat-importar .cat-progresso, .cat-importar .cat-erro, .cat-outra { grid-column: 1 / -1; font-size: 12.5px; }
+.cat-progresso { display: grid; gap: 6px; color: var(--amarelo); font-weight: 600; }
+.cat-barra { display: block; height: 6px; border-radius: 3px; background: rgba(255, 255, 255, .07); overflow: hidden; }
+.cat-barra > span { display: block; height: 100%; background: var(--verde); border-radius: 3px; transition: width .3s ease; }
+.cat-progresso .cat-barra > span { background: var(--amarelo); }
+.cat-erro { color: #ffd2d2; background: var(--vermelho-fundo); border: 1px solid rgba(242, 85, 85, .5); padding: 9px 12px; border-radius: 10px; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.cat-grade { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
+.cat-deck { display: grid; border-radius: 14px; overflow: hidden; border: 1.5px solid var(--linha-forte); background: var(--painel-2); }
+.cat-deck.preparacao { border-style: dashed; border-color: rgba(246, 196, 69, .45); }
+.cat-deck-arte { position: relative; aspect-ratio: 16 / 10; border: 0; padding: 0; text-align: left; color: var(--texto); background: var(--painel-3) center 30% / cover; cursor: pointer; }
+.cat-deck-arte::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0, 0, 0, .92), rgba(0, 0, 0, .1) 55%, transparent); }
+.cat-deck.preparacao .cat-deck-arte { filter: saturate(.45); }
+.cat-deck-arte:hover::after { background: linear-gradient(to top, rgba(0, 0, 0, .85), rgba(0, 0, 0, .05) 55%, transparent); }
+.cat-selo { position: absolute; left: 10px; top: 10px; z-index: 1; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 6px; }
+.cat-selo.pronto { background: var(--verde); color: var(--verde-texto); }
+.cat-selo.preparacao { background: rgba(10, 11, 11, .82); color: var(--amarelo); border: 1px solid rgba(246, 196, 69, .6); }
+.cat-deck .deck-nome { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cat-deck-pe { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 8px 10px 8px 12px; font-size: 12px; border-top: 1px solid var(--linha); }
+.cat-janela .janela-corpo { padding: 16px 20px 18px; overflow: auto; }
+.cat-proposta { display: grid; gap: 14px; }
+.cat-proposta-nome { font-size: 18px; font-weight: 800; }
+.cat-proposta a, .cat-janela a { color: var(--verde); }
+.cat-contagem { display: grid; gap: 6px; }
+.cat-resumo { padding: 10px 12px; border-radius: 10px; font-weight: 600; border: 1px solid var(--linha-forte); }
+.cat-resumo.jogavel { color: var(--verde); background: var(--verde-fundo); border-color: rgba(34, 211, 107, .45); }
+.cat-resumo.preparacao { color: var(--amarelo); background: var(--amarelo-fundo); border-color: rgba(246, 196, 69, .45); }
+.cat-resumo.nada { color: var(--suave); }
+.cat-resumo.erro { color: #ffd2d2; background: var(--vermelho-fundo); border-color: rgba(242, 85, 85, .5); }
+.cat-erros { color: #ffd2d2; background: var(--vermelho-fundo); border: 1px solid rgba(242, 85, 85, .5); padding: 10px 12px; border-radius: 10px; }
+.cat-erros ul, .cat-avisos { margin: 6px 0 0; padding-left: 18px; }
+.cat-avisos { color: var(--amarelo); margin: 0; }
+.cat-diferenca { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.cat-diferenca section { display: grid; gap: 8px; align-content: start; min-width: 0; }
+.cat-faltam summary { cursor: pointer; color: var(--suave); font-weight: 600; margin-bottom: 8px; }
+.cat-cartas { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; max-height: 46vh; overflow: auto; }
+.cat-cartas li { display: grid; grid-template-columns: 34px minmax(0, 1fr) auto; gap: 10px; align-items: center; padding: 5px 8px 5px 5px; border-radius: 9px; background: rgba(255, 255, 255, .03); border: 1px solid var(--linha); }
+.cat-carta-vazia { display: block; width: 34px; height: 47px; border-radius: 3px; background: var(--painel-3); overflow: hidden; }
+.cat-carta-vazia.sem-imagem { border: 1px dashed var(--linha-forte); }
+.cat-carta-vazia img { width: 100%; height: 100%; object-fit: cover; }
+.cat-carta-texto { display: grid; min-width: 0; }
+.cat-carta-nome { font-weight: 600; overflow-wrap: anywhere; }
+.cat-carta-nome b { display: inline-block; width: 14px; }
+.cat-carta-nome b.entra { color: var(--verde); }
+.cat-carta-nome b.sai { color: var(--vermelho); }
+.cat-carta-sub { color: var(--suave); font-size: 11.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cat-acoes { justify-content: flex-end; margin-top: 16px; }
+@media (max-width: 760px) { .cat-diferenca { grid-template-columns: 1fr; } .cat-tela { padding: 22px 16px; } .cat-importar { grid-template-columns: 1fr; } }

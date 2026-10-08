@@ -1,0 +1,825 @@
+{
+ "formato": 1,
+ "by_oracle_id": {
+  "3321c134-bf5b-4f63-8035-fca0bbdfa86b": [],
+  "36cd2364-d113-47d1-b2c4-b088d9eb88dd": [
+   {
+    "source": "wotc",
+    "published_at": "2018-03-16",
+    "comment": "You draw three cards and put two cards back all while Brainstorm is resolving. Nothing can happen between the two, and no player may choose to take actions."
+   }
+  ],
+  "539f5396-d99a-417d-a84c-dff7930b5900": [
+   {
+    "source": "wotc",
+    "published_at": "2018-10-05",
+    "comment": "Lands you control won't lose any other abilities they had. They also won't gain or lose any land types."
+   }
+  ],
+  "0b8c3337-04dd-4798-8203-6d8b8cfb936b": [
+   {
+    "source": "wotc",
+    "published_at": "2025-06-06",
+    "comment": "To determine the total cost of a spell, start with the mana cost or alternative cost (such as a flashback cost) you're paying, add any cost increases, then apply any cost reductions. The mana value of the spell is determined only by its mana cost, no matter what the total cost to cast the spell was."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2025-06-06",
+    "comment": "You can cast a spell using flashback even if it was somehow put into your graveyard without having been cast."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2025-06-06",
+    "comment": "You must still follow any timing restrictions and permissions, including those based on the card's type. For instance, you can cast a sorcery using flashback only when you could normally cast a sorcery."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2025-06-06",
+    "comment": "\"Flashback [cost]\" means \"You may cast this card from your graveyard if the resulting spell is an instant or sorcery spell by paying [cost] rather than paying its mana cost\" and \"If the flashback cost was paid, exile this card instead of putting it anywhere else any time it would leave the stack.\""
+   },
+   {
+    "source": "wotc",
+    "published_at": "2025-06-06",
+    "comment": "If a card with flashback is put into your graveyard during your turn, you can cast it if it's legal to do so before any other player can take any actions."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2025-06-06",
+    "comment": "You can cast a spell using flashback even if it was somehow put into your graveyard without having been cast."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2025-06-06",
+    "comment": "If a card with flashback is put into your graveyard during your turn, you can cast it if it's legal to do so before any other player can take any actions."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2025-06-06",
+    "comment": "A spell cast using flashback will always be exiled afterward, whether it resolves, is countered, or leaves the stack in some other way."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2025-06-06",
+    "comment": "A spell cast using flashback will always be exiled afterward, whether it resolves, is countered, or leaves the stack in some other way."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2025-06-06",
+    "comment": "To determine the total cost of a spell, start with the mana cost or alternative cost (such as a flashback cost) you're paying, add any cost increases, then apply any cost reductions. The mana value of the spell is determined only by its mana cost, no matter what the total cost to cast the spell was."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2025-06-06",
+    "comment": "You must still follow any timing restrictions and permissions, including those based on the card's type. For instance, you can cast a sorcery using flashback only when you could normally cast a sorcery."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2025-06-06",
+    "comment": "\"Flashback [cost]\" means \"You may cast this card from your graveyard if the resulting spell is an instant or sorcery spell by paying [cost] rather than paying its mana cost\" and \"If the flashback cost was paid, exile this card instead of putting it anywhere else any time it would leave the stack.\""
+   }
+  ],
+  "7d881c57-0bd9-4c57-aa4a-b10808b86143": [],
+  "857febd9-cdd7-4f8e-a852-d88084b0cfbc": [],
+  "5330e24a-8568-446e-840a-594cd08bd1bc": [
+   {
+    "source": "wotc",
+    "published_at": "2015-08-25",
+    "comment": "If one of these lands enters the battlefield at the same time as any number of basic lands, those other lands are not counted when determining if this land enters the battlefield tapped or untapped."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2015-08-25",
+    "comment": "However, because these cards have basic land types, effects that specify a basic land type without also specifying that the land be basic can affect them. For example, a spell or ability that reads \"Destroy target Forest\" can target Canopy Vista, while one that reads \"Destroy target basic Forest\" cannot."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2015-08-25",
+    "comment": "Even though these lands have basic land types, they are not basic lands because \"basic\" doesn't appear on their type line. Notably, controlling two or more of them won't allow others to enter the battlefield untapped."
+   }
+  ],
+  "2b7c4dab-e432-4b34-b058-3cec5c0d72df": [
+   {
+    "source": "wotc",
+    "published_at": "2009-02-01",
+    "comment": "No one can cast spells or activate abilities between the time the Soldier tokens are put onto the battlefield and the time all other creatures are destroyed. For example, you can't sacrifice one of those Soldier tokens to regenerate a Skeletal Kathari."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2009-02-01",
+    "comment": "You do what the spell says in order. If X is 5 or more, you'll put the Soldier tokens onto the battlefield, then you'll destroy all other creatures."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2009-02-01",
+    "comment": "Martial Coup checks the number you chose for X, not the amount of mana you actually spent."
+   }
+  ],
+  "79638767-fbc7-451a-b29f-d93f2ac6f102": [],
+  "9c36760b-57c5-488b-afc9-ef141942c6ab": [
+   {
+    "source": "wotc",
+    "published_at": "2018-06-08",
+    "comment": "Archfiend of Despair's last ability counts only how much life was lost. It doesn't care whether a player also gained life."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-06-08",
+    "comment": "In a Two-Headed Giant game, damage and life loss happen to each player individually. If each player on a team is dealt 2 damage, each of those players loses 2 life and the team's life total goes down by 4. When Archfiend of Despair's ability resolves, each of those players again loses 2 life and the team's life total goes down again by 4; they don't each lose 4 life."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-06-08",
+    "comment": "The amount of life to lose is determined only as Archfiend of Despair's triggered ability resolves. For example, if you control two of them and an opponent lost 3 life earlier in the turn, the first ability to resolve would have that player lose 3 life, and the second would have that player lose 6 life."
+   }
+  ],
+  "3adb7681-977f-4a32-9ec8-51481b958268": [],
+  "2fda4fe7-8b0c-489c-a000-6d358e614e34": [],
+  "e018773f-95b3-49a3-9674-6f04ddef2092": [],
+  "e6415ffb-8b7a-41c3-bedf-0d4112b7b795": [],
+  "e9f5feb2-2c1a-46ce-885a-4f378d7d10af": [],
+  "00e35322-1a9a-41e3-9ce1-359c8eaa3bc7": [],
+  "819fc966-434e-470f-91e9-a38df974ad17": [
+   {
+    "source": "wotc",
+    "published_at": "2009-10-01",
+    "comment": "As this is entering, it checks for lands that are already on the battlefield. It won't see lands that are entering at the same time (due to Warp World, for example)."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2009-10-01",
+    "comment": "This checks for lands you control with the land type Island or Swamp, not for lands named Island or Swamp. The lands it checks for don't have to be basic lands. For example, if you control Blood Crypt (a nonbasic land with the land types Swamp and Mountain), Drowned Catacomb will enter untapped."
+   }
+  ],
+  "027dd013-baa7-4111-b3c9-f4d1414e9c45": [
+   {
+    "source": "wotc",
+    "published_at": "2009-10-01",
+    "comment": "As this is entering, it checks for lands that are already on the battlefield. It won't see lands that are entering at the same time (due to Warp World, for example)."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2009-10-01",
+    "comment": "This checks for lands you control with the land type Plains or Island, not for lands named Plains or Island. The lands it checks for don't have to be basic lands. For example, if you control Watery Grave (a nonbasic land with the land types Island and Swamp), Glacial Fortress will enter untapped."
+   }
+  ],
+  "b133129d-1ffb-4b78-9f5b-852d163cc9b7": [
+   {
+    "source": "wotc",
+    "published_at": "2010-08-15",
+    "comment": "If the number of creatures you exile is greater than the number of creature cards remaining in your library, you'll wind up revealing your entire library, putting all creature cards revealed that way onto the battlefield, then shuffling your library."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2010-08-15",
+    "comment": "Any abilities that trigger during the resolution of Mass Polymorph (such as a creature's \"enters\" ability) will wait to be put onto the stack until Mass Polymorph finishes resolving. The player whose turn it is will put all of their triggered abilities on the stack in any order, then each other player in turn order will do the same. (The last ability put on the stack will be the first one that resolves.)"
+   },
+   {
+    "source": "wotc",
+    "published_at": "2010-08-15",
+    "comment": "All creatures you put onto the battlefield with Mass Polymorph enter at the same time."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2010-08-15",
+    "comment": "The creatures you exile with Mass Polymorph remain exiled for the rest of the game."
+   }
+  ],
+  "4c0a0448-b9d6-43a0-8549-64066dac63f0": [],
+  "67f43ac6-2a58-4b53-b5d7-0330e2a252e2": [
+   {
+    "source": "wotc",
+    "published_at": "2025-07-25",
+    "comment": "Reflecting Pool’s ability checks the effects of all mana-producing abilities of lands you control, but it doesn’t check their costs or legality. For example, Spire of Industry says “{T}, Pay 1 life: Add one mana of any color. Activate only if you control an artifact.” If you control Spire of Industry and Reflecting Pool, you can tap Reflecting Pool for any color of mana. It doesn’t matter whether you control an artifact, whether you can pay 1 life, or whether Spire of Industry is untapped."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2025-07-25",
+    "comment": "Multiple Reflecting Pools won’t help each other produce mana. If you control a Reflecting Pool, and all other lands you control either lack mana abilities or are other Reflecting Pools, you may still activate Reflecting Pool’s ability—it just won’t produce any mana."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2025-07-25",
+    "comment": "Any change to a land’s type or abilities gained by a land can affect the types of mana a land can produce."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2025-07-25",
+    "comment": "The types of mana are white, blue, black, red, green, and colorless."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2025-07-25",
+    "comment": "Reflecting Pool’s ability doesn’t care about any restrictions or riders your lands put on the mana they produce, such as those of Plaza of Heroes or Power Depot. It just produces one mana of the appropriate type, with no restrictions or riders."
+   }
+  ],
+  "581eedc4-efe4-4ae4-baf2-88071e7e6f6d": [
+   {
+    "source": "wotc",
+    "published_at": "2024-01-12",
+    "comment": "Nicol Bolas doesn't remove loyalty abilities from the other planeswalkers."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-01-12",
+    "comment": "Nicol Bolas doesn't gain any static or triggered abilities of other planeswalkers or any activated abilities they may have that aren't loyalty abilities."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-01-12",
+    "comment": "While Nicol Bolas may end up with an astonishing number of loyalty abilities, you can still activate only one loyalty ability of Nicol Bolas, Dragon-God during each of your turns."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-01-12",
+    "comment": "If a loyalty ability of a planeswalker references the card it's printed on by name, treat Nicol Bolas's instance of that ability as though it referenced Nicol Bolas, Dragon-God by name instead. For instance, if Ral Zarek is on the battlefield, Nicol Bolas deals the damage if you activate the second ability he gained from Ral."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-01-12",
+    "comment": "If an ability of a planeswalker exiles cards and another loyalty ability of that planeswalker references the exiled cards, those abilities are linked. If Nicol Bolas gains both abilities from the same planeswalker, the instances he has are similarly linked. Cards exiled by any other abilities Nicol Bolas has (such as his own first loyalty ability) won't be seen by those linked abilities."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-01-12",
+    "comment": "If any abilities trigger as you draw a card while resolving Nicol Bolas's first loyalty ability, those abilities don't resolve until after your opponents have exiled a card or permanent."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-01-12",
+    "comment": "After you draw a card as Nicol Bolas's first loyalty ability resolves, the next opponent in turn order (or, if it's somehow an opponent's turn, that opponent) chooses a permanent they control or chooses a card in hand without revealing that card. Then each other opponent in turn order does the same, knowing the choices made before them. Finally, all of the chosen permanents and cards are exiled simultaneously."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-01-12",
+    "comment": "In a Two-Headed Giant game, if one player on a team loses the game, the entire team loses the game, even if the other player controls a legendary creature or planeswalker."
+   }
+  ],
+  "01deabbb-af6a-4998-99a7-35b7cfa9ef77": [
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "Some cards that cause you to amass Zombies also provide bonuses to \"Zombie tokens.\" These affect any token that happens to be a Zombie, not just a Zombie Army you've amassed."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "Some cards refer to the \"amassed Army.\" That means the Army creature you chose to receive counters, even if no counters were placed on it for some reason."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "Amass abilities are now written as \"amass [subtype] N.\" Previous cards with amass have received errata to say \"amass Zombies N.\""
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "Amass Orcs works the same way, except you create a 0/0 black Orc Army creature token if you don't control an Army. If the Army creature you chose isn't already an Orc, it becomes an Orc in addition to its other types. By combining cards with amass Orcs and amass Zombies, you can end up with an Orc Zombie Army."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "In the rare case that you control multiple Army creatures (perhaps because you played a creature with changeling) while you amass Zombies, you choose which of your Army creatures to put the +1/+1 counters on. If that creature isn't a Zombie, it becomes a Zombie in addition to its other types."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "To amass Zombies N, if you don't control an Army creature, create a 0/0 black Zombie Army creature token. Then you choose an Army creature you control and put N +1/+1 counters on it. If that Army isn't already a Zombie, it becomes a Zombie in addition to its other types."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "If you don't control an Army, the Zombie Army token you create enters the battlefield as a 0/0 creature before receiving counters. Any abilities that trigger when a creature with a certain power enters the battlefield, such as that of Mentor of the Meek, will see the token enter as a 0/0 creature before it gets +1/+1 counters."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2019-05-03",
+    "comment": "If the token's power changes later in the turn after it has attacked, including while Dreadhorde Invasion's second ability is on the stack, it won't cause the token to gain or lose lifelink."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2019-05-03",
+    "comment": "The power of the Zombie token is checked only immediately after it attacks. Any other abilities that trigger when creatures you control attack won't have resolved yet."
+   }
+  ],
+  "4e183439-17d2-47ff-9d99-5e22821d91e3": [
+   {
+    "source": "wotc",
+    "published_at": "2020-04-17",
+    "comment": "It doesn't matter whose commander you control. Any one will do. If you have two commanders, you just need to control one of them."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2020-04-17",
+    "comment": "Once you begin casting this spell, players can't take any other actions until you're done casting it. Notably, they can't try to remove the commander you control to make you pay its cost."
+   }
+  ],
+  "039115f2-6322-4674-bc64-f21883ed375a": [
+   {
+    "source": "wotc",
+    "published_at": "2013-07-01",
+    "comment": "If the targeted creature has indestructible, it’s still a legal target — it just isn’t destroyed. The rest of Polymorph’s effect happens as normal."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2009-10-01",
+    "comment": "If the targeted creature is an illegal target by the time Polymorph would resolve, the entire spell doesn’t resolve. Nothing else happens."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2009-10-01",
+    "comment": "If there are no creature cards in the player’s library, all the cards in that library are revealed, then the library is shuffled. (The targeted creature remains destroyed.)"
+   },
+   {
+    "source": "wotc",
+    "published_at": "2009-10-01",
+    "comment": "A “creature card” is any card with the type creature, even if it has other types such as artifact, enchantment, or land. Older cards of type summon are also creature cards."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2004-10-04",
+    "comment": "If there are no creatures in the player’s library, then the target creature is still destroyed, you see all the cards in that player’s library, and then they shuffle and continue play."
+   }
+  ],
+  "640a7d2c-42c4-4ea7-bd5b-72f12a65785e": [
+   {
+    "source": "wotc",
+    "published_at": "2015-11-04",
+    "comment": "The creature cards will enter the battlefield simultaneously."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2015-11-04",
+    "comment": "The cards you exile will stay in exile. They're not part of the group you shuffle into your library."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2015-11-04",
+    "comment": "Creature tokens you exile this way will count toward the number of creature cards you put onto the battlefield."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2015-11-04",
+    "comment": "If you don't reveal any noncreature cards this way (perhaps because all the creature cards you needed were on top of your library), you still shuffle your library."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2015-11-04",
+    "comment": "If you exile your commander as Synthetic Destiny resolves, you may not put it into the command zone until after Synthetic Destiny is finished resolving. It will still count toward the number of creature cards you put onto the battlefield."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2015-11-04",
+    "comment": "If the number of creatures you exile is greater than the number of creature cards remaining in your library, you'll wind up revealing your entire library, putting all creature cards revealed that way onto the battlefield, then shuffling your library."
+   }
+  ],
+  "8c0520fa-276b-4d21-b4a9-dce1fce59f6b": [
+   {
+    "source": "wotc",
+    "published_at": "2020-04-17",
+    "comment": "For spells with {X} in their mana costs, use the value chosen for X to determine the spell's mana value."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2020-04-17",
+    "comment": "Triggered abilities from cycling a card and the cycling ability itself aren't spells. Effects that interact with spells (such as that of Cancel) won't affect them."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2020-04-17",
+    "comment": "An ability that triggers when a player casts a spell resolves before the spell that caused it to trigger. It resolves even if that spell is countered."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2020-04-17",
+    "comment": "You can cycle a card even if it has a triggered ability from cycling that won't have a legal target. This is because the cycling ability and the triggered ability are separate. This also means that if either ability is countered (with Disallow, for example), the other ability will still resolve."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2020-04-17",
+    "comment": "Some cards with cycling have an ability that triggers when you cycle them, and some cards have an ability that triggers whenever you cycle any card. These triggered abilities resolve before you draw from the cycling ability."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2020-04-17",
+    "comment": "You can choose 0 as the value of X in Shark Typhoon's cycling cost. The last ability will trigger, and you'll create a 0/0 blue Shark creature token with flying. Unless something else is raising its toughness, the Shark will then immediately die."
+   }
+  ],
+  "6467cbb7-1e4e-482d-a20f-6cb9fc0f1ad1": [
+   {
+    "source": "wotc",
+    "published_at": "2020-04-17",
+    "comment": "Players can cast spells and activate abilities after the triggered ability resolves but before the spell that caused it to trigger does."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2020-04-17",
+    "comment": "An ability that triggers when a player casts a spell resolves before the spell that caused it to trigger. It resolves even if that spell is countered."
+   }
+  ],
+  "05e6b243-48a6-4a42-bc5f-413441de9c33": [],
+  "b2347910-d6c6-4681-8316-7ef27056485c": [],
+  "f08e835a-7827-4fdc-8dcf-ae74507da052": [
+   {
+    "source": "wotc",
+    "published_at": "2016-11-08",
+    "comment": "You can't cast Divergent Transformations without two target creatures. If a targeted creature becomes an illegal target for Divergent Transformations after it's been cast, its controller won't exile or replace that creature, but the other creature is still affected."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2016-11-08",
+    "comment": "If two players' creatures are exiled this way, start with the player whose turn it is. If that player controlled a creature exiled this way, that player follows the process on Divergent Transformations to replace it. If not, proceed to the next player in turn order. Repeat until the players who controlled the exiled creatures have each replaced those creatures."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2016-11-08",
+    "comment": "If one player's creatures are exiled this way, that player repeats this process twice."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2016-11-08",
+    "comment": "The two creatures that are put onto the battlefield are put onto the battlefield sequentially. Triggered abilities of the second won't see the first enter the battlefield."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2016-11-08",
+    "comment": "Any abilities that trigger during the resolution of Divergent Transformations will wait to be put onto the stack until Divergent Transformations finishes resolving. An ability that triggers on the first creature entering the battlefield may target the second creature and vice versa."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2016-11-08",
+    "comment": "If the controller of a creature exiled this way has no creature cards left in their library, that player reveals the cards in their library, then shuffles it."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2016-11-08",
+    "comment": "Causing an opponent to lose the game after you've announced that you're casting a spell with undaunted and determined its total cost won't cause you to have to pay more mana."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2016-11-08",
+    "comment": "Effects that reduce what you pay to cast a spell don't affect its mana value."
+   }
+  ],
+  "97024e8e-dfde-4769-bc27-c3d6fad19e7c": [],
+  "14878a5f-7983-4133-a1a7-9d539531e092": [],
+  "7a56c6e1-0509-4783-9b29-cf3163977166": [
+   {
+    "source": "wotc",
+    "published_at": "2021-06-18",
+    "comment": "You may choose any card type. The ones that may appear in a normal game of Magic are artifact, battle, creature, enchantment, instant, kindred, land, planeswalker, and sorcery. Supertypes such as snow and basic may not be chosen. Subtypes such as Angel, Aura, and Forest also may not be chosen."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2021-06-18",
+    "comment": "The card type choice is a replacement effect, not a triggered ability. It doesn't use the stack and can't be responded to. Notably, if you choose instant, your opponent can't try to cast an instant on the Emissary before it has protection."
+   }
+  ],
+  "aa1a6646-c1e6-4bff-9092-43ee3e137914": [
+   {
+    "source": "wotc",
+    "published_at": "2021-06-18",
+    "comment": "You and the opponent you target take all the actions in the order listed. Notably, the creature or planeswalker they sacrifice won't be on the battlefield as they discard a card or lose life. If any abilities trigger, they will wait to be put on the stack until after the spell resolves. If any abilities controlled by that opponent trigger but losing 3 life causes them to lose the game, none of those abilities will be put on the stack."
+   }
+  ],
+  "d4a84e78-d9b9-4c67-8a4b-4329e65f0f15": [],
+  "6df1c314-b97b-4bbc-8b7e-a07785347a49": [
+   {
+    "source": "wotc",
+    "published_at": "2021-11-19",
+    "comment": "The card types that you can discard include artifact, creature, enchantment, land, planeswalker, instant, and sorcery. Legendary, basic, and snow are supertypes, not card types. Human, Equipment, and Aura are subtypes, not card types."
+   }
+  ],
+  "dc600c06-8239-409e-b53d-20f813a3f5e7": [],
+  "06d219ff-0083-4c2a-b5b3-2b84bb58f57e": [
+   {
+    "source": "wotc",
+    "published_at": "2023-02-04",
+    "comment": "Damage dealt by a creature with toxic grants the same number of counters regardless of how much damage is dealt. Notably, if a replacement effect modifies the damage in some way (such as that of Gratuitous Violence), the number of counters given remains unchanged."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-02-04",
+    "comment": "If a creature with toxic deals combat damage to a creature or planeswalker, or if it deals noncombat damage, toxic has no effect and no player gets poison counters."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-02-04",
+    "comment": "Toxic doesn't change the amount of combat damage a creature deals. For example, if a 2/2 creature with toxic 1 deals combat damage to a player, that creature will deal 2 damage. The results of that damage are the player loses 2 life and gets a poison counter."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-02-04",
+    "comment": "Conversely, replacement effects that apply to the number of counters put on a player can modify the counters placed this way. For example, Vorinclex, Monstrous Raider's last two abilities can apply to counters placed this way."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-02-04",
+    "comment": "Multiple instances of toxic are cumulative. For example, if a creature has toxic 2 and gains toxic 1 due to another effect, combat damage that creature deals to a player will cause that player to get 3 poison counters."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-02-04",
+    "comment": "Any other effects of that damage, such as life gain from lifelink, still apply."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-02-04",
+    "comment": "A player with ten or more poison counters loses the game. This is a state-based action and doesn't use the stack. In other words, it happens immediately and players can't respond to it, just like a player losing the game due to having 0 or less life."
+   }
+  ],
+  "b05a2b5f-1b5c-4f1b-8a6b-525c5c8b8ba1": [
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "If a spell on the stack has {X} in its cost, use the value chosen for X to determine its mana value."
+   }
+  ],
+  "a38828be-781e-4340-9c6f-f40b1d34773f": [
+   {
+    "source": "wotc",
+    "published_at": "2023-02-04",
+    "comment": "Multiple instances of toxic are cumulative. For example, if a creature has toxic 2 and gains toxic 1 due to another effect, combat damage that creature deals to a player will cause that player to get 3 poison counters."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-02-04",
+    "comment": "Toxic doesn't change the amount of combat damage a creature deals. For example, if a 2/2 creature with toxic 1 deals combat damage to a player, that creature will deal 2 damage. The results of that damage are the player loses 2 life and gets a poison counter."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-02-04",
+    "comment": "If a creature with toxic deals combat damage to a creature or planeswalker, or if it deals noncombat damage, toxic has no effect and no player gets poison counters."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-02-04",
+    "comment": "Damage dealt by a creature with toxic grants the same number of counters regardless of how much damage is dealt. Notably, if a replacement effect modifies the damage in some way (such as that of Gratuitous Violence), the number of counters given remains unchanged."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-02-04",
+    "comment": "A player with ten or more poison counters loses the game. This is a state-based action and doesn't use the stack. In other words, it happens immediately and players can't respond to it, just like a player losing the game due to having 0 or less life."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-02-04",
+    "comment": "Any other effects of that damage, such as life gain from lifelink, still apply."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-02-04",
+    "comment": "Conversely, replacement effects that apply to the number of counters put on a player can modify the counters placed this way. For example, Vorinclex, Monstrous Raider's last two abilities can apply to counters placed this way."
+   }
+  ],
+  "fb3f5097-0da0-458c-8508-60823567e2da": [
+   {
+    "source": "wotc",
+    "published_at": "2023-04-14",
+    "comment": "If Sunfall resolves but doesn't exile any creatures, you'll incubate 0, creating an Incubator token but putting no +1/+1 counters on it. It will still have the ability to transform, but you might need to figure out how it's going to survive first."
+   }
+  ],
+  "9a107e48-3d50-4941-95b1-10f2b29a4245": [
+   {
+    "source": "wotc",
+    "published_at": "2023-09-01",
+    "comment": "If the target permanent is an illegal target by the time Stroke of Midnight tries to resolve, the spell doesn't resolve. No player creates a Human token. If the target is legal but not destroyed (most likely because it has indestructible), its controller does create a Human token."
+   }
+  ],
+  "91320daf-f69c-4350-b0fc-4bb37a6904b1": [
+   {
+    "source": "wotc",
+    "published_at": "2023-11-10",
+    "comment": "If this becomes a creature but you haven't controlled it continuously since your most recent turn began, you won't be able to activate its mana ability or attack with it that turn."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-11-10",
+    "comment": "If this becomes a creature because of an effect other than its own ability, its last ability will still trigger whenever it attacks."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-11-10",
+    "comment": "Map tokens are a kind of predefined token. Each one is a colorless artifact with the artifact subtype Map and the ability \"{1}, {T}, Sacrifice this artifact: Target creature you control explores. Activate only as a sorcery.\""
+   }
+  ],
+  "46c727cb-1f47-4775-8af4-0230ef53966b": [
+   {
+    "source": "wotc",
+    "published_at": "2024-06-07",
+    "comment": "The two cards you put on top of your library can be from the four you just drew or ones that were already in your hand."
+   }
+  ],
+  "28196fd9-00c9-4cd0-b603-0eec8511ec79": [],
+  "e2b472dd-047d-47eb-9ebb-df6aa4b52dd4": [],
+  "7e64b1dc-a238-4bff-98ff-2bea44340568": [
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "If you choose to pay the impending cost of a creature spell, it's still a creature spell on the stack. You can cast that spell for its impending cost only when you could normally cast that creature spell. Most of the time, this means during your main phase when the stack is empty."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "If you choose to pay the impending cost rather than the mana cost, you're still casting the spell. It goes on the stack and can be responded to, countered, and so on."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "If an object enters as a copy of a permanent that was cast with its impending cost, it won't enter with time counters, and it will be a creature."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "\"Impending N–[cost]\" is a keyword that represents multiple abilities. The official rules are as follows: (a) You may choose to pay [cost] rather than pay this spell's mana cost. (b) If you chose to pay this spell's impending cost, it enters the battlefield with N time counters on it. (c) As long as this permanent has a time counter on it, if it was cast for its impending cost, it's not a creature. (d) At the beginning of your end step, if this permanent was cast for its impending cost, remove a time counter from it."
+   }
+  ],
+  "64df560a-905f-45d1-bc70-14d99e3112d3": [],
+  "d0259f7d-9bd7-4722-8fb9-439768308516": [
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "You can concede a game while Darksteel Angel on the battlefield. A concession causes you to leave the game, which then causes you to lose the game. (Once you concede, you no longer control a Darksteel Angel, so its ability can't prevent you from losing the game.)"
+   },
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "If you control Darksteel Angel in a Two-Headed Giant game, your team can't lose the game and the opposing team can't win the game."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "No game effect can cause you to lose the game or cause any opponent to win the game while you control Darksteel Angel. It doesn't matter whether you have 0 or less life, you're forced to draw a card while your library is empty, you have ten or more poison counters, and so on. You keep playing."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "Effects that say the game is a draw, such as that of the card Divine Intervention, are not affected by Darksteel Angel. They'll still work."
+   }
+  ],
+  "313aee0e-4090-4589-b323-a4edbda21c68": [
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "Empower Jace won't let you put loyalty counters on nontoken Jace planeswalkers. However, if you control a Jace planeswalker token that you got another way (such as an effect that creates a token that's a copy of a permanent), empower Jace will put loyalty counters on that."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "To empower Jace N, if you don't control a Jace planeswalker token, create a blue Jace planeswalker token with 0 loyalty, \"[−1]: Surveil 1,\" and \"[−3]: Draw a card.\" Choose a Jace planeswalker token you control. Put N loyalty counters on it."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "Some spells and abilities that empower Jace may require targets. If each target chosen is an illegal target as that spell or ability tries to resolve, it won't resolve. You won't empower Jace."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "If you control a Jace planeswalker token, you can't choose to create a new one when you empower Jace. You have to put the loyalty counters on your existing Jace planeswalker token. In the rare case that you control multiple Jace planeswalker tokens, you'll choose one of those tokens to put the loyalty counters on."
+   }
+  ],
+  "4a3fdb8e-4699-4bd9-84e6-3cc7fea0e1ef": [
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "If a Sphinx you control enters attacking, it won't cause the Ur-Sphinx's last ability to trigger."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "You cast the spells while The Ur-Sphinx's last ability is resolving and still on the stack. You can't wait to cast them later in the turn. Timing restrictions based on the cards' types are ignored. If you cast a spell \"without paying its mana cost,\" you can't choose to cast it for any alternative costs. You can, however, pay additional costs. If a spell has any mandatory additional costs, you must pay those costs to cast that spell. If a spell has {X} in its mana cost, you must choose 0 as the value of X."
+   }
+  ],
+  "a5350327-e84c-44b6-8359-87882e521048": [
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "If more than one creature you control with lifelink deals combat damage at the same time, Niv-Mizzet's triggered ability will trigger once for each of those creatures."
+   }
+  ],
+  "8e0f2e26-1e14-422a-aafe-e1da38ab10a3": [
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "The game starts with no monarch. Once an effect makes one player the monarch, the game will have exactly one monarch from that point forward. As a player becomes the monarch, the current monarch (if any) ceases being the monarch."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "If combat damage dealt to the monarch causes that player to lose the game, the triggered ability that causes the controller of the attacking creature to become the monarch doesn't resolve. In most cases, the controller of the attacking creature will still become the monarch as it is likely their turn."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "If the triggered ability that causes the monarch to draw a card goes on the stack and a different player becomes the monarch before that ability resolves, the first player will still draw the card."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "If the monarch leaves the game during another player's turn, that player becomes the monarch. If the monarch leaves the game during their turn, the next player in turn order becomes the monarch."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "There are two inherent triggered abilities associated with being the monarch. These triggered abilities have no source and are controlled by the player who was the monarch at the time the abilities triggered. The full texts of these abilities are \"At the beginning of the monarch's end step, that player draws a card\" and \"Whenever a creature deals combat damage to the monarch, its controller becomes the monarch.\""
+   }
+  ],
+  "4af61d45-7114-4eb4-a905-9e03caf87454": [
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "If Avacyn dies at the same time as another nontoken creature, her ability will trigger for each of them."
+   }
+  ],
+  "f2630b02-fb48-4167-8a47-8284f7d4c484": [],
+  "3a49b518-61c8-4dea-8008-c5edf8384581": [
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "The last ability of Ob Nixilis will trigger if you gained any amount of life this turn, even if you also lost life during the same turn. For example, if you gained 2 life this turn but also lost 4 life, you will still create an Angel token."
+   }
+  ],
+  "cf9b0bb5-d545-4efd-9255-39b10c2be0ee": [],
+  "579225b5-50e2-4891-8871-0bf6dbc07e33": [
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "As long as Omnath, Locus of the Void remains under your control, you'll retain unspent mana as steps and phases end, although that mana will become colorless. This means you can add mana and spend it during a future step, phase, or turn. Once Omnath leaves your control, you'll have until the end of the current step or phase to spend the mana before it is lost."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "If unspent mana you have has any restrictions or riders associated with it (for example, if it was produced by Jeweled Lotus), those restrictions or riders remain associated with that mana when it becomes colorless."
+   }
+  ],
+  "c13c5f07-dac5-47d0-a088-e24b9fbec3c5": [
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "Unlike some other dual lands, Turbulent Shore has two basic land types. It's not basic, so effects that search for basic lands can't find it, but it does have the appropriate land types for effects such as that of Glacial Fortress (included in the Reality Fracture Commander deck)."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "If this land enters the battlefield at the same time as any number of lands your opponents control, those other lands are not counted when determining if this land enters the battlefield tapped or untapped."
+   }
+  ],
+  "e86a0b64-fe4a-4ea8-99e8-35860dbac765": [
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "Unlike some other dual lands, Turbulent Crater has two basic land types. It's not basic, so effects that search for basic lands can't find it, but it does have the appropriate land types for effects such as that of Dragonskull Summit (\"This land enters tapped unless you control a Swamp or a Mountain.\")."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "If this land enters the battlefield at the same time as any number of lands your opponents control, those other lands are not counted when determining if this land enters the battlefield tapped or untapped."
+   }
+  ],
+  "b51c8659-ec4f-4213-beb1-49a7acd7366c": [
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "Unlike some other dual lands, Turbulent Wetlands has two basic land types. It's not basic, so effects that search for basic lands can't find it, but it does have the appropriate land types for effects such as that of Drowned Catacomb (included in the Reality Fracture Commander deck)."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "If this land enters the battlefield at the same time as any number of lands your opponents control, those other lands are not counted when determining if this land enters the battlefield tapped or untapped."
+   }
+  ],
+  "7fd2cac5-cd29-4a47-9e89-9c6be39a0b67": [
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "To empower Jace N, if you don't control a Jace planeswalker token, create a blue Jace planeswalker token with 0 loyalty, \"[−1]: Surveil 1,\" and \"[−3]: Draw a card.\" Choose a Jace planeswalker token you control. Put N loyalty counters on it."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "The turn you cast Plan for All Outcomes, its second ability won't trigger because you've already cast at least one noncreature spell (Plan for All Outcomes) before it is on the battlefield."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "If you control a Jace planeswalker token, you can't choose to create a new one when you empower Jace. You have to put the loyalty counters on your existing Jace planeswalker token. In the rare case that you control multiple Jace planeswalker tokens, you'll choose one of those tokens to put the loyalty counters on."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "Some spells and abilities that empower Jace may require targets. If each target chosen is an illegal target as that spell or ability tries to resolve, it won't resolve. You won't empower Jace."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "The last ability of Plan for All Outcomes resolves before the spell that caused it to trigger. It resolves even if that spell is countered or otherwise leaves the stack."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "Empower Jace won't let you put loyalty counters on nontoken Jace planeswalkers. However, if you control a Jace planeswalker token that you got another way (such as an effect that creates a token that's a copy of a permanent), empower Jace will put loyalty counters on that."
+   }
+  ],
+  "6067b8d0-5b00-402c-967d-e35a1304fafc": []
+ }
+}

@@ -3,7 +3,7 @@
 // bots sempre usam e a pessoa usa com o auxílio "Pagar automaticamente"): ele virava terrenos que no fim
 // não pagavam nada, e a mana deles sobrava na reserva até o fim da etapa.
 import { describe, expect, it } from 'vitest';
-import decksJson from '../gerado/decks.json' with { type: 'json' };
+import decksJson from './decks-teste.json' with { type: 'json' };
 import { manaOptions, planPayment } from '../motor/costs.ts';
 import { parseCost } from '../motor/mana.ts';
 import { oracle } from '../motor/oracle.ts';

@@ -1,0 +1,159 @@
+{
+ "id": "mv7oNq",
+ "name": "Multiverse Reforged (Reality Fracture Commander Decklist)",
+ "format": "commander",
+ "publicUrl": "https://moxfield.com/decks/HAKhAXl1RHyly2_QGDPvzg",
+ "publicId": "HAKhAXl1RHyly2_QGDPvzg",
+ "version": 17,
+ "lastUpdatedAtUtc": "2026-10-06T20:04:30.657Z",
+ "boards": {
+  "mainboard": {
+   "count": 99,
+   "cards": {
+    "kaN49": {
+     "quantity": 3,
+     "boardType": "mainboard",
+     "finish": "nonFoil",
+     "card": {
+      "name": "Island",
+      "scryfall_id": "d8184e92-54e6-4ddc-86e8-67f5c5eb079d",
+      "set": "fra",
+      "cn": "283",
+      "layout": "normal",
+      "type_line": "Basic Land — Island",
+      "isToken": false
+     }
+    },
+    "kqAb3": {
+     "quantity": 2,
+     "boardType": "mainboard",
+     "finish": "nonFoil",
+     "card": {
+      "name": "Mountain",
+      "scryfall_id": "16671d98-6f00-477b-a010-d2905c94eb65",
+      "set": "fra",
+      "cn": "287",
+      "layout": "normal",
+      "type_line": "Basic Land — Mountain",
+      "isToken": false
+     }
+    },
+    "kOzVw": {
+     "quantity": 2,
+     "boardType": "mainboard",
+     "finish": "nonFoil",
+     "card": {
+      "name": "Swamp",
+      "scryfall_id": "30693b85-550d-4c98-8c5b-4fd4e91c9f28",
+      "set": "fra",
+      "cn": "285",
+      "layout": "normal",
+      "type_line": "Basic Land — Swamp",
+      "isToken": false
+     }
+    },
+    "EbPg6": {
+     "quantity": 4,
+     "boardType": "mainboard",
+     "finish": "nonFoil",
+     "card": {
+      "name": "Plains",
+      "scryfall_id": "a4eaecb8-066a-4c72-aa5d-5ed0614ba537",
+      "set": "fra",
+      "cn": "281",
+      "layout": "normal",
+      "type_line": "Basic Land — Plains",
+      "isToken": false
+     }
+    },
+    "k9vvg": {
+     "quantity": 1,
+     "boardType": "mainboard",
+     "finish": "nonFoil",
+     "card": {
+      "name": "Arcane Signet",
+      "scryfall_id": "c6b6117c-faab-4bbb-b851-07bd8061ef03",
+      "set": "frc",
+      "cn": "20",
+      "layout": "normal",
+      "type_line": "Artifact",
+      "isToken": false
+     }
+    },
+    "kaN92": {
+     "quantity": 1,
+     "boardType": "mainboard",
+     "finish": "nonFoil",
+     "card": {
+      "name": "Command Tower",
+      "scryfall_id": "1ac6cb62-45da-4e9a-84c6-09e6eacf0664",
+      "set": "frc",
+      "cn": "22",
+      "layout": "normal",
+      "type_line": "Land",
+      "isToken": false
+     }
+    }
+   }
+  },
+  "sideboard": {
+   "count": 0,
+   "cards": {}
+  },
+  "maybeboard": {
+   "count": 0,
+   "cards": {}
+  },
+  "commanders": {
+   "count": 1,
+   "cards": {
+    "YvBg8": {
+     "quantity": 1,
+     "boardType": "commanders",
+     "finish": "nonFoil",
+     "card": {
+      "name": "Jace, Multiverse Architect",
+      "scryfall_id": "55cd03d9-2535-4cf3-a8b2-1418e1190f4a",
+      "set": "frc",
+      "cn": "1",
+      "layout": "normal",
+      "type_line": "Legendary Planeswalker — Jace",
+      "isToken": false
+     }
+    }
+   }
+  },
+  "companions": {
+   "count": 0,
+   "cards": {}
+  },
+  "signatureSpells": {
+   "count": 0,
+   "cards": {}
+  },
+  "attractions": {
+   "count": 0,
+   "cards": {}
+  },
+  "stickers": {
+   "count": 0,
+   "cards": {}
+  },
+  "contraptions": {
+   "count": 0,
+   "cards": {}
+  },
+  "planes": {
+   "count": 0,
+   "cards": {}
+  },
+  "schemes": {
+   "count": 0,
+   "cards": {}
+  },
+  "tokens": {
+   "count": 0,
+   "cards": {}
+  }
+ }
+}

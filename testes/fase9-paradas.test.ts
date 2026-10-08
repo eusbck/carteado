@@ -2,7 +2,7 @@
 // parada, e aí o aviso diz por quê (conexões falsas, banco em memória, sem atrasos).
 import { describe, expect, it } from 'vitest';
 import '../cartas/index.ts';
-import decksJson from '../gerado/decks.json' with { type: 'json' };
+import decksJson from './decks-teste.json' with { type: 'json' };
 import { defaultAnswer } from '../motor/ask.ts';
 import type { StopSettings } from '../motor/autopass.ts';
 import type { DeckList } from '../motor/state.ts';

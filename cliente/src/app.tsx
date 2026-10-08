@@ -1,5 +1,6 @@
 import { useLoja } from './loja.ts';
 import { Entrada } from './telas/Entrada.tsx';
+import { Decks } from './telas/Decks.tsx';
 import { Inicio } from './telas/Inicio.tsx';
 import { Saguao } from './telas/Saguao.tsx';
 import { Mesa } from './mesa/Mesa.tsx';
@@ -10,6 +11,7 @@ export function App() {
   if (e.fase === 'carregando') tela = <div class="centro">Carregando…</div>;
   else if (e.fase === 'entrada') tela = <Entrada />;
   else if (e.fase === 'inicio') tela = <Inicio />;
+  else if (e.fase === 'decks') tela = <Decks />;
   else if (e.vista && e.sala && e.sala.estado !== 'espera') tela = <Mesa />;
   else tela = <Saguao />;
   return (

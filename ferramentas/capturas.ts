@@ -4,6 +4,7 @@
 // as da fase 8 mostram a mesa real, o combate por cliques e o desfazer.
 // Uso: node ferramentas/capturas.ts   → imagens em .cache/capturas/
 //      CAPTURAS_SO=janelas node ferramentas/capturas.ts   → só as da fase 9 (janelas de escolha, zoom e log)
+//      CAPTURAS_SO=decks node ferramentas/capturas.ts     → só a tela Decks (importar e atualizar pelo Moxfield)
 
 import { spawn } from 'node:child_process';
 import { mkdirSync, rmSync } from 'node:fs';
@@ -299,6 +300,120 @@ async function capturasFase9(): Promise<void> {
     }
   }
 }
+// --- importação de decks pelo Moxfield: tela Decks ---
+/**
+ * Tela Decks em 1280×800 e 1920×1080: a lista, os detalhes de um deck pronto e de um em preparação (se houver), e
+ * "Atualizar" no Terra pela internet (nada mudou). A prévia de um deck novo, a diferença de uma atualização, o
+ * andamento e o erro de regras vêm de mensagens injetadas no WebSocket (o servidor das capturas usa decks/ e gerado/
+ * de verdade: confirmar uma importação aqui gravaria neles).
+ * CAPTURAS_SO=decks roda só este bloco.
+ */
+async function capturasDecks(): Promise<void> {
+  type Msg = Record<string, unknown>;
+  for (const [w, h] of [[1280, 800], [1920, 1080]] as const) {
+    const c = await navegador.newContext({ viewport: { width: w, height: h } });
+    let injetar: (m: Msg) => void = () => { throw new Error('WebSocket ainda não abriu'); };
+    await c.routeWebSocket(/\/ws$/, (ws) => { ws.connectToServer(); injetar = (m) => ws.send(JSON.stringify(m)); });
+    const p = await c.newPage();
+    await entrar(p);
+    await p.getByRole('button', { name: 'Decks' }).click();
+    await p.getByText('Decks da mesa').waitFor();
+    await p.locator('.cat-deck').first().waitFor();
+    await foto(p, `95-decks-lista-${w}`);
+    const catalogo = await p.evaluate(async () => (await (await fetch('/api/catalogo')).json()).decks as { id: string; nome: string; estado: string }[]);
+    const pronto = catalogo.find((d) => d.nome === 'Terra')!;
+    await p.getByRole('button', { name: `Detalhes de ${pronto.nome}` }).click();
+    await conferirJanela(p, 'detalhes do deck');
+    await foto(p, `95b-decks-detalhe-pronto-${w}`);
+    await p.keyboard.press('Escape');
+    const prep = catalogo.find((d) => d.estado !== 'pronto');
+    if (prep) {
+      await p.getByRole('button', { name: `Detalhes de ${prep.nome}` }).click();
+      await conferirJanela(p, 'deck em preparação');
+      await p.waitForTimeout(600);
+      await foto(p, `95c-decks-detalhe-preparacao-${w}`);
+      await p.keyboard.press('Escape');
+    } else console.log('aviso: nenhum deck em preparação para a captura 95c');
+    // Atualizar de verdade (internet): o Terra não mudou no Moxfield
+    await p.locator('.cat-deck', { hasText: 'Terra' }).getByRole('button', { name: 'Atualizar' }).click();
+    await p.getByText(/Nenhuma carta mudou/).waitFor({ timeout: 30000 });
+    await conferirJanela(p, 'atualizar sem mudança');
+    await foto(p, `95d-decks-atualizar-nada-${w}`);
+    await p.locator('.cat-acoes').getByRole('button', { name: 'Fechar' }).click();
+
+    // prévias injetadas: a resposta da busca diz o número da tarefa; a prévia chega pelo WebSocket
+    const info = await p.evaluate(async () => await (await fetch('/api/cartas')).json() as Record<string, { f: string | null; pt: string | null }>);
+    const carta = (nome: string, pronta = true, quantidade = 1) => ({ nome, quantidade, pt: info[nome]?.pt ?? null, img: pronta ? info[nome]?.f ?? null : null, tipo: pronta ? 'Artifact' : 'Instant', pronta });
+    let tarefa = 9000;
+    const mostrar = async (tipo: string, proposta: Msg | null, extra: Msg = {}) => {
+      tarefa++;
+      const n = tarefa;
+      await p.route('**/api/catalogo/importar', (r) => r.fulfill({ status: 202, contentType: 'application/json', body: JSON.stringify({ tarefa: n }) }));
+      await p.locator('.cat-importar input').fill('https://moxfield.com/decks/HAKhAXl1RHyly2_QGDPvzg');
+      await p.getByRole('button', { name: 'Buscar deck' }).click();
+      await p.waitForFunction(() => !(document.querySelector('.cat-importar input') as HTMLInputElement).value);
+      await p.unroute('**/api/catalogo/importar');
+      injetar({ t: 'catalogo', mudou: false, tarefa: { id: n, tipo, deck: 'HAKhAXl1RHyly2_QGDPvzg', nome: 'Multiverse Reforged', etapa: 'Pronto', feito: 0, total: 0, estado: 'pronta', ...(proposta ? { proposta } : {}), ...extra } });
+    };
+    const faltam = ['Brainstorm', 'Chromatic Lantern', 'Lingering Souls', 'Dimir Signet', 'Underground River', 'Martial Coup', 'Polymorph', 'Shark Typhoon', 'Hullbreaker Horror', 'Sunfall', 'Nicol Bolas, Dragon-God', "Elspeth, Sun's Champion"].map((n) => carta(n, false));
+    const base = { token: 'tokencaptura', id: 'HAKhAXl1RHyly2_QGDPvzg', link: 'https://moxfield.com/decks/HAKhAXl1RHyly2_QGDPvzg', comandante: 'Jace, Multiverse Architect', comandantePt: null, trocaComandante: null, erros: [], avisos: [] };
+    await mostrar('verificar', {
+      ...base, nome: 'Multiverse Reforged (Reality Fracture Commander Decklist)', novo: true, total: 93, prontas: 29, faltam, entram: [], saem: [], destino: 'preparacao',
+      resumo: '64 cartas ainda não têm regras no jogo. O deck fica em preparação até elas ficarem prontas.',
+    });
+    await conferirJanela(p, 'prévia de deck novo');
+    await foto(p, `96-decks-importar-previa-${w}`);
+    await p.locator('.cat-faltam summary').click();
+    await foto(p, `96b-decks-importar-previa-faltam-${w}`);
+    await p.keyboard.press('Escape');
+    await mostrar('verificar', {
+      ...base, id: pronto.id, nome: 'Terra', novo: false, comandante: 'Terra, Herald of Hope', total: 93, prontas: 92, faltam: [carta('Brainstorm', false)],
+      entram: [carta('Bag of Holding'), carta('Brainstorm', false), carta('Fellwar Stone')], saem: [carta('Arcane Signet'), carta('Mountain', true, 2), carta('Thrill of Possibility')],
+      destino: 'preparacao', resumo: '1 carta ainda não tem regras no jogo. A atualização fica guardada e o deck segue com a lista atual até ela ficar pronta.',
+      avisos: ['Só o comandante e o deck principal entram no jogo; ficam de fora: reserva (sideboard), "talvez" (maybeboard)'],
+    });
+    await conferirJanela(p, 'diferença da atualização');
+    await foto(p, `96c-decks-atualizar-diferenca-${w}`);
+    await p.keyboard.press('Escape');
+    await mostrar('verificar', {
+      ...base, nome: 'Deck com 99 cartas', novo: true, total: 92, prontas: 92, faltam: [], entram: [], saem: [], destino: 'jogavel',
+      resumo: 'A lista não cumpre as regras de deck do Commander: corrija no Moxfield e busque de novo.',
+      erros: ['O deck tem 99 cartas (precisa de 100) — CR 903.5a', 'Sol Ring aparece 2 vezes — CR 903.5b'], avisos: ['Dockside Extortionist está banida no Commander'],
+    });
+    await conferirJanela(p, 'erro de regras');
+    await foto(p, `96d-decks-importar-erro-regras-${w}`);
+    await p.keyboard.press('Escape');
+    // andamento da confirmação (a janela fica aberta até terminar) e o resultado
+    await mostrar('confirmar', null, { estado: 'andando', etapa: 'Baixando as cartas novas: Hullbreaker Horror', feito: 23, total: 64 });
+    await p.locator('.cat-janela .cat-progresso').waitFor();
+    await foto(p, `96e-decks-confirmar-andamento-${w}`);
+    injetar({ t: 'catalogo', mudou: false, tarefa: { id: tarefa, tipo: 'confirmar', deck: 'HAKhAXl1RHyly2_QGDPvzg', nome: 'Multiverse Reforged', etapa: 'Pronto', feito: 64, total: 64, estado: 'pronta', resultado: { id: 'HAKhAXl1RHyly2_QGDPvzg', destino: 'preparacao', texto: 'Multiverse Reforged ficou em preparação: faltam regras para 64 cartas.' } } });
+    await p.getByText(/ficou em preparação: faltam/).waitFor();
+    await foto(p, `96f-decks-confirmar-resultado-${w}`);
+    await p.locator('.cat-acoes').getByRole('button', { name: 'Fechar' }).click();
+    // a tela inicial, com o botão Decks
+    await p.getByRole('button', { name: 'Voltar' }).click();
+    await p.getByText('Escolha sua mesa').waitFor();
+    await foto(p, `97-inicio-com-decks-${w}`);
+    await c.close();
+  }
+}
+if (!SO_CAPTURAS || SO_CAPTURAS === 'decks') {
+  try {
+    await capturasDecks();
+  } catch (e) {
+    for (const [i, p] of paginas.entries()) if (!p.isClosed()) await p.screenshot({ path: join(SAIDA, `falha-decks-${i}.png`) }).catch(() => {});
+    await navegador.close();
+    servidor.kill();
+    throw e;
+  }
+  if (SO_CAPTURAS) {
+    await navegador.close();
+    servidor.kill();
+    process.exit(0);
+  }
+}
+// --- fim (tela Decks) ---
 if (!SO_CAPTURAS || SO_CAPTURAS === 'fundos') {
   try {
     await capturasFase9();

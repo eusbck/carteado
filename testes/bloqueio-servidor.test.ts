@@ -1,7 +1,7 @@
 // Fase 9, item 1.4: o bloqueio no servidor, com bots de verdade e uma pessoa (conexão falsa). A sala começa de um
 // checkpoint montado com o arcabouço de testes (o combate já declarado), então a situação é sempre a mesma.
 import { describe, expect, it } from 'vitest';
-import decksJson from '../gerado/decks.json' with { type: 'json' };
+import decksJson from './decks-teste.json' with { type: 'json' };
 import { cliqueBloqueio, respostaBloqueio, type EstadoBloqueio } from '../cliente/src/mesa/bloqueio.ts';
 import { DEFAULT_STOPS } from '../motor/autopass.ts';
 import type { DeckList } from '../motor/state.ts';

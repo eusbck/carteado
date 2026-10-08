@@ -1,0 +1,356 @@
+{
+ "formato": 1,
+ "id": "GlOgAZd3aH2ggq5J8q0AVg",
+ "ordem": 2,
+ "nome": "Lorehold Spirit",
+ "link": "https://moxfield.com/decks/GlOgAZd3aH2ggq5J8q0AVg",
+ "importadoEm": "2026-10-04T01:33:17.460Z",
+ "verificadoEm": null,
+ "atual": {
+  "comandante": "Quintorius, History Chaser",
+  "cartas": [
+   {
+    "nome": "Boros Charm",
+    "quantidade": 1
+   },
+   {
+    "nome": "Thrilling Discovery",
+    "quantidade": 1
+   },
+   {
+    "nome": "Trove Warden",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bag of Holding",
+    "quantidade": 1
+   },
+   {
+    "nome": "Banon, the Returners' Leader",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lorehold Charm",
+    "quantidade": 1
+   },
+   {
+    "nome": "Kirol, History Buff // Pack a Punch",
+    "quantidade": 1
+   },
+   {
+    "nome": "Advanced Reconstruction",
+    "quantidade": 1
+   },
+   {
+    "nome": "Relic Retriever",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vanguard of the Restless",
+    "quantidade": 1
+   },
+   {
+    "nome": "Augusta, Order Returned",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ceaseless Conflict",
+    "quantidade": 1
+   },
+   {
+    "nome": "Turbulent Steppe",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lorehold Archivist // Restore Relic",
+    "quantidade": 1
+   },
+   {
+    "nome": "Command Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Spirit of Resilience",
+    "quantidade": 1
+   },
+   {
+    "nome": "Monologue Tax",
+    "quantidade": 1
+   },
+   {
+    "nome": "Swords to Plowshares",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arcane Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Staff of the Storyteller",
+    "quantidade": 1
+   },
+   {
+    "nome": "Path to Exile",
+    "quantidade": 1
+   },
+   {
+    "nome": "Archaeomancer's Map",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sevinne's Reclamation",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Quintorius, Loremaster",
+    "quantidade": 1
+   },
+   {
+    "nome": "Quintorius, Field Historian",
+    "quantidade": 1
+   },
+   {
+    "nome": "Primary Research",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fields of Strife",
+    "quantidade": 1
+   },
+   {
+    "nome": "Moonshaker Cavalry",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fellwar Stone",
+    "quantidade": 1
+   },
+   {
+    "nome": "Anger",
+    "quantidade": 1
+   },
+   {
+    "nome": "Faithless Looting",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fabled Passage",
+    "quantidade": 1
+   },
+   {
+    "nome": "Exotic Orchard",
+    "quantidade": 1
+   },
+   {
+    "nome": "Guardian of Faith",
+    "quantidade": 1
+   },
+   {
+    "nome": "Drumbellower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Laelia, the Blade Reforged",
+    "quantidade": 1
+   },
+   {
+    "nome": "Karmic Guide",
+    "quantidade": 1
+   },
+   {
+    "nome": "Selfless Spirit",
+    "quantidade": 1
+   },
+   {
+    "nome": "White Orchid Phantom",
+    "quantidade": 1
+   },
+   {
+    "nome": "Venerable Warsinger",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hofri Ghostforge",
+    "quantidade": 1
+   },
+   {
+    "nome": "Seize the Spoils",
+    "quantidade": 1
+   },
+   {
+    "nome": "Currency Converter",
+    "quantidade": 1
+   },
+   {
+    "nome": "Terramorphic Expanse",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mind Stone",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tocasia's Welcome",
+    "quantidade": 1
+   },
+   {
+    "nome": "Millikin",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lotus Field",
+    "quantidade": 1
+   },
+   {
+    "nome": "Perpetual Timepiece",
+    "quantidade": 1
+   },
+   {
+    "nome": "Conspiracy Theorist",
+    "quantidade": 1
+   },
+   {
+    "nome": "Containment Construct",
+    "quantidade": 1
+   },
+   {
+    "nome": "Angel of Indemnity",
+    "quantidade": 1
+   },
+   {
+    "nome": "Balefire Liege",
+    "quantidade": 1
+   },
+   {
+    "nome": "Battlefield Forge",
+    "quantidade": 1
+   },
+   {
+    "nome": "Teshar, Ancestor's Apostle",
+    "quantidade": 1
+   },
+   {
+    "nome": "Clifftop Retreat",
+    "quantidade": 1
+   },
+   {
+    "nome": "Emeria, the Sky Ruin",
+    "quantidade": 1
+   },
+   {
+    "nome": "Serra Paragon",
+    "quantidade": 1
+   },
+   {
+    "nome": "Guardian Scalelord",
+    "quantidade": 1
+   },
+   {
+    "nome": "Kami of Ancient Law",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rugged Prairie",
+    "quantidade": 1
+   },
+   {
+    "nome": "Patchwork Banner",
+    "quantidade": 1
+   },
+   {
+    "nome": "Radiant Summit",
+    "quantidade": 1
+   },
+   {
+    "nome": "Temple of Triumph",
+    "quantidade": 1
+   },
+   {
+    "nome": "Furycalm Snarl",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sunscorched Divide",
+    "quantidade": 1
+   },
+   {
+    "nome": "Glittering Massif",
+    "quantidade": 1
+   },
+   {
+    "nome": "Remorseful Cleric",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sacred Peaks",
+    "quantidade": 1
+   },
+   {
+    "nome": "Squee, Goblin Nabob",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sun Titan",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tragic Arrogance",
+    "quantidade": 1
+   },
+   {
+    "nome": "Wave of Reckoning",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mistveil Plains",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bitterthorn, Nissa's Animus",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rip Apart",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lorehold Campus",
+    "quantidade": 1
+   },
+   {
+    "nome": "Study Hall",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ark of Hunger",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hardened Academic",
+    "quantidade": 1
+   },
+   {
+    "nome": "Excava, the Risen Past",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mountain",
+    "quantidade": 6
+   },
+   {
+    "nome": "Plains",
+    "quantidade": 11
+   }
+  ],
+  "origem": {
+   "versao": 0,
+   "atualizadoEm": "2026-08-30T15:25:36.047Z"
+  },
+  "desde": "2026-10-04T01:33:17.460Z"
+ },
+ "preparacao": null
+}

@@ -1,7 +1,8 @@
 // Imagens das cartas: lidas da pasta original (cartas/assets, somente leitura) e servidas
 // só para sessões autenticadas. As miniaturas WebP são geradas sob demanda e guardadas em
 // .cache/miniaturas (fora do repositório). A arte dos comandantes em alta qualidade vem de
-// gerado/artes (baixada uma vez por ferramentas/baixar-artes.ts).
+// gerado/artes (baixada uma vez por ferramentas/baixar-artes.ts). As cartas de decks importados pela tela Decks
+// têm as imagens em pastas extras (dados-locais/imagens/<id>/front.png).
 
 import { existsSync, mkdirSync, readdirSync, statSync } from 'node:fs';
 import { dirname, join } from 'node:path';
@@ -18,11 +19,13 @@ export class Imagens {
   private pastaCartas: string;
   private cache: string;
   private pastaArtes: string;
+  private pastasExtras: string[];
 
-  constructor(pastaCartas: string, cache: string, pastaArtes = join(dirname(fileURLToPath(import.meta.url)), '..', 'gerado', 'artes')) {
+  constructor(pastaCartas: string, cache: string, pastaArtes = join(dirname(fileURLToPath(import.meta.url)), '..', 'gerado', 'artes'), pastasExtras: string[] = []) {
     this.pastaCartas = pastaCartas;
     this.cache = cache;
     this.pastaArtes = pastaArtes;
+    this.pastasExtras = pastasExtras;
     mkdirSync(cache, { recursive: true });
     const pastaSimbolos = join(pastaCartas, 'assets', 'symbols');
     if (existsSync(pastaSimbolos)) {
@@ -33,11 +36,19 @@ export class Imagens {
     }
   }
 
+  /** imagem original da carta: em ../cartas/assets/cards ou numa pasta extra */
+  private original(id: string, arquivo: string): string | null {
+    for (const p of [join(this.pastaCartas, 'assets', 'cards', id, arquivo), ...this.pastasExtras.map((x) => join(x, id, arquivo))]) {
+      if (existsSync(p)) return p;
+    }
+    return null;
+  }
+
   /** caminho do arquivo pronto para servir, ou null se não existir */
   async carta(id: string, lado: 'frente' | 'verso', tam: Tamanho): Promise<string | null> {
     if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/.test(id)) return null;
-    const original = join(this.pastaCartas, 'assets', 'cards', id, lado === 'frente' ? 'front.png' : 'back.png');
-    if (!existsSync(original)) return null;
+    const original = this.original(id, lado === 'frente' ? 'front.png' : 'back.png');
+    if (!original) return null;
     if (tam === 'g') return original;
     const destino = join(this.cache, `${id}-${lado}-${tam}.webp`);
     if (existsSync(destino)) return destino;
@@ -62,8 +73,8 @@ export class Imagens {
   async arte(id: string, uso: 'arte' | 'fundo' = 'arte'): Promise<string | null> {
     if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/.test(id)) return null;
     const alta = join(this.pastaArtes, `${id}.webp`);
-    const original = existsSync(alta) ? alta : join(this.pastaCartas, 'assets', 'cards', id, 'front.png');
-    if (!existsSync(original)) return null;
+    const original = existsSync(alta) ? alta : this.original(id, 'front.png');
+    if (!original) return null;
     // o nome muda com a fonte; um arquivo novo em gerado/artes refaz o que estava guardado
     const destino = join(this.cache, `${id}-${uso}${original === alta ? '-alta' : ''}.webp`);
     if (existsSync(destino) && statSync(destino).mtimeMs >= statSync(original).mtimeMs) return destino;

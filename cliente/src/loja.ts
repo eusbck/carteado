@@ -5,12 +5,12 @@ import { useEffect, useState } from 'preact/hooks';
 import type { StopSettings } from '../../motor/autopass.ts';
 import type { Answer, ManualAction } from '../../motor/types.ts';
 import type { GameView } from '../../motor/view.ts';
-import type { DeckResumo, MsgCliente, MsgServidor, PedidoDesfazer, Posicoes, SalaPublica } from '../../servidor/protocolo.ts';
+import type { DeckCatalogo, DeckResumo, MsgCliente, MsgServidor, PedidoDesfazer, Posicoes, SalaPublica, TarefaPublica } from '../../servidor/protocolo.ts';
 import { carregarCartas } from './cartas.ts';
 import { auxiliosAtivos, preferencias } from './preferencias.ts';
 
 export interface Estado {
-  fase: 'carregando' | 'entrada' | 'inicio' | 'sala';
+  fase: 'carregando' | 'entrada' | 'inicio' | 'decks' | 'sala';
   conectado: boolean;
   sala: SalaPublica | null;
   voce: number | null;
@@ -34,6 +34,14 @@ export interface Estado {
   recusa: number;
   /** assento do bot que está pensando há mais de um segundo (a mesa mostra "Fulano está pensando…") */
   pensando: number | null;
+  /** tela Decks: todos os decks da mesa (null até abrir a tela) */
+  catalogo: DeckCatalogo[] | null;
+  /** importação ou atualização de deck em andamento (de qualquer pessoa) */
+  tarefaDeck: TarefaPublica | null;
+  /** a tarefa que esta tela começou (a prévia e o resultado aparecem só para quem pediu) */
+  minhaTarefa: number | null;
+  /** o último estado dela: fica mesmo se outra pessoa começar outra importação logo depois */
+  minhaTarefaEstado: TarefaPublica | null;
 }
 
 const CHAVE = 'commander-da-mesa:sala';
@@ -54,7 +62,7 @@ function guardarSala(v: { codigo: string; token: string } | null): void {
 }
 
 class Loja {
-  e: Estado = { fase: 'carregando', conectado: false, sala: null, voce: null, vista: null, paradas: null, posicoes: {}, reveladas: [], erro: null, decks: [], respondida: null, desfazivel: false, desfazer: null, avisos: [], recusa: 0, pensando: null };
+  e: Estado = { fase: 'carregando', conectado: false, sala: null, voce: null, vista: null, paradas: null, posicoes: {}, reveladas: [], erro: null, decks: [], respondida: null, desfazivel: false, desfazer: null, avisos: [], recusa: 0, pensando: null, catalogo: null, tarefaDeck: null, minhaTarefa: null, minhaTarefaEstado: null };
   private ouvintes = new Set<() => void>();
   private ws: WebSocket | null = null;
   private fila: MsgCliente[] = [];
@@ -132,6 +140,63 @@ class Loja {
     };
   }
 
+  // ---------------------------------------------------------------- tela Decks
+
+  async abrirDecks(): Promise<void> {
+    this.mudar({ fase: 'decks' });
+    await this.recarregarCatalogo();
+  }
+
+  voltarDoCatalogo(): void {
+    const andando = this.e.minhaTarefaEstado?.estado === 'andando';
+    this.mudar({ fase: 'inicio', minhaTarefa: andando ? this.e.minhaTarefa : null, minhaTarefaEstado: andando ? this.e.minhaTarefaEstado : null });
+  }
+
+  /** guarda a tarefa de qualquer pessoa e, se for a desta tela, o estado dela */
+  private tarefa(t: TarefaPublica | null): Partial<Estado> {
+    return { tarefaDeck: t, ...(t && t.id === this.e.minhaTarefa ? { minhaTarefaEstado: t } : {}) };
+  }
+
+  async recarregarCatalogo(): Promise<void> {
+    try {
+      const r = await fetch('/api/catalogo');
+      if (!r.ok) throw new Error(String(r.status));
+      const { decks, tarefa } = await r.json() as { decks: DeckCatalogo[]; tarefa: TarefaPublica | null };
+      this.mudar({ catalogo: decks, ...this.tarefa(tarefa) });
+    } catch {
+      this.erro('Não foi possível carregar os decks');
+    }
+  }
+
+  /** começa uma busca no Moxfield: importar um link ou atualizar um deck da mesa */
+  async buscarDeck(o: { link: string } | { id: string }): Promise<boolean> {
+    const url = 'link' in o ? '/api/catalogo/importar' : `/api/catalogo/${encodeURIComponent(o.id)}/verificar`;
+    return this.pedirTarefa(url, 'link' in o ? { link: o.link } : {});
+  }
+
+  confirmarDeck(token: string): Promise<boolean> {
+    return this.pedirTarefa('/api/catalogo/confirmar', { token });
+  }
+
+  /** esquece a prévia ou o resultado da sua última tarefa (fechar a janela) */
+  fecharTarefa(): void {
+    this.mudar({ minhaTarefa: null, minhaTarefaEstado: null });
+  }
+
+  private async pedirTarefa(url: string, corpo: unknown): Promise<boolean> {
+    try {
+      const r = await fetch(url, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(corpo) });
+      const j = await r.json().catch(() => ({})) as { tarefa?: number; erro?: string };
+      if (!r.ok || typeof j.tarefa !== 'number') { this.erro(j.erro ?? 'Não foi possível começar'); return false; }
+      // o andamento pode ter chegado pelo WebSocket antes da resposta
+      this.mudar({ minhaTarefa: j.tarefa, minhaTarefaEstado: this.e.tarefaDeck?.id === j.tarefa ? this.e.tarefaDeck : null });
+      return true;
+    } catch {
+      this.erro('Não foi possível falar com o servidor');
+      return false;
+    }
+  }
+
   enviar(m: MsgCliente): void {
     if (this.ws && this.ws.readyState === WebSocket.OPEN) this.ws.send(JSON.stringify(m));
     else this.fila.push(m);
@@ -170,6 +235,13 @@ class Loja {
       }
       case 'pensando':
         this.mudar({ pensando: m.assento });
+        break;
+      case 'decks':
+        this.mudar({ decks: m.decks });
+        break;
+      case 'catalogo':
+        this.mudar(this.tarefa(m.tarefa));
+        if (this.e.catalogo && (m.mudou || (m.tarefa?.tipo === 'confirmar' && m.tarefa.estado !== 'andando'))) void this.recarregarCatalogo();
         break;
       case 'saiu':
         guardarSala(null);
