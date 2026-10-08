@@ -17,6 +17,7 @@ export { counter, castSpell, candidateTargets, isLegalTarget, copySpell } from '
 export { addEffect, createObject, destroyObject, newTimestamp, objOrLki } from './state.ts';
 export { emit, addPending } from './triggers.ts';
 export { payMana, payParts } from './costs.ts';
+export { loseGame } from './sba.ts';
 export { parseCost, formatCost, manaValueOf } from './mana.ts';
 export type { G } from './game-context.ts';
 export type { Chars, Color, GameObject, ManaType, Mod, ObjId, PlayerId, TargetRef, ZoneName } from './types.ts';

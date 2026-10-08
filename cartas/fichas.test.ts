@@ -58,6 +58,7 @@ const esperadas: Record<string, [string, string[], string[], string[], number | 
   'Phyrexian Goblin': ['Phyrexian Goblin', ['Creature'], ['Phyrexian', 'Goblin'], ['R'], 1, 1, []],
   'Myr': ['Myr', ['Artifact', 'Creature'], ['Myr'], [], 1, 1, []],
   'Shark': ['Shark', ['Creature'], ['Shark'], ['U'], null, null, ['flying']],
+  'Incubator': ['Incubator', ['Artifact'], ['Incubator'], [], null, null, ['transform']],
   'Contract': ['Contract', ['Enchantment'], ['Aura'], ['W'], null, null, ['enchant']],
 };
 
