@@ -7,6 +7,8 @@ import { registry, type Gen } from './defs.ts';
 import type { G } from './game-context.ts';
 import { destroyObject } from './state.ts';
 import { enchantCandidates } from './actions.ts';
+import { protectionBlocksEquip } from './actions.ts';
+import { cantLoseGame } from './veneno-emblema.ts';
 import { emit } from './triggers.ts';
 import type { ObjId, PlayerId, ZoneName } from './types.ts';
 
@@ -22,6 +24,8 @@ export function* performSBAs(g: G): Gen<boolean> {
     else if ((pl.counters.poison ?? 0) >= 10) losers.push({ p, reason: 'dez marcadores de veneno', rule: '704.5c' });
     else if (Object.values(pl.commanderDamage).some((d) => d >= 21)) losers.push({ p, reason: '21 de dano de combate do mesmo comandante', rule: '704.6c' });
   }
+  // CR 104.3: "você não pode perder o jogo" (Darksteel Angel) — essas ações de estado não fazem nada com o jogador
+  for (let i = losers.length - 1; i >= 0; i--) if (cantLoseGame(g, losers[i].p)) losers.splice(i, 1);
   for (const pl of s.players) pl.drewFromEmpty = false;
   // CR 702.131b-c: ascensão num permanente — não usa a pilha e vale antes das outras ações de estado (ruling de Tendershoot Dryad)
   for (const p of g.playersInGame()) {
@@ -81,7 +85,7 @@ export function* performSBAs(g: G): Gen<boolean> {
         const def = o.copyOf?.def ?? o.def;
         if (!ok || isCreature(g, id) || !enchantCandidates(g, def, 0, controllerOf(g, id), [], id).includes(o.attachedTo)) toGraveyard.push(id);
       } else if (c.subtypes.includes('Equipment')) {
-        if (!ok || !isCreature(g, o.attachedTo) || isCreature(g, id)) unattach.push(id); // CR 704.5n
+        if (!ok || !isCreature(g, o.attachedTo) || isCreature(g, id) || protectionBlocksEquip(g, o.attachedTo, id)) unattach.push(id); // CR 704.5n, 702.16d
       } else unattach.push(id); // CR 704.5p
     } else if (c.subtypes.includes('Aura') && !o.data.auraUnattachedOk) toGraveyard.push(id); // CR 704.5m
     // CR 704.5q: +1/+1 e -1/-1 se anulam
@@ -157,7 +161,7 @@ export function* performSBAs(g: G): Gen<boolean> {
 /** o jogador perde e sai da partida (CR 104.5, 800.4a) */
 export function loseGame(g: G, p: PlayerId): void {
   const pl = g.state.players[p];
-  if (pl.left) return;
+  if (pl.left || cantLoseGame(g, p)) return;
   pl.lost = true;
   leaveGame(g, p);
 }
@@ -194,7 +198,8 @@ export function leaveGame(g: G, p: PlayerId): void {
   for (const id of s.zones.battlefield) if (s.objects[id].controller === p) s.objects[id].controller = s.objects[id].owner;
   s.pendingTriggers = s.pendingTriggers.filter((t) => t.controller !== p); // CR 800.4d
   s.delayedTriggers = s.delayedTriggers.filter((t) => t.controller !== p);
-  if (s.monarch === p) s.monarch = null;
+  // CR 725.4: o jogador ativo passa a ser o monarca; se quem sai é o ativo, o próximo na ordem de turno
+  if (s.monarch === p) s.monarch = g.playersInGame().length === 0 ? null : s.turn.active !== p && !s.players[s.turn.active].left ? s.turn.active : g.nextPlayer(s.turn.active);
   if (s.priority === p) s.priority = g.nextPlayer(p);
   g.bump();
   emit(g, [{ type: 'leave', player: p }]);

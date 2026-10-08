@@ -2,6 +2,7 @@
 // resguardo. Cada uma segue a regra citada.
 
 import { addCounters, blight, exile, gainLife, loseLife, moveObjects, putOntoBattlefield, removeCounters, removeFromCombat, sacrifice } from './actions.ts';
+import { blightCandidates } from './actions.ts';
 import { parseCost } from './mana.ts';
 import { addEffect } from './state.ts';
 import { shuffle } from './rng.ts';
@@ -115,7 +116,7 @@ function gatilhoResguardo(custo: string): TriggeredDef {
     let pagou = false;
     const b = custo.match(/^blight:(\d+)$/);
     if (b) {
-      const temCriatura = c.g.state.zones.battlefield.some((id) => isCreature(c.g, id) && controllerOf(c.g, id) === quem);
+      const temCriatura = blightCandidates(c.g, quem).length > 0; // CR 701.68b
       if (temCriatura && (yield* yesNo(c.g, quem, `Resguardo de ${nameOf(c.g, c.source)}: fazer blight ${b[1]} para não ter a mágica ou habilidade anulada?`))) {
         pagou = (yield* blight(c.g, quem, Number(b[1]))) !== null;
       }

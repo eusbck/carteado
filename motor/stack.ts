@@ -6,6 +6,7 @@ import { ask, chooseItems, chooseNumber, objItem, playerItem, yesNo } from './as
 import type { GameEvent } from './events.ts';
 import { moveObject, moveObjects, protectionMatches, putOntoBattlefield, enchantCandidates, tap } from './actions.ts';
 import { abilityDefs, chars, colorsOf, controllerOf, hasKw, hooks, isType, kwParams, nameOf, printedChars, currentFace } from './chars.ts';
+import { playerProtectedFrom } from './actions.ts';
 import { canAfford, canPayParts, manaOptions, manaPart, payMana, payParts, type PayContext } from './costs.ts';
 import {
   ability, cardDef, registry, type ActivatedDef, type AltCastDef, type CastPermission, type Ctx, type FaceDef, type Gen,
@@ -36,6 +37,7 @@ export function isLegalTarget(g: G, spec: TargetSpec, t: TargetRef, controller: 
     if (spec.what !== 'player' && spec.what !== 'any') return false;
     if (s.players[t.id]?.left !== false) return false;
     if (controller !== t.id && hooks(g, 'playerHexproof').some((h) => h.fn(h.ctx, t.id)) && g.isOpponent(controller, t.id)) return false; // CR 702.11c
+    if (playerProtectedFrom(g, t.id, sourceQualities(g, source))) return false; // CR 702.16b
     return !spec.filter || spec.filter(ctx, t);
   }
   const o = s.objects[t.id];

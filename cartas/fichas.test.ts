@@ -61,6 +61,7 @@ const esperadas: Record<string, [string, string[], string[], string[], number | 
   'Map': ['Map', ['Artifact'], ['Map'], [], null, null, ['explore']],
   'Jace': ['Jace', ['Planeswalker'], ['Jace'], ['U'], null, null, ['surveil']],
   'Incubator': ['Incubator', ['Artifact'], ['Incubator'], [], null, null, ['transform']],
+  'Phyrexian Mite': ['Phyrexian Mite', ['Artifact', 'Creature'], ['Phyrexian', 'Mite'], [], 1, 1, ['toxic']],
   'Contract': ['Contract', ['Enchantment'], ['Aura'], ['W'], null, null, ['enchant']],
 };
 
@@ -210,5 +211,22 @@ describe('Fichas: habilidades', () => {
     tg.pass();
     expect(tg.pending?.player).toBe(0);
     expect(tg.actionIds().some((a) => a.startsWith('act:'))).toBe(false);
+  });
+});
+
+describe("Fichas: 'Phyrexian Mite'", () => {
+  it('CR 702.164c: dano de combate a um jogador também dá um marcador de veneno', () => {
+    const tg = setup({ battlefield: [[{ name: 'Phyrexian Mite', token: true }], []] });
+    tg.attack([['Phyrexian Mite', 1]]).passTo('main2');
+    expect(tg.life(1)).toBe(39);
+    expect(tg.state.players[1].counters.poison).toBe(1);
+  });
+  it('esta criatura não pode bloquear', () => {
+    const tg = setup({ active: 1, battlefield: [[{ name: 'Phyrexian Mite', token: true }], ['Indomitable Ancients']] });
+    let ofereceu = false;
+    tg.script.push((d) => { if (d.kind === 'blockers') ofereceu = d.candidates.length > 0; return null; });
+    tg.attack([['Indomitable Ancients', 0]]).passTo('main2');
+    expect(ofereceu).toBe(false);
+    expect(tg.life(0)).toBe(38);
   });
 });

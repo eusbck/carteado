@@ -31,6 +31,7 @@ export function validateManual(g: G, p: PlayerId, m: ManualAction | undefined): 
       if (!o) return 'Objeto inexistente';
       if (!['battlefield', 'hand', 'graveyard', 'exile', 'libraryTop', 'libraryBottom'].includes(m.to)) return 'Destino inválido';
       if (o.zone === 'stack') return 'Objetos na pilha não podem ser movidos à mão';
+      if (registry.emblems.has(o.def)) return 'Emblemas não saem da zona de comando (CR 114.5)';
       // zonas ocultas: só o dono mexe nas próprias cartas (CR 401.2, 402.3)
       if ((o.zone === 'hand' || o.zone === 'library') && o.owner !== p) return 'Essa carta está numa zona oculta de outro jogador';
       if (o.zone === 'exile' && o.faceDown && o.owner !== p) return 'Carta exilada virada para baixo de outro jogador';

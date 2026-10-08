@@ -10,6 +10,7 @@ import { shuffle as shuffleArr } from './rng.ts';
 import { addEffect, createObject, destroyObject, moveRaw, newTimestamp, objOrLki, recordLki, type Position } from './state.ts';
 import { emit } from './triggers.ts';
 import { oracleLayout } from './oracle.ts';
+import { playerProtections, toxicValue } from './veneno-emblema.ts';
 import type { Answer, CardId, Color, CopyValues, Duration, GameObject, ManaType, ManaUnit, ObjId, PlayerId, TargetRef, ZoneName } from './types.ts';
 
 // ---------------------------------------------------------------------------
@@ -178,7 +179,20 @@ export function protectionMatches(g: G, quality: unknown, src: { colors: Color[]
   if (typeof quality !== 'string') return false;
   if (quality.startsWith('color:')) return src.colors.includes(quality.slice(6) as Color);
   if (quality === 'creatures') return src.types.includes('Creature');
+  // proteção contra um tipo de carta (CR 702.16a): fontes no campo com o tipo, ou fora do campo desse tipo
+  if (quality.startsWith('type:')) return src.types.includes(quality.slice(5));
   return false;
+}
+
+/** o jogador tem proteção contra esta fonte? (CR 702.16b, 702.16e) */
+export function playerProtectedFrom(g: G, player: PlayerId, src: { colors: Color[]; types: string[]; id?: ObjId }): boolean {
+  return playerProtections(g, player).some((q) => protectionMatches(g, q, src));
+}
+
+/** Equipamento com a qualidade não equipa um permanente com proteção (CR 702.16d) */
+export function protectionBlocksEquip(g: G, target: ObjId, equipment: ObjId): boolean {
+  const ec = chars(g, equipment);
+  return kwParams(g, target, 'protection').some((q) => protectionMatches(g, q, { colors: ec.colors, types: ec.types, id: equipment }));
 }
 
 export function* putOntoBattlefield(g: G, reqs: EnterReq[], cause: string): Gen<ObjId[]> {
@@ -218,6 +232,8 @@ export function* putOntoBattlefield(g: G, reqs: EnterReq[], cause: string): Gen<
     }
     // substituições de outros permanentes ("criaturas entram com…")
     for (const h of hooks(g, 'enterModifier')) h.fn(h.ctx, ev, wc);
+    // "não pode receber marcadores": também não entra com eles (CR 122.6)
+    for (const kind of Object.keys(ev.counters)) if (hooks(g, 'cantHaveCountersPut').some((h) => h.fn(h.ctx, kind, { controller: ev.controller, chars: wc }))) delete ev.counters[kind];
     prepared.push({ r, ev, chars: wc });
   }
   for (const { r, ev } of prepared) {
@@ -390,6 +406,7 @@ export function dealDamage(g: G, reqs: DamageReq[]): { dealt: number; to: Target
     // prevenção (CR 615): proteção (702.16e) e escudos registrados
     if (!cantPrevent) {
       if (r.target.kind === 'obj' && kwParams(g, r.target.id, 'protection').some((q) => protectionMatches(g, q, { colors: sc.colors, types: sc.types }))) amount = 0;
+      if (r.target.kind === 'player' && playerProtectedFrom(g, r.target.id, { colors: sc.colors, types: sc.types })) amount = 0; // CR 702.16e
       for (const e of s.effects) for (const m of e.mods) {
         if (m.k !== 'rule' || m.id !== 'rule:preventCombatDamageToPlayer' || amount === 0) continue;
         if (r.combat && r.target.kind === 'player' && e.affectedPlayers?.includes(r.target.id)) {
@@ -407,6 +424,12 @@ export function dealDamage(g: G, reqs: DamageReq[]): { dealt: number; to: Target
       const p = s.players[r.target.id];
       p.life -= amount; // CR 120.3a
       events.push({ type: 'lifeLoss', player: r.target.id, amount, source: r.source });
+      // CR 120.3g, 702.164c: dano de combate de criatura com tóxico também dá marcadores de veneno (o valor tóxico total)
+      const veneno = r.combat && sc.types.includes('Creature') ? toxicValue(g, r.source) : 0;
+      if (veneno > 0) {
+        p.counters.poison = (p.counters.poison ?? 0) + veneno;
+        events.push({ type: 'counters', target: r.target, kind: 'poison', amount: veneno, by: controller });
+      }
       const so = objOrLki(g, r.source);
       if (r.combat && so && so.card !== null && s.cards[so.card]?.isCommander && isCommanderObjectAt(g, r.source)) {
         const key = String(so.card);
@@ -422,8 +445,11 @@ export function dealDamage(g: G, reqs: DamageReq[]): { dealt: number; to: Target
       }
       if (tc.types.includes('Creature')) {
         if (wither) {
-          t.counters['-1/-1'] = (t.counters['-1/-1'] ?? 0) + amount; // CR 120.3d
-          events.push({ type: 'counters', target: r.target, kind: '-1/-1', amount, by: controller });
+          // "não pode receber marcadores -1/-1" (Darksteel Angel): o dano é causado, mas não deixa resultado
+          if (!hooks(g, 'cantHaveCountersPut').some((h) => h.fn(h.ctx, '-1/-1', { controller: controllerOf(g, t.id), chars: tc }))) {
+            t.counters['-1/-1'] = (t.counters['-1/-1'] ?? 0) + amount; // CR 120.3d
+            events.push({ type: 'counters', target: r.target, kind: '-1/-1', amount, by: controller });
+          }
         } else t.damage += amount; // CR 120.3e
         if (sourceHas(g, r.source, 'deathtouch')) t.deathtouched = true; // CR 702.2b
       }
@@ -490,6 +516,7 @@ export function addCounters(g: G, target: TargetRef, kind: string, n: number, by
   } else {
     const o = g.state.objects[target.id];
     if (!o || (o.zone !== 'battlefield' && o.zone !== 'exile')) return 0; // CR 122.1: marcadores de tempo no exílio (suspender)
+    if (o.zone === 'battlefield' && hooks(g, 'cantHaveCountersPut').some((h) => h.fn(h.ctx, kind, { controller: controllerOf(g, o.id), chars: chars(g, o.id) }))) return 0;
     o.counters[kind] = (o.counters[kind] ?? 0) + n;
   }
   g.bump();
@@ -510,10 +537,16 @@ export function removeCounters(g: G, target: TargetRef, kind: string, n: number)
   return rem;
 }
 
+/** criaturas em que o jogador pode fazer blight: as dele que podem receber marcadores -1/-1 (CR 701.68a-b, 122) */
+export function blightCandidates(g: G, player: PlayerId): ObjId[] {
+  return g.state.zones.battlefield.filter((id) => isCreature(g, id) && controllerOf(g, id) === player && !g.state.objects[id].phasedOut &&
+    !hooks(g, 'cantHaveCountersPut').some((h) => h.fn(h.ctx, '-1/-1', { controller: player, chars: chars(g, id) })));
+}
+
 /** CR 701.68: blight N — pôr N marcadores -1/-1 numa criatura que você controla */
 export function* blight(g: G, player: PlayerId, n: number, optional = false): Gen<ObjId | null> {
   if (n <= 0) return null;
-  const mine = g.state.zones.battlefield.filter((id) => isCreature(g, id) && controllerOf(g, id) === player && !g.state.objects[id].phasedOut);
+  const mine = blightCandidates(g, player);
   if (mine.length === 0) return null; // CR 701.68b
   const pick = yield* chooseItems(g, player, `Escolha uma criatura sua para receber ${n} marcador(es) -1/-1 (blight ${n})`, mine.map((id) => objItem(g, id, nameOf(g, id))), optional ? 0 : 1, 1);
   if (pick.length === 0) return null;
@@ -538,6 +571,8 @@ export function tap(g: G, id: ObjId, forMana = false): boolean {
 export function untap(g: G, id: ObjId): boolean {
   const o = g.state.objects[id];
   if (!o || !o.tapped) return false;
+  // CR 122.1d: "se um permanente com marcador de atordoamento fosse desvirar, em vez disso remova um desses marcadores"
+  if ((o.counters.stun ?? 0) > 0 && o.zone === 'battlefield') { removeCounters(g, { kind: 'obj', id }, 'stun', 1); return false; }
   o.tapped = false;
   g.bump();
   emit(g, [{ type: 'untap', obj: id }]);
@@ -669,6 +704,7 @@ export function attach(g: G, attachment: ObjId, to: ObjId): boolean {
   if (!a || !t || a.zone !== 'battlefield' || t.zone !== 'battlefield' || attachment === to) return false;
   const ac = chars(g, attachment);
   if (ac.subtypes.includes('Equipment') && !isCreature(g, to)) return false; // CR 301.5
+  if (ac.subtypes.includes('Equipment') && protectionBlocksEquip(g, to, attachment)) return false; // CR 702.16d
   if (ac.subtypes.includes('Aura')) {
     const def = a.copyOf?.def ?? a.def;
     if (!enchantCandidates(g, def, 0, controllerOf(g, attachment), [], attachment).includes(to)) return false; // CR 303.4j

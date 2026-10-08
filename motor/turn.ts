@@ -15,6 +15,7 @@ import { putTriggersOnStack, resolveTop } from './stack.ts';
 import { emptyTurnStats } from './state.ts';
 import { shuffle } from './rng.ts';
 import { emit } from './triggers.ts';
+import { loseUnspentMana } from './veneno-emblema.ts';
 import { MULLIGANS_LIVRES, type Answer, type ObjId, type PlayerId, type Step } from './types.ts';
 
 export const TURN_STEPS: Step[] = ['untap', 'upkeep', 'draw', 'main1', 'beginCombat', 'declareAttackers', 'declareBlockers', 'combatDamage', 'endCombat', 'main2', 'end', 'cleanup'];
@@ -197,7 +198,7 @@ function* turnBasedActions(g: G): Gen<void> {
       for (const id of s.zones.battlefield) { s.objects[id].damage = 0; }
       s.effects = s.effects.filter((e) => e.duration.kind !== 'endOfTurn' && !(e.duration.kind === 'endOfYourNextTurn' && e.duration.player === active && s.turn.number > e.duration.afterTurn));
       s.delayedTriggers = s.delayedTriggers.filter((d) => d.expiresTurn === null || d.expiresTurn > s.turn.number);
-      for (const p of s.players) p.manaPool = p.manaPool.filter((u) => !u.untilEndOfTurn);
+      for (const p of s.players) loseUnspentMana(g, p.id, (u) => !u.untilEndOfTurn);
       g.bump();
       break;
     }
@@ -254,7 +255,7 @@ function* priorityLoop(g: G): Gen<void> {
 }
 
 function emptyManaPools(g: G): void {
-  for (const p of g.state.players) p.manaPool = p.manaPool.filter((u) => u.untilEndOfTurn); // CR 500.5, 106.4
+  for (const p of g.state.players) loseUnspentMana(g, p.id, (u) => !!u.untilEndOfTurn); // CR 500.5, 106.4
   g.bump();
 }
 

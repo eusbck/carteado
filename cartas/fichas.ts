@@ -177,6 +177,12 @@ export const Incubator = defineToken({
   image: fichasOracle.find((f) => f.name === 'Incubator // Phyrexian')?.oracleId,
 });
 
+/** Phyrexian Mite (Skrelv's Hive, White Sun's Twilight): artefato criatura incolor 1/1, tóxico 1, não pode bloquear */
+import { keyword, toxic } from '../motor/api.ts';
+export const PhyrexianMite = token('Phyrexian Mite', 'Phyrexian Mite', ['Artifact', 'Creature'], ['Phyrexian', 'Mite'], [], 1, 1, [
+  toxic(1), { ...keyword('cantBlock'), text: 'Esta criatura não pode bloquear.' },
+]);
+
 /**
  * Contract (Scriv, the Obligator): Aura que encanta criatura. "Sempre que a criatura encantada ataca, ela recebe +2/+0
  * até o fim do turno se estiver atacando um dos seus oponentes. Caso contrário, o controlador dela perde 2 de vida."
