@@ -1,4 +1,5 @@
-// Mensagens entre cliente e servidor (WebSocket, JSON). O cliente importa só os tipos.
+// Mensagens entre cliente e servidor (WebSocket, JSON). O cliente importa só os tipos; o servidor usa também o
+// validador das mensagens do cliente (validarMsg, no fim).
 
 import type { NivelBot } from '../bots/niveis.ts';
 import type { StopSettings } from '../motor/autopass.ts';
@@ -231,6 +232,65 @@ export type MsgCliente =
 
 /** posição escolhida para cada permanente, pelo id do objeto: [x, y] de 0 a 1 dentro da área de quem a controla */
 export type Posicoes = Record<string, [number, number]>;
+
+// ---------------------------------------------------------------------------------------------------------------
+// Validação das mensagens do cliente (a única porta de entrada: Gerente.tratar). Confere a forma: o tipo existe e os
+// campos que a sala usa como índice ou objeto têm o tipo e o intervalo certos ('__proto__' como assento trocava o
+// protótipo da lista de assentos e derrubava a sala). Os valores de lista fechada (passo do saguão, regra, nível,
+// retrato, modo) e o que depende da sala (deck existe, assento livre, decisão pendente) a sala confere, com a
+// mensagem própria de cada caso. Textos têm um teto de tamanho (a sala ainda limpa e corta).
+// ---------------------------------------------------------------------------------------------------------------
+
+/** maior número de assentos de uma sala (4 jogadores) */
+export const MAX_ASSENTOS = 4;
+/** teto de tamanho de qualquer texto de uma mensagem (nome, senha, código, deck, chat…) */
+const TEXTO_MAX = 2000;
+
+const ehObjeto = (x: unknown): x is Record<string, unknown> => typeof x === 'object' && x !== null && !Array.isArray(x);
+const inteiro = (x: unknown, min: number, max: number) => typeof x === 'number' && Number.isInteger(x) && x >= min && x <= max;
+/** texto dentro do teto; outro tipo passa (a sala limpa, recusa com a mensagem dela, ou ignora) */
+const curto = (x: unknown) => typeof x !== 'string' || x.length <= TEXTO_MAX;
+const sempre = () => true;
+
+const FORMAS: { [T in MsgCliente['t']]: (m: Record<string, unknown>) => boolean } = {
+  criar: (m) => curto(m.nome) && curto(m.senhaSala),
+  entrar: (m) => curto(m.codigo) && curto(m.senhaSala) && curto(m.nome),
+  retomar: (m) => curto(m.codigo) && curto(m.token),
+  deck: (m) => curto(m.deck),
+  // o assento vira índice da lista de assentos: inteiro e no intervalo (a sala confere o tamanho dela)
+  bot: (m) => inteiro(m.assento, 0, MAX_ASSENTOS - 1) && (m.deck === null || typeof m.deck === 'string') && curto(m.deck) && curto(m.nivel),
+  iniciar: sempre,
+  novaPartida: sempre,
+  // a resposta vai para o motor, que confere o resto pela decisão pendente
+  responder: (m) => inteiro(m.decisao, 0, Number.MAX_SAFE_INTEGER) && ehObjeto(m.resposta) && typeof m.resposta.kind === 'string',
+  paradas: sempre,
+  passarTurno: sempre,
+  conceder: sempre,
+  sair: sempre,
+  posicao: (m) => m.lista === undefined || (Array.isArray(m.lista) && m.lista.length <= 300),
+  mulligan: sempre,
+  auxilios: sempre,
+  etapa: sempre,
+  avatar: (m) => curto(m.avatar),
+  desfazer: sempre,
+  desfazerResposta: (m) => typeof m.aceitar === 'boolean',
+  desfazerCancelar: sempre,
+  revelar: (m) => m.para === 'todos' || (Array.isArray(m.para) && m.para.length <= MAX_ASSENTOS),
+  chat: (m) => curto(m.texto),
+  ping: sempre,
+};
+
+/** o tipo da mensagem do cliente, se for um que existe (vai no `de` dos erros) */
+export function tipoMsg(m: unknown): MsgCliente['t'] | null {
+  return ehObjeto(m) && typeof m.t === 'string' && Object.hasOwn(FORMAS, m.t) ? (m.t as MsgCliente['t']) : null;
+}
+
+/** confere a forma de uma mensagem do cliente; devolve o motivo da recusa ou null */
+export function validarMsg(m: unknown): string | null {
+  if (!ehObjeto(m) || typeof m.t !== 'string') return 'Mensagem inválida';
+  if (!Object.hasOwn(FORMAS, m.t)) return 'Mensagem desconhecida';
+  return FORMAS[m.t as MsgCliente['t']](m) ? null : 'Mensagem inválida';
+}
 
 export type MsgServidor =
   /** `quem`: o seu id de autor (o mesmo das suas mensagens no chat, MsgChat.quem) */

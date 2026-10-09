@@ -24,7 +24,7 @@ import { redeReal } from './catalogo/rede.ts';
 import { RotasCatalogo } from './catalogo/rotas.ts';
 import { TarefasDecks } from './catalogo/tarefas.ts';
 import { Imagens, type Tamanho } from './imagens.ts';
-import type { DeckResumo, MsgCliente, MsgServidor } from './protocolo.ts';
+import { tipoMsg, type DeckResumo, type MsgCliente, type MsgServidor } from './protocolo.ts';
 import { Gerente, type Conexao } from './salas.ts';
 
 const RAIZ = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -251,7 +251,8 @@ wss.on('connection', (ws: WebSocket) => {
     try { m = JSON.parse(String(dados)); } catch { con.enviar({ t: 'erro', msg: 'Mensagem inválida' }); return; }
     try { gerente.tratar(con, m); } catch (e) {
       console.error('ws:', e);
-      con.enviar({ t: 'erro', msg: 'Erro interno do servidor', ...(typeof m?.t === 'string' ? { de: m.t } : {}) });
+      const de = tipoMsg(m);
+      con.enviar({ t: 'erro', msg: 'Erro interno do servidor', ...(de ? { de } : {}) });
     }
   });
   ws.on('close', () => gerente.desconectar(con));

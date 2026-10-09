@@ -17,7 +17,7 @@ import { NOMES_BOTS } from './nomes.ts';
 import type { Banco } from './banco.ts';
 import { alvoDesfazer, linhasDesfeitas, reconstruir, type MetaEntrada } from './desfazer.ts';
 import { avatarValido } from './avatares.ts';
-import type { EtapaSaguao, LinhaDesfeita, Modo, MsgChat, MsgCliente, MsgServidor, PedidoDesfazer, Posicoes, RegraAuxilios, RegraMulligan, SalaPublica, TipoAssento } from './protocolo.ts';
+import { tipoMsg, validarMsg, type EtapaSaguao, type LinhaDesfeita, type Modo, type MsgChat, type MsgCliente, type MsgServidor, type PedidoDesfazer, type Posicoes, type RegraAuxilios, type RegraMulligan, type SalaPublica, type TipoAssento } from './protocolo.ts';
 
 export interface Conexao {
   enviar(m: MsgServidor): void;
@@ -794,11 +794,14 @@ export class Gerente {
     if (m?.t === 'ping') { c.enviar({ t: 'pong' }); return; }
     const erro = this.tratarInterno(c, m);
     // o erro diz a que mensagem responde: o cliente só trata como jogada recusada o que veio de 'responder'
-    if (erro) c.enviar({ t: 'erro', msg: erro, ...(typeof m?.t === 'string' ? { de: m.t } : {}) });
+    const de = tipoMsg(m);
+    if (erro) c.enviar({ t: 'erro', msg: erro, ...(de ? { de } : {}) });
   }
 
   private tratarInterno(c: Conexao, m: MsgCliente): string | null {
-    if (!m || typeof m !== 'object' || typeof (m as { t?: unknown }).t !== 'string') return 'Mensagem inválida';
+    // a forma de toda mensagem é conferida aqui, antes de qualquer sala tocar nela (protocolo.ts)
+    const invalida = validarMsg(m);
+    if (invalida) return invalida;
     switch (m.t) {
       case 'criar': {
         const nome = limparNome(m.nome);

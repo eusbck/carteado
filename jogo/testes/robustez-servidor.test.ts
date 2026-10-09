@@ -89,6 +89,66 @@ describe('protocolo: batimento e origem dos erros', () => {
   });
 });
 
+describe('validação das mensagens', () => {
+  it("'__proto__' e outros assentos fora do intervalo são recusados e a sala continua funcionando", async () => {
+    const g = new Gerente(new Banco(':memory:'), DECKS, SEM_ATRASO);
+    const ana = new Falsa();
+    g.tratar(ana, { t: 'criar', nome: 'Ana', senhaSala: 'segredo', modo: '4p' });
+    const codigo = ana.ultima('sala')!.sala.codigo;
+    const s = g.salas.get(codigo)!;
+    for (const assento of ['__proto__', 'constructor', 'length', -1, 4, 1.5, '1', null, undefined, Infinity]) {
+      const n = ana.msgs.length;
+      g.tratar(ana, { t: 'bot', assento, deck: null } as never);
+      expect(ana.msgs.slice(n)).toEqual([{ t: 'erro', msg: 'Mensagem inválida', de: 'bot' }]);
+    }
+    g.tratar(ana, { t: 'bot', assento: 0, deck: DECKS[1].id } as never);
+    expect(ana.ultima('erro')?.msg).toMatch(/não está livre/);
+    expect(Array.isArray(s.d.assentos) && Object.getPrototypeOf(s.d.assentos) === Array.prototype).toBe(true);
+    expect(s.d.assentos).toHaveLength(4);
+    // a sala segue: bots entram, a partida começa
+    g.tratar(ana, { t: 'deck', deck: DECKS[0].id });
+    for (let i = 1; i < 4; i++) g.tratar(ana, { t: 'bot', assento: i, deck: DECKS[i].id });
+    g.tratar(ana, { t: 'iniciar' });
+    await espera();
+    expect(ana.ultima('jogo')?.vista.players).toHaveLength(4);
+  });
+
+  it('mensagens sem forma: recusadas com o motivo, sem derrubar nada', async () => {
+    const { g, ana } = salaComBot();
+    g.tratar(ana, { t: 'iniciar' });
+    await espera();
+    const d = ana.ultima('jogo')!.vista.decision!;
+    const ruins: [unknown, string][] = [
+      [null, 'Mensagem inválida'],
+      [42, 'Mensagem inválida'],
+      [[], 'Mensagem inválida'],
+      [{}, 'Mensagem inválida'],
+      [{ t: 7 }, 'Mensagem inválida'],
+      [{ t: 'constructor' }, 'Mensagem desconhecida'],
+      [{ t: '__proto__' }, 'Mensagem desconhecida'],
+      [{ t: 'toString' }, 'Mensagem desconhecida'],
+      [{ t: 'responder', decisao: d.id, resposta: null }, 'Mensagem inválida'],
+      [{ t: 'responder', decisao: d.id, resposta: 'pass' }, 'Mensagem inválida'],
+      [{ t: 'responder', decisao: String(d.id), resposta: { kind: 'mulligan', keep: true } }, 'Mensagem inválida'],
+      [{ t: 'desfazerResposta', aceitar: 'sim' }, 'Mensagem inválida'],
+      [{ t: 'revelar', obj: 1, para: Array(50).fill(1) }, 'Mensagem inválida'],
+      [{ t: 'posicao', lista: Array(301).fill({ obj: 1, x: 0, y: 0 }) }, 'Mensagem inválida'],
+      [{ t: 'chat', texto: 'x'.repeat(3000) }, 'Mensagem inválida'],
+    ];
+    for (const [m, msg] of ruins) {
+      const n = ana.msgs.length;
+      g.tratar(ana, m as never);
+      expect(ana.msgs.slice(n).map((x) => (x.t === 'erro' ? x.msg : x.t))).toEqual([msg]);
+    }
+    // um tipo que não existe não vai no `de`
+    expect(ana.msgs.filter((x) => x.t === 'erro' && x.de && !['responder', 'desfazerResposta', 'revelar', 'posicao', 'chat'].includes(x.de))).toEqual([]);
+    // a decisão continua lá e a resposta certa passa
+    g.tratar(ana, { t: 'responder', decisao: d.id, resposta: { kind: 'mulligan', keep: true } });
+    await espera();
+    expect(ana.ultima('jogo')!.vista.decision?.id).not.toBe(d.id);
+  });
+});
+
 describe('condução da partida: erro fora do motor', () => {
   it('uma falha na condução (avancar) vira erro da sala e não escapa como promessa rejeitada', async () => {
     const { g, ana, codigo } = salaComBot();
@@ -204,6 +264,21 @@ describe('servidor de verdade (processo à parte)', () => {
     expect(await b.vivo()).toBe(true);
     expect(proc.exitCode).toBeNull();
     b.ws.close();
+  }, 30000);
+
+  it("'__proto__' como assento de bot: recusado, e o servidor e a sala continuam", async () => {
+    const a = new Cliente(url(), cookie);
+    await a.aberto();
+    a.mandar({ t: 'criar', nome: 'Ana', senhaSala: 'segredo', modo: '1v1' });
+    await a.esperar('sala');
+    const n = a.msgs.length;
+    a.mandar({ t: 'bot', assento: '__proto__', deck: null });
+    expect(await a.esperar('erro', n)).toMatchObject({ msg: 'Mensagem inválida', de: 'bot' });
+    expect(await a.vivo()).toBe(true);
+    const k = a.msgs.length;
+    a.mandar({ t: 'etapa', etapa: 'lugares' });
+    expect((await a.esperar('sala', k)).sala.assentos).toHaveLength(2);
+    a.ws.close();
   }, 30000);
 });
 
