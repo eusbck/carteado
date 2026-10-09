@@ -5,7 +5,7 @@
 // Duelo: duas metades com o corte inclinado. Três ou quatro jogadores: faixas inclinadas, você na primeira e os
 // outros na ordem dos turnos. Estilos em abertura.css; brasas e faíscas num canvas; o som é o 'abertura' de sons.ts.
 // Com "reduzir movimento" no sistema, aparece parada e sem partículas; com os efeitos desligados, sem partículas,
-// clarão nem tremor.
+// clarão nem tremor; no modo Desempenho (Configurações), só sem as partículas.
 
 import { useEffect, useLayoutEffect, useRef, useState } from 'preact/hooks';
 import { preferencias } from '../preferencias.ts';
@@ -104,6 +104,8 @@ export function Abertura({ lados, fim }: { lados: LadoVS[]; fim: () => void }) {
   const canvas = useRef<HTMLCanvasElement>(null);
   const parada = typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches;
   const efeitos = preferencias().efeitos && !parada;
+  // o canvas das brasas e faíscas é a parte cara da abertura: o modo Desempenho tira só ele
+  const comParticulas = efeitos && !preferencias().desempenho;
   const sair = () => setFase((f) => (f === 'saindo' ? f : 'saindo'));
 
   // espera as artes (no máximo um pouco), para as faixas não entrarem vazias; o tamanho de cada uma posiciona o rosto
@@ -123,7 +125,7 @@ export function Abertura({ lados, fim }: { lados: LadoVS[]; fim: () => void }) {
     // pulada antes do fim, o som para junto (o impacto não toca sobre a mesa)
     const calar = tocar('abertura');
     const t = setTimeout(sair, parada ? DURACAO_PARADA : DURACAO);
-    if (!efeitos || !canvas.current) return () => { clearTimeout(t); calar(); };
+    if (!comParticulas || !canvas.current) return () => { clearTimeout(t); calar(); };
     const p = particulas(canvas.current);
     const explosao = setTimeout(() => {
       const e = raiz.current?.querySelector('.vs-emblema')?.getBoundingClientRect();

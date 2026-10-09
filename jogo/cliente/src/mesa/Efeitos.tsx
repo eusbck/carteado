@@ -29,8 +29,10 @@ function animar(el: Element | null, quadros: Keyframe[], opcoes: KeyframeAnimati
   if (el && 'animate' in el) (el as HTMLElement).animate(quadros, opcoes);
 }
 
-/** vida que mudou: número ao lado da vida, tremida e brilho vermelho (dano) ou brilho verde (vida) */
-function efeitoVida(jogador: number, delta: number, eu: boolean, reduzir: boolean, atraso: number): void {
+/** vida que mudou: número ao lado da vida, tremida e brilho vermelho (dano) ou brilho verde (vida). `leve` (modo
+ * Desempenho): sem os brilhos animados (sombras e filtros que redesenham a área a cada quadro); ficam o número, a
+ * tremida e o tranco do avatar */
+function efeitoVida(jogador: number, delta: number, eu: boolean, reduzir: boolean, atraso: number, leve: boolean): void {
   const area = document.querySelector(`[data-jogador="${jogador}"]`);
   const vida = area?.querySelector('.vida-n');
   if (!vida) return;
@@ -42,7 +44,7 @@ function efeitoVida(jogador: number, delta: number, eu: boolean, reduzir: boolea
   setTimeout(() => {
     // --vermelho e --positivo do estilo.css
     const cor = delta < 0 ? '224, 70, 79' : '63, 174, 106';
-    animar(vida, [
+    if (!leve) animar(vida, [
       { boxShadow: `0 0 0 0 rgba(${cor}, 0)` },
       { boxShadow: `0 0 0 2px rgba(${cor}, .95), 0 0 28px 6px rgba(${cor}, .55)`, offset: 0.25 },
       { boxShadow: `0 0 0 0 rgba(${cor}, 0)` },
@@ -51,13 +53,13 @@ function efeitoVida(jogador: number, delta: number, eu: boolean, reduzir: boolea
       animar(vida, [{ translate: '0 0' }, { translate: '-5px 0' }, { translate: '5px 0' }, { translate: '-3px 0' }, { translate: '2px 0' }, { translate: '0 0' }], { duration: 420, easing: 'ease-out' });
     }
     // o retrato do avatar reage: lampejo vermelho e um tranco no dano, brilho verde na cura
-    for (const el of area!.querySelectorAll('.avatar-retrato, .avatar-inicial')) {
+    if (!leve) for (const el of area!.querySelectorAll('.avatar-retrato, .avatar-inicial')) {
       animar(el, delta < 0
         ? [{ filter: 'none' }, { filter: 'brightness(1.45) sepia(.7) saturate(3) hue-rotate(-25deg)', offset: 0.15 }, { filter: 'none' }]
         : [{ filter: 'none' }, { filter: 'brightness(1.3) drop-shadow(0 0 10px rgba(63, 174, 106, .9))', offset: 0.3 }, { filter: 'none' }], { duration: 750, easing: 'ease-out' });
     }
     if (delta < 0 && !reduzir) animar(area!.querySelector('.avatar'), [{ scale: '1' }, { scale: '.93' }, { scale: '1.03' }, { scale: '1' }], { duration: 380, easing: 'ease-out' });
-    if (delta < 0) animar(area!, [{ boxShadow: 'inset 0 0 0 0 rgba(224, 70, 79, 0)' }, { boxShadow: 'inset 0 0 110px rgba(224, 70, 79, .42)', offset: 0.2 }, { boxShadow: 'inset 0 0 0 0 rgba(224, 70, 79, 0)' }], { duration: 900, easing: 'ease-out' });
+    if (delta < 0 && !leve) animar(area!, [{ boxShadow: 'inset 0 0 0 0 rgba(224, 70, 79, 0)' }, { boxShadow: 'inset 0 0 110px rgba(224, 70, 79, .42)', offset: 0.2 }, { boxShadow: 'inset 0 0 0 0 rgba(224, 70, 79, 0)' }], { duration: 900, easing: 'ease-out' });
   }, atraso);
 }
 
@@ -149,7 +151,8 @@ export function useEfeitos(v: GameView, eu: number, efeitos: boolean): void {
         }
       }
       const atraso = avancam ? 190 : 0;
-      for (const m of mudancas) efeitoVida(m.id, m.d, m.id === eu, reduzir, atraso);
+      const leve = preferencias().desempenho;
+      for (const m of mudancas) efeitoVida(m.id, m.d, m.id === eu, reduzir, atraso, leve);
       for (const o of danoCriatura) {
         const el = document.querySelector(`.campo [data-obj="${o.id}"]`);
         if (!el) continue;
