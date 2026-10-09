@@ -64,6 +64,8 @@ export interface PlayerView {
   libraryCount: number;
   graveyard: ObjView[];
   manaPool: string;
+  /** a permanente que gerou cada unidade da reserva, na ordem de manaPool (null: sem permanente) */
+  manaSources: (ObjId | null)[];
   commanderDamage: { from: string; amount: number }[];
   commanderTax: number;
   left: boolean;
@@ -169,6 +171,7 @@ export function buildView(g: G, viewer: PlayerId | null, pending: Decision | nul
     handCount: s.zones.hand[p.id].length, libraryCount: s.zones.library[p.id].length,
     graveyard: s.zones.graveyard[p.id].map((id) => objView(g, id, viewer)),
     manaPool: p.manaPool.map((u) => `{${u.type}}`).join(''),
+    manaSources: p.manaPool.map((u) => u.source),
     commanderDamage: Object.entries(p.commanderDamage).map(([cid, amount]) => ({ from: s.cards[Number(cid)]?.def ?? '?', amount })),
     commanderTax: Object.values(p.commanderCasts).reduce((a, b) => a + b, 0) * 2,
     left: p.left, lost: p.lost, won: p.won, monarch: s.monarch === p.id, mulligans: p.mulligans,

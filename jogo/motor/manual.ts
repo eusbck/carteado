@@ -5,9 +5,10 @@
 // o efeito tivesse sido aplicado por uma carta.
 
 import { addCounters, createTokens, draw, gainLife, loseLife, mill, moveObjects, putOntoBattlefield, removeCounters, searchLibrary, shuffleLibrary, tap, untap, lookAndArrange } from './actions.ts';
-import { nameOf } from './chars.ts';
+import { controllerOf, nameOf } from './chars.ts';
 import { registry, type Gen } from './defs.ts';
 import type { G } from './game-context.ts';
+import { poolToString } from './mana.ts';
 import type { ManualAction, PlayerId, ZoneName } from './types.ts';
 
 // "de onde" e "para onde", com a contração certa
@@ -85,8 +86,14 @@ export function* performManual(g: G, p: PlayerId, m: ManualAction): Gen<boolean>
       return true;
     }
     case 'virar': {
-      g.log(`${quem} ${m.tapped ? 'vira' : 'desvira'} ${nameOf(g, m.obj)}.`);
-      if (m.tapped) tap(g, m.obj); else untap(g, m.obj);
+      const nome = nameOf(g, m.obj);
+      if (m.tapped) { g.log(`${quem} vira ${nome}.`); tap(g, m.obj); return true; }
+      // desvirar à mão desfaz o virar para mana: a mana dela que ainda está na reserva do controlador
+      // sai junto (a que já foi gasta fica gasta). Só se desvirou de fato (um marcador de atordoamento impede)
+      const ctl = s.players[controllerOf(g, m.obj)];
+      const dela = untap(g, m.obj) ? ctl.manaPool.filter((u) => u.source === m.obj) : [];
+      if (dela.length) { ctl.manaPool = ctl.manaPool.filter((u) => u.source !== m.obj); g.bump(); }
+      g.log(`${quem} desvira ${nome}${dela.length ? ` (a mana dela, ${poolToString(dela)}, sai da reserva)` : ''}.`);
       return true;
     }
     case 'ficha': {

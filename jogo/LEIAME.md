@@ -78,7 +78,8 @@ janela mostra o endereço `https://` e a senha de acesso para mandar ao grupo. D
      no menu. A carta fica tracejada onde você soltou até pagar, e a permanente entra ali.
    - **Pagar:** clique nos seus terrenos para virar (a mana vai para a reserva) e em "Confirmar
      pagamento". "Cancelar" devolve a carta para a mão e desvira os terrenos virados para ela. Com
-     prioridade, clicar num terreno gera a mana antes de conjurar.
+     prioridade, clicar num terreno gera a mana antes de conjurar; clicar de novo nele desvira e a
+     mana dele sai da reserva (o "Desvirar" do ajuste manual faz o mesmo; mana já gasta não volta).
    - **Arrumar o campo:** arraste as suas permanentes para onde quiser; todos veem a sua arrumação.
      "Reorganizar meu campo" (clique direito no campo vazio) volta à arrumação padrão.
    - **Atacar:** clique na criatura (ela inclina e ganha uma espada; clique de novo para desmarcar) e,

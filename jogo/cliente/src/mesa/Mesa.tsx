@@ -433,6 +433,8 @@ export function Mesa() {
   };
   const ui: EstadoUi = { sel, setSel, ataques, setAtaques, bloqueios, setBloqueios, bloqueadorAtivo, setBloqueadorAtivo, confirmarAtaque, confirmarBloqueio };
   const minhaReserva = v.players[eu]?.manaPool ?? '';
+  // a mana que a permanente gerou ainda está na reserva do controlador: desvirar à mão faz ela sair
+  const manaNaReserva = (o: ObjView) => !!v.players[o.controller]?.manaSources?.includes(o.id);
 
   // pagamento: com os auxílios, automático ou confirmado sozinho quando a reserva cobre o custo;
   // na mesa real, você vira os terrenos e confirma
@@ -751,7 +753,7 @@ export function Mesa() {
     if (!v.gameOver) {
       itens.push(grupoManual);
       if (noCampo) {
-        itens.push({ id: 'virar', label: o.tapped ? 'Desvirar' : 'Virar', desativado: !manualOk, fazer: () => manual({ k: 'virar', obj: o.id, tapped: !o.tapped }) });
+        itens.push({ id: 'virar', label: !o.tapped ? 'Virar' : manaNaReserva(o) ? 'Desvirar (a mana sai da reserva)' : 'Desvirar', desativado: !manualOk, fazer: () => manual({ k: 'virar', obj: o.id, tapped: !o.tapped }) });
         itens.push({ tipo: 'sub', id: 'marcadores', label: 'Marcadores', desativado: !manualOk, itens: MARCAS_CARTA.map(([k, nome]) => ({
           tipo: 'contador', id: k, label: nome,
           menos: () => manual({ k: 'marcadores', target: { kind: 'obj', id: o.id }, kind: k, delta: -1 }),
@@ -808,11 +810,17 @@ export function Mesa() {
       return;
     }
     if (d.kind === 'priority') {
-      const acoes = acoesPorObj.get(o.id);
-      if (!acoes?.length) { if (sua) loja.recusar(v.hand.some((x) => x.id === o.id) ? motivo(o) : 'Essa carta não tem o que fazer agora'); return; }
+      const acoes = acoesPorObj.get(o.id) ?? [];
+      // sua permanente virada cuja mana ainda está na reserva: o clique desvira e a mana sai (desfaz o virar
+      // para mana, pelo ajuste manual); se a mana já foi gasta, fica como está
+      const desvirar = o.controller === eu && o.tapped && manualOk && manaNaReserva(o)
+        ? { id: 'desvirar-mana', label: 'Desvirar (a mana sai da reserva)', fazer: () => manual({ k: 'virar', obj: o.id, tapped: false }) }
+        : null;
+      if (desvirar && !acoes.length) { desvirar.fazer(); return; }
+      if (!acoes.length) { if (sua) loja.recusar(v.hand.some((x) => x.id === o.id) ? motivo(o) : 'Essa carta não tem o que fazer agora'); return; }
       // terreno com uma habilidade de mana só: vira e a mana vai para a reserva
-      if (acoes.length === 1 && acoes[0].kind === 'mana') { fazerAcao(acoes[0]); return; }
-      abrirMenu(nomeObj(o.id), legais(acoes.map((a) => ({ id: a.id, label: a.label, fazer: () => fazerAcao(a) }))), r);
+      if (acoes.length === 1 && acoes[0].kind === 'mana' && !desvirar) { fazerAcao(acoes[0]); return; }
+      abrirMenu(nomeObj(o.id), legais([...acoes.map((a) => ({ id: a.id, label: a.label, fazer: () => fazerAcao(a) })), ...(desvirar ? [desvirar] : [])]), r);
       return;
     }
     if (atacantesCand) {
