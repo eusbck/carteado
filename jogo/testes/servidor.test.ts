@@ -179,6 +179,8 @@ describe('servidor: mesa nova (regra de mulligan, posições, revelar)', () => {
 
   it('cada um arruma só as próprias permanentes; as posições vão para todos e podem ser limpas', async () => {
     const g = new Gerente(new Banco(':memory:'), DECKS, SEM_ATRASO);
+    // semente fixa: com a sorteada, algumas mãos faziam a prioridade de Ana não chegar no limite de respostas
+    g.sementeFixa = 'servidor-posicoes';
     const { ana, codigo } = await salaComBots(g, '1v1');
     g.tratar(ana, { t: 'iniciar' });
     const d = await ateAPrioridade(g, ana);

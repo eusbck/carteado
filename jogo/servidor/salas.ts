@@ -535,7 +535,7 @@ export class Sala {
     if (ocupados.length !== this.d.assentos.length) return 'Ainda há assentos vazios (chame alguém ou ponha um bot)';
     if (ocupados.some((a) => !a.deck)) return 'Todos precisam escolher um deck';
     // 96 bits sorteados: o hash curto que sai na sala (idPartida) não dá para desfazer tentando sementes
-    const semente = `${this.d.codigo}-${Date.now().toString(36)}-${randomBytes(12).toString('base64url')}`;
+    const semente = this.gerente.sementeFixa ?? `${this.d.codigo}-${Date.now().toString(36)}-${randomBytes(12).toString('base64url')}`;
     const config: GameConfig = {
       seed: semente,
       players: this.d.assentos.map((a, i) => ({ name: a.nome ?? `Jogador ${i + 1}`, deckId: a.deck! })),
@@ -878,6 +878,9 @@ export class Gerente {
 
   /** threads de pensar dos bots, divididas por todas as salas (null: pensam na linha principal) */
   readonly pensadores: Pensadores | null;
+
+  /** só para testes: toda partida nova usa esta semente (mãos e grimórios sempre os mesmos; null: sorteada) */
+  sementeFixa: string | null = null;
 
   constructor(banco: Banco, decks: DeckList[], atrasos: Atrasos = ATRASOS_PADRAO) {
     this.banco = banco;
