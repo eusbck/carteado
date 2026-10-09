@@ -478,6 +478,31 @@ describe('assento que vaga', () => {
   });
 });
 
+describe('só bots na partida', () => {
+  it('a pessoa concede: os bots terminam a partida depressa, sem os atrasos de exibição, e a mesa recebe o fim', async () => {
+    // atrasos de produção: com eles a partida de três bots levaria muitos minutos
+    const g = new Gerente(new Banco(':memory:'), DECKS, { ...SEM_ATRASO, botAcao: 700, botPasse: 90, autoPasse: 60 });
+    g.sementeFixa = 'so-bots';
+    const ana = new Falsa();
+    g.tratar(ana, { t: 'criar', nome: 'Ana', senhaSala: 'segredo', modo: '4p' });
+    const codigo = ana.ultima('sala')!.sala.codigo;
+    g.tratar(ana, { t: 'deck', deck: DECKS[0].id });
+    for (let i = 1; i < 4; i++) g.tratar(ana, { t: 'bot', assento: i, deck: DECKS[i].id });
+    g.tratar(ana, { t: 'iniciar' });
+    await espera();
+    g.tratar(ana, { t: 'conceder' });
+    const n = ana.msgs.filter((m) => m.t === 'jogo').length;
+    const s = g.salas.get(codigo)!;
+    const t0 = performance.now();
+    while (s.d.estado !== 'fim' && performance.now() - t0 < 90000) await new Promise((r) => setTimeout(r, 50));
+    expect(s.d.estado).toBe('fim');
+    expect(s.game!.isOver()).toBe(true);
+    expect(ana.ultima('jogo')!.vista.gameOver).not.toBeNull();
+    // sem uma vista por jogada de bot: só as poucas do fim
+    expect(ana.msgs.filter((m) => m.t === 'jogo').length - n).toBeLessThan(5);
+  }, 120000);
+});
+
 describe('vigia das threads de pensar', () => {
   it('uma thread presa passa do teto mais a folga: é encerrada e recriada, e a tarefa falha (o bot joga o padrão)', async () => {
     const p = new Pensadores(1, { script: new URL('./pensador-travado.ts', import.meta.url), folga: 150 });

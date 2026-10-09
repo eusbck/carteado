@@ -185,6 +185,8 @@ export class Sala {
   game: Game | null = null;
   conexoes = new Set<Conexao>();
   private bots = new Map<number, HeuristicBot>();
+  /** bots leves que terminam a partida quando nenhuma pessoa resta nela (botRapido) */
+  private rapidos = new Map<number, HeuristicBot>();
   private rodando = false;
   /** muda quando os bots são recriados (partida nova, retomada, desfazer): respostas pensadas antes não valem */
   private geracao = 0;
@@ -364,6 +366,7 @@ export class Sala {
     this.d.partida = null;
     this.game = null;
     this.bots = new Map();
+    this.rapidos = new Map();
     this.metas = [];
     this.cps = [];
     this.salvas = 0;
@@ -663,6 +666,7 @@ export class Sala {
     const tempo = this.gerente.atrasos.tempoBot ?? null;
     this.bots = new Map(this.d.assentos.map((a, i) => [i, a] as const).filter(([, a]) => a.tipo === 'bot')
       .map(([i, a]) => [i, new HeuristicBot(`${seed}:${i}`, i, { nivel: a.nivel ?? NIVEL_PADRAO, ...(sims !== null ? { simulacoes: sims } : {}), ...(tempo !== null ? { orcamento: tempo } : {}) })]));
+    this.rapidos = new Map();
     this.geracao++;
   }
 
@@ -873,6 +877,18 @@ export class Sala {
     return true;
   }
 
+  /** nenhuma pessoa continua jogando a partida: todo assento de pessoa saiu, concedeu ou perdeu */
+  private soBots(g: Game): boolean {
+    return this.d.assentos.every((a, i) => a.tipo !== 'humano' || !!g.state.players[i]?.left || !!g.state.players[i]?.lost);
+  }
+
+  /** o bot leve (Iniciante) que termina a partida no lugar do bot do assento quando só restam bots */
+  private botRapido(assento: number): HeuristicBot {
+    let b = this.rapidos.get(assento);
+    if (!b) this.rapidos.set(assento, (b = new HeuristicBot(`${this.d.partida!.config.seed}:${assento}:rapido`, assento, { nivel: 'iniciante' })));
+    return b;
+  }
+
   /** conduz a partida sem esperar por ela. Um erro inesperado na condução (fora do motor: a vista, o bot, o banco)
    * vira erro da sala, tratado como um erro do motor; sem o `.catch`, a promessa rejeitada derrubava o servidor */
   seguir(): void {
@@ -885,6 +901,7 @@ export class Sala {
     if (this.rodando) { if (this.esperandoBot) this.transmitir(); return; }
     this.rodando = true;
     const at = this.gerente.atrasos;
+    let rapidas = 0;
     try {
       for (let guarda = 0; guarda < 100000; guarda++) {
         const g = this.game;
@@ -893,11 +910,18 @@ export class Sala {
         const a = this.d.assentos[d.player];
         let resposta: Answer | null = null;
         let espera = 0;
-        if (a.tipo === 'bot') {
+        const quebrou = this.falhas.indice === g.inputs.length && this.falhas.n > 0;
+        if (a.tipo === 'bot' && this.soBots(g)) {
+          // nenhuma pessoa resta na partida (todas saíram, concederam ou perderam): os bots terminam sozinhos e depressa,
+          // sem os atrasos de exibição e sem as threads (pensam aqui, no nível Iniciante, o mais leve), para não tomar
+          // as threads das outras salas com uma partida que ninguém joga. De tempos em tempos a linha é solta.
+          if (++rapidas % 25 === 0) { await new Promise((r) => setImmediate(r)); continue; }
+          resposta = quebrou ? defaultAnswer(d) : this.botRapido(d.player).answer(d, g);
+        } else if (a.tipo === 'bot') {
           const bot = this.bots.get(d.player)!;
           const geracao = this.geracao;
           // a resposta do bot a esta decisão quebrou o motor (a sala se refez sem ela): agora vai a resposta padrão
-          if (this.falhas.indice === g.inputs.length && this.falhas.n > 0) resposta = defaultAnswer(d);
+          if (quebrou) resposta = defaultAnswer(d);
           // decisão óbvia: sai da vista do bot (a mesma que uma pessoa naquele assento recebe), sem pensar
           else resposta = bot.imediata(d, buildView(g.g, d.player, d), (x) => g.check(d.player, x) === null);
           if (!resposta && !this.gerente.pensadores) {
