@@ -116,4 +116,37 @@ describe('bot heurístico', () => {
     const d: Decision = { kind: 'damage', id: 1, player: 0, prompt: 'Distribua 3 de dano', attacker: tg.bf('Glissa Sunslayer'), amount: 3, recipients: [{ kind: 'obj', id: m }, { kind: 'obj', id: gau }], lethal: [0, 3], trample: false };
     expect((escolher(d, tg.g, 0, seedFrom('d'), false) as Extract<Answer, { kind: 'damage' }>).assign).toEqual([0, 3]);
   });
+
+  it('o X de uma habilidade (ciclagem do Shark Typhoon) é o maior que dá para pagar, não o teto de 20', () => {
+    const tg = setup({ battlefield: [['Island', 'Island', 'Island', 'Island', 'Island'], []], hand: [['Shark Typhoon'], []], library: [['Plains', 'Plains'], ['Plains']] });
+    const bot = new HeuristicBot('t', 0, { nivel: 'intermediario' });
+    let x = -1;
+    tg.script.push((d, g) => {
+      if (d.kind !== 'number' || d.player !== 0) return null;
+      const a = bot.answer(d, g.game);
+      if (a.kind === 'number') x = a.value;
+      return a;
+    });
+    tg.activate('Shark Typhoon').resolveAll();
+    expect(x).toBe(3);
+    expect(tg.names(0, 'hand')).toEqual(['Plains']);
+  });
+
+  it('kicker só quando dá para pagar a mana dele junto com a da mágica', () => {
+    const kicker = (terrenos: number): string[] => {
+      const tg = setup({ battlefield: [Array(terrenos).fill('Island'), ['Gau, Feral Youth']], hand: [['Rite of Replication'], []], library: [['Plains'], ['Plains']] });
+      const bot = new HeuristicBot('t', 0, { nivel: 'intermediario' });
+      const resp: string[] = [];
+      tg.script.push((d, g) => {
+        if (d.kind !== 'select' || !d.prompt.endsWith('custo adicional opcional')) return null;
+        const a = bot.answer(d, g.game);
+        if (a.kind === 'select') resp.push(...a.ids);
+        return a;
+      });
+      tg.choose('criatura alvo', ['Gau, Feral Youth']).cast('Rite of Replication');
+      return resp;
+    };
+    expect(kicker(5)).toEqual(['no']);
+    expect(kicker(9)).toEqual(['yes']);
+  });
 });

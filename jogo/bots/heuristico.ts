@@ -13,6 +13,10 @@
 // - Outras escolhas: heurísticas sobre o valor das cartas; do Difícil em diante, as opções são simuladas.
 
 import { canBlock, combatDamageAmount } from '../motor/combat.ts';
+import { canAfford } from '../motor/costs.ts';
+import { ability, type ActivatedDef } from '../motor/defs.ts';
+import { parseCost, withX } from '../motor/mana.ts';
+import { faceDefOf, totalSpellCost, type CastMethod } from '../motor/stack.ts';
 import { chars, controllerOf, hasKw, isCreature, isLand, manaValue, toughness } from '../motor/api.ts';
 import { toxicValue } from '../motor/veneno-emblema.ts';
 import { defaultAnswer, validateShape, type LiveDecision } from '../motor/ask.ts';
@@ -612,6 +616,7 @@ export function escolher(d: Decision, gameOuG: Game | G, eu: PlayerId, rng: RngS
     case 'number': {
       if (aleatorio) return { kind: 'number', value: d.min + int(rng, d.max - d.min + 1) };
       if (/vida/i.test(d.prompt)) return { kind: 'number', value: Math.max(d.min, Math.min(d.max, Math.floor(g.state.players[eu].life / 5))) };
+      if (/valor de X/.test(d.prompt)) return { kind: 'number', value: maiorX(d, g, eu) };
       return { kind: 'number', value: d.max };
     }
     case 'attackers': return atacar(d, g, eu, ok, rng, 0, false);
@@ -624,6 +629,56 @@ export function escolher(d: Decision, gameOuG: Game | G, eu: PlayerId, rng: RngS
       return { kind: 'mulligan', keep: d.mulligans >= 2 || (terrenos >= 2 && terrenos <= 5) };
     }
   }
+}
+
+/** a habilidade ativada no topo da pilha (a que está sendo ativada) */
+function habilidadeNoTopo(g: G): { id: ObjId; def: ActivatedDef; fonte: ObjId | undefined } | null {
+  const s = g.state;
+  const id = s.zones.stack[s.zones.stack.length - 1];
+  const o = id !== undefined ? s.objects[id] : undefined;
+  if (!o?.stack || o.stack.kind !== 'activated' || !o.stack.abilityId) return null;
+  try { return { id, def: ability(o.stack.abilityId) as ActivatedDef, fonte: o.stack.source }; } catch { return null; }
+}
+
+/**
+ * O X de uma habilidade ativada: o maior que dá para pagar. O motor deixa escolher até 20 (CR 107.3: sem limite) e o
+ * bot escolhia sempre o máximo, não pagava e desistia da habilidade. Nas mágicas o motor já limita ao que dá para pagar.
+ */
+function maiorX(d: D<'number'>, g: G, eu: PlayerId): number {
+  const h = habilidadeNoTopo(g);
+  if (!h) return d.max;
+  const s = g.state;
+  const fonte = h.fonte !== undefined ? s.objects[h.fonte] : undefined;
+  let max = d.max;
+  // X de lealdade (−X): no máximo a lealdade que a fonte tem (CR 606.6)
+  if (h.def.cost.some((p) => p.k === 'loyalty' && p.n === 'X')) max = Math.min(max, fonte?.counters.loyalty ?? 0);
+  const parte = h.def.cost.find((p) => p.k === 'mana') as { k: 'mana'; cost: string } | undefined;
+  const base = parseCost(parte?.cost);
+  if (!base.some((x) => x.k === 'X')) return Math.max(d.min, max);
+  const vira = h.def.cost.some((p) => p.k === 'tap' || p.k === 'untap' || p.k === 'sacrificeSelf' || p.k === 'exileSelf');
+  const ctx = { purpose: { kind: 'ability' as const, obj: h.id }, excludeSource: vira ? h.fonte : undefined };
+  for (let x = max; x > d.min; x--) if (canAfford(g, eu, withX(base, x), ctx)) return x;
+  return d.min;
+}
+
+/**
+ * Sim num custo adicional opcional (kicker e afins) só quando dá para pagar a mana dele junto com a da mágica: antes
+ * o bot aceitava sempre, não conseguia pagar e desistia da mágica inteira. Do Difícil em diante, a escolha ainda é
+ * comparada em simulação (vale a pena?).
+ */
+function podePagarOpcional(d: D<'select'>, sim: ChoiceItem, g: G, eu: PlayerId): boolean {
+  if (!/custo adicional opcional$/.test(d.prompt)) return true;
+  const s = g.state;
+  const id = s.zones.stack[s.zones.stack.length - 1];
+  const o = id !== undefined ? s.objects[id] : undefined;
+  if (!o?.stack || o.stack.kind !== 'spell') return true;
+  const ac = faceDefOf(o)?.additionalCosts?.find((c) => `Pagar: ${c.label}` === sim.label);
+  if (!ac || !ac.parts.some((p) => p.k === 'mana')) return true;
+  try {
+    const metodo = { key: o.stack.method ?? 'hand', zone: o.stack.castFrom ?? 'hand' } as CastMethod;
+    const custo = totalSpellCost(g, eu, o, metodo, { x: 0, targets: o.stack.targets, paid: { ...o.stack.paid, [ac.key]: true } });
+    return canAfford(g, eu, custo, { purpose: { kind: 'spell', obj: o.id } });
+  } catch { return true; }
 }
 
 /**
@@ -780,7 +835,7 @@ function selecionar(d: D<'select'>, g: G, eu: PlayerId, rng: RngState, aleatorio
   // sim ou não: aceita, a não ser que seja pagar algo sem ganhar nada claro
   const sim = itens.find((i) => i.id === 'yes');
   const nao = itens.find((i) => i.id === 'no');
-  if (sim && nao && itens.length === 2) return { kind: 'select', ids: [sim.id] };
+  if (sim && nao && itens.length === 2) return { kind: 'select', ids: [podePagarOpcional(d, sim, g, eu) ? sim.id : nao.id] };
   if (max === 0) return { kind: 'select', ids: [] };
 
   const o = ordemDaEscolha(d, g, eu);
