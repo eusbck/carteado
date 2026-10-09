@@ -2,8 +2,8 @@
 // de wallpapers do Magic que troca sozinha. Cada abertura começa por uma imagem nova (a ordem embaralhada fica
 // guardada no navegador e passa por todas antes de repetir) e, com a página aberta, troca a cada minuto com um
 // fade lento. Fica bem apagada (opacidade e vinheta no estilo.css) para não disputar com o conteúdo.
-// A tela de entrar no servidor ("Bem-vindo, feiticeiro") tem as suas: só a 08 (Chandra nas chamas) e a 13, uma de
-// cada vez, do mesmo jeito (a outra a cada abertura e a cada minuto).
+// A tela de entrar no servidor ("Bem-vindo, feiticeiro") tem as suas: só a 08 (Chandra nas chamas), a 13 e a 23 (o
+// dragão), uma de cada vez, do mesmo jeito (outra a cada abertura e a cada minuto).
 // As imagens e as fontes estão em imagens/fundos/ (FONTES.md).
 
 import { useEffect, useState } from 'preact/hooks';
@@ -11,7 +11,7 @@ import { useEffect, useState } from 'preact/hooks';
 const TODAS = import.meta.glob<string>('./imagens/fundos/*.webp', { eager: true, query: '?url', import: 'default' });
 const COLECOES = {
   geral: { imagens: Object.values(TODAS), chave: 'commander-da-mesa:fundos' },
-  entrada: { imagens: ['08', '13'].map((n) => TODAS[`./imagens/fundos/${n}.webp`]).filter(Boolean), chave: 'commander-da-mesa:fundos-entrada' },
+  entrada: { imagens: ['08', '13', '23'].map((n) => TODAS[`./imagens/fundos/${n}.webp`]).filter(Boolean), chave: 'commander-da-mesa:fundos-entrada' },
 };
 type Colecao = keyof typeof COLECOES;
 const TROCA_MS = 60_000;

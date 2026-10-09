@@ -2,8 +2,8 @@
 
 Wallpapers de Magic: The Gathering que aparecem bem apagados, trocando sozinhos, atrás das telas de entrar no
 servidor, de criar ou entrar numa sala, do saguão (escolha dos decks) e da tela Decks (`cliente/src/FundoArte.tsx`).
-A tela de entrar no servidor ("Bem-vindo, feiticeiro") usa só a `08.webp` (Chandra nas chamas) e a `13.webp`, uma de
-cada vez, escolhidas pelo Caio em 09/10/2026; as outras telas passam pela coleção inteira.
+A tela de entrar no servidor ("Bem-vindo, feiticeiro") usa só a `08.webp` (Chandra nas chamas), a `13.webp` e a
+`23.webp` (o dragão), uma de cada vez, escolhidas pelo Caio em 09/10/2026; as outras telas passam pela coleção inteira.
 
 As artes são de Magic: The Gathering (© Wizards of the Coast e os artistas de cada uma). Foram encontradas pela
 busca de imagens do Brave ("wallpaper magic the gathering") em 08/10/2026 e escolhidas por combinar com a
