@@ -103,3 +103,39 @@ describe('bots: escolhas da mão', () => {
     expect(fundo(['Island', 'Plains', 'Sol Ring', 'Swords to Plowshares', 'Archon of Cruelty', 'Brainstorm', 'Path to Exile'], 1)).toEqual(['Archon of Cruelty']);
   });
 });
+
+describe('bots: escolhas sobre cartas escondidas', () => {
+  it('a vidência é decidida sobre a carta de verdade do topo, não pelo plano feito sobre a carta sorteada', () => {
+    const tg = setup({
+      battlefield: [['Island', 'Mountain'], []], hand: [['Temple of Epiphany'], []],
+      library: [['Island', ...Array(9).fill('Archon of Cruelty')], ['Plains']],
+    });
+    const bot = new HeuristicBot('t', 0, { nivel: 'intermediario', orcamento: 1e9, simulacoes: 8 });
+    let resposta: Answer | null = null;
+    tg.script.push((d, x) => {
+      if (d.kind !== 'arrange' || d.player !== 0) return null;
+      // o plano de uma simulação em que o topo sorteado era um Archon: para o fundo
+      const id = d.items[0].id;
+      bot.e.plano = [{ kind: 'arrange', placement: { [id]: 'bottom' }, order: [id] }];
+      resposta = bot.answer(d, x.game);
+      return resposta;
+    });
+    tg.play('Temple of Epiphany').resolveAll();
+    expect(resposta).not.toBeNull();
+    // poucos terrenos: o Island de verdade fica no topo
+    expect(tg.state.objects[tg.state.zones.library[0][0]].def).toBe('Island');
+    expect(bot.e.plano).toEqual([]);
+  });
+
+  it('uma escolha pública do plano (alvo no campo) continua seguindo o plano', () => {
+    const tg = setup({ battlefield: [['Plains', 'Glissa Sunslayer'], ['Grave Titan', 'Gau, Feral Youth']], hand: [['Swords to Plowshares'], []] });
+    const bot = new HeuristicBot('t', 0, { nivel: 'intermediario' });
+    tg.script.push((d, x) => {
+      if (d.kind !== 'select' || d.player !== 0) return null;
+      bot.e.plano = [{ kind: 'select', ids: [String(tg.bf('Gau, Feral Youth'))] }];
+      return bot.answer(d, x.game);
+    });
+    tg.cast('Swords to Plowshares').resolve();
+    expect(tg.find('Gau, Feral Youth')).toBeNull();
+  });
+});

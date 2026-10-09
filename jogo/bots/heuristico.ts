@@ -171,25 +171,32 @@ export class HeuristicBot {
       return { kind: 'mulligan', keep: d.mulligans >= 2 || (terrenos >= 2 && terrenos <= 5) };
     }
     if (d.kind === 'attackers' || d.kind === 'blockers' || d.kind === 'select' || d.kind === 'arrange') {
-      if (d.kind !== 'attackers' && this.e.plano.length) {
-        const a = this.e.plano[0];
-        if (a.kind === d.kind && valida(a)) { this.e.plano.shift(); return a; }
-        this.e.plano = [];
-      }
+      if (d.kind !== 'attackers' && this.e.plano.length) return this.doPlano(d, valida, publicaNaVista(d, v));
       return null;
     }
     // pagamento, número, dano: o plano, ou a escolha simples
-    if (this.e.plano.length) {
-      const a = this.e.plano.shift()!;
-      if (a.kind === d.kind && valida(a)) return a;
-      this.e.plano = [];
-    }
+    if (this.e.plano.length) { const a = this.doPlano(d, valida, true); if (a) return a; }
     if (d.kind === 'payment') {
       if (d.canAuto) return { kind: 'payment', auto: true };
       // não dá para pagar: desiste e não tenta a mesma jogada de novo neste passo
       if (this.e.tentativa) { this.e.falhas.push(this.e.tentativa); if (this.e.falhas.length > 60) this.e.falhas.shift(); }
       return d.canCancel ? { kind: 'payment', cancel: true } : { kind: 'payment', auto: true };
     }
+    return null;
+  }
+
+  /**
+   * A próxima resposta do plano (as escolhas da jogada simulada), se serve para esta decisão. As escolhas sobre cartas
+   * que só quem decide vê (vidência, vigiar, busca, olhar o topo, cartas compradas no meio da resolução) foram feitas
+   * na simulação sobre cartas sorteadas: essas saem do plano e são decididas de novo, sobre as cartas de verdade.
+   */
+  private doPlano(d: Decision, valida: (a: Answer) => boolean, publica: boolean): Answer | null {
+    const a = this.e.plano[0];
+    if (!a || a.kind !== d.kind) { this.e.plano = []; return null; }
+    this.e.plano.shift();
+    if (!publica) return null;
+    if (valida(a)) return a;
+    this.e.plano = [];
     return null;
   }
 
@@ -238,7 +245,8 @@ export class HeuristicBot {
       if (this.e.ataque.turno === s.turn.number && this.e.ataque.combate === s.turn.combatCount) return defaultAnswer(d);
       this.e.ataque = { turno: s.turn.number, combate: s.turn.combatCount };
     }
-    if (this.e.plano.length) {
+    // o plano das outras decisões já passou pela resposta imediata (que também tira dele as escolhas escondidas)
+    if (d.kind === 'attackers' && this.e.plano.length) {
       const a = this.e.plano.shift()!;
       if (a.kind === d.kind && ctx.valida(a)) return a;
       this.e.plano = [];
@@ -514,6 +522,22 @@ export class HeuristicBot {
     }
     return melhor?.a ?? padrao;
   }
+}
+
+/** a decisão só mostra o que é público (nenhuma carta que só quem decide vê: grimório, mão, virada para baixo) */
+export function publicaNaVista(d: Decision, v: GameView): boolean {
+  if (d.kind !== 'select' && d.kind !== 'arrange') return true;
+  let publicos: Set<ObjId> | null = null;
+  for (const it of d.items) {
+    if (it.card) return false;
+    if (it.obj === undefined) continue;
+    publicos ??= new Set([
+      ...v.battlefield.filter((o) => !o.faceDown), ...v.exile.filter((o) => !o.faceDown), ...v.command,
+      ...v.players.flatMap((p) => p.graveyard),
+    ].map((o) => o.id).concat(v.stack.map((x) => x.id)));
+    if (!publicos.has(it.obj)) return false;
+  }
+  return true;
 }
 
 const media = (l: number[]) => l.reduce((t, x) => t + x, 0) / Math.max(1, l.length);
