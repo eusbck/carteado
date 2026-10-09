@@ -1,6 +1,7 @@
 // Tela da mão inicial (antes do primeiro turno): as sete cartas em leque, manter ou fazer
 // mulligan, e no mulligan de Londres a escolha das cartas que vão para o fundo do grimório.
 
+import { useLayoutEffect, useState } from 'preact/hooks';
 import { MULLIGANS_LIVRES, type Decision } from '../../../motor/types.ts';
 import type { GameView } from '../../../motor/view.ts';
 import type { RegraMulligan } from '../../../servidor/protocolo.ts';
@@ -17,6 +18,22 @@ interface Props {
   setSel: (s: string[]) => void;
 }
 
+/** a largura da mesa, medida depois de desenhar e de novo quando ela muda (janela do navegador, barra recolhida); antes
+ * era lida no meio do desenho (layout forçado a cada vez) e não acompanhava a janela */
+function useLarguraMesa(): number {
+  const [largura, setLargura] = useState(() => innerWidth);
+  useLayoutEffect(() => {
+    const mesa = document.querySelector<HTMLElement>('.tabuleiro');
+    if (!mesa) return;
+    const ler = () => setLargura(mesa.clientWidth);
+    ler();
+    const ro = new ResizeObserver(ler);
+    ro.observe(mesa);
+    return () => ro.disconnect();
+  }, []);
+  return largura;
+}
+
 export function MaoInicial({ v, d, enviando, regra, multiplayer, sel, setSel }: Props) {
   const eu = v.you!;
   const minha = v.players[eu];
@@ -26,7 +43,7 @@ export function MaoInicial({ v, d, enviando, regra, multiplayer, sel, setSel }: 
   const n = mao.length;
   const meio = (n - 1) / 2;
   // o leque cabe na largura da mesa (as cartas giradas abrem um pouco mais nas pontas)
-  const largura = (document.querySelector('.tabuleiro') as HTMLElement | null)?.clientWidth ?? innerWidth;
+  const largura = useLarguraMesa();
   const passo = n > 1 ? Math.max(40, Math.min(122, (largura - 440) / (n - 1))) : 0;
 
   const alternar = (id: string) => {
