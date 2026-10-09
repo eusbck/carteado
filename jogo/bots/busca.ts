@@ -1,15 +1,16 @@
 // Busca do Magic God (fase 9): Monte Carlo com informação oculta, parecida com o ISMCTS de um observador.
 //
 // 1. Pré-seleção rasa, como a da Cartomante e com pelo menos o mesmo tanto de análise (as candidatas nos mesmos mundos
-//    sorteados, mais mundos que ela), com até metade do tempo.
+//    sorteados, mais mundos que ela), com até 40% do tempo (buscaPreSelecao em bots/niveis.ts).
 //    Ela dá a escolha "de partida": a melhor candidata, se passar da margem, ou passar.
 // 2. As melhores candidatas e "passar" são jogadas até o fim do turno seguinte, em mundos sorteados a cada rodada
 //    (com a leitura da mesa da Cartomante): todos jogam terrenos e mágicas, atacam e bloqueiam com políticas rápidas,
 //    e os oponentes respondem com o que têm na mão sorteada. Cada rodada joga todas as opções no mesmo mundo, então a
 //    diferença entre duas opções numa rodada não depende da sorte do sorteio.
 // 3. A escolha de partida só muda se as jogadas longas mostrarem outra opção claramente melhor: a diferença média
-//    (pareada por rodada) acima de 0,3 mais uma margem de erros-padrão (Cartomante 1; Magic God, que joga mais rodadas,
-//    0,5). Sem evidência, fica a da pré-seleção.
+//    (pareada por rodada) acima de 0,3 mais meio erro-padrão (buscaConfianca), com pelo menos 3 rodadas. Sem evidência,
+//    fica a da pré-seleção. Só o Magic God usa esta busca (a Cartomante teve uma versão leve na calibração da fase 9,
+//    que não a deixou mais forte, e ficou sem ela).
 
 import { seedFrom } from '../motor/rng.ts';
 import type { Answer, Decision } from '../motor/types.ts';
