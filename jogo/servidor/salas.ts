@@ -914,8 +914,9 @@ export class Sala {
         if (a.tipo === 'bot' && this.soBots(g)) {
           // nenhuma pessoa resta na partida (todas saíram, concederam ou perderam): os bots terminam sozinhos e depressa,
           // sem os atrasos de exibição e sem as threads (pensam aqui, no nível Iniciante, o mais leve), para não tomar
-          // as threads das outras salas com uma partida que ninguém joga. De tempos em tempos a linha é solta.
-          if (++rapidas % 25 === 0) { await new Promise((r) => setImmediate(r)); continue; }
+          // as threads das outras salas com uma partida que ninguém joga. De tempos em tempos a linha é solta para as
+          // outras salas (no servidor; nos testes, sem threads, a condução segue de uma vez, como sempre seguiu)
+          if (this.gerente.pensadores && ++rapidas % 25 === 0) { await new Promise((r) => setImmediate(r)); continue; }
           resposta = quebrou ? defaultAnswer(d) : this.botRapido(d.player).answer(d, g);
         } else if (a.tipo === 'bot') {
           const bot = this.bots.get(d.player)!;
