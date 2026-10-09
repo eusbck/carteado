@@ -129,6 +129,8 @@ Lista de verificação das fases. É por aqui que uma sessão nova retoma o trab
     cinza), "Aceitar" do desfazer em verde (`.botao.positivo`), etapas da faixa em neutro, subtítulo do seletor,
     neutros frios que sobraram, `.mini` da pilha colidindo com a janela da entrada, topo da pilha em ouro,
     linha de ajuste manual do registro distinta do nome em ouro.
+- 09/10/2026: bateria de testes, caça de bugs e otimização para o navegador (seção no fim), com três frentes em
+  worktrees e subagentes de verificação; push no fim.
 
 ## Fase 0: exploração e proposta
 
@@ -940,3 +942,154 @@ artifact (https://claude.ai/artifact/6Hp29dt3CFNcbFtLBnnx9o); o usuário mandou 
 
 Verificado: `npm run typecheck`; `testes/fase9-sons.test.ts` (10 de 10); `CAPTURAS_SO=abertura` (as 8 partidas,
 rosto no meio da faixa nos 9 decks); no e2e, a VS aparece para todos no 1v1 e no de 4, clique e Esc pulam.
+
+## Bateria de testes, caça de bugs e otimização para o navegador — 09/10/2026
+
+Pedido: uma bateria de testes, caça e correção de bugs e otimização do jogo no navegador "com a qualidade máxima",
+com subagentes, depois que as sessões da VS e da mesa terminassem. Plano aprovado em
+`~/.claude/plans/fizemos-diversas-mudan-as-no-zippy-crescent.md`. Decisões do Caio: só otimizações invisíveis por
+padrão, mais uma chave manual **Desempenho** nas Configurações (desligada, nada automático); revisão geral dos bots
+(inclusive o deck do Jace); um commit por correção, no `main`, e push no fim.
+
+Como foi feito: seis varreduras só de leitura (cliente, servidor, bots, revisão dos 55 commits desde 08/10, linha de
+base dos testes, tamanho da vista), uma linha de base em `.claude/worktrees/base` (258ab27, com o cliente compilado) e
+três frentes em worktrees com subagentes, juntadas no `main`: **S** (servidor, segurança, motor), **R** (bots) e
+**C** (CSS, imagens, bundle, modo Desempenho, bugs do cliente), mais um subagente que recalibrou a escada dos níveis.
+A parte da mesa (`loja.ts`, `Mesa.tsx`, `Carta.tsx`, `AreaJogador.tsx`) e a ferramenta de medida ficaram com a sessão
+principal. O computador hibernou na bateria ("Standby Battery Budget Exceeded") das 05:23 às 12:18 e todos os agentes
+pararam; foram retomados de onde estavam.
+
+### Bugs achados e corrigidos
+
+Servidor e segurança:
+- três jeitos de qualquer pessoa logada derrubar o servidor: frame grande demais no WebSocket (sem `on('error')`),
+  `{t:'bot', assento:'__proto__'}` (o assento não era conferido) e erro dentro da condução da partida (`avancar()` sem
+  `catch`). Agora há um validador único das mensagens (`validarMsg` em `servidor/protocolo.ts`), tratadores no
+  processo e no WebSocket, e o `abrir-mesa.ps1` religa o servidor se ele cair (com registro de cada queda);
+- **um erro do motor quebrava a sala para sempre**, mesmo depois de reiniciar (a jogada ruim ficava gravada): a
+  entrada só é registrada depois que o motor a aceita, a sala se refaz do último checkpoint sem ela e segue
+  (`Game.replayAteFalhar` no restaurar); depois de 3 falhas automáticas seguidas a sala para em vez de girar;
+- **a semente da partida ia para todos** na sala pública: com ela e as listas dos decks (que a prévia do saguão passou
+  a mostrar) dava para refazer os embaralhamentos e ver mão e grimório de todos. Agora sai só um id (`partida`, hash
+  curto) e a parte sorteada da semente tem 96 bits;
+- uma segunda aba que ficava no assento depois de "Sair" recebia o token e a mão de quem sentasse depois: o assento
+  que vaga solta todas as conexões dele;
+- vazamentos: carta virada para baixo no exílio (Abstract Performance) mandava força, resistência e cores; a pilha
+  mostrava a carta de uma mágica virada para baixo; o rótulo do pedido de desfazer citava a carta da mão;
+- chat: quem sentava depois de outra pessoa via as mensagens dela como "Você" (o autor era o número do assento); agora
+  cada mensagem leva o id de quem escreveu (`quem`, hash do token) e o nome do assento atual;
+- sala encerrada com um lugar vago ficava presa (o saguão não aparecia e "Nova partida" dava erro): volta para o
+  saguão e quem entra não recebe a partida antiga;
+- desvirar à mão tirando a mana passou a valer só em partidas novas (`config.desvirarTiraMana`), para não quebrar a
+  reprodução das partidas salvas antes;
+- `testes/fase8.test.ts` deixou de ser instável (semente fixa no `Gerente` dos testes; 10 de 10);
+- `ferramentas/humano-e-bots.ts` voltou a funcionar com o scrypt assíncrono (`senhaNaHora`).
+
+Cliente:
+- entrar duas vezes abria dois WebSockets (sons e avisos em dobro); "Enviando…" ficava preso depois de uma reconexão;
+  uma mensagem ilegível derrubava o tratador; `/api/cartas` com erro virava o catálogo das cartas;
+- conexão morta sem aviso (notebook que dormiu) não reconectava: batimento `ping`/`pong` a cada 20 s, contado por
+  batimento (não pelo relógio) para não derrubar abas em segundo plano;
+- um erro do chat (muitas mensagens seguidas) que chegasse com uma jogada pendente era lido como jogada recusada: o
+  erro agora diz a que mensagem responde (`de`);
+- clique duplo rápido num terreno virava e desvirava (a mana sumia); avisos do chat reapareciam com a barra recolhida;
+  o fim do pouso da carta anterior apagava um arrasto novo; relógios que ficavam soltos; rolagem do chat parada com
+  200 mensagens; prévia do deck sem atualizar depois de importar; retrato não reenviado ao voltar à sala; estado da
+  imagem do avatar que não voltava; senha da entrada enviada duas vezes.
+
+Bots (`bots/intencao.ts` novo):
+- **remoção e dano miravam as próprias criaturas**: "cria" (de "cria uma ficha") casava com "criatura" e a escolha
+  era tida como boa. Agora a intenção vem do texto Oracle da carta de origem; o +1 do Jace põe no fundo a pior carta,
+  Brainstorm e o fundo do mulligan devolvem as piores;
+- escolhas decididas na simulação sobre cartas sorteadas (vidência, busca, olhar o topo) eram reaplicadas no jogo
+  real; agora são decididas na hora sobre as cartas de verdade;
+- combate pelo dano de combate do motor (Felothar e companhia), golpe duplo, dano de comandante 21 e veneno no letal,
+  evasão pelo `canBlock`, nada de dano em bloqueador já morto; X de habilidade pelo que dá para pagar (o ciclo do
+  Shark Typhoon nunca acontecia); kicker só quando paga;
+- deck do Jace: as pedras de mana tinham valor negativo e quase nunca eram conjuradas; agora valem pela mana que
+  produzem, a rampa conta por rodada, terreno antes das mágicas, mana guardada para contramágica (Difícil e acima) e
+  o mulligan conta pedra como meio terreno. No 1v1 Intermediário contra Abzan Armor (12 partidas espelhadas) o Jace
+  foi de 5 para 7 vitórias, de 1,5 para 2,2 pedras por partida e de 4,6 para 5,9 fontes de mana na rodada 5;
+- travas: mundo da simulação que quebra é descartado; pagamento sem "automático" nem "cancelar" paga à mão; vigia
+  nas threads de pensar (thread presa é encerrada e o bot joga o padrão); limites de 150 objetos e 40 ações avisam no
+  log; partida em que não sobra pessoa termina depressa, sem threads; a memória dos bots ficou incremental.
+- escada recalibrada depois das correções (as dos níveis de baixo tinham estreitado): Fácil ataca bem menos e quase
+  não responde, Intermediário responde às vezes (`bots/niveis.ts`). Em 60 partidas espelhadas por par: Fácil vence o
+  Iniciante 75%, Intermediário vence o Fácil 68%, Difícil vence o Intermediário 58% (a meta era 62%; só chegou lá
+  deixando o Difícil mais lento, com 5 mundos e 100 simulações, o que apertaria o degrau para o Cartomante: ficou de
+  fora, para decidir depois).
+
+### Desempenho
+
+Medido com `ferramentas/desempenho.ts` (novo: Playwright + DevTools do Chrome em cenários fixos; antes e depois
+rodados em seguida, na mesma máquina; o Chrome sem janela desenha por software, então os números servem para
+comparar versões, não como medida absoluta):
+
+| cenário | medida | antes | depois |
+|---|---|---:|---:|
+| mesa de 4 com 3 bots (150 s) | mensagens do servidor | 1602 | 840 |
+| | script no navegador (ms por segundo) | 17,4 | 14,6 |
+| | maior travada (ms) | 206 | 80 |
+| | com a máquina ocupada: trabalho por mensagem (ms) | 27,9 | 17,7 |
+| | com a máquina ocupada: tarefas longas | 9 | 2 |
+| varrer a mão com o mouse | script (ms por segundo) | 16,3 | 3,9 |
+| | com a máquina ocupada: quadros por segundo | 26 | 47 |
+| | com a máquina ocupada: tarefas longas | 23 | 3 |
+| zoom nas cartas do campo | script (ms por segundo) | 21,4 | 4,7 |
+| | com a máquina ocupada: quadros por segundo | 11,7 | 27,7 |
+| recolher e abrir a barra | script (ms por segundo) | 19,7 | 6,3 |
+| | tarefas longas | 9 | 0 |
+| | com a máquina ocupada: maior travada (ms) | 659 | 79 |
+
+Com a máquina livre o Chrome sem janela chega perto dos 60 quadros por segundo nas duas versões; a diferença
+aparece no trabalho de script e nas travadas, e fica bem maior com a máquina ocupada (o caso de um computador mais
+fraco). Memória: nas duas versões o heap sobe do mesmo jeito ao longo da partida (4,0 para 5,0 MB até o turno 30,
+depois de coleta forçada) e a versão nova tem menos nós do DOM soltos (69 contra 129): sem vazamento.
+
+- mesa: o zoom saiu do estado da mesa, a loja reaproveita da vista anterior tudo o que chegou igual
+  (`cliente/src/compartilhar.ts`), `Carta` é memo com tratadores fixos (`mesa/estavel.ts`) e a arrumação de cada área
+  só se refaz quando algo dela mudou; recolher a barra mede uma vez, no fim da animação;
+- servidor: `permessage-deflate` e nada de `sala`/`jogo` repetidos (numa partida de 4, de 4117 mensagens e 79,6 MB
+  para 2057 mensagens e 7,0 MB); as cópias do estado compartilham a LKI, que nunca muda depois de gravada (provado com
+  a suíte inteira sob `CONGELAR_LKI=1`; cópia 1,7 a 2,7 vezes mais rápida); gravação agrupada (chat, posições,
+  retrato) e SQLite com `synchronous=normal` (gravar a sala de 1,7 para 0,15 ms); scrypt assíncrono; salas encerradas
+  não são refeitas ao subir o servidor;
+- HTTP: ETag/304, brotli/gzip calculado uma vez, intervalo de bytes (música no Safari), `/api/cartas` com cache; zoom
+  grande em WebP (842 KB para 105 KB por carta); retratos de 256 px na mesa (menos 42%, diferença de até 4 níveis de
+  cor, invisível); tela Decks e prévia carregadas sob demanda; só os pesos de fonte usados;
+- testes: o `fsModuleCache` do vitest guarda as transformações entre rodadas.
+
+Ficaram só no modo Desempenho (falharam no teste de pixels, mudariam o visual): tirar o desfoque dos painéis quase
+opacos e separar a aura do avatar da sombra. O modo Desempenho (`mesa/ConfigDesempenho.tsx`, `<html
+data-desempenho>`) tira desfoques, a respiração dos wallpapers, brasas, aurora, partículas da VS, a aura que respira e
+os brilhos de dano, e toca a música por `<audio>` em vez da faixa decodificada (uns 80 MB de memória).
+
+### Verificado
+
+- `npm run typecheck` sem erros; `npx vitest run` inteiro no `main` final: 664 arquivos, 1887 testes passando (1
+  pulado de propósito: o que só roda com `CONGELAR_LKI=1`); a suíte inteira também passou com `CONGELAR_LKI=1` na
+  frente S, e os testes dos bots e da LKI de novo depois de juntar tudo (72 de 72);
+- testes novos: `testes/robustez-servidor.test.ts` (33 casos, inclusive um servidor de verdade nas portas
+  8140-8149), `testes/vazamentos.test.ts`, `testes/lki.test.ts`, `testes/bots-alvos.test.ts`,
+  `testes/compartilhar.test.ts`, e casos novos em chat, manual, imagens, listas salvas, servidor, fase8 e bots;
+- baterias da linha de base (258ab27) e do final, sem nenhuma falha: estresse aleatório 40×4p, 40×1v1 e 20×4p com
+  mulligan livre; heurístico 12×4p e 12×1v1 (base) e 8×4p (final, mais 12×4p e 12×1v1 na frente R); pessoa
+  simulada contra os 6 níveis (`ferramentas/humano-e-bots.ts`), sem vazamento da mão, sem clique extra e sem erro
+  do motor. O 1v1 aleatório passou de 250 para 488 decisões por segundo (cópias do estado com a LKI compartilhada);
+- `node ferramentas/e2e.ts` inteiro (29 verificações) no `main` juntado e de novo no final;
+- capturas: a bateria inteira na linha de base (132 fotos) e no final, comparadas foto a foto por um subagente:
+  nenhuma regressão; com o modo Desempenho desligado, comparação de pixels com a linha de base em 16 cenas: igual
+  (diferença de até 4 níveis de cor só nos retratos de 256 px). A revisão achou um bug antigo, o zoom 1 a 2 px fora
+  do meio em cartas de texto longo (a borda não entrava na conta), corrigido e conferido com `CAPTURAS_SO=janelas`.
+
+### Pontas abertas
+
+- Degrau Difícil sobre Intermediário em 58% (acima).
+- Metade das mensagens `jogo` numa mesa com bots só muda o "esperando Fulano" antes de cada passe de bot: foram
+  mantidas porque a mesa mostra isso.
+- Fechar a janela do servidor à força (Stop-Process) pula a gravação final: até 250 ms de chat ou posições.
+- Partidas criadas entre 03ac156 e e5a3565 não têm a chave do desvirar; se alguma divergir ao reiniciar, a sala
+  refaz até a última jogada boa.
+- Na bateria de capturas, as fotos 46 (descarte) e 47 (alvos) dependem da partida sorteada passar por um descarte e
+  por uma carta com alvo; com outra partida elas não saem (o roteiro não clica em "Não atacar" antes do descarte).
+- Deixe o computador na tomada durante baterias longas (ele hiberna na bateria).
