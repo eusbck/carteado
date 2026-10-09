@@ -16,7 +16,8 @@ import { Pensadores } from './pensadores.ts';
 import { NOMES_BOTS } from './nomes.ts';
 import type { Banco } from './banco.ts';
 import { alvoDesfazer, linhasDesfeitas, reconstruir, type MetaEntrada } from './desfazer.ts';
-import type { LinhaDesfeita, Modo, MsgChat, MsgCliente, MsgServidor, PedidoDesfazer, Posicoes, RegraAuxilios, RegraMulligan, SalaPublica, TipoAssento } from './protocolo.ts';
+import { avatarValido } from './avatares.ts';
+import type { EtapaSaguao, LinhaDesfeita, Modo, MsgChat, MsgCliente, MsgServidor, PedidoDesfazer, Posicoes, RegraAuxilios, RegraMulligan, SalaPublica, TipoAssento } from './protocolo.ts';
 
 export interface Conexao {
   enviar(m: MsgServidor): void;
@@ -55,6 +56,8 @@ interface Assento {
   deck: string | null;
   token: string | null;
   paradas: StopSettings;
+  /** retrato escolhido pela pessoa (null ou sem valor: o do comandante do deck) */
+  avatar?: string | null;
 }
 
 interface DadosPartida {
@@ -80,6 +83,8 @@ interface DadosSala {
   auxilios?: RegraAuxilios;
   /** as últimas mensagens do chat (continuam numa partida nova e depois de reiniciar o servidor) */
   chat?: MsgChat[];
+  /** passo do saguão (salas de antes não têm: começam nos lugares) */
+  etapa?: EtapaSaguao;
 }
 
 interface Pedido {
@@ -178,8 +183,8 @@ export class Sala {
     const conectados = new Set([...this.conexoes].map((c) => c.assento));
     return {
       codigo: this.d.codigo, modo: this.d.modo, estado: this.d.estado, anfitriao: this.d.anfitriao, mulligan: this.d.mulligan ?? 'londres', auxilios: this.d.auxilios ?? 'permitidos',
-      semente: this.d.partida?.config.seed ?? null,
-      assentos: this.d.assentos.map((a, i) => ({ indice: i, tipo: a.tipo, nome: a.nome, deck: a.deck, conectado: a.tipo === 'bot' || conectados.has(i), nivel: a.tipo === 'bot' ? a.nivel ?? NIVEL_PADRAO : null })),
+      semente: this.d.partida?.config.seed ?? null, etapa: this.d.etapa ?? 'lugares',
+      assentos: this.d.assentos.map((a, i) => ({ indice: i, tipo: a.tipo, nome: a.nome, deck: a.deck, conectado: a.tipo === 'bot' || conectados.has(i), nivel: a.tipo === 'bot' ? a.nivel ?? NIVEL_PADRAO : null, avatar: a.tipo === 'humano' ? a.avatar ?? null : null })),
     };
   }
 
@@ -221,6 +226,8 @@ export class Sala {
     const i = this.d.assentos.findIndex((a) => a.tipo === 'vazio');
     if (i < 0) return null;
     this.d.assentos[i] = { tipo: 'humano', nome, deck: null, token: novoToken(), paradas: paradasPadrao() };
+    // todas as pessoas tinham saído (o anfitrião apontava para um lugar vazio ou para um bot): quem chega conduz
+    if (this.d.assentos[this.d.anfitriao]?.tipo !== 'humano') this.d.anfitriao = i;
     // um bot com o mesmo nome da pessoa ganha outro
     for (const [k, a] of this.d.assentos.entries()) if (a.tipo === 'bot' && a.nome?.toUpperCase() === nome.toUpperCase()) a.nome = this.sortearNome(k);
     this.ligar(c, i);
@@ -257,8 +264,11 @@ export class Sala {
         if (this.d.estado === 'jogando') return 'A partida já começou';
         const a = this.d.assentos[m.assento];
         if (!a || a.tipo === 'humano') return 'Esse assento não está livre';
-        if (m.deck === null) this.d.assentos[m.assento] = { tipo: 'vazio', nome: null, deck: null, token: null, paradas: paradasPadrao() };
-        else {
+        if (m.deck === null) {
+          this.d.assentos[m.assento] = { tipo: 'vazio', nome: null, deck: null, token: null, paradas: paradasPadrao() };
+          // um lugar vagou: o saguão volta para os lugares
+          this.d.etapa = 'lugares';
+        } else {
           if (!this.gerente.deck(m.deck)) return 'Deck desconhecido';
           if (m.nivel !== undefined && !nivelValido(m.nivel)) return 'Nível de bot desconhecido';
           // o nome é sorteado quando o bot entra no assento e fica com ele (trocar o deck ou o nível não muda)
@@ -277,7 +287,10 @@ export class Sala {
       case 'sair': {
         if (this.pedido) this.encerrarPedido(null);
         if (this.d.estado === 'jogando' && this.game && !this.game.isOver()) this.registrar(() => this.game!.concede(i));
-        if (this.d.estado !== 'jogando') this.d.assentos[i] = { tipo: 'vazio', nome: null, deck: null, token: null, paradas: paradasPadrao() };
+        if (this.d.estado !== 'jogando') {
+          this.d.assentos[i] = { tipo: 'vazio', nome: null, deck: null, token: null, paradas: paradasPadrao() };
+          this.d.etapa = 'lugares';
+        }
         c.enviar({ t: 'saiu' });
         this.conexoes.delete(c);
         c.sala = null;
@@ -325,11 +338,24 @@ export class Sala {
         this.d.mulligan = m.regra;
         break;
       }
+      case 'avatar': {
+        if (m.avatar !== null && !avatarValido(m.avatar)) return 'Retrato desconhecido';
+        this.d.assentos[i].avatar = m.avatar;
+        break;
+      }
       case 'auxilios': {
         if (!anfitriao) return 'Só quem criou a sala escolhe a regra de auxílios';
         if (this.d.estado === 'jogando') return 'A partida já começou';
         if (m.regra !== 'permitidos' && m.regra !== 'proibidos') return 'Regra desconhecida';
         this.d.auxilios = m.regra;
+        break;
+      }
+      case 'etapa': {
+        if (!anfitriao) return 'Só quem criou a sala avança o saguão';
+        if (this.d.estado === 'jogando') return 'A partida já começou';
+        if (m.etapa !== 'lugares' && m.etapa !== 'regras' && m.etapa !== 'decks') return 'Passo desconhecido';
+        if (m.etapa !== 'lugares' && this.d.assentos.some((a) => a.tipo === 'vazio')) return 'Ainda há lugares livres (chame alguém ou ponha um bot)';
+        this.d.etapa = m.etapa;
         break;
       }
       case 'desfazer': return this.pedirDesfazer(i);

@@ -47,15 +47,28 @@ janela mostra o endereço `https://` e a senha de acesso para mandar ao grupo. D
 
 ## Como se joga
 
-1. Entre com a senha do servidor.
-2. Escolha um nome, crie uma sala (quatro jogadores ou um contra um) com uma senha e passe o
-   código e a senha para os outros. Lugares vazios podem receber bots, que jogam com os mesmos decks e
-   veem só o que um jogador veria.
-3. Cada um escolhe um deck; quem criou a sala escolhe a regra de mulligan (Londres, o padrão, ou
-   Livre: troca a mão inteira, até 3 vezes, sem pôr nada no fundo), a regra de auxílios
-   (permitidos ou proibidos) e começa a partida.
+1. Entre com a senha do servidor (a abertura dá as boas-vindas aos feiticeiros: o M em brasa, as cinco joias de
+   mana acendendo e brasas subindo no escuro).
+2. A tela inicial vai um passo por vez: o nome (fica guardado no navegador, então da próxima vez ela já
+   começa no passo seguinte), depois criar ou entrar numa sala. Quem cria escolhe o formato (quatro jogadores
+   ou um contra um) e uma senha, e passa o código e a senha para os outros; quem entra digita os dois.
+3. O saguão também vai em passos, iguais para a mesa toda (quem criou a sala avança):
+   - **Lugares:** quem joga entra; quem criou a sala põe bots nos lugares livres (com o nível de cada um) ou
+     tira. Os bots jogam com os mesmos decks e veem só o que um jogador veria.
+   - **Regras:** quem criou a sala escolhe a regra de mulligan (Londres, o padrão, ou Livre: troca a mão
+     inteira, até 3 vezes, sem pôr nada no fundo) e a de auxílios (permitidos ou proibidos); os outros
+     acompanham.
+   - **Retrato:** no passo dos lugares, "Trocar retrato" mostra os nove retratos (um por comandante da mesa, mas
+     a escolha é livre); quem não escolhe usa o do comandante do próprio deck. A escolha fica guardada no
+     navegador e vale nas próximas salas.
+   - **Decks:** clicar num deck abre a prévia (o comandante e as cartas por tipo, com a carta grande ao passar o
+     mouse) e o botão "Escolher este deck"; quem criou a sala escolhe também o deck de cada bot e começa a
+     partida quando todos escolheram. Se alguém sair, a sala volta para os lugares (os decks escolhidos ficam).
 4. Na mesa (o padrão é a **mesa real**: nada brilha e a mesa não explica o que não pode; tentou algo
    que não vale, a carta volta com um tremido):
+   - **Avatares:** cada jogador aparece num medalhão com o retrato e a vida no medalhão pequeno embaixo; clicar na
+     vida escolhe o jogador como alvo. Os oponentes ficam no meio, em cima da própria área (a arrumação padrão deixa
+     o espaço livre); o seu fica na base da mesa, embaixo da mão, que se abre em leque por cima dele.
    - **Auxílios:** em "Configurações", cada um escolhe Mesa real, Leve (só o brilho nas cartas
      jogáveis), Completo (tudo, menos pagar automaticamente) ou Personalizado. Vale na hora, só para
      você, e fica guardado no navegador. Se a sala proíbe, todos jogam em Mesa real.
@@ -109,6 +122,12 @@ janela mostra o endereço `https://` e a senha de acesso para mandar ao grupo. D
    registro para todos.
 
 Se a conexão cair ou o servidor reiniciar, a página reconecta sozinha e volta ao mesmo lugar.
+
+O visual segue a identidade do Magic: carvão e grafite na base, ouro envelhecido no que pede atenção, laranja
+mítico no que dá para fazer agora, texto em marfim e as cores de mana nos jogadores (você em ouro). Atrás das
+telas de fora da mesa (entrar, criar ou entrar numa sala, saguão e Decks) passa uma coleção de 24 wallpapers do
+Magic, bem apagados: cada abertura começa por um diferente e, com a página aberta, eles trocam a cada minuto.
+As fontes estão em `cliente/src/imagens/fundos/FONTES.md`.
 
 ## Decks: importar e atualizar pelo Moxfield
 

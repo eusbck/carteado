@@ -3,6 +3,7 @@
 //   POST /api/catalogo/importar {link}     começa a buscar um deck pelo link (um link que já está na mesa atualiza)
 //   POST /api/catalogo/<id>/verificar      começa a buscar de novo um deck da mesa (Atualizar)
 //   POST /api/catalogo/confirmar {token}   confirma a prévia
+//   GET  /api/catalogo/<id>/cartas         a lista atual de um deck (prévia no saguão)
 // A busca roda em segundo plano: a resposta traz o número da tarefa, e o andamento e a prévia chegam pelo
 // WebSocket (`catalogo`). Respostas longas pela rota esbarrariam no prazo do túnel.
 
@@ -34,6 +35,11 @@ export class RotasCatalogo {
       return { status: 200, corpo: { decks: this.catalogo.publico(this.info), tarefa: this.tarefas.tarefa } };
     }
     if (!caminho.startsWith('/api/catalogo/')) return null;
+    const lista = caminho.match(/^\/api\/catalogo\/([^/]+)\/cartas$/);
+    if (lista && metodo === 'GET') {
+      const l = /^[A-Za-z0-9_-]{8,40}$/.test(lista[1]) ? this.catalogo.lista(lista[1], this.info) : null;
+      return l ? { status: 200, corpo: l } : { status: 404, corpo: { erro: 'Deck desconhecido' } };
+    }
     if (metodo !== 'POST') return { status: 405, corpo: { erro: 'Método não permitido' } };
     let dados: Record<string, unknown> = {};
     try { dados = corpo ? JSON.parse(corpo) : {}; } catch { return { status: 400, corpo: { erro: 'Pedido inválido' } }; }

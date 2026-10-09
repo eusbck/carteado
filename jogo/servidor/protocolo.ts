@@ -10,6 +10,9 @@ export type RegraMulligan = 'londres' | 'livre';
 /** auxílios da interface (brilhos, avisos, pagar automaticamente): cada um escolhe, ou a sala proíbe todos */
 export type RegraAuxilios = 'permitidos' | 'proibidos';
 export type TipoAssento = 'humano' | 'bot' | 'vazio';
+/** passos do saguão, um de cada vez: quem joga entra (e o anfitrião põe bots), o anfitrião define as regras, cada um
+ * escolhe o deck. O anfitrião avança; a sala volta para os lugares quando um lugar vaga. */
+export type EtapaSaguao = 'lugares' | 'regras' | 'decks';
 
 export interface AssentoPublico {
   indice: number;
@@ -19,6 +22,8 @@ export interface AssentoPublico {
   conectado: boolean;
   /** nível do bot (null para pessoas e assentos vazios) */
   nivel?: NivelBot | null;
+  /** retrato escolhido (servidor/avatares.ts); null: o do comandante do deck, ou a inicial do nome */
+  avatar?: string | null;
 }
 
 export interface SalaPublica {
@@ -33,6 +38,8 @@ export interface SalaPublica {
   auxilios: RegraAuxilios;
   /** semente da partida em andamento (registrada para reprodução) */
   semente: string | null;
+  /** passo do saguão em que a sala está (vale com a sala esperando) */
+  etapa: EtapaSaguao;
 }
 
 export interface DeckResumo {
@@ -53,6 +60,15 @@ export interface CartaCatalogo {
   tipo: string;
   /** a carta já tem regras no jogo */
   pronta: boolean;
+}
+
+/** a lista de um deck jogável, para a prévia no saguão */
+export interface ListaDeck {
+  id: string;
+  nome: string;
+  comandante: CartaCatalogo;
+  /** as outras cartas (sem o comandante) */
+  cartas: CartaCatalogo[];
 }
 
 /** um deck na tela Decks (jogável ou não) */
@@ -193,6 +209,10 @@ export type MsgCliente =
   | { t: 'posicao'; obj?: number; x?: number; y?: number; limpar?: boolean; lista?: { obj: number; x: number; y: number }[] }
   | { t: 'mulligan'; regra: RegraMulligan }
   | { t: 'auxilios'; regra: RegraAuxilios }
+  /** o anfitrião muda o passo do saguão */
+  | { t: 'etapa'; etapa: EtapaSaguao }
+  /** o retrato do seu assento (null: volta ao do comandante do deck) */
+  | { t: 'avatar'; avatar: string | null }
   /** pedir para desfazer a sua última jogada deste turno; responder ou cancelar um pedido aberto */
   | { t: 'desfazer' }
   | { t: 'desfazerResposta'; aceitar: boolean }

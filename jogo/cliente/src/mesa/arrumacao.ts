@@ -1,6 +1,8 @@
 // Arrumação padrão do campo de um jogador: criaturas e outras permanentes em cima, terrenos
 // embaixo; terrenos e fichas iguais ficam em leque e as Auras/Equipamentos ficam atrás da
 // permanente em que estão presos. Se não couber, as cartas diminuem até um tamanho mínimo.
+// O espaço do avatar (um vão no meio, em cima no oponente e embaixo na sua área) fica livre: as linhas pulam
+// por cima dele.
 
 import type { ObjId } from '../../../motor/types.ts';
 import type { ObjView } from '../../../motor/view.ts';
@@ -34,7 +36,10 @@ function agrupar(objs: ObjView[], anexos: Map<ObjId, ObjView[]>): ObjView[][] {
 
 interface Peca { objs: ObjView[]; anexos: ObjView[] }
 
-function tentar(cima: Peca[], baixo: Peca[], W: number, H: number, w: number): { arr: Arrumacao; cabe: boolean } {
+/** vão que a arrumação deixa livre (o avatar): de x0 a x1 no campo, com `topo` px de altura em cima ou `baixo` px embaixo */
+export interface Vao { x0: number; x1: number; topo?: number; baixo?: number }
+
+function tentar(cima: Peca[], baixo: Peca[], W: number, H: number, w: number, vao?: Vao): { arr: Arrumacao; cabe: boolean } {
   const h = Math.round(w * PROPORCAO);
   const gap = Math.max(6, Math.round(w * .14));
   const passoLeque = Math.round(w * .3);
@@ -58,6 +63,12 @@ function tentar(cima: Peca[], baixo: Peca[], W: number, H: number, w: number): {
     if (p.objs.length > 1) leques.push({ x: x - 4, y: topoCarta - 8, n: p.objs.length, ids: p.objs.map((o) => o.id) });
   };
 
+  // uma peça que cairia sobre o vão vai para depois dele (se ainda couber na linha; senão fica onde está)
+  const pular = (x: number, l: number, naFaixa: boolean) => {
+    if (!vao || !naFaixa || x >= vao.x1 || x + l <= vao.x0) return x;
+    const nx = Math.round(vao.x1 + gap);
+    return nx + l <= W ? nx : x;
+  };
   // de cima para baixo
   let x = 0, y = 0, linha: Peca[] = [], xs: number[] = [];
   let fundoCima = 0;
@@ -69,29 +80,32 @@ function tentar(cima: Peca[], baixo: Peca[], W: number, H: number, w: number): {
     y += a + gap;
     linha = []; xs = []; x = 0;
   };
+  const emCima = () => y < (vao?.topo ?? 0);
   for (const p of cima) {
     const l = larg(p);
-    if (x > 0 && x + l > W) fecharLinha();
-    linha.push(p); xs.push(x); x += l + gap;
+    let xx = pular(x, l, emCima());
+    if (xx > 0 && xx + l > W) { fecharLinha(); xx = pular(0, l, emCima()); }
+    linha.push(p); xs.push(xx); x = xx + l + gap;
   }
   fecharLinha();
 
-  // terrenos de baixo para cima
+  // terrenos de baixo para cima (a linha k começa a uns k linhas da base: as de baixo pulam o vão de baixo)
   let topoBaixo = H;
   if (baixo.length) {
-    const linhas: Peca[][] = [[]];
+    const linhas: { p: Peca; x: number }[][] = [[]];
+    const naBase = () => (linhas.length - 1) * (h + gap * .6) < (vao?.baixo ?? 0);
     x = 0;
     for (const p of baixo) {
       const l = larg(p);
-      if (x > 0 && x + l > W) { linhas.push([]); x = 0; }
-      linhas[linhas.length - 1].push(p); x += l + gap * .7;
+      let xx = pular(x, l, naBase());
+      if (xx > 0 && xx + l > W) { linhas.push([]); xx = pular(0, l, naBase()); }
+      linhas[linhas.length - 1].push({ p, x: xx }); x = xx + l + gap * .7;
     }
     let yb = H;
     for (const ln of linhas) {
-      const a = Math.max(...ln.map(alt));
+      const a = Math.max(...ln.map((e) => alt(e.p)));
       yb -= a;
-      let xb = 0;
-      for (const p of ln) { peca(p, xb, yb, a); xb += larg(p) + gap * .7; }
+      for (const e of ln) peca(e.p, e.x, yb, a);
       topoBaixo = yb;
       yb -= gap * .6;
     }
@@ -107,8 +121,8 @@ function tentar(cima: Peca[], baixo: Peca[], W: number, H: number, w: number): {
  * nem muda o tamanho delas. As postas ficam por cima, na ordem de `ordemZ` (a maior por cima).
  */
 export function arrumarCampo(objs: ObjView[], anexos: Map<ObjId, ObjView[]>, posicoes: Record<string, [number, number]>, ordemZ: Record<string, number>,
-  m: { W: number; livreW: number; H: number; wBase: number; wMin: number }): Arrumacao {
-  const a = arrumar(objs, anexos, m.W, m.H, m.wBase, m.wMin);
+  m: { W: number; livreW: number; H: number; wBase: number; wMin: number; vao?: Vao }): Arrumacao {
+  const a = arrumar(objs, anexos, m.W, m.H, m.wBase, m.wMin, m.vao);
   const passoAnexo = Math.round(a.w * .2);
   // a carta virada gira em torno do centro; os anexos ficam acima do canto dela como está, igual à arrumação
   const giro = (o: ObjView) => (o.tapped ? (Math.round(a.w * PROPORCAO) - a.w) / 2 : 0);
@@ -124,7 +138,7 @@ export function arrumarCampo(objs: ObjView[], anexos: Map<ObjId, ObjView[]>, pos
   return a;
 }
 
-export function arrumar(objs: ObjView[], anexos: Map<ObjId, ObjView[]>, W: number, H: number, wBase: number, wMin: number): Arrumacao {
+export function arrumar(objs: ObjView[], anexos: Map<ObjId, ObjView[]>, W: number, H: number, wBase: number, wMin: number, vao?: Vao): Arrumacao {
   const terrenos = objs.filter((o) => o.types.includes('Land') && !o.types.includes('Creature'));
   const criaturas = objs.filter((o) => o.types.includes('Creature'));
   const outros = objs.filter((o) => !terrenos.includes(o) && !criaturas.includes(o));
@@ -133,7 +147,7 @@ export function arrumar(objs: ObjView[], anexos: Map<ObjId, ObjView[]>, W: numbe
   const baixo = pecas(terrenos);
   let w = wBase;
   for (;;) {
-    const t = tentar(cima, baixo, Math.max(W, 1), Math.max(H, 1), w);
+    const t = tentar(cima, baixo, Math.max(W, 1), Math.max(H, 1), w, vao);
     if (t.cabe || w <= wMin) return t.arr;
     w = Math.max(wMin, Math.round(w * .92));
   }

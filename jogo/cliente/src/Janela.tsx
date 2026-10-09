@@ -1,8 +1,10 @@
 // Janela por cima de tudo: centralizada na tela, fecha pelo X, pelo Esc e pelo clique fora, e
-// rola por dentro quando é mais alta que a tela. Fica fora da grade da mesa (quem usa põe a
-// janela ao lado de .mesa, não dentro), para não empurrar nem cortar o tabuleiro.
+// rola por dentro quando é mais alta que a tela. É desenhada direto no <body> (portal): dentro de um painel com
+// backdrop-filter (os painéis translúcidos das telas de fora da mesa) o fundo fixo ficava preso ao painel e a
+// janela saía cortada.
 
 import type { ComponentChildren } from 'preact';
+import { createPortal } from 'preact/compat';
 import { useEffect, useId, useRef } from 'preact/hooks';
 import { IconeFechar } from './icones.tsx';
 
@@ -50,7 +52,7 @@ export function Janela({ titulo, rotulo, fechar, children, larga, classe, escond
     };
   }, [escondida]);
 
-  return (
+  return createPortal(
     <div class={`janela-fundo ${escondida ? 'escondido' : ''}`}
       onPointerDown={(e) => { comecouFora.current = e.target === e.currentTarget; }}
       onClick={(e) => { if (comecouFora.current && e.target === e.currentTarget) fechar(); comecouFora.current = false; }}>
@@ -62,6 +64,7 @@ export function Janela({ titulo, rotulo, fechar, children, larga, classe, escond
         </header>
         <div class="janela-corpo">{children}</div>
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }

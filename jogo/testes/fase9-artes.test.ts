@@ -31,7 +31,7 @@ async function preparar() {
   // uma "carta" 745×1040 e uma arte 744×442 (o tamanho das guardadas)
   await sharp({ create: { width: 745, height: 1040, channels: 3, background: '#335577' } }).png().toFile(join(cartas, 'assets', 'cards', SEM_ARTE, 'front.png'));
   await sharp({ create: { width: 744, height: 442, channels: 3, background: '#775533' } }).webp({ lossless: true }).toFile(join(artes, `${COM_ARTE}.webp`));
-  return { img: new Imagens(cartas, cache, artes), artes };
+  return { img: new Imagens(cartas, cache, artes), artes, raiz, cartas, cache };
 }
 
 describe('arte do comandante para o fundo da área', () => {
@@ -56,6 +56,34 @@ describe('arte do comandante para o fundo da área', () => {
     expect(m.width).toBe(2560);
     // a caixa antiga: 84% × 35% da carta
     expect(m.height).toBe(Math.round(Math.round(1040 * 0.35) * 2560 / Math.round(745 * 0.84)));
+  });
+
+  it('fundo feito para o deck (gerado/fundos): vale antes da arte e sai como está, sem ampliar; a miniatura segue a arte', async () => {
+    const { artes, raiz, cartas, cache } = await preparar();
+    const fundos = join(raiz, 'fundos');
+    mkdirSync(fundos, { recursive: true });
+    await sharp({ create: { width: 1672, height: 941, channels: 3, background: '#553377' } }).webp({ quality: 88 }).toFile(join(fundos, `${COM_ARTE}.webp`));
+    const img = new Imagens(cartas, cache, artes, [], fundos);
+    const fundo = await img.arte(COM_ARTE, 'fundo');
+    expect(fundo).toBe(join(fundos, `${COM_ARTE}.webp`));
+    expect((await sharp(fundo!).metadata()).width).toBe(1672);
+    const mini = await img.arte(COM_ARTE, 'arte');
+    expect(mini).toMatch(/-arte-alta.webp$/);
+    // sem fundo próprio, o de antes (a arte ampliada)
+    expect(await img.arte(SEM_ARTE, 'fundo')).toMatch(/-fundo.webp$/);
+  });
+
+  it('os 9 decks do saguão têm o fundo próprio, em alta, com o nome da imagem do comandante', async () => {
+    const fontes = JSON.parse(readFileSync(join(import.meta.dirname, '..', 'gerado', 'fundos', 'fontes.json'), 'utf8')) as Record<string, { imagem: string }>;
+    const imagens = imagensJson as unknown as Record<string, { en: { id: string } | null; pt: { id: string; reserva?: boolean } | null }>;
+    for (const d of decksJson as { comandante: string }[]) {
+      const i = imagens[d.comandante];
+      const usada = (i?.pt && !i.pt.reserva ? i.pt : i?.en)?.id;
+      expect(fontes[d.comandante]?.imagem, d.comandante).toBe(usada);
+      const arquivo = join(import.meta.dirname, '..', 'gerado', 'fundos', `${usada}.webp`);
+      expect(existsSync(arquivo), d.comandante).toBe(true);
+      expect((await sharp(arquivo).metadata()).width, d.comandante).toBeGreaterThanOrEqual(1600);
+    }
   });
 
   it('id inválido ou sem imagem nenhuma: nada', async () => {

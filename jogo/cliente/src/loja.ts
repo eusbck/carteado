@@ -9,6 +9,7 @@ import type { DeckCatalogo, DeckResumo, MsgChat, MsgCliente, MsgServidor, Pedido
 import { carregarCartas } from './cartas.ts';
 import { auxiliosAtivos, preferencias } from './preferencias.ts';
 import { tocar } from './sons.ts';
+import { avatarGuardado } from './avatares.ts';
 
 export interface Estado {
   fase: 'carregando' | 'entrada' | 'inicio' | 'decks' | 'sala';
@@ -72,6 +73,8 @@ class Loja {
   private tentativas = 0;
   private timerErro: ReturnType<typeof setTimeout> | null = null;
   private seqRevelada = 0;
+  /** salas em que o retrato guardado neste navegador já foi mandado (uma vez por sala enquanto a página está aberta) */
+  private avatarMandado = new Set<string>();
 
   mudar(p: Partial<Estado>): void {
     this.e = { ...this.e, ...p };
@@ -215,11 +218,19 @@ class Loja {
 
   private tratar(m: MsgServidor): void {
     switch (m.t) {
-      case 'sala':
+      case 'sala': {
         guardarSala({ codigo: m.sala.codigo, token: m.token });
+        // o retrato escolhido antes (noutra sala) vale também nesta
+        const meu = m.sala.assentos[m.voce];
+        const guardado = avatarGuardado();
+        if (guardado && meu?.tipo === 'humano' && (meu.avatar ?? null) !== guardado && !this.avatarMandado.has(m.sala.codigo)) {
+          this.avatarMandado.add(m.sala.codigo);
+          this.enviar({ t: 'avatar', avatar: guardado });
+        }
         // a tela Decks aberta pelo saguão continua aberta enquanto a partida não começa (alguém entrou, trocou de deck…)
         this.mudar({ sala: m.sala, voce: m.voce, fase: this.e.fase === 'decks' && m.sala.estado !== 'jogando' ? 'decks' : 'sala', vista: m.sala.estado === 'espera' ? null : this.e.vista });
         break;
+      }
       case 'jogo':
         this.mudar({
           vista: m.vista, paradas: m.paradas, posicoes: m.posicoes ?? {}, respondida: m.vista.decision?.id === this.e.respondida ? this.e.respondida : null,

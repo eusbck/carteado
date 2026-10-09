@@ -29,10 +29,13 @@ export function urlArte(def: string): string | null {
   return i?.f ? `/img/${i.f}/arte` : null;
 }
 
-/** arte do comandante em alta qualidade, ampliada para o fundo da área do jogador */
+/** o servidor manda as imagens com cache imutável: mudar a fonte dos fundos pede um número novo aqui */
+const VERSAO_FUNDO = 2;
+
+/** fundo da área do jogador: o feito para o deck (gerado/fundos) ou a arte do comandante ampliada */
 export function urlFundo(def: string): string | null {
   const i = INFO[def];
-  return i?.f ? `/img/${i.f}/fundo` : null;
+  return i?.f ? `/img/${i.f}/fundo?v=${VERSAO_FUNDO}` : null;
 }
 
 /** nome para mostrar: a impressão em português quando houver */

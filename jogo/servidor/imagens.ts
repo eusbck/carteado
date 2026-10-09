@@ -1,8 +1,9 @@
 // Imagens das cartas: lidas da pasta original (cartas/assets, somente leitura) e servidas
 // só para sessões autenticadas. As miniaturas WebP são geradas sob demanda e guardadas em
 // .cache/miniaturas (fora do repositório). A arte dos comandantes em alta qualidade vem de
-// gerado/artes (baixada uma vez por ferramentas/baixar-artes.ts). As cartas de decks importados pela tela Decks
-// têm as imagens em pastas extras (dados-locais/imagens/<id>/front.png).
+// gerado/artes (baixada uma vez por ferramentas/baixar-artes.ts); o fundo da mesa de cada deck, quando houver um
+// feito para ele, vem de gerado/fundos. As cartas de decks importados pela tela Decks têm as imagens em pastas
+// extras (dados-locais/imagens/<id>/front.png).
 
 import { existsSync, mkdirSync, readdirSync, statSync } from 'node:fs';
 import { dirname, join } from 'node:path';
@@ -20,12 +21,15 @@ export class Imagens {
   private cache: string;
   private pastaArtes: string;
   private pastasExtras: string[];
+  private pastaFundos: string;
 
-  constructor(pastaCartas: string, cache: string, pastaArtes = join(dirname(fileURLToPath(import.meta.url)), '..', 'gerado', 'artes'), pastasExtras: string[] = []) {
+  constructor(pastaCartas: string, cache: string, pastaArtes = join(dirname(fileURLToPath(import.meta.url)), '..', 'gerado', 'artes'), pastasExtras: string[] = [],
+    pastaFundos = join(dirname(fileURLToPath(import.meta.url)), '..', 'gerado', 'fundos')) {
     this.pastaCartas = pastaCartas;
     this.cache = cache;
     this.pastaArtes = pastaArtes;
     this.pastasExtras = pastasExtras;
+    this.pastaFundos = pastaFundos;
     mkdirSync(cache, { recursive: true });
     const pastaSimbolos = join(pastaCartas, 'assets', 'symbols');
     if (existsSync(pastaSimbolos)) {
@@ -67,11 +71,17 @@ export class Imagens {
    * área do jogador). A fonte é a arte em alta qualidade guardada por ferramentas/baixar-artes.ts
    * (gerado/artes, os comandantes); sem ela, um recorte da imagem local da frente, cuja caixa cobre
    * a arte das molduras comuns sem pegar o nome nem a linha de tipo.
-   * Nenhuma fonte passa de 745 px de largura: o fundo é ampliado aqui com lanczos3 e uma nitidez
+   * Nenhuma dessas fontes passa de 745 px de largura: o fundo é ampliado aqui com lanczos3 e uma nitidez
    * leve, que fica bem mais limpo que deixar o navegador esticar a imagem pequena.
+   * O fundo feito para o deck (gerado/fundos/<id da imagem do comandante>.webp, em alta) vale antes de tudo e
+   * sai como está, sem ampliar; a miniatura do saguão continua sendo a arte da carta.
    */
   async arte(id: string, uso: 'arte' | 'fundo' = 'arte'): Promise<string | null> {
     if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/.test(id)) return null;
+    if (uso === 'fundo') {
+      const proprio = join(this.pastaFundos, `${id}.webp`);
+      if (existsSync(proprio)) return proprio;
+    }
     const alta = join(this.pastaArtes, `${id}.webp`);
     const original = existsSync(alta) ? alta : this.original(id, 'front.png');
     if (!original) return null;

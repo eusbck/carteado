@@ -47,6 +47,75 @@ Lista de verificação das fases. É por aqui que uma sessão nova retoma o trab
   - verificado: `npm run typecheck` sem erros; `npx vitest run` com 657 arquivos e 1776 testes passando;
     `node ferramentas/e2e.ts` passou inteiro; `CAPTURAS_SO=janelas node ferramentas/capturas.ts` passou, com as
     capturas novas (44 a 44d) conferidas.
+- 08/10/2026 (noite, continuação), pedidos na conversa:
+  - **cores da identidade do Magic** (a partir de uma resposta do ChatGPT que o Caio compartilhou: grafite, ouro
+    envelhecido e laranja mítico na base, cores de mana para o que é do jogo). Tokens novos no `:root` do
+    `estilo.css`: `--acao` (laranja mítico #e85d28: botões principais, jogáveis, foco, etapa atual; era o verde),
+    `--ouro` (#d6a85b: atenção, escolhido, decisão pendente; era o amarelo), `--positivo` (verde de mana: ganhar
+    vida, marcadores +1, aceitar, deck pronto), `--vermelho` carmim (perigo, dano, ataque, distinto do laranja),
+    neutros quentes (carvão #121113, grafite, texto marfim #f2e8d5). As cores fixas em rgba viraram `color-mix`
+    dos tokens, então a paleta mora só no `:root`. Jogadores: você em ouro, os outros em azul, verde e violeta
+    (cores de mana). Setas de combate e brilho de vida/dano acompanham (`Setas.tsx`, `Efeitos.tsx`);
+  - **wallpapers no fundo** das telas de fora da mesa (entrada, início, saguão e Decks): 24 imagens escolhidas
+    da busca do Brave ("wallpaper magic the gathering"), escuras e nos tons da identidade, sem texto por cima,
+    recortadas para 1920×1080 em WebP (2,8 MB) em `cliente/src/imagens/fundos/` com as fontes em `FONTES.md`.
+    `cliente/src/FundoArte.tsx`: ordem embaralhada guardada no navegador (passa por todas antes de repetir),
+    troca a cada minuto com fade e um zoom lento; opacidade .45 com vinheta, e os painéis dessas telas
+    (`.janela`) ficaram translúcidos (62%, com desfoque leve) para a imagem aparecer, a pedido do Caio. Fica fora da mesa.
+  - **fundo da mesa de cada deck** em alta: o Caio mandou 9 imagens (1672×941, feitas no ChatGPT, uma por
+    comandante), porque o fundo antigo era a arte da carta (até 745 px) ampliada para 2560 px e ficava estourado.
+    Viraram `gerado/fundos/<id da imagem do comandante>.webp` (qualidade 88, sem ampliar; `fontes.json` liga cada
+    uma ao deck e ao arquivo original). `servidor/imagens.ts` serve esse fundo antes de tudo; a miniatura dos
+    decks no saguão continua a arte oficial. A URL do fundo ganhou `?v=2` (`VERSAO_FUNDO` em `cliente/src/cartas.ts`)
+    porque as imagens vão com cache imutável de 7 dias. Deck novo sem fundo próprio continua com a arte ampliada.
+  - **tela inicial em passos** (`telas/Inicio.tsx`): o nome, depois criar ou entrar, depois só os campos daquela
+    escolha; cada passo entra deslizando (para frente ou para trás), o painel acompanha a altura, Enter avança,
+    Esc volta, o foco vai para o campo de cada passo; com o nome guardado começa na escolha.
+  - **saguão em passos** (`telas/Saguao.tsx`), a etapa no servidor (`SalaPublica.etapa`, mensagem `etapa` só do
+    anfitrião; avançar exige os lugares cheios; um lugar que vaga volta a sala para os lugares, os decks
+    escolhidos ficam; `iniciar` não exige a etapa, para os testes e ferramentas antigas). Lugares (o anfitrião
+    põe bots com um deck sorteado e o nível), regras (os outros acompanham), decks (clicar abre a **prévia**,
+    `telas/PreviaDeck.tsx`, com a lista de `GET /api/catalogo/<id>/cartas` por tipo e a carta grande; o anfitrião
+    troca o deck dos bots).
+  - **entrada épica** (`telas/Entrada.tsx`, `Atmosfera.tsx`): boas-vindas aos feiticeiros com abertura em
+    sequência (o M em brasa com halo, "Magic Commander" em Cinzel dourada, as cinco joias de mana do verso
+    acendendo, o texto, a senha), brasas e ciscos verdes subindo (a luz e a vida nas trevas); títulos das primeiras
+    telas em Cinzel; tudo parado com "reduzir movimento". As trepadeiras com folhas que cresciam dos cantos saíram a
+    pedido do Caio (gostou das partículas, não das folhas).
+  - **avatares na mesa** (pedido com especificação, retratos feitos pelo Caio): `servidor/avatares.ts` (catálogo
+    dos 9, aura de cada um, retrato automático pelo comandante), `cliente/src/imagens/avatares/<id>.webp` (512 px
+    com alfa, recortados da margem transparente), `cliente/src/avatares.ts`, componente `mesa/Avatar.tsx` (medalhão
+    com aura, moldura dourada, a cabeça passando por cima da moldura com duas cópias do retrato, vida embaixo com a
+    classe `.vida-n` que os efeitos e as setas já usam). Na área: oponente no meio em cima, você no meio embaixo,
+    acima da mão; a vida separada do canto saiu (o dano de comandante e a reserva ficam). A arrumação padrão ganhou
+    um vão (`Vao` em `mesa/arrumacao.ts`) para não pôr cartas sob o medalhão. O servidor guarda `avatar` por assento
+    (mensagem `avatar`, só ids do catálogo; null volta ao automático). Escolha no saguão (`telas/EscolhaRetrato.tsx`),
+    guardada no navegador e reenviada ao entrar numa sala. Reação ao dano e brilho de quem tem o turno; tudo com
+    "reduzir movimento". No 4 jogadores cada oponente tem o seu, menor. Testes: `testes/avatar.test.ts`.
+  - **área de baixo em camadas** (pedido do Caio, com duas rodadas de ajuste): de baixo para cima, fundo, avatar
+    ancorado na base (a 8 px, com a vida colada embaixo da moldura), a mão em leque acima dele e na frente (a borda de
+    baixo das cartas do meio pousa no topo da moldura: as cartas cruzam só a cabeça que sai da moldura e o rosto fica
+    inteiro logo abaixo do leque) e o rótulo "Mão (X)" centralizado acima do leque. O leque ganhou arco de verdade
+    (até ~44° de abertura, as pontas descendo 30% da largura da carta). O seu avatar fica fora do campo, então a
+    arrumação só deixa o vão no do oponente.
+  - **wallpapers sobrepostos**: na troca a nova entrava por cima da anterior e as duas, semitransparentes, apareciam
+    uma através da outra; agora a anterior some em fade e sai da página.
+  - revisão da bateria de capturas por um subagente: a prévia do deck ficava presa no painel do saguão (o
+    `backdrop-filter` do painel prende o fundo fixo): as janelas agora vão para o `<body>` por portal (`Janela.tsx`);
+    o que está escolhido (opção ativa, deck escolhido, "anfitrião", primeiro da fila) passou do laranja para o ouro;
+    a fase que contém a etapa atual ficou neutra; seis wallpapers com logo no canto foram recortados de novo.
+  - a sala podia ficar sem anfitrião quando todas as pessoas saíam (achado do subagente dos testes): quem senta numa
+    sala cujo anfitrião não é uma pessoa passa a conduzir.
+  - da pasta "bugs a corrigir" do Caio: o destaque da etapa atual do saguão englobava o tracinho de ligação (agora
+    fica fora da pílula); o saguão tinha altura mínima e sobrava um vão antes do rodapé; a prévia do deck passava
+    da tela e rolava para o lado (a lista em colunas com altura fixa transbordava; agora é uma grade que rola só na
+    vertical, dentro de um modal que cabe na tela).
+  - **ícone em brasa**: o M passou do azul do verso para o vermelho-alaranjado com bordas amarelas da imagem que o
+    Caio mandou (mapa de cores sobre o recorte; `imagens/logo-m.png` com 320 px e o favicon).
+  - revisão das capturas por um subagente: hover verde que sobrara nos botões cheios, desativados ilegíveis (agora
+    cinza), "Aceitar" do desfazer em verde (`.botao.positivo`), etapas da faixa em neutro, subtítulo do seletor,
+    neutros frios que sobraram, `.mini` da pilha colidindo com a janela da entrada, topo da pilha em ouro,
+    linha de ajuste manual do registro distinta do nome em ouro.
 
 ## Fase 0: exploração e proposta
 

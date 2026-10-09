@@ -1,12 +1,14 @@
-// Área de um jogador: arte do comandante ao fundo, nome e vida, o campo de batalha com cada
-// permanente na sua posição e a fileira de zonas (comando, mão, grimório, cemitério, exílio).
+// Área de um jogador: arte do comandante ao fundo, nome, o avatar com a vida (no meio, em cima no oponente e embaixo
+// na sua área, acima da mão), o campo de batalha com cada permanente na sua posição e a fileira de zonas (comando,
+// mão, grimório, cemitério, exílio).
 
 import { useLayoutEffect, useMemo, useRef, useState } from 'preact/hooks';
 import type { ObjId } from '../../../motor/types.ts';
 import type { ObjView, PlayerView } from '../../../motor/view.ts';
 import { nomeCarta } from '../cartas.ts';
-import { IconeVida } from '../icones.tsx';
+import type { AvatarCliente } from '../avatares.ts';
 import { arrumarCampo } from './arrumacao.ts';
+import { Avatar } from './Avatar.tsx';
 import { Carta, type Realce, type Selo } from './Carta.tsx';
 import { Simbolos } from './Simbolos.tsx';
 
@@ -31,6 +33,8 @@ export interface AreaProps {
   duelo: boolean;
   cor: string;
   fundo: string | null;
+  /** retrato do jogador (o escolhido ou o do comandante do deck); null: medalhão com a inicial */
+  avatar: AvatarCliente | null;
   realce: (o: ObjView) => Realce;
   combate: (o: ObjView) => EstadoCombate | undefined;
   onCarta: (o: ObjView, r: DOMRect) => void;
@@ -95,10 +99,17 @@ export function AreaJogador(p: AreaProps) {
   // medidas que dependem do tamanho da área
   const wz = p.compacta ? (p.duelo ? limitar(44, tam.h * .13, 56) : limitar(34, tam.h * .1, 42)) : limitar(54, tam.h * .13, 76);
   const zonasH = Math.round(wz * PROPORCAO) + 26;
-  const wm = limitar(78, tam.h * .21, 120);
+  const wm = p.mao ? limitar(72, tam.h * .18, 108) : limitar(78, tam.h * .21, 120);
+  // sua área, de baixo para cima: o avatar ancorado na base (o quarto de baixo da moldura passa da borda; a vida fica ao
+  // lado da base do retrato), a mão acima dele e na frente (a borda de baixo das cartas do meio fica 12 px acima do topo
+  // da moldura: o centro do avatar fica abaixo da mão, as cartas cruzam só a cabeça que sai da moldura e o rosto fica
+  // inteiro logo abaixo do leque) e o rótulo da mão acima do leque, com respiro
+  const tamLocal = limitar(56, tam.h * .145, 88);
+  const maoBaixo = Math.round(tamLocal * .75 + 12);
+  const maoTopo = maoBaixo + Math.round(wm * PROPORCAO);
   // a sua área começa abaixo da faixa de fases (os selos de combate sobem um pouco acima das cartas)
   const topo = p.compacta ? 44 : 58;
-  const baixo = p.mao ? Math.max(zonasH + 4, Math.round(wm * PROPORCAO * .78) + 22) : zonasH;
+  const baixo = p.mao ? Math.max(zonasH + 4, maoTopo + 42) : zonasH;
   const campoW = Math.max(0, tam.w - 24 - (p.reservaDireita ?? 0));
   const campoH = Math.max(0, tam.h - topo - baixo);
   // as posições escolhidas são proporcionais ao campo inteiro (a reserva à direita só vale para a
@@ -106,11 +117,23 @@ export function AreaJogador(p: AreaProps) {
   const livreW = Math.max(0, tam.w - 24);
   const wBase = p.compacta ? (p.duelo ? limitar(54, tam.h * .19, 84) : limitar(40, tam.h * .15, 62)) : limitar(62, tam.h * .17, 92);
 
+  // avatar: o medalhão fica no meio da área; a arrumação padrão deixa o espaço dele livre (cabeça acima da moldura,
+  // moldura e o medalhão da vida embaixo: uns 1,42 diâmetros de altura)
+  const tamAvatar = p.mao ? tamLocal : p.compacta && !p.duelo ? limitar(48, tam.h * .17, 84) : limitar(64, tam.h * .2, 124);
+  // o avatar de um oponente fica no meio, em cima do campo: a arrumação deixa o espaço dele livre. O seu fica embaixo da
+  // mão, fora do campo, e não precisa de vão
+  const altAvatar = Math.round(tamAvatar * 1.42) + 22;
+  const vaoX0 = Math.round(tam.w / 2 - 12 - tamAvatar * .72);
+  const vaoX1 = Math.round(tam.w / 2 - 12 + tamAvatar * .72);
+  const vaoAlt = p.mao ? 0 : Math.max(0, 8 + altAvatar - topo);
+
   // quem tem posição escolhida fica onde a pessoa pôs; os outros seguem a arrumação padrão
   const posicoes = p.posicoes ?? {};
   const ordemZ = p.ordemZ ?? {};
-  const arr = useMemo(() => arrumarCampo(p.objs, p.anexos, posicoes, ordemZ, { W: campoW, livreW, H: campoH, wBase, wMin: p.compacta ? 28 : 40 }),
-    [p.objs, p.anexos, posicoes, ordemZ, campoW, livreW, campoH, wBase, p.compacta]);
+  const arr = useMemo(() => arrumarCampo(p.objs, p.anexos, posicoes, ordemZ, {
+    W: campoW, livreW, H: campoH, wBase, wMin: p.compacta ? 28 : 40,
+    vao: vaoAlt > 0 ? { x0: vaoX0, x1: vaoX1, topo: vaoAlt } : undefined,
+  }), [p.objs, p.anexos, posicoes, ordemZ, campoW, livreW, campoH, wBase, p.compacta, vaoX0, vaoX1, vaoAlt, p.eu]);
   const todosNoCampo = useMemo(() => [...p.objs, ...p.objs.flatMap((o) => p.anexos.get(o.id) ?? [])], [p.objs, p.anexos]);
 
   const contadores = Object.entries(j.counters).filter(([, n]) => n > 0);
@@ -125,13 +148,13 @@ export function AreaJogador(p: AreaProps) {
   const mao = p.mao ?? [];
   const n = mao.length;
   const livre = Math.max(wm, tam.w - 2 * (3 * (wz + 12) + 30));
-  const passo = n > 1 ? Math.min(wm * .74, (livre - wm) / (n - 1)) : wm;
+  const passo = n > 1 ? Math.min(wm * .8, (livre - wm) / (n - 1)) : wm;
   const meio = (n - 1) / 2;
-  const giro = Math.min(3, 24 / Math.max(n, 1));
-  const curva = meio > 0 ? Math.min(2.4, 22 / (meio * meio)) : 0;
+  const giro = n > 1 ? Math.min(8, 52 / (n - 1)) : 0;
+  const curva = meio > 0 ? (wm * .34) / (meio * meio) : 0;
 
   return (
-    <section ref={ref} class={`${classes} ${p.onCliqueArea ? 'area-clicavel' : ''}`} data-jogador={j.id} style={{ '--cor': p.cor, '--zonas-h': `${baixo}px`, '--wz': `${wz}px` }} aria-label={`Área de ${j.name}`}
+    <section ref={ref} class={`${classes} ${p.onCliqueArea ? 'area-clicavel' : ''}`} data-jogador={j.id} style={{ '--cor': p.cor, '--zonas-h': `${baixo}px`, '--wz': `${wz}px`, '--mao-topo': `${maoTopo}px`, '--tam-avatar': `${tamAvatar}px` }} aria-label={`Área de ${j.name}`}
       onClick={p.onCliqueArea ? (e) => { if (!(e.target as HTMLElement).closest('[data-obj], button')) p.onCliqueArea!(); } : undefined}
       onContextMenu={p.onMenuArea ? (e) => { e.preventDefault(); p.onMenuArea!(e); } : undefined}>
       {p.fundo && <div class="area-fundo" style={{ backgroundImage: `url(${p.fundo})` }} />}
@@ -147,7 +170,6 @@ export function AreaJogador(p: AreaProps) {
         </div>
         <div class="vida">
           {j.manaPool && p.eu && reserva}
-          <button type="button" class="vida-n" onClick={p.onJogador} disabled={!p.onJogador} title="Vida" aria-label={`Vida de ${j.name}: ${j.life}`}><IconeVida />{j.life}</button>
           {danoCmd.length > 0 && (
             <div class="dano-cmd" title="Dano de comandante recebido (CR 903.10a)">
               {danoCmd.map((d) => <span key={d.from}>{nomeCarta(d.from, d.from).split(',')[0]} · {d.amount}</span>)}
@@ -155,6 +177,11 @@ export function AreaJogador(p: AreaProps) {
           )}
         </div>
       </header>
+
+      {tam.w > 0 && (
+        <Avatar jogador={j.id} avatar={p.avatar} vida={j.life} nome={j.name} local={p.eu} ativo={p.ativo} fora={j.left}
+          tamanho={tamAvatar} cor={p.cor} onVida={p.onJogador} />
+      )}
 
       <div class="campo" aria-label="Campo de batalha" data-larg={livreW} data-alt={campoH} data-carta-w={arr.w}
         onPointerDown={p.onPegarCampoVazio ? (e) => { if (!(e.target as HTMLElement).closest('[data-obj]')) p.onPegarCampoVazio!(e, e.currentTarget as HTMLElement); } : undefined}>
@@ -230,9 +257,10 @@ export function AreaJogador(p: AreaProps) {
         </div>
       </footer>
 
+      {/* rótulo da mão: centralizado acima do leque */}
+      {p.mao && <h2 class="mao-titulo mao-rotulo">Mão <b>({n})</b></h2>}
       {p.mao && (
-        <section class="mao" aria-label="Sua mão" style={{ '--wm': `${wm}px`, '--passo': `${Math.round(passo - wm)}px`, '--mao-baixo': `${-Math.round(wm * PROPORCAO * .2)}px` }}>
-          <h2 class="mao-titulo">Mão <b>({n})</b></h2>
+        <section class="mao" aria-label="Sua mão" style={{ '--wm': `${wm}px`, '--passo': `${Math.round(passo - wm)}px`, '--mao-baixo': `${maoBaixo}px` }}>
           <div class="mao-cartas">
             {n === 0 && <span class="mao-vazia">Sem cartas na mão</span>}
             {mao.map((o, i) => (

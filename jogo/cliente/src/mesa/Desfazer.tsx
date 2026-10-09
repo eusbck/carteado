@@ -36,7 +36,7 @@ export function PedidoDesfazer({ p, eu, nomes, cor }: { p: Pedido & { ate: numbe
       <div class="pedido-tempo" aria-hidden="true"><span style={{ width: `${Math.min(100, (resta / Math.max(1, p.totalMs)) * 100)}%` }} /></div>
       <div class="botoes-linha">
         {devo && <>
-          <button class="botao cheio" onClick={() => loja.enviar({ t: 'desfazerResposta', aceitar: true })}>Aceitar</button>
+          <button class="botao positivo" onClick={() => loja.enviar({ t: 'desfazerResposta', aceitar: true })}>Aceitar</button>
           <button class="botao perigo" onClick={() => loja.enviar({ t: 'desfazerResposta', aceitar: false })}>Recusar</button>
         </>}
         {meu && <>

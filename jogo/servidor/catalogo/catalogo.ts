@@ -8,7 +8,7 @@
 import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, statSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import type { DeckList } from '../../motor/state.ts';
-import type { CartaCatalogo, DeckCatalogo } from '../protocolo.ts';
+import type { CartaCatalogo, DeckCatalogo, ListaDeck } from '../protocolo.ts';
 import { nomesDaLista, type CartasGeradas, type ImagensGeradas } from './gerar.ts';
 import type { DeckArquivo, EntradaLista, Lista, VersaoLista } from './tipos.ts';
 
@@ -142,6 +142,18 @@ export class Catalogo {
       trocados.push(d.id);
     }
     return trocados;
+  }
+
+  /** a lista atual de um deck, para a prévia no saguão (null: deck desconhecido ou só com versão em preparação) */
+  lista(id: string, info: InfoDisco): ListaDeck | null {
+    const d = this.ler(id);
+    const l = d?.atual;
+    if (!d || !l) return null;
+    const carta = (e: EntradaLista): CartaCatalogo => {
+      const i = info.carta(e.nome);
+      return { nome: e.nome, quantidade: e.quantidade, pt: i?.pt ?? null, img: i?.img ?? null, tipo: i?.tipo ?? '', pronta: this.pronta(e.nome) };
+    };
+    return { id: d.id, nome: d.nome, comandante: carta({ nome: l.comandante, quantidade: 1 }), cartas: l.cartas.filter((c) => c.nome !== l.comandante).map(carta) };
   }
 
   /** resumo de cada deck para a tela Decks */

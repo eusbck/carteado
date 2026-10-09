@@ -10,8 +10,8 @@
   border: 1px solid var(--linha-forte); background: transparent; color: var(--suave); cursor: pointer;
 }
 .ouvir svg { width: 15px; height: 15px; }
-.ouvir:hover { color: var(--verde); border-color: var(--verde); }
-.ouvir:focus-visible { outline: 2px solid var(--verde); outline-offset: 2px; }
+.ouvir:hover { color: var(--acao); border-color: var(--acao); }
+.ouvir:focus-visible { outline: 2px solid var(--acao); outline-offset: 2px; }
 .credito-musica { margin: 0; font-size: 12px; line-height: 1.45; color: var(--apagado); }
 .credito-musica a { color: var(--suave); }
-.credito-musica a:hover { color: var(--verde); }
+.credito-musica a:hover { color: var(--acao); }

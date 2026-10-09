@@ -8,6 +8,7 @@ import type { StopSettings } from '../../../motor/autopass.ts';
 import type { Decision, ManualAction, ObjId, PaymentSource, PriorityAction, Step, TargetRef } from '../../../motor/types.ts';
 import type { GameView, ObjView, PlayerView } from '../../../motor/view.ts';
 import type { MsgChat } from '../../../servidor/protocolo.ts';
+import { avatarDoAssento } from '../avatares.ts';
 import { nomeCarta, traduzir, urlFundo, urlImagem } from '../cartas.ts';
 import { IconeAjuste, IconeConceder, IconeRecolher as IconeSeta, IconeConfig, IconeDesfazer, IconeFimTurno, IconeParadas, IconePassar, IconeRecolher, IconeRegistro, IconeSair, Marca } from '../icones.tsx';
 import { loja, useLoja } from '../loja.ts';
@@ -126,8 +127,9 @@ function MenuFlutuante({ menu, fechar }: { menu: Menu; fechar: () => void }) {
   );
 }
 
-/** cor de cada jogador na sua tela: você em amarelo, os outros na ordem dos assentos */
-const CORES = ['var(--amarelo)', 'var(--vermelho)', 'var(--azul)', 'var(--roxo)'];
+/** cor de cada jogador na sua tela: você em ouro (o multicolorido do Magic), os outros em cores de mana
+ * (azul, verde e o violeta do preto), na ordem dos assentos */
+const CORES = ['var(--ouro)', 'var(--azul)', 'var(--positivo)', 'var(--roxo)'];
 const PARAVEIS = new Set<Step>(ETAPAS.map((e) => e.id).filter((s) => !['untap', 'cleanup', 'firstStrikeDamage'].includes(s)));
 
 /** o tremido discreto de "isso não pode" (sem explicação na mesa real) */
@@ -850,6 +852,8 @@ export function Mesa() {
     const deck = e.decks.find((x) => x.id === sala.assentos[p]?.deck);
     return deck ? urlFundo(deck.comandante) : null;
   };
+  // retrato de cada jogador: o que a pessoa escolheu, ou o do comandante do deck dela
+  const avatarDe = (p: number) => avatarDoAssento(sala.assentos[p]?.avatar, e.decks.find((x) => x.id === sala.assentos[p]?.deck)?.comandante);
 
   const duelo = sala.modo === '1v1';
   const area = (j: PlayerView, compacta: boolean) => {
@@ -874,6 +878,7 @@ export function Mesa() {
         duelo={duelo}
         cor={cor(j.id)}
         fundo={fundoDe(j.id)}
+        avatar={avatarDe(j.id)}
         realce={realce}
         combate={combate}
         onCarta={clicarCarta}

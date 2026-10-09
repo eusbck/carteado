@@ -114,7 +114,44 @@ async function entrar(p: Page): Promise<void> {
   await p.goto(URL);
   await p.getByLabel('Senha do servidor').fill('teste-capturas');
   await p.getByRole('button', { name: 'Entrar' }).click();
-  await p.getByText('Criar sala').waitFor();
+  await p.locator('.tela-passos').waitFor();
+}
+
+/** tela inicial em passos: o nome primeiro (e Continuar), depois a escolha entre criar e entrar numa sala */
+async function nomear(p: Page, nome: string): Promise<void> {
+  await p.getByLabel('Seu nome na mesa').fill(nome);
+  await p.getByRole('button', { name: 'Continuar' }).click();
+  await p.getByText(`Olá, ${nome}`).waitFor();
+}
+async function escolher(p: Page, o: 'Criar sala' | 'Entrar numa sala'): Promise<void> {
+  await p.getByRole('button', { name: new RegExp(`^${o}`) }).click();
+  await p.locator('form').filter({ hasText: o }).waitFor();
+}
+
+/** saguão em passos: põe um bot no lugar (contando de 1), com o nível, e espera ele aparecer */
+async function porBot(p: Page, lugar: number, nivel?: string): Promise<void> {
+  const l = p.locator('.lugar').nth(lugar - 1);
+  if (nivel) await l.getByLabel('Nível').selectOption({ label: nivel });
+  await p.getByRole('button', { name: `Pôr bot no lugar ${lugar}` }).click();
+  await l.getByText('bot', { exact: true }).waitFor();
+}
+/** o anfitrião passa dos lugares para as regras e das regras para os decks */
+async function irParaDecks(p: Page): Promise<void> {
+  await p.getByRole('button', { name: 'Continuar para as regras' }).click();
+  await p.getByRole('button', { name: 'Continuar para os decks' }).click();
+  await p.locator('.saguao-decks').waitFor();
+}
+/** escolhe um deck pela prévia (clicar no deck abre a lista de cartas) */
+async function escolherDeck(p: Page, n: number): Promise<void> {
+  await p.locator('.saguao-decks').waitFor();
+  await p.locator('.deck').nth(n).click();
+  await p.getByRole('button', { name: 'Escolher este deck' }).click();
+  await p.locator('.previa-deck').waitFor({ state: 'detached' });
+}
+/** deck de um bot, no passo dos decks (índice na lista em ordem alfabética) */
+async function deckDoBot(p: Page, lugar: number, indice: number): Promise<void> {
+  await p.locator('.decks-lugares .assento').nth(lugar - 1).getByLabel('Deck do bot').selectOption({ index: indice });
+  await p.waitForTimeout(150);
 }
 
 async function clicar(p: Page, nome: string | RegExp): Promise<boolean> {
@@ -393,7 +430,7 @@ async function capturasDecks(): Promise<void> {
     await p.locator('.cat-acoes').getByRole('button', { name: 'Fechar' }).click();
     // a tela inicial, com o botão Decks
     await p.getByRole('button', { name: 'Voltar' }).click();
-    await p.getByText('Escolha sua mesa').waitFor();
+    await p.locator('.tela-passos').waitFor();
     await foto(p, `97-inicio-com-decks-${w}`);
     await c.close();
   }
@@ -558,19 +595,46 @@ try {
   await comAuxilios(ctx);
   const p = await ctx.newPage();
   await p.goto(URL);
+  // a entrada abre em sequência (logo, título, joias de mana, texto, senha): a foto sai com ela completa
+  await p.waitForTimeout(3200);
   await foto(p, '01-entrada');
   await entrar(p);
+  // tela inicial em passos: o nome, a escolha e os campos de cada escolha (com Voltar)
   await p.getByLabel('Seu nome na mesa').fill('Ana');
-  await foto(p, '02-inicio');
+  await foto(p, '02-inicio-nome');
+  await p.getByRole('button', { name: 'Continuar' }).click();
+  await p.getByText('Olá, Ana').waitFor();
+  await p.waitForTimeout(450);
+  await foto(p, '02b-inicio-escolha');
+  await escolher(p, 'Entrar numa sala');
+  await p.waitForTimeout(450);
+  await foto(p, '02d-inicio-entrar');
+  await p.getByRole('button', { name: 'Voltar' }).click();
+  await escolher(p, 'Criar sala');
+  await p.waitForTimeout(450);
+  await foto(p, '02c-inicio-criar');
   await p.locator('form').filter({ hasText: 'Criar sala' }).getByLabel('Senha da sala').fill('mesa');
   await p.getByRole('button', { name: 'Criar', exact: true }).click();
-  await p.getByRole('heading', { name: 'Lugares' }).waitFor();
-  // o seletor de deck de cada assento (com bot, o assento ganha também o seletor de nível)
-  for (let i = 0; i < 3; i++) {
-    await p.locator('.assento').nth(i + 1).getByLabel(/Pôr bot com|Deck do bot/).selectOption({ index: i + 2 });
-    await p.waitForTimeout(150);
-  }
+  // saguão em passos: lugares (três bots), regras, decks (o dos bots e o da Ana pela prévia)
+  await p.locator('.lugares').waitFor();
+  await p.waitForTimeout(450);
+  await foto(p, '03a-saguao-lugares');
+  for (let i = 2; i <= 4; i++) await porBot(p, i);
+  await foto(p, '03b-saguao-lugares-cheios');
+  await p.getByRole('button', { name: 'Continuar para as regras' }).click();
+  await p.waitForTimeout(450);
+  await foto(p, '03c-saguao-regras');
+  await p.getByRole('button', { name: 'Continuar para os decks' }).click();
+  await p.locator('.saguao-decks').waitFor();
+  for (let i = 2; i <= 4; i++) await deckDoBot(p, i, i - 1);
   await p.locator('.deck').first().click();
+  await p.locator('.previa-grupo').first().waitFor();
+  await p.locator('.previa-grupo button').nth(3).hover();
+  await p.waitForTimeout(450);
+  await foto(p, '03d-saguao-previa');
+  await p.getByRole('button', { name: 'Escolher este deck' }).click();
+  await p.locator('.previa-deck').waitFor({ state: 'detached' });
+  await p.mouse.move(5, 5);
   await foto(p, '03-saguao');
   await p.getByRole('button', { name: 'Começar a partida' }).click();
   await p.getByText('Mão inicial').waitFor({ timeout: 20000 });
@@ -750,16 +814,21 @@ try {
   await comAuxilios(ctx2);
   const q = await ctx2.newPage();
   await entrar(q);
-  await q.getByLabel('Seu nome na mesa').fill('Bruno');
+  await nomear(q, 'Bruno');
+  await escolher(q, 'Criar sala');
   await q.getByRole('button', { name: 'Um contra um' }).click();
   await q.locator('form').filter({ hasText: 'Criar sala' }).getByLabel('Senha da sala').fill('mesa');
   await q.getByRole('button', { name: 'Criar', exact: true }).click();
-  await q.getByRole('heading', { name: 'Lugares' }).waitFor();
-  await q.locator('select').first().selectOption({ index: 5 });
-  await q.locator('.deck').nth(3).click();
+  await q.locator('.lugares').waitFor();
+  await porBot(q, 2);
+  await q.getByRole('button', { name: 'Continuar para as regras' }).click();
   await q.getByRole('radio', { name: /^Livre/ }).click();
-  await q.waitForTimeout(300);
+  await q.waitForTimeout(450);
   await foto(q, '13a-saguao-mulligan-livre');
+  await q.getByRole('button', { name: 'Continuar para os decks' }).click();
+  await q.locator('.saguao-decks').waitFor();
+  await deckDoBot(q, 2, 4);
+  await escolherDeck(q, 3);
   await q.getByRole('button', { name: 'Começar a partida' }).click();
   await q.getByText('Mão inicial').waitFor({ timeout: 20000 });
   await foto(q, '13b-mao-inicial-livre');
@@ -791,25 +860,32 @@ try {
     c.setDefaultTimeout(20000);
     const pg = await c.newPage();
     await entrar(pg);
-    await pg.getByLabel('Seu nome na mesa').fill(nome);
+    await nomear(pg, nome);
     return pg;
   };
   const ana = await pessoa('Ana');
+  await escolher(ana, 'Criar sala');
   await ana.getByRole('button', { name: 'Um contra um' }).click();
   await ana.locator('form').filter({ hasText: 'Criar sala' }).getByLabel('Senha da sala').fill('mesa');
   await ana.getByRole('button', { name: 'Criar', exact: true }).click();
-  await ana.getByRole('heading', { name: 'Lugares' }).waitFor();
+  await ana.locator('.lugares').waitFor();
   const codigo = (await ana.locator('.sala-codigo').textContent())!.replace('Sala', '').trim();
-  await ana.getByRole('radio', { name: /^Proibidos/ }).click();
-  await ana.locator('.deck').nth(0).click();
   const bruno = await pessoa('Bruno');
+  await escolher(bruno, 'Entrar numa sala');
   const entrarNaSala = bruno.locator('form').filter({ hasText: 'Entrar numa sala' });
   await entrarNaSala.getByLabel('Código').fill(codigo);
   await entrarNaSala.getByLabel('Senha da sala').fill('mesa');
   await entrarNaSala.getByRole('button', { name: 'Entrar' }).click();
-  await bruno.getByRole('heading', { name: 'Lugares' }).waitFor();
-  await bruno.locator('.deck').nth(3).click();
+  await bruno.locator('.lugares').waitFor();
+  // Bruno acompanha o anfitrião proibir os auxílios (sem poder mudar)
+  await ana.getByRole('button', { name: 'Continuar para as regras' }).click();
+  await ana.getByRole('radio', { name: /^Proibidos/ }).click();
+  await bruno.getByRole('radio', { name: /^Proibidos/, checked: true }).waitFor();
+  await bruno.waitForTimeout(450);
   await foto(bruno, '27-saguao-auxilios-proibidos');
+  await ana.getByRole('button', { name: 'Continuar para os decks' }).click();
+  await escolherDeck(ana, 0);
+  await escolherDeck(bruno, 3);
   await ana.getByRole('button', { name: 'Começar a partida' }).click();
   await ana.getByText('Mão inicial').waitFor();
   // a mão inicial é decidida um de cada vez
@@ -1222,22 +1298,17 @@ try {
     cn.setDefaultTimeout(20000);
     const pn = await cn.newPage();
     await entrar(pn);
-    await pn.getByLabel('Seu nome na mesa').fill('Ana');
+    await nomear(pn, 'Ana');
+    await escolher(pn, 'Criar sala');
     await pn.locator('form').filter({ hasText: 'Criar sala' }).getByLabel('Senha da sala').fill('mesa');
     await pn.getByRole('button', { name: 'Criar', exact: true }).click();
-    await pn.getByRole('heading', { name: 'Lugares' }).waitFor();
+    await pn.locator('.lugares').waitFor();
     // três bots com níveis diferentes: o nome sorteado aparece com o nível ("ROBSON · Cartomante")
     const niveis = ['Magic God', 'Cartomante', 'Iniciante'];
+    for (let i = 0; i < 3; i++) await porBot(pn, i + 2, niveis[i]);
+    await pn.waitForTimeout(300);
     for (let i = 0; i < 3; i++) {
-      const assento = pn.locator('.assento').nth(i + 1);
-      await assento.getByLabel('Pôr bot com').selectOption({ index: i + 1 });
-      await assento.getByLabel('Nível').waitFor();
-      await assento.getByLabel('Nível').selectOption({ label: niveis[i] });
-      await pn.waitForTimeout(200);
-    }
-    await pn.locator('.deck').nth(2).click();
-    for (let i = 0; i < 3; i++) {
-      const texto = await pn.locator('.assento').nth(i + 1).locator('.assento-nome').innerText();
+      const texto = await pn.locator('.lugar').nth(i + 1).locator('.assento-nome').innerText();
       if (!/^[A-ZÁÉÍÓÚÂÊÔÃÕÇ]+ · /.test(texto) || !texto.includes(niveis[i])) throw new Error(`assento ${i + 1} sem nome · nível: ${texto}`);
     }
     for (const t of TELAS) { await pn.setViewportSize(t); await foto(pn, `92-saguao-niveis-${t.width}`); }
@@ -1249,14 +1320,16 @@ try {
     cp.setDefaultTimeout(20000);
     const q = await cp.newPage();
     await entrar(q);
-    await q.getByLabel('Seu nome na mesa').fill('Ana');
+    await nomear(q, 'Ana');
+    await escolher(q, 'Criar sala');
     await q.getByRole('button', { name: 'Um contra um' }).click();
     await q.locator('form').filter({ hasText: 'Criar sala' }).getByLabel('Senha da sala').fill('mesa');
     await q.getByRole('button', { name: 'Criar', exact: true }).click();
-    await q.getByRole('heading', { name: 'Lugares' }).waitFor();
-    await q.locator('.assento').nth(1).getByLabel('Pôr bot com').selectOption({ index: 2 });
-    await q.locator('.assento').nth(1).getByLabel('Nível').selectOption({ label: 'Magic God' });
-    await q.locator('.deck').nth(4).click();
+    await q.locator('.lugares').waitFor();
+    await porBot(q, 2, 'Magic God');
+    await irParaDecks(q);
+    await deckDoBot(q, 2, 1);
+    await escolherDeck(q, 4);
     await q.getByRole('button', { name: 'Começar a partida' }).click();
     await q.getByText('Mão inicial').waitFor({ timeout: 30000 });
     await clicar(q, 'Manter');

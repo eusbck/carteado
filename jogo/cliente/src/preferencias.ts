@@ -8,7 +8,7 @@ export type Auxilio = 'jogaveis' | 'alvos' | 'terrenos' | 'avisos' | 'pagarAuto'
 export type Nivel = 'real' | 'leve' | 'completo' | 'personalizado';
 
 export const AUXILIOS: { id: Auxilio; nome: string; descricao: string }[] = [
-  { id: 'jogaveis', nome: 'Brilho nas cartas jogáveis', descricao: 'contorno verde no que dá para usar agora; criaturas com enjoo apagadas; o jogo passa sozinho quando você não tem jogada' },
+  { id: 'jogaveis', nome: 'Brilho nas cartas jogáveis', descricao: 'contorno laranja no que dá para usar agora; criaturas com enjoo apagadas; o jogo passa sozinho quando você não tem jogada' },
   { id: 'alvos', nome: 'Brilho nos alvos válidos', descricao: 'ao mirar, atacar ou bloquear, o que pode ser escolhido brilha; listas de escolha mostram só o que vale' },
   { id: 'terrenos', nome: 'Brilho nos terrenos ao pagar', descricao: 'as fontes de mana brilham e o pagamento fecha sozinho quando a reserva cobre o custo' },
   { id: 'avisos', nome: 'Aviso de por que não dá', descricao: 'mostra o motivo ("Terrenos só no seu turno", "Falta mana…"), o "Solte para conjurar" e o dano letal sugerido' },

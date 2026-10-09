@@ -66,7 +66,10 @@ async function novaPessoa(nav: Browser, nome: string): Promise<Page> {
   console.log(`[${nome}] página carregada em ${Date.now() - t0} ms`);
   await p.getByLabel('Senha do servidor').fill(SENHA);
   await p.getByRole('button', { name: 'Entrar' }).click();
+  // tela inicial em passos: o nome primeiro, depois a escolha entre criar e entrar numa sala
   await p.getByLabel('Seu nome na mesa').fill(nome);
+  await p.getByRole('button', { name: 'Continuar' }).click();
+  await p.getByText(`Olá, ${nome}`).waitFor();
   return p;
 }
 
@@ -148,19 +151,37 @@ async function escrever(p: Page, texto: string): Promise<void> {
 }
 
 async function criarSala(anfitriao: Page, modo: '4p' | '1v1'): Promise<string> {
+  await anfitriao.getByRole('button', { name: /^Criar sala/ }).click();
   if (modo === '1v1') await anfitriao.getByRole('button', { name: 'Um contra um' }).click();
   await anfitriao.locator('form').filter({ hasText: 'Criar sala' }).getByLabel('Senha da sala').fill('mesa-e2e');
   await anfitriao.getByRole('button', { name: 'Criar', exact: true }).click();
-  await anfitriao.getByRole('heading', { name: 'Lugares' }).waitFor();
+  await anfitriao.locator('.lugares').waitFor();
   return ((await anfitriao.locator('h1').textContent()) ?? '').replace('Sala ', '').trim();
 }
 
 async function entrarNaSala(p: Page, codigo: string): Promise<void> {
   const f = p.locator('form').filter({ hasText: 'Entrar numa sala' });
+  // depois de uma senha errada a pessoa continua no passo de entrar
+  if (!(await f.isVisible())) await p.getByRole('button', { name: /^Entrar numa sala/ }).click();
   await f.getByLabel('Código').fill(codigo);
   await f.getByLabel('Senha da sala').fill('mesa-e2e');
   await f.getByRole('button', { name: 'Entrar' }).click();
-  await p.getByRole('heading', { name: 'Lugares' }).waitFor();
+  await p.locator('.lugares').waitFor();
+}
+
+/** saguão em passos: o anfitrião passa dos lugares para as regras e das regras para os decks */
+async function irParaDecks(anfitriao: Page): Promise<void> {
+  await anfitriao.getByRole('button', { name: 'Continuar para as regras' }).click();
+  await anfitriao.getByRole('button', { name: 'Continuar para os decks' }).click();
+  await anfitriao.locator('.saguao-decks').waitFor();
+}
+
+/** escolhe um deck pela prévia (clicar no deck abre a lista de cartas, com o botão de escolher) */
+async function escolherDeck(p: Page, n: number): Promise<void> {
+  await p.locator('.saguao-decks').waitFor();
+  await p.locator('.deck').nth(n).click();
+  await p.getByRole('button', { name: 'Escolher este deck' }).click();
+  await p.locator('.previa-deck').waitFor({ state: 'detached' });
 }
 
 await subirServidor();
@@ -171,6 +192,7 @@ try {
   const codigo = await criarSala(ana, '1v1');
   const bruno = await novaPessoa(nav, 'Bruno');
   // senha errada não entra
+  await bruno.getByRole('button', { name: /^Entrar numa sala/ }).click();
   const f = bruno.locator('form').filter({ hasText: 'Entrar numa sala' });
   await f.getByLabel('Código').fill(codigo);
   await f.getByLabel('Senha da sala').fill('errada');
@@ -178,8 +200,19 @@ try {
   await bruno.getByRole('alert').waitFor();
   verificar(await bruno.getByRole('alert').textContent().then((t) => t?.includes('senha')), 'senha errada da sala é recusada');
   await entrarNaSala(bruno, codigo);
-  await ana.locator('.deck').nth(1).click();
+  // saguão em passos: Bruno acompanha o anfitrião escolher as regras, e cada um escolhe o deck pela prévia
+  await ana.getByRole('button', { name: 'Continuar para as regras' }).click();
+  await bruno.getByText('O anfitrião está escolhendo as regras.').waitFor({ timeout: 10000 });
+  await ana.getByRole('radio', { name: /^Livre/ }).click();
+  await bruno.getByRole('radio', { name: /^Livre/, checked: true }).waitFor({ timeout: 10000 });
+  verificar(await bruno.getByRole('radio', { name: /^Londres/ }).isDisabled(), 'quem não criou a sala acompanha as regras sem poder mudar');
+  await ana.getByRole('radio', { name: /^Londres/ }).click();
+  await ana.getByRole('button', { name: 'Continuar para os decks' }).click();
+  await escolherDeck(ana, 1);
   await bruno.locator('.deck').nth(4).click();
+  await bruno.locator('.previa-grupo').first().waitFor({ timeout: 10000 });
+  verificar((await bruno.locator('.previa-grupo li').count()) > 20 && (await bruno.locator('.previa-topo-linha').textContent())?.includes('100 cartas'), 'a prévia do deck mostra as 100 cartas separadas por tipo');
+  await bruno.getByRole('button', { name: 'Escolher este deck' }).click();
   await ana.waitForTimeout(300);
   await ana.getByRole('button', { name: 'Começar a partida' }).click();
   await Promise.all([ana.locator('.turno-linha').waitFor({ timeout: 30000 }), bruno.locator('.turno-linha').waitFor({ timeout: 30000 })]);
@@ -242,7 +275,8 @@ try {
   for (const n of nomes) pessoas.push(await novaPessoa(nav, n));
   const cod4 = await criarSala(pessoas[0], '4p');
   for (const p of pessoas.slice(1)) await entrarNaSala(p, cod4);
-  for (const [i, p] of pessoas.entries()) await p.locator('.deck').nth(i + 2).click();
+  await irParaDecks(pessoas[0]);
+  for (const [i, p] of pessoas.entries()) await escolherDeck(p, i + 2);
   await pessoas[0].waitForTimeout(400);
   await pessoas[0].getByRole('button', { name: 'Começar a partida' }).click();
   for (const p of pessoas) await p.locator('.turno-linha').waitFor({ timeout: 30000 });
@@ -266,10 +300,11 @@ try {
   const gil = await novaPessoa(nav, 'Gil');
   await criarSala(gil, '4p');
   for (let i = 1; i < 4; i++) {
-    await gil.locator('.assento').nth(i).getByLabel('Pôr bot com').selectOption({ index: i + 1 });
-    await gil.locator('.assento').nth(i).getByText('bot', { exact: true }).waitFor({ timeout: 10000 });
+    await gil.getByRole('button', { name: `Pôr bot no lugar ${i + 1}` }).click();
+    await gil.locator('.lugar').nth(i).getByText('bot', { exact: true }).waitFor({ timeout: 10000 });
   }
-  await gil.locator('.deck').nth(0).click();
+  await irParaDecks(gil);
+  await escolherDeck(gil, 0);
   await gil.waitForTimeout(300);
   await gil.getByRole('button', { name: 'Começar a partida' }).click();
   await gil.locator('.turno-linha').waitFor({ timeout: 30000 });

@@ -56,15 +56,16 @@ export function Setas({ setas, versao }: { setas: Seta[]; versao: unknown }) {
     return () => { cancelAnimationFrame(quadro); ro.disconnect(); };
   }, [chave, versao]);
 
+  // os mesmos tons de --vermelho (ataque) e --azul (bloqueio) do estilo.css (atributo de SVG não lê var())
   return (
     <svg ref={svg} class="setas-combate" aria-hidden="true">
       <defs>
-        <marker id="seta-ponta" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="4.2" markerHeight="4.2" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#f25555" /></marker>
-        <marker id="seta-bola" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="3.4" markerHeight="3.4"><circle cx="5" cy="5" r="4" fill="#4c9aff" /></marker>
+        <marker id="seta-ponta" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="4.2" markerHeight="4.2" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#e0464f" /></marker>
+        <marker id="seta-bola" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="3.4" markerHeight="3.4"><circle cx="5" cy="5" r="4" fill="#3d9be0" /></marker>
       </defs>
       {linhas.map((l, i) => {
         const d = caminho(l);
-        const cor = l.tipo === 'ataque' ? '#f25555' : '#4c9aff';
+        const cor = l.tipo === 'ataque' ? '#e0464f' : '#3d9be0';
         return (
           <g key={i}>
             <path d={d} stroke={cor} stroke-opacity=".28" stroke-width="10" fill="none" stroke-linecap="round" />

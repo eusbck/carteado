@@ -35,11 +35,12 @@ function efeitoVida(jogador: number, delta: number, eu: boolean, reduzir: boolea
   const vida = area?.querySelector('.vida-n');
   if (!vida) return;
   const r = vida.getBoundingClientRect();
-  // na sua área a vida fica no alto à direita da faixa; o número sai à esquerda dela; nos outros, embaixo
-  const [x, y] = eu ? [r.left - 74, r.top + r.height / 2 - 18] : [r.left + r.width / 2 - 22, r.bottom + 4];
+  // na sua área a vida fica embaixo do avatar, na base da mesa: o número sai à direita dela; nos outros, embaixo
+  const [x, y] = eu ? [r.right + 10, r.top + r.height / 2 - 18] : [r.left + r.width / 2 - 22, r.bottom + 4];
   numero(delta < 0 ? `−${-delta}` : `+${delta}`, x, y, `${delta < 0 ? 'dano' : 'vida'} ${reduzir ? 'parado' : ''}`, atraso);
   setTimeout(() => {
-    const cor = delta < 0 ? '242, 85, 85' : '34, 211, 107';
+    // --vermelho e --positivo do estilo.css
+    const cor = delta < 0 ? '224, 70, 79' : '63, 174, 106';
     animar(vida, [
       { boxShadow: `0 0 0 0 rgba(${cor}, 0)` },
       { boxShadow: `0 0 0 2px rgba(${cor}, .95), 0 0 28px 6px rgba(${cor}, .55)`, offset: 0.25 },
@@ -48,7 +49,14 @@ function efeitoVida(jogador: number, delta: number, eu: boolean, reduzir: boolea
     if (delta < 0 && !reduzir) {
       animar(vida, [{ translate: '0 0' }, { translate: '-5px 0' }, { translate: '5px 0' }, { translate: '-3px 0' }, { translate: '2px 0' }, { translate: '0 0' }], { duration: 420, easing: 'ease-out' });
     }
-    if (delta < 0) animar(area!, [{ boxShadow: 'inset 0 0 0 0 rgba(242, 85, 85, 0)' }, { boxShadow: 'inset 0 0 110px rgba(242, 85, 85, .42)', offset: 0.2 }, { boxShadow: 'inset 0 0 0 0 rgba(242, 85, 85, 0)' }], { duration: 900, easing: 'ease-out' });
+    // o retrato do avatar reage: lampejo vermelho e um tranco no dano, brilho verde na cura
+    for (const el of area!.querySelectorAll('.avatar-retrato, .avatar-inicial')) {
+      animar(el, delta < 0
+        ? [{ filter: 'none' }, { filter: 'brightness(1.45) sepia(.7) saturate(3) hue-rotate(-25deg)', offset: 0.15 }, { filter: 'none' }]
+        : [{ filter: 'none' }, { filter: 'brightness(1.3) drop-shadow(0 0 10px rgba(63, 174, 106, .9))', offset: 0.3 }, { filter: 'none' }], { duration: 750, easing: 'ease-out' });
+    }
+    if (delta < 0 && !reduzir) animar(area!.querySelector('.avatar'), [{ scale: '1' }, { scale: '.93' }, { scale: '1.03' }, { scale: '1' }], { duration: 380, easing: 'ease-out' });
+    if (delta < 0) animar(area!, [{ boxShadow: 'inset 0 0 0 0 rgba(224, 70, 79, 0)' }, { boxShadow: 'inset 0 0 110px rgba(224, 70, 79, .42)', offset: 0.2 }, { boxShadow: 'inset 0 0 0 0 rgba(224, 70, 79, 0)' }], { duration: 900, easing: 'ease-out' });
   }, atraso);
 }
 
