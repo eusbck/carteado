@@ -25,6 +25,7 @@ import { buscar } from './busca.ts';
 import { infoDaMemoria, memoriaVazia, observar, type DadosMemoria } from './memoria.ts';
 import { Copiador, determinizar, estadoOculto, ramo, Rastro, type InfoOculta } from './mundo.ts';
 import { NIVEL_PADRAO, PARAMETROS, type NivelBot, type Parametros } from './niveis.ts';
+import { intencao, PERDA, type Intencao } from './intencao.ts';
 import { papelDe } from './papeis.ts';
 import { simular, type Horizonte, type Politica } from './simulacao.ts';
 
@@ -610,9 +611,24 @@ export function escolher(d: Decision, gameOuG: Game | G, eu: PlayerId, rng: RngS
   }
 }
 
-const PERDA = /sacrifi|descart|remova|pague|perca|perde|exile .*(seu|sua)|para o cemitério|vai para o cemitério/i;
-const DANO = /destru|exil|dano|-1\/-1|vire|goad|sacrifica|perde .*vida|veneno|anule|oponente/i;
-const BOM = /compra|ganha|cria|devolv|volta|copi|marcador \+1|recebe|ficam|fica|preparad|encantar|campo/i;
+/** valor de uma carta minha na mão ou no grimório: terreno vale mais quando faltam terrenos; mágica, pelo custo e por
+ *  quanto falta para conjurá-la */
+function valorNaMao(g: G, id: ObjId, eu: PlayerId): number {
+  const s = g.state;
+  const terrenosMesa = s.zones.battlefield.filter((x) => controllerOf(g, x) === eu && isLand(g, x)).length;
+  const terrenosMao = s.zones.hand[eu].filter((x) => isLand(g, x)).length;
+  if (isLand(g, id)) {
+    const total = terrenosMesa + terrenosMao;
+    return total <= 3 ? 5 : total <= 5 ? 3.5 : total <= 7 ? 2 : 0.8;
+  }
+  const mv = manaValue(g, id);
+  let v = 2 + 0.3 * Math.min(mv, 7);
+  const falta = mv - (terrenosMesa + Math.min(terrenosMao, 2));
+  if (falta > 2) v -= 0.6 * (falta - 2);
+  const pp = papelDe(s.objects[id].def).papeis;
+  if (pp.has('remocao') || pp.has('anula') || pp.has('compra') || pp.has('varredura')) v += 0.6;
+  return v;
+}
 
 /** valor de um item de escolha do ponto de vista de `eu` (positivo = coisa minha valiosa) */
 function valorItem(g: G, it: ChoiceItem, eu: PlayerId): { valor: number; meu: boolean } {
@@ -622,35 +638,92 @@ function valorItem(g: G, it: ChoiceItem, eu: PlayerId): { valor: number; meu: bo
   const o = id !== undefined ? s.objects[id] : undefined;
   if (!o || id === undefined) return { valor: 0, meu: false };
   if (o.zone === 'battlefield') return { valor: isLand(g, id) && !isCreature(g, id) ? 2 : valorPermanente(g, id), meu: controllerOf(g, id) === eu };
-  // carta fora do campo: custo como medida (terrenos valem pouco)
+  if (o.zone === 'stack') return { valor: 1 + manaValue(g, id), meu: controllerOf(g, id) === eu };
+  // carta minha na mão ou no grimório: o que ela vale para mim agora
+  if (o.owner === eu && (o.zone === 'hand' || o.zone === 'library')) return { valor: valorNaMao(g, id, eu), meu: true };
+  // outra carta fora do campo: custo como medida (terrenos valem pouco)
   return { valor: isLand(g, id) ? 1 : 1 + manaValue(g, id), meu: o.owner === eu };
 }
 
-/** ordem heurística dos itens de uma escolha e quantos escolher */
-function ordemDaEscolha(d: D<'select'>, g: G, eu: PlayerId): { ids: string[]; perda: boolean } {
+type Avaliado = { it: ChoiceItem; valor: number; meu: boolean };
+/** o item não é de ninguém (modo, sim ou não) */
+const neutro = (x: Avaliado) => x.it.player === undefined && x.it.obj === undefined && !Number.isFinite(Number(x.it.id));
+
+/**
+ * Ordem heurística dos itens de uma escolha. `certos`: quantos itens são do lado certo (dos oponentes num efeito contra,
+ * meus num efeito a favor); a escolha não passa deles se não for obrigada.
+ */
+function ordemDaEscolha(d: D<'select'>, g: G, eu: PlayerId): { ids: string[]; perda: boolean; intencao: Intencao; certos: number; avaliados: Avaliado[] } {
   const itens = d.items.filter((i) => !i.disabled);
-  const perda = PERDA.test(d.prompt);
-  const dano = !perda && DANO.test(d.prompt) && !BOM.test(d.prompt);
-  const avaliados = itens.map((it) => ({ it, ...valorItem(g, it, eu) }));
-  let ordem: typeof avaliados;
-  if (perda) {
-    // custo ou perda: as coisas menos valiosas, de preferência minhas que não fazem falta
-    ordem = avaliados.sort((a, b) => a.valor - b.valor);
-  } else if (dano) {
-    // efeito ruim: nas coisas mais valiosas dos oponentes (jogadores: o de menos vida)
-    ordem = avaliados.sort((a, b) => {
-      if (a.meu !== b.meu) return a.meu ? 1 : -1;
-      if (a.it.player !== undefined && b.it.player !== undefined) return a.valor - b.valor;
-      return b.valor - a.valor;
-    });
+  const s = g.state;
+  const minha = (id: ObjId) => { const o = s.objects[id]; return !!o && (o.zone === 'battlefield' || o.zone === 'stack' ? controllerOf(g, id) === eu : o.owner === eu); };
+  const int = intencao(d, g, eu, minha);
+  const avaliados: Avaliado[] = itens.map((it) => ({ it, ...valorItem(g, it, eu) }));
+  let ordem: Avaliado[];
+  let certos: number;
+  if (int === 'perda') {
+    // custo ou perda: as coisas menos valiosas
+    ordem = [...avaliados].sort((a, b) => a.valor - b.valor);
+    certos = ordem.length;
+  } else if (int === 'contra') {
+    // efeito ruim: nas coisas mais valiosas dos oponentes (jogador: quanto menos vida, melhor); se for obrigado a
+    // escolher coisas minhas, as que menos fazem falta
+    const nota = (x: Avaliado) => (x.it.player !== undefined ? 5 + 40 / (Math.max(0, x.valor) + 1) : x.valor);
+    const deles = avaliados.filter((x) => !x.meu).sort((a, b) => nota(b) - nota(a));
+    const meus = avaliados.filter((x) => x.meu).sort((a, b) => a.valor - b.valor);
+    ordem = [...deles, ...meus];
+    certos = deles.length;
   } else {
-    // efeito bom: nas minhas coisas mais valiosas
-    ordem = avaliados.sort((a, b) => {
-      if (a.meu !== b.meu) return a.meu ? -1 : 1;
-      return b.valor - a.valor;
-    });
+    // efeito bom: nas minhas coisas mais valiosas; nos oponentes, só se for obrigado, nas que menos valem
+    const meus = avaliados.filter((x) => x.meu || neutro(x)).sort((a, b) => b.valor - a.valor);
+    const deles = avaliados.filter((x) => !x.meu && !neutro(x)).sort((a, b) => a.valor - b.valor);
+    ordem = [...meus, ...deles];
+    certos = meus.length;
   }
-  return { ids: ordem.map((x) => x.it.id), perda };
+  return { ids: ordem.map((x) => x.it.id), perda: int === 'perda', intencao: int, certos, avaliados };
+}
+
+/** quantos itens escolher: na perda, o mínimo; nos outros, os do lado certo (entre o mínimo e o máximo) */
+function quantosEscolher(d: D<'select'>, max: number, o: { perda: boolean; certos: number }): number {
+  return o.perda ? d.min : Math.max(d.min, Math.min(max, o.certos));
+}
+
+/**
+ * Escolhas ordenadas: o fundo do grimório no mulligan de Londres (fica com a mão mais equilibrada), as cartas que voltam
+ * da mão (Brainstorm: as piores, e das duas a melhor no topo) e a ordem dos gatilhos (como vieram).
+ */
+function ordenada(d: D<'select'>, g: G, eu: PlayerId): string[] {
+  const itens = d.items.filter((i) => !i.disabled);
+  const n = Math.max(d.min, Math.min(d.max, itens.length));
+  if (/^Escolha \d+ carta\(s\) para pôr no fundo do grimório/.test(d.prompt)) return fundoDoMulligan(itens, g, n);
+  if (!PERDA.test(d.prompt)) return itens.slice(0, n).map((i) => i.id);
+  const piores = itens.map((it) => ({ id: it.id, v: valorItem(g, it, eu).valor })).sort((a, b) => a.v - b.v).slice(0, n);
+  // a primeira escolhida fica por cima: das que voltam, a melhor primeiro
+  return piores.sort((a, b) => b.v - a.v).map((x) => x.id);
+}
+
+/** mulligan de Londres: tira terrenos enquanto houver mais que uns 45% da mão; senão, a mágica mais cara */
+function fundoDoMulligan(itens: ChoiceItem[], g: G, n: number): string[] {
+  const resto = itens.filter((it) => it.obj !== undefined && g.state.objects[it.obj]);
+  const fora: string[] = [];
+  while (fora.length < n && resto.length) {
+    const terrenos = resto.filter((it) => isLand(g, it.obj!));
+    const ideal = Math.round(0.45 * (resto.length - 1));
+    let i: number;
+    if (terrenos.length > ideal) {
+      // o terreno mais repetido (as cores ficam)
+      const vezes = (it: ChoiceItem) => terrenos.filter((x) => g.state.objects[x.obj!].def === g.state.objects[it.obj!].def).length;
+      i = resto.indexOf([...terrenos].sort((a, b) => vezes(b) - vezes(a))[0]);
+    }
+    else {
+      const magias = resto.filter((it) => !isLand(g, it.obj!)).sort((a, b) => manaValue(g, b.obj!) - manaValue(g, a.obj!));
+      i = resto.indexOf(magias[0] ?? resto[resto.length - 1]);
+    }
+    fora.push(resto[i].id);
+    resto.splice(i, 1);
+  }
+  for (const it of itens) if (fora.length < n && !fora.includes(it.id)) fora.push(it.id);
+  return fora;
 }
 
 function selecionar(d: D<'select'>, g: G, eu: PlayerId, rng: RngState, aleatorio: boolean, ok: (a: Answer) => boolean, erro = 0): Answer {
@@ -665,25 +738,24 @@ function selecionar(d: D<'select'>, g: G, eu: PlayerId, rng: RngState, aleatorio
     }
     return { kind: 'select', ids: itens.slice(0, d.min).map((it) => it.id) };
   }
-  if (d.ordered) return { kind: 'select', ids: itens.slice(0, Math.max(d.min, Math.min(max, itens.length))).map((it) => it.id) };
+  if (d.ordered) return tenta(ordenada(d, g, eu)) ?? { kind: 'select', ids: itens.slice(0, Math.max(d.min, Math.min(max, itens.length))).map((it) => it.id) };
   // sim ou não: aceita, a não ser que seja pagar algo sem ganhar nada claro
   const sim = itens.find((i) => i.id === 'yes');
   const nao = itens.find((i) => i.id === 'no');
   if (sim && nao && itens.length === 2) return { kind: 'select', ids: [sim.id] };
   if (max === 0) return { kind: 'select', ids: [] };
 
-  const { ids: ordem, perda } = ordemDaEscolha(d, g, eu);
-  let ids = ordem;
+  const o = ordemDaEscolha(d, g, eu);
+  let ids = o.ids;
   // erro humano (níveis fracos): num efeito contra os oponentes, às vezes mira a coisa errada (mas nunca a própria)
-  if (erro > 0 && !perda && d.max === 1 && next(rng) < erro) {
-    const deles = ids.filter((id) => !valorItem(g, itens.find((i) => i.id === id)!, eu).meu);
+  if (erro > 0 && o.intencao === 'contra' && d.max === 1 && next(rng) < erro) {
+    const deles = ids.slice(0, o.certos);
     if (deles.length > 1) ids = [deles[1 + int(rng, deles.length - 1)], ...ids];
   }
-  const quantos = perda ? d.min : max;
-  for (let n = quantos; perda ? n <= max : n >= d.min; perda ? n++ : n--) {
-    const a = tenta(ids.slice(0, n));
-    if (a) return a;
-  }
+  // do número preferido para baixo e, se nenhum servir, para cima
+  const quantos = quantosEscolher(d, max, o);
+  for (let n = quantos; n >= d.min; n--) { const a = tenta(ids.slice(0, n)); if (a) return a; }
+  for (let n = quantos + 1; n <= max; n++) { const a = tenta(ids.slice(0, n)); if (a) return a; }
   for (let i = 0; i < 30; i++) {
     const n = d.min + int(rng, Math.max(1, max - d.min + 1));
     const a = tenta(shuffle(rng, [...ids]).slice(0, Math.min(n, max)));
@@ -692,7 +764,10 @@ function selecionar(d: D<'select'>, g: G, eu: PlayerId, rng: RngState, aleatorio
   return { kind: 'select', ids: itens.slice(0, d.min).map((it) => it.id) };
 }
 
-/** respostas diferentes para uma escolha, da mais provável à menos (a primeira é a heurística) */
+/**
+ * Respostas diferentes para uma escolha, da mais provável à menos (a primeira é a heurística). Com um alvo só, as
+ * primeiras incluem sempre o item mais valioso dos oponentes e o meu mais valioso (a simulação decide entre eles).
+ */
 export function alternativas(d: Decision, g: G, eu: PlayerId, ok: (a: Answer) => boolean): Answer[] {
   if (d.kind !== 'select') return [];
   const itens = d.items.filter((i) => !i.disabled);
@@ -706,11 +781,17 @@ export function alternativas(d: Decision, g: G, eu: PlayerId, ok: (a: Answer) =>
     vistas.add(k);
     out.push(a);
   };
-  if (d.ordered) { add(itens.slice(0, Math.max(d.min, Math.min(max, itens.length))).map((i) => i.id)); return out; }
-  const { ids, perda } = ordemDaEscolha(d, g, eu);
-  const n = perda ? d.min : max;
-  if (n <= 1) {
-    for (const id of ids) add(n === 0 ? [] : [id]);
+  if (d.ordered) { add(ordenada(d, g, eu)); return out; }
+  const o = ordemDaEscolha(d, g, eu);
+  const { ids } = o;
+  const n = quantosEscolher(d, max, o);
+  if (max <= 1) {
+    const objetos = o.avaliados.filter((x) => !neutro(x) && x.it.player === undefined);
+    const melhorDeles = objetos.filter((x) => !x.meu).sort((a, b) => b.valor - a.valor)[0]?.it.id;
+    const melhorMeu = objetos.filter((x) => x.meu).sort((a, b) => b.valor - a.valor)[0]?.it.id;
+    add(n === 0 ? [] : ids.slice(0, 1));
+    for (const id of [melhorDeles, melhorMeu]) if (id !== undefined) add([id]);
+    for (const id of ids) add([id]);
     if (d.min === 0) add([]);
     return out;
   }
@@ -718,6 +799,7 @@ export function alternativas(d: Decision, g: G, eu: PlayerId, ok: (a: Answer) =>
   // trocas de um item da escolha principal
   for (let i = n - 1; i >= 0 && out.length < 8; i--) for (let j = n; j < ids.length && out.length < 8; j++) add([...ids.slice(0, i), ...ids.slice(i + 1, n), ids[j]]);
   if (d.min < n) add(ids.slice(0, d.min));
+  if (n < max) add(ids.slice(0, max));
   return out;
 }
 
