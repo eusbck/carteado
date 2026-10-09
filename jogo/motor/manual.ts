@@ -90,10 +90,12 @@ export function* performManual(g: G, p: PlayerId, m: ManualAction): Gen<boolean>
       if (m.tapped) { g.log(`${quem} vira ${nome}.`); tap(g, m.obj); return true; }
       // desvirar à mão a própria permanente desfaz o virar para mana: a mana dela que ainda está na reserva sai junto
       // (a que já foi gasta fica gasta). Só se desvirou de fato (um marcador de atordoamento impede) e só quando quem
-      // desvira é o controlador: o ajuste de outro jogador não mexe na reserva de ninguém
+      // desvira é o controlador: o ajuste de outro jogador não mexe na reserva de ninguém. Partidas de antes dessa
+      // regra (sem config.desvirarTiraMana) desviram sem mexer na reserva, como quando foram jogadas
       const dono = controllerOf(g, m.obj);
       const ctl = s.players[dono];
-      const dela = untap(g, m.obj) && dono === p ? ctl.manaPool.filter((u) => u.source === m.obj) : [];
+      const desvirou = untap(g, m.obj);
+      const dela = desvirou && dono === p && s.config.desvirarTiraMana ? ctl.manaPool.filter((u) => u.source === m.obj) : [];
       if (dela.length) { ctl.manaPool = ctl.manaPool.filter((u) => u.source !== m.obj); g.bump(); }
       g.log(`${quem} desvira ${nome}${dela.length ? ` (a mana dela, ${poolToString(dela)}, sai da reserva)` : ''}.`);
       return true;

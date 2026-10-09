@@ -544,6 +544,8 @@ export class Sala {
       multiplayer: this.d.modo === '4p',
       manualMode: true,
       mulligan: this.d.mulligan ?? 'londres',
+      // partidas novas: desvirar à mão tira a mana da reserva (as salvas antes ficam sem a chave e não mudam)
+      desvirarTiraMana: true,
     };
     const deckIds = this.d.assentos.map((a) => a.deck!);
     const listas = deckIds.map((id) => this.gerente.deck(id));
