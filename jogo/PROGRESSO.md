@@ -901,3 +901,8 @@ Falta: convidar os amigos em *Settings → Collaborators*.
 
 - **Desvirar devolve a mana** (pedido na conversa): desvirar à mão uma permanente (clicar de novo no terreno virado,
   "Desvirar" ou "Desvirar tudo") tira da reserva a mana dela que ainda não foi gasta; testes em `testes/manual.test.ts`.
+- **Felothar no selo da carta** (pedido na conversa): o motor já aplicava o dano de combate pela resistência; faltava
+  mostrar. A vista agora manda `damageByToughness` (a mesma regra do combate, `damageByToughnessSource` em
+  `motor/combat.ts`), o selo de força/resistência ganha uma espada em ouro e a resistência em ouro, e o zoom diz "Causa
+  dano de combate igual à resistência (N), não à força (Felothar the Steadfast)". Vale também para Assault Formation,
+  Baldin e Walking Bulwark; teste da vista em `cartas/defs/felothar-the-steadfast.test.ts`.
