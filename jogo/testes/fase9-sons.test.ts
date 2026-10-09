@@ -68,19 +68,19 @@ describe('preferências de som e música guardadas no navegador', () => {
   }
   afterEach(() => { vi.unstubAllGlobals(); });
 
-  it('padrão: os dois sons de turno e o do chat ligados; música ligada e baixa, com volume separado dos efeitos', async () => {
+  it('padrão: os dois sons de turno, o do chat e o da abertura ligados; música ligada e baixa, com volume separado dos efeitos', async () => {
     const { preferencias } = await comGuardado(undefined);
     const p = preferencias();
-    expect(p.sons).toEqual({ turnoMeu: true, turnoAdversario: true, dano: true, vida: true, chat: true });
+    expect(p.sons).toEqual({ turnoMeu: true, turnoAdversario: true, dano: true, vida: true, chat: true, abertura: true });
     expect(p.musica).toBe(true);
     expect(p.volumeMusica).toBeLessThanOrEqual(0.4);
     expect(p.volume).toBe(0.7);
   });
 
-  it('quem tinha desligado o som de turno antigo fica com os dois desligados; o resto continua (o do chat, que veio depois, liga)', async () => {
+  it('quem tinha desligado o som de turno antigo fica com os dois desligados; o resto continua (os do chat e da abertura, que vieram depois, ligam)', async () => {
     const { preferencias } = await comGuardado({ volume: 0.5, sons: { turno: false, dano: true, vida: false } });
     const p = preferencias();
-    expect(p.sons).toEqual({ turnoMeu: false, turnoAdversario: false, dano: true, vida: false, chat: true });
+    expect(p.sons).toEqual({ turnoMeu: false, turnoAdversario: false, dano: true, vida: false, chat: true, abertura: true });
     expect('turno' in p.sons).toBe(false);
     expect(p.volume).toBe(0.5);
   });
@@ -90,7 +90,7 @@ describe('preferências de som e música guardadas no navegador', () => {
     mudarPreferencias({ sons: { ...preferencias().sons, turnoAdversario: false } });
     mudarPreferencias({ musica: false, volumeMusica: 0.15 });
     const guardado = JSON.parse(loja.get('commander-da-mesa:preferencias')!);
-    expect(guardado.sons).toEqual({ turnoMeu: true, turnoAdversario: false, dano: true, vida: true, chat: true });
+    expect(guardado.sons).toEqual({ turnoMeu: true, turnoAdversario: false, dano: true, vida: true, chat: true, abertura: true });
     expect(guardado.musica).toBe(false);
     expect(guardado.volumeMusica).toBe(0.15);
     expect(guardado.volume).toBe(0.7);

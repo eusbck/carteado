@@ -107,15 +107,20 @@ function harpa(c: BaseAudioContext, saida: AudioNode, freq: number, inicio: numb
   nota(c, f, freq * 2, inicio, duracao * 0.5, volume * 0.25, 'sine');
 }
 
-/** um sopro de ruído filtrado (o "baque" do dano, a pele do tímpano) */
-function sopro(c: BaseAudioContext, saida: AudioNode, inicio: number, duracao: number, volume: number, corte: number): void {
+/** 0,4 s de ruído branco, criado uma vez */
+function bufferRuido(c: BaseAudioContext): AudioBuffer {
   if (!ruido) {
     ruido = c.createBuffer(1, Math.round(c.sampleRate * 0.4), c.sampleRate);
     const d = ruido.getChannelData(0);
     for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
   }
+  return ruido;
+}
+
+/** um sopro de ruído filtrado (o "baque" do dano, a pele do tímpano) */
+function sopro(c: BaseAudioContext, saida: AudioNode, inicio: number, duracao: number, volume: number, corte: number): void {
   const s = c.createBufferSource();
-  s.buffer = ruido;
+  s.buffer = bufferRuido(c);
   const f = c.createBiquadFilter();
   f.type = 'lowpass';
   f.frequency.value = corte;
@@ -127,12 +132,36 @@ function sopro(c: BaseAudioContext, saida: AudioNode, inicio: number, duracao: n
   s.stop(inicio + duracao + 0.02);
 }
 
+/** uma rajada de vento: ruído num filtro de banda que varre de `de` a `para` (as faixas da abertura deslizando) */
+function rajada(c: BaseAudioContext, saida: AudioNode, inicio: number, duracao: number, volume: number, de: number, para: number): void {
+  const s = c.createBufferSource();
+  s.buffer = bufferRuido(c);
+  s.loop = true;
+  const f = c.createBiquadFilter();
+  f.type = 'bandpass';
+  f.Q.value = 1.4;
+  f.frequency.setValueAtTime(de, inicio);
+  f.frequency.exponentialRampToValueAtTime(para, inicio + duracao);
+  const g = c.createGain();
+  g.gain.setValueAtTime(0.0001, inicio);
+  g.gain.exponentialRampToValueAtTime(volume, inicio + duracao * 0.35);
+  g.gain.exponentialRampToValueAtTime(0.0001, inicio + duracao);
+  s.connect(f).connect(g).connect(saida);
+  s.start(inicio);
+  s.stop(inicio + duracao + 0.02);
+}
+
 // sol: as notas dos sons de turno (sem a terça, servem a sol maior e a sol menor)
 const SOL2 = 98, SOL3 = 196, RE4 = 293.66, SOL4 = 392, RE5 = 587.33, SOL5 = 783.99;
 
-/** toca um som se ele estiver ligado; `forca` de 0 a 1 (o dano em você soa mais forte que nos outros) */
-export function tocar(som: Som, forca = 1): void {
-  if (preferencias().sons[som]) gerar(som, forca);
+const nada = () => {};
+
+/**
+ * toca um som se ele estiver ligado; `forca` de 0 a 1 (o dano em você soa mais forte que nos outros). Devolve uma
+ * função que cala o som em seguida (a abertura pulada no meio não deixa o impacto tocar sobre a mesa).
+ */
+export function tocar(som: Som, forca = 1): () => void {
+  return preferencias().sons[som] ? gerar(som, forca) : nada;
 }
 
 /** o botão de ouvir das Configurações: toca mesmo com o som desligado (no volume dos efeitos) */
@@ -140,15 +169,16 @@ export function ouvir(som: Som): void {
   gerar(som, 1);
 }
 
-function gerar(som: Som, forca: number): void {
+function gerar(som: Som, forca: number): () => void {
   const p = preferencias();
-  if (p.volume <= 0) return;
+  if (p.volume <= 0) return nada;
   const c = contexto();
-  if (!c || c.state !== 'running') return;
+  if (!c || c.state !== 'running') return nada;
   const mestre = c.createGain();
   mestre.gain.value = Math.min(1, p.volume) * 0.55 * Math.max(0.2, Math.min(1, forca));
   mestre.connect(c.destination);
   desenharSom(c, mestre, som, c.currentTime + 0.01);
+  return () => mestre.gain.setTargetAtTime(0, c.currentTime, 0.04);
 }
 
 /** monta o som em `mestre` começando em `t` (separado de `gerar` para dar para gravar num OfflineAudioContext) */
@@ -181,5 +211,17 @@ export function desenharSom(c: BaseAudioContext, mestre: AudioNode, som: Som, t:
       nota(c, mestre, SOL5, t, 0.12, 0.14, 'sine');
       nota(c, mestre, RE5 * 2, t + 0.07, 0.2, 0.12, 'sine');
       break;
+    case 'abertura': { // as faixas entram com duas rajadas; 1,42 s depois o VS crava (casa com IMPACTO em Abertura.tsx)
+      rajada(c, mestre, t, 0.7, 0.22, 300, 2200);
+      rajada(c, mestre, t + 0.14, 0.7, 0.18, 2400, 400);
+      const b = t + 1.42;
+      nota(c, mestre, 130, b, 1.1, 0.7, 'sine', 36); // o baque grave caindo
+      sopro(c, mestre, b, 0.4, 0.4, 1200);
+      trompa(c, mestre, SOL2, b, 1.1, 0.16); // metais graves em sol e ré
+      trompa(c, mestre, RE4 / 2, b, 1.1, 0.12);
+      nota(c, mestre, SOL5, b, 1.6, 0.05, 'triangle'); // o brilho do metal
+      nota(c, mestre, RE5 * 2, b + 0.01, 1.4, 0.035, 'triangle');
+      break;
+    }
   }
 }

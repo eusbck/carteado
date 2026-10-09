@@ -13,6 +13,7 @@ const SONS: { id: Som; nome: string; descricao?: string }[] = [
   { id: 'dano', nome: 'Som de dano' },
   { id: 'vida', nome: 'Som de ganhar vida' },
   { id: 'chat', nome: 'Som de mensagem no chat', descricao: 'quando outra pessoa escreve' },
+  { id: 'abertura', nome: 'Som da abertura', descricao: 'o impacto do VS quando a partida começa' },
 ];
 
 const IconeOuvir = () => (

@@ -30,6 +30,7 @@ import { PedidoDesfazer } from './Desfazer.tsx';
 import { useEfeitos } from './Efeitos.tsx';
 import { Setas, type Seta } from './Setas.tsx';
 import { MaoInicial } from './MaoInicial.tsx';
+import { Abertura, aberturaVista, chaveAbertura, marcarAbertura, type LadoVS } from './Abertura.tsx';
 import { Manual, type PegarCarta, type Tipo as TipoManual } from './Manual.tsx';
 import { moverCartas, posicaoAoSoltar, selecionarArea, useArrumar, type NovaPosicao } from './mover.ts';
 import { semConfirmadas } from './posicionar.ts';
@@ -466,7 +467,15 @@ export function Mesa() {
     const minhas = new Set(v.battlefield.filter((o) => o.controller === eu).map((o) => String(o.id)));
     setPosLocal((a) => semConfirmadas(a, e.posicoes, (id) => minhas.has(id)));
   }, [e.posicoes]);
-  const posicoes = useMemo(() => ({ ...e.posicoes, ...posLocal }), [e.posicoes, posLocal]);
+  // a permanente que você acabou de soltar já nasce no ponto onde foi solta: esperar o efeito acima fazia o primeiro
+  // desenho sair na arrumação padrão, e a transição de posição a trazia deslizando de lá até o ponto
+  const posicoes = useMemo(() => {
+    const todas = { ...e.posicoes, ...posLocal };
+    const p = posPendente.current;
+    const nova = p && v.battlefield.find((o) => !p.antes.has(o.id) && o.def === p.def && o.controller === eu);
+    if (p && nova && !todas[String(nova.id)]) todas[String(nova.id)] = [p.x, p.y];
+    return todas;
+  }, [e.posicoes, posLocal, v.battlefield]);
 
   // índice de objetos visíveis
   const todos = useMemo(() => {
@@ -932,6 +941,30 @@ export function Mesa() {
   // sem prioridade, o ajuste manual fecha (antes ele sumia e voltava sozinho na prioridade seguinte)
   useEffect(() => { if (decisaoManual === null) { setManualAberto(false); setManualTipo(undefined); setPegar(null); } }, [decisaoManual]);
   const preJogo = v.turn.number === 0 && !v.gameOver;
+  // abertura (VS): uma vez por partida neste navegador, antes da mão inicial; depois de começar, vai até o fim
+  const chaveVS = chaveAbertura(sala.codigo, sala.semente);
+  const [abertura, setAbertura] = useState<string | null>(null);
+  useLayoutEffect(() => {
+    if (!preJogo || aberturaVista(chaveVS)) return;
+    marcarAbertura(chaveVS);
+    setAbertura(chaveVS);
+  }, [preJogo, chaveVS]);
+  const ladosVS = (): LadoVS[] => ordem.map((p) => {
+    const a = sala.assentos[p];
+    const deck = e.decks.find((x) => x.id === a?.deck);
+    return {
+      jogador: p,
+      nome: v.players[p].name,
+      papel: p === eu ? 'Você' : a?.tipo === 'bot' ? `Oponente · bot ${nomeNivel(a.nivel ?? NIVEL_PADRAO)}` : 'Oponente',
+      comandante: deck ? nomeCarta(deck.comandante, deck.comandante).split(',')[0] : null,
+      deck: deck?.nome ?? null,
+      fundo: fundoDe(p),
+      avatar: avatarDe(p),
+      cor: cor(p),
+      // a ordem dos turnos já vem sorteada: o primeiro dela joga o primeiro turno
+      comeca: p === v.turnOrder[0],
+    };
+  });
   const mostrarDecisao = d && !v.gameOver && !enviando && !preJogo && !ehEscolha(d) && (d.kind !== 'priority' || acoesSoltas.length > 0);
   const escolha = d && !v.gameOver && !enviando && !preJogo && ehEscolha(d) ? d : null;
 
@@ -1015,7 +1048,7 @@ export function Mesa() {
       </main>
 
       <aside class="lateral" aria-label="Menu da partida">
-        <div class="marca-jogo"><Marca /><span>MAGIC COMMANDER</span></div>
+        <div class="marca-jogo"><Marca /><span>COMMANDER</span></div>
         <div class="lateral-turno" style={{ '--cor': cor(v.turn.active) }}>
           <span class="rot">Turno</span><strong>{v.turn.number || '–'}</strong>
           <span class="vez">{v.turn.number ? <>vez de <span>{v.players[v.turn.active].name}</span></> : 'antes do 1º turno'}</span>
@@ -1089,6 +1122,8 @@ export function Mesa() {
         </div>
       </Janela>
     )}
+
+    {abertura && <Abertura key={abertura} lados={ladosVS()} fim={() => setAbertura(null)} />}
 
     {manualAberto && decisaoManual !== null && (
       <Manual v={v} decisao={decisaoManual} tipoInicial={manualTipo} escondida={!!pegar} fechar={() => { setManualAberto(false); setManualTipo(undefined); setPegar(null); }} pegar={setPegar} nomeObj={nomeObj} />

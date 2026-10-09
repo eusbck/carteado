@@ -1,0 +1,133 @@
+/* Abertura da partida (a tela VS, Abertura.tsx): cobre a tela antes da mão inicial. Os tamanhos usam --u, um
+   centésimo da largura de uma tela 16:9 que cabe nesta (min de 1cqw e 1,78cqh): em 16:10 vale a largura, em telas
+   mais largas que 16:9 vale a altura. As faixas cobrem a tela inteira em qualquer proporção; o ângulo do corte entre
+   elas sai da largura e da altura reais (atan2 e hypot). */
+
+.abertura {
+  position: fixed; inset: 0; z-index: 450; overflow: hidden; background: #050405; cursor: pointer; user-select: none;
+  container-type: size; transition: opacity .55s ease;
+}
+.abertura.saindo { opacity: 0; pointer-events: none; }
+.vs { position: absolute; inset: 0; --u: min(1cqw, 1.7778cqh); }
+/* enquanto as imagens carregam, só o fundo preto */
+.abertura.carregando .vs { visibility: hidden; }
+.vs-treme { position: absolute; inset: 0; }
+.vs canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 3; pointer-events: none; }
+
+.vs-lado { position: absolute; inset: 0; z-index: 1; }
+.vs-arte { position: absolute; top: 0; height: 100%; object-fit: cover; filter: brightness(.6) saturate(1.1); }
+.vs-arte.vazia { background: radial-gradient(circle at 50% 40%, color-mix(in srgb, var(--aura) 45%, #141214), #070607 70%); }
+.vs-tinta { position: absolute; inset: 0; mix-blend-mode: screen; opacity: .55; }
+.vs-veu {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(6, 5, 6, .95) 0%, rgba(6, 5, 6, .55) 22%, transparent 48%), linear-gradient(to bottom, rgba(6, 5, 6, .55), transparent 22%);
+}
+.vs-retrato {
+  position: absolute; bottom: calc(var(--u) * 3); width: calc(var(--u) * 43); height: calc(var(--u) * 43); object-fit: contain;
+  filter: drop-shadow(0 0 calc(var(--u) * 1.4) color-mix(in srgb, var(--aura) 75%, transparent)) drop-shadow(0 calc(var(--u) * 1.2) calc(var(--u) * 2) rgba(0, 0, 0, .7));
+  -webkit-mask-image: linear-gradient(to bottom, #000 72%, transparent 99%); mask-image: linear-gradient(to bottom, #000 72%, transparent 99%);
+}
+/* sem retrato: a inicial num medalhão na cor do jogador */
+.vs-inicial {
+  display: grid; place-items: center; border-radius: 50%; -webkit-mask-image: none; mask-image: none;
+  width: calc(var(--u) * 26); height: calc(var(--u) * 26); bottom: calc(var(--u) * 12);
+  font: 800 calc(var(--u) * 12)/1 'Cinzel', Georgia, serif; color: #fff7ea;
+  background: radial-gradient(circle at 40% 35%, color-mix(in srgb, var(--aura) 70%, #fff), var(--aura) 45%, color-mix(in srgb, var(--aura) 40%, #000));
+  border: calc(var(--u) * .5) solid var(--ouro);
+}
+.vs-nome { position: absolute; bottom: calc(var(--u) * 2.6); display: grid; gap: calc(var(--u) * .35); text-shadow: 0 calc(var(--u) * .2) calc(var(--u) * .8) rgba(0, 0, 0, .9); }
+.vs-nome b { font: 700 calc(var(--u) * 3.4)/1.1 'Cinzel', Georgia, serif; letter-spacing: .02em; color: #fff7ea; }
+.vs-papel { font: 600 calc(var(--u) * 1.25)/1.2 var(--fonte); color: var(--texto); opacity: .85; }
+.vs-deck { font: 500 calc(var(--u) * 1.05)/1.2 var(--fonte); color: color-mix(in srgb, var(--aura) 55%, var(--texto)); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.vs-comeca {
+  justify-self: start; display: inline-flex; align-items: center; gap: calc(var(--u) * .5); margin-bottom: calc(var(--u) * .4);
+  padding: calc(var(--u) * .35) calc(var(--u) * .8); border-radius: 99px; background: var(--ouro); color: var(--ouro-texto);
+  font: 700 calc(var(--u) * .9)/1 var(--fonte); letter-spacing: .14em; text-transform: uppercase; text-shadow: none;
+  box-shadow: 0 0 calc(var(--u) * 1.2) rgba(214, 168, 91, .55);
+}
+.vs-comeca svg { width: calc(var(--u) * .9); height: calc(var(--u) * .9); }
+
+/* o corte entre as faixas: uma linha de luz quente, inclinada pelo deslocamento --dx entre o alto e o pé */
+.vs-costura {
+  --ang: atan2(var(--dx), 100cqh);
+  position: absolute; left: var(--x, 50%); top: 50%; z-index: 2; width: calc(var(--u) * .32); border-radius: 99px;
+  height: 104cqh; height: hypot(var(--dx), 100cqh);
+  transform: translate(-50%, -50%) rotate(var(--ang));
+  background: linear-gradient(to bottom, transparent, #fff3dc 12%, #ffd79a 50%, #fff3dc 88%, transparent);
+  box-shadow: 0 0 calc(var(--u) * .8) #ffb45e, 0 0 calc(var(--u) * 2.4) var(--acao), 0 0 calc(var(--u) * 5) rgba(232, 93, 40, .6);
+}
+
+.vs-emblema { position: absolute; left: 50%; top: 46%; z-index: 4; display: grid; place-items: center; transform: translate(-50%, -50%); }
+.vs-calor { position: absolute; width: 190%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, rgba(255, 180, 90, .55), rgba(232, 93, 40, .28) 35%, transparent 68%); animation: vs-respira 2.6s ease-in-out infinite; }
+.vs-letras { grid-area: 1 / 1; font-family: 'Cinzel', Georgia, serif; font-weight: 800; font-size: calc(var(--u) * 15); line-height: .9; letter-spacing: -.02em; padding: 0 .06em; }
+.vs-letras.brilho { color: #ff6a1a; filter: blur(calc(var(--u) * .9)); opacity: .95; }
+.vs-letras.frente {
+  background: linear-gradient(180deg, #ffffff 18%, #fff0cf 45%, #ffc06a 70%, #f07a2c 92%); -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 0 calc(var(--u) * .25) #ffb067) drop-shadow(0 0 calc(var(--u) * 1.1) #e85d28);
+}
+.vs-onda { position: absolute; width: 60%; aspect-ratio: 1; border-radius: 50%; border: calc(var(--u) * .35) solid #ffd59c; box-shadow: 0 0 calc(var(--u) * 2) var(--acao), inset 0 0 calc(var(--u) * 2) var(--acao); opacity: 0; }
+.vs-rotulo { position: absolute; top: 100%; margin-top: calc(var(--u) * .6); white-space: nowrap; font: 700 calc(var(--u) * 1.05)/1 'Cinzel', Georgia, serif; letter-spacing: .28em; text-transform: uppercase; color: #ffd8a6; text-shadow: 0 0 calc(var(--u) * 1) rgba(232, 93, 40, .9), 0 calc(var(--u) * .15) calc(var(--u) * .4) #000; }
+.vs-clarao { position: absolute; inset: 0; z-index: 5; pointer-events: none; opacity: 0; background: radial-gradient(circle at 50% 46%, rgba(255, 246, 225, .95), rgba(255, 170, 90, .45) 30%, transparent 70%); }
+.vs-pular { position: absolute; right: calc(var(--u) * 1.8); top: calc(var(--u) * 1.6); z-index: 6; font: 600 max(11px, calc(var(--u) * .95))/1 var(--fonte); letter-spacing: .12em; text-transform: uppercase; color: rgba(242, 232, 213, .55); opacity: 0; pointer-events: none; }
+
+/* duelo: duas metades com o corte inclinado (57% no alto, 43% no pé) */
+.vs-2 .vs-lado.l0 { clip-path: polygon(0 0, 57% 0, 43% 100%, 0 100%); }
+.vs-2 .vs-lado.l1 { clip-path: polygon(57% 0, 100% 0, 100% 100%, 43% 100%); }
+.vs-2 .l0 .vs-arte { left: 0; width: 57%; }
+.vs-2 .l1 .vs-arte { left: 43%; width: 57%; }
+.vs-2 .l0 .vs-retrato { left: 6%; }
+.vs-2 .l1 .vs-retrato { right: 6%; }
+.vs-2 .l0 .vs-inicial { left: 12%; }
+.vs-2 .l1 .vs-inicial { right: 12%; }
+.vs-2 .l0 .vs-tinta { background: radial-gradient(circle at 24% 58%, var(--aura), transparent 46%); }
+.vs-2 .l1 .vs-tinta { background: radial-gradient(circle at 76% 58%, var(--aura), transparent 46%); }
+.vs-2 .vs-nome { max-width: 38%; }
+.vs-2 .l0 .vs-nome { left: 3.6%; }
+.vs-2 .l1 .vs-nome { right: 3.6%; text-align: right; }
+.vs-2 .l1 .vs-comeca { justify-self: end; }
+.vs-2 .vs-costura { --dx: 14cqw; }
+
+/* três ou quatro: faixas inclinadas lado a lado (posição de cada uma no estilo de cada faixa) */
+.vs-n .vs-retrato { width: calc(var(--u) * 27); height: calc(var(--u) * 27); bottom: calc(var(--u) * 8.6); transform: translateX(-50%); }
+.vs-n .vs-inicial { width: calc(var(--u) * 18); height: calc(var(--u) * 18); bottom: calc(var(--u) * 13); }
+.vs-n .vs-tinta { background: radial-gradient(circle at var(--cx) 62%, var(--aura), transparent 30%); }
+.vs-n .vs-nome { bottom: calc(var(--u) * 2.2); width: calc(var(--u) * 22); max-width: 22%; text-align: center; justify-items: center; transform: translateX(-50%); }
+.vs-n .vs-nome b { font-size: calc(var(--u) * 2.3); }
+.vs-n .vs-papel { font-size: calc(var(--u) * 1.05); }
+.vs-n .vs-deck { font-size: calc(var(--u) * .92); max-width: 100%; }
+.vs-n .vs-comeca { justify-self: center; font-size: calc(var(--u) * .78); }
+.vs-n .vs-costura { --dx: 6cqw; }
+.vs-n .vs-emblema { top: 22%; }
+.vs-n .vs-letras { font-size: calc(var(--u) * 9.5); }
+
+/* a sequência (só tocando: parada, cada coisa já está no lugar) */
+.abertura.tocando .vs-lado { animation: vs-entra-lado .75s calc(var(--i) * .12s) cubic-bezier(.16, .84, .24, 1) both; }
+.abertura.tocando .vs-retrato { animation: vs-entra-retrato .9s calc(.35s + var(--i) * .12s) cubic-bezier(.2, .8, .2, 1) both; }
+.abertura.tocando .vs-n .vs-retrato { animation-name: vs-entra-retrato-n; }
+.abertura.tocando .vs-2 .vs-costura { animation: vs-risca .4s .7s ease-out both; }
+.abertura.tocando .vs-n .vs-costura { animation: vs-risca .4s .85s ease-out both; }
+.abertura.tocando .vs-emblema { animation: vs-crava .6s 1.3s cubic-bezier(.3, 1.5, .5, 1) both; }
+.abertura.tocando .vs-onda { animation: vs-onda .8s 1.5s ease-out both; }
+.abertura.tocando .vs-clarao { animation: vs-clarao .6s 1.48s ease-out both; }
+.abertura.tocando .vs-treme { animation: vs-treme .4s 1.5s both; }
+.abertura.tocando .vs-nome { animation: vs-entra-nome .6s calc(1.8s + var(--i) * .1s) cubic-bezier(.2, .8, .2, 1) both; }
+.abertura.tocando .vs-n .vs-nome { animation-name: vs-entra-nome-n; }
+.abertura.tocando .vs-rotulo { animation: vs-aparece .5s 2s both; }
+.abertura.tocando .vs-pular { animation: vs-aparece .5s 1.2s both; }
+.abertura.sem-efeitos .vs-treme, .abertura.sem-efeitos .vs-clarao { animation: none; }
+@keyframes vs-entra-lado { from { transform: translate(var(--de)); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes vs-entra-retrato { from { transform: translateY(10%) scale(1.06); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes vs-entra-retrato-n { from { transform: translate(-50%, 10%) scale(1.06); opacity: 0; } to { transform: translateX(-50%); opacity: 1; } }
+@keyframes vs-risca { from { transform: translate(-50%, -50%) rotate(var(--ang)) scaleY(0); } to { transform: translate(-50%, -50%) rotate(var(--ang)) scaleY(1); } }
+@keyframes vs-crava { 0% { transform: translate(-50%, -50%) scale(3.4); opacity: 0; filter: blur(10px); } 55% { transform: translate(-50%, -50%) scale(.9); opacity: 1; filter: blur(0); } 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; } }
+@keyframes vs-onda { from { transform: scale(.4); opacity: .95; } to { transform: scale(3.2); opacity: 0; } }
+@keyframes vs-clarao { 0% { opacity: 0; } 18% { opacity: .9; } 100% { opacity: 0; } }
+@keyframes vs-treme { 0%, 100% { transform: none; } 20% { transform: translate(calc(var(--u) * -.5), calc(var(--u) * .3)); } 40% { transform: translate(calc(var(--u) * .45), calc(var(--u) * -.25)); } 60% { transform: translate(calc(var(--u) * -.3), calc(var(--u) * -.2)); } 80% { transform: translate(calc(var(--u) * .2), calc(var(--u) * .15)); } }
+@keyframes vs-entra-nome { from { transform: translateY(40%); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes vs-entra-nome-n { from { transform: translate(-50%, 40%); opacity: 0; } to { transform: translateX(-50%); opacity: 1; } }
+@keyframes vs-aparece { from { opacity: 0; } to { opacity: 1; } }
+@keyframes vs-respira { 0%, 100% { opacity: .75; transform: scale(1); } 50% { opacity: 1; transform: scale(1.08); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .abertura, .abertura * { animation: none !important; transition: none !important; }
+}

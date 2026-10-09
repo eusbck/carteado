@@ -24,5 +24,5 @@ export const IconeEspada = () => <svg viewBox="0 0 24 24" fill="currentColor" ar
 export const IconeEscudo = () => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>;
 export const IconeVida = () => <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z" /></svg>;
 
-/** o "M" do logo clássico do Magic, recortado do verso da carta */
-export const Marca = () => <img class="marca-logo" src={logoM} alt="" draggable={false} />;
+/** o "M" do logo do Magic, em brasa: ao lado de "COMMANDER" ele faz as vezes de "Magic" (e é o que o leitor de tela lê) */
+export const Marca = () => <img class="marca-logo" src={logoM} alt="Magic" draggable={false} />;
