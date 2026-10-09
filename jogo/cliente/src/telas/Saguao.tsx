@@ -4,16 +4,22 @@
 // deslizando para o lado em que a mesa andou. Se um lugar vagar, a sala volta para os lugares (os decks escolhidos
 // continuam marcados).
 
-import { useRef, useState } from 'preact/hooks';
+import { useEffect, useRef, useState } from 'preact/hooks';
+import { lazy, Suspense } from 'preact/compat';
 import { loja, useLoja } from '../loja.ts';
 import { nomeCarta, urlArte } from '../cartas.ts';
 import { Simbolos } from '../mesa/Simbolos.tsx';
-import { PreviaDeck } from './PreviaDeck.tsx';
+import { quandoOcioso } from '../ocioso.ts';
 import { EscolhaRetrato } from './EscolhaRetrato.tsx';
 import { Avatar } from '../mesa/Avatar.tsx';
 import { avatarDoAssento } from '../avatares.ts';
 import type { AssentoPublico, DeckResumo, EtapaSaguao, SalaPublica } from '../../../servidor/protocolo.ts';
 import { NIVEIS_BOT, NIVEL_PADRAO, nomeNivel, type NivelBot } from '../../../bots/niveis.ts';
+
+// a prévia do deck fica fora do pacote inicial: o código vem com a página parada assim que o passo dos decks aparece
+// (o clique num deck já o encontra carregado; se não, a janela abre um instante depois, sem nada no lugar)
+const carregarPrevia = () => import('./PreviaDeck.tsx');
+const PreviaDeck = lazy(() => carregarPrevia().then((m) => ({ default: m.PreviaDeck })));
 
 const cores = (d: DeckResumo) => d.cores.map((c) => `{${c}}`).join('');
 const ORDEM: Record<EtapaSaguao, number> = { lugares: 0, regras: 1, decks: 2 };
@@ -167,6 +173,7 @@ function CartaoDeck({ d, meu, de, abrir }: { d: DeckResumo; meu: boolean; de: st
 function PassoDecks({ sala, eu, decks }: { sala: SalaPublica; eu: number; decks: DeckResumo[] }) {
   const anfitriao = eu === sala.anfitriao;
   const [previa, setPrevia] = useState<DeckResumo | null>(null);
+  useEffect(() => quandoOcioso(() => void carregarPrevia()), []);
   const meuDeck = sala.assentos[eu]?.deck ?? null;
   const deckDe = (id: string | null) => decks.find((d) => d.id === id) ?? null;
   const faltam = sala.assentos.filter((a) => a.tipo !== 'vazio' && !a.deck).length;
@@ -223,7 +230,7 @@ function PassoDecks({ sala, eu, decks }: { sala: SalaPublica; eu: number; decks:
             </>
           : <p class="saguao-espera"><span class="pulso" aria-hidden="true" />{meuDeck ? (pronto ? 'Esperando o anfitrião começar.' : 'Esperando os outros escolherem.') : 'Escolha seu deck.'}</p>}
       </footer>
-      {previa && <PreviaDeck d={previa} meu={previa.id === meuDeck} escolher={() => loja.enviar({ t: 'deck', deck: previa.id })} fechar={() => setPrevia(null)} />}
+      {previa && <Suspense fallback={null}><PreviaDeck d={previa} meu={previa.id === meuDeck} escolher={() => loja.enviar({ t: 'deck', deck: previa.id })} fechar={() => setPrevia(null)} /></Suspense>}
     </div>
   );
 }
