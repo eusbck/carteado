@@ -26,6 +26,7 @@ const DECKS = decksJson as DeckList[];
 class Falsa implements Conexao {
   sala: Conexao['sala'] = null;
   assento: number | null = null;
+  token: string | null = null;
   msgs: MsgServidor[] = [];
   enviar(m: MsgServidor) { this.msgs.push(m); }
   ultima<T extends MsgServidor['t']>(t: T): Extract<MsgServidor, { t: T }> | undefined {
@@ -296,6 +297,69 @@ describe('erro do motor: a sala se refaz', () => {
     const r2 = Game.replayAteFalhar(config, decks, entradas.slice(0, k), { ...cp, inputIndex: entradas.length + 5 });
     expect(r2.aplicadas).toBe(k);
   }, 60000);
+});
+
+describe('assento que vaga', () => {
+  it('a pessoa sai: todas as conexões do assento saem, e a de outra aba não recebe o token de quem senta depois', async () => {
+    const g = new Gerente(new Banco(':memory:'), DECKS, SEM_ATRASO);
+    const ana = new Falsa();
+    g.tratar(ana, { t: 'criar', nome: 'Ana', senhaSala: 'segredo', modo: '4p' });
+    const codigo = ana.ultima('sala')!.sala.codigo;
+    const bruno = new Falsa();
+    g.tratar(bruno, { t: 'entrar', codigo, senhaSala: 'segredo', nome: 'Bruno' });
+    const tokenBruno = bruno.ultima('sala')!.token;
+    // a segunda aba de Bruno volta ao assento pelo token
+    const aba = new Falsa();
+    g.tratar(aba, { t: 'retomar', codigo, token: tokenBruno });
+    expect(aba.ultima('sala')!.voce).toBe(1);
+    g.tratar(bruno, { t: 'sair' });
+    for (const p of [bruno, aba]) {
+      expect(p.ultima('saiu')).toBeDefined();
+      expect(p.sala).toBeNull();
+      expect(p.assento).toBeNull();
+    }
+    const n = aba.msgs.length;
+    const carla = new Falsa();
+    g.tratar(carla, { t: 'entrar', codigo, senhaSala: 'segredo', nome: 'Carla' });
+    expect(carla.ultima('sala')!.voce).toBe(1);
+    g.tratar(carla, { t: 'chat', texto: 'oi' });
+    await espera();
+    // a aba velha não recebe nada de Carla: nem a sala com o token dela, nem o chat
+    expect(aba.msgs.slice(n)).toEqual([]);
+    // e quem tenta voltar com o token velho não entra
+    const velha = new Falsa();
+    g.tratar(velha, { t: 'retomar', codigo, token: tokenBruno });
+    expect(velha.ultima('erro')?.msg).toMatch(/Não foi possível voltar/);
+  });
+
+  it('uma conexão que ficou presa num assento que mudou de dono sai na transmissão seguinte, sem o token novo', () => {
+    const g = new Gerente(new Banco(':memory:'), DECKS, SEM_ATRASO);
+    const ana = new Falsa();
+    g.tratar(ana, { t: 'criar', nome: 'Ana', senhaSala: 'segredo', modo: '4p' });
+    const codigo = ana.ultima('sala')!.sala.codigo;
+    const s = g.salas.get(codigo)!;
+    const presa = new Falsa();
+    presa.sala = s;
+    presa.assento = 1;
+    presa.token = 'token-de-quem-saiu';
+    s.conexoes.add(presa);
+    const bruno = new Falsa();
+    g.tratar(bruno, { t: 'entrar', codigo, senhaSala: 'segredo', nome: 'Bruno' });
+    const tokenBruno = bruno.ultima('sala')!.token;
+    expect(presa.ultima('saiu')).toBeDefined();
+    expect(JSON.stringify(presa.msgs)).not.toContain(tokenBruno);
+    expect(s.conexoes.has(presa)).toBe(false);
+  });
+
+  it('a mesma conexão não toma um segundo assento da sala em que está', () => {
+    const g = new Gerente(new Banco(':memory:'), DECKS, SEM_ATRASO);
+    const ana = new Falsa();
+    g.tratar(ana, { t: 'criar', nome: 'Ana', senhaSala: 'segredo', modo: '4p' });
+    const codigo = ana.ultima('sala')!.sala.codigo;
+    g.tratar(ana, { t: 'entrar', codigo, senhaSala: 'segredo', nome: 'Ana de novo' });
+    expect(ana.ultima('erro')?.msg).toMatch(/já está nesta sala/);
+    expect(g.salas.get(codigo)!.d.assentos.filter((a) => a.tipo === 'humano')).toHaveLength(1);
+  });
 });
 
 describe('condução da partida: erro fora do motor', () => {

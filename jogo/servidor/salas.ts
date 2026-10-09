@@ -23,6 +23,8 @@ export interface Conexao {
   enviar(m: MsgServidor): void;
   sala: Sala | null;
   assento: number | null;
+  /** o token com que esta conexão tomou o assento (ao sentar ou ao retomar); a sala o confere a cada transmissão */
+  token?: string | null;
 }
 
 export interface Atrasos {
@@ -202,7 +204,10 @@ export class Sala {
     const pub = this.publica();
     for (const c of this.conexoes) {
       if (c.assento === null) continue;
-      const token = this.d.assentos[c.assento].token;
+      const token = this.d.assentos[c.assento]?.token ?? null;
+      // o assento mudou de dono (vagou, outra pessoa sentou) desde que esta conexão o tomou: ela sai, e nunca recebe o
+      // token nem a vista de outra pessoa
+      if (!token || c.token !== token) { this.soltar(c); continue; }
       c.enviar({ t: 'sala', sala: pub, voce: c.assento, token: token ?? '', quem: idAutor(token) });
       this.enviarJogo(c);
     }
@@ -246,6 +251,7 @@ export class Sala {
     if (c.sala && c.sala !== this) c.sala.desligar(c);
     c.sala = this;
     c.assento = assento;
+    c.token = this.d.assentos[assento].token;
     this.conexoes.add(c);
     c.enviar({ t: 'chat', msgs: this.d.chat ?? [], tudo: true });
   }
@@ -254,7 +260,22 @@ export class Sala {
     this.conexoes.delete(c);
     c.sala = null;
     c.assento = null;
+    c.token = null;
     this.transmitir();
+  }
+
+  /** tira a conexão da sala avisando que ela saiu (a tela volta para o início) */
+  private soltar(c: Conexao): void {
+    c.enviar({ t: 'saiu' });
+    this.conexoes.delete(c);
+    c.sala = null;
+    c.assento = null;
+    c.token = null;
+  }
+
+  /** todas as conexões de um assento saem (a pessoa saiu: a segunda aba dela não fica no assento) */
+  private soltarAssento(i: number): void {
+    for (const c of [...this.conexoes]) if (c.assento === i) this.soltar(c);
   }
 
   tratar(c: Conexao, m: MsgCliente): string | null {
@@ -299,10 +320,8 @@ export class Sala {
           this.d.assentos[i] = { tipo: 'vazio', nome: null, deck: null, token: null, paradas: paradasPadrao() };
           this.d.etapa = 'lugares';
         }
-        c.enviar({ t: 'saiu' });
-        this.conexoes.delete(c);
-        c.sala = null;
-        c.assento = null;
+        // esta conexão e as outras abas da pessoa no mesmo assento
+        this.soltarAssento(i);
         if (i === this.d.anfitriao) {
           const outro = this.d.assentos.findIndex((a) => a.tipo === 'humano');
           if (outro >= 0) this.d.anfitriao = outro;
@@ -879,6 +898,8 @@ export class Gerente {
         if (!s || typeof m.senhaSala !== 'string' || !confereSenha(m.senhaSala, s.d.senha)) return 'Código ou senha da sala incorretos';
         const nome = limparNome(m.nome);
         if (!nome) return 'Escolha um nome';
+        // a mesma conexão não toma um segundo assento da sala em que já está
+        if (c.sala === s && c.assento !== null) return 'Você já está nesta sala';
         if (s.d.estado === 'jogando') return 'A partida já começou; quem já está na sala pode voltar pelo mesmo aparelho';
         if (s.sentar(c, nome) === null) return 'A sala está cheia';
         s.salvar();
