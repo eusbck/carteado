@@ -5,7 +5,10 @@ import type { InfoCarta } from '../../servidor/protocolo.ts';
 let INFO: Record<string, InfoCarta> = {};
 
 export async function carregarCartas(): Promise<void> {
-  INFO = await fetch('/api/cartas').then((r) => r.json());
+  // uma resposta de erro (sessão expirada…) não vira o catálogo das cartas
+  const r = await fetch('/api/cartas');
+  if (!r.ok) throw new Error(`cartas: ${r.status}`);
+  INFO = await r.json();
   RE = null;
 }
 

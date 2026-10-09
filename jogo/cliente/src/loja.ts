@@ -114,23 +114,36 @@ class Loja {
     }
   }
 
+  /** login em andamento: um segundo Enter (ou clique) não abre uma segunda conexão */
+  private entrando = false;
+
   async entrar(senha: string): Promise<void> {
-    const r = await fetch('/api/entrar', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ senha }) });
-    if (!r.ok) {
-      const { erro } = await r.json().catch(() => ({ erro: 'Não foi possível entrar' }));
-      this.erro(erro);
-      return;
+    if (this.entrando || this.ws) return;
+    this.entrando = true;
+    try {
+      const r = await fetch('/api/entrar', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ senha }) });
+      if (!r.ok) {
+        const { erro } = await r.json().catch(() => ({ erro: 'Não foi possível entrar' }));
+        this.erro(erro);
+        return;
+      }
+      await this.aposEntrar();
+    } catch {
+      this.erro('Não foi possível falar com o servidor');
+    } finally {
+      this.entrando = false;
     }
-    await this.aposEntrar();
   }
 
   private async aposEntrar(): Promise<void> {
-    const [decks] = await Promise.all([fetch('/api/decks').then((r) => r.json()), carregarCartas()]);
+    const [decks] = await Promise.all([fetch('/api/decks').then((r) => { if (!r.ok) throw new Error(String(r.status)); return r.json(); }), carregarCartas()]);
     this.mudar({ decks, fase: 'inicio' });
     this.conectar();
   }
 
   private conectar(): void {
+    // uma conexão só: a reconexão marcada não abre outra se uma já está aberta ou abrindo
+    if (this.ws && this.ws.readyState !== WebSocket.CLOSED) return;
     const ws = new WebSocket(`${location.protocol === 'https:' ? 'wss' : 'ws'}://${location.host}/ws`);
     this.ws = ws;
     ws.onopen = () => {
@@ -140,10 +153,17 @@ class Loja {
       if (s) ws.send(JSON.stringify({ t: 'retomar', codigo: s.codigo, token: s.token } satisfies MsgCliente));
       for (const m of this.fila.splice(0)) ws.send(JSON.stringify(m));
     };
-    ws.onmessage = (ev) => this.tratar(JSON.parse(String(ev.data)) as MsgServidor);
+    ws.onmessage = (ev) => {
+      let m: MsgServidor;
+      try { m = JSON.parse(String(ev.data)) as MsgServidor; } catch { console.warn('Mensagem do servidor ilegível'); return; }
+      try { this.tratar(m); } catch (e) { console.error('Erro ao tratar a mensagem do servidor', m.t, e); }
+    };
     ws.onclose = () => {
+      if (this.ws !== ws) return;
       this.ws = null;
-      this.mudar({ conectado: false });
+      // a resposta que estava indo pode ter se perdido com a conexão: a decisão volta a aceitar clique
+      // (se ela chegou, o servidor responde "já passou" e nada acontece)
+      this.mudar({ conectado: false, respondida: null });
       const espera = Math.min(10000, 500 * 2 ** this.tentativas++);
       setTimeout(() => this.conectar(), espera);
     };
@@ -280,6 +300,8 @@ class Loja {
         break;
       case 'saiu':
         guardarSala(null);
+        // voltando a esta sala (ou a outra) depois, o retrato guardado vai de novo para o assento novo
+        this.avatarMandado.clear();
         this.mudar({ sala: null, voce: null, vista: null, fase: 'inicio', chat: [] });
         break;
       case 'erro':
