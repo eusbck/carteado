@@ -1,10 +1,12 @@
 // Configurações › Efeitos e sons, e Música: volume dos efeitos, cada som (os dois de turno
 // separados, com um botão para ouvir), efeitos visuais, e a música de fundo com volume próprio e o
-// crédito da faixa. Tudo guardado neste navegador e valendo na hora, no meio da partida.
+// crédito da faixa; logo depois, a chave do modo Desempenho (ConfigDesempenho.tsx). Tudo guardado
+// neste navegador e valendo na hora, no meio da partida.
 
 import { FAIXA } from '../musica.ts';
 import { mudarPreferencias, type Preferencias, type Som } from '../preferencias.ts';
 import { ouvir } from '../sons.ts';
+import { ConfigDesempenho } from './ConfigDesempenho.tsx';
 import './config-som.css';
 
 const SONS: { id: Som; nome: string; descricao?: string }[] = [
@@ -60,6 +62,7 @@ export function ConfigSom({ pref }: { pref: Preferencias }) {
           {FAIXA.nota && <> · {FAIXA.nota}</>}
         </p>
       </section>
+      <ConfigDesempenho pref={pref} />
     </>
   );
 }

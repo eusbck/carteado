@@ -85,6 +85,15 @@ describe('preferências de som e música guardadas no navegador', () => {
     expect(p.volume).toBe(0.5);
   });
 
+  it('modo Desempenho: desligado por padrão (também para quem já tinha preferências guardadas) e guardado quando liga', async () => {
+    expect((await comGuardado(undefined)).preferencias().desempenho).toBe(false);
+    const { preferencias, mudarPreferencias, loja } = await comGuardado({ volume: 0.5, musica: true });
+    expect(preferencias().desempenho).toBe(false);
+    mudarPreferencias({ desempenho: true });
+    expect(JSON.parse(loja.get('commander-da-mesa:preferencias')!).desempenho).toBe(true);
+    expect(preferencias().volume).toBe(0.5);
+  });
+
   it('cada chave muda sozinha e fica guardada', async () => {
     const { preferencias, mudarPreferencias, loja } = await comGuardado({});
     mudarPreferencias({ sons: { ...preferencias().sons, turnoAdversario: false } });

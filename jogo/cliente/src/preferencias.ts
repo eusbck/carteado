@@ -46,10 +46,15 @@ export interface Preferencias {
   efeitos: boolean;
   /** o seu retrato no canto de cima à direita da sua área (sem valor: no meio da base, na frente da mão) */
   avatarCanto?: boolean;
+  /** modo Desempenho, para computadores mais fracos (desligado por padrão, só por escolha da pessoa): sem desfoques,
+   * wallpapers sem o zoom lento, sem brasas na entrada nem partículas na tela VS, aura do avatar parada, sem os brilhos
+   * animados de dano, e a música tocada por <audio> em vez de decodificada inteira na memória. Vale por
+   * <html data-desempenho> (estilo.css) e nos poucos pontos em JavaScript que leem esta chave */
+  desempenho: boolean;
 }
 
 const CHAVE = 'commander-da-mesa:preferencias';
-const PADRAO: Preferencias = { nivel: 'real', personalizado: { ...NENHUM }, volume: 0.7, sons: { turnoMeu: true, turnoAdversario: true, dano: true, vida: true, chat: true, abertura: true }, musica: true, volumeMusica: 0.4, efeitos: true };
+const PADRAO: Preferencias = { nivel: 'real', personalizado: { ...NENHUM }, volume: 0.7, sons: { turnoMeu: true, turnoAdversario: true, dano: true, vida: true, chat: true, abertura: true }, musica: true, volumeMusica: 0.4, efeitos: true, desempenho: false };
 
 function ler(): Preferencias {
   try {
@@ -69,10 +74,17 @@ function ler(): Preferencias {
 let atual = ler();
 const ouvintes = new Set<() => void>();
 
+/** o modo Desempenho no <html>, onde o CSS o lê (desde o primeiro desenho: este módulo carrega antes das telas) */
+function marcarDesempenho(): void {
+  if (typeof document !== 'undefined') document.documentElement.toggleAttribute('data-desempenho', atual.desempenho === true);
+}
+marcarDesempenho();
+
 export function preferencias(): Preferencias { return atual; }
 export function mudarPreferencias(p: Partial<Preferencias>): void {
   atual = { ...atual, ...p };
   try { localStorage.setItem(CHAVE, JSON.stringify(atual)); } catch { /* sem armazenamento: vale até fechar a página */ }
+  marcarDesempenho();
   for (const f of ouvintes) f();
 }
 export function usePreferencias(): Preferencias {

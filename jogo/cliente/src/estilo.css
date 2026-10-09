@@ -1155,3 +1155,17 @@ img.mini { width: 40px; aspect-ratio: 63 / 88; object-fit: cover; border-radius:
 .retrato-opcao b { font-family: var(--fonte-epica, serif); font-size: 14px; }
 .retrato-opcao small { color: var(--suave); font-size: 11.5px; margin-top: -6px; }
 .retrato-auto { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 12px; border: 1px dashed var(--linha-forte); }
+
+/* ---------------------------------------------------------------- modo Desempenho (Configurações › Desempenho) */
+/* só com a chave ligada (<html data-desempenho>, preferencias.ts); desligada, nada daqui vale e o visual é o de sempre.
+   Tira o que custa a cada quadro: os desfoques de fundo, o zoom lento dos wallpapers, as brasas e o brilho que respira
+   na entrada, a aura animada do avatar e o botão que pulsa quando a mesa espera você (a sombra animada). O resto (as
+   partículas da tela VS, os brilhos de dano e a música) fica em Abertura.tsx, Efeitos.tsx e musica.ts */
+[data-desempenho] * { backdrop-filter: none !important; }
+/* só o fade de entrada (com "reduzir movimento" ele continua com 1 s) */
+[data-desempenho] .fundo-arte-img { animation-name: fundo-entra; }
+[data-desempenho] .brasa { display: none; }
+[data-desempenho] .aurora, [data-desempenho] .entrada-halo { animation: none; }
+[data-desempenho] .orbe { animation-name: orbe-acende; }
+[data-desempenho] .avatar.ativo .avatar-aura { animation: none; }
+[data-desempenho] .fases.esperando-voce .fases-acao .botao.cheio { animation: none; }
