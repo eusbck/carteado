@@ -1,15 +1,16 @@
 // Busca do Magic God (fase 9): Monte Carlo com informação oculta, parecida com o ISMCTS de um observador.
 //
 // 1. Pré-seleção rasa, como a da Cartomante e com pelo menos o mesmo tanto de análise (as candidatas nos mesmos mundos
-//    sorteados, mais mundos que ela), com até metade do tempo.
+//    sorteados, mais mundos que ela), com até 40% do tempo (buscaPreSelecao em bots/niveis.ts).
 //    Ela dá a escolha "de partida": a melhor candidata, se passar da margem, ou passar.
 // 2. As melhores candidatas e "passar" são jogadas até o fim do turno seguinte, em mundos sorteados a cada rodada
 //    (com a leitura da mesa da Cartomante): todos jogam terrenos e mágicas, atacam e bloqueiam com políticas rápidas,
 //    e os oponentes respondem com o que têm na mão sorteada. Cada rodada joga todas as opções no mesmo mundo, então a
 //    diferença entre duas opções numa rodada não depende da sorte do sorteio.
 // 3. A escolha de partida só muda se as jogadas longas mostrarem outra opção claramente melhor: a diferença média
-//    (pareada por rodada) acima de 0,3 mais uma margem de erros-padrão (Cartomante 1; Magic God, que joga mais rodadas,
-//    0,5). Sem evidência, fica a da pré-seleção.
+//    (pareada por rodada) acima de 0,3 mais meio erro-padrão (buscaConfianca), com pelo menos 3 rodadas. Sem evidência,
+//    fica a da pré-seleção. Só o Magic God usa esta busca (a Cartomante teve uma versão leve na calibração da fase 9,
+//    que não a deixou mais forte, e ficou sem ela).
 
 import { seedFrom } from '../motor/rng.ts';
 import type { Answer, Decision } from '../motor/types.ts';
@@ -38,19 +39,24 @@ export function buscar(bot: HeuristicBot, ctx: Contexto, acoes: D<'priority'>['a
   const rodadas: number[][] = [];
   const eu = bot.eu;
   const avaliacao = { papeis: true, lider: bot.p.lider };
+  // rodadas tentadas (uma rodada em que um mundo quebrou fica de fora; com rodadas fixas, há um teto de tentativas)
+  let tentadas = 0;
   for (;;) {
-    if (fixas !== null ? rodadas.length >= fixas : performance.now() >= ctx.prazo) break;
-    const mundo = ramo(bot.e.rng, `b${rodadas.length}`);
+    if (fixas !== null ? rodadas.length >= fixas || tentadas >= 3 * fixas + 3 : performance.now() >= ctx.prazo) break;
+    const mundo = ramo(bot.e.rng, `b${tentadas++}`);
     const valores: number[] = [];
+    let quebrou = false;
     for (const a of opcoes) {
       const f = ctx.copia(mundo);
       if (!f) break;
       const r2 = seedFrom(`r:${mundo.join(':')}`);
       const minhaPrioridade: Politica = (d, g) => (d.kind === 'priority' ? politicaRapida(d, g, r2) ?? PASSAR : PASSAR);
       const r = simular(f, eu, a, bot.politicaMinha(0, r2), bot.politicaOutros(r2, true), { horizonte: 'proximo', avaliacao, minhaPrioridade });
+      if (r.falhou) { quebrou = true; break; }
       valores.push(Number.isFinite(r.valor) ? r.valor : -1e6);
       if (fixas === null && performance.now() >= ctx.prazo) break; // rodada incompleta no prazo: fica de fora
     }
+    if (quebrou) continue;
     if (valores.length < opcoes.length) break;
     rodadas.push(valores);
   }

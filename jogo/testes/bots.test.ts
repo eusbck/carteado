@@ -1,10 +1,17 @@
 // Bot heurístico: decisões básicas em situações montadas (terreno, remoção, ataque, bloqueio, escolhas forçadas).
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { setup, type TestGame } from './harness.ts';
-import { HeuristicBot } from '../bots/heuristico.ts';
+import { escolher, ficaComMao, HeuristicBot, pagamentoManual } from '../bots/heuristico.ts';
+import { simular } from '../bots/simulacao.ts';
+import { memoriaVazia, observar } from '../bots/memoria.ts';
+import decksJson from './decks-teste.json' with { type: 'json' };
+import type { DeckList } from '../motor/state.ts';
+import { buildView } from '../motor/view.ts';
+import { Game } from '../motor/game.ts';
 import { avaliar } from '../bots/avaliacao.ts';
 import { determinizar } from '../bots/simulacao.ts';
 import { seedFrom } from '../motor/rng.ts';
+import type { Answer, Decision } from '../motor/types.ts';
 
 /** o bot responde por `eu`; os outros passam ou usam a resposta padrão, até `parar` valer ou acabar o limite */
 function jogar(tg: TestGame, bot: HeuristicBot, parar: (tg: TestGame) => boolean, limite = 300): void {
@@ -91,4 +98,151 @@ describe('bot heurístico', () => {
     expect(todas(f.state)).toEqual(todas(tg.state));
     expect(avaliar(f.g, 0)).toBeCloseTo(avaliar(tg.g, 0));
   });
+
+  it('ataca com criatura de força 0 quando Felothar faz o dano ser pela resistência', () => {
+    const tg = setup({ battlefield: [[{ name: 'Felothar the Steadfast', ready: true }, { name: 'Nyx-Fleece Ram', ready: true }], []], library: [['Plains'], ['Plains']] });
+    const bot = new HeuristicBot('t', 0, { simulacoes: 4 });
+    jogar(tg, bot, (x) => x.state.turn.step === 'main2');
+    expect(tg.life(1)).toBe(30);
+  });
+
+  it('o ataque letal conta o dano de comandante (21), mesmo com pouca vida para segurar bloqueadores', () => {
+    const tg = setup({ battlefield: [[{ name: 'Glissa Sunslayer', ready: true, commander: true }, { name: 'Elvish Mystic', ready: true }], []], library: [['Plains'], ['Plains']] });
+    tg.state.players[0].life = 5;
+    tg.state.players[1].commanderDamage[String(tg.state.objects[tg.bf('Glissa Sunslayer')].card)] = 18;
+    tg.refresh();
+    const bot = new HeuristicBot('t', 0, { simulacoes: 4 });
+    jogar(tg, bot, (x) => x.state.turn.step === 'main2' || x.game.isOver(), 200);
+    expect(tg.state.gameOver?.winners).toEqual([0]);
+  });
+
+  it('não gasta dano de combate em bloqueador que já tem dano letal', () => {
+    const tg = setup({ battlefield: [['Glissa Sunslayer'], ['Elvish Mystic', 'Gau, Feral Youth']] });
+    const [m, gau] = [tg.bf('Elvish Mystic'), tg.bf('Gau, Feral Youth')];
+    const d: Decision = { kind: 'damage', id: 1, player: 0, prompt: 'Distribua 3 de dano', attacker: tg.bf('Glissa Sunslayer'), amount: 3, recipients: [{ kind: 'obj', id: m }, { kind: 'obj', id: gau }], lethal: [0, 3], trample: false };
+    expect((escolher(d, tg.g, 0, seedFrom('d'), false) as Extract<Answer, { kind: 'damage' }>).assign).toEqual([0, 3]);
+  });
+
+  it('o X de uma habilidade (ciclagem do Shark Typhoon) é o maior que dá para pagar, não o teto de 20', () => {
+    const tg = setup({ battlefield: [['Island', 'Island', 'Island', 'Island', 'Island'], []], hand: [['Shark Typhoon'], []], library: [['Plains', 'Plains'], ['Plains']] });
+    const bot = new HeuristicBot('t', 0, { nivel: 'intermediario' });
+    let x = -1;
+    tg.script.push((d, g) => {
+      if (d.kind !== 'number' || d.player !== 0) return null;
+      const a = bot.answer(d, g.game);
+      if (a.kind === 'number') x = a.value;
+      return a;
+    });
+    tg.activate('Shark Typhoon').resolveAll();
+    expect(x).toBe(3);
+    expect(tg.names(0, 'hand')).toEqual(['Plains']);
+  });
+
+  it('kicker só quando dá para pagar a mana dele junto com a da mágica', () => {
+    const kicker = (terrenos: number): string[] => {
+      const tg = setup({ battlefield: [Array(terrenos).fill('Island'), ['Gau, Feral Youth']], hand: [['Rite of Replication'], []], library: [['Plains'], ['Plains']] });
+      const bot = new HeuristicBot('t', 0, { nivel: 'intermediario' });
+      const resp: string[] = [];
+      tg.script.push((d, g) => {
+        if (d.kind !== 'select' || !d.prompt.endsWith('custo adicional opcional')) return null;
+        const a = bot.answer(d, g.game);
+        if (a.kind === 'select') resp.push(...a.ids);
+        return a;
+      });
+      tg.choose('criatura alvo', ['Gau, Feral Youth']).cast('Rite of Replication');
+      return resp;
+    };
+    expect(kicker(5)).toEqual(['no']);
+    expect(kicker(9)).toEqual(['yes']);
+  });
+
+  for (const nivel of ['facil', 'intermediario'] as const) {
+    it(`${nivel}: conjura Sol Ring e Signet quando tem a mana (deck do Jace)`, () => {
+      const tg = setup({ battlefield: [['Island', 'Swamp', 'Plains'], ['Grave Titan']], hand: [['Sol Ring', 'Dimir Signet'], []], library: [['Plains'], ['Plains']] });
+      const bot = new HeuristicBot('t', 0, { nivel, orcamento: 1e9 });
+      jogar(tg, bot, (x) => x.state.turn.step === 'main2' || x.state.turn.active !== 0);
+      expect(tg.find('Sol Ring')).not.toBeNull();
+      expect(tg.find('Dimir Signet')).not.toBeNull();
+    });
+  }
+
+  it('joga o terreno antes das mágicas', () => {
+    const tg = setup({ battlefield: [['Island', 'Swamp'], []], hand: [['Dimir Signet', 'Plains', 'Swords to Plowshares'], []], library: [['Plains'], ['Plains']] });
+    const bot = new HeuristicBot('t', 0, { nivel: 'intermediario', orcamento: 1e9 });
+    const a = bot.answer(tg.pending!, tg.game);
+    expect(a.kind === 'priority' && a.action.startsWith('play:')).toBe(true);
+  });
+
+  it('mulligan: pedra de mana conta meio terreno, com pelo menos um terreno', () => {
+    expect(ficaComMao(1, 2, 0)).toBe(true);
+    expect(ficaComMao(1, 1, 0)).toBe(false);
+    expect(ficaComMao(0, 4, 0)).toBe(false);
+    expect(ficaComMao(2, 0, 0)).toBe(true);
+    expect(ficaComMao(6, 0, 0)).toBe(false);
+  });
+
+  it('do Difícil em diante, guardar mana para a contramágica vale na avaliação', () => {
+    const tg = setup({ battlefield: [['Island', 'Island'], []], hand: [['Counterspell'], []] });
+    const desvirado = avaliar(tg.g, 0, { papeis: true });
+    for (const id of tg.state.zones.battlefield) tg.state.objects[id].tapped = true;
+    const virado = avaliar(tg.g, 0, { papeis: true });
+    expect(desvirado - virado).toBeGreaterThan(1.5);
+  });
+
+  it('pagamento sem automático nem cancelar: paga com a reserva ou ativa uma fonte, nunca "automático"', () => {
+    const d: Extract<Decision, { kind: 'payment' }> = { kind: 'payment', id: 1, player: 0, prompt: 'Pague {2}', cost: '{2}', remaining: '{2}', sources: [{ id: 'a', obj: 5, label: 'Island: {U}', produces: ['U'] }], canAuto: false, lifeOptions: 0, canCancel: false };
+    expect(pagamentoManual(d, (a) => a.kind === 'payment' && !!a.activate)).toEqual({ kind: 'payment', activate: { source: 'a' } });
+    expect(pagamentoManual(d, (a) => a.kind === 'payment' && !!a.pay)).toEqual({ kind: 'payment', pay: true });
+  });
+
+  it('uma simulação que quebra (erro do motor) é descartada, não derruba a decisão', () => {
+    const quebrada = { pending: { kind: 'priority', id: 1, player: 0, prompt: '', actions: [] }, answer: () => { throw new Error('motor'); } } as unknown as Game;
+    const aviso = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    const r = simular(quebrada, 0, { kind: 'priority', action: 'pass' }, () => ({ kind: 'priority', action: 'pass' }), () => ({ kind: 'priority', action: 'pass' }));
+    expect(r.falhou).toBe(true);
+    aviso.mockRestore();
+  });
+
+  it('as travas (40 ações no turno, campo cheio) passam e ficam no log uma vez por turno', () => {
+    const tg = setup({ hand: [['Forest'], []], library: [['Plains'], ['Plains']] });
+    const bot = new HeuristicBot('t', 0, { nivel: 'intermediario' });
+    bot.e.acoes = { turno: tg.state.turn.number, n: 40 };
+    const aviso = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    const d = tg.pending!;
+    const v = buildView(tg.g, 0, d);
+    expect(bot.imediata(d, v, () => true)).toEqual({ kind: 'priority', action: 'pass' });
+    expect(bot.imediata(d, v, () => true)).toEqual({ kind: 'priority', action: 'pass' });
+    expect(aviso).toHaveBeenCalledTimes(1);
+    expect(String(aviso.mock.calls[0][0])).toContain('40 ações');
+    aviso.mockRestore();
+  });
+});
+
+describe('memória da Cartomante', () => {
+  it('lê só o que é novo (registro e última informação conhecida) e dá o mesmo que reler tudo', () => {
+    const decks = [(decksJson as DeckList[])[0], (decksJson as DeckList[])[3]];
+    const game = Game.create({ seed: 'memoria', players: [{ name: 'Ana', deckId: decks[0].id }, { name: 'ROBSON', deckId: decks[1].id }], startingLife: 40, turnLimit: 30, multiplayer: false }, decks);
+    const bots = [0, 1].map((p) => new HeuristicBot(`m${p}`, p, { nivel: 'intermediario', simulacoes: 3 }));
+    const m = memoriaVazia();
+    let chaves: number[] = [];
+    let passos = 0;
+    for (let k = 0; k < 500 && game.pending && !game.isOver(); k++) {
+      const d = game.pending;
+      expect(game.answer(d.player, bots[d.player].answer(d, game)).ok).toBe(true);
+      // a mesma memória no formato antigo: relê o registro do começo e a LKI pela lista das chaves já lidas
+      const antiga = structuredClone(m);
+      delete antiga.bruto;
+      delete antiga.lkiAte;
+      antiga.lki = chaves;
+      observar(antiga, game.g, 1);
+      observar(m, game.g, 1);
+      const sem = (x: typeof m) => ({ ...x, bruto: 0, lkiAte: 0, lki: undefined });
+      expect(sem(antiga)).toEqual(sem(m));
+      expect(m.bruto).toBe(game.state.log.length);
+      expect(m.lki).toBeUndefined();
+      chaves = Object.keys(game.state.lki).map(Number);
+      passos++;
+    }
+    expect(passos).toBeGreaterThan(100);
+  }, 120000);
 });

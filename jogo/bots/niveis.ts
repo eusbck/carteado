@@ -55,13 +55,13 @@ export interface Parametros {
   memoria: boolean;
   /** na fase principal antes do combate, simula até o fim do combate seguinte (Cartomante em diante) */
   olharCombate: boolean;
-  /** busca Monte Carlo até o fim do turno seguinte (Cartomante, numa versão leve, e Magic God) */
+  /** busca Monte Carlo até o fim do turno seguinte (bots/busca.ts; só o Magic God) */
   busca: boolean;
   /** quantas candidatas da pré-seleção vão para as jogadas longas (além de "passar") */
   buscaCandidatas: number;
   /** fração do tempo para a pré-seleção rasa; o resto vai para as jogadas longas */
   buscaPreSelecao: number;
-  /** quantos erros-padrão a vantagem nas jogadas longas precisa ter para trocar a escolha da pré-seleção */
+  /** quantos erros-padrão a vantagem nas jogadas longas precisa ter (além de 0,3) para trocar a escolha da pré-seleção */
   buscaConfianca: number;
 }
 

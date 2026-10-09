@@ -18,8 +18,13 @@ const PUBLICAS = new Set(['battlefield', 'graveyard', 'exile', 'stack', 'command
 export interface DadosMemoria {
   /** quantas linhas do registro visível já foram lidas */
   linhas: number;
-  /** chaves da última informação conhecida já lidas */
-  lki: number[];
+  /** até onde o registro inteiro já foi lido (ele só cresce): a leitura seguinte começa daqui, sem reler tudo */
+  bruto?: number;
+  /** a última informação conhecida já foi lida para tudo o que mudou de zona antes deste número de objeto (os objetos
+   *  novos ganham números crescentes); antes era a lista de todas as chaves lidas, que crescia a partida inteira */
+  lkiAte?: number;
+  /** formato antigo (lista das chaves lidas): só numa memória de antes da leitura incremental, e some na próxima leitura */
+  lki?: number[];
   naMao: Record<number, string[]>;
   semTerreno: Record<number, number>;
   truque: Record<number, number>;
@@ -28,7 +33,7 @@ export interface DadosMemoria {
 }
 
 export function memoriaVazia(): DadosMemoria {
-  return { linhas: 0, lki: [], naMao: {}, semTerreno: {}, truque: {}, turno: { numero: -1, ativo: -1, terrenos: 0, mao: 0, desvirados: 0, magias: 0, proximoId: 0 } };
+  return { linhas: 0, bruto: 0, lkiAte: 0, naMao: {}, semTerreno: {}, truque: {}, turno: { numero: -1, ativo: -1, terrenos: 0, mao: 0, desvirados: 0, magias: 0, proximoId: 0 } };
 }
 
 function tirar(lista: string[] | undefined, nome: string): void {
@@ -37,31 +42,43 @@ function tirar(lista: string[] | undefined, nome: string): void {
   if (i >= 0) lista.splice(i, 1);
 }
 
-/** atualiza a memória com o que mudou na mesa desde a última vez (só informação pública) */
+/** atualiza a memória com o que mudou na mesa desde a última vez (só informação pública; só o que é novo) */
 export function observar(m: DadosMemoria, g: G, eu: PlayerId): void {
   const s = g.state;
-  // 1. registro visível: revelações ("Fulano revela A, B.")
-  const visiveis = s.log.filter((e) => e.visibleTo === null || e.visibleTo.includes(eu));
+  const visivel = (e: G['state']['log'][number]) => e.visibleTo === null || e.visibleTo.includes(eu);
+  // 1. registro visível, só as linhas novas: revelações ("Fulano revela A, B.")
+  let i = m.bruto;
+  if (i === undefined) {
+    // memória antiga: acha no registro inteiro a posição da última linha visível lida
+    i = 0;
+    for (let vistas = 0; i < s.log.length && vistas < m.linhas; i++) if (visivel(s.log[i])) vistas++;
+  }
+  // registro mais curto que o lido (partida refeita até antes, no desfazer): recomeça do fim
+  if (i > s.log.length) i = s.log.length;
   const revelados = new Map<PlayerId, string[]>();
-  for (const e of visiveis.slice(m.linhas)) {
+  for (; i < s.log.length; i++) {
+    const e = s.log[i];
+    if (!visivel(e)) continue;
+    m.linhas++;
     const r = /^(.+?) revela (.+)\.$/.exec(e.text);
     if (!r) continue;
     const p = s.players.find((x) => x.name === r[1]);
     if (!p || p.id === eu) continue;
     revelados.set(p.id, [...(revelados.get(p.id) ?? []), ...r[2].split(', ')]);
   }
-  m.linhas = visiveis.length;
-  // 2. cartas que passaram por zona pública (o nome é público) e quantas cartas escondidas foram para a mão
-  const lidas = new Set(m.lki);
+  m.bruto = s.log.length;
+  // 2. cartas que passaram por zona pública (o nome é público) e quantas cartas escondidas foram para a mão: só as
+  //    mudanças de zona novas (o objeto novo tem número a partir do da última leitura)
+  const desde = m.lkiAte ?? 0;
+  const lidas = m.lki ? new Set(m.lki) : null;
   const paraMao = new Map<PlayerId, number>();
   for (const [k, v] of Object.entries(s.lki)) {
-    const id = Number(k);
-    if (lidas.has(id)) continue;
-    m.lki.push(id);
+    if (v.newZone === null || v.newId === null) continue;
+    if (lidas ? lidas.has(Number(k)) : v.newId < desde) continue;
     const de = v.obj;
     const dono = de.owner;
-    if (dono === eu || v.newZone === null) continue;
-    const novo = v.newId !== null ? s.objects[v.newId] : undefined;
+    if (dono === eu) continue;
+    const novo = s.objects[v.newId];
     const origemPublica = PUBLICAS.has(de.zone) && !de.faceDown;
     const destinoPublico = PUBLICAS.has(v.newZone) && !novo?.faceDown;
     const nome = de.copyOf?.def ?? de.def;
@@ -70,6 +87,8 @@ export function observar(m: DadosMemoria, g: G, eu: PlayerId): void {
     else if (de.zone === 'library' && destinoPublico) tirar(revelados.get(dono), nome);
     else if (de.zone === 'library' && v.newZone === 'hand') paraMao.set(dono, (paraMao.get(dono) ?? 0) + 1);
   }
+  m.lkiAte = s.nextId;
+  delete m.lki;
   // revelada e posta na mão: entra na memória (sem olhar qual objeto escondido é; só quantas foram para a mão)
   for (const [p, nomes] of revelados) {
     const n = Math.min(nomes.length, paraMao.get(p) ?? 0);

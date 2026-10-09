@@ -18,6 +18,16 @@ export interface Resultado {
   valor: number;
   /** respostas que `eu` deu depois da primeira, na ordem (alvos, modos, X, pagamento…) */
   plano: Answer[];
+  /** a simulação quebrou neste mundo (erro do motor, ou resposta e resposta padrão recusadas): quem chamou descarta
+   *  o mundo, em vez de a decisão inteira cair */
+  falhou?: boolean;
+}
+
+let falhas = 0;
+/** registra no log (do servidor ou da bateria) as primeiras falhas de simulação, e depois uma a cada cem */
+export function avisarFalha(onde: string, e: unknown): void {
+  falhas++;
+  if (falhas <= 5 || falhas % 100 === 0) console.warn(`[bots] ${onde}: mundo descartado (${falhas}ª falha neste processo): ${e instanceof Error ? e.message : String(e)}`);
 }
 
 const FORA_DO_COMBATE = new Set<Step>(['endCombat', 'main2', 'end', 'cleanup']);
@@ -35,6 +45,15 @@ export interface OpcoesSimulacao {
  * `minha`: as outras decisões de `eu`; `outros`: tudo dos outros jogadores.
  */
 export function simular(f: Game, eu: PlayerId, primeira: Answer, minha: Politica, outros: Politica, opts: OpcoesSimulacao | number = {}): Resultado {
+  try {
+    return simularNoMundo(f, eu, primeira, minha, outros, opts);
+  } catch (e) {
+    avisarFalha('simulação', e);
+    return { valor: NaN, plano: [], falhou: true };
+  }
+}
+
+function simularNoMundo(f: Game, eu: PlayerId, primeira: Answer, minha: Politica, outros: Politica, opts: OpcoesSimulacao | number): Resultado {
   const o: OpcoesSimulacao = typeof opts === 'number' ? { maxDecisoes: opts } : opts;
   const horizonte = o.horizonte ?? 'pilha';
   const maxDecisoes = o.maxDecisoes ?? (horizonte === 'pilha' ? 160 : horizonte === 'combate' ? 300 : 2500);
@@ -61,7 +80,7 @@ export function simular(f: Game, eu: PlayerId, primeira: Answer, minha: Politica
     else a = outros(d, f);
     if (!f.answer(d.player, a).ok) {
       a = defaultAnswer(d);
-      if (!f.answer(d.player, a).ok) return { valor: -Infinity, plano };
+      if (!f.answer(d.player, a).ok) return { valor: NaN, plano, falhou: true };
     }
     if (planoAberto && d.player === eu && d.kind !== 'priority') plano.push(a);
   }

@@ -12,21 +12,27 @@
 // - Combate: só o óbvio (Iniciante), regras fixas (Fácil, Intermediário) ou opções comparadas em simulação.
 // - Outras escolhas: heurísticas sobre o valor das cartas; do Difícil em diante, as opções são simuladas.
 
-import { canBlock } from '../motor/combat.ts';
-import { chars, controllerOf, hasKw, isCreature, isLand, manaValue, power, toughness } from '../motor/api.ts';
+import { canBlock, combatDamageAmount } from '../motor/combat.ts';
+import { canAfford } from '../motor/costs.ts';
+import { ability, type ActivatedDef } from '../motor/defs.ts';
+import { parseCost, withX } from '../motor/mana.ts';
+import { faceDefOf, totalSpellCost, type CastMethod } from '../motor/stack.ts';
+import { chars, controllerOf, hasKw, isCreature, isLand, manaValue, toughness } from '../motor/api.ts';
+import { toxicValue } from '../motor/veneno-emblema.ts';
 import { defaultAnswer, validateShape, type LiveDecision } from '../motor/ask.ts';
 import type { Game } from '../motor/game.ts';
 import type { G } from '../motor/game-context.ts';
 import { int, next, seedFrom, shuffle, type RngState } from '../motor/rng.ts';
 import type { Answer, ChoiceItem, Decision, ObjId, PlayerId, TargetRef } from '../motor/types.ts';
 import { buildView, type GameView } from '../motor/view.ts';
-import { avaliar, forcas, valorPermanente, type OpcoesAvaliacao } from './avaliacao.ts';
+import { avaliar, forcas, rodada, valorPermanente, type OpcoesAvaliacao } from './avaliacao.ts';
 import { buscar } from './busca.ts';
 import { infoDaMemoria, memoriaVazia, observar, type DadosMemoria } from './memoria.ts';
 import { Copiador, determinizar, estadoOculto, ramo, Rastro, type InfoOculta } from './mundo.ts';
 import { NIVEL_PADRAO, PARAMETROS, type NivelBot, type Parametros } from './niveis.ts';
+import { intencao, PERDA, type Intencao } from './intencao.ts';
 import { papelDe } from './papeis.ts';
-import { simular, type Horizonte, type Politica } from './simulacao.ts';
+import { avisarFalha, simular, type Horizonte, type Politica } from './simulacao.ts';
 
 export interface OpcoesBot {
   nivel?: NivelBot;
@@ -54,6 +60,8 @@ export interface EstadoBot {
   tentativa: string | null;
   falhas: string[];
   memoria: DadosMemoria | null;
+  /** última trava registrada no log (turno e motivo), para não repetir a cada prioridade */
+  aviso?: string;
 }
 
 type D<K extends Decision['kind']> = Extract<Decision, { kind: K }>;
@@ -71,7 +79,8 @@ export class Contexto {
   constructor(d: LiveDecision, fazer: () => G, copia: ((semente: RngState) => Game | null) | null, prazo: number) {
     this.d = d;
     this.fazer = fazer;
-    this.copia = copia;
+    // um mundo que não dá para montar (erro ao refazer ou sortear) fica de fora, em vez de derrubar a decisão
+    this.copia = copia ? (s) => { try { return copia(s); } catch (e) { avisarFalha('mundo', e); return null; } } : null;
     this.prazo = prazo;
   }
   /** o estado do mundo do bot */
@@ -157,38 +166,56 @@ export class HeuristicBot {
       const acoes = significativas(d);
       if (!acoes.length || !this.momentoDeAgir(v)) return PASSAR;
       if (this.e.acoes.turno !== v.turn.number) this.e.acoes = { turno: v.turn.number, n: 0 };
-      if (this.e.acoes.n >= 40) return PASSAR; // trava contra laços de habilidades
+      if (this.e.acoes.n >= 40) return this.trava(v, `${this.e.acoes.n} ações no turno ${v.turn.number}: passa até o próximo (trava contra laços de habilidades)`);
       if (this.e.passouEm.includes(this.chave(d, v))) return PASSAR;
       // acima de 150 objetos (fichas que se multiplicam a cada mágica), simular fica caro demais: o bot para de agir
       // e deixa o combate decidir a partida
-      if (v.battlefield.length > 150) return PASSAR;
+      if (v.battlefield.length > 150) return this.trava(v, `${v.battlefield.length} objetos no campo: passa em vez de simular`);
       return null;
     }
     if (d.kind === 'mulligan') {
-      // a própria mão está na vista: fica com 2 a 5 terrenos (ou depois de duas trocas)
+      // a própria mão está na vista
       const terrenos = v.hand.filter((o) => o.types.includes('Land')).length;
-      return { kind: 'mulligan', keep: d.mulligans >= 2 || (terrenos >= 2 && terrenos <= 5) };
+      const pedras = v.hand.filter((o) => !o.types.includes('Land') && papelDe(o.def).mana > 0).length;
+      return { kind: 'mulligan', keep: ficaComMao(terrenos, pedras, d.mulligans) };
     }
     if (d.kind === 'attackers' || d.kind === 'blockers' || d.kind === 'select' || d.kind === 'arrange') {
-      if (d.kind !== 'attackers' && this.e.plano.length) {
-        const a = this.e.plano[0];
-        if (a.kind === d.kind && valida(a)) { this.e.plano.shift(); return a; }
-        this.e.plano = [];
-      }
+      if (d.kind !== 'attackers' && this.e.plano.length) return this.doPlano(d, valida, publicaNaVista(d, v));
       return null;
     }
     // pagamento, número, dano: o plano, ou a escolha simples
-    if (this.e.plano.length) {
-      const a = this.e.plano.shift()!;
-      if (a.kind === d.kind && valida(a)) return a;
-      this.e.plano = [];
-    }
+    if (this.e.plano.length) { const a = this.doPlano(d, valida, true); if (a) return a; }
     if (d.kind === 'payment') {
       if (d.canAuto) return { kind: 'payment', auto: true };
       // não dá para pagar: desiste e não tenta a mesma jogada de novo neste passo
       if (this.e.tentativa) { this.e.falhas.push(this.e.tentativa); if (this.e.falhas.length > 60) this.e.falhas.shift(); }
-      return d.canCancel ? { kind: 'payment', cancel: true } : { kind: 'payment', auto: true };
+      return d.canCancel ? { kind: 'payment', cancel: true } : pagamentoManual(d, valida);
     }
+    return null;
+  }
+
+  /** passa por uma das travas (laço de ações, campo cheio demais) e registra no log uma vez por turno */
+  private trava(v: GameView, motivo: string): Answer {
+    const chave = `${v.turn.number}|${motivo.split(':')[0].replace(/\d+/g, '#')}`;
+    if (this.e.aviso !== chave) {
+      this.e.aviso = chave;
+      console.warn(`[bots] jogador ${this.eu} (${this.nivel}): ${motivo}`);
+    }
+    return PASSAR;
+  }
+
+  /**
+   * A próxima resposta do plano (as escolhas da jogada simulada), se serve para esta decisão. As escolhas sobre cartas
+   * que só quem decide vê (vidência, vigiar, busca, olhar o topo, cartas compradas no meio da resolução) foram feitas
+   * na simulação sobre cartas sorteadas: essas saem do plano e são decididas de novo, sobre as cartas de verdade.
+   */
+  private doPlano(d: Decision, valida: (a: Answer) => boolean, publica: boolean): Answer | null {
+    const a = this.e.plano[0];
+    if (!a || a.kind !== d.kind) { this.e.plano = []; return null; }
+    this.e.plano.shift();
+    if (!publica) return null;
+    if (valida(a)) return a;
+    this.e.plano = [];
     return null;
   }
 
@@ -237,7 +264,8 @@ export class HeuristicBot {
       if (this.e.ataque.turno === s.turn.number && this.e.ataque.combate === s.turn.combatCount) return defaultAnswer(d);
       this.e.ataque = { turno: s.turn.number, combate: s.turn.combatCount };
     }
-    if (this.e.plano.length) {
+    // o plano das outras decisões já passou pela resposta imediata (que também tira dele as escolhas escondidas)
+    if (d.kind === 'attackers' && this.e.plano.length) {
       const a = this.e.plano.shift()!;
       if (a.kind === d.kind && ctx.valida(a)) return a;
       this.e.plano = [];
@@ -289,7 +317,7 @@ export class HeuristicBot {
           if (longa) { const r = politicaRapida(d, f, rng); if (r) return r; }
           if (responde) { const r = resposta(d, f, eu, rng); if (r) return r; }
           return PASSAR;
-        case 'payment': return d.canAuto ? { kind: 'payment', auto: true } : d.canCancel ? { kind: 'payment', cancel: true } : { kind: 'payment', auto: true };
+        case 'payment': return d.canAuto ? { kind: 'payment', auto: true } : d.canCancel ? { kind: 'payment', cancel: true } : pagamentoManual(d, okDe(d));
         case 'select': return escolher(d, f.g, d.player, rng, false, okDe(d));
         case 'attackers': return longa || this.p.combate === 'simulado' ? atacar(d, f.g, d.player, okDe(d), rng, 0, lider) : defaultAnswer(d);
         case 'blockers': return this.p.combate === 'simulado' || longa ? bloquear(d, f.g, d.player, okDe(d)) : defaultAnswer(d);
@@ -304,6 +332,17 @@ export class HeuristicBot {
     const acoes = significativas(d).filter((a) => !this.e.falhas.includes(`${ctx.g.state.turn.number}|${ctx.g.state.turn.step}|${a.id}`));
     if (!acoes.length) return PASSAR;
     if (this.p.regras) return this.regras(ctx, acoes);
+    // terreno antes das mágicas: no próprio turno, com a pilha vazia, o terreno sai primeiro (a mana dele já paga as
+    // mágicas seguintes); com mais de um na mão, a simulação escolhe qual
+    const s = ctx.g.state;
+    if (s.turn.active === this.eu && (s.turn.step === 'main1' || s.turn.step === 'main2') && !s.zones.stack.length) {
+      const terrenos = acoes.filter((a) => a.kind === 'play');
+      if (terrenos.length === 1) return { kind: 'priority', action: terrenos[0].id };
+      if (terrenos.length > 1) {
+        const r = this.rasa(ctx, terrenos);
+        return r.kind === 'priority' && r.action !== 'pass' ? r : { kind: 'priority', action: terrenos[0].id };
+      }
+    }
     const r = this.p.busca ? buscar(this, ctx, acoes) : this.rasa(ctx, acoes);
     if (r.kind === 'priority' && r.action === 'pass') {
       this.e.passouEm.push(this.chave(d, buildView(ctx.g, this.eu, d)));
@@ -393,6 +432,7 @@ export class HeuristicBot {
           const f = copia(ramo(this.e.rng, `c${feitas}`));
           if (!f) continue;
           const r = simular(f, this.eu, { kind: 'priority', action: a.id }, this.politicaMinha(v, this.e.rng), this.politicaOutros(this.e.rng), opts);
+          if (r.falhou) continue;
           // jogar terreno não precisa vencer a margem das outras jogadas
           const valor = a.kind === 'play' ? r.valor + 0.6 : r.valor;
           const atual = melhor.get(a.id);
@@ -435,7 +475,7 @@ export class HeuristicBot {
           const r = simulaEm(k, { kind: 'priority', action: a.id }, v);
           gasto += performance.now() - t0;
           sims++;
-          if (!r) continue;
+          if (!r || r.falhou) continue;
           valores.push(r.valor);
           if (k === 0) plano = r.plano;
         }
@@ -494,6 +534,7 @@ export class HeuristicBot {
       // a opção só começa se der para jogar todos os mundos dela até o prazo (a primeira, a heurística, sempre)
       if (melhor && (ctx.restante() < 0 || (sims > 0 && ctx.restante() < K * (gasto / sims)))) break;
       const valores: number[] = [];
+      let jogados = 0;
       for (let k = 0; k < K; k++) {
         // o prazo acabou no meio de uma opção: ela fica de fora (a heurística, a primeira, é a resposta padrão)
         if (k > 0 && ctx.restante() < 0) break;
@@ -502,17 +543,53 @@ export class HeuristicBot {
         if (!f) return padrao;
         const r2 = seedFrom(`q${k}:${mundos[k].join(':')}`);
         const r = simular(f, this.eu, a, this.politicaMinha(0, r2), this.politicaOutros(r2), opts);
-        valores.push(r.valor);
+        jogados++;
+        // mundo em que a simulação quebrou: fica de fora
+        if (!r.falhou) valores.push(r.valor);
         gasto += performance.now() - t0;
         sims++;
       }
-      if (valores.length < K && melhor) break;
-      if (valores.some((x) => !Number.isFinite(x))) continue;
+      if (jogados < K && melhor) break;
+      if (!valores.length || valores.some((x) => !Number.isFinite(x))) continue;
       const valor = media(valores);
       if (!melhor || valor > melhor.valor + 1e-9) melhor = { a, valor };
     }
     return melhor?.a ?? padrao;
   }
+}
+
+/** a decisão só mostra o que é público (nenhuma carta que só quem decide vê: grimório, mão, virada para baixo) */
+export function publicaNaVista(d: Decision, v: GameView): boolean {
+  if (d.kind !== 'select' && d.kind !== 'arrange') return true;
+  let publicos: Set<ObjId> | null = null;
+  for (const it of d.items) {
+    if (it.card) return false;
+    if (it.obj === undefined) continue;
+    publicos ??= new Set([
+      ...v.battlefield.filter((o) => !o.faceDown), ...v.exile.filter((o) => !o.faceDown), ...v.command,
+      ...v.players.flatMap((p) => p.graveyard),
+    ].map((o) => o.id).concat(v.stack.map((x) => x.id)));
+    if (!publicos.has(it.obj)) return false;
+  }
+  return true;
+}
+
+/**
+ * Pagamento que não dá para fazer no automático nem cancelar: paga com a reserva se ela cobre o custo (com vida no
+ * lugar dos símbolos phyrexianos, se preciso) ou ativa a próxima fonte de mana; antes o bot mandava "automático", o
+ * motor recusava e a partida parava esperando por ele.
+ */
+export function pagamentoManual(d: D<'payment'>, valida: (a: Answer) => boolean): Answer {
+  const tentativas: Answer[] = [{ kind: 'payment', pay: true }];
+  for (let l = d.lifeOptions; l >= 1; l--) tentativas.push({ kind: 'payment', pay: true, life: l });
+  for (const f of d.sources) tentativas.push({ kind: 'payment', activate: { source: f.id } });
+  return tentativas.find(valida) ?? { kind: 'payment', pay: true };
+}
+
+/** fica com a mão de 2 a 5 terrenos (ou depois de duas trocas); pedra de mana conta meio terreno, com pelo menos um
+ *  terreno de verdade */
+export function ficaComMao(terrenos: number, pedras: number, mulligans: number): boolean {
+  return mulligans >= 2 || (terrenos >= 1 && terrenos + 0.5 * pedras >= 2 && terrenos <= 5);
 }
 
 const media = (l: number[]) => l.reduce((t, x) => t + x, 0) / Math.max(1, l.length);
@@ -522,15 +599,29 @@ function ehPermanente(g: G, id: ObjId): boolean {
   return chars(g, id).types.some((x) => ['Creature', 'Artifact', 'Enchantment', 'Planeswalker', 'Battle', 'Land'].includes(x));
 }
 
-/** ordem de tentativa: terrenos, comandante, mágicas mais caras, habilidades */
+/**
+ * Ordem de tentativa (com poucas simulações, como no Fácil, só as primeiras são avaliadas): terrenos, comandante, pedras
+ * de mana nas primeiras rodadas, habilidades de lealdade e as mágicas alternando a mais cara e a mais barata; as outras
+ * habilidades por último. Antes as mágicas iam da mais cara para a mais barata e as pedras e as baratas quase nunca
+ * eram avaliadas.
+ */
 export function ordenar(acoes: D<'priority'>['actions'], g: G) {
-  const peso = (a: D<'priority'>['actions'][number]): number => {
-    if (a.kind === 'play') return 100;
-    if (a.kind === 'cast' && a.id.endsWith(':command')) return 90;
-    if (a.kind === 'cast' && a.obj !== undefined && g.state.objects[a.obj]) return 50 + manaValue(g, a.obj);
-    return 10;
-  };
-  return [...acoes].sort((a, b) => peso(b) - peso(a)).slice(0, 14);
+  type A = D<'priority'>['actions'][number];
+  const s = g.state;
+  const cedo = rodada(g) <= 6;
+  const terrenos: A[] = [], comandante: A[] = [], pedras: A[] = [], lealdade: A[] = [], magias: A[] = [], outras: A[] = [];
+  for (const a of acoes) {
+    if (a.kind === 'play') terrenos.push(a);
+    else if (a.kind === 'cast' && a.id.endsWith(':command')) comandante.push(a);
+    else if (a.kind === 'cast' && a.obj !== undefined && s.objects[a.obj]) (cedo && papelDe(s.objects[a.obj].def).mana > 0 ? pedras : magias).push(a);
+    else if (a.kind === 'activate' && /: ([+−-](\d|X)|0):/.test(a.label)) lealdade.push(a);
+    else outras.push(a);
+  }
+  const mv = (a: A) => (a.obj !== undefined && s.objects[a.obj] ? manaValue(g, a.obj) : 0);
+  magias.sort((a, b) => mv(b) - mv(a));
+  const alternadas: A[] = [];
+  for (let i = 0, j = magias.length - 1; i <= j; i++, j--) { alternadas.push(magias[i]); if (j !== i) alternadas.push(magias[j]); }
+  return [...terrenos, ...comandante, ...pedras, ...lealdade, ...alternadas, ...outras].slice(0, 14);
 }
 
 /** política rápida de prioridade para as jogadas longas (Magic God): terreno e a mágica mais cara que der no próprio turno */
@@ -581,38 +672,121 @@ export function escolher(d: Decision, gameOuG: Game | G, eu: PlayerId, rng: RngS
     case 'payment':
       if (d.canAuto) return { kind: 'payment', auto: true };
       if (d.canCancel) return { kind: 'payment', cancel: true };
-      return { kind: 'payment', auto: true };
+      return pagamentoManual(d, ok);
     case 'select': return selecionar(d, g, eu, rng, aleatorio, ok, erro);
     case 'number': {
       if (aleatorio) return { kind: 'number', value: d.min + int(rng, d.max - d.min + 1) };
       if (/vida/i.test(d.prompt)) return { kind: 'number', value: Math.max(d.min, Math.min(d.max, Math.floor(g.state.players[eu].life / 5))) };
+      if (/valor de X/.test(d.prompt)) return { kind: 'number', value: maiorX(d, g, eu) };
       return { kind: 'number', value: d.max };
     }
     case 'attackers': return atacar(d, g, eu, ok, rng, 0, false);
     case 'blockers': return bloquear(d, g, eu, ok);
-    case 'damage': {
-      const assign = d.recipients.map(() => 0);
-      let resto = d.amount;
-      for (let i = 0; i < d.recipients.length && resto > 0; i++) {
-        const n = i === d.recipients.length - 1 ? resto : Math.min(resto, d.lethal[i] || 1);
-        assign[i] = n;
-        resto -= n;
-      }
-      assign[assign.length - 1] += resto;
-      return { kind: 'damage', assign };
-    }
+    case 'damage': return { kind: 'damage', assign: distribuirDano(d, g) };
     case 'arrange': return arrumar(d, g, eu);
     case 'mulligan': {
       const mao = g.state.zones.hand[eu];
       const terrenos = mao.filter((id) => isLand(g, id)).length;
-      return { kind: 'mulligan', keep: d.mulligans >= 2 || (terrenos >= 2 && terrenos <= 5) };
+      const pedras = mao.filter((id) => !isLand(g, id) && papelDe(g.state.objects[id].def).mana > 0).length;
+      return { kind: 'mulligan', keep: ficaComMao(terrenos, pedras, d.mulligans) };
     }
   }
 }
 
-const PERDA = /sacrifi|descart|remova|pague|perca|perde|exile .*(seu|sua)|para o cemitério|vai para o cemitério/i;
-const DANO = /destru|exil|dano|-1\/-1|vire|goad|sacrifica|perde .*vida|veneno|anule|oponente/i;
-const BOM = /compra|ganha|cria|devolv|volta|copi|marcador \+1|recebe|ficam|fica|preparad|encantar|campo/i;
+/** a habilidade ativada no topo da pilha (a que está sendo ativada) */
+function habilidadeNoTopo(g: G): { id: ObjId; def: ActivatedDef; fonte: ObjId | undefined } | null {
+  const s = g.state;
+  const id = s.zones.stack[s.zones.stack.length - 1];
+  const o = id !== undefined ? s.objects[id] : undefined;
+  if (!o?.stack || o.stack.kind !== 'activated' || !o.stack.abilityId) return null;
+  try { return { id, def: ability(o.stack.abilityId) as ActivatedDef, fonte: o.stack.source }; } catch { return null; }
+}
+
+/**
+ * O X de uma habilidade ativada: o maior que dá para pagar. O motor deixa escolher até 20 (CR 107.3: sem limite) e o
+ * bot escolhia sempre o máximo, não pagava e desistia da habilidade. Nas mágicas o motor já limita ao que dá para pagar.
+ */
+function maiorX(d: D<'number'>, g: G, eu: PlayerId): number {
+  const h = habilidadeNoTopo(g);
+  if (!h) return d.max;
+  const s = g.state;
+  const fonte = h.fonte !== undefined ? s.objects[h.fonte] : undefined;
+  let max = d.max;
+  // X de lealdade (−X): no máximo a lealdade que a fonte tem (CR 606.6)
+  if (h.def.cost.some((p) => p.k === 'loyalty' && p.n === 'X')) max = Math.min(max, fonte?.counters.loyalty ?? 0);
+  const parte = h.def.cost.find((p) => p.k === 'mana') as { k: 'mana'; cost: string } | undefined;
+  const base = parseCost(parte?.cost);
+  if (!base.some((x) => x.k === 'X')) return Math.max(d.min, max);
+  const vira = h.def.cost.some((p) => p.k === 'tap' || p.k === 'untap' || p.k === 'sacrificeSelf' || p.k === 'exileSelf');
+  const ctx = { purpose: { kind: 'ability' as const, obj: h.id }, excludeSource: vira ? h.fonte : undefined };
+  for (let x = max; x > d.min; x--) if (canAfford(g, eu, withX(base, x), ctx)) return x;
+  return d.min;
+}
+
+/**
+ * Sim num custo adicional opcional (kicker e afins) só quando dá para pagar a mana dele junto com a da mágica: antes
+ * o bot aceitava sempre, não conseguia pagar e desistia da mágica inteira. Do Difícil em diante, a escolha ainda é
+ * comparada em simulação (vale a pena?).
+ */
+function podePagarOpcional(d: D<'select'>, sim: ChoiceItem, g: G, eu: PlayerId): boolean {
+  if (!/custo adicional opcional$/.test(d.prompt)) return true;
+  const s = g.state;
+  const id = s.zones.stack[s.zones.stack.length - 1];
+  const o = id !== undefined ? s.objects[id] : undefined;
+  if (!o?.stack || o.stack.kind !== 'spell') return true;
+  const ac = faceDefOf(o)?.additionalCosts?.find((c) => `Pagar: ${c.label}` === sim.label);
+  if (!ac || !ac.parts.some((p) => p.k === 'mana')) return true;
+  try {
+    const metodo = { key: o.stack.method ?? 'hand', zone: o.stack.castFrom ?? 'hand' } as CastMethod;
+    const custo = totalSpellCost(g, eu, o, metodo, { x: 0, targets: o.stack.targets, paid: { ...o.stack.paid, [ac.key]: true } });
+    return canAfford(g, eu, custo, { purpose: { kind: 'spell', obj: o.id } });
+  } catch { return true; }
+}
+
+/**
+ * Dano de um atacante bloqueado por mais de uma criatura (ou com atropelar). Com atropelar: dano letal em cada
+ * bloqueador e o resto no jogador (CR 702.19b). Sem: mata primeiro os bloqueadores mais valiosos que der, sem gastar
+ * dano em quem já tem dano letal (letal 0) nem em indestrutível; o que sobra vai para um que ainda não morre.
+ */
+function distribuirDano(d: D<'damage'>, g: G): number[] {
+  const assign = d.recipients.map(() => 0);
+  let resto = d.amount;
+  if (d.trample) {
+    for (let i = 0; i < assign.length - 1 && resto > 0; i++) { const n = Math.min(resto, d.lethal[i]); assign[i] = n; resto -= n; }
+    assign[assign.length - 1] += resto;
+    return assign;
+  }
+  const s = g.state;
+  const valor = (i: number) => { const r = d.recipients[i]; return r.kind === 'obj' && s.objects[r.id] ? valorPermanente(g, r.id) : 0; };
+  const mataveis = d.recipients.map((_, i) => i)
+    .filter((i) => { const r = d.recipients[i]; return d.lethal[i] > 0 && r.kind === 'obj' && !!s.objects[r.id] && !hasKw(g, r.id, 'indestructible'); })
+    .sort((a, b) => valor(b) - valor(a));
+  for (const i of mataveis) if (d.lethal[i] <= resto) { assign[i] = d.lethal[i]; resto -= d.lethal[i]; }
+  if (resto > 0 && assign.length) assign[mataveis.find((i) => assign[i] === 0) ?? mataveis[0] ?? 0] += resto;
+  return assign;
+}
+
+/** valor de uma carta minha na mão ou no grimório: terreno vale mais quando faltam terrenos; mágica, pelo custo e por
+ *  quanto falta para conjurá-la */
+function valorNaMao(g: G, id: ObjId, eu: PlayerId): number {
+  const s = g.state;
+  const terrenosMesa = s.zones.battlefield.filter((x) => controllerOf(g, x) === eu && isLand(g, x)).length;
+  const terrenosMao = s.zones.hand[eu].filter((x) => isLand(g, x)).length;
+  const pedrasMesa = s.zones.battlefield.reduce((t, x) => t + (controllerOf(g, x) === eu && !isLand(g, x) && !s.objects[x].isToken ? papelDe(s.objects[x].def).mana : 0), 0);
+  if (isLand(g, id)) {
+    const total = terrenosMesa + terrenosMao;
+    return total <= 3 ? 5 : total <= 5 ? 3.5 : total <= 7 ? 2 : 0.8;
+  }
+  const mv = manaValue(g, id);
+  let v = 2 + 0.3 * Math.min(mv, 7);
+  const falta = mv - (terrenosMesa + pedrasMesa + Math.min(terrenosMao, 2));
+  if (falta > 2) v -= 0.6 * (falta - 2);
+  const info = papelDe(s.objects[id].def);
+  if (info.mana > 0 && rodada(g) <= 6) v += 1;
+  const pp = info.papeis;
+  if (pp.has('remocao') || pp.has('anula') || pp.has('compra') || pp.has('varredura')) v += 0.6;
+  return v;
+}
 
 /** valor de um item de escolha do ponto de vista de `eu` (positivo = coisa minha valiosa) */
 function valorItem(g: G, it: ChoiceItem, eu: PlayerId): { valor: number; meu: boolean } {
@@ -622,35 +796,93 @@ function valorItem(g: G, it: ChoiceItem, eu: PlayerId): { valor: number; meu: bo
   const o = id !== undefined ? s.objects[id] : undefined;
   if (!o || id === undefined) return { valor: 0, meu: false };
   if (o.zone === 'battlefield') return { valor: isLand(g, id) && !isCreature(g, id) ? 2 : valorPermanente(g, id), meu: controllerOf(g, id) === eu };
-  // carta fora do campo: custo como medida (terrenos valem pouco)
+  if (o.zone === 'stack') return { valor: 1 + manaValue(g, id), meu: controllerOf(g, id) === eu };
+  // carta minha na mão ou no grimório: o que ela vale para mim agora
+  if (o.owner === eu && (o.zone === 'hand' || o.zone === 'library')) return { valor: valorNaMao(g, id, eu), meu: true };
+  // outra carta fora do campo: custo como medida (terrenos valem pouco)
   return { valor: isLand(g, id) ? 1 : 1 + manaValue(g, id), meu: o.owner === eu };
 }
 
-/** ordem heurística dos itens de uma escolha e quantos escolher */
-function ordemDaEscolha(d: D<'select'>, g: G, eu: PlayerId): { ids: string[]; perda: boolean } {
+type Avaliado = { it: ChoiceItem; valor: number; meu: boolean };
+/** o item não é de ninguém (modo, sim ou não) */
+const neutro = (x: Avaliado) => x.it.player === undefined && x.it.obj === undefined && !Number.isFinite(Number(x.it.id));
+
+/**
+ * Ordem heurística dos itens de uma escolha. `certos`: quantos itens são do lado certo (dos oponentes num efeito contra,
+ * meus num efeito a favor); a escolha não passa deles se não for obrigada.
+ */
+function ordemDaEscolha(d: D<'select'>, g: G, eu: PlayerId): { ids: string[]; perda: boolean; intencao: Intencao; certos: number; avaliados: Avaliado[] } {
   const itens = d.items.filter((i) => !i.disabled);
-  const perda = PERDA.test(d.prompt);
-  const dano = !perda && DANO.test(d.prompt) && !BOM.test(d.prompt);
-  const avaliados = itens.map((it) => ({ it, ...valorItem(g, it, eu) }));
-  let ordem: typeof avaliados;
-  if (perda) {
-    // custo ou perda: as coisas menos valiosas, de preferência minhas que não fazem falta
-    ordem = avaliados.sort((a, b) => a.valor - b.valor);
-  } else if (dano) {
-    // efeito ruim: nas coisas mais valiosas dos oponentes (jogadores: o de menos vida)
-    ordem = avaliados.sort((a, b) => {
-      if (a.meu !== b.meu) return a.meu ? 1 : -1;
-      if (a.it.player !== undefined && b.it.player !== undefined) return a.valor - b.valor;
-      return b.valor - a.valor;
-    });
+  const s = g.state;
+  const minha = (id: ObjId) => { const o = s.objects[id]; return !!o && (o.zone === 'battlefield' || o.zone === 'stack' ? controllerOf(g, id) === eu : o.owner === eu); };
+  const int = intencao(d, g, eu, minha);
+  const avaliados: Avaliado[] = itens.map((it) => ({ it, ...valorItem(g, it, eu) }));
+  let ordem: Avaliado[];
+  let certos: number;
+  if (int === 'perda') {
+    // custo ou perda: as coisas menos valiosas
+    ordem = [...avaliados].sort((a, b) => a.valor - b.valor);
+    certos = ordem.length;
+  } else if (int === 'contra') {
+    // efeito ruim: nas coisas mais valiosas dos oponentes (jogador: quanto menos vida, melhor); se for obrigado a
+    // escolher coisas minhas, as que menos fazem falta
+    const nota = (x: Avaliado) => (x.it.player !== undefined ? 5 + 40 / (Math.max(0, x.valor) + 1) : x.valor);
+    const deles = avaliados.filter((x) => !x.meu).sort((a, b) => nota(b) - nota(a));
+    const meus = avaliados.filter((x) => x.meu).sort((a, b) => a.valor - b.valor);
+    ordem = [...deles, ...meus];
+    certos = deles.length;
   } else {
-    // efeito bom: nas minhas coisas mais valiosas
-    ordem = avaliados.sort((a, b) => {
-      if (a.meu !== b.meu) return a.meu ? -1 : 1;
-      return b.valor - a.valor;
-    });
+    // efeito bom: nas minhas coisas mais valiosas; nos oponentes, só se for obrigado, nas que menos valem. Sem saber o
+    // efeito ('neutra'), como antes: as minhas e depois as deles, das mais valiosas para as menos, quantas der
+    const meus = avaliados.filter((x) => x.meu || neutro(x)).sort((a, b) => b.valor - a.valor);
+    const deles = avaliados.filter((x) => !x.meu && !neutro(x)).sort((a, b) => (int === 'favor' ? a.valor - b.valor : b.valor - a.valor));
+    ordem = [...meus, ...deles];
+    certos = int === 'favor' ? meus.length : ordem.length;
   }
-  return { ids: ordem.map((x) => x.it.id), perda };
+  return { ids: ordem.map((x) => x.it.id), perda: int === 'perda', intencao: int, certos, avaliados };
+}
+
+/** quantos itens escolher: na perda, o mínimo; nos outros, os do lado certo (entre o mínimo e o máximo) */
+function quantosEscolher(d: D<'select'>, max: number, o: { perda: boolean; certos: number }): number {
+  return o.perda ? d.min : Math.max(d.min, Math.min(max, o.certos));
+}
+
+/**
+ * Escolhas ordenadas: o fundo do grimório no mulligan de Londres (fica com a mão mais equilibrada), as cartas que voltam
+ * da mão (Brainstorm: as piores, e das duas a melhor no topo) e a ordem dos gatilhos (como vieram).
+ */
+function ordenada(d: D<'select'>, g: G, eu: PlayerId): string[] {
+  const itens = d.items.filter((i) => !i.disabled);
+  const n = Math.max(d.min, Math.min(d.max, itens.length));
+  if (/^Escolha \d+ carta\(s\) para pôr no fundo do grimório/.test(d.prompt)) return fundoDoMulligan(itens, g, n);
+  if (!PERDA.test(d.prompt)) return itens.slice(0, n).map((i) => i.id);
+  const piores = itens.map((it) => ({ id: it.id, v: valorItem(g, it, eu).valor })).sort((a, b) => a.v - b.v).slice(0, n);
+  // a primeira escolhida fica por cima: das que voltam, a melhor primeiro
+  return piores.sort((a, b) => b.v - a.v).map((x) => x.id);
+}
+
+/** mulligan de Londres: tira terrenos enquanto houver mais que uns 45% da mão; senão, a mágica mais cara */
+function fundoDoMulligan(itens: ChoiceItem[], g: G, n: number): string[] {
+  const resto = itens.filter((it) => it.obj !== undefined && g.state.objects[it.obj]);
+  const fora: string[] = [];
+  while (fora.length < n && resto.length) {
+    const terrenos = resto.filter((it) => isLand(g, it.obj!));
+    const ideal = Math.round(0.45 * (resto.length - 1));
+    let i: number;
+    if (terrenos.length > ideal) {
+      // o terreno mais repetido (as cores ficam)
+      const vezes = (it: ChoiceItem) => terrenos.filter((x) => g.state.objects[x.obj!].def === g.state.objects[it.obj!].def).length;
+      i = resto.indexOf([...terrenos].sort((a, b) => vezes(b) - vezes(a))[0]);
+    }
+    else {
+      const magias = resto.filter((it) => !isLand(g, it.obj!)).sort((a, b) => manaValue(g, b.obj!) - manaValue(g, a.obj!));
+      i = resto.indexOf(magias[0] ?? resto[resto.length - 1]);
+    }
+    fora.push(resto[i].id);
+    resto.splice(i, 1);
+  }
+  for (const it of itens) if (fora.length < n && !fora.includes(it.id)) fora.push(it.id);
+  return fora;
 }
 
 function selecionar(d: D<'select'>, g: G, eu: PlayerId, rng: RngState, aleatorio: boolean, ok: (a: Answer) => boolean, erro = 0): Answer {
@@ -665,25 +897,24 @@ function selecionar(d: D<'select'>, g: G, eu: PlayerId, rng: RngState, aleatorio
     }
     return { kind: 'select', ids: itens.slice(0, d.min).map((it) => it.id) };
   }
-  if (d.ordered) return { kind: 'select', ids: itens.slice(0, Math.max(d.min, Math.min(max, itens.length))).map((it) => it.id) };
+  if (d.ordered) return tenta(ordenada(d, g, eu)) ?? { kind: 'select', ids: itens.slice(0, Math.max(d.min, Math.min(max, itens.length))).map((it) => it.id) };
   // sim ou não: aceita, a não ser que seja pagar algo sem ganhar nada claro
   const sim = itens.find((i) => i.id === 'yes');
   const nao = itens.find((i) => i.id === 'no');
-  if (sim && nao && itens.length === 2) return { kind: 'select', ids: [sim.id] };
+  if (sim && nao && itens.length === 2) return { kind: 'select', ids: [podePagarOpcional(d, sim, g, eu) ? sim.id : nao.id] };
   if (max === 0) return { kind: 'select', ids: [] };
 
-  const { ids: ordem, perda } = ordemDaEscolha(d, g, eu);
-  let ids = ordem;
+  const o = ordemDaEscolha(d, g, eu);
+  let ids = o.ids;
   // erro humano (níveis fracos): num efeito contra os oponentes, às vezes mira a coisa errada (mas nunca a própria)
-  if (erro > 0 && !perda && d.max === 1 && next(rng) < erro) {
-    const deles = ids.filter((id) => !valorItem(g, itens.find((i) => i.id === id)!, eu).meu);
+  if (erro > 0 && o.intencao === 'contra' && d.max === 1 && next(rng) < erro) {
+    const deles = ids.slice(0, o.certos);
     if (deles.length > 1) ids = [deles[1 + int(rng, deles.length - 1)], ...ids];
   }
-  const quantos = perda ? d.min : max;
-  for (let n = quantos; perda ? n <= max : n >= d.min; perda ? n++ : n--) {
-    const a = tenta(ids.slice(0, n));
-    if (a) return a;
-  }
+  // do número preferido para baixo e, se nenhum servir, para cima
+  const quantos = quantosEscolher(d, max, o);
+  for (let n = quantos; n >= d.min; n--) { const a = tenta(ids.slice(0, n)); if (a) return a; }
+  for (let n = quantos + 1; n <= max; n++) { const a = tenta(ids.slice(0, n)); if (a) return a; }
   for (let i = 0; i < 30; i++) {
     const n = d.min + int(rng, Math.max(1, max - d.min + 1));
     const a = tenta(shuffle(rng, [...ids]).slice(0, Math.min(n, max)));
@@ -692,7 +923,10 @@ function selecionar(d: D<'select'>, g: G, eu: PlayerId, rng: RngState, aleatorio
   return { kind: 'select', ids: itens.slice(0, d.min).map((it) => it.id) };
 }
 
-/** respostas diferentes para uma escolha, da mais provável à menos (a primeira é a heurística) */
+/**
+ * Respostas diferentes para uma escolha, da mais provável à menos (a primeira é a heurística). Com um alvo só, as
+ * primeiras incluem sempre o item mais valioso dos oponentes e o meu mais valioso (a simulação decide entre eles).
+ */
 export function alternativas(d: Decision, g: G, eu: PlayerId, ok: (a: Answer) => boolean): Answer[] {
   if (d.kind !== 'select') return [];
   const itens = d.items.filter((i) => !i.disabled);
@@ -706,11 +940,17 @@ export function alternativas(d: Decision, g: G, eu: PlayerId, ok: (a: Answer) =>
     vistas.add(k);
     out.push(a);
   };
-  if (d.ordered) { add(itens.slice(0, Math.max(d.min, Math.min(max, itens.length))).map((i) => i.id)); return out; }
-  const { ids, perda } = ordemDaEscolha(d, g, eu);
-  const n = perda ? d.min : max;
-  if (n <= 1) {
-    for (const id of ids) add(n === 0 ? [] : [id]);
+  if (d.ordered) { add(ordenada(d, g, eu)); return out; }
+  const o = ordemDaEscolha(d, g, eu);
+  const { ids } = o;
+  const n = quantosEscolher(d, max, o);
+  if (max <= 1) {
+    const objetos = o.avaliados.filter((x) => !neutro(x) && x.it.player === undefined);
+    const melhorDeles = objetos.filter((x) => !x.meu).sort((a, b) => b.valor - a.valor)[0]?.it.id;
+    const melhorMeu = objetos.filter((x) => x.meu).sort((a, b) => b.valor - a.valor)[0]?.it.id;
+    add(n === 0 ? [] : ids.slice(0, 1));
+    for (const id of [melhorDeles, melhorMeu]) if (id !== undefined) add([id]);
+    for (const id of ids) add([id]);
     if (d.min === 0) add([]);
     return out;
   }
@@ -718,16 +958,75 @@ export function alternativas(d: Decision, g: G, eu: PlayerId, ok: (a: Answer) =>
   // trocas de um item da escolha principal
   for (let i = n - 1; i >= 0 && out.length < 8; i--) for (let j = n; j < ids.length && out.length < 8; j++) add([...ids.slice(0, i), ...ids.slice(i + 1, n), ids[j]]);
   if (d.min < n) add(ids.slice(0, d.min));
+  if (n < max) add(ids.slice(0, max));
   return out;
 }
 
 // ---------------------------------------------------------------- combate
 
+/** dano de combate de uma criatura num golpe (CR 510.1a: pela resistência com Felothar, Assault Formation e afins) */
+const danoGolpe = (g: G, id: ObjId): number => combatDamageAmount(g, id);
+/** dano de combate total, com golpe duplo (CR 702.4) */
+export const danoDe = (g: G, id: ObjId): number => danoGolpe(g, id) * (hasKw(g, id, 'double strike') ? 2 : 1);
+
 function mata(g: G, de: ObjId, em: ObjId): boolean {
-  const p = power(g, de);
+  const p = danoGolpe(g, de);
   if (p <= 0) return false;
   if (hasKw(g, em, 'indestructible')) return false;
-  return hasKw(g, de, 'deathtouch') || p >= toughness(g, em) - (g.state.objects[em].damage ?? 0);
+  return hasKw(g, de, 'deathtouch') || danoDe(g, de) >= toughness(g, em) - (g.state.objects[em].damage ?? 0);
+}
+
+/** é comandante (o dano de combate dele conta para os 21, CR 903.10a) */
+const ehComandante = (g: G, id: ObjId): boolean => { const c = g.state.objects[id]?.card; return c !== null && c !== undefined && !!g.state.cards[c]?.isCommander; };
+
+/**
+ * Os atacantes (com o dano que passa) matam o jogador `p`? Vida, 21 de dano do mesmo comandante (CR 903.10a) e 10
+ * marcadores de veneno pelo tóxico (CR 702.164, 704.5c).
+ */
+export function letal(g: G, p: PlayerId, passam: { a: ObjId; dano?: number }[]): boolean {
+  const j = g.state.players[p];
+  let vida = 0;
+  let veneno = 0;
+  for (const x of passam) {
+    const dano = x.dano ?? danoDe(g, x.a);
+    if (dano <= 0) continue;
+    vida += dano;
+    veneno += toxicValue(g, x.a);
+    const c = g.state.objects[x.a]?.card;
+    if (ehComandante(g, x.a) && (j.commanderDamage[String(c)] ?? 0) + dano >= 21) return true;
+  }
+  return vida >= j.life || (veneno > 0 && (j.counters.poison ?? 0) + veneno >= 10);
+}
+
+/** perigo de um atacante para o jogador `p` (para bloquear e para supor quem o defensor bloqueia) */
+function perigo(g: G, a: ObjId, p: PlayerId): number {
+  const j = g.state.players[p];
+  const dano = danoDe(g, a);
+  if (dano <= 0) return 0;
+  const c = g.state.objects[a]?.card;
+  let x = dano / Math.max(1, j.life);
+  if (ehComandante(g, a)) x += dano / Math.max(1, 21 - (j.commanderDamage[String(c)] ?? 0));
+  const tox = toxicValue(g, a);
+  if (tox) x += tox / Math.max(1, 10 - (j.counters.poison ?? 0));
+  return x;
+}
+
+/**
+ * Os atacantes que passam se o defensor `p` bloquear os mais perigosos com as criaturas que podem bloqueá-los
+ * (evasão e restrições pelo motor, canBlock; ameaça pede dois bloqueadores).
+ */
+function quemPassa(g: G, p: PlayerId, atacantes: ObjId[]): ObjId[] {
+  const s = g.state;
+  const livres = s.zones.battlefield.filter((b) => !s.objects[b].tapped && !s.objects[b].phasedOut && controllerOf(g, b) === p && isCreature(g, b));
+  const usados = new Set<ObjId>();
+  const passam: ObjId[] = [];
+  for (const a of [...atacantes].sort((x, y) => perigo(g, y, p) - perigo(g, x, p))) {
+    const n = hasKw(g, a, 'menace') ? 2 : 1;
+    const bs = livres.filter((b) => !usados.has(b) && canBlock(g, b, a));
+    if (bs.length >= n) for (const b of bs.slice(0, n)) usados.add(b);
+    else passam.push(a);
+  }
+  return passam;
 }
 
 const bloqueadoresDe = (g: G, p: PlayerId, atacante: ObjId) => g.state.zones.battlefield.filter((b) => !g.state.objects[b].tapped && !g.state.objects[b].phasedOut && controllerOf(g, b) === p && isCreature(g, b) && canBlock(g, b, atacante));
@@ -747,15 +1046,12 @@ export function atacar(d: D<'attackers'>, g: G, eu: PlayerId, ok: (a: Answer) =>
     // nível Difícil em diante: quem está ganhando é o alvo preferido
     ameaca.set(p.id, mesa + 0.3 * p.life + atacouMe + (forca ? 0.5 * (forca.get(p.id) ?? 0) : 0));
   }
-  // ataque letal: se as criaturas que podem atacar um oponente passam da vida dele mesmo que ele bloqueie as mais
-  // fortes (um bloqueador para cada), ataca esse oponente com todas
-  const podeBloquear = (p: PlayerId) => s.zones.battlefield.filter((b) => !s.objects[b].tapped && !s.objects[b].phasedOut && controllerOf(g, b) === p && isCreature(g, b)).length;
+  // ataque letal: se as criaturas que podem atacar um oponente o matam mesmo que ele bloqueie as mais perigosas com o
+  // que pode bloqueá-las (vida, dano de comandante, veneno), ataca esse oponente com todas
   for (const p of s.players) {
     if (p.id === eu || p.left || p.lost) continue;
     const contra = d.candidates.filter((c) => c.targets.some((t, i) => t.kind === 'player' && t.id === p.id && !(c.costs?.[i] ?? 0)) && (!c.required?.length || c.required.some((t) => t.kind === 'player' && t.id === p.id)));
-    const forcas2 = contra.map((c) => Math.max(0, power(g, c.obj))).sort((a, b) => b - a);
-    const livre = forcas2.slice(podeBloquear(p.id)).reduce((t, n) => t + n, 0);
-    if (forcas2.length && livre >= p.life) {
+    if (contra.length && letal(g, p.id, quemPassa(g, p.id, contra.map((c) => c.obj)).map((a) => ({ a })))) {
       const todos: Answer = { kind: 'attackers', attacks: contra.map((c) => [c.obj, { kind: 'player', id: p.id }] as [ObjId, TargetRef]) };
       if (ok(todos)) return todos;
     }
@@ -763,14 +1059,14 @@ export function atacar(d: D<'attackers'>, g: G, eu: PlayerId, ok: (a: Answer) =>
   // com pouca vida, segura uma parte das criaturas para bloquear
   const minhaVida = s.players[eu].life;
   let reserva = minhaVida <= 10 ? Math.ceil(d.candidates.length / 2) : 0;
-  const ordem = [...d.candidates].sort((a, b) => power(g, b.obj) - power(g, a.obj));
+  const ordem = [...d.candidates].sort((a, b) => danoDe(g, b.obj) - danoDe(g, a.obj));
   for (const c of ordem) {
     if (c.required?.length) {
       ataques.push([c.obj, [...c.required].sort((a, b) => vida(a) - vida(b))[0]]);
       continue;
     }
     const a = c.obj;
-    if (power(g, a) <= 0) continue;
+    if (danoGolpe(g, a) <= 0) continue;
     const vigilante = hasKw(g, a, 'vigilance');
     if (!vigilante && reserva > 0) { reserva--; continue; }
     // erro humano: esquece de atacar com esta criatura
@@ -790,7 +1086,8 @@ export function atacar(d: D<'attackers'>, g: G, eu: PlayerId, ok: (a: Answer) =>
       if (!seguro) continue;
       const v = vida(t);
       let nota = (ameaca.get(def) ?? 0) + (bloqueadores.length === 0 ? 5 : 0);
-      if (v > 0 && v <= power(g, a)) nota += 60; // ataque que elimina (jogador ou planeswalker)
+      // ataque que elimina (jogador, pela vida, comandante ou veneno; planeswalker)
+      if (t.kind === 'player' ? letal(g, t.id, [{ a }]) : v > 0 && v <= danoDe(g, a)) nota += 60;
       if (t.kind === 'obj') nota -= 10;
       if (!melhor || nota > melhor.nota) melhor = { t, nota };
     }
@@ -807,7 +1104,7 @@ function atacarObvio(d: D<'attackers'>, g: G, eu: PlayerId, ok: (a: Answer) => b
   const ataques: [ObjId, TargetRef][] = [];
   for (const c of d.candidates) {
     if (c.required?.length) { ataques.push([c.obj, c.required[0]]); continue; }
-    if (power(g, c.obj) <= 0 || next(rng) < esquece) continue;
+    if (danoGolpe(g, c.obj) <= 0 || next(rng) < esquece) continue;
     // óbvio: ninguém do outro lado pode bloquear esta criatura
     const livres = c.targets.filter((t, i) => t.kind === 'player' && !(c.costs?.[i] ?? 0) && bloqueadoresDe(g, t.id, c.obj).length === 0);
     if (!livres.length) continue;
@@ -818,10 +1115,20 @@ function atacarObvio(d: D<'attackers'>, g: G, eu: PlayerId, ok: (a: Answer) => b
   return ok(resp) ? resp : defaultAnswer(d);
 }
 
+/** os atacantes que passam (com atropelar, o que sobra depois da resistência dos bloqueadores) */
+function passando(g: G, atacantes: ObjId[], blocks: [ObjId, ObjId][]): { a: ObjId; dano?: number }[] {
+  return atacantes.flatMap((a) => {
+    const meus = blocks.filter(([, x]) => x === a);
+    if (!meus.length) return [{ a }];
+    if (!hasKw(g, a, 'trample')) return [];
+    const barreira = meus.reduce((t, [b]) => t + Math.max(0, toughness(g, b) - (g.state.objects[b].damage ?? 0)), 0);
+    return [{ a, dano: Math.max(0, danoDe(g, a) - barreira) }];
+  });
+}
+
 export function bloquear(d: D<'blockers'>, g: G, eu: PlayerId, ok: (a: Answer) => boolean): Answer {
   const s = g.state;
-  const vida = s.players[eu].life;
-  const atacantes = [...d.attackers].filter((a) => s.objects[a]).sort((a, b) => power(g, b) - power(g, a));
+  const atacantes = [...d.attackers].filter((a) => s.objects[a]).sort((a, b) => danoDe(g, b) - danoDe(g, a));
   const usados = new Set<ObjId>();
   const blocks: [ObjId, ObjId][] = [];
   const podem = (a: ObjId) => d.candidates.filter((c) => c.canBlock.includes(a) && !usados.has(c.obj)).map((c) => c.obj);
@@ -837,17 +1144,16 @@ export function bloquear(d: D<'blockers'>, g: G, eu: PlayerId, ok: (a: Answer) =
     const b = bom ?? troca;
     if (b !== undefined) { blocks.push([b, a]); usados.add(b); bloqueado.add(a); }
   }
-  // não morrer: bloqueia os maiores com as criaturas menos valiosas (com ameaça, duas: CR 702.111b)
-  let entrando = atacantes.filter((a) => !bloqueado.has(a)).reduce((t, a) => t + Math.max(0, power(g, a)), 0);
-  for (const a of atacantes) {
-    if (entrando < vida) break;
+  // não morrer (vida, dano de comandante, veneno): bloqueia os mais perigosos com as criaturas menos valiosas (com
+  // ameaça, duas: CR 702.111b)
+  for (const a of [...atacantes].sort((x, y) => perigo(g, y, eu) - perigo(g, x, eu))) {
+    if (!letal(g, eu, passando(g, atacantes, blocks))) break;
     if (bloqueado.has(a)) continue;
     const cands = podem(a).sort((x, y) => valorPermanente(g, x) - valorPermanente(g, y));
     const n = hasKw(g, a, 'menace') ? 2 : 1;
     if (cands.length < n) continue;
     for (const b of cands.slice(0, n)) { blocks.push([b, a]); usados.add(b); }
     bloqueado.add(a);
-    if (!hasKw(g, a, 'trample')) entrando -= Math.max(0, power(g, a));
   }
   // bloqueios inválidos (ameaça com um bloqueador só etc.): fica com os de cada atacante que valem junto com os
   // anteriores. Antes tirava do fim da lista, e um bloqueio inválido no começo (o maior atacante vem primeiro)
@@ -863,7 +1169,7 @@ export function bloquear(d: D<'blockers'>, g: G, eu: PlayerId, ok: (a: Answer) =
 /** Iniciante: bloqueia para não morrer e, às vezes, quando o bloqueador mata e sobrevive */
 function bloquearObvio(d: D<'blockers'>, g: G, eu: PlayerId, ok: (a: Answer) => boolean, rng: RngState): Answer {
   const s = g.state;
-  const atacantes = [...d.attackers].filter((a) => s.objects[a]).sort((a, b) => power(g, b) - power(g, a));
+  const atacantes = [...d.attackers].filter((a) => s.objects[a]).sort((a, b) => danoDe(g, b) - danoDe(g, a));
   const usados = new Set<ObjId>();
   const blocks: [ObjId, ObjId][] = [];
   const podem = (a: ObjId) => d.candidates.filter((c) => c.canBlock.includes(a) && !usados.has(c.obj)).map((c) => c.obj);
@@ -872,15 +1178,13 @@ function bloquearObvio(d: D<'blockers'>, g: G, eu: PlayerId, ok: (a: Answer) => 
     const b = podem(a).find((b) => mata(g, b, a) && !mata(g, a, b));
     if (b !== undefined && next(rng) < 0.3) { blocks.push([b, a]); usados.add(b); }
   }
-  let entrando = atacantes.filter((a) => !blocks.some(([, x]) => x === a)).reduce((t, a) => t + Math.max(0, power(g, a)), 0);
   for (const a of atacantes) {
-    if (entrando < s.players[eu].life) break;
+    if (!letal(g, eu, passando(g, atacantes, blocks))) break;
     if (blocks.some(([, x]) => x === a)) continue;
     const cands = podem(a).sort((x, y) => valorPermanente(g, x) - valorPermanente(g, y));
     if (!cands.length) continue;
     blocks.push([cands[0], a]);
     usados.add(cands[0]);
-    entrando -= Math.max(0, power(g, a));
   }
   while (blocks.length) {
     const a: Answer = { kind: 'blockers', blocks: [...blocks] };
@@ -905,18 +1209,18 @@ function opcoesDeAtaque(d: D<'attackers'>, g: G, eu: PlayerId, heur: Answer, lid
   const out: Answer[] = [heur, obrig];
   const todos: [ObjId, TargetRef][] = [];
   for (const c of d.candidates) {
-    if (power(g, c.obj) <= 0 && !c.required?.length) continue;
+    if (danoGolpe(g, c.obj) <= 0 && !c.required?.length) continue;
     const t = c.required?.length ? c.required[0] : alvoPadrao(c);
     if (t) todos.push([c.obj, t]);
   }
   out.push({ kind: 'attackers', attacks: todos });
   const h = heur.attacks;
-  const porForca = [...h].sort((a, b) => power(g, b[0]) - power(g, a[0]));
+  const porForca = [...h].sort((a, b) => danoDe(g, b[0]) - danoDe(g, a[0]));
   for (const x of porForca.slice(0, 3)) {
     if (d.candidates.find((c) => c.obj === x[0])?.required?.length) continue;
     out.push({ kind: 'attackers', attacks: h.filter((y) => y !== x) });
   }
-  const fora = todos.filter(([o]) => !h.some(([y]) => y === o)).sort((a, b) => power(g, b[0]) - power(g, a[0]));
+  const fora = todos.filter(([o]) => !h.some(([y]) => y === o)).sort((a, b) => danoDe(g, b[0]) - danoDe(g, a[0]));
   for (const x of fora.slice(0, 3)) out.push({ kind: 'attackers', attacks: [...h, x] });
   const vistas = new Set<string>();
   return out.filter((a) => { const k = JSON.stringify((a as Extract<Answer, { kind: 'attackers' }>).attacks.map(([o, t]) => `${o}>${t.kind}${t.id}`).sort()); if (vistas.has(k)) return false; vistas.add(k); return true; });
@@ -928,7 +1232,7 @@ function opcoesDeBloqueio(d: D<'blockers'>, g: G, eu: PlayerId, heur: Answer): A
   const out: Answer[] = [heur, { kind: 'blockers', blocks: [] }];
   const h = heur.blocks;
   for (const x of h.slice(0, 4)) out.push({ kind: 'blockers', blocks: h.filter((y) => y !== x) });
-  const atacantes = [...d.attackers].filter((a) => g.state.objects[a]).sort((a, b) => power(g, b) - power(g, a));
+  const atacantes = [...d.attackers].filter((a) => g.state.objects[a]).sort((a, b) => danoDe(g, b) - danoDe(g, a));
   const usados = new Set(h.map(([b]) => b));
   for (const a of atacantes.slice(0, 2)) {
     // mais um bloqueador (o mais barato que sobra) no atacante
