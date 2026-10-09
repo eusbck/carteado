@@ -832,11 +832,12 @@ function ordemDaEscolha(d: D<'select'>, g: G, eu: PlayerId): { ids: string[]; pe
     ordem = [...deles, ...meus];
     certos = deles.length;
   } else {
-    // efeito bom: nas minhas coisas mais valiosas; nos oponentes, só se for obrigado, nas que menos valem
+    // efeito bom: nas minhas coisas mais valiosas; nos oponentes, só se for obrigado, nas que menos valem. Sem saber o
+    // efeito ('neutra'), como antes: as minhas e depois as deles, das mais valiosas para as menos, quantas der
     const meus = avaliados.filter((x) => x.meu || neutro(x)).sort((a, b) => b.valor - a.valor);
-    const deles = avaliados.filter((x) => !x.meu && !neutro(x)).sort((a, b) => a.valor - b.valor);
+    const deles = avaliados.filter((x) => !x.meu && !neutro(x)).sort((a, b) => (int === 'favor' ? a.valor - b.valor : b.valor - a.valor));
     ordem = [...meus, ...deles];
-    certos = meus.length;
+    certos = int === 'favor' ? meus.length : ordem.length;
   }
   return { ids: ordem.map((x) => x.it.id), perda: int === 'perda', intencao: int, certos, avaliados };
 }

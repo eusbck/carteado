@@ -8,7 +8,8 @@ import type { G } from '../motor/game-context.ts';
 import { allOracleNames, hasOracle, oracle } from '../motor/oracle.ts';
 import type { Decision, ObjId, PlayerId } from '../motor/types.ts';
 
-export type Intencao = 'contra' | 'favor' | 'perda';
+/** 'neutra': nem o texto Oracle nem a pergunta dizem (a escolha segue a ordem de antes: as minhas, depois as deles) */
+export type Intencao = 'contra' | 'favor' | 'perda' | 'neutra';
 
 /** custo ou perda pelas palavras da pergunta (escolhas que não são alvo: sacrificar, descartar, pôr no fundo) */
 export const PERDA = /sacrifi|descart|remova|pague|perca|perde|exile .*(seu|sua)|para o cemitério|vai para o cemitério|fundo do grimório|no fundo|mão para pôr no topo/i;
@@ -151,5 +152,5 @@ export function intencao(d: Extract<Decision, { kind: 'select' }>, g: G, eu: Pla
     const r = intencaoDoOracle(topo.carta, prompt, topo.modos, soMinhas);
     if (r) return r;
   }
-  return 'favor';
+  return BOM.test(prompt) ? 'favor' : 'neutra';
 }
