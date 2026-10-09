@@ -245,6 +245,8 @@ try {
   // chat: Ana escreve e Bruno lê na barra
   await escrever(ana, 'oi Bruno, boa partida');
   await bruno.locator('.chat li', { hasText: 'oi Bruno, boa partida' }).waitFor({ timeout: 10000 });
+  // a linha de quem escreveu só aparece quando a mensagem volta do servidor: espera nos dois navegadores
+  await ana.locator('.chat li', { hasText: 'oi Bruno, boa partida' }).waitFor({ timeout: 10000 });
   verificar(await bruno.locator('.chat .chat-quem', { hasText: 'Ana' }).isVisible() && await ana.locator('.chat .chat-quem', { hasText: 'Você' }).isVisible(), 'o chat chega ao outro navegador com o nome de quem escreveu');
   // com a barra recolhida, a mensagem nova aparece por uns segundos e conta no botão de abrir
   await bruno.getByRole('button', { name: 'Recolher a barra' }).click();

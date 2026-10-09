@@ -901,6 +901,11 @@ Falta: convidar os amigos em *Settings → Collaborators*.
 
 - **Desvirar devolve a mana** (pedido na conversa): desvirar à mão uma permanente (clicar de novo no terreno virado,
   "Desvirar" ou "Desvirar tudo") tira da reserva a mana dela que ainda não foi gasta; testes em `testes/manual.test.ts`.
+- **A carta jogada da mão pousa onde foi solta** (pedido do Caio): a permanente nasce no ponto onde foi solta (antes o
+  primeiro desenho saía na arrumação padrão e ela deslizava da lateral), e a carta arrastada não some ao soltar: ela
+  pousa no ponto (endireita, encolhe até o tamanho das cartas do campo e a sombra baixa, em 200 ms) e só então dá lugar
+  à permanente, ou ao tracejado de "pagando", no mesmo lugar; a carta que você jogou nasce sem a animação `surgir`
+  (a dos bots continua). Medido quadro a quadro: nenhum quadro sem carta entre soltar e a permanente.
 - **Felothar no selo da carta** (pedido na conversa): o motor já aplicava o dano de combate pela resistência; faltava
   mostrar. A vista agora manda `damageByToughness` (a mesma regra do combate, `damageByToughnessSource` em
   `motor/combat.ts`), o selo de força/resistência ganha uma espada em ouro e a resistência em ouro, e o zoom diz "Causa

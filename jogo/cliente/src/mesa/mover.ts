@@ -13,7 +13,7 @@ import { type Caixa, limitarDeslocamento, limites, proporcional, retangulo, toca
 export interface NovaPosicao { obj: ObjId; x: number; y: number }
 
 /** o tamanho do campo que a área usa nas posições proporcionais (AreaJogador grava em data-larg/data-alt) */
-function medidas(campo: HTMLElement): { W: number; H: number } {
+export function medidas(campo: HTMLElement): { W: number; H: number } {
   return { W: Number(campo.dataset.larg) || campo.clientWidth, H: Number(campo.dataset.alt) || campo.clientHeight };
 }
 

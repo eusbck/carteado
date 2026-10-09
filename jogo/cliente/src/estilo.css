@@ -698,6 +698,8 @@ img.mini { width: 40px; aspect-ratio: 63 / 88; object-fit: cover; border-radius:
 .carta.arrastavel { touch-action: none; }
 .carta.sendo-arrastada { opacity: .25; }
 .campo > .carta { animation: surgir .28s ease-out; }
+/* a carta que você jogou da mão pousou ali (o arrasto); o tracejado de "pagando" também já nasce no lugar */
+.campo > .carta.pousada, .campo > .carta.conjurando { animation: none; }
 @keyframes surgir { from { opacity: 0; scale: .82; } }
 .alvo-soltar { position: fixed; z-index: 96; border: 2px dashed color-mix(in srgb, var(--acao) 80%, transparent); border-radius: 18px; background: color-mix(in srgb, var(--acao) 7%, transparent); display: grid; place-items: center; pointer-events: none; }
 .alvo-soltar.invalido { border-color: color-mix(in srgb, var(--vermelho) 75%, transparent); background: color-mix(in srgb, var(--vermelho) 6%, transparent); }
@@ -707,6 +709,9 @@ img.mini { width: 40px; aspect-ratio: 63 / 88; object-fit: cover; border-radius:
 .arrasto-fantasma .carta { rotate: -5deg; scale: 1.05; box-shadow: 0 30px 50px rgba(0, 0, 0, .7), 0 0 0 2px var(--acao), 0 0 24px color-mix(in srgb, var(--acao) 45%, transparent); transition: none; }
 .arrasto-fantasma .carta.virada { rotate: 85deg; }
 .arrasto-fantasma.voltando { transition: left .2s ease, top .2s ease; }
+/* pousando no campo: vai até o ponto, endireita, encolhe até o tamanho das cartas do campo e a sombra baixa */
+.arrasto-fantasma.pousando { transition: left .18s ease-out, top .18s ease-out; }
+.arrasto-fantasma.pousando .carta { rotate: 0deg; scale: 1; box-shadow: var(--sombra-carta); transition: width .18s ease-out, rotate .18s ease-out, scale .18s ease-out, box-shadow .18s ease-out; }
 .arrasto-fantasma.voltando .carta { box-shadow: var(--sombra-carta); rotate: 0deg; scale: 1; }
 .avisos { display: grid; gap: 8px; }
 .aviso { --cor: var(--texto); padding: 9px 13px; border-radius: 12px; background: var(--vidro); border: 1px solid var(--linha-forte); box-shadow: var(--sombra); font-size: 12.5px; backdrop-filter: blur(10px); animation: entrar-aviso .25s ease-out; }

@@ -54,6 +54,8 @@ export interface AreaProps {
   posicoes?: Record<string, [number, number]>;
   /** carta sendo arrastada agora (fica apagada no lugar de origem) */
   arrastando?: ObjId | null;
+  /** permanentes que você soltou do arrasto: nascem sem a animação de surgir (a carta arrastada pousou ali) */
+  pousadas?: ReadonlySet<ObjId>;
   /** começo de arrasto de uma permanente sua no campo */
   onPegarCampo?: (o: ObjView, ev: PointerEvent, el: HTMLElement) => void;
   /** botão apertado no espaço vazio do seu campo (retângulo de seleção) */
@@ -195,7 +197,7 @@ export function AreaJogador(p: AreaProps) {
           if (!pos) return null;
           const c = p.combate(o);
           const selecionada = !!p.selecionadas && (p.selecionadas.has(o.id) || (o.attachedTo !== null && p.selecionadas.has(o.attachedTo)));
-          const classe = [p.arrastando === o.id ? 'sendo-arrastada' : '', c?.inclinada ? 'inclinada' : '', c?.ativa ? 'combate-ativa' : '', selecionada ? 'selecionada' : ''].filter(Boolean).join(' ');
+          const classe = [p.arrastando === o.id ? 'sendo-arrastada' : '', p.pousadas?.has(o.id) ? 'pousada' : '', c?.inclinada ? 'inclinada' : '', c?.ativa ? 'combate-ativa' : '', selecionada ? 'selecionada' : ''].filter(Boolean).join(' ');
           return (
             <Carta key={o.id} o={o} realce={p.realce(o)} selo={c?.selo} onClick={p.onCarta} onZoom={p.onZoom} onMenu={p.onMenuCarta}
               onPointerDown={p.onPegarCampo} classe={classe || undefined}

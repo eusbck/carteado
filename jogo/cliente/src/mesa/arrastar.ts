@@ -18,6 +18,8 @@ export interface Fantasma {
   valido: boolean;
   /** voltando para o lugar de origem (soltou fora ou não dava para jogar) */
   voltando?: boolean;
+  /** pousando no campo onde foi solta (fica até a permanente, ou o tracejado de "pagando", aparecer ali) */
+  pousando?: boolean;
   virada?: boolean;
 }
 

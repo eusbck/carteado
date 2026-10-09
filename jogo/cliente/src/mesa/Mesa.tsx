@@ -32,7 +32,7 @@ import { Setas, type Seta } from './Setas.tsx';
 import { MaoInicial } from './MaoInicial.tsx';
 import { Abertura, aberturaVista, chaveAbertura, marcarAbertura, type LadoVS } from './Abertura.tsx';
 import { Manual, type PegarCarta, type Tipo as TipoManual } from './Manual.tsx';
-import { moverCartas, posicaoAoSoltar, selecionarArea, useArrumar, type NovaPosicao } from './mover.ts';
+import { medidas, moverCartas, posicaoAoSoltar, selecionarArea, useArrumar, type NovaPosicao } from './mover.ts';
 import { semConfirmadas } from './posicionar.ts';
 import { Paradas } from './Paradas.tsx';
 import { Registro } from './Registro.tsx';
@@ -300,7 +300,7 @@ function CamadaArrasto({ neutra }: { neutra: boolean }) {
           <span>{f.texto}</span>
         </div>
       )}
-      <div class={`arrasto-fantasma ${f.voltando ? 'voltando' : ''} ${neutra ? 'neutra' : ''}`} style={{ left: `${f.x}px`, top: `${f.y}px` }}>
+      <div class={`arrasto-fantasma ${f.voltando ? 'voltando' : ''} ${f.pousando ? 'pousando' : ''} ${neutra ? 'neutra' : ''}`} style={{ left: `${f.x}px`, top: `${f.y}px` }}>
         <Carta o={{ ...f.o, tapped: !!f.virada }} estilo={{ '--w': `${f.w}px` }} />
       </div>
     </>
@@ -443,6 +443,29 @@ export function Mesa() {
     if (aux.pagarAuto && d.canAuto) { autoFeito.current.add(d.id); loja.responder(d.id, { kind: 'payment', auto: true }); return; }
     if (aux.terrenos && d.lifeOptions === 0 && minhaReserva && reservaPaga(d.cost, minhaReserva) === true) { autoFeito.current.add(d.id); loja.responder(d.id, { kind: 'payment', pay: true }); }
   }, [d?.id, enviando, minhaReserva, aux.pagarAuto, aux.terrenos]);
+  // a carta arrastada que pousou no campo sai quando a permanente (ou o tracejado de "pagando") toma o lugar dela
+  // (o pouso termina sempre antes da troca: com o servidor respondendo rápido, a troca cortava a animação no meio)
+  const POUSO_MS = 200;
+  const pouso = useRef<{ desde: number; timer: ReturnType<typeof setTimeout> } | null>(null);
+  const terminarPouso = () => {
+    if (!pouso.current) return;
+    clearTimeout(pouso.current.timer);
+    pouso.current = null;
+    mostrarFantasma(null);
+    setArrastando(null);
+  };
+  const encerrarPouso = () => {
+    const p = pouso.current;
+    if (!p) return;
+    const falta = POUSO_MS - (Date.now() - p.desde);
+    if (falta <= 0) { terminarPouso(); return; }
+    clearTimeout(p.timer);
+    p.timer = setTimeout(terminarPouso, falta);
+  };
+  // com o tracejado de "pagando" já no lugar, a carta arrastada sai assim que termina de pousar
+  useEffect(() => { if (conjurando) encerrarPouso(); }, [conjurando]);
+  // jogada recusada: ela não fica parada no campo
+  useEffect(() => { encerrarPouso(); }, [e.recusa, e.erro]);
   // a permanente que você soltou no campo entra onde você soltou; se a conjuração não vingou, esquece
   useEffect(() => {
     const p = posPendente.current;
@@ -451,12 +474,13 @@ export function Mesa() {
     if (nova) {
       posPendente.current = null;
       setConjurando(null);
+      encerrarPouso();
       setPosLocal((a) => ({ ...a, [nova.id]: [p.x, p.y] }));
       loja.enviar({ t: 'posicao', obj: nova.id, x: p.x, y: p.y });
       return;
     }
     const naPilha = v.stack.some((s) => s.controller === eu && s.def === p.def);
-    if (!naPilha && !(d && d.player === eu && d.kind !== 'priority')) { posPendente.current = null; setConjurando(null); }
+    if (!naPilha && !(d && d.player === eu && d.kind !== 'priority')) { posPendente.current = null; setConjurando(null); encerrarPouso(); }
   }, [v]);
   useEffect(() => {
     if (!fila.length || enviando || d?.kind !== 'priority' || !d.actions.some((a) => a.kind === 'manual')) return;
@@ -470,12 +494,15 @@ export function Mesa() {
     setPosLocal((a) => semConfirmadas(a, e.posicoes, (id) => minhas.has(id)));
   }, [e.posicoes]);
   // a permanente que você acabou de soltar já nasce no ponto onde foi solta: esperar o efeito acima fazia o primeiro
-  // desenho sair na arrumação padrão, e a transição de posição a trazia deslizando de lá até o ponto
+  // desenho sair na arrumação padrão, e a transição de posição a trazia deslizando de lá até o ponto. Ela entra na lista
+  // das "pousadas", que nascem sem a animação de surgir (a carta arrastada pousou ali; a lista só cresce: tirar alguém
+  // dela faria a animação rodar de novo, e cada carta que muda de zona ganha id novo)
+  const pousadas = useRef(new Set<ObjId>());
   const posicoes = useMemo(() => {
     const todas = { ...e.posicoes, ...posLocal };
     const p = posPendente.current;
     const nova = p && v.battlefield.find((o) => !p.antes.has(o.id) && o.def === p.def && o.controller === eu);
-    if (p && nova && !todas[String(nova.id)]) todas[String(nova.id)] = [p.x, p.y];
+    if (p && nova) { pousadas.current.add(nova.id); if (!todas[String(nova.id)]) todas[String(nova.id)] = [p.x, p.y]; }
     return todas;
   }, [e.posicoes, posLocal, v.battlefield]);
 
@@ -651,8 +678,19 @@ export function Mesa() {
         mover: (x: number, y: number) => mostrarFantasma({ ...base, x: x - dx, y: y - dy }),
         soltar: (x: number, y: number) => {
           if (dentro(alvo, x, y) && j.length) {
-            mostrarFantasma(null); setArrastando(null);
             const pos = campo ? posicaoAoSoltar(campo, x, y, fx, fy) : undefined;
+            if (campo && pos && j.length === 1) {
+              // pousa: a carta arrastada vai para o canto onde a permanente vai ficar e fica do tamanho das cartas do
+              // campo; ela some quando a permanente (ou o tracejado de "pagando") aparecer ali. A carta da mão continua
+              // escondida até lá (o arrasto só termina no fim do pouso)
+              const rc = campo.getBoundingClientRect();
+              const m = medidas(campo);
+              const wc = Number(campo.dataset.cartaW) || w;
+              mostrarFantasma({ ...base, alvo: null, texto: '', x: rc.left + pos.x * m.W, y: rc.top + pos.y * m.H, w: wc, pousando: true });
+              if (pouso.current) clearTimeout(pouso.current.timer);
+              // rede de segurança: se nada tomar o lugar dela, ela não fica parada no campo
+              pouso.current = { desde: Date.now(), timer: setTimeout(terminarPouso, 3000) };
+            } else { mostrarFantasma(null); setArrastando(null); }
             jogar(o, new DOMRect(x - dx, y - dy, w, h), pos);
             return;
           }
@@ -915,6 +953,7 @@ export function Mesa() {
         mao={j.id === eu ? v.hand : undefined}
         reservaDireita={j.id === eu ? 336 : 0}
         avatarCanto={j.id === eu && !!pref.avatarCanto}
+        pousadas={j.id === eu ? pousadas.current : undefined}
         posicoes={posicoes}
         arrastando={arrastando}
         onPegarCampo={j.id === eu && !v.gameOver ? pegarCampo : undefined}
