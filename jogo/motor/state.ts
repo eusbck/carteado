@@ -174,6 +174,22 @@ export function congelarLki(s: GameState): void {
   if (CONGELAR_LKI) for (const e of Object.values(s.lki)) congelar(e);
 }
 
+/**
+ * Cópia do estado (snapshot da pilha, checkpoint, fork e retomada): tudo copiado em profundidade, menos as entradas
+ * da LKI, que nunca mudam depois de gravadas (só recordLki escreve; a suíte inteira com CONGELAR_LKI=1 prova) e ficam
+ * compartilhadas entre o estado e a cópia. O mapa é novo: cada um grava as próprias entradas dali em diante. Numa
+ * partida longa a LKI passa de metade do estado, e a cópia completa custava dezenas de ms a cada conjuração.
+ */
+export function cloneState(s: GameState): GameState {
+  const lki = s.lki;
+  s.lki = {};
+  let c: GameState;
+  try { c = structuredClone(s); } finally { s.lki = lki; }
+  c.lki = { ...lki };
+  congelarLki(c);
+  return c;
+}
+
 /** guarda a última informação conhecida do objeto antes de ele mudar de zona (CR 608.2h). A entrada não muda mais
  * depois de gravada (só esta função escreve na LKI): as cópias do estado a compartilham */
 export function recordLki(g: G, id: ObjId, newId: ObjId | null, newZone: ZoneName | null): void {
