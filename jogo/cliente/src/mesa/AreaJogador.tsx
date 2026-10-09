@@ -79,6 +79,10 @@ const limitar = (min: number, x: number, max: number) => Math.round(Math.max(min
 
 const NOME_CONTADOR: Record<string, string> = { poison: 'veneno', energy: 'energia', experience: 'experiência', rad: 'radiação' };
 
+/** posições guardadas e ordem de quem não tem nenhuma: sempre o mesmo objeto (a arrumação não se refaz à toa) */
+const SEM_POSICOES: Record<string, [number, number]> = {};
+const SEM_ORDEM: Record<string, number> = {};
+
 function useTamanho<T extends HTMLElement>(): [{ current: T | null }, { w: number; h: number }] {
   const ref = useRef<T>(null);
   const [t, setT] = useState({ w: 0, h: 0 });
@@ -87,9 +91,25 @@ function useTamanho<T extends HTMLElement>(): [{ current: T | null }, { w: numbe
     if (!el) return;
     const medir = () => setT((a) => (a.w === el.clientWidth && a.h === el.clientHeight ? a : { w: el.clientWidth, h: el.clientHeight }));
     medir();
-    const ro = new ResizeObserver(medir);
+    // recolher ou abrir a barra lateral anima a largura da mesa por uns 220 ms: medir a cada quadro refazia a
+    // arrumação e reiniciava o deslize de todas as cartas a cada quadro. A área mede uma vez, no fim da animação, e as
+    // cartas deslizam uma vez até o lugar novo
+    const mesa = el.closest('.mesa');
+    let animando = false;
+    const daMesa = (ev: Event) => ev.target === mesa && (ev as TransitionEvent).propertyName === 'grid-template-columns';
+    const comeca = (ev: Event) => { if (daMesa(ev)) animando = true; };
+    const acaba = (ev: Event) => { if (daMesa(ev)) { animando = false; medir(); } };
+    mesa?.addEventListener('transitionrun', comeca);
+    mesa?.addEventListener('transitionend', acaba);
+    mesa?.addEventListener('transitioncancel', acaba);
+    const ro = new ResizeObserver(() => { if (!animando) medir(); });
     ro.observe(el);
-    return () => ro.disconnect();
+    return () => {
+      ro.disconnect();
+      mesa?.removeEventListener('transitionrun', comeca);
+      mesa?.removeEventListener('transitionend', acaba);
+      mesa?.removeEventListener('transitioncancel', acaba);
+    };
   }, []);
   return [ref, t];
 }
@@ -135,8 +155,8 @@ export function AreaJogador(p: AreaProps) {
   const vaoAlt = p.mao ? 0 : Math.max(0, 8 + altAvatar - topo);
 
   // quem tem posição escolhida fica onde a pessoa pôs; os outros seguem a arrumação padrão
-  const posicoes = p.posicoes ?? {};
-  const ordemZ = p.ordemZ ?? {};
+  const posicoes = p.posicoes ?? SEM_POSICOES;
+  const ordemZ = p.ordemZ ?? SEM_ORDEM;
   const arr = useMemo(() => arrumarCampo(p.objs, p.anexos, posicoes, ordemZ, {
     W: campoW, livreW, H: campoH, wBase, wMin: p.compacta ? 28 : 40,
     vao: vaoAlt > 0 ? { x0: vaoX0, x1: vaoX1, topo: vaoAlt } : undefined,

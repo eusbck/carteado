@@ -7,6 +7,7 @@ import type { Answer, ManualAction } from '../../motor/types.ts';
 import type { GameView } from '../../motor/view.ts';
 import type { DeckCatalogo, DeckResumo, MsgChat, MsgCliente, MsgServidor, PedidoDesfazer, Posicoes, SalaPublica, TarefaPublica } from '../../servidor/protocolo.ts';
 import { carregarCartas } from './cartas.ts';
+import { compartilhar } from './compartilhar.ts';
 import { auxiliosAtivos, preferencias } from './preferencias.ts';
 import { tocar } from './sons.ts';
 import { avatarGuardado } from './avatares.ts';
@@ -77,6 +78,8 @@ class Loja {
   private avatarMandado = new Set<string>();
 
   mudar(p: Partial<Estado>): void {
+    // nada mudou de fato (a mesma sala de novo, a mesma vista): ninguém se desenha de novo
+    if ((Object.keys(p) as (keyof Estado)[]).every((k) => this.e[k] === p[k])) return;
     this.e = { ...this.e, ...p };
     for (const f of this.ouvintes) f();
   }
@@ -228,15 +231,22 @@ class Loja {
           this.enviar({ t: 'avatar', avatar: guardado });
         }
         // a tela Decks aberta pelo saguão continua aberta enquanto a partida não começa (alguém entrou, trocou de deck…)
-        this.mudar({ sala: m.sala, voce: m.voce, fase: this.e.fase === 'decks' && m.sala.estado !== 'jogando' ? 'decks' : 'sala', vista: m.sala.estado === 'espera' ? null : this.e.vista });
+        this.mudar({ sala: compartilhar(this.e.sala, m.sala), voce: m.voce, fase: this.e.fase === 'decks' && m.sala.estado !== 'jogando' ? 'decks' : 'sala', vista: m.sala.estado === 'espera' ? null : this.e.vista });
         break;
       }
-      case 'jogo':
+      case 'jogo': {
+        // o que chegou igual fica com a mesma referência (as cartas que não mudaram não se desenham de novo)
+        const pedido = m.desfazer ? { ...m.desfazer, ate: Date.now() + m.desfazer.restanteMs } : null;
+        const ant = this.e.desfazer;
+        const mesmoPedido = !!pedido && !!ant && ant.de === pedido.de && Math.abs(ant.ate - pedido.ate) < 1500
+          && JSON.stringify([ant.linhas, ant.aceitaram, ant.faltam]) === JSON.stringify([pedido.linhas, pedido.aceitaram, pedido.faltam]);
         this.mudar({
-          vista: m.vista, paradas: m.paradas, posicoes: m.posicoes ?? {}, respondida: m.vista.decision?.id === this.e.respondida ? this.e.respondida : null,
-          desfazivel: !!m.desfazivel, desfazer: m.desfazer ? { ...m.desfazer, ate: Date.now() + m.desfazer.restanteMs } : null,
+          vista: compartilhar(this.e.vista, m.vista), paradas: compartilhar(this.e.paradas, m.paradas), posicoes: compartilhar(this.e.posicoes, m.posicoes ?? {}),
+          respondida: m.vista.decision?.id === this.e.respondida ? this.e.respondida : null,
+          desfazivel: !!m.desfazivel, desfazer: mesmoPedido ? ant : pedido,
         });
         break;
+      }
       case 'aviso': {
         const id = ++this.seqRevelada;
         this.mudar({ avisos: [...this.e.avisos, { id, texto: m.msg }].slice(-3) });

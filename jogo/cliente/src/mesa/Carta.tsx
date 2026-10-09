@@ -1,6 +1,7 @@
 // Uma carta: a imagem é o visual principal; marcadores, dano e estado por cima.
 
 import type { CSSProperties } from 'preact';
+import { memo } from 'preact/compat';
 import type { ObjView } from '../../../motor/view.ts';
 import { info, nomeCarta, urlImagem } from '../cartas.ts';
 import { IconeEscudo, IconeEspada } from '../icones.tsx';
@@ -36,7 +37,25 @@ function ForcaResistencia({ o }: { o: ObjView }) {
   return <><span class="pt-espada"><IconeEspada /></span>{o.power}/<span class="pt-dano">{o.toughness}</span></>;
 }
 
-export function Carta({ o, realce = null, selo, onClick, onZoom, onPointerDown, onDoubleClick, onMenu, estilo, classe }: CartaProps) {
+/** estilo igual chave a chave (a mesa monta um objeto novo a cada desenho, com os mesmos valores) */
+function mesmoEstilo(a: CSSProperties | undefined, b: CSSProperties | undefined): boolean {
+  if (a === b) return true;
+  if (!a || !b) return false;
+  const ka = Object.keys(a);
+  if (ka.length !== Object.keys(b).length) return false;
+  return ka.every((k) => (a as Record<string, unknown>)[k] === (b as Record<string, unknown>)[k]);
+}
+
+/**
+ * A carta só se desenha de novo quando algo dela muda: o objeto da vista (que a loja reaproveita quando chega
+ * igual), o realce, o selo, a classe, o estilo ou um dos tratadores (que a mesa mantém fixos). Passar o mouse numa
+ * carta ou uma mensagem do servidor que muda uma carta só não redesenha as outras cem.
+ */
+export const Carta = memo(CartaBase, (a, b) =>
+  a.o === b.o && a.realce === b.realce && a.selo === b.selo && a.classe === b.classe && mesmoEstilo(a.estilo, b.estilo)
+  && a.onClick === b.onClick && a.onZoom === b.onZoom && a.onPointerDown === b.onPointerDown && a.onDoubleClick === b.onDoubleClick && a.onMenu === b.onMenu);
+
+function CartaBase({ o, realce = null, selo, onClick, onZoom, onPointerDown, onDoubleClick, onMenu, estilo, classe }: CartaProps) {
   const oculta = !o.def;
   const img = oculta ? null : urlImagem(o.copyOfDef ?? o.def, o.face, 'p');
   const nome = oculta ? o.name : nomeCarta(o.def, o.name);
@@ -63,7 +82,7 @@ export function Carta({ o, realce = null, selo, onClick, onZoom, onPointerDown, 
       onMouseLeave={onZoom ? () => onZoom(null) : undefined}
     >
       <div class="carta-face">
-        {img ? <img src={img} alt={nome} loading="lazy" draggable={false} /> : oculta ? <div class="verso" /> : (
+        {img ? <img src={img} alt={nome} loading="lazy" decoding="async" draggable={false} /> : oculta ? <div class="verso" /> : (
           <div class="sem-arte">
             <strong>{nome}</strong>
             <span>{o.types.join(' ')}</span>

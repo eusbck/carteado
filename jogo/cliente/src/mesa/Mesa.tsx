@@ -40,6 +40,8 @@ import { avisoPrioridade } from './prioridade.ts';
 import { NIVEL_PADRAO, nomeNivel } from '../../../bots/niveis.ts';
 import { TextoComSimbolos } from './Simbolos.tsx';
 import { Zoom } from './Zoom.tsx';
+import { esconderZoom, mostrarZoom, useZoom } from './zoomLoja.ts';
+import { mesmaLista, mesmasPosicoes, mesmoMapaDeListas, useEstavel, useMesmo } from './estavel.ts';
 
 type Modal = { tipo: 'zona'; jogador: number; zona: 'graveyard' | 'exile' } | { tipo: 'paradas' } | { tipo: 'registro' } | { tipo: 'conceder' } | { tipo: 'config' } | { tipo: 'carta'; o: ObjView } | null;
 type ItemMenu =
@@ -131,6 +133,8 @@ function MenuFlutuante({ menu, fechar }: { menu: Menu; fechar: () => void }) {
 /** cor de cada jogador na sua tela: você em ouro (o multicolorido do Magic), os outros em cores de mana
  * (azul, verde e o violeta do preto), na ordem dos assentos */
 const CORES = ['var(--ouro)', 'var(--azul)', 'var(--positivo)', 'var(--roxo)'];
+/** jogador sem permanentes: sempre a mesma lista vazia (a arrumação da área não se refaz à toa) */
+const SEM_OBJS: ObjView[] = [];
 const PARAVEIS = new Set<Step>(ETAPAS.map((e) => e.id).filter((s) => !['untap', 'cleanup', 'firstStrikeDamage'].includes(s)));
 
 /** o tremido discreto de "isso não pode" (sem explicação na mesa real) */
@@ -307,6 +311,13 @@ function CamadaArrasto({ neutra }: { neutra: boolean }) {
   );
 }
 
+/** o zoom da carta sob o mouse: assina o próprio store (passar o mouse não redesenha a mesa) */
+function CamadaZoom({ recolhida, enjoo }: { recolhida: boolean; enjoo: boolean }) {
+  const zoom = useZoom();
+  if (!zoom) return null;
+  return <div class={`camada-zoom ${recolhida ? 'recolhida' : ''}`}><Zoom o={zoom.o} lado={zoom.lado} enjoo={enjoo} /></div>;
+}
+
 /** Configurações › Auxílios, Efeitos e sons, Mesa */
 function Configuracoes({ pref, salaProibe, fechar, reorganizar }: { pref: Preferencias; salaProibe: boolean; fechar: () => void; reorganizar: () => void }) {
   const marcados = auxiliosDoNivel(pref.nivel, pref.personalizado);
@@ -374,7 +385,6 @@ export function Mesa() {
   const [bloqueios, setBloqueios] = useState<Record<number, ObjId>>({});
   const [bloqueadorAtivo, setBloqueadorAtivo] = useState<ObjId | null>(null);
   const [menu, setMenu] = useState<Menu | null>(null);
-  const [zoom, setZoom] = useState<{ o: ObjView; lado: 'esq' | 'dir' } | null>(null);
   const [modal, setModal] = useState<Modal>(null);
   const [pegar, setPegar] = useState<PegarCarta | null>(null);
   const [manualAberto, setManualAberto] = useState(false);
@@ -419,7 +429,7 @@ export function Mesa() {
   }, [e.paradas, aux.jogaveis]);
   const recolher = (x: boolean) => mudarPreferencias({ registro: !x });
   // a carta sob o mouse some junto com a janela (o mouseleave não chega)
-  useEffect(() => { setZoom(null); }, [modal]);
+  useEffect(() => { esconderZoom(); }, [modal]);
 
   const confirmarAtaque = () => {
     if (d?.kind !== 'attackers' || enviando) return;
@@ -498,13 +508,15 @@ export function Mesa() {
   // das "pousadas", que nascem sem a animação de surgir (a carta arrastada pousou ali; a lista só cresce: tirar alguém
   // dela faria a animação rodar de novo, e cada carta que muda de zona ganha id novo)
   const pousadas = useRef(new Set<ObjId>());
-  const posicoes = useMemo(() => {
+  const posicoesNovas = useMemo(() => {
     const todas = { ...e.posicoes, ...posLocal };
     const p = posPendente.current;
     const nova = p && v.battlefield.find((o) => !p.antes.has(o.id) && o.def === p.def && o.controller === eu);
     if (p && nova) { pousadas.current.add(nova.id); if (!todas[String(nova.id)]) todas[String(nova.id)] = [p.x, p.y]; }
     return todas;
   }, [e.posicoes, posLocal, v.battlefield]);
+  // as mesmas posições de antes ficam com a mesma referência: a arrumação de cada área só se refaz se algo mudou
+  const posicoes = useMesmo(posicoesNovas, mesmasPosicoes);
 
   // índice de objetos visíveis
   const todos = useMemo(() => {
@@ -674,7 +686,7 @@ export function Mesa() {
       // na mesa real, nada de área destacada nem "Solte para…"
       const base = { o, w, alvo: aux.avisos ? alvo : null, texto: aux.avisos ? texto : '', valido: j.length > 0 };
       return {
-        inicio: () => { setMenu(null); setZoom(null); setArrastando(o.id); mostrarFantasma({ ...base, x: ev.clientX - dx, y: ev.clientY - dy }); },
+        inicio: () => { setMenu(null); esconderZoom(); setArrastando(o.id); mostrarFantasma({ ...base, x: ev.clientX - dx, y: ev.clientY - dy }); },
         mover: (x: number, y: number) => mostrarFantasma({ ...base, x: x - dx, y: y - dy }),
         soltar: (x: number, y: number) => {
           if (dentro(alvo, x, y) && j.length) {
@@ -716,7 +728,7 @@ export function Mesa() {
       const texto = alvosAtaque?.length ? 'Solte na área de quem ela vai atacar' : 'Solte em cima da criatura que ela vai bloquear';
       const base = { o, w, alvo: null, texto, valido: true, virada: o.tapped };
       return {
-        inicio: () => { setMenu(null); setZoom(null); setArrastando(o.id); mostrarFantasma({ ...base, ...canto(ev.clientX, ev.clientY) }); },
+        inicio: () => { setMenu(null); esconderZoom(); setArrastando(o.id); mostrarFantasma({ ...base, ...canto(ev.clientX, ev.clientY) }); },
         mover: (x: number, y: number) => mostrarFantasma({ ...base, ...canto(x, y) }),
         soltar: (x: number, y: number) => {
           mostrarFantasma(null); setArrastando(null);
@@ -748,7 +760,7 @@ export function Mesa() {
     const guardar = arrumar.selecao.has(dono) ? [...arrumar.selecao] : [dono];
     const mover = guardar.flatMap((id) => [...(anexos.get(id) ?? []).map((a) => a.id), id]);
     moverCartas(ev, el, mover, guardar, {
-      inicio: () => { setMenu(null); setZoom(null); },
+      inicio: () => { setMenu(null); esconderZoom(); },
       soltar: (novas: NovaPosicao[]) => {
         if (!novas.length) return;
         setPosLocal((a) => { const n = { ...a }; for (const q of novas) n[q.obj] = [q.x, q.y]; return n; });
@@ -775,7 +787,7 @@ export function Mesa() {
   const grupoManual: ItemMenu = { tipo: 'grupo', id: 'g-manual', label: manualOk ? 'Ajuste manual' : 'Ajuste manual (só com prioridade)' };
   const menuCarta = (o: ObjView, ev: MouseEvent) => {
     if (pegar) return;
-    setZoom(null);
+    esconderZoom();
     const naMao = v.hand.some((x) => x.id === o.id);
     const noCampo = v.battlefield.some((x) => x.id === o.id);
     const itens: ItemMenu[] = [];
@@ -809,7 +821,7 @@ export function Mesa() {
   };
   const menuArea = (ev: MouseEvent) => {
     if (pegar || v.gameOver) return;
-    setZoom(null);
+    esconderZoom();
     const virados = v.battlefield.filter((o) => o.controller === eu && o.tapped);
     const itens: ItemMenu[] = [
       grupoManual,
@@ -891,21 +903,30 @@ export function Mesa() {
     else if (d.max === 1) setSel([id]);
     else if (sel.length < d.max) setSel([...sel, id]);
   };
-  const mostrarZoom = (o: ObjView | null, r?: DOMRect) => setZoom(o && r ? { o, lado: r.left + r.width / 2 < innerWidth / 2 ? 'dir' : 'esq' } : null);
 
-  const anexos = useMemo(() => {
+  const anexosNovos = useMemo(() => {
     const m = new Map<ObjId, ObjView[]>();
     const noCampo = new Set(v.battlefield.map((o) => o.id));
-    for (const o of v.battlefield) if (o.attachedTo !== null && noCampo.has(o.attachedTo)) m.set(o.attachedTo, [...(m.get(o.attachedTo) ?? []), o]);
+    for (const o of v.battlefield) {
+      if (o.attachedTo === null || !noCampo.has(o.attachedTo)) continue;
+      const l = m.get(o.attachedTo);
+      if (l) l.push(o); else m.set(o.attachedTo, [o]);
+    }
     return m;
   }, [v.battlefield]);
+  const anexos = useMesmo(anexosNovos, mesmoMapaDeListas);
+  // as permanentes de cada jogador; a lista de quem não mudou fica a mesma (a área dele não refaz a arrumação)
+  const listasAntes = useRef(new Map<number, ObjView[]>());
   const objsPorJogador = useMemo(() => {
     const noCampo = new Set(v.battlefield.map((o) => o.id));
     const m = new Map<number, ObjView[]>();
     for (const o of v.battlefield) {
       if (o.attachedTo !== null && noCampo.has(o.attachedTo)) continue;
-      m.set(o.controller, [...(m.get(o.controller) ?? []), o]);
+      const l = m.get(o.controller);
+      if (l) l.push(o); else m.set(o.controller, [o]);
     }
+    for (const [k, l] of m) { const a = listasAntes.current.get(k); if (a && mesmaLista(a, l)) m.set(k, a); }
+    listasAntes.current = m;
     return m;
   }, [v.battlefield]);
   // seleção por arrasto e ordem das cartas que você arrumou (só neste navegador)
@@ -917,6 +938,17 @@ export function Mesa() {
   // retrato de cada jogador: o que a pessoa escolheu, ou o do comandante do deck dela
   const avatarDe = (p: number) => avatarDoAssento(sala.assentos[p]?.avatar, e.decks.find((x) => x.id === sala.assentos[p]?.deck)?.comandante);
 
+  // tratadores das cartas com identidade fixa (cada um chama a versão deste desenho): as cartas são memo e só se
+  // desenham de novo quando algo delas muda
+  const tCarta = useEstavel(clicarCarta);
+  const tMenuCarta = useEstavel(menuCarta);
+  const tMenuArea = useEstavel(menuArea);
+  const tPegarCampo = useEstavel(pegarCampo);
+  const tPegarCampoVazio = useEstavel(pegarCampoVazio);
+  const tPegarMao = useEstavel(pegarMao);
+  const tJogar = useEstavel(jogar);
+  const fecharMenu = useEstavel(() => setMenu(null));
+
   const duelo = sala.modo === '1v1';
   const area = (j: PlayerView, compacta: boolean) => {
     const itemJ = itemPorJogador.get(j.id);
@@ -927,7 +959,7 @@ export function Mesa() {
       <AreaJogador
         key={j.id}
         j={j}
-        objs={objsPorJogador.get(j.id) ?? []}
+        objs={objsPorJogador.get(j.id) ?? SEM_OBJS}
         anexos={anexos}
         comandantes={v.command.filter((o) => o.owner === j.id)}
         exilio={v.exile.filter((o) => o.owner === j.id)}
@@ -943,7 +975,7 @@ export function Mesa() {
         avatar={avatarDe(j.id)}
         realce={realce}
         combate={combate}
-        onCarta={clicarCarta}
+        onCarta={tCarta}
         onZoom={mostrarZoom}
         jogadorRealce={itemJ !== undefined ? (sel.includes(itemJ) ? 'escolhido' : aux.alvos ? 'escolhivel' : null) : alvoJogador ? 'escolhivel' : null}
         onJogador={itemJ !== undefined ? () => clicarJogador(j.id) : atacarJ ? () => alvoAtaque({ kind: 'player', id: j.id }) : undefined}
@@ -956,14 +988,14 @@ export function Mesa() {
         pousadas={j.id === eu ? pousadas.current : undefined}
         posicoes={posicoes}
         arrastando={arrastando}
-        onPegarCampo={j.id === eu && !v.gameOver ? pegarCampo : undefined}
-        onPegarCampoVazio={j.id === eu && !v.gameOver ? pegarCampoVazio : undefined}
+        onPegarCampo={j.id === eu && !v.gameOver ? tPegarCampo : undefined}
+        onPegarCampoVazio={j.id === eu && !v.gameOver ? tPegarCampoVazio : undefined}
         selecionadas={j.id === eu ? arrumar.selecao : undefined}
         ordemZ={j.id === eu ? arrumar.ordemZ : undefined}
-        onPegarMao={j.id === eu ? pegarMao : undefined}
-        onDuploMao={j.id === eu ? jogar : undefined}
-        onMenuCarta={menuCarta}
-        onMenuArea={j.id === eu ? menuArea : undefined}
+        onPegarMao={j.id === eu ? tPegarMao : undefined}
+        onDuploMao={j.id === eu ? tJogar : undefined}
+        onMenuCarta={tMenuCarta}
+        onMenuArea={j.id === eu ? tMenuArea : undefined}
       />
     );
   };
@@ -1127,8 +1159,8 @@ export function Mesa() {
     {/* camadas por cima da mesa ficam fora da grade dela (dentro, viravam linhas novas e cortavam o tabuleiro) */}
     <CamadaArrasto neutra={!aux.avisos} />
     {/* o zoom fica acima das janelas (ex.: ler uma carta do cemitério com a janela aberta) */}
-    {zoom && !arrastando && <div class={`camada-zoom ${recolhida ? 'recolhida' : ''}`}><Zoom o={zoom.o} lado={zoom.lado} enjoo={aux.jogaveis} /></div>}
-    {menu && <MenuFlutuante menu={menu} fechar={() => setMenu(null)} />}
+    {!arrastando && <CamadaZoom recolhida={recolhida} enjoo={aux.jogaveis} />}
+    {menu && <MenuFlutuante menu={menu} fechar={fecharMenu} />}
 
     {pegar && (
       <div class="faixa-pegar">
