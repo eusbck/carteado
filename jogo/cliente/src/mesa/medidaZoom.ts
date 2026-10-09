@@ -30,6 +30,8 @@ export const MARGEM_ZOOM = 16;
 /** acolchoamento da caixa (cada lado) e espaço entre a imagem e o texto */
 export const PAD_ZOOM = 8;
 export const VAO_ZOOM = 10;
+/** a borda da caixa (1 px de cada lado, `.zoom` no estilo.css): entra na altura, senão a caixa ficava 1 px abaixo do meio */
+export const BORDA_ZOOM = 1;
 const PROPORCAO = 88 / 63;
 
 /** largura da imagem: cerca de 40% da altura da tela, sem passar de 30% da largura */
@@ -48,7 +50,7 @@ export function medidaZoom(t: Tela, alturaTexto: (largura: number, escala: numbe
     const ih = imagem * PROPORCAO;
     const th = alturaTexto(texto, escala);
     const largura = modo === 'abaixo' ? imagem + 2 * PAD_ZOOM : imagem + VAO_ZOOM + texto + 2 * PAD_ZOOM;
-    const altura = Math.ceil((modo === 'abaixo' ? ih + th : Math.max(ih, th)) + 2 * PAD_ZOOM);
+    const altura = Math.ceil((modo === 'abaixo' ? ih + th : Math.max(ih, th)) + 2 * PAD_ZOOM + 2 * BORDA_ZOOM);
     return { modo, imagem, texto, largura: Math.round(largura), altura, topo: Math.round((t.altura - altura) / 2), escala };
   };
   // texto embaixo: a carta pode encolher até 80% para o texto caber
@@ -58,7 +60,7 @@ export function medidaZoom(t: Tela, alturaTexto: (largura: number, escala: numbe
     if (m.altura <= disponivel) return m;
   }
   // texto ao lado: a coluna começa mais estreita que a carta e alarga até caber (sem sair da mesa)
-  const imagem = Math.round(Math.min(base, (disponivel - 2 * PAD_ZOOM) / PROPORCAO));
+  const imagem = Math.round(Math.min(base, (disponivel - 2 * PAD_ZOOM - 2 * BORDA_ZOOM) / PROPORCAO));
   const maxTexto = Math.max(200, t.largura - 2 * MARGEM_ZOOM - imagem - VAO_ZOOM - 2 * PAD_ZOOM);
   let ultimo: MedidaZoom | null = null;
   for (let w = Math.min(maxTexto, Math.max(240, Math.round(imagem * 0.8))); ; w = Math.min(maxTexto, w + 60)) {
