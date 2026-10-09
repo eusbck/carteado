@@ -4,10 +4,13 @@
 import { AVATARES, avatarDoComandante, type Avatar } from '../../servidor/avatares.ts';
 
 const IMAGENS = import.meta.glob<string>('./imagens/avatares/*.webp', { eager: true, query: '?url', import: 'default' });
+/** os mesmos retratos com 256 px, para a mesa e o saguão (ferramentas/avatares-mesa.ts) */
+const MESA = import.meta.glob<string>('./imagens/avatares/mesa/*.webp', { eager: true, query: '?url', import: 'default' });
 
-export interface AvatarCliente extends Avatar { url: string | null }
+/** `url`: o retrato de 512 px; `urlMesa`: o de 256 px (null se ainda não foi gerado) */
+export interface AvatarCliente extends Avatar { url: string | null; urlMesa: string | null }
 
-export const CATALOGO: AvatarCliente[] = AVATARES.map((a) => ({ ...a, url: IMAGENS[`./imagens/avatares/${a.id}.webp`] ?? null }));
+export const CATALOGO: AvatarCliente[] = AVATARES.map((a) => ({ ...a, url: IMAGENS[`./imagens/avatares/${a.id}.webp`] ?? null, urlMesa: MESA[`./imagens/avatares/mesa/${a.id}.webp`] ?? null }));
 
 export const avatarPorId = (id: string | null | undefined): AvatarCliente | null => (id ? CATALOGO.find((a) => a.id === id) ?? null : null);
 

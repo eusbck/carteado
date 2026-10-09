@@ -25,7 +25,12 @@ export interface AvatarProps {
   /** clicar na vida (escolher o jogador como alvo de ataque ou de um efeito) */
   onVida?: () => void;
   realce?: 'escolhivel' | 'escolhido' | null;
+  /** sempre o retrato de 512 px (a janela de escolha); sem isso, o navegador escolhe pelo tamanho na tela */
+  retratoGrande?: boolean;
 }
+
+/** o retrato é desenhado com 118% do diâmetro da moldura (.avatar-retrato no estilo.css) */
+const RETRATO = 1.18;
 
 export function Avatar(p: AvatarProps) {
   const url = p.avatar?.url ?? null;
@@ -34,6 +39,9 @@ export function Avatar(p: AvatarProps) {
   const [carga, setCarga] = useState<{ url: string; estado: 'pronto' | 'erro' } | null>(null);
   const estado = carga && carga.url === url ? carga.estado : 'carregando';
   const comImagem = !!url && estado !== 'erro';
+  // na mesa e no saguão, o de 256 px enquanto ele cobrir o tamanho na tela vezes a densidade (até o dobro, no maior
+  // medalhão da mesa); acima disso, o de 512
+  const mesa = !p.retratoGrande && p.avatar?.urlMesa ? { srcset: `${p.avatar.urlMesa} 256w, ${url} 512w`, sizes: `${Math.round(p.tamanho * RETRATO)}px` } : {};
   const classes = ['avatar', p.local ? 'avatar-local' : 'avatar-oponente', p.ativo ? 'ativo' : '', p.fora ? 'fora' : '', p.realce ? `avatar-${p.realce}` : '', comImagem && estado === 'pronto' ? 'pronto' : ''].filter(Boolean).join(' ');
   return (
     <div class={classes} data-avatar={p.avatar?.id ?? ''} data-jogador-avatar={p.jogador}
@@ -42,9 +50,9 @@ export function Avatar(p: AvatarProps) {
       <span class="avatar-fundo" aria-hidden="true" />
       {/* a inicial aparece enquanto o retrato carrega, ou se ele não existir */}
       {(!comImagem || estado === 'carregando') && <span class="avatar-inicial" aria-hidden="true">{(p.nome || '?').slice(0, 1).toUpperCase()}</span>}
-      {comImagem && <img class="avatar-retrato avatar-dentro" src={url!} alt="" draggable={false} onLoad={() => setCarga({ url: url!, estado: 'pronto' })} onError={() => setCarga({ url: url!, estado: 'erro' })} />}
+      {comImagem && <img class="avatar-retrato avatar-dentro" src={url!} {...mesa} alt="" draggable={false} onLoad={() => setCarga({ url: url!, estado: 'pronto' })} onError={() => setCarga({ url: url!, estado: 'erro' })} />}
       <span class="avatar-anel" aria-hidden="true" />
-      {comImagem && <img class="avatar-retrato avatar-fora" src={url!} alt="" draggable={false} aria-hidden="true" />}
+      {comImagem && <img class="avatar-retrato avatar-fora" src={url!} {...mesa} alt="" draggable={false} aria-hidden="true" />}
       <button type="button" class="vida-n avatar-vida" onClick={p.onVida} disabled={!p.onVida} title="Vida" aria-label={`Vida de ${p.nome}: ${p.vida}`}>
         {p.vida}
       </button>
