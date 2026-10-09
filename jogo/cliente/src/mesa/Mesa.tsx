@@ -9,7 +9,7 @@ import type { Decision, ManualAction, ObjId, PaymentSource, PriorityAction, Step
 import type { GameView, ObjView, PlayerView } from '../../../motor/view.ts';
 import type { MsgChat } from '../../../servidor/protocolo.ts';
 import { avatarDoAssento } from '../avatares.ts';
-import { nomeCarta, traduzir, urlFundo, urlImagem } from '../cartas.ts';
+import { nomeCarta, rostoNoFundo, traduzir, urlFundo, urlImagem } from '../cartas.ts';
 import { IconeAjuste, IconeConceder, IconeRecolher as IconeSeta, IconeConfig, IconeDesfazer, IconeFimTurno, IconeParadas, IconePassar, IconeRecolher, IconeRegistro, IconeSair, Marca } from '../icones.tsx';
 import { loja, useLoja } from '../loja.ts';
 import { reservaPaga } from '../mana.ts';
@@ -999,13 +999,18 @@ export function Mesa() {
   const ladosVS = (): LadoVS[] => ordem.map((p) => {
     const a = sala.assentos[p];
     const deck = e.decks.find((x) => x.id === a?.deck);
+    const comandante = deck ? nomeCarta(deck.comandante, deck.comandante).split(',')[0] : null;
+    // sem o complemento entre parênteses dos decks importados ("(Reality Fracture Commander Decklist)"), e sem repetir
+    // quando o deck tem o nome do comandante ("Terra")
+    const nomeDeck = deck ? deck.nome.replace(/\s*\([^)]*\)\s*$/, '') : null;
     return {
       jogador: p,
       nome: v.players[p].name,
       papel: p === eu ? 'Você' : a?.tipo === 'bot' ? `Oponente · bot ${nomeNivel(a.nivel ?? NIVEL_PADRAO)}` : 'Oponente',
-      comandante: deck ? nomeCarta(deck.comandante, deck.comandante).split(',')[0] : null,
-      deck: deck?.nome ?? null,
+      comandante,
+      deck: nomeDeck && nomeDeck !== comandante ? nomeDeck : null,
       fundo: fundoDe(p),
+      foco: deck ? rostoNoFundo(deck.comandante) : [0.5, 0.3],
       aura: avatarDe(p)?.aura ?? cor(p),
       // a ordem dos turnos já vem sorteada: o primeiro dela joga o primeiro turno
       comeca: p === v.turnOrder[0],

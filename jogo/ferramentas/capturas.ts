@@ -479,12 +479,19 @@ if (!SO_CAPTURAS || SO_CAPTURAS === 'fundos') {
 // --- abertura da partida (tela VS) ---
 /**
  * A VS do começo da partida: Ana contra um bot e Ana com três bots, em 1280×800, 1920×1080 e 2560×1440, fotografada
- * depois que o VS crava e os nomes entram. Confere que ela cobre a tela inteira, que tem uma faixa por jogador e que
- * um clique pula para a mão inicial. CAPTURAS_SO=abertura roda só este bloco.
+ * depois que o VS crava e os nomes entram. Em 1920×1080, três partidas de quatro passam pelos 9 decks em faixas
+ * diferentes (o rosto do comandante tem de ficar no meio da faixa). Confere que ela cobre a tela inteira, que tem uma
+ * faixa por jogador e que um clique pula para a mão inicial. CAPTURAS_SO=abertura roda só este bloco.
  */
 async function capturasAbertura(): Promise<void> {
-  for (const modo of ['1v1', '4p'] as const) {
-    for (const [w, h] of [[1280, 800], [1920, 1080], [2560, 1440]] as const) {
+  // [modo, largura, altura, deck de Ana, decks dos bots (índices nas listas do saguão), sufixo da foto]
+  const rodadas: ['1v1' | '4p', number, number, number, number[], string][] = [
+    ['1v1', 1280, 800, 4, [1], ''], ['1v1', 1920, 1080, 4, [1], ''], ['1v1', 2560, 1440, 4, [1], ''],
+    ['4p', 1280, 800, 4, [1, 3, 6], ''], ['4p', 2560, 1440, 4, [1, 3, 6], ''],
+    ['4p', 1920, 1080, 0, [1, 2, 3], '-a'], ['4p', 1920, 1080, 4, [5, 6, 7], '-b'], ['4p', 1920, 1080, 8, [0, 4, 2], '-c'],
+  ];
+  for (const [modo, w, h, deckAna, decksBots, sufixo] of rodadas) {
+    {
       const c = await navegador.newContext({ viewport: { width: w, height: h } });
       c.setDefaultTimeout(20000);
       const q = await c.newPage();
@@ -498,8 +505,8 @@ async function capturasAbertura(): Promise<void> {
       const bots = modo === '1v1' ? [2] : [2, 3, 4];
       for (const l of bots) await porBot(q, l, l === 3 ? 'Difícil' : undefined);
       await irParaDecks(q);
-      for (const [i, l] of bots.entries()) await deckDoBot(q, l, [1, 3, 6][i]);
-      await escolherDeck(q, 4);
+      for (const [i, l] of bots.entries()) await deckDoBot(q, l, decksBots[i]);
+      await escolherDeck(q, deckAna);
       await q.getByRole('button', { name: 'Começar a partida' }).click();
       const vs = q.locator('.abertura');
       await q.locator('.abertura.tocando').waitFor({ timeout: 30000 });
@@ -507,10 +514,10 @@ async function capturasAbertura(): Promise<void> {
       if (!caixa || caixa.x > 0 || caixa.y > 0 || caixa.width < w || caixa.height < h) throw new Error(`abertura ${modo} ${w}×${h}: não cobre a tela (${JSON.stringify(caixa)})`);
       const faixas = await vs.locator('.vs-lado').count();
       if (faixas !== bots.length + 1) throw new Error(`abertura ${modo} ${w}×${h}: ${faixas} faixas para ${bots.length + 1} jogadores`);
-      const nomes = await vs.locator('.vs-nome b').allTextContents();
+      const nomes = await vs.locator('.vs-deck').allTextContents();
       // o VS crava em 1,5 s e os nomes terminam de entrar em 2,5 s; a tela começa a sair em 4,4 s (foto espera 0,4 s)
       await q.waitForTimeout(2200);
-      await foto(q, `93-abertura-${modo}-${w}`);
+      await foto(q, `93-abertura-${modo}-${w}${sufixo}`);
       // com a máquina ocupada a tela pode já estar saindo sozinha: aí não há o que clicar
       const pulou = await vs.evaluate((e) => !e.classList.contains('saindo')).catch(() => false) && await vs.click({ timeout: 2000 }).then(() => true).catch(() => false);
       await vs.waitFor({ state: 'detached', timeout: 5000 });

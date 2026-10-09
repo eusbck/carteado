@@ -59,11 +59,8 @@
 .vs-clarao { position: absolute; inset: 0; z-index: 5; pointer-events: none; opacity: 0; background: radial-gradient(circle at 50% 46%, rgba(255, 246, 225, .95), rgba(255, 170, 90, .45) 30%, transparent 70%); }
 .vs-pular { position: absolute; right: calc(var(--u) * 1.8); top: calc(var(--u) * 1.6); z-index: 6; font: 600 max(11px, calc(var(--u) * .95))/1 var(--fonte); letter-spacing: .12em; text-transform: uppercase; color: rgba(242, 232, 213, .55); opacity: 0; pointer-events: none; }
 
-/* duelo: duas metades com o corte inclinado (57% no alto, 43% no pé) */
-.vs-2 .vs-lado.l0 { clip-path: polygon(0 0, 57% 0, 43% 100%, 0 100%); }
-.vs-2 .vs-lado.l1 { clip-path: polygon(57% 0, 100% 0, 100% 100%, 43% 100%); }
-.vs-2 .l0 .vs-arte { left: 0; width: 57%; }
-.vs-2 .l1 .vs-arte { left: 43%; width: 57%; }
+/* duelo: duas metades com o corte inclinado (57% no alto, 43% no pé); o recorte de cada faixa e a posição da arte
+   (com o rosto do comandante no meio) vêm de Abertura.tsx */
 .vs-2 .l0 .vs-tinta { background: radial-gradient(ellipse 34% 30% at 12% 94%, var(--aura), transparent); }
 .vs-2 .l1 .vs-tinta { background: radial-gradient(ellipse 34% 30% at 88% 94%, var(--aura), transparent); }
 .vs-2 .vs-nome { max-width: 38%; }
@@ -72,7 +69,7 @@
 .vs-2 .l1 .vs-comeca { justify-self: end; }
 .vs-2 .vs-costura { --dx: 14cqw; }
 
-/* três ou quatro: faixas inclinadas lado a lado (posição de cada uma no estilo de cada faixa) */
+/* três ou quatro: faixas inclinadas lado a lado */
 .vs-n .vs-tinta { background: radial-gradient(ellipse 16% 26% at var(--cx) 96%, var(--aura), transparent); }
 .vs-n .vs-nome { bottom: calc(var(--u) * 2.2); width: calc(var(--u) * 22); max-width: 22%; text-align: center; justify-items: center; transform: translateX(-50%); }
 .vs-n .vs-nome b { font-size: calc(var(--u) * 2.3); }

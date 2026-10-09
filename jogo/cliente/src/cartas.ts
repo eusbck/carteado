@@ -38,6 +38,25 @@ export function urlFundo(def: string): string | null {
   return i?.f ? `/img/${i.f}/fundo?v=${VERSAO_FUNDO}` : null;
 }
 
+/**
+ * Onde está o rosto do comandante em cada fundo feito para o deck (gerado/fundos/fontes.json), de 0 a 1 a partir da
+ * esquerda e do alto, marcado à mão sobre uma grade. A tela VS põe esse ponto no meio da faixa de cada jogador.
+ * Trocando a imagem de um fundo, marque o rosto de novo aqui.
+ */
+const ROSTO_NO_FUNDO: Record<string, readonly [number, number]> = {
+  'Felothar the Steadfast': [0.37, 0.24],
+  'Auntie Ool, Cursewretch': [0.36, 0.26],
+  'Quintorius, History Chaser': [0.49, 0.25],
+  'Jace, Multiverse Architect': [0.48, 0.21],
+  'Rootha, Mastering the Moment': [0.43, 0.3],
+  'Killian, Decisive Mentor': [0.67, 0.19],
+  'Terra, Herald of Hope': [0.57, 0.19],
+  'Dina, Essence Brewer': [0.49, 0.26],
+  'Ghoulcaller Gisa': [0.43, 0.17],
+};
+/** o rosto do comandante no fundo; sem marca (a arte da carta ampliada), o meio, um pouco acima */
+export const rostoNoFundo = (def: string): readonly [number, number] => ROSTO_NO_FUNDO[def] ?? [0.5, 0.3];
+
 /** nome para mostrar: a impressão em português quando houver */
 export function nomeCarta(def: string, nome: string): string {
   return INFO[def]?.pt ?? nome;

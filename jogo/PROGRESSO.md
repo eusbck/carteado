@@ -914,3 +914,29 @@ Falta: convidar os amigos em *Settings → Collaborators*.
   `motor/combat.ts`), o selo de força/resistência ganha uma espada em ouro e a resistência em ouro, e o zoom diz "Causa
   dano de combate igual à resistência (N), não à força (Felothar the Steadfast)". Vale também para Assault Formation,
   Baldin e Walking Bulwark; teste da vista em `cartas/defs/felothar-the-steadfast.test.ts`.
+
+## Abertura da partida: tela VS — 09/10/2026
+
+Pedido: as telas de referência do usuário (`Documents/telas`: VS antes da partida, Vitória e Derrota). Proposta em
+artifact (https://claude.ai/artifact/6Hp29dt3CFNcbFtLBnnx9o); o usuário mandou implementar **só a VS** por enquanto
+(Vitória, Derrota e Empate ficam para depois, o protótipo delas está no mesmo artifact).
+
+- `cliente/src/mesa/Abertura.tsx` e `abertura.css`: cobre a tela quando a partida começa, antes da mão inicial. Cada
+  jogador numa faixa com **só a arte do deck** (o retrato saiu a pedido: "fica muito over"), nome, "Você" ou
+  "Oponente" (com o nível do bot), comandante e deck, e o selo "Começa" em quem joga o primeiro turno (o primeiro da
+  ordem dos turnos, que o motor já sorteia). Duelo: duas metades com o corte inclinado; 3 ou 4 jogadores: faixas
+  inclinadas, você na primeira e os outros na ordem dos turnos, com "todos contra todos" embaixo do VS.
+- **O rosto do comandante fica no meio da faixa**: `rostoNoFundo` em `cliente/src/cartas.ts` marca onde está o rosto
+  em cada um dos 9 fundos de `gerado/fundos` (marcado à mão sobre uma grade); a arte é posicionada em px para o
+  tamanho real da tela, sem deixar vão na faixa. Fundo novo (ou trocado) precisa da marca; sem ela, o meio da arte.
+- Sequência: as faixas entram, o corte acende, o VS crava com clarão, onda, tremor e faíscas (canvas), os nomes sobem.
+  Some sozinha em 4,4 s; clique, Esc, Enter ou espaço pulam. Uma vez por partida neste navegador (`sessionStorage`
+  com o código da sala e a semente). Com "reduzir movimento", parada; com os efeitos desligados, sem partículas.
+- Som novo `abertura` em `sons.ts` (rajadas e o impacto em sol), com chave própria nas Configurações ("Som da
+  abertura"). `tocar` agora devolve uma função que cala o som (a VS pulada não deixa o impacto tocar sobre a mesa).
+- Ferramentas: `capturas.ts` e `e2e.ts` pulam a VS ao começar partidas; `CAPTURAS_SO=abertura` fotografa a VS
+  (1v1 e 4 jogadores em 1280, 1920 e 2560, e três partidas de 4 que passam pelos 9 decks); `CAPTURAS_DADOS` e
+  `E2E_DADOS` (com `PORTA_CAPTURAS`/`PORTA_E2E`) deixam rodar ao mesmo tempo que outra rodada.
+
+Verificado: `npm run typecheck`; `testes/fase9-sons.test.ts` (10 de 10); `CAPTURAS_SO=abertura` (as 8 partidas,
+rosto no meio da faixa nos 9 decks); no e2e, a VS aparece para todos no 1v1 e no de 4, clique e Esc pulam.

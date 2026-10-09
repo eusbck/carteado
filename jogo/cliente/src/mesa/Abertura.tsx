@@ -1,6 +1,7 @@
 // Abertura da partida (a tela VS): antes da mão inicial, a arte do deck de cada jogador lado a lado (só a arte, sem
-// o retrato: com ele ficava carregado demais), com o VS em brasa cravando no meio. Some sozinha em uns 4 s; clicar ou apertar Esc pula. A mesa mostra uma vez
-// por partida neste navegador (chave com o código da sala e a semente: recarregar a página não repete).
+// o retrato: com ele ficava carregado demais), com o VS em brasa cravando no meio. Some sozinha em uns 4 s; clicar
+// ou apertar Esc pula. A mesa mostra uma vez por partida neste navegador (chave com o código da sala e a semente:
+// recarregar a página não repete).
 // Duelo: duas metades com o corte inclinado. Três ou quatro jogadores: faixas inclinadas, você na primeira e os
 // outros na ordem dos turnos. Estilos em abertura.css; brasas e faíscas num canvas; o som é o 'abertura' de sons.ts.
 // Com "reduzir movimento" no sistema, aparece parada e sem partículas; com os efeitos desligados, sem partículas,
@@ -21,6 +22,8 @@ export interface LadoVS {
   deck: string | null;
   /** arte do deck (a mesma do fundo da área na mesa) */
   fundo: string | null;
+  /** onde está o rosto do comandante na arte (0 a 1, da esquerda e do alto): fica no meio da faixa */
+  foco: readonly [number, number];
   /** cor do brilho atrás do nome: a aura do retrato do jogador, ou a cor dele na mesa */
   aura: string;
   comeca: boolean;
@@ -51,26 +54,67 @@ const iconeComeca = (
   <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 0l1.6 4.4L12 6 7.6 7.6 6 12 4.4 7.6 0 6l4.4-1.6z" fill="currentColor" /></svg>
 );
 
-function carregar(url: string | null): Promise<void> {
-  if (!url) return Promise.resolve();
-  return new Promise((ok) => { const img = new Image(); img.onload = img.onerror = () => ok(); img.src = url; });
+/** carrega a imagem e devolve o tamanho dela (null se não houver ou não carregar) */
+function carregar(url: string | null): Promise<[number, number] | null> {
+  if (!url) return Promise.resolve(null);
+  return new Promise((ok) => {
+    const img = new Image();
+    img.onload = () => ok(img.naturalWidth && img.naturalHeight ? [img.naturalWidth, img.naturalHeight] : null);
+    img.onerror = () => ok(null);
+    img.src = url;
+  });
 }
+
+/** inclinação das faixas: quanto (em % da largura) o alto de cada corte fica à direita do pé */
+const INCLINACAO_DUELO = 14;
+const INCLINACAO = 6;
+/** altura (fração da tela) em que o rosto deve ficar no meio da faixa */
+const ALTURA_ROSTO = 0.38;
+
+/**
+ * Onde desenhar a arte da faixa `i` de `n` (em px, numa tela `larg` × `alt`): do tamanho que cobre a faixa inteira e
+ * com o rosto do comandante (`foco`) no meio dela, na altura do rosto. Se o rosto estiver perto da beira da arte, ela
+ * para no limite (a faixa nunca fica com um vão) e o rosto fica o mais perto do meio que der.
+ */
+function posicaoArte(i: number, n: number, foco: readonly [number, number], tam: [number, number], larg: number, alt: number) {
+  const w = 100 / n, s = n === 2 ? INCLINACAO_DUELO : INCLINACAO;
+  // a borda esquerda da faixa k, em % da largura, na altura y (0 no alto, 1 no pé); as bordas da tela ficam retas
+  const borda = (k: number, y: number) => (k <= 0 ? 0 : k >= n ? 100 : k * w + s / 2 - s * y);
+  const x0 = Math.min(borda(i, 0), borda(i, 1)) * larg / 100, x1 = Math.max(borda(i + 1, 0), borda(i + 1, 1)) * larg / 100;
+  const meio = (borda(i, ALTURA_ROSTO) + borda(i + 1, ALTURA_ROSTO)) / 2 * larg / 100;
+  const escala = Math.max((x1 - x0) / tam[0], alt / tam[1]);
+  const dw = tam[0] * escala, dh = tam[1] * escala;
+  const limitar = (v: number, min: number, max: number) => Math.min(max, Math.max(min, v));
+  return {
+    recorte: `polygon(${borda(i, 0)}% 0, ${borda(i + 1, 0)}% 0, ${borda(i + 1, 1)}% 100%, ${borda(i, 1)}% 100%)`,
+    caixa: { left: x0, width: x1 - x0 },
+    arte: { left: limitar(meio - foco[0] * dw, x1 - dw, x0), top: limitar(alt * ALTURA_ROSTO - foco[1] * dh, alt - dh, 0), width: dw, height: dh },
+    /** o meio da faixa no pé, em % da largura (o nome e o brilho atrás dele) */
+    pe: (borda(i, 0.92) + borda(i + 1, 0.92)) / 2,
+  };
+}
+
+const telaAgora = (): [number, number] => [innerWidth, innerHeight];
 
 export function Abertura({ lados, fim }: { lados: LadoVS[]; fim: () => void }) {
   const [fase, setFase] = useState<'carregando' | 'tocando' | 'saindo'>('carregando');
+  const [tela, setTela] = useState(telaAgora);
+  const [tamanhos, setTamanhos] = useState<([number, number] | null)[]>([]);
   const raiz = useRef<HTMLDivElement>(null);
   const canvas = useRef<HTMLCanvasElement>(null);
   const parada = typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches;
   const efeitos = preferencias().efeitos && !parada;
   const sair = () => setFase((f) => (f === 'saindo' ? f : 'saindo'));
 
-  // espera as artes (no máximo um pouco), para as faixas não entrarem vazias
+  // espera as artes (no máximo um pouco), para as faixas não entrarem vazias; o tamanho de cada uma posiciona o rosto
   useEffect(() => {
     let vivo = true;
     const espera = new Promise<void>((ok) => setTimeout(ok, ESPERA_IMAGENS));
-    void Promise.race([Promise.all(lados.map((l) => carregar(l.fundo))), espera])
-      .then(() => { if (vivo) setFase((f) => (f === 'carregando' ? 'tocando' : f)); });
-    return () => { vivo = false; };
+    const tudo = Promise.all(lados.map((l) => carregar(l.fundo))).then((t) => { if (vivo) setTamanhos(t); });
+    void Promise.race([tudo, espera]).then(() => { if (vivo) setFase((f) => (f === 'carregando' ? 'tocando' : f)); });
+    const medir = () => setTela(telaAgora());
+    addEventListener('resize', medir);
+    return () => { vivo = false; removeEventListener('resize', medir); };
   }, []);
 
   useEffect(() => {
@@ -103,30 +147,27 @@ export function Abertura({ lados, fim }: { lados: LadoVS[]; fim: () => void }) {
   const duelo = lados.length === 2;
   const n = lados.length;
   const w = 100 / n;
-  const INCLINACAO = 6;
+  const [larg, alt] = tela;
+  const px = (o: Record<string, number>) => Object.fromEntries(Object.entries(o).map(([k, v]) => [k, `${v}px`]));
   return (
     <div ref={raiz} class={`abertura ${fase} ${efeitos ? '' : 'sem-efeitos'}`} role="dialog" aria-label={`Começa a partida: ${lados.map((l) => l.nome).join(' contra ')}`} onClick={sair}>
       <div class={`vs ${duelo ? 'vs-2' : 'vs-n'}`}>
         <div class="vs-treme">
           {lados.map((l, i) => {
-            const estilo: Record<string, string | number> = { '--i': i, '--aura': l.aura };
-            let arte: Record<string, string> = {};
+            // faixa i: de i/n a (i+1)/n da largura, com o alto deslocado para a direita; a arte com o rosto no meio dela
+            const pos = posicaoArte(i, n, l.foco, tamanhos[i] ?? [16, 9], larg, alt);
+            const estilo: Record<string, string | number> = { '--i': i, '--aura': l.aura, clipPath: pos.recorte };
             let nome: Record<string, string> = {};
             if (duelo) estilo['--de'] = i ? '40%' : '-40%';
             else {
-              // faixa i: de i/n a (i+1)/n da largura, com o alto deslocado para a direita (as bordas da tela ficam retas)
-              const s = INCLINACAO, a0 = i === 0 ? 0 : i * w + s / 2, a1 = i === n - 1 ? 100 : (i + 1) * w + s / 2;
-              const b0 = i === 0 ? 0 : i * w - s / 2, b1 = i === n - 1 ? 100 : (i + 1) * w - s / 2;
-              const meio = i * w + w / 2;
               estilo['--de'] = i % 2 ? '0, 60%' : '0, -60%';
-              estilo['--cx'] = `${meio}%`;
-              estilo.clipPath = `polygon(${a0}% 0, ${a1}% 0, ${b1}% 100%, ${b0}% 100%)`;
-              arte = { left: `${i * w - s}%`, width: `${w + 2 * s}%` };
-              nome = { left: `${meio - .9}%` };
+              estilo['--cx'] = `${pos.pe}%`;
+              nome = { left: `${pos.pe}%` };
             }
+            const arte = { ...px(pos.arte), transformOrigin: `${l.foco[0] * 100}% ${l.foco[1] * 100}%` };
             return (
               <div key={l.jogador} class={`vs-lado l${i}`} style={estilo}>
-                {l.fundo ? <img class="vs-arte" src={l.fundo} alt="" draggable={false} style={arte} /> : <div class="vs-arte vazia" style={arte} />}
+                {l.fundo ? <img class="vs-arte" src={l.fundo} alt="" draggable={false} style={arte} /> : <div class="vs-arte vazia" style={px(pos.caixa)} />}
                 <div class="vs-tinta" />
                 <div class="vs-veu" />
                 <div class="vs-nome" style={nome}>

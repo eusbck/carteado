@@ -10,7 +10,8 @@ import { fileURLToPath } from 'node:url';
 import { chromium, type Browser, type Page } from 'playwright';
 
 const RAIZ = join(dirname(fileURLToPath(import.meta.url)), '..');
-const DADOS = join(RAIZ, '.cache', 'e2e-dados');
+// E2E_DADOS e PORTA_E2E deixam duas rodadas correrem ao mesmo tempo (cada uma com o seu banco e a sua porta)
+const DADOS = process.env.E2E_DADOS ?? join(RAIZ, '.cache', 'e2e-dados');
 const SAIDA = join(RAIZ, '.cache', 'e2e');
 const PORTA = Number(process.env.PORTA_E2E ?? 8092);
 const URL = `http://localhost:${PORTA}`;
