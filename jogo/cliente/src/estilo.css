@@ -118,8 +118,9 @@ label { display: grid; gap: 6px; color: var(--suave); font-size: 13px; font-weig
 @media (prefers-reduced-motion: reduce) { .fundo-arte-img { animation: fundo-entra 1s ease-out; } }
 /* translúcida para os wallpapers aparecerem por trás; o desfoque leve mantém o texto legível */
 .janela { background: rgba(24, 22, 25, .62); border: 1px solid var(--linha-forte); border-radius: 20px; box-shadow: 0 30px 80px rgba(0, 0, 0, .6); backdrop-filter: blur(6px) saturate(1.1); }
-.marca-jogo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 14px; letter-spacing: .03em; white-space: nowrap; }
-.marca-jogo .marca-logo { height: 24px; width: auto; flex: 0 0 auto; }
+/* a marca: o M em brasa em cima de COMMANDER, os dois centralizados */
+.marca-jogo { display: inline-flex; flex-direction: column; align-items: center; gap: 4px; font-weight: 800; font-size: 14px; letter-spacing: .03em; white-space: nowrap; }
+.marca-jogo .marca-logo { height: 28px; width: auto; flex: 0 0 auto; }
 .tela-estreita { width: min(820px, 100%); padding: 36px; display: grid; gap: 22px; }
 .tela-estreita.mini { width: min(420px, 100%); }
 .titulo { font-size: 30px; font-weight: 800; letter-spacing: -.01em; }
@@ -611,7 +612,7 @@ img.mini { width: 40px; aspect-ratio: 63 / 88; object-fit: cover; border-radius:
 
 /* barra lateral */
 .lateral { position: relative; background: #0d0c0e; border-left: 1px solid var(--linha); display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
-.lateral .marca-jogo { padding: 18px 18px 6px; }
+.lateral .marca-jogo { display: flex; padding: 18px 18px 6px; }
 .lateral-turno { --cor: var(--ouro); text-align: center; padding: 8px 0 12px; }
 .lateral-turno strong { display: block; font-size: 30px; font-weight: 800; color: var(--acao); line-height: 1.1; font-variant-numeric: tabular-nums; }
 .lateral-turno .vez { font-size: 12.5px; color: var(--suave); }
@@ -650,7 +651,7 @@ img.mini { width: 40px; aspect-ratio: 63 / 88; object-fit: cover; border-radius:
 .registro-turno-bloco ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; font-size: 13px; line-height: 1.45; color: #d6cdbd; }
 .registro-turno-bloco li.manual { font-style: italic; color: var(--suave); border-left: 2px solid var(--ouro); padding-left: 8px; }
 .regra { color: var(--apagado); }
-.recolhida .lateral .marca-jogo { padding: 18px 0 6px; justify-content: center; }
+.recolhida .lateral .marca-jogo { padding: 18px 0 6px; }
 .recolhida .lateral .marca-jogo span, .recolhida .lateral-turno .rot, .recolhida .lateral-turno .vez, .recolhida .menu-lateral .rotulo { display: none; }
 .recolhida .lateral-turno strong { font-size: 22px; }
 .recolhida .menu-lateral { padding: 4px 8px; }

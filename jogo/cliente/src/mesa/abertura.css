@@ -15,25 +15,14 @@
 .vs canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 3; pointer-events: none; }
 
 .vs-lado { position: absolute; inset: 0; z-index: 1; }
-.vs-arte { position: absolute; top: 0; height: 100%; object-fit: cover; filter: brightness(.6) saturate(1.1); }
+/* só a arte do deck em cada faixa (o comandante já está nela); ela entra mais perto e assenta devagar enquanto a tela está aberta */
+.vs-arte { position: absolute; top: 0; height: 100%; object-fit: cover; filter: brightness(.82) saturate(1.08); transform-origin: 50% 40%; }
 .vs-arte.vazia { background: radial-gradient(circle at 50% 40%, color-mix(in srgb, var(--aura) 45%, #141214), #070607 70%); }
-.vs-tinta { position: absolute; inset: 0; mix-blend-mode: screen; opacity: .55; }
+/* um brilho na cor do jogador atrás do nome */
+.vs-tinta { position: absolute; inset: 0; mix-blend-mode: screen; opacity: .4; }
 .vs-veu {
   position: absolute; inset: 0;
   background: linear-gradient(to top, rgba(6, 5, 6, .95) 0%, rgba(6, 5, 6, .55) 22%, transparent 48%), linear-gradient(to bottom, rgba(6, 5, 6, .55), transparent 22%);
-}
-.vs-retrato {
-  position: absolute; bottom: calc(var(--u) * 3); width: calc(var(--u) * 43); height: calc(var(--u) * 43); object-fit: contain;
-  filter: drop-shadow(0 0 calc(var(--u) * 1.4) color-mix(in srgb, var(--aura) 75%, transparent)) drop-shadow(0 calc(var(--u) * 1.2) calc(var(--u) * 2) rgba(0, 0, 0, .7));
-  -webkit-mask-image: linear-gradient(to bottom, #000 72%, transparent 99%); mask-image: linear-gradient(to bottom, #000 72%, transparent 99%);
-}
-/* sem retrato: a inicial num medalhão na cor do jogador */
-.vs-inicial {
-  display: grid; place-items: center; border-radius: 50%; -webkit-mask-image: none; mask-image: none;
-  width: calc(var(--u) * 26); height: calc(var(--u) * 26); bottom: calc(var(--u) * 12);
-  font: 800 calc(var(--u) * 12)/1 'Cinzel', Georgia, serif; color: #fff7ea;
-  background: radial-gradient(circle at 40% 35%, color-mix(in srgb, var(--aura) 70%, #fff), var(--aura) 45%, color-mix(in srgb, var(--aura) 40%, #000));
-  border: calc(var(--u) * .5) solid var(--ouro);
 }
 .vs-nome { position: absolute; bottom: calc(var(--u) * 2.6); display: grid; gap: calc(var(--u) * .35); text-shadow: 0 calc(var(--u) * .2) calc(var(--u) * .8) rgba(0, 0, 0, .9); }
 .vs-nome b { font: 700 calc(var(--u) * 3.4)/1.1 'Cinzel', Georgia, serif; letter-spacing: .02em; color: #fff7ea; }
@@ -75,12 +64,8 @@
 .vs-2 .vs-lado.l1 { clip-path: polygon(57% 0, 100% 0, 100% 100%, 43% 100%); }
 .vs-2 .l0 .vs-arte { left: 0; width: 57%; }
 .vs-2 .l1 .vs-arte { left: 43%; width: 57%; }
-.vs-2 .l0 .vs-retrato { left: 6%; }
-.vs-2 .l1 .vs-retrato { right: 6%; }
-.vs-2 .l0 .vs-inicial { left: 12%; }
-.vs-2 .l1 .vs-inicial { right: 12%; }
-.vs-2 .l0 .vs-tinta { background: radial-gradient(circle at 24% 58%, var(--aura), transparent 46%); }
-.vs-2 .l1 .vs-tinta { background: radial-gradient(circle at 76% 58%, var(--aura), transparent 46%); }
+.vs-2 .l0 .vs-tinta { background: radial-gradient(ellipse 34% 30% at 12% 94%, var(--aura), transparent); }
+.vs-2 .l1 .vs-tinta { background: radial-gradient(ellipse 34% 30% at 88% 94%, var(--aura), transparent); }
 .vs-2 .vs-nome { max-width: 38%; }
 .vs-2 .l0 .vs-nome { left: 3.6%; }
 .vs-2 .l1 .vs-nome { right: 3.6%; text-align: right; }
@@ -88,9 +73,7 @@
 .vs-2 .vs-costura { --dx: 14cqw; }
 
 /* três ou quatro: faixas inclinadas lado a lado (posição de cada uma no estilo de cada faixa) */
-.vs-n .vs-retrato { width: calc(var(--u) * 27); height: calc(var(--u) * 27); bottom: calc(var(--u) * 8.6); transform: translateX(-50%); }
-.vs-n .vs-inicial { width: calc(var(--u) * 18); height: calc(var(--u) * 18); bottom: calc(var(--u) * 13); }
-.vs-n .vs-tinta { background: radial-gradient(circle at var(--cx) 62%, var(--aura), transparent 30%); }
+.vs-n .vs-tinta { background: radial-gradient(ellipse 16% 26% at var(--cx) 96%, var(--aura), transparent); }
 .vs-n .vs-nome { bottom: calc(var(--u) * 2.2); width: calc(var(--u) * 22); max-width: 22%; text-align: center; justify-items: center; transform: translateX(-50%); }
 .vs-n .vs-nome b { font-size: calc(var(--u) * 2.3); }
 .vs-n .vs-papel { font-size: calc(var(--u) * 1.05); }
@@ -102,8 +85,7 @@
 
 /* a sequência (só tocando: parada, cada coisa já está no lugar) */
 .abertura.tocando .vs-lado { animation: vs-entra-lado .75s calc(var(--i) * .12s) cubic-bezier(.16, .84, .24, 1) both; }
-.abertura.tocando .vs-retrato { animation: vs-entra-retrato .9s calc(.35s + var(--i) * .12s) cubic-bezier(.2, .8, .2, 1) both; }
-.abertura.tocando .vs-n .vs-retrato { animation-name: vs-entra-retrato-n; }
+.abertura.tocando .vs-arte { animation: vs-aproxima 5s calc(var(--i) * .12s) cubic-bezier(.2, .7, .3, 1) both; }
 .abertura.tocando .vs-2 .vs-costura { animation: vs-risca .4s .7s ease-out both; }
 .abertura.tocando .vs-n .vs-costura { animation: vs-risca .4s .85s ease-out both; }
 .abertura.tocando .vs-emblema { animation: vs-crava .6s 1.3s cubic-bezier(.3, 1.5, .5, 1) both; }
@@ -116,8 +98,7 @@
 .abertura.tocando .vs-pular { animation: vs-aparece .5s 1.2s both; }
 .abertura.sem-efeitos .vs-treme, .abertura.sem-efeitos .vs-clarao { animation: none; }
 @keyframes vs-entra-lado { from { transform: translate(var(--de)); opacity: 0; } to { transform: none; opacity: 1; } }
-@keyframes vs-entra-retrato { from { transform: translateY(10%) scale(1.06); opacity: 0; } to { transform: none; opacity: 1; } }
-@keyframes vs-entra-retrato-n { from { transform: translate(-50%, 10%) scale(1.06); opacity: 0; } to { transform: translateX(-50%); opacity: 1; } }
+@keyframes vs-aproxima { from { transform: scale(1.14); filter: brightness(1.6) saturate(1.08); } 18% { filter: brightness(.82) saturate(1.08); } to { transform: scale(1); filter: brightness(.82) saturate(1.08); } }
 @keyframes vs-risca { from { transform: translate(-50%, -50%) rotate(var(--ang)) scaleY(0); } to { transform: translate(-50%, -50%) rotate(var(--ang)) scaleY(1); } }
 @keyframes vs-crava { 0% { transform: translate(-50%, -50%) scale(3.4); opacity: 0; filter: blur(10px); } 55% { transform: translate(-50%, -50%) scale(.9); opacity: 1; filter: blur(0); } 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; } }
 @keyframes vs-onda { from { transform: scale(.4); opacity: .95; } to { transform: scale(3.2); opacity: 0; } }

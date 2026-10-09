@@ -96,6 +96,21 @@ async function jogarDaMao(p: Page, acao: RegExp): Promise<boolean> {
   return false;
 }
 
+/**
+ * a abertura (VS) cobre a mesa por uns 4 s quando a partida começa. Devolve se ela apareceu nesta página (a marca
+ * fica na sessão do navegador ao abrir) e, se ainda estiver na tela, pula com um clique ou com Esc.
+ */
+async function pularAbertura(p: Page, como: 'clique' | 'esc'): Promise<boolean> {
+  const viu = await p.evaluate(() => Object.keys(sessionStorage).some((k) => k.startsWith('commander-da-mesa:vs:')));
+  const vs = p.locator('.abertura');
+  if (await vs.isVisible().catch(() => false)) {
+    if (como === 'clique') await vs.click();
+    else await p.keyboard.press('Escape');
+    await vs.waitFor({ state: 'detached', timeout: 5000 });
+  }
+  return viu;
+}
+
 /** uma ação simples para a decisão pendente da pessoa (se houver); devolve true se agiu */
 async function agir(p: Page): Promise<boolean> {
   if (await p.getByText('Você tem prioridade').isVisible().catch(() => false)) {
@@ -215,8 +230,14 @@ try {
   await bruno.getByRole('button', { name: 'Escolher este deck' }).click();
   await ana.waitForTimeout(300);
   await ana.getByRole('button', { name: 'Começar a partida' }).click();
+  // a abertura (VS) aparece junto com a mesa, antes da mão inicial
+  await ana.locator('.abertura').waitFor({ timeout: 30000 });
+  const nomesVS = await ana.locator('.abertura .vs-nome b').allTextContents();
+  verificar(nomesVS.length === 2 && nomesVS[0] === 'Ana' && nomesVS.includes('Bruno'), 'a tela VS mostra os dois jogadores, você primeiro');
   await Promise.all([ana.locator('.turno-linha').waitFor({ timeout: 30000 }), bruno.locator('.turno-linha').waitFor({ timeout: 30000 })]);
   verificar(true, 'as duas pessoas veem a partida começar');
+  const viramVS = await Promise.all([pularAbertura(ana, 'clique'), pularAbertura(bruno, 'esc')]);
+  verificar(viramVS.every(Boolean), 'a VS aparece para as duas pessoas; clicar ou apertar Esc pula');
   // cada um vê só a própria mão
   const maoAna = await ana.locator('.mao-cartas .carta').count();
   const maoBruno = await bruno.locator('.mao-cartas .carta').count();
@@ -279,8 +300,11 @@ try {
   for (const [i, p] of pessoas.entries()) await escolherDeck(p, i + 2);
   await pessoas[0].waitForTimeout(400);
   await pessoas[0].getByRole('button', { name: 'Começar a partida' }).click();
+  await pessoas[0].locator('.abertura').waitFor({ timeout: 30000 });
+  verificar((await pessoas[0].locator('.abertura .vs-lado').count()) === 4, 'a VS de quatro jogadores tem uma faixa para cada um');
   for (const p of pessoas) await p.locator('.turno-linha').waitFor({ timeout: 30000 });
   verificar(true, 'as quatro pessoas veem a partida começar');
+  verificar((await Promise.all(pessoas.map((p) => pularAbertura(p, 'clique')))).every(Boolean), 'as quatro pessoas veem a VS');
   await jogarAte(pessoas, 9, 420000);
   verificar(true, 'a partida de 4 chegou ao turno 9 pela interface');
   for (const [i, p] of pessoas.entries()) await p.screenshot({ path: join(SAIDA, `4p-${i}.png`) });
@@ -309,6 +333,7 @@ try {
   await gil.getByRole('button', { name: 'Começar a partida' }).click();
   await gil.locator('.turno-linha').waitFor({ timeout: 30000 });
   verificar(true, 'a partida de uma pessoa com três bots começa');
+  verificar(await pularAbertura(gil, 'esc'), 'a VS aparece também na partida contra bots');
   await jogarAte([gil], 9, 900000);
   verificar(true, 'a partida com uma pessoa e três bots chegou ao turno 9 pela interface');
   // o registro abre numa janela do menu, como Paradas e Configurações

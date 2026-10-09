@@ -1,5 +1,5 @@
-// Abertura da partida (a tela VS): antes da mão inicial, a arte do deck e o retrato de cada jogador lado a lado,
-// com o VS em brasa cravando no meio. Some sozinha em uns 4 s; clicar ou apertar Esc pula. A mesa mostra uma vez
+// Abertura da partida (a tela VS): antes da mão inicial, a arte do deck de cada jogador lado a lado (só a arte, sem
+// o retrato: com ele ficava carregado demais), com o VS em brasa cravando no meio. Some sozinha em uns 4 s; clicar ou apertar Esc pula. A mesa mostra uma vez
 // por partida neste navegador (chave com o código da sala e a semente: recarregar a página não repete).
 // Duelo: duas metades com o corte inclinado. Três ou quatro jogadores: faixas inclinadas, você na primeira e os
 // outros na ordem dos turnos. Estilos em abertura.css; brasas e faíscas num canvas; o som é o 'abertura' de sons.ts.
@@ -7,7 +7,6 @@
 // clarão nem tremor.
 
 import { useEffect, useLayoutEffect, useRef, useState } from 'preact/hooks';
-import type { AvatarCliente } from '../avatares.ts';
 import { preferencias } from '../preferencias.ts';
 import { tocar } from '../sons.ts';
 import './abertura.css';
@@ -22,9 +21,8 @@ export interface LadoVS {
   deck: string | null;
   /** arte do deck (a mesma do fundo da área na mesa) */
   fundo: string | null;
-  avatar: AvatarCliente | null;
-  /** cor do jogador na mesa (aura de quem não tem retrato) */
-  cor: string;
+  /** cor do brilho atrás do nome: a aura do retrato do jogador, ou a cor dele na mesa */
+  aura: string;
   comeca: boolean;
 }
 
@@ -66,11 +64,11 @@ export function Abertura({ lados, fim }: { lados: LadoVS[]; fim: () => void }) {
   const efeitos = preferencias().efeitos && !parada;
   const sair = () => setFase((f) => (f === 'saindo' ? f : 'saindo'));
 
-  // espera as artes e os retratos (no máximo um pouco), para as faixas não entrarem vazias
+  // espera as artes (no máximo um pouco), para as faixas não entrarem vazias
   useEffect(() => {
     let vivo = true;
     const espera = new Promise<void>((ok) => setTimeout(ok, ESPERA_IMAGENS));
-    void Promise.race([Promise.all(lados.flatMap((l) => [carregar(l.fundo), carregar(l.avatar?.url ?? null)])), espera])
+    void Promise.race([Promise.all(lados.map((l) => carregar(l.fundo))), espera])
       .then(() => { if (vivo) setFase((f) => (f === 'carregando' ? 'tocando' : f)); });
     return () => { vivo = false; };
   }, []);
@@ -111,9 +109,8 @@ export function Abertura({ lados, fim }: { lados: LadoVS[]; fim: () => void }) {
       <div class={`vs ${duelo ? 'vs-2' : 'vs-n'}`}>
         <div class="vs-treme">
           {lados.map((l, i) => {
-            const estilo: Record<string, string | number> = { '--i': i, '--aura': l.avatar?.aura ?? l.cor };
+            const estilo: Record<string, string | number> = { '--i': i, '--aura': l.aura };
             let arte: Record<string, string> = {};
-            let retrato: Record<string, string> = {};
             let nome: Record<string, string> = {};
             if (duelo) estilo['--de'] = i ? '40%' : '-40%';
             else {
@@ -125,7 +122,6 @@ export function Abertura({ lados, fim }: { lados: LadoVS[]; fim: () => void }) {
               estilo['--cx'] = `${meio}%`;
               estilo.clipPath = `polygon(${a0}% 0, ${a1}% 0, ${b1}% 100%, ${b0}% 100%)`;
               arte = { left: `${i * w - s}%`, width: `${w + 2 * s}%` };
-              retrato = { left: `${meio - 1.2}%` };
               nome = { left: `${meio - .9}%` };
             }
             return (
@@ -133,9 +129,6 @@ export function Abertura({ lados, fim }: { lados: LadoVS[]; fim: () => void }) {
                 {l.fundo ? <img class="vs-arte" src={l.fundo} alt="" draggable={false} style={arte} /> : <div class="vs-arte vazia" style={arte} />}
                 <div class="vs-tinta" />
                 <div class="vs-veu" />
-                {l.avatar?.url
-                  ? <img class="vs-retrato" src={l.avatar.url} alt="" draggable={false} style={retrato} />
-                  : <div class="vs-retrato vs-inicial" style={retrato} aria-hidden="true">{(l.nome || '?').slice(0, 1).toUpperCase()}</div>}
                 <div class="vs-nome" style={nome}>
                   {l.comeca && <span class="vs-comeca">{iconeComeca}Começa</span>}
                   <b>{l.nome}</b>

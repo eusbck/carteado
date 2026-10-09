@@ -959,8 +959,7 @@ export function Mesa() {
       comandante: deck ? nomeCarta(deck.comandante, deck.comandante).split(',')[0] : null,
       deck: deck?.nome ?? null,
       fundo: fundoDe(p),
-      avatar: avatarDe(p),
-      cor: cor(p),
+      aura: avatarDe(p)?.aura ?? cor(p),
       // a ordem dos turnos já vem sorteada: o primeiro dela joga o primeiro turno
       comeca: p === v.turnOrder[0],
     };

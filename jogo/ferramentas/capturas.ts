@@ -17,7 +17,8 @@ import { gerarSalas } from './cenarios.ts';
 
 const RAIZ = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SAIDA = join(RAIZ, '.cache', 'capturas');
-const DADOS = join(RAIZ, '.cache', 'capturas-dados');
+// CAPTURAS_DADOS e PORTA_CAPTURAS deixam duas rodadas correrem ao mesmo tempo (cada uma com o seu banco e a sua porta)
+const DADOS = process.env.CAPTURAS_DADOS ?? join(RAIZ, '.cache', 'capturas-dados');
 const PORTA = Number(process.env.PORTA_CAPTURAS ?? 8091);
 const URL = `http://localhost:${PORTA}`;
 
@@ -152,6 +153,14 @@ async function escolherDeck(p: Page, n: number): Promise<void> {
 async function deckDoBot(p: Page, lugar: number, indice: number): Promise<void> {
   await p.locator('.decks-lugares .assento').nth(lugar - 1).getByLabel('Deck do bot').selectOption({ index: indice });
   await p.waitForTimeout(150);
+}
+
+/** a abertura (VS) cobre a mesa por uns 4 s quando a partida começa: as capturas da mesa clicam nela para pular */
+async function pularAbertura(p: Page): Promise<void> {
+  const vs = p.locator('.abertura');
+  await vs.waitFor({ timeout: 30000 });
+  await vs.click();
+  await vs.waitFor({ state: 'detached', timeout: 5000 });
 }
 
 async function clicar(p: Page, nome: string | RegExp): Promise<boolean> {
@@ -467,6 +476,66 @@ if (!SO_CAPTURAS || SO_CAPTURAS === 'fundos') {
   }
 }
 // --- fim do bloco da fase 9 ---
+// --- abertura da partida (tela VS) ---
+/**
+ * A VS do começo da partida: Ana contra um bot e Ana com três bots, em 1280×800, 1920×1080 e 2560×1440, fotografada
+ * depois que o VS crava e os nomes entram. Confere que ela cobre a tela inteira, que tem uma faixa por jogador e que
+ * um clique pula para a mão inicial. CAPTURAS_SO=abertura roda só este bloco.
+ */
+async function capturasAbertura(): Promise<void> {
+  for (const modo of ['1v1', '4p'] as const) {
+    for (const [w, h] of [[1280, 800], [1920, 1080], [2560, 1440]] as const) {
+      const c = await navegador.newContext({ viewport: { width: w, height: h } });
+      c.setDefaultTimeout(20000);
+      const q = await c.newPage();
+      await entrar(q);
+      await nomear(q, 'Ana');
+      await escolher(q, 'Criar sala');
+      if (modo === '1v1') await q.getByRole('button', { name: 'Um contra um' }).click();
+      await q.locator('form').filter({ hasText: 'Criar sala' }).getByLabel('Senha da sala').fill('mesa');
+      await q.getByRole('button', { name: 'Criar', exact: true }).click();
+      await q.locator('.lugares').waitFor();
+      const bots = modo === '1v1' ? [2] : [2, 3, 4];
+      for (const l of bots) await porBot(q, l, l === 3 ? 'Difícil' : undefined);
+      await irParaDecks(q);
+      for (const [i, l] of bots.entries()) await deckDoBot(q, l, [1, 3, 6][i]);
+      await escolherDeck(q, 4);
+      await q.getByRole('button', { name: 'Começar a partida' }).click();
+      const vs = q.locator('.abertura');
+      await q.locator('.abertura.tocando').waitFor({ timeout: 30000 });
+      const caixa = await vs.boundingBox();
+      if (!caixa || caixa.x > 0 || caixa.y > 0 || caixa.width < w || caixa.height < h) throw new Error(`abertura ${modo} ${w}×${h}: não cobre a tela (${JSON.stringify(caixa)})`);
+      const faixas = await vs.locator('.vs-lado').count();
+      if (faixas !== bots.length + 1) throw new Error(`abertura ${modo} ${w}×${h}: ${faixas} faixas para ${bots.length + 1} jogadores`);
+      const nomes = await vs.locator('.vs-nome b').allTextContents();
+      // o VS crava em 1,5 s e os nomes terminam de entrar em 2,5 s; a tela começa a sair em 4,4 s (foto espera 0,4 s)
+      await q.waitForTimeout(2200);
+      await foto(q, `93-abertura-${modo}-${w}`);
+      // com a máquina ocupada a tela pode já estar saindo sozinha: aí não há o que clicar
+      const pulou = await vs.evaluate((e) => !e.classList.contains('saindo')).catch(() => false) && await vs.click({ timeout: 2000 }).then(() => true).catch(() => false);
+      await vs.waitFor({ state: 'detached', timeout: 5000 });
+      await q.getByText('Mão inicial').waitFor();
+      console.log(`abertura ${modo} ${w}×${h}: ${nomes.join(' × ')}; ${pulou ? 'um clique pulou' : 'saiu sozinha'} para a mão inicial`);
+      await c.close();
+    }
+  }
+}
+if (!SO_CAPTURAS || SO_CAPTURAS === 'abertura') {
+  try {
+    await capturasAbertura();
+  } catch (e) {
+    for (const [i, p] of paginas.entries()) if (!p.isClosed()) await p.screenshot({ path: join(SAIDA, `falha-abertura-${i}.png`) }).catch(() => {});
+    await navegador.close();
+    servidor.kill();
+    throw e;
+  }
+  if (SO_CAPTURAS) {
+    await navegador.close();
+    servidor.kill();
+    process.exit(0);
+  }
+}
+// --- fim (abertura da partida) ---
 // --- fase 9: posicionar e seleção por arrasto ---
 /**
  * Itens 1.3 e 2.4: carta pega pelo canto e solta (a mira marca onde o ponteiro soltou), retângulo de
@@ -648,6 +717,7 @@ try {
   await p.waitForTimeout(700);
   await foto(p, '03-saguao');
   await p.getByRole('button', { name: 'Começar a partida' }).click();
+  await pularAbertura(p);
   await p.getByText('Mão inicial').waitFor({ timeout: 20000 });
   await foto(p, '04-mulligan');
   // a carta sob o mouse sobe e cresce de leve, e as vizinhas se afastam
@@ -841,6 +911,7 @@ try {
   await deckDoBot(q, 2, 4);
   await escolherDeck(q, 3);
   await q.getByRole('button', { name: 'Começar a partida' }).click();
+  await pularAbertura(q);
   await q.getByText('Mão inicial').waitFor({ timeout: 20000 });
   await foto(q, '13b-mao-inicial-livre');
   await q.getByRole('button', { name: 'Mulligan' }).click();
@@ -898,6 +969,7 @@ try {
   await escolherDeck(ana, 0);
   await escolherDeck(bruno, 3);
   await ana.getByRole('button', { name: 'Começar a partida' }).click();
+  await Promise.all([pularAbertura(ana), pularAbertura(bruno)]);
   await ana.getByText('Mão inicial').waitFor();
   // a mão inicial é decidida um de cada vez
   for (let k = 0; k < 40 && (await ana.getByText('Mão inicial').isVisible() || await bruno.getByText('Mão inicial').isVisible()); k++) {
@@ -1348,6 +1420,7 @@ try {
     await deckDoBot(q, 2, 1);
     await escolherDeck(q, 4);
     await q.getByRole('button', { name: 'Começar a partida' }).click();
+    await pularAbertura(q);
     await q.getByText('Mão inicial').waitFor({ timeout: 30000 });
     await clicar(q, 'Manter');
     let pensando = false;
