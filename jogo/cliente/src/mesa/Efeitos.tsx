@@ -96,10 +96,17 @@ export function useEfeitos(v: GameView, eu: number, efeitos: boolean): void {
   useLayoutEffect(() => {
     const a = anterior.current;
     anterior.current = v;
+    // onde estava cada criatura, para a que sair do campo na próxima vista voar dali até o cemitério ou o exílio. Só as
+    // criaturas (só elas voam) e só com os efeitos visuais ligados: medir todas as cartas a cada mensagem forçava o
+    // layout da mesa inteira mesmo quando nenhum efeito ia rodar
     const fotografar = () => {
       const m = new Map<number, Foto>();
-      for (const el of document.querySelectorAll<HTMLElement>('.campo [data-obj]')) {
-        m.set(Number(el.dataset.obj), { r: el.getBoundingClientRect(), img: el.querySelector('img')?.getAttribute('src') ?? null });
+      const criaturas = efeitos ? new Set(v.battlefield.filter((o) => o.types.includes('Creature')).map((o) => o.id)) : null;
+      if (criaturas?.size) {
+        for (const el of document.querySelectorAll<HTMLElement>('.campo [data-obj]')) {
+          const id = Number(el.dataset.obj);
+          if (criaturas.has(id)) m.set(id, { r: el.getBoundingClientRect(), img: el.querySelector('img')?.getAttribute('src') ?? null });
+        }
       }
       fotos.current = m;
     };
