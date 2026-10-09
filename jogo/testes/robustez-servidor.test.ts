@@ -22,6 +22,7 @@ import { Game, type Input } from '../motor/game.ts';
 import type { DeckList } from '../motor/state.ts';
 import { Banco } from '../servidor/banco.ts';
 import type { MsgServidor } from '../servidor/protocolo.ts';
+import { Pensadores, type PedidoPensar } from '../servidor/pensadores.ts';
 import { Gerente, SEM_ATRASO, idPartida, type Conexao } from '../servidor/salas.ts';
 
 const DECKS = decksJson as DeckList[];
@@ -475,6 +476,28 @@ describe('assento que vaga', () => {
     expect(ana.ultima('erro')?.msg).toMatch(/já está nesta sala/);
     expect(g.salas.get(codigo)!.d.assentos.filter((a) => a.tipo === 'humano')).toHaveLength(1);
   });
+});
+
+describe('vigia das threads de pensar', () => {
+  it('uma thread presa passa do teto mais a folga: é encerrada e recriada, e a tarefa falha (o bot joga o padrão)', async () => {
+    const p = new Pensadores(1, { script: new URL('./pensador-travado.ts', import.meta.url), folga: 150 });
+    try {
+      const pedido = { sala: 'S1', geracao: 1, cp: null, entradas: [], listas: [], tarefa: { nivel: 'intermediario', eu: 0, decisao: 1, tempo: 100 } } as unknown as PedidoPensar;
+      const ts = (p as unknown as { ts: { w: unknown }[] }).ts;
+      const antes = ts[0].w;
+      const t0 = performance.now();
+      await expect(p.pensar(pedido)).rejects.toThrow(/passou de 250 ms/);
+      expect(performance.now() - t0).toBeGreaterThanOrEqual(240);
+      expect(p.ocupacao).toEqual({ pensando: 0, esperando: 0 });
+      // a próxima tarefa vai para uma thread nova (a presa foi encerrada)
+      const outra = p.pensar({ ...pedido, sala: 'S2' });
+      expect(ts).toHaveLength(1);
+      expect(ts[0].w).not.toBe(antes);
+      await expect(outra).rejects.toThrow(/passou/);
+    } finally {
+      await p.fechar();
+    }
+  }, 30000);
 });
 
 describe('senha da sala fora da linha principal', () => {
