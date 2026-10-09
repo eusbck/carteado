@@ -4,10 +4,13 @@
 //  - a semente fica no servidor: a sala só mostra um hash curto dela (`partida`);
 //  - mensagens sem forma são recusadas ('__proto__' como assento);
 //  - erro do motor numa jogada: a sala se refaz sem ela e segue; restaurar refaz até a última entrada boa;
-//  - o servidor de verdade (processo à parte, porta de 8140 a 8149) sobrevive a um frame grande demais.
+//  - o servidor de verdade (processo à parte, porta de 8140 a 8149) sobrevive a um frame grande demais, e o HTTP dele
+//    manda ETag (304), brotli/gzip e intervalos de bytes.
 import { spawn, type ChildProcess } from 'node:child_process';
-import { mkdirSync, mkdtempSync, rmSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
+import { get as httpGet } from 'node:http';
 import { createServer } from 'node:net';
+import { brotliDecompressSync, gunzipSync } from 'node:zlib';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
@@ -542,6 +545,18 @@ class Cliente {
   }
 }
 
+/** pedido HTTP cru (sem descomprimir), para conferir cabeçalhos e corpo como o servidor mandou */
+function pedir(porta: number, caminho: string, cabecalhos: Record<string, string> = {}): Promise<{ status: number; h: Record<string, string | string[] | undefined>; corpo: Buffer }> {
+  return new Promise((ok, falha) => {
+    const r = httpGet({ host: 'localhost', port: porta, path: caminho, headers: cabecalhos }, (res) => {
+      const partes: Buffer[] = [];
+      res.on('data', (d: Buffer) => partes.push(d));
+      res.on('end', () => ok({ status: res.statusCode ?? 0, h: res.headers, corpo: Buffer.concat(partes) }));
+    });
+    r.on('error', falha);
+  });
+}
+
 describe('servidor de verdade (processo à parte)', () => {
   let proc: ChildProcess;
   let porta = 0;
@@ -549,12 +564,21 @@ describe('servidor de verdade (processo à parte)', () => {
   let cookie = '';
   let saida = '';
   const url = () => `ws://localhost:${porta}/ws`;
+  // cliente compilado de mentira: uma página, um script e um mp3
+  const PAGINA = `<!doctype html><div id="app"></div>${'<!-- página -->'.repeat(200)}`;
+  const SCRIPT = `console.log(${JSON.stringify('x'.repeat(50))});\n`.repeat(200);
+  const MP3 = Buffer.from(Array.from({ length: 10240 }, (_, i) => (i * 37) % 256));
 
   beforeAll(async () => {
     porta = await portaLivre();
     mkdirSync(join(RAIZ, '.cache'), { recursive: true });
     dados = mkdtempSync(join(RAIZ, '.cache', 'teste-robustez-'));
-    proc = spawn(process.execPath, ['servidor/index.ts'], { cwd: RAIZ, env: { ...process.env, PORTA: String(porta), DADOS: dados, SENHA_ACESSO: 'senha-do-teste', HTTPS: '' } });
+    const estaticos = join(dados, 'dist');
+    mkdirSync(join(estaticos, 'assets'), { recursive: true });
+    writeFileSync(join(estaticos, 'index.html'), PAGINA);
+    writeFileSync(join(estaticos, 'assets', 'app.js'), SCRIPT);
+    writeFileSync(join(estaticos, 'musica.mp3'), MP3);
+    proc = spawn(process.execPath, ['servidor/index.ts'], { cwd: RAIZ, env: { ...process.env, PORTA: String(porta), DADOS: dados, SENHA_ACESSO: 'senha-do-teste', HTTPS: '', ESTATICOS: estaticos } });
     proc.stdout!.on('data', (d) => { saida += String(d); });
     proc.stderr!.on('data', (d) => { saida += String(d); });
     const fim = Date.now() + 90000;
@@ -588,6 +612,52 @@ describe('servidor de verdade (processo à parte)', () => {
     expect(await b.vivo()).toBe(true);
     expect(proc.exitCode).toBeNull();
     b.ws.close();
+  }, 30000);
+
+  it('HTTP: informações das cartas com ETag (304 na revalidação) e brotli', async () => {
+    const a = await pedir(porta, '/api/cartas', { cookie, 'accept-encoding': 'gzip, br' });
+    expect(a.status).toBe(200);
+    expect(a.h['content-encoding']).toBe('br');
+    expect(a.h.etag).toMatch(/^"[\w-]+"$/);
+    const info = JSON.parse(brotliDecompressSync(a.corpo).toString());
+    expect(Object.keys(info).length).toBeGreaterThan(100);
+    const b = await pedir(porta, '/api/cartas', { cookie, 'if-none-match': String(a.h.etag) });
+    expect(b.status).toBe(304);
+    expect(b.corpo.length).toBe(0);
+    // sem compressão pedida, o JSON puro, com o mesmo ETag
+    const c = await pedir(porta, '/api/cartas', { cookie });
+    expect(c.h['content-encoding']).toBeUndefined();
+    expect(c.h.etag).toBe(a.h.etag);
+    expect(JSON.parse(c.corpo.toString())).toEqual(info);
+    // sem sessão continua fechado
+    expect((await pedir(porta, '/api/cartas')).status).toBe(401);
+  }, 30000);
+
+  it('HTTP: o cliente sai comprimido e com ETag; index.html revalida', async () => {
+    const js = await pedir(porta, '/assets/app.js', { 'accept-encoding': 'gzip' });
+    expect(js.h['content-encoding']).toBe('gzip');
+    expect(js.h['cache-control']).toMatch(/immutable/);
+    expect(gunzipSync(js.corpo).toString()).toBe(SCRIPT);
+    expect(js.corpo.length).toBeLessThan(SCRIPT.length / 5);
+    const pg = await pedir(porta, '/', { 'accept-encoding': 'br' });
+    expect(brotliDecompressSync(pg.corpo).toString()).toBe(PAGINA);
+    expect(pg.h['cache-control']).toBe('no-cache');
+    const de = await pedir(porta, '/qualquer/rota', { 'if-none-match': String(pg.h.etag) });
+    expect(de.status).toBe(304);
+  }, 30000);
+
+  it('HTTP: pedido de intervalo (o Safari toca o mp3 assim)', async () => {
+    const r = await pedir(porta, '/musica.mp3', { range: 'bytes=100-199' });
+    expect(r.status).toBe(206);
+    expect(r.h['content-range']).toBe(`bytes 100-199/${MP3.length}`);
+    expect(r.h['accept-ranges']).toBe('bytes');
+    expect(r.corpo.equals(MP3.subarray(100, 200))).toBe(true);
+    const fim = await pedir(porta, '/musica.mp3', { range: 'bytes=-24' });
+    expect(fim.corpo.equals(MP3.subarray(MP3.length - 24))).toBe(true);
+    expect((await pedir(porta, '/musica.mp3', { range: 'bytes=20000-' })).status).toBe(416);
+    const tudo = await pedir(porta, '/musica.mp3');
+    expect(tudo.status).toBe(200);
+    expect(tudo.corpo.equals(MP3)).toBe(true);
   }, 30000);
 
   it("'__proto__' como assento de bot: recusado, e o servidor e a sala continuam", async () => {
