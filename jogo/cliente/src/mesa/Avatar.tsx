@@ -28,8 +28,11 @@ export interface AvatarProps {
 }
 
 export function Avatar(p: AvatarProps) {
-  const [estado, setEstado] = useState<'carregando' | 'pronto' | 'erro'>('carregando');
   const url = p.avatar?.url ?? null;
+  // o estado vale para a imagem que carregou: trocar de retrato (outro endereço) volta a "carregando". Antes ele ficava
+  // no estado da imagem anterior, e um retrato que tinha falhado nunca mais aparecia, nem trocando por outro
+  const [carga, setCarga] = useState<{ url: string; estado: 'pronto' | 'erro' } | null>(null);
+  const estado = carga && carga.url === url ? carga.estado : 'carregando';
   const comImagem = !!url && estado !== 'erro';
   const classes = ['avatar', p.local ? 'avatar-local' : 'avatar-oponente', p.ativo ? 'ativo' : '', p.fora ? 'fora' : '', p.realce ? `avatar-${p.realce}` : '', comImagem && estado === 'pronto' ? 'pronto' : ''].filter(Boolean).join(' ');
   return (
@@ -39,7 +42,7 @@ export function Avatar(p: AvatarProps) {
       <span class="avatar-fundo" aria-hidden="true" />
       {/* a inicial aparece enquanto o retrato carrega, ou se ele não existir */}
       {(!comImagem || estado === 'carregando') && <span class="avatar-inicial" aria-hidden="true">{(p.nome || '?').slice(0, 1).toUpperCase()}</span>}
-      {comImagem && <img class="avatar-retrato avatar-dentro" src={url!} alt="" draggable={false} onLoad={() => setEstado('pronto')} onError={() => setEstado('erro')} />}
+      {comImagem && <img class="avatar-retrato avatar-dentro" src={url!} alt="" draggable={false} onLoad={() => setCarga({ url: url!, estado: 'pronto' })} onError={() => setCarga({ url: url!, estado: 'erro' })} />}
       <span class="avatar-anel" aria-hidden="true" />
       {comImagem && <img class="avatar-retrato avatar-fora" src={url!} alt="" draggable={false} aria-hidden="true" />}
       <button type="button" class="vida-n avatar-vida" onClick={p.onVida} disabled={!p.onVida} title="Vida" aria-label={`Vida de ${p.nome}: ${p.vida}`}>
