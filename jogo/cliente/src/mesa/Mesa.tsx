@@ -1035,7 +1035,7 @@ export function Mesa() {
   useEffect(() => () => { for (const t of relogiosChat.current) clearTimeout(t); }, []);
   useEffect(() => {
     if (!recolhida) { setLidaChat(ultimaChat); chatAvisado.current = ultimaChat; setChatNovo([]); return; }
-    const novas = e.chat.filter((m) => m.id > Math.max(lidaChat, chatAvisado.current) && m.de !== eu);
+    const novas = e.chat.filter((m) => m.id > Math.max(lidaChat, chatAvisado.current) && m.quem !== e.quem);
     chatAvisado.current = Math.max(chatAvisado.current, ultimaChat);
     if (!novas.length) return;
     setChatNovo((a) => [...a, ...novas].slice(-3));
@@ -1044,13 +1044,13 @@ export function Mesa() {
     const t = setTimeout(() => { relogiosChat.current.delete(t); setChatNovo((a) => a.filter((m) => !ids.has(m.id))); }, 6000);
     relogiosChat.current.add(t);
   }, [ultimaChat, recolhida]);
-  const naoLidas = recolhida ? e.chat.filter((m) => m.id > lidaChat && m.de !== eu).length : 0;
+  const naoLidas = recolhida ? e.chat.filter((m) => m.id > lidaChat && m.quem !== e.quem).length : 0;
   const decisaoManual = d?.kind === 'priority' && d.actions.some((a) => a.kind === 'manual') ? d.id : null;
   // sem prioridade, o ajuste manual fecha (antes ele sumia e voltava sozinho na prioridade seguinte)
   useEffect(() => { if (decisaoManual === null) { setManualAberto(false); setManualTipo(undefined); setPegar(null); } }, [decisaoManual]);
   const preJogo = v.turn.number === 0 && !v.gameOver;
   // abertura (VS): uma vez por partida neste navegador, antes da mão inicial; depois de começar, vai até o fim
-  const chaveVS = chaveAbertura(sala.codigo, sala.semente);
+  const chaveVS = chaveAbertura(sala.codigo, sala.partida);
   const [abertura, setAbertura] = useState<string | null>(null);
   useLayoutEffect(() => {
     if (!preJogo || aberturaVista(chaveVS)) return;
@@ -1181,7 +1181,7 @@ export function Mesa() {
             </button>
           </li>
         </ul>
-        {!recolhida && <Chat msgs={e.chat} eu={eu} cor={cor} />}
+        {!recolhida && <Chat msgs={e.chat} quem={e.quem} cor={cor} />}
       </aside>
     </div>
 

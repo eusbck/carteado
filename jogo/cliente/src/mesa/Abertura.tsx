@@ -1,7 +1,7 @@
 // Abertura da partida (a tela VS): antes da mão inicial, a arte do deck de cada jogador lado a lado (só a arte, sem
 // o retrato: com ele ficava carregado demais), com o VS em brasa cravando no meio. Some sozinha em uns 4 s; clicar
-// ou apertar Esc pula. A mesa mostra uma vez por partida neste navegador (chave com o código da sala e a semente:
-// recarregar a página não repete).
+// ou apertar Esc pula. A mesa mostra uma vez por partida neste navegador (chave com o código da sala e o id da
+// partida: recarregar a página não repete).
 // Duelo: duas metades com o corte inclinado. Três ou quatro jogadores: faixas inclinadas, você na primeira e os
 // outros na ordem dos turnos. Estilos em abertura.css; brasas e faíscas num canvas; o som é o 'abertura' de sons.ts.
 // Com "reduzir movimento" no sistema, aparece parada e sem partículas; com os efeitos desligados, sem partículas,
@@ -32,7 +32,7 @@ export interface LadoVS {
 const CHAVE = 'commander-da-mesa:vs:';
 /** as já mostradas nesta página (vale mesmo sem armazenamento, até fechar ou recarregar) */
 const vistas = new Set<string>();
-export const chaveAbertura = (sala: string, semente: string | null): string => `${CHAVE}${sala}:${semente ?? ''}`;
+export const chaveAbertura = (sala: string, partida: string | null): string => `${CHAVE}${sala}:${partida ?? ''}`;
 export function aberturaVista(chave: string): boolean {
   if (vistas.has(chave)) return true;
   try { return sessionStorage.getItem(chave) === '1'; } catch { return false; }

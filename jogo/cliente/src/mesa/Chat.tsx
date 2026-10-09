@@ -18,7 +18,9 @@ let rascunho = '';
 const FORMATO_HORA = new Intl.DateTimeFormat('pt-BR', { hour: '2-digit', minute: '2-digit' });
 export const hora = (em: number) => FORMATO_HORA.format(em);
 
-export function Chat({ msgs, eu, cor }: { msgs: MsgChat[]; eu: number; cor: (p: number) => string }) {
+/** `quem`: o seu id de autor (da mensagem `sala`). A mensagem é sua quando o autor é você, não quando é do seu
+ *  assento: outra pessoa pode ter sentado nele antes */
+export function Chat({ msgs, quem, cor }: { msgs: MsgChat[]; quem: string | null; cor: (p: number) => string }) {
   const [texto, setTextoLocal] = useState(rascunho);
   const setTexto = (t: string) => { rascunho = t; setTextoLocal(t); };
   const lista = useRef<HTMLOListElement>(null);
@@ -49,10 +51,11 @@ export function Chat({ msgs, eu, cor }: { msgs: MsgChat[]; eu: number; cor: (p: 
         {msgs.length === 0 && <li class="chat-vazio">Nenhuma mensagem ainda. O que você escrever aqui todos na sala leem.</li>}
         {msgs.map((m, k) => {
           const ant = msgs[k - 1];
-          const junta = !!ant && ant.de === m.de && ant.nome === m.nome && m.em - ant.em < JUNTAS_MS;
+          const junta = !!ant && ant.de === m.de && ant.quem === m.quem && ant.nome === m.nome && m.em - ant.em < JUNTAS_MS;
+          const minha = !!quem && m.quem === quem;
           return (
-            <li key={m.id} class={`${junta ? 'junta' : ''} ${m.de === eu ? 'minha' : ''}`} title={hora(m.em)}>
-              {!junta && <b class="chat-quem" style={{ color: cor(m.de) }}>{m.de === eu ? 'Você' : m.nome}</b>}
+            <li key={m.id} class={`${junta ? 'junta' : ''} ${minha ? 'minha' : ''}`} title={hora(m.em)}>
+              {!junta && <b class="chat-quem" style={{ color: cor(m.de) }}>{minha ? 'Você' : m.nome}</b>}
               <span class="chat-texto">{m.texto}</span>
             </li>
           );

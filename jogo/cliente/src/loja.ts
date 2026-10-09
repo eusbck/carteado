@@ -47,6 +47,8 @@ export interface Estado {
   minhaTarefaEstado: TarefaPublica | null;
   /** chat da sala (as mensagens guardadas no servidor e as que chegaram depois) */
   chat: MsgChat[];
+  /** o seu id de autor no chat (vem com a sala): as suas mensagens são as com esse `quem` */
+  quem: string | null;
 }
 
 const CHAVE = 'commander-da-mesa:sala';
@@ -67,7 +69,7 @@ function guardarSala(v: { codigo: string; token: string } | null): void {
 }
 
 class Loja {
-  e: Estado = { fase: 'carregando', conectado: false, sala: null, voce: null, vista: null, paradas: null, posicoes: {}, reveladas: [], erro: null, decks: [], respondida: null, desfazivel: false, desfazer: null, avisos: [], recusa: 0, pensando: null, catalogo: null, tarefaDeck: null, minhaTarefa: null, minhaTarefaEstado: null, chat: [] };
+  e: Estado = { fase: 'carregando', conectado: false, sala: null, voce: null, vista: null, paradas: null, posicoes: {}, reveladas: [], erro: null, decks: [], respondida: null, desfazivel: false, desfazer: null, avisos: [], recusa: 0, pensando: null, catalogo: null, tarefaDeck: null, minhaTarefa: null, minhaTarefaEstado: null, chat: [], quem: null };
   private ouvintes = new Set<() => void>();
   private ws: WebSocket | null = null;
   private fila: MsgCliente[] = [];
@@ -153,20 +155,36 @@ class Loja {
       if (s) ws.send(JSON.stringify({ t: 'retomar', codigo: s.codigo, token: s.token } satisfies MsgCliente));
       for (const m of this.fila.splice(0)) ws.send(JSON.stringify(m));
     };
+    // batimento: um `ping` a cada 20 s; se o `pong` (ou qualquer mensagem) não chegou até o batimento seguinte, a
+    // conexão morreu sem aviso (notebook que dormiu, Wi-Fi que trocou) e a mesa reconecta sozinha. Conta pelo
+    // batimento, não pelo relógio: numa aba em segundo plano o navegador espaça os timers e isso não pode derrubar
+    // uma conexão viva
+    let semResposta = false;
+    const batimento = setInterval(() => {
+      if (ws.readyState !== WebSocket.OPEN) return;
+      if (semResposta) { cair(); return; }
+      semResposta = true;
+      ws.send(JSON.stringify({ t: 'ping' } satisfies MsgCliente));
+    }, 20000);
     ws.onmessage = (ev) => {
+      semResposta = false;
       let m: MsgServidor;
       try { m = JSON.parse(String(ev.data)) as MsgServidor; } catch { console.warn('Mensagem do servidor ilegível'); return; }
       try { this.tratar(m); } catch (e) { console.error('Erro ao tratar a mensagem do servidor', m.t, e); }
     };
-    ws.onclose = () => {
+    const cair = () => {
+      clearInterval(batimento);
       if (this.ws !== ws) return;
       this.ws = null;
+      ws.onopen = ws.onmessage = ws.onclose = null;
+      try { ws.close(); } catch { /* já fechada */ }
       // a resposta que estava indo pode ter se perdido com a conexão: a decisão volta a aceitar clique
       // (se ela chegou, o servidor responde "já passou" e nada acontece)
       this.mudar({ conectado: false, respondida: null });
       const espera = Math.min(10000, 500 * 2 ** this.tentativas++);
       setTimeout(() => this.conectar(), espera);
     };
+    ws.onclose = cair;
   }
 
   // ---------------------------------------------------------------- tela Decks
@@ -251,7 +269,7 @@ class Loja {
           this.enviar({ t: 'avatar', avatar: guardado });
         }
         // a tela Decks aberta pelo saguão continua aberta enquanto a partida não começa (alguém entrou, trocou de deck…)
-        this.mudar({ sala: compartilhar(this.e.sala, m.sala), voce: m.voce, fase: this.e.fase === 'decks' && m.sala.estado !== 'jogando' ? 'decks' : 'sala', vista: m.sala.estado === 'espera' ? null : this.e.vista });
+        this.mudar({ sala: compartilhar(this.e.sala, m.sala), voce: m.voce, quem: m.quem ?? null, fase: this.e.fase === 'decks' && m.sala.estado !== 'jogando' ? 'decks' : 'sala', vista: m.sala.estado === 'espera' ? null : this.e.vista });
         break;
       }
       case 'jogo': {
@@ -288,7 +306,7 @@ class Loja {
         const novas = m.msgs.filter((x) => !vistas.has(x.id));
         if (!novas.length) break;
         this.mudar({ chat: [...this.e.chat, ...novas].slice(-200) });
-        if (novas.some((x) => x.de !== this.e.voce)) tocar('chat');
+        if (novas.some((x) => x.quem !== this.e.quem)) tocar('chat');
         break;
       }
       case 'decks':
@@ -302,17 +320,24 @@ class Loja {
         guardarSala(null);
         // voltando a esta sala (ou a outra) depois, o retrato guardado vai de novo para o assento novo
         this.avatarMandado.clear();
-        this.mudar({ sala: null, voce: null, vista: null, fase: 'inicio', chat: [] });
+        this.mudar({ sala: null, voce: null, vista: null, fase: 'inicio', chat: [], quem: null });
         break;
-      case 'erro':
+      case 'pong':
+        break;
+      case 'erro': {
+        // só o erro que responde a uma jogada (`de: 'responder'`) mexe na decisão; o do chat, de uma posição ou de
+        // outra mensagem só avisa (antes, o limite do chat que chegasse com uma resposta pendente virava "jogada
+        // recusada" e sumia). Servidor de antes do `de`: vale como antes, pela resposta pendente
+        const daJogada = m.de === 'responder' || (m.de === undefined && this.e.respondida !== null);
         // resposta a uma decisão que já mudou (clique atrasado): nada a avisar
-        if (/já passou|Não é a sua vez de decidir/.test(m.msg)) { this.mudar({ respondida: null }); break; }
+        if (daJogada && /já passou|Não é a sua vez de decidir/.test(m.msg)) { this.mudar({ respondida: null }); break; }
         if (/voltar à sala/.test(m.msg)) { guardarSala(null); this.mudar({ fase: 'inicio' }); }
         // resposta recusada pelo motor (falta mana, alvo que não vale…): na mesa real, sem explicação
-        if (this.e.respondida !== null && !this.avisosLigados() && !/Erro interno/.test(m.msg)) { this.mudar({ respondida: null, recusa: this.e.recusa + 1 }); break; }
-        this.mudar({ respondida: null });
+        if (daJogada && this.e.respondida !== null && !this.avisosLigados() && !/Erro interno/.test(m.msg)) { this.mudar({ respondida: null, recusa: this.e.recusa + 1 }); break; }
+        if (daJogada) this.mudar({ respondida: null });
         this.erro(m.msg);
         break;
+      }
     }
   }
 }
