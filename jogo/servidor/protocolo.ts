@@ -36,8 +36,9 @@ export interface SalaPublica {
   mulligan: RegraMulligan;
   /** regra de auxílios escolhida por quem criou a sala */
   auxilios: RegraAuxilios;
-  /** semente da partida em andamento (registrada para reprodução) */
-  semente: string | null;
+  /** identificador da partida (hash curto da semente; null sem partida). A semente fica só no servidor: com ela dava
+   * para refazer os embaralhamentos e ver o grimório e a mão de todos */
+  partida: string | null;
   /** passo do saguão em que a sala está (vale com a sala esperando) */
   etapa: EtapaSaguao;
 }
@@ -184,6 +185,10 @@ export interface MsgChat {
   id: number;
   /** assento de quem escreveu */
   de: number;
+  /** quem escreveu: o id de autor de quem ocupava o assento (o `quem` da mensagem `sala`). Outra pessoa que sente
+   * depois no mesmo assento tem outro id. Vazio nas mensagens gravadas antes dele existir */
+  quem: string;
+  /** o nome de quem escreveu, como estava no assento */
   nome: string;
   texto: string;
   /** quando chegou ao servidor (ms desde 1970) */
@@ -220,13 +225,16 @@ export type MsgCliente =
   /** mostrar uma carta da sua mão a todos ou a alguns jogadores */
   | { t: 'revelar'; obj: number; para: number[] | 'todos' }
   /** mensagem no chat da sala */
-  | { t: 'chat'; texto: string };
+  | { t: 'chat'; texto: string }
+  /** batimento: o servidor responde `pong` na hora, com ou sem sala, sem gravar nada e fora de qualquer limite */
+  | { t: 'ping' };
 
 /** posição escolhida para cada permanente, pelo id do objeto: [x, y] de 0 a 1 dentro da área de quem a controla */
 export type Posicoes = Record<string, [number, number]>;
 
 export type MsgServidor =
-  | { t: 'sala'; sala: SalaPublica; voce: number; token: string }
+  /** `quem`: o seu id de autor (o mesmo das suas mensagens no chat, MsgChat.quem) */
+  | { t: 'sala'; sala: SalaPublica; voce: number; token: string; quem: string }
   | { t: 'jogo'; vista: GameView; paradas: StopSettings; posicoes: Posicoes; desfazivel: boolean; desfazer: PedidoDesfazer | null }
   /** aviso curto para a mesa (pedido de desfazer aceito, recusado ou expirado) */
   | { t: 'aviso'; msg: string }
@@ -241,4 +249,8 @@ export type MsgServidor =
   | { t: 'catalogo'; tarefa: TarefaPublica | null; mudou: boolean }
   /** chat da sala: `tudo` traz a conversa guardada inteira (ao entrar ou voltar); sem ele, só as mensagens novas */
   | { t: 'chat'; msgs: MsgChat[]; tudo?: boolean }
-  | { t: 'erro'; msg: string };
+  /** resposta ao batimento (`ping`) */
+  | { t: 'pong' }
+  /** `de`: o tipo da mensagem do cliente que causou o erro (ausente quando o erro não responde a uma mensagem, como
+   * o aviso a toda a mesa de um erro do motor numa jogada de bot) */
+  | { t: 'erro'; msg: string; de?: MsgCliente['t'] };

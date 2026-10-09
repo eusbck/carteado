@@ -243,7 +243,10 @@ wss.on('connection', (ws: WebSocket) => {
   ws.on('message', (dados) => {
     let m: MsgCliente;
     try { m = JSON.parse(String(dados)); } catch { con.enviar({ t: 'erro', msg: 'Mensagem inválida' }); return; }
-    try { gerente.tratar(con, m); } catch (e) { console.error('ws:', e); con.enviar({ t: 'erro', msg: 'Erro interno do servidor' }); }
+    try { gerente.tratar(con, m); } catch (e) {
+      console.error('ws:', e);
+      con.enviar({ t: 'erro', msg: 'Erro interno do servidor', ...(typeof m?.t === 'string' ? { de: m.t } : {}) });
+    }
   });
   ws.on('close', () => gerente.desconectar(con));
 });

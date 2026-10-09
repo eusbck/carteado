@@ -2,7 +2,7 @@
 // O servidor é a autoridade: valida cada resposta no motor e manda a cada conexão só a vista
 // do próprio assento (motor/view.ts), nunca o estado inteiro.
 
-import { randomBytes, randomInt, scryptSync, timingSafeEqual } from 'node:crypto';
+import { createHash, randomBytes, randomInt, scryptSync, timingSafeEqual } from 'node:crypto';
 import { HeuristicBot } from '../bots/heuristico.ts';
 import { NIVEL_PADRAO, nivelValido, type NivelBot } from '../bots/niveis.ts';
 import { defaultAnswer } from '../motor/ask.ts';
@@ -132,6 +132,11 @@ function confereSenha(senha: string, guardada: string): boolean {
   return timingSafeEqual(h, Buffer.from(hash, 'hex'));
 }
 const novoToken = () => randomBytes(24).toString('base64url');
+/** identificador público da partida: hash curto da semente (a semente refaz os embaralhamentos: fica só no servidor) */
+export const idPartida = (semente: string): string => createHash('sha256').update(semente).digest('hex').slice(0, 12);
+/** id público de quem ocupa um assento, o autor no chat: hash do token (que continua secreto). Muda quando outra
+ * pessoa senta no assento (token novo) e fica o mesmo para quem volta pelo token */
+export const idAutor = (token: string | null): string => (token ? createHash('sha256').update(`autor:${token}`).digest('base64url').slice(0, 12) : '');
 const limparNome = (s: unknown) => (typeof s === 'string' ? s.replace(/\s+/g, ' ').trim().slice(0, 24) : '');
 
 /** chat: tamanho de uma mensagem, quantas a sala guarda e o ritmo (no máximo CHAT_RAJADA a cada CHAT_JANELA ms) */
@@ -183,7 +188,7 @@ export class Sala {
     const conectados = new Set([...this.conexoes].map((c) => c.assento));
     return {
       codigo: this.d.codigo, modo: this.d.modo, estado: this.d.estado, anfitriao: this.d.anfitriao, mulligan: this.d.mulligan ?? 'londres', auxilios: this.d.auxilios ?? 'permitidos',
-      semente: this.d.partida?.config.seed ?? null, etapa: this.d.etapa ?? 'lugares',
+      partida: this.d.partida ? idPartida(this.d.partida.config.seed) : null, etapa: this.d.etapa ?? 'lugares',
       assentos: this.d.assentos.map((a, i) => ({ indice: i, tipo: a.tipo, nome: a.nome, deck: a.deck, conectado: a.tipo === 'bot' || conectados.has(i), nivel: a.tipo === 'bot' ? a.nivel ?? NIVEL_PADRAO : null, avatar: a.tipo === 'humano' ? a.avatar ?? null : null })),
     };
   }
@@ -195,7 +200,8 @@ export class Sala {
     const pub = this.publica();
     for (const c of this.conexoes) {
       if (c.assento === null) continue;
-      c.enviar({ t: 'sala', sala: pub, voce: c.assento, token: this.d.assentos[c.assento].token ?? '' });
+      const token = this.d.assentos[c.assento].token;
+      c.enviar({ t: 'sala', sala: pub, voce: c.assento, token: token ?? '', quem: idAutor(token) });
       this.enviarJogo(c);
     }
   }
@@ -396,7 +402,9 @@ export class Sala {
         if (recentes.length >= CHAT_RAJADA) return 'Muitas mensagens seguidas: espere um pouco';
         this.ritmoChat.set(i, [...recentes, agora]);
         const chat = this.d.chat ??= [];
-        const msg: MsgChat = { id: (chat.at(-1)?.id ?? 0) + 1, de: i, nome: this.nome(i), texto, em: agora };
+        // o autor é quem está no assento agora (depois de uma partida encerrada, outra pessoa pode ter sentado ali)
+        const a = this.d.assentos[i];
+        const msg: MsgChat = { id: (chat.at(-1)?.id ?? 0) + 1, de: i, quem: idAutor(a.token), nome: a.nome ?? `Jogador ${i + 1}`, texto, em: agora };
         chat.push(msg);
         if (chat.length > CHAT_GUARDADAS) chat.splice(0, chat.length - CHAT_GUARDADAS);
         // fora da condução da partida: grava e entrega na hora, mesmo com a mesa parada
@@ -454,7 +462,8 @@ export class Sala {
     const ocupados = this.d.assentos.filter((a) => a.tipo !== 'vazio');
     if (ocupados.length !== this.d.assentos.length) return 'Ainda há assentos vazios (chame alguém ou ponha um bot)';
     if (ocupados.some((a) => !a.deck)) return 'Todos precisam escolher um deck';
-    const semente = `${this.d.codigo}-${Date.now().toString(36)}-${randomInt(1e9).toString(36)}`;
+    // 96 bits sorteados: o hash curto que sai na sala (idPartida) não dá para desfazer tentando sementes
+    const semente = `${this.d.codigo}-${Date.now().toString(36)}-${randomBytes(12).toString('base64url')}`;
     const config: GameConfig = {
       seed: semente,
       players: this.d.assentos.map((a, i) => ({ name: a.nome ?? `Jogador ${i + 1}`, deckId: a.deck! })),
@@ -750,6 +759,8 @@ export class Gerente {
     for (const { dados } of this.banco.salas()) {
       const d = dados as DadosSala;
       for (const a of d.assentos) if (paradasAntigas(a.paradas)) a.paradas = { ...paradasPadrao(), skipWhenNothing: a.paradas.skipWhenNothing };
+      // mensagens do chat de antes do id de autor: de ninguém (o cliente não as toma como suas)
+      for (const m of d.chat ?? []) m.quem ??= '';
       const s = new Sala(d, this);
       this.salas.set(d.codigo, s);
       if (d.partida && !d.partida.listas && preencherListas(d.partida, (id) => this.deck(id))) s.salvar();
@@ -773,8 +784,11 @@ export class Gerente {
   }
 
   tratar(c: Conexao, m: MsgCliente): void {
+    // batimento do cliente: responde na hora só a esta conexão, com ou sem sala, sem gravar nada nem contar no ritmo
+    if (m?.t === 'ping') { c.enviar({ t: 'pong' }); return; }
     const erro = this.tratarInterno(c, m);
-    if (erro) c.enviar({ t: 'erro', msg: erro });
+    // o erro diz a que mensagem responde: o cliente só trata como jogada recusada o que veio de 'responder'
+    if (erro) c.enviar({ t: 'erro', msg: erro, ...(typeof m?.t === 'string' ? { de: m.t } : {}) });
   }
 
   private tratarInterno(c: Conexao, m: MsgCliente): string | null {
