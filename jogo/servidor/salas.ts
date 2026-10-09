@@ -21,6 +21,8 @@ import { tipoMsg, validarMsg, type EtapaSaguao, type LinhaDesfeita, type Modo, t
 
 export interface Conexao {
   enviar(m: MsgServidor): void;
+  /** a mensagem já em JSON (a sala serializa a vista uma vez só para comparar com a última e mandar) */
+  enviarTexto?(texto: string): void;
   sala: Sala | null;
   assento: number | null;
   /** o token com que esta conexão tomou o assento (ao sentar ou ao retomar); a sala o confere a cada transmissão */
@@ -180,6 +182,8 @@ export class Sala {
   private pedido: Pedido | null = null;
   /** hora das últimas mensagens de chat de cada assento (para o limite de ritmo) */
   private ritmoChat = new Map<number, number[]>();
+  /** a última 'sala' e o último 'jogo' (JSON) mandados a cada conexão (enviarSeMudou) */
+  private ultimas = new WeakMap<Conexao, { sala?: string; jogo?: string }>();
   /** falhas seguidas do motor na mesma posição das entradas (falha) */
   private falhas = { indice: -1, n: 0 };
   erro: string | null = null;
@@ -210,7 +214,7 @@ export class Sala {
       // o assento mudou de dono (vagou, outra pessoa sentou) desde que esta conexão o tomou: ela sai, e nunca recebe o
       // token nem a vista de outra pessoa
       if (!token || c.token !== token) { this.soltar(c); continue; }
-      c.enviar({ t: 'sala', sala: pub, voce: c.assento, token: token ?? '', quem: idAutor(token) });
+      this.enviarSeMudou(c, { t: 'sala', sala: pub, voce: c.assento, token, quem: idAutor(token) });
       this.enviarJogo(c);
     }
   }
@@ -219,7 +223,22 @@ export class Sala {
     if (!this.game || c.assento === null) return;
     const vista = buildView(this.game.g, c.assento, this.game.pending);
     const desfazivel = !this.pedido && !this.game.isOver() && this.alvoDesfazer(c.assento) !== null;
-    c.enviar({ t: 'jogo', vista, paradas: this.d.assentos[c.assento].paradas, posicoes: this.posicoesNoCampo(), desfazivel, desfazer: this.pedidoPublico() });
+    this.enviarSeMudou(c, { t: 'jogo', vista, paradas: this.d.assentos[c.assento].paradas, posicoes: this.posicoesNoCampo(), desfazivel, desfazer: this.pedidoPublico() });
+  }
+
+  /**
+   * 'sala' e 'jogo' só saem se forem diferentes da última do mesmo tipo mandada a esta conexão: a condução
+   * transmite a cada passo (antes de cada jogada de bot, no fim, a cada ajuste de paradas ou posições), e a sala
+   * quase nunca muda nesses passos. A conexão que volta ou entra de novo começa do zero (ligar).
+   */
+  private enviarSeMudou(c: Conexao, m: Extract<MsgServidor, { t: 'sala' | 'jogo' }>): void {
+    const texto = JSON.stringify(m);
+    let u = this.ultimas.get(c);
+    if (!u) this.ultimas.set(c, (u = {}));
+    if (u[m.t] === texto) return;
+    u[m.t] = texto;
+    if (c.enviarTexto) c.enviarTexto(texto);
+    else c.enviar(m);
   }
 
   private get semAuxilios(): boolean { return this.d.auxilios === 'proibidos'; }
@@ -258,6 +277,7 @@ export class Sala {
     c.assento = assento;
     c.token = this.d.assentos[assento].token;
     this.conexoes.add(c);
+    this.ultimas.delete(c);
     c.enviar({ t: 'chat', msgs: this.d.chat ?? [], tudo: true });
   }
 

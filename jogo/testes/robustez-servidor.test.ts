@@ -477,6 +477,34 @@ describe('assento que vaga', () => {
   });
 });
 
+describe('o que vai pelo WebSocket', () => {
+  it("'sala' e 'jogo' iguais aos últimos mandados àquela conexão não saem de novo", async () => {
+    const { g, ana, codigo } = salaComBot();
+    g.tratar(ana, { t: 'iniciar' });
+    await espera();
+    const s = g.salas.get(codigo)!;
+    const n = ana.msgs.length;
+    s.transmitir();
+    s.transmitir();
+    expect(ana.msgs.length).toBe(n);
+    // mudar as paradas muda o 'jogo' (que as leva), não a 'sala'
+    const paradas = { ...ana.ultima('jogo')!.paradas, othersTurn: ['end' as const] };
+    g.tratar(ana, { t: 'paradas', paradas });
+    await espera();
+    expect(ana.msgs.slice(n).map((m) => m.t)).toEqual(['jogo']);
+    // nenhuma mensagem igual à anterior do mesmo tipo, na partida inteira até aqui
+    for (const t of ['sala', 'jogo'] as const) {
+      const l = ana.msgs.filter((m) => m.t === t).map((m) => JSON.stringify(m));
+      for (let i = 1; i < l.length; i++) expect(l[i]).not.toBe(l[i - 1]);
+    }
+    // quem volta (outra conexão, ou a mesma de novo) recebe tudo
+    const volta = new Falsa();
+    g.tratar(volta, { t: 'retomar', codigo, token: ana.ultima('sala')!.token });
+    expect(volta.ultima('sala')).toBeDefined();
+    expect(volta.ultima('jogo')).toBeDefined();
+  });
+});
+
 describe('condução da partida: erro fora do motor', () => {
   it('uma falha na condução (avancar) vira erro da sala e não escapa como promessa rejeitada', async () => {
     const { g, ana, codigo } = salaComBot();
@@ -671,8 +699,18 @@ describe('servidor de verdade (processo à parte)', () => {
     expect(await a.esperar('erro', n)).toMatchObject({ msg: 'Mensagem inválida', de: 'bot' });
     expect(await a.vivo()).toBe(true);
     const k = a.msgs.length;
-    a.mandar({ t: 'etapa', etapa: 'lugares' });
-    expect((await a.esperar('sala', k)).sala.assentos).toHaveLength(2);
+    a.mandar({ t: 'mulligan', regra: 'livre' });
+    const sala = (await a.esperar('sala', k)).sala;
+    expect(sala.assentos).toHaveLength(2);
+    expect(sala.mulligan).toBe('livre');
+    a.ws.close();
+  }, 30000);
+
+  it('WebSocket com permessage-deflate negociado', async () => {
+    const a = new Cliente(url(), cookie);
+    await a.aberto();
+    expect(a.ws.extensions).toMatch(/permessage-deflate/);
+    expect(await a.vivo()).toBe(true);
     a.ws.close();
   }, 30000);
 });

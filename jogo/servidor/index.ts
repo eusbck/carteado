@@ -219,7 +219,9 @@ const http = createServer((req, res) => {
 // ---------------------------------------------------------------------------
 // WebSocket
 // ---------------------------------------------------------------------------
-const wss = new WebSocketServer({ noServer: true, maxPayload: 64 * 1024 });
+// permessage-deflate nas mensagens a partir de 1 KB: a vista da mesa (20 a 60 KB em JSON) cai umas 9 vezes com o
+// contexto mantido entre mensagens (as vistas seguidas são quase iguais); as pequenas (chat, batimento) vão cruas
+const wss = new WebSocketServer({ noServer: true, maxPayload: 64 * 1024, perMessageDeflate: { threshold: 1024 } });
 
 http.on('upgrade', (req, socket, head) => {
   const url = new URL(req.url ?? '/', 'http://x');
@@ -239,9 +241,11 @@ wss.on('connection', (ws: WebSocket) => {
   // frame grande demais (maxPayload), frame malformado, conexão cortada: o ws fecha a conexão e avisa aqui. Sem este
   // tratador o 'error' sem ouvinte virava exceção e derrubava o servidor inteiro
   ws.on('error', (e) => console.error('ws (conexão):', e.message));
+  const enviarTexto = (texto: string) => { if (ws.readyState === ws.OPEN) ws.send(texto); };
   const con: Conexao = {
     sala: null, assento: null,
-    enviar(m: MsgServidor) { if (ws.readyState === ws.OPEN) ws.send(JSON.stringify(m)); },
+    enviar(m: MsgServidor) { enviarTexto(JSON.stringify(m)); },
+    enviarTexto,
   };
   ws.on('message', (dados) => {
     let m: MsgCliente;
