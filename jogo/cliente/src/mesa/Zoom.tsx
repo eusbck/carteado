@@ -5,6 +5,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'preact/hooks';
 import type { ObjView } from '../../../motor/view.ts';
 import { info, nomeCarta, urlImagem } from '../cartas.ts';
+import { IconeEspada } from '../icones.tsx';
 import { TextoComSimbolos } from './Simbolos.tsx';
 import { palavraChave } from '../pt.ts';
 import { larguraImagemZoom, medidaZoom } from './medidaZoom.ts';
@@ -45,6 +46,8 @@ export function Zoom({ o, lado = 'esq', fixo = false, enjoo = true }: { o: ObjVi
   const previa = fixo ? null : urlImagem(def, o.face, 'p');
   const i = info(def);
   const textos = o.abilities.length ? o.abilities : [];
+  const dano = o.damageByToughness;
+  const fonteDano = dano?.source ? ` (${nomeCarta(dano.sourceDef, dano.source)})` : '';
   return (
     <aside ref={caixa} class={fixo ? 'zoom-fixo' : `zoom ${lado}`} aria-hidden={fixo ? undefined : 'true'}>
       <div class="zoom-imagem" style={previa ? { backgroundImage: `url(${previa})` } : undefined}>{img ? <img src={img} alt="" /> : <div class="zoom-sem-arte"><strong>{nomeCarta(def, o.name)}</strong></div>}</div>
@@ -53,6 +56,7 @@ export function Zoom({ o, lado = 'esq', fixo = false, enjoo = true }: { o: ObjVi
         {i?.pendente && <p class="pendente-aviso">Carta em modo manual: aplique o efeito com "Ajuste manual". O texto está na própria carta.</p>}
         {/* o que não é criatura não tem força nem resistência (CR 208.3: Overlord iminente, Veículo parado) */}
         {o.power !== null && o.types.includes('Creature') && <p>Força e resistência atuais: {o.power}/{o.toughness}</p>}
+        {dano && <p class="zoom-dano"><IconeEspada />Causa dano de combate igual à resistência ({dano.amount}), não à força{fonteDano}.</p>}
         {enjoo && o.sick && o.types.includes('Creature') && <p>Enjoo de invocação: ainda não pode atacar nem usar habilidades com {'{T}'}.</p>}
         {o.loyalty !== null && o.counters.loyalty !== undefined && <p>Lealdade: {o.counters.loyalty}</p>}
         {o.keywords.length > 0 && <p>Palavras-chave: {o.keywords.map(palavraChave).join(', ')}</p>}

@@ -2,6 +2,7 @@
 // O servidor nunca envia o estado inteiro; envia isto.
 
 import { chars, controllerOf, hasKw, hooks } from './chars.ts';
+import { combatDamageAmount, damageByToughnessSource } from './combat.ts';
 import { summoningSick } from './costs.ts';
 import { registry } from './defs.ts';
 import type { G } from './game-context.ts';
@@ -42,6 +43,9 @@ export interface ObjView {
   goaded: boolean;
   /** emblema na zona de comando (CR 114): não é carta; mostrar com as habilidades (abilities) */
   emblem?: boolean;
+  /** só para a criatura no campo que atribui dano de combate igual à resistência em vez da força (CR 510.1a:
+   *  Felothar, Assault Formation…): o dano que ela causa e a carta que dá o efeito; ausente no caso normal */
+  damageByToughness?: { amount: number; source: string; sourceDef: string };
 }
 
 export interface StackView {
@@ -102,6 +106,15 @@ function canSee(g: G, o: GameObject, viewer: PlayerId | null): boolean {
   return true;
 }
 
+/** dano pela resistência (a mesma regra do combate, combat.ts); undefined quando a criatura atribui pela força */
+function damageByToughnessView(g: G, id: ObjId): ObjView['damageByToughness'] {
+  const src = damageByToughnessSource(g, id);
+  if (src === null) return undefined;
+  const so = g.state.objects[src] ?? g.state.lki[src]?.obj;
+  const source = g.state.objects[src] ? chars(g, src).name : g.state.lki[src]?.chars.name ?? '';
+  return { amount: combatDamageAmount(g, id), source, sourceDef: so ? (so.copyOf?.def ?? so.def) : '' };
+}
+
 export function objView(g: G, id: ObjId, viewer: PlayerId | null): ObjView {
   const o = g.state.objects[id];
   const visible = canSee(g, o, viewer);
@@ -114,6 +127,7 @@ export function objView(g: G, id: ObjId, viewer: PlayerId | null): ObjView {
     if (d?.text && !a.kw) abilityTexts.push(d.text);
   }
   const hiddenFaceDown = o.faceDown && !visible;
+  const byToughness = o.zone === 'battlefield' && !o.phasedOut && c.types.includes('Creature') ? damageByToughnessView(g, id) : undefined;
   return {
     id,
     def: visible ? (o.copyOf?.def ?? o.def) : '',
@@ -145,6 +159,7 @@ export function objView(g: G, id: ObjId, viewer: PlayerId | null): ObjView {
     classLevel: o.classLevel,
     goaded: o.goadedBy.length > 0 || (o.zone === 'battlefield' && hooks(g, 'goads').some((h) => h.fn(h.ctx, id))),
     ...(registry.emblems.has(o.def) ? { emblem: true } : {}),
+    ...(byToughness ? { damageByToughness: byToughness } : {}),
   };
 }
 

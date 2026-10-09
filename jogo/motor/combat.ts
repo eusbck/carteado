@@ -247,13 +247,18 @@ export function* declareBlockers(g: G): Gen<void> {
 // ---------------------------------------------------------------------------
 // Dano de combate (CR 510, 702.4, 702.7, 702.19)
 // ---------------------------------------------------------------------------
-function assignsByToughness(g: G, id: ObjId): boolean {
-  return hooks(g, 'assignsByToughness').some((h) => h.fn(h.ctx, id)) ||
-    g.state.effects.some((e) => e.affected?.includes(id) && e.mods.some((m) => m.k === 'rule' && m.id === 'rule:assignsByToughness'));
+/** a fonte do efeito que faz a criatura atribuir dano de combate igual à resistência em vez da força
+ *  (CR 510.1a: Felothar, Assault Formation, Baldin, Walking Bulwark), ou null se ela atribui pela força.
+ *  A vista (view.ts) usa a mesma função para mostrar isso no selo da carta. */
+export function damageByToughnessSource(g: G, id: ObjId): ObjId | null {
+  const h = hooks(g, 'assignsByToughness').find((x) => x.fn(x.ctx, id));
+  if (h) return h.ctx.source;
+  const e = g.state.effects.find((x) => x.affected?.includes(id) && x.mods.some((m) => m.k === 'rule' && m.id === 'rule:assignsByToughness'));
+  return e ? e.source : null;
 }
 
 export function combatDamageAmount(g: G, id: ObjId): number {
-  return Math.max(0, assignsByToughness(g, id) ? toughness(g, id) : power(g, id)); // CR 510.1a
+  return Math.max(0, damageByToughnessSource(g, id) !== null ? toughness(g, id) : power(g, id)); // CR 510.1a
 }
 
 function hasFirst(g: G, id: ObjId): boolean {

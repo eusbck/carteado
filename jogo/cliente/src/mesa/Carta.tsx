@@ -29,6 +29,13 @@ export interface CartaProps {
   classe?: string;
 }
 
+/** força/resistência; se a criatura causa dano de combate pela resistência (Felothar…), uma espada em ouro na frente
+ *  e a resistência em ouro: é esse o número que vira dano */
+function ForcaResistencia({ o }: { o: ObjView }) {
+  if (!o.damageByToughness) return <>{o.power}/{o.toughness}</>;
+  return <><span class="pt-espada"><IconeEspada /></span>{o.power}/<span class="pt-dano">{o.toughness}</span></>;
+}
+
 export function Carta({ o, realce = null, selo, onClick, onZoom, onPointerDown, onDoubleClick, onMenu, estilo, classe }: CartaProps) {
   const oculta = !o.def;
   const img = oculta ? null : urlImagem(o.copyOfDef ?? o.def, o.face, 'p');
@@ -60,7 +67,7 @@ export function Carta({ o, realce = null, selo, onClick, onZoom, onPointerDown, 
           <div class="sem-arte">
             <strong>{nome}</strong>
             <span>{o.types.join(' ')}</span>
-            {o.power !== null && <span class="pt">{o.power}/{o.toughness}</span>}
+            {o.power !== null && <span class="pt"><ForcaResistencia o={o} /></span>}
           </div>
         )}
       </div>
@@ -72,7 +79,7 @@ export function Carta({ o, realce = null, selo, onClick, onZoom, onPointerDown, 
           {pendente && <span class="marca marca-pendente">manual</span>}
         </div>
       )}
-      {criatura && o.power !== null && img && <span class="carta-pt">{o.power}/{o.toughness}</span>}
+      {criatura && o.power !== null && img && <span class={o.damageByToughness ? 'carta-pt pela-resistencia' : 'carta-pt'}><ForcaResistencia o={o} /></span>}
       {selo && <span class={`selo-combate ${selo}`} title={NOME_SELO[selo]}>{selo === 'escudo' ? <IconeEscudo /> : <IconeEspada />}</span>}
     </div>
   );

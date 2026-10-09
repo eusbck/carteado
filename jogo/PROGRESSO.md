@@ -898,3 +898,9 @@ Enviado em 08/10/2026 para **https://github.com/eusbck/carteado** (privado). O G
 linha; ele foi juntado ao histórico (merge), e o README do projeto ficou. Este projeto envia com a conta `eusbck`
 (o endereço do `origin` leva o usuário); a conta guardada como padrão no computador é outra (`computer-co`).
 Falta: convidar os amigos em *Settings → Collaborators*.
+
+- **Felothar no selo da carta** (pedido na conversa): o motor já aplicava o dano de combate pela resistência; faltava
+  mostrar. A vista agora manda `damageByToughness` (a mesma regra do combate, `damageByToughnessSource` em
+  `motor/combat.ts`), o selo de força/resistência ganha uma espada em ouro e a resistência em ouro, e o zoom diz "Causa
+  dano de combate igual à resistência (N), não à força (Felothar the Steadfast)". Vale também para Assault Formation,
+  Baldin e Walking Bulwark; teste da vista em `cartas/defs/felothar-the-steadfast.test.ts`.

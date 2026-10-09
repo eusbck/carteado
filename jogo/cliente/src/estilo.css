@@ -337,6 +337,11 @@ input.campo-grande { font-size: 17px; padding: 13px 14px; }
 .marca-pendente { background: var(--ouro); border-color: var(--ouro); color: var(--ouro-texto); }
 .carta-pt { position: absolute; right: -5px; bottom: -5px; min-width: 30px; text-align: center; background: #100f11; border: 1px solid var(--linha-forte); color: var(--texto); font-weight: 800; font-size: 12px; line-height: 18px; padding: 0 6px; border-radius: 7px; pointer-events: none; }
 .carta-pt.alterada { color: var(--positivo); }
+/* dano de combate pela resistência (Felothar, Assault Formation…): espada em ouro na frente e a resistência em ouro */
+.carta-pt.pela-resistencia { border-color: color-mix(in srgb, var(--ouro) 70%, transparent); padding: 0 6px 0 2px; }
+.pt-espada { display: inline-grid; place-items: center; width: 14px; height: 14px; margin-right: 3px; vertical-align: -3px; border-radius: 50%; background: var(--ouro); color: var(--ouro-texto); }
+.pt-espada svg { width: 11px; height: 11px; }
+.pt-dano { color: var(--ouro); }
 /* combate: selo de espada (atacando), escudo (bloqueando) ou espada apagada (marcada, sem alvo) */
 .selo-combate { position: absolute; left: 50%; top: calc(var(--w) * -.12); translate: -50% 0; width: clamp(24px, calc(var(--w) * .34), 32px); aspect-ratio: 1; border-radius: 50%; display: grid; place-items: center; color: var(--texto); box-shadow: 0 0 0 2px #100f11, 0 6px 14px rgba(0, 0, 0, .6); z-index: 6; pointer-events: none; animation: selo-entra .2s ease-out; }
 .selo-combate svg { width: 64%; height: 64%; }
@@ -608,6 +613,8 @@ img.mini { width: 40px; aspect-ratio: 63 / 88; object-fit: cover; border-radius:
 .zoom-texto strong { color: var(--texto); }
 .zoom-texto p { margin: 4px 0; }
 .pendente-aviso { color: var(--ouro); }
+.zoom-dano { color: var(--ouro); }
+.zoom-dano svg { display: inline-block; width: 1em; height: 1em; margin-right: 4px; vertical-align: -.14em; }
 
 /* barra lateral */
 .lateral { position: relative; background: #0d0c0e; border-left: 1px solid var(--linha); display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
