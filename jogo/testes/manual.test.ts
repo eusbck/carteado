@@ -106,6 +106,21 @@ describe('Modo manual: desvirar devolve a mana da reserva', () => {
     expect(tg.pending!.player).toBe(0);
   });
 
+  it('quando outro jogador desvira a sua terra, a terra desvira mas a sua mana fica', () => {
+    const tg = comManual({ battlefield: [['Forest'], []] });
+    const forest = tg.bf('Forest');
+    virarParaMana(tg, forest);
+    expect(reserva(tg)).toBe('G');
+    // Ana passa a prioridade com a mana na reserva; na mesma etapa, Bruno desvira a Forest dela à mão
+    tg.answer({ kind: 'priority', action: 'pass' });
+    tg.settle();
+    expect(tg.pending!.player).toBe(1);
+    expect(manual(tg, { k: 'virar', obj: forest, tapped: false })).toBeNull();
+    expect(tg.state.objects[forest].tapped).toBe(false);
+    expect(reserva(tg)).toBe('G');
+    expect(ultimaLinha(tg)).toBe('Bruno (ajuste manual) desvira Forest.');
+  });
+
   it('mana já gasta não volta: só sai o que sobrou dela na reserva', () => {
     const tg = comManual({ battlefield: [['Sol Ring', 'Forest'], []], hand: [['Elvish Mystic', 'Sol Ring'], []] });
     const ring = tg.bf('Sol Ring'), forest = tg.bf('Forest');
