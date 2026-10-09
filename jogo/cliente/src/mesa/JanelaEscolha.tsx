@@ -16,7 +16,7 @@ import type { Auxilios } from '../preferencias.ts';
 import { Carta } from './Carta.tsx';
 import type { EstadoUi } from './Decisao.tsx';
 import {
-  agrupar, alternarGrupo, ehFila, faixaEscolha, filtrar, fonteDoGatilho, formatoEscolha, mover, normalizar, ordemDeGatilhos,
+  agrupar, alternarGrupo, ehFila, faixaEscolha, fonteDoGatilho, formatoEscolha, mover, normalizar, ordemDeGatilhos,
   ordemParaPilha, quantidadeOk, respostaArranjo, topoJanela, type Aparencia, type DecisaoEscolha, type Destino, type Formato,
 } from './escolhas.ts';
 import { TextoComSimbolos } from './Simbolos.tsx';
@@ -204,6 +204,7 @@ const nomeVisual = (x: Visual, it: ChoiceItem): string => {
 // ---------------------------------------------------------------- escolher itens (cartas, grade, opções)
 
 interface SelecaoProps extends JanelaEscolhaProps { d: D<'select'>; formato: Formato; visuais: Visual[] }
+interface Entrada { it: ChoiceItem; x: Visual; nome: string }
 
 function CorpoSelecao(p: SelecaoProps) {
   const { d, ui, aux, formato, visuais } = p;
@@ -216,18 +217,35 @@ function CorpoSelecao(p: SelecaoProps) {
   const bloqueado = (it: ChoiceItem) => !!it.disabled && aux.alvos;
   const ok = quantidadeOk(sel.length, d.min, d.max);
 
-  const entradas = d.items.map((it, i) => ({ it, x: visuais[i], nome: nomeVisual(visuais[i], it) }));
-  const jogadores = entradas.filter((e) => e.x.tipo === 'jogador');
-  let cartas = entradas.filter((e) => e.x.tipo !== 'jogador');
-  const total = cartas.length;
-  const servem = cartas.filter((e) => !e.it.disabled).length;
-  if (formato === 'grade') {
-    if (aux.alvos && soServem) cartas = cartas.filter((e) => !e.it.disabled);
-    cartas = filtrar(cartas, termo, (e) => [e.nome, e.it.label, e.x.tipo === 'obj' || e.x.tipo === 'carta' || e.x.tipo === 'pilha' ? info(e.x.o.def)?.oracle ?? '' : '']);
-    cartas = [...cartas].sort((a, b) => normalizar(a.nome).localeCompare(normalizar(b.nome)));
-  }
+  // a lista, o filtro e a ordem só mudam com a decisão, a vista, o termo e as caixas: um clique para marcar ou o mouse
+  // passando numa carta redesenham a janela sem refazer o filtro nem normalizar os nomes de novo (num grimório de cem
+  // cartas, a ordenação normalizava cada nome a cada comparação)
+  const entradas = useMemo(() => d.items.map((it, i): Entrada => ({ it, x: visuais[i], nome: nomeVisual(visuais[i], it) })), [d, visuais]);
+  const { jogadores, todas, total, servem } = useMemo(() => {
+    const todas = entradas.filter((e) => e.x.tipo !== 'jogador');
+    return { jogadores: entradas.filter((e) => e.x.tipo === 'jogador'), todas, total: todas.length, servem: todas.filter((e) => !e.it.disabled).length };
+  }, [entradas]);
+  const textosBusca = useMemo(() => {
+    const guardados = new Map<Entrada, string[]>();
+    return (e: Entrada): string[] => {
+      let l = guardados.get(e);
+      if (!l) {
+        l = [e.nome, e.it.label, e.x.tipo === 'obj' || e.x.tipo === 'carta' || e.x.tipo === 'pilha' ? info(e.x.o.def)?.oracle ?? '' : ''].map(normalizar);
+        guardados.set(e, l);
+      }
+      return l;
+    };
+  }, [entradas]);
+  const cartas = useMemo(() => {
+    if (formato !== 'grade') return todas;
+    let c = aux.alvos && soServem ? todas.filter((e) => !e.it.disabled) : todas;
+    // o mesmo que filtrar() de escolhas.ts, com os textos já normalizados
+    const t = normalizar(termo);
+    if (t) c = c.filter((e) => textosBusca(e).some((x) => x.includes(t)));
+    return [...c].sort((a, b) => textosBusca(a)[0].localeCompare(textosBusca(b)[0]));
+  }, [todas, formato, aux.alvos, soServem, termo, textosBusca]);
   // na grade, cartas iguais escondidas (o grimório) viram um item só, com a quantidade
-  const grupos = agrupar(cartas, (e) => (formato === 'grade' && e.x.tipo === 'carta' ? `${e.x.o.def}|${e.x.o.face}|${!!e.it.disabled}` : null));
+  const grupos = useMemo(() => agrupar(cartas, (e) => (formato === 'grade' && e.x.tipo === 'carta' ? `${e.x.o.def}|${e.x.o.face}|${!!e.it.disabled}` : null)), [cartas, formato]);
 
   const item = (g: { chave: string; itens: typeof entradas }) => {
     const { it, x, nome } = g.itens[0];
