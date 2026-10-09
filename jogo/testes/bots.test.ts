@@ -1,7 +1,10 @@
 // Bot heurístico: decisões básicas em situações montadas (terreno, remoção, ataque, bloqueio, escolhas forçadas).
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { setup, type TestGame } from './harness.ts';
-import { escolher, ficaComMao, HeuristicBot } from '../bots/heuristico.ts';
+import { escolher, ficaComMao, HeuristicBot, pagamentoManual } from '../bots/heuristico.ts';
+import { simular } from '../bots/simulacao.ts';
+import { buildView } from '../motor/view.ts';
+import type { Game } from '../motor/game.ts';
 import { avaliar } from '../bots/avaliacao.ts';
 import { determinizar } from '../bots/simulacao.ts';
 import { seedFrom } from '../motor/rng.ts';
@@ -181,5 +184,33 @@ describe('bot heurístico', () => {
     for (const id of tg.state.zones.battlefield) tg.state.objects[id].tapped = true;
     const virado = avaliar(tg.g, 0, { papeis: true });
     expect(desvirado - virado).toBeGreaterThan(1.5);
+  });
+
+  it('pagamento sem automático nem cancelar: paga com a reserva ou ativa uma fonte, nunca "automático"', () => {
+    const d: Extract<Decision, { kind: 'payment' }> = { kind: 'payment', id: 1, player: 0, prompt: 'Pague {2}', cost: '{2}', remaining: '{2}', sources: [{ id: 'a', obj: 5, label: 'Island: {U}', produces: ['U'] }], canAuto: false, lifeOptions: 0, canCancel: false };
+    expect(pagamentoManual(d, (a) => a.kind === 'payment' && !!a.activate)).toEqual({ kind: 'payment', activate: { source: 'a' } });
+    expect(pagamentoManual(d, (a) => a.kind === 'payment' && !!a.pay)).toEqual({ kind: 'payment', pay: true });
+  });
+
+  it('uma simulação que quebra (erro do motor) é descartada, não derruba a decisão', () => {
+    const quebrada = { pending: { kind: 'priority', id: 1, player: 0, prompt: '', actions: [] }, answer: () => { throw new Error('motor'); } } as unknown as Game;
+    const aviso = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    const r = simular(quebrada, 0, { kind: 'priority', action: 'pass' }, () => ({ kind: 'priority', action: 'pass' }), () => ({ kind: 'priority', action: 'pass' }));
+    expect(r.falhou).toBe(true);
+    aviso.mockRestore();
+  });
+
+  it('as travas (40 ações no turno, campo cheio) passam e ficam no log uma vez por turno', () => {
+    const tg = setup({ hand: [['Forest'], []], library: [['Plains'], ['Plains']] });
+    const bot = new HeuristicBot('t', 0, { nivel: 'intermediario' });
+    bot.e.acoes = { turno: tg.state.turn.number, n: 40 };
+    const aviso = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    const d = tg.pending!;
+    const v = buildView(tg.g, 0, d);
+    expect(bot.imediata(d, v, () => true)).toEqual({ kind: 'priority', action: 'pass' });
+    expect(bot.imediata(d, v, () => true)).toEqual({ kind: 'priority', action: 'pass' });
+    expect(aviso).toHaveBeenCalledTimes(1);
+    expect(String(aviso.mock.calls[0][0])).toContain('40 ações');
+    aviso.mockRestore();
   });
 });

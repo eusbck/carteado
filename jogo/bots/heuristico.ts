@@ -32,7 +32,7 @@ import { Copiador, determinizar, estadoOculto, ramo, Rastro, type InfoOculta } f
 import { NIVEL_PADRAO, PARAMETROS, type NivelBot, type Parametros } from './niveis.ts';
 import { intencao, PERDA, type Intencao } from './intencao.ts';
 import { papelDe } from './papeis.ts';
-import { simular, type Horizonte, type Politica } from './simulacao.ts';
+import { avisarFalha, simular, type Horizonte, type Politica } from './simulacao.ts';
 
 export interface OpcoesBot {
   nivel?: NivelBot;
@@ -60,6 +60,8 @@ export interface EstadoBot {
   tentativa: string | null;
   falhas: string[];
   memoria: DadosMemoria | null;
+  /** última trava registrada no log (turno e motivo), para não repetir a cada prioridade */
+  aviso?: string;
 }
 
 type D<K extends Decision['kind']> = Extract<Decision, { kind: K }>;
@@ -77,7 +79,8 @@ export class Contexto {
   constructor(d: LiveDecision, fazer: () => G, copia: ((semente: RngState) => Game | null) | null, prazo: number) {
     this.d = d;
     this.fazer = fazer;
-    this.copia = copia;
+    // um mundo que não dá para montar (erro ao refazer ou sortear) fica de fora, em vez de derrubar a decisão
+    this.copia = copia ? (s) => { try { return copia(s); } catch (e) { avisarFalha('mundo', e); return null; } } : null;
     this.prazo = prazo;
   }
   /** o estado do mundo do bot */
@@ -163,11 +166,11 @@ export class HeuristicBot {
       const acoes = significativas(d);
       if (!acoes.length || !this.momentoDeAgir(v)) return PASSAR;
       if (this.e.acoes.turno !== v.turn.number) this.e.acoes = { turno: v.turn.number, n: 0 };
-      if (this.e.acoes.n >= 40) return PASSAR; // trava contra laços de habilidades
+      if (this.e.acoes.n >= 40) return this.trava(v, `${this.e.acoes.n} ações no turno ${v.turn.number}: passa até o próximo (trava contra laços de habilidades)`);
       if (this.e.passouEm.includes(this.chave(d, v))) return PASSAR;
       // acima de 150 objetos (fichas que se multiplicam a cada mágica), simular fica caro demais: o bot para de agir
       // e deixa o combate decidir a partida
-      if (v.battlefield.length > 150) return PASSAR;
+      if (v.battlefield.length > 150) return this.trava(v, `${v.battlefield.length} objetos no campo: passa em vez de simular`);
       return null;
     }
     if (d.kind === 'mulligan') {
@@ -186,9 +189,19 @@ export class HeuristicBot {
       if (d.canAuto) return { kind: 'payment', auto: true };
       // não dá para pagar: desiste e não tenta a mesma jogada de novo neste passo
       if (this.e.tentativa) { this.e.falhas.push(this.e.tentativa); if (this.e.falhas.length > 60) this.e.falhas.shift(); }
-      return d.canCancel ? { kind: 'payment', cancel: true } : { kind: 'payment', auto: true };
+      return d.canCancel ? { kind: 'payment', cancel: true } : pagamentoManual(d, valida);
     }
     return null;
+  }
+
+  /** passa por uma das travas (laço de ações, campo cheio demais) e registra no log uma vez por turno */
+  private trava(v: GameView, motivo: string): Answer {
+    const chave = `${v.turn.number}|${motivo.split(':')[0].replace(/\d+/g, '#')}`;
+    if (this.e.aviso !== chave) {
+      this.e.aviso = chave;
+      console.warn(`[bots] jogador ${this.eu} (${this.nivel}): ${motivo}`);
+    }
+    return PASSAR;
   }
 
   /**
@@ -304,7 +317,7 @@ export class HeuristicBot {
           if (longa) { const r = politicaRapida(d, f, rng); if (r) return r; }
           if (responde) { const r = resposta(d, f, eu, rng); if (r) return r; }
           return PASSAR;
-        case 'payment': return d.canAuto ? { kind: 'payment', auto: true } : d.canCancel ? { kind: 'payment', cancel: true } : { kind: 'payment', auto: true };
+        case 'payment': return d.canAuto ? { kind: 'payment', auto: true } : d.canCancel ? { kind: 'payment', cancel: true } : pagamentoManual(d, okDe(d));
         case 'select': return escolher(d, f.g, d.player, rng, false, okDe(d));
         case 'attackers': return longa || this.p.combate === 'simulado' ? atacar(d, f.g, d.player, okDe(d), rng, 0, lider) : defaultAnswer(d);
         case 'blockers': return this.p.combate === 'simulado' || longa ? bloquear(d, f.g, d.player, okDe(d)) : defaultAnswer(d);
@@ -419,6 +432,7 @@ export class HeuristicBot {
           const f = copia(ramo(this.e.rng, `c${feitas}`));
           if (!f) continue;
           const r = simular(f, this.eu, { kind: 'priority', action: a.id }, this.politicaMinha(v, this.e.rng), this.politicaOutros(this.e.rng), opts);
+          if (r.falhou) continue;
           // jogar terreno não precisa vencer a margem das outras jogadas
           const valor = a.kind === 'play' ? r.valor + 0.6 : r.valor;
           const atual = melhor.get(a.id);
@@ -461,7 +475,7 @@ export class HeuristicBot {
           const r = simulaEm(k, { kind: 'priority', action: a.id }, v);
           gasto += performance.now() - t0;
           sims++;
-          if (!r) continue;
+          if (!r || r.falhou) continue;
           valores.push(r.valor);
           if (k === 0) plano = r.plano;
         }
@@ -520,6 +534,7 @@ export class HeuristicBot {
       // a opção só começa se der para jogar todos os mundos dela até o prazo (a primeira, a heurística, sempre)
       if (melhor && (ctx.restante() < 0 || (sims > 0 && ctx.restante() < K * (gasto / sims)))) break;
       const valores: number[] = [];
+      let jogados = 0;
       for (let k = 0; k < K; k++) {
         // o prazo acabou no meio de uma opção: ela fica de fora (a heurística, a primeira, é a resposta padrão)
         if (k > 0 && ctx.restante() < 0) break;
@@ -528,12 +543,14 @@ export class HeuristicBot {
         if (!f) return padrao;
         const r2 = seedFrom(`q${k}:${mundos[k].join(':')}`);
         const r = simular(f, this.eu, a, this.politicaMinha(0, r2), this.politicaOutros(r2), opts);
-        valores.push(r.valor);
+        jogados++;
+        // mundo em que a simulação quebrou: fica de fora
+        if (!r.falhou) valores.push(r.valor);
         gasto += performance.now() - t0;
         sims++;
       }
-      if (valores.length < K && melhor) break;
-      if (valores.some((x) => !Number.isFinite(x))) continue;
+      if (jogados < K && melhor) break;
+      if (!valores.length || valores.some((x) => !Number.isFinite(x))) continue;
       const valor = media(valores);
       if (!melhor || valor > melhor.valor + 1e-9) melhor = { a, valor };
     }
@@ -555,6 +572,18 @@ export function publicaNaVista(d: Decision, v: GameView): boolean {
     if (!publicos.has(it.obj)) return false;
   }
   return true;
+}
+
+/**
+ * Pagamento que não dá para fazer no automático nem cancelar: paga com a reserva se ela cobre o custo (com vida no
+ * lugar dos símbolos phyrexianos, se preciso) ou ativa a próxima fonte de mana; antes o bot mandava "automático", o
+ * motor recusava e a partida parava esperando por ele.
+ */
+export function pagamentoManual(d: D<'payment'>, valida: (a: Answer) => boolean): Answer {
+  const tentativas: Answer[] = [{ kind: 'payment', pay: true }];
+  for (let l = d.lifeOptions; l >= 1; l--) tentativas.push({ kind: 'payment', pay: true, life: l });
+  for (const f of d.sources) tentativas.push({ kind: 'payment', activate: { source: f.id } });
+  return tentativas.find(valida) ?? { kind: 'payment', pay: true };
 }
 
 /** fica com a mão de 2 a 5 terrenos (ou depois de duas trocas); pedra de mana conta meio terreno, com pelo menos um
@@ -643,7 +672,7 @@ export function escolher(d: Decision, gameOuG: Game | G, eu: PlayerId, rng: RngS
     case 'payment':
       if (d.canAuto) return { kind: 'payment', auto: true };
       if (d.canCancel) return { kind: 'payment', cancel: true };
-      return { kind: 'payment', auto: true };
+      return pagamentoManual(d, ok);
     case 'select': return selecionar(d, g, eu, rng, aleatorio, ok, erro);
     case 'number': {
       if (aleatorio) return { kind: 'number', value: d.min + int(rng, d.max - d.min + 1) };
