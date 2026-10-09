@@ -477,6 +477,29 @@ describe('assento que vaga', () => {
   });
 });
 
+describe('reinício', () => {
+  it('partida encerrada não é refeita ao subir; é refeita quando alguém volta, com o fim dela', async () => {
+    const banco = new Banco(':memory:');
+    const { g, ana, codigo } = salaComBot(banco);
+    g.tratar(ana, { t: 'iniciar' });
+    await jogarAna(g, ana, 4);
+    g.tratar(ana, { t: 'conceder' });
+    await espera();
+    const s = g.salas.get(codigo)!;
+    expect(s.d.estado).toBe('fim');
+    const estado = JSON.stringify(s.game!.state);
+    const g2 = new Gerente(banco, DECKS, SEM_ATRASO);
+    g2.restaurar();
+    const s2 = g2.salas.get(codigo)!;
+    expect(s2.game).toBeNull();
+    const volta = new Falsa();
+    g2.tratar(volta, { t: 'retomar', codigo, token: ana.ultima('sala')!.token });
+    expect(JSON.stringify(s2.game!.state)).toBe(estado);
+    expect(volta.ultima('jogo')!.vista.gameOver?.winners).toEqual([1]);
+    expect(volta.ultima('sala')!.sala.estado).toBe('fim');
+  });
+});
+
 describe('gravação agrupada', () => {
   it('chat, posições, retrato e paradas gravam juntos depois de um tempo; salvarTudo grava o pendente na hora', async () => {
     const banco = new BancoContado(':memory:');

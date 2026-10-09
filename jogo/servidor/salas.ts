@@ -623,6 +623,20 @@ export class Sala {
     if (this.game.isOver()) this.d.estado = 'fim';
   }
 
+  /**
+   * Sala encerrada que voltou do banco sem a partida (restaurar não refaz as encerradas: refazer todas as partidas
+   * antigas atrasava a subida do servidor): refaz quando alguém volta, para mostrar o fim dela.
+   */
+  garantirPartida(): void {
+    if (this.game || !this.d.partida || this.d.estado !== 'fim') return;
+    try {
+      this.criarGame(this.d.partida.checkpoint, this.gerente.banco.entradas(this.d.codigo) as Input[], this.gerente.banco.metas(this.d.codigo) as (MetaEntrada | null)[]);
+    } catch (e) {
+      this.erro = e instanceof Error ? e.message : String(e);
+      console.error(`[sala ${this.d.codigo}] não foi possível refazer a partida encerrada:`, e);
+    }
+  }
+
   private decks(): DeckList[] {
     const p = this.d.partida!;
     if (!p.listas && !preencherListas(p, (id) => this.gerente.deck(id))) throw new Error('Um dos decks da partida não está mais disponível');
@@ -953,7 +967,8 @@ export class Gerente {
       const s = new Sala(d, this);
       this.salas.set(d.codigo, s);
       if (d.partida && !d.partida.listas && preencherListas(d.partida, (id) => this.deck(id))) s.salvar();
-      if (d.partida && d.estado !== 'espera') {
+      // só as partidas em andamento são refeitas ao subir; as encerradas, quando alguém volta (garantirPartida)
+      if (d.partida && d.estado === 'jogando') {
         try {
           s.criarGame(d.partida.checkpoint, this.banco.entradas(d.codigo) as Input[], this.banco.metas(d.codigo) as (MetaEntrada | null)[]);
           s.seguir();
@@ -1020,6 +1035,7 @@ export class Gerente {
         if (!s || i < 0) return 'Não foi possível voltar à sala';
         // quem tinha saído no meio da partida e volta fica com o assento quando ela acabar
         delete s.d.assentos[i].saiu;
+        s.garantirPartida();
         s.ligar(c, i);
         s.transmitir();
         return null;

@@ -60,6 +60,9 @@ describe('listas guardadas na partida', () => {
     expect(g.deck(DECKS[0].id)?.cartas[0]).not.toEqual(DECKS[0].cartas[0]);
     const g2 = new Gerente(banco, decksAtualizados(), SEM_ATRASO);
     g2.restaurar();
+    // a partida pode ter acabado (Ana concede numa decisão que não sabe responder): a encerrada é refeita quando
+    // alguém volta, não ao subir
+    g2.salas.get(codigo)!.garantirPartida();
     await espera();
     expect(g2.salas.get(codigo)!.erro).toBeNull();
     expect(JSON.stringify(g2.salas.get(codigo)!.game!.state)).toBe(estado);
@@ -83,6 +86,7 @@ describe('listas guardadas na partida', () => {
     tirarListas();
     const g2 = new Gerente(banco, DECKS, SEM_ATRASO);
     g2.restaurar();
+    g2.salas.get(codigo)!.garantirPartida();
     await espera();
     expect(listasSalvas()?.[0]).toEqual(DECKS[0]);
     expect(JSON.stringify(g2.salas.get(codigo)!.game!.state)).toBe(estado);
