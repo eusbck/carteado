@@ -10,7 +10,8 @@ import { ETAPAS } from '../pt.ts';
 const PARAVEIS = ETAPAS.filter((e) => !['untap', 'cleanup', 'firstStrikeDamage'].includes(e.id));
 
 export function Paradas({ atual, fechar }: { atual: StopSettings; fechar: () => void }) {
-  const [p, setP] = useState<StopSettings>(structuredClone(atual));
+  // a cópia só na abertura (como argumento direto, structuredClone rodava a cada desenho e era jogado fora)
+  const [p, setP] = useState<StopSettings>(() => structuredClone(atual));
   const alternar = (lista: 'myTurn' | 'othersTurn', s: Step) => {
     const l = p[lista].includes(s) ? p[lista].filter((x) => x !== s) : [...p[lista], s];
     setP({ ...p, [lista]: l });
