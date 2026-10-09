@@ -60,6 +60,8 @@ interface Assento {
   paradas: StopSettings;
   /** retrato escolhido pela pessoa (null ou sem valor: o do comandante do deck) */
   avatar?: string | null;
+  /** a pessoa saiu da sala no meio da partida: o assento fica com o jogador dela até a partida acabar, e aí vaga */
+  saiu?: boolean;
 }
 
 interface DadosPartida {
@@ -238,9 +240,12 @@ export class Sala {
   sentar(c: Conexao, nome: string): number | null {
     const i = this.d.assentos.findIndex((a) => a.tipo === 'vazio');
     if (i < 0) return null;
+    // sala encerrada com um lugar vago: quem chega vai para o saguão com os outros, sem a vista da partida antiga
+    if (this.d.estado === 'fim') this.voltarAoSaguao();
     this.d.assentos[i] = { tipo: 'humano', nome, deck: null, token: novoToken(), paradas: paradasPadrao() };
     // todas as pessoas tinham saído (o anfitrião apontava para um lugar vazio ou para um bot): quem chega conduz
-    if (this.d.assentos[this.d.anfitriao]?.tipo !== 'humano') this.d.anfitriao = i;
+    const anf = this.d.assentos[this.d.anfitriao];
+    if (anf?.tipo !== 'humano' || anf.saiu) this.d.anfitriao = i;
     // um bot com o mesmo nome da pessoa ganha outro
     for (const [k, a] of this.d.assentos.entries()) if (a.tipo === 'bot' && a.nome?.toUpperCase() === nome.toUpperCase()) a.nome = this.sortearNome(k);
     this.ligar(c, i);
@@ -278,6 +283,44 @@ export class Sala {
     for (const c of [...this.conexoes]) if (c.assento === i) this.soltar(c);
   }
 
+  /** quem conduz a sala saiu: passa para outra pessoa que continua nela */
+  private novoAnfitriao(saiu: number): void {
+    const outro = this.d.assentos.findIndex((a, k) => k !== saiu && a.tipo === 'humano' && !a.saiu);
+    if (outro >= 0) this.d.anfitriao = outro;
+  }
+
+  /** partida acabou: os assentos de quem saiu no meio dela vagam (a sala continua encerrada: quem ficou vê o fim) */
+  private vagarQuemSaiu(): void {
+    for (const [k, a] of this.d.assentos.entries()) {
+      if (a.tipo !== 'humano' || !a.saiu) continue;
+      this.soltarAssento(k);
+      this.d.assentos[k] = { tipo: 'vazio', nome: null, deck: null, token: null, paradas: paradasPadrao() };
+      this.d.etapa = 'lugares';
+      if (k === this.d.anfitriao) this.novoAnfitriao(k);
+    }
+  }
+
+  /**
+   * Sala encerrada com um lugar vago (alguém saiu, um bot foi tirado ou alguém chega): volta para o saguão, nos
+   * lugares, sem a partida antiga. Quem está na sala vai para o saguão e quem entra não recebe a vista dela.
+   */
+  private voltarAoSaguao(): void {
+    this.d.estado = 'espera';
+    this.d.etapa = 'lugares';
+    this.d.partida = null;
+    this.game = null;
+    this.bots = new Map();
+    this.metas = [];
+    this.cps = [];
+    this.salvas = 0;
+    this.erro = null;
+    this.falhas = { indice: -1, n: 0 };
+    this.geracao++;
+    for (const a of this.d.assentos) delete a.saiu;
+    this.gerente.banco.limparEntradas(this.d.codigo);
+    this.gerente.pensadores?.esquecer(this.d.codigo);
+  }
+
   tratar(c: Conexao, m: MsgCliente): string | null {
     const i = c.assento!;
     const anfitriao = i === this.d.anfitriao;
@@ -295,8 +338,9 @@ export class Sala {
         if (!a || a.tipo === 'humano') return 'Esse assento não está livre';
         if (m.deck === null) {
           this.d.assentos[m.assento] = { tipo: 'vazio', nome: null, deck: null, token: null, paradas: paradasPadrao() };
-          // um lugar vagou: o saguão volta para os lugares
+          // um lugar vagou: o saguão volta para os lugares (e a sala encerrada, para o saguão)
           this.d.etapa = 'lugares';
+          if (this.d.estado === 'fim') this.voltarAoSaguao();
         } else {
           if (!this.gerente.deck(m.deck)) return 'Deck desconhecido';
           if (m.nivel !== undefined && !nivelValido(m.nivel)) return 'Nível de bot desconhecido';
@@ -309,23 +353,30 @@ export class Sala {
       case 'iniciar': case 'novaPartida': {
         if (!anfitriao) return 'Só quem criou a sala pode começar';
         if (this.d.estado === 'jogando') return 'A partida já começou';
+        // partida encerrada com um lugar vago (alguém saiu): a nova partida começa pelo saguão, onde o lugar se preenche
+        if (this.d.estado === 'fim' && this.d.assentos.some((a) => a.tipo === 'vazio')) { this.voltarAoSaguao(); break; }
         const erro = this.iniciar();
         if (erro) return erro;
         break;
       }
       case 'sair': {
+        const encerrada = this.d.estado === 'fim';
         if (this.pedido) this.encerrarPedido(null);
-        if (this.d.estado === 'jogando' && this.game && !this.game.isOver()) this.registrar(() => this.game!.concede(i));
+        if (this.d.estado === 'jogando' && this.game && !this.game.isOver()) {
+          // o assento fica com a pessoa até a partida acabar (o jogador dela na partida saiu); aí ele vaga (vagarQuemSaiu)
+          this.d.assentos[i].saiu = true;
+          this.registrar(() => this.game!.concede(i));
+        }
         if (this.d.estado !== 'jogando') {
           this.d.assentos[i] = { tipo: 'vazio', nome: null, deck: null, token: null, paradas: paradasPadrao() };
           this.d.etapa = 'lugares';
         }
         // esta conexão e as outras abas da pessoa no mesmo assento
         this.soltarAssento(i);
-        if (i === this.d.anfitriao) {
-          const outro = this.d.assentos.findIndex((a) => a.tipo === 'humano');
-          if (outro >= 0) this.d.anfitriao = outro;
-        }
+        if (i === this.d.anfitriao) this.novoAnfitriao(i);
+        // a sala já estava encerrada: um lugar vagou e ela volta para o saguão (quem saiu agora e a concessão que encerrou
+        // a partida não: quem ficou ainda vê o fim dela)
+        if (encerrada) this.voltarAoSaguao();
         break;
       }
       case 'responder': {
@@ -592,7 +643,12 @@ export class Sala {
       const cp = g.checkpoint();
       if (cp) { this.cps.push(cp); if (this.cps.length > 3) this.cps.shift(); }
     }
-    if (g.isOver() && this.d.estado === 'jogando') { this.d.estado = 'fim'; this.salvar(); this.gerente.pensadores?.esquecer(this.d.codigo); }
+    if (g.isOver() && this.d.estado === 'jogando') {
+      this.d.estado = 'fim';
+      this.vagarQuemSaiu();
+      this.salvar();
+      this.gerente.pensadores?.esquecer(this.d.codigo);
+    }
   }
 
   // ------------------------------------------------------------------ desfazer
@@ -910,6 +966,8 @@ export class Gerente {
         const s = this.salas.get(String(m.codigo ?? '').toUpperCase().trim());
         const i = s ? s.d.assentos.findIndex((a) => a.token && typeof m.token === 'string' && a.token === m.token) : -1;
         if (!s || i < 0) return 'Não foi possível voltar à sala';
+        // quem tinha saído no meio da partida e volta fica com o assento quando ela acabar
+        delete s.d.assentos[i].saiu;
         s.ligar(c, i);
         s.transmitir();
         return null;

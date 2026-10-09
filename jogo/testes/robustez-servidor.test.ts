@@ -351,6 +351,117 @@ describe('assento que vaga', () => {
     expect(s.conexoes.has(presa)).toBe(false);
   });
 
+  /** sala de pessoas (Ana anfitriã) e bots, com decks, já começada */
+  async function partidaDe(nomes: string[], bots = 0) {
+    const g = new Gerente(new Banco(':memory:'), DECKS, SEM_ATRASO);
+    const ps = nomes.map(() => new Falsa());
+    g.tratar(ps[0], { t: 'criar', nome: nomes[0], senhaSala: 'segredo', modo: nomes.length + bots > 2 ? '4p' : '1v1' });
+    const codigo = ps[0].ultima('sala')!.sala.codigo;
+    for (let k = 1; k < nomes.length; k++) g.tratar(ps[k], { t: 'entrar', codigo, senhaSala: 'segredo', nome: nomes[k] });
+    for (let k = 0; k < bots; k++) g.tratar(ps[0], { t: 'bot', assento: nomes.length + k, deck: DECKS[nomes.length + k].id });
+    ps.forEach((p, k) => g.tratar(p, { t: 'deck', deck: DECKS[k].id }));
+    g.tratar(ps[0], { t: 'iniciar' });
+    await espera();
+    const s = g.salas.get(codigo)!;
+    expect(s.d.estado).toBe('jogando');
+    return { g, ps, codigo, s };
+  }
+
+  it('sala encerrada: quem sai faz a sala voltar para o saguão; quem entra depois não recebe a partida antiga', async () => {
+    const { g, ps: [ana, bruno], codigo, s } = await partidaDe(['Ana', 'Bruno']);
+    g.tratar(bruno, { t: 'conceder' });
+    await espera();
+    expect(s.d.estado).toBe('fim');
+    expect(ana.ultima('jogo')!.vista.gameOver?.winners).toEqual([0]);
+    g.tratar(bruno, { t: 'sair' });
+    await espera();
+    expect(ana.ultima('sala')!.sala).toMatchObject({ estado: 'espera', etapa: 'lugares', partida: null });
+    expect(s.game).toBeNull();
+    const carla = new Falsa();
+    g.tratar(carla, { t: 'entrar', codigo, senhaSala: 'segredo', nome: 'Carla' });
+    await espera();
+    expect(carla.ultima('sala')!.sala.estado).toBe('espera');
+    expect(carla.ultima('jogo')).toBeUndefined();
+    // e a sala começa outra partida pelo saguão
+    g.tratar(carla, { t: 'deck', deck: DECKS[1].id });
+    g.tratar(ana, { t: 'iniciar' });
+    await espera();
+    expect(carla.ultima('jogo')!.vista.you).toBe(1);
+  });
+
+  it('a concessão de quem sai encerra a partida: quem fica vê o fim; "nova partida" leva ao saguão para preencher o lugar', async () => {
+    const { g, ps: [ana, bruno], codigo, s } = await partidaDe(['Ana', 'Bruno']);
+    g.tratar(bruno, { t: 'sair' });
+    await espera();
+    expect(s.d.estado).toBe('fim');
+    expect(ana.ultima('sala')!.sala.estado).toBe('fim');
+    expect(ana.ultima('jogo')!.vista.gameOver?.winners).toEqual([0]);
+    expect(s.d.assentos[1].tipo).toBe('vazio');
+    const n = ana.msgs.length;
+    g.tratar(ana, { t: 'novaPartida' });
+    await espera();
+    expect(ana.msgs.slice(n).some((m) => m.t === 'erro')).toBe(false);
+    expect(ana.ultima('sala')!.sala).toMatchObject({ estado: 'espera', partida: null });
+    const carla = new Falsa();
+    g.tratar(carla, { t: 'entrar', codigo, senhaSala: 'segredo', nome: 'Carla' });
+    expect(carla.ultima('jogo')).toBeUndefined();
+  });
+
+  it('quem chega numa sala encerrada com lugar vago leva todos para o saguão, sem a partida antiga', async () => {
+    const { g, ps: [ana, bruno], codigo, s } = await partidaDe(['Ana', 'Bruno']);
+    g.tratar(bruno, { t: 'sair' });
+    await espera();
+    expect(s.d.estado).toBe('fim');
+    const carla = new Falsa();
+    g.tratar(carla, { t: 'entrar', codigo, senhaSala: 'segredo', nome: 'Carla' });
+    await espera();
+    expect(carla.ultima('sala')!.sala.estado).toBe('espera');
+    expect(carla.ultima('jogo')).toBeUndefined();
+    expect(ana.ultima('sala')!.sala.estado).toBe('espera');
+  });
+
+  it('quem sai no meio da partida fica com o assento até ela acabar; aí o lugar vaga e a nova partida passa pelo saguão', async () => {
+    const { g, ps: [ana, bruno, carla], s } = await partidaDe(['Ana', 'Bruno', 'Carla'], 1);
+    g.tratar(bruno, { t: 'sair' });
+    await espera();
+    expect(s.d.estado).toBe('jogando');
+    expect(s.d.assentos[1]).toMatchObject({ tipo: 'humano', saiu: true });
+    expect(bruno.ultima('saiu')).toBeDefined();
+    g.tratar(carla, { t: 'conceder' });
+    g.tratar(ana, { t: 'conceder' });
+    await espera();
+    expect(s.d.estado).toBe('fim');
+    expect(s.d.assentos[1].tipo).toBe('vazio');
+    // Ana e Carla ainda veem o fim da partida
+    expect(ana.ultima('jogo')!.vista.gameOver).not.toBeNull();
+    expect(ana.ultima('sala')!.sala.estado).toBe('fim');
+    g.tratar(ana, { t: 'novaPartida' });
+    await espera();
+    expect(carla.ultima('sala')!.sala.estado).toBe('espera');
+  });
+
+  it('quem sai no meio da partida e volta pelo token continua com o assento no fim', async () => {
+    const { g, ps: [ana, bruno, carla], codigo, s } = await partidaDe(['Ana', 'Bruno', 'Carla'], 1);
+    const token = bruno.ultima('sala')!.token;
+    g.tratar(bruno, { t: 'sair' });
+    const volta = new Falsa();
+    g.tratar(volta, { t: 'retomar', codigo, token });
+    expect(s.d.assentos[1].saiu).toBeUndefined();
+    g.tratar(carla, { t: 'conceder' });
+    g.tratar(ana, { t: 'conceder' });
+    await espera();
+    expect(s.d.estado).toBe('fim');
+    expect(s.d.assentos[1]).toMatchObject({ tipo: 'humano', nome: 'Bruno' });
+    expect(volta.ultima('saiu')).toBeUndefined();
+  });
+
+  it('o anfitrião que sai no meio da partida passa a vez de conduzir para quem fica', async () => {
+    const { g, ps: [ana], s } = await partidaDe(['Ana', 'Bruno', 'Carla'], 1);
+    g.tratar(ana, { t: 'sair' });
+    await espera();
+    expect(s.d.anfitriao).toBe(1);
+  });
+
   it('a mesma conexão não toma um segundo assento da sala em que está', () => {
     const g = new Gerente(new Banco(':memory:'), DECKS, SEM_ATRASO);
     const ana = new Falsa();
