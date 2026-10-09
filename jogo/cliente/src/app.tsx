@@ -20,7 +20,9 @@ export function App() {
   else tela = <Saguao />;
   return (
     <>
-      {fundo && <FundoArte />}
+      {/* a entrada no servidor tem as duas imagens dela; as outras telas, a coleção inteira (trocar de uma para a outra
+          recomeça o fundo) */}
+      {fundo && <FundoArte key={e.fase === 'entrada' ? 'entrada' : 'geral'} colecao={e.fase === 'entrada' ? 'entrada' : 'geral'} />}
       {/* as primeiras telas ganham a atmosfera (brasas subindo) por cima dos wallpapers */}
       {(e.fase === 'entrada' || e.fase === 'inicio') && <Atmosfera />}
       {tela}
