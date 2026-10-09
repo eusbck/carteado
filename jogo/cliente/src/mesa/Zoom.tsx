@@ -10,14 +10,18 @@ import { TextoComSimbolos } from './Simbolos.tsx';
 import { palavraChave } from '../pt.ts';
 import { larguraImagemZoom, medidaZoom } from './medidaZoom.ts';
 
-/** a mesa (sem a barra lateral) e a altura da tela, atualizadas quando a janela do navegador muda */
+/** a mesa (sem a barra lateral) e a altura da tela, atualizadas quando a janela do navegador muda ou a mesa muda de
+ * largura (recolher a barra) */
 function useTela(): { largura: number; altura: number } {
   const ler = () => ({ largura: (document.querySelector('.tabuleiro') as HTMLElement | null)?.clientWidth ?? innerWidth, altura: innerHeight });
   const [t, setT] = useState(ler);
   useEffect(() => {
-    const f = () => setT(ler());
+    const f = () => setT((a) => { const n = ler(); return n.largura === a.largura && n.altura === a.altura ? a : n; });
     addEventListener('resize', f);
-    return () => removeEventListener('resize', f);
+    const mesa = document.querySelector('.tabuleiro');
+    const ro = mesa ? new ResizeObserver(f) : null;
+    if (mesa) ro!.observe(mesa);
+    return () => { removeEventListener('resize', f); ro?.disconnect(); };
   }, []);
   return t;
 }
@@ -27,18 +31,19 @@ export function Zoom({ o, lado = 'esq', fixo = false, enjoo = true }: { o: ObjVi
   const caixa = useRef<HTMLElement>(null);
   const texto = useRef<HTMLDivElement>(null);
   const tela = useTela();
-  // mede o texto na largura de cada tentativa e aplica a medida antes de desenhar (sem piscar)
+  // mede o texto na largura de cada tentativa e aplica a medida antes de desenhar (sem piscar). Só quando a carta, o
+  // texto ou a tela mudam: cada tentativa força o navegador a refazer o layout, e sem dependências isso rodava a
+  // cada desenho da mesa
   useLayoutEffect(() => {
     const el = caixa.current, tx = texto.current;
     if (fixo || !el || !tx) return;
-    const t = { largura: (document.querySelector('.tabuleiro') as HTMLElement | null)?.clientWidth ?? tela.largura, altura: innerHeight };
-    const m = medidaZoom(t, (w, e) => { tx.style.width = `${w}px`; el.style.setProperty('--ze', String(e)); return tx.offsetHeight; });
+    const m = medidaZoom(tela, (w, e) => { tx.style.width = `${w}px`; el.style.setProperty('--ze', String(e)); return tx.offsetHeight; });
     el.dataset.modo = m.modo;
     el.style.setProperty('--zi', `${m.imagem}px`);
     el.style.setProperty('--ze', String(m.escala));
     tx.style.width = `${m.texto}px`;
     el.style.top = `${m.topo}px`;
-  });
+  }, [o, fixo, enjoo, tela]);
   if (!o || !o.def) return null;
   const def = o.copyOfDef ?? o.def;
   const img = urlImagem(def, o.face, fixo || larguraImagemZoom(tela) > 500 ? 'g' : 'm');
