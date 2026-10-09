@@ -936,7 +936,7 @@ export function Mesa() {
   const escolha = d && !v.gameOver && !enviando && !preJogo && ehEscolha(d) ? d : null;
 
   return (<>
-    <div class={`mesa ${duelo ? 'mesa-duelo' : ''} ${recolhida ? 'recolhida' : ''} ${aux.jogaveis ? 'aux-jogaveis' : ''} ${e.desfazer ? 'parada' : ''}`} onClick={() => setMenu(null)}>
+    <div class={`mesa ${duelo ? 'mesa-duelo' : ''} ${pref.avatarCanto ? 'avatar-canto' : ''} ${recolhida ? 'recolhida' : ''} ${aux.jogaveis ? 'aux-jogaveis' : ''} ${e.desfazer ? 'parada' : ''}`} onClick={() => setMenu(null)}>
       <main class="tabuleiro" onContextMenu={(ev) => ev.preventDefault()}>
         <div class={`oponentes n${oponentes.length}`}>{oponentes.map((j) => area(j, true))}</div>
         {area(minha, false)}

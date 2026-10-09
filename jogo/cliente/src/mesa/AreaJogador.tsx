@@ -128,21 +128,22 @@ export function AreaJogador(p: AreaProps) {
   const altAvatar = Math.round(tamAvatar * 1.42) + 22;
   const vaoX0 = Math.round(tam.w - 26 - tamAvatar * 1.25 - 10);
   const vaoX1 = Math.round(tam.w);
-  // na sua área com o retrato no canto, ele fica no alto à direita do campo, à esquerda da coluna da pilha e das decisões
-  const vaoAlt = cantoLocal ? Math.round(altAvatar + 4) : p.mao ? 0 : Math.max(0, 8 + altAvatar - topo);
+  // na sua área com o retrato no canto, ele fica no canto de cima à direita, sobre a faixa reservada para a coluna da
+  // pilha e das decisões (que desce para baixo dele): a arrumação padrão nunca põe cartas ali, então não precisa de vão
+  const vaoAlt = p.mao ? 0 : Math.max(0, 8 + altAvatar - topo);
 
   // quem tem posição escolhida fica onde a pessoa pôs; os outros seguem a arrumação padrão
   const posicoes = p.posicoes ?? {};
   const ordemZ = p.ordemZ ?? {};
   const arr = useMemo(() => arrumarCampo(p.objs, p.anexos, posicoes, ordemZ, {
     W: campoW, livreW, H: campoH, wBase, wMin: p.compacta ? 28 : 40,
-    vao: vaoAlt <= 0 ? undefined : cantoLocal ? { x0: Math.round(campoW - tamAvatar * 1.25 - 10), x1: campoW + 1, topo: vaoAlt } : { x0: vaoX0, x1: vaoX1, topo: vaoAlt },
+    vao: vaoAlt > 0 ? { x0: vaoX0, x1: vaoX1, topo: vaoAlt } : undefined,
   }), [p.objs, p.anexos, posicoes, ordemZ, campoW, livreW, campoH, wBase, p.compacta, vaoX0, vaoX1, vaoAlt, p.eu, cantoLocal, tamAvatar]);
   const todosNoCampo = useMemo(() => [...p.objs, ...p.objs.flatMap((o) => p.anexos.get(o.id) ?? [])], [p.objs, p.anexos]);
 
   const contadores = Object.entries(j.counters).filter(([, n]) => n > 0);
   const danoCmd = j.commanderDamage.filter((d) => d.amount > 0);
-  const classes = ['area', p.eu ? 'area-eu' : 'area-oponente', p.ativo ? 'area-ativa' : '', p.decidindo ? 'area-decidindo' : '', j.left ? 'area-fora' : '', p.compacta ? 'compacta' : '', p.jogadorRealce ? `alvo-${p.jogadorRealce}` : ''].filter(Boolean).join(' ');
+  const classes = ['area', p.eu ? 'area-eu' : 'area-oponente', cantoLocal ? 'avatar-no-canto' : '', p.ativo ? 'area-ativa' : '', p.decidindo ? 'area-decidindo' : '', j.left ? 'area-fora' : '', p.compacta ? 'compacta' : '', p.jogadorRealce ? `alvo-${p.jogadorRealce}` : ''].filter(Boolean).join(' ');
   const topoCemiterio = j.graveyard[j.graveyard.length - 1];
   // na sua área, a reserva fica do lado da vida (à esquerda ela cairia embaixo da faixa de fases)
   const reserva = <span class="selo reserva" title="Reserva de mana"><span class="rot">Reserva</span><Simbolos custo={j.manaPool} tam={16} /></span>;

@@ -108,8 +108,9 @@ Lista de verificação das fases. É por aqui que uma sessão nova retoma o trab
     ponto vazio e terminando abaixo da criatura de cima, espera antes das fotos do saguão.
   - **avatar do oponente no canto** de cima à direita da área dele (onde ficava a vida; o dano de comandante e a reserva
     ficam à esquerda do medalhão, e a arrumação deixa o canto livre). O seu continua no meio da base; nas Configurações,
-    "Seu retrato na mesa" (preferência `avatarCanto`, guardada no navegador) põe o seu no canto de cima à direita do seu
-    campo, abaixo da faixa de fases e à esquerda da coluna de decisões, com a mão voltando a ficar rente à base.
+    "Seu retrato na mesa" (preferência `avatarCanto`, guardada no navegador) põe o seu no canto de cima à direita da sua
+    área, como o dos oponentes (a coluna da pilha e das decisões desce para baixo dele), com a mão voltando a ficar rente
+    à base.
   - **wallpapers sobrepostos**: na troca a nova entrava por cima da anterior e as duas, semitransparentes, apareciam
     uma através da outra; agora a anterior some em fade e sai da página.
   - revisão da bateria de capturas por um subagente: a prévia do deck ficava presa no painel do saguão (o

@@ -36,7 +36,8 @@ function efeitoVida(jogador: number, delta: number, eu: boolean, reduzir: boolea
   if (!vida) return;
   const r = vida.getBoundingClientRect();
   // na sua área a vida fica embaixo do avatar, na base da mesa: o número sai à direita dela; nos outros, embaixo
-  const [x, y] = eu ? [r.right + 10, r.top + r.height / 2 - 18] : [r.left + r.width / 2 - 22, r.bottom + 4];
+  // (com o seu retrato no canto, o número sai embaixo, como nos oponentes)
+  const [x, y] = vida.closest('.avatar-local') ? [r.right + 10, r.top + r.height / 2 - 18] : [r.left + r.width / 2 - 22, r.bottom + 4];
   numero(delta < 0 ? `−${-delta}` : `+${delta}`, x, y, `${delta < 0 ? 'dano' : 'vida'} ${reduzir ? 'parado' : ''}`, atraso);
   setTimeout(() => {
     // --vermelho e --positivo do estilo.css

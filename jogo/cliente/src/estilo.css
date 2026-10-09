@@ -1078,9 +1078,12 @@ img.mini { width: 40px; aspect-ratio: 63 / 88; object-fit: cover; border-radius:
 .avatar { --tam: 80px; position: absolute; left: 50%; z-index: 6; width: var(--tam); height: var(--tam); translate: -50% 0; pointer-events: none; filter: drop-shadow(0 10px 14px rgba(0, 0, 0, .65)); animation: avatar-entra .7s cubic-bezier(.2, .8, .2, 1) both; }
 /* oponente: no canto de cima à direita da área dele (onde ficava a vida) */
 .avatar-oponente { top: calc(8px + var(--tam) * .22); left: auto; right: calc(14px + var(--tam) * .09); translate: none; }
-/* o seu retrato no canto (opção nas Configurações): no alto à direita do campo, abaixo da faixa de fases e à esquerda
-   da coluna da pilha e das decisões */
-.area-eu .avatar-oponente { top: calc(var(--topo-campo, 58px) + 4px + var(--tam) * .22); right: calc(var(--reserva-direita, 0px) + 14px + var(--tam) * .09); }
+/* o seu retrato no canto (opção nas Configurações): no canto de cima à direita da sua área, como o dos oponentes; a
+   reserva de mana e o dano de comandante ficam à esquerda dele e a coluna da pilha e das decisões desce para baixo dele
+   (o retrato tem uns 17% da altura da sua área, que é ~59% da tela, ou 54% no 1v1) */
+.area-eu.avatar-no-canto .vida { margin-right: calc(var(--tam-avatar, 80px) * 1.25 + 16px); }
+.mesa.avatar-canto .coluna-dir { top: calc(var(--divisa) + 18px + clamp(60px, 10dvh, 100px) * 1.42); }
+.mesa.mesa-duelo.avatar-canto .coluna-dir { top: calc(var(--divisa) + 18px + clamp(60px, 9.2dvh, 100px) * 1.42); }
 /* o dano de comandante e a reserva do oponente ficam à esquerda do medalhão */
 .area-oponente .vida { margin-right: calc(var(--tam-avatar, 80px) * 1.25 + 16px); }
 /* sua área, em camadas: as cartas da mão (z 20) por trás do avatar (z 24), o rótulo acima do leque, e a carta sob o
