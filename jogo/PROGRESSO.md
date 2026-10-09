@@ -792,3 +792,6 @@ Enviado em 08/10/2026 para **https://github.com/eusbck/carteado** (privado). O G
 linha; ele foi juntado ao histórico (merge), e o README do projeto ficou. Este projeto envia com a conta `eusbck`
 (o endereço do `origin` leva o usuário); a conta guardada como padrão no computador é outra (`computer-co`).
 Falta: convidar os amigos em *Settings → Collaborators*.
+
+- **Desvirar devolve a mana** (pedido na conversa): desvirar à mão uma permanente (clicar de novo no terreno virado,
+  "Desvirar" ou "Desvirar tudo") tira da reserva a mana dela que ainda não foi gasta; testes em `testes/manual.test.ts`.
