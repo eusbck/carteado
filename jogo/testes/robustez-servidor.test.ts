@@ -477,6 +477,39 @@ describe('assento que vaga', () => {
   });
 });
 
+describe('gravação agrupada', () => {
+  it('chat, posições, retrato e paradas gravam juntos depois de um tempo; salvarTudo grava o pendente na hora', async () => {
+    const banco = new BancoContado(':memory:');
+    const g = new Gerente(banco, DECKS, { ...SEM_ATRASO, gravacao: 40 });
+    const ana = new Falsa();
+    g.tratar(ana, { t: 'criar', nome: 'Ana', senhaSala: 'segredo', modo: '1v1' });
+    const codigo = ana.ultima('sala')!.sala.codigo;
+    const n0 = banco.gravacoes;
+    // (no máximo 5 mensagens de chat em 5 s: o limite de ritmo)
+    for (let i = 0; i < 3; i++) g.tratar(ana, { t: 'chat', texto: `oi ${i}` });
+    g.tratar(ana, { t: 'avatar', avatar: 'jace' });
+    // entregue na hora, gravado depois
+    expect(ana.ultima('chat')?.msgs[0].texto).toBe('oi 2');
+    expect(banco.gravacoes).toBe(n0);
+    await new Promise((r) => setTimeout(r, 80));
+    expect(banco.gravacoes).toBe(n0 + 1);
+    // o que muda a sala grava na hora (e leva junto o que esperava)
+    g.tratar(ana, { t: 'chat', texto: 'mais uma' });
+    g.tratar(ana, { t: 'mulligan', regra: 'livre' });
+    expect(banco.gravacoes).toBe(n0 + 2);
+    await new Promise((r) => setTimeout(r, 80));
+    expect(banco.gravacoes).toBe(n0 + 2);
+    // encerrando: o pendente vai na hora
+    g.tratar(ana, { t: 'chat', texto: 'tchau' });
+    g.salvarTudo();
+    expect(banco.gravacoes).toBe(n0 + 3);
+    const g2 = new Gerente(banco, DECKS, SEM_ATRASO);
+    g2.restaurar();
+    expect(g2.salas.get(codigo)!.d.chat!.map((m) => m.texto)).toEqual(['oi 0', 'oi 1', 'oi 2', 'mais uma', 'tchau']);
+    expect(g2.salas.get(codigo)!.d.assentos[0].avatar).toBe('jace');
+  });
+});
+
 describe('o que vai pelo WebSocket', () => {
   it("'sala' e 'jogo' iguais aos últimos mandados àquela conexão não saem de novo", async () => {
     const { g, ana, codigo } = salaComBot();

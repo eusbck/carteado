@@ -280,6 +280,8 @@ http.listen(PORTA, () => {
 
 function encerrar(): void {
   http.close();
+  // chat, posições e retratos esperando a gravação agrupada
+  try { gerente.salvarTudo(); } catch (e) { console.error('gravar ao encerrar:', e); }
   banco.fechar();
   process.exit(0);
 }

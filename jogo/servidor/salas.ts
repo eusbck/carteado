@@ -46,9 +46,12 @@ export interface Atrasos {
   avisoPensando: number;
   /** quanto tempo os outros têm para aceitar um pedido de desfazer */
   prazoDesfazer: number;
+  /** o que só muda o conforto (chat, posições, retrato, paradas) é gravado no máximo uma vez a cada tantos ms
+   * (Gerente.salvarTudo grava o pendente ao encerrar); 0 ou sem valor: na hora */
+  gravacao?: number;
 }
 
-export const ATRASOS_PADRAO: Atrasos = { botAcao: 700, botPasse: 90, autoPasse: 60, simulacoesBot: null, prazoDesfazer: 30000, threads: 2, avisoPensando: 1000 };
+export const ATRASOS_PADRAO: Atrasos = { botAcao: 700, botPasse: 90, autoPasse: 60, simulacoesBot: null, prazoDesfazer: 30000, threads: 2, avisoPensando: 1000, gravacao: 250 };
 // testes do servidor: sem atrasos e com bots que pensam pouco (o fluxo da sala é o que importa)
 export const SEM_ATRASO: Atrasos = { botAcao: 0, botPasse: 0, autoPasse: 0, simulacoesBot: 3, prazoDesfazer: 30000, threads: 0, avisoPensando: 1000, tempoBot: 300 };
 
@@ -182,6 +185,8 @@ export class Sala {
   private pedido: Pedido | null = null;
   /** hora das últimas mensagens de chat de cada assento (para o limite de ritmo) */
   private ritmoChat = new Map<number, number[]>();
+  /** gravação marcada (salvarDepois) */
+  private gravarDepois: ReturnType<typeof setTimeout> | null = null;
   /** a última 'sala' e o último 'jogo' (JSON) mandados a cada conexão (enviarSeMudou) */
   private ultimas = new WeakMap<Conexao, { sala?: string; jogo?: string }>();
   /** falhas seguidas do motor na mesma posição das entradas (falha) */
@@ -203,7 +208,22 @@ export class Sala {
     };
   }
 
-  salvar(): void { this.gerente.banco.salvarSala(this.d.codigo, this.d); }
+  salvar(): void {
+    if (this.gravarDepois) { clearTimeout(this.gravarDepois); this.gravarDepois = null; }
+    this.gerente.banco.salvarSala(this.d.codigo, this.d);
+  }
+
+  /** grava daqui a pouco (Atrasos.gravacao), juntando as mudanças que chegarem até lá (chat, posições…) */
+  salvarDepois(): void {
+    const ms = this.gerente.atrasos.gravacao ?? 0;
+    if (ms <= 0) { this.salvar(); return; }
+    this.gravarDepois ??= setTimeout(() => { this.gravarDepois = null; this.salvar(); }, ms);
+  }
+
+  /** grava agora o que esperava (servidor encerrando) */
+  salvarPendente(): void {
+    if (this.gravarDepois) this.salvar();
+  }
 
   /** manda a cada conexão a sala e, se houver partida, a vista do seu assento */
   transmitir(): void {
@@ -499,8 +519,8 @@ export class Sala {
         const msg: MsgChat = { id: (chat.at(-1)?.id ?? 0) + 1, de: i, quem: idAutor(a.token), nome: a.nome ?? `Jogador ${i + 1}`, texto, em: agora };
         chat.push(msg);
         if (chat.length > CHAT_GUARDADAS) chat.splice(0, chat.length - CHAT_GUARDADAS);
-        // fora da condução da partida: grava e entrega na hora, mesmo com a mesa parada
-        this.salvar();
+        // fora da condução da partida: entrega na hora, mesmo com a mesa parada (a gravação junta as mensagens seguidas)
+        this.salvarDepois();
         for (const c of this.conexoes) if (c.assento !== null) c.enviar({ t: 'chat', msgs: [msg] });
         return null;
       }
@@ -535,14 +555,16 @@ export class Sala {
           for (const id of Object.keys(pos)) if (g.state.objects[Number(id)]?.zone !== 'battlefield') delete pos[id];
           for (const [id, q] of novas) pos[id] = q;
         }
-        // só visual: grava e mostra a todos na hora, sem passar pela condução da partida
-        this.salvar();
+        // só visual: mostra a todos na hora, sem passar pela condução da partida (a gravação junta os arrastos seguidos)
+        this.salvarDepois();
         this.transmitir();
         return null;
       }
       default: return 'Mensagem desconhecida';
     }
-    this.salvar();
+    // retrato e paradas só mudam o conforto: a gravação junta as mudanças seguidas; o resto grava na hora
+    if (m.t === 'avatar' || m.t === 'paradas' || m.t === 'passarTurno') this.salvarDepois();
+    else this.salvar();
     // a vista sai no fim da condução (bots e passes automáticos), para ninguém ver uma
     // decisão que o servidor vai passar sozinho
     this.seguir();
@@ -910,6 +932,11 @@ export class Gerente {
   }
 
   deck(id: string): DeckList | undefined { return this.decks.get(id); }
+
+  /** grava o que as salas deixaram para depois (Atrasos.gravacao): o servidor chama ao encerrar */
+  salvarTudo(): void {
+    for (const s of this.salas.values()) s.salvarPendente();
+  }
 
   /** decks do saguão depois de uma importação ou atualização (as partidas em andamento guardam as listas delas) */
   trocarDecks(decks: DeckList[]): void {
