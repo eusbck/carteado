@@ -23,6 +23,8 @@ function comManual(opts: Parameters<typeof setup>[0]): TestGame {
   tg.state.config.manualMode = true;
   return tg.refresh();
 }
+/** partida sem a chave desvirarTiraMana (as salvas antes dela) */
+const comManualAntigo = comManual;
 
 describe('Modo manual', () => {
   it('sem o modo ligado, não há ajuste manual', () => {
@@ -75,8 +77,14 @@ describe('Modo manual', () => {
   });
 });
 
-// desvirar à mão desfaz o virar para mana: a mana da permanente que ainda está na reserva sai junto
+// desvirar à mão desfaz o virar para mana: a mana da permanente que ainda está na reserva sai junto (partidas novas:
+// config.desvirarTiraMana, que o servidor liga ao criar a partida)
 describe('Modo manual: desvirar devolve a mana da reserva', () => {
+  const comManual = (opts: Parameters<typeof setup>[0]): TestGame => {
+    const tg = comManualAntigo(opts);
+    tg.state.config.desvirarTiraMana = true;
+    return tg;
+  };
   const reserva = (tg: TestGame, p = 0) => tg.state.players[p].manaPool.map((u) => u.type).join('');
   const virarParaMana = (tg: TestGame, obj: ObjId) => {
     const a = tg.actionIds().find((id) => id.startsWith('mana:') && id.split(':')[1].startsWith(`${obj}|`));
@@ -168,6 +176,45 @@ describe('Modo manual: desvirar devolve a mana da reserva', () => {
     expect(tg.state.objects[forest].tapped).toBe(true);
     expect(tg.state.objects[forest].counters.stun ?? 0).toBe(0);
     expect(reserva(tg)).toBe('G');
+  });
+
+  it('partida salva antes da regra (sem a chave): desvirar não mexe na reserva, e as entradas dela se reproduzem iguais', () => {
+    const tg = comManualAntigo({ battlefield: [['Forest'], []], hand: [['Elvish Mystic'], []] });
+    expect(tg.state.config.desvirarTiraMana).toBeUndefined();
+    const cp = tg.game.checkpoint()!;
+    const forest = tg.bf('Forest');
+    virarParaMana(tg, forest);
+    expect(manual(tg, { k: 'virar', obj: forest, tapped: false })).toBeNull();
+    // como foi jogada: a mana fica, e a Forest desvirada gera mais
+    expect(reserva(tg)).toBe('G');
+    expect(ultimaLinha(tg)).toBe('Ana (ajuste manual) desvira Forest.');
+    virarParaMana(tg, forest);
+    expect(reserva(tg)).toBe('GG');
+    tg.cast('Elvish Mystic');
+    expect(reserva(tg)).toBe('G');
+    // refazer pelas entradas (o que o servidor faz depois de reiniciar) dá a mesma partida
+    const refeita = Game.fromCheckpoint(cp, [], tg.game.inputs);
+    expect(JSON.stringify(refeita.state)).toBe(JSON.stringify(tg.state));
+    // com a regra nova, as mesmas entradas dariam outra partida (a reserva ficaria sem a primeira mana)
+    const nova = structuredClone(cp);
+    nova.state.config.desvirarTiraMana = true;
+    const outra = Game.fromCheckpoint(nova, [], tg.game.inputs);
+    expect(outra.state.players[0].manaPool.length).not.toBe(1);
+  });
+
+  it('o servidor liga a regra nas partidas novas', async () => {
+    const { Gerente, SEM_ATRASO } = await import('../servidor/salas.ts');
+    const { Banco } = await import('../servidor/banco.ts');
+    const g = new Gerente(new Banco(':memory:'), decksJson as DeckList[], SEM_ATRASO);
+    const msgs: unknown[] = [];
+    const ana = { sala: null, assento: null, enviar: (m: unknown) => msgs.push(m) };
+    g.tratar(ana, { t: 'criar', nome: 'Ana', senhaSala: 'segredo', modo: '1v1' });
+    g.tratar(ana, { t: 'deck', deck: (decksJson as DeckList[])[0].id });
+    g.tratar(ana, { t: 'bot', assento: 1, deck: (decksJson as DeckList[])[1].id });
+    g.tratar(ana, { t: 'iniciar' });
+    const s = [...g.salas.values()][0];
+    expect(s.d.partida!.config.desvirarTiraMana).toBe(true);
+    expect(s.game!.state.config.desvirarTiraMana).toBe(true);
   });
 
   it('a etapa de desvirar continua normal (não é ajuste manual)', () => {

@@ -2,7 +2,7 @@
 // O servidor é a autoridade: valida cada resposta no motor e manda a cada conexão só a vista
 // do próprio assento (motor/view.ts), nunca o estado inteiro.
 
-import { randomBytes, randomInt, scryptSync, timingSafeEqual } from 'node:crypto';
+import { createHash, randomBytes, randomInt, scrypt, scryptSync, timingSafeEqual } from 'node:crypto';
 import { HeuristicBot } from '../bots/heuristico.ts';
 import { NIVEL_PADRAO, nivelValido, type NivelBot } from '../bots/niveis.ts';
 import { defaultAnswer } from '../motor/ask.ts';
@@ -17,12 +17,16 @@ import { NOMES_BOTS } from './nomes.ts';
 import type { Banco } from './banco.ts';
 import { alvoDesfazer, linhasDesfeitas, reconstruir, type MetaEntrada } from './desfazer.ts';
 import { avatarValido } from './avatares.ts';
-import type { EtapaSaguao, LinhaDesfeita, Modo, MsgChat, MsgCliente, MsgServidor, PedidoDesfazer, Posicoes, RegraAuxilios, RegraMulligan, SalaPublica, TipoAssento } from './protocolo.ts';
+import { tipoMsg, validarMsg, type EtapaSaguao, type LinhaDesfeita, type Modo, type MsgChat, type MsgCliente, type MsgServidor, type PedidoDesfazer, type Posicoes, type RegraAuxilios, type RegraMulligan, type SalaPublica, type TipoAssento } from './protocolo.ts';
 
 export interface Conexao {
   enviar(m: MsgServidor): void;
+  /** a mensagem já em JSON (a sala serializa a vista uma vez só para comparar com a última e mandar) */
+  enviarTexto?(texto: string): void;
   sala: Sala | null;
   assento: number | null;
+  /** o token com que esta conexão tomou o assento (ao sentar ou ao retomar); a sala o confere a cada transmissão */
+  token?: string | null;
 }
 
 export interface Atrasos {
@@ -42,11 +46,16 @@ export interface Atrasos {
   avisoPensando: number;
   /** quanto tempo os outros têm para aceitar um pedido de desfazer */
   prazoDesfazer: number;
+  /** o que só muda o conforto (chat, posições, retrato, paradas) é gravado no máximo uma vez a cada tantos ms
+   * (Gerente.salvarTudo grava o pendente ao encerrar); 0 ou sem valor: na hora */
+  gravacao?: number;
+  /** testes: confere a senha da sala na linha principal, para a resposta a 'criar' e 'entrar' sair na mesma chamada */
+  senhaNaHora?: boolean;
 }
 
-export const ATRASOS_PADRAO: Atrasos = { botAcao: 700, botPasse: 90, autoPasse: 60, simulacoesBot: null, prazoDesfazer: 30000, threads: 2, avisoPensando: 1000 };
+export const ATRASOS_PADRAO: Atrasos = { botAcao: 700, botPasse: 90, autoPasse: 60, simulacoesBot: null, prazoDesfazer: 30000, threads: 2, avisoPensando: 1000, gravacao: 250 };
 // testes do servidor: sem atrasos e com bots que pensam pouco (o fluxo da sala é o que importa)
-export const SEM_ATRASO: Atrasos = { botAcao: 0, botPasse: 0, autoPasse: 0, simulacoesBot: 3, prazoDesfazer: 30000, threads: 0, avisoPensando: 1000, tempoBot: 300 };
+export const SEM_ATRASO: Atrasos = { botAcao: 0, botPasse: 0, autoPasse: 0, simulacoesBot: 3, prazoDesfazer: 30000, threads: 0, avisoPensando: 1000, tempoBot: 300, senhaNaHora: true };
 
 interface Assento {
   tipo: TipoAssento;
@@ -58,6 +67,8 @@ interface Assento {
   paradas: StopSettings;
   /** retrato escolhido pela pessoa (null ou sem valor: o do comandante do deck) */
   avatar?: string | null;
+  /** a pessoa saiu da sala no meio da partida: o assento fica com o jogador dela até a partida acabar, e aí vaga */
+  saiu?: boolean;
 }
 
 interface DadosPartida {
@@ -131,7 +142,24 @@ function confereSenha(senha: string, guardada: string): boolean {
   const h = scryptSync(senha, Buffer.from(sal, 'hex'), 32);
   return timingSafeEqual(h, Buffer.from(hash, 'hex'));
 }
+// as mesmas, pelo scrypt assíncrono (no conjunto de threads do Node, fora da linha principal)
+const scryptAssincrono = (senha: string, sal: Buffer) =>
+  new Promise<Buffer>((ok, falha) => scrypt(senha, sal, 32, (e, k) => (e ? falha(e) : ok(k))));
+async function hashSenhaAssincrono(senha: string): Promise<string> {
+  const sal = randomBytes(16);
+  return `${sal.toString('hex')}:${(await scryptAssincrono(senha, sal)).toString('hex')}`;
+}
+async function confereSenhaAssincrono(senha: string, guardada: string): Promise<boolean> {
+  const [sal, hash] = guardada.split(':');
+  const h = await scryptAssincrono(senha, Buffer.from(sal, 'hex'));
+  return timingSafeEqual(h, Buffer.from(hash, 'hex'));
+}
 const novoToken = () => randomBytes(24).toString('base64url');
+/** identificador público da partida: hash curto da semente (a semente refaz os embaralhamentos: fica só no servidor) */
+export const idPartida = (semente: string): string => createHash('sha256').update(semente).digest('hex').slice(0, 12);
+/** id público de quem ocupa um assento, o autor no chat: hash do token (que continua secreto). Muda quando outra
+ * pessoa senta no assento (token novo) e fica o mesmo para quem volta pelo token */
+export const idAutor = (token: string | null): string => (token ? createHash('sha256').update(`autor:${token}`).digest('base64url').slice(0, 12) : '');
 const limparNome = (s: unknown) => (typeof s === 'string' ? s.replace(/\s+/g, ' ').trim().slice(0, 24) : '');
 
 /** chat: tamanho de uma mensagem, quantas a sala guarda e o ritmo (no máximo CHAT_RAJADA a cada CHAT_JANELA ms) */
@@ -171,6 +199,12 @@ export class Sala {
   private pedido: Pedido | null = null;
   /** hora das últimas mensagens de chat de cada assento (para o limite de ritmo) */
   private ritmoChat = new Map<number, number[]>();
+  /** gravação marcada (salvarDepois) */
+  private gravarDepois: ReturnType<typeof setTimeout> | null = null;
+  /** a última 'sala' e o último 'jogo' (JSON) mandados a cada conexão (enviarSeMudou) */
+  private ultimas = new WeakMap<Conexao, { sala?: string; jogo?: string }>();
+  /** falhas seguidas do motor na mesma posição das entradas (falha) */
+  private falhas = { indice: -1, n: 0 };
   erro: string | null = null;
 
   private gerente: Gerente;
@@ -183,19 +217,38 @@ export class Sala {
     const conectados = new Set([...this.conexoes].map((c) => c.assento));
     return {
       codigo: this.d.codigo, modo: this.d.modo, estado: this.d.estado, anfitriao: this.d.anfitriao, mulligan: this.d.mulligan ?? 'londres', auxilios: this.d.auxilios ?? 'permitidos',
-      semente: this.d.partida?.config.seed ?? null, etapa: this.d.etapa ?? 'lugares',
+      partida: this.d.partida ? idPartida(this.d.partida.config.seed) : null, etapa: this.d.etapa ?? 'lugares',
       assentos: this.d.assentos.map((a, i) => ({ indice: i, tipo: a.tipo, nome: a.nome, deck: a.deck, conectado: a.tipo === 'bot' || conectados.has(i), nivel: a.tipo === 'bot' ? a.nivel ?? NIVEL_PADRAO : null, avatar: a.tipo === 'humano' ? a.avatar ?? null : null })),
     };
   }
 
-  salvar(): void { this.gerente.banco.salvarSala(this.d.codigo, this.d); }
+  salvar(): void {
+    if (this.gravarDepois) { clearTimeout(this.gravarDepois); this.gravarDepois = null; }
+    this.gerente.banco.salvarSala(this.d.codigo, this.d);
+  }
+
+  /** grava daqui a pouco (Atrasos.gravacao), juntando as mudanças que chegarem até lá (chat, posições…) */
+  salvarDepois(): void {
+    const ms = this.gerente.atrasos.gravacao ?? 0;
+    if (ms <= 0) { this.salvar(); return; }
+    this.gravarDepois ??= setTimeout(() => { this.gravarDepois = null; this.salvar(); }, ms);
+  }
+
+  /** grava agora o que esperava (servidor encerrando) */
+  salvarPendente(): void {
+    if (this.gravarDepois) this.salvar();
+  }
 
   /** manda a cada conexão a sala e, se houver partida, a vista do seu assento */
   transmitir(): void {
     const pub = this.publica();
     for (const c of this.conexoes) {
       if (c.assento === null) continue;
-      c.enviar({ t: 'sala', sala: pub, voce: c.assento, token: this.d.assentos[c.assento].token ?? '' });
+      const token = this.d.assentos[c.assento]?.token ?? null;
+      // o assento mudou de dono (vagou, outra pessoa sentou) desde que esta conexão o tomou: ela sai, e nunca recebe o
+      // token nem a vista de outra pessoa
+      if (!token || c.token !== token) { this.soltar(c); continue; }
+      this.enviarSeMudou(c, { t: 'sala', sala: pub, voce: c.assento, token, quem: idAutor(token) });
       this.enviarJogo(c);
     }
   }
@@ -204,7 +257,22 @@ export class Sala {
     if (!this.game || c.assento === null) return;
     const vista = buildView(this.game.g, c.assento, this.game.pending);
     const desfazivel = !this.pedido && !this.game.isOver() && this.alvoDesfazer(c.assento) !== null;
-    c.enviar({ t: 'jogo', vista, paradas: this.d.assentos[c.assento].paradas, posicoes: this.posicoesNoCampo(), desfazivel, desfazer: this.pedidoPublico() });
+    this.enviarSeMudou(c, { t: 'jogo', vista, paradas: this.d.assentos[c.assento].paradas, posicoes: this.posicoesNoCampo(), desfazivel, desfazer: this.pedidoPublico() });
+  }
+
+  /**
+   * 'sala' e 'jogo' só saem se forem diferentes da última do mesmo tipo mandada a esta conexão: a condução
+   * transmite a cada passo (antes de cada jogada de bot, no fim, a cada ajuste de paradas ou posições), e a sala
+   * quase nunca muda nesses passos. A conexão que volta ou entra de novo começa do zero (ligar).
+   */
+  private enviarSeMudou(c: Conexao, m: Extract<MsgServidor, { t: 'sala' | 'jogo' }>): void {
+    const texto = JSON.stringify(m);
+    let u = this.ultimas.get(c);
+    if (!u) this.ultimas.set(c, (u = {}));
+    if (u[m.t] === texto) return;
+    u[m.t] = texto;
+    if (c.enviarTexto) c.enviarTexto(texto);
+    else c.enviar(m);
   }
 
   private get semAuxilios(): boolean { return this.d.auxilios === 'proibidos'; }
@@ -225,9 +293,12 @@ export class Sala {
   sentar(c: Conexao, nome: string): number | null {
     const i = this.d.assentos.findIndex((a) => a.tipo === 'vazio');
     if (i < 0) return null;
+    // sala encerrada com um lugar vago: quem chega vai para o saguão com os outros, sem a vista da partida antiga
+    if (this.d.estado === 'fim') this.voltarAoSaguao();
     this.d.assentos[i] = { tipo: 'humano', nome, deck: null, token: novoToken(), paradas: paradasPadrao() };
     // todas as pessoas tinham saído (o anfitrião apontava para um lugar vazio ou para um bot): quem chega conduz
-    if (this.d.assentos[this.d.anfitriao]?.tipo !== 'humano') this.d.anfitriao = i;
+    const anf = this.d.assentos[this.d.anfitriao];
+    if (anf?.tipo !== 'humano' || anf.saiu) this.d.anfitriao = i;
     // um bot com o mesmo nome da pessoa ganha outro
     for (const [k, a] of this.d.assentos.entries()) if (a.tipo === 'bot' && a.nome?.toUpperCase() === nome.toUpperCase()) a.nome = this.sortearNome(k);
     this.ligar(c, i);
@@ -238,7 +309,9 @@ export class Sala {
     if (c.sala && c.sala !== this) c.sala.desligar(c);
     c.sala = this;
     c.assento = assento;
+    c.token = this.d.assentos[assento].token;
     this.conexoes.add(c);
+    this.ultimas.delete(c);
     c.enviar({ t: 'chat', msgs: this.d.chat ?? [], tudo: true });
   }
 
@@ -246,7 +319,60 @@ export class Sala {
     this.conexoes.delete(c);
     c.sala = null;
     c.assento = null;
+    c.token = null;
     this.transmitir();
+  }
+
+  /** tira a conexão da sala avisando que ela saiu (a tela volta para o início) */
+  private soltar(c: Conexao): void {
+    c.enviar({ t: 'saiu' });
+    this.conexoes.delete(c);
+    c.sala = null;
+    c.assento = null;
+    c.token = null;
+  }
+
+  /** todas as conexões de um assento saem (a pessoa saiu: a segunda aba dela não fica no assento) */
+  private soltarAssento(i: number): void {
+    for (const c of [...this.conexoes]) if (c.assento === i) this.soltar(c);
+  }
+
+  /** quem conduz a sala saiu: passa para outra pessoa que continua nela */
+  private novoAnfitriao(saiu: number): void {
+    const outro = this.d.assentos.findIndex((a, k) => k !== saiu && a.tipo === 'humano' && !a.saiu);
+    if (outro >= 0) this.d.anfitriao = outro;
+  }
+
+  /** partida acabou: os assentos de quem saiu no meio dela vagam (a sala continua encerrada: quem ficou vê o fim) */
+  private vagarQuemSaiu(): void {
+    for (const [k, a] of this.d.assentos.entries()) {
+      if (a.tipo !== 'humano' || !a.saiu) continue;
+      this.soltarAssento(k);
+      this.d.assentos[k] = { tipo: 'vazio', nome: null, deck: null, token: null, paradas: paradasPadrao() };
+      this.d.etapa = 'lugares';
+      if (k === this.d.anfitriao) this.novoAnfitriao(k);
+    }
+  }
+
+  /**
+   * Sala encerrada com um lugar vago (alguém saiu, um bot foi tirado ou alguém chega): volta para o saguão, nos
+   * lugares, sem a partida antiga. Quem está na sala vai para o saguão e quem entra não recebe a vista dela.
+   */
+  private voltarAoSaguao(): void {
+    this.d.estado = 'espera';
+    this.d.etapa = 'lugares';
+    this.d.partida = null;
+    this.game = null;
+    this.bots = new Map();
+    this.metas = [];
+    this.cps = [];
+    this.salvas = 0;
+    this.erro = null;
+    this.falhas = { indice: -1, n: 0 };
+    this.geracao++;
+    for (const a of this.d.assentos) delete a.saiu;
+    this.gerente.banco.limparEntradas(this.d.codigo);
+    this.gerente.pensadores?.esquecer(this.d.codigo);
   }
 
   tratar(c: Conexao, m: MsgCliente): string | null {
@@ -266,8 +392,9 @@ export class Sala {
         if (!a || a.tipo === 'humano') return 'Esse assento não está livre';
         if (m.deck === null) {
           this.d.assentos[m.assento] = { tipo: 'vazio', nome: null, deck: null, token: null, paradas: paradasPadrao() };
-          // um lugar vagou: o saguão volta para os lugares
+          // um lugar vagou: o saguão volta para os lugares (e a sala encerrada, para o saguão)
           this.d.etapa = 'lugares';
+          if (this.d.estado === 'fim') this.voltarAoSaguao();
         } else {
           if (!this.gerente.deck(m.deck)) return 'Deck desconhecido';
           if (m.nivel !== undefined && !nivelValido(m.nivel)) return 'Nível de bot desconhecido';
@@ -280,25 +407,30 @@ export class Sala {
       case 'iniciar': case 'novaPartida': {
         if (!anfitriao) return 'Só quem criou a sala pode começar';
         if (this.d.estado === 'jogando') return 'A partida já começou';
+        // partida encerrada com um lugar vago (alguém saiu): a nova partida começa pelo saguão, onde o lugar se preenche
+        if (this.d.estado === 'fim' && this.d.assentos.some((a) => a.tipo === 'vazio')) { this.voltarAoSaguao(); break; }
         const erro = this.iniciar();
         if (erro) return erro;
         break;
       }
       case 'sair': {
+        const encerrada = this.d.estado === 'fim';
         if (this.pedido) this.encerrarPedido(null);
-        if (this.d.estado === 'jogando' && this.game && !this.game.isOver()) this.registrar(() => this.game!.concede(i));
+        if (this.d.estado === 'jogando' && this.game && !this.game.isOver()) {
+          // o assento fica com a pessoa até a partida acabar (o jogador dela na partida saiu); aí ele vaga (vagarQuemSaiu)
+          this.d.assentos[i].saiu = true;
+          this.registrar(() => this.game!.concede(i));
+        }
         if (this.d.estado !== 'jogando') {
           this.d.assentos[i] = { tipo: 'vazio', nome: null, deck: null, token: null, paradas: paradasPadrao() };
           this.d.etapa = 'lugares';
         }
-        c.enviar({ t: 'saiu' });
-        this.conexoes.delete(c);
-        c.sala = null;
-        c.assento = null;
-        if (i === this.d.anfitriao) {
-          const outro = this.d.assentos.findIndex((a) => a.tipo === 'humano');
-          if (outro >= 0) this.d.anfitriao = outro;
-        }
+        // esta conexão e as outras abas da pessoa no mesmo assento
+        this.soltarAssento(i);
+        if (i === this.d.anfitriao) this.novoAnfitriao(i);
+        // a sala já estava encerrada: um lugar vagou e ela volta para o saguão (quem saiu agora e a concessão que encerrou
+        // a partida não: quem ficou ainda vê o fim dela)
+        if (encerrada) this.voltarAoSaguao();
         break;
       }
       case 'responder': {
@@ -311,7 +443,7 @@ export class Sala {
         if (this.semAuxilios && resposta?.kind === 'payment' && resposta.auto) return 'Esta sala não permite pagamento automático';
         const err = g.check(i, resposta);
         if (err) return err;
-        this.registrar(() => g.answer(i, resposta), true);
+        this.registrar(() => g.answer(i, resposta), true, i);
         break;
       }
       case 'paradas': {
@@ -396,11 +528,13 @@ export class Sala {
         if (recentes.length >= CHAT_RAJADA) return 'Muitas mensagens seguidas: espere um pouco';
         this.ritmoChat.set(i, [...recentes, agora]);
         const chat = this.d.chat ??= [];
-        const msg: MsgChat = { id: (chat.at(-1)?.id ?? 0) + 1, de: i, nome: this.nome(i), texto, em: agora };
+        // o autor é quem está no assento agora (depois de uma partida encerrada, outra pessoa pode ter sentado ali)
+        const a = this.d.assentos[i];
+        const msg: MsgChat = { id: (chat.at(-1)?.id ?? 0) + 1, de: i, quem: idAutor(a.token), nome: a.nome ?? `Jogador ${i + 1}`, texto, em: agora };
         chat.push(msg);
         if (chat.length > CHAT_GUARDADAS) chat.splice(0, chat.length - CHAT_GUARDADAS);
-        // fora da condução da partida: grava e entrega na hora, mesmo com a mesa parada
-        this.salvar();
+        // fora da condução da partida: entrega na hora, mesmo com a mesa parada (a gravação junta as mensagens seguidas)
+        this.salvarDepois();
         for (const c of this.conexoes) if (c.assento !== null) c.enviar({ t: 'chat', msgs: [msg] });
         return null;
       }
@@ -435,17 +569,19 @@ export class Sala {
           for (const id of Object.keys(pos)) if (g.state.objects[Number(id)]?.zone !== 'battlefield') delete pos[id];
           for (const [id, q] of novas) pos[id] = q;
         }
-        // só visual: grava e mostra a todos na hora, sem passar pela condução da partida
-        this.salvar();
+        // só visual: mostra a todos na hora, sem passar pela condução da partida (a gravação junta os arrastos seguidos)
+        this.salvarDepois();
         this.transmitir();
         return null;
       }
       default: return 'Mensagem desconhecida';
     }
-    this.salvar();
+    // retrato e paradas só mudam o conforto: a gravação junta as mudanças seguidas; o resto grava na hora
+    if (m.t === 'avatar' || m.t === 'paradas' || m.t === 'passarTurno') this.salvarDepois();
+    else this.salvar();
     // a vista sai no fim da condução (bots e passes automáticos), para ninguém ver uma
     // decisão que o servidor vai passar sozinho
-    void this.avancar();
+    this.seguir();
     return null;
   }
 
@@ -454,7 +590,8 @@ export class Sala {
     const ocupados = this.d.assentos.filter((a) => a.tipo !== 'vazio');
     if (ocupados.length !== this.d.assentos.length) return 'Ainda há assentos vazios (chame alguém ou ponha um bot)';
     if (ocupados.some((a) => !a.deck)) return 'Todos precisam escolher um deck';
-    const semente = `${this.d.codigo}-${Date.now().toString(36)}-${randomInt(1e9).toString(36)}`;
+    // 96 bits sorteados: o hash curto que sai na sala (idPartida) não dá para desfazer tentando sementes
+    const semente = this.gerente.sementeFixa ?? `${this.d.codigo}-${Date.now().toString(36)}-${randomBytes(12).toString('base64url')}`;
     const config: GameConfig = {
       seed: semente,
       players: this.d.assentos.map((a, i) => ({ name: a.nome ?? `Jogador ${i + 1}`, deckId: a.deck! })),
@@ -463,6 +600,8 @@ export class Sala {
       multiplayer: this.d.modo === '4p',
       manualMode: true,
       mulligan: this.d.mulligan ?? 'londres',
+      // partidas novas: desvirar à mão tira a mana da reserva (as salvas antes ficam sem a chave e não mudam)
+      desvirarTiraMana: true,
     };
     const deckIds = this.d.assentos.map((a) => a.deck!);
     const listas = deckIds.map((id) => this.gerente.deck(id));
@@ -476,16 +615,40 @@ export class Sala {
     return null;
   }
 
-  /** cria (ou recria, depois de um reinício) a partida a partir da semente e das entradas */
+  /**
+   * Cria (ou recria, depois de um reinício) a partida a partir da semente e das entradas. Uma entrada gravada que não
+   * dá mais para aplicar (o motor a recusa ou quebra nela) não deixa a sala sem partida: ela é refeita até a última
+   * entrada boa, e as gravadas dali em diante saem do banco (ficam no registro do servidor).
+   */
   criarGame(cp: Checkpoint | null, entradas: Input[], metas: (MetaEntrada | null)[] = []): void {
     const p = this.d.partida!;
     const decks = this.decks();
-    this.game = cp ? Game.fromCheckpoint(cp, decks, entradas) : entradas.length ? Game.replay(p.config, decks, entradas) : Game.create(p.config, decks);
+    const { game, aplicadas, erro } = Game.replayAteFalhar(p.config, decks, entradas, cp);
+    this.game = game;
+    if (aplicadas < entradas.length) {
+      console.error(`[sala ${this.d.codigo}] a partida salva foi refeita até a entrada ${aplicadas} de ${entradas.length}; a seguinte não vale mais (${erro?.message}). Entradas descartadas:`, JSON.stringify(entradas.slice(aplicadas)));
+      this.gerente.banco.truncarEntradas(this.d.codigo, aplicadas);
+      if (p.checkpoint && p.checkpoint.inputIndex > aplicadas) { p.checkpoint = null; this.salvar(); }
+    }
     this.salvas = this.game.inputs.length;
     this.metas = this.game.inputs.map((_, k) => metas[k] ?? null);
     this.cps = [];
     this.criarBots();
     if (this.game.isOver()) this.d.estado = 'fim';
+  }
+
+  /**
+   * Sala encerrada que voltou do banco sem a partida (restaurar não refaz as encerradas: refazer todas as partidas
+   * antigas atrasava a subida do servidor): refaz quando alguém volta, para mostrar o fim dela.
+   */
+  garantirPartida(): void {
+    if (this.game || !this.d.partida || this.d.estado !== 'fim') return;
+    try {
+      this.criarGame(this.d.partida.checkpoint, this.gerente.banco.entradas(this.d.codigo) as Input[], this.gerente.banco.metas(this.d.codigo) as (MetaEntrada | null)[]);
+    } catch (e) {
+      this.erro = e instanceof Error ? e.message : String(e);
+      console.error(`[sala ${this.d.codigo}] não foi possível refazer a partida encerrada:`, e);
+    }
   }
 
   private decks(): DeckList[] {
@@ -513,22 +676,26 @@ export class Sala {
 
   private nome(i: number): string { return this.game?.state.players[i]?.name ?? this.d.assentos[i]?.nome ?? `Jogador ${i + 1}`; }
 
-  /** aplica uma entrada e grava as novas no banco; `humana`: foi a pessoa que fez (conta para o desfazer) */
-  private registrar(fn: () => unknown, humana = false): void {
+  /**
+   * Aplica uma entrada e grava as novas no banco; `humana`: foi a pessoa que fez (conta para o desfazer); `autor`: o
+   * assento de quem mandou a resposta (recebe o erro do motor como resposta à mensagem dela)
+   */
+  private registrar(fn: () => unknown, humana = false, autor: number | null = null): void {
     const g = this.game!;
     const turno = g.state.turn.number;
     const n0 = g.inputs.length;
-    let ok = true;
     try {
       fn();
     } catch (e) {
-      this.falha(e);
-      ok = false;
+      // a entrada que quebrou o motor não entrou em g.inputs (motor/game.ts): a sala se refaz sem ela
+      this.falha(e, autor);
+      return;
     }
     for (let k = n0; k < g.inputs.length; k++) this.metas[k] = { turno, humana };
+    if (g.inputs.length > n0) this.falhas = { indice: -1, n: 0 };
     // Cartomante e Magic God: leem a mesa a cada jogada (só o que é público)
     for (const b of this.bots.values()) if (b.e.memoria) b.observar(g.g);
-    if (ok) this.persistir();
+    this.persistir();
   }
 
   private persistir(): void {
@@ -548,7 +715,12 @@ export class Sala {
       const cp = g.checkpoint();
       if (cp) { this.cps.push(cp); if (this.cps.length > 3) this.cps.shift(); }
     }
-    if (g.isOver() && this.d.estado === 'jogando') { this.d.estado = 'fim'; this.salvar(); this.gerente.pensadores?.esquecer(this.d.codigo); }
+    if (g.isOver() && this.d.estado === 'jogando') {
+      this.d.estado = 'fim';
+      this.vagarQuemSaiu();
+      this.salvar();
+      this.gerente.pensadores?.esquecer(this.d.codigo);
+    }
   }
 
   // ------------------------------------------------------------------ desfazer
@@ -597,7 +769,7 @@ export class Sala {
     this.pedido = null;
     if (msg) this.avisar(msg);
     this.transmitir();
-    void this.avancar();
+    this.seguir();
   }
 
   private aplicarDesfazer(): void {
@@ -618,7 +790,7 @@ export class Sala {
     this.salvar();
     this.avisar(`${this.nome(p.de)} desfez: ${p.linhas[0]?.texto ?? 'a última jogada'}`);
     this.transmitir();
-    void this.avancar();
+    this.seguir();
   }
 
   private avisar(msg: string): void {
@@ -656,11 +828,55 @@ export class Sala {
     for (const c of this.conexoes) c.enviar({ t: 'pensando', assento: this.pensando });
   }
 
-  private falha(e: unknown): void {
+  /**
+   * Erro do motor numa jogada (ou na condução): a sala se refaz das entradas boas a partir do checkpoint mais recente
+   * (a jogada que quebrou não entrou), limpa o erro, avisa a mesa e segue; a decisão volta para quem jogava. O bot
+   * cuja jogada quebrou o motor responde o padrão na vez seguinte. Três falhas seguidas na mesma posição (uma
+   * resposta automática que quebra sempre) param a sala com o erro, como antes: a partida fica salva até a última
+   * jogada válida e volta assim que o servidor reiniciar. `autor`: quem mandou a resposta (o erro vai para essa pessoa
+   * como resposta ao 'responder' dela).
+   */
+  private falha(e: unknown, autor: number | null = null): void {
     const msg = e instanceof Error ? e.message : String(e);
-    this.erro = msg;
     console.error(`[sala ${this.d.codigo}] erro do motor:`, e);
-    for (const c of this.conexoes) c.enviar({ t: 'erro', msg: `Erro interno do motor: ${msg}. A partida foi salva até a última jogada válida.` });
+    // só as respostas automáticas (bot, passe automático, condução) contam: a pessoa escolhe de novo, não há laço
+    const automatica = autor === null;
+    if (automatica) {
+      const indice = this.game?.inputs.length ?? -1;
+      this.falhas = this.falhas.indice === indice ? { indice, n: this.falhas.n + 1 } : { indice, n: 1 };
+    }
+    const refeita = (!automatica || this.falhas.n <= 3) && this.refazer();
+    const texto = refeita ? `Erro interno do motor: ${msg}. A jogada foi desfeita e a partida continua de antes dela.`
+      : `Erro interno do motor: ${msg}. A partida foi salva até a última jogada válida.`;
+    for (const c of this.conexoes) c.enviar({ t: 'erro', msg: texto, ...(autor !== null && c.assento === autor ? { de: 'responder' as const } : {}) });
+    if (!refeita) { this.erro = msg; return; }
+    this.erro = null;
+    this.transmitir();
+    // dentro da condução (a jogada era de um bot ou um passe automático), o laço em andamento pega a partida refeita
+    this.seguir();
+  }
+
+  /** a partida refeita das entradas boas (as que o motor aplicou), a partir do checkpoint mais recente que serve */
+  private refazer(): boolean {
+    const g = this.game;
+    const p = this.d.partida;
+    if (!g || !p) return false;
+    try {
+      this.game = reconstruir(p.config, this.decks(), g.inputs, [...this.cps, p.checkpoint], g.inputs.length);
+    } catch (e) {
+      console.error(`[sala ${this.d.codigo}] não foi possível refazer a partida depois do erro:`, e);
+      return false;
+    }
+    this.metas.length = this.game.inputs.length;
+    // respostas pensadas para a partida de antes não valem (os bots continuam com a memória deles)
+    this.geracao++;
+    return true;
+  }
+
+  /** conduz a partida sem esperar por ela. Um erro inesperado na condução (fora do motor: a vista, o bot, o banco)
+   * vira erro da sala, tratado como um erro do motor; sem o `.catch`, a promessa rejeitada derrubava o servidor */
+  seguir(): void {
+    this.avancar().catch((e) => this.falha(e));
   }
 
   /** bots respondem e passes automáticos acontecem até alguém humano precisar decidir */
@@ -680,8 +896,10 @@ export class Sala {
         if (a.tipo === 'bot') {
           const bot = this.bots.get(d.player)!;
           const geracao = this.geracao;
+          // a resposta do bot a esta decisão quebrou o motor (a sala se refez sem ela): agora vai a resposta padrão
+          if (this.falhas.indice === g.inputs.length && this.falhas.n > 0) resposta = defaultAnswer(d);
           // decisão óbvia: sai da vista do bot (a mesma que uma pessoa naquele assento recebe), sem pensar
-          resposta = bot.imediata(d, buildView(g.g, d.player, d), (x) => g.check(d.player, x) === null);
+          else resposta = bot.imediata(d, buildView(g.g, d.player, d), (x) => g.check(d.player, x) === null);
           if (!resposta && !this.gerente.pensadores) {
             // sem threads (testes): pensa aqui mesmo, sem soltar a linha (o fluxo da sala fica igual ao de antes)
             bot.rastro.observar(g);
@@ -731,6 +949,9 @@ export class Gerente {
   /** threads de pensar dos bots, divididas por todas as salas (null: pensam na linha principal) */
   readonly pensadores: Pensadores | null;
 
+  /** só para testes: toda partida nova usa esta semente (mãos e grimórios sempre os mesmos; null: sorteada) */
+  sementeFixa: string | null = null;
+
   constructor(banco: Banco, decks: DeckList[], atrasos: Atrasos = ATRASOS_PADRAO) {
     this.banco = banco;
     this.atrasos = atrasos;
@@ -739,6 +960,11 @@ export class Gerente {
   }
 
   deck(id: string): DeckList | undefined { return this.decks.get(id); }
+
+  /** grava o que as salas deixaram para depois (Atrasos.gravacao): o servidor chama ao encerrar */
+  salvarTudo(): void {
+    for (const s of this.salas.values()) s.salvarPendente();
+  }
 
   /** decks do saguão depois de uma importação ou atualização (as partidas em andamento guardam as listas delas) */
   trocarDecks(decks: DeckList[]): void {
@@ -750,13 +976,16 @@ export class Gerente {
     for (const { dados } of this.banco.salas()) {
       const d = dados as DadosSala;
       for (const a of d.assentos) if (paradasAntigas(a.paradas)) a.paradas = { ...paradasPadrao(), skipWhenNothing: a.paradas.skipWhenNothing };
+      // mensagens do chat de antes do id de autor: de ninguém (o cliente não as toma como suas)
+      for (const m of d.chat ?? []) m.quem ??= '';
       const s = new Sala(d, this);
       this.salas.set(d.codigo, s);
       if (d.partida && !d.partida.listas && preencherListas(d.partida, (id) => this.deck(id))) s.salvar();
-      if (d.partida && d.estado !== 'espera') {
+      // só as partidas em andamento são refeitas ao subir; as encerradas, quando alguém volta (garantirPartida)
+      if (d.partida && d.estado === 'jogando') {
         try {
           s.criarGame(d.partida.checkpoint, this.banco.entradas(d.codigo) as Input[], this.banco.metas(d.codigo) as (MetaEntrada | null)[]);
-          void s.avancar();
+          s.seguir();
         } catch (e) {
           s.erro = e instanceof Error ? e.message : String(e);
           console.error(`[sala ${d.codigo}] não foi possível retomar a partida:`, e);
@@ -772,44 +1001,96 @@ export class Gerente {
     }
   }
 
+  /** mensagens desta conexão que chegaram enquanto a senha de um 'criar' ou 'entrar' dela era conferida */
+  private esperando = new WeakMap<Conexao, MsgCliente[]>();
+  /** conexões que fecharam (a senha conferida depois não senta ninguém) */
+  private fechadas = new WeakSet<Conexao>();
+
   tratar(c: Conexao, m: MsgCliente): void {
-    const erro = this.tratarInterno(c, m);
-    if (erro) c.enviar({ t: 'erro', msg: erro });
+    // batimento do cliente: responde na hora só a esta conexão, com ou sem sala, sem gravar nada nem contar no ritmo
+    if (m?.t === 'ping') { c.enviar({ t: 'pong' }); return; }
+    // a senha de uma mensagem anterior ainda está sendo conferida: esta espera a vez, na ordem
+    const fila = this.esperando.get(c);
+    if (fila) { fila.push(m); return; }
+    const r = this.tratarInterno(c, m);
+    if (!(r instanceof Promise)) { this.responder(c, m, r); return; }
+    this.esperando.set(c, []);
+    r.catch((e) => { console.error('senha da sala:', e); return 'Erro interno do servidor'; }).then((erro) => {
+      this.responder(c, m, erro);
+      // as que chegaram enquanto isso, na ordem (uma delas pode esperar outra senha: as seguintes vão para a fila nova)
+      const chegaram = this.esperando.get(c) ?? [];
+      this.esperando.delete(c);
+      while (chegaram.length) {
+        this.tratar(c, chegaram.shift()!);
+        const nova = this.esperando.get(c);
+        if (nova) { nova.push(...chegaram); break; }
+      }
+    });
   }
 
-  private tratarInterno(c: Conexao, m: MsgCliente): string | null {
-    if (!m || typeof m !== 'object' || typeof (m as { t?: unknown }).t !== 'string') return 'Mensagem inválida';
+  /** o erro diz a que mensagem responde: o cliente só trata como jogada recusada o que veio de 'responder' */
+  private responder(c: Conexao, m: MsgCliente, erro: string | null): void {
+    const de = tipoMsg(m);
+    if (erro) c.enviar({ t: 'erro', msg: erro, ...(de ? { de } : {}) });
+  }
+
+  /**
+   * A senha da sala passa pelo scrypt (dezenas de ms de processador): fora da linha principal (no conjunto de threads
+   * do Node), para a mesa das outras salas não parar a cada 'criar' ou 'entrar'. Os testes conferem na hora
+   * (Atrasos.senhaNaHora), para a resposta sair na mesma chamada.
+   */
+  private comSenha<T>(c: Conexao, naHora: () => T, depois: () => Promise<T>, entao: (v: T) => string | null): string | null | Promise<string | null> {
+    if (this.atrasos.senhaNaHora) return entao(naHora());
+    return depois().then((v) => (this.fechadas.has(c) ? null : entao(v)));
+  }
+
+  private tratarInterno(c: Conexao, m: MsgCliente): string | null | Promise<string | null> {
+    // a forma de toda mensagem é conferida aqui, antes de qualquer sala tocar nela (protocolo.ts)
+    const invalida = validarMsg(m);
+    if (invalida) return invalida;
     switch (m.t) {
       case 'criar': {
         const nome = limparNome(m.nome);
         if (!nome) return 'Escolha um nome';
         if (typeof m.senhaSala !== 'string' || m.senhaSala.length < 3 || m.senhaSala.length > 64) return 'A senha da sala precisa ter de 3 a 64 caracteres';
         if (m.modo !== '4p' && m.modo !== '1v1') return 'Modo inválido';
-        const codigo = this.novoCodigo();
-        const n = m.modo === '4p' ? 4 : 2;
-        const vazio = (): Assento => ({ tipo: 'vazio', nome: null, deck: null, token: null, paradas: paradasPadrao() });
-        const s = new Sala({ codigo, senha: hashSenha(m.senhaSala), modo: m.modo, estado: 'espera', assentos: Array.from({ length: n }, vazio), anfitriao: 0, partida: null }, this);
-        this.salas.set(codigo, s);
-        s.sentar(c, nome);
-        s.salvar();
-        s.transmitir();
-        return null;
+        const { senhaSala, modo } = m;
+        return this.comSenha(c, () => hashSenha(senhaSala), () => hashSenhaAssincrono(senhaSala), (senha) => {
+          const codigo = this.novoCodigo();
+          const n = modo === '4p' ? 4 : 2;
+          const vazio = (): Assento => ({ tipo: 'vazio', nome: null, deck: null, token: null, paradas: paradasPadrao() });
+          const s = new Sala({ codigo, senha, modo, estado: 'espera', assentos: Array.from({ length: n }, vazio), anfitriao: 0, partida: null }, this);
+          this.salas.set(codigo, s);
+          s.sentar(c, nome);
+          s.salvar();
+          s.transmitir();
+          return null;
+        });
       }
       case 'entrar': {
         const s = this.salas.get(String(m.codigo ?? '').toUpperCase().trim());
-        if (!s || typeof m.senhaSala !== 'string' || !confereSenha(m.senhaSala, s.d.senha)) return 'Código ou senha da sala incorretos';
-        const nome = limparNome(m.nome);
-        if (!nome) return 'Escolha um nome';
-        if (s.d.estado === 'jogando') return 'A partida já começou; quem já está na sala pode voltar pelo mesmo aparelho';
-        if (s.sentar(c, nome) === null) return 'A sala está cheia';
-        s.salvar();
-        s.transmitir();
-        return null;
+        if (!s || typeof m.senhaSala !== 'string') return 'Código ou senha da sala incorretos';
+        const { senhaSala, nome: nomePedido } = m;
+        return this.comSenha(c, () => confereSenha(senhaSala, s.d.senha), () => confereSenhaAssincrono(senhaSala, s.d.senha), (certa) => {
+          if (!certa) return 'Código ou senha da sala incorretos';
+          const nome = limparNome(nomePedido);
+          if (!nome) return 'Escolha um nome';
+          // a mesma conexão não toma um segundo assento da sala em que já está
+          if (c.sala === s && c.assento !== null) return 'Você já está nesta sala';
+          if (s.d.estado === 'jogando') return 'A partida já começou; quem já está na sala pode voltar pelo mesmo aparelho';
+          if (s.sentar(c, nome) === null) return 'A sala está cheia';
+          s.salvar();
+          s.transmitir();
+          return null;
+        });
       }
       case 'retomar': {
         const s = this.salas.get(String(m.codigo ?? '').toUpperCase().trim());
         const i = s ? s.d.assentos.findIndex((a) => a.token && typeof m.token === 'string' && a.token === m.token) : -1;
         if (!s || i < 0) return 'Não foi possível voltar à sala';
+        // quem tinha saído no meio da partida e volta fica com o assento quando ela acabar
+        delete s.d.assentos[i].saiu;
+        s.garantirPartida();
         s.ligar(c, i);
         s.transmitir();
         return null;
@@ -821,6 +1102,8 @@ export class Gerente {
   }
 
   desconectar(c: Conexao): void {
+    this.fechadas.add(c);
+    this.esperando.delete(c);
     if (c.sala) c.sala.desligar(c);
   }
 }

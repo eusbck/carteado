@@ -5,10 +5,14 @@
 
 import { Worker } from 'node:worker_threads';
 import type { EstadoBot } from '../bots/heuristico.ts';
+import { PARAMETROS } from '../bots/niveis.ts';
 import type { Tarefa } from '../bots/pensar.ts';
 import type { Checkpoint, Input } from '../motor/game.ts';
 import type { DeckList } from '../motor/state.ts';
 import type { Answer } from '../motor/types.ts';
+
+/** quanto a vigia espera além do teto de tempo da decisão antes de encerrar uma thread presa */
+export const FOLGA_VIGIA = 10_000;
 
 export type MsgPensar =
   | { t: 'pensar'; id: number; sala: string; geracao: number; base: Checkpoint | null; desde: number | null; entradas: Input[]; listas: DeckList[]; tarefa: Omit<Tarefa, 'cp' | 'entradas'> }
@@ -39,7 +43,7 @@ export interface Pensado {
 
 interface Trabalhador {
   w: Worker;
-  tarefa: { id: number; pedido: PedidoPensar; ok: (r: Pensado | null) => void; falha: (e: Error) => void; reenviada: boolean; desde: number; inicio: number } | null;
+  tarefa: { id: number; pedido: PedidoPensar; ok: (r: Pensado | null) => void; falha: (e: Error) => void; reenviada: boolean; desde: number; inicio: number; vigia?: ReturnType<typeof setTimeout> } | null;
   /** o que esta thread guardou de cada sala */
   cache: Map<string, { geracao: number; indice: number }>;
   memoria: number;
@@ -56,15 +60,22 @@ export class Pensadores {
   /** tempo de cada decisão pensada, por nível (só o pensar; a espera na fila à parte) */
   estatisticas: Record<string, { n: number; soma: number; max: number; espera: number; esperaMax: number }> = {};
 
-  constructor(threads = 2) {
+  /** o script das threads (testes: uma thread de mentira) */
+  private script: URL;
+  /** quanto além do teto de tempo da decisão a vigia espera antes de encerrar a thread */
+  private folga: number;
+
+  constructor(threads = 2, opcoes: { script?: URL; folga?: number } = {}) {
     this.threads = threads;
+    this.script = opcoes.script ?? new URL('./pensador.ts', import.meta.url);
+    this.folga = opcoes.folga ?? FOLGA_VIGIA;
     // as threads carregam as cartas logo ao subir o servidor, e não na primeira vez que um bot pensa
     for (let i = 0; i < threads; i++) this.ts.push(this.criar());
   }
 
   private criar(): Trabalhador {
     // teto de memória por thread: duas threads ficam abaixo de ~1 GB juntas
-    const w = new Worker(new URL('./pensador.ts', import.meta.url), { resourceLimits: { maxOldGenerationSizeMb: 448 } });
+    const w = new Worker(this.script, { resourceLimits: { maxOldGenerationSizeMb: 448 } });
     const t: Trabalhador = { w, tarefa: null, cache: new Map(), memoria: 0 };
     w.on('message', (r: RespPensar) => this.recebeu(t, r));
     w.on('error', (e: unknown) => this.caiu(t, e instanceof Error ? e : new Error(String(e))));
@@ -77,6 +88,7 @@ export class Pensadores {
     const i = this.ts.indexOf(t);
     if (i < 0) return;
     this.ts.splice(i, 1);
+    if (t.tarefa?.vigia) clearTimeout(t.tarefa.vigia);
     t.tarefa?.falha(e);
     t.tarefa = null;
     void t.w.terminate();
@@ -112,8 +124,26 @@ export class Pensadores {
       // de preferência a thread que já tem a sala guardada (refaz menos)
       const t = livres.find((x) => this.cacheServe(x, f.pedido) !== null) ?? livres[0];
       t.tarefa = { ...f, reenviada: false, inicio: performance.now() };
+      this.vigiar(t);
       this.enviar(t, false);
     }
+  }
+
+  /**
+   * Vigia da tarefa: passou do teto de tempo da decisão (o do nível, ou o pedido) mais a folga, a thread está presa
+   * (um laço numa carta, por exemplo). Ela é encerrada e recriada, e a tarefa falha: o bot joga a resposta padrão
+   * (salas.ts, pensarBot) e a mesa segue.
+   */
+  private vigiar(t: Trabalhador): void {
+    const tarefa = t.tarefa!;
+    const pt = tarefa.pedido.tarefa;
+    const prazo = (pt.tempo ?? PARAMETROS[pt.nivel]?.tempo ?? 6000) + this.folga;
+    tarefa.vigia = setTimeout(() => {
+      if (t.tarefa !== tarefa) return;
+      console.error(`[sala ${tarefa.pedido.sala}] a thread de pensar passou de ${prazo} ms numa decisão; foi encerrada e recriada`);
+      this.caiu(t, new Error(`a thread de pensar passou de ${prazo} ms`));
+    }, prazo);
+    tarefa.vigia.unref();
   }
 
   private cacheServe(t: Trabalhador, p: PedidoPensar): number | null {
@@ -142,6 +172,7 @@ export class Pensadores {
       return;
     }
     t.tarefa = null;
+    if (tarefa.vigia) clearTimeout(tarefa.vigia);
     if (r.erro !== undefined) tarefa.falha(new Error(r.erro));
     else {
       if (r.cpIndice !== null) t.cache.set(tarefa.pedido.sala, { geracao: tarefa.pedido.geracao, indice: r.cpIndice });

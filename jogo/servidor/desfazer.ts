@@ -3,7 +3,7 @@
 
 import { Game, type Checkpoint, type Input } from '../motor/game.ts';
 import type { DeckList } from '../motor/state.ts';
-import type { GameConfig, PlayerId } from '../motor/types.ts';
+import type { GameConfig, PlayerId, PriorityAction } from '../motor/types.ts';
 import type { LinhaDesfeita } from './protocolo.ts';
 
 /** de cada entrada: em que turno aconteceu e se foi a pessoa (não o passe automático nem um bot) */
@@ -50,7 +50,25 @@ export function reconstruir(config: GameConfig, decks: DeckList[], inputs: Input
   return cp ? Game.fromCheckpoint(cp, decks, prefixo) : Game.replay(config, decks, prefixo);
 }
 
-/** o que volta: a jogada da pessoa e, depois dela, o que aparece no registro para todos */
+/** a jogada sem citar a carta (a ação é sobre uma carta que os outros não veem) */
+const SEM_A_CARTA: Record<PriorityAction['kind'], string> = {
+  pass: 'passa a prioridade', play: 'joga um terreno', cast: 'conjura uma mágica', activate: 'ativa uma habilidade',
+  mana: 'gera mana', special: 'faz uma ação especial', manual: 'faz um ajuste manual',
+};
+
+/** a carta da ação está onde nem todos a veem (mão, grimório, virada para baixo) antes da jogada */
+function cartaOculta(voltar: Game, acao: PriorityAction): boolean {
+  if (acao.obj === undefined) return false;
+  const o = voltar.state.objects[acao.obj];
+  return !!o && (o.zone === 'hand' || o.zone === 'library' || o.faceDown);
+}
+
+/**
+ * O que volta: a jogada da pessoa e, depois dela, o que aparece no registro para todos. O pedido vai para a mesa
+ * inteira: o rótulo da ação (feito para quem joga: "Conjurar Lightning Bolt") só cita a carta se ela estava à vista
+ * de todos; senão, sai só o tipo da jogada (uma mágica conjurada e depois cancelada não aparece no registro, e o
+ * rótulo entregava a carta da mão).
+ */
 export function linhasDesfeitas(atual: Game, voltar: Game, entrada: Input): LinhaDesfeita[] {
   const nomes = voltar.state.players.map((p) => p.name);
   const quem = entrada.t === 'a' ? entrada.p : -1;
@@ -61,7 +79,10 @@ export function linhasDesfeitas(atual: Game, voltar: Game, entrada: Input): Linh
     let texto: string | null = null;
     if (a.kind === 'priority' && d.kind === 'priority') {
       const acao = d.actions.find((x) => x.id === a.action);
-      texto = a.action === 'pass' ? `${nomes[quem]} passa a prioridade` : acao ? `${nomes[quem]}: ${acao.label}` : null;
+      texto = a.action === 'pass' ? `${nomes[quem]} passa a prioridade`
+        : !acao ? null
+        : cartaOculta(voltar, acao) ? `${nomes[quem]} ${SEM_A_CARTA[acao.kind]}`
+        : `${nomes[quem]}: ${acao.label}`;
     } else if (a.kind === 'attackers') texto = `${nomes[quem]} declara ${a.attacks.length ? `ataque com ${a.attacks.length}` : 'que não ataca'}`;
     else if (a.kind === 'blockers') texto = `${nomes[quem]} declara ${a.blocks.length ? `bloqueio com ${a.blocks.length}` : 'que não bloqueia'}`;
     if (texto) linhas.push({ texto, outro: false });

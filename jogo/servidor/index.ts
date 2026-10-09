@@ -2,12 +2,12 @@
 // Acesso privado: tudo além da página de entrada exige a senha do servidor (cookie de sessão);
 // cada sala tem ainda seu código e sua senha.
 //
-// Uso: node servidor/index.ts   (variáveis: PORTA, SENHA_ACESSO, DADOS, HTTPS=1 atrás de proxy)
+// Uso: node servidor/index.ts   (variáveis: PORTA, SENHA_ACESSO, DADOS, HTTPS=1 atrás de proxy, ESTATICOS)
 
 import { randomBytes, timingSafeEqual } from 'node:crypto';
-import { createReadStream, existsSync, readFileSync, statSync, writeFileSync, mkdirSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync, statSync, writeFileSync, mkdirSync } from 'node:fs';
 import { createServer, type IncomingMessage, type ServerResponse } from 'node:http';
-import { dirname, extname, join, normalize, resolve } from 'node:path';
+import { dirname, join, normalize, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { WebSocketServer, type WebSocket } from 'ws';
 import '../cartas/index.ts';
@@ -22,14 +22,16 @@ import { cartaPronta } from './catalogo/prontidao.ts';
 import { redeReal } from './catalogo/rede.ts';
 import { RotasCatalogo } from './catalogo/rotas.ts';
 import { TarefasDecks } from './catalogo/tarefas.ts';
+import { Arquivos } from './http-arquivos.ts';
 import { Imagens, type Tamanho } from './imagens.ts';
-import type { DeckResumo, MsgCliente, MsgServidor } from './protocolo.ts';
+import { tipoMsg, type DeckResumo, type MsgCliente, type MsgServidor } from './protocolo.ts';
 import { Gerente, type Conexao } from './salas.ts';
 
 const RAIZ = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const PORTA = Number(process.env.PORTA ?? 8080);
 const DADOS = process.env.DADOS ?? join(RAIZ, 'dados-locais');
-const ESTATICOS = join(RAIZ, 'cliente', 'dist');
+// o cliente compilado (ESTATICOS: outra pasta, para os testes do HTTP)
+const ESTATICOS = resolve(process.env.ESTATICOS ?? join(RAIZ, 'cliente', 'dist'));
 const HTTPS = process.env.HTTPS === '1';
 
 function senhaDeAcesso(): string {
@@ -121,21 +123,16 @@ function confereSenhaAcesso(s: string): boolean {
 // ---------------------------------------------------------------------------
 // HTTP
 // ---------------------------------------------------------------------------
-const TIPOS: Record<string, string> = {
-  '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8',
-  '.svg': 'image/svg+xml', '.png': 'image/png', '.webp': 'image/webp', '.json': 'application/json', '.woff2': 'font/woff2', '.ico': 'image/x-icon',
-  '.mp3': 'audio/mpeg', '.ogg': 'audio/ogg',
-};
-
 function json(res: ServerResponse, status: number, corpo: unknown, extra: Record<string, string> = {}): void {
   res.writeHead(status, { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-store', ...extra });
   res.end(typeof corpo === 'string' ? corpo : JSON.stringify(corpo));
 }
 
-function arquivo(res: ServerResponse, caminho: string, cache: string): void {
-  res.writeHead(200, { 'content-type': TIPOS[extname(caminho)] ?? 'application/octet-stream', 'cache-control': cache, 'content-length': statSync(caminho).size });
-  createReadStream(caminho).pipe(res);
-}
+// arquivos com ETag (304 quando o navegador já tem), brotli/gzip calculado uma vez e intervalo de bytes (servidor/
+// http-arquivos.ts). O cliente compilado é comprimido logo ao subir.
+const arquivos = new Arquivos();
+if (existsSync(ESTATICOS)) for (const f of readdirSync(ESTATICOS, { recursive: true, withFileTypes: true })) if (f.isFile()) arquivos.preparar(join(f.parentPath, f.name));
+const arquivo = (req: IncomingMessage, res: ServerResponse, caminho: string, cache: string) => arquivos.arquivo(req, res, caminho, cache);
 
 async function lerCorpo(req: IncomingMessage, limite = 4096): Promise<string> {
   let s = '';
@@ -169,7 +166,8 @@ async function rotear(req: IncomingMessage, res: ServerResponse): Promise<void> 
   if (precisaSessao && !autenticado(req)) return json(res, 401, { erro: 'Entre com a senha do servidor' });
 
   if (p === '/api/decks') return json(res, 200, resumoDecks);
-  if (p === '/api/cartas') return json(res, 200, INFO);
+  // as informações das cartas (centenas de KB): o navegador revalida pelo ETag e só baixa de novo quando mudam
+  if (p === '/api/cartas') return arquivos.texto(req, res, INFO, 'application/json; charset=utf-8', 'private, no-cache');
   if (p === '/api/catalogo' || p.startsWith('/api/catalogo/')) {
     let corpo = '';
     if (req.method === 'POST') {
@@ -183,30 +181,31 @@ async function rotear(req: IncomingMessage, res: ServerResponse): Promise<void> 
   if (m) {
     const caminho = await imagens.carta(m[1], m[2] as 'frente' | 'verso', m[3] as Tamanho);
     if (!caminho) return json(res, 404, { erro: 'Imagem não encontrada' });
-    return arquivo(res, caminho, 'private, max-age=604800, immutable');
+    return arquivo(req, res,caminho, 'private, max-age=604800, immutable');
   }
   // arte do comandante: `arte` para a miniatura do deck, `fundo` (maior) para a área do jogador
   m = p.match(/^\/img\/([0-9a-f-]{36})\/(arte|fundo)$/);
   if (m) {
     const caminho = await imagens.arte(m[1], m[2] as 'arte' | 'fundo');
     if (!caminho) return json(res, 404, { erro: 'Imagem não encontrada' });
-    return arquivo(res, caminho, 'private, max-age=604800, immutable');
+    return arquivo(req, res,caminho, 'private, max-age=604800, immutable');
   }
   m = p.match(/^\/simbolo\/([A-Z0-9-]{1,12})$/);
   if (m) {
     const caminho = imagens.simbolo(m[1]);
     if (!caminho) return json(res, 404, { erro: 'Símbolo não encontrado' });
-    return arquivo(res, caminho, 'private, max-age=604800, immutable');
+    return arquivo(req, res,caminho, 'private, max-age=604800, immutable');
   }
   if (p.startsWith('/api/')) return json(res, 404, { erro: 'Rota desconhecida' });
 
   // cliente (página única)
   if (!existsSync(ESTATICOS)) { res.writeHead(503, { 'content-type': 'text/plain; charset=utf-8' }); res.end('Cliente não compilado: rode npm run cliente:build'); return; }
   const alvo = normalize(join(ESTATICOS, decodeURIComponent(p)));
-  if (alvo.startsWith(ESTATICOS) && existsSync(alvo) && statSync(alvo).isFile()) {
-    return arquivo(res, alvo, p.startsWith('/assets/') ? 'public, max-age=31536000, immutable' : 'no-cache');
+  // dentro da pasta (com o separador: "dist2" ao lado de "dist" não serve)
+  if (alvo.startsWith(ESTATICOS + sep) && existsSync(alvo) && statSync(alvo).isFile()) {
+    return arquivo(req, res,alvo, p.startsWith('/assets/') ? 'public, max-age=31536000, immutable' : 'no-cache');
   }
-  return arquivo(res, join(ESTATICOS, 'index.html'), 'no-cache');
+  return arquivo(req, res,join(ESTATICOS, 'index.html'), 'no-cache');
 }
 
 const http = createServer((req, res) => {
@@ -220,7 +219,9 @@ const http = createServer((req, res) => {
 // ---------------------------------------------------------------------------
 // WebSocket
 // ---------------------------------------------------------------------------
-const wss = new WebSocketServer({ noServer: true, maxPayload: 64 * 1024 });
+// permessage-deflate nas mensagens a partir de 1 KB: a vista da mesa (20 a 60 KB em JSON) cai umas 9 vezes com o
+// contexto mantido entre mensagens (as vistas seguidas são quase iguais); as pequenas (chat, batimento) vão cruas
+const wss = new WebSocketServer({ noServer: true, maxPayload: 64 * 1024, perMessageDeflate: { threshold: 1024 } });
 
 http.on('upgrade', (req, socket, head) => {
   const url = new URL(req.url ?? '/', 'http://x');
@@ -233,17 +234,27 @@ http.on('upgrade', (req, socket, head) => {
 });
 
 const vivos = new WeakMap<WebSocket, boolean>();
+wss.on('error', (e) => console.error('ws (servidor):', e));
 wss.on('connection', (ws: WebSocket) => {
   vivos.set(ws, true);
   ws.on('pong', () => vivos.set(ws, true));
+  // frame grande demais (maxPayload), frame malformado, conexão cortada: o ws fecha a conexão e avisa aqui. Sem este
+  // tratador o 'error' sem ouvinte virava exceção e derrubava o servidor inteiro
+  ws.on('error', (e) => console.error('ws (conexão):', e.message));
+  const enviarTexto = (texto: string) => { if (ws.readyState === ws.OPEN) ws.send(texto); };
   const con: Conexao = {
     sala: null, assento: null,
-    enviar(m: MsgServidor) { if (ws.readyState === ws.OPEN) ws.send(JSON.stringify(m)); },
+    enviar(m: MsgServidor) { enviarTexto(JSON.stringify(m)); },
+    enviarTexto,
   };
   ws.on('message', (dados) => {
     let m: MsgCliente;
     try { m = JSON.parse(String(dados)); } catch { con.enviar({ t: 'erro', msg: 'Mensagem inválida' }); return; }
-    try { gerente.tratar(con, m); } catch (e) { console.error('ws:', e); con.enviar({ t: 'erro', msg: 'Erro interno do servidor' }); }
+    try { gerente.tratar(con, m); } catch (e) {
+      console.error('ws:', e);
+      const de = tipoMsg(m);
+      con.enviar({ t: 'erro', msg: 'Erro interno do servidor', ...(de ? { de } : {}) });
+    }
   });
   ws.on('close', () => gerente.desconectar(con));
 });
@@ -262,12 +273,22 @@ setInterval(() => {
   }
 }, 30_000).unref();
 
-http.listen(PORTA, () => console.log(`Magic Commander: http://localhost:${PORTA}`));
+http.listen(PORTA, () => {
+  const a = http.address();
+  console.log(`Magic Commander: http://localhost:${a && typeof a === 'object' ? a.port : PORTA}`);
+});
 
 function encerrar(): void {
   http.close();
+  // chat, posições e retratos esperando a gravação agrupada
+  try { gerente.salvarTudo(); } catch (e) { console.error('gravar ao encerrar:', e); }
   banco.fechar();
   process.exit(0);
 }
 process.on('SIGINT', encerrar);
 process.on('SIGTERM', encerrar);
+// rede de segurança: um erro que escapou de todos os tratadores fica no registro e o servidor continua de pé (as
+// salas têm o próprio tratamento: a que falhou se refaz das entradas gravadas). abrir-mesa.ps1 religa o servidor se
+// mesmo assim ele cair.
+process.on('unhandledRejection', (e) => console.error('promessa rejeitada sem tratamento:', e));
+process.on('uncaughtException', (e) => console.error('exceção sem tratamento:', e));

@@ -27,6 +27,14 @@ class Falsa implements Conexao {
 
 const espera = (ms = 0) => new Promise((r) => setTimeout(r, ms));
 
+/** gerente com a semente fixa: a mesma mão em toda rodada (com a sorteada, algumas mãos levavam a outra decisão
+ * depois do terreno e os testes do desfazer falhavam de vez em quando) */
+function gerente(banco = new Banco(':memory:'), atrasos: Atrasos = SEM_ATRASO): Gerente {
+  const g = new Gerente(banco, DECKS, atrasos);
+  g.sementeFixa = 'fase8-desfazer';
+  return g;
+}
+
 /** sala de duas pessoas (Ana cria, Bruno entra) ou de Ana com um bot */
 function sala(g: Gerente, opts: { bruno?: boolean; auxilios?: 'permitidos' | 'proibidos' } = {}) {
   const ana = new Falsa();
@@ -99,7 +107,7 @@ function pedir(g: Gerente, p: Falsa) {
 
 describe('fase 8: regra de auxílios da sala', () => {
   it('só quem criou a sala escolhe; a regra aparece para todos e não muda com a partida em andamento', async () => {
-    const g = new Gerente(new Banco(':memory:'), DECKS, SEM_ATRASO);
+    const g = gerente();
     const { ana, bruno } = sala(g);
     expect(ana.ultima('sala')!.sala.auxilios).toBe('permitidos');
     g.tratar(bruno, { t: 'auxilios', regra: 'proibidos' });
@@ -114,7 +122,7 @@ describe('fase 8: regra de auxílios da sala', () => {
 
   it('sala sem auxílios: o servidor recusa o pagamento automático; com auxílios, aceita', async () => {
     for (const regra of ['proibidos', 'permitidos'] as const) {
-      const g = new Gerente(new Banco(':memory:'), DECKS, SEM_ATRASO);
+      const g = gerente();
       const { ana } = sala(g, { bruno: false, auxilios: regra });
       g.tratar(ana, { t: 'iniciar' });
       // Ana joga terrenos e conjura a primeira mágica que der; o pagamento é a decisão testada
@@ -143,7 +151,7 @@ describe('fase 8: regra de auxílios da sala', () => {
     // com auxílios (padrão), quem não tem nada para fazer nunca recebe a prioridade
     const semJogada = (d: Decision) => d.kind === 'priority' && d.actions.every((a) => a.kind === 'pass' || a.kind === 'mana' || a.kind === 'manual');
     for (const regra of ['permitidos', 'proibidos'] as const) {
-      const g = new Gerente(new Banco(':memory:'), DECKS, SEM_ATRASO);
+      const g = gerente();
       const { ana } = sala(g, { bruno: false, auxilios: regra });
       g.tratar(ana, { t: 'iniciar' });
       let viu = false;
@@ -158,7 +166,7 @@ describe('fase 8: regra de auxílios da sala', () => {
 describe('fase 8: desfazer com aceite da mesa', () => {
   it('aceito: a jogada volta, o banco é cortado e a partida retomada depois de reiniciar fica igual', async () => {
     const banco = new Banco(':memory:');
-    const g = new Gerente(banco, DECKS, SEM_ATRASO);
+    const g = gerente(banco);
     const { ana, bruno, codigo } = sala(g);
     pararSempre(g, [ana, bruno]);
     g.tratar(ana, { t: 'iniciar' });
@@ -192,7 +200,7 @@ describe('fase 8: desfazer com aceite da mesa', () => {
   }, 60000);
 
   it('recusado: nada muda e a mesa segue', async () => {
-    const g = new Gerente(new Banco(':memory:'), DECKS, SEM_ATRASO);
+    const g = gerente();
     const { ana, bruno } = sala(g);
     pararSempre(g, [ana, bruno]);
     g.tratar(ana, { t: 'iniciar' });
@@ -212,7 +220,7 @@ describe('fase 8: desfazer com aceite da mesa', () => {
 
   it('sem resposta no prazo: o pedido cai e nada muda', async () => {
     const atrasos: Atrasos = { ...SEM_ATRASO, prazoDesfazer: 40 };
-    const g = new Gerente(new Banco(':memory:'), DECKS, atrasos);
+    const g = gerente(new Banco(':memory:'), atrasos);
     const { ana, bruno } = sala(g);
     pararSempre(g, [ana, bruno]);
     g.tratar(ana, { t: 'iniciar' });
@@ -226,7 +234,7 @@ describe('fase 8: desfazer com aceite da mesa', () => {
   }, 60000);
 
   it('jogadas de outros depois da sua voltam junto, e o pedido mostra quais são', async () => {
-    const g = new Gerente(new Banco(':memory:'), DECKS, SEM_ATRASO);
+    const g = gerente();
     const { ana, bruno } = sala(g);
     // as duas pessoas param na fase principal do turno do outro, mesmo sem jogada (ajuste manual entra aqui)
     for (const p of [ana, bruno]) g.tratar(p, { t: 'paradas', paradas: { myTurn: ['main1'], othersTurn: ['main1'], stopOnOpponentStack: true, stopOnOwnStack: false, passUntilTurnEnds: null, skipWhenNothing: false } });
@@ -256,7 +264,7 @@ describe('fase 8: desfazer com aceite da mesa', () => {
   }, 60000);
 
   it('jogada de um turno que já passou não se desfaz; o pedido é recusado na hora', async () => {
-    const g = new Gerente(new Banco(':memory:'), DECKS, SEM_ATRASO);
+    const g = gerente();
     const { ana, bruno } = sala(g);
     pararSempre(g, [ana, bruno]);
     g.tratar(ana, { t: 'iniciar' });
@@ -269,7 +277,7 @@ describe('fase 8: desfazer com aceite da mesa', () => {
   }, 60000);
 
   it('contra bots: eles aceitam na hora e a jogada volta sem pedido aberto', async () => {
-    const g = new Gerente(new Banco(':memory:'), DECKS, SEM_ATRASO);
+    const g = gerente();
     const { ana } = sala(g, { bruno: false });
     pararSempre(g, [ana]);
     g.tratar(ana, { t: 'iniciar' });

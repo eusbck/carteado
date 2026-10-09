@@ -111,6 +111,64 @@ describe('chat da sala', () => {
     expect(volta.conversa().at(-1)).toMatchObject({ id: 3, de: 1, texto: 'voltei' });
   });
 
+  it('cada mensagem leva o id de autor de quem estava no assento; outra pessoa no mesmo assento tem outro', () => {
+    const { g, ana, bruno, codigo } = sala();
+    const idBruno = bruno.ultima('sala')!.quem;
+    expect(idBruno).toMatch(/^[\w-]{12}$/);
+    expect(idBruno).not.toBe(ana.ultima('sala')!.quem);
+    // o id não entrega o token
+    expect(idBruno).not.toBe(bruno.ultima('sala')!.token.slice(0, 12));
+    g.tratar(bruno, { t: 'chat', texto: 'sou o Bruno' });
+    expect(ana.conversa().at(-1)).toMatchObject({ de: 1, quem: idBruno, nome: 'Bruno' });
+    // quem volta pelo token continua com o mesmo id
+    const volta = new Falsa();
+    g.tratar(volta, { t: 'retomar', codigo, token: bruno.ultima('sala')!.token });
+    expect(volta.ultima('sala')!.quem).toBe(idBruno);
+    g.tratar(volta, { t: 'sair' });
+    const carla = new Falsa();
+    g.tratar(carla, { t: 'entrar', codigo, senhaSala: 'segredo', nome: 'Carla' });
+    expect(carla.ultima('sala')!.voce).toBe(1);
+    const idCarla = carla.ultima('sala')!.quem;
+    expect(idCarla).not.toBe(idBruno);
+    g.tratar(carla, { t: 'chat', texto: 'agora sou eu' });
+    expect(ana.conversa().map((m) => [m.de, m.quem, m.nome])).toEqual([[1, idBruno, 'Bruno'], [1, idCarla, 'Carla']]);
+  });
+
+  it('depois de uma partida encerrada, quem senta no assento escreve com o próprio nome', async () => {
+    const g = new Gerente(new Banco(':memory:'), DECKS, SEM_ATRASO);
+    const ana = new Falsa();
+    g.tratar(ana, { t: 'criar', nome: 'Ana', senhaSala: 'segredo', modo: '1v1' });
+    const codigo = ana.ultima('sala')!.sala.codigo;
+    const bruno = new Falsa();
+    g.tratar(bruno, { t: 'entrar', codigo, senhaSala: 'segredo', nome: 'Bruno' });
+    g.tratar(ana, { t: 'deck', deck: DECKS[0].id });
+    g.tratar(bruno, { t: 'deck', deck: DECKS[1].id });
+    g.tratar(ana, { t: 'iniciar' });
+    await new Promise((r) => setTimeout(r, 0));
+    g.tratar(bruno, { t: 'conceder' });
+    await new Promise((r) => setTimeout(r, 0));
+    expect(g.salas.get(codigo)!.game!.isOver()).toBe(true);
+    g.tratar(bruno, { t: 'sair' });
+    const carla = new Falsa();
+    g.tratar(carla, { t: 'entrar', codigo, senhaSala: 'segredo', nome: 'Carla' });
+    expect(carla.ultima('sala')!.voce).toBe(1);
+    g.tratar(carla, { t: 'chat', texto: 'oi' });
+    expect(ana.conversa().at(-1)).toMatchObject({ de: 1, nome: 'Carla', quem: carla.ultima('sala')!.quem });
+  });
+
+  it('mensagens gravadas antes do id de autor voltam sem autor depois de reiniciar', () => {
+    const { g, banco, ana, codigo } = sala();
+    g.tratar(ana, { t: 'chat', texto: 'antiga' });
+    const s = g.salas.get(codigo)!;
+    delete (s.d.chat![0] as Partial<MsgChat>).quem;
+    s.salvar();
+    const g2 = new Gerente(banco, DECKS, SEM_ATRASO);
+    g2.restaurar();
+    const volta = new Falsa();
+    g2.tratar(volta, { t: 'retomar', codigo, token: ana.ultima('sala')!.token });
+    expect(volta.conversa()).toMatchObject([{ texto: 'antiga', quem: '' }]);
+  });
+
   it('fora de uma sala não dá para escrever', () => {
     const g = new Gerente(new Banco(':memory:'), DECKS, SEM_ATRASO);
     const solta = new Falsa();

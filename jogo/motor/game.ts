@@ -5,7 +5,7 @@
 import { defaultAnswer, validateShape, type LiveDecision } from './ask.ts';
 import type { Gen } from './defs.ts';
 import { G } from './game-context.ts';
-import { createGameState, type DeckList } from './state.ts';
+import { cloneState, createGameState, type DeckList } from './state.ts';
 import { concede as doConcede, mainLoop } from './turn.ts';
 import type { Answer, Decision, GameConfig, GameState, PlayerId } from './types.ts';
 import './builtin.ts';
@@ -54,7 +54,9 @@ export class Game {
 
   /** retoma de um checkpoint (estado salvo numa decisão de prioridade) mais as entradas seguintes */
   static fromCheckpoint(cp: Checkpoint, decks: DeckList[], allInputs: Input[]): Game {
-    const state = structuredClone(cp.state);
+    // o checkpoint continua valendo (o servidor e os bots refazem dele de novo): a partida trabalha numa cópia, com a
+    // LKI compartilhada
+    const state = cloneState(cp.state);
     state.decisionSeq = Math.max(0, state.decisionSeq - 1); // a decisão pendente é refeita
     const game = new Game(state, decks, allInputs.slice(0, cp.inputIndex));
     for (const inp of allInputs.slice(cp.inputIndex)) game.applyInput(inp, true);
@@ -98,6 +100,8 @@ export class Game {
     this.applyInput({ t: 'concede', p: player }, false);
   }
 
+  // a entrada só entra na lista depois que o motor a aplicou: uma que derruba o motor (exceção no meio do passo) não
+  // fica gravada, e a partida se refaz das entradas que ficaram (o servidor faz isso: salas.ts, falha)
   private applyInput(inp: Input, replaying: boolean): void {
     if (inp.t === 'a') {
       if (!this.pending) throw new Error('Entrada sem decisão pendente');
@@ -105,15 +109,41 @@ export class Game {
         const err = this.check(inp.p, inp.a);
         if (err) throw new Error(`Reprodução divergiu: ${err}`);
       }
-      this.inputs.push(inp);
       this.step(inp.a);
-    } else {
       this.inputs.push(inp);
+    } else {
       doConcede(this.g, inp.p);
       // se a decisão pendente era de quem saiu, responde por ele (CR 800.4g-h)
       while (this.pending && this.state.players[this.pending.player]?.left) this.step(defaultAnswer(this.pending));
       if (this.state.gameOver) this.pending = null;
+      this.inputs.push(inp);
     }
+  }
+
+  /**
+   * Como replay e fromCheckpoint, mas para na primeira entrada que não dá para aplicar (uma partida salva com uma
+   * entrada que o motor de agora recusa ou que o derruba): devolve a partida até a última entrada boa, quantas
+   * entraram e o erro da seguinte. Um checkpoint que não dá para retomar é deixado de lado (refaz do começo); um com
+   * mais entradas do que as gravadas vale como antes (o estado dele manda: salas montadas nos testes).
+   */
+  static replayAteFalhar(config: GameConfig, decks: DeckList[], inputs: Input[], cp: Checkpoint | null = null): { game: Game; aplicadas: number; erro: Error | null } {
+    let base = cp;
+    let game: Game | null = null;
+    if (base) {
+      try { game = Game.fromCheckpoint(base, decks, inputs.slice(0, base.inputIndex)); } catch { base = null; }
+    }
+    game ??= Game.create(config, decks);
+    for (let k = game.inputs.length; k < inputs.length; k++) {
+      try {
+        game.applyInput(inputs[k], true);
+      } catch (e) {
+        // recusada antes de andar (divergiu, nada pendente): a partida está inteira na entrada k. O motor quebrou no
+        // meio do passo: o laço morreu com o estado pela metade, e a partida se refaz até a anterior
+        if (game.error) game = base ? Game.fromCheckpoint(base, decks, inputs.slice(0, k)) : Game.replay(config, decks, inputs.slice(0, k));
+        return { game, aplicadas: k, erro: e instanceof Error ? e : new Error(String(e)) };
+      }
+    }
+    return { game, aplicadas: inputs.length, erro: null };
   }
 
   isOver(): boolean {
@@ -123,7 +153,7 @@ export class Game {
   /** checkpoint possível só numa decisão de prioridade (o laço é retomável ali) */
   checkpoint(): Checkpoint | null {
     if (!this.pending || this.pending.kind !== 'priority') return null;
-    return { state: structuredClone(this.state), inputIndex: this.inputs.length };
+    return { state: cloneState(this.state), inputIndex: this.inputs.length };
   }
 
   /** cópia independente da partida, para simulação dos bots */

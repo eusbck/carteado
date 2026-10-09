@@ -317,6 +317,12 @@ export interface GameConfig {
    * troca a mão inteira por sete cartas novas, sem pôr nada no fundo, até MULLIGANS_LIVRES vezes)
    */
   mulligan?: 'londres' | 'livre';
+  /**
+   * desvirar à mão (ajuste manual) a própria permanente tira da reserva a mana que ela gerou e ainda está lá
+   * (motor/manual.ts). As partidas criadas antes dessa regra não têm a chave e desviram sem mexer na reserva, como
+   * quando foram jogadas: a reprodução delas pelas entradas gravadas não muda.
+   */
+  desvirarTiraMana?: boolean;
 }
 
 /** quantas vezes dá para trocar a mão no mulligan livre */

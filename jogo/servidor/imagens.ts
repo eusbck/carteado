@@ -5,13 +5,34 @@
 // feito para ele, vem de gerado/fundos. As cartas de decks importados pela tela Decks têm as imagens em pastas
 // extras (dados-locais/imagens/<id>/front.png).
 
+import { randomBytes } from 'node:crypto';
 import { existsSync, mkdirSync, readdirSync, statSync } from 'node:fs';
+import { rename, rm } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
 
-const LARGURAS = { p: 250, m: 520 } as const;
-export type Tamanho = keyof typeof LARGURAS | 'g';
+/** largura de cada tamanho: p (mão, mesa), m (mesa grande), g (zoom: a largura original, só convertida para WebP) */
+const LARGURAS = { p: 250, m: 520, g: null } as const;
+export type Tamanho = keyof typeof LARGURAS;
+
+/**
+ * Grava a imagem num arquivo temporário e só depois a põe no lugar (rename). Gravando direto no destino, um pedido
+ * simultâneo via o arquivo pela metade (existsSync já dava verdadeiro) e o navegador o guardava por 7 dias.
+ */
+async function gravar(destino: string, img: ReturnType<typeof sharp>): Promise<string> {
+  const tmp = `${destino}.${process.pid}-${randomBytes(4).toString('hex')}.tmp`;
+  try {
+    await img.toFile(tmp);
+    await rename(tmp, destino);
+  } catch (e) {
+    await rm(tmp, { force: true });
+    // outro processo pôs o arquivo no lugar ao mesmo tempo (Windows recusa trocar um arquivo aberto): vale o dele
+    if (existsSync(destino)) return destino;
+    throw e;
+  }
+  return destino;
+}
 
 export class Imagens {
   private simbolos = new Map<string, string>();
@@ -53,13 +74,15 @@ export class Imagens {
     if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/.test(id)) return null;
     const original = this.original(id, lado === 'frente' ? 'front.png' : 'back.png');
     if (!original) return null;
-    if (tam === 'g') return original;
     const destino = join(this.cache, `${id}-${lado}-${tam}.webp`);
     if (existsSync(destino)) return destino;
     const chave = destino;
     let p = this.gerando.get(chave);
     if (!p) {
-      p = sharp(original).resize({ width: LARGURAS[tam] }).webp({ quality: 82 }).toFile(destino).then(() => destino, (e) => { console.error('miniatura:', e); return null; });
+      // o zoom (g) era o PNG original (perto de 1 MB por carta); em WebP de alta qualidade fica uma fração disso
+      const largura = LARGURAS[tam];
+      const img = largura ? sharp(original).resize({ width: largura }).webp({ quality: 82 }) : sharp(original).webp({ quality: 90 });
+      p = gravar(destino, img).catch((e) => { console.error('miniatura:', e); return null; });
       this.gerando.set(chave, p);
       void p.finally(() => this.gerando.delete(chave));
     }
@@ -96,9 +119,8 @@ export class Imagens {
           const { width: w = 745, height: h = 1040 } = await img.metadata();
           img = img.extract({ left: Math.round(w * .08), top: Math.round(h * .12), width: Math.round(w * .84), height: Math.round(h * .35) });
         }
-        if (uso === 'fundo') await img.resize({ width: 2560, kernel: 'lanczos3' }).sharpen({ sigma: 0.8 }).webp({ quality: 86 }).toFile(destino);
-        else await img.resize({ width: 1000 }).webp({ quality: 80 }).toFile(destino);
-        return destino;
+        if (uso === 'fundo') return gravar(destino, img.resize({ width: 2560, kernel: 'lanczos3' }).sharpen({ sigma: 0.8 }).webp({ quality: 86 }));
+        return gravar(destino, img.resize({ width: 1000 }).webp({ quality: 80 }));
       })().catch((e) => { console.error('arte:', e); return null; });
       this.gerando.set(destino, p);
       void p.finally(() => this.gerando.delete(destino));
