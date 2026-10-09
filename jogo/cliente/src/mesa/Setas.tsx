@@ -25,14 +25,25 @@ function caminho(l: Linha): string {
   return `M${x1.toFixed(1)},${y1.toFixed(1)} Q${cx.toFixed(1)},${cy.toFixed(1)} ${x2.toFixed(1)},${y2.toFixed(1)}`;
 }
 
+/** as mesmas linhas (comparação campo a campo; o JSON.stringify de antes rodava a cada quadro) */
+function iguais(a: Linha[], b: Linha[]): boolean {
+  return a.length === b.length && a.every((l, i) => {
+    const m = b[i];
+    return l.x1 === m.x1 && l.y1 === m.y1 && l.x2 === m.x2 && l.y2 === m.y2 && l.tipo === m.tipo;
+  });
+}
+
+const alvoChave = (t: TargetRef) => (t.kind === 'player' ? `j${t.id}` : `o${t.id}`);
+
 export function Setas({ setas, versao }: { setas: Seta[]; versao: unknown }) {
   const svg = useRef<SVGSVGElement>(null);
   const [linhas, setLinhas] = useState<Linha[]>([]);
-  const chave = JSON.stringify(setas);
+  const chave = setas.map((s) => `${s.tipo[0]}${s.de}>${alvoChave(s.para)}`).join(' ');
   useLayoutEffect(() => {
-    if (!setas.length) { setLinhas([]); return; }
+    // sem setas: só limpa se ainda havia linhas (um [] novo a cada vista redesenhava a camada à toa)
+    if (!setas.length) { setLinhas((l) => (l.length ? [] : l)); return; }
     let quadro = 0;
-    let ultima = '';
+    let ultima: Linha[] | null = null;
     const ate = performance.now() + 600;
     const medir = () => {
       const base = svg.current?.getBoundingClientRect();
@@ -45,8 +56,7 @@ export function Setas({ setas, versao }: { setas: Seta[]; versao: unknown }) {
         const ra = a.getBoundingClientRect(), rb = b.getBoundingClientRect();
         ls.push({ x1: ra.left + ra.width / 2 - base.left, y1: ra.top + ra.height / 2 - base.top, x2: rb.left + rb.width / 2 - base.left, y2: rb.top + rb.height / 2 - base.top, tipo: s.tipo });
       }
-      const k = JSON.stringify(ls);
-      if (k !== ultima) { ultima = k; setLinhas(ls); }
+      if (!ultima || !iguais(ultima, ls)) { ultima = ls; setLinhas((atual) => (iguais(atual, ls) ? atual : ls)); }
       if (performance.now() < ate) quadro = requestAnimationFrame(medir);
     };
     medir();

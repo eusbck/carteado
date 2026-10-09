@@ -52,6 +52,17 @@ describe('avatares: catálogo', () => {
       expect((await sharp(arquivo).stats()).isOpaque, a.id).toBe(false);
     }
   });
+
+  it('cada retrato tem a cópia de 256 px para a mesa (ferramentas/avatares-mesa.ts), com transparência', async () => {
+    for (const a of AVATARES) {
+      const arquivo = join(import.meta.dirname, '..', 'cliente', 'src', 'imagens', 'avatares', 'mesa', `${a.id}.webp`);
+      expect(existsSync(arquivo), `${a.id}: rode node ferramentas/avatares-mesa.ts`).toBe(true);
+      const m = await sharp(arquivo).metadata();
+      expect([m.width, m.height], a.id).toEqual([256, 256]);
+      expect(m.hasAlpha, a.id).toBe(true);
+      expect((await sharp(arquivo).stats()).isOpaque, a.id).toBe(false);
+    }
+  });
 });
 
 describe('avatares: escolha no servidor', () => {

@@ -17,7 +17,7 @@ export function EscolhaRetrato({ atual, nome, cor, fechar }: { atual: string | n
       <div class="retratos">
         {CATALOGO.map((a) => (
           <button key={a.id} type="button" class={`retrato-opcao ${atual === a.id ? 'ativo' : ''}`} aria-pressed={atual === a.id} onClick={() => escolher(a.id)}>
-            <Avatar jogador={-1} avatar={a} vida={0} nome={a.nome} local tamanho={84} cor={cor} />
+            <Avatar jogador={-1} avatar={a} vida={0} nome={a.nome} local tamanho={84} cor={cor} retratoGrande />
             <b>{a.nome}</b>
             <small>{a.deck}</small>
           </button>

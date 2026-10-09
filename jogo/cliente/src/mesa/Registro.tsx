@@ -12,27 +12,55 @@ const LINHAS_DA_VISTA = 200;
 
 const normalizar = (s: string) => s.normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase();
 
-interface Linha { texto: string; regra?: string; manual: boolean; quem: number | null }
+interface Linha { id: number; texto: string; regra?: string; manual: boolean; quem: number | null }
+
+type EntradaLog = GameView['log'][number];
+interface Numeracao { log: EntradaLog[]; ids: number[]; prox: number }
+const mesma = (a: EntradaLog, b: EntradaLog) => a.turn === b.turn && a.text === b.text && a.rule === b.rule;
+
+/**
+ * Um número fixo para cada linha, para servir de chave: a vista traz só as últimas linhas, então a lista anda (as de
+ * cima saem, as novas entram embaixo) e a chave pela posição fazia cada linha receber o texto da vizinha (todas
+ * redesenhavam a cada linha nova). As linhas que continuam guardam o número; as novas ganham os seguintes.
+ */
+function numerar(antes: Numeracao | null, log: EntradaLog[]): Numeracao {
+  if (!antes) return { log, ids: log.map((_, i) => i), prox: log.length };
+  if (antes.log === log) return antes;
+  const a = antes.log;
+  // quantas saíram do começo: o menor k em que o resto da lista anterior é o começo da nova (k = tudo sempre serve)
+  for (let k = 0; ; k++) {
+    const n = Math.min(a.length - k, log.length);
+    let i = 0;
+    while (i < n && mesma(a[k + i], log[i])) i++;
+    if (i === n) return { log, ids: log.map((_, j) => (j < n ? antes.ids[k + j] : antes.prox + j - n)), prox: antes.prox + log.length - n };
+  }
+}
 
 export function Registro({ v, cor, fechar }: { v: GameView; cor: (p: number) => string; fechar: () => void }) {
   const [busca, setBusca] = useState('');
   const lista = useRef<HTMLDivElement>(null);
   const noFim = useRef(true);
 
+  const numeracao = useRef<Numeracao | null>(null);
+  const ids = useMemo(() => (numeracao.current = numerar(numeracao.current, v.log)).ids, [v.log]);
   const turnos = useMemo(() => {
     const termo = normalizar(busca.trim());
-    const grupos: { turno: number; linhas: Linha[] }[] = [];
-    for (const l of v.log) {
+    const grupos: { chave: string; turno: number; linhas: Linha[] }[] = [];
+    const vezes = new Map<number, number>();
+    v.log.forEach((l, k) => {
       const texto = traduzir(l.text);
-      if (termo && !normalizar(`${texto} ${l.rule ?? ''}`).includes(termo)) continue;
+      if (termo && !normalizar(`${texto} ${l.rule ?? ''}`).includes(termo)) return;
       const quem = v.players.find((p) => texto.startsWith(`${p.name} `) || texto.startsWith(`${p.name}:`))?.id ?? null;
-      const linha: Linha = { texto, regra: l.rule, manual: l.text.includes('(ajuste manual)'), quem };
+      const linha: Linha = { id: ids[k], texto, regra: l.rule, manual: l.text.includes('(ajuste manual)'), quem };
       const ultimo = grupos[grupos.length - 1];
-      if (ultimo?.turno === l.turn) ultimo.linhas.push(linha);
-      else grupos.push({ turno: l.turn, linhas: [linha] });
-    }
+      if (ultimo?.turno === l.turn) { ultimo.linhas.push(linha); return; }
+      // a chave do bloco é o turno (um turno que aparece de novo mais adiante ganha um sufixo)
+      const n = vezes.get(l.turn) ?? 0;
+      vezes.set(l.turn, n + 1);
+      grupos.push({ chave: n ? `${l.turn}-${n}` : String(l.turn), turno: l.turn, linhas: [linha] });
+    });
     return grupos;
-  }, [v.log, v.players, busca]);
+  }, [v.log, v.players, busca, ids]);
   const total = turnos.reduce((n, t) => n + t.linhas.length, 0);
 
   // abre no fim; com linhas novas, continua no fim se você estava lá
@@ -55,14 +83,14 @@ export function Registro({ v, cor, fechar }: { v: GameView; cor: (p: number) => 
       <div class="registro-lista" ref={lista} onScroll={rolou}>
         {v.log.length >= LINHAS_DA_VISTA && !busca.trim() && <p class="suave registro-nota">Mostrando as últimas {LINHAS_DA_VISTA} linhas da partida.</p>}
         {total === 0 && <p class="suave">{busca.trim() ? 'Nada encontrado.' : 'Nada aconteceu ainda.'}</p>}
-        {turnos.map((t, k) => (
-          <section key={`${t.turno}-${k}`} class="registro-turno-bloco">
+        {turnos.map((t) => (
+          <section key={t.chave} class="registro-turno-bloco">
             <h3>{t.turno === 0 ? 'Antes do 1º turno' : `Turno ${t.turno}`}</h3>
             <ol>
-              {t.linhas.map((l, i) => {
+              {t.linhas.map((l) => {
                 const nome = l.quem !== null ? v.players[l.quem].name : null;
                 return (
-                  <li key={i} class={l.manual ? 'manual' : ''}>
+                  <li key={l.id} class={l.manual ? 'manual' : ''}>
                     {nome ? <><b style={{ color: cor(l.quem!) }}>{nome}</b>{l.texto.slice(nome.length)}</> : l.texto}
                     {l.regra && <span class="regra"> (CR {l.regra})</span>}
                   </li>

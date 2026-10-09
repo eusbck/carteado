@@ -12,6 +12,11 @@
 // criar o contexto de áudio (o que deixaria aviso no console), e começa no primeiro gesto.
 // O estado fica em <html data-musica> ("esperando", "carregando", "tocando", "parada"), que as
 // capturas conferem.
+//
+// No modo Desempenho (Configurações) a faixa toca por um <audio loop>, ligado ao mesmo ganho (as
+// entradas, as saídas e o abafar continuam): o navegador decodifica aos poucos, sem guardar os
+// ~80 MB do AudioBuffer. A volta tem o silêncio do fim do arquivo; a emenda sem corte é do modo
+// padrão.
 
 import { useEffect } from 'preact/hooks';
 import arquivo from './musica/the-snow-queen.mp3?url';
@@ -47,8 +52,39 @@ const marcar = (e: Estado) => { if (typeof document !== 'undefined') document.do
 let pedidos = 0;
 let carregando: Promise<AudioBuffer | null> | null = null;
 let saida: GainNode | null = null;
-let laco: { fontes: Set<AudioBufferSourceNode>; timer: ReturnType<typeof setTimeout> | null } | null = null;
+/** o que está tocando: as voltas marcadas do AudioBuffer, ou (modo Desempenho) o <audio> com o ganho da entrada */
+let laco: { fontes: Set<AudioBufferSourceNode>; timer: ReturnType<typeof setTimeout> | null; elemento?: { el: Elemento; entrada: GainNode } } | null = null;
 let geracao = 0;
+
+/** o <audio> do modo Desempenho, ligado ao contexto uma vez só (createMediaElementSource não pode repetir) */
+interface Elemento { audio: HTMLAudioElement; fonte: MediaElementAudioSourceNode }
+let elemento: Elemento | null = null;
+function elementoDaMusica(c: AudioContext): Elemento {
+  if (!elemento || elemento.fonte.context !== c) {
+    const audio = new Audio(arquivo);
+    audio.loop = true;
+    audio.preload = 'auto';
+    elemento = { audio, fonte: c.createMediaElementSource(audio) };
+  }
+  return elemento;
+}
+
+/** modo Desempenho: o <audio> desde o começo, entrando devagar como a primeira volta do modo padrão */
+function comecarElemento(c: AudioContext, destino: AudioNode): void {
+  const el = elementoDaMusica(c);
+  const entrada = c.createGain();
+  entrada.gain.setValueAtTime(0, c.currentTime);
+  entrada.gain.linearRampToValueAtTime(1, c.currentTime + ENTRADA);
+  el.fonte.connect(entrada).connect(destino);
+  el.audio.currentTime = 0;
+  laco = { fontes: new Set(), timer: null, elemento: { el, entrada } };
+  const minha = geracao;
+  marcar('carregando');
+  el.audio.play().then(
+    () => { if (minha === geracao) marcar('tocando'); },
+    (e: unknown) => { console.warn('Música indisponível:', e); if (minha === geracao) marcar('parada'); },
+  );
+}
 
 function carregar(c: AudioContext): Promise<AudioBuffer | null> {
   carregando ??= fetch(arquivo)
@@ -138,7 +174,15 @@ function parar(): void {
     saida.gain.setTargetAtTime(0, c.currentTime, SAIDA / 4);
     const velha = saida;
     saida = null;
-    setTimeout(() => { for (const s of l.fontes) { try { s.stop(); } catch { /* já parou */ } } velha.disconnect(); }, SAIDA * 1000 + 200);
+    setTimeout(() => {
+      for (const s of l.fontes) { try { s.stop(); } catch { /* já parou */ } }
+      if (l.elemento) {
+        l.elemento.el.fonte.disconnect(l.elemento.entrada);
+        // a música pode ter voltado pelo mesmo <audio> durante a saída: aí ele continua
+        if (laco?.elemento?.el !== l.elemento.el) l.elemento.el.audio.pause();
+      }
+      velha.disconnect();
+    }, SAIDA * 1000 + 200);
   }
 }
 
@@ -148,9 +192,24 @@ function atualizar(): void {
   if (!pedidos || !p.musica || p.volumeMusica <= 0) { parar(); marcar('parada'); return; }
   const c = contexto();
   if (!c || c.state !== 'running') { marcar('esperando'); quandoLiberado(atualizar); return; }
+  const desempenho = p.desempenho === true;
   if (laco && saida) {
-    saida.gain.cancelScheduledValues(c.currentTime);
-    saida.gain.setTargetAtTime(ganhoDaMusica(p.volumeMusica), c.currentTime, 0.08);
+    if (!!laco.elemento === desempenho) {
+      saida.gain.cancelScheduledValues(c.currentTime);
+      saida.gain.setTargetAtTime(ganhoDaMusica(p.volumeMusica), c.currentTime, 0.08);
+      return;
+    }
+    // trocou o modo Desempenho com a música tocando: a de agora sai e a do outro jeito entra
+    parar();
+  }
+  if (desempenho) {
+    // a faixa decodificada (se havia) não é mais usada: fica para o coletor de lixo
+    carregando = null;
+    geracao++;
+    saida = c.createGain();
+    saida.gain.value = ganhoDaMusica(p.volumeMusica);
+    saida.connect(c.destination);
+    comecarElemento(c, saida);
     return;
   }
   const minha = ++geracao;
@@ -181,7 +240,8 @@ export function abafarMusica(segundos = 1.2): void {
 // liberado (o clique em "Entrar", no saguão), para a música já estar pronta quando a mesa abrir
 quandoLiberado(() => {
   const c = contexto();
-  if (c && preferencias().musica) void carregar(c);
+  // no modo Desempenho a faixa não é decodificada inteira (toca pelo <audio>)
+  if (c && preferencias().musica && !preferencias().desempenho) void carregar(c);
 });
 
 /** a mesa toca a música enquanto está na tela, com o volume e a chave das Configurações */
@@ -192,5 +252,5 @@ export function useMusica(): void {
     atualizar();
     return () => { pedidos--; atualizar(); };
   }, []);
-  useEffect(() => { atualizar(); }, [p.musica, p.volumeMusica]);
+  useEffect(() => { atualizar(); }, [p.musica, p.volumeMusica, p.desempenho]);
 }
