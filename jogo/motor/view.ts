@@ -129,6 +129,9 @@ export function objView(g: G, id: ObjId, viewer: PlayerId | null): ObjView {
     if (d?.text && !a.kw) abilityTexts.push(d.text);
   }
   const hiddenFaceDown = o.faceDown && !visible;
+  // virada para baixo fora do campo e da pilha (exílio: Abstract Performance) não tem características à vista; as do
+  // campo e da pilha são as de uma criatura 2/2 incolor sem nome (CR 708.2), que chars já dá e todos podem ver
+  const semCaracteristicas = hiddenFaceDown && o.zone !== 'battlefield' && o.zone !== 'stack';
   const byToughness = o.zone === 'battlefield' && !o.phasedOut && c.types.includes('Creature') ? damageByToughnessView(g, id) : undefined;
   return {
     id,
@@ -145,14 +148,14 @@ export function objView(g: G, id: ObjId, viewer: PlayerId | null): ObjView {
     counters: { ...o.counters },
     damage: o.damage,
     attachedTo: o.attachedTo,
-    types: hiddenFaceDown ? ['Creature'] : c.types,
+    types: semCaracteristicas ? [] : hiddenFaceDown ? ['Creature'] : c.types,
     subtypes: hiddenFaceDown ? [] : c.subtypes,
     supertypes: hiddenFaceDown ? [] : c.supertypes,
-    power: c.power,
-    toughness: c.toughness,
-    loyalty: c.loyalty,
+    power: semCaracteristicas ? null : c.power,
+    toughness: semCaracteristicas ? null : c.toughness,
+    loyalty: semCaracteristicas ? null : c.loyalty,
     manaCost: hiddenFaceDown ? '' : (c.manaCost ? formatCost(c.manaCost) : ''),
-    colors: c.colors,
+    colors: semCaracteristicas ? [] : c.colors,
     keywords: hiddenFaceDown ? [] : keywords,
     abilities: hiddenFaceDown ? [] : abilityTexts,
     commander: o.card !== null && !!g.state.cards[o.card]?.isCommander && visible,
@@ -170,11 +173,15 @@ function stackView(g: G, id: ObjId, viewer: PlayerId | null): StackView {
   const st = o.stack!;
   const targetName = (t: TargetRef) => (t.kind === 'player' ? g.state.players[t.id].name : g.state.objects[t.id] ? objView(g, t.id, viewer).name : '(já saiu)');
   if (st.kind === 'spell') {
+    // mágica virada para baixo (CR 708.4): só o controlador vê qual é
+    if (o.faceDown && !canSee(g, o, viewer)) return { id, kind: 'spell', controller: st.controller, name: 'Mágica virada para baixo', def: '', text: '', targets: st.targets.flat().map(targetName), x: st.x };
     const c = chars(g, id);
     return { id, kind: 'spell', controller: st.controller, name: c.name, def: o.copyOf?.def ?? o.def, text: '', targets: st.targets.flat().map(targetName), x: st.x };
   }
   const def = registry.abilities.get(st.abilityId ?? '');
   const src = g.state.objects[st.source ?? -1] ?? g.state.lki[st.source ?? -1]?.obj;
+  // fonte virada para baixo (manifestada…) que o espectador não pode ver: nem o nome nem a imagem dela
+  if (src?.faceDown && !canSee(g, src, viewer)) return { id, kind: st.kind, controller: st.controller, name: 'Virada para baixo', def: '', text: def?.text ?? '', targets: st.targets.flat().map(targetName), x: st.x };
   const srcName = src ? (g.state.objects[src.id] ? chars(g, src.id).name : g.state.lki[src.id]?.chars.name ?? '') : 'regra do jogo';
   return { id, kind: st.kind, controller: st.controller, name: srcName, def: src?.def ?? '', text: def?.text ?? '', targets: st.targets.flat().map(targetName), x: st.x };
 }
