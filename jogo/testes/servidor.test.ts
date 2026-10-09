@@ -119,6 +119,9 @@ describe('servidor: salas', () => {
     // "reinício": novo gerente com o mesmo banco
     const g2 = new Gerente(banco, DECKS, SEM_ATRASO);
     g2.restaurar();
+    // Ana pode ter perdido nas primeiras jogadas (e os bots terminado a partida): a encerrada é refeita quando alguém
+    // volta, não ao subir
+    g2.salas.get(codigo)!.garantirPartida();
     await espera();
     const depois = g2.salas.get(codigo)!.game!;
     expect(JSON.stringify(depois.state)).toBe(estadoAntes);
