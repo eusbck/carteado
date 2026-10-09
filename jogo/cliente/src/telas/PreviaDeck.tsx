@@ -1,20 +1,27 @@
 // Prévia de um deck no saguão, antes de escolher: o comandante, as cores e as cartas separadas por tipo. Passar o
 // mouse (ou o foco) numa carta mostra ela grande ao lado. A lista vem do servidor (/api/catalogo/<id>/cartas) e
-// fica guardada enquanto a página está aberta.
+// fica guardada enquanto a lista de decks da mesa for a mesma.
 
 import { useEffect, useState } from 'preact/hooks';
 import type { CartaCatalogo, DeckResumo, ListaDeck } from '../../../servidor/protocolo.ts';
 import { nomeCarta, urlArte } from '../cartas.ts';
 import { Janela } from '../Janela.tsx';
+import { useLoja } from '../loja.ts';
 import { Simbolos } from '../mesa/Simbolos.tsx';
 
-const guardadas = new Map<string, Promise<ListaDeck | null>>();
-function buscarLista(id: string): Promise<ListaDeck | null> {
-  let p = guardadas.get(id);
+/** as listas já buscadas, de uma geração da lista de decks da mesa: o servidor manda uma lista nova (mensagem 'decks')
+ * quando um deck é importado ou atualizado, e aí as guardadas não valem mais (antes a prévia continuava mostrando as
+ * cartas de antes da atualização até recarregar a página) */
+let guardadas = new Map<string, Promise<ListaDeck | null>>();
+let geracao: unknown = null;
+function buscarLista(id: string, decks: unknown): Promise<ListaDeck | null> {
+  if (decks !== geracao) { geracao = decks; guardadas = new Map(); }
+  const deste = guardadas;
+  let p = deste.get(id);
   if (!p) {
     p = fetch(`/api/catalogo/${encodeURIComponent(id)}/cartas`).then((r) => (r.ok ? r.json() as Promise<ListaDeck> : null)).catch(() => null);
-    p.then((l) => { if (!l) guardadas.delete(id); });
-    guardadas.set(id, p);
+    p.then((l) => { if (!l) deste.delete(id); });
+    deste.set(id, p);
   }
   return p;
 }
@@ -62,11 +69,13 @@ const imagem = (c: CartaCatalogo | null, tamanho: 'p' | 'm') => (c?.img ? `/img/
 export function PreviaDeck({ d, meu, escolher, fechar }: { d: DeckResumo; meu: boolean; escolher: () => void; fechar: () => void }) {
   const [lista, setLista] = useState<ListaDeck | null | 'carregando'>('carregando');
   const [destaque, setDestaque] = useState<CartaCatalogo | null>(null);
+  // a lista de decks da mesa: muda quando um deck é importado ou atualizado (a prévia aberta busca de novo)
+  const { decks } = useLoja();
   useEffect(() => {
     let vivo = true;
-    void buscarLista(d.id).then((l) => { if (vivo) setLista(l); });
+    void buscarLista(d.id, decks).then((l) => { if (vivo) setLista(l); });
     return () => { vivo = false; };
-  }, [d.id]);
+  }, [d.id, decks]);
   const arte = urlArte(d.comandante);
   const cores = d.cores.map((c) => `{${c}}`).join('');
   const total = lista && lista !== 'carregando' ? 1 + lista.cartas.reduce((s, c) => s + c.quantidade, 0) : null;
