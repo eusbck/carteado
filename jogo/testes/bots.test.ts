@@ -3,8 +3,11 @@ import { describe, expect, it, vi } from 'vitest';
 import { setup, type TestGame } from './harness.ts';
 import { escolher, ficaComMao, HeuristicBot, pagamentoManual } from '../bots/heuristico.ts';
 import { simular } from '../bots/simulacao.ts';
+import { memoriaVazia, observar } from '../bots/memoria.ts';
+import decksJson from './decks-teste.json' with { type: 'json' };
+import type { DeckList } from '../motor/state.ts';
 import { buildView } from '../motor/view.ts';
-import type { Game } from '../motor/game.ts';
+import { Game } from '../motor/game.ts';
 import { avaliar } from '../bots/avaliacao.ts';
 import { determinizar } from '../bots/simulacao.ts';
 import { seedFrom } from '../motor/rng.ts';
@@ -213,4 +216,33 @@ describe('bot heurístico', () => {
     expect(String(aviso.mock.calls[0][0])).toContain('40 ações');
     aviso.mockRestore();
   });
+});
+
+describe('memória da Cartomante', () => {
+  it('lê só o que é novo (registro e última informação conhecida) e dá o mesmo que reler tudo', () => {
+    const decks = [(decksJson as DeckList[])[0], (decksJson as DeckList[])[3]];
+    const game = Game.create({ seed: 'memoria', players: [{ name: 'Ana', deckId: decks[0].id }, { name: 'ROBSON', deckId: decks[1].id }], startingLife: 40, turnLimit: 30, multiplayer: false }, decks);
+    const bots = [0, 1].map((p) => new HeuristicBot(`m${p}`, p, { nivel: 'intermediario', simulacoes: 3 }));
+    const m = memoriaVazia();
+    let chaves: number[] = [];
+    let passos = 0;
+    for (let k = 0; k < 500 && game.pending && !game.isOver(); k++) {
+      const d = game.pending;
+      expect(game.answer(d.player, bots[d.player].answer(d, game)).ok).toBe(true);
+      // a mesma memória no formato antigo: relê o registro do começo e a LKI pela lista das chaves já lidas
+      const antiga = structuredClone(m);
+      delete antiga.bruto;
+      delete antiga.lkiAte;
+      antiga.lki = chaves;
+      observar(antiga, game.g, 1);
+      observar(m, game.g, 1);
+      const sem = (x: typeof m) => ({ ...x, bruto: 0, lkiAte: 0, lki: undefined });
+      expect(sem(antiga)).toEqual(sem(m));
+      expect(m.bruto).toBe(game.state.log.length);
+      expect(m.lki).toBeUndefined();
+      chaves = Object.keys(game.state.lki).map(Number);
+      passos++;
+    }
+    expect(passos).toBeGreaterThan(100);
+  }, 120000);
 });
