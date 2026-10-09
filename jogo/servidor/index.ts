@@ -8,6 +8,7 @@ import { randomBytes, timingSafeEqual } from 'node:crypto';
 import { createReadStream, existsSync, readFileSync, statSync, writeFileSync, mkdirSync } from 'node:fs';
 import { createServer, type IncomingMessage, type ServerResponse } from 'node:http';
 import { dirname, extname, join, normalize, resolve } from 'node:path';
+import { pipeline } from 'node:stream';
 import { fileURLToPath } from 'node:url';
 import { WebSocketServer, type WebSocket } from 'ws';
 import '../cartas/index.ts';
@@ -134,7 +135,8 @@ function json(res: ServerResponse, status: number, corpo: unknown, extra: Record
 
 function arquivo(res: ServerResponse, caminho: string, cache: string): void {
   res.writeHead(200, { 'content-type': TIPOS[extname(caminho)] ?? 'application/octet-stream', 'cache-control': cache, 'content-length': statSync(caminho).size });
-  createReadStream(caminho).pipe(res);
+  // erro de leitura no meio (arquivo apagado ou trocado): corta só esta resposta; sem o tratador, o erro derrubava o servidor
+  pipeline(createReadStream(caminho), res, (e) => { if (e && e.code !== 'ERR_STREAM_PREMATURE_CLOSE') console.error(`arquivo ${caminho}:`, e.message); });
 }
 
 async function lerCorpo(req: IncomingMessage, limite = 4096): Promise<string> {
@@ -233,9 +235,13 @@ http.on('upgrade', (req, socket, head) => {
 });
 
 const vivos = new WeakMap<WebSocket, boolean>();
+wss.on('error', (e) => console.error('ws (servidor):', e));
 wss.on('connection', (ws: WebSocket) => {
   vivos.set(ws, true);
   ws.on('pong', () => vivos.set(ws, true));
+  // frame grande demais (maxPayload), frame malformado, conexão cortada: o ws fecha a conexão e avisa aqui. Sem este
+  // tratador o 'error' sem ouvinte virava exceção e derrubava o servidor inteiro
+  ws.on('error', (e) => console.error('ws (conexão):', e.message));
   const con: Conexao = {
     sala: null, assento: null,
     enviar(m: MsgServidor) { if (ws.readyState === ws.OPEN) ws.send(JSON.stringify(m)); },
@@ -265,7 +271,10 @@ setInterval(() => {
   }
 }, 30_000).unref();
 
-http.listen(PORTA, () => console.log(`Magic Commander: http://localhost:${PORTA}`));
+http.listen(PORTA, () => {
+  const a = http.address();
+  console.log(`Magic Commander: http://localhost:${a && typeof a === 'object' ? a.port : PORTA}`);
+});
 
 function encerrar(): void {
   http.close();
@@ -274,3 +283,8 @@ function encerrar(): void {
 }
 process.on('SIGINT', encerrar);
 process.on('SIGTERM', encerrar);
+// rede de segurança: um erro que escapou de todos os tratadores fica no registro e o servidor continua de pé (as
+// salas têm o próprio tratamento: a que falhou se refaz das entradas gravadas). abrir-mesa.ps1 religa o servidor se
+// mesmo assim ele cair.
+process.on('unhandledRejection', (e) => console.error('promessa rejeitada sem tratamento:', e));
+process.on('uncaughtException', (e) => console.error('exceção sem tratamento:', e));

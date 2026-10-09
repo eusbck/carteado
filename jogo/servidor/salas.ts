@@ -453,7 +453,7 @@ export class Sala {
     this.salvar();
     // a vista sai no fim da condução (bots e passes automáticos), para ninguém ver uma
     // decisão que o servidor vai passar sozinho
-    void this.avancar();
+    this.seguir();
     return null;
   }
 
@@ -606,7 +606,7 @@ export class Sala {
     this.pedido = null;
     if (msg) this.avisar(msg);
     this.transmitir();
-    void this.avancar();
+    this.seguir();
   }
 
   private aplicarDesfazer(): void {
@@ -627,7 +627,7 @@ export class Sala {
     this.salvar();
     this.avisar(`${this.nome(p.de)} desfez: ${p.linhas[0]?.texto ?? 'a última jogada'}`);
     this.transmitir();
-    void this.avancar();
+    this.seguir();
   }
 
   private avisar(msg: string): void {
@@ -670,6 +670,12 @@ export class Sala {
     this.erro = msg;
     console.error(`[sala ${this.d.codigo}] erro do motor:`, e);
     for (const c of this.conexoes) c.enviar({ t: 'erro', msg: `Erro interno do motor: ${msg}. A partida foi salva até a última jogada válida.` });
+  }
+
+  /** conduz a partida sem esperar por ela. Um erro inesperado na condução (fora do motor: a vista, o bot, o banco)
+   * vira erro da sala, tratado como um erro do motor; sem o `.catch`, a promessa rejeitada derrubava o servidor */
+  seguir(): void {
+    this.avancar().catch((e) => this.falha(e));
   }
 
   /** bots respondem e passes automáticos acontecem até alguém humano precisar decidir */
@@ -767,7 +773,7 @@ export class Gerente {
       if (d.partida && d.estado !== 'espera') {
         try {
           s.criarGame(d.partida.checkpoint, this.banco.entradas(d.codigo) as Input[], this.banco.metas(d.codigo) as (MetaEntrada | null)[]);
-          void s.avancar();
+          s.seguir();
         } catch (e) {
           s.erro = e instanceof Error ? e.message : String(e);
           console.error(`[sala ${d.codigo}] não foi possível retomar a partida:`, e);

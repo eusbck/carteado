@@ -93,7 +93,12 @@ Remove-Item $logServidor, $logTunel -ErrorAction SilentlyContinue
 # HTTPS=1 so atras do tunel (cookie seguro); neste computador a pagina e http://localhost
 if ($cf) { $env:HTTPS = '1' }
 $env:PORTA = "$Porta"
-$servidor = Start-Process -FilePath node -ArgumentList 'servidor/index.ts' -WorkingDirectory $raiz -WindowStyle Hidden -PassThru -RedirectStandardOutput $logServidor -RedirectStandardError "$logServidor.err"
+function Iniciar-Servidor {
+  $p = Start-Process -FilePath node -ArgumentList 'servidor/index.ts' -WorkingDirectory $raiz -WindowStyle Hidden -PassThru -RedirectStandardOutput $logServidor -RedirectStandardError "$logServidor.err"
+  [void]$p.Handle # sem guardar o handle, o ExitCode sai vazio depois que o processo termina
+  $p
+}
+$servidor = Iniciar-Servidor
 $tunel = $null
 try {
   # espera o servidor responder
@@ -161,7 +166,29 @@ try {
 
   Start-Process "http://localhost:$Porta"
   Write-Host 'Deixe esta janela aberta durante a partida. Aperte Enter para fechar a mesa.'
-  [void](Read-Host)
+  # enquanto espera o Enter, vigia o servidor: se ele cair, sobe de novo na mesma porta (as partidas voltam do banco e
+  # o tunel continua o mesmo, com o mesmo endereco). O registro da queda fica em .cache\mesa-servidor-queda-N.log.
+  # Se cair 5 vezes em 2 minutos, para de tentar e avisa.
+  $quedas = @()
+  $n = 0
+  while ($true) {
+    $tecla = $false
+    try { while ([Console]::KeyAvailable) { if ([Console]::ReadKey($true).Key -eq 'Enter') { $tecla = $true } } }
+    catch { [void](Read-Host); $tecla = $true } # sem console interativo: so espera o Enter, como antes
+    if ($tecla) { break }
+    if ($servidor.HasExited) {
+      $n++
+      $agora = Get-Date
+      $quedas = @($quedas | Where-Object { ($agora - $_).TotalSeconds -lt 120 }) + $agora
+      Copy-Item $logServidor (Join-Path $cache "mesa-servidor-queda-$n.log") -ErrorAction SilentlyContinue
+      Copy-Item "$logServidor.err" (Join-Path $cache "mesa-servidor-queda-$n.log.err") -ErrorAction SilentlyContinue
+      if ($quedas.Count -ge 5) { Write-Host 'O servidor caiu 5 vezes em 2 minutos; a mesa vai fechar. Veja .cache\mesa-servidor-queda-*.log'; break }
+      Write-Host "$($agora.ToString('HH:mm:ss')) O servidor caiu (codigo $($servidor.ExitCode)); subindo de novo..."
+      for ($i = 0; $i -lt 20 -and (Get-NetTCPConnection -LocalPort $Porta -State Listen -ErrorAction SilentlyContinue); $i++) { Start-Sleep -Milliseconds 250 }
+      $servidor = Iniciar-Servidor
+    }
+    Start-Sleep -Milliseconds 500
+  }
 }
 finally {
   if ($tunel -and -not $tunel.HasExited) { Stop-Process -Id $tunel.Id -Force -ErrorAction SilentlyContinue }
