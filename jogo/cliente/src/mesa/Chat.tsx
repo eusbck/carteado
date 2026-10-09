@@ -14,18 +14,22 @@ const JUNTAS_MS = 2 * 60 * 1000;
 /** o que você estava escrevendo continua no campo se a barra recolher e abrir de novo */
 let rascunho = '';
 
-export const hora = (em: number) => new Date(em).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+/** um formatador só (toLocaleTimeString montava um a cada mensagem, a cada desenho do chat) */
+const FORMATO_HORA = new Intl.DateTimeFormat('pt-BR', { hour: '2-digit', minute: '2-digit' });
+export const hora = (em: number) => FORMATO_HORA.format(em);
 
 export function Chat({ msgs, eu, cor }: { msgs: MsgChat[]; eu: number; cor: (p: number) => string }) {
   const [texto, setTextoLocal] = useState(rascunho);
   const setTexto = (t: string) => { rascunho = t; setTextoLocal(t); };
   const lista = useRef<HTMLOListElement>(null);
-  // segue a conversa enquanto você está no fim dela; quem subiu para ler fica onde está
+  // segue a conversa enquanto você está no fim dela; quem subiu para ler fica onde está. Pela última mensagem, não
+  // pela contagem: com as 200 guardadas, a contagem para de mudar e a rolagem parava
   const noFim = useRef(true);
+  const ultima = msgs[msgs.length - 1]?.id;
   useLayoutEffect(() => {
     const el = lista.current;
     if (el && noFim.current) el.scrollTop = el.scrollHeight;
-  }, [msgs.length]);
+  }, [ultima]);
   const rolou = () => {
     const el = lista.current;
     if (el) noFim.current = el.scrollHeight - el.scrollTop - el.clientHeight < 24;
