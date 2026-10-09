@@ -295,10 +295,11 @@ describe('erro do motor: a sala se refaz', () => {
     expect(r.erro?.message).toBe('quebrou no meio');
     expect(r.game.error).toBeNull();
     expect(JSON.stringify(r.game.state)).toBe(esperado);
-    // e com um checkpoint que não serve (mais novo que as entradas), refaz do começo
-    const cp = s.game!.checkpoint() ?? { state: s.game!.state, inputIndex: entradas.length };
-    const r2 = Game.replayAteFalhar(config, decks, entradas.slice(0, k), { ...cp, inputIndex: entradas.length + 5 });
+    // e com um checkpoint que não dá para retomar (estado quebrado), refaz do começo
+    const quebrado = { state: {} as Game['state'], inputIndex: 2 };
+    const r2 = Game.replayAteFalhar(config, decks, entradas.slice(0, k), quebrado);
     expect(r2.aplicadas).toBe(k);
+    expect(JSON.stringify(r2.game.state)).toBe(esperado);
   }, 60000);
 });
 

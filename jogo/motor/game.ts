@@ -122,10 +122,11 @@ export class Game {
   /**
    * Como replay e fromCheckpoint, mas para na primeira entrada que não dá para aplicar (uma partida salva com uma
    * entrada que o motor de agora recusa ou que o derruba): devolve a partida até a última entrada boa, quantas
-   * entraram e o erro da seguinte. Um checkpoint que não vale mais é deixado de lado (refaz do começo).
+   * entraram e o erro da seguinte. Um checkpoint que não dá para retomar é deixado de lado (refaz do começo); um com
+   * mais entradas do que as gravadas vale como antes (o estado dele manda: salas montadas nos testes).
    */
   static replayAteFalhar(config: GameConfig, decks: DeckList[], inputs: Input[], cp: Checkpoint | null = null): { game: Game; aplicadas: number; erro: Error | null } {
-    let base = cp && cp.inputIndex <= inputs.length ? cp : null;
+    let base = cp;
     let game: Game | null = null;
     if (base) {
       try { game = Game.fromCheckpoint(base, decks, inputs.slice(0, base.inputIndex)); } catch { base = null; }
