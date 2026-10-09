@@ -9,8 +9,11 @@
     <link rel="icon" href="/favicon.png" type="image/png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- não bloqueia a página se a rede demorar: a fonte do sistema fica até a Inter chegar -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+    <!-- não bloqueia a página se a rede demorar: a fonte do sistema fica até a Inter chegar. Os pesos usados no
+         estilo.css: Cinzel em 700 e 800, Inter de 400 a 800; a JetBrains Mono (só o código da sala) usa 700, mas o
+         pedido fica com dois pesos: com um só, o Google manda outro arquivo (uma instância fixa em vez da fonte
+         variável) e o G sai um pouco diferente -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
   </head>
   <body>
     <div id="app"></div>
