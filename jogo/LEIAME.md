@@ -1,4 +1,4 @@
-# Commander da Mesa
+# Magic Commander
 
 Jogo de Commander online e privado para o grupo, com as regras aplicadas pelo servidor. Os decks
 vêm do Moxfield: os 7 primeiros foram coletados em `../cartas/`, e outros entram (ou são atualizados)
@@ -89,12 +89,17 @@ janela mostra o endereço `https://` e a senha de acesso para mandar ao grupo. D
      no meio da mesa. "Ver a mesa" recolhe a janela num cartão à direita; segurar Espaço esconde a
      janela por um momento.
    - "Configurações" também tem o volume dos efeitos, os sons (começo do seu turno, que chama
-     atenção; começo do turno de um adversário, mais discreto; dano; ganhar vida; cada um com um
-     botão para ouvir) e os efeitos visuais, que valem em qualquer sala, e a música de fundo, com
+     atenção; começo do turno de um adversário, mais discreto; dano; ganhar vida; mensagem no chat;
+     cada um com um botão para ouvir) e os efeitos visuais, que valem em qualquer sala, e a música de fundo, com
      volume próprio. A música começa ligada e baixa, e só toca depois do primeiro clique ou tecla na
      página (regra do navegador).
-   - O botão Registro esconde o registro da partida (a barra fica só com os ícones e a mesa mais
-     larga); a escolha fica guardada no navegador. As outras decisões (prioridade, pagamento,
+   - **Chat:** embaixo do menu da barra lateral. O que você escreve (Enter envia) todos na sala leem;
+     a conversa fica guardada com a sala, volta se a página recarregar ou o servidor reiniciar e
+     continua numa partida nova com a mesma mesa. "Recolher" deixa a barra só com os ícones e a mesa
+     mais larga (a escolha fica guardada no navegador); recolhida, cada mensagem nova aparece por uns
+     segundos na mesa (clicar abre o chat) e o botão de abrir mostra quantas você não leu.
+   - **Registro:** abre numa janela, como Paradas e Configurações: tudo o que aconteceu, separado por
+     turno, com a regra (CR) de cada linha e uma busca. As outras decisões (prioridade, pagamento,
      combate) aparecem à direita da mesa.
    - No saguão, quem criou a sala põe bots nos lugares livres e escolhe o nível de cada um:
      Iniciante, Fácil, Intermediário (padrão), Difícil, Cartomante ou Magic God. Cada bot ganha um

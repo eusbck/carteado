@@ -1,4 +1,4 @@
-/* Commander da Mesa: mesa escura com a arte do comandante de cada jogador ao fundo.
+/* Magic Commander: mesa escura com a arte do comandante de cada jogador ao fundo.
    Painéis de vidro fosco, botões de contorno colorido, verde para o que dá para fazer agora. */
 
 :root {
@@ -68,7 +68,7 @@ img { display: block; }
 .botao.icone { width: 36px; padding: 0; }
 .botao.acao { width: 100%; justify-content: flex-start; text-align: left; white-space: normal; flex-wrap: wrap; gap: 4px; padding: 6px 12px; }
 .botoes-linha { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
-input[type=text], input[type=password], input:not([type]), select {
+input[type=text], input[type=password], input[type=search], input:not([type]), select {
   background: rgba(255, 255, 255, .04); border: 1.5px solid var(--linha-forte); border-radius: 9px; padding: 9px 11px; width: 100%; color: var(--texto);
 }
 input:focus, select:focus { outline: none; border-color: var(--verde); }
@@ -94,7 +94,7 @@ label { display: grid; gap: 6px; color: var(--suave); font-size: 13px; font-weig
 }
 .janela { background: rgba(17, 19, 18, .92); border: 1px solid var(--linha-forte); border-radius: 20px; box-shadow: 0 30px 80px rgba(0, 0, 0, .6); backdrop-filter: blur(12px); }
 .marca-jogo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 14px; letter-spacing: .03em; white-space: nowrap; }
-.marca-jogo svg { width: 26px; height: 26px; flex: 0 0 auto; }
+.marca-jogo .marca-logo { height: 24px; width: auto; flex: 0 0 auto; filter: drop-shadow(0 1px 2px rgba(0, 0, 0, .6)); }
 .tela-estreita { width: min(820px, 100%); padding: 36px; display: grid; gap: 22px; }
 .tela-estreita.mini { width: min(420px, 100%); }
 .titulo { font-size: 30px; font-weight: 800; letter-spacing: -.01em; }
@@ -457,14 +457,37 @@ button.etapa:hover { background: rgba(34, 211, 107, .1); }
 .menu-lateral button:hover:not(:disabled), .menu-lateral button.ativo { background: rgba(255, 255, 255, .07); }
 .menu-lateral button:disabled { opacity: .35; cursor: default; }
 .menu-lateral svg { width: 19px; height: 19px; flex: 0 0 auto; }
-.registro { flex: 1; min-height: 0; margin: 6px 10px 10px; padding: 10px 12px; border-radius: 12px; background: var(--painel); border: 1px solid var(--linha); display: flex; flex-direction: column; }
-.registro h2 { font-size: 10.5px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--suave); margin-bottom: 8px; }
-.registro ol { list-style: none; margin: 0; padding: 0; overflow: auto; font-size: 12.5px; flex: 1; display: grid; align-content: start; gap: 4px; color: #cfd5d2; }
-.registro li.manual { color: var(--amarelo); }
-.registro-turno { display: inline-block; min-width: 20px; color: var(--apagado); font-family: var(--mono); font-size: 11px; }
+.menu-lateral .recolher { position: relative; }
+.nao-lidas { position: absolute; top: 3px; right: 6px; min-width: 17px; height: 17px; padding: 0 4px; border-radius: 9px; background: var(--verde); color: var(--verde-texto); font-size: 10.5px; font-weight: 800; line-height: 17px; text-align: center; box-shadow: 0 0 0 2px #060707; }
+/* chat da sala, embaixo do menu */
+.chat { flex: 1; min-height: 0; margin: 6px 10px 10px; padding: 10px 10px 10px 12px; border-radius: 12px; background: var(--painel); border: 1px solid var(--linha); display: flex; flex-direction: column; }
+.chat h2 { font-size: 10.5px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--suave); margin-bottom: 8px; }
+.chat ol { list-style: none; margin: 0; padding: 0 2px 0 0; overflow: auto; font-size: 12.5px; line-height: 1.4; flex: 1; display: grid; align-content: start; gap: 6px; color: #dfe4e1; overflow-wrap: anywhere; }
+.chat li.junta { margin-top: -4px; }
+.chat-quem { font-weight: 700; margin-right: 5px; }
+.chat-vazio { color: var(--apagado); font-size: 12px; line-height: 1.45; }
+.chat-escrever { display: flex; gap: 6px; margin-top: 8px; }
+.chat-escrever input { flex: 1; min-width: 0; height: 34px; padding: 0 10px; font-size: 12.5px; }
+.chat-enviar { flex: 0 0 34px; height: 34px; display: grid; place-items: center; border-radius: 9px; border: 1.5px solid var(--verde); background: var(--verde); color: var(--verde-texto); cursor: pointer; }
+.chat-enviar:disabled { background: transparent; border-color: var(--linha-forte); color: var(--apagado); cursor: default; }
+.chat-enviar svg { width: 15px; height: 15px; }
+/* mensagens que chegam com a barra recolhida (clicar abre o chat) */
+.avisos-chat { margin-top: 8px; }
+.aviso.aviso-chat { display: block; width: 100%; text-align: left; color: var(--texto); font: inherit; font-size: 12.5px; cursor: pointer; border-color: color-mix(in srgb, var(--cor) 55%, transparent); overflow-wrap: anywhere; }
+/* registro da partida (janela do menu) */
+.janela-caixa.registro-janela { width: min(760px, 100%); }
+.registro-janela .janela-corpo { overflow: hidden; }
+.registro-busca { display: flex; align-items: center; gap: 12px; }
+.registro-busca input { flex: 1; }
+.registro-busca .suave { white-space: nowrap; font-size: 12.5px; }
+.registro-lista { height: min(64vh, 620px); overflow: auto; padding-right: 6px; display: grid; align-content: start; gap: 14px; }
+.registro-nota { font-size: 12px; }
+.registro-turno-bloco h3 { position: sticky; top: 0; z-index: 1; padding: 4px 0 6px; background: var(--painel); font-size: 10.5px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--suave); border-bottom: 1px solid var(--linha); margin-bottom: 6px; }
+.registro-turno-bloco ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; font-size: 13px; line-height: 1.45; color: #cfd5d2; }
+.registro-turno-bloco li.manual { color: var(--amarelo); }
 .regra { color: var(--apagado); }
 .recolhida .lateral .marca-jogo { padding: 18px 0 6px; justify-content: center; }
-.recolhida .lateral .marca-jogo span, .recolhida .lateral-turno .rot, .recolhida .lateral-turno .vez, .recolhida .menu-lateral .rotulo, .recolhida .registro { display: none; }
+.recolhida .lateral .marca-jogo span, .recolhida .lateral-turno .rot, .recolhida .lateral-turno .vez, .recolhida .menu-lateral .rotulo { display: none; }
 .recolhida .lateral-turno strong { font-size: 22px; }
 .recolhida .menu-lateral { padding: 4px 8px; }
 .recolhida .menu-lateral button { justify-content: center; padding: 0; }

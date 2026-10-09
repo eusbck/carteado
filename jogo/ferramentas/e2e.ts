@@ -140,6 +140,13 @@ async function jogarAte(pessoas: Page[], ate: number, limiteMs = 240000): Promis
   throw new Error(`a partida não chegou ao turno ${ate} a tempo (está no ${await turno(pessoas[0])})`);
 }
 
+/** escreve no chat da barra lateral e envia com Enter */
+async function escrever(p: Page, texto: string): Promise<void> {
+  const campo = p.getByLabel('Mensagem para a mesa');
+  await campo.fill(texto);
+  await campo.press('Enter');
+}
+
 async function criarSala(anfitriao: Page, modo: '4p' | '1v1'): Promise<string> {
   if (modo === '1v1') await anfitriao.getByRole('button', { name: 'Um contra um' }).click();
   await anfitriao.locator('form').filter({ hasText: 'Criar sala' }).getByLabel('Senha da sala').fill('mesa-e2e');
@@ -181,6 +188,19 @@ try {
   const maoAna = await ana.locator('.mao-cartas .carta').count();
   const maoBruno = await bruno.locator('.mao-cartas .carta').count();
   verificar(maoAna === 7 && maoBruno === 7, 'cada um vê as próprias 7 cartas');
+  // chat: Ana escreve e Bruno lê na barra
+  await escrever(ana, 'oi Bruno, boa partida');
+  await bruno.locator('.chat li', { hasText: 'oi Bruno, boa partida' }).waitFor({ timeout: 10000 });
+  verificar(await bruno.locator('.chat .chat-quem', { hasText: 'Ana' }).isVisible() && await ana.locator('.chat .chat-quem', { hasText: 'Você' }).isVisible(), 'o chat chega ao outro navegador com o nome de quem escreveu');
+  // com a barra recolhida, a mensagem nova aparece por uns segundos e conta no botão de abrir
+  await bruno.getByRole('button', { name: 'Recolher a barra' }).click();
+  await escrever(ana, 'tudo certo aí?');
+  await bruno.locator('.aviso-chat', { hasText: 'tudo certo aí?' }).waitFor({ timeout: 10000 });
+  verificar((await bruno.locator('.nao-lidas').textContent()) === '1', 'com a barra recolhida, a mensagem nova aparece na mesa e conta no botão de abrir');
+  // (a janela da mão inicial cobre a mesa e o aviso, mas não a barra lateral)
+  await bruno.getByRole('button', { name: 'Abrir a barra' }).click();
+  await bruno.locator('.chat li', { hasText: 'tudo certo aí?' }).waitFor({ timeout: 5000 });
+  verificar(!(await bruno.locator('.nao-lidas').isVisible()) && !(await bruno.locator('.aviso-chat').isVisible()), 'abrir a barra mostra a mensagem no chat, zera a contagem e tira o aviso da mesa');
   await jogarAte([ana, bruno], 4);
   verificar(true, 'a partida 1v1 chegou ao turno 4 pela interface');
   // o turno só é lido com a mesa esperando uma pessoa decidir: com passes automáticos em andamento,
@@ -201,6 +221,7 @@ try {
   await bruno.getByText('Reconectando ao servidor').waitFor({ state: 'hidden', timeout: 30000 });
   await ana.locator('.turno-linha').waitFor({ timeout: 15000 });
   verificar((await turno(ana)) === antes, `a partida voltou no mesmo turno (${antes}) depois do reinício`);
+  verificar((await bruno.locator('.chat li').allTextContents()).join(' | ').includes('tudo certo aí?'), 'a conversa do chat volta depois do reinício do servidor');
   await jogarAte([ana, bruno], antes + 2);
   verificar(true, 'a partida continua depois do reinício');
   await ana.screenshot({ path: join(SAIDA, '1v1-ana.png') });
@@ -255,7 +276,10 @@ try {
   verificar(true, 'a partida de uma pessoa com três bots começa');
   await jogarAte([gil], 9, 900000);
   verificar(true, 'a partida com uma pessoa e três bots chegou ao turno 9 pela interface');
-  const registro = (await gil.locator('.registro').textContent()) ?? '';
+  // o registro abre numa janela do menu, como Paradas e Configurações
+  await gil.getByRole('button', { name: 'Registro', exact: true }).click();
+  const registro = (await gil.locator('.registro-lista').textContent({ timeout: 10000 })) ?? '';
+  await gil.keyboard.press('Escape');
   verificar(/Bot \d|joga |conjura /.test(registro) && (registro.match(/ joga /g) ?? []).length >= 3, 'os bots jogaram terrenos e mágicas pela vez deles');
   verificar((await gil.locator('.mao-cartas .carta').count()) > 0 && !(await gil.getByText('Erro interno do motor').isVisible().catch(() => false)), 'a pessoa continua vendo a própria mão e nenhum erro do motor apareceu');
   await gil.screenshot({ path: join(SAIDA, 'bots-gil.png') });

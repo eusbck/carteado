@@ -25,12 +25,13 @@ export const NIVEIS: { id: Nivel; nome: string; descricao: string }[] = [
 export type Auxilios = Record<Auxilio, boolean>;
 const NENHUM: Auxilios = { jogaveis: false, alvos: false, terrenos: false, avisos: false, pagarAuto: false };
 
-/** turnoMeu: começou o seu turno; turnoAdversario: começou o turno de outro jogador */
-export type Som = 'turnoMeu' | 'turnoAdversario' | 'dano' | 'vida';
+/** turnoMeu: começou o seu turno; turnoAdversario: começou o turno de outro jogador; chat: mensagem de outra pessoa */
+export type Som = 'turnoMeu' | 'turnoAdversario' | 'dano' | 'vida' | 'chat';
 
 export interface Preferencias {
   nivel: Nivel;
-  /** registro da partida à vista (sem valor: segue a barra da fase 7); veja registroVisivel() */
+  /** barra lateral aberta, com o chat (sem valor: segue a barra da fase 7); veja barraAberta(). O nome é de quando
+   * a barra mostrava o registro da partida, que hoje abre numa janela */
   registro?: boolean;
   /** as caixas do nível Personalizado */
   personalizado: Auxilios;
@@ -45,7 +46,7 @@ export interface Preferencias {
 }
 
 const CHAVE = 'commander-da-mesa:preferencias';
-const PADRAO: Preferencias = { nivel: 'real', personalizado: { ...NENHUM }, volume: 0.7, sons: { turnoMeu: true, turnoAdversario: true, dano: true, vida: true }, musica: true, volumeMusica: 0.4, efeitos: true };
+const PADRAO: Preferencias = { nivel: 'real', personalizado: { ...NENHUM }, volume: 0.7, sons: { turnoMeu: true, turnoAdversario: true, dano: true, vida: true, chat: true }, musica: true, volumeMusica: 0.4, efeitos: true };
 
 function ler(): Preferencias {
   try {
@@ -77,10 +78,10 @@ export function usePreferencias(): Preferencias {
   return atual;
 }
 
-/** onde a fase 7 guardava a barra lateral recolhida (recolhida = registro escondido) */
+/** onde a fase 7 guardava a barra lateral recolhida */
 const CHAVE_LATERAL_ANTIGA = 'commander-da-mesa:lateral-recolhida';
-/** o registro está à vista? Escondido, a barra lateral fica só com os ícones e a mesa ocupa o resto */
-export function registroVisivel(p: Preferencias): boolean {
+/** a barra lateral está aberta (com o chat)? Recolhida, ela fica só com os ícones e a mesa ocupa o resto */
+export function barraAberta(p: Preferencias): boolean {
   if (p.registro !== undefined) return p.registro;
   try { return localStorage.getItem(CHAVE_LATERAL_ANTIGA) !== '1'; } catch { return true; }
 }

@@ -26,6 +26,27 @@ Lista de verificação das fases. É por aqui que uma sessão nova retoma o trab
 - 08/10/2026 (noite): o verso das cartas (mão dos oponentes, grimório, cartas viradas para baixo) passa a ser o verso
   clássico do Magic enviado pelo Caio (`cliente/src/imagens/verso.webp`, 500×698, sem a borda preta da imagem original),
   no lugar do verso desenhado em CSS.
+- 08/10/2026 (noite, continuação), pedidos na conversa:
+  - o nome na tela passa a ser **Magic Commander** (título da página, barra lateral, entrada, início e Decks; LEIAME,
+    README, HOSPEDAGEM e a linha do servidor). As chaves do navegador (`commander-da-mesa:*`) e o nome do pacote ficam
+    como estavam, para ninguém perder a sala e as preferências guardadas;
+  - o ícone é o "M" do logo clássico do Magic, recortado do verso da carta (`cliente/src/imagens/logo-m.png` na marca e
+    `cliente/public/favicon.png`, no lugar do `favicon.svg`);
+  - o **Registro** virou uma janela do menu, como Paradas e Configurações (`cliente/src/mesa/Registro.tsx`): separado
+    por turno, com a regra de cada linha, nome de quem jogou na cor do jogador e uma busca;
+  - no lugar dele, na barra lateral, um **chat** da sala (`cliente/src/mesa/Chat.tsx`; mensagens `chat` no protocolo).
+    O servidor guarda as últimas 200 mensagens com a sala (sobrevivem a reiniciar e continuam numa partida nova),
+    manda a conversa inteira a quem entra ou volta, limpa o texto (uma linha, até 280 caracteres) e limita o ritmo
+    (5 mensagens a cada 5 s por pessoa). Barra recolhida: cada mensagem nova aparece por 6 s na mesa (clicar abre o
+    chat) e o botão de abrir mostra quantas não foram lidas. Som novo "mensagem no chat" nas Configurações.
+    "Recolher" é agora o único botão que recolhe a barra (antes era o Registro); a preferência guardada é a mesma.
+  - testes: `testes/chat.test.ts` (entrega, conversa para quem entra, texto limpo, ritmo, 200 guardadas, reinício);
+    `ferramentas/e2e.ts` confere o chat entre dois navegadores (com a barra recolhida e depois do reinício do
+    servidor) e lê o registro pela janela; `ferramentas/capturas.ts` fotografa o chat, a janela do registro (com a
+    busca) e a barra recolhida.
+  - verificado: `npm run typecheck` sem erros; `npx vitest run` com 657 arquivos e 1776 testes passando;
+    `node ferramentas/e2e.ts` passou inteiro; `CAPTURAS_SO=janelas node ferramentas/capturas.ts` passou, com as
+    capturas novas (44 a 44d) conferidas.
 
 ## Fase 0: exploração e proposta
 

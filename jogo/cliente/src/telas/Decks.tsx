@@ -208,7 +208,7 @@ export function Decks() {
     <div class="tela-fundo">
       <main class="janela cat-tela">
         <header class="cat-topo">
-          <div class="marca-jogo"><Marca /><span>COMMANDER DA MESA</span></div>
+          <div class="marca-jogo"><Marca /><span>MAGIC COMMANDER</span></div>
           <button class="botao fantasma" onClick={() => loja.voltarDoCatalogo()}>Voltar</button>
         </header>
         <div class="cat-titulo">

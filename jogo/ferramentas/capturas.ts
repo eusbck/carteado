@@ -916,7 +916,7 @@ try {
   // --- fase 9: janelas de escolha, zoom e log ---
   // sala pronta (ferramentas/cenarios.ts, ORDEM): Ana atacou e ordena três gatilhos; depois, pelo ajuste
   // manual, a busca no grimório inteiro (grade), a janela recolhida e o Espaço; o zoom (pouco e muito
-  // texto); o registro escondido; alvos de uma Aura (cartas grandes); sim ou não (comandante); a vidência
+  // texto); o chat, a janela do registro e a barra recolhida; alvos de uma Aura (cartas grandes); sim ou não (comandante); a vidência
   // e o descarte. Cada captura em 1920×1080 e 1280×800, conferida (posição, tamanho, nada cortado).
   if (!SO || SO === 'janelas') {
     const TELAS = [{ width: 1920, height: 1080 }, { width: 1280, height: 800 }];
@@ -1087,25 +1087,56 @@ try {
     await foto(pg, '43-zoom-muito-texto-1280x600');
     await pg.mouse.move(5, 5);
 
-    // registro escondido: a barra fica só com os ícones, a mesa ocupa o resto e a escolha fica guardada
+    // chat na barra lateral: escrever e ver a mensagem ali (a sala tem uma pessoa e bots: aparece como "Você")
     await tela(TELAS[0]);
-    const larguraMesa = await pg.locator('.tabuleiro').evaluate((e) => e.getBoundingClientRect().width);
+    for (const texto of ['boa noite, mesa!', 'alguém tem remoção para aquele dragão?']) {
+      await pg.getByLabel('Mensagem para a mesa').fill(texto);
+      await pg.getByLabel('Mensagem para a mesa').press('Enter');
+      await pg.locator('.chat li', { hasText: texto }).waitFor({ timeout: 5000 });
+    }
+    if (await pg.locator('.chat .chat-quem').count() !== 1) throw new Error('mensagens seguidas da mesma pessoa deviam ficar juntas, com o nome uma vez só');
+    for (const t of TELAS) {
+      await tela(t);
+      await conferirMesa(pg, `chat ${t.width}`);
+      await foto(pg, `44-chat-${t.width}`);
+    }
+
+    // registro da partida: abre numa janela do menu, como Paradas e Configurações, com a busca
+    await tela(TELAS[0]);
     await pg.getByRole('button', { name: 'Registro', exact: true }).click();
+    await pg.locator('.registro-janela').waitFor();
+    if (await pg.locator('.registro-turno-bloco').count() < 2) throw new Error('o registro devia separar as linhas por turno');
+    const fimDoRegistro = await pg.locator('.registro-lista').evaluate((e) => e.scrollHeight - e.scrollTop - e.clientHeight);
+    if (fimDoRegistro > 40) throw new Error(`o registro devia abrir no fim (faltam ${fimDoRegistro} px)`);
+    await foto(pg, '44b-registro-janela-1920');
+    await pg.getByLabel('Procurar no registro').fill('joga');
+    await pg.waitForTimeout(200);
+    const linhasBusca = await pg.locator('.registro-turno-bloco li').allTextContents();
+    if (!linhasBusca.length || linhasBusca.some((l) => !/joga/i.test(l))) throw new Error('a busca do registro devia deixar só as linhas com "joga"');
+    await foto(pg, '44c-registro-busca-1920');
+    await pg.keyboard.press('Escape');
+    await pg.locator('.registro-janela').waitFor({ state: 'hidden' });
+
+    // barra recolhida: fica só com os ícones (sem o chat), a mesa ocupa o resto e a escolha fica guardada
+    const larguraMesa = await pg.locator('.tabuleiro').evaluate((e) => e.getBoundingClientRect().width);
+    await pg.getByRole('button', { name: 'Recolher a barra', exact: true }).click();
     await pg.waitForTimeout(400);
     for (const t of TELAS) {
       await tela(t);
-      await conferirMesa(pg, `registro escondido ${t.width}`);
+      await conferirMesa(pg, `barra recolhida ${t.width}`);
       const lat = await pg.locator('.lateral').evaluate((e) => e.getBoundingClientRect().width);
-      if (lat > 70 || await pg.locator('.registro').isVisible()) throw new Error(`registro escondido, mas a barra tem ${lat} px`);
-      await foto(pg, `44-registro-escondido-${t.width}`);
+      if (lat > 70 || await pg.locator('.chat').isVisible()) throw new Error(`barra recolhida, mas ela tem ${lat} px`);
+      await foto(pg, `44d-barra-recolhida-${t.width}`);
     }
     await tela(TELAS[0]);
-    if (await pg.locator('.tabuleiro').evaluate((e) => e.getBoundingClientRect().width) <= larguraMesa) throw new Error('a mesa não cresceu com o registro escondido');
+    if (await pg.locator('.tabuleiro').evaluate((e) => e.getBoundingClientRect().width) <= larguraMesa) throw new Error('a mesa não cresceu com a barra recolhida');
     await pg.reload();
     await entrarNaMesa();
-    if (await pg.locator('.registro').isVisible()) throw new Error('o registro escondido não ficou guardado no navegador');
-    await pg.getByRole('button', { name: 'Registro', exact: true }).click();
-    await pg.locator('.registro').waitFor();
+    if (await pg.locator('.chat').isVisible()) throw new Error('a barra recolhida não ficou guardada no navegador');
+    await pg.getByRole('button', { name: 'Abrir a barra', exact: true }).click();
+    await pg.locator('.chat').waitFor();
+    // a conversa volta depois de recarregar a página (fica guardada na sala, no servidor)
+    await pg.locator('.chat li', { hasText: 'boa noite, mesa!' }).waitFor({ timeout: 5000 });
     await ateAPrioridade();
 
     // alvos: conjurar da mão uma carta que pede alvo; a janela mostra as cartas da mesa (e os jogadores) grandes

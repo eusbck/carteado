@@ -1,12 +1,14 @@
 // Ícones de linha (traço na cor do texto) e a marca do jogo.
 
 import type { JSX } from 'preact';
+import logoM from './imagens/logo-m.png?url';
 
 function Svg({ children }: { children: JSX.Element | JSX.Element[] }) {
   return <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{children}</svg>;
 }
 
 export const IconeRegistro = () => <Svg><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01" /></Svg>;
+export const IconeEnviar = () => <Svg><path d="m22 2-7 20-4-9-9-4 20-7Z" /><path d="M22 2 11 13" /></Svg>;
 export const IconeParadas = () => <Svg><path d="M7.86 2h8.28L22 7.86v8.28L16.14 22H7.86L2 16.14V7.86z" /><path d="M10 9v6M14 9v6" /></Svg>;
 export const IconeAjuste = () => <Svg><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" /></Svg>;
 export const IconeConfig = () => <Svg><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6" /></Svg>;
@@ -22,9 +24,5 @@ export const IconeEspada = () => <svg viewBox="0 0 24 24" fill="currentColor" ar
 export const IconeEscudo = () => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>;
 export const IconeVida = () => <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z" /></svg>;
 
-export const Marca = () => (
-  <svg viewBox="0 0 32 32" aria-hidden="true">
-    <rect x="5" y="6" width="15" height="21" rx="3" fill="#22d36b" opacity=".35" transform="rotate(-12 12 16)" />
-    <rect x="12" y="5" width="15" height="21" rx="3" fill="#22d36b" transform="rotate(8 19 15)" />
-  </svg>
-);
+/** o "M" do logo clássico do Magic, recortado do verso da carta */
+export const Marca = () => <img class="marca-logo" src={logoM} alt="" draggable={false} />;

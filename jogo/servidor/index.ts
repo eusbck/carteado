@@ -262,7 +262,7 @@ setInterval(() => {
   }
 }, 30_000).unref();
 
-http.listen(PORTA, () => console.log(`Commander da mesa: http://localhost:${PORTA}`));
+http.listen(PORTA, () => console.log(`Magic Commander: http://localhost:${PORTA}`));
 
 function encerrar(): void {
   http.close();

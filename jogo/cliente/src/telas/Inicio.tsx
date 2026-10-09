@@ -34,7 +34,7 @@ export function Inicio() {
     <div class="tela-fundo">
       <main class="janela tela-estreita">
         <header class="cat-topo">
-          <div class="marca-jogo"><Marca /><span>COMMANDER DA MESA</span></div>
+          <div class="marca-jogo"><Marca /><span>MAGIC COMMANDER</span></div>
           <button type="button" class="botao" onClick={() => void loja.abrirDecks()}>Decks</button>
         </header>
         <h1 class="titulo">Escolha sua mesa</h1>

@@ -5,9 +5,10 @@ import { useEffect, useState } from 'preact/hooks';
 import type { StopSettings } from '../../motor/autopass.ts';
 import type { Answer, ManualAction } from '../../motor/types.ts';
 import type { GameView } from '../../motor/view.ts';
-import type { DeckCatalogo, DeckResumo, MsgCliente, MsgServidor, PedidoDesfazer, Posicoes, SalaPublica, TarefaPublica } from '../../servidor/protocolo.ts';
+import type { DeckCatalogo, DeckResumo, MsgChat, MsgCliente, MsgServidor, PedidoDesfazer, Posicoes, SalaPublica, TarefaPublica } from '../../servidor/protocolo.ts';
 import { carregarCartas } from './cartas.ts';
 import { auxiliosAtivos, preferencias } from './preferencias.ts';
+import { tocar } from './sons.ts';
 
 export interface Estado {
   fase: 'carregando' | 'entrada' | 'inicio' | 'decks' | 'sala';
@@ -42,6 +43,8 @@ export interface Estado {
   minhaTarefa: number | null;
   /** o último estado dela: fica mesmo se outra pessoa começar outra importação logo depois */
   minhaTarefaEstado: TarefaPublica | null;
+  /** chat da sala (as mensagens guardadas no servidor e as que chegaram depois) */
+  chat: MsgChat[];
 }
 
 const CHAVE = 'commander-da-mesa:sala';
@@ -62,7 +65,7 @@ function guardarSala(v: { codigo: string; token: string } | null): void {
 }
 
 class Loja {
-  e: Estado = { fase: 'carregando', conectado: false, sala: null, voce: null, vista: null, paradas: null, posicoes: {}, reveladas: [], erro: null, decks: [], respondida: null, desfazivel: false, desfazer: null, avisos: [], recusa: 0, pensando: null, catalogo: null, tarefaDeck: null, minhaTarefa: null, minhaTarefaEstado: null };
+  e: Estado = { fase: 'carregando', conectado: false, sala: null, voce: null, vista: null, paradas: null, posicoes: {}, reveladas: [], erro: null, decks: [], respondida: null, desfazivel: false, desfazer: null, avisos: [], recusa: 0, pensando: null, catalogo: null, tarefaDeck: null, minhaTarefa: null, minhaTarefaEstado: null, chat: [] };
   private ouvintes = new Set<() => void>();
   private ws: WebSocket | null = null;
   private fila: MsgCliente[] = [];
@@ -238,6 +241,15 @@ class Loja {
       case 'pensando':
         this.mudar({ pensando: m.assento });
         break;
+      case 'chat': {
+        if (m.tudo) { this.mudar({ chat: m.msgs }); break; }
+        const vistas = new Set(this.e.chat.map((x) => x.id));
+        const novas = m.msgs.filter((x) => !vistas.has(x.id));
+        if (!novas.length) break;
+        this.mudar({ chat: [...this.e.chat, ...novas].slice(-200) });
+        if (novas.some((x) => x.de !== this.e.voce)) tocar('chat');
+        break;
+      }
       case 'decks':
         this.mudar({ decks: m.decks });
         break;
@@ -247,7 +259,7 @@ class Loja {
         break;
       case 'saiu':
         guardarSala(null);
-        this.mudar({ sala: null, voce: null, vista: null, fase: 'inicio' });
+        this.mudar({ sala: null, voce: null, vista: null, fase: 'inicio', chat: [] });
         break;
       case 'erro':
         // resposta a uma decisão que já mudou (clique atrasado): nada a avisar

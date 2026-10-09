@@ -1,4 +1,4 @@
-# Commander da Mesa
+# Magic Commander
 
 Jogo de Magic: The Gathering no formato Commander, online e privado, para o nosso grupo. O servidor
 aplica as regras, e os lugares vazios podem receber bots. Este repositório traz tudo o que é preciso

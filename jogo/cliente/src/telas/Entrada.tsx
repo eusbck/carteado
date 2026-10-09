@@ -11,7 +11,7 @@ export function Entrada() {
   return (
     <div class="tela-fundo">
       <main class="janela tela-estreita mini">
-        <div class="marca-jogo"><Marca /><span>COMMANDER DA MESA</span></div>
+        <div class="marca-jogo"><Marca /><span>MAGIC COMMANDER</span></div>
         <div>
           <h1 class="titulo">Mesa privada</h1>
           <p class="suave">Entre com a senha do servidor.</p>

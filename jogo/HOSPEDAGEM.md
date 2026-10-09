@@ -84,7 +84,7 @@ domínio. Exemplo de serviço (`/etc/systemd/system/commander.service`):
 
 ```
 [Unit]
-Description=Commander da Mesa
+Description=Magic Commander
 After=network.target
 
 [Service]

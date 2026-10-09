@@ -1,5 +1,5 @@
 // Sons curtos gerados na hora com Web Audio, sem arquivos: começo do seu turno, começo do turno de
-// um adversário, tomar dano e ganhar vida. O volume e cada som se ligam e desligam nas
+// um adversário, tomar dano, ganhar vida e mensagem no chat. O volume e cada som se ligam e desligam nas
 // Configurações. O contexto de áudio é o mesmo da música (cliente/src/musica.ts).
 //
 // Os dois sons de turno ficam em sol, o tom da música (The Snow Queen, sol menor), e são fáceis de
@@ -176,6 +176,10 @@ export function desenharSom(c: BaseAudioContext, mestre: AudioNode, som: Som, t:
       nota(c, mestre, 783.99, t, 0.22, 0.22, 'triangle');
       nota(c, mestre, 1046.5, t + 0.08, 0.26, 0.2, 'triangle');
       nota(c, mestre, 1318.5, t + 0.16, 0.34, 0.18, 'triangle');
+      break;
+    case 'chat': // dois toques curtos e baixos (sol, ré), como uma notificação discreta
+      nota(c, mestre, SOL5, t, 0.12, 0.14, 'sine');
+      nota(c, mestre, RE5 * 2, t + 0.07, 0.2, 0.12, 'sine');
       break;
   }
 }

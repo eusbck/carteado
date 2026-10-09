@@ -163,6 +163,17 @@ export interface PedidoDesfazer {
   totalMs: number;
 }
 
+/** uma mensagem do chat da sala (o nome fica gravado: quem senta depois no assento pode ter outro) */
+export interface MsgChat {
+  id: number;
+  /** assento de quem escreveu */
+  de: number;
+  nome: string;
+  texto: string;
+  /** quando chegou ao servidor (ms desde 1970) */
+  em: number;
+}
+
 export type MsgCliente =
   | { t: 'criar'; nome: string; senhaSala: string; modo: Modo }
   | { t: 'entrar'; codigo: string; senhaSala: string; nome: string }
@@ -187,7 +198,9 @@ export type MsgCliente =
   | { t: 'desfazerResposta'; aceitar: boolean }
   | { t: 'desfazerCancelar' }
   /** mostrar uma carta da sua mão a todos ou a alguns jogadores */
-  | { t: 'revelar'; obj: number; para: number[] | 'todos' };
+  | { t: 'revelar'; obj: number; para: number[] | 'todos' }
+  /** mensagem no chat da sala */
+  | { t: 'chat'; texto: string };
 
 /** posição escolhida para cada permanente, pelo id do objeto: [x, y] de 0 a 1 dentro da área de quem a controla */
 export type Posicoes = Record<string, [number, number]>;
@@ -206,4 +219,6 @@ export type MsgServidor =
   | { t: 'decks'; decks: DeckResumo[] }
   /** andamento de uma importação ou atualização de deck (null: nenhuma); `mudou`: o catálogo mudou */
   | { t: 'catalogo'; tarefa: TarefaPublica | null; mudou: boolean }
+  /** chat da sala: `tudo` traz a conversa guardada inteira (ao entrar ou voltar); sem ele, só as mensagens novas */
+  | { t: 'chat'; msgs: MsgChat[]; tudo?: boolean }
   | { t: 'erro'; msg: string };

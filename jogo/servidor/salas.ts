@@ -16,7 +16,7 @@ import { Pensadores } from './pensadores.ts';
 import { NOMES_BOTS } from './nomes.ts';
 import type { Banco } from './banco.ts';
 import { alvoDesfazer, linhasDesfeitas, reconstruir, type MetaEntrada } from './desfazer.ts';
-import type { LinhaDesfeita, Modo, MsgCliente, MsgServidor, PedidoDesfazer, Posicoes, RegraAuxilios, RegraMulligan, SalaPublica, TipoAssento } from './protocolo.ts';
+import type { LinhaDesfeita, Modo, MsgChat, MsgCliente, MsgServidor, PedidoDesfazer, Posicoes, RegraAuxilios, RegraMulligan, SalaPublica, TipoAssento } from './protocolo.ts';
 
 export interface Conexao {
   enviar(m: MsgServidor): void;
@@ -78,6 +78,8 @@ interface DadosSala {
   partida: DadosPartida | null;
   mulligan?: RegraMulligan;
   auxilios?: RegraAuxilios;
+  /** as últimas mensagens do chat (continuam numa partida nova e depois de reiniciar o servidor) */
+  chat?: MsgChat[];
 }
 
 interface Pedido {
@@ -126,6 +128,14 @@ function confereSenha(senha: string, guardada: string): boolean {
 }
 const novoToken = () => randomBytes(24).toString('base64url');
 const limparNome = (s: unknown) => (typeof s === 'string' ? s.replace(/\s+/g, ' ').trim().slice(0, 24) : '');
+
+/** chat: tamanho de uma mensagem, quantas a sala guarda e o ritmo (no máximo CHAT_RAJADA a cada CHAT_JANELA ms) */
+export const CHAT_TAMANHO = 280;
+const CHAT_GUARDADAS = 200;
+const CHAT_RAJADA = 5;
+const CHAT_JANELA = 5000;
+// uma linha só: quebras e caracteres de controle viram espaço
+const limparChat = (s: unknown) => (typeof s === 'string' ? s.replace(/[\u0000-\u001f\u007f\s]+/g, ' ').trim().slice(0, CHAT_TAMANHO) : '');
 const dorme = (ms: number) => (ms > 0 ? new Promise((r) => setTimeout(r, ms)) : Promise.resolve());
 
 function paradasValidas(p: unknown): StopSettings | null {
@@ -154,6 +164,8 @@ export class Sala {
   /** estado no começo dos últimos turnos (o desfazer refaz a partida a partir daqui) */
   private cps: Checkpoint[] = [];
   private pedido: Pedido | null = null;
+  /** hora das últimas mensagens de chat de cada assento (para o limite de ritmo) */
+  private ritmoChat = new Map<number, number[]>();
   erro: string | null = null;
 
   private gerente: Gerente;
@@ -220,6 +232,7 @@ export class Sala {
     c.sala = this;
     c.assento = assento;
     this.conexoes.add(c);
+    c.enviar({ t: 'chat', msgs: this.d.chat ?? [], tudo: true });
   }
 
   desligar(c: Conexao): void {
@@ -347,6 +360,22 @@ export class Sala {
         const o = g.state.objects[obj];
         const aviso: MsgServidor = { t: 'revelada', de: i, def: o.def, nome: o.def, para };
         for (const c of this.conexoes) if (c.assento === i || para === 'todos' || para.includes(c.assento!)) c.enviar(aviso);
+        return null;
+      }
+      case 'chat': {
+        const texto = limparChat(m.texto);
+        if (!texto) return null;
+        const agora = Date.now();
+        const recentes = (this.ritmoChat.get(i) ?? []).filter((t) => agora - t < CHAT_JANELA);
+        if (recentes.length >= CHAT_RAJADA) return 'Muitas mensagens seguidas: espere um pouco';
+        this.ritmoChat.set(i, [...recentes, agora]);
+        const chat = this.d.chat ??= [];
+        const msg: MsgChat = { id: (chat.at(-1)?.id ?? 0) + 1, de: i, nome: this.nome(i), texto, em: agora };
+        chat.push(msg);
+        if (chat.length > CHAT_GUARDADAS) chat.splice(0, chat.length - CHAT_GUARDADAS);
+        // fora da condução da partida: grava e entrega na hora, mesmo com a mesa parada
+        this.salvar();
+        for (const c of this.conexoes) if (c.assento !== null) c.enviar({ t: 'chat', msgs: [msg] });
         return null;
       }
       case 'posicao': {

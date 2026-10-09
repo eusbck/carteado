@@ -1,18 +1,19 @@
 // A mesa: as áreas dos jogadores (com a sua mão), a faixa de fases, a coluna com a pilha e a
-// decisão pendente, e a barra lateral retrátil com o registro. Na mesa real (padrão) a interface
-// não orienta: brilhos, avisos e pagamento automático são auxílios que cada um liga nas
-// Configurações (ou que a sala proíbe). As regras continuam no motor.
+// decisão pendente, e a barra lateral retrátil com o menu e o chat (o registro abre numa janela).
+// Na mesa real (padrão) a interface não orienta: brilhos, avisos e pagamento automático são
+// auxílios que cada um liga nas Configurações (ou que a sala proíbe). As regras continuam no motor.
 
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'preact/hooks';
 import type { StopSettings } from '../../../motor/autopass.ts';
 import type { Decision, ManualAction, ObjId, PaymentSource, PriorityAction, Step, TargetRef } from '../../../motor/types.ts';
 import type { GameView, ObjView, PlayerView } from '../../../motor/view.ts';
+import type { MsgChat } from '../../../servidor/protocolo.ts';
 import { nomeCarta, traduzir, urlFundo, urlImagem } from '../cartas.ts';
 import { IconeAjuste, IconeConceder, IconeRecolher as IconeSeta, IconeConfig, IconeDesfazer, IconeFimTurno, IconeParadas, IconePassar, IconeRecolher, IconeRegistro, IconeSair, Marca } from '../icones.tsx';
 import { loja, useLoja } from '../loja.ts';
 import { reservaPaga } from '../mana.ts';
 import { Janela } from '../Janela.tsx';
-import { AUXILIOS, auxiliosAtivos, auxiliosDoNivel, mudarPreferencias, NIVEIS, registroVisivel, usePreferencias, type Auxilios, type Preferencias } from '../preferencias.ts';
+import { AUXILIOS, auxiliosAtivos, auxiliosDoNivel, barraAberta, mudarPreferencias, NIVEIS, usePreferencias, type Auxilios, type Preferencias } from '../preferencias.ts';
 import { ETAPAS, FASES } from '../pt.ts';
 import { acompanharArrasto, dentro, mostrarFantasma, useFantasma } from './arrastar.ts';
 import { useMusica } from '../musica.ts';
@@ -20,6 +21,7 @@ import { AreaJogador, type EstadoCombate } from './AreaJogador.tsx';
 import { ConfigSom } from './ConfigSom.tsx';
 import { cliqueBloqueio, respostaBloqueio } from './bloqueio.ts';
 import { Carta, type Realce } from './Carta.tsx';
+import { Chat } from './Chat.tsx';
 import { Decisao, type EstadoUi } from './Decisao.tsx';
 import { ehEscolha } from './escolhas.ts';
 import { EscolhaRecolhida, JanelaEscolha } from './JanelaEscolha.tsx';
@@ -31,12 +33,13 @@ import { Manual, type PegarCarta, type Tipo as TipoManual } from './Manual.tsx';
 import { moverCartas, posicaoAoSoltar, selecionarArea, useArrumar, type NovaPosicao } from './mover.ts';
 import { semConfirmadas } from './posicionar.ts';
 import { Paradas } from './Paradas.tsx';
+import { Registro } from './Registro.tsx';
 import { avisoPrioridade } from './prioridade.ts';
 import { NIVEL_PADRAO, nomeNivel } from '../../../bots/niveis.ts';
 import { TextoComSimbolos } from './Simbolos.tsx';
 import { Zoom } from './Zoom.tsx';
 
-type Modal = { tipo: 'zona'; jogador: number; zona: 'graveyard' | 'exile' } | { tipo: 'paradas' } | { tipo: 'conceder' } | { tipo: 'config' } | { tipo: 'carta'; o: ObjView } | null;
+type Modal = { tipo: 'zona'; jogador: number; zona: 'graveyard' | 'exile' } | { tipo: 'paradas' } | { tipo: 'registro' } | { tipo: 'conceder' } | { tipo: 'config' } | { tipo: 'carta'; o: ObjView } | null;
 type ItemMenu =
   | { tipo?: 'acao'; id: string; label: string; fazer: () => void; legal?: boolean; desativado?: boolean }
   | { tipo: 'grupo'; id: string; label: string }
@@ -372,8 +375,8 @@ export function Mesa() {
   // posição que você acabou de escolher, até o servidor confirmar
   const [posLocal, setPosLocal] = useState<Record<string, [number, number]>>({});
   const pref = usePreferencias();
-  // registro escondido: a barra lateral fica só com os ícones e a mesa ocupa o resto (guardado no navegador)
-  const recolhida = !registroVisivel(pref);
+  // barra recolhida: fica só com os ícones (sem o chat) e a mesa ocupa o resto (guardado no navegador)
+  const recolhida = !barraAberta(pref);
   // janela de escolha recolhida para olhar a mesa (volta aberta a cada decisão nova)
   const [escolhaRecolhida, setEscolhaRecolhida] = useState(false);
   useEffect(() => { setEscolhaRecolhida(false); }, [d?.id]);
@@ -898,8 +901,20 @@ export function Mesa() {
 
   const oponentes = ordem.slice(1).map((p) => v.players[p]);
   const minha = v.players[eu];
-  const logRef = useRef<HTMLOListElement>(null);
-  useEffect(() => { const el = logRef.current; if (el) el.scrollTop = el.scrollHeight; }, [v.log.length, recolhida]);
+  // chat com a barra recolhida: conta as mensagens novas dos outros e mostra cada uma por alguns segundos
+  const ultimaChat = e.chat[e.chat.length - 1]?.id ?? 0;
+  const [lidaChat, setLidaChat] = useState(ultimaChat);
+  const [chatNovo, setChatNovo] = useState<MsgChat[]>([]);
+  useEffect(() => {
+    if (!recolhida) { setLidaChat(ultimaChat); setChatNovo([]); return; }
+    const novas = e.chat.filter((m) => m.id > lidaChat && m.de !== eu && !chatNovo.some((x) => x.id === m.id));
+    if (!novas.length) return;
+    setChatNovo((a) => [...a, ...novas].slice(-3));
+    const ids = new Set(novas.map((m) => m.id));
+    // sem limpar na próxima mensagem: cada uma some no seu tempo
+    setTimeout(() => setChatNovo((a) => a.filter((m) => !ids.has(m.id))), 6000);
+  }, [ultimaChat, recolhida]);
+  const naoLidas = recolhida ? e.chat.filter((m) => m.id > lidaChat && m.de !== eu).length : 0;
   const decisaoManual = d?.kind === 'priority' && d.actions.some((a) => a.kind === 'manual') ? d.id : null;
   // sem prioridade, o ajuste manual fecha (antes ele sumia e voltava sozinho na prioridade seguinte)
   useEffect(() => { if (decisaoManual === null) { setManualAberto(false); setManualTipo(undefined); setPegar(null); } }, [decisaoManual]);
@@ -918,6 +933,15 @@ export function Mesa() {
 
         <div class="coluna-dir">
           <Avisos v={v} cor={cor} doServidor={e.avisos} />
+          {recolhida && chatNovo.length > 0 && (
+            <div class="avisos avisos-chat" aria-live="polite">
+              {chatNovo.map((m) => (
+                <button key={m.id} type="button" class="aviso aviso-chat" style={{ '--cor': cor(m.de) }} title="Abrir o chat" onClick={() => recolher(false)}>
+                  <b>{m.nome}</b>: {m.texto}
+                </button>
+              ))}
+            </div>
+          )}
           {v.gameOver && (
             <div class="cartao fim">
               <p class="decisao-titulo">Fim de partida</p>
@@ -978,27 +1002,28 @@ export function Mesa() {
       </main>
 
       <aside class="lateral" aria-label="Menu da partida">
-        <div class="marca-jogo"><Marca /><span>COMMANDER DA MESA</span></div>
+        <div class="marca-jogo"><Marca /><span>MAGIC COMMANDER</span></div>
         <div class="lateral-turno" style={{ '--cor': cor(v.turn.active) }}>
           <span class="rot">Turno</span><strong>{v.turn.number || '–'}</strong>
           <span class="vez">{v.turn.number ? <>vez de <span>{v.players[v.turn.active].name}</span></> : 'antes do 1º turno'}</span>
           {salaProibe && <span class="selo-sala" title="Quem criou a sala proibiu os auxílios: todos jogam em Mesa real">Sala sem auxílios</span>}
         </div>
         <ul class="menu-lateral">
-          <li><button class={recolhida ? '' : 'ativo'} title={recolhida ? 'Mostrar o registro' : 'Esconder o registro (a mesa fica mais larga)'} aria-label="Registro" aria-pressed={!recolhida} onClick={() => recolher(!recolhida)}><IconeRegistro /><span class="rotulo">Registro</span></button></li>
+          <li><button title="Registro da partida" aria-label="Registro" onClick={() => setModal({ tipo: 'registro' })}><IconeRegistro /><span class="rotulo">Registro</span></button></li>
           <li><button title="Paradas" aria-label="Paradas" onClick={() => setModal({ tipo: 'paradas' })}><IconeParadas /><span class="rotulo">Paradas</span></button></li>
           <li><button title="Ajuste manual" aria-label="Ajuste manual" disabled={decisaoManual === null} onClick={() => setManualAberto(true)}><IconeAjuste /><span class="rotulo">Ajuste manual</span></button></li>
           <li><button title="Configurações" aria-label="Configurações" onClick={() => setModal({ tipo: 'config' })}><IconeConfig /><span class="rotulo">Configurações</span></button></li>
           {!v.gameOver && !minha.left && <li><button title="Conceder" aria-label="Conceder" onClick={() => setModal({ tipo: 'conceder' })}><IconeConceder /><span class="rotulo">Conceder</span></button></li>}
           <li><button title="Sair" aria-label="Sair" onClick={() => loja.enviar({ t: 'sair' })}><IconeSair /><span class="rotulo">Sair</span></button></li>
-          <li><button class="recolher" title={recolhida ? 'Abrir a barra' : 'Recolher a barra'} aria-label={recolhida ? 'Abrir a barra' : 'Recolher a barra'} onClick={() => recolher(!recolhida)}><IconeRecolher /><span class="rotulo">Recolher</span></button></li>
+          <li>
+            <button class="recolher" title={recolhida ? (naoLidas ? `Abrir a barra e o chat (${naoLidas} ${naoLidas === 1 ? 'mensagem nova' : 'mensagens novas'})` : 'Abrir a barra e o chat') : 'Recolher a barra (a mesa fica mais larga)'}
+              aria-label={recolhida ? 'Abrir a barra' : 'Recolher a barra'} onClick={() => recolher(!recolhida)}>
+              <IconeRecolher /><span class="rotulo">Recolher</span>
+              {naoLidas > 0 && <span class="nao-lidas" aria-label={`${naoLidas} ${naoLidas === 1 ? 'mensagem nova' : 'mensagens novas'} no chat`}>{naoLidas > 9 ? '9+' : naoLidas}</span>}
+            </button>
+          </li>
         </ul>
-        <section class="registro" aria-label="Registro da partida">
-          <h2>Registro</h2>
-          <ol ref={logRef}>
-            {v.log.map((l, i) => <li key={i} class={l.text.includes('(ajuste manual)') ? 'manual' : ''}><span class="registro-turno">{l.turn}</span> {traduzir(l.text)}{l.rule ? <span class="regra"> (CR {l.rule})</span> : null}</li>)}
-          </ol>
-        </section>
+        {!recolhida && <Chat msgs={e.chat} eu={eu} cor={cor} />}
       </aside>
     </div>
 
@@ -1029,6 +1054,8 @@ export function Mesa() {
     })()}
 
     {modal?.tipo === 'paradas' && e.paradas && <Paradas atual={e.paradas} fechar={() => setModal(null)} />}
+
+    {modal?.tipo === 'registro' && <Registro v={v} cor={cor} fechar={() => setModal(null)} />}
 
     {modal?.tipo === 'carta' && (
       <Janela titulo={nomeObj(modal.o.id)} classe="carta-info" fechar={() => setModal(null)}>
