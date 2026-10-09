@@ -12,8 +12,9 @@
 // - Combate: só o óbvio (Iniciante), regras fixas (Fácil, Intermediário) ou opções comparadas em simulação.
 // - Outras escolhas: heurísticas sobre o valor das cartas; do Difícil em diante, as opções são simuladas.
 
-import { canBlock } from '../motor/combat.ts';
-import { chars, controllerOf, hasKw, isCreature, isLand, manaValue, power, toughness } from '../motor/api.ts';
+import { canBlock, combatDamageAmount } from '../motor/combat.ts';
+import { chars, controllerOf, hasKw, isCreature, isLand, manaValue, toughness } from '../motor/api.ts';
+import { toxicValue } from '../motor/veneno-emblema.ts';
 import { defaultAnswer, validateShape, type LiveDecision } from '../motor/ask.ts';
 import type { Game } from '../motor/game.ts';
 import type { G } from '../motor/game-context.ts';
@@ -615,17 +616,7 @@ export function escolher(d: Decision, gameOuG: Game | G, eu: PlayerId, rng: RngS
     }
     case 'attackers': return atacar(d, g, eu, ok, rng, 0, false);
     case 'blockers': return bloquear(d, g, eu, ok);
-    case 'damage': {
-      const assign = d.recipients.map(() => 0);
-      let resto = d.amount;
-      for (let i = 0; i < d.recipients.length && resto > 0; i++) {
-        const n = i === d.recipients.length - 1 ? resto : Math.min(resto, d.lethal[i] || 1);
-        assign[i] = n;
-        resto -= n;
-      }
-      assign[assign.length - 1] += resto;
-      return { kind: 'damage', assign };
-    }
+    case 'damage': return { kind: 'damage', assign: distribuirDano(d, g) };
     case 'arrange': return arrumar(d, g, eu);
     case 'mulligan': {
       const mao = g.state.zones.hand[eu];
@@ -633,6 +624,29 @@ export function escolher(d: Decision, gameOuG: Game | G, eu: PlayerId, rng: RngS
       return { kind: 'mulligan', keep: d.mulligans >= 2 || (terrenos >= 2 && terrenos <= 5) };
     }
   }
+}
+
+/**
+ * Dano de um atacante bloqueado por mais de uma criatura (ou com atropelar). Com atropelar: dano letal em cada
+ * bloqueador e o resto no jogador (CR 702.19b). Sem: mata primeiro os bloqueadores mais valiosos que der, sem gastar
+ * dano em quem já tem dano letal (letal 0) nem em indestrutível; o que sobra vai para um que ainda não morre.
+ */
+function distribuirDano(d: D<'damage'>, g: G): number[] {
+  const assign = d.recipients.map(() => 0);
+  let resto = d.amount;
+  if (d.trample) {
+    for (let i = 0; i < assign.length - 1 && resto > 0; i++) { const n = Math.min(resto, d.lethal[i]); assign[i] = n; resto -= n; }
+    assign[assign.length - 1] += resto;
+    return assign;
+  }
+  const s = g.state;
+  const valor = (i: number) => { const r = d.recipients[i]; return r.kind === 'obj' && s.objects[r.id] ? valorPermanente(g, r.id) : 0; };
+  const mataveis = d.recipients.map((_, i) => i)
+    .filter((i) => { const r = d.recipients[i]; return d.lethal[i] > 0 && r.kind === 'obj' && !!s.objects[r.id] && !hasKw(g, r.id, 'indestructible'); })
+    .sort((a, b) => valor(b) - valor(a));
+  for (const i of mataveis) if (d.lethal[i] <= resto) { assign[i] = d.lethal[i]; resto -= d.lethal[i]; }
+  if (resto > 0 && assign.length) assign[mataveis.find((i) => assign[i] === 0) ?? mataveis[0] ?? 0] += resto;
+  return assign;
 }
 
 /** valor de uma carta minha na mão ou no grimório: terreno vale mais quando faltam terrenos; mágica, pelo custo e por
@@ -829,11 +843,69 @@ export function alternativas(d: Decision, g: G, eu: PlayerId, ok: (a: Answer) =>
 
 // ---------------------------------------------------------------- combate
 
+/** dano de combate de uma criatura num golpe (CR 510.1a: pela resistência com Felothar, Assault Formation e afins) */
+const danoGolpe = (g: G, id: ObjId): number => combatDamageAmount(g, id);
+/** dano de combate total, com golpe duplo (CR 702.4) */
+export const danoDe = (g: G, id: ObjId): number => danoGolpe(g, id) * (hasKw(g, id, 'double strike') ? 2 : 1);
+
 function mata(g: G, de: ObjId, em: ObjId): boolean {
-  const p = power(g, de);
+  const p = danoGolpe(g, de);
   if (p <= 0) return false;
   if (hasKw(g, em, 'indestructible')) return false;
-  return hasKw(g, de, 'deathtouch') || p >= toughness(g, em) - (g.state.objects[em].damage ?? 0);
+  return hasKw(g, de, 'deathtouch') || danoDe(g, de) >= toughness(g, em) - (g.state.objects[em].damage ?? 0);
+}
+
+/** é comandante (o dano de combate dele conta para os 21, CR 903.10a) */
+const ehComandante = (g: G, id: ObjId): boolean => { const c = g.state.objects[id]?.card; return c !== null && c !== undefined && !!g.state.cards[c]?.isCommander; };
+
+/**
+ * Os atacantes (com o dano que passa) matam o jogador `p`? Vida, 21 de dano do mesmo comandante (CR 903.10a) e 10
+ * marcadores de veneno pelo tóxico (CR 702.164, 704.5c).
+ */
+export function letal(g: G, p: PlayerId, passam: { a: ObjId; dano?: number }[]): boolean {
+  const j = g.state.players[p];
+  let vida = 0;
+  let veneno = 0;
+  for (const x of passam) {
+    const dano = x.dano ?? danoDe(g, x.a);
+    if (dano <= 0) continue;
+    vida += dano;
+    veneno += toxicValue(g, x.a);
+    const c = g.state.objects[x.a]?.card;
+    if (ehComandante(g, x.a) && (j.commanderDamage[String(c)] ?? 0) + dano >= 21) return true;
+  }
+  return vida >= j.life || (veneno > 0 && (j.counters.poison ?? 0) + veneno >= 10);
+}
+
+/** perigo de um atacante para o jogador `p` (para bloquear e para supor quem o defensor bloqueia) */
+function perigo(g: G, a: ObjId, p: PlayerId): number {
+  const j = g.state.players[p];
+  const dano = danoDe(g, a);
+  if (dano <= 0) return 0;
+  const c = g.state.objects[a]?.card;
+  let x = dano / Math.max(1, j.life);
+  if (ehComandante(g, a)) x += dano / Math.max(1, 21 - (j.commanderDamage[String(c)] ?? 0));
+  const tox = toxicValue(g, a);
+  if (tox) x += tox / Math.max(1, 10 - (j.counters.poison ?? 0));
+  return x;
+}
+
+/**
+ * Os atacantes que passam se o defensor `p` bloquear os mais perigosos com as criaturas que podem bloqueá-los
+ * (evasão e restrições pelo motor, canBlock; ameaça pede dois bloqueadores).
+ */
+function quemPassa(g: G, p: PlayerId, atacantes: ObjId[]): ObjId[] {
+  const s = g.state;
+  const livres = s.zones.battlefield.filter((b) => !s.objects[b].tapped && !s.objects[b].phasedOut && controllerOf(g, b) === p && isCreature(g, b));
+  const usados = new Set<ObjId>();
+  const passam: ObjId[] = [];
+  for (const a of [...atacantes].sort((x, y) => perigo(g, y, p) - perigo(g, x, p))) {
+    const n = hasKw(g, a, 'menace') ? 2 : 1;
+    const bs = livres.filter((b) => !usados.has(b) && canBlock(g, b, a));
+    if (bs.length >= n) for (const b of bs.slice(0, n)) usados.add(b);
+    else passam.push(a);
+  }
+  return passam;
 }
 
 const bloqueadoresDe = (g: G, p: PlayerId, atacante: ObjId) => g.state.zones.battlefield.filter((b) => !g.state.objects[b].tapped && !g.state.objects[b].phasedOut && controllerOf(g, b) === p && isCreature(g, b) && canBlock(g, b, atacante));
@@ -853,15 +925,12 @@ export function atacar(d: D<'attackers'>, g: G, eu: PlayerId, ok: (a: Answer) =>
     // nível Difícil em diante: quem está ganhando é o alvo preferido
     ameaca.set(p.id, mesa + 0.3 * p.life + atacouMe + (forca ? 0.5 * (forca.get(p.id) ?? 0) : 0));
   }
-  // ataque letal: se as criaturas que podem atacar um oponente passam da vida dele mesmo que ele bloqueie as mais
-  // fortes (um bloqueador para cada), ataca esse oponente com todas
-  const podeBloquear = (p: PlayerId) => s.zones.battlefield.filter((b) => !s.objects[b].tapped && !s.objects[b].phasedOut && controllerOf(g, b) === p && isCreature(g, b)).length;
+  // ataque letal: se as criaturas que podem atacar um oponente o matam mesmo que ele bloqueie as mais perigosas com o
+  // que pode bloqueá-las (vida, dano de comandante, veneno), ataca esse oponente com todas
   for (const p of s.players) {
     if (p.id === eu || p.left || p.lost) continue;
     const contra = d.candidates.filter((c) => c.targets.some((t, i) => t.kind === 'player' && t.id === p.id && !(c.costs?.[i] ?? 0)) && (!c.required?.length || c.required.some((t) => t.kind === 'player' && t.id === p.id)));
-    const forcas2 = contra.map((c) => Math.max(0, power(g, c.obj))).sort((a, b) => b - a);
-    const livre = forcas2.slice(podeBloquear(p.id)).reduce((t, n) => t + n, 0);
-    if (forcas2.length && livre >= p.life) {
+    if (contra.length && letal(g, p.id, quemPassa(g, p.id, contra.map((c) => c.obj)).map((a) => ({ a })))) {
       const todos: Answer = { kind: 'attackers', attacks: contra.map((c) => [c.obj, { kind: 'player', id: p.id }] as [ObjId, TargetRef]) };
       if (ok(todos)) return todos;
     }
@@ -869,14 +938,14 @@ export function atacar(d: D<'attackers'>, g: G, eu: PlayerId, ok: (a: Answer) =>
   // com pouca vida, segura uma parte das criaturas para bloquear
   const minhaVida = s.players[eu].life;
   let reserva = minhaVida <= 10 ? Math.ceil(d.candidates.length / 2) : 0;
-  const ordem = [...d.candidates].sort((a, b) => power(g, b.obj) - power(g, a.obj));
+  const ordem = [...d.candidates].sort((a, b) => danoDe(g, b.obj) - danoDe(g, a.obj));
   for (const c of ordem) {
     if (c.required?.length) {
       ataques.push([c.obj, [...c.required].sort((a, b) => vida(a) - vida(b))[0]]);
       continue;
     }
     const a = c.obj;
-    if (power(g, a) <= 0) continue;
+    if (danoGolpe(g, a) <= 0) continue;
     const vigilante = hasKw(g, a, 'vigilance');
     if (!vigilante && reserva > 0) { reserva--; continue; }
     // erro humano: esquece de atacar com esta criatura
@@ -896,7 +965,8 @@ export function atacar(d: D<'attackers'>, g: G, eu: PlayerId, ok: (a: Answer) =>
       if (!seguro) continue;
       const v = vida(t);
       let nota = (ameaca.get(def) ?? 0) + (bloqueadores.length === 0 ? 5 : 0);
-      if (v > 0 && v <= power(g, a)) nota += 60; // ataque que elimina (jogador ou planeswalker)
+      // ataque que elimina (jogador, pela vida, comandante ou veneno; planeswalker)
+      if (t.kind === 'player' ? letal(g, t.id, [{ a }]) : v > 0 && v <= danoDe(g, a)) nota += 60;
       if (t.kind === 'obj') nota -= 10;
       if (!melhor || nota > melhor.nota) melhor = { t, nota };
     }
@@ -913,7 +983,7 @@ function atacarObvio(d: D<'attackers'>, g: G, eu: PlayerId, ok: (a: Answer) => b
   const ataques: [ObjId, TargetRef][] = [];
   for (const c of d.candidates) {
     if (c.required?.length) { ataques.push([c.obj, c.required[0]]); continue; }
-    if (power(g, c.obj) <= 0 || next(rng) < esquece) continue;
+    if (danoGolpe(g, c.obj) <= 0 || next(rng) < esquece) continue;
     // óbvio: ninguém do outro lado pode bloquear esta criatura
     const livres = c.targets.filter((t, i) => t.kind === 'player' && !(c.costs?.[i] ?? 0) && bloqueadoresDe(g, t.id, c.obj).length === 0);
     if (!livres.length) continue;
@@ -924,10 +994,20 @@ function atacarObvio(d: D<'attackers'>, g: G, eu: PlayerId, ok: (a: Answer) => b
   return ok(resp) ? resp : defaultAnswer(d);
 }
 
+/** os atacantes que passam (com atropelar, o que sobra depois da resistência dos bloqueadores) */
+function passando(g: G, atacantes: ObjId[], blocks: [ObjId, ObjId][]): { a: ObjId; dano?: number }[] {
+  return atacantes.flatMap((a) => {
+    const meus = blocks.filter(([, x]) => x === a);
+    if (!meus.length) return [{ a }];
+    if (!hasKw(g, a, 'trample')) return [];
+    const barreira = meus.reduce((t, [b]) => t + Math.max(0, toughness(g, b) - (g.state.objects[b].damage ?? 0)), 0);
+    return [{ a, dano: Math.max(0, danoDe(g, a) - barreira) }];
+  });
+}
+
 export function bloquear(d: D<'blockers'>, g: G, eu: PlayerId, ok: (a: Answer) => boolean): Answer {
   const s = g.state;
-  const vida = s.players[eu].life;
-  const atacantes = [...d.attackers].filter((a) => s.objects[a]).sort((a, b) => power(g, b) - power(g, a));
+  const atacantes = [...d.attackers].filter((a) => s.objects[a]).sort((a, b) => danoDe(g, b) - danoDe(g, a));
   const usados = new Set<ObjId>();
   const blocks: [ObjId, ObjId][] = [];
   const podem = (a: ObjId) => d.candidates.filter((c) => c.canBlock.includes(a) && !usados.has(c.obj)).map((c) => c.obj);
@@ -943,17 +1023,16 @@ export function bloquear(d: D<'blockers'>, g: G, eu: PlayerId, ok: (a: Answer) =
     const b = bom ?? troca;
     if (b !== undefined) { blocks.push([b, a]); usados.add(b); bloqueado.add(a); }
   }
-  // não morrer: bloqueia os maiores com as criaturas menos valiosas (com ameaça, duas: CR 702.111b)
-  let entrando = atacantes.filter((a) => !bloqueado.has(a)).reduce((t, a) => t + Math.max(0, power(g, a)), 0);
-  for (const a of atacantes) {
-    if (entrando < vida) break;
+  // não morrer (vida, dano de comandante, veneno): bloqueia os mais perigosos com as criaturas menos valiosas (com
+  // ameaça, duas: CR 702.111b)
+  for (const a of [...atacantes].sort((x, y) => perigo(g, y, eu) - perigo(g, x, eu))) {
+    if (!letal(g, eu, passando(g, atacantes, blocks))) break;
     if (bloqueado.has(a)) continue;
     const cands = podem(a).sort((x, y) => valorPermanente(g, x) - valorPermanente(g, y));
     const n = hasKw(g, a, 'menace') ? 2 : 1;
     if (cands.length < n) continue;
     for (const b of cands.slice(0, n)) { blocks.push([b, a]); usados.add(b); }
     bloqueado.add(a);
-    if (!hasKw(g, a, 'trample')) entrando -= Math.max(0, power(g, a));
   }
   // bloqueios inválidos (ameaça com um bloqueador só etc.): fica com os de cada atacante que valem junto com os
   // anteriores. Antes tirava do fim da lista, e um bloqueio inválido no começo (o maior atacante vem primeiro)
@@ -969,7 +1048,7 @@ export function bloquear(d: D<'blockers'>, g: G, eu: PlayerId, ok: (a: Answer) =
 /** Iniciante: bloqueia para não morrer e, às vezes, quando o bloqueador mata e sobrevive */
 function bloquearObvio(d: D<'blockers'>, g: G, eu: PlayerId, ok: (a: Answer) => boolean, rng: RngState): Answer {
   const s = g.state;
-  const atacantes = [...d.attackers].filter((a) => s.objects[a]).sort((a, b) => power(g, b) - power(g, a));
+  const atacantes = [...d.attackers].filter((a) => s.objects[a]).sort((a, b) => danoDe(g, b) - danoDe(g, a));
   const usados = new Set<ObjId>();
   const blocks: [ObjId, ObjId][] = [];
   const podem = (a: ObjId) => d.candidates.filter((c) => c.canBlock.includes(a) && !usados.has(c.obj)).map((c) => c.obj);
@@ -978,15 +1057,13 @@ function bloquearObvio(d: D<'blockers'>, g: G, eu: PlayerId, ok: (a: Answer) => 
     const b = podem(a).find((b) => mata(g, b, a) && !mata(g, a, b));
     if (b !== undefined && next(rng) < 0.3) { blocks.push([b, a]); usados.add(b); }
   }
-  let entrando = atacantes.filter((a) => !blocks.some(([, x]) => x === a)).reduce((t, a) => t + Math.max(0, power(g, a)), 0);
   for (const a of atacantes) {
-    if (entrando < s.players[eu].life) break;
+    if (!letal(g, eu, passando(g, atacantes, blocks))) break;
     if (blocks.some(([, x]) => x === a)) continue;
     const cands = podem(a).sort((x, y) => valorPermanente(g, x) - valorPermanente(g, y));
     if (!cands.length) continue;
     blocks.push([cands[0], a]);
     usados.add(cands[0]);
-    entrando -= Math.max(0, power(g, a));
   }
   while (blocks.length) {
     const a: Answer = { kind: 'blockers', blocks: [...blocks] };
@@ -1011,18 +1088,18 @@ function opcoesDeAtaque(d: D<'attackers'>, g: G, eu: PlayerId, heur: Answer, lid
   const out: Answer[] = [heur, obrig];
   const todos: [ObjId, TargetRef][] = [];
   for (const c of d.candidates) {
-    if (power(g, c.obj) <= 0 && !c.required?.length) continue;
+    if (danoGolpe(g, c.obj) <= 0 && !c.required?.length) continue;
     const t = c.required?.length ? c.required[0] : alvoPadrao(c);
     if (t) todos.push([c.obj, t]);
   }
   out.push({ kind: 'attackers', attacks: todos });
   const h = heur.attacks;
-  const porForca = [...h].sort((a, b) => power(g, b[0]) - power(g, a[0]));
+  const porForca = [...h].sort((a, b) => danoDe(g, b[0]) - danoDe(g, a[0]));
   for (const x of porForca.slice(0, 3)) {
     if (d.candidates.find((c) => c.obj === x[0])?.required?.length) continue;
     out.push({ kind: 'attackers', attacks: h.filter((y) => y !== x) });
   }
-  const fora = todos.filter(([o]) => !h.some(([y]) => y === o)).sort((a, b) => power(g, b[0]) - power(g, a[0]));
+  const fora = todos.filter(([o]) => !h.some(([y]) => y === o)).sort((a, b) => danoDe(g, b[0]) - danoDe(g, a[0]));
   for (const x of fora.slice(0, 3)) out.push({ kind: 'attackers', attacks: [...h, x] });
   const vistas = new Set<string>();
   return out.filter((a) => { const k = JSON.stringify((a as Extract<Answer, { kind: 'attackers' }>).attacks.map(([o, t]) => `${o}>${t.kind}${t.id}`).sort()); if (vistas.has(k)) return false; vistas.add(k); return true; });
@@ -1034,7 +1111,7 @@ function opcoesDeBloqueio(d: D<'blockers'>, g: G, eu: PlayerId, heur: Answer): A
   const out: Answer[] = [heur, { kind: 'blockers', blocks: [] }];
   const h = heur.blocks;
   for (const x of h.slice(0, 4)) out.push({ kind: 'blockers', blocks: h.filter((y) => y !== x) });
-  const atacantes = [...d.attackers].filter((a) => g.state.objects[a]).sort((a, b) => power(g, b) - power(g, a));
+  const atacantes = [...d.attackers].filter((a) => g.state.objects[a]).sort((a, b) => danoDe(g, b) - danoDe(g, a));
   const usados = new Set(h.map(([b]) => b));
   for (const a of atacantes.slice(0, 2)) {
     // mais um bloqueador (o mais barato que sobra) no atacante

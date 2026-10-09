@@ -2,7 +2,8 @@
 // vida, mesa, quantidade de cartas na mão e no grimório, dano de comandante e veneno.
 // Fase 9: os níveis Difícil em diante pesam o papel das cartas (bots/papeis.ts) e, em 4 jogadores, quem está ganhando.
 
-import { chars, hasKw, isCreature, isLand, manaValue, power, toughness } from '../motor/api.ts';
+import { chars, hasKw, isCreature, isLand, manaValue, toughness } from '../motor/api.ts';
+import { combatDamageAmount } from '../motor/combat.ts';
 import type { G } from '../motor/game-context.ts';
 import type { ObjId, PlayerId } from '../motor/types.ts';
 import { papelDe } from './papeis.ts';
@@ -26,7 +27,8 @@ export function valorPermanente(g: G, id: ObjId, papeis = false): number {
   if (c.types.includes('Land') && !c.types.includes('Creature')) return 0; // terrenos contam no total de mana
   let v = 1 + 0.5 * manaValue(g, id);
   if (isCreature(g, id)) {
-    const p = Math.max(0, power(g, id));
+    // dano de combate (CR 510.1a: pela resistência com Felothar e afins), não só a força
+    const p = combatDamageAmount(g, id);
     const t = Math.max(0, toughness(g, id) - (o.damage ?? 0));
     v += 1.3 * p + 0.8 * t;
     for (const [kw, b] of Object.entries(PALAVRAS)) if (hasKw(g, id, kw)) v += b;

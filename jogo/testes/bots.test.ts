@@ -1,10 +1,11 @@
 // Bot heurístico: decisões básicas em situações montadas (terreno, remoção, ataque, bloqueio, escolhas forçadas).
 import { describe, expect, it } from 'vitest';
 import { setup, type TestGame } from './harness.ts';
-import { HeuristicBot } from '../bots/heuristico.ts';
+import { escolher, HeuristicBot } from '../bots/heuristico.ts';
 import { avaliar } from '../bots/avaliacao.ts';
 import { determinizar } from '../bots/simulacao.ts';
 import { seedFrom } from '../motor/rng.ts';
+import type { Answer, Decision } from '../motor/types.ts';
 
 /** o bot responde por `eu`; os outros passam ou usam a resposta padrão, até `parar` valer ou acabar o limite */
 function jogar(tg: TestGame, bot: HeuristicBot, parar: (tg: TestGame) => boolean, limite = 300): void {
@@ -90,5 +91,29 @@ describe('bot heurístico', () => {
     const todas = (s: typeof tg.state) => [...s.zones.hand[1], ...s.zones.library[1]].sort();
     expect(todas(f.state)).toEqual(todas(tg.state));
     expect(avaliar(f.g, 0)).toBeCloseTo(avaliar(tg.g, 0));
+  });
+
+  it('ataca com criatura de força 0 quando Felothar faz o dano ser pela resistência', () => {
+    const tg = setup({ battlefield: [[{ name: 'Felothar the Steadfast', ready: true }, { name: 'Nyx-Fleece Ram', ready: true }], []], library: [['Plains'], ['Plains']] });
+    const bot = new HeuristicBot('t', 0, { simulacoes: 4 });
+    jogar(tg, bot, (x) => x.state.turn.step === 'main2');
+    expect(tg.life(1)).toBe(30);
+  });
+
+  it('o ataque letal conta o dano de comandante (21), mesmo com pouca vida para segurar bloqueadores', () => {
+    const tg = setup({ battlefield: [[{ name: 'Glissa Sunslayer', ready: true, commander: true }, { name: 'Elvish Mystic', ready: true }], []], library: [['Plains'], ['Plains']] });
+    tg.state.players[0].life = 5;
+    tg.state.players[1].commanderDamage[String(tg.state.objects[tg.bf('Glissa Sunslayer')].card)] = 18;
+    tg.refresh();
+    const bot = new HeuristicBot('t', 0, { simulacoes: 4 });
+    jogar(tg, bot, (x) => x.state.turn.step === 'main2' || x.game.isOver(), 200);
+    expect(tg.state.gameOver?.winners).toEqual([0]);
+  });
+
+  it('não gasta dano de combate em bloqueador que já tem dano letal', () => {
+    const tg = setup({ battlefield: [['Glissa Sunslayer'], ['Elvish Mystic', 'Gau, Feral Youth']] });
+    const [m, gau] = [tg.bf('Elvish Mystic'), tg.bf('Gau, Feral Youth')];
+    const d: Decision = { kind: 'damage', id: 1, player: 0, prompt: 'Distribua 3 de dano', attacker: tg.bf('Glissa Sunslayer'), amount: 3, recipients: [{ kind: 'obj', id: m }, { kind: 'obj', id: gau }], lethal: [0, 3], trample: false };
+    expect((escolher(d, tg.g, 0, seedFrom('d'), false) as Extract<Answer, { kind: 'damage' }>).assign).toEqual([0, 3]);
   });
 });
