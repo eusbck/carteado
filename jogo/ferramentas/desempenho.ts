@@ -43,6 +43,11 @@ interface Medida {
   heapMb: number;
   nos: number;
   erros: number;
+  /** elementos vivos no documento, cartas à vista e turno da partida no fim (nós do DOM acima dos elementos vivos são
+   *  nós soltos ou de texto; com o turno e as cartas dá para ver se a diferença é só a partida estar mais adiante) */
+  elementos: number;
+  cartas: number;
+  turno: number;
 }
 type Resultado = Record<string, Medida | string>;
 
@@ -54,7 +59,8 @@ if (process.argv[2] === 'comparar') {
     ['tarefasLongas', 'tarefas longas', 'menor'], ['tarefaLongaMax', 'maior tarefa (ms)', 'menor'],
     ['tarefaMsPorS', 'trabalho (ms/s)', 'menor'], ['scriptMsPorS', 'script (ms/s)', 'menor'], ['layoutMsPorS', 'layout (ms/s)', 'menor'],
     ['estiloMsPorS', 'estilo (ms/s)', 'menor'], ['mensagens', 'mensagens', 'menor'], ['kbRecebidos', 'KB recebidos', 'menor'],
-    ['tarefaMsPorMensagem', 'trabalho por mensagem (ms)', 'menor'], ['heapMb', 'heap JS (MB)', 'menor'], ['nos', 'nós do DOM', 'menor'], ['erros', 'erros no console', 'menor'],
+    ['tarefaMsPorMensagem', 'trabalho por mensagem (ms)', 'menor'], ['heapMb', 'heap JS (MB)', 'menor'], ['nos', 'nós do DOM', 'menor'],
+    ['elementos', 'elementos vivos', 'menor'], ['cartas', 'cartas à vista', 'menor'], ['turno', 'turno da partida', 'menor'], ['erros', 'erros no console', 'menor'],
   ];
   for (const cenario of Object.keys(a)) {
     const x = a[cenario], y = b[cenario];
@@ -119,6 +125,7 @@ interface Sonda { cdp: CDPSession; mensagens: number; bytes: number; erros: numb
 async function sondar(p: Page): Promise<Sonda> {
   const cdp = await p.context().newCDPSession(p);
   await cdp.send('Performance.enable');
+  await cdp.send('HeapProfiler.enable');
   await cdp.send('Network.enable');
   const s: Sonda = { cdp, mensagens: 0, bytes: 0, erros: 0 };
   cdp.on('Network.webSocketFrameReceived', (e) => { s.mensagens++; s.bytes += e.response.payloadData.length; });
@@ -142,6 +149,10 @@ async function medir(nome: string, p: Page, s: Sonda, acao: (() => Promise<void>
   if (typeof acao === 'number') await p.waitForTimeout(acao); else await acao();
   const seg = (Date.now() - t0) / 1000;
   const m1 = await metricas(s);
+  // o heap é lido depois de uma coleta de lixo forçada (os tempos já foram lidos): sem ela, o número dependia de
+  // quando o coletor tinha passado e não servia para comparar nem para achar vazamento
+  await s.cdp.send('HeapProfiler.collectGarbage');
+  const mHeap = await metricas(s);
   const { quadros, longas } = await p.evaluate(() => { const w = window as unknown as { __medir: boolean; __quadros: number[]; __longas: number[] }; w.__medir = false; return { quadros: [...w.__quadros], longas: [...w.__longas] }; });
   const ordenados = [...quadros].sort((a, b) => a - b);
   const media = quadros.length ? quadros.reduce((a, b) => a + b, 0) / quadros.length : 0;
@@ -162,9 +173,14 @@ async function medir(nome: string, p: Page, s: Sonda, acao: (() => Promise<void>
     mensagens,
     kbRecebidos: r1((s.bytes - b0) / 1024),
     tarefaMsPorMensagem: mensagens >= 5 ? r1((d('TaskDuration') * 1000) / mensagens) : null,
-    heapMb: r1((m1.JSHeapUsedSize ?? 0) / 1048576),
-    nos: m1.Nodes ?? 0,
+    heapMb: r1((mHeap.JSHeapUsedSize ?? 0) / 1048576),
+    nos: mHeap.Nodes ?? 0,
     erros: s.erros - e0,
+    ...(await p.evaluate(() => ({
+      elementos: document.getElementsByTagName('*').length,
+      cartas: document.querySelectorAll('.carta').length,
+      turno: Number(document.querySelector('.turno-linha strong')?.textContent ?? 0) || 0,
+    }))),
   };
   resultado[nome] = med;
   console.log(`${nome}: ${JSON.stringify(med)}`);
