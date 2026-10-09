@@ -23,6 +23,9 @@ Lista de verificação das fases. É por aqui que uma sessão nova retoma o trab
 - 08/10/2026: completar o deck do Jace (64 cartas), importar e completar o deck da Gisa (59 cartas) e conferir a
   importação por link. Trabalho dividido com 7 subagentes em worktrees (`../jogo-wt-a` a `../jogo-wt-g`, branches
   `cartas-a` a `cartas-g`), juntados no `main`.
+- 08/10/2026 (noite): o verso das cartas (mão dos oponentes, grimório, cartas viradas para baixo) passa a ser o verso
+  clássico do Magic enviado pelo Caio (`cliente/src/imagens/verso.webp`, 500×698, sem a borda preta da imagem original),
+  no lugar do verso desenhado em CSS.
 
 ## Fase 0: exploração e proposta
 

@@ -163,8 +163,7 @@ label { display: grid; gap: 6px; color: var(--suave); font-size: 13px; font-weig
 }
 .carta-face { width: 100%; height: 100%; border-radius: inherit; overflow: hidden; background: #0e1110; }
 .carta-face img { width: 100%; height: 100%; object-fit: cover; }
-.verso { width: 100%; height: 100%; border-radius: inherit; background: radial-gradient(ellipse at 50% 42%, #3d2c1c 0%, #22160d 58%, #150e08 100%); border: 2px solid #0d0906; position: relative; }
-.verso::after { content: ''; position: absolute; inset: 16% 20%; border-radius: 50%; border: 1.5px solid rgba(214, 170, 90, .55); box-shadow: inset 0 0 10px rgba(214, 170, 90, .25); }
+.verso { width: 100%; height: 100%; border-radius: inherit; background: #5a3a14 url('./imagens/verso.webp') center / 100% 100% no-repeat; }
 .sem-arte { height: 100%; padding: 6px; display: grid; align-content: start; gap: 2px; background: linear-gradient(160deg, #2b322f, #171b19); font-size: 11px; border: 1px solid var(--linha-forte); border-radius: inherit; }
 .sem-arte .pt { margin-top: auto; justify-self: end; font-weight: 700; }
 .carta.clicavel { cursor: pointer; }
