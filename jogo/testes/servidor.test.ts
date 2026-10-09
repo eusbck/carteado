@@ -190,8 +190,11 @@ describe('servidor: mesa nova (regra de mulligan, posições, revelar)', () => {
     expect(minha).toBeDefined();
     g.tratar(ana, { t: 'posicao', obj: minha, x: 0.5, y: 0.25 });
     expect(ana.ultima('jogo')!.posicoes[String(minha)]).toEqual([0.5, 0.25]);
+    // carta que já não está no campo (sacrificada antes de a posição chegar, como o Campo de Lótus): ignorada, sem erro
+    const errosAntes = ana.msgs.filter((m) => m.t === 'erro').length;
     g.tratar(ana, { t: 'posicao', obj: 99999, x: 0.1, y: 0.1 });
-    expect(ana.ultima('erro')?.msg).toMatch(/suas permanentes/);
+    expect(ana.msgs.filter((m) => m.t === 'erro').length).toBe(errosAntes);
+    expect(ana.ultima('jogo')!.posicoes['99999']).toBeUndefined();
     g.tratar(ana, { t: 'posicao', obj: minha, x: 7, y: 0.1 });
     expect(ana.ultima('erro')?.msg).toMatch(/inválida/);
     g.tratar(ana, { t: 'posicao', limpar: true });

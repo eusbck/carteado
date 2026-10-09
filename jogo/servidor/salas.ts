@@ -424,7 +424,10 @@ export class Sala {
             const obj = Number(q.obj);
             if (!Number.isInteger(obj) || !ok(q.x) || !ok(q.y)) return 'Posição inválida';
             const o = g.state.objects[obj];
-            if (!o || o.zone !== 'battlefield' || controllerOf(g.g, obj) !== i) return 'Você só arruma as suas permanentes';
+            // a carta já saiu do campo (ex.: o Campo de Lótus que se sacrifica ao entrar, antes de a posição chegar):
+            // não há o que arrumar, e não é erro de ninguém
+            if (!o || o.zone !== 'battlefield') continue;
+            if (controllerOf(g.g, obj) !== i) return 'Você só arruma as suas permanentes';
             // 4 casas: menos de 0,2 px numa tela grande (a carta fica onde foi solta)
             novas.push([String(obj), [Math.round((q.x as number) * 10000) / 10000, Math.round((q.y as number) * 10000) / 10000]]);
           }

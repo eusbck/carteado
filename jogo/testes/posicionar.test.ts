@@ -218,12 +218,11 @@ describe('servidor: posição de várias permanentes numa mensagem', () => {
     // uma vista para o grupo, não uma por carta
     expect(vistas() - n0).toBe(1);
 
-    // uma de fora do intervalo, de outro jogador ou que não existe: nada muda
-    const doBot = st.zones.battlefield.find((id) => st.objects[id].controller === 1) ?? 99999;
+    // uma de fora do intervalo ou de outro jogador: nada muda
+    const doBot = st.zones.battlefield.find((id) => st.objects[id].controller === 1);
     const casos: [MsgCliente, RegExp][] = [
       [{ t: 'posicao', lista: [{ obj: a, x: 0.5, y: 0.5 }, { obj: b, x: 1.2, y: 0.5 }] }, /inválida/],
-      [{ t: 'posicao', lista: [{ obj: a, x: 0.5, y: 0.5 }, { obj: doBot, x: 0.5, y: 0.5 }] }, /suas permanentes/],
-      [{ t: 'posicao', lista: [{ obj: a, x: 0.5, y: 0.5 }, { obj: 99999, x: 0.5, y: 0.5 }] }, /suas permanentes/],
+      ...(doBot !== undefined ? [[{ t: 'posicao', lista: [{ obj: a, x: 0.5, y: 0.5 }, { obj: doBot, x: 0.5, y: 0.5 }] }, /suas permanentes/] as [MsgCliente, RegExp]] : []),
       [{ t: 'posicao', lista: [] }, /inválida/],
       [{ t: 'posicao', lista: [null as unknown as { obj: number; x: number; y: number }] }, /inválida/],
     ];
@@ -234,6 +233,13 @@ describe('servidor: posição de várias permanentes numa mensagem', () => {
       expect(ana.msgs.slice(n).some((x) => x.t === 'jogo')).toBe(false);
     }
     expect(sala.d.partida!.posicoes![String(a)]).toEqual([0.1235, 0.5]);
+
+    // uma carta do grupo que já saiu do campo (sacrificada no meio do caminho): ela fica de fora, as outras andam
+    const errosAntes = ana.msgs.filter((m) => m.t === 'erro').length;
+    g.tratar(ana, { t: 'posicao', lista: [{ obj: a, x: 0.6, y: 0.5 }, { obj: 99999, x: 0.5, y: 0.5 }] });
+    expect(ana.msgs.filter((m) => m.t === 'erro').length).toBe(errosAntes);
+    expect(ana.ultima('jogo')!.posicoes[String(a)]).toEqual([0.6, 0.5]);
+    expect(ana.ultima('jogo')!.posicoes['99999']).toBeUndefined();
 
     // a de uma carta só continua valendo, também com 4 casas
     g.tratar(ana, { t: 'posicao', obj: a, x: 0.33333, y: 0.25 });
