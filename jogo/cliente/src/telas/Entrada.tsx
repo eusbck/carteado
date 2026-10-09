@@ -12,11 +12,23 @@ const MANA = ['w', 'u', 'b', 'r', 'g'] as const;
 export function Entrada() {
   const [senha, setSenha] = useState('');
   const campo = useRef<HTMLInputElement>(null);
+  // um envio por vez: Enter e clique juntos (ou dois Enter) entravam duas vezes e abriam dois WebSockets. Só a
+  // trava, sem mudar o botão (o cinza de desativado piscava a cada entrada)
+  const enviando = useRef(false);
   // o foco vai para a senha quando o formulário termina de entrar
   useEffect(() => { const t = setTimeout(() => campo.current?.focus({ preventScroll: true }), 1900); return () => clearTimeout(t); }, []);
-  const enviar = (ev: Event) => {
+  const enviar = async (ev: Event) => {
     ev.preventDefault();
-    if (senha) void loja.entrar(senha);
+    if (!senha || enviando.current) return;
+    enviando.current = true;
+    try {
+      await loja.entrar(senha);
+    } catch {
+      loja.erro('Não foi possível falar com o servidor');
+    } finally {
+      // senha certa: a tela já saiu; errada (ou sem rede): dá para tentar de novo
+      enviando.current = false;
+    }
   };
   return (
     <div class="tela-fundo tela-epica">
