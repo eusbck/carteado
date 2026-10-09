@@ -176,6 +176,8 @@ export class Sala {
   private pedido: Pedido | null = null;
   /** hora das últimas mensagens de chat de cada assento (para o limite de ritmo) */
   private ritmoChat = new Map<number, number[]>();
+  /** falhas seguidas do motor na mesma posição das entradas (falha) */
+  private falhas = { indice: -1, n: 0 };
   erro: string | null = null;
 
   private gerente: Gerente;
@@ -317,7 +319,7 @@ export class Sala {
         if (this.semAuxilios && resposta?.kind === 'payment' && resposta.auto) return 'Esta sala não permite pagamento automático';
         const err = g.check(i, resposta);
         if (err) return err;
-        this.registrar(() => g.answer(i, resposta), true);
+        this.registrar(() => g.answer(i, resposta), true, i);
         break;
       }
       case 'paradas': {
@@ -485,11 +487,21 @@ export class Sala {
     return null;
   }
 
-  /** cria (ou recria, depois de um reinício) a partida a partir da semente e das entradas */
+  /**
+   * Cria (ou recria, depois de um reinício) a partida a partir da semente e das entradas. Uma entrada gravada que não
+   * dá mais para aplicar (o motor a recusa ou quebra nela) não deixa a sala sem partida: ela é refeita até a última
+   * entrada boa, e as gravadas dali em diante saem do banco (ficam no registro do servidor).
+   */
   criarGame(cp: Checkpoint | null, entradas: Input[], metas: (MetaEntrada | null)[] = []): void {
     const p = this.d.partida!;
     const decks = this.decks();
-    this.game = cp ? Game.fromCheckpoint(cp, decks, entradas) : entradas.length ? Game.replay(p.config, decks, entradas) : Game.create(p.config, decks);
+    const { game, aplicadas, erro } = Game.replayAteFalhar(p.config, decks, entradas, cp);
+    this.game = game;
+    if (aplicadas < entradas.length) {
+      console.error(`[sala ${this.d.codigo}] a partida salva foi refeita até a entrada ${aplicadas} de ${entradas.length}; a seguinte não vale mais (${erro?.message}). Entradas descartadas:`, JSON.stringify(entradas.slice(aplicadas)));
+      this.gerente.banco.truncarEntradas(this.d.codigo, aplicadas);
+      if (p.checkpoint && p.checkpoint.inputIndex > aplicadas) { p.checkpoint = null; this.salvar(); }
+    }
     this.salvas = this.game.inputs.length;
     this.metas = this.game.inputs.map((_, k) => metas[k] ?? null);
     this.cps = [];
@@ -522,22 +534,26 @@ export class Sala {
 
   private nome(i: number): string { return this.game?.state.players[i]?.name ?? this.d.assentos[i]?.nome ?? `Jogador ${i + 1}`; }
 
-  /** aplica uma entrada e grava as novas no banco; `humana`: foi a pessoa que fez (conta para o desfazer) */
-  private registrar(fn: () => unknown, humana = false): void {
+  /**
+   * Aplica uma entrada e grava as novas no banco; `humana`: foi a pessoa que fez (conta para o desfazer); `autor`: o
+   * assento de quem mandou a resposta (recebe o erro do motor como resposta à mensagem dela)
+   */
+  private registrar(fn: () => unknown, humana = false, autor: number | null = null): void {
     const g = this.game!;
     const turno = g.state.turn.number;
     const n0 = g.inputs.length;
-    let ok = true;
     try {
       fn();
     } catch (e) {
-      this.falha(e);
-      ok = false;
+      // a entrada que quebrou o motor não entrou em g.inputs (motor/game.ts): a sala se refaz sem ela
+      this.falha(e, autor);
+      return;
     }
     for (let k = n0; k < g.inputs.length; k++) this.metas[k] = { turno, humana };
+    if (g.inputs.length > n0) this.falhas = { indice: -1, n: 0 };
     // Cartomante e Magic God: leem a mesa a cada jogada (só o que é público)
     for (const b of this.bots.values()) if (b.e.memoria) b.observar(g.g);
-    if (ok) this.persistir();
+    this.persistir();
   }
 
   private persistir(): void {
@@ -665,11 +681,49 @@ export class Sala {
     for (const c of this.conexoes) c.enviar({ t: 'pensando', assento: this.pensando });
   }
 
-  private falha(e: unknown): void {
+  /**
+   * Erro do motor numa jogada (ou na condução): a sala se refaz das entradas boas a partir do checkpoint mais recente
+   * (a jogada que quebrou não entrou), limpa o erro, avisa a mesa e segue; a decisão volta para quem jogava. O bot
+   * cuja jogada quebrou o motor responde o padrão na vez seguinte. Três falhas seguidas na mesma posição (uma
+   * resposta automática que quebra sempre) param a sala com o erro, como antes: a partida fica salva até a última
+   * jogada válida e volta assim que o servidor reiniciar. `autor`: quem mandou a resposta (o erro vai para essa pessoa
+   * como resposta ao 'responder' dela).
+   */
+  private falha(e: unknown, autor: number | null = null): void {
     const msg = e instanceof Error ? e.message : String(e);
-    this.erro = msg;
     console.error(`[sala ${this.d.codigo}] erro do motor:`, e);
-    for (const c of this.conexoes) c.enviar({ t: 'erro', msg: `Erro interno do motor: ${msg}. A partida foi salva até a última jogada válida.` });
+    // só as respostas automáticas (bot, passe automático, condução) contam: a pessoa escolhe de novo, não há laço
+    const automatica = autor === null;
+    if (automatica) {
+      const indice = this.game?.inputs.length ?? -1;
+      this.falhas = this.falhas.indice === indice ? { indice, n: this.falhas.n + 1 } : { indice, n: 1 };
+    }
+    const refeita = (!automatica || this.falhas.n <= 3) && this.refazer();
+    const texto = refeita ? `Erro interno do motor: ${msg}. A jogada foi desfeita e a partida continua de antes dela.`
+      : `Erro interno do motor: ${msg}. A partida foi salva até a última jogada válida.`;
+    for (const c of this.conexoes) c.enviar({ t: 'erro', msg: texto, ...(autor !== null && c.assento === autor ? { de: 'responder' as const } : {}) });
+    if (!refeita) { this.erro = msg; return; }
+    this.erro = null;
+    this.transmitir();
+    // dentro da condução (a jogada era de um bot ou um passe automático), o laço em andamento pega a partida refeita
+    this.seguir();
+  }
+
+  /** a partida refeita das entradas boas (as que o motor aplicou), a partir do checkpoint mais recente que serve */
+  private refazer(): boolean {
+    const g = this.game;
+    const p = this.d.partida;
+    if (!g || !p) return false;
+    try {
+      this.game = reconstruir(p.config, this.decks(), g.inputs, [...this.cps, p.checkpoint], g.inputs.length);
+    } catch (e) {
+      console.error(`[sala ${this.d.codigo}] não foi possível refazer a partida depois do erro:`, e);
+      return false;
+    }
+    this.metas.length = this.game.inputs.length;
+    // respostas pensadas para a partida de antes não valem (os bots continuam com a memória deles)
+    this.geracao++;
+    return true;
   }
 
   /** conduz a partida sem esperar por ela. Um erro inesperado na condução (fora do motor: a vista, o bot, o banco)
@@ -695,8 +749,10 @@ export class Sala {
         if (a.tipo === 'bot') {
           const bot = this.bots.get(d.player)!;
           const geracao = this.geracao;
+          // a resposta do bot a esta decisão quebrou o motor (a sala se refez sem ela): agora vai a resposta padrão
+          if (this.falhas.indice === g.inputs.length && this.falhas.n > 0) resposta = defaultAnswer(d);
           // decisão óbvia: sai da vista do bot (a mesma que uma pessoa naquele assento recebe), sem pensar
-          resposta = bot.imediata(d, buildView(g.g, d.player, d), (x) => g.check(d.player, x) === null);
+          else resposta = bot.imediata(d, buildView(g.g, d.player, d), (x) => g.check(d.player, x) === null);
           if (!resposta && !this.gerente.pensadores) {
             // sem threads (testes): pensa aqui mesmo, sem soltar a linha (o fluxo da sala fica igual ao de antes)
             bot.rastro.observar(g);

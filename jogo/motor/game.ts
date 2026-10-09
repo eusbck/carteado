@@ -98,6 +98,8 @@ export class Game {
     this.applyInput({ t: 'concede', p: player }, false);
   }
 
+  // a entrada só entra na lista depois que o motor a aplicou: uma que derruba o motor (exceção no meio do passo) não
+  // fica gravada, e a partida se refaz das entradas que ficaram (o servidor faz isso: salas.ts, falha)
   private applyInput(inp: Input, replaying: boolean): void {
     if (inp.t === 'a') {
       if (!this.pending) throw new Error('Entrada sem decisão pendente');
@@ -105,15 +107,40 @@ export class Game {
         const err = this.check(inp.p, inp.a);
         if (err) throw new Error(`Reprodução divergiu: ${err}`);
       }
-      this.inputs.push(inp);
       this.step(inp.a);
-    } else {
       this.inputs.push(inp);
+    } else {
       doConcede(this.g, inp.p);
       // se a decisão pendente era de quem saiu, responde por ele (CR 800.4g-h)
       while (this.pending && this.state.players[this.pending.player]?.left) this.step(defaultAnswer(this.pending));
       if (this.state.gameOver) this.pending = null;
+      this.inputs.push(inp);
     }
+  }
+
+  /**
+   * Como replay e fromCheckpoint, mas para na primeira entrada que não dá para aplicar (uma partida salva com uma
+   * entrada que o motor de agora recusa ou que o derruba): devolve a partida até a última entrada boa, quantas
+   * entraram e o erro da seguinte. Um checkpoint que não vale mais é deixado de lado (refaz do começo).
+   */
+  static replayAteFalhar(config: GameConfig, decks: DeckList[], inputs: Input[], cp: Checkpoint | null = null): { game: Game; aplicadas: number; erro: Error | null } {
+    let base = cp && cp.inputIndex <= inputs.length ? cp : null;
+    let game: Game | null = null;
+    if (base) {
+      try { game = Game.fromCheckpoint(base, decks, inputs.slice(0, base.inputIndex)); } catch { base = null; }
+    }
+    game ??= Game.create(config, decks);
+    for (let k = game.inputs.length; k < inputs.length; k++) {
+      try {
+        game.applyInput(inputs[k], true);
+      } catch (e) {
+        // recusada antes de andar (divergiu, nada pendente): a partida está inteira na entrada k. O motor quebrou no
+        // meio do passo: o laço morreu com o estado pela metade, e a partida se refaz até a anterior
+        if (game.error) game = base ? Game.fromCheckpoint(base, decks, inputs.slice(0, k)) : Game.replay(config, decks, inputs.slice(0, k));
+        return { game, aplicadas: k, erro: e instanceof Error ? e : new Error(String(e)) };
+      }
+    }
+    return { game, aplicadas: inputs.length, erro: null };
   }
 
   isOver(): boolean {

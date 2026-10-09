@@ -2,16 +2,20 @@
 //  - batimento: `ping` responde `pong` com ou sem sala, sem gravar nada e fora do limite do chat;
 //  - todo erro em resposta a uma mensagem diz de que tipo ela era (`de`);
 //  - a semente fica no servidor: a sala só mostra um hash curto dela (`partida`);
+//  - mensagens sem forma são recusadas ('__proto__' como assento);
+//  - erro do motor numa jogada: a sala se refaz sem ela e segue; restaurar refaz até a última entrada boa;
 //  - o servidor de verdade (processo à parte, porta de 8140 a 8149) sobrevive a um frame grande demais.
 import { spawn, type ChildProcess } from 'node:child_process';
 import { mkdirSync, mkdtempSync, rmSync } from 'node:fs';
 import { createServer } from 'node:net';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { afterAll, beforeAll, describe, expect, it } from 'vitest';
+import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 import WebSocket from 'ws';
 import '../cartas/index.ts';
 import decksJson from './decks-teste.json' with { type: 'json' };
+import { defaultAnswer } from '../motor/ask.ts';
+import { Game, type Input } from '../motor/game.ts';
 import type { DeckList } from '../motor/state.ts';
 import { Banco } from '../servidor/banco.ts';
 import type { MsgServidor } from '../servidor/protocolo.ts';
@@ -147,6 +151,151 @@ describe('validação das mensagens', () => {
     await espera();
     expect(ana.ultima('jogo')!.vista.decision?.id).not.toBe(d.id);
   });
+});
+
+/** o próximo passo do motor nesta partida lança uma exceção (como um erro do motor no meio da jogada) */
+function quebrarProximoPasso(game: Game): void {
+  const gen = (game as unknown as { gen: Generator }).gen;
+  const next = gen.next.bind(gen);
+  let feito = false;
+  gen.next = (...a: [unknown]) => {
+    if (!feito) { feito = true; throw new Error('falha de teste no motor'); }
+    return next(...a);
+  };
+}
+
+/** responde as decisões de Ana com a resposta padrão (a primeira opção que vale) até `n` vezes */
+async function jogarAna(g: Gerente, ana: Falsa, n: number) {
+  for (let i = 0; i < n; i++) {
+    await espera();
+    const d = ana.ultima('jogo')?.vista.decision;
+    if (!d) return;
+    g.tratar(ana, { t: 'responder', decisao: d.id, resposta: defaultAnswer(d) });
+  }
+}
+
+describe('erro do motor: a sala se refaz', () => {
+  it('na jogada da pessoa: a jogada não entra, a pessoa recebe o erro como resposta e a decisão volta', async () => {
+    const { g, ana, codigo } = salaComBot();
+    g.tratar(ana, { t: 'iniciar' });
+    await espera();
+    const s = g.salas.get(codigo)!;
+    const d = ana.ultima('jogo')!.vista.decision!;
+    const antes = s.game!;
+    const n0 = antes.inputs.length;
+    quebrarProximoPasso(antes);
+    g.tratar(ana, { t: 'responder', decisao: d.id, resposta: defaultAnswer(d) });
+    await espera();
+    expect(ana.ultima('erro')).toMatchObject({ de: 'responder', msg: expect.stringMatching(/falha de teste no motor.*desfeita/) });
+    expect(s.erro).toBeNull();
+    expect(s.game).not.toBe(antes);
+    expect(s.game!.inputs).toHaveLength(n0);
+    expect(ana.ultima('jogo')!.vista.decision?.id).toBe(d.id);
+    // e a partida segue
+    g.tratar(ana, { t: 'responder', decisao: d.id, resposta: defaultAnswer(d) });
+    await espera();
+    expect(s.game!.inputs.length).toBeGreaterThan(n0);
+    expect(ana.ultima('jogo')!.vista.decision?.id).not.toBe(d.id);
+  });
+
+  it('na jogada de um bot: a mesa recebe o aviso, o bot responde o padrão e a partida segue', async () => {
+    const { g, ana, codigo } = salaComBot();
+    g.tratar(ana, { t: 'iniciar' });
+    const s = g.salas.get(codigo)!;
+    // a próxima resposta do bot quebra o motor
+    const game = s.game!;
+    const answer = game.answer.bind(game);
+    let quebrou = false;
+    game.answer = (p, a) => {
+      if (p === 1 && !quebrou) { quebrou = true; quebrarProximoPasso(game); }
+      return answer(p, a);
+    };
+    await jogarAna(g, ana, 40);
+    expect(quebrou).toBe(true);
+    const erro = ana.msgs.find((m) => m.t === 'erro');
+    expect(erro).toMatchObject({ msg: expect.stringMatching(/desfeita/) });
+    expect(erro && 'de' in erro).toBe(false);
+    expect(s.erro).toBeNull();
+    expect(s.game).not.toBe(game);
+    expect(s.game!.inputs.some((x) => x.t === 'a' && x.p === 1)).toBe(true);
+  }, 60000);
+
+  it('uma resposta automática que quebra sempre: a sala desiste depois de três tentativas, sem laço', async () => {
+    const { g, ana, codigo } = salaComBot();
+    const original = Game.prototype.answer;
+    const espiao = vi.spyOn(Game.prototype, 'answer').mockImplementation(function (this: Game, p, a) {
+      if (p === 1) throw new Error('quebra sempre');
+      return original.call(this, p, a);
+    });
+    try {
+      g.tratar(ana, { t: 'iniciar' });
+      await jogarAna(g, ana, 40);
+      const s = g.salas.get(codigo)!;
+      expect(s.erro).toMatch(/quebra sempre/);
+      const erros = ana.msgs.filter((m) => m.t === 'erro').map((m) => (m as { msg: string }).msg);
+      expect(erros.filter((m) => /desfeita/.test(m))).toHaveLength(3);
+      expect(erros.at(-1)).toMatch(/salva até a última jogada válida/);
+    } finally {
+      espiao.mockRestore();
+    }
+  }, 60000);
+
+  it('restaurar com uma entrada gravada que não vale mais refaz até a última boa', async () => {
+    const banco = new Banco(':memory:');
+    const { g, ana, codigo } = salaComBot(banco);
+    g.tratar(ana, { t: 'iniciar' });
+    await jogarAna(g, ana, 8);
+    const s = g.salas.get(codigo)!;
+    const boas = s.game!.inputs.length;
+    expect(boas).toBeGreaterThan(2);
+    const ruim: Input = { t: 'a', p: 0, d: 99999, a: { kind: 'priority', action: 'nao-existe' } };
+    banco.adicionarEntradas(codigo, boas, [ruim, ruim]);
+    const g2 = new Gerente(banco, DECKS, SEM_ATRASO);
+    g2.restaurar();
+    const s2 = g2.salas.get(codigo)!;
+    expect(s2.erro).toBeNull();
+    expect(s2.game).not.toBeNull();
+    expect(s2.game!.inputs.slice(0, boas)).toEqual(s.game!.inputs);
+    // as ruins saíram do banco
+    expect((banco.entradas(codigo) as Input[]).slice(boas)).not.toContainEqual(ruim);
+    await espera();
+    const volta = new Falsa();
+    g2.tratar(volta, { t: 'retomar', codigo, token: ana.ultima('sala')!.token });
+    expect(volta.ultima('jogo')?.vista.you).toBe(0);
+  }, 60000);
+
+  it('replayAteFalhar: o motor quebrando no meio de uma entrada para na anterior, com a partida inteira', async () => {
+    const { g, ana, codigo } = salaComBot();
+    g.tratar(ana, { t: 'iniciar' });
+    await jogarAna(g, ana, 8);
+    const s = g.salas.get(codigo)!;
+    const entradas = s.game!.inputs;
+    const k = Math.floor(entradas.length / 2);
+    const decks = s.game!.decks;
+    const config = s.d.partida!.config;
+    const esperado = JSON.stringify(Game.replay(config, decks, entradas.slice(0, k)).state);
+    // o passo da entrada k lança (o construtor faz o primeiro passo; cada entrada, um)
+    const passo = (Game.prototype as unknown as { step: (a: unknown) => void }).step;
+    let n = 0;
+    const espiao = vi.spyOn(Game.prototype as unknown as { step: (a: unknown) => void }, 'step').mockImplementation(function (this: Game, a: unknown) {
+      if (n++ === k + 1) { this.error = new Error('quebrou no meio'); throw this.error; }
+      return passo.call(this, a);
+    });
+    let r: ReturnType<typeof Game.replayAteFalhar>;
+    try {
+      r = Game.replayAteFalhar(config, decks, entradas);
+    } finally {
+      espiao.mockRestore();
+    }
+    expect(r.aplicadas).toBe(k);
+    expect(r.erro?.message).toBe('quebrou no meio');
+    expect(r.game.error).toBeNull();
+    expect(JSON.stringify(r.game.state)).toBe(esperado);
+    // e com um checkpoint que não serve (mais novo que as entradas), refaz do começo
+    const cp = s.game!.checkpoint() ?? { state: s.game!.state, inputIndex: entradas.length };
+    const r2 = Game.replayAteFalhar(config, decks, entradas.slice(0, k), { ...cp, inputIndex: entradas.length + 5 });
+    expect(r2.aplicadas).toBe(k);
+  }, 60000);
 });
 
 describe('condução da partida: erro fora do motor', () => {
