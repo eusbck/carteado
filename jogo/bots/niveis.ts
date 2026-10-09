@@ -5,8 +5,8 @@ export type NivelBot = 'iniciante' | 'facil' | 'intermediario' | 'dificil' | 'ca
 
 export const NIVEIS_BOT: { id: NivelBot; nome: string; descricao: string }[] = [
   { id: 'iniciante', nome: 'Iniciante', descricao: 'joga terreno e criatura na curva, ataca só quando é óbvio, quase não usa instantâneas' },
-  { id: 'facil', nome: 'Fácil', descricao: 'pensa pouco, às vezes escolhe uma jogada pior e responde pouco' },
-  { id: 'intermediario', nome: 'Intermediário', descricao: 'o bot das fases anteriores: simula cada jogada antes de fazer' },
+  { id: 'facil', nome: 'Fácil', descricao: 'pensa pouco, às vezes escolhe uma jogada pior, ataca pouco e quase não responde' },
+  { id: 'intermediario', nome: 'Intermediário', descricao: 'simula cada jogada antes de fazer; responde às jogadas dos outros só às vezes' },
   { id: 'dificil', nome: 'Difícil', descricao: 'simula o combate, usa truques depois dos bloqueios, conta com as respostas dos oponentes e mira em quem está ganhando' },
   { id: 'cartomante', nome: 'Cartomante', descricao: 'como o Difícil, e lembra do que foi revelado e lê o jeito de jogar de cada um' },
   { id: 'magicgod', nome: 'Magic God', descricao: 'como a Cartomante, e olha até o fim do turno seguinte antes de decidir' },
@@ -70,10 +70,13 @@ const BASE: Parametros = {
   combate: 'heuristico', agirNoCombate: false, oponenteResponde: false, lider: false, escolhaSimulada: false, memoria: false, olharCombate: false, busca: false, buscaCandidatas: 3, buscaPreSelecao: 0.4, buscaConfianca: 0.5,
 };
 
+// Calibração depois da revisão dos bots (09/10/2026): o combate decide quase tudo entre os níveis. O Fácil ficou mais
+// fraco esquecendo a maioria dos ataques bons (bloqueia como antes e continua jogando as cartas); o Intermediário
+// responde metade das vezes e erra um pouco; do Difícil para cima, nada mudou.
 export const PARAMETROS: Record<NivelBot, Parametros> = {
   iniciante: { ...BASE, regras: true, simulacoes: 0, tempo: 300, responde: 0, esquece: 0.3, combate: 'obvio', erro: 0.35 },
-  facil: { ...BASE, simulacoes: 8, variantes: 1, tempo: 500, margem: 1.2, erro: 0.25, responde: 0.3, esquece: 0.15 },
-  intermediario: { ...BASE },
+  facil: { ...BASE, simulacoes: 6, variantes: 1, tempo: 500, margem: 1.2, erro: 0.4, responde: 0.1, esquece: 0.7 },
+  intermediario: { ...BASE, erro: 0.1, responde: 0.5 },
   dificil: { ...BASE, simulacoes: 60, mundos: 3, tempo: 3000, combate: 'simulado', agirNoCombate: true, oponenteResponde: true, lider: true, escolhaSimulada: true },
   cartomante: { ...BASE, simulacoes: 180, mundos: 6, tempo: 3000, combate: 'simulado', agirNoCombate: true, oponenteResponde: true, lider: true, escolhaSimulada: true, memoria: true, olharCombate: true },
   magicgod: { ...BASE, simulacoes: 240, mundos: 8, tempo: 6000, combate: 'simulado', agirNoCombate: true, oponenteResponde: true, lider: true, escolhaSimulada: true, memoria: true, olharCombate: true, busca: true },
