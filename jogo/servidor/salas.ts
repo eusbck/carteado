@@ -2,7 +2,7 @@
 // O servidor é a autoridade: valida cada resposta no motor e manda a cada conexão só a vista
 // do próprio assento (motor/view.ts), nunca o estado inteiro.
 
-import { createHash, randomBytes, randomInt, scryptSync, timingSafeEqual } from 'node:crypto';
+import { createHash, randomBytes, randomInt, scrypt, scryptSync, timingSafeEqual } from 'node:crypto';
 import { HeuristicBot } from '../bots/heuristico.ts';
 import { NIVEL_PADRAO, nivelValido, type NivelBot } from '../bots/niveis.ts';
 import { defaultAnswer } from '../motor/ask.ts';
@@ -49,11 +49,13 @@ export interface Atrasos {
   /** o que só muda o conforto (chat, posições, retrato, paradas) é gravado no máximo uma vez a cada tantos ms
    * (Gerente.salvarTudo grava o pendente ao encerrar); 0 ou sem valor: na hora */
   gravacao?: number;
+  /** testes: confere a senha da sala na linha principal, para a resposta a 'criar' e 'entrar' sair na mesma chamada */
+  senhaNaHora?: boolean;
 }
 
 export const ATRASOS_PADRAO: Atrasos = { botAcao: 700, botPasse: 90, autoPasse: 60, simulacoesBot: null, prazoDesfazer: 30000, threads: 2, avisoPensando: 1000, gravacao: 250 };
 // testes do servidor: sem atrasos e com bots que pensam pouco (o fluxo da sala é o que importa)
-export const SEM_ATRASO: Atrasos = { botAcao: 0, botPasse: 0, autoPasse: 0, simulacoesBot: 3, prazoDesfazer: 30000, threads: 0, avisoPensando: 1000, tempoBot: 300 };
+export const SEM_ATRASO: Atrasos = { botAcao: 0, botPasse: 0, autoPasse: 0, simulacoesBot: 3, prazoDesfazer: 30000, threads: 0, avisoPensando: 1000, tempoBot: 300, senhaNaHora: true };
 
 interface Assento {
   tipo: TipoAssento;
@@ -138,6 +140,18 @@ function hashSenha(senha: string): string {
 function confereSenha(senha: string, guardada: string): boolean {
   const [sal, hash] = guardada.split(':');
   const h = scryptSync(senha, Buffer.from(sal, 'hex'), 32);
+  return timingSafeEqual(h, Buffer.from(hash, 'hex'));
+}
+// as mesmas, pelo scrypt assíncrono (no conjunto de threads do Node, fora da linha principal)
+const scryptAssincrono = (senha: string, sal: Buffer) =>
+  new Promise<Buffer>((ok, falha) => scrypt(senha, sal, 32, (e, k) => (e ? falha(e) : ok(k))));
+async function hashSenhaAssincrono(senha: string): Promise<string> {
+  const sal = randomBytes(16);
+  return `${sal.toString('hex')}:${(await scryptAssincrono(senha, sal)).toString('hex')}`;
+}
+async function confereSenhaAssincrono(senha: string, guardada: string): Promise<boolean> {
+  const [sal, hash] = guardada.split(':');
+  const h = await scryptAssincrono(senha, Buffer.from(sal, 'hex'));
   return timingSafeEqual(h, Buffer.from(hash, 'hex'));
 }
 const novoToken = () => randomBytes(24).toString('base64url');
@@ -987,16 +1001,50 @@ export class Gerente {
     }
   }
 
+  /** mensagens desta conexão que chegaram enquanto a senha de um 'criar' ou 'entrar' dela era conferida */
+  private esperando = new WeakMap<Conexao, MsgCliente[]>();
+  /** conexões que fecharam (a senha conferida depois não senta ninguém) */
+  private fechadas = new WeakSet<Conexao>();
+
   tratar(c: Conexao, m: MsgCliente): void {
     // batimento do cliente: responde na hora só a esta conexão, com ou sem sala, sem gravar nada nem contar no ritmo
     if (m?.t === 'ping') { c.enviar({ t: 'pong' }); return; }
-    const erro = this.tratarInterno(c, m);
-    // o erro diz a que mensagem responde: o cliente só trata como jogada recusada o que veio de 'responder'
+    // a senha de uma mensagem anterior ainda está sendo conferida: esta espera a vez, na ordem
+    const fila = this.esperando.get(c);
+    if (fila) { fila.push(m); return; }
+    const r = this.tratarInterno(c, m);
+    if (!(r instanceof Promise)) { this.responder(c, m, r); return; }
+    this.esperando.set(c, []);
+    r.catch((e) => { console.error('senha da sala:', e); return 'Erro interno do servidor'; }).then((erro) => {
+      this.responder(c, m, erro);
+      // as que chegaram enquanto isso, na ordem (uma delas pode esperar outra senha: as seguintes vão para a fila nova)
+      const chegaram = this.esperando.get(c) ?? [];
+      this.esperando.delete(c);
+      while (chegaram.length) {
+        this.tratar(c, chegaram.shift()!);
+        const nova = this.esperando.get(c);
+        if (nova) { nova.push(...chegaram); break; }
+      }
+    });
+  }
+
+  /** o erro diz a que mensagem responde: o cliente só trata como jogada recusada o que veio de 'responder' */
+  private responder(c: Conexao, m: MsgCliente, erro: string | null): void {
     const de = tipoMsg(m);
     if (erro) c.enviar({ t: 'erro', msg: erro, ...(de ? { de } : {}) });
   }
 
-  private tratarInterno(c: Conexao, m: MsgCliente): string | null {
+  /**
+   * A senha da sala passa pelo scrypt (dezenas de ms de processador): fora da linha principal (no conjunto de threads
+   * do Node), para a mesa das outras salas não parar a cada 'criar' ou 'entrar'. Os testes conferem na hora
+   * (Atrasos.senhaNaHora), para a resposta sair na mesma chamada.
+   */
+  private comSenha<T>(c: Conexao, naHora: () => T, depois: () => Promise<T>, entao: (v: T) => string | null): string | null | Promise<string | null> {
+    if (this.atrasos.senhaNaHora) return entao(naHora());
+    return depois().then((v) => (this.fechadas.has(c) ? null : entao(v)));
+  }
+
+  private tratarInterno(c: Conexao, m: MsgCliente): string | null | Promise<string | null> {
     // a forma de toda mensagem é conferida aqui, antes de qualquer sala tocar nela (protocolo.ts)
     const invalida = validarMsg(m);
     if (invalida) return invalida;
@@ -1006,28 +1054,35 @@ export class Gerente {
         if (!nome) return 'Escolha um nome';
         if (typeof m.senhaSala !== 'string' || m.senhaSala.length < 3 || m.senhaSala.length > 64) return 'A senha da sala precisa ter de 3 a 64 caracteres';
         if (m.modo !== '4p' && m.modo !== '1v1') return 'Modo inválido';
-        const codigo = this.novoCodigo();
-        const n = m.modo === '4p' ? 4 : 2;
-        const vazio = (): Assento => ({ tipo: 'vazio', nome: null, deck: null, token: null, paradas: paradasPadrao() });
-        const s = new Sala({ codigo, senha: hashSenha(m.senhaSala), modo: m.modo, estado: 'espera', assentos: Array.from({ length: n }, vazio), anfitriao: 0, partida: null }, this);
-        this.salas.set(codigo, s);
-        s.sentar(c, nome);
-        s.salvar();
-        s.transmitir();
-        return null;
+        const { senhaSala, modo } = m;
+        return this.comSenha(c, () => hashSenha(senhaSala), () => hashSenhaAssincrono(senhaSala), (senha) => {
+          const codigo = this.novoCodigo();
+          const n = modo === '4p' ? 4 : 2;
+          const vazio = (): Assento => ({ tipo: 'vazio', nome: null, deck: null, token: null, paradas: paradasPadrao() });
+          const s = new Sala({ codigo, senha, modo, estado: 'espera', assentos: Array.from({ length: n }, vazio), anfitriao: 0, partida: null }, this);
+          this.salas.set(codigo, s);
+          s.sentar(c, nome);
+          s.salvar();
+          s.transmitir();
+          return null;
+        });
       }
       case 'entrar': {
         const s = this.salas.get(String(m.codigo ?? '').toUpperCase().trim());
-        if (!s || typeof m.senhaSala !== 'string' || !confereSenha(m.senhaSala, s.d.senha)) return 'Código ou senha da sala incorretos';
-        const nome = limparNome(m.nome);
-        if (!nome) return 'Escolha um nome';
-        // a mesma conexão não toma um segundo assento da sala em que já está
-        if (c.sala === s && c.assento !== null) return 'Você já está nesta sala';
-        if (s.d.estado === 'jogando') return 'A partida já começou; quem já está na sala pode voltar pelo mesmo aparelho';
-        if (s.sentar(c, nome) === null) return 'A sala está cheia';
-        s.salvar();
-        s.transmitir();
-        return null;
+        if (!s || typeof m.senhaSala !== 'string') return 'Código ou senha da sala incorretos';
+        const { senhaSala, nome: nomePedido } = m;
+        return this.comSenha(c, () => confereSenha(senhaSala, s.d.senha), () => confereSenhaAssincrono(senhaSala, s.d.senha), (certa) => {
+          if (!certa) return 'Código ou senha da sala incorretos';
+          const nome = limparNome(nomePedido);
+          if (!nome) return 'Escolha um nome';
+          // a mesma conexão não toma um segundo assento da sala em que já está
+          if (c.sala === s && c.assento !== null) return 'Você já está nesta sala';
+          if (s.d.estado === 'jogando') return 'A partida já começou; quem já está na sala pode voltar pelo mesmo aparelho';
+          if (s.sentar(c, nome) === null) return 'A sala está cheia';
+          s.salvar();
+          s.transmitir();
+          return null;
+        });
       }
       case 'retomar': {
         const s = this.salas.get(String(m.codigo ?? '').toUpperCase().trim());
@@ -1047,6 +1102,8 @@ export class Gerente {
   }
 
   desconectar(c: Conexao): void {
+    this.fechadas.add(c);
+    this.esperando.delete(c);
     if (c.sala) c.sala.desligar(c);
   }
 }

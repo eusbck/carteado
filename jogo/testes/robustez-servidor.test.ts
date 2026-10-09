@@ -477,6 +477,49 @@ describe('assento que vaga', () => {
   });
 });
 
+describe('senha da sala fora da linha principal', () => {
+  /** espera chegar uma mensagem do tipo pedido */
+  async function ate<T extends MsgServidor['t']>(p: Falsa, t: T): Promise<Extract<MsgServidor, { t: T }>> {
+    for (let k = 0; k < 500; k++) { const m = p.ultima(t); if (m) return m; await new Promise((r) => setTimeout(r, 5)); }
+    throw new Error(`não chegou '${t}'`);
+  }
+
+  it("'criar' e 'entrar' respondem depois do scrypt; o que a conexão manda enquanto isso espera, na ordem", async () => {
+    const g = new Gerente(new Banco(':memory:'), DECKS, { ...SEM_ATRASO, senhaNaHora: false });
+    const ana = new Falsa();
+    g.tratar(ana, { t: 'criar', nome: 'Ana', senhaSala: 'segredo', modo: '1v1' });
+    // a resposta ainda não saiu; o batimento sai na hora
+    expect(ana.ultima('sala')).toBeUndefined();
+    g.tratar(ana, { t: 'ping' });
+    expect(ana.msgs).toEqual([{ t: 'pong' }]);
+    // estas esperam a sala existir
+    g.tratar(ana, { t: 'deck', deck: DECKS[0].id });
+    g.tratar(ana, { t: 'chat', texto: 'primeira' });
+    g.tratar(ana, { t: 'chat', texto: 'segunda' });
+    const sala = await ate(ana, 'sala');
+    await espera();
+    expect(ana.msgs.some((m) => m.t === 'erro')).toBe(false);
+    const codigo = sala.sala.codigo;
+    expect(g.salas.get(codigo)!.d.assentos[0].deck).toBe(DECKS[0].id);
+    expect(g.salas.get(codigo)!.d.chat!.map((m) => m.texto)).toEqual(['primeira', 'segunda']);
+    // senha errada: o erro chega depois, dizendo de que mensagem é
+    const bruno = new Falsa();
+    g.tratar(bruno, { t: 'entrar', codigo, senhaSala: 'errada', nome: 'Bruno' });
+    expect(await ate(bruno, 'erro')).toMatchObject({ de: 'entrar', msg: expect.stringMatching(/senha/) });
+    g.tratar(bruno, { t: 'entrar', codigo, senhaSala: 'segredo', nome: 'Bruno' });
+    expect((await ate(bruno, 'sala')).voce).toBe(1);
+    // quem fecha a conexão antes da senha ser conferida não fica com o assento
+    const carla = new Falsa();
+    const g4 = new Gerente(new Banco(':memory:'), DECKS, { ...SEM_ATRASO, senhaNaHora: false });
+    g4.tratar(ana, { t: 'criar', nome: 'Ana', senhaSala: 'segredo', modo: '4p' });
+    const c4 = (await (async () => { for (let k = 0; k < 500; k++) { const s = [...g4.salas.values()][0]; if (s) return s; await new Promise((r) => setTimeout(r, 5)); } throw new Error('sem sala'); })()).codigo;
+    g4.tratar(carla, { t: 'entrar', codigo: c4, senhaSala: 'segredo', nome: 'Carla' });
+    g4.desconectar(carla);
+    await new Promise((r) => setTimeout(r, 300));
+    expect(g4.salas.get(c4)!.d.assentos.filter((a) => a.tipo === 'humano')).toHaveLength(1);
+  });
+});
+
 describe('reinício', () => {
   it('partida encerrada não é refeita ao subir; é refeita quando alguém volta, com o fim dela', async () => {
     const banco = new Banco(':memory:');
