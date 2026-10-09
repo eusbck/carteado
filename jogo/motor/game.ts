@@ -5,7 +5,7 @@
 import { defaultAnswer, validateShape, type LiveDecision } from './ask.ts';
 import type { Gen } from './defs.ts';
 import { G } from './game-context.ts';
-import { createGameState, type DeckList } from './state.ts';
+import { congelarLki, createGameState, type DeckList } from './state.ts';
 import { concede as doConcede, mainLoop } from './turn.ts';
 import type { Answer, Decision, GameConfig, GameState, PlayerId } from './types.ts';
 import './builtin.ts';
@@ -55,6 +55,7 @@ export class Game {
   /** retoma de um checkpoint (estado salvo numa decisão de prioridade) mais as entradas seguintes */
   static fromCheckpoint(cp: Checkpoint, decks: DeckList[], allInputs: Input[]): Game {
     const state = structuredClone(cp.state);
+    congelarLki(state);
     state.decisionSeq = Math.max(0, state.decisionSeq - 1); // a decisão pendente é refeita
     const game = new Game(state, decks, allInputs.slice(0, cp.inputIndex));
     for (const inp of allInputs.slice(cp.inputIndex)) game.applyInput(inp, true);
@@ -150,7 +151,9 @@ export class Game {
   /** checkpoint possível só numa decisão de prioridade (o laço é retomável ali) */
   checkpoint(): Checkpoint | null {
     if (!this.pending || this.pending.kind !== 'priority') return null;
-    return { state: structuredClone(this.state), inputIndex: this.inputs.length };
+    const state = structuredClone(this.state);
+    congelarLki(state);
+    return { state, inputIndex: this.inputs.length };
   }
 
   /** cópia independente da partida, para simulação dos bots */

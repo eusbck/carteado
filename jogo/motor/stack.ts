@@ -1,7 +1,7 @@
 // Pilha: conjurar mágicas (CR 601), ativar habilidades (CR 602), pôr gatilhos na pilha
 // (CR 603.3), alvos (CR 115) e resolução (CR 608).
 
-import { addEffect, createObject, destroyObject, moveRaw, newTimestamp } from './state.ts';
+import { addEffect, congelarLki, createObject, destroyObject, moveRaw, newTimestamp } from './state.ts';
 import { ask, chooseItems, chooseNumber, objItem, playerItem, yesNo } from './ask.ts';
 import type { GameEvent } from './events.ts';
 import { moveObject, moveObjects, protectionMatches, putOntoBattlefield, enchantCandidates, tap } from './actions.ts';
@@ -229,7 +229,9 @@ export function totalSpellCost(g: G, player: PlayerId, o: GameObject, method: Ca
 // Conjurar (CR 601.2)
 // ---------------------------------------------------------------------------
 function snapshot(g: G): GameState {
-  return structuredClone(g.state);
+  const s = structuredClone(g.state);
+  congelarLki(s);
+  return s;
 }
 
 function restore(g: G, snap: GameState): void {

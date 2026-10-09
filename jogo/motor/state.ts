@@ -156,13 +156,34 @@ export function newObjectId(g: G): ObjId {
   return g.state.nextId++;
 }
 
-/** guarda a última informação conhecida do objeto antes de ele mudar de zona (CR 608.2h) */
+/**
+ * Testes (CONGELAR_LKI=1): as entradas da LKI ficam congeladas (Object.freeze profundo) assim que gravadas, e as
+ * cópias do estado também. Qualquer código que mudasse uma entrada depois de gravada lança TypeError (módulos ES são
+ * estritos): é a prova de que elas nunca mudam, e que as cópias do estado podem compartilhá-las.
+ */
+export const CONGELAR_LKI = typeof process !== 'undefined' && process.env?.CONGELAR_LKI === '1';
+
+function congelar(x: unknown): void {
+  if (x === null || typeof x !== 'object' || Object.isFrozen(x)) return;
+  Object.freeze(x);
+  for (const v of Object.values(x)) congelar(v);
+}
+
+/** congela as entradas da LKI de um estado (só com CONGELAR_LKI=1; sem ela não faz nada) */
+export function congelarLki(s: GameState): void {
+  if (CONGELAR_LKI) for (const e of Object.values(s.lki)) congelar(e);
+}
+
+/** guarda a última informação conhecida do objeto antes de ele mudar de zona (CR 608.2h). A entrada não muda mais
+ * depois de gravada (só esta função escreve na LKI): as cópias do estado a compartilham */
 export function recordLki(g: G, id: ObjId, newId: ObjId | null, newZone: ZoneName | null): void {
   const o = g.state.objects[id];
   if (!o) return;
   let c: Chars;
   try { c = structuredClone(chars(g, id)); } catch { c = { name: o.def, manaCost: null, manaValue: 0, colors: [], supertypes: [], types: [], subtypes: [], abilities: [], power: null, toughness: null, loyalty: null, controller: o.controller }; }
-  g.state.lki[id] = { obj: structuredClone(o), chars: c, turn: g.state.turn.number, newId, newZone };
+  const entrada = { obj: structuredClone(o), chars: c, turn: g.state.turn.number, newId, newZone };
+  if (CONGELAR_LKI) congelar(entrada);
+  g.state.lki[id] = entrada;
 }
 
 export interface MoveOptions {
