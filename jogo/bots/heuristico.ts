@@ -25,7 +25,7 @@ import type { G } from '../motor/game-context.ts';
 import { int, next, seedFrom, shuffle, type RngState } from '../motor/rng.ts';
 import type { Answer, ChoiceItem, Decision, ObjId, PlayerId, TargetRef } from '../motor/types.ts';
 import { buildView, type GameView } from '../motor/view.ts';
-import { avaliar, forcas, valorPermanente, type OpcoesAvaliacao } from './avaliacao.ts';
+import { avaliar, forcas, rodada, valorPermanente, type OpcoesAvaliacao } from './avaliacao.ts';
 import { buscar } from './busca.ts';
 import { infoDaMemoria, memoriaVazia, observar, type DadosMemoria } from './memoria.ts';
 import { Copiador, determinizar, estadoOculto, ramo, Rastro, type InfoOculta } from './mundo.ts';
@@ -171,9 +171,10 @@ export class HeuristicBot {
       return null;
     }
     if (d.kind === 'mulligan') {
-      // a própria mão está na vista: fica com 2 a 5 terrenos (ou depois de duas trocas)
+      // a própria mão está na vista
       const terrenos = v.hand.filter((o) => o.types.includes('Land')).length;
-      return { kind: 'mulligan', keep: d.mulligans >= 2 || (terrenos >= 2 && terrenos <= 5) };
+      const pedras = v.hand.filter((o) => !o.types.includes('Land') && papelDe(o.def).mana > 0).length;
+      return { kind: 'mulligan', keep: ficaComMao(terrenos, pedras, d.mulligans) };
     }
     if (d.kind === 'attackers' || d.kind === 'blockers' || d.kind === 'select' || d.kind === 'arrange') {
       if (d.kind !== 'attackers' && this.e.plano.length) return this.doPlano(d, valida, publicaNaVista(d, v));
@@ -318,6 +319,17 @@ export class HeuristicBot {
     const acoes = significativas(d).filter((a) => !this.e.falhas.includes(`${ctx.g.state.turn.number}|${ctx.g.state.turn.step}|${a.id}`));
     if (!acoes.length) return PASSAR;
     if (this.p.regras) return this.regras(ctx, acoes);
+    // terreno antes das mágicas: no próprio turno, com a pilha vazia, o terreno sai primeiro (a mana dele já paga as
+    // mágicas seguintes); com mais de um na mão, a simulação escolhe qual
+    const s = ctx.g.state;
+    if (s.turn.active === this.eu && (s.turn.step === 'main1' || s.turn.step === 'main2') && !s.zones.stack.length) {
+      const terrenos = acoes.filter((a) => a.kind === 'play');
+      if (terrenos.length === 1) return { kind: 'priority', action: terrenos[0].id };
+      if (terrenos.length > 1) {
+        const r = this.rasa(ctx, terrenos);
+        return r.kind === 'priority' && r.action !== 'pass' ? r : { kind: 'priority', action: terrenos[0].id };
+      }
+    }
     const r = this.p.busca ? buscar(this, ctx, acoes) : this.rasa(ctx, acoes);
     if (r.kind === 'priority' && r.action === 'pass') {
       this.e.passouEm.push(this.chave(d, buildView(ctx.g, this.eu, d)));
@@ -545,6 +557,12 @@ export function publicaNaVista(d: Decision, v: GameView): boolean {
   return true;
 }
 
+/** fica com a mão de 2 a 5 terrenos (ou depois de duas trocas); pedra de mana conta meio terreno, com pelo menos um
+ *  terreno de verdade */
+export function ficaComMao(terrenos: number, pedras: number, mulligans: number): boolean {
+  return mulligans >= 2 || (terrenos >= 1 && terrenos + 0.5 * pedras >= 2 && terrenos <= 5);
+}
+
 const media = (l: number[]) => l.reduce((t, x) => t + x, 0) / Math.max(1, l.length);
 const okDe = (d: Decision) => (a: Answer) => { const v = (d as LiveDecision).validate; return !v || v(a) === null; };
 
@@ -552,15 +570,29 @@ function ehPermanente(g: G, id: ObjId): boolean {
   return chars(g, id).types.some((x) => ['Creature', 'Artifact', 'Enchantment', 'Planeswalker', 'Battle', 'Land'].includes(x));
 }
 
-/** ordem de tentativa: terrenos, comandante, mágicas mais caras, habilidades */
+/**
+ * Ordem de tentativa (com poucas simulações, como no Fácil, só as primeiras são avaliadas): terrenos, comandante, pedras
+ * de mana nas primeiras rodadas, habilidades de lealdade e as mágicas alternando a mais cara e a mais barata; as outras
+ * habilidades por último. Antes as mágicas iam da mais cara para a mais barata e as pedras e as baratas quase nunca
+ * eram avaliadas.
+ */
 export function ordenar(acoes: D<'priority'>['actions'], g: G) {
-  const peso = (a: D<'priority'>['actions'][number]): number => {
-    if (a.kind === 'play') return 100;
-    if (a.kind === 'cast' && a.id.endsWith(':command')) return 90;
-    if (a.kind === 'cast' && a.obj !== undefined && g.state.objects[a.obj]) return 50 + manaValue(g, a.obj);
-    return 10;
-  };
-  return [...acoes].sort((a, b) => peso(b) - peso(a)).slice(0, 14);
+  type A = D<'priority'>['actions'][number];
+  const s = g.state;
+  const cedo = rodada(g) <= 6;
+  const terrenos: A[] = [], comandante: A[] = [], pedras: A[] = [], lealdade: A[] = [], magias: A[] = [], outras: A[] = [];
+  for (const a of acoes) {
+    if (a.kind === 'play') terrenos.push(a);
+    else if (a.kind === 'cast' && a.id.endsWith(':command')) comandante.push(a);
+    else if (a.kind === 'cast' && a.obj !== undefined && s.objects[a.obj]) (cedo && papelDe(s.objects[a.obj].def).mana > 0 ? pedras : magias).push(a);
+    else if (a.kind === 'activate' && /: ([+−-](\d|X)|0):/.test(a.label)) lealdade.push(a);
+    else outras.push(a);
+  }
+  const mv = (a: A) => (a.obj !== undefined && s.objects[a.obj] ? manaValue(g, a.obj) : 0);
+  magias.sort((a, b) => mv(b) - mv(a));
+  const alternadas: A[] = [];
+  for (let i = 0, j = magias.length - 1; i <= j; i++, j--) { alternadas.push(magias[i]); if (j !== i) alternadas.push(magias[j]); }
+  return [...terrenos, ...comandante, ...pedras, ...lealdade, ...alternadas, ...outras].slice(0, 14);
 }
 
 /** política rápida de prioridade para as jogadas longas (Magic God): terreno e a mágica mais cara que der no próprio turno */
@@ -626,7 +658,8 @@ export function escolher(d: Decision, gameOuG: Game | G, eu: PlayerId, rng: RngS
     case 'mulligan': {
       const mao = g.state.zones.hand[eu];
       const terrenos = mao.filter((id) => isLand(g, id)).length;
-      return { kind: 'mulligan', keep: d.mulligans >= 2 || (terrenos >= 2 && terrenos <= 5) };
+      const pedras = mao.filter((id) => !isLand(g, id) && papelDe(g.state.objects[id].def).mana > 0).length;
+      return { kind: 'mulligan', keep: ficaComMao(terrenos, pedras, d.mulligans) };
     }
   }
 }
@@ -710,15 +743,18 @@ function valorNaMao(g: G, id: ObjId, eu: PlayerId): number {
   const s = g.state;
   const terrenosMesa = s.zones.battlefield.filter((x) => controllerOf(g, x) === eu && isLand(g, x)).length;
   const terrenosMao = s.zones.hand[eu].filter((x) => isLand(g, x)).length;
+  const pedrasMesa = s.zones.battlefield.reduce((t, x) => t + (controllerOf(g, x) === eu && !isLand(g, x) && !s.objects[x].isToken ? papelDe(s.objects[x].def).mana : 0), 0);
   if (isLand(g, id)) {
     const total = terrenosMesa + terrenosMao;
     return total <= 3 ? 5 : total <= 5 ? 3.5 : total <= 7 ? 2 : 0.8;
   }
   const mv = manaValue(g, id);
   let v = 2 + 0.3 * Math.min(mv, 7);
-  const falta = mv - (terrenosMesa + Math.min(terrenosMao, 2));
+  const falta = mv - (terrenosMesa + pedrasMesa + Math.min(terrenosMao, 2));
   if (falta > 2) v -= 0.6 * (falta - 2);
-  const pp = papelDe(s.objects[id].def).papeis;
+  const info = papelDe(s.objects[id].def);
+  if (info.mana > 0 && rodada(g) <= 6) v += 1;
+  const pp = info.papeis;
   if (pp.has('remocao') || pp.has('anula') || pp.has('compra') || pp.has('varredura')) v += 0.6;
   return v;
 }

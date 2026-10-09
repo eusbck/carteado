@@ -1,7 +1,7 @@
 // Bot heurístico: decisões básicas em situações montadas (terreno, remoção, ataque, bloqueio, escolhas forçadas).
 import { describe, expect, it } from 'vitest';
 import { setup, type TestGame } from './harness.ts';
-import { escolher, HeuristicBot } from '../bots/heuristico.ts';
+import { escolher, ficaComMao, HeuristicBot } from '../bots/heuristico.ts';
 import { avaliar } from '../bots/avaliacao.ts';
 import { determinizar } from '../bots/simulacao.ts';
 import { seedFrom } from '../motor/rng.ts';
@@ -148,5 +148,38 @@ describe('bot heurístico', () => {
     };
     expect(kicker(5)).toEqual(['no']);
     expect(kicker(9)).toEqual(['yes']);
+  });
+
+  for (const nivel of ['facil', 'intermediario'] as const) {
+    it(`${nivel}: conjura Sol Ring e Signet quando tem a mana (deck do Jace)`, () => {
+      const tg = setup({ battlefield: [['Island', 'Swamp', 'Plains'], ['Grave Titan']], hand: [['Sol Ring', 'Dimir Signet'], []], library: [['Plains'], ['Plains']] });
+      const bot = new HeuristicBot('t', 0, { nivel, orcamento: 1e9 });
+      jogar(tg, bot, (x) => x.state.turn.step === 'main2' || x.state.turn.active !== 0);
+      expect(tg.find('Sol Ring')).not.toBeNull();
+      expect(tg.find('Dimir Signet')).not.toBeNull();
+    });
+  }
+
+  it('joga o terreno antes das mágicas', () => {
+    const tg = setup({ battlefield: [['Island', 'Swamp'], []], hand: [['Dimir Signet', 'Plains', 'Swords to Plowshares'], []], library: [['Plains'], ['Plains']] });
+    const bot = new HeuristicBot('t', 0, { nivel: 'intermediario', orcamento: 1e9 });
+    const a = bot.answer(tg.pending!, tg.game);
+    expect(a.kind === 'priority' && a.action.startsWith('play:')).toBe(true);
+  });
+
+  it('mulligan: pedra de mana conta meio terreno, com pelo menos um terreno', () => {
+    expect(ficaComMao(1, 2, 0)).toBe(true);
+    expect(ficaComMao(1, 1, 0)).toBe(false);
+    expect(ficaComMao(0, 4, 0)).toBe(false);
+    expect(ficaComMao(2, 0, 0)).toBe(true);
+    expect(ficaComMao(6, 0, 0)).toBe(false);
+  });
+
+  it('do Difícil em diante, guardar mana para a contramágica vale na avaliação', () => {
+    const tg = setup({ battlefield: [['Island', 'Island'], []], hand: [['Counterspell'], []] });
+    const desvirado = avaliar(tg.g, 0, { papeis: true });
+    for (const id of tg.state.zones.battlefield) tg.state.objects[id].tapped = true;
+    const virado = avaliar(tg.g, 0, { papeis: true });
+    expect(desvirado - virado).toBeGreaterThan(1.5);
   });
 });

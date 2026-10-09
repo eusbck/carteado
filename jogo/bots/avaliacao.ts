@@ -20,6 +20,17 @@ export interface OpcoesAvaliacao {
   lider?: boolean;
 }
 
+/** rodada da partida: o número do turno conta o turno de cada jogador (em 4 jogadores, o turno 8 é a 2ª rodada) */
+export function rodada(g: G): number {
+  return Math.ceil(g.state.turn.number / Math.max(1, g.state.players.length));
+}
+
+/** quanto vale cada mana a mais por turno (pedra ou criatura de mana): quase um terreno no começo, pouco no fim */
+export function valorDaMana(g: G): number {
+  const r = rodada(g);
+  return r <= 4 ? 2.2 : r <= 8 ? 1.5 : 0.9;
+}
+
 /** valor aproximado de um permanente na mesa (terrenos à parte) */
 export function valorPermanente(g: G, id: ObjId, papeis = false): number {
   const o = g.state.objects[id];
@@ -38,10 +49,15 @@ export function valorPermanente(g: G, id: ObjId, papeis = false): number {
   if (c.types.includes('Planeswalker')) v += 2 + (o.counters.loyalty ?? 0);
   // fichas que não são criaturas (Tesouro, Pista): pouco valor duradouro
   if (o.isToken && !isCreature(g, id)) v = Math.min(v, 1.2);
-  if (papeis && !o.isToken && !o.faceDown) {
-    const pp = papelDe(o.copyOf?.def ?? o.def).papeis;
-    // motores que continuam rendendo: mana a mais cedo, cartas, fichas
-    if (pp.has('rampa')) v += g.state.turn.number <= 8 ? 1.6 : 0.6;
+  // pedras e criaturas de mana: o valor está na mana que produzem a cada turno (antes uma Signet valia menos que a
+  // carta na mão e o bot nunca a conjurava)
+  const info = o.isToken || o.faceDown ? null : papelDe(o.copyOf?.def ?? o.def);
+  const mana = info?.mana ?? 0;
+  if (mana > 0) v += mana * valorDaMana(g);
+  if (papeis && info) {
+    const pp = info.papeis;
+    // motores que continuam rendendo: mana a mais cedo (contada por rodada, não por turno), cartas, fichas
+    if (pp.has('rampa') && !mana) v += rodada(g) <= 4 ? 1.6 : 0.6;
     if (pp.has('compra')) v += 1.2;
     if (pp.has('fichas')) v += 0.8;
     if (pp.has('protecao')) v += 0.4;
@@ -110,6 +126,9 @@ export function avaliar(g: G, eu: PlayerId, opts: OpcoesAvaliacao = {}): number 
     if (dono === eu) v += val;
     else if (!s.players[dono].left) v -= 0.55 * (peso.get(dono) ?? 1) * val;
   }
+  // mana que eu ainda posso usar (terrenos e pedras desvirados)
+  let livres = terrenos.get(eu)?.d ?? 0;
+  if (opts.papeis) for (const id of s.zones.battlefield) { const o = s.objects[id]; if (!o.tapped && !o.phasedOut && !o.isToken && o.controller === eu && chars(g, id).controller === eu) livres += papelDe(o.def).mana; }
   for (const [p, t] of terrenos) {
     if (p === eu) v += valorTerrenos(t.n, t.d);
     else if (!s.players[p].left) v -= 0.3 * (peso.get(p) ?? 1) * valorTerrenos(t.n, 0);
@@ -123,10 +142,16 @@ export function avaliar(g: G, eu: PlayerId, opts: OpcoesAvaliacao = {}): number 
   v += 2.6 * Math.min(outras, 7) + 0.6 * Math.max(0, outras - 7) + 0.5 * terrenosNaMao;
   if (opts.papeis) {
     // respostas guardadas valem um pouco mais que uma carta qualquer
+    let resposta = Infinity;
     for (const id of mao) {
-      const pp = papelDe(s.objects[id].def).papeis;
+      const info = papelDe(s.objects[id].def);
+      const pp = info.papeis;
       if (pp.has('remocao') || pp.has('anula') || pp.has('varredura')) v += 0.5;
+      if (info.instante && (pp.has('anula') || pp.has('remocao'))) resposta = Math.min(resposta, manaValue(g, id));
     }
+    // mana guardada para a resposta no turno dos outros (anular, remoção instantânea): gastar tudo no próprio turno
+    // tira essa opção
+    if (resposta < Infinity && livres >= resposta) v += 1.5;
   }
   for (const o of ops) v -= 0.4 * peso.get(o.id)! * Math.min(s.zones.hand[o.id].length, 7);
   const grim = s.zones.library[eu].length;
