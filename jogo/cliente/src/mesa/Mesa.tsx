@@ -261,6 +261,9 @@ function Avisos({ v, cor, doServidor }: { v: GameView; cor: (p: number) => strin
   const [lista, setLista] = useState<{ id: number; texto: string; quem: number | null }[]>([]);
   const anterior = useRef<GameView['log'] | null>(null);
   const seq = useRef(0);
+  // cada aviso some sozinho; os relógios que faltam param quando a mesa sai da tela
+  const relogios = useRef(new Set<ReturnType<typeof setTimeout>>());
+  useEffect(() => () => { for (const t of relogios.current) clearTimeout(t); }, []);
   useEffect(() => {
     const ant = anterior.current;
     anterior.current = v.log;
@@ -275,7 +278,8 @@ function Avisos({ v, cor, doServidor }: { v: GameView; cor: (p: number) => strin
     const itens = novas.slice(-3).map((l) => ({ id: seq.current++, texto: traduzir(l.text), quem: v.players.find((p) => l.text.startsWith(`${p.name} `) || l.text.startsWith(`${p.name}:`))?.id ?? null }));
     setLista((a) => [...a, ...itens].slice(-3));
     const ids = new Set(itens.map((i) => i.id));
-    setTimeout(() => setLista((a) => a.filter((x) => !ids.has(x.id))), 5000);
+    const t = setTimeout(() => { relogios.current.delete(t); setLista((a) => a.filter((x) => !ids.has(x.id))); }, 5000);
+    relogios.current.add(t);
   }, [v.log]);
   if (!lista.length && !doServidor.length) return null;
   return (
@@ -472,6 +476,21 @@ export function Mesa() {
     clearTimeout(p.timer);
     p.timer = setTimeout(terminarPouso, falta);
   };
+  // a carta que volta para a mão depois de um arrasto que não deu em jogada
+  const voltaMao = useRef<ReturnType<typeof setTimeout> | null>(null);
+  /** um arrasto novo começou: o pouso ou a volta à mão da carta anterior terminam já (os relógios deles não podem
+   *  apagar a carta que você acabou de pegar) */
+  const arrastoAnteriorFim = () => {
+    terminarPouso();
+    if (voltaMao.current) { clearTimeout(voltaMao.current); voltaMao.current = null; }
+  };
+  // a mesa saiu da tela: nenhum relógio do arrasto fica para mexer nela depois, e o zoom não fica para a próxima
+  useEffect(() => () => {
+    if (pouso.current) clearTimeout(pouso.current.timer);
+    if (voltaMao.current) clearTimeout(voltaMao.current);
+    mostrarFantasma(null);
+    esconderZoom();
+  }, []);
   // com o tracejado de "pagando" já no lugar, a carta arrastada sai assim que termina de pousar
   useEffect(() => { if (conjurando) encerrarPouso(); }, [conjurando]);
   // jogada recusada: ela não fica parada no campo
@@ -686,7 +705,7 @@ export function Mesa() {
       // na mesa real, nada de área destacada nem "Solte para…"
       const base = { o, w, alvo: aux.avisos ? alvo : null, texto: aux.avisos ? texto : '', valido: j.length > 0 };
       return {
-        inicio: () => { setMenu(null); esconderZoom(); setArrastando(o.id); mostrarFantasma({ ...base, x: ev.clientX - dx, y: ev.clientY - dy }); },
+        inicio: () => { arrastoAnteriorFim(); setMenu(null); esconderZoom(); setArrastando(o.id); mostrarFantasma({ ...base, x: ev.clientX - dx, y: ev.clientY - dy }); },
         mover: (x: number, y: number) => mostrarFantasma({ ...base, x: x - dx, y: y - dy }),
         soltar: (x: number, y: number) => {
           if (dentro(alvo, x, y) && j.length) {
@@ -709,7 +728,8 @@ export function Mesa() {
           // volta para a mão (e, se você tentou jogar o que não pode, treme ao chegar)
           const tentou = dentro(alvo, x, y);
           mostrarFantasma({ ...base, x: r0.left, y: r0.top, voltando: true });
-          setTimeout(() => { mostrarFantasma(null); setArrastando(null); if (tentou) loja.recusar(texto); }, 220);
+          if (voltaMao.current) clearTimeout(voltaMao.current);
+          voltaMao.current = setTimeout(() => { voltaMao.current = null; mostrarFantasma(null); setArrastando(null); if (tentou) loja.recusar(texto); }, 220);
         },
         cancelar: () => { mostrarFantasma(null); setArrastando(null); },
       };
@@ -728,7 +748,7 @@ export function Mesa() {
       const texto = alvosAtaque?.length ? 'Solte na área de quem ela vai atacar' : 'Solte em cima da criatura que ela vai bloquear';
       const base = { o, w, alvo: null, texto, valido: true, virada: o.tapped };
       return {
-        inicio: () => { setMenu(null); esconderZoom(); setArrastando(o.id); mostrarFantasma({ ...base, ...canto(ev.clientX, ev.clientY) }); },
+        inicio: () => { arrastoAnteriorFim(); setMenu(null); esconderZoom(); setArrastando(o.id); mostrarFantasma({ ...base, ...canto(ev.clientX, ev.clientY) }); },
         mover: (x: number, y: number) => mostrarFantasma({ ...base, ...canto(x, y) }),
         soltar: (x: number, y: number) => {
           mostrarFantasma(null); setArrastando(null);
@@ -760,7 +780,7 @@ export function Mesa() {
     const guardar = arrumar.selecao.has(dono) ? [...arrumar.selecao] : [dono];
     const mover = guardar.flatMap((id) => [...(anexos.get(id) ?? []).map((a) => a.id), id]);
     moverCartas(ev, el, mover, guardar, {
-      inicio: () => { setMenu(null); esconderZoom(); },
+      inicio: () => { arrastoAnteriorFim(); setMenu(null); esconderZoom(); },
       soltar: (novas: NovaPosicao[]) => {
         if (!novas.length) return;
         setPosLocal((a) => { const n = { ...a }; for (const q of novas) n[q.obj] = [q.x, q.y]; return n; });
@@ -838,6 +858,7 @@ export function Mesa() {
     abrirMenu('Seu campo', itens, new DOMRect(ev.clientX, ev.clientY, 0, 0));
   };
 
+  const viradaAgora = useRef<{ id: ObjId; t: number } | null>(null);
   const clicarCarta = (o: ObjView, r: DOMRect) => {
     if (pegar) { pegar.cb(o.id); return; }
     if (!d || enviando) return;
@@ -854,7 +875,7 @@ export function Mesa() {
       // virar a fonte na mesa: com uma habilidade só, vira direto; com várias, você escolhe
       const fontes = fontesPorObj.get(o.id);
       if (!fontes?.length) { if (sua) loja.recusar('Essa carta não gera mana agora'); return; }
-      const ativar = (f: PaymentSource) => loja.responder(d.id, { kind: 'payment', activate: { source: f.id } });
+      const ativar = (f: PaymentSource) => { viradaAgora.current = { id: o.id, t: Date.now() }; loja.responder(d.id, { kind: 'payment', activate: { source: f.id } }); };
       if (fontes.length === 1) ativar(fontes[0]);
       else abrirMenu(nomeObj(o.id), legais(fontes.map((f) => ({ id: f.id, label: f.label, fazer: () => ativar(f) }))), r);
       return;
@@ -866,10 +887,12 @@ export function Mesa() {
       const desvirar = o.controller === eu && o.tapped && manualOk && manaNaReserva(o)
         ? { id: 'desvirar-mana', label: 'Desvirar (a mana sai da reserva)', fazer: () => manual({ k: 'virar', obj: o.id, tapped: false }) }
         : null;
+      // o segundo clique de um clique duplo rápido no terreno que você acabou de virar não o desvira (a mana sumia)
+      if (desvirar && viradaAgora.current?.id === o.id && Date.now() - viradaAgora.current.t < 600) return;
       if (desvirar && !acoes.length) { desvirar.fazer(); return; }
       if (!acoes.length) { if (sua) loja.recusar(v.hand.some((x) => x.id === o.id) ? motivo(o) : 'Essa carta não tem o que fazer agora'); return; }
       // terreno com uma habilidade de mana só: vira e a mana vai para a reserva
-      if (acoes.length === 1 && acoes[0].kind === 'mana' && !desvirar) { fazerAcao(acoes[0]); return; }
+      if (acoes.length === 1 && acoes[0].kind === 'mana' && !desvirar) { viradaAgora.current = { id: o.id, t: Date.now() }; fazerAcao(acoes[0]); return; }
       abrirMenu(nomeObj(o.id), legais([...acoes.map((a) => ({ id: a.id, label: a.label, fazer: () => fazerAcao(a) })), ...(desvirar ? [desvirar] : [])]), r);
       return;
     }
@@ -1006,14 +1029,20 @@ export function Mesa() {
   const ultimaChat = e.chat[e.chat.length - 1]?.id ?? 0;
   const [lidaChat, setLidaChat] = useState(ultimaChat);
   const [chatNovo, setChatNovo] = useState<MsgChat[]>([]);
+  // a última mensagem que já apareceu na mesa: depois de sumir, ela não volta com a mensagem seguinte
+  const chatAvisado = useRef(ultimaChat);
+  const relogiosChat = useRef(new Set<ReturnType<typeof setTimeout>>());
+  useEffect(() => () => { for (const t of relogiosChat.current) clearTimeout(t); }, []);
   useEffect(() => {
-    if (!recolhida) { setLidaChat(ultimaChat); setChatNovo([]); return; }
-    const novas = e.chat.filter((m) => m.id > lidaChat && m.de !== eu && !chatNovo.some((x) => x.id === m.id));
+    if (!recolhida) { setLidaChat(ultimaChat); chatAvisado.current = ultimaChat; setChatNovo([]); return; }
+    const novas = e.chat.filter((m) => m.id > Math.max(lidaChat, chatAvisado.current) && m.de !== eu);
+    chatAvisado.current = Math.max(chatAvisado.current, ultimaChat);
     if (!novas.length) return;
     setChatNovo((a) => [...a, ...novas].slice(-3));
     const ids = new Set(novas.map((m) => m.id));
     // sem limpar na próxima mensagem: cada uma some no seu tempo
-    setTimeout(() => setChatNovo((a) => a.filter((m) => !ids.has(m.id))), 6000);
+    const t = setTimeout(() => { relogiosChat.current.delete(t); setChatNovo((a) => a.filter((m) => !ids.has(m.id))); }, 6000);
+    relogiosChat.current.add(t);
   }, [ultimaChat, recolhida]);
   const naoLidas = recolhida ? e.chat.filter((m) => m.id > lidaChat && m.de !== eu).length : 0;
   const decisaoManual = d?.kind === 'priority' && d.actions.some((a) => a.kind === 'manual') ? d.id : null;
