@@ -337,6 +337,13 @@ function Configuracoes({ pref, salaProibe, fechar, reorganizar }: { pref: Prefer
         </div>
       </section>
       <ConfigSom pref={pref} />
+      <section class="bloco-config" aria-labelledby="cfg-retrato">
+        <p class="rot" id="cfg-retrato">Seu retrato na mesa <span class="rot-nota">guardado neste navegador</span></p>
+        <div class="segmentado" role="radiogroup" aria-label="Seu retrato na mesa">
+          <button type="button" role="radio" aria-checked={!pref.avatarCanto} class={!pref.avatarCanto ? 'ativo' : ''} onClick={() => mudarPreferencias({ avatarCanto: false })}>No meio<small>na base, na frente das cartas da mão</small></button>
+          <button type="button" role="radio" aria-checked={!!pref.avatarCanto} class={pref.avatarCanto ? 'ativo' : ''} onClick={() => mudarPreferencias({ avatarCanto: true })}>No canto<small>em cima, à direita do seu campo</small></button>
+        </div>
+      </section>
       <section class="bloco-config linha-config">
         <div><strong>Arrumação do campo</strong><p class="suave">Volta todas as suas permanentes para a arrumação padrão.</p></div>
         <button class="botao" onClick={reorganizar}>Reorganizar meu campo</button>
@@ -890,6 +897,7 @@ export function Mesa() {
         onZona={(zona) => setModal({ tipo: 'zona', jogador: j.id, zona })}
         mao={j.id === eu ? v.hand : undefined}
         reservaDireita={j.id === eu ? 336 : 0}
+        avatarCanto={j.id === eu && !!pref.avatarCanto}
         posicoes={posicoes}
         arrastando={arrastando}
         onPegarCampo={j.id === eu && !v.gameOver ? pegarCampo : undefined}

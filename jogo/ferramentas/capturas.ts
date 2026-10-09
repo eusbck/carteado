@@ -553,8 +553,15 @@ async function capturasPosicionar(): Promise<void> {
     // 2.4: retângulo do espaço vazio embaixo à direita até o meio do campo: pega os terrenos e a carta que
     // acabou de ser posta (a criatura de cima fica de fora)
     c0 = await cartas(pg);
-    const ax = campo.x + campo.width * .58, ay = campo.y + campo.height * .97;
-    await arrastar(pg, ax, ay, campo.x + 6, campo.y + campo.height * .45, async () => {
+    // começa num ponto vazio do campo (sem carta nem avatar por cima) e termina logo abaixo da criatura de cima
+    const ay = campo.y + campo.height * .97;
+    const ax = await pg.evaluate(({ x0, x1, y }) => {
+      for (let x = x0; x < x1; x += 8) { const el = document.elementFromPoint(x, y); if (el?.classList.contains('campo')) return x; }
+      return x0;
+    }, { x0: campo.x + campo.width * .58, x1: campo.x + campo.width * .97, y: ay });
+    const topoCriatura = Math.min(...Object.values(c0).map((v) => v.vis.y + v.vis.h));
+    const fimY = Math.max(campo.y + campo.height * .45, Math.min(ay - 40, topoCriatura + 6));
+    await arrastar(pg, ax, ay, campo.x + 6, fimY, async () => {
       if (!await pg.locator('.retangulo-selecao').count() || !await pg.locator('.area-eu .carta.na-selecao').count()) throw new Error(`retângulo de seleção não apareceu (${largura})`);
       await foto(pg, `41-selecao-retangulo${sufixo}`);
     });
@@ -565,7 +572,9 @@ async function capturasPosicionar(): Promise<void> {
     await foto(pg, `41b-selecao-grupo${sufixo}`);
     // arrasta uma das selecionadas pelo canto: todas andam juntas
     const pega = c0[sel[sel.length - 1]];
-    const dx = campo.width * .18, dy = -campo.height * .15;
+    // sobe no máximo até perto do topo do campo (o jogo segura o grupo dentro do campo, e aí ele não anda inteiro)
+    const topoSel = Math.min(...sel.map((x) => c0[x].vis.y));
+    const dx = campo.width * .18, dy = -Math.max(0, Math.min(campo.height * .15, topoSel - campo.y - 6));
     await arrastar(pg, pega.vis.x + 8, pega.vis.y + 8, pega.vis.x + 8 + dx, pega.vis.y + 8 + dy);
     await pg.mouse.move(campo.x + campo.width * .6, campo.y + 4);
     await pg.waitForTimeout(300);
@@ -620,6 +629,7 @@ try {
   await p.waitForTimeout(450);
   await foto(p, '03a-saguao-lugares');
   for (let i = 2; i <= 4; i++) await porBot(p, i);
+  await p.waitForTimeout(700);
   await foto(p, '03b-saguao-lugares-cheios');
   await p.getByRole('button', { name: 'Continuar para as regras' }).click();
   await p.waitForTimeout(450);
@@ -635,6 +645,7 @@ try {
   await p.getByRole('button', { name: 'Escolher este deck' }).click();
   await p.locator('.previa-deck').waitFor({ state: 'detached' });
   await p.mouse.move(5, 5);
+  await p.waitForTimeout(700);
   await foto(p, '03-saguao');
   await p.getByRole('button', { name: 'Começar a partida' }).click();
   await p.getByText('Mão inicial').waitFor({ timeout: 20000 });
@@ -900,7 +911,13 @@ try {
   await ana.keyboard.press('Escape');
   // quem está no próprio turno joga um terreno (pelo clique direito: na mesa real nada brilha)
   const jogarTerreno = async (pg: Page) => {
-    const cartas = pg.locator('.mao-cartas .carta');
+    // básicos primeiro: um terreno com gatilho de alvo (Pântano de Bojuka) abre uma janela por cima do botão de desfazer
+    const basico = /^(Planície|Ilha|Pântano|Montanha|Floresta|Plains|Island|Swamp|Mountain|Forest)$/;
+    const todas = pg.locator('.mao-cartas .carta');
+    const ordem: number[] = [];
+    for (let i = 0; i < await todas.count(); i++) if (basico.test((await todas.nth(i).locator('img').getAttribute('alt').catch(() => '')) ?? '')) ordem.push(i);
+    for (let i = 0; i < await todas.count(); i++) if (!ordem.includes(i)) ordem.push(i);
+    const cartas = { count: async () => ordem.length, nth: (k: number) => todas.nth(ordem[k]) };
     for (let i = 0; i < await cartas.count(); i++) {
       await cartas.nth(i).click({ button: 'right', position: { x: 8, y: 40 }, timeout: 3000 }).catch(() => {});
       const jogar = pg.locator('.menu-acoes .menu-item.acao').filter({ hasText: /^Jogar / }).first();

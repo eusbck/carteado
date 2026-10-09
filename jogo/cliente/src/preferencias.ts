@@ -43,6 +43,8 @@ export interface Preferencias {
   volumeMusica: number;
   /** tremida, brilho, números flutuando, ataques avançando, cartas indo para o cemitério */
   efeitos: boolean;
+  /** o seu retrato no canto de cima à direita da sua área (sem valor: no meio da base, na frente da mão) */
+  avatarCanto?: boolean;
 }
 
 const CHAVE = 'commander-da-mesa:preferencias';

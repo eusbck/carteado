@@ -45,6 +45,18 @@ function agrupar(cartas: CartaCatalogo[]): { nome: string; cartas: CartaCatalogo
     });
 }
 
+/** as categorias em colunas de altura parecida, na ordem (cada uma vai para a coluna mais curta até ali) */
+function emColunas<T extends { cartas: unknown[] }>(grupos: T[], n: number): T[][] {
+  const colunas: T[][] = Array.from({ length: n }, () => []);
+  const altura = Array(n).fill(0);
+  for (const g of grupos) {
+    const k = altura.indexOf(Math.min(...altura));
+    colunas[k].push(g);
+    altura[k] += g.cartas.length + 2;
+  }
+  return colunas.filter((c) => c.length);
+}
+
 const imagem = (c: CartaCatalogo | null, tamanho: 'p' | 'm') => (c?.img ? `/img/${c.img}/frente/${tamanho}` : null);
 
 export function PreviaDeck({ d, meu, escolher, fechar }: { d: DeckResumo; meu: boolean; escolher: () => void; fechar: () => void }) {
@@ -74,7 +86,7 @@ export function PreviaDeck({ d, meu, escolher, fechar }: { d: DeckResumo; meu: b
       {lista && lista !== 'carregando' && (
         <div class="previa-corpo">
           <div class="previa-grupos" onMouseLeave={() => setDestaque(null)}>
-            {agrupar(lista.cartas).map((g) => (
+            {emColunas(agrupar(lista.cartas), 3).map((coluna, k) => <div key={k} class="previa-coluna">{coluna.map((g) => (
               <section key={g.nome} class="previa-grupo">
                 <h3 class="rot">{g.nome} <span>{g.total}</span></h3>
                 <ul>
@@ -88,7 +100,7 @@ export function PreviaDeck({ d, meu, escolher, fechar }: { d: DeckResumo; meu: b
                   ))}
                 </ul>
               </section>
-            ))}
+            ))}</div>)}
           </div>
           <aside class="previa-carta" aria-hidden="true">
             {grande ? <img key={grande} src={grande} alt="" /> : <span class="previa-sem-imagem" />}

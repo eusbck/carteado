@@ -9,8 +9,8 @@ identidade da interface (escuras, épicas, em ouro, laranja e nas cores de mana,
 para o uso privado do grupo, como as imagens das cartas; não são para redistribuir.
 
 Cada uma foi recortada para 1920×1080 (centro de interesse do sharp) e gravada em WebP com qualidade 68. As de
-número 02, 12, 15, 16, 18 e 22 tinham o logo da coleção ou a assinatura gravados num canto: foram refeitas tirando
-8% de cada borda da original antes do recorte.
+número 02, 12, 15, 16, 18, 22 e 23 tinham o logo da coleção, a assinatura ou a marca do site gravados num canto: foram refeitas tirando
+8% (a 23, 9%) de cada borda da original antes do recorte.
 
 | Arquivo | Título na busca | Original | Página | Imagem original |
 | --- | --- | --- | --- | --- |

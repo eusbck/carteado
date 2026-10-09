@@ -78,7 +78,7 @@ img { display: block; }
 .botao.amarelo:hover:not(:disabled) { background: var(--ouro-fundo); }
 .botao.perigo { border-color: var(--vermelho); color: var(--vermelho); }
 .botao.perigo:hover:not(:disabled) { background: var(--vermelho-fundo); }
-.botao.ativo { border-color: var(--acao); background: var(--acao-fundo); color: var(--acao); }
+.botao.ativo { border-color: var(--ouro); background: var(--ouro-fundo); color: var(--ouro); }
 .botao.fantasma { border-color: transparent; color: var(--suave); }
 .botao.grande { min-height: 46px; padding: 0 24px; font-size: 15px; border-radius: 11px; }
 .botao.pequeno { min-height: 28px; padding: 0 10px; font-size: 12.5px; border-radius: 7px; }
@@ -90,7 +90,7 @@ input[type=text], input[type=password], input[type=search], input:not([type]), s
 }
 input:focus, select:focus { outline: none; border-color: var(--acao); }
 select option { background: var(--painel-2); }
-input[type=checkbox] { accent-color: var(--acao); width: 16px; height: 16px; }
+input[type=checkbox] { accent-color: var(--ouro); width: 16px; height: 16px; }
 label { display: grid; gap: 6px; color: var(--suave); font-size: 13px; font-weight: 500; }
 .etiqueta { display: inline-flex; align-items: center; height: 20px; border: 1px solid var(--linha-forte); border-radius: 6px; padding: 0 7px; font-size: 11px; font-weight: 700; color: var(--suave); margin-left: 6px; vertical-align: 1px; }
 .etiqueta.destaque { border-color: color-mix(in srgb, var(--ouro) 55%, transparent); color: var(--ouro); }
@@ -290,7 +290,8 @@ input.campo-grande { font-size: 17px; padding: 13px 14px; }
 .previa-topo-linha { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--suave); }
 .previa-aviso { padding: 20px 0; text-align: center; }
 .previa-corpo { flex: 1; display: grid; grid-template-columns: minmax(0, 1fr) 240px; gap: 18px; min-height: 0; }
-.previa-grupos { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 0 18px; align-items: start; min-height: 0; overflow-x: hidden; overflow-y: auto; padding-right: 6px; }
+.previa-grupos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 18px; align-items: start; min-height: 0; overflow-x: hidden; overflow-y: auto; padding-right: 6px; }
+.previa-coluna { display: grid; align-content: start; min-width: 0; }
 .previa-grupo { margin-bottom: 14px; min-width: 0; }
 .previa-grupo h3 { display: flex; justify-content: space-between; padding-bottom: 5px; margin-bottom: 4px; border-bottom: 1px solid var(--linha); }
 .previa-grupo h3 span { color: var(--apagado); }
@@ -305,7 +306,7 @@ input.campo-grande { font-size: 17px; padding: 13px 14px; }
 .previa-sem-imagem { width: 100%; aspect-ratio: 63 / 88; border-radius: 12px; border: 1px dashed var(--linha-forte); }
 .previa-carta p { font-size: 12px; color: var(--suave); }
 .previa-acoes { flex: 0 0 auto; justify-content: flex-end; }
-@media (max-width: 760px) { .previa-corpo { grid-template-columns: 1fr; } .previa-carta { display: none; } }
+@media (max-width: 760px) { .previa-corpo { grid-template-columns: 1fr; } .previa-carta { display: none; } .previa-grupos { grid-template-columns: 1fr; } }
 
 /* ---------------------------------------------------------------- símbolos */
 .simbolos { display: inline-flex; gap: 1px; vertical-align: -3px; }
@@ -383,6 +384,7 @@ input.campo-grande { font-size: 17px; padding: 13px 14px; }
 .area-topo { position: absolute; left: 12px; right: 12px; top: 10px; display: flex; align-items: flex-start; gap: 6px; z-index: 30; pointer-events: none; }
 .area-topo > * { pointer-events: auto; }
 .area-selos { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; min-width: 0; }
+.area-oponente .tag-jogador { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .tag-jogador {
   display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 10px; border: 1.5px solid var(--cor); color: var(--cor);
   background: rgba(0, 0, 0, .62); border-radius: 8px; font-weight: 700; font-size: 13px; backdrop-filter: blur(6px); cursor: default; white-space: nowrap;
@@ -456,7 +458,10 @@ button.zona:hover .slot { border-color: rgba(255, 255, 255, .45); }
 .mao-cartas { display: flex; align-items: flex-end; pointer-events: auto; }
 .mao-cartas .carta { --w: var(--wm, 116px); z-index: 20; rotate: var(--r, 0deg); translate: 0 var(--y, 0px); transform-origin: 50% 140%; }
 .mao-cartas .carta + .carta { margin-left: var(--passo, -40px); }
-.mao-cartas .carta:hover { rotate: 0deg; translate: 0 -30px; scale: 1.12; z-index: 30; }
+/* a carta sob o mouse sobe na direção da própria inclinação (endireitar girava em torno de um ponto bem abaixo dela
+   e a jogava para o lado, saindo de baixo do cursor); a faixa embaixo segura o mouse enquanto ela está no alto */
+.mao-cartas .carta:hover { rotate: var(--r, 0deg); translate: calc(sin(var(--r, 0deg)) * 34px) calc(var(--y, 0px) - cos(var(--r, 0deg)) * 34px); scale: 1.1; z-index: 30; }
+.mao-cartas .carta:hover::after { content: ''; position: absolute; left: 0; right: 0; top: 100%; height: 44px; }
 .mao-vazia { color: rgba(255, 255, 255, .4); font-size: 12px; padding-bottom: 40px; }
 
 /* faixa de fases: sempre visível, na divisa entre oponentes e você */
@@ -538,7 +543,7 @@ button.etapa:hover { background: rgba(255, 255, 255, .07); color: var(--texto); 
 .coluna-dir > * { pointer-events: auto; }
 .cartao { background: var(--vidro); backdrop-filter: blur(14px); border: 1px solid var(--linha-forte); border-radius: 16px; box-shadow: var(--sombra); padding: 14px 16px 16px; min-height: 0; display: flex; flex-direction: column; overflow: hidden; flex: 0 1 auto; }
 .cartao > .decisao { flex: 1 1 auto; min-height: 0; }
-.cartao > .rot { margin-bottom: 6px; color: var(--acao); }
+.cartao > .rot { margin-bottom: 6px; color: var(--ouro); }
 .decisao { display: grid; gap: 10px; overflow: auto; max-height: 100%; }
 .decisao-titulo { font-weight: 700; font-size: 15px; display: flex; flex-wrap: wrap; align-items: center; gap: 4px; }
 /* a pergunta continua à vista quando a lista de opções rola */
@@ -667,7 +672,7 @@ img.mini { width: 40px; aspect-ratio: 63 / 88; object-fit: cover; border-radius:
 .grade-cartas .carta { --w: 120px; }
 .abas { display: flex; flex-wrap: wrap; gap: 2px; border-bottom: 1px solid var(--linha-forte); }
 .aba { background: transparent; border: 0; border-bottom: 2px solid transparent; padding: 7px 10px; cursor: pointer; color: var(--suave); font-weight: 600; font-size: 13px; }
-.aba.ativa { color: var(--acao); border-bottom-color: var(--acao); }
+.aba.ativa { color: var(--ouro); border-bottom-color: var(--ouro); }
 .manual-corpo { display: grid; gap: 10px; }
 .manual-carta { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
 .itens.fichas { max-height: 280px; overflow: auto; }
@@ -815,7 +820,7 @@ img.mini { width: 40px; aspect-ratio: 63 / 88; object-fit: cover; border-radius:
 .auxilio span span { font-size: 12px; line-height: 1.35; color: var(--suave); font-weight: 400; }
 .auxilio.fixo { opacity: .72; }
 .volume { display: grid; grid-template-columns: auto minmax(0, 1fr) 46px; gap: 12px; align-items: center; color: var(--texto); font-size: 13.5px; }
-.volume input { accent-color: var(--acao); width: 100%; }
+.volume input { accent-color: var(--ouro); width: 100%; }
 .volume output { color: var(--suave); font-variant-numeric: tabular-nums; text-align: right; }
 .sons { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 16px; }
 @media (max-width: 620px) { .sons { grid-template-columns: 1fr; } }
@@ -867,7 +872,7 @@ img.mini { width: 40px; aspect-ratio: 63 / 88; object-fit: cover; border-radius:
 
 .escolha-topo { flex: 0 0 auto; display: flex; justify-content: space-between; align-items: flex-start; gap: 14px; padding: 14px 14px 12px 20px; border-bottom: 1px solid var(--linha); }
 .escolha-titulos { display: grid; gap: 3px; min-width: 0; }
-.escolha-titulos .rot { color: var(--acao); }
+.escolha-titulos .rot { color: var(--ouro); }
 .escolha-topo .decisao-titulo { font-size: 17px; font-weight: 800; line-height: 1.3; }
 .ver-mesa { flex: 0 0 auto; color: var(--suave); }
 .ver-mesa svg { width: 15px; height: 15px; }
@@ -937,7 +942,7 @@ img.mini { width: 40px; aspect-ratio: 63 / 88; object-fit: cover; border-radius:
 .fila-linha.solta-acima::before { top: -6px; }
 .fila-linha.solta-abaixo::after { bottom: -6px; }
 .fila-pega { color: var(--apagado); font-size: 14px; letter-spacing: -3px; }
-.fila-pos { font-weight: 800; color: var(--acao); font-variant-numeric: tabular-nums; }
+.fila-pos { font-weight: 800; color: var(--ouro); font-variant-numeric: tabular-nums; }
 .fila-linha .carta { --w: 64px; }
 .fila-texto { display: grid; gap: 2px; min-width: 0; color: #e8dfcf; line-height: 1.4; }
 .fila-texto b { color: var(--texto); }
@@ -1071,12 +1076,19 @@ img.mini { width: 40px; aspect-ratio: 63 / 88; object-fit: cover; border-radius:
 /* ---------------------------------------------------------------- avatar na mesa (Avatar.tsx) */
 /* medalhão no meio da área: em cima no oponente, embaixo na sua (acima da mão). Só a vida recebe cliques. */
 .avatar { --tam: 80px; position: absolute; left: 50%; z-index: 6; width: var(--tam); height: var(--tam); translate: -50% 0; pointer-events: none; filter: drop-shadow(0 10px 14px rgba(0, 0, 0, .65)); animation: avatar-entra .7s cubic-bezier(.2, .8, .2, 1) both; }
-.avatar-oponente { top: calc(8px + var(--tam) * .22); }
+/* oponente: no canto de cima à direita da área dele (onde ficava a vida) */
+.avatar-oponente { top: calc(8px + var(--tam) * .22); left: auto; right: calc(14px + var(--tam) * .09); translate: none; }
+/* o seu retrato no canto (opção nas Configurações): no alto à direita do campo, abaixo da faixa de fases e à esquerda
+   da coluna da pilha e das decisões */
+.area-eu .avatar-oponente { top: calc(var(--topo-campo, 58px) + 4px + var(--tam) * .22); right: calc(var(--reserva-direita, 0px) + 14px + var(--tam) * .09); }
+/* o dano de comandante e a reserva do oponente ficam à esquerda do medalhão */
+.area-oponente .vida { margin-right: calc(var(--tam-avatar, 80px) * 1.25 + 16px); }
 /* sua área, em camadas: as cartas da mão (z 20) por trás do avatar (z 24), o rótulo acima do leque, e a carta sob o
    mouse (z 30) por cima de tudo */
-.avatar-local { bottom: calc(var(--tam) * -.25); z-index: 24; }
-/* a vida ao lado da base do retrato, com respiro (colada embaixo da moldura ela disputava com a mão) */
-.avatar-local .avatar-vida { left: calc(100% + 10px); right: auto; margin: 0; bottom: calc(var(--tam) * .25 + 8px); }
+/* o retrato inteiro à vista, com a vida embaixo da moldura a 6 px da borda */
+.avatar-local { bottom: calc(6px + var(--tam) * .2); z-index: 24; }
+/* na mão a força e a resistência já estão impressas na carta; o selo ficava meio coberto e se confundia com a vida */
+.mao-cartas .carta-pt { display: none; }
 .mao-rotulo { position: absolute; z-index: 25; margin: 0; left: 50%; translate: -50% 0; bottom: calc(var(--mao-topo, 200px) + 18px); white-space: nowrap; pointer-events: none; transition: opacity .2s ease; }
 /* com o mouse numa carta da mão, o rótulo sai do caminho da carta em destaque */
 .area-eu:has(.mao-cartas .carta:hover) .mao-rotulo { opacity: 0; }

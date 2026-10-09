@@ -1,5 +1,5 @@
-// Área de um jogador: arte do comandante ao fundo, nome, o avatar com a vida (no meio, em cima no oponente e embaixo
-// na sua área, acima da mão), o campo de batalha com cada permanente na sua posição e a fileira de zonas (comando,
+// Área de um jogador: arte do comandante ao fundo, nome, o avatar com a vida (no canto de cima à direita no oponente;
+// na sua área, no meio da base, na frente da mão), o campo de batalha com cada permanente na sua posição e a fileira de zonas (comando,
 // mão, grimório, cemitério, exílio).
 
 import { useLayoutEffect, useMemo, useRef, useState } from 'preact/hooks';
@@ -46,6 +46,8 @@ export interface AreaProps {
   onZona: (zona: 'graveyard' | 'exile') => void;
   /** a sua mão (só na sua área) */
   mao?: ObjView[];
+  /** o seu retrato no canto de cima à direita (Configurações), em vez de no meio da base */
+  avatarCanto?: boolean;
   /** largura à direita do campo que fica livre para a coluna da pilha e das decisões */
   reservaDireita?: number;
   /** posições escolhidas (de 0 a 1 dentro do campo), pelo id do objeto */
@@ -100,11 +102,13 @@ export function AreaJogador(p: AreaProps) {
   const wz = p.compacta ? (p.duelo ? limitar(44, tam.h * .13, 56) : limitar(34, tam.h * .1, 42)) : limitar(54, tam.h * .13, 76);
   const zonasH = Math.round(wz * PROPORCAO) + 26;
   const wm = p.mao ? limitar(72, tam.h * .18, 108) : limitar(78, tam.h * .21, 120);
-  // sua área: o avatar ancorado na base (o quarto de baixo da moldura passa da borda; a vida fica ao lado da base do
-  // retrato), as cartas da mão descem até 30% da moldura e passam por trás dele (o retrato fica na frente; a carta sob o
-  // mouse sobe por cima de tudo e o zoom mostra a carta inteira) e o rótulo da mão acima do leque, com respiro
+  // sua área: o avatar inteiro à vista na base, com a vida embaixo da moldura (a 6 px da borda), as cartas da mão
+  // descendo até 55% da moldura e passando por trás dele (o retrato fica na frente; a carta sob o mouse sobe por cima de
+  // tudo e o zoom mostra a carta inteira) e o rótulo da mão acima do leque, com respiro
   const tamLocal = limitar(56, tam.h * .145, 88);
-  const maoBaixo = Math.round(tamLocal * .3);
+  // com o retrato no canto (opção nas Configurações) a mão volta a ficar rente à base, com um pedaço passando da borda
+  const cantoLocal = !!p.mao && !!p.avatarCanto;
+  const maoBaixo = cantoLocal ? -Math.round(wm * PROPORCAO * .2) : Math.round(6 + tamLocal * .75);
   const maoTopo = maoBaixo + Math.round(wm * PROPORCAO);
   // a sua área começa abaixo da faixa de fases (os selos de combate sobem um pouco acima das cartas)
   const topo = p.compacta ? 44 : 58;
@@ -118,21 +122,22 @@ export function AreaJogador(p: AreaProps) {
 
   // avatar: o medalhão fica no meio da área; a arrumação padrão deixa o espaço dele livre (cabeça acima da moldura,
   // moldura e o medalhão da vida embaixo: uns 1,42 diâmetros de altura)
-  const tamAvatar = p.mao ? tamLocal : p.compacta && !p.duelo ? limitar(48, tam.h * .17, 84) : limitar(64, tam.h * .2, 124);
-  // o avatar de um oponente fica no meio, em cima do campo: a arrumação deixa o espaço dele livre. O seu fica embaixo da
-  // mão, fora do campo, e não precisa de vão
+  const tamAvatar = p.mao && !cantoLocal ? tamLocal : p.compacta && !p.duelo ? limitar(48, tam.h * .17, 84) : limitar(60, tam.h * .17, 100);
+  // o avatar de um oponente fica no canto de cima à direita, sobre o campo: a arrumação deixa esse canto livre. O seu
+  // fica na base, fora do campo, e não precisa de vão
   const altAvatar = Math.round(tamAvatar * 1.42) + 22;
-  const vaoX0 = Math.round(tam.w / 2 - 12 - tamAvatar * .72);
-  const vaoX1 = Math.round(tam.w / 2 - 12 + tamAvatar * .72);
-  const vaoAlt = p.mao ? 0 : Math.max(0, 8 + altAvatar - topo);
+  const vaoX0 = Math.round(tam.w - 26 - tamAvatar * 1.25 - 10);
+  const vaoX1 = Math.round(tam.w);
+  // na sua área com o retrato no canto, ele fica no alto à direita do campo, à esquerda da coluna da pilha e das decisões
+  const vaoAlt = cantoLocal ? Math.round(altAvatar + 4) : p.mao ? 0 : Math.max(0, 8 + altAvatar - topo);
 
   // quem tem posição escolhida fica onde a pessoa pôs; os outros seguem a arrumação padrão
   const posicoes = p.posicoes ?? {};
   const ordemZ = p.ordemZ ?? {};
   const arr = useMemo(() => arrumarCampo(p.objs, p.anexos, posicoes, ordemZ, {
     W: campoW, livreW, H: campoH, wBase, wMin: p.compacta ? 28 : 40,
-    vao: vaoAlt > 0 ? { x0: vaoX0, x1: vaoX1, topo: vaoAlt } : undefined,
-  }), [p.objs, p.anexos, posicoes, ordemZ, campoW, livreW, campoH, wBase, p.compacta, vaoX0, vaoX1, vaoAlt, p.eu]);
+    vao: vaoAlt <= 0 ? undefined : cantoLocal ? { x0: Math.round(campoW - tamAvatar * 1.25 - 10), x1: campoW + 1, topo: vaoAlt } : { x0: vaoX0, x1: vaoX1, topo: vaoAlt },
+  }), [p.objs, p.anexos, posicoes, ordemZ, campoW, livreW, campoH, wBase, p.compacta, vaoX0, vaoX1, vaoAlt, p.eu, cantoLocal, tamAvatar]);
   const todosNoCampo = useMemo(() => [...p.objs, ...p.objs.flatMap((o) => p.anexos.get(o.id) ?? [])], [p.objs, p.anexos]);
 
   const contadores = Object.entries(j.counters).filter(([, n]) => n > 0);
@@ -146,14 +151,14 @@ export function AreaJogador(p: AreaProps) {
   // leque da mão: cabe entre os grupos de zonas
   const mao = p.mao ?? [];
   const n = mao.length;
-  const livre = Math.max(wm, tam.w - 2 * (3 * (wz + 12) + 30));
+  const livre = Math.max(wm, tam.w - 2 * (3 * (wz + 12) + 30) - wm * 1.3);
   const passo = n > 1 ? Math.min(wm * .8, (livre - wm) / (n - 1)) : wm;
   const meio = (n - 1) / 2;
   const giro = n > 1 ? Math.min(8, 52 / (n - 1)) : 0;
   const curva = meio > 0 ? (wm * .34) / (meio * meio) : 0;
 
   return (
-    <section ref={ref} class={`${classes} ${p.onCliqueArea ? 'area-clicavel' : ''}`} data-jogador={j.id} style={{ '--cor': p.cor, '--zonas-h': `${baixo}px`, '--wz': `${wz}px`, '--mao-topo': `${maoTopo}px`, '--tam-avatar': `${tamAvatar}px` }} aria-label={`Área de ${j.name}`}
+    <section ref={ref} class={`${classes} ${p.onCliqueArea ? 'area-clicavel' : ''}`} data-jogador={j.id} style={{ '--cor': p.cor, '--zonas-h': `${baixo}px`, '--wz': `${wz}px`, '--mao-topo': `${maoTopo}px`, '--tam-avatar': `${tamAvatar}px`, '--reserva-direita': `${p.reservaDireita ?? 0}px`, '--topo-campo': `${topo}px` }} aria-label={`Área de ${j.name}`}
       onClick={p.onCliqueArea ? (e) => { if (!(e.target as HTMLElement).closest('[data-obj], button')) p.onCliqueArea!(); } : undefined}
       onContextMenu={p.onMenuArea ? (e) => { e.preventDefault(); p.onMenuArea!(e); } : undefined}>
       {p.fundo && <div class="area-fundo" style={{ backgroundImage: `url(${p.fundo})` }} />}
@@ -178,7 +183,7 @@ export function AreaJogador(p: AreaProps) {
       </header>
 
       {tam.w > 0 && (
-        <Avatar jogador={j.id} avatar={p.avatar} vida={j.life} nome={j.name} local={p.eu} ativo={p.ativo} fora={j.left}
+        <Avatar jogador={j.id} avatar={p.avatar} vida={j.life} nome={j.name} local={p.eu && !cantoLocal} ativo={p.ativo} fora={j.left}
           tamanho={tamAvatar} cor={p.cor} onVida={p.onJogador} />
       )}
 

@@ -92,13 +92,24 @@ Lista de verificação das fases. É por aqui que uma sessão nova retoma o trab
     (mensagem `avatar`, só ids do catálogo; null volta ao automático). Escolha no saguão (`telas/EscolhaRetrato.tsx`),
     guardada no navegador e reenviada ao entrar numa sala. Reação ao dano e brilho de quem tem o turno; tudo com
     "reduzir movimento". No 4 jogadores cada oponente tem o seu, menor. Testes: `testes/avatar.test.ts`.
-  - **área de baixo em camadas** (pedido do Caio, em várias rodadas): o avatar ancorado na base (o quarto de baixo
-    da moldura passa da borda; a vida ao lado da base do retrato), as cartas da mão descendo até 30% da moldura e
+  - **área de baixo em camadas** (pedido do Caio, em várias rodadas): o avatar inteiro à vista na base (a vida
+    centralizada embaixo da moldura, a 6 px da borda), as cartas da mão descendo até 55% da moldura e
     passando por TRÁS dele (o Caio preferiu o retrato com a vida na frente: a carta sob o mouse sobe por cima de tudo e
     o zoom lateral mostra a carta inteira), o leque em arco (até ~52° de abertura, pontas descendo 34% da largura da
     carta) e o rótulo "Mão (X)" centralizado acima do leque, que some com o mouse na mão. A mão não forma camada
     própria (sem transform nem z-index): cada carta disputa a camada com o avatar, que não bloqueia cliques. O seu
     avatar fica fora do campo, então a arrumação só deixa o vão no do oponente.
+  - a carta da mão sob o mouse sobe na direção da própria inclinação (endireitar girava em torno de um ponto bem
+    abaixo dela e a jogava para o lado, saindo de baixo do cursor e piscando), com uma faixa invisível embaixo que segura
+    o mouse; selos de força e resistência fora das cartas da mão; o leque desconta o quanto as pontas avançam (cobria o
+    grimório em 1280); prévia com as categorias em três colunas equilibradas; laranja que sobrava em seleção e rótulos
+    (aba e botão ativos, caixas, fila, rótulos de seção) foi para o ouro; nome do oponente para antes do medalhão; o
+    wallpaper 23 (marca do site) recortado de novo; roteiro de capturas: terreno básico primeiro, seleção começando num
+    ponto vazio e terminando abaixo da criatura de cima, espera antes das fotos do saguão.
+  - **avatar do oponente no canto** de cima à direita da área dele (onde ficava a vida; o dano de comandante e a reserva
+    ficam à esquerda do medalhão, e a arrumação deixa o canto livre). O seu continua no meio da base; nas Configurações,
+    "Seu retrato na mesa" (preferência `avatarCanto`, guardada no navegador) põe o seu no canto de cima à direita do seu
+    campo, abaixo da faixa de fases e à esquerda da coluna de decisões, com a mão voltando a ficar rente à base.
   - **wallpapers sobrepostos**: na troca a nova entrava por cima da anterior e as duas, semitransparentes, apareciam
     uma através da outra; agora a anterior some em fade e sai da página.
   - revisão da bateria de capturas por um subagente: a prévia do deck ficava presa no painel do saguão (o
