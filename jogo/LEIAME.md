@@ -68,7 +68,8 @@ janela mostra o endereço `https://` e a senha de acesso para mandar ao grupo. D
    que não vale, a carta volta com um tremido):
    - **Avatares:** cada jogador aparece num medalhão com o retrato e a vida no medalhão pequeno embaixo; clicar na
      vida escolhe o jogador como alvo. Os oponentes ficam no meio, em cima da própria área (a arrumação padrão deixa
-     o espaço livre); o seu fica na base da mesa, embaixo da mão, que se abre em leque por cima dele.
+     o espaço livre); o seu fica na base da mesa, na frente da mão, que se abre em leque por trás dele (a carta sob o mouse sobe por
+     cima e aparece inteira no zoom).
    - **Auxílios:** em "Configurações", cada um escolhe Mesa real, Leve (só o brilho nas cartas
      jogáveis), Completo (tudo, menos pagar automaticamente) ou Personalizado. Vale na hora, só para
      você, e fica guardado no navegador. Se a sala proíbe, todos jogam em Mesa real.

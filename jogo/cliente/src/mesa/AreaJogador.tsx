@@ -100,12 +100,11 @@ export function AreaJogador(p: AreaProps) {
   const wz = p.compacta ? (p.duelo ? limitar(44, tam.h * .13, 56) : limitar(34, tam.h * .1, 42)) : limitar(54, tam.h * .13, 76);
   const zonasH = Math.round(wz * PROPORCAO) + 26;
   const wm = p.mao ? limitar(72, tam.h * .18, 108) : limitar(78, tam.h * .21, 120);
-  // sua área, de baixo para cima: o avatar ancorado na base (o quarto de baixo da moldura passa da borda; a vida fica ao
-  // lado da base do retrato), a mão acima dele e na frente (a borda de baixo das cartas do meio fica 12 px acima do topo
-  // da moldura: o centro do avatar fica abaixo da mão, as cartas cruzam só a cabeça que sai da moldura e o rosto fica
-  // inteiro logo abaixo do leque) e o rótulo da mão acima do leque, com respiro
+  // sua área: o avatar ancorado na base (o quarto de baixo da moldura passa da borda; a vida fica ao lado da base do
+  // retrato), as cartas da mão descem até 30% da moldura e passam por trás dele (o retrato fica na frente; a carta sob o
+  // mouse sobe por cima de tudo e o zoom mostra a carta inteira) e o rótulo da mão acima do leque, com respiro
   const tamLocal = limitar(56, tam.h * .145, 88);
-  const maoBaixo = Math.round(tamLocal * .75 + 12);
+  const maoBaixo = Math.round(tamLocal * .3);
   const maoTopo = maoBaixo + Math.round(wm * PROPORCAO);
   // a sua área começa abaixo da faixa de fases (os selos de combate sobem um pouco acima das cartas)
   const topo = p.compacta ? 44 : 58;

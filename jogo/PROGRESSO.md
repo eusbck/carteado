@@ -92,12 +92,13 @@ Lista de verificação das fases. É por aqui que uma sessão nova retoma o trab
     (mensagem `avatar`, só ids do catálogo; null volta ao automático). Escolha no saguão (`telas/EscolhaRetrato.tsx`),
     guardada no navegador e reenviada ao entrar numa sala. Reação ao dano e brilho de quem tem o turno; tudo com
     "reduzir movimento". No 4 jogadores cada oponente tem o seu, menor. Testes: `testes/avatar.test.ts`.
-  - **área de baixo em camadas** (pedido do Caio, com duas rodadas de ajuste): de baixo para cima, fundo, avatar
-    ancorado na base (a 8 px, com a vida colada embaixo da moldura), a mão em leque acima dele e na frente (a borda de
-    baixo das cartas do meio pousa no topo da moldura: as cartas cruzam só a cabeça que sai da moldura e o rosto fica
-    inteiro logo abaixo do leque) e o rótulo "Mão (X)" centralizado acima do leque. O leque ganhou arco de verdade
-    (até ~44° de abertura, as pontas descendo 30% da largura da carta). O seu avatar fica fora do campo, então a
-    arrumação só deixa o vão no do oponente.
+  - **área de baixo em camadas** (pedido do Caio, em várias rodadas): o avatar ancorado na base (o quarto de baixo
+    da moldura passa da borda; a vida ao lado da base do retrato), as cartas da mão descendo até 30% da moldura e
+    passando por TRÁS dele (o Caio preferiu o retrato com a vida na frente: a carta sob o mouse sobe por cima de tudo e
+    o zoom lateral mostra a carta inteira), o leque em arco (até ~52° de abertura, pontas descendo 34% da largura da
+    carta) e o rótulo "Mão (X)" centralizado acima do leque, que some com o mouse na mão. A mão não forma camada
+    própria (sem transform nem z-index): cada carta disputa a camada com o avatar, que não bloqueia cliques. O seu
+    avatar fica fora do campo, então a arrumação só deixa o vão no do oponente.
   - **wallpapers sobrepostos**: na troca a nova entrava por cima da anterior e as duas, semitransparentes, apareciam
     uma através da outra; agora a anterior some em fade e sai da página.
   - revisão da bateria de capturas por um subagente: a prévia do deck ficava presa no painel do saguão (o

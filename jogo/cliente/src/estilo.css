@@ -448,11 +448,13 @@ button.zona:hover .slot { border-color: rgba(255, 255, 255, .45); }
 .mao-fechada-vazia { width: var(--wz, 40px); aspect-ratio: 63 / 88; }
 
 /* sua mão (leque dentro da sua área) */
-.mao { position: absolute; left: 50%; bottom: var(--mao-baixo, -28px); transform: translateX(-50%); z-index: 20; display: grid; justify-items: center; pointer-events: none; }
+/* a mão não forma camada própria (centrada sem transform e sem z-index): cada carta disputa a camada com o avatar,
+   que fica na frente delas; a carta sob o mouse passa por cima de tudo */
+.mao { position: absolute; left: 0; right: 0; margin-inline: auto; width: max-content; bottom: var(--mao-baixo, -28px); display: grid; justify-items: center; pointer-events: none; }
 .mao-titulo { font-size: 11.5px; font-weight: 600; color: var(--texto); text-shadow: 0 1px 3px #000, 0 0 8px #000; margin-bottom: 6px; }
 .mao-titulo b { font-weight: 600; color: var(--suave); }
 .mao-cartas { display: flex; align-items: flex-end; pointer-events: auto; }
-.mao-cartas .carta { --w: var(--wm, 116px); rotate: var(--r, 0deg); translate: 0 var(--y, 0px); transform-origin: 50% 140%; }
+.mao-cartas .carta { --w: var(--wm, 116px); z-index: 20; rotate: var(--r, 0deg); translate: 0 var(--y, 0px); transform-origin: 50% 140%; }
 .mao-cartas .carta + .carta { margin-left: var(--passo, -40px); }
 .mao-cartas .carta:hover { rotate: 0deg; translate: 0 -30px; scale: 1.12; z-index: 30; }
 .mao-vazia { color: rgba(255, 255, 255, .4); font-size: 12px; padding-bottom: 40px; }
@@ -1070,11 +1072,12 @@ img.mini { width: 40px; aspect-ratio: 63 / 88; object-fit: cover; border-radius:
 /* medalhão no meio da área: em cima no oponente, embaixo na sua (acima da mão). Só a vida recebe cliques. */
 .avatar { --tam: 80px; position: absolute; left: 50%; z-index: 6; width: var(--tam); height: var(--tam); translate: -50% 0; pointer-events: none; filter: drop-shadow(0 10px 14px rgba(0, 0, 0, .65)); animation: avatar-entra .7s cubic-bezier(.2, .8, .2, 1) both; }
 .avatar-oponente { top: calc(8px + var(--tam) * .22); }
-/* sua área, em camadas: avatar ancorado na base (z 8), a mão acima e na frente (z 20), o rótulo acima do leque (z 21) */
-.avatar-local { bottom: calc(var(--tam) * -.25); z-index: 8; }
+/* sua área, em camadas: as cartas da mão (z 20) por trás do avatar (z 24), o rótulo acima do leque, e a carta sob o
+   mouse (z 30) por cima de tudo */
+.avatar-local { bottom: calc(var(--tam) * -.25); z-index: 24; }
 /* a vida ao lado da base do retrato, com respiro (colada embaixo da moldura ela disputava com a mão) */
 .avatar-local .avatar-vida { left: calc(100% + 10px); right: auto; margin: 0; bottom: calc(var(--tam) * .25 + 8px); }
-.mao-rotulo { position: absolute; z-index: 21; margin: 0; left: 50%; translate: -50% 0; bottom: calc(var(--mao-topo, 200px) + 18px); white-space: nowrap; pointer-events: none; transition: opacity .2s ease; }
+.mao-rotulo { position: absolute; z-index: 25; margin: 0; left: 50%; translate: -50% 0; bottom: calc(var(--mao-topo, 200px) + 18px); white-space: nowrap; pointer-events: none; transition: opacity .2s ease; }
 /* com o mouse numa carta da mão, o rótulo sai do caminho da carta em destaque */
 .area-eu:has(.mao-cartas .carta:hover) .mao-rotulo { opacity: 0; }
 @keyframes avatar-entra { from { opacity: 0; scale: .8; } }
