@@ -217,6 +217,21 @@ export function improviseCandidates(g: G, player: PlayerId): ObjId[] {
   return costPermanents(g, player, (id) => isType(g, id, 'Artifact') && !g.state.objects[id].tapped);
 }
 
+/** ordem em que o pagamento automático vira artefatos para improvisar: primeiro os que não são criaturas (virar uma
+ *  criatura tira o ataque e o bloqueio), depois os que não têm habilidade de mana nem outra habilidade com {T}; entre as
+ *  criaturas, as com enjoo de invocação (não atacariam mesmo) antes das que podem atacar */
+export function improviseOrder(g: G, ids: ObjId[]): ObjId[] {
+  const peso = (id: ObjId): number => {
+    let n = 0;
+    if (isCreature(g, id)) { n += 10; if (!summoningSick(g, id)) n += 1; }
+    const defs = abilityDefs(g, id);
+    if (defs.some(({ def }) => def.kind === 'mana')) n += 2;
+    if (defs.some(({ def }) => def.kind === 'activated' && def.cost.some((p) => p.k === 'tap'))) n += 1;
+    return n;
+  };
+  return [...ids].sort((a, b) => peso(a) - peso(b) || a - b);
+}
+
 function producedUnits(o: ManaOption): ManaUnit[] {
   return [...o.alt.map((type) => ({ type, source: o.obj, restriction: o.def.restriction })), ...o.bonus];
 }
@@ -273,13 +288,19 @@ export function planPayment(g: G, player: PlayerId, cost: ManaSymbol[], ctx: Pay
   }
   const usedObjs = new Set<ObjId>();
   const improvisers = ctx.improvise ? improviseCandidates(g, player) : [];
+  // quantos artefatos o plano pode improvisar: null = todos os que sobrarem livres (basta para saber se dá para pagar)
+  let limite: number | null = null;
+  const paga = (pool: ManaUnit[], livres: number): boolean => {
+    if (!ctx.improvise) return !!matchPool(cost, pool, spend);
+    const n = limite === null ? livres : limite;
+    return n <= livres && !!matchPool(reduceGeneric(cost, n), pool, spend);
+  };
   let nodes = 0;
-  const plan: ManaOption[] = [];
+  let plan: ManaOption[] = [];
   function score(alt: ManaType[]): number { return -alt.filter((t) => needColors.has(t)).length; }
   function dfs(gi: number, pool: ManaUnit[]): boolean {
     if (++nodes > 4000) return false;
-    const available = improvisers.filter((id) => !usedObjs.has(id)).length;
-    if (matchPool(ctx.improvise ? reduceGeneric(cost, available) : cost, pool, spend)) return true;
+    if (paga(pool, improvisers.filter((id) => !usedObjs.has(id)).length)) return true;
     if (gi >= groups.length) return false;
     const group = groups[gi];
     const objId = group[0].obj;
@@ -305,9 +326,6 @@ export function planPayment(g: G, player: PlayerId, cost: ManaSymbol[], ctx: Pay
   }
   if (!dfs(0, pool0)) return null;
   if (!enxuto) return plan;
-  // a busca vai acrescentando fontes na ordem de preferência até a conta fechar, e com isso virava
-  // terrenos que no fim não pagavam nada (ex.: {W} com Forest, Swamp e Plains virava os três, e {G}{B}
-  // sobrava na reserva). Tira uma de cada vez, das menos preferidas para as mais, enquanto o resto pagar.
   const reservaCom = (lista: ManaOption[]): ManaUnit[] | null => {
     let pool = pool0;
     for (const o of lista) {
@@ -320,13 +338,34 @@ export function planPayment(g: G, player: PlayerId, cost: ManaSymbol[], ctx: Pay
     }
     return pool;
   };
+  const livresSem = (lista: ManaOption[]): number => {
+    const used = new Set(lista.filter((o) => o.def.cost.some((p) => p.k === 'tap' || p.k === 'sacrificeSelf')).map((o) => o.obj));
+    return improvisers.filter((id) => !used.has(id)).length;
+  };
+  if (ctx.improvise) {
+    // CR 702.126a: improvisar é opcional para cada mana genérica. A busca acima conta todos os artefatos livres e por
+    // isso improvisava antes de somar os terrenos (Kappa Cannoneer com seis Islands virava cinco Thopters). Quem paga
+    // de verdade usa primeiro as fontes de mana e só improvisa o que faltar: procura o plano com o menor número de
+    // artefatos virados (eles podem ser criaturas que atacariam ou bloqueariam).
+    const reserva = reservaCom(plan)!;
+    let precisa = 0;
+    while (precisa < improvisers.length && !matchPool(reduceGeneric(cost, precisa), reserva, spend)) precisa++;
+    let achado = { plan: [...plan], n: precisa };
+    for (let n = 0; n < precisa; n++) {
+      limite = n; nodes = 0; plan = []; usedObjs.clear();
+      if (dfs(0, pool0)) { achado = { plan: [...plan], n }; break; }
+    }
+    plan = achado.plan;
+    limite = achado.n;
+  }
+  // a busca vai acrescentando fontes na ordem de preferência até a conta fechar, e com isso virava
+  // terrenos que no fim não pagavam nada (ex.: {W} com Forest, Swamp e Plains virava os três, e {G}{B}
+  // sobrava na reserva). Tira uma de cada vez, das menos preferidas para as mais, enquanto o resto pagar.
   const final = [...plan];
   for (let i = final.length - 1; i >= 0; i--) {
     const sem = [...final.slice(0, i), ...final.slice(i + 1)];
     const pool = reservaCom(sem);
-    const used = new Set(sem.filter((o) => o.def.cost.some((p) => p.k === 'tap' || p.k === 'sacrificeSelf')).map((o) => o.obj));
-    const remaining = improvisers.filter((id) => !used.has(id)).length;
-    if (pool && matchPool(ctx.improvise ? reduceGeneric(cost, remaining) : cost, pool, spend)) final.splice(i, 1);
+    if (pool && paga(pool, livresSem(sem))) final.splice(i, 1);
   }
   return final;
 }
@@ -382,8 +421,9 @@ export function* payMana(g: G, player: PlayerId, cost: ManaSymbol[], ctx: PayCon
         if (fresh) yield* activateManaAbility(g, player, fresh, hint);
       }
       if (ctx.improvise) {
-        // Use apenas os artefatos ainda desvirados depois de todas as habilidades de mana.
-        const remaining = improviseCandidates(g, player);
+        // Use apenas os artefatos ainda desvirados depois de todas as habilidades de mana, na ordem de preferência
+        // (os que não são criaturas primeiro), e só quantos faltarem para a reserva pagar o resto.
+        const remaining = improviseOrder(g, improviseCandidates(g, player));
         let n = 0;
         while (n <= Math.min(genericOf(cost), remaining.length) && !matchPool(reduceGeneric(cost, n), p.manaPool, spend)) n++;
         if (n > Math.min(genericOf(cost), remaining.length)) continue;
