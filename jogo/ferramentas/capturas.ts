@@ -6,6 +6,7 @@
 //      CAPTURAS_SO=janelas node ferramentas/capturas.ts   → só as da fase 9 (janelas de escolha, zoom e log)
 //      CAPTURAS_SO=decks node ferramentas/capturas.ts     → só a tela Decks (importar e atualizar pelo Moxfield)
 //      CAPTURAS_SO=combate node ferramentas/capturas.ts   → só o combate com muitas fichas (atacar e bloquear)
+//      CAPTURAS_SO=mesa node ferramentas/capturas.ts      → só a sua área (campo até a base, mão por cima, terrenos deitados)
 
 import { spawn } from 'node:child_process';
 import { mkdirSync, rmSync } from 'node:fs';
@@ -14,7 +15,7 @@ import { fileURLToPath } from 'node:url';
 import { chromium, type BrowserContext, type Page } from 'playwright';
 import { hasOracle, oracle } from '../motor/oracle.ts';
 import { Banco } from '../servidor/banco.ts';
-import { gerarSalas, gerarSalasCombate, type IdsCombate } from './cenarios.ts';
+import { gerarSalas, gerarSalasCombate, gerarSalasMesa, type IdsCombate, type IdsMesa } from './cenarios.ts';
 
 const RAIZ = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SAIDA = join(RAIZ, '.cache', 'capturas');
@@ -28,8 +29,11 @@ rmSync(DADOS, { recursive: true, force: true });
 // (CAPTURAS_SO), as outras ficam
 if (!process.env.CAPTURAS_SO) rmSync(SAIDA, { recursive: true, force: true });
 mkdirSync(SAIDA, { recursive: true });
+// os blocos que só usam salas fixas (montadas com o arcabouço de testes) não esperam os bots jogarem até as salas
+// sorteadas abaixo (uns minutos)
+const SO_FIXAS = ['mesa', 'combate'].includes(process.env.CAPTURAS_SO ?? '');
 // salas prontas para as capturas de combate (ataque em 4 jogadores, bloqueio em 1v1)
-{
+if (!SO_FIXAS) {
   const banco = new Banco(join(DADOS, 'jogo.sqlite'));
   const prontas = gerarSalas(banco, ['ATACA', 'BLOQU']);
   banco.fechar();
@@ -38,7 +42,7 @@ mkdirSync(SAIDA, { recursive: true });
 // --- fase 9: janelas de escolha, zoom e log ---
 // CAPTURAS_SO=<bloco> roda só aquele bloco (as capturas antigas ficam de fora)
 const SO = process.env.CAPTURAS_SO ?? '';
-{
+if (!SO_FIXAS) {
   const banco = new Banco(join(DADOS, 'jogo.sqlite'));
   const prontas = gerarSalas(banco, ['ORDEM']);
   banco.fechar();
@@ -48,7 +52,7 @@ const SO = process.env.CAPTURAS_SO ?? '';
 // --- fase 9: posicionar e seleção por arrasto ---
 // sala pronta com o campo de Ana cheio, na fase principal dela (ARRUM). CAPTURAS_SO=posicionar roda só este bloco.
 const SO_POSICIONAR = process.env.CAPTURAS_SO === 'posicionar';
-{
+if (!SO_FIXAS) {
   const banco = new Banco(join(DADOS, 'jogo.sqlite'));
   const prontas = gerarSalas(banco, ['ARRUM']);
   banco.fechar();
@@ -66,6 +70,15 @@ if (!SO || SO_COMBATE) {
   banco.fechar();
 }
 // --- fim (combate com muitas fichas) ---
+// --- a sua área com o campo até a base: salas fixas MESA1 (1v1) e MESA4 (4 jogadores). CAPTURAS_SO=mesa roda só este bloco
+const SO_MESA = process.env.CAPTURAS_SO === 'mesa';
+let idsMesa: IdsMesa | null = null;
+if (!SO || SO_MESA) {
+  const banco = new Banco(join(DADOS, 'jogo.sqlite'));
+  idsMesa = gerarSalasMesa(banco);
+  banco.fechar();
+}
+// --- fim (a sua área) ---
 
 const servidor = spawn(process.execPath, [join(RAIZ, 'servidor', 'index.ts')], {
   env: { ...process.env, PORTA: String(PORTA), DADOS, SENHA_ACESSO: 'teste-capturas' },
@@ -563,10 +576,11 @@ if (!SO_CAPTURAS || SO_CAPTURAS === 'abertura') {
  * de ficar sob o ponteiro (menos de 0,5 px) e o grupo anda junto sem mexer nas outras cartas.
  */
 async function capturasPosicionar(): Promise<void> {
-  type Info = { x: number; y: number; virada: boolean; sel: boolean; vis: { x: number; y: number; w: number; h: number } };
+  type Info = { x: number; y: number; virada: boolean; deitada: boolean; leque: boolean; sel: boolean; ow: number; oh: number; vis: { x: number; y: number; w: number; h: number } };
   const cartas = (pg: Page) => pg.evaluate(() => Object.fromEntries([...document.querySelectorAll('.area-eu .campo > .carta[data-obj]')].map((e) => {
     const h = e as HTMLElement, r = h.getBoundingClientRect();
-    return [h.dataset.obj!, { x: parseFloat(h.style.left), y: parseFloat(h.style.top), virada: h.classList.contains('virada'), sel: h.classList.contains('selecionada'), vis: { x: r.left, y: r.top, w: r.width, h: r.height } }];
+    return [h.dataset.obj!, { x: parseFloat(h.style.left), y: parseFloat(h.style.top), virada: h.classList.contains('virada'), deitada: h.classList.contains('deitada'), leque: h.classList.contains('no-leque'),
+      sel: h.classList.contains('selecionada'), ow: h.offsetWidth, oh: h.offsetHeight, vis: { x: r.left, y: r.top, w: r.width, h: r.height } }];
   }))) as Promise<Record<string, Info>>;
   // a mira faz o papel do ponteiro (a captura de tela não mostra o mouse)
   const mira = (pg: Page, x: number, y: number) => pg.evaluate(([mx, my]) => {
@@ -639,6 +653,26 @@ async function capturasPosicionar(): Promise<void> {
     console.log(`   posicionar ${largura}: ponto pego a ${erro.map((n) => n.toFixed(2)).join(', ')} px do ponteiro`);
     await semMira(pg);
 
+    // terreno deitado: mais largo que alto, e pego pelo canto ele também fica sob o ponteiro
+    c0 = await cartas(pg);
+    const deitadas = Object.entries(c0).filter(([, x]) => x.deitada);
+    if (!deitadas.length) throw new Error(`nenhum terreno deitado no campo (${largura})`);
+    if (deitadas.some(([, x]) => x.ow <= x.oh)) throw new Error(`terreno deitado mais alto que largo (${largura})`);
+    const [idT, t] = deitadas.filter(([, x]) => !x.leque && !x.virada).sort((a, b) => b[1].y - a[1].y)[0] ?? deitadas[0];
+    await pg.mouse.move(t.vis.x + 5, t.vis.y + 5);
+    await pg.waitForTimeout(300);
+    const vt0 = (await cartas(pg))[idT].vis;
+    const gtx = t.vis.x + 5, gty = t.vis.y + 5;
+    const ftx = (gtx - vt0.x) / vt0.w, fty = (gty - vt0.y) / vt0.h;
+    const ttx = campo.x + campo.width * .55, tty = campo.y + campo.height * .3;
+    await arrastar(pg, gtx, gty, ttx, tty, async () => { await mira(pg, ttx, tty); await foto(pg, `40c-posicionar-terreno-deitado${sufixo}`); });
+    const vt1 = (await cartas(pg))[idT];
+    const erroT = [vt1.vis.x + ftx * vt1.vis.w - ttx, vt1.vis.y + fty * vt1.vis.h - tty];
+    if (Math.hypot(erroT[0], erroT[1]) > 0.5) throw new Error(`terreno deitado solto fora do ponteiro (${largura}): ${erroT.map((n) => n.toFixed(2)).join(', ')} px`);
+    if (!vt1.deitada || vt1.ow <= vt1.oh) throw new Error(`o terreno deixou de ser deitado ao ser movido (${largura})`);
+    console.log(`   posicionar ${largura}: terreno deitado (${t.ow}×${t.oh}) pego a ${erroT.map((n) => n.toFixed(2)).join(', ')} px do ponteiro`);
+    await semMira(pg);
+
     // 2.4: retângulo do espaço vazio embaixo à direita até o meio do campo: pega os terrenos e a carta que
     // acabou de ser posta (a criatura de cima fica de fora)
     c0 = await cartas(pg);
@@ -658,6 +692,7 @@ async function capturasPosicionar(): Promise<void> {
     c0 = await cartas(pg);
     const sel = Object.keys(c0).filter((x) => c0[x].sel);
     if (sel.length < 3) throw new Error(`seleção com poucas cartas (${largura}): ${sel.length}`);
+    if (!sel.some((x) => c0[x].deitada)) throw new Error(`o retângulo não pegou terreno deitado (${largura})`);
     await foto(pg, `41b-selecao-grupo${sufixo}`);
     // arrasta uma das selecionadas pelo canto: todas andam juntas
     const pega = c0[sel[sel.length - 1]];
@@ -935,6 +970,174 @@ if (SO_COMBATE) {
   process.exit(0);
 }
 // --- fim (combate com muitas fichas) ---
+
+// --- a sua área com o campo até a base, a mão por cima e os terrenos deitados ---
+/**
+ * O campo chega à base da sua área; a mão descansa abaixada (uns 41% da carta à vista) e sobe inteira com o mouse,
+ * descendo só um pouco depois de ele sair; o retrato fica no canto de cima à direita; os terrenos ficam deitados. Em
+ * 1v1 (MESA1) e 4 jogadores (MESA4), em 1280×800 e 1920×1080. Depois, quadros da transformação da carta jogada no
+ * terreno deitado (arrastando, em MESA1; com duplo clique, em MESA4), com as animações paradas em 0, 150, 300 e 440 ms:
+ * o tamanho da caixa anda sem pulo do da carta ao da peça.
+ */
+async function capturasMesa(): Promise<void> {
+  const ids = idsMesa!;
+  const abrir = async (codigo: string, tela: { width: number; height: number }) => {
+    const c = await navegador.newContext({ viewport: tela });
+    c.setDefaultTimeout(20000);
+    const pg = await c.newPage();
+    paginas.push(pg);
+    pg.on('pageerror', (e) => console.error(`[navegador] ${e.message}`));
+    await pg.goto(URL);
+    await pg.evaluate((cod) => localStorage.setItem('commander-da-mesa:sala', JSON.stringify({ codigo: cod, token: `token-${cod}` })), codigo);
+    await pg.getByLabel('Senha do servidor').fill('teste-capturas');
+    await pg.getByRole('button', { name: 'Entrar' }).click();
+    await pg.locator('.mesa').waitFor();
+    await pg.getByText('Você tem prioridade').waitFor({ timeout: 90000 });
+    await pg.mouse.move(3, 3);
+    await pg.waitForTimeout(900);
+    return { c, pg };
+  };
+  type Geo = { area: DOMRect; campo: DOMRect; avatar: DOMRect; mao: { id: number; r: DOMRect; h: number }[]; deitadas: { w: number; h: number }[]; rotulo: DOMRect };
+  const geometria = (pg: Page) => pg.evaluate(() => {
+    const ret = (e: Element) => { const r = e.getBoundingClientRect(); return { x: r.x, y: r.y, width: r.width, height: r.height, top: r.top, left: r.left, right: r.right, bottom: r.bottom } as DOMRect; };
+    const area = document.querySelector('.area-eu')!;
+    return {
+      area: ret(area), campo: ret(area.querySelector('.campo')!), avatar: ret(area.querySelector('.avatar')!), rotulo: ret(area.querySelector('.mao-rotulo')!),
+      mao: [...area.querySelectorAll<HTMLElement>('.mao-cartas .carta')].map((e) => ({ id: Number(e.dataset.obj), r: ret(e), h: e.offsetHeight })),
+      deitadas: [...area.querySelectorAll<HTMLElement>('.campo > .carta.deitada')].map((e) => ({ w: e.offsetWidth, h: e.offsetHeight })),
+    };
+  }) as Promise<Geo>;
+  /** quanto da carta do meio da mão aparece acima da base da área */
+  const visivel = (g: Geo) => { const k = g.mao[Math.floor(g.mao.length / 2)]; return Math.min(1, (g.area.bottom - k.r.top) / k.r.height); };
+
+  for (const codigo of ['MESA1', 'MESA4'] as const) {
+    for (const tela of [{ width: 1280, height: 800 }, { width: 1920, height: 1080 }]) {
+      const { c, pg } = await abrir(codigo, tela);
+      const nome = `${codigo === 'MESA1' ? '1v1' : '4p'}-${tela.width}`;
+      const g = await geometria(pg);
+      if (g.area.bottom - g.campo.bottom > 8) throw new Error(`${nome}: o campo não chega à base da área (${(g.area.bottom - g.campo.bottom).toFixed(1)} px)`);
+      if (!(g.avatar.right <= g.area.right + 1 && g.avatar.left > g.area.right - 220 && g.avatar.top < g.area.top + 60)) throw new Error(`${nome}: o retrato não está no canto de cima à direita ${JSON.stringify(g.avatar)}`);
+      if (!g.deitadas.length || g.deitadas.some((t) => t.w <= t.h)) throw new Error(`${nome}: terrenos deitados ${JSON.stringify(g.deitadas)}`);
+      const repouso = visivel(g);
+      if (repouso < .3 || repouso > .52) throw new Error(`${nome}: a mão em repouso mostra ${(repouso * 100).toFixed(0)}% da carta`);
+      if (g.rotulo.bottom > g.mao[Math.floor(g.mao.length / 2)].r.top + 2) throw new Error(`${nome}: o rótulo da mão não fica acima da faixa à vista`);
+      await foto(pg, `60-mesa-${nome}-repouso`);
+      // o mouse na faixa à vista de uma carta: a mão sobe inteira
+      const meio = g.mao[Math.floor(g.mao.length / 2)];
+      await pg.mouse.move(meio.r.left + meio.r.width / 2, g.area.bottom - 12);
+      await pg.waitForTimeout(450);
+      const erguida = visivel(await geometria(pg));
+      if (erguida < .95) throw new Error(`${nome}: a mão erguida mostra só ${(erguida * 100).toFixed(0)}% da carta`);
+      await foto(pg, `60b-mesa-${nome}-mao-erguida`);
+      // saiu da mão: ela fica erguida por um instante (atravessar um vão não a fecha) e depois desce
+      await pg.mouse.move(g.campo.left + g.campo.width * .35, g.campo.top + g.campo.height * .25);
+      await pg.waitForTimeout(120);
+      if (visivel(await geometria(pg)) < .9) throw new Error(`${nome}: a mão desceu na hora em que o mouse saiu`);
+      await pg.waitForTimeout(700);
+      if (visivel(await geometria(pg)) > .55) throw new Error(`${nome}: a mão não desceu depois de o mouse sair`);
+      console.log(`   ${nome}: campo até ${(g.area.bottom - g.campo.bottom).toFixed(0)} px da base; mão em repouso ${(repouso * 100).toFixed(0)}%, erguida ${(erguida * 100).toFixed(0)}%; ${g.deitadas.length} terrenos deitados (${g.deitadas[0].w}×${g.deitadas[0].h})`);
+      if (tela.width === 1920) await quadrosDaTransformacao(pg, codigo, nome);
+      if (codigo === 'MESA4' && tela.width === 1920) await outrasOpcoes(pg, nome);
+      await c.close();
+    }
+  }
+
+  /** as outras opções das Configurações: o retrato à esquerda, acima do Comando, e os terrenos como cartas inteiras */
+  async function outrasOpcoes(pg: Page, nome: string): Promise<void> {
+    const recarregar = async (pref: Record<string, unknown>) => {
+      await pg.evaluate((p) => localStorage.setItem('commander-da-mesa:preferencias', JSON.stringify(p)), pref);
+      await pg.reload();
+      await pg.locator('.mesa').waitFor();
+      await pg.getByText('Você tem prioridade').waitFor({ timeout: 30000 });
+      await pg.mouse.move(3, 3);
+      await pg.waitForTimeout(900);
+    };
+    await recarregar({ avatarCanto: false });
+    const g = await pg.evaluate(() => {
+      const area = document.querySelector('.area-eu')!.getBoundingClientRect();
+      const av = document.querySelector('.area-eu .avatar')!.getBoundingClientRect();
+      const cmd = document.querySelector('.area-eu .zona[aria-label="Zona de comando"]')!.getBoundingClientRect();
+      // as cartas da arrumação padrão (sem posição escolhida) que encostam no retrato
+      const encostam = [...document.querySelectorAll('.area-eu .campo > .carta')].filter((e) => {
+        const r = e.getBoundingClientRect();
+        return r.left < av.right && r.right > av.left && r.top < av.bottom && r.bottom > av.top;
+      }).length;
+      return { area, av, cmd, encostam };
+    });
+    if (!(g.av.left < g.area.left + 120 && g.av.bottom <= g.cmd.top + 4)) throw new Error(`${nome}: o retrato à esquerda não fica acima do Comando ${JSON.stringify(g)}`);
+    if (g.encostam) throw new Error(`${nome}: ${g.encostam} carta(s) embaixo do retrato à esquerda`);
+    await foto(pg, `62-mesa-${nome}-retrato-a-esquerda`);
+    await recarregar({ terrenosDeitados: false });
+    if (await pg.locator('.area-eu .campo > .carta.deitada').count()) throw new Error(`${nome}: terrenos deitados com a opção "Cartas inteiras"`);
+    await foto(pg, `62b-mesa-${nome}-terrenos-de-pe`);
+    await pg.evaluate(() => localStorage.removeItem('commander-da-mesa:preferencias'));
+  }
+
+  /** joga o terreno da mão (arrastando em MESA1, com duplo clique em MESA4) e fotografa a transformação parada no meio */
+  async function quadrosDaTransformacao(pg: Page, codigo: 'MESA1' | 'MESA4', nome: string): Promise<void> {
+    const deitadasAntes = (await geometria(pg)).deitadas.length;
+    const animacoes = (acao: 'pausar' | 'seguir' | number) => pg.evaluate((acao) => {
+      const lista = document.getAnimations().filter((a) => ((a.effect as KeyframeEffect | null)?.target as Element | null)?.closest?.('.morfose'));
+      for (const a of lista) { if (acao === 'pausar') a.pause(); else if (acao === 'seguir') a.play(); else a.currentTime = acao; }
+      const m = document.querySelector('.morfose');
+      const r = m?.getBoundingClientRect();
+      return { n: lista.length, w: m ? (m as HTMLElement).offsetWidth : 0, h: m ? (m as HTMLElement).offsetHeight : 0, x: r?.left ?? 0, y: r?.top ?? 0 };
+    }, acao);
+    const id = codigo === 'MESA1' ? ids.MESA1.arrastar : ids.MESA4.duploClique;
+    const carta = pg.locator(`.mao-cartas [data-obj="${id}"]`);
+    await carta.hover();
+    await pg.waitForTimeout(400);
+    const r = (await carta.boundingBox())!;
+    if (codigo === 'MESA1') {
+      // arrasta até um ponto vazio do campo; a transformação começa ao soltar
+      const alvo = await pg.evaluate(() => {
+        const campo = document.querySelector('.area-eu .campo')!, rc = campo.getBoundingClientRect();
+        for (const fy of [.42, .5, .35, .3]) for (const fx of [.45, .55, .35, .6, .3]) { const x = rc.left + rc.width * fx, y = rc.top + rc.height * fy; if (document.elementFromPoint(x, y) === campo) return { x, y }; }
+        return null;
+      });
+      if (!alvo) throw new Error(`${nome}: sem espaço vazio no campo para soltar o terreno`);
+      const x0 = r.x + r.width / 2, y0 = r.y + r.height * .3;
+      await pg.mouse.move(x0, y0);
+      await pg.mouse.down();
+      for (let k = 1; k <= 14; k++) await pg.mouse.move(x0 + (alvo.x - x0) * k / 14, y0 + (alvo.y - y0) * k / 14);
+      await pg.waitForTimeout(150);
+      await foto(pg, `61-transformacao-${nome}-arrastando`);
+      await pg.mouse.up();
+    } else {
+      await carta.dblclick();
+      await pg.locator('.morfose').waitFor({ timeout: 8000 });
+    }
+    const p = await animacoes('pausar');
+    if (!p.n) throw new Error(`${nome}: a transformação não começou`);
+    const quadros: { t: number; w: number; h: number; x: number; y: number }[] = [];
+    for (const t of [0, 150, 300, 440]) {
+      const q = await animacoes(t);
+      quadros.push({ t, ...q });
+      await pg.screenshot({ path: join(SAIDA, `61-transformacao-${nome}-${String(t).padStart(3, '0')}ms.png`) });
+      console.log(`captura: 61-transformacao-${nome}-${String(t).padStart(3, '0')}ms.png (caixa ${q.w}×${q.h} em ${q.x.toFixed(0)},${q.y.toFixed(0)})`);
+    }
+    // contínua: a largura e a altura andam sempre no mesmo sentido, da carta à peça deitada (sem troca de forma no meio)
+    const sentido = (k: 'w' | 'h') => quadros.slice(1).every((q, i) => Math.sign(q[k] - quadros[i][k]) === Math.sign(quadros[3][k] - quadros[0][k]) || q[k] === quadros[i][k]);
+    if (!sentido('w') || !sentido('h')) throw new Error(`${nome}: a transformação não é contínua ${JSON.stringify(quadros)}`);
+    if (!(quadros[0].h > quadros[0].w && quadros[3].w > quadros[3].h)) throw new Error(`${nome}: a transformação não vai da carta de pé à peça deitada ${JSON.stringify(quadros)}`);
+    await animacoes('seguir');
+    // no fim, o terreno de verdade no lugar e a caixa fora (no quadro seguinte)
+    await pg.waitForFunction(() => !document.querySelector('.morfose') && !document.querySelector('.campo > .carta.chegando'), undefined, { timeout: 8000 });
+    await pg.mouse.move(3, 3);
+    await pg.waitForTimeout(400);
+    const depois = await geometria(pg);
+    if (depois.deitadas.length !== deitadasAntes + 1) throw new Error(`${nome}: depois da transformação ${depois.deitadas.length} terrenos deitados, eram ${deitadasAntes}`);
+    await foto(pg, `61-transformacao-${nome}-fim`);
+  }
+}
+if (SO_MESA) {
+  try { await capturasMesa(); } catch (e) {
+    for (const [i, p] of paginas.entries()) if (!p.isClosed()) await p.screenshot({ path: join(SAIDA, `falha-${i}.png`) }).catch(() => {});
+    throw e;
+  } finally { await navegador.close(); servidor.kill(); }
+  process.exit(0);
+}
+// --- fim (a sua área com o campo até a base) ---
 
 try {
   if (!SO) { // capturas das fases 7 e 8 (CAPTURAS_SO pula)
@@ -1735,6 +1938,9 @@ try {
   // --- combate com muitas fichas ---
   if (!SO) await capturasCombate();
   // --- fim (combate com muitas fichas) ---
+  // --- a sua área com o campo até a base ---
+  if (!SO) await capturasMesa();
+  // --- fim (a sua área) ---
 
 } catch (e) {
   for (const [i, p] of paginas.entries()) if (!p.isClosed()) await p.screenshot({ path: join(SAIDA, `falha-${i}.png`) }).catch(() => {});
