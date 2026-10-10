@@ -4,7 +4,7 @@
 // completas, sugestões e motivos dependem dos auxílios.
 
 import type { ComponentChildren } from 'preact';
-import { useEffect, useState } from 'preact/hooks';
+import { useEffect, useLayoutEffect, useRef, useState } from 'preact/hooks';
 import type { Answer, Decision, ObjId, PriorityAction, TargetRef } from '../../../motor/types.ts';
 import type { GameView } from '../../../motor/view.ts';
 import { traduzir } from '../cartas.ts';
@@ -61,6 +61,39 @@ function realcarLinha(ids: ObjId[], ligar: boolean): void {
   for (const id of ids) for (const el of document.querySelectorAll(`.campo [data-obj="${id}"]`)) el.classList.toggle('realce-linha', ligar);
 }
 const apagarLinhas = () => { for (const el of document.querySelectorAll('.realce-linha')) el.classList.remove('realce-linha'); };
+
+/**
+ * Quantas linhas do combate ficam escondidas embaixo dos botões presos no pé do painel (a lista rola): o painel mostra
+ * um degradê e "+n abaixo" (clicar rola até elas). Conta de novo ao rolar, ao mudar de tamanho e a cada desenho.
+ */
+function useEscondidas(): [{ current: HTMLDivElement | null }, number, () => void] {
+  const ref = useRef<HTMLDivElement>(null);
+  const [n, setN] = useState(0);
+  const contar = () => {
+    const el = ref.current;
+    if (!el) return;
+    const limite = (el.querySelector(':scope > .botoes-linha') ?? el).getBoundingClientRect().top;
+    let k = 0;
+    for (const l of el.querySelectorAll('.linha-combate, .linhas > .linha')) if (l.getBoundingClientRect().bottom > limite + 2) k++;
+    setN(k);
+  };
+  useLayoutEffect(contar);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    el.addEventListener('scroll', contar, { passive: true });
+    const ro = new ResizeObserver(contar);
+    ro.observe(el);
+    return () => { el.removeEventListener('scroll', contar); ro.disconnect(); };
+  }, []);
+  const rolar = () => ref.current?.scrollBy({ top: ref.current.clientHeight * .6, behavior: 'smooth' });
+  return [ref, n, rolar];
+}
+
+/** o degradê e o "+n abaixo" no alto da faixa dos botões */
+function MaisAbaixo({ n, rolar }: { n: number; rolar: () => void }) {
+  return n > 0 ? <button type="button" class="mais-linhas" onClick={rolar}>+{n} abaixo</button> : null;
+}
 
 /** o motivo da recusa do motor (o da decisão, com os avisos ligados, se a mesa não tem outro) */
 function Recusa({ recusa, d, aux }: { recusa: string | null; d: D<'attackers'> | D<'blockers'>; aux: Auxilios }) {
@@ -130,6 +163,7 @@ function Pagamento({ d, reserva, visivel, aux }: { d: D<'payment'>; reserva: str
 function Atacantes({ d, ui, nomeCombate, nomeAlvo, aux, recusa }: { d: D<'attackers'>; ui: EstadoUi; nomeCombate: (id: ObjId) => string; nomeAlvo: (t: TargetRef) => string; aux: Auxilios; recusa: string | null }) {
   // a linha acesa some junto com o painel (a decisão mudou com o mouse em cima dela)
   useEffect(() => apagarLinhas, []);
+  const [painel, escondidas, rolar] = useEscondidas();
   const alternar = (obj: ObjId, t: TargetRef) => {
     const atual = ui.ataques[obj];
     const novo = { ...ui.ataques };
@@ -149,7 +183,7 @@ function Atacantes({ d, ui, nomeCombate, nomeAlvo, aux, recusa }: { d: D<'attack
   const faltam = d.candidates.filter((c) => !(c.obj in ui.ataques) && !(c.costs?.every((n) => n > 0))).length;
   const semAlvo = marcadas.some(([, t]) => t === null);
   return (
-    <div class="decisao combate">
+    <div ref={painel} class={`decisao combate ${escondidas ? 'transborda' : ''}`}>
       <p class="decisao-titulo">Ataque</p>
       <Recusa recusa={recusa} d={d} aux={aux} />
       {!marcadas.length ? <p class="dica-combate">Clique nas suas criaturas e depois no oponente</p>
@@ -177,6 +211,7 @@ function Atacantes({ d, ui, nomeCombate, nomeAlvo, aux, recusa }: { d: D<'attack
         </div>
       )}
       <div class="botoes-linha">
+        <MaisAbaixo n={escondidas} rolar={rolar} />
         <button class="botao cheio" onClick={ui.confirmarAtaque}>{marcadas.length ? 'Confirmar ataque' : 'Não atacar'}</button>
         {faltam > 1 && <button class="botao" onClick={ui.atacarComTodas}>Atacar com todas</button>}
         {aux.alvos && obrigadas.length > 0 && <button class="botao" onClick={marcarObrigadas}>Marcar quem precisa atacar</button>}
@@ -189,6 +224,7 @@ function Atacantes({ d, ui, nomeCombate, nomeAlvo, aux, recusa }: { d: D<'attack
 /** bloqueio: o resumo do que você ligou na mesa; com "Brilho nos alvos válidos", a lista inteira */
 function Bloqueadores({ d, ui, nomeObj, nomeCombate, aux, recusa }: { d: D<'blockers'>; ui: EstadoUi; nomeObj: (id: ObjId) => string; nomeCombate: (id: ObjId) => string; aux: Auxilios; recusa: string | null }) {
   useEffect(() => apagarLinhas, []);
+  const [painel, escondidas, rolar] = useEscondidas();
   const alternar = (b: ObjId, a: ObjId) => {
     const novo = { ...ui.bloqueios };
     if (novo[b] === a) delete novo[b]; else novo[b] = a;
@@ -201,7 +237,7 @@ function Bloqueadores({ d, ui, nomeObj, nomeCombate, aux, recusa }: { d: D<'bloc
   };
   const lista = Object.entries(ui.bloqueios).map(([b, a]) => [Number(b), a] as [ObjId, ObjId]);
   return (
-    <div class="decisao combate">
+    <div ref={painel} class={`decisao combate ${escondidas ? 'transborda' : ''}`}>
       <p class="decisao-titulo">Bloqueio</p>
       <Recusa recusa={recusa} d={d} aux={aux} />
       <p class="dica-combate">{ui.bloqueadorAtivo === null ? 'Clique numa criatura sua e depois no atacante' : 'Agora clique no atacante que ela vai bloquear'}</p>
@@ -228,6 +264,7 @@ function Bloqueadores({ d, ui, nomeObj, nomeCombate, aux, recusa }: { d: D<'bloc
         </div>
       )}
       <div class="botoes-linha">
+        <MaisAbaixo n={escondidas} rolar={rolar} />
         <button class="botao cheio" onClick={ui.confirmarBloqueio}>{lista.length ? 'Confirmar bloqueio' : 'Não bloquear'}</button>
         {lista.length > 0 && <button class="botao" onClick={() => { ui.setBloqueios({}); ui.setBloqueadorAtivo(null); }}>Limpar</button>}
       </div>

@@ -10,7 +10,7 @@ import { PARADAS_PADRAO } from '../servidor/salas.ts';
 import { Game } from '../motor/game.ts';
 import { buildView } from '../motor/view.ts';
 import type { DeckList } from '../motor/state.ts';
-import type { Decision, GameConfig, ObjId, PlayerId } from '../motor/types.ts';
+import type { Decision, GameConfig, ObjId, PlayerId, Step } from '../motor/types.ts';
 import type { Banco } from '../servidor/banco.ts';
 import { setup, type SetupOptions, type TestGame } from '../testes/harness.ts';
 
@@ -78,12 +78,12 @@ const ficha = (n: number) => Array.from({ length: n }, () => ({ name: 'Goblin', 
 const terrenos = (n: number) => Array.from({ length: n }, () => 'Forest');
 
 /** a partida montada vai para o banco a partir de um checkpoint (numa prioridade); o assento 0 é a pessoa */
-function salvarFixa(banco: Banco, codigo: string, tg: TestGame, decks: number[]): void {
+function salvarFixa(banco: Banco, codigo: string, tg: TestGame, decks: number[], minhasParadas: Step[] = ['main2']): void {
   const cp = tg.game.checkpoint();
   if (!cp) throw new Error(`sala ${codigo}: a partida montada não parou numa prioridade`);
   const deckIds = decks.map((i) => DECKS[i].id);
   // a pessoa não para no começo do combate nem no turno dos outros: a sala abre direto na decisão de combate
-  const paradas = { ...structuredClone(PARADAS_PADRAO), myTurn: ['main2' as const], othersTurn: [], skipWhenNothing: false };
+  const paradas = { ...structuredClone(PARADAS_PADRAO), myTurn: minhasParadas, othersTurn: [], skipWhenNothing: false };
   banco.salvarSala(codigo, {
     codigo, senha: '00:00', modo: decks.length === 4 ? '4p' : '1v1', estado: 'jogando', anfitriao: 0, mulligan: 'londres',
     assentos: decks.map((d, i) => ({ tipo: i === 0 ? 'humano' : 'bot', nome: tg.state.players[i].name, deck: DECKS[d].id, token: i === 0 ? `token-${codigo}` : null, paradas: structuredClone(paradas) })),
@@ -128,5 +128,34 @@ export function gerarSalasCombate(banco: Banco): IdsCombate {
   return {
     FICHA: { fichas: doJogador(f, 'Goblin', 0), criaturas: [f.bf('Kami of Ancient Law', 0), f.bf('Goblin Electromancer', 0)] },
     BLOQT: { contraAna: deBruno.slice(0, 3), contraDiego: deBruno.slice(3), ameaca, kami: b.bf('Kami of Ancient Law', 0), ancients: b.bf('Indomitable Ancients', 0), fichasAna: doJogador(b, 'Goblin', 0) },
+  };
+}
+
+// --- a sua área com o campo até a base, a mão por cima e os terrenos deitados: salas fixas ---
+/** os ids que as capturas conferem: o terreno da mão que vai ser jogado e uma peça deitada de pé no campo */
+export interface IdsMesa { MESA1: { arrastar: ObjId; deitada: ObjId }; MESA4: { duploClique: ObjId } }
+
+/**
+ * MESA1 (um contra um) e MESA4 (4 jogadores): Ana na fase principal 1 dela, com criaturas, fichas, artefatos e terrenos
+ * (iguais e diferentes, alguns virados) no campo e sete cartas na mão, duas delas terrenos. Ela para na principal 1.
+ */
+export function gerarSalasMesa(banco: Banco): IdsMesa {
+  const campoAna = [
+    'Kami of Ancient Law', 'Indomitable Ancients', 'Goblin Electromancer', 'Arboreal Grazer', 'Elvish Mystic', 'Drumbellower', ...ficha(3),
+    'Sol Ring', 'Arcane Signet',
+    'Forest', { name: 'Forest', tapped: true }, 'Forest', { name: 'Forest', tapped: true }, 'Island', 'Island', { name: 'Island', tapped: true },
+    'Command Tower', 'Exotic Orchard', { name: 'Llanowar Wastes', tapped: true }, 'Reliquary Tower', 'Path of Ancestry',
+  ];
+  const maoAna = ['Island', 'Forest', 'Cultivate', 'Path to Exile', 'Kami of Ancient Law', 'Temple of Plenty', 'Sol Ring'];
+  const oponente = ['Kami of Ancient Law', 'Goblin Electromancer', 'Swamp', 'Swamp', { name: 'Swamp', tapped: true }, 'Command Tower', 'Evolving Wilds'];
+  const base = (n: number): SetupOptions => ({ players: n, step: 'main1', active: 0, library: Array.from({ length: n }, () => terrenos(6)), hand: [maoAna], battlefield: [campoAna, ...Array.from({ length: n - 1 }, () => oponente)] });
+  const um = setup(base(2));
+  salvarFixa(banco, 'MESA1', um, [0, 1], ['main1', 'main2']);
+  const quatro = setup(base(4));
+  salvarFixa(banco, 'MESA4', quatro, [0, 2, 4, 5], ['main1', 'main2']);
+  const naMao = (tg: TestGame, nome: string) => tg.find(nome, 'hand', 0)!;
+  return {
+    MESA1: { arrastar: naMao(um, 'Island'), deitada: um.all('Command Tower').find((id) => um.state.objects[id].controller === 0)! },
+    MESA4: { duploClique: naMao(quatro, 'Forest') },
   };
 }

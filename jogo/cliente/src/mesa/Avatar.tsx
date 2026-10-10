@@ -12,8 +12,10 @@ export interface AvatarProps {
   avatar: AvatarCliente | null;
   vida: number;
   nome: string;
-  /** o seu (embaixo, acima da mão) ou de um oponente (em cima) */
+  /** no meio, na base (o saguão e a escolha do retrato); na mesa, todos ficam no canto de cima à direita */
   local: boolean;
+  /** o seu retrato à esquerda, numa coluna acima do Comando (Configurações), em vez do canto de cima à direita */
+  lugar?: 'esquerda';
   /** jogador do turno: aura mais forte, respirando */
   ativo?: boolean;
   /** saiu da partida: apagado */
@@ -42,7 +44,7 @@ export function Avatar(p: AvatarProps) {
   // na mesa e no saguão, o de 256 px enquanto ele cobrir o tamanho na tela vezes a densidade (até o dobro, no maior
   // medalhão da mesa); acima disso, o de 512
   const mesa = !p.retratoGrande && p.avatar?.urlMesa ? { srcset: `${p.avatar.urlMesa} 256w, ${url} 512w`, sizes: `${Math.round(p.tamanho * RETRATO)}px` } : {};
-  const classes = ['avatar', p.local ? 'avatar-local' : 'avatar-oponente', p.ativo ? 'ativo' : '', p.fora ? 'fora' : '', p.realce ? `avatar-${p.realce}` : '', comImagem && estado === 'pronto' ? 'pronto' : ''].filter(Boolean).join(' ');
+  const classes = ['avatar', p.local ? 'avatar-local' : 'avatar-oponente', p.lugar === 'esquerda' ? 'avatar-esquerda' : '', p.ativo ? 'ativo' : '', p.fora ? 'fora' : '', p.realce ? `avatar-${p.realce}` : '', comImagem && estado === 'pronto' ? 'pronto' : ''].filter(Boolean).join(' ');
   return (
     <div class={classes} data-avatar={p.avatar?.id ?? ''} data-jogador-avatar={p.jogador}
       style={{ '--tam': `${p.tamanho}px`, '--aura': p.avatar?.aura ?? p.cor, '--cor': p.cor }}>

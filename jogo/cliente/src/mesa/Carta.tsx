@@ -21,6 +21,9 @@ export interface CartaProps {
   selo?: Selo;
   /** número entre as de nome igual na decisão de combate ("#2"; o painel diz "Zumbi #2") */
   numero?: number;
+  /** terreno deitado no campo: peça baixa e larga com a arte recortada (tamanho em --tw/--th, do campo); virado, fica
+   *  apagado com o {T} (sem a classe .virada: não gira 90° e as contas de arrastar continuam as de uma carta de pé) */
+  deitada?: boolean;
   /** recebe também o retângulo da carta na tela (para abrir o menu ao lado dela) */
   onClick?: (o: ObjView, r: DOMRect) => void;
   onZoom?: (o: ObjView | null, r?: DOMRect) => void;
@@ -55,17 +58,18 @@ function mesmoEstilo(a: CSSProperties | undefined, b: CSSProperties | undefined)
  * carta ou uma mensagem do servidor que muda uma carta só não redesenha as outras cem.
  */
 export const Carta = memo(CartaBase, (a, b) =>
-  a.o === b.o && a.realce === b.realce && a.selo === b.selo && a.numero === b.numero && a.classe === b.classe && mesmoEstilo(a.estilo, b.estilo)
+  a.o === b.o && a.realce === b.realce && a.selo === b.selo && a.numero === b.numero && a.deitada === b.deitada && a.classe === b.classe && mesmoEstilo(a.estilo, b.estilo)
   && a.onClick === b.onClick && a.onZoom === b.onZoom && a.onPointerDown === b.onPointerDown && a.onDoubleClick === b.onDoubleClick && a.onMenu === b.onMenu);
 
-function CartaBase({ o, realce = null, selo, numero, onClick, onZoom, onPointerDown, onDoubleClick, onMenu, estilo, classe }: CartaProps) {
+function CartaBase({ o, realce = null, selo, numero, deitada, onClick, onZoom, onPointerDown, onDoubleClick, onMenu, estilo, classe }: CartaProps) {
   const oculta = !o.def;
   const img = oculta ? null : urlImagem(o.copyOfDef ?? o.def, o.face, 'p');
   const nome = oculta ? o.name : nomeCarta(o.def, o.name);
   const pendente = !oculta && !!info(o.def)?.pendente;
   const criatura = o.types.includes('Creature');
   const marcadores = Object.entries(o.counters).filter(([, n]) => n > 0);
-  const classes = ['carta', o.tapped ? 'virada' : '', onPointerDown ? 'arrastavel' : '', criatura && o.sick ? 'enjoo' : '', realce ? `realce-${realce}` : '', onClick ? 'clicavel' : '', o.phasedOut ? 'em-fase' : '', classe ?? ''].filter(Boolean).join(' ');
+  const virada = o.tapped ? (deitada ? 'deitada-virada' : 'virada') : '';
+  const classes = ['carta', deitada ? 'deitada' : '', virada, onPointerDown ? 'arrastavel' : '', criatura && o.sick ? 'enjoo' : '', realce ? `realce-${realce}` : '', onClick ? 'clicavel' : '', o.phasedOut ? 'em-fase' : '', classe ?? ''].filter(Boolean).join(' ');
   const rect = (e: Event) => (e.currentTarget as HTMLElement).getBoundingClientRect();
   return (
     <div
@@ -104,6 +108,8 @@ function CartaBase({ o, realce = null, selo, numero, onClick, onZoom, onPointerD
       {criatura && o.power !== null && img && <span class={o.damageByToughness ? 'carta-pt pela-resistencia' : 'carta-pt'}><ForcaResistencia o={o} /></span>}
       {selo && <span class={`selo-combate ${selo}`} title={NOME_SELO[selo]}>{selo === 'escudo' ? <IconeEscudo /> : <IconeEspada />}</span>}
       {numero !== undefined && <span class="carta-n" aria-hidden="true">#{numero}</span>}
+      {deitada && <span class="tile-nome" aria-hidden="true">{nome}</span>}
+      {deitada && o.tapped && <img class="tile-t" src="/simbolo/T" alt="" aria-hidden="true" draggable={false} />}
     </div>
   );
 }

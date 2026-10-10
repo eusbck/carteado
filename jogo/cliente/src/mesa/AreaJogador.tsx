@@ -1,16 +1,22 @@
-// Área de um jogador: arte do comandante ao fundo, nome, o avatar com a vida (no canto de cima à direita no oponente;
-// na sua área, no meio da base, na frente da mão), o campo de batalha com cada permanente na sua posição e a fileira de zonas (comando,
-// mão, grimório, cemitério, exílio).
+// Área de um jogador: arte do comandante ao fundo, nome, o avatar com a vida (no canto de cima à direita; o seu pode
+// ficar à esquerda, acima do Comando), o campo de batalha com cada permanente na sua posição e a fileira de zonas
+// (comando, mão, grimório, cemitério, exílio). Na sua área o campo vai até a base e a mão (abaixada em repouso), as
+// zonas e o retrato ficam por cima dele.
 
-import { useLayoutEffect, useMemo, useRef, useState } from 'preact/hooks';
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'preact/hooks';
 import type { ObjId } from '../../../motor/types.ts';
 import type { ObjView, PlayerView } from '../../../motor/view.ts';
 import { nomeCarta } from '../cartas.ts';
 import type { AvatarCliente } from '../avatares.ts';
-import { arrumarCampo } from './arrumacao.ts';
+import { arrumarCampo, type Vao } from './arrumacao.ts';
 import { Avatar } from './Avatar.tsx';
 import { Carta, type Realce, type Selo } from './Carta.tsx';
+import { useMesmo } from './estavel.ts';
+import { medirArea, type LadoAvatar } from './geometriaArea.ts';
 import { Simbolos } from './Simbolos.tsx';
+
+/** a mesma lista de retângulos (a área se desenha de novo a cada vista; a arrumação só se refaz se eles mudarem) */
+const mesmosVaos = (a: Vao[], b: Vao[]) => a.length === b.length && a.every((r, i) => r.x0 === b[i].x0 && r.x1 === b[i].x1 && r.y0 === b[i].y0 && r.y1 === b[i].y1);
 
 /** como a carta aparece no combate: selo e, para quem você está marcando para atacar, inclinada; `numero` entre as de
  *  nome igual na decisão ("#2"); `alheia`: atacante que ataca outro jogador, enquanto você bloqueia (fica apagada) */
@@ -47,8 +53,14 @@ export interface AreaProps {
   onZona: (zona: 'graveyard' | 'exile') => void;
   /** a sua mão (só na sua área) */
   mao?: ObjView[];
-  /** o seu retrato no canto de cima à direita (Configurações), em vez de no meio da base */
-  avatarCanto?: boolean;
+  /** uma decisão pede cartas da sua mão: ela fica erguida (sem isso, descansa abaixada e sobe com o mouse) */
+  maoAberta?: boolean;
+  /** onde fica o seu retrato (Configurações): no canto de cima à direita (padrão) ou à esquerda, acima do Comando */
+  avatarLado?: LadoAvatar;
+  /** terrenos deitados (Configurações › Terrenos no campo) */
+  deitados?: boolean;
+  /** o terreno que acabou de entrar enquanto a carta jogada ainda se transforma nele (fica escondido até ela chegar) */
+  chegando?: ObjId | null;
   /** largura à direita do campo que fica livre para a coluna da pilha e das decisões */
   reservaDireita?: number;
   /** posições escolhidas (de 0 a 1 dentro do campo), pelo id do objeto */
@@ -80,9 +92,6 @@ export interface AreaProps {
   /** clique no selo ×n de um leque (com as cartas dele à vista): marcar ou desmarcar o leque para atacar */
   onLeque?: (ids: ObjId[]) => void;
 }
-
-const PROPORCAO = 88 / 63;
-const limitar = (min: number, x: number, max: number) => Math.round(Math.max(min, Math.min(max, x)));
 
 const NOME_CONTADOR: Record<string, string> = { poison: 'veneno', energy: 'energia', experience: 'experiência', rad: 'radiação' };
 
@@ -127,72 +136,69 @@ export function AreaJogador(p: AreaProps) {
   const emblemas = p.comandantes.filter((o) => o.emblem);
   const [ref, tam] = useTamanho<HTMLElement>();
 
-  // medidas que dependem do tamanho da área
-  const wz = p.compacta ? (p.duelo ? limitar(44, tam.h * .13, 56) : limitar(34, tam.h * .1, 42)) : limitar(54, tam.h * .13, 76);
-  const zonasH = Math.round(wz * PROPORCAO) + 26;
-  const wm = p.mao ? limitar(72, tam.h * .18, 108) : limitar(78, tam.h * .21, 120);
-  // sua área: o avatar inteiro à vista na base, com a vida embaixo da moldura (a 6 px da borda), as cartas da mão
-  // descendo até 55% da moldura e passando por trás dele (o retrato fica na frente; a carta sob o mouse sobe por cima de
-  // tudo e o zoom mostra a carta inteira) e o rótulo da mão acima do leque, com respiro
-  const tamLocal = limitar(56, tam.h * .145, 88);
-  // com o retrato no canto (opção nas Configurações) a mão volta a ficar rente à base, com um pedaço passando da borda
-  const cantoLocal = !!p.mao && !!p.avatarCanto;
-  const maoBaixo = cantoLocal ? -Math.round(wm * PROPORCAO * .2) : Math.round(6 + tamLocal * .75);
-  const maoTopo = maoBaixo + Math.round(wm * PROPORCAO);
-  // a sua área começa abaixo da faixa de fases (os selos de combate sobem um pouco acima das cartas)
-  const topo = p.compacta ? 44 : 58;
-  const baixo = p.mao ? Math.max(zonasH + 4, maoTopo + 42) : zonasH;
-  const campoW = Math.max(0, tam.w - 24 - (p.reservaDireita ?? 0));
-  const campoH = Math.max(0, tam.h - topo - baixo);
-  // as posições escolhidas são proporcionais ao campo inteiro (a reserva à direita só vale para a
-  // arrumação padrão): é a mesma conta de quando a carta é solta, então ela fica onde foi solta
-  const livreW = Math.max(0, tam.w - 24);
-  const wBase = p.compacta ? (p.duelo ? limitar(54, tam.h * .19, 84) : limitar(40, tam.h * .15, 62)) : limitar(62, tam.h * .17, 92);
-
-  // avatar: o medalhão fica no meio da área; a arrumação padrão deixa o espaço dele livre (cabeça acima da moldura,
-  // moldura e o medalhão da vida embaixo: uns 1,42 diâmetros de altura)
-  const tamAvatar = p.mao && !cantoLocal ? tamLocal : p.compacta && !p.duelo ? limitar(48, tam.h * .17, 84) : limitar(60, tam.h * .17, 100);
-  // o avatar de um oponente fica no canto de cima à direita, sobre o campo: a arrumação deixa esse canto livre. O seu
-  // fica na base, fora do campo, e não precisa de vão
-  const altAvatar = Math.round(tamAvatar * 1.42) + 22;
-  const vaoX0 = Math.round(tam.w - 26 - tamAvatar * 1.25 - 10);
-  const vaoX1 = Math.round(tam.w);
-  // na sua área com o retrato no canto, ele fica no canto de cima à direita, sobre a faixa reservada para a coluna da
-  // pilha e das decisões (que desce para baixo dele): a arrumação padrão nunca põe cartas ali, então não precisa de vão
-  const vaoAlt = p.mao ? 0 : Math.max(0, 8 + altAvatar - topo);
+  // medidas que dependem do tamanho da área (geometriaArea.ts): na sua, o campo vai até a base e a mão, as zonas e o
+  // retrato ficam por cima dele; a arrumação padrão deixa livres só os retângulos deles em repouso
+  const mao = p.mao ?? [];
+  const n = mao.length;
+  const lado: LadoAvatar = p.avatarLado ?? 'canto';
+  const m = medirArea({ w: tam.w, h: tam.h, eu: !!p.mao, compacta: p.compacta, duelo: p.duelo, lado, nMao: n, emblemas: emblemas.length > 0, reservaDireita: p.reservaDireita });
+  const { wz, topo, campoW, campoH, livreW, wBase, wMin, tamAvatar } = m;
+  // as mesmas medidas, a mesma lista de retângulos (a arrumação não se refaz à toa)
+  const vaosNovos = m.vaos;
+  const vaos = useMesmo(vaosNovos, mesmosVaos);
 
   // quem tem posição escolhida fica onde a pessoa pôs; os outros seguem a arrumação padrão
   const posicoes = p.posicoes ?? SEM_POSICOES;
   const ordemZ = p.ordemZ ?? SEM_ORDEM;
-  const arr = useMemo(() => arrumarCampo(p.objs, p.anexos, posicoes, ordemZ, {
-    W: campoW, livreW, H: campoH, wBase, wMin: p.compacta ? 28 : 40,
-    vao: vaoAlt > 0 ? { x0: vaoX0, x1: vaoX1, topo: vaoAlt } : undefined,
-  }, { largo: p.lequeLargo, combate: p.chaveCombate }), [p.objs, p.anexos, posicoes, ordemZ, campoW, livreW, campoH, wBase, p.compacta, vaoX0, vaoX1, vaoAlt, p.eu, cantoLocal, tamAvatar, p.lequeLargo, p.chaveCombate]);
+  const arr = useMemo(() => arrumarCampo(p.objs, p.anexos, posicoes, ordemZ, { W: campoW, livreW, H: campoH, wBase, wMin, vaos },
+    { largo: p.lequeLargo, combate: p.chaveCombate, deitados: p.deitados }),
+  [p.objs, p.anexos, posicoes, ordemZ, campoW, livreW, campoH, wBase, wMin, vaos, p.lequeLargo, p.chaveCombate, p.deitados]);
   const todosNoCampo = useMemo(() => [...p.objs, ...p.objs.flatMap((o) => p.anexos.get(o.id) ?? [])], [p.objs, p.anexos]);
   // as cartas de cada leque (sem as postas noutro lugar): no leque, a marcada para atacar sobe mais (a borda de cima
-  // fica à vista acima da vizinha) e o hover não traz ninguém para cima (a faixa que aparece é a que recebe o clique)
-  const leques = useMemo(() => arr.leques.map((g) => ({ ...g, ids: g.ids.filter((id) => !posicoes[id]) })).filter((g) => g.ids.length > 1), [arr, posicoes]);
+  // fica à vista acima da vizinha) e o hover não traz ninguém para cima (a faixa que aparece é a que recebe o clique).
+  // O selo dos terrenos deitados conta os virados
+  const leques = useMemo(() => {
+    const virados = new Set(todosNoCampo.filter((o) => o.tapped).map((o) => o.id));
+    return arr.leques.map((g) => {
+      const ids = g.ids.filter((id) => !posicoes[id]);
+      return { ...g, ids, virados: g.deitado ? ids.filter((id) => virados.has(id)).length : 0 };
+    }).filter((g) => g.ids.length > 1);
+  }, [arr, posicoes, todosNoCampo]);
   const emLeque = useMemo(() => new Set(leques.flatMap((g) => g.ids)), [leques]);
 
   const contadores = Object.entries(j.counters).filter(([, n]) => n > 0);
   const danoCmd = j.commanderDamage.filter((d) => d.amount > 0);
-  const classes = ['area', p.eu ? 'area-eu' : 'area-oponente', cantoLocal ? 'avatar-no-canto' : '', p.ativo ? 'area-ativa' : '', p.decidindo ? 'area-decidindo' : '', j.left ? 'area-fora' : '', p.compacta ? 'compacta' : '', p.jogadorRealce ? `alvo-${p.jogadorRealce}` : ''].filter(Boolean).join(' ');
+  const ladoClasse = p.mao ? (lado === 'canto' ? 'avatar-no-canto' : 'avatar-a-esquerda') : '';
+  const classes = ['area', p.eu ? 'area-eu' : 'area-oponente', ladoClasse, p.ativo ? 'area-ativa' : '', p.decidindo ? 'area-decidindo' : '', j.left ? 'area-fora' : '', p.compacta ? 'compacta' : '', p.jogadorRealce ? `alvo-${p.jogadorRealce}` : ''].filter(Boolean).join(' ');
   const topoCemiterio = j.graveyard[j.graveyard.length - 1];
   // na sua área, a reserva fica do lado da vida (à esquerda ela cairia embaixo da faixa de fases)
   const reserva = <span class="selo reserva" title="Reserva de mana"><span class="rot">Reserva</span><Simbolos custo={j.manaPool} tam={16} /></span>;
   const topoExilio = p.exilio[p.exilio.length - 1];
 
-  // leque da mão: cabe entre os grupos de zonas
-  const mao = p.mao ?? [];
-  const n = mao.length;
-  const livre = Math.max(wm, tam.w - 2 * (3 * (wz + 12) + 30) - wm * 1.3);
-  const passo = n > 1 ? Math.min(wm * .8, (livre - wm) / (n - 1)) : wm;
+  // leque da mão: cabe entre os grupos de zonas; em repouso só a faixa de cima das cartas aparece. O mouse numa carta
+  // ergue a mão inteira; ela só desce um pouco depois de o mouse sair (atravessar o vão entre duas cartas não a fecha)
+  const [erguida, setErguida] = useState(false);
+  const relogioMao = useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(() => () => { if (relogioMao.current) clearTimeout(relogioMao.current); }, []);
+  const erguer = () => {
+    if (relogioMao.current) { clearTimeout(relogioMao.current); relogioMao.current = null; }
+    setErguida(true);
+  };
+  // entrar e sair do leque inteiro (passar de uma carta para a vizinha não conta como sair)
+  const baixar = () => {
+    if (relogioMao.current) clearTimeout(relogioMao.current);
+    relogioMao.current = setTimeout(() => { relogioMao.current = null; setErguida(false); }, 320);
+  };
+  const mm = m.mao;
   const meio = (n - 1) / 2;
-  const giro = n > 1 ? Math.min(8, 52 / (n - 1)) : 0;
-  const curva = meio > 0 ? (wm * .34) / (meio * meio) : 0;
+  const estiloMao = mm ? {
+    '--wm': `${mm.wm}px`, '--passo': `${Math.round(mm.passo - mm.wm)}px`, '--mao-baixo': `${mm.baixo}px`, '--mao-repouso': `${mm.repouso}px`,
+  } : undefined;
 
   return (
-    <section ref={ref} class={`${classes} ${p.onCliqueArea ? 'area-clicavel' : ''}`} data-jogador={j.id} style={{ '--cor': p.cor, '--zonas-h': `${baixo}px`, '--wz': `${wz}px`, '--mao-topo': `${maoTopo}px`, '--tam-avatar': `${tamAvatar}px`, '--reserva-direita': `${p.reservaDireita ?? 0}px`, '--topo-campo': `${topo}px` }} aria-label={`Área de ${j.name}`}
+    <section ref={ref} class={`${classes} ${p.onCliqueArea ? 'area-clicavel' : ''}`} data-jogador={j.id} aria-label={`Área de ${j.name}`}
+      style={{ '--cor': p.cor, '--zonas-h': `${m.baixo}px`, '--wz': `${wz}px`, '--zonas-alt': `${m.zonasH + 8}px`, '--tam-avatar': `${tamAvatar}px`, '--reserva-direita': `${p.reservaDireita ?? 0}px`, '--topo-campo': `${topo}px`,
+        ...(mm ? { '--mao-visivel': `${mm.baixo + mm.hm - mm.repouso}px`, '--mao-topo': `${mm.baixo + mm.hm}px` } : {}) }}
       onClick={p.onCliqueArea ? (e) => { if (!(e.target as HTMLElement).closest('[data-obj], button')) p.onCliqueArea!(); } : undefined}
       onContextMenu={p.onMenuArea ? (e) => { e.preventDefault(); p.onMenuArea!(e); } : undefined}>
       {p.fundo && <div class="area-fundo" style={{ backgroundImage: `url(${p.fundo})` }} />}
@@ -217,20 +223,21 @@ export function AreaJogador(p: AreaProps) {
       </header>
 
       {tam.w > 0 && (
-        <Avatar jogador={j.id} avatar={p.avatar} vida={j.life} nome={j.name} local={p.eu && !cantoLocal} ativo={p.ativo} fora={j.left}
-          tamanho={tamAvatar} cor={p.cor} onVida={p.onJogador} />
+        <Avatar jogador={j.id} avatar={p.avatar} vida={j.life} nome={j.name} local={false} lugar={p.mao && lado === 'esquerda' ? 'esquerda' : undefined}
+          ativo={p.ativo} fora={j.left} tamanho={tamAvatar} cor={p.cor} onVida={p.onJogador} />
       )}
 
-      <div class="campo" aria-label="Campo de batalha" data-larg={livreW} data-alt={campoH} data-carta-w={arr.w}
+      <div class="campo" aria-label="Campo de batalha" data-larg={livreW} data-alt={campoH} data-carta-w={arr.w} data-tile-w={arr.tile.w} data-tile-h={arr.tile.h}
+        style={{ '--tw': `${arr.tile.w}px`, '--th': `${arr.tile.h}px` }}
         onPointerDown={p.onPegarCampoVazio ? (e) => { if (!(e.target as HTMLElement).closest('[data-obj], .grupo-n')) p.onPegarCampoVazio!(e, e.currentTarget as HTMLElement); } : undefined}>
         {todosNoCampo.map((o) => {
           const pos = arr.pos.get(o.id);
           if (!pos) return null;
           const c = p.combate(o);
           const selecionada = !!p.selecionadas && (p.selecionadas.has(o.id) || (o.attachedTo !== null && p.selecionadas.has(o.attachedTo)));
-          const classe = [p.arrastando === o.id ? 'sendo-arrastada' : '', p.pousadas?.has(o.id) ? 'pousada' : '', c?.inclinada ? 'inclinada' : '', c?.ativa ? 'combate-ativa' : '', c?.alheia ? 'combate-alheio' : '', emLeque.has(o.id) ? 'no-leque' : '', selecionada ? 'selecionada' : ''].filter(Boolean).join(' ');
+          const classe = [p.arrastando === o.id ? 'sendo-arrastada' : '', p.pousadas?.has(o.id) ? 'pousada' : '', p.chegando === o.id ? 'chegando' : '', c?.inclinada ? 'inclinada' : '', c?.ativa ? 'combate-ativa' : '', c?.alheia ? 'combate-alheio' : '', emLeque.has(o.id) ? 'no-leque' : '', selecionada ? 'selecionada' : ''].filter(Boolean).join(' ');
           return (
-            <Carta key={o.id} o={o} realce={p.realce(o)} selo={c?.selo} numero={c?.numero} onClick={p.onCarta} onZoom={p.onZoom} onMenu={p.onMenuCarta}
+            <Carta key={o.id} o={o} realce={p.realce(o)} selo={c?.selo} numero={c?.numero} deitada={arr.deitadas.has(o.id)} onClick={p.onCarta} onZoom={p.onZoom} onMenu={p.onMenuCarta}
               onPointerDown={p.onPegarCampo} classe={classe || undefined}
               estilo={{ left: `${pos.x}px`, top: `${pos.y}px`, zIndex: pos.z, '--w': `${arr.w}px` }} />
           );
@@ -242,7 +249,9 @@ export function AreaJogador(p: AreaProps) {
           return criaturas
             ? <button key={g.ids[0]} type="button" class="grupo-n clicavel" style={estilo} title="Marcar ou desmarcar o leque inteiro para atacar" aria-label={`Leque de ${g.ids.length}: marcar ou desmarcar para atacar`}
                 onClick={(e) => { e.stopPropagation(); p.onLeque!(g.ids); }}>×{g.ids.length}</button>
-            : <span key={g.ids[0]} class="grupo-n" style={estilo}>×{g.ids.length}</span>;
+            : <span key={g.ids[0]} class="grupo-n" style={estilo} aria-label={g.virados ? `${g.ids.length} iguais, ${g.virados} virados` : undefined}>
+                ×{g.ids.length}{g.virados > 0 && <> · {g.virados}<img class="grupo-t" src="/simbolo/T" alt="" /></>}
+              </span>;
         })}
         {p.conjurando && (
           <Carta o={p.conjurando.o} classe="conjurando" estilo={{ left: `${p.conjurando.x * livreW}px`, top: `${p.conjurando.y * campoH}px`, zIndex: 450, '--w': `${arr.w}px` }} />
@@ -299,16 +308,16 @@ export function AreaJogador(p: AreaProps) {
         </div>
       </footer>
 
-      {/* rótulo da mão: centralizado acima do leque */}
-      {p.mao && <h2 class="mao-titulo mao-rotulo">Mão <b>({n})</b></h2>}
-      {p.mao && (
-        <section class="mao" aria-label="Sua mão" style={{ '--wm': `${wm}px`, '--passo': `${Math.round(passo - wm)}px`, '--mao-baixo': `${maoBaixo}px` }}>
-          <div class="mao-cartas">
+      {/* rótulo da mão: centralizado acima da faixa que aparece do leque */}
+      {mm && <h2 class="mao-titulo mao-rotulo">Mão <b>({n})</b></h2>}
+      {mm && (
+        <section class={`mao ${p.maoAberta ? 'aberta' : ''} ${erguida ? 'erguida' : ''}`} aria-label="Sua mão" style={estiloMao}>
+          <div class="mao-cartas" onPointerEnter={erguer} onPointerLeave={baixar}>
             {n === 0 && <span class="mao-vazia">Sem cartas na mão</span>}
             {mao.map((o, i) => (
               <Carta key={o.id} o={o} realce={p.realce(o)} onClick={p.onCarta} onZoom={p.onZoom} onMenu={p.onMenuCarta} onPointerDown={p.onPegarMao} onDoubleClick={p.onDuploMao}
                 classe={p.arrastando === o.id ? 'sendo-arrastada' : undefined}
-                estilo={{ '--r': `${((i - meio) * giro).toFixed(2)}deg`, '--y': `${Math.round((i - meio) ** 2 * curva)}px` }} />
+                estilo={{ '--r': `${((i - meio) * mm.giro).toFixed(2)}deg`, '--y': `${Math.round((i - meio) ** 2 * mm.curva)}px` }} />
             ))}
           </div>
         </section>

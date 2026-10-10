@@ -46,7 +46,8 @@ export function shouldAutoPass(s: GameState, d: Decision, player: PlayerId, st: 
   // sem nada além de passar (e ativar mana à toa), não há o que decidir
   const meaningful = d.actions.filter((a) => a.kind !== 'pass' && a.kind !== 'mana' && a.kind !== 'manual');
   if (meaningful.length === 0 && st.skipWhenNothing !== false) return true;
-  if (meaningful.length > 0 && st.respondWhenAble !== false && momentoDeResponder(s, player)) return false;
+  const passandoOTurno = st.passUntilTurnEnds !== null && st.passUntilTurnEnds === s.turn.number;
+  if (meaningful.length > 0 && st.respondWhenAble !== false && momentoDeResponder(s, player, passandoOTurno)) return false;
   if (st.passUntilTurnEnds !== null && st.passUntilTurnEnds === s.turn.number) {
     if (!st.stopOnOpponentStack) return true;
     const top = s.zones.stack[s.zones.stack.length - 1];
@@ -65,11 +66,12 @@ export function shouldAutoPass(s: GameState, d: Decision, player: PlayerId, st: 
 }
 
 /** os momentos da parada inteligente: algo de um oponente no topo da pilha (em qualquer turno) e, no turno de outro,
- *  a declaração de atacantes (só se alguém atacou: a etapa dá prioridade mesmo sem ataque) e a etapa final */
-function momentoDeResponder(s: GameState, player: PlayerId): boolean {
+ *  a declaração de atacantes (só se alguém atacou: a etapa dá prioridade mesmo sem ataque) e a etapa final. Quem pediu
+ *  "passar até o fim do turno" só para no que um oponente põe na pilha */
+function momentoDeResponder(s: GameState, player: PlayerId, soPilha = false): boolean {
   const top = s.zones.stack[s.zones.stack.length - 1];
   if (top !== undefined) return s.objects[top]?.stack?.controller !== player;
-  if (s.turn.active === player) return false;
+  if (soPilha || s.turn.active === player) return false;
   if (s.turn.step === 'declareAttackers') return (s.combat?.attackers.length ?? 0) > 0;
   return s.turn.step === 'end';
 }

@@ -45,8 +45,11 @@ export interface Preferencias {
   volumeMusica: number;
   /** tremida, brilho, números flutuando, ataques avançando, cartas indo para o cemitério */
   efeitos: boolean;
-  /** o seu retrato no canto de cima à direita da sua área (sem valor: no meio da base, na frente da mão) */
+  /** o seu retrato no canto de cima à direita da sua área (sem valor ou true, o padrão) ou, com false, à esquerda, numa
+   *  coluna acima do Comando. O lugar antigo, no meio da base, saiu: a mão passou a ficar por cima do campo */
   avatarCanto?: boolean;
+  /** terrenos no campo deitados, com a arte recortada (sem valor ou true, o padrão) ou como cartas inteiras (false) */
+  terrenosDeitados?: boolean;
   /** modo Desempenho, para computadores mais fracos (desligado por padrão, só por escolha da pessoa): sem desfoques,
    * wallpapers sem o zoom lento, sem brasas na entrada nem partículas na tela VS, aura do avatar parada, sem os brilhos
    * animados de dano, e a música tocada por <audio> em vez de decodificada inteira na memória. Vale por

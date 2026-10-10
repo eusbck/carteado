@@ -133,7 +133,8 @@ async function agir(p: Page): Promise<boolean> {
     return clicar(p, /^(Confirmar ataque|Não atacar)/);
   }
   if (titulo.includes('Bloqueio')) return clicar(p, /^Não bloquear/);
-  const item = p.locator('.janela-escolha .item:not([disabled])').first();
+  // a já escolhida continua habilitada: clicar nela de novo a desmarcava ("escolha 2 modos" ficava alternando a primeira)
+  const item = p.locator('.janela-escolha .item:not([disabled]):not(.escolhido)').first();
   if (await item.isVisible().catch(() => false)) {
     await item.click();
     if (await clicar(p, /^Confirmar/)) return true;
@@ -143,9 +144,10 @@ async function agir(p: Page): Promise<boolean> {
   return false;
 }
 
+/** o turno da partida (CR 500.1), não a rodada que a faixa mostra: vem do data-turno da faixa */
 async function turno(p: Page): Promise<number> {
-  const t = (await p.locator('.turno-linha strong').textContent().catch(() => '')) ?? '';
-  return Number(t.replace(/\D/g, '')) || 0;
+  const t = (await p.locator('.turno-linha').getAttribute('data-turno').catch(() => '')) ?? '';
+  return Number(t) || 0;
 }
 
 /** todas as pessoas agem até a mesa chegar ao turno pedido */
