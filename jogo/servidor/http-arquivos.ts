@@ -40,6 +40,8 @@ function naoMudou(req: IncomingMessage, etag: string): boolean {
   return !!h && h.split(',').some((x) => x.trim() === etag || x.trim() === '*');
 }
 
+const hashTexto = (texto: string) => createHash('sha256').update(texto).digest('base64url').slice(0, 16);
+
 export class Arquivos {
   /** versões comprimidas, pela chave do conteúdo (caminho + tamanho + data, ou o hash do texto) */
   private cache = new Map<string, Comprimido>();
@@ -112,9 +114,16 @@ export class Arquivos {
     pipeline(createReadStream(caminho), res, erroDeLeitura(caminho));
   }
 
+  /** calcula de antemão as versões comprimidas de um texto do servidor (as informações das cartas, ao subir): o brotli
+   * máximo de ~700 KB leva segundos, e o primeiro "Entrar" depois de reiniciar ficava esperando por ele */
+  prepararTexto(texto: string): void {
+    if (Buffer.byteLength(texto) < MINIMO) return;
+    void this.comprimir(`texto:${hashTexto(texto)}`, () => texto).catch(() => {});
+  }
+
   /** manda um texto gerado pelo servidor (as informações das cartas) com ETag pelo conteúdo e compressão */
   async texto(req: IncomingMessage, res: ServerResponse, texto: string, tipo: string, cache: string): Promise<void> {
-    const hash = createHash('sha256').update(texto).digest('base64url').slice(0, 16);
+    const hash = hashTexto(texto);
     const etag = `"${hash}"`;
     const cab = { 'content-type': tipo, 'cache-control': cache, etag, vary: 'accept-encoding' };
     if (naoMudou(req, etag)) { res.writeHead(304, cab); res.end(); return; }

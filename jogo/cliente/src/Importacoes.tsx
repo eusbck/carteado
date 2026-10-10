@@ -1,6 +1,9 @@
-// Selo das importações de deck fora da tela Decks (início, saguão e mesa): enquanto as suas importações andam, mostra
-// o andamento; quando uma termina, mostra o resultado por uns segundos (ele fica também na lista da tela Decks). Fora da
-// mesa, um clique abre a tela Decks; na mesa o selo só informa e não pega cliques.
+// Selo das importações de deck fora da tela Decks: enquanto as suas importações andam, mostra o andamento; quando uma
+// termina, mostra o resultado por uns segundos (ele fica também na lista da tela Decks). Três lugares:
+//   canto    início e saguão, no canto de baixo à esquerda; um clique abre a tela Decks
+//   lateral  na mesa, na barra lateral acima do chat (o canto da mesa tem o Comando, os terrenos e a mão)
+//   coluna   na mesa com a barra recolhida, na coluna de avisos da direita
+// Na mesa o selo só informa.
 
 import { useEffect, useRef, useState } from 'preact/hooks';
 import type { TarefaPublica } from '../../servidor/protocolo.ts';
@@ -11,17 +14,36 @@ const TEMPO_AVISO = 10_000;
 
 interface Aviso { id: number; texto: string; classe: string }
 
-const nomeDa = (t: TarefaPublica) => t.nome ?? t.proposta?.nome ?? t.deck ?? 'deck';
+/** o nome do deck sem o "(... Commander Precon Decklist)" do Moxfield (que o corte em 60 caracteres às vezes deixa
+ * pela metade) */
+export function nomeCurto(t: TarefaPublica): string {
+  const nome = t.nome ?? t.proposta?.nome ?? t.deck ?? 'deck';
+  return nome.replace(/\s*\([^()]*\)?\s*$/, '').trim() || nome;
+}
+
+/** como a importação terminou, sem repetir o nome do deck: "Em preparação: faltam regras para 56 cartas." */
+export function desfecho(t: TarefaPublica): string {
+  if (t.estado === 'erro') return t.erro ?? 'Erro na importação.';
+  const p = t.proposta;
+  const r = t.resultado;
+  if (!r) {
+    if (p?.erros.length) return 'A lista não cumpre as regras de deck do Commander.';
+    return p?.destino === 'nada' ? p.resumo : 'Prévia pronta: veja o que muda antes de aplicar.';
+  }
+  if (r.destino === 'nada' || !p) return r.texto;
+  const n = p.total - p.prontas;
+  const cartas = n === 1 ? '1 carta' : `${n} cartas`;
+  if (r.destino === 'jogavel') return p.novo ? 'Entrou no saguão.' : 'Atualizado.';
+  return p.novo ? `Em preparação: faltam regras para ${cartas}.` : `Atualização guardada: faltam regras para ${cartas}.`;
+}
 
 /** o que dizer quando uma importação sua termina */
 function aviso(t: TarefaPublica): Aviso {
-  if (t.estado === 'erro') return { id: t.id, texto: `${nomeDa(t)}: ${t.erro ?? 'erro na importação'}`, classe: 'erro' };
-  if (t.resultado) return { id: t.id, texto: t.resultado.texto, classe: t.resultado.destino === 'jogavel' ? 'jogavel' : '' };
-  if (t.proposta?.erros.length) return { id: t.id, texto: `${nomeDa(t)} não cumpre as regras de deck: veja na tela Decks.`, classe: 'erro' };
-  return { id: t.id, texto: `A prévia de ${nomeDa(t)} está pronta na tela Decks.`, classe: '' };
+  const classe = t.estado === 'erro' || t.proposta?.erros.length ? 'erro' : t.resultado?.destino === 'jogavel' ? 'jogavel' : '';
+  return { id: t.id, texto: `${nomeCurto(t)}: ${desfecho(t)}`, classe };
 }
 
-export function Importacoes({ naMesa }: { naMesa: boolean }) {
+export function Importacoes({ lugar }: { lugar: 'canto' | 'lateral' | 'coluna' }) {
   const e = useLoja();
   const minhas = e.minhasTarefas.map((id) => e.tarefasDeck[id]).filter((t): t is TarefaPublica => !!t);
   const andando = minhas.filter((t) => t.estado === 'andando');
@@ -44,26 +66,30 @@ export function Importacoes({ naMesa }: { naMesa: boolean }) {
 
   if (!andando.length && !avisos.length) return null;
   const um = andando.length === 1 ? andando[0] : null;
+  // a conta fica fora do texto que corta: o nome comprido nunca esconde o "23/59"
   const conteudo = andando.length > 0 && (
     <>
       <span class="selo-linha">
         <span class="selo-roda" aria-hidden="true" />
-        <span>{um ? `Importando ${nomeDa(um)}…${um.total ? ` ${um.feito} de ${um.total}` : ''}` : `Importando ${andando.length} decks…`}</span>
+        <span class="selo-texto">{um ? `Importando ${nomeCurto(um)}` : `Importando ${andando.length} decks`}</span>
+        {um && um.total > 0 && <span class="selo-conta">{um.feito}/{um.total}</span>}
       </span>
       {um && um.total > 0 && <span class="cat-barra"><span style={{ width: `${Math.round((100 * um.feito) / um.total)}%` }} /></span>}
     </>
   );
   // fora da mesa os itens são botões que abrem a tela Decks
+  const naMesa = lugar !== 'canto';
   const Item = naMesa ? 'div' : 'button';
   const abrir = naMesa ? undefined : () => void loja.abrirDecks();
+  const titulo = naMesa ? undefined : 'Abrir a tela Decks';
   return (
-    <div class={`selo-importacoes ${naMesa ? 'na-mesa' : ''}`} role="status" aria-live="polite">
+    <div class={`selo-importacoes ${lugar}`} role="status" aria-live="polite">
       {avisos.map((a) => (
-        <Item key={a.id} type={naMesa ? undefined : 'button'} class={a.classe} onClick={abrir} title={naMesa ? undefined : 'Abrir a tela Decks'}>
-          <span class="selo-linha"><span>{a.texto}</span></span>
+        <Item key={a.id} type={naMesa ? undefined : 'button'} class={a.classe} onClick={abrir} title={titulo}>
+          <span class="selo-aviso">{a.texto}</span>
         </Item>
       ))}
-      {conteudo && <Item type={naMesa ? undefined : 'button'} onClick={abrir} title={naMesa ? undefined : 'Abrir a tela Decks'}>{conteudo}</Item>}
+      {conteudo && <Item type={naMesa ? undefined : 'button'} onClick={abrir} title={titulo}>{conteudo}</Item>}
     </div>
   );
 }

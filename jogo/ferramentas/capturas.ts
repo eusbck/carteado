@@ -421,9 +421,12 @@ async function capturasDecks(): Promise<void> {
     const carta = (nome: string, pronta = true, quantidade = 1) => ({ nome, quantidade, pt: info[nome]?.pt ?? null, img: pronta ? info[nome]?.f ?? null : null, tipo: pronta ? 'Artifact' : 'Instant', pronta });
     const falsas = new Map<number, Msg>();
     await p.route('**/api/catalogo', async (r) => {
-      const resp = await r.fetch();
-      const j = await resp.json() as { tarefas: Msg[] };
-      r.fulfill({ response: resp, json: { ...j, tarefas: [...j.tarefas, ...falsas.values()] } });
+      // a página pode fechar com o pedido no meio (o clique no selo, no fim): o erro do pedido cancelado não importa
+      try {
+        const resp = await r.fetch();
+        const j = await resp.json() as { tarefas: Msg[] };
+        await r.fulfill({ response: resp, json: { ...j, tarefas: [...j.tarefas, ...falsas.values()] } });
+      } catch { /* página fechada */ }
     });
     const injetarTarefa = (t: Msg) => { falsas.set(t.id as number, t); injetar({ t: 'catalogo', mudou: false, tarefa: t }); };
     let tarefa = 9000;
@@ -488,28 +491,29 @@ async function capturasDecks(): Promise<void> {
     await p.locator('.cat-imp.andando').nth(2).waitFor();
     await foto(p, `96g-decks-varias-importacoes-${w}`);
     injetarTarefa({ id: direto, tipo: 'confirmar', deck: 'HAKhAXl1RHyly2_QGDPvzg', nome: 'Multiverse Reforged', etapa: 'Pronto', feito: 64, total: 64, estado: 'pronta', proposta: previaNova, resultado: { id: 'HAKhAXl1RHyly2_QGDPvzg', destino: 'preparacao', texto: 'Multiverse Reforged ficou em preparação: faltam regras para 64 cartas.' } });
-    await p.locator('.cat-imp').getByText(/ficou em preparação: faltam/).waitFor();
+    await p.locator('.cat-imp').getByText(/Em preparação: faltam regras para 64/).waitFor();
     await foto(p, `96f-decks-importar-resultado-${w}`);
-    await p.locator('.cat-imp', { hasText: 'ficou em preparação' }).getByRole('button', { name: 'O que falta' }).click();
+    await p.locator('.cat-imp', { hasText: 'Em preparação: faltam' }).getByRole('button', { name: 'O que falta' }).click();
     await conferirJanela(p, 'resultado da importação');
     await foto(p, `96f2-decks-importar-resultado-janela-${w}`);
     await p.keyboard.press('Escape');
     // a tela inicial, com o botão Decks e o selo das duas que seguem importando
     await p.getByRole('button', { name: 'Voltar' }).click();
     await p.locator('.tela-passos').waitFor();
-    await p.locator('.selo-importacoes').getByText('Importando 2 decks…').waitFor();
+    await p.locator('.selo-importacoes').getByText('Importando 2 decks').waitFor();
     await foto(p, `97-inicio-com-decks-${w}`);
     injetarTarefa({ id: outra1, tipo: 'verificar', deck: 'HAKhAUw1_Xqr0ZxAoQgsCg', nome: 'Wretched Ranks', etapa: 'Pronto', feito: 0, total: 0, estado: 'erro', erro: 'Deck não encontrado no Moxfield (ele precisa ser público ou não listado)' });
     await p.locator('.selo-importacoes .erro').waitFor();
     await p.locator('.selo-importacoes').getByText(/Importando The Hosts of Mordor/).waitFor();
     await foto(p, `97b-inicio-selo-erro-e-andamento-${w}`);
-    injetarTarefa({ id: outra2, tipo: 'confirmar', deck: 'Z4cD-XEZRUuH4W9jB_SvuA', nome: 'The Hosts of Mordor (The Lord of the Rings Commander Precon Decklist)', etapa: 'Pronto', feito: 59, total: 59, estado: 'pronta', resultado: { id: 'Z4cD-XEZRUuH4W9jB_SvuA', destino: 'preparacao', texto: 'The Hosts of Mordor (The Lord of the Rings Commander Precon Decklist) ficou em preparação: faltam regras para 59 cartas.' } });
-    await p.locator('.selo-importacoes').getByText(/Hosts of Mordor .* ficou em preparação/).waitFor();
+    injetarTarefa({ id: outra2, tipo: 'confirmar', deck: 'Z4cD-XEZRUuH4W9jB_SvuA', nome: 'The Hosts of Mordor (The Lord of the Rings Commander Precon Decklist)', etapa: 'Pronto', feito: 59, total: 59, estado: 'pronta', proposta: { ...previaNova, id: 'Z4cD-XEZRUuH4W9jB_SvuA', nome: 'The Hosts of Mordor (The Lord of the Rings Commander Precon Decklist)', total: 84, prontas: 28 }, resultado: { id: 'Z4cD-XEZRUuH4W9jB_SvuA', destino: 'preparacao', texto: 'The Hosts of Mordor (The Lord of the Rings Commander Precon Decklist) ficou em preparação: faltam regras para 56 cartas.' } });
+    await p.locator('.selo-importacoes').getByText('The Hosts of Mordor: Em preparação: faltam regras para 56 cartas.').waitFor();
     await foto(p, `97c-inicio-selo-resultado-${w}`);
     // o selo leva à tela Decks, onde as importações seguem na lista
-    await p.locator('.selo-importacoes button').first().click();
+    await Promise.all([p.waitForResponse('**/api/catalogo'), p.locator('.selo-importacoes button').first().click()]);
     await p.getByText('Decks da mesa').waitFor();
     await p.locator('.cat-imp').nth(2).waitFor();
+    await p.unrouteAll({ behavior: 'ignoreErrors' });
     await c.close();
   }
 }
@@ -1155,8 +1159,9 @@ async function capturasMesa(): Promise<void> {
     }
   }
 
-  /** o selo de uma importação sua andando, na mesa: no canto de baixo à esquerda, sem pegar cliques. A tarefa é falsa:
-   * vem na lista do GET (recarregar a página busca as importações guardadas desta aba) */
+  /** o selo de uma importação sua andando, na mesa: na barra lateral acima do chat e, com ela recolhida, na coluna de
+   * avisos; nos dois, sem pegar cliques. A tarefa é falsa: vem na lista do GET (recarregar a página busca as
+   * importações guardadas desta aba) */
   async function seloNaMesa(pg: Page, nome: string): Promise<void> {
     const t = { id: 424242, tipo: 'confirmar', deck: 'Z4cD-XEZRUuH4W9jB_SvuA', nome: 'The Hosts of Mordor (The Lord of the Rings Commander Precon Decklist)', etapa: 'Baixando as cartas novas: Sauron, Lord of the Rings', feito: 23, total: 59, estado: 'andando' };
     await pg.route('**/api/catalogo', (r) => r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ decks: [], tarefas: [t] }) }));
@@ -1164,19 +1169,27 @@ async function capturasMesa(): Promise<void> {
     await pg.reload();
     await pg.locator('.mesa').waitFor();
     await pg.getByText('Você tem prioridade').waitFor({ timeout: 90000 });
-    await pg.locator('.selo-importacoes').getByText(/Importando The Hosts of Mordor/).waitFor();
-    await pg.mouse.move(3, 3);
-    await pg.waitForTimeout(600);
-    const r = await pg.evaluate(() => {
-      const e = document.querySelector('.selo-importacoes')!;
-      const b = e.getBoundingClientRect();
-      // o que fica embaixo do selo (ele não pega cliques: o clique chega nisso)
-      const sob = document.elementsFromPoint(b.left + b.width / 2, b.top + b.height / 2).filter((x) => !e.contains(x)).slice(0, 3).map((x) => `${x.tagName.toLowerCase()}.${[...x.classList].join('.')}`);
-      return { x: Math.round(b.left), y: Math.round(b.top), w: Math.round(b.width), h: Math.round(b.height), eventos: getComputedStyle(e).pointerEvents, sob };
-    });
-    if (r.eventos !== 'none') throw new Error(`${nome}: o selo pega cliques na mesa`);
-    console.log(`   ${nome}: selo das importações em ${r.x},${r.y} (${r.w}×${r.h}); embaixo: ${r.sob.join(' > ')}`);
+    const medir = async (onde: string) => {
+      await pg.locator(`.selo-importacoes.${onde}`).getByText(/Importando The Hosts of Mordor/).waitFor();
+      await pg.mouse.move(3, 3);
+      await pg.waitForTimeout(600);
+      const r = await pg.evaluate((o) => {
+        const e = document.querySelector(`.selo-importacoes.${o}`)!;
+        const b = e.getBoundingClientRect();
+        const conta = e.querySelector('.selo-conta')?.getBoundingClientRect();
+        return { x: Math.round(b.left), y: Math.round(b.top), w: Math.round(b.width), h: Math.round(b.height), eventos: getComputedStyle(e).pointerEvents, contaVisivel: !!conta && conta.right <= b.right + 1 && conta.width > 0 };
+      }, onde);
+      if (r.eventos !== 'none') throw new Error(`${nome}: o selo pega cliques na mesa (${onde})`);
+      if (!r.contaVisivel) throw new Error(`${nome}: a conta "23/59" do selo não aparece (${onde})`);
+      console.log(`   ${nome}: selo das importações (${onde}) em ${r.x},${r.y} (${r.w}×${r.h})`);
+    };
+    await medir('lateral');
     await foto(pg, `60c-mesa-${nome}-selo-importacao`);
+    // barra recolhida: o selo vai para a coluna de avisos
+    await pg.getByRole('button', { name: 'Recolher a barra' }).click();
+    await medir('coluna');
+    await foto(pg, `60d-mesa-${nome}-selo-importacao-recolhida`);
+    await pg.getByRole('button', { name: 'Abrir a barra' }).click();
     await pg.unroute('**/api/catalogo');
     await pg.evaluate(() => sessionStorage.removeItem('commander-da-mesa:importacoes'));
   }

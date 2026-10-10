@@ -39,8 +39,8 @@ export function App() {
       {tela}
       {e.erro && <div class="aviso-erro" role="alert">{e.erro}</div>}
       {e.fase !== 'entrada' && e.fase !== 'carregando' && !e.conectado && <div class="aviso-conexao">Reconectando ao servidor…</div>}
-      {/* as importações de deck seguem fora da tela Decks: o selo mostra o andamento (na mesa, sem pegar cliques) */}
-      {e.fase !== 'entrada' && e.fase !== 'carregando' && e.fase !== 'decks' && <Importacoes naMesa={!fundo} />}
+      {/* as importações de deck seguem fora da tela Decks: o selo mostra o andamento (na mesa ele fica na lateral) */}
+      {fundo && e.fase !== 'entrada' && e.fase !== 'decks' && <Importacoes lugar="canto" />}
     </>
   );
 }

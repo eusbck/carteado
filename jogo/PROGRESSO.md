@@ -1237,9 +1237,18 @@ e para a lista que quebra regra de deck) e **selo discreto em todo lugar**, incl
   prévia sozinho quando ela chega e só desliga no deck que já tem tarefa andando.
 - As importações desta aba ficam em `sessionStorage` (`commander-da-mesa:importacoes`): recarregar a página ou cair a
   conexão busca o estado de novo; as que o servidor esqueceu saem da lista.
-- Selo `cliente/src/Importacoes.tsx` no canto de baixo à esquerda, no início, no saguão e na mesa: "Importando X… 23
-  de 59" ou "Importando 2 decks…", e por 10 s o resultado quando uma termina. Fora da mesa, um clique abre a tela
-  Decks; na mesa ele não pega cliques.
+- Selo `cliente/src/Importacoes.tsx`: no início e no saguão fica no canto de baixo à esquerda (um clique abre a tela
+  Decks); na mesa fica na barra lateral, acima do chat, e com a barra recolhida vai para a coluna de avisos da direita
+  (na mesa ele só informa). Mostra "Importando Hosts of Mordor 23/59" ou "Importando 2 decks" e, por 10 s, o desfecho
+  ("The Hosts of Mordor: Em preparação: faltam regras para 56 cartas."). O nome do deck aparece sem o "(... Precon
+  Decklist)" do Moxfield e a conta nunca é cortada pelo nome comprido.
+- Da revisão das capturas (subagente): o selo no canto da mesa cobria o Comando, as pilhas de terreno e a primeira
+  carta da mão (por isso foi para a lateral); o nome comprido escondia a conta e o desfecho; as prévias esperando não
+  tinham como sair da lista (agora "Descartar"); o resultado repetia o nome do deck; a busca sem total ficou com uma
+  barra sem medida.
+- `/api/cartas` cresceu de 429 KB para 707 KB com os tipos e textos em português, e o brotli máximo dele no primeiro
+  pedido depois de subir passou de ~4 s para ~7 s (o primeiro "Entrar" ficava esperando). Agora ele é comprimido ao
+  subir o servidor (`Arquivos.prepararTexto`), como o cliente compilado.
 
 **Conferência do Moxfield** (regra nova: ao adicionar ou completar um deck pelo chat, rodar antes e depois).
 - `node ferramentas/decks.ts conferir <link|id|todos>`, só leitura: total de cartas no Moxfield (100), a mesma lista
@@ -1286,6 +1295,10 @@ Observações abertas:
 - A gravação de cada importação segura o servidor por 2 a 4 s (lê `../cartas/data`, roda `gerar` e grava três JSON,
   tudo síncrono): numa partida aberta, isso é um soluço por deck importado. Já acontecia antes; se incomodar, dá para
   levar a gravação para uma thread.
+- Achados de fora desta mudança: a conferência "a mão desceu na hora em que o mouse saiu" das capturas da mesa
+  (`ferramentas/capturas.ts`, espera 120 ms contra os 320 ms da mão) falha com a máquina carregada; e todo servidor de
+  teste sobe sobre o `decks/` e o `gerado/` de verdade e pode rodar `aplicarPreparacoesProntas` + `regenerar` sem a
+  trava (`servidor/index.ts`), o que poderia colidir com a mesa aberta.
 - A mesa aberta precisa ser reaberta ("Abrir a mesa.cmd") para usar o código novo, quando nenhuma importação estiver
   andando: ela gera o cliente sozinha (o código da interface é mais novo que `cliente/dist`). Não gerei o cliente ali
   durante a sessão para não misturar cliente novo com servidor velho no meio das importações; os testes usaram uma

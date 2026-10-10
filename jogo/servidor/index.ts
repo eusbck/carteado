@@ -132,6 +132,7 @@ function json(res: ServerResponse, status: number, corpo: unknown, extra: Record
 // http-arquivos.ts). O cliente compilado é comprimido logo ao subir.
 const arquivos = new Arquivos();
 if (existsSync(ESTATICOS)) for (const f of readdirSync(ESTATICOS, { recursive: true, withFileTypes: true })) if (f.isFile()) arquivos.preparar(join(f.parentPath, f.name));
+arquivos.prepararTexto(INFO);
 const arquivo = (req: IncomingMessage, res: ServerResponse, caminho: string, cache: string) => arquivos.arquivo(req, res, caminho, cache);
 
 async function lerCorpo(req: IncomingMessage, limite = 4096): Promise<string> {

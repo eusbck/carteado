@@ -7,6 +7,7 @@ import { useEffect, useState } from 'preact/hooks';
 import type { CartaCatalogo, DeckCatalogo, Proposta, TarefaPublica } from '../../../servidor/protocolo.ts';
 import { Janela } from '../Janela.tsx';
 import { Marca } from '../icones.tsx';
+import { desfecho, nomeCurto } from '../Importacoes.tsx';
 import { loja, useLoja } from '../loja.ts';
 import { Simbolos } from '../mesa/Simbolos.tsx';
 
@@ -17,7 +18,10 @@ function Progresso({ t }: { t: TarefaPublica }) {
   return (
     <div class="cat-progresso" role="status">
       <span>{t.etapa}{t.total ? ` (${t.feito} de ${t.total})` : ''}…</span>
-      {t.total > 0 && <span class="cat-barra"><span style={{ width: `${Math.round((100 * t.feito) / t.total)}%` }} /></span>}
+      {/* sem total (procurando o deck, esperando a vez de gravar), a barra corre sem medida */}
+      {t.total > 0
+        ? <span class="cat-barra"><span style={{ width: `${Math.round((100 * t.feito) / t.total)}%` }} /></span>
+        : <span class="cat-barra sem-medida"><span /></span>}
     </div>
   );
 }
@@ -153,7 +157,7 @@ function JanelaTarefa({ t, fechar }: { t: TarefaPublica; fechar: () => void }) {
 /** uma linha da lista de importações: andamento, resultado, prévia esperando ou erro */
 function LinhaImportacao({ t, abrir }: { t: TarefaPublica; abrir: () => void }) {
   const p = t.proposta;
-  const nome = <b class="cat-imp-nome" title={nomeDa(t)}>{nomeDa(t)}</b>;
+  const nome = <b class="cat-imp-nome" title={nomeDa(t)}>{nomeCurto(t)}</b>;
   if (t.estado === 'andando') {
     return (
       <li class="cat-imp andando">
@@ -176,7 +180,7 @@ function LinhaImportacao({ t, abrir }: { t: TarefaPublica; abrir: () => void }) 
     return (
       <li class={`cat-imp ${t.resultado.destino}`}>
         {nome}
-        <span class={`cat-resumo ${t.resultado.destino}`}>{t.resultado.texto}</span>
+        <span class={`cat-resumo ${t.resultado.destino}`} title={t.resultado.texto}>{desfecho(t)}</span>
         <span class="cat-imp-botoes">
           {p && p.faltam.length > 0 && <button type="button" class="botao pequeno fantasma" onClick={abrir}>O que falta</button>}
           <button type="button" class="botao pequeno" onClick={() => loja.dispensarTarefa(t.id)}>Ok</button>
@@ -186,13 +190,14 @@ function LinhaImportacao({ t, abrir }: { t: TarefaPublica; abrir: () => void }) 
   }
   // prévia esperando: atualização de um deck da mesa, lista que quebra regra ou nada mudou
   const quebra = !!p?.erros.length;
+  const encerra = quebra || p?.destino === 'nada';
   return (
     <li class={`cat-imp ${quebra ? 'erro' : 'previa'}`}>
       {nome}
-      <span class={quebra ? 'cat-erro' : 'suave'}>{quebra ? 'A lista não cumpre as regras de deck do Commander.' : p?.destino === 'nada' ? p.resumo : 'Prévia pronta: veja o que muda antes de aplicar.'}</span>
+      <span class={quebra ? 'cat-erro' : 'suave'}>{desfecho(t)}</span>
       <span class="cat-imp-botoes">
-        <button type="button" class={`botao pequeno ${quebra || p?.destino === 'nada' ? 'fantasma' : 'principal'}`} onClick={abrir}>Ver prévia</button>
-        {(quebra || p?.destino === 'nada') && <button type="button" class="botao pequeno" onClick={() => loja.dispensarTarefa(t.id)}>Ok</button>}
+        <button type="button" class={`botao pequeno ${encerra ? 'fantasma' : 'principal'}`} onClick={abrir}>Ver prévia</button>
+        <button type="button" class={`botao pequeno ${encerra ? '' : 'fantasma'}`} onClick={() => loja.dispensarTarefa(t.id)}>{encerra ? 'Ok' : 'Descartar'}</button>
       </span>
     </li>
   );
@@ -305,8 +310,8 @@ export function Decks() {
           <button class="botao principal" type="submit" disabled={!link.trim()}>Importar</button>
           <p class="suave cat-dica">
             O deck precisa ser público ou não listado. Dá para colar vários links seguidos e sair da tela: a importação
-            continua e o selo no canto mostra o andamento. Um link que já está na mesa mostra o que muda antes de
-            atualizar. Cartas que o jogo ainda não tem deixam o deck em preparação até ganharem regras.
+            continua e um selo mostra o andamento (na partida, na barra lateral). Um link que já está na mesa mostra o
+            que muda antes de atualizar. Cartas que o jogo ainda não tem deixam o deck em preparação até ganharem regras.
           </p>
           {deOutros.map((t) => <p key={t.id} class="suave cat-outra">Outra pessoa está importando {nomeDa(t)}: {t.etapa.toLowerCase()}…</p>)}
         </form>

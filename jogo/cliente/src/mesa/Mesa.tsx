@@ -11,6 +11,7 @@ import type { MsgChat } from '../../../servidor/protocolo.ts';
 import { avatarDoAssento } from '../avatares.ts';
 import { nomeCarta, rostoNoFundo, traduzir, urlFundo, urlImagem } from '../cartas.ts';
 import { IconeAjuste, IconeConceder, IconeRecolher as IconeSeta, IconeConfig, IconeDesfazer, IconeFimTurno, IconeParadas, IconePassar, IconeRecolher, IconeRegistro, IconeSair, Marca } from '../icones.tsx';
+import { Importacoes } from '../Importacoes.tsx';
 import { loja, useLoja } from '../loja.ts';
 import { reservaPaga } from '../mana.ts';
 import { Janela } from '../Janela.tsx';
@@ -1255,6 +1256,8 @@ export function Mesa() {
 
         <div class="coluna-dir">
           <Avisos v={v} cor={cor} doServidor={e.avisos} />
+          {/* importações de deck com a barra recolhida (com ela aberta, o selo fica acima do chat) */}
+          {recolhida && <Importacoes lugar="coluna" />}
           {recolhida && chatNovo.length > 0 && (
             <div class="avisos avisos-chat" aria-live="polite">
               {chatNovo.map((m) => (
@@ -1346,6 +1349,7 @@ export function Mesa() {
             </button>
           </li>
         </ul>
+        {!recolhida && <Importacoes lugar="lateral" />}
         {!recolhida && <Chat msgs={e.chat} quem={e.quem} cor={cor} />}
       </aside>
     </div>

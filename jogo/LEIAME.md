@@ -146,7 +146,8 @@ do servidor pode usar:
    (Scryfall), confere as regras de deck do Commander (comandante, 100 cartas, uma de cada, identidade
    de cor) e baixa as imagens e a arte do comandante, tudo em segundo plano: o campo libera na hora
    para o próximo link, a lista **Importações** mostra cada um, e dá para sair da tela e jogar (um selo
-   no canto mostra o andamento e o resultado). Uma lista que quebra regra de deck para na prévia.
+   mostra o andamento e o resultado: no canto da tela, ou na barra lateral durante a partida). Uma lista
+   que quebra regra de deck para na prévia.
 2. **Atualizar:** o botão "Atualizar" de cada deck busca o deck de novo no Moxfield e mostra o que
    **entra** e o que **sai** antes de aplicar. Colar de novo o link de um deck que já está na mesa faz
    o mesmo.
