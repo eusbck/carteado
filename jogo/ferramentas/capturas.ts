@@ -5,6 +5,7 @@
 // Uso: node ferramentas/capturas.ts   → imagens em .cache/capturas/
 //      CAPTURAS_SO=janelas node ferramentas/capturas.ts   → só as da fase 9 (janelas de escolha, zoom e log)
 //      CAPTURAS_SO=decks node ferramentas/capturas.ts     → só a tela Decks (importar e atualizar pelo Moxfield)
+//      CAPTURAS_SO=combate node ferramentas/capturas.ts   → só o combate com muitas fichas (atacar e bloquear)
 
 import { spawn } from 'node:child_process';
 import { mkdirSync, rmSync } from 'node:fs';
@@ -13,7 +14,7 @@ import { fileURLToPath } from 'node:url';
 import { chromium, type BrowserContext, type Page } from 'playwright';
 import { hasOracle, oracle } from '../motor/oracle.ts';
 import { Banco } from '../servidor/banco.ts';
-import { gerarSalas } from './cenarios.ts';
+import { gerarSalas, gerarSalasCombate, type IdsCombate } from './cenarios.ts';
 
 const RAIZ = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SAIDA = join(RAIZ, '.cache', 'capturas');
@@ -54,6 +55,17 @@ const SO_POSICIONAR = process.env.CAPTURAS_SO === 'posicionar';
   if (!prontas.length) throw new Error('cenário de arrumar o campo (ARRUM) não ficou pronto');
 }
 // --- fim (fase 9: posicionar) ---
+// --- combate com muitas fichas: atacar e bloquear ---
+// salas fixas FICHA (Ana ataca com seis fichas iguais) e BLOQT (Ana bloqueia três fichas iguais e uma criatura com
+// ameaça), montadas com o arcabouço de testes (cenarios.ts). CAPTURAS_SO=combate roda só este bloco.
+const SO_COMBATE = process.env.CAPTURAS_SO === 'combate';
+let idsCombate: IdsCombate | null = null;
+if (!SO || SO_COMBATE) {
+  const banco = new Banco(join(DADOS, 'jogo.sqlite'));
+  idsCombate = gerarSalasCombate(banco);
+  banco.fechar();
+}
+// --- fim (combate com muitas fichas) ---
 
 const servidor = spawn(process.execPath, [join(RAIZ, 'servidor', 'index.ts')], {
   env: { ...process.env, PORTA: String(PORTA), DADOS, SENHA_ACESSO: 'teste-capturas' },
@@ -61,7 +73,8 @@ const servidor = spawn(process.execPath, [join(RAIZ, 'servidor', 'index.ts')], {
 });
 servidor.stderr.on('data', (d) => process.stderr.write(`[servidor] ${d}`));
 await new Promise<void>((ok, falha) => {
-  const t = setTimeout(() => falha(new Error('servidor não subiu')), 30000);
+  // refazer as partidas das salas prontas leva uns 30 s com a máquina ocupada (outras rodadas ao mesmo tempo)
+  const t = setTimeout(() => falha(new Error('servidor não subiu')), 120000);
   servidor.stdout.on('data', (d) => { if (String(d).includes('http://localhost')) { clearTimeout(t); ok(); } });
 });
 
@@ -671,6 +684,257 @@ if (SO_POSICIONAR) {
   process.exit(0);
 }
 // --- fim (fase 9: posicionar) ---
+
+// --- combate com muitas fichas: atacar e bloquear ---
+/**
+ * O relato do teste de mesa: com muitas fichas não dava para escolher o atacante nem bloquear com mais de uma. Mede
+ * que o centro da faixa à vista de cada ficha do leque recebe o clique dela (antes e depois de marcar), marca pelo
+ * retângulo, pelo selo ×n e por "Atacar com todas" (um clique no oponente vale para todas), e bloqueia fichas iguais
+ * com dois bloqueadores, troca o atacante, solta pelo "×", mostra o motivo da recusa (ameaça) e aceita o clique que
+ * tremeu 9 px.
+ */
+async function capturasCombate(): Promise<void> {
+  const ids = idsCombate!;
+  const abrir = async (codigo: string, tela: { width: number; height: number }, titulo: string) => {
+    const c = await navegador.newContext({ viewport: tela });
+    c.setDefaultTimeout(20000);
+    const pg = await c.newPage();
+    paginas.push(pg);
+    pg.on('pageerror', (e) => console.error(`[navegador] ${e.message}`));
+    await pg.goto(URL);
+    await pg.evaluate((cod) => localStorage.setItem('commander-da-mesa:sala', JSON.stringify({ codigo: cod, token: `token-${cod}` })), codigo);
+    await pg.getByLabel('Senha do servidor').fill('teste-capturas');
+    await pg.getByRole('button', { name: 'Entrar' }).click();
+    await pg.locator('.mesa').waitFor();
+    await pg.locator('.coluna-dir .decisao-titulo', { hasText: titulo }).waitFor({ timeout: 90000 });
+    // os leques abrem com a decisão: espera as cartas chegarem
+    await pg.waitForTimeout(900);
+    return { c, pg };
+  };
+  const longe = (pg: Page) => pg.mouse.move(3, 3);
+  /** o centro da faixa à vista de cada carta do leque (a parte que a seguinte não cobre) e quem recebe o clique ali */
+  const faixas = (pg: Page, lista: number[]) => pg.evaluate((lista) => {
+    const caixas = lista.map((id) => ({ id, r: document.querySelector(`.campo [data-obj="${id}"]`)!.getBoundingClientRect() })).sort((a, b) => a.r.left - b.r.left);
+    return caixas.map((k, i) => {
+      const prox = caixas[i + 1];
+      const dir = prox && prox.r.left < k.r.right ? prox.r.left : k.r.right;
+      const x = (k.r.left + dir) / 2, y = k.r.top + k.r.height / 2;
+      const sob = (document.elementFromPoint(x, y) as HTMLElement | null)?.closest('[data-obj]') as HTMLElement | null;
+      return { id: k.id, x, y, larg: dir - k.r.left, w: Math.min(k.r.width, k.r.height), sob: sob ? Number(sob.dataset.obj) : null };
+    });
+  }, lista);
+  const conferirFaixas = async (pg: Page, lista: number[], quando: string) => {
+    const f = await faixas(pg, lista);
+    const erradas = f.filter((k) => k.sob !== k.id);
+    if (erradas.length) throw new Error(`faixa de ficha que não recebe o próprio clique (${quando}): ${JSON.stringify(erradas)}`);
+    console.log(`   ${quando}: ${f.length} faixas, a menor com ${Math.min(...f.map((k) => k.larg)).toFixed(1)} px (${(Math.min(...f.map((k) => k.larg / k.w)) * 100).toFixed(0)}% da carta)`);
+    return f;
+  };
+  const contar = (pg: Page, sel: string) => pg.locator(sel).count();
+  const esperarContagem = async (pg: Page, sel: string, n: number, quando: string) => {
+    for (let i = 0; i < 20 && await contar(pg, sel) !== n; i++) await pg.waitForTimeout(100);
+    const k = await contar(pg, sel);
+    if (k !== n) throw new Error(`${quando}: ${k} em "${sel}", esperava ${n}`);
+  };
+  const marcadas = '.area-eu .campo > .carta.inclinada';
+
+  // ---------------- FICHA: Ana ataca com seis fichas iguais (e duas criaturas)
+  for (const tela of [{ width: 1920, height: 1080 }, { width: 1280, height: 800 }]) {
+    const { c, pg } = await abrir('FICHA', tela, 'Ataque', );
+    const sufixo = `-${tela.width}`;
+    const fichas = ids.FICHA.fichas;
+    await longe(pg);
+    await foto(pg, `50-ficha-decisao${sufixo}`);
+    const f0 = await conferirFaixas(pg, fichas, `FICHA ${tela.width} antes de marcar`);
+    // a #2 e a #4 marcadas, inclinadas no leque (na ordem do leque, embaixo das seguintes): as vizinhas continuam
+    // recebendo o próprio clique, e a marcada recebe o clique na faixa dela e na borda de cima, que sobe acima da seguinte
+    for (const k of [f0[1], f0[3]]) await pg.mouse.click(k.x, k.y);
+    await longe(pg);
+    await esperarContagem(pg, marcadas, 2, 'marcadas alternadas');
+    await pg.waitForTimeout(350);
+    await conferirFaixas(pg, fichas, `FICHA ${tela.width} #2 e #4 marcadas, inclinadas`);
+    const bordas = await pg.evaluate((pares) => pares.map(([id, prox]) => {
+      const r = document.querySelector(`.campo [data-obj="${prox}"]`)!.getBoundingClientRect();
+      const x = r.left + 10, y = r.top - 4;
+      const sob = (document.elementFromPoint(x, y) as HTMLElement | null)?.closest('[data-obj]') as HTMLElement | null;
+      return { id, x, y, sob: sob ? Number(sob.dataset.obj) : null };
+    }), [[f0[1].id, f0[2].id], [f0[3].id, f0[4].id]]);
+    if (bordas.some((k) => k.sob !== k.id)) throw new Error(`borda de cima da marcada não recebe o clique dela: ${JSON.stringify(bordas)}`);
+    await foto(pg, `50a-ficha-inclinadas-no-leque${sufixo}`);
+    // na borda de cima: o primeiro clique escolhe a #2 (a escolhida era a #4), o segundo a desmarca
+    await pg.mouse.click(bordas[0].x, bordas[0].y);
+    await longe(pg);
+    if (!await pg.locator(`.area-eu [data-obj="${bordas[0].id}"].combate-ativa`).count()) throw new Error('clique na borda de cima não escolheu a marcada');
+    await esperarContagem(pg, marcadas, 2, 'clique na borda de cima');
+    await pg.mouse.click(bordas[0].x, bordas[0].y);
+    await longe(pg);
+    await esperarContagem(pg, marcadas, 1, 'segundo clique na borda de cima');
+    // a #4 sai pelo "×" da linha no painel
+    await pg.locator('.linha-combate', { hasText: '#4' }).getByRole('button').click();
+    await esperarContagem(pg, marcadas, 0, '"×" da linha do ataque');
+    // um clique no centro da faixa de cada ficha marca aquela ficha
+    for (const k of f0) await pg.mouse.click(k.x, k.y);
+    await longe(pg);
+    await esperarContagem(pg, marcadas, 6, 'cliques nas faixas');
+    await conferirFaixas(pg, fichas, `FICHA ${tela.width} depois de marcar`);
+    await foto(pg, `50b-ficha-marcadas-por-clique${sufixo}`);
+    // a marcada que não é a escolhida: o primeiro clique a escolhe, o segundo desmarca
+    const f1 = await faixas(pg, fichas);
+    await pg.mouse.click(f1[2].x, f1[2].y);
+    await esperarContagem(pg, marcadas, 6, 'clique na marcada não escolhida');
+    if (!await pg.locator(`.area-eu [data-obj="${f1[2].id}"].combate-ativa`).count()) throw new Error('a marcada clicada não ficou escolhida');
+    await pg.mouse.click(f1[2].x, f1[2].y);
+    await esperarContagem(pg, marcadas, 5, 'segundo clique na escolhida');
+    await pg.getByRole('button', { name: 'Limpar' }).click();
+    await esperarContagem(pg, marcadas, 0, 'Limpar');
+    if (tela.width !== 1920) { await c.close(); continue; }
+
+    // retângulo do espaço vazio à direita da fileira de criaturas até o canto de cima: marca as oito
+    const ponto = await pg.evaluate((lista) => {
+      const campo = document.querySelector('.area-eu .campo')!;
+      const rs = lista.map((id) => document.querySelector(`.area-eu [data-obj="${id}"]`)!.getBoundingClientRect());
+      const y = Math.max(...rs.map((r) => r.top + r.height / 2));
+      const x0 = Math.max(...rs.map((r) => r.right)) + 12;
+      for (let x = x0; x < campo.getBoundingClientRect().right - 4; x += 6) if (document.elementFromPoint(x, y) === campo) return { x, y, cx: campo.getBoundingClientRect().left + 3, cy: campo.getBoundingClientRect().top + 3 };
+      return null;
+    }, [...fichas, ...ids.FICHA.criaturas]);
+    if (!ponto) throw new Error('FICHA: sem espaço vazio no campo para o retângulo');
+    await pg.mouse.move(ponto.x, ponto.y);
+    await pg.mouse.down();
+    for (let k = 1; k <= 12; k++) await pg.mouse.move(ponto.x + (ponto.cx - ponto.x) * k / 12, ponto.y + (ponto.cy - ponto.y) * k / 12);
+    await foto(pg, `50c-ficha-retangulo${sufixo}`);
+    await pg.mouse.up();
+    await longe(pg);
+    await esperarContagem(pg, marcadas, 8, 'retângulo');
+    if (await contar(pg, '.area-eu .carta.selecionada')) throw new Error('o retângulo marcou para atacar e também selecionou para mover');
+    await foto(pg, `50d-ficha-retangulo-marcou${sufixo}`);
+    await pg.getByRole('button', { name: 'Limpar' }).click();
+    await esperarContagem(pg, marcadas, 0, 'Limpar depois do retângulo');
+
+    // o selo ×6 do leque: marca as seis; de novo, desmarca
+    const selo = pg.locator('.area-eu button.grupo-n');
+    if (await selo.count() !== 1) throw new Error(`FICHA: ${await selo.count()} selos ×n clicáveis, esperava 1`);
+    await selo.click();
+    await longe(pg);
+    await esperarContagem(pg, marcadas, 6, 'selo ×6');
+    await conferirFaixas(pg, fichas, 'FICHA marcadas pelo selo');
+    await foto(pg, `50e-ficha-selo-marcou${sufixo}`);
+    await selo.click();
+    await esperarContagem(pg, marcadas, 0, 'selo ×6 de novo');
+
+    // "Atacar com todas": as oito, sem alvo; um clique no Bruno vale para todas
+    await pg.getByRole('button', { name: 'Atacar com todas' }).click();
+    await longe(pg);
+    await esperarContagem(pg, marcadas, 8, 'Atacar com todas');
+    await esperarContagem(pg, '.area-eu .selo-combate.espera', 8, 'sem alvo antes do clique no oponente');
+    await foto(pg, `50f-ficha-todas-sem-alvo${sufixo}`);
+    await pg.locator('.area-oponente', { hasText: 'Bruno' }).getByRole('button', { name: /^Bruno/ }).first().click();
+    await longe(pg);
+    await esperarContagem(pg, '.area-eu .selo-combate.espada', 8, 'um clique no Bruno');
+    const linhas = await pg.locator('.linha-combate').allInnerTexts();
+    if (linhas.length !== 8 || !linhas.every((l) => l.includes('Bruno'))) throw new Error(`resumo do ataque: ${JSON.stringify(linhas)}`);
+    if (!linhas.some((l) => /#6/.test(l))) throw new Error(`resumo sem a numeração das fichas: ${JSON.stringify(linhas)}`);
+    await foto(pg, `50g-ficha-todas-no-bruno${sufixo}`);
+    console.log(`   FICHA: resumo "${linhas[0].replace(/\s+/g, ' ')}" … "${linhas[5].replace(/\s+/g, ' ')}"`);
+    await c.close();
+  }
+
+  // ---------------- BLOQT: Ana bloqueia três fichas iguais e a Defiling Daemogoth (ameaça); Diego é atacado por outras duas
+  {
+    const b = ids.BLOQT;
+    const { c, pg } = await abrir('BLOQT', { width: 1920, height: 1080 }, 'Bloqueio');
+    const sufixo = '-1920';
+    await longe(pg);
+    await foto(pg, `50h-bloqt-decisao${sufixo}`);
+    await conferirFaixas(pg, b.contraAna, 'BLOQT atacantes contra Ana');
+    // as que atacam Diego ficam noutro leque (o outro selo da área é o dos terrenos)
+    const leques = await pg.evaluate((a) => {
+      const area = document.querySelector(`[data-obj="${a}"]`)!.closest('.area')!;
+      return [...area.querySelectorAll('.grupo-n')].map((g) => g.textContent);
+    }, b.contraAna[0]);
+    if (!leques.includes('×3') || !leques.includes('×2') || leques.includes('×5')) throw new Error(`BLOQT: leques de Bruno ${JSON.stringify(leques)}, esperava ×3 (contra Ana) e ×2 (contra Diego)`);
+    const carta = (id: number) => pg.locator(`.campo [data-obj="${id}"]`);
+    const clicarFaixa = async (id: number) => {
+      const lista = b.contraAna.includes(id) ? b.contraAna : b.fichasAna.includes(id) ? b.fichasAna : [id];
+      const k = (await faixas(pg, lista)).find((x) => x.id === id)!;
+      await pg.mouse.click(k.x, k.y);
+      await pg.waitForTimeout(120);
+    };
+    const linhasBloqueio = async () => (await pg.locator('.linha-combate').allInnerTexts()).map((l) => l.replace(/\s+/g, ' ').trim());
+
+    // escolhe o Kami: os atacantes contra Ana ganham o anel azul; os que atacam Diego, não (e ficam apagados)
+    await carta(b.kami).click();
+    await longe(pg);
+    await esperarContagem(pg, '.campo .carta.realce-bloqueavel', 4, 'anel azul nos atacantes que o Kami pode bloquear');
+    if (!await carta(b.kami).evaluate((e) => e.classList.contains('realce-ativo'))) throw new Error('o Kami não ficou escolhido');
+    for (const id of b.contraDiego) if (!await carta(id).evaluate((e) => e.classList.contains('combate-alheio') && !e.classList.contains('realce-bloqueavel'))) throw new Error('atacante contra Diego sem o apagado');
+    const numeros = await pg.evaluate((l) => l.map((id) => document.querySelector(`[data-obj="${id}"] .carta-n`)?.textContent ?? null), b.contraAna);
+    if (numeros.join() !== '#1,#2,#3') throw new Error(`números das fichas atacantes: ${JSON.stringify(numeros)}`);
+    await foto(pg, `50i-bloqt-escolhida${sufixo}`);
+    // Kami bloqueia a ficha #1; o Ancients, a #2
+    await clicarFaixa(b.contraAna[0]);
+    await carta(b.ancients).click();
+    await clicarFaixa(b.contraAna[1]);
+    await longe(pg);
+    let ls = await linhasBloqueio();
+    if (ls.length !== 2 || !ls[0].includes('Goblin #1') || !ls[1].includes('Goblin #2')) throw new Error(`dois bloqueios: ${JSON.stringify(ls)}`);
+    await foto(pg, `50j-bloqt-dois-bloqueios${sufixo}`);
+    // o Kami, que já bloqueia, passa para a #3 (troca, não soma)
+    await carta(b.kami).click();
+    await clicarFaixa(b.contraAna[2]);
+    await longe(pg);
+    ls = await linhasBloqueio();
+    if (ls.length !== 2 || !ls.some((l) => l.includes('Goblin #3')) || ls.some((l) => l.includes('Goblin #1'))) throw new Error(`troca de atacante: ${JSON.stringify(ls)}`);
+    // a linha sob o mouse acende as duas cartas na mesa
+    await pg.locator('.linha-combate').first().hover();
+    await esperarContagem(pg, '.campo .carta.realce-linha', 2, 'linha sob o mouse');
+    await foto(pg, `50k-bloqt-troca-e-linha-acesa${sufixo}`);
+    // o "×" da linha do Ancients solta o bloqueio dele
+    await pg.locator('.linha-combate', { hasText: 'Goblin #2' }).getByRole('button').click();
+    await longe(pg);
+    ls = await linhasBloqueio();
+    if (ls.length !== 1 || !ls[0].includes('Goblin #3')) throw new Error(`"×" da linha: ${JSON.stringify(ls)}`);
+    await esperarContagem(pg, '.campo .carta.realce-linha', 0, 'linha que saiu');
+    // um bloqueador só na criatura com ameaça: o motor recusa e o motivo aparece no painel (na mesa real também)
+    await carta(b.ancients).click();
+    await carta(b.ameaca).click();
+    await longe(pg);
+    if ((await linhasBloqueio()).length !== 2) throw new Error('bloqueio na criatura com ameaça não entrou');
+    await pg.getByRole('button', { name: 'Confirmar bloqueio' }).click();
+    await pg.locator('.coluna-dir .erro-decisao').waitFor({ timeout: 10000 });
+    const motivo = await pg.locator('.coluna-dir .erro-decisao').innerText();
+    if (!/menace|ameaça/i.test(motivo)) throw new Error(`motivo da recusa: ${motivo}`);
+    await foto(pg, `50l-bloqt-ameaca-recusada${sufixo}`);
+    console.log(`   BLOQT: recusa no painel: "${motivo}"`);
+    // o clique que tremeu: botão desce, anda 9 px e sobe (na ficha do leque de Ana, o ponteiro sai para a vizinha)
+    const tremido = async (id: number, dx: number, quando: string) => {
+      const lista = b.fichasAna.includes(id) ? b.fichasAna : [id];
+      const k = (await faixas(pg, lista)).find((x) => x.id === id)!;
+      await pg.mouse.move(k.x, k.y);
+      await pg.mouse.down();
+      for (let s = 1; s <= 4; s++) await pg.mouse.move(k.x + dx * s / 4, k.y);
+      await pg.mouse.up();
+      await longe(pg);
+      await pg.waitForTimeout(150);
+      if (!await carta(id).evaluate((e) => e.classList.contains('realce-ativo'))) throw new Error(`clique que tremeu não escolheu a criatura (${quando})`);
+    };
+    await tremido(b.fichasAna[0], 9, 'ficha do leque, 9 px para a vizinha');
+    await tremido(b.kami, 9, 'Kami, 9 px');
+    // passou do limite (vira arrasto) e soltou perto: ainda é um clique
+    await carta(b.kami).click();
+    await tremido(b.kami, 16, 'Kami, 16 px');
+    await foto(pg, `50m-bloqt-clique-tremido${sufixo}`);
+    await c.close();
+  }
+}
+if (SO_COMBATE) {
+  try { await capturasCombate(); } catch (e) {
+    for (const [i, p] of paginas.entries()) if (!p.isClosed()) await p.screenshot({ path: join(SAIDA, `falha-${i}.png`) }).catch(() => {});
+    throw e;
+  } finally { await navegador.close(); servidor.kill(); }
+  process.exit(0);
+}
+// --- fim (combate com muitas fichas) ---
 
 try {
   if (!SO) { // capturas das fases 7 e 8 (CAPTURAS_SO pula)
@@ -1468,6 +1732,9 @@ try {
   // --- fase 9: posicionar e seleção por arrasto ---
   if (!SO) await capturasPosicionar();
   // --- fim (fase 9: posicionar) ---
+  // --- combate com muitas fichas ---
+  if (!SO) await capturasCombate();
+  // --- fim (combate com muitas fichas) ---
 
 } catch (e) {
   for (const [i, p] of paginas.entries()) if (!p.isClosed()) await p.screenshot({ path: join(SAIDA, `falha-${i}.png`) }).catch(() => {});

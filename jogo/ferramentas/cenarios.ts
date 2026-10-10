@@ -10,8 +10,9 @@ import { PARADAS_PADRAO } from '../servidor/salas.ts';
 import { Game } from '../motor/game.ts';
 import { buildView } from '../motor/view.ts';
 import type { DeckList } from '../motor/state.ts';
-import type { Decision, GameConfig } from '../motor/types.ts';
+import type { Decision, GameConfig, ObjId, PlayerId } from '../motor/types.ts';
 import type { Banco } from '../servidor/banco.ts';
+import { setup, type SetupOptions, type TestGame } from '../testes/harness.ts';
 
 const DECKS = decksJson as DeckList[];
 
@@ -70,4 +71,62 @@ export function gerarSalas(banco: Banco, codigos: string[]): string[] {
     }
   }
   return prontas;
+}
+
+// --- combate com muitas fichas: salas fixas, montadas com o arcabouço de testes (sem depender de sementes) ---
+const ficha = (n: number) => Array.from({ length: n }, () => ({ name: 'Goblin', token: true }));
+const terrenos = (n: number) => Array.from({ length: n }, () => 'Forest');
+
+/** a partida montada vai para o banco a partir de um checkpoint (numa prioridade); o assento 0 é a pessoa */
+function salvarFixa(banco: Banco, codigo: string, tg: TestGame, decks: number[]): void {
+  const cp = tg.game.checkpoint();
+  if (!cp) throw new Error(`sala ${codigo}: a partida montada não parou numa prioridade`);
+  const deckIds = decks.map((i) => DECKS[i].id);
+  // a pessoa não para no começo do combate nem no turno dos outros: a sala abre direto na decisão de combate
+  const paradas = { ...structuredClone(PARADAS_PADRAO), myTurn: ['main2' as const], othersTurn: [], skipWhenNothing: false };
+  banco.salvarSala(codigo, {
+    codigo, senha: '00:00', modo: decks.length === 4 ? '4p' : '1v1', estado: 'jogando', anfitriao: 0, mulligan: 'londres',
+    assentos: decks.map((d, i) => ({ tipo: i === 0 ? 'humano' : 'bot', nome: tg.state.players[i].name, deck: DECKS[d].id, token: i === 0 ? `token-${codigo}` : null, paradas: structuredClone(paradas) })),
+    partida: { config: tg.state.config, deckIds, checkpoint: cp, posicoes: {} },
+  });
+}
+
+/** os ids que as capturas conferem, por sala */
+export interface IdsCombate {
+  /** FICHA: as seis fichas de Ana e as duas criaturas dela */
+  FICHA: { fichas: ObjId[]; criaturas: ObjId[] };
+  /** BLOQT: as fichas de Bruno que atacam Ana (e as que atacam Diego), a criatura com ameaça, e as de Ana */
+  BLOQT: { contraAna: ObjId[]; contraDiego: ObjId[]; ameaca: ObjId; kami: ObjId; ancients: ObjId; fichasAna: ObjId[] };
+}
+
+/**
+ * FICHA (4 jogadores): Ana declara atacantes com seis fichas de Goblin 1/1 iguais e duas criaturas. BLOQT (4
+ * jogadores): Bruno ataca Ana com três fichas de Goblin iguais e a Defiling Daemogoth (ameaça), e Diego com outras
+ * duas fichas; Ana declara bloqueadores com duas fichas, o Kami e o Indomitable Ancients.
+ */
+export function gerarSalasCombate(banco: Banco): IdsCombate {
+  const base = (o: SetupOptions): SetupOptions => ({ players: 4, step: 'beginCombat', library: [0, 1, 2, 3].map(() => terrenos(6)), ...o });
+  const doJogador = (tg: TestGame, nome: string, p: PlayerId) => tg.all(nome).filter((id) => tg.state.objects[id].controller === p);
+
+  const f = setup(base({ active: 0, battlefield: [
+    [...ficha(6), 'Kami of Ancient Law', 'Goblin Electromancer', ...terrenos(4)],
+    ['Indomitable Ancients', ...terrenos(3)], ['Kami of Ancient Law', ...terrenos(3)], ['Goblin Electromancer', ...terrenos(3)],
+  ] }));
+  salvarFixa(banco, 'FICHA', f, [0, 2, 4, 5]);
+
+  const b = setup(base({ active: 1, battlefield: [
+    [...ficha(2), 'Kami of Ancient Law', 'Indomitable Ancients', ...terrenos(4)],
+    [...ficha(5), 'Defiling Daemogoth', ...terrenos(4)], ['Goblin Electromancer', ...terrenos(3)], [...terrenos(3)],
+  ] }));
+  const deBruno = doJogador(b, 'Goblin', 1);
+  const ameaca = b.bf('Defiling Daemogoth');
+  b.attack([...deBruno.slice(0, 3).map((id) => [id, 0] as [ObjId, PlayerId]), [ameaca, 0], ...deBruno.slice(3).map((id) => [id, 3] as [ObjId, PlayerId])]);
+  b.passUntil((x) => x.state.turn.step === 'declareAttackers');
+  if (b.state.combat?.attackers.length !== 6) throw new Error('sala BLOQT: o ataque não ficou declarado');
+  salvarFixa(banco, 'BLOQT', b, [0, 2, 4, 5]);
+
+  return {
+    FICHA: { fichas: doJogador(f, 'Goblin', 0), criaturas: [f.bf('Kami of Ancient Law', 0), f.bf('Goblin Electromancer', 0)] },
+    BLOQT: { contraAna: deBruno.slice(0, 3), contraDiego: deBruno.slice(3), ameaca, kami: b.bf('Kami of Ancient Law', 0), ancients: b.bf('Indomitable Ancients', 0), fichasAna: doJogador(b, 'Goblin', 0) },
+  };
 }
