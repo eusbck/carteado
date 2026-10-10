@@ -35,7 +35,7 @@ export type GameEvent =
   | { type: 'phaseIn'; obj: ObjId }
   | { type: 'turnedFaceUp'; obj: ObjId }
   | { type: 'resolved'; obj: ObjId; abilityId?: string; controller: PlayerId }
-  | { type: 'mana'; player: PlayerId; source: ObjId; produced: ManaType[] }
+  | { type: 'mana'; player: PlayerId; source: ObjId; produced: ManaType[]; tappedForMana?: boolean }
   | { type: 'leave'; player: PlayerId }
   | { type: 'monarch'; player: PlayerId }
   | { type: 'levelUp'; obj: ObjId; level: number }

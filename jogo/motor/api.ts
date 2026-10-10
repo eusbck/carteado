@@ -15,7 +15,8 @@ export {
 export { ask, chooseColor, chooseItems, chooseNumber, chooseOne, objItem, playerItem, yesNo, COLOR_NAMES } from './ask.ts';
 export { counter, castSpell, candidateTargets, isLegalTarget, copySpell } from './stack.ts';
 export { addEffect, createObject, destroyObject, newTimestamp, objOrLki } from './state.ts';
-export { emit, addPending } from './triggers.ts';
+export { emit, addPending, combatDamagePlayers } from './triggers.ts';
+export { attackingTarget, reselectAttacker, reselectAttackTargets } from './combat.ts';
 export { payMana, payParts } from './costs.ts';
 export { loseGame } from './sba.ts';
 export { parseCost, formatCost, manaValueOf } from './mana.ts';

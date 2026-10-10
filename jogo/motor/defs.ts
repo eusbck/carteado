@@ -100,6 +100,9 @@ export type CostPart =
   | { k: 'blight'; n: number | 'X' }
   | { k: 'mill'; n: number }
   | { k: 'tapCreatures'; n: number; filter?: (c: SCtx, o: ObjId) => boolean; label?: string; includeSelf?: boolean }
+  | { k: 'tapPermanents'; n: number; filter: (c: SCtx, o: ObjId) => boolean; label: string }
+  | { k: 'crew'; power: number }
+  | { k: 'returnPermanent'; filter: (c: SCtx, o: ObjId) => boolean; label: string }
   | { k: 'loyalty'; n: number | 'X' }
   | { k: 'returnLand' };
 
@@ -118,7 +121,9 @@ export type TriggerSpec =
   /** "um ou mais": dispara uma vez por lote de eventos simultâneos (CR 603.2c) */
   | { kind: 'batch'; match: (evs: GameEvent[], c: TriggerCtx) => boolean | Record<string, unknown> | Record<string, unknown>[] }
   /** "no início da [etapa]" (CR 603.2b) */
-  | { kind: 'step'; step: Step; whose: 'you' | 'each' | 'opponent'; firstMain?: boolean };
+  | { kind: 'step'; step: Step; whose: 'you' | 'each' | 'opponent'; firstMain?: boolean }
+  /** gatilho de estado, sem repetir enquanto estiver pendente ou na pilha (CR 603.8) */
+  | { kind: 'state'; check: (c: TriggerCtx) => boolean };
 
 // ---------------------------------------------------------------------------
 // Habilidades
@@ -159,6 +164,8 @@ export interface ActivatedDef extends AbilityCommon {
   activator?: 'controller' | 'opponents';
   /** X escolhido ao ativar (custos com {X}) */
   xMax?: (c: SCtx) => number;
+  /** redução do próprio custo de ativação, fixada antes do pagamento (CR 602.2b, 601.2f) */
+  selfCost?: (c: SCtx, x: number) => { reduce?: number; increase?: number };
 }
 
 export interface TriggeredDef extends AbilityCommon {
@@ -178,6 +185,11 @@ export interface TriggeredDef extends AbilityCommon {
 }
 
 export interface RuleHooks {
+  attacksIfAble?: (c: SCtx, creature: ObjId) => boolean;
+  cantUntapDuringUntapOf?: (c: SCtx, obj: ObjId, activePlayer: PlayerId) => boolean;
+  castAsThoughFlash?: (c: SCtx, player: PlayerId, card: ObjId) => boolean;
+  /** previsão das habilidades de mana engatilhadas, usadas pelo planejador; o efeito real resolve por CR 605.4 */
+  extraManaForPlanning?: (c: SCtx, player: PlayerId, source: ObjId, produced: ManaType[], tappedForMana: boolean) => ManaType[];
   costModifier?: (c: SCtx, spell: SpellInfoForCost) => { reduce?: number; increase?: number; reduceColored?: Partial<Record<Color, number>> } | null;
   canAttack?: (c: SCtx, attacker: ObjId, target: TargetRef) => boolean;
   attackCost?: (c: SCtx, attacker: ObjId, target: TargetRef) => number;
@@ -344,6 +356,8 @@ export interface FaceDef {
   delve?: boolean;
   /** Convoke (CR 702.51): cada criatura virada ao conjurar paga {1} ou uma mana da cor dela */
   convoke?: boolean;
+  /** Improvisar (CR 702.126): artefatos virados pagam somente mana genérica, depois de ativar habilidades de mana */
+  improvise?: boolean;
   /** Gift (CR 702.174): ao conjurar, pode prometer o presente a um oponente; em instantânea e feitiço ele o recebe
    *  antes dos outros efeitos (702.174j). `give` dá o presente ao jogador escolhido. */
   gift?: { label: string; give: (c: Ctx, to: PlayerId) => Gen<void> };

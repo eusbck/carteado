@@ -5,10 +5,10 @@
 import { addMana, addCounters, blight as doBlight, discard, loseLife, mill, moveObjects, removeCounters, sacrifice, tap, untap } from './actions.ts';
 import { blightCandidates } from './actions.ts';
 import { ask, chooseColor, chooseItems, chooseNumber, objItem } from './ask.ts';
-import { abilityDefs, chars, controllerOf, hasKw, isCreature, nameOf } from './chars.ts';
+import { abilityDefs, chars, controllerOf, hasKw, hooks, isCreature, isType, nameOf, power } from './chars.ts';
 import { registry, type CostPart, type Ctx, type Gen, type ManaAbilityDef, type SCtx } from './defs.ts';
 import type { G } from './game-context.ts';
-import { formatCost, matchPool, parseCost, phyrexianCount, poolToString, type SpendContext } from './mana.ts';
+import { formatCost, genericOf, matchPool, parseCost, phyrexianCount, poolToString, reduceGeneric, type SpendContext } from './mana.ts';
 import { addPending, emit } from './triggers.ts';
 import { oracle } from './oracle.ts';
 import type { Answer, ManaSymbol, ManaType, ManaUnit, ObjId, PaymentSource, PlayerId } from './types.ts';
@@ -27,6 +27,8 @@ export interface ManaOption {
   manaCost: ManaSymbol[];
   /** preferência: menor = usar antes */
   rank: number;
+  /** mana adicional prevista; é realmente produzida pelas habilidades engatilhadas, sem pilha */
+  bonus: ManaUnit[];
 }
 
 export function basicManaDef(color: ManaType): ManaAbilityDef {
@@ -83,6 +85,9 @@ export function canPayParts(g: G, player: PlayerId, parts: CostPart[], source: O
       }
       case 'mill': if (s.zones.library[player].length < p.n) return false; break; // CR 701.17b
       case 'tapCreatures': if (s.zones.battlefield.filter((id) => (p.includeSelf || id !== source) && controllerOf(g, id) === player && isCreature(g, id) && !s.objects[id].tapped && (!p.filter || p.filter(ctx, id))).length < p.n) return false; break;
+      case 'tapPermanents': if (costPermanents(g, player, (id) => !s.objects[id].tapped && p.filter(ctx, id)).length < p.n) return false; break;
+      case 'crew': if (crewCandidates(g, player, source).reduce((n, id) => n + Math.max(0, power(g, id)), 0) < p.power) return false; break;
+      case 'returnPermanent': if (!costPermanents(g, player, (id) => p.filter(ctx, id)).length) return false; break;
       case 'loyalty': {
         const n = p.n === 'X' ? -x : p.n;
         if (n < 0 && (!o || (o.counters.loyalty ?? 0) < -n)) return false; // CR 606.6
@@ -97,6 +102,7 @@ export function canPayParts(g: G, player: PlayerId, parts: CostPart[], source: O
 /** opções de mana disponíveis para um jogador agora */
 export function manaOptions(g: G, player: PlayerId, opts: { excludeSource?: ObjId } = {}): ManaOption[] {
   const out: ManaOption[] = [];
+  const bonusHooks = hooks(g, 'extraManaForPlanning');
   for (const id of g.state.zones.battlefield) {
     if (id === opts.excludeSource) continue;
     const o = g.state.objects[id];
@@ -120,7 +126,8 @@ export function manaOptions(g: G, player: PlayerId, opts: { excludeSource?: ObjI
         if (def.extra) rank += 3;
         if (manaCost.length) rank += 1;
         if (!chars(g, id).types.includes('Land')) rank += 1;
-        out.push({ key: `${id}|${inst.id}|${i}`, obj: id, abilityId: inst.id, alt, altIndex: i, def, manaCost, rank });
+        const bonus = bonusHooks.flatMap((h) => h.fn(h.ctx, player, id, alt, def.cost.some((p) => p.k === 'tap')).map((type) => ({ type, source: h.ctx.source })));
+        out.push({ key: `${id}|${inst.id}|${i}`, obj: id, abilityId: inst.id, alt, altIndex: i, def, manaCost, rank, bonus });
       });
     }
   }
@@ -164,7 +171,8 @@ export function* activateManaAbility(g: G, player: PlayerId, opt: ManaOption, hi
     onSpend: opt.def.onSpend ? { abilityId: opt.def.onSpend, source: opt.obj, controller: player } : undefined,
     ...(virar !== undefined ? { tap: virar } : {}),
   });
-  emit(g, [{ type: 'mana', player, source: opt.obj, produced: alt }]);
+  emit(g, [{ type: 'mana', player, source: opt.obj, produced: alt, tappedForMana: opt.def.cost.some((p) => p.k === 'tap') }]);
+  yield* resolveTriggeredMana(g);
   if (opt.def.extra) yield* opt.def.extra(ctx);
   return true;
 }
@@ -184,6 +192,40 @@ function* payManaFromPoolOnly(g: G, player: PlayerId, cost: ManaSymbol[]): Gen<b
 export interface PayContext extends SpendContext {
   purpose: { kind: 'spell'; obj: ObjId } | { kind: 'ability'; obj: ObjId } | { kind: 'effect' };
   excludeSource?: ObjId;
+  improvise?: boolean;
+}
+
+function costPermanents(g: G, player: PlayerId, filter: (id: ObjId) => boolean): ObjId[] {
+  return g.state.zones.battlefield.filter((id) => !g.state.objects[id].phasedOut && controllerOf(g, id) === player && filter(id));
+}
+
+export function crewCandidates(g: G, player: PlayerId, source: ObjId): ObjId[] {
+  // CR 702.122a: outras criaturas; não se pode tripular o próprio veículo.
+  return costPermanents(g, player, (id) => id !== source && isCreature(g, id) && !g.state.objects[id].tapped && !hasKw(g, id, 'cantCrew'));
+}
+
+export function improviseCandidates(g: G, player: PlayerId): ObjId[] {
+  return costPermanents(g, player, (id) => isType(g, id, 'Artifact') && !g.state.objects[id].tapped);
+}
+
+function producedUnits(o: ManaOption): ManaUnit[] {
+  return [...o.alt.map((type) => ({ type, source: o.obj, restriction: o.def.restriction })), ...o.bonus];
+}
+
+/** CR 605.4: habilidades de mana engatilhadas resolvem imediatamente, inclusive durante pagamento. */
+function* resolveTriggeredMana(g: G): Gen<void> {
+  for (let guard = 0; guard < 100; guard++) {
+    const index = g.state.pendingTriggers.findIndex((t) => {
+      const d = registry.abilities.get(t.abilityId);
+      return d?.kind === 'triggered' && d.mana;
+    });
+    if (index < 0) return;
+    const [t] = g.state.pendingTriggers.splice(index, 1);
+    const d = registry.abilities.get(t.abilityId);
+    if (d?.kind !== 'triggered' || g.state.players[t.controller].left) continue;
+    yield* d.effect({ g, you: t.controller, self: t.source, source: t.source, targets: [], x: 0, modes: [], paid: {}, event: t.event, data: t.data });
+  }
+  throw new Error('Laço de habilidades de mana engatilhadas sem fim');
 }
 
 function canSpendFn(g: G, ctx: PayContext): (u: ManaUnit) => boolean {
@@ -221,12 +263,14 @@ export function planPayment(g: G, player: PlayerId, cost: ManaSymbol[], ctx: Pay
     if (s.k === 'C') needColors.add('C');
   }
   const usedObjs = new Set<ObjId>();
+  const improvisers = ctx.improvise ? improviseCandidates(g, player) : [];
   let nodes = 0;
   const plan: ManaOption[] = [];
   function score(alt: ManaType[]): number { return -alt.filter((t) => needColors.has(t)).length; }
   function dfs(gi: number, pool: ManaUnit[]): boolean {
     if (++nodes > 4000) return false;
-    if (matchPool(cost, pool, spend)) return true;
+    const available = improvisers.filter((id) => !usedObjs.has(id)).length;
+    if (matchPool(ctx.improvise ? reduceGeneric(cost, available) : cost, pool, spend)) return true;
     if (gi >= groups.length) return false;
     const group = groups[gi];
     const objId = group[0].obj;
@@ -240,7 +284,7 @@ export function planPayment(g: G, player: PlayerId, cost: ManaSymbol[], ctx: Pay
           if (!m) continue;
           p2 = pool.filter((_, i) => !m.includes(i));
         }
-        p2 = [...p2, ...o.alt.map((t) => ({ type: t, source: o.obj, restriction: o.def.restriction } as ManaUnit))];
+        p2 = [...p2, ...producedUnits(o)];
         plan.push(o);
         if (tapsSelf) usedObjs.add(objId);
         if (dfs(gi + 1, p2)) return true;
@@ -263,7 +307,7 @@ export function planPayment(g: G, player: PlayerId, cost: ManaSymbol[], ctx: Pay
         if (!m) return null;
         pool = pool.filter((_, i) => !m.includes(i));
       }
-      pool = [...pool, ...o.alt.map((t) => ({ type: t, source: o.obj, restriction: o.def.restriction } as ManaUnit))];
+      pool = [...pool, ...producedUnits(o)];
     }
     return pool;
   };
@@ -271,7 +315,9 @@ export function planPayment(g: G, player: PlayerId, cost: ManaSymbol[], ctx: Pay
   for (let i = final.length - 1; i >= 0; i--) {
     const sem = [...final.slice(0, i), ...final.slice(i + 1)];
     const pool = reservaCom(sem);
-    if (pool && matchPool(cost, pool, spend)) final.splice(i, 1);
+    const used = new Set(sem.filter((o) => o.def.cost.some((p) => p.k === 'tap' || p.k === 'sacrificeSelf')).map((o) => o.obj));
+    const remaining = improvisers.filter((id) => !used.has(id)).length;
+    if (pool && matchPool(ctx.improvise ? reduceGeneric(cost, remaining) : cost, pool, spend)) final.splice(i, 1);
   }
   return final;
 }
@@ -294,21 +340,26 @@ export function* payMana(g: G, player: PlayerId, cost: ManaSymbol[], ctx: PayCon
   const p = g.state.players[player];
   const phy = phyrexianCount(cost);
   let lifeChoice = 0;
+  let manaWindowClosed = false;
   if (cost.length === 0) return { units: [], lifePaid: 0 };
   for (;;) {
     const spend: SpendContext = { canSpend: canSpendFn(g, ctx), anyType: ctx.anyType, lifeForPhyrexian: lifeChoice };
-    const opts = manaOptions(g, player, { excludeSource: ctx.excludeSource });
+    const opts = manaWindowClosed ? [] : manaOptions(g, player, { excludeSource: ctx.excludeSource });
     const auto = planPayment(g, player, cost, ctx, lifeChoice, true);
     const sources: PaymentSource[] = opts.map((o) => ({ id: o.key, obj: o.obj, label: `${nameOf(g, o.obj)}: ${o.alt.map((t) => `{${t}}`).join('')}`, produces: o.alt }));
+    const improvisers = ctx.improvise && genericOf(cost) > 0 ? improviseCandidates(g, player) : [];
+    sources.push(...improvisers.map((id) => ({ id: `improvise:${id}`, obj: id, label: `Improvisar: vire ${nameOf(g, id)} para pagar {1}`, produces: [] })));
+    // Após começar a pagar por improvisar, a janela de habilidades de mana já terminou (CR 601.2g-h).
+    const autoAllowed = !manaWindowClosed || (auto !== null && auto.length === 0);
     const a = yield* ask<Extract<Answer, { kind: 'payment' }>>(g, {
       kind: 'payment', player, prompt: `Pague ${formatCost(cost)} para ${ctx.label}`,
       cost: formatCost(cost), remaining: `${formatCost(cost)} (reserva: ${poolToString(p.manaPool) || 'vazia'})`,
-      sources, canAuto: auto !== null, lifeOptions: phy, canCancel: ctx.canCancel,
+      sources, canAuto: auto !== null && autoAllowed, lifeOptions: phy, canCancel: ctx.canCancel,
     }, (ans) => {
       if (ans.kind !== 'payment') return 'Resposta inválida';
       if (ans.cancel && !ctx.canCancel) return 'Este pagamento não pode ser cancelado';
-      if (ans.auto && auto === null) return 'Não há mana suficiente';
-      if (ans.activate && !opts.some((o) => o.key === ans.activate!.source)) return 'Fonte indisponível';
+      if (ans.auto && (auto === null || !autoAllowed)) return 'Não há mana suficiente';
+      if (ans.activate && !sources.some((o) => o.id === ans.activate!.source)) return 'Fonte indisponível';
       if (ans.life !== undefined && (ans.life < 0 || ans.life > phy || p.life < 2 * ans.life)) return 'Vida insuficiente';
       if (ans.pay && !matchPool(cost, p.manaPool, { ...spend, lifeForPhyrexian: ans.life ?? lifeChoice })) return 'A reserva não paga o custo inteiro';
       return null;
@@ -321,7 +372,23 @@ export function* payMana(g: G, player: PlayerId, cost: ManaSymbol[], ctx: PayCon
         const fresh = manaOptions(g, player, { excludeSource: ctx.excludeSource }).find((x) => x.key === o.key);
         if (fresh) yield* activateManaAbility(g, player, fresh, hint);
       }
+      if (ctx.improvise) {
+        // Use apenas os artefatos ainda desvirados depois de todas as habilidades de mana.
+        const remaining = improviseCandidates(g, player);
+        let n = 0;
+        while (n <= Math.min(genericOf(cost), remaining.length) && !matchPool(reduceGeneric(cost, n), p.manaPool, spend)) n++;
+        if (n > Math.min(genericOf(cost), remaining.length)) continue;
+        for (const id of remaining.slice(0, n)) tap(g, id);
+        cost = reduceGeneric(cost, n);
+        manaWindowClosed = n > 0;
+      }
     } else if (a.activate) {
+      if (a.activate.source.startsWith('improvise:')) {
+        tap(g, Number(a.activate.source.slice('improvise:'.length)));
+        cost = reduceGeneric(cost, 1);
+        manaWindowClosed = true;
+        continue;
+      }
       const o = opts.find((x) => x.key === a.activate!.source)!;
       yield* activateManaAbility(g, player, o);
       continue;
@@ -438,6 +505,40 @@ export function* payParts(g: G, player: PlayerId, parts: CostPart[], source: Obj
         const cands = s.zones.battlefield.filter((id) => (p.includeSelf || id !== source) && controllerOf(g, id) === player && isCreature(g, id) && !s.objects[id].tapped && (!p.filter || p.filter(ctx, id)));
         const ids = yield* chooseItems(g, player, `Vire ${p.n} ${p.label ?? 'criatura(s) desvirada(s)'} que você controla`, cands.map((id) => objItem(g, id, nameOf(g, id))), p.n, p.n);
         for (const id of ids) tap(g, Number(id));
+        break;
+      }
+      case 'tapPermanents': {
+        const cands = costPermanents(g, player, (id) => !s.objects[id].tapped && p.filter(ctx, id));
+        if (cands.length < p.n) return false;
+        const ids = yield* chooseItems(g, player, `Vire ${p.n} ${p.label} que você controla`, cands.map((id) => objItem(g, id, nameOf(g, id))), p.n, p.n);
+        for (const id of ids.map(Number)) tap(g, id);
+        info.tapped = [...((info.tapped as ObjId[]) ?? []), ...ids.map(Number)];
+        break;
+      }
+      case 'crew': {
+        const cands = crewCandidates(g, player, source);
+        const picked: ObjId[] = [];
+        let total = 0;
+        for (;;) {
+          const remaining = cands.filter((id) => !picked.includes(id));
+          const positive = remaining.reduce((n, id) => n + Math.max(0, power(g, id)), 0);
+          if (total + positive < p.power) return false;
+          const [choice] = yield* chooseItems(g, player, `Tripular: força total ${total}; precisa de ${p.power}. Escolha outra criatura ou conclua`, [
+            { id: 'done', label: 'Concluir tripulação', disabled: total < p.power },
+            ...remaining.map((id) => ({ ...objItem(g, id, nameOf(g, id)), disabled: total + power(g, id) + positive - Math.max(0, power(g, id)) < p.power })),
+          ], 1, 1);
+          if (choice === 'done') break;
+          const id = Number(choice); picked.push(id); total += power(g, id);
+        }
+        for (const id of picked) tap(g, id);
+        info.crewedBy = picked;
+        break;
+      }
+      case 'returnPermanent': {
+        const cands = costPermanents(g, player, (id) => p.filter(ctx, id));
+        if (!cands.length) return false;
+        const [id] = yield* chooseItems(g, player, `Devolva ${p.label} que você controla à mão de seu dono`, cands.map((id) => objItem(g, id, nameOf(g, id))), 1, 1);
+        info.returned = yield* moveObjects(g, [{ id: Number(id), to: 'hand' }], 'cost', player);
         break;
       }
       case 'loyalty': {

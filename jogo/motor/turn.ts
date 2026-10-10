@@ -14,7 +14,7 @@ import { checkGameEnd, leaveGame, performSBAs } from './sba.ts';
 import { putTriggersOnStack, resolveTop } from './stack.ts';
 import { emptyTurnStats } from './state.ts';
 import { shuffle } from './rng.ts';
-import { emit } from './triggers.ts';
+import { checkStateTriggers, emit } from './triggers.ts';
 import { loseUnspentMana } from './veneno-emblema.ts';
 import { MULLIGANS_LIVRES, type Answer, type GameState, type ObjId, type PlayerId, type Step } from './types.ts';
 
@@ -142,7 +142,7 @@ function* turnBasedActions(g: G): Gen<void> {
         const ctrl = controllerOf(g, id);
         let doIt = ctrl === active;
         if (!doIt) doIt = hooks(g, 'untapDuringUntapOf').some((h) => h.fn(h.ctx, id, active));
-        if (doIt) untap(g, id);
+        if (doIt && !hooks(g, 'cantUntapDuringUntapOf').some((h) => h.fn(h.ctx, id, active))) untap(g, id);
       }
       emit(g, [{ type: 'step', step: 'untap', active }]);
       break;
@@ -219,6 +219,7 @@ function* checkStateAndTriggers(g: G): Gen<boolean> {
   let any = false;
   for (let guard = 0; guard < 500; guard++) {
     if (g.state.gameOver) return any;
+    checkStateTriggers(g);
     const did = yield* performSBAs(g);
     if (did) { any = true; continue; }
     if (g.state.pendingTriggers.length) {

@@ -18,6 +18,14 @@ import { castSpell, copySpell, counter } from './stack.ts';
 import { emit } from './triggers.ts';
 import type { ChoiceItem, CopyValues, Duration, ManaSymbol, Mod, ObjId, PlayerId } from './types.ts';
 
+/** CR 702.122: a tripulação é um custo; o veículo só vira criatura quando a habilidade resolve. */
+export function crew(n: number): ActivatedDef {
+  return activated([{ k: 'crew', power: n }], function* (c) {
+    if (c.g.state.objects[c.source]?.zone !== 'battlefield') return;
+    untilEndOfTurn(c, [c.source], [{ k: 'addTypes', types: ['Artifact', 'Creature'] }]);
+  }, { kw: 'crew', param: n, text: `Tripular ${n}: vire outras criaturas desviradas com força total ${n} ou mais; este veículo se torna criatura artefato até o fim do turno.` });
+}
+
 // ---------------------------------------------------------------------------
 // Transformar (CR 701.28)
 // ---------------------------------------------------------------------------

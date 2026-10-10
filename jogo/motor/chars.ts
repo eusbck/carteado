@@ -376,7 +376,14 @@ export function chars(g: G, id: ObjId): Chars {
     const c = g.computing.get(id);
     if (c) return c;
     const o = g.state.objects[id];
-    if (o) return layer1(g, o);
+    if (o) {
+      const c = layer1(g, o);
+      // Uma CDA de carta exilada pode ser consultada durante outra CDA/estática (Duplicant).
+      // Guarde os valores base antes da avaliação para evitar recursão ao contar a própria carta.
+      g.computing.set(id, c);
+      applyCdas(g, o, c);
+      return c;
+    }
     const l = g.state.lki[id];
     if (l) return l.chars;
     throw new Error(`Objeto inexistente: ${id}`);
@@ -396,19 +403,23 @@ export function chars(g: G, id: ObjId): Chars {
   // cemitério) lê os tipos impressos, sem recursão
   d.chars.set(id, c);
   // habilidades que definem características funcionam em todas as zonas (CR 604.3)
-  for (const inst of c.abilities) {
-    const def = registry.abilities.get(inst.id);
-    if (def?.kind !== 'static' || !def.cda || !def.mods) continue;
-    const ctx: SCtx = { g, you: o.owner, source: id };
-    if (def.affects && !def.affects(ctx, o)) continue;
-    try { for (const m of def.mods(ctx, o)) applyMod(c, m); } catch { /* sem as características esperadas fora do campo */ }
-  }
+  applyCdas(g, o, c);
   // efeitos resolvidos que afetam diretamente objetos fora do campo (ex.: mágica na pilha que ganha wither)
   for (const L of LAYERS) for (const e of g.state.effects) {
     if (!e.affected?.includes(id)) continue;
     for (const m of e.mods) if (modLayer(m) === L) applyMod(c, m);
   }
   return c;
+}
+
+function applyCdas(g: G, o: GameObject, c: Chars): void {
+  for (const inst of c.abilities) {
+    const def = registry.abilities.get(inst.id);
+    if (def?.kind !== 'static' || !def.cda || !def.mods) continue;
+    const ctx: SCtx = { g, you: o.owner, source: o.id };
+    if (def.affects && !def.affects(ctx, o)) continue;
+    try { for (const m of def.mods(ctx, o)) applyMod(c, m); } catch { /* sem as características esperadas fora do campo */ }
+  }
 }
 
 export function activeStatics(g: G): ActiveStatic[] {

@@ -363,6 +363,8 @@ export type ManualAction =
   | { k: 'vigiar'; n: number };
 
 export interface GameState {
+  /** histórico opcional para habilidades como Steel Hellkite; compatível com checkpoints anteriores */
+  combatDamageBySource?: { turn: number; players: Record<string, PlayerId[]> };
   engineVersion: number;
   version: number;
   config: GameConfig;

@@ -391,7 +391,7 @@ function* castInner(g: G, player: PlayerId, cardId: ObjId, method: CastMethod): 
     }
   }
   // 601.2g-h: mana, depois as outras partes
-  const pay: PayContext & { canCancel: boolean; label: string } = { purpose: { kind: 'spell', obj: spellId }, canCancel: !method.duringResolution || true, label, anyType: method.permission?.anyType };
+  const pay: PayContext & { canCancel: boolean; label: string } = { purpose: { kind: 'spell', obj: spellId }, canCancel: true, label, anyType: method.permission?.anyType, improvise: f?.improvise };
   const paidMana = yield* payMana(g, player, cost, pay);
   if (paidMana === null) return null;
   const otherParts = [
@@ -484,7 +484,7 @@ function* activateInner(g: G, player: PlayerId, sourceId: ObjId, abilityId: stri
     info.targets = t;
   }
   // 601.2f-h
-  const cost = withX(mp, info.x);
+  const cost = totalAbilityCost(g, player, sourceId, def, info.x);
   // a fonte que vai ser virada/sacrificada no custo não pode também pagar a mana
   const usesSource = def.cost.some((p) => p.k === 'tap' || p.k === 'untap' || p.k === 'sacrificeSelf' || p.k === 'exileSelf');
   const paid = yield* payMana(g, player, cost, { purpose: { kind: 'ability', obj: ab.id }, canCancel: true, label, excludeSource: usesSource ? sourceId : undefined });
@@ -526,10 +526,16 @@ export function canActivate(g: G, player: PlayerId, sourceId: ObjId, def: Activa
   // precisa ter alvos possíveis
   const { specs } = abilityTargetSpecs(def, []);
   if (specs.some((sp) => (sp.min ?? 1) > 0 && candidateTargets(g, sp, player, sourceId).length < (sp.min ?? 1))) return false;
-  const mp = withX(manaPart(def.cost), 0);
+  const mp = totalAbilityCost(g, player, sourceId, def, 0);
   const usesSource = def.cost.some((p) => p.k === 'tap' || p.k === 'untap' || p.k === 'sacrificeSelf' || p.k === 'exileSelf');
   if (mp.length && !canAfford(g, player, mp, { purpose: { kind: 'ability', obj: sourceId }, excludeSource: usesSource ? sourceId : undefined })) return false;
   return true;
+}
+
+/** CR 602.2b, 601.2f: determine uma vez o custo total, antes de ativar habilidades de mana ou pagar partes. */
+export function totalAbilityCost(g: G, player: PlayerId, source: ObjId, def: ActivatedDef, x: number): ManaSymbol[] {
+  const adjustment = def.selfCost?.({ g, you: player, source }, x);
+  return reduceGeneric(addGeneric(withX(manaPart(def.cost), x), adjustment?.increase ?? 0), adjustment?.reduce ?? 0);
 }
 
 // ---------------------------------------------------------------------------

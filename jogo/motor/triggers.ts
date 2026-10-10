@@ -26,6 +26,13 @@ function updateStats(g: G, events: GameEvent[]): void {
   const st = g.state.turnStats;
   for (const e of events) {
     switch (e.type) {
+      case 'damage': {
+        if (!e.combat || e.target.kind !== 'player') break;
+        if (g.state.combatDamageBySource?.turn !== g.state.turn.number) g.state.combatDamageBySource = { turn: g.state.turn.number, players: {} };
+        const players = g.state.combatDamageBySource.players[String(e.source)] ??= [];
+        if (!players.includes(e.target.id)) players.push(e.target.id);
+        break;
+      }
       case 'lifeGain': st[e.player].lifeGained += e.amount; break;
       case 'lifeLoss': st[e.player].lifeLost += e.amount; break;
       case 'draw': st[e.player].cardsDrawn++; break;
@@ -157,6 +164,8 @@ function matchWithCause(g: G, def: TriggeredDef, ctx: TriggerCtx, events: GameEv
       if (Array.isArray(r)) out.push(...r.map((x) => ({ r: x, cause: e })));
       else if (r) out.push({ r: typeof r === 'object' ? r : (e as unknown as Record<string, unknown>), cause: e });
     }
+  } else if (on.kind === 'state') {
+    if (!stateTriggerWaiting(g, def.id!, ctx.source) && on.check(ctx)) out.push({ r: {}, cause: null });
   } else {
     const r = on.match(events, ctx);
     if (Array.isArray(r)) out.push(...r.map((x) => ({ r: x, cause: null })));
@@ -185,4 +194,36 @@ function checkAbility(g: G, def: TriggeredDef, src: Source, events: GameEvent[])
 
 export function addPending(g: G, abilityId: string, source: ObjId, controller: PlayerId, event: Record<string, unknown>, data: Record<string, unknown>): void {
   g.state.pendingTriggers.push({ abilityId, source, controller, event: JSON.parse(JSON.stringify(event)), data, seq: ++g.state.triggerSeq });
+}
+
+function stateTriggerWaiting(g: G, abilityId: string, source: ObjId): boolean {
+  return g.state.pendingTriggers.some((t) => t.source === source && t.abilityId === abilityId) ||
+    g.state.zones.stack.some((id) => { const st = g.state.objects[id].stack; return st?.source === source && st.abilityId === abilityId; });
+}
+
+let stateTriggerIndexSize = -1;
+let stateTriggerIds = new Set<string>();
+
+/** CR 603.8: um estado persistente dispara novamente depois que o gatilho anterior sai da pilha. */
+export function checkStateTriggers(g: G): void {
+  if (stateTriggerIndexSize !== registry.abilities.size) {
+    stateTriggerIndexSize = registry.abilities.size;
+    stateTriggerIds = new Set([...registry.abilities].filter(([, d]) => d.kind === 'triggered' && d.on.kind === 'state').map(([id]) => id));
+  }
+  if (!stateTriggerIds.size) return;
+  for (const id of g.state.zones.battlefield) {
+    const obj = g.state.objects[id];
+    if (obj.phasedOut) continue;
+    const c = chars(g, id);
+    for (const inst of c.abilities) {
+      if (!stateTriggerIds.has(inst.id)) continue;
+      const def = registry.abilities.get(inst.id);
+      if (def?.kind !== 'triggered' || def.on.kind !== 'state' || stateTriggerWaiting(g, inst.id, id)) continue;
+      if (def.on.check({ g, you: c.controller, source: id, obj, chars: c })) addPending(g, inst.id, id, c.controller, {}, {});
+    }
+  }
+}
+
+export function combatDamagePlayers(g: G, source: ObjId): PlayerId[] {
+  return g.state.combatDamageBySource?.turn === g.state.turn.number ? [...(g.state.combatDamageBySource.players[String(source)] ?? [])] : [];
 }

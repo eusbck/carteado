@@ -189,6 +189,8 @@ export function cost(text: string): CostPart[] {
     else if ((m = s.match(/^Blight (\d+|X)$/i))) parts.push({ k: 'blight', n: m[1] === 'X' ? 'X' : Number(m[1]) });
     else if ((m = s.match(/^Mill (a|one|two|three) cards?$/))) parts.push({ k: 'mill', n: NUM[m[1]] ?? 1 });
     else if ((m = s.match(/^Tap (a|one|two|three) untapped creatures? you control$/))) parts.push({ k: 'tapCreatures', n: NUM[m[1]] ?? 1 });
+    else if ((m = s.match(/^Tap (a|one|two|three) untapped artifacts? you control$/))) parts.push({ k: 'tapPermanents', n: NUM[m[1]] ?? 1, filter: is.artifact, label: 'artefato(s) desvirado(s)' });
+    else if ((m = s.match(/^Return (a|an) (.+) you control to its owner's hand$/))) parts.push({ k: 'returnPermanent', filter: typePred(m[2]), label: rotuloTipos(m[2]) });
     else if ((m = s.match(/^([+−-])(\d+|X)$/))) parts.push({ k: 'loyalty', n: m[2] === 'X' ? 'X' : (m[1] === '+' ? 1 : -1) * Number(m[2]) });
     else if (s === '0') parts.push({ k: 'loyalty', n: 0 });
     else throw new Error(`Custo não reconhecido: "${s}" em "${text}"`);

@@ -68,6 +68,7 @@ function requirements(g: G, id: ObjId): ((t: TargetRef | null) => boolean)[] {
   const reqs: ((t: TargetRef | null) => boolean)[] = [];
   const attacks = (t: TargetRef | null) => t !== null;
   const notPlayer = (p: PlayerId) => (t: TargetRef | null) => t !== null && t.kind === 'player' && t.id !== p;
+  for (const h of hooks(g, 'attacksIfAble')) if (h.fn(h.ctx, id)) reqs.push(attacks);
   for (const gd of o.goadedBy) { reqs.push(attacks); reqs.push(notPlayer(gd.player)); }
   for (const h of hooks(g, 'goads')) if (h.fn(h.ctx, id)) { reqs.push(attacks); reqs.push(notPlayer(h.ctx.you)); }
   for (const e of g.state.effects) for (const m of e.mods) {
@@ -121,6 +122,34 @@ export function validateAttack(g: G, player: PlayerId, attacks: [ObjId, TargetRe
     if (got < max) return `${nameOf(g, c.obj)} precisa atacar${c.obj && g.state.objects[c.obj].goadedBy.length ? ' um jogador que não o goadou' : ''} se puder (CR 508.1d)`;
   }
   return null;
+}
+
+/** CR 508.7b-c: reseleção ignora custos e restrições da declaração, mas nunca permite atacar o próprio controlador. */
+export function reselectAttackTargets(g: G, attacker: ObjId): TargetRef[] {
+  if (!g.state.combat?.attackers.some((a) => a.id === attacker && !a.removed) || g.state.objects[attacker]?.zone !== 'battlefield') return [];
+  const out: TargetRef[] = [];
+  for (const p of g.opponents(controllerOf(g, attacker))) {
+    out.push({ kind: 'player', id: p });
+    for (const id of g.state.zones.battlefield) if (!g.state.objects[id].phasedOut && controllerOf(g, id) === p && isType(g, id, 'Planeswalker')) out.push({ kind: 'obj', id });
+  }
+  return out;
+}
+
+export function reselectAttacker(g: G, attacker: ObjId, target: TargetRef): boolean {
+  const a = g.state.combat?.attackers.find((a) => a.id === attacker && !a.removed);
+  if (!a || !reselectAttackTargets(g, attacker).some((t) => t.kind === target.kind && t.id === target.id)) return false;
+  a.target = { ...target };
+  g.bump();
+  g.log(`${nameOf(g, attacker)} passa a atacar ${target.kind === 'player' ? g.state.players[target.id].name : nameOf(g, target.id)}.`, { rule: '508.7' });
+  // O evento de declaração e seu histórico permanecem os originais; isto não é outro ataque.
+  return true;
+}
+
+/** alvo atual, ou último defensor conhecido quando a fonte saiu do campo (CR 608.2h). */
+export function attackingTarget(g: G, attacker: ObjId): TargetRef | null {
+  const a = g.state.combat?.attackers.find((a) => a.id === attacker);
+  if (!a || (a.removed && g.state.objects[attacker]?.zone === 'battlefield')) return null;
+  return a.target.kind === 'player' ? (g.state.players[a.target.id].left ? null : a.target) : (g.state.objects[a.target.id]?.zone === 'battlefield' ? a.target : null);
 }
 
 export function* declareAttackers(g: G): Gen<void> {

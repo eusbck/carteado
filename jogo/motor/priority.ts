@@ -96,7 +96,7 @@ export function canStartCast(g: G, p: PlayerId, opt: CastOption): boolean {
   const o = s.objects[opt.obj];
   const c = chars(g, opt.obj);
   const f = faceDefOf(o);
-  const instantSpeed = c.types.includes('Instant') || hasKw(g, opt.obj, 'flash') || f?.flash;
+  const instantSpeed = c.types.includes('Instant') || hasKw(g, opt.obj, 'flash') || f?.flash || hooks(g, 'castAsThoughFlash').some((h) => h.fn(h.ctx, p, opt.obj));
   if (!instantSpeed && !sorceryTiming(g, p)) return false;
   if (hooks(g, 'cantCastSpells').some((h) => h.fn(h.ctx, p))) return false;
   // alvos obrigatórios possíveis
@@ -130,7 +130,7 @@ export function canStartCast(g: G, p: PlayerId, opt: CastOption): boolean {
       .map((id) => colorsOf(g, id)).sort((a, b) => a.length - b.length);
     cost = convokeAll(cost, cores).cost;
   }
-  return canAfford(g, p, cost, { purpose: { kind: 'spell', obj: opt.obj }, anyType: opt.method.permission?.anyType });
+  return canAfford(g, p, cost, { purpose: { kind: 'spell', obj: opt.obj }, anyType: opt.method.permission?.anyType, improvise: f?.improvise });
 }
 
 function landPlayOptions(g: G, p: PlayerId): { obj: ObjId; key: string }[] {
