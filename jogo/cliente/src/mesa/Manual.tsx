@@ -111,7 +111,8 @@ export function Manual({ v, decisao, fechar, pegar, nomeObj, tipoInicial, escond
       const o = v.battlefield.find((x) => x.id === obj);
       corpo = (<>
         {cartaEscolhida}
-        <button class="botao principal" disabled={!o} onClick={() => enviar({ k: 'virar', obj: obj!, tapped: !o!.tapped })}>{o?.tapped ? 'Desvirar' : 'Virar'}</button>
+        {o?.tapped && o.manaGasta && <p class="suave">A mana dessa permanente já foi gasta: para voltar atrás, use Desfazer.</p>}
+        <button class="botao principal" disabled={!o || (o.tapped && !!o.manaGasta)} onClick={() => enviar({ k: 'virar', obj: obj!, tapped: !o!.tapped })}>{o?.tapped ? 'Desvirar' : 'Virar'}</button>
       </>);
       break;
     }

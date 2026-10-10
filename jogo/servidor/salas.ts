@@ -605,6 +605,8 @@ export class Sala {
       mulligan: this.d.mulligan ?? 'londres',
       // partidas novas: desvirar à mão tira a mana da reserva (as salvas antes ficam sem a chave e não mudam)
       desvirarTiraMana: true,
+      // e só desvira o que foi virado para mana com essa mana toda ainda na reserva (sem mana de graça)
+      desvirarSoComMana: true,
     };
     const deckIds = this.d.assentos.map((a) => a.deck!);
     const listas = deckIds.map((id) => this.gerente.deck(id));

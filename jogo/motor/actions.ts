@@ -563,6 +563,8 @@ export function tap(g: G, id: ObjId, forMana = false): boolean {
   const o = g.state.objects[id];
   if (!o || o.tapped) return false;
   o.tapped = true;
+  // um virar novo encerra o anterior: quem virou para mana marca de novo depois (costs.ts activateManaAbility)
+  delete o.manaTap;
   g.bump();
   emit(g, [{ type: 'tap', obj: id, forMana }]);
   return true;
@@ -574,6 +576,7 @@ export function untap(g: G, id: ObjId): boolean {
   // CR 122.1d: "se um permanente com marcador de atordoamento fosse desvirar, em vez disso remova um desses marcadores"
   if ((o.counters.stun ?? 0) > 0 && o.zone === 'battlefield') { removeCounters(g, { kind: 'obj', id }, 'stun', 1); return false; }
   o.tapped = false;
+  delete o.manaTap;
   g.bump();
   emit(g, [{ type: 'untap', obj: id }]);
   return true;

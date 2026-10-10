@@ -148,11 +148,21 @@ export function* activateManaAbility(g: G, player: PlayerId, opt: ManaOption, hi
     if (h && h !== 'C') alt.push(h);
     else alt.push(yield* chooseColor(g, player, `${nameOf(g, opt.obj)}: escolha a cor da mana`));
   }
+  // virou para pagar o {T}: a permanente guarda qual virar foi e quanta mana ele deu, e cada mana leva o número desse
+  // virar. O desvirar à mão confere se ela ainda está toda na reserva (manual.ts manaDesfazivel)
+  const fonte = g.state.objects[opt.obj];
+  let virar: number | undefined;
+  if (fonte?.tapped && opt.def.cost.some((p) => p.k === 'tap')) {
+    virar = (fonte.manaTaps ?? 0) + 1;
+    fonte.manaTaps = virar;
+    fonte.manaTap = { seq: virar, n: alt.length };
+  }
   addMana(g, player, alt, {
     source: opt.obj,
     restriction: opt.def.restriction,
     untilEndOfTurn: opt.def.untilEndOfTurn,
     onSpend: opt.def.onSpend ? { abilityId: opt.def.onSpend, source: opt.obj, controller: player } : undefined,
+    ...(virar !== undefined ? { tap: virar } : {}),
   });
   emit(g, [{ type: 'mana', player, source: opt.obj, produced: alt }]);
   if (opt.def.extra) yield* opt.def.extra(ctx);

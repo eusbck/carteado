@@ -9,7 +9,7 @@ import { controllerOf, nameOf } from './chars.ts';
 import { registry, type Gen } from './defs.ts';
 import type { G } from './game-context.ts';
 import { poolToString } from './mana.ts';
-import type { ManualAction, PlayerId, ZoneName } from './types.ts';
+import type { GameState, ManaUnit, ManualAction, ObjId, PlayerId, ZoneName } from './types.ts';
 
 // "de onde" e "para onde", com a contração certa
 const DE: Record<string, string> = {
@@ -19,6 +19,18 @@ const PARA: Record<string, string> = {
   battlefield: 'o campo', hand: 'a mão', graveyard: 'o cemitério', exile: 'o exílio', libraryTop: 'o topo do grimório', libraryBottom: 'o fundo do grimório',
 };
 const inteiro = (n: unknown, min: number, max: number) => typeof n === 'number' && Number.isInteger(n) && n >= min && n <= max;
+
+/**
+ * Desvirar à mão desfaz o virar para mana só com a mana daquele virar inteira na reserva (GameState.config
+ * desvirarSoComMana): se parte dela já pagou alguma coisa, desvirar e virar de novo daria mana de graça. Quem não foi
+ * virada para mana (atacou, pagou outro custo, virou à mão) desvira livre.
+ */
+export function manaDesfazivel(s: GameState, id: ObjId): boolean {
+  const o = s.objects[id];
+  if (!o?.tapped || !o.manaTap) return true;
+  const { seq, n } = o.manaTap;
+  return s.players.reduce((k, p) => k + p.manaPool.filter((u) => u.source === id && u.tap === seq).length, 0) >= n;
+}
 
 /** confere o ajuste contra o estado atual; devolve o motivo da recusa ou null */
 export function validateManual(g: G, p: PlayerId, m: ManualAction | undefined): string | null {
@@ -45,7 +57,11 @@ export function validateManual(g: G, p: PlayerId, m: ManualAction | undefined): 
       if (m.target?.kind === 'player') return vivo(m.target.id) ? null : 'Jogador inválido';
       return m.target?.kind === 'obj' && s.objects[m.target.id]?.zone === 'battlefield' ? null : 'Alvo de marcador inválido';
     }
-    case 'virar': return s.objects[m.obj]?.zone === 'battlefield' && typeof m.tapped === 'boolean' ? null : 'Só permanentes podem ser virados';
+    case 'virar': {
+      if (s.objects[m.obj]?.zone !== 'battlefield' || typeof m.tapped !== 'boolean') return 'Só permanentes podem ser virados';
+      if (!m.tapped && s.config.desvirarSoComMana && !manaDesfazivel(s, m.obj)) return 'A mana dessa permanente já foi gasta: para voltar atrás, use Desfazer';
+      return null;
+    }
     case 'ficha': return registry.tokens.has(m.def) && inteiro(m.n, 1, 20) && vivo(m.player) ? null : 'Ficha inválida';
     case 'comprar': return inteiro(m.n, 1, 10) ? null : 'Quantidade inválida';
     case 'moer': return inteiro(m.n, 1, 30) ? null : 'Quantidade inválida';
@@ -88,12 +104,23 @@ export function* performManual(g: G, p: PlayerId, m: ManualAction): Gen<boolean>
     case 'virar': {
       const nome = nameOf(g, m.obj);
       if (m.tapped) { g.log(`${quem} vira ${nome}.`); tap(g, m.obj); return true; }
-      // desvirar à mão a própria permanente desfaz o virar para mana: a mana dela que ainda está na reserva sai junto
-      // (a que já foi gasta fica gasta). Só se desvirou de fato (um marcador de atordoamento impede) e só quando quem
-      // desvira é o controlador: o ajuste de outro jogador não mexe na reserva de ninguém. Partidas de antes dessa
-      // regra (sem config.desvirarTiraMana) desviram sem mexer na reserva, como quando foram jogadas
+      // desvirar à mão desfaz o virar para mana. Com config.desvirarSoComMana (partidas novas) só vale com a mana
+      // daquele virar inteira na reserva (validateManual) e ela sai toda. Antes (só desvirarTiraMana) saía a que ainda
+      // estava lá, e a gasta ficava gasta: desvirar e virar de novo dava mana de graça. Partidas de antes de cada
+      // regra reproduzem como foram jogadas
       const dono = controllerOf(g, m.obj);
       const ctl = s.players[dono];
+      if (s.config.desvirarSoComMana) {
+        // a regra nova: sai exatamente a mana daquele virar (conferida inteira na reserva pela validação), de quem quer
+        // que seja a reserva e quem quer que desvire
+        const virar = s.objects[m.obj].manaTap?.seq;
+        if (!untap(g, m.obj)) { g.log(`${quem} tenta desvirar ${nome}, mas ela não desvira.`); return true; }
+        const daquele = (u: ManaUnit) => virar !== undefined && u.source === m.obj && u.tap === virar;
+        const dela = s.players.flatMap((q) => q.manaPool.filter(daquele));
+        if (dela.length) { for (const q of s.players) q.manaPool = q.manaPool.filter((u) => !daquele(u)); g.bump(); }
+        g.log(`${quem} desvira ${nome}${dela.length ? ` (a mana dela, ${poolToString(dela)}, sai da reserva)` : ''}.`);
+        return true;
+      }
       const desvirou = untap(g, m.obj);
       const dela = desvirou && dono === p && s.config.desvirarTiraMana ? ctl.manaPool.filter((u) => u.source === m.obj) : [];
       if (dela.length) { ctl.manaPool = ctl.manaPool.filter((u) => u.source !== m.obj); g.bump(); }

@@ -33,6 +33,8 @@ export interface ManaUnit {
   untilEndOfTurn?: boolean;
   /** gatilho atrasado registrado ao gastar esta mana (Path of Ancestry, Study Hall) */
   onSpend?: { abilityId: string; source: ObjId; controller: PlayerId };
+  /** de qual virar da fonte veio (GameObject.manaTap.seq): o desvirar à mão só desfaz esse virar com a mana inteira na reserva */
+  tap?: number;
 }
 
 // ---------------------------------------------------------------------------
@@ -131,6 +133,11 @@ export interface GameObject {
   stack: StackInfo | null;
   /** dados livres que cartas guardam no objeto (ex.: Gift of Immortality) */
   data: Record<string, unknown>;
+  /** virada para pagar o {T} de uma habilidade de mana: qual virar (seq) e quantas manas ele gerou. Sai ao virar ou
+   * desvirar de novo (actions.ts tap/untap) */
+  manaTap?: { seq: number; n: number };
+  /** quantas vezes foi virada para mana (numera manaTap.seq; um contador do objeto, para não gastar ids do estado) */
+  manaTaps?: number;
 }
 
 export interface CardInst {
@@ -323,6 +330,13 @@ export interface GameConfig {
    * quando foram jogadas: a reprodução delas pelas entradas gravadas não muda.
    */
   desvirarTiraMana?: boolean;
+  /**
+   * desvirar à mão uma permanente virada para mana só vale enquanto toda a mana daquele virar está na reserva (e ela
+   * sai junto, de quem for a reserva): com a mana gasta, desvirar e virar de novo daria mana de graça. Para voltar
+   * atrás depois de gastar, o caminho é o Desfazer (aprovado pela mesa). Partidas de antes ficam sem a chave e
+   * reproduzem como foram jogadas.
+   */
+  desvirarSoComMana?: boolean;
 }
 
 /** quantas vezes dá para trocar a mão no mulligan livre */

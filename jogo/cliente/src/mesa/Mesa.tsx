@@ -447,8 +447,9 @@ export function Mesa() {
   };
   const ui: EstadoUi = { sel, setSel, ataques, setAtaques, bloqueios, setBloqueios, bloqueadorAtivo, setBloqueadorAtivo, confirmarAtaque, confirmarBloqueio };
   const minhaReserva = v.players[eu]?.manaPool ?? '';
-  // a mana que a permanente gerou ainda está na reserva do controlador: desvirar à mão faz ela sair
-  const manaNaReserva = (o: ObjView) => !!v.players[o.controller]?.manaSources?.includes(o.id);
+  // a mana que a permanente gerou ainda está toda na reserva: desvirar à mão faz ela sair. Com parte dela gasta
+  // (manaGasta), o motor recusa o desvirar: desvirar e virar de novo daria mana de graça
+  const manaNaReserva = (o: ObjView) => !o.manaGasta && !!v.players[o.controller]?.manaSources?.includes(o.id);
 
   // pagamento: com os auxílios, automático ou confirmado sozinho quando a reserva cobre o custo;
   // na mesa real, você vira os terrenos e confirma
@@ -823,7 +824,9 @@ export function Mesa() {
     if (!v.gameOver) {
       itens.push(grupoManual);
       if (noCampo) {
-        itens.push({ id: 'virar', label: !o.tapped ? 'Virar' : manaNaReserva(o) ? 'Desvirar (a mana sai da reserva)' : 'Desvirar', desativado: !manualOk, fazer: () => manual({ k: 'virar', obj: o.id, tapped: !o.tapped }) });
+        itens.push(o.tapped && o.manaGasta
+          ? { id: 'virar', label: 'Desvirar (a mana já foi gasta: use Desfazer)', desativado: true, fazer: () => {} }
+          : { id: 'virar', label: !o.tapped ? 'Virar' : manaNaReserva(o) ? 'Desvirar (a mana sai da reserva)' : 'Desvirar', desativado: !manualOk, fazer: () => manual({ k: 'virar', obj: o.id, tapped: !o.tapped }) });
         itens.push({ tipo: 'sub', id: 'marcadores', label: 'Marcadores', desativado: !manualOk, itens: MARCAS_CARTA.map(([k, nome]) => ({
           tipo: 'contador', id: k, label: nome,
           menos: () => manual({ k: 'marcadores', target: { kind: 'obj', id: o.id }, kind: k, delta: -1 }),
@@ -842,7 +845,8 @@ export function Mesa() {
   const menuArea = (ev: MouseEvent) => {
     if (pegar || v.gameOver) return;
     esconderZoom();
-    const virados = v.battlefield.filter((o) => o.controller === eu && o.tapped);
+    // as viradas para mana que já pagou alguma coisa ficam viradas (o motor recusaria cada uma)
+    const virados = v.battlefield.filter((o) => o.controller === eu && o.tapped && !o.manaGasta);
     const itens: ItemMenu[] = [
       grupoManual,
       { id: 'desvirar', label: 'Desvirar tudo', desativado: !manualOk || !virados.length, fazer: () => setFila(virados.map((o) => ({ k: 'virar', obj: o.id, tapped: false }))) },

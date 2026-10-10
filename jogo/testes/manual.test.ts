@@ -77,9 +77,10 @@ describe('Modo manual', () => {
   });
 });
 
-// desvirar à mão desfaz o virar para mana: a mana da permanente que ainda está na reserva sai junto (partidas novas:
-// config.desvirarTiraMana, que o servidor liga ao criar a partida)
-describe('Modo manual: desvirar devolve a mana da reserva', () => {
+// regra de 06/10 (config.desvirarTiraMana sem desvirarSoComMana: as partidas salvas entre 06/10 e 09/10): desvirar à
+// mão tira da reserva a mana da permanente que ainda está lá, e a gasta fica gasta. Essas partidas reproduzem assim;
+// as novas usam a regra do bloco seguinte (sem mana de graça)
+describe('Modo manual: desvirar devolve a mana da reserva (regra de 06/10)', () => {
   const comManual = (opts: Parameters<typeof setup>[0]): TestGame => {
     const tg = comManualAntigo(opts);
     tg.state.config.desvirarTiraMana = true;
@@ -215,6 +216,8 @@ describe('Modo manual: desvirar devolve a mana da reserva', () => {
     const s = [...g.salas.values()][0];
     expect(s.d.partida!.config.desvirarTiraMana).toBe(true);
     expect(s.game!.state.config.desvirarTiraMana).toBe(true);
+    expect(s.d.partida!.config.desvirarSoComMana).toBe(true);
+    expect(s.game!.state.config.desvirarSoComMana).toBe(true);
   });
 
   it('a etapa de desvirar continua normal (não é ajuste manual)', () => {
@@ -225,5 +228,130 @@ describe('Modo manual: desvirar devolve a mana da reserva', () => {
     tg.passTo('upkeep', 0);
     expect(tg.state.objects[forest].tapped).toBe(false);
     expect(tg.state.log.some((l) => l.text.includes('sai da reserva'))).toBe(false);
+  });
+});
+
+// partidas novas (config.desvirarSoComMana): desvirar à mão o que foi virado para mana só vale com a mana daquele virar
+// inteira na reserva. Era possível virar 3 terrenos, conjurar com eles, desvirar e virar de novo: mana de graça
+describe('Modo manual: sem mana de graça ao desvirar', () => {
+  const comManual = (opts: Parameters<typeof setup>[0]): TestGame => {
+    const tg = comManualAntigo(opts);
+    tg.state.config.desvirarTiraMana = true;
+    tg.state.config.desvirarSoComMana = true;
+    return tg;
+  };
+  const reserva = (tg: TestGame, p = 0) => tg.state.players[p].manaPool.map((u) => u.type).join('');
+  const virarParaMana = (tg: TestGame, obj: ObjId) => {
+    const a = tg.actionIds().find((id) => id.startsWith('mana:') && id.split(':')[1].startsWith(`${obj}|`));
+    expect(a, `habilidade de mana de ${obj}`).toBeDefined();
+    tg.answer({ kind: 'priority', action: a! });
+    tg.settle();
+  };
+  const ultimaLinha = (tg: TestGame) => tg.state.log[tg.state.log.length - 1].text;
+  const GASTA = 'A mana dessa permanente já foi gasta: para voltar atrás, use Desfazer';
+  const manaGasta = (tg: TestGame, id: ObjId) => buildView(tg.g, 0, tg.pending).battlefield.find((o) => o.id === id)?.manaGasta === true;
+
+  it('o caso relatado: virar os terrenos, conjurar com eles e desvirar é recusado, sem mana a mais', () => {
+    const tg = comManual({ battlefield: [['Plains', 'Plains'], []], hand: [['Wall of Omens'], []], library: [['Island'], ['Island']] });
+    const [p1, p2] = tg.all('Plains');
+    virarParaMana(tg, p1);
+    virarParaMana(tg, p2);
+    expect(reserva(tg)).toBe('WW');
+    tg.cast('Wall of Omens');
+    expect(reserva(tg)).toBe('');
+    for (const id of [p1, p2]) {
+      expect(manual(tg, { k: 'virar', obj: id, tapped: false })).toBe(GASTA);
+      expect(tg.state.objects[id].tapped).toBe(true);
+      expect(manaGasta(tg, id)).toBe(true);
+    }
+    // "Desvirar tudo" manda um desvirar por permanente: cada um é recusado do mesmo jeito
+    for (const id of [p1, p2]) expect(manual(tg, { k: 'virar', obj: id, tapped: false })).toBe(GASTA);
+    expect(tg.actionIds().some((id) => id.startsWith('mana:'))).toBe(false);
+    tg.resolveAll();
+    expect(tg.find('Wall of Omens')).not.toBeNull();
+  });
+
+  it('com a mana inteira na reserva, desvirar desfaz o virar e ela sai; a terra vira de novo', () => {
+    const tg = comManual({ battlefield: [['Forest', 'Island'], []] });
+    const forest = tg.bf('Forest'), island = tg.bf('Island');
+    virarParaMana(tg, forest);
+    virarParaMana(tg, island);
+    expect(manaGasta(tg, forest)).toBe(false);
+    expect(manual(tg, { k: 'virar', obj: forest, tapped: false })).toBeNull();
+    expect(reserva(tg)).toBe('U');
+    expect(ultimaLinha(tg)).toBe('Ana (ajuste manual) desvira Forest (a mana dela, {G}, sai da reserva).');
+    virarParaMana(tg, forest);
+    expect(manual(tg, { k: 'virar', obj: forest, tapped: false })).toBeNull();
+    expect(reserva(tg)).toBe('U');
+  });
+
+  it('parte da mana gasta (Sol Ring dá {C}{C}, uma pagou): desvirar é recusado e a que sobrou fica', () => {
+    const tg = comManual({ battlefield: [['Sol Ring'], []], hand: [['Sol Ring'], []] });
+    const ring = tg.bf('Sol Ring');
+    virarParaMana(tg, ring);
+    tg.cast('Sol Ring');
+    expect(reserva(tg)).toBe('C');
+    expect(manual(tg, { k: 'virar', obj: ring, tapped: false })).toBe(GASTA);
+    expect(reserva(tg)).toBe('C');
+    expect(tg.state.objects[ring].tapped).toBe(true);
+  });
+
+  it('a reserva esvaziou no fim da etapa: a mana foi perdida, desvirar é recusado', () => {
+    const tg = comManual({ battlefield: [['Forest'], []] });
+    const forest = tg.bf('Forest');
+    virarParaMana(tg, forest);
+    tg.passTo('beginCombat', 0);
+    expect(reserva(tg)).toBe('');
+    expect(manual(tg, { k: 'virar', obj: forest, tapped: false })).toBe(GASTA);
+  });
+
+  it('outro jogador desvira a sua terra com a mana na reserva: ela sai da sua reserva', () => {
+    const tg = comManual({ battlefield: [['Forest'], []] });
+    const forest = tg.bf('Forest');
+    virarParaMana(tg, forest);
+    tg.answer({ kind: 'priority', action: 'pass' });
+    tg.settle();
+    expect(tg.pending!.player).toBe(1);
+    expect(manual(tg, { k: 'virar', obj: forest, tapped: false })).toBeNull();
+    expect(tg.state.objects[forest].tapped).toBe(false);
+    expect(reserva(tg)).toBe('');
+    expect(ultimaLinha(tg)).toBe('Bruno (ajuste manual) desvira Forest (a mana dela, {G}, sai da reserva).');
+  });
+
+  it('a etapa de desvirar zera a marca: no turno seguinte a terra vira de novo e só a mana nova conta', () => {
+    const tg = comManual({ battlefield: [['Forest'], []], hand: [['Elvish Mystic'], []], library: [['Island', 'Island'], ['Island', 'Island']] });
+    const forest = tg.bf('Forest');
+    virarParaMana(tg, forest);
+    tg.cast('Elvish Mystic');
+    tg.resolveAll();
+    tg.passTo('upkeep', 1);
+    tg.passTo('main1', 0);
+    expect(tg.state.objects[forest].tapped).toBe(false);
+    expect(tg.state.objects[forest].manaTap).toBeUndefined();
+    virarParaMana(tg, forest);
+    expect(manaGasta(tg, forest)).toBe(false);
+    expect(manual(tg, { k: 'virar', obj: forest, tapped: false })).toBeNull();
+    expect(reserva(tg)).toBe('');
+  });
+
+  it('o que não foi virado para mana desvira livre (entrou virado, virado à mão)', () => {
+    const tg = comManual({ battlefield: [[{ name: 'Plains', tapped: true }, 'Wall of Omens'], []] });
+    expect(manual(tg, { k: 'virar', obj: tg.bf('Plains'), tapped: false })).toBeNull();
+    expect(manual(tg, { k: 'virar', obj: tg.bf('Wall of Omens'), tapped: true })).toBeNull();
+    expect(manual(tg, { k: 'virar', obj: tg.bf('Wall of Omens'), tapped: false })).toBeNull();
+    expect(tg.state.objects[tg.bf('Wall of Omens')].tapped).toBe(false);
+  });
+
+  it('as entradas se reproduzem iguais com a regra nova', () => {
+    const tg = comManual({ battlefield: [['Forest', 'Island'], []], hand: [['Elvish Mystic'], []] });
+    const cp = tg.game.checkpoint()!;
+    const forest = tg.bf('Forest');
+    virarParaMana(tg, forest);
+    expect(manual(tg, { k: 'virar', obj: forest, tapped: false })).toBeNull();
+    virarParaMana(tg, forest);
+    tg.cast('Elvish Mystic');
+    expect(manual(tg, { k: 'virar', obj: forest, tapped: false })).toBe(GASTA);
+    const refeita = Game.fromCheckpoint(cp, [], tg.game.inputs);
+    expect(JSON.stringify(refeita.state)).toBe(JSON.stringify(tg.state));
   });
 });

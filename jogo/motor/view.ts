@@ -7,6 +7,7 @@ import { summoningSick } from './costs.ts';
 import { registry } from './defs.ts';
 import type { G } from './game-context.ts';
 import { formatCost } from './mana.ts';
+import { manaDesfazivel } from './manual.ts';
 import { STEP_NAMES } from './turn.ts';
 import type { Decision, GameObject, ObjId, PlayerId, Step, TargetRef } from './types.ts';
 
@@ -46,6 +47,9 @@ export interface ObjView {
   /** só para a criatura no campo que atribui dano de combate igual à resistência em vez da força (CR 510.1a:
    *  Felothar, Assault Formation…): o dano que ela causa e a carta que dá o efeito; ausente no caso normal */
   damageByToughness?: { amount: number; source: string; sourceDef: string };
+  /** virada para mana e essa mana já pagou alguma coisa: o desvirar à mão é recusado (motor/manual.ts manaDesfazivel);
+   *  ausente no caso normal */
+  manaGasta?: boolean;
 }
 
 export interface StackView {
@@ -165,6 +169,7 @@ export function objView(g: G, id: ObjId, viewer: PlayerId | null): ObjView {
     goaded: o.goadedBy.length > 0 || (o.zone === 'battlefield' && hooks(g, 'goads').some((h) => h.fn(h.ctx, id))),
     ...(registry.emblems.has(o.def) ? { emblem: true } : {}),
     ...(byToughness ? { damageByToughness: byToughness } : {}),
+    ...(o.manaTap && g.state.config.desvirarSoComMana && !manaDesfazivel(g.state, id) ? { manaGasta: true } : {}),
   };
 }
 
