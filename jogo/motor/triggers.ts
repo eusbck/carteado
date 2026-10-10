@@ -112,6 +112,9 @@ export function emit(g: G, events: GameEvent[]): void {
       if (!def || def.kind !== 'triggered') continue;
       const zones = def.zones ?? ['battlefield'];
       if (!zones.includes(src.zone)) continue;
+      // CR 603.8, 113.6: um gatilho de estado só existe enquanto o objeto está na zona onde a habilidade funciona; o
+      // objeto que acabou de sair do campo não "olha para trás" para ele (CR 603.10a só vale para gatilhos de evento)
+      if (src.departed && def.on.kind === 'state') continue;
       const evs = src.departed ? leaving : events;
       if (evs.length === 0) continue;
       checkAbility(g, def, src, evs);

@@ -1,7 +1,13 @@
 // Regressões dos problemas que a revisão achou no motor de artefatos (custos, improvisar, camadas, gatilhos de estado).
 import { describe, expect, it } from 'vitest';
-import { addEffect, chars } from '../motor/api.ts';
-import { fixture } from './artefatos.ts';
+import { addEffect, chars, controllerOf, defineToken, destroy, gainLife, isType, triggered } from '../motor/api.ts';
+import { fixture, runEffect } from './artefatos.ts';
+
+// gatilho de estado que olha o resto do campo: "quando você não controlar outros artefatos, ganhe 1 de vida"
+const sozinho = 'Teste estado sem outros artefatos';
+defineToken({ id: sozinho, name: sozinho, types: ['Artifact'], subtypes: [], colors: [], power: null, toughness: null, abilities: [triggered({ kind: 'state', check: (c) => !c.g.state.zones.battlefield.some((id) => id !== c.source && controllerOf(c.g, id) === c.you && isType(c.g, id, 'Artifact')) }, function* (c) {
+  gainLife(c.g, c.you, 1, c.source);
+}, { text: 'Quando você não controlar outros artefatos, ganhe 1 de vida.' })] });
 
 describe('CDA de carta fora do campo durante as camadas (CR 604.3, 613.1, 613.4a)', () => {
   it('Duplicant e o Master of Etherium exilado contam o artefato criado por efeito de tipo (camada 4)', () => {
@@ -83,5 +89,34 @@ describe('improvisar à mão: virar um artefato não fecha a janela de mana (CR 
     expect(custos).toEqual(['{5}{U}', '{5}{U}', '{4}{U}', '{4}{U}', '{4}{U}', '{3}{U}', '{3}{U}']);
     expect([t1, t2, ...ilhas].every((id) => tg.state.objects[id].tapped)).toBe(true);
     expect(tg.state.players[0].manaPool).toHaveLength(0);
+  });
+});
+
+describe('gatilho de estado de objeto que saiu do campo (CR 603.8, 113.6)', () => {
+  it('destruído junto com os outros artefatos, não dispara pela última informação conhecida', () => {
+    const tg = fixture({ battlefield: [[{ name: sozinho, token: true }, 'Sol Ring'], []] });
+    expect(tg.state.zones.stack).toHaveLength(0);
+    runEffect(tg, destroy(tg.g, [tg.bf(sozinho), tg.bf('Sol Ring')]));
+    expect(tg.state.pendingTriggers).toHaveLength(0);
+    expect(tg.state.zones.stack).toHaveLength(0);
+    tg.resolveAll();
+    expect(tg.life(0)).toBe(40);
+  });
+  it('no campo, dispara quando o estado passa a valer (o mesmo efeito, sem o objeto sair)', () => {
+    const tg = fixture({ battlefield: [[{ name: sozinho, token: true }, 'Sol Ring'], []] });
+    runEffect(tg, destroy(tg.g, [tg.bf('Sol Ring')]));
+    expect(tg.state.zones.stack).toHaveLength(1);
+    tg.resolve();
+    expect(tg.life(0)).toBe(41);
+  });
+  it('Mazemind Tome destruído com quatro marcadores não põe gatilho na pilha', () => {
+    const tg = fixture({ battlefield: [[{ name: 'Mazemind Tome', counters: { page: 3 } }], []], hand: [[], []] });
+    const tome = tg.bf('Mazemind Tome');
+    tg.state.objects[tome].counters.page = 4; tg.g.bump(); tg.refresh();
+    expect(tg.state.zones.stack).toHaveLength(1);
+    tg.resolve();
+    expect(tg.life(0)).toBe(44);
+    expect(tg.state.zones.stack).toHaveLength(0);
+    expect(tg.state.pendingTriggers).toHaveLength(0);
   });
 });
