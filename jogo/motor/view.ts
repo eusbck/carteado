@@ -8,7 +8,7 @@ import { registry } from './defs.ts';
 import type { G } from './game-context.ts';
 import { formatCost } from './mana.ts';
 import { manaDesfazivel } from './manual.ts';
-import { STEP_NAMES } from './turn.ts';
+import { rodadaDe, STEP_NAMES } from './turn.ts';
 import type { Decision, GameObject, ObjId, PlayerId, Step, TargetRef } from './types.ts';
 
 export interface ObjView {
@@ -85,7 +85,8 @@ export interface PlayerView {
 
 export interface GameView {
   you: PlayerId | null;
-  turn: { number: number; active: PlayerId; step: Step; stepName: string };
+  /** number: o turno de cada jogador (CR 500.1); round: a rodada, que é o que a mesa mostra */
+  turn: { number: number; round: number; active: PlayerId; step: Step; stepName: string };
   priority: PlayerId | null;
   players: PlayerView[];
   turnOrder: PlayerId[];
@@ -97,7 +98,7 @@ export interface GameView {
   combat: { attackers: { id: ObjId; target: TargetRef; blocked: boolean; blockers: ObjId[] }[] } | null;
   decision: Decision | null;
   waiting: { player: PlayerId; kind: string } | null;
-  log: { turn: number; text: string; rule?: string }[];
+  log: { turn: number; round?: number; text: string; rule?: string }[];
   gameOver: { winners: PlayerId[]; draw: boolean; reason: string } | null;
 }
 
@@ -204,10 +205,10 @@ export function buildView(g: G, viewer: PlayerId | null, pending: Decision | nul
     left: p.left, lost: p.lost, won: p.won, monarch: s.monarch === p.id, mulligans: p.mulligans,
   }));
   const log = s.log.slice(-200).filter((e) => e.visibleTo === null || (viewer !== null && e.visibleTo.includes(viewer)) || e.hiddenText)
-    .map((e) => ({ turn: e.turn, text: e.visibleTo === null || (viewer !== null && e.visibleTo.includes(viewer)) ? e.text : e.hiddenText!, rule: e.rule }));
+    .map((e) => ({ turn: e.turn, ...(e.round !== undefined ? { round: e.round } : {}), text: e.visibleTo === null || (viewer !== null && e.visibleTo.includes(viewer)) ? e.text : e.hiddenText!, rule: e.rule }));
   return {
     you: viewer,
-    turn: { number: s.turn.number, active: s.turn.active, step: s.turn.step, stepName: STEP_NAMES[s.turn.step] },
+    turn: { number: s.turn.number, round: rodadaDe(s), active: s.turn.active, step: s.turn.step, stepName: STEP_NAMES[s.turn.step] },
     priority: pending?.kind === 'priority' ? pending.player : null,
     players,
     turnOrder: s.turnOrder,

@@ -45,19 +45,23 @@ export function Registro({ v, cor, fechar }: { v: GameView; cor: (p: number) => 
   const ids = useMemo(() => (numeracao.current = numerar(numeracao.current, v.log)).ids, [v.log]);
   const turnos = useMemo(() => {
     const termo = normalizar(busca.trim());
-    const grupos: { chave: string; turno: number; linhas: Linha[] }[] = [];
+    const grupos: { chave: string; turno: number; rodada: number; vez: string | null; linhas: Linha[] }[] = [];
     const vezes = new Map<number, number>();
     v.log.forEach((l, k) => {
-      const texto = traduzir(l.text);
+      // a mesa conta rodadas: a linha "Turno N: Fulano." (o turno de cada jogador, CR 500.1) vira o começo da vez dele
+      // (o texto do motor fica igual: o desfazer do servidor procura por ele)
+      const inicio = /^Turno \d+: (.+)\.$/.exec(l.text);
+      const rodada = l.round ?? Math.max(1, Math.ceil(l.turn / Math.max(1, v.players.length)));
+      const texto = inicio ? `Começa a vez de ${inicio[1]} (rodada ${rodada}).` : traduzir(l.text);
       if (termo && !normalizar(`${texto} ${l.rule ?? ''}`).includes(termo)) return;
       const quem = v.players.find((p) => texto.startsWith(`${p.name} `) || texto.startsWith(`${p.name}:`))?.id ?? null;
       const linha: Linha = { id: ids[k], texto, regra: l.rule, manual: l.text.includes('(ajuste manual)'), quem };
       const ultimo = grupos[grupos.length - 1];
-      if (ultimo?.turno === l.turn) { ultimo.linhas.push(linha); return; }
-      // a chave do bloco é o turno (um turno que aparece de novo mais adiante ganha um sufixo)
+      if (ultimo?.turno === l.turn) { ultimo.linhas.push(linha); if (inicio) ultimo.vez = inicio[1]; return; }
+      // um bloco por turno de jogador, com a rodada no título (um turno que aparece de novo mais adiante ganha um sufixo)
       const n = vezes.get(l.turn) ?? 0;
       vezes.set(l.turn, n + 1);
-      grupos.push({ chave: n ? `${l.turn}-${n}` : String(l.turn), turno: l.turn, linhas: [linha] });
+      grupos.push({ chave: n ? `${l.turn}-${n}` : String(l.turn), turno: l.turn, rodada, vez: inicio?.[1] ?? (l.turn === v.turn.number ? v.players[v.turn.active]?.name ?? null : null), linhas: [linha] });
     });
     return grupos;
   }, [v.log, v.players, busca, ids]);
@@ -85,7 +89,7 @@ export function Registro({ v, cor, fechar }: { v: GameView; cor: (p: number) => 
         {total === 0 && <p class="suave">{busca.trim() ? 'Nada encontrado.' : 'Nada aconteceu ainda.'}</p>}
         {turnos.map((t) => (
           <section key={t.chave} class="registro-turno-bloco">
-            <h3>{t.turno === 0 ? 'Antes do 1º turno' : `Turno ${t.turno}`}</h3>
+            <h3>{t.turno === 0 ? 'Antes da 1ª rodada' : `Rodada ${t.rodada}${t.vez ? ` · vez de ${t.vez}` : ''}`}</h3>
             <ol>
               {t.linhas.map((l) => {
                 const nome = l.quem !== null ? v.players[l.quem].name : null;

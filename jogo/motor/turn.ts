@@ -16,7 +16,7 @@ import { emptyTurnStats } from './state.ts';
 import { shuffle } from './rng.ts';
 import { emit } from './triggers.ts';
 import { loseUnspentMana } from './veneno-emblema.ts';
-import { MULLIGANS_LIVRES, type Answer, type ObjId, type PlayerId, type Step } from './types.ts';
+import { MULLIGANS_LIVRES, type Answer, type GameState, type ObjId, type PlayerId, type Step } from './types.ts';
 
 export const TURN_STEPS: Step[] = ['untap', 'upkeep', 'draw', 'main1', 'beginCombat', 'declareAttackers', 'declareBlockers', 'combatDamage', 'endCombat', 'main2', 'end', 'cleanup'];
 const COMBAT_STEPS: Step[] = ['beginCombat', 'declareAttackers', 'declareBlockers', 'combatDamage', 'endCombat'];
@@ -84,12 +84,20 @@ function* startGame(g: G): Gen<void> {
 // ---------------------------------------------------------------------------
 // Turnos e etapas
 // ---------------------------------------------------------------------------
+/** a rodada do turno atual; nos estados salvos antes de TurnState.round, estimada pelo número do turno */
+export function rodadaDe(s: GameState): number {
+  return s.turn.round ?? Math.max(1, Math.ceil(s.turn.number / Math.max(1, s.players.length)));
+}
+
 function beginTurn(g: G, active: PlayerId, first = false): void {
   const s = g.state;
   const prev = s.turn.active;
   if (!first) s.lastTurnAttackedPlayers[prev] = [...s.turnStats[prev].attackedPlayers];
+  // rodada nova quando a vez volta para trás na ordem dos assentos (quem saiu da partida é pulado e não atrapalha); um
+  // turno extra do mesmo jogador fica na mesma rodada
+  const round = first ? 1 : rodadaDe(s) + (s.turnOrder.indexOf(active) < s.turnOrder.indexOf(prev) ? 1 : 0);
   s.turn = {
-    number: s.turn.number + 1, active, step: 'untap', queue: TURN_STEPS.slice(1), stepBegun: false,
+    number: s.turn.number + 1, round, active, step: 'untap', queue: TURN_STEPS.slice(1), stepBegun: false,
     mainPhaseCount: 0, combatCount: 0, landsPlayed: 0,
   };
   s.players[active].lastTurn = s.turn.number;

@@ -230,7 +230,11 @@ export type Step =
   | 'end' | 'cleanup';
 
 export interface TurnState {
+  /** conta o turno de cada jogador (CR 500.1): é o que as regras usam (enjoo, "até o seu próximo turno"…) */
   number: number;
+  /** rodada: todos os jogadores tiveram a vez (só para mostrar; a mesa conta rodadas). Ausente nos estados salvos
+   *  antes dela: rodadaDe() estima */
+  round?: number;
   active: PlayerId;
   step: Step;
   /** etapas restantes do turno, depois da atual */
@@ -301,6 +305,8 @@ export interface TurnStats {
 
 export interface LogEntry {
   turn: number;
+  /** a rodada do turno (TurnState.round), para o registro agrupar */
+  round?: number;
   text: string;
   /** null = todos veem; senão, só esses jogadores veem este texto */
   visibleTo: PlayerId[] | null;

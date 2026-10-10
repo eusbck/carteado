@@ -215,7 +215,8 @@ function FaixaFases({ v, eu, d, enviando, paradas, cor, desfazivel, parada, pens
 
   return (
     <div class={`fases ${aviso ? 'esperando-voce' : ''}`} aria-label="Fases do turno">
-      <div class="fases-turno turno-linha" title={`Turno de ${v.players[v.turn.active].name}`}><span class="rot">Turno</span><strong>{v.turn.number}</strong></div>
+      {/* a mesa conta rodadas (todos tiveram a vez); o turno de cada jogador (CR 500.1) fica nas regras e no registro */}
+      <div class="fases-turno turno-linha" title={`Rodada ${v.turn.round}: vez de ${v.players[v.turn.active].name}`}><span class="rot">Rodada</span><strong>{v.turn.round}</strong></div>
       <ol class="fases-lista">
         {FASES.map((f, i) => {
           const atual = i === iFase;
@@ -1166,8 +1167,8 @@ export function Mesa() {
       <aside class="lateral" aria-label="Menu da partida">
         <div class="marca-jogo"><Marca /><span>COMMANDER</span></div>
         <div class="lateral-turno" style={{ '--cor': cor(v.turn.active) }}>
-          <span class="rot">Turno</span><strong>{v.turn.number || '–'}</strong>
-          <span class="vez">{v.turn.number ? <>vez de <span>{v.players[v.turn.active].name}</span></> : 'antes do 1º turno'}</span>
+          <span class="rot">Rodada</span><strong>{v.turn.number ? v.turn.round : '–'}</strong>
+          <span class="vez">{v.turn.number ? <>vez de <span>{v.players[v.turn.active].name}</span></> : 'antes da 1ª rodada'}</span>
           {salaProibe && <span class="selo-sala" title="Quem criou a sala proibiu os auxílios: todos jogam em Mesa real">Sala sem auxílios</span>}
         </div>
         <ul class="menu-lateral">

@@ -98,7 +98,7 @@ export class G {
   }
 
   log(text: string, opts: Partial<Omit<LogEntry, 'text' | 'turn'>> = {}): void {
-    this.state.log.push({ turn: this.state.turn.number, text, visibleTo: opts.visibleTo ?? null, hiddenText: opts.hiddenText, rule: opts.rule });
+    this.state.log.push({ turn: this.state.turn.number, round: this.state.turn.round, text, visibleTo: opts.visibleTo ?? null, hiddenText: opts.hiddenText, rule: opts.rule });
   }
 
   get turnNumber(): number {
