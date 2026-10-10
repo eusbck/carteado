@@ -35,6 +35,8 @@ export interface ManaUnit {
   onSpend?: { abilityId: string; source: ObjId; controller: PlayerId };
   /** de qual virar da fonte veio (GameObject.manaTap.seq): o desvirar à mão só desfaz esse virar com a mana inteira na reserva */
   tap?: number;
+  /** permanente que iniciou o virar, quando uma habilidade de outra fonte acrescentou mana (Forsaken Monument) */
+  tapSource?: ObjId;
 }
 
 // ---------------------------------------------------------------------------

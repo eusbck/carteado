@@ -172,7 +172,16 @@ export function* activateManaAbility(g: G, player: PlayerId, opt: ManaOption, hi
     ...(virar !== undefined ? { tap: virar } : {}),
   });
   emit(g, [{ type: 'mana', player, source: opt.obj, produced: alt, tappedForMana: opt.def.cost.some((p) => p.k === 'tap') }]);
+  const antesDosGatilhos = new Set(g.state.players.flatMap((q) => q.manaPool));
   yield* resolveTriggeredMana(g);
+  // A mana adicional conserva a fonte da habilidade que a produziu, mas desfazer o virar original
+  // precisa retirar o lote inteiro, inclusive esse bônus, e só pode fazê-lo enquanto nada foi gasto.
+  if (virar !== undefined && fonte?.manaTap?.seq === virar) {
+    const adicionais = g.state.players.flatMap((q) => q.manaPool).filter((u) => !antesDosGatilhos.has(u));
+    for (const u of adicionais) { u.tap = virar; u.tapSource = opt.obj; }
+    fonte.manaTap.n += adicionais.length;
+    if (adicionais.length) g.bump();
+  }
   if (opt.def.extra) yield* opt.def.extra(ctx);
   return true;
 }

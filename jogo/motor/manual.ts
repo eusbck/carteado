@@ -29,7 +29,7 @@ export function manaDesfazivel(s: GameState, id: ObjId): boolean {
   const o = s.objects[id];
   if (!o?.tapped || !o.manaTap) return true;
   const { seq, n } = o.manaTap;
-  return s.players.reduce((k, p) => k + p.manaPool.filter((u) => u.source === id && u.tap === seq).length, 0) >= n;
+  return s.players.reduce((k, p) => k + p.manaPool.filter((u) => (u.tapSource ?? u.source) === id && u.tap === seq).length, 0) >= n;
 }
 
 /** confere o ajuste contra o estado atual; devolve o motivo da recusa ou null */
@@ -115,15 +115,15 @@ export function* performManual(g: G, p: PlayerId, m: ManualAction): Gen<boolean>
         // que seja a reserva e quem quer que desvire
         const virar = s.objects[m.obj].manaTap?.seq;
         if (!untap(g, m.obj)) { g.log(`${quem} tenta desvirar ${nome}, mas ela não desvira.`); return true; }
-        const daquele = (u: ManaUnit) => virar !== undefined && u.source === m.obj && u.tap === virar;
+        const daquele = (u: ManaUnit) => virar !== undefined && (u.tapSource ?? u.source) === m.obj && u.tap === virar;
         const dela = s.players.flatMap((q) => q.manaPool.filter(daquele));
         if (dela.length) { for (const q of s.players) q.manaPool = q.manaPool.filter((u) => !daquele(u)); g.bump(); }
         g.log(`${quem} desvira ${nome}${dela.length ? ` (a mana dela, ${poolToString(dela)}, sai da reserva)` : ''}.`);
         return true;
       }
       const desvirou = untap(g, m.obj);
-      const dela = desvirou && dono === p && s.config.desvirarTiraMana ? ctl.manaPool.filter((u) => u.source === m.obj) : [];
-      if (dela.length) { ctl.manaPool = ctl.manaPool.filter((u) => u.source !== m.obj); g.bump(); }
+      const dela = desvirou && dono === p && s.config.desvirarTiraMana ? ctl.manaPool.filter((u) => (u.tapSource ?? u.source) === m.obj) : [];
+      if (dela.length) { ctl.manaPool = ctl.manaPool.filter((u) => (u.tapSource ?? u.source) !== m.obj); g.bump(); }
       g.log(`${quem} desvira ${nome}${dela.length ? ` (a mana dela, ${poolToString(dela)}, sai da reserva)` : ''}.`);
       return true;
     }
