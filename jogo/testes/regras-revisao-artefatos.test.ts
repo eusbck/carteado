@@ -59,3 +59,29 @@ describe('improvisar no pagamento automático: fontes de mana primeiro (CR 702.1
     expect(tg.state.objects[velho].tapped).toBe(false);
   });
 });
+
+describe('improvisar à mão: virar um artefato não fecha a janela de mana (CR 601.2g-h, 702.126a)', () => {
+  it('Kappa Cannoneer: improvisa com dois Thopters clicando neles e paga o resto com as Islands, em qualquer ordem', () => {
+    const tg = fixture({ battlefield: [[{ name: 'Thopter', token: true }, { name: 'Thopter', token: true }, 'Island', 'Island', 'Island', 'Island'], []], hand: [['Kappa Cannoneer'], []] });
+    const [t1, t2] = tg.state.zones.battlefield.filter((id) => tg.state.objects[id].def === 'Thopter');
+    const ilhas = tg.state.zones.battlefield.filter((id) => tg.state.objects[id].def === 'Island');
+    // a ordem dos cliques: Island, Thopter, Island, Island, Thopter, Island, confirmar
+    const cliques: number[] = [ilhas[0], t1, ilhas[1], ilhas[2], t2, ilhas[3]];
+    const custos: string[] = [];
+    // cada resposta roteirizada vale uma vez: uma por clique e a confirmação
+    for (let i = 0; i <= cliques.length; i++) tg.script.push((d) => {
+      if (d.kind !== 'payment') return null;
+      custos.push(d.cost);
+      const obj = cliques.shift();
+      if (obj === undefined) return { kind: 'payment', pay: true };
+      const fonte = d.sources.find((s) => s.obj === obj);
+      if (!fonte) throw new Error(`fonte recusada: ${tg.state.objects[obj].def} (custo ${d.cost})`);
+      return { kind: 'payment', activate: { source: fonte.id } };
+    });
+    tg.cast('Kappa Cannoneer');
+    expect(tg.state.zones.stack.map((id) => tg.state.objects[id].def)).toContain('Kappa Cannoneer');
+    expect(custos).toEqual(['{5}{U}', '{5}{U}', '{4}{U}', '{4}{U}', '{4}{U}', '{3}{U}', '{3}{U}']);
+    expect([t1, t2, ...ilhas].every((id) => tg.state.objects[id].tapped)).toBe(true);
+    expect(tg.state.players[0].manaPool).toHaveLength(0);
+  });
+});

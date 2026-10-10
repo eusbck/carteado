@@ -388,25 +388,26 @@ export function* payMana(g: G, player: PlayerId, cost: ManaSymbol[], ctx: PayCon
   const p = g.state.players[player];
   const phy = phyrexianCount(cost);
   let lifeChoice = 0;
-  let manaWindowClosed = false;
   if (cost.length === 0) return { units: [], lifePaid: 0 };
   for (;;) {
     const spend: SpendContext = { canSpend: canSpendFn(g, ctx), anyType: ctx.anyType, lifeForPhyrexian: lifeChoice };
-    const opts = manaWindowClosed ? [] : manaOptions(g, player, { excludeSource: ctx.excludeSource });
+    const opts = manaOptions(g, player, { excludeSource: ctx.excludeSource });
     const auto = planPayment(g, player, cost, ctx, lifeChoice, true);
     const sources: PaymentSource[] = opts.map((o) => ({ id: o.key, obj: o.obj, label: `${nameOf(g, o.obj)}: ${o.alt.map((t) => `{${t}}`).join('')}`, produces: o.alt }));
     const improvisers = ctx.improvise && genericOf(cost) > 0 ? improviseCandidates(g, player) : [];
     sources.push(...improvisers.map((id) => ({ id: `improvise:${id}`, obj: id, label: `Improvisar: vire ${nameOf(g, id)} para pagar {1}`, produces: [] })));
-    // Após começar a pagar por improvisar, a janela de habilidades de mana já terminou (CR 601.2g-h).
-    const autoAllowed = !manaWindowClosed || (auto !== null && auto.length === 0);
+    // Improvisar (CR 702.126a) em ordem livre, como na mesa real: virar um artefato paga {1} do genérico e a janela de
+    // mana continua aberta para as outras fontes pagarem o resto. O resultado é o mesmo de ativar todas as habilidades
+    // de mana antes (CR 601.2g) e virar os artefatos ao pagar (CR 601.2h): o artefato virado para improvisar já não
+    // pode ser usado numa habilidade de mana, e cancelar desfaz a conjuração inteira (CR 733).
     const a = yield* ask<Extract<Answer, { kind: 'payment' }>>(g, {
       kind: 'payment', player, prompt: `Pague ${formatCost(cost)} para ${ctx.label}`,
       cost: formatCost(cost), remaining: `${formatCost(cost)} (reserva: ${poolToString(p.manaPool) || 'vazia'})`,
-      sources, canAuto: auto !== null && autoAllowed, lifeOptions: phy, canCancel: ctx.canCancel,
+      sources, canAuto: auto !== null, lifeOptions: phy, canCancel: ctx.canCancel,
     }, (ans) => {
       if (ans.kind !== 'payment') return 'Resposta inválida';
       if (ans.cancel && !ctx.canCancel) return 'Este pagamento não pode ser cancelado';
-      if (ans.auto && (auto === null || !autoAllowed)) return 'Não há mana suficiente';
+      if (ans.auto && auto === null) return 'Não há mana suficiente';
       if (ans.activate && !sources.some((o) => o.id === ans.activate!.source)) return 'Fonte indisponível';
       if (ans.life !== undefined && (ans.life < 0 || ans.life > phy || p.life < 2 * ans.life)) return 'Vida insuficiente';
       if (ans.pay && !matchPool(cost, p.manaPool, { ...spend, lifeForPhyrexian: ans.life ?? lifeChoice })) return 'A reserva não paga o custo inteiro';
@@ -429,13 +430,11 @@ export function* payMana(g: G, player: PlayerId, cost: ManaSymbol[], ctx: PayCon
         if (n > Math.min(genericOf(cost), remaining.length)) continue;
         for (const id of remaining.slice(0, n)) tap(g, id);
         cost = reduceGeneric(cost, n);
-        manaWindowClosed = n > 0;
       }
     } else if (a.activate) {
       if (a.activate.source.startsWith('improvise:')) {
         tap(g, Number(a.activate.source.slice('improvise:'.length)));
         cost = reduceGeneric(cost, 1);
-        manaWindowClosed = true;
         continue;
       }
       const o = opts.find((x) => x.key === a.activate!.source)!;
