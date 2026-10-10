@@ -102,7 +102,8 @@ export function normalizar(r: RespostaMox, idPedido: string): DeckMox {
     else juntas.set(e.nome, { ...e });
   }
   const ignoradas = Object.entries(IGNORADAS).filter(([k]) => Object.keys(zonas[k]?.cards ?? {}).length).map(([, n]) => n);
-  const nome = String(r.name ?? '').replace(/[\u0000-\u001f\u007f]/g, '').replace(/\s+/g, ' ').trim().slice(0, 60) || idPedido;
+  // aparado de novo depois do corte: o nome comprido não termina com espaço
+  const nome = String(r.name ?? '').replace(/[\u0000-\u001f\u007f]/g, '').replace(/\s+/g, ' ').trim().slice(0, 60).trimEnd() || idPedido;
   return {
     publicId: typeof r.publicId === 'string' && ID.test(r.publicId) ? r.publicId : idPedido,
     nome,

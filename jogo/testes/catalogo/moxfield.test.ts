@@ -74,6 +74,9 @@ describe('normalizar', () => {
     const n = normalizar(r, 'Teste12345').nome;
     expect(n.startsWith('Deck com x')).toBe(true);
     expect(n).toHaveLength(60);
+    // o corte cai num espaço: o nome não termina com ele
+    const espaco = respostaMox('Teste12345', `${'y'.repeat(59)} depois`, { nome: 'Jace' }, [{ nome: 'Opt' }]);
+    expect(normalizar(espaco, 'Teste12345').nome).toBe('y'.repeat(59));
   });
 });
 

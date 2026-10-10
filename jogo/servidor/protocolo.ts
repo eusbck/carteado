@@ -130,7 +130,7 @@ export interface Proposta {
   avisos: string[];
 }
 
-/** importação ou atualização em andamento (uma por vez para a mesa toda) */
+/** importação ou atualização de deck (várias andam juntas; o mesmo deck, uma de cada vez) */
 export interface TarefaPublica {
   id: number;
   tipo: 'verificar' | 'confirmar';
@@ -310,7 +310,8 @@ export type MsgServidor =
   | { t: 'pensando'; assento: number | null }
   /** a lista de decks do saguão mudou (deck importado ou atualizado) */
   | { t: 'decks'; decks: DeckResumo[] }
-  /** andamento de uma importação ou atualização de deck (null: nenhuma); `mudou`: o catálogo mudou */
+  /** andamento de uma das importações ou atualizações de deck (cada aviso traz uma tarefa, pelo id; null: só o
+   * catálogo mudou); `mudou`: o catálogo mudou */
   | { t: 'catalogo'; tarefa: TarefaPublica | null; mudou: boolean }
   /** chat da sala: `tudo` traz a conversa guardada inteira (ao entrar ou voltar); sem ele, só as mensagens novas */
   | { t: 'chat'; msgs: MsgChat[]; tudo?: boolean }

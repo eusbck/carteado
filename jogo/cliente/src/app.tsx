@@ -2,6 +2,7 @@ import { useEffect } from 'preact/hooks';
 import { lazy, Suspense } from 'preact/compat';
 import { Atmosfera } from './Atmosfera.tsx';
 import { FundoArte } from './FundoArte.tsx';
+import { Importacoes } from './Importacoes.tsx';
 import { useLoja } from './loja.ts';
 import { quandoOcioso } from './ocioso.ts';
 import { Entrada } from './telas/Entrada.tsx';
@@ -38,6 +39,8 @@ export function App() {
       {tela}
       {e.erro && <div class="aviso-erro" role="alert">{e.erro}</div>}
       {e.fase !== 'entrada' && e.fase !== 'carregando' && !e.conectado && <div class="aviso-conexao">Reconectando ao servidor…</div>}
+      {/* as importações de deck seguem fora da tela Decks: o selo mostra o andamento (na mesa, sem pegar cliques) */}
+      {e.fase !== 'entrada' && e.fase !== 'carregando' && e.fase !== 'decks' && <Importacoes naMesa={!fundo} />}
     </>
   );
 }

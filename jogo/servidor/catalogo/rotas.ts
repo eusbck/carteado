@@ -1,11 +1,13 @@
 // Rotas HTTP da tela Decks (todas exigem a sessão do servidor, conferida em servidor/index.ts):
-//   GET  /api/catalogo                     decks da mesa (jogáveis e em preparação) e a tarefa em andamento
-//   POST /api/catalogo/importar {link}     começa a buscar um deck pelo link (um link que já está na mesa atualiza)
+//   GET  /api/catalogo                     decks da mesa (jogáveis e em preparação) e as tarefas (andando e recentes)
+//   POST /api/catalogo/importar {link}     começa a importar um deck pelo link: um deck novo vai até o fim; um link que
+//                                          já está na mesa, ou uma lista que quebra regra, para na prévia
 //   POST /api/catalogo/<id>/verificar      começa a buscar de novo um deck da mesa (Atualizar)
 //   POST /api/catalogo/confirmar {token}   confirma a prévia
 //   GET  /api/catalogo/<id>/cartas         a lista atual de um deck (prévia no saguão)
 // A busca roda em segundo plano: a resposta traz o número da tarefa, e o andamento e a prévia chegam pelo
-// WebSocket (`catalogo`). Respostas longas pela rota esbarrariam no prazo do túnel.
+// WebSocket (`catalogo`). Respostas longas pela rota esbarrariam no prazo do túnel. Várias tarefas andam juntas (o
+// mesmo deck, uma de cada vez).
 
 import type { Catalogo, InfoDisco } from './catalogo.ts';
 import { lerLink } from './moxfield.ts';
@@ -32,7 +34,7 @@ export class RotasCatalogo {
   /** null: não é uma rota do catálogo */
   tratar(metodo: string, caminho: string, corpo: string, ip: string): RespostaRota | null {
     if (caminho === '/api/catalogo' && metodo === 'GET') {
-      return { status: 200, corpo: { decks: this.catalogo.publico(this.info), tarefa: this.tarefas.tarefa } };
+      return { status: 200, corpo: { decks: this.catalogo.publico(this.info), tarefas: this.tarefas.lista() } };
     }
     if (!caminho.startsWith('/api/catalogo/')) return null;
     const lista = caminho.match(/^\/api\/catalogo\/([^/]+)\/cartas$/);
@@ -49,7 +51,7 @@ export class RotasCatalogo {
         const link = String(dados.link ?? '');
         if (!lerLink(link)) return { status: 400, corpo: { erro: 'Cole o link de um deck do Moxfield (https://moxfield.com/decks/...)' } };
         if (this.muitos(ip)) return { status: 429, corpo: { erro: 'Muitas buscas seguidas; espere alguns minutos' } };
-        return { status: 202, corpo: { tarefa: this.tarefas.iniciarVerificar(link) } };
+        return { status: 202, corpo: { tarefa: this.tarefas.iniciarImportar(link) } };
       }
       if (caminho === '/api/catalogo/confirmar') {
         const token = String(dados.token ?? '');

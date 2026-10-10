@@ -375,9 +375,10 @@ async function capturasFase9(): Promise<void> {
 // --- importação de decks pelo Moxfield: tela Decks ---
 /**
  * Tela Decks em 1280×800 e 1920×1080: a lista, os detalhes de um deck pronto e de um em preparação (se houver), e
- * "Atualizar" no Terra pela internet (nada mudou). A prévia de um deck novo, a diferença de uma atualização, o
- * andamento e o erro de regras vêm de mensagens injetadas no WebSocket (o servidor das capturas usa decks/ e gerado/
- * de verdade: confirmar uma importação aqui gravaria neles).
+ * "Atualizar" no Terra pela internet (nada mudou: a prévia abre sozinha). A prévia de um deck novo, a diferença de uma
+ * atualização, o andamento, várias importações juntas, o erro de regras e o selo na tela inicial vêm de tarefas
+ * injetadas no WebSocket e na lista do GET (o servidor das capturas usa decks/ e gerado/ de verdade: confirmar uma
+ * importação aqui gravaria neles).
  * CAPTURAS_SO=decks roda só este bloco.
  */
 async function capturasDecks(): Promise<void> {
@@ -408,37 +409,55 @@ async function capturasDecks(): Promise<void> {
     } else console.log('aviso: nenhum deck em preparação para a captura 95c');
     // Atualizar de verdade (internet): o Terra não mudou no Moxfield
     await p.locator('.cat-deck', { hasText: 'Terra' }).getByRole('button', { name: 'Atualizar' }).click();
-    await p.getByText(/Nenhuma carta mudou/).waitFor({ timeout: 30000 });
+    await p.locator('.cat-janela').getByText(/Nenhuma carta mudou/).waitFor({ timeout: 30000 });
     await conferirJanela(p, 'atualizar sem mudança');
     await foto(p, `95d-decks-atualizar-nada-${w}`);
     await p.locator('.cat-acoes').getByRole('button', { name: 'Fechar' }).click();
+    await p.locator('.cat-imp').first().waitFor({ state: 'detached' });
 
-    // prévias injetadas: a resposta da busca diz o número da tarefa; a prévia chega pelo WebSocket
+    // tarefas injetadas: a resposta da importação diz o número da tarefa e o estado chega pelo WebSocket. O GET da lista
+    // também as traz (sem isso, recarregar o catálogo tiraria da lista as tarefas que o servidor não conhece)
     const info = await p.evaluate(async () => await (await fetch('/api/cartas')).json() as Record<string, { f: string | null; pt: string | null }>);
     const carta = (nome: string, pronta = true, quantidade = 1) => ({ nome, quantidade, pt: info[nome]?.pt ?? null, img: pronta ? info[nome]?.f ?? null : null, tipo: pronta ? 'Artifact' : 'Instant', pronta });
+    const falsas = new Map<number, Msg>();
+    await p.route('**/api/catalogo', async (r) => {
+      const resp = await r.fetch();
+      const j = await resp.json() as { tarefas: Msg[] };
+      r.fulfill({ response: resp, json: { ...j, tarefas: [...j.tarefas, ...falsas.values()] } });
+    });
+    const injetarTarefa = (t: Msg) => { falsas.set(t.id as number, t); injetar({ t: 'catalogo', mudou: false, tarefa: t }); };
     let tarefa = 9000;
-    const mostrar = async (tipo: string, proposta: Msg | null, extra: Msg = {}) => {
+    /** importa um link (a rota responde com uma tarefa nova) e injeta o estado dela */
+    const importar = async (estado: Msg): Promise<number> => {
       tarefa++;
       const n = tarefa;
       await p.route('**/api/catalogo/importar', (r) => r.fulfill({ status: 202, contentType: 'application/json', body: JSON.stringify({ tarefa: n }) }));
       await p.locator('.cat-importar input').fill('https://moxfield.com/decks/HAKhAXl1RHyly2_QGDPvzg');
-      await p.getByRole('button', { name: 'Buscar deck' }).click();
+      await p.getByRole('button', { name: 'Importar' }).click();
+      // o campo libera na hora para o próximo link
       await p.waitForFunction(() => !(document.querySelector('.cat-importar input') as HTMLInputElement).value);
       await p.unroute('**/api/catalogo/importar');
-      injetar({ t: 'catalogo', mudou: false, tarefa: { id: n, tipo, deck: 'HAKhAXl1RHyly2_QGDPvzg', nome: 'Multiverse Reforged', etapa: 'Pronto', feito: 0, total: 0, estado: 'pronta', ...(proposta ? { proposta } : {}), ...extra } });
+      injetarTarefa({ id: n, tipo: 'verificar', deck: 'HAKhAXl1RHyly2_QGDPvzg', nome: 'Multiverse Reforged', etapa: 'Pronto', feito: 0, total: 0, estado: 'pronta', ...estado });
+      return n;
+    };
+    /** a prévia esperando na lista: "Ver prévia" abre a janela */
+    const verPrevia = async (proposta: Msg) => {
+      await importar({ proposta });
+      await p.locator('.cat-imp').first().getByRole('button', { name: 'Ver prévia' }).click();
     };
     const faltam = ['Brainstorm', 'Chromatic Lantern', 'Lingering Souls', 'Dimir Signet', 'Underground River', 'Martial Coup', 'Polymorph', 'Shark Typhoon', 'Hullbreaker Horror', 'Sunfall', 'Nicol Bolas, Dragon-God', "Elspeth, Sun's Champion"].map((n) => carta(n, false));
     const base = { token: 'tokencaptura', id: 'HAKhAXl1RHyly2_QGDPvzg', link: 'https://moxfield.com/decks/HAKhAXl1RHyly2_QGDPvzg', comandante: 'Jace, Multiverse Architect', comandantePt: null, trocaComandante: null, erros: [], avisos: [] };
-    await mostrar('verificar', {
+    const previaNova = {
       ...base, nome: 'Multiverse Reforged (Reality Fracture Commander Decklist)', novo: true, total: 93, prontas: 29, faltam, entram: [], saem: [], destino: 'preparacao',
       resumo: '64 cartas ainda não têm regras no jogo. O deck fica em preparação até elas ficarem prontas.',
-    });
+    };
+    await verPrevia(previaNova);
     await conferirJanela(p, 'prévia de deck novo');
     await foto(p, `96-decks-importar-previa-${w}`);
     await p.locator('.cat-faltam summary').click();
     await foto(p, `96b-decks-importar-previa-faltam-${w}`);
     await p.keyboard.press('Escape');
-    await mostrar('verificar', {
+    await verPrevia({
       ...base, id: pronto.id, nome: 'Terra', novo: false, comandante: 'Terra, Herald of Hope', total: 93, prontas: 92, faltam: [carta('Brainstorm', false)],
       entram: [carta('Bag of Holding'), carta('Brainstorm', false), carta('Fellwar Stone')], saem: [carta('Arcane Signet'), carta('Mountain', true, 2), carta('Thrill of Possibility')],
       destino: 'preparacao', resumo: '1 carta ainda não tem regras no jogo. A atualização fica guardada e o deck segue com a lista atual até ela ficar pronta.',
@@ -447,7 +466,7 @@ async function capturasDecks(): Promise<void> {
     await conferirJanela(p, 'diferença da atualização');
     await foto(p, `96c-decks-atualizar-diferenca-${w}`);
     await p.keyboard.press('Escape');
-    await mostrar('verificar', {
+    await verPrevia({
       ...base, nome: 'Deck com 99 cartas', novo: true, total: 92, prontas: 92, faltam: [], entram: [], saem: [], destino: 'jogavel',
       resumo: 'A lista não cumpre as regras de deck do Commander: corrija no Moxfield e busque de novo.',
       erros: ['O deck tem 99 cartas (precisa de 100) — CR 903.5a', 'Sol Ring aparece 2 vezes — CR 903.5b'], avisos: ['Dockside Extortionist está banida no Commander'],
@@ -455,18 +474,42 @@ async function capturasDecks(): Promise<void> {
     await conferirJanela(p, 'erro de regras');
     await foto(p, `96d-decks-importar-erro-regras-${w}`);
     await p.keyboard.press('Escape');
-    // andamento da confirmação (a janela fica aberta até terminar) e o resultado
-    await mostrar('confirmar', null, { estado: 'andando', etapa: 'Baixando as cartas novas: Hullbreaker Horror', feito: 23, total: 64 });
-    await p.locator('.cat-janela .cat-progresso').waitFor();
-    await foto(p, `96e-decks-confirmar-andamento-${w}`);
-    injetar({ t: 'catalogo', mudou: false, tarefa: { id: tarefa, tipo: 'confirmar', deck: 'HAKhAXl1RHyly2_QGDPvzg', nome: 'Multiverse Reforged', etapa: 'Pronto', feito: 64, total: 64, estado: 'pronta', resultado: { id: 'HAKhAXl1RHyly2_QGDPvzg', destino: 'preparacao', texto: 'Multiverse Reforged ficou em preparação: faltam regras para 64 cartas.' } } });
-    await p.getByText(/ficou em preparação: faltam/).waitFor();
-    await foto(p, `96f-decks-confirmar-resultado-${w}`);
-    await p.locator('.cat-acoes').getByRole('button', { name: 'Fechar' }).click();
-    // a tela inicial, com o botão Decks
+    // importar direto: o andamento fica na lista (a janela de detalhes fecha a qualquer momento) e o resultado também
+    const direto = await importar({ tipo: 'confirmar', estado: 'andando', etapa: 'Baixando as cartas novas: Hullbreaker Horror', feito: 23, total: 64, proposta: previaNova });
+    await p.locator('.cat-imp.andando .cat-progresso').waitFor();
+    await foto(p, `96e-decks-importar-andamento-${w}`);
+    await p.locator('.cat-imp.andando').getByRole('button', { name: 'Detalhes' }).click();
+    await conferirJanela(p, 'andamento da importação');
+    await foto(p, `96e2-decks-importar-andamento-janela-${w}`);
+    await p.getByRole('button', { name: 'Continuar em segundo plano' }).click();
+    // outras duas ao mesmo tempo (o campo nunca fica preso)
+    const outra1 = await importar({ nome: 'Wretched Ranks', deck: 'HAKhAUw1_Xqr0ZxAoQgsCg', estado: 'andando', etapa: 'Buscando o deck no Moxfield' });
+    const outra2 = await importar({ nome: 'The Hosts of Mordor (The Lord of the Rings Commander Precon Decklist)', deck: 'Z4cD-XEZRUuH4W9jB_SvuA', tipo: 'confirmar', estado: 'andando', etapa: 'Baixando as cartas novas: Sauron, Lord of the Rings', feito: 7, total: 59 });
+    await p.locator('.cat-imp.andando').nth(2).waitFor();
+    await foto(p, `96g-decks-varias-importacoes-${w}`);
+    injetarTarefa({ id: direto, tipo: 'confirmar', deck: 'HAKhAXl1RHyly2_QGDPvzg', nome: 'Multiverse Reforged', etapa: 'Pronto', feito: 64, total: 64, estado: 'pronta', proposta: previaNova, resultado: { id: 'HAKhAXl1RHyly2_QGDPvzg', destino: 'preparacao', texto: 'Multiverse Reforged ficou em preparação: faltam regras para 64 cartas.' } });
+    await p.locator('.cat-imp').getByText(/ficou em preparação: faltam/).waitFor();
+    await foto(p, `96f-decks-importar-resultado-${w}`);
+    await p.locator('.cat-imp', { hasText: 'ficou em preparação' }).getByRole('button', { name: 'O que falta' }).click();
+    await conferirJanela(p, 'resultado da importação');
+    await foto(p, `96f2-decks-importar-resultado-janela-${w}`);
+    await p.keyboard.press('Escape');
+    // a tela inicial, com o botão Decks e o selo das duas que seguem importando
     await p.getByRole('button', { name: 'Voltar' }).click();
     await p.locator('.tela-passos').waitFor();
+    await p.locator('.selo-importacoes').getByText('Importando 2 decks…').waitFor();
     await foto(p, `97-inicio-com-decks-${w}`);
+    injetarTarefa({ id: outra1, tipo: 'verificar', deck: 'HAKhAUw1_Xqr0ZxAoQgsCg', nome: 'Wretched Ranks', etapa: 'Pronto', feito: 0, total: 0, estado: 'erro', erro: 'Deck não encontrado no Moxfield (ele precisa ser público ou não listado)' });
+    await p.locator('.selo-importacoes .erro').waitFor();
+    await p.locator('.selo-importacoes').getByText(/Importando The Hosts of Mordor/).waitFor();
+    await foto(p, `97b-inicio-selo-erro-e-andamento-${w}`);
+    injetarTarefa({ id: outra2, tipo: 'confirmar', deck: 'Z4cD-XEZRUuH4W9jB_SvuA', nome: 'The Hosts of Mordor (The Lord of the Rings Commander Precon Decklist)', etapa: 'Pronto', feito: 59, total: 59, estado: 'pronta', resultado: { id: 'Z4cD-XEZRUuH4W9jB_SvuA', destino: 'preparacao', texto: 'The Hosts of Mordor (The Lord of the Rings Commander Precon Decklist) ficou em preparação: faltam regras para 59 cartas.' } });
+    await p.locator('.selo-importacoes').getByText(/Hosts of Mordor .* ficou em preparação/).waitFor();
+    await foto(p, `97c-inicio-selo-resultado-${w}`);
+    // o selo leva à tela Decks, onde as importações seguem na lista
+    await p.locator('.selo-importacoes button').first().click();
+    await p.getByText('Decks da mesa').waitFor();
+    await p.locator('.cat-imp').nth(2).waitFor();
     await c.close();
   }
 }
@@ -1107,8 +1150,35 @@ async function capturasMesa(): Promise<void> {
       console.log(`   ${nome}: campo até ${(g.area.bottom - g.campo.bottom).toFixed(0)} px da base; mão em repouso ${(repouso * 100).toFixed(0)}%, erguida ${(erguida * 100).toFixed(0)}%; ${g.deitadas.length} terrenos deitados (${g.deitadas[0].w}×${g.deitadas[0].h})`);
       if (tela.width === 1920) await quadrosDaTransformacao(pg, codigo, nome);
       if (codigo === 'MESA4' && tela.width === 1920) await outrasOpcoes(pg, nome);
+      await seloNaMesa(pg, nome);
       await c.close();
     }
+  }
+
+  /** o selo de uma importação sua andando, na mesa: no canto de baixo à esquerda, sem pegar cliques. A tarefa é falsa:
+   * vem na lista do GET (recarregar a página busca as importações guardadas desta aba) */
+  async function seloNaMesa(pg: Page, nome: string): Promise<void> {
+    const t = { id: 424242, tipo: 'confirmar', deck: 'Z4cD-XEZRUuH4W9jB_SvuA', nome: 'The Hosts of Mordor (The Lord of the Rings Commander Precon Decklist)', etapa: 'Baixando as cartas novas: Sauron, Lord of the Rings', feito: 23, total: 59, estado: 'andando' };
+    await pg.route('**/api/catalogo', (r) => r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ decks: [], tarefas: [t] }) }));
+    await pg.evaluate((id) => sessionStorage.setItem('commander-da-mesa:importacoes', JSON.stringify([id])), t.id);
+    await pg.reload();
+    await pg.locator('.mesa').waitFor();
+    await pg.getByText('Você tem prioridade').waitFor({ timeout: 90000 });
+    await pg.locator('.selo-importacoes').getByText(/Importando The Hosts of Mordor/).waitFor();
+    await pg.mouse.move(3, 3);
+    await pg.waitForTimeout(600);
+    const r = await pg.evaluate(() => {
+      const e = document.querySelector('.selo-importacoes')!;
+      const b = e.getBoundingClientRect();
+      // o que fica embaixo do selo (ele não pega cliques: o clique chega nisso)
+      const sob = document.elementsFromPoint(b.left + b.width / 2, b.top + b.height / 2).filter((x) => !e.contains(x)).slice(0, 3).map((x) => `${x.tagName.toLowerCase()}.${[...x.classList].join('.')}`);
+      return { x: Math.round(b.left), y: Math.round(b.top), w: Math.round(b.width), h: Math.round(b.height), eventos: getComputedStyle(e).pointerEvents, sob };
+    });
+    if (r.eventos !== 'none') throw new Error(`${nome}: o selo pega cliques na mesa`);
+    console.log(`   ${nome}: selo das importações em ${r.x},${r.y} (${r.w}×${r.h}); embaixo: ${r.sob.join(' > ')}`);
+    await foto(pg, `60c-mesa-${nome}-selo-importacao`);
+    await pg.unroute('**/api/catalogo');
+    await pg.evaluate(() => sessionStorage.removeItem('commander-da-mesa:importacoes'));
   }
 
   /** as outras opções das Configurações: o retrato à esquerda, acima do Comando, e os terrenos como cartas inteiras */

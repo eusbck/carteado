@@ -80,7 +80,7 @@ const tarefas: TarefasDecks = new TarefasDecks({
       resumoDecks = resumir(listas);
       anunciar({ t: 'decks', decks: resumoDecks });
     }
-    anunciar({ t: 'catalogo', tarefa: tarefas.tarefa, mudou: true });
+    anunciar({ t: 'catalogo', tarefa: null, mudou: true });
   },
   aoAndamento: (t) => anunciar({ t: 'catalogo', tarefa: t, mudou: false }),
 });

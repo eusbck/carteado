@@ -1092,7 +1092,35 @@ img.mini { width: 40px; aspect-ratio: 63 / 88; object-fit: cover; border-radius:
 .cat-carta-nome b.sai { color: var(--vermelho); }
 .cat-carta-sub { color: var(--suave); font-size: 11.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .cat-acoes { justify-content: flex-end; margin-top: 16px; }
-@media (max-width: 760px) { .cat-diferenca { grid-template-columns: 1fr; } .cat-tela { padding: 22px 16px; } .cat-importar { grid-template-columns: 1fr; } }
+/* as importações desta tela: uma linha por deck, com o andamento ou o resultado */
+.cat-importacoes { display: grid; gap: 10px; }
+.cat-importacoes ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.cat-imp { display: grid; grid-template-columns: minmax(140px, 240px) minmax(0, 1fr) auto; gap: 8px 14px; align-items: center; padding: 9px 12px; border-radius: 10px; background: rgba(255, 255, 255, .03); border: 1px solid var(--linha); font-size: 13px; }
+.cat-imp.andando { border-color: color-mix(in srgb, var(--ouro) 35%, transparent); }
+.cat-imp-nome { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cat-imp .cat-resumo, .cat-imp .cat-erro { padding: 5px 10px; font-size: 12.5px; }
+.cat-imp .cat-progresso { font-size: 12.5px; }
+.cat-imp-botoes { display: flex; gap: 6px; justify-content: flex-end; }
+@media (max-width: 760px) { .cat-diferenca { grid-template-columns: 1fr; } .cat-tela { padding: 22px 16px; } .cat-importar { grid-template-columns: 1fr; } .cat-imp { grid-template-columns: minmax(0, 1fr) auto; } .cat-imp > :nth-child(2) { grid-column: 1 / -1; grid-row: 2; } }
+
+/* selo das importações fora da tela Decks (início, saguão e mesa): andamento e, ao terminar, o resultado por uns
+   segundos. Na mesa ele só informa: não pega cliques */
+.selo-importacoes { position: fixed; left: 14px; bottom: 14px; z-index: 290; display: grid; gap: 6px; max-width: min(380px, calc(100vw - 28px)); }
+.selo-importacoes > * { display: grid; gap: 5px; text-align: left; font: inherit; font-size: 12.5px; font-weight: 600; color: var(--ouro); background: var(--vidro); border: 1px solid color-mix(in srgb, var(--ouro) 55%, transparent); padding: 7px 12px; border-radius: 10px; box-shadow: var(--sombra); backdrop-filter: blur(6px); }
+.selo-importacoes button { cursor: pointer; }
+.selo-importacoes button:hover { border-color: var(--ouro); }
+.selo-importacoes.na-mesa { pointer-events: none; opacity: .92; }
+.selo-importacoes .selo-linha { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.selo-importacoes .selo-linha > span:last-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.selo-importacoes .cat-barra { height: 4px; }
+.selo-importacoes .cat-barra > span { background: var(--ouro); }
+.selo-importacoes .selo-roda { flex: none; width: 10px; height: 10px; border-radius: 50%; border: 2px solid color-mix(in srgb, var(--ouro) 30%, transparent); border-top-color: var(--ouro); animation: selo-gira .9s linear infinite; }
+.selo-importacoes .jogavel { color: var(--positivo); border-color: color-mix(in srgb, var(--positivo) 55%, transparent); }
+.selo-importacoes .erro { color: #ffd2d2; border-color: color-mix(in srgb, var(--vermelho) 60%, transparent); }
+@keyframes selo-gira { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .selo-importacoes .selo-roda { animation: none; border-color: var(--ouro); } }
+/* com a conexão caída, o aviso dela fica embaixo e o selo sobe */
+.aviso-conexao ~ .selo-importacoes { bottom: 58px; }
 
 /* ---------------------------------------------------------------- entrada épica e atmosfera (Entrada.tsx, Atmosfera.tsx) */
 /* atmosfera: entre os wallpapers (FundoArte) e as telas; trevas com luz (brasas) e vida (ciscos verdes) */

@@ -42,12 +42,10 @@ export interface Estado {
   pensando: number | null;
   /** tela Decks: todos os decks da mesa (null até abrir a tela) */
   catalogo: DeckCatalogo[] | null;
-  /** importação ou atualização de deck em andamento (de qualquer pessoa) */
-  tarefaDeck: TarefaPublica | null;
-  /** a tarefa que esta tela começou (a prévia e o resultado aparecem só para quem pediu) */
-  minhaTarefa: number | null;
-  /** o último estado dela: fica mesmo se outra pessoa começar outra importação logo depois */
-  minhaTarefaEstado: TarefaPublica | null;
+  /** importações e atualizações de deck do servidor (de qualquer pessoa), pelo id: as que andam e as recentes */
+  tarefasDeck: Record<number, TarefaPublica>;
+  /** as que esta tela começou, na ordem (a lista da tela Decks e o selo; a prévia e o resultado são só de quem pediu) */
+  minhasTarefas: number[];
   /** chat da sala (as mensagens guardadas no servidor e as que chegaram depois) */
   chat: MsgChat[];
   /** o seu id de autor no chat (vem com a sala): as suas mensagens são as com esse `quem` */
@@ -71,8 +69,25 @@ function guardarSala(v: { codigo: string; token: string } | null): void {
   } catch { /* sem armazenamento: só não reconecta sozinho */ }
 }
 
+// as importações que esta aba começou: recarregar a página não perde o andamento nem o resultado
+const CHAVE_TAREFAS = 'commander-da-mesa:importacoes';
+
+function tarefasGuardadas(): number[] {
+  try {
+    const l = JSON.parse(sessionStorage.getItem(CHAVE_TAREFAS) ?? '[]');
+    return Array.isArray(l) ? l.filter((x) => typeof x === 'number') : [];
+  } catch {
+    return [];
+  }
+}
+function guardarTarefas(l: number[]): void {
+  try {
+    sessionStorage.setItem(CHAVE_TAREFAS, JSON.stringify(l));
+  } catch { /* sem armazenamento: a lista vale até recarregar */ }
+}
+
 class Loja {
-  e: Estado = { fase: 'carregando', conectado: false, sala: null, voce: null, vista: null, paradas: null, posicoes: {}, reveladas: [], erro: null, decks: [], respondida: null, desfazivel: false, desfazer: null, avisos: [], recusa: 0, recusaCombate: null, pensando: null, catalogo: null, tarefaDeck: null, minhaTarefa: null, minhaTarefaEstado: null, chat: [], quem: null };
+  e: Estado = { fase: 'carregando', conectado: false, sala: null, voce: null, vista: null, paradas: null, posicoes: {}, reveladas: [], erro: null, decks: [], respondida: null, desfazivel: false, desfazer: null, avisos: [], recusa: 0, recusaCombate: null, pensando: null, catalogo: null, tarefasDeck: {}, minhasTarefas: tarefasGuardadas(), chat: [], quem: null };
   private ouvintes = new Set<() => void>();
   private ws: WebSocket | null = null;
   private fila: MsgCliente[] = [];
@@ -157,6 +172,8 @@ class Loja {
       const s = salaGuardada();
       if (s) ws.send(JSON.stringify({ t: 'retomar', codigo: s.codigo, token: s.token } satisfies MsgCliente));
       for (const m of this.fila.splice(0)) ws.send(JSON.stringify(m));
+      // importações desta aba (de antes de recarregar ou de uma queda): o estado delas vem de novo do servidor
+      if (this.e.minhasTarefas.length) void this.recarregarCatalogo(true);
     };
     // batimento: um `ping` a cada 20 s; se o `pong` (ou qualquer mensagem) não chegou até o batimento seguinte, a
     // conexão morreu sem aviso (notebook que dormiu, Wi-Fi que trocou) e a mesa reconecta sozinha. Conta pelo
@@ -198,53 +215,56 @@ class Loja {
   }
 
   voltarDoCatalogo(): void {
-    const andando = this.e.minhaTarefaEstado?.estado === 'andando';
-    // aberta pelo saguão: volta para a sala
-    this.mudar({ fase: this.e.sala ? 'sala' : 'inicio', minhaTarefa: andando ? this.e.minhaTarefa : null, minhaTarefaEstado: andando ? this.e.minhaTarefaEstado : null });
+    // aberta pelo saguão: volta para a sala; as importações seguem no servidor (o selo mostra o andamento)
+    this.mudar({ fase: this.e.sala ? 'sala' : 'inicio' });
   }
 
-  /** guarda a tarefa de qualquer pessoa e, se for a desta tela, o estado dela */
-  private tarefa(t: TarefaPublica | null): Partial<Estado> {
-    return { tarefaDeck: t, ...(t && t.id === this.e.minhaTarefa ? { minhaTarefaEstado: t } : {}) };
-  }
-
-  async recarregarCatalogo(): Promise<void> {
+  /** `calado`: sem aviso de erro (a volta da conexão busca as importações desta aba) */
+  async recarregarCatalogo(calado = false): Promise<void> {
     try {
       const r = await fetch('/api/catalogo');
       if (!r.ok) throw new Error(String(r.status));
-      const { decks, tarefa } = await r.json() as { decks: DeckCatalogo[]; tarefa: TarefaPublica | null };
-      this.mudar({ catalogo: decks, ...this.tarefa(tarefa) });
+      const { decks, tarefas } = await r.json() as { decks: DeckCatalogo[]; tarefas: TarefaPublica[] };
+      const porId = Object.fromEntries(tarefas.map((t) => [t.id, t]));
+      // uma tarefa que o servidor esqueceu (reiniciou, ou ela venceu) sai da lista desta aba
+      const minhas = this.e.minhasTarefas.filter((id) => porId[id]);
+      if (minhas.length !== this.e.minhasTarefas.length) guardarTarefas(minhas);
+      this.mudar({ catalogo: decks, tarefasDeck: porId, minhasTarefas: minhas });
     } catch {
-      this.erro('Não foi possível carregar os decks');
+      if (!calado) this.erro('Não foi possível carregar os decks');
     }
   }
 
-  /** começa uma busca no Moxfield: importar um link ou atualizar um deck da mesa */
-  async buscarDeck(o: { link: string } | { id: string }): Promise<boolean> {
+  /** começa uma busca no Moxfield: importar um link ou atualizar um deck da mesa (o id da tarefa; null se não deu) */
+  async buscarDeck(o: { link: string } | { id: string }): Promise<number | null> {
     const url = 'link' in o ? '/api/catalogo/importar' : `/api/catalogo/${encodeURIComponent(o.id)}/verificar`;
     return this.pedirTarefa(url, 'link' in o ? { link: o.link } : {});
   }
 
-  confirmarDeck(token: string): Promise<boolean> {
+  confirmarDeck(token: string): Promise<number | null> {
     return this.pedirTarefa('/api/catalogo/confirmar', { token });
   }
 
-  /** esquece a prévia ou o resultado da sua última tarefa (fechar a janela) */
-  fecharTarefa(): void {
-    this.mudar({ minhaTarefa: null, minhaTarefaEstado: null });
+  /** tira da lista uma importação sua que terminou (o Ok no resultado, no erro ou ao cancelar a prévia) */
+  dispensarTarefa(id: number): void {
+    const minhas = this.e.minhasTarefas.filter((x) => x !== id);
+    guardarTarefas(minhas);
+    this.mudar({ minhasTarefas: minhas });
   }
 
-  private async pedirTarefa(url: string, corpo: unknown): Promise<boolean> {
+  private async pedirTarefa(url: string, corpo: unknown): Promise<number | null> {
     try {
       const r = await fetch(url, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(corpo) });
       const j = await r.json().catch(() => ({})) as { tarefa?: number; erro?: string };
-      if (!r.ok || typeof j.tarefa !== 'number') { this.erro(j.erro ?? 'Não foi possível começar'); return false; }
-      // o andamento pode ter chegado pelo WebSocket antes da resposta
-      this.mudar({ minhaTarefa: j.tarefa, minhaTarefaEstado: this.e.tarefaDeck?.id === j.tarefa ? this.e.tarefaDeck : null });
-      return true;
+      if (!r.ok || typeof j.tarefa !== 'number') { this.erro(j.erro ?? 'Não foi possível começar'); return null; }
+      // o andamento pode ter chegado pelo WebSocket antes da resposta (já está em tarefasDeck)
+      const minhas = [...this.e.minhasTarefas.filter((x) => x !== j.tarefa), j.tarefa];
+      guardarTarefas(minhas);
+      this.mudar({ minhasTarefas: minhas });
+      return j.tarefa;
     } catch {
       this.erro('Não foi possível falar com o servidor');
-      return false;
+      return null;
     }
   }
 
@@ -317,7 +337,7 @@ class Loja {
         this.mudar({ decks: m.decks });
         break;
       case 'catalogo':
-        this.mudar(this.tarefa(m.tarefa));
+        if (m.tarefa) this.mudar({ tarefasDeck: { ...this.e.tarefasDeck, [m.tarefa.id]: m.tarefa } });
         if (this.e.catalogo && (m.mudou || (m.tarefa?.tipo === 'confirmar' && m.tarefa.estado !== 'andando'))) void this.recarregarCatalogo();
         break;
       case 'saiu':

@@ -1,8 +1,9 @@
 // Tela Decks: os decks da mesa, importar um deck pelo link do Moxfield e atualizar um deck que mudou lá.
 // Um deck só entra no saguão quando todas as cartas têm regras no jogo; o que falta fica "em preparação" até o
-// anfitrião pedir ao Claude Code para implementar essas cartas.
+// anfitrião pedir ao Claude Code para implementar essas cartas. Várias importações andam juntas: o campo libera na
+// hora para o próximo link, a lista "Importações" mostra cada uma, e dá para sair da tela (o selo no canto segue).
 
-import { useState } from 'preact/hooks';
+import { useEffect, useState } from 'preact/hooks';
 import type { CartaCatalogo, DeckCatalogo, Proposta, TarefaPublica } from '../../../servidor/protocolo.ts';
 import { Janela } from '../Janela.tsx';
 import { Marca } from '../icones.tsx';
@@ -92,40 +93,108 @@ function CorpoProposta({ p }: { p: Proposta }) {
   );
 }
 
-/** a sua importação ou atualização: prévia, andamento da confirmação e resultado */
-function JanelaTarefa({ t }: { t: TarefaPublica }) {
+const nomeDa = (t: TarefaPublica) => t.nome ?? t.proposta?.nome ?? t.deck ?? 'Deck';
+
+/** uma importação ou atualização sua: a prévia (para confirmar), o andamento e o resultado. Fecha a qualquer
+ * momento: a importação continua no servidor e na lista */
+function JanelaTarefa({ t, fechar }: { t: TarefaPublica; fechar: () => void }) {
   const [enviando, setEnviando] = useState(false);
-  const fechar = () => { if (t.estado !== 'andando') loja.fecharTarefa(); };
   const p = t.proposta;
-  const titulo = t.tipo === 'confirmar' ? (t.nome ?? 'Deck') : p ? (p.novo ? 'Importar deck' : `Atualizar ${p.nome}`) : 'Deck';
+  const titulo = t.tipo === 'confirmar' || !p ? nomeDa(t) : p.novo ? 'Importar deck' : `Atualizar ${p.nome}`;
+  const ok = () => { loja.dispensarTarefa(t.id); fechar(); };
   let corpo;
   let acoes;
   if (t.estado === 'andando') {
     corpo = <Progresso t={t} />;
+    acoes = <button class="botao" onClick={fechar}>Continuar em segundo plano</button>;
   } else if (t.estado === 'erro') {
     corpo = <p class="cat-erro">{t.erro}</p>;
-    acoes = <button class="botao" onClick={fechar}>Fechar</button>;
+    acoes = <button class="botao" onClick={ok}>Ok</button>;
   } else if (t.resultado) {
-    corpo = <p class={`cat-resumo ${t.resultado.destino}`}>{t.resultado.texto}</p>;
-    acoes = <button class="botao" onClick={fechar}>Fechar</button>;
+    corpo = (
+      <div class="cat-proposta">
+        <p class={`cat-resumo ${t.resultado.destino}`}>{t.resultado.texto}</p>
+        {p && p.novo && <Contagem prontas={p.prontas} total={p.total} />}
+        {p && p.faltam.length > 0 && (
+          <details class="cat-faltam" open={!p.novo}>
+            <summary>Cartas sem regras ainda ({p.faltam.length})</summary>
+            <ListaCartas cartas={p.faltam} />
+          </details>
+        )}
+      </div>
+    );
+    acoes = <button class="botao" onClick={ok}>Ok</button>;
   } else if (p) {
     corpo = <CorpoProposta p={p} />;
     const rotulo = p.destino === 'jogavel' ? (p.novo ? 'Pôr no saguão' : 'Aplicar a atualização') : p.novo ? 'Guardar em preparação' : 'Guardar a atualização';
     acoes = (
       <>
-        <button class={`botao ${p.destino === 'nada' ? '' : 'fantasma'}`} onClick={fechar}>{p.destino === 'nada' ? 'Fechar' : 'Cancelar'}</button>
+        <button class={`botao ${p.destino === 'nada' ? '' : 'fantasma'}`} onClick={ok}>{p.destino === 'nada' ? 'Fechar' : 'Cancelar'}</button>
         {p.destino !== 'nada' && (
           <button class="botao principal" disabled={p.erros.length > 0 || enviando}
-            onClick={async () => { setEnviando(true); if (!(await loja.confirmarDeck(p.token))) setEnviando(false); }}>{rotulo}</button>
+            onClick={async () => {
+              setEnviando(true);
+              // a confirmação é outra tarefa, que aparece na lista; esta prévia já foi usada
+              if (await loja.confirmarDeck(p.token)) ok();
+              else setEnviando(false);
+            }}>{rotulo}</button>
         )}
       </>
     );
   }
   return (
-    <Janela titulo={titulo} fechar={fechar} larga={!!p && !p.novo && (p.entram.length > 0 || p.saem.length > 0)} classe="cat-janela">
+    <Janela titulo={titulo} fechar={fechar} larga={!!p && !t.resultado && !p.novo && (p.entram.length > 0 || p.saem.length > 0)} classe="cat-janela">
       {corpo}
       {acoes && <div class="botoes-linha cat-acoes">{acoes}</div>}
     </Janela>
+  );
+}
+
+/** uma linha da lista de importações: andamento, resultado, prévia esperando ou erro */
+function LinhaImportacao({ t, abrir }: { t: TarefaPublica; abrir: () => void }) {
+  const p = t.proposta;
+  const nome = <b class="cat-imp-nome" title={nomeDa(t)}>{nomeDa(t)}</b>;
+  if (t.estado === 'andando') {
+    return (
+      <li class="cat-imp andando">
+        {nome}
+        <Progresso t={t} />
+        {t.tipo === 'confirmar' && <button type="button" class="botao pequeno fantasma" onClick={abrir}>Detalhes</button>}
+      </li>
+    );
+  }
+  if (t.estado === 'erro') {
+    return (
+      <li class="cat-imp erro">
+        {nome}
+        <span class="cat-erro">{t.erro}</span>
+        <button type="button" class="botao pequeno fantasma" onClick={() => loja.dispensarTarefa(t.id)}>Ok</button>
+      </li>
+    );
+  }
+  if (t.resultado) {
+    return (
+      <li class={`cat-imp ${t.resultado.destino}`}>
+        {nome}
+        <span class={`cat-resumo ${t.resultado.destino}`}>{t.resultado.texto}</span>
+        <span class="cat-imp-botoes">
+          {p && p.faltam.length > 0 && <button type="button" class="botao pequeno fantasma" onClick={abrir}>O que falta</button>}
+          <button type="button" class="botao pequeno" onClick={() => loja.dispensarTarefa(t.id)}>Ok</button>
+        </span>
+      </li>
+    );
+  }
+  // prévia esperando: atualização de um deck da mesa, lista que quebra regra ou nada mudou
+  const quebra = !!p?.erros.length;
+  return (
+    <li class={`cat-imp ${quebra ? 'erro' : 'previa'}`}>
+      {nome}
+      <span class={quebra ? 'cat-erro' : 'suave'}>{quebra ? 'A lista não cumpre as regras de deck do Commander.' : p?.destino === 'nada' ? p.resumo : 'Prévia pronta: veja o que muda antes de aplicar.'}</span>
+      <span class="cat-imp-botoes">
+        <button type="button" class={`botao pequeno ${quebra || p?.destino === 'nada' ? 'fantasma' : 'principal'}`} onClick={abrir}>Ver prévia</button>
+        {(quebra || p?.destino === 'nada') && <button type="button" class="botao pequeno" onClick={() => loja.dispensarTarefa(t.id)}>Ok</button>}
+      </span>
+    </li>
   );
 }
 
@@ -162,7 +231,7 @@ function JanelaDetalhes({ d, fechar }: { d: DeckCatalogo; fechar: () => void }) 
   );
 }
 
-function CartaoDeck({ d, ocupado, buscando, abrir }: { d: DeckCatalogo; ocupado: boolean; buscando: boolean; abrir: () => void }) {
+function CartaoDeck({ d, ocupado, buscando, abrir, atualizar }: { d: DeckCatalogo; ocupado: boolean; buscando: boolean; abrir: () => void; atualizar: () => void }) {
   const p = d.preparacao;
   const selo = d.estado === 'pronto'
     ? <span class="cat-selo pronto">No saguão</span>
@@ -180,7 +249,7 @@ function CartaoDeck({ d, ocupado, buscando, abrir }: { d: DeckCatalogo; ocupado:
       </button>
       <div class="cat-deck-pe">
         <span class="suave">{d.atualizadoEm ? `Moxfield: ${data(d.atualizadoEm)}` : `Desde ${data(d.importadoEm)}`}</span>
-        <button class="botao pequeno" disabled={ocupado} onClick={() => void loja.buscarDeck({ id: d.id })}>{buscando ? 'Buscando…' : 'Atualizar'}</button>
+        <button class="botao pequeno" disabled={ocupado} onClick={atualizar}>{buscando ? 'Buscando…' : ocupado ? 'Importando…' : 'Atualizar'}</button>
       </div>
     </article>
   );
@@ -190,18 +259,30 @@ export function Decks() {
   const e = useLoja();
   const [link, setLink] = useState('');
   const [detalhe, setDetalhe] = useState<string | null>(null);
-  const t = e.tarefaDeck;
-  const minha = e.minhaTarefa !== null && e.minhaTarefaEstado?.id === e.minhaTarefa ? e.minhaTarefaEstado : null;
-  const ocupado = t?.estado === 'andando';
+  /** a importação aberta na janela */
+  const [aberta, setAberta] = useState<number | null>(null);
+  /** o Atualizar que você clicou: a prévia abre sozinha quando chegar */
+  const [esperando, setEsperando] = useState<number | null>(null);
+  const todas = Object.values(e.tarefasDeck);
+  const minhas = e.minhasTarefas.map((id) => e.tarefasDeck[id]).filter((t): t is TarefaPublica => !!t);
+  const deOutros = todas.filter((t) => t.estado === 'andando' && !e.minhasTarefas.includes(t.id));
+  const andandoNo = (id: string) => todas.some((t) => t.estado === 'andando' && t.deck === id);
   const decks = [...(e.catalogo ?? [])].sort((a, b) => a.nome.localeCompare(b.nome));
   const prontos = decks.filter((d) => d.estado !== 'preparacao').length;
   const aberto = decks.find((d) => d.id === detalhe) ?? null;
-  // a prévia, o andamento da confirmação e o resultado aparecem numa janela; a busca e o erro dela, na barra
-  const janela = minha && (minha.tipo === 'confirmar' || (minha.estado === 'pronta' && minha.proposta)) ? minha : null;
+  const janela = aberta !== null && e.minhasTarefas.includes(aberta) ? e.tarefasDeck[aberta] ?? null : null;
+
+  const pronta = esperando !== null ? e.tarefasDeck[esperando] : undefined;
+  useEffect(() => {
+    if (!pronta || pronta.estado === 'andando') return;
+    setEsperando(null);
+    if (pronta.estado === 'pronta' && pronta.proposta && !pronta.resultado) setAberta(pronta.id);
+  }, [pronta]);
 
   const buscar = async (ev: Event) => {
     ev.preventDefault();
-    if (link.trim() && (await loja.buscarDeck({ link: link.trim() }))) setLink('');
+    // o campo libera assim que o servidor aceita: dá para colar o próximo link enquanto este importa
+    if (link.trim() && (await loja.buscarDeck({ link: link.trim() })) !== null) setLink('');
   };
 
   return (
@@ -221,30 +302,36 @@ export function Decks() {
             Link do deck no Moxfield
             <input value={link} onInput={(ev) => setLink((ev.target as HTMLInputElement).value)} placeholder="https://moxfield.com/decks/…" spellcheck={false} autocomplete="off" />
           </label>
-          <button class="botao principal" type="submit" disabled={!link.trim() || ocupado}>Buscar deck</button>
+          <button class="botao principal" type="submit" disabled={!link.trim()}>Importar</button>
           <p class="suave cat-dica">
-            O deck precisa ser público ou não listado. Um link que já está na mesa atualiza o deck. Cartas que o jogo
-            ainda não tem deixam o deck em preparação até ganharem regras.
+            O deck precisa ser público ou não listado. Dá para colar vários links seguidos e sair da tela: a importação
+            continua e o selo no canto mostra o andamento. Um link que já está na mesa mostra o que muda antes de
+            atualizar. Cartas que o jogo ainda não tem deixam o deck em preparação até ganharem regras.
           </p>
-          {minha?.estado === 'andando' && !janela && <Progresso t={minha} />}
-          {ocupado && t!.id !== minha?.id && <p class="suave cat-outra">Outra pessoa está importando {t!.nome ?? 'um deck'}: {t!.etapa.toLowerCase()}…</p>}
-          {minha?.estado === 'erro' && minha.tipo === 'verificar' && (
-            <p class="cat-erro">{minha.erro} <button type="button" class="botao pequeno fantasma" onClick={() => loja.fecharTarefa()}>Ok</button></p>
-          )}
+          {deOutros.map((t) => <p key={t.id} class="suave cat-outra">Outra pessoa está importando {nomeDa(t)}: {t.etapa.toLowerCase()}…</p>)}
         </form>
+
+        {minhas.length > 0 && (
+          <section class="bloco cat-importacoes" aria-label="Importações">
+            <h2 class="rot">Importações</h2>
+            <ul>{[...minhas].reverse().map((t) => <LinhaImportacao key={t.id} t={t} abrir={() => setAberta(t.id)} />)}</ul>
+          </section>
+        )}
 
         {e.catalogo === null
           ? <p class="suave">Carregando…</p>
           : (
             <div class="cat-grade">
               {decks.map((d) => (
-                <CartaoDeck key={d.id} d={d} ocupado={!!ocupado} buscando={!!minha && minha.estado === 'andando' && minha.deck === d.id && minha.tipo === 'verificar'} abrir={() => setDetalhe(d.id)} />
+                <CartaoDeck key={d.id} d={d} ocupado={andandoNo(d.id)} abrir={() => setDetalhe(d.id)}
+                  buscando={minhas.some((t) => t.estado === 'andando' && t.deck === d.id && t.tipo === 'verificar')}
+                  atualizar={async () => { const id = await loja.buscarDeck({ id: d.id }); if (id !== null) setEsperando(id); }} />
               ))}
             </div>
           )}
       </main>
       {aberto && <JanelaDetalhes d={aberto} fechar={() => setDetalhe(null)} />}
-      {janela && <JanelaTarefa t={janela} />}
+      {janela && <JanelaTarefa key={janela.id} t={janela} fechar={() => setAberta(null)} />}
     </div>
   );
 }

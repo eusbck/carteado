@@ -2,6 +2,7 @@
 // em português (busca por oracle id), rulings, fichas que a carta cria e as imagens. A escolha da impressão
 // segue a regra de ../cartas/coletar.py (printing_score), para as cartas novas ficarem iguais às antigas.
 
+import { randomBytes } from 'node:crypto';
 import { existsSync, mkdirSync, readFileSync, renameSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { ErroRede, type Rede } from './rede.ts';
@@ -144,8 +145,10 @@ export async function baixarImagens(rede: Rede, o: ScryObjeto, pasta: string): P
       const b = await rede.binario(url);
       if (!pngValido(b)) throw new Error(`Imagem inválida do Scryfall: ${o.name}`);
       mkdirSync(dir, { recursive: true });
-      writeFileSync(arq + '.parcial', b);
-      renameSync(arq + '.parcial', arq);
+      // nome próprio: duas importações juntas podem baixar a mesma imagem (no Windows, trocar o mesmo temporário falha)
+      const parcial = `${arq}.${randomBytes(4).toString('hex')}.parcial`;
+      writeFileSync(parcial, b);
+      renameSync(parcial, arq);
     }
     out.push({ face, path: `imagens/${o.id}/${face}.png`, source_url: url });
   }
