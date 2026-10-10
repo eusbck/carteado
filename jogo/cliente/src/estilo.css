@@ -329,6 +329,24 @@ input.campo-grande { font-size: 17px; padding: 13px 14px; }
 .carta.virada { rotate: 90deg; }
 .aux-jogaveis .carta.enjoo .carta-face img { filter: saturate(.7) brightness(.92); }
 .carta.em-fase { opacity: .35; }
+/* terreno deitado (Configurações › Terrenos no campo): peça baixa e larga (--tw × --th, do campo) com a arte recortada
+   da mesma imagem da carta (a caixa da arte vai de 8% a 92% da largura, e o meio da peça fica a 33% da altura da
+   carta). Virado, fica apagado com o {T}; sozinho, inclina um pouco; no leque, só apaga (nada de girar 90°) */
+.campo > .carta.deitada { width: var(--tw); height: var(--th); aspect-ratio: auto; border-radius: calc(var(--th) * .14); container-type: inline-size; }
+.carta.deitada .carta-face { position: relative; transition: filter .25s ease; }
+.carta.deitada .carta-face img { position: absolute; width: calc(var(--tw) / .84); height: auto; max-width: none; object-fit: fill; left: calc(var(--tw) / .84 * -.08); top: calc(var(--th) / 2 - var(--tw) / .84 * 1.3968 * .33); }
+.carta.deitada .sem-arte { font-size: 9.5px; padding: 3px 5px; }
+.tile-nome { position: absolute; right: 0; bottom: 0; max-width: 100%; box-sizing: border-box; padding: 1px 6px 2px 16px; font-size: clamp(9px, calc(var(--th) * .22), 11.5px); font-weight: 700; line-height: 1.25; color: var(--texto); text-shadow: 0 1px 2px #000; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; background: linear-gradient(to right, transparent, rgba(0, 0, 0, .72) 16px); border-bottom-right-radius: inherit; pointer-events: none; }
+@container (max-width: 59px) { .tile-nome { display: none; } }
+.carta.deitada-virada .carta-face { filter: brightness(.48) saturate(.55); }
+.tile-t { position: absolute; left: calc(var(--th) * .14); top: 50%; translate: 0 -50%; width: calc(var(--th) * .44); height: calc(var(--th) * .44); pointer-events: none; filter: drop-shadow(0 1px 2px #000); }
+.campo > .carta.deitada.deitada-virada:not(.no-leque) { rotate: 7deg; }
+/* o terreno que acabou de entrar fica escondido enquanto a carta jogada se transforma nele (Mesa, arrastar.ts) */
+.campo > .carta.chegando { visibility: hidden; }
+/* a transformação (arrastar.ts, morfar): caixa e imagem com tamanho em px, animadas do retrato da carta à peça deitada */
+.morfose { position: fixed; z-index: 96; overflow: hidden; pointer-events: none; background: #141315; box-shadow: 0 30px 50px rgba(0, 0, 0, .7); }
+.morfose img { position: absolute; max-width: none; height: auto; }
+.morfose-nome { position: absolute; right: 0; bottom: 0; padding: 1px 6px 2px 16px; font-weight: 700; line-height: 1.25; color: var(--texto); text-shadow: 0 1px 2px #000; white-space: nowrap; background: linear-gradient(to right, transparent, rgba(0, 0, 0, .72) 16px); opacity: 0; }
 .carta-etiquetas { position: absolute; left: -4px; top: -6px; display: flex; flex-direction: column; align-items: flex-start; gap: 2px; pointer-events: none; z-index: 1; }
 .marca { font-size: 10.5px; line-height: 16px; padding: 0 6px; border-radius: 8px; background: #100f11; border: 1px solid var(--linha-forte); color: var(--texto); font-weight: 700; white-space: nowrap; box-shadow: 0 1px 3px rgba(0, 0, 0, .6); }
 .marca-mais { background: var(--positivo); border-color: var(--positivo); color: var(--positivo-texto); }
@@ -449,6 +467,9 @@ button.vida-n:disabled { cursor: default; }
 /* declarando atacantes, o selo do leque marca (ou desmarca) o leque inteiro */
 button.grupo-n { font-family: inherit; margin: 0; pointer-events: auto; cursor: pointer; border-color: color-mix(in srgb, var(--vermelho) 70%, transparent); transition: background .15s ease, scale .15s ease; }
 button.grupo-n:hover, button.grupo-n:focus-visible { background: var(--vermelho); scale: 1.08; }
+/* leque de terrenos deitados: "×8 · 3 {T}" */
+.grupo-t { display: inline-block; width: 11px; height: 11px; margin-left: 2px; vertical-align: -1.5px; }
+.grupo-n { white-space: nowrap; }
 
 /* zonas */
 .zonas { position: absolute; left: 0; right: 0; bottom: 0; display: flex; align-items: flex-end; justify-content: space-between; padding: 0 14px 8px; pointer-events: none; z-index: 4; }
@@ -481,14 +502,17 @@ button.zona:hover .slot { border-color: rgba(255, 255, 255, .45); }
 .mao-fechada .carta + .carta { margin-left: calc(var(--wz, 40px) * -.66); }
 .mao-fechada-vazia { width: var(--wz, 40px); aspect-ratio: 63 / 88; }
 
-/* sua mão (leque dentro da sua área) */
-/* a mão não forma camada própria (centrada sem transform e sem z-index): cada carta disputa a camada com o avatar,
-   que fica na frente delas; a carta sob o mouse passa por cima de tudo */
-.mao { position: absolute; left: 0; right: 0; margin-inline: auto; width: max-content; bottom: var(--mao-baixo, -28px); display: grid; justify-items: center; pointer-events: none; }
+/* sua mão (leque por cima do seu campo, que vai até a base) */
+/* a mão não forma camada própria (centrada sem transform e sem z-index): cada carta disputa a camada com o resto da
+   área, e a carta sob o mouse passa por cima de tudo. Em repouso ela fica abaixada (só a faixa de cima das cartas à
+   vista, --mao-repouso na área); o mouse numa carta ergue a mão inteira (.erguida, AreaJogador), e uma decisão que
+   pede cartas da mão também (.aberta). Só as cartas recebem o mouse: o vão entre elas é do campo */
+.mao { position: absolute; left: 0; right: 0; margin-inline: auto; width: max-content; bottom: var(--mao-baixo, 4px); display: grid; justify-items: center; pointer-events: none; }
 .mao-titulo { font-size: 11.5px; font-weight: 600; color: var(--texto); text-shadow: 0 1px 3px #000, 0 0 8px #000; margin-bottom: 6px; }
 .mao-titulo b { font-weight: 600; color: var(--suave); }
-.mao-cartas { display: flex; align-items: flex-end; pointer-events: auto; }
-.mao-cartas .carta { --w: var(--wm, 116px); z-index: 20; rotate: var(--r, 0deg); translate: 0 var(--y, 0px); transform-origin: 50% 140%; }
+.mao-cartas { display: flex; align-items: flex-end; pointer-events: none; --repouso: var(--mao-repouso, 0px); }
+.mao.erguida .mao-cartas, .mao.aberta .mao-cartas { --repouso: 0px; }
+.mao-cartas .carta { --w: var(--wm, 116px); z-index: 20; rotate: var(--r, 0deg); translate: 0 calc(var(--y, 0px) + var(--repouso)); transform-origin: 50% 140%; pointer-events: auto; transition: rotate .22s ease, translate .22s cubic-bezier(.2, .8, .3, 1), scale .18s ease, box-shadow .18s ease; }
 .mao-cartas .carta + .carta { margin-left: var(--passo, -40px); }
 /* a carta sob o mouse sobe na direção da própria inclinação (endireitar girava em torno de um ponto bem abaixo dela
    e a jogava para o lado, saindo de baixo do cursor); a faixa embaixo segura o mouse enquanto ela está no alto */
@@ -800,18 +824,33 @@ img.mini { width: 40px; aspect-ratio: 63 / 88; object-fit: cover; border-radius:
 
 /* ---------------------------------------------------------------- fase 8: mesa real */
 /* painel de combate compacto */
-.decisao.combate .linhas-combate { display: grid; gap: 6px; }
-/* com muitas linhas (oito fichas atacando) a lista rola e o Confirmar continua à vista embaixo */
+/* o painel do combate é compacto (linhas de ~30 px): com o seu retrato no canto, a coluna da direita fica mais baixa
+   (em 1280×800, uns 200 px) e as linhas têm de caber */
+.decisao.combate { gap: 8px; align-content: start; }
+.decisao.combate .linhas-combate { display: grid; gap: 4px; }
+.coluna-dir > .cartao:has(> .decisao.combate) { padding: 10px 12px 12px; }
+/* com lista, o painel do combate não encolhe abaixo disso por causa da pilha ou dos avisos */
+.coluna-dir > .cartao:has(> .decisao.combate .linhas-combate, > .decisao.combate .linhas) { min-height: min(240px, 100%); }
+/* o título ("Ataque", "Bloqueio") já diz que é o combate */
+.coluna-dir > .cartao:has(> .decisao.combate) > .rot { display: none; }
+/* com muitas linhas (oito fichas atacando) a lista rola e o Confirmar continua à vista embaixo, com um degradê e
+   "+n abaixo" quando há linhas escondidas */
 .decisao.combate > .botoes-linha { position: sticky; bottom: 0; z-index: 1; background: #19171b; padding-top: 4px; box-shadow: 0 -6px 8px -6px rgba(0, 0, 0, .6); }
-.linha-combate { display: grid; grid-template-columns: 22px minmax(0, 1fr) auto; align-items: center; gap: 8px; font-size: 13px; padding: 6px 4px 6px 8px; border-radius: 9px; background: rgba(255, 255, 255, .035); border: 1px solid var(--linha); transition: background .15s ease, border-color .15s ease; }
+.decisao.combate > .botoes-linha { gap: 6px; }
+.decisao.combate > .botoes-linha .botao { min-height: 31px; padding: 0 11px; font-size: 13px; }
+.decisao.combate.transborda > .botoes-linha::before { content: ''; position: absolute; left: 0; right: 0; bottom: 100%; height: 26px; background: linear-gradient(to bottom, transparent, #19171b); pointer-events: none; }
+.mais-linhas { position: absolute; right: 2px; bottom: calc(100% + 3px); z-index: 1; font: 700 11.5px/1 var(--fonte); padding: 4px 9px; border-radius: 999px; border: 1px solid var(--linha-forte); background: #242127; color: var(--texto); cursor: pointer; box-shadow: 0 2px 6px rgba(0, 0, 0, .5); }
+.mais-linhas:hover, .mais-linhas:focus-visible { border-color: var(--ouro); }
+.linha-combate { display: grid; grid-template-columns: 20px minmax(0, 1fr) auto; align-items: center; gap: 7px; font-size: 12.5px; line-height: 1.3; padding: 3px 3px 3px 7px; border-radius: 8px; background: rgba(255, 255, 255, .035); border: 1px solid var(--linha); transition: background .15s ease, border-color .15s ease; }
+.linha-combate .mini-selo { width: 20px; height: 20px; }
 .linha-combate:hover { background: rgba(255, 255, 255, .07); border-color: var(--linha-forte); }
 .linha-combate .alvo { color: var(--suave); }
 .linha-combate .alvo b { color: var(--texto); }
 /* o "×" que desfaz a linha (solta o bloqueio, desmarca o atacante) */
-.linha-x { width: 24px; height: 24px; border: 0; border-radius: 7px; background: none; color: var(--suave); font: 700 17px/1 var(--fonte); cursor: pointer; display: grid; place-items: center; }
+.linha-x { width: 22px; height: 22px; border: 0; border-radius: 6px; background: none; color: var(--suave); font: 700 17px/1 var(--fonte); cursor: pointer; display: grid; place-items: center; }
 .linha-x:hover, .linha-x:focus-visible { background: rgba(255, 255, 255, .1); color: var(--texto); }
 /* a instrução do combate, uma linha discreta (também na mesa real: sem ela, ninguém sabia que era carta e depois atacante) */
-.dica-combate { font-size: 12.5px; color: var(--suave); margin-top: -4px; }
+.dica-combate { font-size: 12px; line-height: 1.3; color: var(--suave); margin-top: -3px; }
 .mini-selo { width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; color: var(--texto); }
 .mini-selo svg { width: 13px; height: 13px; }
 .mini-selo.espada { background: var(--vermelho); }
@@ -1129,6 +1168,8 @@ img.mini { width: 40px; aspect-ratio: 63 / 88; object-fit: cover; border-radius:
    reserva de mana e o dano de comandante ficam à esquerda dele e a coluna da pilha e das decisões desce para baixo dele
    (o retrato tem uns 17% da altura da sua área, que é ~59% da tela, ou 54% no 1v1) */
 .area-eu.avatar-no-canto .vida { margin-right: calc(var(--tam-avatar, 80px) * 1.25 + 16px); }
+/* ou à esquerda (opção nas Configurações), numa coluna acima do Comando: a vida fica logo acima do rótulo dele */
+.avatar-oponente.avatar-esquerda { top: auto; right: auto; left: calc(14px + var(--tam) * .14); bottom: calc(var(--zonas-alt, 120px) + 14px + var(--tam) * .2); }
 .mesa.avatar-canto .coluna-dir { top: calc(var(--divisa) + 18px + clamp(60px, 10dvh, 100px) * 1.42); }
 .mesa.mesa-duelo.avatar-canto .coluna-dir { top: calc(var(--divisa) + 18px + clamp(60px, 9.2dvh, 100px) * 1.42); }
 /* o dano de comandante e a reserva do oponente ficam à esquerda do medalhão */
@@ -1139,7 +1180,9 @@ img.mini { width: 40px; aspect-ratio: 63 / 88; object-fit: cover; border-radius:
 .avatar-local { bottom: calc(6px + var(--tam) * .2); z-index: 24; }
 /* na mão a força e a resistência já estão impressas na carta; o selo ficava meio coberto e se confundia com a vida */
 .mao-cartas .carta-pt { display: none; }
-.mao-rotulo { position: absolute; z-index: 25; margin: 0; left: 50%; translate: -50% 0; bottom: calc(var(--mao-topo, 200px) + 18px); white-space: nowrap; pointer-events: none; transition: opacity .2s ease; }
+/* o rótulo acompanha a faixa que aparece da mão (em repouso, logo acima dela; erguida, acima das cartas inteiras) */
+.mao-rotulo { position: absolute; z-index: 25; margin: 0; left: 50%; translate: -50% 0; bottom: calc(var(--mao-visivel, 120px) + 10px); white-space: nowrap; pointer-events: none; transition: opacity .2s ease, bottom .22s cubic-bezier(.2, .8, .3, 1); }
+.area-eu:has(.mao.erguida) .mao-rotulo, .area-eu:has(.mao.aberta) .mao-rotulo { bottom: calc(var(--mao-topo, 200px) + 12px); }
 /* com o mouse numa carta da mão, o rótulo sai do caminho da carta em destaque */
 .area-eu:has(.mao-cartas .carta:hover) .mao-rotulo { opacity: 0; }
 @keyframes avatar-entra { from { opacity: 0; scale: .8; } }

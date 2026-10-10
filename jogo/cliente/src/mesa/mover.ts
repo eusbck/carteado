@@ -64,12 +64,14 @@ export function moverCartas(ev: PointerEvent, el: HTMLElement, mover: ObjId[], g
 
 /**
  * Onde entra a carta solta da mão no campo (de 0 a 1): o ponto por onde ela foi pega (fx, fy, de 0
- * a 1 na carta) fica sob o ponteiro, já no tamanho das cartas do campo, e ela cabe inteira no campo.
+ * a 1 na carta) fica sob o ponteiro, já no tamanho das cartas do campo (ou no do terreno deitado,
+ * `tamanho`), e ela cabe inteira no campo.
  */
-export function posicaoAoSoltar(campo: HTMLElement, x: number, y: number, fx: number, fy: number): { x: number; y: number } {
+export function posicaoAoSoltar(campo: HTMLElement, x: number, y: number, fx: number, fy: number, tamanho?: { w: number; h: number }): { x: number; y: number } {
   const rc = campo.getBoundingClientRect();
   const { W, H } = medidas(campo);
-  const w = Number(campo.dataset.cartaW) || 80, h = w * 88 / 63;
+  const wc = Number(campo.dataset.cartaW) || 80;
+  const w = tamanho?.w ?? wc, h = tamanho?.h ?? wc * 88 / 63;
   const l = limites({ x: 0, y: 0, w, h }, W, H);
   const cx = Math.min(l.xMax, Math.max(l.xMin, x - rc.left - fx * w)), cy = Math.min(l.yMax, Math.max(l.yMin, y - rc.top - fy * h));
   const [qx, qy] = proporcional(cx, cy, W, H);

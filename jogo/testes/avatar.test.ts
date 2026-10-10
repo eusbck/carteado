@@ -136,7 +136,7 @@ describe('avatares: a arrumação deixa livre o espaço do medalhão', () => {
   });
 
   it('oponente: as criaturas da linha de cima pulam o vão do medalhão em cima', () => {
-    const a = arrumarCampo(objs, anexos, {}, {}, { ...medidas, vao: { ...vao, topo: 120 } });
+    const a = arrumarCampo(objs, anexos, {}, {}, { ...medidas, vaos: [{ ...vao, y0: 0, y1: 120 }] });
     const emCima = caixas(a, criaturas).filter((c) => c.y0 < 120);
     expect(emCima.length).toBeGreaterThan(0);
     expect(emCima.every((c) => c.x1 <= vao.x0 || c.x0 >= vao.x1)).toBe(true);
@@ -144,15 +144,15 @@ describe('avatares: a arrumação deixa livre o espaço do medalhão', () => {
     expect(caixas(a, terrenos).some((c) => c.x1 > vao.x0 && c.x0 < vao.x1)).toBe(true);
   });
 
-  it('sua área: os terrenos da linha de baixo pulam o vão do medalhão embaixo', () => {
-    const a = arrumarCampo(objs, anexos, {}, {}, { ...medidas, vao: { ...vao, baixo: 140 } });
+  it('um retângulo embaixo (a mão em repouso, as zonas): os terrenos da linha de baixo pulam por cima dele', () => {
+    const a = arrumarCampo(objs, anexos, {}, {}, { ...medidas, vaos: [{ ...vao, y0: H - 140, y1: H }] });
     const embaixo = caixas(a, terrenos).filter((c) => c.y1 > H - 140);
     expect(embaixo.length).toBeGreaterThan(0);
     expect(embaixo.every((c) => c.x1 <= vao.x0 || c.x0 >= vao.x1)).toBe(true);
   });
 
   it('campo estreito demais para pular o vão: a arrumação termina e põe todas as cartas', () => {
-    const estreito = { W: 200, livreW: 200, H: 200, wBase: 80, wMin: 40, vao: { x0: 40, x1: 160, topo: 200, baixo: 200 } };
+    const estreito = { W: 200, livreW: 200, H: 200, wBase: 80, wMin: 40, vaos: [{ x0: 40, x1: 160, y0: 0, y1: 200 }] };
     const a = arrumarCampo(objs, anexos, {}, {}, estreito);
     expect(objs.every((o) => a.pos.has(o.id))).toBe(true);
   });
