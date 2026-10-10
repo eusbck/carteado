@@ -1168,6 +1168,11 @@ img.mini { width: 40px; aspect-ratio: 63 / 88; object-fit: cover; border-radius:
    reserva de mana e o dano de comandante ficam à esquerda dele e a coluna da pilha e das decisões desce para baixo dele
    (o retrato tem uns 17% da altura da sua área, que é ~59% da tela, ou 54% no 1v1) */
 .area-eu.avatar-no-canto .vida { margin-right: calc(var(--tam-avatar, 80px) * 1.25 + 16px); }
+/* com uma decisão na coluna da direita, o retrato anda para o canto de cima à direita do campo, logo à esquerda da
+   faixa reservada (a arrumação deixa o lugar livre, geometriaArea.ts), e a coluna usa a altura toda. Só o translate
+   anima: nada de refazer o layout a cada quadro */
+.area-eu.avatar-no-canto .avatar { transition: translate .32s cubic-bezier(.2, .8, .3, 1); }
+.area-eu.avatar-no-canto.coluna-aberta .avatar { translate: calc(-1 * (var(--reserva-direita, 336px) + 2px - var(--tam) * .09)) 0; }
 /* ou à esquerda (opção nas Configurações), numa coluna acima do Comando: a vida fica logo acima do rótulo dele */
 .avatar-oponente.avatar-esquerda { top: auto; right: auto; left: calc(14px + var(--tam) * .14); bottom: calc(var(--zonas-alt, 120px) + 14px + var(--tam) * .2); }
 .mesa.avatar-canto .coluna-dir { top: calc(var(--divisa) + 18px + clamp(60px, 10dvh, 100px) * 1.42); }

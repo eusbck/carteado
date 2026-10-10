@@ -196,11 +196,11 @@ describe('sua área com o campo até a base', () => {
     for (const ar of areas) {
       for (const nMao of [0, 7, 10]) {
         for (const lado of ['canto', 'esquerda'] as LadoAvatar[]) {
-          for (const deitados of [true, false]) {
-            const md = medirArea({ w: ar.w, h: ar.h, eu: true, compacta: false, duelo: ar.duelo, lado, nMao, reservaDireita: 336 });
+          for (const [deitados, colunaAberta] of [[true, false], [false, false], [true, true]]) {
+            const md = medirArea({ w: ar.w, h: ar.h, eu: true, compacta: false, duelo: ar.duelo, lado, nMao, reservaDireita: 336, colunaAberta });
             const a = arrumarCampo(objs, SEM_ANEXOS, {}, {}, { W: md.campoW, livreW: md.livreW, H: md.campoH, wBase: md.wBase, wMin: md.wMin, vaos: md.vaos }, { deitados });
             const ruins = objs.filter((o) => md.vaos.some((v) => toca(caixa(a, o), v)));
-            const quando = `${ar.nome}, ${nMao} na mão, retrato ${lado}, ${deitados ? 'deitados' : 'de pé'}`;
+            const quando = `${ar.nome}, ${nMao} na mão, retrato ${lado}${colunaAberta ? ' (coluna aberta)' : ''}, ${deitados ? 'deitados' : 'de pé'}`;
             expect(ruins.map((o) => o.name), quando).toEqual([]);
             // e tudo dentro do campo, na altura
             expect(objs.every((o) => caixa(a, o).y1 <= md.campoH + .5 && caixa(a, o).y0 >= -.5), quando).toBe(true);

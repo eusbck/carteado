@@ -1160,6 +1160,7 @@ export function Mesa() {
         mao={j.id === eu ? v.hand : undefined}
         reservaDireita={j.id === eu ? 336 : 0}
         avatarLado={j.id === eu ? ladoAvatar : undefined}
+        colunaAberta={j.id === eu && colunaAberta}
         deitados={deitados}
         maoAberta={j.id === eu ? maoAberta : undefined}
         chegando={j.id === eu ? chegando : null}
@@ -1236,10 +1237,15 @@ export function Mesa() {
     };
   });
   const mostrarDecisao = d && !v.gameOver && !enviando && !preJogo && !ehEscolha(d) && (d.kind !== 'priority' || acoesSoltas.length > 0);
+  // a coluna da direita com uma decisão (ou o fim da partida): o seu retrato no canto sai para o canto de cima à direita
+  // do campo e a coluna começa logo abaixo da faixa de fases, com a altura toda. Enquanto a resposta vai (enviando),
+  // ela continua aberta: o retrato não vai e volta entre duas decisões seguidas. Só a pilha não mexe no retrato (a cada
+  // mágica ele andaria de um lado para o outro)
+  const colunaAberta = !!v.gameOver || !!(d && !preJogo && !ehEscolha(d) && (d.kind !== 'priority' || acoesSoltas.length > 0));
   const escolha = d && !v.gameOver && !enviando && !preJogo && ehEscolha(d) ? d : null;
 
   return (<>
-    <div class={`mesa ${duelo ? 'mesa-duelo' : ''} ${ladoAvatar === 'canto' ? 'avatar-canto' : ''} ${recolhida ? 'recolhida' : ''} ${aux.jogaveis ? 'aux-jogaveis' : ''} ${e.desfazer ? 'parada' : ''}`} onClick={() => setMenu(null)}>
+    <div class={`mesa ${duelo ? 'mesa-duelo' : ''} ${ladoAvatar === 'canto' && !colunaAberta ? 'avatar-canto' : ''} ${recolhida ? 'recolhida' : ''} ${aux.jogaveis ? 'aux-jogaveis' : ''} ${e.desfazer ? 'parada' : ''}`} onClick={() => setMenu(null)}>
       <main class="tabuleiro" onContextMenu={(ev) => ev.preventDefault()}>
         <div class={`oponentes n${oponentes.length}`}>{oponentes.map((j) => area(j, true))}</div>
         {area(minha, false)}
@@ -1292,7 +1298,7 @@ export function Mesa() {
             <div class="cartao">
               <p class="rot">{rotuloDecisao(d)}</p>
               <Decisao v={v} d={d} ui={ui} nomeObj={nomeObj} nomeAlvo={nomeAlvo} visivel={(id) => todos.has(id)} acoesSoltas={acoesSoltas} reserva={minhaReserva} aux={aux}
-                nomeCombate={(id) => numeros?.get(id)?.rotulo ?? nomeObj(id)} recusa={e.recusaCombate?.decisao === d.id ? e.recusaCombate.texto : null} />
+                nomeCombate={(id) => numeros?.get(id)?.rotulo ?? nomeObj(id)} numeroCombate={(id) => numeros?.get(id)?.n ?? null} recusa={e.recusaCombate?.decisao === d.id ? e.recusaCombate.texto : null} />
             </div>
           )}
         </div>

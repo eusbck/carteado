@@ -47,6 +47,8 @@ interface Props {
   aux: Auxilios;
   /** nome no combate: os de nome igual com o número que aparece na carta ("Zumbi #2") */
   nomeCombate: (id: ObjId) => string;
+  /** o número entre as de nome igual ("#2"), ou null */
+  numeroCombate: (id: ObjId) => number | null;
   /** o motor recusou a declaração de combate (ameaça, custo…): o motivo, também na mesa real */
   recusa: string | null;
 }
@@ -160,7 +162,11 @@ function Pagamento({ d, reserva, visivel, aux }: { d: D<'payment'>; reserva: str
 }
 
 /** ataque: o resumo do que você marcou na mesa; com "Brilho nos alvos válidos", a lista inteira com os alvos */
-function Atacantes({ d, ui, nomeCombate, nomeAlvo, aux, recusa }: { d: D<'attackers'>; ui: EstadoUi; nomeCombate: (id: ObjId) => string; nomeAlvo: (t: TargetRef) => string; aux: Auxilios; recusa: string | null }) {
+/** com mais de seis linhas, as fichas iguais seguidas com o mesmo alvo viram uma linha só ("Goblin #1–#4 → Bruno"): o
+ *  "×" dela desmarca o grupo, e passar o mouse acende todas na mesa */
+const AGRUPAR_ACIMA = 6;
+
+function Atacantes({ d, ui, nomeObj, nomeCombate, numeroCombate, nomeAlvo, aux, recusa }: { d: D<'attackers'>; ui: EstadoUi; nomeObj: (id: ObjId) => string; nomeCombate: (id: ObjId) => string; numeroCombate: (id: ObjId) => number | null; nomeAlvo: (t: TargetRef) => string; aux: Auxilios; recusa: string | null }) {
   // a linha acesa some junto com o painel (a decisão mudou com o mouse em cima dela)
   useEffect(() => apagarLinhas, []);
   const [painel, escondidas, rolar] = useEscondidas();
@@ -171,7 +177,20 @@ function Atacantes({ d, ui, nomeCombate, nomeAlvo, aux, recusa }: { d: D<'attack
     ui.setAtaques(novo);
   };
   const marcadas = Object.entries(ui.ataques).map(([o, t]) => [Number(o), t] as [ObjId, TargetRef | null]);
-  const desmarcar = (o: ObjId) => { const n = { ...ui.ataques }; delete n[o]; ui.setAtaques(n); };
+  const desmarcar = (...os: ObjId[]) => { const n = { ...ui.ataques }; for (const o of os) delete n[o]; ui.setAtaques(n); };
+  const grupos: { ids: ObjId[]; t: TargetRef | null }[] = [];
+  for (const [o, t] of marcadas) {
+    const ultimo = grupos[grupos.length - 1];
+    const junta = !!ultimo && marcadas.length > AGRUPAR_ACIMA && numeroCombate(o) !== null && nomeObj(o) === nomeObj(ultimo.ids[0])
+      && (ultimo.t === null ? t === null : t !== null && mesmoAlvo(ultimo.t, t));
+    if (junta) ultimo.ids.push(o); else grupos.push({ ids: [o], t });
+  }
+  // "Goblin #1–#4" quando os números são seguidos; senão "Goblin (4)"
+  const rotuloGrupo = (ids: ObjId[]) => {
+    const ns = ids.map((id) => numeroCombate(id) ?? 0);
+    const seguidos = ns.every((k, i) => i === 0 || k === ns[i - 1] + 1);
+    return seguidos ? `${nomeObj(ids[0])} #${ns[0]}–#${ns[ns.length - 1]}` : `${nomeObj(ids[0])} (${ids.length})`;
+  };
   // criaturas com exigência de ataque (goad, "ataca se puder"): CR 508.1d
   const obrigadas = d.candidates.filter((c) => c.required?.length);
   const marcarObrigadas = () => {
@@ -203,11 +222,14 @@ function Atacantes({ d, ui, nomeCombate, nomeAlvo, aux, recusa }: { d: D<'attack
         </div>
       ) : marcadas.length > 0 && (
         <div class="linhas-combate">
-          {marcadas.map(([o, t]) => (
-            <LinhaCombate key={o} ids={t?.kind === 'obj' ? [o, t.id] : [o]} selo={t ? 'espada' : 'espera'} desfazer={() => desmarcar(o)} rotulo={`Desmarcar ${nomeCombate(o)}`}>
-              {nomeCombate(o)} <span class="alvo">→ <b>{t ? nomeAlvo(t) : '?'}</b></span>
-            </LinhaCombate>
-          ))}
+          {grupos.map(({ ids, t }) => {
+            const nome = ids.length === 1 ? nomeCombate(ids[0]) : rotuloGrupo(ids);
+            return (
+              <LinhaCombate key={ids[0]} ids={t?.kind === 'obj' ? [...ids, t.id] : ids} selo={t ? 'espada' : 'espera'} desfazer={() => desmarcar(...ids)} rotulo={`Desmarcar ${nome}`}>
+                {nome} <span class="alvo">→ <b>{t ? nomeAlvo(t) : '?'}</b></span>
+              </LinhaCombate>
+            );
+          })}
         </div>
       )}
       <div class="botoes-linha">
@@ -325,7 +347,7 @@ export function Decisao(p: Props) {
   switch (d.kind) {
     case 'priority': return <Prioridade d={d} acoes={p.acoesSoltas} />;
     case 'payment': return <Pagamento d={d} reserva={p.reserva} visivel={p.visivel} aux={p.aux} />;
-    case 'attackers': return <Atacantes d={d} ui={p.ui} nomeCombate={p.nomeCombate} nomeAlvo={p.nomeAlvo} aux={p.aux} recusa={p.recusa} />;
+    case 'attackers': return <Atacantes d={d} ui={p.ui} nomeObj={p.nomeObj} nomeCombate={p.nomeCombate} numeroCombate={p.numeroCombate} nomeAlvo={p.nomeAlvo} aux={p.aux} recusa={p.recusa} />;
     case 'blockers': return <Bloqueadores d={d} ui={p.ui} nomeObj={p.nomeObj} nomeCombate={p.nomeCombate} aux={p.aux} recusa={p.recusa} />;
     case 'damage': return <Dano d={d} nomeAlvo={p.nomeAlvo} aux={p.aux} />;
     // escolhas (selecionar, número, vidência) ficam na janela do meio da mesa: JanelaEscolha.tsx

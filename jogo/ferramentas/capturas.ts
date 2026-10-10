@@ -772,6 +772,33 @@ async function capturasCombate(): Promise<void> {
     if (k !== n) throw new Error(`${quando}: ${k} em "${sel}", esperava ${n}`);
   };
   const marcadas = '.area-eu .campo > .carta.inclinada';
+  /** linhas do resumo do combate inteiras à vista acima dos botões presos no pé do painel */
+  const linhasVisiveis = (pg: Page) => pg.evaluate(() => {
+    const painel = document.querySelector('.coluna-dir .decisao.combate')!;
+    const limite = painel.querySelector(':scope > .botoes-linha')!.getBoundingClientRect().top;
+    const topo = painel.getBoundingClientRect().top;
+    const ls = [...painel.querySelectorAll('.linha-combate')].map((l) => l.getBoundingClientRect());
+    return { total: ls.length, visiveis: ls.filter((r) => r.top >= topo - 1 && r.bottom <= limite + 1).length };
+  });
+  const conferirLinhas = async (pg: Page, minimo: number, quando: string) => {
+    const l = await linhasVisiveis(pg);
+    if (l.visiveis < Math.min(minimo, l.total)) throw new Error(`${quando}: só ${l.visiveis} de ${l.total} linhas à vista no painel`);
+    console.log(`   ${quando}: ${l.visiveis} de ${l.total} linhas à vista no painel`);
+  };
+  /** com a decisão na coluna, o seu retrato fica à esquerda dela (no canto do campo), sem carta embaixo */
+  const conferirRetrato = async (pg: Page, quando: string) => {
+    await pg.waitForTimeout(400);
+    const r = await pg.evaluate(() => {
+      const av = document.querySelector('.area-eu .avatar')!.getBoundingClientRect();
+      const col = document.querySelector('.coluna-dir .cartao')!.getBoundingClientRect();
+      const cartas = [...document.querySelectorAll('.area-eu .campo > .carta')].filter((e) => {
+        const q = e.getBoundingClientRect();
+        return q.left < av.right && q.right > av.left && q.top < av.bottom && q.bottom > av.top;
+      }).length;
+      return { avDireita: av.right, colEsquerda: col.left, colTopo: col.top, avTopo: av.top, cartas };
+    });
+    if (r.avDireita > r.colEsquerda + 1 || r.cartas) throw new Error(`${quando}: retrato com a coluna aberta ${JSON.stringify(r)}`);
+  };
 
   // ---------------- FICHA: Ana ataca com seis fichas iguais (e duas criaturas)
   for (const tela of [{ width: 1920, height: 1080 }, { width: 1280, height: 800 }]) {
@@ -812,6 +839,8 @@ async function capturasCombate(): Promise<void> {
     await longe(pg);
     await esperarContagem(pg, marcadas, 6, 'cliques nas faixas');
     await conferirFaixas(pg, fichas, `FICHA ${tela.width} depois de marcar`);
+    await conferirRetrato(pg, `FICHA ${tela.width}`);
+    await conferirLinhas(pg, 4, `FICHA ${tela.width}, seis fichas marcadas`);
     await foto(pg, `50b-ficha-marcadas-por-clique${sufixo}`);
     // a marcada que não é a escolhida: o primeiro clique a escolhe, o segundo desmarca
     const f1 = await faixas(pg, fichas);
@@ -822,7 +851,16 @@ async function capturasCombate(): Promise<void> {
     await esperarContagem(pg, marcadas, 5, 'segundo clique na escolhida');
     await pg.getByRole('button', { name: 'Limpar' }).click();
     await esperarContagem(pg, marcadas, 0, 'Limpar');
-    if (tela.width !== 1920) { await c.close(); continue; }
+    if (tela.width !== 1920) {
+      // as oito de uma vez: mais de seis linhas, as fichas iguais com o mesmo alvo numa linha só
+      await pg.getByRole('button', { name: 'Atacar com todas' }).click();
+      await longe(pg);
+      await esperarContagem(pg, marcadas, 8, `Atacar com todas (${tela.width})`);
+      await conferirLinhas(pg, 4, `FICHA ${tela.width}, oito marcadas`);
+      await foto(pg, `50g-ficha-todas-sem-alvo${sufixo}`);
+      await c.close();
+      continue;
+    }
 
     // retângulo do espaço vazio à direita da fileira de criaturas até o canto de cima: marca as oito
     const ponto = await pg.evaluate((lista) => {
@@ -866,11 +904,42 @@ async function capturasCombate(): Promise<void> {
     await pg.locator('.area-oponente', { hasText: 'Bruno' }).getByRole('button', { name: /^Bruno/ }).first().click();
     await longe(pg);
     await esperarContagem(pg, '.area-eu .selo-combate.espada', 8, 'um clique no Bruno');
+    // oito linhas viram três: "Goblin #1–#6 → Bruno", o Kami e o Eletromante
     const linhas = await pg.locator('.linha-combate').allInnerTexts();
-    if (linhas.length !== 8 || !linhas.every((l) => l.includes('Bruno'))) throw new Error(`resumo do ataque: ${JSON.stringify(linhas)}`);
-    if (!linhas.some((l) => /#6/.test(l))) throw new Error(`resumo sem a numeração das fichas: ${JSON.stringify(linhas)}`);
+    if (linhas.length !== 3 || !linhas.every((l) => l.includes('Bruno'))) throw new Error(`resumo do ataque: ${JSON.stringify(linhas)}`);
+    if (!/#1–#6/.test(linhas[0])) throw new Error(`resumo sem o grupo das fichas: ${JSON.stringify(linhas)}`);
+    await conferirLinhas(pg, 4, `FICHA ${tela.width}, oito no Bruno`);
     await foto(pg, `50g-ficha-todas-no-bruno${sufixo}`);
-    console.log(`   FICHA: resumo "${linhas[0].replace(/\s+/g, ' ')}" … "${linhas[5].replace(/\s+/g, ' ')}"`);
+    console.log(`   FICHA: resumo ${linhas.map((l) => `"${l.replace(/\s+/g, ' ')}"`).join(', ')}`);
+    // o "×" do grupo desmarca as seis
+    await pg.locator('.linha-combate', { hasText: '#1–#6' }).getByRole('button').click();
+    await esperarContagem(pg, marcadas, 2, '"×" do grupo');
+    await c.close();
+  }
+
+  // ---------------- BLOQT em 1280×800: quatro bloqueios, as quatro linhas à vista acima dos botões
+  {
+    const b = ids.BLOQT;
+    const { c, pg } = await abrir('BLOQT', { width: 1280, height: 800 }, 'Bloqueio');
+    const carta = (id: number) => pg.locator(`.campo [data-obj="${id}"]`);
+    const clicarFaixa = async (id: number) => {
+      const lista = b.contraAna.includes(id) ? b.contraAna : b.fichasAna.includes(id) ? b.fichasAna : [id];
+      const k = (await faixas(pg, lista)).find((x) => x.id === id)!;
+      await pg.mouse.click(k.x, k.y);
+      await pg.waitForTimeout(120);
+    };
+    await carta(b.kami).click();
+    await clicarFaixa(b.contraAna[0]);
+    await carta(b.ancients).click();
+    await clicarFaixa(b.contraAna[1]);
+    await clicarFaixa(b.fichasAna[0]);
+    await clicarFaixa(b.contraAna[2]);
+    await clicarFaixa(b.fichasAna[1]);
+    await carta(b.ameaca).click();
+    await longe(pg);
+    await conferirRetrato(pg, 'BLOQT 1280');
+    await conferirLinhas(pg, 4, 'BLOQT 1280, quatro bloqueios');
+    await foto(pg, `50n-bloqt-quatro-bloqueios-1280`);
     await c.close();
   }
 

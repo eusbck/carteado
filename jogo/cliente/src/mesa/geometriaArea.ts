@@ -18,6 +18,10 @@ export const MAO_VISIVEL = .41;
 /** onde fica o seu retrato: no canto de cima à direita (padrão) ou à esquerda, numa coluna acima do Comando */
 export type LadoAvatar = 'canto' | 'esquerda';
 
+/** quanto o seu retrato no canto anda para a esquerda com a coluna da direita aberta: da borda da área até logo à
+ *  esquerda da faixa reservada (a mesma conta do estilo: .area-eu.avatar-no-canto.coluna-aberta .avatar) */
+export const deslocamentoRetrato = (reservaDireita: number, tamAvatar: number) => reservaDireita + 2 - tamAvatar * .09;
+
 export interface EntradaArea {
   /** tamanho da área (a seção inteira), em px */
   w: number;
@@ -33,6 +37,9 @@ export interface EntradaArea {
   emblemas?: boolean;
   /** largura à direita do campo que fica livre para a coluna da pilha e das decisões */
   reservaDireita?: number;
+  /** a coluna da direita mostra uma decisão (ou o fim da partida): o seu retrato no canto sai para o canto de cima
+   *  à direita do campo, logo à esquerda da faixa reservada, e a coluna usa a altura toda */
+  colunaAberta?: boolean;
 }
 
 export interface Mao {
@@ -160,8 +167,9 @@ export function medirArea(e: EntradaArea): MedidasArea {
   const largColuna = lado === 'esquerda' ? Math.max(largEsq, tamAvatar * 1.3) : largEsq;
   vaos.push({ x0: cx(0), x1: cx(14 + largColuna + 8), y0: cy(topoEsq), y1: cy(h) });
   vaos.push({ x0: cx(w - 14 - largDir - 8), x1: cx(w), y0: cy(topoZonas), y1: cy(h) });
-  // o retrato no canto fica sobre a faixa reservada à coluna da pilha (a arrumação não chega lá); o vão vale se não
-  // houver reserva
-  if (lado === 'canto') vaos.push({ x0: cx(w - 26 - tamAvatar * 1.25 - 10), x1: cx(w), y0: -topo, y1: Math.max(0, 8 + altAvatar - topo) });
+  // o retrato no canto fica sobre a faixa reservada à coluna da pilha (a arrumação não chega lá; o vão vale se não
+  // houver reserva). Com a coluna aberta ele vai para o canto de cima à direita do campo, e o vão vai junto
+  const desloc = lado === 'canto' && e.colunaAberta ? deslocamentoRetrato(e.reservaDireita ?? 0, tamAvatar) : 0;
+  if (lado === 'canto') vaos.push({ x0: cx(w - 26 - tamAvatar * 1.25 - 10 - desloc), x1: cx(w - desloc), y0: -topo, y1: Math.max(0, 8 + altAvatar - topo) });
   return { wz, zonasH, topo, baixo, campoW, livreW, campoH, wBase, wMin, tamAvatar, vaos, mao };
 }

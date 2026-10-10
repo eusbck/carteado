@@ -59,6 +59,8 @@ export interface AreaProps {
   avatarLado?: LadoAvatar;
   /** terrenos deitados (Configurações › Terrenos no campo) */
   deitados?: boolean;
+  /** a coluna da direita mostra uma decisão: o seu retrato no canto vai para o canto de cima à direita do campo */
+  colunaAberta?: boolean;
   /** o terreno que acabou de entrar enquanto a carta jogada ainda se transforma nele (fica escondido até ela chegar) */
   chegando?: ObjId | null;
   /** largura à direita do campo que fica livre para a coluna da pilha e das decisões */
@@ -141,7 +143,7 @@ export function AreaJogador(p: AreaProps) {
   const mao = p.mao ?? [];
   const n = mao.length;
   const lado: LadoAvatar = p.avatarLado ?? 'canto';
-  const m = medirArea({ w: tam.w, h: tam.h, eu: !!p.mao, compacta: p.compacta, duelo: p.duelo, lado, nMao: n, emblemas: emblemas.length > 0, reservaDireita: p.reservaDireita });
+  const m = medirArea({ w: tam.w, h: tam.h, eu: !!p.mao, compacta: p.compacta, duelo: p.duelo, lado, nMao: n, emblemas: emblemas.length > 0, reservaDireita: p.reservaDireita, colunaAberta: p.colunaAberta });
   const { wz, topo, campoW, campoH, livreW, wBase, wMin, tamAvatar } = m;
   // as mesmas medidas, a mesma lista de retângulos (a arrumação não se refaz à toa)
   const vaosNovos = m.vaos;
@@ -168,7 +170,7 @@ export function AreaJogador(p: AreaProps) {
 
   const contadores = Object.entries(j.counters).filter(([, n]) => n > 0);
   const danoCmd = j.commanderDamage.filter((d) => d.amount > 0);
-  const ladoClasse = p.mao ? (lado === 'canto' ? 'avatar-no-canto' : 'avatar-a-esquerda') : '';
+  const ladoClasse = p.mao ? (lado === 'canto' ? `avatar-no-canto${p.colunaAberta ? ' coluna-aberta' : ''}` : 'avatar-a-esquerda') : '';
   const classes = ['area', p.eu ? 'area-eu' : 'area-oponente', ladoClasse, p.ativo ? 'area-ativa' : '', p.decidindo ? 'area-decidindo' : '', j.left ? 'area-fora' : '', p.compacta ? 'compacta' : '', p.jogadorRealce ? `alvo-${p.jogadorRealce}` : ''].filter(Boolean).join(' ');
   const topoCemiterio = j.graveyard[j.graveyard.length - 1];
   // na sua área, a reserva fica do lado da vida (à esquerda ela cairia embaixo da faixa de fases)
