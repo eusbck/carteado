@@ -1,6 +1,6 @@
 // Arrastar cartas com o ponteiro (mouse, caneta ou toque). Um movimento curto continua sendo
 // um clique; passando do limite vira arrasto, e o clique que o navegador dispara no fim é
-// descartado. A carta "fantasma" que segue o ponteiro tem estado próprio, para a mesa não
+// descartado (quem arrasta decide se o arrasto curto que não deu em nada vale como clique). A carta "fantasma" que segue o ponteiro tem estado próprio, para a mesa não
 // ser redesenhada a cada movimento.
 
 import { useEffect, useState } from 'preact/hooks';
@@ -41,14 +41,25 @@ export interface Gesto {
   cancelar?: () => void;
 }
 
-/** chame no pointerdown; devolve sem fazer nada se não for o botão principal. `semArrasto`: soltou sem passar do limite (foi um clique) */
-export function acompanharArrasto(ev: PointerEvent, gesto: () => Gesto, semArrasto?: () => void): void {
+/** o clique que o navegador manda logo depois de soltar o botão não vale (o gesto já fez o que tinha de fazer) */
+function engolirClique(): void {
+  const engolir = (c: MouseEvent) => { c.stopPropagation(); c.preventDefault(); };
+  addEventListener('click', engolir, { capture: true, once: true });
+  setTimeout(() => removeEventListener('click', engolir, { capture: true }), 0);
+}
+
+/**
+ * Chame no pointerdown; devolve sem fazer nada se não for o botão principal. `semArrasto`: soltou sem passar do limite
+ * (foi um clique); se ela devolver true, ela mesma tratou o clique e o do navegador não vale. `limite`: quantos px o
+ * ponteiro anda antes de virar arrasto.
+ */
+export function acompanharArrasto(ev: PointerEvent, gesto: () => Gesto, semArrasto?: (e: PointerEvent) => boolean | void, limite = LIMITE): void {
   if (ev.button !== 0 || !ev.isPrimary) return;
   const x0 = ev.clientX, y0 = ev.clientY;
   let g: Gesto | null = null;
   const mover = (e: PointerEvent) => {
     if (!g) {
-      if (Math.hypot(e.clientX - x0, e.clientY - y0) < LIMITE) return;
+      if (Math.hypot(e.clientX - x0, e.clientY - y0) < limite) return;
       g = gesto();
       g.inicio();
     }
@@ -59,11 +70,9 @@ export function acompanharArrasto(ev: PointerEvent, gesto: () => Gesto, semArras
     removeEventListener('pointermove', mover);
     removeEventListener('pointerup', fim);
     removeEventListener('pointercancel', cancelar);
-    if (!g) { semArrasto?.(); return; }
+    if (!g) { if (semArrasto?.(e) === true) engolirClique(); return; }
     // o navegador ainda manda um clique depois do arrasto: esse não vale
-    const engolir = (c: MouseEvent) => { c.stopPropagation(); c.preventDefault(); };
-    addEventListener('click', engolir, { capture: true, once: true });
-    setTimeout(() => removeEventListener('click', engolir, { capture: true }), 0);
+    engolirClique();
     g.soltar(e.clientX, e.clientY);
   };
   const cancelar = () => {

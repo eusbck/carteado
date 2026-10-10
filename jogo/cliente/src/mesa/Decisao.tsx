@@ -3,6 +3,7 @@
 // na janela do meio da mesa (JanelaEscolha.tsx). Na mesa real o painel não orienta: listas
 // completas, sugestões e motivos dependem dos auxílios.
 
+import type { ComponentChildren } from 'preact';
 import { useEffect, useState } from 'preact/hooks';
 import type { Answer, Decision, ObjId, PriorityAction, TargetRef } from '../../../motor/types.ts';
 import type { GameView } from '../../../motor/view.ts';
@@ -10,6 +11,7 @@ import { traduzir } from '../cartas.ts';
 import { IconeEscudo, IconeEspada } from '../icones.tsx';
 import { loja } from '../loja.ts';
 import { reservaPaga } from '../mana.ts';
+import { soltarBloqueio } from './bloqueio.ts';
 import type { Auxilios } from '../preferencias.ts';
 import { Simbolos, TextoComSimbolos } from './Simbolos.tsx';
 
@@ -26,6 +28,8 @@ export interface EstadoUi {
   /** confirmam a declaração (a mesa confere o que falta e treme o que não dá) */
   confirmarAtaque: () => void;
   confirmarBloqueio: () => void;
+  /** marca para atacar todas as que ainda não estão marcadas (as que só atacam pagando ficam de fora) */
+  atacarComTodas: () => void;
 }
 
 interface Props {
@@ -41,12 +45,39 @@ interface Props {
   /** o objeto já aparece na mesa ou na mão (então o painel mostra só o nome) */
   visivel: (id: ObjId) => boolean;
   aux: Auxilios;
+  /** nome no combate: os de nome igual com o número que aparece na carta ("Zumbi #2") */
+  nomeCombate: (id: ObjId) => string;
+  /** o motor recusou a declaração de combate (ameaça, custo…): o motivo, também na mesa real */
+  recusa: string | null;
 }
 
 type D<K extends Decision['kind']> = Extract<Decision, { kind: K }>;
 
 const responder = (d: Decision, a: Answer) => loja.responder(d.id, a);
 const mesmoAlvo = (a: TargetRef, b: TargetRef) => a.kind === b.kind && a.id === b.id;
+
+/** passar o mouse numa linha do resumo acende as cartas dela na mesa (direto no DOM: a mesa não se desenha de novo) */
+function realcarLinha(ids: ObjId[], ligar: boolean): void {
+  for (const id of ids) for (const el of document.querySelectorAll(`.campo [data-obj="${id}"]`)) el.classList.toggle('realce-linha', ligar);
+}
+const apagarLinhas = () => { for (const el of document.querySelectorAll('.realce-linha')) el.classList.remove('realce-linha'); };
+
+/** o motivo da recusa do motor (o da decisão, com os avisos ligados, se a mesa não tem outro) */
+function Recusa({ recusa, d, aux }: { recusa: string | null; d: D<'attackers'> | D<'blockers'>; aux: Auxilios }) {
+  const texto = recusa ?? (aux.avisos ? d.error : undefined);
+  return texto ? <p class="erro-decisao" role="alert">{texto}</p> : null;
+}
+
+/** uma linha do resumo do combate: passar o mouse acende as cartas na mesa; o "×" desfaz */
+function LinhaCombate({ ids, selo, children, desfazer, rotulo }: { ids: ObjId[]; selo: 'espada' | 'espera' | 'escudo'; children: ComponentChildren; desfazer: () => void; rotulo: string }) {
+  return (
+    <div class="linha-combate" onMouseEnter={() => realcarLinha(ids, true)} onMouseLeave={() => realcarLinha(ids, false)}>
+      <i class={`mini-selo ${selo}`}>{selo === 'escudo' ? <IconeEscudo /> : <IconeEspada />}</i>
+      <span>{children}</span>
+      <button type="button" class="linha-x" aria-label={rotulo} title={rotulo} onClick={() => { realcarLinha(ids, false); desfazer(); }}>×</button>
+    </div>
+  );
+}
 
 /** ações que não estão presas a nenhuma carta à vista (as outras se fazem clicando na carta) */
 function Prioridade({ d, acoes }: { d: D<'priority'>; acoes: PriorityAction[] }) {
@@ -96,7 +127,9 @@ function Pagamento({ d, reserva, visivel, aux }: { d: D<'payment'>; reserva: str
 }
 
 /** ataque: o resumo do que você marcou na mesa; com "Brilho nos alvos válidos", a lista inteira com os alvos */
-function Atacantes({ d, ui, nomeObj, nomeAlvo, aux }: { d: D<'attackers'>; ui: EstadoUi; nomeObj: (id: ObjId) => string; nomeAlvo: (t: TargetRef) => string; aux: Auxilios }) {
+function Atacantes({ d, ui, nomeCombate, nomeAlvo, aux, recusa }: { d: D<'attackers'>; ui: EstadoUi; nomeCombate: (id: ObjId) => string; nomeAlvo: (t: TargetRef) => string; aux: Auxilios; recusa: string | null }) {
+  // a linha acesa some junto com o painel (a decisão mudou com o mouse em cima dela)
+  useEffect(() => apagarLinhas, []);
   const alternar = (obj: ObjId, t: TargetRef) => {
     const atual = ui.ataques[obj];
     const novo = { ...ui.ataques };
@@ -104,6 +137,7 @@ function Atacantes({ d, ui, nomeObj, nomeAlvo, aux }: { d: D<'attackers'>; ui: E
     ui.setAtaques(novo);
   };
   const marcadas = Object.entries(ui.ataques).map(([o, t]) => [Number(o), t] as [ObjId, TargetRef | null]);
+  const desmarcar = (o: ObjId) => { const n = { ...ui.ataques }; delete n[o]; ui.setAtaques(n); };
   // criaturas com exigência de ataque (goad, "ataca se puder"): CR 508.1d
   const obrigadas = d.candidates.filter((c) => c.required?.length);
   const marcarObrigadas = () => {
@@ -111,15 +145,20 @@ function Atacantes({ d, ui, nomeObj, nomeAlvo, aux }: { d: D<'attackers'>; ui: E
     for (const c of obrigadas) { const t = novo[c.obj]; if (!t || !c.required!.some((r) => mesmoAlvo(r, t))) novo[c.obj] = c.required![0]; }
     ui.setAtaques(novo);
   };
+  // as que ainda dá para marcar de uma vez (as que só atacam pagando ficam de fora: CR 508.1h)
+  const faltam = d.candidates.filter((c) => !(c.obj in ui.ataques) && !(c.costs?.every((n) => n > 0))).length;
+  const semAlvo = marcadas.some(([, t]) => t === null);
   return (
     <div class="decisao combate">
       <p class="decisao-titulo">Ataque</p>
-      {aux.avisos && d.error && <p class="erro-decisao">{d.error}</p>}
+      <Recusa recusa={recusa} d={d} aux={aux} />
+      {!marcadas.length ? <p class="dica-combate">Clique nas suas criaturas e depois no oponente</p>
+        : semAlvo && <p class="dica-combate">Agora clique no oponente que vai ser atacado</p>}
       {aux.alvos ? (
         <div class="linhas">
           {d.candidates.map((c) => (
             <div class="linha" key={c.obj}>
-              <span class="linha-nome">{nomeObj(c.obj)}{c.required?.length ? <span class="linha-aviso"> · precisa atacar</span> : null}</span>
+              <span class="linha-nome">{nomeCombate(c.obj)}{c.required?.length ? <span class="linha-aviso"> · precisa atacar</span> : null}</span>
               <span class="linha-botoes">
                 {c.targets.map((t) => (
                   <button key={`${t.kind}${t.id}`} class={`botao pequeno ${ui.ataques[c.obj] && mesmoAlvo(ui.ataques[c.obj]!, t) ? 'ativo' : ''}`} onClick={() => alternar(c.obj, t)}>{nomeAlvo(t)}</button>
@@ -131,15 +170,15 @@ function Atacantes({ d, ui, nomeObj, nomeAlvo, aux }: { d: D<'attackers'>; ui: E
       ) : marcadas.length > 0 && (
         <div class="linhas-combate">
           {marcadas.map(([o, t]) => (
-            <div class="linha-combate" key={o}>
-              <i class={`mini-selo ${t ? 'espada' : 'espera'}`}><IconeEspada /></i>
-              <span>{nomeObj(o)} <span class="alvo">→ <b>{t ? nomeAlvo(t) : '?'}</b></span></span>
-            </div>
+            <LinhaCombate key={o} ids={t?.kind === 'obj' ? [o, t.id] : [o]} selo={t ? 'espada' : 'espera'} desfazer={() => desmarcar(o)} rotulo={`Desmarcar ${nomeCombate(o)}`}>
+              {nomeCombate(o)} <span class="alvo">→ <b>{t ? nomeAlvo(t) : '?'}</b></span>
+            </LinhaCombate>
           ))}
         </div>
       )}
       <div class="botoes-linha">
         <button class="botao cheio" onClick={ui.confirmarAtaque}>{marcadas.length ? 'Confirmar ataque' : 'Não atacar'}</button>
+        {faltam > 1 && <button class="botao" onClick={ui.atacarComTodas}>Atacar com todas</button>}
         {aux.alvos && obrigadas.length > 0 && <button class="botao" onClick={marcarObrigadas}>Marcar quem precisa atacar</button>}
         {marcadas.length > 0 && <button class="botao" onClick={() => ui.setAtaques({})}>Limpar</button>}
       </div>
@@ -148,17 +187,24 @@ function Atacantes({ d, ui, nomeObj, nomeAlvo, aux }: { d: D<'attackers'>; ui: E
 }
 
 /** bloqueio: o resumo do que você ligou na mesa; com "Brilho nos alvos válidos", a lista inteira */
-function Bloqueadores({ d, ui, nomeObj, aux }: { d: D<'blockers'>; ui: EstadoUi; nomeObj: (id: ObjId) => string; aux: Auxilios }) {
+function Bloqueadores({ d, ui, nomeObj, nomeCombate, aux, recusa }: { d: D<'blockers'>; ui: EstadoUi; nomeObj: (id: ObjId) => string; nomeCombate: (id: ObjId) => string; aux: Auxilios; recusa: string | null }) {
+  useEffect(() => apagarLinhas, []);
   const alternar = (b: ObjId, a: ObjId) => {
     const novo = { ...ui.bloqueios };
     if (novo[b] === a) delete novo[b]; else novo[b] = a;
     ui.setBloqueios(novo);
   };
+  const soltar = (b: ObjId) => {
+    const e = soltarBloqueio({ bloqueios: ui.bloqueios, ativo: ui.bloqueadorAtivo }, b);
+    ui.setBloqueios(e.bloqueios);
+    ui.setBloqueadorAtivo(e.ativo);
+  };
   const lista = Object.entries(ui.bloqueios).map(([b, a]) => [Number(b), a] as [ObjId, ObjId]);
   return (
     <div class="decisao combate">
       <p class="decisao-titulo">Bloqueio</p>
-      {aux.avisos && d.error && <p class="erro-decisao">{d.error}</p>}
+      <Recusa recusa={recusa} d={d} aux={aux} />
+      <p class="dica-combate">{ui.bloqueadorAtivo === null ? 'Clique numa criatura sua e depois no atacante' : 'Agora clique no atacante que ela vai bloquear'}</p>
       {aux.alvos ? (
         <div class="linhas">
           {d.candidates.filter((c) => c.canBlock.length > 0).map((c) => (
@@ -166,7 +212,7 @@ function Bloqueadores({ d, ui, nomeObj, aux }: { d: D<'blockers'>; ui: EstadoUi;
               <span class="linha-nome">{nomeObj(c.obj)}</span>
               <span class="linha-botoes">
                 {c.canBlock.map((a) => (
-                  <button key={a} class={`botao pequeno ${ui.bloqueios[c.obj] === a ? 'ativo' : ''}`} onClick={() => alternar(c.obj, a)}>bloquear {nomeObj(a)}</button>
+                  <button key={a} class={`botao pequeno ${ui.bloqueios[c.obj] === a ? 'ativo' : ''}`} onClick={() => alternar(c.obj, a)}>bloquear {nomeCombate(a)}</button>
                 ))}
               </span>
             </div>
@@ -175,16 +221,15 @@ function Bloqueadores({ d, ui, nomeObj, aux }: { d: D<'blockers'>; ui: EstadoUi;
       ) : lista.length > 0 && (
         <div class="linhas-combate">
           {lista.map(([b, a]) => (
-            <div class="linha-combate" key={b}>
-              <i class="mini-selo escudo"><IconeEscudo /></i>
-              <span>{nomeObj(b)} <span class="alvo">bloqueia <b>{nomeObj(a)}</b></span></span>
-            </div>
+            <LinhaCombate key={b} ids={[b, a]} selo="escudo" desfazer={() => soltar(b)} rotulo={`Soltar o bloqueio de ${nomeObj(b)}`}>
+              {nomeObj(b)} <span class="alvo">bloqueia <b>{nomeCombate(a)}</b></span>
+            </LinhaCombate>
           ))}
         </div>
       )}
       <div class="botoes-linha">
         <button class="botao cheio" onClick={ui.confirmarBloqueio}>{lista.length ? 'Confirmar bloqueio' : 'Não bloquear'}</button>
-        {lista.length > 0 && <button class="botao" onClick={() => ui.setBloqueios({})}>Limpar</button>}
+        {lista.length > 0 && <button class="botao" onClick={() => { ui.setBloqueios({}); ui.setBloqueadorAtivo(null); }}>Limpar</button>}
       </div>
     </div>
   );
@@ -243,8 +288,8 @@ export function Decisao(p: Props) {
   switch (d.kind) {
     case 'priority': return <Prioridade d={d} acoes={p.acoesSoltas} />;
     case 'payment': return <Pagamento d={d} reserva={p.reserva} visivel={p.visivel} aux={p.aux} />;
-    case 'attackers': return <Atacantes d={d} ui={p.ui} nomeObj={p.nomeObj} nomeAlvo={p.nomeAlvo} aux={p.aux} />;
-    case 'blockers': return <Bloqueadores d={d} ui={p.ui} nomeObj={p.nomeObj} aux={p.aux} />;
+    case 'attackers': return <Atacantes d={d} ui={p.ui} nomeCombate={p.nomeCombate} nomeAlvo={p.nomeAlvo} aux={p.aux} recusa={p.recusa} />;
+    case 'blockers': return <Bloqueadores d={d} ui={p.ui} nomeObj={p.nomeObj} nomeCombate={p.nomeCombate} aux={p.aux} recusa={p.recusa} />;
     case 'damage': return <Dano d={d} nomeAlvo={p.nomeAlvo} aux={p.aux} />;
     // escolhas (selecionar, número, vidência) ficam na janela do meio da mesa: JanelaEscolha.tsx
     case 'select': case 'number': case 'arrange': return null;

@@ -12,8 +12,9 @@ import { Avatar } from './Avatar.tsx';
 import { Carta, type Realce, type Selo } from './Carta.tsx';
 import { Simbolos } from './Simbolos.tsx';
 
-/** como a carta aparece no combate: selo e, para quem você está marcando para atacar, inclinada */
-export interface EstadoCombate { selo: Selo; inclinada?: boolean; ativa?: boolean }
+/** como a carta aparece no combate: selo e, para quem você está marcando para atacar, inclinada; `numero` entre as de
+ *  nome igual na decisão ("#2"); `alheia`: atacante que ataca outro jogador, enquanto você bloqueia (fica apagada) */
+export interface EstadoCombate { selo?: Selo; inclinada?: boolean; ativa?: boolean; numero?: number; alheia?: boolean }
 
 export interface AreaProps {
   j: PlayerView;
@@ -72,6 +73,12 @@ export interface AreaProps {
   /** clique direito numa carta, e no espaço vazio da área */
   onMenuCarta?: (o: ObjView, ev: MouseEvent) => void;
   onMenuArea?: (ev: MouseEvent) => void;
+  /** decisão de combate aberta que passa por esta área: os leques de criaturas abrem (arrumacao.ts) */
+  lequeLargo?: boolean;
+  /** o combate declarado, na chave dos leques: quem ataca um jogador não fica no leque de quem ataca outro */
+  chaveCombate?: ReadonlyMap<ObjId, string>;
+  /** clique no selo ×n de um leque (com as cartas dele à vista): marcar ou desmarcar o leque para atacar */
+  onLeque?: (ids: ObjId[]) => void;
 }
 
 const PROPORCAO = 88 / 63;
@@ -160,8 +167,12 @@ export function AreaJogador(p: AreaProps) {
   const arr = useMemo(() => arrumarCampo(p.objs, p.anexos, posicoes, ordemZ, {
     W: campoW, livreW, H: campoH, wBase, wMin: p.compacta ? 28 : 40,
     vao: vaoAlt > 0 ? { x0: vaoX0, x1: vaoX1, topo: vaoAlt } : undefined,
-  }), [p.objs, p.anexos, posicoes, ordemZ, campoW, livreW, campoH, wBase, p.compacta, vaoX0, vaoX1, vaoAlt, p.eu, cantoLocal, tamAvatar]);
+  }, { largo: p.lequeLargo, combate: p.chaveCombate }), [p.objs, p.anexos, posicoes, ordemZ, campoW, livreW, campoH, wBase, p.compacta, vaoX0, vaoX1, vaoAlt, p.eu, cantoLocal, tamAvatar, p.lequeLargo, p.chaveCombate]);
   const todosNoCampo = useMemo(() => [...p.objs, ...p.objs.flatMap((o) => p.anexos.get(o.id) ?? [])], [p.objs, p.anexos]);
+  // as cartas de cada leque (sem as postas noutro lugar): no leque, a marcada para atacar sobe mais (a borda de cima
+  // fica à vista acima da vizinha) e o hover não traz ninguém para cima (a faixa que aparece é a que recebe o clique)
+  const leques = useMemo(() => arr.leques.map((g) => ({ ...g, ids: g.ids.filter((id) => !posicoes[id]) })).filter((g) => g.ids.length > 1), [arr, posicoes]);
+  const emLeque = useMemo(() => new Set(leques.flatMap((g) => g.ids)), [leques]);
 
   const contadores = Object.entries(j.counters).filter(([, n]) => n > 0);
   const danoCmd = j.commanderDamage.filter((d) => d.amount > 0);
@@ -211,23 +222,27 @@ export function AreaJogador(p: AreaProps) {
       )}
 
       <div class="campo" aria-label="Campo de batalha" data-larg={livreW} data-alt={campoH} data-carta-w={arr.w}
-        onPointerDown={p.onPegarCampoVazio ? (e) => { if (!(e.target as HTMLElement).closest('[data-obj]')) p.onPegarCampoVazio!(e, e.currentTarget as HTMLElement); } : undefined}>
+        onPointerDown={p.onPegarCampoVazio ? (e) => { if (!(e.target as HTMLElement).closest('[data-obj], .grupo-n')) p.onPegarCampoVazio!(e, e.currentTarget as HTMLElement); } : undefined}>
         {todosNoCampo.map((o) => {
           const pos = arr.pos.get(o.id);
           if (!pos) return null;
           const c = p.combate(o);
           const selecionada = !!p.selecionadas && (p.selecionadas.has(o.id) || (o.attachedTo !== null && p.selecionadas.has(o.attachedTo)));
-          const classe = [p.arrastando === o.id ? 'sendo-arrastada' : '', p.pousadas?.has(o.id) ? 'pousada' : '', c?.inclinada ? 'inclinada' : '', c?.ativa ? 'combate-ativa' : '', selecionada ? 'selecionada' : ''].filter(Boolean).join(' ');
+          const classe = [p.arrastando === o.id ? 'sendo-arrastada' : '', p.pousadas?.has(o.id) ? 'pousada' : '', c?.inclinada ? 'inclinada' : '', c?.ativa ? 'combate-ativa' : '', c?.alheia ? 'combate-alheio' : '', emLeque.has(o.id) ? 'no-leque' : '', selecionada ? 'selecionada' : ''].filter(Boolean).join(' ');
           return (
-            <Carta key={o.id} o={o} realce={p.realce(o)} selo={c?.selo} onClick={p.onCarta} onZoom={p.onZoom} onMenu={p.onMenuCarta}
+            <Carta key={o.id} o={o} realce={p.realce(o)} selo={c?.selo} numero={c?.numero} onClick={p.onCarta} onZoom={p.onZoom} onMenu={p.onMenuCarta}
               onPointerDown={p.onPegarCampo} classe={classe || undefined}
               estilo={{ left: `${pos.x}px`, top: `${pos.y}px`, zIndex: pos.z, '--w': `${arr.w}px` }} />
           );
         })}
-        {arr.leques.map((g, i) => {
-          // as do leque que foram postas noutro lugar não contam
-          const n = g.ids.filter((id) => !posicoes[id]).length;
-          return n > 1 && <span key={i} class="grupo-n" style={{ left: `${g.x}px`, top: `${g.y}px` }}>×{n}</span>;
+        {leques.map((g) => {
+          const estilo = { left: `${g.x}px`, top: `${g.y}px` };
+          // marcando atacantes: o selo de um leque de criaturas marca (ou desmarca) o leque inteiro
+          const criaturas = !!p.onLeque && todosNoCampo.some((o) => o.id === g.ids[0] && o.types.includes('Creature'));
+          return criaturas
+            ? <button key={g.ids[0]} type="button" class="grupo-n clicavel" style={estilo} title="Marcar ou desmarcar o leque inteiro para atacar" aria-label={`Leque de ${g.ids.length}: marcar ou desmarcar para atacar`}
+                onClick={(e) => { e.stopPropagation(); p.onLeque!(g.ids); }}>×{g.ids.length}</button>
+            : <span key={g.ids[0]} class="grupo-n" style={estilo}>×{g.ids.length}</span>;
         })}
         {p.conjurando && (
           <Carta o={p.conjurando.o} classe="conjurando" estilo={{ left: `${p.conjurando.x * livreW}px`, top: `${p.conjurando.y * campoH}px`, zIndex: 450, '--w': `${arr.w}px` }} />

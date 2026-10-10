@@ -20,7 +20,8 @@ import { acompanharArrasto, dentro, mostrarFantasma, useFantasma } from './arras
 import { useMusica } from '../musica.ts';
 import { AreaJogador, type EstadoCombate } from './AreaJogador.tsx';
 import { ConfigSom } from './ConfigSom.tsx';
-import { cliqueBloqueio, respostaBloqueio } from './bloqueio.ts';
+import { alternarLeque, cliqueAtaque, marcarVarias } from './ataque.ts';
+import { cliqueBloqueio, numerarIguais, respostaBloqueio } from './bloqueio.ts';
 import { Carta, type Realce } from './Carta.tsx';
 import { Chat } from './Chat.tsx';
 import { Decisao, type EstadoUi } from './Decisao.tsx';
@@ -135,6 +136,10 @@ function MenuFlutuante({ menu, fechar }: { menu: Menu; fechar: () => void }) {
 const CORES = ['var(--ouro)', 'var(--azul)', 'var(--positivo)', 'var(--roxo)'];
 /** jogador sem permanentes: sempre a mesma lista vazia (a arrumação da área não se refaz à toa) */
 const SEM_OBJS: ObjView[] = [];
+/** fora do combate: sempre o mesmo mapa vazio (idem) */
+const SEM_COMBATE: ReadonlyMap<ObjId, string> = new Map();
+/** soltar a criatura arrastada no combate a até tantos px de onde ela foi pega (sem alvo ali) vale como clique nela */
+const RAIO_CLIQUE = 24;
 const PARAVEIS = new Set<Step>(ETAPAS.map((e) => e.id).filter((s) => !['untap', 'cleanup', 'firstStrikeDamage'].includes(s)));
 
 /** o tremido discreto de "isso não pode" (sem explicação na mesa real) */
@@ -446,7 +451,16 @@ export function Mesa() {
     if (d?.kind !== 'blockers' || enviando) return;
     loja.responder(d.id, respostaBloqueio(bloqueios));
   };
-  const ui: EstadoUi = { sel, setSel, ataques, setAtaques, bloqueios, setBloqueios, bloqueadorAtivo, setBloqueadorAtivo, confirmarAtaque, confirmarBloqueio };
+  /** marca de uma vez (retângulo no campo, "Atacar com todas"): nenhuma fica escolhida, o próximo oponente clicado vale
+   *  para todas as marcadas sem alvo */
+  const marcarAtacantes = (ids: ObjId[]) => {
+    if (d?.kind !== 'attackers' || enviando) return;
+    const r = marcarVarias(d.candidates, ataques, ids, ultimoAlvo);
+    setAtaques(r.ataques);
+    setAtacanteAtivo(r.ativo);
+  };
+  const atacarComTodas = () => { if (d?.kind === 'attackers') marcarAtacantes(d.candidates.map((c) => c.obj)); };
+  const ui: EstadoUi = { sel, setSel, ataques, setAtaques, bloqueios, setBloqueios, bloqueadorAtivo, setBloqueadorAtivo, confirmarAtaque, confirmarBloqueio, atacarComTodas };
   const minhaReserva = v.players[eu]?.manaPool ?? '';
   // a mana que a permanente gerou ainda está toda na reserva: desvirar à mão faz ela sair. Com parte dela gasta
   // (manaGasta), o motor recusa o desvirar: desvirar e virar de novo daria mana de graça
@@ -582,6 +596,20 @@ export function Mesa() {
   const bloqueadoresCand = d?.kind === 'blockers' ? new Map(d.candidates.map((c) => [c.obj, c.canBlock])) : null;
   const atacando = new Map((v.combat?.attackers ?? []).map((a) => [a.id, a]));
   const bloqueando = new Map((v.combat?.attackers ?? []).flatMap((a) => a.blockers.map((b) => [b, a.id] as const)));
+  // o combate declarado na chave dos leques (arrumacao.ts): quem ataca um jogador sai do leque de quem ataca outro, e
+  // quem bloqueia um atacante sai do leque de quem bloqueia outro
+  const chaveCombate = useMemo(() => {
+    if (!v.combat?.attackers.length) return SEM_COMBATE;
+    const m = new Map<ObjId, string>();
+    for (const a of v.combat.attackers) {
+      m.set(a.id, `A${a.target.kind === 'player' ? 'p' : 'o'}${a.target.id}`);
+      for (const b of a.blockers) m.set(b, `B${a.id}`);
+    }
+    return m;
+  }, [v.combat]);
+  // as de nome igual na decisão de combate ganham número: o painel diz "Zumbi #2" e a carta mostra "#2"
+  const numeros = useMemo(() => (d?.kind === 'attackers' ? numerarIguais(d.candidates.map((c) => c.obj), nomeObj)
+    : d?.kind === 'blockers' ? numerarIguais(d.attackers, nomeObj) : null), [d, todos]);
 
   // alvos de ataque que valem para a criatura marcada agora (ou para as marcadas sem alvo)
   const quemRecebeAlvo = (): ObjId[] => {
@@ -608,7 +636,8 @@ export function Mesa() {
     if (bloqueadoresCand) {
       if (bloqueadorAtivo === o.id) return 'ativo';
       if (bloqueios[o.id] !== undefined) return 'bloqueador';
-      if (aux.alvos && bloqueadorAtivo !== null && bloqueadoresCand.get(bloqueadorAtivo)?.includes(o.id)) return 'mira';
+      // os atacantes que a escolhida pode bloquear, também na mesa real (o clique seguinte é num deles)
+      if (bloqueadorAtivo !== null && bloqueadoresCand.get(bloqueadorAtivo)?.includes(o.id)) return 'bloqueavel';
       if (aux.alvos && bloqueadoresCand.get(o.id)?.length) return 'escolhivel';
     }
     if (atacando.has(o.id)) return 'atacante';
@@ -617,10 +646,14 @@ export function Mesa() {
   };
   // selos e inclinação: o que você está marcando agora e o combate já declarado (todos veem)
   const combate = (o: ObjView): EstadoCombate | undefined => {
-    if (atacantesCand && o.id in ataques) return { selo: ataques[o.id] ? 'espada' : 'espera', inclinada: true, ativa: atacanteAtivo === o.id };
-    if (bloqueadoresCand && bloqueios[o.id] !== undefined) return { selo: 'escudo' };
+    const numero = numeros?.get(o.id)?.n ?? undefined;
+    if (atacantesCand && o.id in ataques) return { selo: ataques[o.id] ? 'espada' : 'espera', inclinada: true, ativa: atacanteAtivo === o.id, numero };
+    if (atacantesCand && numero !== undefined) return { numero };
+    // a escolhida antes: quem já bloqueia também pode ser a escolhida (para trocar de atacante)
     if (bloqueadoresCand && bloqueadorAtivo === o.id) return { selo: 'escudo', ativa: true };
-    if (atacando.has(o.id)) return { selo: 'espada' };
+    if (bloqueadoresCand && bloqueios[o.id] !== undefined) return { selo: 'escudo' };
+    // bloqueando em 4 jogadores: quem ataca outro jogador fica apagado (não dá para bloquear)
+    if (atacando.has(o.id)) return { selo: 'espada', numero, alheia: d?.kind === 'blockers' && !d.attackers.includes(o.id) };
     if (bloqueando.has(o.id)) return { selo: 'escudo' };
     return undefined;
   };
@@ -737,11 +770,16 @@ export function Mesa() {
       };
     });
   };
-  // combate: arrastar a criatura até a área de quem ela ataca, ou o bloqueador até o atacante
+  // combate: arrastar a criatura até a área de quem ela ataca, ou o bloqueador até o atacante. Um arrasto curto que não
+  // deu em nada vale como clique nela (a mão treme ao clicar; no leque, o ponteiro escorregava para a vizinha e o
+  // clique se perdia)
   const pegarCombate = (o: ObjView, ev: PointerEvent, el: HTMLElement): boolean => {
     const alvosAtaque = atacantesCand?.get(o.id);
     const bloqueaveis = bloqueadoresCand?.get(o.id);
     if (!alvosAtaque?.length && !bloqueaveis?.length) return false;
+    const rPega = el.getBoundingClientRect();
+    // a versão mais nova do clique (o estado pode ter mudado desde o botão descer)
+    const comoClique = () => tCarta(o, rPega);
     acompanharArrasto(ev, () => {
       const r0 = el.getBoundingClientRect();
       const w = el.offsetWidth, h = el.offsetHeight;
@@ -755,21 +793,25 @@ export function Mesa() {
         soltar: (x: number, y: number) => {
           mostrarFantasma(null); setArrastando(null);
           const sob = document.elementsFromPoint(x, y) as HTMLElement[];
+          // sem alvo onde soltou: perto de onde pegou (ou em cima dela mesma), foi um clique que tremeu
+          const clique = () => { if (Math.hypot(x - ev.clientX, y - ev.clientY) <= RAIO_CLIQUE || dentro(rPega, x, y)) comoClique(); };
           if (alvosAtaque?.length) {
             // em cima de um planeswalker/batalha atacável, ou da área de um jogador
             const carta = sob.map((e) => e.closest('[data-obj]') as HTMLElement | null).find((e) => e && alvosAtaque.some((t) => t.kind === 'obj' && t.id === Number(e.dataset.obj)));
             const area = sob.map((e) => e.closest('[data-jogador]') as HTMLElement | null).find(Boolean);
             const t = carta ? alvosAtaque.find((a) => a.kind === 'obj' && a.id === Number(carta.dataset.obj))
               : area ? alvosAtaque.find((a) => a.kind === 'player' && a.id === Number(area.dataset.jogador)) : undefined;
-            if (t) { setAtaques({ ...ataques, [o.id]: t }); setUltimoAlvo(t); }
+            if (t) { setAtaques({ ...ataques, [o.id]: t }); setUltimoAlvo(t); } else clique();
             return;
           }
           const carta = sob.map((e) => e.closest('[data-obj]') as HTMLElement | null).find((e) => e && bloqueaveis!.includes(Number(e.dataset.obj)));
-          if (carta) { setBloqueios({ ...bloqueios, [o.id]: Number(carta.dataset.obj) }); setBloqueadorAtivo(null); }
+          if (carta) { setBloqueios({ ...bloqueios, [o.id]: Number(carta.dataset.obj) }); setBloqueadorAtivo(null); } else clique();
         },
         cancelar: () => { mostrarFantasma(null); setArrastando(null); },
       };
-    });
+    // sem passar do limite: o clique do navegador cuida, se o botão subiu em cima dela; se o ponteiro escorregou para
+    // fora (a vizinha do leque), o navegador manda o clique para o campo e ele se perde: a mesa clica nela
+    }, (e) => { if (el.contains(e.target as Node)) return false; comoClique(); return true; }, 10);
     return true;
   };
 
@@ -792,14 +834,34 @@ export function Mesa() {
     });
   };
   // botão apertado no espaço vazio do seu campo: retângulo de seleção (com Shift, soma à seleção);
-  // um clique sem arrastar desfaz a seleção
+  // um clique sem arrastar desfaz a seleção. Declarando atacantes, o retângulo que pega criaturas que podem atacar
+  // marca todas elas para atacar (o próximo oponente clicado vale para todas)
   const pegarCampoVazio = (ev: PointerEvent, campo: HTMLElement) => {
     if (pegar || v.gameOver) return;
     const somar = ev.shiftKey;
     selecionarArea(ev, campo, arrumar.dono, (ids) => {
-      if (ids === null) arrumar.limpar();
-      else { setMenu(null); arrumar.selecionar(ids, somar); }
+      if (ids === null) { arrumar.limpar(); return; }
+      if (tMarcarArea(ids)) return;
+      setMenu(null);
+      arrumar.selecionar(ids, somar);
     });
+  };
+  /** as do retângulo que podem atacar ficam marcadas; false se nenhuma pode (o retângulo vira seleção para mover) */
+  const marcarArea = (ids: ObjId[]): boolean => {
+    if (d?.kind !== 'attackers' || enviando) return false;
+    const cands = ids.filter((id) => d.candidates.some((c) => c.obj === id));
+    if (!cands.length) return false;
+    setMenu(null);
+    marcarAtacantes(cands);
+    return true;
+  };
+  /** o selo ×n de um leque das suas criaturas, declarando atacantes: marca as que faltam ou, todas marcadas, desmarca */
+  const clicarLeque = (ids: ObjId[]) => {
+    if (d?.kind !== 'attackers' || enviando) return;
+    const r = alternarLeque(d.candidates, { ataques, ativo: atacanteAtivo }, ids, ultimoAlvo);
+    if (!r) { loja.recusar('Essas criaturas não podem atacar agora'); return; }
+    setAtaques(r.ataques);
+    setAtacanteAtivo(r.ativo);
   };
 
   // clique direito: jogadas válidas, ver a carta, revelar e o ajuste manual
@@ -901,17 +963,10 @@ export function Mesa() {
       abrirMenu(nomeObj(o.id), legais([...acoes.map((a) => ({ id: a.id, label: a.label, fazer: () => fazerAcao(a) })), ...(desvirar ? [desvirar] : [])]), r);
       return;
     }
-    if (atacantesCand) {
-      const alvos = atacantesCand.get(o.id);
-      if (alvos) {
-        // clique de novo desmarca
-        if (o.id in ataques) { const n = { ...ataques }; delete n[o.id]; setAtaques(n); if (atacanteAtivo === o.id) setAtacanteAtivo(null); return; }
-        // um alvo só (um contra um) é automático; senão vai no mesmo oponente da anterior, até você clicar em outro
-        const padrao = alvos.length === 1 ? alvos[0] : ultimoAlvo && alvos.some((x) => mesmoAlvo(x, ultimoAlvo)) ? ultimoAlvo : null;
-        setAtaques({ ...ataques, [o.id]: padrao });
-        setAtacanteAtivo(o.id);
-        return;
-      }
+    if (d.kind === 'attackers') {
+      // desmarcada: marca e escolhe; marcada: escolhe (o próximo oponente clicado vale para ela); a escolhida: desmarca
+      const r = cliqueAtaque(d.candidates, { ataques, ativo: atacanteAtivo }, o.id, ultimoAlvo);
+      if (r) { setAtaques(r.ataques); setAtacanteAtivo(r.ativo); return; }
       // planeswalker ou batalha de um oponente
       if (o.controller !== eu && alvoAtaque({ kind: 'obj', id: o.id })) return;
       if (o.controller === eu && o.types.includes('Creature')) loja.recusar('Essa criatura não pode atacar agora');
@@ -975,6 +1030,9 @@ export function Mesa() {
   const tPegarCampoVazio = useEstavel(pegarCampoVazio);
   const tPegarMao = useEstavel(pegarMao);
   const tJogar = useEstavel(jogar);
+  // o retângulo termina quando o botão sobe: a marcação usa o estado de então
+  const tMarcarArea = useEstavel(marcarArea);
+  const tLeque = useEstavel(clicarLeque);
   const fecharMenu = useEstavel(() => setMenu(null));
 
   const duelo = sala.modo === '1v1';
@@ -983,6 +1041,9 @@ export function Mesa() {
     // declarando ataque: clicar no oponente (área, nome ou vida) escolhe quem a criatura marcada ataca
     const atacarJ = !!atacantesCand && j.id !== eu && Object.keys(ataques).length > 0;
     const alvoJogador = atacarJ && aux.alvos && podeSerAlvo({ kind: 'player', id: j.id });
+    // decisão de combate que passa por esta área: os leques de criaturas abrem (o tamanho das cartas não muda)
+    const lequeLargo = (d?.kind === 'attackers' && j.id === eu)
+      || (d?.kind === 'blockers' && (j.id === eu || d.attackers.some((a) => todos.get(a)?.controller === j.id)));
     return (
       <AreaJogador
         key={j.id}
@@ -1024,6 +1085,9 @@ export function Mesa() {
         onDuploMao={j.id === eu ? tJogar : undefined}
         onMenuCarta={tMenuCarta}
         onMenuArea={j.id === eu ? tMenuArea : undefined}
+        lequeLargo={lequeLargo}
+        chaveCombate={chaveCombate}
+        onLeque={j.id === eu && d?.kind === 'attackers' && !enviando ? tLeque : undefined}
       />
     );
   };
@@ -1138,7 +1202,8 @@ export function Mesa() {
           {d && mostrarDecisao && (
             <div class="cartao">
               <p class="rot">{rotuloDecisao(d)}</p>
-              <Decisao v={v} d={d} ui={ui} nomeObj={nomeObj} nomeAlvo={nomeAlvo} visivel={(id) => todos.has(id)} acoesSoltas={acoesSoltas} reserva={minhaReserva} aux={aux} />
+              <Decisao v={v} d={d} ui={ui} nomeObj={nomeObj} nomeAlvo={nomeAlvo} visivel={(id) => todos.has(id)} acoesSoltas={acoesSoltas} reserva={minhaReserva} aux={aux}
+                nomeCombate={(id) => numeros?.get(id)?.rotulo ?? nomeObj(id)} recusa={e.recusaCombate?.decisao === d.id ? e.recusaCombate.texto : null} />
             </div>
           )}
         </div>
