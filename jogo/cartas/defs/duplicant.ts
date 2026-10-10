@@ -12,7 +12,10 @@ export default defineCard({
         const id = tgt(c); if (id === null || !(yield* yesNo(c.g, c.you, 'Duplicant: exilar a criatura alvo?'))) return;
         const out = yield* exile(c.g, [id]);
         const source = c.g.state.objects[c.source];
-        if (source?.zone === 'battlefield') { source.linked.imprint = out.filter((id): id is number => id !== null); c.g.bump(); }
+        if (source?.zone === 'battlefield') {
+          source.linked.imprint = [...source.linked.imprint ?? [], ...out.filter((id): id is number => id !== null)];
+          c.g.bump();
+        }
       }, { targets: [t.creature(is.nontoken, 'criatura não ficha alvo')], text: 'Quando entra, você pode exilar a criatura não ficha alvo.' }),
       selfGets((c, o) => {
         const id = o.linked.imprint?.filter((id) => c.g.state.objects[id]?.zone === 'exile' && isCreature(c.g, id)).at(-1);

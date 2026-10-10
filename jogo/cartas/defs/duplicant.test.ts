@@ -1,9 +1,20 @@
 import { describe, expect, it } from 'vitest';
-import { addCounters, chars, hasKw } from '../../motor/api.ts';
+import { addCounters, addPending, chars, hasKw } from '../../motor/api.ts';
 import { removeCard, fixture as setup } from '../../testes/artefatos.ts';
 
 const N = "Duplicant";
 describe(N, () => {
+  it('entradas copiadas preservam os vínculos anteriores e usam a última criatura que continua no exílio', () => {
+    const tg = setup({ battlefield: [['Sol Ring', 'Sol Ring', 'Sol Ring'], ['Elvish Mystic', 'Zetalpa, Primal Dawn']], hand: [[N], []] });
+    tg.choose('criatura não ficha', ['Elvish Mystic']).yes('Duplicant:').cast(N).resolveAll();
+    const id = tg.bf(N);
+    tg.choose('criatura não ficha', ['Zetalpa, Primal Dawn']).yes('Duplicant:');
+    addPending(tg.g, `${N}#0.0`, id, 0, {}, {}); tg.refresh(); tg.settle(); tg.resolveAll();
+    expect(tg.state.objects[id].linked.imprint).toHaveLength(2);
+    expect(tg.pt(id)).toEqual([4, 8]);
+    removeCard(tg, tg.find('Zetalpa, Primal Dawn', 'exile')!);
+    expect(tg.pt(id)).toEqual([1, 1]);
+  });
   it("exila sem copiar habilidades e mantém Shapeshifter e bônus de marcadores", () => {
 
     const tg = setup({ battlefield: [['Sol Ring', 'Sol Ring', 'Sol Ring'], ['Zetalpa, Primal Dawn']], hand: [[N], []] }); tg.choose('criatura não ficha', ['Zetalpa, Primal Dawn']).yes('Duplicant:').cast(N).resolveAll();

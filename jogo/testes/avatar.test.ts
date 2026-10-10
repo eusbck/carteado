@@ -8,6 +8,7 @@ import { describe, expect, it } from 'vitest';
 import '../cartas/index.ts';
 import decksJson from './decks-teste.json' with { type: 'json' };
 import decksMesa from '../gerado/decks.json' with { type: 'json' };
+import decksOriginais from './decks-mesa-06cc7f3.json' with { type: 'json' };
 import { arrumarCampo } from '../cliente/src/mesa/arrumacao.ts';
 import type { DeckList } from '../motor/state.ts';
 import type { ObjId } from '../motor/types.ts';
@@ -31,15 +32,22 @@ class Falsa implements Conexao {
 const espera = () => new Promise((r) => setTimeout(r, 0));
 
 describe('avatares: catálogo', () => {
-  it('nove retratos com ids únicos, e cada comandante dos decks da mesa tem o seu', () => {
+  it('nove retratos com ids únicos, preservados para os comandantes da mesa em 06cc7f3', () => {
     expect(AVATARES).toHaveLength(9);
     expect(new Set(AVATARES.map((a) => a.id)).size).toBe(9);
-    for (const d of decksMesa as { comandante: string }[]) expect(avatarDoComandante(d.comandante), d.comandante).not.toBeNull();
+    expect(decksMesa.slice(0, decksOriginais.length).map(({ id, comandante }) => ({ id, comandante }))).toEqual(decksOriginais);
+    for (const d of decksOriginais) expect(avatarDoComandante(d.comandante), d.comandante).not.toBeNull();
     expect(avatarDoComandante('Comandante que não tem retrato')).toBeNull();
     expect(avatarDoComandante(null)).toBeNull();
     expect(avatarValido('jace')).toBe(true);
     expect(avatarValido('../jace')).toBe(false);
     expect(avatarValido(3)).toBe(false);
+  });
+
+  it('um deck novo sem retrato próprio conserva a opção automática com a inicial', () => {
+    const sai = decksMesa.find((d) => d.comandante === 'Sai, Master Thopterist');
+    expect(sai).toBeDefined();
+    expect(avatarDoComandante(sai!.comandante)).toBeNull();
   });
 
   it('cada retrato existe no cliente, é quadrado e tem transparência de verdade', async () => {

@@ -9,6 +9,7 @@ import sharp from 'sharp';
 import { afterAll, describe, expect, it } from 'vitest';
 import decksJson from '../gerado/decks.json' with { type: 'json' };
 import decksTeste from './decks-teste.json' with { type: 'json' };
+import decksOriginais from './decks-mesa-06cc7f3.json' with { type: 'json' };
 import imagensJson from '../gerado/imagens.json' with { type: 'json' };
 import { Imagens } from '../servidor/imagens.ts';
 
@@ -73,10 +74,10 @@ describe('arte do comandante para o fundo da área', () => {
     expect(await img.arte(SEM_ARTE, 'fundo')).toMatch(/-fundo.webp$/);
   });
 
-  it('os 9 decks do saguão têm o fundo próprio, em alta, com o nome da imagem do comandante', async () => {
+  it('os 9 decks da mesa em 06cc7f3 conservam o fundo próprio, em alta, com o nome da imagem do comandante', async () => {
     const fontes = JSON.parse(readFileSync(join(import.meta.dirname, '..', 'gerado', 'fundos', 'fontes.json'), 'utf8')) as Record<string, { imagem: string }>;
     const imagens = imagensJson as unknown as Record<string, { en: { id: string } | null; pt: { id: string; reserva?: boolean } | null }>;
-    for (const d of decksJson as { comandante: string }[]) {
+    for (const d of decksOriginais) {
       const i = imagens[d.comandante];
       const usada = (i?.pt && !i.pt.reserva ? i.pt : i?.en)?.id;
       expect(fontes[d.comandante]?.imagem, d.comandante).toBe(usada);

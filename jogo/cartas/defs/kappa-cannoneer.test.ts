@@ -1,9 +1,21 @@
 import { describe, expect, it } from 'vitest';
+import { chars, defineToken, staticAbility } from '../../motor/api.ts';
 import { canBlock } from '../../motor/combat.ts';
 import { enterCard, fixture as setup } from '../../testes/artefatos.ts';
 
 const N = "Kappa Cannoneer";
+const SEM_ARTEFATO = 'Teste Kappa sem tipo artefato';
+defineToken({
+  id: SEM_ARTEFATO, name: SEM_ARTEFATO, types: ['Enchantment'], subtypes: [], colors: [], power: null, toughness: null,
+  abilities: [staticAbility({ affects: (_c, o) => o.def === N, mods: () => [{ k: 'removeTypes', types: ['Artifact'] }] })],
+});
 describe(N, () => {
+  it('a própria entrada dispara mesmo quando um efeito contínuo retira o tipo artefato', () => {
+    const tg = setup({ battlefield: [[{ name: SEM_ARTEFATO, token: true }], []] });
+    enterCard(tg, N, 0); tg.resolveAll();
+    expect(chars(tg.g, tg.bf(N)).types).not.toContain('Artifact');
+    expect(tg.pt(tg.bf(N))).toEqual([5, 5]);
+  });
   it('cancelar depois de produzir mana e improvisar restaura a carta, reserva e artefatos virados', () => {
     const tg = setup({ battlefield: [['Island', ...Array.from({ length: 5 }, () => ({ name: 'Myr', token: true, ready: false }))], []], hand: [[N], []] });
     tg.script.push((d) => d.kind === 'payment' ? { kind: 'payment', activate: { source: d.sources.find((s) => s.obj === tg.bf('Island'))!.id } } : null);

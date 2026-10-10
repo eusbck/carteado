@@ -20,7 +20,7 @@ export default defineCard({
   }],
   rulings: {
     1: 'teste: só artefato e criatura, só Insect',
-    2: 'não se aplica: nenhuma criatura dos decks tem subtipos de artefato',
+    2: 'regra geral: CR 613.1d, 205.3 — setTypes substitui todos os subtipos, inclusive Vehicle de um veículo tripulado',
     3: 'regra geral: CR 613.7 — efeitos de base posteriores valem por ordem de registro',
     4: 'teste: troca a força e resistência impressas',
     5: 'teste: marcadores continuam valendo',
