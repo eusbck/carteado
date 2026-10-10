@@ -41,6 +41,7 @@ import { NIVEL_PADRAO, nomeNivel } from '../../../bots/niveis.ts';
 import { TextoComSimbolos } from './Simbolos.tsx';
 import { Zoom } from './Zoom.tsx';
 import { esconderZoom, mostrarZoom, useZoom } from './zoomLoja.ts';
+import { zoomDaPilha } from './zoomPilha.ts';
 import { mesmaLista, mesmasPosicoes, mesmoMapaDeListas, useEstavel, useMesmo } from './estavel.ts';
 
 type Modal = { tipo: 'zona'; jogador: number; zona: 'graveyard' | 'exile' } | { tipo: 'paradas' } | { tipo: 'registro' } | { tipo: 'conceder' } | { tipo: 'config' } | { tipo: 'carta'; o: ObjView } | null;
@@ -1114,7 +1115,7 @@ export function Mesa() {
                 {v.stack.map((s, i) => {
                   const img = s.def ? urlImagem(s.def, 0, 'p') : null;
                   return (
-                    <li key={s.id} class={`${i === 0 ? 'topo' : ''} ${img ? '' : 'sem-imagem'}`} style={{ '--cor': cor(s.controller) }}>
+                    <li key={s.id} class={`${i === 0 ? 'topo' : ''} ${img ? '' : 'sem-imagem'}`} style={{ '--cor': cor(s.controller) }} {...zoomDaPilha(s, todos)}>
                       {img && <img src={img} alt="" class="mini" />}
                       <div>
                         <strong>{s.def ? nomeCarta(s.def, s.name) : s.name}</strong>

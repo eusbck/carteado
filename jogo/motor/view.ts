@@ -57,6 +57,9 @@ export interface StackView {
   text: string;
   targets: string[];
   x: number;
+  /** habilidade: o objeto fonte (o zoom da pilha mostra a carta dele e acende a fonte na mesa, se ainda estiver à vista);
+   *  ausente na mágica e na fonte virada para baixo que o espectador não vê */
+  source?: ObjId;
 }
 
 export interface PlayerView {
@@ -183,7 +186,7 @@ function stackView(g: G, id: ObjId, viewer: PlayerId | null): StackView {
   // fonte virada para baixo (manifestada…) que o espectador não pode ver: nem o nome nem a imagem dela
   if (src?.faceDown && !canSee(g, src, viewer)) return { id, kind: st.kind, controller: st.controller, name: 'Virada para baixo', def: '', text: def?.text ?? '', targets: st.targets.flat().map(targetName), x: st.x };
   const srcName = src ? (g.state.objects[src.id] ? chars(g, src.id).name : g.state.lki[src.id]?.chars.name ?? '') : 'regra do jogo';
-  return { id, kind: st.kind, controller: st.controller, name: srcName, def: src?.def ?? '', text: def?.text ?? '', targets: st.targets.flat().map(targetName), x: st.x };
+  return { id, kind: st.kind, controller: st.controller, name: srcName, def: src?.def ?? '', text: def?.text ?? '', targets: st.targets.flat().map(targetName), x: st.x, ...(src ? { source: src.id } : {}) };
 }
 
 export function buildView(g: G, viewer: PlayerId | null, pending: Decision | null): GameView {

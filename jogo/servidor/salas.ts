@@ -57,7 +57,7 @@ export interface Atrasos {
   senhaNaHora?: boolean;
 }
 
-export const ATRASOS_PADRAO: Atrasos = { botAcao: 700, botPasse: 90, autoPasse: 60, pilhaNova: 900, simulacoesBot: null, prazoDesfazer: 30000, threads: 2, avisoPensando: 1000, gravacao: 250 };
+export const ATRASOS_PADRAO: Atrasos = { botAcao: 700, botPasse: 90, autoPasse: 60, pilhaNova: 1800, simulacoesBot: null, prazoDesfazer: 30000, threads: 2, avisoPensando: 1000, gravacao: 250 };
 // testes do servidor: sem atrasos e com bots que pensam pouco (o fluxo da sala é o que importa)
 export const SEM_ATRASO: Atrasos = { botAcao: 0, botPasse: 0, autoPasse: 0, pilhaNova: 0, simulacoesBot: 3, prazoDesfazer: 30000, threads: 0, avisoPensando: 1000, tempoBot: 300, senhaNaHora: true };
 

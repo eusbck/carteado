@@ -13,3 +13,5 @@
   }
   100% { box-shadow: 0 0 0 0 transparent, 0 0 0 0 transparent, inset 0 0 0 transparent; }
 }
+/* o mouse num item da pilha acende a fonte dele na mesa (mesa/zoomPilha.ts põe a regra com o data-obj da carta) */
+@keyframes fonte-da-pilha { to { outline-color: color-mix(in srgb, var(--acao) 80%, transparent); outline-offset: 5px; } }

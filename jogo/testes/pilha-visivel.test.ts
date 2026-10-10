@@ -1,18 +1,20 @@
 // A pilha que acabou de mudar segura a mesa (servidor/pilha-visivel.ts): a conta da rajada (base, metade, teto de 4×,
 // a mágica da própria pessoa pela metade, a pilha vazia recomeça) e, na sala, a vista com o objeto novo chegando antes
 // da resolução, com o tempo de segurar entre as duas; no passe automático de uma pessoa, a vista sai neutra (ninguém
-// decidindo nem esperado), e a decisão que o servidor passa sozinho nunca aparece.
+// decidindo nem esperado), e a decisão que o servidor passa sozinho nunca aparece. E a carta que o zoom de um item da
+// pilha mostra (cliente/src/mesa/zoomPilha.ts): a fonte à vista no campo, ou uma feita da definição.
 import { describe, expect, it } from 'vitest';
 import '../cartas/index.ts';
 import decksJson from './decks-teste.json' with { type: 'json' };
 import { DEFAULT_STOPS, type StopSettings } from '../motor/autopass.ts';
 import type { DeckList } from '../motor/state.ts';
 import type { GameState, ObjId, PlayerId } from '../motor/types.ts';
-import type { GameView } from '../motor/view.ts';
+import type { GameView, StackView } from '../motor/view.ts';
+import { cartaDaPilha } from '../cliente/src/mesa/zoomPilha.ts';
 import { Banco } from '../servidor/banco.ts';
 import { novaRajada, segurarPilha } from '../servidor/pilha-visivel.ts';
 import type { MsgServidor } from '../servidor/protocolo.ts';
-import { Gerente, SEM_ATRASO, type Conexao } from '../servidor/salas.ts';
+import { ATRASOS_PADRAO, Gerente, SEM_ATRASO, type Conexao } from '../servidor/salas.ts';
 import { setup, type SetupOptions } from './harness.ts';
 
 const DECKS = decksJson as DeckList[];
@@ -24,50 +26,71 @@ function pilha(objs: [ObjId, 'spell' | 'triggered' | 'activated', PlayerId][]): 
 // assento 0: a pessoa; 1: o bot
 const humano = (p: PlayerId) => p === 0;
 
+// o tempo de produção
+const B = ATRASOS_PADRAO.pilhaNova;
+
 describe('segurarPilha: a conta da rajada', () => {
+  it('produção: 1,8 s para o 1º objeto novo de uma rajada (0,9 s os seguintes, até 7,2 s)', () => {
+    expect(B).toBe(1800);
+  });
+
   it('1º objeto novo: base; os seguintes: metade; cada um uma vez; teto de 4× base; a pilha vazia recomeça', () => {
     const r = novaRajada();
     const objs: [ObjId, 'triggered', PlayerId][] = [];
-    const empilha = (id: ObjId) => { objs.push([id, 'triggered', 1]); return segurarPilha(r, pilha(objs), humano, 900); };
-    expect(empilha(1)).toBe(900);
+    const empilha = (id: ObjId) => { objs.push([id, 'triggered', 1]); return segurarPilha(r, pilha(objs), humano, B); };
+    expect(empilha(1)).toBe(1800);
     // o mesmo objeto não segura de novo
-    expect(segurarPilha(r, pilha(objs), humano, 900)).toBe(0);
-    expect([2, 3, 4, 5, 6, 7].map(empilha)).toEqual([450, 450, 450, 450, 450, 450]);
-    // 900 + 6 × 450 = 3600 = 4 × 900: a onda de gatilhos não segura mais
-    expect(r.gasto).toBe(3600);
+    expect(segurarPilha(r, pilha(objs), humano, B)).toBe(0);
+    expect([2, 3, 4, 5, 6, 7].map(empilha)).toEqual([900, 900, 900, 900, 900, 900]);
+    // 1800 + 6 × 900 = 7200 = 4 × 1800: a onda de gatilhos não segura mais
+    expect(r.gasto).toBe(7200);
     expect(empilha(8)).toBe(0);
     // a pilha esvaziou: outra rajada, o primeiro volta a segurar a base
-    expect(segurarPilha(r, pilha([]), humano, 900)).toBe(0);
+    expect(segurarPilha(r, pilha([]), humano, B)).toBe(0);
     expect(r.gasto).toBe(0);
-    expect(segurarPilha(r, pilha([[20, 'activated', 1]]), humano, 900)).toBe(900);
+    expect(segurarPilha(r, pilha([[20, 'activated', 1]]), humano, B)).toBe(1800);
   });
 
   it('o teto corta o último pedaço', () => {
     const r = novaRajada();
     const objs: [ObjId, 'spell' | 'triggered', PlayerId][] = [];
-    const empilha = (id: ObjId) => { objs.push([id, id === 2 ? 'spell' : 'triggered', id === 2 ? 0 : 1]); return segurarPilha(r, pilha(objs), humano, 1000); };
-    // 1000 + 250 (a mágica de Ana, pela metade) + 500 × 5 = 3750: o seguinte só tem 250 até o teto, e o outro, nada
-    expect([1, 2, 3, 4, 5, 6, 7, 8, 9].map(empilha)).toEqual([1000, 250, 500, 500, 500, 500, 500, 250, 0]);
-    expect(r.gasto).toBe(4000);
+    const empilha = (id: ObjId) => { objs.push([id, id === 2 ? 'spell' : 'triggered', id === 2 ? 0 : 1]); return segurarPilha(r, pilha(objs), humano, B); };
+    // 1800 + 450 (a mágica de Ana, pela metade) + 900 × 5 = 6750: o seguinte só tem 450 até o teto, e o outro, nada
+    expect([1, 2, 3, 4, 5, 6, 7, 8, 9].map(empilha)).toEqual([1800, 450, 900, 900, 900, 900, 900, 450, 0]);
+    expect(r.gasto).toBe(7200);
   });
 
   it('a mágica de uma pessoa segura metade (ela sabe o que conjurou); gatilho dela e mágica do bot, não', () => {
     const r = novaRajada();
-    expect(segurarPilha(r, pilha([[1, 'spell', 0]]), humano, 900)).toBe(450);
+    expect(segurarPilha(r, pilha([[1, 'spell', 0]]), humano, B)).toBe(900);
     // o bot responde: mágica dele, a segunda da rajada
-    expect(segurarPilha(r, pilha([[1, 'spell', 0], [2, 'spell', 1]]), humano, 900)).toBe(450);
+    expect(segurarPilha(r, pilha([[1, 'spell', 0], [2, 'spell', 1]]), humano, B)).toBe(900);
     // a pessoa responde de novo: a segunda metade, pela metade
-    expect(segurarPilha(r, pilha([[1, 'spell', 0], [2, 'spell', 1], [3, 'spell', 0]]), humano, 900)).toBe(225);
+    expect(segurarPilha(r, pilha([[1, 'spell', 0], [2, 'spell', 1], [3, 'spell', 0]]), humano, B)).toBe(450);
     // o gatilho da pessoa segura como os outros
     const r2 = novaRajada();
-    expect(segurarPilha(r2, pilha([[1, 'triggered', 0]]), humano, 900)).toBe(900);
+    expect(segurarPilha(r2, pilha([[1, 'triggered', 0]]), humano, B)).toBe(1800);
   });
 
   it('base 0 (a pessoa parou na pilha): marca como vista sem segurar; o objeto novo seguinte segura a base', () => {
     const r = novaRajada();
     expect(segurarPilha(r, pilha([[1, 'spell', 1]]), humano, 0)).toBe(0);
-    expect(segurarPilha(r, pilha([[1, 'spell', 1]]), humano, 900)).toBe(0);
-    expect(segurarPilha(r, pilha([[1, 'spell', 1], [2, 'triggered', 1]]), humano, 900)).toBe(900);
+    expect(segurarPilha(r, pilha([[1, 'spell', 1]]), humano, B)).toBe(0);
+    expect(segurarPilha(r, pilha([[1, 'spell', 1], [2, 'triggered', 1]]), humano, B)).toBe(1800);
+  });
+});
+
+describe('zoom da pilha: a carta que aparece', () => {
+  const item = (s: Partial<StackView>): StackView => ({ id: 50, kind: 'spell', controller: 1, name: 'Lightning Bolt', def: 'Lightning Bolt', text: '', targets: [], x: 0, ...s });
+  it('mágica: a carta dela, feita da definição', () => {
+    expect(cartaDaPilha(item({}), new Map())).toMatchObject({ id: 50, def: 'Lightning Bolt', name: 'Lightning Bolt', abilities: [] });
+  });
+  it('habilidade de uma fonte que já saiu: a carta da fonte, com o texto da habilidade', () => {
+    expect(cartaDaPilha(item({ kind: 'triggered', name: 'Nyx-Fleece Ram', def: 'Nyx-Fleece Ram', text: 'No início da sua manutenção, você ganha 1 de vida.', source: 7 }), new Map()))
+      .toMatchObject({ def: 'Nyx-Fleece Ram', abilities: ['No início da sua manutenção, você ganha 1 de vida.'] });
+  });
+  it('virada para baixo que o espectador não vê: nada', () => {
+    expect(cartaDaPilha(item({ def: '', name: 'Mágica virada para baixo' }), new Map())).toBeNull();
   });
 });
 
@@ -148,6 +171,10 @@ describe('sala: a pilha nova fica à vista antes de resolver', () => {
     // folga de 2 ms para o relógio do temporizador
     expect(resolvida.t - p.t).toBeGreaterThanOrEqual(SEGURA - 2);
     expect(resolvida.v.players[0].life).toBe(41);
+    // o zoom do item da pilha: a fonte (o Carneiro no campo, com o estado de agora)
+    const carneiro = p.v.battlefield.find((o) => o.def === 'Nyx-Fleece Ram')!;
+    expect(p.v.stack[0].source).toBe(carneiro.id);
+    expect(cartaDaPilha(p.v.stack[0], new Map(p.v.battlefield.map((o) => [o.id, o])))).toBe(carneiro);
     // a decisão que o servidor passou sozinho nunca chegou a Ana
     expect(vs.filter(({ v }) => v.turn.step === 'upkeep' && v.decision !== null)).toEqual([]);
     expect(ana.ultima('jogo')!.vista.turn).toMatchObject({ active: 0, step: 'main1' });
