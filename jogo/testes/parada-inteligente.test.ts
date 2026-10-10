@@ -66,6 +66,16 @@ describe('parada inteligente', () => {
     expect(passaSozinho(tg, 1)).toBe(true);
   });
 
+  it('"passar até o fim do turno" pula o ataque e a etapa final do oponente mesmo com instantânea', () => {
+    const tg = setup({ battlefield: [['Elvish Mystic', 'Plains'], ['Plains']], hand: [[], ['Swords to Plowshares']], library: [['Forest', 'Forest'], ['Plains', 'Plains']] });
+    tg.attack([['Elvish Mystic', 1]]).passTo('declareAttackers', 0).pass();
+    const ate = { ...PADRAO, passUntilTurnEnds: tg.state.turn.number };
+    expect(passaSozinho(tg, 1, ate)).toBe(true);
+    tg.passTo('end', 0).pass();
+    expect(passaSozinho(tg, 1, ate)).toBe(true);
+    expect(passaSozinho(tg, 1)).toBe(false);
+  });
+
   it('"passar até o fim do turno" não engole a mágica de um oponente quando dá para responder', () => {
     const tg = setup({ battlefield: [['Swamp', 'Swamp'], ['Island', 'Island']], hand: [["Night's Whisper"], ['Counterspell']] });
     tg.cast("Night's Whisper").pass();

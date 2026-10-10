@@ -47,6 +47,9 @@ export function Registro({ v, cor, fechar }: { v: GameView; cor: (p: number) => 
     const termo = normalizar(busca.trim());
     const grupos: { chave: string; turno: number; rodada: number; vez: string | null; linhas: Linha[] }[] = [];
     const vezes = new Map<number, number>();
+    // de quem é cada turno, pelas linhas "Turno N: Fulano." (antes do filtro da busca, que pode escondê-las)
+    const vezDe = new Map<number, string>();
+    for (const l of v.log) { const m = /^Turno (\d+): (.+)\.$/.exec(l.text); if (m) vezDe.set(l.turn, m[2]); }
     v.log.forEach((l, k) => {
       // a mesa conta rodadas: a linha "Turno N: Fulano." (o turno de cada jogador, CR 500.1) vira o começo da vez dele
       // (o texto do motor fica igual: o desfazer do servidor procura por ele)
@@ -57,11 +60,11 @@ export function Registro({ v, cor, fechar }: { v: GameView; cor: (p: number) => 
       const quem = v.players.find((p) => texto.startsWith(`${p.name} `) || texto.startsWith(`${p.name}:`))?.id ?? null;
       const linha: Linha = { id: ids[k], texto, regra: l.rule, manual: l.text.includes('(ajuste manual)'), quem };
       const ultimo = grupos[grupos.length - 1];
-      if (ultimo?.turno === l.turn) { ultimo.linhas.push(linha); if (inicio) ultimo.vez = inicio[1]; return; }
+      if (ultimo?.turno === l.turn) { ultimo.linhas.push(linha); return; }
       // um bloco por turno de jogador, com a rodada no título (um turno que aparece de novo mais adiante ganha um sufixo)
       const n = vezes.get(l.turn) ?? 0;
       vezes.set(l.turn, n + 1);
-      grupos.push({ chave: n ? `${l.turn}-${n}` : String(l.turn), turno: l.turn, rodada, vez: inicio?.[1] ?? (l.turn === v.turn.number ? v.players[v.turn.active]?.name ?? null : null), linhas: [linha] });
+      grupos.push({ chave: n ? `${l.turn}-${n}` : String(l.turn), turno: l.turn, rodada, vez: vezDe.get(l.turn) ?? (l.turn === v.turn.number ? v.players[v.turn.active]?.name ?? null : null), linhas: [linha] });
     });
     return grupos;
   }, [v.log, v.players, busca, ids]);
