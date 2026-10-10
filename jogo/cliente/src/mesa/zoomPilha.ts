@@ -24,7 +24,8 @@ let regra: HTMLStyleElement | null = null;
 function acenderFonte(id: ObjId | null): void {
   if (!regra && id === null) return;
   regra ??= document.head.appendChild(document.createElement('style'));
-  regra.textContent = id !== null && Number.isInteger(id) ? `.tabuleiro .carta[data-obj="${id}"] { outline: 2px solid var(--ouro); outline-offset: 3px; animation: fonte-da-pilha .8s ease-in-out infinite alternate; }` : '';
+  // contorno parado (animar o contorno redesenharia a carta a cada quadro)
+  regra.textContent = id !== null && Number.isInteger(id) ? `.tabuleiro .carta[data-obj="${id}"] { outline: 2px solid var(--ouro); outline-offset: 3px; }` : '';
 }
 
 /** o item da pilha com o zoom aberto (o mouse em cima, ou tocado) */

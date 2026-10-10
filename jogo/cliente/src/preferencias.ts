@@ -26,8 +26,9 @@ export type Auxilios = Record<Auxilio, boolean>;
 const NENHUM: Auxilios = { jogaveis: false, alvos: false, terrenos: false, avisos: false, pagarAuto: false };
 
 /** turnoMeu: começou o seu turno; turnoAdversario: começou o turno de outro jogador; chat: mensagem de outra pessoa;
- * abertura: o impacto da tela VS quando a partida começa */
-export type Som = 'turnoMeu' | 'turnoAdversario' | 'dano' | 'vida' | 'chat' | 'abertura';
+ * abertura: o impacto da tela VS quando a partida começa; investida: o ataque declarado; impacto: cada golpe do dano de
+ * combate */
+export type Som = 'turnoMeu' | 'turnoAdversario' | 'dano' | 'vida' | 'chat' | 'abertura' | 'investida' | 'impacto';
 
 export interface Preferencias {
   nivel: Nivel;
@@ -57,7 +58,7 @@ export interface Preferencias {
 }
 
 const CHAVE = 'commander-da-mesa:preferencias';
-const PADRAO: Preferencias = { nivel: 'real', personalizado: { ...NENHUM }, volume: 0.7, sons: { turnoMeu: true, turnoAdversario: true, dano: true, vida: true, chat: true, abertura: true }, musica: true, volumeMusica: 0.4, efeitos: true, desempenho: false };
+const PADRAO: Preferencias = { nivel: 'real', personalizado: { ...NENHUM }, volume: 0.7, sons: { turnoMeu: true, turnoAdversario: true, dano: true, vida: true, chat: true, abertura: true, investida: true, impacto: true }, musica: true, volumeMusica: 0.4, efeitos: true, desempenho: false };
 
 function ler(): Preferencias {
   try {

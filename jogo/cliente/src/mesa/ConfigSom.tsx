@@ -16,6 +16,8 @@ const SONS: { id: Som; nome: string; descricao?: string }[] = [
   { id: 'vida', nome: 'Som de ganhar vida' },
   { id: 'chat', nome: 'Som de mensagem no chat', descricao: 'quando outra pessoa escreve' },
   { id: 'abertura', nome: 'Som da abertura', descricao: 'o impacto do VS quando a partida começa' },
+  { id: 'investida', nome: 'Som do ataque', descricao: 'quando alguém declara atacantes' },
+  { id: 'impacto', nome: 'Som do golpe', descricao: 'cada golpe do dano de combate' },
 ];
 
 const IconeOuvir = () => (

@@ -1,5 +1,6 @@
 // Sons curtos gerados na hora com Web Audio, sem arquivos: começo do seu turno, começo do turno de
-// um adversário, tomar dano, ganhar vida e mensagem no chat. O volume e cada som se ligam e desligam nas
+// um adversário, tomar dano, ganhar vida, mensagem no chat, o ataque declarado (investida) e cada golpe
+// do dano de combate (impacto, no instante em que a carta encosta no alvo). O volume e cada som se ligam e desligam nas
 // Configurações. O contexto de áudio é o mesmo da música (cliente/src/musica.ts).
 //
 // Os dois sons de turno ficam em sol, o tom da música (The Snow Queen, sol menor), e são fáceis de
@@ -211,6 +212,42 @@ export function desenharSom(c: BaseAudioContext, mestre: AudioNode, som: Som, t:
       nota(c, mestre, SOL5, t, 0.12, 0.14, 'sine');
       nota(c, mestre, RE5 * 2, t + 0.07, 0.2, 0.12, 'sine');
       break;
+    case 'investida': { // o ataque declarado: um sopro que sobe (ruído num filtro de banda de 260 a 2400 Hz) e um baque grave
+      const s = c.createBufferSource();
+      s.buffer = bufferRuido(c);
+      s.loop = true;
+      const f = c.createBiquadFilter();
+      f.type = 'bandpass';
+      f.Q.value = 1.8;
+      f.frequency.setValueAtTime(260, t);
+      f.frequency.exponentialRampToValueAtTime(2400, t + 0.36);
+      const g = c.createGain();
+      g.gain.setValueAtTime(0.0001, t);
+      g.gain.exponentialRampToValueAtTime(0.5, t + 0.12);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + 0.42);
+      s.connect(f).connect(g).connect(mestre);
+      s.start(t);
+      s.stop(t + 0.44);
+      nota(c, mestre, 62, t, 0.38, 0.55, 'sine', 40);
+      break;
+    }
+    case 'impacto': { // cada golpe: o estalo (ruído num passa-baixa que fecha de 6000 a 600 Hz) e dois baques graves caindo
+      const s = c.createBufferSource();
+      s.buffer = bufferRuido(c);
+      const f = c.createBiquadFilter();
+      f.type = 'lowpass';
+      f.frequency.setValueAtTime(6000, t);
+      f.frequency.exponentialRampToValueAtTime(600, t + 0.1);
+      const g = c.createGain();
+      g.gain.setValueAtTime(0.95, t);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + 0.11);
+      s.connect(f).connect(g).connect(mestre);
+      s.start(t);
+      s.stop(t + 0.12);
+      nota(c, mestre, 140, t, 0.36, 1, 'sine', 30);
+      nota(c, mestre, 90, t, 0.5, 0.5, 'triangle', 45);
+      break;
+    }
     case 'abertura': { // as faixas entram com duas rajadas; 1,42 s depois o VS crava (casa com IMPACTO em Abertura.tsx)
       rajada(c, mestre, t, 0.7, 0.22, 300, 2200);
       rajada(c, mestre, t + 0.14, 0.7, 0.18, 2400, 400);
