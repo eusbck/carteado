@@ -57,6 +57,7 @@ const esperadas: Record<string, [string, string[], string[], string[], number | 
   'Goblin': ['Goblin', ['Creature'], ['Goblin'], ['R'], 1, 1, []],
   'Phyrexian Goblin': ['Phyrexian Goblin', ['Creature'], ['Phyrexian', 'Goblin'], ['R'], 1, 1, []],
   'Myr': ['Myr', ['Artifact', 'Creature'], ['Myr'], [], 1, 1, []],
+  'Thopter': ['Thopter', ['Artifact', 'Creature'], ['Thopter'], [], 1, 1, ['flying']],
   'Shark': ['Shark', ['Creature'], ['Shark'], ['U'], null, null, ['flying']],
   'Map': ['Map', ['Artifact'], ['Map'], [], null, null, ['explore']],
   'Jace': ['Jace', ['Planeswalker'], ['Jace'], ['U'], null, null, ['surveil']],

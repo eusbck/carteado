@@ -4,7 +4,8 @@
 
 - Frente isolada: branch `decks/regras`, worktree `../Magic-Commander-regras-decks`, base anterior `06cc7f3`.
 - Mesa atual: 8080, 9 decks jogáveis, preservada. Prévia desta frente: primeira porta livre a partir de 8096, banco próprio.
-- Primeira entrega em andamento: **Keen Engineering — Sai, Master Thopterist**, 59 cartas pendentes, lista de 100 conferida com o Moxfield.
+- Primeira entrega implementada: **Keen Engineering — Sai, Master Thopterist**, 59 novas definições, Thopter e 114 rulings; 67/67 nomes distintos, 100 cartas conferidas com o Moxfield. Dez decks jogáveis na prévia; a mesa principal conserva nove.
+- Validação: tipos/cliente, 14 partidas reproduzíveis de 2/4 jogadores com Sai obrigatório, E2E 2/4 jogadores/reconexão/restauração e retomada de cinco partidas antigas sem descartar entradas aprovados. Suíte final e prévia estável em fechamento.
 - Auditoria ampliada para cartas e rulings importados; relato detalhado em `../CODEX.md`.
 - Depois de Sai: importar Food and Fellowship; ordenar os demais por cartas ainda pendentes, desempate pela ordem do catálogo.
 - Timey-Wimey e Planechase fora desta frente. Entrega de um deck completo e testado por vez, antes de ativar na mesa.

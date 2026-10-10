@@ -5,11 +5,11 @@ Gerado por `ferramentas/cobertura.ts`. Não edite à mão.
 | | |
 | --- | ---: |
 | Entradas (cartas dos decks + fichas e objetos auxiliares) | 1688 |
-| **Implementadas, testadas e com rulings conferidos** | **687 / 1688** |
-| Implementadas | 687 |
-| Com teste próprio | 687 |
-| Rulings conferidos (cartas dos decks) | 1517 / 3867 |
-| Pendentes (jogáveis em modo manual) | 1001 |
+| **Implementadas, testadas e com rulings conferidos** | **747 / 1688** |
+| Implementadas | 747 |
+| Com teste próprio | 747 |
+| Rulings conferidos (cartas dos decks) | 1631 / 3867 |
+| Pendentes (jogáveis em modo manual) | 941 |
 
 Uma carta conta como pronta quando tem definição em `cartas/defs/`, um arquivo de teste próprio
 (`cartas/defs/<nome>.test.ts`) e cada ruling registrado na definição com o teste que o cobre ou o
@@ -28,15 +28,15 @@ motivo de não se aplicar.
 | Abstract Performance | Prismari Artistry | B | sim | sim | 6/6 |
 | Access Tunnel | Abzan Armor | A | sim | sim | 2/2 |
 | Acidic Slime | Turtle Power! (Teenage Mutant Ninja Turtles Commander Precon | importada | — | — | — |
-| Adaptive Omnitool | Keen Engineering (Foundations Commander Precon Decklist) | importada | — | — | — |
+| Adaptive Omnitool | Keen Engineering (Foundations Commander Precon Decklist) | importada | sim | sim | — |
 | Adarkar Wastes | Odd and Ends (Secret Lair Commander 2026 Precon Decklist) | importada | — | — | — |
 | Advanced Reconstruction | Lorehold Spirit | B | sim | sim | 3/3 |
 | Aeon Engine | Odd and Ends (Secret Lair Commander 2026 Precon Decklist) | importada | — | — | 0/4 |
 | Aerial Extortionist | Odd and Ends (Secret Lair Commander 2026 Precon Decklist) | importada | — | — | — |
 | Aether Gale | Prismari Artistry | A | sim | sim | 1/1 |
-| Aether Spellbomb | Keen Engineering (Foundations Commander Precon Decklist) | importada | — | — | — |
+| Aether Spellbomb | Keen Engineering (Foundations Commander Precon Decklist) | importada | sim | sim | — |
 | Aetherflux Reservoir | Hatsune Miku (Secret Lair Commander 2026 Precon Decklist) | importada | — | — | 0/4 |
-| Aetherize | Keen Engineering (Foundations Commander Precon Decklist) | importada | — | — | 0/1 |
+| Aetherize | Keen Engineering (Foundations Commander Precon Decklist) | importada | sim | sim | 1/1 |
 | Aettir and Priwen | 🇯🇵Jin's Vengeance⛩️ | importada | — | — | 0/1 |
 | Agadeem's Awakening // Agadeem, the Undercrypt | 🇯🇵Jin's Vengeance⛩️ | importada | — | — | 0/12 |
 | Age of Ultron | Doom Prevails (Marvel Super Heroes Commander Precon Decklist | importada | — | — | — |
@@ -46,7 +46,7 @@ motivo de não se aplicar.
 | Akroma, Angel of Fury | Heavenly Inferno (Commander Anthology Precon Decklist) | importada | — | — | 0/3 |
 | Akroma's Vengeance | Heavenly Inferno (Commander Anthology Precon Decklist) | importada | — | — | 0/1 |
 | Alicia Masters, Skilled Sculptor | The Fantastic Four Collector's Edition (Marvel Super Heroes  | importada | — | — | — |
-| All Is Dust | Keen Engineering (Foundations Commander Precon Decklist) | importada | — | — | 0/8 |
+| All Is Dust | Keen Engineering (Foundations Commander Precon Decklist) | importada | sim | sim | 8/8 |
 | Alms Collector | Raining Cats and Dogs (Secret Lair Commander 2024 Precon Dec | importada | — | — | 0/6 |
 | Ambition's Cost | Wretched Ranks (Foundations Commander Precon Decklist) | importada | sim | sim | — |
 | Aminatou, the Fateshifter | Odd and Ends (Secret Lair Commander 2026 Precon Decklist) | importada | — | — | 0/8 |
@@ -198,9 +198,9 @@ motivo de não se aplicar.
 | Breena, the Demagogue | Silverquill Influence, Odd and Ends (Secret Lair Commander 2026 Precon Decklist) | B | sim | sim | 3/3 |
 | Brimaz, King of Oreskos | Raining Cats and Dogs (Secret Lair Commander 2024 Precon Dec | importada | — | — | 0/3 |
 | Brokers Hideout | Hatsune Miku (Secret Lair Commander 2026 Precon Decklist) | importada | — | — | — |
-| Broodstar | Keen Engineering (Foundations Commander Precon Decklist) | importada | — | — | — |
+| Broodstar | Keen Engineering (Foundations Commander Precon Decklist) | importada | sim | sim | — |
 | Brudiclad, Telchor Engineer | Prismari Artistry | B | sim | sim | 6/6 |
-| Buried Ruin | Keen Engineering (Foundations Commander Precon Decklist) | importada | — | — | — |
+| Buried Ruin | Keen Engineering (Foundations Commander Precon Decklist) | importada | sim | sim | — |
 | Burning Curiosity | Blight Curse | B | sim | sim | 7/7 |
 | Bushmeat Poacher | Terra | A | sim | sim | 2/2 |
 | Buster Sword | 🇯🇵Jin's Vengeance⛩️ | importada | — | — | 0/3 |
@@ -246,7 +246,7 @@ motivo de não se aplicar.
 | Chaos Wand | Odd and Ends (Secret Lair Commander 2026 Precon Decklist) | importada | — | — | 0/6 |
 | Chaos Warp | Prismari Artistry, Doom Prevails (Marvel Super Heroes Commander Precon Decklist, Reign of Dragons (Foundations Commander Precon Decklist) | A | sim | sim | 5/5 |
 | Charcoal Diamond | Wretched Ranks (Foundations Commander Precon Decklist), Vampiric Bloodline (Innistrad: Crimson Vow Commander Precon  | importada | sim | sim | — |
-| Chief of the Foundry | Keen Engineering (Foundations Commander Precon Decklist) | importada | — | — | 0/1 |
+| Chief of the Foundry | Keen Engineering (Foundations Commander Precon Decklist) | importada | sim | sim | 1/1 |
 | Chimil, the Inner Sun | Blight Curse | B | sim | sim | 2/2 |
 | Choked Estuary | The Hosts of Mordor (The Lord of the Rings Commander Precon , Doom Prevails (Marvel Super Heroes Commander Precon Decklist, Maestros Massacre (Streets of New Capenna Commander Precon D | importada | — | — | 0/4 |
 | Chromatic Lantern | Multiverse Reforged (Reality Fracture Commander Decklist), Turtle Power! (Teenage Mutant Ninja Turtles Commander Precon, The Fantastic Four Collector's Edition (Marvel Super Heroes  | importada | sim | sim | 1/1 |
@@ -313,7 +313,7 @@ motivo de não se aplicar.
 | Crystal, Inhuman Princess | The Fantastic Four Collector's Edition (Marvel Super Heroes  | importada | — | — | — |
 | Culling Ritual | Witherbloom Pestilence | A | sim | sim | 1/1 |
 | Cultivate | Witherbloom Pestilence, Turtle Power! (Teenage Mutant Ninja Turtles Commander Precon, Hatsune Miku (Secret Lair Commander 2026 Precon Decklist), The Fantastic Four Collector's Edition (Marvel Super Heroes , Raining Cats and Dogs (Secret Lair Commander 2024 Precon Dec | A | sim | sim | 1/1 |
-| Cultivator's Caravan | Keen Engineering (Foundations Commander Precon Decklist) | importada | — | — | 0/13 |
+| Cultivator's Caravan | Keen Engineering (Foundations Commander Precon Decklist) | importada | sim | sim | 13/13 |
 | Curiosity Crafter | Prismari Artistry | A | sim | sim | — |
 | Currency Converter | Lorehold Spirit, Doom Prevails (Marvel Super Heroes Commander Precon Decklist | A | sim | sim | — |
 | Cursed Mirror | Prismari Artistry, Multiverse Reforged (Reality Fracture Commander Decklist), Reign of Dragons (Foundations Commander Precon Decklist), Raining Cats and Dogs (Secret Lair Commander 2024 Precon Dec | B | sim | sim | 8/8 |
@@ -329,9 +329,9 @@ motivo de não se aplicar.
 | Darkness | Necron Dynasties (Warhammer 40,000 Commander Precon Decklist | importada | — | — | — |
 | Darkness Descends | Blight Curse | B | sim | sim | — |
 | Darksteel Angel | Multiverse Reforged (Reality Fracture Commander Decklist) | importada | sim | sim | 4/4 |
-| Darksteel Citadel | Keen Engineering (Foundations Commander Precon Decklist) | importada | — | — | 0/1 |
+| Darksteel Citadel | Keen Engineering (Foundations Commander Precon Decklist) | importada | sim | sim | 1/1 |
 | Darksteel Ingot | Heavenly Inferno (Commander Anthology Precon Decklist) | importada | — | — | — |
-| Darksteel Juggernaut | Keen Engineering (Foundations Commander Precon Decklist) | importada | — | — | 0/4 |
+| Darksteel Juggernaut | Keen Engineering (Foundations Commander Precon Decklist) | importada | sim | sim | 4/4 |
 | Darksteel Mutation | Silverquill Influence | B | sim | sim | 8/8 |
 | Darkwater Catacombs | Maestros Massacre (Streets of New Capenna Commander Precon D | importada | — | — | — |
 | Dawn's Truce | 🇯🇵Jin's Vengeance⛩️ | importada | — | — | 0/8 |
@@ -402,7 +402,7 @@ motivo de não se aplicar.
 | Drowned Catacomb | Multiverse Reforged (Reality Fracture Commander Decklist), The Hosts of Mordor (The Lord of the Rings Commander Precon , Doom Prevails (Marvel Super Heroes Commander Precon Decklist, Odd and Ends (Secret Lair Commander 2026 Precon Decklist) | importada | sim | sim | 2/2 |
 | Drumbellower | Lorehold Spirit | A | sim | sim | 2/2 |
 | Duergar Hedge-Mage | Heavenly Inferno (Commander Anthology Precon Decklist) | importada | — | — | 0/4 |
-| Duplicant | Keen Engineering (Foundations Commander Precon Decklist) | importada | — | — | 0/4 |
+| Duplicant | Keen Engineering (Foundations Commander Precon Decklist) | importada | sim | sim | 4/4 |
 | Dusk // Dawn | Raining Cats and Dogs (Secret Lair Commander 2024 Precon Dec | importada | — | — | 0/10 |
 | Dusk Urchins | Blight Curse | B | sim | sim | 2/2 |
 | Earthquake | Heavenly Inferno (Commander Anthology Precon Decklist) | importada | — | — | 0/1 |
@@ -431,7 +431,7 @@ motivo de não se aplicar.
 | Eternal Taskmaster | Wretched Ranks (Foundations Commander Precon Decklist) | importada | sim | sim | 1/1 |
 | Ethereal Armor | Silverquill Influence | B | sim | sim | 1/1 |
 | Ethereal Haze | 🇯🇵Jin's Vengeance⛩️ | importada | — | — | — |
-| Etherium Sculptor | Keen Engineering (Foundations Commander Precon Decklist) | importada | — | — | 0/2 |
+| Etherium Sculptor | Keen Engineering (Foundations Commander Precon Decklist) | importada | sim | sim | 2/2 |
 | Ethersworn Sphinx | Odd and Ends (Secret Lair Commander 2026 Precon Decklist) | importada | — | — | 0/12 |
 | Eventide's Shadow | Blight Curse | B | sim | sim | 1/1 |
 | Everett K. Ross, Hapless Attaché | Wakanda Forever (Marvel Super Heroes Commander Precon Deckli | importada | — | — | — |
@@ -463,7 +463,7 @@ motivo de não se aplicar.
 | Falcon and Redwing | Avengers Assemble Collector's Edition (Marvel Super Heroes C | importada | — | — | — |
 | Falkenrath Gorger | Vampiric Bloodline (Innistrad: Crimson Vow Commander Precon  | importada | — | — | 0/12 |
 | Falkenrath Noble | Vampiric Bloodline (Innistrad: Crimson Vow Commander Precon  | importada | — | — | 0/1 |
-| Fall from Favor | Keen Engineering (Foundations Commander Precon Decklist) | importada | — | — | 0/6 |
+| Fall from Favor | Keen Engineering (Foundations Commander Precon Decklist) | importada | sim | sim | 6/6 |
 | Fallen Angel | Heavenly Inferno (Commander Anthology Precon Decklist) | importada | — | — | 0/1 |
 | Fallen Ideal | Silverquill Influence | B | sim | sim | 1/1 |
 | Fanatic of Rhonas | Hatsune Miku (Secret Lair Commander 2026 Precon Decklist) | importada | — | — | 0/4 |
@@ -513,12 +513,12 @@ motivo de não se aplicar.
 | Foreboding Ruins | Terra, The Hosts of Mordor (The Lord of the Rings Commander Precon , Doom Prevails (Marvel Super Heroes Commander Precon Decklist, Maestros Massacre (Streets of New Capenna Commander Precon D, Vampiric Bloodline (Innistrad: Crimson Vow Commander Precon  | A | sim | sim | 4/4 |
 | Forest | Abzan Armor, Blight Curse, Witherbloom Pestilence, Wakanda Forever (Marvel Super Heroes Commander Precon Deckli, Turtle Power! (Teenage Mutant Ninja Turtles Commander Precon, Hatsune Miku (Secret Lair Commander 2026 Precon Decklist), The Fantastic Four Collector's Edition (Marvel Super Heroes , Raining Cats and Dogs (Secret Lair Commander 2024 Precon Dec | dados | sim | sim | — |
 | Forgotten Cave | Reign of Dragons (Foundations Commander Precon Decklist), Heavenly Inferno (Commander Anthology Precon Decklist) | importada | — | — | — |
-| Forsaken Monument | Keen Engineering (Foundations Commander Precon Decklist) | importada | — | — | 0/5 |
+| Forsaken Monument | Keen Engineering (Foundations Commander Precon Decklist) | importada | sim | sim | 5/5 |
 | Fortified Village | Abzan Armor, Wakanda Forever (Marvel Super Heroes Commander Precon Deckli, Raining Cats and Dogs (Secret Lair Commander 2024 Precon Dec | A | sim | sim | 4/4 |
 | Forum Filibuster | Silverquill Influence | B | sim | sim | 1/1 |
 | Forum of Amity | Silverquill Influence | A | sim | sim | — |
-| Foundry Inspector | Keen Engineering (Foundations Commander Precon Decklist) | importada | — | — | 0/2 |
-| Foundry of the Consuls | Keen Engineering (Foundations Commander Precon Decklist) | importada | — | — | — |
+| Foundry Inspector | Keen Engineering (Foundations Commander Precon Decklist) | importada | sim | sim | 2/2 |
+| Foundry of the Consuls | Keen Engineering (Foundations Commander Precon Decklist) | importada | sim | sim | — |
 | Fracture | Silverquill Influence | A | sim | sim | — |
 | Fractured Identity | Odd and Ends (Secret Lair Commander 2026 Precon Decklist) | importada | — | — | 0/6 |
 | Franklin Richards, Ascendant | The Fantastic Four Collector's Edition (Marvel Super Heroes  | importada | — | — | — |
@@ -563,7 +563,7 @@ motivo de não se aplicar.
 | Goldspan Dragon | Prismari Artistry | A | sim | sim | 3/3 |
 | Golgari Rot Farm | Blight Curse | A | sim | sim | 1/1 |
 | Gorma, the Gullet | Witherbloom Pestilence | B | sim | sim | 1/1 |
-| Graaz, Unstoppable Juggernaut | Keen Engineering (Foundations Commander Precon Decklist) | importada | — | — | 0/1 |
+| Graaz, Unstoppable Juggernaut | Keen Engineering (Foundations Commander Precon Decklist) | importada | sim | sim | 1/1 |
 | Graf Harvest | Wretched Ranks (Foundations Commander Precon Decklist) | importada | sim | sim | — |
 | Grafted Exoskeleton | 🇯🇵Jin's Vengeance⛩️ | importada | — | — | 0/8 |
 | Grand Coliseum | Turtle Power! (Teenage Mutant Ninja Turtles Commander Precon | importada | — | — | — |
@@ -614,7 +614,7 @@ motivo de não se aplicar.
 | Headless Rider | Wretched Ranks (Foundations Commander Precon Decklist) | importada | sim | sim | — |
 | Healing Technique | Hatsune Miku (Secret Lair Commander 2026 Precon Decklist) | importada | — | — | 0/5 |
 | Heart-Shaped Herb | Wakanda Forever (Marvel Super Heroes Commander Precon Deckli | importada | — | — | — |
-| Hedron Archive | Necron Dynasties (Warhammer 40,000 Commander Precon Decklist, Keen Engineering (Foundations Commander Precon Decklist) | importada | — | — | — |
+| Hedron Archive | Necron Dynasties (Warhammer 40,000 Commander Precon Decklist, Keen Engineering (Foundations Commander Precon Decklist) | importada | sim | sim | — |
 | Hellkite Charger | Reign of Dragons (Foundations Commander Precon Decklist) | importada | — | — | 0/4 |
 | Helm of the Host | Wakanda Forever (Marvel Super Heroes Commander Precon Deckli | importada | — | — | 0/8 |
 | Helmut Zemo, Mastermind | Doom Prevails (Marvel Super Heroes Commander Precon Decklist | importada | — | — | — |
@@ -644,7 +644,7 @@ motivo de não se aplicar.
 | Hullbreaker Horror | Multiverse Reforged (Reality Fracture Commander Decklist) | importada | sim | sim | — |
 | Human Torch | The Fantastic Four Collector's Edition (Marvel Super Heroes  | importada | — | — | — |
 | Hungry Lynx | Raining Cats and Dogs (Secret Lair Commander 2024 Precon Dec | importada | — | — | 0/6 |
-| Ichor Wellspring | Keen Engineering (Foundations Commander Precon Decklist) | importada | — | — | 0/1 |
+| Ichor Wellspring | Keen Engineering (Foundations Commander Precon Decklist) | importada | sim | sim | 1/1 |
 | Idol of Oblivion | Hatsune Miku (Secret Lair Commander 2026 Precon Decklist) | importada | — | — | 0/1 |
 | Ifnir Deadlands | Blight Curse | B | sim | sim | 2/2 |
 | Ignoble Hierarch | Blight Curse | B | sim | sim | 1/1 |
@@ -702,7 +702,7 @@ motivo de não se aplicar.
 | Kang Dynasty | Doom Prevails (Marvel Super Heroes Commander Precon Decklist | importada | — | — | — |
 | Kang Prime | Doom Prevails (Marvel Super Heroes Commander Precon Decklist | importada | — | — | — |
 | Kang, Temporal Tyrant | Doom Prevails (Marvel Super Heroes Commander Precon Decklist | importada | — | — | — |
-| Kappa Cannoneer | Keen Engineering (Foundations Commander Precon Decklist) | importada | — | — | 0/1 |
+| Kappa Cannoneer | Keen Engineering (Foundations Commander Precon Decklist) | importada | sim | sim | 1/1 |
 | Karmic Guide | Lorehold Spirit, Terra | B | sim | sim | 2/2 |
 | Kaya's Ghostform | 🇯🇵Jin's Vengeance⛩️ | importada | — | — | 0/7 |
 | Keeper of Fables | Raining Cats and Dogs (Secret Lair Commander 2024 Precon Dec | importada | — | — | 0/3 |
@@ -736,7 +736,7 @@ motivo de não se aplicar.
 | Lathiel, the Bounteous Dawn | Hatsune Miku (Secret Lair Commander 2026 Precon Decklist) | importada | — | — | 0/5 |
 | Lathliss, Dragon Queen | Reign of Dragons (Foundations Commander Precon Decklist) | importada | — | — | 0/1 |
 | Laughing Mad | Terra | B | sim | sim | 6/6 |
-| Launch Mishap | Keen Engineering (Foundations Commander Precon Decklist) | importada | — | — | — |
+| Launch Mishap | Keen Engineering (Foundations Commander Precon Decklist) | importada | sim | sim | — |
 | Laurine, the Diversion | Vampiric Bloodline (Innistrad: Crimson Vow Commander Precon  | importada | — | — | — |
 | Lazotep Quarry | Hatsune Miku (Secret Lair Commander 2026 Precon Decklist) | importada | — | — | 0/4 |
 | Leadership Vacuum | Odd and Ends (Secret Lair Commander 2026 Precon Decklist) | importada | — | — | 0/3 |
@@ -766,7 +766,7 @@ motivo de não se aplicar.
 | Lokhust Heavy Destroyer | Necron Dynasties (Warhammer 40,000 Commander Precon Decklist | importada | — | — | 0/7 |
 | Loki, the Deceiver | Doom Prevails (Marvel Super Heroes Commander Precon Decklist | importada | — | — | — |
 | Loki's Scepter | Doom Prevails (Marvel Super Heroes Commander Precon Decklist | importada | — | — | — |
-| Lonely Sandbar | Keen Engineering (Foundations Commander Precon Decklist) | importada | — | — | — |
+| Lonely Sandbar | Keen Engineering (Foundations Commander Precon Decklist) | importada | sim | sim | — |
 | Loran of the Third Path | Odd and Ends (Secret Lair Commander 2026 Precon Decklist) | importada | — | — | — |
 | Lord of the Accursed | Wretched Ranks (Foundations Commander Precon Decklist) | importada | sim | sim | — |
 | Lord of the Nazgûl | The Hosts of Mordor (The Lord of the Rings Commander Precon  | importada | — | — | — |
@@ -814,16 +814,16 @@ motivo de não se aplicar.
 | Mass Polymorph | Multiverse Reforged (Reality Fracture Commander Decklist) | importada | sim | sim | 4/4 |
 | Massacre Girl, Known Killer | Blight Curse | B | sim | sim | 2/2 |
 | Massacre Wurm | Terra | A | sim | sim | 4/4 |
-| Master of Etherium | Keen Engineering (Foundations Commander Precon Decklist) | importada | — | — | 0/3 |
+| Master of Etherium | Keen Engineering (Foundations Commander Precon Decklist) | importada | sim | sim | 3/3 |
 | Master of Predicaments | Odd and Ends (Secret Lair Commander 2026 Precon Decklist) | importada | — | — | 0/7 |
-| Master Transmuter | Keen Engineering (Foundations Commander Precon Decklist) | importada | — | — | 0/2 |
+| Master Transmuter | Keen Engineering (Foundations Commander Precon Decklist) | importada | sim | sim | 2/2 |
 | Master Warcraft | Heavenly Inferno (Commander Anthology Precon Decklist) | importada | — | — | 0/4 |
-| Mazemind Tome | Keen Engineering (Foundations Commander Precon Decklist) | importada | — | — | 0/1 |
+| Mazemind Tome | Keen Engineering (Foundations Commander Precon Decklist) | importada | sim | sim | 1/1 |
 | Mazirek, Kraul Death Priest | Witherbloom Pestilence | B | sim | sim | 4/4 |
 | Medusa, Inhuman Queen | The Fantastic Four Collector's Edition (Marvel Super Heroes  | importada | — | — | — |
 | Memnarch, the Warden | Multiverse Reforged (Reality Fracture Commander Decklist) | importada | sim | sim | — |
 | Memorial to Folly | Wretched Ranks (Foundations Commander Precon Decklist) | importada | sim | sim | — |
-| Memory Guardian | Keen Engineering (Foundations Commander Precon Decklist) | importada | — | — | — |
+| Memory Guardian | Keen Engineering (Foundations Commander Precon Decklist) | importada | sim | sim | — |
 | Merchant of Venom | Witherbloom Pestilence | B | sim | sim | 1/1 |
 | Merciless Executioner | The Hosts of Mordor (The Lord of the Rings Commander Precon  | importada | — | — | 0/1 |
 | Metallic Mimic | Avengers Assemble Collector's Edition (Marvel Super Heroes C | importada | — | — | 0/4 |
@@ -841,13 +841,13 @@ motivo de não se aplicar.
 | Minas Morgul, Dark Fortress | 🇯🇵Jin's Vengeance⛩️ | importada | — | — | 0/4 |
 | Mind Stone | Lorehold Spirit, Terra, Wretched Ranks (Foundations Commander Precon Decklist), The Hosts of Mordor (The Lord of the Rings Commander Precon , Necron Dynasties (Warhammer 40,000 Commander Precon Decklist, Keen Engineering (Foundations Commander Precon Decklist) | A | sim | sim | — |
 | Mind's Dilation | The Fantastic Four Collector's Edition (Marvel Super Heroes  | importada | — | — | 0/6 |
-| Mind's Eye | Wakanda Forever (Marvel Super Heroes Commander Precon Deckli, Keen Engineering (Foundations Commander Precon Decklist) | importada | — | — | — |
+| Mind's Eye | Wakanda Forever (Marvel Super Heroes Commander Precon Deckli, Keen Engineering (Foundations Commander Precon Decklist) | importada | sim | sim | — |
 | Minion of the Mighty | Reign of Dragons (Foundations Commander Precon Decklist) | importada | — | — | 0/3 |
 | Mirage Mirror | The Fantastic Four Collector's Edition (Marvel Super Heroes , Odd and Ends (Secret Lair Commander 2026 Precon Decklist) | importada | — | — | 0/8 |
 | Mirari's Wake | Hatsune Miku (Secret Lair Commander 2026 Precon Decklist) | importada | — | — | 0/4 |
 | Mire Blight | Silverquill Influence | B | sim | sim | 2/2 |
 | Mirror Entity | Raining Cats and Dogs (Secret Lair Commander 2024 Precon Dec | importada | — | — | 0/3 |
-| Misleading Signpost | Keen Engineering (Foundations Commander Precon Decklist), Odd and Ends (Secret Lair Commander 2026 Precon Decklist) | importada | — | — | 0/5 |
+| Misleading Signpost | Keen Engineering (Foundations Commander Precon Decklist), Odd and Ends (Secret Lair Commander 2026 Precon Decklist) | importada | sim | sim | 5/5 |
 | Mister Fantastic | The Fantastic Four Collector's Edition (Marvel Super Heroes  | importada | — | — | — |
 | Mister Fantastic, Reed Richards | The Fantastic Four Collector's Edition (Marvel Super Heroes  | importada | — | — | — |
 | Mistveil Plains | Lorehold Spirit | A | sim | sim | 2/2 |
@@ -878,8 +878,8 @@ motivo de não se aplicar.
 | Muddle, the Ever-Changing | Prismari Artistry | B | sim | sim | 15/15 |
 | Mutilate | Wretched Ranks (Foundations Commander Precon Decklist), Necron Dynasties (Warhammer 40,000 Commander Precon Decklist | importada | sim | sim | 1/1 |
 | Mycoloth | Witherbloom Pestilence | B | sim | sim | 4/4 |
-| Myr Battlesphere | Keen Engineering (Foundations Commander Precon Decklist) | importada | — | — | 0/3 |
-| Myr Retriever | Keen Engineering (Foundations Commander Precon Decklist) | importada | — | — | 0/1 |
+| Myr Battlesphere | Keen Engineering (Foundations Commander Precon Decklist) | importada | sim | sim | 3/3 |
+| Myr Retriever | Keen Engineering (Foundations Commander Precon Decklist) | importada | sim | sim | 1/1 |
 | Myriad Landscape | Maestros Massacre (Streets of New Capenna Commander Precon D, Necron Dynasties (Warhammer 40,000 Commander Precon Decklist, Vampiric Bloodline (Innistrad: Crimson Vow Commander Precon , Odd and Ends (Secret Lair Commander 2026 Precon Decklist) | importada | — | — | 0/1 |
 | Mystic Confluence | Maestros Massacre (Streets of New Capenna Commander Precon D | importada | — | — | 0/5 |
 | Mystic Forge | Necron Dynasties (Warhammer 40,000 Commander Precon Decklist | importada | — | — | 0/6 |
@@ -904,8 +904,8 @@ motivo de não se aplicar.
 | Nest of Scarabs | Blight Curse | B | sim | sim | 2/2 |
 | Nesting Grounds | Blight Curse | B | sim | sim | 4/4 |
 | Nether Traitor | Witherbloom Pestilence | B | sim | sim | 6/6 |
-| Nettlecyst | Keen Engineering (Foundations Commander Precon Decklist) | importada | — | — | 0/6 |
-| Nevinyrral's Disk | Keen Engineering (Foundations Commander Precon Decklist) | importada | — | — | 0/1 |
+| Nettlecyst | Keen Engineering (Foundations Commander Precon Decklist) | importada | sim | sim | 6/6 |
+| Nevinyrral's Disk | Keen Engineering (Foundations Commander Precon Decklist) | importada | sim | sim | 1/1 |
 | Nicol Bolas, Dragon-God | Multiverse Reforged (Reality Fracture Commander Decklist) | importada | sim | sim | 8/8 |
 | Night Scythe | Necron Dynasties (Warhammer 40,000 Commander Precon Decklist | importada | — | — | — |
 | Night's Whisper | Blight Curse, Terra, Witherbloom Pestilence, Wretched Ranks (Foundations Commander Precon Decklist), Doom Prevails (Marvel Super Heroes Commander Precon Decklist, Vampiric Bloodline (Innistrad: Crimson Vow Commander Precon  | A | sim | sim | — |
@@ -935,7 +935,7 @@ motivo de não se aplicar.
 | Orcish Siegemaster | The Hosts of Mordor (The Lord of the Rings Commander Precon  | importada | — | — | — |
 | Oreskos Explorer | Raining Cats and Dogs (Secret Lair Commander 2024 Precon Dec | importada | — | — | 0/2 |
 | Orim's Thunder | Heavenly Inferno (Commander Anthology Precon Decklist) | importada | — | — | 0/8 |
-| Ornithopter of Paradise | Keen Engineering (Foundations Commander Precon Decklist) | importada | — | — | — |
+| Ornithopter of Paradise | Keen Engineering (Foundations Commander Precon Decklist) | importada | sim | sim | — |
 | Oros, the Avenger | Heavenly Inferno (Commander Anthology Precon Decklist) | importada | — | — | — |
 | Orzhov Basilica | Heavenly Inferno (Commander Anthology Precon Decklist) | importada | — | — | 0/1 |
 | Orzhov Guildmage | Heavenly Inferno (Commander Anthology Precon Decklist) | importada | — | — | — |
@@ -951,10 +951,10 @@ motivo de não se aplicar.
 | Overwhelming Stampede | Wakanda Forever (Marvel Super Heroes Commander Precon Deckli | importada | — | — | 0/1 |
 | Ovika, Enigma Goliath | Multiverse Reforged (Reality Fracture Commander Decklist) | importada | sim | sim | 1/1 |
 | Pack Leader | Raining Cats and Dogs (Secret Lair Commander 2024 Precon Dec | importada | — | — | 0/2 |
-| Padeem, Consul of Innovation | Keen Engineering (Foundations Commander Precon Decklist) | importada | — | — | 0/4 |
+| Padeem, Consul of Innovation | Keen Engineering (Foundations Commander Precon Decklist) | importada | sim | sim | 4/4 |
 | Painful Truths | Blight Curse | B | sim | sim | 5/5 |
 | Palace Jailer | Wakanda Forever (Marvel Super Heroes Commander Precon Deckli | importada | — | — | 0/8 |
-| Palladium Myr | Keen Engineering (Foundations Commander Precon Decklist) | importada | — | — | — |
+| Palladium Myr | Keen Engineering (Foundations Commander Precon Decklist) | importada | sim | sim | — |
 | Panther Habit | Wakanda Forever (Marvel Super Heroes Commander Precon Deckli | importada | — | — | — |
 | Panther Robot | Wakanda Forever (Marvel Super Heroes Commander Precon Deckli | importada | — | — | — |
 | Parapet Thrasher | Reign of Dragons (Foundations Commander Precon Decklist) | importada | — | — | 0/2 |
@@ -1007,16 +1007,16 @@ motivo de não se aplicar.
 | Professor Hulk | Avengers Assemble Collector's Edition (Marvel Super Heroes C | importada | — | — | — |
 | Progenitor's Icon | Doom Prevails (Marvel Super Heroes Commander Precon Decklist | importada | — | — | 0/1 |
 | Promise of Loyalty | Silverquill Influence, The Fantastic Four Collector's Edition (Marvel Super Heroes , Odd and Ends (Secret Lair Commander 2026 Precon Decklist) | B | sim | sim | 3/3 |
-| Propaganda | Doom Prevails (Marvel Super Heroes Commander Precon Decklist, Keen Engineering (Foundations Commander Precon Decklist) | importada | — | — | 0/6 |
+| Propaganda | Doom Prevails (Marvel Super Heroes Commander Precon Decklist, Keen Engineering (Foundations Commander Precon Decklist) | importada | sim | sim | 6/6 |
 | Prosperous Innkeeper | Hatsune Miku (Secret Lair Commander 2026 Precon Decklist) | importada | — | — | — |
 | Proteus Staff | Multiverse Reforged (Reality Fracture Commander Decklist) | importada | sim | sim | — |
 | Prowler, Clawed Thief | Doom Prevails (Marvel Super Heroes Commander Precon Decklist | importada | — | — | 0/3 |
 | Psychic Battle | Odd and Ends (Secret Lair Commander 2026 Precon Decklist) | importada | — | — | 0/4 |
 | Psychic Frog | 🇯🇵Jin's Vengeance⛩️ | importada | — | — | — |
 | Psychomancer | Necron Dynasties (Warhammer 40,000 Commander Precon Decklist | importada | — | — | — |
-| Psychosis Crawler | Keen Engineering (Foundations Commander Precon Decklist) | importada | — | — | 0/1 |
+| Psychosis Crawler | Keen Engineering (Foundations Commander Precon Decklist) | importada | sim | sim | 1/1 |
 | Puca's Covenant | Blight Curse | B | sim | sim | 1/1 |
-| Pull from Tomorrow | Keen Engineering (Foundations Commander Precon Decklist) | importada | — | — | — |
+| Pull from Tomorrow | Keen Engineering (Foundations Commander Precon Decklist) | importada | sim | sim | — |
 | Puppet Master, String Puller | Doom Prevails (Marvel Super Heroes Commander Precon Decklist | importada | — | — | — |
 | Puppeteer Clique | Maestros Massacre (Streets of New Capenna Commander Precon D | importada | — | — | 0/7 |
 | Puresteel Paladin | 🇯🇵Jin's Vengeance⛩️ | importada | — | — | 0/2 |
@@ -1072,12 +1072,12 @@ motivo de não se aplicar.
 | Relic Retriever | Lorehold Spirit | B | sim | sim | 1/1 |
 | Reliquary Tower | Prismari Artistry, Necron Dynasties (Warhammer 40,000 Commander Precon Decklist, Odd and Ends (Secret Lair Commander 2026 Precon Decklist) | A | sim | sim | 1/1 |
 | Remorseful Cleric | Lorehold Spirit | A | sim | sim | — |
-| Remote Isle | Keen Engineering (Foundations Commander Precon Decklist) | importada | — | — | — |
+| Remote Isle | Keen Engineering (Foundations Commander Precon Decklist) | importada | sim | sim | — |
 | Renegade Bull | Prismari Artistry | B | sim | sim | 7/7 |
 | Replication Technique | Prismari Artistry | B | sim | sim | 5/5 |
 | Rescue, Pepper Potts | Avengers Assemble Collector's Edition (Marvel Super Heroes C | importada | — | — | — |
 | Resculpt | Prismari Artistry | A | sim | sim | — |
-| Research Thief | Keen Engineering (Foundations Commander Precon Decklist) | importada | — | — | — |
+| Research Thief | Keen Engineering (Foundations Commander Precon Decklist) | importada | sim | sim | — |
 | Resplendent Angel | Hatsune Miku (Secret Lair Commander 2026 Precon Decklist) | importada | — | — | 0/5 |
 | Restless Anchorage | Multiverse Reforged (Reality Fracture Commander Decklist) | importada | sim | sim | 3/3 |
 | Restless Prairie | Hatsune Miku (Secret Lair Commander 2026 Precon Decklist) | importada | — | — | 0/2 |
@@ -1113,7 +1113,7 @@ motivo de não se aplicar.
 | Rupture Spire | Heavenly Inferno (Commander Anthology Precon Decklist) | importada | — | — | — |
 | Sacred Peaks | Lorehold Spirit, Terra | A | sim | sim | — |
 | Sage's Reverie | Silverquill Influence | B | sim | sim | 2/2 |
-| Sai, Master Thopterist | Keen Engineering (Foundations Commander Precon Decklist) | importada | — | — | 0/1 |
+| Sai, Master Thopterist | Keen Engineering (Foundations Commander Precon Decklist) | importada | sim | sim | 1/1 |
 | Sakashima of a Thousand Faces | 🇯🇵Jin's Vengeance⛩️ | importada | — | — | 0/18 |
 | Sakura-Tribe Elder | Witherbloom Pestilence | A | sim | sim | — |
 | Sanar, Unfinished Genius // Wild Idea | Prismari Artistry | B | sim | sim | 15/15 |
@@ -1134,7 +1134,7 @@ motivo de não se aplicar.
 | Scourge of the Throne | The Hosts of Mordor (The Lord of the Rings Commander Precon , Reign of Dragons (Foundations Commander Precon Decklist) | importada | — | — | 0/5 |
 | Scourge of Valkas | Reign of Dragons (Foundations Commander Precon Decklist) | importada | — | — | 0/2 |
 | Scourglass | Wakanda Forever (Marvel Super Heroes Commander Precon Deckli | importada | — | — | 0/2 |
-| Scrawling Crawler | Keen Engineering (Foundations Commander Precon Decklist) | importada | — | — | — |
+| Scrawling Crawler | Keen Engineering (Foundations Commander Precon Decklist) | importada | sim | sim | — |
 | Screams from Within | Silverquill Influence | B | sim | sim | 2/2 |
 | Scriv, the Obligator | Silverquill Influence | B | sim | sim | 2/2 |
 | Scrubland | 🇯🇵Jin's Vengeance⛩️ | importada | — | — | 0/2 |
@@ -1179,8 +1179,8 @@ motivo de não se aplicar.
 | Sheltered by Ghosts | Silverquill Influence | B | sim | sim | 3/3 |
 | Sheltered Thicket | Blight Curse, Raining Cats and Dogs (Secret Lair Commander 2024 Precon Dec | A | sim | sim | — |
 | Shielded by Faith | Silverquill Influence | B | sim | sim | — |
-| Shimmer Dragon | Keen Engineering (Foundations Commander Precon Decklist) | importada | — | — | — |
-| Shimmer Myr | Keen Engineering (Foundations Commander Precon Decklist) | importada | — | — | 0/2 |
+| Shimmer Dragon | Keen Engineering (Foundations Commander Precon Decklist) | importada | sim | sim | — |
+| Shimmer Myr | Keen Engineering (Foundations Commander Precon Decklist) | importada | sim | sim | 2/2 |
 | Shineshadow Snarl | Silverquill Influence, Terra | A | sim | sim | 4/4 |
 | Shiny Impetus | The Hosts of Mordor (The Lord of the Rings Commander Precon  | importada | — | — | 0/6 |
 | Shivan Devastator | Reign of Dragons (Foundations Commander Precon Decklist) | importada | — | — | — |
@@ -1196,7 +1196,7 @@ motivo de não se aplicar.
 | Sigarda's Aid | 🇯🇵Jin's Vengeance⛩️ | importada | — | — | — |
 | Sign in Blood | Wretched Ranks (Foundations Commander Precon Decklist) | importada | sim | sim | — |
 | Silent Clearing | Odd and Ends (Secret Lair Commander 2026 Precon Decklist) | importada | — | — | — |
-| Silver Myr | Keen Engineering (Foundations Commander Precon Decklist) | importada | — | — | — |
+| Silver Myr | Keen Engineering (Foundations Commander Precon Decklist) | importada | sim | sim | — |
 | Silver Surfer, Galactus's Herald | The Fantastic Four Collector's Edition (Marvel Super Heroes  | importada | — | — | — |
 | Silverquill Campus | Silverquill Influence | A | sim | sim | — |
 | Silverquill Lecturer | Hatsune Miku (Secret Lair Commander 2026 Precon Decklist) | importada | — | — | 0/7 |
@@ -1216,7 +1216,7 @@ motivo de não se aplicar.
 | Skyclave Shade | Maestros Massacre (Streets of New Capenna Commander Precon D | importada | — | — | 0/12 |
 | Skyhunter Strike Force | Raining Cats and Dogs (Secret Lair Commander 2024 Precon Dec | importada | — | — | 0/4 |
 | Skyline Despot | Reign of Dragons (Foundations Commander Precon Decklist) | importada | — | — | 0/5 |
-| Skysovereign, Consul Flagship | Keen Engineering (Foundations Commander Precon Decklist) | importada | — | — | 0/12 |
+| Skysovereign, Consul Flagship | Keen Engineering (Foundations Commander Precon Decklist) | importada | sim | sim | 12/12 |
 | Slaughter the Strong | Abzan Armor | B | sim | sim | 3/3 |
 | Slumbering Walker | Abzan Armor | B | sim | sim | 1/1 |
 | Smoldering Marsh | Blight Curse, Terra, The Hosts of Mordor (The Lord of the Rings Commander Precon , Doom Prevails (Marvel Super Heroes Commander Precon Decklist, Turtle Power! (Teenage Mutant Ninja Turtles Commander Precon, Maestros Massacre (Streets of New Capenna Commander Precon D, Vampiric Bloodline (Innistrad: Crimson Vow Commander Precon  | A | sim | sim | 3/3 |
@@ -1236,7 +1236,7 @@ motivo de não se aplicar.
 | Soul Snare | Heavenly Inferno (Commander Anthology Precon Decklist) | importada | — | — | 0/2 |
 | Soul Snuffers | Blight Curse | B | sim | sim | 1/1 |
 | Soul Warden | Hatsune Miku (Secret Lair Commander 2026 Precon Decklist) | importada | — | — | 0/1 |
-| Soul-Guide Lantern | Keen Engineering (Foundations Commander Precon Decklist) | importada | — | — | — |
+| Soul-Guide Lantern | Keen Engineering (Foundations Commander Precon Decklist) | importada | sim | sim | — |
 | Soulless One | Wretched Ranks (Foundations Commander Precon Decklist) | importada | sim | sim | — |
 | Space Beleren | Odd and Ends (Secret Lair Commander 2026 Precon Decklist) | importada | — | — | 0/8 |
 | Spark Double | 🇯🇵Jin's Vengeance⛩️, Doom Prevails (Marvel Super Heroes Commander Precon Decklist | importada | — | — | 0/9 |
@@ -1249,7 +1249,7 @@ motivo de não se aplicar.
 | Spinerock Knoll | Reign of Dragons (Foundations Commander Precon Decklist) | importada | — | — | 0/7 |
 | Spinerock Tyrant | Blight Curse | B | sim | sim | 6/6 |
 | Spire Garden | Turtle Power! (Teenage Mutant Ninja Turtles Commander Precon | importada | — | — | 0/1 |
-| Spire Golem | Keen Engineering (Foundations Commander Precon Decklist) | importada | — | — | — |
+| Spire Golem | Keen Engineering (Foundations Commander Precon Decklist) | importada | sim | sim | — |
 | Spirit Mantle | Silverquill Influence | B | sim | sim | — |
 | Spirit of Resilience | Lorehold Spirit | B | sim | sim | 4/4 |
 | Spirited Companion | Raining Cats and Dogs (Secret Lair Commander 2024 Precon Dec | importada | — | — | — |
@@ -1266,8 +1266,8 @@ motivo de não se aplicar.
 | Staff of the Storyteller | Lorehold Spirit, Multiverse Reforged (Reality Fracture Commander Decklist) | B | sim | sim | — |
 | Stalking Leonin | Raining Cats and Dogs (Secret Lair Commander 2024 Precon Dec | importada | — | — | 0/5 |
 | Starfield Mystic | Silverquill Influence | B | sim | sim | 1/1 |
-| Steel Hellkite | Keen Engineering (Foundations Commander Precon Decklist) | importada | — | — | 0/9 |
-| Steel Overseer | Keen Engineering (Foundations Commander Precon Decklist) | importada | — | — | 0/1 |
+| Steel Hellkite | Keen Engineering (Foundations Commander Precon Decklist) | importada | sim | sim | 9/9 |
+| Steel Overseer | Keen Engineering (Foundations Commander Precon Decklist) | importada | sim | sim | 1/1 |
 | Steelbane Hydra | Turtle Power! (Teenage Mutant Ninja Turtles Commander Precon | importada | — | — | — |
 | Steelshaper's Gift | 🇯🇵Jin's Vengeance⛩️ | importada | — | — | — |
 | Stensia Masquerade | Vampiric Bloodline (Innistrad: Crimson Vow Commander Precon  | importada | — | — | 0/10 |
@@ -1334,7 +1334,7 @@ motivo de não se aplicar.
 | Talisman of Progress | Multiverse Reforged (Reality Fracture Commander Decklist), Avengers Assemble Collector's Edition (Marvel Super Heroes C, Odd and Ends (Secret Lair Commander 2026 Precon Decklist) | importada | sim | sim | — |
 | Talrand's Invocation | Maestros Massacre (Streets of New Capenna Commander Precon D | importada | — | — | — |
 | Tamiyo, Upriser Crowned | Multiverse Reforged (Reality Fracture Commander Decklist) | importada | sim | sim | 5/5 |
-| Tamiyo's Logbook | Keen Engineering (Foundations Commander Precon Decklist) | importada | — | — | 0/1 |
+| Tamiyo's Logbook | Keen Engineering (Foundations Commander Precon Decklist) | importada | sim | sim | 1/1 |
 | Tariel, Reckoner of Souls | Heavenly Inferno (Commander Anthology Precon Decklist) | importada | — | — | 0/2 |
 | Taunt from the Rampart | The Fantastic Four Collector's Edition (Marvel Super Heroes  | importada | — | — | 0/5 |
 | Taurean Mauler | Reign of Dragons (Foundations Commander Precon Decklist), Raining Cats and Dogs (Secret Lair Commander 2024 Precon Dec | importada | — | — | 0/1 |
@@ -1381,13 +1381,13 @@ motivo de não se aplicar.
 | Their Name Is Death | Necron Dynasties (Warhammer 40,000 Commander Precon Decklist | importada | — | — | — |
 | Their Number Is Legion | Necron Dynasties (Warhammer 40,000 Commander Precon Decklist | importada | — | — | 0/1 |
 | Thief of Sanity | Odd and Ends (Secret Lair Commander 2026 Precon Decklist) | importada | — | — | 0/5 |
-| Thirst for Knowledge | Keen Engineering (Foundations Commander Precon Decklist) | importada | — | — | 0/1 |
-| Thopter Fabricator | Keen Engineering (Foundations Commander Precon Decklist) | importada | — | — | — |
-| Thopter Spy Network | Keen Engineering (Foundations Commander Precon Decklist) | importada | — | — | 0/2 |
+| Thirst for Knowledge | Keen Engineering (Foundations Commander Precon Decklist) | importada | sim | sim | 1/1 |
+| Thopter Fabricator | Keen Engineering (Foundations Commander Precon Decklist) | importada | sim | sim | — |
+| Thopter Spy Network | Keen Engineering (Foundations Commander Precon Decklist) | importada | sim | sim | 2/2 |
 | Thor, Asgard's Avenger | Avengers Assemble Collector's Edition (Marvel Super Heroes C | importada | — | — | — |
-| Thought Monitor | Keen Engineering (Foundations Commander Precon Decklist) | importada | — | — | — |
-| Thought Vessel | Necron Dynasties (Warhammer 40,000 Commander Precon Decklist, Avengers Assemble Collector's Edition (Marvel Super Heroes C, Keen Engineering (Foundations Commander Precon Decklist) | importada | — | — | — |
-| Thoughtcast | Keen Engineering (Foundations Commander Precon Decklist) | importada | — | — | — |
+| Thought Monitor | Keen Engineering (Foundations Commander Precon Decklist) | importada | sim | sim | — |
+| Thought Vessel | Necron Dynasties (Warhammer 40,000 Commander Precon Decklist, Avengers Assemble Collector's Edition (Marvel Super Heroes C, Keen Engineering (Foundations Commander Precon Decklist) | importada | sim | sim | — |
+| Thoughtcast | Keen Engineering (Foundations Commander Precon Decklist) | importada | sim | sim | — |
 | Thran Dynamo | Wakanda Forever (Marvel Super Heroes Commander Precon Deckli | importada | — | — | — |
 | Three Visits | The Fantastic Four Collector's Edition (Marvel Super Heroes , Raining Cats and Dogs (Secret Lair Commander 2024 Precon Dec | importada | — | — | 0/2 |
 | Thrill of Possibility | Terra, The Hosts of Mordor (The Lord of the Rings Commander Precon , Reign of Dragons (Foundations Commander Precon Decklist) | B | sim | sim | 1/1 |
@@ -1483,7 +1483,7 @@ motivo de não se aplicar.
 | Vanquisher's Banner | Raining Cats and Dogs (Secret Lair Commander 2024 Precon Dec | importada | — | — | 0/6 |
 | Vault of Champions | 🇯🇵Jin's Vengeance⛩️ | importada | — | — | 0/2 |
 | Vault of Whispers | Necron Dynasties (Warhammer 40,000 Commander Precon Decklist | importada | — | — | — |
-| Vedalken Archmage | Keen Engineering (Foundations Commander Precon Decklist) | importada | — | — | — |
+| Vedalken Archmage | Keen Engineering (Foundations Commander Precon Decklist) | importada | sim | sim | — |
 | Vega, the Watcher | Odd and Ends (Secret Lair Commander 2026 Precon Decklist) | importada | — | — | 0/1 |
 | Veinwitch Coven | Witherbloom Pestilence | A | sim | sim | 4/4 |
 | Venerable Warsinger | Lorehold Spirit | B | sim | sim | — |
@@ -1544,7 +1544,7 @@ motivo de não se aplicar.
 | Weathered Wayfarer | Odd and Ends (Secret Lair Commander 2026 Precon Decklist) | importada | — | — | — |
 | Welcoming Vampire | Abzan Armor | A | sim | sim | 2/2 |
 | West Coast Expansion | Avengers Assemble Collector's Edition (Marvel Super Heroes C | importada | — | — | — |
-| Whirler Rogue | Keen Engineering (Foundations Commander Precon Decklist) | importada | — | — | 0/2 |
+| Whirler Rogue | Keen Engineering (Foundations Commander Precon Decklist) | importada | sim | sim | 2/2 |
 | Whirlwind of Thought | Multiverse Reforged (Reality Fracture Commander Decklist), The Fantastic Four Collector's Edition (Marvel Super Heroes  | importada | sim | sim | 2/2 |
 | Whispersilk Cloak | Wakanda Forever (Marvel Super Heroes Commander Precon Deckli | importada | — | — | — |
 | White Orchid Phantom | Lorehold Spirit | A | sim | sim | 2/2 |
@@ -1690,7 +1690,7 @@ motivo de não se aplicar.
 | Spirit (Spirit 3/2) | — | ficha | sim | sim | — |
 | Tentacle | — | ficha | — | — | — |
 | The Monarch | — | ficha | sim | sim | — |
-| Thopter | — | ficha | — | — | — |
+| Thopter (Thopter) | — | ficha | sim | sim | — |
 | Treasure (Treasure) | — | ficha | sim | sim | — |
 | Treefolk (Treefolk) | — | ficha | sim | sim | — |
 | Vampire | — | ficha | — | — | — |

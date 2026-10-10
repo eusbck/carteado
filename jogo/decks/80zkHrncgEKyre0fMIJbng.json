@@ -6,8 +6,7 @@
  "link": "https://moxfield.com/decks/80zkHrncgEKyre0fMIJbng",
  "importadoEm": "2026-10-10T05:32:32.496Z",
  "verificadoEm": "2026-10-10T05:32:32.496Z",
- "atual": null,
- "preparacao": {
+ "atual": {
   "comandante": "Sai, Master Thopterist",
   "cartas": [
    {
@@ -280,5 +279,6 @@
    "atualizadoEm": "2026-09-28T20:59:00.693Z"
   },
   "desde": "2026-10-10T05:32:32.496Z"
- }
+ },
+ "preparacao": null
 }

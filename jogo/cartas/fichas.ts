@@ -93,6 +93,7 @@ export const KoboldsOfKherKeep = token('Kobolds of Kher Keep', 'Kobolds of Kher 
 export const Goblin = token('Goblin', 'Goblin', ['Creature'], ['Goblin'], ['R'], 1, 1);
 export const PhyrexianGoblin = token('Phyrexian Goblin', 'Phyrexian Goblin', ['Creature'], ['Phyrexian', 'Goblin'], ['R'], 1, 1);
 export const Myr = token('Myr', 'Myr', ['Artifact', 'Creature'], ['Myr'], [], 1, 1);
+export const Thopter = token('Thopter', 'Thopter', ['Artifact', 'Creature'], ['Thopter'], [], 1, 1, keywords('flying'));
 export const Shark = tokenXX('Shark', 'Shark', ['Creature'], ['Shark'], ['U'], keywords('flying'));
 /**
  * Jace (CR 701.71a, "empower Jace"): planeswalker azul com 0 de lealdade, "[−1]: Vigiar 1" e "[−3]: Compre uma carta".
