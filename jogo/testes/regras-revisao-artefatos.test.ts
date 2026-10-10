@@ -51,7 +51,7 @@ describe('improvisar no pagamento automático: fontes de mana primeiro (CR 702.1
     expect(virados(tg2)).toEqual(['Island', 'Island', 'Island', 'Mind Stone', 'Sol Ring']);
   });
   it('entre criaturas, vira primeiro a que está com enjoo de invocação', () => {
-    const tg = fixture({ battlefield: [['Thopter', 'Island', 'Island', 'Island', 'Island', 'Island'].map((name, i) => i === 0 ? { name, token: true } : name).concat([{ name: 'Thopter', token: true, ready: false }]), []], hand: [['Kappa Cannoneer'], []] });
+    const tg = fixture({ battlefield: [[{ name: 'Thopter', token: true }, 'Island', 'Island', 'Island', 'Island', 'Island', { name: 'Thopter', token: true, ready: false }], []], hand: [['Kappa Cannoneer'], []] });
     const prontos = tg.state.zones.battlefield.filter((id) => tg.state.objects[id].def === 'Thopter');
     tg.cast('Kappa Cannoneer');
     const [velho, novo] = prontos;
