@@ -1,5 +1,14 @@
 # Progresso
 
+## Novos decks — Codex, 10/10/2026
+
+- Frente isolada: branch `decks/regras`, worktree `../Magic-Commander-regras-decks`, base anterior `06cc7f3`.
+- Mesa atual: 8080, 9 decks jogáveis, preservada. Prévia desta frente: primeira porta livre a partir de 8096, banco próprio.
+- Primeira entrega em andamento: **Keen Engineering — Sai, Master Thopterist**, 59 cartas pendentes, lista de 100 conferida com o Moxfield.
+- Auditoria ampliada para cartas e rulings importados; relato detalhado em `../CODEX.md`.
+- Depois de Sai: importar Food and Fellowship; ordenar os demais por cartas ainda pendentes, desempate pela ordem do catálogo.
+- Timey-Wimey e Planechase fora desta frente. Entrega de um deck completo e testado por vez, antes de ativar na mesa.
+
 Lista de verificação das fases. É por aqui que uma sessão nova retoma o trabalho.
 
 ## Sessões

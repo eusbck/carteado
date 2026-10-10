@@ -1,0 +1,10 @@
+{
+  "formato": 1,
+  "base": "06cc7f3",
+  "branch": "decks/regras",
+  "mesaAtual": { "porta": 8080, "jogaveis": 9 },
+  "previa": { "portaMinima": 8096, "dados": "dados-previa" },
+  "primeiroDeck": "80zkHrncgEKyre0fMIJbng",
+  "foraDoEscopo": ["Timey-Wimey", "Planechase"],
+  "ativacao": "somente na próxima abertura da mesa, a partir de commits validados; preservar versão anterior e copiar SQLite pelo backup online"
+}

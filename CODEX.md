@@ -1,0 +1,11 @@
+# Registro de trabalho — regras dos novos decks
+
+## 2026-10-10 — Codex — isolamento e verificação inicial
+
+- **O que / por quê:** criada a frente `decks/regras`, baseada em `06cc7f3`, no worktree irmão `Magic-Commander-regras-decks`. A mesa em 8080 e as alterações do cronômetro na pasta principal pertencem a outra sessão e não serão usadas para gerar dados nem executar testes desta frente.
+- **Como:** `git worktree add -b decks/regras ../Magic-Commander-regras-decks 06cc7f3`; `npm ci --cache .cache/npm` dentro de `jogo/`. Dependências, compilação, catálogo, imagens copiadas, banco e caches ficam nesta cópia. Referência anterior: `06cc7f3` (9 decks jogáveis e 16 em preparação).
+- **Primeira entrega:** Keen Engineering, Sai, Master Thopterist, Moxfield `80zkHrncgEKyre0fMIJbng`. Conferência inicial pela API: mesmas 100 cartas, mesmo comandante, sem diferenças; 67 nomes distintos, 59 sem implementação.
+- **Verificações iniciais:** `npm run typecheck` aprovado; `npm run cliente:build` aprovado. Suíte completa da base: 670 arquivos, 1951 testes aprovados, um ignorado, nenhuma falha, com no máximo dois workers. Auditoria: dois testes novos aprovados. Resumo persistido em `jogo/entregas/verificacao-base.json`; logs completos em `.cache/verificacao/`. Nenhuma execução concorrente de testes.
+- **Auditoria:** o relatório antigo enxergava somente as 547 entradas originais. A ferramenta passa a unir a coleta original e `jogo/decks/cartas.json` por Oracle ID, incluindo os rulings importados, os decks atuais e em preparação. Antes das cartas novas: 687/1688 entradas completas, 1517/3867 rulings de cartas conferidos. A auditoria exige definição completa, teste próprio e justificativa para cada ruling; `--deck <id>` falha se o deck não cumprir a barreira.
+- **Pendências:** implementar e testar as 59 cartas do Sai e as extensões do motor; conferir novamente o Moxfield, tipos, suíte, cliente, partidas 2/4 jogadores, interface e restauração. Depois da entrega, importar Food and Fellowship e recalcular a ordem dos outros decks. Timey-Wimey e Planechase fora do escopo.
+- **Commits:** esta etapa será registrada na branch isolada depois da verificação inicial. Nenhuma ativação da mesa atual.

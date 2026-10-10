@@ -1,0 +1,17 @@
+{
+  "commit": "06cc7f3",
+  "node": "v24.20.0",
+  "success": true,
+  "arquivos": 670,
+  "testes": 1952,
+  "aprovados": 1951,
+  "falhas": 0,
+  "workers": 2,
+  "tipos": "aprovado",
+  "cliente": "aprovado",
+  "moxfield": {
+    "deck": "80zkHrncgEKyre0fMIJbng",
+    "cartas": 100,
+    "diferencas": 0
+  }
+}
