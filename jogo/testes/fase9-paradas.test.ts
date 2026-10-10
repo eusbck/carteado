@@ -61,19 +61,31 @@ async function jogar(modo: '1v1' | '4p', turnos: number, paradas?: Partial<StopS
 }
 
 const noMeuTurnoNasParadas = ({ v }: { v: GameView }) => v.turn.active === v.you && v.stack.length === 0 && PARADAS_PADRAO.myTurn.includes(v.turn.step);
+/** a parada inteligente (09/10): com jogada instantânea, a mesa espera na mágica de um oponente, no ataque e na etapa
+ *  final dele (motor/autopass.ts momentoDeResponder) */
+const temJogada = (d: Decision) => d.kind === 'priority' && d.actions.some((a) => a.kind !== 'pass' && a.kind !== 'mana' && a.kind !== 'manual');
+const paradaInteligente = ({ v, d }: { v: GameView; d: Decision }) => temJogada(d) && (v.stack.length > 0
+  ? v.stack[0].controller !== v.you
+  : v.turn.active !== v.you && ((v.turn.step === 'declareAttackers' && !!v.combat?.attackers.length) || v.turn.step === 'end'));
 
 describe('fase 9: paradas padrão contra bots (1.1)', () => {
-  it('1v1: no turno do bot a mesa não espera a pessoa; ela só para nas paradas do próprio turno', async () => {
+  it('1v1: no turno do bot a mesa só espera a pessoa na parada inteligente (com jogada); fora isso, só no próprio turno', async () => {
     const ps = await jogar('1v1', 8);
     expect(ps.length).toBeGreaterThan(0);
-    expect(ps.filter((p) => !noMeuTurnoNasParadas(p)).map(({ v }) => `${v.turn.number} ${v.turn.step}`)).toEqual([]);
+    expect(ps.filter((p) => !noMeuTurnoNasParadas(p) && !paradaInteligente(p)).map(({ v }) => `${v.turn.number} ${v.turn.step}`)).toEqual([]);
   }, 180000);
 
   it('4 jogadores: idem, com três bots', async () => {
     const ps = await jogar('4p', 6);
     expect(ps.length).toBeGreaterThan(0);
-    expect(ps.filter((p) => !noMeuTurnoNasParadas(p)).map(({ v }) => `${v.turn.number} ${v.turn.step}`)).toEqual([]);
+    expect(ps.filter((p) => !noMeuTurnoNasParadas(p) && !paradaInteligente(p)).map(({ v }) => `${v.turn.number} ${v.turn.step}`)).toEqual([]);
   }, 240000);
+
+  it('com a parada inteligente desligada, no turno do bot a mesa não espera nunca', async () => {
+    const ps = await jogar('1v1', 8, { respondWhenAble: false });
+    expect(ps.length).toBeGreaterThan(0);
+    expect(ps.filter((p) => !noMeuTurnoNasParadas(p)).map(({ v }) => `${v.turn.number} ${v.turn.step}`)).toEqual([]);
+  }, 180000);
 
   it('quem marca a etapa final dos outros e as mágicas dos oponentes para ali, e o aviso diz por quê', async () => {
     // (a semente da sala é sorteada: joga até ver as duas paradas, num limite folgado de turnos)

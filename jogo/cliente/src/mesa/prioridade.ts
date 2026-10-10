@@ -25,6 +25,10 @@ export function avisoPrioridade(v: GameView, eu: number, d: Decision | null): Av
     return { texto: 'Sua vez de responder a ', destaque: oque, resto: ` de ${nome(topo.controller)}`, jogador: topo.controller };
   }
   if (topo) return { texto: 'Sua vez de responder à sua ', destaque: topo.kind === 'spell' ? topo.name : `habilidade de ${topo.name}`, resto: '', jogador: eu };
+  // a parada inteligente no ataque de outro: o aviso diz quem atacou (a etapa sozinha não explica por que parou)
+  if (v.turn.active !== eu && v.turn.step === 'declareAttackers' && v.combat?.attackers.length) {
+    return { texto: `${nome(v.turn.active)} `, destaque: 'atacou', resto: ': sua vez de responder', jogador: v.turn.active };
+  }
   if (v.turn.active !== eu) return { texto: `Turno de ${nome(v.turn.active)}, `, destaque: v.turn.stepName, resto: ': sua vez de agir', jogador: v.turn.active };
   return null;
 }

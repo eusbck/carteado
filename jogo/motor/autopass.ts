@@ -21,6 +21,12 @@ export interface StopSettings {
    * real da fase 8 desliga: a mesa para e a pessoa passa, sem o sistema entregar que não havia jogada.
    */
   skipWhenNothing?: boolean;
+  /**
+   * parada inteligente (como no MTG Arena; padrão: sim): com algo instantâneo para jogar, parar quando um oponente põe
+   * algo na pilha, quando ataca no turno dele e na etapa final dele, mesmo sem essas paradas marcadas. Sem jogada, a
+   * mesa segue. A espera revela que a pessoa tem resposta; foi aceito (09/10), para dar para responder no turno dos outros
+   */
+  respondWhenAble?: boolean;
 }
 
 export const DEFAULT_STOPS: StopSettings = {
@@ -40,6 +46,7 @@ export function shouldAutoPass(s: GameState, d: Decision, player: PlayerId, st: 
   // sem nada além de passar (e ativar mana à toa), não há o que decidir
   const meaningful = d.actions.filter((a) => a.kind !== 'pass' && a.kind !== 'mana' && a.kind !== 'manual');
   if (meaningful.length === 0 && st.skipWhenNothing !== false) return true;
+  if (meaningful.length > 0 && st.respondWhenAble !== false && momentoDeResponder(s, player)) return false;
   if (st.passUntilTurnEnds !== null && st.passUntilTurnEnds === s.turn.number) {
     if (!st.stopOnOpponentStack) return true;
     const top = s.zones.stack[s.zones.stack.length - 1];
@@ -55,4 +62,14 @@ export function shouldAutoPass(s: GameState, d: Decision, player: PlayerId, st: 
   const mine = s.turn.active === player;
   const stops = mine ? st.myTurn : st.othersTurn;
   return !stops.includes(s.turn.step);
+}
+
+/** os momentos da parada inteligente: algo de um oponente no topo da pilha (em qualquer turno) e, no turno de outro,
+ *  a declaração de atacantes (só se alguém atacou: a etapa dá prioridade mesmo sem ataque) e a etapa final */
+function momentoDeResponder(s: GameState, player: PlayerId): boolean {
+  const top = s.zones.stack[s.zones.stack.length - 1];
+  if (top !== undefined) return s.objects[top]?.stack?.controller !== player;
+  if (s.turn.active === player) return false;
+  if (s.turn.step === 'declareAttackers') return (s.combat?.attackers.length ?? 0) > 0;
+  return s.turn.step === 'end';
 }

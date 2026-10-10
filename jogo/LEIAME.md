@@ -95,10 +95,13 @@ janela mostra o endereço `https://` e a senha de acesso para mandar ao grupo. D
      (virar, marcadores, mover); no seu campo vazio, desvirar tudo, criar ficha e marcadores de jogador.
    - A faixa no meio da mesa mostra o turno, as cinco fases com as etapas e o botão Passar. Clicar
      numa etapa liga ou desliga a parada nela; "Paradas" na barra lateral tem todas as opções. Por
-     padrão a mesa só para no seu turno; no turno dos outros ela anda sozinha. Para responder às
-     mágicas dos oponentes, ligue "Mágicas dos oponentes" na faixa (ou marque a etapa final no turno
-     de um oponente). Quando a mesa espera você fora do seu turno, a faixa fica amarela e diz por quê
-     ("Sua vez de responder a …"). Bot pensando há mais de um segundo: "ROBSON está pensando…".
+     padrão as paradas fixas são só no seu turno; no turno dos outros a mesa anda sozinha, mas com a
+     **parada inteligente** (como no Arena) ela espera você quando um oponente põe algo na pilha, ataca
+     ou chega na etapa final, desde que você tenha algo instantâneo para jogar (sem jogada, segue). Dá
+     para desligar em "Paradas". Para parar sempre nas mágicas dos oponentes, mesmo sem jogada, ligue
+     "Mágicas dos oponentes" na faixa. Quando a mesa espera você fora do seu turno, a faixa fica
+     amarela e diz por quê ("Sua vez de responder a …", "ROBSON atacou"). Bot pensando há mais de um
+     segundo: "ROBSON está pensando…".
    - Arrumar o campo: arraste as suas cartas para onde quiser (elas ficam exatamente onde você
      soltou). Segurando o botão no espaço vazio do seu campo e arrastando, você seleciona várias e
      move o grupo junto; clique no vazio ou Esc desfaz a seleção.

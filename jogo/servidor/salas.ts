@@ -113,10 +113,11 @@ interface Pedido {
 const ALFABETO = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
 
 /**
- * Paradas de quem senta (fase 9): só no próprio turno. No turno dos outros a mesa anda sozinha; quem quiser
- * responder marca a etapa final dos outros ou "mágicas dos oponentes" na faixa de fases. (Antes paravam também na
- * etapa final de cada oponente e a cada mágica de oponente; na mesa real, que para mesmo sem jogada, parecia que os
- * bots tinham travado.)
+ * Paradas de quem senta (fase 9): fixas só no próprio turno. No turno dos outros a mesa anda sozinha, a não ser pela
+ * parada inteligente (09/10, respondWhenAble): com algo instantâneo para jogar, para quando um oponente põe algo na
+ * pilha, ataca ou chega na etapa final; sem jogada, segue. (Antes da fase 9 paravam sempre na etapa final de cada
+ * oponente e a cada mágica de oponente; na mesa real, que para mesmo sem jogada, parecia que os bots tinham travado.
+ * Depois dela não dava para responder no turno dos outros.)
  */
 export const PARADAS_PADRAO: StopSettings = {
   myTurn: ['main1', 'beginCombat', 'main2'],
@@ -124,6 +125,7 @@ export const PARADAS_PADRAO: StopSettings = {
   stopOnOpponentStack: false,
   stopOnOwnStack: false,
   passUntilTurnEnds: null,
+  respondWhenAble: true,
 };
 const paradasPadrao = (): StopSettings => structuredClone(PARADAS_PADRAO);
 
@@ -177,7 +179,8 @@ function paradasValidas(p: unknown): StopSettings | null {
   const ok = (l: unknown) => Array.isArray(l) && l.every((s) => PASSOS.includes(s as Step));
   if (!ok(x.myTurn) || !ok(x.othersTurn) || typeof x.stopOnOpponentStack !== 'boolean' || typeof x.stopOnOwnStack !== 'boolean') return null;
   if (x.skipWhenNothing !== undefined && typeof x.skipWhenNothing !== 'boolean') return null;
-  return { myTurn: [...x.myTurn], othersTurn: [...x.othersTurn], stopOnOpponentStack: x.stopOnOpponentStack, stopOnOwnStack: x.stopOnOwnStack, passUntilTurnEnds: null, skipWhenNothing: x.skipWhenNothing ?? true };
+  if (x.respondWhenAble !== undefined && typeof x.respondWhenAble !== 'boolean') return null;
+  return { myTurn: [...x.myTurn], othersTurn: [...x.othersTurn], stopOnOpponentStack: x.stopOnOpponentStack, stopOnOwnStack: x.stopOnOwnStack, passUntilTurnEnds: null, skipWhenNothing: x.skipWhenNothing ?? true, respondWhenAble: x.respondWhenAble ?? true };
 }
 
 export class Sala {

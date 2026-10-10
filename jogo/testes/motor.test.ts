@@ -192,7 +192,9 @@ describe('passagem automática (CR 732)', () => {
     tg.pass();
     // Bruno tem Counterspell e um oponente pôs algo na pilha: para
     expect(shouldAutoPass(tg.state, tg.pending!, 1, DEFAULT_STOPS)).toBe(false);
-    expect(shouldAutoPass(tg.state, tg.pending!, 1, { ...DEFAULT_STOPS, stopOnOpponentStack: false })).toBe(true);
+    // sem a parada fixa, a parada inteligente ainda segura (ele tem resposta); desligadas as duas, passa
+    expect(shouldAutoPass(tg.state, tg.pending!, 1, { ...DEFAULT_STOPS, stopOnOpponentStack: false })).toBe(false);
+    expect(shouldAutoPass(tg.state, tg.pending!, 1, { ...DEFAULT_STOPS, stopOnOpponentStack: false, respondWhenAble: false })).toBe(true);
   });
   it('"passar até o fim do turno" vale só para o turno atual', () => {
     const tg = setup({ battlefield: [['Swamp', 'Swamp'], []], hand: [["Night's Whisper"], []] });

@@ -57,8 +57,10 @@ let ultimaId = -1;
 let vazamentos = 0;
 let ultimaQtd = 0;
 let paradas = 0;
-/** fase 9 (1.1): com as paradas padrão, a mesa não pode esperar Ana no turno dos bots (cliques extras) */
+/** fase 9 (1.1): com as paradas padrão, a mesa não pode esperar Ana no turno dos bots (cliques extras), a não ser na
+ *  parada inteligente (09/10): com jogada instantânea, na mágica de um bot, no ataque e na etapa final dele */
 let cliquesExtras = 0;
+let paradasInteligentes = 0;
 for (let volta = 0; volta < 2000000; volta++) {
   await espera();
   // travamento: nada novo chega para Ana por muito tempo
@@ -83,7 +85,12 @@ for (let volta = 0; volta < 2000000; volta++) {
   const d = v.decision as Decision | null;
   if (!d || d.id === ultimaId) continue;
   ultimaId = d.id;
-  if (d.kind === 'priority' && v.turn.active !== v.you) { cliquesExtras++; console.log(`clique extra: turno ${v.turn.number} (${v.players[v.turn.active].name}), ${v.turn.step}, pilha ${v.stack.length}`); }
+  if (d.kind === 'priority' && v.turn.active !== v.you) {
+    const jogada = d.actions.some((a) => a.kind !== 'pass' && a.kind !== 'mana' && a.kind !== 'manual');
+    const momento = v.stack.length > 0 ? v.stack[0].controller !== v.you : (v.turn.step === 'declareAttackers' && !!v.combat?.attackers.length) || v.turn.step === 'end';
+    if (jogada && momento) paradasInteligentes++;
+    else { cliquesExtras++; console.log(`clique extra: turno ${v.turn.number} (${v.players[v.turn.active].name}), ${v.turn.step}, pilha ${v.stack.length}`); }
+  }
   const antes = ana.msgs.length;
   let resposta: Answer = pessoa.answer(d);
   g.tratar(ana, { t: 'responder', decisao: d.id, resposta });
@@ -105,5 +112,5 @@ const v = ana.ultima('jogo')!.vista;
   console.log(`processador: ${((cpu.user + cpu.system) / 1e6 / seg * 100).toFixed(0)}% de uma thread em média (${((cpu.user + cpu.system) / 1e6 / seg / nucleos * 100).toFixed(1)}% das ${nucleos} threads); pico de memória do processo ${(picoRss / 2 ** 20).toFixed(0)} MB; pico do heap das threads de pensar ${((g.pensadores?.picoMemoria ?? 0) / 2 ** 20).toFixed(0)} MB`);
   for (const [nv, e] of Object.entries(g.pensadores?.estatisticas ?? {})) console.log(`  ${nv}: ${e.n} decisões pensadas, média ${(e.soma / e.n).toFixed(0)} ms, máximo ${e.max.toFixed(0)} ms; espera na fila média ${(e.espera / e.n).toFixed(0)} ms, máxima ${e.esperaMax.toFixed(0)} ms`);
 }
-console.log(`${modo}: fim no turno ${v.turn.number} — ${v.gameOver?.draw ? 'empate' : `vencedor ${v.gameOver?.winners.join(',')}`} (${v.gameOver?.reason}); ${respondidas} decisões de Ana; ${((Date.now() - t0) / 1000).toFixed(1)} s; vazamentos: ${vazamentos}; cliques extras no turno dos bots: ${cliquesExtras}`);
+console.log(`${modo}: fim no turno ${v.turn.number} — ${v.gameOver?.draw ? 'empate' : `vencedor ${v.gameOver?.winners.join(',')}`} (${v.gameOver?.reason}); ${respondidas} decisões de Ana; ${((Date.now() - t0) / 1000).toFixed(1)} s; vazamentos: ${vazamentos}; cliques extras no turno dos bots: ${cliquesExtras}; paradas inteligentes: ${paradasInteligentes}`);
 process.exit(v.gameOver && vazamentos === 0 && cliquesExtras === 0 ? 0 : 1);

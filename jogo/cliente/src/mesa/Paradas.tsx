@@ -32,7 +32,9 @@ export function Paradas({ atual, fechar }: { atual: StopSettings; fechar: () => 
           ))}
         </tbody>
       </table>
-      <label class="caixa"><input type="checkbox" checked={p.stopOnOpponentStack} onChange={() => setP({ ...p, stopOnOpponentStack: !p.stopOnOpponentStack })} /> Parar quando um oponente põe algo na pilha</label>
+      {/* a parada inteligente vale mesmo sem as etapas marcadas (ausente nas salas antigas = ligada, como no servidor) */}
+      <label class="caixa"><input type="checkbox" checked={p.respondWhenAble !== false} onChange={() => setP({ ...p, respondWhenAble: p.respondWhenAble === false })} /> Parar quando eu puder responder: com algo instantâneo para jogar, a mesa espera você quando um oponente põe algo na pilha, ataca ou chega na etapa final</label>
+      <label class="caixa"><input type="checkbox" checked={p.stopOnOpponentStack} onChange={() => setP({ ...p, stopOnOpponentStack: !p.stopOnOpponentStack })} /> Parar sempre que um oponente põe algo na pilha (mesmo sem jogada)</label>
       <label class="caixa"><input type="checkbox" checked={p.stopOnOwnStack} onChange={() => setP({ ...p, stopOnOwnStack: !p.stopOnOwnStack })} /> Parar para responder às minhas próprias mágicas e habilidades</label>
       <div class="botoes-linha"><button class="botao principal" onClick={salvar}>Salvar</button></div>
     </Janela>
