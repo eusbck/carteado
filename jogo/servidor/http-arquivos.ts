@@ -143,5 +143,6 @@ export class Arquivos {
 
 /** erro de leitura no meio (arquivo apagado ou trocado): corta só esta resposta */
 function erroDeLeitura(caminho: string) {
-  return (e: NodeJS.ErrnoException | null) => { if (e && e.code !== 'ERR_STREAM_PREMATURE_CLOSE') console.error(`arquivo ${caminho}:`, e.message); };
+  // a conexão fechada pelo navegador no meio da resposta (aba fechada, imagem que saiu da tela) não é erro do servidor
+  return (e: NodeJS.ErrnoException | null) => { if (e && e.code !== 'ERR_STREAM_PREMATURE_CLOSE' && e.code !== 'ERR_STREAM_UNABLE_TO_PIPE') console.error(`arquivo ${caminho}:`, e.message); };
 }

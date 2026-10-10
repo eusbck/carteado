@@ -223,7 +223,7 @@ function FaixaFases({ v, eu, d, enviando, paradas, cor, desfazivel, parada, pens
   return (
     <div class={`fases ${aviso ? 'esperando-voce' : ''}`} aria-label="Fases do turno">
       {/* a mesa conta rodadas (todos tiveram a vez); o turno de cada jogador (CR 500.1) fica nas regras e no registro */}
-      <div class="fases-turno turno-linha" title={`Rodada ${v.turn.round}: vez de ${v.players[v.turn.active].name}`}><span class="rot">Rodada</span><strong>{v.turn.round}</strong></div>
+      <div class="fases-turno turno-linha" data-turno={v.turn.number} title={`Rodada ${v.turn.round}: vez de ${v.players[v.turn.active].name}`}><span class="rot">Rodada</span><strong>{v.turn.round}</strong></div>
       <ol class="fases-lista">
         {FASES.map((f, i) => {
           const atual = i === iFase;

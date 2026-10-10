@@ -179,7 +179,8 @@ async function medir(nome: string, p: Page, s: Sonda, acao: (() => Promise<void>
     ...(await p.evaluate(() => ({
       elementos: document.getElementsByTagName('*').length,
       cartas: document.querySelectorAll('.carta').length,
-      turno: Number(document.querySelector('.turno-linha strong')?.textContent ?? 0) || 0,
+      // o turno da partida (a faixa mostra a rodada)
+      turno: Number(document.querySelector('.turno-linha')?.getAttribute('data-turno') ?? 0) || 0,
     }))),
   };
   resultado[nome] = med;
