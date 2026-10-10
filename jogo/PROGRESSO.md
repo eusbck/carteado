@@ -1093,3 +1093,40 @@ os brilhos de dano, e toca a música por `<audio>` em vez da faixa decodificada 
 - Na bateria de capturas, as fotos 46 (descarte) e 47 (alvos) dependem da partida sorteada passar por um descarte e
   por uma carta com alvo; com outra partida elas não saem (o roteiro não clica em "Não atacar" antes do descarte).
 - Deixe o computador na tomada durante baterias longas (ele hiberna na bateria).
+
+## Sua área com o campo até a base, mão por cima e terrenos deitados — 09/10/2026
+
+Itens 5 e 9 do plano aprovado pela prévia (seções 1 e 2):
+
+- **Campo até a base.** Na sua área o campo vai até 6 px da borda de baixo; a mão, as zonas e o retrato ficam por
+  cima dele (`cliente/src/mesa/geometriaArea.ts`, sem DOM). A mão descansa abaixada (uns 41% da carta à vista) e
+  sobe inteira com o mouse numa carta; ela só desce uns 320 ms depois de o mouse sair do leque (atravessar o vão entre
+  duas cartas não a fecha). Uma decisão que pede cartas da mão (descartar, escolher) ou o ajuste manual que pede uma
+  carta a deixa erguida. O vão entre as cartas é do campo (só as cartas recebem o mouse).
+- **Retrato no canto por padrão.** O seu retrato fica no canto de cima à direita (`avatarCanto` sem valor vale como
+  true); a outra opção nas Configurações é "À esquerda", numa coluna acima do Comando. O lugar antigo, no meio da base,
+  saiu.
+- **Arrumação.** O vão do avatar virou uma lista de retângulos (`Vao` com x0, x1, y0, y1, em coordenadas do campo):
+  a peça que tocaria um deles pula para depois dele. Na sua área os retângulos são a faixa da mão em repouso (medida
+  pelo leque de verdade, com o giro das pontas, e sempre a de pelo menos sete cartas: comprar não mexe nos terrenos),
+  os dois grupos de zonas nos cantos de baixo e, à esquerda, o retrato; no oponente, o medalhão no canto. Os terrenos
+  enchem as linhas de baixo para cima com a base de cada linha conhecida. Se nada couber, as cartas diminuem como antes.
+- **Posições escolhidas mudam uma vez.** Elas são proporcionais ao campo, e o seu campo ficou mais alto: as cartas que
+  você tinha posto num lugar descem um pouco na primeira partida com esta versão (depois ficam onde você puser).
+- **Terrenos deitados** (Configurações › Terrenos no campo: Deitados, o padrão, ou Cartas inteiras). O terreno que não
+  é criatura (e a Aura ou o Equipamento preso nele) vira uma peça de 1,12 × 0,5 da carta com a arte recortada da
+  mesma imagem e o nome à direita (some quando a peça é pequena, como nos oponentes em 4 jogadores). Virado, fica
+  apagado com o {T}; sozinho, inclina 7°; no leque, só apaga. Terrenos iguais ficam num leque só, virados ou não (os
+  virados embaixo), com o selo "×8 · 3 {T}". O terreno animado continua de pé. O zoom mostra a carta inteira.
+- **A carta vira o terreno sem corte.** Ao jogar um terreno da mão (arrastando, com duplo clique ou pelo menu), a
+  carta se transforma na peça num movimento só (~0,46 s, `morfar` em `arrastar.ts`, com Web Animations): a caixa e a
+  imagem têm tamanho em px e andam juntas do retrato da carta até o recorte; o nome aparece no fim, o terreno de
+  verdade aparece no mesmo lugar e a caixa sai no quadro seguinte. Arrastando, a carta continua inteira sob o ponteiro
+  e a transformação começa ao soltar; com duplo clique ou menu, começa quando o terreno chega, saindo de onde a carta
+  estava na mão. Com "reduzir movimento", sem animação.
+- Conferido: `testes/arrumacao.test.ts` (peças deitadas, leques com os virados embaixo, criaturas pelo menos do mesmo
+  tamanho com 12 terrenos e 8 criaturas, e nenhuma carta da arrumação embaixo da mão, das zonas ou do retrato em
+  1280, 1600 e 1920, 4 jogadores e 1v1, com 0, 7 e 10 cartas na mão); capturas `CAPTURAS_SO=mesa` (60 a 62: campo até
+  a base, mão em repouso e erguida, retrato no canto e à esquerda, cartas inteiras, e quadros da transformação parados
+  em 0, 150, 300 e 440 ms) e `CAPTURAS_SO=posicionar` (terreno deitado pego pelo canto a menos de 0,5 px do ponteiro e
+  dentro do retângulo de seleção).

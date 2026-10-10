@@ -16,7 +16,8 @@ import { reservaPaga } from '../mana.ts';
 import { Janela } from '../Janela.tsx';
 import { AUXILIOS, auxiliosAtivos, auxiliosDoNivel, barraAberta, mudarPreferencias, NIVEIS, usePreferencias, type Auxilios, type Preferencias } from '../preferencias.ts';
 import { ETAPAS, FASES } from '../pt.ts';
-import { acompanharArrasto, dentro, mostrarFantasma, useFantasma } from './arrastar.ts';
+import { acompanharArrasto, dentro, morfar, mostrarFantasma, quadroCarta, quadroDoElemento, quadroTile, useFantasma, type Morfose, type Quadro } from './arrastar.ts';
+import { ehDeitavel } from './arrumacao.ts';
 import { useMusica } from '../musica.ts';
 import { AreaJogador, type EstadoCombate } from './AreaJogador.tsx';
 import { ConfigSom } from './ConfigSom.tsx';
@@ -333,6 +334,9 @@ function CamadaZoom({ recolhida, enjoo }: { recolhida: boolean; enjoo: boolean }
 function Configuracoes({ pref, salaProibe, fechar, reorganizar }: { pref: Preferencias; salaProibe: boolean; fechar: () => void; reorganizar: () => void }) {
   const marcados = auxiliosDoNivel(pref.nivel, pref.personalizado);
   const editavel = pref.nivel === 'personalizado' && !salaProibe;
+  // sem valor: o padrão (retrato no canto, terrenos deitados)
+  const canto = pref.avatarCanto !== false;
+  const deitados = pref.terrenosDeitados !== false;
   const escolherNivel = (n: Preferencias['nivel']) => {
     // ao passar para Personalizado, as caixas começam como o nível que estava valendo
     if (n === 'personalizado' && pref.nivel !== 'personalizado') mudarPreferencias({ nivel: n, personalizado: marcados });
@@ -363,8 +367,15 @@ function Configuracoes({ pref, salaProibe, fechar, reorganizar }: { pref: Prefer
       <section class="bloco-config" aria-labelledby="cfg-retrato">
         <p class="rot" id="cfg-retrato">Seu retrato na mesa <span class="rot-nota">guardado neste navegador</span></p>
         <div class="segmentado" role="radiogroup" aria-label="Seu retrato na mesa">
-          <button type="button" role="radio" aria-checked={!pref.avatarCanto} class={!pref.avatarCanto ? 'ativo' : ''} onClick={() => mudarPreferencias({ avatarCanto: false })}>No meio<small>na base, na frente das cartas da mão</small></button>
-          <button type="button" role="radio" aria-checked={!!pref.avatarCanto} class={pref.avatarCanto ? 'ativo' : ''} onClick={() => mudarPreferencias({ avatarCanto: true })}>No canto<small>em cima, à direita do seu campo</small></button>
+          <button type="button" role="radio" aria-checked={canto} class={canto ? 'ativo' : ''} onClick={() => mudarPreferencias({ avatarCanto: true })}>No canto<small>em cima, à direita do seu campo</small></button>
+          <button type="button" role="radio" aria-checked={!canto} class={!canto ? 'ativo' : ''} onClick={() => mudarPreferencias({ avatarCanto: false })}>À esquerda<small>numa coluna acima do Comando</small></button>
+        </div>
+      </section>
+      <section class="bloco-config" aria-labelledby="cfg-terrenos">
+        <p class="rot" id="cfg-terrenos">Terrenos no campo <span class="rot-nota">guardado neste navegador</span></p>
+        <div class="segmentado" role="radiogroup" aria-label="Terrenos no campo">
+          <button type="button" role="radio" aria-checked={deitados} class={deitados ? 'ativo' : ''} onClick={() => mudarPreferencias({ terrenosDeitados: true })}>Deitados<small>baixos e largos, com a arte; os iguais num leque só</small></button>
+          <button type="button" role="radio" aria-checked={!deitados} class={!deitados ? 'ativo' : ''} onClick={() => mudarPreferencias({ terrenosDeitados: false })}>Cartas inteiras<small>de pé, como as outras permanentes</small></button>
         </div>
       </section>
       <section class="bloco-config linha-config">
@@ -406,6 +417,9 @@ export function Mesa() {
   // posição que você acabou de escolher, até o servidor confirmar
   const [posLocal, setPosLocal] = useState<Record<string, [number, number]>>({});
   const pref = usePreferencias();
+  // terrenos deitados (Configurações › Terrenos no campo) e o lado do seu retrato; sem valor, o padrão
+  const deitados = pref.terrenosDeitados !== false;
+  const ladoAvatar = pref.avatarCanto === false ? 'esquerda' : 'canto';
   // barra recolhida: fica só com os ícones (sem o chat) e a mesa ocupa o resto (guardado no navegador)
   const recolhida = !barraAberta(pref);
   // janela de escolha recolhida para olhar a mesa (volta aberta a cada decisão nova)
@@ -495,10 +509,40 @@ export function Mesa() {
   };
   // a carta que volta para a mão depois de um arrasto que não deu em jogada
   const voltaMao = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // terreno jogado da mão com os terrenos deitados: a carta se transforma no terreno numa transição só (arrastar.ts,
+  // morfar). Arrastando, ela começa ao soltar (o lugar é o do ponto solto); com duplo clique ou pelo menu, quando o
+  // terreno chega (o lugar é o da arrumação), saindo de onde a carta estava na mão (`de`). O terreno de verdade fica
+  // escondido enquanto ela anda e, quando ela chega, aparece no mesmo lugar e ela sai no quadro seguinte (sem piscar).
+  // Se o terreno não chegar (jogada recusada), ela sai sozinha
+  interface Chegada { def: string; antes: Set<ObjId>; de: Quadro | null; morfose: Morfose | null; id: ObjId | null; acabou: boolean; timer: ReturnType<typeof setTimeout> }
+  const chegada = useRef<Chegada | null>(null);
+  const [, redesenharChegada] = useState(0);
+  const encerrarChegada = (c: Chegada | null = chegada.current) => {
+    if (!c || chegada.current !== c) return;
+    chegada.current = null;
+    clearTimeout(c.timer);
+    if (c.id !== null) document.querySelector(`.area-eu .campo > [data-obj="${c.id}"]`)?.classList.remove('chegando');
+    const m = c.morfose;
+    if (m) requestAnimationFrame(() => m.remover());
+    // a carta arrastada (escondida na mão até aqui) já saiu da mão, ou volta a aparecer nela
+    if (c.morfose) setArrastando(null);
+    redesenharChegada((n) => n + 1);
+  };
+  const concluirChegada = (c: Chegada) => { if (c.id !== null && c.acabou) encerrarChegada(c); };
+  const iniciarChegada = (o: ObjView, de: Quadro, para: Quadro | null) => {
+    encerrarChegada();
+    // rede de segurança: o terreno que não chegou em 3 s (jogada que não vingou) não deixa a carta parada no caminho;
+    // o que já chegou espera a transformação acabar
+    const c: Chegada = { def: o.def!, antes: new Set(v.battlefield.map((b) => b.id)), de, morfose: null, id: null, acabou: false, timer: setTimeout(() => { if (c.id === null || c.acabou) encerrarChegada(c); }, 3000) };
+    chegada.current = c;
+    if (para) c.morfose = morfar(de, para, urlImagem(o.def!, o.face, 'p'), nomeCarta(o.def!, o.name), () => { c.acabou = true; concluirChegada(c); });
+  };
   /** um arrasto novo começou: o pouso ou a volta à mão da carta anterior terminam já (os relógios deles não podem
    *  apagar a carta que você acabou de pegar) */
   const arrastoAnteriorFim = () => {
     terminarPouso();
+    encerrarChegada();
     if (voltaMao.current) { clearTimeout(voltaMao.current); voltaMao.current = null; }
   };
   // a mesa saiu da tela: nenhum relógio do arrasto fica para mexer nela depois, e o zoom não fica para a próxima
@@ -510,8 +554,8 @@ export function Mesa() {
   }, []);
   // com o tracejado de "pagando" já no lugar, a carta arrastada sai assim que termina de pousar
   useEffect(() => { if (conjurando) encerrarPouso(); }, [conjurando]);
-  // jogada recusada: ela não fica parada no campo
-  useEffect(() => { encerrarPouso(); }, [e.recusa, e.erro]);
+  // jogada recusada: ela não fica parada no campo (a transformação que ainda espera o terreno também sai)
+  useEffect(() => { encerrarPouso(); if (chegada.current?.id === null) encerrarChegada(); }, [e.recusa, e.erro]);
   // a permanente que você soltou no campo entra onde você soltou; se a conjuração não vingou, esquece
   useEffect(() => {
     const p = posPendente.current;
@@ -551,6 +595,34 @@ export function Mesa() {
     if (p && nova) { pousadas.current.add(nova.id); if (!todas[String(nova.id)]) todas[String(nova.id)] = [p.x, p.y]; }
     return todas;
   }, [e.posicoes, posLocal, v.battlefield]);
+  // o terreno que chegou enquanto a carta jogada ainda se transforma nele: nasce sem a animação de surgir e fica
+  // escondido até ela chegar
+  const terrenoChegou = (() => {
+    const c = chegada.current;
+    return c ? v.battlefield.find((o) => !c.antes.has(o.id) && o.def === c.def && o.controller === eu) ?? null : null;
+  })();
+  if (terrenoChegou) pousadas.current.add(terrenoChegou.id);
+  const chegando = terrenoChegou && chegada.current && !chegada.current.acabou ? terrenoChegou.id : null;
+  // logo depois de desenhar (antes de aparecer na tela): com o lugar do terreno na arrumação, a carta que saiu da mão
+  // começa a se transformar (duplo clique, menu); arrastando, ela já está a caminho e só falta acabar
+  useLayoutEffect(() => {
+    const c = chegada.current;
+    if (!c || c.id !== null || !terrenoChegou) return;
+    c.id = terrenoChegou.id;
+    if (!c.morfose && c.de) {
+      const el = document.querySelector<HTMLElement>(`.area-eu .campo > [data-obj="${terrenoChegou.id}"]`);
+      const campo = el?.closest('.campo');
+      if (el && campo && el.classList.contains('deitada')) {
+        const rc = campo.getBoundingClientRect();
+        const para = quadroTile(rc.left + parseFloat(el.style.left), rc.top + parseFloat(el.style.top), el.offsetWidth, el.offsetHeight, parseFloat(getComputedStyle(el).rotate) || 0);
+        const o = terrenoChegou;
+        c.morfose = morfar(c.de, para, urlImagem(o.def!, o.face, 'p'), nomeCarta(o.def!, o.name), () => { c.acabou = true; concluirChegada(c); }, o.tapped);
+        return;
+      }
+      c.acabou = true;
+    }
+    concluirChegada(c);
+  }, [v.battlefield]);
   // as mesmas posições de antes ficam com a mesma referência: a arrumação de cada área só se refaz se algo mudou
   const posicoes = useMesmo(posicoesNovas, mesmasPosicoes);
 
@@ -719,6 +791,10 @@ export function Mesa() {
         posPendente.current = { def: o.def, x: pos.x, y: pos.y, antes: new Set(v.battlefield.map((b) => b.id)) };
         setConjurando({ o, ...pos });
       }
+      // terreno jogado sem arrastar (duplo clique, menu): a carta sai de onde está na mão e vira o terreno quando ele
+      // chegar ao lugar dele na arrumação
+      const naMao = !pos && a.kind === 'play' && deitados && ehDeitavel(o) ? document.querySelector<HTMLElement>(`.mao-cartas [data-obj="${o.id}"]`) : null;
+      if (naMao) iniciarChegada(o, quadroDoElemento(naMao), null);
       fazerAcao(a);
     };
     if (j.length === 1) fazer(j[0]);
@@ -745,8 +821,15 @@ export function Mesa() {
         mover: (x: number, y: number) => mostrarFantasma({ ...base, x: x - dx, y: y - dy }),
         soltar: (x: number, y: number) => {
           if (dentro(alvo, x, y) && j.length) {
-            const pos = campo ? posicaoAoSoltar(campo, x, y, fx, fy) : undefined;
-            if (campo && pos && j.length === 1) {
+            // terreno deitado: o lugar é o da peça baixa e larga, e a carta se transforma nela a caminho de lá
+            const tile = deitados && ehDeitavel(o) && campo ? { w: Number(campo.dataset.tileW), h: Number(campo.dataset.tileH) } : null;
+            const pos = campo ? posicaoAoSoltar(campo, x, y, fx, fy, tile ?? undefined) : undefined;
+            if (campo && pos && j.length === 1 && tile) {
+              const rc = campo.getBoundingClientRect();
+              const m = medidas(campo);
+              mostrarFantasma(null);
+              iniciarChegada(o, quadroCarta(x - dx, y - dy, w, h, -5, 1.05), quadroTile(rc.left + pos.x * m.W, rc.top + pos.y * m.H, tile.w, tile.h));
+            } else if (campo && pos && j.length === 1) {
               // pousa: a carta arrastada vai para o canto onde a permanente vai ficar e fica do tamanho das cartas do
               // campo; ela some quando a permanente (ou o tracejado de "pagando") aparecer ali. A carta da mão continua
               // escondida até lá (o arrasto só termina no fim do pouso)
@@ -1037,6 +1120,8 @@ export function Mesa() {
   const fecharMenu = useEstavel(() => setMenu(null));
 
   const duelo = sala.modo === '1v1';
+  // uma decisão pede cartas da sua mão (descartar, escolher) ou o ajuste manual pede uma carta: a mão fica erguida
+  const maoAberta = !!pegar || (d?.kind === 'select' && !enviando && d.items.some((it) => it.obj !== undefined && v.hand.some((h) => h.id === it.obj)));
   const area = (j: PlayerView, compacta: boolean) => {
     const itemJ = itemPorJogador.get(j.id);
     // declarando ataque: clicar no oponente (área, nome ou vida) escolhe quem a criatura marcada ataca
@@ -1074,7 +1159,10 @@ export function Mesa() {
         onZona={(zona) => setModal({ tipo: 'zona', jogador: j.id, zona })}
         mao={j.id === eu ? v.hand : undefined}
         reservaDireita={j.id === eu ? 336 : 0}
-        avatarCanto={j.id === eu && !!pref.avatarCanto}
+        avatarLado={j.id === eu ? ladoAvatar : undefined}
+        deitados={deitados}
+        maoAberta={j.id === eu ? maoAberta : undefined}
+        chegando={j.id === eu ? chegando : null}
         pousadas={j.id === eu ? pousadas.current : undefined}
         posicoes={posicoes}
         arrastando={arrastando}
@@ -1151,7 +1239,7 @@ export function Mesa() {
   const escolha = d && !v.gameOver && !enviando && !preJogo && ehEscolha(d) ? d : null;
 
   return (<>
-    <div class={`mesa ${duelo ? 'mesa-duelo' : ''} ${pref.avatarCanto ? 'avatar-canto' : ''} ${recolhida ? 'recolhida' : ''} ${aux.jogaveis ? 'aux-jogaveis' : ''} ${e.desfazer ? 'parada' : ''}`} onClick={() => setMenu(null)}>
+    <div class={`mesa ${duelo ? 'mesa-duelo' : ''} ${ladoAvatar === 'canto' ? 'avatar-canto' : ''} ${recolhida ? 'recolhida' : ''} ${aux.jogaveis ? 'aux-jogaveis' : ''} ${e.desfazer ? 'parada' : ''}`} onClick={() => setMenu(null)}>
       <main class="tabuleiro" onContextMenu={(ev) => ev.preventDefault()}>
         <div class={`oponentes n${oponentes.length}`}>{oponentes.map((j) => area(j, true))}</div>
         {area(minha, false)}
