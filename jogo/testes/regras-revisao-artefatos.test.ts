@@ -1,7 +1,17 @@
 // Regressões dos problemas que a revisão achou no motor de artefatos (custos, improvisar, camadas, gatilhos de estado).
 import { describe, expect, it } from 'vitest';
-import { addEffect, chars, controllerOf, defineToken, destroy, gainLife, isType, triggered } from '../motor/api.ts';
+import { activated, addEffect, chars, controllerOf, defineToken, destroy, gainLife, isType, triggered } from '../motor/api.ts';
+import { canPayParts } from '../motor/costs.ts';
+import { cost } from '../motor/dsl.ts';
 import { fixture, runEffect } from './artefatos.ts';
+
+// custos compostos (CR 118.3, 118.10)
+const virarComT = 'Teste {T} e virar dois artefatos';
+defineToken({ id: virarComT, name: virarComT, types: ['Artifact'], subtypes: [], colors: [], power: null, toughness: null, abilities: [activated('{T}, Tap two untapped artifacts you control', function* (c) { gainLife(c.g, c.you, 1, c.source); })] });
+const virarESacrificar = 'Teste virar e sacrificar artefatos';
+defineToken({ id: virarESacrificar, name: virarESacrificar, types: ['Creature'], subtypes: [], colors: [], power: 1, toughness: 1, abilities: [activated('Tap two untapped artifacts you control, Sacrifice an artifact', function* (c) { gainLife(c.g, c.you, 1, c.source); })] });
+const sacrificarEDevolver = 'Teste sacrificar e devolver artefatos';
+defineToken({ id: sacrificarEDevolver, name: sacrificarEDevolver, types: ['Creature'], subtypes: [], colors: [], power: 1, toughness: 1, abilities: [activated("Sacrifice an artifact, Return an artifact you control to its owner's hand", function* (c) { gainLife(c.g, c.you, 1, c.source); })] });
 
 // gatilho de estado que olha o resto do campo: "quando você não controlar outros artefatos, ganhe 1 de vida"
 const sozinho = 'Teste estado sem outros artefatos';
@@ -118,5 +128,49 @@ describe('gatilho de estado de objeto que saiu do campo (CR 603.8, 113.6)', () =
     expect(tg.life(0)).toBe(44);
     expect(tg.state.zones.stack).toHaveLength(0);
     expect(tg.state.pendingTriggers).toHaveLength(0);
+  });
+});
+
+describe('custos compostos reservam recursos distintos para cada parte (CR 118.3, 118.10, 601.2h)', () => {
+  const oferecida = (tg: ReturnType<typeof fixture>, nome: string) => tg.pending?.kind === 'priority' && tg.pending.actions.some((a) => a.kind === 'activate' && a.obj === tg.bf(nome));
+  it('{T} e virar dois artefatos: o próprio artefato virado pelo {T} não conta entre os dois', () => {
+    const pouco = fixture({ battlefield: [[{ name: virarComT, token: true }, 'Sol Ring'], []] });
+    expect(oferecida(pouco, virarComT)).toBe(false);
+    const tg = fixture({ battlefield: [[{ name: virarComT, token: true }, 'Sol Ring', 'Mind Stone'], []] });
+    expect(oferecida(tg, virarComT)).toBe(true);
+    tg.activate(virarComT).resolveAll();
+    expect(['Sol Ring', 'Mind Stone', virarComT].every((n) => tg.state.objects[tg.bf(n)].tapped)).toBe(true);
+    expect(tg.life(0)).toBe(41);
+  });
+  it('virar dois artefatos e sacrificar um artefato: pode sacrificar um dos que virou', () => {
+    const tg = fixture({ battlefield: [[{ name: virarESacrificar, token: true }, 'Sol Ring', 'Mind Stone'], []] });
+    expect(oferecida(tg, virarESacrificar)).toBe(true);
+    tg.choose('Sacrifique', ['Mind Stone']).activate(virarESacrificar).resolveAll();
+    expect(tg.find('Mind Stone', 'graveyard')).not.toBeNull();
+    expect(tg.state.objects[tg.bf('Sol Ring')].tapped).toBe(true);
+    expect(tg.life(0)).toBe(41);
+  });
+  it('sacrificar e devolver um artefato precisam de dois artefatos diferentes', () => {
+    const pouco = fixture({ battlefield: [[{ name: sacrificarEDevolver, token: true }, 'Sol Ring'], []] });
+    expect(oferecida(pouco, sacrificarEDevolver)).toBe(false);
+    expect(canPayParts(pouco.g, 0, cost("Sacrifice an artifact, Return an artifact you control to its owner's hand"), pouco.bf(sacrificarEDevolver))).toBe(false);
+    const tg = fixture({ battlefield: [[{ name: sacrificarEDevolver, token: true }, 'Sol Ring', 'Mind Stone'], []] });
+    tg.choose('Sacrifique', ['Sol Ring']).activate(sacrificarEDevolver).resolveAll();
+    expect(tg.find('Sol Ring', 'graveyard')).not.toBeNull();
+    expect(tg.find('Mind Stone', 'hand')).not.toBeNull();
+  });
+  it('tripular junto com virar uma criatura: a criatura virada pela outra parte não tripula', () => {
+    const custo = [{ k: 'tapCreatures' as const, n: 1 }, { k: 'crew' as const, power: 3 }];
+    const so = fixture({ battlefield: [[{ name: virarComT, token: true }, 'Zetalpa, Primal Dawn'], []] });
+    expect(canPayParts(so.g, 0, custo, so.bf(virarComT))).toBe(false);
+    // com um Elfo, ele paga a outra parte e o Zetalpa (força 4) tripula
+    const tg = fixture({ battlefield: [[{ name: virarComT, token: true }, 'Zetalpa, Primal Dawn', 'Elvish Mystic'], []] });
+    expect(canPayParts(tg.g, 0, custo, tg.bf(virarComT))).toBe(true);
+  });
+  it('duas partes de pagar vida somam (CR 119.4)', () => {
+    const tg = fixture({ battlefield: [[{ name: virarComT, token: true }], []] });
+    tg.state.players[0].life = 3;
+    expect(canPayParts(tg.g, 0, cost('Pay 2 life, Pay 2 life'), tg.bf(virarComT))).toBe(false);
+    expect(canPayParts(tg.g, 0, cost('Pay 1 life, Pay 2 life'), tg.bf(virarComT))).toBe(true);
   });
 });

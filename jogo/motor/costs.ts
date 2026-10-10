@@ -96,7 +96,82 @@ export function canPayParts(g: G, player: PlayerId, parts: CostPart[], source: O
       case 'returnLand': break;
     }
   }
+  return recursosDistintos(g, player, parts, source, x);
+}
+
+/** partes que viram permanentes: pagas antes das outras (CR 601.2h: em qualquer ordem), para que virar e depois
+ *  sacrificar o mesmo permanente continue possível */
+const PARTES_DE_VIRAR = new Set<CostPart['k']>(['tap', 'tapCreatures', 'tapPermanents', 'crew']);
+
+/**
+ * CR 118.3, 118.10: cada parte de um custo composto precisa dos seus próprios recursos. Um permanente já virado não
+ * pode ser virado de novo (virar N permanentes, tripular, {T}), e um que saiu do campo não paga outra parte que o tira
+ * do campo (sacrificar, devolver à mão, exilar). Virar e sacrificar o mesmo permanente vale, como na mesa real.
+ * Cada parte isolada já foi conferida em canPayParts; aqui só os custos com mais de uma parte do mesmo tipo.
+ */
+function recursosDistintos(g: G, player: PlayerId, parts: CostPart[], source: ObjId, x: number): boolean {
+  let viradas = 0, saidas = 0, vidas = 0, tripular = 0;
+  for (const p of parts) {
+    if (p.k === 'tap') viradas++;
+    else if (p.k === 'tapCreatures' || p.k === 'tapPermanents') viradas += p.n;
+    else if (p.k === 'crew') tripular += p.power;
+    else if (p.k === 'sacrificeSelf' || p.k === 'exileSelf' || p.k === 'returnPermanent') saidas++;
+    else if (p.k === 'sacrifice') saidas += p.n === 'X' ? x : p.n;
+    else if (p.k === 'life') vidas++;
+  }
+  if (viradas + (tripular > 0 ? 1 : 0) < 2 && saidas < 2 && vidas < 2) return true;
+  const s = g.state;
+  const ctx: SCtx = { g, you: player, source };
+  const noCampo = s.objects[source]?.zone === 'battlefield';
+  const vagasVirar: ObjId[][] = [];
+  const vagasSair: ObjId[][] = [];
+  let vida = 0;
+  const repetir = (lista: ObjId[][], cands: ObjId[], n: number) => { for (let i = 0; i < n; i++) lista.push(cands); };
+  for (const p of parts) {
+    switch (p.k) {
+      case 'tap': vagasVirar.push([source]); break;
+      case 'tapCreatures': repetir(vagasVirar, s.zones.battlefield.filter((id) => (p.includeSelf || id !== source) && controllerOf(g, id) === player && !s.objects[id].phasedOut && isCreature(g, id) && !s.objects[id].tapped && (!p.filter || p.filter(ctx, id))), p.n); break;
+      case 'tapPermanents': repetir(vagasVirar, costPermanents(g, player, (id) => !s.objects[id].tapped && p.filter(ctx, id)), p.n); break;
+      case 'sacrificeSelf': vagasSair.push([source]); break;
+      case 'exileSelf': if (noCampo) vagasSair.push([source]); break;
+      case 'sacrifice': repetir(vagasSair, costPermanents(g, player, (id) => p.filter(ctx, id)), p.n === 'X' ? x : p.n); break;
+      case 'returnPermanent': vagasSair.push(costPermanents(g, player, (id) => p.filter(ctx, id))); break;
+      case 'life': {
+        vida += Math.max(0, typeof p.n === 'function' ? p.n(ctx) : p.n === 'X' ? x : p.n);
+        if (s.players[player].life < vida) return false; // CR 119.4
+        break;
+      }
+      default: break;
+    }
+  }
+  if (!emparelhar(vagasSair, () => 0)) return false;
+  // as vagas de virar ficam com os permanentes que menos fazem falta na tripulação (os que não são criaturas e os fracos)
+  const peso = (id: ObjId) => (isCreature(g, id) ? Math.max(0, power(g, id)) + 1 : 0);
+  const viradosNoPlano = emparelhar(vagasVirar, peso);
+  if (!viradosNoPlano) return false;
+  if (tripular > 0) {
+    const forca = crewCandidates(g, player, source).filter((id) => !viradosNoPlano.has(id)).reduce((n, id) => n + Math.max(0, power(g, id)), 0);
+    if (forca < tripular) return false;
+  }
   return true;
+}
+
+/** emparelhamento de vagas com permanentes distintos por caminhos aumentantes; devolve os permanentes usados ou null */
+function emparelhar(vagas: ObjId[][], peso: (id: ObjId) => number): Set<ObjId> | null {
+  if (!vagas.length) return new Set();
+  const ordem = vagas.map((v) => [...v].sort((a, b) => peso(a) - peso(b))).sort((a, b) => a.length - b.length);
+  const dono = new Map<ObjId, number>();
+  const reservar = (i: number, vistos: Set<ObjId>): boolean => {
+    for (const id of ordem[i]) if (!dono.has(id)) { dono.set(id, i); return true; }
+    for (const id of ordem[i]) {
+      if (vistos.has(id)) continue;
+      vistos.add(id);
+      if (reservar(dono.get(id)!, vistos)) { dono.set(id, i); return true; }
+    }
+    return false;
+  };
+  for (let i = 0; i < ordem.length; i++) if (!reservar(i, new Set())) return null;
+  return new Set(dono.keys());
 }
 
 /** opções de mana disponíveis para um jogador agora */
@@ -480,7 +555,11 @@ export function* payParts(g: G, player: PlayerId, parts: CostPart[], source: Obj
   const ctx: SCtx = { g, you: player, source };
   const info: Record<string, unknown> = {};
   if (!canPayParts(g, player, parts, source, x)) return false;
+  parts = [...parts.filter((p) => PARTES_DE_VIRAR.has(p.k)), ...parts.filter((p) => !PARTES_DE_VIRAR.has(p.k))];
   for (const p of parts) {
+    // A mana ou uma parte anterior pode ter consumido recursos; aborta para o chamador restaurar a
+    // conjuração/ativação, sem perguntar uma seleção obrigatória numa lista vazia.
+    if (!canPayParts(g, player, [p], source, x)) return false;
     switch (p.k) {
       case 'mana': break;
       case 'tap': tap(g, source, isMana); break;
