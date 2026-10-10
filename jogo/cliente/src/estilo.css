@@ -913,17 +913,6 @@ img.mini { width: 40px; aspect-ratio: 63 / 88; object-fit: cover; border-radius:
 .selo-sala { display: flex; width: fit-content; align-items: center; height: 22px; padding: 0 8px; margin: 8px auto 0; border-radius: 7px; border: 1px solid color-mix(in srgb, var(--ouro) 50%, transparent); color: var(--ouro); font-size: 11px; font-weight: 700; }
 .recolhida .selo-sala { display: none; }
 
-/* efeitos de dano e vida (fora da mesa, somem sozinhos) */
-.numero-efeito { position: fixed; z-index: 240; pointer-events: none; font: 800 32px/1 var(--fonte); font-variant-numeric: tabular-nums; animation: numero-sobe 1.25s ease-out forwards; }
-.numero-efeito.pequeno { font-size: 22px; }
-.numero-efeito.dano { color: #ff6b6b; text-shadow: 0 2px 0 #3a0b0b, 0 0 16px color-mix(in srgb, var(--vermelho) 85%, transparent); }
-.numero-efeito.vida { color: #74d69c; text-shadow: 0 2px 0 #0b2b18, 0 0 16px color-mix(in srgb, var(--positivo) 85%, transparent); }
-.numero-efeito.parado { animation-name: numero-some; }
-@keyframes numero-sobe { 0% { opacity: 0; translate: 0 8px; scale: .7; } 14% { opacity: 1; translate: 0 0; scale: 1.08; } 70% { opacity: 1; } 100% { opacity: 0; translate: 0 -34px; scale: 1; } }
-@keyframes numero-some { 0% { opacity: 0; } 15%, 70% { opacity: 1; } 100% { opacity: 0; } }
-.fantasma-efeito { position: fixed; z-index: 235; pointer-events: none; border-radius: 6px; overflow: hidden; box-shadow: 0 12px 30px rgba(0, 0, 0, .6); }
-.fantasma-efeito img { width: 100%; height: 100%; object-fit: cover; }
-@media (prefers-reduced-motion: reduce) { .numero-efeito { animation: numero-some 1.2s ease-out forwards !important; } }
 
 /* ---------------------------------------------------------------- fase 9: janela de escolha (mesa/JanelaEscolha.tsx) */
 /* no meio da mesa, centrada na divisa (o topo vem do JS); cresce com o conteúdo até caber e rola por dentro.
