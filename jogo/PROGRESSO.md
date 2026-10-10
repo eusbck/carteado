@@ -1130,3 +1130,63 @@ Itens 5 e 9 do plano aprovado pela prévia (seções 1 e 2):
   a base, mão em repouso e erguida, retrato no canto e à esquerda, cartas inteiras, e quadros da transformação parados
   em 0, 150, 300 e 440 ms) e `CAPTURAS_SO=posicionar` (terreno deitado pego pelo canto a menos de 0,5 px do ponteiro e
   dentro do retângulo de seleção).
+
+## Retorno do João depois de jogar: rodada, responder no turno dos outros, combate, pilha e golpe — 09–10/10/2026
+
+Um amigo jogou e mandou seis críticas (e elogios: animações fluidas, HUD limpo, responsivo, trilha e fundos,
+personalização, níveis dos bots, sincronizar decks — nada disso podia piorar); o usuário achou mais dois problemas
+testando. Plano aprovado: `~/.claude/plans/pedi-pra-um-amigo-swift-tulip.md`. Prévia aprovada pelo usuário (três
+rodadas de ajustes): https://claude.ai/artifact/NQwnRcTBKQW8miqBxetpXH. A parte da sua área e dos terrenos deitados
+está na seção anterior.
+
+- **Mana de graça ao desvirar (bug do motor).** Virar terrenos, conjurar e desvirar à mão deixava o terreno pronto
+  para gerar mana de novo. Cada virar para mana fica marcado na permanente (`manaTap`, com o número em cada mana); com
+  `config.desvirarSoComMana` (partidas novas) o desvirar à mão só vale com a mana daquele virar inteira na reserva, e
+  ela sai toda, de quem for a reserva. Com a mana gasta, o motor recusa ("use Desfazer"); a vista marca `manaGasta` e
+  o menu desabilita o "Desvirar". As partidas salvas antes reproduzem como foram jogadas.
+- **Responder no turno dos outros: parada inteligente.** As paradas da fase 9 passavam toda prioridade no turno dos
+  outros, até com mágica de oponente na pilha. `StopSettings.respondWhenAble` (ausente = ligada): com algo instantâneo
+  para jogar, a mesa espera quando um oponente põe algo na pilha (em qualquer turno), quando ele ataca e na etapa
+  final dele; sem jogada, segue. Vale em todas as salas, inclusive sem auxílios (decisão do usuário: a espera revela
+  que há resposta, como no Arena). "Passar até o fim do turno" ainda pula o ataque e a etapa final; só para no que um
+  oponente põe na pilha. Caixa em Paradas para desligar; o aviso diz "Fulano atacou".
+- **Rodada.** O número subia a cada vez de cada jogador (4 por rodada em 4 jogadores). As regras continuam contando o
+  turno de cada jogador (CR 500.1); a faixa e a lateral mostram "Rodada N · vez de Fulano" e o Registro agrupa por
+  rodada (`TurnState.round`; estados salvos sem o campo estimam com `rodadaDe`). A faixa leva `data-turno` com o turno
+  da partida, que o e2e e a medida de desempenho leem. O cálculo de rodada dos bots ficou como estava (a escada de
+  níveis foi calibrada com ele).
+- **Bloqueio e fichas no ataque** (`bloqueio.ts`, `ataque.ts`, leques que abrem na decisão de combate em
+  `arrumacao.ts`). Clicar num bloqueador já posto o seleciona de novo (o próximo atacante clicado troca o alvo); atacantes
+  iguais ganham número (#1, #2…); os que a escolhida pode bloquear acendem em azul; a recusa do motor (ameaça) aparece
+  escrita no painel, também na mesa real; um tremor de até ~10 px conta como clique. Atacante marcado mantém a
+  "viradinha" (pedido do usuário) mas não sobe de camada: as fichas de cima continuam clicáveis e a marcada mostra a
+  borda de cima para desmarcar. Marcar em grupo: retângulo no campo, selo ×N do leque e "Atacar com todas"; com mais
+  de 6 linhas, fichas iguais com o mesmo alvo viram uma linha só. Com a coluna de decisões aberta, o seu retrato sai do
+  canto para o lado dela (em 1280×800 a lista mostra pelo menos 4 linhas). Capturas `CAPTURAS_SO=combate` (50*).
+- **Gatilhos à vista** (`servidor/pilha-visivel.ts`, `Atrasos.pilhaNova` = 1800 ms). Cada objeto novo na pilha segura
+  a próxima passagem automática uma vez: 1,8 s o primeiro da leva, 0,9 s os seguintes, metade para a mágica de quem é
+  pessoa, teto de 7,2 s por leva; a pilha vazia começa outra leva. Durante a espera de um passe automático de pessoa
+  todos recebem uma vista neutra (sem decisão nem "esperando"), para não vazar parada de ninguém. Passar o mouse num
+  item da pilha mostra a carta inteira e acende a fonte na mesa (`zoomPilha.ts`). Responder continua sendo pela
+  prioridade: quem tem resposta já está parado pela parada inteligente, sem relógio.
+- **Golpe do combate** (`golpes.ts` planeja pela diferença entre duas vistas; `impacto.ts` desenha). Investida com
+  som ao declarar; no dano, a cópia da carta recua, dispara até encostar no alvo e congela ~70 ms no impacto; o alvo
+  pisca branco, clarão, onda, risco, poucas lascas para a frente, tranco das áreas na direção do golpe, clarão de tela
+  nos golpes fortes, vinheta vermelha em quem levou dano, números que caem batendo, e quem morre racha e voa. Sons
+  novos "Som do ataque" e "Som do golpe". A primeira versão (canvas de faíscas, sombras e filtros animados, tabuleiro
+  tremendo com zoom) derrubava o FPS no navegador do usuário; a regra agora é: só `transform` e `opacity` animam,
+  brilhos são desenhados uma vez e só acendem, o dano inteiro é agendado de uma vez (WAAPI com atraso), e só os
+  `.campo` tremem enquanto os efeitos ficam numa camada fixa que não treme. Medido com a GPU (Iris Xe), mesa de 4 com
+  7 golpes e 3 mortes: 1–2 quadros lentos por combate (os efeitos antigos davam ~21; parado, 0). Os brilhos de vida
+  antigos também viraram camadas que só acendem.
+- **Verificação (09–10/10).** Suíte inteira, e2e 1v1 e 4p, capturas, humano contra bots e desempenho contra cf5c533,
+  num worktree separado (a mesa estava no ar). Sem regressão no motor nem no servidor; o e2e lia o número da faixa como
+  turno (corrigido com `data-turno`), o clique do e2e alternava a primeira opção numa escolha de dois modos
+  (`:not(.escolhido)`), e a busca no Registro perdia o "vez de" nos títulos. As falhas da suíte que sobram são tempo
+  esgotado com a máquina carregada pelos agentes (fase9-sons, fase9-artes, motor checkpoint, pensadores); passam sozinhas.
+
+Observações abertas:
+- O zoom da pilha abre à esquerda; uma fonte bem na ponta esquerda da mesa fica embaixo dele (o destaque some).
+- Bloqueador que morre e cujo bloqueio a vista anterior ainda não conhecia: o golpe mira o jogador (raro; o servidor
+  manda a vista dos bloqueadores antes do dano).
+- Ainda sem push: tudo está no `main` local.
