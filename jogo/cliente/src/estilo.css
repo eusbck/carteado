@@ -351,9 +351,23 @@ input.campo-grande { font-size: 17px; padding: 13px 14px; }
 .selo-combate.espera { background: #2a272c; color: var(--vermelho); box-shadow: 0 0 0 2px var(--vermelho), 0 6px 14px rgba(0, 0, 0, .6); }
 .virada .selo-combate { rotate: -90deg; }
 @keyframes selo-entra { from { scale: .4; opacity: 0; } }
-.campo .carta.inclinada { rotate: 15deg; translate: 0 -8px; z-index: 300 !important; }
-.campo .carta.combate-ativa { translate: 0 -10px; z-index: 300 !important; }
+/* a marcada para atacar inclina e sobe, mas sem z-index: fica na ordem do leque, embaixo das seguintes, e não cobre
+   nem rouba o clique das vizinhas (com z 300 ela cobria as três de cima do leque e o clique ia parar nela) */
+.campo .carta.inclinada { rotate: 12deg; translate: 0 -8px; }
+/* no leque ela sobe mais: a borda de cima e o selo aparecem acima da vizinha, e ali o clique é dela */
+.campo .carta.inclinada.no-leque { translate: 0 -14px; }
+.campo .carta.combate-ativa { translate: 0 -10px; }
 .campo .carta.inclinada.combate-ativa { translate: 0 -14px; }
+.campo .carta.inclinada.no-leque.combate-ativa { translate: 0 -20px; }
+/* bloqueando em 4 jogadores: quem ataca outro jogador fica apagado */
+.campo .carta.combate-alheio .carta-face { filter: brightness(.62) saturate(.7); }
+/* número entre as de nome igual (o painel diz "Zumbi #2"): na borda esquerda, a que aparece no leque. Na virada, a
+   borda de baixo fica à esquerda: o número vai para ela, girado de volta, no meio da altura (no canto de cima fica o
+   selo ×n do leque, e no de baixo a força/resistência) */
+.carta-n { position: absolute; left: -4px; top: 34%; z-index: 7; font-size: clamp(9.5px, calc(var(--w) * .16), 12px); font-weight: 800; line-height: 1.45; padding: 0 5px; border-radius: 6px; background: #100f11; border: 1px solid var(--linha-forte); color: var(--texto); pointer-events: none; font-variant-numeric: tabular-nums; box-shadow: 0 1px 4px rgba(0, 0, 0, .6); }
+.virada .carta-n { top: auto; bottom: 6%; left: 36%; transform-origin: 0 100%; rotate: -90deg; translate: calc(1.45em + 2px) 0; }
+/* linha do resumo do combate sob o mouse: as cartas dela na mesa */
+.campo .carta.realce-linha { outline: 2px solid rgba(255, 255, 255, .92); outline-offset: 3px; }
 .setas-combate { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 45; overflow: visible; }
 .area-clicavel { cursor: pointer; }
 .realce-acao, .realce-escolhivel { box-shadow: 0 0 0 2px var(--acao), 0 0 16px color-mix(in srgb, var(--acao) 55%, transparent); }
@@ -362,7 +376,16 @@ input.campo-grande { font-size: 17px; padding: 13px 14px; }
 .realce-bloqueador { box-shadow: 0 0 0 3px var(--azul), 0 0 18px color-mix(in srgb, var(--azul) 55%, transparent); }
 .realce-ativo { box-shadow: 0 0 0 3px var(--acao), 0 0 24px color-mix(in srgb, var(--acao) 75%, transparent); translate: 0 -6px; }
 .realce-mira { box-shadow: 0 0 0 3px var(--vermelho), 0 0 0 7px color-mix(in srgb, var(--vermelho) 25%, transparent); }
-.campo .carta.clicavel:hover, .zonas .carta.clicavel:hover { translate: 0 -3px; scale: 1.05; z-index: 50 !important; }
+/* atacante que a sua criatura escolhida pode bloquear: anel azul fixo e um halo que respira (só a opacidade anima) */
+.realce-bloqueavel { box-shadow: 0 0 0 2px var(--azul), var(--sombra-carta); }
+.realce-bloqueavel::after { content: ''; position: absolute; inset: -5px; border-radius: calc(var(--w) * .09); box-shadow: 0 0 0 2px color-mix(in srgb, var(--azul) 70%, transparent), 0 0 18px 3px color-mix(in srgb, var(--azul) 55%, transparent); pointer-events: none; animation: bloqueavel 1.3s ease-in-out infinite alternate; }
+@keyframes bloqueavel { from { opacity: .25; } to { opacity: 1; } }
+/* a marcada e a escolhida não mudam sob o mouse: descer de -14 para -3 px tirava a borda de cima de baixo do ponteiro
+   (e ela tremia entre os dois) */
+.campo .carta.clicavel:not(.inclinada):not(.combate-ativa):hover { translate: 0 -3px; scale: 1.05; }
+/* acima das postas (200+) e abaixo da que está sendo movida (400); no leque não sobe: a faixa à vista é a do clique */
+.campo .carta.clicavel:not(.no-leque):not(.movendo):hover { z-index: 350 !important; }
+.zonas .carta.clicavel:hover { translate: 0 -3px; scale: 1.05; z-index: 50 !important; }
 
 /* ---------------------------------------------------------------- mesa */
 .mesa { display: grid; grid-template-columns: minmax(0, 1fr) var(--lateral); grid-template-rows: minmax(0, 1fr); height: 100vh; height: 100dvh; overflow: clip; transition: grid-template-columns .22s ease; }
@@ -422,7 +445,10 @@ button.vida-n:disabled { cursor: default; }
 .compacta .campo { top: 44px; }
 .campo > .carta { position: absolute; }
 .campo-vazio { position: absolute; inset: 0; display: grid; place-items: center; color: rgba(255, 255, 255, .35); font-size: 13px; pointer-events: none; }
-.grupo-n { position: absolute; font-size: 11px; font-weight: 800; padding: 0 6px; line-height: 17px; border-radius: 6px; background: #100f11; border: 1px solid var(--linha-forte); color: var(--texto); z-index: 40; pointer-events: none; }
+.grupo-n { position: absolute; font-size: 11px; font-weight: 800; padding: 0 6px; line-height: 17px; border-radius: 6px; background: #100f11; border: 1px solid var(--linha-forte); color: var(--texto); z-index: 360; pointer-events: none; }
+/* declarando atacantes, o selo do leque marca (ou desmarca) o leque inteiro */
+button.grupo-n { font-family: inherit; margin: 0; pointer-events: auto; cursor: pointer; border-color: color-mix(in srgb, var(--vermelho) 70%, transparent); transition: background .15s ease, scale .15s ease; }
+button.grupo-n:hover, button.grupo-n:focus-visible { background: var(--vermelho); scale: 1.08; }
 
 /* zonas */
 .zonas { position: absolute; left: 0; right: 0; bottom: 0; display: flex; align-items: flex-end; justify-content: space-between; padding: 0 14px 8px; pointer-events: none; z-index: 4; }
@@ -775,9 +801,17 @@ img.mini { width: 40px; aspect-ratio: 63 / 88; object-fit: cover; border-radius:
 /* ---------------------------------------------------------------- fase 8: mesa real */
 /* painel de combate compacto */
 .decisao.combate .linhas-combate { display: grid; gap: 6px; }
-.linha-combate { display: grid; grid-template-columns: 22px minmax(0, 1fr); align-items: center; gap: 8px; font-size: 13px; padding: 6px 8px; border-radius: 9px; background: rgba(255, 255, 255, .035); border: 1px solid var(--linha); }
+/* com muitas linhas (oito fichas atacando) a lista rola e o Confirmar continua à vista embaixo */
+.decisao.combate > .botoes-linha { position: sticky; bottom: 0; z-index: 1; background: #19171b; padding-top: 4px; box-shadow: 0 -6px 8px -6px rgba(0, 0, 0, .6); }
+.linha-combate { display: grid; grid-template-columns: 22px minmax(0, 1fr) auto; align-items: center; gap: 8px; font-size: 13px; padding: 6px 4px 6px 8px; border-radius: 9px; background: rgba(255, 255, 255, .035); border: 1px solid var(--linha); transition: background .15s ease, border-color .15s ease; }
+.linha-combate:hover { background: rgba(255, 255, 255, .07); border-color: var(--linha-forte); }
 .linha-combate .alvo { color: var(--suave); }
 .linha-combate .alvo b { color: var(--texto); }
+/* o "×" que desfaz a linha (solta o bloqueio, desmarca o atacante) */
+.linha-x { width: 24px; height: 24px; border: 0; border-radius: 7px; background: none; color: var(--suave); font: 700 17px/1 var(--fonte); cursor: pointer; display: grid; place-items: center; }
+.linha-x:hover, .linha-x:focus-visible { background: rgba(255, 255, 255, .1); color: var(--texto); }
+/* a instrução do combate, uma linha discreta (também na mesa real: sem ela, ninguém sabia que era carta e depois atacante) */
+.dica-combate { font-size: 12.5px; color: var(--suave); margin-top: -4px; }
 .mini-selo { width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; color: var(--texto); }
 .mini-selo svg { width: 13px; height: 13px; }
 .mini-selo.espada { background: var(--vermelho); }
@@ -1169,3 +1203,5 @@ img.mini { width: 40px; aspect-ratio: 63 / 88; object-fit: cover; border-radius:
 [data-desempenho] .orbe { animation-name: orbe-acende; }
 [data-desempenho] .avatar.ativo .avatar-aura { animation: none; }
 [data-desempenho] .fases.esperando-voce .fases-acao .botao.cheio { animation: none; }
+/* o halo do atacante que dá para bloquear fica parado */
+[data-desempenho] .realce-bloqueavel::after { animation: none; opacity: .8; }

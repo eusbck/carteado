@@ -35,6 +35,9 @@ export interface Estado {
   avisos: { id: number; texto: string }[];
   /** conta as recusas sem texto (auxílio de avisos desligado): a mesa treme o que você acabou de tocar */
   recusa: number;
+  /** o motor recusou a sua declaração de ataque ou de bloqueio (ameaça, custo…): o motivo fica no painel do combate,
+   *  também na mesa real (sem ele, o Confirmar só tremia), até a decisão mudar ou você confirmar de novo */
+  recusaCombate: { decisao: number; texto: string } | null;
   /** assento do bot que está pensando há mais de um segundo (a mesa mostra "Fulano está pensando…") */
   pensando: number | null;
   /** tela Decks: todos os decks da mesa (null até abrir a tela) */
@@ -69,7 +72,7 @@ function guardarSala(v: { codigo: string; token: string } | null): void {
 }
 
 class Loja {
-  e: Estado = { fase: 'carregando', conectado: false, sala: null, voce: null, vista: null, paradas: null, posicoes: {}, reveladas: [], erro: null, decks: [], respondida: null, desfazivel: false, desfazer: null, avisos: [], recusa: 0, pensando: null, catalogo: null, tarefaDeck: null, minhaTarefa: null, minhaTarefaEstado: null, chat: [], quem: null };
+  e: Estado = { fase: 'carregando', conectado: false, sala: null, voce: null, vista: null, paradas: null, posicoes: {}, reveladas: [], erro: null, decks: [], respondida: null, desfazivel: false, desfazer: null, avisos: [], recusa: 0, recusaCombate: null, pensando: null, catalogo: null, tarefaDeck: null, minhaTarefa: null, minhaTarefaEstado: null, chat: [], quem: null };
   private ouvintes = new Set<() => void>();
   private ws: WebSocket | null = null;
   private fila: MsgCliente[] = [];
@@ -253,7 +256,7 @@ class Loja {
   responder(decisao: number, resposta: Answer): void {
     if (this.e.respondida === decisao) return;
     this.enviar({ t: 'responder', decisao, resposta });
-    this.mudar({ respondida: decisao });
+    this.mudar({ respondida: decisao, recusaCombate: null });
   }
   manual(decisao: number, manual: ManualAction): void { this.responder(decisao, { kind: 'priority', action: 'manual', manual }); }
 
@@ -281,6 +284,7 @@ class Loja {
         this.mudar({
           vista: compartilhar(this.e.vista, m.vista), paradas: compartilhar(this.e.paradas, m.paradas), posicoes: compartilhar(this.e.posicoes, m.posicoes ?? {}),
           respondida: m.vista.decision?.id === this.e.respondida ? this.e.respondida : null,
+          recusaCombate: m.vista.decision?.id === this.e.recusaCombate?.decisao ? this.e.recusaCombate : null,
           desfazivel: !!m.desfazivel, desfazer: mesmoPedido ? ant : pedido,
         });
         break;
@@ -332,6 +336,13 @@ class Loja {
         // resposta a uma decisão que já mudou (clique atrasado): nada a avisar
         if (daJogada && /já passou|Não é a sua vez de decidir/.test(m.msg)) { this.mudar({ respondida: null }); break; }
         if (/voltar à sala/.test(m.msg)) { guardarSala(null); this.mudar({ fase: 'inicio' }); }
+        // a sua declaração de ataque ou de bloqueio recusada pelo motor (ameaça, custo…): o motivo vai para o painel do
+        // combate, com ou sem avisos (só tremer o Confirmar não dizia o que mudar), e o Confirmar treme
+        const dec = this.e.vista?.decision;
+        if (daJogada && this.e.respondida !== null && dec?.id === this.e.respondida && (dec.kind === 'attackers' || dec.kind === 'blockers') && !/Erro interno/.test(m.msg)) {
+          this.mudar({ respondida: null, recusa: this.e.recusa + 1, recusaCombate: { decisao: dec.id, texto: m.msg } });
+          break;
+        }
         // resposta recusada pelo motor (falta mana, alvo que não vale…): na mesa real, sem explicação
         if (daJogada && this.e.respondida !== null && !this.avisosLigados() && !/Erro interno/.test(m.msg)) { this.mudar({ respondida: null, recusa: this.e.recusa + 1 }); break; }
         if (daJogada) this.mudar({ respondida: null });

@@ -6,7 +6,8 @@ import type { ObjView } from '../../../motor/view.ts';
 import { info, nomeCarta, urlImagem } from '../cartas.ts';
 import { IconeEscudo, IconeEspada } from '../icones.tsx';
 
-export type Realce = 'acao' | 'escolhivel' | 'escolhido' | 'atacante' | 'bloqueador' | 'ativo' | 'mira' | null;
+/** 'bloqueavel': atacante que a sua criatura escolhida pode bloquear (anel azul que pulsa, diferente da 'mira' vermelha) */
+export type Realce = 'acao' | 'escolhivel' | 'escolhido' | 'atacante' | 'bloqueador' | 'ativo' | 'mira' | 'bloqueavel' | null;
 /** selo de combate: atacando, bloqueando, ou marcada para atacar mas ainda sem alvo */
 export type Selo = 'espada' | 'escudo' | 'espera';
 
@@ -18,6 +19,8 @@ export interface CartaProps {
   o: ObjView;
   realce?: Realce;
   selo?: Selo;
+  /** número entre as de nome igual na decisão de combate ("#2"; o painel diz "Zumbi #2") */
+  numero?: number;
   /** recebe também o retângulo da carta na tela (para abrir o menu ao lado dela) */
   onClick?: (o: ObjView, r: DOMRect) => void;
   onZoom?: (o: ObjView | null, r?: DOMRect) => void;
@@ -52,10 +55,10 @@ function mesmoEstilo(a: CSSProperties | undefined, b: CSSProperties | undefined)
  * carta ou uma mensagem do servidor que muda uma carta só não redesenha as outras cem.
  */
 export const Carta = memo(CartaBase, (a, b) =>
-  a.o === b.o && a.realce === b.realce && a.selo === b.selo && a.classe === b.classe && mesmoEstilo(a.estilo, b.estilo)
+  a.o === b.o && a.realce === b.realce && a.selo === b.selo && a.numero === b.numero && a.classe === b.classe && mesmoEstilo(a.estilo, b.estilo)
   && a.onClick === b.onClick && a.onZoom === b.onZoom && a.onPointerDown === b.onPointerDown && a.onDoubleClick === b.onDoubleClick && a.onMenu === b.onMenu);
 
-function CartaBase({ o, realce = null, selo, onClick, onZoom, onPointerDown, onDoubleClick, onMenu, estilo, classe }: CartaProps) {
+function CartaBase({ o, realce = null, selo, numero, onClick, onZoom, onPointerDown, onDoubleClick, onMenu, estilo, classe }: CartaProps) {
   const oculta = !o.def;
   const img = oculta ? null : urlImagem(o.copyOfDef ?? o.def, o.face, 'p');
   const nome = oculta ? o.name : nomeCarta(o.def, o.name);
@@ -100,6 +103,7 @@ function CartaBase({ o, realce = null, selo, onClick, onZoom, onPointerDown, onD
       )}
       {criatura && o.power !== null && img && <span class={o.damageByToughness ? 'carta-pt pela-resistencia' : 'carta-pt'}><ForcaResistencia o={o} /></span>}
       {selo && <span class={`selo-combate ${selo}`} title={NOME_SELO[selo]}>{selo === 'escudo' ? <IconeEscudo /> : <IconeEspada />}</span>}
+      {numero !== undefined && <span class="carta-n" aria-hidden="true">#{numero}</span>}
     </div>
   );
 }

@@ -1,16 +1,16 @@
 // Fase 9, item 1.4: a lógica do bloqueio por cliques da mesa (cliente/src/mesa/bloqueio.ts), contra decisões de
 // bloqueio de verdade do motor. A resposta montada pela mesa tem de ser a que o motor aceita.
 import { describe, expect, it } from 'vitest';
-import { cliqueBloqueio, podeBloquear, respostaBloqueio, type EstadoBloqueio } from '../cliente/src/mesa/bloqueio.ts';
+import { cliqueBloqueio, numerarIguais, podeBloquear, respostaBloqueio, soltarBloqueio, type EstadoBloqueio } from '../cliente/src/mesa/bloqueio.ts';
 import type { Decision, ObjId } from '../motor/types.ts';
 import { setup, type SetupOptions, type TestGame } from './harness.ts';
 
 type DBloqueio = Extract<Decision, { kind: 'blockers' }>;
 
-/** monta o combate e para na decisão de bloqueio do `defensor` (sem responder) */
-function bloqueioDe(o: SetupOptions, ataques: [string, number][], defensor: number): { tg: TestGame; d: DBloqueio } {
+/** monta o combate e para na decisão de bloqueio do `defensor` (sem responder); fichas iguais atacam pelo id */
+function bloqueioDe(o: SetupOptions, ataques: [string, number][] | ((tg: TestGame) => [ObjId, number][]), defensor: number): { tg: TestGame; d: DBloqueio } {
   const tg = setup({ step: 'beginCombat', ...o });
-  tg.attack(ataques.map(([n, p]) => [n, p]));
+  tg.attack(typeof ataques === 'function' ? ataques(tg) : ataques.map(([n, p]) => [n, p]));
   tg.lenient = true;
   for (let i = 0; i < 50; i++) {
     const d = tg.pending;
@@ -47,9 +47,56 @@ describe('fase 9 (1.4): bloqueio por cliques na mesa', () => {
     const resp = respostaBloqueio(e.bloqueios);
     expect(resp).toEqual({ kind: 'blockers', blocks: [[goblin, kami]] });
     expect(tg.game.check(1, resp)).toBeNull();
-    // clicar de novo no bloqueador solta o bloqueio; clicar duas vezes na criatura desfaz a escolha
-    expect(clicar(d, tg, 1, [goblin], e).e).toEqual({ bloqueios: {}, ativo: null });
+    // clicar de novo no bloqueador o escolhe (o bloqueio fica até ele bloquear outro); clicar duas vezes solta o
+    // bloqueio e desfaz a escolha
+    expect(clicar(d, tg, 1, [goblin], e).e).toEqual({ bloqueios: { [goblin]: kami }, ativo: goblin });
+    expect(clicar(d, tg, 1, [goblin, goblin], e).e).toEqual({ bloqueios: {}, ativo: null });
     expect(clicar(d, tg, 1, [goblin, goblin]).e).toEqual({ bloqueios: {}, ativo: null });
+    // o mesmo atacante de novo só confirma o bloqueio
+    const denovo = clicar(d, tg, 1, [goblin, kami], e);
+    expect(denovo).toEqual({ e: { bloqueios: { [goblin]: kami }, ativo: null }, recusas: [] });
+  });
+
+  it('vários bloqueadores em fichas iguais: escolhe a que já bloqueia, troca de atacante e solta pelo "×"', () => {
+    // Bruno ataca com três Goblins (fichas iguais) e um Kami; Carla bloqueia com dois Goblins e o Ancients
+    const { tg, d } = bloqueioDe({
+      battlefield: [[{ name: 'Goblin', token: true }, { name: 'Goblin', token: true }, { name: 'Goblin', token: true }, 'Kami of Ancient Law'],
+        [{ name: 'Goblin', token: true }, { name: 'Goblin', token: true }, 'Indomitable Ancients']],
+    }, (t) => [...t.all('Goblin').filter((id) => t.state.objects[id].controller === 0), t.bf('Kami of Ancient Law')].map((id) => [id, 1]), 1);
+    const [g1, g2, g3] = tg.all('Goblin').filter((id) => tg.state.objects[id].controller === 0);
+    const [b1, b2] = tg.all('Goblin').filter((id) => tg.state.objects[id].controller === 1);
+    const anc = tg.bf('Indomitable Ancients'), kami = tg.bf('Kami of Ancient Law');
+    expect(d.attackers).toEqual([g1, g2, g3, kami]);
+    // numeração dos atacantes de nome igual, na ordem da decisão (o Kami fica só com o nome)
+    const nomes = (id: ObjId) => tg.state.objects[id].def;
+    expect([...numerarIguais(d.attackers, nomes).values()]).toEqual([
+      { rotulo: 'Goblin #1', n: 1 }, { rotulo: 'Goblin #2', n: 2 }, { rotulo: 'Goblin #3', n: 3 }, { rotulo: 'Kami of Ancient Law', n: null },
+    ]);
+    // dois bloqueadores, cada um num Goblin; o terceiro, no Kami
+    let r = clicar(d, tg, 1, [b1, g1, b2, g2, anc, kami]);
+    expect(r.recusas).toEqual([]);
+    expect(r.e).toEqual({ bloqueios: { [b1]: g1, [b2]: g2, [anc]: kami }, ativo: null });
+    expect(tg.game.check(1, respostaBloqueio(r.e.bloqueios))).toBeNull();
+    // o b1, que já bloqueia, fica escolhido e passa para o Goblin #3 (troca, não soma)
+    r = clicar(d, tg, 1, [b1], r.e);
+    expect(r.e).toEqual({ bloqueios: { [b1]: g1, [b2]: g2, [anc]: kami }, ativo: b1 });
+    r = clicar(d, tg, 1, [g3], r.e);
+    expect(r.e).toEqual({ bloqueios: { [b1]: g3, [b2]: g2, [anc]: kami }, ativo: null });
+    expect(tg.game.check(1, respostaBloqueio(r.e.bloqueios))).toBeNull();
+    // dois no mesmo atacante também valem
+    r = clicar(d, tg, 1, [anc, g3], r.e);
+    expect(r.e.bloqueios).toEqual({ [b1]: g3, [b2]: g2, [anc]: g3 });
+    expect(tg.game.check(1, respostaBloqueio(r.e.bloqueios))).toBeNull();
+    // o "×" da linha solta o bloqueio (e a escolha, se for a escolhida)
+    expect(soltarBloqueio(r.e, b2)).toEqual({ bloqueios: { [b1]: g3, [anc]: g3 }, ativo: null });
+    expect(soltarBloqueio({ bloqueios: r.e.bloqueios, ativo: b1 }, b1)).toEqual({ bloqueios: { [b2]: g2, [anc]: g3 }, ativo: null });
+    expect(soltarBloqueio({ bloqueios: r.e.bloqueios, ativo: anc }, b1)).toEqual({ bloqueios: { [b2]: g2, [anc]: g3 }, ativo: anc });
+    const solto = soltarBloqueio(r.e, b2);
+    expect(tg.game.check(1, respostaBloqueio(solto.bloqueios))).toBeNull();
+    tg.answer(respostaBloqueio(solto.bloqueios));
+    const at = (id: ObjId) => tg.state.combat!.attackers.find((a) => a.id === id)!;
+    expect(at(g3).blockers.sort()).toEqual([b1, anc].sort());
+    expect(at(g2).blocked).toBe(false);
   });
 
   it('vários bloqueadores no mesmo atacante (ameaça): a mesa monta os dois e o motor aceita; um só, ele recusa', () => {
@@ -88,6 +135,11 @@ describe('fase 9 (1.4): bloqueio por cliques na mesa', () => {
     expect(tg.game.check(1, respostaBloqueio(e.bloqueios))).toBeNull();
     // carta de outro jogador que não ataca: o clique não faz nada
     expect(cliqueBloqueio(d, { bloqueios: {}, ativo: null }, { id: tg.bf('Arboreal Grazer'), atacando: false, minhaCriatura: false })).toBeNull();
+    // trocar o atacante de quem já bloqueia para um que ataca outro jogador: recusa, e o bloqueio fica como estava
+    const troca = clicar(d, tg, 1, [anc, goblin], e);
+    expect(troca.recusas).toEqual(['Ela não pode bloquear essa criatura']);
+    expect(troca.e).toEqual({ bloqueios: { [anc]: kami }, ativo: anc });
+    expect(tg.game.check(1, respostaBloqueio(troca.e.bloqueios))).toBeNull();
   });
 
   it('sem nada marcado, a resposta é não bloquear', () => {
