@@ -32,7 +32,7 @@ class Pessoa implements Conexao {
 
 const espera = (ms = 0) => new Promise((r) => setTimeout(r, ms));
 // senha da sala conferida na hora (no servidor o scrypt é assíncrono e a sala chegaria depois desta linha)
-const g = new Gerente(new Banco(':memory:'), DECKS, { ...ATRASOS_PADRAO, botAcao: 0, botPasse: 0, autoPasse: 0, senhaNaHora: true });
+const g = new Gerente(new Banco(':memory:'), DECKS, { ...ATRASOS_PADRAO, botAcao: 0, botPasse: 0, autoPasse: 0, pilhaNova: 0, senhaNaHora: true });
 const ana = new Pessoa();
 g.tratar(ana, { t: 'criar', nome: 'Ana', senhaSala: 'segredo', modo });
 const codigo = ana.ultima('sala')!.sala.codigo;

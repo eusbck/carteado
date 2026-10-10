@@ -9,11 +9,12 @@ import { defaultAnswer } from '../motor/ask.ts';
 import { shouldAutoPass, type StopSettings } from '../motor/autopass.ts';
 import { Game, type Checkpoint, type Input } from '../motor/game.ts';
 import type { DeckList } from '../motor/state.ts';
-import type { Answer, GameConfig, Step } from '../motor/types.ts';
+import type { Answer, Decision, GameConfig, Step } from '../motor/types.ts';
 import { controllerOf } from '../motor/chars.ts';
 import { buildView } from '../motor/view.ts';
 import { Pensadores } from './pensadores.ts';
 import { NOMES_BOTS } from './nomes.ts';
+import { novaRajada, segurarPilha, type RajadaPilha } from './pilha-visivel.ts';
 import type { Banco } from './banco.ts';
 import { alvoDesfazer, linhasDesfeitas, reconstruir, type MetaEntrada } from './desfazer.ts';
 import { avatarValido } from './avatares.ts';
@@ -36,6 +37,9 @@ export interface Atrasos {
   botPasse: number;
   /** passe automático de um humano: o mesmo atraso sempre, para não revelar se havia resposta */
   autoPasse: number;
+  /** objeto novo na pilha (mágica, gatilho): a mesa segura a decisão automática seguinte até tanto, para todos lerem
+   * (pilha-visivel.ts; os seguintes da mesma rajada, metade) */
+  pilhaNova: number;
   /** simulações por decisão de todos os bots, no lugar das do nível (testes: bots fracos e rápidos); null = do nível */
   simulacoesBot: number | null;
   /** threads de pensar dos bots, para todas as salas juntas (0: pensam na linha principal, como nos testes) */
@@ -53,9 +57,9 @@ export interface Atrasos {
   senhaNaHora?: boolean;
 }
 
-export const ATRASOS_PADRAO: Atrasos = { botAcao: 700, botPasse: 90, autoPasse: 60, simulacoesBot: null, prazoDesfazer: 30000, threads: 2, avisoPensando: 1000, gravacao: 250 };
+export const ATRASOS_PADRAO: Atrasos = { botAcao: 700, botPasse: 90, autoPasse: 60, pilhaNova: 900, simulacoesBot: null, prazoDesfazer: 30000, threads: 2, avisoPensando: 1000, gravacao: 250 };
 // testes do servidor: sem atrasos e com bots que pensam pouco (o fluxo da sala é o que importa)
-export const SEM_ATRASO: Atrasos = { botAcao: 0, botPasse: 0, autoPasse: 0, simulacoesBot: 3, prazoDesfazer: 30000, threads: 0, avisoPensando: 1000, tempoBot: 300, senhaNaHora: true };
+export const SEM_ATRASO: Atrasos = { botAcao: 0, botPasse: 0, autoPasse: 0, pilhaNova: 0, simulacoesBot: 3, prazoDesfazer: 30000, threads: 0, avisoPensando: 1000, tempoBot: 300, senhaNaHora: true };
 
 interface Assento {
   tipo: TipoAssento;
@@ -207,6 +211,11 @@ export class Sala {
   private ultimas = new WeakMap<Conexao, { sala?: string; jogo?: string }>();
   /** falhas seguidas do motor na mesma posição das entradas (falha) */
   private falhas = { indice: -1, n: 0 };
+  /** a pilha já mostrada de cada partida (segurar): partida nova, desfazer e refazer recomeçam a conta (os números de
+   * objeto voltam a ser usados) */
+  private rajadas = new WeakMap<Game, RajadaPilha>();
+  /** o passe automático de uma pessoa segura a pilha: toda vista que sai enquanto isso vai sem decisão pendente */
+  private vistaNeutra = false;
   erro: string | null = null;
 
   private gerente: Gerente;
@@ -241,8 +250,12 @@ export class Sala {
     if (this.gravarDepois) this.salvar();
   }
 
-  /** manda a cada conexão a sala e, se houver partida, a vista do seu assento */
-  transmitir(): void {
+  /** a decisão pendente que as vistas mostram (nenhuma enquanto o passe automático de uma pessoa segura a pilha) */
+  private get pendenteVisivel(): Decision | null { return this.vistaNeutra ? null : this.game?.pending ?? null; }
+
+  /** manda a cada conexão a sala e, se houver partida, a vista do seu assento; `pendente`: a decisão que as vistas
+   * mostram (null: vista neutra, ninguém decidindo nem esperado) */
+  transmitir(pendente: Decision | null = this.pendenteVisivel): void {
     const pub = this.publica();
     for (const c of this.conexoes) {
       if (c.assento === null) continue;
@@ -251,13 +264,13 @@ export class Sala {
       // token nem a vista de outra pessoa
       if (!token || c.token !== token) { this.soltar(c); continue; }
       this.enviarSeMudou(c, { t: 'sala', sala: pub, voce: c.assento, token, quem: idAutor(token) });
-      this.enviarJogo(c);
+      this.enviarJogo(c, pendente);
     }
   }
 
-  enviarJogo(c: Conexao): void {
+  enviarJogo(c: Conexao, pendente: Decision | null = this.pendenteVisivel): void {
     if (!this.game || c.assento === null) return;
-    const vista = buildView(this.game.g, c.assento, this.game.pending);
+    const vista = buildView(this.game.g, c.assento, pendente);
     const desfazivel = !this.pedido && !this.game.isOver() && this.alvoDesfazer(c.assento) !== null;
     this.enviarSeMudou(c, { t: 'jogo', vista, paradas: this.d.assentos[c.assento].paradas, posicoes: this.posicoesNoCampo(), desfazivel, desfazer: this.pedidoPublico() });
   }
@@ -895,6 +908,14 @@ export class Sala {
     this.avancar().catch((e) => this.falha(e));
   }
 
+  /** quanto a mesa segura a pilha nesta decisão automática de prioridade (pilha-visivel.ts); base 0: só marca a pilha
+   * como vista (uma pessoa parou nela e olha o quanto quiser) */
+  private segurar(g: Game, base: number): number {
+    let r = this.rajadas.get(g);
+    if (!r) this.rajadas.set(g, (r = novaRajada()));
+    return segurarPilha(r, g.state, (p) => this.d.assentos[p]?.tipo === 'humano', base);
+  }
+
   /** bots respondem e passes automáticos acontecem até alguém humano precisar decidir */
   async avancar(): Promise<void> {
     // um bot está pensando numa thread: a mesa está parada nele, então dá para mostrar o que mudou (paradas, posições…)
@@ -910,6 +931,8 @@ export class Sala {
         const a = this.d.assentos[d.player];
         let resposta: Answer | null = null;
         let espera = 0;
+        /** o passe automático de uma pessoa segura a pilha para todos lerem o objeto novo */
+        let pilha = false;
         const quebrou = this.falhas.indice === g.inputs.length && this.falhas.n > 0;
         if (a.tipo === 'bot' && this.soBots(g)) {
           // nenhuma pessoa resta na partida (todas saíram, concederam ou perderam): os bots terminam sozinhos e depressa,
@@ -937,16 +960,24 @@ export class Sala {
           }
           const visivel = (d.kind === 'priority' && resposta.kind === 'priority' && resposta.action !== 'pass') || d.kind === 'attackers' || d.kind === 'blockers';
           espera = visivel ? at.botAcao : at.botPasse;
+          // um objeto novo na pilha segura a decisão do bot (passe ou resposta) para todos lerem
+          if (d.kind === 'priority') espera = Math.max(espera, this.segurar(g, at.pilhaNova));
         } else if (shouldAutoPass(g.state, d, d.player, this.paradasEfetivas(a))) {
           resposta = { kind: 'priority', action: 'pass' };
           espera = at.autoPasse;
+          const s = this.segurar(g, at.pilhaNova);
+          if (s > espera) { espera = s; pilha = true; }
         }
-        if (!resposta) break;
+        // a pessoa para: a pilha que ela vê conta como vista (olha o quanto quiser; não segura de novo depois)
+        if (!resposta) { this.segurar(g, 0); break; }
         if (espera > 0) {
           // mostra a mesa antes da jogada do bot; num passe automático não, para a decisão
-          // de quem está passando não aparecer na tela por um instante
+          // de quem está passando não aparecer na tela por um instante: toda vista que sair durante a espera vai neutra
+          // (vistaNeutra: sem decisão pendente nem "esperando Fulano" para ninguém), e segurando a pilha a mesa manda
+          // uma assim, com o objeto novo, sem mostrar as paradas de quem passa
           if (a.tipo === 'bot') this.transmitir();
-          await dorme(espera);
+          else { this.vistaNeutra = true; if (pilha) this.transmitir(null); }
+          try { await dorme(espera); } finally { this.vistaNeutra = false; }
           if (this.game !== g || g.pending?.id !== d.id || this.pedido) continue; // algo mudou enquanto esperava
         }
         const r = resposta;

@@ -9,6 +9,7 @@ import { abafarMusica } from '../musica.ts';
 import { preferencias } from '../preferencias.ts';
 import { somDaTroca } from '../somTurno.ts';
 import { tocar } from '../sons.ts';
+import './efeitos.css';
 
 const movimentoReduzido = () => typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches;
 const centro = (r: DOMRect) => [r.left + r.width / 2, r.top + r.height / 2] as const;
