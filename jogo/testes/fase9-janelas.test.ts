@@ -3,10 +3,12 @@
 // à tela e sem sair dela). Os módulos são do cliente, mas não usam o navegador.
 
 import { describe, expect, it } from 'vitest';
+import '../cartas/index.ts';
 import type { ChoiceItem, Decision } from '../motor/types.ts';
+import { infoCartas } from '../servidor/cartas-info.ts';
 import {
   agrupar, alternarGrupo, ehEscolha, ehFila, faixaEscolha, filtrar, fonteDoGatilho, formatoEscolha, LIMITE_LINHA, mover,
-  ordemDeGatilhos, ordemParaPilha, respostaArranjo, topoJanela, type Aparencia,
+  notaBusca, ordemDeGatilhos, ordemParaPilha, respostaArranjo, textosBusca, textosDaCarta, topoJanela, type Aparencia,
 } from '../cliente/src/mesa/escolhas.ts';
 import { MARGEM_ZOOM, medidaZoom, type MedidaZoom } from '../cliente/src/mesa/medidaZoom.ts';
 
@@ -95,6 +97,56 @@ describe('Fase 9 (2.1): busca no grimório', () => {
     expect(filtrar(cartas, 'pantano', textos).map((c) => c.en)).toEqual(['Swamp']);
     expect(filtrar(cartas, 'PLAIN', textos).map((c) => c.en)).toEqual(['Plains']);
     expect(filtrar(cartas, ' ', textos)).toHaveLength(3);
+  });
+
+  it('cada palavra é o começo de uma palavra da carta, em qualquer ordem; símbolos procuram o trecho exato', () => {
+    const c = (nome: string, tipo: string, texto = '') => ({ nome, t: textosBusca([nome], [tipo], [texto]) });
+    const cartas = [
+      c('Montanha', 'Terreno Básico — Montanha'),
+      c('Serpente do Mar', 'Criatura — Serpente', 'Islandwalk. {T}: Add {C}{C}.'),
+      c('Anel Solar', 'Artefato', '{T}: Adicione {C}{C}.'),
+    ];
+    const achar = (termo: string) => filtrar(cartas, termo, (x) => x.t).map((x) => x.nome);
+    expect(achar('basico terreno')).toEqual(['Montanha']);
+    expect(achar('mont')).toEqual(['Montanha']);
+    // "land" não pega "Islandwalk": a palavra começa com "is"
+    expect(achar('land')).toEqual([]);
+    expect(achar('{c}{c}')).toEqual(['Serpente do Mar', 'Anel Solar']);
+    expect(achar('adicione anel')).toEqual(['Anel Solar']);
+    expect(notaBusca(cartas[2].t, 'artefato')).toBe(0);
+    expect(notaBusca(cartas[2].t, 'adicione')).toBe(1);
+    expect(notaBusca(cartas[0].t, 'feitiço')).toBeNull();
+  });
+
+  it('com as cartas de verdade: nome, tipo e texto, em português e em inglês, e sem impressão em português', () => {
+    const info = infoCartas();
+    const nomes = ['Mountain', 'Island', 'Evolving Wilds', 'Sol Ring', 'Command Tower', 'Arcane Lighthouse', 'Augusta, Order Returned', 'Animate Dead'];
+    for (const n of nomes) expect(info[n], n).toBeDefined();
+    // como a janela monta: o nome que ela mostra (o português, se houver) e o do motor
+    const grimorio = nomes.map((n) => ({ n, t: textosDaCarta([info[n].pt ?? n, n], info[n]) }));
+    const achar = (termo: string) => filtrar(grimorio, termo, (x) => x.t).map((x) => x.n);
+    const terrenos = ['Mountain', 'Island', 'Evolving Wilds', 'Command Tower', 'Arcane Lighthouse'];
+    expect(achar('terreno')).toEqual(terrenos);
+    expect(achar('Land')).toEqual(terrenos);
+    // as básicas primeiro (pelo tipo); Terras em Desenvolvimento só fala de terreno básico no texto
+    expect(achar('terreno básico')).toEqual(['Mountain', 'Island', 'Evolving Wilds']);
+    expect(achar('basic land')).toEqual(['Mountain', 'Island', 'Evolving Wilds']);
+    expect(achar('montanha')).toEqual(['Mountain']);
+    expect(achar('MOUNTAIN')).toEqual(['Mountain']);
+    expect(achar('ilha')).toEqual(['Island']);
+    expect(achar('terras em desenvolvimento')).toEqual(['Evolving Wilds']);
+    // Augusta e Arcane Lighthouse não têm impressão em português: o tipo vem do dicionário
+    expect(info['Augusta, Order Returned'].tipoPt).toBeUndefined();
+    expect(achar('criatura lendária')).toEqual(['Augusta, Order Returned']);
+    expect(achar('legendary creature')).toEqual(['Augusta, Order Returned']);
+    expect(achar('espírito')).toEqual(['Augusta, Order Returned']);
+    expect(achar('artefato')).toEqual(['Sol Ring']);
+    expect(achar('aura')).toEqual(['Animate Dead']);
+    expect(achar('encantamento')).toEqual(['Animate Dead']);
+    // texto em português e em inglês
+    expect(achar('procure')).toEqual(['Evolving Wilds']);
+    expect(achar('search library')).toEqual(['Evolving Wilds']);
+    expect(achar('{c}{c}')).toEqual(['Sol Ring']);
   });
 });
 

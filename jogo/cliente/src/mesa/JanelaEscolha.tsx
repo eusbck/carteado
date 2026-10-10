@@ -16,8 +16,9 @@ import type { Auxilios } from '../preferencias.ts';
 import { Carta } from './Carta.tsx';
 import type { EstadoUi } from './Decisao.tsx';
 import {
-  agrupar, alternarGrupo, ehFila, faixaEscolha, fonteDoGatilho, formatoEscolha, mover, normalizar, ordemDeGatilhos,
-  ordemParaPilha, quantidadeOk, respostaArranjo, topoJanela, type Aparencia, type DecisaoEscolha, type Destino, type Formato,
+  agrupar, alternarGrupo, ehFila, faixaEscolha, fonteDoGatilho, formatoEscolha, mover, notaBusca, ordemDeGatilhos,
+  ordemParaPilha, quantidadeOk, respostaArranjo, textosDaCarta, topoJanela, type Aparencia, type DecisaoEscolha, type Destino,
+  type Formato, type TextosBusca,
 } from './escolhas.ts';
 import { TextoComSimbolos } from './Simbolos.tsx';
 
@@ -225,12 +226,12 @@ function CorpoSelecao(p: SelecaoProps) {
     const todas = entradas.filter((e) => e.x.tipo !== 'jogador');
     return { jogadores: entradas.filter((e) => e.x.tipo === 'jogador'), todas, total: todas.length, servem: todas.filter((e) => !e.it.disabled).length };
   }, [entradas]);
-  const textosBusca = useMemo(() => {
-    const guardados = new Map<Entrada, string[]>();
-    return (e: Entrada): string[] => {
+  const textosDe = useMemo(() => {
+    const guardados = new Map<Entrada, TextosBusca>();
+    return (e: Entrada): TextosBusca => {
       let l = guardados.get(e);
       if (!l) {
-        l = [e.nome, e.it.label, e.x.tipo === 'obj' || e.x.tipo === 'carta' || e.x.tipo === 'pilha' ? info(e.x.o.def)?.oracle ?? '' : ''].map(normalizar);
+        l = textosDaCarta([e.nome, e.it.label], e.x.tipo === 'obj' || e.x.tipo === 'carta' || e.x.tipo === 'pilha' ? info(e.x.o.def) : undefined);
         guardados.set(e, l);
       }
       return l;
@@ -238,12 +239,13 @@ function CorpoSelecao(p: SelecaoProps) {
   }, [entradas]);
   const cartas = useMemo(() => {
     if (formato !== 'grade') return todas;
-    let c = aux.alvos && soServem ? todas.filter((e) => !e.it.disabled) : todas;
-    // o mesmo que filtrar() de escolhas.ts, com os textos já normalizados
-    const t = normalizar(termo);
-    if (t) c = c.filter((e) => textosBusca(e).some((x) => x.includes(t)));
-    return [...c].sort((a, b) => textosBusca(a)[0].localeCompare(textosBusca(b)[0]));
-  }, [todas, formato, aux.alvos, soServem, termo, textosBusca]);
+    const c = aux.alvos && soServem ? todas.filter((e) => !e.it.disabled) : todas;
+    // o mesmo que filtrar() de escolhas.ts, com os textos montados uma vez: o que achou no nome ou no tipo vem antes do
+    // que só achou no texto, e cada grupo pelo nome
+    const notas = new Map<Entrada, number>();
+    for (const e of c) { const n = notaBusca(textosDe(e), termo); if (n !== null) notas.set(e, n); }
+    return c.filter((e) => notas.has(e)).sort((a, b) => notas.get(a)! - notas.get(b)! || textosDe(a).nome.localeCompare(textosDe(b).nome));
+  }, [todas, formato, aux.alvos, soServem, termo, textosDe]);
   // na grade, cartas iguais escondidas (o grimório) viram um item só, com a quantidade
   const grupos = useMemo(() => agrupar(cartas, (e) => (formato === 'grade' && e.x.tipo === 'carta' ? `${e.x.o.def}|${e.x.o.face}|${!!e.it.disabled}` : null)), [cartas, formato]);
 
@@ -293,7 +295,7 @@ function CorpoSelecao(p: SelecaoProps) {
   return (<>
     {formato === 'grade' && (
       <div class="escolha-barra">
-        <input type="search" class="escolha-filtro" placeholder="Filtrar por nome ou texto" aria-label="Filtrar as cartas" value={termo} onInput={(e) => setTermo((e.target as HTMLInputElement).value)} />
+        <input type="search" class="escolha-filtro" placeholder="Nome, tipo ou texto (português ou inglês)" aria-label="Filtrar as cartas" value={termo} onInput={(e) => setTermo((e.target as HTMLInputElement).value)} />
         <span class="suave">{grupos.length === cartas.length ? `${cartas.length} carta${cartas.length === 1 ? '' : 's'}` : `${cartas.length} cartas (${grupos.length} diferentes)`}{cartas.length < total ? ` de ${total}` : ''}</span>
         {aux.alvos && servem < total && (
           <label class="caixa"><input type="checkbox" checked={soServem} onChange={() => setSoServem(!soServem)} /> Só as que servem ({servem})</label>

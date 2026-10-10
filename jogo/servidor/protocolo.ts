@@ -157,6 +157,11 @@ export interface InfoCarta {
   pendente: boolean;
   /** texto Oracle em inglês (para o zoom e para as pendentes) */
   oracle: string;
+  /** linha de tipo em inglês (faces separadas por " // "), para a busca */
+  tipo: string;
+  /** linha de tipo e texto da impressão em português, se houver (para a busca) */
+  tipoPt?: string;
+  textoPt?: string;
   /** é uma ficha (para o ajuste manual "criar ficha") */
   ficha?: boolean;
   /** nome para mostrar */

@@ -1,8 +1,10 @@
 // Lógica pura da janela de escolha (sem DOM, testada em testes/fase9-janelas.test.ts): o formato
-// de cada decisão, as cartas iguais agrupadas na busca, o filtro por nome, a ordem das filas e a
-// posição da janela sobre a divisa da mesa.
+// de cada decisão, as cartas iguais agrupadas na busca, o filtro (nome, tipo e texto, em português e em
+// inglês), a ordem das filas e a posição da janela sobre a divisa da mesa.
 
 import type { ChoiceItem, Decision } from '../../../motor/types.ts';
+import type { InfoCarta } from '../../../servidor/protocolo.ts';
+import { palavrasDoTipo } from '../pt.ts';
 
 /**
  * Formatos da janela:
@@ -105,11 +107,55 @@ export function normalizar(s: string): string {
   return s.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase().trim();
 }
 
-/** os itens cujo algum texto (nome em português, nome em inglês, texto da carta) contém o termo */
-export function filtrar<T>(itens: T[], termo: string, textos: (it: T) => string[]): T[] {
-  const t = normalizar(termo);
-  if (!t) return itens;
-  return itens.filter((it) => textos(it).some((x) => normalizar(x).includes(t)));
+/** o que a busca compara numa carta, já normalizado (montado uma vez por carta) */
+export interface TextosBusca {
+  /** o primeiro nome, para ordenar */
+  nome: string;
+  /** nomes e linhas de tipo, nas duas línguas */
+  principal: string;
+  /** os nomes, os tipos e o texto da carta, nas duas línguas */
+  tudo: string;
+  palavrasPrincipal: string[];
+  palavrasTudo: string[];
+}
+
+const palavras = (s: string) => s.split(/[^\p{L}\p{N}]+/u).filter(Boolean);
+
+/** `nomes` (em português, em inglês), `tipos` (as linhas de tipo e as palavras do tipo traduzidas) e `textos` (o
+ * Oracle e o texto impresso em português) */
+export function textosBusca(nomes: string[], tipos: string[] = [], textos: string[] = []): TextosBusca {
+  const principal = [...nomes, ...tipos].map(normalizar).join('\n');
+  const tudo = [principal, ...textos.map(normalizar)].join('\n');
+  return { nome: normalizar(nomes[0] ?? ''), principal, tudo, palavrasPrincipal: palavras(principal), palavrasTudo: palavras(tudo) };
+}
+
+/** se a carta serve para o termo: 0 achou no nome ou no tipo, 1 só no texto da carta, null não achou. Cada palavra
+ * digitada tem de ser o começo de uma palavra da carta, em qualquer ordem ("terreno básico", "land montanha", "mont"; e
+ * "land" não pega "Island"). Um termo com símbolos ("{t}", "+1/+1") procura o trecho exato. */
+export function notaBusca(t: TextosBusca, termo: string): 0 | 1 | null {
+  const q = normalizar(termo);
+  if (!q) return 0;
+  const acha = (texto: string, ps: string[]) => (/[^\p{L}\p{N}\s]/u.test(q) ? texto.includes(q) : palavras(q).every((w) => ps.some((p) => p.startsWith(w))));
+  if (acha(t.principal, t.palavrasPrincipal)) return 0;
+  return acha(t.tudo, t.palavrasTudo) ? 1 : null;
+}
+
+/** os textos de busca de uma carta: os nomes que a janela mostra e, se houver, as linhas de tipo (em inglês, a da
+ * impressão em português e, para as cartas sem ela, as palavras do dicionário) e o texto nas duas línguas */
+export function textosDaCarta(nomes: string[], c: InfoCarta | undefined): TextosBusca {
+  if (!c) return textosBusca(nomes);
+  const tipo = c.tipo ?? '';
+  return textosBusca(nomes, [tipo, c.tipoPt ?? '', palavrasDoTipo(tipo)], [c.oracle, c.textoPt ?? '']);
+}
+
+/** os itens que servem para o termo: primeiro os que acharam no nome ou no tipo, depois os que acharam só no texto */
+export function filtrar<T>(itens: T[], termo: string, textos: (it: T) => string[] | TextosBusca): T[] {
+  if (!normalizar(termo)) return itens;
+  const notas = itens.map((it, i) => {
+    const t = textos(it);
+    return { it, i, n: notaBusca(Array.isArray(t) ? textosBusca(t) : t, termo) };
+  });
+  return notas.filter((x) => x.n !== null).sort((a, b) => a.n! - b.n! || a.i - b.i).map((x) => x.it);
 }
 
 // ---------------------------------------------------------------- filas e faixas
