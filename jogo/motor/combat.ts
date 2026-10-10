@@ -179,6 +179,7 @@ export function* declareAttackers(g: G): Gen<void> {
     }
   }
   combat.declared = true;
+  combat.attackedPlayers = [...new Set(attacks.filter(([, t]) => t.kind === 'player').map(([, t]) => t.id))];
   for (const [id, target] of attacks) {
     if (!hasKw(g, id, 'vigilance')) tap(g, id); // CR 508.1f, 702.20b
     combat.attackers.push({ id, target, blocked: false, blockers: [], removed: false });
@@ -205,7 +206,7 @@ export function canBlock(g: G, blocker: ObjId, attacker: ObjId): boolean {
   if (hasKw(g, attacker, 'shadow') && !hasKw(g, blocker, 'shadow')) return false; // CR 702.28b
   if (hasKw(g, blocker, 'shadow') && !hasKw(g, attacker, 'shadow')) return false;
   if (hasKw(g, attacker, 'skulk') && power(g, blocker) > power(g, attacker)) return false; // CR 702.118b
-  if (kwParams(g, attacker, 'protection').some((q) => protectionMatches(g, q, { colors: bc.colors, types: bc.types }))) return false; // CR 702.16f
+  if (kwParams(g, attacker, 'protection').some((q) => protectionMatches(g, q, { colors: bc.colors, types: bc.types, id: blocker }))) return false; // CR 702.16f
   if (hasKw(g, blocker, 'decayed') || hasKw(g, blocker, 'cantBlock')) return false; // CR 702.147a
   if (hasKw(g, attacker, 'unblockable')) return false;
   for (const e of g.state.effects) for (const m of e.mods) {

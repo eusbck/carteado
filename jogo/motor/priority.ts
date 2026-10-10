@@ -70,6 +70,8 @@ export function castOptions(g: G, p: PlayerId): CastOption[] {
   for (const id of s.zones.graveyard[p]) consider(id, 'graveyard');
   for (const pp of g.playersInGame()) if (pp !== p) for (const id of s.zones.graveyard[pp]) if (permissionsFor(g, p, id).length) consider(id, 'graveyard');
   for (const id of s.zones.exile) consider(id, 'exile');
+  // lote2-d: a carta do topo do grimório com permissão de conjurar dali (Realmwalker)
+  for (const id of s.zones.library[p].slice(0, 1)) if (permissionsFor(g, p, id).length) consider(id, 'library');
   return out;
 }
 

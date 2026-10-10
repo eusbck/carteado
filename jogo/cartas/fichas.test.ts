@@ -64,6 +64,17 @@ const esperadas: Record<string, [string, string[], string[], string[], number | 
   'Incubator': ['Incubator', ['Artifact'], ['Incubator'], [], null, null, ['transform']],
   'Phyrexian Mite': ['Phyrexian Mite', ['Artifact', 'Creature'], ['Phyrexian', 'Mite'], [], 1, 1, ['toxic']],
   'Contract': ['Contract', ['Enchantment'], ['Aura'], ['W'], null, null, ['enchant']],
+  // lote2-d
+  'Food': ['Food', ['Artifact'], ['Food'], [], null, null, []],
+  'Clue': ['Clue', ['Artifact'], ['Clue'], [], null, null, []],
+  'Blood': ['Blood', ['Artifact'], ['Blood'], [], null, null, []],
+  'Orc Army': ['Orc Army', ['Creature'], ['Orc', 'Army'], ['B'], 0, 0, []],
+  'Wraith': ['Wraith', ['Creature'], ['Wraith'], ['B'], 3, 3, ['menace']],
+  'Robot Villain': ['Robot Villain', ['Artifact', 'Creature'], ['Robot', 'Villain'], [], 2, 2, []],
+  'Warrior vermelho': ['Warrior', ['Creature'], ['Warrior'], ['R'], 1, 1, []],
+  'Shapeshifter': ['Shapeshifter', ['Creature'], ['Shapeshifter'], [], 1, 1, ['changeling']],
+  'Dragon 4/4': ['Dragon', ['Creature'], ['Dragon'], ['R'], 4, 4, ['flying']],
+  'Vampire 1/1': ['Vampire', ['Creature'], ['Vampire'], ['B', 'W'], 1, 1, ['lifelink']],
 };
 
 describe('Fichas: características', () => {
@@ -91,7 +102,9 @@ describe('Fichas: características', () => {
       const c = chars(tg.g, tok);
       expect(c.name).toBe(nome);
       expect(c.types).toEqual(tipos);
-      expect(c.subtypes).toEqual(subtipos);
+      // polimorfo (CR 702.73a): além dos impressos, todos os tipos de criatura
+      if (kws.includes('changeling')) expect(c.subtypes).toEqual(expect.arrayContaining([...subtipos, 'Goblin', 'Orc', 'Elf']));
+      else expect(c.subtypes).toEqual(subtipos);
       expect([...c.colors].sort()).toEqual(cores);
       expect([c.power, c.toughness]).toEqual([p, t]);
       for (const k of kws) expect(hasKw(tg.g, tok, k), k).toBe(true);

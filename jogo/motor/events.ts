@@ -40,7 +40,22 @@ export type GameEvent =
   | { type: 'monarch'; player: PlayerId }
   | { type: 'levelUp'; obj: ObjId; level: number }
   | { type: 'attach'; obj: ObjId; to: ObjId }
-  | { type: 'controlChange'; obj: ObjId; from: PlayerId; to: PlayerId };
+  | { type: 'controlChange'; obj: ObjId; from: PlayerId; to: PlayerId }
+  // lote2-d: mecânicas de criaturas (motor/criaturas.ts)
+  /** o permanente tramou (CR 701.50f), depois de comprar e descartar */
+  | { type: 'connive'; obj: ObjId; player: PlayerId; discarded: ObjId[] }
+  /** o jogador reuniu um exército (CR 701.47b) */
+  | { type: 'amass'; player: PlayerId; army: ObjId | null }
+  /** o Anel tentou o jogador (CR 701.54d) */
+  | { type: 'ringTempts'; player: PlayerId; bearer: ObjId | null }
+  /** resultado de um confronto (CR 701.30d) */
+  | { type: 'clash'; player: PlayerId; won: boolean }
+  /** o Equipamento ou Aura deixou de estar preso ao permanente (Grafted Exoskeleton) */
+  | { type: 'unattach'; obj: ObjId; from: ObjId }
+  /** o permanente se tornou monstruoso (CR 701.37) */
+  | { type: 'monstrous'; obj: ObjId; n: number }
+  /** o escudo de regeneração substituiu a destruição (CR 701.19a) */
+  | { type: 'regenerate'; obj: ObjId };
 
 export function isDies(ev: GameEvent): ev is Extract<GameEvent, { type: 'zone' }> {
   return ev.type === 'zone' && ev.from === 'battlefield' && ev.to === 'graveyard';

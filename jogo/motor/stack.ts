@@ -26,7 +26,7 @@ export function targetLabel(g: G, t: TargetRef): string {
 
 function sourceQualities(g: G, source: ObjId) {
   const c = g.state.objects[source] ? chars(g, source) : g.state.lki[source]?.chars;
-  return { colors: c?.colors ?? [], types: c?.types ?? [] };
+  return { colors: c?.colors ?? [], types: c?.types ?? [], id: source };
 }
 
 /** o alvo é legal para esta especificação, vindo de uma mágica/habilidade controlada por `controller`? */
@@ -387,6 +387,8 @@ function* castInner(g: G, player: PlayerId, cardId: ObjId, method: CastMethod): 
         if (!novo) continue;
         cost = novo;
         tap(g, id);
+        // "cada criatura que convocou esta mágica" (Lethal Scheme)
+        info.data.convoked = [...((info.data.convoked as ObjId[] | undefined) ?? []), id];
       }
     }
   }

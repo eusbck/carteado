@@ -230,6 +230,13 @@ export interface RuleHooks {
   playerProtection?: (c: SCtx, player: PlayerId) => unknown[];
   /** "Se você fosse perder mana não gasta, ela se torna incolor" (Omnath, Locus of the Void; CR 106.4, 500.5) */
   unspentManaBecomesColorless?: (c: SCtx, player: PlayerId) => boolean;
+  // lote2-d
+  /** "A regra da lenda não se aplica aos permanentes que você controla" (Sakashima; CR 704.5j) */
+  legendRuleExempt?: (c: SCtx, player: PlayerId) => boolean;
+  /** "Seus oponentes não podem procurar em grimórios" (Stranglehold; CR 701.23) */
+  cantSearchLibraries?: (c: SCtx, player: PlayerId) => boolean;
+  /** "Você pode olhar a carta do topo do seu grimório a qualquer momento" (Vesuvan Drifter, Realmwalker) */
+  lookAtTopOfLibrary?: (c: SCtx, player: PlayerId) => boolean;
 }
 
 export interface SpellInfoForCost {

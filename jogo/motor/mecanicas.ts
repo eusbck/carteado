@@ -598,7 +598,9 @@ export function chapter(numbers: number[], effect: TriggeredDef['effect'], opts:
     if (e.type !== 'counters' || e.kind !== 'lore' || e.target.kind !== 'obj' || e.target.id !== c.source) return false;
     const agora = c.g.state.objects[c.source]?.counters.lore ?? 0;
     const antes = agora - e.amount;
-    return numbers.filter((n) => antes < n && agora >= n).map((n) => ({ capitulo: n }));
+    // ler adiante (CR 702.155a): no turno em que entrou, só dispara o capítulo igual ao número de marcadores
+    const lerAdiante = c.g.state.objects[c.source]?.choices.readAheadTurn === c.g.state.turn.number;
+    return numbers.filter((n) => antes < n && agora >= n && (!lerAdiante || n === agora)).map((n) => ({ capitulo: n }));
   }), effect, { targets: opts.targets, text: opts.text });
   def.chapters = numbers;
   return def;
