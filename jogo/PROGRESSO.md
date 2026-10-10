@@ -131,6 +131,9 @@ Lista de verificação das fases. É por aqui que uma sessão nova retoma o trab
     linha de ajuste manual do registro distinta do nome em ouro.
 - 09/10/2026: bateria de testes, caça de bugs e otimização para o navegador (seção no fim), com três frentes em
   worktrees e subagentes de verificação; push no fim.
+- 10/10/2026 (madrugada), pedidos na conversa (plano em `~/.claude/plans/shiny-strolling-newell.md`): busca no
+  grimório por nome, tipo e texto em português e em inglês; várias importações de deck ao mesmo tempo, sem travar a
+  tela; e conferir o link no Moxfield sempre que um deck for adicionado pelo chat (seção no fim).
 
 ## Fase 0: exploração e proposta
 
@@ -1190,3 +1193,100 @@ Observações abertas:
 - Bloqueador que morre e cujo bloqueio a vista anterior ainda não conhecia: o golpe mira o jogador (raro; o servidor
   manda a vista dos bloqueadores antes do dano).
 - Ainda sem push: tudo está no `main` local.
+
+## Busca no grimório em português e em inglês, várias importações ao mesmo tempo e a conferência do Moxfield — 10/10/2026
+
+Pedidos na conversa (plano aprovado em `~/.claude/plans/shiny-strolling-newell.md`). Decisões do Caio: **importar
+direto** (colar o link e clicar já leva até o fim; a prévia fica só para a atualização de um deck que já está na mesa
+e para a lista que quebra regra de deck) e **selo discreto em todo lugar**, inclusive na partida.
+
+**Busca no grimório** (a janela de escolha em grade: tutores, fetches e o "Procurar no grimório" manual).
+- Antes ela comparava só os nomes e o Oracle em inglês: "terreno", "land", "básico" e "terreno básico" não achavam uma
+  Montanha (o texto dela é só `({T}: Add {R}.)`).
+- Agora o servidor manda em `InfoCarta` a linha de tipo em inglês (`tipo`) e o tipo e o texto da impressão em
+  português (`tipoPt`, `textoPt`, de `gerado/imagens.json`). As cartas sem impressão em português (320 de 954, quase
+  todas das coleções novas) ganham as palavras do tipo pelo dicionário de `cliente/src/pt.ts` (`palavrasDoTipo`:
+  tipos, supertipos e os subtipos de todas as cartas e fichas do jogo, com as duas formas do adjetivo, "lendário
+  lendária").
+- Regra (`notaBusca` em `cliente/src/mesa/escolhas.ts`): cada palavra digitada tem de ser o começo de uma palavra da
+  carta, em qualquer ordem e em qualquer língua ("terreno básico", "basic land", "land montanha", "mont"); "land" não
+  pega "Island". Um termo com símbolos ("{c}{c}", "+1/+1") procura o trecho exato. O que acha no nome ou no tipo vem
+  antes do que só acha no texto (Terras em Desenvolvimento, que fala de "terreno básico" no texto, vem depois das
+  básicas).
+- Testes em `testes/fase9-janelas.test.ts`, também com as cartas de verdade (`infoCartas()`).
+
+**Várias importações ao mesmo tempo** (`servidor/catalogo/tarefas.ts`).
+- O servidor guarda várias tarefas (`lista()`, `tarefa(id)`); o id segue o relógio e não repete depois de reiniciar.
+  As que terminaram ficam 30 minutos. Recusa só o mesmo deck duas vezes ao mesmo tempo e mais de 8 juntas.
+- `iniciarImportar(link)` (a rota `importar`): verificar e, num deck novo que cumpre as regras, confirmar na mesma
+  tarefa.
+- A confirmação baixa tudo (impressões, imagens, rulings, fichas) fora da trava; só a gravação espera a vez, numa fila
+  do processo e com a trava da linha de comando, relendo do disco `decks/cartas.json`, `rulings.json`, o deck e a
+  `ordem`. A arte do comandante baixa fora da fila e grava `fontes.json` na vez. Uma carta ou ficha que outra
+  importação gravou no meio não é baixada nem gravada de novo. Antes, duas gravações juntas perderiam cartas, repetiriam
+  a `ordem` e sobrescreveriam `fontes.json` (por isso era uma por vez).
+- `comTrava(..., { esperar })`: o servidor espera até 60 s a linha de comando soltar a trava. O temporário de cada
+  imagem tem nome próprio (duas importações podem baixar a mesma).
+- Mensagem `catalogo` do WebSocket: uma tarefa por aviso (o cliente atualiza pelo id); `GET /api/catalogo` traz
+  `tarefas`.
+
+**Tela Decks e selo.**
+- O campo nunca fica preso: "Importar" e o campo limpa assim que o servidor aceita. A lista **Importações** mostra uma
+  linha por importação sua (andamento com barra; resultado com "Ok" e "O que falta"; prévia esperando com "Ver
+  prévia"; erro). A janela da tarefa fecha a qualquer momento ("Continuar em segundo plano"). O "Atualizar" abre a
+  prévia sozinho quando ela chega e só desliga no deck que já tem tarefa andando.
+- As importações desta aba ficam em `sessionStorage` (`commander-da-mesa:importacoes`): recarregar a página ou cair a
+  conexão busca o estado de novo; as que o servidor esqueceu saem da lista.
+- Selo `cliente/src/Importacoes.tsx` no canto de baixo à esquerda, no início, no saguão e na mesa: "Importando X… 23
+  de 59" ou "Importando 2 decks…", e por 10 s o resultado quando uma termina. Fora da mesa, um clique abre a tela
+  Decks; na mesa ele não pega cliques.
+
+**Conferência do Moxfield** (regra nova: ao adicionar ou completar um deck pelo chat, rodar antes e depois).
+- `node ferramentas/decks.ts conferir <link|id|todos>`, só leitura: total de cartas no Moxfield (100), a mesma lista
+  da mesa (entram e saem), troca de comandante, dados em `gerado/` e imagem no disco de cada carta, e quantas ainda sem
+  regras. Reserva e "talvez" do Moxfield aparecem como nota (não fazem parte dos 100).
+- Rodado nos **16 decks** que o Caio importou pela tela nesta madrugada (ordem 9 a 24): Jin's Vengeance, The Hosts of
+  Mordor, Doom Prevails, Wakanda Forever, Turtle Power!, Hatsune Miku, The Fantastic Four, Reign of Dragons, Raining
+  Cats and Dogs, Maestros Massacre, Necron Dynasties, Vampiric Bloodline, Avengers Assemble, Keen Engineering, Odd and
+  Ends e Heavenly Inferno. Todos com 100 cartas e a mesma lista do Moxfield, todos em preparação (faltam de 54 a 89
+  cartas com regras em cada um). O Caio pediu para **não implementar as regras deles ainda**.
+- Teste com rede de verdade (subagente, pastas temporárias tiradas do HEAD): The Hosts of Mordor e Reign of Dragons
+  importados juntos, mais uma verificação do Terra, em 97 s (cada um sozinho leva ~90 s); 445 pedidos sem 429 nem 403;
+  as 109 cartas novas, as fichas sem repetir, as imagens, as duas artes e `fontes.json` conferidos; listas iguais às
+  importadas pela mesa.
+
+**Artes dos comandantes** (pedido na conversa, para o Caio fazer o banner e o ícone de cada deck num gerador de
+imagens): `../artes-comandantes/` (na raiz do projeto, fora do git), 33 PNGs com um `LEIA.txt` e um `indice.json`
+(deck, comandante, id da imagem no jogo, se já tem fundo de mesa, artista). São os 25 decks da mesa, os 4 comandantes
+dos dois decks de parceiros (arte do Scryfall) e, quando a impressão em português que o jogo mostra tem outra
+ilustração, também a do Moxfield (" - arte do Moxfield": Hatsune Miku, Reign of Dragons, Raining Cats and Dogs e
+Heavenly Inferno). Um fundo de mesa novo entra como `gerado/fundos/<id da imagem no jogo>.webp`. O script está no
+scratchpad da sessão (`artes/juntar-artes.mjs`); refazer é ler `gerado/artes/<id>.webp` de cada comandante.
+
+**Pendente: dois comandantes (parceiros).** Dois decks esperam essa mecânica (o Caio pediu para deixar anotado):
+- Timey-Wimey (Doctor Who), `https://moxfield.com/decks/fj8Av0UofkOhiyBAPSOwJw`: The Tenth Doctor + Rose Tyler
+  ("Doctor's companion", CR 702.124m). O Moxfield também traz os planos de Planechase do precon, e o importador recusa
+  essa zona hoje (`RECUSADAS` em `servidor/catalogo/moxfield.ts`): decidir entre ignorar os planos (como a reserva) e
+  fazer Planechase.
+- Food and Fellowship (Senhor dos Anéis), `https://moxfield.com/decks/S3X49Miklk6zsQk9VSrt2Q`: Sam, Loyal Attendant +
+  Frodo, Adventurous Hobbit ("partner with", CR 702.124j, que também tem o gatilho de buscar o parceiro ao entrar).
+- O que falta, de ponta a ponta: o importador aceitar dois comandantes (hoje recusa em `moxfield.ts`); a lista do deck
+  com dois comandantes (`Lista.comandante` é um nome só, em `decks/<id>.json`, `gerado/decks.json` e nas partidas
+  salvas); a validação (CR 702.124a-g e 903.4: 100 cartas com os dois, identidade de cor somada, as variantes de
+  parceiro que não se misturam); o motor (os dois na zona de comando, imposto de comandante e dano de comandante
+  separados por comandante, CR 702.124d e 903.10a; "seu comandante" pode ser qualquer um, 702.124e); e as telas
+  (saguão, prévia do deck, VS, mesa, tela Decks) e os bots.
+
+Observações abertas:
+- O jogo prefere a impressão em português do comandante, e às vezes ela tem outra ilustração: o Hatsune Miku aparece
+  como a Trostani comum (GK1), não com a arte da Miku do Secret Lair. Vale decidir se o comandante usa sempre a
+  ilustração do Moxfield.
+- O comandante do Raining Cats and Dogs vem como "Rin and Seri, Inseparable // Rin and Seri, Inseparable" (impressão
+  do Secret Lair com as duas faces iguais): conferir o layout ao completar o deck.
+- A gravação de cada importação segura o servidor por 2 a 4 s (lê `../cartas/data`, roda `gerar` e grava três JSON,
+  tudo síncrono): numa partida aberta, isso é um soluço por deck importado. Já acontecia antes; se incomodar, dá para
+  levar a gravação para uma thread.
+- A mesa aberta precisa ser reaberta ("Abrir a mesa.cmd") para usar o código novo, quando nenhuma importação estiver
+  andando: ela gera o cliente sozinha (o código da interface é mais novo que `cliente/dist`). Não gerei o cliente ali
+  durante a sessão para não misturar cliente novo com servidor velho no meio das importações; os testes usaram uma
+  pasta à parte (`ESTATICOS`).

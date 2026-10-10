@@ -142,11 +142,14 @@ Na tela inicial, o botão **Decks** mostra todos os decks da mesa. Qualquer pess
 do servidor pode usar:
 
 1. **Importar:** cole o link do deck no Moxfield (`https://moxfield.com/decks/…`; o deck precisa ser
-   público ou não listado) e clique em "Buscar deck". O servidor busca a lista e os dados das cartas
+   público ou não listado) e clique em "Importar". O servidor busca a lista e os dados das cartas
    (Scryfall), confere as regras de deck do Commander (comandante, 100 cartas, uma de cada, identidade
-   de cor) e mostra uma prévia. Confirmando, ele baixa as imagens e a arte do comandante.
+   de cor) e baixa as imagens e a arte do comandante, tudo em segundo plano: o campo libera na hora
+   para o próximo link, a lista **Importações** mostra cada um, e dá para sair da tela e jogar (um selo
+   no canto mostra o andamento e o resultado). Uma lista que quebra regra de deck para na prévia.
 2. **Atualizar:** o botão "Atualizar" de cada deck busca o deck de novo no Moxfield e mostra o que
-   **entra** e o que **sai**. Colar de novo o link de um deck que já está na mesa faz o mesmo.
+   **entra** e o que **sai** antes de aplicar. Colar de novo o link de um deck que já está na mesa faz
+   o mesmo.
 3. **Só entra no saguão o deck com todas as cartas com regras.** As regras de cada carta são escritas à
    mão (`cartas/defs/`). Se o deck tem cartas que o jogo ainda não tem, ele fica **em preparação**
    ("29 de 93 cartas com regras"), com a lista do que falta. Numa atualização com cartas novas, a
@@ -182,6 +185,7 @@ depois de importar e mande para o GitHub, para os outros anfitriões receberem o
 | `node ferramentas/decks.ts pendentes` | decks em preparação e as cartas que faltam implementar (Oracle, rulings, fichas, nome do arquivo) |
 | `node ferramentas/decks.ts importar <link> [--confirmar]` | importa um deck do Moxfield (sem `--confirmar`, só mostra a prévia) |
 | `node ferramentas/decks.ts atualizar <id\|todos> [--confirmar]` | busca de novo e mostra o que entra e sai |
+| `node ferramentas/decks.ts conferir <link\|id\|todos>` | confere o deck contra o Moxfield sem gravar nada: 100 cartas, a mesma lista da mesa, dados e imagem de cada carta, quantas ainda sem regras |
 | `node ferramentas/decks.ts gerar` | regera `gerado/` a partir de `../cartas` e `decks/`, e põe no saguão as versões em preparação que ficaram prontas |
 
 O progresso das fases está em `PROGRESSO.md`.

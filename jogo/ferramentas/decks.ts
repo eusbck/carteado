@@ -9,6 +9,10 @@
 //                                                          (o JSON da API do Moxfield salvo pelo navegador, quando
 //                                                          o Moxfield recusa os pedidos do servidor)
 //   node ferramentas/decks.ts atualizar <id|todos> [--confirmar]
+//   node ferramentas/decks.ts conferir <link|id|todos>     confere um deck contra o Moxfield, sem gravar nada: 100
+//                                                          cartas, a mesma lista da mesa, zonas que ficaram de fora,
+//                                                          dados e imagens de cada carta e quantas ainda sem regras
+//                                                          (rodar ao adicionar ou completar um deck pelo chat)
 //   node ferramentas/decks.ts imagens                      baixa de novo as imagens das cartas novas que faltarem
 //
 // Sem --confirmar, importar e atualizar só mostram o que mudaria. Com a mesa aberta, prefira a tela Decks: o que a
@@ -22,9 +26,9 @@ import { Banco } from '../servidor/banco.ts';
 import { cartasPorNome, rulingsPorOracle } from '../servidor/catalogo/base.ts';
 import { pastasPadrao } from '../servidor/catalogo/caminhos.ts';
 import { Catalogo } from '../servidor/catalogo/catalogo.ts';
-import { lerNovas, nomesDaLista, regenerar } from '../servidor/catalogo/gerar.ts';
+import { lerAnterior, lerNovas, nomesDaLista, regenerar } from '../servidor/catalogo/gerar.ts';
 import { migrar } from '../servidor/catalogo/migrar.ts';
-import { lerLink } from '../servidor/catalogo/moxfield.ts';
+import { baixarDeck, lerLink } from '../servidor/catalogo/moxfield.ts';
 import { cartaPronta } from '../servidor/catalogo/prontidao.ts';
 import { redeReal, type Rede } from '../servidor/catalogo/rede.ts';
 import { TarefasDecks, mensagem } from '../servidor/catalogo/tarefas.ts';
@@ -45,7 +49,25 @@ class ErroUso extends Error {}
 /** layouts que o motor já sabe jogar (os das 547 cartas de hoje) */
 const LAYOUTS = new Set(['normal', 'transform', 'prepare', 'class', 'saga']);
 
+let redeUnica: Rede | null = null;
+
+/** uma rede só para o comando inteiro, e o deck do Moxfield pedido uma vez (conferir busca o deck e depois verifica) */
 function rede(): Rede {
+  if (redeUnica) return redeUnica;
+  const base = redeSemCache();
+  const guardados = new Map<string, Promise<unknown>>();
+  redeUnica = {
+    json: <T>(url: string, o?: { metodo?: 'GET' | 'POST'; corpo?: unknown }) => {
+      if (!url.includes('moxfield.com')) return base.json<T>(url, o);
+      if (!guardados.has(url)) guardados.set(url, base.json<T>(url, o).catch((e) => { guardados.delete(url); throw e; }));
+      return guardados.get(url)! as Promise<T>;
+    },
+    binario: (url) => base.binario(url),
+  };
+  return redeUnica;
+}
+
+function redeSemCache(): Rede {
   const real = redeReal();
   const i = resto.indexOf('--arquivo');
   if (i < 0) return real;
@@ -105,6 +127,51 @@ function tarefas(): TarefasDecks {
       if (t && t.estado !== 'andando' && ultimo) { process.stdout.write('\r'.padEnd(102) + '\r'); ultimo = ''; }
     },
   });
+}
+
+/** confere um deck contra o Moxfield, sem gravar nada; devolve quantos problemas achou */
+async function conferir(t: TarefasDecks, alvo: string): Promise<number> {
+  const id = lerLink(alvo)!;
+  const d = catalogo.ler(id);
+  const { deck } = await baixarDeck(rede(), id);
+  const p = await t.verificar(alvo);
+  const problemas: string[] = [];
+  const soma = (l: { quantidade: number }[]) => l.reduce((n, e) => n + e.quantidade, 0);
+  const noMox = soma(deck.comandantes) + soma(deck.principal);
+  // a lista que a mesa guarda: a que espera cartas (deck novo ou atualização) ou a jogável
+  const lista = d ? d.preparacao ?? d.atual : null;
+  const naMesa = lista ? 1 + soma(lista.cartas) : 0;
+  console.log(`\n${p.nome} (${p.link})`);
+  console.log(`Moxfield: ${noMox} cartas, comandante ${deck.comandantes.map((c) => c.nome).join(', ')}.`);
+  if (noMox !== 100) problemas.push(`o deck tem ${noMox} cartas no Moxfield (o Commander pede 100)`);
+  if (!d || !lista) {
+    problemas.push('o deck ainda não está na mesa (importe pela tela Decks ou com importar --confirmar)');
+  } else {
+    console.log(`Na mesa: ${naMesa} cartas (${d.preparacao ? (d.atual ? 'atualização esperando cartas' : 'em preparação') : 'lista jogável'}).`);
+    if (naMesa !== noMox) problemas.push(`a mesa guarda ${naMesa} cartas e o Moxfield tem ${noMox}`);
+    if (p.entram.length || p.saem.length) {
+      problemas.push(`a lista da mesa é diferente da do Moxfield (${soma(p.entram)} entram, ${soma(p.saem)} saem)`);
+      for (const c of p.entram) console.log(`  + ${c.quantidade > 1 ? `${c.quantidade}× ` : ''}${c.nome}`);
+      for (const c of p.saem) console.log(`  - ${c.quantidade > 1 ? `${c.quantidade}× ` : ''}${c.nome}`);
+    }
+    if (p.trocaComandante) problemas.push(`troca de comandante: ${p.trocaComandante.de} → ${p.trocaComandante.para}`);
+    // cada carta com dados em gerado/ e imagem no disco
+    const g = lerAnterior(pastas.gerado);
+    for (const nome of nomesDaLista(lista)) {
+      if (!g.cartas?.cartas[nome]) { problemas.push(`${nome}: sem dados em gerado/cartas.json`); continue; }
+      const i = g.imagens?.[nome];
+      const img = (i?.pt && !i.pt.reserva ? i.pt : i?.en) ?? null;
+      const arq = img?.frente ? (img.frente.startsWith('imagens/') ? join(pastas.imagens, img.frente.slice('imagens/'.length)) : join(pastas.cartasOriginais, img.frente)) : null;
+      if (!arq || !existsSync(arq)) problemas.push(`${nome}: sem imagem no disco${arq ? ` (${arq})` : ''}`);
+    }
+  }
+  // reserva e "talvez" não fazem parte dos 100: só uma nota
+  if (deck.ignoradas.length) console.log(`Nota: o Moxfield também tem cartas fora do deck, que o jogo não usa: ${deck.ignoradas.join(', ')}.`);
+  for (const e of p.erros) problemas.push(`regra de deck: ${e}`);
+  console.log(`Cartas com regras no jogo: ${p.prontas} de ${p.total}${p.total > p.prontas ? ` (faltam ${p.total - p.prontas}; a lista sai em "node ferramentas/decks.ts pendentes")` : ''}.`);
+  if (problemas.length) console.log(`ATENÇÃO (${problemas.length}):\n${problemas.map((x) => `  ! ${x}`).join('\n')}`);
+  else console.log('Conferido: nenhuma carta faltando nem sobrando em relação ao Moxfield.');
+  return problemas.length;
 }
 
 function pendentes(): void {
@@ -196,6 +263,18 @@ try {
         if (!d) { console.log(`${id}: não está em decks/`); continue; }
         try { await buscarEConfirmar(t, d.link); } catch (e) { console.log(`${d.nome}: ${mensagem(e)}`); }
       }
+      break;
+    }
+    case 'conferir': {
+      const alvos = args[0] === 'todos' ? catalogo.todos().map((d) => d.link) : args;
+      if (!alvos.length || alvos.some((a) => !lerLink(a))) throw new ErroUso('Uso: node ferramentas/decks.ts conferir <link do Moxfield|id|todos>');
+      const t = tarefas();
+      let total = 0;
+      for (const alvo of alvos) {
+        try { total += await conferir(t, alvo); } catch (e) { total++; console.log(`\n${alvo}: ${mensagem(e)}`); }
+      }
+      if (alvos.length > 1) console.log(`\n${alvos.length} decks conferidos; ${total ? `${total} problema(s)` : 'nenhum problema'}.`);
+      if (total) process.exitCode = 1;
       break;
     }
     case 'imagens':
