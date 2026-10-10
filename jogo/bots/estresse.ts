@@ -27,13 +27,23 @@ export interface RunResult {
   draw: boolean;
   reason: string;
   ms: number;
+  decks: string[];
 }
 
-export function runGame(seed: string, players: number, makeBot: (p: number, seed: string) => BotLike, opts: { turnLimit?: number; maxDecisions?: number; invariants?: boolean; mulligan?: 'londres' | 'livre' } = {}): RunResult {
+export function runGame(seed: string, players: number, makeBot: (p: number, seed: string) => BotLike, opts: { turnLimit?: number; maxDecisions?: number; invariants?: boolean; mulligan?: 'londres' | 'livre'; requiredDeck?: string } = {}): RunResult {
   const rng = seedFrom(`decks:${seed}`);
   const all = decks as DeckList[];
   const chosen: DeckList[] = [];
   for (let i = 0; i < players; i++) chosen.push(all[int(rng, all.length)]);
+  if (opts.requiredDeck) {
+    const required = all.find((d) => d.id === opts.requiredDeck);
+    if (!required) throw new Error(`Deck obrigatório não jogável: ${opts.requiredDeck}`);
+    chosen[0] = required;
+    // Os oponentes vêm de decks antigos: a validação sempre exercita a interação entre versões.
+    const previous = all.filter((d) => d.id !== opts.requiredDeck);
+    if (!previous.length) throw new Error('A validação requer pelo menos um deck adversário');
+    for (let i = 1; i < players; i++) if (chosen[i].id === opts.requiredDeck) chosen[i] = previous[int(rng, previous.length)];
+  }
   const config = {
     seed, players: chosen.map((d, i) => ({ name: `Bot ${i + 1}`, deckId: d.id })),
     startingLife: 40, turnLimit: opts.turnLimit ?? (players > 2 ? 60 : 40), multiplayer: players > 2,
@@ -62,7 +72,7 @@ export function runGame(seed: string, players: number, makeBot: (p: number, seed
     }
     const s = game.state;
     if (!s.gameOver) throw new Error('A partida parou sem decisão pendente e sem fim');
-    return { seed, ok: true, turns: s.turn.number, decisions, winners: s.gameOver.winners, draw: s.gameOver.draw, reason: s.gameOver.reason, ms: Date.now() - t0 };
+    return { seed, ok: true, turns: s.turn.number, decisions, winners: s.gameOver.winners, draw: s.gameOver.draw, reason: s.gameOver.reason, ms: Date.now() - t0, decks: chosen.map((d) => d.id) };
   } catch (e) {
     const err = e as Error;
     if (game) {
@@ -70,7 +80,7 @@ export function runGame(seed: string, players: number, makeBot: (p: number, seed
       mkdirSync(raiz, { recursive: true });
       writeFileSync(join(raiz, `${seed}.json`), JSON.stringify({ seed, config, decks: chosen.map((d) => d.id), error: err.message, stack: err.stack, inputs: game.inputs }, null, 1));
     }
-    return { seed, ok: false, error: `${err.message}\n${err.stack?.split('\n').slice(1, 6).join('\n')}`, turns: game?.state.turn.number ?? 0, decisions, winners: [], draw: false, reason: '', ms: Date.now() - t0 };
+    return { seed, ok: false, error: `${err.message}\n${err.stack?.split('\n').slice(1, 6).join('\n')}`, turns: game?.state.turn.number ?? 0, decisions, winners: [], draw: false, reason: '', ms: Date.now() - t0, decks: chosen.map((d) => d.id) };
   }
 }
 
@@ -94,9 +104,9 @@ if (isMain) {
       if (tipo === 'heuristico') { const b = new HeuristicBot(`${s}:${p}`, p, { simulacoes }); return { answer: (d, game) => b.answer(d, game) }; }
       const b = new RandomBot(`${s}:${p}`);
       return { answer: (d) => b.answer(d) };
-    }, { mulligan });
+    }, { mulligan, requiredDeck: process.env.DECK_OBRIGATORIO });
     totalDecisions += r.decisions;
-    if (r.ok) { ok++; console.log(`${seed}: ok — ${r.turns} turnos, ${r.decisions} decisões, ${r.draw ? 'empate' : `vencedor ${r.winners.join(',')}`} (${r.reason}), ${r.ms} ms`); }
+    if (r.ok) { ok++; console.log(`${seed}: ok — decks ${r.decks.join(', ')}; ${r.turns} turnos, ${r.decisions} decisões, ${r.draw ? 'empate' : `vencedor ${r.winners.join(',')}`} (${r.reason}), ${r.ms} ms`); }
     else console.log(`${seed}: FALHOU — ${r.error}`);
   }
   const secs = (Date.now() - t0) / 1000;

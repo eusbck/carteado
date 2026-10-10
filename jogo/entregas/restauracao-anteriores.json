@@ -1,0 +1,41 @@
+{
+  "origem": "snapshot online consistente do SQLite da versão anterior; inclui WAL",
+  "salasJogando": 5,
+  "resultados": [
+    {
+      "aprovada": true,
+      "entradas": 130,
+      "aplicadas": 130,
+      "turno": 8,
+      "erro": null
+    },
+    {
+      "aprovada": true,
+      "entradas": 81,
+      "aplicadas": 81,
+      "turno": 3,
+      "erro": null
+    },
+    {
+      "aprovada": true,
+      "entradas": 4,
+      "aplicadas": 4,
+      "turno": 0,
+      "erro": null
+    },
+    {
+      "aprovada": true,
+      "entradas": 229,
+      "aplicadas": 229,
+      "turno": 12,
+      "erro": null
+    },
+    {
+      "aprovada": true,
+      "entradas": 4,
+      "aplicadas": 4,
+      "turno": 1,
+      "erro": null
+    }
+  ]
+}

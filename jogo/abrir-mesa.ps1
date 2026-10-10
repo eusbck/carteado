@@ -125,7 +125,8 @@ try {
 
   $senha = $env:SENHA_ACESSO
   # [string]: o texto lido pelo Get-Content traz metadados que atrapalham o JSON
-  if (-not $senha) { $senha = [string](Get-Content (Join-Path $raiz 'dados-locais\senha-acesso.txt') -ErrorAction SilentlyContinue | Select-Object -First 1) }
+  $dadosAbertura = if ($env:DADOS) { $env:DADOS } else { Join-Path $raiz 'dados-locais' }
+  if (-not $senha) { $senha = [string](Get-Content (Join-Path $dadosAbertura 'senha-acesso.txt') -ErrorAction SilentlyContinue | Select-Object -First 1) }
 
   Write-Host ''
   Write-Host '=============================================================='

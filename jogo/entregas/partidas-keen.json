@@ -1,0 +1,236 @@
+{
+  "deckObrigatorio": "80zkHrncgEKyre0fMIJbng",
+  "invariantes": true,
+  "workers": 1,
+  "simulacoesHeuristico": 2,
+  "partidas": 14,
+  "decisoes": 28248,
+  "aprovadas": 14,
+  "empatesPorLimite": 10,
+  "casos": [
+    {
+      "semente": "keen-engineering-2p-0",
+      "bot": "aleatorio",
+      "jogadores": 2,
+      "decks": [
+        "80zkHrncgEKyre0fMIJbng",
+        "HAKhAUw1_Xqr0ZxAoQgsCg"
+      ],
+      "turnos": 40,
+      "decisoes": 1568,
+      "resultado": "empate",
+      "motivo": "limite de 40 turnos",
+      "milissegundos": 2021,
+      "aprovada": true
+    },
+    {
+      "semente": "keen-engineering-2p-1",
+      "bot": "aleatorio",
+      "jogadores": 2,
+      "decks": [
+        "80zkHrncgEKyre0fMIJbng",
+        "HAKhAXl1RHyly2_QGDPvzg"
+      ],
+      "turnos": 34,
+      "decisoes": 979,
+      "resultado": "vencedor 1",
+      "motivo": "todos os oponentes saíram da partida",
+      "milissegundos": 1709,
+      "aprovada": true
+    },
+    {
+      "semente": "keen-engineering-2p-2",
+      "bot": "aleatorio",
+      "jogadores": 2,
+      "decks": [
+        "80zkHrncgEKyre0fMIJbng",
+        "shVPe5yzCU2zxRPfg2eOrQ"
+      ],
+      "turnos": 40,
+      "decisoes": 1190,
+      "resultado": "empate",
+      "motivo": "limite de 40 turnos",
+      "milissegundos": 1253,
+      "aprovada": true
+    },
+    {
+      "semente": "keen-engineering-2p-3",
+      "bot": "aleatorio",
+      "jogadores": 2,
+      "decks": [
+        "80zkHrncgEKyre0fMIJbng",
+        "GlOgAZd3aH2ggq5J8q0AVg"
+      ],
+      "turnos": 40,
+      "decisoes": 1159,
+      "resultado": "empate",
+      "motivo": "limite de 40 turnos",
+      "milissegundos": 1546,
+      "aprovada": true
+    },
+    {
+      "semente": "keen-engineering-2p-4",
+      "bot": "aleatorio",
+      "jogadores": 2,
+      "decks": [
+        "80zkHrncgEKyre0fMIJbng",
+        "G1OgAYgqlH2LnNRydDvJZA"
+      ],
+      "turnos": 40,
+      "decisoes": 1303,
+      "resultado": "vencedor 0",
+      "motivo": "todos os oponentes saíram da partida",
+      "milissegundos": 1980,
+      "aprovada": true
+    },
+    {
+      "semente": "keen-engineering-2p-5",
+      "bot": "aleatorio",
+      "jogadores": 2,
+      "decks": [
+        "80zkHrncgEKyre0fMIJbng",
+        "GlOgAZd3aH2ggq5J8q0AVg"
+      ],
+      "turnos": 40,
+      "decisoes": 1298,
+      "resultado": "empate",
+      "motivo": "limite de 40 turnos",
+      "milissegundos": 1455,
+      "aprovada": true
+    },
+    {
+      "semente": "keen-engineering-4p-0",
+      "bot": "aleatorio",
+      "jogadores": 4,
+      "decks": [
+        "80zkHrncgEKyre0fMIJbng",
+        "GlOgAfgTAnKDYn2lIU_Phg",
+        "G1OgAfZWPXGNR69mOTQcVA",
+        "GlOgAfT6uXulKGLB5NBi5A"
+      ],
+      "turnos": 60,
+      "decisoes": 2835,
+      "resultado": "empate",
+      "motivo": "limite de 60 turnos",
+      "milissegundos": 5469,
+      "aprovada": true
+    },
+    {
+      "semente": "keen-engineering-4p-1",
+      "bot": "aleatorio",
+      "jogadores": 4,
+      "decks": [
+        "80zkHrncgEKyre0fMIJbng",
+        "HAKhAUw1_Xqr0ZxAoQgsCg",
+        "GlOgAfT6uXulKGLB5NBi5A",
+        "GlOgAc8-TnKWpvRoIoHulw"
+      ],
+      "turnos": 60,
+      "decisoes": 2931,
+      "resultado": "empate",
+      "motivo": "limite de 60 turnos",
+      "milissegundos": 3988,
+      "aprovada": true
+    },
+    {
+      "semente": "keen-engineering-4p-2",
+      "bot": "aleatorio",
+      "jogadores": 4,
+      "decks": [
+        "80zkHrncgEKyre0fMIJbng",
+        "GlOgAfT6uXulKGLB5NBi5A",
+        "G1OgAYgqlH2LnNRydDvJZA",
+        "HAKhAUw1_Xqr0ZxAoQgsCg"
+      ],
+      "turnos": 60,
+      "decisoes": 3404,
+      "resultado": "empate",
+      "motivo": "limite de 60 turnos",
+      "milissegundos": 5704,
+      "aprovada": true
+    },
+    {
+      "semente": "keen-engineering-4p-3",
+      "bot": "aleatorio",
+      "jogadores": 4,
+      "decks": [
+        "80zkHrncgEKyre0fMIJbng",
+        "HAKhAXl1RHyly2_QGDPvzg",
+        "GlOgAfgTAnKDYn2lIU_Phg",
+        "GlOgAfgTAnKDYn2lIU_Phg"
+      ],
+      "turnos": 60,
+      "decisoes": 2960,
+      "resultado": "empate",
+      "motivo": "limite de 60 turnos",
+      "milissegundos": 4628,
+      "aprovada": true
+    },
+    {
+      "semente": "keen-engineering-4p-4",
+      "bot": "aleatorio",
+      "jogadores": 4,
+      "decks": [
+        "80zkHrncgEKyre0fMIJbng",
+        "G1OgAfZWPXGNR69mOTQcVA",
+        "GlOgAZd3aH2ggq5J8q0AVg",
+        "GlOgAZd3aH2ggq5J8q0AVg"
+      ],
+      "turnos": 60,
+      "decisoes": 3254,
+      "resultado": "empate",
+      "motivo": "limite de 60 turnos",
+      "milissegundos": 4756,
+      "aprovada": true
+    },
+    {
+      "semente": "keen-engineering-4p-5",
+      "bot": "aleatorio",
+      "jogadores": 4,
+      "decks": [
+        "80zkHrncgEKyre0fMIJbng",
+        "G1OgAYgqlH2LnNRydDvJZA",
+        "G1OgAYgqlH2LnNRydDvJZA",
+        "GlOgAfT6uXulKGLB5NBi5A"
+      ],
+      "turnos": 60,
+      "decisoes": 2955,
+      "resultado": "empate",
+      "motivo": "limite de 60 turnos",
+      "milissegundos": 5851,
+      "aprovada": true
+    },
+    {
+      "semente": "keen-heuristico-2p-0",
+      "bot": "heuristico",
+      "jogadores": 2,
+      "decks": [
+        "80zkHrncgEKyre0fMIJbng",
+        "HAKhAUw1_Xqr0ZxAoQgsCg"
+      ],
+      "turnos": 18,
+      "decisoes": 542,
+      "resultado": "vencedor 1",
+      "motivo": "todos os oponentes saíram da partida",
+      "milissegundos": 3369,
+      "aprovada": true
+    },
+    {
+      "semente": "keen-heuristico-4p-0",
+      "bot": "heuristico",
+      "jogadores": 4,
+      "decks": [
+        "80zkHrncgEKyre0fMIJbng",
+        "G1OgAYgqlH2LnNRydDvJZA",
+        "shVPe5yzCU2zxRPfg2eOrQ",
+        "GlOgAc8-TnKWpvRoIoHulw"
+      ],
+      "turnos": 41,
+      "decisoes": 1870,
+      "resultado": "vencedor 3",
+      "motivo": "todos os oponentes saíram da partida",
+      "milissegundos": 10846,
+      "aprovada": true
+    }
+  ]
+}

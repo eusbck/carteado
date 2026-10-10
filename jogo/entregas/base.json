@@ -1,6 +1,7 @@
 {
   "formato": 1,
   "base": "06cc7f3",
+  "referenciaAnterior": "versao/anterior-decks-06cc7f3",
   "branch": "decks/regras",
   "mesaAtual": { "porta": 8080, "jogaveis": 9 },
   "previa": { "portaMinima": 8096, "dados": "dados-previa" },

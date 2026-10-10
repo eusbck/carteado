@@ -3,11 +3,10 @@
 // Uso: node ferramentas/cobertura.ts
 
 import '../cartas/index.ts';
-import { existsSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
+import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { registry } from '../motor/defs.ts';
-import { slug } from './slug.ts';
 import { RECURSOS_DE_REGRA } from '../cartas/recursos.ts';
 import { rulingsPorOracle } from '../servidor/catalogo/base.ts';
 import { Catalogo } from '../servidor/catalogo/catalogo.ts';

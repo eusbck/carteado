@@ -4,11 +4,33 @@
 
 - Frente isolada: branch `decks/regras`, worktree `../Magic-Commander-regras-decks`, base anterior `06cc7f3`.
 - Mesa atual: 8080, 9 decks jogáveis, preservada. Prévia desta frente: primeira porta livre a partir de 8096, banco próprio.
-- Primeira entrega implementada: **Keen Engineering — Sai, Master Thopterist**, 59 novas definições, Thopter e 114 rulings; 67/67 nomes distintos, 100 cartas conferidas com o Moxfield. Dez decks jogáveis na prévia; a mesa principal conserva nove.
-- Validação: tipos/cliente, 14 partidas reproduzíveis de 2/4 jogadores com Sai obrigatório, E2E 2/4 jogadores/reconexão/restauração e retomada de cinco partidas antigas sem descartar entradas aprovados. Suíte final e prévia estável em fechamento.
+- Primeira entrega concluída: **Keen Engineering — Sai, Master Thopterist**, 59 novas definições, Thopter e 114 rulings; 67/67 nomes distintos, 100 cartas conferidas com o Moxfield. Dez decks jogáveis na prévia; a mesa principal conserva nove. Referência fixa: `versao/keen-engineering-2026-10-10`; anterior: `versao/anterior-decks-06cc7f3`.
+- Validação final: 732 arquivos, 2054 testes aprovados, um ignorado já presente na base, zero falhas; tipos e cliente aprovados. As 14 partidas reproduzíveis de 2/4 jogadores com Sai obrigatório, 28.248 decisões, E2E 2/4 jogadores/reconexão/restauração e retomada de cinco partidas antigas foram repetidos na implementação final e aprovados. Uma execução por vez, máximo de dois workers.
+- Prévia: `node ferramentas/previa-decks.ts`, primeira porta livre a partir de 8096, dados próprios. Abertura da versão fixa para o grupo: `Abrir versao validada.cmd`, com backup online do SQLite incluindo WAL; só na próxima abertura. Manifesto e instruções em `entregas/`.
 - Auditoria ampliada para cartas e rulings importados; relato detalhado em `../CODEX.md`.
 - Depois de Sai: importar Food and Fellowship; ordenar os demais por cartas ainda pendentes, desempate pela ordem do catálogo.
 - Timey-Wimey e Planechase fora desta frente. Entrega de um deck completo e testado por vez, antes de ativar na mesa.
+
+Fila recalculada após as implementações compartilhadas do Sai (desempate pela ordem do catálogo):
+
+| Deck | Cartas pendentes |
+| --- | ---: |
+| Reign of Dragons | 54 |
+| The Fantastic Four | 55 |
+| The Hosts of Mordor | 56 |
+| Doom Prevails | 56 |
+| Maestros Massacre | 56 |
+| Vampiric Bloodline | 57 |
+| Necron Dynasties | 60 |
+| Avengers Assemble | 60 |
+| Wakanda Forever | 62 |
+| Raining Cats and Dogs | 62 |
+| Odd and Ends | 62 |
+| Heavenly Inferno | 63 |
+| Hatsune Miku | 68 |
+| Turtle Power! | 71 |
+| Jin's Vengeance | 89 |
+| Food and Fellowship | Importação e dois comandantes pendentes |
 
 Lista de verificação das fases. É por aqui que uma sessão nova retoma o trabalho.
 

@@ -23,7 +23,7 @@ mkdirSync(SAIDA, { recursive: true });
 let servidor!: ChildProcess;
 async function subirServidor(): Promise<void> {
   servidor = spawn(process.execPath, [join(RAIZ, 'servidor', 'index.ts')], {
-    env: { ...process.env, PORTA: String(PORTA), DADOS, SENHA_ACESSO: SENHA },
+    env: { ...process.env, PORTA: String(PORTA), DADOS, SENHA_ACESSO: SENHA, IMAGENS: join(RAIZ, 'dados-locais', 'imagens'), ESTATICOS: join(RAIZ, 'cliente', 'dist') },
     stdio: ['ignore', 'pipe', 'pipe'],
   });
   servidor.stderr!.on('data', (d) => process.stderr.write(`[servidor] ${d}`));
@@ -202,6 +202,17 @@ async function escolherDeck(p: Page, n: number): Promise<void> {
   await p.locator('.previa-deck').waitFor({ state: 'detached' });
 }
 
+async function escolherObrigatorio(p: Page): Promise<void> {
+  const nome = process.env.E2E_DECK_OBRIGATORIO;
+  if (!nome) return escolherDeck(p, 1);
+  await p.locator('.deck').filter({ hasText: nome }).click();
+  await p.locator('.previa-grupo').first().waitFor();
+  verificar((await p.locator('.previa-topo-linha').textContent())?.includes('100 cartas'), 'prévia do deck obrigatório mostra 100 cartas');
+  await p.getByRole('button', { name: 'Escolher este deck' }).click();
+  await p.locator('.previa-deck').waitFor({ state: 'detached' });
+  console.log(`Deck obrigatório: ${nome}`);
+}
+
 await subirServidor();
 const nav = await chromium.launch();
 try {
@@ -226,7 +237,7 @@ try {
   verificar(await bruno.getByRole('radio', { name: /^Londres/ }).isDisabled(), 'quem não criou a sala acompanha as regras sem poder mudar');
   await ana.getByRole('radio', { name: /^Londres/ }).click();
   await ana.getByRole('button', { name: 'Continuar para os decks' }).click();
-  await escolherDeck(ana, 1);
+  await escolherObrigatorio(ana);
   await bruno.locator('.deck').nth(4).click();
   await bruno.locator('.previa-grupo').first().waitFor({ timeout: 10000 });
   verificar((await bruno.locator('.previa-grupo li').count()) > 20 && (await bruno.locator('.previa-topo-linha').textContent())?.includes('100 cartas'), 'a prévia do deck mostra as 100 cartas separadas por tipo');
@@ -302,7 +313,10 @@ try {
   const cod4 = await criarSala(pessoas[0], '4p');
   for (const p of pessoas.slice(1)) await entrarNaSala(p, cod4);
   await irParaDecks(pessoas[0]);
-  for (const [i, p] of pessoas.entries()) await escolherDeck(p, i + 2);
+  for (const [i, p] of pessoas.entries()) {
+    if (i === 0 && process.env.E2E_DECK_OBRIGATORIO) await escolherObrigatorio(p);
+    else await escolherDeck(p, i + 2);
+  }
   await pessoas[0].waitForTimeout(400);
   await pessoas[0].getByRole('button', { name: 'Começar a partida' }).click();
   await pessoas[0].locator('.abertura').waitFor({ timeout: 30000 });

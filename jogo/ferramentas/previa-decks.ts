@@ -28,8 +28,8 @@ if (!existsSync(senhaArquivo)) writeFileSync(senhaArquivo, 'previa-decks-local\n
 const senha = readFileSync(senhaArquivo, 'utf8').trim();
 const servidor = spawn(process.execPath, ['servidor/index.ts'], {
   cwd: RAIZ_JOGO, stdio: 'inherit',
-  env: { ...process.env, PORTA: String(porta), DADOS: dados, IMAGENS: join(RAIZ_JOGO, 'dados-locais', 'imagens'), ESTATICOS: join(RAIZ_JOGO, 'cliente', 'dist'), SENHA_ACESSO: senha },
+  env: { ...process.env, PORTA: String(porta), DADOS: dados, IMAGENS: join(RAIZ_JOGO, 'dados-locais', 'imagens'), ESTATICOS: join(RAIZ_JOGO, 'cliente', 'dist'), SENHA_ACESSO: senha, HTTPS: '0' },
 });
-console.log(`Prévia: http://localhost:${porta} — branch ${branch}; banco ${dados}`);
+console.log(`Prévia: http://127.0.0.1:${porta} — branch ${branch}; banco ${dados}`);
 servidor.once('exit', (code) => { process.exitCode = code ?? 1; });
 for (const signal of ['SIGINT', 'SIGTERM'] as const) process.once(signal, () => servidor.kill());
