@@ -1090,7 +1090,7 @@ try {
   await p.locator('.janela-caixa .aba').filter({ hasText: 'Vida' }).click();
   for (let k = 0; k < 3; k++) await p.locator('.janela-caixa').getByRole('button', { name: '+', exact: true }).click();
   await p.locator('.janela-caixa').getByRole('button', { name: 'Ganhar 3' }).click();
-  await p.locator('.numero-efeito.vida').waitFor({ timeout: 10000 });
+  await p.locator('.fx-numero.vida').waitFor({ timeout: 10000 });
   await p.waitForTimeout(250);
   await p.screenshot({ path: join(SAIDA, '25b-vida.png') });
   console.log('captura: 25b-vida.png');
@@ -1342,8 +1342,9 @@ try {
   await bloqueio.mouse.move(5, 450);
   await foto(bloqueio, '31-bloqueio');
   await bloqueio.getByRole('button', { name: /Confirmar bloqueio|Não bloquear/ }).click();
-  await bloqueio.locator('.numero-efeito').first().waitFor({ timeout: 15000 });
-  await bloqueio.waitForTimeout(200);
+  // os números do golpe nascem invisíveis e batem no impacto (mesa/impacto.ts): a foto sai no meio da leva
+  await bloqueio.locator('.fx-numero').first().waitFor({ timeout: 15000 });
+  await bloqueio.waitForTimeout(700);
   await bloqueio.screenshot({ path: join(SAIDA, '31b-dano.png') });
   console.log('captura: 31b-dano.png');
   await bloqueio.context().close();
