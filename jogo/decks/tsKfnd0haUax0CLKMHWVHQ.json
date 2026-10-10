@@ -1,0 +1,292 @@
+{
+ "formato": 1,
+ "id": "tsKfnd0haUax0CLKMHWVHQ",
+ "ordem": 16,
+ "nome": "Reign of Dragons (Foundations Commander Precon Decklist)",
+ "link": "https://moxfield.com/decks/tsKfnd0haUax0CLKMHWVHQ",
+ "importadoEm": "2026-10-10T05:01:47.335Z",
+ "verificadoEm": "2026-10-10T05:01:47.335Z",
+ "atual": null,
+ "preparacao": {
+  "comandante": "Lathliss, Dragon Queen",
+  "cartas": [
+   {
+    "nome": "Mountain",
+    "quantidade": 32
+   },
+   {
+    "nome": "Arcane Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Thrill of Possibility",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dragonmaster Outcast",
+    "quantidade": 1
+   },
+   {
+    "nome": "Forgotten Cave",
+    "quantidade": 1
+   },
+   {
+    "nome": "Anger",
+    "quantidade": 1
+   },
+   {
+    "nome": "Basilisk Collar",
+    "quantidade": 1
+   },
+   {
+    "nome": "Chaos Warp",
+    "quantidade": 1
+   },
+   {
+    "nome": "Herald's Horn",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lightning Bolt",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Taurean Mauler",
+    "quantidade": 1
+   },
+   {
+    "nome": "Temple of the False God",
+    "quantidade": 1
+   },
+   {
+    "nome": "Drakuseth, Maw of Flames",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rapacious Dragon",
+    "quantidade": 1
+   },
+   {
+    "nome": "Blasphemous Act",
+    "quantidade": 1
+   },
+   {
+    "nome": "Commander's Sphere",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fire Diamond",
+    "quantidade": 1
+   },
+   {
+    "nome": "Magmaquake",
+    "quantidade": 1
+   },
+   {
+    "nome": "Swiftfoot Boots",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tyrant's Familiar",
+    "quantidade": 1
+   },
+   {
+    "nome": "Warstorm Surge",
+    "quantidade": 1
+   },
+   {
+    "nome": "Skyline Despot",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mana Geyser",
+    "quantidade": 1
+   },
+   {
+    "nome": "Crucible of Fire",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hellkite Charger",
+    "quantidade": 1
+   },
+   {
+    "nome": "Chandra's Ignition",
+    "quantidade": 1
+   },
+   {
+    "nome": "Abrade",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dragonlord's Servant",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dragonspeaker Shaman",
+    "quantidade": 1
+   },
+   {
+    "nome": "Outpost Siege",
+    "quantidade": 1
+   },
+   {
+    "nome": "Spinerock Knoll",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hazoret's Monument",
+    "quantidade": 1
+   },
+   {
+    "nome": "Scourge of the Throne",
+    "quantidade": 1
+   },
+   {
+    "nome": "Utvara Hellkite",
+    "quantidade": 1
+   },
+   {
+    "nome": "Terror of Mount Velus",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bonders' Enclave",
+    "quantidade": 1
+   },
+   {
+    "nome": "Thunderbreak Regent",
+    "quantidade": 1
+   },
+   {
+    "nome": "Chain Reaction",
+    "quantidade": 1
+   },
+   {
+    "nome": "Scourge of Valkas",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dragon Tempest",
+    "quantidade": 1
+   },
+   {
+    "nome": "Haven of the Spirit Dragon",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dragon's Hoard",
+    "quantidade": 1
+   },
+   {
+    "nome": "Spit Flame",
+    "quantidade": 1
+   },
+   {
+    "nome": "Leyline Tyrant",
+    "quantidade": 1
+   },
+   {
+    "nome": "War Room",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cursed Mirror",
+    "quantidade": 1
+   },
+   {
+    "nome": "Minion of the Mighty",
+    "quantidade": 1
+   },
+   {
+    "nome": "Orb of Dragonkind",
+    "quantidade": 1
+   },
+   {
+    "nome": "Unexpected Windfall",
+    "quantidade": 1
+   },
+   {
+    "nome": "Atsushi, the Blazing Sky",
+    "quantidade": 1
+   },
+   {
+    "nome": "Carnelian Orb of Dragonkind",
+    "quantidade": 1
+   },
+   {
+    "nome": "Breath Weapon",
+    "quantidade": 1
+   },
+   {
+    "nome": "Nogi, Draco-Zealot",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shivan Devastator",
+    "quantidade": 1
+   },
+   {
+    "nome": "The Elder Dragon War",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bitter Reunion",
+    "quantidade": 1
+   },
+   {
+    "nome": "Goddric, Cloaked Reveler",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hit the Mother Lode",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dragonhawk, Fate's Tempest",
+    "quantidade": 1
+   },
+   {
+    "nome": "Firespitter Whelp",
+    "quantidade": 1
+   },
+   {
+    "nome": "Count on Luck",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sarkhan, Dragon Ascendant",
+    "quantidade": 1
+   },
+   {
+    "nome": "Goldlust Triad",
+    "quantidade": 1
+   },
+   {
+    "nome": "Breaching Dragonstorm",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dragonstorm Globe",
+    "quantidade": 1
+   },
+   {
+    "nome": "Parapet Thrasher",
+    "quantidade": 1
+   },
+   {
+    "nome": "Thundermane Dragon",
+    "quantidade": 1
+   }
+  ],
+  "origem": {
+   "versao": 0,
+   "atualizadoEm": "2026-09-28T20:58:44.9Z"
+  },
+  "desde": "2026-10-10T05:01:47.335Z"
+ }
+}

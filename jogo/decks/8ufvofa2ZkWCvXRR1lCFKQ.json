@@ -1,0 +1,300 @@
+{
+ "formato": 1,
+ "id": "8ufvofa2ZkWCvXRR1lCFKQ",
+ "ordem": 19,
+ "nome": "Necron Dynasties (Warhammer 40,000 Commander Precon Decklist",
+ "link": "https://moxfield.com/decks/8ufvofa2ZkWCvXRR1lCFKQ",
+ "importadoEm": "2026-10-10T05:13:38.665Z",
+ "verificadoEm": "2026-10-10T05:13:38.665Z",
+ "atual": null,
+ "preparacao": {
+  "comandante": "Szarekh, the Silent King",
+  "cartas": [
+   {
+    "nome": "Swamp",
+    "quantidade": 30
+   },
+   {
+    "nome": "Arcane Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Barren Moor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Caged Sun",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dread Return",
+    "quantidade": 1
+   },
+   {
+    "nome": "Go for the Throat",
+    "quantidade": 1
+   },
+   {
+    "nome": "Living Death",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mask of Memory",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mind Stone",
+    "quantidade": 1
+   },
+   {
+    "nome": "Reliquary Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Thought Vessel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mystic Forge",
+    "quantidade": 1
+   },
+   {
+    "nome": "Commander's Sphere",
+    "quantidade": 1
+   },
+   {
+    "nome": "Unstable Obelisk",
+    "quantidade": 1
+   },
+   {
+    "nome": "Wayfarer's Bauble",
+    "quantidade": 1
+   },
+   {
+    "nome": "Endless Atlas",
+    "quantidade": 1
+   },
+   {
+    "nome": "Beacon of Unrest",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hedron Archive",
+    "quantidade": 1
+   },
+   {
+    "nome": "Myriad Landscape",
+    "quantidade": 1
+   },
+   {
+    "nome": "Darkness",
+    "quantidade": 1
+   },
+   {
+    "nome": "Polluted Mire",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mutilate",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cranial Plating",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gilded Lotus",
+    "quantidade": 1
+   },
+   {
+    "nome": "Desert of the Glorified",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sculpting Steel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vault of Whispers",
+    "quantidade": 1
+   },
+   {
+    "nome": "Defile",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lychguard",
+    "quantidade": 1
+   },
+   {
+    "nome": "Trazyn the Infinite",
+    "quantidade": 1
+   },
+   {
+    "nome": "Out of the Tombs",
+    "quantidade": 1
+   },
+   {
+    "nome": "Biotransference",
+    "quantidade": 1
+   },
+   {
+    "nome": "Illuminor Szeras",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cryptek",
+    "quantidade": 1
+   },
+   {
+    "nome": "Anrakyr the Traveller",
+    "quantidade": 1
+   },
+   {
+    "nome": "Their Number Is Legion",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hexmark Destroyer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Flayed One",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cryptothrall",
+    "quantidade": 1
+   },
+   {
+    "nome": "Convergence of Dominion",
+    "quantidade": 1
+   },
+   {
+    "nome": "Canoptek Wraith",
+    "quantidade": 1
+   },
+   {
+    "nome": "Canoptek Spyder",
+    "quantidade": 1
+   },
+   {
+    "nome": "Canoptek Scarab Swarm",
+    "quantidade": 1
+   },
+   {
+    "nome": "Necron Overlord",
+    "quantidade": 1
+   },
+   {
+    "nome": "Necron Deathmark",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lokhust Heavy Destroyer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Chronomancer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Skorpekh Destroyer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sautekh Immortal",
+    "quantidade": 1
+   },
+   {
+    "nome": "Psychomancer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Plasmancer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tomb Fortress",
+    "quantidade": 1
+   },
+   {
+    "nome": "Canoptek Tomb Sentinel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sceptre of Eternal Glory",
+    "quantidade": 1
+   },
+   {
+    "nome": "Night Scythe",
+    "quantidade": 1
+   },
+   {
+    "nome": "Resurrection Orb",
+    "quantidade": 1
+   },
+   {
+    "nome": "Their Name Is Death",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ghost Ark",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tomb Blade",
+    "quantidade": 1
+   },
+   {
+    "nome": "Technomancer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Necron Monolith",
+    "quantidade": 1
+   },
+   {
+    "nome": "Triarch Praetorian",
+    "quantidade": 1
+   },
+   {
+    "nome": "Skorpekh Lord",
+    "quantidade": 1
+   },
+   {
+    "nome": "Royal Warden",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shard of the Nightbringer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Triarch Stalker",
+    "quantidade": 1
+   },
+   {
+    "nome": "The War in Heaven",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shard of the Void Dragon",
+    "quantidade": 1
+   },
+   {
+    "nome": "Imotekh the Stormlord",
+    "quantidade": 1
+   }
+  ],
+  "origem": {
+   "versao": 0,
+   "atualizadoEm": "2024-10-31T17:08:44.457Z"
+  },
+  "desde": "2026-10-10T05:13:38.665Z"
+ }
+}

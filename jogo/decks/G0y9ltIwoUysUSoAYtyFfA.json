@@ -1,0 +1,340 @@
+{
+ "formato": 1,
+ "id": "G0y9ltIwoUysUSoAYtyFfA",
+ "ordem": 17,
+ "nome": "Raining Cats and Dogs (Secret Lair Commander 2024 Precon Dec",
+ "link": "https://moxfield.com/decks/G0y9ltIwoUysUSoAYtyFfA",
+ "importadoEm": "2026-10-10T05:05:07.453Z",
+ "verificadoEm": "2026-10-10T05:05:07.453Z",
+ "atual": null,
+ "preparacao": {
+  "comandante": "Rin and Seri, Inseparable // Rin and Seri, Inseparable",
+  "cartas": [
+   {
+    "nome": "Mountain",
+    "quantidade": 5
+   },
+   {
+    "nome": "Plains",
+    "quantidade": 10
+   },
+   {
+    "nome": "Forest",
+    "quantidade": 7
+   },
+   {
+    "nome": "Arcane Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Command Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Keeper of Fables",
+    "quantidade": 1
+   },
+   {
+    "nome": "Return of the Wildspeaker",
+    "quantidade": 1
+   },
+   {
+    "nome": "Basilisk Collar",
+    "quantidade": 1
+   },
+   {
+    "nome": "Beastmaster Ascension",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cast Out",
+    "quantidade": 1
+   },
+   {
+    "nome": "Crib Swap",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cultivate",
+    "quantidade": 1
+   },
+   {
+    "nome": "Farseek",
+    "quantidade": 1
+   },
+   {
+    "nome": "Herald's Horn",
+    "quantidade": 1
+   },
+   {
+    "nome": "Impact Tremors",
+    "quantidade": 1
+   },
+   {
+    "nome": "Jungle Shrine",
+    "quantidade": 1
+   },
+   {
+    "nome": "Krosan Verge",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mirror Entity",
+    "quantidade": 1
+   },
+   {
+    "nome": "Nature's Lore",
+    "quantidade": 1
+   },
+   {
+    "nome": "Path to Exile",
+    "quantidade": 1
+   },
+   {
+    "nome": "Skullclamp",
+    "quantidade": 1
+   },
+   {
+    "nome": "Taurean Mauler",
+    "quantidade": 1
+   },
+   {
+    "nome": "Animal Sanctuary",
+    "quantidade": 1
+   },
+   {
+    "nome": "Feline Sovereign",
+    "quantidade": 1
+   },
+   {
+    "nome": "Pack Leader",
+    "quantidade": 1
+   },
+   {
+    "nome": "Highcliff Felidar",
+    "quantidade": 1
+   },
+   {
+    "nome": "Qasali Slingers",
+    "quantidade": 1
+   },
+   {
+    "nome": "Regal Caracal",
+    "quantidade": 1
+   },
+   {
+    "nome": "Exotic Orchard",
+    "quantidade": 1
+   },
+   {
+    "nome": "Oreskos Explorer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Alms Collector",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hungry Lynx",
+    "quantidade": 1
+   },
+   {
+    "nome": "Path of Ancestry",
+    "quantidade": 1
+   },
+   {
+    "nome": "Stalking Leonin",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cinder Glade",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dusk // Dawn",
+    "quantidade": 1
+   },
+   {
+    "nome": "Marisi, Breaker of the Coil",
+    "quantidade": 1
+   },
+   {
+    "nome": "Nacatl War-Pride",
+    "quantidade": 1
+   },
+   {
+    "nome": "Seht's Tiger",
+    "quantidade": 1
+   },
+   {
+    "nome": "Canopy Vista",
+    "quantidade": 1
+   },
+   {
+    "nome": "Whitemane Lion",
+    "quantidade": 1
+   },
+   {
+    "nome": "Game Trail",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fortified Village",
+    "quantidade": 1
+   },
+   {
+    "nome": "White Sun's Zenith",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rootbound Crag",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sunpetal Grove",
+    "quantidade": 1
+   },
+   {
+    "nome": "Warp World",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fleetfoot Panther",
+    "quantidade": 1
+   },
+   {
+    "nome": "King of the Pride",
+    "quantidade": 1
+   },
+   {
+    "nome": "Scattered Groves",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sheltered Thicket",
+    "quantidade": 1
+   },
+   {
+    "nome": "Oketra's Monument",
+    "quantidade": 1
+   },
+   {
+    "nome": "Temur Sabertooth",
+    "quantidade": 1
+   },
+   {
+    "nome": "Three Visits",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lurking Predators",
+    "quantidade": 1
+   },
+   {
+    "nome": "Brimaz, King of Oreskos",
+    "quantidade": 1
+   },
+   {
+    "nome": "Jazal Goldmane",
+    "quantidade": 1
+   },
+   {
+    "nome": "Clifftop Retreat",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vanquisher's Banner",
+    "quantidade": 1
+   },
+   {
+    "nome": "Felidar Retreat",
+    "quantidade": 1
+   },
+   {
+    "nome": "Showdown of the Skalds",
+    "quantidade": 1
+   },
+   {
+    "nome": "Realmwalker",
+    "quantidade": 1
+   },
+   {
+    "nome": "Masked Vandal",
+    "quantidade": 1
+   },
+   {
+    "nome": "Maskwood Nexus",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bloodline Pretender",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cursed Mirror",
+    "quantidade": 1
+   },
+   {
+    "nome": "Loyal Warhound",
+    "quantidade": 1
+   },
+   {
+    "nome": "Spirited Companion",
+    "quantidade": 1
+   },
+   {
+    "nome": "Greater Tanuki",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lion Sash",
+    "quantidade": 1
+   },
+   {
+    "nome": "Komainu Battle Armor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Jetmir's Garden",
+    "quantidade": 1
+   },
+   {
+    "nome": "Kitt Kanto, Mayhem Diva",
+    "quantidade": 1
+   },
+   {
+    "nome": "Phabine, Boss's Confidant",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tocasia's Welcome",
+    "quantidade": 1
+   },
+   {
+    "nome": "Skyhunter Strike Force",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Anointed Procession // Anointed Procession",
+    "quantidade": 1
+   },
+   {
+    "nome": "Jetmir, Nexus of Revels // Jetmir, Nexus of Revels",
+    "quantidade": 1
+   },
+   {
+    "nome": "Jinnie Fay, Jetmir's Second // Jinnie Fay, Jetmir's Second",
+    "quantidade": 1
+   }
+  ],
+  "origem": {
+   "versao": 0,
+   "atualizadoEm": "2026-06-20T01:33:22.447Z"
+  },
+  "desde": "2026-10-10T05:05:07.453Z"
+ }
+}

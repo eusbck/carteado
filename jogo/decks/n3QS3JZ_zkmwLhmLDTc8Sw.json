@@ -1,0 +1,368 @@
+{
+ "formato": 1,
+ "id": "n3QS3JZ_zkmwLhmLDTc8Sw",
+ "ordem": 14,
+ "nome": "Hatsune Miku (Secret Lair Commander 2026 Precon Decklist)",
+ "link": "https://moxfield.com/decks/n3QS3JZ_zkmwLhmLDTc8Sw",
+ "importadoEm": "2026-10-10T04:51:58.508Z",
+ "verificadoEm": "2026-10-10T04:51:58.508Z",
+ "atual": null,
+ "preparacao": {
+  "comandante": "Trostani, Selesnya's Voice",
+  "cartas": [
+   {
+    "nome": "Plains",
+    "quantidade": 7
+   },
+   {
+    "nome": "Forest",
+    "quantidade": 7
+   },
+   {
+    "nome": "Arasta of the Endless Web",
+    "quantidade": 1
+   },
+   {
+    "nome": "Temple of Plenty",
+    "quantidade": 1
+   },
+   {
+    "nome": "Command Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mirari's Wake",
+    "quantidade": 1
+   },
+   {
+    "nome": "Aetherflux Reservoir",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ajani's Pridemate",
+    "quantidade": 1
+   },
+   {
+    "nome": "Avacyn's Pilgrim",
+    "quantidade": 1
+   },
+   {
+    "nome": "Blossoming Sands",
+    "quantidade": 1
+   },
+   {
+    "nome": "Congregate",
+    "quantidade": 1
+   },
+   {
+    "nome": "Explore",
+    "quantidade": 1
+   },
+   {
+    "nome": "Farseek",
+    "quantidade": 1
+   },
+   {
+    "nome": "Graypelt Refuge",
+    "quantidade": 1
+   },
+   {
+    "nome": "Krosan Verge",
+    "quantidade": 1
+   },
+   {
+    "nome": "Llanowar Elves",
+    "quantidade": 1
+   },
+   {
+    "nome": "Nature's Lore",
+    "quantidade": 1
+   },
+   {
+    "nome": "Path to Exile",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rhys the Redeemed",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rogue's Passage",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rootborn Defenses",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shamanic Revelation",
+    "quantidade": 1
+   },
+   {
+    "nome": "Skullclamp",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Swords to Plowshares",
+    "quantidade": 1
+   },
+   {
+    "nome": "Radiant Fountain",
+    "quantidade": 1
+   },
+   {
+    "nome": "Speaker of the Heavens",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sungrass Prairie",
+    "quantidade": 1
+   },
+   {
+    "nome": "Growing Ranks",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hour of Reckoning",
+    "quantidade": 1
+   },
+   {
+    "nome": "Idol of Oblivion",
+    "quantidade": 1
+   },
+   {
+    "nome": "Selesnya Sanctuary",
+    "quantidade": 1
+   },
+   {
+    "nome": "Storm Herd",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sundering Growth",
+    "quantidade": 1
+   },
+   {
+    "nome": "Grove of the Guardian",
+    "quantidade": 1
+   },
+   {
+    "nome": "Selesnya Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Angelic Chorus",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bramble Sovereign",
+    "quantidade": 1
+   },
+   {
+    "nome": "Canopy Vista",
+    "quantidade": 1
+   },
+   {
+    "nome": "Camaraderie",
+    "quantidade": 1
+   },
+   {
+    "nome": "Crested Sunmare",
+    "quantidade": 1
+   },
+   {
+    "nome": "Voice of Resurgence",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sunpetal Grove",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gavony Township",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sapseep Forest",
+    "quantidade": 1
+   },
+   {
+    "nome": "Suture Priest",
+    "quantidade": 1
+   },
+   {
+    "nome": "Invincible Hymn",
+    "quantidade": 1
+   },
+   {
+    "nome": "Springleaf Drum",
+    "quantidade": 1
+   },
+   {
+    "nome": "Phyrexian Processor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Boon Reflection",
+    "quantidade": 1
+   },
+   {
+    "nome": "Seraph Sanctuary",
+    "quantidade": 1
+   },
+   {
+    "nome": "Resplendent Angel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Song of Freyalise",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lathiel, the Bounteous Dawn",
+    "quantidade": 1
+   },
+   {
+    "nome": "Soul of Eternity",
+    "quantidade": 1
+   },
+   {
+    "nome": "Excavation Technique",
+    "quantidade": 1
+   },
+   {
+    "nome": "Blossoming Bogbeast",
+    "quantidade": 1
+   },
+   {
+    "nome": "Healing Technique",
+    "quantidade": 1
+   },
+   {
+    "nome": "Pest Infestation",
+    "quantidade": 1
+   },
+   {
+    "nome": "Prosperous Innkeeper",
+    "quantidade": 1
+   },
+   {
+    "nome": "Nykthos Paragon",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cleric Class",
+    "quantidade": 1
+   },
+   {
+    "nome": "Overgrown Farmland",
+    "quantidade": 1
+   },
+   {
+    "nome": "Voice of the Blessed",
+    "quantidade": 1
+   },
+   {
+    "nome": "Brokers Hideout",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ghalta and Mavren",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gruff Triplets",
+    "quantidade": 1
+   },
+   {
+    "nome": "Restless Prairie",
+    "quantidade": 1
+   },
+   {
+    "nome": "Elenda's Hierophant",
+    "quantidade": 1
+   },
+   {
+    "nome": "Conclave Evangelist",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ancient Cornucopia",
+    "quantidade": 1
+   },
+   {
+    "nome": "Angel of Indemnity",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fanatic of Rhonas",
+    "quantidade": 1
+   },
+   {
+    "nome": "Silverquill Lecturer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lazotep Quarry",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dazzling Theater // Prop Room",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cultivate",
+    "quantidade": 1
+   },
+   {
+    "nome": "Soul Warden",
+    "quantidade": 1
+   },
+   {
+    "nome": "Song of the Worldsoul",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bountiful Promenade",
+    "quantidade": 1
+   },
+   {
+    "nome": "Finale of Devastation",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vorinclex, Voice of Hunger",
+    "quantidade": 1
+   },
+   {
+    "nome": "Archangel of Thune",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shalai, Voice of Plenty",
+    "quantidade": 1
+   },
+   {
+    "nome": "Halo Fountain",
+    "quantidade": 1
+   },
+   {
+    "nome": "Grand Crescendo",
+    "quantidade": 1
+   },
+   {
+    "nome": "Break Down",
+    "quantidade": 1
+   }
+  ],
+  "origem": {
+   "versao": 0,
+   "atualizadoEm": "2026-09-28T20:58:40.903Z"
+  },
+  "desde": "2026-10-10T04:51:58.508Z"
+ }
+}

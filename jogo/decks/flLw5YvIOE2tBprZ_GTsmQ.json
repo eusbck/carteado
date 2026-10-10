@@ -1,0 +1,356 @@
+{
+ "formato": 1,
+ "id": "flLw5YvIOE2tBprZ_GTsmQ",
+ "ordem": 18,
+ "nome": "Maestros Massacre (Streets of New Capenna Commander Precon D",
+ "link": "https://moxfield.com/decks/flLw5YvIOE2tBprZ_GTsmQ",
+ "importadoEm": "2026-10-10T05:09:33.757Z",
+ "verificadoEm": "2026-10-10T05:09:33.757Z",
+ "atual": null,
+ "preparacao": {
+  "comandante": "Anhelo, the Painter",
+  "cartas": [
+   {
+    "nome": "Island",
+    "quantidade": 7
+   },
+   {
+    "nome": "Mountain",
+    "quantidade": 5
+   },
+   {
+    "nome": "Swamp",
+    "quantidade": 6
+   },
+   {
+    "nome": "Woe Strider",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arcane Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Command Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ash Barrens",
+    "quantidade": 1
+   },
+   {
+    "nome": "Crumbling Necropolis",
+    "quantidade": 1
+   },
+   {
+    "nome": "Deep Analysis",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fact or Fiction",
+    "quantidade": 1
+   },
+   {
+    "nome": "Frantic Search",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lightning Greaves",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mimic Vat",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mystic Confluence",
+    "quantidade": 1
+   },
+   {
+    "nome": "Preordain",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Double Vision",
+    "quantidade": 1
+   },
+   {
+    "nome": "Temple of Epiphany",
+    "quantidade": 1
+   },
+   {
+    "nome": "River's Rebuke",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fellwar Stone",
+    "quantidade": 1
+   },
+   {
+    "nome": "Drawn from Dreams",
+    "quantidade": 1
+   },
+   {
+    "nome": "Commander's Sphere",
+    "quantidade": 1
+   },
+   {
+    "nome": "Darkwater Catacombs",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dimir Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Exotic Orchard",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rite of the Raging Storm",
+    "quantidade": 1
+   },
+   {
+    "nome": "Wayfarer's Bauble",
+    "quantidade": 1
+   },
+   {
+    "nome": "Kess, Dissident Mage",
+    "quantidade": 1
+   },
+   {
+    "nome": "Path of Ancestry",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hex",
+    "quantidade": 1
+   },
+   {
+    "nome": "Myriad Landscape",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sunken Hollow",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shadowblood Ridge",
+    "quantidade": 1
+   },
+   {
+    "nome": "Army of the Damned",
+    "quantidade": 1
+   },
+   {
+    "nome": "Grixis Panorama",
+    "quantidade": 1
+   },
+   {
+    "nome": "Zndrsplt's Judgment",
+    "quantidade": 1
+   },
+   {
+    "nome": "Smoldering Marsh",
+    "quantidade": 1
+   },
+   {
+    "nome": "Call the Skybreaker",
+    "quantidade": 1
+   },
+   {
+    "nome": "Choked Estuary",
+    "quantidade": 1
+   },
+   {
+    "nome": "Foreboding Ruins",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dread Summons",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rakdos Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sever the Bloodline",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bedevil",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dig Through Time",
+    "quantidade": 1
+   },
+   {
+    "nome": "Izzet Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Goblin Electromancer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cascade Bluffs",
+    "quantidade": 1
+   },
+   {
+    "nome": "Twinning Staff",
+    "quantidade": 1
+   },
+   {
+    "nome": "Puppeteer Clique",
+    "quantidade": 1
+   },
+   {
+    "nome": "Reign of the Pit",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ponder",
+    "quantidade": 1
+   },
+   {
+    "nome": "Talrand's Invocation",
+    "quantidade": 1
+   },
+   {
+    "nome": "Thriving Bluff",
+    "quantidade": 1
+   },
+   {
+    "nome": "Thriving Moor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Thriving Isle",
+    "quantidade": 1
+   },
+   {
+    "nome": "Chain Reaction",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bloodsoaked Champion",
+    "quantidade": 1
+   },
+   {
+    "nome": "Clone Legion",
+    "quantidade": 1
+   },
+   {
+    "nome": "Damnable Pact",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rekindling Phoenix",
+    "quantidade": 1
+   },
+   {
+    "nome": "Squee, the Immortal",
+    "quantidade": 1
+   },
+   {
+    "nome": "Feed the Swarm",
+    "quantidade": 1
+   },
+   {
+    "nome": "Skyclave Shade",
+    "quantidade": 1
+   },
+   {
+    "nome": "Maestros Charm",
+    "quantidade": 1
+   },
+   {
+    "nome": "A Little Chat",
+    "quantidade": 1
+   },
+   {
+    "nome": "Maestros Theater",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cormela, Glamour Thief",
+    "quantidade": 1
+   },
+   {
+    "nome": "Audacious Swap",
+    "quantidade": 1
+   },
+   {
+    "nome": "Flawless Forgery",
+    "quantidade": 1
+   },
+   {
+    "nome": "Maestros Confluence",
+    "quantidade": 1
+   },
+   {
+    "nome": "Make an Example",
+    "quantidade": 1
+   },
+   {
+    "nome": "Extravagant Replication",
+    "quantidade": 1
+   },
+   {
+    "nome": "Xander's Pact",
+    "quantidade": 1
+   },
+   {
+    "nome": "Body Count",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cryptic Pursuit",
+    "quantidade": 1
+   },
+   {
+    "nome": "Syrix, Carrier of the Flame",
+    "quantidade": 1
+   },
+   {
+    "nome": "Spellbinding Soprano",
+    "quantidade": 1
+   },
+   {
+    "nome": "Smuggler's Buggy",
+    "quantidade": 1
+   },
+   {
+    "nome": "Determined Iteration",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dogged Detective",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sinister Concierge",
+    "quantidade": 1
+   },
+   {
+    "nome": "Waste Management",
+    "quantidade": 1
+   },
+   {
+    "nome": "Parnesse, the Subtle Brush",
+    "quantidade": 1
+   }
+  ],
+  "origem": {
+   "versao": 0,
+   "atualizadoEm": "2026-06-24T14:04:03.477Z"
+  },
+  "desde": "2026-10-10T05:09:33.757Z"
+ }
+}

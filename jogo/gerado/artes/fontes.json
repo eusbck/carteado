@@ -225,5 +225,415 @@
    "fdc/6 borderless legendary+inverted"
   ],
   "baixadoEm": "2026-10-08T06:09:28.315Z"
+ },
+ "Jin Sakai, Ghost of Tsushima": {
+  "imagemLocal": "9f52160b-dcc0-4ab8-b8b2-b576b1688d57",
+  "impressao": {
+   "id": "9f52160b-dcc0-4ab8-b8b2-b576b1688d57",
+   "colecao": "sld",
+   "numero": "2226",
+   "moldura": "2015 borderless legendary inverted",
+   "artista": "Dominik Mayer",
+   "url": "https://cards.scryfall.io/png/front/9/f/9f52160b-dcc0-4ab8-b8b2-b576b1688d57.png?1783905122"
+  },
+  "recorte": {
+   "x": 0,
+   "y": 135,
+   "largura": 744,
+   "altura": 442
+  },
+  "tamanho": [
+   744,
+   442
+  ],
+  "candidatas": [
+   "sld/2226 borderless legendary+inverted"
+  ],
+  "baixadoEm": "2026-10-10T03:07:25.977Z"
+ },
+ "Sauron, Lord of the Rings": {
+  "imagemLocal": "26bbbde8-bfda-49ae-adb6-5860b4dd1364",
+  "impressao": {
+   "id": "509b31d2-e4f9-445f-bdf4-37ca1a59a5ab",
+   "colecao": "ltc",
+   "numero": "92",
+   "moldura": "2015 black legendary extendedart",
+   "artista": "Alex Brock",
+   "url": "https://cards.scryfall.io/png/front/5/0/509b31d2-e4f9-445f-bdf4-37ca1a59a5ab.png?1783916005"
+  },
+  "recorte": {
+   "x": 0,
+   "y": 135,
+   "largura": 745,
+   "altura": 442
+  },
+  "tamanho": [
+   745,
+   442
+  ],
+  "candidatas": [
+   "ltc/478 black showcase+legendary",
+   "ltc/92 black legendary+extendedart",
+   "ltc/84 black legendary+inverted+etched",
+   "ltc/4 black legendary",
+   "ltc/4 black legendary"
+  ],
+  "baixadoEm": "2026-10-10T04:39:08.355Z"
+ },
+ "Doctor Doom, King of Latveria": {
+  "imagemLocal": "099ed408-9178-4403-8b2d-479ca3cbda9b",
+  "impressao": {
+   "id": "099ed408-9178-4403-8b2d-479ca3cbda9b",
+   "colecao": "msc",
+   "numero": "6",
+   "moldura": "2015 borderless legendary inverted",
+   "artista": "Nathaniel Himawan",
+   "url": "https://cards.scryfall.io/png/front/0/9/099ed408-9178-4403-8b2d-479ca3cbda9b.png?1783903303"
+  },
+  "recorte": {
+   "x": 0,
+   "y": 135,
+   "largura": 744,
+   "altura": 442
+  },
+  "tamanho": [
+   744,
+   442
+  ],
+  "candidatas": [
+   "msc/880 borderless legendary+inverted",
+   "msc/6 borderless legendary+inverted"
+  ],
+  "baixadoEm": "2026-10-10T04:42:25.069Z"
+ },
+ "T'Challa, the Black Panther": {
+  "imagemLocal": "c1c8ad61-b7e1-446c-8b74-6e29371ea1d5",
+  "impressao": {
+   "id": "c1c8ad61-b7e1-446c-8b74-6e29371ea1d5",
+   "colecao": "msc",
+   "numero": "7",
+   "moldura": "2015 borderless legendary inverted",
+   "artista": "Eli Minaya",
+   "url": "https://cards.scryfall.io/png/front/c/1/c1c8ad61-b7e1-446c-8b74-6e29371ea1d5.png?1783903301"
+  },
+  "recorte": {
+   "x": 0,
+   "y": 135,
+   "largura": 744,
+   "altura": 442
+  },
+  "tamanho": [
+   744,
+   442
+  ],
+  "candidatas": [
+   "msc/881 borderless legendary+inverted",
+   "msc/7 borderless legendary+inverted"
+  ],
+  "baixadoEm": "2026-10-10T04:46:17.735Z"
+ },
+ "Leonardo, the Balance": {
+  "imagemLocal": "72e637db-7112-406f-809b-0eda248488b5",
+  "impressao": {
+   "id": "72e637db-7112-406f-809b-0eda248488b5",
+   "colecao": "tmc",
+   "numero": "1",
+   "moldura": "2015 borderless legendary inverted",
+   "artista": "Inkognit",
+   "url": "https://cards.scryfall.io/png/front/7/2/72e637db-7112-406f-809b-0eda248488b5.png?1783904176"
+  },
+  "recorte": {
+   "x": 0,
+   "y": 135,
+   "largura": 744,
+   "altura": 442
+  },
+  "tamanho": [
+   744,
+   442
+  ],
+  "candidatas": [
+   "tmc/1 borderless legendary+inverted"
+  ],
+  "baixadoEm": "2026-10-10T04:49:37.436Z"
+ },
+ "Trostani, Selesnya's Voice": {
+  "imagemLocal": "c1bcdea0-120a-4095-af2b-3a53bfcc65b3",
+  "impressao": {
+   "id": "c2649bc6-2ed9-4d50-ad11-ae05d6df2c3d",
+   "colecao": "plst",
+   "numero": "GK1-102",
+   "moldura": "2015 black legendary",
+   "artista": "Sidharth Chaturvedi",
+   "url": "https://cards.scryfall.io/art_crop/front/c/2/c2649bc6-2ed9-4d50-ad11-ae05d6df2c3d.jpg?1783909988"
+  },
+  "recorte": "art_crop",
+  "tamanho": [
+   626,
+   457
+  ],
+  "candidatas": [
+   "plst/GK1-102 black legendary",
+   "c19/204 black legendary",
+   "gk1/102 black legendary",
+   "c19/204 black legendary"
+  ],
+  "baixadoEm": "2026-10-10T04:54:46.134Z"
+ },
+ "Invisible Woman": {
+  "imagemLocal": "640ebf2f-5687-42d4-97e5-85e2fefa89a9",
+  "impressao": {
+   "id": "640ebf2f-5687-42d4-97e5-85e2fefa89a9",
+   "colecao": "msc",
+   "numero": "875",
+   "moldura": "2015 borderless legendary inverted",
+   "artista": "Erikas Perl",
+   "url": "https://cards.scryfall.io/png/front/6/4/640ebf2f-5687-42d4-97e5-85e2fefa89a9.png?1783902983"
+  },
+  "recorte": {
+   "x": 0,
+   "y": 135,
+   "largura": 744,
+   "altura": 442
+  },
+  "tamanho": [
+   744,
+   442
+  ],
+  "candidatas": [
+   "msc/875 borderless legendary+inverted",
+   "msc/1 borderless legendary+inverted"
+  ],
+  "baixadoEm": "2026-10-10T04:57:32.296Z"
+ },
+ "Lathliss, Dragon Queen": {
+  "imagemLocal": "3e52a614-f779-458a-9617-f2b0b4f8cbcb",
+  "impressao": {
+   "id": "409acb8f-cf03-4a56-a8c0-e4c97a01ee10",
+   "colecao": "fdn",
+   "numero": "627",
+   "moldura": "2015 black legendary",
+   "artista": "Alex Konstad",
+   "url": "https://cards.scryfall.io/art_crop/front/4/0/409acb8f-cf03-4a56-a8c0-e4c97a01ee10.jpg?1783908922"
+  },
+  "recorte": "art_crop",
+  "tamanho": [
+   626,
+   457
+  ],
+  "candidatas": [
+   "tdc/219 black legendary",
+   "fdn/627 black legendary",
+   "j22/566 black legendary",
+   "plst/GN2-41 black legendary",
+   "jmp/340 black legendary",
+   "gn2/41 black legendary",
+   "pm19/149s black legendary",
+   "m19/149 black legendary",
+   "pm19/149★ black legendary",
+   "m19/149 black legendary"
+  ],
+  "baixadoEm": "2026-10-10T05:03:54.492Z"
+ },
+ "Rin and Seri, Inseparable // Rin and Seri, Inseparable": {
+  "imagemLocal": "48a000ce-0760-446c-8737-fdf9806e0eb3",
+  "impressao": {
+   "id": "d605c780-a42a-4816-8fb9-63e3114a8246",
+   "colecao": "m21",
+   "numero": "278",
+   "moldura": "2015 black legendary extendedart",
+   "artista": "Leesha Hannigan",
+   "url": "https://cards.scryfall.io/png/front/d/6/d605c780-a42a-4816-8fb9-63e3114a8246.png?1784483577"
+  },
+  "recorte": {
+   "x": 0,
+   "y": 135,
+   "largura": 745,
+   "altura": 442
+  },
+  "tamanho": [
+   745,
+   442
+  ],
+  "candidatas": [
+   "sld/1910 black legendary",
+   "m21/278 black legendary+extendedart",
+   "m21/278 black legendary"
+  ],
+  "baixadoEm": "2026-10-10T05:07:40.394Z"
+ },
+ "Anhelo, the Painter": {
+  "imagemLocal": "462e887d-6b91-4b31-9487-2780ffe8943f",
+  "impressao": {
+   "id": "59569e25-0992-46ae-99a0-b558c4a10361",
+   "colecao": "ncc",
+   "numero": "100",
+   "moldura": "2015 black extendedart legendary",
+   "artista": "Aurore Folny",
+   "url": "https://cards.scryfall.io/png/front/5/9/59569e25-0992-46ae-99a0-b558c4a10361.png?1783923337"
+  },
+  "recorte": {
+   "x": 0,
+   "y": 135,
+   "largura": 745,
+   "altura": 442
+  },
+  "tamanho": [
+   745,
+   442
+  ],
+  "candidatas": [
+   "prm/99787 black legendary",
+   "ncc/186 black legendary+inverted+etched",
+   "ncc/100 black extendedart+legendary",
+   "ncc/1 black legendary"
+  ],
+  "baixadoEm": "2026-10-10T05:11:40.723Z"
+ },
+ "Szarekh, the Silent King": {
+  "imagemLocal": "12a3400d-7a8b-4bae-9a4f-c9a1bc741e68",
+  "impressao": {
+   "id": "12a3400d-7a8b-4bae-9a4f-c9a1bc741e68",
+   "colecao": "40k",
+   "numero": "170",
+   "moldura": "2015 black legendary",
+   "artista": "Anton Solovianchyk",
+   "url": "https://cards.scryfall.io/art_crop/front/1/2/12a3400d-7a8b-4bae-9a4f-c9a1bc741e68.jpg?1783920808"
+  },
+  "recorte": "art_crop",
+  "tamanho": [
+   626,
+   457
+  ],
+  "candidatas": [
+   "40k/318 black legendary+inverted+etched",
+   "40k/177 black legendary+inverted+etched",
+   "40k/170 black legendary",
+   "40k/1 black legendary"
+  ],
+  "baixadoEm": "2026-10-10T05:16:08.405Z"
+ },
+ "Strefan, Maurer Progenitor": {
+  "imagemLocal": "5c48f51d-49f2-411a-ab13-b9011c049cfa",
+  "impressao": {
+   "id": "6d37e626-1f2e-4c26-a6a3-93eaddee1233",
+   "colecao": "voc",
+   "numero": "40",
+   "moldura": "2015 black extendedart legendary",
+   "artista": "Chris Rallis",
+   "url": "https://cards.scryfall.io/png/front/6/d/6d37e626-1f2e-4c26-a6a3-93eaddee1233.png?1783924993"
+  },
+  "recorte": {
+   "x": 0,
+   "y": 135,
+   "largura": 745,
+   "altura": 442
+  },
+  "tamanho": [
+   745,
+   442
+  ],
+  "candidatas": [
+   "ovoc/2 black legendary",
+   "voc/40 black extendedart+legendary",
+   "voc/2 black legendary",
+   "voc/2 black legendary"
+  ],
+  "baixadoEm": "2026-10-10T05:18:58.509Z"
+ },
+ "Captain America, Team Leader": {
+  "imagemLocal": "910a6dfc-04a2-4c6d-b2ba-507bc75ec821",
+  "impressao": {
+   "id": "910a6dfc-04a2-4c6d-b2ba-507bc75ec821",
+   "colecao": "msc",
+   "numero": "879",
+   "moldura": "2015 borderless legendary inverted",
+   "artista": "Mark Spears",
+   "url": "https://cards.scryfall.io/png/front/9/1/910a6dfc-04a2-4c6d-b2ba-507bc75ec821.png?1783902982"
+  },
+  "recorte": {
+   "x": 0,
+   "y": 135,
+   "largura": 744,
+   "altura": 442
+  },
+  "tamanho": [
+   744,
+   442
+  ],
+  "candidatas": [
+   "msc/879 borderless legendary+inverted",
+   "msc/5 borderless legendary+inverted"
+  ],
+  "baixadoEm": "2026-10-10T05:25:49.269Z"
+ },
+ "Sai, Master Thopterist": {
+  "imagemLocal": "5650587a-27a5-4d68-97e2-5745627bd094",
+  "impressao": {
+   "id": "5650587a-27a5-4d68-97e2-5745627bd094",
+   "colecao": "fdc",
+   "numero": "5",
+   "moldura": "2015 borderless inverted legendary",
+   "artista": "Bryan Sola",
+   "url": "https://cards.scryfall.io/png/front/5/6/5650587a-27a5-4d68-97e2-5745627bd094.png?1789776685"
+  },
+  "recorte": {
+   "x": 0,
+   "y": 135,
+   "largura": 744,
+   "altura": 442
+  },
+  "tamanho": [
+   744,
+   442
+  ],
+  "candidatas": [
+   "fdc/5 borderless inverted+legendary"
+  ],
+  "baixadoEm": "2026-10-10T05:35:28.711Z"
+ },
+ "Yennett, Cryptic Sovereign": {
+  "imagemLocal": "0ba9362f-eb35-4e72-8c51-7047c0a3f648",
+  "impressao": {
+   "id": "0ba9362f-eb35-4e72-8c51-7047c0a3f648",
+   "colecao": "sld",
+   "numero": "2121",
+   "moldura": "2015 black legendary",
+   "artista": "Ricardo Cavolo",
+   "url": "https://cards.scryfall.io/art_crop/front/0/b/0ba9362f-eb35-4e72-8c51-7047c0a3f648.jpg?1790743631"
+  },
+  "recorte": "art_crop",
+  "tamanho": [
+   626,
+   457
+  ],
+  "candidatas": [
+   "sld/2121 black legendary",
+   "sld/1019 black legendary"
+  ],
+  "baixadoEm": "2026-10-10T05:39:54.662Z"
+ },
+ "Kaalia of the Vast": {
+  "imagemLocal": "3894cfe6-e851-484f-bbc7-28605a48ebbc",
+  "impressao": {
+   "id": "819a21b1-ec52-4c83-85b4-491600b2e434",
+   "colecao": "pmei",
+   "numero": "2025-19",
+   "moldura": "2015 black legendary",
+   "artista": "Justyna Dura",
+   "url": "https://cards.scryfall.io/art_crop/front/8/1/819a21b1-ec52-4c83-85b4-491600b2e434.jpg?1788003013"
+  },
+  "recorte": "art_crop",
+  "tamanho": [
+   626,
+   457
+  ],
+  "candidatas": [
+   "pmei/2025-19 black legendary",
+   "mh3/489 black legendary+inverted+etched",
+   "mh3/290 black legendary",
+   "mh3/290 black legendary"
+  ],
+  "baixadoEm": "2026-10-10T05:43:50.204Z"
  }
 }

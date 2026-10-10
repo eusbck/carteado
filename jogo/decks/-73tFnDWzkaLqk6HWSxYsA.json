@@ -1,0 +1,328 @@
+{
+ "formato": 1,
+ "id": "-73tFnDWzkaLqk6HWSxYsA",
+ "ordem": 12,
+ "nome": "Wakanda Forever (Marvel Super Heroes Commander Precon Deckli",
+ "link": "https://moxfield.com/decks/-73tFnDWzkaLqk6HWSxYsA",
+ "importadoEm": "2026-10-10T04:44:03.720Z",
+ "verificadoEm": "2026-10-10T04:44:03.720Z",
+ "atual": null,
+ "preparacao": {
+  "comandante": "T'Challa, the Black Panther",
+  "cartas": [
+   {
+    "nome": "Plains",
+    "quantidade": 12
+   },
+   {
+    "nome": "Forest",
+    "quantidade": 12
+   },
+   {
+    "nome": "Arcane Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Command Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Beast Within",
+    "quantidade": 1
+   },
+   {
+    "nome": "Birds of Paradise",
+    "quantidade": 1
+   },
+   {
+    "nome": "Coveted Jewel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Evolving Wilds",
+    "quantidade": 1
+   },
+   {
+    "nome": "Harmonize",
+    "quantidade": 1
+   },
+   {
+    "nome": "Nature's Lore",
+    "quantidade": 1
+   },
+   {
+    "nome": "Palace Jailer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Solemn Simulacrum",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sword of the Animist",
+    "quantidade": 1
+   },
+   {
+    "nome": "Thran Dynamo",
+    "quantidade": 1
+   },
+   {
+    "nome": "Trading Post",
+    "quantidade": 1
+   },
+   {
+    "nome": "Whispersilk Cloak",
+    "quantidade": 1
+   },
+   {
+    "nome": "Meteor Golem",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sungrass Prairie",
+    "quantidade": 1
+   },
+   {
+    "nome": "Terramorphic Expanse",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hammer of Nazahn",
+    "quantidade": 1
+   },
+   {
+    "nome": "Loyal Guardian",
+    "quantidade": 1
+   },
+   {
+    "nome": "Path of Ancestry",
+    "quantidade": 1
+   },
+   {
+    "nome": "Throne of the High City",
+    "quantidade": 1
+   },
+   {
+    "nome": "Overwhelming Stampede",
+    "quantidade": 1
+   },
+   {
+    "nome": "Martial Coup",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gilded Lotus",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bountiful Promenade",
+    "quantidade": 1
+   },
+   {
+    "nome": "Greater Good",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mind's Eye",
+    "quantidade": 1
+   },
+   {
+    "nome": "Canopy Vista",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fortified Village",
+    "quantidade": 1
+   },
+   {
+    "nome": "Divine Visitation",
+    "quantidade": 1
+   },
+   {
+    "nome": "Metalwork Colossus",
+    "quantidade": 1
+   },
+   {
+    "nome": "Scavenger Grounds",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dispatch",
+    "quantidade": 1
+   },
+   {
+    "nome": "Razorverge Thicket",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sunpetal Grove",
+    "quantidade": 1
+   },
+   {
+    "nome": "Generous Gift",
+    "quantidade": 1
+   },
+   {
+    "nome": "Scattered Groves",
+    "quantidade": 1
+   },
+   {
+    "nome": "Loyal Retainers",
+    "quantidade": 1
+   },
+   {
+    "nome": "Valorous Stance",
+    "quantidade": 1
+   },
+   {
+    "nome": "Scourglass",
+    "quantidade": 1
+   },
+   {
+    "nome": "Helm of the Host",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fleecemane Lion",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ingenious Smith",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vanquish the Horde",
+    "quantidade": 1
+   },
+   {
+    "nome": "Conduit of Worlds",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shuri, the Black Panther",
+    "quantidade": 1
+   },
+   {
+    "nome": "Storm, Queen of Wakanda",
+    "quantidade": 1
+   },
+   {
+    "nome": "Heart-Shaped Herb",
+    "quantidade": 1
+   },
+   {
+    "nome": "Okoye, Mighty and Adored",
+    "quantidade": 1
+   },
+   {
+    "nome": "Everett K. Ross, Hapless Attaché",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hatut Zeraze Strike Force",
+    "quantidade": 1
+   },
+   {
+    "nome": "Panther Robot",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fight for the Throne",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dora Milaje Elite",
+    "quantidade": 1
+   },
+   {
+    "nome": "Queen Mother Ramonda",
+    "quantidade": 1
+   },
+   {
+    "nome": "Nakia, Wakandan Operative",
+    "quantidade": 1
+   },
+   {
+    "nome": "M'Baku, Jabari Chieftain",
+    "quantidade": 1
+   },
+   {
+    "nome": "W'Kabi, Shield of the Nation",
+    "quantidade": 1
+   },
+   {
+    "nome": "Zuri, Warrior of Wakanda",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bast, Panther Goddess",
+    "quantidade": 1
+   },
+   {
+    "nome": "T'Chaka, Venerable King",
+    "quantidade": 1
+   },
+   {
+    "nome": "King Solomon's Frogs",
+    "quantidade": 1
+   },
+   {
+    "nome": "Midnight Angel Armor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Royal Talon Fighter Jet",
+    "quantidade": 1
+   },
+   {
+    "nome": "The Spear of Bashenga",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vibranium Strike Gauntlets",
+    "quantidade": 1
+   },
+   {
+    "nome": "Kimoyo Beads",
+    "quantidade": 1
+   },
+   {
+    "nome": "N'Yami-Class Mother Ship",
+    "quantidade": 1
+   },
+   {
+    "nome": "Panther Habit",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shuri's Fabricator",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vibranium Mining Mech",
+    "quantidade": 1
+   },
+   {
+    "nome": "Wakanda Forever!",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ancestral Communion",
+    "quantidade": 1
+   },
+   {
+    "nome": "The Great Mound",
+    "quantidade": 1
+   }
+  ],
+  "origem": {
+   "versao": 0,
+   "atualizadoEm": "2026-07-15T16:03:10.98Z"
+  },
+  "desde": "2026-10-10T04:44:03.720Z"
+ }
+}

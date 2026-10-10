@@ -1,0 +1,352 @@
+{
+ "formato": 1,
+ "id": "Z4cD-XEZRUuH4W9jB_SvuA",
+ "ordem": 10,
+ "nome": "The Hosts of Mordor (The Lord of the Rings Commander Precon ",
+ "link": "https://moxfield.com/decks/Z4cD-XEZRUuH4W9jB_SvuA",
+ "importadoEm": "2026-10-10T04:36:47.752Z",
+ "verificadoEm": "2026-10-10T04:36:47.752Z",
+ "atual": null,
+ "preparacao": {
+  "comandante": "Sauron, Lord of the Rings",
+  "cartas": [
+   {
+    "nome": "Island",
+    "quantidade": 6
+   },
+   {
+    "nome": "Swamp",
+    "quantidade": 6
+   },
+   {
+    "nome": "Mountain",
+    "quantidade": 7
+   },
+   {
+    "nome": "Arcane Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Command Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Revenge of Ravens",
+    "quantidade": 1
+   },
+   {
+    "nome": "Thrill of Possibility",
+    "quantidade": 1
+   },
+   {
+    "nome": "Anger",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arcane Denial",
+    "quantidade": 1
+   },
+   {
+    "nome": "Crumbling Necropolis",
+    "quantidade": 1
+   },
+   {
+    "nome": "Deep Analysis",
+    "quantidade": 1
+   },
+   {
+    "nome": "Evolving Wilds",
+    "quantidade": 1
+   },
+   {
+    "nome": "Extract from Darkness",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fact or Fiction",
+    "quantidade": 1
+   },
+   {
+    "nome": "Faithless Looting",
+    "quantidade": 1
+   },
+   {
+    "nome": "Field of Ruin",
+    "quantidade": 1
+   },
+   {
+    "nome": "Forbidden Alchemy",
+    "quantidade": 1
+   },
+   {
+    "nome": "Guttersnipe",
+    "quantidade": 1
+   },
+   {
+    "nome": "Knollspine Dragon",
+    "quantidade": 1
+   },
+   {
+    "nome": "Living Death",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mind Stone",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rogue's Passage",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Basalt Monolith",
+    "quantidade": 1
+   },
+   {
+    "nome": "Blasphemous Act",
+    "quantidade": 1
+   },
+   {
+    "nome": "Commander's Sphere",
+    "quantidade": 1
+   },
+   {
+    "nome": "Everflowing Chalice",
+    "quantidade": 1
+   },
+   {
+    "nome": "Inferno Titan",
+    "quantidade": 1
+   },
+   {
+    "nome": "Languish",
+    "quantidade": 1
+   },
+   {
+    "nome": "Terramorphic Expanse",
+    "quantidade": 1
+   },
+   {
+    "nome": "Underground River",
+    "quantidade": 1
+   },
+   {
+    "nome": "Worn Powerstone",
+    "quantidade": 1
+   },
+   {
+    "nome": "Path of Ancestry",
+    "quantidade": 1
+   },
+   {
+    "nome": "Treasure Nabber",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sunken Hollow",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sulfurous Springs",
+    "quantidade": 1
+   },
+   {
+    "nome": "Reanimate",
+    "quantidade": 1
+   },
+   {
+    "nome": "Siege-Gang Commander",
+    "quantidade": 1
+   },
+   {
+    "nome": "Decree of Pain",
+    "quantidade": 1
+   },
+   {
+    "nome": "Smoldering Marsh",
+    "quantidade": 1
+   },
+   {
+    "nome": "Choked Estuary",
+    "quantidade": 1
+   },
+   {
+    "nome": "Foreboding Ruins",
+    "quantidade": 1
+   },
+   {
+    "nome": "Desolate Lighthouse",
+    "quantidade": 1
+   },
+   {
+    "nome": "Goblin Cratermaker",
+    "quantidade": 1
+   },
+   {
+    "nome": "Drowned Catacomb",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dragonskull Summit",
+    "quantidade": 1
+   },
+   {
+    "nome": "Goblin Dark-Dwellers",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shiny Impetus",
+    "quantidade": 1
+   },
+   {
+    "nome": "Merciless Executioner",
+    "quantidade": 1
+   },
+   {
+    "nome": "Scourge of the Throne",
+    "quantidade": 1
+   },
+   {
+    "nome": "Boon of the Wish-Giver",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hostage Taker",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sulfur Falls",
+    "quantidade": 1
+   },
+   {
+    "nome": "Notion Thief",
+    "quantidade": 1
+   },
+   {
+    "nome": "Feed the Swarm",
+    "quantidade": 1
+   },
+   {
+    "nome": "Frostboil Snarl",
+    "quantidade": 1
+   },
+   {
+    "nome": "Consider",
+    "quantidade": 1
+   },
+   {
+    "nome": "Voracious Fell Beast",
+    "quantidade": 1
+   },
+   {
+    "nome": "Treason of Isengard",
+    "quantidade": 1
+   },
+   {
+    "nome": "Grishnákh, Brash Instigator",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bitter Downfall",
+    "quantidade": 1
+   },
+   {
+    "nome": "Troll of Khazad-dûm",
+    "quantidade": 1
+   },
+   {
+    "nome": "The Mouth of Sauron",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fiery Inscription",
+    "quantidade": 1
+   },
+   {
+    "nome": "Corsairs of Umbar",
+    "quantidade": 1
+   },
+   {
+    "nome": "Monstrosity of the Lake",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shelob, Dread Weaver",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cavern-Hoard Dragon",
+    "quantidade": 1
+   },
+   {
+    "nome": "Orcish Siegemaster",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rampaging War Mammoth",
+    "quantidade": 1
+   },
+   {
+    "nome": "The Balrog of Moria",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gríma, Saruman's Footman",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lord of the Nazgûl",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lidless Gaze",
+    "quantidade": 1
+   },
+   {
+    "nome": "In the Darkness Bind Them",
+    "quantidade": 1
+   },
+   {
+    "nome": "Subjugate the Hobbits",
+    "quantidade": 1
+   },
+   {
+    "nome": "Moria Scavenger",
+    "quantidade": 1
+   },
+   {
+    "nome": "Summons of Saruman",
+    "quantidade": 1
+   },
+   {
+    "nome": "Too Greedily, Too Deep",
+    "quantidade": 1
+   },
+   {
+    "nome": "Wake the Dragon",
+    "quantidade": 1
+   },
+   {
+    "nome": "Relic of Sauron",
+    "quantidade": 1
+   },
+   {
+    "nome": "The Black Gate",
+    "quantidade": 1
+   },
+   {
+    "nome": "Saruman, the White Hand",
+    "quantidade": 1
+   }
+  ],
+  "origem": {
+   "versao": 0,
+   "atualizadoEm": "2024-10-31T17:24:46.037Z"
+  },
+  "desde": "2026-10-10T04:36:47.752Z"
+ }
+}

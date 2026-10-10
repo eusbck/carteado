@@ -1,0 +1,388 @@
+{
+ "formato": 1,
+ "id": "JHjwO92ZUEyNdPzE7D5d7A",
+ "ordem": 13,
+ "nome": "Turtle Power! (Teenage Mutant Ninja Turtles Commander Precon",
+ "link": "https://moxfield.com/decks/JHjwO92ZUEyNdPzE7D5d7A",
+ "importadoEm": "2026-10-10T04:47:10.296Z",
+ "verificadoEm": "2026-10-10T04:47:10.296Z",
+ "atual": null,
+ "preparacao": {
+  "comandante": "Leonardo, the Balance",
+  "cartas": [
+   {
+    "nome": "Island",
+    "quantidade": 2
+   },
+   {
+    "nome": "Mountain",
+    "quantidade": 2
+   },
+   {
+    "nome": "Plains",
+    "quantidade": 2
+   },
+   {
+    "nome": "Swamp",
+    "quantidade": 2
+   },
+   {
+    "nome": "Forest",
+    "quantidade": 4
+   },
+   {
+    "nome": "Arcane Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Command Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fabled Passage",
+    "quantidade": 1
+   },
+   {
+    "nome": "Steelbane Hydra",
+    "quantidade": 1
+   },
+   {
+    "nome": "Acidic Slime",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ash Barrens",
+    "quantidade": 1
+   },
+   {
+    "nome": "Chromatic Lantern",
+    "quantidade": 1
+   },
+   {
+    "nome": "Corpsejack Menace",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cultivate",
+    "quantidade": 1
+   },
+   {
+    "nome": "Evolving Wilds",
+    "quantidade": 1
+   },
+   {
+    "nome": "Harmonize",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vigor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Voracious Hydra",
+    "quantidade": 1
+   },
+   {
+    "nome": "Blasphemous Act",
+    "quantidade": 1
+   },
+   {
+    "nome": "Exotic Orchard",
+    "quantidade": 1
+   },
+   {
+    "nome": "Path of Ancestry",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cinder Glade",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sunken Hollow",
+    "quantidade": 1
+   },
+   {
+    "nome": "City of Brass",
+    "quantidade": 1
+   },
+   {
+    "nome": "Spire Garden",
+    "quantidade": 1
+   },
+   {
+    "nome": "Together Forever",
+    "quantidade": 1
+   },
+   {
+    "nome": "Smoldering Marsh",
+    "quantidade": 1
+   },
+   {
+    "nome": "Biogenic Ooze",
+    "quantidade": 1
+   },
+   {
+    "nome": "Assassin's Trophy",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dragonskull Summit",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rootbound Crag",
+    "quantidade": 1
+   },
+   {
+    "nome": "Grand Coliseum",
+    "quantidade": 1
+   },
+   {
+    "nome": "Thriving Grove",
+    "quantidade": 1
+   },
+   {
+    "nome": "Thriving Moor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Thriving Isle",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hinterland Harbor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Undergrowth Stadium",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vanquish the Horde",
+    "quantidade": 1
+   },
+   {
+    "nome": "Wave Goodbye",
+    "quantidade": 1
+   },
+   {
+    "nome": "Escape Tunnel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vernal Fen",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vibrant Cityscape",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sodden Verdure",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rain-Slicked Copse",
+    "quantidade": 1
+   },
+   {
+    "nome": "Baxter, Fly in the Ointment",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shredder, Shadow Master",
+    "quantidade": 1
+   },
+   {
+    "nome": "Game Over",
+    "quantidade": 1
+   },
+   {
+    "nome": "Leatherhead, Iron Gator",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ninja Pizza",
+    "quantidade": 1
+   },
+   {
+    "nome": "High Score",
+    "quantidade": 1
+   },
+   {
+    "nome": "Level Up",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arcade Cabinet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Electric Seaweed",
+    "quantidade": 1
+   },
+   {
+    "nome": "Continue?",
+    "quantidade": 1
+   },
+   {
+    "nome": "Endless Foot Assault",
+    "quantidade": 1
+   },
+   {
+    "nome": "Casey Jones, Back Alley Brute",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ray Fillet, Wave Warrior",
+    "quantidade": 1
+   },
+   {
+    "nome": "Irma, Part-Time Mutant",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fast Forward",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dimension X Pizzasaur",
+    "quantidade": 1
+   },
+   {
+    "nome": "April O'Neil, Live on the Scene",
+    "quantidade": 1
+   },
+   {
+    "nome": "Krang, the All-Powerful",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bebop, Skull & Crossbones",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rocksteady, Mutant Marauder",
+    "quantidade": 1
+   },
+   {
+    "nome": "Foot Chopper",
+    "quantidade": 1
+   },
+   {
+    "nome": "Big Apple, 3 a.m.",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rat King, Pale Piper",
+    "quantidade": 1
+   },
+   {
+    "nome": "Big Mother Mouser",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tempestra, Dame of Games",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tokka & Rahzar, Unsupervised",
+    "quantidade": 1
+   },
+   {
+    "nome": "Roadkill Rodney",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hidden Hideout",
+    "quantidade": 1
+   },
+   {
+    "nome": "Coin of Mastery",
+    "quantidade": 1
+   },
+   {
+    "nome": "Super Combo",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lita, Little Orphan Amphibian",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mona Lisa, Science Geek",
+    "quantidade": 1
+   },
+   {
+    "nome": "Here Comes a New Hero!",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lessons from Life",
+    "quantidade": 1
+   },
+   {
+    "nome": "Swift Demise",
+    "quantidade": 1
+   },
+   {
+    "nome": "Double Jump // Flying Kick",
+    "quantidade": 1
+   },
+   {
+    "nome": "Exploding Barrel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Turtle Lair",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mole Module",
+    "quantidade": 1
+   },
+   {
+    "nome": "Everything Pizza",
+    "quantidade": 1
+   },
+   {
+    "nome": "Special Move",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shellshock",
+    "quantidade": 1
+   },
+   {
+    "nome": "Heroes in a Half Shell",
+    "quantidade": 1
+   },
+   {
+    "nome": "Raphael, the Muscle",
+    "quantidade": 1
+   },
+   {
+    "nome": "Michelangelo, the Heart",
+    "quantidade": 1
+   },
+   {
+    "nome": "Donatello, the Brains",
+    "quantidade": 1
+   },
+   {
+    "nome": "Splinter, the Mentor",
+    "quantidade": 1
+   }
+  ],
+  "origem": {
+   "versao": 0,
+   "atualizadoEm": "2026-02-18T19:57:58.853Z"
+  },
+  "desde": "2026-10-10T04:47:10.296Z"
+ }
+}

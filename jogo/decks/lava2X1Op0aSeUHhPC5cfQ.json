@@ -1,0 +1,324 @@
+{
+ "formato": 1,
+ "id": "lava2X1Op0aSeUHhPC5cfQ",
+ "ordem": 20,
+ "nome": "Vampiric Bloodline (Innistrad: Crimson Vow Commander Precon ",
+ "link": "https://moxfield.com/decks/lava2X1Op0aSeUHhPC5cfQ",
+ "importadoEm": "2026-10-10T05:16:37.543Z",
+ "verificadoEm": "2026-10-10T05:16:37.543Z",
+ "atual": null,
+ "preparacao": {
+  "comandante": "Strefan, Maurer Progenitor",
+  "cartas": [
+   {
+    "nome": "Mountain",
+    "quantidade": 11
+   },
+   {
+    "nome": "Swamp",
+    "quantidade": 14
+   },
+   {
+    "nome": "Temple of Malice",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arcane Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Command Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Blood Artist",
+    "quantidade": 1
+   },
+   {
+    "nome": "Night's Whisper",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Temple of the False God",
+    "quantidade": 1
+   },
+   {
+    "nome": "Unclaimed Territory",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vampire Nighthawk",
+    "quantidade": 1
+   },
+   {
+    "nome": "Blasphemous Act",
+    "quantidade": 1
+   },
+   {
+    "nome": "Butcher of Malakir",
+    "quantidade": 1
+   },
+   {
+    "nome": "Commander's Sphere",
+    "quantidade": 1
+   },
+   {
+    "nome": "Exotic Orchard",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fire Diamond",
+    "quantidade": 1
+   },
+   {
+    "nome": "Swiftfoot Boots",
+    "quantidade": 1
+   },
+   {
+    "nome": "Unstable Obelisk",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bloodsworn Steward",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bloodtracker",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bloodline Necromancer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Crimson Honor Guard",
+    "quantidade": 1
+   },
+   {
+    "nome": "Path of Ancestry",
+    "quantidade": 1
+   },
+   {
+    "nome": "Patron of the Vein",
+    "quantidade": 1
+   },
+   {
+    "nome": "Anje's Ravager",
+    "quantidade": 1
+   },
+   {
+    "nome": "Avacyn's Judgment",
+    "quantidade": 1
+   },
+   {
+    "nome": "Myriad Landscape",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rakdos Carnarium",
+    "quantidade": 1
+   },
+   {
+    "nome": "Stromkirk Occultist",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ancient Craving",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tainted Peak",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shadowblood Ridge",
+    "quantidade": 1
+   },
+   {
+    "nome": "Nirkana Revenant",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vampiric Dragon",
+    "quantidade": 1
+   },
+   {
+    "nome": "Underworld Connections",
+    "quantidade": 1
+   },
+   {
+    "nome": "Smoldering Marsh",
+    "quantidade": 1
+   },
+   {
+    "nome": "Falkenrath Gorger",
+    "quantidade": 1
+   },
+   {
+    "nome": "Foreboding Ruins",
+    "quantidade": 1
+   },
+   {
+    "nome": "Indulgent Aristocrat",
+    "quantidade": 1
+   },
+   {
+    "nome": "Stensia Masquerade",
+    "quantidade": 1
+   },
+   {
+    "nome": "Stromkirk Condemned",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rakdos Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Falkenrath Noble",
+    "quantidade": 1
+   },
+   {
+    "nome": "Urge to Feed",
+    "quantidade": 1
+   },
+   {
+    "nome": "Stromkirk Captain",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cordial Vampire",
+    "quantidade": 1
+   },
+   {
+    "nome": "Molten Echoes",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mob Rule",
+    "quantidade": 1
+   },
+   {
+    "nome": "Necropolis Regent",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rakdos Charm",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vandalblast",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bloodlord of Vaasgoth",
+    "quantidade": 1
+   },
+   {
+    "nome": "Charcoal Diamond",
+    "quantidade": 1
+   },
+   {
+    "nome": "Anowon, the Ruin Sage",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dark Impostor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Damnable Pact",
+    "quantidade": 1
+   },
+   {
+    "nome": "Champion of Dusk",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sanctum Seeker",
+    "quantidade": 1
+   },
+   {
+    "nome": "Malakir Bloodwitch",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rakish Heir",
+    "quantidade": 1
+   },
+   {
+    "nome": "Feed the Swarm",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bloodtithe Harvester",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arterial Alchemy",
+    "quantidade": 1
+   },
+   {
+    "nome": "Glass-Cast Heart",
+    "quantidade": 1
+   },
+   {
+    "nome": "Crossway Troublemakers",
+    "quantidade": 1
+   },
+   {
+    "nome": "Imposing Grandeur",
+    "quantidade": 1
+   },
+   {
+    "nome": "Kamber, the Plunderer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Laurine, the Diversion",
+    "quantidade": 1
+   },
+   {
+    "nome": "Predators' Hour",
+    "quantidade": 1
+   },
+   {
+    "nome": "Midnight Arsonist",
+    "quantidade": 1
+   },
+   {
+    "nome": "Markov Enforcer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shadowgrange Archfiend",
+    "quantidade": 1
+   },
+   {
+    "nome": "Scion of Opulence",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sinister Waltz",
+    "quantidade": 1
+   },
+   {
+    "nome": "Olivia's Wrath",
+    "quantidade": 1
+   },
+   {
+    "nome": "Timothar, Baron of Bats",
+    "quantidade": 1
+   }
+  ],
+  "origem": {
+   "versao": 0,
+   "atualizadoEm": "2024-10-31T17:33:12.16Z"
+  },
+  "desde": "2026-10-10T05:16:37.543Z"
+ }
+}

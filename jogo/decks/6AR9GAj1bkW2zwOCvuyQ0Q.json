@@ -1,0 +1,416 @@
+{
+ "formato": 1,
+ "id": "6AR9GAj1bkW2zwOCvuyQ0Q",
+ "ordem": 9,
+ "nome": "🇯🇵Jin's Vengeance⛩️",
+ "link": "https://moxfield.com/decks/6AR9GAj1bkW2zwOCvuyQ0Q",
+ "importadoEm": "2026-10-10T03:03:34.629Z",
+ "verificadoEm": "2026-10-10T03:03:34.629Z",
+ "atual": null,
+ "preparacao": {
+  "comandante": "Jin Sakai, Ghost of Tsushima",
+  "cartas": [
+   {
+    "nome": "Island",
+    "quantidade": 1
+   },
+   {
+    "nome": "Plains",
+    "quantidade": 1
+   },
+   {
+    "nome": "Swamp",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shadowspear",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arcane Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Command Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arcane Sanctum",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lightning Greaves",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lotus Petal",
+    "quantidade": 1
+   },
+   {
+    "nome": "Path to Exile",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Swords to Plowshares",
+    "quantidade": 1
+   },
+   {
+    "nome": "Teferi's Protection",
+    "quantidade": 1
+   },
+   {
+    "nome": "Yuriko, the Tiger's Shadow",
+    "quantidade": 1
+   },
+   {
+    "nome": "Inkmoth Nexus",
+    "quantidade": 1
+   },
+   {
+    "nome": "Serra Ascendant",
+    "quantidade": 1
+   },
+   {
+    "nome": "Swiftfoot Boots",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hammer of Nazahn",
+    "quantidade": 1
+   },
+   {
+    "nome": "Scrubland",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tundra",
+    "quantidade": 1
+   },
+   {
+    "nome": "Underground Sea",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mana Drain",
+    "quantidade": 1
+   },
+   {
+    "nome": "City of Brass",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hatred",
+    "quantidade": 1
+   },
+   {
+    "nome": "Flooded Strand",
+    "quantidade": 1
+   },
+   {
+    "nome": "Steelshaper's Gift",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ethereal Haze",
+    "quantidade": 1
+   },
+   {
+    "nome": "Minamo, School at Water's Edge",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shizo, Death's Storehouse",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sword of Fire and Ice",
+    "quantidade": 1
+   },
+   {
+    "nome": "Godless Shrine",
+    "quantidade": 1
+   },
+   {
+    "nome": "Watery Grave",
+    "quantidade": 1
+   },
+   {
+    "nome": "Morphic Pool",
+    "quantidade": 1
+   },
+   {
+    "nome": "Chrome Mox",
+    "quantidade": 1
+   },
+   {
+    "nome": "Enlightened Tutor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Anguished Unmaking",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sigarda's Aid",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ancient Tomb",
+    "quantidade": 1
+   },
+   {
+    "nome": "Urborg, Tomb of Yawgmoth",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hallowed Fountain",
+    "quantidade": 1
+   },
+   {
+    "nome": "Smothering Tithe",
+    "quantidade": 1
+   },
+   {
+    "nome": "Inventors' Fair",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cyclonic Rift",
+    "quantidade": 1
+   },
+   {
+    "nome": "Marsh Flats",
+    "quantidade": 1
+   },
+   {
+    "nome": "Polluted Delta",
+    "quantidade": 1
+   },
+   {
+    "nome": "Grafted Exoskeleton",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mox Opal",
+    "quantidade": 1
+   },
+   {
+    "nome": "Skithiryx, the Blight Dragon",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tainted Strike",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sword of Feast and Famine",
+    "quantidade": 1
+   },
+   {
+    "nome": "Stoneforge Mystic",
+    "quantidade": 1
+   },
+   {
+    "nome": "Kaya's Ghostform",
+    "quantidade": 1
+   },
+   {
+    "nome": "Spark Double",
+    "quantidade": 1
+   },
+   {
+    "nome": "Urza, Lord High Artificer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Puresteel Paladin",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mox Amber",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dowsing Dagger // Lost Vale",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vault of Champions",
+    "quantidade": 1
+   },
+   {
+    "nome": "Agadeem's Awakening // Agadeem, the Undercrypt",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sakashima of a Thousand Faces",
+    "quantidade": 1
+   },
+   {
+    "nome": "Halvar, God of Battle // Sword of the Realms",
+    "quantidade": 1
+   },
+   {
+    "nome": "Urza's Saga",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sword of Hearth and Home",
+    "quantidade": 1
+   },
+   {
+    "nome": "Esper Sentinel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mantle of the Ancients",
+    "quantidade": 1
+   },
+   {
+    "nome": "Otawara, Soaring City",
+    "quantidade": 1
+   },
+   {
+    "nome": "Eiganjo, Seat of the Empire",
+    "quantidade": 1
+   },
+   {
+    "nome": "Raffine's Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "The Black Gate",
+    "quantidade": 1
+   },
+   {
+    "nome": "Minas Morgul, Dark Fortress",
+    "quantidade": 1
+   },
+   {
+    "nome": "Permission Denied",
+    "quantidade": 1
+   },
+   {
+    "nome": "Codsworth, Handy Helper",
+    "quantidade": 1
+   },
+   {
+    "nome": "Psychic Frog",
+    "quantidade": 1
+   },
+   {
+    "nome": "Witch Enchanter // Witch-Blessed Meadow",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sink into Stupor // Soporific Springs",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fell the Profane // Fell Mire",
+    "quantidade": 1
+   },
+   {
+    "nome": "Basim Ibn Ishaq",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dawn's Truce",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rev, Tithe Extractor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Voice of Victory",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cloud, Midgar Mercenary",
+    "quantidade": 1
+   },
+   {
+    "nome": "Buster Sword",
+    "quantidade": 1
+   },
+   {
+    "nome": "Aettir and Priwen",
+    "quantidade": 1
+   },
+   {
+    "nome": "Genji Glove",
+    "quantidade": 1
+   },
+   {
+    "nome": "Super State",
+    "quantidade": 1
+   },
+   {
+    "nome": "Wan Shi Tong, Librarian",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dark Leo & Shredder",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tymna the Weaver",
+    "quantidade": 1
+   },
+   {
+    "nome": "Eiganjo Castle",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sea of Clouds",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mana Confluence",
+    "quantidade": 1
+   },
+   {
+    "nome": "Grim Hireling",
+    "quantidade": 1
+   },
+   {
+    "nome": "The One Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bloodletter of Aclazotz",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shredder, Shadow Master",
+    "quantidade": 1
+   },
+   {
+    "nome": "King T'Challa // Black Panther, Hope Enduring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Force of Will",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fierce Guardianship",
+    "quantidade": 1
+   },
+   {
+    "nome": "Excalibur, Sword of Eden",
+    "quantidade": 1
+   }
+  ],
+  "origem": {
+   "versao": 5055,
+   "atualizadoEm": "2026-10-10T02:58:29.583Z"
+  },
+  "desde": "2026-10-10T03:03:34.629Z"
+ }
+}

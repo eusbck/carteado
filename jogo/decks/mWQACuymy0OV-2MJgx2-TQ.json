@@ -1,0 +1,368 @@
+{
+ "formato": 1,
+ "id": "mWQACuymy0OV-2MJgx2-TQ",
+ "ordem": 11,
+ "nome": "Doom Prevails (Marvel Super Heroes Commander Precon Decklist",
+ "link": "https://moxfield.com/decks/mWQACuymy0OV-2MJgx2-TQ",
+ "importadoEm": "2026-10-10T04:40:30.590Z",
+ "verificadoEm": "2026-10-10T04:40:30.590Z",
+ "atual": null,
+ "preparacao": {
+  "comandante": "Doctor Doom, King of Latveria",
+  "cartas": [
+   {
+    "nome": "Island",
+    "quantidade": 4
+   },
+   {
+    "nome": "Mountain",
+    "quantidade": 5
+   },
+   {
+    "nome": "Swamp",
+    "quantidade": 6
+   },
+   {
+    "nome": "Arcane Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Command Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Chaos Warp",
+    "quantidade": 1
+   },
+   {
+    "nome": "Crumbling Necropolis",
+    "quantidade": 1
+   },
+   {
+    "nome": "Night's Whisper",
+    "quantidade": 1
+   },
+   {
+    "nome": "Propaganda",
+    "quantidade": 1
+   },
+   {
+    "nome": "Skullclamp",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Terminate",
+    "quantidade": 1
+   },
+   {
+    "nome": "Unclaimed Territory",
+    "quantidade": 1
+   },
+   {
+    "nome": "Blasphemous Act",
+    "quantidade": 1
+   },
+   {
+    "nome": "Exotic Orchard",
+    "quantidade": 1
+   },
+   {
+    "nome": "Swiftfoot Boots",
+    "quantidade": 1
+   },
+   {
+    "nome": "Syphon Mind",
+    "quantidade": 1
+   },
+   {
+    "nome": "Terramorphic Expanse",
+    "quantidade": 1
+   },
+   {
+    "nome": "Kindred Dominance",
+    "quantidade": 1
+   },
+   {
+    "nome": "Path of Ancestry",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sunken Hollow",
+    "quantidade": 1
+   },
+   {
+    "nome": "Toxic Deluge",
+    "quantidade": 1
+   },
+   {
+    "nome": "Luxury Suite",
+    "quantidade": 1
+   },
+   {
+    "nome": "Smoldering Marsh",
+    "quantidade": 1
+   },
+   {
+    "nome": "Choked Estuary",
+    "quantidade": 1
+   },
+   {
+    "nome": "Foreboding Ruins",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bedevil",
+    "quantidade": 1
+   },
+   {
+    "nome": "Scavenger Grounds",
+    "quantidade": 1
+   },
+   {
+    "nome": "Drowned Catacomb",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dragonskull Summit",
+    "quantidade": 1
+   },
+   {
+    "nome": "Talisman of Dominance",
+    "quantidade": 1
+   },
+   {
+    "nome": "Spark Double",
+    "quantidade": 1
+   },
+   {
+    "nome": "Talisman of Indulgence",
+    "quantidade": 1
+   },
+   {
+    "nome": "Canyon Slough",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fetid Pools",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vandalblast",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sulfur Falls",
+    "quantidade": 1
+   },
+   {
+    "nome": "Frostboil Snarl",
+    "quantidade": 1
+   },
+   {
+    "nome": "Secluded Courtyard",
+    "quantidade": 1
+   },
+   {
+    "nome": "Containment Construct",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lethal Scheme",
+    "quantidade": 1
+   },
+   {
+    "nome": "Currency Converter",
+    "quantidade": 1
+   },
+   {
+    "nome": "Black Market Connections",
+    "quantidade": 1
+   },
+   {
+    "nome": "Titan of Littjara",
+    "quantidade": 1
+   },
+   {
+    "nome": "Progenitor's Icon",
+    "quantidade": 1
+   },
+   {
+    "nome": "Patchwork Banner",
+    "quantidade": 1
+   },
+   {
+    "nome": "Withering Torment",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tombstone, Career Criminal",
+    "quantidade": 1
+   },
+   {
+    "nome": "Prowler, Clawed Thief",
+    "quantidade": 1
+   },
+   {
+    "nome": "Chameleon, Master of Disguise",
+    "quantidade": 1
+   },
+   {
+    "nome": "Superior Foes of Spider-Man",
+    "quantidade": 1
+   },
+   {
+    "nome": "Scorched Geyser",
+    "quantidade": 1
+   },
+   {
+    "nome": "Coastal Peak",
+    "quantidade": 1
+   },
+   {
+    "nome": "Kang Prime",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lady Loki, Agent of Chaos",
+    "quantidade": 1
+   },
+   {
+    "nome": "Loki, the Deceiver",
+    "quantidade": 1
+   },
+   {
+    "nome": "Kang, Temporal Tyrant",
+    "quantidade": 1
+   },
+   {
+    "nome": "Madame Hydra",
+    "quantidade": 1
+   },
+   {
+    "nome": "Baron Strucker, HYDRA Overlord",
+    "quantidade": 1
+   },
+   {
+    "nome": "Moonstone, Harsh Mistress",
+    "quantidade": 1
+   },
+   {
+    "nome": "Villainous Hideout",
+    "quantidade": 1
+   },
+   {
+    "nome": "Loki's Scepter",
+    "quantidade": 1
+   },
+   {
+    "nome": "Helmut Zemo, Mastermind",
+    "quantidade": 1
+   },
+   {
+    "nome": "Molecule Man",
+    "quantidade": 1
+   },
+   {
+    "nome": "The Frightful Four",
+    "quantidade": 1
+   },
+   {
+    "nome": "Puppet Master, String Puller",
+    "quantidade": 1
+   },
+   {
+    "nome": "Glorious Purpose",
+    "quantidade": 1
+   },
+   {
+    "nome": "Abomination, World Ravager",
+    "quantidade": 1
+   },
+   {
+    "nome": "Stilt-Man, Towering Terror",
+    "quantidade": 1
+   },
+   {
+    "nome": "Iron Monger, Sadistic Tycoon",
+    "quantidade": 1
+   },
+   {
+    "nome": "Batroc the Leaper",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ultron, Unlimited",
+    "quantidade": 1
+   },
+   {
+    "nome": "Titania, Proud Pummeler",
+    "quantidade": 1
+   },
+   {
+    "nome": "The Squadron Sinister",
+    "quantidade": 1
+   },
+   {
+    "nome": "Damocles Base, Sword of Kang",
+    "quantidade": 1
+   },
+   {
+    "nome": "Typhoid Mary, Fractured",
+    "quantidade": 1
+   },
+   {
+    "nome": "Doom's Time Platform",
+    "quantidade": 1
+   },
+   {
+    "nome": "Extract Power",
+    "quantidade": 1
+   },
+   {
+    "nome": "Archnemesis",
+    "quantidade": 1
+   },
+   {
+    "nome": "Killmonger, Ruthless Usurper",
+    "quantidade": 1
+   },
+   {
+    "nome": "Age of Ultron",
+    "quantidade": 1
+   },
+   {
+    "nome": "Endless Ranks of HYDRA",
+    "quantidade": 1
+   },
+   {
+    "nome": "Klaw, Master of Sound",
+    "quantidade": 1
+   },
+   {
+    "nome": "Living Laser",
+    "quantidade": 1
+   },
+   {
+    "nome": "Red Ghost, Intangible Genius",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tri-Sentinel, Act of Vengeance",
+    "quantidade": 1
+   },
+   {
+    "nome": "Kang Dynasty",
+    "quantidade": 1
+   }
+  ],
+  "origem": {
+   "versao": 0,
+   "atualizadoEm": "2026-07-15T16:03:07.083Z"
+  },
+  "desde": "2026-10-10T04:40:30.590Z"
+ }
+}

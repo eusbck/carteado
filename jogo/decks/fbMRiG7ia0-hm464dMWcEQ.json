@@ -1,0 +1,364 @@
+{
+ "formato": 1,
+ "id": "fbMRiG7ia0-hm464dMWcEQ",
+ "ordem": 21,
+ "nome": "Avengers Assemble Collector's Edition (Marvel Super Heroes C",
+ "link": "https://moxfield.com/decks/fbMRiG7ia0-hm464dMWcEQ",
+ "importadoEm": "2026-10-10T05:23:29.531Z",
+ "verificadoEm": "2026-10-10T05:23:29.531Z",
+ "atual": null,
+ "preparacao": {
+  "comandante": "Captain America, Team Leader",
+  "cartas": [
+   {
+    "nome": "Island",
+    "quantidade": 5
+   },
+   {
+    "nome": "Mountain",
+    "quantidade": 5
+   },
+   {
+    "nome": "Plains",
+    "quantidade": 6
+   },
+   {
+    "nome": "Arcane Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Command Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tome of Legends",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arcane Denial",
+    "quantidade": 1
+   },
+   {
+    "nome": "Herald's Horn",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Swords to Plowshares",
+    "quantidade": 1
+   },
+   {
+    "nome": "Thought Vessel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Unclaimed Territory",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fellwar Stone",
+    "quantidade": 1
+   },
+   {
+    "nome": "Exotic Orchard",
+    "quantidade": 1
+   },
+   {
+    "nome": "Kindred Discovery",
+    "quantidade": 1
+   },
+   {
+    "nome": "Path of Ancestry",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mystic Monastery",
+    "quantidade": 1
+   },
+   {
+    "nome": "Prairie Stream",
+    "quantidade": 1
+   },
+   {
+    "nome": "Port Town",
+    "quantidade": 1
+   },
+   {
+    "nome": "Scavenger Grounds",
+    "quantidade": 1
+   },
+   {
+    "nome": "Metallic Mimic",
+    "quantidade": 1
+   },
+   {
+    "nome": "Talisman of Progress",
+    "quantidade": 1
+   },
+   {
+    "nome": "Glacial Fortress",
+    "quantidade": 1
+   },
+   {
+    "nome": "Talisman of Creativity",
+    "quantidade": 1
+   },
+   {
+    "nome": "Talisman of Conviction",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dismantling Wave",
+    "quantidade": 1
+   },
+   {
+    "nome": "Irrigated Farmland",
+    "quantidade": 1
+   },
+   {
+    "nome": "Austere Command",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hero's Blade",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bastion Protector",
+    "quantidade": 1
+   },
+   {
+    "nome": "Reconnaissance Mission",
+    "quantidade": 1
+   },
+   {
+    "nome": "Door of Destinies",
+    "quantidade": 1
+   },
+   {
+    "nome": "Clifftop Retreat",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sulfur Falls",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gift of Immortality",
+    "quantidade": 1
+   },
+   {
+    "nome": "Spectator Seating",
+    "quantidade": 1
+   },
+   {
+    "nome": "Frostboil Snarl",
+    "quantidade": 1
+   },
+   {
+    "nome": "Furycalm Snarl",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rip Apart",
+    "quantidade": 1
+   },
+   {
+    "nome": "Secluded Courtyard",
+    "quantidade": 1
+   },
+   {
+    "nome": "Folk Hero",
+    "quantidade": 1
+   },
+   {
+    "nome": "Plaza of Heroes",
+    "quantidade": 1
+   },
+   {
+    "nome": "Relic of Legends",
+    "quantidade": 1
+   },
+   {
+    "nome": "Destroy Evil",
+    "quantidade": 1
+   },
+   {
+    "nome": "Raise the Palisade",
+    "quantidade": 1
+   },
+   {
+    "nome": "Make Your Move",
+    "quantidade": 1
+   },
+   {
+    "nome": "Glittering Massif",
+    "quantidade": 1
+   },
+   {
+    "nome": "Radiant Summit",
+    "quantidade": 1
+   },
+   {
+    "nome": "Scorched Geyser",
+    "quantidade": 1
+   },
+   {
+    "nome": "Coastal Peak",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vision, Synthezoid Avenger",
+    "quantidade": 1
+   },
+   {
+    "nome": "Iron Man, Armored Avenger",
+    "quantidade": 1
+   },
+   {
+    "nome": "Captain Marvel, Apex Avenger",
+    "quantidade": 1
+   },
+   {
+    "nome": "Director Nick Fury",
+    "quantidade": 1
+   },
+   {
+    "nome": "Captain America, Living Legend",
+    "quantidade": 1
+   },
+   {
+    "nome": "Captain Mar-Vell, Space-Born",
+    "quantidade": 1
+   },
+   {
+    "nome": "Avengers Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Patriot, Shield Wielder",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rescue, Pepper Potts",
+    "quantidade": 1
+   },
+   {
+    "nome": "Thor, Asgard's Avenger",
+    "quantidade": 1
+   },
+   {
+    "nome": "Speed, Young Avenger",
+    "quantidade": 1
+   },
+   {
+    "nome": "She-Hulk, Wallbreaker",
+    "quantidade": 1
+   },
+   {
+    "nome": "Jocasta, Automaton Avenger",
+    "quantidade": 1
+   },
+   {
+    "nome": "Scarlet Witch, Chaotic Avenger",
+    "quantidade": 1
+   },
+   {
+    "nome": "Black Widow, Agile Avenger",
+    "quantidade": 1
+   },
+   {
+    "nome": "War Machine, Avenging Arsenal",
+    "quantidade": 1
+   },
+   {
+    "nome": "Photon, Mighty Marvel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ant-Man, Elusive Avenger",
+    "quantidade": 1
+   },
+   {
+    "nome": "Avengers Quinjet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hulkbuster Armor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Quicksilver, Speedster",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shang-Chi and the Ten Rings",
+    "quantidade": 1
+   },
+   {
+    "nome": "Avenge",
+    "quantidade": 1
+   },
+   {
+    "nome": "Falcon and Redwing",
+    "quantidade": 1
+   },
+   {
+    "nome": "Professor Hulk",
+    "quantidade": 1
+   },
+   {
+    "nome": "The Wasp, Winsome Avenger",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hercules, Olympian Hero",
+    "quantidade": 1
+   },
+   {
+    "nome": "Winter Soldier, Reborn Avenger",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hawkeye, Avenging Archer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Firebird, Blazing Ranger",
+    "quantidade": 1
+   },
+   {
+    "nome": "Jarvis, Earth's Mightiest Butler",
+    "quantidade": 1
+   },
+   {
+    "nome": "Heroic Return",
+    "quantidade": 1
+   },
+   {
+    "nome": "Love on the Battlefield",
+    "quantidade": 1
+   },
+   {
+    "nome": "West Coast Expansion",
+    "quantidade": 1
+   },
+   {
+    "nome": "Heroic Sacrifice",
+    "quantidade": 1
+   },
+   {
+    "nome": "Methods of the Mighty",
+    "quantidade": 1
+   }
+  ],
+  "origem": {
+   "versao": 0,
+   "atualizadoEm": "2026-07-15T16:02:55Z"
+  },
+  "desde": "2026-10-10T05:23:29.531Z"
+ }
+}

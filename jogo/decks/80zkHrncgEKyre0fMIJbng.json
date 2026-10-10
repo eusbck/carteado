@@ -1,0 +1,284 @@
+{
+ "formato": 1,
+ "id": "80zkHrncgEKyre0fMIJbng",
+ "ordem": 22,
+ "nome": "Keen Engineering (Foundations Commander Precon Decklist)",
+ "link": "https://moxfield.com/decks/80zkHrncgEKyre0fMIJbng",
+ "importadoEm": "2026-10-10T05:32:32.496Z",
+ "verificadoEm": "2026-10-10T05:32:32.496Z",
+ "atual": null,
+ "preparacao": {
+  "comandante": "Sai, Master Thopterist",
+  "cartas": [
+   {
+    "nome": "Island",
+    "quantidade": 34
+   },
+   {
+    "nome": "Arcane Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shimmer Dragon",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lonely Sandbar",
+    "quantidade": 1
+   },
+   {
+    "nome": "Aether Spellbomb",
+    "quantidade": 1
+   },
+   {
+    "nome": "All Is Dust",
+    "quantidade": 1
+   },
+   {
+    "nome": "Counterspell",
+    "quantidade": 1
+   },
+   {
+    "nome": "Darksteel Citadel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Foundry Inspector",
+    "quantidade": 1
+   },
+   {
+    "nome": "Master Transmuter",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mind Stone",
+    "quantidade": 1
+   },
+   {
+    "nome": "Myr Retriever",
+    "quantidade": 1
+   },
+   {
+    "nome": "Negate",
+    "quantidade": 1
+   },
+   {
+    "nome": "Palladium Myr",
+    "quantidade": 1
+   },
+   {
+    "nome": "Propaganda",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Thought Vessel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Thoughtcast",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mazemind Tome",
+    "quantidade": 1
+   },
+   {
+    "nome": "Nevinyrral's Disk",
+    "quantidade": 1
+   },
+   {
+    "nome": "Meteor Golem",
+    "quantidade": 1
+   },
+   {
+    "nome": "Steel Overseer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Buried Ruin",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ichor Wellspring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Myr Battlesphere",
+    "quantidade": 1
+   },
+   {
+    "nome": "Steel Hellkite",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hedron Archive",
+    "quantidade": 1
+   },
+   {
+    "nome": "Remote Isle",
+    "quantidade": 1
+   },
+   {
+    "nome": "Etherium Sculptor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Master of Etherium",
+    "quantidade": 1
+   },
+   {
+    "nome": "Aetherize",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mind's Eye",
+    "quantidade": 1
+   },
+   {
+    "nome": "Thopter Spy Network",
+    "quantidade": 1
+   },
+   {
+    "nome": "Duplicant",
+    "quantidade": 1
+   },
+   {
+    "nome": "Whirler Rogue",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cultivator's Caravan",
+    "quantidade": 1
+   },
+   {
+    "nome": "Chief of the Foundry",
+    "quantidade": 1
+   },
+   {
+    "nome": "Padeem, Consul of Innovation",
+    "quantidade": 1
+   },
+   {
+    "nome": "Skysovereign, Consul Flagship",
+    "quantidade": 1
+   },
+   {
+    "nome": "Thirst for Knowledge",
+    "quantidade": 1
+   },
+   {
+    "nome": "Silver Myr",
+    "quantidade": 1
+   },
+   {
+    "nome": "Darksteel Juggernaut",
+    "quantidade": 1
+   },
+   {
+    "nome": "Spire Golem",
+    "quantidade": 1
+   },
+   {
+    "nome": "Psychosis Crawler",
+    "quantidade": 1
+   },
+   {
+    "nome": "Pull from Tomorrow",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shimmer Myr",
+    "quantidade": 1
+   },
+   {
+    "nome": "Soul-Guide Lantern",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vedalken Archmage",
+    "quantidade": 1
+   },
+   {
+    "nome": "Foundry of the Consuls",
+    "quantidade": 1
+   },
+   {
+    "nome": "Broodstar",
+    "quantidade": 1
+   },
+   {
+    "nome": "Forsaken Monument",
+    "quantidade": 1
+   },
+   {
+    "nome": "War Room",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fall from Favor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Nettlecyst",
+    "quantidade": 1
+   },
+   {
+    "nome": "Thought Monitor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ornithopter of Paradise",
+    "quantidade": 1
+   },
+   {
+    "nome": "Kappa Cannoneer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Research Thief",
+    "quantidade": 1
+   },
+   {
+    "nome": "Launch Mishap",
+    "quantidade": 1
+   },
+   {
+    "nome": "Graaz, Unstoppable Juggernaut",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tamiyo's Logbook",
+    "quantidade": 1
+   },
+   {
+    "nome": "Misleading Signpost",
+    "quantidade": 1
+   },
+   {
+    "nome": "Scrawling Crawler",
+    "quantidade": 1
+   },
+   {
+    "nome": "Thopter Fabricator",
+    "quantidade": 1
+   },
+   {
+    "nome": "Adaptive Omnitool",
+    "quantidade": 1
+   },
+   {
+    "nome": "Memory Guardian",
+    "quantidade": 1
+   }
+  ],
+  "origem": {
+   "versao": 0,
+   "atualizadoEm": "2026-09-28T20:59:00.693Z"
+  },
+  "desde": "2026-10-10T05:32:32.496Z"
+ }
+}

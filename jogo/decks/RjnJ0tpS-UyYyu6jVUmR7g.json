@@ -1,0 +1,332 @@
+{
+ "formato": 1,
+ "id": "RjnJ0tpS-UyYyu6jVUmR7g",
+ "ordem": 24,
+ "nome": "Heavenly Inferno (Commander Anthology Precon Decklist)",
+ "link": "https://moxfield.com/decks/RjnJ0tpS-UyYyu6jVUmR7g",
+ "importadoEm": "2026-10-10T05:40:35.461Z",
+ "verificadoEm": "2026-10-10T05:40:35.461Z",
+ "atual": null,
+ "preparacao": {
+  "comandante": "Kaalia of the Vast",
+  "cartas": [
+   {
+    "nome": "Mountain",
+    "quantidade": 8
+   },
+   {
+    "nome": "Plains",
+    "quantidade": 8
+   },
+   {
+    "nome": "Swamp",
+    "quantidade": 8
+   },
+   {
+    "nome": "Command Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Barren Moor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bojuka Bog",
+    "quantidade": 1
+   },
+   {
+    "nome": "Forgotten Cave",
+    "quantidade": 1
+   },
+   {
+    "nome": "Secluded Steppe",
+    "quantidade": 1
+   },
+   {
+    "nome": "Akoum Refuge",
+    "quantidade": 1
+   },
+   {
+    "nome": "Anger",
+    "quantidade": 1
+   },
+   {
+    "nome": "Armillary Sphere",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bladewing the Risen",
+    "quantidade": 1
+   },
+   {
+    "nome": "Congregate",
+    "quantidade": 1
+   },
+   {
+    "nome": "Death by Dragons",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dragon Whelp",
+    "quantidade": 1
+   },
+   {
+    "nome": "Evincar's Justice",
+    "quantidade": 1
+   },
+   {
+    "nome": "Evolving Wilds",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fallen Angel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Furnace Whelp",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gwyllion Hedge-Mage",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lightning Greaves",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mortify",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mother of Runes",
+    "quantidade": 1
+   },
+   {
+    "nome": "Orzhov Basilica",
+    "quantidade": 1
+   },
+   {
+    "nome": "Path to Exile",
+    "quantidade": 1
+   },
+   {
+    "nome": "Righteous Cause",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sulfurous Blast",
+    "quantidade": 1
+   },
+   {
+    "nome": "Terminate",
+    "quantidade": 1
+   },
+   {
+    "nome": "Earthquake",
+    "quantidade": 1
+   },
+   {
+    "nome": "Serra Angel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Boros Garrison",
+    "quantidade": 1
+   },
+   {
+    "nome": "Boros Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Darksteel Ingot",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rupture Spire",
+    "quantidade": 1
+   },
+   {
+    "nome": "Orim's Thunder",
+    "quantidade": 1
+   },
+   {
+    "nome": "Orzhov Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Syphon Flesh",
+    "quantidade": 1
+   },
+   {
+    "nome": "Syphon Mind",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vivid Meadow",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vow of Malice",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rakdos Carnarium",
+    "quantidade": 1
+   },
+   {
+    "nome": "Zoetic Cavern",
+    "quantidade": 1
+   },
+   {
+    "nome": "Reiver Demon",
+    "quantidade": 1
+   },
+   {
+    "nome": "Malfegor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Voice of All",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tariel, Reckoner of Souls",
+    "quantidade": 1
+   },
+   {
+    "nome": "Oros, the Avenger",
+    "quantidade": 1
+   },
+   {
+    "nome": "Akroma's Vengeance",
+    "quantidade": 1
+   },
+   {
+    "nome": "Molten Slagheap",
+    "quantidade": 1
+   },
+   {
+    "nome": "Oni of Wild Places",
+    "quantidade": 1
+   },
+   {
+    "nome": "Archangel of Strife",
+    "quantidade": 1
+   },
+   {
+    "nome": "Akroma, Angel of Fury",
+    "quantidade": 1
+   },
+   {
+    "nome": "Angelic Arbiter",
+    "quantidade": 1
+   },
+   {
+    "nome": "Angel of Despair",
+    "quantidade": 1
+   },
+   {
+    "nome": "Avatar of Slaughter",
+    "quantidade": 1
+   },
+   {
+    "nome": "Basandra, Battle Seraph",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bathe in Light",
+    "quantidade": 1
+   },
+   {
+    "nome": "Boros Guildmage",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cleansing Beam",
+    "quantidade": 1
+   },
+   {
+    "nome": "Comet Storm",
+    "quantidade": 1
+   },
+   {
+    "nome": "Diabolic Tutor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dread Cacodemon",
+    "quantidade": 1
+   },
+   {
+    "nome": "Duergar Hedge-Mage",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lightkeeper of Emeria",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mana-Charged Dragon",
+    "quantidade": 1
+   },
+   {
+    "nome": "Master Warcraft",
+    "quantidade": 1
+   },
+   {
+    "nome": "Orzhov Guildmage",
+    "quantidade": 1
+   },
+   {
+    "nome": "Pyrohemia",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rakdos Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Razorjaw Oni",
+    "quantidade": 1
+   },
+   {
+    "nome": "Return to Dust",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shattered Angel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Stranglehold",
+    "quantidade": 1
+   },
+   {
+    "nome": "Soul Snare",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vow of Duty",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vow of Lightning",
+    "quantidade": 1
+   },
+   {
+    "nome": "Wrecking Ball",
+    "quantidade": 1
+   }
+  ],
+  "origem": {
+   "versao": 0,
+   "atualizadoEm": "2026-06-25T22:59:05.323Z"
+  },
+  "desde": "2026-10-10T05:40:35.461Z"
+ }
+}

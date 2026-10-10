@@ -1,0 +1,364 @@
+{
+ "formato": 1,
+ "id": "gzvtI9o53U6g06GgzF9keQ",
+ "ordem": 15,
+ "nome": "The Fantastic Four Collector's Edition (Marvel Super Heroes ",
+ "link": "https://moxfield.com/decks/gzvtI9o53U6g06GgzF9keQ",
+ "importadoEm": "2026-10-10T04:55:30.044Z",
+ "verificadoEm": "2026-10-10T04:55:30.044Z",
+ "atual": null,
+ "preparacao": {
+  "comandante": "Invisible Woman",
+  "cartas": [
+   {
+    "nome": "Island",
+    "quantidade": 4
+   },
+   {
+    "nome": "Mountain",
+    "quantidade": 3
+   },
+   {
+    "nome": "Plains",
+    "quantidade": 5
+   },
+   {
+    "nome": "Forest",
+    "quantidade": 5
+   },
+   {
+    "nome": "Arcane Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Command Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fabled Passage",
+    "quantidade": 1
+   },
+   {
+    "nome": "Chromatic Lantern",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cultivate",
+    "quantidade": 1
+   },
+   {
+    "nome": "Deep Analysis",
+    "quantidade": 1
+   },
+   {
+    "nome": "Evolving Wilds",
+    "quantidade": 1
+   },
+   {
+    "nome": "Farseek",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lightning Greaves",
+    "quantidade": 1
+   },
+   {
+    "nome": "Path to Exile",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Exotic Orchard",
+    "quantidade": 1
+   },
+   {
+    "nome": "Terramorphic Expanse",
+    "quantidade": 1
+   },
+   {
+    "nome": "Path of Ancestry",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cinder Glade",
+    "quantidade": 1
+   },
+   {
+    "nome": "Prairie Stream",
+    "quantidade": 1
+   },
+   {
+    "nome": "Recurring Insight",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hull Breach",
+    "quantidade": 1
+   },
+   {
+    "nome": "Canopy Vista",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tragic Arrogance",
+    "quantidade": 1
+   },
+   {
+    "nome": "Collective Effort",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mind's Dilation",
+    "quantidade": 1
+   },
+   {
+    "nome": "Seize the Day",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mirage Mirror",
+    "quantidade": 1
+   },
+   {
+    "nome": "Glacial Fortress",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rootbound Crag",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sunpetal Grove",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cleansing Nova",
+    "quantidade": 1
+   },
+   {
+    "nome": "Three Visits",
+    "quantidade": 1
+   },
+   {
+    "nome": "Genesis Ultimatum",
+    "quantidade": 1
+   },
+   {
+    "nome": "Whirlwind of Thought",
+    "quantidade": 1
+   },
+   {
+    "nome": "Path of Discovery",
+    "quantidade": 1
+   },
+   {
+    "nome": "Clifftop Retreat",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hinterland Harbor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sulfur Falls",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rejuvenating Springs",
+    "quantidade": 1
+   },
+   {
+    "nome": "Expressive Iteration",
+    "quantidade": 1
+   },
+   {
+    "nome": "Monologue Tax",
+    "quantidade": 1
+   },
+   {
+    "nome": "Promise of Loyalty",
+    "quantidade": 1
+   },
+   {
+    "nome": "Terramorph",
+    "quantidade": 1
+   },
+   {
+    "nome": "Galvanic Iteration",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cut a Deal",
+    "quantidade": 1
+   },
+   {
+    "nome": "Clever Concealment",
+    "quantidade": 1
+   },
+   {
+    "nome": "Taunt from the Rampart",
+    "quantidade": 1
+   },
+   {
+    "nome": "Quantum Misalignment",
+    "quantidade": 1
+   },
+   {
+    "nome": "Into the Time Vortex",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bovine Intervention",
+    "quantidade": 1
+   },
+   {
+    "nome": "Annie Joins Up",
+    "quantidade": 1
+   },
+   {
+    "nome": "Radiant Summit",
+    "quantidade": 1
+   },
+   {
+    "nome": "Human Torch",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mister Fantastic",
+    "quantidade": 1
+   },
+   {
+    "nome": "The Thing",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sodden Verdure",
+    "quantidade": 1
+   },
+   {
+    "nome": "Scorched Geyser",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mister Fantastic, Reed Richards",
+    "quantidade": 1
+   },
+   {
+    "nome": "Baxter Building",
+    "quantidade": 1
+   },
+   {
+    "nome": "Silver Surfer, Galactus's Herald",
+    "quantidade": 1
+   },
+   {
+    "nome": "Crystal, Inhuman Princess",
+    "quantidade": 1
+   },
+   {
+    "nome": "The Fantasticar",
+    "quantidade": 1
+   },
+   {
+    "nome": "Unstable Molecule Suit",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cosmic Crucible",
+    "quantidade": 1
+   },
+   {
+    "nome": "Council of Reeds",
+    "quantidade": 1
+   },
+   {
+    "nome": "Medusa, Inhuman Queen",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fantastic Elasticity",
+    "quantidade": 1
+   },
+   {
+    "nome": "Valeria Richards, Precocious",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ultimate Nullification",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lockjaw, Slobbering Teleporter",
+    "quantidade": 1
+   },
+   {
+    "nome": "Franklin Richards, Ascendant",
+    "quantidade": 1
+   },
+   {
+    "nome": "Flame On!",
+    "quantidade": 1
+   },
+   {
+    "nome": "Invisible Force Field",
+    "quantidade": 1
+   },
+   {
+    "nome": "H.E.R.B.I.E., Lovable Robot",
+    "quantidade": 1
+   },
+   {
+    "nome": "Black Bolt, Inhuman King",
+    "quantidade": 1
+   },
+   {
+    "nome": "Nova Flame",
+    "quantidade": 1
+   },
+   {
+    "nome": "Namor, Atlantean King",
+    "quantidade": 1
+   },
+   {
+    "nome": "First Family",
+    "quantidade": 1
+   },
+   {
+    "nome": "Alicia Masters, Skilled Sculptor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dragon Man, Reformed Robot",
+    "quantidade": 1
+   },
+   {
+    "nome": "Power Pack",
+    "quantidade": 1
+   },
+   {
+    "nome": "Willie Lumpkin, Postman",
+    "quantidade": 1
+   },
+   {
+    "nome": "It's Clobberin' Time!",
+    "quantidade": 1
+   },
+   {
+    "nome": "Negative Zone Portal",
+    "quantidade": 1
+   },
+   {
+    "nome": "Galactus, Devourer of Worlds",
+    "quantidade": 1
+   }
+  ],
+  "origem": {
+   "versao": 0,
+   "atualizadoEm": "2026-06-15T16:36:21.1Z"
+  },
+  "desde": "2026-10-10T04:55:30.044Z"
+ }
+}

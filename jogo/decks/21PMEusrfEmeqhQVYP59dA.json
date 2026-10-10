@@ -1,0 +1,380 @@
+{
+ "formato": 1,
+ "id": "21PMEusrfEmeqhQVYP59dA",
+ "ordem": 23,
+ "nome": "Odd and Ends (Secret Lair Commander 2026 Precon Decklist)",
+ "link": "https://moxfield.com/decks/21PMEusrfEmeqhQVYP59dA",
+ "importadoEm": "2026-10-10T05:37:23.398Z",
+ "verificadoEm": "2026-10-10T05:37:23.398Z",
+ "atual": null,
+ "preparacao": {
+  "comandante": "Yennett, Cryptic Sovereign",
+  "cartas": [
+   {
+    "nome": "Island",
+    "quantidade": 4
+   },
+   {
+    "nome": "Plains",
+    "quantidade": 4
+   },
+   {
+    "nome": "Swamp",
+    "quantidade": 4
+   },
+   {
+    "nome": "Nadir Kraken",
+    "quantidade": 1
+   },
+   {
+    "nome": "Temple of Deceit",
+    "quantidade": 1
+   },
+   {
+    "nome": "Temple of Enlightenment",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arcane Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Command Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fabled Passage",
+    "quantidade": 1
+   },
+   {
+    "nome": "Approach of the Second Sun",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arcane Sanctum",
+    "quantidade": 1
+   },
+   {
+    "nome": "Brainstorm",
+    "quantidade": 1
+   },
+   {
+    "nome": "Evolving Wilds",
+    "quantidade": 1
+   },
+   {
+    "nome": "Reliquary Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Soothsaying",
+    "quantidade": 1
+   },
+   {
+    "nome": "Temple of Silence",
+    "quantidade": 1
+   },
+   {
+    "nome": "Commander's Sphere",
+    "quantidade": 1
+   },
+   {
+    "nome": "Exotic Orchard",
+    "quantidade": 1
+   },
+   {
+    "nome": "Terramorphic Expanse",
+    "quantidade": 1
+   },
+   {
+    "nome": "Underground River",
+    "quantidade": 1
+   },
+   {
+    "nome": "Wayfarer's Bauble",
+    "quantidade": 1
+   },
+   {
+    "nome": "Aminatou, the Fateshifter",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fractured Identity",
+    "quantidade": 1
+   },
+   {
+    "nome": "Path of Ancestry",
+    "quantidade": 1
+   },
+   {
+    "nome": "Aeon Engine",
+    "quantidade": 1
+   },
+   {
+    "nome": "Leadership Vacuum",
+    "quantidade": 1
+   },
+   {
+    "nome": "Myriad Landscape",
+    "quantidade": 1
+   },
+   {
+    "nome": "Prairie Stream",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sunken Hollow",
+    "quantidade": 1
+   },
+   {
+    "nome": "Adarkar Wastes",
+    "quantidade": 1
+   },
+   {
+    "nome": "Psychic Battle",
+    "quantidade": 1
+   },
+   {
+    "nome": "Time Stop",
+    "quantidade": 1
+   },
+   {
+    "nome": "Coalition Relic",
+    "quantidade": 1
+   },
+   {
+    "nome": "Oubliette",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rapid Hybridization",
+    "quantidade": 1
+   },
+   {
+    "nome": "Command Beacon",
+    "quantidade": 1
+   },
+   {
+    "nome": "Enigma Sphinx",
+    "quantidade": 1
+   },
+   {
+    "nome": "Imprisoned in the Moon",
+    "quantidade": 1
+   },
+   {
+    "nome": "Doom Whisperer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Thief of Sanity",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mirage Mirror",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mystic Gate",
+    "quantidade": 1
+   },
+   {
+    "nome": "Jeskai Infiltrator",
+    "quantidade": 1
+   },
+   {
+    "nome": "Caves of Koilos",
+    "quantidade": 1
+   },
+   {
+    "nome": "Master of Predicaments",
+    "quantidade": 1
+   },
+   {
+    "nome": "Talisman of Progress",
+    "quantidade": 1
+   },
+   {
+    "nome": "Venser's Journal",
+    "quantidade": 1
+   },
+   {
+    "nome": "Drowned Catacomb",
+    "quantidade": 1
+   },
+   {
+    "nome": "Glacial Fortress",
+    "quantidade": 1
+   },
+   {
+    "nome": "Planeswalker's Mischief",
+    "quantidade": 1
+   },
+   {
+    "nome": "Silent Clearing",
+    "quantidade": 1
+   },
+   {
+    "nome": "Isolated Chapel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ponder",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fatespinner",
+    "quantidade": 1
+   },
+   {
+    "nome": "Extinction Event",
+    "quantidade": 1
+   },
+   {
+    "nome": "Inniaz, the Gale Force",
+    "quantidade": 1
+   },
+   {
+    "nome": "Chaos Wand",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shared Fate",
+    "quantidade": 1
+   },
+   {
+    "nome": "Skyclave Apparition",
+    "quantidade": 1
+   },
+   {
+    "nome": "Skyclave Relic",
+    "quantidade": 1
+   },
+   {
+    "nome": "Profane Transfusion",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vega, the Watcher",
+    "quantidade": 1
+   },
+   {
+    "nome": "Breena, the Demagogue",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dazzling Sphinx",
+    "quantidade": 1
+   },
+   {
+    "nome": "Promise of Loyalty",
+    "quantidade": 1
+   },
+   {
+    "nome": "Yavimaya, Cradle of Growth",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ethersworn Sphinx",
+    "quantidade": 1
+   },
+   {
+    "nome": "Toxrill, the Corrosive",
+    "quantidade": 1
+   },
+   {
+    "nome": "Swift Reconfiguration",
+    "quantidade": 1
+   },
+   {
+    "nome": "Aerial Extortionist",
+    "quantidade": 1
+   },
+   {
+    "nome": "Smuggler's Share",
+    "quantidade": 1
+   },
+   {
+    "nome": "Aboleth Spawn",
+    "quantidade": 1
+   },
+   {
+    "nome": "Space Beleren",
+    "quantidade": 1
+   },
+   {
+    "nome": "Exchange of Words",
+    "quantidade": 1
+   },
+   {
+    "nome": "Loran of the Third Path",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vesuvan Drifter",
+    "quantidade": 1
+   },
+   {
+    "nome": "Marvo, Deep Operative",
+    "quantidade": 1
+   },
+   {
+    "nome": "Claim Jumper",
+    "quantidade": 1
+   },
+   {
+    "nome": "Contaminated Landscape",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Swords to Plowshares",
+    "quantidade": 1
+   },
+   {
+    "nome": "Weathered Wayfarer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Reconnaissance",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sensei's Divining Top",
+    "quantidade": 1
+   },
+   {
+    "nome": "Void Winnower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shadrix Silverquill",
+    "quantidade": 1
+   },
+   {
+    "nome": "Esper Sentinel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Breach the Multiverse",
+    "quantidade": 1
+   },
+   {
+    "nome": "Virtue of Persistence // Locthwain Scorn",
+    "quantidade": 1
+   },
+   {
+    "nome": "Misleading Signpost",
+    "quantidade": 1
+   }
+  ],
+  "origem": {
+   "versao": 0,
+   "atualizadoEm": "2026-09-28T20:50:04.513Z"
+  },
+  "desde": "2026-10-10T05:37:23.398Z"
+ }
+}
