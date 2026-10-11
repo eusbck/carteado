@@ -18,7 +18,7 @@ export default defineCard({
     "1": "CR 106.12, 605.1b: teste: exige ativação de habilidade com símbolo {T} produzindo {C}; improvisar não dispara.",
     "2": "teste: produzir {C}{C} adiciona só mais um {C}, imediatamente e sem pilha.",
     "3": "CR 603.3: ganho de vida é gatilho de conjuração e resolve antes da mágica, mesmo se ela for anulada.",
-    "4": "CR 305.9: jogar terreno não dispara o ganho de vida.",
-    "5": "CR 202.2: produzir cores não confere cor; criatura terreno incolor recebe o bônus."
+    "4": "CR 305.9: teste: jogar terreno não dispara o ganho de vida.",
+    "5": "CR 202.2: teste: produzir cores não confere cor; criatura incolor que gera mana colorida recebe o bônus."
   },
 });
