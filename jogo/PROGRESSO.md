@@ -1471,8 +1471,7 @@ As 40 cartas que faltavam estão escritas, cada uma com teste. O deck entrou no 
     a diferença é que a carta sorteada não aparece como alvo enquanto o gatilho está na pilha.
   - Council of Reeds isenta da regra das lendas todas as permanentes lendárias do jogador, não só as criaturas. O gancho
     do motor é por jogador.
-- A suíte inteira ainda não rodou com estas 40 cartas (rodaram os testes de cada carta, o `tsc`, a conferência e os
-  bots). Está rodando agora; o resultado entra aqui.
+- Suíte inteira na `decks/lote2` com o deck completo: 1039 arquivos, 3157 testes, zero falhas.
 
 ## Doom Prevails (Doctor Doom, King of Latveria): pronto — 11/10/2026
 
