@@ -83,9 +83,9 @@ Todos vêm de `motor/api.ts`. Uma linha de uso por recurso:
 - **Ganchos novos (`rules`):** `keepsUnspentMana` (não perde a mana não gasta), `lookAtTopOfLibrary`, `cantSearchLibraries`, `legendRuleExempt`.
 - **Modos que não podem repetir no turno:** `modal(1, 1, [...], { available: (c, i) => …, onChosen: (c, modos) => … })` (Parapet Thrasher).
 - **Estática depois de troca de controle:** `c.you` de uma estática do campo é quem controla a fonte depois da camada 2.
-- **O mesmo modo mais de uma vez:** `modal(3, 3, [...], { repeat: true })` (Mystic Confluence). Nos testes, repita o rótulo em `tg.choose('modo', [a, a, b])`.
+- **O mesmo modo mais de uma vez:** `modal(3, 3, [...], { repeat: true })` (Mystic Confluence). Nos testes, um `tg.choose('escolha o modo', [rótulo])` por escolha, na ordem.
 - **Custo adicional concedido por outro permanente:** gancho `grantedAdditionalCosts: (c, jogador, mágica) => [additionalCost(...)]` (Anhelo). **Cópia a mais de toda mágica copiada:** gancho `extraSpellCopies` (Twinning Staff).
-- **Conjurar e exilar em vez de ir para o cemitério:** permissão com `exileInstead: true` (Kess, Power Pack). **Bis:** `encore('{3}{R}')`. **Dar suspender a uma carta exilada:** `grantSuspend(g, carta, n)`.
+- **Conjurar e exilar em vez de ir para o cemitério:** permissão com `exileInstead: true` (Kess, Power Pack). **Bis:** `encore('{3}{R}')`. **Dar suspender a uma carta exilada:** `grantSuspend(g, fonte, controlador, cartas)`.
 - **Explorar e cara ou coroa:** `yield* explore(g, criatura)`; `flipCoin(g, jogador)` devolve true se ganhou.
 - **Copiar habilidade na pilha:** `yield* copyStackAbility(g, idNaPilha, jogador, { newTargets: true })`; alvo "habilidade desencadeada" com `{ what: 'ability', label, filter }` (Mister Fantastic).
 - **Ataque obrigatório ou proibido:** gancho `attacksOneOfIfAble: (c, criatura) => jogadores` (Galactus); efeito `{ k: 'rule', id: 'rule:attacksIfAble', params: { player } }` (Silver Surfer); efeito `rule:cantAttackPlayer` com `{ atacante, protegido, depois }` (Willie Lumpkin).
