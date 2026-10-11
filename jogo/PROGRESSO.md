@@ -1624,6 +1624,8 @@ jogáveis).
   - Space Beleren: uma pergunta por criatura sem setor. Os bots aleatórios respondem ao acaso.
 - **Conferir no navegador:** a etiqueta de setor na carta (Space Beleren) e a janela de escolha de setor não foram
   vistas na mesa; a mudança no cliente é uma linha em `cliente/src/mesa/Carta.tsx`.
+- Suíte inteira na `decks/lote2` com o deck completo (commit 00d6354): 1259 arquivos, 3627 testes aprovados, 1 ignorado
+  que já existia, zero falhas (40 minutos). `npx tsc` do motor e do cliente sem erros.
 
 ## Heavenly Inferno (Kaalia of the Vast): pronto — 11/10/2026
 
@@ -1654,5 +1656,39 @@ jogáveis).
 - **Conferir no navegador:** com Master Warcraft, a janela de declarar atacantes ou bloqueadores aparece para quem
   conjurou a mágica, com as criaturas de outro jogador. O cliente não foi mexido nem visto nessa situação.
 
-Faltam 7 decks do lote 2: Hatsune Miku, Wakanda Forever, Turtle Power!, Avengers Assemble, Necron Dynasties e Jin's
-Vengeance, mais o Food and Fellowship (importação e dois comandantes pendentes).
+## Hatsune Miku (Trostani, Selesnya's Voice): pronto — 11/10/2026
+
+As 49 cartas que faltavam estão escritas, cada uma com teste e rulings. O deck entrou no saguão desta cópia (20 decks
+jogáveis).
+
+- Conferência com o Moxfield: 100 cartas, 88 de 88 com regras, nada faltando nem sobrando (o Moxfield tem reserva, que
+  o jogo não usa).
+- Bots com o deck obrigatório: 8 partidas de 4 jogadores e 12 de 2 (aleatórios), 4 de 2 (heurísticos), todas sem erro.
+- `cartas/miku.ts` guarda as notas de rulings de popular e de "sempre que você ganha vida", o gatilho "outra criatura
+  sua entra", a resistência com a última informação conhecida e a mana a mais de terreno (Mirari's Wake, Vorinclex).
+- Motor:
+  - Popular (`populate`, CR 701.36a) e eternizar (`eternalize`, CR 702.129a, com a exceção de cópia `noManaCost`).
+  - Terreno adicional no turno (`extraLandThisTurn`, `turn.extraLands`; CR 305.2): Explore.
+  - "Você ganha o dobro em vez disso" (gancho `lifeGainDouble`, aplicado depois de `lifeGainBonus`): Boon Reflection.
+  - Custo "desvire N criaturas viradas que você controla" (`{ k: 'untapCreatures', n }`): Halo Fountain.
+  - "Não desvira na próxima etapa de desvirar do controlador" (`objeto.data.skipNextUntap`): Vorinclex.
+  - Contagem do turno: fichas criadas (`turnStats.tokensCreated`), para o Idol of Oblivion.
+  - Níveis de Classe (CR 716.2a) feitos na própria Cleric Class, sobre `objeto.classLevel` e o evento `levelUp`.
+- Fichas novas: Elf Warrior verde e branco, Angel com voar e vigilância, Eldrazi 10/10, Pegasus 1/1, Horse 5/5,
+  Elemental verde e branco (força e resistência pelo número de criaturas), Minion X/X, Vampire 1/1 branca, Dinosaur X/X
+  e Junk.
+- Simplificações, para conferir se alguém estranhar na mesa:
+  - Lathiel: a distribuição dos marcadores é escolhida na resolução, com a vida ganha no turno até ali. Pela regra
+    (CR 601.2d) ela é anunciada ao pôr o gatilho na pilha.
+  - Boon Reflection com Cleric Class: o motor soma o +1 antes de dobrar, que é a ordem que rende mais; não pergunta a
+    ordem (CR 616.1).
+  - Phyrexian Processor: a ficha impressa é só "Minion"; o texto atual da carta diz "Phyrexian Minion". A ficha do jogo
+    segue a impressa.
+  - Finale of Devastation: você escolhe primeiro uma carta do cemitério; sem escolher, procura no grimório. Não dá para
+    olhar o grimório antes de decidir pelo cemitério.
+  - Silverquill Lecturer: o demonstrar concedido é um gatilho do Lecturer, não da mágica; o resultado é o mesmo.
+- A suíte inteira ainda não rodou com este deck nem com o Heavenly Inferno (rodaram os testes de cada carta, o `tsc`,
+  a conferência e os bots).
+
+Faltam 6 decks do lote 2: Wakanda Forever, Turtle Power!, Avengers Assemble, Necron Dynasties e Jin's Vengeance, mais o
+Food and Fellowship (importação e dois comandantes pendentes).

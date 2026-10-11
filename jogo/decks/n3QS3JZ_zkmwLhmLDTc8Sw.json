@@ -6,8 +6,7 @@
  "link": "https://moxfield.com/decks/n3QS3JZ_zkmwLhmLDTc8Sw",
  "importadoEm": "2026-10-10T04:51:58.508Z",
  "verificadoEm": "2026-10-10T04:51:58.508Z",
- "atual": null,
- "preparacao": {
+ "atual": {
   "comandante": "Trostani, Selesnya's Voice",
   "cartas": [
    {
@@ -364,5 +363,6 @@
    "atualizadoEm": "2026-09-28T20:58:40.903Z"
   },
   "desde": "2026-10-10T04:51:58.508Z"
- }
+ },
+ "preparacao": null
 }

@@ -128,6 +128,15 @@ Todos vêm de `motor/api.ts`. Uma linha de uso por recurso:
 - **Cada jogador paga quanta mana quiser:** `chooseNumber` com o máximo achado por `canAfford` (de `motor/costs.ts`) e depois `payMana(g, p, [{ k: 'generic', n }], { purpose: { kind: 'effect' }, canCancel: true, label })` (Mana-Charged Dragon).
 - **Nos testes, a escolha da criatura sacrificada num custo** é `tg.choose('Sacrifique', [nome])`, com S maiúsculo.
 - **Mensagem de commit pelo PowerShell:** aspas duplas dentro da mensagem quebram o `git commit -m`; grave a mensagem num arquivo e use `git commit -F`.
+- **Popular, eternizar, terreno adicional:** `yield* populate(g, p)`; `eternalize('{2}{G}{G}')` em `abilities`; `extraLandThisTurn(g, p)` (Explore). Notas de rulings de popular e de ganho de vida: `POPULAR` e `GANHO_DE_VIDA` em `cartas/miku.ts`.
+- **Ganho de vida:** `on.youGainLife()` traz a quantidade em `c.event.amount`; "ganha o dobro": gancho `lifeGainDouble` (Boon Reflection); "ganha essa quantidade mais N": `lifeGainBonus` (Cleric Class). Vida ganha no turno: `turnStats[p].lifeGained`.
+- **"Faça isso apenas uma vez por turno" (opcional):** marque `objeto.usedThisTurn[chave] = turn.number` só quando o jogador aceitar, e use a mesma conferência em `condition` (Nykthos Paragon, Ancient Cornucopia). `oncePerTurn` do gatilho é para "só dispara uma vez por turno".
+- **Mana a mais ao virar um terreno:** `...manaAMaisDeTerreno()` de `cartas/miku.ts`. **Terreno que não desvira na próxima etapa de desvirar:** `objeto.data.skipNextUntap = true` (Vorinclex).
+- **Custo de desvirar criaturas:** `activated([{ k: 'mana', cost }, { k: 'tap' }, { k: 'untapCreatures', n }], …)` (Halo Fountain). O texto de custo só reconhece "Tap a/one/two/three untapped creature(s) you control"; para "an", monte as partes à mão (Springleaf Drum).
+- **Níveis de Classe:** veja `nivel(custo, n)` em `cartas/defs/cleric-class.ts` (usa `objeto.classLevel` e o evento `levelUp`).
+- **Ficha com força e resistência variáveis por contagem:** `selfGets(…, texto, { cda: true })` na ficha (Elemental verde e branco). **Ficha X/X:** `createTokens(g, p, { copyOf: { def: 'Minion X/X', face: 0, except: { power: x, toughness: x } } }, 1)`.
+- **Antes de escrever força e resistência num teste, confira com `node ferramentas/ficha-carta.ts "Nome"`;** a tabela de `cartas/fichas.test.ts` também confere cada ficha com a impressa (`fichasOracle`).
+- **Uma carta com erro ao carregar quebra todos os testes** (todas entram por `cartas/index.ts`): rode o teste da carta nova antes de seguir.
 - **Nos testes, conjurar uma carta do exílio por uma permissão:** ache a ação com `tg.actionIds().find((a) => a.startsWith('cast:') && a.split(':').includes(String(carta)))` e responda com `tg.answer({ kind: 'priority', action })`.
 
 Jeitos de conjurar e custos (`motor/conjurar-alternativo.ts`). Nos testes, o método vai no segundo argumento de `tg.cast(nome, 'overload')`; custo opcional: `tg.choose('custo adicional opcional', ['Pagar: …' | 'Não pagar'])`; custo repetível: `tg.number('quantas vezes', n)`.
