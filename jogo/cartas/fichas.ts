@@ -300,3 +300,6 @@ export const Shapeshifter = token('Shapeshifter', 'Shapeshifter', ['Creature'], 
 export const Dragon44 = token('Dragon 4/4', 'Dragon', ['Creature'], ['Dragon'], ['R'], 4, 4, keywords('flying'));
 /** Vampire 1/1 branca e preta com vínculo com a vida (Glass-Cast Heart) */
 export const VampireWB = token('Vampire 1/1', 'Vampire', ['Creature'], ['Vampire'], ['W', 'B'], 1, 1, keywords('lifelink'));
+// lote2 (integração)
+/** Drake 2/2 azul com voar (Talrand's Invocation) */
+export const Drake22 = token('Drake', 'Drake', ['Creature'], ['Drake'], ['U'], 2, 2, keywords('flying'));

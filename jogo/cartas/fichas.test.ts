@@ -46,6 +46,7 @@ const esperadas: Record<string, [string, string[], string[], string[], number | 
   'Worm': ['Worm', ['Creature'], ['Worm'], ['B', 'G'], 1, 1, []],
   'Zombie': ['Zombie', ['Creature'], ['Zombie'], ['B'], 2, 2, ['decayed']],
   'Zombie 2/2': ['Zombie', ['Creature'], ['Zombie'], ['B'], 2, 2, []],
+  'Drake': ['Drake', ['Creature'], ['Drake'], ['U'], 2, 2, ['flying']],
   'Zombie Army': ['Zombie Army', ['Creature'], ['Zombie', 'Army'], ['B'], 0, 0, []],
   'Soldier': ['Soldier', ['Creature'], ['Soldier'], ['W'], 1, 1, []],
   'Warrior': ['Warrior', ['Creature'], ['Warrior'], ['W'], 1, 1, []],
