@@ -259,12 +259,16 @@ export function goadsEnchanted(text = 'A criatura encantada está goadada (ataca
   return { kind: 'static', text, rules: { goads: (c, obj) => c.g.state.objects[c.source]?.attachedTo === obj } };
 }
 
-/** Descobrir N (CR 701.57) */
-export function* discover(g: G, p: PlayerId, n: number): Gen<void> {
+/**
+ * Descobrir N (CR 701.57). Devolve o valor de mana da carta descoberta (o da carta, CR 202.3: X conta 0), ou null se
+ * nenhuma carta foi descoberta (Hit the Mother Lode compara esse valor com N).
+ */
+export function* discover(g: G, p: PlayerId, n: number): Gen<number | null> {
   const s = g.state;
   const lib = s.zones.library[p];
   const i = lib.findIndex((id) => !isLand(g, id) && chars(g, id).manaValue <= n);
   const tiradas = i < 0 ? [...lib] : lib.slice(0, i + 1);
+  const valor = i < 0 ? null : chars(g, lib[i]).manaValue;
   g.log(`${s.players[p].name} descobre ${n}: exila ${tiradas.map((id) => nameOf(g, id)).join(', ') || 'nada'}.`, { rule: '701.57' });
   const novos = (yield* moveObjects(g, tiradas.map((id) => ({ id, to: 'exile' as const })), 'discover')).filter((x): x is ObjId => x !== null);
   const achada = i < 0 ? null : novos[novos.length - 1] ?? null;
@@ -274,6 +278,7 @@ export function* discover(g: G, p: PlayerId, n: number): Gen<void> {
   }
   const resto = shuffle(s.rng, novos.filter((id) => id !== achada && s.objects[id]?.zone === 'exile'));
   if (resto.length) yield* moveObjects(g, resto.map((id) => ({ id, to: 'library' as const, position: 'bottom' as const })), 'discover');
+  return achada === null ? null : valor;
 }
 
 // ---------------------------------------------------------------------------

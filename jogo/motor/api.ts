@@ -31,3 +31,6 @@ export * from './criaturas.ts';
 export { unattach, canSearchLibraries, regenerationShields, cantBeRegenerated } from './actions.ts';
 export { copyValuesChars } from './chars.ts';
 export type { CopyExcept, CopyValues } from './types.ts';
+// contemplar (CR 701.4): sai daqui quando o lote2-c for juntado (ele exporta a mesma função)
+export { behold } from './contemplar.ts';
+export { removeEffect } from './state.ts';
