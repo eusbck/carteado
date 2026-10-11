@@ -266,6 +266,11 @@ export interface RuleHooks {
   minBlockers?: (c: SCtx, attacker: ObjId) => number;
   /** "esta criatura precisa ser bloqueada por exatamente uma criatura se puder" (Nacatl War-Pride) */
   mustBeBlockedByExactlyOne?: (c: SCtx, attacker: ObjId) => boolean;
+  /**
+   * "se [esse jogador] fosse comprar uma carta que não a primeira da etapa de compra dele, em vez disso ele pula essa
+   * compra e você compra uma carta" (Notion Thief). O motor só consulta fora da primeira compra da etapa de compra.
+   */
+  drawInstead?: (c: SCtx, player: PlayerId) => boolean;
   /** "se [esse jogador] fosse comprar duas ou mais cartas, em vez disso você e ele compram uma carta cada" (Alms Collector) */
   multiDrawInstead?: (c: SCtx, player: PlayerId, n: number) => boolean;
   /** "Seus oponentes não podem procurar em grimórios" (Stranglehold; CR 701.23) */

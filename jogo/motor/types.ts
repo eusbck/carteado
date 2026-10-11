@@ -297,6 +297,8 @@ export interface TurnStats {
   noncreatureSpellsCast?: number;
   /** mágicas conjuradas no turno, na ordem, com tipos e subtipos (Lady Loki: "a sua primeira mágica instantânea, de feitiço ou de Villain") */
   castLog?: { types: string[]; subtypes: string[] }[];
+  /** compras que o jogador faria na própria etapa de compra neste turno (Notion Thief poupa a primeira) */
+  drawStepDraws?: number;
   /** cartas descartadas no turno (Typhoid Mary, Living Laser) */
   cardsDiscarded?: number;
   /** cores das mágicas conjuradas no turno, sem repetição (First Family) */

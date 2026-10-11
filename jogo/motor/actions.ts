@@ -726,7 +726,7 @@ export function addMana(g: G, player: PlayerId, types: ManaType[], extra: Omit<M
 // ---------------------------------------------------------------------------
 // Grimório: comprar, moer, embaralhar, buscar, vidência, vigiar
 // ---------------------------------------------------------------------------
-export function* draw(g: G, player: PlayerId, n = 1): Gen<ObjId[]> {
+export function* draw(g: G, player: PlayerId, n = 1, opts: { aplicadas?: ObjId[] } = {}): Gen<ObjId[]> {
   const out: ObjId[] = [];
   const p = g.state.players[player];
   // Substituição de uma instrução de comprar duas ou mais cartas (Alms Collector; CR 614.1a): vale para a instrução
@@ -745,8 +745,31 @@ export function* draw(g: G, player: PlayerId, n = 1): Gen<ObjId[]> {
       return yield* draw(g, player, 1);
     }
   }
+  const aplicadas = opts.aplicadas ?? [];
   for (let i = 0; i < n; i++) { // CR 121.2: uma de cada vez
     if (p.left) break;
+    // Notion Thief (CR 614.1a): fora da primeira compra da etapa de compra do jogador, a compra é pulada e o controlador
+    // do efeito compra uma carta. Cada efeito só se aplica uma vez à mesma compra (CR 614.5); com vários, quem
+    // compraria escolhe qual (CR 616.1)
+    {
+      const stats = g.state.turnStats[player];
+      const naEtapa = g.state.turn.step === 'draw' && g.state.turn.active === player;
+      const primeiraDaEtapa = naEtapa && (stats.drawStepDraws ?? 0) === 0;
+      if (naEtapa) stats.drawStepDraws = (stats.drawStepDraws ?? 0) + 1;
+      if (!primeiraDaEtapa) {
+        const subs = hooks(g, 'drawInstead').filter((h) => !aplicadas.includes(h.ctx.source) && h.fn(h.ctx, player));
+        if (subs.length) {
+          let escolhida = subs[0];
+          if (subs.length > 1) {
+            const [esc] = yield* chooseItems(g, player, 'Escolha qual efeito substitui a sua compra', subs.map((h, k) => ({ id: String(k), label: `${nameOf(g, h.ctx.source)} de ${g.state.players[h.ctx.you].name}` })), 1, 1);
+            escolhida = subs[Number(esc)];
+          }
+          g.log(`${nameOf(g, escolhida.ctx.source)}: ${p.name} pula a compra e ${g.state.players[escolhida.ctx.you].name} compra uma carta.`, { rule: '614.1a' });
+          yield* draw(g, escolhida.ctx.you, 1, { aplicadas: [...aplicadas, escolhida.ctx.source] });
+          continue;
+        }
+      }
+    }
     const lib = g.state.zones.library[player];
     if (lib.length === 0) { p.drewFromEmpty = true; g.bump(); continue; } // CR 121.4
     const top = lib[0];
