@@ -72,6 +72,9 @@ const esperadas: Record<string, [string, string[], string[], string[], number | 
   // lote2-f
   'Plant': ['Plant', ['Creature'], ['Plant'], ['G'], 0, 2, ['defender']],
   'Vibranium': ['Vibranium', ['Artifact'], ['Vibranium'], [], null, null, ['indestructible']],
+  // lote2-g
+  'Dragon 5/5': ['Dragon', ['Creature'], ['Dragon'], ['R'], 5, 5, ['flying']],
+  'Dragon 6/6': ['Dragon', ['Creature'], ['Dragon'], ['R'], 6, 6, ['flying']],
 };
 
 describe('Fichas: características', () => {
