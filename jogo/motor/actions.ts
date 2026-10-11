@@ -266,7 +266,8 @@ export function* putOntoBattlefield(g: G, reqs: EnterReq[], cause: string): Gen<
       copyOf: r.token?.copyOf ?? r.copyOf ?? null, faceDown: r.faceDown, spell: r.spell,
     };
     // Aura que entra sem ser mágica: escolhe o que encantar (CR 303.4f); sem opção, não entra (303.4g)
-    if (wc.subtypes.includes('Aura') && !r.faceDown && ev.attachTo === null) {
+    // (a Aura que resolveu encantando um jogador já vem com ele em data.enchantedPlayer: CR 303.4b)
+    if (wc.subtypes.includes('Aura') && !r.faceDown && ev.attachTo === null && r.data?.enchantedPlayer === undefined) {
       const defName = r.token?.copyOf?.def ?? r.token?.def ?? fromObj?.copyOf?.def ?? fromObj!.def;
       const cands = enchantCandidates(g, defName, 0, r.controller, r.id !== undefined ? [r.id] : []);
       if (cands.length === 0) continue;
@@ -603,7 +604,8 @@ export function regenerateOrDestroy(g: G, ids: ObjId[], cantRegenerate = false):
 
 /** CR 701.21: sacrificar (só permanentes que o jogador controla) */
 export function* sacrifice(g: G, ids: ObjId[]): Gen<(ObjId | null)[]> {
-  const ok = ids.filter((id) => g.state.objects[id]?.zone === 'battlefield');
+  const preso = (id: ObjId): boolean => g.state.effects.some((e) => e.affected?.includes(id) && e.mods.some((m) => m.k === 'rule' && m.id === 'rule:cantBeSacrificed'));
+  const ok = ids.filter((id) => g.state.objects[id]?.zone === 'battlefield' && !preso(id));
   return yield* moveObjects(g, ok.map((id) => ({ id, to: 'graveyard' as ZoneName })), 'sacrifice');
 }
 

@@ -295,6 +295,8 @@ export interface TurnStats {
   spellsCast: number;
   /** mágicas que não são de criatura conjuradas neste turno (pode faltar em partidas salvas antes de existir) */
   noncreatureSpellsCast?: number;
+  /** mágicas conjuradas no turno, na ordem, com tipos e subtipos (Lady Loki: "a sua primeira mágica instantânea, de feitiço ou de Villain") */
+  castLog?: { types: string[]; subtypes: string[] }[];
   /** cartas descartadas no turno (Typhoid Mary, Living Laser) */
   cardsDiscarded?: number;
   /** cores das mágicas conjuradas no turno, sem repetição (First Family) */

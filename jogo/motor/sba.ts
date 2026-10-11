@@ -89,7 +89,7 @@ export function* performSBAs(g: G): Gen<boolean> {
       } else if (c.subtypes.includes('Equipment')) {
         if (!ok || !isCreature(g, o.attachedTo) || isCreature(g, id) || protectionBlocksEquip(g, o.attachedTo, id)) unattach.push(id); // CR 704.5n, 702.16d
       } else unattach.push(id); // CR 704.5p
-    } else if (c.subtypes.includes('Aura') && !o.data.auraUnattachedOk) toGraveyard.push(id); // CR 704.5m
+    } else if (c.subtypes.includes('Aura') && (!o.data.auraUnattachedOk || (typeof o.data.enchantedPlayer === 'number' && s.players[o.data.enchantedPlayer]?.left))) toGraveyard.push(id); // CR 704.5m (a Aura de jogador sai quando ele deixa a partida)
     // CR 704.5q: +1/+1 e -1/-1 se anulam
     const plus = o.counters['+1/+1'] ?? 0, minus = o.counters['-1/-1'] ?? 0;
     if (plus > 0 && minus > 0) {

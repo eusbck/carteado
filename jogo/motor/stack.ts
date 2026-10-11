@@ -534,6 +534,7 @@ function* castInner(g: G, player: PlayerId, cardId: ObjId, method: CastMethod): 
   const c = chars(g, spellId);
   if (!c.types.includes('Creature')) st.noncreatureSpellsCast = (st.noncreatureSpellsCast ?? 0) + 1;
   st.spellColorsCast = [...new Set([...(st.spellColorsCast ?? []), ...c.colors])];
+  st.castLog = [...(st.castLog ?? []), { types: [...c.types], subtypes: [...c.subtypes] }];
   // "a próxima mágica do tipo escolhido": a permissão de lampejo acaba quando essa mágica é conjurada, com ou sem lampejo
   for (const e of [...g.state.effects]) {
     if (e.mods.some((m) => m.k === 'rule' && m.id === 'rule:flashNext' && m.params?.player === player && c.subtypes.includes(m.params?.tipo as string))) removeEffect(g, e.id);
@@ -802,6 +803,7 @@ export function* resolveTop(g: G): Gen<void> {
   const { specs, groups } = spellTargetSpecs(o, st.modes, st.method);
   if (isPermanent) {
     let attachTo: ObjId | null = null;
+    let jogadorEncantado: PlayerId | null = null;
     if (specs.length) {
       const targets = checkTargets(g, o, specs, id);
       const auraTarget = targets?.[targets.length - 1]?.[0];
@@ -815,6 +817,7 @@ export function* resolveTop(g: G): Gen<void> {
           return;
         }
       } else if (auraTarget.kind === 'obj') attachTo = auraTarget.id;
+      else if (auraTarget.kind === 'player' && c.subtypes.includes('Aura')) jogadorEncantado = auraTarget.id;
     }
     const spell = { x: st.x, paid: st.paid, method: st.method, manaSpent: st.manaSpent, castFrom: st.castFrom };
     // sneak (CR 702.190b): entra virada e atacando quem o atacante devolvido atacava; só criatura ataca (506.3a), e não
@@ -824,6 +827,7 @@ export function* resolveTop(g: G): Gen<void> {
       (atk.kind === 'player' ? !g.state.players[atk.id].left : g.state.objects[atk.id]?.zone === 'battlefield');
     const res = yield* putOntoBattlefield(g, [{
       id, controller: st.controller, attachTo, spell, faceDown: o.faceDown, // morph: entra virada para baixo (CR 702.37c)
+      ...(jogadorEncantado !== null ? { data: { auraUnattachedOk: true, enchantedPlayer: jogadorEncantado } } : {}),
       ...(atk ? { tapped: true, attacking: atacaValido ? atk : undefined } : {}),
     }], 'resolve');
     if (res.length === 0 && g.state.objects[id]) yield* moveObject(g, id, 'graveyard', 'resolve'); // CR 608.3e
