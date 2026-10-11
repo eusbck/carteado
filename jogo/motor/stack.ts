@@ -1,7 +1,7 @@
 // Pilha: conjurar mágicas (CR 601), ativar habilidades (CR 602), pôr gatilhos na pilha
 // (CR 603.3), alvos (CR 115) e resolução (CR 608).
 
-import { addEffect, cloneState, createObject, destroyObject, moveRaw, newTimestamp } from './state.ts';
+import { addEffect, cloneState, createObject, destroyObject, moveRaw, newTimestamp, removeEffect } from './state.ts';
 import { ask, chooseItems, chooseNumber, objItem, playerItem, yesNo } from './ask.ts';
 import type { GameEvent } from './events.ts';
 import { moveObject, moveObjects, protectionMatches, putOntoBattlefield, enchantCandidates, tap } from './actions.ts';
@@ -534,6 +534,10 @@ function* castInner(g: G, player: PlayerId, cardId: ObjId, method: CastMethod): 
   const c = chars(g, spellId);
   if (!c.types.includes('Creature')) st.noncreatureSpellsCast = (st.noncreatureSpellsCast ?? 0) + 1;
   st.spellColorsCast = [...new Set([...(st.spellColorsCast ?? []), ...c.colors])];
+  // "a próxima mágica do tipo escolhido": a permissão de lampejo acaba quando essa mágica é conjurada, com ou sem lampejo
+  for (const e of [...g.state.effects]) {
+    if (e.mods.some((m) => m.k === 'rule' && m.id === 'rule:flashNext' && m.params?.player === player && c.subtypes.includes(m.params?.tipo as string))) removeEffect(g, e.id);
+  }
   if (c.types.includes('Instant') || c.types.includes('Sorcery')) {
     st.instantSorceryCast++;
     st.greatestInstantSorceryMV = Math.max(st.greatestInstantSorceryMV, c.manaValue);

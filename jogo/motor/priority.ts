@@ -149,7 +149,8 @@ export function canStartCast(g: G, p: PlayerId, opt: CastOption): boolean {
   const c = castChars(g, p, o, opt.method);
   const f = faceDefFor(o, opt.method);
   const flash = opt.method.face === undefined ? hasKw(g, opt.obj, 'flash') : c.abilities.some((a) => a.kw === 'flash');
-  const instantSpeed = c.types.includes('Instant') || flash || f?.flash || hooks(g, 'castAsThoughFlash').some((h) => h.fn(h.ctx, p, opt.obj));
+  const instantSpeed = c.types.includes('Instant') || flash || f?.flash || hooks(g, 'castAsThoughFlash').some((h) => h.fn(h.ctx, p, opt.obj))
+    || g.state.effects.some((e) => e.mods.some((m) => m.k === 'rule' && m.id === 'rule:flashNext' && m.params?.player === p && c.subtypes.includes(m.params?.tipo as string)));
   // custo alternativo com momento próprio (sneak: na sua etapa de declarar bloqueadores, CR 702.190a)
   if (opt.method.alt?.timing) { if (!opt.method.alt.timing({ g, you: p, source: opt.obj })) return false; }
   else if (!instantSpeed && !sorceryTiming(g, p)) return false;
