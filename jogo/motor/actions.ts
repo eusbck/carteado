@@ -100,6 +100,8 @@ export function* moveObjects(g: G, reqs: MoveReq[], cause: string, by?: PlayerId
     events.push({ type: 'zone', obj: newId, old: o.id, from, to: dest, card: o.card, owner: o.owner, controller, cause, token: o.isToken, by });
     if (cause === 'discard' && from === 'hand') {
       events.push({ type: 'discard', player: o.owner, obj: newId, card: o.card });
+      const descartes = g.state.turnStats[o.owner];
+      if (descartes) descartes.cardsDiscarded = (descartes.cardsDiscarded ?? 0) + 1;
       // mayhem (CR 702.187b): "se você descartou esta carta neste turno"
       g.state.objects[newId].data.discardedTurn = g.state.turn.number;
       // o gatilho da loucura: o dono pode conjurá-la pelo custo de loucura, senão ela vai para o cemitério (702.35a)

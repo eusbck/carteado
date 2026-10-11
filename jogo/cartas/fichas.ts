@@ -336,3 +336,9 @@ export const Ox = token('Ox', 'Ox', ['Creature'], ['Ox'], ['W'], 2, 2);
 export const Merfolk = token('Merfolk', 'Merfolk', ['Creature'], ['Merfolk'], ['U'], 1, 1);
 /** Construct 4/4 incolor, artefato, com voar e ímpeto (The Fantasticar) */
 export const Construct44 = token('Construct 4/4', 'Construct', ['Artifact', 'Creature'], ['Construct'], [], 4, 4, keywords('flying', 'haste'));
+/** Villain 2/1 preto com ameaçar (Madame Hydra, Endless Ranks of HYDRA) */
+export const Villain = token('Villain', 'Villain', ['Creature'], ['Villain'], ['B'], 2, 1, keywords('menace'));
+/** Ape Villain 3/3 vermelho com ímpeto (Red Ghost, Intangible Genius) */
+export const ApeVillain = token('Ape Villain', 'Ape Villain', ['Creature'], ['Ape', 'Villain'], ['R'], 3, 3, keywords('haste'));
+/** Shapeshifter 3/2 incolor com polimorfo (Black Market Connections) */
+export const Shapeshifter32 = token('Shapeshifter 3/2', 'Shapeshifter', ['Creature'], ['Shapeshifter'], [], 3, 2, [changeling()]);
