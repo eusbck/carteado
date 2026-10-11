@@ -313,6 +313,8 @@ export interface TurnStats {
   /** permanentes que não são terrenos e entraram sob o controle deste jogador neste turno (celebração, CR 207.2c);
    *  falta nas partidas salvas antes */
   nonlandPermanentsEntered?: number;
+  /** cartas de criatura que saíram do cemitério deste jogador neste turno (Syrix); falta nas partidas salvas antes */
+  creatureCardsLeftGraveyard?: number;
 }
 
 export interface LogEntry {
