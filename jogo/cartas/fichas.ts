@@ -210,3 +210,17 @@ export const Contract = defineToken({
 });
 
 void activated; void cost;
+
+// lote2-e
+import { selfGets as selfGetsLote2E } from '../motor/api.ts';
+/** Rat 1/1 preto (Big Apple, 3 a.m.) */
+export const Rat = token('Rat', 'Rat', ['Creature'], ['Rat'], ['B'], 1, 1);
+/** Elemental 8/8 verde e branco com vigilância (Grove of the Guardian) */
+export const Elemental88 = token('Elemental 8/8', 'Elemental', ['Creature'], ['Elemental'], ['G', 'W'], 8, 8, keywords('vigilance'));
+/** Construct 0/0 artefato: "Esta ficha recebe +1/+1 para cada artefato que você controla." (Urza's Saga) */
+export const ConstructArtifacts = token('Construct (artefatos)', 'Construct', ['Artifact', 'Creature'], ['Construct'], [], 0, 0, [
+  selfGetsLote2E((c) => {
+    const n = controlledBy(c.g, c.you, (id) => isType(c.g, id, 'Artifact')).length;
+    return [{ k: 'pt', p: n, t: n }];
+  }, 'Esta ficha recebe +1/+1 para cada artefato que você controla.'),
+], 'artifact you control');
