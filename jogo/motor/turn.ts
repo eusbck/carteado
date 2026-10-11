@@ -2,7 +2,7 @@
 // O laço principal é retomável a partir do estado quando há uma decisão de prioridade
 // pendente: tudo antes dela é idempotente (flags no estado).
 
-import { addCounters, draw, discard, untap } from './actions.ts';
+import { addCounters, draw, discard, moveObjects, untap } from './actions.ts';
 import { ask, chooseItems } from './ask.ts';
 import { chars, controllerOf, hooks, isType, nameOf } from './chars.ts';
 import { combatDamage, declareAttackers, declareBlockers, endCombat, needsFirstStrikeStep, newCombat } from './combat.ts';
@@ -12,7 +12,7 @@ import { legalActions, performAction } from './priority.ts';
 import { performManual, validateManual } from './manual.ts';
 import { checkGameEnd, leaveGame, performSBAs } from './sba.ts';
 import { putTriggersOnStack, resolveTop } from './stack.ts';
-import { emptyTurnStats } from './state.ts';
+import { destroyObject, emptyTurnStats } from './state.ts';
 import { shuffle } from './rng.ts';
 import { checkStateTriggers, emit } from './triggers.ts';
 import { loseUnspentMana } from './veneno-emblema.ts';
@@ -95,7 +95,8 @@ function beginTurn(g: G, active: PlayerId, first = false): void {
   if (!first) s.lastTurnAttackedPlayers[prev] = [...s.turnStats[prev].attackedPlayers];
   // rodada nova quando a vez volta para trás na ordem dos assentos (quem saiu da partida é pulado e não atrapalha); um
   // turno extra do mesmo jogador fica na mesma rodada
-  const round = first ? 1 : rodadaDe(s) + (s.turnOrder.indexOf(active) < s.turnOrder.indexOf(prev) ? 1 : 0);
+  const ordem = g.order();
+  const round = first ? 1 : rodadaDe(s) + (ordem.indexOf(active) < ordem.indexOf(prev) ? 1 : 0);
   s.turn = {
     number: s.turn.number + 1, round, active, step: 'untap', queue: TURN_STEPS.slice(1), stepBegun: false,
     mainPhaseCount: 0, combatCount: 0, landsPlayed: 0,
@@ -235,6 +236,8 @@ function* checkStateAndTriggers(g: G): Gen<boolean> {
 function* priorityLoop(g: G): Gen<void> {
   const s = g.state;
   for (;;) {
+    // CR 724.1c-d: com o turno encerrado por um efeito, a etapa acaba sem prioridade para ninguém
+    if (g.state.turn.ending) return;
     yield* checkStateAndTriggers(g);
     if (g.state.gameOver) return;
     // jogador que saiu: a prioridade passa ao próximo (CR 800.4a, 800.4j)
@@ -292,12 +295,46 @@ function* runStep(g: G): Gen<void> {
   }
 }
 
+/** a etapa faz parte de algo que o jogador ativo pula neste turno? (a fase de combate inclui todas as etapas dela) */
+function pulada(skip: ('draw' | 'main' | 'combat')[] | undefined, step: Step): boolean {
+  if (!skip?.length) return false;
+  if (step === 'draw') return skip.includes('draw');
+  if (step === 'main1' || step === 'main2') return skip.includes('main');
+  return (COMBAT_STEPS.includes(step) || step === 'firstStrikeDamage') && skip.includes('combat');
+}
+
+/**
+ * Encerrar o turno (CR 724.1, Time Stop). Os gatilhos que ainda não foram para a pilha deixam de existir (724.1a), tudo
+ * na pilha é exilado, inclusive a mágica que está resolvendo (724.1b), as criaturas saem do combate e o jogo vai direto
+ * para a limpeza, sem prioridade para ninguém (724.1c-d). O que disparar durante o processo vai para a pilha na limpeza
+ * (724.1f): é o que a etapa de limpeza do motor já faz.
+ */
+export function* endTheTurn(g: G): Gen<void> {
+  const s = g.state;
+  s.pendingTriggers = [];
+  for (const id of [...s.zones.stack]) {
+    const o = s.objects[id];
+    if (!o) continue;
+    // habilidades e cópias não são cartas: deixam de existir (CR 724.1b)
+    if (o.def === '' || o.isCopy) destroyObject(g, id);
+    else yield* moveObjects(g, [{ id, to: 'exile' }], 'endTurn');
+  }
+  if (s.combat) endCombat(g);
+  s.turn.queue = ['cleanup'];
+  s.turn.ending = true;
+  g.bump();
+  g.log('O turno é encerrado.', { rule: '724.1' });
+}
+
 function advance(g: G): void {
   const s = g.state;
   const t = s.turn;
   emptyManaPools(g);
   if (t.step === 'endCombat') endCombat(g);
-  const next = t.queue.shift();
+  delete t.ending;
+  let next = t.queue.shift();
+  // CR 500.11, 614.10: a etapa ou fase pulada é atravessada como se não existisse
+  while (next && pulada(t.skip, next)) next = t.queue.shift();
   if (next) {
     t.step = next;
     t.stepBegun = false;

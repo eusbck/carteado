@@ -23,7 +23,7 @@ export { parseCost, formatCost, manaValueOf } from './mana.ts';
 export type { G } from './game-context.ts';
 export type { Chars, Color, GameObject, ManaType, Mod, ObjId, PlayerId, TargetRef, ZoneName } from './types.ts';
 export * from './mecanicas.ts';
-export { addCombatPhaseAfterCurrent } from './turn.ts';
+export { addCombatPhaseAfterCurrent, endTheTurn } from './turn.ts';
 export * from './veneno-emblema.ts';
 export { playerProtectedFrom } from './actions.ts';
 // lote2-c: jeitos de conjurar e custos (inclui o contemplar, CR 701.4)

@@ -696,6 +696,22 @@ export const MYRIAD = defineAbility('kw:myriad', triggered(on.selfAttacks(), fun
   if (fichas.length) delayed(c, EXILA_MIRIADE.id!, { data: { fichas }, expiresTurn: s.turn.number });
 }, { text: 'Miríade (sempre que esta criatura ataca, para cada oponente que não seja o jogador defensor, você pode criar uma ficha cópia dela virada e atacando esse jogador ou um planeswalker dele; exile as fichas no fim do combate).' }));
 
+/**
+ * Vizinho de assento entre os jogadores que estão na partida. "À esquerda" é o próximo na ordem padrão dos turnos, que
+ * segue no sentido horário (CR 103.1); "à direita", o anterior. Usa os assentos (state.turnOrder), que não mudam quando
+ * a ordem dos turnos é invertida (Aeon Engine). Com um jogador só, devolve ele mesmo.
+ */
+export function seatNeighbor(g: G, p: PlayerId, dir: 'left' | 'right'): PlayerId {
+  const assentos = g.state.turnOrder;
+  const i = assentos.indexOf(p);
+  const passo = dir === 'left' ? 1 : assentos.length - 1;
+  for (let k = 1; k <= assentos.length; k++) {
+    const q = assentos[(i + k * passo) % assentos.length];
+    if (!g.state.players[q].left) return q;
+  }
+  return p;
+}
+
 // ---------------------------------------------------------------------------
 // Mágica que ganha algo até o fim do turno e leva isso para o permanente (CR 400.7d, 611.2)
 // ---------------------------------------------------------------------------

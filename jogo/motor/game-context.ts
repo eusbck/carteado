@@ -36,9 +36,14 @@ export class G {
     return this.state.players[id];
   }
 
+  /** ordem dos turnos em vigor: a dos assentos, ou ao contrário depois de Aeon Engine (state.turnReversed) */
+  order(): PlayerId[] {
+    return this.state.turnReversed ? [...this.state.turnOrder].reverse() : this.state.turnOrder;
+  }
+
   /** jogadores ainda na partida, em ordem de turno a partir do ativo (APNAP, CR 101.4) */
   apnap(): PlayerId[] {
-    const order = this.state.turnOrder;
+    const order = this.order();
     const start = order.indexOf(this.state.turn.active);
     const out: PlayerId[] = [];
     for (let i = 0; i < order.length; i++) {
@@ -58,7 +63,7 @@ export class G {
 
   /** próximo jogador na ordem de turno ainda na partida (CR 117.3d, 800.4j) */
   nextPlayer(p: PlayerId): PlayerId {
-    const order = this.state.turnOrder;
+    const order = this.order();
     const i = order.indexOf(p);
     for (let k = 1; k <= order.length; k++) {
       const q = order[(i + k) % order.length];

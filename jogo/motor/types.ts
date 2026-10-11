@@ -249,6 +249,10 @@ export interface TurnState {
   mainPhaseCount: number;
   combatCount: number;
   landsPlayed: number;
+  /** etapas ou fases que o jogador ativo pula neste turno, todas as ocorrências (Fatespinner; CR 500.11, 614.10) */
+  skip?: ('draw' | 'main' | 'combat')[];
+  /** um efeito encerrou o turno (CR 724.1): a etapa atual acaba sem prioridade e o jogo vai direto para a limpeza */
+  ending?: boolean;
 }
 
 export interface CombatState {
@@ -394,6 +398,9 @@ export interface GameState {
   /** quantas mágicas de cada nome cada jogador conjurou na partida (chave `jogador:nome`; Approach of the Second Sun);
    *  opcional, como os de cima */
   castNames?: Record<string, number>;
+  /** a ordem dos turnos está invertida em relação à dos assentos (Aeon Engine); `turnOrder` continua sendo a dos
+   *  assentos, e quem pergunta "quem é o próximo" usa G.order() */
+  turnReversed?: boolean;
   engineVersion: number;
   version: number;
   config: GameConfig;
