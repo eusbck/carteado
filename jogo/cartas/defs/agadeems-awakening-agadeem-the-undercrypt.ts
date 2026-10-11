@@ -35,7 +35,7 @@ export default defineCard({
   ],
   rulings: {
     1: 'teste: com X = 3 volta uma criatura de cada valor de mana, nunca duas do mesmo',
-    2: 'teste: com X = 0 dá para escolher uma carta de criatura de valor de mana 0',
+    2: 'teste: com X = 0 só cabe carta de criatura de valor de mana 0',
     3: 'regra geral: CR 202.3e — {X} vale 0 fora da pilha (motor/chars.ts)',
     4: 'não se aplica: marcas de face impressas não têm efeito no jogo (CR 712.3a-b)',
     5: 'teste: CR 712.11c — conjurar ou jogar olha só a face escolhida',
