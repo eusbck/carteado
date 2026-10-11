@@ -1528,6 +1528,26 @@ As 44 cartas que faltavam estão escritas, cada uma com teste e rulings. O deck 
 - A suíte inteira ainda não rodou com estas 44 cartas (rodaram os testes de cada carta, o `tsc` do motor e do cliente,
   a conferência e os bots).
 
-Faltam 11 decks do lote 2: Vampiric Bloodline, The Hosts of Mordor, Odd and Ends, Heavenly Inferno, Hatsune Miku,
-Wakanda Forever, Turtle Power!, Avengers Assemble, Necron Dynasties e Jin's Vengeance, mais o Food and Fellowship
-(importação e dois comandantes pendentes).
+## Vampiric Bloodline (Strefan, Maurer Progenitor): pronto — 11/10/2026
+
+As 44 cartas que faltavam estão escritas, cada uma com teste e rulings. O deck entrou no saguão desta cópia.
+
+- Conferência com o Moxfield: 100 cartas, 77 de 77 com regras, nada faltando nem sobrando.
+- Bots com o deck obrigatório: 8 partidas de 4 jogadores e 12 de 2 (aleatórios), 4 de 2 (heurísticos), todas sem erro.
+- `cartas/vampiros.ts` guarda duas peças repetidas: as fichas de Blood de um jogador e "parceiro com [nome]" (a busca ao
+  entrar).
+- Motor: resguardo com custo de descartar uma carta (`ward('discard')`, Timothar). Falkenrath Gorger usa a estática que
+  alcança cartas fora do campo (`offField`) para dar loucura aos Vampires na mão.
+- Ficha nova: Bat 1/1 com voar.
+- Simplificações, para conferir se alguém estranhar na mesa:
+  - Parceiro com (Kamber e Laurine): só a busca ao entrar foi feita. Ter os dois como comandantes é da montagem do deck,
+    e este deck tem um comandante só (Strefan).
+  - Falkenrath Gorger: se um Vampire já tiver loucura impressa, o motor usa a primeira que encontrar, sem perguntar
+    qual. Nenhum Vampire dos decks tem loucura impressa.
+  - Sinister Waltz e as outras cartas com sorteio sorteiam na resolução.
+- A suíte inteira ainda não rodou com estas 44 cartas (rodaram os testes de cada carta, o `tsc`, a conferência e os
+  bots).
+
+Faltam 10 decks do lote 2: The Hosts of Mordor, Odd and Ends, Heavenly Inferno, Hatsune Miku, Wakanda Forever, Turtle
+Power!, Avengers Assemble, Necron Dynasties e Jin's Vengeance, mais o Food and Fellowship (importação e dois
+comandantes pendentes).

@@ -6,8 +6,7 @@
  "link": "https://moxfield.com/decks/lava2X1Op0aSeUHhPC5cfQ",
  "importadoEm": "2026-10-10T05:16:37.543Z",
  "verificadoEm": "2026-10-10T05:16:37.543Z",
- "atual": null,
- "preparacao": {
+ "atual": {
   "comandante": "Strefan, Maurer Progenitor",
   "cartas": [
    {
@@ -320,5 +319,6 @@
    "atualizadoEm": "2024-10-31T17:33:12.16Z"
   },
   "desde": "2026-10-10T05:16:37.543Z"
- }
+ },
+ "preparacao": null
 }
