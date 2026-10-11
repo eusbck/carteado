@@ -323,6 +323,8 @@ export interface TurnStats {
   nonlandPermanentsEntered?: number;
   /** cartas de criatura que saíram do cemitério deste jogador neste turno (Syrix); falta nas partidas salvas antes */
   creatureCardsLeftGraveyard?: number;
+  /** terrenos que entraram sob o controle deste jogador neste turno (Smuggler's Share); falta nas partidas salvas antes */
+  landsEntered?: number;
 }
 
 export interface LogEntry {
@@ -389,6 +391,9 @@ export interface GameState {
   combatDamageBySource?: { turn: number; players: Record<string, PlayerId[]> };
   /** permanentes que receberam dano de cada fonte neste turno (Markov Enforcer); opcional, como o de cima */
   damagedBy?: { turn: number; pairs: Record<string, ObjId[]> };
+  /** quantas mágicas de cada nome cada jogador conjurou na partida (chave `jogador:nome`; Approach of the Second Sun);
+   *  opcional, como os de cima */
+  castNames?: Record<string, number>;
   engineVersion: number;
   version: number;
   config: GameConfig;

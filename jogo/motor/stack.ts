@@ -540,6 +540,11 @@ function* castInner(g: G, player: PlayerId, cardId: ObjId, method: CastMethod): 
   if (!c.types.includes('Creature')) st.noncreatureSpellsCast = (st.noncreatureSpellsCast ?? 0) + 1;
   st.spellColorsCast = [...new Set([...(st.spellColorsCast ?? []), ...c.colors])];
   st.castLog = [...(st.castLog ?? []), { types: [...c.types], subtypes: [...c.subtypes] }];
+  // mágicas conjuradas na partida, por jogador e nome (Approach of the Second Sun); virada para baixo não tem nome
+  if (c.name) {
+    const chave = `${player}:${c.name}`;
+    g.state.castNames = { ...(g.state.castNames ?? {}), [chave]: (g.state.castNames?.[chave] ?? 0) + 1 };
+  }
   // "a próxima mágica do tipo escolhido": a permissão de lampejo acaba quando essa mágica é conjurada, com ou sem lampejo
   for (const e of [...g.state.effects]) {
     if (e.mods.some((m) => m.k === 'rule' && m.id === 'rule:flashNext' && m.params?.player === player && c.subtypes.includes(m.params?.tipo as string))) removeEffect(g, e.id);

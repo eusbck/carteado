@@ -18,7 +18,7 @@ export { addEffect, createObject, destroyObject, newTimestamp, objOrLki } from '
 export { emit, addPending, combatDamagePlayers } from './triggers.ts';
 export { attackingTarget, reselectAttacker, reselectAttackTargets } from './combat.ts';
 export { payMana, payParts } from './costs.ts';
-export { loseGame } from './sba.ts';
+export { loseGame, winGame } from './sba.ts';
 export { parseCost, formatCost, manaValueOf } from './mana.ts';
 export type { G } from './game-context.ts';
 export type { Chars, Color, GameObject, ManaType, Mod, ObjId, PlayerId, TargetRef, ZoneName } from './types.ts';

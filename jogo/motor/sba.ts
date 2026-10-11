@@ -172,6 +172,16 @@ export function loseGame(g: G, p: PlayerId): void {
   leaveGame(g, p);
 }
 
+/** CR 104.2b: um efeito diz que o jogador vence a partida; ela termina na hora (CR 104.1) */
+export function winGame(g: G, p: PlayerId, reason: string): void {
+  const s = g.state;
+  if (s.gameOver || s.players[p].left) return;
+  s.players[p].won = true;
+  s.gameOver = { winners: [p], draw: false, reason };
+  g.log(`${s.players[p].name} vence a partida (${reason}).`, { rule: '104.2b' });
+  g.bump();
+}
+
 /** CR 800.4a: o que acontece quando um jogador sai */
 export function leaveGame(g: G, p: PlayerId): void {
   const s = g.state;

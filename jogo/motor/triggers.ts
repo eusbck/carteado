@@ -46,6 +46,8 @@ function updateStats(g: G, events: GameEvent[]): void {
       case 'zone':
         // celebração: conta o que entrou, mesmo que já tenha saído ou mudado de controlador depois
         if (e.to === 'battlefield' && !safeChars(g, e.obj)?.types.includes('Land')) st[e.controller].nonlandPermanentsEntered = (st[e.controller].nonlandPermanentsEntered ?? 0) + 1;
+        // Smuggler's Share: terrenos que entraram sob o controle do jogador neste turno
+        if (e.to === 'battlefield' && safeChars(g, e.obj)?.types.includes('Land')) st[e.controller].landsEntered = (st[e.controller].landsEntered ?? 0) + 1;
         if (e.from === 'graveyard' && !e.token) {
           st[e.owner].cardsLeftGraveyard++;
           // Syrix: "se uma carta de criatura saiu do seu cemitério neste turno"
