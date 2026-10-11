@@ -14,7 +14,6 @@ import type { DeckList } from '../motor/state.ts';
 import type { ObjId } from '../motor/types.ts';
 import type { ObjView } from '../motor/view.ts';
 import { AVATARES, avatarDoComandante, avatarValido } from '../servidor/avatares.ts';
-import { avatarDoAssento } from '../cliente/src/avatares.ts';
 import { Banco } from '../servidor/banco.ts';
 import type { MsgServidor } from '../servidor/protocolo.ts';
 import { Gerente, SEM_ATRASO, type Conexao } from '../servidor/salas.ts';
@@ -56,13 +55,9 @@ describe('avatares: catálogo', () => {
         expect(avatarValido(id), d.comandante).toBe(true);
         expect(existsSync(join(import.meta.dirname, '..', 'cliente', 'src', 'imagens', 'avatares', `${id}.webp`)), d.comandante).toBe(true);
       }
-      // quem não escolheu usa o do comandante do deck, se houver; senão null (o medalhão com a inicial, mesa/Avatar.tsx)
-      expect(avatarDoAssento(null, d.comandante)?.id ?? null, d.comandante).toBe(id);
-      // a escolha da pessoa vale acima do retrato do deck
-      expect(avatarDoAssento('gisa', d.comandante)?.id, d.comandante).toBe('gisa');
+      // sem retrato próprio vem null: o assento mostra o medalhão com a inicial (cliente/src/avatares.ts, mesa/Avatar.tsx)
+      else expect(AVATARES.some((a) => a.comandante === d.comandante), d.comandante).toBe(false);
     }
-    expect(avatarDoAssento(null, 'Comandante que não tem retrato')).toBeNull();
-    expect(avatarDoAssento('jace', 'Comandante que não tem retrato')?.id).toBe('jace');
   });
 
   it('cada retrato existe no cliente, é quadrado e tem transparência de verdade', async () => {
