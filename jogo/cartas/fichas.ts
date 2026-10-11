@@ -328,3 +328,11 @@ export const ElementalFenix = token('Elemental 0/1', 'Elemental', ['Creature'], 
     text: 'No início da sua manutenção, sacrifique esta ficha e devolva a carta com o nome Rekindling Phoenix alvo do seu cemitério para o campo de batalha. Ela ganha ímpeto até o fim do turno.',
   }),
 ]);
+/** Wall 0/3 incolor com defensor e alcance (Invisible Woman) */
+export const Wall03 = token('Wall 0/3', 'Wall', ['Creature'], ['Wall'], [], 0, 3, keywords('defender', 'reach'));
+/** Ox 2/2 branco (Bovine Intervention) */
+export const Ox = token('Ox', 'Ox', ['Creature'], ['Ox'], ['W'], 2, 2);
+/** Merfolk 1/1 azul (Namor, Atlantean King) */
+export const Merfolk = token('Merfolk', 'Merfolk', ['Creature'], ['Merfolk'], ['U'], 1, 1);
+/** Construct 4/4 incolor, artefato, com voar e ímpeto (The Fantasticar) */
+export const Construct44 = token('Construct 4/4', 'Construct', ['Artifact', 'Creature'], ['Construct'], [], 4, 4, keywords('flying', 'haste'));
