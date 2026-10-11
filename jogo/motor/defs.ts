@@ -56,7 +56,7 @@ export interface TargetSpec {
   /** 'object' = permanente (padrão); 'player'; 'any' = criatura, planeswalker ou jogador (115.4);
    *  'spell' = mágica na pilha; 'card' = carta numa zona (cemitério…); 'spellOrPermanent' = mágica na pilha ou
    *  permanente ("mágica ou criatura alvo"; o filtro separa os dois) */
-  what: 'object' | 'player' | 'any' | 'spell' | 'card' | 'spellOrPermanent';
+  what: 'object' | 'player' | 'any' | 'spell' | 'card' | 'spellOrPermanent' | 'ability';
   zone?: ZoneName;
   filter?: (c: SCtx, t: TargetRef) => boolean;
   min?: number;

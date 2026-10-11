@@ -44,7 +44,8 @@ export function isLegalTarget(g: G, spec: TargetSpec, t: TargetRef, controller: 
   const o = s.objects[t.id];
   if (!o) return false;
   if (spec.what === 'player') return false;
-  if (spec.what === 'spell' || (spec.what === 'spellOrPermanent' && o.zone === 'stack')) { if (o.zone !== 'stack' || o.stack?.kind !== 'spell') return false; if (t.id === source) return false; } // CR 115.5
+  if (spec.what === 'ability') { if (o.zone !== 'stack' || !o.stack || o.stack.kind === 'spell') return false; } // habilidade ativada ou desencadeada na pilha
+  else if (spec.what === 'spell' || (spec.what === 'spellOrPermanent' && o.zone === 'stack')) { if (o.zone !== 'stack' || o.stack?.kind !== 'spell') return false; if (t.id === source) return false; } // CR 115.5
   else if (spec.what === 'card') { if (o.zone !== (spec.zone ?? 'graveyard')) return false; }
   else {
     if (o.zone !== 'battlefield' || o.phasedOut) return false;
@@ -65,7 +66,7 @@ export function candidateTargets(g: G, spec: TargetSpec, controller: PlayerId, s
   const out: TargetRef[] = [];
   if (spec.what === 'player' || spec.what === 'any') for (const p of g.playersInGame()) out.push({ kind: 'player', id: p });
   if (spec.what === 'object' || spec.what === 'any' || spec.what === 'spellOrPermanent') for (const id of s.zones.battlefield) out.push({ kind: 'obj', id });
-  if (spec.what === 'spell' || spec.what === 'spellOrPermanent') for (const id of s.zones.stack) out.push({ kind: 'obj', id });
+  if (spec.what === 'spell' || spec.what === 'spellOrPermanent' || spec.what === 'ability') for (const id of s.zones.stack) out.push({ kind: 'obj', id });
   if (spec.what === 'card') {
     const zone = spec.zone ?? 'graveyard';
     const ids = zone === 'graveyard' || zone === 'hand' || zone === 'library' ? s.zones[zone].flat() : s.zones[zone];
@@ -532,6 +533,7 @@ function* castInner(g: G, player: PlayerId, cardId: ObjId, method: CastMethod): 
   st.spellsCast++;
   const c = chars(g, spellId);
   if (!c.types.includes('Creature')) st.noncreatureSpellsCast = (st.noncreatureSpellsCast ?? 0) + 1;
+  st.spellColorsCast = [...new Set([...(st.spellColorsCast ?? []), ...c.colors])];
   if (c.types.includes('Instant') || c.types.includes('Sorcery')) {
     st.instantSorceryCast++;
     st.greatestInstantSorceryMV = Math.max(st.greatestInstantSorceryMV, c.manaValue);
@@ -705,6 +707,35 @@ export function* putTriggerOnStack(g: G, abilityId: string, source: ObjId, contr
   for (const t of info.targets.flat()) events.push({ type: 'target', target: t, by: ab.id, controller, spell: false });
   emit(g, events);
   return ab.id;
+}
+
+/**
+ * CR 707.10: copia uma habilidade ativada ou desencadeada que está na pilha. A cópia tem a mesma fonte (707.10b), os
+ * mesmos modos, alvos e dados do evento; com newTargets, o controlador pode escolher novos alvos (707.10c).
+ */
+export function* copyStackAbility(g: G, abId: ObjId, controller: PlayerId, opts: { newTargets?: boolean } = {}): Gen<ObjId | null> {
+  const o = g.state.objects[abId];
+  if (!o || o.zone !== 'stack' || !o.stack || o.stack.kind === 'spell' || !o.stack.abilityId) return null;
+  const st = o.stack;
+  const def = registry.abilities.get(st.abilityId!) as ActivatedDef | TriggeredDef | undefined;
+  if (!def) return null;
+  const source = st.source ?? abId;
+  const copia = createObject(g, { def: '', owner: controller, controller, zone: 'stack' });
+  copia.stack = { ...structuredClone(st), controller, isCopy: true };
+  const label = `cópia de ${triggerLabel(g, st.abilityId!, source)}`;
+  g.log(`${g.state.players[controller].name} copia a habilidade de ${triggerLabel(g, st.abilityId!, source)}.`, { rule: '707.10' });
+  if (opts.newTargets && st.targets.flat().length > 0) {
+    const { specs } = abilityTargetSpecs(def, st.modes);
+    if (specs.length && (yield* yesNo(g, controller, `Escolher novos alvos para a ${label}?`))) {
+      const novos = yield* chooseTargets(g, controller, specs, source, label, st.x, st.event);
+      if (novos) copia.stack.targets = novos;
+    }
+  }
+  g.bump();
+  const evs: GameEvent[] = [];
+  for (const t of copia.stack.targets.flat()) evs.push({ type: 'target', target: t, by: copia.id, controller, spell: false });
+  emit(g, evs);
+  return copia.id;
 }
 
 // ---------------------------------------------------------------------------

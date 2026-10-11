@@ -295,6 +295,8 @@ export interface TurnStats {
   spellsCast: number;
   /** mágicas que não são de criatura conjuradas neste turno (pode faltar em partidas salvas antes de existir) */
   noncreatureSpellsCast?: number;
+  /** cores das mágicas conjuradas no turno, sem repetição (First Family) */
+  spellColorsCast?: Color[];
   instantSorceryCast: number;
   greatestInstantSorceryMV: number;
   cardsDrawn: number;

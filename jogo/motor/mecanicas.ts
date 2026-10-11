@@ -5,7 +5,7 @@ import { addCounters, blight, exile, gainLife, loseLife, moveObjects, putOntoBat
 import { blightCandidates } from './actions.ts';
 import { parseCost } from './mana.ts';
 import { addEffect } from './state.ts';
-import { shuffle } from './rng.ts';
+import { next as sorteia, shuffle } from './rng.ts';
 import { chooseItems, objItem, playerItem, yesNo } from './ask.ts';
 import { canTransform, chars, controllerOf, currentFace, isCreature, isLand, nameOf, printedChars } from './chars.ts';
 import { canAfford, payMana } from './costs.ts';
@@ -716,4 +716,35 @@ export function spellGainsUntilEndOfTurn(g: G, controller: PlayerId, source: Obj
 /** miríade impressa na carta (Goldlust Triad): a mesma habilidade, com id próprio da carta */
 export function myriad(): TriggeredDef {
   return { ...MYRIAD, id: undefined, kw: 'myriad' };
+}
+
+/**
+ * Explorar (CR 701.44a): o controlador revela a carta do topo do grimório; terreno vai para a mão; senão, a
+ * permanente recebe um marcador +1/+1 e ele pode pôr a carta revelada no cemitério. Se a permanente já saiu do campo,
+ * explora mesmo assim pela última informação (701.44c), sem marcador. Sem carta para revelar, só o marcador.
+ */
+export function* explore(g: G, id: ObjId): Gen<void> {
+  const o = g.state.objects[id] ?? g.state.lki[id]?.obj;
+  if (!o) return;
+  const noCampo = (): boolean => g.state.objects[id]?.zone === 'battlefield';
+  const p = noCampo() ? controllerOf(g, id) : o.controller;
+  const topo = g.state.zones.library[p][0];
+  if (topo === undefined) {
+    if (noCampo()) addCounters(g, { kind: 'obj', id }, '+1/+1', 1, p);
+    return;
+  }
+  g.log(`${g.state.players[p].name} revela ${nameOf(g, topo)} (explorar).`, { rule: '701.44a' });
+  if (isLand(g, topo)) {
+    yield* moveObjects(g, [{ id: topo, to: 'hand' }], 'effect');
+    return;
+  }
+  if (noCampo()) addCounters(g, { kind: 'obj', id }, '+1/+1', 1, p);
+  if (yield* yesNo(g, p, `Explorar: colocar ${nameOf(g, topo)} no cemitério? (senão, ela fica no topo do grimório)`)) yield* moveObjects(g, [{ id: topo, to: 'graveyard' }], 'effect');
+}
+
+/** Cara ou coroa (CR 705): devolve true se o jogador ganhou. Usa o gerador da partida, para a partida ser reproduzível. */
+export function flipCoin(g: G, p: PlayerId): boolean {
+  const ganhou = sorteia(g.state.rng) < 0.5;
+  g.log(`${g.state.players[p].name} joga cara ou coroa e ${ganhou ? 'ganha' : 'perde'}.`, { rule: '705.2' });
+  return ganhou;
 }
