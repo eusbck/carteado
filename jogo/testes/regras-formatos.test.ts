@@ -81,3 +81,36 @@ describe('modal de duas faces (CR 712)', () => {
     expect(tg.actionIds().some((a) => a.startsWith('transform:'))).toBe(false);
   });
 });
+
+describe('dividida (CR 709) e aventura (CR 715)', () => {
+  const SPLIT = 'Double Jump // Flying Kick'; // {1}{U} // {1}{R}, com fusão
+  const VIRTUE = 'Virtue of Persistence // Locthwain Scorn'; // {5}{B}{B} // aventura {1}{B}
+  const chaves = (tg: ReturnType<typeof setup>) => acoes(tg, 'cast:').map((a) => a.split(':').slice(2).join(':')).sort();
+
+  it('CR 709.3a — só a metade conjurada conta para ver se pode ser conjurada', () => {
+    // só mana azul: Double Jump pode, Flying Kick ({1}{R}) e a fusão não
+    const tg = setup({ battlefield: [['Island', 'Island', 'Elvish Mystic'], ['Wall of Omens']], hand: [[SPLIT], []] });
+    expect(chaves(tg)).toEqual(['hand']);
+  });
+
+  it('CR 715.3a — só as características da aventura contam para conjurá-la', () => {
+    // a aventura é um feitiço de {1}{B}: com dois Swamps dá; a carta de {5}{B}{B} não
+    const tg = setup({ battlefield: [['Swamp', 'Swamp'], ['Elvish Mystic']], hand: [[VIRTUE], []] });
+    expect(chaves(tg)).toEqual(['hand@1']);
+    // sem criatura para ser alvo, a aventura não pode ser conjurada
+    const semAlvo = setup({ battlefield: [['Swamp', 'Swamp'], []], hand: [[VIRTUE], []] });
+    expect(chaves(semAlvo)).toEqual([]);
+  });
+
+  it('CR 715.3 — conjurar como aventura não é custo alternativo: permissões e "sem pagar" valem para ela', () => {
+    const tg = setup({ battlefield: [['Swamp'], ['Elvish Mystic']], exile: [[VIRTUE], []] });
+    allowPlay(tg.g, 0, tg.bf('Swamp'), [tg.find(VIRTUE, 'exile')!], { kind: 'endOfTurn' }, { free: true });
+    tg.refresh();
+    const ks = chaves(tg);
+    expect(ks).toHaveLength(2);
+    expect(ks.filter((k) => k.endsWith('@1'))).toHaveLength(1);
+    tg.choose('criatura alvo', ['Elvish Mystic']).cast(VIRTUE, ks.find((k) => k.endsWith('@1'))!).resolveAll();
+    expect(tg.find('Elvish Mystic')).toBeNull();
+    expect(tg.state.objects[tg.bf('Swamp')].tapped).toBe(false);
+  });
+});

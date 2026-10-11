@@ -57,8 +57,8 @@ export default defineCard({
     },
   ],
   rulings: {
-    1: 'teste: Aura de outro jogador também dá golpe duplo',
-    2: 'teste: move a Aura de outro jogador presa a uma criatura sua',
+    1: 'teste: Equipamento de outro jogador também dá golpe duplo',
+    2: 'teste: move o Equipamento de outro jogador preso a uma criatura sua',
     3: 'teste: com um alvo ilegal, nada acontece',
     4: 'teste: Sword of the Realms devolve a criatura equipada que morre; se ela já saiu do cemitério, fica onde está',
     5: 'regra geral: CR 111.8 — a ficha que sai do campo não muda mais de zona (motor/actions.ts moveObjects)',
