@@ -97,6 +97,16 @@ Jeitos de conjurar e custos (`motor/conjurar-alternativo.ts`). Nos testes, o mé
 - **Permissão de conjurar com outro custo** (vida em vez de mana): `ruleEffect` com uma estática que devolve `{ key, label, free: true, parts: [{ k: 'life', n }] }` em `mayPlayFrom` (Xander's Pact).
 - **Cópia de uma carta para conjurar:** `createObject(g, { def, owner, controller, zone: 'exile', isCopy: true, copyOf: { def, face: 0 } })` e `mayCastFree` (Flawless Forgery).
 
+Formatos de carta (`motor/formatos.ts`). O nome da definição e o slug usam o nome completo com as duas faces: `'Fell the Profane // Fell Mire'` → `fell-the-profane-fell-mire.ts`. Cada face é uma entrada de `faces`, na ordem do Oracle. Nos testes, `tg.find`/`tg.bf` e o primeiro argumento de `tg.cast`/`tg.play` usam o nome completo; `tg.activate` e `activateMana` usam o nome da face que está para cima.
+
+- **Modal de duas faces:** `faces: [frente, verso]`. Conjurar a frente: `tg.cast(nome, 'hand')`; o verso: `tg.cast(nome, 'hand@1')`; verso que é terreno: `tg.play(nome)`. Verso de terreno "pague 3 de vida ou entra virado": `land.payLifeOrTapped(3)`.
+- **Dividida:** `faces: [metade1, metade2]`, cada uma com o seu `spell`. Segunda metade: `'hand@1'`; fusão: `'fuse'` (o motor reconhece pelo Oracle); aftermath: `'aftermath'`, só do cemitério, e a carta é exilada depois.
+- **Sala:** `faces: [porta1, porta2]` com as habilidades de cada porta. Conjura-se uma porta (`'hand'` ou `'hand@1'`); destrancar a outra é a ação `unlock:<id>:<porta>`, só como feitiço. As habilidades só valem com a porta destrancada.
+- **Aventura:** `faces: [carta, aventura]`. Aventura: `'hand@1'`; depois, a carta do exílio: `'adventure'`.
+- **Reversível:** uma face só em `faces` (as duas são iguais).
+- **Substituição na criação de fichas** ("o dobro", "em vez disso crie…"): gancho `tokenCreation` (Anointed Procession, Jinnie Fay). Num teste, efeitos que perguntam algo rodam com `runEffect(tg, …)` de `testes/artefatos.ts`, não com `tg.run`.
+- **Outros ganchos:** `preventsDamage` (previne todo o dano a algo), `spellsHaveConvoke`.
+
 ## Testes
 
 ```ts
