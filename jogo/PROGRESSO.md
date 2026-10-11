@@ -1625,5 +1625,34 @@ jogáveis).
 - **Conferir no navegador:** a etiqueta de setor na carta (Space Beleren) e a janela de escolha de setor não foram
   vistas na mesa; a mudança no cliente é uma linha em `cliente/src/mesa/Carta.tsx`.
 
-Faltam 8 decks do lote 2: Heavenly Inferno, Hatsune Miku, Wakanda Forever, Turtle Power!, Avengers Assemble, Necron
-Dynasties e Jin's Vengeance, mais o Food and Fellowship (importação e dois comandantes pendentes).
+## Heavenly Inferno (Kaalia of the Vast): pronto — 11/10/2026
+
+As 48 cartas que faltavam estão escritas, cada uma com teste e rulings. O deck entrou no saguão desta cópia (19 decks
+jogáveis).
+
+- Conferência com o Moxfield: 100 cartas, 79 de 79 com regras, nada faltando nem sobrando.
+- Bots com o deck obrigatório: 8 partidas de 4 jogadores e 12 de 2 (aleatórios), 4 de 2 (heurísticos), todas sem erro.
+- `cartas/inferno.ts` guarda os Votos (Vow of Malice, Duty e Lightning), a radiância, "se você conjurou esta mágica
+  durante a sua fase principal", "se você a conjurou da sua mão" e o bombear "+P/+T até o fim do turno".
+- Motor:
+  - Intimidar (CR 702.13b) em `motor/combat.ts`.
+  - "Conjure esta mágica somente [quando…]": `castOnlyIf` na face (Master Warcraft).
+  - Quem escolhe os ataques e os bloqueios do turno: efeito de regra `rule:combatChooser` com `{ player }`
+    (Master Warcraft). A decisão de atacantes ou de bloqueadores vai para esse jogador, com o texto "Declare os
+    atacantes de Fulano".
+- Ficha nova: Kithkin Soldier 1/1 branco.
+- Simplificações, para conferir se alguém estranhar na mesa:
+  - Molten Slagheap: "{1}, remova X marcadores de armazenamento" é ativada como habilidade comum (passa pela pilha), e
+    o X é escolhido na resolução. Pela regra é habilidade de mana, com os marcadores removidos como custo.
+  - Master Warcraft: quem conjurou escolhe também o que cada atacante ataca (jogador ou planeswalker). Pela regra, com
+    planeswalker do outro lado, quem escolhe o alvo de cada atacante é o jogador ativo (ruling 2).
+  - Dragon Whelp: conta as vezes em que a habilidade resolveu no turno, não as vezes em que foi ativada. Com quatro
+    ativações empilhadas, o resultado é o mesmo (ele é sacrificado), só muda o número de gatilhos de sacrificar.
+  - Stranglehold: a segunda habilidade (turnos extras) não faz nada, porque o jogo não tem turnos extras.
+  - Orim's Thunder: reforçada, a criatura alvo é obrigatória quando existe criatura para mirar; sem nenhuma, a mágica
+    pode ser conjurada só com o primeiro alvo.
+- **Conferir no navegador:** com Master Warcraft, a janela de declarar atacantes ou bloqueadores aparece para quem
+  conjurou a mágica, com as criaturas de outro jogador. O cliente não foi mexido nem visto nessa situação.
+
+Faltam 7 decks do lote 2: Hatsune Miku, Wakanda Forever, Turtle Power!, Avengers Assemble, Necron Dynasties e Jin's
+Vengeance, mais o Food and Fellowship (importação e dois comandantes pendentes).

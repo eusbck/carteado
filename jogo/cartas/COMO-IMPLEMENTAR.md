@@ -121,6 +121,13 @@ Todos vêm de `motor/api.ts`. Uma linha de uso por recurso:
 - **Manifestar uma carta que não está no topo do grimório:** `putOntoBattlefield(g, [{ id, controller, faceDown: true, data: { manifestada: true } }], 'manifest')` (Jeskai Infiltrator).
 - **Contagem do turno nova:** `turnStats[p].landsEntered` (Smuggler's Share).
 - **Nos testes, a montagem responde sozinha às escolhas que aparecem antes da primeira prioridade** (os setores do Space Beleren, por exemplo): para roteirizar, ponha a permanente com `enterCard` depois de registrar as escolhas.
+- **Restrição de quando conjurar:** `castOnlyIf: (c) => …` na face (Master Warcraft). **Outro jogador decide os ataques e os bloqueios do turno:** `ruleEffect(c, 'rule:combatChooser', { kind: 'endOfTurn' }, { params: { player } })`.
+- **"Se você a conjurou da sua mão" num gatilho de entrar:** `condition: (c) => conjuradaDaMao(c.g, c.source)`; **"se você conjurou esta mágica durante a sua fase principal":** `conjuradaNaSuaFasePrincipal(c)`; **radiância:** `radiancia(g, alvo)`; **os Votos:** `...voto(palavraChave, texto)`. Tudo em `cartas/inferno.ts`.
+- **Alvo que só existe com o reforço pago:** `{ ...t.creature(), min: 0, max: (c) => (paidTimes(c.g, c.source, 'kicker') > 0 ? 1 : 0), validateSet }` (Orim's Thunder). `min` é sempre número; quem varia é o `max`.
+- **Um gatilho por criatura atacante:** `on.custom((e) => (e.type === 'attackers' ? e.attackers.map((a) => ({ atacante: a.obj })) : false))` (Righteous Cause). `on.attacks(pred)` dispara uma vez por declaração.
+- **Cada jogador paga quanta mana quiser:** `chooseNumber` com o máximo achado por `canAfford` (de `motor/costs.ts`) e depois `payMana(g, p, [{ k: 'generic', n }], { purpose: { kind: 'effect' }, canCancel: true, label })` (Mana-Charged Dragon).
+- **Nos testes, a escolha da criatura sacrificada num custo** é `tg.choose('Sacrifique', [nome])`, com S maiúsculo.
+- **Mensagem de commit pelo PowerShell:** aspas duplas dentro da mensagem quebram o `git commit -m`; grave a mensagem num arquivo e use `git commit -F`.
 - **Nos testes, conjurar uma carta do exílio por uma permissão:** ache a ação com `tg.actionIds().find((a) => a.startsWith('cast:') && a.split(':').includes(String(carta)))` e responda com `tg.answer({ kind: 'priority', action })`.
 
 Jeitos de conjurar e custos (`motor/conjurar-alternativo.ts`). Nos testes, o método vai no segundo argumento de `tg.cast(nome, 'overload')`; custo opcional: `tg.choose('custo adicional opcional', ['Pagar: …' | 'Não pagar'])`; custo repetível: `tg.number('quantas vezes', n)`.
