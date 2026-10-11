@@ -1,7 +1,7 @@
 // Mecânicas com palavra própria usadas pelas cartas da parte B: transformar, proliferar,
 // resguardo. Cada uma segue a regra citada.
 
-import { addCounters, blight, exile, gainLife, loseLife, moveObjects, putOntoBattlefield, removeCounters, removeFromCombat, sacrifice } from './actions.ts';
+import { addCounters, blight, exile, gainLife, loseLife, moveObjects, putOntoBattlefield, removeCounters, removeFromCombat, sacrifice, discard } from './actions.ts';
 import { blightCandidates } from './actions.ts';
 import { parseCost } from './mana.ts';
 import { addEffect } from './state.ts';
@@ -102,6 +102,7 @@ export function* proliferate(g: G, p: PlayerId): Gen<void> {
 function textoCusto(custo: string): string {
   const b = custo.match(/^blight:(\d+)$/);
   if (b) return `blight ${b[1]}`;
+  if (custo === 'discard') return 'Descarte uma carta';
   const { mana, vida } = custoComVida(custo);
   if (vida === 0) return custo;
   return mana ? `${mana} e pagar ${vida} de vida` : `pagar ${vida} de vida`;
@@ -128,6 +129,11 @@ function gatilhoResguardo(custo: string): TriggeredDef {
       const temCriatura = blightCandidates(c.g, quem).length > 0; // CR 701.68b
       if (temCriatura && (yield* yesNo(c.g, quem, `Resguardo de ${nameOf(c.g, c.source)}: fazer blight ${b[1]} para não ter a mágica ou habilidade anulada?`))) {
         pagou = (yield* blight(c.g, quem, Number(b[1]))) !== null;
+      }
+    } else if (custo === 'discard') {
+      // CR 702.21a: o custo é descartar uma carta; sem carta na mão, não dá para pagar
+      if (c.g.state.zones.hand[quem].length > 0 && (yield* yesNo(c.g, quem, `Resguardo de ${nameOf(c.g, c.source)}: descartar uma carta para não ter a mágica ou habilidade anulada?`))) {
+        pagou = (yield* discard(c.g, quem, 1)).length > 0;
       }
     } else if (custoComVida(custo).vida > 0) {
       // pagar vida só com vida suficiente (CR 119.4); a mana e a vida são pagas juntas

@@ -354,3 +354,5 @@ export const CatSoldier = token('Cat Soldier', 'Cat Soldier', ['Creature'], ['Ca
 export const CatBeast = token('Cat Beast', 'Cat Beast', ['Creature'], ['Cat', 'Beast'], ['W'], 2, 2);
 /** Shapeshifter 2/2 azul com polimorfo (Maskwood Nexus) */
 export const Shapeshifter22 = token('Shapeshifter 2/2', 'Shapeshifter', ['Creature'], ['Shapeshifter'], ['U'], 2, 2, [changeling()]);
+/** Bat 1/1 preto com voar (Timothar, Baron of Bats) */
+export const Bat = token('Bat', 'Bat', ['Creature'], ['Bat'], ['B'], 1, 1, keywords('flying'));

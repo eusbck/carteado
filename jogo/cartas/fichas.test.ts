@@ -49,6 +49,7 @@ const esperadas: Record<string, [string, string[], string[], string[], number | 
   'Drake': ['Drake', ['Creature'], ['Drake'], ['U'], 2, 2, ['flying']],
   'Wall 0/3': ['Wall', ['Creature'], ['Wall'], [], 0, 3, ['defender', 'reach']],
   'Ox': ['Ox', ['Creature'], ['Ox'], ['W'], 2, 2, []],
+  'Bat': ['Bat', ['Creature'], ['Bat'], ['B'], 1, 1, ['flying']],
   'Cat 1/1 vínculo': ['Cat', ['Creature'], ['Cat'], ['W'], 1, 1, ['lifelink']],
   'Warrior vigilância': ['Warrior', ['Creature'], ['Warrior'], ['W'], 1, 1, ['vigilance']],
   'Rat toque mortífero': ['Rat', ['Creature'], ['Rat'], ['B'], 1, 1, ['deathtouch']],
