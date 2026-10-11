@@ -108,6 +108,20 @@ Todos vêm de `motor/api.ts`. Uma linha de uso por recurso:
 - **"Quando você cicla esta carta":** guarde `const ciclagem = cycling(custo)` e dispare em `e.type === 'activate' && e.abilityId === ciclagem.id` com `zones: ['graveyard', 'exile']` (Decree of Pain, Rampaging War Mammoth).
 - **Notas de rulings repetidas:** `REUNIR` e `ANEL` em `cartas/mordor.ts`.
 - **Nos testes, `tg.attack([...])` só deixa o ataque combinado:** ele é declarado quando a partida avança (`.passTo('declareBlockers')` ou `.passTo('main2', 0)`).
+- **Vencer a partida e contar mágicas por nome:** `winGame(g, jogador, motivo)`; `state.castNames['jogador:Nome']` (Approach of the Second Sun). De onde a mágica foi conjurada: `objeto.stack.castFrom`.
+- **Encerrar o turno:** `yield* endTheTurn(g)` (Time Stop). **Pular etapa ou fase neste turno:** `state.turn.skip = ['draw' | 'main' | 'combat']` (Fatespinner).
+- **Ordem dos turnos e assentos:** `g.order()` é a ordem em vigor (invertida com `state.turnReversed`, Aeon Engine); `g.nextPlayer` e `g.apnap()` já a seguem. `state.turnOrder` são os assentos e não muda. Jogador à esquerda ou à direita: `seatNeighbor(g, p, 'left' | 'right')` (Inniaz, Aminatou).
+- **Substituir a compra por outra coisa:** gancho `drawReplace: function* (c, jogador) { … }` (Shared Fate). **Jogar cartas exiladas com a permanente:** `mayPlayFrom` devolvendo `{ key, label, land: true }` para as cartas de `linkedExiled(g, fonte, chave)`.
+- **Gatilho quando uma habilidade desencadeada vai para a pilha:** `on.custom((e) => e.type === 'triggerOnStack' …)`, com a habilidade em `e.obj` (Aboleth Spawn).
+- **Mudar os alvos de algo na pilha:** `yield* changeTargets(g, idNaPilha, quemEscolhe, { noTriggerFor })` (Psychic Battle). **Um gatilho por mágica ou habilidade com alvos:** `on.batch` agrupando os eventos `target` por `by`.
+- **Trocar ou definir o texto de regras (camada 3):** modificação `{ k: 'setText', abilities }`; o texto de uma criatura é `copyValuesChars(copiableValues(g, id), dono).abilities` (Exchange of Words).
+- **Ação baseada em estado da carta, com escolha:** gancho `stateAction: function* (c) { … return fezAlgo; }` (Space Beleren). Precisa devolver false quando não há mais nada a fazer. **Setores:** `setorDe(g, id)` em `motor/setores.ts`.
+- **Virar terreno, veículo ou outro tipo perdendo os demais:** `{ k: 'setTypes', types, subtypes, keepSupertypes: true }`; dentro de `mods`, as características parciais do objeto estão em `c.g.computing?.get(o.id)` (Imprisoned in the Moon guarda os tipos de terreno). Quem deixa de ser criatura sai do combate sozinho.
+- **Sair de fase "até":** `phaseOut(g, [id])` e marcar `objeto.data.phaseOutUntil` para ela não voltar na etapa de desvirar (Oubliette).
+- **Manifestar uma carta que não está no topo do grimório:** `putOntoBattlefield(g, [{ id, controller, faceDown: true, data: { manifestada: true } }], 'manifest')` (Jeskai Infiltrator).
+- **Contagem do turno nova:** `turnStats[p].landsEntered` (Smuggler's Share).
+- **Nos testes, a montagem responde sozinha às escolhas que aparecem antes da primeira prioridade** (os setores do Space Beleren, por exemplo): para roteirizar, ponha a permanente com `enterCard` depois de registrar as escolhas.
+- **Nos testes, conjurar uma carta do exílio por uma permissão:** ache a ação com `tg.actionIds().find((a) => a.startsWith('cast:') && a.split(':').includes(String(carta)))` e responda com `tg.answer({ kind: 'priority', action })`.
 
 Jeitos de conjurar e custos (`motor/conjurar-alternativo.ts`). Nos testes, o método vai no segundo argumento de `tg.cast(nome, 'overload')`; custo opcional: `tg.choose('custo adicional opcional', ['Pagar: …' | 'Não pagar'])`; custo repetível: `tg.number('quantas vezes', n)`.
 

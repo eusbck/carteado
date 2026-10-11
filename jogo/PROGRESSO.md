@@ -1572,33 +1572,58 @@ As 45 cartas que faltavam estão escritas, cada uma com teste e rulings. O deck 
 - A suíte inteira ainda não rodou com estas 45 cartas nem com as 18 últimas do Vampiric Bloodline (rodaram os testes de
   cada carta, o `tsc`, a conferência e os bots).
 
-**Suíte pendente (11/10/2026):** a suíte inteira com o Vampiric Bloodline completo e o The Hosts of Mordor foi
-disparada na `decks/lote2` (commit 3db6ca0) e **encerrada pelo sistema por falta de memória** antes de terminar. Não
-foi religada. A última suíte inteira que terminou é a do Raining Cats and Dogs (1150 arquivos, 3371 testes, 1 falha de
-tempo limite já corrigida). Falta rodar: `npx vitest run --maxWorkers=2 --reporter=dot` em
-`Magic-Commander-lote2\jogo`, com memória livre.
+**Suíte que tinha ficado pendente (11/10/2026):** a suíte inteira com o Vampiric Bloodline completo e o The Hosts of
+Mordor foi disparada na `decks/lote2` (commit 3db6ca0) e encerrada pelo sistema por falta de memória antes de terminar.
+Rodou depois, numa sessão nova, com 4 GB livres ao começar (commit a7e23b7, que inclui também as 19 primeiras cartas
+do Odd and Ends): **1232 arquivos, 3523 testes aprovados, 1 ignorado que já existia, zero falhas**, em 47 minutos
+(`npx vitest run --maxWorkers=2 --reporter=dot`). Com 1,9 GB livres ela não foi ligada; vale conferir a memória antes.
 
-## Odd and Ends (Yennett, Cryptic Sovereign): 19 de 46 — em andamento
+## Odd and Ends (Yennett, Cryptic Sovereign): pronto — 11/10/2026
 
-Feitas, com teste e rulings: Nadir Kraken, Soothsaying, Leadership Vacuum, Coalition Relic, Rapid Hybridization, Doom
-Whisperer, Venser's Journal, Extinction Event, Vega, Dazzling Sphinx, Chaos Wand, Loran, Weathered Wayfarer, Claim
-Jumper, Sensei's Divining Top, Void Winnower, Breach the Multiverse, Toxrill e Reconnaissance.
+As 46 cartas que faltavam estão escritas, cada uma com teste e rulings. O deck entrou no saguão desta cópia (18 decks
+jogáveis).
 
-- Motor: proibição de conjurar que depende da mágica (`cantCastSpell`, com o valor de mana já contando o X) para o
-  Void Winnower. `cartas/esquisitos.ts` guarda "exila até uma instantânea ou feitiço e conjura de graça", "olhe as N do
-  topo e reordene" e "um oponente controla mais terrenos".
+- Conferência com o Moxfield: 100 cartas, 91 de 91 com regras, nada faltando nem sobrando.
+- Bots com o deck obrigatório: 8 partidas de 4 jogadores e 12 de 2 (aleatórios), 4 de 2 (heurísticos), todas sem erro.
+- `cartas/esquisitos.ts` guarda "exila até uma instantânea ou feitiço e conjura de graça", "olhe as N do topo e
+  reordene" e "um oponente controla mais terrenos".
+- Motor (cada recurso usado e testado por uma carta):
+  - Proibição de conjurar que depende da mágica (`cantCastSpell`, com o valor de mana já contando o X): Void Winnower.
+  - Vencer a partida por efeito (`winGame`, CR 104.2b) e contagem das mágicas conjuradas na partida por jogador e nome
+    (`state.castNames`): Approach of the Second Sun.
+  - Encerrar o turno (`endTheTurn`, CR 724.1): Time Stop. Os gatilhos que ainda não foram para a pilha deixam de
+    existir, tudo na pilha é exilado, o combate acaba e o jogo vai direto para a limpeza.
+  - Pular etapa ou fase (`turn.skip`, CR 500.11 e 614.10): Fatespinner.
+  - Inverter a ordem dos turnos (`state.turnReversed` com `G.order()`): Aeon Engine. `state.turnOrder` continua sendo
+    a ordem dos assentos, que é o que o cliente desenha. `seatNeighbor` dá o jogador à esquerda ou à direita (Inniaz,
+    Aminatou).
+  - Quem deixa de ser criatura sai do combate (CR 506.4), conferido junto com as ações baseadas em estado: Swift
+    Reconfiguration, Imprisoned in the Moon.
+  - Substituir a compra por outra coisa (gancho `drawReplace`, CR 614.1a): Shared Fate.
+  - Evento `triggerOnStack`, emitido quando uma habilidade desencadeada vai para a pilha: Aboleth Spawn.
+  - Mudar os alvos de uma mágica ou habilidade na pilha (`changeTargets`, CR 115.7), com quem escolhe podendo não ser
+    o controlador: Psychic Battle.
+  - Mudança de texto na camada 3 (modificação `setText`, CR 612.5): Exchange of Words.
+  - Ação baseada em estado definida pela carta (gancho `stateAction`) e os setores do campo (`motor/setores.ts`):
+    Space Beleren. A vista manda o setor de cada criatura (`ObjView.sector`) e a carta do cliente mostra a etiqueta
+    "setor alfa/beta/gama".
+  - Contagem do turno: terrenos que entraram (`turnStats.landsEntered`), para o Smuggler's Share.
 - Fichas novas: Tentacle, Frog Lizard, Slug, Illusion X/X e Horror X/X.
 - Cuidado ao escrever estáticas: o motor descobre a camada de uma estática chamando `mods` com a própria fonte. Se
   `mods` devolver lista vazia para a fonte (como "-1/-1 por marcador" numa fonte sem marcador), a estática nunca se
   aplica. Devolva sempre a modificação, mesmo com zero (foi o erro da Toxrill).
-- Faltam 27, e são as que pedem mais motor: Yennett, Approach of the Second Sun, Aminatou, Fractured Identity, Aeon
-  Engine (inverter a ordem dos turnos), Psychic Battle, Time Stop (encerrar o turno), Oubliette, Imprisoned in the Moon,
-  Thief of Sanity, Jeskai Infiltrator (manifestar), Master of Predicaments, Planeswalker's Mischief, Fatespinner (pular
-  etapa ou fase), Inniaz, Shared Fate, Skyclave Apparition, Skyclave Relic, Profane Transfusion, Swift Reconfiguration,
-  Aerial Extortionist, Smuggler's Share, Aboleth Spawn, Space Beleren (setores), Exchange of Words (trocar caixas de
-  texto), Vesuvan Drifter e Marvo.
-- A suíte inteira não rodou com estas 19 cartas.
+- Simplificações, para conferir se alguém estranhar na mesa:
+  - Oubliette: a criatura volta de fase por um gatilho de "quando Oubliette sai do campo", que passa pela pilha. Pela
+    regra (CR 610.3) ela voltaria na hora, sem pilha. O Hostage Taker já fazia assim.
+  - Aboleth Spawn: reconhece a habilidade "de entrar" da criatura quando o gatilho guardou o próprio evento de entrada.
+    Um gatilho de entrar escrito com `on.custom` que devolve dados próprios não é reconhecido.
+  - Shared Fate e Notion Thief juntos: o motor aplica primeiro o Notion Thief e depois a Shared Fate, sem perguntar a
+    ordem a quem compraria (CR 616.1). Nenhum deck tem os dois.
+  - Aminatou: "pode ser o seu comandante" é da montagem do deck; aqui o comandante é Yennett.
+  - Master of Predicaments: o registro mostra o palpite do oponente, mas não se ele acertou (ruling 3).
+  - Space Beleren: uma pergunta por criatura sem setor. Os bots aleatórios respondem ao acaso.
+- **Conferir no navegador:** a etiqueta de setor na carta (Space Beleren) e a janela de escolha de setor não foram
+  vistas na mesa; a mudança no cliente é uma linha em `cliente/src/mesa/Carta.tsx`.
 
-Faltam 9 decks do lote 2 (contando este): Odd and Ends, Heavenly Inferno, Hatsune Miku, Wakanda Forever, Turtle Power!,
-Avengers Assemble, Necron Dynasties e Jin's Vengeance, mais o Food and Fellowship (importação e dois comandantes
-pendentes).
+Faltam 8 decks do lote 2: Heavenly Inferno, Hatsune Miku, Wakanda Forever, Turtle Power!, Avengers Assemble, Necron
+Dynasties e Jin's Vengeance, mais o Food and Fellowship (importação e dois comandantes pendentes).

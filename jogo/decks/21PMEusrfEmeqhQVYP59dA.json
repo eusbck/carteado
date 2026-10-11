@@ -6,8 +6,7 @@
  "link": "https://moxfield.com/decks/21PMEusrfEmeqhQVYP59dA",
  "importadoEm": "2026-10-10T05:37:23.398Z",
  "verificadoEm": "2026-10-10T05:37:23.398Z",
- "atual": null,
- "preparacao": {
+ "atual": {
   "comandante": "Yennett, Cryptic Sovereign",
   "cartas": [
    {
@@ -376,5 +375,6 @@
    "atualizadoEm": "2026-09-28T20:50:04.513Z"
   },
   "desde": "2026-10-10T05:37:23.398Z"
- }
+ },
+ "preparacao": null
 }
