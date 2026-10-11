@@ -1,8 +1,28 @@
 // Peças e notas de rulings repetidas nas cartas do deck Hatsune Miku (ganho de vida, fichas e popular).
-import { and, is, lkiChars, on, toughness } from '../motor/api.ts';
-import type { TriggerSpec } from '../motor/defs.ts';
+import { addMana, and, chooseOne, is, isLand, lkiChars, on, staticAbility, toughness, triggered } from '../motor/api.ts';
+import type { AbilityDef, TriggerSpec } from '../motor/defs.ts';
 import type { G } from '../motor/game-context.ts';
-import type { ObjId } from '../motor/types.ts';
+import type { ManaType, ObjId } from '../motor/types.ts';
+
+const NOME_DA_MANA: Record<string, string> = { W: 'Branca', U: 'Azul', B: 'Preta', R: 'Vermelha', G: 'Verde', C: 'Incolor' };
+
+/**
+ * "Sempre que você vira um terreno para gerar mana, adicione uma mana de qualquer tipo que esse terreno produziu"
+ * (Mirari's Wake; Vorinclex, Voice of Hunger). Habilidade de mana desencadeada (CR 605.1b): não usa a pilha. Com mais
+ * de um tipo produzido, você escolhe um; a mana a mais não carrega as restrições da original.
+ */
+export function manaAMaisDeTerreno(): AbilityDef[] {
+  return [
+    // avisa o pagamento automático da mana a mais
+    staticAbility({ rules: { extraManaForPlanning: (c, player, source, produced, tapped) => (player === c.you && tapped && !!c.g.state.objects[source] && isLand(c.g, source) && produced.length ? [produced[0]] : []) } }),
+    triggered(on.custom((e, c) => e.type === 'mana' && e.player === c.you && !!e.tappedForMana && !!c.g.state.objects[e.source] && isLand(c.g, e.source) && e.produced.length > 0), function* (c) {
+      const tipos = [...new Set(c.event.produced as ManaType[])];
+      let tipo = tipos[0];
+      if (tipos.length > 1) tipo = (yield* chooseOne(c.g, c.you, 'Adicione uma mana de qual tipo que o terreno produziu?', tipos.map((t) => ({ id: t, label: NOME_DA_MANA[t] ?? t })))) as ManaType;
+      addMana(c.g, c.you, [tipo], { source: c.source });
+    }, { mana: true, text: 'Sempre que você vira um terreno para gerar mana, adicione uma mana de qualquer tipo que esse terreno produziu.' }),
+  ];
+}
 
 /** notas dos rulings de popular, que se repetem em todas as cartas com a palavra */
 export const POPULAR = {
