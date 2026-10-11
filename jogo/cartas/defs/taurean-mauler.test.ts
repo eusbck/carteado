@@ -20,8 +20,10 @@ describe(N, () => {
     tg.resolve();
     expect(tg.state.objects[tg.bf(N)].counters['+1/+1']).toBe(1);
     expect(tg.state.zones.stack).toHaveLength(1);
-    counter(tg.g, tg.state.zones.stack[0]);
-    tg.refresh().settle();
+    tg.run(counter(tg.g, tg.state.zones.stack[0]));
+    tg.settle();
+    expect(tg.state.zones.stack).toHaveLength(0);
+    expect(tg.find('Sol Ring', 'graveyard', 1)).not.toBeNull();
     expect(tg.state.objects[tg.bf(N)].counters['+1/+1']).toBe(1);
   });
 

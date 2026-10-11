@@ -15,9 +15,10 @@ describe(N, () => {
     expect(tg.state.zones.stack).toHaveLength(1);
     expect(tg.find('Sol Ring')).toBeNull();
     // anulada depois de disparar: o dano do gatilho já aconteceu
-    counter(tg.g, tg.state.zones.stack[0]);
-    tg.refresh().settle();
-    expect(tg.find('Sol Ring')).toBeNull();
+    tg.run(counter(tg.g, tg.state.zones.stack[0]));
+    tg.settle();
+    expect(tg.state.zones.stack).toHaveLength(0);
+    expect(tg.find('Sol Ring', 'graveyard', 0)).not.toBeNull();
     expect(tg.life(1)).toBe(39);
   });
 

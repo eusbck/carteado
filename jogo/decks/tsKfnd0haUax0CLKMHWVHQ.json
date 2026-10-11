@@ -6,8 +6,7 @@
  "link": "https://moxfield.com/decks/tsKfnd0haUax0CLKMHWVHQ",
  "importadoEm": "2026-10-10T05:01:47.335Z",
  "verificadoEm": "2026-10-10T05:01:47.335Z",
- "atual": null,
- "preparacao": {
+ "atual": {
   "comandante": "Lathliss, Dragon Queen",
   "cartas": [
    {
@@ -288,5 +287,6 @@
    "atualizadoEm": "2026-09-28T20:58:44.9Z"
   },
   "desde": "2026-10-10T05:01:47.335Z"
- }
+ },
+ "preparacao": null
 }

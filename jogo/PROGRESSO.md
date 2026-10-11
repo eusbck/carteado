@@ -1377,3 +1377,46 @@ Rodada 1 (7 agentes):
   hideaway, reconfigure, ciclagem de tipo e as fichas Food, Clue e Blood.
 - **e** e **f:** os terrenos (109) que não dependem de motor novo.
 - **g:** as cartas repetidas entre decks e as de molde (27), mais 20 do Reign of Dragons.
+
+### Retomada sem agentes (10/10/2026, outra conta)
+
+A rodada 1 foi cortada no meio pelo limite semanal da conta que a lançou. O trabalho foi retomado por uma sessão só,
+sem subagentes, a partir do que ficou nos worktrees:
+
+- **a:** os bugs 6 e 7 foram terminados (testes de fundo e retrato valendo para todos os decks; asserções dos rulings
+  "teste:"). Suíte inteira do branch: 733 arquivos, 2073 testes, zero falhas. Juntado.
+- **d:** estava commitado (motor de criaturas, sem cartas). Juntado.
+- **e** e **f:** 51 e 50 terrenos com teste passando. Juntados. Ficaram de fora Eiganjo Castle, Inkmoth Nexus, Molten
+  Slagheap, Urza's Saga, Dowsing Dagger, Eiganjo, Seat of the Empire, Minas Morgul e Villainous Hideout.
+- **g:** 47 cartas. Uma falha (Tyrant's Familiar sob o controle de outro jogador) era um bug do motor: a estática de
+  um permanente que mudou de controlador continuava valendo para o dono antigo (`motor/chars.ts`, CR 613.1b).
+  Corrigido com teste (`testes/regras-controle-estaticas.test.ts`). Juntado.
+- **b** (formatos de carta) e **c** (jeitos de conjurar): o motor compila, mas faltavam testes e cartas. Ficaram em
+  commits "WIP" nos branches `lote2-b` e `lote2-c`. O `c` foi atualizado com esta branch e terminado depois (ver
+  abaixo); o `b` ainda não foi juntado.
+- Os arquivos de fichas (`cartas/fichas.ts` e o teste) são juntados com `merge=union` (cada branch acrescenta um bloco
+  no fim); a regra está em `.git/info/attributes` e sai quando o lote acabar.
+
+## Reign of Dragons (Lathliss, Dragon Queen): pronto — 10/10/2026
+
+O primeiro deck do lote 2. Faltavam 54 cartas; 28 vieram dos worktrees da rodada 1 e as outras 26 foram escritas na
+retomada, direto nesta branch, com teste e rulings por carta.
+
+- Recursos novos no motor, cada um usado e testado por uma carta:
+  - miríade impressa (`myriad()`, Goldlust Triad);
+  - o descobrir devolve o valor de mana da carta descoberta (Hit the Mother Lode);
+  - mana com efeito na hora em que é gasta, sem pilha (`rider`, Carnelian Orb of Dragonkind);
+  - mágica que ganha algo até o fim do turno e leva para o permanente (`spellGainsUntilEndOfTurn`, Carnelian Orb e
+    Thundermane Dragon);
+  - mana não gasta que não se perde (`keepsUnspentMana`, Leyline Tyrant);
+  - contagem de permanentes não terrenos que entraram no turno (celebração, Goddric);
+  - modos que não podem repetir no turno (`available` e `onChosen`, Parapet Thrasher).
+- `node ferramentas/decks.ts gerar`: o deck entrou no saguão desta cópia (11 decks jogáveis).
+- `node ferramentas/decks.ts conferir tsKfnd0haUax0CLKMHWVHQ`: 100 cartas, a mesma lista do Moxfield, 69 de 69 cartas
+  distintas com regras.
+- Partidas de bots com o deck obrigatório (`DECK_OBRIGATORIO`), invariantes conferidas a cada resposta: 8 de 4
+  jogadores e 12 de 2 jogadores com bots aleatórios, 4 de 2 jogadores com bots heurísticos. 24 de 24 sem erro.
+- Suíte inteira (`npx vitest run --maxWorkers=2`): 909 arquivos, 2722 testes aprovados, 1 ignorado que já existia, zero
+  falhas (40 minutos). `npx tsc` do motor e do cliente sem erros.
+- Não foram refeitos nesta entrega: o E2E no navegador e as capturas (ficam para o fim de cada 3 ou 4 decks, como no
+  plano).
