@@ -210,3 +210,20 @@ export const Contract = defineToken({
 });
 
 void activated; void cost;
+
+// lote2-f
+import { defineFn } from '../motor/api.ts';
+/** Plant (Dowsing Dagger): criatura Plant verde 0/2 com defensor */
+export const Plant = token('Plant', 'Plant', ['Creature'], ['Plant'], ['G'], 0, 2, keywords('defender'));
+/** Vibranium (The Great Mound): artefato indestrutível; "{T}: Adicione {C}. Essa mana não pode ser gasta para conjurar mágica que não seja de artefato." */
+const VIBRANIUM_SO_ARTEFATO = 'Vibranium:soArtefato';
+defineFn(VIBRANIUM_SO_ARTEFATO, (g: G, purpose: { kind: string; obj?: number }) =>
+  purpose.kind !== 'spell' || (purpose.obj !== undefined && isType(g, purpose.obj, 'Artifact'))); // CR 106.6
+export const Vibranium = defineToken({
+  id: 'Vibranium', name: 'Vibranium', types: ['Artifact'], subtypes: ['Vibranium'], colors: [], power: null, toughness: null,
+  abilities: [
+    keyword('indestructible'),
+    mana('C', { restriction: VIBRANIUM_SO_ARTEFATO, text: '{T}: Adicione {C}. Essa mana não pode ser gasta para conjurar uma mágica que não seja de artefato.' }),
+  ],
+  image: fichasOracle.find((f) => f.name === 'Vibranium')?.oracleId,
+});

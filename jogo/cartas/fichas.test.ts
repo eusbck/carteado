@@ -64,6 +64,9 @@ const esperadas: Record<string, [string, string[], string[], string[], number | 
   'Incubator': ['Incubator', ['Artifact'], ['Incubator'], [], null, null, ['transform']],
   'Phyrexian Mite': ['Phyrexian Mite', ['Artifact', 'Creature'], ['Phyrexian', 'Mite'], [], 1, 1, ['toxic']],
   'Contract': ['Contract', ['Enchantment'], ['Aura'], ['W'], null, null, ['enchant']],
+  // lote2-f
+  'Plant': ['Plant', ['Creature'], ['Plant'], ['G'], 0, 2, ['defender']],
+  'Vibranium': ['Vibranium', ['Artifact'], ['Vibranium'], [], null, null, ['indestructible']],
 };
 
 describe('Fichas: características', () => {
