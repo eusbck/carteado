@@ -116,7 +116,8 @@ describe('arte do comandante para o fundo da área', () => {
         expect((await sharp(fundo!).metadata()).width, d.comandante).toBe(2560);
       }
     }
-  });
+    // um fundo por deck jogável: o tempo cresce com o número de decks (16 em 11/10/2026), além dos 5 s padrão
+  }, 60_000);
 
   it('id inválido ou sem imagem nenhuma: nada', async () => {
     const { img } = await preparar();

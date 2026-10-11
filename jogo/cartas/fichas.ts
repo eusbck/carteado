@@ -356,3 +356,16 @@ export const CatBeast = token('Cat Beast', 'Cat Beast', ['Creature'], ['Cat', 'B
 export const Shapeshifter22 = token('Shapeshifter 2/2', 'Shapeshifter', ['Creature'], ['Shapeshifter'], ['U'], 2, 2, [changeling()]);
 /** Bat 1/1 preto com voar (Timothar, Baron of Bats) */
 export const Bat = token('Bat', 'Bat', ['Creature'], ['Bat'], ['B'], 1, 1, keywords('flying'));
+import { controllerOf as controladorDe, gainControl as ganhaControle, on as quando, t as alvo, tgt as alvoDe, triggered as gatilho } from '../motor/api.ts';
+import type { PlayerId as Jogador } from '../motor/types.ts';
+/** Dragon 6/6 preto e vermelho com voar, ameaçar e "sempre que causa dano de combate a um jogador, ganhe o controle do artefato alvo que esse jogador controla" (Wake the Dragon) */
+export const DragonDeMordor = token('Dragon 6/6 preto e vermelho', 'Dragon', ['Creature'], ['Dragon'], ['B', 'R'], 6, 6, [
+  ...keywords('flying', 'menace'),
+  gatilho(quando.selfDealsCombatDamageToPlayer(), function* (c) {
+    const id = alvoDe(c);
+    if (id !== null) ganhaControle(c.g, id, c.you, { kind: 'permanent' }, c.source);
+  }, {
+    targets: [alvo.artifact((c, id) => controladorDe(c.g, id) === (c.event?.player as Jogador | undefined), 'artefato alvo que esse jogador controla')],
+    text: 'Sempre que esta ficha causa dano de combate a um jogador, ganhe o controle do artefato alvo que esse jogador controla.',
+  }),
+], 'gain control of target artifact');
