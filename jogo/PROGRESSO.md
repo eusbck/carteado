@@ -1501,6 +1501,34 @@ As 41 cartas que faltavam estão escritas, cada uma com teste. O deck entrou no 
 - A suíte inteira ainda não rodou com estas 41 cartas (rodaram os testes de cada carta, o `tsc`, a conferência e os
   bots).
 
-Faltam 12 decks do lote 2: Raining Cats and Dogs, Vampiric Bloodline, The Hosts of Mordor, Odd and Ends, Heavenly
-Inferno, Hatsune Miku, Wakanda Forever, Turtle Power!, Avengers Assemble, Necron Dynasties e Jin's Vengeance, mais o
-Food and Fellowship (importação e dois comandantes pendentes).
+## Raining Cats and Dogs (Rin and Seri, Inseparable): pronto — 11/10/2026
+
+As 44 cartas que faltavam estão escritas, cada uma com teste e rulings. O deck entrou no saguão desta cópia.
+
+- Conferência com o Moxfield: 100 cartas, 81 de 81 com regras, nada faltando nem sobrando.
+- Bots com o deck obrigatório: 8 partidas de 4 jogadores e 12 de 2 (aleatórios), 4 de 2 (heurísticos), todas sem erro.
+- `cartas/gatos.ts` guarda duas peças repetidas: "sempre que uma ou mais [criaturas] suas causam dano de combate a um
+  jogador" (um gatilho por jogador) e "devolva uma criatura que você controla para a mão do dono".
+- Motor:
+  - Exigência de bloqueio "precisa ser bloqueada por exatamente uma criatura se puder" (`mustBeBlockedByExactlyOne`,
+    Nacatl War-Pride). A decisão de bloqueio agora traz `required`, a resposta padrão e os bots passam a dar o bloqueio
+    mínimo obrigatório em vez de "sem bloqueios". **Conferir na mesa:** o cliente não foi mexido; se o jogador
+    declarar um bloqueio que não cumpre a exigência, o motor recusa com a mensagem de erro.
+  - Proteção contra um subtipo (`'subtype:Dog'`), proteção de jogador vinda de efeito com duração
+    (`rule:playerProtection`, Seht's Tiger) e prevenção de dano de combate aos permanentes de um subtipo
+    (`rule:preventCombatDamageToSubtype`, Pack Leader).
+  - Substituição de "comprar duas ou mais cartas" (`multiDrawInstead`, Alms Collector), em `draw`.
+  - Estática do campo que alcança cartas fora dele (`offField: true`, Maskwood Nexus).
+- Fichas novas: Cat 1/1 com vínculo com a vida, Warrior com vigilância, Rat com toque mortífero, Cat Soldier, Cat Beast
+  e Shapeshifter 2/2.
+- Simplificações, para conferir se alguém estranhar na mesa:
+  - Nacatl War-Pride: uma escolha só de quem as fichas atacam, para todas as fichas.
+  - Stalking Leonin: a escolha "em segredo" fica guardada no objeto; não conferi se o cliente a esconde dos outros
+    jogadores.
+  - Realmwalker: a carta do topo do grimório é mostrada pelo gancho que já existia (`lookAtTopOfLibrary`).
+- A suíte inteira ainda não rodou com estas 44 cartas (rodaram os testes de cada carta, o `tsc` do motor e do cliente,
+  a conferência e os bots).
+
+Faltam 11 decks do lote 2: Vampiric Bloodline, The Hosts of Mordor, Odd and Ends, Heavenly Inferno, Hatsune Miku,
+Wakanda Forever, Turtle Power!, Avengers Assemble, Necron Dynasties e Jin's Vengeance, mais o Food and Fellowship
+(importação e dois comandantes pendentes).

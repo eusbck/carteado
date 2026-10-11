@@ -6,8 +6,7 @@
  "link": "https://moxfield.com/decks/G0y9ltIwoUysUSoAYtyFfA",
  "importadoEm": "2026-10-10T05:05:07.453Z",
  "verificadoEm": "2026-10-10T05:05:07.453Z",
- "atual": null,
- "preparacao": {
+ "atual": {
   "comandante": "Rin and Seri, Inseparable // Rin and Seri, Inseparable",
   "cartas": [
    {
@@ -336,5 +335,6 @@
    "atualizadoEm": "2026-06-20T01:33:22.447Z"
   },
   "desde": "2026-10-10T05:05:07.453Z"
- }
+ },
+ "preparacao": null
 }

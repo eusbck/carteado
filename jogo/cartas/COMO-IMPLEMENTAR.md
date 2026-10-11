@@ -97,6 +97,12 @@ Todos vêm de `motor/api.ts`. Uma linha de uso por recurso:
 - **Efeitos de regra novos:** `rule:cantBeSacrificed` (Stilt-Man), `rule:flashNext` com `{ player, tipo }` (Progenitor's Icon).
 - **Nos testes, no turno do oponente:** `tg.pass()` faz o jogador ativo passar e a prioridade vem para você; depois de cada resolução ela volta ao ativo.
 - **Nos testes, `enterCard(tg, nome, jogador)` cria a carta no campo:** não a tira da mão; não coloque a mesma carta em `hand`.
+- **Proteção contra subtipo e de jogador:** `{ k: 'addKeyword', kw: 'protection', param: 'subtype:Dog' }`; jogador: `ruleEffect(c, 'rule:playerProtection', duração, { players: [p], params: { quality: 'color:G' } })`.
+- **Prevenir dano de combate a um subtipo:** `ruleEffect(c, 'rule:preventCombatDamageToSubtype', { kind: 'endOfTurn' }, { params: { controller, subtype } })` (Pack Leader).
+- **Substituir "comprar duas ou mais":** gancho `multiDrawInstead: (c, jogador, n) => boolean` (Alms Collector). **Bloqueio obrigatório por exatamente uma:** gancho `mustBeBlockedByExactlyOne` (Nacatl War-Pride).
+- **Estática que vale fora do campo:** `offField: true` na estática; fora do campo, `affects` usa `printedChars`, não `chars` (Maskwood Nexus).
+- **Um gatilho por jogador que tomou dano de combate / devolver criatura sua:** `seusCausamDanoDeCombate(filtro)` e `devolveCriatura(c, rótulo, filtro, opcional)` em `cartas/gatos.ts`.
+- **Nos testes com três jogadores**, a prioridade passa por todos em ordem: `while (tg.pending?.player !== 0) tg.pass()`.
 - **Nos testes, `tg.attack([...])` só deixa o ataque combinado:** ele é declarado quando a partida avança (`.passTo('declareBlockers')` ou `.passTo('main2', 0)`).
 
 Jeitos de conjurar e custos (`motor/conjurar-alternativo.ts`). Nos testes, o método vai no segundo argumento de `tg.cast(nome, 'overload')`; custo opcional: `tg.choose('custo adicional opcional', ['Pagar: …' | 'Não pagar'])`; custo repetível: `tg.number('quantas vezes', n)`.
