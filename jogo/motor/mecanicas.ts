@@ -647,3 +647,8 @@ export const MYRIAD = defineAbility('kw:myriad', triggered(on.selfAttacks(), fun
   }
   if (fichas.length) delayed(c, EXILA_MIRIADE.id!, { data: { fichas }, expiresTurn: s.turn.number });
 }, { text: 'Miríade (sempre que esta criatura ataca, para cada oponente que não seja o jogador defensor, você pode criar uma ficha cópia dela virada e atacando esse jogador ou um planeswalker dele; exile as fichas no fim do combate).' }));
+
+/** miríade impressa na carta (Goldlust Triad): a mesma habilidade, com id próprio da carta */
+export function myriad(): TriggeredDef {
+  return { ...MYRIAD, id: undefined, kw: 'myriad' };
+}
