@@ -219,6 +219,8 @@ export interface RuleHooks {
   playerHexproof?: (c: SCtx, player: PlayerId) => boolean;
   cantBeCountered?: (c: SCtx, spell: ObjId) => boolean;
   cantCastSpells?: (c: SCtx, player: PlayerId) => boolean;
+  /** proibição que depende da mágica (Void Winnower: "não podem conjurar mágicas com valor de mana par"); o valor de mana já inclui o X escolhido */
+  cantCastSpell?: (c: SCtx, player: PlayerId, spell: ObjId, manaValue: number) => boolean;
   loseHexproof?: (c: SCtx, obj: ObjId) => boolean;
   lifeGainBonus?: (c: SCtx, player: PlayerId) => number;
   extraTriggers?: (c: SCtx, trigger: { abilityId: string; source: ObjId; controller: PlayerId; event: Record<string, unknown>; cause: GameEvent | null }) => number;

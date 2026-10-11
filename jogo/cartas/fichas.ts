@@ -369,3 +369,13 @@ export const DragonDeMordor = token('Dragon 6/6 preto e vermelho', 'Dragon', ['C
     text: 'Sempre que esta ficha causa dano de combate a um jogador, ganhe o controle do artefato alvo que esse jogador controla.',
   }),
 ], 'gain control of target artifact');
+/** Tentacle 1/1 azul (Nadir Kraken) */
+export const Tentacle = token('Tentacle', 'Tentacle', ['Creature'], ['Tentacle'], ['U'], 1, 1);
+/** Frog Lizard 3/3 verde (Rapid Hybridization) */
+export const FrogLizard = token('Frog Lizard', 'Frog Lizard', ['Creature'], ['Frog', 'Lizard'], ['G'], 3, 3);
+/** Slug 1/1 preto (Toxrill, the Corrosive) */
+export const Slug = token('Slug', 'Slug', ['Creature'], ['Slug'], ['B'], 1, 1);
+/** Illusion X/X azul (Skyclave Apparition) */
+export const IllusionXX = tokenXX('Illusion X/X', 'Illusion', ['Creature'], ['Illusion'], ['U']);
+/** Horror X/X incolor, criatura artefato (Profane Transfusion) */
+export const HorrorXX = tokenXX('Horror X/X', 'Horror', ['Artifact', 'Creature'], ['Horror'], []);

@@ -461,6 +461,11 @@ function* castInner(g: G, player: PlayerId, cardId: ObjId, method: CastMethod): 
   }
   // 601.2e: legalidade (proibições, CR 601.3)
   if (hooks(g, 'cantCastSpells').some((h) => h.fn(h.ctx, player))) return null;
+  {
+    // mágica virada para baixo tem valor de mana 0 (CR 708.2a); com {X}, vale o X escolhido (CR 202.3e)
+    const valor = method.alt?.faceDown ? 0 : manaValueOf(chars(g, o.id).manaCost, info.x);
+    if (hooks(g, 'cantCastSpell').some((h) => h.fn(h.ctx, player, o.id, valor))) return null;
+  }
   // 601.2f: custo total
   let cost = totalSpellCost(g, player, o, method, info);
   // Delve (CR 702.66a): exilar cartas do cemitério paga genérico, ao pagar o custo total
