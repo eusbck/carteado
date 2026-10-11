@@ -1,5 +1,5 @@
 // Avatares dos jogadores na mesa: o catálogo dos nove retratos (imagens com transparência, um por comandante dos
-// decks da mesa), a escolha do retrato no servidor (só os do catálogo; todos recebem; volta ao automático com null)
+// nove decks originais da mesa; um deck novo pode não ter o seu e fica com a inicial), a escolha do retrato no servidor (só os do catálogo; todos recebem; volta ao automático com null)
 // e a arrumação padrão do campo deixando livre o espaço do medalhão (em cima no oponente, embaixo na sua área).
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
@@ -14,6 +14,7 @@ import type { DeckList } from '../motor/state.ts';
 import type { ObjId } from '../motor/types.ts';
 import type { ObjView } from '../motor/view.ts';
 import { AVATARES, avatarDoComandante, avatarValido } from '../servidor/avatares.ts';
+import { avatarDoAssento } from '../cliente/src/avatares.ts';
 import { Banco } from '../servidor/banco.ts';
 import type { MsgServidor } from '../servidor/protocolo.ts';
 import { Gerente, SEM_ATRASO, type Conexao } from '../servidor/salas.ts';
@@ -32,11 +33,13 @@ class Falsa implements Conexao {
 const espera = () => new Promise((r) => setTimeout(r, 0));
 
 describe('avatares: catálogo', () => {
-  it('nove retratos com ids únicos, preservados para os comandantes da mesa em 06cc7f3', () => {
+  it('nove retratos com ids únicos; os comandantes dos 9 decks da mesa em 06cc7f3 continuam jogáveis e com o seu', () => {
     expect(AVATARES).toHaveLength(9);
     expect(new Set(AVATARES.map((a) => a.id)).size).toBe(9);
-    expect(decksMesa.slice(0, decksOriginais.length).map(({ id, comandante }) => ({ id, comandante }))).toEqual(decksOriginais);
-    for (const d of decksOriginais) expect(avatarDoComandante(d.comandante), d.comandante).not.toBeNull();
+    for (const d of decksOriginais) {
+      expect(decksMesa.some((x) => x.id === d.id && x.comandante === d.comandante), d.comandante).toBe(true);
+      expect(avatarDoComandante(d.comandante), d.comandante).not.toBeNull();
+    }
     expect(avatarDoComandante('Comandante que não tem retrato')).toBeNull();
     expect(avatarDoComandante(null)).toBeNull();
     expect(avatarValido('jace')).toBe(true);
@@ -44,10 +47,22 @@ describe('avatares: catálogo', () => {
     expect(avatarValido(3)).toBe(false);
   });
 
-  it('um deck novo sem retrato próprio conserva a opção automática com a inicial', () => {
-    const sai = decksMesa.find((d) => d.comandante === 'Sai, Master Thopterist');
-    expect(sai).toBeDefined();
-    expect(avatarDoComandante(sai!.comandante)).toBeNull();
+  // vale para todos os decks jogáveis, inclusive os que entrarem depois: o retrato próprio é opcional
+  it('cada deck jogável: o retrato do comandante, quando existe, é do catálogo e tem a imagem; sem ele, o assento fica com a inicial', () => {
+    expect(decksMesa.length).toBeGreaterThanOrEqual(decksOriginais.length);
+    for (const d of decksMesa as { comandante: string }[]) {
+      const id = avatarDoComandante(d.comandante);
+      if (id !== null) {
+        expect(avatarValido(id), d.comandante).toBe(true);
+        expect(existsSync(join(import.meta.dirname, '..', 'cliente', 'src', 'imagens', 'avatares', `${id}.webp`)), d.comandante).toBe(true);
+      }
+      // quem não escolheu usa o do comandante do deck, se houver; senão null (o medalhão com a inicial, mesa/Avatar.tsx)
+      expect(avatarDoAssento(null, d.comandante)?.id ?? null, d.comandante).toBe(id);
+      // a escolha da pessoa vale acima do retrato do deck
+      expect(avatarDoAssento('gisa', d.comandante)?.id, d.comandante).toBe('gisa');
+    }
+    expect(avatarDoAssento(null, 'Comandante que não tem retrato')).toBeNull();
+    expect(avatarDoAssento('jace', 'Comandante que não tem retrato')?.id).toBe('jace');
   });
 
   it('cada retrato existe no cliente, é quadrado e tem transparência de verdade', async () => {
