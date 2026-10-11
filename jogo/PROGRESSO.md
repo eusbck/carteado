@@ -1498,8 +1498,7 @@ As 41 cartas que faltavam estão escritas, cada uma com teste. O deck entrou no 
   - "Não pode ser sacrificado" vale para sacrifícios por efeito; o motor ainda deixa escolher esse permanente para
     pagar um custo de sacrifício.
   - Typhoid Mary e Power Pack sorteiam na resolução do gatilho.
-- A suíte inteira ainda não rodou com estas 41 cartas (rodaram os testes de cada carta, o `tsc`, a conferência e os
-  bots).
+- Suíte inteira na `decks/lote2` com o deck completo: 1080 arquivos, 3242 testes, zero falhas.
 
 ## Raining Cats and Dogs (Rin and Seri, Inseparable): pronto — 11/10/2026
 
