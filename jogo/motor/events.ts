@@ -57,7 +57,9 @@ export type GameEvent =
   /** o permanente se tornou monstruoso (CR 701.37) */
   | { type: 'monstrous'; obj: ObjId; n: number }
   /** o escudo de regeneração substituiu a destruição (CR 701.19a) */
-  | { type: 'regenerate'; obj: ObjId };
+  | { type: 'regenerate'; obj: ObjId }
+  /** uma habilidade desencadeada foi para a pilha (CR 603.3); `obj` é a habilidade na pilha (Aboleth Spawn) */
+  | { type: 'triggerOnStack'; obj: ObjId; source: ObjId; abilityId: string; controller: PlayerId };
 
 export function isDies(ev: GameEvent): ev is Extract<GameEvent, { type: 'zone' }> {
   return ev.type === 'zone' && ev.from === 'battlefield' && ev.to === 'graveyard';

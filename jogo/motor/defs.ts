@@ -273,6 +273,12 @@ export interface RuleHooks {
    * compra e você compra uma carta" (Notion Thief). O motor só consulta fora da primeira compra da etapa de compra.
    */
   drawInstead?: (c: SCtx, player: PlayerId) => boolean;
+  /**
+   * "se um jogador fosse comprar uma carta, em vez disso ele [faz outra coisa]" (Shared Fate; CR 614.1a): o gerador faz
+   * o que entra no lugar da compra. Com mais de um, quem compraria escolhe qual se aplica (CR 616.1); a compra é
+   * substituída uma vez só.
+   */
+  drawReplace?: (c: SCtx, player: PlayerId) => Gen<void>;
   /** "se [esse jogador] fosse comprar duas ou mais cartas, em vez disso você e ele compram uma carta cada" (Alms Collector) */
   multiDrawInstead?: (c: SCtx, player: PlayerId, n: number) => boolean;
   /** "Seus oponentes não podem procurar em grimórios" (Stranglehold; CR 701.23) */

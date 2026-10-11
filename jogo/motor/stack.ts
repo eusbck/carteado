@@ -720,6 +720,7 @@ export function* putTriggerOnStack(g: G, abilityId: string, source: ObjId, contr
   g.bump();
   const events: Parameters<typeof emit>[1] = [];
   for (const t of info.targets.flat()) events.push({ type: 'target', target: t, by: ab.id, controller, spell: false });
+  events.push({ type: 'triggerOnStack', obj: ab.id, source, abilityId, controller });
   emit(g, events);
   return ab.id;
 }

@@ -770,6 +770,19 @@ export function* draw(g: G, player: PlayerId, n = 1, opts: { aplicadas?: ObjId[]
         }
       }
     }
+    // Shared Fate (CR 614.1a): a compra é trocada por outra coisa, feita pelo efeito
+    {
+      const subs = hooks(g, 'drawReplace');
+      if (subs.length) {
+        let escolhida = subs[0];
+        if (subs.length > 1) {
+          const [esc] = yield* chooseItems(g, player, 'Escolha qual efeito substitui a sua compra', subs.map((h, k) => ({ id: String(k), label: `${nameOf(g, h.ctx.source)} de ${g.state.players[h.ctx.you].name}` })), 1, 1);
+          escolhida = subs[Number(esc)];
+        }
+        yield* escolhida.fn(escolhida.ctx, player);
+        continue;
+      }
+    }
     const lib = g.state.zones.library[player];
     if (lib.length === 0) { p.drewFromEmpty = true; g.bump(); continue; } // CR 121.4
     const top = lib[0];
