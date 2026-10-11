@@ -729,6 +729,22 @@ export function addMana(g: G, player: PlayerId, types: ManaType[], extra: Omit<M
 export function* draw(g: G, player: PlayerId, n = 1): Gen<ObjId[]> {
   const out: ObjId[] = [];
   const p = g.state.players[player];
+  // Substituição de uma instrução de comprar duas ou mais cartas (Alms Collector; CR 614.1a): vale para a instrução
+  // inteira, antes das compras individuais, e não se aplica de novo às compras que resultam dela (CR 614.5)
+  if (n >= 2 && !p.left) {
+    const subs = hooks(g, 'multiDrawInstead').filter((h) => h.fn(h.ctx, player, n));
+    if (subs.length) {
+      // com mais de uma, quem compraria escolhe qual se aplica (CR 616.1)
+      let escolhida = subs[0];
+      if (subs.length > 1) {
+        const [esc] = yield* chooseItems(g, player, 'Escolha qual efeito substitui a sua compra', subs.map((h, i) => ({ id: String(i), label: `${nameOf(g, h.ctx.source)} de ${g.state.players[h.ctx.you].name}` })), 1, 1);
+        escolhida = subs[Number(esc)];
+      }
+      g.log(`${nameOf(g, escolhida.ctx.source)}: em vez de comprar ${n} cartas, ${g.state.players[escolhida.ctx.you].name} e ${p.name} compram uma carta cada.`, { rule: '614.1a' });
+      yield* draw(g, escolhida.ctx.you, 1);
+      return yield* draw(g, player, 1);
+    }
+  }
   for (let i = 0; i < n; i++) { // CR 121.2: uma de cada vez
     if (p.left) break;
     const lib = g.state.zones.library[player];

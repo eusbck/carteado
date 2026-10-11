@@ -262,6 +262,8 @@ export interface RuleHooks {
   // lote2-d
   /** "A regra da lenda não se aplica aos permanentes que você controla" (Sakashima; CR 704.5j) */
   legendRuleExempt?: (c: SCtx, player: PlayerId) => boolean;
+  /** "se [esse jogador] fosse comprar duas ou mais cartas, em vez disso você e ele compram uma carta cada" (Alms Collector) */
+  multiDrawInstead?: (c: SCtx, player: PlayerId, n: number) => boolean;
   /** "Seus oponentes não podem procurar em grimórios" (Stranglehold; CR 701.23) */
   cantSearchLibraries?: (c: SCtx, player: PlayerId) => boolean;
   /** "Você pode olhar a carta do topo do seu grimório a qualquer momento" (Vesuvan Drifter, Realmwalker) */
