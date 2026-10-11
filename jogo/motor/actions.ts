@@ -2,8 +2,9 @@
 // substituição e prevenção, registram eventos e disparam gatilhos.
 
 import { chooseItems, objItem, yesNo, ask } from './ask.ts';
-import { abilityDefs, chars, colorsOf, controllerOf, copyValuesChars, hasKw, hooks, isCreature, isType, kwParams, nameOf, printedChars, toughness } from './chars.ts';
-import { registry, type EnterEvent, type Gen, type ReplacementDef, type SCtx, type TargetSpec } from './defs.ts';
+import { abilityDefs, chars, colorsOf, controllerOf, copyValuesChars, faceAoEntrar, hasKw, hooks, isCreature, isType, kwParams, nameOf, printedChars, toughness } from './chars.ts';
+import { registry, type EnterEvent, type Gen, type ReplacementDef, type SCtx, type TargetSpec, type TokenCreation } from './defs.ts';
+import { ehSala, FACE_AMBAS, FACE_NENHUMA } from './formatos.ts';
 import type { GameEvent } from './events.ts';
 import type { G } from './game-context.ts';
 import { shuffle as shuffleArr } from './rng.ts';
@@ -35,6 +36,8 @@ function* finalDestination(g: G, o: GameObject, to: ZoneName, cause: string, dep
   if (o.zone === 'stack' && o.stack?.data.exileOnLeave && to !== 'battlefield') dest = 'exile';
   // Quintorius, Loremaster: "se essa mágica fosse para um cemitério, vai para o fundo do grimório"
   if (o.zone === 'stack' && o.stack?.data.bottomInsteadOfGraveyard && dest === 'graveyard') dest = 'library';
+  // "se essa mágica fosse para o cemitério, exile-a em vez disso" (Kess, Dissident Mage): só o cemitério é trocado
+  if (o.zone === 'stack' && o.stack?.data.exileInsteadOfGraveyard && dest === 'graveyard') dest = 'exile';
   if (o.zone === 'battlefield' && dest !== 'battlefield') {
     // marcador de finalidade (CR 122.1h)
     if (dest === 'graveyard' && (o.counters.finality ?? 0) > 0) dest = 'exile';
@@ -152,7 +155,7 @@ function wouldBeChars(g: G, r: EnterReq) {
   const o = g.obj(r.id!);
   if (r.copyOf) return copyValuesChars(r.copyOf, o.owner);
   if (r.faceDown) return { ...printedChars(o.def, 0, o.owner), types: ['Creature'], abilities: [] };
-  return printedChars(o.copyOf?.def ?? o.def, r.face ?? o.copyOf?.face ?? (o.zone === 'stack' ? o.face : 0), o.owner);
+  return printedChars(o.copyOf?.def ?? o.def, r.face ?? o.copyOf?.face ?? faceAoEntrar(o), o.owner);
 }
 
 /** alvos legais para uma Aura (encantar) */
@@ -211,7 +214,38 @@ export function protectionBlocksEquip(g: G, target: ObjId, equipment: ObjId): bo
   return kwParams(g, target, 'protection').some((q) => protectionMatches(g, q, { colors: ec.colors, types: ec.types, id: equipment }));
 }
 
+/**
+ * Substituições na criação de fichas (CR 111.1, 614.1a): para cada jogador que vai criar fichas neste evento, cada
+ * substituição se aplica uma vez (616.1f), na ordem que ele escolher (616.1). O resto do pedido (virada, atacando,
+ * marcadores) acompanha as fichas novas.
+ */
+function* substituirFichas(g: G, reqs: EnterReq[]): Gen<EnterReq[]> {
+  const hs = hooks(g, 'tokenCreation');
+  if (!hs.length) return reqs;
+  const out = reqs.filter((r) => r.token === undefined);
+  const porJogador = new Map<PlayerId, EnterReq[]>();
+  for (const r of reqs) if (r.token !== undefined) porJogador.set(r.controller, [...(porJogador.get(r.controller) ?? []), r]);
+  for (const [p, lista] of porJogador) {
+    let ev: TokenCreation = { player: p, tokens: lista.map((r, i) => ({ de: i, def: r.token!.def, copyOf: r.token!.copyOf })) };
+    const usadas = new Set<number>();
+    for (;;) {
+      const ops = hs.map((h, i) => ({ i, r: usadas.has(i) || !ev.tokens.length ? null : h.fn(h.ctx, ev) })).filter((x) => x.r);
+      if (!ops.length) break;
+      let esc = ops[0];
+      if (ops.length > 1) {
+        const [id] = yield* chooseItems(g, p, 'Fichas: escolha a substituição a aplicar primeiro (CR 616.1)', ops.map((x) => ({ id: String(x.i), label: x.r!.label })), 1, 1);
+        esc = ops.find((x) => String(x.i) === id) ?? ops[0];
+      }
+      usadas.add(esc.i);
+      ev = yield* esc.r!.replace(ev);
+    }
+    for (const t of ev.tokens) out.push({ ...lista[t.de], token: t.copyOf ? { copyOf: t.copyOf } : { def: t.def } });
+  }
+  return out;
+}
+
 export function* putOntoBattlefield(g: G, reqs: EnterReq[], cause: string): Gen<ObjId[]> {
+  if (reqs.some((r) => r.token !== undefined)) reqs = yield* substituirFichas(g, reqs);
   const s = g.state;
   const results: ObjId[] = [];
   const events: GameEvent[] = [];
@@ -281,7 +315,7 @@ export function* putOntoBattlefield(g: G, reqs: EnterReq[], cause: string): Gen<
       token = o.isToken;
       newId = moveRaw(g, r.id, 'battlefield', {
         controller: ev.controller, tapped: ev.tapped, counters: ev.counters, attachTo: ev.attachTo, faceDown: !!ev.faceDown, keepCopy: !!o.copyOf,
-        face: r.face ?? (o.zone === 'stack' ? o.face : 0),
+        face: r.face ?? faceAoEntrar(o),
       });
       const n = s.objects[newId];
       // r.copyOf ou a cópia escolhida ao entrar (CR 707.5)
@@ -309,6 +343,11 @@ export function* putOntoBattlefield(g: G, reqs: EnterReq[], cause: string): Gen<
     results.push(newId);
     if (entraPreparado) prepare(g, newId); // "entra preparado" (CR 722.3a)
     events.push({ type: 'zone', obj: newId, old: r.id ?? newId, from, to: 'battlefield', card, owner, controller: ev.controller, cause, token });
+    // Sala conjurada: a porta da mágica fica destrancada ao entrar (CR 709.5d) e isso conta como destrancar (709.5h)
+    if (from === 'stack' && ehSala(n.copyOf?.def ?? n.def) && n.face !== FACE_NENHUMA) {
+      const halves = n.face === FACE_AMBAS ? [0, 1] : [n.face];
+      events.push({ type: 'unlock', obj: newId, halves, player: ev.controller, full: halves.length === 2 });
+    }
     if (r.id === undefined) events.push({ type: 'token', obj: newId, player: ev.controller });
     // entrar com marcadores conta como colocar marcadores (CR 122.6, 122.6a: quem põe é o controlador)
     for (const [kind, amount] of Object.entries(ev.counters)) if (amount > 0) events.push({ type: 'counters', target: { kind: 'obj', id: newId }, kind, amount, by: ev.controller });
@@ -438,6 +477,7 @@ export function dealDamage(g: G, reqs: DamageReq[]): { dealt: number; to: Target
     if (!cantPrevent) {
       if (r.target.kind === 'obj' && kwParams(g, r.target.id, 'protection').some((q) => protectionMatches(g, q, { colors: sc.colors, types: sc.types, id: r.source }))) amount = 0;
       if (r.target.kind === 'player' && playerProtectedFrom(g, r.target.id, { colors: sc.colors, types: sc.types, id: r.source })) amount = 0; // CR 702.16e
+      if (amount > 0 && hooks(g, 'preventsDamage').some((h) => h.fn(h.ctx, r.target, r.source, r.combat))) amount = 0; // CR 615.1a
       for (const e of s.effects) for (const m of e.mods) {
         if (m.k !== 'rule' || m.id !== 'rule:preventCombatDamageToPlayer' || amount === 0) continue;
         if (r.combat && r.target.kind === 'player' && e.affectedPlayers?.includes(r.target.id)) {

@@ -8,8 +8,15 @@ import { cardDef, type ActivatedDef, type CastPermission, type Gen, type SCtx } 
 import type { G } from './game-context.ts';
 import { convokeAll, formatCost, parseCost, reduceGeneric } from './mana.ts';
 import { doSuspend, manifestFaceUpCost, suspendParams, turnFaceUp } from './mecanicas.ts';
-import { activateAbility, candidateTargets, canActivate, castSpell, chooseModes, spellTargetSpecs, totalSpellCost, faceDefOf, type CastMethod } from './stack.ts';
-import type { ObjId, PlayerId, PriorityAction, ZoneName } from './types.ts';
+import { activateAbility, candidateTargets, canActivate, castChars, castSpell, chooseModes, custosAdicionais, spellTargetSpecs, totalSpellCost, faceDefFor, faceDefOf, type CastMethod } from './stack.ts';
+import {
+  chaveComFace, ehAventura, ehSala, FACE_AMBAS, FACE_NENHUMA, faceDaChave, facesConjuraveis, facesDeTerreno, metadeAftermath,
+  nomeDaFace, rotuloConjurar, temVariasFaces,
+} from './formatos.ts';
+import { oracle } from './oracle.ts';
+import { payMana } from './costs.ts';
+import { emit } from './triggers.ts';
+import type { ManaSymbol, ObjId, PlayerId, PriorityAction, ZoneName } from './types.ts';
 
 export function isMainPhase(g: G): boolean {
   return g.state.turn.step === 'main1' || g.state.turn.step === 'main2';
@@ -40,12 +47,49 @@ export function permissionsFor(g: G, p: PlayerId, card: ObjId): CastPermission[]
 
 interface CastOption { obj: ObjId; method: CastMethod }
 
+/**
+ * Carta de várias faces (modal de duas faces, dividida, aventura): uma opção por face que pode ser conjurada daquela
+ * zona (formatos.ts facesConjuraveis), com a chave da ação marcando a face ('hand@1') e o rótulo dizendo o que se
+ * conjura ("Conjurar Locthwain Scorn (aventura)").
+ */
+function opcoesDeFaces(g: G, p: PlayerId, id: ObjId, zone: ZoneName, out: CastOption[]): void {
+  const s = g.state;
+  const o = s.objects[id];
+  const def = o.def;
+  const faces = facesConjuraveis(def, zone);
+  const push = (key: string, face: number, title: string, extra: Partial<CastMethod> = {}) =>
+    out.push({ obj: id, method: { key: face === FACE_AMBAS ? 'fuse' : chaveComFace(key, face), label: extra.label ?? 'conjurar', zone, face, title, ...extra } });
+  const altCosts = (face: number, zona: ZoneName) => face === FACE_AMBAS ? [] : (cardDef(def)?.faces[face]?.altCosts ?? []).filter((a) => a.zone === zona && (!a.condition || a.condition({ g, you: p, source: id })));
+  if (zone === 'hand') {
+    for (const f of faces) {
+      push('hand', f, rotuloConjurar(def, f));
+      for (const alt of altCosts(f, 'hand')) push(alt.key, f, `${alt.label}: ${nomeDaFace(def, f)}`, { label: alt.label, alt });
+    }
+  } else if (zone === 'command') {
+    if (o.owner === p && o.card !== null && s.cards[o.card].isCommander) for (const f of faces) if (f !== FACE_AMBAS) push('command', f, rotuloConjurar(def, f, 'Conjurar da zona de comando:'), { label: 'conjurar da zona de comando' });
+  } else {
+    if (zone === 'graveyard' && o.owner === p) {
+      for (const f of faces) for (const alt of altCosts(f, 'graveyard')) push(alt.key, f, `${alt.label}: ${nomeDaFace(def, f)}`, { label: alt.label, alt });
+      // aftermath: a metade da direita se conjura do cemitério (CR 702.127a)
+      const af = metadeAftermath(def);
+      if (af !== null) out.push({ obj: id, method: { key: 'aftermath', label: 'aftermath', zone, face: af, title: `Conjurar ${nomeDaFace(def, af)} do cemitério (aftermath)` } });
+    }
+    // aventura que resolveu: quem a conjurou pode conjurar a carta do exílio, mas não como aventura (CR 715.3d)
+    if (zone === 'exile' && ehAventura(def) && o.data.adventureOf === p) out.push({ obj: id, method: { key: 'adventure', label: 'aventura', zone, face: 0, title: `Conjurar ${nomeDaFace(def, 0)} do exílio (aventura)` } });
+    for (const prm of permissionsFor(g, p, id)) {
+      if (prm.filter && !prm.filter({ g, you: p, source: id }, id)) continue;
+      for (const f of faces) if (f !== FACE_AMBAS) push(`perm:${prm.key}`, f, `${prm.label}: ${nomeDaFace(def, f)}`, { label: prm.label, permission: prm });
+    }
+  }
+}
+
 /** maneiras de conjurar cada carta agora (zona e custo), sem checar o pagamento */
 export function castOptions(g: G, p: PlayerId): CastOption[] {
   const s = g.state;
   const out: CastOption[] = [];
   const consider = (id: ObjId, zone: ZoneName) => {
     const o = s.objects[id];
+    if (!o.copyOf && temVariasFaces(o.def)) { opcoesDeFaces(g, p, id, zone, out); return; }
     const c = chars(g, id);
     // morph (também de terreno com morph) e custos alternativos do comandante (motor/conjurar-alternativo.ts)
     out.push(...castOptionsExtra(g, p, id, zone));
@@ -101,9 +145,11 @@ export function canStartCast(g: G, p: PlayerId, opt: CastOption): boolean {
   // virada para baixo (morph): criatura 2/2 sem texto, outra checagem (CR 708.4)
   if (opt.method.alt?.faceDown) return canStartFaceDown(g, p, opt);
   const o = s.objects[opt.obj];
-  const c = chars(g, opt.obj);
-  const f = faceDefOf(o);
-  const instantSpeed = c.types.includes('Instant') || hasKw(g, opt.obj, 'flash') || f?.flash || hooks(g, 'castAsThoughFlash').some((h) => h.fn(h.ctx, p, opt.obj));
+  // só a face ou metade escolhida conta (CR 709.3a, 712.11c, 715.3a)
+  const c = castChars(g, p, o, opt.method);
+  const f = faceDefFor(o, opt.method);
+  const flash = opt.method.face === undefined ? hasKw(g, opt.obj, 'flash') : c.abilities.some((a) => a.kw === 'flash');
+  const instantSpeed = c.types.includes('Instant') || flash || f?.flash || hooks(g, 'castAsThoughFlash').some((h) => h.fn(h.ctx, p, opt.obj));
   // custo alternativo com momento próprio (sneak: na sua etapa de declarar bloqueadores, CR 702.190a)
   if (opt.method.alt?.timing) { if (!opt.method.alt.timing({ g, you: p, source: opt.obj })) return false; }
   else if (!instantSpeed && !sorceryTiming(g, p)) return false;
@@ -116,10 +162,10 @@ export function canStartCast(g: G, p: PlayerId, opt: CastOption): boolean {
     if (possible < sp.modes.min) return false;
     void ctx;
   }
-  const { specs } = spellTargetSpecs(o, [], opt.method.key);
+  const { specs } = spellTargetSpecs(o, [], opt.method.key, opt.method.face);
   if (!enoughTargets(g, specs, p, opt.obj)) return false;
   // custos adicionais obrigatórios não-mana
-  for (const ac of f?.additionalCosts ?? []) {
+  for (const ac of custosAdicionais(g, p, opt.obj, f)) {
     if (ac.optional || ac.repeatable) continue;
     const okA = canPayParts(g, p, ac.parts.filter((x) => x.k !== 'mana'), opt.obj, 0);
     const okB = ac.orParts ? canPayParts(g, p, ac.orParts.filter((x) => x.k !== 'mana'), opt.obj, 0) : false;
@@ -132,9 +178,9 @@ export function canStartCast(g: G, p: PlayerId, opt: CastOption): boolean {
   const targetsGuess = specs.map((t) => candidateTargets(g, t, p, opt.obj).slice(0, 4));
   let cost = totalSpellCost(g, p, o, opt.method, { x: 0, targets: targetsGuess, paid: {} });
   // delve: cada carta do cemitério pode pagar {1} do genérico (CR 702.66a)
-  if (faceDefOf(o)?.delve) cost = reduceGeneric(cost, g.state.zones.graveyard[p].filter((id) => id !== opt.obj).length);
-  // convoke: as criaturas desviradas também pagam (CR 702.51a)
-  if (faceDefOf(o)?.convoke) {
+  if (f?.delve) cost = reduceGeneric(cost, g.state.zones.graveyard[p].filter((id) => id !== opt.obj).length);
+  // convoke: as criaturas desviradas também pagam (CR 702.51a); também o concedido às mágicas (Dazzling Theater)
+  if (f?.convoke || hooks(g, 'spellsHaveConvoke').some((h) => h.fn(h.ctx, p, opt.obj, c))) {
     const cores = g.state.zones.battlefield.filter((id) => controllerOf(g, id) === p && chars(g, id).types.includes('Creature') && !s.objects[id].tapped)
       .map((id) => colorsOf(g, id)).sort((a, b) => a.length - b.length);
     cost = convokeAll(cost, cores).cost;
@@ -142,28 +188,59 @@ export function canStartCast(g: G, p: PlayerId, opt: CastOption): boolean {
   return canAfford(g, p, cost, { purpose: { kind: 'spell', obj: opt.obj }, anyType: opt.method.permission?.anyType, improvise: f?.improvise });
 }
 
-function landPlayOptions(g: G, p: PlayerId): { obj: ObjId; key: string }[] {
+/** faces de terreno de uma carta: a frente, se for terreno, ou a face de terreno do modal de duas faces (CR 712.12) */
+function facesJogaveis(g: G, id: ObjId): number[] {
+  const o = g.state.objects[id];
+  if (!o.copyOf && temVariasFaces(o.def)) return facesDeTerreno(o.def);
+  return chars(g, id).types.includes('Land') ? [0] : [];
+}
+
+function landPlayOptions(g: G, p: PlayerId): { obj: ObjId; key: string; face: number }[] {
   const s = g.state;
   if (!sorceryTiming(g, p) || s.turn.landsPlayed >= 1) return []; // CR 305.2
-  const out: { obj: ObjId; key: string }[] = [];
-  for (const id of s.zones.hand[p]) if (chars(g, id).types.includes('Land')) out.push({ obj: id, key: 'hand' });
+  const out: { obj: ObjId; key: string; face: number }[] = [];
+  for (const id of s.zones.hand[p]) for (const face of facesJogaveis(g, id)) out.push({ obj: id, key: chaveComFace('hand', face), face });
   for (const zone of ['graveyard', 'exile'] as const) {
     const ids = zone === 'graveyard' ? s.zones.graveyard[p] : s.zones.exile;
     for (const id of ids) {
-      if (!chars(g, id).types.includes('Land')) continue;
+      const faces = facesJogaveis(g, id);
+      if (!faces.length) continue;
       const prm = permissionsFor(g, p, id).find((x) => x.land);
-      if (prm) out.push({ obj: id, key: `perm:${prm.key}` });
+      if (prm) for (const face of faces) out.push({ obj: id, key: chaveComFace(`perm:${prm.key}`, face), face });
     }
   }
   return out;
 }
 
+/** custo para destrancar a porta trancada de uma Sala (CR 709.5e), ou null se ela já está destrancada */
+function custoDaPorta(g: G, id: ObjId, half: number): ManaSymbol[] | null {
+  const o = g.state.objects[id];
+  if (o.copyOf || o.phasedOut || !ehSala(o.def)) return null;
+  if (o.face === FACE_AMBAS || o.face === half) return null;
+  return oracle(o.def).faces[half]?.manaCost ?? [];
+}
+
+/** destrancar uma porta (CR 709.5e-f): a Sala ganha a designação; com as duas, a Sala foi destrancada por inteiro (709.5i) */
+export function unlockDoor(g: G, id: ObjId, half: number, player: PlayerId): boolean {
+  const o = g.state.objects[id];
+  if (!o || o.zone !== 'battlefield' || !ehSala(o.def) || o.face === FACE_AMBAS || o.face === half) return false;
+  o.face = o.face === FACE_NENHUMA ? half : FACE_AMBAS;
+  g.bump();
+  g.log(`${g.state.players[player].name} destranca ${nomeDaFace(o.def, half)}.`, { rule: '709.5e' });
+  emit(g, [{ type: 'unlock', obj: id, halves: [half], player, full: o.face === FACE_AMBAS }]);
+  return true;
+}
+
 export function legalActions(g: G, p: PlayerId): PriorityAction[] {
   const s = g.state;
   const acts: PriorityAction[] = [{ id: 'pass', kind: 'pass', label: 'Passar a prioridade' }];
-  for (const l of landPlayOptions(g, p)) acts.push({ id: `play:${l.obj}:${l.key}`, kind: 'play', label: `Jogar ${nameOf(g, l.obj)}`, obj: l.obj });
+  for (const l of landPlayOptions(g, p)) {
+    const o = s.objects[l.obj];
+    const nome = !o.copyOf && temVariasFaces(o.def) ? nomeDaFace(o.def, l.face) : nameOf(g, l.obj);
+    acts.push({ id: `play:${l.obj}:${l.key}`, kind: 'play', label: `Jogar ${nome}`, obj: l.obj });
+  }
   for (const opt of castOptions(g, p)) {
-    if (canStartCast(g, p, opt)) acts.push({ id: `cast:${opt.obj}:${opt.method.key}`, kind: 'cast', label: `${opt.method.key === 'hand' ? 'Conjurar' : opt.method.label}: ${nameOf(g, opt.obj)}`, obj: opt.obj });
+    if (canStartCast(g, p, opt)) acts.push({ id: `cast:${opt.obj}:${opt.method.key}`, kind: 'cast', label: opt.method.title ?? `${opt.method.key === 'hand' ? 'Conjurar' : opt.method.label}: ${nameOf(g, opt.obj)}`, obj: opt.obj });
   }
   const timing = { sorcery: sorceryTiming(g, p) };
   // da zona de comando: o ninjutsu de comandante (CR 702.49d)
@@ -184,6 +261,16 @@ export function legalActions(g: G, p: PlayerId): PriorityAction[] {
     const c = chars(g, id);
     const quando = c.types.includes('Instant') || hasKw(g, id, 'flash') || timing.sorcery;
     if (quando && canAfford(g, p, parseCost(prm.custo), { purpose: { kind: 'effect' } })) acts.push({ id: `suspend:${id}`, kind: 'special', label: `Suspender ${nameOf(g, id)} (${prm.custo})`, obj: id });
+  }
+  // ação especial: destrancar a porta de uma Sala sua, como feitiço, pagando o custo dela (CR 116.2m, 709.5e)
+  if (timing.sorcery) {
+    for (const id of s.zones.battlefield) {
+      if (controllerOf(g, id) !== p) continue;
+      for (const half of [0, 1]) {
+        const custo = custoDaPorta(g, id, half);
+        if (custo && canAfford(g, p, custo, { purpose: { kind: 'effect' } })) acts.push({ id: `unlock:${id}:${half}`, kind: 'special', label: `Destrancar ${nomeDaFace(s.objects[id].def, half)} (${formatCost(custo) || '{0}'})`, obj: id });
+      }
+    }
   }
   // ação especial: virar para cima uma permanente manifestada (CR 116.2b, 701.40a)
   for (const id of s.zones.battlefield) {
@@ -209,13 +296,15 @@ export function* performAction(g: G, p: PlayerId, actionId: string): Gen<boolean
     const id = Number(a);
     const o = g.state.objects[id];
     if (!o) return false;
+    // face de terreno escolhida do modal de duas faces: entra com ela para cima (CR 712.12)
+    const [chave, face] = faceDaChave(b ?? '');
     g.state.turn.landsPlayed++;
-    g.log(`${g.state.players[p].name} joga ${nameOf(g, id)}.`, { rule: '305.1' });
-    if (b?.startsWith('perm:')) {
-      const prm = permissionsFor(g, p, id).find((x) => `perm:${x.key}` === b);
-      const [nid] = yield* putOntoBattlefield(g, [{ id, controller: p }], 'play');
+    g.log(`${g.state.players[p].name} joga ${face && !o.copyOf && temVariasFaces(o.def) ? nomeDaFace(o.def, face) : nameOf(g, id)}.`, { rule: face ? '712.12' : '305.1' });
+    if (chave.startsWith('perm:')) {
+      const prm = permissionsFor(g, p, id).find((x) => `perm:${x.key}` === chave);
+      const [nid] = yield* putOntoBattlefield(g, [{ id, controller: p, face }], 'play');
       if (prm?.onUse && nid !== undefined) prm.onUse({ g, you: p, source: nid }, nid);
-    } else yield* putOntoBattlefield(g, [{ id, controller: p }], 'play');
+    } else yield* putOntoBattlefield(g, [{ id, controller: p, face }], 'play');
     return true;
   }
   if (kind === 'cast') {
@@ -233,6 +322,15 @@ export function* performAction(g: G, p: PlayerId, actionId: string): Gen<boolean
     return r !== null;
   }
   if (kind === 'faceup') return yield* turnFaceUp(g, p, Number(a));
+  if (kind === 'unlock') {
+    const id = Number(a);
+    const half = Number(b);
+    const custo = custoDaPorta(g, id, half);
+    if (custo === null || controllerOf(g, id) !== p || !sorceryTiming(g, p)) return false;
+    const pago = yield* payMana(g, p, custo, { purpose: { kind: 'effect' }, canCancel: true, label: `destrancar ${nomeDaFace(g.state.objects[id].def, half)}` });
+    if (pago === null) return false;
+    return unlockDoor(g, id, half, p);
+  }
   if (kind === 'morph') return yield* turnFaceUpMorph(g, p, Number(a));
   if (kind === 'suspend') return yield* doSuspend(g, p, Number(a));
   if (kind === 'mana') {

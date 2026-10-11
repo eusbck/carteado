@@ -46,6 +46,10 @@ const esperadas: Record<string, [string, string[], string[], string[], number | 
   'Worm': ['Worm', ['Creature'], ['Worm'], ['B', 'G'], 1, 1, []],
   'Zombie': ['Zombie', ['Creature'], ['Zombie'], ['B'], 2, 2, ['decayed']],
   'Zombie 2/2': ['Zombie', ['Creature'], ['Zombie'], ['B'], 2, 2, []],
+  'Drake': ['Drake', ['Creature'], ['Drake'], ['U'], 2, 2, ['flying']],
+  'Demon X/X': ['Demon', ['Creature'], ['Demon'], ['B'], null, null, ['flying']],
+  'Lightning Rager': ['Lightning Rager', ['Creature'], ['Elemental'], ['R'], 5, 1, ['haste', 'trample']],
+  'Elemental 0/1': ['Elemental', ['Creature'], ['Elemental'], ['R'], 0, 1, []],
   'Zombie Army': ['Zombie Army', ['Creature'], ['Zombie', 'Army'], ['B'], 0, 0, []],
   'Soldier': ['Soldier', ['Creature'], ['Soldier'], ['W'], 1, 1, []],
   'Warrior': ['Warrior', ['Creature'], ['Warrior'], ['W'], 1, 1, []],
@@ -64,6 +68,11 @@ const esperadas: Record<string, [string, string[], string[], string[], number | 
   'Incubator': ['Incubator', ['Artifact'], ['Incubator'], [], null, null, ['transform']],
   'Phyrexian Mite': ['Phyrexian Mite', ['Artifact', 'Creature'], ['Phyrexian', 'Mite'], [], 1, 1, ['toxic']],
   'Contract': ['Contract', ['Enchantment'], ['Aura'], ['W'], null, null, ['enchant']],
+  // lote2-b
+  'Cat verde 1/1': ['Cat', ['Creature'], ['Cat'], ['G'], 1, 1, []],
+  'Dog branco 1/1': ['Dog', ['Creature'], ['Dog'], ['W'], 1, 1, []],
+  'Cat verde 2/2 ímpeto': ['Cat', ['Creature'], ['Cat'], ['G'], 2, 2, ['haste']],
+  'Dog verde 3/1 vigilância': ['Dog', ['Creature'], ['Dog'], ['G'], 3, 1, ['vigilance']],
   // lote2-c
   'Ninja': ['Ninja', ['Creature'], ['Ninja'], ['B'], 1, 1, []],
   'Elemental 5/5': ['Elemental', ['Creature'], ['Elemental'], ['R', 'U'], 5, 5, ['flying']],

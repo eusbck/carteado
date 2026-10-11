@@ -9,13 +9,14 @@ import { abilityDefs, chars, colorsOf, controllerOf, hasKw, hooks, isType, kwPar
 import { playerProtectedFrom } from './actions.ts';
 import { canAfford, canPayParts, manaOptions, manaPart, payMana, payParts, type PayContext } from './costs.ts';
 import {
-  ability, cardDef, registry, type ActivatedDef, type AltCastDef, type CastPermission, type Ctx, type FaceDef, type Gen,
+  ability, cardDef, registry, type ActivatedDef, type AdditionalCostDef, type AltCastDef, type CastPermission, type Ctx, type FaceDef, type Gen,
   type ModeSpec, type SCtx, type SpellDef, type TargetSpec, type TriggeredDef,
 } from './defs.ts';
 import type { G } from './game-context.ts';
 import { addGeneric, convokeOne, formatCost, manaValueOf, parseCost, reduceGeneric, withX } from './mana.ts';
 import { emit } from './triggers.ts';
-import type { Answer, GameObject, GameState, ManaSymbol, ObjId, PlayerId, StackInfo, TargetRef, ZoneName } from './types.ts';
+import { ehAventura, ehDividida, FACE_AMBAS, facesConjuraveis, metadeAftermath, rotuloConjurar, temVariasFaces } from './formatos.ts';
+import type { Answer, Chars, GameObject, GameState, ManaSymbol, ObjId, PlayerId, StackInfo, TargetRef, ZoneName } from './types.ts';
 
 // ---------------------------------------------------------------------------
 // Alvos (CR 115, 608.2b)
@@ -114,11 +115,48 @@ export function faceDefOf(o: GameObject): FaceDef | undefined {
   return cardDef(name)?.faces[face];
 }
 
-/** especificações de alvo de uma mágica na pilha, na ordem: alvos da mágica, alvos dos modos, encantar */
-export function spellTargetSpecs(o: GameObject, modes: number[], method?: string): { specs: TargetSpec[]; groups: { mode: number | null; start: number; count: number }[] } {
-  const f = faceDefOf(o);
+/** a face que vai ser conjurada por este método: a escolhida (CR 709.3, 712.11b, 715.3) ou a de sempre */
+function faceDoMetodo(o: GameObject, method?: Pick<CastMethod, 'face'>): number {
+  if (o.copyOf) return o.copyOf.face;
+  if (o.zone === 'stack') return o.face;
+  return method?.face ?? 0;
+}
+
+/** definição da face que vai ser conjurada (a da pilha, se já estiver lá); a mágica fundida não tem uma só */
+export function faceDefFor(o: GameObject, method?: Pick<CastMethod, 'face'>): FaceDef | undefined {
+  const face = faceDoMetodo(o, method);
+  if (face === FACE_AMBAS) return undefined;
+  return cardDef(o.copyOf?.def ?? o.def)?.faces[face];
+}
+
+/**
+ * Características da mágica que vai ser conjurada: só a face ou metade escolhida conta para ver se pode ser conjurada
+ * (CR 709.3a, 712.11c, 715.3a). Fora da pilha, a carta pode ter outras características (a dividida tem as duas metades,
+ * 709.4): para a face escolhida valem as impressas dela, com o controlador de quem conjura.
+ */
+export function castChars(g: G, player: PlayerId, o: GameObject, method?: Pick<CastMethod, 'face'>): Chars {
+  if (o.zone === 'stack' || method?.face === undefined || o.copyOf || method.face === currentFace(o)) return chars(g, o.id);
+  return { ...printedChars(o.def, method.face, player), controller: player };
+}
+
+/** especificações de alvo de uma mágica na pilha, na ordem: alvos da mágica, alvos dos modos, encantar. A mágica
+ *  fundida tem os alvos das duas metades, a da esquerda primeiro (CR 702.102d); `half` diz de qual é cada grupo */
+export function spellTargetSpecs(o: GameObject, modes: number[], method?: string, face?: number): { specs: TargetSpec[]; groups: { mode: number | null; start: number; count: number; half?: number }[] } {
+  const fc = face ?? faceDoMetodo(o);
+  const def = o.copyOf?.def ?? o.def;
+  if (fc === FACE_AMBAS && ehDividida(def)) {
+    const specs: TargetSpec[] = [];
+    const groups: { mode: number | null; start: number; count: number; half?: number }[] = [];
+    for (const half of [0, 1]) {
+      const t = cardDef(def)?.faces[half]?.spell?.targets ?? [];
+      groups.push({ mode: null, start: specs.length, count: t.length, half });
+      specs.push(...t);
+    }
+    return { specs, groups };
+  }
+  const f = face === undefined ? faceDefOf(o) : cardDef(def)?.faces[fc];
   const specs: TargetSpec[] = [];
-  const groups: { mode: number | null; start: number; count: number }[] = [];
+  const groups: { mode: number | null; start: number; count: number; half?: number }[] = [];
   const sp = f?.spell;
   // sobrecarga (CR 702.96a-b): "alvo" vira "cada"; a mágica não tem alvos (os grupos ficam vazios para os modos)
   if (method && f?.altCosts?.some((a) => a.key === method && a.noTargets)) {
@@ -189,6 +227,10 @@ export function* chooseModes(g: G, player: PlayerId, ms: ModeSpec, source: ObjId
 export interface CastMethod {
   key: string;
   label: string;
+  /** face ou metade conjurada (CR 709.3, 712.11b, 715.3; FACE_AMBAS = fundida, 702.102a); ausente = a de sempre */
+  face?: number;
+  /** rótulo completo da ação ("Conjurar Locthwain Scorn (aventura)"); ausente = "<label>: <nome>" */
+  title?: string;
   /** zona de onde a carta é conjurada */
   zone: ZoneName;
   alt?: AltCastDef;
@@ -203,9 +245,19 @@ export function commanderTax(g: G, player: PlayerId, o: GameObject): number {
   return 2 * (g.state.players[player].commanderCasts[String(o.card)] ?? 0); // CR 903.8
 }
 
+/**
+ * Custos adicionais de uma mágica: os da face e os concedidos por outros permanentes ("a primeira mágica instantânea
+ * ou feitiço que você conjura em cada turno tem baixa 2", Anhelo, the Painter; CR 601.2b, 601.2f).
+ */
+export function custosAdicionais(g: G, player: PlayerId, spell: ObjId, f: FaceDef | undefined): AdditionalCostDef[] {
+  const dados = hooks(g, 'grantedAdditionalCosts').flatMap((h) => h.fn(h.ctx, player, spell) ?? []);
+  return dados.length ? [...(f?.additionalCosts ?? []), ...dados] : f?.additionalCosts ?? [];
+}
+
 export function totalSpellCost(g: G, player: PlayerId, o: GameObject, method: CastMethod, info: { x: number; targets: TargetRef[][]; paid: Record<string, number | boolean> }): ManaSymbol[] {
-  const f = faceDefOf(o);
-  const c = chars(g, o.id);
+  const f = faceDefFor(o, method);
+  // a da face escolhida; a mágica fundida custa as duas metades (CR 702.102c), o custo de mana das duas juntas
+  const c = castChars(g, player, o, method);
   let cost: ManaSymbol[];
   if (method.free || method.permission?.free) cost = [];
   else if (method.permission?.mana) cost = parseCost(method.permission.mana);
@@ -215,7 +267,7 @@ export function totalSpellCost(g: G, player: PlayerId, o: GameObject, method: Ca
   // CR 107.3b: sem pagar o custo de mana, X só pode ser 0
   cost = withX(cost, info.x);
   // custos adicionais de mana (kicker, replicar…)
-  for (const ac of f?.additionalCosts ?? []) {
+  for (const ac of custosAdicionais(g, player, o.id, f)) {
     const times = typeof info.paid[ac.key] === 'number' ? (info.paid[ac.key] as number) : info.paid[ac.key] ? 1 : 0;
     const useOr = info.paid[`${ac.key}:or`] === true;
     const parts = useOr ? ac.orParts ?? [] : ac.parts;
@@ -264,8 +316,19 @@ export function* castSpell(g: G, player: PlayerId, cardId: ObjId, method: CastMe
 function* castInner(g: G, player: PlayerId, cardId: ObjId, method: CastMethod): Gen<ObjId | null> {
   const orig = g.state.objects[cardId];
   if (!orig) return null;
-  const f0 = faceDefOf(orig);
-  const label = nameOf(g, cardId);
+  // carta de várias faces conjurada por um efeito ("conjure-a sem pagar"): escolhe a face antes de pô-la na pilha
+  // (CR 709.3, 712.11b, 715.3)
+  if (method.face === undefined && !orig.copyOf && temVariasFaces(orig.def)) {
+    const faces = facesConjuraveis(orig.def, orig.zone).filter((f) => f !== FACE_AMBAS || method.zone === 'hand');
+    if (faces.length === 0) return null;
+    let face = faces[0];
+    if (faces.length > 1) {
+      const [r] = yield* chooseItems(g, player, `${nameOf(g, cardId)}: escolha o que conjurar`, faces.map((f) => ({ id: String(f), label: rotuloConjurar(orig.def, f), card: { def: orig.def, face: f } })), 1, 1);
+      face = Number(r);
+    }
+    method = { ...method, face };
+  }
+  const f0 = faceDefFor(orig, method);
   // 601.2a: a carta vai para a pilha e vira mágica
   let spellId: ObjId;
   if (orig.isCopy && orig.zone === 'exile') {
@@ -277,18 +340,24 @@ function* castInner(g: G, player: PlayerId, cardId: ObjId, method: CastMethod): 
     if (preparedBy !== undefined && g.state.objects[preparedBy]) { g.state.objects[preparedBy].prepared = false; g.bump(); }
   } else {
     // morph (CR 702.37c, 708.4): virada para baixo antes de ir para a pilha
-    spellId = moveRaw(g, cardId, 'stack', { controller: player, faceDown: !!method.alt?.faceDown });
+    spellId = moveRaw(g, cardId, 'stack', { controller: player, faceDown: !!method.alt?.faceDown, face: method.face ?? 0 });
   }
   const o = g.state.objects[spellId];
+  const label = nameOf(g, spellId);
   const info: StackInfo = { kind: 'spell', controller: player, modes: [], targets: [], x: 0, paid: {}, method: method.key, castFrom: method.zone, data: {}, isCopy: o.isCopy };
   o.stack = info;
   o.controller = player;
   if (method.alt?.exileAfter) info.data.exileOnLeave = true; // flashback (CR 702.34a)
+  // aftermath conjurada do cemitério: exilada ao sair da pilha (CR 702.127a)
+  if (method.zone === 'graveyard' && !o.copyOf && metadeAftermath(o.def) === o.face) info.data.exileOnLeave = true;
+  // conjurada como aventura: vai para o exílio ao resolver (CR 715.3d)
+  if (!o.copyOf && ehAventura(o.def) && o.face === 1) info.data.adventure = true;
   if (method.permission?.bottomInstead) info.data.bottomInsteadOfGraveyard = true;
+  if (method.permission?.exileInstead) info.data.exileInsteadOfGraveyard = true;
   if (method.key === 'bestow') info.data.bestow = true;
   g.bump();
   // virada para baixo, a mágica não tem texto: sem modos, alvos nem custos adicionais (CR 708.2a)
-  const f = o.faceDown ? undefined : faceDefOf(o) ?? f0;
+  const f = o.faceDown || (o.face === FACE_AMBAS && !o.copyOf) ? undefined : faceDefOf(o) ?? f0;
   const sp: SpellDef | undefined = f?.spell;
   // 601.2b: modos, custos adicionais/alternativos, X
   if (sp?.modes) {
@@ -309,7 +378,7 @@ function* castInner(g: G, player: PlayerId, cardId: ObjId, method: CastMethod): 
       if (r !== 'nao') { info.paid.gift = true; info.data.giftTo = Number(r); }
     }
   }
-  for (const ac of f?.additionalCosts ?? []) {
+  for (const ac of custosAdicionais(g, player, spellId, f)) {
     // escalada (CR 702.120a): uma vez para cada modo além do primeiro, sem escolha
     if (ac.perExtraMode) { info.paid[ac.key] = Math.max(0, info.modes.length - 1); continue; }
     if (ac.repeatable) {
@@ -344,7 +413,7 @@ function* castInner(g: G, player: PlayerId, cardId: ObjId, method: CastMethod): 
   }
   // X do custo impresso ou do custo alternativo (madness {X}{R}: Avacyn's Judgment)
   const manaHasX = (chars(g, spellId).manaCost ?? []).some((s) => s.k === 'X') || (!!method.alt?.mana && parseCost(method.alt.mana).some((s) => s.k === 'X'));
-  const otherHasX = !!sp?.xMax || (f?.additionalCosts ?? []).some((ac) => ac.parts.some((p) => (p.k === 'life' || p.k === 'sacrifice' || p.k === 'blight') && (p as { n: unknown }).n === 'X'));
+  const otherHasX = !!sp?.xMax || (custosAdicionais(g, player, spellId, f)).some((ac) => ac.parts.some((p) => (p.k === 'life' || p.k === 'sacrifice' || p.k === 'blight') && (p as { n: unknown }).n === 'X'));
   const free = !!(method.free || method.permission?.free);
   // CR 107.3b: sem pagar o custo de mana, o X do custo de mana só pode ser 0; X de custos
   // adicionais (pagar X de vida, sacrificar X…) continua sendo escolhido (ruling de Toxic Deluge)
@@ -395,7 +464,7 @@ function* castInner(g: G, player: PlayerId, cardId: ObjId, method: CastMethod): 
     }
   }
   // Convoke (CR 702.51a): virar criaturas suas paga {1} ou uma mana da cor de cada uma, depois do custo total (ruling)
-  if (f?.convoke) {
+  if (f?.convoke || hooks(g, 'spellsHaveConvoke').some((h) => h.fn(h.ctx, player, spellId, chars(g, spellId)))) {
     const criaturas = g.state.zones.battlefield.filter((id) => controllerOf(g, id) === player && isType(g, id, 'Creature') && !g.state.objects[id].tapped);
     const ajudam = criaturas.filter((id) => convokeOne(cost, colorsOf(g, id)) !== null);
     if (ajudam.length) {
@@ -420,7 +489,7 @@ function* castInner(g: G, player: PlayerId, cardId: ObjId, method: CastMethod): 
   if (paidMana === null) return null;
   const otherParts = [
     ...(method.alt?.parts ?? []), ...(method.permission?.parts ?? []),
-    ...(f?.additionalCosts ?? []).flatMap((ac) => {
+    ...(custosAdicionais(g, player, spellId, f)).flatMap((ac) => {
       const times = typeof info.paid[ac.key] === 'number' ? (info.paid[ac.key] as number) : info.paid[ac.key] ? 1 : 0;
       const parts = (info.paid[`${ac.key}:or`] ? ac.orParts ?? [] : ac.parts).filter((p) => p.k !== 'mana');
       // escalada: "vire uma criatura" duas vezes é virar duas criaturas de uma vez (o mesmo recurso não paga duas)
@@ -726,6 +795,14 @@ export function* resolveTop(g: G): Gen<void> {
   const f = faceDefOf(o);
   const sp = f?.spell;
   const ctx = makeCtx(g, o, targets, id);
+  // mágica fundida: as instruções da metade da esquerda, depois as da direita (CR 702.102d)
+  if (o.face === FACE_AMBAS && !o.copyOf && ehDividida(o.def)) {
+    for (const half of [0, 1]) {
+      const efeito = cardDef(o.def)?.faces[half]?.spell?.effect;
+      const grp = groups.find((x) => x.half === half);
+      if (efeito) yield* efeito({ ...ctx, targets: grp ? targets.slice(grp.start, grp.start + grp.count) : [] });
+    }
+  }
   // Gift (CR 702.174j): o oponente escolhido recebe o presente antes dos outros efeitos da mágica
   const presenteado = st.paid.gift ? (st.data.giftTo as PlayerId | undefined) : undefined;
   if (f?.gift && presenteado !== undefined && !g.state.players[presenteado].left) {
@@ -745,6 +822,12 @@ export function* resolveTop(g: G): Gen<void> {
   // 608.2n: vai para o cemitério do dono (se ainda estiver na pilha)
   if (g.state.objects[id]?.zone === 'stack') {
     if (g.state.objects[id].isCopy) destroyObject(g, id);
+    else if (st.data.adventure) {
+      // aventura: quem a controla a exila em vez de pô-la no cemitério e pode conjurar a carta enquanto ela ficar
+      // exilada (CR 715.3d); essa permissão é só deste exílio (ruling 5)
+      const nid = yield* moveObject(g, id, 'exile', 'adventure');
+      if (nid !== null && g.state.objects[nid]?.zone === 'exile') { g.state.objects[nid].data.adventureOf = st.controller; g.bump(); }
+    }
     else if (st.paid.buyback) yield* moveObject(g, id, 'hand', 'resolve'); // recompra (CR 702.27a)
     else if (st.castFrom === 'hand' && chars(g, id).abilities.some((a) => a.kw === 'rebound')) {
       // ricochete (CR 702.88a): conjurada da mão, vai para o exílio e volta a ser conjurável na sua próxima manutenção
@@ -775,6 +858,7 @@ export function* copySpell(g: G, spellId: ObjId, controller: PlayerId, opts: { n
   const dados = structuredClone(st.data);
   delete dados.exileOnLeave;
   delete dados.bottomInsteadOfGraveyard;
+  delete dados.exileInsteadOfGraveyard;
   // a cópia não foi conjurada (CR 707.10): não tem zona de origem
   copia.stack = { ...structuredClone(st), controller, isCopy: true, data: dados, castFrom: undefined };
   g.log(`${g.state.players[controller].name} copia ${nameOf(g, spellId)}.`, { rule: '707.10' });

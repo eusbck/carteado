@@ -1,7 +1,7 @@
 // Linguagem de efeitos: construtores usados nas definições de cartas.
 // Cada construtor devolve um objeto novo (o registro atribui ids por carta).
 
-import { attach, controlledBy, draw, moveObjects, searchLibrary, shuffleLibrary, putOntoBattlefield } from './actions.ts';
+import { attach, controlledBy, draw, loseLife as loseLifeAct, moveObjects, searchLibrary, shuffleLibrary, putOntoBattlefield } from './actions.ts';
 import { chars, controllerOf, hasKw, isCreature, isLand, isType, manaValue, nameOf, power, toughness } from './chars.ts';
 import type {
   ActivatedDef, CostPart, Ctx, EffectFn, Gen, ManaAbilityDef, ReplacementDef, SCtx, StaticDef, TargetSpec, TriggerCtx,
@@ -447,6 +447,13 @@ function landsYouControl(c: SCtx, pred: (id: ObjId) => boolean = () => true): Ob
 export const land = {
   /** "Este terreno entra virado." */
   tapped: (): ReplacementDef => entersTapped(),
+  /** "Ao entrar, você pode pagar N de vida. Se não pagar, entra virado." (pagar vida: CR 119.4, só com vida suficiente) */
+  payLifeOrTapped: (n: number): ReplacementDef => asEnters(function* (c, ev) {
+    const pode = c.g.state.players[ev.controller].life >= n;
+    if (pode && (yield* askModule.yesNo(c.g, ev.controller, `Pagar ${n} de vida para ${nameOf(c.g, ev.obj)} entrar desvirado?`, `Pagar ${n} de vida`, 'Entrar virado'))) {
+      loseLifeAct(c.g, ev.controller, n, ev.obj);
+    } else ev.tapped = true;
+  }, `Ao entrar, você pode pagar ${n} de vida. Se não pagar, entra virado.`),
   /** "…a menos que você controle dois ou mais terrenos básicos." */
   tappedUnlessBasics: (n = 2): ReplacementDef => entersTapped((c) => landsYouControl(c, (id) => chars(c.g, id).supertypes.includes('Basic')).length >= n),
   /** "…a menos que você controle um(a) A ou um(a) B." (checklands) */
