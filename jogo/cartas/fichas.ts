@@ -210,3 +210,9 @@ export const Contract = defineToken({
 });
 
 void activated; void cost;
+
+// lote2-g
+/** Dragon 5/5 vermelha com voar (Lathliss, Dragon Queen; Dragonmaster Outcast; Skyline Despot) */
+export const Dragon55 = token('Dragon 5/5', 'Dragon', ['Creature'], ['Dragon'], ['R'], 5, 5, keywords('flying'));
+/** Dragon 6/6 vermelha com voar (Utvara Hellkite) */
+export const Dragon66 = token('Dragon 6/6', 'Dragon', ['Creature'], ['Dragon'], ['R'], 6, 6, keywords('flying'));
