@@ -251,6 +251,8 @@ export interface RuleHooks {
   preventsDamage?: (c: SCtx, target: TargetRef, source: ObjId, combat: boolean) => boolean;
   /** mágicas que um jogador conjura têm convocar (CR 702.51; Dazzling Theater: "mágicas de criatura que você conjura") */
   spellsHaveConvoke?: (c: SCtx, player: PlayerId, spell: ObjId, chars: Chars) => boolean;
+  /** cópias adicionais quando este jogador copia uma mágica (Twinning Staff): devolve quantas a mais */
+  extraSpellCopies?: (c: SCtx, player: PlayerId) => number;
   /** custos adicionais que este permanente concede às mágicas de um jogador (Anhelo: "tem baixa 2"; CR 601.2b) */
   grantedAdditionalCosts?: (c: SCtx, player: PlayerId, spell: ObjId) => AdditionalCostDef[] | null;
   // lote2-d

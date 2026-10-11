@@ -849,7 +849,7 @@ export function* resolveTop(g: G): Gen<void> {
  * custos adicionais pagos, divisão) e é controlada por quem copiou. Se o efeito permitir,
  * quem copiou pode escolher novos alvos (707.10c). Não é conjurada (707.10).
  */
-export function* copySpell(g: G, spellId: ObjId, controller: PlayerId, opts: { newTargets?: boolean } = {}): Gen<ObjId | null> {
+export function* copySpell(g: G, spellId: ObjId, controller: PlayerId, opts: { newTargets?: boolean; extra?: boolean; semExtra?: boolean } = {}): Gen<ObjId | null> {
   // a mágica pode já ter saído da pilha (replicar, CR 702.56: copia mesmo assim, pela última informação)
   const o = g.state.objects[spellId]?.zone === 'stack' ? g.state.objects[spellId] : g.state.lki[spellId]?.obj;
   if (!o || o.stack?.kind !== 'spell') return null;
@@ -873,6 +873,12 @@ export function* copySpell(g: G, spellId: ObjId, controller: PlayerId, opts: { n
   const evs: GameEvent[] = [{ type: 'copySpell', obj: copia.id, player: controller }];
   for (const t of copia.stack.targets.flat()) evs.push({ type: 'target', target: t, by: copia.id, controller, spell: true });
   emit(g, evs);
+  // "se você fosse copiar uma mágica uma ou mais vezes, copie-a mais uma vez" (Twinning Staff; CR 614.1a): uma cópia
+  // adicional por lote de cópias (quem copia várias vezes seguidas passa semExtra a partir da segunda), com novos alvos
+  if (!opts.extra && !opts.semExtra) {
+    const mais = hooks(g, 'extraSpellCopies').reduce((n, h) => n + h.fn(h.ctx, controller), 0);
+    for (let i = 0; i < mais; i++) yield* copySpell(g, spellId, controller, { newTargets: true, extra: true });
+  }
   return copia.id;
 }
 

@@ -209,7 +209,7 @@ export function replicate(custo: string): { cost: AdditionalCostDef; trigger: Tr
     cost: { key: 'replicar', label: `replicar ${custo}`, parts: [{ k: 'mana', cost: custo }], optional: true, repeatable: true },
     trigger: onCastThis(function* (c) {
       const n = timesPaid(c.g, c.source, 'replicar');
-      for (let i = 0; i < n; i++) yield* copySpell(c.g, c.source, c.you, { newTargets: true });
+      for (let i = 0; i < n; i++) yield* copySpell(c.g, c.source, c.you, { newTargets: true, semExtra: i > 0 });
     }, `Replicar ${custo} (quando você conjura esta mágica, copie-a para cada vez que pagou o custo de replicar; as cópias podem ter novos alvos).`),
   };
 }
@@ -231,7 +231,7 @@ export function demonstrate(): TriggeredDef {
 export function gravestorm(): TriggeredDef {
   return onCastThis(function* (c) {
     const n = c.g.state.players.reduce((t, p) => t + (c.g.state.turnStats[p.id]?.permanentsToGraveyard ?? 0), 0);
-    for (let i = 0; i < n; i++) yield* copySpell(c.g, c.source, c.you, { newTargets: true });
+    for (let i = 0; i < n; i++) yield* copySpell(c.g, c.source, c.you, { newTargets: true, semExtra: i > 0 });
   }, 'Gravestorm (quando você conjura esta mágica, copie-a para cada permanente que foi do campo para um cemitério neste turno).');
 }
 

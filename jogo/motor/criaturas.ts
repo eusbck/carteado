@@ -638,3 +638,49 @@ export function damagedThisTurnBy(g: G, source: ObjId, target: ObjId): boolean {
   return !!d && d.turn === g.state.turn.number && (d.pairs[String(source)] ?? []).includes(target);
 }
 
+// ---------------------------------------------------------------------------
+// Bis / encore (CR 702.141)
+// ---------------------------------------------------------------------------
+const SACRIFICA_BIS = defineAbility('kw:encore:sacrifica', nextEndStepTrigger(function* (c) {
+  const fichas = ((c.data.fichas ?? []) as ObjId[]).filter((id) => c.g.state.objects[id]?.zone === 'battlefield');
+  if (fichas.length) yield* sacrifice(c.g, fichas);
+}, 'Sacrifique as fichas criadas pelo bis.'));
+
+// "ataca esse oponente neste turno se puder": a ficha é obrigada a atacar e só pode atacar o oponente dela (se ele
+// saiu do jogo, a restrição deixa de valer)
+defineAbility<StaticDef>('rule:encore', {
+  kind: 'static',
+  rules: {
+    attacksIfAble: (c, id) => String(id) in (((c as SCtx & { params?: { alvos: Record<string, PlayerId> } }).params)?.alvos ?? {}),
+    canAttack: (c, atacante, alvo) => {
+      const quem = ((c as SCtx & { params?: { alvos: Record<string, PlayerId> } }).params)?.alvos[String(atacante)];
+      if (quem === undefined || c.g.state.players[quem].left) return true;
+      const defensor = alvo.kind === 'player' ? alvo.id : controllerOf(c.g, alvo.id);
+      return defensor === quem;
+    },
+  },
+});
+
+/**
+ * CR 702.141a: Bis [custo] — "[custo], exile esta carta do seu cemitério: para cada oponente, crie uma ficha que é uma
+ * cópia desta carta e que ataca esse oponente neste turno se puder. As fichas ganham ímpeto. Sacrifique-as no início
+ * da próxima etapa final. Ative somente como feitiço."
+ */
+export function encore(custo: string): ActivatedDef {
+  return activated([{ k: 'mana', cost: custo }, { k: 'exileSelf' }], function* (c) {
+    const g = c.g;
+    const def = (g.state.objects[c.source] ?? g.state.lki[c.source]?.obj)?.def;
+    const oponentes = g.opponents(c.you).filter((p) => !g.state.players[p].left);
+    if (!def || !oponentes.length) return;
+    const fichas = yield* putOntoBattlefield(g, oponentes.map(() => ({ controller: c.you, token: { copyOf: { def, face: 0 } } })), 'token');
+    if (!fichas.length) return;
+    const alvos: Record<string, PlayerId> = {};
+    fichas.forEach((id, i) => { if (oponentes[i] !== undefined) alvos[String(id)] = oponentes[i]; });
+    for (const id of fichas) addEffect(g, { source: id, sourceDef: '', controller: c.you, duration: { kind: 'whileOnBattlefield', obj: id }, affected: [id], mods: [{ k: 'addKeyword', kw: 'haste' }] });
+    addEffect(g, { source: c.source, sourceDef: '', controller: c.you, duration: { kind: 'endOfTurn' }, affected: null, mods: [{ k: 'rule', id: 'rule:encore', params: { alvos } }] });
+    delayed(c, SACRIFICA_BIS.id!, { data: { fichas } });
+  }, {
+    zones: ['graveyard'], timing: 'sorcery', kw: 'encore', param: custo,
+    text: `Bis ${custo} (${custo}, exile esta carta do seu cemitério: para cada oponente, crie uma ficha cópia que ataca esse oponente neste turno se puder; elas ganham ímpeto; sacrifique-as no início da próxima etapa final; ative somente como feitiço)`,
+  });
+}
