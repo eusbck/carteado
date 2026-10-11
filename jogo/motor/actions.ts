@@ -490,6 +490,11 @@ export function dealDamage(g: G, reqs: DamageReq[]): { dealt: number; to: Target
       if (r.target.kind === 'obj' && kwParams(g, r.target.id, 'protection').some((q) => protectionMatches(g, q, { colors: sc.colors, types: sc.types, id: r.source }))) amount = 0;
       if (r.target.kind === 'player' && playerProtectedFrom(g, r.target.id, { colors: sc.colors, types: sc.types, id: r.source })) amount = 0; // CR 702.16e
       if (amount > 0 && hooks(g, 'preventsDamage').some((h) => h.fn(h.ctx, r.target, r.source, r.combat))) amount = 0; // CR 615.1a
+      // prevenção de parte do dano, ou de todo ele com algo no lugar (Heart-Shaped Herb, Panther Habit; CR 615.1)
+      if (amount > 0) for (const h of hooks(g, 'preventsSomeDamage')) {
+        amount -= Math.min(amount, Math.max(0, h.fn(h.ctx, r.target, r.source, amount, r.combat)));
+        if (amount <= 0) break;
+      }
       // o conjunto não é travado: vale para os que forem desse subtipo e desse controlador na hora do dano (CR 615.1)
       if (amount > 0 && r.combat && r.target.kind === 'obj') {
         const alvo = r.target.id;

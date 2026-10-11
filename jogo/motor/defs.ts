@@ -259,6 +259,12 @@ export interface RuleHooks {
   tokenCreation?: (c: SCtx, ev: TokenCreation) => { label: string; replace: (ev: TokenCreation) => Gen<TokenCreation> } | null;
   /** "Previna todo o dano que seria causado a [isto]" (CR 615.1a): true previne o dano inteiro deste pedido */
   preventsDamage?: (c: SCtx, target: TargetRef, source: ObjId, combat: boolean) => boolean;
+  /**
+   * "Previna N desse dano" (Heart-Shaped Herb) ou "previna esse dano e [faça algo com a quantidade]" (Panther Habit):
+   * devolve quanto do dano é prevenido. Só é chamado quando o dano vai mesmo ser causado, então o gancho pode fazer o
+   * que a carta manda fazer com a quantidade prevenida (CR 615.1, 615.5).
+   */
+  preventsSomeDamage?: (c: SCtx, target: TargetRef, source: ObjId, amount: number, combat: boolean) => number;
   /** mágicas que um jogador conjura têm convocar (CR 702.51; Dazzling Theater: "mágicas de criatura que você conjura") */
   spellsHaveConvoke?: (c: SCtx, player: PlayerId, spell: ObjId, chars: Chars) => boolean;
   /** cópias adicionais quando este jogador copia uma mágica (Twinning Staff): devolve quantas a mais */

@@ -412,4 +412,9 @@ export const Junk = defineToken({
     if (ex !== null && ex !== undefined && c.g.state.objects[ex]?.zone === 'exile') allowPlay(c.g, c.you, c.source, [ex], { kind: 'endOfTurn' });
   }, { timing: 'sorcery', text: '{T}, Sacrifique esta ficha: Exile a carta do topo do seu grimório. Você pode jogar essa carta neste turno. Ative somente como feitiço.' })],
   image: fichasOracle.find((f) => f.faces[0].name === 'Junk')?.oracleId,
-});
+});/** Beast 3/3 verde (Beast Within) */
+export const Beast33 = token('Beast 3/3', 'Beast', ['Creature'], ['Beast'], ['G'], 3, 3);
+/** Elephant 3/3 verde (Generous Gift) */
+export const Elephant33 = token('Elephant', 'Elephant', ['Creature'], ['Elephant'], ['G'], 3, 3);
+/** Rhino 4/4 verde com atropelar (W'Kabi, Shield of the Nation) */
+export const Rhino44 = token('Rhino', 'Rhino', ['Creature'], ['Rhino'], ['G'], 4, 4, keywords('trample'));
