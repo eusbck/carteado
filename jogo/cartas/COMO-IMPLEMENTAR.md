@@ -103,6 +103,10 @@ Todos vêm de `motor/api.ts`. Uma linha de uso por recurso:
 - **Estática que vale fora do campo:** `offField: true` na estática; fora do campo, `affects` usa `printedChars`, não `chars` (Maskwood Nexus).
 - **Um gatilho por jogador que tomou dano de combate / devolver criatura sua:** `seusCausamDanoDeCombate(filtro)` e `devolveCriatura(c, rótulo, filtro, opcional)` em `cartas/gatos.ts`.
 - **Nos testes com três jogadores**, a prioridade passa por todos em ordem: `while (tg.pending?.player !== 0) tg.pass()`.
+- **Restrições e substituições novas:** gancho `minBlockers: (c, atacante) => N` (Troll of Khazad-dûm); gancho `drawInstead: (c, jogador) => boolean` (Notion Thief); resguardo com descarte: `ward('discard')` (Timothar).
+- **O que foi descartado no custo:** `(c.data.costInfo as { discarded?: ObjId[] }).discarded` (Moria Scavenger). **Redução de custo que depende do alvo:** `selfCost: (c, info) => …` olhando `info.targets[0]` (Bitter Downfall; na estimativa de "dá para conjurar?" o motor passa os alvos possíveis).
+- **"Quando você cicla esta carta":** guarde `const ciclagem = cycling(custo)` e dispare em `e.type === 'activate' && e.abilityId === ciclagem.id` com `zones: ['graveyard', 'exile']` (Decree of Pain, Rampaging War Mammoth).
+- **Notas de rulings repetidas:** `REUNIR` e `ANEL` em `cartas/mordor.ts`.
 - **Nos testes, `tg.attack([...])` só deixa o ataque combinado:** ele é declarado quando a partida avança (`.passTo('declareBlockers')` ou `.passTo('main2', 0)`).
 
 Jeitos de conjurar e custos (`motor/conjurar-alternativo.ts`). Nos testes, o método vai no segundo argumento de `tg.cast(nome, 'overload')`; custo opcional: `tg.choose('custo adicional opcional', ['Pagar: …' | 'Não pagar'])`; custo repetível: `tg.number('quantas vezes', n)`.

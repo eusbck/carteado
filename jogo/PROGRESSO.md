@@ -1525,8 +1525,10 @@ As 44 cartas que faltavam estão escritas, cada uma com teste e rulings. O deck 
   - Stalking Leonin: a escolha "em segredo" fica guardada no objeto; não conferi se o cliente a esconde dos outros
     jogadores.
   - Realmwalker: a carta do topo do grimório é mostrada pelo gancho que já existia (`lookAtTopOfLibrary`).
-- A suíte inteira ainda não rodou com estas 44 cartas (rodaram os testes de cada carta, o `tsc` do motor e do cliente,
-  a conferência e os bots).
+- Suíte inteira na `decks/lote2` com o deck completo (e as 26 primeiras cartas do Vampiric Bloodline): 1150 arquivos,
+  3371 testes, **1 falha**: `testes/fase9-artes.test.ts` ("cada deck jogável…") estourou os 5 s padrão. Esse teste
+  faz um fundo por deck jogável e, com 16 decks, leva 3,6 s sozinho; com outra bateria rodando junto, passou do
+  limite. Dei a ele 60 s de limite. Rodado sozinho, passa.
 
 ## Vampiric Bloodline (Strefan, Maurer Progenitor): pronto — 11/10/2026
 
@@ -1548,6 +1550,27 @@ As 44 cartas que faltavam estão escritas, cada uma com teste e rulings. O deck 
 - A suíte inteira ainda não rodou com estas 44 cartas (rodaram os testes de cada carta, o `tsc`, a conferência e os
   bots).
 
-Faltam 10 decks do lote 2: The Hosts of Mordor, Odd and Ends, Heavenly Inferno, Hatsune Miku, Wakanda Forever, Turtle
-Power!, Avengers Assemble, Necron Dynasties e Jin's Vengeance, mais o Food and Fellowship (importação e dois
-comandantes pendentes).
+## The Hosts of Mordor (Sauron, Lord of the Rings): pronto — 11/10/2026
+
+As 45 cartas que faltavam estão escritas, cada uma com teste e rulings. O deck entrou no saguão desta cópia.
+
+- Conferência com o Moxfield: 100 cartas, 84 de 84 com regras, nada faltando nem sobrando.
+- Bots com o deck obrigatório: 8 partidas de 4 jogadores e 12 de 2 (aleatórios), 4 de 2 (heurísticos), todas sem erro.
+- `cartas/mordor.ts` guarda as notas de rulings que se repetem nas cartas de reunir Orcs e do Anel.
+- Motor:
+  - Restrição "não pode ser bloqueada exceto por N ou mais criaturas" (`minBlockers`, Troll of Khazad-dûm).
+  - Substituição de uma compra por vez (`drawInstead`, Notion Thief): poupa a primeira compra da etapa de compra de
+    cada jogador (`turnStats.drawStepDraws`) e cada efeito só se aplica uma vez à mesma compra.
+- Ficha nova: Dragon 6/6 preto e vermelho, com o gatilho de roubar artefato (Wake the Dragon).
+- Simplificações, para conferir se alguém estranhar na mesa:
+  - Inferno Titan: com dois alvos, o motor pergunta na resolução qual recebe 2 de dano, e não ao pôr o gatilho na
+    pilha.
+  - Shelob: "pôr uma carta de criatura exilada com Shelob no cemitério do dono" é pago no começo da resolução da
+    habilidade, não como custo ao ativar. Sem carta exilada, a habilidade nem aparece.
+  - Summons of Saruman pela retrospectiva: as X cartas do cemitério são escolhidas e exiladas na resolução, não ao
+    conjurar.
+- A suíte inteira ainda não rodou com estas 45 cartas nem com as 18 últimas do Vampiric Bloodline (rodaram os testes de
+  cada carta, o `tsc`, a conferência e os bots).
+
+Faltam 9 decks do lote 2: Odd and Ends, Heavenly Inferno, Hatsune Miku, Wakanda Forever, Turtle Power!, Avengers
+Assemble, Necron Dynasties e Jin's Vengeance, mais o Food and Fellowship (importação e dois comandantes pendentes).
