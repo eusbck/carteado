@@ -62,7 +62,8 @@ export function cantLoseGame(g: G, p: PlayerId): boolean {
 
 /** qualidades de proteção que o jogador tem (CR 702.16b, 702.16e), no formato de protectionMatches */
 export function playerProtections(g: G, p: PlayerId): unknown[] {
-  return hooks(g, 'playerProtection').flatMap((h) => h.fn(h.ctx, p));
+  const deEfeitos = g.state.effects.flatMap((e) => (e.affectedPlayers?.includes(p) ? e.mods.flatMap((m) => (m.k === 'rule' && m.id === 'rule:playerProtection' ? [m.params?.quality as unknown] : [])) : []));
+  return [...hooks(g, 'playerProtection').flatMap((h) => h.fn(h.ctx, p)), ...deEfeitos];
 }
 
 // ---------------------------------------------------------------------------

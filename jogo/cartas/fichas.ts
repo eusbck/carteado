@@ -342,3 +342,15 @@ export const Villain = token('Villain', 'Villain', ['Creature'], ['Villain'], ['
 export const ApeVillain = token('Ape Villain', 'Ape Villain', ['Creature'], ['Ape', 'Villain'], ['R'], 3, 3, keywords('haste'));
 /** Shapeshifter 3/2 incolor com polimorfo (Black Market Connections) */
 export const Shapeshifter32 = token('Shapeshifter 3/2', 'Shapeshifter', ['Creature'], ['Shapeshifter'], [], 3, 2, [changeling()]);
+/** Cat 1/1 branco com vínculo com a vida (Regal Caracal) */
+export const CatVinculo = token('Cat 1/1 vínculo', 'Cat', ['Creature'], ['Cat'], ['W'], 1, 1, keywords('lifelink'));
+/** Warrior 1/1 branco com vigilância (Oketra's Monument) */
+export const WarriorVigilancia = token('Warrior vigilância', 'Warrior', ['Creature'], ['Warrior'], ['W'], 1, 1, keywords('vigilance'), 'Vigilance');
+/** Rat 1/1 preto com toque mortífero (Hungry Lynx) */
+export const RatToque = token('Rat toque mortífero', 'Rat', ['Creature'], ['Rat'], ['B'], 1, 1, keywords('deathtouch'), 'Deathtouch');
+/** Cat Soldier 1/1 branco com vigilância (Brimaz, King of Oreskos) */
+export const CatSoldier = token('Cat Soldier', 'Cat Soldier', ['Creature'], ['Cat', 'Soldier'], ['W'], 1, 1, keywords('vigilance'));
+/** Cat Beast 2/2 branco (Felidar Retreat) */
+export const CatBeast = token('Cat Beast', 'Cat Beast', ['Creature'], ['Cat', 'Beast'], ['W'], 2, 2);
+/** Shapeshifter 2/2 azul com polimorfo (Maskwood Nexus) */
+export const Shapeshifter22 = token('Shapeshifter 2/2', 'Shapeshifter', ['Creature'], ['Shapeshifter'], ['U'], 2, 2, [changeling()]);

@@ -200,6 +200,12 @@ export function protectionMatches(g: G, quality: unknown, src: { colors: Color[]
     const o = src.id !== undefined ? g.state.objects[src.id] : undefined;
     return !!o && o.zone === 'battlefield' && o.data.ringBearer !== undefined && o.data.ringBearer === controllerOf(g, o.id);
   }
+  // proteção contra um subtipo ("proteção contra Dogs", CR 702.16a): olha a fonte, ou a última informação dela
+  if (quality.startsWith('subtype:')) {
+    if (src.id === undefined) return false;
+    const ch = g.state.objects[src.id] ? chars(g, src.id) : g.state.lki[src.id]?.chars;
+    return !!ch && ch.subtypes.includes(quality.slice(8));
+  }
   // proteção contra um tipo de carta (CR 702.16a): fontes no campo com o tipo, ou fora do campo desse tipo
   if (quality.startsWith('type:')) return src.types.includes(quality.slice(5));
   return false;
@@ -481,6 +487,11 @@ export function dealDamage(g: G, reqs: DamageReq[]): { dealt: number; to: Target
       if (r.target.kind === 'obj' && kwParams(g, r.target.id, 'protection').some((q) => protectionMatches(g, q, { colors: sc.colors, types: sc.types, id: r.source }))) amount = 0;
       if (r.target.kind === 'player' && playerProtectedFrom(g, r.target.id, { colors: sc.colors, types: sc.types, id: r.source })) amount = 0; // CR 702.16e
       if (amount > 0 && hooks(g, 'preventsDamage').some((h) => h.fn(h.ctx, r.target, r.source, r.combat))) amount = 0; // CR 615.1a
+      // o conjunto não é travado: vale para os que forem desse subtipo e desse controlador na hora do dano (CR 615.1)
+      if (amount > 0 && r.combat && r.target.kind === 'obj') {
+        const alvo = r.target.id;
+        if (s.effects.some((e) => e.mods.some((m) => m.k === 'rule' && m.id === 'rule:preventCombatDamageToSubtype' && m.params?.controller === controllerOf(g, alvo) && chars(g, alvo).subtypes.includes(m.params?.subtype as string)))) amount = 0;
+      }
       for (const e of s.effects) for (const m of e.mods) {
         if (m.k !== 'rule' || m.id !== 'rule:preventCombatDamageToPlayer' || amount === 0) continue;
         if (r.combat && r.target.kind === 'player' && e.affectedPlayers?.includes(r.target.id)) {
