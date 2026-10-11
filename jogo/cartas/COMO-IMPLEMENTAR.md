@@ -83,6 +83,14 @@ Todos vêm de `motor/api.ts`. Uma linha de uso por recurso:
 - **Ganchos novos (`rules`):** `keepsUnspentMana` (não perde a mana não gasta), `lookAtTopOfLibrary`, `cantSearchLibraries`, `legendRuleExempt`.
 - **Modos que não podem repetir no turno:** `modal(1, 1, [...], { available: (c, i) => …, onChosen: (c, modos) => … })` (Parapet Thrasher).
 - **Estática depois de troca de controle:** `c.you` de uma estática do campo é quem controla a fonte depois da camada 2.
+- **O mesmo modo mais de uma vez:** `modal(3, 3, [...], { repeat: true })` (Mystic Confluence). Nos testes, repita o rótulo em `tg.choose('modo', [a, a, b])`.
+- **Custo adicional concedido por outro permanente:** gancho `grantedAdditionalCosts: (c, jogador, mágica) => [additionalCost(...)]` (Anhelo). **Cópia a mais de toda mágica copiada:** gancho `extraSpellCopies` (Twinning Staff).
+- **Conjurar e exilar em vez de ir para o cemitério:** permissão com `exileInstead: true` (Kess, Power Pack). **Bis:** `encore('{3}{R}')`. **Dar suspender a uma carta exilada:** `grantSuspend(g, carta, n)`.
+- **Explorar e cara ou coroa:** `yield* explore(g, criatura)`; `flipCoin(g, jogador)` devolve true se ganhou.
+- **Copiar habilidade na pilha:** `yield* copyStackAbility(g, idNaPilha, jogador, { newTargets: true })`; alvo "habilidade desencadeada" com `{ what: 'ability', label, filter }` (Mister Fantastic).
+- **Ataque obrigatório ou proibido:** gancho `attacksOneOfIfAble: (c, criatura) => jogadores` (Galactus); efeito `{ k: 'rule', id: 'rule:attacksIfAble', params: { player } }` (Silver Surfer); efeito `rule:cantAttackPlayer` com `{ atacante, protegido, depois }` (Willie Lumpkin).
+- **Gatilho reflexivo ("quando fizer isso"):** `defineAbility(ID, triggered({ kind: 'batch', match: () => false }, efeito, { targets }))` e `reflexive(c, ID)` (Invisible Woman, The Thing).
+- **Nos testes, `tg.attack([...])` só deixa o ataque combinado:** ele é declarado quando a partida avança (`.passTo('declareBlockers')` ou `.passTo('main2', 0)`).
 
 Jeitos de conjurar e custos (`motor/conjurar-alternativo.ts`). Nos testes, o método vai no segundo argumento de `tg.cast(nome, 'overload')`; custo opcional: `tg.choose('custo adicional opcional', ['Pagar: …' | 'Não pagar'])`; custo repetível: `tg.number('quantas vezes', n)`.
 

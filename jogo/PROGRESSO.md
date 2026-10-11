@@ -1437,19 +1437,43 @@ retomada, direto nesta branch, com teste e rulings por carta.
     Power! e o Odd and Ends irem para o grupo.
 - Todos os sete worktrees da rodada 1 estão juntados. O trabalho segue direto em `lote2-b`/`decks/lote2`.
 
-## Maestros Massacre (Anhelo, the Painter): 22 de 36 — em andamento
+## Maestros Massacre (Anhelo, the Painter): pronto — 11/10/2026
 
-Feitas nesta retomada, com teste e rulings: Preordain, Drawn from Dreams, Talrand's Invocation, Maestros Charm,
-Extravagant Replication, Cormela, River's Rebuke, Hex, Frantic Search, Dread Summons, Bloodsoaked Champion, Squee, the
-Immortal, Dogged Detective, Make an Example, Reign of the Pit, Rekindling Phoenix, Rite of the Raging Storm, Kess,
-Sever the Bloodline, Waste Management, Clone Legion e o comandante Anhelo.
+As 36 cartas que faltavam estão escritas, cada uma com teste e rulings. O deck entrou no saguão desta cópia.
 
-- Motor: custos adicionais concedidos por outro permanente (`grantedAdditionalCosts`, Anhelo) e permissão de conjurar
-  com "exile em vez de ir para o cemitério" (`exileInstead`, Kess).
+- Conferência com o Moxfield: 100 cartas, 85 de 85 com regras, nada faltando nem sobrando.
+- Bots com o deck obrigatório: 6 partidas de 4 jogadores e 12 de 2 (aleatórios), 4 de 2 (heurísticos), todas sem erro.
+- Suíte inteira na `decks/lote2` com o deck completo: 999 arquivos, 3061 testes, zero falhas.
+- Motor: custos adicionais concedidos por outro permanente (`grantedAdditionalCosts`, Anhelo); permissão de conjurar
+  com "exile em vez de ir para o cemitério" (`exileInstead`, Kess); o mesmo modo escolhido mais de uma vez
+  (`repeat`, Mystic e Maestros Confluence); cópia adicional de mágicas (`extraSpellCopies`, Twinning Staff); bis
+  (`encore`, Spellbinding Soprano); dar suspender a cartas exiladas (`grantSuspend`, Sinister Concierge).
 - Fichas novas: Drake, Demon X/X, Lightning Rager e o Elemental 0/1 da Rekindling Phoenix.
-- Faltam 14: Mimic Vat, Mystic Confluence, Double Vision, Zndrsplt's Judgment, Twinning Staff, Puppeteer Clique,
-  Skyclave Shade, Maestros Confluence, Cryptic Pursuit, Syrix, Spellbinding Soprano, Smuggler's Buggy, Sinister
-  Concierge e Parnesse. Mystic e Maestros Confluence pedem "o mesmo modo mais de uma vez"; Spellbinding Soprano pede
-  encore; Sinister Concierge pede dar suspender a cartas exiladas.
-- A suíte inteira ainda não rodou com o `b` e estas 22 cartas juntados (rodaram os testes de cada carta, os de regra e
-  o `tsc`).
+
+## The Fantastic Four (Invisible Woman): pronto — 11/10/2026
+
+As 40 cartas que faltavam estão escritas, cada uma com teste. O deck entrou no saguão desta cópia.
+
+- Conferência com o Moxfield: 100 cartas, 87 de 87 com regras, nada faltando nem sobrando.
+- Bots com o deck obrigatório: 8 partidas de 4 jogadores e 12 de 2 (aleatórios), 4 de 2 (heurísticos), todas sem erro.
+- `cartas/quarteto.ts` guarda os dois gatilhos que se repetem no deck: "no início do combate no seu turno, se você
+  conjurou uma mágica que não é de criatura neste turno" e "sempre que você conjura uma mágica que não é de criatura".
+- Motor:
+  - Explorar (`explore`, CR 701.44) e cara ou coroa (`flipCoin`, CR 705), com o gerador da partida.
+  - Copiar uma habilidade desencadeada que está na pilha (`copyStackAbility`, CR 707.10) e o alvo "habilidade na
+    pilha" (`what: 'ability'`), para o Mister Fantastic.
+  - Exigência de atacar um entre vários jogadores (`attacksOneOfIfAble`, Galactus) e proibição de um jogador atacar
+    outro por um turno (`rule:cantAttackPlayer`, Willie Lumpkin).
+  - Cores das mágicas conjuradas no turno (`turnStats.spellColorsCast`, First Family).
+- Fichas novas: Wall 0/3, Ox, Merfolk e Construct 4/4.
+- Simplificações, para conferir se alguém estranhar na mesa:
+  - Power Pack sorteia a carta do cemitério na resolução do gatilho, não ao colocá-lo na pilha. O resultado é o mesmo;
+    a diferença é que a carta sorteada não aparece como alvo enquanto o gatilho está na pilha.
+  - Council of Reeds isenta da regra das lendas todas as permanentes lendárias do jogador, não só as criaturas. O gancho
+    do motor é por jogador.
+- A suíte inteira ainda não rodou com estas 40 cartas (rodaram os testes de cada carta, o `tsc`, a conferência e os
+  bots). Está rodando agora; o resultado entra aqui.
+
+Faltam 13 decks do lote 2: Doom Prevails, Raining Cats and Dogs, Vampiric Bloodline, The Hosts of Mordor, Odd and
+Ends, Heavenly Inferno, Hatsune Miku, Wakanda Forever, Turtle Power!, Avengers Assemble, Necron Dynasties e Jin's
+Vengeance, mais o Food and Fellowship (importação e dois comandantes pendentes).
