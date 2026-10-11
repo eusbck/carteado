@@ -255,6 +255,8 @@ export interface CombatState {
   firstStrikers: ObjId[];
   firstStrikeStep: boolean;
   declared: boolean;
+  /** jogadores atacados por criaturas declaradas atacantes neste combate (corpo a corpo, CR 702.121a); opcional */
+  attackedPlayers?: PlayerId[];
 }
 
 // ---------------------------------------------------------------------------
@@ -303,6 +305,8 @@ export interface TurnStats {
   /** cartas que foram para o cemitério deste jogador neste turno vindas de fora do campo (Banon) */
   toGraveyardNotFromBattlefield: CardId[];
   sacrificedCreature: boolean;
+  /** dano que este jogador sofreu neste turno (sede de sangue, Spinerock Knoll); falta nas partidas salvas antes */
+  damageTaken?: number;
 }
 
 export interface LogEntry {
@@ -367,6 +371,8 @@ export type ManualAction =
 export interface GameState {
   /** histórico opcional para habilidades como Steel Hellkite; compatível com checkpoints anteriores */
   combatDamageBySource?: { turn: number; players: Record<string, PlayerId[]> };
+  /** permanentes que receberam dano de cada fonte neste turno (Markov Enforcer); opcional, como o de cima */
+  damagedBy?: { turn: number; pairs: Record<string, ObjId[]> };
   engineVersion: number;
   version: number;
   config: GameConfig;

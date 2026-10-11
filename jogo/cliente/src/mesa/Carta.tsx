@@ -13,7 +13,7 @@ export type Selo = 'espada' | 'escudo' | 'espera';
 
 const NOME_SELO: Record<Selo, string> = { espada: 'atacando', escudo: 'bloqueando', espera: 'marcada para atacar, sem alvo' };
 
-const MARCADORES: Record<string, string> = { '+1/+1': '+1/+1', '-1/-1': '−1/−1', loyalty: 'lealdade', poison: 'veneno', charge: 'carga', time: 'tempo', oil: 'óleo', stun: 'atordoamento', shield: 'escudo' };
+const MARCADORES: Record<string, string> = { '+1/+1': '+1/+1', '-1/-1': '−1/−1', loyalty: 'lealdade', poison: 'veneno', charge: 'carga', time: 'tempo', oil: 'óleo', stun: 'atordoamento', shield: 'escudo', lore: 'conhecimento', plan: 'plano' };
 
 export interface CartaProps {
   o: ObjView;
@@ -97,11 +97,14 @@ function CartaBase({ o, realce = null, selo, numero, deitada, onClick, onZoom, o
           </div>
         )}
       </div>
-      {(marcadores.length > 0 || o.damage > 0 || pendente || o.goaded) && (
+      {(marcadores.length > 0 || o.damage > 0 || pendente || o.goaded || o.monstrous || o.ringBearer || !!o.regen) && (
         <div class="carta-etiquetas">
           {marcadores.map(([k, n]) => <span key={k} class={`marca marca-${k === '-1/-1' ? 'menos' : k === '+1/+1' ? 'mais' : 'outro'}`}>{k === '+1/+1' ? `+${n}` : k === '-1/-1' ? `−${n}` : `${n} ${MARCADORES[k] ?? k}`}</span>)}
           {o.damage > 0 && <span class="marca marca-dano">{o.damage} de dano</span>}
           {o.goaded && <span class="marca marca-outro">provocada</span>}
+          {o.ringBearer && <span class="marca marca-outro" title="Portador do Anel: lendário e não pode ser bloqueado por criaturas com força maior">portador do Anel</span>}
+          {o.monstrous && <span class="marca marca-outro">monstruosa</span>}
+          {!!o.regen && <span class="marca marca-outro" title="A próxima destruição neste turno é substituída: remove o dano, vira e sai do combate">regenera{o.regen > 1 ? ` ×${o.regen}` : ''}</span>}
           {pendente && <span class="marca marca-pendente">manual</span>}
         </div>
       )}

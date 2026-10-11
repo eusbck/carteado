@@ -245,3 +245,37 @@ export const Vibranium = defineToken({
 export const Dragon55 = token('Dragon 5/5', 'Dragon', ['Creature'], ['Dragon'], ['R'], 5, 5, keywords('flying'));
 /** Dragon 6/6 vermelha com voar (Utvara Hellkite) */
 export const Dragon66 = token('Dragon 6/6', 'Dragon', ['Creature'], ['Dragon'], ['R'], 6, 6, keywords('flying'));
+// lote2-d: fichas predefinidas e das mecânicas de criaturas (motor/criaturas.ts)
+import { changeling } from '../motor/api.ts';
+/** Food (CR 111.10b): "{2}, {T}, Sacrifique esta ficha: Você ganha 3 de vida." */
+export const Food = defineToken({
+  id: 'Food', name: 'Food', types: ['Artifact'], subtypes: ['Food'], colors: [], power: null, toughness: null,
+  abilities: [activated('{2}, {T}, Sacrifice this token', function* (c) { gainLife(c.g, c.you, 3, c.source); }, { text: '{2}, {T}, Sacrifique esta ficha: Você ganha 3 de vida.' })],
+  image: fichasOracle.find((f) => f.name === 'Food')?.oracleId,
+});
+/** Clue (CR 111.10f): "{2}, Sacrifique esta ficha: Compre uma carta." */
+export const Clue = defineToken({
+  id: 'Clue', name: 'Clue', types: ['Artifact'], subtypes: ['Clue'], colors: [], power: null, toughness: null,
+  abilities: [activated('{2}, Sacrifice this token', function* (c) { yield* draw(c.g, c.you, 1); }, { text: '{2}, Sacrifique esta ficha: Compre uma carta.' })],
+  image: fichasOracle.find((f) => f.name === 'Clue')?.oracleId,
+});
+/** Blood (CR 111.10g): "{1}, {T}, Descarte uma carta, Sacrifique esta ficha: Compre uma carta." */
+export const Blood = defineToken({
+  id: 'Blood', name: 'Blood', types: ['Artifact'], subtypes: ['Blood'], colors: [], power: null, toughness: null,
+  abilities: [activated('{1}, {T}, Discard a card, Sacrifice this token', function* (c) { yield* draw(c.g, c.you, 1); }, { text: '{1}, {T}, Descarte uma carta, Sacrifique esta ficha: Compre uma carta.' })],
+  image: fichasOracle.find((f) => f.name === 'Blood')?.oracleId,
+});
+/** Orc Army 0/0 preta (reunir Orcs, CR 701.47a) */
+export const OrcArmy = token('Orc Army', 'Orc Army', ['Creature'], ['Orc', 'Army'], ['B'], 0, 0);
+/** Wraith 3/3 preta com ameaçar (In the Darkness Bind Them, Lord of the Nazgûl) */
+export const Wraith = token('Wraith', 'Wraith', ['Creature'], ['Wraith'], ['B'], 3, 3, keywords('menace'));
+/** Robot Villain 2/2 incolor (Ultron, Unlimited) */
+export const RobotVillain = token('Robot Villain', 'Robot Villain', ['Artifact', 'Creature'], ['Robot', 'Villain'], [], 2, 2);
+/** Warrior 1/1 vermelha (mobilizar, CR 702.181a) */
+export const WarriorRed = token('Warrior vermelho', 'Warrior', ['Creature'], ['Warrior'], ['R'], 1, 1);
+/** Shapeshifter 1/1 incolor com polimorfo (Crib Swap) */
+export const Shapeshifter = token('Shapeshifter', 'Shapeshifter', ['Creature'], ['Shapeshifter'], [], 1, 1, [changeling()]);
+/** Dragon 4/4 vermelha com voar (The Elder Dragon War) */
+export const Dragon44 = token('Dragon 4/4', 'Dragon', ['Creature'], ['Dragon'], ['R'], 4, 4, keywords('flying'));
+/** Vampire 1/1 branca e preta com vínculo com a vida (Glass-Cast Heart) */
+export const VampireWB = token('Vampire 1/1', 'Vampire', ['Creature'], ['Vampire'], ['W', 'B'], 1, 1, keywords('lifelink'));

@@ -198,11 +198,14 @@ function layer1(g: G, o: GameObject): Chars {
 function applyMod(c: Chars, m: Mod): void {
   switch (m.k) {
     case 'control': c.controller = m.player; break;
-    case 'addTypes':
+    case 'addTypes': {
       for (const t of m.types ?? []) if (!c.types.includes(t)) c.types.push(t);
-      for (const t of m.subtypes ?? []) if (!c.subtypes.includes(t)) c.subtypes.push(t);
+      // polimorfo acrescenta centenas de tipos de criatura (CR 702.73a): conjunto para não ficar quadrático
+      const tem = new Set(c.subtypes);
+      for (const t of m.subtypes ?? []) if (!tem.has(t)) { c.subtypes.push(t); tem.add(t); }
       for (const t of m.supertypes ?? []) if (!c.supertypes.includes(t)) c.supertypes.push(t);
       break;
+    }
     case 'setTypes':
       c.types = [...m.types];
       c.subtypes = [...m.subtypes];
