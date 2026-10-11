@@ -1690,5 +1690,28 @@ jogáveis).
 - A suíte inteira ainda não rodou com este deck nem com o Heavenly Inferno (rodaram os testes de cada carta, o `tsc`,
   a conferência e os bots).
 
-Faltam 6 decks do lote 2: Wakanda Forever, Turtle Power!, Avengers Assemble, Necron Dynasties e Jin's Vengeance, mais o
-Food and Fellowship (importação e dois comandantes pendentes).
+## Wakanda Forever (T'Challa, the Black Panther): pronto — 11/10/2026
+
+As 50 cartas que faltavam estão escritas, cada uma com teste e rulings. O deck entrou no saguão desta cópia (21 decks
+jogáveis).
+
+- Conferência com o Moxfield: 100 cartas, 78 de 78 com regras, nada faltando nem sobrando.
+- Bots com o deck obrigatório: 8 partidas de 4 jogadores e 12 de 2 (aleatórios), 4 de 2 (heurísticos), todas sem erro.
+- `cartas/wakanda.ts` guarda "você controla o seu comandante", o Vibranium virado, os artefatos do jogador, "mágica de
+  artefato com valor de mana 4 ou maior" e a luta (CR 701.14a).
+- Motor: prevenção de parte do dano, ou de todo ele com algo no lugar (gancho `preventsSomeDamage`, CR 615.1):
+  Heart-Shaped Herb e Panther Habit.
+- Fichas novas: Beast 3/3, Elephant 3/3 e Rhino 4/4 com atropelar.
+- Simplificações, para conferir se alguém estranhar na mesa:
+  - Palace Jailer: a criatura volta por um gatilho atrasado de "um oponente se torna o monarca", que passa pela pilha.
+    Pela regra (CR 610.3) ela voltaria na hora.
+  - Conduit of Worlds: "você não pode conjurar outras mágicas neste turno" vale a partir da resolução da habilidade;
+    a carta conjurada do cemitério é conjurada durante a resolução, pagando os custos.
+  - Shuri's Fabricator e Heart-Shaped Herb: a carta volta ao campo já com os marcadores (finalidade; três +1/+1).
+  - Okoye e Fight for the Throne usam gatilhos atrasados que acabam no fim do turno.
+  - Everett K. Ross: "criaturas comandantes que você controla" conta qualquer comandante sob o seu controle, seja de
+    quem for.
+- A suíte inteira ainda não rodou com este deck (rodaram os testes de cada carta, o `tsc`, a conferência e os bots).
+
+Faltam 5 decks do lote 2: Turtle Power!, Avengers Assemble, Necron Dynasties e Jin's Vengeance, mais o Food and
+Fellowship (importação e dois comandantes pendentes).

@@ -137,6 +137,13 @@ Todos vêm de `motor/api.ts`. Uma linha de uso por recurso:
 - **Ficha com força e resistência variáveis por contagem:** `selfGets(…, texto, { cda: true })` na ficha (Elemental verde e branco). **Ficha X/X:** `createTokens(g, p, { copyOf: { def: 'Minion X/X', face: 0, except: { power: x, toughness: x } } }, 1)`.
 - **Antes de escrever força e resistência num teste, confira com `node ferramentas/ficha-carta.ts "Nome"`;** a tabela de `cartas/fichas.test.ts` também confere cada ficha com a impressa (`fichasOracle`).
 - **Uma carta com erro ao carregar quebra todos os testes** (todas entram por `cartas/index.ts`): rode o teste da carta nova antes de seguir.
+- **Comandante, monarca, luta, Vibranium:** `controlaComandante(g, p)`, `ehComandanteDe(g, id, p)`, `luta(g, a, b)`, `criaVibraniumVirado(c, n)` e `artefatosDe(g, p)` em `cartas/wakanda.ts`; `becomeMonarch(g, p)` e `state.monarch`. Nos testes, o comandante é `{ name, commander: true }`.
+- **Prevenir parte do dano, ou todo ele com algo no lugar:** gancho `preventsSomeDamage: (c, alvo, fonte, quantidade, combate) => quantoPrevine` (Heart-Shaped Herb, Panther Habit).
+- **Gatilho atrasado que olha os próprios dados ao disparar:** no `match`, `(c as { delayed?: { data } }).delayed?.data`; na resolução, `c.data`. Com `delayed(c, id, { data, once: false, expiresTurn: turno })` ele vale até o fim do turno (Okoye, Fight for the Throne).
+- **Gatilho depois de os bloqueadores serem declarados:** `on.custom((e) => e.type === 'blockers' …)` olhando `state.combat.attackers` (`blocked`, `removed`, `target`) (Coveted Jewel).
+- **Substituir as fichas que seriam criadas:** gancho `tokenCreation`, trocando `tokens` e mantendo `de` (Divine Visitation). **Entrar com marcadores:** `putOntoBattlefield(g, [{ id, controller, counters: { finality: 1 } }], causa)`; marcador de palavra-chave (`indestructible`, `flying`…) já dá a palavra-chave.
+- **Modo que não pode repetir enquanto a permanente existir:** `modal(1, 1, [...], { available, onChosen })` guardando os escolhidos em `objeto.data` (Kimoyo Beads).
+- **Afinidade com artefatos e outras reduções próprias:** `selfCost: affinity` (de `cartas/artefatos.ts`) ou `selfCost: (c) => ({ reduce: n })`.
 - **Nos testes, conjurar uma carta do exílio por uma permissão:** ache a ação com `tg.actionIds().find((a) => a.startsWith('cast:') && a.split(':').includes(String(carta)))` e responda com `tg.answer({ kind: 'priority', action })`.
 
 Jeitos de conjurar e custos (`motor/conjurar-alternativo.ts`). Nos testes, o método vai no segundo argumento de `tg.cast(nome, 'overload')`; custo opcional: `tg.choose('custo adicional opcional', ['Pagar: …' | 'Não pagar'])`; custo repetível: `tg.number('quantas vezes', n)`.

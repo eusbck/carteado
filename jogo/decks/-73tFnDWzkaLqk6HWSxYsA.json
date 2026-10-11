@@ -6,8 +6,7 @@
  "link": "https://moxfield.com/decks/-73tFnDWzkaLqk6HWSxYsA",
  "importadoEm": "2026-10-10T04:44:03.720Z",
  "verificadoEm": "2026-10-10T04:44:03.720Z",
- "atual": null,
- "preparacao": {
+ "atual": {
   "comandante": "T'Challa, the Black Panther",
   "cartas": [
    {
@@ -324,5 +323,6 @@
    "atualizadoEm": "2026-07-15T16:03:10.98Z"
   },
   "desde": "2026-10-10T04:44:03.720Z"
- }
+ },
+ "preparacao": null
 }
