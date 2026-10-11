@@ -210,3 +210,16 @@ export const Contract = defineToken({
 });
 
 void activated; void cost;
+
+// lote2-c
+export const Ninja = token('Ninja', 'Ninja', ['Creature'], ['Ninja'], ['B'], 1, 1);
+export const Elemental55 = token('Elemental 5/5', 'Elemental', ['Creature'], ['Elemental'], ['U', 'R'], 5, 5, keywords('flying'));
+/** Mutagen (ficha predefinida, CR 111.10): "{1}, {T}, Sacrifique esta ficha: ponha um marcador +1/+1 na criatura alvo. Ative só como feitiço." */
+export const Mutagen = defineToken({
+  id: 'Mutagen', name: 'Mutagen', types: ['Artifact'], subtypes: ['Mutagen'], colors: [], power: null, toughness: null,
+  abilities: [activated('{1}, {T}, Sacrifice this token', function* (c) {
+    const id = tgt(c);
+    if (id !== null) addCounters(c.g, { kind: 'obj', id }, '+1/+1', 1, c.you);
+  }, { targets: [t.creature()], timing: 'sorcery', text: '{1}, {T}, Sacrifique esta ficha: ponha um marcador +1/+1 na criatura alvo. Ative só como feitiço.' })],
+  image: fichasOracle.find((f) => f.name === 'Mutagen')?.oracleId,
+});

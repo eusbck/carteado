@@ -12,6 +12,10 @@ const PALAVRAS: Record<string, string> = {
   explore: 'explorar', toxic: 'tóxico', gift: 'presente', impending: 'iminente', undaunted: 'destemido', eminence: 'eminência',
   plainscycling: 'ciclagem de planície', 'basic landcycling': 'ciclagem de terreno básico', transform: 'transformar',
   surveil: 'vigiar', cantBlock: 'não pode bloquear',
+  // jeitos de conjurar e custos (motor/conjurar-alternativo.ts)
+  morph: 'metamorfose', ninjutsu: 'ninjutsu', 'commander ninjutsu': 'ninjutsu de comandante', sneak: 'sneak',
+  madness: 'loucura', mayhem: 'mayhem', rebound: 'ricochete', retrace: 'retraçar', cascade: 'cascata', casualty: 'baixa',
+  squad: 'esquadrão',
 };
 
 export function palavraChave(k: string): string {

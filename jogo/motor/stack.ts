@@ -107,6 +107,8 @@ export function* chooseTargets(g: G, player: PlayerId, specs: TargetSpec[], sour
 // Definições de mágica
 // ---------------------------------------------------------------------------
 export function faceDefOf(o: GameObject): FaceDef | undefined {
+  // mágica ou permanente virada para baixo não tem texto (CR 708.2a): nem custos, alvos ou "não pode ser anulada"
+  if (o.faceDown && (o.zone === 'stack' || o.zone === 'battlefield')) return undefined;
   const name = o.copyOf?.def ?? o.def;
   const face = o.copyOf ? o.copyOf.face : (o.zone === 'stack' ? o.face : 0);
   return cardDef(name)?.faces[face];
@@ -118,6 +120,12 @@ export function spellTargetSpecs(o: GameObject, modes: number[], method?: string
   const specs: TargetSpec[] = [];
   const groups: { mode: number | null; start: number; count: number }[] = [];
   const sp = f?.spell;
+  // sobrecarga (CR 702.96a-b): "alvo" vira "cada"; a mágica não tem alvos (os grupos ficam vazios para os modos)
+  if (method && f?.altCosts?.some((a) => a.key === method && a.noTargets)) {
+    if (sp?.targets) groups.push({ mode: null, start: 0, count: 0 });
+    for (const m of sp?.modes ? modes : []) groups.push({ mode: m, start: 0, count: 0 });
+    return { specs, groups };
+  }
   // sem o presente prometido, os alvos da parte do presente não são escolhidos (CR 702.174m)
   if (sp?.targets) { groups.push({ mode: null, start: 0, count: sp.targets.length }); specs.push(...sp.targets.map((t) => (t.gift && !o.stack?.paid.gift ? { ...t, min: 0, max: 0 } : t))); }
   if (sp?.modes) pushModeSpecs(sp.modes, modes, specs, groups);
@@ -197,6 +205,7 @@ export function totalSpellCost(g: G, player: PlayerId, o: GameObject, method: Ca
   let cost: ManaSymbol[];
   if (method.free || method.permission?.free) cost = [];
   else if (method.permission?.mana) cost = parseCost(method.permission.mana);
+  else if (method.alt?.useManaCost) cost = c.manaCost ? [...c.manaCost] : []; // retraçar (CR 702.81a)
   else if (method.alt) cost = method.alt.mana === null ? [] : parseCost(method.alt.mana);
   else cost = c.manaCost ? [...c.manaCost] : [];
   // CR 107.3b: sem pagar o custo de mana, X só pode ser 0
@@ -263,7 +272,8 @@ function* castInner(g: G, player: PlayerId, cardId: ObjId, method: CastMethod): 
     destroyObject(g, cardId);
     if (preparedBy !== undefined && g.state.objects[preparedBy]) { g.state.objects[preparedBy].prepared = false; g.bump(); }
   } else {
-    spellId = moveRaw(g, cardId, 'stack', { controller: player, faceDown: false });
+    // morph (CR 702.37c, 708.4): virada para baixo antes de ir para a pilha
+    spellId = moveRaw(g, cardId, 'stack', { controller: player, faceDown: !!method.alt?.faceDown });
   }
   const o = g.state.objects[spellId];
   const info: StackInfo = { kind: 'spell', controller: player, modes: [], targets: [], x: 0, paid: {}, method: method.key, castFrom: method.zone, data: {}, isCopy: o.isCopy };
@@ -273,7 +283,8 @@ function* castInner(g: G, player: PlayerId, cardId: ObjId, method: CastMethod): 
   if (method.permission?.bottomInstead) info.data.bottomInsteadOfGraveyard = true;
   if (method.key === 'bestow') info.data.bestow = true;
   g.bump();
-  const f = faceDefOf(o) ?? f0;
+  // virada para baixo, a mágica não tem texto: sem modos, alvos nem custos adicionais (CR 708.2a)
+  const f = o.faceDown ? undefined : faceDefOf(o) ?? f0;
   const sp: SpellDef | undefined = f?.spell;
   // 601.2b: modos, custos adicionais/alternativos, X
   if (sp?.modes) {
@@ -295,9 +306,15 @@ function* castInner(g: G, player: PlayerId, cardId: ObjId, method: CastMethod): 
     }
   }
   for (const ac of f?.additionalCosts ?? []) {
+    // escalada (CR 702.120a): uma vez para cada modo além do primeiro, sem escolha
+    if (ac.perExtraMode) { info.paid[ac.key] = Math.max(0, info.modes.length - 1); continue; }
     if (ac.repeatable) {
       // não dá para repetir mais vezes do que é possível pagar (sacrificar: quantos permanentes servem)
       let vezes = 10;
+      if (ac.capByMana) {
+        const porVez = manaValueOf(manaPart(ac.parts), 0);
+        if (porVez > 0) vezes = Math.min(vezes, Math.max(0, Math.floor((maxX(g, player, spellId) - 2) / porVez)));
+      }
       for (const p of ac.parts) {
         if (p.k !== 'sacrifice' || typeof p.n !== 'number' || p.n <= 0) continue;
         const ctx = { g, you: player, source: spellId };
@@ -321,7 +338,8 @@ function* castInner(g: G, player: PlayerId, cardId: ObjId, method: CastMethod): 
       if (r === 'or') info.paid[`${ac.key}:or`] = true;
     } else info.paid[ac.key] = true;
   }
-  const manaHasX = (chars(g, spellId).manaCost ?? []).some((s) => s.k === 'X');
+  // X do custo impresso ou do custo alternativo (madness {X}{R}: Avacyn's Judgment)
+  const manaHasX = (chars(g, spellId).manaCost ?? []).some((s) => s.k === 'X') || (!!method.alt?.mana && parseCost(method.alt.mana).some((s) => s.k === 'X'));
   const otherHasX = !!sp?.xMax || (f?.additionalCosts ?? []).some((ac) => ac.parts.some((p) => (p.k === 'life' || p.k === 'sacrifice' || p.k === 'blight') && (p as { n: unknown }).n === 'X'));
   const free = !!(method.free || method.permission?.free);
   // CR 107.3b: sem pagar o custo de mana, o X do custo de mana só pode ser 0; X de custos
@@ -399,6 +417,8 @@ function* castInner(g: G, player: PlayerId, cardId: ObjId, method: CastMethod): 
     ...(f?.additionalCosts ?? []).flatMap((ac) => {
       const times = typeof info.paid[ac.key] === 'number' ? (info.paid[ac.key] as number) : info.paid[ac.key] ? 1 : 0;
       const parts = (info.paid[`${ac.key}:or`] ? ac.orParts ?? [] : ac.parts).filter((p) => p.k !== 'mana');
+      // escalada: "vire uma criatura" duas vezes é virar duas criaturas de uma vez (o mesmo recurso não paga duas)
+      if (ac.perExtraMode) return times > 0 ? parts.map((p) => ('n' in p && typeof p.n === 'number' ? { ...p, n: p.n * times } as typeof p : p)) : [];
       return Array.from({ length: times }, () => parts).flat();
     }),
   ];
@@ -406,6 +426,9 @@ function* castInner(g: G, player: PlayerId, cardId: ObjId, method: CastMethod): 
     const r = yield* payParts(g, player, otherParts, spellId, info.x);
     if (r === false) return null;
     Object.assign(info.data, { costInfo: r });
+    // sneak (CR 702.190b): a permanente vai entrar atacando quem o atacante devolvido atacava
+    const devolvido = r.returnedAttacker as { target: TargetRef | null } | undefined;
+    if (method.alt?.enterAttacking && devolvido?.target) info.data.enterAttacking = devolvido.target;
   }
   const byType: Record<string, number> = {};
   for (const u of paidMana.units) byType[u.type] = (byType[u.type] ?? 0) + 1;
@@ -426,7 +449,10 @@ function* castInner(g: G, player: PlayerId, cardId: ObjId, method: CastMethod): 
     st.greatestInstantSorceryMV = Math.max(st.greatestInstantSorceryMV, c.manaValue);
   }
   g.bump();
-  g.log(`${g.state.players[player].name} conjura ${label}${info.targets.flat().length ? ` (alvos: ${info.targets.flat().map((t) => targetLabel(g, t)).join(', ')})` : ''}.`, { rule: '601.2' });
+  const textoConjura = `${g.state.players[player].name} conjura ${label}${info.targets.flat().length ? ` (alvos: ${info.targets.flat().map((t) => targetLabel(g, t)).join(', ')})` : ''}.`;
+  // virada para baixo, só quem conjura sabe qual é (CR 708.5)
+  if (o.faceDown) g.log(textoConjura, { rule: '702.37c', visibleTo: [player], hiddenText: `${g.state.players[player].name} conjura uma criatura virada para baixo.` });
+  else g.log(textoConjura, { rule: '601.2' });
   const events: Parameters<typeof emit>[1] = [{ type: 'cast', obj: spellId, player, from: method.zone, copy: false }];
   for (const t of info.targets.flat()) events.push({ type: 'target', target: t, by: spellId, controller: player, spell: true });
   emit(g, events);
@@ -668,7 +694,15 @@ export function* resolveTop(g: G): Gen<void> {
       } else if (auraTarget.kind === 'obj') attachTo = auraTarget.id;
     }
     const spell = { x: st.x, paid: st.paid, method: st.method, manaSpent: st.manaSpent, castFrom: st.castFrom };
-    const res = yield* putOntoBattlefield(g, [{ id, controller: st.controller, attachTo, spell }], 'resolve');
+    // sneak (CR 702.190b): entra virada e atacando quem o atacante devolvido atacava; só criatura ataca (506.3a), e não
+    // ataca um jogador que saiu nem um permanente que não está mais no campo (506.3c)
+    const atk = st.data.enterAttacking as TargetRef | undefined;
+    const atacaValido = !!atk && !!g.state.combat && g.state.turn.active === st.controller && c.types.includes('Creature') &&
+      (atk.kind === 'player' ? !g.state.players[atk.id].left : g.state.objects[atk.id]?.zone === 'battlefield');
+    const res = yield* putOntoBattlefield(g, [{
+      id, controller: st.controller, attachTo, spell, faceDown: o.faceDown, // morph: entra virada para baixo (CR 702.37c)
+      ...(atk ? { tapped: true, attacking: atacaValido ? atk : undefined } : {}),
+    }], 'resolve');
     if (res.length === 0 && g.state.objects[id]) yield* moveObject(g, id, 'graveyard', 'resolve'); // CR 608.3e
     // habilidades concedidas à mágica que continuam no permanente (Serra Paragon: "ela ganha …")
     const conceder = st.data.grantOnEnter as string[] | undefined;
@@ -705,7 +739,17 @@ export function* resolveTop(g: G): Gen<void> {
   // 608.2n: vai para o cemitério do dono (se ainda estiver na pilha)
   if (g.state.objects[id]?.zone === 'stack') {
     if (g.state.objects[id].isCopy) destroyObject(g, id);
-    else yield* moveObject(g, id, 'graveyard', 'resolve');
+    else if (st.paid.buyback) yield* moveObject(g, id, 'hand', 'resolve'); // recompra (CR 702.27a)
+    else if (st.castFrom === 'hand' && chars(g, id).abilities.some((a) => a.kw === 'rebound')) {
+      // ricochete (CR 702.88a): conjurada da mão, vai para o exílio e volta a ser conjurável na sua próxima manutenção
+      const novo = yield* moveObject(g, id, 'exile', 'rebound');
+      if (novo !== null && g.state.objects[novo]?.zone === 'exile') {
+        const s2 = g.state;
+        s2.delayedTriggers.push({ id: s2.nextId++, abilityId: 'kw:rebound', source: novo, controller: st.controller, data: {}, once: true, expiresTurn: null, createdTurn: s2.turn.number, createdStep: s2.turn.step });
+        g.log(`${c.name} vai para o exílio (ricochete).`, { rule: '702.88a' });
+        g.bump();
+      }
+    } else yield* moveObject(g, id, 'graveyard', 'resolve');
   }
   emit(g, [{ type: 'resolved', obj: id, controller: st.controller }]);
 }

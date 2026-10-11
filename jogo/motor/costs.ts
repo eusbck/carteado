@@ -94,9 +94,25 @@ export function canPayParts(g: G, player: PlayerId, parts: CostPart[], source: O
         break;
       }
       case 'returnLand': break;
+      case 'returnUnblockedAttacker': if (!unblockedAttackers(g, player).length) return false; break;
+      case 'revealSelf': if (!o || (o.zone !== 'hand' && o.zone !== 'command')) return false; break;
     }
   }
   return true;
+}
+
+/**
+ * Atacantes não bloqueados que o jogador controla (CR 509.1h): só existem depois que os bloqueadores foram declarados,
+ * da etapa de declarar bloqueadores até o fim do combate. Quem entrou atacando depois disso está não bloqueado (506.3d).
+ */
+export function unblockedAttackers(g: G, player: PlayerId): ObjId[] {
+  const s = g.state;
+  const cb = s.combat;
+  if (!cb) return [];
+  const t = s.turn;
+  const depoisDosBloqueios = t.step === 'declareBlockers' ? t.stepBegun : t.step === 'firstStrikeDamage' || t.step === 'combatDamage' || t.step === 'endCombat';
+  if (!depoisDosBloqueios) return [];
+  return cb.attackers.filter((a) => !a.removed && !a.blocked && s.objects[a.id]?.zone === 'battlefield' && !s.objects[a.id].phasedOut && controllerOf(g, a.id) === player).map((a) => a.id);
 }
 
 /** opções de mana disponíveis para um jogador agora */
@@ -557,6 +573,23 @@ export function* payParts(g: G, player: PlayerId, parts: CostPart[], source: Obj
         break;
       }
       case 'returnLand': break;
+      case 'returnUnblockedAttacker': {
+        const cands = unblockedAttackers(g, player);
+        if (!cands.length) return false;
+        const [id] = yield* chooseItems(g, player, `Devolva à mão ${p.label ?? 'um atacante não bloqueado que você controla'}`, cands.map((id) => objItem(g, id, nameOf(g, id))), 1, 1);
+        const atk = s.combat?.attackers.find((a) => a.id === Number(id));
+        info.returnedAttacker = { obj: Number(id), target: atk ? { ...atk.target } : null };
+        info.returned = yield* moveObjects(g, [{ id: Number(id), to: 'hand' }], 'cost', player);
+        break;
+      }
+      case 'revealSelf': {
+        const o = s.objects[source];
+        if (!o) return false;
+        o.visibleTo = 'all';
+        g.bump();
+        g.log(`${s.players[player].name} revela ${nameOf(g, source)}${o.zone === 'command' ? ' da zona de comando' : ' da mão'}.`, { rule: '702.49b' });
+        break;
+      }
     }
   }
   return info;

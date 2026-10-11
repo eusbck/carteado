@@ -26,3 +26,4 @@ export * from './mecanicas.ts';
 export { addCombatPhaseAfterCurrent } from './turn.ts';
 export * from './veneno-emblema.ts';
 export { playerProtectedFrom } from './actions.ts';
+export * from './conjurar-alternativo.ts';

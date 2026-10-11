@@ -97,15 +97,18 @@ function CartaBase({ o, realce = null, selo, numero, deitada, onClick, onZoom, o
           </div>
         )}
       </div>
-      {(marcadores.length > 0 || o.damage > 0 || pendente || o.goaded) && (
+      {(marcadores.length > 0 || o.damage > 0 || pendente || o.goaded || (o.faceDown && !oculta)) && (
         <div class="carta-etiquetas">
           {marcadores.map(([k, n]) => <span key={k} class={`marca marca-${k === '-1/-1' ? 'menos' : k === '+1/+1' ? 'mais' : 'outro'}`}>{k === '+1/+1' ? `+${n}` : k === '-1/-1' ? `−${n}` : `${n} ${MARCADORES[k] ?? k}`}</span>)}
           {o.damage > 0 && <span class="marca marca-dano">{o.damage} de dano</span>}
           {o.goaded && <span class="marca marca-outro">provocada</span>}
+          {/* só quem controla vê a face (CR 708.5); a etiqueta lembra que os outros veem o verso */}
+          {o.faceDown && !oculta && <span class="marca marca-outro">virada para baixo</span>}
           {pendente && <span class="marca marca-pendente">manual</span>}
         </div>
       )}
-      {criatura && o.power !== null && img && <span class={o.damageByToughness ? 'carta-pt pela-resistencia' : 'carta-pt'}><ForcaResistencia o={o} /></span>}
+      {/* virada para baixo no campo: os outros veem o verso, uma criatura 2/2 (CR 708.2a) */}
+      {criatura && o.power !== null && (img || (oculta && o.faceDown)) && <span class={o.damageByToughness ? 'carta-pt pela-resistencia' : 'carta-pt'}><ForcaResistencia o={o} /></span>}
       {selo && <span class={`selo-combate ${selo}`} title={NOME_SELO[selo]}>{selo === 'escudo' ? <IconeEscudo /> : <IconeEspada />}</span>}
       {numero !== undefined && <span class="carta-n" aria-hidden="true">#{numero}</span>}
       {deitada && <span class="tile-nome" aria-hidden="true">{nome}</span>}
