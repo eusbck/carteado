@@ -162,16 +162,30 @@ export function attackingTarget(g: G, attacker: ObjId): TargetRef | null {
   return a.target.kind === 'player' ? (g.state.players[a.target.id].left ? null : a.target) : (g.state.objects[a.target.id]?.zone === 'battlefield' ? a.target : null);
 }
 
+/**
+ * "Você escolhe quais criaturas atacam neste turno" e "quais bloqueiam e como" (Master Warcraft): o efeito de regra
+ * `rule:combatChooser` com `{ player }` diz quem toma as decisões de ataque e de bloqueio no lugar de quem as tomaria.
+ * As escolhas continuam tendo de ser legais para o jogador de quem são as criaturas. Vale o efeito mais recente.
+ */
+export function combatChooser(g: G): PlayerId | null {
+  let quem: PlayerId | null = null;
+  for (const e of g.state.effects) for (const m of e.mods) {
+    if (m.k === 'rule' && m.id === 'rule:combatChooser' && typeof m.params?.player === 'number' && !g.state.players[m.params.player].left) quem = m.params.player;
+  }
+  return quem;
+}
+
 export function* declareAttackers(g: G): Gen<void> {
   const s = g.state;
   const player = s.turn.active;
   const combat = s.combat!;
   const cands = attackCandidates(g, player);
+  const quemEscolhe = combatChooser(g) ?? player;
   let attacks: [ObjId, TargetRef][] = [];
   if (cands.length > 0) {
     for (;;) {
       const a = yield* ask<Extract<Answer, { kind: 'attackers' }>>(g, {
-        kind: 'attackers', player, prompt: 'Declare os atacantes',
+        kind: 'attackers', player: quemEscolhe, prompt: quemEscolhe === player ? 'Declare os atacantes' : `Declare os atacantes de ${s.players[player].name}`,
         candidates: cands.map((c) => {
           const r = requiredTargets(g, c.obj, c.targets);
           const custos = c.targets.map((t) => attackCostFor(g, c.obj, t));
@@ -216,6 +230,8 @@ export function canBlock(g: G, blocker: ObjId, attacker: ObjId): boolean {
   if (hasKw(g, attacker, 'shadow') && !hasKw(g, blocker, 'shadow')) return false; // CR 702.28b
   if (hasKw(g, blocker, 'shadow') && !hasKw(g, attacker, 'shadow')) return false;
   if (hasKw(g, attacker, 'skulk') && power(g, blocker) > power(g, attacker)) return false; // CR 702.118b
+  // CR 702.13b: intimidar — só criaturas artefato ou que compartilhem uma cor com a atacante
+  if (hasKw(g, attacker, 'intimidate') && !bc.types.includes('Artifact') && !bc.colors.some((cor) => chars(g, attacker).colors.includes(cor))) return false;
   if (kwParams(g, attacker, 'protection').some((q) => protectionMatches(g, q, { colors: bc.colors, types: bc.types, id: blocker }))) return false; // CR 702.16f
   if (hasKw(g, blocker, 'decayed') || hasKw(g, blocker, 'cantBlock')) return false; // CR 702.147a
   if (hasKw(g, attacker, 'unblockable')) return false;
@@ -303,8 +319,9 @@ export function* declareBlockers(g: G): Gen<void> {
     const cands = blockCandidates(g, d);
     if (cands.length === 0) continue;
     const attackers = combat.attackers.filter((a) => !a.removed && defendingPlayerOf(g, a.target) === d).map((a) => a.id);
+    const quemEscolhe = combatChooser(g) ?? d;
     const a = yield* ask<Extract<Answer, { kind: 'blockers' }>>(g, {
-      kind: 'blockers', player: d, prompt: 'Declare os bloqueadores', candidates: cands, attackers, required: mustBeBlockedByOne(g, attackers),
+      kind: 'blockers', player: quemEscolhe, prompt: quemEscolhe === d ? 'Declare os bloqueadores' : `Declare os bloqueadores de ${s.players[d].name}`, candidates: cands, attackers, required: mustBeBlockedByOne(g, attackers),
     }, (ans) => validateBlocks(g, d, ans.blocks));
     all.push(...a.blocks);
   }

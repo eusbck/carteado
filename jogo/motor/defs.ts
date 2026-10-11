@@ -454,6 +454,8 @@ export interface FaceDef {
   gift?: { label: string; give: (c: Ctx, to: PlayerId) => Gen<void> };
   /** pode ser conjurada como se tivesse flash nesta situação */
   flash?: boolean;
+  /** "Conjure esta mágica somente [quando…]" (Master Warcraft: antes de os atacantes serem declarados; CR 601.3) */
+  castOnlyIf?: (c: SCtx) => boolean;
 }
 
 export interface CardDef {

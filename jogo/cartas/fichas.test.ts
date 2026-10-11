@@ -54,6 +54,7 @@ const esperadas: Record<string, [string, string[], string[], string[], number | 
   'Slug': ['Slug', ['Creature'], ['Slug'], ['B'], 1, 1, []],
   'Illusion X/X': ['Illusion', ['Creature'], ['Illusion'], ['U'], null, null, []],
   'Horror X/X': ['Horror', ['Artifact', 'Creature'], ['Horror'], [], null, null, []],
+  'Kithkin Soldier': ['Kithkin Soldier', ['Creature'], ['Kithkin', 'Soldier'], ['W'], 1, 1, []],
   'Dragon 6/6 preto e vermelho': ['Dragon', ['Creature'], ['Dragon'], ['B', 'R'], 6, 6, ['flying', 'menace']],
   'Bat': ['Bat', ['Creature'], ['Bat'], ['B'], 1, 1, ['flying']],
   'Cat 1/1 vínculo': ['Cat', ['Creature'], ['Cat'], ['W'], 1, 1, ['lifelink']],

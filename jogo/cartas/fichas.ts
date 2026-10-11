@@ -379,3 +379,5 @@ export const Slug = token('Slug', 'Slug', ['Creature'], ['Slug'], ['B'], 1, 1);
 export const IllusionXX = tokenXX('Illusion X/X', 'Illusion', ['Creature'], ['Illusion'], ['U']);
 /** Horror X/X incolor, criatura artefato (Profane Transfusion) */
 export const HorrorXX = tokenXX('Horror X/X', 'Horror', ['Artifact', 'Creature'], ['Horror'], []);
+/** Kithkin Soldier 1/1 branco (Gwyllion Hedge-Mage) */
+export const KithkinSoldier = token('Kithkin Soldier', 'Kithkin Soldier', ['Creature'], ['Kithkin', 'Soldier'], ['W'], 1, 1);
