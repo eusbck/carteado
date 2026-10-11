@@ -262,6 +262,8 @@ export interface RuleHooks {
   // lote2-d
   /** "A regra da lenda não se aplica aos permanentes que você controla" (Sakashima; CR 704.5j) */
   legendRuleExempt?: (c: SCtx, player: PlayerId) => boolean;
+  /** "esta criatura precisa ser bloqueada por exatamente uma criatura se puder" (Nacatl War-Pride) */
+  mustBeBlockedByExactlyOne?: (c: SCtx, attacker: ObjId) => boolean;
   /** "se [esse jogador] fosse comprar duas ou mais cartas, em vez disso você e ele compram uma carta cada" (Alms Collector) */
   multiDrawInstead?: (c: SCtx, player: PlayerId, n: number) => boolean;
   /** "Seus oponentes não podem procurar em grimórios" (Stranglehold; CR 701.23) */
@@ -294,6 +296,12 @@ export interface StaticDef extends AbilityCommon {
   mods?: (c: SCtx, obj: GameObject) => Mod[];
   /** habilidade que define característica (CR 604.3) */
   cda?: boolean;
+  /**
+   * a estática do campo também vale para objetos fora dele (mágicas na pilha e cartas nas outras zonas) que passem em
+   * `affects` — "o mesmo vale para as mágicas de criatura que você controla e as cartas de criatura de que você é dono"
+   * (Maskwood Nexus). Fora do campo `affects` não pode ler características calculadas do próprio objeto.
+   */
+  offField?: boolean;
   rules?: RuleHooks;
 }
 

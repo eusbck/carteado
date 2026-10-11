@@ -48,7 +48,16 @@ export function defaultAnswer(d: Decision): Answer {
     case 'payment': return d.canCancel ? { kind: 'payment', cancel: true } : { kind: 'payment', auto: true };
     // quem tem exigência de ataque (CR 508.1d) ataca um alvo que a cumpre
     case 'attackers': return { kind: 'attackers', attacks: d.candidates.flatMap((c) => (c.required?.length ? [[c.obj, c.required[0]] as [ObjId, TargetRef]] : [])) };
-    case 'blockers': return { kind: 'blockers', blocks: [] };
+    // quem tem exigência de bloqueio (CR 509.1c) recebe um bloqueador para cada atacante que precisa ser bloqueado
+    case 'blockers': {
+      const usados = new Set<ObjId>();
+      const blocks: [ObjId, ObjId][] = [];
+      for (const a of d.required ?? []) {
+        const b = d.candidates.find((c) => !usados.has(c.obj) && c.canBlock.includes(a));
+        if (b) { usados.add(b.obj); blocks.push([b.obj, a]); }
+      }
+      return { kind: 'blockers', blocks };
+    }
     case 'damage': return { kind: 'damage', assign: danoPadrao(d) };
     case 'arrange': return { kind: 'arrange', placement: Object.fromEntries(d.items.map((i) => [i.id, d.destinations[0]])), order: d.items.map((i) => i.id) };
     case 'mulligan': return { kind: 'mulligan', keep: true };

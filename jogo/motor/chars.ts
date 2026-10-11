@@ -497,6 +497,17 @@ function offFieldChars(g: G, o: GameObject): Chars {
   if (emAvaliacao.has(o)) return c;
   emAvaliacao.add(o);
   try { applyCdas(g, o, c); } finally { emAvaliacao.delete(o); }
+  // estáticas do campo que alcançam objetos fora dele (Maskwood Nexus). Só fora da passada das camadas, quando as
+  // estáticas ativas já estão calculadas
+  if (!g.computing && g.derived) {
+    for (const st of g.derived.statics) {
+      if (!st.def.offField || !st.def.affects || !st.def.mods) continue;
+      const ctx: SCtx = { g, you: st.controller, source: st.source };
+      if (st.def.condition && !st.def.condition(ctx)) continue;
+      if (!st.def.affects(ctx, o)) continue;
+      for (const m of st.def.mods(ctx, o)) applyMod(c, m);
+    }
+  }
   for (const L of LAYERS) for (const e of g.state.effects) {
     if (!e.affected?.includes(o.id)) continue;
     for (const m of e.mods) if (modLayer(m) === L) applyMod(c, m);

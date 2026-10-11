@@ -1,7 +1,7 @@
 // Bot aleatório: escolhe sempre uma resposta legal ao acaso. Serve para estressar o motor.
 // Usa um gerador próprio (com semente), separado do da partida.
 
-import type { LiveDecision } from '../motor/ask.ts';
+import { defaultAnswer, type LiveDecision } from '../motor/ask.ts';
 import { int, next, seedFrom, shuffle, type RngState } from '../motor/rng.ts';
 import type { Answer, Decision, ObjId, TargetRef } from '../motor/types.ts';
 
@@ -66,7 +66,7 @@ export class RandomBot {
           const a: Answer = { kind: 'blockers', blocks };
           if (ok(a)) return a;
         }
-        return { kind: 'blockers', blocks: [] };
+        return defaultAnswer(d);
       }
       case 'damage': {
         const assign = d.recipients.map(() => 0);

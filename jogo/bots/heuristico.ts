@@ -1163,7 +1163,9 @@ export function bloquear(d: D<'blockers'>, g: G, eu: PlayerId, ok: (a: Answer) =
     const deste = blocks.filter(([, x]) => x === a);
     if (deste.length && ok({ kind: 'blockers', blocks: [...valem, ...deste] })) valem.push(...deste);
   }
-  return { kind: 'blockers', blocks: valem };
+  const resposta: Answer = { kind: 'blockers', blocks: valem };
+  // com exigência de bloqueio (CR 509.1c) o que sobrou pode não valer: cai no bloqueio mínimo obrigatório
+  return ok(resposta) ? resposta : defaultAnswer(d);
 }
 
 /** Iniciante: bloqueia para não morrer e, às vezes, quando o bloqueador mata e sobrevive */
@@ -1191,7 +1193,7 @@ function bloquearObvio(d: D<'blockers'>, g: G, eu: PlayerId, ok: (a: Answer) => 
     if (ok(a)) return a;
     blocks.pop();
   }
-  return { kind: 'blockers', blocks: [] };
+  return defaultAnswer(d);
 }
 
 /** opções de ataque para comparar: a heurística, nenhuma, todas, e a heurística com uma criatura a mais ou a menos */
@@ -1229,7 +1231,7 @@ function opcoesDeAtaque(d: D<'attackers'>, g: G, eu: PlayerId, heur: Answer, lid
 /** opções de bloqueio: a heurística, nenhuma, a heurística sem cada bloqueio, e bloqueio duplo no maior atacante */
 function opcoesDeBloqueio(d: D<'blockers'>, g: G, eu: PlayerId, heur: Answer): Answer[] {
   if (heur.kind !== 'blockers') return [heur];
-  const out: Answer[] = [heur, { kind: 'blockers', blocks: [] }];
+  const out: Answer[] = [heur, defaultAnswer(d)];
   const h = heur.blocks;
   for (const x of h.slice(0, 4)) out.push({ kind: 'blockers', blocks: h.filter((y) => y !== x) });
   const atacantes = [...d.attackers].filter((a) => g.state.objects[a]).sort((a, b) => danoDe(g, b) - danoDe(g, a));

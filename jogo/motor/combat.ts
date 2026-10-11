@@ -242,6 +242,27 @@ export function blockCandidates(g: G, defender: PlayerId): { obj: ObjId; canBloc
   return out;
 }
 
+/**
+ * Atacantes que "precisam ser bloqueados por exatamente uma criatura se puder" (Nacatl War-Pride). Com ameaçar é
+ * impossível bloquear com uma só, e a exigência deixa de valer (ruling 1 de Nacatl War-Pride; CR 509.1c).
+ */
+export function mustBeBlockedByOne(g: G, attackers: ObjId[]): ObjId[] {
+  return attackers.filter((a) => !hasKw(g, a, 'menace') && hooks(g, 'mustBeBlockedByExactlyOne').some((h) => h.fn(h.ctx, a)));
+}
+
+/** um bloqueio que cumpre o máximo de exigências "bloqueada por exatamente uma" que dá para cumprir, um bloqueador para cada */
+export function requiredBlocks(cands: { obj: ObjId; canBlock: ObjId[] }[], required: ObjId[]): [ObjId, ObjId][] {
+  const usados = new Set<ObjId>();
+  const out: [ObjId, ObjId][] = [];
+  for (const a of required) {
+    const b = cands.find((c) => !usados.has(c.obj) && c.canBlock.includes(a));
+    if (!b) continue;
+    usados.add(b.obj);
+    out.push([b.obj, a]);
+  }
+  return out;
+}
+
 export function validateBlocks(g: G, defender: PlayerId, blocks: [ObjId, ObjId][]): string | null {
   const cands = blockCandidates(g, defender);
   const seen = new Set<ObjId>();
@@ -255,6 +276,15 @@ export function validateBlocks(g: G, defender: PlayerId, blocks: [ObjId, ObjId][
   const count = new Map<ObjId, number>();
   for (const [, a] of blocks) count.set(a, (count.get(a) ?? 0) + 1);
   for (const [a, n] of count) if (n === 1 && hasKw(g, a, 'menace')) return `${nameOf(g, a)} tem menace: precisa de dois ou mais bloqueadores`;
+  // "precisa ser bloqueada por exatamente uma criatura se puder" (CR 509.1c): não mais de uma, e o máximo possível delas bloqueado
+  const combate = g.state.combat;
+  const atacandoMe = combate ? combate.attackers.filter((a) => !a.removed && g.state.objects[a.id] && defendingPlayerOf(g, a.target) === defender).map((a) => a.id) : [];
+  const exigem = mustBeBlockedByOne(g, atacandoMe);
+  if (exigem.length) {
+    for (const a of exigem) if ((count.get(a) ?? 0) > 1) return `${nameOf(g, a)} só pode ser bloqueada por exatamente uma criatura`;
+    const cumpridas = exigem.filter((a) => count.get(a) === 1).length;
+    if (cumpridas < requiredBlocks(cands, exigem).length) return `${nameOf(g, exigem[0])} precisa ser bloqueada por exatamente uma criatura se puder (CR 509.1c)`;
+  }
   return null;
 }
 
@@ -269,7 +299,7 @@ export function* declareBlockers(g: G): Gen<void> {
     if (cands.length === 0) continue;
     const attackers = combat.attackers.filter((a) => !a.removed && defendingPlayerOf(g, a.target) === d).map((a) => a.id);
     const a = yield* ask<Extract<Answer, { kind: 'blockers' }>>(g, {
-      kind: 'blockers', player: d, prompt: 'Declare os bloqueadores', candidates: cands, attackers,
+      kind: 'blockers', player: d, prompt: 'Declare os bloqueadores', candidates: cands, attackers, required: mustBeBlockedByOne(g, attackers),
     }, (ans) => validateBlocks(g, d, ans.blocks));
     all.push(...a.blocks);
   }
