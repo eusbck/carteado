@@ -17,6 +17,12 @@ import type { ObjId, PlayerId, ZoneName } from './types.ts';
 export function* performSBAs(g: G): Gen<boolean> {
   const s = g.state;
   let performed = false;
+  // CR 506.4: a atacante ou bloqueadora que deixa de ser criatura sai do combate. Não é ação baseada em estado, mas é
+  // conferida aqui, antes de alguém receber prioridade (Swift Reconfiguration, Imprisoned in the Moon)
+  if (s.combat) {
+    const emCombate = [...s.combat.attackers.filter((a) => !a.removed).map((a) => a.id), ...s.combat.blockers.map((b) => b.id)];
+    for (const id of emCombate) if (s.objects[id]?.zone === 'battlefield' && !isCreature(g, id)) { removeFromCombat(g, id); g.bump(); }
+  }
   const losers: { p: PlayerId; reason: string; rule: string }[] = [];
   for (const p of g.playersInGame()) {
     const pl = s.players[p];
