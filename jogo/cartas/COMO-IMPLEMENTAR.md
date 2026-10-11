@@ -64,6 +64,26 @@ export default defineCard({
 
 Habilidades concedidas, gatilhos atrasados e reflexivos precisam de id estável: defina com `defineAbility('Nome da Carta:chave', {...})` no topo do arquivo e use o id.
 
+## Recursos do lote 2 (motor/criaturas.ts, motor/mecanicas.ts)
+
+Todos vêm de `motor/api.ts`. Uma linha de uso por recurso:
+
+- **Cópia:** `entersAsCopy({...})` ("você pode fazer com que entre como cópia de…"), `becomeCopy(c, obj, modelo, { except, duration })`, `copyWithExcept(g, modelo, except)`.
+- **Combate adicional:** `addCombatPhaseAfterCurrent(c.g, { thenMain })`, `untapAttackers(c.g)`, `isFirstCombat(g)`, `onSecondMain()`.
+- **Tramar, reunir, o Anel:** `yield* connive(g, obj, n)`, `onYouConnive()`, `yield* amass(g, p, 'Orc', n)`, `yield* ringTempts(g, p)`, `isRingBearer(g, id)`.
+- **Regenerar:** `regenerate(c, id)`, `preventRegeneration(c, ids)`. Infectar em jogador já vira veneno no motor.
+- **Palavras-chave de criatura:** `persist()`, `melee()`, `dethrone()`, `mobilize(n)`, `bloodthirst(n)`, `monstrosity(custo, n)`, `evolve()`, `changeling()`, `myriad()`, `...readAhead(capítuloFinal)` (no lugar de `sagaEnters()`), `...reconfigure(custo)`, `typecycling('Swamp', custo)`.
+- **Confronto e investigar:** `yield* clash(g, p, oponente)`, `onYouWinClash()`, `yield* investigate(g, p, n)`. Fichas `Food`, `Clue` e `Blood` em `cartas/fichas.ts`.
+- **Esconderijo e imprimir:** `hideaway(n)`, `linkedExiled(g, fonte, 'hideaway')`, `yield* mayPlayFree(g, p, carta, pergunta)`.
+- **Contemplar:** `yield* behold(c, (id) => qualidade, 'um Dragon', { optional: true })` devolve `{ id, from }` ou null.
+- **Descobrir:** `yield* discover(g, p, n)` devolve o valor de mana da carta descoberta (ou null).
+- **Dano no turno:** `opponentDamageThisTurn(g, p)`, `hasMostLife(g, p)`. Celebração: `c.g.state.turnStats[p].nonlandPermanentsEntered`.
+- **Mágica que ganha algo até o fim do turno e leva para o permanente** ("ela ganha ímpeto"): `spellGainsUntilEndOfTurn(g, controlador, fonte, mágica, mods)`.
+- **Mana com efeito ao ser gasta, sem pilha:** `mana('R', { rider: ID })` com `defineFn(ID, (g, unidade, propósito, jogador) => …)` (Carnelian Orb of Dragonkind). Com gatilho na pilha continua sendo `onSpend`.
+- **Ganchos novos (`rules`):** `keepsUnspentMana` (não perde a mana não gasta), `lookAtTopOfLibrary`, `cantSearchLibraries`, `legendRuleExempt`.
+- **Modos que não podem repetir no turno:** `modal(1, 1, [...], { available: (c, i) => …, onChosen: (c, modos) => … })` (Parapet Thrasher).
+- **Estática depois de troca de controle:** `c.you` de uma estática do campo é quem controla a fonte depois da camada 2.
+
 ## Testes
 
 ```ts

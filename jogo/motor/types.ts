@@ -33,6 +33,9 @@ export interface ManaUnit {
   untilEndOfTurn?: boolean;
   /** gatilho atrasado registrado ao gastar esta mana (Path of Ancestry, Study Hall) */
   onSpend?: { abilityId: string; source: ObjId; controller: PlayerId };
+  /** id de função registrada, chamada na hora em que esta mana é gasta, sem usar a pilha ("se essa mana for gasta
+   *  numa mágica de criatura Dragon, ela ganha ímpeto": Carnelian Orb of Dragonkind; CR 106.6) */
+  rider?: string;
   /** de qual virar da fonte veio (GameObject.manaTap.seq): o desvirar à mão só desfaz esse virar com a mana inteira na reserva */
   tap?: number;
   /** permanente que iniciou o virar, quando uma habilidade de outra fonte acrescentou mana (Forsaken Monument) */
@@ -307,6 +310,9 @@ export interface TurnStats {
   sacrificedCreature: boolean;
   /** dano que este jogador sofreu neste turno (sede de sangue, Spinerock Knoll); falta nas partidas salvas antes */
   damageTaken?: number;
+  /** permanentes que não são terrenos e entraram sob o controle deste jogador neste turno (celebração, CR 207.2c);
+   *  falta nas partidas salvas antes */
+  nonlandPermanentsEntered?: number;
 }
 
 export interface LogEntry {

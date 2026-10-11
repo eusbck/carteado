@@ -244,6 +244,7 @@ export function* activateManaAbility(g: G, player: PlayerId, opt: ManaOption, hi
     restriction: opt.def.restriction,
     untilEndOfTurn: opt.def.untilEndOfTurn,
     onSpend: opt.def.onSpend ? { abilityId: opt.def.onSpend, source: opt.obj, controller: player } : undefined,
+    ...(opt.def.rider ? { rider: opt.def.rider } : {}),
     ...(virar !== undefined ? { tap: virar } : {}),
   });
   emit(g, [{ type: 'mana', player, source: opt.obj, produced: alt, tappedForMana: opt.def.cost.some((p) => p.k === 'tap') }]);
@@ -526,6 +527,8 @@ export function* payMana(g: G, player: PlayerId, cost: ManaSymbol[], ctx: PayCon
       g.bump();
       // gatilhos de mana gasta (CR 106.6)
       for (const u of units) if (u.onSpend && ctx.purpose.kind === 'spell') addPending(g, u.onSpend.abilityId, u.onSpend.source, u.onSpend.controller, { spell: ctx.purpose.obj }, {});
+      // efeitos presos à mana que valem na hora em que ela é gasta, sem pilha (Carnelian Orb of Dragonkind)
+      for (const u of units) if (u.rider) (registry.fns.get(u.rider) as ((g: G, u: ManaUnit, purpose: PayContext['purpose'], player: PlayerId) => void) | undefined)?.(g, u, ctx.purpose, player);
       return { units, lifePaid: lifeChoice };
     }
   }

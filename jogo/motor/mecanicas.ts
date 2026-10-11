@@ -653,6 +653,29 @@ export const MYRIAD = defineAbility('kw:myriad', triggered(on.selfAttacks(), fun
   if (fichas.length) delayed(c, EXILA_MIRIADE.id!, { data: { fichas }, expiresTurn: s.turn.number });
 }, { text: 'Miríade (sempre que esta criatura ataca, para cada oponente que não seja o jogador defensor, você pode criar uma ficha cópia dela virada e atacando esse jogador ou um planeswalker dele; exile as fichas no fim do combate).' }));
 
+// ---------------------------------------------------------------------------
+// Mágica que ganha algo até o fim do turno e leva isso para o permanente (CR 400.7d, 611.2)
+// ---------------------------------------------------------------------------
+defineAbility<StaticDef>('rule:spellGains', {
+  kind: 'static',
+  rules: {
+    enterModifier: (c, ev) => {
+      const prm = (c as typeof c & { params?: { spell: ObjId; mods: Mod[]; controller: PlayerId } }).params;
+      if (!prm || prm.spell !== ev.obj) return;
+      (ev.enterEffects ??= []).push({ mods: prm.mods, duration: { kind: 'endOfTurn' }, controller: prm.controller, sourceDef: '' });
+    },
+  },
+});
+
+/**
+ * "Ela ganha ímpeto até o fim do turno", dito de uma mágica de permanente (Carnelian Orb of Dragonkind, Thundermane
+ * Dragon): o permanente em que a mágica se torna entra já com as modificações, que duram até o fim do turno. Se a
+ * mágica só resolver num turno posterior, o efeito já acabou.
+ */
+export function spellGainsUntilEndOfTurn(g: G, controller: PlayerId, source: ObjId, spell: ObjId, mods: Mod[]): void {
+  addEffect(g, { source, sourceDef: '', controller, duration: { kind: 'endOfTurn' }, affected: null, mods: [{ k: 'rule', id: 'rule:spellGains', params: { spell, mods, controller } }] });
+}
+
 /** miríade impressa na carta (Goldlust Triad): a mesma habilidade, com id próprio da carta */
 export function myriad(): TriggeredDef {
   return { ...MYRIAD, id: undefined, kw: 'myriad' };

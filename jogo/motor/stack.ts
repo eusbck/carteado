@@ -148,11 +148,11 @@ function pushModeSpecs(ms: ModeSpec, modes: number[], specs: TargetSpec[], group
 }
 
 /** escolhe modos (CR 700.2): só modos com alvos possíveis podem ser escolhidos */
-export function* chooseModes(g: G, player: PlayerId, ms: ModeSpec, source: ObjId, label: string, forceMax?: number): Gen<number[] | null> {
+export function* chooseModes(g: G, player: PlayerId, ms: ModeSpec, source: ObjId, label: string, forceMax?: number, event?: Record<string, unknown>): Gen<number[] | null> {
   const ctx: SCtx = { g, you: player, source };
   const items = ms.modes.map((m, i) => {
-    const possible = (m.targets ?? []).every((t) => (t.min ?? 1) === 0 || candidateTargets(g, t, player, source).length >= (t.min ?? 1));
-    return { id: String(i), label: m.text, disabled: !possible };
+    const possible = (m.targets ?? []).every((t) => (t.min ?? 1) === 0 || candidateTargets(g, t, player, source, event).length >= (t.min ?? 1));
+    return { id: String(i), label: m.text, disabled: !possible || (ms.available ? !ms.available(ctx, i) : false) };
   });
   const avail = items.filter((i) => !i.disabled).length;
   const max = Math.min(forceMax ?? (typeof ms.max === 'function' ? ms.max(ctx) : ms.max), avail);
@@ -165,10 +165,14 @@ export function* chooseModes(g: G, player: PlayerId, ms: ModeSpec, source: ObjId
     const hi = Math.max(...ok);
     const valida = (a: Answer) => (a.kind === 'select' && !ok.includes(a.ids.length) ? `Escolha ${ok.join(' ou ')} modo(s)` : null);
     const r = yield* ask<Extract<Answer, { kind: 'select' }>>(g, { kind: 'select', player, prompt: `${label}: escolha ${ok.join(' ou ')} modo(s)`, items, min: lo, max: hi }, valida);
-    return r.ids.map(Number).sort((a, b) => a - b);
+    const escolhidos = r.ids.map(Number).sort((a, b) => a - b);
+    ms.onChosen?.(ctx, escolhidos);
+    return escolhidos;
   }
   const ids = yield* chooseItems(g, player, `${label}: escolha ${ms.min === max ? max : `de ${ms.min} a ${max}`} modo(s)`, items, ms.min, max);
-  return ids.map(Number).sort((a, b) => a - b);
+  const escolhidos = ids.map(Number).sort((a, b) => a - b);
+  ms.onChosen?.(ctx, escolhidos);
+  return escolhidos;
 }
 
 // ---------------------------------------------------------------------------
@@ -578,7 +582,7 @@ export function* putTriggerOnStack(g: G, abilityId: string, source: ObjId, contr
   ab.stack = info;
   const label = triggerLabel(g, abilityId, source);
   if (def.modes) {
-    const modes = yield* chooseModes(g, controller, def.modes, source, label);
+    const modes = yield* chooseModes(g, controller, def.modes, source, label, undefined, event);
     if (modes === null || modes.length === 0) { destroyObject(g, ab.id); return null; } // CR 603.3c
     info.modes = modes;
   }
