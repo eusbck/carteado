@@ -9,7 +9,7 @@ import { abilityDefs, chars, colorsOf, controllerOf, hasKw, hooks, isType, kwPar
 import { playerProtectedFrom } from './actions.ts';
 import { canAfford, canPayParts, manaOptions, manaPart, payMana, payParts, type PayContext } from './costs.ts';
 import {
-  ability, cardDef, registry, type ActivatedDef, type AltCastDef, type CastPermission, type Ctx, type FaceDef, type Gen,
+  ability, cardDef, registry, type ActivatedDef, type AdditionalCostDef, type AltCastDef, type CastPermission, type Ctx, type FaceDef, type Gen,
   type ModeSpec, type SCtx, type SpellDef, type TargetSpec, type TriggeredDef,
 } from './defs.ts';
 import type { G } from './game-context.ts';
@@ -245,6 +245,15 @@ export function commanderTax(g: G, player: PlayerId, o: GameObject): number {
   return 2 * (g.state.players[player].commanderCasts[String(o.card)] ?? 0); // CR 903.8
 }
 
+/**
+ * Custos adicionais de uma mágica: os da face e os concedidos por outros permanentes ("a primeira mágica instantânea
+ * ou feitiço que você conjura em cada turno tem baixa 2", Anhelo, the Painter; CR 601.2b, 601.2f).
+ */
+export function custosAdicionais(g: G, player: PlayerId, spell: ObjId, f: FaceDef | undefined): AdditionalCostDef[] {
+  const dados = hooks(g, 'grantedAdditionalCosts').flatMap((h) => h.fn(h.ctx, player, spell) ?? []);
+  return dados.length ? [...(f?.additionalCosts ?? []), ...dados] : f?.additionalCosts ?? [];
+}
+
 export function totalSpellCost(g: G, player: PlayerId, o: GameObject, method: CastMethod, info: { x: number; targets: TargetRef[][]; paid: Record<string, number | boolean> }): ManaSymbol[] {
   const f = faceDefFor(o, method);
   // a da face escolhida; a mágica fundida custa as duas metades (CR 702.102c), o custo de mana das duas juntas
@@ -258,7 +267,7 @@ export function totalSpellCost(g: G, player: PlayerId, o: GameObject, method: Ca
   // CR 107.3b: sem pagar o custo de mana, X só pode ser 0
   cost = withX(cost, info.x);
   // custos adicionais de mana (kicker, replicar…)
-  for (const ac of f?.additionalCosts ?? []) {
+  for (const ac of custosAdicionais(g, player, o.id, f)) {
     const times = typeof info.paid[ac.key] === 'number' ? (info.paid[ac.key] as number) : info.paid[ac.key] ? 1 : 0;
     const useOr = info.paid[`${ac.key}:or`] === true;
     const parts = useOr ? ac.orParts ?? [] : ac.parts;
@@ -369,7 +378,7 @@ function* castInner(g: G, player: PlayerId, cardId: ObjId, method: CastMethod): 
       if (r !== 'nao') { info.paid.gift = true; info.data.giftTo = Number(r); }
     }
   }
-  for (const ac of f?.additionalCosts ?? []) {
+  for (const ac of custosAdicionais(g, player, spellId, f)) {
     // escalada (CR 702.120a): uma vez para cada modo além do primeiro, sem escolha
     if (ac.perExtraMode) { info.paid[ac.key] = Math.max(0, info.modes.length - 1); continue; }
     if (ac.repeatable) {
@@ -404,7 +413,7 @@ function* castInner(g: G, player: PlayerId, cardId: ObjId, method: CastMethod): 
   }
   // X do custo impresso ou do custo alternativo (madness {X}{R}: Avacyn's Judgment)
   const manaHasX = (chars(g, spellId).manaCost ?? []).some((s) => s.k === 'X') || (!!method.alt?.mana && parseCost(method.alt.mana).some((s) => s.k === 'X'));
-  const otherHasX = !!sp?.xMax || (f?.additionalCosts ?? []).some((ac) => ac.parts.some((p) => (p.k === 'life' || p.k === 'sacrifice' || p.k === 'blight') && (p as { n: unknown }).n === 'X'));
+  const otherHasX = !!sp?.xMax || (custosAdicionais(g, player, spellId, f)).some((ac) => ac.parts.some((p) => (p.k === 'life' || p.k === 'sacrifice' || p.k === 'blight') && (p as { n: unknown }).n === 'X'));
   const free = !!(method.free || method.permission?.free);
   // CR 107.3b: sem pagar o custo de mana, o X do custo de mana só pode ser 0; X de custos
   // adicionais (pagar X de vida, sacrificar X…) continua sendo escolhido (ruling de Toxic Deluge)
@@ -480,7 +489,7 @@ function* castInner(g: G, player: PlayerId, cardId: ObjId, method: CastMethod): 
   if (paidMana === null) return null;
   const otherParts = [
     ...(method.alt?.parts ?? []), ...(method.permission?.parts ?? []),
-    ...(f?.additionalCosts ?? []).flatMap((ac) => {
+    ...(custosAdicionais(g, player, spellId, f)).flatMap((ac) => {
       const times = typeof info.paid[ac.key] === 'number' ? (info.paid[ac.key] as number) : info.paid[ac.key] ? 1 : 0;
       const parts = (info.paid[`${ac.key}:or`] ? ac.orParts ?? [] : ac.parts).filter((p) => p.k !== 'mana');
       // escalada: "vire uma criatura" duas vezes é virar duas criaturas de uma vez (o mesmo recurso não paga duas)

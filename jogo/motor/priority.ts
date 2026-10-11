@@ -8,7 +8,7 @@ import { cardDef, type ActivatedDef, type CastPermission, type Gen, type SCtx } 
 import type { G } from './game-context.ts';
 import { convokeAll, formatCost, parseCost, reduceGeneric } from './mana.ts';
 import { doSuspend, manifestFaceUpCost, suspendParams, turnFaceUp } from './mecanicas.ts';
-import { activateAbility, candidateTargets, canActivate, castChars, castSpell, chooseModes, spellTargetSpecs, totalSpellCost, faceDefFor, faceDefOf, type CastMethod } from './stack.ts';
+import { activateAbility, candidateTargets, canActivate, castChars, castSpell, chooseModes, custosAdicionais, spellTargetSpecs, totalSpellCost, faceDefFor, faceDefOf, type CastMethod } from './stack.ts';
 import {
   chaveComFace, ehAventura, ehSala, FACE_AMBAS, FACE_NENHUMA, faceDaChave, facesConjuraveis, facesDeTerreno, metadeAftermath,
   nomeDaFace, rotuloConjurar, temVariasFaces,
@@ -165,7 +165,7 @@ export function canStartCast(g: G, p: PlayerId, opt: CastOption): boolean {
   const { specs } = spellTargetSpecs(o, [], opt.method.key, opt.method.face);
   if (!enoughTargets(g, specs, p, opt.obj)) return false;
   // custos adicionais obrigatórios não-mana
-  for (const ac of f?.additionalCosts ?? []) {
+  for (const ac of custosAdicionais(g, p, opt.obj, f)) {
     if (ac.optional || ac.repeatable) continue;
     const okA = canPayParts(g, p, ac.parts.filter((x) => x.k !== 'mana'), opt.obj, 0);
     const okB = ac.orParts ? canPayParts(g, p, ac.orParts.filter((x) => x.k !== 'mana'), opt.obj, 0) : false;

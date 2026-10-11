@@ -251,6 +251,8 @@ export interface RuleHooks {
   preventsDamage?: (c: SCtx, target: TargetRef, source: ObjId, combat: boolean) => boolean;
   /** mágicas que um jogador conjura têm convocar (CR 702.51; Dazzling Theater: "mágicas de criatura que você conjura") */
   spellsHaveConvoke?: (c: SCtx, player: PlayerId, spell: ObjId, chars: Chars) => boolean;
+  /** custos adicionais que este permanente concede às mágicas de um jogador (Anhelo: "tem baixa 2"; CR 601.2b) */
+  grantedAdditionalCosts?: (c: SCtx, player: PlayerId, spell: ObjId) => AdditionalCostDef[] | null;
   // lote2-d
   /** "A regra da lenda não se aplica aos permanentes que você controla" (Sakashima; CR 704.5j) */
   legendRuleExempt?: (c: SCtx, player: PlayerId) => boolean;
