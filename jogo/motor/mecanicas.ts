@@ -433,9 +433,45 @@ export function suspend(n: number, custo: string): AbilityDef[] {
     // ruling: não importa por que o último marcador saiu
     triggered(on.custom((e, c) => e.type === 'countersRemoved' && e.kind === 'time' && e.target.kind === 'obj' && e.target.id === c.source && (c.g.state.objects[c.source]?.counters.time ?? 0) === 0), function* (c) {
       // ignora o tempo de feitiço; sem pagar o custo de mana (X = 0)
-      if (c.g.state.objects[c.source]?.zone === 'exile') yield* mayCastFree(c.g, c.you, c.source);
+      yield* conjurarSuspensa(c.g, c.you, c.source);
     }, { zones: ['exile'], text: 'Quando o último marcador de tempo for removido, você pode conjurá-la sem pagar o custo de mana.' }),
   ];
+}
+
+/**
+ * O último marcador de tempo saiu (CR 702.62a): o dono pode conjurar a carta do exílio sem pagar o custo de mana,
+ * ignorando o tempo da carta. Se for uma mágica de criatura, ela ganha ímpeto, que o permanente mantém enquanto estiver
+ * no campo.
+ */
+export function* conjurarSuspensa(g: G, p: PlayerId, carta: ObjId): Gen<boolean> {
+  if (g.state.objects[carta]?.zone !== 'exile') return false;
+  if (!(yield* mayCastFree(g, p, carta))) return false;
+  const magica = g.state.zones.stack[g.state.zones.stack.length - 1];
+  if (magica !== undefined && g.state.objects[magica]?.stack?.kind === 'spell' && isCreature(g, magica)) {
+    addEffect(g, { source: magica, sourceDef: '', controller: p, duration: { kind: 'endOfTurn' }, affected: null, mods: [{ k: 'rule', id: 'rule:spellGains', params: { spell: magica, mods: [{ k: 'addKeyword', kw: 'haste' }], controller: p, enquantoNoCampo: true } }] });
+  }
+  return true;
+}
+
+// Suspender concedido por um efeito a uma carta já exilada ("ganha suspender", Sinister Concierge): as duas habilidades
+// disparadas do suspender, com id fixo para poderem ser concedidas (a estática de exilar da mão não tem uso no exílio)
+const SUSPENSA_MARCA = defineAbility<StaticDef>('kw:suspend:concedido', { kind: 'static', kw: 'suspend', zones: ['exile'], text: 'Suspender (no início da manutenção do dono, remova um marcador de tempo; ao remover o último, ele pode conjurá-la sem pagar o custo de mana)' });
+const SUSPENSA_CONTA = defineAbility('kw:suspend:concedido:conta', triggered(on.upkeep('you'), function* (c) {
+  removeCounters(c.g, { kind: 'obj', id: c.source }, 'time', 1);
+}, {
+  zones: ['exile'],
+  condition: (c) => { const o = c.g.state.objects[c.source]; return !!o && o.zone === 'exile' && (o.counters.time ?? 0) > 0; },
+  text: 'No início da sua manutenção, se esta carta estiver suspensa, remova um marcador de tempo dela.',
+}));
+const SUSPENSA_CONJURA = defineAbility('kw:suspend:concedido:conjura', triggered(on.custom((e, c) => e.type === 'countersRemoved' && e.kind === 'time' && e.target.kind === 'obj' && e.target.id === c.source && (c.g.state.objects[c.source]?.counters.time ?? 0) === 0), function* (c) {
+  yield* conjurarSuspensa(c.g, c.you, c.source);
+}, { zones: ['exile'], text: 'Quando o último marcador de tempo for removido, você pode conjurá-la sem pagar o custo de mana.' }));
+
+/** "A carta exilada ganha suspender" (CR 702.62): vale para as que ainda não têm suspender */
+export function grantSuspend(g: G, source: ObjId, controller: PlayerId, cartas: ObjId[]): void {
+  const sem = cartas.filter((id) => g.state.objects[id]?.zone === 'exile' && !chars(g, id).abilities.some((a) => a.kw === 'suspend'));
+  if (!sem.length) return;
+  addEffect(g, { source, sourceDef: '', controller, duration: { kind: 'permanent' }, affected: sem, mods: [{ k: 'addAbility', id: SUSPENSA_MARCA.id! }, { k: 'addAbility', id: SUSPENSA_CONTA.id! }, { k: 'addAbility', id: SUSPENSA_CONJURA.id! }] });
 }
 
 /** parâmetros de suspender da carta na mão, se tiver */
@@ -661,9 +697,9 @@ defineAbility<StaticDef>('rule:spellGains', {
   kind: 'static',
   rules: {
     enterModifier: (c, ev) => {
-      const prm = (c as typeof c & { params?: { spell: ObjId; mods: Mod[]; controller: PlayerId } }).params;
+      const prm = (c as typeof c & { params?: { spell: ObjId; mods: Mod[]; controller: PlayerId; enquantoNoCampo?: boolean } }).params;
       if (!prm || prm.spell !== ev.obj) return;
-      (ev.enterEffects ??= []).push({ mods: prm.mods, duration: { kind: 'endOfTurn' }, controller: prm.controller, sourceDef: '' });
+      (ev.enterEffects ??= []).push({ mods: prm.mods, duration: prm.enquantoNoCampo ? { kind: 'whileOnBattlefield', obj: ev.obj } : { kind: 'endOfTurn' }, controller: prm.controller, sourceDef: '' });
     },
   },
 });
