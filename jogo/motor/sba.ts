@@ -166,6 +166,8 @@ export function* performSBAs(g: G): Gen<boolean> {
     }
   }
   g.state.commanderOffered = offered.filter((id) => g.state.objects[id]);
+  // ações baseadas em estado definidas por uma carta (Space Beleren: a criatura sem setor é posta num setor)
+  if (!g.state.gameOver) for (const h of hooks(g, 'stateAction')) if (yield* h.fn(h.ctx)) performed = true;
   checkGameEnd(g);
   return performed;
 }

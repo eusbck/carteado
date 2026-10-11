@@ -80,7 +80,7 @@ function specMax(g: G, spec: TargetSpec, ctx: SCtx & { x?: number }): number {
 }
 
 /** escolhe alvos para uma lista de especificações (CR 601.2c). null = impossível */
-export function* chooseTargets(g: G, player: PlayerId, specs: TargetSpec[], source: ObjId, label: string, x = 0, event?: Record<string, unknown>): Gen<TargetRef[][] | null> {
+export function* chooseTargets(g: G, player: PlayerId, specs: TargetSpec[], source: ObjId, label: string, x = 0, event?: Record<string, unknown>, chooser: PlayerId = player): Gen<TargetRef[][] | null> {
   const chosen: TargetRef[][] = [];
   const ctx: SCtx & { x: number } = { g, you: player, source, x, event };
   for (let i = 0; i < specs.length; i++) {
@@ -98,7 +98,9 @@ export function* chooseTargets(g: G, player: PlayerId, specs: TargetSpec[], sour
     // conjunto de alvos com restrição (soma de força, jogadores diferentes…): resposta inválida é recusada
     const conjunto = (ids: string[]) => ids.map((id) => cands[items.findIndex((it) => it.id === id)]);
     const valida = spec.validateSet ? (a: Answer) => (a.kind === 'select' && !spec.validateSet!(ctx, conjunto(a.ids)) ? 'Essa combinação de alvos não é permitida' : null) : undefined;
-    const resp = yield* ask<Extract<Answer, { kind: 'select' }>>(g, { kind: 'select', player, prompt: `${label}: escolha ${spec.label}${max > 1 ? ` (até ${max})` : ''}`, items, min, max }, valida);
+    // quem escolhe é quem controla, salvo quando outro jogador muda os alvos (Psychic Battle): a legalidade continua
+    // sendo a do controlador
+    const resp = yield* ask<Extract<Answer, { kind: 'select' }>>(g, { kind: 'select', player: chooser, prompt: `${label}: escolha ${spec.label}${max > 1 ? ` (até ${max})` : ''}`, items, min, max }, valida);
     const ids = resp.ids;
     chosen.push(ids.map((id) => cands[items.findIndex((it) => it.id === id)]));
   }
@@ -752,6 +754,42 @@ export function* copyStackAbility(g: G, abId: ObjId, controller: PlayerId, opts:
   for (const t of copia.stack.targets.flat()) evs.push({ type: 'target', target: t, by: copia.id, controller, spell: false });
   emit(g, evs);
   return copia.id;
+}
+
+/**
+ * "[O jogador] pode mudar o alvo ou os alvos" de uma mágica ou habilidade na pilha (CR 115.7). Quem escolhe pode não
+ * ser o controlador; a quantidade de alvos de cada grupo não muda e os novos alvos precisam ser legais para o
+ * controlador. Devolve true se algum alvo mudou. `noTriggerFor`: nome das permanentes cujas habilidades não disparam
+ * com esta mudança (Psychic Battle).
+ */
+export function* changeTargets(g: G, id: ObjId, chooser: PlayerId, opts: { noTriggerFor?: string } = {}): Gen<boolean> {
+  const o = g.state.objects[id];
+  const st = o?.stack;
+  if (!o || o.zone !== 'stack' || !st || st.targets.flat().length === 0) return false;
+  let specs: TargetSpec[];
+  let source: ObjId;
+  let label: string;
+  if (st.kind === 'spell') {
+    specs = spellTargetSpecs(o, st.modes, st.method).specs;
+    source = id;
+    label = nameOf(g, id);
+  } else {
+    const def = registry.abilities.get(st.abilityId!) as ActivatedDef | TriggeredDef | undefined;
+    if (!def) return false;
+    specs = abilityTargetSpecs(def, st.modes).specs;
+    source = st.source ?? id;
+    label = triggerLabel(g, st.abilityId!, source);
+  }
+  const travadas = specs.map((sp, i) => ({ ...sp, min: st.targets[i]?.length ?? 0, max: st.targets[i]?.length ?? 0 }));
+  const novos = yield* chooseTargets(g, st.controller, travadas, source, `Mudar os alvos de ${label}`, st.x, st.event, chooser);
+  if (!novos) return false;
+  const chave = (t: TargetRef[][]) => JSON.stringify(t.map((grp) => grp.map((x) => `${x.kind}:${x.id}`)));
+  if (chave(novos) === chave(st.targets)) return false;
+  st.targets = novos;
+  g.bump();
+  g.log(`${g.state.players[chooser].name} muda os alvos de ${label}: ${novos.flat().map((t) => targetLabel(g, t)).join(', ')}.`, { rule: '115.7' });
+  emit(g, novos.flat().map((t) => ({ type: 'target' as const, target: t, by: id, controller: st.controller, spell: st.kind === 'spell', noTriggerFor: opts.noTriggerFor })));
+  return true;
 }
 
 // ---------------------------------------------------------------------------

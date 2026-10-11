@@ -24,6 +24,7 @@ export function modLayer(m: Mod, cda = false): Layer | null {
   switch (m.k) {
     case 'copy': return '1a';
     case 'control': return '2';
+    case 'setText': return '3';
     case 'addTypes': case 'setTypes': case 'removeTypes': return '4';
     case 'setColors': return '5';
     case 'addKeyword': case 'addAbility': case 'loseAllAbilities': case 'loseKeyword': return '6';
@@ -262,6 +263,7 @@ function applyMod(c: Chars, m: Mod): void {
       break;
     case 'removeTypes': c.types = c.types.filter((t) => !m.types.includes(t)); break;
     case 'setColors': c.colors = [...m.colors]; break;
+    case 'setText': c.abilities = m.abilities.map((a) => ({ ...a })); break;
     case 'addKeyword': c.abilities.push({ id: `kw:${m.kw}`, kw: m.kw, param: m.param }); break;
     case 'addAbility': { const a = ability(m.id); c.abilities.push({ id: m.id, kw: a.kw, param: a.param }); break; }
     case 'loseAllAbilities': c.abilities = []; break;

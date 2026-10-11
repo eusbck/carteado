@@ -279,6 +279,12 @@ export interface RuleHooks {
    * substituída uma vez só.
    */
   drawReplace?: (c: SCtx, player: PlayerId) => Gen<void>;
+  /**
+   * Ação baseada em estado definida pela carta (CR 704), conferida junto com as do jogo e podendo pedir escolhas
+   * (Space Beleren: quem controla uma criatura sem setor a põe num setor). Devolve true se fez alguma coisa; precisa
+   * devolver false quando não há mais nada a fazer, ou a conferência não termina.
+   */
+  stateAction?: (c: SCtx) => Gen<boolean>;
   /** "se [esse jogador] fosse comprar duas ou mais cartas, em vez disso você e ele compram uma carta cada" (Alms Collector) */
   multiDrawInstead?: (c: SCtx, player: PlayerId, n: number) => boolean;
   /** "Seus oponentes não podem procurar em grimórios" (Stranglehold; CR 701.23) */

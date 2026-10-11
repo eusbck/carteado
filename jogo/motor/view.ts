@@ -9,6 +9,7 @@ import { registry } from './defs.ts';
 import type { G } from './game-context.ts';
 import { formatCost } from './mana.ts';
 import { manaDesfazivel } from './manual.ts';
+import { setorDe } from './setores.ts';
 import { rodadaDe, STEP_NAMES } from './turn.ts';
 import type { Decision, GameObject, ObjId, PlayerId, Step, TargetRef } from './types.ts';
 
@@ -58,6 +59,8 @@ export interface ObjView {
   ringBearer?: boolean;
   /** escudos de regeneração que valem neste turno (CR 701.19a) */
   regen?: number;
+  /** setor do campo em que a criatura está, enquanto houver Space Beleren (motor/setores.ts) */
+  sector?: 'alpha' | 'beta' | 'gamma';
 }
 
 export interface StackView {
@@ -189,6 +192,7 @@ export function objView(g: G, id: ObjId, viewer: PlayerId | null): ObjView {
     ...(o.zone === 'battlefield' && o.data.monstrous ? { monstrous: true } : {}),
     ...(o.zone === 'battlefield' && o.data.ringBearer !== undefined && o.data.ringBearer === controllerOf(g, id) ? { ringBearer: true } : {}),
     ...(o.zone === 'battlefield' ? regenView(g, id) : {}),
+    ...(o.zone === 'battlefield' && o.data.setor !== undefined && setorDe(g, id) ? { sector: setorDe(g, id)! } : {}),
   };
 }
 

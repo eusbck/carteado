@@ -174,6 +174,8 @@ export type Mod =
   | { k: 'setTypes'; types: string[]; subtypes: string[]; keepSupertypes?: boolean }
   | { k: 'removeTypes'; types: string[] }
   | { k: 'setColors'; colors: Color[] }
+  /** efeito de mudança de texto (camada 3, CR 613.1c): o texto de regras passa a ser este (Exchange of Words) */
+  | { k: 'setText'; abilities: { id: string; kw?: string; param?: unknown }[] }
   | { k: 'addKeyword'; kw: string; param?: unknown }
   | { k: 'addAbility'; id: string }
   | { k: 'loseAllAbilities' }

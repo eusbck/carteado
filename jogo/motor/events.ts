@@ -22,7 +22,8 @@ export type GameEvent =
   | { type: 'sacrifice'; player: PlayerId; old: ObjId; obj: ObjId }
   | { type: 'token'; obj: ObjId; player: PlayerId }
   | { type: 'step'; step: Step; active: PlayerId; firstMain?: boolean }
-  | { type: 'target'; target: TargetRef; by: ObjId; controller: PlayerId; spell: boolean }
+  /** `noTriggerFor`: os alvos foram mudados por um efeito que não dispara as habilidades das permanentes com esse nome */
+  | { type: 'target'; target: TargetRef; by: ObjId; controller: PlayerId; spell: boolean; noTriggerFor?: string }
   | { type: 'shuffle'; player: PlayerId }
   | { type: 'search'; player: PlayerId; library: PlayerId }
   | { type: 'scry'; player: PlayerId; n: number }
