@@ -1420,3 +1420,36 @@ retomada, direto nesta branch, com teste e rulings por carta.
   falhas (40 minutos). `npx tsc` do motor e do cliente sem erros.
 - Não foram refeitos nesta entrega: o E2E no navegador e as capturas (ficam para o fim de cada 3 ou 4 decks, como no
   plano).
+
+## Fim da rodada 1: jeitos de conjurar e formatos de carta juntados — 11/10/2026
+
+- **c (jeitos de conjurar e custos):** terminado e juntado, com 38 cartas e `testes/regras-conjurar.test.ts` (loucura).
+  Morph, ninjutsu, sneak, loucura, mayhem, ricochete, retraçar, recompra, cascata, sobrecarga, escalada, baixa,
+  espetáculo, multikicker, esquadrão e contemplar. Suíte inteira depois de juntar: 948 arquivos, 2864 testes, zero
+  falhas.
+- **b (formatos de carta):** atualizado com esta branch (quatro conflitos no motor, resolvidos mantendo os dois lados),
+  terminado e juntado. As 11 cartas que existiam ganharam teste, entraram as 3 reversíveis que faltavam (Anointed
+  Procession, Jetmir e Jinnie Fay) e `testes/regras-formatos.test.ts` cobre o modal de duas faces, a dividida e a
+  aventura. Nenhum deck tem mais carta com alerta de layout.
+  - **Não conferido no navegador:** o brief pedia que a pessoa escolhesse a face ao conjurar e visse as duas faces no
+    zoom. O motor oferece uma ação por face, com o rótulo de cada uma, mas a cópia `b` não mexeu no cliente. Precisa de
+    uma passada na mesa (ou no E2E) antes de o Raining Cats and Dogs, o Jin's Vengeance, o Hatsune Miku, o Turtle
+    Power! e o Odd and Ends irem para o grupo.
+- Todos os sete worktrees da rodada 1 estão juntados. O trabalho segue direto em `lote2-b`/`decks/lote2`.
+
+## Maestros Massacre (Anhelo, the Painter): 22 de 36 — em andamento
+
+Feitas nesta retomada, com teste e rulings: Preordain, Drawn from Dreams, Talrand's Invocation, Maestros Charm,
+Extravagant Replication, Cormela, River's Rebuke, Hex, Frantic Search, Dread Summons, Bloodsoaked Champion, Squee, the
+Immortal, Dogged Detective, Make an Example, Reign of the Pit, Rekindling Phoenix, Rite of the Raging Storm, Kess,
+Sever the Bloodline, Waste Management, Clone Legion e o comandante Anhelo.
+
+- Motor: custos adicionais concedidos por outro permanente (`grantedAdditionalCosts`, Anhelo) e permissão de conjurar
+  com "exile em vez de ir para o cemitério" (`exileInstead`, Kess).
+- Fichas novas: Drake, Demon X/X, Lightning Rager e o Elemental 0/1 da Rekindling Phoenix.
+- Faltam 14: Mimic Vat, Mystic Confluence, Double Vision, Zndrsplt's Judgment, Twinning Staff, Puppeteer Clique,
+  Skyclave Shade, Maestros Confluence, Cryptic Pursuit, Syrix, Spellbinding Soprano, Smuggler's Buggy, Sinister
+  Concierge e Parnesse. Mystic e Maestros Confluence pedem "o mesmo modo mais de uma vez"; Spellbinding Soprano pede
+  encore; Sinister Concierge pede dar suspender a cartas exiladas.
+- A suíte inteira ainda não rodou com o `b` e estas 22 cartas juntados (rodaram os testes de cada carta, os de regra e
+  o `tsc`).
