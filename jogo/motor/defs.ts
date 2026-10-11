@@ -108,7 +108,12 @@ export type CostPart =
   | { k: 'crew'; power: number }
   | { k: 'returnPermanent'; filter: (c: SCtx, o: ObjId) => boolean; label: string }
   | { k: 'loyalty'; n: number | 'X' }
-  | { k: 'returnLand' };
+  | { k: 'returnLand' }
+  /** devolver à mão um atacante não bloqueado que você controla (ninjutsu, CR 702.49a; sneak, 702.190a): o pago fica em
+   *  costInfo.returnedAttacker = { obj, target } (quem ele atacava, para a carta entrar atacando o mesmo) */
+  | { k: 'returnUnblockedAttacker'; label?: string }
+  /** revelar esta carta da mão ou da zona de comando (ninjutsu, CR 702.49a-b) */
+  | { k: 'revealSelf' };
 
 // ---------------------------------------------------------------------------
 // Gatilhos (CR 603)
@@ -310,6 +315,10 @@ export interface AdditionalCostDef {
   orLabel?: string;
   /** pode ser pago várias vezes (replicar, sacrificar X) */
   repeatable?: boolean;
+  /** repetível só de mana: o máximo oferecido é o que a mana disponível paga (multikicker, esquadrão) */
+  capByMana?: boolean;
+  /** pago uma vez para cada modo escolhido além do primeiro, sem perguntar (escalada, CR 702.120a) */
+  perExtraMode?: boolean;
 }
 
 export interface AltCastDef {
@@ -325,6 +334,18 @@ export interface AltCastDef {
   condition?: (c: SCtx) => boolean;
   /** muda características da mágica (bestow vira Aura) */
   asAura?: boolean;
+  /** conjurada virada para baixo como criatura 2/2 sem nome, texto, subtipos nem custo (morph, CR 702.37c, 708.4) */
+  faceDown?: boolean;
+  /** "alvo" vira "cada" (sobrecarga, CR 702.96a-b): a mágica não tem alvos; o efeito olha c.method */
+  noTargets?: boolean;
+  /** paga o custo de mana normal (retraçar, CR 702.81a: só muda a zona e acrescenta custo) */
+  useManaCost?: boolean;
+  /** quando pode ser conjurada, no lugar da regra de instantânea/feitiço (sneak: na sua etapa de declarar bloqueadores) */
+  timing?: (c: SCtx) => boolean;
+  /** também da zona de comando, se for o seu comandante (o custo alternativo vale na pilha: sneak) */
+  fromCommandZone?: boolean;
+  /** a permanente entra virada e atacando quem o atacante devolvido no custo atacava (sneak, CR 702.190b) */
+  enterAttacking?: boolean;
 }
 
 export interface CastPermission {

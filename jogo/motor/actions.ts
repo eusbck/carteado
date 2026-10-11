@@ -8,7 +8,7 @@ import type { GameEvent } from './events.ts';
 import type { G } from './game-context.ts';
 import { shuffle as shuffleArr } from './rng.ts';
 import { addEffect, createObject, destroyObject, moveRaw, newTimestamp, objOrLki, recordLki, type Position } from './state.ts';
-import { emit } from './triggers.ts';
+import { addPending, emit } from './triggers.ts';
 import { oracleLayout } from './oracle.ts';
 import { playerProtections, toxicValue } from './veneno-emblema.ts';
 import type { Answer, CardId, Color, ContinuousEffect, CopyValues, Duration, GameObject, ManaType, ManaUnit, ObjId, PlayerId, TargetRef, ZoneName } from './types.ts';
@@ -72,15 +72,18 @@ function* finalDestination(g: G, o: GameObject, to: ZoneName, cause: string, dep
 export function* moveObjects(g: G, reqs: MoveReq[], cause: string, by?: PlayerId): Gen<(ObjId | null)[]> {
   const out: (ObjId | null)[] = [];
   const events: GameEvent[] = [];
-  const plans: { o: GameObject; dest: ZoneName; req: MoveReq }[] = [];
+  const plans: { o: GameObject; dest: ZoneName; req: MoveReq; loucura?: unknown }[] = [];
   const depois: (() => Gen<void>)[] = [];
   for (const r of reqs) {
     const o = g.state.objects[r.id];
     if (!o) { plans.push({ o: null as unknown as GameObject, dest: r.to, req: r }); continue; }
-    const dest = yield* finalDestination(g, o, r.to, cause, depois);
-    plans.push({ o, dest, req: r });
+    let dest = yield* finalDestination(g, o, r.to, cause, depois);
+    // loucura (CR 702.35a): descartada, a carta vai para o exílio em vez do cemitério (continua sendo um descarte)
+    const loucura = cause === 'discard' && o.zone === 'hand' && dest === 'graveyard' ? chars(g, o.id).abilities.find((a) => a.kw === 'madness')?.param : undefined;
+    if (loucura) dest = 'exile';
+    plans.push({ o, dest, req: r, loucura });
   }
-  for (const { o, dest, req } of plans) {
+  for (const { o, dest, req, loucura } of plans) {
     if (!o || !g.state.objects[o.id]) { out.push(null); continue; }
     // ficha ou cópia que já saiu do campo/pilha não muda mais de zona (CR 111.8)
     if ((o.isToken && o.zone !== 'battlefield') || (o.isCopy && o.zone !== 'stack')) { out.push(null); continue; }
@@ -92,7 +95,13 @@ export function* moveObjects(g: G, reqs: MoveReq[], cause: string, by?: PlayerId
     const newId = moveRaw(g, o.id, dest, { position: pos, faceDown: req.faceDown, visibleTo: req.visibleTo });
     out.push(newId);
     events.push({ type: 'zone', obj: newId, old: o.id, from, to: dest, card: o.card, owner: o.owner, controller, cause, token: o.isToken, by });
-    if (cause === 'discard' && from === 'hand') events.push({ type: 'discard', player: o.owner, obj: newId, card: o.card });
+    if (cause === 'discard' && from === 'hand') {
+      events.push({ type: 'discard', player: o.owner, obj: newId, card: o.card });
+      // mayhem (CR 702.187b): "se você descartou esta carta neste turno"
+      g.state.objects[newId].data.discardedTurn = g.state.turn.number;
+      // o gatilho da loucura: o dono pode conjurá-la pelo custo de loucura, senão ela vai para o cemitério (702.35a)
+      if (loucura) addPending(g, 'kw:madness', newId, o.owner, { madness: loucura }, {});
+    }
     if (cause === 'sacrifice') events.push({ type: 'sacrifice', player: controller, old: o.id, obj: newId });
     if (from === 'battlefield') removeFromCombat(g, o.id);
   }

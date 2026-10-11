@@ -64,6 +64,10 @@ const esperadas: Record<string, [string, string[], string[], string[], number | 
   'Incubator': ['Incubator', ['Artifact'], ['Incubator'], [], null, null, ['transform']],
   'Phyrexian Mite': ['Phyrexian Mite', ['Artifact', 'Creature'], ['Phyrexian', 'Mite'], [], 1, 1, ['toxic']],
   'Contract': ['Contract', ['Enchantment'], ['Aura'], ['W'], null, null, ['enchant']],
+  // lote2-c
+  'Ninja': ['Ninja', ['Creature'], ['Ninja'], ['B'], 1, 1, []],
+  'Elemental 5/5': ['Elemental', ['Creature'], ['Elemental'], ['R', 'U'], 5, 5, ['flying']],
+  'Mutagen': ['Mutagen', ['Artifact'], ['Mutagen'], [], null, null, []],
   // lote2-e
   'Rat': ['Rat', ['Creature'], ['Rat'], ['B'], 1, 1, []],
   'Elemental 8/8': ['Elemental', ['Creature'], ['Elemental'], ['G', 'W'], 8, 8, ['vigilance']],
@@ -253,6 +257,16 @@ describe("Fichas: 'Phyrexian Mite'", () => {
     tg.attack([['Indomitable Ancients', 0]]).passTo('main2');
     expect(ofereceu).toBe(false);
     expect(tg.life(0)).toBe(38);
+  });
+});
+
+// lote2-c
+describe('Mutagen', () => {
+  it('{1}, {T}, sacrifique: um marcador +1/+1 na criatura alvo, só como feitiço', () => {
+    const tg = setup({ battlefield: [[{ name: 'Mutagen', token: true }, 'Indomitable Ancients', 'Plains'], []] });
+    tg.choose('criatura alvo', ['Indomitable Ancients']).activate('Mutagen').resolveAll();
+    expect(tg.state.objects[tg.bf('Indomitable Ancients')].counters['+1/+1']).toBe(1);
+    expect(tg.find('Mutagen')).toBeNull();
   });
 });
 
