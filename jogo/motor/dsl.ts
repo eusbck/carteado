@@ -219,7 +219,7 @@ export function protectionFrom(color: Color): StaticDef {
  * mana('G') → {T}: Add {G}. mana(['R','W']) → {T}: Add {R} or {W}. mana('CC') → {C}{C}.
  * mana('any') → uma de qualquer cor.
  */
-export function mana(produce: string | string[] | ((c: SCtx) => ManaType[][]), opts: { cost?: string; text?: string; extra?: ManaAbilityDef['extra']; condition?: ManaAbilityDef['condition']; restriction?: string; untilEndOfTurn?: boolean; onSpend?: string; oncePerTurn?: boolean } = {}): ManaAbilityDef {
+export function mana(produce: string | string[] | ((c: SCtx) => ManaType[][]), opts: { cost?: string; text?: string; extra?: ManaAbilityDef['extra']; condition?: ManaAbilityDef['condition']; restriction?: string; untilEndOfTurn?: boolean; onSpend?: string; rider?: string; oncePerTurn?: boolean } = {}): ManaAbilityDef {
   let fn: (c: SCtx) => ManaType[][];
   if (typeof produce === 'function') fn = produce;
   else if (produce === 'any') fn = () => [['W'], ['U'], ['B'], ['R'], ['G']];
@@ -227,7 +227,7 @@ export function mana(produce: string | string[] | ((c: SCtx) => ManaType[][]), o
   else fn = () => [produce.split('') as ManaType[]];
   return {
     kind: 'mana', cost: cost(opts.cost ?? '{T}'), produce: fn, text: opts.text, extra: opts.extra, condition: opts.condition,
-    restriction: opts.restriction, untilEndOfTurn: opts.untilEndOfTurn, onSpend: opts.onSpend, oncePerTurn: opts.oncePerTurn,
+    restriction: opts.restriction, untilEndOfTurn: opts.untilEndOfTurn, onSpend: opts.onSpend, rider: opts.rider, oncePerTurn: opts.oncePerTurn,
   };
 }
 

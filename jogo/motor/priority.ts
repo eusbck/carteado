@@ -1,7 +1,8 @@
 // Ações possíveis com prioridade (CR 117.1) e sua execução.
 
 import { putOntoBattlefield } from './actions.ts';
-import { abilityDefs, chars, colorsOf, controllerOf, hasKw, hooks, nameOf } from './chars.ts';
+import { abilityDefs, chars, colorsOf, controllerOf, hasKw, hooks, nameOf, printedChars } from './chars.ts';
+import { canStartFaceDown, castOptionsExtra, morphFaceUpCost, turnFaceUpMorph } from './conjurar-alternativo.ts';
 import { activateManaAbility, canAfford, canPayParts, manaOptions, manaPart } from './costs.ts';
 import { cardDef, type ActivatedDef, type CastPermission, type Gen, type SCtx } from './defs.ts';
 import type { G } from './game-context.ts';
@@ -90,6 +91,8 @@ export function castOptions(g: G, p: PlayerId): CastOption[] {
     const o = s.objects[id];
     if (!o.copyOf && temVariasFaces(o.def)) { opcoesDeFaces(g, p, id, zone, out); return; }
     const c = chars(g, id);
+    // morph (também de terreno com morph) e custos alternativos do comandante (motor/conjurar-alternativo.ts)
+    out.push(...castOptionsExtra(g, p, id, zone));
     if (c.types.includes('Land')) return; // CR 305.9
     const f = faceDefOf(o);
     if (zone === 'hand') {
@@ -114,6 +117,8 @@ export function castOptions(g: G, p: PlayerId): CastOption[] {
   for (const id of s.zones.graveyard[p]) consider(id, 'graveyard');
   for (const pp of g.playersInGame()) if (pp !== p) for (const id of s.zones.graveyard[pp]) if (permissionsFor(g, p, id).length) consider(id, 'graveyard');
   for (const id of s.zones.exile) consider(id, 'exile');
+  // lote2-d: a carta do topo do grimório com permissão de conjurar dali (Realmwalker)
+  for (const id of s.zones.library[p].slice(0, 1)) if (permissionsFor(g, p, id).length) consider(id, 'library');
   return out;
 }
 
@@ -137,13 +142,17 @@ export function enoughTargets(g: G, specs: import('./defs.ts').TargetSpec[], p: 
 /** checagem rápida: dá para começar a conjurar e pagar? (CR 601.3) */
 export function canStartCast(g: G, p: PlayerId, opt: CastOption): boolean {
   const s = g.state;
+  // virada para baixo (morph): criatura 2/2 sem texto, outra checagem (CR 708.4)
+  if (opt.method.alt?.faceDown) return canStartFaceDown(g, p, opt);
   const o = s.objects[opt.obj];
   // só a face ou metade escolhida conta (CR 709.3a, 712.11c, 715.3a)
   const c = castChars(g, p, o, opt.method);
   const f = faceDefFor(o, opt.method);
   const flash = opt.method.face === undefined ? hasKw(g, opt.obj, 'flash') : c.abilities.some((a) => a.kw === 'flash');
   const instantSpeed = c.types.includes('Instant') || flash || f?.flash || hooks(g, 'castAsThoughFlash').some((h) => h.fn(h.ctx, p, opt.obj));
-  if (!instantSpeed && !sorceryTiming(g, p)) return false;
+  // custo alternativo com momento próprio (sneak: na sua etapa de declarar bloqueadores, CR 702.190a)
+  if (opt.method.alt?.timing) { if (!opt.method.alt.timing({ g, you: p, source: opt.obj })) return false; }
+  else if (!instantSpeed && !sorceryTiming(g, p)) return false;
   if (hooks(g, 'cantCastSpells').some((h) => h.fn(h.ctx, p))) return false;
   // alvos obrigatórios possíveis
   const sp = f?.spell;
@@ -234,7 +243,9 @@ export function legalActions(g: G, p: PlayerId): PriorityAction[] {
     if (canStartCast(g, p, opt)) acts.push({ id: `cast:${opt.obj}:${opt.method.key}`, kind: 'cast', label: opt.method.title ?? `${opt.method.key === 'hand' ? 'Conjurar' : opt.method.label}: ${nameOf(g, opt.obj)}`, obj: opt.obj });
   }
   const timing = { sorcery: sorceryTiming(g, p) };
-  const zones: ObjId[] = [...s.zones.battlefield, ...s.zones.hand[p], ...s.zones.graveyard[p], ...s.zones.exile.filter((id) => s.objects[id].owner === p)];
+  // da zona de comando: o ninjutsu de comandante (CR 702.49d)
+  const zones: ObjId[] = [...s.zones.battlefield, ...s.zones.hand[p], ...s.zones.graveyard[p], ...s.zones.exile.filter((id) => s.objects[id].owner === p),
+    ...s.zones.command.filter((id) => s.objects[id].owner === p && s.objects[id].card !== null)];
   for (const id of zones) {
     for (const { inst, def } of abilityDefs(g, id)) {
       if (def.kind !== 'activated') continue;
@@ -266,6 +277,12 @@ export function legalActions(g: G, p: PlayerId): PriorityAction[] {
     if (controllerOf(g, id) !== p) continue;
     const custo = manifestFaceUpCost(g, id);
     if (custo && canAfford(g, p, custo, { purpose: { kind: 'effect' } })) acts.push({ id: `faceup:${id}`, kind: 'special', label: `Virar para cima ${nameOf(g, id)} (${formatCost(custo)})`, obj: id });
+    // morph (CR 702.37e): virar para cima pagando o custo de metamorfose
+    const morph = morphFaceUpCost(g, id);
+    if (morph && canAfford(g, p, morph, { purpose: { kind: 'effect' } })) {
+      const o = s.objects[id];
+      acts.push({ id: `morph:${id}`, kind: 'special', label: `Virar para cima ${printedChars(o.copyOf?.def ?? o.def, 0, o.owner).name} (metamorfose ${formatCost(morph)})`, obj: id });
+    }
   }
   if (s.config.manualMode) acts.push({ id: 'manual', kind: 'manual', label: 'Ajuste manual' });
   return acts;
@@ -314,6 +331,7 @@ export function* performAction(g: G, p: PlayerId, actionId: string): Gen<boolean
     if (pago === null) return false;
     return unlockDoor(g, id, half, p);
   }
+  if (kind === 'morph') return yield* turnFaceUpMorph(g, p, Number(a));
   if (kind === 'suspend') return yield* doSuspend(g, p, Number(a));
   if (kind === 'mana') {
     const key = actionId.slice(5);

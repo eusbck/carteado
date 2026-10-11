@@ -260,12 +260,16 @@ export function goadsEnchanted(text = 'A criatura encantada está goadada (ataca
   return { kind: 'static', text, rules: { goads: (c, obj) => c.g.state.objects[c.source]?.attachedTo === obj } };
 }
 
-/** Descobrir N (CR 701.57) */
-export function* discover(g: G, p: PlayerId, n: number): Gen<void> {
+/**
+ * Descobrir N (CR 701.57). Devolve o valor de mana da carta descoberta (o da carta, CR 202.3: X conta 0), ou null se
+ * nenhuma carta foi descoberta (Hit the Mother Lode compara esse valor com N).
+ */
+export function* discover(g: G, p: PlayerId, n: number): Gen<number | null> {
   const s = g.state;
   const lib = s.zones.library[p];
   const i = lib.findIndex((id) => !isLand(g, id) && chars(g, id).manaValue <= n);
   const tiradas = i < 0 ? [...lib] : lib.slice(0, i + 1);
+  const valor = i < 0 ? null : chars(g, lib[i]).manaValue;
   g.log(`${s.players[p].name} descobre ${n}: exila ${tiradas.map((id) => nameOf(g, id)).join(', ') || 'nada'}.`, { rule: '701.57' });
   const novos = (yield* moveObjects(g, tiradas.map((id) => ({ id, to: 'exile' as const })), 'discover')).filter((x): x is ObjId => x !== null);
   const achada = i < 0 ? null : novos[novos.length - 1] ?? null;
@@ -275,6 +279,7 @@ export function* discover(g: G, p: PlayerId, n: number): Gen<void> {
   }
   const resto = shuffle(s.rng, novos.filter((id) => id !== achada && s.objects[id]?.zone === 'exile'));
   if (resto.length) yield* moveObjects(g, resto.map((id) => ({ id, to: 'library' as const, position: 'bottom' as const })), 'discover');
+  return achada === null ? null : valor;
 }
 
 // ---------------------------------------------------------------------------
@@ -599,7 +604,9 @@ export function chapter(numbers: number[], effect: TriggeredDef['effect'], opts:
     if (e.type !== 'counters' || e.kind !== 'lore' || e.target.kind !== 'obj' || e.target.id !== c.source) return false;
     const agora = c.g.state.objects[c.source]?.counters.lore ?? 0;
     const antes = agora - e.amount;
-    return numbers.filter((n) => antes < n && agora >= n).map((n) => ({ capitulo: n }));
+    // ler adiante (CR 702.155a): no turno em que entrou, só dispara o capítulo igual ao número de marcadores
+    const lerAdiante = c.g.state.objects[c.source]?.choices.readAheadTurn === c.g.state.turn.number;
+    return numbers.filter((n) => antes < n && agora >= n && (!lerAdiante || n === agora)).map((n) => ({ capitulo: n }));
   }), effect, { targets: opts.targets, text: opts.text });
   def.chapters = numbers;
   return def;
@@ -646,3 +653,31 @@ export const MYRIAD = defineAbility('kw:myriad', triggered(on.selfAttacks(), fun
   }
   if (fichas.length) delayed(c, EXILA_MIRIADE.id!, { data: { fichas }, expiresTurn: s.turn.number });
 }, { text: 'Miríade (sempre que esta criatura ataca, para cada oponente que não seja o jogador defensor, você pode criar uma ficha cópia dela virada e atacando esse jogador ou um planeswalker dele; exile as fichas no fim do combate).' }));
+
+// ---------------------------------------------------------------------------
+// Mágica que ganha algo até o fim do turno e leva isso para o permanente (CR 400.7d, 611.2)
+// ---------------------------------------------------------------------------
+defineAbility<StaticDef>('rule:spellGains', {
+  kind: 'static',
+  rules: {
+    enterModifier: (c, ev) => {
+      const prm = (c as typeof c & { params?: { spell: ObjId; mods: Mod[]; controller: PlayerId } }).params;
+      if (!prm || prm.spell !== ev.obj) return;
+      (ev.enterEffects ??= []).push({ mods: prm.mods, duration: { kind: 'endOfTurn' }, controller: prm.controller, sourceDef: '' });
+    },
+  },
+});
+
+/**
+ * "Ela ganha ímpeto até o fim do turno", dito de uma mágica de permanente (Carnelian Orb of Dragonkind, Thundermane
+ * Dragon): o permanente em que a mágica se torna entra já com as modificações, que duram até o fim do turno. Se a
+ * mágica só resolver num turno posterior, o efeito já acabou.
+ */
+export function spellGainsUntilEndOfTurn(g: G, controller: PlayerId, source: ObjId, spell: ObjId, mods: Mod[]): void {
+  addEffect(g, { source, sourceDef: '', controller, duration: { kind: 'endOfTurn' }, affected: null, mods: [{ k: 'rule', id: 'rule:spellGains', params: { spell, mods, controller } }] });
+}
+
+/** miríade impressa na carta (Goldlust Triad): a mesma habilidade, com id próprio da carta */
+export function myriad(): TriggeredDef {
+  return { ...MYRIAD, id: undefined, kw: 'myriad' };
+}

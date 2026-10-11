@@ -64,6 +64,39 @@ export default defineCard({
 
 Habilidades concedidas, gatilhos atrasados e reflexivos precisam de id estável: defina com `defineAbility('Nome da Carta:chave', {...})` no topo do arquivo e use o id.
 
+## Recursos do lote 2 (motor/criaturas.ts, motor/mecanicas.ts)
+
+Todos vêm de `motor/api.ts`. Uma linha de uso por recurso:
+
+- **Cópia:** `entersAsCopy({...})` ("você pode fazer com que entre como cópia de…"), `becomeCopy(c, obj, modelo, { except, duration })`, `copyWithExcept(g, modelo, except)`.
+- **Combate adicional:** `addCombatPhaseAfterCurrent(c.g, { thenMain })`, `untapAttackers(c.g)`, `isFirstCombat(g)`, `onSecondMain()`.
+- **Tramar, reunir, o Anel:** `yield* connive(g, obj, n)`, `onYouConnive()`, `yield* amass(g, p, 'Orc', n)`, `yield* ringTempts(g, p)`, `isRingBearer(g, id)`.
+- **Regenerar:** `regenerate(c, id)`, `preventRegeneration(c, ids)`. Infectar em jogador já vira veneno no motor.
+- **Palavras-chave de criatura:** `persist()`, `melee()`, `dethrone()`, `mobilize(n)`, `bloodthirst(n)`, `monstrosity(custo, n)`, `evolve()`, `changeling()`, `myriad()`, `...readAhead(capítuloFinal)` (no lugar de `sagaEnters()`), `...reconfigure(custo)`, `typecycling('Swamp', custo)`.
+- **Confronto e investigar:** `yield* clash(g, p, oponente)`, `onYouWinClash()`, `yield* investigate(g, p, n)`. Fichas `Food`, `Clue` e `Blood` em `cartas/fichas.ts`.
+- **Esconderijo e imprimir:** `hideaway(n)`, `linkedExiled(g, fonte, 'hideaway')`, `yield* mayPlayFree(g, p, carta, pergunta)`.
+- **Contemplar:** `yield* behold(c, (id) => qualidade, 'um Dragon', { optional: true })` devolve `{ id, from }` ou null.
+- **Descobrir:** `yield* discover(g, p, n)` devolve o valor de mana da carta descoberta (ou null).
+- **Dano no turno:** `opponentDamageThisTurn(g, p)`, `hasMostLife(g, p)`. Celebração: `c.g.state.turnStats[p].nonlandPermanentsEntered`.
+- **Mágica que ganha algo até o fim do turno e leva para o permanente** ("ela ganha ímpeto"): `spellGainsUntilEndOfTurn(g, controlador, fonte, mágica, mods)`.
+- **Mana com efeito ao ser gasta, sem pilha:** `mana('R', { rider: ID })` com `defineFn(ID, (g, unidade, propósito, jogador) => …)` (Carnelian Orb of Dragonkind). Com gatilho na pilha continua sendo `onSpend`.
+- **Ganchos novos (`rules`):** `keepsUnspentMana` (não perde a mana não gasta), `lookAtTopOfLibrary`, `cantSearchLibraries`, `legendRuleExempt`.
+- **Modos que não podem repetir no turno:** `modal(1, 1, [...], { available: (c, i) => …, onChosen: (c, modos) => … })` (Parapet Thrasher).
+- **Estática depois de troca de controle:** `c.you` de uma estática do campo é quem controla a fonte depois da camada 2.
+
+Jeitos de conjurar e custos (`motor/conjurar-alternativo.ts`). Nos testes, o método vai no segundo argumento de `tg.cast(nome, 'overload')`; custo opcional: `tg.choose('custo adicional opcional', ['Pagar: …' | 'Não pagar'])`; custo repetível: `tg.number('quantas vezes', n)`.
+
+- **Metamorfose:** `abilities: [morph('{3}{R}{R}{R}')]`; conjurar virada: `tg.cast(nome, 'morph')`. **Ninjutsu:** `ninjutsu('{U}{B}', { commander: true })` em `abilities`.
+- **Sneak, mayhem, retraçar:** `const x = sneak('{W}{B}')` (ou `mayhem(custo)`, `retrace()`), com `altCosts: [x.altCost]` e `x.ability` em `abilities`.
+- **Loucura:** `madness('{1}{R}')` ou `madness('{2}{B}', { life: 8 })` em `abilities`; "se o custo de loucura foi pago": `madnessPaid(c)`.
+- **Ricochete:** `abilities: [rebound()]` na face que tem `spell`. **Cascata:** `abilities: [cascade()]`.
+- **Sobrecarga, espetáculo:** `altCosts: [overload('{6}{U}')]` e, no efeito, `if (overloaded(c)) { cada… } else { tgt(c)… }`; `altCosts: [spectacle('{B}')]`.
+- **Recompra, multikicker, escalada:** `additionalCosts: [buyback('{3}')]`, `[multikicker('{2}')]` com `kickedTimes(g, id)` (num "entra com": `ev.spell?.paid.multikicker`), `[escalate(partes, rótulo)]`.
+- **Baixa, esquadrão:** `const b = casualty(2)` (ou `squad('{3}')`), com `additionalCosts: [b.cost]` e `b.trigger` em `abilities`.
+- **Número de alvos que depende do que foi pago:** `{ ...t.any(), min: 1, max: (c) => 1 + kickedTimes(c.g, c.source), validateSet }` (Comet Storm).
+- **Permissão de conjurar com outro custo** (vida em vez de mana): `ruleEffect` com uma estática que devolve `{ key, label, free: true, parts: [{ k: 'life', n }] }` em `mayPlayFrom` (Xander's Pact).
+- **Cópia de uma carta para conjurar:** `createObject(g, { def, owner, controller, zone: 'exile', isCopy: true, copyOf: { def, face: 0 } })` e `mayCastFree` (Flawless Forgery).
+
 ## Testes
 
 ```ts

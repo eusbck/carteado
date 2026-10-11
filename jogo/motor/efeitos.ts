@@ -1,7 +1,7 @@
 // Efeitos compostos usados por muitas cartas: duração "até o fim do turno", gatilhos atrasados
 // e reflexivos, pagar durante a resolução, sacrifícios por jogador, buscas e afins.
 
-import { addCounters, controlledBy, creaturesOf, discard, draw, moveObjects, putOntoBattlefield, sacrifice, searchLibrary, shuffleLibrary } from './actions.ts';
+import { addCounters, canSearchLibraries, controlledBy, creaturesOf, discard, draw, moveObjects, putOntoBattlefield, sacrifice, searchLibrary, shuffleLibrary } from './actions.ts';
 import { chooseItems, objItem, yesNo } from './ask.ts';
 import { abilityDefs, chars, controllerOf, isCreature, isLand, nameOf } from './chars.ts';
 import { payMana } from './costs.ts';
@@ -135,7 +135,8 @@ export function* searchTo(c: Ctx, player: PlayerId, filter: (id: ObjId) => boole
 
 /** "Seu controlador pode procurar um terreno básico, colocá-lo no campo [virado], depois embaralhar." */
 export function* maySearchBasicToBattlefield(c: Ctx, player: PlayerId, tapped: boolean): Gen<void> {
-  if (c.g.state.players[player].left) return;
+  // "você pode procurar": quem não pode procurar (Stranglehold) não escolhe procurar nem embaralha (ruling 1)
+  if (c.g.state.players[player].left || !canSearchLibraries(c.g, player)) return;
   const want = yield* yesNo(c.g, player, `Procurar um terreno básico e colocá-lo no campo${tapped ? ' virado' : ''}?`);
   if (!want) return;
   yield* searchTo(c, player, (id) => isBasicLand(c.g, id), 1, 'battlefield', { tapped, prompt: 'Procure uma carta de terreno básico' });

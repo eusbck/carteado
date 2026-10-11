@@ -59,14 +59,15 @@ describe('improvisar: mana primeiro, pagamento depois', () => {
     const paid = runEffect(tg, payMana(tg.g, 0, parseCost('{3}{U}'), { purpose: { kind: 'effect' }, improvise: true, canCancel: true, label: 'teste' }));
     expect(paid).not.toBeNull(); expect(tg.state.players[0].manaPool).toHaveLength(0);
   });
-  it('depois de virar para improvisar, não oferece mais habilidades de mana e cancelamento continua disponível', () => {
+  it('CR 601.2g-h, 702.126a: depois de virar para improvisar, a janela de mana continua aberta (o artefato virado sai dela) e cancelar continua disponível', () => {
     const tg = fixture({ battlefield: [['Island', 'Sol Ring'], []] });
     const gen = payMana(tg.g, 0, parseCost('{1}{U}'), { purpose: { kind: 'effect' }, improvise: true, canCancel: true, label: 'teste' });
     const first = gen.next(); if (first.done || first.value.kind !== 'payment') throw new Error('Pagamento esperado');
     const improviser = first.value.sources.find((s) => s.id.startsWith('improvise:'))!;
     const next = gen.next({ kind: 'payment', activate: { source: improviser.id } });
     if (next.done || next.value.kind !== 'payment') throw new Error('Pagamento esperado');
-    expect(next.value.sources).toHaveLength(0); expect(next.value.canAuto).toBe(false);
+    expect(next.value.cost).toBe('{U}');
+    expect(next.value.sources.map((s) => s.obj)).toEqual([tg.bf('Island')]); expect(next.value.canAuto).toBe(true);
     expect(gen.next({ kind: 'payment', cancel: true }).value).toBeNull();
   });
 });

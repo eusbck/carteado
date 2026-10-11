@@ -1335,3 +1335,88 @@ Observações abertas:
   andando: ela gera o cliente sozinha (o código da interface é mais novo que `cliente/dist`). Não gerei o cliente ali
   durante a sessão para não misturar cliente novo com servidor velho no meio das importações; os testes usaram uma
   pasta à parte (`ESTATICOS`).
+
+## Lote 2: os outros 15 decks importados (em andamento) — 10/10/2026
+
+Pedido do Caio: listar as cartas dos 16 decks importados, achar as iguais ou parecidas para não repetir trabalho e
+implementar os decks. O 16º, Keen Engineering, foi feito pelo Codex na branch `decks/regras`, revisada pela sessão
+`magic-commander-a5`. Decisões do Caio: partir da branch do Codex (esta branch, `decks/lote2`, no worktree
+`../Magic-Commander-lote2`), 6 a 7 agentes por rodada em worktrees irmãos (`../lote2-wt-a` a `g`), e um deck por vez,
+dos menores para os maiores. O merge no main (a mesa do grupo, na 8080) espera a aprovação do merge do `decks/regras`.
+Plano: `~/.claude/plans/adicionei-v-rios-outros-decks-mighty-rabbit.md`.
+
+Levantamento (`node ferramentas/decks.ts pendentes --json`, no main e nesta branch):
+- Sem o Keen, faltam **873 cartas distintas** nos 15 decks (931 contando as repetidas).
+- 44 cartas aparecem em 2 ou mais decks (58 implementações a menos).
+- 18 grupos com 57 cartas têm o mesmo molde de texto (cor, número ou nome mudam), e 38 cartas têm o texto de uma já
+  feita.
+- 14 cartas usam formatos que o motor não tinha: modal de duas faces ×6, split ×3 (fusão, Sala, aftermath),
+  reversível ×4 (inclusive o comandante Rin and Seri) e aventura ×1.
+- Lista completa, por deck: https://claude.ai/artifact/55zYiG4kFa6Ssin8b2S58K
+
+Conferência do Moxfield antes de começar (`decks.ts conferir`, os 15 decks): todos com 100 cartas, a mesma lista da
+mesa, dados em `gerado/` e imagem no disco de cada carta. Nenhum problema. (O Moxfield tem cartas de reserva em dois
+decks e um "talvez" em outro, que o jogo não usa.)
+
+Rodada 1 (7 agentes):
+- **a:** correções dos 7 bugs que a `magic-commander-a5` achou no motor do Codex, mais 20 cartas do Reign of Dragons.
+  Os bugs:
+  - cache da CDA durante as camadas (Duplicant 1/1);
+  - improvisar antes dos terrenos;
+  - janela de mana fechando ao improvisar;
+  - gatilho de estado em quem saiu do campo;
+  - custos repetidos sem reservar recursos;
+  - testes de arte presos aos 9 decks antigos;
+  - rulings "teste:" sem asserção.
+- **b:** formatos de carta (modal de duas faces, split com fusão e aftermath, Sala, aventura e reversível) e as 14
+  cartas que os usam.
+- **c:** jeitos de conjurar e custos: morph, ninjutsu, sneak, madness, mayhem, rebound, retrace, buyback, cascade,
+  overload, escalate, casualty, spectacle, multikicker, squad e behold.
+- **d:** clone e virar cópia, combate extra, connive, amass, "the Ring tempts you", regenerar, infectar dando veneno,
+  persist, melee, dethrone, mobilize, bloodthirst, monstrosity, evolve, clash, read ahead, changeling, imprint,
+  hideaway, reconfigure, ciclagem de tipo e as fichas Food, Clue e Blood.
+- **e** e **f:** os terrenos (109) que não dependem de motor novo.
+- **g:** as cartas repetidas entre decks e as de molde (27), mais 20 do Reign of Dragons.
+
+### Retomada sem agentes (10/10/2026, outra conta)
+
+A rodada 1 foi cortada no meio pelo limite semanal da conta que a lançou. O trabalho foi retomado por uma sessão só,
+sem subagentes, a partir do que ficou nos worktrees:
+
+- **a:** os bugs 6 e 7 foram terminados (testes de fundo e retrato valendo para todos os decks; asserções dos rulings
+  "teste:"). Suíte inteira do branch: 733 arquivos, 2073 testes, zero falhas. Juntado.
+- **d:** estava commitado (motor de criaturas, sem cartas). Juntado.
+- **e** e **f:** 51 e 50 terrenos com teste passando. Juntados. Ficaram de fora Eiganjo Castle, Inkmoth Nexus, Molten
+  Slagheap, Urza's Saga, Dowsing Dagger, Eiganjo, Seat of the Empire, Minas Morgul e Villainous Hideout.
+- **g:** 47 cartas. Uma falha (Tyrant's Familiar sob o controle de outro jogador) era um bug do motor: a estática de
+  um permanente que mudou de controlador continuava valendo para o dono antigo (`motor/chars.ts`, CR 613.1b).
+  Corrigido com teste (`testes/regras-controle-estaticas.test.ts`). Juntado.
+- **b** (formatos de carta) e **c** (jeitos de conjurar): o motor compila, mas faltavam testes e cartas. Ficaram em
+  commits "WIP" nos branches `lote2-b` e `lote2-c`. O `c` foi atualizado com esta branch e terminado depois (ver
+  abaixo); o `b` ainda não foi juntado.
+- Os arquivos de fichas (`cartas/fichas.ts` e o teste) são juntados com `merge=union` (cada branch acrescenta um bloco
+  no fim); a regra está em `.git/info/attributes` e sai quando o lote acabar.
+
+## Reign of Dragons (Lathliss, Dragon Queen): pronto — 10/10/2026
+
+O primeiro deck do lote 2. Faltavam 54 cartas; 28 vieram dos worktrees da rodada 1 e as outras 26 foram escritas na
+retomada, direto nesta branch, com teste e rulings por carta.
+
+- Recursos novos no motor, cada um usado e testado por uma carta:
+  - miríade impressa (`myriad()`, Goldlust Triad);
+  - o descobrir devolve o valor de mana da carta descoberta (Hit the Mother Lode);
+  - mana com efeito na hora em que é gasta, sem pilha (`rider`, Carnelian Orb of Dragonkind);
+  - mágica que ganha algo até o fim do turno e leva para o permanente (`spellGainsUntilEndOfTurn`, Carnelian Orb e
+    Thundermane Dragon);
+  - mana não gasta que não se perde (`keepsUnspentMana`, Leyline Tyrant);
+  - contagem de permanentes não terrenos que entraram no turno (celebração, Goddric);
+  - modos que não podem repetir no turno (`available` e `onChosen`, Parapet Thrasher).
+- `node ferramentas/decks.ts gerar`: o deck entrou no saguão desta cópia (11 decks jogáveis).
+- `node ferramentas/decks.ts conferir tsKfnd0haUax0CLKMHWVHQ`: 100 cartas, a mesma lista do Moxfield, 69 de 69 cartas
+  distintas com regras.
+- Partidas de bots com o deck obrigatório (`DECK_OBRIGATORIO`), invariantes conferidas a cada resposta: 8 de 4
+  jogadores e 12 de 2 jogadores com bots aleatórios, 4 de 2 jogadores com bots heurísticos. 24 de 24 sem erro.
+- Suíte inteira (`npx vitest run --maxWorkers=2`): 909 arquivos, 2722 testes aprovados, 1 ignorado que já existia, zero
+  falhas (40 minutos). `npx tsc` do motor e do cliente sem erros.
+- Não foram refeitos nesta entrega: o E2E no navegador e as capturas (ficam para o fim de cada 3 ou 4 decks, como no
+  plano).

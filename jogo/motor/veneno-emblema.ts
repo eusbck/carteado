@@ -73,8 +73,12 @@ export function playerProtections(g: G, p: PlayerId): unknown[] {
  * gasta, ela se torna incolor" (Omnath, Locus of the Void), a que seria perdida vira {C} e continua na reserva, com as
  * mesmas restrições (ruling 2 de Omnath); "não se perde até o fim do turno" é a parte que acabou, então sai.
  */
-export function loseUnspentMana(g: G, player: PlayerId, fica: (u: ManaUnit) => boolean): void {
+export function loseUnspentMana(g: G, player: PlayerId, ficaPelaRegra: (u: ManaUnit) => boolean): void {
   const p = g.state.players[player];
+  if (p.manaPool.every(ficaPelaRegra)) return;
+  // "você não perde mana [vermelha] não gasta" (Leyline Tyrant): essa mana fica como está, com as mesmas restrições
+  const guardam = hooks(g, 'keepsUnspentMana');
+  const fica = (u: ManaUnit) => ficaPelaRegra(u) || guardam.some((h) => h.fn(h.ctx, player, u));
   if (p.manaPool.every(fica)) return;
   if (hooks(g, 'unspentManaBecomesColorless').some((h) => h.fn(h.ctx, player))) {
     p.manaPool = p.manaPool.map((u) => {

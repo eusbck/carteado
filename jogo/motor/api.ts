@@ -26,3 +26,11 @@ export * from './mecanicas.ts';
 export { addCombatPhaseAfterCurrent } from './turn.ts';
 export * from './veneno-emblema.ts';
 export { playerProtectedFrom } from './actions.ts';
+// lote2-c: jeitos de conjurar e custos (inclui o contemplar, CR 701.4)
+export * from './conjurar-alternativo.ts';
+// lote2-d: mecânicas de criaturas, permanentes, combate e fichas
+export * from './criaturas.ts';
+export { unattach, canSearchLibraries, regenerationShields, cantBeRegenerated } from './actions.ts';
+export { copyValuesChars } from './chars.ts';
+export type { CopyExcept, CopyValues } from './types.ts';
+export { removeEffect } from './state.ts';
