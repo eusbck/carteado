@@ -327,6 +327,10 @@ function computeAll(g: G): void {
         if (!c) continue;
         for (const m of en.mods(id)) applyMod(c, m);
       }
+      if (L === '2') {
+        // CR 613.1b: depois dos efeitos de controle, "você" de uma estática do campo é quem controla a fonte agora
+        for (const r of runs) if (r.st.zone === 'battlefield' && !r.started) r.st.controller = work.get(r.st.source)?.controller ?? r.st.controller;
+      }
       if (L === '7c') {
         for (const id of bf) {
           const c = work.get(id)!;
