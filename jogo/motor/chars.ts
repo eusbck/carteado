@@ -153,6 +153,7 @@ function applyExcept(c: Chars, v: CopyValues): Chars {
   if (e.toughness !== undefined) c.toughness = e.toughness;
   if (e.colors) c.colors = [...e.colors];
   if (e.legendary === false) c.supertypes = c.supertypes.filter((s) => s !== 'Legendary');
+  if (e.noManaCost) { c.manaCost = null; c.manaValue = 0; }
   return c;
 }
 

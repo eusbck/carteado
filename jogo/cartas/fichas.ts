@@ -1,7 +1,7 @@
 // Fichas (CR 111) criadas pelas cartas dos decks. Cada uma aponta para a imagem da ficha
 // correspondente em ../cartas/data (pelo nome, força/resistência e cores).
 
-import { activated, addCounters, chars, chooseItems, controlledBy, controllerOf, cost, createTokens, decayed, defineToken, draw, gainLife, is, isLand, isType, keywords, lkiChars, lookAndArrange, loseLife, mana, moveObjects, nameOf, objItem, on, putOntoBattlefield, sacrifice, t, tgt, triggered, untilEndOfTurn, yesNo, type AbilityDef, type G, type Gen } from '../motor/api.ts';
+import { activated, addCounters, allowPlay, chars, chooseItems, controlledBy, controllerOf, cost, createTokens, creaturesOf, decayed, defineToken, draw, exile, gainLife, is, isLand, isType, keywords, lkiChars, lookAndArrange, loseLife, mana, moveObjects, nameOf, objItem, on, putOntoBattlefield, sacrifice, selfGets, t, tgt, triggered, untilEndOfTurn, yesNo, type AbilityDef, type G, type Gen } from '../motor/api.ts';
 import type { Ctx } from '../motor/defs.ts';
 import { fichasOracle } from '../motor/oracle.ts';
 import type { Color, ObjId } from '../motor/types.ts';
@@ -381,3 +381,35 @@ export const IllusionXX = tokenXX('Illusion X/X', 'Illusion', ['Creature'], ['Il
 export const HorrorXX = tokenXX('Horror X/X', 'Horror', ['Artifact', 'Creature'], ['Horror'], []);
 /** Kithkin Soldier 1/1 branco (Gwyllion Hedge-Mage) */
 export const KithkinSoldier = token('Kithkin Soldier', 'Kithkin Soldier', ['Creature'], ['Kithkin', 'Soldier'], ['W'], 1, 1);
+/** Elf Warrior 1/1 verde e branco (Rhys the Redeemed) */
+export const ElfWarriorGW = token('Elf Warrior verde e branco', 'Elf Warrior', ['Creature'], ['Elf', 'Warrior'], ['G', 'W'], 1, 1);
+/** Angel 4/4 branco com voar e vigilância (Resplendent Angel) */
+export const AngelVigilante = token('Angel vigilância', 'Angel', ['Creature'], ['Angel'], ['W'], 4, 4, keywords('flying', 'vigilance'), 'vigilance');
+/** Eldrazi 10/10 incolor (Idol of Oblivion) */
+export const Eldrazi1010 = token('Eldrazi 10/10', 'Eldrazi', ['Creature'], ['Eldrazi'], [], 10, 10);
+/** Pegasus 1/1 branco com voar (Storm Herd); o 'Pegasus' acima é o 2/2 */
+export const Pegasus11 = token('Pegasus 1/1', 'Pegasus', ['Creature'], ['Pegasus'], ['W'], 1, 1, keywords('flying'));
+/** Horse 5/5 branco (Crested Sunmare) */
+export const Horse55 = token('Horse', 'Horse', ['Creature'], ['Horse'], ['W'], 5, 5);
+/** Elemental verde e branco com "a força e a resistência desta ficha são iguais ao número de criaturas que você controla" (Voice of Resurgence) */
+export const ElementalGW = token('Elemental verde e branco', 'Elemental', ['Creature'], ['Elemental'], ['G', 'W'], null, null, [
+  // habilidade que define característica (CR 604.3): vale em todas as zonas
+  selfGets((c) => { const n = creaturesOf(c.g, c.you).length; return [{ k: 'setPT', p: n, t: n }]; }, 'A força e a resistência desta ficha são iguais ao número de criaturas que você controla.', { cda: true }),
+], 'number of creatures you control');
+/** Minion X/X preto (Phyrexian Processor); a ficha impressa tem só o subtipo Minion */
+export const MinionXX = tokenXX('Minion X/X', 'Minion', ['Creature'], ['Minion'], ['B']);
+/** Vampire 1/1 branco com vínculo com a vida (Elenda's Hierophant, Ghalta and Mavren); a 'Vampire 1/1' acima é branca e preta */
+export const VampireBranca = token('Vampire 1/1 branca', 'Vampire', ['Creature'], ['Vampire'], ['W'], 1, 1, keywords('lifelink'));
+/** Dinosaur X/X verde com atropelar (Ghalta and Mavren) */
+export const DinosaurXX = tokenXX('Dinosaur X/X', 'Dinosaur', ['Creature'], ['Dinosaur'], ['G'], keywords('trample'));
+/** Junk: "{T}, sacrifique: exile a carta do topo do seu grimório; você pode jogá-la neste turno; ative somente como feitiço" (Break Down) */
+export const Junk = defineToken({
+  id: 'Junk', name: 'Junk', types: ['Artifact'], subtypes: ['Junk'], colors: [], power: null, toughness: null,
+  abilities: [activated('{T}, Sacrifice this token', function* (c) {
+    const topo = c.g.state.zones.library[c.you][0];
+    if (topo === undefined) return;
+    const [ex] = yield* exile(c.g, [topo]);
+    if (ex !== null && ex !== undefined && c.g.state.objects[ex]?.zone === 'exile') allowPlay(c.g, c.you, c.source, [ex], { kind: 'endOfTurn' });
+  }, { timing: 'sorcery', text: '{T}, Sacrifique esta ficha: Exile a carta do topo do seu grimório. Você pode jogar essa carta neste turno. Ative somente como feitiço.' })],
+  image: fichasOracle.find((f) => f.faces[0].name === 'Junk')?.oracleId,
+});

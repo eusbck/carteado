@@ -429,6 +429,9 @@ export function gainLife(g: G, player: PlayerId, amount: number, source: ObjId |
   for (const h of hooks(g, 'cantGainLife')) if (h.fn(h.ctx, player)) return 0; // CR 119.7
   let n = amount;
   for (const h of hooks(g, 'lifeGainBonus')) n += h.fn(h.ctx, player);
+  // "você ganha o dobro em vez disso" (Boon Reflection): depois dos bônus fixos, que é a ordem que rende mais a quem
+  // ganha (CR 616.1: quem é afetado escolhe a ordem das substituições)
+  for (const h of hooks(g, 'lifeGainDouble')) if (h.fn(h.ctx, player)) n *= 2;
   p.life += n;
   g.bump();
   emit(g, [{ type: 'lifeGain', player, amount: n, source }]);

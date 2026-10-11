@@ -107,6 +107,8 @@ export type CostPart =
   | { k: 'mill'; n: number }
   | { k: 'tapCreatures'; n: number; filter?: (c: SCtx, o: ObjId) => boolean; label?: string; includeSelf?: boolean }
   | { k: 'tapPermanents'; n: number; filter: (c: SCtx, o: ObjId) => boolean; label: string }
+  /** "Desvire N criaturas viradas que você controla" (Halo Fountain) */
+  | { k: 'untapCreatures'; n: number }
   | { k: 'crew'; power: number }
   | { k: 'returnPermanent'; filter: (c: SCtx, o: ObjId) => boolean; label: string }
   | { k: 'loyalty'; n: number | 'X' }
@@ -223,6 +225,8 @@ export interface RuleHooks {
   cantCastSpell?: (c: SCtx, player: PlayerId, spell: ObjId, manaValue: number) => boolean;
   loseHexproof?: (c: SCtx, obj: ObjId) => boolean;
   lifeGainBonus?: (c: SCtx, player: PlayerId) => number;
+  /** "se você fosse ganhar vida, em vez disso ganha o dobro" (Boon Reflection); aplicado depois de lifeGainBonus */
+  lifeGainDouble?: (c: SCtx, player: PlayerId) => boolean;
   extraTriggers?: (c: SCtx, trigger: { abilityId: string; source: ObjId; controller: PlayerId; event: Record<string, unknown>; cause: GameEvent | null }) => number;
   mayPlayFrom?: (c: SCtx, player: PlayerId, card: ObjId) => CastPermission | null;
   canBeBlockedBy?: (c: SCtx, attacker: ObjId, blocker: ObjId) => boolean;

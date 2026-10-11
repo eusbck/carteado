@@ -70,6 +70,8 @@ export interface CopyExcept {
   toughness?: number;
   colors?: Color[];
   legendary?: false;
+  /** "não tem custo de mana" (eternizar, embalsamar; CR 702.129a): sem custo e com valor de mana 0 */
+  noManaCost?: boolean;
 }
 
 export interface StackInfo {
@@ -251,6 +253,8 @@ export interface TurnState {
   mainPhaseCount: number;
   combatCount: number;
   landsPlayed: number;
+  /** terrenos a mais que o jogador ativo pode jogar neste turno (Explore; CR 305.2) */
+  extraLands?: number;
   /** etapas ou fases que o jogador ativo pula neste turno, todas as ocorrências (Fatespinner; CR 500.11, 614.10) */
   skip?: ('draw' | 'main' | 'combat')[];
   /** um efeito encerrou o turno (CR 724.1): a etapa atual acaba sem prioridade e o jogo vai direto para a limpeza */
@@ -331,6 +335,8 @@ export interface TurnStats {
   creatureCardsLeftGraveyard?: number;
   /** terrenos que entraram sob o controle deste jogador neste turno (Smuggler's Share); falta nas partidas salvas antes */
   landsEntered?: number;
+  /** fichas que este jogador criou neste turno (Idol of Oblivion); falta nas partidas salvas antes */
+  tokensCreated?: number;
 }
 
 export interface LogEntry {

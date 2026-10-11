@@ -562,7 +562,7 @@ export function* mayPlayFree(g: G, p: PlayerId, card: ObjId, prompt: string): Ge
   const o = g.state.objects[card];
   if (!o) return false;
   if (isLand(g, card)) {
-    if (g.state.turn.active !== p || g.state.turn.landsPlayed >= 1) return false;
+    if (g.state.turn.active !== p || g.state.turn.landsPlayed >= 1 + (g.state.turn.extraLands ?? 0)) return false;
     if (!(yield* yesNo(g, p, prompt))) return false;
     g.state.turn.landsPlayed++;
     g.log(`${g.state.players[p].name} joga ${nameOf(g, card)}.`, { rule: '305.1' });
@@ -683,4 +683,47 @@ export function encore(custo: string): ActivatedDef {
     zones: ['graveyard'], timing: 'sorcery', kw: 'encore', param: custo,
     text: `Bis ${custo} (${custo}, exile esta carta do seu cemitério: para cada oponente, crie uma ficha cópia que ataca esse oponente neste turno se puder; elas ganham ímpeto; sacrifique-as no início da próxima etapa final; ative somente como feitiço)`,
   });
+}
+
+// ---------------------------------------------------------------------------
+// Popular (CR 701.36), eternizar (CR 702.129) e terrenos adicionais (CR 305.2)
+// ---------------------------------------------------------------------------
+/**
+ * CR 701.36a: popular — escolha uma ficha de criatura que você controla e crie uma ficha que é uma cópia dela. Sem
+ * ficha de criatura, nada acontece. Devolve a ficha criada, ou null.
+ */
+export function* populate(g: G, p: PlayerId): Gen<ObjId | null> {
+  const s = g.state;
+  const fichas = creaturesOf(g, p).filter((id) => s.objects[id].isToken);
+  if (!fichas.length) { g.log(`${s.players[p].name} popula, mas não controla fichas de criatura.`, { rule: '701.36a' }); return null; }
+  let modelo = fichas[0];
+  if (fichas.length > 1) {
+    const [esc] = yield* chooseItems(g, p, 'Popular: escolha a ficha de criatura que será copiada', fichas.map((id) => objItem(g, id, nameOf(g, id))), 1, 1);
+    modelo = Number(esc);
+  }
+  const [nova] = yield* createTokens(g, p, { copyOf: copiableValues(g, modelo) }, 1);
+  g.log(`${s.players[p].name} popula: cria uma cópia de ${nameOf(g, modelo)}.`, { rule: '701.36a' });
+  return nova ?? null;
+}
+
+/**
+ * CR 702.129a: Eternizar [custo] — "[custo], exile esta carta do seu cemitério: crie uma ficha que é uma cópia dela,
+ * exceto que é um Zombie 4/4 preto, além dos outros tipos, e não tem custo de mana. Ative somente como feitiço."
+ */
+export function eternalize(custo: string): ActivatedDef {
+  return activated([{ k: 'mana', cost: custo }, { k: 'exileSelf' }], function* (c) {
+    const def = (c.g.state.objects[c.source] ?? c.g.state.lki[c.source]?.obj)?.def;
+    if (!def) return;
+    yield* createTokens(c.g, c.you, { copyOf: { def, face: 0, except: { power: 4, toughness: 4, colors: ['B'], addSubtypes: ['Zombie'], noManaCost: true } } }, 1);
+  }, {
+    zones: ['graveyard'], timing: 'sorcery', kw: 'eternalize', param: custo,
+    text: `Eternizar ${custo} (${custo}, exile esta carta do seu cemitério: crie uma ficha que é uma cópia dela, exceto que é um Zombie 4/4 preto, além dos outros tipos, e não tem custo de mana; ative somente como feitiço)`,
+  });
+}
+
+/** "Você pode jogar um terreno adicional neste turno" (Explore): só vale no turno de quem recebe a permissão */
+export function extraLandThisTurn(g: G, p: PlayerId, n = 1): void {
+  if (g.state.turn.active !== p) return;
+  g.state.turn.extraLands = (g.state.turn.extraLands ?? 0) + n;
+  g.bump();
 }

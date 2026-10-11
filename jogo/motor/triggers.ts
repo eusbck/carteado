@@ -43,6 +43,7 @@ function updateStats(g: G, events: GameEvent[]): void {
       case 'lifeGain': st[e.player].lifeGained += e.amount; break;
       case 'lifeLoss': st[e.player].lifeLost += e.amount; break;
       case 'draw': st[e.player].cardsDrawn++; break;
+      case 'token': st[e.player].tokensCreated = (st[e.player].tokensCreated ?? 0) + 1; break;
       case 'zone':
         // celebração: conta o que entrou, mesmo que já tenha saído ou mudado de controlador depois
         if (e.to === 'battlefield' && !safeChars(g, e.obj)?.types.includes('Land')) st[e.controller].nonlandPermanentsEntered = (st[e.controller].nonlandPermanentsEntered ?? 0) + 1;

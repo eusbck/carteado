@@ -202,7 +202,7 @@ function facesJogaveis(g: G, id: ObjId): number[] {
 
 function landPlayOptions(g: G, p: PlayerId): { obj: ObjId; key: string; face: number }[] {
   const s = g.state;
-  if (!sorceryTiming(g, p) || s.turn.landsPlayed >= 1) return []; // CR 305.2
+  if (!sorceryTiming(g, p) || s.turn.landsPlayed >= 1 + (s.turn.extraLands ?? 0)) return []; // CR 305.2
   const out: { obj: ObjId; key: string; face: number }[] = [];
   for (const id of s.zones.hand[p]) for (const face of facesJogaveis(g, id)) out.push({ obj: id, key: chaveComFace('hand', face), face });
   for (const zone of ['graveyard', 'exile'] as const) {

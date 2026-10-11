@@ -86,6 +86,7 @@ export function canPayParts(g: G, player: PlayerId, parts: CostPart[], source: O
       case 'mill': if (s.zones.library[player].length < p.n) return false; break; // CR 701.17b
       case 'tapCreatures': if (s.zones.battlefield.filter((id) => (p.includeSelf || id !== source) && controllerOf(g, id) === player && isCreature(g, id) && !s.objects[id].tapped && (!p.filter || p.filter(ctx, id))).length < p.n) return false; break;
       case 'tapPermanents': if (costPermanents(g, player, (id) => !s.objects[id].tapped && p.filter(ctx, id)).length < p.n) return false; break;
+      case 'untapCreatures': if (costPermanents(g, player, (id) => s.objects[id].tapped && isCreature(g, id)).length < p.n) return false; break;
       case 'crew': if (crewCandidates(g, player, source).reduce((n, id) => n + Math.max(0, power(g, id)), 0) < p.power) return false; break;
       case 'returnPermanent': if (!costPermanents(g, player, (id) => p.filter(ctx, id)).length) return false; break;
       case 'loyalty': {
@@ -651,6 +652,13 @@ export function* payParts(g: G, player: PlayerId, parts: CostPart[], source: Obj
         const cands = s.zones.battlefield.filter((id) => (p.includeSelf || id !== source) && controllerOf(g, id) === player && isCreature(g, id) && !s.objects[id].tapped && (!p.filter || p.filter(ctx, id)));
         const ids = yield* chooseItems(g, player, `Vire ${p.n} ${p.label ?? 'criatura(s) desvirada(s)'} que você controla`, cands.map((id) => objItem(g, id, nameOf(g, id))), p.n, p.n);
         for (const id of ids) tap(g, Number(id));
+        break;
+      }
+      case 'untapCreatures': {
+        const cands = costPermanents(g, player, (id) => s.objects[id].tapped && isCreature(g, id));
+        if (cands.length < p.n) return false;
+        const ids = yield* chooseItems(g, player, `Desvire ${p.n} criatura(s) virada(s) que você controla`, cands.map((id) => objItem(g, id, nameOf(g, id))), p.n, p.n);
+        for (const id of ids) untap(g, Number(id));
         break;
       }
       case 'tapPermanents': {

@@ -143,6 +143,8 @@ function* turnBasedActions(g: G): Gen<void> {
         const ctrl = controllerOf(g, id);
         let doIt = ctrl === active;
         if (!doIt) doIt = hooks(g, 'untapDuringUntapOf').some((h) => h.fn(h.ctx, id, active));
+        // "não desvira durante a próxima etapa de desvirar do controlador" (Vorinclex, Voice of Hunger): vale uma vez
+        if (doIt && ctrl === active && o.data.skipNextUntap) { delete o.data.skipNextUntap; g.bump(); continue; }
         if (doIt && !hooks(g, 'cantUntapDuringUntapOf').some((h) => h.fn(h.ctx, id, active))) untap(g, id);
       }
       emit(g, [{ type: 'step', step: 'untap', active }]);
