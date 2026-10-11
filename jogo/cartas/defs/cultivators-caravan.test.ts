@@ -9,6 +9,8 @@ describe(N, () => {
 
     const tg = setup({ battlefield: [[N, { name: 'Indomitable Ancients', ready: false }, { name: 'Elvish Mystic', ready: false }, { name: 'Silver Myr', ready: false }], []] }); expect(isCreature(tg.g, tg.bf(N))).toBe(false);
     tg.choose('Tripular:', ['Indomitable Ancients']).choose('Tripular:', ['Elvish Mystic']).choose('Tripular:', ['Silver Myr']).choose('Tripular:', ['done']).activate(N, 'Tripular').resolveAll(); expect(isCreature(tg.g, tg.bf(N))).toBe(true);
+    // ruling 2 (CR 301.7, 613.1): a força e a resistência impressas (5/5) valem enquanto é criatura
+    expect(tg.pt(tg.bf(N))).toEqual([5, 5]);
     expect(tg.state.objects[tg.bf('Silver Myr')].tapped).toBe(true); tg.passTo('upkeep', 1); expect(isCreature(tg.g, tg.bf(N))).toBe(false);
   });
 

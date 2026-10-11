@@ -87,6 +87,37 @@ describe('arte do comandante para o fundo da área', () => {
     }
   });
 
+  // vale para todos os decks jogáveis, inclusive os que entrarem depois: o fundo próprio é opcional
+  it('cada deck jogável: o fundo próprio, quando existe, é da imagem do comandante e está em alta; sem ele, a arte oficial guardada serve de fundo', async () => {
+    const fundos = join(import.meta.dirname, '..', 'gerado', 'fundos');
+    const artes = join(import.meta.dirname, '..', 'gerado', 'artes');
+    const fontes = JSON.parse(readFileSync(join(fundos, 'fontes.json'), 'utf8')) as Record<string, { imagem: string }>;
+    const imagens = imagensJson as unknown as Record<string, { en: { id: string } | null; pt: { id: string; reserva?: boolean } | null }>;
+    const decks = decksJson as { id: string; comandante: string }[];
+    expect(decks.length).toBeGreaterThanOrEqual(decksOriginais.length);
+    for (const d of decksOriginais) expect(decks.some((x) => x.id === d.id && x.comandante === d.comandante), d.comandante).toBe(true);
+    const { cartas, cache } = await preparar();
+    const img = new Imagens(cartas, cache, artes, [], fundos);
+    for (const d of decks) {
+      const i = imagens[d.comandante];
+      const usada = (i?.pt && !i.pt.reserva ? i.pt : i?.en)?.id;
+      expect(usada, d.comandante).toBeDefined();
+      const proprio = join(fundos, `${usada}.webp`);
+      const fundo = await img.arte(usada!, 'fundo');
+      if (fontes[d.comandante]) {
+        expect(fontes[d.comandante].imagem, d.comandante).toBe(usada);
+        expect(existsSync(proprio), d.comandante).toBe(true);
+        expect((await sharp(proprio).metadata()).width, d.comandante).toBeGreaterThanOrEqual(1600);
+        expect(fundo, d.comandante).toBe(proprio);
+      } else {
+        // sem fundo feito para o deck não pode sobrar arquivo solto, e o fundo sai da arte oficial em alta
+        expect(existsSync(proprio), d.comandante).toBe(false);
+        expect(fundo, d.comandante).toMatch(/-fundo-alta\.webp$/);
+        expect((await sharp(fundo!).metadata()).width, d.comandante).toBe(2560);
+      }
+    }
+  });
+
   it('id inválido ou sem imagem nenhuma: nada', async () => {
     const { img } = await preparar();
     expect(await img.arte('../../segredo', 'fundo')).toBeNull();
