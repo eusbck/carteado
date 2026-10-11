@@ -27,6 +27,13 @@ function updateStats(g: G, events: GameEvent[]): void {
   for (const e of events) {
     switch (e.type) {
       case 'damage': {
+        // lote2-d: dano sofrido por jogador no turno (sede de sangue, CR 702.54a) e quem recebeu dano de cada fonte
+        if (e.target.kind === 'player') st[e.target.id].damageTaken = (st[e.target.id].damageTaken ?? 0) + e.amount;
+        else {
+          if (g.state.damagedBy?.turn !== g.state.turn.number) g.state.damagedBy = { turn: g.state.turn.number, pairs: {} };
+          const alvos = g.state.damagedBy.pairs[String(e.source)] ??= [];
+          if (!alvos.includes(e.target.id)) alvos.push(e.target.id);
+        }
         if (!e.combat || e.target.kind !== 'player') break;
         if (g.state.combatDamageBySource?.turn !== g.state.turn.number) g.state.combatDamageBySource = { turn: g.state.turn.number, players: {} };
         const players = g.state.combatDamageBySource.players[String(e.source)] ??= [];
@@ -37,6 +44,8 @@ function updateStats(g: G, events: GameEvent[]): void {
       case 'lifeLoss': st[e.player].lifeLost += e.amount; break;
       case 'draw': st[e.player].cardsDrawn++; break;
       case 'zone':
+        // celebração: conta o que entrou, mesmo que já tenha saído ou mudado de controlador depois
+        if (e.to === 'battlefield' && !safeChars(g, e.obj)?.types.includes('Land')) st[e.controller].nonlandPermanentsEntered = (st[e.controller].nonlandPermanentsEntered ?? 0) + 1;
         if (e.from === 'graveyard' && !e.token) st[e.owner].cardsLeftGraveyard++;
         if (e.to === 'graveyard' && e.from !== 'battlefield' && e.card !== null) st[e.owner].toGraveyardNotFromBattlefield.push(e.card);
         if (e.from === 'battlefield' && e.to === 'graveyard') {
@@ -95,9 +104,11 @@ export function emit(g: G, events: GameEvent[]): void {
     }
   }
   // CR 603.10a: objetos que saíram do campo neste lote "olham para trás"
-  const leaving = events.filter((e) => (e.type === 'zone' && e.from === 'battlefield') || e.type === 'sacrifice' || e.type === 'phaseOut');
+  // (o Equipamento que sai do campo também deixa de estar preso: 'unattach' no mesmo lote, Grafted Exoskeleton)
+  const leaving = events.filter((e) => (e.type === 'zone' && e.from === 'battlefield') || e.type === 'sacrifice' || e.type === 'phaseOut' || e.type === 'unattach');
   const seen = new Set<ObjId>();
   for (const e of leaving) {
+    if (e.type === 'unattach') continue;
     const old = e.type === 'zone' || e.type === 'sacrifice' ? e.old : (e as { obj: ObjId }).obj;
     if (seen.has(old)) continue;
     seen.add(old);
@@ -112,6 +123,9 @@ export function emit(g: G, events: GameEvent[]): void {
       if (!def || def.kind !== 'triggered') continue;
       const zones = def.zones ?? ['battlefield'];
       if (!zones.includes(src.zone)) continue;
+      // CR 603.8, 113.6: um gatilho de estado só existe enquanto o objeto está na zona onde a habilidade funciona; o
+      // objeto que acabou de sair do campo não "olha para trás" para ele (CR 603.10a só vale para gatilhos de evento)
+      if (src.departed && def.on.kind === 'state') continue;
       const evs = src.departed ? leaving : events;
       if (evs.length === 0) continue;
       checkAbility(g, def, src, evs);

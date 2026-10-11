@@ -1335,3 +1335,45 @@ Observações abertas:
   andando: ela gera o cliente sozinha (o código da interface é mais novo que `cliente/dist`). Não gerei o cliente ali
   durante a sessão para não misturar cliente novo com servidor velho no meio das importações; os testes usaram uma
   pasta à parte (`ESTATICOS`).
+
+## Lote 2: os outros 15 decks importados (em andamento) — 10/10/2026
+
+Pedido do Caio: listar as cartas dos 16 decks importados, achar as iguais ou parecidas para não repetir trabalho e
+implementar os decks. O 16º, Keen Engineering, foi feito pelo Codex na branch `decks/regras`, revisada pela sessão
+`magic-commander-a5`. Decisões do Caio: partir da branch do Codex (esta branch, `decks/lote2`, no worktree
+`../Magic-Commander-lote2`), 6 a 7 agentes por rodada em worktrees irmãos (`../lote2-wt-a` a `g`), e um deck por vez,
+dos menores para os maiores. O merge no main (a mesa do grupo, na 8080) espera a aprovação do merge do `decks/regras`.
+Plano: `~/.claude/plans/adicionei-v-rios-outros-decks-mighty-rabbit.md`.
+
+Levantamento (`node ferramentas/decks.ts pendentes --json`, no main e nesta branch):
+- Sem o Keen, faltam **873 cartas distintas** nos 15 decks (931 contando as repetidas).
+- 44 cartas aparecem em 2 ou mais decks (58 implementações a menos).
+- 18 grupos com 57 cartas têm o mesmo molde de texto (cor, número ou nome mudam), e 38 cartas têm o texto de uma já
+  feita.
+- 14 cartas usam formatos que o motor não tinha: modal de duas faces ×6, split ×3 (fusão, Sala, aftermath),
+  reversível ×4 (inclusive o comandante Rin and Seri) e aventura ×1.
+- Lista completa, por deck: https://claude.ai/artifact/55zYiG4kFa6Ssin8b2S58K
+
+Conferência do Moxfield antes de começar (`decks.ts conferir`, os 15 decks): todos com 100 cartas, a mesma lista da
+mesa, dados em `gerado/` e imagem no disco de cada carta. Nenhum problema. (O Moxfield tem cartas de reserva em dois
+decks e um "talvez" em outro, que o jogo não usa.)
+
+Rodada 1 (7 agentes):
+- **a:** correções dos 7 bugs que a `magic-commander-a5` achou no motor do Codex, mais 20 cartas do Reign of Dragons.
+  Os bugs:
+  - cache da CDA durante as camadas (Duplicant 1/1);
+  - improvisar antes dos terrenos;
+  - janela de mana fechando ao improvisar;
+  - gatilho de estado em quem saiu do campo;
+  - custos repetidos sem reservar recursos;
+  - testes de arte presos aos 9 decks antigos;
+  - rulings "teste:" sem asserção.
+- **b:** formatos de carta (modal de duas faces, split com fusão e aftermath, Sala, aventura e reversível) e as 14
+  cartas que os usam.
+- **c:** jeitos de conjurar e custos: morph, ninjutsu, sneak, madness, mayhem, rebound, retrace, buyback, cascade,
+  overload, escalate, casualty, spectacle, multikicker, squad e behold.
+- **d:** clone e virar cópia, combate extra, connive, amass, "the Ring tempts you", regenerar, infectar dando veneno,
+  persist, melee, dethrone, mobilize, bloodthirst, monstrosity, evolve, clash, read ahead, changeling, imprint,
+  hideaway, reconfigure, ciclagem de tipo e as fichas Food, Clue e Blood.
+- **e** e **f:** os terrenos (109) que não dependem de motor novo.
+- **g:** as cartas repetidas entre decks e as de molde (27), mais 20 do Reign of Dragons.

@@ -198,11 +198,14 @@ function layer1(g: G, o: GameObject): Chars {
 function applyMod(c: Chars, m: Mod): void {
   switch (m.k) {
     case 'control': c.controller = m.player; break;
-    case 'addTypes':
+    case 'addTypes': {
       for (const t of m.types ?? []) if (!c.types.includes(t)) c.types.push(t);
-      for (const t of m.subtypes ?? []) if (!c.subtypes.includes(t)) c.subtypes.push(t);
+      // polimorfo acrescenta centenas de tipos de criatura (CR 702.73a): conjunto para não ficar quadrático
+      const tem = new Set(c.subtypes);
+      for (const t of m.subtypes ?? []) if (!tem.has(t)) { c.subtypes.push(t); tem.add(t); }
       for (const t of m.supertypes ?? []) if (!c.supertypes.includes(t)) c.supertypes.push(t);
       break;
+    }
     case 'setTypes':
       c.types = [...m.types];
       c.subtypes = [...m.subtypes];
@@ -327,6 +330,10 @@ function computeAll(g: G): void {
         if (!c) continue;
         for (const m of en.mods(id)) applyMod(c, m);
       }
+      if (L === '2') {
+        // CR 613.1b: depois dos efeitos de controle, "você" de uma estática do campo é quem controla a fonte agora
+        for (const r of runs) if (r.st.zone === 'battlefield' && !r.started) r.st.controller = work.get(r.st.source)?.controller ?? r.st.controller;
+      }
       if (L === '7c') {
         for (const id of bf) {
           const c = work.get(id)!;
@@ -376,12 +383,18 @@ export function chars(g: G, id: ObjId): Chars {
     const c = g.computing.get(id);
     if (c) return c;
     const o = g.state.objects[id];
+    // Objeto fora do campo consultado durante a passada das camadas (CDA de carta exilada lida pelo Duplicant):
+    // calculado na hora e NÃO gravado em g.computing, que vira o cache desta versão. A CDA lê o campo como
+    // ele está neste momento da passada (CR 613.1: as camadas ainda não terminaram); gravar o valor faria
+    // a consulta seguinte (ou a leitura depois da passada) usar um valor sem as trocas de controle e tipo.
     if (o) {
-      const c = layer1(g, o);
-      // Uma CDA de carta exilada pode ser consultada durante outra CDA/estática (Duplicant).
-      // Guarde os valores base antes da avaliação para evitar recursão ao contar a própria carta.
-      g.computing.set(id, c);
-      applyCdas(g, o, c);
+      // sem CDA, o valor não depende do campo e pode ficar num cache só desta passada (fora de g.computing)
+      let fixos = foraDoCampoNaPassada.get(g.computing);
+      if (!fixos) { fixos = new Map(); foraDoCampoNaPassada.set(g.computing, fixos); }
+      const fixo = fixos.get(id);
+      if (fixo) return fixo;
+      const c = offFieldChars(g, o);
+      if (!temCda(c)) fixos.set(id, c);
       return c;
     }
     const l = g.state.lki[id];
@@ -398,15 +411,32 @@ export function chars(g: G, id: ObjId): Chars {
     if (l) return l.chars;
     throw new Error(`Objeto inexistente: ${id}`);
   }
-  c = layer1(g, o);
-  // guardado antes das habilidades que definem características: uma que conta a própria carta (Soulless One no
-  // cemitério) lê os tipos impressos, sem recursão
+  // fora da passada, o campo já está com todas as camadas aplicadas: o valor pode ficar no cache da versão
+  c = offFieldChars(g, o);
   d.chars.set(id, c);
-  // habilidades que definem características funcionam em todas as zonas (CR 604.3)
-  applyCdas(g, o, c);
-  // efeitos resolvidos que afetam diretamente objetos fora do campo (ex.: mágica na pilha que ganha wither)
+  return c;
+}
+
+/** objetos fora do campo sem CDA já calculados na passada atual (a chave é o mapa de trabalho da passada) */
+const foraDoCampoNaPassada = new WeakMap<Map<ObjId, Chars>, Map<ObjId, Chars>>();
+
+function temCda(c: Chars): boolean {
+  return c.abilities.some((a) => { const def = registry.abilities.get(a.id); return def?.kind === 'static' && !!def.cda; });
+}
+
+/** objetos cujas CDAs estão sendo avaliadas agora (guarda de recursão local, por objeto do estado) */
+const emAvaliacao = new Set<GameObject>();
+
+/** características de um objeto fora do campo: valores copiáveis, CDAs (CR 604.3: funcionam em todas as zonas) e
+ *  efeitos resolvidos que o afetam diretamente (ex.: mágica na pilha que ganha wither) */
+function offFieldChars(g: G, o: GameObject): Chars {
+  const c = layer1(g, o);
+  // uma CDA que conta a própria carta (Soulless One no cemitério) lê os valores impressos, sem recursão
+  if (emAvaliacao.has(o)) return c;
+  emAvaliacao.add(o);
+  try { applyCdas(g, o, c); } finally { emAvaliacao.delete(o); }
   for (const L of LAYERS) for (const e of g.state.effects) {
-    if (!e.affected?.includes(id)) continue;
+    if (!e.affected?.includes(o.id)) continue;
     for (const m of e.mods) if (modLayer(m) === L) applyMod(c, m);
   }
   return c;

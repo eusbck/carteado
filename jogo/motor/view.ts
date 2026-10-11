@@ -1,6 +1,7 @@
 // Vista de um jogador: só o que ele pode ver (CR 400.2, 401.2, 402.3, 406.3, 708).
 // O servidor nunca envia o estado inteiro; envia isto.
 
+import { regenerationShields } from './actions.ts';
 import { chars, controllerOf, hasKw, hooks } from './chars.ts';
 import { combatDamageAmount, damageByToughnessSource } from './combat.ts';
 import { summoningSick } from './costs.ts';
@@ -50,6 +51,13 @@ export interface ObjView {
   /** virada para mana e essa mana já pagou alguma coisa: o desvirar à mão é recusado (motor/manual.ts manaDesfazivel);
    *  ausente no caso normal */
   manaGasta?: boolean;
+  // lote2-d: designações e escudos (ausentes no caso normal)
+  /** monstruosa (CR 701.37b) */
+  monstrous?: boolean;
+  /** Portador do Anel do controlador (CR 701.54b) */
+  ringBearer?: boolean;
+  /** escudos de regeneração que valem neste turno (CR 701.19a) */
+  regen?: number;
 }
 
 export interface StackView {
@@ -84,6 +92,10 @@ export interface PlayerView {
   won: boolean;
   monarch: boolean;
   mulligans: number;
+  /** o Anel (CR 701.54): quantas vezes tentou o jogador e o Portador do Anel dele; ausente se nunca tentou */
+  ring?: { tempted: number; bearer: ObjId | null };
+  /** a carta do topo do grimório, só para o próprio jogador quando pode olhá-la a qualquer momento (Vesuvan Drifter) */
+  topCard?: ObjView;
 }
 
 export interface GameView {
@@ -174,7 +186,33 @@ export function objView(g: G, id: ObjId, viewer: PlayerId | null): ObjView {
     ...(registry.emblems.has(o.def) ? { emblem: true } : {}),
     ...(byToughness ? { damageByToughness: byToughness } : {}),
     ...(o.manaTap && g.state.config.desvirarSoComMana && !manaDesfazivel(g.state, id) ? { manaGasta: true } : {}),
+    ...(o.zone === 'battlefield' && o.data.monstrous ? { monstrous: true } : {}),
+    ...(o.zone === 'battlefield' && o.data.ringBearer !== undefined && o.data.ringBearer === controllerOf(g, id) ? { ringBearer: true } : {}),
+    ...(o.zone === 'battlefield' ? regenView(g, id) : {}),
   };
+}
+
+function regenView(g: G, id: ObjId): { regen?: number } {
+  const n = regenerationShields(g, id).length;
+  return n > 0 ? { regen: n } : {};
+}
+
+/** o Anel do jogador (emblema The Ring na zona de comando, CR 701.54c) */
+function ringView(g: G, p: PlayerId): PlayerView['ring'] {
+  const emblema = g.state.zones.command.map((id) => g.state.objects[id]).find((o) => o?.def === 'The Ring' && o.owner === p);
+  if (!emblema) return undefined;
+  const bearer = g.state.zones.battlefield.find((id) => g.state.objects[id].data.ringBearer === p && controllerOf(g, id) === p) ?? null;
+  return { tempted: (emblema.data.tempted as number | undefined) ?? 0, bearer };
+}
+
+/** o topo do grimório para quem pode olhá-lo a qualquer momento (o próprio jogador) */
+function topCardView(g: G, p: PlayerId, viewer: PlayerId | null): ObjView | undefined {
+  if (viewer !== p) return undefined;
+  const top = g.state.zones.library[p][0];
+  if (top === undefined || !hooks(g, 'lookAtTopOfLibrary').some((h) => h.fn(h.ctx, p))) return undefined;
+  const v = objView(g, top, null);
+  const o = g.state.objects[top];
+  return { ...v, def: o.def, name: chars(g, top).name };
 }
 
 function stackView(g: G, id: ObjId, viewer: PlayerId | null): StackView {
@@ -206,6 +244,8 @@ export function buildView(g: G, viewer: PlayerId | null, pending: Decision | nul
     commanderDamage: Object.entries(p.commanderDamage).map(([cid, amount]) => ({ from: s.cards[Number(cid)]?.def ?? '?', amount })),
     commanderTax: Object.values(p.commanderCasts).reduce((a, b) => a + b, 0) * 2,
     left: p.left, lost: p.lost, won: p.won, monarch: s.monarch === p.id, mulligans: p.mulligans,
+    ...(ringView(g, p.id) ? { ring: ringView(g, p.id) } : {}),
+    ...(topCardView(g, p.id, viewer) ? { topCard: topCardView(g, p.id, viewer) } : {}),
   }));
   const log = s.log.slice(-200).filter((e) => e.visibleTo === null || (viewer !== null && e.visibleTo.includes(viewer)) || e.hiddenText)
     .map((e) => ({ turn: e.turn, ...(e.round !== undefined ? { round: e.round } : {}), text: e.visibleTo === null || (viewer !== null && e.visibleTo.includes(viewer)) ? e.text : e.hiddenText!, rule: e.rule }));

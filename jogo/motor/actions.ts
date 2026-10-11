@@ -2,7 +2,7 @@
 // substituição e prevenção, registram eventos e disparam gatilhos.
 
 import { chooseItems, objItem, yesNo, ask } from './ask.ts';
-import { abilityDefs, chars, colorsOf, controllerOf, hasKw, hooks, isCreature, isType, kwParams, nameOf, printedChars, toughness } from './chars.ts';
+import { abilityDefs, chars, colorsOf, controllerOf, copyValuesChars, hasKw, hooks, isCreature, isType, kwParams, nameOf, printedChars, toughness } from './chars.ts';
 import { registry, type EnterEvent, type Gen, type ReplacementDef, type SCtx, type TargetSpec } from './defs.ts';
 import type { GameEvent } from './events.ts';
 import type { G } from './game-context.ts';
@@ -11,7 +11,7 @@ import { addEffect, createObject, destroyObject, moveRaw, newTimestamp, objOrLki
 import { addPending, emit } from './triggers.ts';
 import { oracleLayout } from './oracle.ts';
 import { playerProtections, toxicValue } from './veneno-emblema.ts';
-import type { Answer, CardId, Color, CopyValues, Duration, GameObject, ManaType, ManaUnit, ObjId, PlayerId, TargetRef, ZoneName } from './types.ts';
+import type { Answer, CardId, Color, ContinuousEffect, CopyValues, Duration, GameObject, ManaType, ManaUnit, ObjId, PlayerId, TargetRef, ZoneName } from './types.ts';
 
 // ---------------------------------------------------------------------------
 // Mudança de zona
@@ -89,6 +89,8 @@ export function* moveObjects(g: G, reqs: MoveReq[], cause: string, by?: PlayerId
     if ((o.isToken && o.zone !== 'battlefield') || (o.isCopy && o.zone !== 'stack')) { out.push(null); continue; }
     const from = o.zone;
     const controller = controllerOf(g, o.id);
+    // Equipamento ou Aura que sai do campo deixa de estar preso (ruling 7 de Grafted Exoskeleton)
+    if (from === 'battlefield' && o.attachedTo !== null && dest !== 'battlefield') events.push({ type: 'unattach', obj: o.id, from: o.attachedTo });
     const pos = dest === 'library' && req.to !== 'library' ? 'bottom' : req.position;
     const newId = moveRaw(g, o.id, dest, { position: pos, faceDown: req.faceDown, visibleTo: req.visibleTo });
     out.push(newId);
@@ -145,10 +147,10 @@ export interface EnterReq {
 }
 
 function wouldBeChars(g: G, r: EnterReq) {
-  if (r.token?.copyOf) return printedChars(r.token.copyOf.def, r.token.copyOf.face, r.controller);
+  if (r.token?.copyOf) return copyValuesChars(r.token.copyOf, r.controller);
   if (r.token?.def) return printedChars(r.token.def, 0, r.controller);
   const o = g.obj(r.id!);
-  if (r.copyOf) return printedChars(r.copyOf.def, r.copyOf.face, o.owner);
+  if (r.copyOf) return copyValuesChars(r.copyOf, o.owner);
   if (r.faceDown) return { ...printedChars(o.def, 0, o.owner), types: ['Creature'], abilities: [] };
   return printedChars(o.copyOf?.def ?? o.def, r.face ?? o.copyOf?.face ?? (o.zone === 'stack' ? o.face : 0), o.owner);
 }
@@ -188,6 +190,11 @@ export function protectionMatches(g: G, quality: unknown, src: { colors: Color[]
   if (typeof quality !== 'string') return false;
   if (quality.startsWith('color:')) return src.colors.includes(quality.slice(6) as Color);
   if (quality === 'creatures') return src.types.includes('Creature');
+  // proteção contra Portadores do Anel (Lord of the Nazgûl; CR 701.54b, 701.54e)
+  if (quality === 'ringbearer') {
+    const o = src.id !== undefined ? g.state.objects[src.id] : undefined;
+    return !!o && o.zone === 'battlefield' && o.data.ringBearer !== undefined && o.data.ringBearer === controllerOf(g, o.id);
+  }
   // proteção contra um tipo de carta (CR 702.16a): fontes no campo com o tipo, ou fora do campo desse tipo
   if (quality.startsWith('type:')) return src.types.includes(quality.slice(5));
   return false;
@@ -233,17 +240,31 @@ export function* putOntoBattlefield(g: G, reqs: EnterReq[], cause: string): Gen<
     // planeswalker entra com marcadores de lealdade (CR 306.5b)
     if (wc.types.includes('Planeswalker') && wc.loyalty !== null) ev.counters.loyalty = (ev.counters.loyalty ?? 0) + wc.loyalty;
     // substituições "ao entrar" do próprio objeto (CR 614.1c, 614.12)
+    const copiaPedida = ev.copyOf;
     for (const inst of r.faceDown ? [] : wc.abilities) {
       const def = registry.abilities.get(inst.id);
       if (def?.kind === 'replacement' && (def as ReplacementDef).enters) {
         yield* (def as ReplacementDef).enters!({ g, you: r.controller, source: r.id ?? -1 }, ev);
       }
     }
+    // entra como cópia (CR 707.5, 614.1c, 614.12): as características passam a ser as da cópia; as substituições "ao
+    // entrar" dela também se aplicam e, se for planeswalker, entra com a lealdade impressa dela (CR 306.5b)
+    let wcFinal = wc;
+    if (ev.copyOf && ev.copyOf !== copiaPedida && !r.faceDown) {
+      wcFinal = copyValuesChars(ev.copyOf, fromObj?.owner ?? r.controller);
+      if (wcFinal.types.includes('Planeswalker') && wcFinal.loyalty !== null && !wc.types.includes('Planeswalker')) ev.counters.loyalty = (ev.counters.loyalty ?? 0) + wcFinal.loyalty;
+      const feitas = new Set(wc.abilities.map((a) => a.id));
+      for (const inst of wcFinal.abilities) {
+        if (feitas.has(inst.id)) continue;
+        const def = registry.abilities.get(inst.id);
+        if (def?.kind === 'replacement' && (def as ReplacementDef).enters) yield* (def as ReplacementDef).enters!({ g, you: r.controller, source: r.id ?? -1 }, ev);
+      }
+    }
     // substituições de outros permanentes ("criaturas entram com…")
-    for (const h of hooks(g, 'enterModifier')) h.fn(h.ctx, ev, wc);
+    for (const h of hooks(g, 'enterModifier')) h.fn(h.ctx, ev, wcFinal);
     // "não pode receber marcadores": também não entra com eles (CR 122.6)
-    for (const kind of Object.keys(ev.counters)) if (hooks(g, 'cantHaveCountersPut').some((h) => h.fn(h.ctx, kind, { controller: ev.controller, chars: wc }))) delete ev.counters[kind];
-    prepared.push({ r, ev, chars: wc });
+    for (const kind of Object.keys(ev.counters)) if (hooks(g, 'cantHaveCountersPut').some((h) => h.fn(h.ctx, kind, { controller: ev.controller, chars: wcFinal }))) delete ev.counters[kind];
+    prepared.push({ r, ev, chars: wcFinal });
   }
   for (const { r, ev } of prepared) {
     let newId: ObjId;
@@ -263,13 +284,14 @@ export function* putOntoBattlefield(g: G, reqs: EnterReq[], cause: string): Gen<
         face: r.face ?? (o.zone === 'stack' ? o.face : 0),
       });
       const n = s.objects[newId];
-      if (r.copyOf) n.copyOf = r.copyOf;
+      // r.copyOf ou a cópia escolhida ao entrar (CR 707.5)
+      if (ev.copyOf) n.copyOf = ev.copyOf;
       if (o.zone === 'stack' && o.isCopy) { n.isCopy = false; n.isToken = true; } // CR 608.3f
     } else {
       token = true;
       const n = createObject(g, {
         def: r.token!.def ?? r.token!.copyOf!.def, owner: r.controller, controller: ev.controller, zone: 'battlefield',
-        isToken: true, copyOf: r.token!.copyOf ?? null, tapped: ev.tapped, counters: ev.counters, attachedTo: ev.attachTo,
+        isToken: true, copyOf: ev.copyOf ?? null, tapped: ev.tapped, counters: ev.counters, attachedTo: ev.attachTo,
       });
       newId = n.id;
     }
@@ -414,8 +436,8 @@ export function dealDamage(g: G, reqs: DamageReq[]): { dealt: number; to: Target
     } else if (s.players[r.target.id].left) continue;
     // prevenção (CR 615): proteção (702.16e) e escudos registrados
     if (!cantPrevent) {
-      if (r.target.kind === 'obj' && kwParams(g, r.target.id, 'protection').some((q) => protectionMatches(g, q, { colors: sc.colors, types: sc.types }))) amount = 0;
-      if (r.target.kind === 'player' && playerProtectedFrom(g, r.target.id, { colors: sc.colors, types: sc.types })) amount = 0; // CR 702.16e
+      if (r.target.kind === 'obj' && kwParams(g, r.target.id, 'protection').some((q) => protectionMatches(g, q, { colors: sc.colors, types: sc.types, id: r.source }))) amount = 0;
+      if (r.target.kind === 'player' && playerProtectedFrom(g, r.target.id, { colors: sc.colors, types: sc.types, id: r.source })) amount = 0; // CR 702.16e
       for (const e of s.effects) for (const m of e.mods) {
         if (m.k !== 'rule' || m.id !== 'rule:preventCombatDamageToPlayer' || amount === 0) continue;
         if (r.combat && r.target.kind === 'player' && e.affectedPlayers?.includes(r.target.id)) {
@@ -431,8 +453,14 @@ export function dealDamage(g: G, reqs: DamageReq[]): { dealt: number; to: Target
     const wither = sourceHas(g, r.source, 'wither') || sourceHas(g, r.source, 'infect') || hooks(g, 'damageAsWither').some((h) => h.fn(h.ctx, r.source));
     if (r.target.kind === 'player') {
       const p = s.players[r.target.id];
-      p.life -= amount; // CR 120.3a
-      events.push({ type: 'lifeLoss', player: r.target.id, amount, source: r.source });
+      if (sourceHas(g, r.source, 'infect')) {
+        // CR 120.3b, 702.90b: dano de fonte com infectar dá marcadores de veneno em vez de perda de vida
+        p.counters.poison = (p.counters.poison ?? 0) + amount;
+        events.push({ type: 'counters', target: r.target, kind: 'poison', amount, by: controller });
+      } else {
+        p.life -= amount; // CR 120.3a
+        events.push({ type: 'lifeLoss', player: r.target.id, amount, source: r.source });
+      }
       // CR 120.3g, 702.164c: dano de combate de criatura com tóxico também dá marcadores de veneno (o valor tóxico total)
       const veneno = r.combat && sc.types.includes('Creature') ? toxicValue(g, r.source) : 0;
       if (veneno > 0) {
@@ -485,10 +513,50 @@ function isCommanderObjectAt(g: G, id: ObjId): boolean {
 // ---------------------------------------------------------------------------
 // Destruir, sacrificar, exilar, devolver
 // ---------------------------------------------------------------------------
-/** CR 701.8: destruir; indestrutível não é destruído (702.12b) */
-export function* destroy(g: G, ids: ObjId[]): Gen<(ObjId | null)[]> {
+/** CR 701.8: destruir; indestrutível não é destruído (702.12b); o escudo de regeneração substitui a destruição
+ *  (701.19a), menos com "não pode ser regenerado" (cantRegenerate, 701.19c) */
+export function* destroy(g: G, ids: ObjId[], opts: { cantRegenerate?: boolean } = {}): Gen<(ObjId | null)[]> {
   const ok = ids.filter((id) => g.state.objects[id]?.zone === 'battlefield' && !hasKw(g, id, 'indestructible'));
-  return yield* moveObjects(g, ok.map((id) => ({ id, to: 'graveyard' as ZoneName })), 'destroy');
+  const vao = regenerateOrDestroy(g, ok, opts.cantRegenerate);
+  return yield* moveObjects(g, vao.map((id) => ({ id, to: 'graveyard' as ZoneName })), 'destroy');
+}
+
+// ---------------------------------------------------------------------------
+// Regenerar (CR 701.19)
+// ---------------------------------------------------------------------------
+/** escudos de regeneração do permanente ('rule:regenShield'), do mais antigo ao mais novo */
+export function regenerationShields(g: G, id: ObjId): ContinuousEffect[] {
+  return g.state.effects.filter((e) => e.affected?.includes(id) && e.mods.some((m) => m.k === 'rule' && m.id === 'rule:regenShield')).sort((a, b) => a.timestamp - b.timestamp);
+}
+
+/** "não pode ser regenerado" (CR 701.19c): um efeito com 'rule:cantBeRegenerated' no permanente */
+export function cantBeRegenerated(g: G, id: ObjId): boolean {
+  return g.state.effects.some((e) => e.affected?.includes(id) && e.mods.some((m) => m.k === 'rule' && m.id === 'rule:cantBeRegenerated'));
+}
+
+/**
+ * CR 701.19a: "a próxima vez que [o permanente] fosse destruído neste turno, em vez disso remova todo o dano marcado nele e
+ * o controlador o vira; se estiver atacando ou bloqueando, remova-o do combate". Usa um escudo por permanente; devolve os
+ * que continuam sendo destruídos (sem escudo, ou que não podem ser regenerados).
+ */
+export function regenerateOrDestroy(g: G, ids: ObjId[], cantRegenerate = false): ObjId[] {
+  const out: ObjId[] = [];
+  for (const id of ids) {
+    const o = g.state.objects[id];
+    if (!o) continue;
+    const escudo = cantRegenerate || cantBeRegenerated(g, id) ? undefined : regenerationShields(g, id)[0];
+    if (!escudo) { out.push(id); continue; }
+    if ((escudo.affected?.length ?? 0) > 1) escudo.affected = escudo.affected!.filter((x) => x !== id);
+    else g.state.effects = g.state.effects.filter((e) => e !== escudo);
+    o.damage = 0;
+    o.deathtouched = false;
+    tap(g, id);
+    removeFromCombat(g, id);
+    g.bump();
+    g.log(`${nameOf(g, id)} regenera.`, { rule: '701.19a' });
+    emit(g, [{ type: 'regenerate', obj: id }]);
+  }
+  return out;
 }
 
 /** CR 701.21: sacrificar (só permanentes que o jogador controla) */
@@ -641,6 +709,12 @@ export function shuffleLibrary(g: G, player: PlayerId): void {
 
 /** busca no grimório (CR 701.23): o jogador vê o grimório e pode não achar cartas com qualidade */
 export function* searchLibrary(g: G, player: PlayerId, library: PlayerId, opts: { filter?: (id: ObjId) => boolean; max: number; min?: number; prompt: string }): Gen<ObjId[]> {
+  // "não pode procurar em grimórios" (Stranglehold): a busca não acontece; o embaralhar de "procure… depois embaralhe"
+  // continua com quem chamou (ruling 2)
+  if (!canSearchLibraries(g, player)) {
+    g.log(`${g.state.players[player].name} não pode procurar no grimório.`, { rule: '701.23' });
+    return [];
+  }
   const lib = g.state.zones.library[library];
   emit(g, [{ type: 'search', player, library }]);
   const items = lib.map((id) => ({ id: String(id), label: nameOf(g, id), obj: id, card: { def: g.state.objects[id].def }, disabled: opts.filter ? !opts.filter(id) : false }));
@@ -651,6 +725,11 @@ export function* searchLibrary(g: G, player: PlayerId, library: PlayerId, opts: 
   const max = Math.min(opts.max, items.filter((i) => !i.disabled).length);
   const ids = yield* chooseItems(g, player, opts.prompt, items, opts.min ?? 0, max);
   return ids.map(Number);
+}
+
+/** o jogador pode procurar em grimórios? (Stranglehold: "seus oponentes não podem procurar em grimórios") */
+export function canSearchLibraries(g: G, player: PlayerId): boolean {
+  return !hooks(g, 'cantSearchLibraries').some((h) => h.fn(h.ctx, player));
 }
 
 /** vidência (CR 701.22) e vigiar (CR 701.25) */
@@ -704,6 +783,7 @@ export function gainControl(g: G, id: ObjId, player: PlayerId, duration: Duratio
   addEffect(g, { source, sourceDef: '', controller: player, duration, affected: [id], mods: [{ k: 'control', player }] });
   if (before !== player) {
     o.controlledSince = g.state.turn.number; // CR 302.6
+    delete o.data.ringBearer; // CR 701.54a: deixa de ser o Portador do Anel quando outro jogador ganha o controle
     removeFromCombat(g, id); // CR 506.4
     g.bump();
     emit(g, [{ type: 'controlChange', obj: id, from: before, to: player }]);
@@ -722,10 +802,23 @@ export function attach(g: G, attachment: ObjId, to: ObjId): boolean {
     if (!enchantCandidates(g, def, 0, controllerOf(g, attachment), [], attachment).includes(to)) return false; // CR 303.4j
   }
   if (a.attachedTo === to) return true;
+  const antes = a.attachedTo;
   a.attachedTo = to;
   a.timestamp = newTimestamp(g); // CR 613.7e
   g.bump();
-  emit(g, [{ type: 'attach', obj: attachment, to }]);
+  emit(g, [...(antes !== null ? [{ type: 'unattach' as const, obj: attachment, from: antes }] : []), { type: 'attach', obj: attachment, to }]);
+  return true;
+}
+
+/** desanexa um Equipamento ou Aura (reconfigurar, CR 702.151a): deixa de estar preso ao permanente */
+export function unattach(g: G, attachment: ObjId): boolean {
+  const a = g.state.objects[attachment];
+  if (!a || a.attachedTo === null) return false;
+  const antes = a.attachedTo;
+  a.attachedTo = null;
+  a.timestamp = newTimestamp(g);
+  g.bump();
+  emit(g, [{ type: 'unattach', obj: attachment, from: antes }]);
   return true;
 }
 

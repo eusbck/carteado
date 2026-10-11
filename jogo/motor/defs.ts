@@ -3,7 +3,7 @@
 // a partir destes tipos. As funções ficam aqui (código); o estado só guarda ids.
 
 import type {
-  Answer, Chars, Color, Decision, Duration, GameObject, ManaSymbol, ManaType, Mod, ObjId, PlayerId, Step,
+  Answer, Chars, Color, Decision, Duration, GameObject, ManaSymbol, ManaType, ManaUnit, Mod, ObjId, PlayerId, Step,
   TargetRef, ZoneName,
 } from './types.ts';
 import type { G } from './game-context.ts';
@@ -78,6 +78,10 @@ export interface ModeSpec {
   differentPlayers?: boolean;
   /** quantidades de modos permitidas, quando não é um intervalo ("zero ou dois", Shadrix) */
   counts?: number[];
+  /** o modo pode ser escolhido agora? ("escolha um que não foi escolhido neste turno", Parapet Thrasher; CR 700.2) */
+  available?: (c: SCtx, mode: number) => boolean;
+  /** chamado quando os modos são escolhidos, antes de a mágica ou habilidade ir para a pilha */
+  onChosen?: (c: SCtx, modes: number[]) => void;
 }
 
 // ---------------------------------------------------------------------------
@@ -153,6 +157,8 @@ export interface ManaAbilityDef extends AbilityCommon {
   restriction?: string;
   untilEndOfTurn?: boolean;
   onSpend?: string;
+  /** id de função (defineFn) chamada quando a mana é gasta, sem usar a pilha: (g, unidade, propósito, jogador) */
+  rider?: string;
   /** efeito adicional (dano dos terrenos de dor etc.) */
   extra?: (c: Ctx) => Gen<void>;
 }
@@ -235,6 +241,15 @@ export interface RuleHooks {
   playerProtection?: (c: SCtx, player: PlayerId) => unknown[];
   /** "Se você fosse perder mana não gasta, ela se torna incolor" (Omnath, Locus of the Void; CR 106.4, 500.5) */
   unspentManaBecomesColorless?: (c: SCtx, player: PlayerId) => boolean;
+  // lote2-d
+  /** "A regra da lenda não se aplica aos permanentes que você controla" (Sakashima; CR 704.5j) */
+  legendRuleExempt?: (c: SCtx, player: PlayerId) => boolean;
+  /** "Seus oponentes não podem procurar em grimórios" (Stranglehold; CR 701.23) */
+  cantSearchLibraries?: (c: SCtx, player: PlayerId) => boolean;
+  /** "Você pode olhar a carta do topo do seu grimório a qualquer momento" (Vesuvan Drifter, Realmwalker) */
+  lookAtTopOfLibrary?: (c: SCtx, player: PlayerId) => boolean;
+  /** "Você não perde mana [vermelha] não gasta quando as etapas e fases terminam" (Leyline Tyrant; CR 106.4, 500.5) */
+  keepsUnspentMana?: (c: SCtx, player: PlayerId, unit: ManaUnit) => boolean;
 }
 
 export interface SpellInfoForCost {

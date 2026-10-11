@@ -68,6 +68,28 @@ const esperadas: Record<string, [string, string[], string[], string[], number | 
   'Ninja': ['Ninja', ['Creature'], ['Ninja'], ['B'], 1, 1, []],
   'Elemental 5/5': ['Elemental', ['Creature'], ['Elemental'], ['R', 'U'], 5, 5, ['flying']],
   'Mutagen': ['Mutagen', ['Artifact'], ['Mutagen'], [], null, null, []],
+  // lote2-e
+  'Rat': ['Rat', ['Creature'], ['Rat'], ['B'], 1, 1, []],
+  'Elemental 8/8': ['Elemental', ['Creature'], ['Elemental'], ['G', 'W'], 8, 8, ['vigilance']],
+  // 0/0 impressa, +1/+1 por artefato (ela mesma conta): testada abaixo
+  'Construct (artefatos)': ['Construct', ['Artifact', 'Creature'], ['Construct'], [], null, null, []],
+  // lote2-f
+  'Plant': ['Plant', ['Creature'], ['Plant'], ['G'], 0, 2, ['defender']],
+  'Vibranium': ['Vibranium', ['Artifact'], ['Vibranium'], [], null, null, ['indestructible']],
+  // lote2-g
+  'Dragon 5/5': ['Dragon', ['Creature'], ['Dragon'], ['R'], 5, 5, ['flying']],
+  'Dragon 6/6': ['Dragon', ['Creature'], ['Dragon'], ['R'], 6, 6, ['flying']],
+  // lote2-d
+  'Food': ['Food', ['Artifact'], ['Food'], [], null, null, []],
+  'Clue': ['Clue', ['Artifact'], ['Clue'], [], null, null, []],
+  'Blood': ['Blood', ['Artifact'], ['Blood'], [], null, null, []],
+  'Orc Army': ['Orc Army', ['Creature'], ['Orc', 'Army'], ['B'], 0, 0, []],
+  'Wraith': ['Wraith', ['Creature'], ['Wraith'], ['B'], 3, 3, ['menace']],
+  'Robot Villain': ['Robot Villain', ['Artifact', 'Creature'], ['Robot', 'Villain'], [], 2, 2, []],
+  'Warrior vermelho': ['Warrior', ['Creature'], ['Warrior'], ['R'], 1, 1, []],
+  'Shapeshifter': ['Shapeshifter', ['Creature'], ['Shapeshifter'], [], 1, 1, ['changeling']],
+  'Dragon 4/4': ['Dragon', ['Creature'], ['Dragon'], ['R'], 4, 4, ['flying']],
+  'Vampire 1/1': ['Vampire', ['Creature'], ['Vampire'], ['B', 'W'], 1, 1, ['lifelink']],
 };
 
 describe('Fichas: características', () => {
@@ -95,7 +117,9 @@ describe('Fichas: características', () => {
       const c = chars(tg.g, tok);
       expect(c.name).toBe(nome);
       expect(c.types).toEqual(tipos);
-      expect(c.subtypes).toEqual(subtipos);
+      // polimorfo (CR 702.73a): além dos impressos, todos os tipos de criatura
+      if (kws.includes('changeling')) expect(c.subtypes).toEqual(expect.arrayContaining([...subtipos, 'Goblin', 'Orc', 'Elf']));
+      else expect(c.subtypes).toEqual(subtipos);
       expect([...c.colors].sort()).toEqual(cores);
       expect([c.power, c.toughness]).toEqual([p, t]);
       for (const k of kws) expect(hasKw(tg.g, tok, k), k).toBe(true);
@@ -243,5 +267,17 @@ describe('Mutagen', () => {
     tg.choose('criatura alvo', ['Indomitable Ancients']).activate('Mutagen').resolveAll();
     expect(tg.state.objects[tg.bf('Indomitable Ancients')].counters['+1/+1']).toBe(1);
     expect(tg.find('Mutagen')).toBeNull();
+  });
+});
+
+// lote2-e
+describe("Fichas: 'Construct (artefatos)'", () => {
+  it('recebe +1/+1 para cada artefato que você controla (inclusive ela mesma)', () => {
+    const tg = setup({ battlefield: [['Sol Ring'], ['Sol Ring']] });
+    const [tok] = tg.run(createTokens(tg.g, 0, 'Construct (artefatos)', 1));
+    expect(tg.pt(tok)).toEqual([2, 2]); // ela e o Sol Ring de Ana; o do oponente não conta
+    const [outra] = tg.run(createTokens(tg.g, 0, 'Construct (artefatos)', 1));
+    expect(tg.pt(tok)).toEqual([3, 3]);
+    expect(tg.pt(outra)).toEqual([3, 3]);
   });
 });

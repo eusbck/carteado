@@ -1,8 +1,9 @@
 // Ações baseadas em estado (CR 704) e saída de jogadores da partida (CR 800.4).
 
-import { moveObjects, removeFromCombat } from './actions.ts';
+import { moveObjects, regenerateOrDestroy, removeFromCombat } from './actions.ts';
 import { chooseItems, objItem, yesNo } from './ask.ts';
-import { chars, controllerOf, hasKw, isBestowed, isCreature, nameOf } from './chars.ts';
+import { chars, controllerOf, hasKw, hooks, isBestowed, isCreature, nameOf } from './chars.ts';
+import type { GameEvent } from './events.ts';
 import { registry, type Gen } from './defs.ts';
 import type { G } from './game-context.ts';
 import { destroyObject } from './state.ts';
@@ -69,7 +70,8 @@ export function* performSBAs(g: G): Gen<boolean> {
       else if (o.deathtouched && !hasKw(g, id, 'indestructible')) toDestroy.push(id); // CR 704.5h
     }
     if (c.types.includes('Planeswalker') && (o.counters.loyalty ?? 0) <= 0) toGraveyard.push(id); // CR 704.5i
-    if (c.supertypes.includes('Legendary')) {
+    // "a regra da lenda não se aplica aos permanentes que você controla" (Sakashima of a Thousand Faces)
+    if (c.supertypes.includes('Legendary') && !hooks(g, 'legendRuleExempt').some((h) => h.fn(h.ctx, c.controller))) {
       const key = `${c.controller}|${c.name}`;
       if (!legendGroups.has(key)) legendGroups.set(key, []);
       legendGroups.get(key)!.push(id);
@@ -125,9 +127,13 @@ export function* performSBAs(g: G): Gen<boolean> {
 
   if (losers.length || toGraveyard.length || toDestroy.length || cease.length || unattach.length || legendLosers.length || sagaSac.length) performed = true;
 
-  for (const id of unattach) { s.objects[id].attachedTo = null; g.bump(); }
+  const soltos: GameEvent[] = [];
+  for (const id of unattach) { soltos.push({ type: 'unattach', obj: id, from: s.objects[id].attachedTo! }); s.objects[id].attachedTo = null; g.bump(); }
+  if (soltos.length) emit(g, soltos);
   for (const id of cease) destroyObject(g, id);
-  const moves = [...new Set([...toGraveyard, ...toDestroy, ...legendLosers])].filter((id) => s.objects[id]);
+  // CR 704.5g-h: "destruído" — o escudo de regeneração substitui (701.19a)
+  const destruidos = regenerateOrDestroy(g, toDestroy.filter((id) => s.objects[id] && !toGraveyard.includes(id) && !legendLosers.includes(id)));
+  const moves = [...new Set([...toGraveyard, ...destruidos, ...legendLosers])].filter((id) => s.objects[id]);
   if (moves.length || sagaSac.length) {
     const reqs = moves.map((id) => ({ id, to: 'graveyard' as ZoneName }));
     yield* moveObjects(g, reqs, 'sba');

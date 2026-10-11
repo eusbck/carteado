@@ -210,6 +210,7 @@ export function AreaJogador(p: AreaProps) {
           {p.ativo && <span class="selo turno">turno</span>}
           {p.pensando && !p.eu ? <span class="selo decidindo pensando">pensando…</span> : p.decidindo && !p.eu && <span class="selo decidindo">decidindo</span>}
           {j.monarch && <span class="selo">monarca</span>}
+          {j.ring && <span class="selo" title={`O Anel tentou ${j.name} ${j.ring.tempted} ${j.ring.tempted === 1 ? 'vez' : 'vezes'} (CR 701.54): o emblema tem ${Math.min(4, j.ring.tempted)} de 4 habilidades${j.ring.bearer === null ? '; sem Portador do Anel' : ''}`}>Anel {Math.min(4, j.ring.tempted)}/4</span>}
           {j.left && <span class="selo etiqueta alerta">{j.won ? 'venceu' : 'fora da partida'}</span>}
           {contadores.map(([k, q]) => <span class="selo" key={k}>{q} {NOME_CONTADOR[k] ?? k}</span>)}
           {j.manaPool && !p.eu && reserva}
@@ -297,7 +298,8 @@ export function AreaJogador(p: AreaProps) {
         <div class="zonas-grupo">
           <div class="zona" aria-label="Grimório">
             <span class="zona-rotulo">Grimório <b>({j.libraryCount})</b></span>
-            <div class="slot">{j.libraryCount > 0 && <div class="carta"><div class="carta-face"><div class="verso" /></div></div>}</div>
+            {/* a carta do topo, quando o jogador pode olhá-la a qualquer momento (Vesuvan Drifter, Realmwalker): só ele recebe */}
+            <div class="slot">{j.topCard ? <Carta o={j.topCard} onZoom={p.onZoom} /> : j.libraryCount > 0 && <div class="carta"><div class="carta-face"><div class="verso" /></div></div>}</div>
           </div>
           <button type="button" class="zona botao-zona" onClick={() => p.onZona('graveyard')} aria-label={`Cemitério de ${j.name}, ${j.graveyard.length} cartas`}>
             <span class="zona-rotulo">Cemitério <b>({j.graveyard.length})</b></span>

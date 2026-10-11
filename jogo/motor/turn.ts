@@ -316,12 +316,24 @@ function advance(g: G): void {
   beginTurn(g, nextPlayer);
 }
 
-/** adiciona uma fase de combate depois desta (CR 500.8) */
-export function addCombatPhaseAfterCurrent(g: G): void {
+/** posição na fila das etapas logo depois da fase atual (CR 500.1: cada fase principal é uma etapa só; o combate vai
+ *  até o fim do combate; a fase inicial até a compra) */
+function fimDaFaseAtual(g: G): number {
   const t = g.state.turn;
-  const idx = t.queue.indexOf('main2');
-  const insertAt = idx >= 0 ? idx : 0;
-  t.queue.splice(insertAt, 0, ...COMBAT_STEPS);
+  if (t.step === 'main1' || t.step === 'main2' || t.step === 'endCombat') return 0;
+  if (COMBAT_STEPS.includes(t.step) || t.step === 'firstStrikeDamage') { const i = t.queue.indexOf('endCombat'); return i >= 0 ? i + 1 : 0; }
+  if (t.step === 'untap' || t.step === 'upkeep' || t.step === 'draw') { const i = t.queue.findIndex((x) => x !== 'upkeep' && x !== 'draw'); return i >= 0 ? i : t.queue.length; }
+  return t.queue.length;
+}
+
+/**
+ * Adiciona uma fase de combate logo depois da fase atual (CR 500.8: a mais recente criada depois da mesma fase vem
+ * primeiro) e, com `thenMain`, uma fase principal depois dela ("seguida de uma fase principal adicional", Seize the Day;
+ * CR 505.1a: é uma fase principal pós-combate). Hellkite Charger e Aurelia: só o combate, sem fase principal no meio.
+ */
+export function addCombatPhaseAfterCurrent(g: G, opts: { thenMain?: boolean } = {}): void {
+  const t = g.state.turn;
+  t.queue.splice(fimDaFaseAtual(g), 0, ...COMBAT_STEPS, ...(opts.thenMain ? ['main2' as Step] : []));
   g.bump();
 }
 
