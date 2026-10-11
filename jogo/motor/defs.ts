@@ -381,6 +381,8 @@ export interface CastPermission {
   filter?: (c: SCtx, card: ObjId) => boolean;
   /** "Toda vez que essa mágica iria para o cemitério, coloque no fundo do grimório" (Quintorius) */
   bottomInstead?: boolean;
+  /** "Se uma mágica conjurada assim fosse para o seu cemitério, exile-a em vez disso" (Kess, Dissident Mage) */
+  exileInstead?: boolean;
 }
 
 export interface SpellDef {

@@ -344,6 +344,7 @@ function* castInner(g: G, player: PlayerId, cardId: ObjId, method: CastMethod): 
   // conjurada como aventura: vai para o exílio ao resolver (CR 715.3d)
   if (!o.copyOf && ehAventura(o.def) && o.face === 1) info.data.adventure = true;
   if (method.permission?.bottomInstead) info.data.bottomInsteadOfGraveyard = true;
+  if (method.permission?.exileInstead) info.data.exileInsteadOfGraveyard = true;
   if (method.key === 'bestow') info.data.bestow = true;
   g.bump();
   // virada para baixo, a mágica não tem texto: sem modos, alvos nem custos adicionais (CR 708.2a)
@@ -848,6 +849,7 @@ export function* copySpell(g: G, spellId: ObjId, controller: PlayerId, opts: { n
   const dados = structuredClone(st.data);
   delete dados.exileOnLeave;
   delete dados.bottomInsteadOfGraveyard;
+  delete dados.exileInsteadOfGraveyard;
   // a cópia não foi conjurada (CR 707.10): não tem zona de origem
   copia.stack = { ...structuredClone(st), controller, isCopy: true, data: dados, castFrom: undefined };
   g.log(`${g.state.players[controller].name} copia ${nameOf(g, spellId)}.`, { rule: '707.10' });
