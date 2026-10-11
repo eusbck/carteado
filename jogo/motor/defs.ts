@@ -262,6 +262,8 @@ export interface RuleHooks {
   // lote2-d
   /** "A regra da lenda não se aplica aos permanentes que você controla" (Sakashima; CR 704.5j) */
   legendRuleExempt?: (c: SCtx, player: PlayerId) => boolean;
+  /** "não pode ser bloqueada exceto por N ou mais criaturas" (Troll of Khazad-dûm): devolve N; 0 = sem restrição */
+  minBlockers?: (c: SCtx, attacker: ObjId) => number;
   /** "esta criatura precisa ser bloqueada por exatamente uma criatura se puder" (Nacatl War-Pride) */
   mustBeBlockedByExactlyOne?: (c: SCtx, attacker: ObjId) => boolean;
   /** "se [esse jogador] fosse comprar duas ou mais cartas, em vez disso você e ele compram uma carta cada" (Alms Collector) */

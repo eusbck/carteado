@@ -276,6 +276,11 @@ export function validateBlocks(g: G, defender: PlayerId, blocks: [ObjId, ObjId][
   const count = new Map<ObjId, number>();
   for (const [, a] of blocks) count.set(a, (count.get(a) ?? 0) + 1);
   for (const [a, n] of count) if (n === 1 && hasKw(g, a, 'menace')) return `${nameOf(g, a)} tem menace: precisa de dois ou mais bloqueadores`;
+  // "não pode ser bloqueada exceto por N ou mais criaturas" (restrição de bloqueio, CR 509.1b)
+  for (const [a, n] of count) {
+    const minimo = hooks(g, 'minBlockers').reduce((m, h) => Math.max(m, h.fn(h.ctx, a)), 0);
+    if (n < minimo) return `${nameOf(g, a)} só pode ser bloqueada por ${minimo} ou mais criaturas`;
+  }
   // "precisa ser bloqueada por exatamente uma criatura se puder" (CR 509.1c): não mais de uma, e o máximo possível delas bloqueado
   const combate = g.state.combat;
   const atacandoMe = combate ? combate.attackers.filter((a) => !a.removed && g.state.objects[a.id] && defendingPlayerOf(g, a.target) === defender).map((a) => a.id) : [];
