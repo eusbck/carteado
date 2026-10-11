@@ -1474,6 +1474,34 @@ As 40 cartas que faltavam estão escritas, cada uma com teste. O deck entrou no 
 - A suíte inteira ainda não rodou com estas 40 cartas (rodaram os testes de cada carta, o `tsc`, a conferência e os
   bots). Está rodando agora; o resultado entra aqui.
 
-Faltam 13 decks do lote 2: Doom Prevails, Raining Cats and Dogs, Vampiric Bloodline, The Hosts of Mordor, Odd and
-Ends, Heavenly Inferno, Hatsune Miku, Wakanda Forever, Turtle Power!, Avengers Assemble, Necron Dynasties e Jin's
-Vengeance, mais o Food and Fellowship (importação e dois comandantes pendentes).
+## Doom Prevails (Doctor Doom, King of Latveria): pronto — 11/10/2026
+
+As 41 cartas que faltavam estão escritas, cada uma com teste. O deck entrou no saguão desta cópia.
+
+- Conferência com o Moxfield: 100 cartas, 88 de 88 com regras, nada faltando nem sobrando.
+- Bots com o deck obrigatório: 8 partidas de 4 jogadores e 12 de 2 (aleatórios), 4 de 2 (heurísticos), todas sem erro.
+- `cartas/viloes.ts` guarda duas peças repetidas: quem a ficha que "entra virada e atacando" ataca, e o alvo "para cada
+  oponente, até uma criatura que esse jogador controla".
+- Motor:
+  - Aura que encanta jogador (Archnemesis): fica no campo sem objeto anexado, com o jogador em
+    `data.enchantedPlayer`; sai quando esse jogador deixa a partida.
+  - "Este permanente não pode ser sacrificado" (`rule:cantBeSacrificed`, Stilt-Man), conferido em `sacrifice`.
+  - "A próxima mágica do tipo escolhido pode ser conjurada como se tivesse lampejo" (`rule:flashNext`, Progenitor's
+    Icon).
+  - Contagens do turno: cartas descartadas (`cardsDiscarded`) e registro das mágicas conjuradas com tipos e subtipos
+    (`castLog`, para "a sua primeira mágica instantânea, de feitiço ou de Villain").
+- Fichas novas: Villain 2/1, Ape Villain 3/3 e Shapeshifter 3/2 (a Robot Villain já existia).
+- Simplificações, para conferir se alguém estranhar na mesa:
+  - Molecule Man: o milagre {0} é um gatilho do próprio Molecule Man na primeira carta que você compra no turno; a
+    carta não fica "revelada" enquanto o gatilho está na pilha.
+  - Archnemesis: se ela entrar no campo sem ter sido conjurada (voltando do cemitério, por exemplo), o motor não
+    oferece a escolha de um jogador para encantar e ela não entra.
+  - "Não pode ser sacrificado" vale para sacrifícios por efeito; o motor ainda deixa escolher esse permanente para
+    pagar um custo de sacrifício.
+  - Typhoid Mary e Power Pack sorteiam na resolução do gatilho.
+- A suíte inteira ainda não rodou com estas 41 cartas (rodaram os testes de cada carta, o `tsc`, a conferência e os
+  bots).
+
+Faltam 12 decks do lote 2: Raining Cats and Dogs, Vampiric Bloodline, The Hosts of Mordor, Odd and Ends, Heavenly
+Inferno, Hatsune Miku, Wakanda Forever, Turtle Power!, Avengers Assemble, Necron Dynasties e Jin's Vengeance, mais o
+Food and Fellowship (importação e dois comandantes pendentes).

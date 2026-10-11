@@ -6,8 +6,7 @@
  "link": "https://moxfield.com/decks/mWQACuymy0OV-2MJgx2-TQ",
  "importadoEm": "2026-10-10T04:40:30.590Z",
  "verificadoEm": "2026-10-10T04:40:30.590Z",
- "atual": null,
- "preparacao": {
+ "atual": {
   "comandante": "Doctor Doom, King of Latveria",
   "cartas": [
    {
@@ -364,5 +363,6 @@
    "atualizadoEm": "2026-07-15T16:03:07.083Z"
   },
   "desde": "2026-10-10T04:40:30.590Z"
- }
+ },
+ "preparacao": null
 }
