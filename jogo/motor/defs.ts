@@ -199,6 +199,8 @@ export interface TriggeredDef extends AbilityCommon {
 
 export interface RuleHooks {
   attacksIfAble?: (c: SCtx, creature: ObjId) => boolean;
+  /** "ataca [um destes jogadores] a cada combate se puder" (Galactus): a exigência só é cumprida atacando um deles; null = sem exigência */
+  attacksOneOfIfAble?: (c: SCtx, creature: ObjId) => PlayerId[] | null;
   cantUntapDuringUntapOf?: (c: SCtx, obj: ObjId, activePlayer: PlayerId) => boolean;
   castAsThoughFlash?: (c: SCtx, player: PlayerId, card: ObjId) => boolean;
   /** previsão das habilidades de mana engatilhadas, usadas pelo planejador; o efeito real resolve por CR 605.4 */

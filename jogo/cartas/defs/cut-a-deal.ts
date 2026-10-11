@@ -19,6 +19,6 @@ export default defineCard({
   }],
   rulings: {
     1: 'teste: o oponente que não compra (grimório vazio) não conta',
-    2: 'regra geral: CR 121.2 — conta o oponente que comprou, não quantas cartas ele comprou (cartas/defs/cut-a-deal.ts)',
+    2: 'regra geral: a conta é por oponente que comprou, não por carta comprada (cartas/defs/cut-a-deal.ts)',
   },
 });

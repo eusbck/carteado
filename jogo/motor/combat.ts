@@ -32,6 +32,12 @@ function attackTargetsFor(g: G, attacker: ObjId, player: PlayerId): TargetRef[] 
 function canAttackTarget(g: G, attacker: ObjId, t: TargetRef): boolean {
   for (const h of hooks(g, 'canAttack')) if (!h.fn(h.ctx, attacker, t)) return false;
   if (t.kind === 'player') for (const h of hooks(g, 'canAttackPlayer')) if (!h.fn(h.ctx, attacker, t.id)) return false;
+  // "esse jogador não pode atacar você nem permanentes que você controla no próximo turno dele" (Willie Lumpkin)
+  const defensor = t.kind === 'player' ? t.id : controllerOf(g, t.id);
+  for (const e of g.state.effects) for (const m of e.mods) {
+    if (m.k !== 'rule' || m.id !== 'rule:cantAttackPlayer') continue;
+    if (m.params?.atacante === controllerOf(g, attacker) && m.params?.protegido === defensor && g.state.turn.number > ((m.params?.depois as number | undefined) ?? -1)) return false;
+  }
   if (hasKw(g, attacker, 'defender') && !hooks(g, 'canAttackWithDefender').some((h) => h.fn(h.ctx, attacker, t))) return false; // CR 702.3b
   return true;
 }
@@ -69,6 +75,10 @@ function requirements(g: G, id: ObjId): ((t: TargetRef | null) => boolean)[] {
   const attacks = (t: TargetRef | null) => t !== null;
   const notPlayer = (p: PlayerId) => (t: TargetRef | null) => t !== null && t.kind === 'player' && t.id !== p;
   for (const h of hooks(g, 'attacksIfAble')) if (h.fn(h.ctx, id)) reqs.push(attacks);
+  for (const h of hooks(g, 'attacksOneOfIfAble')) {
+    const quem = h.fn(h.ctx, id);
+    if (quem && quem.length) reqs.push((t) => t !== null && t.kind === 'player' && quem.includes(t.id));
+  }
   for (const gd of o.goadedBy) { reqs.push(attacks); reqs.push(notPlayer(gd.player)); }
   for (const h of hooks(g, 'goads')) if (h.fn(h.ctx, id)) { reqs.push(attacks); reqs.push(notPlayer(h.ctx.you)); }
   for (const e of g.state.effects) for (const m of e.mods) {
