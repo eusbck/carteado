@@ -200,6 +200,19 @@ export function* chooseModes(g: G, player: PlayerId, ms: ModeSpec, source: ObjId
     const possible = (m.targets ?? []).every((t) => (t.min ?? 1) === 0 || candidateTargets(g, t, player, source, event).length >= (t.min ?? 1));
     return { id: String(i), label: m.text, disabled: !possible || (ms.available ? !ms.available(ctx, i) : false) };
   });
+  // "você pode escolher o mesmo modo mais de uma vez" (CR 700.2d): uma escolha por vez, exatamente `max` modos
+  if (ms.repeat) {
+    const total = forceMax ?? (typeof ms.max === 'function' ? ms.max(ctx) : ms.max);
+    if (!items.some((i) => !i.disabled)) return null;
+    const escolhidos: number[] = [];
+    for (let k = 1; k <= total; k++) {
+      const [id] = yield* chooseItems(g, player, `${label}: escolha o modo ${k} de ${total} (pode repetir)`, items, 1, 1);
+      escolhidos.push(Number(id));
+    }
+    escolhidos.sort((x, y) => x - y);
+    ms.onChosen?.(ctx, escolhidos);
+    return escolhidos;
+  }
   const avail = items.filter((i) => !i.disabled).length;
   const max = Math.min(forceMax ?? (typeof ms.max === 'function' ? ms.max(ctx) : ms.max), avail);
   if (avail < ms.min) return null;
@@ -814,8 +827,11 @@ export function* resolveTop(g: G): Gen<void> {
     yield* sp.effect({ ...ctx, targets: base ? targets.slice(base.start, base.start + base.count) : [] });
   }
   if (sp?.modes) {
-    for (const m of st.modes) {
-      const grp = groups.find((x) => x.mode === m)!;
+    // um grupo de alvos por modo escolhido, na ordem (o mesmo modo pode aparecer mais de uma vez: CR 700.2d)
+    const porModo = groups.filter((x) => x.mode !== null);
+    for (let i = 0; i < st.modes.length; i++) {
+      const m = st.modes[i];
+      const grp = porModo[i] ?? groups.find((x) => x.mode === m)!;
       yield* sp.modes.modes[m].effect({ ...ctx, targets: targets.slice(grp.start, grp.start + grp.count) });
     }
   }

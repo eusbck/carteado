@@ -159,7 +159,8 @@ export function canStartCast(g: G, p: PlayerId, opt: CastOption): boolean {
   if (sp?.modes) {
     const ctx: SCtx = { g, you: p, source: opt.obj };
     const possible = sp.modes.modes.filter((m) => (m.targets ?? []).every((t) => (t.min ?? 1) === 0 || candidateTargets(g, t, p, opt.obj).length >= (t.min ?? 1))).length;
-    if (possible < sp.modes.min) return false;
+    // com "pode escolher o mesmo modo mais de uma vez" (CR 700.2d), basta um modo possível
+    if (possible < (sp.modes.repeat ? 1 : sp.modes.min)) return false;
     void ctx;
   }
   const { specs } = spellTargetSpecs(o, [], opt.method.key, opt.method.face);

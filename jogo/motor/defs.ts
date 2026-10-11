@@ -78,6 +78,8 @@ export interface ModeSpec {
   differentPlayers?: boolean;
   /** quantidades de modos permitidas, quando não é um intervalo ("zero ou dois", Shadrix) */
   counts?: number[];
+  /** "você pode escolher o mesmo modo mais de uma vez" (CR 700.2d): escolhe exatamente `max` modos, com repetição */
+  repeat?: boolean;
   /** o modo pode ser escolhido agora? ("escolha um que não foi escolhido neste turno", Parapet Thrasher; CR 700.2) */
   available?: (c: SCtx, mode: number) => boolean;
   /** chamado quando os modos são escolhidos, antes de a mágica ou habilidade ir para a pilha */
