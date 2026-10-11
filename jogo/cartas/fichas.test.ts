@@ -64,6 +64,11 @@ const esperadas: Record<string, [string, string[], string[], string[], number | 
   'Incubator': ['Incubator', ['Artifact'], ['Incubator'], [], null, null, ['transform']],
   'Phyrexian Mite': ['Phyrexian Mite', ['Artifact', 'Creature'], ['Phyrexian', 'Mite'], [], 1, 1, ['toxic']],
   'Contract': ['Contract', ['Enchantment'], ['Aura'], ['W'], null, null, ['enchant']],
+  // lote2-e
+  'Rat': ['Rat', ['Creature'], ['Rat'], ['B'], 1, 1, []],
+  'Elemental 8/8': ['Elemental', ['Creature'], ['Elemental'], ['G', 'W'], 8, 8, ['vigilance']],
+  // 0/0 impressa, +1/+1 por artefato (ela mesma conta): testada abaixo
+  'Construct (artefatos)': ['Construct', ['Artifact', 'Creature'], ['Construct'], [], null, null, []],
 };
 
 describe('Fichas: características', () => {
@@ -229,5 +234,17 @@ describe("Fichas: 'Phyrexian Mite'", () => {
     tg.attack([['Indomitable Ancients', 0]]).passTo('main2');
     expect(ofereceu).toBe(false);
     expect(tg.life(0)).toBe(38);
+  });
+});
+
+// lote2-e
+describe("Fichas: 'Construct (artefatos)'", () => {
+  it('recebe +1/+1 para cada artefato que você controla (inclusive ela mesma)', () => {
+    const tg = setup({ battlefield: [['Sol Ring'], ['Sol Ring']] });
+    const [tok] = tg.run(createTokens(tg.g, 0, 'Construct (artefatos)', 1));
+    expect(tg.pt(tok)).toEqual([2, 2]); // ela e o Sol Ring de Ana; o do oponente não conta
+    const [outra] = tg.run(createTokens(tg.g, 0, 'Construct (artefatos)', 1));
+    expect(tg.pt(tok)).toEqual([3, 3]);
+    expect(tg.pt(outra)).toEqual([3, 3]);
   });
 });
