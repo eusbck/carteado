@@ -3,7 +3,7 @@
 // a partir destes tipos. As funções ficam aqui (código); o estado só guarda ids.
 
 import type {
-  Answer, Chars, Color, Decision, Duration, GameObject, ManaSymbol, ManaType, Mod, ObjId, PlayerId, Step,
+  Answer, Chars, Color, CopyValues, Decision, Duration, GameObject, ManaSymbol, ManaType, Mod, ObjId, PlayerId, Step,
   TargetRef, ZoneName,
 } from './types.ts';
 import type { G } from './game-context.ts';
@@ -230,7 +230,21 @@ export interface RuleHooks {
   playerProtection?: (c: SCtx, player: PlayerId) => unknown[];
   /** "Se você fosse perder mana não gasta, ela se torna incolor" (Omnath, Locus of the Void; CR 106.4, 500.5) */
   unspentManaBecomesColorless?: (c: SCtx, player: PlayerId) => boolean;
+  /**
+   * substituição na criação de fichas de um jogador (CR 111.1, 614.1a): "cria o dobro dessas fichas" (Anointed
+   * Procession), "pode criar essa quantidade de fichas X em vez disso" (Jinnie Fay). null = não se aplica; `replace`
+   * devolve as fichas que serão criadas (e pode perguntar). Com várias, o jogador escolhe a ordem (616.1, 616.1f)
+   */
+  tokenCreation?: (c: SCtx, ev: TokenCreation) => { label: string; replace: (ev: TokenCreation) => Gen<TokenCreation> } | null;
+  /** "Previna todo o dano que seria causado a [isto]" (CR 615.1a): true previne o dano inteiro deste pedido */
+  preventsDamage?: (c: SCtx, target: TargetRef, source: ObjId, combat: boolean) => boolean;
+  /** mágicas que um jogador conjura têm convocar (CR 702.51; Dazzling Theater: "mágicas de criatura que você conjura") */
+  spellsHaveConvoke?: (c: SCtx, player: PlayerId, spell: ObjId, chars: Chars) => boolean;
 }
+
+/** fichas que um evento vai criar para um jogador (CR 111.1). `de` aponta o pedido de onde a ficha veio: o resto do
+ *  que o efeito diz (virada, atacando, marcadores) continua valendo para ela (ruling de Jinnie Fay) */
+export interface TokenCreation { player: PlayerId; tokens: { de: number; def?: string; copyOf?: CopyValues }[] }
 
 export interface SpellInfoForCost {
   obj: ObjId;

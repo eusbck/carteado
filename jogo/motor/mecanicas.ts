@@ -7,7 +7,7 @@ import { parseCost } from './mana.ts';
 import { addEffect } from './state.ts';
 import { shuffle } from './rng.ts';
 import { chooseItems, objItem, playerItem, yesNo } from './ask.ts';
-import { chars, controllerOf, currentFace, isCreature, isLand, isTransform, nameOf, printedChars } from './chars.ts';
+import { canTransform, chars, controllerOf, currentFace, isCreature, isLand, nameOf, printedChars } from './chars.ts';
 import { canAfford, payMana } from './costs.ts';
 
 import { defineAbility, type AbilityDef, type ActivatedDef, type AdditionalCostDef, type Gen, type ReplacementDef, type StaticDef, type TriggeredDef } from './defs.ts';
@@ -30,12 +30,13 @@ export function crew(n: number): ActivatedDef {
 // Transformar (CR 701.28)
 // ---------------------------------------------------------------------------
 /**
- * Vira a carta de duas faces para a outra face. Só cartas que transformam podem (701.28c);
- * a face que fica para cima é a que vale no campo (712.8a). Não é um objeto novo (701.28d).
+ * Vira a carta de duas faces para a outra face. Só cartas de duas faces podem (701.28c, 712.9; o modal de duas faces
+ * também, quando uma habilidade manda: 712.3, King T'Challa); a face que fica para cima é a que vale no campo
+ * (712.8d-f). Não é um objeto novo (701.28d).
  */
 export function transform(g: G, id: ObjId): boolean {
   const o = g.state.objects[id];
-  if (!o || o.zone !== 'battlefield' || o.faceDown || !isTransform(o.def)) return false;
+  if (!o || o.zone !== 'battlefield' || o.faceDown || !canTransform(o.def)) return false;
   o.face = o.face === 0 ? 1 : 0;
   g.log(`${nameOf(g, id)}: transforma.`, { rule: '701.28' });
   g.bump();

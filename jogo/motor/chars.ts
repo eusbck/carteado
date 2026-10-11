@@ -6,6 +6,7 @@ import { ability, cardDef, registry, type AbilityDef, type RuleHooks, type SCtx,
 import type { G } from './game-context.ts';
 import { manaValueOf } from './mana.ts';
 import { BASIC_LAND_MANA, faceManaValue, hasOracle, oracle, CREATURE_SUBTYPES } from './oracle.ts';
+import { ehDividida, ehModal, ehSala, FACE_AMBAS, FACE_NENHUMA, nomeDaFace, temVariasFaces } from './formatos.ts';
 import type { AbilityInst, Chars, Color, CopyValues, GameObject, GameState, Layer, Mod, ObjId, PlayerId, ZoneName } from './types.ts';
 
 export interface ActiveStatic {
@@ -38,7 +39,11 @@ export function modLayer(m: Mod, cda = false): Layer | null {
 // ---------------------------------------------------------------------------
 export function abilitiesOfDef(defName: string, face: number): AbilityInst[] {
   const token = registry.tokens.get(defName);
-  const list: AbilityDef[] = token ? (face === 1 && token.back ? token.back.abilities : token.abilities) : (cardDef(defName)?.faces[face]?.abilities ?? registry.emblems.get(defName)?.abilities ?? []);
+  // dividida com as duas metades juntas: as habilidades de cada metade (CR 709.4c); Sala trancada: nenhuma (709.5)
+  const metades = !token && (face === FACE_AMBAS || face === FACE_NENHUMA) && ehDividida(defName);
+  const list: AbilityDef[] = token ? (face === 1 && token.back ? token.back.abilities : token.abilities)
+    : metades ? (face === FACE_NENHUMA ? [] : (cardDef(defName)?.faces ?? []).slice(0, 2).flatMap((f) => f.abilities ?? []))
+      : (cardDef(defName)?.faces[face]?.abilities ?? registry.emblems.get(defName)?.abilities ?? []);
   return list.map((a) => ({ id: a.id!, kw: a.kw, param: a.param }));
 }
 
@@ -85,6 +90,7 @@ function printedCharsNovas(defName: string, face: number, owner: PlayerId): Char
   const emblema = registry.emblems.get(defName);
   if (emblema) return { name: emblema.name, manaCost: null, manaValue: 0, colors: [], supertypes: [], types: [], subtypes: [], abilities: abilitiesOfDef(defName, 0), power: null, toughness: null, loyalty: null, controller: owner };
   const card = oracle(defName);
+  if (card.layout === 'split' && (face === FACE_AMBAS || face === FACE_NENHUMA)) return metadesJuntas(defName, face, owner);
   const f = card.faces[face] ?? card.faces[0];
   const abilities = abilitiesOfDef(defName, face);
   // CR 305.6: terrenos com tipo básico têm a habilidade de mana intrínseca
@@ -103,6 +109,31 @@ function printedCharsNovas(defName: string, face: number, owner: PlayerId): Char
     abilities,
     power: f.power, toughness: f.toughness, loyalty: f.loyalty,
     controller: owner,
+  };
+}
+
+/**
+ * Carta dividida com as duas metades juntas (CR 709.4): fora da pilha, fundida na pilha (709.4d) e Sala com as duas
+ * portas destrancadas (709.5). Custo de mana somado, cores e valor de mana dele (709.4b), tipos e habilidades das
+ * duas (709.4c); o nome é o das duas ("Dusk // Dawn", 709.4a). Sala sem porta destrancada (FACE_NENHUMA): só a linha
+ * de tipo compartilhada, sem nome, custo nem habilidades (709.5, 709.5a).
+ */
+function metadesJuntas(defName: string, face: number, owner: PlayerId): Chars {
+  const [a, b] = oracle(defName).faces;
+  const uniao = (x: string[], y: string[]) => [...x, ...y.filter((t) => !x.includes(t))];
+  if (face === FACE_NENHUMA) {
+    return { name: '', manaCost: null, manaValue: 0, colors: [], supertypes: [...a.supertypes], types: [...a.types], subtypes: [...a.subtypes], abilities: [], power: null, toughness: null, loyalty: null, controller: owner };
+  }
+  const custo = [...(a.manaCost ?? []), ...(b.manaCost ?? [])];
+  const ordem: Color[] = ['W', 'U', 'B', 'R', 'G'];
+  return {
+    name: nomeDaFace(defName, FACE_AMBAS),
+    manaCost: custo.length ? custo : null,
+    manaValue: manaValueOf(a.manaCost) + manaValueOf(b.manaCost),
+    colors: ordem.filter((c) => a.colors.includes(c) || b.colors.includes(c)),
+    supertypes: uniao(a.supertypes, b.supertypes), types: uniao(a.types, b.types), subtypes: uniao(a.subtypes, b.subtypes),
+    abilities: abilitiesOfDef(defName, FACE_AMBAS),
+    power: null, toughness: null, loyalty: null, controller: owner,
   };
 }
 
@@ -135,10 +166,28 @@ export function isBestowed(o: GameObject): boolean {
 }
 
 
+/**
+ * Face em uso. No campo e na pilha, a que está para cima (transformar, CR 712.8d-e; modal de duas faces, 712.8f) ou a
+ * metade conjurada (dividida, 709.3b; aventura, 715.3b); a Sala no campo guarda as portas destrancadas (709.5). Nas
+ * outras zonas vale a frente (712.8a, 715.4), e a dividida tem as duas metades juntas (709.4).
+ */
 export function currentFace(o: GameObject): number {
   if (o.copyOf) return o.copyOf.face;
-  if (isTransform(o.def) && (o.zone === 'battlefield' || o.zone === 'stack')) return o.face;
+  if ((o.zone === 'battlefield' || o.zone === 'stack') && (isTransform(o.def) || temVariasFaces(o.def))) return o.face;
+  if (ehDividida(o.def)) return FACE_AMBAS;
   return 0; // preparação: só as características normais em todas as zonas (CR 722.4)
+}
+
+/** face com que um objeto entra no campo vindo desta zona: a da mágica (CR 712.13; a porta conjurada, 709.5d) ou a
+ *  frente (712.14); a Sala que não veio da pilha entra trancada (709.5d) */
+export function faceAoEntrar(o: GameObject): number {
+  if (o.zone === 'stack') return o.face;
+  return ehSala(o.copyOf?.def ?? o.def) && !o.copyOf ? FACE_NENHUMA : 0;
+}
+
+/** pode transformar: carta que transforma, ficha de duas faces e modal de duas faces com a habilidade (CR 712.3, 712.9) */
+export function canTransform(defName: string): boolean {
+  return isTransform(defName) || ehModal(defName);
 }
 
 /** CR 708.2a: permanente ou mágica virada para baixo é uma criatura 2/2 sem nome nem habilidades */
@@ -223,6 +272,12 @@ function applyMod(c: Chars, m: Mod): void {
     default: break;
   }
 }
+
+/** marcadores de palavra-chave (CR 122.1b) */
+export const KEYWORD_COUNTERS: ReadonlySet<string> = new Set([
+  'flying', 'first strike', 'double strike', 'deathtouch', 'decayed', 'exalted', 'haste', 'hexproof', 'indestructible',
+  'lifelink', 'menace', 'reach', 'shadow', 'trample', 'vigilance',
+]);
 
 function counterPT(counters: Record<string, number>): [number, number] {
   let p = 0, t = 0;
@@ -322,6 +377,13 @@ function computeAll(g: G): void {
         if (ms.length) entries.push({ ts: e.timestamp, cda: false, objs: e.affected!.filter((id) => work.has(id)), mods: () => ms });
       }
       entries.sort((a, b) => (a.cda === b.cda ? a.ts - b.ts : a.cda ? -1 : 1));
+      // marcadores de palavra-chave (CR 122.1b) dão a palavra-chave na camada 6 (613.1f)
+      if (L === '6') {
+        for (const id of bf) {
+          const c = work.get(id)!;
+          for (const [k, n] of Object.entries(s.objects[id].counters)) if (n > 0 && KEYWORD_COUNTERS.has(k)) c.abilities.push({ id: `kw:${k}`, kw: k });
+        }
+      }
       for (const en of entries) for (const id of en.objs) {
         const c = work.get(id);
         if (!c) continue;
@@ -507,7 +569,11 @@ export function controllerOf(g: G, id: ObjId): PlayerId {
 
 export function nameOf(g: G, id: ObjId): string {
   const c = chars(g, id);
-  return c.name || 'carta virada para baixo';
+  if (c.name) return c.name;
+  // Sala sem porta destrancada não tem nome (CR 709.5); para a mesa e o registro, o da carta
+  const o = g.state.objects[id] ?? g.state.lki[id]?.obj;
+  if (o && !o.faceDown && ehSala(o.def)) return `${nomeDaFace(o.def, FACE_AMBAS)} (trancada)`;
+  return 'carta virada para baixo';
 }
 
 export function manaValue(g: G, id: ObjId): number {

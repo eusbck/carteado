@@ -210,3 +210,13 @@ export const Contract = defineToken({
 });
 
 void activated; void cost;
+
+// lote2-b
+/** Cat 1/1 verde (Rin and Seri, Inseparable) */
+export const CatVerde11 = token('Cat verde 1/1', 'Cat', ['Creature'], ['Cat'], ['G'], 1, 1);
+/** Dog 1/1 branco (Rin and Seri, Inseparable) */
+export const DogBranco11 = token('Dog branco 1/1', 'Dog', ['Creature'], ['Dog'], ['W'], 1, 1);
+/** Cat 2/2 verde com ímpeto (Jinnie Fay, Jetmir's Second) */
+export const CatVerde22 = token('Cat verde 2/2 ímpeto', 'Cat', ['Creature'], ['Cat'], ['G'], 2, 2, keywords('haste'));
+/** Dog 3/1 verde com vigilância (Jinnie Fay, Jetmir's Second) */
+export const DogVerde31 = token('Dog verde 3/1 vigilância', 'Dog', ['Creature'], ['Dog'], ['G'], 3, 1, keywords('vigilance'));

@@ -30,6 +30,8 @@ export type GameEvent =
   | { type: 'mill'; player: PlayerId; objs: ObjId[] }
   | { type: 'blight'; player: PlayerId; creature: ObjId; n: number }
   | { type: 'transform'; obj: ObjId; to: number }
+  /** portas de uma Sala destrancadas (CR 709.5h): ao entrar, pela porta conjurada, ou depois */
+  | { type: 'unlock'; obj: ObjId; halves: number[]; player: PlayerId; full: boolean }
   | { type: 'prepared'; obj: ObjId }
   | { type: 'phaseOut'; obj: ObjId }
   | { type: 'phaseIn'; obj: ObjId }
