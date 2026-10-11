@@ -84,6 +84,19 @@ Todos vêm de `motor/api.ts`. Uma linha de uso por recurso:
 - **Modos que não podem repetir no turno:** `modal(1, 1, [...], { available: (c, i) => …, onChosen: (c, modos) => … })` (Parapet Thrasher).
 - **Estática depois de troca de controle:** `c.you` de uma estática do campo é quem controla a fonte depois da camada 2.
 
+Jeitos de conjurar e custos (`motor/conjurar-alternativo.ts`). Nos testes, o método vai no segundo argumento de `tg.cast(nome, 'overload')`; custo opcional: `tg.choose('custo adicional opcional', ['Pagar: …' | 'Não pagar'])`; custo repetível: `tg.number('quantas vezes', n)`.
+
+- **Metamorfose:** `abilities: [morph('{3}{R}{R}{R}')]`; conjurar virada: `tg.cast(nome, 'morph')`. **Ninjutsu:** `ninjutsu('{U}{B}', { commander: true })` em `abilities`.
+- **Sneak, mayhem, retraçar:** `const x = sneak('{W}{B}')` (ou `mayhem(custo)`, `retrace()`), com `altCosts: [x.altCost]` e `x.ability` em `abilities`.
+- **Loucura:** `madness('{1}{R}')` ou `madness('{2}{B}', { life: 8 })` em `abilities`; "se o custo de loucura foi pago": `madnessPaid(c)`.
+- **Ricochete:** `abilities: [rebound()]` na face que tem `spell`. **Cascata:** `abilities: [cascade()]`.
+- **Sobrecarga, espetáculo:** `altCosts: [overload('{6}{U}')]` e, no efeito, `if (overloaded(c)) { cada… } else { tgt(c)… }`; `altCosts: [spectacle('{B}')]`.
+- **Recompra, multikicker, escalada:** `additionalCosts: [buyback('{3}')]`, `[multikicker('{2}')]` com `kickedTimes(g, id)` (num "entra com": `ev.spell?.paid.multikicker`), `[escalate(partes, rótulo)]`.
+- **Baixa, esquadrão:** `const b = casualty(2)` (ou `squad('{3}')`), com `additionalCosts: [b.cost]` e `b.trigger` em `abilities`.
+- **Número de alvos que depende do que foi pago:** `{ ...t.any(), min: 1, max: (c) => 1 + kickedTimes(c.g, c.source), validateSet }` (Comet Storm).
+- **Permissão de conjurar com outro custo** (vida em vez de mana): `ruleEffect` com uma estática que devolve `{ key, label, free: true, parts: [{ k: 'life', n }] }` em `mayPlayFrom` (Xander's Pact).
+- **Cópia de uma carta para conjurar:** `createObject(g, { def, owner, controller, zone: 'exile', isCopy: true, copyOf: { def, face: 0 } })` e `mayCastFree` (Flawless Forgery).
+
 ## Testes
 
 ```ts
