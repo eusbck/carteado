@@ -6,8 +6,7 @@
  "link": "https://moxfield.com/decks/flLw5YvIOE2tBprZ_GTsmQ",
  "importadoEm": "2026-10-10T05:09:33.757Z",
  "verificadoEm": "2026-10-10T05:09:33.757Z",
- "atual": null,
- "preparacao": {
+ "atual": {
   "comandante": "Anhelo, the Painter",
   "cartas": [
    {
@@ -352,5 +351,6 @@
    "atualizadoEm": "2026-06-24T14:04:03.477Z"
   },
   "desde": "2026-10-10T05:09:33.757Z"
- }
+ },
+ "preparacao": null
 }
