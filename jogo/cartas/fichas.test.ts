@@ -69,6 +69,9 @@ const esperadas: Record<string, [string, string[], string[], string[], number | 
   'Elemental 8/8': ['Elemental', ['Creature'], ['Elemental'], ['G', 'W'], 8, 8, ['vigilance']],
   // 0/0 impressa, +1/+1 por artefato (ela mesma conta): testada abaixo
   'Construct (artefatos)': ['Construct', ['Artifact', 'Creature'], ['Construct'], [], null, null, []],
+  // lote2-f
+  'Plant': ['Plant', ['Creature'], ['Plant'], ['G'], 0, 2, ['defender']],
+  'Vibranium': ['Vibranium', ['Artifact'], ['Vibranium'], [], null, null, ['indestructible']],
 };
 
 describe('Fichas: características', () => {
