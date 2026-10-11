@@ -1,7 +1,7 @@
 // Fichas (CR 111) criadas pelas cartas dos decks. Cada uma aponta para a imagem da ficha
 // correspondente em ../cartas/data (pelo nome, força/resistência e cores).
 
-import { activated, addCounters, chars, chooseItems, controlledBy, controllerOf, cost, createTokens, decayed, defineToken, draw, gainLife, is, isLand, isType, keywords, lkiChars, lookAndArrange, loseLife, mana, moveObjects, nameOf, objItem, on, t, tgt, triggered, untilEndOfTurn, yesNo, type AbilityDef, type G, type Gen } from '../motor/api.ts';
+import { activated, addCounters, chars, chooseItems, controlledBy, controllerOf, cost, createTokens, decayed, defineToken, draw, gainLife, is, isLand, isType, keywords, lkiChars, lookAndArrange, loseLife, mana, moveObjects, nameOf, objItem, on, putOntoBattlefield, sacrifice, t, tgt, triggered, untilEndOfTurn, yesNo, type AbilityDef, type G, type Gen } from '../motor/api.ts';
 import type { Ctx } from '../motor/defs.ts';
 import { fichasOracle } from '../motor/oracle.ts';
 import type { Color, ObjId } from '../motor/types.ts';
@@ -303,3 +303,28 @@ export const VampireWB = token('Vampire 1/1', 'Vampire', ['Creature'], ['Vampire
 // lote2 (integração)
 /** Drake 2/2 azul com voar (Talrand's Invocation) */
 export const Drake22 = token('Drake', 'Drake', ['Creature'], ['Drake'], ['U'], 2, 2, keywords('flying'));
+/** Demon X/X preta com voar (Reign of the Pit): força e resistência definidas na criação */
+export const DemonXX = tokenXX('Demon X/X', 'Demon', ['Creature'], ['Demon'], ['B'], keywords('flying'));
+/** Lightning Rager 5/1 vermelha (Rite of the Raging Storm): atropelar, ímpeto e sacrifício no início da etapa final */
+export const LightningRager = token('Lightning Rager', 'Lightning Rager', ['Creature'], ['Elemental'], ['R'], 5, 1, [
+  ...keywords('trample', 'haste'),
+  triggered(on.endStep('each'), function* (c) {
+    if (c.g.state.objects[c.source]?.zone === 'battlefield') yield* sacrifice(c.g, [c.source]);
+  }, { text: 'No início da etapa final, sacrifique esta ficha.' }),
+]);
+/** Elemental 0/1 vermelha (Rekindling Phoenix): na sua manutenção, sacrifique-a e devolva a Rekindling Phoenix alvo do
+ *  seu cemitério para o campo, com ímpeto até o fim do turno */
+export const ElementalFenix = token('Elemental 0/1', 'Elemental', ['Creature'], ['Elemental'], ['R'], 0, 1, [
+  triggered(on.upkeep('you'), function* (c) {
+    const carta = tgt(c);
+    // ruling 1: sem a carta alvo no cemitério, a ficha não é sacrificada
+    if (carta === null) return;
+    if (c.g.state.objects[c.source]?.zone === 'battlefield') yield* sacrifice(c.g, [c.source]);
+    const [nova] = yield* putOntoBattlefield(c.g, [{ id: carta, controller: c.you }], 'effect');
+    if (nova !== undefined) untilEndOfTurn(c, [nova], [{ k: 'addKeyword', kw: 'haste' }]);
+  }, {
+    // ruling 2: procura uma carta com o nome Rekindling Phoenix
+    targets: [t.card('graveyard', (c, id) => chars(c.g, id).name === 'Rekindling Phoenix', 'carta com o nome Rekindling Phoenix alvo no seu cemitério', 'you')],
+    text: 'No início da sua manutenção, sacrifique esta ficha e devolva a carta com o nome Rekindling Phoenix alvo do seu cemitério para o campo de batalha. Ela ganha ímpeto até o fim do turno.',
+  }),
+]);
