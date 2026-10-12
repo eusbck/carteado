@@ -64,6 +64,7 @@ export function canPayParts(g: G, player: PlayerId, parts: CostPart[], source: O
         break;
       }
       case 'discard': if (s.zones.hand[player].filter((id) => id !== source && (!p.filter || p.filter(ctx, id))).length < p.n) return false; break;
+      case 'exileFromHand': if (s.zones.hand[player].filter((id) => id !== source && (!p.filter || p.filter(ctx, id))).length < p.n) return false; break;
       case 'discardSelf': if (!o || o.zone !== 'hand') return false; break;
       case 'life': {
         const n = typeof p.n === 'function' ? p.n(ctx) : p.n === 'X' ? x : p.n;
@@ -605,6 +606,13 @@ export function* payParts(g: G, player: PlayerId, parts: CostPart[], source: Obj
       case 'discard': {
         const res = yield* discard(g, player, p.n, { filter: (id) => id !== source && (!p.filter || p.filter(ctx, id)), random: p.random });
         info.discarded = res;
+        break;
+      }
+      case 'exileFromHand': {
+        const cands = s.zones.hand[player].filter((id) => id !== source && (!p.filter || p.filter(ctx, id)));
+        if (cands.length < p.n) return false;
+        const ids = yield* chooseItems(g, player, `Exile ${p.n} ${p.label ?? 'carta(s)'} da sua mão`, cands.map((id) => objItem(g, id, nameOf(g, id))), p.n, p.n);
+        info.exiledFromHand = yield* moveObjects(g, ids.map((id) => ({ id: Number(id), to: 'exile' as const })), 'cost');
         break;
       }
       case 'discardSelf': {

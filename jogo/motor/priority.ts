@@ -155,6 +155,8 @@ export function canStartCast(g: G, p: PlayerId, opt: CastOption): boolean {
   if (opt.method.alt?.timing) { if (!opt.method.alt.timing({ g, you: p, source: opt.obj })) return false; }
   else if (!instantSpeed && !sorceryTiming(g, p)) return false;
   if (hooks(g, 'cantCastSpells').some((h) => h.fn(h.ctx, p))) return false;
+  // "os seus oponentes não podem conjurar mágicas que não são de criatura neste turno" (Permission Denied)
+  if (!c.types.includes('Creature') && g.state.effects.some((e) => !!e.affectedPlayers?.includes(p) && e.mods.some((m) => m.k === 'rule' && m.id === 'rule:cantCastNoncreature'))) return false;
   if (f?.castOnlyIf && !f.castOnlyIf({ g, you: p, source: opt.obj })) return false;
   // proibição por valor de mana: com {X} no custo o valor só é conhecido ao conjurar (conferido de novo em stack.ts)
   if (!(c.manaCost ?? []).some((x) => x.k === 'X') && hooks(g, 'cantCastSpell').some((h) => h.fn(h.ctx, p, opt.obj, opt.method.alt?.faceDown ? 0 : c.manaValue))) return false;

@@ -97,6 +97,8 @@ export type CostPart =
   | { k: 'sacrifice'; n: number | 'X'; filter: (c: SCtx, o: ObjId) => boolean; label: string }
   | { k: 'discard'; n: number; filter?: (c: SCtx, o: ObjId) => boolean; label?: string; random?: boolean }
   | { k: 'discardSelf' }
+  /** "exile N cartas [com o filtro] da sua mão" (Force of Will): as exiladas ficam em costInfo.exiledFromHand */
+  | { k: 'exileFromHand'; n: number; filter?: (c: SCtx, o: ObjId) => boolean; label?: string }
   | { k: 'life'; n: number | 'X' | ((c: SCtx) => number) }
   | { k: 'exileSelf' }
   | { k: 'exileFromGraveyard'; n: number; other?: boolean; filter?: (c: SCtx, o: ObjId) => boolean }
