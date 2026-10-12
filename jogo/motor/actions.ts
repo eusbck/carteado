@@ -425,9 +425,22 @@ export function* createTokens(g: G, player: PlayerId, def: string | { copyOf: Co
 // ---------------------------------------------------------------------------
 // Vida (CR 119)
 // ---------------------------------------------------------------------------
+/** "o seu total de pontos de vida não pode mudar" (Teferi's Protection): efeito de regra `rule:lifeCantChange` sobre jogadores */
+export function lifeCantChange(g: G, player: PlayerId): boolean {
+  return g.state.effects.some((e) => !!e.affectedPlayers?.includes(player) && e.mods.some((m) => m.k === 'rule' && m.id === 'rule:lifeCantChange'));
+}
+
+/** "se um oponente fosse perder vida, em vez disso perde o dobro" (Bloodletter of Aclazotz; CR 614.1a) */
+function lifeLossAfterReplacements(g: G, player: PlayerId, amount: number): number {
+  let n = amount;
+  for (const h of hooks(g, 'lifeLossDouble')) if (h.fn(h.ctx, player)) n *= 2;
+  return n;
+}
+
 export function gainLife(g: G, player: PlayerId, amount: number, source: ObjId | null): number {
   const p = g.state.players[player];
   if (amount <= 0 || p.left) return 0;
+  if (lifeCantChange(g, player)) return 0;
   for (const h of hooks(g, 'cantGainLife')) if (h.fn(h.ctx, player)) return 0; // CR 119.7
   let n = amount;
   for (const h of hooks(g, 'lifeGainBonus')) n += h.fn(h.ctx, player);
@@ -443,6 +456,8 @@ export function gainLife(g: G, player: PlayerId, amount: number, source: ObjId |
 export function loseLife(g: G, player: PlayerId, amount: number, source: ObjId | null): number {
   const p = g.state.players[player];
   if (amount <= 0 || p.left) return 0;
+  if (lifeCantChange(g, player)) return 0;
+  amount = lifeLossAfterReplacements(g, player, amount);
   p.life -= amount;
   g.bump();
   emit(g, [{ type: 'lifeLoss', player, amount, source }]);
@@ -530,6 +545,8 @@ export function dealDamage(g: G, reqs: DamageReq[]): { dealt: number; to: Target
         const alvo = r.target.id;
         if (s.effects.some((e) => e.mods.some((m) => m.k === 'rule' && m.id === 'rule:preventCombatDamageToSubtype' && m.params?.controller === controllerOf(g, alvo) && chars(g, alvo).subtypes.includes(m.params?.subtype as string)))) amount = 0;
       }
+      // "previna todo o dano que seria causado por criaturas neste turno" (Ethereal Haze)
+      if (amount > 0 && sc.types.includes('Creature') && s.effects.some((e) => e.mods.some((m) => m.k === 'rule' && m.id === 'rule:preventDamageByCreatures'))) amount = 0;
       // "previna todo o dano de combate que seria causado neste turno" (Darkness)
       if (amount > 0 && r.combat && s.effects.some((e) => e.mods.some((m) => m.k === 'rule' && m.id === 'rule:preventAllCombatDamage'))) amount = 0;
       for (const e of s.effects) for (const m of e.mods) {
@@ -551,9 +568,11 @@ export function dealDamage(g: G, reqs: DamageReq[]): { dealt: number; to: Target
         // CR 120.3b, 702.90b: dano de fonte com infectar dá marcadores de veneno em vez de perda de vida
         p.counters.poison = (p.counters.poison ?? 0) + amount;
         events.push({ type: 'counters', target: r.target, kind: 'poison', amount, by: controller });
-      } else {
-        p.life -= amount; // CR 120.3a
-        events.push({ type: 'lifeLoss', player: r.target.id, amount, source: r.source });
+      } else if (!lifeCantChange(g, r.target.id)) {
+        // o dano é causado, mas a perda de vida que ele causa pode ser dobrada (Bloodletter) ou não acontecer (Teferi's Protection)
+        const perdida = lifeLossAfterReplacements(g, r.target.id, amount);
+        p.life -= perdida; // CR 120.3a
+        events.push({ type: 'lifeLoss', player: r.target.id, amount: perdida, source: r.source });
       }
       // CR 120.3g, 702.164c: dano de combate de criatura com tóxico também dá marcadores de veneno (o valor tóxico total)
       const veneno = r.combat && sc.types.includes('Creature') ? toxicValue(g, r.source) : 0;
