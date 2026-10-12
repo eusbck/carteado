@@ -55,6 +55,7 @@ function updateStats(g: G, events: GameEvent[]): void {
           if (safeChars(g, e.obj)?.types.includes('Creature')) st[e.owner].creatureCardsLeftGraveyard = (st[e.owner].creatureCardsLeftGraveyard ?? 0) + 1;
         }
         if (e.to === 'graveyard' && e.from !== 'battlefield' && e.card !== null) st[e.owner].toGraveyardNotFromBattlefield.push(e.card);
+        if (e.to === 'graveyard' && e.from === 'battlefield' && e.card !== null) st[e.owner].toGraveyardFromBattlefield = [...(st[e.owner].toGraveyardFromBattlefield ?? []), e.card];
         if (e.from === 'battlefield' && e.to === 'graveyard') {
           st[e.controller].permanentsToGraveyard++;
           const lki = g.state.lki[e.old];

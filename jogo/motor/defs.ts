@@ -35,7 +35,7 @@ export interface Ctx {
   division?: number[][];
   method?: string;
   castFrom?: ZoneName;
-  manaSpent?: { total: number; byType: Partial<Record<ManaType, number>>; colors: number };
+  manaSpent?: { total: number; byType: Partial<Record<ManaType, number>>; colors: number; fromArtifacts?: number };
 }
 
 /** contexto de estáticas, filtros e condições (sem pilha) */
@@ -265,6 +265,12 @@ export interface RuleHooks {
    * que a carta manda fazer com a quantidade prevenida (CR 615.1, 615.5).
    */
   preventsSomeDamage?: (c: SCtx, target: TargetRef, source: ObjId, amount: number, combat: boolean) => number;
+  /** "dobre todo o dano que [essas fontes] causariam" (Raphael, the Muscle): true dobra o dano deste pedido */
+  damageDouble?: (c: SCtx, source: ObjId, target: TargetRef, combat: boolean) => boolean;
+  /** "…em vez disso são postos esses marcadores mais N" (High Score): devolve N para este tipo de marcador nesta permanente */
+  countersBonus?: (c: SCtx, kind: string, perm: { controller: PlayerId; chars: Chars }) => number;
+  /** "…em vez disso é posto o dobro desses marcadores" (Corpsejack Menace) */
+  countersDouble?: (c: SCtx, kind: string, perm: { controller: PlayerId; chars: Chars }) => boolean;
   /** mágicas que um jogador conjura têm convocar (CR 702.51; Dazzling Theater: "mágicas de criatura que você conjura") */
   spellsHaveConvoke?: (c: SCtx, player: PlayerId, spell: ObjId, chars: Chars) => boolean;
   /** cópias adicionais quando este jogador copia uma mágica (Twinning Staff): devolve quantas a mais */

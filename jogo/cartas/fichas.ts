@@ -418,3 +418,7 @@ export const Beast33 = token('Beast 3/3', 'Beast', ['Creature'], ['Beast'], ['G'
 export const Elephant33 = token('Elephant', 'Elephant', ['Creature'], ['Elephant'], ['G'], 3, 3);
 /** Rhino 4/4 verde com atropelar (W'Kabi, Shield of the Nation) */
 export const Rhino44 = token('Rhino', 'Rhino', ['Creature'], ['Rhino'], ['G'], 4, 4, keywords('trample'));
+/** Ooze 2/2 verde (Biogenic Ooze) */
+export const Ooze22 = token('Ooze', 'Ooze', ['Creature'], ['Ooze'], ['G'], 2, 2);
+/** Robot 1/1 incolor, criatura artefato (Big Mother Mouser) */
+export const Robot11 = token('Robot', 'Robot', ['Artifact', 'Creature'], ['Robot'], [], 1, 1);

@@ -91,7 +91,7 @@ export interface StackInfo {
   /** custo alternativo usado (flashback, escape, bestow, free, prepared...) */
   method?: string;
   castFrom?: ZoneName;
-  manaSpent?: { total: number; byType: Partial<Record<ManaType, number>>; colors: number };
+  manaSpent?: { total: number; byType: Partial<Record<ManaType, number>>; colors: number; fromArtifacts?: number };
   /** dados do evento que disparou a habilidade */
   event?: Record<string, unknown>;
   data: Record<string, unknown>;
@@ -325,6 +325,8 @@ export interface TurnStats {
   permanentsToGraveyard: number;
   /** cartas que foram para o cemitério deste jogador neste turno vindas de fora do campo (Banon) */
   toGraveyardNotFromBattlefield: CardId[];
+  /** cartas que foram do campo para o cemitério deste jogador neste turno (Continue?); falta nas partidas salvas antes */
+  toGraveyardFromBattlefield?: CardId[];
   sacrificedCreature: boolean;
   /** dano que este jogador sofreu neste turno (sede de sangue, Spinerock Knoll); falta nas partidas salvas antes */
   damageTaken?: number;

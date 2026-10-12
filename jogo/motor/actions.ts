@@ -12,7 +12,7 @@ import { addEffect, createObject, destroyObject, moveRaw, newTimestamp, objOrLki
 import { addPending, emit } from './triggers.ts';
 import { oracleLayout } from './oracle.ts';
 import { playerProtections, toxicValue } from './veneno-emblema.ts';
-import type { Answer, CardId, Color, ContinuousEffect, CopyValues, Duration, GameObject, ManaType, ManaUnit, ObjId, PlayerId, TargetRef, ZoneName } from './types.ts';
+import type { Answer, CardId, Chars, Color, ContinuousEffect, CopyValues, Duration, GameObject, ManaType, ManaUnit, ObjId, PlayerId, TargetRef, ZoneName } from './types.ts';
 
 // ---------------------------------------------------------------------------
 // Mudança de zona
@@ -305,6 +305,8 @@ export function* putOntoBattlefield(g: G, reqs: EnterReq[], cause: string): Gen<
     }
     // substituições de outros permanentes ("criaturas entram com…")
     for (const h of hooks(g, 'enterModifier')) h.fn(h.ctx, ev, wcFinal);
+    // "se marcadores fossem ser postos…": entrar com marcadores também conta (CR 122.6, 614.1)
+    for (const kind of Object.keys(ev.counters)) ev.counters[kind] = countersAfterReplacements(g, kind, ev.counters[kind], { controller: ev.controller, chars: wcFinal });
     // "não pode receber marcadores": também não entra com eles (CR 122.6)
     for (const kind of Object.keys(ev.counters)) if (hooks(g, 'cantHaveCountersPut').some((h) => h.fn(h.ctx, kind, { controller: ev.controller, chars: wcFinal }))) delete ev.counters[kind];
     prepared.push({ r, ev, chars: wcFinal });
@@ -478,6 +480,8 @@ export function dealDamage(g: G, reqs: DamageReq[]): { dealt: number; to: Target
     const { c: sc, controller } = sourceInfo(g, r.source);
     if (!sc) continue;
     let amount = r.amount;
+    // "dobre o dano que [essas fontes] causariam" (Raphael, the Muscle; CR 614.1a): antes da prevenção
+    for (const h of hooks(g, 'damageDouble')) if (h.fn(h.ctx, r.source, r.target, r.combat)) amount *= 2;
     // alvo ainda existe?
     if (r.target.kind === 'obj') {
       const t = s.objects[r.target.id];
@@ -647,6 +651,19 @@ export function* returnToHand(g: G, ids: ObjId[]): Gen<(ObjId | null)[]> {
 // ---------------------------------------------------------------------------
 // Marcadores (CR 122)
 // ---------------------------------------------------------------------------
+/**
+ * "Se um ou mais marcadores fossem ser postos numa permanente, em vez disso são postos N a mais / o dobro" (High Score,
+ * Corpsejack Menace; CR 614.1a). Os acréscimos fixos vêm antes dos dobros, que é a ordem que rende mais a quem controla
+ * a permanente (CR 616.1). Vale também para o que entra com marcadores.
+ */
+export function countersAfterReplacements(g: G, kind: string, n: number, perm: { controller: PlayerId; chars: Chars }): number {
+  if (n <= 0) return n;
+  let total = n;
+  for (const h of hooks(g, 'countersBonus')) total += Math.max(0, h.fn(h.ctx, kind, perm));
+  for (const h of hooks(g, 'countersDouble')) if (h.fn(h.ctx, kind, perm)) total *= 2;
+  return total;
+}
+
 export function addCounters(g: G, target: TargetRef, kind: string, n: number, by: PlayerId | null): number {
   if (n <= 0) return 0;
   if (target.kind === 'player') {
@@ -657,6 +674,7 @@ export function addCounters(g: G, target: TargetRef, kind: string, n: number, by
     const o = g.state.objects[target.id];
     if (!o || (o.zone !== 'battlefield' && o.zone !== 'exile')) return 0; // CR 122.1: marcadores de tempo no exílio (suspender)
     if (o.zone === 'battlefield' && hooks(g, 'cantHaveCountersPut').some((h) => h.fn(h.ctx, kind, { controller: controllerOf(g, o.id), chars: chars(g, o.id) }))) return 0;
+    if (o.zone === 'battlefield') n = countersAfterReplacements(g, kind, n, { controller: controllerOf(g, o.id), chars: chars(g, o.id) });
     o.counters[kind] = (o.counters[kind] ?? 0) + n;
   }
   g.bump();

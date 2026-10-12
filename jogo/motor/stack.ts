@@ -31,9 +31,10 @@ function sourceQualities(g: G, source: ObjId) {
 }
 
 /** o alvo é legal para esta especificação, vindo de uma mágica/habilidade controlada por `controller`? */
-export function isLegalTarget(g: G, spec: TargetSpec, t: TargetRef, controller: PlayerId, source: ObjId, sourceIsSpell = true, event?: Record<string, unknown>): boolean {
+export function isLegalTarget(g: G, spec: TargetSpec, t: TargetRef, controller: PlayerId, source: ObjId, sourceIsSpell = true, event?: Record<string, unknown>, x?: number): boolean {
   const s = g.state;
-  const ctx: SCtx = { g, you: controller, source, event };
+  // x: o X escolhido, para filtros como "valor de mana X ou menos" (Here Comes a New Hero!)
+  const ctx: SCtx & { x?: number } = { g, you: controller, source, event, x };
   if (t.kind === 'player') {
     if (spec.what !== 'player' && spec.what !== 'any') return false;
     if (s.players[t.id]?.left !== false) return false;
@@ -61,7 +62,7 @@ export function isLegalTarget(g: G, spec: TargetSpec, t: TargetRef, controller: 
   return !spec.filter || spec.filter(ctx, t);
 }
 
-export function candidateTargets(g: G, spec: TargetSpec, controller: PlayerId, source: ObjId, event?: Record<string, unknown>): TargetRef[] {
+export function candidateTargets(g: G, spec: TargetSpec, controller: PlayerId, source: ObjId, event?: Record<string, unknown>, x?: number): TargetRef[] {
   const s = g.state;
   const out: TargetRef[] = [];
   if (spec.what === 'player' || spec.what === 'any') for (const p of g.playersInGame()) out.push({ kind: 'player', id: p });
@@ -72,7 +73,7 @@ export function candidateTargets(g: G, spec: TargetSpec, controller: PlayerId, s
     const ids = zone === 'graveyard' || zone === 'hand' || zone === 'library' ? s.zones[zone].flat() : s.zones[zone];
     for (const id of ids) out.push({ kind: 'obj', id });
   }
-  return out.filter((t) => isLegalTarget(g, spec, t, controller, source, true, event));
+  return out.filter((t) => isLegalTarget(g, spec, t, controller, source, true, event, x));
 }
 
 function specMax(g: G, spec: TargetSpec, ctx: SCtx & { x?: number }): number {
@@ -85,7 +86,7 @@ export function* chooseTargets(g: G, player: PlayerId, specs: TargetSpec[], sour
   const ctx: SCtx & { x: number } = { g, you: player, source, x, event };
   for (let i = 0; i < specs.length; i++) {
     const spec = specs[i];
-    let cands = candidateTargets(g, spec, player, source, event);
+    let cands = candidateTargets(g, spec, player, source, event, x);
     if (spec.differentFrom) {
       const used = spec.differentFrom.flatMap((j) => chosen[j] ?? []);
       cands = cands.filter((t) => !used.some((u) => u.kind === t.kind && u.id === t.id));
@@ -528,7 +529,9 @@ function* castInner(g: G, player: PlayerId, cardId: ObjId, method: CastMethod): 
   }
   const byType: Record<string, number> = {};
   for (const u of paidMana.units) byType[u.type] = (byType[u.type] ?? 0) + 1;
-  info.manaSpent = { total: paidMana.units.length, byType, colors: Object.keys(byType).filter((t) => t !== 'C').length };
+  // mana vinda de fontes que são artefatos (Coin of Mastery): olha a fonte agora, ou a última informação dela
+  const deArtefatos = paidMana.units.filter((u) => u.source !== null && u.source !== undefined && !!(g.state.objects[u.source] ? chars(g, u.source) : g.state.lki[u.source]?.chars)?.types.includes('Artifact')).length;
+  info.manaSpent = { total: paidMana.units.length, byType, colors: Object.keys(byType).filter((t) => t !== 'C').length, ...(deArtefatos ? { fromArtifacts: deArtefatos } : {}) };
   if (paidMana.lifePaid) info.paid.phyrexianLife = paidMana.lifePaid;
   // 601.2i: a mágica foi conjurada
   if (method.zone === 'command' && o.card !== null) {
@@ -807,7 +810,7 @@ function makeCtx(g: G, o: GameObject, targets: (TargetRef | null)[][], source: O
 function checkTargets(g: G, o: GameObject, specs: TargetSpec[], source: ObjId): (TargetRef | null)[][] | null {
   const st = o.stack!;
   if (specs.length === 0 || st.targets.flat().length === 0) return st.targets.map((grp) => [...grp]);
-  const res = st.targets.map((grp, i) => grp.map((t) => (specs[i] && isLegalTarget(g, specs[i], t, st.controller, source, true, st.kind === 'triggered' ? st.event : undefined) ? t : null)));
+  const res = st.targets.map((grp, i) => grp.map((t) => (specs[i] && isLegalTarget(g, specs[i], t, st.controller, source, true, st.kind === 'triggered' ? st.event : undefined, st.x) ? t : null)));
   const any = st.targets.flat().length > 0;
   const allIllegal = any && res.flat().every((t) => t === null);
   return allIllegal ? null : res;
