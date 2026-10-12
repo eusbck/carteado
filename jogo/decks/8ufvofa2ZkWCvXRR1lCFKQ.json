@@ -6,8 +6,7 @@
  "link": "https://moxfield.com/decks/8ufvofa2ZkWCvXRR1lCFKQ",
  "importadoEm": "2026-10-10T05:13:38.665Z",
  "verificadoEm": "2026-10-10T05:13:38.665Z",
- "atual": null,
- "preparacao": {
+ "atual": {
   "comandante": "Szarekh, the Silent King",
   "cartas": [
    {
@@ -296,5 +295,6 @@
    "atualizadoEm": "2024-10-31T17:08:44.457Z"
   },
   "desde": "2026-10-10T05:13:38.665Z"
- }
+ },
+ "preparacao": null
 }
