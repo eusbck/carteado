@@ -1744,5 +1744,31 @@ jogáveis).
 - A suíte inteira ainda não rodou com este deck nem com o Wakanda Forever (rodaram os testes de cada carta, o `tsc`,
   a conferência e os bots).
 
-Faltam 4 decks do lote 2: Avengers Assemble, Necron Dynasties e Jin's Vengeance, mais o Food and Fellowship
-(importação e dois comandantes pendentes).
+## Avengers Assemble (Captain America, Team Leader): pronto — 11/10/2026
+
+As 50 cartas que faltavam estão escritas, cada uma com teste e rulings (as cartas novas da coleção ainda não têm
+rulings publicados). O deck entrou no saguão desta cópia (23 decks jogáveis).
+
+- Conferência com o Moxfield: 100 cartas, 87 de 87 com regras, nada faltando nem sobrando.
+- Bots com o deck obrigatório: 8 partidas de 4 jogadores e 12 de 2 (aleatórios), 4 de 2 (heurísticos), todas sem erro.
+- `cartas/vingadores.ts` guarda "é Hero", "é comandante", "o seu comandante", o tipo escolhido ao entrar, "criatura
+  modificada" (CR 700.9) e as atacantes do combate.
+- Motor:
+  - Dano "mais 1" (gancho `damageBonus`): Thor.
+  - Redirecionamento de dano (regra `rule:redirectDamageTo`, CR 614.9): Heroic Sacrifice.
+  - "Só pode ser bloqueada por criaturas com ímpeto" (regra `rule:blockedOnlyByKeyword`): Speed.
+  - Quantas vezes cada permanente foi virada no turno (`state.tappedThisTurn`): Captain America, Living Legend.
+- Fichas: nenhuma nova (Bird e Treasure já existiam).
+- Simplificações, para conferir se alguém estranhar na mesa:
+  - Thor com Raphael: o motor soma o +1 antes de dobrar; não pergunta a ordem (CR 616.1).
+  - Dismantling Wave: aceita até três alvos, um por oponente.
+  - Jocasta: voltando do cemitério, você escolhe só o jogador que ela ataca (não planeswalkers nem batalhas).
+  - Scarlet Witch: as cartas exiladas ficam ligadas a ela enquanto ela estiver no campo; se ela sair e voltar, as
+    antigas deixam de contar (é outro objeto, CR 400.7).
+  - Shang-Chi: "o décimo marcador" dispara quando o total passa de nove ou menos para dez ou mais.
+  - Love on the Battlefield: o segundo gatilho vale só para aquele combate, pela contagem de combates do turno.
+  - Folk Hero: "compartilha um tipo de criatura" compara os subtipos da mágica com os da criatura.
+- A suíte inteira ainda não rodou com este deck (rodaram os testes de cada carta, o `tsc`, a conferência e os bots).
+
+Faltam 3 decks do lote 2: Necron Dynasties e Jin's Vengeance, mais o Food and Fellowship (importação e dois
+comandantes pendentes).

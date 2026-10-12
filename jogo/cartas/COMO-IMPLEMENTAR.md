@@ -185,9 +185,21 @@ Formatos de carta (`motor/formatos.ts`). O nome da definição e o slug usam o n
 - Nos testes, cada função de `tg.script.push` responde uma pergunta só; para várias perguntas iguais, empurre várias.
 - `cartas/tartarugas.ts`: notas dos rulings de parceiro (seleção de personagem e "parceiro com"), de Mutagen e de
   Food; "sai do campo esta ou outra criatura sua que não é ficha"; sacrificar fichas no fim do combate.
+- Dano "mais N" (CR 614.1a): gancho `damageBonus(c, fonte, alvo, combate)`, somado antes do dobro (Thor).
+- Redirecionar o dano (CR 614.9): `ruleEffect(c, 'rule:redirectDamageTo', duração, { params: { controller, to } })`
+  manda para `to` o dano que iria ao jogador e às criaturas dele (Heroic Sacrifice).
+- "Só pode ser bloqueada por criaturas com [habilidade]" até o fim do turno:
+  `untilEndOfTurn(c, [id], [{ k: 'rule', id: 'rule:blockedOnlyByKeyword', params: { kw } }])` (Speed).
+- Quantas vezes cada permanente foi virada no turno: `state.tappedThisTurn.times[id]` (Captain America, Living Legend).
+- "Pela primeira vez em cada turno": `oncePerTurn: true` no gatilho; para dano simultâneo, `on.batch` somando o lote
+  (Hercules).
+- `cartas/vingadores.ts`: `ehHeroi`, `ehComandante`, `ehSeuComandante` (o de que você é dono, seja quem for que o
+  controle), `tipoEscolhido`, `modificada` (CR 700.9) e `atacantes`.
+- Equipar com restrição (CR 702.6c): `{ ...equip('{3}'), targets: [...], text: 'Equipar Hero {3}' }` (Hulkbuster Armor).
+- Nos testes, `tg.choose` responde a primeira pergunta cujo texto casa: registre primeiro a escolha de texto mais
+  específico ("escolha" casa também com "escolha o alvo").
 
-## Testes
-```ts
+## Testes```ts
 import { describe, expect, it } from 'vitest';
 import { setup } from '../../testes/harness.ts';
 

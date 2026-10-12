@@ -6,8 +6,7 @@
  "link": "https://moxfield.com/decks/fbMRiG7ia0-hm464dMWcEQ",
  "importadoEm": "2026-10-10T05:23:29.531Z",
  "verificadoEm": "2026-10-10T05:23:29.531Z",
- "atual": null,
- "preparacao": {
+ "atual": {
   "comandante": "Captain America, Team Leader",
   "cartas": [
    {
@@ -360,5 +359,6 @@
    "atualizadoEm": "2026-07-15T16:02:55Z"
   },
   "desde": "2026-10-10T05:23:29.531Z"
- }
+ },
+ "preparacao": null
 }
