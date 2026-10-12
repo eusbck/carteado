@@ -106,7 +106,7 @@ export type CostPart =
   | { k: 'blight'; n: number | 'X' }
   | { k: 'mill'; n: number }
   | { k: 'tapCreatures'; n: number; filter?: (c: SCtx, o: ObjId) => boolean; label?: string; includeSelf?: boolean }
-  | { k: 'tapPermanents'; n: number; filter: (c: SCtx, o: ObjId) => boolean; label: string }
+  | { k: 'tapPermanents'; n: number | 'X'; filter: (c: SCtx, o: ObjId) => boolean; label: string }
   /** "Desvire N criaturas viradas que você controla" (Halo Fountain) */
   | { k: 'untapCreatures'; n: number }
   | { k: 'crew'; power: number }

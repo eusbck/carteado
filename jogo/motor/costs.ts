@@ -85,7 +85,7 @@ export function canPayParts(g: G, player: PlayerId, parts: CostPart[], source: O
       }
       case 'mill': if (s.zones.library[player].length < p.n) return false; break; // CR 701.17b
       case 'tapCreatures': if (s.zones.battlefield.filter((id) => (p.includeSelf || id !== source) && controllerOf(g, id) === player && isCreature(g, id) && !s.objects[id].tapped && (!p.filter || p.filter(ctx, id))).length < p.n) return false; break;
-      case 'tapPermanents': if (costPermanents(g, player, (id) => !s.objects[id].tapped && p.filter(ctx, id)).length < p.n) return false; break;
+      case 'tapPermanents': if (costPermanents(g, player, (id) => !s.objects[id].tapped && p.filter(ctx, id)).length < (p.n === 'X' ? 0 : p.n)) return false; break;
       case 'untapCreatures': if (costPermanents(g, player, (id) => s.objects[id].tapped && isCreature(g, id)).length < p.n) return false; break;
       case 'crew': if (crewCandidates(g, player, source).reduce((n, id) => n + Math.max(0, power(g, id)), 0) < p.power) return false; break;
       case 'returnPermanent': if (!costPermanents(g, player, (id) => p.filter(ctx, id)).length) return false; break;
@@ -116,7 +116,8 @@ function recursosDistintos(g: G, player: PlayerId, parts: CostPart[], source: Ob
   let viradas = 0, saidas = 0, vidas = 0, tripular = 0;
   for (const p of parts) {
     if (p.k === 'tap') viradas++;
-    else if (p.k === 'tapCreatures' || p.k === 'tapPermanents') viradas += p.n;
+    else if (p.k === 'tapCreatures') viradas += p.n;
+    else if (p.k === 'tapPermanents') viradas += p.n === 'X' ? x : p.n;
     else if (p.k === 'crew') tripular += p.power;
     else if (p.k === 'sacrificeSelf' || p.k === 'exileSelf' || p.k === 'returnPermanent') saidas++;
     else if (p.k === 'sacrifice') saidas += p.n === 'X' ? x : p.n;
@@ -134,7 +135,7 @@ function recursosDistintos(g: G, player: PlayerId, parts: CostPart[], source: Ob
     switch (p.k) {
       case 'tap': vagasVirar.push([source]); break;
       case 'tapCreatures': repetir(vagasVirar, s.zones.battlefield.filter((id) => (p.includeSelf || id !== source) && controllerOf(g, id) === player && !s.objects[id].phasedOut && isCreature(g, id) && !s.objects[id].tapped && (!p.filter || p.filter(ctx, id))), p.n); break;
-      case 'tapPermanents': repetir(vagasVirar, costPermanents(g, player, (id) => !s.objects[id].tapped && p.filter(ctx, id)), p.n); break;
+      case 'tapPermanents': repetir(vagasVirar, costPermanents(g, player, (id) => !s.objects[id].tapped && p.filter(ctx, id)), p.n === 'X' ? x : p.n); break;
       case 'sacrificeSelf': vagasSair.push([source]); break;
       case 'exileSelf': if (noCampo) vagasSair.push([source]); break;
       case 'sacrifice': repetir(vagasSair, costPermanents(g, player, (id) => p.filter(ctx, id)), p.n === 'X' ? x : p.n); break;
@@ -663,8 +664,10 @@ export function* payParts(g: G, player: PlayerId, parts: CostPart[], source: Obj
       }
       case 'tapPermanents': {
         const cands = costPermanents(g, player, (id) => !s.objects[id].tapped && p.filter(ctx, id));
-        if (cands.length < p.n) return false;
-        const ids = yield* chooseItems(g, player, `Vire ${p.n} ${p.label} que você controla`, cands.map((id) => objItem(g, id, nameOf(g, id))), p.n, p.n);
+        // "vire X …" (Necron Overlord): o X escolhido ao ativar
+        const quantos = p.n === 'X' ? x : p.n;
+        if (cands.length < quantos) return false;
+        const ids = quantos > 0 ? yield* chooseItems(g, player, `Vire ${quantos} ${p.label} que você controla`, cands.map((id) => objItem(g, id, nameOf(g, id))), quantos, quantos) : [];
         for (const id of ids.map(Number)) tap(g, id);
         info.tapped = [...((info.tapped as ObjId[]) ?? []), ...ids.map(Number)];
         break;

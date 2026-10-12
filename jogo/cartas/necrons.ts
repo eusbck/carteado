@@ -31,3 +31,11 @@ export function tresTerrenosIguais(g: G, p: PlayerId): boolean {
   }
   return [...contagem.values()].some((n) => n >= 3);
 }
+/** notas dos rulings de desenterrar (CR 702.84), iguais em todas as cartas do deck */
+export const DESENTERRAR = {
+  sumiu: 'regra geral: CR 702.84a — se a carta saiu do cemitério antes de a habilidade resolver, ela resolve e não faz nada (motor/mecanicas.ts unearth)',
+  naoMagica: 'regra geral: CR 702.84a — desenterrar é habilidade ativada, não mágica: a carta não vai para a pilha (motor/mecanicas.ts unearth)',
+  sairia: 'regra geral: CR 702.84a — se a permanente desenterrada fosse sair do campo, é exilada em vez disso (motor/mecanicas.ts unearth, rule:exileIfLeaves)',
+  etapaFinal: 'regra geral: CR 702.84a — é exilada no início da próxima etapa final por um gatilho atrasado (motor/mecanicas.ts unearth)',
+  impeto: 'regra geral: CR 702.84a — ganha ímpeto; os dois exílios não são habilidades dela e valem mesmo que ela perca as habilidades (motor/mecanicas.ts unearth)',
+};
