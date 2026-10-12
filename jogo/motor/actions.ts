@@ -826,7 +826,9 @@ export function* draw(g: G, player: PlayerId, n = 1, opts: { aplicadas?: ObjId[]
     }
     // Shared Fate (CR 614.1a): a compra é trocada por outra coisa, feita pelo efeito
     {
-      const subs = hooks(g, 'drawReplace');
+      // a substituição pode ter condição (Out of the Tombs: só com o grimório vazio, só para quem a controla)
+      const condicoes = hooks(g, 'drawReplaceApplies');
+      const subs = hooks(g, 'drawReplace').filter((h) => condicoes.every((k) => k.ctx.source !== h.ctx.source || k.fn(k.ctx, player)));
       if (subs.length) {
         let escolhida = subs[0];
         if (subs.length > 1) {

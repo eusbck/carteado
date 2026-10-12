@@ -15,6 +15,8 @@ export type GameEvent =
   | { type: 'cast'; obj: ObjId; player: PlayerId; from: ZoneName; copy: boolean }
   | { type: 'copySpell'; obj: ObjId; player: PlayerId }
   | { type: 'activate'; obj: ObjId; source: ObjId; player: PlayerId; abilityId: string }
+  /** o Veículo ficou tripulado: a habilidade de tripular resolveu (Ghost Ark) */
+  | { type: 'crewed'; obj: ObjId; player: PlayerId }
   | { type: 'attackers'; player: PlayerId; attackers: { obj: ObjId; target: TargetRef }[] }
   | { type: 'blockers'; blocks: [ObjId, ObjId][] }
   | { type: 'draw'; player: PlayerId; obj: ObjId; nth: number }

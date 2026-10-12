@@ -297,6 +297,10 @@ export interface RuleHooks {
    * substituída uma vez só.
    */
   drawReplace?: (c: SCtx, player: PlayerId) => Gen<void>;
+  /** condição da substituição de compra da mesma permanente; sem este gancho, ela vale sempre */
+  drawReplaceApplies?: (c: SCtx, player: PlayerId) => boolean;
+  /** "habilidades ativadas de [essas fontes] custam {N} a menos", sem baixar a mana do custo a menos de minMana (Convergence of Dominion) */
+  abilityCostModifier?: (c: SCtx, player: PlayerId, source: ObjId, def: ActivatedDef) => { reduce: number; minMana?: number } | null;
   /**
    * Ação baseada em estado definida pela carta (CR 704), conferida junto com as do jogo e podendo pedir escolhas
    * (Space Beleren: quem controla uma criatura sem setor a põe num setor). Devolve true se fez alguma coisa; precisa

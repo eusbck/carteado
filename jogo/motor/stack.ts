@@ -671,7 +671,16 @@ export function canActivate(g: G, player: PlayerId, sourceId: ObjId, def: Activa
 /** CR 602.2b, 601.2f: determine uma vez o custo total, antes de ativar habilidades de mana ou pagar partes. */
 export function totalAbilityCost(g: G, player: PlayerId, source: ObjId, def: ActivatedDef, x: number): ManaSymbol[] {
   const adjustment = def.selfCost?.({ g, you: player, source }, x);
-  return reduceGeneric(addGeneric(withX(manaPart(def.cost), x), adjustment?.increase ?? 0), adjustment?.reduce ?? 0);
+  let custo = reduceGeneric(addGeneric(withX(manaPart(def.cost), x), adjustment?.increase ?? 0), adjustment?.reduce ?? 0);
+  // reduções vindas de outras permanentes (Convergence of Dominion), com piso na mana total do custo
+  for (const h of hooks(g, 'abilityCostModifier')) {
+    const r = h.fn(h.ctx, player, source, def);
+    if (!r || r.reduce <= 0) continue;
+    const total = custo.reduce((n, s) => n + (s.k === 'generic' ? s.n : s.k === 'X' ? 0 : 1), 0);
+    const pode = Math.max(0, total - (r.minMana ?? 0));
+    custo = reduceGeneric(custo, Math.min(r.reduce, pode));
+  }
+  return custo;
 }
 
 // ---------------------------------------------------------------------------
