@@ -238,6 +238,8 @@ export function canBlock(g: G, blocker: ObjId, attacker: ObjId): boolean {
   for (const e of g.state.effects) for (const m of e.mods) {
     if (m.k === 'rule' && m.id === 'rule:cantBeBlocked' && e.affected?.includes(attacker)) return false;
     if (m.k === 'rule' && m.id === 'rule:cantBlock' && e.affected?.includes(blocker)) return false;
+    // "não pode ser bloqueada neste turno exceto por criaturas com [habilidade]" (Speed, Young Avenger)
+    if (m.k === 'rule' && m.id === 'rule:blockedOnlyByKeyword' && e.affected?.includes(attacker) && !hasKw(g, blocker, String(m.params?.kw))) return false;
   }
   for (const h of hooks(g, 'canBlock')) if (!h.fn(h.ctx, blocker, attacker)) return false;
   for (const h of hooks(g, 'canBeBlockedBy')) if (!h.fn(h.ctx, attacker, blocker)) return false;
