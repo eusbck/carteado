@@ -1896,5 +1896,17 @@ jogáveis).
 - O servidor da 8080 foi reiniciado pelo vigia do `abrir-mesa.ps1` (mesmo túnel, mesmo endereço) e `/api/decks`
   responde com os 24. Ficam em preparação Jin's Vengeance (em andamento na `lote2-b`) e Food and Fellowship.
 
-Falta 1 deck do lote 2: o Food and Fellowship (importação e dois comandantes pendentes). A suíte inteira com os cinco
-decks mais recentes continua pendente (ver acima).
+## 12/10/2026 — Jin's Vengeance na main e suíte inteira em fatias
+
+- A pedido do Caio, a `main` foi avançada por fast-forward para `fe8d26d`: junta o cronômetro da mesa e as artes dos
+  comandantes (commit `2ac28e9`, da outra sessão) com o Jin's Vengeance. São 25 decks jogáveis.
+- A suíte inteira lançada em segundo plano sobre `fe8d26d` foi encerrada outra vez pelo sistema por falta de memória.
+  Rodei então todos os arquivos de teste em 16 fatias, em primeiro plano, com dois trabalhadores, sobre o mesmo commit:
+  **1611 arquivos, 4193 testes aprovados, 1 ignorado que já existia, zero falhas.** São 1557 arquivos de cartas (com o
+  das fichas) e 54 de testes gerais (catálogo, motor, servidor, saguão, bots, fase 9, cronômetro).
+- Com isso Wakanda Forever, Turtle Power!, Avengers Assemble, Necron Dynasties e Jin's Vengeance passaram por todos os
+  testes; as notas "a suíte inteira ainda não rodou" das entradas acima ficam resolvidas por esta.
+- `npm run typecheck` (motor e cliente) sem erros. O servidor da 8080 não foi reiniciado por mim.
+
+Falta 1 deck do lote 2: o Food and Fellowship (importação e dois comandantes pendentes), que o Caio pediu para deixar
+para depois.
