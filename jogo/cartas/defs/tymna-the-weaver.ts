@@ -36,6 +36,6 @@ export default defineCard({
     7: SELECAO.separados,
     8: SELECAO.refere,
     9: SELECAO.controla,
-    10: 'regra geral: CR 702.124h — os dois comandantes com parceiro podem ter as mesmas cores; é da montagem do deck (decks/)',
+    10: 'não se aplica: é da montagem do deck, e dois comandantes ainda não existem neste jogo (o importador recusa; ver PROGRESSO, "dois comandantes")',
   },
 });

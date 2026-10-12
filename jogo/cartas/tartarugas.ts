@@ -7,11 +7,11 @@ import type { ObjId } from '../motor/types.ts';
 /** notas dos rulings de "Parceiro — Seleção de personagem": tudo é da montagem do deck e dos dois comandantes */
 export const SELECAO = {
   controla: 'regra geral: CR 702.124e — "você controla o seu comandante" vale com um ou com os dois (cartas/wakanda.ts controlaComandante)',
-  dois: 'regra geral: CR 702.124i — dois comandantes só se os dois tiverem a mesma habilidade de parceiro; é da montagem do deck (decks/)',
-  comecam: 'regra geral: CR 702.124b — os dois comandantes começam na zona de comando (motor/state.ts)',
-  identidade: 'regra geral: CR 702.124c — a identidade de cor é a combinada dos dois comandantes; é da montagem do deck (decks/)',
-  separados: 'regra geral: CR 702.124d — cada comandante conta as próprias conjurações e o próprio dano (PlayerState.commanderCasts e commanderDamage por carta)',
-  perder: 'regra geral: CR 702.124a — as habilidades de parceiro valem antes de a partida começar; perdê-las depois não muda nada',
+  dois: 'não se aplica: é da montagem do deck, e dois comandantes ainda não existem neste jogo (o importador recusa; ver PROGRESSO, "dois comandantes")',
+  comecam: 'não se aplica: é da montagem do deck, e dois comandantes ainda não existem neste jogo (o importador recusa; ver PROGRESSO, "dois comandantes")',
+  identidade: 'não se aplica: é da montagem do deck, e dois comandantes ainda não existem neste jogo (o importador recusa; ver PROGRESSO, "dois comandantes")',
+  separados: 'regra geral: CR 702.124d — as conjurações e o dano de comandante são contados por carta (PlayerState.commanderCasts e commanderDamage)',
+  perder: 'não se aplica: as habilidades de parceiro só valem na montagem do deck, antes de a partida começar (CR 702.124a)',
   refere: 'regra geral: CR 702.124e — o que se refere ao seu comandante vale para qualquer um dos dois, à sua escolha',
 };
 
@@ -66,8 +66,8 @@ export const SACRIFICA_NO_FIM_DO_COMBATE = defineAbility('tartarugas:sacrificaNo
 export const PARCEIRO_COM = {
   gatilho: 'regra geral: CR 702.124j — o gatilho de "parceiro com" dispara também no Commander e pode mirar qualquer jogador (cartas/vampiros.ts parceiroCom)',
   busca: 'regra geral: CR 702.124j — o jogador alvo procura no grimório dele, revela a carta, põe na mão e embaralha (cartas/vampiros.ts parceiroCom)',
-  deck: 'regra geral: CR 702.124j — a outra metade é da montagem do deck: as duas podem ser comandantes juntas (decks/)',
-  soEntreSi: 'regra geral: CR 702.124f — "parceiro com" só combina com o parceiro nomeado; perder a habilidade na partida não muda os comandantes',
+  deck: 'não se aplica: é da montagem do deck, e dois comandantes ainda não existem neste jogo (o importador recusa; ver PROGRESSO, "dois comandantes")',
+  soEntreSi: 'não se aplica: é da montagem do deck, e dois comandantes ainda não existem neste jogo (o importador recusa; ver PROGRESSO, "dois comandantes")',
 };
 /** a criatura recebeu dano neste turno? (Swift Demise): dano ainda marcado ou registrado nos eventos do turno */
 export function recebeuDanoNoTurno(g: G, id: ObjId): boolean {

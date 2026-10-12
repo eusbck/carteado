@@ -34,7 +34,7 @@ export default defineCard({
     4: SELECAO.comecam,
     5: SELECAO.identidade,
     6: SELECAO.controla,
-    7: 'regra geral: CR 702.124h — os dois comandantes com parceiro podem ter as mesmas cores; é da montagem do deck (decks/)',
+    7: 'não se aplica: é da montagem do deck, e dois comandantes ainda não existem neste jogo (o importador recusa; ver PROGRESSO, "dois comandantes")',
     8: 'regra geral: CR 903.3 — ser comandante é da carta, não do que ela copia: copiando outra criatura, continua (ou continua não) sendo comandante (motor/state.ts)',
     9: 'regra geral: CR 707.2 — o X do custo de mana copiado vale 0 (motor/chars.ts)',
     10: 'regra geral: CR 707.9a — a exceção entra nos valores copiáveis: quem copiar Sakashima também tem as outras habilidades dele (motor/criaturas.ts entersAsCopy)',
