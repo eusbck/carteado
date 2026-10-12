@@ -545,6 +545,16 @@ export function dealDamage(g: G, reqs: DamageReq[]): { dealt: number; to: Target
         const alvo = r.target.id;
         if (s.effects.some((e) => e.mods.some((m) => m.k === 'rule' && m.id === 'rule:preventCombatDamageToSubtype' && m.params?.controller === controllerOf(g, alvo) && chars(g, alvo).subtypes.includes(m.params?.subtype as string)))) amount = 0;
       }
+      // "previna os próximos N de dano que seriam causados a [essa permanente] neste turno" (Eiganjo Castle): o escudo gasta
+      if (amount > 0 && r.target.kind === 'obj') {
+        for (const e of s.effects) for (const m of e.mods) {
+          if (m.k !== 'rule' || m.id !== 'rule:preventNextDamageTo' || !m.params || m.params.to !== r.target.id || amount <= 0) continue;
+          const resta = Number(m.params.left ?? 0);
+          const prevenido = Math.min(resta, amount);
+          amount -= prevenido;
+          m.params.left = resta - prevenido;
+        }
+      }
       // "previna todo o dano que seria causado por criaturas neste turno" (Ethereal Haze)
       if (amount > 0 && sc.types.includes('Creature') && s.effects.some((e) => e.mods.some((m) => m.k === 'rule' && m.id === 'rule:preventDamageByCreatures'))) amount = 0;
       // "previna todo o dano de combate que seria causado neste turno" (Darkness)
