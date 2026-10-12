@@ -193,6 +193,8 @@ export function protectionMatches(g: G, quality: unknown, src: { colors: Color[]
     return protectionMatches(g, q.base, src);
   }
   if (typeof quality !== 'string') return false;
+  // proteção contra tudo (Teferi's Protection, The One Ring; CR 702.16j)
+  if (quality === 'everything') return true;
   if (quality.startsWith('color:')) return src.colors.includes(quality.slice(6) as Color);
   if (quality === 'creatures') return src.types.includes('Creature');
   // proteção contra Portadores do Anel (Lord of the Nazgûl; CR 701.54b, 701.54e)

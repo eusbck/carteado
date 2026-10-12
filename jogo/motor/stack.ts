@@ -39,6 +39,8 @@ export function isLegalTarget(g: G, spec: TargetSpec, t: TargetRef, controller: 
     if (spec.what !== 'player' && spec.what !== 'any') return false;
     if (s.players[t.id]?.left !== false) return false;
     if (controller !== t.id && hooks(g, 'playerHexproof').some((h) => h.fn(h.ctx, t.id)) && g.isOpponent(controller, t.id)) return false; // CR 702.11c
+    // "você ganha resistência a magia até o fim do turno" (Dawn's Truce): efeito de regra sobre o jogador
+    if (g.isOpponent(controller, t.id) && g.state.effects.some((e) => !!e.affectedPlayers?.includes(t.id) && e.mods.some((m) => m.k === 'rule' && m.id === 'rule:playerHexproof'))) return false;
     if (playerProtectedFrom(g, t.id, sourceQualities(g, source))) return false; // CR 702.16b
     return !spec.filter || spec.filter(ctx, t);
   }
