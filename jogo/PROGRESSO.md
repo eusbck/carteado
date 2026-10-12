@@ -1770,5 +1770,38 @@ rulings publicados). O deck entrou no saguão desta cópia (23 decks jogáveis).
   - Folk Hero: "compartilha um tipo de criatura" compara os subtipos da mágica com os da criatura.
 - A suíte inteira ainda não rodou com este deck (rodaram os testes de cada carta, o `tsc`, a conferência e os bots).
 
-Faltam 3 decks do lote 2: Necron Dynasties e Jin's Vengeance, mais o Food and Fellowship (importação e dois
-comandantes pendentes).
+## Necron Dynasties (Szarekh, the Silent King): pronto — 11/10/2026
+
+As 51 cartas que faltavam estão escritas, cada uma com teste e rulings. O deck entrou no saguão desta cópia (24 decks
+jogáveis).
+
+- Conferência com o Moxfield: 100 cartas, 71 de 71 com regras, nada faltando nem sobrando.
+- Bots com o deck obrigatório: 8 partidas de 4 jogadores e 12 de 2 (aleatórios), 4 de 2 (heurísticos), todas sem erro.
+- `cartas/necrons.ts` guarda "criatura artefato", as fichas Necron Warrior, "três terrenos com o mesmo nome" e as
+  notas de rulings de desenterrar.
+- Motor:
+  - Prevenção de todo o dano de combate do turno (regra `rule:preventAllCombatDamage`): Darkness.
+  - Custo de virar X permanentes: Necron Overlord.
+  - Substituição de compra com condição (`drawReplaceApplies`): Out of the Tombs.
+  - Redução de custo de habilidades de outras fontes (gancho `abilityCostModifier`): Convergence of Dominion.
+  - Evento `crewed`, quando tripular resolve: Ghost Ark.
+- Fichas novas: Necron Warrior 2/2 preta e Insect 1/1 incolor com voar, as duas criaturas artefato.
+- Simplificações, para conferir se alguém estranhar na mesa:
+  - Illuminor Szeras: a habilidade usa a pilha (não é tratada como habilidade de mana), porque a quantidade de mana
+    depende da criatura sacrificada no custo.
+  - Mystic Forge: conjurar virada para baixo do topo do grimório não está implementado.
+  - Technomancer: as cartas são escolhidas uma a uma, com o valor de mana que ainda cabe.
+  - Triarch Stalker: o jogador escolhido fica guardado no Stalker; se ele sair e voltar, a escolha recomeça.
+  - Trazyn: olha as cartas como estão no cemitério (com Biotransference, as de criatura também contam como artefato).
+  - Imotekh: "carta de artefato" é conferida pela última informação da carta no cemitério.
+  - Lokhust Heavy Destroyer e Shard of the Void Dragon: quem tem uma opção só sacrifica sem pergunta.
+- A suíte inteira ainda não rodou com este deck.
+
+## Suíte inteira pendente — 11/10/2026
+
+A suíte da `2b98c53` (Wakanda Forever e Turtle Power!), lançada com um trabalhador, foi encerrada pelo sistema por falta
+de memória antes de terminar. Wakanda Forever, Turtle Power!, Avengers Assemble e Necron Dynasties ainda não passaram
+pela suíte inteira; rodaram os testes de cada carta, o `tsc`, a conferência e os bots. A `decks/lote2` ficou em
+`2b98c53` até haver suíte.
+
+Faltam 2 decks do lote 2: Jin's Vengeance, mais o Food and Fellowship (importação e dois comandantes pendentes).
