@@ -168,9 +168,25 @@ Formatos de carta (`motor/formatos.ts`). O nome da definição e o slug usam o n
 - **Reversível:** uma face só em `faces` (as duas são iguais).
 - **Substituição na criação de fichas** ("o dobro", "em vez disso crie…"): gancho `tokenCreation` (Anointed Procession, Jinnie Fay). Num teste, efeitos que perguntam algo rodam com `runEffect(tg, …)` de `testes/artefatos.ts`, não com `tg.run`.
 - **Outros ganchos:** `preventsDamage` (previne todo o dano a algo), `spellsHaveConvoke`.
+- Substituição de marcadores (CR 614.1a): ganchos `countersBonus` (devolve N a mais: High Score) e `countersDouble`
+  (dobra: Corpsejack Menace). Valem em `addCounters` e em quem entra com marcadores; o motor soma antes de dobrar.
+  Dobrar marcadores (CR 701.10e) é pôr outros tantos: `dobraMarcadores` em `cartas/tartarugas.ts`.
+- Dano em dobro (CR 701.10g): gancho `damageDouble(c, fonte, alvo, combate)`, aplicado antes da prevenção (Raphael).
+- Mana de fontes que são artefatos gasta numa mágica: `manaSpent.fromArtifacts`, que chega a `ev.spell` no
+  `enterModifier` (Coin of Mastery).
+- Cartas que foram do campo para o cemitério no turno: `turnStats[p].toGraveyardFromBattlefield` (Continue?).
+- O X escolhido chega ao filtro dos alvos como `(c as { x?: number }).x` (Here Comes a New Hero!). Na estimativa de
+  "dá para conjurar?" ele vem indefinido.
+- "Qualquer outro alvo": `{ ...t.any('…'), differentFrom: [0] }` (Special Move).
+- Custo "sacrifique uma ficha": o analisador de custos não entende; acrescente a parte à mão com
+  `HAB.cost.push({ k: 'sacrifice', n: 1, label, filter })` (Arcade Cabinet, Rat King).
+- Gatilho atrasado que dispara mais de uma vez no turno: `delayed(c, id, { once: false, expiresTurn })` (Electric
+  Seaweed). O padrão é disparar uma vez só.
+- Nos testes, cada função de `tg.script.push` responde uma pergunta só; para várias perguntas iguais, empurre várias.
+- `cartas/tartarugas.ts`: notas dos rulings de parceiro (seleção de personagem e "parceiro com"), de Mutagen e de
+  Food; "sai do campo esta ou outra criatura sua que não é ficha"; sacrificar fichas no fim do combate.
 
 ## Testes
-
 ```ts
 import { describe, expect, it } from 'vitest';
 import { setup } from '../../testes/harness.ts';

@@ -6,8 +6,7 @@
  "link": "https://moxfield.com/decks/JHjwO92ZUEyNdPzE7D5d7A",
  "importadoEm": "2026-10-10T04:47:10.296Z",
  "verificadoEm": "2026-10-10T04:47:10.296Z",
- "atual": null,
- "preparacao": {
+ "atual": {
   "comandante": "Leonardo, the Balance",
   "cartas": [
    {
@@ -384,5 +383,6 @@
    "atualizadoEm": "2026-02-18T19:57:58.853Z"
   },
   "desde": "2026-10-10T04:47:10.296Z"
- }
+ },
+ "preparacao": null
 }

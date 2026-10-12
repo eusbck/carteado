@@ -1687,8 +1687,9 @@ jogáveis).
   - Finale of Devastation: você escolhe primeiro uma carta do cemitério; sem escolher, procura no grimório. Não dá para
     olhar o grimório antes de decidir pelo cemitério.
   - Silverquill Lecturer: o demonstrar concedido é um gatilho do Lecturer, não da mágica; o resultado é o mesmo.
-- A suíte inteira ainda não rodou com este deck nem com o Heavenly Inferno (rodaram os testes de cada carta, o `tsc`,
-  a conferência e os bots).
+- Suíte inteira com este deck e o Heavenly Inferno (`85d034d`, 10 e 11/10/2026): 1356 arquivos, 3808 testes aprovados,
+  1 ignorado, 4 com tempo esgotado (`fase9-artes`, `fase9-bots`, `robustez-servidor` e `servidor`). A máquina dormiu
+  no meio e a rodada levou 4h38; os quatro arquivos, rodados de novo sozinhos, passaram (55 testes).
 
 ## Wakanda Forever (T'Challa, the Black Panther): pronto — 11/10/2026
 
@@ -1713,5 +1714,35 @@ jogáveis).
     quem for.
 - A suíte inteira ainda não rodou com este deck (rodaram os testes de cada carta, o `tsc`, a conferência e os bots).
 
-Faltam 5 decks do lote 2: Turtle Power!, Avengers Assemble, Necron Dynasties e Jin's Vengeance, mais o Food and
-Fellowship (importação e dois comandantes pendentes).
+## Turtle Power! (Leonardo, the Balance): pronto — 11/10/2026
+
+As 50 cartas que faltavam estão escritas, cada uma com teste e rulings. O deck entrou no saguão desta cópia (22 decks
+jogáveis).
+
+- Conferência com o Moxfield: 100 cartas, 93 de 93 com regras, nada faltando nem sobrando.
+- Bots com o deck obrigatório: 8 partidas de 4 jogadores e 12 de 2 (aleatórios), 4 de 2 (heurísticos), todas sem erro.
+- `cartas/tartarugas.ts` guarda as notas de rulings de parceiro, Mutagen e Food, "tem marcador", dobrar marcadores e
+  os gatilhos de "sai do campo esta ou outra criatura sua que não é ficha".
+- Motor:
+  - Substituição de marcadores (ganchos `countersBonus` e `countersDouble`, CR 614.1a): High Score e Corpsejack
+    Menace. Vale para quem entra com marcadores.
+  - Dano em dobro (gancho `damageDouble`, CR 701.10g): Raphael.
+  - Mana de fontes artefato gasta na mágica (`manaSpent.fromArtifacts`): Coin of Mastery.
+  - Cartas que foram do campo ao cemitério no turno (`turnStats.toGraveyardFromBattlefield`): Continue?.
+  - O X escolhido chega ao filtro dos alvos: Here Comes a New Hero!.
+  - Ações de estado: a criatura que morre na mesma passada sai com os marcadores +1/+1 e -1/-1 que tinha, sem
+    anulá-los antes (CR 704.3; ruling de Big Mother Mouser).
+- Fichas novas: Ooze 2/2 verde e Robot 1/1 incolor. Mutagen, Ninja, Rat, Food, Clue e Treasure já existiam.
+- Simplificações, para conferir se alguém estranhar na mesa:
+  - High Score com Corpsejack Menace: o motor soma o +1 antes de dobrar, que rende mais; não pergunta a ordem
+    (CR 616.1). O mesmo vale para o dobro do Raphael, aplicado sempre antes da prevenção.
+  - Lita: o modo é escolhido quando a habilidade resolve, não quando vai para a pilha. Nenhum modo tem alvo.
+  - Tempestra: o ímpeto da ficha entra como exceção da cópia, não como efeito à parte.
+  - Shellshock: aceita até três alvos, um por oponente.
+  - Donatello: a Mutagen a mais acompanha o primeiro pedido de ficha (virada, atacando).
+  - "Parceiro — Seleção de personagem" é da montagem do deck; na mesa não faz nada.
+- A suíte inteira ainda não rodou com este deck nem com o Wakanda Forever (rodaram os testes de cada carta, o `tsc`,
+  a conferência e os bots).
+
+Faltam 4 decks do lote 2: Avengers Assemble, Necron Dynasties e Jin's Vengeance, mais o Food and Fellowship
+(importação e dois comandantes pendentes).
