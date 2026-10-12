@@ -198,8 +198,29 @@ Formatos de carta (`motor/formatos.ts`). O nome da definição e o slug usam o n
 - Equipar com restrição (CR 702.6c): `{ ...equip('{3}'), targets: [...], text: 'Equipar Hero {3}' }` (Hulkbuster Armor).
 - Nos testes, `tg.choose` responde a primeira pergunta cujo texto casa: registre primeiro a escolha de texto mais
   específico ("escolha" casa também com "escolha o alvo").
+- "Previna todo o dano de combate neste turno": `ruleEffect(c, 'rule:preventAllCombatDamage', { kind: 'endOfTurn' })`
+  (Darkness).
+- Custo "vire X permanentes": `{ k: 'tapPermanents', n: 'X', label, filter }`, com `xMax` na habilidade (Necron Overlord).
+- Substituição de compra com condição: `drawReplaceApplies` ao lado de `drawReplace`, na mesma habilidade estática
+  (Out of the Tombs). Sem a condição, a substituição vale sempre (Shared Fate).
+- Redução de custo de habilidades ativadas de outras fontes: gancho
+  `abilityCostModifier(c, jogador, fonte, def) => { reduce, minMana }` (Convergence of Dominion).
+- "Sempre que este Veículo fica tripulado": evento `crewed`, emitido quando tripular resolve (Ghost Ark).
+- Dar uma habilidade a cartas no cemitério até o fim do turno: `untilEndOfTurn(c, idsDoCemiterio, [{ k: 'addAbility', id }])`
+  (Ghost Ark, desenterrar {3}).
+- Tipo a mais em todas as zonas: habilidade estática com `offField: true` e `affects` (Biotransference, como o
+  Maskwood Nexus).
+- Conjurar por custo alternativo durante uma resolução: `castSpell(g, p, id, { key, label, zone, duringResolution: true,
+  alt: { key, label, zone, mana: '', parts: [{ k: 'life', n }] } })` (Anrakyr).
+- Recapitular sem custo de mana: `flashback('', [partes])` (Dread Return).
+- `cartas/necrons.ts`: criatura artefato, criatura artefato ou Veículo, fichas Necron Warrior, "três terrenos com o
+  mesmo nome" e as notas dos rulings de desenterrar.
+- Nos testes, o texto da habilidade aparece na pergunta dos alvos: se dois alvos da mesma habilidade casam com o mesmo
+  trecho, responda pelo que é oferecido (`d.items.find(...)`) em vez de `tg.choose`.
 
-## Testes```ts
+## Testes
+
+```ts
 import { describe, expect, it } from 'vitest';
 import { setup } from '../../testes/harness.ts';
 
