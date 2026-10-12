@@ -1,0 +1,7 @@
+Use case: identity-preserve. Asset: ONE finished landscape banner/background for a Magic Commander game table.
+Input 1 is the exact identity, costume, anatomy and environment reference. Faithfully preserve the main character; expand and recompose the supplied art into a coherent cinematic wide scene.
+Composition: 16:9 landscape, hero large within the central 55%, head at x=50%, y=28%, body at least chest/waist-up; atmosphere fills both edges. Lower third calmer for game cards. Ideally 2048x1152.
+Opaque full-bleed background. No text or card title, no lettering except a character's existing emblem, no card frame, no UI, no added watermark. One banner only.
+Deck: Heavenly Inferno.
+Subject and setting: Kaalia with the precise fierce female face, long flowing dark/red hair, silver chest armor, black/red clothing, long staff and sword from the source. Enormous layered dark feathered angel wings with crimson batlike wing structures behind, illuminated by mauve storm clouds and orange infernal light. Preserve her exact winged identity and face.
+Style/medium: premium realistic painterly dark fantasy game illustration faithful to the provided card.

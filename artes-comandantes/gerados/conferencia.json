@@ -1,0 +1,561 @@
+{
+  "completos": 15,
+  "total": 18,
+  "assets": [
+    {
+      "id": "jin-sakai",
+      "deck": "Jin's Vengeance",
+      "completo": true,
+      "banner": {
+        "largura": 1672,
+        "altura": 941,
+        "proporcao": 1.7768331562167907,
+        "variantes": 1
+      },
+      "icones": [
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/jin-sakai.webp",
+          "largura": 512,
+          "altura": 512,
+          "transparente": true,
+          "alfa": true
+        },
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/mesa/jin-sakai.webp",
+          "largura": 256,
+          "altura": 256,
+          "transparente": true,
+          "alfa": true
+        }
+      ],
+      "imagensAtuais": [
+        {
+          "comandante": "Jin Sakai, Ghost of Tsushima",
+          "imagem": "9f52160b-dcc0-4ab8-b8b2-b576b1688d57",
+          "fundo": true
+        }
+      ]
+    },
+    {
+      "id": "sauron",
+      "deck": "The Hosts of Mordor",
+      "completo": true,
+      "banner": {
+        "largura": 1672,
+        "altura": 941,
+        "proporcao": 1.7768331562167907,
+        "variantes": 1
+      },
+      "icones": [
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/sauron.webp",
+          "largura": 512,
+          "altura": 512,
+          "transparente": true,
+          "alfa": true
+        },
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/mesa/sauron.webp",
+          "largura": 256,
+          "altura": 256,
+          "transparente": true,
+          "alfa": true
+        }
+      ],
+      "imagensAtuais": [
+        {
+          "comandante": "Sauron, Lord of the Rings",
+          "imagem": "26bbbde8-bfda-49ae-adb6-5860b4dd1364",
+          "fundo": true
+        }
+      ]
+    },
+    {
+      "id": "doctor-doom",
+      "deck": "Doom Prevails",
+      "completo": true,
+      "banner": {
+        "largura": 1672,
+        "altura": 941,
+        "proporcao": 1.7768331562167907,
+        "variantes": 1
+      },
+      "icones": [
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/doctor-doom.webp",
+          "largura": 512,
+          "altura": 512,
+          "transparente": true,
+          "alfa": true
+        },
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/mesa/doctor-doom.webp",
+          "largura": 256,
+          "altura": 256,
+          "transparente": true,
+          "alfa": true
+        }
+      ],
+      "imagensAtuais": [
+        {
+          "comandante": "Doctor Doom, King of Latveria",
+          "imagem": "099ed408-9178-4403-8b2d-479ca3cbda9b",
+          "fundo": true
+        }
+      ]
+    },
+    {
+      "id": "black-panther",
+      "deck": "Wakanda Forever",
+      "completo": false,
+      "banner": {
+        "largura": 1672,
+        "altura": 941,
+        "proporcao": 1.7768331562167907,
+        "variantes": 1
+      },
+      "icones": [],
+      "imagensAtuais": [
+        {
+          "comandante": "T'Challa, the Black Panther",
+          "imagem": "c1c8ad61-b7e1-446c-8b74-6e29371ea1d5",
+          "fundo": true
+        }
+      ]
+    },
+    {
+      "id": "leonardo",
+      "deck": "Turtle Power!",
+      "completo": true,
+      "banner": {
+        "largura": 1672,
+        "altura": 941,
+        "proporcao": 1.7768331562167907,
+        "variantes": 1
+      },
+      "icones": [
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/leonardo.webp",
+          "largura": 512,
+          "altura": 512,
+          "transparente": true,
+          "alfa": true
+        },
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/mesa/leonardo.webp",
+          "largura": 256,
+          "altura": 256,
+          "transparente": true,
+          "alfa": true
+        }
+      ],
+      "imagensAtuais": [
+        {
+          "comandante": "Leonardo, the Balance",
+          "imagem": "72e637db-7112-406f-809b-0eda248488b5",
+          "fundo": true
+        }
+      ]
+    },
+    {
+      "id": "hatsune-miku",
+      "deck": "Hatsune Miku",
+      "completo": true,
+      "banner": {
+        "largura": 1672,
+        "altura": 941,
+        "proporcao": 1.7768331562167907,
+        "variantes": 2
+      },
+      "icones": [
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/hatsune-miku.webp",
+          "largura": 512,
+          "altura": 512,
+          "transparente": true,
+          "alfa": true
+        },
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/mesa/hatsune-miku.webp",
+          "largura": 256,
+          "altura": 256,
+          "transparente": true,
+          "alfa": true
+        }
+      ],
+      "imagensAtuais": [
+        {
+          "comandante": "Trostani, Selesnya's Voice",
+          "imagem": "c1bcdea0-120a-4095-af2b-3a53bfcc65b3",
+          "fundo": true
+        }
+      ]
+    },
+    {
+      "id": "invisible-woman",
+      "deck": "The Fantastic Four Collector's Edition",
+      "completo": false,
+      "banner": {
+        "largura": 1672,
+        "altura": 941,
+        "proporcao": 1.7768331562167907,
+        "variantes": 1
+      },
+      "icones": [],
+      "imagensAtuais": [
+        {
+          "comandante": "Invisible Woman",
+          "imagem": "640ebf2f-5687-42d4-97e5-85e2fefa89a9",
+          "fundo": true
+        }
+      ]
+    },
+    {
+      "id": "lathliss",
+      "deck": "Reign of Dragons",
+      "completo": true,
+      "banner": {
+        "largura": 1672,
+        "altura": 941,
+        "proporcao": 1.7768331562167907,
+        "variantes": 2
+      },
+      "icones": [
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/lathliss.webp",
+          "largura": 512,
+          "altura": 512,
+          "transparente": true,
+          "alfa": true
+        },
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/mesa/lathliss.webp",
+          "largura": 256,
+          "altura": 256,
+          "transparente": true,
+          "alfa": true
+        }
+      ],
+      "imagensAtuais": [
+        {
+          "comandante": "Lathliss, Dragon Queen",
+          "imagem": "3e52a614-f779-458a-9617-f2b0b4f8cbcb",
+          "fundo": true
+        }
+      ]
+    },
+    {
+      "id": "rin-seri",
+      "deck": "Raining Cats and Dogs",
+      "completo": true,
+      "banner": {
+        "largura": 1672,
+        "altura": 941,
+        "proporcao": 1.7768331562167907,
+        "variantes": 2
+      },
+      "icones": [
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/rin-seri.webp",
+          "largura": 512,
+          "altura": 512,
+          "transparente": true,
+          "alfa": true
+        },
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/mesa/rin-seri.webp",
+          "largura": 256,
+          "altura": 256,
+          "transparente": true,
+          "alfa": true
+        }
+      ],
+      "imagensAtuais": [
+        {
+          "comandante": "Rin and Seri, Inseparable // Rin and Seri, Inseparable",
+          "imagem": "48a000ce-0760-446c-8737-fdf9806e0eb3",
+          "fundo": true
+        }
+      ]
+    },
+    {
+      "id": "anhelo",
+      "deck": "Maestros Massacre",
+      "completo": true,
+      "banner": {
+        "largura": 1672,
+        "altura": 941,
+        "proporcao": 1.7768331562167907,
+        "variantes": 1
+      },
+      "icones": [
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/anhelo.webp",
+          "largura": 512,
+          "altura": 512,
+          "transparente": true,
+          "alfa": true
+        },
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/mesa/anhelo.webp",
+          "largura": 256,
+          "altura": 256,
+          "transparente": true,
+          "alfa": true
+        }
+      ],
+      "imagensAtuais": [
+        {
+          "comandante": "Anhelo, the Painter",
+          "imagem": "462e887d-6b91-4b31-9487-2780ffe8943f",
+          "fundo": true
+        }
+      ]
+    },
+    {
+      "id": "szarekh",
+      "deck": "Necron Dynasties",
+      "completo": true,
+      "banner": {
+        "largura": 1672,
+        "altura": 941,
+        "proporcao": 1.7768331562167907,
+        "variantes": 1
+      },
+      "icones": [
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/szarekh.webp",
+          "largura": 512,
+          "altura": 512,
+          "transparente": true,
+          "alfa": true
+        },
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/mesa/szarekh.webp",
+          "largura": 256,
+          "altura": 256,
+          "transparente": true,
+          "alfa": true
+        }
+      ],
+      "imagensAtuais": [
+        {
+          "comandante": "Szarekh, the Silent King",
+          "imagem": "12a3400d-7a8b-4bae-9a4f-c9a1bc741e68",
+          "fundo": true
+        }
+      ]
+    },
+    {
+      "id": "strefan",
+      "deck": "Vampiric Bloodline",
+      "completo": true,
+      "banner": {
+        "largura": 1672,
+        "altura": 941,
+        "proporcao": 1.7768331562167907,
+        "variantes": 1
+      },
+      "icones": [
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/strefan.webp",
+          "largura": 512,
+          "altura": 512,
+          "transparente": true,
+          "alfa": true
+        },
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/mesa/strefan.webp",
+          "largura": 256,
+          "altura": 256,
+          "transparente": true,
+          "alfa": true
+        }
+      ],
+      "imagensAtuais": [
+        {
+          "comandante": "Strefan, Maurer Progenitor",
+          "imagem": "5c48f51d-49f2-411a-ab13-b9011c049cfa",
+          "fundo": true
+        }
+      ]
+    },
+    {
+      "id": "captain-america",
+      "deck": "Avengers Assemble Collector's Edition",
+      "completo": false,
+      "banner": {
+        "largura": 1672,
+        "altura": 941,
+        "proporcao": 1.7768331562167907,
+        "variantes": 1
+      },
+      "icones": [],
+      "imagensAtuais": [
+        {
+          "comandante": "Captain America, Team Leader",
+          "imagem": "910a6dfc-04a2-4c6d-b2ba-507bc75ec821",
+          "fundo": true
+        }
+      ]
+    },
+    {
+      "id": "sai",
+      "deck": "Keen Engineering",
+      "completo": true,
+      "banner": {
+        "largura": 1672,
+        "altura": 941,
+        "proporcao": 1.7768331562167907,
+        "variantes": 1
+      },
+      "icones": [
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/sai.webp",
+          "largura": 512,
+          "altura": 512,
+          "transparente": true,
+          "alfa": true
+        },
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/mesa/sai.webp",
+          "largura": 256,
+          "altura": 256,
+          "transparente": true,
+          "alfa": true
+        }
+      ],
+      "imagensAtuais": [
+        {
+          "comandante": "Sai, Master Thopterist",
+          "imagem": "5650587a-27a5-4d68-97e2-5745627bd094",
+          "fundo": true
+        }
+      ]
+    },
+    {
+      "id": "yennett",
+      "deck": "Odd and Ends",
+      "completo": true,
+      "banner": {
+        "largura": 1672,
+        "altura": 941,
+        "proporcao": 1.7768331562167907,
+        "variantes": 1
+      },
+      "icones": [
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/yennett.webp",
+          "largura": 512,
+          "altura": 512,
+          "transparente": true,
+          "alfa": true
+        },
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/mesa/yennett.webp",
+          "largura": 256,
+          "altura": 256,
+          "transparente": true,
+          "alfa": true
+        }
+      ],
+      "imagensAtuais": [
+        {
+          "comandante": "Yennett, Cryptic Sovereign",
+          "imagem": "0ba9362f-eb35-4e72-8c51-7047c0a3f648",
+          "fundo": true
+        }
+      ]
+    },
+    {
+      "id": "kaalia",
+      "deck": "Heavenly Inferno",
+      "completo": true,
+      "banner": {
+        "largura": 1672,
+        "altura": 940,
+        "proporcao": 1.778723404255319,
+        "variantes": 2
+      },
+      "icones": [
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/kaalia.webp",
+          "largura": 512,
+          "altura": 512,
+          "transparente": true,
+          "alfa": true
+        },
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/mesa/kaalia.webp",
+          "largura": 256,
+          "altura": 256,
+          "transparente": true,
+          "alfa": true
+        }
+      ],
+      "imagensAtuais": [
+        {
+          "comandante": "Kaalia of the Vast",
+          "imagem": "3894cfe6-e851-484f-bbc7-28605a48ebbc",
+          "fundo": true
+        }
+      ]
+    },
+    {
+      "id": "timey-wimey",
+      "deck": "Timey-Wimey",
+      "completo": true,
+      "banner": {
+        "largura": 1672,
+        "altura": 941,
+        "proporcao": 1.7768331562167907,
+        "variantes": 2
+      },
+      "icones": [
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/timey-wimey.webp",
+          "largura": 512,
+          "altura": 512,
+          "transparente": true,
+          "alfa": true
+        },
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/mesa/timey-wimey.webp",
+          "largura": 256,
+          "altura": 256,
+          "transparente": true,
+          "alfa": true
+        }
+      ],
+      "imagensAtuais": []
+    },
+    {
+      "id": "food-and-fellowship",
+      "deck": "Food and Fellowship",
+      "completo": true,
+      "banner": {
+        "largura": 1672,
+        "altura": 941,
+        "proporcao": 1.7768331562167907,
+        "variantes": 2
+      },
+      "icones": [
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/food-and-fellowship.webp",
+          "largura": 512,
+          "altura": 512,
+          "transparente": true,
+          "alfa": true
+        },
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/mesa/food-and-fellowship.webp",
+          "largura": 256,
+          "altura": 256,
+          "transparente": true,
+          "alfa": true
+        }
+      ],
+      "imagensAtuais": []
+    }
+  ]
+}

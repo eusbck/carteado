@@ -1,0 +1,9 @@
+Use case: identity-preserve.
+Asset type: one finished square transparent portrait icon for the Magic-Commander game, deck Wakanda Forever.
+Primary request: create T'Challa, the Black Panther as a new detailed painterly bust portrait faithful to the supplied card art.
+Input image 1: exact Black Panther identity, mask, anatomy, costume and colors. Input image 2: this same character's completed game banner, reference for appearance, lighting and finish. Input image 3: Sauron's existing game icon, use ONLY its portrait framing, clean silhouette and material finish; do not copy Sauron's identity or armor.
+Subject: Black Panther wearing the exact black/navy panther mask with complete pointed cat ears, sharp pale eye slits, gold geometric forehead and cheek trim, fitted armored suit, angular shoulder plates and restrained magenta/violet kinetic highlights seen in the source. Preserve his athletic anatomy and masked identity; no exposed human face. Retain the reference costume's gold lines and magenta accents.
+Composition: square head, shoulders and upper chest portrait; entire mask and both ears inside frame with a small transparent margin above. Face centered around x=50%, y=30%, shoulders broad in lower half. An alert slight forward lean suitable for a compact bust, unmistakable silhouette readable at 80 pixels; naturally tapered lower edge.
+Style: polished detailed painterly superhero game illustration, dark blue/black materials with crisp gold detail and pink/teal reflected light, matching the completed banner and icon finish.
+Background: genuine transparent alpha everywhere outside the bust silhouette, including all corners and between silhouette details; clean anti-aliased edges.
+Constraints: one icon only, no scenery or other characters, no rectangular fill, circle, medallion, ring, life counter, aura, frame, UI, added lettering or watermark. Do not crop head or ears. Retain native generated square resolution.

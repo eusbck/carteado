@@ -1,0 +1,9 @@
+Use case: identity-preserve.
+Asset type: one finished square transparent bust portrait icon for Magic-Commander, deck The Fantastic Four Collector's Edition.
+Primary request: create Invisible Woman as a new painterly portrait faithful to the supplied card art.
+Input image 1: exact Invisible Woman identity, face, blonde hair, anatomy, blue suit and 4 emblem. Input image 2: Sai's existing game icon, use ONLY its portrait framing, rich painterly material finish and clean silhouette; do not copy Sai's face, hair, clothing or props.
+Subject: preserve the recognizable face and shoulder-length sweeping golden blonde hairstyle in the source. Bright blue superhero suit with dark collar and the same circular 4 emblem visible on upper chest; natural strong expression, upright head and shoulders with a slight three-quarter turn. Soft cool blue reflected illumination with restrained warm highlights on the blonde hair. Keep the upper chest and shoulders covered by the reference suit. Do not add props that compete with the face.
+Style: polished realistic painterly superhero game illustration, natural face, fine hair and fabric detail, readable uncluttered silhouette matching existing game icons.
+Composition: one square portrait containing the complete head or helmet, shoulders and upper chest, with a small transparent margin at top and sides. Face centered around x=50%, y=30%, shoulders broad in the lower half, naturally tapered bust near bottom. Recognizable at 80 pixels.
+Background: genuinely transparent alpha everywhere outside the bust silhouette; carefully anti-aliased hair, helmet and costume edges. No scenery, rectangular background, circle, ring, frame, medallion, aura, life counter, UI or watermark. One icon only. Preserve native square output resolution.
+Constraints: preserve the existing chest emblem; no added words or lettering. Do not crop hair, head or shoulders.

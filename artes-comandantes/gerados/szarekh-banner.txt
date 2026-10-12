@@ -1,0 +1,7 @@
+Use case: identity-preserve. Asset: ONE finished landscape banner/background for a Magic Commander game table.
+Input 1 is the exact identity, costume, anatomy and environment reference. Faithfully preserve the main character; expand and recompose the supplied art into a coherent cinematic wide scene.
+Composition: 16:9 landscape, hero large within the central 55%, head at x=50%, y=28%, body at least chest/waist-up; atmosphere fills both edges. Lower third calmer for game cards. Ideally 2048x1152.
+Opaque full-bleed background. No text or card title, no lettering except a character's existing emblem, no card frame, no UI, no added watermark. One banner only.
+Deck: Necron Dynasties.
+Subject and setting: Szarekh, the Silent King as the exact metallic skeletal alien sovereign in the reference: tall angular red/bronze headdress fins, skull-like metal face with glowing emerald eyes, gold and bronze ribbed plates, red panels, dark cloak, long ornate staff and green spectral energy. Extend the looming dark Necron throne structures and electric emerald mist. Preserve the robot skull, no human or flesh face.
+Style/medium: premium detailed painterly sci-fi fantasy game illustration, metallic patina and emerald energy.

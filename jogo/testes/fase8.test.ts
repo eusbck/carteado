@@ -170,6 +170,7 @@ describe('fase 8: desfazer com aceite da mesa', () => {
     const { ana, bruno, codigo } = sala(g);
     pararSempre(g, [ana, bruno]);
     g.tratar(ana, { t: 'iniciar' });
+    const cronometro = g.salas.get(codigo)!.publica().cronometro;
     const { p, terreno, antes } = await jogarTerreno(g, [ana, bruno]);
     const outro = p === ana ? bruno : ana;
     expect(p.ultima('jogo')!.desfazivel).toBe(true);
@@ -191,10 +192,12 @@ describe('fase 8: desfazer com aceite da mesa', () => {
     expect(p.ultima('jogo')!.desfazer).toBeNull();
     expect(outro.ultima('aviso')?.msg).toMatch(/desfez/);
     const s = g.salas.get(codigo)!;
+    expect(s.publica().cronometro).toEqual(cronometro);
     expect(banco.entradas(codigo).length).toBe(s.game!.inputs.length);
     // reinício: a partida volta igual, sem a jogada desfeita
     const g2 = new Gerente(banco, DECKS, SEM_ATRASO);
     g2.restaurar();
+    expect(g2.salas.get(codigo)!.publica().cronometro).toEqual(cronometro);
     await espera();
     expect(JSON.stringify(g2.salas.get(codigo)!.game!.state)).toBe(JSON.stringify(s.game!.state));
   }, 60000);

@@ -194,18 +194,20 @@ async function irParaDecks(anfitriao: Page): Promise<void> {
   await anfitriao.locator('.saguao-decks').waitFor();
 }
 
-/** escolhe um deck pela prévia (clicar no deck abre a lista de cartas, com o botão de escolher) */
+/** escolhe um deck diretamente, sem abrir a prévia */
 async function escolherDeck(p: Page, n: number): Promise<void> {
   await p.locator('.saguao-decks').waitFor();
-  await p.locator('.deck').nth(n).click();
-  await p.getByRole('button', { name: 'Escolher este deck' }).click();
-  await p.locator('.previa-deck').waitFor({ state: 'detached' });
+  const deck = p.locator('.deck').nth(n);
+  await deck.locator('.deck-escolher').click();
+  await deck.locator('.deck-escolher[aria-pressed="true"]').waitFor();
+  verificar(await p.locator('.previa-deck').count() === 0, 'escolher o deck não abre a lista de cartas');
 }
 
 async function escolherObrigatorio(p: Page): Promise<void> {
   const nome = process.env.E2E_DECK_OBRIGATORIO;
   if (!nome) return escolherDeck(p, 1);
-  await p.locator('.deck').filter({ hasText: nome }).click();
+  // a imagem do deck escolhe direto; a lista de cartas abre pelo botão Ver cartas
+  await p.locator('.deck').filter({ hasText: nome }).locator('.deck-ver').click();
   await p.locator('.previa-grupo').first().waitFor();
   verificar((await p.locator('.previa-topo-linha').textContent())?.includes('100 cartas'), 'prévia do deck obrigatório mostra 100 cartas');
   await p.getByRole('button', { name: 'Escolher este deck' }).click();
@@ -229,7 +231,7 @@ try {
   await bruno.getByRole('alert').waitFor();
   verificar(await bruno.getByRole('alert').textContent().then((t) => t?.includes('senha')), 'senha errada da sala é recusada');
   await entrarNaSala(bruno, codigo);
-  // saguão em passos: Bruno acompanha o anfitrião escolher as regras, e cada um escolhe o deck pela prévia
+  // saguão em passos: Ana escolhe diretamente; Bruno abre a prévia pelo botão Ver cartas
   await ana.getByRole('button', { name: 'Continuar para as regras' }).click();
   await bruno.getByText('O anfitrião está escolhendo as regras.').waitFor({ timeout: 10000 });
   await ana.getByRole('radio', { name: /^Livre/ }).click();
@@ -238,9 +240,10 @@ try {
   await ana.getByRole('radio', { name: /^Londres/ }).click();
   await ana.getByRole('button', { name: 'Continuar para os decks' }).click();
   await escolherObrigatorio(ana);
-  await bruno.locator('.deck').nth(4).click();
+  await bruno.locator('.deck').nth(4).locator('.deck-ver').click();
   await bruno.locator('.previa-grupo').first().waitFor({ timeout: 10000 });
   verificar((await bruno.locator('.previa-grupo li').count()) > 20 && (await bruno.locator('.previa-topo-linha').textContent())?.includes('100 cartas'), 'a prévia do deck mostra as 100 cartas separadas por tipo');
+  verificar(await bruno.locator('.deck.ativo').count() === 0, 'Ver cartas abre a prévia sem escolher o deck');
   await bruno.getByRole('button', { name: 'Escolher este deck' }).click();
   await ana.waitForTimeout(300);
   await ana.getByRole('button', { name: 'Começar a partida' }).click();

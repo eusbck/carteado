@@ -8,6 +8,7 @@ import type { GameView } from '../../motor/view.ts';
 import type { DeckCatalogo, DeckResumo, MsgChat, MsgCliente, MsgServidor, PedidoDesfazer, Posicoes, SalaPublica, TarefaPublica } from '../../servidor/protocolo.ts';
 import { carregarCartas } from './cartas.ts';
 import { compartilhar } from './compartilhar.ts';
+import type { ReferenciaRelogio } from './cronometro.ts';
 import { auxiliosAtivos, preferencias } from './preferencias.ts';
 import { tocar } from './sons.ts';
 import { avatarGuardado } from './avatares.ts';
@@ -16,6 +17,8 @@ export interface Estado {
   fase: 'carregando' | 'entrada' | 'inicio' | 'decks' | 'sala';
   conectado: boolean;
   sala: SalaPublica | null;
+  /** referência recebida com a sala: hora do servidor e relógio monotônico desta aba */
+  relogio: ReferenciaRelogio | null;
   voce: number | null;
   vista: GameView | null;
   paradas: StopSettings | null;
@@ -87,7 +90,7 @@ function guardarTarefas(l: number[]): void {
 }
 
 class Loja {
-  e: Estado = { fase: 'carregando', conectado: false, sala: null, voce: null, vista: null, paradas: null, posicoes: {}, reveladas: [], erro: null, decks: [], respondida: null, desfazivel: false, desfazer: null, avisos: [], recusa: 0, recusaCombate: null, pensando: null, catalogo: null, tarefasDeck: {}, minhasTarefas: tarefasGuardadas(), chat: [], quem: null };
+  e: Estado = { fase: 'carregando', conectado: false, sala: null, relogio: null, voce: null, vista: null, paradas: null, posicoes: {}, reveladas: [], erro: null, decks: [], respondida: null, desfazivel: false, desfazer: null, avisos: [], recusa: 0, recusaCombate: null, pensando: null, catalogo: null, tarefasDeck: {}, minhasTarefas: tarefasGuardadas(), chat: [], quem: null };
   private ouvintes = new Set<() => void>();
   private ws: WebSocket | null = null;
   private fila: MsgCliente[] = [];
@@ -283,6 +286,7 @@ class Loja {
   private tratar(m: MsgServidor): void {
     switch (m.t) {
       case 'sala': {
+        const relogio: ReferenciaRelogio = { agora: m.agora, recebidoEm: performance.now() };
         guardarSala({ codigo: m.sala.codigo, token: m.token });
         // o retrato escolhido antes (noutra sala) vale também nesta
         const meu = m.sala.assentos[m.voce];
@@ -292,7 +296,7 @@ class Loja {
           this.enviar({ t: 'avatar', avatar: guardado });
         }
         // a tela Decks aberta pelo saguão continua aberta enquanto a partida não começa (alguém entrou, trocou de deck…)
-        this.mudar({ sala: compartilhar(this.e.sala, m.sala), voce: m.voce, quem: m.quem ?? null, fase: this.e.fase === 'decks' && m.sala.estado !== 'jogando' ? 'decks' : 'sala', vista: m.sala.estado === 'espera' ? null : this.e.vista });
+        this.mudar({ sala: compartilhar(this.e.sala, m.sala), relogio, voce: m.voce, quem: m.quem ?? null, fase: this.e.fase === 'decks' && m.sala.estado !== 'jogando' ? 'decks' : 'sala', vista: m.sala.estado === 'espera' ? null : this.e.vista });
         break;
       }
       case 'jogo': {
@@ -344,7 +348,7 @@ class Loja {
         guardarSala(null);
         // voltando a esta sala (ou a outra) depois, o retrato guardado vai de novo para o assento novo
         this.avatarMandado.clear();
-        this.mudar({ sala: null, voce: null, vista: null, fase: 'inicio', chat: [], quem: null });
+        this.mudar({ sala: null, relogio: null, voce: null, vista: null, fase: 'inicio', chat: [], quem: null });
         break;
       case 'pong':
         break;

@@ -1,0 +1,7 @@
+Use case: identity-preserve. Asset: ONE finished landscape banner/background for a Magic Commander game table.
+Input 1 is the exact identity, costume, anatomy and environment reference. Faithfully preserve the main character; expand and recompose the supplied art into a coherent cinematic wide scene.
+Composition: 16:9 landscape, hero large within the central 55%, head at x=50%, y=28%, body at least chest/waist-up; atmosphere fills both edges. Lower third calmer for game cards. Ideally 2048x1152.
+Opaque full-bleed background. No text or card title, no lettering except a character's existing emblem, no card frame, no UI, no added watermark. One banner only.
+Deck: Keen Engineering.
+Subject and setting: Sai the same brown-haired, moustached and bearded artificer with round brass spectacles from the source. Purple-blue robes with pale blue and ornate gold shoulder/neck panels, a delicately glowing little mechanical thopter near his raised hand, brass tool/scissors in the other. Extend the blue-green art-nouveau workshop arch with gold filigree and flying small thopters.
+Style/medium: polished realistic painterly fantasy game illustration with warm metal and cool blue workshop light.

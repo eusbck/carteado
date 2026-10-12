@@ -22,6 +22,7 @@ import { ehDeitavel } from './arrumacao.ts';
 import { useMusica } from '../musica.ts';
 import { AreaJogador, type EstadoCombate } from './AreaJogador.tsx';
 import { ConfigSom } from './ConfigSom.tsx';
+import { Cronometro } from './Cronometro.tsx';
 import { alternarLeque, cliqueAtaque, marcarVarias } from './ataque.ts';
 import { cliqueBloqueio, numerarIguais, respostaBloqueio } from './bloqueio.ts';
 import { Carta, type Realce } from './Carta.tsx';
@@ -1332,6 +1333,7 @@ export function Mesa() {
         <div class="lateral-turno" style={{ '--cor': cor(v.turn.active) }}>
           <span class="rot">Rodada</span><strong>{v.turn.number ? v.turn.round : '–'}</strong>
           <span class="vez">{v.turn.number ? <>vez de <span>{v.players[v.turn.active].name}</span></> : 'antes da 1ª rodada'}</span>
+          <Cronometro cronometro={sala.cronometro} relogio={e.relogio} />
           {salaProibe && <span class="selo-sala" title="Quem criou a sala proibiu os auxílios: todos jogam em Mesa real">Sala sem auxílios</span>}
         </div>
         <ul class="menu-lateral">

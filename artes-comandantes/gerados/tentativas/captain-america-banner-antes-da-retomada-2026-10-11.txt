@@ -1,0 +1,7 @@
+Use case: identity-preserve. Asset: ONE finished landscape banner/background for a Magic Commander game table.
+Input 1 is the exact identity, costume, anatomy and environment reference. Faithfully preserve the main character; expand and recompose the supplied art into a coherent cinematic wide scene.
+Composition: 16:9 landscape, hero large within the central 55%, head at x=50%, y=28%, body at least chest/waist-up; atmosphere fills both edges. Lower third calmer for game cards. Ideally 2048x1152.
+Opaque full-bleed background. No text or card title, no lettering except a character's existing emblem, no card frame, no UI, no added watermark. One banner only.
+Deck: Avengers Assemble Collector's Edition.
+Subject and setting: Captain America as the exact card design: blue helmet with white A, exposed lower face, blue scaled/chest armor, red gloves and round red-white-blue star shield prominently visible. Powerful forward charging pose, cinematic blue/gold superhero atmosphere extending the source. Make Captain America the unmistakable main subject.
+Style/medium: detailed painterly superhero game illustration faithful to the colorful comic source.

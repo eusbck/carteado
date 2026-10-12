@@ -58,12 +58,14 @@ janela mostra o endereço `https://` e a senha de acesso para mandar ao grupo. D
    - **Regras:** quem criou a sala escolhe a regra de mulligan (Londres, o padrão, ou Livre: troca a mão
      inteira, até 3 vezes, sem pôr nada no fundo) e a de auxílios (permitidos ou proibidos); os outros
      acompanham.
-   - **Retrato:** no passo dos lugares, "Trocar retrato" mostra os nove retratos (um por comandante da mesa, mas
+   - **Retrato:** no passo dos lugares, "Trocar retrato" mostra os 23 retratos prontos (incluindo as duplas de parceiros, mas
      a escolha é livre); quem não escolhe usa o do comandante do próprio deck. A escolha fica guardada no
      navegador e vale nas próximas salas.
-   - **Decks:** clicar num deck abre a prévia (o comandante e as cartas por tipo, com a carta grande ao passar o
-     mouse) e o botão "Escolher este deck"; quem criou a sala escolhe também o deck de cada bot e começa a
-     partida quando todos escolheram. Se alguém sair, a sala volta para os lugares (os decks escolhidos ficam).
+   - **Decks:** clicar na imagem de um deck o escolhe diretamente. O botão "Ver cartas", no canto superior direito,
+     abre a prévia (o comandante e as cartas por tipo, com a carta grande ao passar o mouse), onde também dá para
+     escolher o deck. O selo "Seu deck" aparece no canto superior esquerdo. Quem criou a sala escolhe também
+     o deck de cada bot e começa a partida quando todos escolheram. Se alguém sair, a sala volta para os lugares
+     (os decks escolhidos ficam).
 4. Na mesa (o padrão é a **mesa real**: nada brilha e a mesa não explica o que não pode; tentou algo
    que não vale, a carta volta com um tremido):
    - **Avatares:** cada jogador aparece num medalhão com o retrato e a vida no medalhão pequeno embaixo; clicar na
@@ -135,6 +137,43 @@ mítico no que dá para fazer agora, texto em marfim e as cores de mana nos joga
 telas de fora da mesa (entrar, criar ou entrar numa sala, saguão e Decks) passa uma coleção de 24 wallpapers do
 Magic, bem apagados: cada abertura começa por um diferente e, com a página aberta, eles trocam a cada minuto.
 As fontes estão em `cliente/src/imagens/fundos/FONTES.md`.
+
+As artes novas dos comandantes podem ser vistas em `../artes-comandantes/gerados/galeria.html`: 16 banners e 14
+ícones, incluindo Frodo com Sam e o Décimo Doutor com Rose no mesmo banner e retrato. Os seis arquivos que a
+ferramenta interna recusou continuam pendentes por escolha do Caio; a lista está em
+`../artes-comandantes/gerados/pendencias.json`. Os novos retratos são carregados ao reabrir o servidor depois da
+compilação do cliente. A entrega das artes dos parceiros prepara as imagens; a disponibilidade de seus decks
+depende da importação e das regras do jogo.
+
+## Decks disponíveis para jogar
+
+Na conferência de 12/10/2026, a mesa principal em **http://localhost:8080** tem **17 decks jogáveis**.
+A prévia isolada em `http://localhost:8096` permanece com 10 decks; use a mesa principal para acessar todos os
+concluídos. A senha de acesso da mesa principal continua a mesma.
+
+Além dos nove decks anteriores, estes oito já podem ser escolhidos no saguão:
+
+| Deck | Comandante |
+| --- | --- |
+| Keen Engineering | Sai, Master Thopterist |
+| Reign of Dragons | Lathliss, Dragon Queen |
+| Maestros Massacre | Anhelo, the Painter |
+| The Fantastic Four Collector's Edition | Invisible Woman |
+| Doom Prevails | Doctor Doom, King of Latveria |
+| Raining Cats and Dogs | Rin and Seri, Inseparable |
+| Vampiric Bloodline | Strefan, Maurer Progenitor |
+| The Hosts of Mordor | Sauron, Lord of the Rings |
+
+Também continuam disponíveis Abzan Armor, Blight Curse, Lorehold Spirit, Prismari Artistry, Silverquill
+Influence, Terra, Witherbloom Pestilence, Multiverse Reforged e Wretched Ranks.
+
+Para jogar, crie ou entre numa sala, preencha os lugares com pessoas ou bots e avance por **Regras → Decks**.
+Clique na imagem do deck para escolhê-lo. Quem criou a sala pode escolher também os decks dos bots e clicar em
+**Começar a partida** depois de todos escolherem. **Ver cartas** abre a lista sem mudar a escolha.
+
+As oito outras listas importadas continuam em preparação por falta de regras: Jin's Vengeance, Wakanda Forever,
+Turtle Power!, Hatsune Miku, Necron Dynasties, Avengers Assemble Collector's Edition, Odd and Ends e Heavenly
+Inferno. Ter arte pronta não torna uma lista jogável; o catálogo verifica as regras de todas as cartas.
 
 ## Decks: importar e atualizar pelo Moxfield
 

@@ -168,12 +168,12 @@ async function irParaDecks(p: Page): Promise<void> {
   await p.getByRole('button', { name: 'Continuar para os decks' }).click();
   await p.locator('.saguao-decks').waitFor();
 }
-/** escolhe um deck pela prévia (clicar no deck abre a lista de cartas) */
+/** escolhe um deck diretamente, sem abrir a prévia */
 async function escolherDeck(p: Page, n: number): Promise<void> {
   await p.locator('.saguao-decks').waitFor();
-  await p.locator('.deck').nth(n).click();
-  await p.getByRole('button', { name: 'Escolher este deck' }).click();
-  await p.locator('.previa-deck').waitFor({ state: 'detached' });
+  const deck = p.locator('.deck').nth(n);
+  await deck.locator('.deck-escolher').click();
+  await deck.locator('.deck-escolher[aria-pressed="true"]').waitFor();
 }
 /** deck de um bot, no passo dos decks (índice na lista em ordem alfabética) */
 async function deckDoBot(p: Page, lugar: number, indice: number): Promise<void> {
@@ -1319,7 +1319,7 @@ try {
   await foto(p, '02c-inicio-criar');
   await p.locator('form').filter({ hasText: 'Criar sala' }).getByLabel('Senha da sala').fill('mesa');
   await p.getByRole('button', { name: 'Criar', exact: true }).click();
-  // saguão em passos: lugares (três bots), regras, decks (o dos bots e o da Ana pela prévia)
+  // saguão em passos: lugares (três bots), regras, decks (o dos bots e a prévia opcional do da Ana)
   await p.locator('.lugares').waitFor();
   await p.waitForTimeout(450);
   await foto(p, '03a-saguao-lugares');
@@ -1332,7 +1332,7 @@ try {
   await p.getByRole('button', { name: 'Continuar para os decks' }).click();
   await p.locator('.saguao-decks').waitFor();
   for (let i = 2; i <= 4; i++) await deckDoBot(p, i, i - 1);
-  await p.locator('.deck').first().click();
+  await p.locator('.deck').first().locator('.deck-ver').click();
   await p.locator('.previa-grupo').first().waitFor();
   await p.locator('.previa-grupo button').nth(3).hover();
   await p.waitForTimeout(450);
