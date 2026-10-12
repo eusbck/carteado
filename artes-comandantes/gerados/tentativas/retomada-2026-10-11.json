@@ -1,0 +1,157 @@
+{
+  "ferramenta": "image_gen interna",
+  "modeloSolicitado": "GPT IMAGE 2",
+  "modeloExpostoPelaFerramenta": false,
+  "artes": [
+    {
+      "id": "doctor-doom",
+      "tipo": "icone",
+      "promptArquivo": "artes-comandantes/gerados/tentativas/doctor-doom-icone-retomada-2026-10-11.txt",
+      "referencias": [
+        "artes-comandantes/11 - Doctor Doom, King of Latveria (Doom Prevails).png",
+        "artes-comandantes/gerados/doctor-doom-banner.png",
+        "artes-comandantes/gerados/sauron-icone.png"
+      ],
+      "transparenciaSolicitada": true,
+      "inicioUTC": "2026-10-12T01:21:09.973Z",
+      "fimUTC": "2026-10-12T01:22:19.761Z",
+      "resultado": "gerada",
+      "requestId": null,
+      "erro": null,
+      "etapa": null,
+      "categoria": null,
+      "motivoDetalhado": null,
+      "erroBruto": null,
+      "arquivoGerado": "C:\\Users\\icaio\\.codex\\generated_images\\01a12dad-26a3-7952-9501-087ce36358b5\\exec-21af06e4-2e8e-4b06-bfe4-1b974aa4c261.png",
+      "metadadosSaida": "Generated images are saved to C:\\Users\\icaio\\.codex\\generated_images\\01a12dad-26a3-7952-9501-087ce36358b5 as C:\\Users\\icaio\\.codex\\generated_images\\01a12dad-26a3-7952-9501-087ce36358b5\\exec-21af06e4-2e8e-4b06-bfe4-1b974aa4c261.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+    },
+    {
+      "id": "black-panther",
+      "tipo": "icone",
+      "promptArquivo": "artes-comandantes/gerados/tentativas/black-panther-icone-retomada-2026-10-11.txt",
+      "referencias": [
+        "artes-comandantes/12 - T'Challa, the Black Panther (Wakanda Forever).png",
+        "artes-comandantes/gerados/black-panther-banner.png",
+        "artes-comandantes/gerados/sauron-icone.png"
+      ],
+      "transparenciaSolicitada": true,
+      "inicioUTC": "2026-10-12T01:21:10.052Z",
+      "fimUTC": "2026-10-12T01:23:10.856Z",
+      "resultado": "recusada",
+      "requestId": "70e24fb8-a476-43e2-9dc6-ac223528b2ab",
+      "erro": "moderation_blocked",
+      "etapa": "output",
+      "categoria": "other",
+      "motivoDetalhado": null,
+      "erroBruto": "image generation failed: http 400 Bad Request: Some(\"{\\n  \\\"error\\\": {\\n    \\\"message\\\": \\\"Your request was rejected by the safety system. If you believe this is an error, contact us at help.openai.com and include the request ID 70e24fb8-a476-43e2-9dc6-ac223528b2ab.\\\",\\n    \\\"type\\\": \\\"image_generation_user_error\\\",\\n    \\\"param\\\": null,\\n    \\\"code\\\": \\\"moderation_blocked\\\",\\n    \\\"moderation_details\\\": {\\n      \\\"moderation_stage\\\": \\\"output\\\",\\n      \\\"categories\\\": [\\n        \\\"other\\\"\\n      ]\\n    }\\n  }\\n}\")",
+      "arquivoGerado": null,
+      "metadadosSaida": null
+    },
+    {
+      "id": "invisible-woman",
+      "tipo": "banner",
+      "promptArquivo": "artes-comandantes/gerados/tentativas/invisible-woman-banner-retomada-2026-10-11.txt",
+      "referencias": [
+        "artes-comandantes/15 - Invisible Woman (The Fantastic Four Collector's Edition).png",
+        "artes-comandantes/gerados/doctor-doom-banner.png"
+      ],
+      "transparenciaSolicitada": false,
+      "inicioUTC": "2026-10-12T01:23:13.652Z",
+      "fimUTC": "2026-10-12T01:24:08.881Z",
+      "resultado": "recusada",
+      "requestId": "1c6ec9d8-bf78-4804-b53c-3137a03d00bc",
+      "erro": "moderation_blocked",
+      "etapa": "output",
+      "categoria": "other",
+      "motivoDetalhado": null,
+      "erroBruto": "image generation failed: http 400 Bad Request: Some(\"{\\n  \\\"error\\\": {\\n    \\\"message\\\": \\\"Your request was rejected by the safety system. If you believe this is an error, contact us at help.openai.com and include the request ID 1c6ec9d8-bf78-4804-b53c-3137a03d00bc.\\\",\\n    \\\"type\\\": \\\"image_generation_user_error\\\",\\n    \\\"param\\\": null,\\n    \\\"code\\\": \\\"moderation_blocked\\\",\\n    \\\"moderation_details\\\": {\\n      \\\"moderation_stage\\\": \\\"output\\\",\\n      \\\"categories\\\": [\\n        \\\"other\\\"\\n      ]\\n    }\\n  }\\n}\")",
+      "arquivoGerado": null,
+      "metadadosSaida": null
+    },
+    {
+      "id": "invisible-woman",
+      "tipo": "icone",
+      "promptArquivo": "artes-comandantes/gerados/tentativas/invisible-woman-icone-retomada-2026-10-11.txt",
+      "referencias": [
+        "artes-comandantes/15 - Invisible Woman (The Fantastic Four Collector's Edition).png",
+        "artes-comandantes/gerados/sai-icone.png"
+      ],
+      "transparenciaSolicitada": true,
+      "inicioUTC": "2026-10-12T01:23:13.653Z",
+      "fimUTC": "2026-10-12T01:25:54.495Z",
+      "resultado": "recusada",
+      "requestId": "e99fc89b-e7fb-4042-8695-e528e9916dd0",
+      "erro": "moderation_blocked",
+      "etapa": "output",
+      "categoria": "other",
+      "motivoDetalhado": null,
+      "erroBruto": "image generation failed: http 400 Bad Request: Some(\"{\\n  \\\"error\\\": {\\n    \\\"message\\\": \\\"Your request was rejected by the safety system. If you believe this is an error, contact us at help.openai.com and include the request ID e99fc89b-e7fb-4042-8695-e528e9916dd0.\\\",\\n    \\\"type\\\": \\\"image_generation_user_error\\\",\\n    \\\"param\\\": null,\\n    \\\"code\\\": \\\"moderation_blocked\\\",\\n    \\\"moderation_details\\\": {\\n      \\\"moderation_stage\\\": \\\"output\\\",\\n      \\\"categories\\\": [\\n        \\\"other\\\"\\n      ]\\n    }\\n  }\\n}\")",
+      "arquivoGerado": null,
+      "metadadosSaida": null
+    },
+    {
+      "id": "captain-america",
+      "tipo": "banner",
+      "promptArquivo": "artes-comandantes/gerados/tentativas/captain-america-banner-retomada-2026-10-11.txt",
+      "referencias": [
+        "artes-comandantes/21 - Captain America, Team Leader (Avengers Assemble Collector's Edition).png",
+        "artes-comandantes/gerados/black-panther-banner.png"
+      ],
+      "transparenciaSolicitada": false,
+      "inicioUTC": "2026-10-12T01:23:13.653Z",
+      "fimUTC": "2026-10-12T01:25:00.545Z",
+      "resultado": "gerada",
+      "requestId": null,
+      "erro": null,
+      "etapa": null,
+      "categoria": null,
+      "motivoDetalhado": null,
+      "erroBruto": null,
+      "arquivoGerado": "C:\\Users\\icaio\\.codex\\generated_images\\01a12dad-26a3-7952-9501-087ce36358b5\\exec-5b58135e-af40-459c-bba8-158a9278b353.png",
+      "metadadosSaida": "Generated images are saved to C:\\Users\\icaio\\.codex\\generated_images\\01a12dad-26a3-7952-9501-087ce36358b5 as C:\\Users\\icaio\\.codex\\generated_images\\01a12dad-26a3-7952-9501-087ce36358b5\\exec-5b58135e-af40-459c-bba8-158a9278b353.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+    },
+    {
+      "id": "captain-america",
+      "tipo": "icone",
+      "promptArquivo": "artes-comandantes/gerados/tentativas/captain-america-icone-retomada-2026-10-11.txt",
+      "referencias": [
+        "artes-comandantes/21 - Captain America, Team Leader (Avengers Assemble Collector's Edition).png",
+        "artes-comandantes/gerados/sai-icone.png"
+      ],
+      "transparenciaSolicitada": true,
+      "inicioUTC": "2026-10-12T01:23:13.653Z",
+      "fimUTC": "2026-10-12T01:26:46.163Z",
+      "resultado": "recusada",
+      "requestId": "51f7cd0c-7901-4cfc-af2c-185e33d4e213",
+      "erro": "moderation_blocked",
+      "etapa": "output",
+      "categoria": "other",
+      "motivoDetalhado": null,
+      "erroBruto": "image generation failed: http 400 Bad Request: Some(\"{\\n  \\\"error\\\": {\\n    \\\"message\\\": \\\"Your request was rejected by the safety system. If you believe this is an error, contact us at help.openai.com and include the request ID 51f7cd0c-7901-4cfc-af2c-185e33d4e213.\\\",\\n    \\\"type\\\": \\\"image_generation_user_error\\\",\\n    \\\"param\\\": null,\\n    \\\"code\\\": \\\"moderation_blocked\\\",\\n    \\\"moderation_details\\\": {\\n      \\\"moderation_stage\\\": \\\"output\\\",\\n      \\\"categories\\\": [\\n        \\\"other\\\"\\n      ]\\n    }\\n  }\\n}\")",
+      "arquivoGerado": null,
+      "metadadosSaida": null
+    }
+  ],
+  "refinamentos": [
+    {
+      "id": "captain-america",
+      "tipo": "banner",
+      "fase": "polimento",
+      "promptArquivo": "artes-comandantes/gerados/tentativas/captain-america-banner-polimento-2026-10-11.txt",
+      "referencias": [
+        "C:\\Users\\icaio\\.codex\\generated_images\\01a12dad-26a3-7952-9501-087ce36358b5\\exec-5b58135e-af40-459c-bba8-158a9278b353.png"
+      ],
+      "inicioUTC": "2026-10-12T01:28:00.540Z",
+      "fimUTC": "2026-10-12T01:28:47.042Z",
+      "resultado": "recusada",
+      "requestId": "d9a31de6-4878-45a1-8462-147a7b9a4eaa",
+      "erro": "moderation_blocked",
+      "etapa": "output",
+      "categoria": "other",
+      "motivoDetalhado": null,
+      "erroBruto": "image generation failed: http 400 Bad Request: Some(\"{\\n  \\\"error\\\": {\\n    \\\"message\\\": \\\"Your request was rejected by the safety system. If you believe this is an error, contact us at help.openai.com and include the request ID d9a31de6-4878-45a1-8462-147a7b9a4eaa.\\\",\\n    \\\"type\\\": \\\"image_generation_user_error\\\",\\n    \\\"param\\\": null,\\n    \\\"code\\\": \\\"moderation_blocked\\\",\\n    \\\"moderation_details\\\": {\\n      \\\"moderation_stage\\\": \\\"output\\\",\\n      \\\"categories\\\": [\\n        \\\"other\\\"\\n      ]\\n    }\\n  }\\n}\")",
+      "arquivoSelecionado": "artes-comandantes/gerados/captain-america-banner.png",
+      "observacao": "A primeira geração foi aceita e integrada. O ajuste do terço inferior foi recusado; a versão gerada anteriormente foi preservada."
+    }
+  ]
+}

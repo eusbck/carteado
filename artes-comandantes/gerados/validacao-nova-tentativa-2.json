@@ -1,0 +1,113 @@
+{
+  "dataUTC": "2026-10-12T02:45:37.271Z",
+  "estado": "aprovado",
+  "novaArte": {
+    "arquivo": "artes-comandantes/gerados/invisible-woman-banner.png",
+    "tamanho": [
+      1672,
+      941
+    ],
+    "destinos": [
+      "jogo/gerado/fundos/640ebf2f-5687-42d4-97e5-85e2fefa89a9.webp"
+    ],
+    "originalNativoPreservado": true
+  },
+  "artes": 33,
+  "banners": 18,
+  "icones": 15,
+  "catalogoRetratos": 24,
+  "pendentes": [
+    "black-panther-icone",
+    "invisible-woman-icone",
+    "captain-america-icone"
+  ],
+  "cacheFundos": 5,
+  "compressao": {
+    "relatorio": "artes-comandantes/gerados/otimizacao-imagens.json",
+    "arquivosOtimizados": 38,
+    "economiaBytes": 52236,
+    "pixelsIdem": {
+      "pixelsNativosIdenticos": true,
+      "pixelsNoChromiumIdenticos": true,
+      "dimensoesAlfaPerfilPreservados": true
+    }
+  },
+  "verificacoes": {
+    "tipos": {
+      "codigoSaida": 0
+    },
+    "cliente": {
+      "codigoSaida": 0
+    },
+    "testes": {
+      "comando": "npm.cmd run test -- testes/avatar.test.ts testes/fase9-artes.test.ts --maxWorkers=2",
+      "codigoSaida": 0,
+      "arquivos": 2,
+      "aprovados": 19,
+      "falhas": 0,
+      "segundos": 23.93
+    },
+    "galeria": {
+      "imagensCarregadas": 63,
+      "falhas": [],
+      "previa": "artes-comandantes/gerados/invisible-woman-previa.png"
+    }
+  },
+  "preservacao": {
+    "arquivosComparados": 8021,
+    "alterados": [
+      "artes-comandantes/gerados/LEIA.md",
+      "artes-comandantes/gerados/conferencia.json",
+      "artes-comandantes/gerados/galeria.html",
+      "artes-comandantes/gerados/galeria.jpg",
+      "artes-comandantes/gerados/invisible-woman-banner.txt",
+      "artes-comandantes/gerados/manifesto.json",
+      "artes-comandantes/gerados/pendencias.json",
+      "jogo/cliente/src/imagens/avatares/anhelo.webp",
+      "jogo/cliente/src/imagens/avatares/doctor-doom.webp",
+      "jogo/cliente/src/imagens/avatares/food-and-fellowship.webp",
+      "jogo/cliente/src/imagens/avatares/hatsune-miku.webp",
+      "jogo/cliente/src/imagens/avatares/jin-sakai.webp",
+      "jogo/cliente/src/imagens/avatares/kaalia.webp",
+      "jogo/cliente/src/imagens/avatares/lathliss.webp",
+      "jogo/cliente/src/imagens/avatares/leonardo.webp",
+      "jogo/cliente/src/imagens/avatares/mesa/doctor-doom.webp",
+      "jogo/cliente/src/imagens/avatares/mesa/food-and-fellowship.webp",
+      "jogo/cliente/src/imagens/avatares/mesa/hatsune-miku.webp",
+      "jogo/cliente/src/imagens/avatares/mesa/jin-sakai.webp",
+      "jogo/cliente/src/imagens/avatares/mesa/kaalia.webp",
+      "jogo/cliente/src/imagens/avatares/mesa/lathliss.webp",
+      "jogo/cliente/src/imagens/avatares/mesa/leonardo.webp",
+      "jogo/cliente/src/imagens/avatares/mesa/rin-seri.webp",
+      "jogo/cliente/src/imagens/avatares/mesa/sai.webp",
+      "jogo/cliente/src/imagens/avatares/mesa/sauron.webp",
+      "jogo/cliente/src/imagens/avatares/mesa/strefan.webp",
+      "jogo/cliente/src/imagens/avatares/mesa/szarekh.webp",
+      "jogo/cliente/src/imagens/avatares/mesa/timey-wimey.webp",
+      "jogo/cliente/src/imagens/avatares/mesa/yennett.webp",
+      "jogo/cliente/src/imagens/avatares/rin-seri.webp",
+      "jogo/cliente/src/imagens/avatares/sai.webp",
+      "jogo/cliente/src/imagens/avatares/sauron.webp",
+      "jogo/cliente/src/imagens/avatares/strefan.webp",
+      "jogo/cliente/src/imagens/avatares/szarekh.webp",
+      "jogo/cliente/src/imagens/avatares/timey-wimey.webp",
+      "jogo/cliente/src/imagens/avatares/yennett.webp",
+      "CODEX.md",
+      "jogo/PROGRESSO.md",
+      "jogo/cliente/src/cartas.ts",
+      "jogo/cliente/src/imagens/avatares/mesa/auntie-ool.webp",
+      "jogo/cliente/src/imagens/avatares/mesa/dina.webp",
+      "jogo/cliente/src/imagens/avatares/mesa/felothar.webp",
+      "jogo/cliente/src/imagens/avatares/mesa/gisa.webp",
+      "jogo/cliente/src/imagens/avatares/mesa/jace.webp",
+      "jogo/cliente/src/imagens/avatares/mesa/killian.webp",
+      "jogo/cliente/src/imagens/avatares/mesa/quintorius.webp",
+      "jogo/cliente/src/imagens/avatares/mesa/rootha.webp",
+      "jogo/cliente/src/imagens/avatares/mesa/terra.webp",
+      "jogo/gerado/fundos/fontes.json"
+    ],
+    "inesperados": [],
+    "PNGsAnterioresIntactos": true
+  },
+  "mesaReiniciada": false
+}

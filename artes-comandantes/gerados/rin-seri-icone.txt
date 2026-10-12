@@ -1,0 +1,9 @@
+Use case: identity-preserve. Asset: ONE square transparent bust portrait icon for a Magic Commander game medalion.
+Input 1 is the exact character's identity, costume, anatomy and color reference. Input 2 is ONLY a reference for existing game portrait framing and finish, not a face, armor or person to reproduce.
+Create a close chest-up bust faithful to Input 1, preserving exact facial/head/helmet features, colors and costume. Keep complete head/helmet and readable face centered around x=50%, y=30%, wide shoulders in the lower half, transparent margins around the entire silhouette. Readable at 80px, ideally 1024x1024.
+Genuinely transparent alpha background outside the bust. Clean anti-aliased edges. No scenery or rectangular fill, no circular frame, no ring, no badge, no aura, no card border, no text or watermark. One icon only.
+Deck: Raining Cats and Dogs.
+Subject and setting: BOTH Rin and Seri, the same proud BLACK long-haired pointed-ear dog and WHITE long-haired tufted-ear cat in the source, together with two separate clearly recognizable heads. They rest closely side by side on mossy mountain rocks, warm gold-pink clouds and cool purple peaks behind. Preserve exact animal markings, fur colors and muzzle shapes; include BOTH animals, equally prominent.
+Style/medium: polished realistic painterly animal/fantasy game illustration with highly detailed fur.
+Render only the character head and chest with restrained light inspired by the scene; omit all scenery. Small identity props can stay close to the chest inside the silhouette.
+There must be TWO animals in this single asset. Their heads both fully visible, similarly prominent at x=35% and x=65%, y=30%, joining into one compact double portrait; do not omit either animal.

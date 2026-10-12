@@ -88,5 +88,377 @@
    941
   ],
   "bytes": 217556
+ },
+ "Sam, Loyal Attendant": {
+  "deck": "Food and Fellowship",
+  "imagem": "687a2b76-3f05-4732-bd9b-513d06d16300",
+  "imagens": [
+   "687a2b76-3f05-4732-bd9b-513d06d16300",
+   "328df403-7428-4b17-bdd1-9759fc0f32d8"
+  ],
+  "original": "artes-comandantes/gerados/food-and-fellowship-banner.png",
+  "referencias": [
+   "artes-comandantes/26 - Sam, Loyal Attendant (Food and Fellowship).png",
+   "artes-comandantes/26 - Frodo, Adventurous Hobbit (Food and Fellowship).png"
+  ],
+  "ferramenta": "image_gen interna",
+  "modeloSolicitado": "GPT IMAGE 2",
+  "tamanho": [
+   1672,
+   941
+  ],
+  "bytes": 378930
+ },
+ "Frodo, Adventurous Hobbit": {
+  "deck": "Food and Fellowship",
+  "imagem": "328df403-7428-4b17-bdd1-9759fc0f32d8",
+  "imagens": [
+   "687a2b76-3f05-4732-bd9b-513d06d16300",
+   "328df403-7428-4b17-bdd1-9759fc0f32d8"
+  ],
+  "original": "artes-comandantes/gerados/food-and-fellowship-banner.png",
+  "referencias": [
+   "artes-comandantes/26 - Sam, Loyal Attendant (Food and Fellowship).png",
+   "artes-comandantes/26 - Frodo, Adventurous Hobbit (Food and Fellowship).png"
+  ],
+  "ferramenta": "image_gen interna",
+  "modeloSolicitado": "GPT IMAGE 2",
+  "tamanho": [
+   1672,
+   941
+  ],
+  "bytes": 378930
+ },
+ "The Tenth Doctor": {
+  "deck": "Timey-Wimey",
+  "imagem": "f1499f49-793b-4265-9ad0-883a431941ab",
+  "imagens": [
+   "f1499f49-793b-4265-9ad0-883a431941ab",
+   "3aa8d034-f98c-4e27-b6af-850eadf59941"
+  ],
+  "original": "artes-comandantes/gerados/timey-wimey-banner.png",
+  "referencias": [
+   "artes-comandantes/25 - The Tenth Doctor (Timey-Wimey).png",
+   "artes-comandantes/25 - Rose Tyler (Timey-Wimey).png"
+  ],
+  "ferramenta": "image_gen interna",
+  "modeloSolicitado": "GPT IMAGE 2",
+  "tamanho": [
+   1672,
+   941
+  ],
+  "bytes": 317738
+ },
+ "Rose Tyler": {
+  "deck": "Timey-Wimey",
+  "imagem": "3aa8d034-f98c-4e27-b6af-850eadf59941",
+  "imagens": [
+   "f1499f49-793b-4265-9ad0-883a431941ab",
+   "3aa8d034-f98c-4e27-b6af-850eadf59941"
+  ],
+  "original": "artes-comandantes/gerados/timey-wimey-banner.png",
+  "referencias": [
+   "artes-comandantes/25 - The Tenth Doctor (Timey-Wimey).png",
+   "artes-comandantes/25 - Rose Tyler (Timey-Wimey).png"
+  ],
+  "ferramenta": "image_gen interna",
+  "modeloSolicitado": "GPT IMAGE 2",
+  "tamanho": [
+   1672,
+   941
+  ],
+  "bytes": 317738
+ },
+ "Jin Sakai, Ghost of Tsushima": {
+  "deck": "Jin's Vengeance",
+  "imagem": "9f52160b-dcc0-4ab8-b8b2-b576b1688d57",
+  "imagens": [
+   "9f52160b-dcc0-4ab8-b8b2-b576b1688d57"
+  ],
+  "original": "artes-comandantes/gerados/jin-sakai-banner.png",
+  "referencias": [
+   "artes-comandantes/09 - Jin Sakai, Ghost of Tsushima (Jin's Vengeance).png"
+  ],
+  "ferramenta": "image_gen interna",
+  "modeloSolicitado": "GPT IMAGE 2",
+  "tamanho": [
+   1672,
+   941
+  ],
+  "bytes": 517348
+ },
+ "Sauron, Lord of the Rings": {
+  "deck": "The Hosts of Mordor",
+  "imagem": "26bbbde8-bfda-49ae-adb6-5860b4dd1364",
+  "imagens": [
+   "26bbbde8-bfda-49ae-adb6-5860b4dd1364"
+  ],
+  "original": "artes-comandantes/gerados/sauron-banner.png",
+  "referencias": [
+   "artes-comandantes/10 - Sauron, Lord of the Rings (The Hosts of Mordor).png"
+  ],
+  "ferramenta": "image_gen interna",
+  "modeloSolicitado": "GPT IMAGE 2",
+  "tamanho": [
+   1672,
+   941
+  ],
+  "bytes": 363862
+ },
+ "Doctor Doom, King of Latveria": {
+  "deck": "Doom Prevails",
+  "imagem": "099ed408-9178-4403-8b2d-479ca3cbda9b",
+  "imagens": [
+   "099ed408-9178-4403-8b2d-479ca3cbda9b"
+  ],
+  "original": "artes-comandantes/gerados/doctor-doom-banner.png",
+  "referencias": [
+   "artes-comandantes/11 - Doctor Doom, King of Latveria (Doom Prevails).png"
+  ],
+  "ferramenta": "image_gen interna",
+  "modeloSolicitado": "GPT IMAGE 2",
+  "tamanho": [
+   1672,
+   941
+  ],
+  "bytes": 388812
+ },
+ "T'Challa, the Black Panther": {
+  "deck": "Wakanda Forever",
+  "imagem": "c1c8ad61-b7e1-446c-8b74-6e29371ea1d5",
+  "imagens": [
+   "c1c8ad61-b7e1-446c-8b74-6e29371ea1d5"
+  ],
+  "original": "artes-comandantes/gerados/black-panther-banner.png",
+  "referencias": [
+   "artes-comandantes/12 - T'Challa, the Black Panther (Wakanda Forever).png"
+  ],
+  "ferramenta": "image_gen interna",
+  "modeloSolicitado": "GPT IMAGE 2",
+  "tamanho": [
+   1672,
+   941
+  ],
+  "bytes": 645660
+ },
+ "Leonardo, the Balance": {
+  "deck": "Turtle Power!",
+  "imagem": "72e637db-7112-406f-809b-0eda248488b5",
+  "imagens": [
+   "72e637db-7112-406f-809b-0eda248488b5"
+  ],
+  "original": "artes-comandantes/gerados/leonardo-banner.png",
+  "referencias": [
+   "artes-comandantes/13 - Leonardo, the Balance (Turtle Power!).png"
+  ],
+  "ferramenta": "image_gen interna",
+  "modeloSolicitado": "GPT IMAGE 2",
+  "tamanho": [
+   1672,
+   941
+  ],
+  "bytes": 516208
+ },
+ "Trostani, Selesnya's Voice": {
+  "deck": "Hatsune Miku",
+  "imagem": "c1bcdea0-120a-4095-af2b-3a53bfcc65b3",
+  "imagens": [
+   "c1bcdea0-120a-4095-af2b-3a53bfcc65b3",
+   "6ab6e6c9-fe20-40d3-997e-fe3480081f03"
+  ],
+  "original": "artes-comandantes/gerados/hatsune-miku-banner.png",
+  "referencias": [
+   "artes-comandantes/14 - Trostani, Selesnya's Voice (Hatsune Miku) - arte do Moxfield.png"
+  ],
+  "ferramenta": "image_gen interna",
+  "modeloSolicitado": "GPT IMAGE 2",
+  "tamanho": [
+   1672,
+   941
+  ],
+  "bytes": 439008
+ },
+ "Lathliss, Dragon Queen": {
+  "deck": "Reign of Dragons",
+  "imagem": "3e52a614-f779-458a-9617-f2b0b4f8cbcb",
+  "imagens": [
+   "3e52a614-f779-458a-9617-f2b0b4f8cbcb",
+   "8a17ec4e-b508-41af-803b-32acd863e598"
+  ],
+  "original": "artes-comandantes/gerados/lathliss-banner.png",
+  "referencias": [
+   "artes-comandantes/16 - Lathliss, Dragon Queen (Reign of Dragons).png"
+  ],
+  "ferramenta": "image_gen interna",
+  "modeloSolicitado": "GPT IMAGE 2",
+  "tamanho": [
+   1672,
+   941
+  ],
+  "bytes": 324988
+ },
+ "Rin and Seri, Inseparable // Rin and Seri, Inseparable": {
+  "deck": "Raining Cats and Dogs",
+  "imagem": "48a000ce-0760-446c-8737-fdf9806e0eb3",
+  "imagens": [
+   "48a000ce-0760-446c-8737-fdf9806e0eb3",
+   "a129558c-45a1-441c-97f0-b70b4e9d8a56"
+  ],
+  "original": "artes-comandantes/gerados/rin-seri-banner.png",
+  "referencias": [
+   "artes-comandantes/17 - Rin and Seri, Inseparable (Raining Cats and Dogs).png"
+  ],
+  "ferramenta": "image_gen interna",
+  "modeloSolicitado": "GPT IMAGE 2",
+  "tamanho": [
+   1672,
+   941
+  ],
+  "bytes": 434122
+ },
+ "Anhelo, the Painter": {
+  "deck": "Maestros Massacre",
+  "imagem": "462e887d-6b91-4b31-9487-2780ffe8943f",
+  "imagens": [
+   "462e887d-6b91-4b31-9487-2780ffe8943f"
+  ],
+  "original": "artes-comandantes/gerados/anhelo-banner.png",
+  "referencias": [
+   "artes-comandantes/18 - Anhelo, the Painter (Maestros Massacre).png"
+  ],
+  "ferramenta": "image_gen interna",
+  "modeloSolicitado": "GPT IMAGE 2",
+  "tamanho": [
+   1672,
+   941
+  ],
+  "bytes": 449428
+ },
+ "Szarekh, the Silent King": {
+  "deck": "Necron Dynasties",
+  "imagem": "12a3400d-7a8b-4bae-9a4f-c9a1bc741e68",
+  "imagens": [
+   "12a3400d-7a8b-4bae-9a4f-c9a1bc741e68"
+  ],
+  "original": "artes-comandantes/gerados/szarekh-banner.png",
+  "referencias": [
+   "artes-comandantes/19 - Szarekh, the Silent King (Necron Dynasties).png"
+  ],
+  "ferramenta": "image_gen interna",
+  "modeloSolicitado": "GPT IMAGE 2",
+  "tamanho": [
+   1672,
+   941
+  ],
+  "bytes": 497522
+ },
+ "Strefan, Maurer Progenitor": {
+  "deck": "Vampiric Bloodline",
+  "imagem": "5c48f51d-49f2-411a-ab13-b9011c049cfa",
+  "imagens": [
+   "5c48f51d-49f2-411a-ab13-b9011c049cfa"
+  ],
+  "original": "artes-comandantes/gerados/strefan-banner.png",
+  "referencias": [
+   "artes-comandantes/20 - Strefan, Maurer Progenitor (Vampiric Bloodline).png"
+  ],
+  "ferramenta": "image_gen interna",
+  "modeloSolicitado": "GPT IMAGE 2",
+  "tamanho": [
+   1672,
+   941
+  ],
+  "bytes": 392212
+ },
+ "Sai, Master Thopterist": {
+  "deck": "Keen Engineering",
+  "imagem": "5650587a-27a5-4d68-97e2-5745627bd094",
+  "imagens": [
+   "5650587a-27a5-4d68-97e2-5745627bd094"
+  ],
+  "original": "artes-comandantes/gerados/sai-banner.png",
+  "referencias": [
+   "artes-comandantes/22 - Sai, Master Thopterist (Keen Engineering).png"
+  ],
+  "ferramenta": "image_gen interna",
+  "modeloSolicitado": "GPT IMAGE 2",
+  "tamanho": [
+   1672,
+   941
+  ],
+  "bytes": 391672
+ },
+ "Yennett, Cryptic Sovereign": {
+  "deck": "Odd and Ends",
+  "imagem": "0ba9362f-eb35-4e72-8c51-7047c0a3f648",
+  "imagens": [
+   "0ba9362f-eb35-4e72-8c51-7047c0a3f648"
+  ],
+  "original": "artes-comandantes/gerados/yennett-banner.png",
+  "referencias": [
+   "artes-comandantes/23 - Yennett, Cryptic Sovereign (Odd and Ends).png"
+  ],
+  "ferramenta": "image_gen interna",
+  "modeloSolicitado": "GPT IMAGE 2",
+  "tamanho": [
+   1672,
+   941
+  ],
+  "bytes": 575516
+ },
+ "Kaalia of the Vast": {
+  "deck": "Heavenly Inferno",
+  "imagem": "3894cfe6-e851-484f-bbc7-28605a48ebbc",
+  "imagens": [
+   "3894cfe6-e851-484f-bbc7-28605a48ebbc",
+   "5c509c36-43a8-454e-80fc-321f41981049"
+  ],
+  "original": "artes-comandantes/gerados/kaalia-banner.png",
+  "referencias": [
+   "artes-comandantes/24 - Kaalia of the Vast (Heavenly Inferno).png"
+  ],
+  "ferramenta": "image_gen interna",
+  "modeloSolicitado": "GPT IMAGE 2",
+  "tamanho": [
+   1672,
+   940
+  ],
+  "bytes": 397268
+ },
+ "Captain America, Team Leader": {
+  "deck": "Avengers Assemble Collector's Edition",
+  "imagem": "910a6dfc-04a2-4c6d-b2ba-507bc75ec821",
+  "imagens": [
+   "910a6dfc-04a2-4c6d-b2ba-507bc75ec821"
+  ],
+  "original": "artes-comandantes/gerados/captain-america-banner.png",
+  "referencias": [
+   "artes-comandantes/21 - Captain America, Team Leader (Avengers Assemble Collector's Edition).png"
+  ],
+  "ferramenta": "image_gen interna",
+  "modeloSolicitado": "GPT IMAGE 2",
+  "tamanho": [
+   1672,
+   941
+  ],
+  "bytes": 635996
+ },
+ "Invisible Woman": {
+  "deck": "The Fantastic Four Collector's Edition",
+  "imagem": "640ebf2f-5687-42d4-97e5-85e2fefa89a9",
+  "imagens": [
+   "640ebf2f-5687-42d4-97e5-85e2fefa89a9"
+  ],
+  "original": "artes-comandantes/gerados/invisible-woman-banner.png",
+  "referencias": [
+   "artes-comandantes/15 - Invisible Woman (The Fantastic Four Collector's Edition).png"
+  ],
+  "ferramenta": "image_gen interna",
+  "modeloSolicitado": "GPT IMAGE 2",
+  "tamanho": [
+   1672,
+   941
+  ],
+  "bytes": 438628
  }
 }

@@ -1,0 +1,8 @@
+Use case: identity-preserve. Asset: ONE square transparent bust portrait icon for a Magic Commander game medalion.
+Input 1 is the exact character's identity, costume, anatomy and color reference. Input 2 is ONLY a reference for existing game portrait framing and finish, not a face, armor or person to reproduce.
+Create a close chest-up bust faithful to Input 1, preserving exact facial/head/helmet features, colors and costume. Keep complete head/helmet and readable face centered around x=50%, y=30%, wide shoulders in the lower half, transparent margins around the entire silhouette. Readable at 80px, ideally 1024x1024.
+Genuinely transparent alpha background outside the bust. Clean anti-aliased edges. No scenery or rectangular fill, no circular frame, no ring, no badge, no aura, no card border, no text or watermark. One icon only.
+Deck: Wakanda Forever.
+Subject and setting: T'Challa as the masked Black Panther, exact black/navy panther mask, gold trim and purple-magenta kinetic highlights, powerful lunging posture from the supplied card. Extend its dynamic Wakandan abstract branches, fractured color and pink/teal energy into a rich cinematic environment.
+Style/medium: detailed painterly superhero game illustration faithful to the dynamic colors and costume in the source.
+Render only the character head and chest with restrained light inspired by the scene; omit all scenery. Small identity props can stay close to the chest inside the silhouette.

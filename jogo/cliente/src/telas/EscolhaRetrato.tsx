@@ -1,4 +1,4 @@
-// Escolha do retrato (avatar) de quem joga, no saguão: os nove retratos e a opção automática (o do comandante do
+// Escolha do retrato (avatar) de quem joga, no saguão: o catálogo de retratos e a opção automática (o do comandante do
 // deck). A escolha vai para o servidor (todos veem) e fica guardada neste navegador, para as próximas salas.
 
 import { Janela } from '../Janela.tsx';

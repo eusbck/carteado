@@ -1,0 +1,124 @@
+{
+  "estado": "aprovado",
+  "dataUTC": "2026-10-12T01:35:26.092Z",
+  "detalhes": [
+    {
+      "arquivo": "artes-comandantes/gerados/doctor-doom-icone.png",
+      "largura": 1254,
+      "altura": 1254,
+      "alfa": true,
+      "opaco": false
+    },
+    {
+      "arquivo": "jogo/cliente/src/imagens/avatares/doctor-doom.webp",
+      "largura": 512,
+      "altura": 512,
+      "alfa": true,
+      "opaco": false
+    },
+    {
+      "arquivo": "jogo/cliente/src/imagens/avatares/mesa/doctor-doom.webp",
+      "largura": 256,
+      "altura": 256,
+      "alfa": true,
+      "opaco": false
+    },
+    {
+      "arquivo": "artes-comandantes/gerados/captain-america-banner.png",
+      "largura": 1672,
+      "altura": 941,
+      "alfa": false,
+      "opaco": true
+    },
+    {
+      "arquivo": "jogo/gerado/fundos/910a6dfc-04a2-4c6d-b2ba-507bc75ec821.webp",
+      "largura": 1672,
+      "altura": 941,
+      "alfa": false,
+      "opaco": true
+    }
+  ],
+  "galeria": {
+    "imagensCarregadas": 62,
+    "falhas": [],
+    "medalhaoDoom": {
+      "largura": 80,
+      "altura": 74
+    },
+    "previaDoom": "artes-comandantes/gerados/doctor-doom-previa.png",
+    "previaCaptainAmerica": "artes-comandantes/gerados/captain-america-previa.png"
+  },
+  "preservacao": {
+    "arquivosComparados": 7996,
+    "alterados": [
+      "CODEX.md",
+      "jogo/PROGRESSO.md",
+      "jogo/cliente/src/cartas.ts",
+      "jogo/gerado/fundos/fontes.json",
+      "jogo/servidor/avatares.ts",
+      "jogo/testes/avatar.test.ts",
+      "artes-comandantes/gerados/captain-america-banner.txt",
+      "artes-comandantes/gerados/conferencia.json",
+      "artes-comandantes/gerados/doctor-doom-icone.txt",
+      "artes-comandantes/gerados/galeria.html",
+      "artes-comandantes/gerados/galeria.jpg",
+      "artes-comandantes/gerados/LEIA.md",
+      "artes-comandantes/gerados/manifesto.json",
+      "artes-comandantes/gerados/pendencias.json"
+    ],
+    "inesperados": [],
+    "documentacao": [
+      {
+        "arquivo": "CODEX.md",
+        "bytesAnteriores": 31138,
+        "sha256Anterior": "093fa2063c5e72e0bd9d71223a21899ded8a3ae41a70120fb0534e1afc41c216",
+        "conteudoAnteriorPreservado": true
+      },
+      {
+        "arquivo": "jogo/PROGRESSO.md",
+        "bytesAnteriores": 147536,
+        "sha256Anterior": "676ac44126748b5da26e079580da68efe504563b3ca4bae57350dce3f9f426bf",
+        "conteudoAnteriorPreservado": true
+      }
+    ],
+    "previasAnterioresPreservadas": true
+  },
+  "gerados": 32,
+  "avatares": 24,
+  "arquivosPendentes": 4,
+  "refinamentosPendentes": 1,
+  "verificacoes": {
+    "tipos": {
+      "comando": "npm.cmd run typecheck",
+      "codigoSaida": 0
+    },
+    "cliente": {
+      "comando": "npm.cmd run cliente:build",
+      "codigoSaida": 0
+    },
+    "testes": {
+      "comando": "npm.cmd run test -- testes/avatar.test.ts testes/fase9-artes.test.ts --maxWorkers=2",
+      "codigoSaida": 0,
+      "arquivos": 2,
+      "aprovados": 19,
+      "falhas": 0,
+      "duracaoSegundos": 22.57
+    },
+    "historico": {
+      "recusasAnterioresPreservadas": true,
+      "promptsAnterioresPreservados": true,
+      "novosBloqueiosDeArtes": 4,
+      "bloqueiosDeRefinamento": 1
+    },
+    "galeriaCapturada": {
+      "comando": "node jogo/ferramentas/artes-comandantes.mjs gallery --capturar",
+      "codigoSaida": 0,
+      "imagensCarregadas": 62,
+      "falhas": 0
+    }
+  },
+  "ferramenta": "image_gen interna",
+  "modeloSolicitado": "GPT IMAGE 2",
+  "modeloEfetivoInformadoPelaFerramenta": null,
+  "finalizacaoUTC": "2026-10-12T01:43:08.478Z"
+}

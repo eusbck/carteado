@@ -1,5 +1,5 @@
-// Avatares dos jogadores na mesa: o catálogo dos nove retratos (imagens com transparência, um por comandante dos
-// nove decks originais da mesa; um deck novo pode não ter o seu e fica com a inicial), a escolha do retrato no servidor (só os do catálogo; todos recebem; volta ao automático com null)
+// Avatares dos jogadores na mesa: retratos transparentes de 24 decks, incluindo duas duplas de parceiros e os nove
+// originais, a escolha do retrato no servidor (só os do catálogo; todos recebem; volta ao automático com null)
 // e a arrumação padrão do campo deixando livre o espaço do medalhão (em cima no oponente, embaixo na sua área).
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
@@ -32,15 +32,23 @@ class Falsa implements Conexao {
 const espera = () => new Promise((r) => setTimeout(r, 0));
 
 describe('avatares: catálogo', () => {
-  it('nove retratos com ids únicos; os comandantes dos 9 decks da mesa em 06cc7f3 continuam jogáveis e com o seu', () => {
-    expect(AVATARES).toHaveLength(9);
-    expect(new Set(AVATARES.map((a) => a.id)).size).toBe(9);
+  it('24 retratos com ids únicos; os comandantes dos 9 decks da mesa em 06cc7f3 continuam jogáveis e com o seu', () => {
+    expect(AVATARES).toHaveLength(24);
+    expect(new Set(AVATARES.map((a) => a.id)).size).toBe(24);
     for (const d of decksOriginais) {
       expect(decksMesa.some((x) => x.id === d.id && x.comandante === d.comandante), d.comandante).toBe(true);
       expect(avatarDoComandante(d.comandante), d.comandante).not.toBeNull();
     }
     expect(avatarDoComandante('Comandante que não tem retrato')).toBeNull();
     expect(avatarDoComandante(null)).toBeNull();
+    expect(avatarDoComandante('Frodo, Adventurous Hobbit')).toBe('food-and-fellowship');
+    expect(avatarDoComandante('Sam, Loyal Attendant')).toBe('food-and-fellowship');
+    expect(avatarDoComandante('The Tenth Doctor')).toBe('timey-wimey');
+    expect(avatarDoComandante('Rose Tyler')).toBe('timey-wimey');
+    expect(avatarDoComandante('Doctor Doom, King of Latveria')).toBe('doctor-doom');
+    for (const pendente of ["T'Challa, the Black Panther", 'Invisible Woman', 'Captain America, Team Leader']) {
+      expect(avatarDoComandante(pendente)).toBeNull();
+    }
     expect(avatarValido('jace')).toBe(true);
     expect(avatarValido('../jace')).toBe(false);
     expect(avatarValido(3)).toBe(false);

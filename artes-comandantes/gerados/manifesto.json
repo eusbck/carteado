@@ -1,0 +1,1007 @@
+{
+  "ferramenta": "image_gen interna",
+  "modeloSolicitado": "GPT IMAGE 2",
+  "data": "2026-10-11",
+  "assets": [
+    {
+      "ordem": 9,
+      "id": "jin-sakai",
+      "deck": "Jin's Vengeance",
+      "nome": "Jin Sakai",
+      "aura": "#d44b40",
+      "comandantes": [
+        "Jin Sakai, Ghost of Tsushima"
+      ],
+      "imagensNoJogo": [
+        "9f52160b-dcc0-4ab8-b8b2-b576b1688d57"
+      ],
+      "referencias": [
+        {
+          "arquivo": "artes-comandantes/09 - Jin Sakai, Ghost of Tsushima (Jin's Vengeance).png",
+          "comandante": "Jin Sakai, Ghost of Tsushima",
+          "artista": "Dominik Mayer"
+        }
+      ],
+      "banner": {
+        "original": "artes-comandantes/gerados/jin-sakai-banner.png",
+        "tamanhoOriginal": [
+          1672,
+          941
+        ],
+        "destinos": [
+          "jogo/gerado/fundos/9f52160b-dcc0-4ab8-b8b2-b576b1688d57.webp"
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: ONE finished landscape banner/background for a Magic Commander game table.\nInput image 1 is the exact character, costume, visual identity and environment reference. Preserve the recognizable head/face or helmet, anatomy, colors, materials and equipment. Recompose and expand the scene into a coherent cinematic wide illustration; do not simply stretch the source.\nStyle: premium detailed painterly fantasy game art, faithfully translating the source character with dramatic depth, rich material detail and readable silhouette.\nComposition: 16:9 landscape ideally 2048x1152, hero large in the central 55% with head centered around x=50%, y=28%; at least chest/waist-up body visible. Atmospheric scenery extends fully to both edges. Keep the lower third calmer for cards on the game table.\nConstraints: one banner only, opaque full-bleed background, no titles, no words, no card frame, no lettering, no UI, no logo, no watermark. Remove any source card border or text.\nDeck: Jin's Vengeance.\nSubject and setting: Jin Sakai in the precise ornate black/green samurai armor of the reference, antlered helmet and black face mask, layered raven-like shoulder plates, holding his katana. Pale misty turquoise woodland and drifting maple leaves extending the source scene. Preserve the masked helmet identity; do not substitute an unarmored actor..\n"
+      },
+      "icone": {
+        "original": "artes-comandantes/gerados/jin-sakai-icone.png",
+        "tamanhoOriginal": [
+          1254,
+          1254
+        ],
+        "destinos": [
+          "jogo/cliente/src/imagens/avatares/jin-sakai.webp",
+          "jogo/cliente/src/imagens/avatares/mesa/jin-sakai.webp"
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: ONE square transparent bust portrait icon for a Magic Commander game medalion.\nInput 1 is the exact character/identity and costume reference. Input 2 is only the rendering/framing reference of the existing game's transparent bust icons, NOT a character or costume to copy.\nCreate a detailed chest-up portrait faithful to Input 1, preserving the exact face/head or mask/helmet, distinctive features, colors and clothing. Keep character clearly readable at 80px. Upright compact bust, head entirely in frame, face centered around x=50%, y=30%, shoulders broad in the lower half, small transparent margin on all sides. The shoulders end naturally near the bottom.\nStyle: polished painterly fantasy game portrait, crisp material detail and clean silhouette consistent with Input 2's asset quality. Output ideally 1024x1024.\nBackground: genuinely transparent alpha outside the bust silhouette, including upper corners and margins, carefully anti-aliased hair/armor edges. No scenery, no square background, no circle, no badge, no ring, no aura, no border, no UI, no letters, no watermark. One icon only.\nDeck: Jin's Vengeance.\nSubject and setting: Jin Sakai in the precise ornate black/green samurai armor of the reference, antlered helmet and black face mask, layered raven-like shoulder plates, holding his katana. Pale misty turquoise woodland and drifting maple leaves extending the source scene. Preserve the masked helmet identity; do not substitute an unarmored actor.. Render only the character bust, with restrained lighting inspired by that environment; omit the environment.\n"
+      }
+    },
+    {
+      "ordem": 10,
+      "id": "sauron",
+      "deck": "The Hosts of Mordor",
+      "nome": "Sauron",
+      "aura": "#e76528",
+      "comandantes": [
+        "Sauron, Lord of the Rings"
+      ],
+      "imagensNoJogo": [
+        "26bbbde8-bfda-49ae-adb6-5860b4dd1364"
+      ],
+      "referencias": [
+        {
+          "arquivo": "artes-comandantes/10 - Sauron, Lord of the Rings (The Hosts of Mordor).png",
+          "comandante": "Sauron, Lord of the Rings",
+          "artista": "Alex Brock"
+        }
+      ],
+      "banner": {
+        "original": "artes-comandantes/gerados/sauron-banner.png",
+        "tamanhoOriginal": [
+          1672,
+          941
+        ],
+        "destinos": [
+          "jogo/gerado/fundos/26bbbde8-bfda-49ae-adb6-5860b4dd1364.webp"
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: ONE finished landscape banner/background for a Magic Commander game table.\nInput image 1 is the exact character, costume, visual identity and environment reference. Preserve the recognizable head/face or helmet, anatomy, colors, materials and equipment. Recompose and expand the scene into a coherent cinematic wide illustration; do not simply stretch the source.\nStyle: premium detailed painterly fantasy game art, faithfully translating the source character with dramatic depth, rich material detail and readable silhouette.\nComposition: 16:9 landscape ideally 2048x1152, hero large in the central 55% with head centered around x=50%, y=28%; at least chest/waist-up body visible. Atmospheric scenery extends fully to both edges. Keep the lower third calmer for cards on the game table.\nConstraints: one banner only, opaque full-bleed background, no titles, no words, no card frame, no lettering, no UI, no logo, no watermark. Remove any source card border or text.\nDeck: The Hosts of Mordor.\nSubject and setting: Sauron in the exact dark spiked armored helmet and black weathered plate from the reference, fiery orange light at the crown, long dark cloak and enormous sword, amid storm clouds, pale lightning and volcanic embers. Keep the helmeted face and sharply recognizable silhouette..\n"
+      },
+      "icone": {
+        "original": "artes-comandantes/gerados/sauron-icone.png",
+        "tamanhoOriginal": [
+          1254,
+          1254
+        ],
+        "destinos": [
+          "jogo/cliente/src/imagens/avatares/sauron.webp",
+          "jogo/cliente/src/imagens/avatares/mesa/sauron.webp"
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: ONE square transparent bust portrait icon for a Magic Commander game medalion.\nInput 1 is the exact character/identity and costume reference. Input 2 is only the rendering/framing reference of the existing game's transparent bust icons, NOT a character or costume to copy.\nCreate a detailed chest-up portrait faithful to Input 1, preserving the exact face/head or mask/helmet, distinctive features, colors and clothing. Keep character clearly readable at 80px. Upright compact bust, head entirely in frame, face centered around x=50%, y=30%, shoulders broad in the lower half, small transparent margin on all sides. The shoulders end naturally near the bottom.\nStyle: polished painterly fantasy game portrait, crisp material detail and clean silhouette consistent with Input 2's asset quality. Output ideally 1024x1024.\nBackground: genuinely transparent alpha outside the bust silhouette, including upper corners and margins, carefully anti-aliased hair/armor edges. No scenery, no square background, no circle, no badge, no ring, no aura, no border, no UI, no letters, no watermark. One icon only.\nDeck: The Hosts of Mordor.\nSubject and setting: Sauron in the exact dark spiked armored helmet and black weathered plate from the reference, fiery orange light at the crown, long dark cloak and enormous sword, amid storm clouds, pale lightning and volcanic embers. Keep the helmeted face and sharply recognizable silhouette.. Render only the character bust, with restrained lighting inspired by that environment; omit the environment.\n"
+      }
+    },
+    {
+      "ordem": 11,
+      "id": "doctor-doom",
+      "deck": "Doom Prevails",
+      "nome": "Doctor Doom",
+      "aura": "#62c779",
+      "comandantes": [
+        "Doctor Doom, King of Latveria"
+      ],
+      "imagensNoJogo": [
+        "099ed408-9178-4403-8b2d-479ca3cbda9b"
+      ],
+      "referencias": [
+        {
+          "arquivo": "artes-comandantes/11 - Doctor Doom, King of Latveria (Doom Prevails).png",
+          "comandante": "Doctor Doom, King of Latveria",
+          "artista": "Nathaniel Himawan"
+        }
+      ],
+      "banner": {
+        "original": "artes-comandantes/gerados/doctor-doom-banner.png",
+        "tamanhoOriginal": [
+          1672,
+          941
+        ],
+        "destinos": [
+          "jogo/gerado/fundos/099ed408-9178-4403-8b2d-479ca3cbda9b.webp"
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: ONE finished landscape banner/background for a Magic Commander game table.\nInput image 1 is the exact character, costume, visual identity and environment reference. Preserve the recognizable head/face or helmet, anatomy, colors, materials and equipment. Recompose and expand the scene into a coherent cinematic wide illustration; do not simply stretch the source.\nStyle: premium detailed painterly fantasy game art, faithfully translating the source character with dramatic depth, rich material detail and readable silhouette.\nComposition: 16:9 landscape ideally 2048x1152, hero large in the central 55% with head centered around x=50%, y=28%; at least chest/waist-up body visible. Atmospheric scenery extends fully to both edges. Keep the lower third calmer for cards on the game table.\nConstraints: one banner only, opaque full-bleed background, no titles, no words, no card frame, no lettering, no UI, no logo, no watermark. Remove any source card border or text.\nDeck: Doom Prevails.\nSubject and setting: Doctor Doom in the exact silver metallic mask, dark emerald hooded cloak, round gold clasps, steel armor and gauntlets from the reference, seated with one hand raised conjuring cool blue energy. Extend the moody throne-room architecture and smoky magical atmosphere..\n"
+      },
+      "icone": {
+        "original": "artes-comandantes/gerados/doctor-doom-icone.png",
+        "tamanhoOriginal": [
+          1254,
+          1254
+        ],
+        "destinos": [
+          "jogo/cliente/src/imagens/avatares/doctor-doom.webp",
+          "jogo/cliente/src/imagens/avatares/mesa/doctor-doom.webp"
+        ],
+        "prompt": "Use case: identity-preserve.\nAsset type: one finished square transparent portrait icon for the Magic-Commander game, deck Doom Prevails.\nPrimary request: create Doctor Doom, King of Latveria as a new detailed painterly bust portrait faithful to the supplied card art.\nInput image 1: exact Doctor Doom character, metal mask, costume, anatomy, and color reference. Input image 2: this same character's completed game banner, reference for appearance, lighting and finish. Input image 3: Sauron's existing game icon, use ONLY its portrait framing, clean silhouette and painterly material finish; do not copy Sauron's identity or armor.\nSubject: preserve Doctor Doom's recognizable sculpted silver mask with dark eye openings and metallic mouth grille, complete deep emerald hood, heavy green cloak, two round gold clasps joined by a chain, and steel shoulder armor. Keep his face masked. Cool blue reflections from the banner light the steel and green cloth.\nComposition: square chest-up portrait; complete hood and head inside frame with a small transparent margin above, face centered around x=50%, y=30%, broad shoulders and some chest filling the lower half. Confident upright pose and a strong readable silhouette at 80 pixels. Natural tapered bust ending close to the bottom. Keep the bust compact.\nStyle: premium painterly fantasy game illustration, rich metal and fabric texture, crisp facial definition, compatible with the supplied existing icons.\nBackground: genuine transparent alpha everywhere outside the character silhouette, including all upper corners. Clean anti-aliased edges.\nConstraints: one icon only, no scenery, throne, rectangular background fill, circle, medallion, ring, life counter, aura, frame, UI, added lettering or watermark. Do not crop the hood or head. Retain native generated square resolution.\n",
+        "referenciasDeGeracao": [
+          "artes-comandantes/11 - Doctor Doom, King of Latveria (Doom Prevails).png",
+          "artes-comandantes/gerados/doctor-doom-banner.png",
+          "artes-comandantes/gerados/sauron-icone.png"
+        ],
+        "promptArquivo": "artes-comandantes/gerados/tentativas/doctor-doom-icone-retomada-2026-10-11.txt"
+      }
+    },
+    {
+      "ordem": 12,
+      "id": "black-panther",
+      "deck": "Wakanda Forever",
+      "nome": "T'Challa",
+      "aura": "#ab7fea",
+      "comandantes": [
+        "T'Challa, the Black Panther"
+      ],
+      "imagensNoJogo": [
+        "c1c8ad61-b7e1-446c-8b74-6e29371ea1d5"
+      ],
+      "referencias": [
+        {
+          "arquivo": "artes-comandantes/12 - T'Challa, the Black Panther (Wakanda Forever).png",
+          "comandante": "T'Challa, the Black Panther",
+          "artista": "Eli Minaya"
+        }
+      ],
+      "banner": {
+        "original": "artes-comandantes/gerados/black-panther-banner.png",
+        "tamanhoOriginal": [
+          1672,
+          941
+        ],
+        "destinos": [
+          "jogo/gerado/fundos/c1c8ad61-b7e1-446c-8b74-6e29371ea1d5.webp"
+        ],
+        "prompt": "Use case: identity-preserve. Asset: ONE finished landscape banner/background for a Magic Commander game table.\nInput 1 is the exact identity, costume, anatomy and environment reference. Faithfully preserve the main character; expand and recompose the supplied art into a coherent cinematic wide scene.\nComposition: 16:9 landscape, hero large within the central 55%, head at x=50%, y=28%, body at least chest/waist-up; atmosphere fills both edges. Lower third calmer for game cards. Ideally 2048x1152.\nOpaque full-bleed background. No text or card title, no lettering except a character's existing emblem, no card frame, no UI, no added watermark. One banner only.\nDeck: Wakanda Forever.\nSubject and setting: T'Challa as the masked Black Panther, exact black/navy panther mask, gold trim and purple-magenta kinetic highlights, powerful lunging posture from the supplied card. Extend its dynamic Wakandan abstract branches, fractured color and pink/teal energy into a rich cinematic environment.\nStyle/medium: detailed painterly superhero game illustration faithful to the dynamic colors and costume in the source.\n"
+      },
+      "icone": null
+    },
+    {
+      "ordem": 13,
+      "id": "leonardo",
+      "deck": "Turtle Power!",
+      "nome": "Leonardo",
+      "aura": "#56a7f0",
+      "comandantes": [
+        "Leonardo, the Balance"
+      ],
+      "imagensNoJogo": [
+        "72e637db-7112-406f-809b-0eda248488b5"
+      ],
+      "referencias": [
+        {
+          "arquivo": "artes-comandantes/13 - Leonardo, the Balance (Turtle Power!).png",
+          "comandante": "Leonardo, the Balance",
+          "artista": "Inkognit"
+        }
+      ],
+      "banner": {
+        "original": "artes-comandantes/gerados/leonardo-banner.png",
+        "tamanhoOriginal": [
+          1672,
+          941
+        ],
+        "destinos": [
+          "jogo/gerado/fundos/72e637db-7112-406f-809b-0eda248488b5.webp"
+        ],
+        "prompt": "Use case: identity-preserve. Asset: ONE finished landscape banner/background for a Magic Commander game table.\nInput 1 is the exact identity, costume, anatomy and environment reference. Faithfully preserve the main character; expand and recompose the supplied art into a coherent cinematic wide scene.\nComposition: 16:9 landscape, hero large within the central 55%, head at x=50%, y=28%, body at least chest/waist-up; atmosphere fills both edges. Lower third calmer for game cards. Ideally 2048x1152.\nOpaque full-bleed background. No text or card title, no lettering except a character's existing emblem, no card frame, no UI, no added watermark. One banner only.\nDeck: Turtle Power!.\nSubject and setting: Leonardo the green turtle ninja exactly as in the card: BLUE eye bandana with tails, green turtle face and skin, dark shoulder straps, brown shell, wrist wraps, two katana blades. Extend the luminous teal swirling sewer-water/action setting. Preserve his turtle anatomy and blue mask; no human face.\nStyle/medium: polished detailed painterly game art, retaining the source's lively turtle design.\n"
+      },
+      "icone": {
+        "original": "artes-comandantes/gerados/leonardo-icone.png",
+        "tamanhoOriginal": [
+          1254,
+          1254
+        ],
+        "destinos": [
+          "jogo/cliente/src/imagens/avatares/leonardo.webp",
+          "jogo/cliente/src/imagens/avatares/mesa/leonardo.webp"
+        ],
+        "prompt": "Use case: identity-preserve. Asset: ONE square transparent bust portrait icon for a Magic Commander game medalion.\nInput 1 is the exact character's identity, costume, anatomy and color reference. Input 2 is ONLY a reference for existing game portrait framing and finish, not a face, armor or person to reproduce.\nCreate a close chest-up bust faithful to Input 1, preserving exact facial/head/helmet features, colors and costume. Keep complete head/helmet and readable face centered around x=50%, y=30%, wide shoulders in the lower half, transparent margins around the entire silhouette. Readable at 80px, ideally 1024x1024.\nGenuinely transparent alpha background outside the bust. Clean anti-aliased edges. No scenery or rectangular fill, no circular frame, no ring, no badge, no aura, no card border, no text or watermark. One icon only.\nDeck: Turtle Power!.\nSubject and setting: Leonardo the green turtle ninja exactly as in the card: BLUE eye bandana with tails, green turtle face and skin, dark shoulder straps, brown shell, wrist wraps, two katana blades. Extend the luminous teal swirling sewer-water/action setting. Preserve his turtle anatomy and blue mask; no human face.\nStyle/medium: polished detailed painterly game art, retaining the source's lively turtle design.\nRender only the character head and chest with restrained light inspired by the scene; omit all scenery. Small identity props can stay close to the chest inside the silhouette.\n"
+      }
+    },
+    {
+      "ordem": 14,
+      "id": "hatsune-miku",
+      "deck": "Hatsune Miku",
+      "nome": "Hatsune Miku",
+      "aura": "#51d9cf",
+      "comandantes": [
+        "Trostani, Selesnya's Voice"
+      ],
+      "imagensNoJogo": [
+        "c1bcdea0-120a-4095-af2b-3a53bfcc65b3",
+        "6ab6e6c9-fe20-40d3-997e-fe3480081f03"
+      ],
+      "referencias": [
+        {
+          "arquivo": "artes-comandantes/14 - Trostani, Selesnya's Voice (Hatsune Miku) - arte do Moxfield.png",
+          "comandante": "Trostani, Selesnya's Voice",
+          "artista": "KEI"
+        }
+      ],
+      "banner": {
+        "original": "artes-comandantes/gerados/hatsune-miku-banner.png",
+        "tamanhoOriginal": [
+          1672,
+          941
+        ],
+        "destinos": [
+          "jogo/gerado/fundos/c1bcdea0-120a-4095-af2b-3a53bfcc65b3.webp",
+          "jogo/gerado/fundos/6ab6e6c9-fe20-40d3-997e-fe3480081f03.webp"
+        ],
+        "prompt": "Use case: identity-preserve. Asset: ONE finished landscape banner/background for a Magic Commander game table.\nInput 1 is the exact identity, costume, anatomy and environment reference. Faithfully preserve the main character; expand and recompose the supplied art into a coherent cinematic wide scene.\nComposition: 16:9 landscape, hero large within the central 55%, head at x=50%, y=28%, body at least chest/waist-up; atmosphere fills both edges. Lower third calmer for game cards. Ideally 2048x1152.\nOpaque full-bleed background. No text or card title, no lettering except a character's existing emblem, no card frame, no UI, no added watermark. One banner only.\nDeck: Hatsune Miku.\nSubject and setting: Hatsune Miku exactly as depicted in the supplied special Magic card: long turquoise twin tails, turquoise eyes, pink/black futuristic headphones, sleeveless grey/teal outfit and black detached sleeves, singing into her microphone, bright teal magical music light. Preserve the cheerful ANIME face and spectacular flowing turquoise hair; remove the source's card title/border.\nStyle/medium: high quality anime illustration with painterly lighting, preserving the provided Miku design rather than turning her into a realistic human.\n"
+      },
+      "icone": {
+        "original": "artes-comandantes/gerados/hatsune-miku-icone.png",
+        "tamanhoOriginal": [
+          1254,
+          1254
+        ],
+        "destinos": [
+          "jogo/cliente/src/imagens/avatares/hatsune-miku.webp",
+          "jogo/cliente/src/imagens/avatares/mesa/hatsune-miku.webp"
+        ],
+        "prompt": "Use case: identity-preserve. Asset: ONE square transparent bust portrait icon for a Magic Commander game medalion.\nInput 1 is the exact character's identity, costume, anatomy and color reference. Input 2 is ONLY a reference for existing game portrait framing and finish, not a face, armor or person to reproduce.\nCreate a close chest-up bust faithful to Input 1, preserving exact facial/head/helmet features, colors and costume. Keep complete head/helmet and readable face centered around x=50%, y=30%, wide shoulders in the lower half, transparent margins around the entire silhouette. Readable at 80px, ideally 1024x1024.\nGenuinely transparent alpha background outside the bust. Clean anti-aliased edges. No scenery or rectangular fill, no circular frame, no ring, no badge, no aura, no card border, no text or watermark. One icon only.\nDeck: Hatsune Miku.\nSubject and setting: Hatsune Miku exactly as depicted in the supplied special Magic card: long turquoise twin tails, turquoise eyes, pink/black futuristic headphones, sleeveless grey/teal outfit and black detached sleeves, singing into her microphone, bright teal magical music light. Preserve the cheerful ANIME face and spectacular flowing turquoise hair; remove the source's card title/border.\nStyle/medium: high quality anime illustration with painterly lighting, preserving the provided Miku design rather than turning her into a realistic human.\nRender only the character head and chest with restrained light inspired by the scene; omit all scenery. Small identity props can stay close to the chest inside the silhouette.\n"
+      }
+    },
+    {
+      "ordem": 15,
+      "id": "invisible-woman",
+      "deck": "The Fantastic Four Collector's Edition",
+      "nome": "Invisible Woman",
+      "aura": "#6ccdfa",
+      "comandantes": [
+        "Invisible Woman"
+      ],
+      "imagensNoJogo": [
+        "640ebf2f-5687-42d4-97e5-85e2fefa89a9"
+      ],
+      "referencias": [
+        {
+          "arquivo": "artes-comandantes/15 - Invisible Woman (The Fantastic Four Collector's Edition).png",
+          "comandante": "Invisible Woman",
+          "artista": "Erikas Perl"
+        }
+      ],
+      "banner": {
+        "original": "artes-comandantes/gerados/invisible-woman-banner.png",
+        "tamanhoOriginal": [
+          1672,
+          941
+        ],
+        "destinos": [
+          "jogo/gerado/fundos/640ebf2f-5687-42d4-97e5-85e2fefa89a9.webp"
+        ],
+        "prompt": "Use case: identity-preserve.\nAsset type: one finished illustrated landscape banner for Magic-Commander, deck The Fantastic Four Collector's Edition.\nPrimary request: create Invisible Woman as a new cinematic game-table illustration faithful to the supplied card art.\nInput image 1: exact Invisible Woman identity, face, blonde hair, anatomy, blue costume, 4 emblem and forcefield effects. Input image 2: Doctor Doom's completed game banner, use ONLY its painterly rendering quality, rich material finish and horizontal game-table composition; do not copy its character, colors or castle.\nSubject: preserve Invisible Woman's face and sweeping shoulder-length golden blonde hair from the reference; bright blue full-body superhero suit with the same dark collar, seam details and circular white-and-blue 4 emblem on her upper chest. Confident active pose with arms creating clear translucent blue spherical forcefields; orange-gold sparks and ray reflections striking the spheres as in the source. Keep her face and chest emblem readable. Maintain the supplied character's anatomy, costume coverage and colors.\nScene: extend the reference's deep teal and cool blue atmospheric surroundings into a continuous cinematic environment, translucent spherical forcefields clustered beside and behind the upper body, restrained amber light accents. Some folds of drifting translucent energy below, with calmer dark teal space along the bottom.\nStyle: polished detailed painterly superhero game illustration, natural face, textured fabric, dimensional translucent effects, compatible in finish with the supplied completed banner.\nComposition: one wide 16:9 landscape game-table background at native generated resolution. The commander dominates the central 55%, with head near x=50%, y=28%, at least waist-up visible. A coherent continuous illustrated environment extends all the way to both edges. Keep the lower third quieter and lower in contrast so the cards remain readable. Opaque full-bleed background. One banner only. No titles, text other than existing character emblems, card border, interface or watermark.\n\n",
+        "promptArquivo": "artes-comandantes/gerados/tentativas/invisible-woman-banner-nova-tentativa-2.txt",
+        "referenciasDeGeracao": [
+          "artes-comandantes/15 - Invisible Woman (The Fantastic Four Collector's Edition).png",
+          "artes-comandantes/gerados/doctor-doom-banner.png"
+        ]
+      },
+      "icone": null
+    },
+    {
+      "ordem": 16,
+      "id": "lathliss",
+      "deck": "Reign of Dragons",
+      "nome": "Lathliss",
+      "aura": "#ef713b",
+      "comandantes": [
+        "Lathliss, Dragon Queen"
+      ],
+      "imagensNoJogo": [
+        "3e52a614-f779-458a-9617-f2b0b4f8cbcb",
+        "8a17ec4e-b508-41af-803b-32acd863e598"
+      ],
+      "referencias": [
+        {
+          "arquivo": "artes-comandantes/16 - Lathliss, Dragon Queen (Reign of Dragons).png",
+          "comandante": "Lathliss, Dragon Queen",
+          "artista": "Alex Konstad"
+        }
+      ],
+      "banner": {
+        "original": "artes-comandantes/gerados/lathliss-banner.png",
+        "tamanhoOriginal": [
+          1672,
+          941
+        ],
+        "destinos": [
+          "jogo/gerado/fundos/3e52a614-f779-458a-9617-f2b0b4f8cbcb.webp",
+          "jogo/gerado/fundos/8a17ec4e-b508-41af-803b-32acd863e598.webp"
+        ],
+        "prompt": "Use case: identity-preserve. Asset: ONE finished landscape banner/background for a Magic Commander game table.\nInput 1 is the exact identity, costume, anatomy and environment reference. Faithfully preserve the main character; expand and recompose the supplied art into a coherent cinematic wide scene.\nComposition: 16:9 landscape, hero large within the central 55%, head at x=50%, y=28%, body at least chest/waist-up; atmosphere fills both edges. Lower third calmer for game cards. Ideally 2048x1152.\nOpaque full-bleed background. No text or card title, no lettering except a character's existing emblem, no card frame, no UI, no added watermark. One banner only.\nDeck: Reign of Dragons.\nSubject and setting: Lathliss as the exact enormous red/magenta DRAGON from the reference, long pale grey-green segmented throat, sweeping branched horns, red ridged skull and broad dark red wing membranes. Proud raised neck on a rocky high peak under a cool misty cloudy sky, distant dragon silhouettes matching the reference. Preserve dragon head anatomy; NO woman or human form.\nStyle/medium: premium detailed painterly fantasy creature illustration faithful to the source.\n"
+      },
+      "icone": {
+        "original": "artes-comandantes/gerados/lathliss-icone.png",
+        "tamanhoOriginal": [
+          1254,
+          1254
+        ],
+        "destinos": [
+          "jogo/cliente/src/imagens/avatares/lathliss.webp",
+          "jogo/cliente/src/imagens/avatares/mesa/lathliss.webp"
+        ],
+        "prompt": "Use case: identity-preserve. Asset: ONE square transparent bust portrait icon for a Magic Commander game medalion.\nInput 1 is the exact character's identity, costume, anatomy and color reference. Input 2 is ONLY a reference for existing game portrait framing and finish, not a face, armor or person to reproduce.\nCreate a close chest-up bust faithful to Input 1, preserving exact facial/head/helmet features, colors and costume. Keep complete head/helmet and readable face centered around x=50%, y=30%, wide shoulders in the lower half, transparent margins around the entire silhouette. Readable at 80px, ideally 1024x1024.\nGenuinely transparent alpha background outside the bust. Clean anti-aliased edges. No scenery or rectangular fill, no circular frame, no ring, no badge, no aura, no card border, no text or watermark. One icon only.\nDeck: Reign of Dragons.\nSubject and setting: Lathliss as the exact enormous red/magenta DRAGON from the reference, long pale grey-green segmented throat, sweeping branched horns, red ridged skull and broad dark red wing membranes. Proud raised neck on a rocky high peak under a cool misty cloudy sky, distant dragon silhouettes matching the reference. Preserve dragon head anatomy; NO woman or human form.\nStyle/medium: premium detailed painterly fantasy creature illustration faithful to the source.\nRender only the character head and chest with restrained light inspired by the scene; omit all scenery. Small identity props can stay close to the chest inside the silhouette.\n"
+      }
+    },
+    {
+      "ordem": 17,
+      "id": "rin-seri",
+      "deck": "Raining Cats and Dogs",
+      "nome": "Rin e Seri",
+      "aura": "#d6bb76",
+      "comandantes": [
+        "Rin and Seri, Inseparable // Rin and Seri, Inseparable"
+      ],
+      "imagensNoJogo": [
+        "48a000ce-0760-446c-8737-fdf9806e0eb3",
+        "a129558c-45a1-441c-97f0-b70b4e9d8a56"
+      ],
+      "referencias": [
+        {
+          "arquivo": "artes-comandantes/17 - Rin and Seri, Inseparable (Raining Cats and Dogs).png",
+          "comandante": "Rin and Seri, Inseparable // Rin and Seri, Inseparable",
+          "artista": "Leesha Hannigan"
+        }
+      ],
+      "banner": {
+        "original": "artes-comandantes/gerados/rin-seri-banner.png",
+        "tamanhoOriginal": [
+          1672,
+          941
+        ],
+        "destinos": [
+          "jogo/gerado/fundos/48a000ce-0760-446c-8737-fdf9806e0eb3.webp",
+          "jogo/gerado/fundos/a129558c-45a1-441c-97f0-b70b4e9d8a56.webp"
+        ],
+        "prompt": "Use case: identity-preserve. Asset: ONE finished landscape banner/background for a Magic Commander game table.\nInput 1 is the exact identity, costume, anatomy and environment reference. Faithfully preserve the main character; expand and recompose the supplied art into a coherent cinematic wide scene.\nComposition: 16:9 landscape, hero large within the central 55%, head at x=50%, y=28%, body at least chest/waist-up; atmosphere fills both edges. Lower third calmer for game cards. Ideally 2048x1152.\nOpaque full-bleed background. No text or card title, no lettering except a character's existing emblem, no card frame, no UI, no added watermark. One banner only.\nDeck: Raining Cats and Dogs.\nSubject and setting: BOTH Rin and Seri, the same proud BLACK long-haired pointed-ear dog and WHITE long-haired tufted-ear cat in the source, together with two separate clearly recognizable heads. They rest closely side by side on mossy mountain rocks, warm gold-pink clouds and cool purple peaks behind. Preserve exact animal markings, fur colors and muzzle shapes; include BOTH animals, equally prominent.\nStyle/medium: polished realistic painterly animal/fantasy game illustration with highly detailed fur.\nThere must be TWO animals in this single asset. Their heads both fully visible, similarly prominent at x=35% and x=65%, y=30%, joining into one compact double portrait; do not omit either animal.\n"
+      },
+      "icone": {
+        "original": "artes-comandantes/gerados/rin-seri-icone.png",
+        "tamanhoOriginal": [
+          1254,
+          1254
+        ],
+        "destinos": [
+          "jogo/cliente/src/imagens/avatares/rin-seri.webp",
+          "jogo/cliente/src/imagens/avatares/mesa/rin-seri.webp"
+        ],
+        "prompt": "Use case: identity-preserve. Asset: ONE square transparent bust portrait icon for a Magic Commander game medalion.\nInput 1 is the exact character's identity, costume, anatomy and color reference. Input 2 is ONLY a reference for existing game portrait framing and finish, not a face, armor or person to reproduce.\nCreate a close chest-up bust faithful to Input 1, preserving exact facial/head/helmet features, colors and costume. Keep complete head/helmet and readable face centered around x=50%, y=30%, wide shoulders in the lower half, transparent margins around the entire silhouette. Readable at 80px, ideally 1024x1024.\nGenuinely transparent alpha background outside the bust. Clean anti-aliased edges. No scenery or rectangular fill, no circular frame, no ring, no badge, no aura, no card border, no text or watermark. One icon only.\nDeck: Raining Cats and Dogs.\nSubject and setting: BOTH Rin and Seri, the same proud BLACK long-haired pointed-ear dog and WHITE long-haired tufted-ear cat in the source, together with two separate clearly recognizable heads. They rest closely side by side on mossy mountain rocks, warm gold-pink clouds and cool purple peaks behind. Preserve exact animal markings, fur colors and muzzle shapes; include BOTH animals, equally prominent.\nStyle/medium: polished realistic painterly animal/fantasy game illustration with highly detailed fur.\nRender only the character head and chest with restrained light inspired by the scene; omit all scenery. Small identity props can stay close to the chest inside the silhouette.\nThere must be TWO animals in this single asset. Their heads both fully visible, similarly prominent at x=35% and x=65%, y=30%, joining into one compact double portrait; do not omit either animal.\n"
+      }
+    },
+    {
+      "ordem": 18,
+      "id": "anhelo",
+      "deck": "Maestros Massacre",
+      "nome": "Anhelo",
+      "aura": "#b570e2",
+      "comandantes": [
+        "Anhelo, the Painter"
+      ],
+      "imagensNoJogo": [
+        "462e887d-6b91-4b31-9487-2780ffe8943f"
+      ],
+      "referencias": [
+        {
+          "arquivo": "artes-comandantes/18 - Anhelo, the Painter (Maestros Massacre).png",
+          "comandante": "Anhelo, the Painter",
+          "artista": "Aurore Folny"
+        }
+      ],
+      "banner": {
+        "original": "artes-comandantes/gerados/anhelo-banner.png",
+        "tamanhoOriginal": [
+          1672,
+          941
+        ],
+        "destinos": [
+          "jogo/gerado/fundos/462e887d-6b91-4b31-9487-2780ffe8943f.webp"
+        ],
+        "prompt": "Use case: identity-preserve. Asset: ONE finished landscape banner/background for a Magic Commander game table.\nInput 1 is the exact identity, costume, anatomy and environment reference. Faithfully preserve the main character; expand and recompose the supplied art into a coherent cinematic wide scene.\nComposition: 16:9 landscape, hero large within the central 55%, head at x=50%, y=28%, body at least chest/waist-up; atmosphere fills both edges. Lower third calmer for game cards. Ideally 2048x1152.\nOpaque full-bleed background. No text or card title, no lettering except a character's existing emblem, no card frame, no UI, no added watermark. One banner only.\nDeck: Maestros Massacre.\nSubject and setting: Anhelo as the precise slick-haired dark-haired gentleman from the card: arched eyebrows, thin pointed moustache and goatee, sinister knowing smile, black high-collared coat over ornate grey waistcoat, white shirt and dark red necktie, wielding his painting brush. Extend the decadent stone studio and vivid blue/red paint splashes from the source.\nStyle/medium: detailed realistic painterly fantasy game illustration with moody amber/indigo lighting.\n"
+      },
+      "icone": {
+        "original": "artes-comandantes/gerados/anhelo-icone.png",
+        "tamanhoOriginal": [
+          1254,
+          1254
+        ],
+        "destinos": [
+          "jogo/cliente/src/imagens/avatares/anhelo.webp",
+          "jogo/cliente/src/imagens/avatares/mesa/anhelo.webp"
+        ],
+        "prompt": "Use case: identity-preserve. Asset: ONE square transparent bust portrait icon for a Magic Commander game medalion.\nInput 1 is the exact character's identity, costume, anatomy and color reference. Input 2 is ONLY a reference for existing game portrait framing and finish, not a face, armor or person to reproduce.\nCreate a close chest-up bust faithful to Input 1, preserving exact facial/head/helmet features, colors and costume. Keep complete head/helmet and readable face centered around x=50%, y=30%, wide shoulders in the lower half, transparent margins around the entire silhouette. Readable at 80px, ideally 1024x1024.\nGenuinely transparent alpha background outside the bust. Clean anti-aliased edges. No scenery or rectangular fill, no circular frame, no ring, no badge, no aura, no card border, no text or watermark. One icon only.\nDeck: Maestros Massacre.\nSubject and setting: Anhelo as the precise slick-haired dark-haired gentleman from the card: arched eyebrows, thin pointed moustache and goatee, sinister knowing smile, black high-collared coat over ornate grey waistcoat, white shirt and dark red necktie, wielding his painting brush. Extend the decadent stone studio and vivid blue/red paint splashes from the source.\nStyle/medium: detailed realistic painterly fantasy game illustration with moody amber/indigo lighting.\nRender only the character head and chest with restrained light inspired by the scene; omit all scenery. Small identity props can stay close to the chest inside the silhouette.\n"
+      }
+    },
+    {
+      "ordem": 19,
+      "id": "szarekh",
+      "deck": "Necron Dynasties",
+      "nome": "Szarekh",
+      "aura": "#87d944",
+      "comandantes": [
+        "Szarekh, the Silent King"
+      ],
+      "imagensNoJogo": [
+        "12a3400d-7a8b-4bae-9a4f-c9a1bc741e68"
+      ],
+      "referencias": [
+        {
+          "arquivo": "artes-comandantes/19 - Szarekh, the Silent King (Necron Dynasties).png",
+          "comandante": "Szarekh, the Silent King",
+          "artista": "Anton Solovianchyk"
+        }
+      ],
+      "banner": {
+        "original": "artes-comandantes/gerados/szarekh-banner.png",
+        "tamanhoOriginal": [
+          1672,
+          941
+        ],
+        "destinos": [
+          "jogo/gerado/fundos/12a3400d-7a8b-4bae-9a4f-c9a1bc741e68.webp"
+        ],
+        "prompt": "Use case: identity-preserve. Asset: ONE finished landscape banner/background for a Magic Commander game table.\nInput 1 is the exact identity, costume, anatomy and environment reference. Faithfully preserve the main character; expand and recompose the supplied art into a coherent cinematic wide scene.\nComposition: 16:9 landscape, hero large within the central 55%, head at x=50%, y=28%, body at least chest/waist-up; atmosphere fills both edges. Lower third calmer for game cards. Ideally 2048x1152.\nOpaque full-bleed background. No text or card title, no lettering except a character's existing emblem, no card frame, no UI, no added watermark. One banner only.\nDeck: Necron Dynasties.\nSubject and setting: Szarekh, the Silent King as the exact metallic skeletal alien sovereign in the reference: tall angular red/bronze headdress fins, skull-like metal face with glowing emerald eyes, gold and bronze ribbed plates, red panels, dark cloak, long ornate staff and green spectral energy. Extend the looming dark Necron throne structures and electric emerald mist. Preserve the robot skull, no human or flesh face.\nStyle/medium: premium detailed painterly sci-fi fantasy game illustration, metallic patina and emerald energy.\n"
+      },
+      "icone": {
+        "original": "artes-comandantes/gerados/szarekh-icone.png",
+        "tamanhoOriginal": [
+          1254,
+          1254
+        ],
+        "destinos": [
+          "jogo/cliente/src/imagens/avatares/szarekh.webp",
+          "jogo/cliente/src/imagens/avatares/mesa/szarekh.webp"
+        ],
+        "prompt": "Use case: identity-preserve. Asset: ONE square transparent bust portrait icon for a Magic Commander game medalion.\nInput 1 is the exact character's identity, costume, anatomy and color reference. Input 2 is ONLY a reference for existing game portrait framing and finish, not a face, armor or person to reproduce.\nCreate a close chest-up bust faithful to Input 1, preserving exact facial/head/helmet features, colors and costume. Keep complete head/helmet and readable face centered around x=50%, y=30%, wide shoulders in the lower half, transparent margins around the entire silhouette. Readable at 80px, ideally 1024x1024.\nGenuinely transparent alpha background outside the bust. Clean anti-aliased edges. No scenery or rectangular fill, no circular frame, no ring, no badge, no aura, no card border, no text or watermark. One icon only.\nDeck: Necron Dynasties.\nSubject and setting: Szarekh, the Silent King as the exact metallic skeletal alien sovereign in the reference: tall angular red/bronze headdress fins, skull-like metal face with glowing emerald eyes, gold and bronze ribbed plates, red panels, dark cloak, long ornate staff and green spectral energy. Extend the looming dark Necron throne structures and electric emerald mist. Preserve the robot skull, no human or flesh face.\nStyle/medium: premium detailed painterly sci-fi fantasy game illustration, metallic patina and emerald energy.\nRender only the character head and chest with restrained light inspired by the scene; omit all scenery. Small identity props can stay close to the chest inside the silhouette.\n"
+      }
+    },
+    {
+      "ordem": 20,
+      "id": "strefan",
+      "deck": "Vampiric Bloodline",
+      "nome": "Strefan",
+      "aura": "#cb4f64",
+      "comandantes": [
+        "Strefan, Maurer Progenitor"
+      ],
+      "imagensNoJogo": [
+        "5c48f51d-49f2-411a-ab13-b9011c049cfa"
+      ],
+      "referencias": [
+        {
+          "arquivo": "artes-comandantes/20 - Strefan, Maurer Progenitor (Vampiric Bloodline).png",
+          "comandante": "Strefan, Maurer Progenitor",
+          "artista": "Chris Rallis"
+        }
+      ],
+      "banner": {
+        "original": "artes-comandantes/gerados/strefan-banner.png",
+        "tamanhoOriginal": [
+          1672,
+          941
+        ],
+        "destinos": [
+          "jogo/gerado/fundos/5c48f51d-49f2-411a-ab13-b9011c049cfa.webp"
+        ],
+        "prompt": "Use case: identity-preserve. Asset: ONE finished landscape banner/background for a Magic Commander game table.\nInput 1 is the exact identity, costume, anatomy and environment reference. Faithfully preserve the main character; expand and recompose the supplied art into a coherent cinematic wide scene.\nComposition: 16:9 landscape, hero large within the central 55%, head at x=50%, y=28%, body at least chest/waist-up; atmosphere fills both edges. Lower third calmer for game cards. Ideally 2048x1152.\nOpaque full-bleed background. No text or card title, no lettering except a character's existing emblem, no card frame, no UI, no added watermark. One banner only.\nDeck: Vampiric Bloodline.\nSubject and setting: Strefan as the reference's aristocratic male vampire: slick dark hair, distinctive thin curled moustache and pointed goatee, high white cravat, deep red gold-embroidered waistcoat, black tailored suit and billowing black cape, cane/sword at his side. Extend the gothic vaulted ballroom with crimson drapes, warm amber illumination and cool moonlight.\nStyle/medium: polished realistic painterly gothic fantasy game art with face faithful to the card.\n"
+      },
+      "icone": {
+        "original": "artes-comandantes/gerados/strefan-icone.png",
+        "tamanhoOriginal": [
+          1254,
+          1254
+        ],
+        "destinos": [
+          "jogo/cliente/src/imagens/avatares/strefan.webp",
+          "jogo/cliente/src/imagens/avatares/mesa/strefan.webp"
+        ],
+        "prompt": "Use case: identity-preserve. Asset: ONE square transparent bust portrait icon for a Magic Commander game medalion.\nInput 1 is the exact character's identity, costume, anatomy and color reference. Input 2 is ONLY a reference for existing game portrait framing and finish, not a face, armor or person to reproduce.\nCreate a close chest-up bust faithful to Input 1, preserving exact facial/head/helmet features, colors and costume. Keep complete head/helmet and readable face centered around x=50%, y=30%, wide shoulders in the lower half, transparent margins around the entire silhouette. Readable at 80px, ideally 1024x1024.\nGenuinely transparent alpha background outside the bust. Clean anti-aliased edges. No scenery or rectangular fill, no circular frame, no ring, no badge, no aura, no card border, no text or watermark. One icon only.\nDeck: Vampiric Bloodline.\nSubject and setting: Strefan as the reference's aristocratic male vampire: slick dark hair, distinctive thin curled moustache and pointed goatee, high white cravat, deep red gold-embroidered waistcoat, black tailored suit and billowing black cape, cane/sword at his side. Extend the gothic vaulted ballroom with crimson drapes, warm amber illumination and cool moonlight.\nStyle/medium: polished realistic painterly gothic fantasy game art with face faithful to the card.\nRender only the character head and chest with restrained light inspired by the scene; omit all scenery. Small identity props can stay close to the chest inside the silhouette.\n"
+      }
+    },
+    {
+      "ordem": 21,
+      "id": "captain-america",
+      "deck": "Avengers Assemble Collector's Edition",
+      "nome": "Captain America",
+      "aura": "#68a3e3",
+      "comandantes": [
+        "Captain America, Team Leader"
+      ],
+      "imagensNoJogo": [
+        "910a6dfc-04a2-4c6d-b2ba-507bc75ec821"
+      ],
+      "referencias": [
+        {
+          "arquivo": "artes-comandantes/21 - Captain America, Team Leader (Avengers Assemble Collector's Edition).png",
+          "comandante": "Captain America, Team Leader",
+          "artista": "Mark Spears"
+        }
+      ],
+      "banner": {
+        "original": "artes-comandantes/gerados/captain-america-banner.png",
+        "tamanhoOriginal": [
+          1672,
+          941
+        ],
+        "destinos": [
+          "jogo/gerado/fundos/910a6dfc-04a2-4c6d-b2ba-507bc75ec821.webp"
+        ],
+        "prompt": "Use case: identity-preserve.\nAsset type: one finished illustrated landscape banner for Magic-Commander, deck Avengers Assemble Collector's Edition.\nPrimary request: create Captain America, Team Leader as a new cinematic game-table illustration faithful to the supplied card art.\nInput image 1: exact Captain America face, blue helmet, muscular anatomy, blue suit, red glove and round shield reference. Captain America is the foreground character with the white A on his helmet; make him the main subject. Input image 2: Black Panther's completed game banner, use ONLY its rich painterly finish, crisp character detail and cinematic horizontal composition; do not copy its character, costume or setting.\nSubject: preserve Captain America's complete blue helmet with the exact white A, exposed lower face and strong jaw, blue armor with the small-scale chest texture, white suit accents, red gloves and signature round shield with red and white rings, blue center and white star. Forward charging posture from the card, shield prominent below and beside the chest while leaving his face unobstructed, one bent red-gloved arm.\nScene: expand the card's vivid cyan/blue and purple superhero atmosphere with painterly depth, energetic blue light and restrained gold highlights. The commander and shield dominate the center; continuous atmosphere extends to the edges and becomes calmer and darker in the lower third.\nStyle: premium detailed painterly superhero game illustration faithful to the colorful comic source, crisp steel shield reflections and textured blue suit, compatible with existing banners.\nComposition: one wide 16:9 landscape game-table background at native generated resolution. The commander dominates the central 55%, with head near x=50%, y=28%, at least waist-up visible. A coherent continuous illustrated environment extends all the way to both edges. Keep the lower third quieter and lower in contrast so the cards remain readable. Opaque full-bleed background. One banner only. No titles, text other than existing character emblems, card border, interface or watermark.\nConstraints: focus on Captain America; do not introduce extra foreground characters or substitute another character. Preserve the existing A and star emblems.\n",
+        "referenciasDeGeracao": [
+          "artes-comandantes/21 - Captain America, Team Leader (Avengers Assemble Collector's Edition).png",
+          "artes-comandantes/gerados/black-panther-banner.png"
+        ],
+        "promptArquivo": "artes-comandantes/gerados/tentativas/captain-america-banner-retomada-2026-10-11.txt"
+      },
+      "icone": null
+    },
+    {
+      "ordem": 22,
+      "id": "sai",
+      "deck": "Keen Engineering",
+      "nome": "Sai",
+      "aura": "#57c1de",
+      "comandantes": [
+        "Sai, Master Thopterist"
+      ],
+      "imagensNoJogo": [
+        "5650587a-27a5-4d68-97e2-5745627bd094"
+      ],
+      "referencias": [
+        {
+          "arquivo": "artes-comandantes/22 - Sai, Master Thopterist (Keen Engineering).png",
+          "comandante": "Sai, Master Thopterist",
+          "artista": "Bryan Sola"
+        }
+      ],
+      "banner": {
+        "original": "artes-comandantes/gerados/sai-banner.png",
+        "tamanhoOriginal": [
+          1672,
+          941
+        ],
+        "destinos": [
+          "jogo/gerado/fundos/5650587a-27a5-4d68-97e2-5745627bd094.webp"
+        ],
+        "prompt": "Use case: identity-preserve. Asset: ONE finished landscape banner/background for a Magic Commander game table.\nInput 1 is the exact identity, costume, anatomy and environment reference. Faithfully preserve the main character; expand and recompose the supplied art into a coherent cinematic wide scene.\nComposition: 16:9 landscape, hero large within the central 55%, head at x=50%, y=28%, body at least chest/waist-up; atmosphere fills both edges. Lower third calmer for game cards. Ideally 2048x1152.\nOpaque full-bleed background. No text or card title, no lettering except a character's existing emblem, no card frame, no UI, no added watermark. One banner only.\nDeck: Keen Engineering.\nSubject and setting: Sai the same brown-haired, moustached and bearded artificer with round brass spectacles from the source. Purple-blue robes with pale blue and ornate gold shoulder/neck panels, a delicately glowing little mechanical thopter near his raised hand, brass tool/scissors in the other. Extend the blue-green art-nouveau workshop arch with gold filigree and flying small thopters.\nStyle/medium: polished realistic painterly fantasy game illustration with warm metal and cool blue workshop light.\n"
+      },
+      "icone": {
+        "original": "artes-comandantes/gerados/sai-icone.png",
+        "tamanhoOriginal": [
+          1254,
+          1254
+        ],
+        "destinos": [
+          "jogo/cliente/src/imagens/avatares/sai.webp",
+          "jogo/cliente/src/imagens/avatares/mesa/sai.webp"
+        ],
+        "prompt": "Use case: identity-preserve. Asset: ONE square transparent bust portrait icon for a Magic Commander game medalion.\nInput 1 is the exact character's identity, costume, anatomy and color reference. Input 2 is ONLY a reference for existing game portrait framing and finish, not a face, armor or person to reproduce.\nCreate a close chest-up bust faithful to Input 1, preserving exact facial/head/helmet features, colors and costume. Keep complete head/helmet and readable face centered around x=50%, y=30%, wide shoulders in the lower half, transparent margins around the entire silhouette. Readable at 80px, ideally 1024x1024.\nGenuinely transparent alpha background outside the bust. Clean anti-aliased edges. No scenery or rectangular fill, no circular frame, no ring, no badge, no aura, no card border, no text or watermark. One icon only.\nDeck: Keen Engineering.\nSubject and setting: Sai the same brown-haired, moustached and bearded artificer with round brass spectacles from the source. Purple-blue robes with pale blue and ornate gold shoulder/neck panels, a delicately glowing little mechanical thopter near his raised hand, brass tool/scissors in the other. Extend the blue-green art-nouveau workshop arch with gold filigree and flying small thopters.\nStyle/medium: polished realistic painterly fantasy game illustration with warm metal and cool blue workshop light.\nRender only the character head and chest with restrained light inspired by the scene; omit all scenery. Small identity props can stay close to the chest inside the silhouette.\n"
+      }
+    },
+    {
+      "ordem": 23,
+      "id": "yennett",
+      "deck": "Odd and Ends",
+      "nome": "Yennett",
+      "aura": "#c898ec",
+      "comandantes": [
+        "Yennett, Cryptic Sovereign"
+      ],
+      "imagensNoJogo": [
+        "0ba9362f-eb35-4e72-8c51-7047c0a3f648"
+      ],
+      "referencias": [
+        {
+          "arquivo": "artes-comandantes/23 - Yennett, Cryptic Sovereign (Odd and Ends).png",
+          "comandante": "Yennett, Cryptic Sovereign",
+          "artista": "Ricardo Cavolo"
+        }
+      ],
+      "banner": {
+        "original": "artes-comandantes/gerados/yennett-banner.png",
+        "tamanhoOriginal": [
+          1672,
+          941
+        ],
+        "destinos": [
+          "jogo/gerado/fundos/0ba9362f-eb35-4e72-8c51-7047c0a3f648.webp"
+        ],
+        "prompt": "Use case: identity-preserve. Asset: ONE finished landscape banner/background for a Magic Commander game table.\nInput 1 is the exact identity, costume, anatomy and environment reference. Faithfully preserve the main character; expand and recompose the supplied art into a coherent cinematic wide scene.\nComposition: 16:9 landscape, hero large within the central 55%, head at x=50%, y=28%, body at least chest/waist-up; atmosphere fills both edges. Lower third calmer for game cards. Ideally 2048x1152.\nOpaque full-bleed background. No text or card title, no lettering except a character's existing emblem, no card frame, no UI, no added watermark. One banner only.\nDeck: Odd and Ends.\nSubject and setting: Yennett as the very distinctive folk-art winged sphinx from this specific source: reddish human face, red bobbed hair, pointed ears, small spiral central horn with large pale pink sweeping horns, pale feathered wings, yellow leopard-pattern body. Surroundings expand the bright cyan starry sky, orange sun, falling flaming purple meteors, yellow desert dunes and tiny turquoise oases. Preserve the whimsical face, face markings, horn geometry and yellow/red/blue palette exactly.\nStyle/medium: polished hand-painted folk-art illustration preserving the reference's flat graphic red outlines and vibrant whimsical motifs; DO NOT turn this artwork into a generic photoreal sphinx.\n"
+      },
+      "icone": {
+        "original": "artes-comandantes/gerados/yennett-icone.png",
+        "tamanhoOriginal": [
+          1254,
+          1254
+        ],
+        "destinos": [
+          "jogo/cliente/src/imagens/avatares/yennett.webp",
+          "jogo/cliente/src/imagens/avatares/mesa/yennett.webp"
+        ],
+        "prompt": "Use case: identity-preserve. Asset: ONE square transparent bust portrait icon for a Magic Commander game medalion.\nInput 1 is the exact character's identity, costume, anatomy and color reference. Input 2 is ONLY a reference for existing game portrait framing and finish, not a face, armor or person to reproduce.\nCreate a close chest-up bust faithful to Input 1, preserving exact facial/head/helmet features, colors and costume. Keep complete head/helmet and readable face centered around x=50%, y=30%, wide shoulders in the lower half, transparent margins around the entire silhouette. Readable at 80px, ideally 1024x1024.\nGenuinely transparent alpha background outside the bust. Clean anti-aliased edges. No scenery or rectangular fill, no circular frame, no ring, no badge, no aura, no card border, no text or watermark. One icon only.\nDeck: Odd and Ends.\nSubject and setting: Yennett as the very distinctive folk-art winged sphinx from this specific source: reddish human face, red bobbed hair, pointed ears, small spiral central horn with large pale pink sweeping horns, pale feathered wings, yellow leopard-pattern body. Surroundings expand the bright cyan starry sky, orange sun, falling flaming purple meteors, yellow desert dunes and tiny turquoise oases. Preserve the whimsical face, face markings, horn geometry and yellow/red/blue palette exactly.\nStyle/medium: polished hand-painted folk-art illustration preserving the reference's flat graphic red outlines and vibrant whimsical motifs; DO NOT turn this artwork into a generic photoreal sphinx.\nRender only the character head and chest with restrained light inspired by the scene; omit all scenery. Small identity props can stay close to the chest inside the silhouette.\n"
+      }
+    },
+    {
+      "ordem": 24,
+      "id": "kaalia",
+      "deck": "Heavenly Inferno",
+      "nome": "Kaalia",
+      "aura": "#e08b61",
+      "comandantes": [
+        "Kaalia of the Vast"
+      ],
+      "imagensNoJogo": [
+        "3894cfe6-e851-484f-bbc7-28605a48ebbc",
+        "5c509c36-43a8-454e-80fc-321f41981049"
+      ],
+      "referencias": [
+        {
+          "arquivo": "artes-comandantes/24 - Kaalia of the Vast (Heavenly Inferno).png",
+          "comandante": "Kaalia of the Vast",
+          "artista": "Justyna Dura"
+        }
+      ],
+      "banner": {
+        "original": "artes-comandantes/gerados/kaalia-banner.png",
+        "tamanhoOriginal": [
+          1672,
+          940
+        ],
+        "destinos": [
+          "jogo/gerado/fundos/3894cfe6-e851-484f-bbc7-28605a48ebbc.webp",
+          "jogo/gerado/fundos/5c509c36-43a8-454e-80fc-321f41981049.webp"
+        ],
+        "prompt": "Use case: identity-preserve. Asset: ONE finished landscape banner/background for a Magic Commander game table.\nInput 1 is the exact identity, costume, anatomy and environment reference. Faithfully preserve the main character; expand and recompose the supplied art into a coherent cinematic wide scene.\nComposition: 16:9 landscape, hero large within the central 55%, head at x=50%, y=28%, body at least chest/waist-up; atmosphere fills both edges. Lower third calmer for game cards. Ideally 2048x1152.\nOpaque full-bleed background. No text or card title, no lettering except a character's existing emblem, no card frame, no UI, no added watermark. One banner only.\nDeck: Heavenly Inferno.\nSubject and setting: Kaalia with the precise fierce female face, long flowing dark/red hair, silver chest armor, black/red clothing, long staff and sword from the source. Enormous layered dark feathered angel wings with crimson batlike wing structures behind, illuminated by mauve storm clouds and orange infernal light. Preserve her exact winged identity and face.\nStyle/medium: premium realistic painterly dark fantasy game illustration faithful to the provided card.\n"
+      },
+      "icone": {
+        "original": "artes-comandantes/gerados/kaalia-icone.png",
+        "tamanhoOriginal": [
+          1254,
+          1254
+        ],
+        "destinos": [
+          "jogo/cliente/src/imagens/avatares/kaalia.webp",
+          "jogo/cliente/src/imagens/avatares/mesa/kaalia.webp"
+        ],
+        "prompt": "Use case: identity-preserve. Asset: ONE square transparent bust portrait icon for a Magic Commander game medalion.\nInput 1 is the exact character's identity, costume, anatomy and color reference. Input 2 is ONLY a reference for existing game portrait framing and finish, not a face, armor or person to reproduce.\nCreate a close chest-up bust faithful to Input 1, preserving exact facial/head/helmet features, colors and costume. Keep complete head/helmet and readable face centered around x=50%, y=30%, wide shoulders in the lower half, transparent margins around the entire silhouette. Readable at 80px, ideally 1024x1024.\nGenuinely transparent alpha background outside the bust. Clean anti-aliased edges. No scenery or rectangular fill, no circular frame, no ring, no badge, no aura, no card border, no text or watermark. One icon only.\nDeck: Heavenly Inferno.\nSubject and setting: Kaalia with the precise fierce female face, long flowing dark/red hair, silver chest armor, black/red clothing, long staff and sword from the source. Enormous layered dark feathered angel wings with crimson batlike wing structures behind, illuminated by mauve storm clouds and orange infernal light. Preserve her exact winged identity and face.\nStyle/medium: premium realistic painterly dark fantasy game illustration faithful to the provided card.\nRender only the character head and chest with restrained light inspired by the scene; omit all scenery. Small identity props can stay close to the chest inside the silhouette.\n"
+      }
+    },
+    {
+      "ordem": 25,
+      "id": "timey-wimey",
+      "deck": "Timey-Wimey",
+      "nome": "Décimo Doutor e Rose",
+      "aura": "#738de9",
+      "comandantes": [
+        "The Tenth Doctor",
+        "Rose Tyler"
+      ],
+      "imagensNoJogo": [
+        "f1499f49-793b-4265-9ad0-883a431941ab",
+        "3aa8d034-f98c-4e27-b6af-850eadf59941"
+      ],
+      "referencias": [
+        {
+          "arquivo": "artes-comandantes/25 - The Tenth Doctor (Timey-Wimey).png",
+          "comandante": "The Tenth Doctor",
+          "artista": "Luisa J. Preissler"
+        },
+        {
+          "arquivo": "artes-comandantes/25 - Rose Tyler (Timey-Wimey).png",
+          "comandante": "Rose Tyler",
+          "artista": "Luisa J. Preissler"
+        }
+      ],
+      "banner": {
+        "original": "artes-comandantes/gerados/timey-wimey-banner.png",
+        "tamanhoOriginal": [
+          1672,
+          941
+        ],
+        "destinos": [
+          "jogo/gerado/fundos/f1499f49-793b-4265-9ad0-883a431941ab.webp",
+          "jogo/gerado/fundos/3aa8d034-f98c-4e27-b6af-850eadf59941.webp"
+        ],
+        "prompt": "Use case: compositing. Asset: ONE landscape banner for a Magic Commander game table, Timey-Wimey deck.\nInput 1: The Tenth Doctor identity/costume reference. Input 2: Rose Tyler identity/costume reference. Preserve both individuals' recognizable facial features and attire from the supplied painted card art.\nCreate a single coherent cinematic illustration of the Tenth Doctor and Rose Tyler together. The Doctor wears his long brown coat over a blue suit, spiky brown hair and holds his small glowing sonic screwdriver; Rose has long blonde hair, dark indigo jacket and pink shirt. Both are similarly prominent, together in the central 55% of the wide scene, waist-up or larger, face centers at approximately 30% frame height. Their surroundings naturally join the blue temporal vortex of the Doctor's art and the amber storm/cosmic world of Rose's art into one dimensional adventure. Architectural detail from the sources and flowing light lead toward the two characters. Avoid a visible split or pasted collage seam. Maintain distinct bodies and two distinct faces.\nStyle: polished realistic painterly fantasy/sci-fi card illustration, dramatic depth, detailed fabrics and natural skin, reference-faithful identities. Wide 16:9 landscape ideally 2048x1152; environment continues to both edges; lower third has quieter atmospheric detail for cards on the game table.\nFull-bleed opaque background. No text, no lettering, no typography, no UI, no card frame, no watermark. One finished banner only.\n"
+      },
+      "icone": {
+        "original": "artes-comandantes/gerados/timey-wimey-icone.png",
+        "tamanhoOriginal": [
+          1254,
+          1254
+        ],
+        "destinos": [
+          "jogo/cliente/src/imagens/avatares/timey-wimey.webp",
+          "jogo/cliente/src/imagens/avatares/mesa/timey-wimey.webp"
+        ],
+        "prompt": "Use case: compositing. Asset: ONE square transparent double character portrait icon for the Timey-Wimey deck in a Magic Commander game.\nInput 1: The Tenth Doctor identity/costume reference. Input 2: Rose Tyler identity/costume reference. Input 3: rendering/framing reference for the game's existing transparent bust portraits; use only its polished painterly detail and silhouette, not its face/armor.\nCreate a close chest-up portrait of BOTH the Tenth Doctor AND Rose Tyler together. Preserve the exact distinct recognizable faces from inputs 1 and 2: the Doctor's spiky brown hair, brown coat and blue suit, Rose's long blonde hair, indigo jacket and pink shirt. Two equally prominent heads side by side, shoulders overlapping slightly into one unified compact silhouette, faces at x=35% and x=65%, y=30%. Keep both heads entirely inside the square, hair visible, generous transparent space at the upper corners. Faces readable at 80px. The Doctor can hold his small sonic screwdriver close to the chest, staying in frame.\nStyle: polished realistic painterly game portrait with detailed fabric, natural skin and restrained cool blue/warm amber lighting, matching reference 3's game asset quality. Ideally 1024x1024.\nGenuinely transparent alpha background outside the double bust, clean anti-aliased edges. No setting, no square background, no medalion, no circular frame, no aura, no text, no letters, no card border, no watermark. Two separate people, do not blend facial features. One icon only.\n"
+      }
+    },
+    {
+      "ordem": 26,
+      "id": "food-and-fellowship",
+      "deck": "Food and Fellowship",
+      "nome": "Frodo e Sam",
+      "aura": "#b6bd70",
+      "comandantes": [
+        "Sam, Loyal Attendant",
+        "Frodo, Adventurous Hobbit"
+      ],
+      "imagensNoJogo": [
+        "687a2b76-3f05-4732-bd9b-513d06d16300",
+        "328df403-7428-4b17-bdd1-9759fc0f32d8"
+      ],
+      "referencias": [
+        {
+          "arquivo": "artes-comandantes/26 - Sam, Loyal Attendant (Food and Fellowship).png",
+          "comandante": "Sam, Loyal Attendant",
+          "artista": "Campbell White"
+        },
+        {
+          "arquivo": "artes-comandantes/26 - Frodo, Adventurous Hobbit (Food and Fellowship).png",
+          "comandante": "Frodo, Adventurous Hobbit",
+          "artista": "Axel Sauerwald"
+        }
+      ],
+      "banner": {
+        "original": "artes-comandantes/gerados/food-and-fellowship-banner.png",
+        "tamanhoOriginal": [
+          1672,
+          941
+        ],
+        "destinos": [
+          "jogo/gerado/fundos/687a2b76-3f05-4732-bd9b-513d06d16300.webp",
+          "jogo/gerado/fundos/328df403-7428-4b17-bdd1-9759fc0f32d8.webp"
+        ],
+        "prompt": "Use case: compositing.\nAsset type: landscape banner / background for a Magic Commander game table, Food and Fellowship deck.\nInput images: Image 1 is the identity and costume reference for Sam, Loyal Attendant; Image 2 is the identity, clothing and sword reference for Frodo, Adventurous Hobbit. Both references must be represented by distinct characters.\nPrimary request: create ONE finished cinematic fantasy illustration featuring Frodo and Sam together in a single coherent landscape scene. Preserve each character's exact recognizable facial features, curly hair, proportions, clothing, cloak textures and equipment from the supplied card art. Do not blend their faces or bodies. Sam holds his cooking pan and carries his travel pack; Frodo carries his cool blue glowing blade. They stand close together as loyal companions on a rocky Middle-earth journey, with warm golden light on Sam and cool teal light on Frodo harmonized naturally in the same painted environment.\nStyle: polished realistic painterly fantasy card illustration, detailed materials, strong character silhouettes, matching the source artwork.\nComposition: wide 16:9 landscape, ideally 2048x1152. BOTH characters visible from at least waist up, grouped in the central 55% of the frame, faces around 30% from the top, each face similarly sized and clearly readable. Leave atmospheric landscape extending to both edges; the lower third is quieter for game cards. No hard split, no collage seam. Warm landscape and distant crags merging into blue evening shadows.\nConstraints: one banner only, opaque full-bleed background, no text, no typography, no card frame, no UI, no watermark, no additional characters.\n"
+      },
+      "icone": {
+        "original": "artes-comandantes/gerados/food-and-fellowship-icone.png",
+        "tamanhoOriginal": [
+          1254,
+          1254
+        ],
+        "destinos": [
+          "jogo/cliente/src/imagens/avatares/food-and-fellowship.webp",
+          "jogo/cliente/src/imagens/avatares/mesa/food-and-fellowship.webp"
+        ],
+        "prompt": "Use case: compositing. Asset: ONE square transparent character portrait icon for a Magic Commander game medalion.\nInput 1: Sam, Loyal Attendant identity/costume reference. Input 2: Frodo, Adventurous Hobbit identity/costume reference. Input 3: only rendering/framing reference for the existing game's bust icons; DO NOT copy the armor, face or character of image 3.\nCreate a close chest-up double portrait of BOTH Frodo AND Sam together. Preserve each separate face, curly hair, hobbit proportions, cloaks and clothing from the source cards. Frodo has dark curly hair and green-grey cloak over red-green clothing; Sam has lighter brown curly hair, a rounder face and patterned scarf with travel gear. Two distinct heads, equally prominent, side by side with slightly overlapping shoulders. Both heads completely inside frame, face centers around x=35% and x=65%, y=30%, shoulders joining into one compact silhouette across the bottom. Faces must stay readable at 80px display.\nStyle: highly detailed realistic painterly fantasy game portrait, crisp silhouettes, restrained warm gold and cool blue rim light matching the cards, natural skin. Framing/style like reference 3. Output 1024x1024 ideally.\nGenuinely transparent background with alpha everywhere outside the combined bust silhouette; preserve soft anti-aliased hair edges. No backdrop, no rectangular background, no circular badge, no border, no aura, no text, no logo, no card frame, no watermark. Do not fuse faces or replace one hobbit with another. One final icon only.\n"
+      }
+    }
+  ],
+  "pendencias": [
+    {
+      "id": "black-panther",
+      "tipo": "icone",
+      "deck": "Wakanda Forever",
+      "comandante": "T'Challa, the Black Panther",
+      "requestIds": [
+        "af46c502-763e-4e82-b434-4a947c904986",
+        "cd8a0380-9e79-42b1-adc9-aebf0ac76fe0",
+        "5e49192f-2cf4-49aa-9ecc-dc4ea4b3dc3e",
+        "70e24fb8-a476-43e2-9dc6-ac223528b2ab",
+        "91adb381-db75-9a14-bd09-da00c7bb0460"
+      ],
+      "status": "pendente para geração interna",
+      "erro": "moderation_blocked",
+      "etapa": "output",
+      "categoria": "other",
+      "motivoDetalhado": null,
+      "promptOriginal": "artes-comandantes/gerados/black-panther-icone.txt",
+      "tentativasRetomada": [
+        {
+          "id": "black-panther",
+          "tipo": "icone",
+          "promptArquivo": "artes-comandantes/gerados/tentativas/black-panther-icone-retomada-2026-10-11.txt",
+          "referencias": [
+            "artes-comandantes/12 - T'Challa, the Black Panther (Wakanda Forever).png",
+            "artes-comandantes/gerados/black-panther-banner.png",
+            "artes-comandantes/gerados/sauron-icone.png"
+          ],
+          "transparenciaSolicitada": true,
+          "inicioUTC": "2026-10-12T01:21:10.052Z",
+          "fimUTC": "2026-10-12T01:23:10.856Z",
+          "resultado": "recusada",
+          "requestId": "70e24fb8-a476-43e2-9dc6-ac223528b2ab",
+          "erro": "moderation_blocked",
+          "etapa": "output",
+          "categoria": "other",
+          "motivoDetalhado": null,
+          "erroBruto": "image generation failed: http 400 Bad Request: Some(\"{\\n  \\\"error\\\": {\\n    \\\"message\\\": \\\"Your request was rejected by the safety system. If you believe this is an error, contact us at help.openai.com and include the request ID 70e24fb8-a476-43e2-9dc6-ac223528b2ab.\\\",\\n    \\\"type\\\": \\\"image_generation_user_error\\\",\\n    \\\"param\\\": null,\\n    \\\"code\\\": \\\"moderation_blocked\\\",\\n    \\\"moderation_details\\\": {\\n      \\\"moderation_stage\\\": \\\"output\\\",\\n      \\\"categories\\\": [\\n        \\\"other\\\"\\n      ]\\n    }\\n  }\\n}\")",
+          "arquivoGerado": null,
+          "metadadosSaida": null
+        },
+        {
+          "id": "black-panther",
+          "tipo": "icone",
+          "promptArquivo": "artes-comandantes/gerados/tentativas/black-panther-icone-nova-tentativa-2.txt",
+          "referencias": [
+            "artes-comandantes/12 - T'Challa, the Black Panther (Wakanda Forever).png",
+            "artes-comandantes/gerados/black-panther-banner.png",
+            "artes-comandantes/gerados/sauron-icone.png"
+          ],
+          "transparenciaSolicitada": true,
+          "inicioUTC": "2026-10-12T01:50:06.151Z",
+          "fimUTC": "2026-10-12T01:52:11.844Z",
+          "resultado": "recusada",
+          "requestId": "91adb381-db75-9a14-bd09-da00c7bb0460",
+          "erro": "moderation_blocked",
+          "etapa": "output",
+          "categoria": "other",
+          "motivoDetalhado": null,
+          "erroBruto": "image generation failed: http 400 Bad Request: Some(\"{\\n  \\\"error\\\": {\\n    \\\"message\\\": \\\"Your request was rejected by the safety system. If you believe this is an error, contact us at help.openai.com and include the request ID 91adb381-db75-9a14-bd09-da00c7bb0460.\\\",\\n    \\\"type\\\": \\\"image_generation_user_error\\\",\\n    \\\"param\\\": null,\\n    \\\"code\\\": \\\"moderation_blocked\\\",\\n    \\\"moderation_details\\\": {\\n      \\\"moderation_stage\\\": \\\"output\\\",\\n      \\\"categories\\\": [\\n        \\\"other\\\"\\n      ]\\n    }\\n  }\\n}\")",
+          "arquivoGerado": null,
+          "metadadosSaida": null
+        }
+      ]
+    },
+    {
+      "id": "invisible-woman",
+      "tipo": "icone",
+      "deck": "The Fantastic Four Collector's Edition",
+      "comandante": "Invisible Woman",
+      "requestIds": [
+        "92f43276-68f4-44e4-a20b-dea115338818",
+        "813d2ea9-f929-4dc0-85ef-b207e7901e2e",
+        "e99fc89b-e7fb-4042-8695-e528e9916dd0",
+        "bd3a23d3-50e9-408e-8a89-829a94986505"
+      ],
+      "status": "pendente para geração interna",
+      "erro": "moderation_blocked",
+      "etapa": "output",
+      "categoria": "other",
+      "motivoDetalhado": null,
+      "promptOriginal": "artes-comandantes/gerados/invisible-woman-icone.txt",
+      "tentativasRetomada": [
+        {
+          "id": "invisible-woman",
+          "tipo": "icone",
+          "promptArquivo": "artes-comandantes/gerados/tentativas/invisible-woman-icone-retomada-2026-10-11.txt",
+          "referencias": [
+            "artes-comandantes/15 - Invisible Woman (The Fantastic Four Collector's Edition).png",
+            "artes-comandantes/gerados/sai-icone.png"
+          ],
+          "transparenciaSolicitada": true,
+          "inicioUTC": "2026-10-12T01:23:13.653Z",
+          "fimUTC": "2026-10-12T01:25:54.495Z",
+          "resultado": "recusada",
+          "requestId": "e99fc89b-e7fb-4042-8695-e528e9916dd0",
+          "erro": "moderation_blocked",
+          "etapa": "output",
+          "categoria": "other",
+          "motivoDetalhado": null,
+          "erroBruto": "image generation failed: http 400 Bad Request: Some(\"{\\n  \\\"error\\\": {\\n    \\\"message\\\": \\\"Your request was rejected by the safety system. If you believe this is an error, contact us at help.openai.com and include the request ID e99fc89b-e7fb-4042-8695-e528e9916dd0.\\\",\\n    \\\"type\\\": \\\"image_generation_user_error\\\",\\n    \\\"param\\\": null,\\n    \\\"code\\\": \\\"moderation_blocked\\\",\\n    \\\"moderation_details\\\": {\\n      \\\"moderation_stage\\\": \\\"output\\\",\\n      \\\"categories\\\": [\\n        \\\"other\\\"\\n      ]\\n    }\\n  }\\n}\")",
+          "arquivoGerado": null,
+          "metadadosSaida": null
+        },
+        {
+          "id": "invisible-woman",
+          "tipo": "icone",
+          "promptArquivo": "artes-comandantes/gerados/tentativas/invisible-woman-icone-nova-tentativa-2.txt",
+          "referencias": [
+            "artes-comandantes/15 - Invisible Woman (The Fantastic Four Collector's Edition).png",
+            "artes-comandantes/gerados/sai-icone.png"
+          ],
+          "transparenciaSolicitada": true,
+          "inicioUTC": "2026-10-12T01:50:06.152Z",
+          "fimUTC": "2026-10-12T01:53:11.802Z",
+          "resultado": "recusada",
+          "requestId": "bd3a23d3-50e9-408e-8a89-829a94986505",
+          "erro": "moderation_blocked",
+          "etapa": "output",
+          "categoria": "other",
+          "motivoDetalhado": null,
+          "erroBruto": "image generation failed: http 400 Bad Request: Some(\"{\\n  \\\"error\\\": {\\n    \\\"message\\\": \\\"Your request was rejected by the safety system. If you believe this is an error, contact us at help.openai.com and include the request ID bd3a23d3-50e9-408e-8a89-829a94986505.\\\",\\n    \\\"type\\\": \\\"image_generation_user_error\\\",\\n    \\\"param\\\": null,\\n    \\\"code\\\": \\\"moderation_blocked\\\",\\n    \\\"moderation_details\\\": {\\n      \\\"moderation_stage\\\": \\\"output\\\",\\n      \\\"categories\\\": [\\n        \\\"other\\\"\\n      ]\\n    }\\n  }\\n}\")",
+          "arquivoGerado": null,
+          "metadadosSaida": null
+        }
+      ]
+    },
+    {
+      "id": "captain-america",
+      "tipo": "icone",
+      "deck": "Avengers Assemble Collector's Edition",
+      "comandante": "Captain America, Team Leader",
+      "requestIds": [
+        "5b6ccd52-c3c3-406f-b96b-02f2c8de9c4f",
+        "434c06ae-b325-4161-83e1-c289c18d31be",
+        "51f7cd0c-7901-4cfc-af2c-185e33d4e213",
+        "59d5328c-bd4d-4243-9fee-9b8991682c2f"
+      ],
+      "status": "pendente para geração interna",
+      "erro": "moderation_blocked",
+      "etapa": "output",
+      "categoria": "other",
+      "motivoDetalhado": null,
+      "promptOriginal": "artes-comandantes/gerados/captain-america-icone.txt",
+      "tentativasRetomada": [
+        {
+          "id": "captain-america",
+          "tipo": "icone",
+          "promptArquivo": "artes-comandantes/gerados/tentativas/captain-america-icone-retomada-2026-10-11.txt",
+          "referencias": [
+            "artes-comandantes/21 - Captain America, Team Leader (Avengers Assemble Collector's Edition).png",
+            "artes-comandantes/gerados/sai-icone.png"
+          ],
+          "transparenciaSolicitada": true,
+          "inicioUTC": "2026-10-12T01:23:13.653Z",
+          "fimUTC": "2026-10-12T01:26:46.163Z",
+          "resultado": "recusada",
+          "requestId": "51f7cd0c-7901-4cfc-af2c-185e33d4e213",
+          "erro": "moderation_blocked",
+          "etapa": "output",
+          "categoria": "other",
+          "motivoDetalhado": null,
+          "erroBruto": "image generation failed: http 400 Bad Request: Some(\"{\\n  \\\"error\\\": {\\n    \\\"message\\\": \\\"Your request was rejected by the safety system. If you believe this is an error, contact us at help.openai.com and include the request ID 51f7cd0c-7901-4cfc-af2c-185e33d4e213.\\\",\\n    \\\"type\\\": \\\"image_generation_user_error\\\",\\n    \\\"param\\\": null,\\n    \\\"code\\\": \\\"moderation_blocked\\\",\\n    \\\"moderation_details\\\": {\\n      \\\"moderation_stage\\\": \\\"output\\\",\\n      \\\"categories\\\": [\\n        \\\"other\\\"\\n      ]\\n    }\\n  }\\n}\")",
+          "arquivoGerado": null,
+          "metadadosSaida": null
+        },
+        {
+          "id": "captain-america",
+          "tipo": "icone",
+          "promptArquivo": "artes-comandantes/gerados/tentativas/captain-america-icone-nova-tentativa-2.txt",
+          "referencias": [
+            "artes-comandantes/21 - Captain America, Team Leader (Avengers Assemble Collector's Edition).png",
+            "artes-comandantes/gerados/sai-icone.png"
+          ],
+          "transparenciaSolicitada": true,
+          "inicioUTC": "2026-10-12T01:50:06.152Z",
+          "fimUTC": "2026-10-12T01:54:04.137Z",
+          "resultado": "recusada",
+          "requestId": "59d5328c-bd4d-4243-9fee-9b8991682c2f",
+          "erro": "moderation_blocked",
+          "etapa": "output",
+          "categoria": "other",
+          "motivoDetalhado": null,
+          "erroBruto": "image generation failed: http 400 Bad Request: Some(\"{\\n  \\\"error\\\": {\\n    \\\"message\\\": \\\"Your request was rejected by the safety system. If you believe this is an error, contact us at help.openai.com and include the request ID 59d5328c-bd4d-4243-9fee-9b8991682c2f.\\\",\\n    \\\"type\\\": \\\"image_generation_user_error\\\",\\n    \\\"param\\\": null,\\n    \\\"code\\\": \\\"moderation_blocked\\\",\\n    \\\"moderation_details\\\": {\\n      \\\"moderation_stage\\\": \\\"output\\\",\\n      \\\"categories\\\": [\\n        \\\"other\\\"\\n      ]\\n    }\\n  }\\n}\")",
+          "arquivoGerado": null,
+          "metadadosSaida": null
+        }
+      ]
+    }
+  ],
+  "decisaoUsuario": "Manter os arquivos ainda recusados pendentes para geração interna; não substituir por recortes, imagens prontas, outra API ou outro modelo",
+  "refinamentos": [
+    {
+      "id": "captain-america",
+      "tipo": "banner",
+      "fase": "polimento",
+      "promptArquivo": "artes-comandantes/gerados/tentativas/captain-america-banner-polimento-2026-10-11.txt",
+      "referencias": [
+        "C:\\Users\\icaio\\.codex\\generated_images\\01a12dad-26a3-7952-9501-087ce36358b5\\exec-5b58135e-af40-459c-bba8-158a9278b353.png"
+      ],
+      "inicioUTC": "2026-10-12T01:28:00.540Z",
+      "fimUTC": "2026-10-12T01:28:47.042Z",
+      "resultado": "recusada",
+      "requestId": "d9a31de6-4878-45a1-8462-147a7b9a4eaa",
+      "erro": "moderation_blocked",
+      "etapa": "output",
+      "categoria": "other",
+      "motivoDetalhado": null,
+      "erroBruto": "image generation failed: http 400 Bad Request: Some(\"{\\n  \\\"error\\\": {\\n    \\\"message\\\": \\\"Your request was rejected by the safety system. If you believe this is an error, contact us at help.openai.com and include the request ID d9a31de6-4878-45a1-8462-147a7b9a4eaa.\\\",\\n    \\\"type\\\": \\\"image_generation_user_error\\\",\\n    \\\"param\\\": null,\\n    \\\"code\\\": \\\"moderation_blocked\\\",\\n    \\\"moderation_details\\\": {\\n      \\\"moderation_stage\\\": \\\"output\\\",\\n      \\\"categories\\\": [\\n        \\\"other\\\"\\n      ]\\n    }\\n  }\\n}\")",
+      "arquivoSelecionado": "artes-comandantes/gerados/captain-america-banner.png",
+      "observacao": "A primeira geração foi aceita e integrada. O ajuste do terço inferior foi recusado; a versão gerada anteriormente foi preservada.",
+      "status": "pendente para geração interna",
+      "objetivo": "Acalmar o terço inferior do banner sem alterar o comandante; manter o banner já gerado enquanto o refinamento estiver recusado."
+    }
+  ],
+  "retomada": "artes-comandantes/gerados/tentativas/retomada-2026-10-11.json",
+  "novaTentativa2": "artes-comandantes/gerados/tentativas/nova-tentativa-2.json",
+  "otimizacaoImagens": "artes-comandantes/gerados/otimizacao-imagens.json"
+}

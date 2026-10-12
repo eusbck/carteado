@@ -1,0 +1,7 @@
+Use case: identity-preserve. Asset: ONE finished landscape banner/background for a Magic Commander game table.
+Input 1 is the exact identity, costume, anatomy and environment reference. Faithfully preserve the main character; expand and recompose the supplied art into a coherent cinematic wide scene.
+Composition: 16:9 landscape, hero large within the central 55%, head at x=50%, y=28%, body at least chest/waist-up; atmosphere fills both edges. Lower third calmer for game cards. Ideally 2048x1152.
+Opaque full-bleed background. No text or card title, no lettering except a character's existing emblem, no card frame, no UI, no added watermark. One banner only.
+Deck: Odd and Ends.
+Subject and setting: Yennett as the very distinctive folk-art winged sphinx from this specific source: reddish human face, red bobbed hair, pointed ears, small spiral central horn with large pale pink sweeping horns, pale feathered wings, yellow leopard-pattern body. Surroundings expand the bright cyan starry sky, orange sun, falling flaming purple meteors, yellow desert dunes and tiny turquoise oases. Preserve the whimsical face, face markings, horn geometry and yellow/red/blue palette exactly.
+Style/medium: polished hand-painted folk-art illustration preserving the reference's flat graphic red outlines and vibrant whimsical motifs; DO NOT turn this artwork into a generic photoreal sphinx.

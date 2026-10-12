@@ -40,6 +40,8 @@ export interface SalaPublica {
   /** identificador da partida (hash curto da semente; null sem partida). A semente fica só no servidor: com ela dava
    * para refazer os embaralhamentos e ver o grimório e a mão de todos */
   partida: string | null;
+  /** tempo corrido da partida, em ms desde a época Unix; null sem partida ou numa salva antes deste registro */
+  cronometro: { iniciadaEm: number; encerradaEm: number | null } | null;
   /** passo do saguão em que a sala está (vale com a sala esperando) */
   etapa: EtapaSaguao;
 }
@@ -298,8 +300,8 @@ export function validarMsg(m: unknown): string | null {
 }
 
 export type MsgServidor =
-  /** `quem`: o seu id de autor (o mesmo das suas mensagens no chat, MsgChat.quem) */
-  | { t: 'sala'; sala: SalaPublica; voce: number; token: string; quem: string }
+  /** `quem`: o seu id de autor; `agora`: hora do servidor em ms, acrescentada só ao enviar, fora da comparação */
+  | { t: 'sala'; sala: SalaPublica; voce: number; token: string; quem: string; agora: number }
   | { t: 'jogo'; vista: GameView; paradas: StopSettings; posicoes: Posicoes; desfazivel: boolean; desfazer: PedidoDesfazer | null }
   /** aviso curto para a mesa (pedido de desfazer aceito, recusado ou expirado) */
   | { t: 'aviso'; msg: string }

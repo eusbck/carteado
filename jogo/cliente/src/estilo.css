@@ -206,14 +206,14 @@ input.campo-grande { font-size: 17px; padding: 13px 14px; }
 .titulo-verde { color: var(--ouro); font-size: 21px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; }
 .decks { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; }
 .deck { position: relative; aspect-ratio: 16 / 11; border-radius: 14px; overflow: hidden; background: var(--painel-2) center 30% / cover; border: 1.5px solid var(--linha-forte); cursor: pointer; padding: 0; text-align: left; color: var(--texto); }
-.deck::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0, 0, 0, .92), rgba(0, 0, 0, .1) 55%, transparent); }
+.deck::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(to top, rgba(0, 0, 0, .92), rgba(0, 0, 0, .1) 55%, transparent); }
 .deck:hover:not(:disabled) { border-color: rgba(255, 255, 255, .4); }
 .deck:disabled { cursor: default; }
 .deck-info { position: absolute; left: 12px; right: 12px; bottom: 10px; z-index: 1; display: grid; gap: 2px; }
 .deck-nome { font-weight: 700; font-size: 15px; }
 .deck-cmd { font-size: 12px; color: #d6cdbd; display: flex; align-items: center; justify-content: space-between; gap: 6px; }
 .deck.ativo { border-color: var(--ouro); box-shadow: 0 0 0 1px var(--ouro), 0 0 26px color-mix(in srgb, var(--ouro) 35%, transparent); }
-.deck-selo { position: absolute; right: 10px; top: 10px; z-index: 1; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 6px; background: var(--ouro); color: var(--ouro-texto); }
+.deck-selo { position: absolute; left: 10px; top: 10px; z-index: 1; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 6px; background: var(--ouro); color: var(--ouro-texto); }
 @media (max-width: 900px) { .sala { grid-template-columns: 1fr; } .sala-esq { border-right: 0; border-bottom: 1px solid var(--linha); } }
 /* saguão em passos (Saguao.tsx): cabeçalho com os três passos e um passo por vez embaixo */
 .saguao { width: min(1180px, 100%); padding: 28px 32px 30px; display: flex; flex-direction: column; gap: 22px; }
@@ -273,9 +273,12 @@ input.campo-grande { font-size: 17px; padding: 13px 14px; }
 .decks-escolha { display: grid; gap: 14px; align-content: start; min-width: 0; }
 .deck { transition: border-color .2s ease, box-shadow .2s ease, translate .2s ease; }
 .deck:hover:not(:disabled) { translate: 0 -3px; box-shadow: 0 12px 26px rgba(0, 0, 0, .45); }
-.deck-ver { position: absolute; left: 50%; top: 42%; translate: -50% -50%; z-index: 1; padding: 6px 12px; border-radius: 999px; background: rgba(0, 0, 0, .7); border: 1px solid var(--linha-forte); font-size: 12px; font-weight: 700; opacity: 0; transition: opacity .2s ease; }
-.deck:hover .deck-ver, .deck:focus-visible .deck-ver { opacity: 1; }
-.deck-quem { position: absolute; left: 10px; top: 10px; z-index: 1; max-width: calc(100% - 100px); font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 6px; background: rgba(0, 0, 0, .7); color: var(--texto); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.deck-escolher { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; padding: 0; border: 0; border-radius: inherit; background: transparent; text-align: left; cursor: pointer; }
+.deck-escolher:focus-visible { outline-offset: -4px; }
+.deck-ver { position: absolute; right: 10px; top: 10px; z-index: 2; min-height: 32px; padding: 6px 12px; border-radius: 8px; background: rgba(0, 0, 0, .75); border: 1px solid var(--linha-forte); font-size: 12px; font-weight: 700; cursor: pointer; transition: background .2s ease, border-color .2s ease; }
+.deck-ver:hover, .deck-ver:focus-visible { background: var(--painel-3); border-color: var(--ouro); }
+.deck-quem { position: absolute; left: 10px; top: 10px; z-index: 1; max-width: calc(100% - 122px); font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 6px; background: rgba(0, 0, 0, .7); color: var(--texto); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.deck.ativo .deck-quem { top: 42px; max-width: calc(100% - 20px); }
 @media (max-width: 900px) {
   .saguao-topo { grid-template-columns: 1fr; gap: 12px; }
   .lugares, .regras { grid-template-columns: 1fr; }
@@ -674,6 +677,8 @@ img.mini { width: 40px; aspect-ratio: 63 / 88; object-fit: cover; border-radius:
 .lateral-turno strong { display: block; font-size: 30px; font-weight: 800; color: var(--acao); line-height: 1.1; font-variant-numeric: tabular-nums; }
 .lateral-turno .vez { font-size: 12.5px; color: var(--suave); }
 .lateral-turno .vez span { color: var(--cor); font-weight: 700; }
+.cronometro-partida { display: flex; align-items: center; justify-content: center; gap: 5px; margin-top: 6px; font-size: 14px; line-height: 1.4; font-variant-numeric: tabular-nums; color: color-mix(in srgb, var(--texto) 80%, var(--suave)); white-space: nowrap; }
+.cronometro-partida svg { width: 13px; height: 13px; flex: 0 0 auto; color: color-mix(in srgb, var(--ouro) 80%, var(--suave)); }
 .menu-lateral { list-style: none; margin: 0; padding: 4px 10px; display: grid; gap: 1px; }
 .menu-lateral button { width: 100%; display: flex; align-items: center; gap: 13px; height: 40px; padding: 0 11px; border-radius: 10px; background: transparent; border: 0; color: #efe6d6; font-weight: 600; font-size: 13.5px; cursor: pointer; white-space: nowrap; }
 .menu-lateral button:hover:not(:disabled), .menu-lateral button.ativo { background: rgba(255, 255, 255, .07); }
@@ -711,6 +716,8 @@ img.mini { width: 40px; aspect-ratio: 63 / 88; object-fit: cover; border-radius:
 .recolhida .lateral .marca-jogo { padding: 18px 0 6px; }
 .recolhida .lateral .marca-jogo span, .recolhida .lateral-turno .rot, .recolhida .lateral-turno .vez, .recolhida .menu-lateral .rotulo { display: none; }
 .recolhida .lateral-turno strong { font-size: 22px; }
+.recolhida .cronometro-partida { font-size: 11px; }
+.recolhida .cronometro-partida svg { display: none; }
 .recolhida .menu-lateral { padding: 4px 8px; }
 .recolhida .menu-lateral button { justify-content: center; padding: 0; }
 .recolhida .recolher svg { rotate: 180deg; }

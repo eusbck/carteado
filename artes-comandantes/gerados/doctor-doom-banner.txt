@@ -1,0 +1,7 @@
+Use case: identity-preserve. Asset type: ONE finished landscape banner/background for a Magic Commander game table.
+Input image 1 is the exact character, costume, visual identity and environment reference. Preserve the recognizable head/face or helmet, anatomy, colors, materials and equipment. Recompose and expand the scene into a coherent cinematic wide illustration; do not simply stretch the source.
+Style: premium detailed painterly fantasy game art, faithfully translating the source character with dramatic depth, rich material detail and readable silhouette.
+Composition: 16:9 landscape ideally 2048x1152, hero large in the central 55% with head centered around x=50%, y=28%; at least chest/waist-up body visible. Atmospheric scenery extends fully to both edges. Keep the lower third calmer for cards on the game table.
+Constraints: one banner only, opaque full-bleed background, no titles, no words, no card frame, no lettering, no UI, no logo, no watermark. Remove any source card border or text.
+Deck: Doom Prevails.
+Subject and setting: Doctor Doom in the exact silver metallic mask, dark emerald hooded cloak, round gold clasps, steel armor and gauntlets from the reference, seated with one hand raised conjuring cool blue energy. Extend the moody throne-room architecture and smoky magical atmosphere..

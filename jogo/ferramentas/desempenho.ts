@@ -256,9 +256,8 @@ try {
     await p.locator('.decks-lugares .assento').nth(l - 1).getByLabel('Deck do bot').selectOption({ index: [1, 3, 6][i] });
     await p.waitForTimeout(150);
   }
-  await p.locator('.deck').nth(4).click();
-  await p.getByRole('button', { name: 'Escolher este deck' }).click();
-  await p.locator('.previa-deck').waitFor({ state: 'detached' });
+  await p.locator('.deck').nth(4).locator('.deck-escolher').click();
+  await p.locator('.deck').nth(4).locator('.deck-escolher[aria-pressed="true"]').waitFor();
   await p.getByRole('button', { name: 'Começar a partida' }).click();
   await p.locator('.tabuleiro, .abertura').first().waitFor({ timeout: 30000 });
   // a partida anda: a pessoa só passa e responde o simples

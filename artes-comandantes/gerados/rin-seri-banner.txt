@@ -1,0 +1,8 @@
+Use case: identity-preserve. Asset: ONE finished landscape banner/background for a Magic Commander game table.
+Input 1 is the exact identity, costume, anatomy and environment reference. Faithfully preserve the main character; expand and recompose the supplied art into a coherent cinematic wide scene.
+Composition: 16:9 landscape, hero large within the central 55%, head at x=50%, y=28%, body at least chest/waist-up; atmosphere fills both edges. Lower third calmer for game cards. Ideally 2048x1152.
+Opaque full-bleed background. No text or card title, no lettering except a character's existing emblem, no card frame, no UI, no added watermark. One banner only.
+Deck: Raining Cats and Dogs.
+Subject and setting: BOTH Rin and Seri, the same proud BLACK long-haired pointed-ear dog and WHITE long-haired tufted-ear cat in the source, together with two separate clearly recognizable heads. They rest closely side by side on mossy mountain rocks, warm gold-pink clouds and cool purple peaks behind. Preserve exact animal markings, fur colors and muzzle shapes; include BOTH animals, equally prominent.
+Style/medium: polished realistic painterly animal/fantasy game illustration with highly detailed fur.
+There must be TWO animals in this single asset. Their heads both fully visible, similarly prominent at x=35% and x=65%, y=30%, joining into one compact double portrait; do not omit either animal.

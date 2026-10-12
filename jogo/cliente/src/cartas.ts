@@ -33,7 +33,7 @@ export function urlArte(def: string): string | null {
 }
 
 /** o servidor manda as imagens com cache imutável: mudar a fonte dos fundos pede um número novo aqui */
-const VERSAO_FUNDO = 2;
+const VERSAO_FUNDO = 5;
 
 /** fundo da área do jogador: o feito para o deck (gerado/fundos) ou a arte do comandante ampliada */
 export function urlFundo(def: string): string | null {
@@ -56,6 +56,27 @@ const ROSTO_NO_FUNDO: Record<string, readonly [number, number]> = {
   'Terra, Herald of Hope': [0.57, 0.19],
   'Dina, Essence Brewer': [0.49, 0.26],
   'Ghoulcaller Gisa': [0.43, 0.17],
+  'Jin Sakai, Ghost of Tsushima': [0.5, 0.25],
+  'Sauron, Lord of the Rings': [0.48, 0.34],
+  'Doctor Doom, King of Latveria': [0.5, 0.2],
+  "T'Challa, the Black Panther": [0.52, 0.37],
+  'Leonardo, the Balance': [0.5, 0.3],
+  "Trostani, Selesnya's Voice": [0.46, 0.26],
+  'Invisible Woman': [0.39, 0.22],
+  'Lathliss, Dragon Queen': [0.5, 0.15],
+  'Rin and Seri, Inseparable // Rin and Seri, Inseparable': [0.54, 0.36],
+  'Rin and Seri, Inseparable': [0.54, 0.36],
+  'Anhelo, the Painter': [0.51, 0.22],
+  'Szarekh, the Silent King': [0.5, 0.27],
+  'Strefan, Maurer Progenitor': [0.53, 0.15],
+  'Captain America, Team Leader': [0.48, 0.34],
+  'Sai, Master Thopterist': [0.51, 0.25],
+  'Yennett, Cryptic Sovereign': [0.6, 0.34],
+  'Kaalia of the Vast': [0.5, 0.27],
+  'The Tenth Doctor': [0.53, 0.27],
+  'Rose Tyler': [0.53, 0.27],
+  'Frodo, Adventurous Hobbit': [0.49, 0.29],
+  'Sam, Loyal Attendant': [0.49, 0.29],
 };
 /** o rosto do comandante no fundo; sem marca (a arte da carta ampliada), o meio, um pouco acima */
 export const rostoNoFundo = (def: string): readonly [number, number] => ROSTO_NO_FUNDO[def] ?? [0.5, 0.3];

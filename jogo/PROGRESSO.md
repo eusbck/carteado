@@ -1336,6 +1336,23 @@ Observações abertas:
   durante a sessão para não misturar cliente novo com servidor velho no meio das importações; os testes usaram uma
   pasta à parte (`ESTATICOS`).
 
+## 10/10/2026 — Escolha direta dos decks
+
+- Pedido do Caio: selecionar o deck sem precisar abrir a lista de cartas e deixar "Ver cartas" em um botão no canto inferior da imagem.
+- `cliente/src/telas/Saguao.tsx`: clicar na imagem escolhe o deck diretamente, usando a mensagem `deck` já existente. A prévia abre por um botão independente no canto inferior direito; consultar outro deck não altera a escolha atual. "Seu deck", borda dourada e a lista dos jogadores acompanham a confirmação do servidor.
+- `cliente/src/estilo.css`: botão sempre visível, texto acima dele sem sobreposição, controles separados com foco de teclado. Orientação da tela e `LEIAME.md` atualizados.
+- `ferramentas/capturas.ts`, `ferramentas/e2e.ts` e `ferramentas/desempenho.ts` adaptados à seleção direta; cenários de prévia clicam explicitamente em "Ver cartas".
+- Conferido: `npm.cmd run typecheck` e `npm.cmd run cliente:build` passaram; os 19 testes de `testes/saguao.test.ts` passaram. Playwright com dois jogadores, desktop e celular, confirmou seleção direta, prévia sem troca de deck, escolha dentro da prévia, teclado, toque e início da partida sem erros. Capturas desktop/celular revisadas, com o botão no canto e sem cobrir o texto.
+- Cliente compilado atualizado em `cliente/dist/`. Os roteiros completos de partidas/capturas/desempenho não foram executados; a conferência de navegador cobriu o fluxo alterado até o início da partida.
+- Registro detalhado do que foi feito, do motivo, da implementação e da validação em `../CODEX.md`, conforme pedido do Caio. Artefatos locais de conferência em `.cache/qa-escolha-decks/`.
+
+## 10/10/2026 — Posição final do botão e do selo dos decks
+
+- Ajuste pedido pelo Caio após ver a interface: "Ver cartas" no canto superior direito e "Seu deck" no canto superior esquerdo da imagem.
+- `cliente/src/estilo.css`: controles a 10 px dos cantos superiores; nome e comandante voltam à base da imagem. Quando outra pessoa escolhe o mesmo deck, seu nome fica abaixo de "Seu deck", sem cobrir o selo ou o botão. `LEIAME.md` atualizado.
+- `npm.cmd run cliente:build` passou. Playwright e capturas de desktop/celular confirmaram as posições e a ausência de sobreposição, incluindo dois jogadores com o mesmo deck; seleção direta, prévia independente, teclado, toque e início da partida passaram. Interface compilada atualizada em `cliente/dist/`.
+- Motivo, implementação e validação registrados em `../CODEX.md`. Capturas e resultados locais atualizados em `.cache/qa-escolha-decks/`.
+
 ## Lote 2: os outros 15 decks importados (em andamento) — 10/10/2026
 
 Pedido do Caio: listar as cartas dos 16 decks importados, achar as iguais ou parecidas para não repetir trabalho e
@@ -1831,6 +1848,53 @@ jogáveis).
   - Urza's Saga: o capítulo III aceita só custo de mana impresso {0} ou {1}.
   - Bloodletter com outros efeitos de perda de vida: o motor dobra sem perguntar a ordem (CR 616.1).
 - A suíte inteira ainda não rodou com este deck.
+
+## 11/10/2026 — Artes dos comandantes: 16 banners e 14 ícones novos
+
+- Produzidas pela ferramenta interna a partir de `../artes-comandantes/`: 16 banners, em 1672 × 941 pixels, e 14 ícones com transparência. Os nove conjuntos anteriores já estavam prontos. Os originais, prompts, fontes e destinos estão em `../artes-comandantes/gerados/manifesto.json`.
+- Food and Fellowship reúne Frodo e Sam no mesmo banner e ícone; Timey-Wimey reúne o Décimo Doutor e Rose. Os assets de cada dupla estão associados aos dois nomes/ids. A entrega prepara as imagens; a disponibilidade dos decks continua dependendo da importação e das regras.
+- Banners em `gerado/fundos/`, com as impressões alternativas. Ícones de 512 pixels e cópias de 256 pixels em `cliente/src/imagens/avatares/`. Catálogo com 23 retratos prontos (9 anteriores + 14 novos); foco dos fundos marcado e cache atualizado para `?v=3`.
+- Galeria para revisão: `../artes-comandantes/gerados/galeria.html`, com busca, originais e o medalhão no estilo do jogo. Captura geral e prévias das duas duplas ao lado; dimensões/alfa/vínculos em `conferencia.json`.
+- **Seis arquivos pendentes por escolha do Caio:** ícones de Doctor Doom e Black Panther; banner e ícone de Invisible Woman; banner e ícone de Captain America. O gerador interno retornou `moderation_blocked` repetidamente. Os dois banners prontos da Marvel estão integrados; retratos sem arquivo ficam fora da seleção. `pendencias.json` e `tentativas/` registram as recusas e prompts.
+- Tipos e compilação do cliente aprovados. Testes existentes de retratos/fundos: 19/19 aprovados, zero falhas. Inspeção visual e carregamento da galeria aprovados, incluindo as duas duplas na moldura de 80 pixels. Cliente compilado atualizado; reabrir o servidor carrega o novo catálogo de retratos.
+
+## 11/10/2026 — Retomada das artes: duas prontas, quatro arquivos ainda bloqueados
+
+- Gerados pela ferramenta interna e instalados com `ferramentas/artes-comandantes.mjs`: ícone de Doctor Doom (PNG de 1254 × 1254 com alfa; WebPs de 512 e 256) e banner de Captain America (PNG e WebP de 1672 × 941). As 30 artes anteriores, incluindo os banners de Doom e Black Panther, foram preservadas. Total: 17 banners e 15 ícones novos; catálogo com 24 retratos prontos.
+- Doom está associado a `Doctor Doom, King of Latveria`. Captain America tem fundo em `gerado/fundos/910a6dfc-04a2-4c6d-b2ba-507bc75ec821.webp`, foco `[0.48, 0.34]` e cache atualizado para `?v=4`.
+- **Quatro arquivos pendentes:** `black-panther-icone.png`, `invisible-woman-banner.png`, `invisible-woman-icone.png` e `captain-america-icone.png`. As quatro chamadas retornaram `moderation_blocked`, na saída, categoria `other`, sem motivo específico. Os três retratos sem arquivo permanecem fora da seleção. Mantida a decisão de usar apenas geração interna; não foram criados substitutos.
+- O banner de Captain America está integrado, mas seu terço inferior ainda precisa ficar mais tranquilo para as cartas. A edição interna para esse refinamento também foi recusada. Essa pendência visual fica separada dos quatro arquivos ainda não gerados.
+- `../artes-comandantes/gerados/manifesto.json`, `pendencias.json` e `gerado/fundos/fontes.json` atualizados. Histórico anterior, novos identificadores e prompts completos preservados em `../artes-comandantes/gerados/tentativas/retomada-2026-10-11.json` e arquivos `.txt` ao lado.
+- Galeria atualizada com `node jogo/ferramentas/artes-comandantes.mjs gallery --capturar`: 15 de 18 conjuntos completos, 62 imagens carregadas, nenhuma falha. Novas artes e Doom na moldura de 80 pixels conferidos visualmente; dimensões e alfa aprovados. Tipos e compilação do cliente aprovados; testes de retratos e fundos: 19/19 aprovados, zero falhas, 22,57 segundos, dois workers. Evidências em `../artes-comandantes/gerados/validacao-retomada.json`.
+- Ferramenta: `image_gen` interna. GPT IMAGE 2 foi solicitado; o identificador do modelo efetivo não foi fornecido. Cliente compilado atualizado, sem reiniciar a mesa em uso. Alterações de outras frentes preservadas.
+
+## 11/10/2026 — Banner de Invisible Woman e compressão adicional sem perda
+
+- A tentativa que já estava em andamento gerou o banner de Invisible Woman: PNG e WebP de 1672 × 941, imagem `640ebf2f-5687-42d4-97e5-85e2fefa89a9`, foco `[0.39, 0.22]`, cache `?v=5`. Todos os 18 banners desta frente estão prontos; total de 33 artes novas. Os três ícones restantes continuam bloqueados com `moderation_blocked`, na saída, categoria `other`. O catálogo continua com 24 retratos. Histórico em `../artes-comandantes/gerados/tentativas/nova-tentativa-2.json`; originais, prompts e pendências atualizados.
+- Verificada a necessidade de compressão: analisados os 48 WebPs de retratos e testadas amostras de banners e PNGs. Foram reduzidos 38 retratos sem nenhuma mudança dos pixels: 15 de 512 e 23 de 256. Economia de 52.236 bytes (52,2 KB; 0,83% dos retratos). Banners mantidos porque a codificação sem perda das amostras aumentou o tamanho. PNGs originais preservados.
+- Comparação integral de RGBA aprovada no decodificador local e no Chromium, com zero diferenças nos 38 arquivos; alfa, cores, dimensões e perfis preservados. Backups anteriores em `.cache/compressao-artes/originais/`; relatório em `../artes-comandantes/gerados/otimizacao-imagens.json`.
+- Tipos e compilação do cliente aprovados; testes existentes de retratos/fundos: 19/19 aprovados, zero falhas, 23,93 segundos, dois workers. Galeria com 63 imagens carregadas e nenhuma falha. Nova prévia de Invisible Woman conferida visualmente. Cliente recompilado sem reiniciar a mesa em uso; mudanças de outras frentes preservadas.
+
+## 12/10/2026 — Mesa principal com 17 decks jogáveis
+
+- Pedido: permitir jogar com os decks já concluídos. Conferido o estado real da mesa principal em `http://localhost:8080`: os 17 decks completos já estão habilitados, com os mesmos ids de `decks/` e `gerado/decks.json`. Não foi necessária promoção de listas nem alteração funcional do servidor.
+- Além dos nove anteriores, podem ser escolhidos Keen Engineering (Sai), Reign of Dragons (Lathliss), Maestros Massacre (Anhelo), The Fantastic Four Collector's Edition (Invisible Woman), Doom Prevails (Doctor Doom), Raining Cats and Dogs (Rin e Seri), Vampiric Bloodline (Strefan) e The Hosts of Mordor (Sauron).
+- A prévia isolada em `http://localhost:8096` continua com 10 decks; para acessar todos os prontos, usar a mesa principal em 8080, com a mesma senha de acesso. Endereço, listas e instruções de seleção registrados em `LEIAME.md`.
+- Os 17 decks publicados têm 100 cartas contando o comandante, regras implementadas e referências de imagens. Miniaturas e fundos dos 17 comandantes respondem com HTTP 200. As outras oito listas importadas continuam em preparação por falta de regras.
+- Testes existentes de catálogo real, catálogo e saguão: **26/26 aprovados**, 3 arquivos, zero falhas, 81 segundos, dois workers. Playwright conferiu os 17 na interface e iniciou quatro duelos abrangendo os oito adicionais; prévia, seleção, manutenção das mãos iniciais e abertura do tabuleiro aprovadas em desktop e celular, sem erros de JavaScript ou mensagens de erro do servidor.
+- Verificação de partidas em servidor temporário com banco próprio; encerrado ao concluir. Nenhuma sala real foi criada ou alterada e a mesa principal não foi reiniciada. Alterações de outras tarefas preservadas. Evidências em `.cache/decks-disponiveis/resultados.json`, `catalogo-mesa-principal.png`, `saguao-desktop.png` e `saguao-celular.png`.
+
+## 12/10/2026 — Mesa principal com 24 decks jogáveis
+
+- Pedido do Caio: jogar com os decks que já estão prontos. O `main` foi avançado (fast-forward, sem commit novo) de
+  `a7e23b7` para `871c5d3`, o ponto da branch `lote2-b` em que o Necron Dynasties ficou completo. Entraram na mesa
+  Wakanda Forever, Turtle Power!, Hatsune Miku, Necron Dynasties, Avengers Assemble, Odd and Ends e Heavenly Inferno.
+- As alterações sem commit do `main` foram preservadas; só este arquivo tinha conflito, resolvido mantendo os dois lados.
+- `npm run typecheck` e `npm run cliente:build` passaram; catálogo, saguão e retratos: 78 de 78 testes. A suíte inteira
+  não rodou: Wakanda Forever, Turtle Power!, Avengers Assemble e Necron Dynasties seguem sem ela (ver "Suíte inteira
+  pendente").
+- O servidor da 8080 foi reiniciado pelo vigia do `abrir-mesa.ps1` (mesmo túnel, mesmo endereço) e `/api/decks`
+  responde com os 24. Ficam em preparação Jin's Vengeance (em andamento na `lote2-b`) e Food and Fellowship.
 
 Falta 1 deck do lote 2: o Food and Fellowship (importação e dois comandantes pendentes). A suíte inteira com os cinco
 decks mais recentes continua pendente (ver acima).

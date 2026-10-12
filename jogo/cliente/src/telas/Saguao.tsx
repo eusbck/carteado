@@ -1,6 +1,6 @@
 // Saguão em passos, um de cada vez e o mesmo para a mesa toda (a etapa fica no servidor): primeiro quem joga entra e
 // o anfitrião põe bots nos lugares livres; depois o anfitrião define as regras (mulligan e auxílios) enquanto os
-// outros acompanham; por fim cada um escolhe o deck, com a prévia das cartas antes de escolher. Cada passo entra
+// outros acompanham; por fim cada um escolhe o deck, com um botão separado para ver as cartas. Cada passo entra
 // deslizando para o lado em que a mesa andou. Se um lugar vagar, a sala volta para os lugares (os decks escolhidos
 // continuam marcados).
 
@@ -17,7 +17,7 @@ import type { AssentoPublico, DeckResumo, EtapaSaguao, SalaPublica } from '../..
 import { NIVEIS_BOT, NIVEL_PADRAO, nomeNivel, type NivelBot } from '../../../bots/niveis.ts';
 
 // a prévia do deck fica fora do pacote inicial: o código vem com a página parada assim que o passo dos decks aparece
-// (o clique num deck já o encontra carregado; se não, a janela abre um instante depois, sem nada no lugar)
+// (o botão Ver cartas já o encontra carregado; se não, a janela abre um instante depois, sem nada no lugar)
 const carregarPrevia = () => import('./PreviaDeck.tsx');
 const PreviaDeck = lazy(() => carregarPrevia().then((m) => ({ default: m.PreviaDeck })));
 
@@ -154,22 +154,24 @@ function PassoRegras({ sala, eu }: { sala: SalaPublica; eu: number }) {
   );
 }
 
-function CartaoDeck({ d, meu, de, abrir }: { d: DeckResumo; meu: boolean; de: string[]; abrir: () => void }) {
+function CartaoDeck({ d, meu, de, escolher, abrir }: { d: DeckResumo; meu: boolean; de: string[]; escolher: () => void; abrir: () => void }) {
   const arte = urlArte(d.comandante);
   return (
-    <button type="button" class={`deck ${meu ? 'ativo' : ''}`} onClick={abrir} style={arte ? { backgroundImage: `url(${arte})` } : undefined} aria-pressed={meu} title="Ver as cartas e escolher">
-      {meu && <span class="deck-selo">Seu deck</span>}
-      {de.length > 0 && <span class="deck-quem">{de.join(', ')}</span>}
-      <span class="deck-info">
-        <span class="deck-nome">{d.nome}</span>
-        <span class="deck-cmd"><span>{nomeCarta(d.comandante, d.comandante).split(',')[0]}</span><Simbolos custo={cores(d)} /></span>
-      </span>
-      <span class="deck-ver" aria-hidden="true">Ver cartas</span>
-    </button>
+    <div class={`deck ${meu ? 'ativo' : ''}`} style={arte ? { backgroundImage: `url(${arte})` } : undefined}>
+      <button type="button" class="deck-escolher" onClick={escolher} aria-pressed={meu} aria-label={`Escolher deck ${d.nome}`} title="Escolher este deck">
+        {meu && <span class="deck-selo">Seu deck</span>}
+        {de.length > 0 && <span class="deck-quem">{de.join(', ')}</span>}
+        <span class="deck-info">
+          <span class="deck-nome">{d.nome}</span>
+          <span class="deck-cmd"><span>{nomeCarta(d.comandante, d.comandante).split(',')[0]}</span><Simbolos custo={cores(d)} /></span>
+        </span>
+      </button>
+      <button type="button" class="deck-ver" onClick={abrir} aria-label={`Ver cartas de ${d.nome}`}>Ver cartas</button>
+    </div>
   );
 }
 
-/** passo 3: cada um escolhe o deck (clicar abre a prévia); o anfitrião escolhe também o dos bots */
+/** passo 3: clicar escolhe o deck; Ver cartas abre a prévia. O anfitrião escolhe também o dos bots */
 function PassoDecks({ sala, eu, decks }: { sala: SalaPublica; eu: number; decks: DeckResumo[] }) {
   const anfitriao = eu === sala.anfitriao;
   const [previa, setPrevia] = useState<DeckResumo | null>(null);
@@ -210,13 +212,14 @@ function PassoDecks({ sala, eu, decks }: { sala: SalaPublica; eu: number; decks:
         <div class="sala-dir-topo">
           <h2 class="titulo-verde">{meuDeck ? 'Seu deck' : 'Escolha seu deck'}</h2>
           <span class="sala-dir-decks">
-            <span class="suave">Clique num deck para ver as cartas</span>
+            <span class="suave">Clique num deck para escolher</span>
             <button type="button" class="botao pequeno" onClick={() => void loja.abrirDecks()} title="Importar um deck pelo link do Moxfield ou atualizar os da mesa">Decks</button>
           </span>
         </div>
         <div class="decks">
           {ordenados(decks).map((d) => (
             <CartaoDeck key={d.id} d={d} meu={d.id === meuDeck} abrir={() => setPrevia(d)}
+              escolher={() => loja.enviar({ t: 'deck', deck: d.id })}
               de={sala.assentos.filter((a) => a.deck === d.id && a.indice !== eu && a.tipo !== 'vazio').map((a) => a.nome ?? '?')} />
           ))}
         </div>

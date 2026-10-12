@@ -1,0 +1,9 @@
+Use case: identity-preserve.
+Asset type: one finished square transparent portrait icon for the Magic-Commander game, deck Doom Prevails.
+Primary request: create Doctor Doom, King of Latveria as a new detailed painterly bust portrait faithful to the supplied card art.
+Input image 1: exact Doctor Doom character, metal mask, costume, anatomy, and color reference. Input image 2: this same character's completed game banner, reference for appearance, lighting and finish. Input image 3: Sauron's existing game icon, use ONLY its portrait framing, clean silhouette and painterly material finish; do not copy Sauron's identity or armor.
+Subject: preserve Doctor Doom's recognizable sculpted silver mask with dark eye openings and metallic mouth grille, complete deep emerald hood, heavy green cloak, two round gold clasps joined by a chain, and steel shoulder armor. Keep his face masked. Cool blue reflections from the banner light the steel and green cloth.
+Composition: square chest-up portrait; complete hood and head inside frame with a small transparent margin above, face centered around x=50%, y=30%, broad shoulders and some chest filling the lower half. Confident upright pose and a strong readable silhouette at 80 pixels. Natural tapered bust ending close to the bottom. Keep the bust compact.
+Style: premium painterly fantasy game illustration, rich metal and fabric texture, crisp facial definition, compatible with the supplied existing icons.
+Background: genuine transparent alpha everywhere outside the character silhouette, including all upper corners. Clean anti-aliased edges.
+Constraints: one icon only, no scenery, throne, rectangular background fill, circle, medallion, ring, life counter, aura, frame, UI, added lettering or watermark. Do not crop the hood or head. Retain native generated square resolution.

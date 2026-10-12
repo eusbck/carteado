@@ -78,6 +78,9 @@ interface Assento {
 interface DadosPartida {
   config: GameConfig;
   deckIds: string[];
+  /** tempo corrido, fora do motor; partidas salvas antes do cronômetro não têm o início */
+  iniciadaEm?: number;
+  encerradaEm?: number | null;
   /** a lista de cada assento quando a partida começou: atualizar um deck não muda a partida (que se refaz pela
    * semente e pelas entradas). Salas de antes da importação de decks recebem a lista atual em `restaurar`. */
   listas?: DeckList[];
@@ -229,9 +232,11 @@ export class Sala {
 
   publica(): SalaPublica {
     const conectados = new Set([...this.conexoes].map((c) => c.assento));
+    const p = this.d.partida;
     return {
       codigo: this.d.codigo, modo: this.d.modo, estado: this.d.estado, anfitriao: this.d.anfitriao, mulligan: this.d.mulligan ?? 'londres', auxilios: this.d.auxilios ?? 'permitidos',
       partida: this.d.partida ? idPartida(this.d.partida.config.seed) : null, etapa: this.d.etapa ?? 'lugares',
+      cronometro: p?.iniciadaEm !== undefined ? { iniciadaEm: p.iniciadaEm, encerradaEm: p.encerradaEm ?? null } : null,
       assentos: this.d.assentos.map((a, i) => ({ indice: i, tipo: a.tipo, nome: a.nome, deck: a.deck, conectado: a.tipo === 'bot' || conectados.has(i), nivel: a.tipo === 'bot' ? a.nivel ?? NIVEL_PADRAO : null, avatar: a.tipo === 'humano' ? a.avatar ?? null : null })),
     };
   }
@@ -283,14 +288,16 @@ export class Sala {
    * transmite a cada passo (antes de cada jogada de bot, no fim, a cada ajuste de paradas ou posições), e a sala
    * quase nunca muda nesses passos. A conexão que volta ou entra de novo começa do zero (ligar).
    */
-  private enviarSeMudou(c: Conexao, m: Extract<MsgServidor, { t: 'sala' | 'jogo' }>): void {
+  private enviarSeMudou(c: Conexao, m: Omit<Extract<MsgServidor, { t: 'sala' }>, 'agora'> | Extract<MsgServidor, { t: 'jogo' }>): void {
     const texto = JSON.stringify(m);
     let u = this.ultimas.get(c);
     if (!u) this.ultimas.set(c, (u = {}));
     if (u[m.t] === texto) return;
     u[m.t] = texto;
-    if (c.enviarTexto) c.enviarTexto(texto);
-    else c.enviar(m);
+    // a passagem do tempo não muda a sala: a referência do relógio só entra depois da comparação
+    const enviada = m.t === 'sala' ? { ...m, agora: Date.now() } : m;
+    if (c.enviarTexto) c.enviarTexto(m.t === 'sala' ? JSON.stringify(enviada) : texto);
+    else c.enviar(enviada);
   }
 
   private get semAuxilios(): boolean { return this.d.auxilios === 'proibidos'; }
@@ -633,6 +640,9 @@ export class Sala {
     this.salvas = 0;
     this.erro = null;
     this.criarGame(null, []);
+    // a criação validada já chegou à primeira decisão (mulligan); a abertura também entra no tempo
+    this.d.partida.iniciadaEm = Date.now();
+    this.d.partida.encerradaEm = null;
     return null;
   }
 
@@ -655,7 +665,7 @@ export class Sala {
     this.metas = this.game.inputs.map((_, k) => metas[k] ?? null);
     this.cps = [];
     this.criarBots();
-    if (this.game.isOver()) this.d.estado = 'fim';
+    if (this.game.isOver()) this.encerrarPartida();
   }
 
   /**
@@ -737,12 +747,19 @@ export class Sala {
       const cp = g.checkpoint();
       if (cp) { this.cps.push(cp); if (this.cps.length > 3) this.cps.shift(); }
     }
-    if (g.isOver() && this.d.estado === 'jogando') {
-      this.d.estado = 'fim';
-      this.vagarQuemSaiu();
-      this.salvar();
-      this.gerente.pensadores?.esquecer(this.d.codigo);
-    }
+    if (g.isOver() && this.d.estado === 'jogando') this.encerrarPartida();
+  }
+
+  /** também ao refazer depois de uma queda entre a última entrada e a gravação do fim; nunca troca o horário final */
+  private encerrarPartida(): void {
+    const p = this.d.partida!;
+    const registrarTempo = p.iniciadaEm !== undefined && p.encerradaEm == null;
+    const mudou = this.d.estado !== 'fim' || registrarTempo;
+    this.d.estado = 'fim';
+    if (registrarTempo) p.encerradaEm = Date.now();
+    this.vagarQuemSaiu();
+    if (mudou) this.salvar();
+    this.gerente.pensadores?.esquecer(this.d.codigo);
   }
 
   // ------------------------------------------------------------------ desfazer
