@@ -217,6 +217,25 @@ Formatos de carta (`motor/formatos.ts`). O nome da definição e o slug usam o n
   mesmo nome" e as notas dos rulings de desenterrar.
 - Nos testes, o texto da habilidade aparece na pergunta dos alvos: se dois alvos da mesma habilidade casam com o mesmo
   trecho, responda pelo que é oferecido (`d.items.find(...)`) em vez de `tg.choose`.
+- "O seu total de pontos de vida não pode mudar": `ruleEffect(c, 'rule:lifeCantChange', duração, { players })`; vale em
+  ganhar, perder e no dano (Teferi's Protection). Duração "até o seu próximo turno":
+  `{ kind: 'untilYourNextTurn', player, sinceTurn }`.
+- Proteção contra tudo para um jogador: `rule:playerProtection` com `params: { quality: 'everything' }` (The One Ring).
+- Resistência a magia temporária do jogador: `rule:playerHexproof` com `players` (Dawn's Truce).
+- Perda de vida em dobro (CR 614.1a): gancho `lifeLossDouble(c, jogador)`; vale também para a perda causada por dano
+  (Bloodletter of Aclazotz).
+- Prevenção: `rule:preventDamageByCreatures` (Ethereal Haze) e o escudo `rule:preventNextDamageTo` com
+  `params: { to, left }`, que se gasta conforme o dano chega (Eiganjo Castle).
+- "Os oponentes não podem conjurar mágicas que não são de criatura neste turno": `rule:cantCastNoncreature` com
+  `players` (Permission Denied).
+- Custo "exile N cartas [com filtro] da sua mão": `{ k: 'exileFromHand', n, label, filter }` (Force of Will). Custo
+  alternativo sem mana: `altCosts: [{ key, label, zone: 'hand', mana: '', parts, condition }]` (Fierce Guardianship).
+- Mana com restrição numa habilidade de mana: `mana(() => [['W', 'W']], { restriction: ID })`, com `defineFn(ID, …)`
+  dizendo em que ela pode ser gasta (Codsworth).
+- `cartas/jin.ts`: notas de infectar, proteção contra tudo e sair de fase; `ehHistorica`; `equipamentosDe`; e o gatilho
+  "a criatura equipada ou encantada causa dano de combate a um jogador" (`c.event.jogador`, `dano`, `criatura`).
+- Nos testes, as compras da etapa de compra tiram cartas do topo do grimório montado: ponha a carta que a busca deve
+  achar depois das que serão compradas até lá.
 
 ## Testes
 

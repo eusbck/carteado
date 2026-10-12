@@ -6,8 +6,7 @@
  "link": "https://moxfield.com/decks/6AR9GAj1bkW2zwOCvuyQ0Q",
  "importadoEm": "2026-10-10T03:03:34.629Z",
  "verificadoEm": "2026-10-10T03:03:34.629Z",
- "atual": null,
- "preparacao": {
+ "atual": {
   "comandante": "Jin Sakai, Ghost of Tsushima",
   "cartas": [
    {
@@ -412,5 +411,6 @@
    "atualizadoEm": "2026-10-10T02:58:29.583Z"
   },
   "desde": "2026-10-10T03:03:34.629Z"
- }
+ },
+ "preparacao": null
 }

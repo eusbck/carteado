@@ -1804,4 +1804,33 @@ de memória antes de terminar. Wakanda Forever, Turtle Power!, Avengers Assemble
 pela suíte inteira; rodaram os testes de cada carta, o `tsc`, a conferência e os bots. A `decks/lote2` ficou em
 `2b98c53` até haver suíte.
 
-Faltam 2 decks do lote 2: Jin's Vengeance, mais o Food and Fellowship (importação e dois comandantes pendentes).
+## Jin's Vengeance (Jin Sakai, Ghost of Tsushima): pronto — 12/10/2026
+
+As 53 cartas que faltavam estão escritas, cada uma com teste e rulings. O deck entrou no saguão desta cópia (25 decks
+jogáveis).
+
+- Conferência com o Moxfield: 100 cartas, 100 de 100 com regras, nada faltando nem sobrando (o "talvez" do Moxfield
+  fica de fora, como sempre).
+- Bots com o deck obrigatório: 8 partidas de 4 jogadores e 12 de 2 (aleatórios), 4 de 2 (heurísticos), todas sem erro.
+- `cartas/jin.ts` guarda as notas de infectar, de proteção contra tudo e de sair de fase, "é histórica" e o gatilho de
+  dano de combate da criatura equipada ou encantada.
+- Motor:
+  - "A sua vida não pode mudar" (regra `rule:lifeCantChange`) e proteção contra tudo para jogador: Teferi's
+    Protection e The One Ring.
+  - Perda de vida em dobro (gancho `lifeLossDouble`): Bloodletter of Aclazotz.
+  - Prevenção do dano de criaturas (Ethereal Haze) e escudo dos próximos N de dano (Eiganjo Castle).
+  - Proibição temporária de mágicas que não são de criatura (Permission Denied) e resistência a magia temporária do
+    jogador (Dawn's Truce).
+  - Custo de exilar cartas da mão (Force of Will).
+- Fichas: nenhuma nova (Construct, Plant, Treasure e Warrior já existiam).
+- Simplificações, para conferir se alguém estranhar na mesa:
+  - Teferi's Protection: com a vida sem poder mudar, o motor ainda deixa "pagar" custos de vida (a vida não muda).
+  - Minas Morgul: a criatura fica Wraith enquanto estiver no campo, mesmo que o marcador de sombra saia depois.
+  - Dismantling Wave, Shellshock e afins já anotados: até três alvos, um por oponente.
+  - Jin Sakai: o modo é escolhido para cada criatura que ataca sozinha um jogador, ao pôr o gatilho na pilha.
+  - Urza's Saga: o capítulo III aceita só custo de mana impresso {0} ou {1}.
+  - Bloodletter com outros efeitos de perda de vida: o motor dobra sem perguntar a ordem (CR 616.1).
+- A suíte inteira ainda não rodou com este deck.
+
+Falta 1 deck do lote 2: o Food and Fellowship (importação e dois comandantes pendentes). A suíte inteira com os cinco
+decks mais recentes continua pendente (ver acima).
