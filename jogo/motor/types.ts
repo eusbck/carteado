@@ -405,6 +405,8 @@ export interface GameState {
   combatDamageBySource?: { turn: number; players: Record<string, PlayerId[]> };
   /** permanentes que receberam dano de cada fonte neste turno (Markov Enforcer); opcional, como o de cima */
   damagedBy?: { turn: number; pairs: Record<string, ObjId[]> };
+  /** quantas vezes cada permanente foi virada neste turno (Captain America, Living Legend); opcional, como os de cima */
+  tappedThisTurn?: { turn: number; times: Record<string, number> };
   /** quantas mágicas de cada nome cada jogador conjurou na partida (chave `jogador:nome`; Approach of the Second Sun);
    *  opcional, como os de cima */
   castNames?: Record<string, number>;

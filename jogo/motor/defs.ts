@@ -265,6 +265,8 @@ export interface RuleHooks {
    * que a carta manda fazer com a quantidade prevenida (CR 615.1, 615.5).
    */
   preventsSomeDamage?: (c: SCtx, target: TargetRef, source: ObjId, amount: number, combat: boolean) => number;
+  /** "…causa esse dano mais N" (Thor, Asgard's Avenger): devolve N para este pedido de dano */
+  damageBonus?: (c: SCtx, source: ObjId, target: TargetRef, combat: boolean) => number;
   /** "dobre todo o dano que [essas fontes] causariam" (Raphael, the Muscle): true dobra o dano deste pedido */
   damageDouble?: (c: SCtx, source: ObjId, target: TargetRef, combat: boolean) => boolean;
   /** "…em vez disso são postos esses marcadores mais N" (High Score): devolve N para este tipo de marcador nesta permanente */

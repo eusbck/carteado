@@ -469,17 +469,43 @@ function sourceHas(g: G, id: ObjId, kw: string): boolean {
  * Causa dano simultâneo (CR 120.4): prevenção, resultados (vida, marcadores, dano marcado),
  * vínculo com a vida, toque mortífero e dano de comandante.
  */
+/**
+ * "Até o fim do turno, todo o dano que seria causado a você e às criaturas que você controla é causado à criatura
+ * escolhida, se ela ainda estiver no campo" (Heroic Sacrifice; redirecionamento, CR 614.9). Efeito de regra
+ * `rule:redirectDamageTo` com `params: { controller, to }`.
+ */
+function redirectedDamage(g: G, r: DamageReq): DamageReq {
+  const s = g.state;
+  for (const e of s.effects) for (const m of e.mods) {
+    if (m.k !== 'rule' || m.id !== 'rule:redirectDamageTo') continue;
+    const para = m.params?.to as ObjId;
+    const dono = m.params?.controller as PlayerId;
+    const o = s.objects[para];
+    if (!o || o.zone !== 'battlefield' || o.phasedOut) continue;
+    if (r.target.kind === 'obj' && r.target.id === para) continue;
+    const alvo = r.target.kind === 'obj' ? s.objects[r.target.id] : null;
+    const atinge = r.target.kind === 'player'
+      ? r.target.id === dono
+      : !!alvo && alvo.zone === 'battlefield' && chars(g, alvo.id).types.includes('Creature') && controllerOf(g, alvo.id) === dono;
+    if (atinge) return { ...r, target: { kind: 'obj', id: para } };
+  }
+  return r;
+}
+
 export function dealDamage(g: G, reqs: DamageReq[]): { dealt: number; to: TargetRef; source: ObjId }[] {
   const s = g.state;
   const events: GameEvent[] = [];
   const results: { dealt: number; to: TargetRef; source: ObjId }[] = [];
   const cantPrevent = hooks(g, 'damageCantBePrevented').some((h) => h.fn(h.ctx));
   const lifelinkGains = new Map<ObjId, { player: PlayerId; amount: number }>();
-  for (const r of reqs) {
-    if (r.amount <= 0) continue; // CR 120.8
+  for (const pedido of reqs) {
+    if (pedido.amount <= 0) continue; // CR 120.8
+    const r = redirectedDamage(g, pedido);
     const { c: sc, controller } = sourceInfo(g, r.source);
     if (!sc) continue;
     let amount = r.amount;
+    // "causa esse dano mais 1" (Thor, Asgard's Avenger; CR 614.1a): soma antes de dobrar, que rende mais (CR 616.1)
+    for (const h of hooks(g, 'damageBonus')) amount += Math.max(0, h.fn(h.ctx, r.source, r.target, r.combat));
     // "dobre o dano que [essas fontes] causariam" (Raphael, the Muscle; CR 614.1a): antes da prevenção
     for (const h of hooks(g, 'damageDouble')) if (h.fn(h.ctx, r.source, r.target, r.combat)) amount *= 2;
     // alvo ainda existe?

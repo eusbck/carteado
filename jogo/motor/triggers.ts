@@ -26,6 +26,11 @@ function updateStats(g: G, events: GameEvent[]): void {
   const st = g.state.turnStats;
   for (const e of events) {
     switch (e.type) {
+      case 'tap': {
+        if (g.state.tappedThisTurn?.turn !== g.state.turn.number) g.state.tappedThisTurn = { turn: g.state.turn.number, times: {} };
+        g.state.tappedThisTurn.times[String(e.obj)] = (g.state.tappedThisTurn.times[String(e.obj)] ?? 0) + 1;
+        break;
+      }
       case 'damage': {
         // lote2-d: dano sofrido por jogador no turno (sede de sangue, CR 702.54a) e quem recebeu dano de cada fonte
         if (e.target.kind === 'player') st[e.target.id].damageTaken = (st[e.target.id].damageTaken ?? 0) + e.amount;
