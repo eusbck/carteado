@@ -70,6 +70,8 @@ const esperadas: Record<string, [string, string[], string[], string[], number | 
   'Rhino': ['Rhino', ['Creature'], ['Rhino'], ['G'], 4, 4, ['trample']],
   'Ooze': ['Ooze', ['Creature'], ['Ooze'], ['G'], 2, 2, []],
   'Robot': ['Robot', ['Artifact', 'Creature'], ['Robot'], [], 1, 1, []],
+  'Necron Warrior': ['Necron Warrior', ['Artifact', 'Creature'], ['Necron', 'Warrior'], ['B'], 2, 2, []],
+  'Insect artefato': ['Insect', ['Artifact', 'Creature'], ['Insect'], [], 1, 1, ['flying']],
   'Dragon 6/6 preto e vermelho': ['Dragon', ['Creature'], ['Dragon'], ['B', 'R'], 6, 6, ['flying', 'menace']],
   'Bat': ['Bat', ['Creature'], ['Bat'], ['B'], 1, 1, ['flying']],
   'Cat 1/1 vínculo': ['Cat', ['Creature'], ['Cat'], ['W'], 1, 1, ['lifelink']],

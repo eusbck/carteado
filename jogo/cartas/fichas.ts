@@ -422,3 +422,7 @@ export const Rhino44 = token('Rhino', 'Rhino', ['Creature'], ['Rhino'], ['G'], 4
 export const Ooze22 = token('Ooze', 'Ooze', ['Creature'], ['Ooze'], ['G'], 2, 2);
 /** Robot 1/1 incolor, criatura artefato (Big Mother Mouser) */
 export const Robot11 = token('Robot', 'Robot', ['Artifact', 'Creature'], ['Robot'], [], 1, 1);
+/** Necron Warrior 2/2 preta, criatura artefato (Necron Dynasties) */
+export const NecronWarrior = token('Necron Warrior', 'Necron Warrior', ['Artifact', 'Creature'], ['Necron', 'Warrior'], ['B'], 2, 2);
+/** Insect 1/1 incolor com voar, criatura artefato (Canoptek Scarab Swarm) */
+export const InsectArtefato = token('Insect artefato', 'Insect', ['Artifact', 'Creature'], ['Insect'], [], 1, 1, keywords('flying'));

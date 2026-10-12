@@ -530,6 +530,8 @@ export function dealDamage(g: G, reqs: DamageReq[]): { dealt: number; to: Target
         const alvo = r.target.id;
         if (s.effects.some((e) => e.mods.some((m) => m.k === 'rule' && m.id === 'rule:preventCombatDamageToSubtype' && m.params?.controller === controllerOf(g, alvo) && chars(g, alvo).subtypes.includes(m.params?.subtype as string)))) amount = 0;
       }
+      // "previna todo o dano de combate que seria causado neste turno" (Darkness)
+      if (amount > 0 && r.combat && s.effects.some((e) => e.mods.some((m) => m.k === 'rule' && m.id === 'rule:preventAllCombatDamage'))) amount = 0;
       for (const e of s.effects) for (const m of e.mods) {
         if (m.k !== 'rule' || m.id !== 'rule:preventCombatDamageToPlayer' || amount === 0) continue;
         if (r.combat && r.target.kind === 'player' && e.affectedPlayers?.includes(r.target.id)) {
