@@ -11,6 +11,7 @@
 // Depois: node ferramentas/cartas-proprias.ts imagens
 
 import { spawn } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import { existsSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -79,7 +80,35 @@ if (refazer) for (const ext of ['png', 'webp']) rmSync(join(pasta, `${slug(refaz
 // --so "Nome" (pode repetir) gera só essas, para experimentar um estilo antes de fazer todas
 const escolhidas = args.flatMap((a, n) => (a === '--so' ? [args[n + 1]] : []));
 const faltam = fila().filter((i) => !pronta(i) && (!escolhidas.length || escolhidas.includes(i.nome)));
-if (args.includes('--lista')) {
+if (args.includes('instalar')) {
+  // banners -> jogo/gerado/fundos/<id da imagem>.webp; ícones -> jogo/cliente/src/imagens/avatares/<apelido>.webp
+  const jogo = resolve(pasta, '../jogo');
+  const idDe = (nome) => { const h = createHash('sha1').update(`brasil:impressao:${nome}`).digest('hex'); return `${h.slice(0, 8)}-${h.slice(8, 12)}-${h.slice(12, 16)}-${h.slice(16, 20)}-${h.slice(20, 32)}`; };
+  const arqFontes = join(jogo, 'gerado/fundos/fontes.json');
+  const fontes = JSON.parse(readFileSync(arqFontes, 'utf8'));
+  for (const nome of Object.keys(prompts.banners)) {
+    const png = join(pasta, `${slug(nome)}-banner.png`);
+    if (!existsSync(png)) { console.log(`${nome}: banner ainda não gerado`); continue; }
+    const id = idDe(nome);
+    const info = await sharp(png).webp({ quality: 90, effort: 6 }).toFile(join(jogo, `gerado/fundos/${id}.webp`));
+    fontes[nome] = { deck: 'deck da mesa', imagem: id, imagens: [id], original: `artes-brasil/${slug(nome)}-banner.png`, referencias: [], ferramenta: 'Codex (image_gen)', modeloSolicitado: null, tamanho: [info.width, info.height], bytes: info.size };
+    console.log(`${nome}: banner ${info.width}x${info.height} instalado`);
+  }
+  writeFileSync(arqFontes, JSON.stringify(fontes, null, 1) + '\n');
+  for (const nome of Object.keys(prompts.icones)) {
+    const png = join(pasta, `${slug(nome)}-icone.png`);
+    if (!existsSync(png)) { console.log(`${nome}: ícone ainda não gerado`); continue; }
+    const meta = await sharp(png).metadata();
+    const alfa = meta.hasAlpha ? (await sharp(png).stats()).channels.at(-1).min : 255;
+    if (alfa !== 0) { console.log(`${nome}: o ícone veio sem fundo transparente; não instalado`); continue; }
+    const apelido = slug(nome.split(',')[0]);
+    const dir = join(jogo, 'cliente/src/imagens/avatares');
+    const transparente = { r: 0, g: 0, b: 0, alpha: 0 };
+    await sharp(png).resize(512, 512, { fit: 'contain', background: transparente }).webp({ nearLossless: true, quality: 80, effort: 6 }).toFile(join(dir, `${apelido}.webp`));
+    await sharp(png).resize(256, 256, { fit: 'contain', background: transparente }).webp({ nearLossless: true, quality: 60, effort: 6 }).toFile(join(dir, 'mesa', `${apelido}.webp`));
+    console.log(`${nome}: ícone instalado como ${apelido}`);
+  }
+} else if (args.includes('--lista')) {
   console.log(faltam.length ? faltam.map((i) => `${i.tipo}: ${i.nome}`).join('\n') : 'Nenhuma arte faltando.');
 } else {
   const arqPend = join(pasta, 'pendencias.json');
