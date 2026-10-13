@@ -32,9 +32,9 @@ class Falsa implements Conexao {
 const espera = () => new Promise((r) => setTimeout(r, 0));
 
 describe('avatares: catálogo', () => {
-  it('24 retratos com ids únicos; os comandantes dos 9 decks da mesa em 06cc7f3 continuam jogáveis e com o seu', () => {
-    expect(AVATARES).toHaveLength(24);
-    expect(new Set(AVATARES.map((a) => a.id)).size).toBe(24);
+  it('26 retratos com ids únicos; os comandantes dos 9 decks da mesa em 06cc7f3 continuam jogáveis e com o seu', () => {
+    expect(AVATARES).toHaveLength(26);
+    expect(new Set(AVATARES.map((a) => a.id)).size).toBe(26);
     for (const d of decksOriginais) {
       expect(decksMesa.some((x) => x.id === d.id && x.comandante === d.comandante), d.comandante).toBe(true);
       expect(avatarDoComandante(d.comandante), d.comandante).not.toBeNull();

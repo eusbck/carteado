@@ -41,6 +41,8 @@ export const AVATARES: Avatar[] = [
   { id: 'kaalia', nome: 'Kaalia', deck: 'Heavenly Inferno', comandante: 'Kaalia of the Vast', aura: '#e08b61' },
   { id: 'timey-wimey', nome: 'Décimo Doutor e Rose', deck: 'Timey-Wimey', comandante: 'The Tenth Doctor', comandantes: ['Rose Tyler'], aura: '#738de9' },
   { id: 'food-and-fellowship', nome: 'Frodo e Sam', deck: 'Food and Fellowship', comandante: 'Frodo, Adventurous Hobbit', comandantes: ['Sam, Loyal Attendant'], aura: '#b6bd70' },
+  { id: 'lula', nome: 'Lula', deck: 'Brasil Pronto pra Mais', comandante: 'Lula, o Espanca Pobre', aura: '#d8392f' },
+  { id: 'bolsonaro', nome: 'Bolsonaro', deck: 'O Brasil Vai Vencer', comandante: 'Bolsonaro, o Genocida', aura: '#e3c341' },
 ];
 
 export const avatarValido = (x: unknown): x is string => typeof x === 'string' && AVATARES.some((a) => a.id === x);

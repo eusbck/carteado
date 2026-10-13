@@ -460,5 +460,37 @@
    941
   ],
   "bytes": 438628
+ },
+ "Lula, o Espanca Pobre": {
+  "deck": "deck da mesa",
+  "imagem": "4eb17874-b68d-ae7a-31e3-d17a3e607c49",
+  "imagens": [
+   "4eb17874-b68d-ae7a-31e3-d17a3e607c49"
+  ],
+  "original": "artes-brasil/lula-o-espanca-pobre-banner.png",
+  "referencias": [],
+  "ferramenta": "Codex (image_gen)",
+  "modeloSolicitado": null,
+  "tamanho": [
+   1672,
+   941
+  ],
+  "bytes": 220462
+ },
+ "Bolsonaro, o Genocida": {
+  "deck": "deck da mesa",
+  "imagem": "df8af4d3-1e5e-fc44-5522-02215064d5ad",
+  "imagens": [
+   "df8af4d3-1e5e-fc44-5522-02215064d5ad"
+  ],
+  "original": "artes-brasil/bolsonaro-o-genocida-banner.png",
+  "referencias": [],
+  "ferramenta": "Codex (image_gen)",
+  "modeloSolicitado": null,
+  "tamanho": [
+   1672,
+   941
+  ],
+  "bytes": 316006
  }
 }

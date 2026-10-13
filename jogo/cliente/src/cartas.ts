@@ -33,7 +33,7 @@ export function urlArte(def: string): string | null {
 }
 
 /** o servidor manda as imagens com cache imutável: mudar a fonte dos fundos pede um número novo aqui */
-const VERSAO_FUNDO = 5;
+const VERSAO_FUNDO = 6;
 
 /** fundo da área do jogador: o feito para o deck (gerado/fundos) ou a arte do comandante ampliada */
 export function urlFundo(def: string): string | null {
@@ -47,6 +47,8 @@ export function urlFundo(def: string): string | null {
  * Trocando a imagem de um fundo, marque o rosto de novo aqui.
  */
 const ROSTO_NO_FUNDO: Record<string, readonly [number, number]> = {
+  'Lula, o Espanca Pobre': [0.5, 0.21],
+  'Bolsonaro, o Genocida': [0.49, 0.21],
   'Felothar the Steadfast': [0.37, 0.24],
   'Auntie Ool, Cursewretch': [0.36, 0.26],
   'Quintorius, History Chaser': [0.49, 0.25],
