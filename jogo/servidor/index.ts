@@ -63,7 +63,7 @@ if (aplicados.length) {
   gerente.trocarDecks(catalogo.listasJogaveis());
   console.log(`Decks que ficaram prontos: ${aplicados.join(', ')}`);
 }
-const imagens = new Imagens(join(RAIZ, '..', 'cartas'), join(RAIZ, '.cache', 'miniaturas'), undefined, [pastas.imagens]);
+const imagens = new Imagens(join(RAIZ, '..', 'cartas'), join(RAIZ, '.cache', 'miniaturas'), undefined, [pastas.imagens, join(RAIZ, 'proprias', 'imagens')]);
 const INFO = JSON.stringify(infoCartas());
 const resumir = (decks: DeckList[]): DeckResumo[] => decks.map((d) => ({ id: d.id, nome: d.nome, comandante: d.comandante, cores: oracle(d.comandante).colorIdentity }));
 let resumoDecks = resumir(catalogo.listasJogaveis());

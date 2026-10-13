@@ -13,6 +13,7 @@ import { createHash } from 'node:crypto';
 import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { pathToFileURL } from 'node:url';
+import sharp from 'sharp';
 import { RAIZ_JOGO } from '../servidor/catalogo/caminhos.ts';
 import type { CartasGeradas, ImagensGeradas } from '../servidor/catalogo/gerar.ts';
 import type { NovasCartas, Printing, ScryCard } from '../servidor/catalogo/tipos.ts';
@@ -249,7 +250,9 @@ async function gravarImagens(so: string[]): Promise<void> {
       await pagina.goto(pathToFileURL(arqHtml).href);
       const destino = join(PASTA_IMAGENS, idDe('impressao', c.nome), 'front.png');
       mkdirSync(dirname(destino), { recursive: true });
-      await pagina.screenshot({ path: destino, omitBackground: true });
+      // paleta de 256 cores com pontilhado: a carta fica com um terço do tamanho, sem diferença visível na mesa
+      const png = await pagina.screenshot({ omitBackground: true });
+      await sharp(png).png({ palette: true, quality: 90, effort: 8 }).toFile(destino);
     }
     console.log(`${escolhidas.length} imagens em proprias/imagens${semArte ? ` (${semArte} com arte provisória)` : ''}.`);
   } finally {

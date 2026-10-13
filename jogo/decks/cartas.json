@@ -44004,6 +44004,1252 @@
    "printing_ids": [
     "fa2c7a34-f7b3-644b-6a5c-e570afba615f"
    ]
+  },
+  "433e0efa-0fdb-a62d-2fac-8935a01cc63a": {
+   "id": "433e0efa-0fdb-a62d-2fac-8935a01cc63a",
+   "oracle_id": "433e0efa-0fdb-a62d-2fac-8935a01cc63a",
+   "name": "Banco Master do Vorcaro",
+   "layout": "normal",
+   "cmc": 6,
+   "mana_cost": "{6}",
+   "type_line": "Artifact",
+   "oracle_text": "When this artifact enters, draw three cards.\n{T}: Add three mana of any one color.\nWhenever one or more creatures an opponent controls attack you and aren't blocked, that player draws three cards and gains control of this artifact. Untap it.",
+   "power": null,
+   "toughness": null,
+   "loyalty": null,
+   "colors": [],
+   "color_identity": [],
+   "keywords": [],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "1647170b-c6ad-aef2-d910-a2fe5d1566c5"
+   ]
+  },
+  "90c75681-13c5-fe32-ca8d-abc9371467d3": {
+   "id": "90c75681-13c5-fe32-ca8d-abc9371467d3",
+   "oracle_id": "90c75681-13c5-fe32-ca8d-abc9371467d3",
+   "name": "Imposto é Amor",
+   "layout": "normal",
+   "cmc": 4,
+   "mana_cost": "{3}{W}",
+   "type_line": "Enchantment",
+   "oracle_text": "Whenever an opponent draws a card, that player may pay {2}. If the player doesn't, you create a Treasure token. (It's an artifact with \"{T}, Sacrifice this token: Add one mana of any color.\")",
+   "power": null,
+   "toughness": null,
+   "loyalty": null,
+   "colors": [
+    "W"
+   ],
+   "color_identity": [
+    "W"
+   ],
+   "keywords": [
+    "Treasure"
+   ],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "a422f52b-bf73-ce61-efa4-942c6bb2da3e"
+   ]
+  },
+  "6e7f1967-ccf5-280b-2d60-17cda680ab5d": {
+   "id": "6e7f1967-ccf5-280b-2d60-17cda680ab5d",
+   "oracle_id": "6e7f1967-ccf5-280b-2d60-17cda680ab5d",
+   "name": "Taxa das Blusinhas",
+   "layout": "normal",
+   "cmc": 3,
+   "mana_cost": "{2}{W}",
+   "type_line": "Enchantment",
+   "oracle_text": "Whenever an opponent casts their second spell each turn, you create a Treasure token.",
+   "power": null,
+   "toughness": null,
+   "loyalty": null,
+   "colors": [
+    "W"
+   ],
+   "color_identity": [
+    "W"
+   ],
+   "keywords": [
+    "Treasure"
+   ],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "83650f53-6e5e-124c-ae66-f0a671fb7bb7"
+   ]
+  },
+  "353dbd8a-f319-8bb4-6325-84b900fe8fe0": {
+   "id": "353dbd8a-f319-8bb4-6325-84b900fe8fe0",
+   "oracle_id": "353dbd8a-f319-8bb4-6325-84b900fe8fe0",
+   "name": "Mensalão",
+   "layout": "normal",
+   "cmc": 3,
+   "mana_cost": "{2}{B}",
+   "type_line": "Enchantment",
+   "oracle_text": "At the beginning of your first main phase, choose one or more —\n• Sell Contraband — Create a Treasure token. You lose 1 life.\n• Buy Information — Draw a card. You lose 2 life.\n• Hire a Mercenary — Create a 3/2 colorless Shapeshifter creature token with changeling. You lose 3 life. (It is every creature type.)",
+   "power": null,
+   "toughness": null,
+   "loyalty": null,
+   "colors": [
+    "B"
+   ],
+   "color_identity": [
+    "B"
+   ],
+   "keywords": [
+    "Hire a Mercenary",
+    "Treasure",
+    "Sell Contraband",
+    "Buy Information"
+   ],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "c4d95e4b-c70b-fdc9-6cc7-4681abfef574"
+   ]
+  },
+  "d48ee36c-56bb-4a3d-5102-7eb5d153e6ed": {
+   "id": "d48ee36c-56bb-4a3d-5102-7eb5d153e6ed",
+   "oracle_id": "d48ee36c-56bb-4a3d-5102-7eb5d153e6ed",
+   "name": "Minha Casa, Minha Vida",
+   "layout": "normal",
+   "cmc": 1,
+   "mana_cost": "{W}",
+   "type_line": "Enchantment",
+   "oracle_text": "At the beginning of your upkeep, if an opponent controls more lands than you, you may search your library for up to three basic land cards, reveal them, put them into your hand, then shuffle.",
+   "power": null,
+   "toughness": null,
+   "loyalty": null,
+   "colors": [
+    "W"
+   ],
+   "color_identity": [
+    "W"
+   ],
+   "keywords": [],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "afe2c7fe-9f0a-e62f-394f-7509ed34c791"
+   ]
+  },
+  "289a72cb-dada-baed-4cc3-c7dc52424011": {
+   "id": "289a72cb-dada-baed-4cc3-c7dc52424011",
+   "oracle_id": "289a72cb-dada-baed-4cc3-c7dc52424011",
+   "name": "Triplex do Guarujá",
+   "layout": "normal",
+   "cmc": 3,
+   "mana_cost": "{2}{W}",
+   "type_line": "Enchantment",
+   "oracle_text": "Creatures can't attack you unless their controller pays {2} for each creature they control that's attacking you.",
+   "power": null,
+   "toughness": null,
+   "loyalty": null,
+   "colors": [
+    "W"
+   ],
+   "color_identity": [
+    "W"
+   ],
+   "keywords": [],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "75319fc5-010e-2449-8cea-c8dc14f6bea4"
+   ]
+  },
+  "de1d2d5d-ceb7-f0ce-038b-c24e885d4fe9": {
+   "id": "de1d2d5d-ceb7-f0ce-038b-c24e885d4fe9",
+   "oracle_id": "de1d2d5d-ceb7-f0ce-038b-c24e885d4fe9",
+   "name": "Boulos e o MTST",
+   "layout": "normal",
+   "cmc": 6,
+   "mana_cost": "{4}{R}{R}",
+   "type_line": "Sorcery",
+   "oracle_text": "Choose one —\n• Gain control of all creatures with power 4 or greater until end of turn. Untap those creatures. They gain haste until end of turn.\n• Gain control of all creatures with power 3 or less until end of turn. Untap those creatures. They gain haste until end of turn.",
+   "power": null,
+   "toughness": null,
+   "loyalty": null,
+   "colors": [
+    "R"
+   ],
+   "color_identity": [
+    "R"
+   ],
+   "keywords": [],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "80c278e1-c5b7-fbff-c8c1-a7306a447af5"
+   ]
+  },
+  "dcd58a6c-5ae3-138a-d167-8f14725df17e": {
+   "id": "dcd58a6c-5ae3-138a-d167-8f14725df17e",
+   "oracle_id": "dcd58a6c-5ae3-138a-d167-8f14725df17e",
+   "name": "Companheiro É Companheiro",
+   "layout": "normal",
+   "cmc": 2,
+   "mana_cost": "{1}{B}",
+   "type_line": "Enchantment — Aura",
+   "oracle_text": "Flash\nReplicate {2} (When you cast this spell, copy it for each time you paid its replicate cost. You may choose new targets for the copies. Copies become tokens.)\nEnchant creature\nWhen enchanted creature dies, return it to the battlefield under your control.",
+   "power": null,
+   "toughness": null,
+   "loyalty": null,
+   "colors": [
+    "B"
+   ],
+   "color_identity": [
+    "B"
+   ],
+   "keywords": [
+    "Replicate",
+    "Enchant",
+    "Flash"
+   ],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "e31b4508-385c-46d9-708f-17f2ab98475e"
+   ]
+  },
+  "1c622c2f-c2bb-1bef-60aa-a62bfca0cedb": {
+   "id": "1c622c2f-c2bb-1bef-60aa-a62bfca0cedb",
+   "oracle_id": "1c622c2f-c2bb-1bef-60aa-a62bfca0cedb",
+   "name": "Lula Livre",
+   "layout": "normal",
+   "cmc": 2,
+   "mana_cost": "{1}{B}",
+   "type_line": "Enchantment — Aura",
+   "oracle_text": "Enchant creature card in a graveyard\nWhen this Aura enters, if it's on the battlefield, it loses \"enchant creature card in a graveyard\" and gains \"enchant creature put onto the battlefield with this Aura.\" Return enchanted creature card to the battlefield under your control and attach this Aura to it. When this Aura leaves the battlefield, that creature's controller sacrifices it.\nEnchanted creature gets -1/-0.",
+   "power": null,
+   "toughness": null,
+   "loyalty": null,
+   "colors": [
+    "B"
+   ],
+   "color_identity": [
+    "B"
+   ],
+   "keywords": [
+    "Enchant"
+   ],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "d3ee602f-1c1b-51a6-61fa-9512fb031102"
+   ]
+  },
+  "2e1e5474-aeef-3910-15b7-9fb5d2b947b9": {
+   "id": "2e1e5474-aeef-3910-15b7-9fb5d2b947b9",
+   "oracle_id": "2e1e5474-aeef-3910-15b7-9fb5d2b947b9",
+   "name": "Janones, Tropa do Zap",
+   "layout": "normal",
+   "cmc": 2,
+   "mana_cost": "{1}{R}",
+   "type_line": "Creature — Human Shaman",
+   "oracle_text": "Whenever this creature attacks, you may pay {1} and discard a card. If you do, draw a card.\nWhenever you discard one or more nonland cards, you may exile one of them from your graveyard. If you do, you may cast it this turn.",
+   "power": "2",
+   "toughness": "2",
+   "loyalty": null,
+   "colors": [
+    "R"
+   ],
+   "color_identity": [
+    "R"
+   ],
+   "keywords": [],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "3b923235-01aa-6538-c7ce-bdf5410836c9"
+   ]
+  },
+  "f40f36eb-86ba-a5cb-a67d-7dfd1bd49996": {
+   "id": "f40f36eb-86ba-a5cb-a67d-7dfd1bd49996",
+   "oracle_id": "f40f36eb-86ba-a5cb-a67d-7dfd1bd49996",
+   "name": "Zanin, Advogado de Estimação",
+   "layout": "normal",
+   "cmc": 3,
+   "mana_cost": "{1}{W}{B}",
+   "type_line": "Legendary Creature — Human Advisor",
+   "oracle_text": "Affinity for planeswalkers (This spell costs {1} less to cast for each planeswalker you control.)\nFlying, vigilance\nWhenever an opponent attacks with creatures, if two or more of those creatures are attacking you and/or planeswalkers you control, that opponent loses 3 life and you draw a card.",
+   "power": "2",
+   "toughness": "4",
+   "loyalty": null,
+   "colors": [
+    "W",
+    "B"
+   ],
+   "color_identity": [
+    "B",
+    "W"
+   ],
+   "keywords": [
+    "Flying",
+    "Affinity",
+    "Vigilance"
+   ],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "bb9accdc-9d35-2af1-6261-c7cf780433c7"
+   ]
+  },
+  "cf00b089-cc7d-464f-b2a0-396c63bac3f5": {
+   "id": "cf00b089-cc7d-464f-b2a0-396c63bac3f5",
+   "oracle_id": "cf00b089-cc7d-464f-b2a0-396c63bac3f5",
+   "name": "Gleisi, a Presidenta do Partido",
+   "layout": "normal",
+   "cmc": 3,
+   "mana_cost": "{1}{W}{B}",
+   "type_line": "Legendary Creature — Bird Warlock",
+   "oracle_text": "Flying\nWhenever a player attacks one of your opponents, if that opponent has more life than another of your opponents, that attacking player draws a card and you put two +1/+1 counters on a creature you control.",
+   "power": "1",
+   "toughness": "3",
+   "loyalty": null,
+   "colors": [
+    "W",
+    "B"
+   ],
+   "color_identity": [
+    "B",
+    "W"
+   ],
+   "keywords": [
+    "Flying"
+   ],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "1823a6d9-b3c3-7914-2e17-3d6852afd944"
+   ]
+  },
+  "f4685890-0995-e38c-4344-758669a52457": {
+   "id": "f4685890-0995-e38c-4344-758669a52457",
+   "oracle_id": "f4685890-0995-e38c-4344-758669a52457",
+   "name": "Zé Dirceu, o Articulador",
+   "layout": "normal",
+   "cmc": 3,
+   "mana_cost": "{1}{W}{B}",
+   "type_line": "Legendary Creature — Human Cleric",
+   "oracle_text": "Lifelink\nAt the beginning of each of your postcombat main phases, you may pay X life, where X is the number of opponents that were dealt combat damage this turn. If you do, draw X cards.\nPartner (You can have two commanders if both have partner.)",
+   "power": "2",
+   "toughness": "2",
+   "loyalty": null,
+   "colors": [
+    "W",
+    "B"
+   ],
+   "color_identity": [
+    "B",
+    "W"
+   ],
+   "keywords": [
+    "Lifelink",
+    "Partner"
+   ],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "cff698ee-0abc-6203-eb1b-bb5313a0eb0b"
+   ]
+  },
+  "76e99230-7262-c48e-c099-4446231285e5": {
+   "id": "76e99230-7262-c48e-c099-4446231285e5",
+   "oracle_id": "76e99230-7262-c48e-c099-4446231285e5",
+   "name": "Tornozeleira Eletrônica",
+   "layout": "normal",
+   "cmc": 3,
+   "mana_cost": "{2}{W}",
+   "type_line": "Enchantment — Aura",
+   "oracle_text": "Enchant creature you control\nWhen this Aura enters, exile target nonland permanent an opponent controls until this Aura leaves the battlefield.\nEnchanted creature has ward {2}. (Whenever it becomes the target of a spell or ability an opponent controls, counter it unless that player pays {2}.)",
+   "power": null,
+   "toughness": null,
+   "loyalty": null,
+   "colors": [
+    "W"
+   ],
+   "color_identity": [
+    "W"
+   ],
+   "keywords": [
+    "Enchant"
+   ],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "868e8efa-227c-97ae-9da8-3954dbd2148d"
+   ]
+  },
+  "82732bd1-b64d-af1c-7e58-0ef8573d4b17": {
+   "id": "82732bd1-b64d-af1c-7e58-0ef8573d4b17",
+   "oracle_id": "82732bd1-b64d-af1c-7e58-0ef8573d4b17",
+   "name": "Tesoureiro do Partido",
+   "layout": "normal",
+   "cmc": 3,
+   "mana_cost": "{2}{R}",
+   "type_line": "Creature — Goblin Rogue",
+   "oracle_text": "Whenever an opponent taps an artifact for mana, gain control of that artifact until the end of your next turn.",
+   "power": "3",
+   "toughness": "2",
+   "loyalty": null,
+   "colors": [
+    "R"
+   ],
+   "color_identity": [
+    "R"
+   ],
+   "keywords": [],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "8aecfba9-9f8a-3b49-0a86-4cbcd9faf9a1"
+   ]
+  },
+  "b98723a1-5993-6d11-d5e1-e152321d239d": {
+   "id": "b98723a1-5993-6d11-d5e1-e152321d239d",
+   "oracle_id": "b98723a1-5993-6d11-d5e1-e152321d239d",
+   "name": "Reforma Tributária",
+   "layout": "normal",
+   "cmc": 4,
+   "mana_cost": "{3}{B}",
+   "type_line": "Sorcery",
+   "oracle_text": "Each other player discards a card. You draw a card for each card discarded this way.",
+   "power": null,
+   "toughness": null,
+   "loyalty": null,
+   "colors": [
+    "B"
+   ],
+   "color_identity": [
+    "B"
+   ],
+   "keywords": [],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "c0cea0b0-7db9-5ca9-f838-c14ca1adc2ba"
+   ]
+  },
+  "8339151e-ad1c-0ac4-392e-f2ea1ad119d9": {
+   "id": "8339151e-ad1c-0ac4-392e-f2ea1ad119d9",
+   "oracle_id": "8339151e-ad1c-0ac4-392e-f2ea1ad119d9",
+   "name": "Picanha e Cervejinha",
+   "layout": "normal",
+   "cmc": 3,
+   "mana_cost": "{1}{B}{B}",
+   "type_line": "Enchantment",
+   "oracle_text": "At the beginning of your upkeep, you draw a card and lose 1 life.",
+   "power": null,
+   "toughness": null,
+   "loyalty": null,
+   "colors": [
+    "B"
+   ],
+   "color_identity": [
+    "B"
+   ],
+   "keywords": [],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "64e7f8b3-2eb4-24e5-9107-83d67846ebf3"
+   ]
+  },
+  "f0daceb7-915c-c6d0-e384-1c66f5ef93fa": {
+   "id": "f0daceb7-915c-c6d0-e384-1c66f5ef93fa",
+   "oracle_id": "f0daceb7-915c-c6d0-e384-1c66f5ef93fa",
+   "name": "Marina Silva, a Sustentável",
+   "layout": "normal",
+   "cmc": 2,
+   "mana_cost": "{1}{W}",
+   "type_line": "Creature — Kor Wizard",
+   "oracle_text": "This creature gets +2/+2 for each Aura attached to it.\nWhenever you cast an Aura spell, you may draw a card.",
+   "power": "0",
+   "toughness": "2",
+   "loyalty": null,
+   "colors": [
+    "W"
+   ],
+   "color_identity": [
+    "W"
+   ],
+   "keywords": [],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "708b73e3-26fb-9129-213f-c1d07a0735b5"
+   ]
+  },
+  "c52a8e51-6731-c57b-f041-194332a7bed0": {
+   "id": "c52a8e51-6731-c57b-f041-194332a7bed0",
+   "oracle_id": "c52a8e51-6731-c57b-f041-194332a7bed0",
+   "name": "Sidônio, o Marqueteiro",
+   "layout": "normal",
+   "cmc": 2,
+   "mana_cost": "{1}{W}",
+   "type_line": "Legendary Creature — Dwarf Advisor",
+   "oracle_text": "Whenever you cast an Aura, Equipment, or Vehicle spell, draw a card.",
+   "power": "2",
+   "toughness": "2",
+   "loyalty": null,
+   "colors": [
+    "W"
+   ],
+   "color_identity": [
+    "W"
+   ],
+   "keywords": [],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "3b599a66-1a98-ad89-2bed-3f0191c565d4"
+   ]
+  },
+  "c65c85bb-dd1a-4fa3-3af8-a14d22cb0b1c": {
+   "id": "c65c85bb-dd1a-4fa3-3af8-a14d22cb0b1c",
+   "oracle_id": "c65c85bb-dd1a-4fa3-3af8-a14d22cb0b1c",
+   "name": "Nunca Antes na História Deste País",
+   "layout": "normal",
+   "cmc": 7,
+   "mana_cost": "{5}{B}{B}",
+   "type_line": "Sorcery",
+   "oracle_text": "Each player mills ten cards. For each player, choose a creature or planeswalker card in that player's graveyard. Put those cards onto the battlefield under your control. Then each creature you control becomes a Phyrexian in addition to its other types.",
+   "power": null,
+   "toughness": null,
+   "loyalty": null,
+   "colors": [
+    "B"
+   ],
+   "color_identity": [
+    "B"
+   ],
+   "keywords": [
+    "Mill"
+   ],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "f92d5b45-56fc-eed0-d44f-fe9b164913ef"
+   ]
+  },
+  "d815b714-8b46-e56c-d546-36c64917530d": {
+   "id": "d815b714-8b46-e56c-d546-36c64917530d",
+   "oracle_id": "d815b714-8b46-e56c-d546-36c64917530d",
+   "name": "Sítio de Atibaia",
+   "layout": "normal",
+   "cmc": 0,
+   "mana_cost": "",
+   "type_line": "Land",
+   "oracle_text": "You have no maximum hand size.\n{T}: Add {C}.",
+   "power": null,
+   "toughness": null,
+   "loyalty": null,
+   "colors": [],
+   "color_identity": [],
+   "keywords": [],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "af6d06f7-d16c-4eef-7267-3dc683b6af36"
+   ]
+  },
+  "2d24a17b-4a81-c442-9f9b-a7991c71e66c": {
+   "id": "2d24a17b-4a81-c442-9f9b-a7991c71e66c",
+   "oracle_id": "2d24a17b-4a81-c442-9f9b-a7991c71e66c",
+   "name": "Gripezinha",
+   "layout": "normal",
+   "cmc": 1,
+   "mana_cost": "{W}",
+   "type_line": "Instant",
+   "oracle_text": "Exile target creature. Its controller gains life equal to its power.",
+   "power": null,
+   "toughness": null,
+   "loyalty": null,
+   "colors": [
+    "W"
+   ],
+   "color_identity": [
+    "W"
+   ],
+   "keywords": [],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "0f27d5fc-ab34-1f7e-2d47-0b74817a373d"
+   ]
+  },
+  "e930baa3-04c4-be2c-1f65-2ba055c2c216": {
+   "id": "e930baa3-04c4-be2c-1f65-2ba055c2c216",
+   "oracle_id": "e930baa3-04c4-be2c-1f65-2ba055c2c216",
+   "name": "Zambelli de Arma em Punho",
+   "layout": "normal",
+   "cmc": 2,
+   "mana_cost": "{1}{B}",
+   "type_line": "Instant",
+   "oracle_text": "Destroy target nonartifact creature.",
+   "power": null,
+   "toughness": null,
+   "loyalty": null,
+   "colors": [
+    "B"
+   ],
+   "color_identity": [
+    "B"
+   ],
+   "keywords": [],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "a1422d2f-452e-f80a-9346-bda937c73f6b"
+   ]
+  },
+  "2eb21235-dcea-707e-7655-7fd314535f4b": {
+   "id": "2eb21235-dcea-707e-7655-7fd314535f4b",
+   "oracle_id": "2eb21235-dcea-707e-7655-7fd314535f4b",
+   "name": "Oito de Janeiro",
+   "layout": "normal",
+   "cmc": 2,
+   "mana_cost": "{X}{W}{W}",
+   "type_line": "Sorcery",
+   "oracle_text": "Create X 1/1 white Soldier creature tokens. If X is 5 or more, destroy all other creatures.",
+   "power": null,
+   "toughness": null,
+   "loyalty": null,
+   "colors": [
+    "W"
+   ],
+   "color_identity": [
+    "W"
+   ],
+   "keywords": [],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "09e4e3f2-eb98-8169-cafc-c6ba6465ff47"
+   ]
+  },
+  "4bf67b04-bb28-a40d-ef34-e7aca9e01967": {
+   "id": "4bf67b04-bb28-a40d-ef34-e7aca9e01967",
+   "oracle_id": "4bf67b04-bb28-a40d-ef34-e7aca9e01967",
+   "name": "Mito",
+   "layout": "normal",
+   "cmc": 4,
+   "mana_cost": "{2}{W}{W}",
+   "type_line": "Enchantment — Aura",
+   "oracle_text": "Enchant creature\nEnchanted creature gets +4/+4, has flying and first strike, and is an Angel in addition to its other types.\nWhen enchanted creature dies, return this card to its owner's hand.",
+   "power": null,
+   "toughness": null,
+   "loyalty": null,
+   "colors": [
+    "W"
+   ],
+   "color_identity": [
+    "W"
+   ],
+   "keywords": [
+    "Enchant"
+   ],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "106298f6-4828-4f96-be8e-f852a57b06bc"
+   ]
+  },
+  "c8c2e339-68e4-ab30-9c25-ad31f479a72d": {
+   "id": "c8c2e339-68e4-ab30-9c25-ad31f479a72d",
+   "oracle_id": "c8c2e339-68e4-ab30-9c25-ad31f479a72d",
+   "name": "Cercadinho do Alvorada",
+   "layout": "normal",
+   "cmc": 3,
+   "mana_cost": "{2}{W}",
+   "type_line": "Enchantment",
+   "oracle_text": "Creatures can't attack you unless their controller pays {2} for each creature they control that's attacking you.",
+   "power": null,
+   "toughness": null,
+   "loyalty": null,
+   "colors": [
+    "W"
+   ],
+   "color_identity": [
+    "W"
+   ],
+   "keywords": [],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "3b880907-9b51-7244-11ee-bebd56a05f52"
+   ]
+  },
+  "d80a4229-ced8-0982-c249-9ffebb3a9760": {
+   "id": "d80a4229-ced8-0982-c249-9ffebb3a9760",
+   "oracle_id": "d80a4229-ced8-0982-c249-9ffebb3a9760",
+   "name": "Malafaia, Pastor do Dízimo",
+   "layout": "normal",
+   "cmc": 1,
+   "mana_cost": "{W}",
+   "type_line": "Creature — Human Cleric",
+   "oracle_text": "Whenever another creature enters, you gain 1 life.",
+   "power": "1",
+   "toughness": "1",
+   "loyalty": null,
+   "colors": [
+    "W"
+   ],
+   "color_identity": [
+    "W"
+   ],
+   "keywords": [],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "b8b89793-e5f5-eaaf-0a8e-6b2717e659d1"
+   ]
+  },
+  "f0d56d21-8399-2ad4-e4dd-3d996a32ad79": {
+   "id": "f0d56d21-8399-2ad4-e4dd-3d996a32ad79",
+   "oracle_id": "f0d56d21-8399-2ad4-e4dd-3d996a32ad79",
+   "name": "Queiroz, o Operador",
+   "layout": "normal",
+   "cmc": 2,
+   "mana_cost": "{1}{B}",
+   "type_line": "Creature — Human Rogue Ally",
+   "oracle_text": "Whenever this creature or another creature you control dies, each opponent loses 1 life and you gain 1 life.",
+   "power": "1",
+   "toughness": "1",
+   "loyalty": null,
+   "colors": [
+    "B"
+   ],
+   "color_identity": [
+    "B"
+   ],
+   "keywords": [],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "53b90ce4-74ed-8ee4-29c1-7f94418fa3f0"
+   ]
+  },
+  "d214f0ae-9ccc-2e3e-e434-5774dc2bf098": {
+   "id": "d214f0ae-9ccc-2e3e-e434-5774dc2bf098",
+   "oracle_id": "d214f0ae-9ccc-2e3e-e434-5774dc2bf098",
+   "name": "Braga Netto, o Interventor",
+   "layout": "normal",
+   "cmc": 4,
+   "mana_cost": "{2}{B}{B}",
+   "type_line": "Creature — Beast Horror",
+   "oracle_text": "When this creature enters, destroy target creature an opponent controls.",
+   "power": "2",
+   "toughness": "2",
+   "loyalty": null,
+   "colors": [
+    "B"
+   ],
+   "color_identity": [
+    "B"
+   ],
+   "keywords": [],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "dc6af693-78c9-fcc2-e806-eacba16d90a9"
+   ]
+  },
+  "711109fd-a107-1eff-e525-106128dd8f4a": {
+   "id": "711109fd-a107-1eff-e525-106128dd8f4a",
+   "oracle_id": "711109fd-a107-1eff-e525-106128dd8f4a",
+   "name": "Jair Renan, o 04",
+   "layout": "normal",
+   "cmc": 1,
+   "mana_cost": "{W}",
+   "type_line": "Creature — Human Monk",
+   "oracle_text": "Lifelink (Damage dealt by this creature also causes you to gain that much life.)\nAs long as you have 30 or more life, this creature gets +5/+5 and has flying.",
+   "power": "1",
+   "toughness": "1",
+   "loyalty": null,
+   "colors": [
+    "W"
+   ],
+   "color_identity": [
+    "W"
+   ],
+   "keywords": [
+    "Lifelink"
+   ],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "33fc7959-e2df-3d30-2062-9a917bcaab9d"
+   ]
+  },
+  "118ae03f-7958-d397-ed8f-ee323f4e0af7": {
+   "id": "118ae03f-7958-d397-ed8f-ee323f4e0af7",
+   "oracle_id": "118ae03f-7958-d397-ed8f-ee323f4e0af7",
+   "name": "Patriota do Caminhão",
+   "layout": "normal",
+   "cmc": 2,
+   "mana_cost": "{1}{W}",
+   "type_line": "Creature — Cat Soldier",
+   "oracle_text": "Whenever you gain life, put a +1/+1 counter on this creature.",
+   "power": "2",
+   "toughness": "2",
+   "loyalty": null,
+   "colors": [
+    "W"
+   ],
+   "color_identity": [
+    "W"
+   ],
+   "keywords": [],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "afb9b95e-24f5-9ecf-dff6-6eeccbe8d1ea"
+   ]
+  },
+  "3ac2c830-090a-ea47-646b-18e3d8a66bb3": {
+   "id": "3ac2c830-090a-ea47-646b-18e3d8a66bb3",
+   "oracle_id": "3ac2c830-090a-ea47-646b-18e3d8a66bb3",
+   "name": "Damares, a da Goiabeira",
+   "layout": "normal",
+   "cmc": 5,
+   "mana_cost": "{3}{W}{W}",
+   "type_line": "Creature — Angel",
+   "oracle_text": "Flying\nLifelink (Damage dealt by this creature also causes you to gain that much life.)\nWhenever you gain life, put a +1/+1 counter on each creature you control.",
+   "power": "3",
+   "toughness": "4",
+   "loyalty": null,
+   "colors": [
+    "W"
+   ],
+   "color_identity": [
+    "W"
+   ],
+   "keywords": [
+    "Flying",
+    "Lifelink"
+   ],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "5cdcebaa-a727-4242-f261-6e5218d0a2b5"
+   ]
+  },
+  "2f17b31c-f377-ccb1-6ba6-b749049ae3ae": {
+   "id": "2f17b31c-f377-ccb1-6ba6-b749049ae3ae",
+   "oracle_id": "2f17b31c-f377-ccb1-6ba6-b749049ae3ae",
+   "name": "Eduardo Bananinha, o Exilado",
+   "layout": "normal",
+   "cmc": 3,
+   "mana_cost": "{1}{B}{B}",
+   "type_line": "Creature — Vampire Shaman",
+   "oracle_text": "Flying\nDeathtouch (Any amount of damage this deals to a creature is enough to destroy it.)\nLifelink (Damage dealt by this creature also causes you to gain that much life.)",
+   "power": "2",
+   "toughness": "3",
+   "loyalty": null,
+   "colors": [
+    "B"
+   ],
+   "color_identity": [
+    "B"
+   ],
+   "keywords": [
+    "Deathtouch",
+    "Flying",
+    "Lifelink"
+   ],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "9b55d378-de4d-d985-6895-0201b136531e"
+   ]
+  },
+  "4edb36d3-161e-9959-975f-c6997de1a78d": {
+   "id": "4edb36d3-161e-9959-975f-c6997de1a78d",
+   "oracle_id": "4edb36d3-161e-9959-975f-c6997de1a78d",
+   "name": "Milei, El Loco da Motosserra",
+   "layout": "normal",
+   "cmc": 6,
+   "mana_cost": "{3}{B}{B}{B}",
+   "type_line": "Creature — Phyrexian Wurm",
+   "oracle_text": "When this creature enters, creatures your opponents control get -2/-2 until end of turn.\nWhenever a creature an opponent controls dies, that player loses 2 life.",
+   "power": "6",
+   "toughness": "5",
+   "loyalty": null,
+   "colors": [
+    "B"
+   ],
+   "color_identity": [
+    "B"
+   ],
+   "keywords": [],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "4c60b156-9756-4ae9-389b-07b22db91aaa"
+   ]
+  },
+  "aa87df26-d613-fdbe-7f34-802365296379": {
+   "id": "aa87df26-d613-fdbe-7f34-802365296379",
+   "oracle_id": "aa87df26-d613-fdbe-7f34-802365296379",
+   "name": "Tarifaço do Trump",
+   "layout": "normal",
+   "cmc": 8,
+   "mana_cost": "{6}{B}{B}",
+   "type_line": "Sorcery",
+   "oracle_text": "Destroy all creatures. They can't be regenerated. Draw a card for each creature destroyed this way.\nCycling {3}{B}{B} ({3}{B}{B}, Discard this card: Draw a card.)\nWhen you cycle this card, all creatures get -2/-2 until end of turn.",
+   "power": null,
+   "toughness": null,
+   "loyalty": null,
+   "colors": [
+    "B"
+   ],
+   "color_identity": [
+    "B"
+   ],
+   "keywords": [
+    "Cycling"
+   ],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "c41b357d-4439-9e1c-1d14-82b26bf5c75f"
+   ]
+  },
+  "b257a4b0-5bc3-e9d9-e75a-43841da84080": {
+   "id": "b257a4b0-5bc3-e9d9-e75a-43841da84080",
+   "oracle_id": "b257a4b0-5bc3-e9d9-e75a-43841da84080",
+   "name": "Paulo Guedes, o Posto Ipiranga",
+   "layout": "normal",
+   "cmc": 4,
+   "mana_cost": "{3}{B}",
+   "type_line": "Creature — Human Pirate",
+   "oracle_text": "Whenever another creature you control dies, create a Treasure token. (It's an artifact with \"{T}, Sacrifice this token: Add one mana of any color.\")",
+   "power": "1",
+   "toughness": "4",
+   "loyalty": null,
+   "colors": [
+    "B"
+   ],
+   "color_identity": [
+    "B"
+   ],
+   "keywords": [
+    "Treasure"
+   ],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "349b7620-35e9-cafc-4507-249ab94df059"
+   ]
+  },
+  "17fbd4b7-8d0c-a1b9-e53f-d6fbc3938066": {
+   "id": "17fbd4b7-8d0c-a1b9-e53f-d6fbc3938066",
+   "oracle_id": "17fbd4b7-8d0c-a1b9-e53f-d6fbc3938066",
+   "name": "Sergio Moro, Ex-Juiz",
+   "layout": "normal",
+   "cmc": 4,
+   "mana_cost": "{2}{W}{W}",
+   "type_line": "Creature — Human Soldier",
+   "oracle_text": "When this creature enters, you become the monarch.\nWhen this creature enters, exile target creature an opponent controls until an opponent becomes the monarch.",
+   "power": "2",
+   "toughness": "2",
+   "loyalty": null,
+   "colors": [
+    "W"
+   ],
+   "color_identity": [
+    "W"
+   ],
+   "keywords": [],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "65c98e97-ab0b-1b6f-1ce2-d7b5eca18b1f"
+   ]
+  },
+  "5b817a47-3fdf-c98e-789f-aa99a3936dd6": {
+   "id": "5b817a47-3fdf-c98e-789f-aa99a3936dd6",
+   "oracle_id": "5b817a47-3fdf-c98e-789f-aa99a3936dd6",
+   "name": "Mauro Cid, o Delator",
+   "layout": "normal",
+   "cmc": 4,
+   "mana_cost": "{2}{B}{B}",
+   "type_line": "Legendary Creature — Vampire Warrior",
+   "oracle_text": "Lifelink\nIf a nontoken creature an opponent controls would die, instead exile that card and create a 2/2 black Zombie creature token.\n{2}{B}, Sacrifice another Vampire or Zombie: Put two +1/+1 counters on Kalitas.",
+   "power": "3",
+   "toughness": "4",
+   "loyalty": null,
+   "colors": [
+    "B"
+   ],
+   "color_identity": [
+    "B"
+   ],
+   "keywords": [
+    "Lifelink"
+   ],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "b09a7adb-5943-f31a-3fbb-0160ac1a7702"
+   ]
+  },
+  "0eca36c0-b60a-fc91-75a6-019495b46a1b": {
+   "id": "0eca36c0-b60a-fc91-75a6-019495b46a1b",
+   "oracle_id": "0eca36c0-b60a-fc91-75a6-019495b46a1b",
+   "name": "Leite Condensado",
+   "layout": "normal",
+   "cmc": 2,
+   "mana_cost": "{X}{B}{B}",
+   "type_line": "Sorcery",
+   "oracle_text": "Each opponent loses X life. You gain life equal to the life lost this way.",
+   "power": null,
+   "toughness": null,
+   "loyalty": null,
+   "colors": [
+    "B"
+   ],
+   "color_identity": [
+    "B"
+   ],
+   "keywords": [],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "06619302-5bf5-dcc6-e54d-9bef7cc33048"
+   ]
+  },
+  "faf8458b-7c6d-6f33-d462-dff30cdce732": {
+   "id": "faf8458b-7c6d-6f33-d462-dff30cdce732",
+   "oracle_id": "faf8458b-7c6d-6f33-d462-dff30cdce732",
+   "name": "Joias da Arábia",
+   "layout": "normal",
+   "cmc": 1,
+   "mana_cost": "{1}",
+   "type_line": "Artifact — Equipment",
+   "oracle_text": "Equipped creature has deathtouch and lifelink. (Any amount of damage it deals to a creature is enough to destroy it. Damage dealt by this creature also causes you to gain that much life.)\nEquip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)",
+   "power": null,
+   "toughness": null,
+   "loyalty": null,
+   "colors": [],
+   "color_identity": [],
+   "keywords": [
+    "Equip"
+   ],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "f7e36594-1ec1-6044-ec85-491554fce42e"
+   ]
+  },
+  "90cc7e90-4e68-e29a-8f12-91768c917db7": {
+   "id": "90cc7e90-4e68-e29a-8f12-91768c917db7",
+   "oracle_id": "90cc7e90-4e68-e29a-8f12-91768c917db7",
+   "name": "Pix do Mito",
+   "layout": "normal",
+   "cmc": 5,
+   "mana_cost": "{4}{W}",
+   "type_line": "Enchantment",
+   "oracle_text": "If you would gain life, you gain twice that much life instead.",
+   "power": null,
+   "toughness": null,
+   "loyalty": null,
+   "colors": [
+    "W"
+   ],
+   "color_identity": [
+    "W"
+   ],
+   "keywords": [],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "c1d37122-df31-5e77-447c-1d7aa1ce2486"
+   ]
+  },
+  "97cc0cb2-4676-7b00-32d7-160c47620044": {
+   "id": "97cc0cb2-4676-7b00-32d7-160c47620044",
+   "oracle_id": "97cc0cb2-4676-7b00-32d7-160c47620044",
+   "name": "Valdemar, Dono do Partido",
+   "layout": "normal",
+   "cmc": 4,
+   "mana_cost": "{3}{B}",
+   "type_line": "Creature — Tiefling Rogue",
+   "oracle_text": "Whenever one or more creatures you control deal combat damage to a player, create two Treasure tokens.\n{B}, Sacrifice X Treasures: Target creature gets -X/-X until end of turn. Activate only as a sorcery.",
+   "power": "3",
+   "toughness": "2",
+   "loyalty": null,
+   "colors": [
+    "B"
+   ],
+   "color_identity": [
+    "B"
+   ],
+   "keywords": [
+    "Treasure"
+   ],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "960f500c-1ff5-4c0f-fdf4-17258818c454"
+   ]
+  },
+  "56605c0e-c46c-e836-e63f-00bb22b2ee5a": {
+   "id": "56605c0e-c46c-e836-e63f-00bb22b2ee5a",
+   "oracle_id": "56605c0e-c46c-e836-e63f-00bb22b2ee5a",
+   "name": "Vivendas da Barra",
+   "layout": "normal",
+   "cmc": 0,
+   "mana_cost": "",
+   "type_line": "Land",
+   "oracle_text": "{T}: Add {C}.\n{2}{G}{W}, {T}: Put a +1/+1 counter on each creature you control.",
+   "power": null,
+   "toughness": null,
+   "loyalty": null,
+   "colors": [],
+   "color_identity": [
+    "G",
+    "W"
+   ],
+   "keywords": [],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "a225055c-9505-3196-7b61-5f8ca660dfcb"
+   ]
   }
  },
  "printings": {
@@ -97275,7 +98521,7 @@
    "lang": "pt",
    "layout": "token",
    "set": "brz",
-   "collector_number": "24",
+   "collector_number": "67",
    "type_line": "Token Creature — Human Citizen",
    "oracle_text": "",
    "power": "1",
@@ -97302,7 +98548,7 @@
    "lang": "pt",
    "layout": "token",
    "set": "brz",
-   "collector_number": "25",
+   "collector_number": "68",
    "type_line": "Token Creature — Human Citizen",
    "oracle_text": "Haste",
    "power": "1",
@@ -97893,6 +99139,1162 @@
     {
      "face": "front",
      "path": "imagens/fa2c7a34-f7b3-644b-6a5c-e570afba615f/front.png"
+    }
+   ]
+  },
+  "1647170b-c6ad-aef2-d910-a2fe5d1566c5": {
+   "id": "1647170b-c6ad-aef2-d910-a2fe5d1566c5",
+   "oracle_id": "433e0efa-0fdb-a62d-2fac-8935a01cc63a",
+   "name": "Banco Master do Vorcaro",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "24",
+   "type_line": "Artifact",
+   "oracle_text": "When this artifact enters, draw three cards.\n{T}: Add three mana of any one color.\nWhenever one or more creatures an opponent controls attack you and aren't blocked, that player draws three cards and gains control of this artifact. Untap it.",
+   "power": null,
+   "toughness": null,
+   "colors": [],
+   "printed_name": "Banco Master do Vorcaro",
+   "printed_type_line": "Artefato",
+   "printed_text": "Quando Joia Cobiçada entrar no campo de batalha, compre três cards.\n{T}: Adicione três manas de uma cor à sua escolha.\nToda vez que uma ou mais criaturas que um oponente controla atacarem você e não forem bloqueadas, aquele jogador comprará três cards e ganhará o controle de Joia Cobiçada. Desvire-a.",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/1647170b-c6ad-aef2-d910-a2fe5d1566c5/front.png"
+    }
+   ]
+  },
+  "a422f52b-bf73-ce61-efa4-942c6bb2da3e": {
+   "id": "a422f52b-bf73-ce61-efa4-942c6bb2da3e",
+   "oracle_id": "90c75681-13c5-fe32-ca8d-abc9371467d3",
+   "name": "Imposto é Amor",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "25",
+   "type_line": "Enchantment",
+   "oracle_text": "Whenever an opponent draws a card, that player may pay {2}. If the player doesn't, you create a Treasure token. (It's an artifact with \"{T}, Sacrifice this token: Add one mana of any color.\")",
+   "power": null,
+   "toughness": null,
+   "colors": [
+    "W"
+   ],
+   "printed_name": "Imposto é Amor",
+   "printed_type_line": "Encantamento",
+   "printed_text": "Toda vez que um oponente compra um card, aquele jogador pode pagar {2}. Se o jogador não fizer isso, você cria uma ficha de artefato incolor do tipo Tesouro com \"{T}, sacrifique este artefato: Adicione um mana de qualquer cor.\"",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/a422f52b-bf73-ce61-efa4-942c6bb2da3e/front.png"
+    }
+   ]
+  },
+  "83650f53-6e5e-124c-ae66-f0a671fb7bb7": {
+   "id": "83650f53-6e5e-124c-ae66-f0a671fb7bb7",
+   "oracle_id": "6e7f1967-ccf5-280b-2d60-17cda680ab5d",
+   "name": "Taxa das Blusinhas",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "26",
+   "type_line": "Enchantment",
+   "oracle_text": "Whenever an opponent casts their second spell each turn, you create a Treasure token.",
+   "power": null,
+   "toughness": null,
+   "colors": [
+    "W"
+   ],
+   "printed_name": "Taxa das Blusinhas",
+   "printed_type_line": "Encantamento",
+   "printed_text": "Toda vez que um oponente conjura sua segunda mágica a cada turno, você cria uma ficha de Tesouro.",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/83650f53-6e5e-124c-ae66-f0a671fb7bb7/front.png"
+    }
+   ]
+  },
+  "c4d95e4b-c70b-fdc9-6cc7-4681abfef574": {
+   "id": "c4d95e4b-c70b-fdc9-6cc7-4681abfef574",
+   "oracle_id": "353dbd8a-f319-8bb4-6325-84b900fe8fe0",
+   "name": "Mensalão",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "27",
+   "type_line": "Enchantment",
+   "oracle_text": "At the beginning of your first main phase, choose one or more —\n• Sell Contraband — Create a Treasure token. You lose 1 life.\n• Buy Information — Draw a card. You lose 2 life.\n• Hire a Mercenary — Create a 3/2 colorless Shapeshifter creature token with changeling. You lose 3 life. (It is every creature type.)",
+   "power": null,
+   "toughness": null,
+   "colors": [
+    "B"
+   ],
+   "printed_name": "Mensalão",
+   "printed_type_line": "Encantamento",
+   "printed_text": "No início de sua fase principal pré-combate, escolha um ou mais —\n• Crie uma ficha de Tesouro. Você perde 1 ponto de vida.\n• Compre um card. Você perde 2 pontos de vida.\n• Crie uma ficha de criatura Metamorfo incolor 3/2 com morfoloide. Você perde 3 pontos de vida. (Ela tem todos os tipos de criatura.)",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/c4d95e4b-c70b-fdc9-6cc7-4681abfef574/front.png"
+    }
+   ]
+  },
+  "afe2c7fe-9f0a-e62f-394f-7509ed34c791": {
+   "id": "afe2c7fe-9f0a-e62f-394f-7509ed34c791",
+   "oracle_id": "d48ee36c-56bb-4a3d-5102-7eb5d153e6ed",
+   "name": "Minha Casa, Minha Vida",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "28",
+   "type_line": "Enchantment",
+   "oracle_text": "At the beginning of your upkeep, if an opponent controls more lands than you, you may search your library for up to three basic land cards, reveal them, put them into your hand, then shuffle.",
+   "power": null,
+   "toughness": null,
+   "colors": [
+    "W"
+   ],
+   "printed_name": "Minha Casa, Minha Vida",
+   "printed_type_line": "Encantamento",
+   "printed_text": "No início de sua manutenção, se um oponente controla mais terrenos que você, você pode procurar até três cards de terreno básico em seu grimório, revelá-los, colocá-los na sua mão e embaralhar.",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/afe2c7fe-9f0a-e62f-394f-7509ed34c791/front.png"
+    }
+   ]
+  },
+  "75319fc5-010e-2449-8cea-c8dc14f6bea4": {
+   "id": "75319fc5-010e-2449-8cea-c8dc14f6bea4",
+   "oracle_id": "289a72cb-dada-baed-4cc3-c7dc52424011",
+   "name": "Triplex do Guarujá",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "29",
+   "type_line": "Enchantment",
+   "oracle_text": "Creatures can't attack you unless their controller pays {2} for each creature they control that's attacking you.",
+   "power": null,
+   "toughness": null,
+   "colors": [
+    "W"
+   ],
+   "printed_name": "Triplex do Guarujá",
+   "printed_type_line": "Encantamento",
+   "printed_text": "As criaturas não podem atacar você, a menos que o controlador delas pague {2} para cada criatura que ele controla que esteja atacando você.",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/75319fc5-010e-2449-8cea-c8dc14f6bea4/front.png"
+    }
+   ]
+  },
+  "80c278e1-c5b7-fbff-c8c1-a7306a447af5": {
+   "id": "80c278e1-c5b7-fbff-c8c1-a7306a447af5",
+   "oracle_id": "de1d2d5d-ceb7-f0ce-038b-c24e885d4fe9",
+   "name": "Boulos e o MTST",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "30",
+   "type_line": "Sorcery",
+   "oracle_text": "Choose one —\n• Gain control of all creatures with power 4 or greater until end of turn. Untap those creatures. They gain haste until end of turn.\n• Gain control of all creatures with power 3 or less until end of turn. Untap those creatures. They gain haste until end of turn.",
+   "power": null,
+   "toughness": null,
+   "colors": [
+    "R"
+   ],
+   "printed_name": "Boulos e o MTST",
+   "printed_type_line": "Feitiço",
+   "printed_text": "Escolha um —\n● Ganhe o controle de todas as criaturas com poder igual ou superior a 4 até o final do turno. Desvire aquelas criaturas. Elas ganham ímpeto até o final do turno.\n● Ganhe o controle de todas as criaturas com poder igual ou inferior a 3 até o final do turno. Desvire aquelas criaturas. Elas ganham ímpeto até o final do turno.",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/80c278e1-c5b7-fbff-c8c1-a7306a447af5/front.png"
+    }
+   ]
+  },
+  "e31b4508-385c-46d9-708f-17f2ab98475e": {
+   "id": "e31b4508-385c-46d9-708f-17f2ab98475e",
+   "oracle_id": "dcd58a6c-5ae3-138a-d167-8f14725df17e",
+   "name": "Companheiro É Companheiro",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "31",
+   "type_line": "Enchantment — Aura",
+   "oracle_text": "Flash\nReplicate {2} (When you cast this spell, copy it for each time you paid its replicate cost. You may choose new targets for the copies. Copies become tokens.)\nEnchant creature\nWhen enchanted creature dies, return it to the battlefield under your control.",
+   "power": null,
+   "toughness": null,
+   "colors": [
+    "B"
+   ],
+   "printed_name": "Companheiro É Companheiro",
+   "printed_type_line": "Encantamento — Aura",
+   "printed_text": "Lampejo\nReplicar {2} (Ao conjurar esta mágica, copie-a para cada vez que você pagou o custo de replicar. Você pode escolher novos alvos para as cópias.)\nEncantar criatura\nQuando a criatura encantada morre, devolva-a ao campo de batalha sob o seu controle.",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/e31b4508-385c-46d9-708f-17f2ab98475e/front.png"
+    }
+   ]
+  },
+  "d3ee602f-1c1b-51a6-61fa-9512fb031102": {
+   "id": "d3ee602f-1c1b-51a6-61fa-9512fb031102",
+   "oracle_id": "1c622c2f-c2bb-1bef-60aa-a62bfca0cedb",
+   "name": "Lula Livre",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "32",
+   "type_line": "Enchantment — Aura",
+   "oracle_text": "Enchant creature card in a graveyard\nWhen this Aura enters, if it's on the battlefield, it loses \"enchant creature card in a graveyard\" and gains \"enchant creature put onto the battlefield with this Aura.\" Return enchanted creature card to the battlefield under your control and attach this Aura to it. When this Aura leaves the battlefield, that creature's controller sacrifices it.\nEnchanted creature gets -1/-0.",
+   "power": null,
+   "toughness": null,
+   "colors": [
+    "B"
+   ],
+   "printed_name": "Lula Livre",
+   "printed_type_line": "Encantamento — Aura",
+   "printed_text": "Encantar carta de criatura em um cemitério\nQuando esta Aura entra, devolva a carta de criatura encantada ao campo de batalha sob o seu controle e anexe esta Aura a ela. Quando esta Aura sai do campo de batalha, o controlador daquela criatura a sacrifica.\nA criatura encantada recebe -1/-0.",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/d3ee602f-1c1b-51a6-61fa-9512fb031102/front.png"
+    }
+   ]
+  },
+  "3b923235-01aa-6538-c7ce-bdf5410836c9": {
+   "id": "3b923235-01aa-6538-c7ce-bdf5410836c9",
+   "oracle_id": "2e1e5474-aeef-3910-15b7-9fb5d2b947b9",
+   "name": "Janones, Tropa do Zap",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "33",
+   "type_line": "Creature — Human Shaman",
+   "oracle_text": "Whenever this creature attacks, you may pay {1} and discard a card. If you do, draw a card.\nWhenever you discard one or more nonland cards, you may exile one of them from your graveyard. If you do, you may cast it this turn.",
+   "power": "2",
+   "toughness": "2",
+   "colors": [
+    "R"
+   ],
+   "printed_name": "Janones, Tropa do Zap",
+   "printed_type_line": "Criatura — Humano Xamã",
+   "printed_text": "Toda vez que Teórico da Conspiração ataca, você pode pagar {1} e descartar um card. Se fizer isso, compre um card.\nToda vez que você descarta um ou mais cards não de terreno, você pode exilar um deles de seu cemitério. Se fizer isso, você poderá conjurá-lo neste turno.",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/3b923235-01aa-6538-c7ce-bdf5410836c9/front.png"
+    }
+   ]
+  },
+  "bb9accdc-9d35-2af1-6261-c7cf780433c7": {
+   "id": "bb9accdc-9d35-2af1-6261-c7cf780433c7",
+   "oracle_id": "f40f36eb-86ba-a5cb-a67d-7dfd1bd49996",
+   "name": "Zanin, Advogado de Estimação",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "34",
+   "type_line": "Legendary Creature — Human Advisor",
+   "oracle_text": "Affinity for planeswalkers (This spell costs {1} less to cast for each planeswalker you control.)\nFlying, vigilance\nWhenever an opponent attacks with creatures, if two or more of those creatures are attacking you and/or planeswalkers you control, that opponent loses 3 life and you draw a card.",
+   "power": "2",
+   "toughness": "4",
+   "colors": [
+    "W",
+    "B"
+   ],
+   "printed_name": "Zanin, Advogado de Estimação",
+   "printed_type_line": "Criatura Lendária — Humano Conselheiro",
+   "printed_text": "Afinidade por planeswalkers (Esta mágica custa {1} a menos para ser conjurada para cada planeswalker que você controla.)\nVoar, vigilância\nToda vez que um oponente ataca com criaturas, se duas ou mais dessas criaturas estiverem atacando você e/ou planeswalkers que você controla, aquele oponente perde 3 pontos de vida e você compra um card.",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/bb9accdc-9d35-2af1-6261-c7cf780433c7/front.png"
+    }
+   ]
+  },
+  "1823a6d9-b3c3-7914-2e17-3d6852afd944": {
+   "id": "1823a6d9-b3c3-7914-2e17-3d6852afd944",
+   "oracle_id": "cf00b089-cc7d-464f-b2a0-396c63bac3f5",
+   "name": "Gleisi, a Presidenta do Partido",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "35",
+   "type_line": "Legendary Creature — Bird Warlock",
+   "oracle_text": "Flying\nWhenever a player attacks one of your opponents, if that opponent has more life than another of your opponents, that attacking player draws a card and you put two +1/+1 counters on a creature you control.",
+   "power": "1",
+   "toughness": "3",
+   "colors": [
+    "W",
+    "B"
+   ],
+   "printed_name": "Gleisi, a Presidenta do Partido",
+   "printed_type_line": "Criatura Lendária — Ave Bruxo",
+   "printed_text": "Voar\nToda vez que um jogador ataca um de seus oponentes, se aquele oponente tiver mais pontos de vida que outro de seus oponentes, aquele jogador atacante compra um card e você coloca dois marcadores +1/+1 em uma criatura que você controla.",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/1823a6d9-b3c3-7914-2e17-3d6852afd944/front.png"
+    }
+   ]
+  },
+  "cff698ee-0abc-6203-eb1b-bb5313a0eb0b": {
+   "id": "cff698ee-0abc-6203-eb1b-bb5313a0eb0b",
+   "oracle_id": "f4685890-0995-e38c-4344-758669a52457",
+   "name": "Zé Dirceu, o Articulador",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "36",
+   "type_line": "Legendary Creature — Human Cleric",
+   "oracle_text": "Lifelink\nAt the beginning of each of your postcombat main phases, you may pay X life, where X is the number of opponents that were dealt combat damage this turn. If you do, draw X cards.\nPartner (You can have two commanders if both have partner.)",
+   "power": "2",
+   "toughness": "2",
+   "colors": [
+    "W",
+    "B"
+   ],
+   "printed_name": "Zé Dirceu, o Articulador",
+   "printed_type_line": "Criatura Lendária — Humano Clérigo",
+   "printed_text": "Vínculo com a vida\nNo início de sua fase principal pós-combate, você pode pagar X pontos de vida, sendo X o número de oponentes que sofreram dano de combate neste turno. Se fizer isso, compre X cards.\nParceiro (Você pode ter dois comandantes se ambos tiverem parceiro.)",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/cff698ee-0abc-6203-eb1b-bb5313a0eb0b/front.png"
+    }
+   ]
+  },
+  "868e8efa-227c-97ae-9da8-3954dbd2148d": {
+   "id": "868e8efa-227c-97ae-9da8-3954dbd2148d",
+   "oracle_id": "76e99230-7262-c48e-c099-4446231285e5",
+   "name": "Tornozeleira Eletrônica",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "37",
+   "type_line": "Enchantment — Aura",
+   "oracle_text": "Enchant creature you control\nWhen this Aura enters, exile target nonland permanent an opponent controls until this Aura leaves the battlefield.\nEnchanted creature has ward {2}. (Whenever it becomes the target of a spell or ability an opponent controls, counter it unless that player pays {2}.)",
+   "power": null,
+   "toughness": null,
+   "colors": [
+    "W"
+   ],
+   "printed_name": "Tornozeleira Eletrônica",
+   "printed_type_line": "Encantamento — Aura",
+   "printed_text": "Encantar criatura que você controla\nQuando esta Aura entra, exile a permanente alvo que não seja terreno que um oponente controla até esta Aura sair do campo de batalha.\nA criatura encantada tem resguardo {2}.",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/868e8efa-227c-97ae-9da8-3954dbd2148d/front.png"
+    }
+   ]
+  },
+  "8aecfba9-9f8a-3b49-0a86-4cbcd9faf9a1": {
+   "id": "8aecfba9-9f8a-3b49-0a86-4cbcd9faf9a1",
+   "oracle_id": "82732bd1-b64d-af1c-7e58-0ef8573d4b17",
+   "name": "Tesoureiro do Partido",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "38",
+   "type_line": "Creature — Goblin Rogue",
+   "oracle_text": "Whenever an opponent taps an artifact for mana, gain control of that artifact until the end of your next turn.",
+   "power": "3",
+   "toughness": "2",
+   "colors": [
+    "R"
+   ],
+   "printed_name": "Tesoureiro do Partido",
+   "printed_type_line": "Criatura — Goblin Ladino",
+   "printed_text": "Toda vez que um oponente virar um artefato para gerar mana, ganhe o controle daquele artefato até o final do seu próximo turno.",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/8aecfba9-9f8a-3b49-0a86-4cbcd9faf9a1/front.png"
+    }
+   ]
+  },
+  "c0cea0b0-7db9-5ca9-f838-c14ca1adc2ba": {
+   "id": "c0cea0b0-7db9-5ca9-f838-c14ca1adc2ba",
+   "oracle_id": "b98723a1-5993-6d11-d5e1-e152321d239d",
+   "name": "Reforma Tributária",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "39",
+   "type_line": "Sorcery",
+   "oracle_text": "Each other player discards a card. You draw a card for each card discarded this way.",
+   "power": null,
+   "toughness": null,
+   "colors": [
+    "B"
+   ],
+   "printed_name": "Reforma Tributária",
+   "printed_type_line": "Feitiço",
+   "printed_text": "Cada um dos outros jogadores descarta um card. Você compra um card para cada card descartado dessa forma.",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/c0cea0b0-7db9-5ca9-f838-c14ca1adc2ba/front.png"
+    }
+   ]
+  },
+  "64e7f8b3-2eb4-24e5-9107-83d67846ebf3": {
+   "id": "64e7f8b3-2eb4-24e5-9107-83d67846ebf3",
+   "oracle_id": "8339151e-ad1c-0ac4-392e-f2ea1ad119d9",
+   "name": "Picanha e Cervejinha",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "40",
+   "type_line": "Enchantment",
+   "oracle_text": "At the beginning of your upkeep, you draw a card and lose 1 life.",
+   "power": null,
+   "toughness": null,
+   "colors": [
+    "B"
+   ],
+   "printed_name": "Picanha e Cervejinha",
+   "printed_type_line": "Encantamento",
+   "printed_text": "No início de sua manutenção, você compra um card e perde 1 ponto de vida.",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/64e7f8b3-2eb4-24e5-9107-83d67846ebf3/front.png"
+    }
+   ]
+  },
+  "708b73e3-26fb-9129-213f-c1d07a0735b5": {
+   "id": "708b73e3-26fb-9129-213f-c1d07a0735b5",
+   "oracle_id": "f0daceb7-915c-c6d0-e384-1c66f5ef93fa",
+   "name": "Marina Silva, a Sustentável",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "41",
+   "type_line": "Creature — Kor Wizard",
+   "oracle_text": "This creature gets +2/+2 for each Aura attached to it.\nWhenever you cast an Aura spell, you may draw a card.",
+   "power": "0",
+   "toughness": "2",
+   "colors": [
+    "W"
+   ],
+   "printed_name": "Marina Silva, a Sustentável",
+   "printed_type_line": "Criatura — Kor Mago",
+   "printed_text": "Dançarina dos Espíritos Kor recebe +2/+2 para cada Aura anexada a ela.\nToda vez que conjura uma mágica de Aura, você pode comprar um card.",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/708b73e3-26fb-9129-213f-c1d07a0735b5/front.png"
+    }
+   ]
+  },
+  "3b599a66-1a98-ad89-2bed-3f0191c565d4": {
+   "id": "3b599a66-1a98-ad89-2bed-3f0191c565d4",
+   "oracle_id": "c52a8e51-6731-c57b-f041-194332a7bed0",
+   "name": "Sidônio, o Marqueteiro",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "42",
+   "type_line": "Legendary Creature — Dwarf Advisor",
+   "oracle_text": "Whenever you cast an Aura, Equipment, or Vehicle spell, draw a card.",
+   "power": "2",
+   "toughness": "2",
+   "colors": [
+    "W"
+   ],
+   "printed_name": "Sidônio, o Marqueteiro",
+   "printed_type_line": "Criatura Lendária — Anão Conselheiro",
+   "printed_text": "Toda vez que você conjurar uma mágica de Aura, Equipamento ou Veículo, compre um card.",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/3b599a66-1a98-ad89-2bed-3f0191c565d4/front.png"
+    }
+   ]
+  },
+  "f92d5b45-56fc-eed0-d44f-fe9b164913ef": {
+   "id": "f92d5b45-56fc-eed0-d44f-fe9b164913ef",
+   "oracle_id": "c65c85bb-dd1a-4fa3-3af8-a14d22cb0b1c",
+   "name": "Nunca Antes na História Deste País",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "43",
+   "type_line": "Sorcery",
+   "oracle_text": "Each player mills ten cards. For each player, choose a creature or planeswalker card in that player's graveyard. Put those cards onto the battlefield under your control. Then each creature you control becomes a Phyrexian in addition to its other types.",
+   "power": null,
+   "toughness": null,
+   "colors": [
+    "B"
+   ],
+   "printed_name": "Nunca Antes na História Deste País",
+   "printed_type_line": "Feitiço",
+   "printed_text": "Cada jogador tritura dez cards. Para cada jogador, escolha um card de criatura ou planeswalker no cemitério daquele jogador. Coloque aqueles cards no campo de batalha sob seu controle. Em seguida, cada criatura que você controla se torna um Phyrexiano além de seus outros tipos.",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/f92d5b45-56fc-eed0-d44f-fe9b164913ef/front.png"
+    }
+   ]
+  },
+  "af6d06f7-d16c-4eef-7267-3dc683b6af36": {
+   "id": "af6d06f7-d16c-4eef-7267-3dc683b6af36",
+   "oracle_id": "d815b714-8b46-e56c-d546-36c64917530d",
+   "name": "Sítio de Atibaia",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "44",
+   "type_line": "Land",
+   "oracle_text": "You have no maximum hand size.\n{T}: Add {C}.",
+   "power": null,
+   "toughness": null,
+   "colors": [],
+   "printed_name": "Sítio de Atibaia",
+   "printed_type_line": "Terreno",
+   "printed_text": "Não há limite para o número máximo de cards em sua mão.\n{T}: Adicione {C}.",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/af6d06f7-d16c-4eef-7267-3dc683b6af36/front.png"
+    }
+   ]
+  },
+  "0f27d5fc-ab34-1f7e-2d47-0b74817a373d": {
+   "id": "0f27d5fc-ab34-1f7e-2d47-0b74817a373d",
+   "oracle_id": "2d24a17b-4a81-c442-9f9b-a7991c71e66c",
+   "name": "Gripezinha",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "45",
+   "type_line": "Instant",
+   "oracle_text": "Exile target creature. Its controller gains life equal to its power.",
+   "power": null,
+   "toughness": null,
+   "colors": [
+    "W"
+   ],
+   "printed_name": "Gripezinha",
+   "printed_type_line": "Mágica Instantânea",
+   "printed_text": "Exile a criatura alvo. Seu controlador ganha uma quantidade de pontos de vida igual ao seu poder.",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/0f27d5fc-ab34-1f7e-2d47-0b74817a373d/front.png"
+    }
+   ]
+  },
+  "a1422d2f-452e-f80a-9346-bda937c73f6b": {
+   "id": "a1422d2f-452e-f80a-9346-bda937c73f6b",
+   "oracle_id": "e930baa3-04c4-be2c-1f65-2ba055c2c216",
+   "name": "Zambelli de Arma em Punho",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "46",
+   "type_line": "Instant",
+   "oracle_text": "Destroy target nonartifact creature.",
+   "power": null,
+   "toughness": null,
+   "colors": [
+    "B"
+   ],
+   "printed_name": "Zambelli de Arma em Punho",
+   "printed_type_line": "Mágica Instantânea",
+   "printed_text": "Destrua a criatura não artefato alvo.",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/a1422d2f-452e-f80a-9346-bda937c73f6b/front.png"
+    }
+   ]
+  },
+  "09e4e3f2-eb98-8169-cafc-c6ba6465ff47": {
+   "id": "09e4e3f2-eb98-8169-cafc-c6ba6465ff47",
+   "oracle_id": "2eb21235-dcea-707e-7655-7fd314535f4b",
+   "name": "Oito de Janeiro",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "47",
+   "type_line": "Sorcery",
+   "oracle_text": "Create X 1/1 white Soldier creature tokens. If X is 5 or more, destroy all other creatures.",
+   "power": null,
+   "toughness": null,
+   "colors": [
+    "W"
+   ],
+   "printed_name": "Oito de Janeiro",
+   "printed_type_line": "Feitiço",
+   "printed_text": "Crie X fichas de criatura Soldado branca 1/1. Se X for igual ou superior a 5, destrua todas as outras criaturas.",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/09e4e3f2-eb98-8169-cafc-c6ba6465ff47/front.png"
+    }
+   ]
+  },
+  "106298f6-4828-4f96-be8e-f852a57b06bc": {
+   "id": "106298f6-4828-4f96-be8e-f852a57b06bc",
+   "oracle_id": "4bf67b04-bb28-a40d-ef34-e7aca9e01967",
+   "name": "Mito",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "48",
+   "type_line": "Enchantment — Aura",
+   "oracle_text": "Enchant creature\nEnchanted creature gets +4/+4, has flying and first strike, and is an Angel in addition to its other types.\nWhen enchanted creature dies, return this card to its owner's hand.",
+   "power": null,
+   "toughness": null,
+   "colors": [
+    "W"
+   ],
+   "printed_name": "Mito",
+   "printed_type_line": "Encantamento — Aura",
+   "printed_text": "Encantar criatura\nA criatura encantada recebe +4/+4, tem voar e iniciativa e é um Anjo além de seus outros tipos.\nQuando a criatura encantada morrer, devolva Destino Angelical para a mão de seu dono.",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/106298f6-4828-4f96-be8e-f852a57b06bc/front.png"
+    }
+   ]
+  },
+  "3b880907-9b51-7244-11ee-bebd56a05f52": {
+   "id": "3b880907-9b51-7244-11ee-bebd56a05f52",
+   "oracle_id": "c8c2e339-68e4-ab30-9c25-ad31f479a72d",
+   "name": "Cercadinho do Alvorada",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "49",
+   "type_line": "Enchantment",
+   "oracle_text": "Creatures can't attack you unless their controller pays {2} for each creature they control that's attacking you.",
+   "power": null,
+   "toughness": null,
+   "colors": [
+    "W"
+   ],
+   "printed_name": "Cercadinho do Alvorada",
+   "printed_type_line": "Encantamento",
+   "printed_text": "As criaturas não podem atacar você, a menos que o controlador delas pague {2} para cada criatura que ele controla que esteja atacando você.",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/3b880907-9b51-7244-11ee-bebd56a05f52/front.png"
+    }
+   ]
+  },
+  "b8b89793-e5f5-eaaf-0a8e-6b2717e659d1": {
+   "id": "b8b89793-e5f5-eaaf-0a8e-6b2717e659d1",
+   "oracle_id": "d80a4229-ced8-0982-c249-9ffebb3a9760",
+   "name": "Malafaia, Pastor do Dízimo",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "50",
+   "type_line": "Creature — Human Cleric",
+   "oracle_text": "Whenever another creature enters, you gain 1 life.",
+   "power": "1",
+   "toughness": "1",
+   "colors": [
+    "W"
+   ],
+   "printed_name": "Malafaia, Pastor do Dízimo",
+   "printed_type_line": "Criatura — Humano Clérigo",
+   "printed_text": "Toda vez que outra criatura entra no campo de batalha, você ganha 1 ponto de vida.",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/b8b89793-e5f5-eaaf-0a8e-6b2717e659d1/front.png"
+    }
+   ]
+  },
+  "53b90ce4-74ed-8ee4-29c1-7f94418fa3f0": {
+   "id": "53b90ce4-74ed-8ee4-29c1-7f94418fa3f0",
+   "oracle_id": "f0d56d21-8399-2ad4-e4dd-3d996a32ad79",
+   "name": "Queiroz, o Operador",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "51",
+   "type_line": "Creature — Human Rogue Ally",
+   "oracle_text": "Whenever this creature or another creature you control dies, each opponent loses 1 life and you gain 1 life.",
+   "power": "1",
+   "toughness": "1",
+   "colors": [
+    "B"
+   ],
+   "printed_name": "Queiroz, o Operador",
+   "printed_type_line": "Criatura — Humano Ladino Aliado",
+   "printed_text": "Toda vez que Degolador de Zulaport ou outra criatura que você controla morre, cada oponente perde 1 ponto de vida e você ganha 1 ponto de vida.",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/53b90ce4-74ed-8ee4-29c1-7f94418fa3f0/front.png"
+    }
+   ]
+  },
+  "dc6af693-78c9-fcc2-e806-eacba16d90a9": {
+   "id": "dc6af693-78c9-fcc2-e806-eacba16d90a9",
+   "oracle_id": "d214f0ae-9ccc-2e3e-e434-5774dc2bf098",
+   "name": "Braga Netto, o Interventor",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "52",
+   "type_line": "Creature — Beast Horror",
+   "oracle_text": "When this creature enters, destroy target creature an opponent controls.",
+   "power": "2",
+   "toughness": "2",
+   "colors": [
+    "B"
+   ],
+   "printed_name": "Braga Netto, o Interventor",
+   "printed_type_line": "Criatura — Besta Horror",
+   "printed_text": "Quando Chupacabra Voraz entrar no campo de batalha, destrua a criatura alvo que um oponente controla.",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/dc6af693-78c9-fcc2-e806-eacba16d90a9/front.png"
+    }
+   ]
+  },
+  "33fc7959-e2df-3d30-2062-9a917bcaab9d": {
+   "id": "33fc7959-e2df-3d30-2062-9a917bcaab9d",
+   "oracle_id": "711109fd-a107-1eff-e525-106128dd8f4a",
+   "name": "Jair Renan, o 04",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "53",
+   "type_line": "Creature — Human Monk",
+   "oracle_text": "Lifelink (Damage dealt by this creature also causes you to gain that much life.)\nAs long as you have 30 or more life, this creature gets +5/+5 and has flying.",
+   "power": "1",
+   "toughness": "1",
+   "colors": [
+    "W"
+   ],
+   "printed_name": "Jair Renan, o 04",
+   "printed_type_line": "Criatura — Humano Monge",
+   "printed_text": "Vínculo com a vida (Dano causado por esta criatura faz com que você ganhe uma quantidade equivalente de pontos de vida.)\nEnquanto você tiver 30 ou mais pontos de vida, Ascendente de Serra receberá +5/+5 e terá voar.",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/33fc7959-e2df-3d30-2062-9a917bcaab9d/front.png"
+    }
+   ]
+  },
+  "afb9b95e-24f5-9ecf-dff6-6eeccbe8d1ea": {
+   "id": "afb9b95e-24f5-9ecf-dff6-6eeccbe8d1ea",
+   "oracle_id": "118ae03f-7958-d397-ed8f-ee323f4e0af7",
+   "name": "Patriota do Caminhão",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "54",
+   "type_line": "Creature — Cat Soldier",
+   "oracle_text": "Whenever you gain life, put a +1/+1 counter on this creature.",
+   "power": "2",
+   "toughness": "2",
+   "colors": [
+    "W"
+   ],
+   "printed_name": "Patriota do Caminhão",
+   "printed_type_line": "Criatura — Felino Soldado",
+   "printed_text": "Toda vez que você ganhar pontos de vida, coloque um marcador +1/+1 em Companheiro de Bando de Ajani.",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/afb9b95e-24f5-9ecf-dff6-6eeccbe8d1ea/front.png"
+    }
+   ]
+  },
+  "5cdcebaa-a727-4242-f261-6e5218d0a2b5": {
+   "id": "5cdcebaa-a727-4242-f261-6e5218d0a2b5",
+   "oracle_id": "3ac2c830-090a-ea47-646b-18e3d8a66bb3",
+   "name": "Damares, a da Goiabeira",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "55",
+   "type_line": "Creature — Angel",
+   "oracle_text": "Flying\nLifelink (Damage dealt by this creature also causes you to gain that much life.)\nWhenever you gain life, put a +1/+1 counter on each creature you control.",
+   "power": "3",
+   "toughness": "4",
+   "colors": [
+    "W"
+   ],
+   "printed_name": "Damares, a da Goiabeira",
+   "printed_type_line": "Criatura — Anjo",
+   "printed_text": "Voar\nVínculo com a vida (O dano causado por esta criatura faz com que você ganhe uma quantidade equivalente de pontos de vida.)Toda vez que você ganhar pontos de vida, coloque um marcador +1/+1 em cada criatura que você controla.",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/5cdcebaa-a727-4242-f261-6e5218d0a2b5/front.png"
+    }
+   ]
+  },
+  "9b55d378-de4d-d985-6895-0201b136531e": {
+   "id": "9b55d378-de4d-d985-6895-0201b136531e",
+   "oracle_id": "2f17b31c-f377-ccb1-6ba6-b749049ae3ae",
+   "name": "Eduardo Bananinha, o Exilado",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "56",
+   "type_line": "Creature — Vampire Shaman",
+   "oracle_text": "Flying\nDeathtouch (Any amount of damage this deals to a creature is enough to destroy it.)\nLifelink (Damage dealt by this creature also causes you to gain that much life.)",
+   "power": "2",
+   "toughness": "3",
+   "colors": [
+    "B"
+   ],
+   "printed_name": "Eduardo Bananinha, o Exilado",
+   "printed_type_line": "Criatura — Vampiro Xamã",
+   "printed_text": "Voar, toque mortífero, vínculo com a vida",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/9b55d378-de4d-d985-6895-0201b136531e/front.png"
+    }
+   ]
+  },
+  "4c60b156-9756-4ae9-389b-07b22db91aaa": {
+   "id": "4c60b156-9756-4ae9-389b-07b22db91aaa",
+   "oracle_id": "4edb36d3-161e-9959-975f-c6997de1a78d",
+   "name": "Milei, El Loco da Motosserra",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "57",
+   "type_line": "Creature — Phyrexian Wurm",
+   "oracle_text": "When this creature enters, creatures your opponents control get -2/-2 until end of turn.\nWhenever a creature an opponent controls dies, that player loses 2 life.",
+   "power": "6",
+   "toughness": "5",
+   "colors": [
+    "B"
+   ],
+   "printed_name": "Milei, El Loco da Motosserra",
+   "printed_type_line": "Criatura — Phyrexiano Vorme",
+   "printed_text": "Quando Vorme do Massacre entra no campo de batalha, as criaturas que seus oponentes controlam recebem -2/-2 até o final do turno.\nToda vez que uma criatura que um oponente controla morre, aquele jogador perde 2 pontos de vida.",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/4c60b156-9756-4ae9-389b-07b22db91aaa/front.png"
+    }
+   ]
+  },
+  "c41b357d-4439-9e1c-1d14-82b26bf5c75f": {
+   "id": "c41b357d-4439-9e1c-1d14-82b26bf5c75f",
+   "oracle_id": "aa87df26-d613-fdbe-7f34-802365296379",
+   "name": "Tarifaço do Trump",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "58",
+   "type_line": "Sorcery",
+   "oracle_text": "Destroy all creatures. They can't be regenerated. Draw a card for each creature destroyed this way.\nCycling {3}{B}{B} ({3}{B}{B}, Discard this card: Draw a card.)\nWhen you cycle this card, all creatures get -2/-2 until end of turn.",
+   "power": null,
+   "toughness": null,
+   "colors": [
+    "B"
+   ],
+   "printed_name": "Tarifaço do Trump",
+   "printed_type_line": "Feitiço",
+   "printed_text": "Destrua todas as criaturas. Elas não podem ser regeneradas. Compre um card para cada criatura destruída desta forma.\nReciclar {3}{B}{B} ({3}{B}{B}, descarte este card: Compre um card.)\nQuando você recicla Decreto de Dor, todas as criaturas recebem -2/-2 até o final do turno.",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/c41b357d-4439-9e1c-1d14-82b26bf5c75f/front.png"
+    }
+   ]
+  },
+  "349b7620-35e9-cafc-4507-249ab94df059": {
+   "id": "349b7620-35e9-cafc-4507-249ab94df059",
+   "oracle_id": "b257a4b0-5bc3-e9d9-e75a-43841da84080",
+   "name": "Paulo Guedes, o Posto Ipiranga",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "59",
+   "type_line": "Creature — Human Pirate",
+   "oracle_text": "Whenever another creature you control dies, create a Treasure token. (It's an artifact with \"{T}, Sacrifice this token: Add one mana of any color.\")",
+   "power": "1",
+   "toughness": "4",
+   "colors": [
+    "B"
+   ],
+   "printed_name": "Paulo Guedes, o Posto Ipiranga",
+   "printed_type_line": "Criatura — Humano Pirata",
+   "printed_text": "Sempre que outra criatura que você controla morre, crie uma ficha de Tesouro. (Ela é um artefato com “{T}, sacrifique esta ficha: adicione um mana de qualquer cor”.)",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/349b7620-35e9-cafc-4507-249ab94df059/front.png"
+    }
+   ]
+  },
+  "65c98e97-ab0b-1b6f-1ce2-d7b5eca18b1f": {
+   "id": "65c98e97-ab0b-1b6f-1ce2-d7b5eca18b1f",
+   "oracle_id": "17fbd4b7-8d0c-a1b9-e53f-d6fbc3938066",
+   "name": "Sergio Moro, Ex-Juiz",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "60",
+   "type_line": "Creature — Human Soldier",
+   "oracle_text": "When this creature enters, you become the monarch.\nWhen this creature enters, exile target creature an opponent controls until an opponent becomes the monarch.",
+   "power": "2",
+   "toughness": "2",
+   "colors": [
+    "W"
+   ],
+   "printed_name": "Sergio Moro, Ex-Juiz",
+   "printed_type_line": "Criatura — Humano Soldado",
+   "printed_text": "Quando Carcereiro do Palácio entra no campo de batalha, você se torna o monarca.\nQuando Carcereiro do Palácio entrar no campo de batalha, exile a criatura alvo que um oponente controla até que um oponente se torne o monarca.",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/65c98e97-ab0b-1b6f-1ce2-d7b5eca18b1f/front.png"
+    }
+   ]
+  },
+  "b09a7adb-5943-f31a-3fbb-0160ac1a7702": {
+   "id": "b09a7adb-5943-f31a-3fbb-0160ac1a7702",
+   "oracle_id": "5b817a47-3fdf-c98e-789f-aa99a3936dd6",
+   "name": "Mauro Cid, o Delator",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "61",
+   "type_line": "Legendary Creature — Vampire Warrior",
+   "oracle_text": "Lifelink\nIf a nontoken creature an opponent controls would die, instead exile that card and create a 2/2 black Zombie creature token.\n{2}{B}, Sacrifice another Vampire or Zombie: Put two +1/+1 counters on Kalitas.",
+   "power": "3",
+   "toughness": "4",
+   "colors": [
+    "B"
+   ],
+   "printed_name": "Mauro Cid, o Delator",
+   "printed_type_line": "Criatura Lendária — Vampiro Guerreiro",
+   "printed_text": "Vínculo com a vida\nSe uma criatura que um oponente controla que não seja uma ficha morreria, em vez disso, exile aquele card e coloque no campo de batalha uma ficha de criatura preta 2/2 do tipo Zumbi.\n{2}{B}, Sacrifique outro Vampiro ou Zumbi: Coloque dois marcadores +1/+1 em Kalitas, Traidor de Ghet.",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/b09a7adb-5943-f31a-3fbb-0160ac1a7702/front.png"
+    }
+   ]
+  },
+  "06619302-5bf5-dcc6-e54d-9bef7cc33048": {
+   "id": "06619302-5bf5-dcc6-e54d-9bef7cc33048",
+   "oracle_id": "0eca36c0-b60a-fc91-75a6-019495b46a1b",
+   "name": "Leite Condensado",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "62",
+   "type_line": "Sorcery",
+   "oracle_text": "Each opponent loses X life. You gain life equal to the life lost this way.",
+   "power": null,
+   "toughness": null,
+   "colors": [
+    "B"
+   ],
+   "printed_name": "Leite Condensado",
+   "printed_type_line": "Feitiço",
+   "printed_text": "Cada oponente perde X pontos de vida. Você ganha uma quantidade de pontos de vida igual ao total de pontos de vida perdidos dessa maneira.",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/06619302-5bf5-dcc6-e54d-9bef7cc33048/front.png"
+    }
+   ]
+  },
+  "f7e36594-1ec1-6044-ec85-491554fce42e": {
+   "id": "f7e36594-1ec1-6044-ec85-491554fce42e",
+   "oracle_id": "faf8458b-7c6d-6f33-d462-dff30cdce732",
+   "name": "Joias da Arábia",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "63",
+   "type_line": "Artifact — Equipment",
+   "oracle_text": "Equipped creature has deathtouch and lifelink. (Any amount of damage it deals to a creature is enough to destroy it. Damage dealt by this creature also causes you to gain that much life.)\nEquip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)",
+   "power": null,
+   "toughness": null,
+   "colors": [],
+   "printed_name": "Joias da Arábia",
+   "printed_type_line": "Artefato — Equipamento",
+   "printed_text": "A criatura equipada tem toque mortífero e vínculo com a vida.\nEquipar {2}",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/f7e36594-1ec1-6044-ec85-491554fce42e/front.png"
+    }
+   ]
+  },
+  "c1d37122-df31-5e77-447c-1d7aa1ce2486": {
+   "id": "c1d37122-df31-5e77-447c-1d7aa1ce2486",
+   "oracle_id": "90cc7e90-4e68-e29a-8f12-91768c917db7",
+   "name": "Pix do Mito",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "64",
+   "type_line": "Enchantment",
+   "oracle_text": "If you would gain life, you gain twice that much life instead.",
+   "power": null,
+   "toughness": null,
+   "colors": [
+    "W"
+   ],
+   "printed_name": "Pix do Mito",
+   "printed_type_line": "Encantamento",
+   "printed_text": "Se você for ganhar pontos de vida, em vez disso, ganhará o dobro daquela quantidade em pontos de vida.",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/c1d37122-df31-5e77-447c-1d7aa1ce2486/front.png"
+    }
+   ]
+  },
+  "960f500c-1ff5-4c0f-fdf4-17258818c454": {
+   "id": "960f500c-1ff5-4c0f-fdf4-17258818c454",
+   "oracle_id": "97cc0cb2-4676-7b00-32d7-160c47620044",
+   "name": "Valdemar, Dono do Partido",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "65",
+   "type_line": "Creature — Tiefling Rogue",
+   "oracle_text": "Whenever one or more creatures you control deal combat damage to a player, create two Treasure tokens.\n{B}, Sacrifice X Treasures: Target creature gets -X/-X until end of turn. Activate only as a sorcery.",
+   "power": "3",
+   "toughness": "2",
+   "colors": [
+    "B"
+   ],
+   "printed_name": "Valdemar, Dono do Partido",
+   "printed_type_line": "Criatura — Tiferino Ladino",
+   "printed_text": "Toda vez que uma ou mais criaturas que você controla causarem dano de combate a um jogador, crie duas fichas de Tesouro.\n{B}, sacrifique X Tesouros: A criatura alvo recebe -X/-X até o final do turno. Ative somente como um feitiço.",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/960f500c-1ff5-4c0f-fdf4-17258818c454/front.png"
+    }
+   ]
+  },
+  "a225055c-9505-3196-7b61-5f8ca660dfcb": {
+   "id": "a225055c-9505-3196-7b61-5f8ca660dfcb",
+   "oracle_id": "56605c0e-c46c-e836-e63f-00bb22b2ee5a",
+   "name": "Vivendas da Barra",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "66",
+   "type_line": "Land",
+   "oracle_text": "{T}: Add {C}.\n{2}{G}{W}, {T}: Put a +1/+1 counter on each creature you control.",
+   "power": null,
+   "toughness": null,
+   "colors": [],
+   "printed_name": "Vivendas da Barra",
+   "printed_type_line": "Terreno",
+   "printed_text": "{T}: Adicione {C}.\n{2}{G}{W}, {T}: Coloque um marcador +1/+1 em cada criatura que você controla.",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/a225055c-9505-3196-7b61-5f8ca660dfcb/front.png"
     }
    ]
   }
@@ -102209,6 +104611,178 @@
   "Imbrochável": {
    "en": "fa2c7a34-f7b3-644b-6a5c-e570afba615f",
    "pt": "fa2c7a34-f7b3-644b-6a5c-e570afba615f"
+  },
+  "Banco Master do Vorcaro": {
+   "en": "1647170b-c6ad-aef2-d910-a2fe5d1566c5",
+   "pt": "1647170b-c6ad-aef2-d910-a2fe5d1566c5"
+  },
+  "Imposto é Amor": {
+   "en": "a422f52b-bf73-ce61-efa4-942c6bb2da3e",
+   "pt": "a422f52b-bf73-ce61-efa4-942c6bb2da3e"
+  },
+  "Taxa das Blusinhas": {
+   "en": "83650f53-6e5e-124c-ae66-f0a671fb7bb7",
+   "pt": "83650f53-6e5e-124c-ae66-f0a671fb7bb7"
+  },
+  "Mensalão": {
+   "en": "c4d95e4b-c70b-fdc9-6cc7-4681abfef574",
+   "pt": "c4d95e4b-c70b-fdc9-6cc7-4681abfef574"
+  },
+  "Minha Casa, Minha Vida": {
+   "en": "afe2c7fe-9f0a-e62f-394f-7509ed34c791",
+   "pt": "afe2c7fe-9f0a-e62f-394f-7509ed34c791"
+  },
+  "Triplex do Guarujá": {
+   "en": "75319fc5-010e-2449-8cea-c8dc14f6bea4",
+   "pt": "75319fc5-010e-2449-8cea-c8dc14f6bea4"
+  },
+  "Boulos e o MTST": {
+   "en": "80c278e1-c5b7-fbff-c8c1-a7306a447af5",
+   "pt": "80c278e1-c5b7-fbff-c8c1-a7306a447af5"
+  },
+  "Companheiro É Companheiro": {
+   "en": "e31b4508-385c-46d9-708f-17f2ab98475e",
+   "pt": "e31b4508-385c-46d9-708f-17f2ab98475e"
+  },
+  "Lula Livre": {
+   "en": "d3ee602f-1c1b-51a6-61fa-9512fb031102",
+   "pt": "d3ee602f-1c1b-51a6-61fa-9512fb031102"
+  },
+  "Janones, Tropa do Zap": {
+   "en": "3b923235-01aa-6538-c7ce-bdf5410836c9",
+   "pt": "3b923235-01aa-6538-c7ce-bdf5410836c9"
+  },
+  "Zanin, Advogado de Estimação": {
+   "en": "bb9accdc-9d35-2af1-6261-c7cf780433c7",
+   "pt": "bb9accdc-9d35-2af1-6261-c7cf780433c7"
+  },
+  "Gleisi, a Presidenta do Partido": {
+   "en": "1823a6d9-b3c3-7914-2e17-3d6852afd944",
+   "pt": "1823a6d9-b3c3-7914-2e17-3d6852afd944"
+  },
+  "Zé Dirceu, o Articulador": {
+   "en": "cff698ee-0abc-6203-eb1b-bb5313a0eb0b",
+   "pt": "cff698ee-0abc-6203-eb1b-bb5313a0eb0b"
+  },
+  "Tornozeleira Eletrônica": {
+   "en": "868e8efa-227c-97ae-9da8-3954dbd2148d",
+   "pt": "868e8efa-227c-97ae-9da8-3954dbd2148d"
+  },
+  "Tesoureiro do Partido": {
+   "en": "8aecfba9-9f8a-3b49-0a86-4cbcd9faf9a1",
+   "pt": "8aecfba9-9f8a-3b49-0a86-4cbcd9faf9a1"
+  },
+  "Reforma Tributária": {
+   "en": "c0cea0b0-7db9-5ca9-f838-c14ca1adc2ba",
+   "pt": "c0cea0b0-7db9-5ca9-f838-c14ca1adc2ba"
+  },
+  "Picanha e Cervejinha": {
+   "en": "64e7f8b3-2eb4-24e5-9107-83d67846ebf3",
+   "pt": "64e7f8b3-2eb4-24e5-9107-83d67846ebf3"
+  },
+  "Marina Silva, a Sustentável": {
+   "en": "708b73e3-26fb-9129-213f-c1d07a0735b5",
+   "pt": "708b73e3-26fb-9129-213f-c1d07a0735b5"
+  },
+  "Sidônio, o Marqueteiro": {
+   "en": "3b599a66-1a98-ad89-2bed-3f0191c565d4",
+   "pt": "3b599a66-1a98-ad89-2bed-3f0191c565d4"
+  },
+  "Nunca Antes na História Deste País": {
+   "en": "f92d5b45-56fc-eed0-d44f-fe9b164913ef",
+   "pt": "f92d5b45-56fc-eed0-d44f-fe9b164913ef"
+  },
+  "Sítio de Atibaia": {
+   "en": "af6d06f7-d16c-4eef-7267-3dc683b6af36",
+   "pt": "af6d06f7-d16c-4eef-7267-3dc683b6af36"
+  },
+  "Gripezinha": {
+   "en": "0f27d5fc-ab34-1f7e-2d47-0b74817a373d",
+   "pt": "0f27d5fc-ab34-1f7e-2d47-0b74817a373d"
+  },
+  "Zambelli de Arma em Punho": {
+   "en": "a1422d2f-452e-f80a-9346-bda937c73f6b",
+   "pt": "a1422d2f-452e-f80a-9346-bda937c73f6b"
+  },
+  "Oito de Janeiro": {
+   "en": "09e4e3f2-eb98-8169-cafc-c6ba6465ff47",
+   "pt": "09e4e3f2-eb98-8169-cafc-c6ba6465ff47"
+  },
+  "Mito": {
+   "en": "106298f6-4828-4f96-be8e-f852a57b06bc",
+   "pt": "106298f6-4828-4f96-be8e-f852a57b06bc"
+  },
+  "Cercadinho do Alvorada": {
+   "en": "3b880907-9b51-7244-11ee-bebd56a05f52",
+   "pt": "3b880907-9b51-7244-11ee-bebd56a05f52"
+  },
+  "Malafaia, Pastor do Dízimo": {
+   "en": "b8b89793-e5f5-eaaf-0a8e-6b2717e659d1",
+   "pt": "b8b89793-e5f5-eaaf-0a8e-6b2717e659d1"
+  },
+  "Queiroz, o Operador": {
+   "en": "53b90ce4-74ed-8ee4-29c1-7f94418fa3f0",
+   "pt": "53b90ce4-74ed-8ee4-29c1-7f94418fa3f0"
+  },
+  "Braga Netto, o Interventor": {
+   "en": "dc6af693-78c9-fcc2-e806-eacba16d90a9",
+   "pt": "dc6af693-78c9-fcc2-e806-eacba16d90a9"
+  },
+  "Jair Renan, o 04": {
+   "en": "33fc7959-e2df-3d30-2062-9a917bcaab9d",
+   "pt": "33fc7959-e2df-3d30-2062-9a917bcaab9d"
+  },
+  "Patriota do Caminhão": {
+   "en": "afb9b95e-24f5-9ecf-dff6-6eeccbe8d1ea",
+   "pt": "afb9b95e-24f5-9ecf-dff6-6eeccbe8d1ea"
+  },
+  "Damares, a da Goiabeira": {
+   "en": "5cdcebaa-a727-4242-f261-6e5218d0a2b5",
+   "pt": "5cdcebaa-a727-4242-f261-6e5218d0a2b5"
+  },
+  "Eduardo Bananinha, o Exilado": {
+   "en": "9b55d378-de4d-d985-6895-0201b136531e",
+   "pt": "9b55d378-de4d-d985-6895-0201b136531e"
+  },
+  "Milei, El Loco da Motosserra": {
+   "en": "4c60b156-9756-4ae9-389b-07b22db91aaa",
+   "pt": "4c60b156-9756-4ae9-389b-07b22db91aaa"
+  },
+  "Tarifaço do Trump": {
+   "en": "c41b357d-4439-9e1c-1d14-82b26bf5c75f",
+   "pt": "c41b357d-4439-9e1c-1d14-82b26bf5c75f"
+  },
+  "Paulo Guedes, o Posto Ipiranga": {
+   "en": "349b7620-35e9-cafc-4507-249ab94df059",
+   "pt": "349b7620-35e9-cafc-4507-249ab94df059"
+  },
+  "Sergio Moro, Ex-Juiz": {
+   "en": "65c98e97-ab0b-1b6f-1ce2-d7b5eca18b1f",
+   "pt": "65c98e97-ab0b-1b6f-1ce2-d7b5eca18b1f"
+  },
+  "Mauro Cid, o Delator": {
+   "en": "b09a7adb-5943-f31a-3fbb-0160ac1a7702",
+   "pt": "b09a7adb-5943-f31a-3fbb-0160ac1a7702"
+  },
+  "Leite Condensado": {
+   "en": "06619302-5bf5-dcc6-e54d-9bef7cc33048",
+   "pt": "06619302-5bf5-dcc6-e54d-9bef7cc33048"
+  },
+  "Joias da Arábia": {
+   "en": "f7e36594-1ec1-6044-ec85-491554fce42e",
+   "pt": "f7e36594-1ec1-6044-ec85-491554fce42e"
+  },
+  "Pix do Mito": {
+   "en": "c1d37122-df31-5e77-447c-1d7aa1ce2486",
+   "pt": "c1d37122-df31-5e77-447c-1d7aa1ce2486"
+  },
+  "Valdemar, Dono do Partido": {
+   "en": "960f500c-1ff5-4c0f-fdf4-17258818c454",
+   "pt": "960f500c-1ff5-4c0f-fdf4-17258818c454"
+  },
+  "Vivendas da Barra": {
+   "en": "a225055c-9505-3196-7b61-5f8ca660dfcb",
+   "pt": "a225055c-9505-3196-7b61-5f8ca660dfcb"
   }
  },
  "fichas": [

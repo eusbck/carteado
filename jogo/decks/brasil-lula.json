@@ -1,0 +1,380 @@
+{
+ "formato": 1,
+ "id": "brasil-lula",
+ "ordem": 100,
+ "nome": "Brasil Pronto pra Mais (deck do Lula)",
+ "link": "",
+ "importadoEm": "2026-10-12T00:00:00.000Z",
+ "verificadoEm": null,
+ "atual": {
+  "comandante": "Lula, o Espanca Pobre",
+  "cartas": [
+   {
+    "nome": "Plains",
+    "quantidade": 5
+   },
+   {
+    "nome": "Swamp",
+    "quantidade": 4
+   },
+   {
+    "nome": "Mountain",
+    "quantidade": 3
+   },
+   {
+    "nome": "Command Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Nomad Outpost",
+    "quantidade": 1
+   },
+   {
+    "nome": "Path of Ancestry",
+    "quantidade": 1
+   },
+   {
+    "nome": "Exotic Orchard",
+    "quantidade": 1
+   },
+   {
+    "nome": "Battlefield Forge",
+    "quantidade": 1
+   },
+   {
+    "nome": "Caves of Koilos",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sulfurous Springs",
+    "quantidade": 1
+   },
+   {
+    "nome": "Clifftop Retreat",
+    "quantidade": 1
+   },
+   {
+    "nome": "Isolated Chapel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dragonskull Summit",
+    "quantidade": 1
+   },
+   {
+    "nome": "Godless Shrine",
+    "quantidade": 1
+   },
+   {
+    "nome": "Temple of Triumph",
+    "quantidade": 1
+   },
+   {
+    "nome": "Temple of Silence",
+    "quantidade": 1
+   },
+   {
+    "nome": "Temple of Malice",
+    "quantidade": 1
+   },
+   {
+    "nome": "Boros Garrison",
+    "quantidade": 1
+   },
+   {
+    "nome": "Orzhov Basilica",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rakdos Carnarium",
+    "quantidade": 1
+   },
+   {
+    "nome": "Evolving Wilds",
+    "quantidade": 1
+   },
+   {
+    "nome": "Terramorphic Expanse",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sítio de Atibaia",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bojuka Bog",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rogue's Passage",
+    "quantidade": 1
+   },
+   {
+    "nome": "Smoldering Marsh",
+    "quantidade": 1
+   },
+   {
+    "nome": "Canyon Slough",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arcane Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Boros Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Orzhov Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rakdos Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Talisman of Hierarchy",
+    "quantidade": 1
+   },
+   {
+    "nome": "Talisman of Conviction",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fellwar Stone",
+    "quantidade": 1
+   },
+   {
+    "nome": "Commander's Sphere",
+    "quantidade": 1
+   },
+   {
+    "nome": "Banco Master do Vorcaro",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bolsa Família",
+    "quantidade": 1
+   },
+   {
+    "nome": "Geraldo Alckmin, o Vice Chuchu",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dilma, Estocadora de Vento",
+    "quantidade": 1
+   },
+   {
+    "nome": "Haddad, o Taxad",
+    "quantidade": 1
+   },
+   {
+    "nome": "Janja, Primeira-Dama",
+    "quantidade": 1
+   },
+   {
+    "nome": "Jaques Wagner e Rui Costa, Dupla da Bahia",
+    "quantidade": 1
+   },
+   {
+    "nome": "Maria do Rosário",
+    "quantidade": 1
+   },
+   {
+    "nome": "PAC, a Obra que Nunca Acaba",
+    "quantidade": 1
+   },
+   {
+    "nome": "Emenda Pix",
+    "quantidade": 1
+   },
+   {
+    "nome": "Faz o L",
+    "quantidade": 1
+   },
+   {
+    "nome": "Alexandre de Moraes, o Xandão",
+    "quantidade": 1
+   },
+   {
+    "nome": "Imposto é Amor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Taxa das Blusinhas",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mensalão",
+    "quantidade": 1
+   },
+   {
+    "nome": "Minha Casa, Minha Vida",
+    "quantidade": 1
+   },
+   {
+    "nome": "Triplex do Guarujá",
+    "quantidade": 1
+   },
+   {
+    "nome": "Boulos e o MTST",
+    "quantidade": 1
+   },
+   {
+    "nome": "Companheiro É Companheiro",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lula Livre",
+    "quantidade": 1
+   },
+   {
+    "nome": "Janones, Tropa do Zap",
+    "quantidade": 1
+   },
+   {
+    "nome": "Zanin, Advogado de Estimação",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gleisi, a Presidenta do Partido",
+    "quantidade": 1
+   },
+   {
+    "nome": "Zé Dirceu, o Articulador",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tornozeleira Eletrônica",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tesoureiro do Partido",
+    "quantidade": 1
+   },
+   {
+    "nome": "Reforma Tributária",
+    "quantidade": 1
+   },
+   {
+    "nome": "Picanha e Cervejinha",
+    "quantidade": 1
+   },
+   {
+    "nome": "Marina Silva, a Sustentável",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sidônio, o Marqueteiro",
+    "quantidade": 1
+   },
+   {
+    "nome": "Nunca Antes na História Deste País",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ethereal Armor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sheltered by Ghosts",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mantle of the Ancients",
+    "quantidade": 1
+   },
+   {
+    "nome": "Coercive Impetus",
+    "quantidade": 1
+   },
+   {
+    "nome": "Martial Impetus",
+    "quantidade": 1
+   },
+   {
+    "nome": "Parasitic Impetus",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shiny Impetus",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vow of Duty",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vow of Lightning",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vow of Malice",
+    "quantidade": 1
+   },
+   {
+    "nome": "Darksteel Mutation",
+    "quantidade": 1
+   },
+   {
+    "nome": "Angelic Destiny",
+    "quantidade": 1
+   },
+   {
+    "nome": "Underworld Connections",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tariel, Reckoner of Souls",
+    "quantidade": 1
+   },
+   {
+    "nome": "Puppeteer Clique",
+    "quantidade": 1
+   },
+   {
+    "nome": "Archon of Sun's Grace",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ajani's Chosen",
+    "quantidade": 1
+   },
+   {
+    "nome": "Eidolon of Countless Battles",
+    "quantidade": 1
+   },
+   {
+    "nome": "Starfield Mystic",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hateful Eidolon",
+    "quantidade": 1
+   },
+   {
+    "nome": "Swords to Plowshares",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mortify",
+    "quantidade": 1
+   },
+   {
+    "nome": "Generous Gift",
+    "quantidade": 1
+   }
+  ],
+  "origem": {
+   "versao": null,
+   "atualizadoEm": null
+  },
+  "desde": "2026-10-12T00:00:00.000Z"
+ },
+ "preparacao": null
+}

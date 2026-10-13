@@ -162,6 +162,9 @@ async function conferir(t: TarefasDecks, alvo: string): Promise<number> {
       const i = g.imagens?.[nome];
       const img = (i?.pt && !i.pt.reserva ? i.pt : i?.en) ?? null;
       const arq = img?.frente ? (img.frente.startsWith('imagens/') ? join(pastas.imagens, img.frente.slice('imagens/'.length)) : join(pastas.cartasOriginais, img.frente)) : null;
+      // cartas próprias da mesa: a imagem fica em proprias/imagens
+      const propria = img?.frente?.startsWith('imagens/') ? join(pastas.gerado, '..', 'proprias', img.frente) : null;
+      if (propria && existsSync(propria)) continue;
       if (!arq || !existsSync(arq)) problemas.push(`${nome}: sem imagem no disco${arq ? ` (${arq})` : ''}`);
     }
   }

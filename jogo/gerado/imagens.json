@@ -23287,5 +23287,736 @@
    "faces": null,
    "reserva": false
   }
+ },
+ "Banco Master do Vorcaro": {
+  "en": {
+   "id": "1647170b-c6ad-aef2-d910-a2fe5d1566c5",
+   "frente": "imagens/1647170b-c6ad-aef2-d910-a2fe5d1566c5/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "1647170b-c6ad-aef2-d910-a2fe5d1566c5",
+   "frente": "imagens/1647170b-c6ad-aef2-d910-a2fe5d1566c5/front.png",
+   "verso": null,
+   "nome": "Banco Master do Vorcaro",
+   "tipo": "Artefato",
+   "texto": "Quando Joia Cobiçada entrar no campo de batalha, compre três cards.\n{T}: Adicione três manas de uma cor à sua escolha.\nToda vez que uma ou mais criaturas que um oponente controla atacarem você e não forem bloqueadas, aquele jogador comprará três cards e ganhará o controle de Joia Cobiçada. Desvire-a.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Imposto é Amor": {
+  "en": {
+   "id": "a422f52b-bf73-ce61-efa4-942c6bb2da3e",
+   "frente": "imagens/a422f52b-bf73-ce61-efa4-942c6bb2da3e/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "a422f52b-bf73-ce61-efa4-942c6bb2da3e",
+   "frente": "imagens/a422f52b-bf73-ce61-efa4-942c6bb2da3e/front.png",
+   "verso": null,
+   "nome": "Imposto é Amor",
+   "tipo": "Encantamento",
+   "texto": "Toda vez que um oponente compra um card, aquele jogador pode pagar {2}. Se o jogador não fizer isso, você cria uma ficha de artefato incolor do tipo Tesouro com \"{T}, sacrifique este artefato: Adicione um mana de qualquer cor.\"",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Taxa das Blusinhas": {
+  "en": {
+   "id": "83650f53-6e5e-124c-ae66-f0a671fb7bb7",
+   "frente": "imagens/83650f53-6e5e-124c-ae66-f0a671fb7bb7/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "83650f53-6e5e-124c-ae66-f0a671fb7bb7",
+   "frente": "imagens/83650f53-6e5e-124c-ae66-f0a671fb7bb7/front.png",
+   "verso": null,
+   "nome": "Taxa das Blusinhas",
+   "tipo": "Encantamento",
+   "texto": "Toda vez que um oponente conjura sua segunda mágica a cada turno, você cria uma ficha de Tesouro.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Mensalão": {
+  "en": {
+   "id": "c4d95e4b-c70b-fdc9-6cc7-4681abfef574",
+   "frente": "imagens/c4d95e4b-c70b-fdc9-6cc7-4681abfef574/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "c4d95e4b-c70b-fdc9-6cc7-4681abfef574",
+   "frente": "imagens/c4d95e4b-c70b-fdc9-6cc7-4681abfef574/front.png",
+   "verso": null,
+   "nome": "Mensalão",
+   "tipo": "Encantamento",
+   "texto": "No início de sua fase principal pré-combate, escolha um ou mais —\n• Crie uma ficha de Tesouro. Você perde 1 ponto de vida.\n• Compre um card. Você perde 2 pontos de vida.\n• Crie uma ficha de criatura Metamorfo incolor 3/2 com morfoloide. Você perde 3 pontos de vida. (Ela tem todos os tipos de criatura.)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Minha Casa, Minha Vida": {
+  "en": {
+   "id": "afe2c7fe-9f0a-e62f-394f-7509ed34c791",
+   "frente": "imagens/afe2c7fe-9f0a-e62f-394f-7509ed34c791/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "afe2c7fe-9f0a-e62f-394f-7509ed34c791",
+   "frente": "imagens/afe2c7fe-9f0a-e62f-394f-7509ed34c791/front.png",
+   "verso": null,
+   "nome": "Minha Casa, Minha Vida",
+   "tipo": "Encantamento",
+   "texto": "No início de sua manutenção, se um oponente controla mais terrenos que você, você pode procurar até três cards de terreno básico em seu grimório, revelá-los, colocá-los na sua mão e embaralhar.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Triplex do Guarujá": {
+  "en": {
+   "id": "75319fc5-010e-2449-8cea-c8dc14f6bea4",
+   "frente": "imagens/75319fc5-010e-2449-8cea-c8dc14f6bea4/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "75319fc5-010e-2449-8cea-c8dc14f6bea4",
+   "frente": "imagens/75319fc5-010e-2449-8cea-c8dc14f6bea4/front.png",
+   "verso": null,
+   "nome": "Triplex do Guarujá",
+   "tipo": "Encantamento",
+   "texto": "As criaturas não podem atacar você, a menos que o controlador delas pague {2} para cada criatura que ele controla que esteja atacando você.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Boulos e o MTST": {
+  "en": {
+   "id": "80c278e1-c5b7-fbff-c8c1-a7306a447af5",
+   "frente": "imagens/80c278e1-c5b7-fbff-c8c1-a7306a447af5/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "80c278e1-c5b7-fbff-c8c1-a7306a447af5",
+   "frente": "imagens/80c278e1-c5b7-fbff-c8c1-a7306a447af5/front.png",
+   "verso": null,
+   "nome": "Boulos e o MTST",
+   "tipo": "Feitiço",
+   "texto": "Escolha um —\n● Ganhe o controle de todas as criaturas com poder igual ou superior a 4 até o final do turno. Desvire aquelas criaturas. Elas ganham ímpeto até o final do turno.\n● Ganhe o controle de todas as criaturas com poder igual ou inferior a 3 até o final do turno. Desvire aquelas criaturas. Elas ganham ímpeto até o final do turno.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Companheiro É Companheiro": {
+  "en": {
+   "id": "e31b4508-385c-46d9-708f-17f2ab98475e",
+   "frente": "imagens/e31b4508-385c-46d9-708f-17f2ab98475e/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "e31b4508-385c-46d9-708f-17f2ab98475e",
+   "frente": "imagens/e31b4508-385c-46d9-708f-17f2ab98475e/front.png",
+   "verso": null,
+   "nome": "Companheiro É Companheiro",
+   "tipo": "Encantamento — Aura",
+   "texto": "Lampejo\nReplicar {2} (Ao conjurar esta mágica, copie-a para cada vez que você pagou o custo de replicar. Você pode escolher novos alvos para as cópias.)\nEncantar criatura\nQuando a criatura encantada morre, devolva-a ao campo de batalha sob o seu controle.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Lula Livre": {
+  "en": {
+   "id": "d3ee602f-1c1b-51a6-61fa-9512fb031102",
+   "frente": "imagens/d3ee602f-1c1b-51a6-61fa-9512fb031102/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "d3ee602f-1c1b-51a6-61fa-9512fb031102",
+   "frente": "imagens/d3ee602f-1c1b-51a6-61fa-9512fb031102/front.png",
+   "verso": null,
+   "nome": "Lula Livre",
+   "tipo": "Encantamento — Aura",
+   "texto": "Encantar carta de criatura em um cemitério\nQuando esta Aura entra, devolva a carta de criatura encantada ao campo de batalha sob o seu controle e anexe esta Aura a ela. Quando esta Aura sai do campo de batalha, o controlador daquela criatura a sacrifica.\nA criatura encantada recebe -1/-0.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Janones, Tropa do Zap": {
+  "en": {
+   "id": "3b923235-01aa-6538-c7ce-bdf5410836c9",
+   "frente": "imagens/3b923235-01aa-6538-c7ce-bdf5410836c9/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "3b923235-01aa-6538-c7ce-bdf5410836c9",
+   "frente": "imagens/3b923235-01aa-6538-c7ce-bdf5410836c9/front.png",
+   "verso": null,
+   "nome": "Janones, Tropa do Zap",
+   "tipo": "Criatura — Humano Xamã",
+   "texto": "Toda vez que Teórico da Conspiração ataca, você pode pagar {1} e descartar um card. Se fizer isso, compre um card.\nToda vez que você descarta um ou mais cards não de terreno, você pode exilar um deles de seu cemitério. Se fizer isso, você poderá conjurá-lo neste turno.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Zanin, Advogado de Estimação": {
+  "en": {
+   "id": "bb9accdc-9d35-2af1-6261-c7cf780433c7",
+   "frente": "imagens/bb9accdc-9d35-2af1-6261-c7cf780433c7/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "bb9accdc-9d35-2af1-6261-c7cf780433c7",
+   "frente": "imagens/bb9accdc-9d35-2af1-6261-c7cf780433c7/front.png",
+   "verso": null,
+   "nome": "Zanin, Advogado de Estimação",
+   "tipo": "Criatura Lendária — Humano Conselheiro",
+   "texto": "Afinidade por planeswalkers (Esta mágica custa {1} a menos para ser conjurada para cada planeswalker que você controla.)\nVoar, vigilância\nToda vez que um oponente ataca com criaturas, se duas ou mais dessas criaturas estiverem atacando você e/ou planeswalkers que você controla, aquele oponente perde 3 pontos de vida e você compra um card.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Gleisi, a Presidenta do Partido": {
+  "en": {
+   "id": "1823a6d9-b3c3-7914-2e17-3d6852afd944",
+   "frente": "imagens/1823a6d9-b3c3-7914-2e17-3d6852afd944/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "1823a6d9-b3c3-7914-2e17-3d6852afd944",
+   "frente": "imagens/1823a6d9-b3c3-7914-2e17-3d6852afd944/front.png",
+   "verso": null,
+   "nome": "Gleisi, a Presidenta do Partido",
+   "tipo": "Criatura Lendária — Ave Bruxo",
+   "texto": "Voar\nToda vez que um jogador ataca um de seus oponentes, se aquele oponente tiver mais pontos de vida que outro de seus oponentes, aquele jogador atacante compra um card e você coloca dois marcadores +1/+1 em uma criatura que você controla.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Zé Dirceu, o Articulador": {
+  "en": {
+   "id": "cff698ee-0abc-6203-eb1b-bb5313a0eb0b",
+   "frente": "imagens/cff698ee-0abc-6203-eb1b-bb5313a0eb0b/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "cff698ee-0abc-6203-eb1b-bb5313a0eb0b",
+   "frente": "imagens/cff698ee-0abc-6203-eb1b-bb5313a0eb0b/front.png",
+   "verso": null,
+   "nome": "Zé Dirceu, o Articulador",
+   "tipo": "Criatura Lendária — Humano Clérigo",
+   "texto": "Vínculo com a vida\nNo início de sua fase principal pós-combate, você pode pagar X pontos de vida, sendo X o número de oponentes que sofreram dano de combate neste turno. Se fizer isso, compre X cards.\nParceiro (Você pode ter dois comandantes se ambos tiverem parceiro.)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Tornozeleira Eletrônica": {
+  "en": {
+   "id": "868e8efa-227c-97ae-9da8-3954dbd2148d",
+   "frente": "imagens/868e8efa-227c-97ae-9da8-3954dbd2148d/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "868e8efa-227c-97ae-9da8-3954dbd2148d",
+   "frente": "imagens/868e8efa-227c-97ae-9da8-3954dbd2148d/front.png",
+   "verso": null,
+   "nome": "Tornozeleira Eletrônica",
+   "tipo": "Encantamento — Aura",
+   "texto": "Encantar criatura que você controla\nQuando esta Aura entra, exile a permanente alvo que não seja terreno que um oponente controla até esta Aura sair do campo de batalha.\nA criatura encantada tem resguardo {2}.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Tesoureiro do Partido": {
+  "en": {
+   "id": "8aecfba9-9f8a-3b49-0a86-4cbcd9faf9a1",
+   "frente": "imagens/8aecfba9-9f8a-3b49-0a86-4cbcd9faf9a1/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "8aecfba9-9f8a-3b49-0a86-4cbcd9faf9a1",
+   "frente": "imagens/8aecfba9-9f8a-3b49-0a86-4cbcd9faf9a1/front.png",
+   "verso": null,
+   "nome": "Tesoureiro do Partido",
+   "tipo": "Criatura — Goblin Ladino",
+   "texto": "Toda vez que um oponente virar um artefato para gerar mana, ganhe o controle daquele artefato até o final do seu próximo turno.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Reforma Tributária": {
+  "en": {
+   "id": "c0cea0b0-7db9-5ca9-f838-c14ca1adc2ba",
+   "frente": "imagens/c0cea0b0-7db9-5ca9-f838-c14ca1adc2ba/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "c0cea0b0-7db9-5ca9-f838-c14ca1adc2ba",
+   "frente": "imagens/c0cea0b0-7db9-5ca9-f838-c14ca1adc2ba/front.png",
+   "verso": null,
+   "nome": "Reforma Tributária",
+   "tipo": "Feitiço",
+   "texto": "Cada um dos outros jogadores descarta um card. Você compra um card para cada card descartado dessa forma.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Picanha e Cervejinha": {
+  "en": {
+   "id": "64e7f8b3-2eb4-24e5-9107-83d67846ebf3",
+   "frente": "imagens/64e7f8b3-2eb4-24e5-9107-83d67846ebf3/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "64e7f8b3-2eb4-24e5-9107-83d67846ebf3",
+   "frente": "imagens/64e7f8b3-2eb4-24e5-9107-83d67846ebf3/front.png",
+   "verso": null,
+   "nome": "Picanha e Cervejinha",
+   "tipo": "Encantamento",
+   "texto": "No início de sua manutenção, você compra um card e perde 1 ponto de vida.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Marina Silva, a Sustentável": {
+  "en": {
+   "id": "708b73e3-26fb-9129-213f-c1d07a0735b5",
+   "frente": "imagens/708b73e3-26fb-9129-213f-c1d07a0735b5/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "708b73e3-26fb-9129-213f-c1d07a0735b5",
+   "frente": "imagens/708b73e3-26fb-9129-213f-c1d07a0735b5/front.png",
+   "verso": null,
+   "nome": "Marina Silva, a Sustentável",
+   "tipo": "Criatura — Kor Mago",
+   "texto": "Dançarina dos Espíritos Kor recebe +2/+2 para cada Aura anexada a ela.\nToda vez que conjura uma mágica de Aura, você pode comprar um card.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Sidônio, o Marqueteiro": {
+  "en": {
+   "id": "3b599a66-1a98-ad89-2bed-3f0191c565d4",
+   "frente": "imagens/3b599a66-1a98-ad89-2bed-3f0191c565d4/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "3b599a66-1a98-ad89-2bed-3f0191c565d4",
+   "frente": "imagens/3b599a66-1a98-ad89-2bed-3f0191c565d4/front.png",
+   "verso": null,
+   "nome": "Sidônio, o Marqueteiro",
+   "tipo": "Criatura Lendária — Anão Conselheiro",
+   "texto": "Toda vez que você conjurar uma mágica de Aura, Equipamento ou Veículo, compre um card.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Nunca Antes na História Deste País": {
+  "en": {
+   "id": "f92d5b45-56fc-eed0-d44f-fe9b164913ef",
+   "frente": "imagens/f92d5b45-56fc-eed0-d44f-fe9b164913ef/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "f92d5b45-56fc-eed0-d44f-fe9b164913ef",
+   "frente": "imagens/f92d5b45-56fc-eed0-d44f-fe9b164913ef/front.png",
+   "verso": null,
+   "nome": "Nunca Antes na História Deste País",
+   "tipo": "Feitiço",
+   "texto": "Cada jogador tritura dez cards. Para cada jogador, escolha um card de criatura ou planeswalker no cemitério daquele jogador. Coloque aqueles cards no campo de batalha sob seu controle. Em seguida, cada criatura que você controla se torna um Phyrexiano além de seus outros tipos.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Sítio de Atibaia": {
+  "en": {
+   "id": "af6d06f7-d16c-4eef-7267-3dc683b6af36",
+   "frente": "imagens/af6d06f7-d16c-4eef-7267-3dc683b6af36/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "af6d06f7-d16c-4eef-7267-3dc683b6af36",
+   "frente": "imagens/af6d06f7-d16c-4eef-7267-3dc683b6af36/front.png",
+   "verso": null,
+   "nome": "Sítio de Atibaia",
+   "tipo": "Terreno",
+   "texto": "Não há limite para o número máximo de cards em sua mão.\n{T}: Adicione {C}.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Gripezinha": {
+  "en": {
+   "id": "0f27d5fc-ab34-1f7e-2d47-0b74817a373d",
+   "frente": "imagens/0f27d5fc-ab34-1f7e-2d47-0b74817a373d/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "0f27d5fc-ab34-1f7e-2d47-0b74817a373d",
+   "frente": "imagens/0f27d5fc-ab34-1f7e-2d47-0b74817a373d/front.png",
+   "verso": null,
+   "nome": "Gripezinha",
+   "tipo": "Mágica Instantânea",
+   "texto": "Exile a criatura alvo. Seu controlador ganha uma quantidade de pontos de vida igual ao seu poder.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Zambelli de Arma em Punho": {
+  "en": {
+   "id": "a1422d2f-452e-f80a-9346-bda937c73f6b",
+   "frente": "imagens/a1422d2f-452e-f80a-9346-bda937c73f6b/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "a1422d2f-452e-f80a-9346-bda937c73f6b",
+   "frente": "imagens/a1422d2f-452e-f80a-9346-bda937c73f6b/front.png",
+   "verso": null,
+   "nome": "Zambelli de Arma em Punho",
+   "tipo": "Mágica Instantânea",
+   "texto": "Destrua a criatura não artefato alvo.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Oito de Janeiro": {
+  "en": {
+   "id": "09e4e3f2-eb98-8169-cafc-c6ba6465ff47",
+   "frente": "imagens/09e4e3f2-eb98-8169-cafc-c6ba6465ff47/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "09e4e3f2-eb98-8169-cafc-c6ba6465ff47",
+   "frente": "imagens/09e4e3f2-eb98-8169-cafc-c6ba6465ff47/front.png",
+   "verso": null,
+   "nome": "Oito de Janeiro",
+   "tipo": "Feitiço",
+   "texto": "Crie X fichas de criatura Soldado branca 1/1. Se X for igual ou superior a 5, destrua todas as outras criaturas.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Mito": {
+  "en": {
+   "id": "106298f6-4828-4f96-be8e-f852a57b06bc",
+   "frente": "imagens/106298f6-4828-4f96-be8e-f852a57b06bc/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "106298f6-4828-4f96-be8e-f852a57b06bc",
+   "frente": "imagens/106298f6-4828-4f96-be8e-f852a57b06bc/front.png",
+   "verso": null,
+   "nome": "Mito",
+   "tipo": "Encantamento — Aura",
+   "texto": "Encantar criatura\nA criatura encantada recebe +4/+4, tem voar e iniciativa e é um Anjo além de seus outros tipos.\nQuando a criatura encantada morrer, devolva Destino Angelical para a mão de seu dono.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Cercadinho do Alvorada": {
+  "en": {
+   "id": "3b880907-9b51-7244-11ee-bebd56a05f52",
+   "frente": "imagens/3b880907-9b51-7244-11ee-bebd56a05f52/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "3b880907-9b51-7244-11ee-bebd56a05f52",
+   "frente": "imagens/3b880907-9b51-7244-11ee-bebd56a05f52/front.png",
+   "verso": null,
+   "nome": "Cercadinho do Alvorada",
+   "tipo": "Encantamento",
+   "texto": "As criaturas não podem atacar você, a menos que o controlador delas pague {2} para cada criatura que ele controla que esteja atacando você.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Malafaia, Pastor do Dízimo": {
+  "en": {
+   "id": "b8b89793-e5f5-eaaf-0a8e-6b2717e659d1",
+   "frente": "imagens/b8b89793-e5f5-eaaf-0a8e-6b2717e659d1/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "b8b89793-e5f5-eaaf-0a8e-6b2717e659d1",
+   "frente": "imagens/b8b89793-e5f5-eaaf-0a8e-6b2717e659d1/front.png",
+   "verso": null,
+   "nome": "Malafaia, Pastor do Dízimo",
+   "tipo": "Criatura — Humano Clérigo",
+   "texto": "Toda vez que outra criatura entra no campo de batalha, você ganha 1 ponto de vida.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Queiroz, o Operador": {
+  "en": {
+   "id": "53b90ce4-74ed-8ee4-29c1-7f94418fa3f0",
+   "frente": "imagens/53b90ce4-74ed-8ee4-29c1-7f94418fa3f0/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "53b90ce4-74ed-8ee4-29c1-7f94418fa3f0",
+   "frente": "imagens/53b90ce4-74ed-8ee4-29c1-7f94418fa3f0/front.png",
+   "verso": null,
+   "nome": "Queiroz, o Operador",
+   "tipo": "Criatura — Humano Ladino Aliado",
+   "texto": "Toda vez que Degolador de Zulaport ou outra criatura que você controla morre, cada oponente perde 1 ponto de vida e você ganha 1 ponto de vida.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Braga Netto, o Interventor": {
+  "en": {
+   "id": "dc6af693-78c9-fcc2-e806-eacba16d90a9",
+   "frente": "imagens/dc6af693-78c9-fcc2-e806-eacba16d90a9/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "dc6af693-78c9-fcc2-e806-eacba16d90a9",
+   "frente": "imagens/dc6af693-78c9-fcc2-e806-eacba16d90a9/front.png",
+   "verso": null,
+   "nome": "Braga Netto, o Interventor",
+   "tipo": "Criatura — Besta Horror",
+   "texto": "Quando Chupacabra Voraz entrar no campo de batalha, destrua a criatura alvo que um oponente controla.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Jair Renan, o 04": {
+  "en": {
+   "id": "33fc7959-e2df-3d30-2062-9a917bcaab9d",
+   "frente": "imagens/33fc7959-e2df-3d30-2062-9a917bcaab9d/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "33fc7959-e2df-3d30-2062-9a917bcaab9d",
+   "frente": "imagens/33fc7959-e2df-3d30-2062-9a917bcaab9d/front.png",
+   "verso": null,
+   "nome": "Jair Renan, o 04",
+   "tipo": "Criatura — Humano Monge",
+   "texto": "Vínculo com a vida (Dano causado por esta criatura faz com que você ganhe uma quantidade equivalente de pontos de vida.)\nEnquanto você tiver 30 ou mais pontos de vida, Ascendente de Serra receberá +5/+5 e terá voar.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Patriota do Caminhão": {
+  "en": {
+   "id": "afb9b95e-24f5-9ecf-dff6-6eeccbe8d1ea",
+   "frente": "imagens/afb9b95e-24f5-9ecf-dff6-6eeccbe8d1ea/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "afb9b95e-24f5-9ecf-dff6-6eeccbe8d1ea",
+   "frente": "imagens/afb9b95e-24f5-9ecf-dff6-6eeccbe8d1ea/front.png",
+   "verso": null,
+   "nome": "Patriota do Caminhão",
+   "tipo": "Criatura — Felino Soldado",
+   "texto": "Toda vez que você ganhar pontos de vida, coloque um marcador +1/+1 em Companheiro de Bando de Ajani.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Damares, a da Goiabeira": {
+  "en": {
+   "id": "5cdcebaa-a727-4242-f261-6e5218d0a2b5",
+   "frente": "imagens/5cdcebaa-a727-4242-f261-6e5218d0a2b5/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "5cdcebaa-a727-4242-f261-6e5218d0a2b5",
+   "frente": "imagens/5cdcebaa-a727-4242-f261-6e5218d0a2b5/front.png",
+   "verso": null,
+   "nome": "Damares, a da Goiabeira",
+   "tipo": "Criatura — Anjo",
+   "texto": "Voar\nVínculo com a vida (O dano causado por esta criatura faz com que você ganhe uma quantidade equivalente de pontos de vida.)Toda vez que você ganhar pontos de vida, coloque um marcador +1/+1 em cada criatura que você controla.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Eduardo Bananinha, o Exilado": {
+  "en": {
+   "id": "9b55d378-de4d-d985-6895-0201b136531e",
+   "frente": "imagens/9b55d378-de4d-d985-6895-0201b136531e/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "9b55d378-de4d-d985-6895-0201b136531e",
+   "frente": "imagens/9b55d378-de4d-d985-6895-0201b136531e/front.png",
+   "verso": null,
+   "nome": "Eduardo Bananinha, o Exilado",
+   "tipo": "Criatura — Vampiro Xamã",
+   "texto": "Voar, toque mortífero, vínculo com a vida",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Milei, El Loco da Motosserra": {
+  "en": {
+   "id": "4c60b156-9756-4ae9-389b-07b22db91aaa",
+   "frente": "imagens/4c60b156-9756-4ae9-389b-07b22db91aaa/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "4c60b156-9756-4ae9-389b-07b22db91aaa",
+   "frente": "imagens/4c60b156-9756-4ae9-389b-07b22db91aaa/front.png",
+   "verso": null,
+   "nome": "Milei, El Loco da Motosserra",
+   "tipo": "Criatura — Phyrexiano Vorme",
+   "texto": "Quando Vorme do Massacre entra no campo de batalha, as criaturas que seus oponentes controlam recebem -2/-2 até o final do turno.\nToda vez que uma criatura que um oponente controla morre, aquele jogador perde 2 pontos de vida.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Tarifaço do Trump": {
+  "en": {
+   "id": "c41b357d-4439-9e1c-1d14-82b26bf5c75f",
+   "frente": "imagens/c41b357d-4439-9e1c-1d14-82b26bf5c75f/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "c41b357d-4439-9e1c-1d14-82b26bf5c75f",
+   "frente": "imagens/c41b357d-4439-9e1c-1d14-82b26bf5c75f/front.png",
+   "verso": null,
+   "nome": "Tarifaço do Trump",
+   "tipo": "Feitiço",
+   "texto": "Destrua todas as criaturas. Elas não podem ser regeneradas. Compre um card para cada criatura destruída desta forma.\nReciclar {3}{B}{B} ({3}{B}{B}, descarte este card: Compre um card.)\nQuando você recicla Decreto de Dor, todas as criaturas recebem -2/-2 até o final do turno.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Paulo Guedes, o Posto Ipiranga": {
+  "en": {
+   "id": "349b7620-35e9-cafc-4507-249ab94df059",
+   "frente": "imagens/349b7620-35e9-cafc-4507-249ab94df059/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "349b7620-35e9-cafc-4507-249ab94df059",
+   "frente": "imagens/349b7620-35e9-cafc-4507-249ab94df059/front.png",
+   "verso": null,
+   "nome": "Paulo Guedes, o Posto Ipiranga",
+   "tipo": "Criatura — Humano Pirata",
+   "texto": "Sempre que outra criatura que você controla morre, crie uma ficha de Tesouro. (Ela é um artefato com “{T}, sacrifique esta ficha: adicione um mana de qualquer cor”.)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Sergio Moro, Ex-Juiz": {
+  "en": {
+   "id": "65c98e97-ab0b-1b6f-1ce2-d7b5eca18b1f",
+   "frente": "imagens/65c98e97-ab0b-1b6f-1ce2-d7b5eca18b1f/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "65c98e97-ab0b-1b6f-1ce2-d7b5eca18b1f",
+   "frente": "imagens/65c98e97-ab0b-1b6f-1ce2-d7b5eca18b1f/front.png",
+   "verso": null,
+   "nome": "Sergio Moro, Ex-Juiz",
+   "tipo": "Criatura — Humano Soldado",
+   "texto": "Quando Carcereiro do Palácio entra no campo de batalha, você se torna o monarca.\nQuando Carcereiro do Palácio entrar no campo de batalha, exile a criatura alvo que um oponente controla até que um oponente se torne o monarca.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Mauro Cid, o Delator": {
+  "en": {
+   "id": "b09a7adb-5943-f31a-3fbb-0160ac1a7702",
+   "frente": "imagens/b09a7adb-5943-f31a-3fbb-0160ac1a7702/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "b09a7adb-5943-f31a-3fbb-0160ac1a7702",
+   "frente": "imagens/b09a7adb-5943-f31a-3fbb-0160ac1a7702/front.png",
+   "verso": null,
+   "nome": "Mauro Cid, o Delator",
+   "tipo": "Criatura Lendária — Vampiro Guerreiro",
+   "texto": "Vínculo com a vida\nSe uma criatura que um oponente controla que não seja uma ficha morreria, em vez disso, exile aquele card e coloque no campo de batalha uma ficha de criatura preta 2/2 do tipo Zumbi.\n{2}{B}, Sacrifique outro Vampiro ou Zumbi: Coloque dois marcadores +1/+1 em Kalitas, Traidor de Ghet.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Leite Condensado": {
+  "en": {
+   "id": "06619302-5bf5-dcc6-e54d-9bef7cc33048",
+   "frente": "imagens/06619302-5bf5-dcc6-e54d-9bef7cc33048/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "06619302-5bf5-dcc6-e54d-9bef7cc33048",
+   "frente": "imagens/06619302-5bf5-dcc6-e54d-9bef7cc33048/front.png",
+   "verso": null,
+   "nome": "Leite Condensado",
+   "tipo": "Feitiço",
+   "texto": "Cada oponente perde X pontos de vida. Você ganha uma quantidade de pontos de vida igual ao total de pontos de vida perdidos dessa maneira.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Joias da Arábia": {
+  "en": {
+   "id": "f7e36594-1ec1-6044-ec85-491554fce42e",
+   "frente": "imagens/f7e36594-1ec1-6044-ec85-491554fce42e/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "f7e36594-1ec1-6044-ec85-491554fce42e",
+   "frente": "imagens/f7e36594-1ec1-6044-ec85-491554fce42e/front.png",
+   "verso": null,
+   "nome": "Joias da Arábia",
+   "tipo": "Artefato — Equipamento",
+   "texto": "A criatura equipada tem toque mortífero e vínculo com a vida.\nEquipar {2}",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Pix do Mito": {
+  "en": {
+   "id": "c1d37122-df31-5e77-447c-1d7aa1ce2486",
+   "frente": "imagens/c1d37122-df31-5e77-447c-1d7aa1ce2486/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "c1d37122-df31-5e77-447c-1d7aa1ce2486",
+   "frente": "imagens/c1d37122-df31-5e77-447c-1d7aa1ce2486/front.png",
+   "verso": null,
+   "nome": "Pix do Mito",
+   "tipo": "Encantamento",
+   "texto": "Se você for ganhar pontos de vida, em vez disso, ganhará o dobro daquela quantidade em pontos de vida.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Valdemar, Dono do Partido": {
+  "en": {
+   "id": "960f500c-1ff5-4c0f-fdf4-17258818c454",
+   "frente": "imagens/960f500c-1ff5-4c0f-fdf4-17258818c454/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "960f500c-1ff5-4c0f-fdf4-17258818c454",
+   "frente": "imagens/960f500c-1ff5-4c0f-fdf4-17258818c454/front.png",
+   "verso": null,
+   "nome": "Valdemar, Dono do Partido",
+   "tipo": "Criatura — Tiferino Ladino",
+   "texto": "Toda vez que uma ou mais criaturas que você controla causarem dano de combate a um jogador, crie duas fichas de Tesouro.\n{B}, sacrifique X Tesouros: A criatura alvo recebe -X/-X até o final do turno. Ative somente como um feitiço.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Vivendas da Barra": {
+  "en": {
+   "id": "a225055c-9505-3196-7b61-5f8ca660dfcb",
+   "frente": "imagens/a225055c-9505-3196-7b61-5f8ca660dfcb/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "a225055c-9505-3196-7b61-5f8ca660dfcb",
+   "frente": "imagens/a225055c-9505-3196-7b61-5f8ca660dfcb/front.png",
+   "verso": null,
+   "nome": "Vivendas da Barra",
+   "tipo": "Terreno",
+   "texto": "{T}: Adicione {C}.\n{2}{G}{W}, {T}: Coloque um marcador +1/+1 em cada criatura que você controla.",
+   "faces": null,
+   "reserva": false
+  }
  }
 }

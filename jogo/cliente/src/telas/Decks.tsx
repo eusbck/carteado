@@ -209,7 +209,7 @@ function JanelaDetalhes({ d, fechar }: { d: DeckCatalogo; fechar: () => void }) 
     <Janela titulo={d.nome} fechar={fechar} larga={!!p && d.estado === 'atualizacao'} classe="cat-janela">
       <div class="cat-proposta">
         <p class="suave">
-          Comandante: {d.comandantePt ?? d.comandante} · {d.total} cartas diferentes · <a href={d.link} target="_blank" rel="noopener noreferrer">ver no Moxfield</a>
+          Comandante: {d.comandantePt ?? d.comandante} · {d.total} cartas diferentes{d.link ? <> · <a href={d.link} target="_blank" rel="noopener noreferrer">ver no Moxfield</a></> : ' · deck da mesa'}
           <br />Importado em {data(d.importadoEm)}{d.verificadoEm ? `; buscado no Moxfield em ${data(d.verificadoEm)}` : ''}.
         </p>
         {d.estado === 'pronto' && <p class="cat-resumo jogavel">Todas as cartas têm regras: o deck está no saguão.</p>}

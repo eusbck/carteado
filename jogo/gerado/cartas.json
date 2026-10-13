@@ -3439,6 +3439,32 @@
     }
    ]
   },
+  "Banco Master do Vorcaro": {
+   "name": "Banco Master do Vorcaro",
+   "oracleId": "433e0efa-0fdb-a62d-2fac-8935a01cc63a",
+   "layout": "normal",
+   "manaValue": 6,
+   "colorIdentity": [],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Banco Master do Vorcaro",
+     "manaCost": "{6}",
+     "typeLine": "Artifact",
+     "supertypes": [],
+     "types": [
+      "Artifact"
+     ],
+     "subtypes": [],
+     "oracleText": "When this artifact enters, draw three cards.\n{T}: Add three mana of any one color.\nWhenever one or more creatures an opponent controls attack you and aren't blocked, that player draws three cards and gains control of this artifact. Untap it.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Banon, the Returners' Leader": {
    "name": "Banon, the Returners' Leader",
    "oracleId": "1b62e88f-d544-4c01-a5a2-1c185a3c9c1e",
@@ -5645,6 +5671,36 @@
     }
    ]
   },
+  "Boulos e o MTST": {
+   "name": "Boulos e o MTST",
+   "oracleId": "de1d2d5d-ceb7-f0ce-038b-c24e885d4fe9",
+   "layout": "normal",
+   "manaValue": 6,
+   "colorIdentity": [
+    "R"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Boulos e o MTST",
+     "manaCost": "{4}{R}{R}",
+     "typeLine": "Sorcery",
+     "supertypes": [],
+     "types": [
+      "Sorcery"
+     ],
+     "subtypes": [],
+     "oracleText": "Choose one —\n• Gain control of all creatures with power 4 or greater until end of turn. Untap those creatures. They gain haste until end of turn.\n• Gain control of all creatures with power 3 or less until end of turn. Untap those creatures. They gain haste until end of turn.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "R"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Bountiful Promenade": {
    "name": "Bountiful Promenade",
    "oracleId": "761cb262-f83b-4a99-9345-b773182a7671",
@@ -5699,6 +5755,39 @@
      "loyalty": null,
      "colors": [
       "W"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Braga Netto, o Interventor": {
+   "name": "Braga Netto, o Interventor",
+   "oracleId": "d214f0ae-9ccc-2e3e-e434-5774dc2bf098",
+   "layout": "normal",
+   "manaValue": 4,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Braga Netto, o Interventor",
+     "manaCost": "{2}{B}{B}",
+     "typeLine": "Creature — Beast Horror",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Beast",
+      "Horror"
+     ],
+     "oracleText": "When this creature enters, destroy target creature an opponent controls.",
+     "power": 2,
+     "toughness": 2,
+     "loyalty": null,
+     "colors": [
+      "B"
      ],
      "colorIndicator": null
     }
@@ -7286,6 +7375,36 @@
     }
    ]
   },
+  "Cercadinho do Alvorada": {
+   "name": "Cercadinho do Alvorada",
+   "oracleId": "c8c2e339-68e4-ab30-9c25-ad31f479a72d",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "W"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Cercadinho do Alvorada",
+     "manaCost": "{2}{W}",
+     "typeLine": "Enchantment",
+     "supertypes": [],
+     "types": [
+      "Enchantment"
+     ],
+     "subtypes": [],
+     "oracleText": "Creatures can't attack you unless their controller pays {2} for each creature they control that's attacking you.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "W"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Chain Reaction": {
    "name": "Chain Reaction",
    "oracleId": "086b2564-9114-4ba2-94fd-b490f98f38a7",
@@ -8458,6 +8577,42 @@
      "toughness": null,
      "loyalty": null,
      "colors": [],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Companheiro É Companheiro": {
+   "name": "Companheiro É Companheiro",
+   "oracleId": "dcd58a6c-5ae3-138a-d167-8f14725df17e",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [
+    "Replicate",
+    "Enchant",
+    "Flash"
+   ],
+   "faces": [
+    {
+     "name": "Companheiro É Companheiro",
+     "manaCost": "{1}{B}",
+     "typeLine": "Enchantment — Aura",
+     "supertypes": [],
+     "types": [
+      "Enchantment"
+     ],
+     "subtypes": [
+      "Aura"
+     ],
+     "oracleText": "Flash\nReplicate {2} (When you cast this spell, copy it for each time you paid its replicate cost. You may choose new targets for the copies. Copies become tokens.)\nEnchant creature\nWhen enchanted creature dies, return it to the battlefield under your control.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
      "colorIndicator": null
     }
    ]
@@ -9970,6 +10125,41 @@
      "loyalty": null,
      "colors": [
       "U"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Damares, a da Goiabeira": {
+   "name": "Damares, a da Goiabeira",
+   "oracleId": "3ac2c830-090a-ea47-646b-18e3d8a66bb3",
+   "layout": "normal",
+   "manaValue": 5,
+   "colorIdentity": [
+    "W"
+   ],
+   "keywords": [
+    "Flying",
+    "Lifelink"
+   ],
+   "faces": [
+    {
+     "name": "Damares, a da Goiabeira",
+     "manaCost": "{3}{W}{W}",
+     "typeLine": "Creature — Angel",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Angel"
+     ],
+     "oracleText": "Flying\nLifelink (Damage dealt by this creature also causes you to gain that much life.)\nWhenever you gain life, put a +1/+1 counter on each creature you control.",
+     "power": 3,
+     "toughness": 4,
+     "loyalty": null,
+     "colors": [
+      "W"
      ],
      "colorIndicator": null
     }
@@ -12973,6 +13163,43 @@
      "toughness": null,
      "loyalty": null,
      "colors": [],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Eduardo Bananinha, o Exilado": {
+   "name": "Eduardo Bananinha, o Exilado",
+   "oracleId": "2f17b31c-f377-ccb1-6ba6-b749049ae3ae",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [
+    "Deathtouch",
+    "Flying",
+    "Lifelink"
+   ],
+   "faces": [
+    {
+     "name": "Eduardo Bananinha, o Exilado",
+     "manaCost": "{1}{B}{B}",
+     "typeLine": "Creature — Vampire Shaman",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Vampire",
+      "Shaman"
+     ],
+     "oracleText": "Flying\nDeathtouch (Any amount of damage this deals to a creature is enough to destroy it.)\nLifelink (Damage dealt by this creature also causes you to gain that much life.)",
+     "power": 2,
+     "toughness": 3,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
      "colorIndicator": null
     }
    ]
@@ -17581,6 +17808,45 @@
     }
    ]
   },
+  "Gleisi, a Presidenta do Partido": {
+   "name": "Gleisi, a Presidenta do Partido",
+   "oracleId": "cf00b089-cc7d-464f-b2a0-396c63bac3f5",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "B",
+    "W"
+   ],
+   "keywords": [
+    "Flying"
+   ],
+   "faces": [
+    {
+     "name": "Gleisi, a Presidenta do Partido",
+     "manaCost": "{1}{W}{B}",
+     "typeLine": "Legendary Creature — Bird Warlock",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Bird",
+      "Warlock"
+     ],
+     "oracleText": "Flying\nWhenever a player attacks one of your opponents, if that opponent has more life than another of your opponents, that attacking player draws a card and you put two +1/+1 counters on a creature you control.",
+     "power": 1,
+     "toughness": 3,
+     "loyalty": null,
+     "colors": [
+      "W",
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Glissa Sunslayer": {
    "name": "Glissa Sunslayer",
    "oracleId": "8859a692-d107-4de2-9110-4681fc2761c7",
@@ -18744,6 +19010,36 @@
      "colors": [
       "B",
       "U"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Gripezinha": {
+   "name": "Gripezinha",
+   "oracleId": "2d24a17b-4a81-c442-9f9b-a7991c71e66c",
+   "layout": "normal",
+   "manaValue": 1,
+   "colorIdentity": [
+    "W"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Gripezinha",
+     "manaCost": "{W}",
+     "typeLine": "Instant",
+     "supertypes": [],
+     "types": [
+      "Instant"
+     ],
+     "subtypes": [],
+     "oracleText": "Exile target creature. Its controller gains life equal to its power.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "W"
      ],
      "colorIndicator": null
     }
@@ -21142,6 +21438,38 @@
     }
    ]
   },
+  "Imposto é Amor": {
+   "name": "Imposto é Amor",
+   "oracleId": "90c75681-13c5-fe32-ca8d-abc9371467d3",
+   "layout": "normal",
+   "manaValue": 4,
+   "colorIdentity": [
+    "W"
+   ],
+   "keywords": [
+    "Treasure"
+   ],
+   "faces": [
+    {
+     "name": "Imposto é Amor",
+     "manaCost": "{3}{W}",
+     "typeLine": "Enchantment",
+     "supertypes": [],
+     "types": [
+      "Enchantment"
+     ],
+     "subtypes": [],
+     "oracleText": "Whenever an opponent draws a card, that player may pay {2}. If the player doesn't, you create a Treasure token. (It's an artifact with \"{T}, Sacrifice this token: Add one mana of any color.\")",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "W"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Imprisoned in the Moon": {
    "name": "Imprisoned in the Moon",
    "oracleId": "339a7418-9a29-4eae-a3c2-ea590d175936",
@@ -22129,6 +22457,41 @@
     }
    ]
   },
+  "Jair Renan, o 04": {
+   "name": "Jair Renan, o 04",
+   "oracleId": "711109fd-a107-1eff-e525-106128dd8f4a",
+   "layout": "normal",
+   "manaValue": 1,
+   "colorIdentity": [
+    "W"
+   ],
+   "keywords": [
+    "Lifelink"
+   ],
+   "faces": [
+    {
+     "name": "Jair Renan, o 04",
+     "manaCost": "{W}",
+     "typeLine": "Creature — Human Monk",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Human",
+      "Monk"
+     ],
+     "oracleText": "Lifelink (Damage dealt by this creature also causes you to gain that much life.)\nAs long as you have 30 or more life, this creature gets +5/+5 and has flying.",
+     "power": 1,
+     "toughness": 1,
+     "loyalty": null,
+     "colors": [
+      "W"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Janja, Primeira-Dama": {
    "name": "Janja, Primeira-Dama",
    "oracleId": "9297adc1-5fe5-dab2-b0c4-8f3a86c107fa",
@@ -22159,6 +22522,39 @@
      "loyalty": null,
      "colors": [
       "W"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Janones, Tropa do Zap": {
+   "name": "Janones, Tropa do Zap",
+   "oracleId": "2e1e5474-aeef-3910-15b7-9fb5d2b947b9",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "R"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Janones, Tropa do Zap",
+     "manaCost": "{1}{R}",
+     "typeLine": "Creature — Human Shaman",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Human",
+      "Shaman"
+     ],
+     "oracleText": "Whenever this creature attacks, you may pay {1} and discard a card. If you do, draw a card.\nWhenever you discard one or more nonland cards, you may exile one of them from your graveyard. If you do, you may cast it this turn.",
+     "power": 2,
+     "toughness": 2,
+     "loyalty": null,
+     "colors": [
+      "R"
      ],
      "colorIndicator": null
     }
@@ -22607,6 +23003,36 @@
      "oracleText": "Flying\nWhenever your commander deals combat damage to a player, put a +1/+1 counter on Jocasta.\nWhenever you attack with your commander, if this card is in your graveyard, you may return it to the battlefield tapped and attacking.",
      "power": 2,
      "toughness": 2,
+     "loyalty": null,
+     "colors": [],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Joias da Arábia": {
+   "name": "Joias da Arábia",
+   "oracleId": "faf8458b-7c6d-6f33-d462-dff30cdce732",
+   "layout": "normal",
+   "manaValue": 1,
+   "colorIdentity": [],
+   "keywords": [
+    "Equip"
+   ],
+   "faces": [
+    {
+     "name": "Joias da Arábia",
+     "manaCost": "{1}",
+     "typeLine": "Artifact — Equipment",
+     "supertypes": [],
+     "types": [
+      "Artifact"
+     ],
+     "subtypes": [
+      "Equipment"
+     ],
+     "oracleText": "Equipped creature has deathtouch and lifelink. (Any amount of damage it deals to a creature is enough to destroy it. Damage dealt by this creature also causes you to gain that much life.)\nEquip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)",
+     "power": null,
+     "toughness": null,
      "loyalty": null,
      "colors": [],
      "colorIndicator": null
@@ -24394,6 +24820,36 @@
     }
    ]
   },
+  "Leite Condensado": {
+   "name": "Leite Condensado",
+   "oracleId": "0eca36c0-b60a-fc91-75a6-019495b46a1b",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Leite Condensado",
+     "manaCost": "{X}{B}{B}",
+     "typeLine": "Sorcery",
+     "supertypes": [],
+     "types": [
+      "Sorcery"
+     ],
+     "subtypes": [],
+     "oracleText": "Each opponent loses X life. You gain life equal to the life lost this way.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Leitmotif Composer": {
    "name": "Leitmotif Composer",
    "oracleId": "61816f98-9d1a-4b16-9194-cb7249880710",
@@ -25694,6 +26150,40 @@
     }
    ]
   },
+  "Lula Livre": {
+   "name": "Lula Livre",
+   "oracleId": "1c622c2f-c2bb-1bef-60aa-a62bfca0cedb",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [
+    "Enchant"
+   ],
+   "faces": [
+    {
+     "name": "Lula Livre",
+     "manaCost": "{1}{B}",
+     "typeLine": "Enchantment — Aura",
+     "supertypes": [],
+     "types": [
+      "Enchantment"
+     ],
+     "subtypes": [
+      "Aura"
+     ],
+     "oracleText": "Enchant creature card in a graveyard\nWhen this Aura enters, if it's on the battlefield, it loses \"enchant creature card in a graveyard\" and gains \"enchant creature put onto the battlefield with this Aura.\" Return enchanted creature card to the battlefield under your control and attach this Aura to it. When this Aura leaves the battlefield, that creature's controller sacrifices it.\nEnchanted creature gets -1/-0.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Lula, o Espanca Pobre": {
    "name": "Lula, o Espanca Pobre",
    "oracleId": "d83d8711-9e6c-b935-6b5b-f7117a4e90fc",
@@ -26120,6 +26610,39 @@
     }
    ]
   },
+  "Malafaia, Pastor do Dízimo": {
+   "name": "Malafaia, Pastor do Dízimo",
+   "oracleId": "d80a4229-ced8-0982-c249-9ffebb3a9760",
+   "layout": "normal",
+   "manaValue": 1,
+   "colorIdentity": [
+    "W"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Malafaia, Pastor do Dízimo",
+     "manaCost": "{W}",
+     "typeLine": "Creature — Human Cleric",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Human",
+      "Cleric"
+     ],
+     "oracleText": "Whenever another creature enters, you gain 1 life.",
+     "power": 1,
+     "toughness": 1,
+     "loyalty": null,
+     "colors": [
+      "W"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Malakir Bloodwitch": {
    "name": "Malakir Bloodwitch",
    "oracleId": "870e199e-1d54-44ec-8e24-f24af93ae9c5",
@@ -26482,6 +27005,39 @@
      "oracleText": "Whenever a creature deals combat damage to you, tap it and put two stun counters on it.",
      "power": 1,
      "toughness": 4,
+     "loyalty": null,
+     "colors": [
+      "W"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Marina Silva, a Sustentável": {
+   "name": "Marina Silva, a Sustentável",
+   "oracleId": "f0daceb7-915c-c6d0-e384-1c66f5ef93fa",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "W"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Marina Silva, a Sustentável",
+     "manaCost": "{1}{W}",
+     "typeLine": "Creature — Kor Wizard",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Kor",
+      "Wizard"
+     ],
+     "oracleText": "This creature gets +2/+2 for each Aura attached to it.\nWhenever you cast an Aura spell, you may draw a card.",
+     "power": 0,
+     "toughness": 2,
      "loyalty": null,
      "colors": [
       "W"
@@ -27020,6 +27576,43 @@
     }
    ]
   },
+  "Mauro Cid, o Delator": {
+   "name": "Mauro Cid, o Delator",
+   "oracleId": "5b817a47-3fdf-c98e-789f-aa99a3936dd6",
+   "layout": "normal",
+   "manaValue": 4,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [
+    "Lifelink"
+   ],
+   "faces": [
+    {
+     "name": "Mauro Cid, o Delator",
+     "manaCost": "{2}{B}{B}",
+     "typeLine": "Legendary Creature — Vampire Warrior",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Vampire",
+      "Warrior"
+     ],
+     "oracleText": "Lifelink\nIf a nontoken creature an opponent controls would die, instead exile that card and create a 2/2 black Zombie creature token.\n{2}{B}, Sacrifice another Vampire or Zombie: Put two +1/+1 counters on Kalitas.",
+     "power": 3,
+     "toughness": 4,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Mazemind Tome": {
    "name": "Mazemind Tome",
    "oracleId": "800fb917-8898-4eba-9f94-aec6e9d75236",
@@ -27221,6 +27814,41 @@
      "loyalty": null,
      "colors": [
       "U"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Mensalão": {
+   "name": "Mensalão",
+   "oracleId": "353dbd8a-f319-8bb4-6325-84b900fe8fe0",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [
+    "Hire a Mercenary",
+    "Treasure",
+    "Sell Contraband",
+    "Buy Information"
+   ],
+   "faces": [
+    {
+     "name": "Mensalão",
+     "manaCost": "{2}{B}",
+     "typeLine": "Enchantment",
+     "supertypes": [],
+     "types": [
+      "Enchantment"
+     ],
+     "subtypes": [],
+     "oracleText": "At the beginning of your first main phase, choose one or more —\n• Sell Contraband — Create a Treasure token. You lose 1 life.\n• Buy Information — Draw a card. You lose 2 life.\n• Hire a Mercenary — Create a 3/2 colorless Shapeshifter creature token with changeling. You lose 3 life. (It is every creature type.)",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "B"
      ],
      "colorIndicator": null
     }
@@ -27621,6 +28249,39 @@
     }
    ]
   },
+  "Milei, El Loco da Motosserra": {
+   "name": "Milei, El Loco da Motosserra",
+   "oracleId": "4edb36d3-161e-9959-975f-c6997de1a78d",
+   "layout": "normal",
+   "manaValue": 6,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Milei, El Loco da Motosserra",
+     "manaCost": "{3}{B}{B}{B}",
+     "typeLine": "Creature — Phyrexian Wurm",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Phyrexian",
+      "Wurm"
+     ],
+     "oracleText": "When this creature enters, creatures your opponents control get -2/-2 until end of turn.\nWhenever a creature an opponent controls dies, that player loses 2 life.",
+     "power": 6,
+     "toughness": 5,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Millikin": {
    "name": "Millikin",
    "oracleId": "fa4dffda-6f04-4d0b-829d-28a1a5794dee",
@@ -27818,6 +28479,36 @@
      "toughness": null,
      "loyalty": null,
      "colors": [],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Minha Casa, Minha Vida": {
+   "name": "Minha Casa, Minha Vida",
+   "oracleId": "d48ee36c-56bb-4a3d-5102-7eb5d153e6ed",
+   "layout": "normal",
+   "manaValue": 1,
+   "colorIdentity": [
+    "W"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Minha Casa, Minha Vida",
+     "manaCost": "{W}",
+     "typeLine": "Enchantment",
+     "supertypes": [],
+     "types": [
+      "Enchantment"
+     ],
+     "subtypes": [],
+     "oracleText": "At the beginning of your upkeep, if an opponent controls more lands than you, you may search your library for up to three basic land cards, reveal them, put them into your hand, then shuffle.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "W"
+     ],
      "colorIndicator": null
     }
    ]
@@ -28153,6 +28844,40 @@
      "toughness": null,
      "loyalty": null,
      "colors": [],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Mito": {
+   "name": "Mito",
+   "oracleId": "4bf67b04-bb28-a40d-ef34-e7aca9e01967",
+   "layout": "normal",
+   "manaValue": 4,
+   "colorIdentity": [
+    "W"
+   ],
+   "keywords": [
+    "Enchant"
+   ],
+   "faces": [
+    {
+     "name": "Mito",
+     "manaCost": "{2}{W}{W}",
+     "typeLine": "Enchantment — Aura",
+     "supertypes": [],
+     "types": [
+      "Enchantment"
+     ],
+     "subtypes": [
+      "Aura"
+     ],
+     "oracleText": "Enchant creature\nEnchanted creature gets +4/+4, has flying and first strike, and is an Angel in addition to its other types.\nWhen enchanted creature dies, return this card to its owner's hand.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "W"
+     ],
      "colorIndicator": null
     }
    ]
@@ -30415,6 +31140,38 @@
     }
    ]
   },
+  "Nunca Antes na História Deste País": {
+   "name": "Nunca Antes na História Deste País",
+   "oracleId": "c65c85bb-dd1a-4fa3-3af8-a14d22cb0b1c",
+   "layout": "normal",
+   "manaValue": 7,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [
+    "Mill"
+   ],
+   "faces": [
+    {
+     "name": "Nunca Antes na História Deste País",
+     "manaCost": "{5}{B}{B}",
+     "typeLine": "Sorcery",
+     "supertypes": [],
+     "types": [
+      "Sorcery"
+     ],
+     "subtypes": [],
+     "oracleText": "Each player mills ten cards. For each player, choose a creature or planeswalker card in that player's graveyard. Put those cards onto the battlefield under your control. Then each creature you control becomes a Phyrexian in addition to its other types.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Nykthos Paragon": {
    "name": "Nykthos Paragon",
    "oracleId": "367ac7e2-5056-48f3-a296-87d6cb1f7b54",
@@ -30609,6 +31366,36 @@
      "loyalty": null,
      "colors": [
       "G"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Oito de Janeiro": {
+   "name": "Oito de Janeiro",
+   "oracleId": "2eb21235-dcea-707e-7655-7fd314535f4b",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "W"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Oito de Janeiro",
+     "manaCost": "{X}{W}{W}",
+     "typeLine": "Sorcery",
+     "supertypes": [],
+     "types": [
+      "Sorcery"
+     ],
+     "subtypes": [],
+     "oracleText": "Create X 1/1 white Soldier creature tokens. If X is 5 or more, destroy all other creatures.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "W"
      ],
      "colorIndicator": null
     }
@@ -31976,6 +32763,39 @@
     }
    ]
   },
+  "Patriota do Caminhão": {
+   "name": "Patriota do Caminhão",
+   "oracleId": "118ae03f-7958-d397-ed8f-ee323f4e0af7",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "W"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Patriota do Caminhão",
+     "manaCost": "{1}{W}",
+     "typeLine": "Creature — Cat Soldier",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Cat",
+      "Soldier"
+     ],
+     "oracleText": "Whenever you gain life, put a +1/+1 counter on this creature.",
+     "power": 2,
+     "toughness": 2,
+     "loyalty": null,
+     "colors": [
+      "W"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Patron of the Vein": {
    "name": "Patron of the Vein",
    "oracleId": "8dbc8fdb-36ce-4f30-b679-9c2029fcd9c6",
@@ -32002,6 +32822,41 @@
      ],
      "oracleText": "Flying\nWhen this creature enters, destroy target creature an opponent controls.\nWhenever a creature an opponent controls dies, exile it and put a +1/+1 counter on each Vampire you control.",
      "power": 4,
+     "toughness": 4,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Paulo Guedes, o Posto Ipiranga": {
+   "name": "Paulo Guedes, o Posto Ipiranga",
+   "oracleId": "b257a4b0-5bc3-e9d9-e75a-43841da84080",
+   "layout": "normal",
+   "manaValue": 4,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [
+    "Treasure"
+   ],
+   "faces": [
+    {
+     "name": "Paulo Guedes, o Posto Ipiranga",
+     "manaCost": "{3}{B}",
+     "typeLine": "Creature — Human Pirate",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Human",
+      "Pirate"
+     ],
+     "oracleText": "Whenever another creature you control dies, create a Treasure token. (It's an artifact with \"{T}, Sacrifice this token: Add one mana of any color.\")",
+     "power": 1,
      "toughness": 4,
      "loyalty": null,
      "colors": [
@@ -32467,6 +33322,36 @@
     }
    ]
   },
+  "Picanha e Cervejinha": {
+   "name": "Picanha e Cervejinha",
+   "oracleId": "8339151e-ad1c-0ac4-392e-f2ea1ad119d9",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Picanha e Cervejinha",
+     "manaCost": "{1}{B}{B}",
+     "typeLine": "Enchantment",
+     "supertypes": [],
+     "types": [
+      "Enchantment"
+     ],
+     "subtypes": [],
+     "oracleText": "At the beginning of your upkeep, you draw a card and lose 1 life.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Pintou um Clima": {
    "name": "Pintou um Clima",
    "oracleId": "7ebfe094-9ec5-3c03-8493-019aeb099159",
@@ -32532,6 +33417,36 @@
      "loyalty": null,
      "colors": [
       "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Pix do Mito": {
+   "name": "Pix do Mito",
+   "oracleId": "90cc7e90-4e68-e29a-8f12-91768c917db7",
+   "layout": "normal",
+   "manaValue": 5,
+   "colorIdentity": [
+    "W"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Pix do Mito",
+     "manaCost": "{4}{W}",
+     "typeLine": "Enchantment",
+     "supertypes": [],
+     "types": [
+      "Enchantment"
+     ],
+     "subtypes": [],
+     "oracleText": "If you would gain life, you gain twice that much life instead.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "W"
      ],
      "colorIndicator": null
     }
@@ -33965,6 +34880,40 @@
     }
    ]
   },
+  "Queiroz, o Operador": {
+   "name": "Queiroz, o Operador",
+   "oracleId": "f0d56d21-8399-2ad4-e4dd-3d996a32ad79",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Queiroz, o Operador",
+     "manaCost": "{1}{B}",
+     "typeLine": "Creature — Human Rogue Ally",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Human",
+      "Rogue",
+      "Ally"
+     ],
+     "oracleText": "Whenever this creature or another creature you control dies, each opponent loses 1 life and you gain 1 life.",
+     "power": 1,
+     "toughness": 1,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Quicksilver, Speedster": {
    "name": "Quicksilver, Speedster",
    "oracleId": "cc20f910-03e9-4019-a62a-2e713ddb3c06",
@@ -35158,6 +36107,36 @@
      "toughness": null,
      "loyalty": null,
      "colors": [],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Reforma Tributária": {
+   "name": "Reforma Tributária",
+   "oracleId": "b98723a1-5993-6d11-d5e1-e152321d239d",
+   "layout": "normal",
+   "manaValue": 4,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Reforma Tributária",
+     "manaCost": "{3}{B}",
+     "typeLine": "Sorcery",
+     "supertypes": [],
+     "types": [
+      "Sorcery"
+     ],
+     "subtypes": [],
+     "oracleText": "Each other player discards a card. You draw a card for each card discarded this way.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
      "colorIndicator": null
     }
    ]
@@ -38210,6 +39189,39 @@
     }
    ]
   },
+  "Sergio Moro, Ex-Juiz": {
+   "name": "Sergio Moro, Ex-Juiz",
+   "oracleId": "17fbd4b7-8d0c-a1b9-e53f-d6fbc3938066",
+   "layout": "normal",
+   "manaValue": 4,
+   "colorIdentity": [
+    "W"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Sergio Moro, Ex-Juiz",
+     "manaCost": "{2}{W}{W}",
+     "typeLine": "Creature — Human Soldier",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Human",
+      "Soldier"
+     ],
+     "oracleText": "When this creature enters, you become the monarch.\nWhen this creature enters, exile target creature an opponent controls until an opponent becomes the monarch.",
+     "power": 2,
+     "toughness": 2,
+     "loyalty": null,
+     "colors": [
+      "W"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Serra Angel": {
    "name": "Serra Angel",
    "oracleId": "4b7ac066-e5c7-43e6-9e7e-2739b24a905d",
@@ -39465,6 +40477,41 @@
     }
    ]
   },
+  "Sidônio, o Marqueteiro": {
+   "name": "Sidônio, o Marqueteiro",
+   "oracleId": "c52a8e51-6731-c57b-f041-194332a7bed0",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "W"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Sidônio, o Marqueteiro",
+     "manaCost": "{1}{W}",
+     "typeLine": "Legendary Creature — Dwarf Advisor",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Dwarf",
+      "Advisor"
+     ],
+     "oracleText": "Whenever you cast an Aura, Equipment, or Vehicle spell, draw a card.",
+     "power": 2,
+     "toughness": 2,
+     "loyalty": null,
+     "colors": [
+      "W"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Siege-Gang Commander": {
    "name": "Siege-Gang Commander",
    "oracleId": "ddc7f59a-bbb1-4ba1-82c8-6813fd191940",
@@ -39891,6 +40938,32 @@
      ],
      "subtypes": [],
      "oracleText": "As this land enters, you may pay 3 life. If you don't, it enters tapped.\n{T}: Add {U}.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Sítio de Atibaia": {
+   "name": "Sítio de Atibaia",
+   "oracleId": "d815b714-8b46-e56c-d546-36c64917530d",
+   "layout": "normal",
+   "manaValue": 0,
+   "colorIdentity": [],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Sítio de Atibaia",
+     "manaCost": "",
+     "typeLine": "Land",
+     "supertypes": [],
+     "types": [
+      "Land"
+     ],
+     "subtypes": [],
+     "oracleText": "You have no maximum hand size.\n{T}: Add {C}.",
      "power": null,
      "toughness": null,
      "loyalty": null,
@@ -44253,6 +45326,38 @@
     }
    ]
   },
+  "Tarifaço do Trump": {
+   "name": "Tarifaço do Trump",
+   "oracleId": "aa87df26-d613-fdbe-7f34-802365296379",
+   "layout": "normal",
+   "manaValue": 8,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [
+    "Cycling"
+   ],
+   "faces": [
+    {
+     "name": "Tarifaço do Trump",
+     "manaCost": "{6}{B}{B}",
+     "typeLine": "Sorcery",
+     "supertypes": [],
+     "types": [
+      "Sorcery"
+     ],
+     "subtypes": [],
+     "oracleText": "Destroy all creatures. They can't be regenerated. Draw a card for each creature destroyed this way.\nCycling {3}{B}{B} ({3}{B}{B}, Discard this card: Draw a card.)\nWhen you cycle this card, all creatures get -2/-2 until end of turn.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Taunt from the Rampart": {
    "name": "Taunt from the Rampart",
    "oracleId": "9138a768-d01d-4603-9bae-d3bff6cd2f61",
@@ -44316,6 +45421,38 @@
      "loyalty": null,
      "colors": [
       "R"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Taxa das Blusinhas": {
+   "name": "Taxa das Blusinhas",
+   "oracleId": "6e7f1967-ccf5-280b-2d60-17cda680ab5d",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "W"
+   ],
+   "keywords": [
+    "Treasure"
+   ],
+   "faces": [
+    {
+     "name": "Taxa das Blusinhas",
+     "manaCost": "{2}{W}",
+     "typeLine": "Enchantment",
+     "supertypes": [],
+     "types": [
+      "Enchantment"
+     ],
+     "subtypes": [],
+     "oracleText": "Whenever an opponent casts their second spell each turn, you create a Treasure token.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "W"
      ],
      "colorIndicator": null
     }
@@ -45059,6 +46196,39 @@
      "loyalty": null,
      "colors": [
       "W"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Tesoureiro do Partido": {
+   "name": "Tesoureiro do Partido",
+   "oracleId": "82732bd1-b64d-af1c-7e58-0ef8573d4b17",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "R"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Tesoureiro do Partido",
+     "manaCost": "{2}{R}",
+     "typeLine": "Creature — Goblin Rogue",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Goblin",
+      "Rogue"
+     ],
+     "oracleText": "Whenever an opponent taps an artifact for mana, gain control of that artifact until the end of your next turn.",
+     "power": 3,
+     "toughness": 2,
+     "loyalty": null,
+     "colors": [
+      "R"
      ],
      "colorIndicator": null
     }
@@ -46862,6 +48032,40 @@
     }
    ]
   },
+  "Tornozeleira Eletrônica": {
+   "name": "Tornozeleira Eletrônica",
+   "oracleId": "76e99230-7262-c48e-c099-4446231285e5",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "W"
+   ],
+   "keywords": [
+    "Enchant"
+   ],
+   "faces": [
+    {
+     "name": "Tornozeleira Eletrônica",
+     "manaCost": "{2}{W}",
+     "typeLine": "Enchantment — Aura",
+     "supertypes": [],
+     "types": [
+      "Enchantment"
+     ],
+     "subtypes": [
+      "Aura"
+     ],
+     "oracleText": "Enchant creature you control\nWhen this Aura enters, exile target nonland permanent an opponent controls until this Aura leaves the battlefield.\nEnchanted creature has ward {2}. (Whenever it becomes the target of a spell or ability an opponent controls, counter it unless that player pays {2}.)",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "W"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Tower Defense": {
    "name": "Tower Defense",
    "oracleId": "58853200-efbe-41cc-87f1-720841308f4d",
@@ -47420,6 +48624,36 @@
      "loyalty": null,
      "colors": [
       "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Triplex do Guarujá": {
+   "name": "Triplex do Guarujá",
+   "oracleId": "289a72cb-dada-baed-4cc3-c7dc52424011",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "W"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Triplex do Guarujá",
+     "manaCost": "{2}{W}",
+     "typeLine": "Enchantment",
+     "supertypes": [],
+     "types": [
+      "Enchantment"
+     ],
+     "subtypes": [],
+     "oracleText": "Creatures can't attack you unless their controller pays {2} for each creature they control that's attacking you.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "W"
      ],
      "colorIndicator": null
     }
@@ -48692,6 +49926,41 @@
     }
    ]
   },
+  "Valdemar, Dono do Partido": {
+   "name": "Valdemar, Dono do Partido",
+   "oracleId": "97cc0cb2-4676-7b00-32d7-160c47620044",
+   "layout": "normal",
+   "manaValue": 4,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [
+    "Treasure"
+   ],
+   "faces": [
+    {
+     "name": "Valdemar, Dono do Partido",
+     "manaCost": "{3}{B}",
+     "typeLine": "Creature — Tiefling Rogue",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Tiefling",
+      "Rogue"
+     ],
+     "oracleText": "Whenever one or more creatures you control deal combat damage to a player, create two Treasure tokens.\n{B}, Sacrifice X Treasures: Target creature gets -X/-X until end of turn. Activate only as a sorcery.",
+     "power": 3,
+     "toughness": 2,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Valeria Richards, Precocious": {
    "name": "Valeria Richards, Precocious",
    "oracleId": "89931cf0-f20b-49b5-88c6-2a92aee8c50c",
@@ -49848,6 +51117,35 @@
      "oracleText": "Flying\nWhenever a player casts a spell, if it isn't that player's turn, choose one —\n• Put a +1/+1 counter on Vision.\n• Vision phases out. (Treat him and anything attached to him as though they don't exist until your next turn.)",
      "power": 3,
      "toughness": 3,
+     "loyalty": null,
+     "colors": [],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Vivendas da Barra": {
+   "name": "Vivendas da Barra",
+   "oracleId": "56605c0e-c46c-e836-e63f-00bb22b2ee5a",
+   "layout": "normal",
+   "manaValue": 0,
+   "colorIdentity": [
+    "G",
+    "W"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Vivendas da Barra",
+     "manaCost": "",
+     "typeLine": "Land",
+     "supertypes": [],
+     "types": [
+      "Land"
+     ],
+     "subtypes": [],
+     "oracleText": "{T}: Add {C}.\n{2}{G}{W}, {T}: Put a +1/+1 counter on each creature you control.",
+     "power": null,
+     "toughness": null,
      "loyalty": null,
      "colors": [],
      "colorIndicator": null
@@ -52204,6 +53502,117 @@
      "colors": [
       "B",
       "U"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Zambelli de Arma em Punho": {
+   "name": "Zambelli de Arma em Punho",
+   "oracleId": "e930baa3-04c4-be2c-1f65-2ba055c2c216",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Zambelli de Arma em Punho",
+     "manaCost": "{1}{B}",
+     "typeLine": "Instant",
+     "supertypes": [],
+     "types": [
+      "Instant"
+     ],
+     "subtypes": [],
+     "oracleText": "Destroy target nonartifact creature.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Zanin, Advogado de Estimação": {
+   "name": "Zanin, Advogado de Estimação",
+   "oracleId": "f40f36eb-86ba-a5cb-a67d-7dfd1bd49996",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "B",
+    "W"
+   ],
+   "keywords": [
+    "Flying",
+    "Affinity",
+    "Vigilance"
+   ],
+   "faces": [
+    {
+     "name": "Zanin, Advogado de Estimação",
+     "manaCost": "{1}{W}{B}",
+     "typeLine": "Legendary Creature — Human Advisor",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Human",
+      "Advisor"
+     ],
+     "oracleText": "Affinity for planeswalkers (This spell costs {1} less to cast for each planeswalker you control.)\nFlying, vigilance\nWhenever an opponent attacks with creatures, if two or more of those creatures are attacking you and/or planeswalkers you control, that opponent loses 3 life and you draw a card.",
+     "power": 2,
+     "toughness": 4,
+     "loyalty": null,
+     "colors": [
+      "W",
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Zé Dirceu, o Articulador": {
+   "name": "Zé Dirceu, o Articulador",
+   "oracleId": "f4685890-0995-e38c-4344-758669a52457",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "B",
+    "W"
+   ],
+   "keywords": [
+    "Lifelink",
+    "Partner"
+   ],
+   "faces": [
+    {
+     "name": "Zé Dirceu, o Articulador",
+     "manaCost": "{1}{W}{B}",
+     "typeLine": "Legendary Creature — Human Cleric",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Human",
+      "Cleric"
+     ],
+     "oracleText": "Lifelink\nAt the beginning of each of your postcombat main phases, you may pay X life, where X is the number of opponents that were dealt combat damage this turn. If you do, draw X cards.\nPartner (You can have two commanders if both have partner.)",
+     "power": 2,
+     "toughness": 2,
+     "loyalty": null,
+     "colors": [
+      "W",
+      "B"
      ],
      "colorIndicator": null
     }

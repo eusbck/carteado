@@ -62,6 +62,7 @@ export class RotasCatalogo {
       if (m) {
         const d = this.catalogo.ler(m[1]);
         if (!d) return { status: 404, corpo: { erro: 'Deck desconhecido' } };
+        if (!d.link) return { status: 400, corpo: { erro: 'Este deck é da mesa, não vem do Moxfield: não há o que atualizar' } };
         if (this.muitos(ip)) return { status: 429, corpo: { erro: 'Muitas buscas seguidas; espere alguns minutos' } };
         return { status: 202, corpo: { tarefa: this.tarefas.iniciarVerificar(d.link) } };
       }

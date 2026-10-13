@@ -261,6 +261,233 @@
    "frase": "“Imorrível, imbrochável e incomível.”"
   },
   {
+   "nome": "Banco Master do Vorcaro",
+   "skinDe": "Coveted Jewel",
+   "frase": "“Rende 140% do CDI. Confia.”"
+  },
+  {
+   "nome": "Imposto é Amor",
+   "skinDe": "Smothering Tithe",
+   "frase": "“Cada compra do oponente é uma contribuição solidária.”"
+  },
+  {
+   "nome": "Taxa das Blusinhas",
+   "skinDe": "Monologue Tax",
+   "frase": "“Era só uma blusinha de 30 reais.”"
+  },
+  {
+   "nome": "Mensalão",
+   "skinDe": "Black Market Connections",
+   "frase": "“Não sabia de nada.”"
+  },
+  {
+   "nome": "Minha Casa, Minha Vida",
+   "skinDe": "Land Tax",
+   "frase": "“Terreno para quem tem menos terreno.”"
+  },
+  {
+   "nome": "Triplex do Guarujá",
+   "skinDe": "Ghostly Prison",
+   "tipoPt": "Encantamento",
+   "texto": "As criaturas não podem atacar você, a menos que o controlador delas pague {2} para cada criatura que ele controla que esteja atacando você.",
+   "frase": "“Não é meu. É de um amigo.”"
+  },
+  {
+   "nome": "Boulos e o MTST",
+   "skinDe": "Mob Rule",
+   "frase": "“Ocupar, resistir, atacar no mesmo turno.”"
+  },
+  {
+   "nome": "Companheiro É Companheiro",
+   "skinDe": "Changing Loyalty",
+   "tipoPt": "Encantamento — Aura",
+   "texto": "Lampejo\nReplicar {2} (Ao conjurar esta mágica, copie-a para cada vez que você pagou o custo de replicar. Você pode escolher novos alvos para as cópias.)\nEncantar criatura\nQuando a criatura encantada morre, devolva-a ao campo de batalha sob o seu controle.",
+   "frase": "“Mudou de partido, mas continua da base.”"
+  },
+  {
+   "nome": "Lula Livre",
+   "skinDe": "Animate Dead",
+   "tipoPt": "Encantamento — Aura",
+   "texto": "Encantar carta de criatura em um cemitério\nQuando esta Aura entra, devolva a carta de criatura encantada ao campo de batalha sob o seu controle e anexe esta Aura a ela. Quando esta Aura sai do campo de batalha, o controlador daquela criatura a sacrifica.\nA criatura encantada recebe -1/-0.",
+   "frase": "“A jararaca está viva.”"
+  },
+  {
+   "nome": "Janones, Tropa do Zap",
+   "skinDe": "Conspiracy Theorist",
+   "frase": "“Fonte: confia.”"
+  },
+  {
+   "nome": "Zanin, Advogado de Estimação",
+   "skinDe": "Tomik, Wielder of Law",
+   "frase": "“De advogado do réu a ministro, sem escalas.”"
+  },
+  {
+   "nome": "Gleisi, a Presidenta do Partido",
+   "skinDe": "Breena, the Demagogue",
+   "frase": "“A culpa é da Faria Lima.”"
+  },
+  {
+   "nome": "Zé Dirceu, o Articulador",
+   "skinDe": "Tymna the Weaver",
+   "frase": "“Voltei. De novo.”"
+  },
+  {
+   "nome": "Tornozeleira Eletrônica",
+   "skinDe": "Chains of Custody",
+   "tipoPt": "Encantamento — Aura",
+   "texto": "Encantar criatura que você controla\nQuando esta Aura entra, exile a permanente alvo que não seja terreno que um oponente controla até esta Aura sair do campo de batalha.\nA criatura encantada tem resguardo {2}.",
+   "frase": "“Sai da cadeia, mas o sinal de GPS fica.”"
+  },
+  {
+   "nome": "Tesoureiro do Partido",
+   "skinDe": "Treasure Nabber",
+   "frase": "“Recibo? Que recibo?”"
+  },
+  {
+   "nome": "Reforma Tributária",
+   "skinDe": "Syphon Mind",
+   "frase": "“Simplificamos: agora todo mundo paga.”"
+  },
+  {
+   "nome": "Picanha e Cervejinha",
+   "skinDe": "Phyrexian Arena",
+   "frase": "“A promessa era picanha. Veio pé de frango.”"
+  },
+  {
+   "nome": "Marina Silva, a Sustentável",
+   "skinDe": "Kor Spiritdancer",
+   "frase": "“Cada Aura plantada é uma árvore a menos derrubada.”"
+  },
+  {
+   "nome": "Sidônio, o Marqueteiro",
+   "skinDe": "Sram, Senior Edificer",
+   "frase": "“O problema não é o governo, é a comunicação.”"
+  },
+  {
+   "nome": "Nunca Antes na História Deste País",
+   "skinDe": "Breach the Multiverse",
+   "frase": "“Pegue o que quiser. É tudo nosso.”"
+  },
+  {
+   "nome": "Sítio de Atibaia",
+   "skinDe": "Reliquary Tower",
+   "frase": "“Também não é meu.”"
+  },
+  {
+   "nome": "Gripezinha",
+   "skinDe": "Swords to Plowshares",
+   "frase": "“Pelo meu histórico de atleta, nem sentiria.”"
+  },
+  {
+   "nome": "Zambelli de Arma em Punho",
+   "skinDe": "Go for the Throat",
+   "frase": "“Correu atrás dele no meio da rua. Depois correu para a Itália.”"
+  },
+  {
+   "nome": "Oito de Janeiro",
+   "skinDe": "Martial Coup",
+   "frase": "“Era só um passeio no domingo.”"
+  },
+  {
+   "nome": "Mito",
+   "skinDe": "Angelic Destiny",
+   "frase": "“Mito! Mito! Mito!”"
+  },
+  {
+   "nome": "Cercadinho do Alvorada",
+   "skinDe": "Ghostly Prison",
+   "tipoPt": "Encantamento",
+   "texto": "As criaturas não podem atacar você, a menos que o controlador delas pague {2} para cada criatura que ele controla que esteja atacando você.",
+   "frase": "“Para falar com o presidente, paga o pedágio.”"
+  },
+  {
+   "nome": "Malafaia, Pastor do Dízimo",
+   "skinDe": "Soul Warden",
+   "frase": "“Cada criatura que entra é uma oferta.”"
+  },
+  {
+   "nome": "Queiroz, o Operador",
+   "skinDe": "Zulaport Cutthroat",
+   "frase": "“Estava escondido em Atibaia. Também.”"
+  },
+  {
+   "nome": "Braga Netto, o Interventor",
+   "skinDe": "Ravenous Chupacabra",
+   "frase": "“General de quatro estrelas, plano de uma.”"
+  },
+  {
+   "nome": "Jair Renan, o 04",
+   "skinDe": "Serra Ascendant",
+   "frase": "“Começa pequeno. Com a vida do papai, voa.”"
+  },
+  {
+   "nome": "Patriota do Caminhão",
+   "skinDe": "Ajani's Pridemate",
+   "frase": "“Pendurado no para-choque, crescendo a cada bênção.”"
+  },
+  {
+   "nome": "Damares, a da Goiabeira",
+   "skinDe": "Archangel of Thune",
+   "frase": "“Vi Jesus no pé de goiaba.”"
+  },
+  {
+   "nome": "Eduardo Bananinha, o Exilado",
+   "skinDe": "Vampire Nighthawk",
+   "frase": "“Fritava hambúrguer. Agora frita o Brasil de longe.”"
+  },
+  {
+   "nome": "Milei, El Loco da Motosserra",
+   "skinDe": "Massacre Wurm",
+   "frase": "“¡Afuera!”"
+  },
+  {
+   "nome": "Tarifaço do Trump",
+   "skinDe": "Decree of Pain",
+   "frase": "“Cinquenta por cento em tudo. De nada.”"
+  },
+  {
+   "nome": "Paulo Guedes, o Posto Ipiranga",
+   "skinDe": "Pitiless Plunderer",
+   "tipoPt": "Criatura — Humano Pirata",
+   "texto": "Sempre que outra criatura que você controla morre, crie uma ficha de Tesouro. (Ela é um artefato com “{T}, sacrifique esta ficha: adicione um mana de qualquer cor”.)",
+   "frase": "“Pergunta lá no Posto Ipiranga.”"
+  },
+  {
+   "nome": "Sergio Moro, Ex-Juiz",
+   "skinDe": "Palace Jailer",
+   "frase": "“Prendeu um, virou ministro do outro.”"
+  },
+  {
+   "nome": "Mauro Cid, o Delator",
+   "skinDe": "Kalitas, Traitor of Ghet",
+   "frase": "“Contou tudo. Depois contou de novo.”"
+  },
+  {
+   "nome": "Leite Condensado",
+   "skinDe": "Exsanguinate",
+   "frase": "“Quinze milhões em leite condensado. Para enfiar onde?”"
+  },
+  {
+   "nome": "Joias da Arábia",
+   "skinDe": "Basilisk Collar",
+   "frase": "“Presente pessoal. Estava na mochila do assessor.”"
+  },
+  {
+   "nome": "Pix do Mito",
+   "skinDe": "Boon Reflection",
+   "frase": "“Dezessete milhões em doações. Vida em dobro.”"
+  },
+  {
+   "nome": "Valdemar, Dono do Partido",
+   "skinDe": "Grim Hireling",
+   "frase": "“O partido é meu. O candidato é alugado.”"
+  },
+  {
+   "nome": "Vivendas da Barra",
+   "skinDe": "Gavony Township",
+   "frase": "“Condomínio tranquilo. Vizinhos discretos.”"
+  },
+  {
    "nome": "Eleitor",
    "ficha": true,
    "tipo": "Token Creature — Human Citizen",

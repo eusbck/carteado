@@ -17,3 +17,8 @@ cartas/.collector.lock
 # Windows
 Thumbs.db
 desktop.ini
+artes-brasil/*.png
+!artes-brasil/*-banner.png
+!artes-brasil/*-icone.png
+codex-teste.log
+artes-brasil/geracao.log

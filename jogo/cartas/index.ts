@@ -10,4 +10,5 @@ const pasta = join(dirname(fileURLToPath(import.meta.url)), 'defs');
 for (const f of readdirSync(pasta).filter((x) => x.endsWith('.ts') && !x.endsWith('.test.ts')).sort()) {
   await import(pathToFileURL(join(pasta, f)).href);
 }
+await import('./skins.ts');
 registrarPendentes();
