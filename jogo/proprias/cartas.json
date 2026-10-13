@@ -1,0 +1,54 @@
+{
+ "formato": 1,
+ "colecao": "brz",
+ "cartas": [
+  {
+   "nome": "Lula, o Espanca Pobre",
+   "custo": "{1}{R}{W}{B}",
+   "tipo": "Legendary Creature — Human Advisor",
+   "tipoPt": "Criatura Lendária — Humano Político",
+   "oracle": "Whenever you cast an enchantment spell, create a 1/1 white Human Citizen creature token named Eleitor.\nSacrifice two tokens named Eleitor: Exile the top card of target opponent's library. You may play that card this turn. It costs {3} less to cast, and mana of any type can be spent to cast it.",
+   "texto": "Sempre que você conjura uma mágica de encantamento, crie uma ficha de criatura Humano Cidadão 1/1 branca chamada Eleitor.\nSacrifique dois Eleitores: Exile a carta do topo do grimório do oponente alvo. Você pode jogar essa carta neste turno. Ela custa {3} a menos para ser conjurada, e mana de qualquer tipo pode ser gasta para conjurá-la.",
+   "forca": 3,
+   "resistencia": 4,
+   "frase": "“Nunca antes na história deste país.”"
+  },
+  {
+   "nome": "Bolsonaro, o Genocida",
+   "custo": "{1}{W}{B}{G}",
+   "tipo": "Legendary Creature — Human Soldier",
+   "tipoPt": "Criatura Lendária — Humano Soldado",
+   "oracle": "Menace\nWhenever Bolsonaro attacks, destroy the creature with the least toughness defending player controls. If two or more creatures are tied, you choose one of them.\nWhenever a creature an opponent controls dies, you gain 2 life and put a +1/+1 counter on Bolsonaro.",
+   "texto": "Ameaçar\nSempre que Bolsonaro ataca, destrua a criatura com a menor resistência que o jogador defensor controla. Se houver empate, você escolhe uma delas.\nSempre que uma criatura que um oponente controla morre, você ganha 2 pontos de vida e coloca um marcador +1/+1 em Bolsonaro.",
+   "palavras": ["Menace"],
+   "forca": 4,
+   "resistencia": 4,
+   "frase": "“E daí? Não sou coveiro.”"
+  },
+  {
+   "nome": "Eleitor",
+   "ficha": true,
+   "tipo": "Token Creature — Human Citizen",
+   "tipoPt": "Ficha de Criatura — Humano Cidadão",
+   "cores": ["W"],
+   "oracle": "",
+   "texto": "",
+   "forca": 1,
+   "resistencia": 1,
+   "frase": "“Meu voto vale uma picanha.”"
+  },
+  {
+   "nome": "Patriota",
+   "ficha": true,
+   "tipo": "Token Creature — Human Citizen",
+   "tipoPt": "Ficha de Criatura — Humano Cidadão",
+   "cores": ["G", "W"],
+   "oracle": "Haste",
+   "texto": "Ímpeto",
+   "palavras": ["Haste"],
+   "forca": 1,
+   "resistencia": 1,
+   "frase": "“Brasil acima de tudo, zap acima de todos.”"
+  }
+ ]
+}

@@ -5295,6 +5295,47 @@
     }
    ]
   },
+  "Bolsonaro, o Genocida": {
+   "name": "Bolsonaro, o Genocida",
+   "oracleId": "80236295-0789-2eee-58e5-345a8c81b97c",
+   "layout": "normal",
+   "manaValue": 4,
+   "colorIdentity": [
+    "W",
+    "B",
+    "G"
+   ],
+   "keywords": [
+    "Menace"
+   ],
+   "faces": [
+    {
+     "name": "Bolsonaro, o Genocida",
+     "manaCost": "{1}{W}{B}{G}",
+     "typeLine": "Legendary Creature — Human Soldier",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Human",
+      "Soldier"
+     ],
+     "oracleText": "Menace\nWhenever Bolsonaro attacks, destroy the creature with the least toughness defending player controls. If two or more creatures are tied, you choose one of them.\nWhenever a creature an opponent controls dies, you gain 2 life and put a +1/+1 counter on Bolsonaro.",
+     "power": 4,
+     "toughness": 4,
+     "loyalty": null,
+     "colors": [
+      "W",
+      "B",
+      "G"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Bonders' Enclave": {
    "name": "Bonders' Enclave",
    "oracleId": "f33ce38a-34ec-4b65-a0fc-160484a02007",
@@ -25203,6 +25244,45 @@
      "loyalty": null,
      "colors": [
       "W"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Lula, o Espanca Pobre": {
+   "name": "Lula, o Espanca Pobre",
+   "oracleId": "d83d8711-9e6c-b935-6b5b-f7117a4e90fc",
+   "layout": "normal",
+   "manaValue": 4,
+   "colorIdentity": [
+    "W",
+    "B",
+    "R"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Lula, o Espanca Pobre",
+     "manaCost": "{1}{R}{W}{B}",
+     "typeLine": "Legendary Creature — Human Advisor",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Human",
+      "Advisor"
+     ],
+     "oracleText": "Whenever you cast an enchantment spell, create a 1/1 white Human Citizen creature token named Eleitor.\nSacrifice two tokens named Eleitor: Exile the top card of target opponent's library. You may play that card this turn. It costs {3} less to cast, and mana of any type can be spent to cast it.",
+     "power": 3,
+     "toughness": 4,
+     "loyalty": null,
+     "colors": [
+      "W",
+      "B",
+      "R"
      ],
      "colorIndicator": null
     }
@@ -56351,6 +56431,86 @@
    "imagem": {
     "id": "2807ea6a-479e-45c2-b3c7-df59783b0e5b",
     "frente": "imagens/2807ea6a-479e-45c2-b3c7-df59783b0e5b/front.png",
+    "verso": null
+   }
+  },
+  {
+   "name": "Eleitor",
+   "oracleId": "c069e8ce-be01-3c72-303e-dbfcf7487e9a",
+   "layout": "token",
+   "manaValue": 0,
+   "colorIdentity": [
+    "W"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Eleitor",
+     "manaCost": "",
+     "typeLine": "Token Creature — Human Citizen",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Human",
+      "Citizen"
+     ],
+     "oracleText": "",
+     "power": 1,
+     "toughness": 1,
+     "loyalty": null,
+     "colors": [
+      "W"
+     ],
+     "colorIndicator": null
+    }
+   ],
+   "imagem": {
+    "id": "6397e818-45aa-f5d8-dfcc-e2f85db08dde",
+    "frente": "imagens/6397e818-45aa-f5d8-dfcc-e2f85db08dde/front.png",
+    "verso": null
+   }
+  },
+  {
+   "name": "Patriota",
+   "oracleId": "ae04a3d7-9f46-0e25-5862-fe9f4ab3268d",
+   "layout": "token",
+   "manaValue": 0,
+   "colorIdentity": [
+    "G",
+    "W"
+   ],
+   "keywords": [
+    "Haste"
+   ],
+   "faces": [
+    {
+     "name": "Patriota",
+     "manaCost": "",
+     "typeLine": "Token Creature — Human Citizen",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Human",
+      "Citizen"
+     ],
+     "oracleText": "Haste",
+     "power": 1,
+     "toughness": 1,
+     "loyalty": null,
+     "colors": [
+      "G",
+      "W"
+     ],
+     "colorIndicator": null
+    }
+   ],
+   "imagem": {
+    "id": "31c87e04-c9db-cb5e-510f-dde67f82b9a9",
+    "frente": "imagens/31c87e04-c9db-cb5e-510f-dde67f82b9a9/front.png",
     "verso": null
    }
   }

@@ -43265,6 +43265,132 @@
    "printing_ids": [
     "2807ea6a-479e-45c2-b3c7-df59783b0e5b"
    ]
+  },
+  "d83d8711-9e6c-b935-6b5b-f7117a4e90fc": {
+   "id": "d83d8711-9e6c-b935-6b5b-f7117a4e90fc",
+   "oracle_id": "d83d8711-9e6c-b935-6b5b-f7117a4e90fc",
+   "name": "Lula, o Espanca Pobre",
+   "layout": "normal",
+   "cmc": 4,
+   "mana_cost": "{1}{R}{W}{B}",
+   "type_line": "Legendary Creature — Human Advisor",
+   "oracle_text": "Whenever you cast an enchantment spell, create a 1/1 white Human Citizen creature token named Eleitor.\nSacrifice two tokens named Eleitor: Exile the top card of target opponent's library. You may play that card this turn. It costs {3} less to cast, and mana of any type can be spent to cast it.",
+   "power": "3",
+   "toughness": "4",
+   "loyalty": null,
+   "colors": [
+    "W",
+    "B",
+    "R"
+   ],
+   "color_identity": [
+    "W",
+    "B",
+    "R"
+   ],
+   "keywords": [],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "4eb17874-b68d-ae7a-31e3-d17a3e607c49"
+   ]
+  },
+  "80236295-0789-2eee-58e5-345a8c81b97c": {
+   "id": "80236295-0789-2eee-58e5-345a8c81b97c",
+   "oracle_id": "80236295-0789-2eee-58e5-345a8c81b97c",
+   "name": "Bolsonaro, o Genocida",
+   "layout": "normal",
+   "cmc": 4,
+   "mana_cost": "{1}{W}{B}{G}",
+   "type_line": "Legendary Creature — Human Soldier",
+   "oracle_text": "Menace\nWhenever Bolsonaro attacks, destroy the creature with the least toughness defending player controls. If two or more creatures are tied, you choose one of them.\nWhenever a creature an opponent controls dies, you gain 2 life and put a +1/+1 counter on Bolsonaro.",
+   "power": "4",
+   "toughness": "4",
+   "loyalty": null,
+   "colors": [
+    "W",
+    "B",
+    "G"
+   ],
+   "color_identity": [
+    "W",
+    "B",
+    "G"
+   ],
+   "keywords": [
+    "Menace"
+   ],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "df8af4d3-1e5e-fc44-5522-02215064d5ad"
+   ]
+  },
+  "c069e8ce-be01-3c72-303e-dbfcf7487e9a": {
+   "id": "c069e8ce-be01-3c72-303e-dbfcf7487e9a",
+   "oracle_id": "c069e8ce-be01-3c72-303e-dbfcf7487e9a",
+   "name": "Eleitor",
+   "layout": "token",
+   "cmc": 0,
+   "mana_cost": "",
+   "type_line": "Token Creature — Human Citizen",
+   "oracle_text": "",
+   "power": "1",
+   "toughness": "1",
+   "loyalty": null,
+   "colors": [
+    "W"
+   ],
+   "color_identity": [
+    "W"
+   ],
+   "keywords": [],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "6397e818-45aa-f5d8-dfcc-e2f85db08dde"
+   ]
+  },
+  "ae04a3d7-9f46-0e25-5862-fe9f4ab3268d": {
+   "id": "ae04a3d7-9f46-0e25-5862-fe9f4ab3268d",
+   "oracle_id": "ae04a3d7-9f46-0e25-5862-fe9f4ab3268d",
+   "name": "Patriota",
+   "layout": "token",
+   "cmc": 0,
+   "mana_cost": "",
+   "type_line": "Token Creature — Human Citizen",
+   "oracle_text": "Haste",
+   "power": "1",
+   "toughness": "1",
+   "loyalty": null,
+   "colors": [
+    "G",
+    "W"
+   ],
+   "color_identity": [
+    "G",
+    "W"
+   ],
+   "keywords": [
+    "Haste"
+   ],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "31c87e04-c9db-cb5e-510f-dde67f82b9a9"
+   ]
   }
  },
  "printings": {
@@ -96470,6 +96596,119 @@
      "source_url": "https://cards.scryfall.io/png/front/2/8/2807ea6a-479e-45c2-b3c7-df59783b0e5b.png?1783936175"
     }
    ]
+  },
+  "4eb17874-b68d-ae7a-31e3-d17a3e607c49": {
+   "id": "4eb17874-b68d-ae7a-31e3-d17a3e607c49",
+   "oracle_id": "d83d8711-9e6c-b935-6b5b-f7117a4e90fc",
+   "name": "Lula, o Espanca Pobre",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "1",
+   "type_line": "Legendary Creature — Human Advisor",
+   "oracle_text": "Whenever you cast an enchantment spell, create a 1/1 white Human Citizen creature token named Eleitor.\nSacrifice two tokens named Eleitor: Exile the top card of target opponent's library. You may play that card this turn. It costs {3} less to cast, and mana of any type can be spent to cast it.",
+   "power": "3",
+   "toughness": "4",
+   "colors": [
+    "W",
+    "B",
+    "R"
+   ],
+   "printed_name": "Lula, o Espanca Pobre",
+   "printed_type_line": "Criatura Lendária — Humano Político",
+   "printed_text": "Sempre que você conjura uma mágica de encantamento, crie uma ficha de criatura Humano Cidadão 1/1 branca chamada Eleitor.\nSacrifique dois Eleitores: Exile a carta do topo do grimório do oponente alvo. Você pode jogar essa carta neste turno. Ela custa {3} a menos para ser conjurada, e mana de qualquer tipo pode ser gasta para conjurá-la.",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/4eb17874-b68d-ae7a-31e3-d17a3e607c49/front.png"
+    }
+   ]
+  },
+  "df8af4d3-1e5e-fc44-5522-02215064d5ad": {
+   "id": "df8af4d3-1e5e-fc44-5522-02215064d5ad",
+   "oracle_id": "80236295-0789-2eee-58e5-345a8c81b97c",
+   "name": "Bolsonaro, o Genocida",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "2",
+   "type_line": "Legendary Creature — Human Soldier",
+   "oracle_text": "Menace\nWhenever Bolsonaro attacks, destroy the creature with the least toughness defending player controls. If two or more creatures are tied, you choose one of them.\nWhenever a creature an opponent controls dies, you gain 2 life and put a +1/+1 counter on Bolsonaro.",
+   "power": "4",
+   "toughness": "4",
+   "colors": [
+    "W",
+    "B",
+    "G"
+   ],
+   "printed_name": "Bolsonaro, o Genocida",
+   "printed_type_line": "Criatura Lendária — Humano Soldado",
+   "printed_text": "Ameaçar\nSempre que Bolsonaro ataca, destrua a criatura com a menor resistência que o jogador defensor controla. Se houver empate, você escolhe uma delas.\nSempre que uma criatura que um oponente controla morre, você ganha 2 pontos de vida e coloca um marcador +1/+1 em Bolsonaro.",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/df8af4d3-1e5e-fc44-5522-02215064d5ad/front.png"
+    }
+   ]
+  },
+  "6397e818-45aa-f5d8-dfcc-e2f85db08dde": {
+   "id": "6397e818-45aa-f5d8-dfcc-e2f85db08dde",
+   "oracle_id": "c069e8ce-be01-3c72-303e-dbfcf7487e9a",
+   "name": "Eleitor",
+   "lang": "pt",
+   "layout": "token",
+   "set": "brz",
+   "collector_number": "3",
+   "type_line": "Token Creature — Human Citizen",
+   "oracle_text": "",
+   "power": "1",
+   "toughness": "1",
+   "colors": [
+    "W"
+   ],
+   "printed_name": "Eleitor",
+   "printed_type_line": "Ficha de Criatura — Humano Cidadão",
+   "printed_text": "",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/6397e818-45aa-f5d8-dfcc-e2f85db08dde/front.png"
+    }
+   ]
+  },
+  "31c87e04-c9db-cb5e-510f-dde67f82b9a9": {
+   "id": "31c87e04-c9db-cb5e-510f-dde67f82b9a9",
+   "oracle_id": "ae04a3d7-9f46-0e25-5862-fe9f4ab3268d",
+   "name": "Patriota",
+   "lang": "pt",
+   "layout": "token",
+   "set": "brz",
+   "collector_number": "4",
+   "type_line": "Token Creature — Human Citizen",
+   "oracle_text": "Haste",
+   "power": "1",
+   "toughness": "1",
+   "colors": [
+    "G",
+    "W"
+   ],
+   "printed_name": "Patriota",
+   "printed_type_line": "Ficha de Criatura — Humano Cidadão",
+   "printed_text": "Ímpeto",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/31c87e04-c9db-cb5e-510f-dde67f82b9a9/front.png"
+    }
+   ]
   }
  },
  "escolhas": {
@@ -100692,6 +100931,14 @@
   "Wrecking Ball": {
    "en": "9a8fafff-e9b1-49e1-9bba-5f3c82cac894",
    "pt": "1e0f5e17-800c-4f89-b7da-dfa7d23c8599"
+  },
+  "Lula, o Espanca Pobre": {
+   "en": "4eb17874-b68d-ae7a-31e3-d17a3e607c49",
+   "pt": "4eb17874-b68d-ae7a-31e3-d17a3e607c49"
+  },
+  "Bolsonaro, o Genocida": {
+   "en": "df8af4d3-1e5e-fc44-5522-02215064d5ad",
+   "pt": "df8af4d3-1e5e-fc44-5522-02215064d5ad"
   }
  },
  "fichas": [
@@ -100780,6 +101027,8 @@
   "ec406831-a1d0-4e41-bd09-f76d0ba206ae",
   "7f03946b-e602-4624-bf1e-ed240b883fca",
   "dfa4ad2d-3ef2-4863-a9d7-340d8ca8d3d9",
-  "caf4a0d2-64de-42df-a88e-bb0d3f34e207"
+  "caf4a0d2-64de-42df-a88e-bb0d3f34e207",
+  "c069e8ce-be01-3c72-303e-dbfcf7487e9a",
+  "ae04a3d7-9f46-0e25-5862-fe9f4ab3268d"
  ]
 }

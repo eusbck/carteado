@@ -137,6 +137,8 @@ const esperadas: Record<string, [string, string[], string[], string[], number | 
   'Shapeshifter': ['Shapeshifter', ['Creature'], ['Shapeshifter'], [], 1, 1, ['changeling']],
   'Dragon 4/4': ['Dragon', ['Creature'], ['Dragon'], ['R'], 4, 4, ['flying']],
   'Vampire 1/1': ['Vampire', ['Creature'], ['Vampire'], ['B', 'W'], 1, 1, ['lifelink']],
+  'Eleitor': ['Eleitor', ['Creature'], ['Human', 'Citizen'], ['W'], 1, 1, []],
+  'Patriota': ['Patriota', ['Creature'], ['Human', 'Citizen'], ['G', 'W'], 1, 1, ['haste']],
 };
 
 describe('Fichas: características', () => {

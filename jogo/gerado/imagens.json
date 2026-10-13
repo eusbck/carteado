@@ -22896,5 +22896,39 @@
    "faces": null,
    "reserva": true
   }
+ },
+ "Lula, o Espanca Pobre": {
+  "en": {
+   "id": "4eb17874-b68d-ae7a-31e3-d17a3e607c49",
+   "frente": "imagens/4eb17874-b68d-ae7a-31e3-d17a3e607c49/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "4eb17874-b68d-ae7a-31e3-d17a3e607c49",
+   "frente": "imagens/4eb17874-b68d-ae7a-31e3-d17a3e607c49/front.png",
+   "verso": null,
+   "nome": "Lula, o Espanca Pobre",
+   "tipo": "Criatura Lendária — Humano Político",
+   "texto": "Sempre que você conjura uma mágica de encantamento, crie uma ficha de criatura Humano Cidadão 1/1 branca chamada Eleitor.\nSacrifique dois Eleitores: Exile a carta do topo do grimório do oponente alvo. Você pode jogar essa carta neste turno. Ela custa {3} a menos para ser conjurada, e mana de qualquer tipo pode ser gasta para conjurá-la.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Bolsonaro, o Genocida": {
+  "en": {
+   "id": "df8af4d3-1e5e-fc44-5522-02215064d5ad",
+   "frente": "imagens/df8af4d3-1e5e-fc44-5522-02215064d5ad/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "df8af4d3-1e5e-fc44-5522-02215064d5ad",
+   "frente": "imagens/df8af4d3-1e5e-fc44-5522-02215064d5ad/front.png",
+   "verso": null,
+   "nome": "Bolsonaro, o Genocida",
+   "tipo": "Criatura Lendária — Humano Soldado",
+   "texto": "Ameaçar\nSempre que Bolsonaro ataca, destrua a criatura com a menor resistência que o jogador defensor controla. Se houver empate, você escolhe uma delas.\nSempre que uma criatura que um oponente controla morre, você ganha 2 pontos de vida e coloca um marcador +1/+1 em Bolsonaro.",
+   "faces": null,
+   "reserva": false
+  }
  }
 }

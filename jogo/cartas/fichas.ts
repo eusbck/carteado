@@ -426,3 +426,9 @@ export const Robot11 = token('Robot', 'Robot', ['Artifact', 'Creature'], ['Robot
 export const NecronWarrior = token('Necron Warrior', 'Necron Warrior', ['Artifact', 'Creature'], ['Necron', 'Warrior'], ['B'], 2, 2);
 /** Insect 1/1 incolor com voar, criatura artefato (Canoptek Scarab Swarm) */
 export const InsectArtefato = token('Insect artefato', 'Insect', ['Artifact', 'Creature'], ['Insect'], [], 1, 1, keywords('flying'));
+
+// Fichas das cartas próprias da mesa (proprias/cartas.json)
+/** Eleitor 1/1 branca, Humano Cidadão (Lula, o Espanca Pobre) */
+export const Eleitor = token('Eleitor', 'Eleitor', ['Creature'], ['Human', 'Citizen'], ['W'], 1, 1);
+/** Patriota 1/1 verde e branca com ímpeto, Humano Cidadão (Motociata) */
+export const Patriota = token('Patriota', 'Patriota', ['Creature'], ['Human', 'Citizen'], ['G', 'W'], 1, 1, keywords('haste'));
