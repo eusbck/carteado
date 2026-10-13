@@ -22,7 +22,8 @@ const slug = (s) => s.normalize('NFKD').replace(/[̀-ͯ]/g, '').toLowerCase().re
 const args = process.argv.slice(2);
 const refazer = args.includes('--refazer') ? args[args.indexOf('--refazer') + 1] : null;
 const so = ['cartas', 'banners', 'icones'].filter((t) => args.includes(t));
-const SIMULTANEAS = 2;
+// sessões do Codex ao mesmo tempo (SIMULTANEAS=3 para ir mais devagar)
+const SIMULTANEAS = Number(process.env.SIMULTANEAS ?? 6);
 
 const FORMATO = {
   cartas: 'Formato paisagem 3:2 (1536x1024), cena inteira sem bordas.',
@@ -88,6 +89,8 @@ if (args.includes('--lista')) {
   const trabalhador = async () => {
     while (proxima < faltam.length) {
       const i = faltam[proxima++];
+      // outra rodada pode ter feito esta arte enquanto esta fila andava
+      if (pronta(i)) continue;
       const r = await gerar(i);
       if (r.ok) { delete pendencias[i.base]; console.log(`ok   ${i.tipo}: ${i.nome} (${r.segundos}s)`); }
       else { pendencias[i.base] = { tipo: i.tipo, nome: i.nome, motivo: r.motivo, em: new Date().toISOString() }; console.log(`FALHOU ${i.tipo}: ${i.nome} — ${r.motivo}`); }
