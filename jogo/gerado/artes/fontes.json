@@ -635,5 +635,41 @@
    "mh3/290 black legendary"
   ],
   "baixadoEm": "2026-10-10T05:43:50.204Z"
+ },
+ "Bolsonaro, o Genocida": {
+  "imagemLocal": "df8af4d3-1e5e-fc44-5522-02215064d5ad",
+  "impressao": {
+   "id": "df8af4d3-1e5e-fc44-5522-02215064d5ad",
+   "colecao": "brz",
+   "numero": "0",
+   "moldura": "carta da mesa",
+   "artista": "gerada pelo Codex",
+   "url": ""
+  },
+  "recorte": "propria",
+  "tamanho": [
+   1536,
+   1024
+  ],
+  "candidatas": [],
+  "baixadoEm": "2026-10-13T01:36:28.672Z"
+ },
+ "Lula, o Espanca Pobre": {
+  "imagemLocal": "4eb17874-b68d-ae7a-31e3-d17a3e607c49",
+  "impressao": {
+   "id": "4eb17874-b68d-ae7a-31e3-d17a3e607c49",
+   "colecao": "brz",
+   "numero": "0",
+   "moldura": "carta da mesa",
+   "artista": "gerada pelo Codex",
+   "url": ""
+  },
+  "recorte": "propria",
+  "tamanho": [
+   1536,
+   1024
+  ],
+  "candidatas": [],
+  "baixadoEm": "2026-10-13T01:36:29.110Z"
  }
 }

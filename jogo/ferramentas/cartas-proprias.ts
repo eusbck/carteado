@@ -260,12 +260,40 @@ async function gravarImagens(so: string[]): Promise<void> {
   }
 }
 
+/**
+ * Arte dos comandantes dos decks da mesa para o fundo da área do jogador: gerado/artes/<id>.webp, como as artes
+ * oficiais baixadas por ferramentas/baixar-artes.ts, com a origem em fontes.json (recorte "propria").
+ */
+async function gravarArtesComandantes(): Promise<void> {
+  const pastaDecks = join(RAIZ_JOGO, 'decks');
+  const pastaArtes = join(RAIZ_JOGO, 'gerado', 'artes');
+  const arqFontes = join(pastaArtes, 'fontes.json');
+  const fontes = JSON.parse(readFileSync(arqFontes, 'utf8')) as Record<string, { baixadoEm?: string } | undefined>;
+  const { colecao, cartas } = lerProprias();
+  const proprias = new Set(cartas.map((c) => c.nome));
+  for (const f of readdirSync(pastaDecks).filter((x) => x.endsWith('.json'))) {
+    const d = JSON.parse(readFileSync(join(pastaDecks, f), 'utf8')) as { atual?: { comandante?: string } | null };
+    const nome = d.atual?.comandante;
+    if (!nome || !proprias.has(nome)) continue;
+    const origem = ['png', 'webp', 'jpg'].map((e) => join(PASTA_ARTES, `${slug(nome)}.${e}`)).find((a) => existsSync(a));
+    if (!origem) { console.log(`${nome}: sem arte ainda; o fundo da mesa fica para depois`); continue; }
+    const id = idDe('impressao', nome);
+    const info = await sharp(origem).resize({ width: 1536, withoutEnlargement: true }).webp({ quality: 92 }).toFile(join(pastaArtes, `${id}.webp`));
+    fontes[nome] = {
+      imagemLocal: id,
+      impressao: { id, colecao, numero: '0', moldura: 'carta da mesa', artista: 'gerada pelo Codex', url: '' },
+      recorte: 'propria', tamanho: [info.width, info.height], candidatas: [], baixadoEm: fontes[nome]?.baixadoEm ?? new Date().toISOString(),
+    } as { baixadoEm?: string };
+  }
+  writeFileSync(arqFontes, JSON.stringify(fontes, null, 1) + '\n');
+}
+
 // só quando chamado pela linha de comando (os testes importam as funções)
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   const [comando, ...resto] = process.argv.slice(2);
   try {
     if (!comando || comando === 'dados') gravarDados();
-    if (!comando || comando === 'imagens') await gravarImagens(resto);
+    if (!comando || comando === 'imagens') { await gravarImagens(resto); await gravarArtesComandantes(); }
     if (comando && comando !== 'dados' && comando !== 'imagens') console.log('Uso: node ferramentas/cartas-proprias.ts [dados | imagens [nome...]]');
   } catch (e) {
     console.error(e instanceof Error ? e.message : e);

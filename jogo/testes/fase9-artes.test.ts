@@ -156,7 +156,8 @@ describe('artes guardadas no repositório (gerado/artes)', () => {
       const f = fontes[d.comandante];
       expect(f, d.comandante).toBeDefined();
       expect(f.imagemLocal).toBe(id);
-      expect(f.impressao.url).toMatch(/^https:\/\/cards\.scryfall\.io\//);
+      // cartas próprias da mesa (decks do Lula e do Bolsonaro): a arte não vem do Scryfall
+      if (f.recorte !== 'propria') expect(f.impressao.url).toMatch(/^https:\/\/cards\.scryfall\.io\//);
       const arquivo = join(pasta, `${id}.webp`);
       expect(existsSync(arquivo), d.comandante).toBe(true);
       const m = await sharp(arquivo).metadata();

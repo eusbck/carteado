@@ -22,7 +22,9 @@ describe('decks/ e gerado/ de verdade', () => {
     expect(new Set(decks.map((d) => d.ordem)).size).toBe(decks.length);
     for (const d of decks) {
       expect(d.atual ?? d.preparacao, d.id).toBeTruthy();
-      expect(d.link).toMatch(/^https:\/\/moxfield\.com\/decks\//);
+      // os decks da mesa (brasil-*) não vêm do Moxfield
+      if (d.id.startsWith('brasil-')) expect(d.link).toBe('');
+      else expect(d.link).toMatch(/^https:\/\/moxfield\.com\/decks\//);
     }
   });
 
