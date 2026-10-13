@@ -43391,6 +43391,619 @@
    "printing_ids": [
     "31c87e04-c9db-cb5e-510f-dde67f82b9a9"
    ]
+  },
+  "9e6d06ce-7dfb-482a-9bce-2bf4c60619e9": {
+   "id": "9e6d06ce-7dfb-482a-9bce-2bf4c60619e9",
+   "oracle_id": "9e6d06ce-7dfb-482a-9bce-2bf4c60619e9",
+   "name": "Bolsa Família",
+   "layout": "normal",
+   "cmc": 2,
+   "mana_cost": "{1}{W}",
+   "type_line": "Enchantment — Aura",
+   "oracle_text": "Enchant creature\nWhen Bolsa Família enters, create a 1/1 white Human Citizen creature token named Eleitor.\nEnchanted creature gets +1/+1 and can't attack you or planeswalkers you control.",
+   "power": null,
+   "toughness": null,
+   "loyalty": null,
+   "colors": [
+    "W"
+   ],
+   "color_identity": [
+    "W"
+   ],
+   "keywords": [
+    "Enchant"
+   ],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "9a7d1a70-8b0b-d7c2-342c-870bdccaad79"
+   ]
+  },
+  "9ddc278f-b2ca-6301-410f-646c33a60f7a": {
+   "id": "9ddc278f-b2ca-6301-410f-646c33a60f7a",
+   "oracle_id": "9ddc278f-b2ca-6301-410f-646c33a60f7a",
+   "name": "Geraldo Alckmin, o Vice Chuchu",
+   "layout": "normal",
+   "cmc": 2,
+   "mana_cost": "{1}{W}",
+   "type_line": "Legendary Creature — Human Advisor",
+   "oracle_text": "Defender\nAt the beginning of your end step, if you didn't attack with a creature this turn, draw a card.",
+   "power": "0",
+   "toughness": "5",
+   "loyalty": null,
+   "colors": [
+    "W"
+   ],
+   "color_identity": [
+    "W"
+   ],
+   "keywords": [
+    "Defender"
+   ],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "31a5eb41-1eca-a755-0908-4ad05ed92848"
+   ]
+  },
+  "b765d2b0-9727-947f-85c2-aaaa352c30b3": {
+   "id": "b765d2b0-9727-947f-85c2-aaaa352c30b3",
+   "oracle_id": "b765d2b0-9727-947f-85c2-aaaa352c30b3",
+   "name": "Dilma, Estocadora de Vento",
+   "layout": "normal",
+   "cmc": 3,
+   "mana_cost": "{2}{R}",
+   "type_line": "Legendary Creature — Human Advisor",
+   "oracle_text": "Whenever you cast an enchantment spell, put a wind counter on Dilma.\nRemove three wind counters from Dilma: Draw two cards. Each opponent discards a card.",
+   "power": "2",
+   "toughness": "3",
+   "loyalty": null,
+   "colors": [
+    "R"
+   ],
+   "color_identity": [
+    "R"
+   ],
+   "keywords": [],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "ee7e8c83-3550-55ba-674b-a2342c9cb476"
+   ]
+  },
+  "355fb484-fb9b-a4e9-2071-ddfdf05986b7": {
+   "id": "355fb484-fb9b-a4e9-2071-ddfdf05986b7",
+   "oracle_id": "355fb484-fb9b-a4e9-2071-ddfdf05986b7",
+   "name": "Haddad, o Taxad",
+   "layout": "normal",
+   "cmc": 3,
+   "mana_cost": "{1}{W}{B}",
+   "type_line": "Legendary Creature — Human Advisor",
+   "oracle_text": "Whenever an opponent casts their second spell each turn, that player may pay {1}. If they don't, you create a Treasure token.",
+   "power": "2",
+   "toughness": "3",
+   "loyalty": null,
+   "colors": [
+    "W",
+    "B"
+   ],
+   "color_identity": [
+    "W",
+    "B"
+   ],
+   "keywords": [],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "092c9397-cc8b-1366-1384-a3b0a5883017"
+   ]
+  },
+  "9297adc1-5fe5-dab2-b0c4-8f3a86c107fa": {
+   "id": "9297adc1-5fe5-dab2-b0c4-8f3a86c107fa",
+   "oracle_id": "9297adc1-5fe5-dab2-b0c4-8f3a86c107fa",
+   "name": "Janja, Primeira-Dama",
+   "layout": "normal",
+   "cmc": 3,
+   "mana_cost": "{2}{W}",
+   "type_line": "Legendary Creature — Human Noble",
+   "oracle_text": "Aura spells you cast cost {1} less to cast.\nWhenever an Aura you control is put into a graveyard from the battlefield, return it to its owner's hand. This ability triggers only once each turn.",
+   "power": "2",
+   "toughness": "2",
+   "loyalty": null,
+   "colors": [
+    "W"
+   ],
+   "color_identity": [
+    "W"
+   ],
+   "keywords": [],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "ecb7494a-789c-bb29-eb8d-378951a47816"
+   ]
+  },
+  "0cd03514-7b79-5cd4-cd25-2c368fc61821": {
+   "id": "0cd03514-7b79-5cd4-cd25-2c368fc61821",
+   "oracle_id": "0cd03514-7b79-5cd4-cd25-2c368fc61821",
+   "name": "Jaques Wagner e Rui Costa, Dupla da Bahia",
+   "layout": "normal",
+   "cmc": 5,
+   "mana_cost": "{3}{R}{W}",
+   "type_line": "Legendary Creature — Human Advisor",
+   "oracle_text": "When Jaques Wagner e Rui Costa enters, search your library for an Aura card and a non-Aura enchantment card, reveal them, put them into your hand, then shuffle.",
+   "power": "4",
+   "toughness": "4",
+   "loyalty": null,
+   "colors": [
+    "W",
+    "R"
+   ],
+   "color_identity": [
+    "W",
+    "R"
+   ],
+   "keywords": [],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "f6a5f01c-7933-fd5f-c8f4-e02b5dbbbfc6"
+   ]
+  },
+  "44a059c7-9756-45dc-8dd4-51ac8de519aa": {
+   "id": "44a059c7-9756-45dc-8dd4-51ac8de519aa",
+   "oracle_id": "44a059c7-9756-45dc-8dd4-51ac8de519aa",
+   "name": "Maria do Rosário",
+   "layout": "normal",
+   "cmc": 3,
+   "mana_cost": "{2}{W}",
+   "type_line": "Legendary Creature — Human Advisor",
+   "oracle_text": "Whenever a creature deals combat damage to you, tap it and put two stun counters on it.",
+   "power": "1",
+   "toughness": "4",
+   "loyalty": null,
+   "colors": [
+    "W"
+   ],
+   "color_identity": [
+    "W"
+   ],
+   "keywords": [],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "8a819a5d-194c-557b-9bb8-382639fbe22b"
+   ]
+  },
+  "6a1fbcdf-1a0d-6c5f-285e-ce5be3cf973a": {
+   "id": "6a1fbcdf-1a0d-6c5f-285e-ce5be3cf973a",
+   "oracle_id": "6a1fbcdf-1a0d-6c5f-285e-ce5be3cf973a",
+   "name": "PAC, a Obra que Nunca Acaba",
+   "layout": "normal",
+   "cmc": 4,
+   "mana_cost": "{2}{R}{W}",
+   "type_line": "Enchantment",
+   "oracle_text": "Creature tokens you control have haste.\nAt the beginning of your end step, if you control five or more creature tokens, gain control of target nonland permanent an opponent controls with mana value 3 or less.",
+   "power": null,
+   "toughness": null,
+   "loyalty": null,
+   "colors": [
+    "W",
+    "R"
+   ],
+   "color_identity": [
+    "W",
+    "R"
+   ],
+   "keywords": [],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "6b5f82a0-26a5-2ae9-1630-6f499366b652"
+   ]
+  },
+  "7f6dd6fc-eba1-bd60-4769-efd3943f144e": {
+   "id": "7f6dd6fc-eba1-bd60-4769-efd3943f144e",
+   "oracle_id": "7f6dd6fc-eba1-bd60-4769-efd3943f144e",
+   "name": "Emenda Pix",
+   "layout": "normal",
+   "cmc": 3,
+   "mana_cost": "{2}{R}",
+   "type_line": "Instant",
+   "oracle_text": "Gain control of target creature until end of turn. Untap it. It gains haste until end of turn. Its owner creates two Treasure tokens.",
+   "power": null,
+   "toughness": null,
+   "loyalty": null,
+   "colors": [
+    "R"
+   ],
+   "color_identity": [
+    "R"
+   ],
+   "keywords": [],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "9d65faef-e978-15d7-e628-bbb94d511b1d"
+   ]
+  },
+  "221ee7d7-21b6-95f2-f0b3-4aa269cefebe": {
+   "id": "221ee7d7-21b6-95f2-f0b3-4aa269cefebe",
+   "oracle_id": "221ee7d7-21b6-95f2-f0b3-4aa269cefebe",
+   "name": "Faz o L",
+   "layout": "normal",
+   "cmc": 4,
+   "mana_cost": "{2}{B}{R}",
+   "type_line": "Sorcery",
+   "oracle_text": "Each opponent chooses one — You exile the top card of their library and may play it this turn, and mana of any type can be spent to cast it; or that player sacrifices a creature.",
+   "power": null,
+   "toughness": null,
+   "loyalty": null,
+   "colors": [
+    "B",
+    "R"
+   ],
+   "color_identity": [
+    "B",
+    "R"
+   ],
+   "keywords": [],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "94b301f6-a542-8a8c-6b54-223994e07945"
+   ]
+  },
+  "90c164ce-13c0-cafa-8941-e9761adeeac8": {
+   "id": "90c164ce-13c0-cafa-8941-e9761adeeac8",
+   "oracle_id": "90c164ce-13c0-cafa-8941-e9761adeeac8",
+   "name": "Alexandre de Moraes, o Xandão",
+   "layout": "normal",
+   "cmc": 5,
+   "mana_cost": "{5}",
+   "type_line": "Legendary Artifact Creature — Human Advisor",
+   "oracle_text": "Vigilance\nWhen Xandão enters, exile target creature an opponent controls until Xandão leaves the battlefield.\n{2}, {T}: Put an ankle monitor counter on target creature. Creatures with ankle monitor counters on them can't attack or block.",
+   "power": "4",
+   "toughness": "6",
+   "loyalty": null,
+   "colors": [],
+   "color_identity": [],
+   "keywords": [
+    "Vigilance"
+   ],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "519cd93a-f067-dddf-5e0a-8332aef6037f"
+   ]
+  },
+  "b7443d61-fb23-1ca7-3ae0-9b4ff757c5a3": {
+   "id": "b7443d61-fb23-1ca7-3ae0-9b4ff757c5a3",
+   "oracle_id": "b7443d61-fb23-1ca7-3ae0-9b4ff757c5a3",
+   "name": "Flávio Bolsonaro, Filhote de Cruz Credo",
+   "layout": "normal",
+   "cmc": 3,
+   "mana_cost": "{1}{B}{G}",
+   "type_line": "Legendary Creature — Human Advisor",
+   "oracle_text": "As long as you don't control your commander, Flávio Bolsonaro gets +2/+2 and has menace.\nRachadinha — Sacrifice another creature: Create a Treasure token. Activate only once each turn.",
+   "power": "3",
+   "toughness": "3",
+   "loyalty": null,
+   "colors": [
+    "B",
+    "G"
+   ],
+   "color_identity": [
+    "B",
+    "G"
+   ],
+   "keywords": [],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "c965a0f2-e52a-98ca-4a7e-d7658a19e8a8"
+   ]
+  },
+  "76af77b1-dfe3-33c4-ecff-dd0ad67468b8": {
+   "id": "76af77b1-dfe3-33c4-ecff-dd0ad67468b8",
+   "oracle_id": "76af77b1-dfe3-33c4-ecff-dd0ad67468b8",
+   "name": "Nikolas Ferreira, o Mais Votado",
+   "layout": "normal",
+   "cmc": 2,
+   "mana_cost": "{1}{G}",
+   "type_line": "Legendary Creature — Human Advisor",
+   "oracle_text": "Haste\nWhenever Nikolas Ferreira attacks, create a 1/1 green and white Human Citizen creature token with haste named Patriota that's tapped and attacking.",
+   "power": "2",
+   "toughness": "1",
+   "loyalty": null,
+   "colors": [
+    "G"
+   ],
+   "color_identity": [
+    "G"
+   ],
+   "keywords": [
+    "Haste"
+   ],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "58daf77c-941a-8458-8860-bc8a3a36130d"
+   ]
+  },
+  "024ec8ce-dd90-2acc-9a32-322416ec4743": {
+   "id": "024ec8ce-dd90-2acc-9a32-322416ec4743",
+   "oracle_id": "024ec8ce-dd90-2acc-9a32-322416ec4743",
+   "name": "Motociata",
+   "layout": "normal",
+   "cmc": 2,
+   "mana_cost": "{X}{G}{W}",
+   "type_line": "Sorcery",
+   "oracle_text": "Create X 1/1 green and white Human Citizen creature tokens with haste named Patriota. You gain 1 life for each creature you control.",
+   "power": null,
+   "toughness": null,
+   "loyalty": null,
+   "colors": [
+    "W",
+    "G"
+   ],
+   "color_identity": [
+    "W",
+    "G"
+   ],
+   "keywords": [],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "ad302af7-d02b-ecd1-9ea5-66b55c01dba7"
+   ]
+  },
+  "09c6e49c-4201-f2f7-2f91-cff2efc7d8f9": {
+   "id": "09c6e49c-4201-f2f7-2f91-cff2efc7d8f9",
+   "oracle_id": "09c6e49c-4201-f2f7-2f91-cff2efc7d8f9",
+   "name": "Cloroquina",
+   "layout": "normal",
+   "cmc": 3,
+   "mana_cost": "{1}{W}{B}",
+   "type_line": "Instant",
+   "oracle_text": "Destroy target creature. Its controller gains 3 life. You gain 5 life.",
+   "power": null,
+   "toughness": null,
+   "loyalty": null,
+   "colors": [
+    "W",
+    "B"
+   ],
+   "color_identity": [
+    "W",
+    "B"
+   ],
+   "keywords": [],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "22175427-cc27-169d-a7a0-62d42499ae3a"
+   ]
+  },
+  "6c1867f2-2cad-9333-aa3e-4402b3c8a5cb": {
+   "id": "6c1867f2-2cad-9333-aa3e-4402b3c8a5cb",
+   "oracle_id": "6c1867f2-2cad-9333-aa3e-4402b3c8a5cb",
+   "name": "Michelle, Primeira-Dama em Línguas",
+   "layout": "normal",
+   "cmc": 3,
+   "mana_cost": "{2}{W}",
+   "type_line": "Legendary Creature — Human Cleric",
+   "oracle_text": "Lifelink\nWhenever you gain life for the first time each turn, put a +1/+1 counter on target creature you control.",
+   "power": "2",
+   "toughness": "3",
+   "loyalty": null,
+   "colors": [
+    "W"
+   ],
+   "color_identity": [
+    "W"
+   ],
+   "keywords": [
+    "Lifelink"
+   ],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "c8b00426-d96d-2c80-62c5-4cd8ab8fde8a"
+   ]
+  },
+  "88891242-6d46-0c34-3467-9c1cea5437aa": {
+   "id": "88891242-6d46-0c34-3467-9c1cea5437aa",
+   "oracle_id": "88891242-6d46-0c34-3467-9c1cea5437aa",
+   "name": "Tarcísio, o Plano B",
+   "layout": "normal",
+   "cmc": 4,
+   "mana_cost": "{2}{G}{W}",
+   "type_line": "Legendary Creature — Human Advisor",
+   "oracle_text": "Other creatures you control get +1/+1.\nAs long as you don't control your commander, Tarcísio gets +3/+3 and has vigilance.",
+   "power": "3",
+   "toughness": "3",
+   "loyalty": null,
+   "colors": [
+    "W",
+    "G"
+   ],
+   "color_identity": [
+    "W",
+    "G"
+   ],
+   "keywords": [],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "f425f889-7417-cf5e-2240-d0255687f084"
+   ]
+  },
+  "af3e71d1-d44e-2f3a-a359-9f7d8735d676": {
+   "id": "af3e71d1-d44e-2f3a-a359-9f7d8735d676",
+   "oracle_id": "af3e71d1-d44e-2f3a-a359-9f7d8735d676",
+   "name": "Carluxo, Gabinete do Ódio",
+   "layout": "normal",
+   "cmc": 2,
+   "mana_cost": "{1}{B}",
+   "type_line": "Legendary Creature — Human Rogue",
+   "oracle_text": "{T}: Goad target creature an opponent controls. (Until your next turn, that creature attacks each combat if able and attacks a player other than you if able.)",
+   "power": "1",
+   "toughness": "2",
+   "loyalty": null,
+   "colors": [
+    "B"
+   ],
+   "color_identity": [
+    "B"
+   ],
+   "keywords": [],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "8a0314d0-9f76-5bae-aba0-8c12c1462a8a"
+   ]
+  },
+  "ab3bc836-75f9-6768-cbe5-fa8710073fd2": {
+   "id": "ab3bc836-75f9-6768-cbe5-fa8710073fd2",
+   "oracle_id": "ab3bc836-75f9-6768-cbe5-fa8710073fd2",
+   "name": "Minuta do Golpe",
+   "layout": "saga",
+   "cmc": 4,
+   "mana_cost": "{2}{B}{B}",
+   "type_line": "Enchantment — Saga",
+   "oracle_text": "(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)\nI — Destroy target creature.\nII — Destroy all creatures with power 2 or less.\nIII — You sacrifice a creature and you lose 3 life.",
+   "power": null,
+   "toughness": null,
+   "loyalty": null,
+   "colors": [
+    "B"
+   ],
+   "color_identity": [
+    "B"
+   ],
+   "keywords": [],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "318d3881-abf6-749a-c482-701c8a3999cd"
+   ]
+  },
+  "7ebfe094-9ec5-3c03-8493-019aeb099159": {
+   "id": "7ebfe094-9ec5-3c03-8493-019aeb099159",
+   "oracle_id": "7ebfe094-9ec5-3c03-8493-019aeb099159",
+   "name": "Pintou um Clima",
+   "layout": "normal",
+   "cmc": 2,
+   "mana_cost": "{1}{B}",
+   "type_line": "Enchantment — Aura",
+   "oracle_text": "Flash\nEnchant creature\nEnchanted creature can't block.\nAt the beginning of the upkeep of enchanted creature's controller, that player loses 1 life and you gain 1 life.",
+   "power": null,
+   "toughness": null,
+   "loyalty": null,
+   "colors": [
+    "B"
+   ],
+   "color_identity": [
+    "B"
+   ],
+   "keywords": [
+    "Flash",
+    "Enchant"
+   ],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "236bb5d3-c361-61cc-e547-d6bd08a1b26f"
+   ]
+  },
+  "8b215815-bebd-98e5-0af0-f1fbb2b171db": {
+   "id": "8b215815-bebd-98e5-0af0-f1fbb2b171db",
+   "oracle_id": "8b215815-bebd-98e5-0af0-f1fbb2b171db",
+   "name": "Imbrochável",
+   "layout": "normal",
+   "cmc": 2,
+   "mana_cost": "{1}{G}",
+   "type_line": "Instant",
+   "oracle_text": "Untap target creature you control. It gains indestructible and trample until end of turn. If it's your commander, it also gets +3/+3 until end of turn.",
+   "power": null,
+   "toughness": null,
+   "loyalty": null,
+   "colors": [
+    "G"
+   ],
+   "color_identity": [
+    "G"
+   ],
+   "keywords": [],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "fa2c7a34-f7b3-644b-6a5c-e570afba615f"
+   ]
   }
  },
  "printings": {
@@ -96662,7 +97275,7 @@
    "lang": "pt",
    "layout": "token",
    "set": "brz",
-   "collector_number": "3",
+   "collector_number": "24",
    "type_line": "Token Creature — Human Citizen",
    "oracle_text": "",
    "power": "1",
@@ -96689,7 +97302,7 @@
    "lang": "pt",
    "layout": "token",
    "set": "brz",
-   "collector_number": "4",
+   "collector_number": "25",
    "type_line": "Token Creature — Human Citizen",
    "oracle_text": "Haste",
    "power": "1",
@@ -96707,6 +97320,579 @@
     {
      "face": "front",
      "path": "imagens/31c87e04-c9db-cb5e-510f-dde67f82b9a9/front.png"
+    }
+   ]
+  },
+  "9a7d1a70-8b0b-d7c2-342c-870bdccaad79": {
+   "id": "9a7d1a70-8b0b-d7c2-342c-870bdccaad79",
+   "oracle_id": "9e6d06ce-7dfb-482a-9bce-2bf4c60619e9",
+   "name": "Bolsa Família",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "3",
+   "type_line": "Enchantment — Aura",
+   "oracle_text": "Enchant creature\nWhen Bolsa Família enters, create a 1/1 white Human Citizen creature token named Eleitor.\nEnchanted creature gets +1/+1 and can't attack you or planeswalkers you control.",
+   "power": null,
+   "toughness": null,
+   "colors": [
+    "W"
+   ],
+   "printed_name": "Bolsa Família",
+   "printed_type_line": "Encantamento — Aura",
+   "printed_text": "Encantar criatura\nQuando Bolsa Família entra, crie uma ficha Eleitor 1/1 branca.\nA criatura encantada recebe +1/+1 e não pode atacar você nem planeswalkers que você controla.",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/9a7d1a70-8b0b-d7c2-342c-870bdccaad79/front.png"
+    }
+   ]
+  },
+  "31a5eb41-1eca-a755-0908-4ad05ed92848": {
+   "id": "31a5eb41-1eca-a755-0908-4ad05ed92848",
+   "oracle_id": "9ddc278f-b2ca-6301-410f-646c33a60f7a",
+   "name": "Geraldo Alckmin, o Vice Chuchu",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "4",
+   "type_line": "Legendary Creature — Human Advisor",
+   "oracle_text": "Defender\nAt the beginning of your end step, if you didn't attack with a creature this turn, draw a card.",
+   "power": "0",
+   "toughness": "5",
+   "colors": [
+    "W"
+   ],
+   "printed_name": "Geraldo Alckmin, o Vice Chuchu",
+   "printed_type_line": "Criatura Lendária — Humano Político",
+   "printed_text": "Defensor\nNo início da sua etapa final, se você não atacou com uma criatura neste turno, compre uma carta.",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/31a5eb41-1eca-a755-0908-4ad05ed92848/front.png"
+    }
+   ]
+  },
+  "ee7e8c83-3550-55ba-674b-a2342c9cb476": {
+   "id": "ee7e8c83-3550-55ba-674b-a2342c9cb476",
+   "oracle_id": "b765d2b0-9727-947f-85c2-aaaa352c30b3",
+   "name": "Dilma, Estocadora de Vento",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "5",
+   "type_line": "Legendary Creature — Human Advisor",
+   "oracle_text": "Whenever you cast an enchantment spell, put a wind counter on Dilma.\nRemove three wind counters from Dilma: Draw two cards. Each opponent discards a card.",
+   "power": "2",
+   "toughness": "3",
+   "colors": [
+    "R"
+   ],
+   "printed_name": "Dilma, Estocadora de Vento",
+   "printed_type_line": "Criatura Lendária — Humano Político",
+   "printed_text": "Sempre que você conjura uma mágica de encantamento, coloque um marcador de vento em Dilma.\nRemova três marcadores de vento de Dilma: Compre duas cartas. Cada oponente descarta uma carta.",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/ee7e8c83-3550-55ba-674b-a2342c9cb476/front.png"
+    }
+   ]
+  },
+  "092c9397-cc8b-1366-1384-a3b0a5883017": {
+   "id": "092c9397-cc8b-1366-1384-a3b0a5883017",
+   "oracle_id": "355fb484-fb9b-a4e9-2071-ddfdf05986b7",
+   "name": "Haddad, o Taxad",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "6",
+   "type_line": "Legendary Creature — Human Advisor",
+   "oracle_text": "Whenever an opponent casts their second spell each turn, that player may pay {1}. If they don't, you create a Treasure token.",
+   "power": "2",
+   "toughness": "3",
+   "colors": [
+    "W",
+    "B"
+   ],
+   "printed_name": "Haddad, o Taxad",
+   "printed_type_line": "Criatura Lendária — Humano Político",
+   "printed_text": "Sempre que um oponente conjura a segunda mágica dele em um turno, aquele jogador pode pagar {1}. Se não pagar, você cria uma ficha de Tesouro.",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/092c9397-cc8b-1366-1384-a3b0a5883017/front.png"
+    }
+   ]
+  },
+  "ecb7494a-789c-bb29-eb8d-378951a47816": {
+   "id": "ecb7494a-789c-bb29-eb8d-378951a47816",
+   "oracle_id": "9297adc1-5fe5-dab2-b0c4-8f3a86c107fa",
+   "name": "Janja, Primeira-Dama",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "7",
+   "type_line": "Legendary Creature — Human Noble",
+   "oracle_text": "Aura spells you cast cost {1} less to cast.\nWhenever an Aura you control is put into a graveyard from the battlefield, return it to its owner's hand. This ability triggers only once each turn.",
+   "power": "2",
+   "toughness": "2",
+   "colors": [
+    "W"
+   ],
+   "printed_name": "Janja, Primeira-Dama",
+   "printed_type_line": "Criatura Lendária — Humano Nobre",
+   "printed_text": "As mágicas de Aura que você conjura custam {1} a menos para serem conjuradas.\nSempre que uma Aura que você controla é colocada em um cemitério vinda do campo de batalha, devolva-a para a mão do dono. Esta habilidade só é desencadeada uma vez por turno.",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/ecb7494a-789c-bb29-eb8d-378951a47816/front.png"
+    }
+   ]
+  },
+  "f6a5f01c-7933-fd5f-c8f4-e02b5dbbbfc6": {
+   "id": "f6a5f01c-7933-fd5f-c8f4-e02b5dbbbfc6",
+   "oracle_id": "0cd03514-7b79-5cd4-cd25-2c368fc61821",
+   "name": "Jaques Wagner e Rui Costa, Dupla da Bahia",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "8",
+   "type_line": "Legendary Creature — Human Advisor",
+   "oracle_text": "When Jaques Wagner e Rui Costa enters, search your library for an Aura card and a non-Aura enchantment card, reveal them, put them into your hand, then shuffle.",
+   "power": "4",
+   "toughness": "4",
+   "colors": [
+    "W",
+    "R"
+   ],
+   "printed_name": "Jaques Wagner e Rui Costa, Dupla da Bahia",
+   "printed_type_line": "Criatura Lendária — Humano Político",
+   "printed_text": "Quando Jaques Wagner e Rui Costa entram, procure no seu grimório uma carta de Aura e uma carta de encantamento que não seja Aura, revele-as, coloque-as na sua mão e depois embaralhe.",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/f6a5f01c-7933-fd5f-c8f4-e02b5dbbbfc6/front.png"
+    }
+   ]
+  },
+  "8a819a5d-194c-557b-9bb8-382639fbe22b": {
+   "id": "8a819a5d-194c-557b-9bb8-382639fbe22b",
+   "oracle_id": "44a059c7-9756-45dc-8dd4-51ac8de519aa",
+   "name": "Maria do Rosário",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "9",
+   "type_line": "Legendary Creature — Human Advisor",
+   "oracle_text": "Whenever a creature deals combat damage to you, tap it and put two stun counters on it.",
+   "power": "1",
+   "toughness": "4",
+   "colors": [
+    "W"
+   ],
+   "printed_name": "Maria do Rosário",
+   "printed_type_line": "Criatura Lendária — Humano Político",
+   "printed_text": "Sempre que uma criatura causa dano de combate a você, vire-a e coloque dois marcadores de atordoamento nela. (Se uma permanente com um marcador de atordoamento fosse ser desvirada, em vez disso remova um deles.)",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/8a819a5d-194c-557b-9bb8-382639fbe22b/front.png"
+    }
+   ]
+  },
+  "6b5f82a0-26a5-2ae9-1630-6f499366b652": {
+   "id": "6b5f82a0-26a5-2ae9-1630-6f499366b652",
+   "oracle_id": "6a1fbcdf-1a0d-6c5f-285e-ce5be3cf973a",
+   "name": "PAC, a Obra que Nunca Acaba",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "10",
+   "type_line": "Enchantment",
+   "oracle_text": "Creature tokens you control have haste.\nAt the beginning of your end step, if you control five or more creature tokens, gain control of target nonland permanent an opponent controls with mana value 3 or less.",
+   "power": null,
+   "toughness": null,
+   "colors": [
+    "W",
+    "R"
+   ],
+   "printed_name": "PAC, a Obra que Nunca Acaba",
+   "printed_type_line": "Encantamento",
+   "printed_text": "As fichas de criatura que você controla têm ímpeto.\nNo início da sua etapa final, se você controla cinco ou mais fichas de criatura, ganhe o controle da permanente alvo que não seja terreno, com valor de mana 3 ou menos, que um oponente controla.",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/6b5f82a0-26a5-2ae9-1630-6f499366b652/front.png"
+    }
+   ]
+  },
+  "9d65faef-e978-15d7-e628-bbb94d511b1d": {
+   "id": "9d65faef-e978-15d7-e628-bbb94d511b1d",
+   "oracle_id": "7f6dd6fc-eba1-bd60-4769-efd3943f144e",
+   "name": "Emenda Pix",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "11",
+   "type_line": "Instant",
+   "oracle_text": "Gain control of target creature until end of turn. Untap it. It gains haste until end of turn. Its owner creates two Treasure tokens.",
+   "power": null,
+   "toughness": null,
+   "colors": [
+    "R"
+   ],
+   "printed_name": "Emenda Pix",
+   "printed_type_line": "Mágica Instantânea",
+   "printed_text": "Ganhe o controle da criatura alvo até o fim do turno. Desvire-a. Ela ganha ímpeto até o fim do turno. O dono dela cria duas fichas de Tesouro.",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/9d65faef-e978-15d7-e628-bbb94d511b1d/front.png"
+    }
+   ]
+  },
+  "94b301f6-a542-8a8c-6b54-223994e07945": {
+   "id": "94b301f6-a542-8a8c-6b54-223994e07945",
+   "oracle_id": "221ee7d7-21b6-95f2-f0b3-4aa269cefebe",
+   "name": "Faz o L",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "12",
+   "type_line": "Sorcery",
+   "oracle_text": "Each opponent chooses one — You exile the top card of their library and may play it this turn, and mana of any type can be spent to cast it; or that player sacrifices a creature.",
+   "power": null,
+   "toughness": null,
+   "colors": [
+    "B",
+    "R"
+   ],
+   "printed_name": "Faz o L",
+   "printed_type_line": "Feitiço",
+   "printed_text": "Cada oponente escolhe um —\n• Você exila a carta do topo do grimório dele e pode jogá-la neste turno, com mana de qualquer tipo.\n• Aquele jogador sacrifica uma criatura.",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/94b301f6-a542-8a8c-6b54-223994e07945/front.png"
+    }
+   ]
+  },
+  "519cd93a-f067-dddf-5e0a-8332aef6037f": {
+   "id": "519cd93a-f067-dddf-5e0a-8332aef6037f",
+   "oracle_id": "90c164ce-13c0-cafa-8941-e9761adeeac8",
+   "name": "Alexandre de Moraes, o Xandão",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "13",
+   "type_line": "Legendary Artifact Creature — Human Advisor",
+   "oracle_text": "Vigilance\nWhen Xandão enters, exile target creature an opponent controls until Xandão leaves the battlefield.\n{2}, {T}: Put an ankle monitor counter on target creature. Creatures with ankle monitor counters on them can't attack or block.",
+   "power": "4",
+   "toughness": "6",
+   "colors": [],
+   "printed_name": "Alexandre de Moraes, o Xandão",
+   "printed_type_line": "Criatura Artefato Lendária — Humano Juiz",
+   "printed_text": "Vigilância\nQuando Xandão entra, exile a criatura alvo que um oponente controla até Xandão sair do campo de batalha.\n{2}, {T}: Coloque um marcador de tornozeleira na criatura alvo. Criaturas com marcadores de tornozeleira não podem atacar nem bloquear.",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/519cd93a-f067-dddf-5e0a-8332aef6037f/front.png"
+    }
+   ]
+  },
+  "c965a0f2-e52a-98ca-4a7e-d7658a19e8a8": {
+   "id": "c965a0f2-e52a-98ca-4a7e-d7658a19e8a8",
+   "oracle_id": "b7443d61-fb23-1ca7-3ae0-9b4ff757c5a3",
+   "name": "Flávio Bolsonaro, Filhote de Cruz Credo",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "14",
+   "type_line": "Legendary Creature — Human Advisor",
+   "oracle_text": "As long as you don't control your commander, Flávio Bolsonaro gets +2/+2 and has menace.\nRachadinha — Sacrifice another creature: Create a Treasure token. Activate only once each turn.",
+   "power": "3",
+   "toughness": "3",
+   "colors": [
+    "B",
+    "G"
+   ],
+   "printed_name": "Flávio Bolsonaro, Filhote de Cruz Credo",
+   "printed_type_line": "Criatura Lendária — Humano Político",
+   "printed_text": "Enquanto você não controlar o seu comandante, Flávio Bolsonaro recebe +2/+2 e tem ameaçar.\nRachadinha — Sacrifique outra criatura: Crie uma ficha de Tesouro. Ative somente uma vez por turno.",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/c965a0f2-e52a-98ca-4a7e-d7658a19e8a8/front.png"
+    }
+   ]
+  },
+  "58daf77c-941a-8458-8860-bc8a3a36130d": {
+   "id": "58daf77c-941a-8458-8860-bc8a3a36130d",
+   "oracle_id": "76af77b1-dfe3-33c4-ecff-dd0ad67468b8",
+   "name": "Nikolas Ferreira, o Mais Votado",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "15",
+   "type_line": "Legendary Creature — Human Advisor",
+   "oracle_text": "Haste\nWhenever Nikolas Ferreira attacks, create a 1/1 green and white Human Citizen creature token with haste named Patriota that's tapped and attacking.",
+   "power": "2",
+   "toughness": "1",
+   "colors": [
+    "G"
+   ],
+   "printed_name": "Nikolas Ferreira, o Mais Votado",
+   "printed_type_line": "Criatura Lendária — Humano Político",
+   "printed_text": "Ímpeto\nSempre que Nikolas Ferreira ataca, crie uma ficha Patriota 1/1 verde e branca com ímpeto, virada e atacando.",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/58daf77c-941a-8458-8860-bc8a3a36130d/front.png"
+    }
+   ]
+  },
+  "ad302af7-d02b-ecd1-9ea5-66b55c01dba7": {
+   "id": "ad302af7-d02b-ecd1-9ea5-66b55c01dba7",
+   "oracle_id": "024ec8ce-dd90-2acc-9a32-322416ec4743",
+   "name": "Motociata",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "16",
+   "type_line": "Sorcery",
+   "oracle_text": "Create X 1/1 green and white Human Citizen creature tokens with haste named Patriota. You gain 1 life for each creature you control.",
+   "power": null,
+   "toughness": null,
+   "colors": [
+    "W",
+    "G"
+   ],
+   "printed_name": "Motociata",
+   "printed_type_line": "Feitiço",
+   "printed_text": "Crie X fichas Patriota 1/1 verdes e brancas com ímpeto. Você ganha 1 ponto de vida para cada criatura que você controla.",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/ad302af7-d02b-ecd1-9ea5-66b55c01dba7/front.png"
+    }
+   ]
+  },
+  "22175427-cc27-169d-a7a0-62d42499ae3a": {
+   "id": "22175427-cc27-169d-a7a0-62d42499ae3a",
+   "oracle_id": "09c6e49c-4201-f2f7-2f91-cff2efc7d8f9",
+   "name": "Cloroquina",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "17",
+   "type_line": "Instant",
+   "oracle_text": "Destroy target creature. Its controller gains 3 life. You gain 5 life.",
+   "power": null,
+   "toughness": null,
+   "colors": [
+    "W",
+    "B"
+   ],
+   "printed_name": "Cloroquina",
+   "printed_type_line": "Mágica Instantânea",
+   "printed_text": "Destrua a criatura alvo. O controlador dela ganha 3 pontos de vida. Você ganha 5 pontos de vida.",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/22175427-cc27-169d-a7a0-62d42499ae3a/front.png"
+    }
+   ]
+  },
+  "c8b00426-d96d-2c80-62c5-4cd8ab8fde8a": {
+   "id": "c8b00426-d96d-2c80-62c5-4cd8ab8fde8a",
+   "oracle_id": "6c1867f2-2cad-9333-aa3e-4402b3c8a5cb",
+   "name": "Michelle, Primeira-Dama em Línguas",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "18",
+   "type_line": "Legendary Creature — Human Cleric",
+   "oracle_text": "Lifelink\nWhenever you gain life for the first time each turn, put a +1/+1 counter on target creature you control.",
+   "power": "2",
+   "toughness": "3",
+   "colors": [
+    "W"
+   ],
+   "printed_name": "Michelle, Primeira-Dama em Línguas",
+   "printed_type_line": "Criatura Lendária — Humano Clérigo",
+   "printed_text": "Vínculo com a vida\nSempre que você ganha pontos de vida pela primeira vez em cada turno, coloque um marcador +1/+1 na criatura alvo que você controla.",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/c8b00426-d96d-2c80-62c5-4cd8ab8fde8a/front.png"
+    }
+   ]
+  },
+  "f425f889-7417-cf5e-2240-d0255687f084": {
+   "id": "f425f889-7417-cf5e-2240-d0255687f084",
+   "oracle_id": "88891242-6d46-0c34-3467-9c1cea5437aa",
+   "name": "Tarcísio, o Plano B",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "19",
+   "type_line": "Legendary Creature — Human Advisor",
+   "oracle_text": "Other creatures you control get +1/+1.\nAs long as you don't control your commander, Tarcísio gets +3/+3 and has vigilance.",
+   "power": "3",
+   "toughness": "3",
+   "colors": [
+    "W",
+    "G"
+   ],
+   "printed_name": "Tarcísio, o Plano B",
+   "printed_type_line": "Criatura Lendária — Humano Político",
+   "printed_text": "As outras criaturas que você controla recebem +1/+1.\nEnquanto você não controlar o seu comandante, Tarcísio recebe +3/+3 e tem vigilância.",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/f425f889-7417-cf5e-2240-d0255687f084/front.png"
+    }
+   ]
+  },
+  "8a0314d0-9f76-5bae-aba0-8c12c1462a8a": {
+   "id": "8a0314d0-9f76-5bae-aba0-8c12c1462a8a",
+   "oracle_id": "af3e71d1-d44e-2f3a-a359-9f7d8735d676",
+   "name": "Carluxo, Gabinete do Ódio",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "20",
+   "type_line": "Legendary Creature — Human Rogue",
+   "oracle_text": "{T}: Goad target creature an opponent controls. (Until your next turn, that creature attacks each combat if able and attacks a player other than you if able.)",
+   "power": "1",
+   "toughness": "2",
+   "colors": [
+    "B"
+   ],
+   "printed_name": "Carluxo, Gabinete do Ódio",
+   "printed_type_line": "Criatura Lendária — Humano Ladino",
+   "printed_text": "{T}: Incite a criatura alvo que um oponente controla. (Até o seu próximo turno, ela ataca a cada combate se puder e ataca um jogador que não seja você se puder.)",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/8a0314d0-9f76-5bae-aba0-8c12c1462a8a/front.png"
+    }
+   ]
+  },
+  "318d3881-abf6-749a-c482-701c8a3999cd": {
+   "id": "318d3881-abf6-749a-c482-701c8a3999cd",
+   "oracle_id": "ab3bc836-75f9-6768-cbe5-fa8710073fd2",
+   "name": "Minuta do Golpe",
+   "lang": "pt",
+   "layout": "saga",
+   "set": "brz",
+   "collector_number": "21",
+   "type_line": "Enchantment — Saga",
+   "oracle_text": "(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)\nI — Destroy target creature.\nII — Destroy all creatures with power 2 or less.\nIII — You sacrifice a creature and you lose 3 life.",
+   "power": null,
+   "toughness": null,
+   "colors": [
+    "B"
+   ],
+   "printed_name": "Minuta do Golpe",
+   "printed_type_line": "Encantamento — Saga",
+   "printed_text": "(Conforme esta Saga entra e após a sua etapa de compra, adicione um marcador de conhecimento. Sacrifique após III.)\nI — Destrua a criatura alvo.\nII — Destrua todas as criaturas com poder 2 ou menos.\nIII — Você sacrifica uma criatura e perde 3 pontos de vida.",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/318d3881-abf6-749a-c482-701c8a3999cd/front.png"
+    }
+   ]
+  },
+  "236bb5d3-c361-61cc-e547-d6bd08a1b26f": {
+   "id": "236bb5d3-c361-61cc-e547-d6bd08a1b26f",
+   "oracle_id": "7ebfe094-9ec5-3c03-8493-019aeb099159",
+   "name": "Pintou um Clima",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "22",
+   "type_line": "Enchantment — Aura",
+   "oracle_text": "Flash\nEnchant creature\nEnchanted creature can't block.\nAt the beginning of the upkeep of enchanted creature's controller, that player loses 1 life and you gain 1 life.",
+   "power": null,
+   "toughness": null,
+   "colors": [
+    "B"
+   ],
+   "printed_name": "Pintou um Clima",
+   "printed_type_line": "Encantamento — Aura",
+   "printed_text": "Lampejo\nEncantar criatura\nA criatura encantada não pode bloquear.\nNo início da manutenção do controlador da criatura encantada, aquele jogador perde 1 ponto de vida e você ganha 1 ponto de vida.",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/236bb5d3-c361-61cc-e547-d6bd08a1b26f/front.png"
+    }
+   ]
+  },
+  "fa2c7a34-f7b3-644b-6a5c-e570afba615f": {
+   "id": "fa2c7a34-f7b3-644b-6a5c-e570afba615f",
+   "oracle_id": "8b215815-bebd-98e5-0af0-f1fbb2b171db",
+   "name": "Imbrochável",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "brz",
+   "collector_number": "23",
+   "type_line": "Instant",
+   "oracle_text": "Untap target creature you control. It gains indestructible and trample until end of turn. If it's your commander, it also gets +3/+3 until end of turn.",
+   "power": null,
+   "toughness": null,
+   "colors": [
+    "G"
+   ],
+   "printed_name": "Imbrochável",
+   "printed_type_line": "Mágica Instantânea",
+   "printed_text": "Desvire a criatura alvo que você controla. Ela ganha indestrutível e atropelar até o fim do turno. Se ela for o seu comandante, ela também recebe +3/+3 até o fim do turno.",
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/fa2c7a34-f7b3-644b-6a5c-e570afba615f/front.png"
     }
    ]
   }
@@ -100939,6 +102125,90 @@
   "Bolsonaro, o Genocida": {
    "en": "df8af4d3-1e5e-fc44-5522-02215064d5ad",
    "pt": "df8af4d3-1e5e-fc44-5522-02215064d5ad"
+  },
+  "Bolsa Família": {
+   "en": "9a7d1a70-8b0b-d7c2-342c-870bdccaad79",
+   "pt": "9a7d1a70-8b0b-d7c2-342c-870bdccaad79"
+  },
+  "Geraldo Alckmin, o Vice Chuchu": {
+   "en": "31a5eb41-1eca-a755-0908-4ad05ed92848",
+   "pt": "31a5eb41-1eca-a755-0908-4ad05ed92848"
+  },
+  "Dilma, Estocadora de Vento": {
+   "en": "ee7e8c83-3550-55ba-674b-a2342c9cb476",
+   "pt": "ee7e8c83-3550-55ba-674b-a2342c9cb476"
+  },
+  "Haddad, o Taxad": {
+   "en": "092c9397-cc8b-1366-1384-a3b0a5883017",
+   "pt": "092c9397-cc8b-1366-1384-a3b0a5883017"
+  },
+  "Janja, Primeira-Dama": {
+   "en": "ecb7494a-789c-bb29-eb8d-378951a47816",
+   "pt": "ecb7494a-789c-bb29-eb8d-378951a47816"
+  },
+  "Jaques Wagner e Rui Costa, Dupla da Bahia": {
+   "en": "f6a5f01c-7933-fd5f-c8f4-e02b5dbbbfc6",
+   "pt": "f6a5f01c-7933-fd5f-c8f4-e02b5dbbbfc6"
+  },
+  "Maria do Rosário": {
+   "en": "8a819a5d-194c-557b-9bb8-382639fbe22b",
+   "pt": "8a819a5d-194c-557b-9bb8-382639fbe22b"
+  },
+  "PAC, a Obra que Nunca Acaba": {
+   "en": "6b5f82a0-26a5-2ae9-1630-6f499366b652",
+   "pt": "6b5f82a0-26a5-2ae9-1630-6f499366b652"
+  },
+  "Emenda Pix": {
+   "en": "9d65faef-e978-15d7-e628-bbb94d511b1d",
+   "pt": "9d65faef-e978-15d7-e628-bbb94d511b1d"
+  },
+  "Faz o L": {
+   "en": "94b301f6-a542-8a8c-6b54-223994e07945",
+   "pt": "94b301f6-a542-8a8c-6b54-223994e07945"
+  },
+  "Alexandre de Moraes, o Xandão": {
+   "en": "519cd93a-f067-dddf-5e0a-8332aef6037f",
+   "pt": "519cd93a-f067-dddf-5e0a-8332aef6037f"
+  },
+  "Flávio Bolsonaro, Filhote de Cruz Credo": {
+   "en": "c965a0f2-e52a-98ca-4a7e-d7658a19e8a8",
+   "pt": "c965a0f2-e52a-98ca-4a7e-d7658a19e8a8"
+  },
+  "Nikolas Ferreira, o Mais Votado": {
+   "en": "58daf77c-941a-8458-8860-bc8a3a36130d",
+   "pt": "58daf77c-941a-8458-8860-bc8a3a36130d"
+  },
+  "Motociata": {
+   "en": "ad302af7-d02b-ecd1-9ea5-66b55c01dba7",
+   "pt": "ad302af7-d02b-ecd1-9ea5-66b55c01dba7"
+  },
+  "Cloroquina": {
+   "en": "22175427-cc27-169d-a7a0-62d42499ae3a",
+   "pt": "22175427-cc27-169d-a7a0-62d42499ae3a"
+  },
+  "Michelle, Primeira-Dama em Línguas": {
+   "en": "c8b00426-d96d-2c80-62c5-4cd8ab8fde8a",
+   "pt": "c8b00426-d96d-2c80-62c5-4cd8ab8fde8a"
+  },
+  "Tarcísio, o Plano B": {
+   "en": "f425f889-7417-cf5e-2240-d0255687f084",
+   "pt": "f425f889-7417-cf5e-2240-d0255687f084"
+  },
+  "Carluxo, Gabinete do Ódio": {
+   "en": "8a0314d0-9f76-5bae-aba0-8c12c1462a8a",
+   "pt": "8a0314d0-9f76-5bae-aba0-8c12c1462a8a"
+  },
+  "Minuta do Golpe": {
+   "en": "318d3881-abf6-749a-c482-701c8a3999cd",
+   "pt": "318d3881-abf6-749a-c482-701c8a3999cd"
+  },
+  "Pintou um Clima": {
+   "en": "236bb5d3-c361-61cc-e547-d6bd08a1b26f",
+   "pt": "236bb5d3-c361-61cc-e547-d6bd08a1b26f"
+  },
+  "Imbrochável": {
+   "en": "fa2c7a34-f7b3-644b-6a5c-e570afba615f",
+   "pt": "fa2c7a34-f7b3-644b-6a5c-e570afba615f"
   }
  },
  "fichas": [

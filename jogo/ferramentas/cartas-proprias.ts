@@ -23,6 +23,8 @@ export interface CartaPropria {
   /** carta do jogo de onde vêm as regras e os dados */
   skinDe?: string;
   ficha?: boolean;
+  /** layout do Oracle quando não é 'normal' (saga) */
+  layout?: string;
   custo?: string;
   /** linha de tipo em inglês, como no Oracle (é a que o motor lê) */
   tipo?: string;
@@ -65,7 +67,7 @@ function coresDe(texto: string): string[] {
 }
 
 interface Completa extends Required<Pick<CartaPropria, 'nome' | 'custo' | 'tipo' | 'tipoPt' | 'oracle' | 'texto'>> {
-  ficha: boolean; forca: string | null; resistencia: string | null; lealdade: string | null; palavras: string[]; cores: string[];
+  ficha: boolean; layout: string; forca: string | null; resistencia: string | null; lealdade: string | null; palavras: string[]; cores: string[];
   identidade: string[]; frase: string; skinDe: string | null;
 }
 
@@ -76,7 +78,7 @@ function completar(c: CartaPropria, gerado: CartasGeradas, imagens: ImagensGerad
     if (!c.tipo || !c.tipoPt) throw new Error(`${c.nome}: faltam "tipo" e "tipoPt"`);
     const custo = c.custo ?? '';
     return {
-      nome: c.nome, custo, tipo: c.tipo, tipoPt: c.tipoPt, oracle: c.oracle ?? '', texto: c.texto ?? '', ficha: !!c.ficha,
+      nome: c.nome, custo, tipo: c.tipo, tipoPt: c.tipoPt, oracle: c.oracle ?? '', texto: c.texto ?? '', ficha: !!c.ficha, layout: c.ficha ? 'token' : c.layout ?? 'normal',
       forca: txt(c.forca), resistencia: txt(c.resistencia), lealdade: null, palavras: c.palavras ?? [],
       cores: c.cores ?? coresDe(custo), identidade: c.ficha ? (c.cores ?? []) : coresDe(`${custo} ${c.oracle ?? ''}`), frase: c.frase ?? '', skinDe: null,
     };
@@ -90,7 +92,7 @@ function completar(c: CartaPropria, gerado: CartasGeradas, imagens: ImagensGerad
   const tipoPt = c.tipoPt ?? pt?.tipo;
   if (texto === undefined || texto === null || !tipoPt) throw new Error(`${c.nome}: "${c.skinDe}" não tem impressão em português; escreva "texto" e "tipoPt" na fonte`);
   return {
-    nome: c.nome, custo: f.manaCost, tipo: f.typeLine, tipoPt, oracle: f.oracleText.replaceAll(c.skinDe, c.nome), texto, ficha: false,
+    nome: c.nome, custo: f.manaCost, tipo: f.typeLine, tipoPt, oracle: f.oracleText.replaceAll(c.skinDe, c.nome), texto, ficha: false, layout: o.layout,
     forca: txt(f.power), resistencia: txt(f.toughness), lealdade: txt(f.loyalty), palavras: o.keywords,
     cores: f.colorIndicator ?? coresDe(f.manaCost), identidade: o.colorIdentity, frase: c.frase ?? '', skinDe: c.skinDe,
   };
@@ -122,7 +124,7 @@ function gravarDados(): void {
     const oid = idDe('carta', c.nome);
     const pid = idDe('impressao', c.nome);
     const card: ScryCard = {
-      id: oid, oracle_id: oid, name: c.nome, layout: c.ficha ? 'token' : 'normal', cmc: valorDeMana(c.custo), mana_cost: c.custo,
+      id: oid, oracle_id: oid, name: c.nome, layout: c.layout, cmc: valorDeMana(c.custo), mana_cost: c.custo,
       type_line: c.tipo, oracle_text: c.oracle, power: c.forca, toughness: c.resistencia, loyalty: c.lealdade,
       colors: c.cores, color_identity: c.identidade, keywords: c.palavras, legalities: { commander: 'legal' },
       card_faces: null, all_parts: null, printing_ids: [pid],
@@ -178,7 +180,7 @@ function html(c: Completa, arte: string | null): string {
     : `linear-gradient(160deg, ${escuro}, ${borda})`;
   const regras = c.texto.split('\n').filter(Boolean).map((p) => `<p>${comSimbolos(p).replace(/\(([^)]*)\)/g, '<i>($1)</i>')}</p>`).join('');
   const tamanho = c.texto.length + c.frase.length;
-  const corpo = tamanho > 430 ? 21 : tamanho > 330 ? 23.5 : tamanho > 230 ? 26 : 29;
+  const corpo = tamanho > 480 ? 19.5 : tamanho > 400 ? 21 : tamanho > 290 ? 23 : tamanho > 200 ? 25.5 : 29;
   const pt = c.forca !== null ? `<div class="pt">${escapar(c.forca)}/${escapar(c.resistencia ?? '')}</div>` : c.lealdade !== null ? `<div class="pt">${escapar(c.lealdade)}</div>` : '';
   const iniciais = c.nome.split(/[\s,]+/).filter((p) => /^\p{Lu}/u.test(p)).slice(0, 2).map((p) => p[0]).join('');
   const quadro = arte

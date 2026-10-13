@@ -838,6 +838,40 @@
     }
    ]
   },
+  "Alexandre de Moraes, o Xandão": {
+   "name": "Alexandre de Moraes, o Xandão",
+   "oracleId": "90c164ce-13c0-cafa-8941-e9761adeeac8",
+   "layout": "normal",
+   "manaValue": 5,
+   "colorIdentity": [],
+   "keywords": [
+    "Vigilance"
+   ],
+   "faces": [
+    {
+     "name": "Alexandre de Moraes, o Xandão",
+     "manaCost": "{5}",
+     "typeLine": "Legendary Artifact Creature — Human Advisor",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Artifact",
+      "Creature"
+     ],
+     "subtypes": [
+      "Human",
+      "Advisor"
+     ],
+     "oracleText": "Vigilance\nWhen Xandão enters, exile target creature an opponent controls until Xandão leaves the battlefield.\n{2}, {T}: Put an ankle monitor counter on target creature. Creatures with ankle monitor counters on them can't attack or block.",
+     "power": 4,
+     "toughness": 6,
+     "loyalty": null,
+     "colors": [],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Alicia Masters, Skilled Sculptor": {
    "name": "Alicia Masters, Skilled Sculptor",
    "oracleId": "223504ba-174a-46f2-a4a2-5d663a82dfd3",
@@ -5295,6 +5329,40 @@
     }
    ]
   },
+  "Bolsa Família": {
+   "name": "Bolsa Família",
+   "oracleId": "9e6d06ce-7dfb-482a-9bce-2bf4c60619e9",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "W"
+   ],
+   "keywords": [
+    "Enchant"
+   ],
+   "faces": [
+    {
+     "name": "Bolsa Família",
+     "manaCost": "{1}{W}",
+     "typeLine": "Enchantment — Aura",
+     "supertypes": [],
+     "types": [
+      "Enchantment"
+     ],
+     "subtypes": [
+      "Aura"
+     ],
+     "oracleText": "Enchant creature\nWhen Bolsa Família enters, create a 1/1 white Human Citizen creature token named Eleitor.\nEnchanted creature gets +1/+1 and can't attack you or planeswalkers you control.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "W"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Bolsonaro, o Genocida": {
    "name": "Bolsonaro, o Genocida",
    "oracleId": "80236295-0789-2eee-58e5-345a8c81b97c",
@@ -6665,6 +6733,41 @@
     }
    ]
   },
+  "Carluxo, Gabinete do Ódio": {
+   "name": "Carluxo, Gabinete do Ódio",
+   "oracleId": "af3e71d1-d44e-2f3a-a359-9f7d8735d676",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Carluxo, Gabinete do Ódio",
+     "manaCost": "{1}{B}",
+     "typeLine": "Legendary Creature — Human Rogue",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Human",
+      "Rogue"
+     ],
+     "oracleText": "{T}: Goad target creature an opponent controls. (Until your next turn, that creature attacks each combat if able and attacks a player other than you if able.)",
+     "power": 1,
+     "toughness": 2,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Carnelian Orb of Dragonkind": {
    "name": "Carnelian Orb of Dragonkind",
    "oracleId": "651c967c-8f71-4eb5-b22f-545e55ea050e",
@@ -7986,6 +8089,38 @@
      "loyalty": null,
      "colors": [
       "U"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Cloroquina": {
+   "name": "Cloroquina",
+   "oracleId": "09c6e49c-4201-f2f7-2f91-cff2efc7d8f9",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "W",
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Cloroquina",
+     "manaCost": "{1}{W}{B}",
+     "typeLine": "Instant",
+     "supertypes": [],
+     "types": [
+      "Instant"
+     ],
+     "subtypes": [],
+     "oracleText": "Destroy target creature. Its controller gains 3 life. You gain 5 life.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "W",
+      "B"
      ],
      "colorIndicator": null
     }
@@ -11073,6 +11208,41 @@
     }
    ]
   },
+  "Dilma, Estocadora de Vento": {
+   "name": "Dilma, Estocadora de Vento",
+   "oracleId": "b765d2b0-9727-947f-85c2-aaaa352c30b3",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "R"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Dilma, Estocadora de Vento",
+     "manaCost": "{2}{R}",
+     "typeLine": "Legendary Creature — Human Advisor",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Human",
+      "Advisor"
+     ],
+     "oracleText": "Whenever you cast an enchantment spell, put a wind counter on Dilma.\nRemove three wind counters from Dilma: Draw two cards. Each opponent discards a card.",
+     "power": 2,
+     "toughness": 3,
+     "loyalty": null,
+     "colors": [
+      "R"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Dimension X Pizzasaur": {
    "name": "Dimension X Pizzasaur",
    "oracleId": "29a9aff7-184c-459d-8002-e0287d978764",
@@ -13124,6 +13294,36 @@
     }
    ]
   },
+  "Emenda Pix": {
+   "name": "Emenda Pix",
+   "oracleId": "7f6dd6fc-eba1-bd60-4769-efd3943f144e",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "R"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Emenda Pix",
+     "manaCost": "{2}{R}",
+     "typeLine": "Instant",
+     "supertypes": [],
+     "types": [
+      "Instant"
+     ],
+     "subtypes": [],
+     "oracleText": "Gain control of target creature until end of turn. Untap it. It gains haste until end of turn. Its owner creates two Treasure tokens.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "R"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Emeria, the Sky Ruin": {
    "name": "Emeria, the Sky Ruin",
    "oracleId": "cc999cf2-c99b-4911-8c52-6cc4a99fcc7b",
@@ -14888,6 +15088,38 @@
     }
    ]
   },
+  "Faz o L": {
+   "name": "Faz o L",
+   "oracleId": "221ee7d7-21b6-95f2-f0b3-4aa269cefebe",
+   "layout": "normal",
+   "manaValue": 4,
+   "colorIdentity": [
+    "B",
+    "R"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Faz o L",
+     "manaCost": "{2}{B}{R}",
+     "typeLine": "Sorcery",
+     "supertypes": [],
+     "types": [
+      "Sorcery"
+     ],
+     "subtypes": [],
+     "oracleText": "Each opponent chooses one — You exile the top card of their library and may play it this turn, and mana of any type can be spent to cast it; or that player sacrifices a creature.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "B",
+      "R"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Feed the Swarm": {
    "name": "Feed the Swarm",
    "oracleId": "5825997b-10d7-4a36-972c-a80ddd90b8ed",
@@ -15654,6 +15886,43 @@
      "loyalty": null,
      "colors": [
       "R"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Flávio Bolsonaro, Filhote de Cruz Credo": {
+   "name": "Flávio Bolsonaro, Filhote de Cruz Credo",
+   "oracleId": "b7443d61-fb23-1ca7-3ae0-9b4ff757c5a3",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "B",
+    "G"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Flávio Bolsonaro, Filhote de Cruz Credo",
+     "manaCost": "{1}{B}{G}",
+     "typeLine": "Legendary Creature — Human Advisor",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Human",
+      "Advisor"
+     ],
+     "oracleText": "As long as you don't control your commander, Flávio Bolsonaro gets +2/+2 and has menace.\nRachadinha — Sacrifice another creature: Create a Treasure token. Activate only once each turn.",
+     "power": 3,
+     "toughness": 3,
+     "loyalty": null,
+     "colors": [
+      "B",
+      "G"
      ],
      "colorIndicator": null
     }
@@ -16981,6 +17250,43 @@
      "toughness": null,
      "loyalty": null,
      "colors": [],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Geraldo Alckmin, o Vice Chuchu": {
+   "name": "Geraldo Alckmin, o Vice Chuchu",
+   "oracleId": "9ddc278f-b2ca-6301-410f-646c33a60f7a",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "W"
+   ],
+   "keywords": [
+    "Defender"
+   ],
+   "faces": [
+    {
+     "name": "Geraldo Alckmin, o Vice Chuchu",
+     "manaCost": "{1}{W}",
+     "typeLine": "Legendary Creature — Human Advisor",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Human",
+      "Advisor"
+     ],
+     "oracleText": "Defender\nAt the beginning of your end step, if you didn't attack with a creature this turn, draw a card.",
+     "power": 0,
+     "toughness": 5,
+     "loyalty": null,
+     "colors": [
+      "W"
+     ],
      "colorIndicator": null
     }
    ]
@@ -18842,6 +19148,43 @@
     }
    ]
   },
+  "Haddad, o Taxad": {
+   "name": "Haddad, o Taxad",
+   "oracleId": "355fb484-fb9b-a4e9-2071-ddfdf05986b7",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "W",
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Haddad, o Taxad",
+     "manaCost": "{1}{W}{B}",
+     "typeLine": "Legendary Creature — Human Advisor",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Human",
+      "Advisor"
+     ],
+     "oracleText": "Whenever an opponent casts their second spell each turn, that player may pay {1}. If they don't, you create a Treasure token.",
+     "power": 2,
+     "toughness": 3,
+     "loyalty": null,
+     "colors": [
+      "W",
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Hall of Oracles": {
    "name": "Hall of Oracles",
    "oracleId": "0bb896ba-e15e-43a9-9120-e674d7ba003c",
@@ -20639,6 +20982,36 @@
     }
    ]
   },
+  "Imbrochável": {
+   "name": "Imbrochável",
+   "oracleId": "8b215815-bebd-98e5-0af0-f1fbb2b171db",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "G"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Imbrochável",
+     "manaCost": "{1}{G}",
+     "typeLine": "Instant",
+     "supertypes": [],
+     "types": [
+      "Instant"
+     ],
+     "subtypes": [],
+     "oracleText": "Untap target creature you control. It gains indestructible and trample until end of turn. If it's your commander, it also gets +3/+3 until end of turn.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "G"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Immoral Bargain": {
    "name": "Immoral Bargain",
    "oracleId": "c82cc78b-ffd6-4f72-881d-85913830feb2",
@@ -21751,6 +22124,78 @@
      "loyalty": null,
      "colors": [
       "G"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Janja, Primeira-Dama": {
+   "name": "Janja, Primeira-Dama",
+   "oracleId": "9297adc1-5fe5-dab2-b0c4-8f3a86c107fa",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "W"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Janja, Primeira-Dama",
+     "manaCost": "{2}{W}",
+     "typeLine": "Legendary Creature — Human Noble",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Human",
+      "Noble"
+     ],
+     "oracleText": "Aura spells you cast cost {1} less to cast.\nWhenever an Aura you control is put into a graveyard from the battlefield, return it to its owner's hand. This ability triggers only once each turn.",
+     "power": 2,
+     "toughness": 2,
+     "loyalty": null,
+     "colors": [
+      "W"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Jaques Wagner e Rui Costa, Dupla da Bahia": {
+   "name": "Jaques Wagner e Rui Costa, Dupla da Bahia",
+   "oracleId": "0cd03514-7b79-5cd4-cd25-2c368fc61821",
+   "layout": "normal",
+   "manaValue": 5,
+   "colorIdentity": [
+    "W",
+    "R"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Jaques Wagner e Rui Costa, Dupla da Bahia",
+     "manaCost": "{3}{R}{W}",
+     "typeLine": "Legendary Creature — Human Advisor",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Human",
+      "Advisor"
+     ],
+     "oracleText": "When Jaques Wagner e Rui Costa enters, search your library for an Aura card and a non-Aura enchantment card, reveal them, put them into your hand, then shuffle.",
+     "power": 4,
+     "toughness": 4,
+     "loyalty": null,
+     "colors": [
+      "W",
+      "R"
      ],
      "colorIndicator": null
     }
@@ -26010,6 +26455,41 @@
     }
    ]
   },
+  "Maria do Rosário": {
+   "name": "Maria do Rosário",
+   "oracleId": "44a059c7-9756-45dc-8dd4-51ac8de519aa",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "W"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Maria do Rosário",
+     "manaCost": "{2}{W}",
+     "typeLine": "Legendary Creature — Human Advisor",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Human",
+      "Advisor"
+     ],
+     "oracleText": "Whenever a creature deals combat damage to you, tap it and put two stun counters on it.",
+     "power": 1,
+     "toughness": 4,
+     "loyalty": null,
+     "colors": [
+      "W"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Marisi, Breaker of the Coil": {
    "name": "Marisi, Breaker of the Coil",
    "oracleId": "17475cf0-661d-4361-827b-1e4d638089f1",
@@ -26971,6 +27451,43 @@
     }
    ]
   },
+  "Michelle, Primeira-Dama em Línguas": {
+   "name": "Michelle, Primeira-Dama em Línguas",
+   "oracleId": "6c1867f2-2cad-9333-aa3e-4402b3c8a5cb",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "W"
+   ],
+   "keywords": [
+    "Lifelink"
+   ],
+   "faces": [
+    {
+     "name": "Michelle, Primeira-Dama em Línguas",
+     "manaCost": "{2}{W}",
+     "typeLine": "Legendary Creature — Human Cleric",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Human",
+      "Cleric"
+     ],
+     "oracleText": "Lifelink\nWhenever you gain life for the first time each turn, put a +1/+1 counter on target creature you control.",
+     "power": 2,
+     "toughness": 3,
+     "loyalty": null,
+     "colors": [
+      "W"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Midnight Angel Armor": {
    "name": "Midnight Angel Armor",
    "oracleId": "cdcfc66d-3d3a-4311-b864-937e7b624d61",
@@ -27335,6 +27852,38 @@
      "loyalty": null,
      "colors": [
       "R"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Minuta do Golpe": {
+   "name": "Minuta do Golpe",
+   "oracleId": "ab3bc836-75f9-6768-cbe5-fa8710073fd2",
+   "layout": "saga",
+   "manaValue": 4,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Minuta do Golpe",
+     "manaCost": "{2}{B}{B}",
+     "typeLine": "Enchantment — Saga",
+     "supertypes": [],
+     "types": [
+      "Enchantment"
+     ],
+     "subtypes": [
+      "Saga"
+     ],
+     "oracleText": "(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)\nI — Destroy target creature.\nII — Destroy all creatures with power 2 or less.\nIII — You sacrifice a creature and you lose 3 life.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "B"
      ],
      "colorIndicator": null
     }
@@ -28313,6 +28862,38 @@
      "loyalty": null,
      "colors": [
       "W"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Motociata": {
+   "name": "Motociata",
+   "oracleId": "024ec8ce-dd90-2acc-9a32-322416ec4743",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "W",
+    "G"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Motociata",
+     "manaCost": "{X}{G}{W}",
+     "typeLine": "Sorcery",
+     "supertypes": [],
+     "types": [
+      "Sorcery"
+     ],
+     "subtypes": [],
+     "oracleText": "Create X 1/1 green and white Human Citizen creature tokens with haste named Patriota. You gain 1 life for each creature you control.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "W",
+      "G"
      ],
      "colorIndicator": null
     }
@@ -29479,6 +30060,43 @@
      "loyalty": null,
      "colors": [
       "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Nikolas Ferreira, o Mais Votado": {
+   "name": "Nikolas Ferreira, o Mais Votado",
+   "oracleId": "76af77b1-dfe3-33c4-ecff-dd0ad67468b8",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "G"
+   ],
+   "keywords": [
+    "Haste"
+   ],
+   "faces": [
+    {
+     "name": "Nikolas Ferreira, o Mais Votado",
+     "manaCost": "{1}{G}",
+     "typeLine": "Legendary Creature — Human Advisor",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Human",
+      "Advisor"
+     ],
+     "oracleText": "Haste\nWhenever Nikolas Ferreira attacks, create a 1/1 green and white Human Citizen creature token with haste named Patriota that's tapped and attacking.",
+     "power": 2,
+     "toughness": 1,
+     "loyalty": null,
+     "colors": [
+      "G"
      ],
      "colorIndicator": null
     }
@@ -30842,6 +31460,38 @@
     }
    ]
   },
+  "PAC, a Obra que Nunca Acaba": {
+   "name": "PAC, a Obra que Nunca Acaba",
+   "oracleId": "6a1fbcdf-1a0d-6c5f-285e-ce5be3cf973a",
+   "layout": "normal",
+   "manaValue": 4,
+   "colorIdentity": [
+    "W",
+    "R"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "PAC, a Obra que Nunca Acaba",
+     "manaCost": "{2}{R}{W}",
+     "typeLine": "Enchantment",
+     "supertypes": [],
+     "types": [
+      "Enchantment"
+     ],
+     "subtypes": [],
+     "oracleText": "Creature tokens you control have haste.\nAt the beginning of your end step, if you control five or more creature tokens, gain control of target nonland permanent an opponent controls with mana value 3 or less.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "W",
+      "R"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Pack Leader": {
    "name": "Pack Leader",
    "oracleId": "3701ed34-a97c-4d7b-a15a-4faec02ef24b",
@@ -31813,6 +32463,41 @@
      "toughness": null,
      "loyalty": null,
      "colors": [],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Pintou um Clima": {
+   "name": "Pintou um Clima",
+   "oracleId": "7ebfe094-9ec5-3c03-8493-019aeb099159",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [
+    "Flash",
+    "Enchant"
+   ],
+   "faces": [
+    {
+     "name": "Pintou um Clima",
+     "manaCost": "{1}{B}",
+     "typeLine": "Enchantment — Aura",
+     "supertypes": [],
+     "types": [
+      "Enchantment"
+     ],
+     "subtypes": [
+      "Aura"
+     ],
+     "oracleText": "Flash\nEnchant creature\nEnchanted creature can't block.\nAt the beginning of the upkeep of enchanted creature's controller, that player loses 1 life and you gain 1 life.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
      "colorIndicator": null
     }
    ]
@@ -43485,6 +44170,43 @@
      "loyalty": null,
      "colors": [
       "U"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Tarcísio, o Plano B": {
+   "name": "Tarcísio, o Plano B",
+   "oracleId": "88891242-6d46-0c34-3467-9c1cea5437aa",
+   "layout": "normal",
+   "manaValue": 4,
+   "colorIdentity": [
+    "W",
+    "G"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Tarcísio, o Plano B",
+     "manaCost": "{2}{G}{W}",
+     "typeLine": "Legendary Creature — Human Advisor",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Human",
+      "Advisor"
+     ],
+     "oracleText": "Other creatures you control get +1/+1.\nAs long as you don't control your commander, Tarcísio gets +3/+3 and has vigilance.",
+     "power": 3,
+     "toughness": 3,
+     "loyalty": null,
+     "colors": [
+      "W",
+      "G"
      ],
      "colorIndicator": null
     }

@@ -20,17 +20,254 @@
    "tipoPt": "Criatura Lendária — Humano Soldado",
    "oracle": "Menace\nWhenever Bolsonaro attacks, destroy the creature with the least toughness defending player controls. If two or more creatures are tied, you choose one of them.\nWhenever a creature an opponent controls dies, you gain 2 life and put a +1/+1 counter on Bolsonaro.",
    "texto": "Ameaçar\nSempre que Bolsonaro ataca, destrua a criatura com a menor resistência que o jogador defensor controla. Se houver empate, você escolhe uma delas.\nSempre que uma criatura que um oponente controla morre, você ganha 2 pontos de vida e coloca um marcador +1/+1 em Bolsonaro.",
-   "palavras": ["Menace"],
+   "palavras": [
+    "Menace"
+   ],
    "forca": 4,
    "resistencia": 4,
    "frase": "“E daí? Não sou coveiro.”"
+  },
+  {
+   "nome": "Bolsa Família",
+   "custo": "{1}{W}",
+   "tipo": "Enchantment — Aura",
+   "tipoPt": "Encantamento — Aura",
+   "oracle": "Enchant creature\nWhen Bolsa Família enters, create a 1/1 white Human Citizen creature token named Eleitor.\nEnchanted creature gets +1/+1 and can't attack you or planeswalkers you control.",
+   "texto": "Encantar criatura\nQuando Bolsa Família entra, crie uma ficha Eleitor 1/1 branca.\nA criatura encantada recebe +1/+1 e não pode atacar você nem planeswalkers que você controla.",
+   "palavras": [
+    "Enchant"
+   ],
+   "frase": "“Quem recebe não morde a mão.”"
+  },
+  {
+   "nome": "Geraldo Alckmin, o Vice Chuchu",
+   "custo": "{1}{W}",
+   "tipo": "Legendary Creature — Human Advisor",
+   "tipoPt": "Criatura Lendária — Humano Político",
+   "oracle": "Defender\nAt the beginning of your end step, if you didn't attack with a creature this turn, draw a card.",
+   "texto": "Defensor\nNo início da sua etapa final, se você não atacou com uma criatura neste turno, compre uma carta.",
+   "palavras": [
+    "Defender"
+   ],
+   "forca": 0,
+   "resistencia": 5,
+   "frase": "“Já fui do outro deck. Ninguém percebeu a diferença.”"
+  },
+  {
+   "nome": "Dilma, Estocadora de Vento",
+   "custo": "{2}{R}",
+   "tipo": "Legendary Creature — Human Advisor",
+   "tipoPt": "Criatura Lendária — Humano Político",
+   "oracle": "Whenever you cast an enchantment spell, put a wind counter on Dilma.\nRemove three wind counters from Dilma: Draw two cards. Each opponent discards a card.",
+   "texto": "Sempre que você conjura uma mágica de encantamento, coloque um marcador de vento em Dilma.\nRemova três marcadores de vento de Dilma: Compre duas cartas. Cada oponente descarta uma carta.",
+   "forca": 2,
+   "resistencia": 3,
+   "frase": "“Não vamos colocar meta. Quando atingirmos a meta, dobramos a meta.”"
+  },
+  {
+   "nome": "Haddad, o Taxad",
+   "custo": "{1}{W}{B}",
+   "tipo": "Legendary Creature — Human Advisor",
+   "tipoPt": "Criatura Lendária — Humano Político",
+   "oracle": "Whenever an opponent casts their second spell each turn, that player may pay {1}. If they don't, you create a Treasure token.",
+   "texto": "Sempre que um oponente conjura a segunda mágica dele em um turno, aquele jogador pode pagar {1}. Se não pagar, você cria uma ficha de Tesouro.",
+   "forca": 2,
+   "resistencia": 3,
+   "frase": "“Não é imposto novo. É o mesmo imposto, só que em você.”"
+  },
+  {
+   "nome": "Janja, Primeira-Dama",
+   "custo": "{2}{W}",
+   "tipo": "Legendary Creature — Human Noble",
+   "tipoPt": "Criatura Lendária — Humano Nobre",
+   "oracle": "Aura spells you cast cost {1} less to cast.\nWhenever an Aura you control is put into a graveyard from the battlefield, return it to its owner's hand. This ability triggers only once each turn.",
+   "texto": "As mágicas de Aura que você conjura custam {1} a menos para serem conjuradas.\nSempre que uma Aura que você controla é colocada em um cemitério vinda do campo de batalha, devolva-a para a mão do dono. Esta habilidade só é desencadeada uma vez por turno.",
+   "forca": 2,
+   "resistencia": 2,
+   "frase": "“Eu não fui eleita, mas vim junto.”"
+  },
+  {
+   "nome": "Jaques Wagner e Rui Costa, Dupla da Bahia",
+   "custo": "{3}{R}{W}",
+   "tipo": "Legendary Creature — Human Advisor",
+   "tipoPt": "Criatura Lendária — Humano Político",
+   "oracle": "When Jaques Wagner e Rui Costa enters, search your library for an Aura card and a non-Aura enchantment card, reveal them, put them into your hand, then shuffle.",
+   "texto": "Quando Jaques Wagner e Rui Costa entram, procure no seu grimório uma carta de Aura e uma carta de encantamento que não seja Aura, revele-as, coloque-as na sua mão e depois embaralhe.",
+   "forca": 4,
+   "resistencia": 4,
+   "frase": "“Um governa, o outro articula. Ninguém sabe qual é qual.”"
+  },
+  {
+   "nome": "Maria do Rosário",
+   "custo": "{2}{W}",
+   "tipo": "Legendary Creature — Human Advisor",
+   "tipoPt": "Criatura Lendária — Humano Político",
+   "oracle": "Whenever a creature deals combat damage to you, tap it and put two stun counters on it.",
+   "texto": "Sempre que uma criatura causa dano de combate a você, vire-a e coloque dois marcadores de atordoamento nela. (Se uma permanente com um marcador de atordoamento fosse ser desvirada, em vez disso remova um deles.)",
+   "forca": 1,
+   "resistencia": 4,
+   "frase": "“Vai responder na Comissão de Ética.”"
+  },
+  {
+   "nome": "PAC, a Obra que Nunca Acaba",
+   "custo": "{2}{R}{W}",
+   "tipo": "Enchantment",
+   "tipoPt": "Encantamento",
+   "oracle": "Creature tokens you control have haste.\nAt the beginning of your end step, if you control five or more creature tokens, gain control of target nonland permanent an opponent controls with mana value 3 or less.",
+   "texto": "As fichas de criatura que você controla têm ímpeto.\nNo início da sua etapa final, se você controla cinco ou mais fichas de criatura, ganhe o controle da permanente alvo que não seja terreno, com valor de mana 3 ou menos, que um oponente controla.",
+   "frase": "“Previsão de entrega: próximo mandato.”"
+  },
+  {
+   "nome": "Emenda Pix",
+   "custo": "{2}{R}",
+   "tipo": "Instant",
+   "tipoPt": "Mágica Instantânea",
+   "oracle": "Gain control of target creature until end of turn. Untap it. It gains haste until end of turn. Its owner creates two Treasure tokens.",
+   "texto": "Ganhe o controle da criatura alvo até o fim do turno. Desvire-a. Ela ganha ímpeto até o fim do turno. O dono dela cria duas fichas de Tesouro.",
+   "frase": "“O voto é de graça. O Centrão é que cobra.”"
+  },
+  {
+   "nome": "Faz o L",
+   "custo": "{2}{B}{R}",
+   "tipo": "Sorcery",
+   "tipoPt": "Feitiço",
+   "oracle": "Each opponent chooses one — You exile the top card of their library and may play it this turn, and mana of any type can be spent to cast it; or that player sacrifices a creature.",
+   "texto": "Cada oponente escolhe um —\n• Você exila a carta do topo do grimório dele e pode jogá-la neste turno, com mana de qualquer tipo.\n• Aquele jogador sacrifica uma criatura.",
+   "frase": "“Fez o L? Agora aguenta.”"
+  },
+  {
+   "nome": "Alexandre de Moraes, o Xandão",
+   "custo": "{5}",
+   "tipo": "Legendary Artifact Creature — Human Advisor",
+   "tipoPt": "Criatura Artefato Lendária — Humano Juiz",
+   "oracle": "Vigilance\nWhen Xandão enters, exile target creature an opponent controls until Xandão leaves the battlefield.\n{2}, {T}: Put an ankle monitor counter on target creature. Creatures with ankle monitor counters on them can't attack or block.",
+   "texto": "Vigilância\nQuando Xandão entra, exile a criatura alvo que um oponente controla até Xandão sair do campo de batalha.\n{2}, {T}: Coloque um marcador de tornozeleira na criatura alvo. Criaturas com marcadores de tornozeleira não podem atacar nem bloquear.",
+   "palavras": [
+    "Vigilance"
+   ],
+   "forca": 4,
+   "resistencia": 6,
+   "frase": "“Prisão preventiva. De ofício. Em 24 horas.”"
+  },
+  {
+   "nome": "Flávio Bolsonaro, Filhote de Cruz Credo",
+   "custo": "{1}{B}{G}",
+   "tipo": "Legendary Creature — Human Advisor",
+   "tipoPt": "Criatura Lendária — Humano Político",
+   "oracle": "As long as you don't control your commander, Flávio Bolsonaro gets +2/+2 and has menace.\nRachadinha — Sacrifice another creature: Create a Treasure token. Activate only once each turn.",
+   "texto": "Enquanto você não controlar o seu comandante, Flávio Bolsonaro recebe +2/+2 e tem ameaçar.\nRachadinha — Sacrifique outra criatura: Crie uma ficha de Tesouro. Ative somente uma vez por turno.",
+   "forca": 3,
+   "resistencia": 3,
+   "frase": "“Papai não pôde vir. Mandou o 01.”"
+  },
+  {
+   "nome": "Nikolas Ferreira, o Mais Votado",
+   "custo": "{1}{G}",
+   "tipo": "Legendary Creature — Human Advisor",
+   "tipoPt": "Criatura Lendária — Humano Político",
+   "oracle": "Haste\nWhenever Nikolas Ferreira attacks, create a 1/1 green and white Human Citizen creature token with haste named Patriota that's tapped and attacking.",
+   "texto": "Ímpeto\nSempre que Nikolas Ferreira ataca, crie uma ficha Patriota 1/1 verde e branca com ímpeto, virada e atacando.",
+   "palavras": [
+    "Haste"
+   ],
+   "forca": 2,
+   "resistencia": 1,
+   "frase": "“Um vídeo de 40 segundos e já saíram 300 mil na rua.”"
+  },
+  {
+   "nome": "Motociata",
+   "custo": "{X}{G}{W}",
+   "tipo": "Sorcery",
+   "tipoPt": "Feitiço",
+   "oracle": "Create X 1/1 green and white Human Citizen creature tokens with haste named Patriota. You gain 1 life for each creature you control.",
+   "texto": "Crie X fichas Patriota 1/1 verdes e brancas com ímpeto. Você ganha 1 ponto de vida para cada criatura que você controla.",
+   "frase": "“Gasolina por conta do cartão corporativo.”"
+  },
+  {
+   "nome": "Cloroquina",
+   "custo": "{1}{W}{B}",
+   "tipo": "Instant",
+   "tipoPt": "Mágica Instantânea",
+   "oracle": "Destroy target creature. Its controller gains 3 life. You gain 5 life.",
+   "texto": "Destrua a criatura alvo. O controlador dela ganha 3 pontos de vida. Você ganha 5 pontos de vida.",
+   "frase": "“Tratamento precoce. O paciente não reclamou depois.”"
+  },
+  {
+   "nome": "Michelle, Primeira-Dama em Línguas",
+   "custo": "{2}{W}",
+   "tipo": "Legendary Creature — Human Cleric",
+   "tipoPt": "Criatura Lendária — Humano Clérigo",
+   "oracle": "Lifelink\nWhenever you gain life for the first time each turn, put a +1/+1 counter on target creature you control.",
+   "texto": "Vínculo com a vida\nSempre que você ganha pontos de vida pela primeira vez em cada turno, coloque um marcador +1/+1 na criatura alvo que você controla.",
+   "palavras": [
+    "Lifelink"
+   ],
+   "forca": 2,
+   "resistencia": 3,
+   "frase": "“Shalalá, shalalá, glória!”"
+  },
+  {
+   "nome": "Tarcísio, o Plano B",
+   "custo": "{2}{G}{W}",
+   "tipo": "Legendary Creature — Human Advisor",
+   "tipoPt": "Criatura Lendária — Humano Político",
+   "oracle": "Other creatures you control get +1/+1.\nAs long as you don't control your commander, Tarcísio gets +3/+3 and has vigilance.",
+   "texto": "As outras criaturas que você controla recebem +1/+1.\nEnquanto você não controlar o seu comandante, Tarcísio recebe +3/+3 e tem vigilância.",
+   "forca": 3,
+   "resistencia": 3,
+   "frase": "“Não sou candidato. Mas se insistirem...”"
+  },
+  {
+   "nome": "Carluxo, Gabinete do Ódio",
+   "custo": "{1}{B}",
+   "tipo": "Legendary Creature — Human Rogue",
+   "tipoPt": "Criatura Lendária — Humano Ladino",
+   "oracle": "{T}: Goad target creature an opponent controls. (Until your next turn, that creature attacks each combat if able and attacks a player other than you if able.)",
+   "texto": "{T}: Incite a criatura alvo que um oponente controla. (Até o seu próximo turno, ela ataca a cada combate se puder e ataca um jogador que não seja você se puder.)",
+   "forca": 1,
+   "resistencia": 2,
+   "frase": "“Postou às 3 da manhã. De novo.”"
+  },
+  {
+   "nome": "Minuta do Golpe",
+   "custo": "{2}{B}{B}",
+   "layout": "saga",
+   "tipo": "Enchantment — Saga",
+   "tipoPt": "Encantamento — Saga",
+   "oracle": "(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)\nI — Destroy target creature.\nII — Destroy all creatures with power 2 or less.\nIII — You sacrifice a creature and you lose 3 life.",
+   "texto": "(Conforme esta Saga entra e após a sua etapa de compra, adicione um marcador de conhecimento. Sacrifique após III.)\nI — Destrua a criatura alvo.\nII — Destrua todas as criaturas com poder 2 ou menos.\nIII — Você sacrifica uma criatura e perde 3 pontos de vida.",
+   "frase": "“Estava na gaveta. Era só um rascunho.”"
+  },
+  {
+   "nome": "Pintou um Clima",
+   "custo": "{1}{B}",
+   "tipo": "Enchantment — Aura",
+   "tipoPt": "Encantamento — Aura",
+   "oracle": "Flash\nEnchant creature\nEnchanted creature can't block.\nAt the beginning of the upkeep of enchanted creature's controller, that player loses 1 life and you gain 1 life.",
+   "texto": "Lampejo\nEncantar criatura\nA criatura encantada não pode bloquear.\nNo início da manutenção do controlador da criatura encantada, aquele jogador perde 1 ponto de vida e você ganha 1 ponto de vida.",
+   "palavras": [
+    "Flash",
+    "Enchant"
+   ],
+   "frase": "“Foi mal interpretado.”"
+  },
+  {
+   "nome": "Imbrochável",
+   "custo": "{1}{G}",
+   "tipo": "Instant",
+   "tipoPt": "Mágica Instantânea",
+   "oracle": "Untap target creature you control. It gains indestructible and trample until end of turn. If it's your commander, it also gets +3/+3 until end of turn.",
+   "texto": "Desvire a criatura alvo que você controla. Ela ganha indestrutível e atropelar até o fim do turno. Se ela for o seu comandante, ela também recebe +3/+3 até o fim do turno.",
+   "frase": "“Imorrível, imbrochável e incomível.”"
   },
   {
    "nome": "Eleitor",
    "ficha": true,
    "tipo": "Token Creature — Human Citizen",
    "tipoPt": "Ficha de Criatura — Humano Cidadão",
-   "cores": ["W"],
+   "cores": [
+    "W"
+   ],
    "oracle": "",
    "texto": "",
    "forca": 1,
@@ -42,10 +279,15 @@
    "ficha": true,
    "tipo": "Token Creature — Human Citizen",
    "tipoPt": "Ficha de Criatura — Humano Cidadão",
-   "cores": ["G", "W"],
+   "cores": [
+    "G",
+    "W"
+   ],
    "oracle": "Haste",
    "texto": "Ímpeto",
-   "palavras": ["Haste"],
+   "palavras": [
+    "Haste"
+   ],
    "forca": 1,
    "resistencia": 1,
    "frase": "“Brasil acima de tudo, zap acima de todos.”"

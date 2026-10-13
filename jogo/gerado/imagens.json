@@ -22930,5 +22930,362 @@
    "faces": null,
    "reserva": false
   }
+ },
+ "Bolsa Família": {
+  "en": {
+   "id": "9a7d1a70-8b0b-d7c2-342c-870bdccaad79",
+   "frente": "imagens/9a7d1a70-8b0b-d7c2-342c-870bdccaad79/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "9a7d1a70-8b0b-d7c2-342c-870bdccaad79",
+   "frente": "imagens/9a7d1a70-8b0b-d7c2-342c-870bdccaad79/front.png",
+   "verso": null,
+   "nome": "Bolsa Família",
+   "tipo": "Encantamento — Aura",
+   "texto": "Encantar criatura\nQuando Bolsa Família entra, crie uma ficha Eleitor 1/1 branca.\nA criatura encantada recebe +1/+1 e não pode atacar você nem planeswalkers que você controla.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Geraldo Alckmin, o Vice Chuchu": {
+  "en": {
+   "id": "31a5eb41-1eca-a755-0908-4ad05ed92848",
+   "frente": "imagens/31a5eb41-1eca-a755-0908-4ad05ed92848/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "31a5eb41-1eca-a755-0908-4ad05ed92848",
+   "frente": "imagens/31a5eb41-1eca-a755-0908-4ad05ed92848/front.png",
+   "verso": null,
+   "nome": "Geraldo Alckmin, o Vice Chuchu",
+   "tipo": "Criatura Lendária — Humano Político",
+   "texto": "Defensor\nNo início da sua etapa final, se você não atacou com uma criatura neste turno, compre uma carta.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Dilma, Estocadora de Vento": {
+  "en": {
+   "id": "ee7e8c83-3550-55ba-674b-a2342c9cb476",
+   "frente": "imagens/ee7e8c83-3550-55ba-674b-a2342c9cb476/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "ee7e8c83-3550-55ba-674b-a2342c9cb476",
+   "frente": "imagens/ee7e8c83-3550-55ba-674b-a2342c9cb476/front.png",
+   "verso": null,
+   "nome": "Dilma, Estocadora de Vento",
+   "tipo": "Criatura Lendária — Humano Político",
+   "texto": "Sempre que você conjura uma mágica de encantamento, coloque um marcador de vento em Dilma.\nRemova três marcadores de vento de Dilma: Compre duas cartas. Cada oponente descarta uma carta.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Haddad, o Taxad": {
+  "en": {
+   "id": "092c9397-cc8b-1366-1384-a3b0a5883017",
+   "frente": "imagens/092c9397-cc8b-1366-1384-a3b0a5883017/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "092c9397-cc8b-1366-1384-a3b0a5883017",
+   "frente": "imagens/092c9397-cc8b-1366-1384-a3b0a5883017/front.png",
+   "verso": null,
+   "nome": "Haddad, o Taxad",
+   "tipo": "Criatura Lendária — Humano Político",
+   "texto": "Sempre que um oponente conjura a segunda mágica dele em um turno, aquele jogador pode pagar {1}. Se não pagar, você cria uma ficha de Tesouro.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Janja, Primeira-Dama": {
+  "en": {
+   "id": "ecb7494a-789c-bb29-eb8d-378951a47816",
+   "frente": "imagens/ecb7494a-789c-bb29-eb8d-378951a47816/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "ecb7494a-789c-bb29-eb8d-378951a47816",
+   "frente": "imagens/ecb7494a-789c-bb29-eb8d-378951a47816/front.png",
+   "verso": null,
+   "nome": "Janja, Primeira-Dama",
+   "tipo": "Criatura Lendária — Humano Nobre",
+   "texto": "As mágicas de Aura que você conjura custam {1} a menos para serem conjuradas.\nSempre que uma Aura que você controla é colocada em um cemitério vinda do campo de batalha, devolva-a para a mão do dono. Esta habilidade só é desencadeada uma vez por turno.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Jaques Wagner e Rui Costa, Dupla da Bahia": {
+  "en": {
+   "id": "f6a5f01c-7933-fd5f-c8f4-e02b5dbbbfc6",
+   "frente": "imagens/f6a5f01c-7933-fd5f-c8f4-e02b5dbbbfc6/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "f6a5f01c-7933-fd5f-c8f4-e02b5dbbbfc6",
+   "frente": "imagens/f6a5f01c-7933-fd5f-c8f4-e02b5dbbbfc6/front.png",
+   "verso": null,
+   "nome": "Jaques Wagner e Rui Costa, Dupla da Bahia",
+   "tipo": "Criatura Lendária — Humano Político",
+   "texto": "Quando Jaques Wagner e Rui Costa entram, procure no seu grimório uma carta de Aura e uma carta de encantamento que não seja Aura, revele-as, coloque-as na sua mão e depois embaralhe.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Maria do Rosário": {
+  "en": {
+   "id": "8a819a5d-194c-557b-9bb8-382639fbe22b",
+   "frente": "imagens/8a819a5d-194c-557b-9bb8-382639fbe22b/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "8a819a5d-194c-557b-9bb8-382639fbe22b",
+   "frente": "imagens/8a819a5d-194c-557b-9bb8-382639fbe22b/front.png",
+   "verso": null,
+   "nome": "Maria do Rosário",
+   "tipo": "Criatura Lendária — Humano Político",
+   "texto": "Sempre que uma criatura causa dano de combate a você, vire-a e coloque dois marcadores de atordoamento nela. (Se uma permanente com um marcador de atordoamento fosse ser desvirada, em vez disso remova um deles.)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "PAC, a Obra que Nunca Acaba": {
+  "en": {
+   "id": "6b5f82a0-26a5-2ae9-1630-6f499366b652",
+   "frente": "imagens/6b5f82a0-26a5-2ae9-1630-6f499366b652/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "6b5f82a0-26a5-2ae9-1630-6f499366b652",
+   "frente": "imagens/6b5f82a0-26a5-2ae9-1630-6f499366b652/front.png",
+   "verso": null,
+   "nome": "PAC, a Obra que Nunca Acaba",
+   "tipo": "Encantamento",
+   "texto": "As fichas de criatura que você controla têm ímpeto.\nNo início da sua etapa final, se você controla cinco ou mais fichas de criatura, ganhe o controle da permanente alvo que não seja terreno, com valor de mana 3 ou menos, que um oponente controla.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Emenda Pix": {
+  "en": {
+   "id": "9d65faef-e978-15d7-e628-bbb94d511b1d",
+   "frente": "imagens/9d65faef-e978-15d7-e628-bbb94d511b1d/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "9d65faef-e978-15d7-e628-bbb94d511b1d",
+   "frente": "imagens/9d65faef-e978-15d7-e628-bbb94d511b1d/front.png",
+   "verso": null,
+   "nome": "Emenda Pix",
+   "tipo": "Mágica Instantânea",
+   "texto": "Ganhe o controle da criatura alvo até o fim do turno. Desvire-a. Ela ganha ímpeto até o fim do turno. O dono dela cria duas fichas de Tesouro.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Faz o L": {
+  "en": {
+   "id": "94b301f6-a542-8a8c-6b54-223994e07945",
+   "frente": "imagens/94b301f6-a542-8a8c-6b54-223994e07945/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "94b301f6-a542-8a8c-6b54-223994e07945",
+   "frente": "imagens/94b301f6-a542-8a8c-6b54-223994e07945/front.png",
+   "verso": null,
+   "nome": "Faz o L",
+   "tipo": "Feitiço",
+   "texto": "Cada oponente escolhe um —\n• Você exila a carta do topo do grimório dele e pode jogá-la neste turno, com mana de qualquer tipo.\n• Aquele jogador sacrifica uma criatura.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Alexandre de Moraes, o Xandão": {
+  "en": {
+   "id": "519cd93a-f067-dddf-5e0a-8332aef6037f",
+   "frente": "imagens/519cd93a-f067-dddf-5e0a-8332aef6037f/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "519cd93a-f067-dddf-5e0a-8332aef6037f",
+   "frente": "imagens/519cd93a-f067-dddf-5e0a-8332aef6037f/front.png",
+   "verso": null,
+   "nome": "Alexandre de Moraes, o Xandão",
+   "tipo": "Criatura Artefato Lendária — Humano Juiz",
+   "texto": "Vigilância\nQuando Xandão entra, exile a criatura alvo que um oponente controla até Xandão sair do campo de batalha.\n{2}, {T}: Coloque um marcador de tornozeleira na criatura alvo. Criaturas com marcadores de tornozeleira não podem atacar nem bloquear.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Flávio Bolsonaro, Filhote de Cruz Credo": {
+  "en": {
+   "id": "c965a0f2-e52a-98ca-4a7e-d7658a19e8a8",
+   "frente": "imagens/c965a0f2-e52a-98ca-4a7e-d7658a19e8a8/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "c965a0f2-e52a-98ca-4a7e-d7658a19e8a8",
+   "frente": "imagens/c965a0f2-e52a-98ca-4a7e-d7658a19e8a8/front.png",
+   "verso": null,
+   "nome": "Flávio Bolsonaro, Filhote de Cruz Credo",
+   "tipo": "Criatura Lendária — Humano Político",
+   "texto": "Enquanto você não controlar o seu comandante, Flávio Bolsonaro recebe +2/+2 e tem ameaçar.\nRachadinha — Sacrifique outra criatura: Crie uma ficha de Tesouro. Ative somente uma vez por turno.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Nikolas Ferreira, o Mais Votado": {
+  "en": {
+   "id": "58daf77c-941a-8458-8860-bc8a3a36130d",
+   "frente": "imagens/58daf77c-941a-8458-8860-bc8a3a36130d/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "58daf77c-941a-8458-8860-bc8a3a36130d",
+   "frente": "imagens/58daf77c-941a-8458-8860-bc8a3a36130d/front.png",
+   "verso": null,
+   "nome": "Nikolas Ferreira, o Mais Votado",
+   "tipo": "Criatura Lendária — Humano Político",
+   "texto": "Ímpeto\nSempre que Nikolas Ferreira ataca, crie uma ficha Patriota 1/1 verde e branca com ímpeto, virada e atacando.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Motociata": {
+  "en": {
+   "id": "ad302af7-d02b-ecd1-9ea5-66b55c01dba7",
+   "frente": "imagens/ad302af7-d02b-ecd1-9ea5-66b55c01dba7/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "ad302af7-d02b-ecd1-9ea5-66b55c01dba7",
+   "frente": "imagens/ad302af7-d02b-ecd1-9ea5-66b55c01dba7/front.png",
+   "verso": null,
+   "nome": "Motociata",
+   "tipo": "Feitiço",
+   "texto": "Crie X fichas Patriota 1/1 verdes e brancas com ímpeto. Você ganha 1 ponto de vida para cada criatura que você controla.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Cloroquina": {
+  "en": {
+   "id": "22175427-cc27-169d-a7a0-62d42499ae3a",
+   "frente": "imagens/22175427-cc27-169d-a7a0-62d42499ae3a/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "22175427-cc27-169d-a7a0-62d42499ae3a",
+   "frente": "imagens/22175427-cc27-169d-a7a0-62d42499ae3a/front.png",
+   "verso": null,
+   "nome": "Cloroquina",
+   "tipo": "Mágica Instantânea",
+   "texto": "Destrua a criatura alvo. O controlador dela ganha 3 pontos de vida. Você ganha 5 pontos de vida.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Michelle, Primeira-Dama em Línguas": {
+  "en": {
+   "id": "c8b00426-d96d-2c80-62c5-4cd8ab8fde8a",
+   "frente": "imagens/c8b00426-d96d-2c80-62c5-4cd8ab8fde8a/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "c8b00426-d96d-2c80-62c5-4cd8ab8fde8a",
+   "frente": "imagens/c8b00426-d96d-2c80-62c5-4cd8ab8fde8a/front.png",
+   "verso": null,
+   "nome": "Michelle, Primeira-Dama em Línguas",
+   "tipo": "Criatura Lendária — Humano Clérigo",
+   "texto": "Vínculo com a vida\nSempre que você ganha pontos de vida pela primeira vez em cada turno, coloque um marcador +1/+1 na criatura alvo que você controla.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Tarcísio, o Plano B": {
+  "en": {
+   "id": "f425f889-7417-cf5e-2240-d0255687f084",
+   "frente": "imagens/f425f889-7417-cf5e-2240-d0255687f084/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "f425f889-7417-cf5e-2240-d0255687f084",
+   "frente": "imagens/f425f889-7417-cf5e-2240-d0255687f084/front.png",
+   "verso": null,
+   "nome": "Tarcísio, o Plano B",
+   "tipo": "Criatura Lendária — Humano Político",
+   "texto": "As outras criaturas que você controla recebem +1/+1.\nEnquanto você não controlar o seu comandante, Tarcísio recebe +3/+3 e tem vigilância.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Carluxo, Gabinete do Ódio": {
+  "en": {
+   "id": "8a0314d0-9f76-5bae-aba0-8c12c1462a8a",
+   "frente": "imagens/8a0314d0-9f76-5bae-aba0-8c12c1462a8a/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "8a0314d0-9f76-5bae-aba0-8c12c1462a8a",
+   "frente": "imagens/8a0314d0-9f76-5bae-aba0-8c12c1462a8a/front.png",
+   "verso": null,
+   "nome": "Carluxo, Gabinete do Ódio",
+   "tipo": "Criatura Lendária — Humano Ladino",
+   "texto": "{T}: Incite a criatura alvo que um oponente controla. (Até o seu próximo turno, ela ataca a cada combate se puder e ataca um jogador que não seja você se puder.)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Minuta do Golpe": {
+  "en": {
+   "id": "318d3881-abf6-749a-c482-701c8a3999cd",
+   "frente": "imagens/318d3881-abf6-749a-c482-701c8a3999cd/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "318d3881-abf6-749a-c482-701c8a3999cd",
+   "frente": "imagens/318d3881-abf6-749a-c482-701c8a3999cd/front.png",
+   "verso": null,
+   "nome": "Minuta do Golpe",
+   "tipo": "Encantamento — Saga",
+   "texto": "(Conforme esta Saga entra e após a sua etapa de compra, adicione um marcador de conhecimento. Sacrifique após III.)\nI — Destrua a criatura alvo.\nII — Destrua todas as criaturas com poder 2 ou menos.\nIII — Você sacrifica uma criatura e perde 3 pontos de vida.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Pintou um Clima": {
+  "en": {
+   "id": "236bb5d3-c361-61cc-e547-d6bd08a1b26f",
+   "frente": "imagens/236bb5d3-c361-61cc-e547-d6bd08a1b26f/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "236bb5d3-c361-61cc-e547-d6bd08a1b26f",
+   "frente": "imagens/236bb5d3-c361-61cc-e547-d6bd08a1b26f/front.png",
+   "verso": null,
+   "nome": "Pintou um Clima",
+   "tipo": "Encantamento — Aura",
+   "texto": "Lampejo\nEncantar criatura\nA criatura encantada não pode bloquear.\nNo início da manutenção do controlador da criatura encantada, aquele jogador perde 1 ponto de vida e você ganha 1 ponto de vida.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Imbrochável": {
+  "en": {
+   "id": "fa2c7a34-f7b3-644b-6a5c-e570afba615f",
+   "frente": "imagens/fa2c7a34-f7b3-644b-6a5c-e570afba615f/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "fa2c7a34-f7b3-644b-6a5c-e570afba615f",
+   "frente": "imagens/fa2c7a34-f7b3-644b-6a5c-e570afba615f/front.png",
+   "verso": null,
+   "nome": "Imbrochável",
+   "tipo": "Mágica Instantânea",
+   "texto": "Desvire a criatura alvo que você controla. Ela ganha indestrutível e atropelar até o fim do turno. Se ela for o seu comandante, ela também recebe +3/+3 até o fim do turno.",
+   "faces": null,
+   "reserva": false
+  }
  }
 }
