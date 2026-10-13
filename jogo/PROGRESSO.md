@@ -1,5 +1,31 @@
 # Progresso
 
+## Decks da mesa: Lula e Bolsonaro — 12/10/2026
+
+Dois decks de sátira com cartas próprias (não vêm do Moxfield), na branch `decks/brasil`, worktree
+`../Magic-Commander-brasil`. A mesa da porta 8080 não foi tocada.
+
+- **Brasil Pronto pra Mais** (`brasil-lula`): Lula, o Espanca Pobre, vermelho, branco e preto. Auras e encantamentos
+  ("auxílios") criam fichas Eleitor; sacrificando dois Eleitores, joga a carta do topo do grimório de um oponente com
+  {3} de desconto e mana de qualquer tipo.
+- **O Brasil Vai Vencer** (`brasil-bolsonaro`): Bolsonaro, o Genocida, branco, preto e verde. Ao atacar destrói a
+  criatura de menor resistência do defensor; cada criatura de oponente que morre dá 2 de vida e um marcador +1/+1.
+- 68 cartas próprias: os 2 comandantes, 21 inéditas (11 no deck do Lula, 10 no do Bolsonaro; Alexandre de Moraes, o
+  Xandão, está nos dois), 43 skins e as fichas Eleitor e Patriota. Uma skin copia as regras de uma carta que já
+  existe e só muda nome, arte e frase (`cartas/skins.ts`). O resto de cada deck são cartas reais já implementadas.
+- Fonte das cartas: `proprias/cartas.json`. Listas e skins: `proprias/montar.mjs`. Dados e imagem de cada carta:
+  `node ferramentas/cartas-proprias.ts` (grava em `decks/cartas.json`, monta `proprias/imagens/<id>/front.png` e a
+  arte dos comandantes em `gerado/artes/`). Depois, `node ferramentas/decks.ts gerar`.
+- Artes: `node ferramentas/artes-brasil.mjs` pede ao Codex, na ordem cartas, banners, ícones, com os prompts de
+  `../artes-brasil/prompts.json` e duas artes oficiais como referência de acabamento. A primeira leva saiu com cara de
+  imagem gerada genérica; o Caio pediu estilo de carta de Magic e todas foram refeitas.
+- Regras: cada inédita tem definição e teste em `cartas/defs/`; ajudantes em `cartas/brasil.ts`.
+- Validação: testes das 23 cartas com regra própria e de `testes/catalogo/decks-brasil.test.ts` (100 cartas, regras
+  de deck, todas prontas, imagem de cada uma, skins iguais às originais); 18 partidas de bots aleatórios e 4 de bots
+  heurísticos com cada deck obrigatório, de 2 e 4 jogadores, sem erro; tipos e cliente compilados; saguão, prévia das
+  cartas e início de partida conferidos no navegador num servidor isolado (porta 8098). A suíte inteira ainda não foi
+  rodada nesta branch.
+
 ## Novos decks — Codex, 10/10/2026
 
 - Frente isolada: branch `decks/regras`, worktree `../Magic-Commander-regras-decks`, base anterior `06cc7f3`.

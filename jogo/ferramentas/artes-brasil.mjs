@@ -46,7 +46,8 @@ const pronta = (i) => existsSync(join(pasta, `${i.base}.png`)) || existsSync(joi
 
 function codex(prompt) {
   return new Promise((ok) => {
-    const p = spawn('codex', ['exec', '--skip-git-repo-check', '--sandbox', 'workspace-write', '-'], { cwd: pasta, shell: true, stdio: ['pipe', 'pipe', 'pipe'] });
+    // duas artes oficiais de cartas do jogo vão anexadas, só como referência de acabamento (pincelada, paleta, luz)
+    const p = spawn('codex', ['exec', '-i', 'referencias/estilo-1.png', '-i', 'referencias/estilo-2.png', '--skip-git-repo-check', '--sandbox', 'workspace-write', '-'], { cwd: pasta, shell: true, stdio: ['pipe', 'pipe', 'pipe'] });
     let saida = '';
     p.stdout.on('data', (d) => { saida += d; });
     p.stderr.on('data', (d) => { saida += d; });
@@ -74,7 +75,9 @@ async function gerar(i) {
 }
 
 if (refazer) for (const ext of ['png', 'webp']) rmSync(join(pasta, `${slug(refazer)}.${ext}`), { force: true });
-const faltam = fila().filter((i) => !pronta(i));
+// --so "Nome" (pode repetir) gera só essas, para experimentar um estilo antes de fazer todas
+const escolhidas = args.flatMap((a, n) => (a === '--so' ? [args[n + 1]] : []));
+const faltam = fila().filter((i) => !pronta(i) && (!escolhidas.length || escolhidas.includes(i.nome)));
 if (args.includes('--lista')) {
   console.log(faltam.length ? faltam.map((i) => `${i.tipo}: ${i.nome}`).join('\n') : 'Nenhuma arte faltando.');
 } else {
