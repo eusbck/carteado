@@ -1,0 +1,372 @@
+{
+ "formato": 1,
+ "id": "dL6gcTQ7hUq6nQq7fijzUA",
+ "ordem": 109,
+ "nome": "Miracle Worker (Duskmourn Commander Precon Decklist)",
+ "link": "https://moxfield.com/decks/dL6gcTQ7hUq6nQq7fijzUA",
+ "importadoEm": "2026-10-14T23:24:47.872Z",
+ "verificadoEm": "2026-10-14T23:24:47.872Z",
+ "atual": null,
+ "preparacao": {
+  "comandante": "Aminatou, Veil Piercer",
+  "cartas": [
+   {
+    "nome": "Island",
+    "quantidade": 4
+   },
+   {
+    "nome": "Plains",
+    "quantidade": 5
+   },
+   {
+    "nome": "Swamp",
+    "quantidade": 5
+   },
+   {
+    "nome": "Nightmare Shepherd",
+    "quantidade": 1
+   },
+   {
+    "nome": "Temple of Deceit",
+    "quantidade": 1
+   },
+   {
+    "nome": "Temple of Enlightenment",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arcane Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Command Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mirrormade",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bojuka Bog",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sigil of the Empty Throne",
+    "quantidade": 1
+   },
+   {
+    "nome": "Aminatou's Augury",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arcane Sanctum",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arcane Denial",
+    "quantidade": 1
+   },
+   {
+    "nome": "Archetype of Imagination",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ash Barrens",
+    "quantidade": 1
+   },
+   {
+    "nome": "Brainstorm",
+    "quantidade": 1
+   },
+   {
+    "nome": "Burnished Hart",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cast Out",
+    "quantidade": 1
+   },
+   {
+    "nome": "Evolving Wilds",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mind Stone",
+    "quantidade": 1
+   },
+   {
+    "nome": "Orzhov Basilica",
+    "quantidade": 1
+   },
+   {
+    "nome": "Portent",
+    "quantidade": 1
+   },
+   {
+    "nome": "Read the Bones",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Solemn Simulacrum",
+    "quantidade": 1
+   },
+   {
+    "nome": "Swords to Plowshares",
+    "quantidade": 1
+   },
+   {
+    "nome": "The Eldest Reborn",
+    "quantidade": 1
+   },
+   {
+    "nome": "Temple of Silence",
+    "quantidade": 1
+   },
+   {
+    "nome": "Starfield Mystic",
+    "quantidade": 1
+   },
+   {
+    "nome": "Azorius Chancery",
+    "quantidade": 1
+   },
+   {
+    "nome": "Commander's Sphere",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dimir Aqueduct",
+    "quantidade": 1
+   },
+   {
+    "nome": "Orzhov Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Terramorphic Expanse",
+    "quantidade": 1
+   },
+   {
+    "nome": "Underground River",
+    "quantidade": 1
+   },
+   {
+    "nome": "Adarkar Wastes",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tainted Isle",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tainted Field",
+    "quantidade": 1
+   },
+   {
+    "nome": "Halimar Depths",
+    "quantidade": 1
+   },
+   {
+    "nome": "Prognostic Sphinx",
+    "quantidade": 1
+   },
+   {
+    "nome": "Auramancer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mesa Enchantress",
+    "quantidade": 1
+   },
+   {
+    "nome": "Return to Dust",
+    "quantidade": 1
+   },
+   {
+    "nome": "Telling Time",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dream Eater",
+    "quantidade": 1
+   },
+   {
+    "nome": "Azorius Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Entreat the Angels",
+    "quantidade": 1
+   },
+   {
+    "nome": "Terminus",
+    "quantidade": 1
+   },
+   {
+    "nome": "Caves of Koilos",
+    "quantidade": 1
+   },
+   {
+    "nome": "Doomwake Giant",
+    "quantidade": 1
+   },
+   {
+    "nome": "Time Wipe",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hall of Heliod's Generosity",
+    "quantidade": 1
+   },
+   {
+    "nome": "Verge Rangers",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sphere of Safety",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ponder",
+    "quantidade": 1
+   },
+   {
+    "nome": "Diabolic Vision",
+    "quantidade": 1
+   },
+   {
+    "nome": "Athreos, Shroud-Veiled",
+    "quantidade": 1
+   },
+   {
+    "nome": "Thirst for Meaning",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shark Typhoon",
+    "quantidade": 1
+   },
+   {
+    "nome": "Thriving Heath",
+    "quantidade": 1
+   },
+   {
+    "nome": "Thriving Moor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Thriving Isle",
+    "quantidade": 1
+   },
+   {
+    "nome": "Utter End",
+    "quantidade": 1
+   },
+   {
+    "nome": "Timely Ward",
+    "quantidade": 1
+   },
+   {
+    "nome": "Monologue Tax",
+    "quantidade": 1
+   },
+   {
+    "nome": "Inkshield",
+    "quantidade": 1
+   },
+   {
+    "nome": "Brainstone",
+    "quantidade": 1
+   },
+   {
+    "nome": "Moon-Blessed Cleric",
+    "quantidade": 1
+   },
+   {
+    "nome": "Otherworldly Gaze",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arvinox, the Mind Flail",
+    "quantidade": 1
+   },
+   {
+    "nome": "Spirit-Sister's Call",
+    "quantidade": 1
+   },
+   {
+    "nome": "Obscura Storefront",
+    "quantidade": 1
+   },
+   {
+    "nome": "Extravagant Replication",
+    "quantidade": 1
+   },
+   {
+    "nome": "Life Insurance",
+    "quantidade": 1
+   },
+   {
+    "nome": "One with the Multiverse",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ondu Spiritdancer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Demon of Fate's Design",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bottomless Pool // Locker Room",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cramped Vents // Access Maze",
+    "quantidade": 1
+   },
+   {
+    "nome": "Redress Fate",
+    "quantidade": 1
+   },
+   {
+    "nome": "Metamorphosis Fanatic",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ancient Cellarspawn",
+    "quantidade": 1
+   },
+   {
+    "nome": "Phenomenon Investigators",
+    "quantidade": 1
+   },
+   {
+    "nome": "Secret Arcade // Dusty Parlor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Soaring Lightbringer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fear of Sleep Paralysis",
+    "quantidade": 1
+   },
+   {
+    "nome": "The Master of Keys",
+    "quantidade": 1
+   }
+  ],
+  "origem": {
+   "versao": 0,
+   "atualizadoEm": "2024-10-31T17:22:04.38Z"
+  },
+  "desde": "2026-10-14T23:24:47.872Z"
+ }
+}

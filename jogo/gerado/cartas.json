@@ -1238,6 +1238,77 @@
     }
    ]
   },
+  "Aminatou, Veil Piercer": {
+   "name": "Aminatou, Veil Piercer",
+   "oracleId": "bf45f5ee-4d5f-4920-b612-b5492c2f035d",
+   "layout": "normal",
+   "manaValue": 4,
+   "colorIdentity": [
+    "B",
+    "U",
+    "W"
+   ],
+   "keywords": [
+    "Surveil"
+   ],
+   "faces": [
+    {
+     "name": "Aminatou, Veil Piercer",
+     "manaCost": "{1}{W}{U}{B}",
+     "typeLine": "Legendary Creature — Human Wizard",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Human",
+      "Wizard"
+     ],
+     "oracleText": "At the beginning of your upkeep, surveil 2. (Look at the top two cards of your library, then put any number of them into your graveyard and the rest on top of your library in any order.)\nEach enchantment card in your hand has miracle. Its miracle cost is equal to its mana cost reduced by {4}. (You may cast a card for its miracle cost when you draw it if it's the first card you drew this turn.)",
+     "power": 2,
+     "toughness": 4,
+     "loyalty": null,
+     "colors": [
+      "B",
+      "U",
+      "W"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Aminatou's Augury": {
+   "name": "Aminatou's Augury",
+   "oracleId": "c9160997-0305-47f5-9a2f-77588d167da0",
+   "layout": "normal",
+   "manaValue": 8,
+   "colorIdentity": [
+    "U"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Aminatou's Augury",
+     "manaCost": "{6}{U}{U}",
+     "typeLine": "Sorcery",
+     "supertypes": [],
+     "types": [
+      "Sorcery"
+     ],
+     "subtypes": [],
+     "oracleText": "Exile the top eight cards of your library. You may put a land card from among them onto the battlefield. Until end of turn, for each nonland card type, you may cast a spell of that type from among the exiled cards without paying its mana cost.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "U"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Ancestral Communion": {
    "name": "Ancestral Communion",
    "oracleId": "a45bb088-16fd-4d91-8fd6-3c52f1c24748",
@@ -1263,6 +1334,39 @@
      "loyalty": null,
      "colors": [
       "G"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Ancient Cellarspawn": {
+   "name": "Ancient Cellarspawn",
+   "oracleId": "b8510b34-0e5f-4639-9db1-1ba40d84b800",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Ancient Cellarspawn",
+     "manaCost": "{1}{B}{B}",
+     "typeLine": "Enchantment Creature — Horror",
+     "supertypes": [],
+     "types": [
+      "Enchantment",
+      "Creature"
+     ],
+     "subtypes": [
+      "Horror"
+     ],
+     "oracleText": "Each spell you cast that's a Demon, Horror, or Nightmare costs {1} less to cast.\nWhenever you cast a spell, if the amount of mana spent to cast it was less than its mana value, target opponent loses life equal to the difference.",
+     "power": 3,
+     "toughness": 3,
+     "loyalty": null,
+     "colors": [
+      "B"
      ],
      "colorIndicator": null
     }
@@ -2436,6 +2540,36 @@
     }
    ]
   },
+  "Arcane Bombardment": {
+   "name": "Arcane Bombardment",
+   "oracleId": "1e36a42f-58e2-49bc-8c14-7f75e1d8ef98",
+   "layout": "normal",
+   "manaValue": 6,
+   "colorIdentity": [
+    "R"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Arcane Bombardment",
+     "manaCost": "{4}{R}{R}",
+     "typeLine": "Enchantment",
+     "supertypes": [],
+     "types": [
+      "Enchantment"
+     ],
+     "subtypes": [],
+     "oracleText": "Whenever you cast your first instant or sorcery spell each turn, exile an instant or sorcery card at random from your graveyard. Then copy each card exiled with this enchantment. You may cast any number of the copies without paying their mana costs.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "R"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Arcane Denial": {
    "name": "Arcane Denial",
    "oracleId": "ab1cc360-b9de-48d9-9983-4dfe4a7d2a37",
@@ -2745,6 +2879,40 @@
      "loyalty": null,
      "colors": [
       "W"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Archetype of Imagination": {
+   "name": "Archetype of Imagination",
+   "oracleId": "a5458de0-0f61-49a3-a013-d90f92559809",
+   "layout": "normal",
+   "manaValue": 6,
+   "colorIdentity": [
+    "U"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Archetype of Imagination",
+     "manaCost": "{4}{U}{U}",
+     "typeLine": "Enchantment Creature — Human Wizard",
+     "supertypes": [],
+     "types": [
+      "Enchantment",
+      "Creature"
+     ],
+     "subtypes": [
+      "Human",
+      "Wizard"
+     ],
+     "oracleText": "Creatures you control have flying.\nCreatures your opponents control lose flying and can't have or gain flying.",
+     "power": 3,
+     "toughness": 2,
+     "loyalty": null,
+     "colors": [
+      "U"
      ],
      "colorIndicator": null
     }
@@ -3146,6 +3314,41 @@
     }
    ]
   },
+  "Arvinox, the Mind Flail": {
+   "name": "Arvinox, the Mind Flail",
+   "oracleId": "9abecd23-a2d9-43c7-8d01-f8afdc53026e",
+   "layout": "normal",
+   "manaValue": 7,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Arvinox, the Mind Flail",
+     "manaCost": "{4}{B}{B}{B}",
+     "typeLine": "Legendary Enchantment Creature — Horror",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Enchantment",
+      "Creature"
+     ],
+     "subtypes": [
+      "Horror"
+     ],
+     "oracleText": "Arvinox isn't a creature unless you control three or more permanents you don't own.\nAt the beginning of your end step, exile the bottom card of each opponent's library face down. For as long as those cards remain exiled, you may look at them, you may cast permanent spells from among them, and you may spend mana as though it were mana of any color to cast those spells.",
+     "power": 9,
+     "toughness": 9,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Ash Barrens": {
    "name": "Ash Barrens",
    "oracleId": "58257464-278e-45fa-8e0b-bcd9a7500bc1",
@@ -3339,6 +3542,45 @@
     }
    ]
   },
+  "Athreos, Shroud-Veiled": {
+   "name": "Athreos, Shroud-Veiled",
+   "oracleId": "9aacc1ce-8d0d-4a24-9a15-74635f2f127d",
+   "layout": "normal",
+   "manaValue": 6,
+   "colorIdentity": [
+    "B",
+    "W"
+   ],
+   "keywords": [
+    "Indestructible"
+   ],
+   "faces": [
+    {
+     "name": "Athreos, Shroud-Veiled",
+     "manaCost": "{4}{W}{B}",
+     "typeLine": "Legendary Enchantment Creature — God",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Enchantment",
+      "Creature"
+     ],
+     "subtypes": [
+      "God"
+     ],
+     "oracleText": "Indestructible\nAs long as your devotion to white and black is less than seven, Athreos isn't a creature.\nAt the beginning of your end step, put a coin counter on another target creature.\nWhenever a creature with a coin counter on it dies or is put into exile, return that card to the battlefield under your control.",
+     "power": 4,
+     "toughness": 7,
+     "loyalty": null,
+     "colors": [
+      "B",
+      "W"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Atsushi, the Blazing Sky": {
    "name": "Atsushi, the Blazing Sky",
    "oracleId": "535f405d-94df-4f45-aedc-b331103720b7",
@@ -3485,6 +3727,39 @@
       "B",
       "G",
       "R"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Auramancer": {
+   "name": "Auramancer",
+   "oracleId": "bd5eb181-6a69-4dc2-93a0-fa000291bc3d",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "W"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Auramancer",
+     "manaCost": "{2}{W}",
+     "typeLine": "Creature — Human Wizard",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Human",
+      "Wizard"
+     ],
+     "oracleText": "When this creature enters, you may return target enchantment card from your graveyard to your hand.",
+     "power": 2,
+     "toughness": 2,
+     "loyalty": null,
+     "colors": [
+      "W"
      ],
      "colorIndicator": null
     }
@@ -3882,6 +4157,35 @@
     }
    ]
   },
+  "Azorius Chancery": {
+   "name": "Azorius Chancery",
+   "oracleId": "189fc8f4-17ac-4f1d-82c8-8401445bdaf4",
+   "layout": "normal",
+   "manaValue": 0,
+   "colorIdentity": [
+    "U",
+    "W"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Azorius Chancery",
+     "manaCost": "",
+     "typeLine": "Land",
+     "supertypes": [],
+     "types": [
+      "Land"
+     ],
+     "subtypes": [],
+     "oracleText": "This land enters tapped.\nWhen this land enters, return a land you control to its owner's hand.\n{T}: Add {W}{U}.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Azorius Signet": {
    "name": "Azorius Signet",
    "oracleId": "e018773f-95b3-49a3-9674-6f04ddef2092",
@@ -4136,6 +4440,36 @@
      "colors": [
       "R",
       "W"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Baral's Expertise": {
+   "name": "Baral's Expertise",
+   "oracleId": "a1cdcb8c-1e12-4d39-aa4a-db678a80df9c",
+   "layout": "normal",
+   "manaValue": 5,
+   "colorIdentity": [
+    "U"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Baral's Expertise",
+     "manaCost": "{3}{U}{U}",
+     "typeLine": "Sorcery",
+     "supertypes": [],
+     "types": [
+      "Sorcery"
+     ],
+     "subtypes": [],
+     "oracleText": "Return up to three target artifacts and/or creatures to their owners' hands.\nYou may cast a spell with mana value 4 or less from your hand without paying its mana cost.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "U"
      ],
      "colorIndicator": null
     }
@@ -5900,6 +6234,40 @@
     }
    ]
   },
+  "Bloodthirsty Adversary": {
+   "name": "Bloodthirsty Adversary",
+   "oracleId": "3b943c3e-1f18-4997-b6d0-28ef75aed88e",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "R"
+   ],
+   "keywords": [
+    "Haste"
+   ],
+   "faces": [
+    {
+     "name": "Bloodthirsty Adversary",
+     "manaCost": "{1}{R}",
+     "typeLine": "Creature — Vampire",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Vampire"
+     ],
+     "oracleText": "Haste\nWhen this creature enters, you may pay {2}{R} any number of times. When you pay this cost one or more times, put that many +1/+1 counters on this creature, then exile up to that many target instant and/or sorcery cards with mana value 3 or less from your graveyard and copy them. You may cast any number of the copies without paying their mana costs.",
+     "power": 2,
+     "toughness": 2,
+     "loyalty": null,
+     "colors": [
+      "R"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Bloodthirsty Blade": {
    "name": "Bloodthirsty Blade",
    "oracleId": "b2747459-05ec-42a6-81be-e97e182bc778",
@@ -6533,6 +6901,54 @@
     }
    ]
   },
+  "Bottomless Pool // Locker Room": {
+   "name": "Bottomless Pool // Locker Room",
+   "oracleId": "b9ac4856-5cdb-479f-b0f5-7fa0b232a5ff",
+   "layout": "split",
+   "manaValue": 6,
+   "colorIdentity": [
+    "U"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Bottomless Pool",
+     "manaCost": "{U}",
+     "typeLine": "Enchantment — Room",
+     "supertypes": [],
+     "types": [
+      "Enchantment"
+     ],
+     "subtypes": [
+      "Room"
+     ],
+     "oracleText": "When you unlock this door, return up to one target creature to its owner's hand.\n(You may cast either half. That door unlocks on the battlefield. As a sorcery, you may pay the mana cost of a locked door to unlock it.)",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [],
+     "colorIndicator": null
+    },
+    {
+     "name": "Locker Room",
+     "manaCost": "{4}{U}",
+     "typeLine": "Enchantment — Room",
+     "supertypes": [],
+     "types": [
+      "Enchantment"
+     ],
+     "subtypes": [
+      "Room"
+     ],
+     "oracleText": "Whenever one or more creatures you control deal combat damage to a player, draw a card.\n(You may cast either half. That door unlocks on the battlefield. As a sorcery, you may pay the mana cost of a locked door to unlock it.)",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Boulos e o MTST": {
    "name": "Boulos e o MTST",
    "oracleId": "de1d2d5d-ceb7-f0ce-038b-c24e885d4fe9",
@@ -6686,6 +7102,32 @@
      "colors": [
       "B"
      ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Brainstone": {
+   "name": "Brainstone",
+   "oracleId": "ffac1923-99d0-48e6-b1e7-168e5c324a80",
+   "layout": "normal",
+   "manaValue": 1,
+   "colorIdentity": [],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Brainstone",
+     "manaCost": "{1}",
+     "typeLine": "Artifact",
+     "supertypes": [],
+     "types": [
+      "Artifact"
+     ],
+     "subtypes": [],
+     "oracleText": "{2}, {T}, Sacrifice this artifact: Draw three cards, then put two cards from your hand on top of your library in any order.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [],
      "colorIndicator": null
     }
    ]
@@ -7168,6 +7610,35 @@
      "colors": [
       "R"
      ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Burnished Hart": {
+   "name": "Burnished Hart",
+   "oracleId": "893fed41-c144-433f-af88-bc7d419b7fb3",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Burnished Hart",
+     "manaCost": "{3}",
+     "typeLine": "Artifact Creature — Elk",
+     "supertypes": [],
+     "types": [
+      "Artifact",
+      "Creature"
+     ],
+     "subtypes": [
+      "Elk"
+     ],
+     "oracleText": "{3}, Sacrifice this creature: Search your library for up to two basic land cards, put them onto the battlefield tapped, then shuffle.",
+     "power": 2,
+     "toughness": 2,
+     "loyalty": null,
+     "colors": [],
      "colorIndicator": null
     }
    ]
@@ -10814,6 +11285,89 @@
     }
    ]
   },
+  "Crackling Spellslinger": {
+   "name": "Crackling Spellslinger",
+   "oracleId": "ed7ba558-5341-4c7b-a9c5-b382dee88a13",
+   "layout": "normal",
+   "manaValue": 5,
+   "colorIdentity": [
+    "R"
+   ],
+   "keywords": [
+    "Flash"
+   ],
+   "faces": [
+    {
+     "name": "Crackling Spellslinger",
+     "manaCost": "{3}{R}{R}",
+     "typeLine": "Creature — Human Wizard",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Human",
+      "Wizard"
+     ],
+     "oracleText": "Flash\nWhen this creature enters, if you cast it, the next instant or sorcery spell you cast this turn has storm. (When you cast that spell, copy it for each spell cast before it this turn. You may choose new targets for the copies.)",
+     "power": 2,
+     "toughness": 2,
+     "loyalty": null,
+     "colors": [
+      "R"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Cramped Vents // Access Maze": {
+   "name": "Cramped Vents // Access Maze",
+   "oracleId": "1e847d69-e527-4bb9-a624-17c25ac4fed4",
+   "layout": "split",
+   "manaValue": 11,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Cramped Vents",
+     "manaCost": "{3}{B}",
+     "typeLine": "Enchantment — Room",
+     "supertypes": [],
+     "types": [
+      "Enchantment"
+     ],
+     "subtypes": [
+      "Room"
+     ],
+     "oracleText": "When you unlock this door, this Room deals 6 damage to target creature an opponent controls. You gain life equal to the excess damage dealt this way.\n(You may cast either half. That door unlocks on the battlefield. As a sorcery, you may pay the mana cost of a locked door to unlock it.)",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [],
+     "colorIndicator": null
+    },
+    {
+     "name": "Access Maze",
+     "manaCost": "{5}{B}{B}",
+     "typeLine": "Enchantment — Room",
+     "supertypes": [],
+     "types": [
+      "Enchantment"
+     ],
+     "subtypes": [
+      "Room"
+     ],
+     "oracleText": "Once during each of your turns, you may cast a spell from your hand by paying life equal to its mana value rather than paying its mana cost.\n(You may cast either half. That door unlocks on the battlefield. As a sorcery, you may pay the mana cost of a locked door to unlock it.)",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Cranial Plating": {
    "name": "Cranial Plating",
    "oracleId": "75564721-e4e9-463a-b49e-f0c7cd6f53a7",
@@ -13063,6 +13617,42 @@
     }
    ]
   },
+  "Demon of Fate's Design": {
+   "name": "Demon of Fate's Design",
+   "oracleId": "53716e0b-4d4e-40b0-8370-38e11f73d195",
+   "layout": "normal",
+   "manaValue": 6,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [
+    "Flying",
+    "Trample"
+   ],
+   "faces": [
+    {
+     "name": "Demon of Fate's Design",
+     "manaCost": "{4}{B}{B}",
+     "typeLine": "Enchantment Creature — Demon",
+     "supertypes": [],
+     "types": [
+      "Enchantment",
+      "Creature"
+     ],
+     "subtypes": [
+      "Demon"
+     ],
+     "oracleText": "Flying, trample\nOnce during each of your turns, you may cast an enchantment spell by paying life equal to its mana value rather than paying its mana cost.\n{2}{B}, Sacrifice another enchantment: This creature gets +X/+0 until end of turn, where X is the sacrificed enchantment's mana value.",
+     "power": 6,
+     "toughness": 6,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Demonic Embrace": {
    "name": "Demonic Embrace",
    "oracleId": "d185c829-ef12-403a-a071-7520a0293d4a",
@@ -13339,6 +13929,38 @@
      "loyalty": null,
      "colors": [
       "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Diabolic Vision": {
+   "name": "Diabolic Vision",
+   "oracleId": "6b7b1a71-812d-4ff5-b38b-94d1cf634143",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "B",
+    "U"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Diabolic Vision",
+     "manaCost": "{U}{B}",
+     "typeLine": "Sorcery",
+     "supertypes": [],
+     "types": [
+      "Sorcery"
+     ],
+     "subtypes": [],
+     "oracleText": "Look at the top five cards of your library. Put one of them into your hand and the rest on top of your library in any order.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "B",
+      "U"
      ],
      "colorIndicator": null
     }
@@ -14957,6 +15579,43 @@
     }
    ]
   },
+  "Dream Eater": {
+   "name": "Dream Eater",
+   "oracleId": "4ec84bb3-796a-4074-ac9a-1bd277158896",
+   "layout": "normal",
+   "manaValue": 6,
+   "colorIdentity": [
+    "U"
+   ],
+   "keywords": [
+    "Flying",
+    "Surveil",
+    "Flash"
+   ],
+   "faces": [
+    {
+     "name": "Dream Eater",
+     "manaCost": "{4}{U}{U}",
+     "typeLine": "Creature — Nightmare Sphinx",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Nightmare",
+      "Sphinx"
+     ],
+     "oracleText": "Flash\nFlying\nWhen this creature enters, surveil 4. When you do, you may return target nonland permanent an opponent controls to its owner's hand. (To surveil 4, look at the top four cards of your library, then put any number of them into your graveyard and the rest on top of your library in any order.)",
+     "power": 4,
+     "toughness": 3,
+     "loyalty": null,
+     "colors": [
+      "U"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Dream-Thief's Bandana": {
    "name": "Dream-Thief's Bandana",
    "oracleId": "3c958b5f-680b-45fc-8c3d-27b23677436e",
@@ -15696,6 +16355,40 @@
     }
    ]
   },
+  "Electrostatic Field": {
+   "name": "Electrostatic Field",
+   "oracleId": "2fa94a07-c932-4f85-b6e0-a97d2b29eb52",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "R"
+   ],
+   "keywords": [
+    "Defender"
+   ],
+   "faces": [
+    {
+     "name": "Electrostatic Field",
+     "manaCost": "{1}{R}",
+     "typeLine": "Creature — Wall",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Wall"
+     ],
+     "oracleText": "Defender\nWhenever you cast an instant or sorcery spell, this creature deals 1 damage to each opponent.",
+     "power": 0,
+     "toughness": 4,
+     "loyalty": null,
+     "colors": [
+      "R"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Elemental Bond": {
    "name": "Elemental Bond",
    "oracleId": "d9a7e5a6-3e41-4fc6-987a-18fe1b9d67dd",
@@ -15721,6 +16414,38 @@
      "loyalty": null,
      "colors": [
       "G"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Elemental Eruption": {
+   "name": "Elemental Eruption",
+   "oracleId": "8629fdef-dbbe-4a97-a7e1-6b1646f4ca0b",
+   "layout": "normal",
+   "manaValue": 6,
+   "colorIdentity": [
+    "R"
+   ],
+   "keywords": [
+    "Storm"
+   ],
+   "faces": [
+    {
+     "name": "Elemental Eruption",
+     "manaCost": "{4}{R}{R}",
+     "typeLine": "Sorcery",
+     "supertypes": [],
+     "types": [
+      "Sorcery"
+     ],
+     "subtypes": [],
+     "oracleText": "Create a 4/4 red Dragon Elemental creature token with flying and prowess.\nStorm (When you cast this spell, copy it for each spell cast before it this turn.)",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "R"
      ],
      "colorIndicator": null
     }
@@ -16183,6 +16908,70 @@
     }
    ]
   },
+  "Entreat the Angels": {
+   "name": "Entreat the Angels",
+   "oracleId": "b349f018-c20b-48b0-9e65-d5fd56b24b88",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "W"
+   ],
+   "keywords": [
+    "Miracle"
+   ],
+   "faces": [
+    {
+     "name": "Entreat the Angels",
+     "manaCost": "{X}{X}{W}{W}{W}",
+     "typeLine": "Sorcery",
+     "supertypes": [],
+     "types": [
+      "Sorcery"
+     ],
+     "subtypes": [],
+     "oracleText": "Create X 4/4 white Angel creature tokens with flying.\nMiracle {X}{W}{W} (You may cast this card for its miracle cost when you draw it if it's the first card you drew this turn.)",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "W"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Epic Experiment": {
+   "name": "Epic Experiment",
+   "oracleId": "08bc10fd-8901-4836-ad4d-a867e1bcba77",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "R",
+    "U"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Epic Experiment",
+     "manaCost": "{X}{U}{R}",
+     "typeLine": "Sorcery",
+     "supertypes": [],
+     "types": [
+      "Sorcery"
+     ],
+     "subtypes": [],
+     "oracleText": "Exile the top X cards of your library. You may cast instant and sorcery spells with mana value X or less from among them without paying their mana costs. Then put all cards exiled this way that weren't cast into your graveyard.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "R",
+      "U"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Eriette of the Charmed Apple": {
    "name": "Eriette of the Charmed Apple",
    "oracleId": "f43f5855-f297-4433-984b-18263b734cfc",
@@ -16215,6 +17004,46 @@
      "colors": [
       "B",
       "W"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Eris, Roar of the Storm": {
+   "name": "Eris, Roar of the Storm",
+   "oracleId": "918991a6-7321-419d-8f3d-150fe32d02d2",
+   "layout": "normal",
+   "manaValue": 10,
+   "colorIdentity": [
+    "R",
+    "U"
+   ],
+   "keywords": [
+    "Flying",
+    "Prowess"
+   ],
+   "faces": [
+    {
+     "name": "Eris, Roar of the Storm",
+     "manaCost": "{8}{U}{R}",
+     "typeLine": "Legendary Creature — Elemental Warlock",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Elemental",
+      "Warlock"
+     ],
+     "oracleText": "This spell costs {2} less to cast for each different mana value among instant and sorcery cards in your graveyard.\nFlying, prowess\nWhenever you cast your second spell each turn, create a 4/4 red Dragon Elemental creature token with flying and prowess.",
+     "power": 4,
+     "toughness": 4,
+     "loyalty": null,
+     "colors": [
+      "R",
+      "U"
      ],
      "colorIndicator": null
     }
@@ -17995,6 +18824,42 @@
     }
    ]
   },
+  "Fear of Sleep Paralysis": {
+   "name": "Fear of Sleep Paralysis",
+   "oracleId": "a3a1f149-febe-4ff6-9e34-8b82ef21c2ee",
+   "layout": "normal",
+   "manaValue": 6,
+   "colorIdentity": [
+    "U"
+   ],
+   "keywords": [
+    "Flying",
+    "Eerie"
+   ],
+   "faces": [
+    {
+     "name": "Fear of Sleep Paralysis",
+     "manaCost": "{5}{U}",
+     "typeLine": "Enchantment Creature — Nightmare",
+     "supertypes": [],
+     "types": [
+      "Enchantment",
+      "Creature"
+     ],
+     "subtypes": [
+      "Nightmare"
+     ],
+     "oracleText": "Flying\nEerie — Whenever this creature or another enchantment you control enters and whenever you fully unlock a Room, tap up to one target creature and put a stun counter on it.\nStun counters can't be removed from permanents your opponents control. (They won't untap if they have stun counters.)",
+     "power": 6,
+     "toughness": 6,
+     "loyalty": null,
+     "colors": [
+      "U"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Feather, Radiant Arbiter": {
    "name": "Feather, Radiant Arbiter",
    "oracleId": "957413ae-e756-4afe-886a-b57bf59d5f8d",
@@ -18646,6 +19511,66 @@
      "loyalty": null,
      "colors": [
       "G"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Finale of Promise": {
+   "name": "Finale of Promise",
+   "oracleId": "d6fafb50-9531-4fbf-bb1e-ebb4dd39281c",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "R"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Finale of Promise",
+     "manaCost": "{X}{R}{R}",
+     "typeLine": "Sorcery",
+     "supertypes": [],
+     "types": [
+      "Sorcery"
+     ],
+     "subtypes": [],
+     "oracleText": "You may cast up to one target instant card and/or up to one target sorcery card from your graveyard each with mana value X or less without paying their mana costs. If a spell cast this way would be put into your graveyard, exile it instead. If X is 10 or more, copy each of those spells twice. You may choose new targets for the copies.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "R"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Finale of Revelation": {
+   "name": "Finale of Revelation",
+   "oracleId": "755bd5d8-67f1-4f24-a4e8-d98edf2f2e03",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "U"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Finale of Revelation",
+     "manaCost": "{X}{U}{U}",
+     "typeLine": "Sorcery",
+     "supertypes": [],
+     "types": [
+      "Sorcery"
+     ],
+     "subtypes": [],
+     "oracleText": "Draw X cards. If X is 10 or more, instead shuffle your graveyard into your library, draw X cards, untap up to five lands, and you have no maximum hand size for the rest of the game.\nExile Finale of Revelation.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "U"
      ],
      "colorIndicator": null
     }
@@ -19430,6 +20355,36 @@
      "toughness": null,
      "loyalty": null,
      "colors": [],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Forger's Foundry": {
+   "name": "Forger's Foundry",
+   "oracleId": "118da256-d1ea-44e8-9026-317e49694d29",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "U"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Forger's Foundry",
+     "manaCost": "{2}{U}",
+     "typeLine": "Artifact",
+     "supertypes": [],
+     "types": [
+      "Artifact"
+     ],
+     "subtypes": [],
+     "oracleText": "{T}: Add {U}. When you spend this mana to cast an instant or sorcery spell with mana value 3 or less, you may exile that spell instead of putting it into its owner's graveyard as it resolves.\n{3}{U}{U}, {T}: You may cast any number of spells from among cards exiled with this artifact without paying their mana costs. Activate only as a sorcery.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "U"
+     ],
      "colorIndicator": null
     }
    ]
@@ -22914,6 +23869,64 @@
     }
    ]
   },
+  "Halimar Depths": {
+   "name": "Halimar Depths",
+   "oracleId": "42d121a2-5266-483a-ab16-e0a8073cd6a3",
+   "layout": "normal",
+   "manaValue": 0,
+   "colorIdentity": [
+    "U"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Halimar Depths",
+     "manaCost": "",
+     "typeLine": "Land",
+     "supertypes": [],
+     "types": [
+      "Land"
+     ],
+     "subtypes": [],
+     "oracleText": "This land enters tapped.\nWhen this land enters, look at the top three cards of your library, then put them back in any order.\n{T}: Add {U}.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Hall of Heliod's Generosity": {
+   "name": "Hall of Heliod's Generosity",
+   "oracleId": "2fc070dc-f2f7-4648-8069-31d74790a39c",
+   "layout": "normal",
+   "manaValue": 0,
+   "colorIdentity": [
+    "W"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Hall of Heliod's Generosity",
+     "manaCost": "",
+     "typeLine": "Legendary Land",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Land"
+     ],
+     "subtypes": [],
+     "oracleText": "{T}: Add {C}.\n{1}{W}, {T}: Put target enchantment card from your graveyard on top of your library.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Hall of Oracles": {
    "name": "Hall of Oracles",
    "oracleId": "0bb896ba-e15e-43a9-9120-e674d7ba003c",
@@ -23328,6 +24341,40 @@
      "loyalty": null,
      "colors": [
       "W"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Haughty Djinn": {
+   "name": "Haughty Djinn",
+   "oracleId": "44036bb5-f300-40bd-9180-6b246315d886",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "U"
+   ],
+   "keywords": [
+    "Flying"
+   ],
+   "faces": [
+    {
+     "name": "Haughty Djinn",
+     "manaCost": "{1}{U}{U}",
+     "typeLine": "Creature — Djinn",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Djinn"
+     ],
+     "oracleText": "Flying\nHaughty Djinn's power is equal to the number of instant and sorcery cards in your graveyard.\nInstant and sorcery spells you cast cost {1} less to cast.",
+     "power": "*",
+     "toughness": 4,
+     "loyalty": null,
+     "colors": [
+      "U"
      ],
      "colorIndicator": null
     }
@@ -26398,6 +27445,35 @@
     }
    ]
   },
+  "Izzet Boilerworks": {
+   "name": "Izzet Boilerworks",
+   "oracleId": "1cb9d94a-3039-4f2e-8fcc-6996f9a45f74",
+   "layout": "normal",
+   "manaValue": 0,
+   "colorIdentity": [
+    "R",
+    "U"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Izzet Boilerworks",
+     "manaCost": "",
+     "typeLine": "Land",
+     "supertypes": [],
+     "types": [
+      "Land"
+     ],
+     "subtypes": [],
+     "oracleText": "This land enters tapped.\nWhen this land enters, return a land you control to its owner's hand.\n{T}: Add {U}{R}.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Izzet Signet": {
    "name": "Izzet Signet",
    "oracleId": "2fda4fe7-8b0c-489c-a000-6d358e614e34",
@@ -27683,6 +28759,46 @@
      "loyalty": null,
      "colors": [
       "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Kaza, Roil Chaser": {
+   "name": "Kaza, Roil Chaser",
+   "oracleId": "0b8517c0-0441-4fd9-99ec-2274e57c3cb6",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "R",
+    "U"
+   ],
+   "keywords": [
+    "Flying",
+    "Haste"
+   ],
+   "faces": [
+    {
+     "name": "Kaza, Roil Chaser",
+     "manaCost": "{U}{R}",
+     "typeLine": "Legendary Creature — Human Wizard",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Human",
+      "Wizard"
+     ],
+     "oracleText": "Flying, haste\n{T}: The next instant or sorcery spell you cast this turn costs {X} less to cast, where X is the number of Wizards you control as this ability resolves.",
+     "power": 1,
+     "toughness": 2,
+     "loyalty": null,
+     "colors": [
+      "R",
+      "U"
      ],
      "colorIndicator": null
     }
@@ -29402,6 +30518,34 @@
     }
    ]
   },
+  "Leyline Dowser": {
+   "name": "Leyline Dowser",
+   "oracleId": "2ea2ac09-690d-4cd2-8e3a-fc01ecd7c132",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [],
+   "keywords": [
+    "Mill"
+   ],
+   "faces": [
+    {
+     "name": "Leyline Dowser",
+     "manaCost": "{2}",
+     "typeLine": "Artifact",
+     "supertypes": [],
+     "types": [
+      "Artifact"
+     ],
+     "subtypes": [],
+     "oracleText": "{1}, {T}: Mill a card. You may put an instant or sorcery card milled this way into your hand.\nTap an untapped legendary creature you control: Untap this artifact.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Leyline Tyrant": {
    "name": "Leyline Tyrant",
    "oracleId": "f92aaa00-6ece-4033-b3df-b2fc2c4718d9",
@@ -29465,6 +30609,41 @@
      "colors": [
       "B",
       "R"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Life Insurance": {
+   "name": "Life Insurance",
+   "oracleId": "50779f73-c538-4364-aca4-4ab069a00814",
+   "layout": "normal",
+   "manaValue": 5,
+   "colorIdentity": [
+    "B",
+    "W"
+   ],
+   "keywords": [
+    "Extort",
+    "Treasure"
+   ],
+   "faces": [
+    {
+     "name": "Life Insurance",
+     "manaCost": "{3}{W}{B}",
+     "typeLine": "Enchantment",
+     "supertypes": [],
+     "types": [
+      "Enchantment"
+     ],
+     "subtypes": [],
+     "oracleText": "Extort (Whenever you cast a spell, you may pay {W/B}. If you do, each opponent loses 1 life and you gain that much life.)\nWhenever a nontoken creature dies, you lose 1 life and create a Treasure token.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "B",
+      "W"
      ],
      "colorIndicator": null
     }
@@ -29932,6 +31111,38 @@
      "toughness": null,
      "loyalty": null,
      "colors": [],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Lock and Load": {
+   "name": "Lock and Load",
+   "oracleId": "9355db6e-d8eb-43be-9c1d-04f1806dc366",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "U"
+   ],
+   "keywords": [
+    "Plot"
+   ],
+   "faces": [
+    {
+     "name": "Lock and Load",
+     "manaCost": "{2}{U}",
+     "typeLine": "Sorcery",
+     "supertypes": [],
+     "types": [
+      "Sorcery"
+     ],
+     "subtypes": [],
+     "oracleText": "Draw a card, then draw a card for each other instant and sorcery spell you've cast this turn.\nPlot {3}{U} (You may pay {3}{U} and exile this card from your hand. Cast it as a sorcery on a later turn without paying its mana cost. Plot only as a sorcery.)",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "U"
+     ],
      "colorIndicator": null
     }
    ]
@@ -32571,6 +33782,39 @@
     }
    ]
   },
+  "Mesa Enchantress": {
+   "name": "Mesa Enchantress",
+   "oracleId": "8f4b8a19-72f4-48ed-ac05-62a7c7525797",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "W"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Mesa Enchantress",
+     "manaCost": "{1}{W}{W}",
+     "typeLine": "Creature — Human Druid",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Human",
+      "Druid"
+     ],
+     "oracleText": "Whenever you cast an enchantment spell, you may draw a card.",
+     "power": 0,
+     "toughness": 2,
+     "loyalty": null,
+     "colors": [
+      "W"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Metallic Mimic": {
    "name": "Metallic Mimic",
    "oracleId": "1f91297a-ec2b-4ea8-9198-aa1daac20ff8",
@@ -32625,6 +33869,42 @@
      "toughness": 10,
      "loyalty": null,
      "colors": [],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Metamorphosis Fanatic": {
+   "name": "Metamorphosis Fanatic",
+   "oracleId": "017aa9b3-a8ea-4588-9c50-e914a7d8e4ee",
+   "layout": "normal",
+   "manaValue": 6,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [
+    "Lifelink",
+    "Miracle"
+   ],
+   "faces": [
+    {
+     "name": "Metamorphosis Fanatic",
+     "manaCost": "{4}{B}{B}",
+     "typeLine": "Creature — Human Cleric",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Human",
+      "Cleric"
+     ],
+     "oracleText": "Lifelink\nWhen this creature enters, return up to one target creature card from your graveyard to the battlefield with a lifelink counter on it.\nMiracle {1}{B} (You may cast this card for its miracle cost when you draw it if it's the first card you drew this turn.)",
+     "power": 4,
+     "toughness": 4,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
      "colorIndicator": null
     }
    ]
@@ -32896,6 +34176,36 @@
      "loyalty": null,
      "colors": [
       "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Midnight Clock": {
+   "name": "Midnight Clock",
+   "oracleId": "c68faebc-b2cd-461b-b93e-e1fcd4816810",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "U"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Midnight Clock",
+     "manaCost": "{2}{U}",
+     "typeLine": "Artifact",
+     "supertypes": [],
+     "types": [
+      "Artifact"
+     ],
+     "subtypes": [],
+     "oracleText": "{T}: Add {U}.\n{2}{U}: Put an hour counter on this artifact.\nAt the beginning of each upkeep, put an hour counter on this artifact.\nWhen the twelfth hour counter is put on this artifact, shuffle your hand and graveyard into your library, then draw seven cards. Exile this artifact.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "U"
      ],
      "colorIndicator": null
     }
@@ -33391,6 +34701,36 @@
     }
    ]
   },
+  "Mirrormade": {
+   "name": "Mirrormade",
+   "oracleId": "79a71fe5-38ce-4bb5-aea0-c9b9a856d397",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "U"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Mirrormade",
+     "manaCost": "{1}{U}{U}",
+     "typeLine": "Enchantment",
+     "supertypes": [],
+     "types": [
+      "Enchantment"
+     ],
+     "subtypes": [],
+     "oracleText": "You may have this enchantment enter as a copy of any artifact or enchantment on the battlefield.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "U"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Misleading Signpost": {
    "name": "Misleading Signpost",
    "oracleId": "eaffdf95-8e20-408d-99fa-3adc9e19523d",
@@ -33562,6 +34902,38 @@
      "loyalty": null,
      "colors": [
       "W"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Mizzix's Mastery": {
+   "name": "Mizzix's Mastery",
+   "oracleId": "40362fe0-a1a9-4d76-8c35-eac474b91af5",
+   "layout": "normal",
+   "manaValue": 4,
+   "colorIdentity": [
+    "R"
+   ],
+   "keywords": [
+    "Overload"
+   ],
+   "faces": [
+    {
+     "name": "Mizzix's Mastery",
+     "manaCost": "{3}{R}",
+     "typeLine": "Sorcery",
+     "supertypes": [],
+     "types": [
+      "Sorcery"
+     ],
+     "subtypes": [],
+     "oracleText": "Exile target card that's an instant or sorcery from your graveyard. For each card exiled this way, copy it, and you may cast the copy without paying its mana cost. Exile Mizzix's Mastery.\nOverload {5}{R}{R}{R} (You may cast this spell for its overload cost. If you do, change \"target\" in its text to \"each.\")",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "R"
      ],
      "colorIndicator": null
     }
@@ -34059,6 +35431,40 @@
      "loyalty": null,
      "colors": [
       "G"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Moon-Blessed Cleric": {
+   "name": "Moon-Blessed Cleric",
+   "oracleId": "89ed0598-a3ee-4d14-9a35-25e0dd80d9fb",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "W"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Moon-Blessed Cleric",
+     "manaCost": "{2}{W}",
+     "typeLine": "Creature — Human Elf Cleric",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Human",
+      "Elf",
+      "Cleric"
+     ],
+     "oracleText": "Divine Intervention — When this creature enters, you may search your library for an enchantment card, reveal it, then shuffle and put that card on top.",
+     "power": 3,
+     "toughness": 2,
+     "loyalty": null,
+     "colors": [
+      "W"
      ],
      "colorIndicator": null
     }
@@ -34593,6 +35999,39 @@
      "loyalty": null,
      "colors": [
       "R",
+      "U"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Murmuring Mystic": {
+   "name": "Murmuring Mystic",
+   "oracleId": "dcd4da46-5438-4454-8b1b-43ca51bda1f9",
+   "layout": "normal",
+   "manaValue": 4,
+   "colorIdentity": [
+    "U"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Murmuring Mystic",
+     "manaCost": "{3}{U}",
+     "typeLine": "Creature — Human Wizard",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Human",
+      "Wizard"
+     ],
+     "oracleText": "Whenever you cast an instant or sorcery spell, create a 1/1 blue Bird Illusion creature token with flying.",
+     "power": 1,
+     "toughness": 5,
+     "loyalty": null,
+     "colors": [
       "U"
      ],
      "colorIndicator": null
@@ -35842,6 +37281,41 @@
     }
    ]
   },
+  "Nightmare Shepherd": {
+   "name": "Nightmare Shepherd",
+   "oracleId": "b8ee0dfc-f588-43b6-ab96-f3a3c58a8a3d",
+   "layout": "normal",
+   "manaValue": 4,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [
+    "Flying"
+   ],
+   "faces": [
+    {
+     "name": "Nightmare Shepherd",
+     "manaCost": "{2}{B}{B}",
+     "typeLine": "Enchantment Creature — Demon",
+     "supertypes": [],
+     "types": [
+      "Enchantment",
+      "Creature"
+     ],
+     "subtypes": [
+      "Demon"
+     ],
+     "oracleText": "Flying\nWhenever another nontoken creature you control dies, you may exile it. If you do, create a token that's a copy of that creature, except it's 1/1 and it's a Nightmare in addition to its other types.",
+     "power": 4,
+     "toughness": 4,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Nikolas Ferreira, o Mais Votado": {
    "name": "Nikolas Ferreira, o Mais Votado",
    "oracleId": "76af77b1-dfe3-33c4-ecff-dd0ad67468b8",
@@ -36023,6 +37497,45 @@
      "colors": [
       "B",
       "W"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Niv-Mizzet, Parun": {
+   "name": "Niv-Mizzet, Parun",
+   "oracleId": "33666a98-812f-4892-9f8d-33e0cbecc340",
+   "layout": "normal",
+   "manaValue": 6,
+   "colorIdentity": [
+    "R",
+    "U"
+   ],
+   "keywords": [
+    "Flying"
+   ],
+   "faces": [
+    {
+     "name": "Niv-Mizzet, Parun",
+     "manaCost": "{U}{U}{U}{R}{R}{R}",
+     "typeLine": "Legendary Creature — Dragon Wizard",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Dragon",
+      "Wizard"
+     ],
+     "oracleText": "This spell can't be countered.\nFlying\nWhenever you draw a card, Niv-Mizzet deals 1 damage to any target.\nWhenever a player casts an instant or sorcery spell, you draw a card.",
+     "power": 5,
+     "toughness": 5,
+     "loyalty": null,
+     "colors": [
+      "R",
+      "U"
      ],
      "colorIndicator": null
     }
@@ -36392,6 +37905,32 @@
     }
    ]
   },
+  "Obscura Storefront": {
+   "name": "Obscura Storefront",
+   "oracleId": "dc31a6f8-6228-4a25-b937-5d8d78514333",
+   "layout": "normal",
+   "manaValue": 0,
+   "colorIdentity": [],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Obscura Storefront",
+     "manaCost": "",
+     "typeLine": "Land",
+     "supertypes": [],
+     "types": [
+      "Land"
+     ],
+     "subtypes": [],
+     "oracleText": "When this land enters, sacrifice it. When you do, search your library for a basic Plains, Island, or Swamp card, put it onto the battlefield tapped, then shuffle and you gain 1 life.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Occult Epiphany": {
    "name": "Occult Epiphany",
    "oracleId": "6df1c314-b97b-4bbc-8b7e-a07785347a49",
@@ -36414,6 +37953,44 @@
      "oracleText": "Draw X cards, then discard X cards. Create a 1/1 white Spirit creature token with flying for each card type among cards discarded this way.",
      "power": null,
      "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "U"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Octavia, Living Thesis": {
+   "name": "Octavia, Living Thesis",
+   "oracleId": "65681a2a-8395-4390-845f-9be974994dcb",
+   "layout": "normal",
+   "manaValue": 10,
+   "colorIdentity": [
+    "U"
+   ],
+   "keywords": [
+    "Magecraft",
+    "Ward"
+   ],
+   "faces": [
+    {
+     "name": "Octavia, Living Thesis",
+     "manaCost": "{8}{U}{U}",
+     "typeLine": "Legendary Creature — Elemental Octopus",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Elemental",
+      "Octopus"
+     ],
+     "oracleText": "This spell costs {8} less to cast if you have eight or more instant and/or sorcery cards in your graveyard.\nWard {8}\nMagecraft — Whenever you cast or copy an instant or sorcery spell, target creature has base power and toughness 8/8 until end of turn.",
+     "power": 8,
+     "toughness": 8,
      "loyalty": null,
      "colors": [
       "U"
@@ -36711,6 +38288,69 @@
     }
    ]
   },
+  "Ondu Spiritdancer": {
+   "name": "Ondu Spiritdancer",
+   "oracleId": "d2ae893f-52af-4645-8712-d62fb78f901e",
+   "layout": "normal",
+   "manaValue": 5,
+   "colorIdentity": [
+    "W"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Ondu Spiritdancer",
+     "manaCost": "{4}{W}",
+     "typeLine": "Creature — Kor Cleric",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Kor",
+      "Cleric"
+     ],
+     "oracleText": "Whenever an enchantment you control enters, you may create a token that's a copy of it. Do this only once each turn.",
+     "power": 3,
+     "toughness": 3,
+     "loyalty": null,
+     "colors": [
+      "W"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "One with the Multiverse": {
+   "name": "One with the Multiverse",
+   "oracleId": "06bb4272-25d1-46db-8585-15f919267e1e",
+   "layout": "normal",
+   "manaValue": 8,
+   "colorIdentity": [
+    "U"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "One with the Multiverse",
+     "manaCost": "{6}{U}{U}",
+     "typeLine": "Enchantment",
+     "supertypes": [],
+     "types": [
+      "Enchantment"
+     ],
+     "subtypes": [],
+     "oracleText": "You may look at the top card of your library any time.\nYou may play lands and cast spells from the top of your library.\nOnce during each of your turns, you may cast a spell from your hand or the top of your library without paying its mana cost.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "U"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Oni of Wild Places": {
    "name": "Oni of Wild Places",
    "oracleId": "f551093d-40b7-43ac-8023-4cfbb6c646da",
@@ -36774,6 +38414,38 @@
      "loyalty": null,
      "colors": [
       "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Opt": {
+   "name": "Opt",
+   "oracleId": "713332c1-5bd8-400f-bfff-c1ca0697a043",
+   "layout": "normal",
+   "manaValue": 1,
+   "colorIdentity": [
+    "U"
+   ],
+   "keywords": [
+    "Scry"
+   ],
+   "faces": [
+    {
+     "name": "Opt",
+     "manaCost": "{U}",
+     "typeLine": "Instant",
+     "supertypes": [],
+     "types": [
+      "Instant"
+     ],
+     "subtypes": [],
+     "oracleText": "Scry 1. (Look at the top card of your library. You may put that card on the bottom.)\nDraw a card.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "U"
      ],
      "colorIndicator": null
     }
@@ -37297,6 +38969,39 @@
      "loyalty": null,
      "colors": [
       "W"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Otherworldly Gaze": {
+   "name": "Otherworldly Gaze",
+   "oracleId": "be668c2d-71ea-4346-8980-1fbf5e4cbed3",
+   "layout": "normal",
+   "manaValue": 1,
+   "colorIdentity": [
+    "U"
+   ],
+   "keywords": [
+    "Surveil",
+    "Flashback"
+   ],
+   "faces": [
+    {
+     "name": "Otherworldly Gaze",
+     "manaCost": "{U}",
+     "typeLine": "Instant",
+     "supertypes": [],
+     "types": [
+      "Instant"
+     ],
+     "subtypes": [],
+     "oracleText": "Surveil 3. (Look at the top three cards of your library, then put any number of them into your graveyard and the rest on top of your library in any order.)\nFlashback {1}{U} (You may cast this card from your graveyard for its flashback cost. Then exile it.)",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "U"
      ],
      "colorIndicator": null
     }
@@ -38678,6 +40383,41 @@
     }
    ]
   },
+  "Phenomenon Investigators": {
+   "name": "Phenomenon Investigators",
+   "oracleId": "cc9088c4-6f6b-4a1a-90f1-794eb1e938c6",
+   "layout": "normal",
+   "manaValue": 4,
+   "colorIdentity": [
+    "B",
+    "U"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Phenomenon Investigators",
+     "manaCost": "{2}{U}{B}",
+     "typeLine": "Creature — Human Detective",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Human",
+      "Detective"
+     ],
+     "oracleText": "As this creature enters, choose Believe or Doubt.\n• Believe — Whenever a nontoken creature you control dies, create a 2/2 black Horror enchantment creature token.\n• Doubt — At the beginning of your end step, you may return a nonland permanent you own to your hand. If you do, draw a card.",
+     "power": 3,
+     "toughness": 4,
+     "loyalty": null,
+     "colors": [
+      "B",
+      "U"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Phoenix Down": {
    "name": "Phoenix Down",
    "oracleId": "8cc7e418-cc5e-4aef-9757-874223fccd74",
@@ -39338,6 +41078,36 @@
     }
    ]
   },
+  "Pongify": {
+   "name": "Pongify",
+   "oracleId": "05849bd6-8f38-4031-be2b-e2aa03beb8cc",
+   "layout": "normal",
+   "manaValue": 1,
+   "colorIdentity": [
+    "U"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Pongify",
+     "manaCost": "{U}",
+     "typeLine": "Instant",
+     "supertypes": [],
+     "types": [
+      "Instant"
+     ],
+     "subtypes": [],
+     "oracleText": "Destroy target creature. It can't be regenerated. Its controller creates a 3/3 green Ape creature token.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "U"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Port Town": {
    "name": "Port Town",
    "oracleId": "458d2b12-f578-4392-98d3-c3bc83f316c4",
@@ -39363,6 +41133,36 @@
      "toughness": null,
      "loyalty": null,
      "colors": [],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Portent": {
+   "name": "Portent",
+   "oracleId": "e744dbb6-2d56-462a-8d49-d79c73944048",
+   "layout": "normal",
+   "manaValue": 1,
+   "colorIdentity": [
+    "U"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Portent",
+     "manaCost": "{U}",
+     "typeLine": "Sorcery",
+     "supertypes": [],
+     "types": [
+      "Sorcery"
+     ],
+     "subtypes": [],
+     "oracleText": "Look at the top three cards of target player's library, then put them back in any order. You may have that player shuffle.\nDraw a card at the beginning of the next turn's upkeep.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "U"
+     ],
      "colorIndicator": null
     }
    ]
@@ -39927,6 +41727,41 @@
     }
    ]
   },
+  "Prognostic Sphinx": {
+   "name": "Prognostic Sphinx",
+   "oracleId": "92c470c9-1373-4f3a-9805-5e9613874793",
+   "layout": "normal",
+   "manaValue": 5,
+   "colorIdentity": [
+    "U"
+   ],
+   "keywords": [
+    "Scry",
+    "Flying"
+   ],
+   "faces": [
+    {
+     "name": "Prognostic Sphinx",
+     "manaCost": "{3}{U}{U}",
+     "typeLine": "Creature — Sphinx",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Sphinx"
+     ],
+     "oracleText": "Flying\nDiscard a card: This creature gains hexproof until end of turn. Tap it.\nWhenever this creature attacks, scry 3.",
+     "power": 3,
+     "toughness": 5,
+     "loyalty": null,
+     "colors": [
+      "U"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Promise of Loyalty": {
    "name": "Promise of Loyalty",
    "oracleId": "e1d294e8-67b1-4a4a-86b8-f98f28a327d9",
@@ -40222,6 +42057,42 @@
     }
    ]
   },
+  "Pteramander": {
+   "name": "Pteramander",
+   "oracleId": "00187de2-bc48-4137-97d8-a9a0fafc76c1",
+   "layout": "normal",
+   "manaValue": 1,
+   "colorIdentity": [
+    "U"
+   ],
+   "keywords": [
+    "Flying",
+    "Adapt"
+   ],
+   "faces": [
+    {
+     "name": "Pteramander",
+     "manaCost": "{U}",
+     "typeLine": "Creature — Salamander Drake",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Salamander",
+      "Drake"
+     ],
+     "oracleText": "Flying\n{7}{U}: Adapt 4. This ability costs {1} less to activate for each instant and sorcery card in your graveyard. (If this creature has no +1/+1 counters on it, put four +1/+1 counters on it.)",
+     "power": 1,
+     "toughness": 1,
+     "loyalty": null,
+     "colors": [
+      "U"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Puca's Covenant": {
    "name": "Puca's Covenant",
    "oracleId": "9b832f87-0bd5-47bd-ab9c-718bd9a6c441",
@@ -40451,6 +42322,38 @@
      "colors": [
       "B",
       "G"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Pyretic Charge": {
+   "name": "Pyretic Charge",
+   "oracleId": "01766d9b-b2af-4a27-9e65-08c82e7d7637",
+   "layout": "normal",
+   "manaValue": 5,
+   "colorIdentity": [
+    "R"
+   ],
+   "keywords": [
+    "Plot"
+   ],
+   "faces": [
+    {
+     "name": "Pyretic Charge",
+     "manaCost": "{4}{R}",
+     "typeLine": "Sorcery",
+     "supertypes": [],
+     "types": [
+      "Sorcery"
+     ],
+     "subtypes": [],
+     "oracleText": "Discard your hand, then draw four cards. For each card discarded this way, creatures you control get +1/+0 until end of turn.\nPlot {3}{R} (You may pay {3}{R} and exile this card from your hand. Cast it as a sorcery on a later turn without paying its mana cost. Plot only as a sorcery.)",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "R"
      ],
      "colorIndicator": null
     }
@@ -40863,6 +42766,39 @@
      "toughness": null,
      "loyalty": null,
      "colors": [],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Radical Idea": {
+   "name": "Radical Idea",
+   "oracleId": "fd51dce2-8e8a-4686-910e-1bbc2825d190",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "U"
+   ],
+   "keywords": [
+    "Jump",
+    "Jump-start"
+   ],
+   "faces": [
+    {
+     "name": "Radical Idea",
+     "manaCost": "{1}{U}",
+     "typeLine": "Instant",
+     "supertypes": [],
+     "types": [
+      "Instant"
+     ],
+     "subtypes": [],
+     "oracleText": "Draw a card.\nJump-start (You may cast this card from your graveyard by discarding a card in addition to paying its other costs. Then exile this card.)",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "U"
+     ],
      "colorIndicator": null
     }
    ]
@@ -41724,6 +43660,38 @@
     }
    ]
   },
+  "Read the Bones": {
+   "name": "Read the Bones",
+   "oracleId": "5bf4d8d9-a2b2-4dba-ac05-9d4470a89db2",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [
+    "Scry"
+   ],
+   "faces": [
+    {
+     "name": "Read the Bones",
+     "manaCost": "{2}{B}",
+     "typeLine": "Sorcery",
+     "supertypes": [],
+     "types": [
+      "Sorcery"
+     ],
+     "subtypes": [],
+     "oracleText": "Scry 2, then draw two cards. You lose 2 life. (To scry 2, look at the top two cards of your library, then put any number of them on the bottom and the rest on top in any order.)",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Reality Shift": {
    "name": "Reality Shift",
    "oracleId": "70dc830e-d05b-4fc7-88dd-879e140b3fbf",
@@ -41979,6 +43947,38 @@
       "Aura"
      ],
      "oracleText": "Enchant creature\nEnchanted creature has indestructible and is goaded. (It attacks each combat if able and attacks a player other than you if able.)\n{1}{W}: Exile enchanted creature.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "W"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Redress Fate": {
+   "name": "Redress Fate",
+   "oracleId": "e8ff6780-5f22-42fa-a7c1-7406e8203063",
+   "layout": "normal",
+   "manaValue": 8,
+   "colorIdentity": [
+    "W"
+   ],
+   "keywords": [
+    "Miracle"
+   ],
+   "faces": [
+    {
+     "name": "Redress Fate",
+     "manaCost": "{6}{W}{W}",
+     "typeLine": "Sorcery",
+     "supertypes": [],
+     "types": [
+      "Sorcery"
+     ],
+     "subtypes": [],
+     "oracleText": "Return all artifact and enchantment cards from your graveyard to the battlefield.\nMiracle {3}{W} (You may cast this card for its miracle cost when you draw it if it's the first card you drew this turn.)",
      "power": null,
      "toughness": null,
      "loyalty": null,
@@ -45407,6 +47407,54 @@
     }
    ]
   },
+  "Secret Arcade // Dusty Parlor": {
+   "name": "Secret Arcade // Dusty Parlor",
+   "oracleId": "c8abde48-a07a-42a0-a43b-c357e6d9cad4",
+   "layout": "split",
+   "manaValue": 8,
+   "colorIdentity": [
+    "W"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Secret Arcade",
+     "manaCost": "{4}{W}",
+     "typeLine": "Enchantment — Room",
+     "supertypes": [],
+     "types": [
+      "Enchantment"
+     ],
+     "subtypes": [
+      "Room"
+     ],
+     "oracleText": "Nonland permanents you control and permanent spells you control are enchantments in addition to their other types.\n(You may cast either half. That door unlocks on the battlefield. As a sorcery, you may pay the mana cost of a locked door to unlock it.)",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [],
+     "colorIndicator": null
+    },
+    {
+     "name": "Dusty Parlor",
+     "manaCost": "{2}{W}",
+     "typeLine": "Enchantment — Room",
+     "supertypes": [],
+     "types": [
+      "Enchantment"
+     ],
+     "subtypes": [
+      "Room"
+     ],
+     "oracleText": "Whenever you cast an enchantment spell, put a number of +1/+1 counters equal to that spell's mana value on up to one target creature.\n(You may cast either half. That door unlocks on the battlefield. As a sorcery, you may pay the mana cost of a locked door to unlock it.)",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Secret Rendezvous": {
    "name": "Secret Rendezvous",
    "oracleId": "34b90d3e-f48c-41ff-b3e4-5cab7a9cd597",
@@ -46119,6 +48167,38 @@
      "loyalty": null,
      "colors": [
       "W"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Serum Visions": {
+   "name": "Serum Visions",
+   "oracleId": "56956afd-db53-4542-816b-490c8b0bbcf7",
+   "layout": "normal",
+   "manaValue": 1,
+   "colorIdentity": [
+    "U"
+   ],
+   "keywords": [
+    "Scry"
+   ],
+   "faces": [
+    {
+     "name": "Serum Visions",
+     "manaCost": "{U}",
+     "typeLine": "Sorcery",
+     "supertypes": [],
+     "types": [
+      "Sorcery"
+     ],
+     "subtypes": [],
+     "oracleText": "Draw a card. Scry 2.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "U"
      ],
      "colorIndicator": null
     }
@@ -47452,6 +49532,36 @@
     }
    ]
   },
+  "Sigil of the Empty Throne": {
+   "name": "Sigil of the Empty Throne",
+   "oracleId": "3b9b5b22-5a7d-4e37-a870-ca0f0efa4f36",
+   "layout": "normal",
+   "manaValue": 5,
+   "colorIdentity": [
+    "W"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Sigil of the Empty Throne",
+     "manaCost": "{3}{W}{W}",
+     "typeLine": "Enchantment",
+     "supertypes": [],
+     "types": [
+      "Enchantment"
+     ],
+     "subtypes": [],
+     "oracleText": "Whenever you cast an enchantment spell, create a 4/4 white Angel creature token with flying.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "W"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Sign in Blood": {
    "name": "Sign in Blood",
    "oracleId": "c6207f6a-a624-4754-88f5-dbe700c841ff",
@@ -48621,6 +50731,40 @@
     }
    ]
   },
+  "Smoldering Stagecoach": {
+   "name": "Smoldering Stagecoach",
+   "oracleId": "83f87884-f0f9-482e-887e-35a8a5c20eb0",
+   "layout": "normal",
+   "manaValue": 4,
+   "colorIdentity": [
+    "R"
+   ],
+   "keywords": [
+    "Crew"
+   ],
+   "faces": [
+    {
+     "name": "Smoldering Stagecoach",
+     "manaCost": "{3}{R}",
+     "typeLine": "Artifact — Vehicle",
+     "supertypes": [],
+     "types": [
+      "Artifact"
+     ],
+     "subtypes": [
+      "Vehicle"
+     ],
+     "oracleText": "Smoldering Stagecoach's power is equal to the number of instant and sorcery cards in your graveyard.\nWhenever this Vehicle attacks, the next instant spell and the next sorcery spell you cast this turn each have cascade.\nCrew 2",
+     "power": "*",
+     "toughness": 5,
+     "loyalty": null,
+     "colors": [
+      "R"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Smothering Abomination": {
    "name": "Smothering Abomination",
    "oracleId": "c3db28e5-6162-4642-a1c9-a7ace0737950",
@@ -48772,6 +50916,42 @@
      "oracleText": "At the beginning of each end step, draw a card for each opponent who drew two or more cards this turn, then create a Treasure token for each opponent who had two or more lands enter the battlefield under their control this turn.",
      "power": null,
      "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "W"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Soaring Lightbringer": {
+   "name": "Soaring Lightbringer",
+   "oracleId": "65ea7eb1-751b-4ecd-83cb-e9b6015ec194",
+   "layout": "normal",
+   "manaValue": 5,
+   "colorIdentity": [
+    "W"
+   ],
+   "keywords": [
+    "Flying"
+   ],
+   "faces": [
+    {
+     "name": "Soaring Lightbringer",
+     "manaCost": "{4}{W}",
+     "typeLine": "Enchantment Creature — Bird Glimmer",
+     "supertypes": [],
+     "types": [
+      "Enchantment",
+      "Creature"
+     ],
+     "subtypes": [
+      "Bird",
+      "Glimmer"
+     ],
+     "oracleText": "Flying\nOther enchantment creatures you control have flying.\nWhenever you attack a player, create a 1/1 white Glimmer enchantment creature token that's tapped and attacking that player.",
+     "power": 4,
+     "toughness": 5,
      "loyalty": null,
      "colors": [
       "W"
@@ -49517,6 +51697,36 @@
     }
    ]
   },
+  "Sphere of Safety": {
+   "name": "Sphere of Safety",
+   "oracleId": "92f6c063-a740-4c3c-a60a-569fd298854d",
+   "layout": "normal",
+   "manaValue": 5,
+   "colorIdentity": [
+    "W"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Sphere of Safety",
+     "manaCost": "{4}{W}",
+     "typeLine": "Enchantment",
+     "supertypes": [],
+     "types": [
+      "Enchantment"
+     ],
+     "subtypes": [],
+     "oracleText": "Creatures can't attack you or planeswalkers you control unless their controller pays {X} for each of those creatures, where X is the number of enchantments you control.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "W"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Spinerock Knoll": {
    "name": "Spinerock Knoll",
    "oracleId": "690c7f8e-fea2-4920-afa7-02ff120701a1",
@@ -49731,6 +51941,38 @@
      "loyalty": null,
      "colors": [
       "R"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Spirit-Sister's Call": {
+   "name": "Spirit-Sister's Call",
+   "oracleId": "83914a83-4de2-4d64-9770-f68a12014167",
+   "layout": "normal",
+   "manaValue": 5,
+   "colorIdentity": [
+    "B",
+    "W"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Spirit-Sister's Call",
+     "manaCost": "{3}{W}{B}",
+     "typeLine": "Enchantment",
+     "supertypes": [],
+     "types": [
+      "Enchantment"
+     ],
+     "subtypes": [],
+     "oracleText": "At the beginning of your end step, choose target permanent card in your graveyard. You may sacrifice a permanent that shares a card type with the chosen card. If you do, return the chosen card from your graveyard to the battlefield and it gains \"If this permanent would leave the battlefield, exile it instead of putting it anywhere else.\"",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "B",
+      "W"
      ],
      "colorIndicator": null
     }
@@ -50447,6 +52689,43 @@
      "loyalty": null,
      "colors": [
       "W"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Stella Lee, Wild Card": {
+   "name": "Stella Lee, Wild Card",
+   "oracleId": "8d0da2f9-0e05-4a94-8d42-fd57d06b09ba",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "R",
+    "U"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Stella Lee, Wild Card",
+     "manaCost": "{1}{U}{R}",
+     "typeLine": "Legendary Creature — Human Rogue",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Human",
+      "Rogue"
+     ],
+     "oracleText": "Whenever you cast your second spell each turn, exile the top card of your library. Until the end of your next turn, you may play that card.\n{T}: Copy target instant or sorcery spell you control. You may choose new targets for the copy. Activate only if you've cast three or more spells this turn.",
+     "power": 2,
+     "toughness": 4,
+     "loyalty": null,
+     "colors": [
+      "R",
+      "U"
      ],
      "colorIndicator": null
     }
@@ -52531,6 +54810,64 @@
     }
    ]
   },
+  "Tainted Field": {
+   "name": "Tainted Field",
+   "oracleId": "439de49b-1091-4688-9ffb-80a025df31c2",
+   "layout": "normal",
+   "manaValue": 0,
+   "colorIdentity": [
+    "B",
+    "W"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Tainted Field",
+     "manaCost": "",
+     "typeLine": "Land",
+     "supertypes": [],
+     "types": [
+      "Land"
+     ],
+     "subtypes": [],
+     "oracleText": "{T}: Add {C}.\n{T}: Add {W} or {B}. Activate only if you control a Swamp.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Tainted Isle": {
+   "name": "Tainted Isle",
+   "oracleId": "0222414f-98b5-458a-a0fd-831a66cd8b07",
+   "layout": "normal",
+   "manaValue": 0,
+   "colorIdentity": [
+    "B",
+    "U"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Tainted Isle",
+     "manaCost": "",
+     "typeLine": "Land",
+     "supertypes": [],
+     "types": [
+      "Land"
+     ],
+     "subtypes": [],
+     "oracleText": "{T}: Add {C}.\n{T}: Add {U} or {B}. Activate only if you control a Swamp.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Tainted Peak": {
    "name": "Tainted Peak",
    "oracleId": "b2bae7fc-0668-4b34-9cd6-0d80aea52275",
@@ -52852,6 +55189,41 @@
      "toughness": null,
      "loyalty": null,
      "colors": [],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Talrand, Sky Summoner": {
+   "name": "Talrand, Sky Summoner",
+   "oracleId": "ea1eb902-a23c-44ff-9169-19baf71de238",
+   "layout": "normal",
+   "manaValue": 4,
+   "colorIdentity": [
+    "U"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Talrand, Sky Summoner",
+     "manaCost": "{2}{U}{U}",
+     "typeLine": "Legendary Creature — Merfolk Wizard",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Merfolk",
+      "Wizard"
+     ],
+     "oracleText": "Whenever you cast an instant or sorcery spell, create a 2/2 blue Drake creature token with flying.",
+     "power": 2,
+     "toughness": 2,
+     "loyalty": null,
+     "colors": [
+      "U"
+     ],
      "colorIndicator": null
     }
    ]
@@ -53370,6 +55742,36 @@
     }
    ]
   },
+  "Telling Time": {
+   "name": "Telling Time",
+   "oracleId": "192f3c8a-1120-4f7f-ae0f-fe9bde59cd08",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "U"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Telling Time",
+     "manaCost": "{1}{U}",
+     "typeLine": "Instant",
+     "supertypes": [],
+     "types": [
+      "Instant"
+     ],
+     "subtypes": [],
+     "oracleText": "Look at the top three cards of your library. Put one of those cards into your hand, one on top of your library, and one on the bottom of your library.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "U"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Tempestra, Dame of Games": {
    "name": "Tempestra, Dame of Games",
    "oracleId": "12401ad1-b5c9-43dc-9389-04aaf5db8b26",
@@ -53868,6 +56270,38 @@
     }
    ]
   },
+  "Terminus": {
+   "name": "Terminus",
+   "oracleId": "3dd196b6-a85a-4e3e-bb57-ec34241f8117",
+   "layout": "normal",
+   "manaValue": 6,
+   "colorIdentity": [
+    "W"
+   ],
+   "keywords": [
+    "Miracle"
+   ],
+   "faces": [
+    {
+     "name": "Terminus",
+     "manaCost": "{4}{W}{W}",
+     "typeLine": "Sorcery",
+     "supertypes": [],
+     "types": [
+      "Sorcery"
+     ],
+     "subtypes": [],
+     "oracleText": "Put all creatures on the bottom of their owners' libraries.\nMiracle {W} (You may cast this card for its miracle cost when you draw it if it's the first card you drew this turn.)",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "W"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Terra, Herald of Hope": {
    "name": "Terra, Herald of Hope",
    "oracleId": "25d40d28-1b46-4055-959a-45719040ed30",
@@ -54109,6 +56543,38 @@
     }
    ]
   },
+  "Tezzeret's Gambit": {
+   "name": "Tezzeret's Gambit",
+   "oracleId": "b33d2b77-f068-4fdc-a1a8-0353a35e3973",
+   "layout": "normal",
+   "manaValue": 4,
+   "colorIdentity": [
+    "U"
+   ],
+   "keywords": [
+    "Proliferate"
+   ],
+   "faces": [
+    {
+     "name": "Tezzeret's Gambit",
+     "manaCost": "{3}{U/P}",
+     "typeLine": "Sorcery",
+     "supertypes": [],
+     "types": [
+      "Sorcery"
+     ],
+     "subtypes": [],
+     "oracleText": "({U/P} can be paid with either {U} or 2 life.)\nDraw two cards, then proliferate. (Choose any number of permanents and/or players, then give each another counter of each kind already there.)",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "U"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "The Balrog of Moria": {
    "name": "The Balrog of Moria",
    "oracleId": "d73191d8-6f94-4fba-acd2-2d0490e3ac00",
@@ -54217,6 +56683,38 @@
     }
    ]
   },
+  "The Eldest Reborn": {
+   "name": "The Eldest Reborn",
+   "oracleId": "44ed4c0c-a012-4895-a547-b04150553bba",
+   "layout": "saga",
+   "manaValue": 5,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "The Eldest Reborn",
+     "manaCost": "{4}{B}",
+     "typeLine": "Enchantment — Saga",
+     "supertypes": [],
+     "types": [
+      "Enchantment"
+     ],
+     "subtypes": [
+      "Saga"
+     ],
+     "oracleText": "(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)\nI — Each opponent sacrifices a creature or planeswalker of their choice.\nII — Each opponent discards a card.\nIII — Put target creature or planeswalker card from a graveyard onto the battlefield under your control.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "The Fantasticar": {
    "name": "The Fantasticar",
    "oracleId": "9b0abb58-4e2c-45dc-99b1-61a4cb79354b",
@@ -54307,6 +56805,48 @@
      "toughness": null,
      "loyalty": null,
      "colors": [],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "The Master of Keys": {
+   "name": "The Master of Keys",
+   "oracleId": "37dc566e-a91a-448c-9967-b178a93ffb62",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "B",
+    "U",
+    "W"
+   ],
+   "keywords": [
+    "Flying",
+    "Mill"
+   ],
+   "faces": [
+    {
+     "name": "The Master of Keys",
+     "manaCost": "{X}{W}{U}{B}",
+     "typeLine": "Legendary Enchantment Creature — Horror",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Enchantment",
+      "Creature"
+     ],
+     "subtypes": [
+      "Horror"
+     ],
+     "oracleText": "Flying\nWhen The Master of Keys enters, put X +1/+1 counters on it and mill twice X cards.\nEach enchantment card in your graveyard has escape. The escape cost is equal to the card's mana cost plus exile three other cards from your graveyard. (You may cast cards from your graveyard for their escape cost.)",
+     "power": 3,
+     "toughness": 3,
+     "loyalty": null,
+     "colors": [
+      "B",
+      "U",
+      "W"
+     ],
      "colorIndicator": null
     }
    ]
@@ -55036,6 +57576,73 @@
     }
    ]
   },
+  "Think Twice": {
+   "name": "Think Twice",
+   "oracleId": "fa85c5a2-8e83-4624-a35a-a0bbf17ecbb4",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "U"
+   ],
+   "keywords": [
+    "Flashback"
+   ],
+   "faces": [
+    {
+     "name": "Think Twice",
+     "manaCost": "{1}{U}",
+     "typeLine": "Instant",
+     "supertypes": [],
+     "types": [
+      "Instant"
+     ],
+     "subtypes": [],
+     "oracleText": "Draw a card.\nFlashback {2}{U} (You may cast this card from your graveyard for its flashback cost. Then exile it.)",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "U"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Third Path Iconoclast": {
+   "name": "Third Path Iconoclast",
+   "oracleId": "f7156897-2b02-4ecd-868d-d4d59244e9ed",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "R",
+    "U"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Third Path Iconoclast",
+     "manaCost": "{U}{R}",
+     "typeLine": "Creature — Human Monk",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Human",
+      "Monk"
+     ],
+     "oracleText": "Whenever you cast a noncreature spell, create a 1/1 colorless Soldier artifact creature token.",
+     "power": 2,
+     "toughness": 1,
+     "loyalty": null,
+     "colors": [
+      "R",
+      "U"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Thirst for Knowledge": {
    "name": "Thirst for Knowledge",
    "oracleId": "939e6f71-185e-41f2-9d54-72cce06f1dce",
@@ -55056,6 +57663,36 @@
      ],
      "subtypes": [],
      "oracleText": "Draw three cards. Then discard two cards unless you discard an artifact card.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "U"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Thirst for Meaning": {
+   "name": "Thirst for Meaning",
+   "oracleId": "70e58068-90d2-4720-a11c-5d243046b4a3",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "U"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Thirst for Meaning",
+     "manaCost": "{2}{U}",
+     "typeLine": "Instant",
+     "supertypes": [],
+     "types": [
+      "Instant"
+     ],
+     "subtypes": [],
+     "oracleText": "Draw three cards. Then discard two cards unless you discard an enchantment card.",
      "power": null,
      "toughness": null,
      "loyalty": null,
@@ -55504,6 +58141,34 @@
     }
    ]
   },
+  "Thriving Heath": {
+   "name": "Thriving Heath",
+   "oracleId": "d1946630-e224-40db-8f0d-388b09622288",
+   "layout": "normal",
+   "manaValue": 0,
+   "colorIdentity": [
+    "W"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Thriving Heath",
+     "manaCost": "",
+     "typeLine": "Land",
+     "supertypes": [],
+     "types": [
+      "Land"
+     ],
+     "subtypes": [],
+     "oracleText": "This land enters tapped. As it enters, choose a color other than white.\n{T}: Add {W} or one mana of the chosen color.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Thriving Isle": {
    "name": "Thriving Isle",
    "oracleId": "69fc70b8-b143-4662-ac95-e2743037239d",
@@ -55713,6 +58378,72 @@
      "loyalty": null,
      "colors": [
       "U"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Time Wipe": {
+   "name": "Time Wipe",
+   "oracleId": "36c78a5f-0148-4596-a346-f8e35037b694",
+   "layout": "normal",
+   "manaValue": 5,
+   "colorIdentity": [
+    "U",
+    "W"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Time Wipe",
+     "manaCost": "{2}{W}{W}{U}",
+     "typeLine": "Sorcery",
+     "supertypes": [],
+     "types": [
+      "Sorcery"
+     ],
+     "subtypes": [],
+     "oracleText": "Return a creature you control to its owner's hand, then destroy all creatures.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "U",
+      "W"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Timely Ward": {
+   "name": "Timely Ward",
+   "oracleId": "8e589dca-d31e-4d2f-81b1-18e5f9198795",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "W"
+   ],
+   "keywords": [
+    "Enchant"
+   ],
+   "faces": [
+    {
+     "name": "Timely Ward",
+     "manaCost": "{2}{W}",
+     "typeLine": "Enchantment — Aura",
+     "supertypes": [],
+     "types": [
+      "Enchantment"
+     ],
+     "subtypes": [
+      "Aura"
+     ],
+     "oracleText": "You may cast this spell as though it had flash if it targets a commander.\nEnchant creature\nEnchanted creature has indestructible.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "W"
      ],
      "colorIndicator": null
     }
@@ -58390,6 +61121,38 @@
     }
    ]
   },
+  "Utter End": {
+   "name": "Utter End",
+   "oracleId": "cba94732-1f1f-4ffd-9aba-45db990043fa",
+   "layout": "normal",
+   "manaValue": 4,
+   "colorIdentity": [
+    "B",
+    "W"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Utter End",
+     "manaCost": "{2}{W}{B}",
+     "typeLine": "Instant",
+     "supertypes": [],
+     "types": [
+      "Instant"
+     ],
+     "subtypes": [],
+     "oracleText": "Exile target nonland permanent.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "B",
+      "W"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Utvara Hellkite": {
    "name": "Utvara Hellkite",
    "oracleId": "05a6a571-643e-429e-8e5c-1c3f8b0dc746",
@@ -59213,6 +61976,42 @@
      "loyalty": null,
      "colors": [
       "G"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Verge Rangers": {
+   "name": "Verge Rangers",
+   "oracleId": "aece819e-3678-48bc-9677-d06ebfa58b4e",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "W"
+   ],
+   "keywords": [
+    "First strike"
+   ],
+   "faces": [
+    {
+     "name": "Verge Rangers",
+     "manaCost": "{2}{W}",
+     "typeLine": "Creature — Human Scout Ranger",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Human",
+      "Scout",
+      "Ranger"
+     ],
+     "oracleText": "First strike\nYou may look at the top card of your library any time.\nAs long as an opponent controls more lands than you, you may play lands from the top of your library. (You can play a land this way only if you have an available land play remaining.)",
+     "power": 3,
+     "toughness": 3,
+     "loyalty": null,
+     "colors": [
+      "W"
      ],
      "colorIndicator": null
     }
@@ -60067,6 +62866,38 @@
      ],
      "subtypes": [],
      "oracleText": "This spell costs {X} less to cast, where X is the total power of creatures you control.\nVolcanic Salvo deals 6 damage to each of up to two target creatures and/or planeswalkers.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "R"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Volcanic Torrent": {
+   "name": "Volcanic Torrent",
+   "oracleId": "ec2968fb-163d-4907-862b-b84a1f167833",
+   "layout": "normal",
+   "manaValue": 5,
+   "colorIdentity": [
+    "R"
+   ],
+   "keywords": [
+    "Cascade"
+   ],
+   "faces": [
+    {
+     "name": "Volcanic Torrent",
+     "manaCost": "{4}{R}",
+     "typeLine": "Sorcery",
+     "supertypes": [],
+     "types": [
+      "Sorcery"
+     ],
+     "subtypes": [],
+     "oracleText": "Cascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom in a random order.)\nVolcanic Torrent deals X damage to each creature and planeswalker your opponents control, where X is the number of spells you've cast this turn.",
      "power": null,
      "toughness": null,
      "loyalty": null,
@@ -61705,6 +64536,36 @@
     }
    ]
   },
+  "Windfall": {
+   "name": "Windfall",
+   "oracleId": "08becc07-28bc-4a2f-a6b0-28a2998d2f50",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "U"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Windfall",
+     "manaCost": "{2}{U}",
+     "typeLine": "Sorcery",
+     "supertypes": [],
+     "types": [
+      "Sorcery"
+     ],
+     "subtypes": [],
+     "oracleText": "Each player discards their hand, then draws cards equal to the greatest number of cards a player discarded this way.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "U"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Windgrace's Judgment": {
    "name": "Windgrace's Judgment",
    "oracleId": "de1ca6ed-b275-4f62-ba05-f31b3659b352",
@@ -61762,6 +64623,40 @@
      "loyalty": null,
      "colors": [
       "W"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Winged Boots": {
+   "name": "Winged Boots",
+   "oracleId": "a178a789-1f5f-46ca-a90b-574bd236a671",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "U"
+   ],
+   "keywords": [
+    "Equip"
+   ],
+   "faces": [
+    {
+     "name": "Winged Boots",
+     "manaCost": "{1}{U}",
+     "typeLine": "Artifact — Equipment",
+     "supertypes": [],
+     "types": [
+      "Artifact"
+     ],
+     "subtypes": [
+      "Equipment"
+     ],
+     "oracleText": "Equipped creature has flying and ward {4}. (Whenever equipped creature becomes the target of a spell or ability an opponent controls, counter it unless that player pays {4}.)\nEquip {1}",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "U"
      ],
      "colorIndicator": null
     }
@@ -62498,6 +65393,39 @@
      "loyalty": null,
      "colors": [
       "G"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Young Pyromancer": {
+   "name": "Young Pyromancer",
+   "oracleId": "5fac139a-07d3-4e6c-98e3-d98b199f7a6f",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "R"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Young Pyromancer",
+     "manaCost": "{1}{R}",
+     "typeLine": "Creature — Human Shaman",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Human",
+      "Shaman"
+     ],
+     "oracleText": "Whenever you cast an instant or sorcery spell, create a 1/1 red Elemental creature token.",
+     "power": 2,
+     "toughness": 1,
+     "loyalty": null,
+     "colors": [
+      "R"
      ],
      "colorIndicator": null
     }
@@ -68181,6 +71109,271 @@
    "imagem": {
     "id": "7cbd1416-dbcc-45fc-8837-3e2c50647ebc",
     "frente": "imagens/7cbd1416-dbcc-45fc-8837-3e2c50647ebc/front.png",
+    "verso": null
+   }
+  },
+  {
+   "name": "Elemental",
+   "oracleId": "1a6c2152-71ca-46be-ab83-c84633442257",
+   "layout": "token",
+   "manaValue": 0,
+   "colorIdentity": [
+    "R"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Elemental",
+     "manaCost": "",
+     "typeLine": "Token Creature — Elemental",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Elemental"
+     ],
+     "oracleText": "",
+     "power": 1,
+     "toughness": 1,
+     "loyalty": null,
+     "colors": [
+      "R"
+     ],
+     "colorIndicator": null
+    }
+   ],
+   "imagem": {
+    "id": "5411b47d-a7b5-491a-a13b-a2b8bacaa419",
+    "frente": "imagens/5411b47d-a7b5-491a-a13b-a2b8bacaa419/front.png",
+    "verso": null
+   }
+  },
+  {
+   "name": "Bird Illusion",
+   "oracleId": "6c29dcc1-d7b6-4ef6-b663-0cc0e4be0529",
+   "layout": "token",
+   "manaValue": 0,
+   "colorIdentity": [
+    "U"
+   ],
+   "keywords": [
+    "Flying"
+   ],
+   "faces": [
+    {
+     "name": "Bird Illusion",
+     "manaCost": "",
+     "typeLine": "Token Creature — Bird Illusion",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Bird",
+      "Illusion"
+     ],
+     "oracleText": "Flying",
+     "power": 1,
+     "toughness": 1,
+     "loyalty": null,
+     "colors": [
+      "U"
+     ],
+     "colorIndicator": null
+    }
+   ],
+   "imagem": {
+    "id": "95970f74-0f28-4d81-9fbd-cb49f5d5eebc",
+    "frente": "imagens/95970f74-0f28-4d81-9fbd-cb49f5d5eebc/front.png",
+    "verso": null
+   }
+  },
+  {
+   "name": "Ape",
+   "oracleId": "6736e171-ed7d-4259-8a42-f5936ebad532",
+   "layout": "token",
+   "manaValue": 0,
+   "colorIdentity": [
+    "G"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Ape",
+     "manaCost": "",
+     "typeLine": "Token Creature — Ape",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Ape"
+     ],
+     "oracleText": "",
+     "power": 3,
+     "toughness": 3,
+     "loyalty": null,
+     "colors": [
+      "G"
+     ],
+     "colorIndicator": null
+    }
+   ],
+   "imagem": {
+    "id": "07b28aff-eb3d-4e8c-8837-e32b482d10a0",
+    "frente": "imagens/07b28aff-eb3d-4e8c-8837-e32b482d10a0/front.png",
+    "verso": null
+   }
+  },
+  {
+   "name": "Soldier",
+   "oracleId": "0410f6f6-88f6-48e2-b301-7660c86317a1",
+   "layout": "token",
+   "manaValue": 0,
+   "colorIdentity": [],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Soldier",
+     "manaCost": "",
+     "typeLine": "Token Artifact Creature — Soldier",
+     "supertypes": [],
+     "types": [
+      "Artifact",
+      "Creature"
+     ],
+     "subtypes": [
+      "Soldier"
+     ],
+     "oracleText": "",
+     "power": 1,
+     "toughness": 1,
+     "loyalty": null,
+     "colors": [],
+     "colorIndicator": null
+    }
+   ],
+   "imagem": {
+    "id": "27ba03b0-feac-4d9c-9877-59c5fe18b230",
+    "frente": "imagens/27ba03b0-feac-4d9c-9877-59c5fe18b230/front.png",
+    "verso": null
+   }
+  },
+  {
+   "name": "Dragon Elemental",
+   "oracleId": "396a7698-cfbf-4655-b0d0-b1265f4093a9",
+   "layout": "token",
+   "manaValue": 0,
+   "colorIdentity": [
+    "R"
+   ],
+   "keywords": [
+    "Flying",
+    "Prowess"
+   ],
+   "faces": [
+    {
+     "name": "Dragon Elemental",
+     "manaCost": "",
+     "typeLine": "Token Creature — Dragon Elemental",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Dragon",
+      "Elemental"
+     ],
+     "oracleText": "Flying\nProwess (Whenever you cast a noncreature spell, this creature gets +1/+1 until end of turn.)",
+     "power": 4,
+     "toughness": 4,
+     "loyalty": null,
+     "colors": [
+      "R"
+     ],
+     "colorIndicator": null
+    }
+   ],
+   "imagem": {
+    "id": "a59cf525-c9b6-4dc1-9f98-199436fb90f4",
+    "frente": "imagens/a59cf525-c9b6-4dc1-9f98-199436fb90f4/front.png",
+    "verso": null
+   }
+  },
+  {
+   "name": "Horror",
+   "oracleId": "a9085214-f501-4c11-98ba-4846c519558a",
+   "layout": "token",
+   "manaValue": 0,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Horror",
+     "manaCost": "",
+     "typeLine": "Token Enchantment Creature — Horror",
+     "supertypes": [],
+     "types": [
+      "Enchantment",
+      "Creature"
+     ],
+     "subtypes": [
+      "Horror"
+     ],
+     "oracleText": "",
+     "power": 2,
+     "toughness": 2,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ],
+   "imagem": {
+    "id": "36bb6907-e7d7-4f99-966a-ab09ca130fb8",
+    "frente": "imagens/36bb6907-e7d7-4f99-966a-ab09ca130fb8/front.png",
+    "verso": null
+   }
+  },
+  {
+   "name": "Glimmer",
+   "oracleId": "c18a5b24-7458-43c9-9a1f-186eb282c82e",
+   "layout": "token",
+   "manaValue": 0,
+   "colorIdentity": [
+    "W"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Glimmer",
+     "manaCost": "",
+     "typeLine": "Token Enchantment Creature — Glimmer",
+     "supertypes": [],
+     "types": [
+      "Enchantment",
+      "Creature"
+     ],
+     "subtypes": [
+      "Glimmer"
+     ],
+     "oracleText": "",
+     "power": 1,
+     "toughness": 1,
+     "loyalty": null,
+     "colors": [
+      "W"
+     ],
+     "colorIndicator": null
+    }
+   ],
+   "imagem": {
+    "id": "475c7449-2c95-4873-94de-68a5e06cdfb8",
+    "frente": "imagens/475c7449-2c95-4873-94de-68a5e06cdfb8/front.png",
     "verso": null
    }
   }

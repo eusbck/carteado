@@ -824,5 +824,55 @@
    "otc/1 borderless legendary+fullart+inverted"
   ],
   "baixadoEm": "2026-10-14T17:54:43.766Z"
+ },
+ "Stella Lee, Wild Card": {
+  "imagemLocal": "2a8a7696-b5d9-4378-9d5c-2c9007e4df63",
+  "impressao": {
+   "id": "2a8a7696-b5d9-4378-9d5c-2c9007e4df63",
+   "colecao": "otc",
+   "numero": "3",
+   "moldura": "2015 borderless legendary inverted",
+   "artista": "Fajareka Setiawan",
+   "url": "https://cards.scryfall.io/png/front/2/a/2a8a7696-b5d9-4378-9d5c-2c9007e4df63.png?1783911971"
+  },
+  "recorte": {
+   "x": 0,
+   "y": 135,
+   "largura": 744,
+   "altura": 442
+  },
+  "tamanho": [
+   744,
+   442
+  ],
+  "candidatas": [
+   "otc/3 borderless legendary+inverted"
+  ],
+  "baixadoEm": "2026-10-14T23:22:48.111Z"
+ },
+ "Aminatou, Veil Piercer": {
+  "imagemLocal": "9f868023-6035-403d-ba91-7a4840c6c392",
+  "impressao": {
+   "id": "9f868023-6035-403d-ba91-7a4840c6c392",
+   "colecao": "dsc",
+   "numero": "1",
+   "moldura": "2015 borderless legendary inverted",
+   "artista": "David Palumbo",
+   "url": "https://cards.scryfall.io/png/front/9/f/9f868023-6035-403d-ba91-7a4840c6c392.png?1783909663"
+  },
+  "recorte": {
+   "x": 0,
+   "y": 135,
+   "largura": 744,
+   "altura": 442
+  },
+  "tamanho": [
+   744,
+   442
+  ],
+  "candidatas": [
+   "dsc/1 borderless legendary+inverted"
+  ],
+  "baixadoEm": "2026-10-14T23:24:50.605Z"
  }
 }

@@ -1,0 +1,316 @@
+{
+ "formato": 1,
+ "id": "UbO_Mq2RREaIUQhbCr3lOw",
+ "ordem": 108,
+ "nome": "Quick Draw Commander Precon Decklist",
+ "link": "https://moxfield.com/decks/UbO_Mq2RREaIUQhbCr3lOw",
+ "importadoEm": "2026-10-14T23:22:45.781Z",
+ "verificadoEm": "2026-10-14T23:22:45.781Z",
+ "atual": null,
+ "preparacao": {
+  "comandante": "Stella Lee, Wild Card",
+  "cartas": [
+   {
+    "nome": "Island",
+    "quantidade": 14
+   },
+   {
+    "nome": "Mountain",
+    "quantidade": 13
+   },
+   {
+    "nome": "Arcane Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Command Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Midnight Clock",
+    "quantidade": 1
+   },
+   {
+    "nome": "Opt",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arcane Denial",
+    "quantidade": 1
+   },
+   {
+    "nome": "Chaos Warp",
+    "quantidade": 1
+   },
+   {
+    "nome": "Deep Analysis",
+    "quantidade": 1
+   },
+   {
+    "nome": "Faithless Looting",
+    "quantidade": 1
+   },
+   {
+    "nome": "Guttersnipe",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mizzix's Mastery",
+    "quantidade": 1
+   },
+   {
+    "nome": "Preordain",
+    "quantidade": 1
+   },
+   {
+    "nome": "Propaganda",
+    "quantidade": 1
+   },
+   {
+    "nome": "Reliquary Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Talrand, Sky Summoner",
+    "quantidade": 1
+   },
+   {
+    "nome": "Temple of the False God",
+    "quantidade": 1
+   },
+   {
+    "nome": "Treasure Cruise",
+    "quantidade": 1
+   },
+   {
+    "nome": "Young Pyromancer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Temple of Epiphany",
+    "quantidade": 1
+   },
+   {
+    "nome": "Serum Visions",
+    "quantidade": 1
+   },
+   {
+    "nome": "Exotic Orchard",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tezzeret's Gambit",
+    "quantidade": 1
+   },
+   {
+    "nome": "Windfall",
+    "quantidade": 1
+   },
+   {
+    "nome": "Izzet Boilerworks",
+    "quantidade": 1
+   },
+   {
+    "nome": "Think Twice",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shivan Reef",
+    "quantidade": 1
+   },
+   {
+    "nome": "Pteramander",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dig Through Time",
+    "quantidade": 1
+   },
+   {
+    "nome": "Izzet Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Electrostatic Field",
+    "quantidade": 1
+   },
+   {
+    "nome": "Goblin Electromancer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Niv-Mizzet, Parun",
+    "quantidade": 1
+   },
+   {
+    "nome": "Murmuring Mystic",
+    "quantidade": 1
+   },
+   {
+    "nome": "Radical Idea",
+    "quantidade": 1
+   },
+   {
+    "nome": "Baral's Expertise",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cascade Bluffs",
+    "quantidade": 1
+   },
+   {
+    "nome": "Finale of Promise",
+    "quantidade": 1
+   },
+   {
+    "nome": "Finale of Revelation",
+    "quantidade": 1
+   },
+   {
+    "nome": "Epic Experiment",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vandalblast",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ponder",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shark Typhoon",
+    "quantidade": 1
+   },
+   {
+    "nome": "Pongify",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sulfur Falls",
+    "quantidade": 1
+   },
+   {
+    "nome": "Curse of the Swine",
+    "quantidade": 1
+   },
+   {
+    "nome": "Kaza, Roil Chaser",
+    "quantidade": 1
+   },
+   {
+    "nome": "Volcanic Torrent",
+    "quantidade": 1
+   },
+   {
+    "nome": "Archmage Emeritus",
+    "quantidade": 1
+   },
+   {
+    "nome": "Storm-Kiln Artist",
+    "quantidade": 1
+   },
+   {
+    "nome": "Frostboil Snarl",
+    "quantidade": 1
+   },
+   {
+    "nome": "Expressive Iteration",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cursed Mirror",
+    "quantidade": 1
+   },
+   {
+    "nome": "Octavia, Living Thesis",
+    "quantidade": 1
+   },
+   {
+    "nome": "Veyran, Voice of Duality",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rousing Refrain",
+    "quantidade": 1
+   },
+   {
+    "nome": "Winged Boots",
+    "quantidade": 1
+   },
+   {
+    "nome": "Galvanic Iteration",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bloodthirsty Adversary",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arcane Bombardment",
+    "quantidade": 1
+   },
+   {
+    "nome": "Big Score",
+    "quantidade": 1
+   },
+   {
+    "nome": "Haughty Djinn",
+    "quantidade": 1
+   },
+   {
+    "nome": "Third Path Iconoclast",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ferrous Lake",
+    "quantidade": 1
+   },
+   {
+    "nome": "Smoldering Stagecoach",
+    "quantidade": 1
+   },
+   {
+    "nome": "Thunderclap Drake",
+    "quantidade": 1
+   },
+   {
+    "nome": "Pyretic Charge",
+    "quantidade": 1
+   },
+   {
+    "nome": "Elemental Eruption",
+    "quantidade": 1
+   },
+   {
+    "nome": "Crackling Spellslinger",
+    "quantidade": 1
+   },
+   {
+    "nome": "Leyline Dowser",
+    "quantidade": 1
+   },
+   {
+    "nome": "Forger's Foundry",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lock and Load",
+    "quantidade": 1
+   },
+   {
+    "nome": "Eris, Roar of the Storm",
+    "quantidade": 1
+   }
+  ],
+  "origem": {
+   "versao": 0,
+   "atualizadoEm": "2024-04-13T01:42:58.17Z"
+  },
+  "desde": "2026-10-14T23:22:45.781Z"
+ }
+}

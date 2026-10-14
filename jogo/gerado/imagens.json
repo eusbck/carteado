@@ -28183,5 +28183,1294 @@
    "verso": null
   },
   "pt": null
+ },
+ "Stella Lee, Wild Card": {
+  "en": {
+   "id": "2a8a7696-b5d9-4378-9d5c-2c9007e4df63",
+   "frente": "imagens/2a8a7696-b5d9-4378-9d5c-2c9007e4df63/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Midnight Clock": {
+  "en": {
+   "id": "0b3c33b7-5b15-4b61-bfd6-1ffa823eb28a",
+   "frente": "imagens/0b3c33b7-5b15-4b61-bfd6-1ffa823eb28a/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "effb8e4e-af6c-41e0-977a-30b6d25329c6",
+   "frente": "imagens/effb8e4e-af6c-41e0-977a-30b6d25329c6/front.png",
+   "verso": null,
+   "nome": "Relógio da Meia-noite",
+   "tipo": "Artefato",
+   "texto": "{T}: Adicione {U}.\n{2}{U}: Coloque um marcador de hora em Relógio da Meia-noite.\nNo início de cada manutenção, coloque um marcador de hora em Relógio da Meia-noite.\nQuando o décimo segundo marcador de hora for colocado em Relógio da Meia-noite, embaralhe sua mão e seu cemitério em seu grimório e depois compre sete cards. Exile Relógio da Meia-noite.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Opt": {
+  "en": {
+   "id": "67bcf3fd-fca0-4cdb-b625-bac5fadd00e3",
+   "frente": "imagens/67bcf3fd-fca0-4cdb-b625-bac5fadd00e3/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "00658e82-deed-49c1-b7e7-a9f204acc6a7",
+   "frente": "imagens/00658e82-deed-49c1-b7e7-a9f204acc6a7/front.png",
+   "verso": null,
+   "nome": "Optar",
+   "tipo": "Mágica Instantânea",
+   "texto": "Use vidência 1.\nCompre um card.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Mizzix's Mastery": {
+  "en": {
+   "id": "4fa2d7f2-05b3-468f-9f2c-a61b46bad88e",
+   "frente": "imagens/4fa2d7f2-05b3-468f-9f2c-a61b46bad88e/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "edbc5e5f-d3ea-4cd9-8dd8-617d89858124",
+   "frente": "imagens/edbc5e5f-d3ea-4cd9-8dd8-617d89858124/front.png",
+   "verso": null,
+   "nome": "Maestria de Mizzix",
+   "tipo": "Feitiço",
+   "texto": "Exile o card alvo de mágica instantânea ou de feitiço de seu cemitério. Para cada card exilado desta forma, copie-o. Você pode conjurar a cópia sem pagar seu custo de mana. Exile Maestria de Mizzix.\nSobrecarga {5}{R}{R}{R} (Você pode conjurar esta mágica pagando seu custo de sobrecarga. Se fizer isso, substitua \"o card alvo\" em seu texto por \"cada card\".)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Talrand, Sky Summoner": {
+  "en": {
+   "id": "1be3ed47-072e-481a-b3d9-dc232ac4b24f",
+   "frente": "imagens/1be3ed47-072e-481a-b3d9-dc232ac4b24f/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "dd267217-6839-45a9-954c-230cdf73b2cd",
+   "frente": null,
+   "verso": null,
+   "nome": "Talrand, Invocador Celeste",
+   "tipo": "Criatura Lendária — Tritão Mago",
+   "texto": "Toda vez que você conjurar uma mágica instantânea ou um feitiço, crie uma ficha de criatura Dragonete azul 2/2 com voar.",
+   "faces": null,
+   "reserva": true
+  }
+ },
+ "Young Pyromancer": {
+  "en": {
+   "id": "f233a41f-106b-4bf0-a599-7ac5d83cfed5",
+   "frente": "imagens/f233a41f-106b-4bf0-a599-7ac5d83cfed5/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "aaad8316-a7af-4203-a17c-bcd244efe920",
+   "frente": "imagens/aaad8316-a7af-4203-a17c-bcd244efe920/front.png",
+   "verso": null,
+   "nome": "Piromante Jovem",
+   "tipo": "Criatura — Humano Xamã",
+   "texto": "Toda vez que você conjurar uma mágica instantânea ou um feitiço, crie uma ficha de criatura vermelha 1/1 do tipo Elemental.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Serum Visions": {
+  "en": {
+   "id": "5b75eb6b-d76c-4b92-b042-13493f9ef164",
+   "frente": "imagens/5b75eb6b-d76c-4b92-b042-13493f9ef164/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "86fdb658-c5d3-41d9-888e-2660edc61462",
+   "frente": "imagens/86fdb658-c5d3-41d9-888e-2660edc61462/front.png",
+   "verso": null,
+   "nome": "Visões do Soro",
+   "tipo": "Feitiço",
+   "texto": "Compre um card. Use vidência 2.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Tezzeret's Gambit": {
+  "en": {
+   "id": "15b2188f-06c8-4771-bba6-e6fc531ebc9a",
+   "frente": "imagens/15b2188f-06c8-4771-bba6-e6fc531ebc9a/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "6a4b1db4-e6dc-4d1d-8c7f-defddda1ae0e",
+   "frente": "imagens/6a4b1db4-e6dc-4d1d-8c7f-defddda1ae0e/front.png",
+   "verso": null,
+   "nome": "Estratagema de Tezzeret",
+   "tipo": "Feitiço",
+   "texto": "({U/P} pode ser pago com {U} ou 2 pontos de vida.)\nCompre dois cards e depois prolifere. (Escolha qualquer número de permanentes e/ou jogadores. Em seguida, dê a cada um deles outro marcador de cada tipo que eles já tenham.)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Windfall": {
+  "en": {
+   "id": "9ce7113b-08f7-4584-b65f-a7b5caa90c2f",
+   "frente": "imagens/9ce7113b-08f7-4584-b65f-a7b5caa90c2f/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "4e1ccbe1-9722-4dc6-bb3c-7a6f362c384b",
+   "frente": "imagens/4e1ccbe1-9722-4dc6-bb3c-7a6f362c384b/front.png",
+   "verso": null,
+   "nome": "Sorte Inesperada",
+   "tipo": "Feitiço",
+   "texto": "Cada jogador descarta a própria mão e depois compra uma quantidade de cards igual ao maior número de cards descartados por um jogador dessa maneira.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Izzet Boilerworks": {
+  "en": {
+   "id": "bfac9395-7ca5-48dd-ab83-7c26ada12f61",
+   "frente": "imagens/bfac9395-7ca5-48dd-ab83-7c26ada12f61/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "1f313e17-279b-4281-bbc1-414dcc00a67e",
+   "frente": "imagens/1f313e17-279b-4281-bbc1-414dcc00a67e/front.png",
+   "verso": null,
+   "nome": "Fábrica de Caldeira Izzet",
+   "tipo": "Terreno",
+   "texto": "Fábrica de Caldeira Izzet entra no campo de batalha virada.\nQuando Fábrica de Caldeira Izzet entrar no campo de batalha, devolva um terreno que você controla para a mão de seu dono.\n{T}: Adicione {U}{R}.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Think Twice": {
+  "en": {
+   "id": "d4d6d21e-4941-4b99-bed1-491b5a524d47",
+   "frente": "imagens/d4d6d21e-4941-4b99-bed1-491b5a524d47/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "b59c79d8-d69b-4bef-a644-f691510dc8c9",
+   "frente": "imagens/b59c79d8-d69b-4bef-a644-f691510dc8c9/front.png",
+   "verso": null,
+   "nome": "Pensar Duas Vezes",
+   "tipo": "Mágica Instantânea",
+   "texto": "Compre um card.\nRecapitular {2}{U} (Você pode conjurar este card de seu cemitério pagando seu custo de recapitular. Depois, exile-o.)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Pteramander": {
+  "en": {
+   "id": "0072bbbf-a695-47dd-9615-db2659f357db",
+   "frente": "imagens/0072bbbf-a695-47dd-9615-db2659f357db/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "7bf2e3d5-cc0b-4c22-9f43-74fee17af59b",
+   "frente": "imagens/7bf2e3d5-cc0b-4c22-9f43-74fee17af59b/front.png",
+   "verso": null,
+   "nome": "Pteromandra",
+   "tipo": "Criatura — Salamandra Dragonete",
+   "texto": "Voar\n{7}{U}: Adaptar 4. Esta habilidade custa {1} a menos para ser ativada para cada card de mágica instantânea ou feitiço em seu cemitério. (Se esta criatura não tiver marcadores +1/+1, coloque quatro marcadores +1/+1 nela.)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Electrostatic Field": {
+  "en": {
+   "id": "21923a95-e65e-4f4a-81f8-fc0895beb107",
+   "frente": "imagens/21923a95-e65e-4f4a-81f8-fc0895beb107/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "50ed2d1a-3453-407b-9627-3e59c3e38544",
+   "frente": "imagens/50ed2d1a-3453-407b-9627-3e59c3e38544/front.png",
+   "verso": null,
+   "nome": "Campo Eletrostático",
+   "tipo": "Criatura — Barreira",
+   "texto": "Defensor\nToda vez que você conjura uma mágica instantânea ou um feitiço, Campo Eletrostático causa 1 ponto de dano a cada oponente.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Niv-Mizzet, Parun": {
+  "en": {
+   "id": "86c5c337-d25f-4c3e-9762-09ed0c2d36d7",
+   "frente": "imagens/86c5c337-d25f-4c3e-9762-09ed0c2d36d7/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "ecd2ec17-204f-4316-b6cf-671a1ada1b29",
+   "frente": "imagens/ecd2ec17-204f-4316-b6cf-671a1ada1b29/front.png",
+   "verso": null,
+   "nome": "Niv-Mizzet, Parun",
+   "tipo": "Criatura Lendária — Dragão Mago",
+   "texto": "Esta mágica não pode ser anulada.\nVoar\nToda vez que você compra um card, Niv-Mizzet, Parun, causa 1 ponto de dano a qualquer alvo.\nToda vez que um jogador conjura uma mágica instantânea ou um feitiço, você compra um card.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Murmuring Mystic": {
+  "en": {
+   "id": "9e68dcc2-bba4-4efa-97bb-3ed892037595",
+   "frente": "imagens/9e68dcc2-bba4-4efa-97bb-3ed892037595/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "17868431-a838-4533-90cc-d12bf8d09f15",
+   "frente": "imagens/17868431-a838-4533-90cc-d12bf8d09f15/front.png",
+   "verso": null,
+   "nome": "Místico dos Murmúrios",
+   "tipo": "Criatura — Humano Mago",
+   "texto": "Toda vez que você conjurar uma mágica instantânea ou um feitiço, crie uma ficha de criatura Ave Ilusão azul 1/1 com voar.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Radical Idea": {
+  "en": {
+   "id": "aa32ec44-d29b-4ebe-82f5-4fe67bca07eb",
+   "frente": "imagens/aa32ec44-d29b-4ebe-82f5-4fe67bca07eb/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "b66989ed-4ba5-4a75-9e8a-31cd1f7b2f88",
+   "frente": "imagens/b66989ed-4ba5-4a75-9e8a-31cd1f7b2f88/front.png",
+   "verso": null,
+   "nome": "Ideia Radical",
+   "tipo": "Mágica Instantânea",
+   "texto": "Compre um card.\nRecarregar (Você pode conjurar este card de seu cemitério descartando um card além de pagar seus outros custos. Depois, exile este card.)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Baral's Expertise": {
+  "en": {
+   "id": "0f3bb535-dd33-430d-aace-7cf73d437890",
+   "frente": "imagens/0f3bb535-dd33-430d-aace-7cf73d437890/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "364e79aa-030a-45d2-983f-05e4c63fead4",
+   "frente": "imagens/364e79aa-030a-45d2-983f-05e4c63fead4/front.png",
+   "verso": null,
+   "nome": "Especialidade de Baral",
+   "tipo": "Feitiço",
+   "texto": "Devolva até três artefatos e/ou criaturas alvo para as mãos de seus donos.\nVocê pode conjurar um card com custo de mana convertido igual ou inferior a 4 da sua mão sem pagar seu custo de mana.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Finale of Promise": {
+  "en": {
+   "id": "0dbbb636-96c2-472c-a51d-d527e8e97798",
+   "frente": "imagens/0dbbb636-96c2-472c-a51d-d527e8e97798/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "49369ce0-986b-4f63-aaaf-fca2dd8124c2",
+   "frente": "imagens/49369ce0-986b-4f63-aaaf-fca2dd8124c2/front.png",
+   "verso": null,
+   "nome": "Final de Promessa",
+   "tipo": "Feitiço",
+   "texto": "Você pode conjurar até um card de mágica instantânea alvo e/ou até um card de feitiço alvo de seu cemitério, cada um com custo de mana convertido igual ou inferior a X, sem pagar seus custos de mana. Se um card conjurado dessa maneira seria colocado em seu cemitério neste turno, em vez disso, exile-o. Se X for igual ou superior a 10, copie cada uma daquelas mágicas duas vezes. Você pode escolher novos alvos para as cópias.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Finale of Revelation": {
+  "en": {
+   "id": "9bbe8f2e-3dfd-4ca9-999f-47524ec089c2",
+   "frente": "imagens/9bbe8f2e-3dfd-4ca9-999f-47524ec089c2/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "09af5b6c-2bbe-4fc1-94b4-f03a6b407cff",
+   "frente": "imagens/09af5b6c-2bbe-4fc1-94b4-f03a6b407cff/front.png",
+   "verso": null,
+   "nome": "Final de Revelação",
+   "tipo": "Feitiço",
+   "texto": "Compre X cards. Se X for igual ou superior a 10, em vez disso, embaralhe seu cemitério em seu grimório, compre X cards e desvire até cinco terrenos. Não há limite para o número máximo de cards em sua mão pelo restante do jogo.\nExile Final de Revelação.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Epic Experiment": {
+  "en": {
+   "id": "d3ad9626-3124-4ad6-9cac-49aa9c3ce88c",
+   "frente": "imagens/d3ad9626-3124-4ad6-9cac-49aa9c3ce88c/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "46ebd8ec-71cc-488f-bf38-f6a42a3ef0f7",
+   "frente": "imagens/46ebd8ec-71cc-488f-bf38-f6a42a3ef0f7/front.png",
+   "verso": null,
+   "nome": "Experimento Épico",
+   "tipo": "Feitiço",
+   "texto": "Exile os X cards do topo de seu grimório. Você pode conjurar mágicas instantâneas e feitiços com valor de mana igual ou inferior a X dentre eles sem pagar seus custos de mana. Depois, coloque em seu cemitério todos os cards exilados dessa maneira que não tenham sido conjurados.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Pongify": {
+  "en": {
+   "id": "37ff06d0-d652-4694-a3f5-bf7385e9e850",
+   "frente": "imagens/37ff06d0-d652-4694-a3f5-bf7385e9e850/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "3ba058bc-d3e4-4e81-87bc-5b8ca03fd714",
+   "frente": "imagens/3ba058bc-d3e4-4e81-87bc-5b8ca03fd714/front.png",
+   "verso": null,
+   "nome": "Pongidizar",
+   "tipo": "Mágica Instantânea",
+   "texto": "Destrua a criatura alvo. Ela não pode ser regenerada. Seu controlador cria uma ficha de criatura verde 3/3 do tipo Símio.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Kaza, Roil Chaser": {
+  "en": {
+   "id": "080585c6-d946-4435-954a-0ada936dc3f1",
+   "frente": "imagens/080585c6-d946-4435-954a-0ada936dc3f1/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "8e405eb8-4e40-425e-be6a-a1084510192c",
+   "frente": "imagens/8e405eb8-4e40-425e-be6a-a1084510192c/front.png",
+   "verso": null,
+   "nome": "Kaza, Perseguidora do Turbilhão",
+   "tipo": "Criatura Lendária — Humano Mago",
+   "texto": "Voar, ímpeto\n{T}: A próxima mágica instantânea ou feitiço que você conjurar neste turno custará {X} a menos para ser conjurada, sendo X o número de Magos que você controlar quando esta habilidade for resolvida.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Volcanic Torrent": {
+  "en": {
+   "id": "e7dc57e7-babe-45bf-991b-d464b6e66bba",
+   "frente": "imagens/e7dc57e7-babe-45bf-991b-d464b6e66bba/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "38c5b9bc-0a78-454d-a2d1-6fb3a8d47eba",
+   "frente": "imagens/38c5b9bc-0a78-454d-a2d1-6fb3a8d47eba/front.png",
+   "verso": null,
+   "nome": "Torrente Vulcânica",
+   "tipo": "Feitiço",
+   "texto": "Cascata (Quando conjurar esta mágica, exile cards do topo de seu grimório até exilar um não de terreno com custo inferior. Você pode conjurá-lo sem pagar seu custo de mana. Coloque os cards exilados no fundo de seu grimório em ordem aleatória.)\nTorrente Vulcânica causa X pontos de dano a cada criatura e planeswalker que seus oponentes controlam, sendo X o número de mágicas que você conjurou neste turno.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Octavia, Living Thesis": {
+  "en": {
+   "id": "e9591647-bad3-4015-90d1-1646a9eb4d14",
+   "frente": "imagens/e9591647-bad3-4015-90d1-1646a9eb4d14/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "1a465189-7542-482a-a193-697d357d51de",
+   "frente": "imagens/1a465189-7542-482a-a193-697d357d51de/front.png",
+   "verso": null,
+   "nome": "Octávia, Tese Viva",
+   "tipo": "Criatura Lendária — Elemental Polvo",
+   "texto": "Esta mágica custa {8} a menos para ser conjurada se você tiver oito ou mais cards de mágica instantânea e/ou de feitiço em seu cemitério.\nSalvaguarda {8}\nMagifício — Toda vez que você conjura ou copia uma mágica instantânea ou um feitiço, a criatura alvo tem poder e resistência básicos 8/8 até o final do turno.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Winged Boots": {
+  "en": {
+   "id": "116361c4-fddd-440a-ad02-8d71df733231",
+   "frente": "imagens/116361c4-fddd-440a-ad02-8d71df733231/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "ec723742-8d89-49c4-bd70-22a546011e13",
+   "frente": "imagens/ec723742-8d89-49c4-bd70-22a546011e13/front.png",
+   "verso": null,
+   "nome": "Botas Aladas",
+   "tipo": "Artefato — Equipamento",
+   "texto": "A criatura equipada tem voar e salvaguarda {4}. (Toda vez que a criatura equipada se tornar alvo de uma mágica ou habilidade que um oponente controla, anule-a, a menos que aquele jogador pague {4}.)\nEquipar {1}",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Bloodthirsty Adversary": {
+  "en": {
+   "id": "1d6d5c4b-01ec-407f-b3b6-854ab5127bdc",
+   "frente": "imagens/1d6d5c4b-01ec-407f-b3b6-854ab5127bdc/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "2e69acdb-b831-4696-9997-5f3899f5546f",
+   "frente": "imagens/2e69acdb-b831-4696-9997-5f3899f5546f/front.png",
+   "verso": null,
+   "nome": "Adversária Sanguinária",
+   "tipo": "Criatura — Vampiro",
+   "texto": "Ímpeto\nQuando Adversária Sanguinária entra no campo de batalha, você pode pagar {2}{R} qualquer número de vezes. Quando pagar esse custo uma ou mais vezes, coloque aquela quantidade de marcadores +1/+1 em Adversária Sanguinária. Depois, exile até aquela quantidade de cards de mágica instantânea e/ou de feitiço alvo com valor de mana igual ou inferior a 3 de seu cemitério e copie-os. Você pode conjurar qualquer número dessas cópias sem pagar seus custos de mana.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Arcane Bombardment": {
+  "en": {
+   "id": "ef7e6e2d-d984-483e-b117-b1c5d640dc23",
+   "frente": "imagens/ef7e6e2d-d984-483e-b117-b1c5d640dc23/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "4b161e6b-4827-4aee-89d8-87696b76bb17",
+   "frente": "imagens/4b161e6b-4827-4aee-89d8-87696b76bb17/front.png",
+   "verso": null,
+   "nome": "Bombardeio Arcano",
+   "tipo": "Encantamento",
+   "texto": "Toda vez que você conjurar sua primeira mágica instantânea ou feitiço a cada turno, exile aleatoriamente um card de mágica instantânea ou de feitiço de seu cemitério. Depois, copie cada card exilado com Bombardeio Arcano. Você pode conjurar qualquer número dessas cópias sem pagar seus custos de mana.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Haughty Djinn": {
+  "en": {
+   "id": "21228052-e7bf-4e6c-9d88-674caca5b678",
+   "frente": "imagens/21228052-e7bf-4e6c-9d88-674caca5b678/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "7dd42703-9992-4ab2-9f32-1ef4d1ef6eb7",
+   "frente": "imagens/7dd42703-9992-4ab2-9f32-1ef4d1ef6eb7/front.png",
+   "verso": null,
+   "nome": "Gênio Arrogante",
+   "tipo": "Criatura — Gênio",
+   "texto": "Voar\nO poder de Gênio Arrogante é igual ao número de cards de mágica instantânea e de feitiço em seu cemitério.\nAs mágicas instantâneas e os feitiços que você conjura custam {1} a menos para serem conjurados.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Third Path Iconoclast": {
+  "en": {
+   "id": "ad56d60b-985e-470f-935b-036084957d2b",
+   "frente": "imagens/ad56d60b-985e-470f-935b-036084957d2b/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "ddb7cf4c-9556-4874-85cd-f8cf93ba37ed",
+   "frente": "imagens/ddb7cf4c-9556-4874-85cd-f8cf93ba37ed/front.png",
+   "verso": null,
+   "nome": "Iconoclasta da Terceira Via",
+   "tipo": "Criatura — Humano Monge",
+   "texto": "Toda vez que você conjurar uma mágica não de criatura, crie uma ficha de criatura artefato Soldado incolor 1/1.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Smoldering Stagecoach": {
+  "en": {
+   "id": "a39d6484-6530-4237-84b9-68ab8a056e7c",
+   "frente": "imagens/a39d6484-6530-4237-84b9-68ab8a056e7c/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Pyretic Charge": {
+  "en": {
+   "id": "dc7a4733-63d9-4b47-8a2e-85d30fe82569",
+   "frente": "imagens/dc7a4733-63d9-4b47-8a2e-85d30fe82569/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Elemental Eruption": {
+  "en": {
+   "id": "32126592-a988-4171-b52e-cca80b881aff",
+   "frente": "imagens/32126592-a988-4171-b52e-cca80b881aff/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Crackling Spellslinger": {
+  "en": {
+   "id": "aa735e13-f784-4174-91fc-3751aaa559d1",
+   "frente": "imagens/aa735e13-f784-4174-91fc-3751aaa559d1/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Leyline Dowser": {
+  "en": {
+   "id": "bd08616b-84a0-4e82-8bd8-a228e4c57be6",
+   "frente": "imagens/bd08616b-84a0-4e82-8bd8-a228e4c57be6/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Forger's Foundry": {
+  "en": {
+   "id": "16c32c5a-e011-4729-a4a0-b2deac7d5056",
+   "frente": "imagens/16c32c5a-e011-4729-a4a0-b2deac7d5056/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Lock and Load": {
+  "en": {
+   "id": "7a35de4b-5d98-4034-acc9-f38dc8c8f7d6",
+   "frente": "imagens/7a35de4b-5d98-4034-acc9-f38dc8c8f7d6/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Eris, Roar of the Storm": {
+  "en": {
+   "id": "1adce281-4d5a-44d2-8cfa-25f860b015ff",
+   "frente": "imagens/1adce281-4d5a-44d2-8cfa-25f860b015ff/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Aminatou, Veil Piercer": {
+  "en": {
+   "id": "9f868023-6035-403d-ba91-7a4840c6c392",
+   "frente": "imagens/9f868023-6035-403d-ba91-7a4840c6c392/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Nightmare Shepherd": {
+  "en": {
+   "id": "c03c1ad6-3122-4267-80d6-94ecf1ff3884",
+   "frente": "imagens/c03c1ad6-3122-4267-80d6-94ecf1ff3884/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "41465e5d-dace-44fb-bc15-9475bc2ccf69",
+   "frente": "imagens/41465e5d-dace-44fb-bc15-9475bc2ccf69/front.png",
+   "verso": null,
+   "nome": "Pastor de Pesadelos",
+   "tipo": "Criatura Encantamento — Demônio",
+   "texto": "Voar\nToda vez que outra criatura que você controla que não seja uma ficha morre, você pode exilá-la. Se fizer isso, crie uma ficha que seja uma cópia daquela criatura, com a exceção de ser 1/1 e ser um Pesadelo além de seus outros tipos.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Mirrormade": {
+  "en": {
+   "id": "a26cbfbe-fbb8-4804-b065-ab2c42ddad9b",
+   "frente": "imagens/a26cbfbe-fbb8-4804-b065-ab2c42ddad9b/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "dba68024-de8f-4de8-b0bf-185bddb2c425",
+   "frente": "imagens/dba68024-de8f-4de8-b0bf-185bddb2c425/front.png",
+   "verso": null,
+   "nome": "Espelhamento",
+   "tipo": "Encantamento",
+   "texto": "Você pode fazer com que Espelhamento entre no campo de batalha como uma cópia de qualquer artefato ou encantamento no campo de batalha.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Sigil of the Empty Throne": {
+  "en": {
+   "id": "6875be24-1515-488f-a899-929c8e480dfd",
+   "frente": "imagens/6875be24-1515-488f-a899-929c8e480dfd/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "eab7fcd2-95bf-462f-8b09-cd3e4e82db71",
+   "frente": "imagens/eab7fcd2-95bf-462f-8b09-cd3e4e82db71/front.png",
+   "verso": null,
+   "nome": "Insígnia do Trono Vazio",
+   "tipo": "Encantamento",
+   "texto": "Toda vez que você conjurar uma mágica de encantamento, crie uma ficha de criatura branca 4/4 do tipo Anjo com voar.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Aminatou's Augury": {
+  "en": {
+   "id": "503448da-d14f-4759-85b6-0db2e90e0241",
+   "frente": "imagens/503448da-d14f-4759-85b6-0db2e90e0241/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "c55fe900-bc91-49ce-aa12-5a7211becf6b",
+   "frente": null,
+   "verso": null,
+   "nome": "Augúrio de Aminatou",
+   "tipo": "Feitiço",
+   "texto": "Exile os oito cards do topo de seu grimório. Você pode colocar um card de terreno dentre eles no campo de batalha. Até o final do turno, para cada tipo de card não de terreno, você pode conjurar uma mágica daquele tipo dentre os cards exilados sem pagar seu custo de mana.",
+   "faces": null,
+   "reserva": true
+  }
+ },
+ "Archetype of Imagination": {
+  "en": {
+   "id": "204972f7-8111-4e7d-97c4-53bcdc222230",
+   "frente": "imagens/204972f7-8111-4e7d-97c4-53bcdc222230/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "7972e058-75b4-4d9e-b2b1-1b2a40a9474b",
+   "frente": "imagens/7972e058-75b4-4d9e-b2b1-1b2a40a9474b/front.png",
+   "verso": null,
+   "nome": "Arquétipo da Imaginação",
+   "tipo": "Criatura Encantamento — Humano Mago",
+   "texto": "As criaturas que você controla têm voar.\nAs criaturas que seus oponentes controlam perdem voar e não podem ter nem ganhar voar.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Burnished Hart": {
+  "en": {
+   "id": "185660f1-584a-4098-aacd-df50fe5669d5",
+   "frente": "imagens/185660f1-584a-4098-aacd-df50fe5669d5/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "630065e9-8751-4324-82f6-3276586b2a5c",
+   "frente": null,
+   "verso": null,
+   "nome": "Cervo Brunido",
+   "tipo": "Criatura Artefato — Alce",
+   "texto": "{3}, sacrifique Cervo Brunido: Procure até dois cards de terreno básico em seu grimório, coloque-os no campo de batalha virados e depois embaralhe.",
+   "faces": null,
+   "reserva": true
+  }
+ },
+ "Portent": {
+  "en": {
+   "id": "5b360632-9c81-4b9c-8b9f-ac0b51c974a0",
+   "frente": "imagens/5b360632-9c81-4b9c-8b9f-ac0b51c974a0/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "e3fb666c-475e-40ca-9a2f-a4ee1b68c973",
+   "frente": "imagens/e3fb666c-475e-40ca-9a2f-a4ee1b68c973/front.png",
+   "verso": null,
+   "nome": "Presságio",
+   "tipo": "Feitiço",
+   "texto": "Olhe os três cards do topo do grimório do jogador alvo e depois coloque-os de volta em qualquer ordem. Você pode fazer com que aquele jogador embaralhe o próprio grimório.\nCompre um card no início da manutenção do próximo turno.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Read the Bones": {
+  "en": {
+   "id": "b3198f96-f9d8-494f-a556-24ce3ad3895d",
+   "frente": "imagens/b3198f96-f9d8-494f-a556-24ce3ad3895d/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "56415b10-b0d8-4c59-8d84-0a8980af94fe",
+   "frente": null,
+   "verso": null,
+   "nome": "Leia os Ossos",
+   "tipo": "Feitiço",
+   "texto": "Use vidência 2 e depois compre dois cards. Você perde 2 pontos de vida.",
+   "faces": null,
+   "reserva": true
+  }
+ },
+ "The Eldest Reborn": {
+  "en": {
+   "id": "4d29351e-5608-40e8-8220-6c9635d48ad4",
+   "frente": "imagens/4d29351e-5608-40e8-8220-6c9635d48ad4/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "765f1ceb-fbf6-45fb-a74f-a9bdd5ac2cb7",
+   "frente": "imagens/765f1ceb-fbf6-45fb-a74f-a9bdd5ac2cb7/front.png",
+   "verso": null,
+   "nome": "O Ancião Renascido",
+   "tipo": "Encantamento — Saga",
+   "texto": "(Conforme esta Saga entra e após sua etapa de compra, adicione um marcador de conhecimento. Sacrifique-a após III.)\nI — Cada oponente sacrifica uma criatura ou um planeswalker.\nII — Cada oponente descarta um card.\nIII — Coloque o card de criatura ou de planeswalker alvo de um cemitério no campo de batalha sob seu controle.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Azorius Chancery": {
+  "en": {
+   "id": "50ef0ac3-e911-4d67-a751-8d86160ae843",
+   "frente": "imagens/50ef0ac3-e911-4d67-a751-8d86160ae843/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "a55503a8-e7eb-49e8-a2a6-fcd7cbc35217",
+   "frente": "imagens/a55503a8-e7eb-49e8-a2a6-fcd7cbc35217/front.png",
+   "verso": null,
+   "nome": "Chancelaria Azorius",
+   "tipo": "Terreno",
+   "texto": "Chancelaria Azorius entra no campo de batalha virada.\nQuando Chancelaria Azorius entrar no campo de batalha, devolva um terreno que você controla para a mão de seu dono.\n{T}: Adicione {W}{U}.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Tainted Isle": {
+  "en": {
+   "id": "70e8e7e2-e9ea-4358-805e-c5110c8d8443",
+   "frente": "imagens/70e8e7e2-e9ea-4358-805e-c5110c8d8443/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "da546360-4601-428f-b5d3-97a449275134",
+   "frente": "imagens/da546360-4601-428f-b5d3-97a449275134/front.png",
+   "verso": null,
+   "nome": "Ilha Contaminada",
+   "tipo": "Terreno",
+   "texto": "{T}: Adicione {C}.\n{T}: Adicione {U} ou {B}. Ative somente se você controlar um Pântano.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Tainted Field": {
+  "en": {
+   "id": "c6eeab6f-a738-4005-91c2-a5f81df5c569",
+   "frente": "imagens/c6eeab6f-a738-4005-91c2-a5f81df5c569/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "46aa07ba-7bdb-4d0f-be1d-633a1b4f48c3",
+   "frente": "imagens/46aa07ba-7bdb-4d0f-be1d-633a1b4f48c3/front.png",
+   "verso": null,
+   "nome": "Campo Contaminado",
+   "tipo": "Terreno",
+   "texto": "{T}: Adicione {C}.\n{T}: Adicione {W} ou {B}. Ative somente se você controlar um Pântano.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Halimar Depths": {
+  "en": {
+   "id": "63eb18e0-c723-4de4-8498-c5362c75b2b4",
+   "frente": "imagens/63eb18e0-c723-4de4-8498-c5362c75b2b4/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "b06aa383-9c86-44d3-a126-e338674020cf",
+   "frente": "imagens/b06aa383-9c86-44d3-a126-e338674020cf/front.png",
+   "verso": null,
+   "nome": "Profundezas de Halimar",
+   "tipo": "Terreno",
+   "texto": "Profundezas de Halimar entra no campo de batalha virado.\nQuando Profundezas de Halimar entrar no campo de batalha, olhe os três cards do topo de seu grimório e depois coloque-os de volta em qualquer ordem.\n{T}: Adicione {U}.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Prognostic Sphinx": {
+  "en": {
+   "id": "d9d36763-2975-4b5c-aeda-2d0159cb5191",
+   "frente": "imagens/d9d36763-2975-4b5c-aeda-2d0159cb5191/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "3e3c3075-68ab-46a9-9bd7-41a1b7b78ede",
+   "frente": "imagens/3e3c3075-68ab-46a9-9bd7-41a1b7b78ede/front.png",
+   "verso": null,
+   "nome": "Esfinge Prognóstica",
+   "tipo": "Criatura — Esfinge",
+   "texto": "Voar\nDescarte um card: Esfinge Prognóstica ganha resistência a magia até o final do turno. Vire-a.\nToda vez que Esfinge Prognóstica atacar, use vidência 3.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Auramancer": {
+  "en": {
+   "id": "d0957032-6d98-4cac-889b-890e9bfe1f86",
+   "frente": "imagens/d0957032-6d98-4cac-889b-890e9bfe1f86/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "425155bb-f1ab-47b6-9808-3e936ed366ea",
+   "frente": "imagens/425155bb-f1ab-47b6-9808-3e936ed366ea/front.png",
+   "verso": null,
+   "nome": "Auramante",
+   "tipo": "Criatura — Humano Mago",
+   "texto": "Quando Auramante entra no campo de batalha, você pode devolver o card de encantamento alvo de seu cemitério para sua mão.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Mesa Enchantress": {
+  "en": {
+   "id": "c4f9e9fc-8b89-40ee-9b20-10e4a23e6333",
+   "frente": "imagens/c4f9e9fc-8b89-40ee-9b20-10e4a23e6333/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "bed4c056-2bf8-4a99-810e-00e0bea51d9b",
+   "frente": "imagens/bed4c056-2bf8-4a99-810e-00e0bea51d9b/front.png",
+   "verso": null,
+   "nome": "Encantadora de Meseta",
+   "tipo": "Criatura — Humano Druida",
+   "texto": "Toda vez você que conjura uma mágica de encantamento, você pode comprar um card.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Telling Time": {
+  "en": {
+   "id": "c2616749-699b-4928-8984-aba630d3397a",
+   "frente": "imagens/c2616749-699b-4928-8984-aba630d3397a/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "f7fff6e8-f400-4704-a7d8-a01766f80bae",
+   "frente": "imagens/f7fff6e8-f400-4704-a7d8-a01766f80bae/front.png",
+   "verso": null,
+   "nome": "Dizer as Horas",
+   "tipo": "Mágica Instantânea",
+   "texto": "Olhe os três cards do topo de seu grimório. Coloque um daqueles cards em sua mão, um no topo de seu grimório e o outro no fundo de seu grimório.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Dream Eater": {
+  "en": {
+   "id": "c721d449-fc77-4d86-8baf-158181e37087",
+   "frente": "imagens/c721d449-fc77-4d86-8baf-158181e37087/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "4591776f-058e-4f99-a75e-7502cae50ef2",
+   "frente": "imagens/4591776f-058e-4f99-a75e-7502cae50ef2/front.png",
+   "verso": null,
+   "nome": "Devorador de Sonhos",
+   "tipo": "Criatura — Esfinge Pesadelo",
+   "texto": "Lampejo\nVoar\nQuando Devorador de Sonhos entrar no campo de batalha, use vigiar 4. Quando fizer isso, você poderá devolver a permanente alvo que não seja terreno que um oponente controla para a mão de seu dono. (Para usar vigiar 4, olhe os quatro cards do topo de seu grimório. Depois, coloque qualquer número deles em seu cemitério e o restante no topo de seu grimório em qualquer ordem.)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Entreat the Angels": {
+  "en": {
+   "id": "ff4411bc-ed4e-4d54-9e1b-21fc77b0e415",
+   "frente": "imagens/ff4411bc-ed4e-4d54-9e1b-21fc77b0e415/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "73553621-7e27-4d0c-b0ad-2b9554aacf0e",
+   "frente": "imagens/73553621-7e27-4d0c-b0ad-2b9554aacf0e/front.png",
+   "verso": null,
+   "nome": "Súplica aos Anjos",
+   "tipo": "Feitiço",
+   "texto": "Crie X fichas de criatura branca 4/4 do tipo Anjo com voar.\nMilagre {X}{W}{W} (Você pode conjurar este card pagando seu custo de milagre ao comprá-lo se este for o primeiro card que você compra neste turno.)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Terminus": {
+  "en": {
+   "id": "4c53c684-37f9-4b95-88be-a42b9600c47c",
+   "frente": "imagens/4c53c684-37f9-4b95-88be-a42b9600c47c/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "799778b1-fdb7-405f-b05e-f651566f5c7e",
+   "frente": "imagens/799778b1-fdb7-405f-b05e-f651566f5c7e/front.png",
+   "verso": null,
+   "nome": "Terminus",
+   "tipo": "Feitiço",
+   "texto": "Coloque todas as criaturas no fundo dos grimórios de seus donos.\nMilagre {W} (Você pode conjurar este card pagando seu custo de milagre ao comprá-lo se este for o primeiro card que você compra neste turno.)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Time Wipe": {
+  "en": {
+   "id": "2198907e-a13a-42e4-ad79-ac7efba4e610",
+   "frente": "imagens/2198907e-a13a-42e4-ad79-ac7efba4e610/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "93ff787a-91eb-44ac-befc-8a971eb9e345",
+   "frente": "imagens/93ff787a-91eb-44ac-befc-8a971eb9e345/front.png",
+   "verso": null,
+   "nome": "Limpeza Temporal",
+   "tipo": "Feitiço",
+   "texto": "Devolva uma criatura que você controla para a mão de seu dono e depois destrua todas as criaturas.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Hall of Heliod's Generosity": {
+  "en": {
+   "id": "f08dfd99-59fa-4a6c-bd69-c647f639de4d",
+   "frente": "imagens/f08dfd99-59fa-4a6c-bd69-c647f639de4d/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "7f650891-f354-4a15-b2a7-d05b14b347ff",
+   "frente": "imagens/7f650891-f354-4a15-b2a7-d05b14b347ff/front.png",
+   "verso": null,
+   "nome": "Salão da Generosidade de Heliode",
+   "tipo": "Terreno Lendário",
+   "texto": "{T}: Adicione {C}.\n{1}{W}, {T}: Coloque o card de encantamento alvo de seu cemitério no topo de seu grimório.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Verge Rangers": {
+  "en": {
+   "id": "c63a5253-b3b7-48d0-8c2c-700fbd0e4c3f",
+   "frente": "imagens/c63a5253-b3b7-48d0-8c2c-700fbd0e4c3f/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "bf627e90-d611-45ef-bf41-a8544d62af49",
+   "frente": "imagens/bf627e90-d611-45ef-bf41-a8544d62af49/front.png",
+   "verso": null,
+   "nome": "Patrulheiros dos Confins",
+   "tipo": "Criatura — Humano Batedor Guardião",
+   "texto": "Iniciativa\nVocê pode olhar o card do topo de seu grimório a qualquer momento.\nEnquanto um oponente controlar mais terrenos que você, você poderá jogar terrenos do topo de seu grimório. (Você só pode jogar um terreno desta forma se tiver uma jogada de terreno disponível.)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Sphere of Safety": {
+  "en": {
+   "id": "5c4e3031-ffc2-4d4d-a9f9-e85820059315",
+   "frente": "imagens/5c4e3031-ffc2-4d4d-a9f9-e85820059315/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "b246c414-b175-4a23-9c6b-b95d66e4258e",
+   "frente": "imagens/b246c414-b175-4a23-9c6b-b95d66e4258e/front.png",
+   "verso": null,
+   "nome": "Esfera de Segurança",
+   "tipo": "Encantamento",
+   "texto": "As criaturas não podem atacar você nem um planeswalker que você controle a menos que seu controlador pague {X} para cada uma das criaturas, sendo X igual ao número de encantamentos que você controla.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Diabolic Vision": {
+  "en": {
+   "id": "c360753a-af32-4f1d-a1c7-c3f3c075ecc0",
+   "frente": "imagens/c360753a-af32-4f1d-a1c7-c3f3c075ecc0/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "4450fb5b-2138-4159-9cf9-b66b83b14c27",
+   "frente": null,
+   "verso": null,
+   "nome": "Visão Diabólica",
+   "tipo": null,
+   "texto": null,
+   "faces": null,
+   "reserva": true
+  }
+ },
+ "Athreos, Shroud-Veiled": {
+  "en": {
+   "id": "f50ffa76-f704-4d53-a15c-8316b07c1d12",
+   "frente": "imagens/f50ffa76-f704-4d53-a15c-8316b07c1d12/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "6c3cdfc4-86fe-4f70-895e-185873a0c03e",
+   "frente": "imagens/6c3cdfc4-86fe-4f70-895e-185873a0c03e/front.png",
+   "verso": null,
+   "nome": "Atreos, Velado pelo Sudário",
+   "tipo": "Criatura Encantamento Lendária — Deus",
+   "texto": "Indestrutível\nEnquanto sua devoção ao branco e ao preto for menor que sete, Atreos não será uma criatura.\nNo início da sua etapa final, coloque um marcador de moeda em outra criatura alvo.\nToda vez que uma criatura com um marcador de moeda morrer ou for colocada no exílio, devolva aquele card ao campo de batalha sob seu controle.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Thirst for Meaning": {
+  "en": {
+   "id": "b91bd773-b36b-4a7a-a9e4-3a07cff90646",
+   "frente": "imagens/b91bd773-b36b-4a7a-a9e4-3a07cff90646/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "7f9a513a-8256-4739-93eb-03ce4c36e314",
+   "frente": "imagens/7f9a513a-8256-4739-93eb-03ce4c36e314/front.png",
+   "verso": null,
+   "nome": "Sede de Significado",
+   "tipo": "Mágica Instantânea",
+   "texto": "Compre três cards. Em seguida, descarte dois cards, a menos que você descarte um card de encantamento.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Thriving Heath": {
+  "en": {
+   "id": "06329ca8-75b0-409d-bb80-6b9164f4e22a",
+   "frente": "imagens/06329ca8-75b0-409d-bb80-6b9164f4e22a/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "a53ead2d-2a33-4804-964e-a8563ae514ad",
+   "frente": "imagens/a53ead2d-2a33-4804-964e-a8563ae514ad/front.png",
+   "verso": null,
+   "nome": "Charneca Vicejante",
+   "tipo": "Terreno",
+   "texto": "Charneca Vicejante entra no campo de batalha virada.\nConforme Charneca Vicejante entrar no campo de batalha, escolha uma cor, exceto branco.\n{T}: Adicione {W} ou um mana da cor escolhida.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Utter End": {
+  "en": {
+   "id": "1819a0af-0775-431d-9637-13f8f10830f5",
+   "frente": "imagens/1819a0af-0775-431d-9637-13f8f10830f5/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "932c175e-9887-4f19-95be-13e8ef7b942a",
+   "frente": "imagens/932c175e-9887-4f19-95be-13e8ef7b942a/front.png",
+   "verso": null,
+   "nome": "Fim Absoluto",
+   "tipo": "Mágica Instantânea",
+   "texto": "Exile a permanente alvo não de terreno.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Timely Ward": {
+  "en": {
+   "id": "d61f8db1-0148-47bd-ae97-9aedccb83813",
+   "frente": "imagens/d61f8db1-0148-47bd-ae97-9aedccb83813/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "c514f49a-8af8-4799-9b1c-f1be57fecd3a",
+   "frente": "imagens/c514f49a-8af8-4799-9b1c-f1be57fecd3a/front.png",
+   "verso": null,
+   "nome": "Proteção Providencial",
+   "tipo": "Encantamento — Aura",
+   "texto": "Você pode conjurar Proteção Providencial como se tivesse lampejo se tiver como alvo um comandante.\nEncantar criatura\nA criatura encantada tem indestrutível.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Brainstone": {
+  "en": {
+   "id": "6e86ad39-2a90-466d-b188-056216429f4e",
+   "frente": "imagens/6e86ad39-2a90-466d-b188-056216429f4e/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "c50d4e08-b4c2-49cb-ab96-a720754d5b92",
+   "frente": "imagens/c50d4e08-b4c2-49cb-ab96-a720754d5b92/front.png",
+   "verso": null,
+   "nome": "Pedra Cerebral",
+   "tipo": "Artefato",
+   "texto": "{2}, {T}, sacrifique Pedra Cerebral: Compre três cards, depois coloque dois cards de sua mão no topo de seu grimório em qualquer ordem.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Moon-Blessed Cleric": {
+  "en": {
+   "id": "0555e095-8c6f-4436-80fe-99b641fad2df",
+   "frente": "imagens/0555e095-8c6f-4436-80fe-99b641fad2df/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "2eb3b204-9084-4974-82c1-f89707c17034",
+   "frente": "imagens/2eb3b204-9084-4974-82c1-f89707c17034/front.png",
+   "verso": null,
+   "nome": "Clériga Abençoada pela Lua",
+   "tipo": "Criatura — Humano Elfo Clérigo",
+   "texto": "Intervenção divina — Quando Clériga Abençoada pela Lua entra no campo de batalha, você pode procurar em seu grimório um card de encantamento, revelá-lo e depois embaralhar e colocar aquele card no topo.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Otherworldly Gaze": {
+  "en": {
+   "id": "40bafd2b-acd4-46f0-abb2-139e2918ae99",
+   "frente": "imagens/40bafd2b-acd4-46f0-abb2-139e2918ae99/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "5ea0a129-1d7a-4eaf-9248-4c845043026b",
+   "frente": "imagens/5ea0a129-1d7a-4eaf-9248-4c845043026b/front.png",
+   "verso": null,
+   "nome": "Olhar do Outro Mundo",
+   "tipo": "Mágica Instantânea",
+   "texto": "Olhe os três cards do topo de seu grimório. Coloque qualquer quantidade deles no seu cemitério e o restante no topo do seu grimório em qualquer ordem.\nRecapitular {1}{U} (Você pode conjurar este card de seu cemitério pagando seu custo de recapitular. Depois, exile-o.)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Arvinox, the Mind Flail": {
+  "en": {
+   "id": "f81e3110-857c-4074-9c55-7e87c22051c9",
+   "frente": "imagens/f81e3110-857c-4074-9c55-7e87c22051c9/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Spirit-Sister's Call": {
+  "en": {
+   "id": "bc495d03-9340-47cd-afc2-82a1677e69df",
+   "frente": "imagens/bc495d03-9340-47cd-afc2-82a1677e69df/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "e03c2b3e-754a-42d5-a367-371c9404862d",
+   "frente": "imagens/e03c2b3e-754a-42d5-a367-371c9404862d/front.png",
+   "verso": null,
+   "nome": "Chamado da Irmã Espiritual",
+   "tipo": "Encantamento",
+   "texto": "No início de sua etapa final, escolha o card de permanente alvo em seu cemitério. Você pode sacrificar uma permanente que compartilhe um tipo de card com o card escolhido. Se fizer isso, devolva o card escolhido de seu cemitério para o campo de batalha e ele ganha \"Se esta permanente deixaria o campo de batalha, exile-a em vez de colocá-la em qualquer outro lugar\".",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Obscura Storefront": {
+  "en": {
+   "id": "d8eaf8d2-8029-49d9-a94b-a72dc31fc81f",
+   "frente": "imagens/d8eaf8d2-8029-49d9-a94b-a72dc31fc81f/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "032342c3-880d-41de-b46b-d60337d0ae0d",
+   "frente": "imagens/032342c3-880d-41de-b46b-d60337d0ae0d/front.png",
+   "verso": null,
+   "nome": "Vitrine dos Obscura",
+   "tipo": "Terreno",
+   "texto": "Quando Vitrine dos Obscura entrar no campo de batalha, sacrifique-a. Quando fizer isso, procure em seu grimório um card de Planície, Ilha ou Pântano básico, coloque-o no campo de batalha virado, depois embaralhe e você ganha 1 ponto de vida.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Life Insurance": {
+  "en": {
+   "id": "60e1921e-6c98-4c60-88f4-8fbb6f30236e",
+   "frente": "imagens/60e1921e-6c98-4c60-88f4-8fbb6f30236e/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "78487bd3-711d-4b0b-8d37-d17ff3565412",
+   "frente": "imagens/78487bd3-711d-4b0b-8d37-d17ff3565412/front.png",
+   "verso": null,
+   "nome": "Seguro de Vida",
+   "tipo": "Encantamento",
+   "texto": "Extorquir (Toda vez que você conjura uma mágica, você pode pagar {W/B}. Se fizer isso, cada oponente perderá 1 ponto de vida e você ganhará uma quantidade equivalente de pontos de vida.)\nToda vez que uma criatura não ficha morre, você perde 1 ponto de vida e cria uma ficha de Tesouro.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "One with the Multiverse": {
+  "en": {
+   "id": "1c85ae22-ccd0-4649-a736-1915043daae7",
+   "frente": "imagens/1c85ae22-ccd0-4649-a736-1915043daae7/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "64fa63cf-c64b-4f18-978b-ff4549902e19",
+   "frente": "imagens/64fa63cf-c64b-4f18-978b-ff4549902e19/front.png",
+   "verso": null,
+   "nome": "Uno com o Multiverso",
+   "tipo": "Encantamento",
+   "texto": "Você pode olhar o card do topo de seu grimório a qualquer momento.\nVocê pode jogar terrenos e conjurar mágicas do topo de seu grimório.\nUma vez durante cada um de seus turnos, você pode conjurar uma mágica de sua mão ou do topo de seu grimório sem pagar seu custo de mana.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Ondu Spiritdancer": {
+  "en": {
+   "id": "ee1c6432-54d7-4b57-a554-f7194d74e03c",
+   "frente": "imagens/ee1c6432-54d7-4b57-a554-f7194d74e03c/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Demon of Fate's Design": {
+  "en": {
+   "id": "0d3668fe-78d9-4c2c-8c83-5cace9d39e03",
+   "frente": "imagens/0d3668fe-78d9-4c2c-8c83-5cace9d39e03/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Bottomless Pool // Locker Room": {
+  "en": {
+   "id": "606fe87c-d17b-4fa7-8e82-e7002d8229ef",
+   "frente": "imagens/606fe87c-d17b-4fa7-8e82-e7002d8229ef/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Cramped Vents // Access Maze": {
+  "en": {
+   "id": "7ba1e27e-ed0d-438c-9ec6-a48a04718512",
+   "frente": "imagens/7ba1e27e-ed0d-438c-9ec6-a48a04718512/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Redress Fate": {
+  "en": {
+   "id": "19f56096-f692-4719-af38-6a4955f2b65c",
+   "frente": "imagens/19f56096-f692-4719-af38-6a4955f2b65c/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Metamorphosis Fanatic": {
+  "en": {
+   "id": "16448d95-ee21-4def-b880-26f6f159c213",
+   "frente": "imagens/16448d95-ee21-4def-b880-26f6f159c213/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Ancient Cellarspawn": {
+  "en": {
+   "id": "27e2477d-4f04-408d-8c39-8a886ac81f44",
+   "frente": "imagens/27e2477d-4f04-408d-8c39-8a886ac81f44/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Phenomenon Investigators": {
+  "en": {
+   "id": "57195155-6bdf-43c3-9f2e-11c31aef6b9c",
+   "frente": "imagens/57195155-6bdf-43c3-9f2e-11c31aef6b9c/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Secret Arcade // Dusty Parlor": {
+  "en": {
+   "id": "fe050c16-9be5-42ef-988f-0531a8bb2352",
+   "frente": "imagens/fe050c16-9be5-42ef-988f-0531a8bb2352/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Soaring Lightbringer": {
+  "en": {
+   "id": "fc7895bf-a5fe-45bd-bc57-c4abe0703900",
+   "frente": "imagens/fc7895bf-a5fe-45bd-bc57-c4abe0703900/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Fear of Sleep Paralysis": {
+  "en": {
+   "id": "845e9d68-11a9-4759-a031-13464d337e12",
+   "frente": "imagens/845e9d68-11a9-4759-a031-13464d337e12/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "The Master of Keys": {
+  "en": {
+   "id": "3545341b-dacc-4ac8-976e-39754a62bbc3",
+   "frente": "imagens/3545341b-dacc-4ac8-976e-39754a62bbc3/front.png",
+   "verso": null
+  },
+  "pt": null
  }
 }

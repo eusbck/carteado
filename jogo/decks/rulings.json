@@ -18736,6 +18736,2059 @@
     "published_at": "2024-04-12",
     "comment": "If you somehow control two Felixes, a creature you control dealing combat damage to a player causes abilities of permanents you control to trigger three times. A third Felix causes such abilities to trigger four times, a fourth causes such abilities to trigger five times, and so on."
    }
+  ],
+  "8d0da2f9-0e05-4a94-8d42-fd57d06b09ba": [
+   {
+    "source": "wotc",
+    "published_at": "2024-04-12",
+    "comment": "Spells that were cast before Stella Lee entered the battlefield count. If Stella Lee was the first spell you cast this turn, the next spell you cast this turn is your second spell."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-04-12",
+    "comment": "You pay all costs and follow all normal timing rules for cards played from exile with Stella Lee’s first ability. For example, if the exiled card is a land card, you may play it only during your main phase while the stack is empty."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-04-12",
+    "comment": "The copy created by Stella Lee’s last ability will have the same targets as the spell it’s copying unless you choose new ones. You may change any number of the targets, including all of them or none of them. The new targets must be legal."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-04-12",
+    "comment": "If the copied spell is modal (that is, it says “Choose one —” or the like), the copy will have the same mode or modes. You can’t choose different ones."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-04-12",
+    "comment": "If the copied spell divides damage or distributes counters among a number of targets, the division and number of targets can’t be changed. If you choose new targets, you must choose the same number of targets."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-04-12",
+    "comment": "If a spell that’s copied has an X whose value was determined as it was cast, the copy will have the same value of X."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-04-12",
+    "comment": "You can’t choose to pay any additional costs for the copy. However, effects based on any additional costs that were paid for the original spell are copied as though those same costs were paid for the copy too."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-04-12",
+    "comment": "The copy made by Stella Lee’s last ability is created on the stack, so it’s not “cast.”"
+   }
+  ],
+  "c68faebc-b2cd-461b-b93e-e1fcd4816810": [
+   {
+    "source": "wotc",
+    "published_at": "2019-10-04",
+    "comment": "If Midnight Clock leaves the battlefield while its last ability is on the stack, it won't be exiled."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2019-10-04",
+    "comment": "You can activate Midnight Clock's mana ability to pay the cost of its second ability."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2019-10-04",
+    "comment": "Midnight Clock's last ability triggers after one or more counters are put onto it if it had fewer than twelve counters on it before those counters were put on it and it has twelve or more counters on it after."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2019-10-04",
+    "comment": "Midnight Clock's first triggered ability triggers at the beginning of each upkeep, not just your upkeep. In a Two-Headed Giant game, an ability that triggers at the beginning of each upkeep rather than each player's upkeep triggers only once during each team's upkeep."
+   }
+  ],
+  "713332c1-5bd8-400f-bfff-c1ca0697a043": [],
+  "40362fe0-a1a9-4d76-8c35-eac474b91af5": [
+   {
+    "source": "wotc",
+    "published_at": "2024-01-12",
+    "comment": "If you are instructed to cast a spell with overload \"without paying its mana cost,\" you can't choose to pay its overload cost instead."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-01-12",
+    "comment": "If you don't pay the overload cost of a spell with overload, that spell will have a single target. If you pay the overload cost, the spell won't have any targets."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-01-12",
+    "comment": "Because a spell with overload doesn't target when its overload cost is paid, it may affect permanents with hexproof or with protection from the appropriate color."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-01-12",
+    "comment": "To determine the total cost of a spell, start with the mana cost or alternative cost you're paying (such as an overload cost), add any cost increases, then apply any cost reductions. The mana value of the spell remains unchanged, no matter what the total cost to cast it was."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2015-11-04",
+    "comment": "The copies are created and cast during the resolution of Mizzix's Mastery. You can't wait to cast them later in the turn. Timing restrictions based on the copy's type are ignored. Other restrictions (such as \"Cast [this spell] only during combat\") are not."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2015-11-04",
+    "comment": "If you cast a spell \"without paying its mana cost,\" you can't pay any alternative costs. You can, however, pay additional costs, such as kicker costs. If the card has any mandatory additional costs, you must pay those."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2015-11-04",
+    "comment": "If the copy has {X} in its mana cost, you must choose 0 as the value of X."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2015-11-04",
+    "comment": "The cards remain exiled no matter what happens to the copies."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2015-11-04",
+    "comment": "If Mizzix's Mastery exiled multiple cards, you may cast the copies in any order. The last copy you cast will be the first one to resolve."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2015-11-04",
+    "comment": "If you don't cast one of the copies (perhaps because there are no legal targets available or you don't want to), the copy will cease to exist."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2015-11-04",
+    "comment": "Mizzix's Mastery is still on the stack as it resolves. If you pay the overload cost, Mizzix's Mastery won't copy itself."
+   }
+  ],
+  "ea1eb902-a23c-44ff-9169-19baf71de238": [
+   {
+    "source": "wotc",
+    "published_at": "2021-03-19",
+    "comment": "An ability that triggers when a player casts a spell resolves before the spell that caused it to trigger, but after targets have been chosen for that spell. It resolves even if that spell is countered."
+   }
+  ],
+  "5fac139a-07d3-4e6c-98e3-d98b199f7a6f": [
+   {
+    "source": "wotc",
+    "published_at": "2021-03-19",
+    "comment": "An ability that triggers when a player casts a spell resolves before the spell that caused it to trigger, but after targets have been chosen for that spell. It resolves even if that spell is countered."
+   }
+  ],
+  "56956afd-db53-4542-816b-490c8b0bbcf7": [],
+  "b33d2b77-f068-4fdc-a1a8-0353a35e3973": [
+   {
+    "source": "wotc",
+    "published_at": "2023-02-04",
+    "comment": "If a permanent ever has both +1/+1 counters and -1/-1 counters on it at the same time, they're removed in pairs as a state-based action so that the permanent has only one of those kinds of counters on it."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-02-04",
+    "comment": "To proliferate, you can choose any permanent that has a counter, including ones controlled by opponents. You can choose any player who has a counter, including opponents. You can't choose cards in any zone other than the battlefield, even if they have counters on them."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-02-04",
+    "comment": "You don't have to choose every permanent or player that has a counter, only the ones you want to add another counter to. Since \"any number\" includes zero, you don't have to choose any permanents at all, and you don't have to choose any players at all."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-02-04",
+    "comment": "If a player or permanent has more than one kind of counter on it, and you choose for it to get additional counters, it must get one of each kind of counter it already has. You can't have it get just one kind of counter it already has and not the others."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-02-04",
+    "comment": "An ability that triggers \"Whenever you proliferate\" triggers even if you chose no permanents or players while doing so."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-02-04",
+    "comment": "Players can respond to a spell or ability whose effect includes proliferating. Once that spell or ability starts to resolve, however, and its controller chooses which permanents and players will get new counters, it's too late for anyone to respond."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2011-06-01",
+    "comment": "To calculate the mana value of a card with Phyrexian mana symbols in its cost, count each Phyrexian mana symbol as 1."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2011-06-01",
+    "comment": "As you cast a spell or activate an activated ability with one or more Phyrexian mana symbols in its cost, you choose how to pay for each Phyrexian mana symbol at the same time you would choose modes or choose a value for X."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2011-06-01",
+    "comment": "If you're at 1 life or less, you can't pay 2 life."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2011-06-01",
+    "comment": "Phyrexian mana is not a new color. Players can't produce Phyrexian mana."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2011-06-01",
+    "comment": "A card with Phyrexian mana symbols in its mana cost is each color that appears in that mana cost, regardless of how that cost may have been paid."
+   }
+  ],
+  "08becc07-28bc-4a2f-a6b0-28a2998d2f50": [],
+  "1cb9d94a-3039-4f2e-8fcc-6996f9a45f74": [
+   {
+    "source": "wotc",
+    "published_at": "2013-04-15",
+    "comment": "If this land enters the battlefield and you control no other lands, its ability will force you to return it to your hand."
+   }
+  ],
+  "fa85c5a2-8e83-4624-a35a-a0bbf17ecbb4": [
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "\"Flashback [cost]\" means \"You may cast this card from your graveyard by paying [cost] rather than paying its mana cost\" and \"If the flashback cost was paid, exile this card instead of putting it anywhere else any time it would leave the stack.\""
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "You must still follow any timing restrictions and permissions, including those based on the card's type. For instance, you can cast a sorcery using flashback only when you could normally cast a sorcery."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "To determine the total cost of a spell, start with the mana cost or alternative cost (such as a flashback cost) you're paying, add any cost increases, then apply any cost reductions. The mana value of the spell is determined only by its mana cost, no matter what the total cost to cast the spell was."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "A spell cast using flashback will always be exiled afterward, whether it resolves, is countered, or leaves the stack in some other way."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "You can cast a spell using flashback even if it was somehow put into your graveyard without having been cast."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "If a card with flashback is put into your graveyard during your turn, you can cast it if it's legal to do so before any other player can take any actions."
+   }
+  ],
+  "00187de2-bc48-4137-97d8-a9a0fafc76c1": [
+   {
+    "source": "wotc",
+    "published_at": "2019-01-25",
+    "comment": "Pteramander's activated ability can't reduce itself to less than {U} to activate."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2019-01-25",
+    "comment": "You can always activate an ability that will cause a creature to adapt. As that ability resolves, if the creature has a +1/+1 counter on it for any reason, you simply won't put any +1/+1 counters on it."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2019-01-25",
+    "comment": "If a creature somehow loses all of its +1/+1 counters, it can adapt again and get more +1/+1 counters."
+   }
+  ],
+  "2fa94a07-c932-4f85-b6e0-a97d2b29eb52": [
+   {
+    "source": "wotc",
+    "published_at": "2018-10-05",
+    "comment": "In a Two-Headed Giant game, Electrostatic Field's triggered ability causes the opposing team to lose 2 life."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-10-05",
+    "comment": "Electrostatic Field's triggered ability resolves before the spell that caused it to trigger. It resolves even if that spell is countered."
+   }
+  ],
+  "33666a98-812f-4892-9f8d-33e0cbecc340": [
+   {
+    "source": "wotc",
+    "published_at": "2018-10-05",
+    "comment": "If an effect instructs you to draw multiple cards, Niv-Mizzet's first triggered ability triggers that many times. You choose targets for those abilities after you've drawn all of the cards."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-10-05",
+    "comment": "If a spell or ability causes you to put cards into your hand without specifically using the word \"draw,\" Niv-Mizzet's first triggered ability won't trigger."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-10-05",
+    "comment": "Niv-Mizzet's second triggered ability resolves before the spell that caused it to trigger. It resolves even if that spell is countered. This causes its first triggered ability to trigger, and that also resolves before the spell."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-10-05",
+    "comment": "Players can cast spells and activate abilities after Niv-Mizzet's second triggered ability resolves but before the spell that caused it to trigger does. Notably, the card you draw may be able to counter that spell."
+   }
+  ],
+  "dcd4da46-5438-4454-8b1b-43ca51bda1f9": [
+   {
+    "source": "wotc",
+    "published_at": "2018-10-05",
+    "comment": "Murmuring Mystic's triggered ability resolves before the spell that caused it to trigger. It resolves even if that spell is countered."
+   }
+  ],
+  "fd51dce2-8e8a-4686-910e-1bbc2825d190": [
+   {
+    "source": "wotc",
+    "published_at": "2018-10-05",
+    "comment": "You must still follow any timing restrictions and permissions when casting a spell with jump-start, including those based on the card's type. For instance, you can cast a sorcery using jump-start only when you could normally cast a sorcery."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-10-05",
+    "comment": "A spell cast using jump-start will always be exiled afterward, whether it resolves, it's countered, or it leaves the stack in some other way."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-10-05",
+    "comment": "If an effect allows you to pay an alternative cost rather than a spell's mana cost, you may pay that alternative cost when you jump-start a spell. You'll still discard a card as an additional cost to cast it."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-10-05",
+    "comment": "If a card with jump-start is put into your graveyard during your turn, you'll be able to cast it right away if it's legal to do so, before an opponent can take any actions."
+   }
+  ],
+  "a1cdcb8c-1e12-4d39-aa4a-db678a80df9c": [
+   {
+    "source": "wotc",
+    "published_at": "2017-04-18",
+    "comment": "The mana value of a split card is determined by the combined mana cost of its two halves. If an expertise spell allows you to cast a split card, you may cast either half or, if that split card has fuse, both halves."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2017-02-09",
+    "comment": "If the card has {X} in its mana cost, you must choose 0 as the value of X when casting it without paying its mana cost."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2017-02-09",
+    "comment": "The card that you cast may be an artifact or creature that was returned to your hand by this spell."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2017-02-09",
+    "comment": "If the Expertise spell you cast has any targets, and those targets become illegal before the spell resolves, the spell doesn't resolve and none of its effects happen. You won't get to cast a free spell."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2017-02-09",
+    "comment": "Effects that allow you to \"cast\" a card don't allow you to play a land card."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2017-02-09",
+    "comment": "If you cast a card \"without paying its mana cost,\" you can't choose to cast it for any alternative costs, such as emerge costs. You can, however, pay additional costs. If the card has any mandatory additional costs, such as that of Cathartic Reunion, you must pay those to cast the card."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2017-02-09",
+    "comment": "While you're casting your free spell, the Expertise spell is still on the stack. It will be put into its owner's graveyard after the free spell is cast. The free spell can't target the Expertise card in your graveyard. It can target the Expertise spell on the stack, but the Expertise spell will become an illegal target before the free spell resolves."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2017-02-09",
+    "comment": "Any triggered abilities that trigger while performing the Expertise spell's first effect won't be put onto the stack until after you're done casting your free spell. They're put onto the stack at the same time as any abilities that triggered while casting that spell regardless of the order in which those abilities triggered."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2017-02-09",
+    "comment": "A card's mana value is determined solely by the mana symbols printed in its upper right corner. The mana value is the total amount of mana in that cost, regardless of color. For example, a card with mana cost {1}{U}{U} has mana value 3. Ignore any alternative costs, additional costs, cost increases, or cost reductions that could apply to it. A card with no mana cost has a mana value of 0."
+   }
+  ],
+  "d6fafb50-9531-4fbf-bb1e-ebb4dd39281c": [
+   {
+    "source": "wotc",
+    "published_at": "2019-05-03",
+    "comment": "As Finale of Promise resolves, first you cast the target instant card and/or the target sorcery card in either order. Then, if X is 10 or more, you copy each of those twice and put the copies on the stack in any order. The copies will resolve before the original spells."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2019-05-03",
+    "comment": "A split card that's an instant and a sorcery card may be the target of Finale of Promise twice. However, once you cast that card once, it can't be cast a second time."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2019-05-03",
+    "comment": "If a spell has {X} in its mana cost, you must choose 0 as the value of X when casting it without paying its mana cost."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2019-05-03",
+    "comment": "If you cast a card \"without paying its mana cost,\" you can't choose to cast it for any alternative costs. You can, however, pay additional costs. If the card has any mandatory additional costs, such as that of Spark Harvest, you must pay those to cast the card."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2019-05-03",
+    "comment": "If the spell that's copied is modal (that is, it says \"Choose one—\" or the like), the copies will have the same mode or modes. You can't choose different ones."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2019-05-03",
+    "comment": "If the spell has damage divided as it was cast, the division can't be changed (although the targets receiving that damage still can). The same is true of spells that distribute counters."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2019-05-03",
+    "comment": "You can't choose to pay any additional costs for the copies. However, effects based on any additional costs that were paid for the original spell are copied as though those same costs were paid for the copy too."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2019-05-03",
+    "comment": "The copies that Finale of Promise creates are created on the stack, so they're not \"cast.\" Abilities that trigger when a player casts a spell won't trigger."
+   }
+  ],
+  "755bd5d8-67f1-4f24-a4e8-d98edf2f2e03": [],
+  "08bc10fd-8901-4836-ad4d-a867e1bcba77": [
+   {
+    "source": "wotc",
+    "published_at": "2021-03-19",
+    "comment": "If you cast a card \"without paying its mana cost,\" you can't choose to cast it for any alternative costs. You can, however, pay additional costs. If the card has any mandatory additional costs, you must pay those to cast the card."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2021-03-19",
+    "comment": "If the card has {X} in its mana cost, you must choose 0 as the value of X when casting it without paying its mana cost."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2021-03-19",
+    "comment": "You cast the cards one at a time, choosing modes, targets, and so on. The last card you cast will be the first one to resolve."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2021-03-19",
+    "comment": "When casting an instant or sorcery card this way, ignore timing restrictions based on the card's type. Other timing restrictions, such as \"Cast [this card] only during combat,\" must be followed."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2021-03-19",
+    "comment": "If you can't cast a card, perhaps because there are no legal targets available, or if you choose not to cast it, it will be put into your graveyard."
+   }
+  ],
+  "05849bd6-8f38-4031-be2b-e2aa03beb8cc": [
+   {
+    "source": "wotc",
+    "published_at": "2021-03-19",
+    "comment": "If the target creature is an illegal target by the time Pongify tries to resolve, the spell won't resolve. No player creates an Ape token. If the target is legal but not destroyed (most likely because it has indestructible), its controller does create an Ape token."
+   }
+  ],
+  "0b8517c0-0441-4fd9-99ec-2274e57c3cb6": [
+   {
+    "source": "wotc",
+    "published_at": "2020-09-25",
+    "comment": "To determine the total cost of a spell, start with the mana cost or alternative cost you're paying, add any cost increases, then apply any cost reductions (such as that of Kaza's activated ability). The mana value of the spell is determined only by its mana cost, no matter what the total cost to cast the spell was."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2020-09-25",
+    "comment": "Kaza's cost reduction can reduce only generic mana in a spell's cost. It can't reduce colored mana requirements."
+   }
+  ],
+  "ec2968fb-163d-4907-862b-b84a1f167833": [
+   {
+    "source": "wotc",
+    "published_at": "2021-06-18",
+    "comment": "If a spell with cascade is countered, the cascade ability will still resolve normally."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2021-06-18",
+    "comment": "A spell's mana value is determined only by its mana cost. Ignore any alternative costs, additional costs, cost increases, or cost reductions."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2021-06-18",
+    "comment": "Due to a 2021 rules change to cascade, not only do you stop exiling cards if you exile a nonland card with lesser mana value than the spell with cascade, but the resulting spell you cast must also have lesser mana value. Previously, in cases where a card's mana value differed from the resulting spell, such as with some modal double-faced cards or cards with an Adventure, you could cast a spell with a higher mana value than the exiled card."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2021-06-18",
+    "comment": "When the cascade ability resolves, you must exile cards. The only optional part of the ability is whether or not you cast the last card exiled."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2021-06-18",
+    "comment": "Cascade triggers when you cast the spell, meaning that it resolves before that spell. If you end up casting the exiled card, it will go on the stack above the spell with cascade."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2021-06-18",
+    "comment": "You exile the cards face up. All players will be able to see them."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2021-06-18",
+    "comment": "If you cast a card \"without paying its mana cost,\" you can't choose to cast it for any alternative costs. You can, however, pay additional costs. If the card has any mandatory additional costs, you must pay those to cast the card."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2021-06-18",
+    "comment": "The mana value of a split card is determined by the combined mana cost of its two halves. If cascade allows you to cast a split card, you may cast either half but not both halves."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2021-06-18",
+    "comment": "If the card has {X} in its mana cost, you must choose 0 as the value of X when casting it without paying its mana cost."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2020-11-10",
+    "comment": "The value of X is calculated as Volcanic Torrent resolves. It will include Volcanic Torrent, spells you cast in response to Volcanic Torrent, and spells you cast prior to casting Volcanic Torrent, even if those spells haven't resolved yet. For example, say the first spell you cast in a turn has cascade and that cascade ability causes you to cast Volcanic Torrent. Then Volcanic Torrent's cascade ability causes you to cast another spell. When Volcanic Torrent resolves, X will be 3."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2020-11-10",
+    "comment": "If you copy a spell, Volcanic Torrent won't count the copy. However, if an effect instructs you to copy a card and then cast the copy, it will be counted by Volcanic Torrent."
+   }
+  ],
+  "65681a2a-8395-4390-845f-9be974994dcb": [
+   {
+    "source": "wotc",
+    "published_at": "2021-04-16",
+    "comment": " Each magecraft ability has a different effect, although they all have the same trigger condition, whenever you cast or copy an instant or sorcery spell."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2021-04-16",
+    "comment": " For example, if you control Archmage Emeritus and cast an instant or sorcery spell, Archmage Emeritus's magecraft ability will trigger and you will draw a card."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2021-04-16",
+    "comment": " If an effect creates a copy of an instant or sorcery spell, this will also cause the magecraft ability to trigger."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2021-04-16",
+    "comment": " If an effect creates multiple copies of an instant or sorcery spell, magecraft abilities trigger once for each copy created by the effect."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2021-04-16",
+    "comment": " Some effects instruct you to copy an instant or sorcery card in a zone other than the stack. These copies do not cause magecraft abilities to trigger. However, most effects that do this also allow you to cast the copy, and casting the copy will cause magecraft abilities to trigger."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2021-04-16",
+    "comment": "If a player casts a spell that targets multiple permanents their opponent controls with ward, each of those ward abilities will trigger. If that player doesn't pay for all of them, the spell will be countered."
+   }
+  ],
+  "a178a789-1f5f-46ca-a90b-574bd236a671": [
+   {
+    "source": "wotc",
+    "published_at": "2021-07-23",
+    "comment": "If a player casts a spell that targets multiple permanents their opponent controls with ward, each of those ward abilities will trigger. If that player doesn't pay for all of them, the spell will be countered."
+   }
+  ],
+  "3b943c3e-1f18-4997-b6d0-28ef75aed88e": [
+   {
+    "source": "wotc",
+    "published_at": "2021-09-24",
+    "comment": "Whether or not you cast the copies this way, the original cards will remain in exile."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2021-09-24",
+    "comment": "Copies cast this way are cast during the resolution of the ability. You don't have to follow normal timing requirements and you can't wait and cast them later."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2021-09-24",
+    "comment": "After you pay the {2}{R} cost one or more times, a second ability triggers and you choose the targets for it. Players may respond to the new ability at that point. As that ability resolves, Bloodthirsty Adversary gets its counters and the target cards are exiled."
+   }
+  ],
+  "1e36a42f-58e2-49bc-8c14-7f75e1d8ef98": [
+   {
+    "source": "wotc",
+    "published_at": "2022-04-29",
+    "comment": "The spell that caused Arcane Bombardment's ability to trigger is normally still on the stack while that ability resolves. That spell won't be among the cards in your graveyard when you exile an instant or sorcery from it at random."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2022-04-29",
+    "comment": "If you've already cast an instant or sorcery spell the turn that Arcane Bombardment enters the battlefield, it won't trigger until you cast an instant or sorcery spell on a later turn."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2022-04-29",
+    "comment": "You cast the desired copies as the triggered ability resolves. You don't get to cast them later in the turn. You choose the order of copies as you cast them."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2022-04-29",
+    "comment": "If you cast a spell with {X} in its cost without paying its mana cost, you must choose 0 for X."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2022-04-29",
+    "comment": "If Arcane Bombardment leaves the battlefield, the exiled cards remain in exile. If it returns to the battlefield or you play another copy of it, you won't get to cast copies of the cards previously exiled."
+   }
+  ],
+  "44036bb5-f300-40bd-9180-6b246315d886": [
+   {
+    "source": "wotc",
+    "published_at": "2022-09-09",
+    "comment": "The ability that defines Haughty Djinn's power functions in all zones."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2022-09-09",
+    "comment": "A split card in your graveyard only counts once for Haughty Djinn's power, even if it's both an instant and a sorcery."
+   }
+  ],
+  "f7156897-2b02-4ecd-868d-d4d59244e9ed": [],
+  "83f87884-f0f9-482e-887e-35a8a5c20eb0": [
+   {
+    "source": "wotc",
+    "published_at": "2024-04-12",
+    "comment": "The ability that defines Smoldering Stagecoach's power works in all zones, not just the battlefield."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-04-12",
+    "comment": "\"Cascade\" means \"When you cast this spell, exile cards from the top of your library until you exile a nonland card whose mana value is less than this spell's mana value. You may cast that card without paying its mana cost if the resulting spell's mana value is less than this spell's mana value. Then put all cards exiled this way that weren't cast on the bottom of your library in a random order.\""
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-04-12",
+    "comment": "A spell's mana value is determined only by its mana cost. Ignore any alternative costs, additional costs, cost increases, or cost reductions."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-04-12",
+    "comment": "Cascade triggers when you cast the spell, meaning that it resolves before that spell. If you end up casting the exiled card, it will go on the stack above the spell with cascade."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-04-12",
+    "comment": "When the cascade ability resolves, you must exile cards. The only optional part of the ability is whether you cast the last card exiled."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-04-12",
+    "comment": "If a spell with cascade is countered, the cascade ability will still resolve normally."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-04-12",
+    "comment": "You exile the cards face up. All players will be able to see them."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-04-12",
+    "comment": "If you cast a spell \"without paying its mana cost,\" you can't choose to cast it for any alternative costs. You can, however, pay additional costs. If the spell has any mandatory additional costs, you must pay those to cast the card."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-04-12",
+    "comment": "If the card has {X} in its mana cost, you must choose 0 as the value of X when casting it without paying its mana cost."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-04-12",
+    "comment": "Due to a 2021 rules change to cascade, not only do you stop exiling cards if you exile a nonland card with lesser mana value than the spell with cascade, but the resulting spell you cast must also have lesser mana value. Previously, in cases where a card's mana value differed from the resulting spell, such as with some modal double-faced cards or cards with an Adventure, you could cast a spell with a higher mana value than the exiled card."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-04-12",
+    "comment": "The mana value of a split card is determined by the combined mana cost of its two halves. If cascade allows you to cast a split card, you may cast either half but not both halves."
+   }
+  ],
+  "01766d9b-b2af-4a27-9e65-08c82e7d7637": [
+   {
+    "source": "wotc",
+    "published_at": "2024-04-12",
+    "comment": "Plot abilities are written “Plot [cost],” which means “Any time you have priority during your main phase while the stack is empty, you may pay [cost] and exile this card from your hand. It becomes plotted.”"
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-04-12",
+    "comment": "Exiling a card using its plot ability is a special action. Once you announce you’re taking that action, no other player can respond by trying to remove that card from your hand."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-04-12",
+    "comment": "Pyretic Charge affects only creatures you control at the time it resolves. Creatures you begin to control later in the turn and noncreature permanents that become creatures later in the turn won’t get +1/+0 for each card discarded this way."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-04-12",
+    "comment": "You can’t cast a plotted card on the same turn it became plotted. On any future turn, you may cast that card from exile without paying its mana cost during your main phase while the stack is empty."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-04-12",
+    "comment": "If you’re casting a plotted card from exile without paying its mana cost, you can’t choose to cast it for any other alternative costs. You can, however, pay additional costs, such as kicker costs. If the plotted card has any mandatory additional costs, those must still be paid to cast the spell."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-04-12",
+    "comment": "If a plotted card has {X} in its mana cost, you must choose 0 as the value of X when casting it without paying its mana cost."
+   }
+  ],
+  "8629fdef-dbbe-4a97-a7e1-6b1646f4ca0b": [
+   {
+    "source": "wotc",
+    "published_at": "2024-04-12",
+    "comment": "The copies of Elemental Eruption created by its storm ability are put directly onto the stack. They aren’t cast and won’t be counted by other spells with storm cast later in the turn."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-04-12",
+    "comment": "Spells cast from zones other than a player’s hand and spells that were countered or otherwise failed to resolve are counted by the storm ability."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-04-12",
+    "comment": "A copy of a spell can be countered like any other spell, but it must be countered individually. Countering a spell with storm won’t affect the copies."
+   }
+  ],
+  "ed7ba558-5341-4c7b-a9c5-b382dee88a13": [
+   {
+    "source": "wotc",
+    "published_at": "2024-04-12",
+    "comment": "Crackling Spellslinger’s second ability triggers if you cast it from any zone. It doesn’t trigger if you put Crackling Spellslinger onto the battlefield without casting it."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-04-12",
+    "comment": "The copies of a spell with storm created by its storm ability are put directly onto the stack. They aren’t cast and won’t be counted by other spells with storm cast later in the turn."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-04-12",
+    "comment": "Spells cast from zones other than a player’s hand and spells that were countered or otherwise failed to resolve are counted by the storm ability."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-04-12",
+    "comment": "A copy of a spell can be countered like any other spell, but it must be countered individually. Countering a spell with storm won’t affect the copies."
+   }
+  ],
+  "2ea2ac09-690d-4cd2-8e3a-fc01ecd7c132": [
+   {
+    "source": "wotc",
+    "published_at": "2024-04-12",
+    "comment": "You can tap any untapped legendary creature you control, including one you haven’t controlled continuously since the beginning of your most recent turn, to pay the cost of Leyline Dowser’s second activated ability."
+   }
+  ],
+  "118da256-d1ea-44e8-9026-317e49694d29": [
+   {
+    "source": "wotc",
+    "published_at": "2024-04-12",
+    "comment": "The mana added by Forger's Foundry can be spent on anything, not just instant and sorcery spells with mana value 3 or less."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-04-12",
+    "comment": "The delayed triggered ability will trigger whether Forger's Foundry is still on the battlefield or not."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-04-12",
+    "comment": "When casting an instant or sorcery spell with {X} in its mana cost using the mana added by Forger's Foundry, use the value of X chosen when you cast that spell to determine whether or not the delayed triggered ability triggers."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-04-12",
+    "comment": "You choose which spells (if any) to cast as Forger's Foundry's last ability resolves. If you do, you do so as part of the resolution of that ability. You can't wait to cast them later in the turn."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-04-12",
+    "comment": "You cast the spells one at a time as Forger's Foundry's last ability is resolving, choosing modes, targets, and so on. The last spell you cast will be the first one to resolve. Ignore timing restrictions based on the cards' types. Other timing restrictions, such as \"Cast [this spell] only during combat,\" must be followed."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-04-12",
+    "comment": "If you cast a spell \"without paying its mana cost,\" you can't choose to cast it for any alternative costs. You can, however, pay additional costs, such as kicker costs. If the spell has any mandatory additional costs, those must be paid to cast the spell."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-04-12",
+    "comment": "If a spell you cast has {X} in its mana cost, you must choose 0 as the value of X when casting it without paying its mana cost."
+   }
+  ],
+  "9355db6e-d8eb-43be-9c1d-04f1806dc366": [
+   {
+    "source": "wotc",
+    "published_at": "2024-04-12",
+    "comment": "Lock and Load will count any other instant and sorcery spells you’ve cast this turn. It doesn’t matter if the other spells resolved, didn’t resolve, were countered, or are still on the stack."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-04-12",
+    "comment": "Plot abilities are written “Plot [cost],” which means “Any time you have priority during your main phase while the stack is empty, you may pay [cost] and exile this card from your hand. It becomes plotted.”"
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-04-12",
+    "comment": "Exiling a card using its plot ability is a special action. Once you announce you’re taking that action, no other player can respond by trying to remove that card from your hand."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-04-12",
+    "comment": "You can’t cast a plotted card on the same turn it became plotted. On any future turn, you may cast that card from exile without paying its mana cost during your main phase while the stack is empty."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-04-12",
+    "comment": "If you’re casting a plotted card from exile without paying its mana cost, you can’t choose to cast it for any other alternative costs. You can, however, pay additional costs, such as kicker costs. If the plotted card has any mandatory additional costs, those must still be paid to cast the spell."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-04-12",
+    "comment": "If a plotted card has {X} in its mana cost, you must choose 0 as the value of X when casting it without paying its mana cost."
+   }
+  ],
+  "918991a6-7321-419d-8f3d-150fe32d02d2": [
+   {
+    "source": "wotc",
+    "published_at": "2024-04-12",
+    "comment": "The mana value of a split card in the graveyard is the total mana value of both halves of that card. It does not have two mana values."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-04-12",
+    "comment": "The mana value of a double-faced card in your graveyard is always the mana value of the front face."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-04-12",
+    "comment": "If the mana cost of a card in your graveyard includes {X}, X is 0 for the purpose of determining its mana value."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-04-12",
+    "comment": "Spells that were cast before Eris entered the battlefield count. If Eris was the first spell you cast this turn, the next spell you cast this turn is your second spell."
+   }
+  ],
+  "bf45f5ee-4d5f-4920-b612-b5492c2f035d": [
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "It's important to reveal a card with miracle before it is mixed with the other cards in your hand."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "You can reveal and cast a card with miracle on any turn, not just your own, if it's the first card you've drawn that turn."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "Multiple card draws are always treated as a sequence of individual card draws. For example, if you haven't drawn any cards yet during a turn and cast a spell that instructs you to draw three cards, you'll draw them one at a time. Only the first card drawn this way may be revealed and cast using its miracle ability."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "If an effect puts a card into your hand without using the word \"draw,\" the card wasn't drawn."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "You don't have to reveal a drawn card with miracle if you don't wish to cast it at that time."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "You can cast a card for its miracle cost only as the miracle triggered ability resolves. If you don't want to cast it at that time (or you can't cast it, perhaps because there are no legal targets available), you won't be able to cast it later for the miracle cost."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "You cast the card with miracle during the resolution of the triggered ability. Ignore any timing rules based on the card's type."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "Miracle is an alternative cost to cast the spell with miracle. It can't be combined with other alternative costs, such as casting a spell \"without paying its mana cost.\" You may, however, pay additional costs, such as kicker. If the spell has any mandatory additional costs, those must be paid to cast the spell."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "To determine the total cost of a spell, start with the mana cost or alternative cost (such as a miracle cost) you're paying, add any cost increases, then apply any cost reductions. The mana value of the spell remains unchanged, no matter what the total cost to cast it was."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "If the card with miracle leaves your hand before the triggered ability resolves, you won't be able to cast it using its miracle ability."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "You still draw the card, whether you use the miracle ability or not. Any ability that triggers whenever you draw a card, for example, will trigger. If you don't cast the card using its miracle ability, it will remain in your hand."
+   }
+  ],
+  "b8ee0dfc-f588-43b6-ab96-f3a3c58a8a3d": [
+   {
+    "source": "wotc",
+    "published_at": "2020-01-24",
+    "comment": "The token copies the creature as it last existed on the battlefield before it died, not as it existed in the graveyard before it was exiled."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2020-01-24",
+    "comment": "The token copies exactly what was printed on the original creature and nothing else (unless that creature is copying something else; see below). It doesn't copy whether that creature was tapped or untapped, whether it had any counters on it or Auras or Equipment attached to it, or any non-copy effects that had changed its power, toughness, types, color, or so on."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2020-01-24",
+    "comment": "If the copied creature was copying something else, then the token enters the battlefield as whatever that creature copied."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2020-01-24",
+    "comment": "If the copied creature had {X} in its mana cost, X is considered to be 0."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2020-01-24",
+    "comment": "Any enters-the-battlefield abilities of the copied creature will trigger when the token enters the battlefield. Any \"as [this creature] enters the battlefield\" or \"[this creature] enters the battlefield with\" abilities of the creature will also work."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2020-01-24",
+    "comment": "If the token is a copy of a creature whose power and toughness are defined by an ability (usually printed as */* or similar), the token doesn't copy the ability that defines its power and toughness. It remains a 1/1 creature."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2020-01-24",
+    "comment": "If something becomes a copy of the token, the copy is also a 1/1 and a Nightmare."
+   }
+  ],
+  "79a71fe5-38ce-4bb5-aea0-c9b9a856d397": [
+   {
+    "source": "wotc",
+    "published_at": "2019-10-04",
+    "comment": "Mirrormade copies exactly what was printed on the original permanent (unless that permanent is copying something else or is a token; see below). It doesn't copy whether that permanent is tapped or untapped, whether it has any counters on it or any Auras attached to it, or any non-copy effects that have changed its types, color, or so on. Notably, if Mirrormade copies an artifact creature or enchantment creature that's normally not a creature (such as one affected by Bring to Life), Mirrormade won't be a creature."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2019-10-04",
+    "comment": "If the chosen permanent has {X} in its mana cost, X is considered to be 0."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2019-10-04",
+    "comment": "If the chosen permanent is copying something else (for example, if the chosen permanent is another Mirrormade), then Mirrormade enters the battlefield as whatever the chosen permanent copied."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2019-10-04",
+    "comment": "If the chosen permanent is a token, Mirrormade copies the original characteristics of that token as stated by the effect that created the token. Mirrormade doesn't become a token in this case."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2019-10-04",
+    "comment": "Any enters-the-battlefield abilities of the copied permanent will trigger when Mirrormade enters the battlefield. Any \"as [this permanent] enters the battlefield\" or \"[this permanent] enters the battlefield with\" abilities of the chosen permanent will also work."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2019-10-04",
+    "comment": "If Mirrormade somehow enters the battlefield at the same time as another artifact or enchantment, it can't become a copy of that permanent. You may choose only a permanent that's already on the battlefield."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2019-10-04",
+    "comment": "If Mirrormade copies an Aura this way, you choose what the Aura will enchant just before it enters the battlefield. You can't choose any permanent cards entering the battlefield at the same time as that Aura. This doesn't target the player or permanent it will enchant, so an opponent's permanent with hexproof may be chosen this way. The chosen recipient must be able to legally be enchanted by the Aura, so a player or permanent with protection from one of the Aura's qualities can't be chosen this way. If there's nothing legal for Mirrormade to enchant, it stays in its current zone (unless it's a spell, in which case it's put into its owner's graveyard)."
+   }
+  ],
+  "3b9b5b22-5a7d-4e37-a870-ca0f0efa4f36": [
+   {
+    "source": "wotc",
+    "published_at": "2021-03-19",
+    "comment": "An ability that triggers when a player casts a spell resolves before the spell that caused it to trigger, but after targets have been chosen for that spell. It resolves even if that spell is countered."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2021-03-19",
+    "comment": "Because it's not on the battlefield yet, casting Sigil of the Empty Throne won't cause its own ability to trigger."
+   }
+  ],
+  "c9160997-0305-47f5-9a2f-77588d167da0": [
+   {
+    "source": "wotc",
+    "published_at": "2018-07-13",
+    "comment": "If you wish to put a land card onto the battlefield, you do so while Aminatou's Augury is resolving, before you're allowed to cast any of the other cards. You may do this even if you've already played a land this turn."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-07-13",
+    "comment": "If a nonland card has multiple types, such as an artifact creature, you may cast it as either of those types. For example, you could cast one artifact creature as your artifact card and another artifact creature as your creature card."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-07-13",
+    "comment": "If you exile a land with another card type, you can't play it later in the turn. You can only put it onto the battlefield at the time Aminatou's Augury instructs you to."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-07-13",
+    "comment": "You must follow the normal timing permissions and restrictions of each spell you cast."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-07-13",
+    "comment": "If you cast a card \"without paying its mana cost,\" you can't choose to cast it for any alternative costs, such as evoke costs. You can, however, pay additional costs. If the card has any mandatory additional costs, such as that of Tormenting Voice, those must be paid to cast the card."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-07-13",
+    "comment": "If a spell has {X} in its mana cost, you must choose 0 as the value of X when casting it without paying its mana cost."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-07-13",
+    "comment": "Casting an exiled card causes it to leave exile. You can't cast it multiple times."
+   }
+  ],
+  "a5458de0-0f61-49a3-a013-d90f92559809": [
+   {
+    "source": "wotc",
+    "published_at": "2014-02-01",
+    "comment": "The Archetype's second ability applies to each creature controlled by any of your opponents, no matter when it entered the battlefield."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2014-02-01",
+    "comment": "While you control an Archetype, continuous effects generated by the resolution of spells and abilities that would give the specified ability to creatures your opponents control aren't created. For example, if you control Archetype of Courage, a spell cast by an opponent that gives creatures they control first strike wouldn't cause the creatures to have first strike, even if later in the turn Archetype of Courage left the battlefield. (If the spell has additional effects, such as raising the power of the creatures, those effects will apply as normal.)"
+   },
+   {
+    "source": "wotc",
+    "published_at": "2014-02-01",
+    "comment": "Conversely, continuous effects generated by static abilities (such as an Aura that granted the appropriate ability) would resume applying if the Archetype left the battlefield."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2014-02-01",
+    "comment": "If you and an opponent each control the same Archetype, no creature controlled by any player will have the appropriate ability."
+   }
+  ],
+  "893fed41-c144-433f-af88-bc7d419b7fb3": [],
+  "e744dbb6-2d56-462a-8d49-d79c73944048": [
+   {
+    "source": "wotc",
+    "published_at": "2004-10-04",
+    "comment": "This does not cause a player to lose if they have less than 3 cards in their library. It allows you to look at and reorder or shuffle whatever remaining cards there might be."
+   }
+  ],
+  "5bf4d8d9-a2b2-4dba-ac05-9d4470a89db2": [
+   {
+    "source": "wotc",
+    "published_at": "2013-09-15",
+    "comment": "The loss of life is part of the spell's effect. It's not an additional cost. If Read the Bones doesn't resolve, you won't lose life."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2013-09-15",
+    "comment": "When you scry, you may put all the cards you look at back on top of your library, you may put all of those cards on the bottom of your library, or you may put some of those cards on top and the rest of them on the bottom."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2013-09-15",
+    "comment": "You choose how to order cards returned to your library after scrying no matter where you put them."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2013-09-15",
+    "comment": "You perform the actions stated on a card in sequence. For some spells and abilities, that means you'll scry last. For others, that means you'll scry and then perform other actions."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2013-09-15",
+    "comment": "Scry appears on some spells and abilities with one or more targets. If all of the spell or ability's targets are illegal when it tries to resolve, it won't resolve and none of its effects will happen. You won't scry."
+   }
+  ],
+  "44ed4c0c-a012-4895-a547-b04150553bba": [
+   {
+    "source": "wotc",
+    "published_at": "2018-04-27",
+    "comment": "When the first chapter ability of The Eldest Reborn resolves, the next opponent in turn order (or, if it's an opponent's turn, that opponent) chooses a creature or planeswalker they control, then each other opponent in turn order (if any) does the same. All chosen permanents are then sacrificed at the same time. Players will know the choices made by earlier players when making their choices."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-04-27",
+    "comment": "When the second chapter ability of The Eldest Reborn resolves, the next opponent in turn order (or, if it's an opponent's turn, that opponent) chooses a card in hand without revealing it, then each other opponent in turn order (if any) does the same. All chosen cards are then discarded at the same time."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-04-27",
+    "comment": "In a multiplayer game, if a player leaves the game, all cards that player owns leave as well. If you leave the game, the permanent you control from The Eldest Reborn's final chapter ability is exiled."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-04-27",
+    "comment": "As a Saga enters the battlefield, its controller puts a lore counter on it. As your precombat main phase begins (immediately after your draw step), you put another lore counter on each Saga you control. Putting a lore counter on a Saga in either of these ways doesn't use the stack."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-04-27",
+    "comment": "Each symbol on the left of a Saga's text box represents a chapter ability. A chapter ability is a triggered ability that triggers when a lore counter that is put on the Saga causes the number of lore counters on the Saga to become equal to or greater than the ability's chapter number. Chapter abilities are put onto the stack and may be responded to."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-04-27",
+    "comment": "A chapter ability doesn't trigger if a lore counter is put on a Saga that already had a number of lore counters greater than or equal to that chapter's number. For example, the third lore counter put on a Saga causes the III chapter ability to trigger, but I and II won't trigger again."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-04-27",
+    "comment": "Once a chapter ability has triggered, the ability on the stack won't be affected if the Saga gains or loses counters, or if it leaves the battlefield."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-04-27",
+    "comment": "If multiple chapter abilities trigger at the same time, their controller puts them on the stack in any order. If any of them require targets, those targets are chosen as you put the abilities on the stack, before any of those abilities resolve."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-04-27",
+    "comment": "If counters are removed from a Saga, the appropriate chapter abilities will trigger again when the Saga receives lore counters. Removing lore counters won't cause a previous chapter ability to trigger."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-04-27",
+    "comment": "Once the number of lore counters on a Saga is greater than or equal to the greatest number among its chapter abilities—in the Dominaria set, this is always three—the Saga's controller sacrifices it as soon as its chapter ability has left the stack, most likely by resolving or being countered. This state-based action doesn't use the stack."
+   }
+  ],
+  "189fc8f4-17ac-4f1d-82c8-8401445bdaf4": [
+   {
+    "source": "wotc",
+    "published_at": "2013-04-15",
+    "comment": "If this land enters the battlefield and you control no other lands, its ability will force you to return it to your hand."
+   }
+  ],
+  "0222414f-98b5-458a-a0fd-831a66cd8b07": [],
+  "439de49b-1091-4688-9ffb-80a025df31c2": [],
+  "42d121a2-5266-483a-ab16-e0a8073cd6a3": [],
+  "92c470c9-1373-4f3a-9805-5e9613874793": [
+   {
+    "source": "wotc",
+    "published_at": "2013-09-15",
+    "comment": "You can activate Prognostic Sphinx's ability even if it's already tapped."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2013-09-15",
+    "comment": "When you scry, you may put all the cards you look at back on top of your library, you may put all of those cards on the bottom of your library, or you may put some of those cards on top and the rest of them on the bottom."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2013-09-15",
+    "comment": "You choose how to order cards returned to your library after scrying no matter where you put them."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2013-09-15",
+    "comment": "You perform the actions stated on a card in sequence. For some spells and abilities, that means you'll scry last. For others, that means you'll scry and then perform other actions."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2013-09-15",
+    "comment": "Scry appears on some spells and abilities with one or more targets. If all of the spell or ability's targets are illegal when it tries to resolve, it won't resolve and none of its effects will happen. You won't scry."
+   }
+  ],
+  "bd5eb181-6a69-4dc2-93a0-fa000291bc3d": [],
+  "8f4b8a19-72f4-48ed-ac05-62a7c7525797": [
+   {
+    "source": "wotc",
+    "published_at": "2022-12-08",
+    "comment": "Mesa Enchantress's ability will resolve before the spell that caused it to trigger."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2022-12-08",
+    "comment": "If the enchantment spell is countered, Mesa Enchantress's ability still resolves and causes you to draw a card."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2022-12-08",
+    "comment": "Enchantments put onto the battlefield without being cast won't cause Mesa Enchantress's ability to trigger."
+   }
+  ],
+  "192f3c8a-1120-4f7f-ae0f-fe9bde59cd08": [
+   {
+    "source": "wotc",
+    "published_at": "2005-10-01",
+    "comment": "If there are fewer than three cards in your library, follow the instructions in the order given for any cards that are there."
+   }
+  ],
+  "4ec84bb3-796a-4074-ac9a-1bd277158896": [
+   {
+    "source": "wotc",
+    "published_at": "2024-01-12",
+    "comment": "You perform the actions stated on a card in sequence. For some spells and abilities, you'll surveil last. For others, you'll surveil and then perform other actions."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-01-12",
+    "comment": "When you surveil, you may put all the cards you look at back on top of your library, you may put all of those cards into your graveyard, or you may put some of those cards on top and the rest of them into your graveyard."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-10-05",
+    "comment": "Dream Eater's triggered ability goes on the stack without a target. While that ability is resolving, after you've surveilled, the reflexive triggered ability triggers and you pick a target nonland permanent to be returned to its owner's hand. This is different from effects that say \"If you do . . .\" in that you choose the target after having surveilled."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-10-05",
+    "comment": "Dream Eater's reflexive triggered ability triggers even if you have fewer than four cards in your library to surveil."
+   }
+  ],
+  "b349f018-c20b-48b0-9e65-d5fd56b24b88": [
+   {
+    "source": "wotc",
+    "published_at": "2018-07-13",
+    "comment": "You still draw the card, whether you use the miracle ability or not. Any ability that triggers whenever you draw a card, for example, will trigger. If you don't cast the card using its miracle ability, it will remain in your hand."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-07-13",
+    "comment": "To determine the total cost of a spell, start with the mana cost or alternative cost (such as a miracle cost) you're paying, add any cost increases, then apply any cost reductions. The mana value of the spell remains unchanged, no matter what the total cost to cast it was."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-07-13",
+    "comment": "If the card with miracle leaves your hand before the triggered ability resolves, you won't be able to cast it using its miracle ability."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-07-13",
+    "comment": "It's important to reveal a card with miracle before it is mixed with the other cards in your hand."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-07-13",
+    "comment": "You can reveal and cast a card with miracle on any turn, not just your own, if it's the first card you've drawn that turn."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-07-13",
+    "comment": "Multiple card draws are always treated as a sequence of individual card draws. For example, if you haven't drawn any cards yet during a turn and cast a spell that instructs you to draw three cards, you'll draw them one at a time. Only the first card drawn this way may be revealed and cast using its miracle ability."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-07-13",
+    "comment": "If an effect puts a card into your hand without using the word \"draw,\" the card wasn't drawn."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-07-13",
+    "comment": "You don't have to reveal a drawn card with miracle if you don't wish to cast it at that time."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-07-13",
+    "comment": "You can cast a card for its miracle cost only as the miracle triggered ability resolves. If you don't want to cast it at that time (or you can't cast it, perhaps because there are no legal targets available), you won't be able to cast it later for the miracle cost."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-07-13",
+    "comment": "You cast the card with miracle during the resolution of the triggered ability. Ignore any timing rules based on the card's type."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-07-13",
+    "comment": "Miracle is an alternative cost to cast the spell with miracle. It can't be combined with other alternative costs, such as casting a spell \"without paying its mana cost.\""
+   },
+   {
+    "source": "wotc",
+    "published_at": "2017-03-14",
+    "comment": "Entreat the Angels's mana value is based on its mana cost of {X}{X}{W}{W}{W}, even if you're casting it for its miracle cost. For example, if you cast Entreat the Angels for its miracle cost and choose 4 for X, its mana value is 11."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2017-03-14",
+    "comment": "A mana cost of {X}{X} means that you pay twice X. If you want X to be 3, you pay {6}{W}{W}{W} to cast Entreat the Angels. "
+   }
+  ],
+  "3dd196b6-a85a-4e3e-bb57-ec34241f8117": [
+   {
+    "source": "wotc",
+    "published_at": "2018-07-13",
+    "comment": "You still draw the card, whether you use the miracle ability or not. Any ability that triggers whenever you draw a card, for example, will trigger. If you don't cast the card using its miracle ability, it will remain in your hand."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-07-13",
+    "comment": "It's important to reveal a card with miracle before it is mixed with the other cards in your hand."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-07-13",
+    "comment": "You can reveal and cast a card with miracle on any turn, not just your own, if it's the first card you've drawn that turn."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-07-13",
+    "comment": "Multiple card draws are always treated as a sequence of individual card draws. For example, if you haven't drawn any cards yet during a turn and cast a spell that instructs you to draw three cards, you'll draw them one at a time. Only the first card drawn this way may be revealed and cast using its miracle ability."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-07-13",
+    "comment": "If an effect puts a card into your hand without using the word \"draw,\" the card wasn't drawn."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-07-13",
+    "comment": "You don't have to reveal a drawn card with miracle if you don't wish to cast it at that time."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-07-13",
+    "comment": "You can cast a card for its miracle cost only as the miracle triggered ability resolves. If you don't want to cast it at that time (or you can't cast it, perhaps because there are no legal targets available), you won't be able to cast it later for the miracle cost."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-07-13",
+    "comment": "You cast the card with miracle during the resolution of the triggered ability. Ignore any timing rules based on the card's type."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-07-13",
+    "comment": "Miracle is an alternative cost to cast the spell with miracle. It can't be combined with other alternative costs, such as casting a spell \"without paying its mana cost.\""
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-07-13",
+    "comment": "To determine the total cost of a spell, start with the mana cost or alternative cost (such as a miracle cost) you're paying, add any cost increases, then apply any cost reductions. The mana value of the spell remains unchanged, no matter what the total cost to cast it was."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-07-13",
+    "comment": "If the card with miracle leaves your hand before the triggered ability resolves, you won't be able to cast it using its miracle ability."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2017-03-14",
+    "comment": "Each player chooses the order that creatures they own are put onto the bottom of their library. This order isn't revealed to other players."
+   }
+  ],
+  "36c78a5f-0148-4596-a346-f8e35037b694": [
+   {
+    "source": "wotc",
+    "published_at": "2019-05-03",
+    "comment": "You chose which creature to return to its owner's hand while Time Wipe is resolving. No player may take any actions between the time you choose the creature to return and the time other creatures are destroyed."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2019-05-03",
+    "comment": "If you control no creatures, you simply destroy all creatures."
+   }
+  ],
+  "2fc070dc-f2f7-4648-8069-31d74790a39c": [],
+  "aece819e-3678-48bc-9677-d06ebfa58b4e": [
+   {
+    "source": "wotc",
+    "published_at": "2020-04-17",
+    "comment": "Verge Rangers doesn't allow you to play additional lands."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2020-04-17",
+    "comment": "Verge Rangers lets you look at the top card of your library whenever you want (with one restriction; see below), even if you don't have priority. This action doesn't use the stack. Knowing what that card is becomes part of the information you have access to, just like you can look at the cards in your hand."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2020-04-17",
+    "comment": "If the top card of your library changes while you're casting a spell, playing a land, or activating an ability, you can't look at the new top card until you finish doing so. This means that if you play a land from the top of your library and it has a replacement effect that requires you to make a decision (such as that of Temple Garden), you must make that decision without knowing the next card of your library."
+   }
+  ],
+  "92f6c063-a740-4c3c-a60a-569fd298854d": [
+   {
+    "source": "wotc",
+    "published_at": "2012-10-01",
+    "comment": "If you control Sphere of Safety, your opponents can choose not to attack with a creature with an ability that says it attacks if able."
+   }
+  ],
+  "6b7b1a71-812d-4ff5-b38b-94d1cf634143": [],
+  "9aacc1ce-8d0d-4a24-9a15-74635f2f127d": [
+   {
+    "source": "wotc",
+    "published_at": "2020-01-24",
+    "comment": "If a token with a coin counter on it dies or is exiled, Athreos's last ability triggers, but won't return it to the battlefield."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2020-01-24",
+    "comment": "The creature returns to the battlefield without a coin counter on it."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2020-01-24",
+    "comment": "If an effect exiles a creature with a coin counter on it and immediately returns it to the battlefield, Athreos's last ability triggers but will have no effect. If an effect exiles a creature with a coin counter on it and would return it to the battlefield at a later time, Athreos's last ability will return that card to the battlefield and it won't be returned later."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2020-01-24",
+    "comment": "If a creature with a coin counter on it is put into a graveyard or exile but leaves that zone before Athreos's last ability resolves, that card stays in its new zone, even if that zone is also a graveyard or exile. You don't return it to the battlefield."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2020-01-24",
+    "comment": "If Athreos and a creature with a coin counter on it are both put into graveyards and/or exiled at the same time, the other creature will be returned to the battlefield."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2020-01-24",
+    "comment": "If Athreos somehow gets a coin counter on itself, its last ability will return it when it dies or is exiled."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2020-01-24",
+    "comment": "If Athreos leaves the battlefield, creatures with coin counters on them keep them. The counters won't have any meaning or effect unless another Athreos is on the battlefield later."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2020-01-24",
+    "comment": "If a creature with a coin counter on it stops being a creature, it keeps its coin counter, but Athreos's last ability won't trigger when that permanent dies or is exiled unless it's a creature again by that time."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2020-01-24",
+    "comment": "If a creature you don't own has a coin counter on it, that permanent will return to the battlefield under your control when it dies or is exiled while you control Athreos. In a multiplayer game, if a player leaves the game, all cards that player owns leave as well. If you leave the game, any creatures you control from Athreos's ability are exiled."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2020-01-24",
+    "comment": "In a two-player game, if both players control an Athreos when a creature with a coin counter on it dies, the nonactive player (the one whose turn it isn't) will return the creature under their control. If that happens in a multiplayer game, the nonactive player closest to the right of the player whose turn it is will return the creature under their control."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2020-01-24",
+    "comment": "Colorless and generic mana symbols ({C}, {0}, {1}, {2}, {X}, and so on) in mana costs of permanents you control don't count toward your devotion to any color."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2020-01-24",
+    "comment": "Mana symbols in the text boxes of permanents you control don't count toward your devotion to any color."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2020-01-24",
+    "comment": "Hybrid mana symbols, monocolored hybrid mana symbols, and Phyrexian mana symbols do count toward your devotion to their color(s)."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2020-01-24",
+    "comment": "If an activated ability or triggered ability has an effect that depends on your devotion to a color, you count the number of mana symbols of that color among the mana costs of permanents you control as the ability resolves. The permanent with that ability will be counted if it's still on the battlefield at that time."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2020-01-24",
+    "comment": "If you put an Aura on an opponent's permanent, you still control the Aura, and mana symbols in its mana cost count towards your devotion."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2020-01-24",
+    "comment": "Your devotion to two colors is the number of mana symbols among mana costs of permanents you control that are the first color, the second, or both. If an effect counts your devotion to two colors, a hybrid symbol that is both of those colors is counted just once."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2020-01-24",
+    "comment": "The type-changing ability that can make a God not be a creature functions only on the battlefield. It's always a creature card in other zones, regardless of your devotion to its color. It's always a creature spell while it's on the stack."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2020-01-24",
+    "comment": "As a God enters the battlefield, your devotion to its color will determine whether any replacement effects that affect creatures entering the battlefield apply to that God. Because replacement effects are considered before the God is on the battlefield, the mana symbols in its mana cost won't be counted when determining this."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2020-01-24",
+    "comment": "When a God enters the battlefield, your devotion to its color (including the mana symbols in the mana cost of the God itself) will determine if a creature entered the battlefield or not for abilities that trigger whenever a creature enters the battlefield."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2020-01-24",
+    "comment": "If a God stops being a creature, it loses the type creature and the creature type God. It continues to be a legendary enchantment."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2020-01-24",
+    "comment": "The abilities of Gods function as long as they're on the battlefield, regardless of whether they're creatures."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2020-01-24",
+    "comment": "If a God is attacking or blocking and it stops being a creature, it will be removed from combat. It won't rejoin combat if it resumes being a creature later during that combat."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2020-01-24",
+    "comment": "Counters put on a God remain on it while it's not a creature, even if they have no effect."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2020-01-24",
+    "comment": "If an effect causes a God to lose all abilities, its ability that causes it to stop being a creature still applies if appropriate."
+   }
+  ],
+  "70e58068-90d2-4720-a11c-5d243046b4a3": [
+   {
+    "source": "wotc",
+    "published_at": "2020-01-24",
+    "comment": "You can discard either one enchantment card or two cards which may or may not be enchantments. If you really want to, you can discard two enchantment cards."
+   }
+  ],
+  "d1946630-e224-40db-8f0d-388b09622288": [],
+  "cba94732-1f1f-4ffd-9aba-45db990043fa": [],
+  "8e589dca-d31e-4d2f-81b1-18e5f9198795": [],
+  "ffac1923-99d0-48e6-b1e7-168e5c324a80": [],
+  "89ed0598-a3ee-4d14-9a35-25e0dd80d9fb": [],
+  "be668c2d-71ea-4346-8980-1fbf5e4cbed3": [
+   {
+    "source": "wotc",
+    "published_at": "2025-06-06",
+    "comment": "If a card with flashback is put into your graveyard during your turn, you can cast it if it's legal to do so before any other player can take any actions."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2025-06-06",
+    "comment": "You can cast a spell using flashback even if it was somehow put into your graveyard without having been cast."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2025-06-06",
+    "comment": "\"Flashback [cost]\" means \"You may cast this card from your graveyard if the resulting spell is an instant or sorcery spell by paying [cost] rather than paying its mana cost\" and \"If the flashback cost was paid, exile this card instead of putting it anywhere else any time it would leave the stack.\""
+   },
+   {
+    "source": "wotc",
+    "published_at": "2025-06-06",
+    "comment": "To determine the total cost of a spell, start with the mana cost or alternative cost (such as a flashback cost) you're paying, add any cost increases, then apply any cost reductions. The mana value of the spell is determined only by its mana cost, no matter what the total cost to cast the spell was."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2025-06-06",
+    "comment": "You must still follow any timing restrictions and permissions, including those based on the card's type. For instance, you can cast a sorcery using flashback only when you could normally cast a sorcery."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2025-06-06",
+    "comment": "A spell cast using flashback will always be exiled afterward, whether it resolves, is countered, or leaves the stack in some other way."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-01-12",
+    "comment": "When you surveil, you may put all the cards you look at back on top of your library, you may put all of those cards into your graveyard, or you may put some of those cards on top and the rest of them into your graveyard."
+   }
+  ],
+  "9abecd23-a2d9-43c7-8d01-f8afdc53026e": [
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "For the purposes of deck construction, format legality, and all rules, abilities, and effects that refer to a card’s name, this card’s name is the same as that of Mind Flayer, the Shadow."
+   }
+  ],
+  "83914a83-4de2-4d64-9770-f68a12014167": [
+   {
+    "source": "wotc",
+    "published_at": "2022-02-18",
+    "comment": "If Spirit-Sister's Call leaves the battlefield, the replacement effect continues to apply. If one of the permanents it returned would leave the battlefield, it'll be exiled instead."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2022-02-18",
+    "comment": "Because to die means to be put into a graveyard from the battlefield, a creature or planeswalker that is exiled instead doesn't \"die.\" Abilities that would trigger when it dies won't trigger."
+   }
+  ],
+  "dc31a6f8-6228-4a25-b937-5d8d78514333": [],
+  "50779f73-c538-4364-aca4-4ab069a00814": [
+   {
+    "source": "wotc",
+    "published_at": "2024-01-12",
+    "comment": "You may pay {W/B} a maximum of one time for each extort triggered ability. You decide whether to pay when the ability resolves."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-01-12",
+    "comment": "The amount of life you gain from extort is based on the total amount of life lost, not necessarily the number of opponents you have. For example, if your opponent's life total can't change (perhaps because that player controls Platinum Emperion), you won't gain any life."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-01-12",
+    "comment": "The extort ability doesn't target any player."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-01-12",
+    "comment": "The extort ability resolves before the spell that caused it to trigger. The ability resolves even if that spell is countered."
+   }
+  ],
+  "06bb4272-25d1-46db-8585-15f919267e1e": [
+   {
+    "source": "wotc",
+    "published_at": "2022-10-14",
+    "comment": "You must follow all normal timing rules for spells cast and lands played using the middle ability and must pay all costs for spells cast this way. To cast a spell this way, you may choose to pay any alternative costs or optional additional costs the spell may have (such as a kicker cost). You must pay any mandatory additional costs."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2022-10-14",
+    "comment": "While casting a spell without paying its mana cost using the last ability, you can't pay alternative costs, but you may choose to pay any optional additional costs the spell may have (such as a kicker cost). You still must pay any mandatory additional costs."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2022-10-14",
+    "comment": "While casting a card with the prototype ability using the last ability of One with the Multiverse, you can either choose to cast it normally or choose to cast it as a prototyped spell. In either case, you won't pay its mana cost."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2022-10-14",
+    "comment": "If One with the Multiverse leaves the battlefield and later returns to the battlefield (or you play a second one), it's considered a new object and you may cast a spell using its last ability regardless of whether or not you did so earlier this turn using the enchantment that was on the battlefield before."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2022-10-14",
+    "comment": "Similarly, if you control more than one One with the Multiverse (Two with the Multiverse, if you will), each one's last ability applies independently, and you may cast a spell without paying its mana cost once for each of them during each of your turns. In this case, you will need to track which enchantment's permission you are using to cast a spell this way (due to the possibility that one of them might leave the battlefield before you use its permission that turn)."
+   }
+  ],
+  "d2ae893f-52af-4645-8712-d62fb78f901e": [
+   {
+    "source": "wotc",
+    "published_at": "2023-07-28",
+    "comment": "Once you choose to create a token copy of an enchantment during the resolution of Ondu Spiritdancer's ability, that ability won't trigger again that turn, no matter how many more enchantments enter the battlefield under your control."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-07-28",
+    "comment": "If multiple instances of the ability are on the stack (perhaps because multiple enchantments entered the battlefield under your control at the same time), you will be able to create a token copy of an enchantment for only one of those instances. Once you do that, other instances will do nothing as they resolve."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-07-28",
+    "comment": "If an Aura is put onto the battlefield without being cast, such as by being created as a token, the Aura's controller-to-be chooses what it will enchant as it enters the battlefield. An Aura put onto the battlefield this way doesn't target anything (so it could be attached to an opponent's permanent with hexproof, for example), but the Aura's enchant ability restricts what it can be attached to. If an Aura token can't legally be attached to anything, it isn't created."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-07-28",
+    "comment": "Each token copies exactly what was printed on the original enchantment and nothing else (unless that enchantment is copying something else or is a token; see below). It doesn't copy whether that enchantment is tapped or untapped, whether it has any counters on it or Auras and Equipment attached to it, or any non-copy effects that have changed its power, toughness, types, color, or so on."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-07-28",
+    "comment": "If the copied enchantment has {X} in its mana cost, X is 0."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-07-28",
+    "comment": "If the copied enchantment is a token, the token that's created copies the original characteristics of that token as stated by the effect that created the token."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-07-28",
+    "comment": "If the copied enchantment is copying something else, then the token enters the battlefield as whatever that enchantment copied."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-07-28",
+    "comment": "Any enters-the-battlefield abilities of the copied enchantment will trigger when the token enters the battlefield. Any \"as [this enchantment] enters the battlefield\" or \"[this enchantment] enters the battlefield with\" abilities of the enchantment will also work."
+   }
+  ],
+  "53716e0b-4d4e-40b0-8370-38e11f73d195": [
+   {
+    "source": "wotc",
+    "published_at": "2023-07-28",
+    "comment": "If you cast a spell for another cost \"rather than paying its mana cost,\" you can't choose to cast it for any alternative costs. You can, however, pay additional costs. If the card has any mandatory additional costs, those must be paid to cast the card."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-07-28",
+    "comment": "If you cast a spell with {X} in its mana cost this way, the only legal choice for X is 0."
+   }
+  ],
+  "b9ac4856-5cdb-479f-b0f5-7fa0b232a5ff": [
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "If creatures you control deal combat damage to multiple players at the same time, Locker Room's ability will trigger once for each player dealt combat damage this way."
+   }
+  ],
+  "1e847d69-e527-4bb9-a624-17c25ac4fed4": [
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "Excess damage has been dealt to a creature if the damage dealt to it is greater than lethal damage. Usually, this means damage greater than its toughness, although damage already marked on the creature is taken into account."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "In some unusual cases, Cramped Vents may have deathtouch. Even 1 damage dealt to a creature from a source with deathtouch is considered lethal damage, so any amount greater than that will cause excess damage to be dealt, even if the total amount of damage isn't greater than the creature's toughness."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "You follow all timing rules for spells cast with Access Maze's ability."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "The spells you cast using Access Maze's ability have an alternative cost that's paying life equal to their mana value. You can't choose to pay their mana cost and may not pay any other alternative costs. You may still pay for additional costs, such as kicker costs, and you may pay mana for those as normal. If the spell has mandatory additional costs, you must pay those."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "To cast a Room spell, choose a half (or \"door\") to cast. There's no way to cast both halves of a Room card. When the Room spell resolves, the corresponding door becomes unlocked as the Room enters."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "Room cards have two card faces with a shared type line on a single card. The characteristics of the door you didn't cast are ignored while the spell is on the stack."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "Each Room card is a single card. For example, if you discard a Room card, you've discarded one card, not two. If an effect counts the number of enchantment cards in your graveyard, Bottomless Pool // Locker Room counts once, not twice."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "Each Room card has two names. If an effect instructs you to choose a card name, you may choose one of those names, but not both."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "If an effect allows you to cast a spell with certain characteristics, consider only the characteristics of the door you're casting. For example, if an effect allows you to cast a permanent spell with mana value 3 or less from among cards in your graveyard, you could cast Bottomless Pool this way, but not Locker Room."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "While in any zone other than the stack or the battlefield, a Room card's characteristics are a combination of its two doors. For example, Bottomless Pool // Locker Room has a mana value of 6 while it's in your library. If an effect allows you to search your library for a card with mana value 4 or less, you can't find Bottomless Pool // Locker Room."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "While on the battlefield, a Room's characteristics are a combination of the characteristics of its unlocked doors. For example, if Bottomless Pool // Locker Room is on the battlefield with both doors unlocked, its names are Bottomless Pool and Locker Room, its mana value is 6, it's a Room Enchantment, and it has the abilities in each door's text box."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "If a spell or ability would create a copy of a Room spell on the stack, the copy retains the choice of which door was cast but also retains the full characteristics of the spell. The characteristics of the door that wasn't cast are still ignored while the copy is on the stack, and when the copy resolves, the token it becomes will enter with the appropriate door unlocked."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "If a Room enters from any zone other than the stack, it will enter with both halves locked."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "If neither door of a Room is unlocked, it's a Room enchantment with no name and no abilities."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "Any time you have priority during a main phase of your turn and the stack is empty, you may pay the mana cost of a locked door (also called its \"unlock cost\"). That door becomes unlocked. This is a special action. It doesn't use the stack and can't be responded to."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "An ability that triggers \"when you unlock this door\" triggers when that door becomes unlocked. This can happen one of two ways: (1) the door becomes unlocked on the battlefield or (2) the door becomes unlocked as the Room enters the battlefield because you cast the corresponding half. In the latter case, since the door becoming unlocked is what causes the ability to trigger, effects that cause abilities that trigger when a permanent enters to trigger an additional time (such as that of Panharmonicon) won't apply."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "Some abilities allow you to unlock a door of a Room you control. You can't choose to unlock a door that's already unlocked with such an ability. If such an ability requires a target, you can target a Room even if both of its doors are unlocked, but the ability won't do anything when it resolves."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "Some abilities allow you to lock a door of a Room you control. You can't choose to lock a door that's already locked with such an ability. If such an ability requires a target, you can target a Room even if both of its doors are locked, but the ability won't do anything when it resolves."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "Some doors have abilities that trigger whenever you unlock that door and require one or more targets. You can unlock that door even if there would be insufficient legal targets for that triggered ability. The triggered ability won't go on the stack."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "An ability that triggers \"whenever you fully unlock a Room\" triggers when a door becomes unlocked and the other door of that Room is already unlocked, or when both doors of that Room become unlocked simultaneously."
+   }
+  ],
+  "e8ff6780-5f22-42fa-a7c1-7406e8203063": [
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "If an Aura is put onto the battlefield without being cast, the Aura's controller-to-be chooses what it will enchant as it comes back onto the battlefield. An Aura put onto the battlefield this way doesn't target anything (so it could be attached to an opponent's permanent with hexproof, for example), but the Aura's enchant ability restricts what it can be attached to. If the Aura can't legally be attached to anything, it remains in its current zone."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "If an Aura is being put onto the battlefield at the same time as a creature, that Aura can't enchant that creature."
+   }
+  ],
+  "017aa9b3-a8ea-4588-9c50-e914a7d8e4ee": [
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "You cast the card with miracle during the resolution of the triggered ability. Ignore any timing rules based on the card's type."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "It's important to reveal a card with miracle before it is mixed with the other cards in your hand."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "You can reveal and cast a card with miracle on any turn, not just your own, if it's the first card you've drawn that turn."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "Multiple card draws are always treated as a sequence of individual card draws. For example, if you haven't drawn any cards yet during a turn and cast a spell that instructs you to draw three cards, you'll draw them one at a time. Only the first card drawn this way may be revealed and cast using its miracle ability."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "If an effect puts a card into your hand without using the word \"draw,\" the card wasn't drawn."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "You don't have to reveal a drawn card with miracle if you don't wish to cast it at that time."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "You can cast a card for its miracle cost only as the miracle triggered ability resolves. If you don't want to cast it at that time (or you can't cast it, perhaps because there are no legal targets available), you won't be able to cast it later for the miracle cost."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "Miracle is an alternative cost to cast the spell with miracle. It can't be combined with other alternative costs, such as casting a spell \"without paying its mana cost.\" You may, however, pay additional costs, such as kicker. If the spell has any mandatory additional costs, those must be paid to cast the spell."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "To determine the total cost of a spell, start with the mana cost or alternative cost (such as a miracle cost) you're paying, add any cost increases, then apply any cost reductions. The mana value of the spell remains unchanged, no matter what the total cost to cast it was."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "If the card with miracle leaves your hand before the triggered ability resolves, you won't be able to cast it using its miracle ability."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "You still draw the card, whether you use the miracle ability or not. Any ability that triggers whenever you draw a card, for example, will trigger. If you don't cast the card using its miracle ability, it will remain in your hand."
+   }
+  ],
+  "b8510b34-0e5f-4639-9db1-1ba40d84b800": [
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "To determine the total cost of a spell, start with the mana cost or alternative cost you're paying, add any cost increases, then apply any cost reductions. The mana value of the spell remains unchanged, no matter what the total cost to cast it was."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "Ancient Cellarspawn's last ability resolves before the spell that caused it to trigger. It resolves even if that spell is countered."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "For spells with {X} in their mana costs, use the value chosen for X to determine the spell's mana value."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "If the spell is no longer on the stack when Ancient Cellarspawn's last ability resolves, use its mana value as it last existed on the stack."
+   }
+  ],
+  "cc9088c4-6f6b-4a1a-90f1-794eb1e938c6": [
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "If you somehow control Phenomenon Investigators and no choice was made for it (perhaps because another permanent on the battlefield became a copy of it, or it was manifested and later turned face up), it has neither of the two triggered abilities, no matter how much you want to believe (or doubt)."
+   }
+  ],
+  "c8abde48-a07a-42a0-a43b-c357e6d9cad4": [
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "If no creatures have died in a turn by the time that turn's end step begins, Séance Board's first ability won't trigger at all. Causing a creature to die during the end step won't cause the ability to trigger."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "If a spell has {X} in its mana cost, use the value chosen for X when determining that spell's mana value."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "To cast a Room spell, choose a half (or \"door\") to cast. There's no way to cast both halves of a Room card. When the Room spell resolves, the corresponding door becomes unlocked as the Room enters."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "Room cards have two card faces with a shared type line on a single card. The characteristics of the door you didn't cast are ignored while the spell is on the stack."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "Each Room card is a single card. For example, if you discard a Room card, you've discarded one card, not two. If an effect counts the number of enchantment cards in your graveyard, Bottomless Pool // Locker Room counts once, not twice."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "Each Room card has two names. If an effect instructs you to choose a card name, you may choose one of those names, but not both."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "If an effect allows you to cast a spell with certain characteristics, consider only the characteristics of the door you're casting. For example, if an effect allows you to cast a permanent spell with mana value 3 or less from among cards in your graveyard, you could cast Bottomless Pool this way, but not Locker Room."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "While in any zone other than the stack or the battlefield, a Room card's characteristics are a combination of its two doors. For example, Bottomless Pool // Locker Room has a mana value of 6 while it's in your library. If an effect allows you to search your library for a card with mana value 4 or less, you can't find Bottomless Pool // Locker Room."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "While on the battlefield, a Room's characteristics are a combination of the characteristics of its unlocked doors. For example, if Bottomless Pool // Locker Room is on the battlefield with both doors unlocked, its names are Bottomless Pool and Locker Room, its mana value is 6, it's a Room Enchantment, and it has the abilities in each door's text box."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "If a spell or ability would create a copy of a Room spell on the stack, the copy retains the choice of which door was cast but also retains the full characteristics of the spell. The characteristics of the door that wasn't cast are still ignored while the copy is on the stack, and when the copy resolves, the token it becomes will enter with the appropriate door unlocked."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "If a Room enters from any zone other than the stack, it will enter with both halves locked."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "If neither door of a Room is unlocked, it's a Room enchantment with no name and no abilities."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "Any time you have priority during a main phase of your turn and the stack is empty, you may pay the mana cost of a locked door (also called its \"unlock cost\"). That door becomes unlocked. This is a special action. It doesn't use the stack and can't be responded to."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "An ability that triggers \"when you unlock this door\" triggers when that door becomes unlocked. This can happen one of two ways: (1) the door becomes unlocked on the battlefield or (2) the door becomes unlocked as the Room enters the battlefield because you cast the corresponding half. In the latter case, since the door becoming unlocked is what causes the ability to trigger, effects that cause abilities that trigger when a permanent enters to trigger an additional time (such as that of Panharmonicon) won't apply."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "Some abilities allow you to unlock a door of a Room you control. You can't choose to unlock a door that's already unlocked with such an ability. If such an ability requires a target, you can target a Room even if both of its doors are unlocked, but the ability won't do anything when it resolves."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "Some abilities allow you to lock a door of a Room you control. You can't choose to lock a door that's already locked with such an ability. If such an ability requires a target, you can target a Room even if both of its doors are locked, but the ability won't do anything when it resolves."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "Some doors have abilities that trigger whenever you unlock that door and require one or more targets. You can unlock that door even if there would be insufficient legal targets for that triggered ability. The triggered ability won't go on the stack."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "An ability that triggers \"whenever you fully unlock a Room\" triggers when a door becomes unlocked and the other door of that Room is already unlocked, or when both doors of that Room become unlocked simultaneously."
+   }
+  ],
+  "65ea7eb1-751b-4ecd-83cb-e9b6015ec194": [
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "Soaring Lightbringer's last ability will trigger once for each player you attack."
+   }
+  ],
+  "a3a1f149-febe-4ff6-9e34-8b82ef21c2ee": [
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "While you control Fear of Sleep Paralysis, if a permanent an opponent controls with a stun counter would untap, it doesn't untap and the stun counter isn't removed."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "If an ability tries to move a stun counter from a permanent an opponent controls to another permanent while you control Fear of Sleep Paralysis, that counter won't move. No stun counters will be removed from or put onto anything."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "While you control Fear of Sleep Paralysis, opponents can't use tapped permanents with stun counters on them to pay costs that include untapping a permanent. This includes costs that use the {Q} (untap) symbol."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "If a permanent with an eerie ability enters at the same time as one or more enchantments, its ability will trigger for each of those enchantments."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "An ability that triggers \"whenever you fully unlock a Room\" triggers when a door becomes unlocked and the other door of that Room is already unlocked, or when both doors of that Room become unlocked simultaneously."
+   }
+  ],
+  "37dc566e-a91a-448c-9967-b178a93ffb62": [
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "If a card has multiple abilities giving you permission to cast it, such as two escape abilities or an escape ability and a flashback ability, you choose which one to apply. The others have no effect."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "If you cast a spell with its escape permission, you can't choose to apply any other alternative costs or to cast it without paying its mana cost. If it has any additional costs, you must pay those."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "If a card with escape is put into your graveyard during your turn, you'll be able to cast it right away if it's legal to do so, before an opponent can take any actions."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "Once you begin casting a spell with escape, it immediately moves to the stack. Players can't take any other actions until you're done casting the spell."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "If The Master of Keys is no longer on the battlefield when its second ability resolves, you'll still mill twice X cards."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "If a card has no mana cost, its escape cost is an unpayable cost, so you can't cast it for that cost."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "If you're casting a Room with escape, you choose which half to cast, then pay the appropriate cost plus exiling three cards. The same is true for split cards, adventurer cards, and prototype cards."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "If a spell you're casting with escape has an additional cost of discarding cards or sacrificing permanents, you may exile cards discarded or sacrificed this way to pay that part of its escape cost."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "Escape's permission doesn't change when you may cast the spell from your graveyard."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "To determine the total cost of a spell, start with the mana cost or alternative cost you're paying (such as an escape cost), add any cost increases, then apply any cost reductions. The mana value of the spell remains unchanged, no matter what the total cost to cast it was and no matter whether an alternative cost was paid."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-09-20",
+    "comment": "After an escaped spell resolves, it returns to its owner's graveyard if it's not a permanent spell. If it is a permanent spell, it enters and will return to its owner's graveyard if it dies later. It can escape again."
+   }
   ]
  }
 }
