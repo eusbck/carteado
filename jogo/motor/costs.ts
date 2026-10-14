@@ -351,8 +351,9 @@ function* resolveTriggeredMana(g: G): Gen<void> {
 function canSpendFn(g: G, ctx: PayContext): (u: ManaUnit) => boolean {
   return (u) => {
     if (!u.restriction) return true;
-    const fn = registry.fns.get(u.restriction) as ((g: G, purpose: PayContext['purpose']) => boolean) | undefined;
-    return fn ? fn(g, ctx.purpose) : true;
+    // a unidade vai junto: a restrição pode olhar a fonte da mana (Thieving Varmint: "mágicas que você não possui")
+    const fn = registry.fns.get(u.restriction) as ((g: G, purpose: PayContext['purpose'], unit: ManaUnit) => boolean) | undefined;
+    return fn ? fn(g, ctx.purpose, u) : true;
   };
 }
 

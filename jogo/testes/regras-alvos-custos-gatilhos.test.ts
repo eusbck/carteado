@@ -1,6 +1,7 @@
 // Recursos do motor para as cartas do Grand Larceny: outro jogador escolhe os alvos de um gatilho (targetChooser),
 // custo próprio da carta (CostPart 'custom') e o lote de eventos no gancho extraTriggers.
 import { describe, expect, it } from 'vitest';
+import { allowPlay } from '../motor/api.ts';
 import { fixture as setup } from './artefatos.ts';
 
 const ilhas = Array(8).fill('Island');
@@ -43,5 +44,19 @@ describe('extraTriggers com o lote de eventos (CR 603.2c)', () => {
     tg.attack([['Orochi Soul-Reaver', 1]]).passTo('main2', 0);
     expect(tg.all('Treasure')).toHaveLength(2);
     expect(tg.state.zones.battlefield.filter((id) => tg.state.objects[id].faceDown)).toHaveLength(2);
+  });
+});
+
+describe('Restrição de gasto de mana que olha a unidade (CR 106.6)', () => {
+  it('CR 106.6: a restrição recebe a unidade de mana e decide pelo controlador da fonte', () => {
+    // Thieving Varmint: "gaste essa mana somente para conjurar mágicas que você não possui"
+    const tg = setup({ battlefield: [['Thieving Varmint'], []], hand: [['Prismatic Lens'], []], exile: [[], ['Prismatic Lens']] });
+    const daBruno = tg.state.zones.exile[0];
+    // a permissão de jogar a carta de Bruno é dada à mão (como faria Gonti)
+    allowPlay(tg.g, 0, tg.bf('Thieving Varmint'), [daBruno], { kind: 'permanent' });
+    tg.refresh();
+    const minha = tg.find('Prismatic Lens', 'hand', 0)!;
+    expect(tg.actionIds().some((a) => a.startsWith('cast:') && a.split(':').includes(String(minha)))).toBe(false);
+    expect(tg.actionIds().some((a) => a.startsWith('cast:') && a.split(':').includes(String(daBruno)))).toBe(true);
   });
 });

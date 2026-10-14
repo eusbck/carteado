@@ -30,9 +30,15 @@ describe(N, () => {
     expect(tg.state.objects[tg.bf("Ajani's Pridemate")].counters['+1/+1']).toBe(1);
   });
 
-  it('não dobra gatilhos de dano de criaturas dos oponentes', () => {
-    const tg = setup({ active: 1, battlefield: [[N, 'Gonti, Canny Acquisitor'], ['Slither Blade']], library: [ilhas, ilhas] });
-    tg.attack([['Slither Blade', 0]]).passTo('main2', 1);
-    expect(tg.state.zones.exile).toEqual([]);
+  it('o dano de combate da criatura de um oponente não faz disparar a mais; o de uma sua, sim', () => {
+    const tg = setup({ players: 3, active: 1, battlefield: [[N, 'Edric, Spymaster of Trest'], ['Slither Blade'], []] });
+    tg.yes('Edric', true).yes('Edric', true);
+    tg.attack([['Slither Blade', 2]]).passTo('main2', 1);
+    expect(tg.state.zones.hand[1]).toHaveLength(1);
+    tg.passTo('main1', 0);
+    const antes = tg.state.zones.hand[0].length;
+    tg.yes('Edric', true).yes('Edric', true);
+    tg.attack([['Edric, Spymaster of Trest', 1]]).passTo('main2', 0);
+    expect(tg.state.zones.hand[0].length - antes).toBe(2);
   });
 });
