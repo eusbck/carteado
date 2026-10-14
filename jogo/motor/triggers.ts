@@ -33,8 +33,13 @@ function updateStats(g: G, events: GameEvent[]): void {
       }
       case 'damage': {
         // lote2-d: dano sofrido por jogador no turno (sede de sangue, CR 702.54a) e quem recebeu dano de cada fonte
-        if (e.target.kind === 'player') st[e.target.id].damageTaken = (st[e.target.id].damageTaken ?? 0) + e.amount;
-        else {
+        if (e.target.kind === 'player') {
+          st[e.target.id].damageTaken = (st[e.target.id].damageTaken ?? 0) + e.amount;
+          // precons-a: quem causou dano a cada jogador neste turno (Otherworldly Escort)
+          if (g.state.damagedPlayersBy?.turn !== g.state.turn.number) g.state.damagedPlayersBy = { turn: g.state.turn.number, pairs: {} };
+          const quem = g.state.damagedPlayersBy.pairs[String(e.source)] ??= [];
+          if (!quem.includes(e.target.id)) quem.push(e.target.id);
+        } else {
           if (g.state.damagedBy?.turn !== g.state.turn.number) g.state.damagedBy = { turn: g.state.turn.number, pairs: {} };
           const alvos = g.state.damagedBy.pairs[String(e.source)] ??= [];
           if (!alvos.includes(e.target.id)) alvos.push(e.target.id);
@@ -54,6 +59,11 @@ function updateStats(g: G, events: GameEvent[]): void {
         if (e.to === 'battlefield' && !safeChars(g, e.obj)?.types.includes('Land')) st[e.controller].nonlandPermanentsEntered = (st[e.controller].nonlandPermanentsEntered ?? 0) + 1;
         // Smuggler's Share: terrenos que entraram sob o controle do jogador neste turno
         if (e.to === 'battlefield' && safeChars(g, e.obj)?.types.includes('Land')) st[e.controller].landsEntered = (st[e.controller].landsEntered ?? 0) + 1;
+        // precons-a: o que entrou no campo neste turno (Oran-Rief, the Vastwood)
+        if (e.to === 'battlefield') {
+          if (g.state.enteredThisTurn?.turn !== g.state.turn.number) g.state.enteredThisTurn = { turn: g.state.turn.number, objs: [] };
+          g.state.enteredThisTurn.objs.push(e.obj);
+        }
         if (e.from === 'graveyard' && !e.token) {
           st[e.owner].cardsLeftGraveyard++;
           // Syrix: "se uma carta de criatura saiu do seu cemitério neste turno"

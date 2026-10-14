@@ -219,8 +219,13 @@ function layer1(g: G, o: GameObject): Chars {
     return { name: '', manaCost: null, manaValue: 0, colors: [], supertypes: [], types: [], subtypes: [], abilities: [], power: null, toughness: null, loyalty: null, controller: o.controller };
   }
   let c: Chars;
-  if (o.faceDown && (o.zone === 'battlefield' || o.zone === 'stack')) c = faceDownChars(o.owner);
-  else if (o.copyOf) c = copyValuesChars(o.copyOf, o.owner);
+  if (o.faceDown && (o.zone === 'battlefield' || o.zone === 'stack')) {
+    c = faceDownChars(o.owner);
+    // precons-a: habilidades que o efeito que a virou para baixo dá a ela enquanto estiver virada (encobrir: resguardo
+    // {2}, CR 701.58a); somem quando ela é virada para cima
+    const extras = o.data.faceDownAbilities as AbilityInst[] | undefined;
+    if (Array.isArray(extras)) c.abilities.push(...extras.map((a) => ({ ...a })));
+  } else if (o.copyOf) c = copyValuesChars(o.copyOf, o.owner);
   else c = printedChars(o.def, currentFace(o), o.owner);
   // efeitos de cópia (camada 1a) em ordem de registro de data e hora
   if (!o.faceDown) {

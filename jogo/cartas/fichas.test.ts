@@ -139,6 +139,14 @@ const esperadas: Record<string, [string, string[], string[], string[], number | 
   'Vampire 1/1': ['Vampire', ['Creature'], ['Vampire'], ['B', 'W'], 1, 1, ['lifelink']],
   'Eleitor': ['Eleitor', ['Creature'], ['Human', 'Citizen'], ['W'], 1, 1, []],
   'Patriota': ['Patriota', ['Creature'], ['Human', 'Citizen'], ['G', 'W'], 1, 1, ['haste']],
+  // precons-a
+  'Gold': ['Gold', ['Artifact'], ['Gold'], [], null, null, []],
+  'Construct 6/12': ['Construct', ['Artifact', 'Creature'], ['Construct'], [], 6, 12, ['trample']],
+  'Ogre': ['Ogre', ['Creature'], ['Ogre'], ['R'], 3, 3, []],
+  'Squirrel': ['Squirrel', ['Creature'], ['Squirrel'], ['G'], 1, 1, []],
+  'Wolf': ['Wolf', ['Creature'], ['Wolf'], ['G'], 2, 2, []],
+  'Wolf de Garruk': ['Wolf', ['Creature'], ['Wolf'], ['B', 'G'], 2, 2, []],
+  'Raccoon': ['Raccoon', ['Creature'], ['Raccoon'], ['G'], 3, 3, []],
 };
 
 describe('Fichas: características', () => {

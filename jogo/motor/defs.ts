@@ -167,6 +167,9 @@ export interface ManaAbilityDef extends AbilityCommon {
   rider?: string;
   /** efeito adicional (dano dos terrenos de dor etc.) */
   extra?: (c: Ctx) => Gen<void>;
+  /** precons-a: o X do custo é a quantidade de mana da alternativa escolhida ("vire X fichas: adicione X manas",
+   *  Hazel of the Rootbloom); sem isto, X = 0 nas habilidades de mana */
+  xFromAlt?: boolean;
 }
 
 export interface ActivatedDef extends AbilityCommon {

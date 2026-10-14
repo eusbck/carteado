@@ -62,7 +62,10 @@ export type GameEvent =
   /** o escudo de regeneração substituiu a destruição (CR 701.19a) */
   | { type: 'regenerate'; obj: ObjId }
   /** uma habilidade desencadeada foi para a pilha (CR 603.3); `obj` é a habilidade na pilha (Aboleth Spawn) */
-  | { type: 'triggerOnStack'; obj: ObjId; source: ObjId; abilityId: string; controller: PlayerId };
+  | { type: 'triggerOnStack'; obj: ObjId; source: ObjId; abilityId: string; controller: PlayerId }
+  // precons-a: dano prevenido (CR 615): emitido com o lote do dano, para "sempre que o dano que seria causado a você é
+  // prevenido" (Selfless Squire)
+  | { type: 'damagePrevented'; source: ObjId; target: TargetRef; amount: number; combat: boolean };
 
 export function isDies(ev: GameEvent): ev is Extract<GameEvent, { type: 'zone' }> {
   return ev.type === 'zone' && ev.from === 'battlefield' && ev.to === 'graveyard';

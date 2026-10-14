@@ -432,3 +432,30 @@ export const InsectArtefato = token('Insect artefato', 'Insect', ['Artifact', 'C
 export const Eleitor = token('Eleitor', 'Eleitor', ['Creature'], ['Human', 'Citizen'], ['W'], 1, 1);
 /** Patriota 1/1 verde e branca com ímpeto, Humano Cidadão (Motociata) */
 export const Patriota = token('Patriota', 'Patriota', ['Creature'], ['Human', 'Citizen'], ['G', 'W'], 1, 1, keywords('haste'));
+// precons-a: Blame Game e Squirreled Away
+import { addCounters as addCountersPreconsA, mana as manaPreconsA } from '../motor/api.ts';
+/** Gold (Curse of Opulence): artefato com "Sacrifique esta ficha: Adicione uma mana de qualquer cor." */
+export const GoldPreconsA = defineToken({
+  id: 'Gold', name: 'Gold', types: ['Artifact'], subtypes: ['Gold'], colors: [], power: null, toughness: null,
+  abilities: [manaPreconsA('any', { cost: 'Sacrifice this token', text: 'Sacrifique esta ficha: Adicione uma mana de qualquer cor.' })],
+  image: fichasOracle.find((f) => f.faces[0].name === 'Gold')?.oracleId,
+});
+/** Construct 6/12 incolor com atropelar, criatura artefato (Ancient Stone Idol) */
+export const Construct612 = token('Construct 6/12', 'Construct', ['Artifact', 'Creature'], ['Construct'], [], 6, 12, keywords('trample'));
+/** Ogre 3/3 vermelha (Kazuul, Tyrant of the Cliffs) */
+export const Ogre33 = token('Ogre', 'Ogre', ['Creature'], ['Ogre'], ['R'], 3, 3);
+/** Squirrel 1/1 verde (Chatterfang, Deep Forest Hermit, Chitterspitter…) */
+export const Squirrel11 = token('Squirrel', 'Squirrel', ['Creature'], ['Squirrel'], ['G'], 1, 1);
+/** Wolf 2/2 verde (Wolfwillow Haven) */
+export const Wolf22Verde = token('Wolf', 'Wolf', ['Creature'], ['Wolf'], ['G'], 2, 2);
+/** Wolf 2/2 preta e verde de Garruk, Cursed Huntsman: "Quando esta ficha morre, coloque um marcador de lealdade em cada
+ *  Garruk que você controla." */
+export const WolfGarruk = token('Wolf de Garruk', 'Wolf', ['Creature'], ['Wolf'], ['B', 'G'], 2, 2, [
+  triggered(on.selfDies(), function* (c) {
+    for (const id of controlledBy(c.g, c.you, (x) => isType(c.g, x, 'Planeswalker') && chars(c.g, x).subtypes.includes('Garruk'))) {
+      addCountersPreconsA(c.g, { kind: 'obj', id }, 'loyalty', 1, c.you);
+    }
+  }, { text: 'Quando esta ficha morre, coloque um marcador de lealdade em cada Garruk que você controla.' }),
+], 'Garruk');
+/** Raccoon 3/3 verde (Gourmand's Talent) */
+export const Raccoon33 = token('Raccoon', 'Raccoon', ['Creature'], ['Raccoon'], ['G'], 3, 3);

@@ -407,6 +407,12 @@ export interface GameState {
   damagedBy?: { turn: number; pairs: Record<string, ObjId[]> };
   /** quantas vezes cada permanente foi virada neste turno (Captain America, Living Legend); opcional, como os de cima */
   tappedThisTurn?: { turn: number; times: Record<string, number> };
+  /** precons-a: jogadores que receberam dano de cada fonte neste turno, de combate ou não (Otherworldly Escort: "criatura
+   *  que causou dano a você neste turno"); opcional, como os de cima */
+  damagedPlayersBy?: { turn: number; pairs: Record<string, PlayerId[]> };
+  /** precons-a: permanentes que entraram no campo neste turno (Oran-Rief: "cada criatura verde que entrou neste turno");
+   *  opcional, como os de cima */
+  enteredThisTurn?: { turn: number; objs: ObjId[] };
   /** quantas mágicas de cada nome cada jogador conjurou na partida (chave `jogador:nome`; Approach of the Second Sun);
    *  opcional, como os de cima */
   castNames?: Record<string, number>;
