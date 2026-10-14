@@ -4,10 +4,10 @@
 // de mana "vire X fichas: adicione X manas".
 import { describe, expect, it } from 'vitest';
 import { setup } from './harness.ts';
-import { dealDamage, defineAbility, on, ruleEffect, triggered, untilEndOfTurn } from '../motor/api.ts';
+import { createTokens, dealDamage, defineAbility, on, ruleEffect, triggered, untilEndOfTurn } from '../motor/api.ts';
 import { hasKw } from '../motor/chars.ts';
 import type { Ctx, StaticDef } from '../motor/defs.ts';
-import { suspeita, suspeitar } from '../cartas/culpa.ts';
+import { encobrir, suspeita, suspeitar } from '../cartas/culpa.ts';
 
 const vistos: Record<string, unknown>[] = [];
 const OBSERVA = defineAbility('teste:observa-prevencao', triggered(on.custom((e) => (e.type === 'damagePrevented' ? { source: e.source, target: e.target, amount: e.amount, combat: e.combat } : false)), function* (c) { vistos.push(c.event); }));
@@ -90,5 +90,54 @@ describe('redirecionamento para a criatura ou planeswalker escolhido (rule:redir
     untilEndOfTurn(ctxDe(tg, 0, anc), [anc], [{ k: 'removeTypes', types: ['Creature'] }]);
     dealDamage(tg.g, [{ source: z, target: { kind: 'player', id: 0 }, amount: 2, combat: false }]);
     expect(tg.life(0)).toBe(38);
+  });
+});
+
+describe('encobrir (cartas/culpa.ts) e habilidades de face para baixo (data.faceDownAbilities)', () => {
+  it('CR 701.58a: a encoberta tem resguardo {2}: a mágica do oponente que a mira é anulada se ele não pagar', () => {
+    const tg = setup({ battlefield: [[], ['Mountain']], hand: [[], ['Lightning Bolt']], library: [['Indomitable Ancients'], []] });
+    const id = tg.run(encobrir(tg.g, 0))!;
+    expect(tg.state.objects[id].faceDown).toBe(true);
+    expect(hasKw(tg.g, id, 'ward')).toBe(true);
+    tg.pass();
+    tg.yes('resguardo', false);
+    tg.choose('qualquer alvo', [id]).cast('Lightning Bolt');
+    tg.resolveAll();
+    expect(tg.state.objects[id]?.zone).toBe('battlefield');
+    expect(tg.state.objects[id].damage).toBe(0);
+    expect(tg.names(1, 'graveyard')).toEqual(['Lightning Bolt']);
+  });
+});
+
+describe('quem causou dano a um jogador no turno e o que entrou no campo no turno', () => {
+  it('state.damagedPlayersBy guarda, por fonte, os jogadores que ela feriu neste turno', () => {
+    const tg = setup({ battlefield: [['Wall of Omens'], ['Indomitable Ancients']] });
+    dealDamage(tg.g, [{ source: tg.bf('Indomitable Ancients'), target: { kind: 'player', id: 0 }, amount: 1, combat: false }]);
+    const d = tg.state.damagedPlayersBy!;
+    expect(d.turn).toBe(tg.state.turn.number);
+    expect(d.pairs[String(tg.bf('Indomitable Ancients'))]).toEqual([0]);
+    expect(d.pairs[String(tg.bf('Wall of Omens'))]).toBeUndefined();
+  });
+
+  it('state.enteredThisTurn guarda os objetos que entraram no campo neste turno', () => {
+    const tg = setup({ battlefield: [['Wall of Omens'], []] });
+    const [s] = tg.run(createTokens(tg.g, 0, 'Squirrel', 1));
+    expect(tg.state.enteredThisTurn!.turn).toBe(tg.state.turn.number);
+    expect(tg.state.enteredThisTurn!.objs).toContain(s);
+    expect(tg.state.enteredThisTurn!.objs).not.toContain(tg.bf('Wall of Omens'));
+  });
+});
+
+describe('X das habilidades de mana (xFromAlt)', () => {
+  it('CR 605.3: "vire X fichas: adicione X manas" — escolhendo a alternativa de 2 manas, vira exatamente duas fichas', () => {
+    const fichas = [{ name: 'Squirrel', token: true }, { name: 'Squirrel', token: true }, { name: 'Squirrel', token: true }];
+    const tg = setup({ battlefield: [['Hazel of the Rootbloom', ...fichas], []] });
+    const d = tg.pending!;
+    if (d.kind !== 'priority') throw new Error('sem prioridade');
+    const acao = d.actions.find((a) => a.label.startsWith('Hazel') && (a.label.match(/\{\*\}/g) ?? []).length === 2)!;
+    tg.answer({ kind: 'priority', action: acao.id });
+    tg.settle();
+    expect(tg.state.players[0].manaPool.length).toBe(2);
+    expect(tg.state.zones.battlefield.filter((id) => tg.state.objects[id].isToken && tg.state.objects[id].tapped).length).toBe(2);
   });
 });

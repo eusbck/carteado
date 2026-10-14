@@ -338,3 +338,17 @@ describe("Fichas: 'Construct (artefatos)'", () => {
     expect(tg.pt(outra)).toEqual([3, 3]);
   });
 });
+
+// precons-a
+describe("Fichas: 'Gold'", () => {
+  it('sacrifique esta ficha: uma mana de qualquer cor', () => {
+    const tg = setup({ battlefield: [[{ name: 'Gold', token: true }], []] });
+    const d = tg.pending!;
+    if (d.kind !== 'priority') throw new Error('sem prioridade');
+    const acao = d.actions.find((a) => a.label.startsWith('Gold') && a.label.includes('{G}'))!;
+    tg.answer({ kind: 'priority', action: acao.id });
+    tg.settle();
+    expect(tg.state.players[0].manaPool.map((u) => u.type)).toEqual(['G']);
+    expect(tg.state.zones.battlefield).toEqual([]);
+  });
+});
