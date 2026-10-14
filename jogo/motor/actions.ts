@@ -500,10 +500,14 @@ function redirectedDamage(g: G, r: DamageReq): DamageReq {
     const o = s.objects[para];
     if (!o || o.zone !== 'battlefield' || o.phasedOut) continue;
     if (r.target.kind === 'obj' && r.target.id === para) continue;
+    // precons-a, `permanents`: "a você e às permanentes que você controla", para uma criatura ou planeswalker escolhido
+    // que ainda seja criatura ou planeswalker na hora do dano (Gideon's Sacrifice, rulings 3 e 6)
+    const todas = !!m.params?.permanents;
+    if (todas && !chars(g, para).types.some((t) => t === 'Creature' || t === 'Planeswalker')) continue;
     const alvo = r.target.kind === 'obj' ? s.objects[r.target.id] : null;
     const atinge = r.target.kind === 'player'
       ? r.target.id === dono
-      : !!alvo && alvo.zone === 'battlefield' && chars(g, alvo.id).types.includes('Creature') && controllerOf(g, alvo.id) === dono;
+      : !!alvo && alvo.zone === 'battlefield' && (todas || chars(g, alvo.id).types.includes('Creature')) && controllerOf(g, alvo.id) === dono;
     if (atinge) return { ...r, target: { kind: 'obj', id: para } };
   }
   return r;
@@ -533,6 +537,7 @@ export function dealDamage(g: G, reqs: DamageReq[]): { dealt: number; to: Target
       if (!tc.types.some((x) => x === 'Creature' || x === 'Planeswalker' || x === 'Battle')) continue; // CR 120.1a
     } else if (s.players[r.target.id].left) continue;
     // prevenção (CR 615): proteção (702.16e) e escudos registrados
+    const antesDaPrevencao = amount;
     if (!cantPrevent) {
       if (r.target.kind === 'obj' && kwParams(g, r.target.id, 'protection').some((q) => protectionMatches(g, q, { colors: sc.colors, types: sc.types, id: r.source }))) amount = 0;
       if (r.target.kind === 'player' && playerProtectedFrom(g, r.target.id, { colors: sc.colors, types: sc.types, id: r.source })) amount = 0; // CR 702.16e
@@ -570,6 +575,9 @@ export function dealDamage(g: G, reqs: DamageReq[]): { dealt: number; to: Target
         }
       }
     }
+    // precons-a: o dano prevenido vira um evento do mesmo lote (Selfless Squire: "sempre que o dano que seria causado a
+    // você é prevenido"; CR 615)
+    if (amount < antesDaPrevencao) events.push({ type: 'damagePrevented', source: r.source, target: r.target, amount: antesDaPrevencao - Math.max(0, amount), combat: r.combat });
     if (amount <= 0) continue;
     results.push({ dealt: amount, to: r.target, source: r.source });
     events.push({ type: 'damage', source: r.source, controller, target: r.target, amount, combat: r.combat });

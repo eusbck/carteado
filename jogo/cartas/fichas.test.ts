@@ -143,6 +143,14 @@ const esperadas: Record<string, [string, string[], string[], string[], number | 
   'Phyrexian Beast': ['Phyrexian Beast', ['Creature'], ['Phyrexian', 'Beast'], ['G'], 4, 4, []],
   'Spirit incolor': ['Spirit', ['Creature'], ['Spirit'], [], 1, 1, []],
   'Pilot': ['Pilot', ['Creature'], ['Pilot'], [], 1, 1, []],
+  // precons-a
+  'Gold': ['Gold', ['Artifact'], ['Gold'], [], null, null, []],
+  'Construct 6/12': ['Construct', ['Artifact', 'Creature'], ['Construct'], [], 6, 12, ['trample']],
+  'Ogre': ['Ogre', ['Creature'], ['Ogre'], ['R'], 3, 3, []],
+  'Squirrel': ['Squirrel', ['Creature'], ['Squirrel'], ['G'], 1, 1, []],
+  'Wolf': ['Wolf', ['Creature'], ['Wolf'], ['G'], 2, 2, []],
+  'Wolf de Garruk': ['Wolf', ['Creature'], ['Wolf'], ['B', 'G'], 2, 2, []],
+  'Raccoon': ['Raccoon', ['Creature'], ['Raccoon'], ['G'], 3, 3, []],
 };
 
 describe('Fichas: características', () => {
@@ -342,5 +350,16 @@ describe("Fichas: 'Pilot'", () => {
     tg.choose('Tripular:', ['Pilot']).choose('Tripular:', ['done']).activate("Cultivator's Caravan", 'Tripular').resolveAll();
     expect(chars(tg.g, tg.bf("Cultivator's Caravan")).types).toContain('Creature');
     expect(tg.pt(tg.bf('Pilot'))).toEqual([1, 1]);
+// precons-a
+describe("Fichas: 'Gold'", () => {
+  it('sacrifique esta ficha: uma mana de qualquer cor', () => {
+    const tg = setup({ battlefield: [[{ name: 'Gold', token: true }], []] });
+    const d = tg.pending!;
+    if (d.kind !== 'priority') throw new Error('sem prioridade');
+    const acao = d.actions.find((a) => a.label.startsWith('Gold') && a.label.includes('{G}'))!;
+    tg.answer({ kind: 'priority', action: acao.id });
+    tg.settle();
+    expect(tg.state.players[0].manaPool.map((u) => u.type)).toEqual(['G']);
+    expect(tg.state.zones.battlefield).toEqual([]);
   });
 });

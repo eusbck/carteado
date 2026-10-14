@@ -237,7 +237,7 @@ export function* activateManaAbility(g: G, player: PlayerId, opt: ManaOption, hi
     const ok = yield* payManaFromPoolOnly(g, player, opt.manaCost);
     if (!ok) return false;
   }
-  const paid = yield* payParts(g, player, opt.def.cost.filter((p) => p.k !== 'mana'), opt.obj, 0, true);
+  const paid = yield* payParts(g, player, opt.def.cost.filter((p) => p.k !== 'mana'), opt.obj, opt.def.xFromAlt ? opt.alt.length : 0, true);
   if (!paid) return false;
   if (opt.def.oncePerTurn) { const s = g.state.objects[opt.obj]; if (s) s.usedThisTurn[opt.abilityId] = g.state.turn.number; }
   // "qualquer combinação de cores": cada '*' vira uma cor escolhida agora (CR 106.1a)
