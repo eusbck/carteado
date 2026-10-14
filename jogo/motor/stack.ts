@@ -729,7 +729,8 @@ export function* putTriggerOnStack(g: G, abilityId: string, source: ObjId, contr
   }
   const { specs } = abilityTargetSpecs(def, info.modes);
   if (specs.length) {
-    const t = yield* chooseTargets(g, controller, specs, source, label, 0, event);
+    const quem = def.targetChooser ? def.targetChooser({ g, you: controller, source, event }) : controller;
+    const t = yield* chooseTargets(g, controller, specs, source, label, 0, event, quem);
     if (t === null) { destroyObject(g, ab.id); return null; } // CR 603.3d
     info.targets = t;
   }

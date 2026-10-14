@@ -98,6 +98,7 @@ export function canPayParts(g: G, player: PlayerId, parts: CostPart[], source: O
       case 'returnLand': break;
       case 'returnUnblockedAttacker': if (!unblockedAttackers(g, player).length) return false; break;
       case 'revealSelf': if (!o || (o.zone !== 'hand' && o.zone !== 'command')) return false; break;
+      case 'custom': if (!p.canPay(ctx)) return false; break;
     }
   }
   return recursosDistintos(g, player, parts, source, x);
@@ -728,6 +729,12 @@ export function* payParts(g: G, player: PlayerId, parts: CostPart[], source: Obj
         o.visibleTo = 'all';
         g.bump();
         g.log(`${s.players[player].name} revela ${nameOf(g, source)}${o.zone === 'command' ? ' da zona de comando' : ' da mão'}.`, { rule: '702.49b' });
+        break;
+      }
+      case 'custom': {
+        const r = yield* p.pay(ctx);
+        if (r === false) return false;
+        Object.assign(info, r);
         break;
       }
     }

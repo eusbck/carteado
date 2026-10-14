@@ -139,6 +139,10 @@ const esperadas: Record<string, [string, string[], string[], string[], number | 
   'Vampire 1/1': ['Vampire', ['Creature'], ['Vampire'], ['B', 'W'], 1, 1, ['lifelink']],
   'Eleitor': ['Eleitor', ['Creature'], ['Human', 'Citizen'], ['W'], 1, 1, []],
   'Patriota': ['Patriota', ['Creature'], ['Human', 'Citizen'], ['G', 'W'], 1, 1, ['haste']],
+  // precons-b
+  'Eldrazi Scion': ['Eldrazi Scion', ['Creature'], ['Eldrazi', 'Scion'], [], 1, 1, []],
+  'Boar': ['Boar', ['Creature'], ['Boar'], ['G'], 2, 2, []],
+  'Angel 3/3': ['Angel', ['Creature'], ['Angel'], ['W'], 3, 3, ['flying']],
 };
 
 describe('Fichas: características', () => {
@@ -328,5 +332,17 @@ describe("Fichas: 'Construct (artefatos)'", () => {
     const [outra] = tg.run(createTokens(tg.g, 0, 'Construct (artefatos)', 1));
     expect(tg.pt(tok)).toEqual([3, 3]);
     expect(tg.pt(outra)).toEqual([3, 3]);
+  });
+});
+
+// precons-b
+describe("Fichas: 'Eldrazi Scion'", () => {
+  it('sacrifique: adicione {C}', () => {
+    const tg = setup({ battlefield: [[{ name: 'Eldrazi Scion', token: true }], []], hand: [['Sol Ring'], []] });
+    const id = tg.bf('Eldrazi Scion');
+    expect(manaOptions(tg.g, 0).filter((o) => o.obj === id).map((o) => o.alt.join(''))).toEqual(['C']);
+    tg.cast('Sol Ring').resolve();
+    expect(tg.find('Eldrazi Scion')).toBeNull();
+    expect(tg.find('Sol Ring')).not.toBeNull();
   });
 });

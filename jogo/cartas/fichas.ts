@@ -432,3 +432,13 @@ export const InsectArtefato = token('Insect artefato', 'Insect', ['Artifact', 'C
 export const Eleitor = token('Eleitor', 'Eleitor', ['Creature'], ['Human', 'Citizen'], ['W'], 1, 1);
 /** Patriota 1/1 verde e branca com ímpeto, Humano Cidadão (Motociata) */
 export const Patriota = token('Patriota', 'Patriota', ['Creature'], ['Human', 'Citizen'], ['G', 'W'], 1, 1, keywords('haste'));
+
+// precons-b (Grand Larceny, Calling All Angels)
+/** Eldrazi Scion 1/1 incolor: "Sacrifique esta ficha: Adicione {C}" (Void Attendant) */
+export const EldraziScion = token('Eldrazi Scion', 'Eldrazi Scion', ['Creature'], ['Eldrazi', 'Scion'], [], 1, 1, [
+  mana('C', { cost: 'Sacrifice this token', text: 'Sacrifique esta ficha: Adicione {C}.' }),
+]);
+/** Boar 2/2 verde (Curse of the Swine) */
+export const Boar22 = token('Boar', 'Boar', ['Creature'], ['Boar'], ['G'], 2, 2);
+/** Angel 3/3 branca com voar (Linvala, the Preserver) */
+export const Angel33 = token('Angel 3/3', 'Angel', ['Creature'], ['Angel'], ['W'], 3, 3, keywords('flying'));
