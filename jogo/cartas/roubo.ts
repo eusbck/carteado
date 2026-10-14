@@ -26,7 +26,7 @@ export function* exilaTopoViradoJogavel(c: Ctx, jogador: PlayerId): Gen<ObjId | 
  * resolução (CR 608.2g, 118.9): uma de cada vez, na ordem que o jogador escolher; terrenos não (CR 305.9). Devolve
  * quantas foram conjuradas.
  */
-export function* conjuraDentreGratis(c: Ctx, cartas: ObjId[], opts: { rotulo: string; varias: boolean; filtro?: (id: ObjId) => boolean }): Gen<number> {
+export function* conjuraDentreGratis(c: Ctx, cartas: ObjId[], opts: { rotulo: string; varias: boolean; filtro?: (id: ObjId) => boolean; exilaEmVezDoCemiterio?: boolean }): Gen<number> {
   const s = c.g.state;
   let n = 0;
   const tentadas = new Set<ObjId>();
@@ -41,7 +41,7 @@ export function* conjuraDentreGratis(c: Ctx, cartas: ObjId[], opts: { rotulo: st
     const id = Number(esc);
     tentadas.add(id);
     // se não der para conjurar (sem alvos, por exemplo), a carta fica onde está
-    if ((yield* conjuraGratis(c, id)) !== null) n++;
+    if ((yield* conjuraGratis(c, id, { exilaEmVezDoCemiterio: opts.exilaEmVezDoCemiterio })) !== null) n++;
     if (!opts.varias && n > 0) return n;
   }
 }
