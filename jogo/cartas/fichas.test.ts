@@ -368,6 +368,9 @@ describe("Fichas: 'Gold'", () => {
     tg.settle();
     expect(tg.state.players[0].manaPool.map((u) => u.type)).toEqual(['G']);
     expect(tg.state.zones.battlefield).toEqual([]);
+  });
+});
+
 // precons-b
 describe("Fichas: 'Eldrazi Scion'", () => {
   it('sacrifique: adicione {C}', () => {
