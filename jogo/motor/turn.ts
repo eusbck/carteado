@@ -102,6 +102,8 @@ function beginTurn(g: G, active: PlayerId, first = false): void {
     mainPhaseCount: 0, combatCount: 0, landsPlayed: 0,
   };
   s.players[active].lastTurn = s.turn.number;
+  // turnos que o jogador já tomou na partida, contando turnos extras (Serra Avenger)
+  s.players[active].turnsTaken = (s.players[active].turnsTaken ?? 0) + 1;
   s.turnStats = s.players.map(() => emptyTurnStats());
   s.turnCounters = {};
   s.priority = null;

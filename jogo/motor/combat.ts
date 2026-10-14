@@ -3,7 +3,7 @@
 import { dealDamage, removeFromCombat, tap, type DamageReq } from './actions.ts';
 import { ask } from './ask.ts';
 import { chars, controllerOf, hasKw, hooks, isCreature, isType, kwParams, nameOf, power, toughness } from './chars.ts';
-import { summoningSick, payMana } from './costs.ts';
+import { canAfford, summoningSick, payMana } from './costs.ts';
 import { registry, type Gen } from './defs.ts';
 import type { G } from './game-context.ts';
 import { protectionMatches } from './actions.ts';
@@ -281,6 +281,13 @@ export function requiredBlocks(cands: { obj: ObjId; canBlock: ObjId[] }[], requi
   return out;
 }
 
+/** custo para bloquear (Archangel of Tithes, CR 509.1d) em mana genérica */
+export function blockCostFor(g: G, blocker: ObjId, attacker: ObjId): number {
+  let n = 0;
+  for (const h of hooks(g, 'blockCost')) n += h.fn(h.ctx, blocker, attacker);
+  return n;
+}
+
 export function validateBlocks(g: G, defender: PlayerId, blocks: [ObjId, ObjId][]): string | null {
   const cands = blockCandidates(g, defender);
   const seen = new Set<ObjId>();
@@ -308,6 +315,9 @@ export function validateBlocks(g: G, defender: PlayerId, blocks: [ObjId, ObjId][
     const cumpridas = exigem.filter((a) => count.get(a) === 1).length;
     if (cumpridas < requiredBlocks(cands, exigem).length) return `${nameOf(g, exigem[0])} precisa ser bloqueada por exatamente uma criatura se puder (CR 509.1c)`;
   }
+  // custos para bloquear (CR 509.1d): a declaração só é aceita se der para pagá-los
+  const custo = blocks.reduce((n, [b, a]) => n + blockCostFor(g, b, a), 0);
+  if (custo > 0 && !canAfford(g, defender, [{ k: 'generic', n: custo }], { purpose: { kind: 'effect' } })) return `Não há mana para pagar {${custo}} para bloquear (CR 509.1d)`;
   return null;
 }
 
@@ -322,9 +332,19 @@ export function* declareBlockers(g: G): Gen<void> {
     if (cands.length === 0) continue;
     const attackers = combat.attackers.filter((a) => !a.removed && defendingPlayerOf(g, a.target) === d).map((a) => a.id);
     const quemEscolhe = combatChooser(g) ?? d;
-    const a = yield* ask<Extract<Answer, { kind: 'blockers' }>>(g, {
-      kind: 'blockers', player: quemEscolhe, prompt: quemEscolhe === d ? 'Declare os bloqueadores' : `Declare os bloqueadores de ${s.players[d].name}`, candidates: cands, attackers, required: mustBeBlockedByOne(g, attackers),
-    }, (ans) => validateBlocks(g, d, ans.blocks));
+    let a: Extract<Answer, { kind: 'blockers' }>;
+    for (;;) {
+      a = yield* ask<Extract<Answer, { kind: 'blockers' }>>(g, {
+        kind: 'blockers', player: quemEscolhe, prompt: quemEscolhe === d ? 'Declare os bloqueadores' : `Declare os bloqueadores de ${s.players[d].name}`, candidates: cands, attackers, required: mustBeBlockedByOne(g, attackers),
+      }, (ans) => validateBlocks(g, d, ans.blocks));
+      // custos para bloquear (CR 509.1d-f): o defensor paga; desistindo, declara de novo
+      const total = a.blocks.reduce((n, [b, at]) => n + blockCostFor(g, b, at), 0);
+      if (total > 0) {
+        const paid = yield* payMana(g, d, [{ k: 'generic', n: total }], { purpose: { kind: 'effect' }, canCancel: true, label: 'bloquear' });
+        if (paid === null) continue;
+      }
+      break;
+    }
     all.push(...a.blocks);
   }
   for (const [b, a] of all) {

@@ -185,6 +185,11 @@ export function loseGame(g: G, p: PlayerId): void {
 export function winGame(g: G, p: PlayerId, reason: string): void {
   const s = g.state;
   if (s.gameOver || s.players[p].left) return;
+  // "seus oponentes não podem vencer o jogo" (Herald of Eternal Dawn): o efeito que faria vencer não faz nada
+  if (hooks(g, 'cantWinGame').some((h) => h.fn(h.ctx, p))) {
+    g.log(`${s.players[p].name} não pode vencer a partida.`, { rule: '104.2b' });
+    return;
+  }
   s.players[p].won = true;
   s.gameOver = { winners: [p], draw: false, reason };
   g.log(`${s.players[p].name} vence a partida (${reason}).`, { rule: '104.2b' });

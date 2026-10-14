@@ -218,6 +218,8 @@ export interface RuleHooks {
   costModifier?: (c: SCtx, spell: SpellInfoForCost) => { reduce?: number; increase?: number; reduceColored?: Partial<Record<Color, number>> } | null;
   canAttack?: (c: SCtx, attacker: ObjId, target: TargetRef) => boolean;
   attackCost?: (c: SCtx, attacker: ObjId, target: TargetRef) => number;
+  /** custo genérico para [bloqueador] bloquear [atacante] (Archangel of Tithes; CR 509.1d) */
+  blockCost?: (c: SCtx, blocker: ObjId, attacker: ObjId) => number;
   canBlock?: (c: SCtx, blocker: ObjId, attacker: ObjId) => boolean;
   assignsByToughness?: (c: SCtx, creature: ObjId) => boolean;
   canAttackWithDefender?: (c: SCtx, creature: ObjId, target: TargetRef) => boolean;
@@ -254,6 +256,8 @@ export interface RuleHooks {
   leavesBattlefield?: (c: SCtx, obj: GameObject, dest: ZoneName) => { dest: ZoneName; then?: () => Gen<void>; label?: string } | null;
   /** "Você não pode perder o jogo" (CR 104.3, 704.5a-c, 704.6c): as ações de estado não fazem o jogador perder */
   cantLoseGame?: (c: SCtx, player: PlayerId) => boolean;
+  /** "[esse jogador] não pode vencer o jogo" (Herald of Eternal Dawn): um efeito que diria que ele vence não faz nada (CR 104.2b) */
+  cantWinGame?: (c: SCtx, player: PlayerId) => boolean;
   /** "[permanentes] não podem receber marcadores [tipo]" (CR 122): vale também para os que entram com marcadores */
   cantHaveCountersPut?: (c: SCtx, kind: string, target: { controller: PlayerId; chars: Chars }) => boolean;
   /** proteção de um jogador (CR 702.16b, 702.16e): qualidades no formato de protectionMatches ('type:Creature'…) */

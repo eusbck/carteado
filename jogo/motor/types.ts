@@ -296,6 +296,8 @@ export interface PlayerState {
   citysBlessing: boolean;
   /** número do turno mais recente deste jogador (CR 302.6); -1 antes do primeiro */
   lastTurn: number;
+  /** quantos turnos o jogador já começou na partida, contando os extras (Serra Avenger); ausente em partidas salvas antes */
+  turnsTaken?: number;
 }
 
 /** estatísticas do turno atual por jogador, para cartas que olham "neste turno" */
