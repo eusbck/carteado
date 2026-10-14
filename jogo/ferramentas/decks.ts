@@ -21,6 +21,7 @@
 import '../cartas/index.ts';
 import { existsSync, mkdirSync, readFileSync, renameSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
+import { LAYOUTS_SUPORTADOS } from '../motor/formatos.ts';
 import { oracle } from '../motor/oracle.ts';
 import { Banco } from '../servidor/banco.ts';
 import { cartasPorNome, rulingsPorOracle } from '../servidor/catalogo/base.ts';
@@ -46,8 +47,6 @@ const args = resto.filter((a) => !a.startsWith('--'));
 /** erro de uso da linha de comando: só a mensagem */
 class ErroUso extends Error {}
 
-/** layouts que o motor já sabe jogar (os das 547 cartas de hoje) */
-const LAYOUTS = new Set(['normal', 'transform', 'prepare', 'class', 'saga']);
 
 let redeUnica: Rede | null = null;
 
@@ -195,7 +194,7 @@ function pendentes(): void {
         nome, slug: slug(nome), layout: c?.layout ?? '?', custo, tipo, texto,
         rulings: (rulings[c?.oracle_id ?? ''] ?? []).length,
         fichas: [...new Set(fichas)],
-        alerta: c && !LAYOUTS.has(c.layout) ? `layout ${c.layout}: o motor ainda não tem` : null,
+        alerta: c && !LAYOUTS_SUPORTADOS.has(c.layout) ? `layout ${c.layout}: o motor ainda não tem` : null,
       };
     });
     saida.push({ id: d.id, nome: d.nome, link: d.link, tipo: d.atual && d.preparacao ? 'atualização' : 'deck novo', total: nomesDaLista(l).length, faltam });
