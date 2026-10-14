@@ -23,8 +23,8 @@ Dois decks de sátira com cartas próprias (não vêm do Moxfield), na branch `d
 - Validação: testes das 23 cartas com regra própria e de `testes/catalogo/decks-brasil.test.ts` (100 cartas, regras
   de deck, todas prontas, imagem de cada uma, skins iguais às originais); 18 partidas de bots aleatórios e 4 de bots
   heurísticos com cada deck obrigatório, de 2 e 4 jogadores, sem erro; tipos e cliente compilados; saguão, prévia das
-  cartas e início de partida conferidos no navegador num servidor isolado (porta 8098). A suíte inteira ainda não foi
-  rodada nesta branch.
+  cartas e início de partida conferidos no navegador num servidor isolado (porta 8098). A suíte inteira rodou depois,
+  na `main` em `6c427ce`, sem falhas (ver "14/10/2026 — Suíte inteira na main com os decks do Lula e do Bolsonaro").
 
 ## Novos decks — Codex, 10/10/2026
 
@@ -1936,3 +1936,21 @@ jogáveis).
 
 Falta 1 deck do lote 2: o Food and Fellowship (importação e dois comandantes pendentes), que o Caio pediu para deixar
 para depois.
+
+## 14/10/2026 — Suíte inteira na main com os decks do Lula e do Bolsonaro
+
+- Antes de mandar ao GitHub os 9 commits que só estavam na `main` local (de `31f05c4` a `6c427ce`, decks do Lula e do
+  Bolsonaro e as artes deles), rodei a suíte inteira em `6c427ce`: 16 fatias com `vitest run --shard=i/16
+  --maxWorkers=2`, um processo por fatia, uma depois da outra. **1635 arquivos, 4254 testes aprovados, 1 ignorado que
+  já existia, zero falhas.** São 1580 arquivos de cartas e 55 de testes gerais. `npm run typecheck` sem erros.
+- O sistema derrubou a fatia 3 por falta de memória (o PC estava com 2 a 3 GB livres); ela foi repetida sozinha e
+  passou inteira. Cada fatia levou de 6 a 13 minutos.
+- Durante a rodada o Caio importou 6 decks novos pela mesa da 8080 (arquivos em `decks/`, `gerado/` e
+  `dados-locais/imagens/`, sem commit e fora destes commits). Como a suíte leu a pasta com eles, os 55 testes gerais
+  foram repetidos na worktree `../Magic-Commander-brasil`, limpa em `6c427ce`: **55 arquivos, 565 testes aprovados,
+  1 ignorado, zero falhas.**
+- Restam 18 worktrees antigas, todas já inteiras na `main` e sem nada por commitar (as 11 de `.claude/worktrees/` e
+  `jogo-wt-a` a `jogo-wt-g`); a remoção foi barrada pelo modo automático e fica com o Caio. Ficam de pé `jogo-wt-bots`
+  (Codex, com trabalho sem commit), `../Magic-Commander-brasil`, `../Magic-Commander-lote2` e
+  `../Magic-Commander-regras-decks`. O `node_modules` de cada uma é um atalho (junção) para o da `main`: tirar o atalho
+  com `cmd /c rmdir` antes de `git worktree remove --force`, senão a remoção pode apagar o conteúdo do original.
