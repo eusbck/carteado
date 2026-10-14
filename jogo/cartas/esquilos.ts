@@ -1,10 +1,10 @@
 // Peças repetidas nas cartas do deck Squirreled Away (Bloomburrow Commander): Squirrels, Foods e fichas, tempestade
 // (CR 702.40), esvanecer (CR 702.63), passo da floresta (CR 702.14) e o nível de Classe (CR 716.2a).
 import {
-  activated, chars, controlledBy, controllerOf, copySpell, emit, entersWithCounters, isLand, on, onCastThis, removeCounters,
+  activated, chars, controlledBy, controllerOf, copySpell, emit, entersWithCounters, isLand, on, removeCounters,
   sacrifice, triggered,
 } from '../motor/api.ts';
-import type { AbilityDef, ActivatedDef, StaticDef, TriggeredDef } from '../motor/defs.ts';
+import type { AbilityDef, ActivatedDef, Gen, StaticDef, TriggeredDef } from '../motor/defs.ts';
 import type { G } from '../motor/game-context.ts';
 import type { ObjId, PlayerId } from '../motor/types.ts';
 
@@ -35,13 +35,24 @@ export function fichasDe(g: G, p: PlayerId): ObjId[] {
  * inclusive anuladas e conjuradas de outras zonas (ruling 2 de Chatterstorm); cópias não contam (ruling 1).
  */
 export function storm(): TriggeredDef {
-  const a = onCastThis(function* (c) {
-    const total = c.g.state.players.reduce((t, p) => t + (c.g.state.turnStats[p.id]?.spellsCast ?? 0), 0);
+  // a contagem é tirada quando a mágica é conjurada (precons-d): mágicas conjuradas em resposta ao gatilho não contam
+  const a = triggered(on.custom((e, c) => (e.type === 'cast' && e.obj === c.source ? { spell: e.obj, antes: magicasDoTurno(c.g) - 1 } : false)), function* (c) {
     // a contagem do turno já inclui esta mágica
-    for (let i = 0; i < total - 1; i++) yield* copySpell(c.g, c.source, c.you, { newTargets: true, semExtra: i > 0 });
-  }, 'Tempestade (quando você conjura esta mágica, copie-a para cada mágica conjurada antes dela neste turno).');
+    const antes = typeof c.event.antes === 'number' ? c.event.antes : magicasDoTurno(c.g) - 1;
+    yield* copiasDeTempestade(c.g, c.source, c.you, antes);
+  }, { zones: ['stack'], text: 'Tempestade (quando você conjura esta mágica, copie-a para cada mágica conjurada antes dela neste turno).' });
   a.kw = 'storm';
   return a;
+}
+
+/** mágicas conjuradas neste turno por todos os jogadores (as cópias não contam: CR 707.10) */
+export function magicasDoTurno(g: G): number {
+  return g.state.players.reduce((t, p) => t + (g.state.turnStats[p.id]?.spellsCast ?? 0), 0);
+}
+
+/** as cópias da tempestade (CR 702.40a): n cópias, cada uma podendo ter novos alvos */
+export function* copiasDeTempestade(g: G, magica: ObjId, p: PlayerId, n: number): Gen<void> {
+  for (let i = 0; i < n; i++) yield* copySpell(g, magica, p, { newTargets: true, semExtra: i > 0 });
 }
 
 /**
