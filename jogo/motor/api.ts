@@ -34,3 +34,5 @@ export { unattach, canSearchLibraries, regenerationShields, cantBeRegenerated } 
 export { copyValuesChars } from './chars.ts';
 export type { CopyExcept, CopyValues } from './types.ts';
 export { removeEffect } from './state.ts';
+// precons-b: predizer (foretell, CR 702.143)
+export * from './predizer.ts';
