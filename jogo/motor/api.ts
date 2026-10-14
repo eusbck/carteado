@@ -36,3 +36,5 @@ export type { CopyExcept, CopyValues } from './types.ts';
 export { removeEffect } from './state.ts';
 // precons-b: predizer (foretell, CR 702.143)
 export * from './predizer.ts';
+// precons-e: milagre (miracle, CR 702.94)
+export * from './milagre.ts';

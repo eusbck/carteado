@@ -886,9 +886,29 @@ export function* draw(g: G, player: PlayerId, n = 1, opts: { aplicadas?: ObjId[]
     if (newId !== null && g.state.objects[newId]) {
       out.push(newId);
       emit(g, [{ type: 'draw', player, obj: newId, nth: before + 1 }]);
+      // precons-e: milagre (CR 702.94a), só para a primeira carta comprada no turno
+      if (before === 0) yield* revelaMilagre(g, player, newId);
     }
   }
   return out;
+}
+
+/**
+ * precons-e: milagre (CR 702.94a-b). "Você pode revelar esta carta da sua mão ao comprá-la, se for a primeira carta que
+ * você comprou neste turno": a pergunta vem na própria compra, antes de a carta se misturar com a mão (ruling 1); a
+ * compra inicial da partida não é num turno (CR 103.5). Revelada, a carta fica revelada (702.94b) e o gatilho ligado
+ * 'mecanica:milagre' (motor/milagre.ts, CR 603.11) dispara; quem escolhe o custo e conjura é ele.
+ */
+function* revelaMilagre(g: G, player: PlayerId, id: ObjId): Gen<void> {
+  const o = g.state.objects[id];
+  if (!g.state.started || !o || o.zone !== 'hand' || !chars(g, id).abilities.some((a) => a.kw === 'miracle')) return;
+  // ruling 5: revelar é opcional
+  if (!(yield* yesNo(g, player, `Milagre: revelar ${nameOf(g, id)}, a primeira carta que você comprou neste turno, para poder conjurá-la pelo custo de milagre?`, 'Revelar', 'Não revelar'))) return;
+  const antes = o.visibleTo;
+  o.visibleTo = 'all';
+  g.bump();
+  g.log(`${g.state.players[player].name} revela ${nameOf(g, id)} (milagre).`, { rule: '702.94a' });
+  addPending(g, 'mecanica:milagre', id, player, { visivelAntes: antes }, {});
 }
 
 export function* mill(g: G, player: PlayerId, n: number): Gen<ObjId[]> {
