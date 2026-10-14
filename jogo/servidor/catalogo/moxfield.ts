@@ -63,9 +63,12 @@ const RECUSADAS: Record<string, string> = {
   stickers: 'adesivos',
   contraptions: 'engenhocas',
   planes: 'planos',
-  schemes: 'esquemas',
 };
-const IGNORADAS: Record<string, string> = { sideboard: 'reserva (sideboard)', maybeboard: '"talvez" (maybeboard)', tokens: 'fichas (tokens)' };
+/** zonas com cartas fora das 100 do Commander: o deck entra sem elas, com um aviso. Os esquemas do Archenemy vêm de brinde
+ *  nos precons de Duskmourn (Miracle Worker) e não fazem parte do deck */
+const IGNORADAS: Record<string, string> = {
+  sideboard: 'reserva (sideboard)', maybeboard: '"talvez" (maybeboard)', tokens: 'fichas (tokens)', schemes: 'esquemas do Archenemy',
+};
 
 function entradas(z: ZonaMox | undefined): EntradaMox[] {
   const out: EntradaMox[] = [];

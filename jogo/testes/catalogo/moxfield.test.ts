@@ -69,6 +69,15 @@ describe('normalizar', () => {
     expect(() => normalizar(ficha, 'x')).toThrow(/ficha/);
   });
 
+  it('esquemas do Archenemy (brinde dos precons de Duskmourn) ficam de fora, com aviso, e o deck entra', () => {
+    const r = respostaMox('Teste12345', 'T', { nome: 'Aminatou, Veil Piercer' }, [{ nome: 'Opt' }]);
+    (r.boards as Record<string, unknown>).schemes = respostaMox('a', 'b', { nome: 'A' }, [{ nome: 'I Am Duskmourn' }, { nome: 'Choose Your Demise' }]).boards.mainboard;
+    const d = normalizar(r, 'Teste12345');
+    expect(d.comandantes.map((e) => e.nome)).toEqual(['Aminatou, Veil Piercer']);
+    expect(d.principal.map((e) => e.nome)).toEqual(['Opt']);
+    expect(d.ignoradas).toEqual(['esquemas do Archenemy']);
+  });
+
   it('o nome do deck é limpo e cortado em 60 caracteres', () => {
     const r = respostaMox('Teste12345', `  Deck\u0000 com\n  ${'x'.repeat(80)}`, { nome: 'Jace' }, [{ nome: 'Opt' }]);
     const n = normalizar(r, 'Teste12345').nome;
