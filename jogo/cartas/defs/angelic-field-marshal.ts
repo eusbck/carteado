@@ -2,6 +2,7 @@
 // Flying
 // Lieutenant — As long as you control your commander, this creature gets +2/+2 and creatures you control have vigilance.
 import { and, anthem, defineCard, is, keyword, selfGets } from '../../motor/api.ts';
+import type { SCtx } from '../../motor/defs.ts';
 import { controlaComandante } from '../wakanda.ts';
 
 export default defineCard({
@@ -10,8 +11,8 @@ export default defineCard({
     abilities: [
       keyword('flying'),
       // rulings 1-4: vale enquanto você controlar o seu comandante (o de que você é dono), no campo
-      { ...selfGets(() => [{ k: 'pt', p: 2, t: 2 }], 'Tenente — Enquanto você controlar o seu comandante, esta criatura recebe +2/+2.'), condition: (c) => controlaComandante(c.g, c.you) },
-      { ...anthem(and(is.creature, is.yours), () => [{ k: 'addKeyword', kw: 'vigilance' }], 'Tenente — Enquanto você controlar o seu comandante, as criaturas que você controla têm vigilância.'), condition: (c) => controlaComandante(c.g, c.you) },
+      { ...selfGets(() => [{ k: 'pt', p: 2, t: 2 }], 'Tenente — Enquanto você controlar o seu comandante, esta criatura recebe +2/+2.'), condition: (c: SCtx) => controlaComandante(c.g, c.you) },
+      { ...anthem(and(is.creature, is.yours), () => [{ k: 'addKeyword', kw: 'vigilance' }], 'Tenente — Enquanto você controlar o seu comandante, as criaturas que você controla têm vigilância.'), condition: (c: SCtx) => controlaComandante(c.g, c.you) },
     ],
   }],
   rulings: {
