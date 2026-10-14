@@ -98,6 +98,7 @@ export function canPayParts(g: G, player: PlayerId, parts: CostPart[], source: O
       case 'returnLand': break;
       case 'returnUnblockedAttacker': if (!unblockedAttackers(g, player).length) return false; break;
       case 'revealSelf': if (!o || (o.zone !== 'hand' && o.zone !== 'command')) return false; break;
+      case 'custom': if (!p.canPay(ctx)) return false; break;
     }
   }
   return recursosDistintos(g, player, parts, source, x);
@@ -356,8 +357,9 @@ function* resolveTriggeredMana(g: G): Gen<void> {
 function canSpendFn(g: G, ctx: PayContext): (u: ManaUnit) => boolean {
   return (u) => {
     if (!u.restriction) return true;
-    const fn = registry.fns.get(u.restriction) as ((g: G, purpose: PayContext['purpose']) => boolean) | undefined;
-    return fn ? fn(g, ctx.purpose) : true;
+    // a unidade vai junto: a restrição pode olhar a fonte da mana (Thieving Varmint: "mágicas que você não possui")
+    const fn = registry.fns.get(u.restriction) as ((g: G, purpose: PayContext['purpose'], unit: ManaUnit) => boolean) | undefined;
+    return fn ? fn(g, ctx.purpose, u) : true;
   };
 }
 
@@ -734,6 +736,12 @@ export function* payParts(g: G, player: PlayerId, parts: CostPart[], source: Obj
         o.visibleTo = 'all';
         g.bump();
         g.log(`${s.players[player].name} revela ${nameOf(g, source)}${o.zone === 'command' ? ' da zona de comando' : ' da mão'}.`, { rule: '702.49b' });
+        break;
+      }
+      case 'custom': {
+        const r = yield* p.pay(ctx);
+        if (r === false) return false;
+        Object.assign(info, r);
         break;
       }
     }

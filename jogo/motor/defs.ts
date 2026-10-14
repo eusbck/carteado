@@ -119,7 +119,10 @@ export type CostPart =
    *  costInfo.returnedAttacker = { obj, target } (quem ele atacava, para a carta entrar atacando o mesmo) */
   | { k: 'returnUnblockedAttacker'; label?: string }
   /** revelar esta carta da mão ou da zona de comando (ninjutsu, CR 702.49a-b) */
-  | { k: 'revealSelf' };
+  | { k: 'revealSelf' }
+  /** custo próprio da carta (CR 118.1, 602.2b): `canPay` diz se dá para pagar agora e `pay` paga, devolvendo o que entra em
+   *  costInfo ou false se não pagou (Void Attendant: "ponha no cemitério do dono uma carta exilada de um oponente") */
+  | { k: 'custom'; label: string; canPay: (c: SCtx) => boolean; pay: (c: SCtx) => Gen<Record<string, unknown> | false> };
 
 // ---------------------------------------------------------------------------
 // Gatilhos (CR 603)
@@ -202,6 +205,9 @@ export interface TriggeredDef extends AbilityCommon {
   mana?: boolean;
   /** capítulos de uma Saga que esta habilidade representa (CR 714.2) */
   chapters?: number[];
+  /** quem escolhe os alvos ao pôr a habilidade na pilha, se não for o controlador ("à escolha desse jogador": Bladegriff
+   *  Prototype; CR 603.3d, 601.2c). A legalidade dos alvos continua sendo a do controlador. */
+  targetChooser?: (c: SCtx & { event: Record<string, unknown> }) => PlayerId;
 }
 
 export interface RuleHooks {
@@ -215,6 +221,8 @@ export interface RuleHooks {
   costModifier?: (c: SCtx, spell: SpellInfoForCost) => { reduce?: number; increase?: number; reduceColored?: Partial<Record<Color, number>> } | null;
   canAttack?: (c: SCtx, attacker: ObjId, target: TargetRef) => boolean;
   attackCost?: (c: SCtx, attacker: ObjId, target: TargetRef) => number;
+  /** custo genérico para [bloqueador] bloquear [atacante] (Archangel of Tithes; CR 509.1d) */
+  blockCost?: (c: SCtx, blocker: ObjId, attacker: ObjId) => number;
   canBlock?: (c: SCtx, blocker: ObjId, attacker: ObjId) => boolean;
   assignsByToughness?: (c: SCtx, creature: ObjId) => boolean;
   canAttackWithDefender?: (c: SCtx, creature: ObjId, target: TargetRef) => boolean;
@@ -232,7 +240,8 @@ export interface RuleHooks {
   lifeGainBonus?: (c: SCtx, player: PlayerId) => number;
   /** "se você fosse ganhar vida, em vez disso ganha o dobro" (Boon Reflection); aplicado depois de lifeGainBonus */
   lifeGainDouble?: (c: SCtx, player: PlayerId) => boolean;
-  extraTriggers?: (c: SCtx, trigger: { abilityId: string; source: ObjId; controller: PlayerId; event: Record<string, unknown>; cause: GameEvent | null }) => number;
+  /** `batch`: o lote de eventos simultâneos em que o gatilho disparou (Felix Five-Boots olha o dano de combate dos gatilhos de "um ou mais") */
+  extraTriggers?: (c: SCtx, trigger: { abilityId: string; source: ObjId; controller: PlayerId; event: Record<string, unknown>; cause: GameEvent | null; batch?: GameEvent[] }) => number;
   mayPlayFrom?: (c: SCtx, player: PlayerId, card: ObjId) => CastPermission | null;
   canBeBlockedBy?: (c: SCtx, attacker: ObjId, blocker: ObjId) => boolean;
   /** substituição de outros permanentes sobre como algo entra (CR 614.1d): altera o evento */
@@ -250,6 +259,8 @@ export interface RuleHooks {
   leavesBattlefield?: (c: SCtx, obj: GameObject, dest: ZoneName) => { dest: ZoneName; then?: () => Gen<void>; label?: string } | null;
   /** "Você não pode perder o jogo" (CR 104.3, 704.5a-c, 704.6c): as ações de estado não fazem o jogador perder */
   cantLoseGame?: (c: SCtx, player: PlayerId) => boolean;
+  /** "[esse jogador] não pode vencer o jogo" (Herald of Eternal Dawn): um efeito que diria que ele vence não faz nada (CR 104.2b) */
+  cantWinGame?: (c: SCtx, player: PlayerId) => boolean;
   /** "[permanentes] não podem receber marcadores [tipo]" (CR 122): vale também para os que entram com marcadores */
   cantHaveCountersPut?: (c: SCtx, kind: string, target: { controller: PlayerId; chars: Chars }) => boolean;
   /** proteção de um jogador (CR 702.16b, 702.16e): qualidades no formato de protectionMatches ('type:Creature'…) */

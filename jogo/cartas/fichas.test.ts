@@ -151,6 +151,10 @@ const esperadas: Record<string, [string, string[], string[], string[], number | 
   'Wolf': ['Wolf', ['Creature'], ['Wolf'], ['G'], 2, 2, []],
   'Wolf de Garruk': ['Wolf', ['Creature'], ['Wolf'], ['B', 'G'], 2, 2, []],
   'Raccoon': ['Raccoon', ['Creature'], ['Raccoon'], ['G'], 3, 3, []],
+  // precons-b
+  'Eldrazi Scion': ['Eldrazi Scion', ['Creature'], ['Eldrazi', 'Scion'], [], 1, 1, []],
+  'Boar': ['Boar', ['Creature'], ['Boar'], ['G'], 2, 2, []],
+  'Angel 3/3': ['Angel', ['Creature'], ['Angel'], ['W'], 3, 3, ['flying']],
 };
 
 describe('Fichas: características', () => {
@@ -364,5 +368,14 @@ describe("Fichas: 'Gold'", () => {
     tg.settle();
     expect(tg.state.players[0].manaPool.map((u) => u.type)).toEqual(['G']);
     expect(tg.state.zones.battlefield).toEqual([]);
+// precons-b
+describe("Fichas: 'Eldrazi Scion'", () => {
+  it('sacrifique: adicione {C}', () => {
+    const tg = setup({ battlefield: [[{ name: 'Eldrazi Scion', token: true }], []], hand: [['Sol Ring'], []] });
+    const id = tg.bf('Eldrazi Scion');
+    expect(manaOptions(tg.g, 0).filter((o) => o.obj === id).map((o) => o.alt.join(''))).toEqual(['C']);
+    tg.cast('Sol Ring').resolve();
+    expect(tg.find('Eldrazi Scion')).toBeNull();
+    expect(tg.find('Sol Ring')).not.toBeNull();
   });
 });

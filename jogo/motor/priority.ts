@@ -14,6 +14,7 @@ import {
   nomeDaFace, rotuloConjurar, temVariasFaces,
 } from './formatos.ts';
 import { oracle } from './oracle.ts';
+import { canForetell, CUSTO_PREDIZER, doForetell, foretellParam } from './predizer.ts';
 import { payMana } from './costs.ts';
 import { emit } from './triggers.ts';
 import type { ManaSymbol, ObjId, PlayerId, PriorityAction, ZoneName } from './types.ts';
@@ -102,6 +103,8 @@ export function castOptions(g: G, p: PlayerId): CastOption[] {
       if (o.owner === p && o.card !== null && s.cards[o.card].isCommander) out.push({ obj: id, method: { key: 'command', label: 'conjurar da zona de comando', zone } });
     } else {
       if (zone === 'graveyard' && o.owner === p) for (const alt of f?.altCosts ?? []) if (alt.zone === 'graveyard' && (!alt.condition || alt.condition({ g, you: p, source: id }))) out.push({ obj: id, method: { key: alt.key, label: alt.label, zone, alt } });
+      // custo alternativo de conjurar do exílio (a carta predita, CR 702.143a)
+      if (zone === 'exile' && o.owner === p) for (const alt of f?.altCosts ?? []) if (alt.zone === 'exile' && (!alt.condition || alt.condition({ g, you: p, source: id }))) out.push({ obj: id, method: { key: alt.key, label: alt.label, zone, alt } });
       if (zone === 'exile' && o.isCopy && o.data.preparedBy !== undefined) {
         const holder = s.objects[o.data.preparedBy as ObjId];
         if (holder && holder.zone === 'battlefield' && holder.prepared && controllerOf(g, holder.id) === p) out.push({ obj: id, method: { key: 'prepared', label: 'conjurar a cópia preparada', zone } });
@@ -269,6 +272,11 @@ export function legalActions(g: G, p: PlayerId): PriorityAction[] {
     const quando = c.types.includes('Instant') || hasKw(g, id, 'flash') || timing.sorcery;
     if (quando && canAfford(g, p, parseCost(prm.custo), { purpose: { kind: 'effect' } })) acts.push({ id: `suspend:${id}`, kind: 'special', label: `Suspender ${nameOf(g, id)} (${prm.custo})`, obj: id });
   }
+  // ação especial: predizer uma carta da mão, durante o seu turno, pagando {2} (CR 116.2h, 702.143a)
+  for (const id of s.zones.hand[p]) {
+    if (!canForetell(g, p, id) || !canAfford(g, p, parseCost(CUSTO_PREDIZER), { purpose: { kind: 'effect' } })) continue;
+    acts.push({ id: `foretell:${id}`, kind: 'special', label: `Predizer ${nameOf(g, id)} ({2}; depois conjure por ${foretellParam(g, id)})`, obj: id });
+  }
   // ação especial: destrancar a porta de uma Sala sua, como feitiço, pagando o custo dela (CR 116.2m, 709.5e)
   if (timing.sorcery) {
     for (const id of s.zones.battlefield) {
@@ -340,6 +348,7 @@ export function* performAction(g: G, p: PlayerId, actionId: string): Gen<boolean
   }
   if (kind === 'morph') return yield* turnFaceUpMorph(g, p, Number(a));
   if (kind === 'suspend') return yield* doSuspend(g, p, Number(a));
+  if (kind === 'foretell') return yield* doForetell(g, p, Number(a));
   if (kind === 'mana') {
     const key = actionId.slice(5);
     const opt = manaOptions(g, p).find((m) => m.key === key);

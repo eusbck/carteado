@@ -468,3 +468,13 @@ export const WolfGarruk = token('Wolf de Garruk', 'Wolf', ['Creature'], ['Wolf']
 ], 'Garruk');
 /** Raccoon 3/3 verde (Gourmand's Talent) */
 export const Raccoon33 = token('Raccoon', 'Raccoon', ['Creature'], ['Raccoon'], ['G'], 3, 3);
+
+// precons-b (Grand Larceny, Calling All Angels)
+/** Eldrazi Scion 1/1 incolor: "Sacrifique esta ficha: Adicione {C}" (Void Attendant) */
+export const EldraziScion = token('Eldrazi Scion', 'Eldrazi Scion', ['Creature'], ['Eldrazi', 'Scion'], [], 1, 1, [
+  mana('C', { cost: 'Sacrifice this token', text: 'Sacrifique esta ficha: Adicione {C}.' }),
+]);
+/** Boar 2/2 verde (Curse of the Swine) */
+export const Boar22 = token('Boar', 'Boar', ['Creature'], ['Boar'], ['G'], 2, 2);
+/** Angel 3/3 branca com voar (Linvala, the Preserver) */
+export const Angel33 = token('Angel 3/3', 'Angel', ['Creature'], ['Angel'], ['W'], 3, 3, keywords('flying'));
