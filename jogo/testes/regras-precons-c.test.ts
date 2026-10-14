@@ -53,7 +53,7 @@ describe('presente num permanente (CR 702.174b): o oponente escolhido chega ao p
   });
 });
 
-describe('"tripula Veículos como se a força fosse N maior" (CR 702.122a, palavra-chave crewBonus)', () => {
+describe('"tripula Veículos como se a força fosse N maior" (CR 702.122a, gancho crewPowerBonus)', () => {
   it('a força para tripular soma o bônus; a força da criatura não muda', () => {
     const tg = setup({ battlefield: [[{ name: 'Pilot', token: true }, 'Elvish Mystic', "Cultivator's Caravan"], []] });
     expect(crewPower(tg.g, tg.bf('Pilot'))).toBe(3);

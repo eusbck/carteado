@@ -5,7 +5,7 @@
 import { addMana, addCounters, blight as doBlight, discard, loseLife, mill, moveObjects, removeCounters, sacrifice, tap, untap } from './actions.ts';
 import { blightCandidates } from './actions.ts';
 import { ask, chooseColor, chooseItems, chooseNumber, objItem } from './ask.ts';
-import { abilityDefs, chars, controllerOf, hasKw, hooks, isCreature, isType, kwParams, nameOf, power } from './chars.ts';
+import { abilityDefs, chars, controllerOf, hasKw, hooks, isCreature, isType, nameOf, power } from './chars.ts';
 import { registry, type CostPart, type Ctx, type Gen, type ManaAbilityDef, type SCtx } from './defs.ts';
 import type { G } from './game-context.ts';
 import { formatCost, genericOf, matchPool, parseCost, phyrexianCount, poolToString, reduceGeneric, type SpendContext } from './mana.ts';
@@ -308,10 +308,10 @@ export function crewCandidates(g: G, player: PlayerId, source: ObjId): ObjId[] {
   return costPermanents(g, player, (id) => id !== source && isCreature(g, id) && !g.state.objects[id].tapped && !hasKw(g, id, 'cantCrew'));
 }
 
-/** força com que a criatura tripula: a força mais os bônus de "tripula Veículos como se a força fosse N maior" (ficha Pilot:
- *  palavra-chave crewBonus com o N como parâmetro). Sem bônus, é a própria força (CR 702.122a) */
+/** força com que a criatura tripula: a força mais os bônus de "tripula Veículos como se a força fosse N maior" (ficha Pilot,
+ *  gancho crewPowerBonus). Sem bônus, é a própria força (CR 702.122a) */
 export function crewPower(g: G, id: ObjId): number {
-  return power(g, id) + kwParams(g, id, 'crewBonus').reduce((n: number, b) => n + (typeof b === 'number' ? b : 0), 0);
+  return power(g, id) + hooks(g, 'crewPowerBonus').reduce((n, h) => n + h.fn(h.ctx, id), 0);
 }
 
 export function improviseCandidates(g: G, player: PlayerId): ObjId[] {

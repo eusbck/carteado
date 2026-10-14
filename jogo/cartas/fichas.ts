@@ -439,5 +439,5 @@ export const PhyrexianBeast = token('Phyrexian Beast', 'Phyrexian Beast', ['Crea
 export const SpiritIncolor = token('Spirit incolor', 'Spirit', ['Creature'], ['Spirit'], [], 1, 1);
 /** Pilot 1/1 incolor que tripula como se a força fosse 2 maior (Shorikai, Prodigy's Prototype; motor/costs.ts crewPower) */
 export const Pilot = token('Pilot', 'Pilot', ['Creature'], ['Pilot'], [], 1, 1, [
-  { kind: 'static', kw: 'crewBonus', param: 2, text: 'Esta ficha tripula Veículos como se a força dela fosse 2 maior.' },
+  { kind: 'static', rules: { crewPowerBonus: (c, criatura) => (criatura === c.source ? 2 : 0) }, text: 'Esta ficha tripula Veículos como se a força dela fosse 2 maior.' },
 ]);

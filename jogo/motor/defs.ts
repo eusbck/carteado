@@ -292,6 +292,8 @@ export interface RuleHooks {
   maxBlockers?: (c: SCtx, attacker: ObjId) => number | null;
   /** "você pode jogar um terreno adicional em cada um dos seus turnos" (Loot, Exuberant Explorer; CR 305.2): quantos a mais */
   extraLandPlays?: (c: SCtx, player: PlayerId) => number;
+  /** "[esta criatura] tripula Veículos como se a força dela fosse N maior" (ficha Pilot; CR 702.122a): N a mais para esta criatura */
+  crewPowerBonus?: (c: SCtx, creature: ObjId) => number;
   /** "esta criatura precisa ser bloqueada por exatamente uma criatura se puder" (Nacatl War-Pride) */
   mustBeBlockedByExactlyOne?: (c: SCtx, attacker: ObjId) => boolean;
   /**
