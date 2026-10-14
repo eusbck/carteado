@@ -350,6 +350,9 @@ describe("Fichas: 'Pilot'", () => {
     tg.choose('Tripular:', ['Pilot']).choose('Tripular:', ['done']).activate("Cultivator's Caravan", 'Tripular').resolveAll();
     expect(chars(tg.g, tg.bf("Cultivator's Caravan")).types).toContain('Creature');
     expect(tg.pt(tg.bf('Pilot'))).toEqual([1, 1]);
+  });
+});
+
 // precons-a
 describe("Fichas: 'Gold'", () => {
   it('sacrifique esta ficha: uma mana de qualquer cor', () => {
