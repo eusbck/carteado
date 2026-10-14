@@ -6,8 +6,7 @@
  "link": "https://moxfield.com/decks/BPBVD7NsT0SznrmdG4l3Tw",
  "importadoEm": "2026-10-14T17:42:28.100Z",
  "verificadoEm": "2026-10-14T17:42:28.100Z",
- "atual": null,
- "preparacao": {
+ "atual": {
   "comandante": "Nelly Borca, Impulsive Accuser",
   "cartas": [
    {
@@ -356,5 +355,6 @@
    "atualizadoEm": "2024-10-31T17:27:01.763Z"
   },
   "desde": "2026-10-14T17:42:28.100Z"
- }
+ },
+ "preparacao": null
 }

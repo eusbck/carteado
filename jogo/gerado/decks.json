@@ -9183,5 +9183,1265 @@
     "quantidade": 1
    }
   ]
+ },
+ {
+  "id": "BPBVD7NsT0SznrmdG4l3Tw",
+  "nome": "Blame Game (Murders at Karlov Manor Commander Precon Decklis",
+  "comandante": "Nelly Borca, Impulsive Accuser",
+  "cartas": [
+   {
+    "nome": "Mountain",
+    "quantidade": 7
+   },
+   {
+    "nome": "Plains",
+    "quantidade": 9
+   },
+   {
+    "nome": "Labyrinth of Skophos",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arcane Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Castle Ardenvale",
+    "quantidade": 1
+   },
+   {
+    "nome": "Command Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tome of Legends",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ash Barrens",
+    "quantidade": 1
+   },
+   {
+    "nome": "Boros Reckoner",
+    "quantidade": 1
+   },
+   {
+    "nome": "Curse of Opulence",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mind Stone",
+    "quantidade": 1
+   },
+   {
+    "nome": "Reliquary Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rogue's Passage",
+    "quantidade": 1
+   },
+   {
+    "nome": "Seal of Cleansing",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Solemn Simulacrum",
+    "quantidade": 1
+   },
+   {
+    "nome": "Temple of the False God",
+    "quantidade": 1
+   },
+   {
+    "nome": "Thought Vessel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Wall of Omens",
+    "quantidade": 1
+   },
+   {
+    "nome": "Brash Taunter",
+    "quantidade": 1
+   },
+   {
+    "nome": "Temple of Triumph",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fiendish Duo",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fellwar Stone",
+    "quantidade": 1
+   },
+   {
+    "nome": "Anya, Merciless Angel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Boros Garrison",
+    "quantidade": 1
+   },
+   {
+    "nome": "Exotic Orchard",
+    "quantidade": 1
+   },
+   {
+    "nome": "Duelist's Heritage",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gisela, Blade of Goldnight",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rite of the Raging Storm",
+    "quantidade": 1
+   },
+   {
+    "nome": "Orzhov Advokist",
+    "quantidade": 1
+   },
+   {
+    "nome": "Steel Hellkite",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sun Titan",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ancient Stone Idol",
+    "quantidade": 1
+   },
+   {
+    "nome": "Disrupt Decorum",
+    "quantidade": 1
+   },
+   {
+    "nome": "Selfless Squire",
+    "quantidade": 1
+   },
+   {
+    "nome": "Stalking Leonin",
+    "quantidade": 1
+   },
+   {
+    "nome": "Throne of the High City",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bloodthirsty Blade",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ghostly Prison",
+    "quantidade": 1
+   },
+   {
+    "nome": "Myriad Landscape",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sevinne's Reclamation",
+    "quantidade": 1
+   },
+   {
+    "nome": "Kher Keep",
+    "quantidade": 1
+   },
+   {
+    "nome": "Soul Snare",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vow of Duty",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vow of Lightning",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sunhome, Fortress of the Legion",
+    "quantidade": 1
+   },
+   {
+    "nome": "Scavenger Grounds",
+    "quantidade": 1
+   },
+   {
+    "nome": "Winds of Rath",
+    "quantidade": 1
+   },
+   {
+    "nome": "Windborn Muse",
+    "quantidade": 1
+   },
+   {
+    "nome": "Etali, Primal Storm",
+    "quantidade": 1
+   },
+   {
+    "nome": "Darien, King of Kjeldor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gideon's Sacrifice",
+    "quantidade": 1
+   },
+   {
+    "nome": "Talisman of Conviction",
+    "quantidade": 1
+   },
+   {
+    "nome": "Agitator Ant",
+    "quantidade": 1
+   },
+   {
+    "nome": "Frontier Warmonger",
+    "quantidade": 1
+   },
+   {
+    "nome": "Martial Impetus",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shiny Impetus",
+    "quantidade": 1
+   },
+   {
+    "nome": "Elspeth, Sun's Champion",
+    "quantidade": 1
+   },
+   {
+    "nome": "Kazuul, Tyrant of the Cliffs",
+    "quantidade": 1
+   },
+   {
+    "nome": "Slayers' Stronghold",
+    "quantidade": 1
+   },
+   {
+    "nome": "Deflecting Palm",
+    "quantidade": 1
+   },
+   {
+    "nome": "Comeuppance",
+    "quantidade": 1
+   },
+   {
+    "nome": "Needle Spires",
+    "quantidade": 1
+   },
+   {
+    "nome": "Keeper of the Accord",
+    "quantidade": 1
+   },
+   {
+    "nome": "War Room",
+    "quantidade": 1
+   },
+   {
+    "nome": "Furycalm Snarl",
+    "quantidade": 1
+   },
+   {
+    "nome": "Access Tunnel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Angel of the Ruins",
+    "quantidade": 1
+   },
+   {
+    "nome": "Promise of Loyalty",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vengeful Ancestor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Smuggler's Share",
+    "quantidade": 1
+   },
+   {
+    "nome": "Spectacular Showdown",
+    "quantidade": 1
+   },
+   {
+    "nome": "Loran of the Third Path",
+    "quantidade": 1
+   },
+   {
+    "nome": "Escape Tunnel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ransom Note",
+    "quantidade": 1
+   },
+   {
+    "nome": "Trouble in Pairs",
+    "quantidade": 1
+   },
+   {
+    "nome": "Take the Bait",
+    "quantidade": 1
+   },
+   {
+    "nome": "Prisoner's Dilemma",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hot Pursuit",
+    "quantidade": 1
+   },
+   {
+    "nome": "Havoc Eater",
+    "quantidade": 1
+   },
+   {
+    "nome": "Immortal Obligation",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mob Verdict",
+    "quantidade": 1
+   },
+   {
+    "nome": "Redemption Arc",
+    "quantidade": 1
+   },
+   {
+    "nome": "Otherworldly Escort",
+    "quantidade": 1
+   },
+   {
+    "nome": "Feather, Radiant Arbiter",
+    "quantidade": 1
+   }
+  ]
+ },
+ {
+  "id": "sxWCdd1NJ0q5JytH2RJyuA",
+  "nome": "Squirreled Away (Bloomburrow Commander Precon Decklist)",
+  "comandante": "Hazel of the Rootbloom",
+  "cartas": [
+   {
+    "nome": "Forest",
+    "quantidade": 9
+   },
+   {
+    "nome": "Swamp",
+    "quantidade": 8
+   },
+   {
+    "nome": "Arasta of the Endless Web",
+    "quantidade": 1
+   },
+   {
+    "nome": "Woe Strider",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arcane Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Chittering Witch",
+    "quantidade": 1
+   },
+   {
+    "nome": "Command Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gilded Goose",
+    "quantidade": 1
+   },
+   {
+    "nome": "Barren Moor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bojuka Bog",
+    "quantidade": 1
+   },
+   {
+    "nome": "Maelstrom Pulse",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tranquil Thicket",
+    "quantidade": 1
+   },
+   {
+    "nome": "Beastmaster Ascension",
+    "quantidade": 1
+   },
+   {
+    "nome": "Evolving Wilds",
+    "quantidade": 1
+   },
+   {
+    "nome": "Jungle Hollow",
+    "quantidade": 1
+   },
+   {
+    "nome": "Plaguecrafter",
+    "quantidade": 1
+   },
+   {
+    "nome": "Putrefy",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shamanic Revelation",
+    "quantidade": 1
+   },
+   {
+    "nome": "Skullclamp",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Temple of Malady",
+    "quantidade": 1
+   },
+   {
+    "nome": "Moldervine Reclamation",
+    "quantidade": 1
+   },
+   {
+    "nome": "Exotic Orchard",
+    "quantidade": 1
+   },
+   {
+    "nome": "Golgari Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Golgari Rot Farm",
+    "quantidade": 1
+   },
+   {
+    "nome": "Terramorphic Expanse",
+    "quantidade": 1
+   },
+   {
+    "nome": "Path of Ancestry",
+    "quantidade": 1
+   },
+   {
+    "nome": "Windgrace's Judgment",
+    "quantidade": 1
+   },
+   {
+    "nome": "Idol of Oblivion",
+    "quantidade": 1
+   },
+   {
+    "nome": "Llanowar Wastes",
+    "quantidade": 1
+   },
+   {
+    "nome": "Second Harvest",
+    "quantidade": 1
+   },
+   {
+    "nome": "Squirrel Nest",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tainted Wood",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ogre Slumlord",
+    "quantidade": 1
+   },
+   {
+    "nome": "Decree of Pain",
+    "quantidade": 1
+   },
+   {
+    "nome": "Grim Backwoods",
+    "quantidade": 1
+   },
+   {
+    "nome": "Oran-Rief, the Vastwood",
+    "quantidade": 1
+   },
+   {
+    "nome": "End-Raze Forerunners",
+    "quantidade": 1
+   },
+   {
+    "nome": "Zulaport Cutthroat",
+    "quantidade": 1
+   },
+   {
+    "nome": "Twilight Mire",
+    "quantidade": 1
+   },
+   {
+    "nome": "Casualties of War",
+    "quantidade": 1
+   },
+   {
+    "nome": "Deep Forest Hermit",
+    "quantidade": 1
+   },
+   {
+    "nome": "Talisman of Resilience",
+    "quantidade": 1
+   },
+   {
+    "nome": "Wolfwillow Haven",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bastion of Remembrance",
+    "quantidade": 1
+   },
+   {
+    "nome": "Swarmyard",
+    "quantidade": 1
+   },
+   {
+    "nome": "Woodland Cemetery",
+    "quantidade": 1
+   },
+   {
+    "nome": "Poison-Tip Archer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Nadier's Nightblade",
+    "quantidade": 1
+   },
+   {
+    "nome": "Toski, Bearer of Secrets",
+    "quantidade": 1
+   },
+   {
+    "nome": "Binding the Old Gods",
+    "quantidade": 1
+   },
+   {
+    "nome": "Maskwood Nexus",
+    "quantidade": 1
+   },
+   {
+    "nome": "Necroblossom Snarl",
+    "quantidade": 1
+   },
+   {
+    "nome": "Plumb the Forbidden",
+    "quantidade": 1
+   },
+   {
+    "nome": "Beledros Witherbloom",
+    "quantidade": 1
+   },
+   {
+    "nome": "Prosperous Innkeeper",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ravenous Squirrel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Squirrel Sovereign",
+    "quantidade": 1
+   },
+   {
+    "nome": "Chatterfang, Squirrel General",
+    "quantidade": 1
+   },
+   {
+    "nome": "Chatterstorm",
+    "quantidade": 1
+   },
+   {
+    "nome": "Academy Manufactor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tireless Provisioner",
+    "quantidade": 1
+   },
+   {
+    "nome": "Chitterspitter",
+    "quantidade": 1
+   },
+   {
+    "nome": "Nested Shambler",
+    "quantidade": 1
+   },
+   {
+    "nome": "Deadly Dispute",
+    "quantidade": 1
+   },
+   {
+    "nome": "Morbid Opportunist",
+    "quantidade": 1
+   },
+   {
+    "nome": "Saw in Half",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tear Asunder",
+    "quantidade": 1
+   },
+   {
+    "nome": "Haunted Mire",
+    "quantidade": 1
+   },
+   {
+    "nome": "Skyfisher Spider",
+    "quantidade": 1
+   },
+   {
+    "nome": "Haywire Mite",
+    "quantidade": 1
+   },
+   {
+    "nome": "Viridescent Bog",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cache Grab",
+    "quantidade": 1
+   },
+   {
+    "nome": "Honored Dreyleader",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gourmand's Talent",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hazel's Brewmaster",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rootcast Apprenticeship",
+    "quantidade": 1
+   },
+   {
+    "nome": "Insatiable Frugivore",
+    "quantidade": 1
+   },
+   {
+    "nome": "Moonstone Eulogist",
+    "quantidade": 1
+   },
+   {
+    "nome": "Swarmyard Massacre",
+    "quantidade": 1
+   },
+   {
+    "nome": "Scurry of Squirrels",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sword of the Squeak",
+    "quantidade": 1
+   },
+   {
+    "nome": "Garruk, Cursed Huntsman",
+    "quantidade": 1
+   },
+   {
+    "nome": "The Odd Acorn Gang",
+    "quantidade": 1
+   }
+  ]
+ },
+ {
+  "id": "QTZDODqtBUOQGIoEbEDbCQ",
+  "nome": "Buckle Up (Kamigawa: Neon Dynasty Commander Precon Decklist)",
+  "comandante": "Kotori, Pilot Prodigy",
+  "cartas": [
+   {
+    "nome": "Island",
+    "quantidade": 15
+   },
+   {
+    "nome": "Plains",
+    "quantidade": 15
+   },
+   {
+    "nome": "Temple of Enlightenment",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arcane Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arcanist's Owl",
+    "quantidade": 1
+   },
+   {
+    "nome": "Command Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dance of the Manse",
+    "quantidade": 1
+   },
+   {
+    "nome": "Emry, Lurker of the Loch",
+    "quantidade": 1
+   },
+   {
+    "nome": "Foundry Inspector",
+    "quantidade": 1
+   },
+   {
+    "nome": "Raff Capashen, Ship's Mage",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Solemn Simulacrum",
+    "quantidade": 1
+   },
+   {
+    "nome": "Swords to Plowshares",
+    "quantidade": 1
+   },
+   {
+    "nome": "Thoughtcast",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fellwar Stone",
+    "quantidade": 1
+   },
+   {
+    "nome": "Exotic Orchard",
+    "quantidade": 1
+   },
+   {
+    "nome": "Prairie Stream",
+    "quantidade": 1
+   },
+   {
+    "nome": "Reality Shift",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hanna, Ship's Navigator",
+    "quantidade": 1
+   },
+   {
+    "nome": "Skycloud Expanse",
+    "quantidade": 1
+   },
+   {
+    "nome": "Etherium Sculptor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Master of Etherium",
+    "quantidade": 1
+   },
+   {
+    "nome": "Jace, Architect of Thought",
+    "quantidade": 1
+   },
+   {
+    "nome": "Thopter Spy Network",
+    "quantidade": 1
+   },
+   {
+    "nome": "Port Town",
+    "quantidade": 1
+   },
+   {
+    "nome": "Whirler Rogue",
+    "quantidade": 1
+   },
+   {
+    "nome": "Crush Contraband",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cataclysmic Gearhulk",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cultivator's Caravan",
+    "quantidade": 1
+   },
+   {
+    "nome": "Smuggler's Copter",
+    "quantidade": 1
+   },
+   {
+    "nome": "Skysovereign, Consul Flagship",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mirage Mirror",
+    "quantidade": 1
+   },
+   {
+    "nome": "Aeronaut Admiral",
+    "quantidade": 1
+   },
+   {
+    "nome": "Peacewalker Colossus",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sram, Senior Edificer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Spire of Industry",
+    "quantidade": 1
+   },
+   {
+    "nome": "Azorius Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dispatch",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gold Myr",
+    "quantidade": 1
+   },
+   {
+    "nome": "Silver Myr",
+    "quantidade": 1
+   },
+   {
+    "nome": "Indomitable Archangel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Myrsmith",
+    "quantidade": 1
+   },
+   {
+    "nome": "Riddlesmith",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vedalken Engineer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Parhelion II",
+    "quantidade": 1
+   },
+   {
+    "nome": "Generous Gift",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shimmer Myr",
+    "quantidade": 1
+   },
+   {
+    "nome": "Teshar, Ancestor's Apostle",
+    "quantidade": 1
+   },
+   {
+    "nome": "Weatherlight",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sai, Master Thopterist",
+    "quantidade": 1
+   },
+   {
+    "nome": "Armed and Armored",
+    "quantidade": 1
+   },
+   {
+    "nome": "Raiders' Karve",
+    "quantidade": 1
+   },
+   {
+    "nome": "Colossal Plow",
+    "quantidade": 1
+   },
+   {
+    "nome": "Surgehacker Mech",
+    "quantidade": 1
+   },
+   {
+    "nome": "Prodigy's Prototype",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mobilizer Mech",
+    "quantidade": 1
+   },
+   {
+    "nome": "Imperial Recovery Unit",
+    "quantidade": 1
+   },
+   {
+    "nome": "Kappa Cannoneer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Imposter Mech",
+    "quantidade": 1
+   },
+   {
+    "nome": "Access Denied",
+    "quantidade": 1
+   },
+   {
+    "nome": "Research Thief",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cyberdrive Awakener",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ironsoul Enforcer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Universal Surveillance",
+    "quantidade": 1
+   },
+   {
+    "nome": "Katsumasa, the Animator",
+    "quantidade": 1
+   },
+   {
+    "nome": "Swift Reconfiguration",
+    "quantidade": 1
+   },
+   {
+    "nome": "Drumbellower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Organic Extinction",
+    "quantidade": 1
+   },
+   {
+    "nome": "Aerial Surveyor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Release to Memory",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shorikai, Genesis Engine",
+    "quantidade": 1
+   }
+  ]
+ },
+ {
+  "id": "m_jqtk3F6EOQiq1gytJFJg",
+  "nome": "Tramplesaurus Rex (Foundations Commander Precon Decklist)",
+  "comandante": "Ghalta, Primal Hunger",
+  "cartas": [
+   {
+    "nome": "Forest",
+    "quantidade": 32
+   },
+   {
+    "nome": "Arasta of the Endless Web",
+    "quantidade": 1
+   },
+   {
+    "nome": "Kenrith's Transformation",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tranquil Thicket",
+    "quantidade": 1
+   },
+   {
+    "nome": "Beast Within",
+    "quantidade": 1
+   },
+   {
+    "nome": "Birds of Paradise",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dungrove Elder",
+    "quantidade": 1
+   },
+   {
+    "nome": "Harmonize",
+    "quantidade": 1
+   },
+   {
+    "nome": "Llanowar Elves",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rhonas's Monument",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rogue's Passage",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shamanic Revelation",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Thrashing Brontodon",
+    "quantidade": 1
+   },
+   {
+    "nome": "Elder Gargaroth",
+    "quantidade": 1
+   },
+   {
+    "nome": "Garruk's Uprising",
+    "quantidade": 1
+   },
+   {
+    "nome": "Scavenging Ooze",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ripjaw Raptor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Commander's Sphere",
+    "quantidade": 1
+   },
+   {
+    "nome": "Swiftfoot Boots",
+    "quantidade": 1
+   },
+   {
+    "nome": "Whiptongue Hydra",
+    "quantidade": 1
+   },
+   {
+    "nome": "Colossal Majesty",
+    "quantidade": 1
+   },
+   {
+    "nome": "Elemental Bond",
+    "quantidade": 1
+   },
+   {
+    "nome": "Garruk's Packleader",
+    "quantidade": 1
+   },
+   {
+    "nome": "Overwhelming Stampede",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fyndhorn Elves",
+    "quantidade": 1
+   },
+   {
+    "nome": "Elvish Mystic",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mosswort Bridge",
+    "quantidade": 1
+   },
+   {
+    "nome": "Managorger Hydra",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gigantosaurus",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ilysian Caryatid",
+    "quantidade": 1
+   },
+   {
+    "nome": "Beast Whisperer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Scavenger Grounds",
+    "quantidade": 1
+   },
+   {
+    "nome": "Monstrous Onslaught",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rishkar, Peema Renegade",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rishkar's Expertise",
+    "quantidade": 1
+   },
+   {
+    "nome": "Challenger Troll",
+    "quantidade": 1
+   },
+   {
+    "nome": "Paradise Druid",
+    "quantidade": 1
+   },
+   {
+    "nome": "Llanowar Tribe",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rhonas the Indomitable",
+    "quantidade": 1
+   },
+   {
+    "nome": "Whisperer of the Wilds",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arachnogenesis",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ezuri's Predation",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bonders' Enclave",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ram Through",
+    "quantidade": 1
+   },
+   {
+    "nome": "Steel Leaf Champion",
+    "quantidade": 1
+   },
+   {
+    "nome": "Surrak, the Hunt Caller",
+    "quantidade": 1
+   },
+   {
+    "nome": "Yeva, Nature's Herald",
+    "quantidade": 1
+   },
+   {
+    "nome": "Goreclaw, Terror of Qal Sisma",
+    "quantidade": 1
+   },
+   {
+    "nome": "Carnage Tyrant",
+    "quantidade": 1
+   },
+   {
+    "nome": "Verdant Sun's Avatar",
+    "quantidade": 1
+   },
+   {
+    "nome": "War Room",
+    "quantidade": 1
+   },
+   {
+    "nome": "Witch's Clinic",
+    "quantidade": 1
+   },
+   {
+    "nome": "Unnatural Growth",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tamiyo's Safekeeping",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bite Down",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tangleweave Armor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Surrak and Goreclaw",
+    "quantidade": 1
+   },
+   {
+    "nome": "Pugnacious Hammerskull",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hulking Raptor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Curious Altisaur",
+    "quantidade": 1
+   },
+   {
+    "nome": "Collective Resistance",
+    "quantidade": 1
+   },
+   {
+    "nome": "Clifftop Lookout",
+    "quantidade": 1
+   },
+   {
+    "nome": "Scrapshooter",
+    "quantidade": 1
+   },
+   {
+    "nome": "Thickest in the Thicket",
+    "quantidade": 1
+   },
+   {
+    "nome": "Loot, Exuberant Explorer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Terrian, World Tyrant",
+    "quantidade": 1
+   },
+   {
+    "nome": "Regal Imperiosaur",
+    "quantidade": 1
+   }
+  ]
  }
 ]

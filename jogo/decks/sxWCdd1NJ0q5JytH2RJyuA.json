@@ -6,8 +6,7 @@
  "link": "https://moxfield.com/decks/sxWCdd1NJ0q5JytH2RJyuA",
  "importadoEm": "2026-10-14T17:44:43.704Z",
  "verificadoEm": "2026-10-14T17:44:43.704Z",
- "atual": null,
- "preparacao": {
+ "atual": {
   "comandante": "Hazel of the Rootbloom",
   "cartas": [
    {
@@ -352,5 +351,6 @@
    "atualizadoEm": "2024-10-31T17:10:32.007Z"
   },
   "desde": "2026-10-14T17:44:43.704Z"
- }
+ },
+ "preparacao": null
 }
