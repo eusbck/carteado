@@ -139,6 +139,10 @@ const esperadas: Record<string, [string, string[], string[], string[], number | 
   'Vampire 1/1': ['Vampire', ['Creature'], ['Vampire'], ['B', 'W'], 1, 1, ['lifelink']],
   'Eleitor': ['Eleitor', ['Creature'], ['Human', 'Citizen'], ['W'], 1, 1, []],
   'Patriota': ['Patriota', ['Creature'], ['Human', 'Citizen'], ['G', 'W'], 1, 1, ['haste']],
+  // precons-c
+  'Phyrexian Beast': ['Phyrexian Beast', ['Creature'], ['Phyrexian', 'Beast'], ['G'], 4, 4, []],
+  'Spirit incolor': ['Spirit', ['Creature'], ['Spirit'], [], 1, 1, []],
+  'Pilot': ['Pilot', ['Creature'], ['Pilot'], [], 1, 1, []],
 };
 
 describe('Fichas: características', () => {
@@ -328,5 +332,15 @@ describe("Fichas: 'Construct (artefatos)'", () => {
     const [outra] = tg.run(createTokens(tg.g, 0, 'Construct (artefatos)', 1));
     expect(tg.pt(tok)).toEqual([3, 3]);
     expect(tg.pt(outra)).toEqual([3, 3]);
+  });
+});
+
+// precons-c
+describe("Fichas: 'Pilot'", () => {
+  it('tripula Veículos como se a força fosse 2 maior: sozinha (1 + 2) tripula 3', () => {
+    const tg = setup({ battlefield: [[{ name: 'Pilot', token: true }, "Cultivator's Caravan"], []] });
+    tg.choose('Tripular:', ['Pilot']).choose('Tripular:', ['done']).activate("Cultivator's Caravan", 'Tripular').resolveAll();
+    expect(chars(tg.g, tg.bf("Cultivator's Caravan")).types).toContain('Creature');
+    expect(tg.pt(tg.bf('Pilot'))).toEqual([1, 1]);
   });
 });

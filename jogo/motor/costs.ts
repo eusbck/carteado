@@ -5,7 +5,7 @@
 import { addMana, addCounters, blight as doBlight, discard, loseLife, mill, moveObjects, removeCounters, sacrifice, tap, untap } from './actions.ts';
 import { blightCandidates } from './actions.ts';
 import { ask, chooseColor, chooseItems, chooseNumber, objItem } from './ask.ts';
-import { abilityDefs, chars, controllerOf, hasKw, hooks, isCreature, isType, nameOf, power } from './chars.ts';
+import { abilityDefs, chars, controllerOf, hasKw, hooks, isCreature, isType, kwParams, nameOf, power } from './chars.ts';
 import { registry, type CostPart, type Ctx, type Gen, type ManaAbilityDef, type SCtx } from './defs.ts';
 import type { G } from './game-context.ts';
 import { formatCost, genericOf, matchPool, parseCost, phyrexianCount, poolToString, reduceGeneric, type SpendContext } from './mana.ts';
@@ -88,7 +88,7 @@ export function canPayParts(g: G, player: PlayerId, parts: CostPart[], source: O
       case 'tapCreatures': if (s.zones.battlefield.filter((id) => (p.includeSelf || id !== source) && controllerOf(g, id) === player && isCreature(g, id) && !s.objects[id].tapped && (!p.filter || p.filter(ctx, id))).length < p.n) return false; break;
       case 'tapPermanents': if (costPermanents(g, player, (id) => !s.objects[id].tapped && p.filter(ctx, id)).length < (p.n === 'X' ? 0 : p.n)) return false; break;
       case 'untapCreatures': if (costPermanents(g, player, (id) => s.objects[id].tapped && isCreature(g, id)).length < p.n) return false; break;
-      case 'crew': if (crewCandidates(g, player, source).reduce((n, id) => n + Math.max(0, power(g, id)), 0) < p.power) return false; break;
+      case 'crew': if (crewCandidates(g, player, source).reduce((n, id) => n + Math.max(0, crewPower(g, id)), 0) < p.power) return false; break;
       case 'returnPermanent': if (!costPermanents(g, player, (id) => p.filter(ctx, id)).length) return false; break;
       case 'loyalty': {
         const n = p.n === 'X' ? -x : p.n;
@@ -155,7 +155,7 @@ function recursosDistintos(g: G, player: PlayerId, parts: CostPart[], source: Ob
   const viradosNoPlano = emparelhar(vagasVirar, peso);
   if (!viradosNoPlano) return false;
   if (tripular > 0) {
-    const forca = crewCandidates(g, player, source).filter((id) => !viradosNoPlano.has(id)).reduce((n, id) => n + Math.max(0, power(g, id)), 0);
+    const forca = crewCandidates(g, player, source).filter((id) => !viradosNoPlano.has(id)).reduce((n, id) => n + Math.max(0, crewPower(g, id)), 0);
     if (forca < tripular) return false;
   }
   return true;
@@ -306,6 +306,12 @@ function costPermanents(g: G, player: PlayerId, filter: (id: ObjId) => boolean):
 export function crewCandidates(g: G, player: PlayerId, source: ObjId): ObjId[] {
   // CR 702.122a: outras criaturas; não se pode tripular o próprio veículo.
   return costPermanents(g, player, (id) => id !== source && isCreature(g, id) && !g.state.objects[id].tapped && !hasKw(g, id, 'cantCrew'));
+}
+
+/** força com que a criatura tripula: a força mais os bônus de "tripula Veículos como se a força fosse N maior" (ficha Pilot:
+ *  palavra-chave crewBonus com o N como parâmetro). Sem bônus, é a própria força (CR 702.122a) */
+export function crewPower(g: G, id: ObjId): number {
+  return power(g, id) + kwParams(g, id, 'crewBonus').reduce((n: number, b) => n + (typeof b === 'number' ? b : 0), 0);
 }
 
 export function improviseCandidates(g: G, player: PlayerId): ObjId[] {
@@ -686,14 +692,14 @@ export function* payParts(g: G, player: PlayerId, parts: CostPart[], source: Obj
         let total = 0;
         for (;;) {
           const remaining = cands.filter((id) => !picked.includes(id));
-          const positive = remaining.reduce((n, id) => n + Math.max(0, power(g, id)), 0);
+          const positive = remaining.reduce((n, id) => n + Math.max(0, crewPower(g, id)), 0);
           if (total + positive < p.power) return false;
           const [choice] = yield* chooseItems(g, player, `Tripular: força total ${total}; precisa de ${p.power}. Escolha outra criatura ou conclua`, [
             { id: 'done', label: 'Concluir tripulação', disabled: total < p.power },
-            ...remaining.map((id) => ({ ...objItem(g, id, nameOf(g, id)), disabled: total + power(g, id) + positive - Math.max(0, power(g, id)) < p.power })),
+            ...remaining.map((id) => ({ ...objItem(g, id, nameOf(g, id)), disabled: total + crewPower(g, id) + positive - Math.max(0, crewPower(g, id)) < p.power })),
           ], 1, 1);
           if (choice === 'done') break;
-          const id = Number(choice); picked.push(id); total += power(g, id);
+          const id = Number(choice); picked.push(id); total += crewPower(g, id);
         }
         for (const id of picked) tap(g, id);
         info.crewedBy = picked;

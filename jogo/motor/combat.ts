@@ -299,6 +299,11 @@ export function validateBlocks(g: G, defender: PlayerId, blocks: [ObjId, ObjId][
     const minimo = hooks(g, 'minBlockers').reduce((m, h) => Math.max(m, h.fn(h.ctx, a)), 0);
     if (n < minimo) return `${nameOf(g, a)} só pode ser bloqueada por ${minimo} ou mais criaturas`;
   }
+  // "não pode ser bloqueada por mais de N criaturas" (Challenger Troll; restrição, CR 509.1b)
+  for (const [a, n] of count) {
+    const limites = hooks(g, 'maxBlockers').map((h) => h.fn(h.ctx, a)).filter((x): x is number => x !== null);
+    if (limites.length && n > Math.min(...limites)) return `${nameOf(g, a)} não pode ser bloqueada por mais de ${Math.min(...limites)} criatura(s)`;
+  }
   // "precisa ser bloqueada por exatamente uma criatura se puder" (CR 509.1c): não mais de uma, e o máximo possível delas bloqueado
   const combate = g.state.combat;
   const atacandoMe = combate ? combate.attackers.filter((a) => !a.removed && g.state.objects[a.id] && defendingPlayerOf(g, a.target) === defender).map((a) => a.id) : [];

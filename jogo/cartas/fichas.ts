@@ -432,3 +432,12 @@ export const InsectArtefato = token('Insect artefato', 'Insect', ['Artifact', 'C
 export const Eleitor = token('Eleitor', 'Eleitor', ['Creature'], ['Human', 'Citizen'], ['W'], 1, 1);
 /** Patriota 1/1 verde e branca com ímpeto, Humano Cidadão (Motociata) */
 export const Patriota = token('Patriota', 'Patriota', ['Creature'], ['Human', 'Citizen'], ['G', 'W'], 1, 1, keywords('haste'));
+// precons-c (Tramplesaurus Rex e Buckle Up)
+/** Phyrexian Beast 4/4 verde (Ezuri's Predation) */
+export const PhyrexianBeast = token('Phyrexian Beast', 'Phyrexian Beast', ['Creature'], ['Phyrexian', 'Beast'], ['G'], 4, 4);
+/** Spirit 1/1 incolor (Release to Memory) */
+export const SpiritIncolor = token('Spirit incolor', 'Spirit', ['Creature'], ['Spirit'], [], 1, 1);
+/** Pilot 1/1 incolor que tripula como se a força fosse 2 maior (Shorikai, Prodigy's Prototype; motor/costs.ts crewPower) */
+export const Pilot = token('Pilot', 'Pilot', ['Creature'], ['Pilot'], [], 1, 1, [
+  { kind: 'static', kw: 'crewBonus', param: 2, text: 'Esta ficha tripula Veículos como se a força dela fosse 2 maior.' },
+]);

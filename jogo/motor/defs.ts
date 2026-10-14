@@ -288,6 +288,8 @@ export interface RuleHooks {
   legendRuleExempt?: (c: SCtx, player: PlayerId) => boolean;
   /** "não pode ser bloqueada exceto por N ou mais criaturas" (Troll of Khazad-dûm): devolve N; 0 = sem restrição */
   minBlockers?: (c: SCtx, attacker: ObjId) => number;
+  /** "não pode ser bloqueada por mais de N criaturas" (Challenger Troll; restrição de bloqueio, CR 509.1b): devolve N; null = sem restrição */
+  maxBlockers?: (c: SCtx, attacker: ObjId) => number | null;
   /** "esta criatura precisa ser bloqueada por exatamente uma criatura se puder" (Nacatl War-Pride) */
   mustBeBlockedByExactlyOne?: (c: SCtx, attacker: ObjId) => boolean;
   /**
