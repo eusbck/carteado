@@ -369,6 +369,9 @@ export interface StaticDef extends AbilityCommon {
    * (Maskwood Nexus). Fora do campo `affects` não pode ler características calculadas do próprio objeto.
    */
   offField?: boolean;
+  /** precons-e: "não pode ter nem ganhar [isto]" (Archetype of Imagination): vence quem dá a mesma coisa (CR 101.2), então
+   *  as modificações desta estática se aplicam depois das outras da mesma camada, qualquer que seja o registro de data e hora */
+  cantHave?: boolean;
   rules?: RuleHooks;
 }
 
