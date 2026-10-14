@@ -6,8 +6,7 @@
  "link": "https://moxfield.com/decks/JNIylOIFGEmjh2WgU7Et9g",
  "importadoEm": "2026-10-14T17:54:41.370Z",
  "verificadoEm": "2026-10-14T17:54:41.370Z",
- "atual": null,
- "preparacao": {
+ "atual": {
   "comandante": "Gonti, Canny Acquisitor",
   "cartas": [
    {
@@ -364,5 +363,6 @@
    "atualizadoEm": "2024-04-13T01:42:04.75Z"
   },
   "desde": "2026-10-14T17:54:41.370Z"
- }
+ },
+ "preparacao": null
 }
