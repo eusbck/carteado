@@ -1,7 +1,7 @@
 // Ações possíveis com prioridade (CR 117.1) e sua execução.
 
 import { putOntoBattlefield } from './actions.ts';
-import { abilityDefs, chars, colorsOf, controllerOf, hasKw, hooks, nameOf, printedChars } from './chars.ts';
+import { abilityDefs, chars, colorsOf, controllerOf, hasKw, hooks, landPlaysAllowed, nameOf, printedChars } from './chars.ts';
 import { canStartFaceDown, castOptionsExtra, morphFaceUpCost, turnFaceUpMorph } from './conjurar-alternativo.ts';
 import { activateManaAbility, canAfford, canPayParts, manaOptions, manaPart } from './costs.ts';
 import { cardDef, type ActivatedDef, type CastPermission, type Gen, type SCtx } from './defs.ts';
@@ -204,7 +204,7 @@ function facesJogaveis(g: G, id: ObjId): number[] {
 
 function landPlayOptions(g: G, p: PlayerId): { obj: ObjId; key: string; face: number }[] {
   const s = g.state;
-  if (!sorceryTiming(g, p) || s.turn.landsPlayed >= 1 + (s.turn.extraLands ?? 0)) return []; // CR 305.2
+  if (!sorceryTiming(g, p) || s.turn.landsPlayed >= landPlaysAllowed(g, p)) return []; // CR 305.2
   const out: { obj: ObjId; key: string; face: number }[] = [];
   for (const id of s.zones.hand[p]) for (const face of facesJogaveis(g, id)) out.push({ obj: id, key: chaveComFace('hand', face), face });
   for (const zone of ['graveyard', 'exile'] as const) {

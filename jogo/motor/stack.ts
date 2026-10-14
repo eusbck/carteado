@@ -882,7 +882,8 @@ export function* resolveTop(g: G): Gen<void> {
       } else if (auraTarget.kind === 'obj') attachTo = auraTarget.id;
       else if (auraTarget.kind === 'player' && c.subtypes.includes('Aura')) jogadorEncantado = auraTarget.id;
     }
-    const spell = { x: st.x, paid: st.paid, method: st.method, manaSpent: st.manaSpent, castFrom: st.castFrom };
+    // presente prometido (CR 702.174b): o oponente escolhido vai junto para o gatilho de entrar do permanente
+    const spell = { x: st.x, paid: st.paid, method: st.method, manaSpent: st.manaSpent, castFrom: st.castFrom, giftTo: st.data.giftTo as PlayerId | undefined };
     // sneak (CR 702.190b): entra virada e atacando quem o atacante devolvido atacava; só criatura ataca (506.3a), e não
     // ataca um jogador que saiu nem um permanente que não está mais no campo (506.3c)
     const atk = st.data.enterAttacking as TargetRef | undefined;

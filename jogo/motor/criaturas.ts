@@ -11,7 +11,7 @@ import {
   sacrifice, searchLibrary, shuffleLibrary, unattach, untap,
 } from './actions.ts';
 import { chooseItems, chooseNumber, objItem, playerItem, yesNo } from './ask.ts';
-import { chars, controllerOf, copyValuesChars, isCreature, isLand, manaValue, nameOf, power } from './chars.ts';
+import { chars, controllerOf, copyValuesChars, isCreature, isLand, landPlaysAllowed, manaValue, nameOf, power } from './chars.ts';
 import { defineAbility, defineEmblem, type AbilityDef, type ActivatedDef, type EnterEvent, type Gen, type ReplacementDef, type SCtx, type StaticDef, type TriggeredDef, type TriggerSpec } from './defs.ts';
 import { activated, and, asEnters, cost, is, keyword, lkiChars, lkiObj, on, t, tgt, triggered } from './dsl.ts';
 import { allCreatureTypes, delayed, nextEndStepTrigger, untilEndOfTurn } from './efeitos.ts';
@@ -562,7 +562,7 @@ export function* mayPlayFree(g: G, p: PlayerId, card: ObjId, prompt: string): Ge
   const o = g.state.objects[card];
   if (!o) return false;
   if (isLand(g, card)) {
-    if (g.state.turn.active !== p || g.state.turn.landsPlayed >= 1 + (g.state.turn.extraLands ?? 0)) return false;
+    if (g.state.turn.active !== p || g.state.turn.landsPlayed >= landPlaysAllowed(g, p)) return false;
     if (!(yield* yesNo(g, p, prompt))) return false;
     g.state.turn.landsPlayed++;
     g.log(`${g.state.players[p].name} joga ${nameOf(g, card)}.`, { rule: '305.1' });

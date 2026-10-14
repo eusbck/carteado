@@ -290,6 +290,8 @@ export interface RuleHooks {
   minBlockers?: (c: SCtx, attacker: ObjId) => number;
   /** "não pode ser bloqueada por mais de N criaturas" (Challenger Troll; restrição de bloqueio, CR 509.1b): devolve N; null = sem restrição */
   maxBlockers?: (c: SCtx, attacker: ObjId) => number | null;
+  /** "você pode jogar um terreno adicional em cada um dos seus turnos" (Loot, Exuberant Explorer; CR 305.2): quantos a mais */
+  extraLandPlays?: (c: SCtx, player: PlayerId) => number;
   /** "esta criatura precisa ser bloqueada por exatamente uma criatura se puder" (Nacatl War-Pride) */
   mustBeBlockedByExactlyOne?: (c: SCtx, attacker: ObjId) => boolean;
   /**
@@ -366,7 +368,7 @@ export interface EnterEvent {
   copyOf: GameObject['copyOf'];
   faceDown?: boolean;
   /** valores da mágica que virou este permanente (CR 400.7d) */
-  spell?: { x: number; paid: Record<string, number | boolean>; method?: string; manaSpent?: Ctx['manaSpent']; castFrom?: ZoneName };
+  spell?: { x: number; paid: Record<string, number | boolean>; method?: string; manaSpent?: Ctx['manaSpent']; castFrom?: ZoneName; giftTo?: PlayerId };
   /** efeitos que começam junto com a entrada (Cursed Mirror: "ao entrar, vira uma cópia … até o fim do turno") */
   enterEffects?: { mods: Mod[]; duration: Duration; controller: PlayerId; sourceDef: string }[];
 }

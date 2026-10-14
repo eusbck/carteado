@@ -2,6 +2,7 @@
 // ../fontes-oficiais/MagicCompRules-2026-09-25.txt.
 import { describe, expect, it } from 'vitest';
 import { chars } from '../motor/api.ts';
+import { landPlaysAllowed } from '../motor/chars.ts';
 import { crewPower } from '../motor/costs.ts';
 import { registry } from '../motor/defs.ts';
 import { fixture } from './artefatos.ts';
@@ -22,6 +23,33 @@ describe('restrição "não pode ser bloqueada por mais de N criaturas" (CR 509.
     const tg = fixture({ battlefield: [['Indomitable Ancients'], ['Elvish Mystic', 'Wall of Omens']] });
     tg.attack([['Indomitable Ancients', 1]]).block([['Elvish Mystic', 'Indomitable Ancients'], ['Wall of Omens', 'Indomitable Ancients']]).passTo('combatDamage');
     expect(tg.find('Elvish Mystic')).toBeNull();
+  });
+});
+
+describe('terrenos adicionais por efeito contínuo (CR 305.2, gancho extraLandPlays)', () => {
+  it('soma com o terreno normal e com os de efeitos que resolveram (Explore)', () => {
+    const tg = setup({ battlefield: [['Loot, Exuberant Explorer', 'Forest', 'Forest'], []], hand: [['Explore', 'Forest', 'Forest', 'Forest', 'Forest'], []], library: [['Island'], []] });
+    expect(landPlaysAllowed(tg.g, 0)).toBe(2);
+    tg.cast('Explore').resolve();
+    expect(landPlaysAllowed(tg.g, 0)).toBe(3);
+    tg.play('Forest').play('Forest').play('Forest');
+    expect(() => tg.play('Forest')).toThrow();
+  });
+  it('vale só para o controlador da fonte', () => {
+    const tg = setup({ battlefield: [['Loot, Exuberant Explorer'], []] });
+    expect(landPlaysAllowed(tg.g, 1)).toBe(1);
+  });
+});
+
+describe('presente num permanente (CR 702.174b): o oponente escolhido chega ao permanente em data.spell.giftTo', () => {
+  it('prometido, o objeto que entra sabe a quem; sem prometer, não', () => {
+    const tg = setup({ battlefield: [['Forest', 'Forest', 'Forest', 'Forest', 'Forest', 'Forest'], []], hand: [['Scrapshooter', 'Scrapshooter'], []], library: [[], ['Island']] });
+    tg.choose('presente', ['Prometer a Bruno']).cast('Scrapshooter').resolveAll();
+    const [a] = tg.all('Scrapshooter');
+    expect((tg.state.objects[a].data.spell as { giftTo?: number }).giftTo).toBe(1);
+    tg.choose('presente', ['Não prometer']).cast('Scrapshooter').resolveAll();
+    const b = tg.all('Scrapshooter').find((id) => id !== a)!;
+    expect((tg.state.objects[b].data.spell as { paid: Record<string, unknown> }).paid.gift).toBeFalsy();
   });
 });
 

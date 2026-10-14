@@ -557,6 +557,12 @@ export function hooks<K extends keyof RuleHooks>(g: G, key: K): { fn: NonNullabl
 // ---------------------------------------------------------------------------
 // Consultas
 // ---------------------------------------------------------------------------
+/** CR 305.2: quantos terrenos o jogador pode jogar neste turno: um, mais os de efeitos que resolveram (Explore) e os de
+ *  efeitos contínuos (gancho extraLandPlays) */
+export function landPlaysAllowed(g: G, p: PlayerId): number {
+  return 1 + (g.state.turn.extraLands ?? 0) + hooks(g, 'extraLandPlays').reduce((n, h) => n + Math.max(0, h.fn(h.ctx, p)), 0);
+}
+
 export function hasKw(g: G, id: ObjId, kw: string): boolean {
   return chars(g, id).abilities.some((a) => a.kw === kw);
 }
