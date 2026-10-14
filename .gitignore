@@ -23,3 +23,6 @@ artes-brasil/*.png
 codex-teste.log
 artes-brasil/geracao.log
 artes-brasil/primeira-versao/
+
+# acervo local do projeto: prints, gravações, feedback e guias juntados do computador (fica só nesta máquina)
+acervo/

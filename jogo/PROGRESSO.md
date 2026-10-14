@@ -1954,3 +1954,19 @@ para depois.
   (Codex, com trabalho sem commit), `../Magic-Commander-brasil`, `../Magic-Commander-lote2` e
   `../Magic-Commander-regras-decks`. O `node_modules` de cada uma é um atalho (junção) para o da `main`: tirar o atalho
   com `cmd /c rmdir` antes de `git worktree remove --force`, senão a remoção pode apagar o conteúdo do original.
+## 14/10/2026 — Material do Magic juntado no projeto e seis decks novos em espera
+
+- Os 10 commits foram para o GitHub (`fe8d26d..3f248ad`).
+- O Caio importou pela mesa seis precons novos: Blame Game, Grand Larceny, Buckle Up, Calling All Angels,
+  Tramplesaurus Rex e Squirreled Away. Pediu para **não implementar ainda**; os arquivos da importação (`decks/`,
+  `gerado/`, `dados-locais/imagens/`) seguem sem commit, são dele.
+- Pedido do Caio: juntar no projeto o que é do Magic e estava fora, e apagar o que não serve. Foi para
+  `acervo/` (raiz, fora do git, com `LEIA-ME.md`): 71 prints do jogo e de referência, 4 gravações de tela do jogo,
+  3 prints de ajuste, o verso da carta, o emblema, a página das cartas do lote 2, o Atlas Arcano e um guia de
+  arquétipos em PDF. As 68 artes originais em alta do Lula e do Bolsonaro, que só existiam na worktree
+  `../Magic-Commander-brasil`, foram para `artes-brasil/` (fora do git, como antes). Apagados: o zip do projeto de
+  03/10 (29 de 29 arquivos iguais aos atuais), uma cópia da gravação de 09/10 e a versão antiga do Atlas Arcano.
+  O `Documentos\Estudo-Arena` fica fora do projeto, por decisão do Caio.
+- Worktrees: além das 18 antigas, `../Magic-Commander-brasil`, `../Magic-Commander-lote2` e
+  `../Magic-Commander-regras-decks` podem sair (todas inteiras na `main`, sem nada por commitar; o Caio aprovou). O
+  modo automático barrou a remoção; ficou com o Caio. Só `jogo-wt-bots` (Codex) fica.
