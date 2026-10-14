@@ -1,0 +1,368 @@
+{
+ "formato": 1,
+ "id": "JNIylOIFGEmjh2WgU7Et9g",
+ "ordem": 107,
+ "nome": "Grand Larceny Commander Precon Decklist",
+ "link": "https://moxfield.com/decks/JNIylOIFGEmjh2WgU7Et9g",
+ "importadoEm": "2026-10-14T17:54:41.370Z",
+ "verificadoEm": "2026-10-14T17:54:41.370Z",
+ "atual": null,
+ "preparacao": {
+  "comandante": "Gonti, Canny Acquisitor",
+  "cartas": [
+   {
+    "nome": "Island",
+    "quantidade": 5
+   },
+   {
+    "nome": "Forest",
+    "quantidade": 4
+   },
+   {
+    "nome": "Swamp",
+    "quantidade": 6
+   },
+   {
+    "nome": "Temple of Deceit",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arcane Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Command Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Baleful Strix",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gonti, Lord of Luxury",
+    "quantidade": 1
+   },
+   {
+    "nome": "Putrefy",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rampant Growth",
+    "quantidade": 1
+   },
+   {
+    "nome": "Reliquary Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Silhana Ledgewalker",
+    "quantidade": 1
+   },
+   {
+    "nome": "Slither Blade",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ghostly Pilferer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Temple of Malady",
+    "quantidade": 1
+   },
+   {
+    "nome": "Temple of Mystery",
+    "quantidade": 1
+   },
+   {
+    "nome": "The Mimeoplasm",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fellwar Stone",
+    "quantidade": 1
+   },
+   {
+    "nome": "Darksteel Ingot",
+    "quantidade": 1
+   },
+   {
+    "nome": "Darkwater Catacombs",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dimir Aqueduct",
+    "quantidade": 1
+   },
+   {
+    "nome": "Exotic Orchard",
+    "quantidade": 1
+   },
+   {
+    "nome": "Opulent Palace",
+    "quantidade": 1
+   },
+   {
+    "nome": "Underground River",
+    "quantidade": 1
+   },
+   {
+    "nome": "Llanowar Wastes",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ohran Frostfang",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sunken Hollow",
+    "quantidade": 1
+   },
+   {
+    "nome": "Thieving Amalgam",
+    "quantidade": 1
+   },
+   {
+    "nome": "Yavimaya Coast",
+    "quantidade": 1
+   },
+   {
+    "nome": "Kodama's Reach",
+    "quantidade": 1
+   },
+   {
+    "nome": "Diluvian Primordial",
+    "quantidade": 1
+   },
+   {
+    "nome": "Oblivion Sower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Silent-Blade Oni",
+    "quantidade": 1
+   },
+   {
+    "nome": "Prismatic Lens",
+    "quantidade": 1
+   },
+   {
+    "nome": "Trygon Predator",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mind's Dilation",
+    "quantidade": 1
+   },
+   {
+    "nome": "Whirler Rogue",
+    "quantidade": 1
+   },
+   {
+    "nome": "Thief of Sanity",
+    "quantidade": 1
+   },
+   {
+    "nome": "Void Attendant",
+    "quantidade": 1
+   },
+   {
+    "nome": "Flooded Grove",
+    "quantidade": 1
+   },
+   {
+    "nome": "Twilight Mire",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cold-Eyed Selkie",
+    "quantidade": 1
+   },
+   {
+    "nome": "Darkslick Shores",
+    "quantidade": 1
+   },
+   {
+    "nome": "Drowned Catacomb",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shadowmage Infiltrator",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fallen Shinobi",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cazur, Ruthless Stalker",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ukkima, Stalking Shadow",
+    "quantidade": 1
+   },
+   {
+    "nome": "Villainous Wealth",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fetid Pools",
+    "quantidade": 1
+   },
+   {
+    "nome": "Edric, Spymaster of Trest",
+    "quantidade": 1
+   },
+   {
+    "nome": "Triton Shorestalker",
+    "quantidade": 1
+   },
+   {
+    "nome": "Three Visits",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hostage Taker",
+    "quantidade": 1
+   },
+   {
+    "nome": "Stolen Goods",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hinterland Harbor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Woodland Cemetery",
+    "quantidade": 1
+   },
+   {
+    "nome": "Chaos Wand",
+    "quantidade": 1
+   },
+   {
+    "nome": "Plasm Capture",
+    "quantidade": 1
+   },
+   {
+    "nome": "Curse of the Swine",
+    "quantidade": 1
+   },
+   {
+    "nome": "Feed the Swarm",
+    "quantidade": 1
+   },
+   {
+    "nome": "Thieving Skydiver",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bladegriff Prototype",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sage of the Beyond",
+    "quantidade": 1
+   },
+   {
+    "nome": "Baleful Mastery",
+    "quantidade": 1
+   },
+   {
+    "nome": "Access Tunnel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Culling Ritual",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dazzling Sphinx",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cunning Rhetoric",
+    "quantidade": 1
+   },
+   {
+    "nome": "Extract Brain",
+    "quantidade": 1
+   },
+   {
+    "nome": "Siphon Insight",
+    "quantidade": 1
+   },
+   {
+    "nome": "Predators' Hour",
+    "quantidade": 1
+   },
+   {
+    "nome": "Brainstealer Dragon",
+    "quantidade": 1
+   },
+   {
+    "nome": "Overflowing Basin",
+    "quantidade": 1
+   },
+   {
+    "nome": "Viridescent Bog",
+    "quantidade": 1
+   },
+   {
+    "nome": "Doc Aurlock, Grizzled Genius",
+    "quantidade": 1
+   },
+   {
+    "nome": "Thieving Varmint",
+    "quantidade": 1
+   },
+   {
+    "nome": "Heartless Conscription",
+    "quantidade": 1
+   },
+   {
+    "nome": "Orochi Soul-Reaver",
+    "quantidade": 1
+   },
+   {
+    "nome": "Smirking Spelljacker",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arcane Heist",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tower Winder",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dream-Thief's Bandana",
+    "quantidade": 1
+   },
+   {
+    "nome": "Savvy Trader",
+    "quantidade": 1
+   },
+   {
+    "nome": "Nashi, Moon Sage's Scion",
+    "quantidade": 1
+   },
+   {
+    "nome": "Felix Five-Boots",
+    "quantidade": 1
+   }
+  ],
+  "origem": {
+   "versao": 0,
+   "atualizadoEm": "2024-04-13T01:42:04.75Z"
+  },
+  "desde": "2026-10-14T17:54:41.370Z"
+ }
+}

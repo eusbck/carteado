@@ -24018,5 +24018,4170 @@
    "faces": null,
    "reserva": false
   }
+ },
+ "Nelly Borca, Impulsive Accuser": {
+  "en": {
+   "id": "2ef59aa9-f5e1-413a-869b-d287db95efd0",
+   "frente": "imagens/2ef59aa9-f5e1-413a-869b-d287db95efd0/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Labyrinth of Skophos": {
+  "en": {
+   "id": "388169df-4cce-452d-9215-e3f814ff4fdf",
+   "frente": "imagens/388169df-4cce-452d-9215-e3f814ff4fdf/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "8509af43-435b-4eb3-9bd5-637bc096d221",
+   "frente": "imagens/8509af43-435b-4eb3-9bd5-637bc096d221/front.png",
+   "verso": null,
+   "nome": "Labirinto de Escofo",
+   "tipo": "Terreno",
+   "texto": "{T}: Adicione {C}.\n{4}, {T}: Remova a criatura atacante ou bloqueadora alvo do combate.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Castle Ardenvale": {
+  "en": {
+   "id": "878fcea5-9a59-4b98-80b8-67e95f35f949",
+   "frente": "imagens/878fcea5-9a59-4b98-80b8-67e95f35f949/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "34c10619-f0e7-4890-818d-9b103500e189",
+   "frente": "imagens/34c10619-f0e7-4890-818d-9b103500e189/front.png",
+   "verso": null,
+   "nome": "Castelo do Vale Arden",
+   "tipo": "Terreno",
+   "texto": "Castelo do Vale Arden entra no campo de batalha virado, a menos que você controle uma Planície.\n{T}: Adicione {W}.\n{2}{W}{W}, {T}: Crie uma ficha de criatura Humano branca 1/1.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Boros Reckoner": {
+  "en": {
+   "id": "55a2f767-5928-44c5-91b7-2300bade458f",
+   "frente": "imagens/55a2f767-5928-44c5-91b7-2300bade458f/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "c499a6ea-30ba-49ae-b83f-95bbcb532c37",
+   "frente": "imagens/c499a6ea-30ba-49ae-b83f-95bbcb532c37/front.png",
+   "verso": null,
+   "nome": "Víndice dos Boros",
+   "tipo": "Criatura — Minotauro Mago",
+   "texto": "Toda vez que Víndice dos Boros sofre dano, ele causa uma quantidade equivalente de dano à criatura ou jogador alvo.{R/W}: Víndice dos Boros ganha iniciativa até o final do turno.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Curse of Opulence": {
+  "en": {
+   "id": "32cc103e-949d-42d4-aadd-490a261c9ad9",
+   "frente": "imagens/32cc103e-949d-42d4-aadd-490a261c9ad9/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "c9d301aa-d125-490a-8b67-4aa21fe5d42a",
+   "frente": "imagens/c9d301aa-d125-490a-8b67-4aa21fe5d42a/front.png",
+   "verso": null,
+   "nome": "Maldição da Opulência",
+   "tipo": "Encantamento — Aura Maldição",
+   "texto": "Encantar jogador\nToda vez que o jogador encantado for atacado, crie uma ficha de Ouro. Cada oponente que estiver atacando aquele jogador faz o mesmo. (Uma ficha de Ouro é um artefato com \"Sacrifique este artefato: Adicione um mana de qualquer cor\".)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Seal of Cleansing": {
+  "en": {
+   "id": "22a6673b-1528-4e0f-b316-bd482c7ed8aa",
+   "frente": "imagens/22a6673b-1528-4e0f-b316-bd482c7ed8aa/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "7e714362-eb15-47ae-8b91-69c67daf2eb0",
+   "frente": "imagens/7e714362-eb15-47ae-8b91-69c67daf2eb0/front.png",
+   "verso": null,
+   "nome": "Selo da Purificação",
+   "tipo": "Encantamento",
+   "texto": "Sacrifique Selo da Purificação: Destrua o artefato ou encantamento alvo.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Brash Taunter": {
+  "en": {
+   "id": "0b5cb154-1825-4b81-a109-7b3e9592c65c",
+   "frente": "imagens/0b5cb154-1825-4b81-a109-7b3e9592c65c/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "63d82d2e-5938-4390-acb0-660d01d5ffb7",
+   "frente": "imagens/63d82d2e-5938-4390-acb0-660d01d5ffb7/front.png",
+   "verso": null,
+   "nome": "Provocador Petulante",
+   "tipo": "Criatura — Goblin",
+   "texto": "Indestrutível\nToda vez que Provocador Petulante sofre dano, ele causa a mesma quantidade de dano ao oponente alvo.\n{2}{R}, {T}: Provocador Petulante luta contra outra criatura alvo.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Fiendish Duo": {
+  "en": {
+   "id": "ebb44595-56f6-4be5-80bb-618ddd320f4a",
+   "frente": "imagens/ebb44595-56f6-4be5-80bb-618ddd320f4a/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Anya, Merciless Angel": {
+  "en": {
+   "id": "0526277f-538b-42d0-8c75-c390f599b94e",
+   "frente": "imagens/0526277f-538b-42d0-8c75-c390f599b94e/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Duelist's Heritage": {
+  "en": {
+   "id": "57f42d1b-c738-43bc-9e0d-f2c74731112f",
+   "frente": "imagens/57f42d1b-c738-43bc-9e0d-f2c74731112f/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "0cded7eb-b51d-4d38-bd63-8336f7a719ba",
+   "frente": "imagens/0cded7eb-b51d-4d38-bd63-8336f7a719ba/front.png",
+   "verso": null,
+   "nome": "Herança de Duelista",
+   "tipo": "Encantamento",
+   "texto": "Toda vez que uma ou mais criaturas atacam, você pode fazer com que a criatura atacante alvo ganhe golpe duplo até o final do turno.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Gisela, Blade of Goldnight": {
+  "en": {
+   "id": "900b8908-ba51-472e-ab7a-43bd07f90577",
+   "frente": "imagens/900b8908-ba51-472e-ab7a-43bd07f90577/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "a9aba07b-b5bd-452c-994b-711836303ea2",
+   "frente": null,
+   "verso": null,
+   "nome": "Gisela, Espadachim dos Noite Dourada",
+   "tipo": "Criatura Lendária — Anjo",
+   "texto": "Voar, iniciativa\nSe uma fonte for causar dano a um oponente ou a uma permanente que um oponente controla, em vez disso, ela causa o dobro do dano àquele jogador ou àquela permanente.\nSe uma fonte for causar dano a você ou a uma permanente que você controla, previna metade do dano, arredondada para cima.",
+   "faces": null,
+   "reserva": true
+  }
+ },
+ "Orzhov Advokist": {
+  "en": {
+   "id": "a30947a1-b25a-4570-b36c-75c4e9689abd",
+   "frente": "imagens/a30947a1-b25a-4570-b36c-75c4e9689abd/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "5ae54a6f-ca7a-4a73-b772-98ddbef77e06",
+   "frente": "imagens/5ae54a6f-ca7a-4a73-b772-98ddbef77e06/front.png",
+   "verso": null,
+   "nome": "Advoquista Orzhov",
+   "tipo": "Criatura — Humano Conselheiro",
+   "texto": "No início de sua manutenção, cada jogador pode colocar dois marcadores +1/+1 em uma criatura que ele controla. Se um jogador fizer isso, as criaturas que aquele jogador controla não poderão atacar você nem planeswalkers que você controla até seu próximo turno.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Ancient Stone Idol": {
+  "en": {
+   "id": "333f6334-f027-4bec-95d7-7af80508c4ca",
+   "frente": "imagens/333f6334-f027-4bec-95d7-7af80508c4ca/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "3e8efde6-5e1f-469c-9fcf-d8660a373342",
+   "frente": "imagens/3e8efde6-5e1f-469c-9fcf-d8660a373342/front.png",
+   "verso": null,
+   "nome": "Ídolo de Pedra Antigo",
+   "tipo": "Criatura Artefato — Golem",
+   "texto": "Lampejo\nEsta mágica custa {1} a menos para ser conjurada para cada criatura atacante.\nAtropelar\nQuando Ídolo de Pedra Antigo morrer, crie uma ficha de criatura artefato Constructo incolor 6/12 com atropelar.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Disrupt Decorum": {
+  "en": {
+   "id": "c5323fe7-d9df-4287-ae13-d9db35f7973b",
+   "frente": "imagens/c5323fe7-d9df-4287-ae13-d9db35f7973b/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "f41c8fb7-a515-452f-8a6c-8561157ef67f",
+   "frente": null,
+   "verso": null,
+   "nome": "Quebrar o Decoro",
+   "tipo": "Feitiço",
+   "texto": "Atice todas as criaturas que você não controla. (Até seu próximo turno, aquelas criaturas atacam a cada combate se estiverem aptas e atacam um jogador que não seja você se estiverem aptas.)",
+   "faces": null,
+   "reserva": true
+  }
+ },
+ "Selfless Squire": {
+  "en": {
+   "id": "8b8f4489-3d07-4e57-9b94-afa52fa984f8",
+   "frente": "imagens/8b8f4489-3d07-4e57-9b94-afa52fa984f8/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "8e96065c-80b3-4e21-98aa-54bb25a0db00",
+   "frente": "imagens/8e96065c-80b3-4e21-98aa-54bb25a0db00/front.png",
+   "verso": null,
+   "nome": "Escudeira Altruísta",
+   "tipo": "Criatura — Humano Soldado",
+   "texto": "Lampejo\nQuando Escudeira Altruísta entrar no campo de batalha, previna todo o dano que seria causado a você neste turno.\nToda vez que algum dano que seria causado a você for prevenido, coloque uma quantidade equivalente de marcadores +1/+1 em Escudeira Altruísta.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Bloodthirsty Blade": {
+  "en": {
+   "id": "bcdf583e-25f8-4227-96e9-e70ec8a36b09",
+   "frente": "imagens/bcdf583e-25f8-4227-96e9-e70ec8a36b09/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "7d4190bd-3a77-41e2-82cb-0d44f2d6d0e2",
+   "frente": "imagens/7d4190bd-3a77-41e2-82cb-0d44f2d6d0e2/front.png",
+   "verso": null,
+   "nome": "Lâmina Sedenta de Sangue",
+   "tipo": "Artefato — Equipamento",
+   "texto": "A criatura equipada recebe +2/+0 e é atiçada. (Ela ataca a cada combate se estiver apta e ataca um jogador que não seja você se estiver apta.)\n{1}: Anexe Lâmina Sedenta de Sangue à criatura alvo que um oponente controla. Ative somente como um feitiço.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Sunhome, Fortress of the Legion": {
+  "en": {
+   "id": "1eb80fb8-d72b-4aac-b057-d91b49e286a5",
+   "frente": "imagens/1eb80fb8-d72b-4aac-b057-d91b49e286a5/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "4c67ac9d-d99e-4636-a69e-130a94c12c6a",
+   "frente": "imagens/4c67ac9d-d99e-4636-a69e-130a94c12c6a/front.png",
+   "verso": null,
+   "nome": "Morada do Sol, Fortaleza da Legião",
+   "tipo": "Terreno",
+   "texto": "{T}: Adicione {C}.\n{2}{R}{W}, {T}: A criatura alvo ganha golpe duplo até o final do turno.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Windborn Muse": {
+  "en": {
+   "id": "3ce8b722-7bc0-4053-8627-7846f9d17eda",
+   "frente": "imagens/3ce8b722-7bc0-4053-8627-7846f9d17eda/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "2684fa6b-a286-41f7-8798-d81d62d590ac",
+   "frente": "imagens/2684fa6b-a286-41f7-8798-d81d62d590ac/front.png",
+   "verso": null,
+   "nome": "Musa Nascida do Vento",
+   "tipo": "Criatura — Espírito",
+   "texto": "Voar\nAs criaturas não podem atacá-lo, a menos que seu controlador pague {2} para cada criatura que controla que está atacando você.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Etali, Primal Storm": {
+  "en": {
+   "id": "a18fdaf9-964d-45e9-bd40-a8fc745ddd1e",
+   "frente": "imagens/a18fdaf9-964d-45e9-bd40-a8fc745ddd1e/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "99dab19a-56db-42bc-8415-2304c9207e51",
+   "frente": "imagens/99dab19a-56db-42bc-8415-2304c9207e51/front.png",
+   "verso": null,
+   "nome": "Etali, Tormenta Primordial",
+   "tipo": "Criatura Lendária — Dinossauro Ancião",
+   "texto": "Toda vez que Etali, Tormenta Primordial, atacar, exile o card do topo do grimório de cada jogador. Em seguida, você pode conjurar qualquer número de mágicas dentre aqueles cards sem pagar seus custos de mana.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Darien, King of Kjeldor": {
+  "en": {
+   "id": "50875c99-c5c3-41dd-a0f9-08c98edfebc9",
+   "frente": "imagens/50875c99-c5c3-41dd-a0f9-08c98edfebc9/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "dd2c4e88-6341-4f11-8fec-1522cc30037e",
+   "frente": null,
+   "verso": null,
+   "nome": "Darien, Rei de Kjeldor",
+   "tipo": "Criatura Lendária — Senhor Humano",
+   "texto": "Toda vez que você sofre dano, você pode colocar em jogo aquela quantidade de fichas de criatura brancas 1/1 do tipo Soldado.",
+   "faces": null,
+   "reserva": true
+  }
+ },
+ "Gideon's Sacrifice": {
+  "en": {
+   "id": "d483b409-1853-4456-a077-daeb77e165ba",
+   "frente": "imagens/d483b409-1853-4456-a077-daeb77e165ba/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "9e9d608b-ae89-4e7b-a19e-dac5ade21ab2",
+   "frente": "imagens/9e9d608b-ae89-4e7b-a19e-dac5ade21ab2/front.png",
+   "verso": null,
+   "nome": "Sacrifício de Gideon",
+   "tipo": "Mágica Instantânea",
+   "texto": "Escolha uma criatura ou planeswalker que você controla. Todo dano que seria causado neste turno a você e às permanentes que você controla é, em vez disso, causado à permanente escolhida (se ela ainda estiver no campo de batalha).",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Agitator Ant": {
+  "en": {
+   "id": "bc63ff71-ff42-4baf-977b-55f69c8e122f",
+   "frente": "imagens/bc63ff71-ff42-4baf-977b-55f69c8e122f/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "f227b2bf-f938-460c-8138-554f6e159df4",
+   "frente": "imagens/f227b2bf-f938-460c-8138-554f6e159df4/front.png",
+   "verso": null,
+   "nome": "Formiga Agitadora",
+   "tipo": "Criatura — Inseto",
+   "texto": "No início de sua etapa final, cada jogador pode colocar dois marcadores +1/+1 em uma criatura que ele controla. Atice cada criatura que tenha recebido marcadores dessa forma. (Até seu próximo turno, aquelas criaturas atacam a cada combate se estiverem aptas e atacam um jogador que não seja você se estiverem aptas.)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Frontier Warmonger": {
+  "en": {
+   "id": "824aa845-0523-4434-8992-bce42f5b2bcb",
+   "frente": "imagens/824aa845-0523-4434-8992-bce42f5b2bcb/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "f320a82f-0489-4047-b7d7-82dc90e9e6e6",
+   "frente": null,
+   "verso": null,
+   "nome": "Belicista da Fronteira",
+   "tipo": "Criatura — Humano Guerreiro",
+   "texto": "Toda vez que uma ou mais criaturas atacam um de seus oponentes ou um planeswalker que eles controlam, aquelas criaturas ganham ameaçar até o final do turno.",
+   "faces": null,
+   "reserva": true
+  }
+ },
+ "Kazuul, Tyrant of the Cliffs": {
+  "en": {
+   "id": "721df547-d777-4247-b130-a4e247445b04",
+   "frente": "imagens/721df547-d777-4247-b130-a4e247445b04/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "f8a4d08e-7895-42f7-b90e-9044c1f815c1",
+   "frente": null,
+   "verso": null,
+   "nome": "Kazuul, Tirano dos Penhascos",
+   "tipo": "Criatura Lendária — Ogro Guerreiro",
+   "texto": "Toda vez que uma criatura que um oponente controla ataca, se você for o jogador defensor, crie uma ficha de criatura Ogro vermelha 3/3, a menos que o controlador daquela criatura pague {3}.",
+   "faces": null,
+   "reserva": true
+  }
+ },
+ "Slayers' Stronghold": {
+  "en": {
+   "id": "3b2c82ea-6793-407c-ac9f-5fc14d4d09ea",
+   "frente": "imagens/3b2c82ea-6793-407c-ac9f-5fc14d4d09ea/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "57a989a0-bd6a-4687-aec1-3daed71d2e19",
+   "frente": "imagens/57a989a0-bd6a-4687-aec1-3daed71d2e19/front.png",
+   "verso": null,
+   "nome": "Fortaleza dos Matadores",
+   "tipo": "Terreno",
+   "texto": "{T}: Adicione {C}.\n{R}{W}, {T}: A criatura alvo recebe +2/+0 e ganha vigilância e ímpeto até o final do turno.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Deflecting Palm": {
+  "en": {
+   "id": "c5bda1a7-537f-4a80-95a0-c45eb127969b",
+   "frente": "imagens/c5bda1a7-537f-4a80-95a0-c45eb127969b/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "670eb80c-8a9e-4ea8-aba0-cc16237fab23",
+   "frente": "imagens/670eb80c-8a9e-4ea8-aba0-cc16237fab23/front.png",
+   "verso": null,
+   "nome": "Palma Defletora",
+   "tipo": "Mágica Instantânea",
+   "texto": "Na próxima vez que uma fonte de sua escolha for lhe causar dano neste turno, previna aquele dano. Se o dano for prevenido desta maneira, Palma Defletora causará uma quantidade equivalente de dano ao controlador daquela fonte.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Comeuppance": {
+  "en": {
+   "id": "b63d828d-4f62-424b-969a-00dcc4651b56",
+   "frente": "imagens/b63d828d-4f62-424b-969a-00dcc4651b56/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Needle Spires": {
+  "en": {
+   "id": "4a58a287-e4ca-4c6b-8096-142660cee299",
+   "frente": "imagens/4a58a287-e4ca-4c6b-8096-142660cee299/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "a615193b-daa4-4a0e-9700-0c682215a4d6",
+   "frente": "imagens/a615193b-daa4-4a0e-9700-0c682215a4d6/front.png",
+   "verso": null,
+   "nome": "Picos das Agulhas",
+   "tipo": "Terreno",
+   "texto": "Picos das Agulhas entra no campo de batalha virado.\n{T}: Adicione {R} ou {W}.\n{2}{R}{W}: Picos das Agulhas torna-se uma criatura vermelha e branca 2/1 do tipo Elemental com golpe duplo até o final do turno. Ela ainda é um terreno.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Keeper of the Accord": {
+  "en": {
+   "id": "08788504-17b9-47b1-b928-f395d0057eed",
+   "frente": "imagens/08788504-17b9-47b1-b928-f395d0057eed/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "a8a6fd8b-edae-4331-919d-e433f94a1faf",
+   "frente": "imagens/a8a6fd8b-edae-4331-919d-e433f94a1faf/front.png",
+   "verso": null,
+   "nome": "Guardião do Acordo",
+   "tipo": "Criatura — Humano Soldado",
+   "texto": "No início da etapa final de cada oponente, se aquele jogador controlar mais criaturas que você, crie uma ficha de criatura Soldado branca 1/1.\nNo início da etapa final de cada oponente, se aquele jogador controlar mais terrenos que você, você poderá procurar em seu grimório um card de Planície básica, colocá-lo virado no campo de batalha e depois embaralhar.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Vengeful Ancestor": {
+  "en": {
+   "id": "d391c561-906f-4a5b-a36c-3b8743e05af1",
+   "frente": "imagens/d391c561-906f-4a5b-a36c-3b8743e05af1/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "d23c6281-cd51-4af1-8141-c52074912b03",
+   "frente": "imagens/d23c6281-cd51-4af1-8141-c52074912b03/front.png",
+   "verso": null,
+   "nome": "Ancestral Vingativo",
+   "tipo": "Criatura — Espírito Dragão",
+   "texto": "Voar\nToda vez que Ancestral Vingativo entrar no campo de batalha ou atacar, atice a criatura alvo. (Até seu próximo turno, aquela criatura ataca a cada combate, se estiver apta, e ataca um jogador que não seja você, se estiver apta.)\nToda vez que uma criatura atiçada ataca, ela causa 1 ponto de dano ao próprio controlador.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Spectacular Showdown": {
+  "en": {
+   "id": "ffee18af-1160-46ad-9640-87eac49a5239",
+   "frente": "imagens/ffee18af-1160-46ad-9640-87eac49a5239/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "4b670eb0-4b13-4184-b86a-7640213e723e",
+   "frente": "imagens/4b670eb0-4b13-4184-b86a-7640213e723e/front.png",
+   "verso": null,
+   "nome": "Embate Espetacular",
+   "tipo": "Feitiço",
+   "texto": "Coloque um marcador de golpe duplo na criatura alvo, depois atice cada criatura que tenha recebido um marcador de golpe duplo dessa forma. (Até seu próximo turno, aquelas criaturas atacam a cada combate se estiverem aptas e atacam um jogador que não seja você se estiverem aptas.)\nSobrecarga {4}{R}{R}{R} (Você pode conjurar esta mágica pagando seu custo de sobrecarga. Se fizer isso, substitua \"na criatura alvo\" em seu texto por \"em cada criatura\".)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Ransom Note": {
+  "en": {
+   "id": "88158a11-a44e-49b4-8ae3-d81c14265802",
+   "frente": "imagens/88158a11-a44e-49b4-8ae3-d81c14265802/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Trouble in Pairs": {
+  "en": {
+   "id": "0f61e93f-5f97-4c7d-b3d5-0e05242faeb3",
+   "frente": "imagens/0f61e93f-5f97-4c7d-b3d5-0e05242faeb3/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Take the Bait": {
+  "en": {
+   "id": "97425844-dd1b-4f3c-985c-e198e8b9a16b",
+   "frente": "imagens/97425844-dd1b-4f3c-985c-e198e8b9a16b/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Prisoner's Dilemma": {
+  "en": {
+   "id": "d678e736-7c29-433a-9a2a-b78749252377",
+   "frente": "imagens/d678e736-7c29-433a-9a2a-b78749252377/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Hot Pursuit": {
+  "en": {
+   "id": "bbba7b9f-d944-4987-b60d-34733382ec53",
+   "frente": "imagens/bbba7b9f-d944-4987-b60d-34733382ec53/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Havoc Eater": {
+  "en": {
+   "id": "17054e75-d801-4962-83c1-0b52e7b65f66",
+   "frente": "imagens/17054e75-d801-4962-83c1-0b52e7b65f66/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Immortal Obligation": {
+  "en": {
+   "id": "bdadc60f-942f-47e2-b8fc-51deb3d0b86d",
+   "frente": "imagens/bdadc60f-942f-47e2-b8fc-51deb3d0b86d/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Mob Verdict": {
+  "en": {
+   "id": "e9bdc40b-ab7a-44a4-afb5-41b6fc2dffdc",
+   "frente": "imagens/e9bdc40b-ab7a-44a4-afb5-41b6fc2dffdc/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Otherworldly Escort": {
+  "en": {
+   "id": "b50bfde2-6c2d-403e-ab47-c932bcb2116d",
+   "frente": "imagens/b50bfde2-6c2d-403e-ab47-c932bcb2116d/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Feather, Radiant Arbiter": {
+  "en": {
+   "id": "d763695b-c184-409d-962d-5aaf39a6264e",
+   "frente": "imagens/d763695b-c184-409d-962d-5aaf39a6264e/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Hazel of the Rootbloom": {
+  "en": {
+   "id": "1269ca79-907e-4932-9e77-a9a5d2929060",
+   "frente": "imagens/1269ca79-907e-4932-9e77-a9a5d2929060/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Chittering Witch": {
+  "en": {
+   "id": "16e8e655-2da1-46c9-b9fb-223dd366698b",
+   "frente": "imagens/16e8e655-2da1-46c9-b9fb-223dd366698b/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "c4dc364e-5dd0-48a8-8810-f85803bea019",
+   "frente": "imagens/c4dc364e-5dd0-48a8-8810-f85803bea019/front.png",
+   "verso": null,
+   "nome": "Bruxa Chiadora",
+   "tipo": "Criatura — Humano Bruxo",
+   "texto": "Quando Bruxa Chiadora entrar no campo de batalha, crie uma quantidade de fichas de criatura Rato preta 1/1 igual ao número de oponentes que você tem.\n{1}{B}, sacrifique uma criatura: A criatura alvo recebe -2/-2 até o final do turno.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Gilded Goose": {
+  "en": {
+   "id": "8d3facb6-314c-4dd2-a570-4515c596163c",
+   "frente": "imagens/8d3facb6-314c-4dd2-a570-4515c596163c/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "b8dc3b74-1c14-4a3d-a7cd-9040d81d65de",
+   "frente": "imagens/b8dc3b74-1c14-4a3d-a7cd-9040d81d65de/front.png",
+   "verso": null,
+   "nome": "Ganso Dourado",
+   "tipo": "Criatura — Ave",
+   "texto": "Voar\nQuando Ganso Dourado entrar no campo de batalha, crie uma ficha de Comida. (Ela é um artefato com \"{2}, {T}, sacrifique este artefato: Você ganha 3 pontos de vida.\")\n{1}{G}, {T}: Crie uma ficha de Comida.\n{T}, sacrifique uma Comida: Adicione um mana de qualquer cor.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Maelstrom Pulse": {
+  "en": {
+   "id": "d8f4d07b-2fc1-4d86-865b-b35526850c8e",
+   "frente": "imagens/d8f4d07b-2fc1-4d86-865b-b35526850c8e/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "23a13b80-e80c-4642-aa25-6dfa8a505444",
+   "frente": "imagens/23a13b80-e80c-4642-aa25-6dfa8a505444/front.png",
+   "verso": null,
+   "nome": "Pulsar do Maelstrom",
+   "tipo": "Feitiço",
+   "texto": "Destrua a permanente alvo que não seja um terreno e todas as outras permanentes com o mesmo nome daquela permanente.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Tranquil Thicket": {
+  "en": {
+   "id": "bdf8439b-a31e-49d4-981a-d9532f83c370",
+   "frente": "imagens/bdf8439b-a31e-49d4-981a-d9532f83c370/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "745d8942-6867-49ce-a9ed-858fe9af6476",
+   "frente": "imagens/745d8942-6867-49ce-a9ed-858fe9af6476/front.png",
+   "verso": null,
+   "nome": "Bosque Sereno",
+   "tipo": "Terreno",
+   "texto": "Bosque Sereno entra no campo de batalha virado.\n{T}: Adicione {G}.\nReciclar {G} ({G}, descarte este card: Compre um card.)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Jungle Hollow": {
+  "en": {
+   "id": "5401ef4c-b1e8-4f37-abe8-25c405d4f6ea",
+   "frente": "imagens/5401ef4c-b1e8-4f37-abe8-25c405d4f6ea/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "2075869c-d3d6-4237-bdc2-47d1b2ed15dd",
+   "frente": "imagens/2075869c-d3d6-4237-bdc2-47d1b2ed15dd/front.png",
+   "verso": null,
+   "nome": "Clareira na Selva",
+   "tipo": "Terreno",
+   "texto": "Clareira na Selva entra no campo de batalha virada.\nQuando Clareira na Selva entra no campo de batalha, você ganha 1 ponto de vida.\n{T}: Adicione {B} ou {G}.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Plaguecrafter": {
+  "en": {
+   "id": "7092aa38-4f05-4b18-b894-d55ca9fe9b15",
+   "frente": "imagens/7092aa38-4f05-4b18-b894-d55ca9fe9b15/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "611d2e7d-1967-400f-84c9-e2f20ac1885f",
+   "frente": "imagens/611d2e7d-1967-400f-84c9-e2f20ac1885f/front.png",
+   "verso": null,
+   "nome": "Empesteiro",
+   "tipo": "Criatura — Humano Xamã",
+   "texto": "Quando Empesteiro entra no campo de batalha, cada jogador sacrifica uma criatura ou um planeswalker. Cada jogador que não estiver apto descarta um card.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Golgari Signet": {
+  "en": {
+   "id": "6a41e111-659e-4521-890f-19d814054dfc",
+   "frente": "imagens/6a41e111-659e-4521-890f-19d814054dfc/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "c964ca50-7338-463d-b803-a28727bc4968",
+   "frente": "imagens/c964ca50-7338-463d-b803-a28727bc4968/front.png",
+   "verso": null,
+   "nome": "Sinete Golgari",
+   "tipo": "Artefato",
+   "texto": "{1}, {T}: Adicione {B}{G}.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Windgrace's Judgment": {
+  "en": {
+   "id": "a5adfe26-8549-4bbd-b881-527add402675",
+   "frente": "imagens/a5adfe26-8549-4bbd-b881-527add402675/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "828fa8c6-dfae-484b-877f-3b6d6b86f1d2",
+   "frente": "imagens/828fa8c6-dfae-484b-877f-3b6d6b86f1d2/front.png",
+   "verso": null,
+   "nome": "Julgamento de Windgrace",
+   "tipo": "Mágica Instantânea",
+   "texto": "Para qualquer número de oponentes, destrua a permanente alvo não de terreno que aquele jogador controla.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Second Harvest": {
+  "en": {
+   "id": "1ee78a73-10af-461a-9fd3-962fc1f0ccb0",
+   "frente": "imagens/1ee78a73-10af-461a-9fd3-962fc1f0ccb0/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "d1f68dd2-6f49-4fcd-b159-fbe302fd3550",
+   "frente": "imagens/d1f68dd2-6f49-4fcd-b159-fbe302fd3550/front.png",
+   "verso": null,
+   "nome": "Segunda Colheita",
+   "tipo": "Mágica Instantânea",
+   "texto": "Para cada ficha que você controla, crie uma ficha que seja uma cópia daquela permanente.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Squirrel Nest": {
+  "en": {
+   "id": "bac26044-b41f-4c75-8bc1-26359250d8bc",
+   "frente": "imagens/bac26044-b41f-4c75-8bc1-26359250d8bc/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "8f7f1f81-c088-4f5d-bef5-76400d7b553a",
+   "frente": "imagens/8f7f1f81-c088-4f5d-bef5-76400d7b553a/front.png",
+   "verso": null,
+   "nome": "Ninho de Esquilos",
+   "tipo": "Encantamento — Aura",
+   "texto": "Encantar terreno\nO terreno encantado tem \"{T}: Crie uma ficha de criatura Esquilo verde 1/1\".",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Tainted Wood": {
+  "en": {
+   "id": "156de082-e159-4830-867e-1b3bb8338291",
+   "frente": "imagens/156de082-e159-4830-867e-1b3bb8338291/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "51386893-7d2a-4de9-8c98-103c11458e15",
+   "frente": "imagens/51386893-7d2a-4de9-8c98-103c11458e15/front.png",
+   "verso": null,
+   "nome": "Floresta Contaminada",
+   "tipo": "Terreno",
+   "texto": "{T}: Adicione {C}.\n{T}: Adicione {B} ou {G}. Ative somente se você controlar um Pântano.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Ogre Slumlord": {
+  "en": {
+   "id": "b70293ae-d50d-44bf-aaa3-689727056ec5",
+   "frente": "imagens/b70293ae-d50d-44bf-aaa3-689727056ec5/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "7cbf0eca-ad80-4ad6-937f-da665f0b5d90",
+   "frente": null,
+   "verso": null,
+   "nome": "Senhorio Ogro",
+   "tipo": "Criatura — Ogro Ladino",
+   "texto": "Toda vez que uma outra criatura não ficha morre, você pode criar uma ficha de criatura Rato preta 1/1.\nOs Ratos que você controla têm toque mortífero.",
+   "faces": null,
+   "reserva": true
+  }
+ },
+ "Oran-Rief, the Vastwood": {
+  "en": {
+   "id": "fc3d73d8-47cd-481c-ae13-9d993fd54420",
+   "frente": "imagens/fc3d73d8-47cd-481c-ae13-9d993fd54420/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "7730269d-529f-4c36-b8c0-9d02cb37d659",
+   "frente": "imagens/7730269d-529f-4c36-b8c0-9d02cb37d659/front.png",
+   "verso": null,
+   "nome": "Oran-Rief, a Matavasta",
+   "tipo": "Terreno",
+   "texto": "Oran-Rief, a Matavasta, entra no campo de batalha virado.\n{T}: Adicione {G}.\n{T}: Coloque um marcador +1/+1 em cada criatura verde que entrou no campo de batalha neste turno.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "End-Raze Forerunners": {
+  "en": {
+   "id": "6e4566f9-a6f5-420e-8ab8-ca505facc3d9",
+   "frente": "imagens/6e4566f9-a6f5-420e-8ab8-ca505facc3d9/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "df3d7bdd-e5fa-4dbd-a908-784d0c88f953",
+   "frente": "imagens/df3d7bdd-e5fa-4dbd-a908-784d0c88f953/front.png",
+   "verso": null,
+   "nome": "Pioneiros do Arrasamento Final",
+   "tipo": "Criatura — Javali",
+   "texto": "Vigilância, atropelar, ímpeto\nQuando Pioneiros do Arrasamento Final entra no campo de batalha, as outras criaturas que você controla recebem +2/+2 e ganham vigilância e atropelar até o final do turno.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Deep Forest Hermit": {
+  "en": {
+   "id": "f712e233-1de8-45e4-9225-790d608ac90b",
+   "frente": "imagens/f712e233-1de8-45e4-9225-790d608ac90b/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "c05c5934-f3a6-4622-8f7f-82c7bb5477f3",
+   "frente": "imagens/c05c5934-f3a6-4622-8f7f-82c7bb5477f3/front.png",
+   "verso": null,
+   "nome": "Eremita da Floresta Profunda",
+   "tipo": "Criatura — Elfo Druida",
+   "texto": "Desaparecer 3 (Esta criatura entra no campo de batalha com três marcadores temporais. No início da sua manutenção, remova um marcador temporal dela. Quando o último for removido, sacrifique-a.)\nQuando Eremita da Floresta Profunda entrar no campo de batalha, crie quatro fichas de criatura verde 1/1 do tipo Esquilo.\nOs Esquilos que você controla recebem +1/+1.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Talisman of Resilience": {
+  "en": {
+   "id": "49766e23-74f5-4d6a-a882-53127028face",
+   "frente": "imagens/49766e23-74f5-4d6a-a882-53127028face/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "2e1784de-9bd6-4c29-a734-48f18998639d",
+   "frente": "imagens/2e1784de-9bd6-4c29-a734-48f18998639d/front.png",
+   "verso": null,
+   "nome": "Talismã da Resiliência",
+   "tipo": "Artefato",
+   "texto": "{T}: Adicione {C}.\n{T}: Adicione {B} ou {G}. Talismã da Resiliência causa 1 ponto de dano a você.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Wolfwillow Haven": {
+  "en": {
+   "id": "8506e3eb-07c1-4f5c-a2a7-c210acf6be16",
+   "frente": "imagens/8506e3eb-07c1-4f5c-a2a7-c210acf6be16/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "47a42cfc-e77f-4803-88cf-e0dcdbe3b004",
+   "frente": "imagens/47a42cfc-e77f-4803-88cf-e0dcdbe3b004/front.png",
+   "verso": null,
+   "nome": "Refúgio do Salgueiro dos Lobos",
+   "tipo": "Encantamento — Aura",
+   "texto": "Encantar terreno\nToda vez que o terreno encantado é virado para gerar mana, seu controlador adiciona {G} extra.\n{4}{G}, sacrifique Refúgio do Salgueiro dos Lobos: Crie uma ficha de criatura verde 2/2 do tipo Lobo. Ative esta habilidade apenas durante o seu turno.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Swarmyard": {
+  "en": {
+   "id": "5dd51c2a-99ad-4866-9e0c-162746cb04d3",
+   "frente": "imagens/5dd51c2a-99ad-4866-9e0c-162746cb04d3/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "9b4f4118-fa1d-4c04-8d1d-03c509c397fc",
+   "frente": "imagens/9b4f4118-fa1d-4c04-8d1d-03c509c397fc/front.png",
+   "verso": null,
+   "nome": "Vermitério",
+   "tipo": "Terreno",
+   "texto": "{T}: Adicione {C}.\n{T}: Regenere o Inseto, Rato, Aranha ou Esquilo alvo. (Na próxima vez em que seria destruído em vez disso, vire-o, remova-o do combate e cure todo o dano marcado.)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Poison-Tip Archer": {
+  "en": {
+   "id": "b7e92375-037c-4be1-8183-6261e0666e12",
+   "frente": "imagens/b7e92375-037c-4be1-8183-6261e0666e12/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "aa262ae8-e03f-46d6-977c-6b400323fa50",
+   "frente": "imagens/aa262ae8-e03f-46d6-977c-6b400323fa50/front.png",
+   "verso": null,
+   "nome": "Arqueiro da Ponta Envenenada",
+   "tipo": "Criatura — Elfo Arqueiro",
+   "texto": "Alcance, toque mortífero\nToda vez que outra criatura morre, cada oponente perde 1 ponto de vida.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Nadier's Nightblade": {
+  "en": {
+   "id": "b533e358-3b30-4719-a2a3-13fb9ea817c6",
+   "frente": "imagens/b533e358-3b30-4719-a2a3-13fb9ea817c6/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "8b82a9d5-8773-48c1-ade1-d6818e0e9f90",
+   "frente": "imagens/8b82a9d5-8773-48c1-ade1-d6818e0e9f90/front.png",
+   "verso": null,
+   "nome": "Lâmina Noturna de Nadier",
+   "tipo": "Criatura — Elfo Guerreiro",
+   "texto": "Toda vez que uma ficha que você controla deixa o campo de batalha, cada oponente perde 1 ponto de vida e você ganha 1 ponto de vida.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Toski, Bearer of Secrets": {
+  "en": {
+   "id": "0b261989-b34e-4bba-90f8-2adfda58c89b",
+   "frente": "imagens/0b261989-b34e-4bba-90f8-2adfda58c89b/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "99455089-718c-48e0-a7cd-e9ea94a9dce3",
+   "frente": "imagens/99455089-718c-48e0-a7cd-e9ea94a9dce3/front.png",
+   "verso": null,
+   "nome": "Toski, Portador dos Segredos",
+   "tipo": "Criatura Lendária — Esquilo",
+   "texto": "Esta mágica não pode ser anulada.\nIndestrutível\nToski, Portador dos Segredos, ataca a cada turno se estiver apto.\nToda vez que uma criatura que você controla causar dano de combate a um jogador, compre um card.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Binding the Old Gods": {
+  "en": {
+   "id": "c04bcc93-78b6-4e30-9129-76e2f4b60230",
+   "frente": "imagens/c04bcc93-78b6-4e30-9129-76e2f4b60230/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "4e6a5c0c-2e16-4928-a646-3e7ebc93d018",
+   "frente": "imagens/4e6a5c0c-2e16-4928-a646-3e7ebc93d018/front.png",
+   "verso": null,
+   "nome": "Aprisionar os Antigos Deuses",
+   "tipo": "Encantamento — Saga",
+   "texto": "(Conforme esta Saga entra e após sua etapa de compra, adicione um marcador de conhecimento. Sacrifique-a após III.)\nI — Destrua a permanente não de terreno alvo que um oponente controla.\nII — Procure um card de Floresta em seu grimório, coloque-o no campo de batalha virado e depois embaralhe seu grimório.\nIII — As criaturas que você controla ganham toque mortífero até o final do turno.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Ravenous Squirrel": {
+  "en": {
+   "id": "fe425d81-833f-4ab9-b0e4-a1fa8ed26426",
+   "frente": "imagens/fe425d81-833f-4ab9-b0e4-a1fa8ed26426/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "fbf6bf64-2265-4e4e-a390-fbc304f98aea",
+   "frente": "imagens/fbf6bf64-2265-4e4e-a390-fbc304f98aea/front.png",
+   "verso": null,
+   "nome": "Esquilo Voraz",
+   "tipo": "Criatura — Esquilo",
+   "texto": "Toda vez que você sacrificar um artefato ou uma criatura, coloque um marcador +1/+1 em Esquilo Voraz.\n{1}{B}{G}, sacrifique um artefato ou uma criatura: Você ganha 1 ponto de vida e compra um card.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Squirrel Sovereign": {
+  "en": {
+   "id": "b4356e13-655b-40b8-ad08-4e28b7464a3c",
+   "frente": "imagens/b4356e13-655b-40b8-ad08-4e28b7464a3c/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "ad576852-66cb-41e8-a537-d1ddeb7f57ae",
+   "frente": "imagens/ad576852-66cb-41e8-a537-d1ddeb7f57ae/front.png",
+   "verso": null,
+   "nome": "Soberano Esquilo",
+   "tipo": "Criatura — Esquilo Nobre",
+   "texto": "Os outros Esquilos que você controla recebem +1/+1.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Chatterfang, Squirrel General": {
+  "en": {
+   "id": "72ab0422-eba0-4e1e-9626-ef31b836dcd2",
+   "frente": "imagens/72ab0422-eba0-4e1e-9626-ef31b836dcd2/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "e5ada091-f618-4ddd-a542-d3b41291cc97",
+   "frente": "imagens/e5ada091-f618-4ddd-a542-d3b41291cc97/front.png",
+   "verso": null,
+   "nome": "Dente-chocalho, General Esquilo",
+   "tipo": "Criatura Lendária — Esquilo Guerreiro",
+   "texto": "Travessia de floresta\nSe uma ou mais fichas seriam criadas sob seu controle, em vez disso, cria-se aquelas fichas mais aquela quantidade de fichas de criatura Esquilo verde 1/1.\n{B}, sacrifique X Esquilos: A criatura alvo recebe +X/-X até o final do turno.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Chatterstorm": {
+  "en": {
+   "id": "9426c906-e665-40a4-823a-0245bc39fbda",
+   "frente": "imagens/9426c906-e665-40a4-823a-0245bc39fbda/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "e90b64b8-1f84-466b-89bf-e254969fe007",
+   "frente": "imagens/e90b64b8-1f84-466b-89bf-e254969fe007/front.png",
+   "verso": null,
+   "nome": "Tempestade Serelepe",
+   "tipo": "Feitiço",
+   "texto": "Crie uma ficha de criatura Esquilo verde 1/1.\nRajada",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Academy Manufactor": {
+  "en": {
+   "id": "2f5b4544-70d9-45ee-84a3-fa6253a53a82",
+   "frente": "imagens/2f5b4544-70d9-45ee-84a3-fa6253a53a82/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "4c9759b0-1c64-45c8-9a42-90a70dea7767",
+   "frente": "imagens/4c9759b0-1c64-45c8-9a42-90a70dea7767/front.png",
+   "verso": null,
+   "nome": "Fabricante da Academia",
+   "tipo": "Criatura Artefato — Operário de Linha de Montagem",
+   "texto": "Se você criaria uma ficha de Pista, Comida ou Tesouro, em vez disso, crie uma de cada.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Tireless Provisioner": {
+  "en": {
+   "id": "ac73d130-ceb6-41ea-af0d-314d5adba9e6",
+   "frente": "imagens/ac73d130-ceb6-41ea-af0d-314d5adba9e6/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "3a6e256e-b91d-4ae5-b5bd-9be30a8bdfbb",
+   "frente": "imagens/3a6e256e-b91d-4ae5-b5bd-9be30a8bdfbb/front.png",
+   "verso": null,
+   "nome": "Provisionista Incansável",
+   "tipo": "Criatura — Elfo Batedor",
+   "texto": "Aterragem — Toda vez que um terreno entrar no campo de batalha sob seu controle, crie uma ficha de Comida ou uma ficha de Tesouro. (Comida é um artefato com \"{2}, {T}, sacrifique este artefato: Você ganha 3 pontos de vida\". Tesouro é um artefato com \"{T}, sacrifique este artefato: Adicione um mana de qualquer cor\".)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Chitterspitter": {
+  "en": {
+   "id": "f0b80608-1455-4899-9d19-1b1d2d068744",
+   "frente": "imagens/f0b80608-1455-4899-9d19-1b1d2d068744/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "9205519d-8ae0-45d4-a004-85ffce761422",
+   "frente": "imagens/9205519d-8ae0-45d4-a004-85ffce761422/front.png",
+   "verso": null,
+   "nome": "Cospe-nozes",
+   "tipo": "Artefato",
+   "texto": "No início de sua manutenção, você pode sacrificar uma ficha. Se fizer isso, coloque um marcador de bolota em Cospe-nozes.\nOs Esquilos que você controla recebem +1/+1 para cada marcador de bolota em Cospe-nozes.\n{G}, {T}: Crie uma ficha de criatura Esquilo verde 1/1.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Nested Shambler": {
+  "en": {
+   "id": "202011d5-755e-497b-b4a7-f2b6e6a0b464",
+   "frente": "imagens/202011d5-755e-497b-b4a7-f2b6e6a0b464/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "da94407a-1c72-460a-8e8c-eb65fbd17692",
+   "frente": "imagens/da94407a-1c72-460a-8e8c-eb65fbd17692/front.png",
+   "verso": null,
+   "nome": "Trôpego Nidificado",
+   "tipo": "Criatura — Zumbi",
+   "texto": "Quando Trôpego Nidificado morrer, crie X fichas de criatura Esquilo verde 1/1 viradas, sendo X o poder de Trôpego Nidificado.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Deadly Dispute": {
+  "en": {
+   "id": "61f2155e-c3b2-4c8e-b5b0-25dd5e29228c",
+   "frente": "imagens/61f2155e-c3b2-4c8e-b5b0-25dd5e29228c/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "73d0ad90-8e30-46ae-9d9d-424205f1bc42",
+   "frente": "imagens/73d0ad90-8e30-46ae-9d9d-424205f1bc42/front.png",
+   "verso": null,
+   "nome": "Disputa Mortífera",
+   "tipo": "Mágica Instantânea",
+   "texto": "Como custo adicional para conjurar esta mágica, sacrifique um artefato ou uma criatura.\nCompre dois cards e crie uma ficha de Tesouro. (Ela é um artefato com \"{T}, sacrifique este artefato: Adicione um mana de qualquer cor\".)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Saw in Half": {
+  "en": {
+   "id": "90f8de01-c1bd-4533-9e98-61e7d25dcf88",
+   "frente": "imagens/90f8de01-c1bd-4533-9e98-61e7d25dcf88/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Tear Asunder": {
+  "en": {
+   "id": "1c81a779-6b91-4de2-9065-d6821a787e7d",
+   "frente": "imagens/1c81a779-6b91-4de2-9065-d6821a787e7d/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "6f2bc2de-10b5-4bf9-ae5c-36f44a0ff2ad",
+   "frente": "imagens/6f2bc2de-10b5-4bf9-ae5c-36f44a0ff2ad/front.png",
+   "verso": null,
+   "nome": "Tear Asunder",
+   "tipo": "Instant",
+   "texto": "Kicker {1}{B} (You may pay an additional {1}{B} as you cast this spell.)\nExile target artifact or enchantment. If this spell was kicked, exile target nonland permanent instead.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Skyfisher Spider": {
+  "en": {
+   "id": "e18927dd-c50c-4fb2-8d4c-d0f853b68294",
+   "frente": "imagens/e18927dd-c50c-4fb2-8d4c-d0f853b68294/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "e77c528b-c0ce-4bed-8a32-d5a419ad30df",
+   "frente": "imagens/e77c528b-c0ce-4bed-8a32-d5a419ad30df/front.png",
+   "verso": null,
+   "nome": "Aranha Pescadora Celeste",
+   "tipo": "Criatura — Aranha",
+   "texto": "Alcance\nQuando Aranha Pescadora Celeste entra no campo de batalha, você pode sacrificar outra criatura. Quando fizer isso, destrua a permanente não de terreno alvo.\nQuando Aranha Pescadora Celeste morre, você pode ganhar 1 ponto de vida para cada card de criatura em seu cemitério. Se fizer isso, exile Aranha Pescadora Celeste de seu cemitério.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Cache Grab": {
+  "en": {
+   "id": "dfd977dc-a7c3-4d0a-aca7-b25bd154e963",
+   "frente": "imagens/dfd977dc-a7c3-4d0a-aca7-b25bd154e963/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Honored Dreyleader": {
+  "en": {
+   "id": "bc5ee537-52e1-474a-9326-dfacc2a758ab",
+   "frente": "imagens/bc5ee537-52e1-474a-9326-dfacc2a758ab/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Gourmand's Talent": {
+  "en": {
+   "id": "89670a1b-a6f1-491d-bbb4-92e3382da653",
+   "frente": "imagens/89670a1b-a6f1-491d-bbb4-92e3382da653/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Hazel's Brewmaster": {
+  "en": {
+   "id": "52af8b70-a9c8-40d7-99da-fa51dc293688",
+   "frente": "imagens/52af8b70-a9c8-40d7-99da-fa51dc293688/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Rootcast Apprenticeship": {
+  "en": {
+   "id": "00756441-a734-4960-9c69-f03a508a1522",
+   "frente": "imagens/00756441-a734-4960-9c69-f03a508a1522/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Insatiable Frugivore": {
+  "en": {
+   "id": "2ef58a8f-ce72-40c2-b032-818cc16267ce",
+   "frente": "imagens/2ef58a8f-ce72-40c2-b032-818cc16267ce/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Moonstone Eulogist": {
+  "en": {
+   "id": "13158f3b-9d85-4689-9afa-7d9a8a2d1b09",
+   "frente": "imagens/13158f3b-9d85-4689-9afa-7d9a8a2d1b09/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Swarmyard Massacre": {
+  "en": {
+   "id": "8486f472-afad-4fdd-a57a-d20d8871b543",
+   "frente": "imagens/8486f472-afad-4fdd-a57a-d20d8871b543/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Scurry of Squirrels": {
+  "en": {
+   "id": "c343b965-af2b-45c3-babb-9242736cf1e5",
+   "frente": "imagens/c343b965-af2b-45c3-babb-9242736cf1e5/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Sword of the Squeak": {
+  "en": {
+   "id": "a3f4d41d-69a5-412f-aa25-f1acc5cacab2",
+   "frente": "imagens/a3f4d41d-69a5-412f-aa25-f1acc5cacab2/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Garruk, Cursed Huntsman": {
+  "en": {
+   "id": "3874f322-9847-4a63-b7e1-718abbe1e0bd",
+   "frente": "imagens/3874f322-9847-4a63-b7e1-718abbe1e0bd/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "2a1b2222-2a92-4b66-8846-144197ea29db",
+   "frente": "imagens/2a1b2222-2a92-4b66-8846-144197ea29db/front.png",
+   "verso": null,
+   "nome": "Garruk, Caçador Amaldiçoado",
+   "tipo": "Planeswalker Lendário — Garruk",
+   "texto": "0: Crie duas fichas de criatura preta e verde 2/2 do tipo Lobo com \"Quando esta criatura morrer, coloque um marcador de lealdade em cada Garruk que você controla.\"\n−3: Destrua a criatura alvo. Compre um card.\n−6: Você recebe um emblema com \"As criaturas que você controla recebem +3/+3 e têm atropelar.\".",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "The Odd Acorn Gang": {
+  "en": {
+   "id": "791d9ea0-c70a-47a6-b8a3-0f5d36a5c44d",
+   "frente": "imagens/791d9ea0-c70a-47a6-b8a3-0f5d36a5c44d/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Kotori, Pilot Prodigy": {
+  "en": {
+   "id": "fea6c1c8-eff9-4b66-b96d-e23016f0bb62",
+   "frente": "imagens/fea6c1c8-eff9-4b66-b96d-e23016f0bb62/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "378a336f-b71d-43bd-b968-27323ab10435",
+   "frente": null,
+   "verso": null,
+   "nome": "Kotori, Pilota Prodígio",
+   "tipo": "Criatura Lendária — Cidadão-da-lua Piloto",
+   "texto": "Os Veículos que você controla têm tripular 2.\nNo início do combate no seu turno, a criatura artefato alvo que você controla ganha vínculo com a vida e vigilância até o final do turno.",
+   "faces": null,
+   "reserva": true
+  }
+ },
+ "Arcanist's Owl": {
+  "en": {
+   "id": "9849087e-ea39-4667-b879-51ecdff4bf6a",
+   "frente": "imagens/9849087e-ea39-4667-b879-51ecdff4bf6a/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "0179d101-51c7-4fbe-9d98-8a2bb9c25e6c",
+   "frente": "imagens/0179d101-51c7-4fbe-9d98-8a2bb9c25e6c/front.png",
+   "verso": null,
+   "nome": "Coruja do Arcanista",
+   "tipo": "Criatura Artefato — Ave",
+   "texto": "Voar\nQuando Coruja do Arcanista entrar no campo de batalha, olhe os quatro cards do topo de seu grimório. Você pode revelar um card de artefato ou encantamento dentre eles e colocá-lo em sua mão. Coloque o restante no fundo de seu grimório em ordem aleatória.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Dance of the Manse": {
+  "en": {
+   "id": "4b32891f-ea17-4543-92ea-54097996a3cb",
+   "frente": "imagens/4b32891f-ea17-4543-92ea-54097996a3cb/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "641e214c-c9ef-4806-ae20-e8183d98e108",
+   "frente": "imagens/641e214c-c9ef-4806-ae20-e8183d98e108/front.png",
+   "verso": null,
+   "nome": "Dança da Vivenda",
+   "tipo": "Feitiço",
+   "texto": "Devolva até X cards de artefato e/ou encantamento não Aura alvo com valor de mana igual ou inferior a X de seu cemitério para o campo de batalha. Se X for igual ou superior a 6, aquelas permanentes serão criaturas 4/4 além de seus outros tipos.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Emry, Lurker of the Loch": {
+  "en": {
+   "id": "20fec02d-77af-4975-b410-7097c7c28e7e",
+   "frente": "imagens/20fec02d-77af-4975-b410-7097c7c28e7e/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "e7cfffdc-7f44-4484-aa5a-b9deb407ef6f",
+   "frente": "imagens/e7cfffdc-7f44-4484-aa5a-b9deb407ef6f/front.png",
+   "verso": null,
+   "nome": "Emry, Espreitadora do Lago",
+   "tipo": "Criatura Lendária — Tritão Mago",
+   "texto": "Esta mágica custa {1} a menos para ser conjurada para cada artefato que você controla.\nQuando Emry, Espreitadora do Lago, entrar no campo de batalha, triture quatro cards.\n{T}: Escolha o card de artefato alvo em seu cemitério. Você pode conjurar aquele card neste turno. (Você ainda paga seus custos. As regras de tempo ainda se aplicam.)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Raff Capashen, Ship's Mage": {
+  "en": {
+   "id": "9250189d-357d-41cb-8dcf-45bed6599b40",
+   "frente": "imagens/9250189d-357d-41cb-8dcf-45bed6599b40/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "413cdafa-8244-447b-a67a-8a68ac8bae0c",
+   "frente": "imagens/413cdafa-8244-447b-a67a-8a68ac8bae0c/front.png",
+   "verso": null,
+   "nome": "Raff Capasheno, Mago de Bordo",
+   "tipo": "Criatura Lendária — Humano Mago",
+   "texto": "Lampejo\nVoar\nVocê pode conjurar mágicas históricas como se elas tivessem lampejo. (Os artefatos, os cards lendários e as Sagas são cards históricos.)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Hanna, Ship's Navigator": {
+  "en": {
+   "id": "be21540e-2048-45bf-b029-a6a2112f313a",
+   "frente": "imagens/be21540e-2048-45bf-b029-a6a2112f313a/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "fbda38e5-7956-46a0-8984-2fd3bef9d5c2",
+   "frente": "imagens/fbda38e5-7956-46a0-8984-2fd3bef9d5c2/front.png",
+   "verso": null,
+   "nome": "Hanna, Navegadora",
+   "tipo": "Criatura Lendária — Humano Artesão",
+   "texto": "{1}{W}{U}, {T}: Devolva o card de artefato ou encantamento alvo de seu cemitério para sua mão.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Skycloud Expanse": {
+  "en": {
+   "id": "8053114b-c8a2-4634-b0e0-79ff6681d4ec",
+   "frente": "imagens/8053114b-c8a2-4634-b0e0-79ff6681d4ec/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "30306db1-69b7-4cfc-9ec7-509b96d26dc1",
+   "frente": "imagens/30306db1-69b7-4cfc-9ec7-509b96d26dc1/front.png",
+   "verso": null,
+   "nome": "Vastidão de Skycloud",
+   "tipo": "Terreno",
+   "texto": "{1}, {T}: Adicione {W}{U}.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Jace, Architect of Thought": {
+  "en": {
+   "id": "c2be221c-76e2-4b18-a3c1-90ced436d01f",
+   "frente": "imagens/c2be221c-76e2-4b18-a3c1-90ced436d01f/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "7118052e-4ec6-42b6-898e-6422d6b0af3c",
+   "frente": "imagens/7118052e-4ec6-42b6-898e-6422d6b0af3c/front.png",
+   "verso": null,
+   "nome": "Jace, Arquiteto do Pensamento",
+   "tipo": "Planeswalker Lendário — Jace",
+   "texto": "+1: Até seu próximo turno, toda vez que uma criatura que um oponente controla ataca, ela recebe -1/-0 até o final do turno.\n-2: Revele os três cards do topo de seu grimório. Um oponente separa aqueles cards em dois montes. Coloque um deles na sua mão e o outro no fundo do seu grimório em qualquer ordem.\n−8: Para cada jogador, procure um card não de terreno no grimório dele e exile-o. Depois, aquele jogador embaralha. Você pode conjurar esses cards sem pagar seus custos de mana.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Crush Contraband": {
+  "en": {
+   "id": "08c5cdbe-2142-4ddc-b9b5-35ca60eb9970",
+   "frente": "imagens/08c5cdbe-2142-4ddc-b9b5-35ca60eb9970/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "911dba6f-74c1-42dc-ab15-fe952ea47436",
+   "frente": "imagens/911dba6f-74c1-42dc-ab15-fe952ea47436/front.png",
+   "verso": null,
+   "nome": "Esmagar o Contrabando",
+   "tipo": "Mágica Instantânea",
+   "texto": "Escolha um ou ambos —\n• Exile o artefato alvo.\n• Exile o encantamento alvo.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Cataclysmic Gearhulk": {
+  "en": {
+   "id": "f284c983-6d8e-4aca-85e5-46af8556fb5c",
+   "frente": "imagens/f284c983-6d8e-4aca-85e5-46af8556fb5c/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "1bd32b95-1f35-458f-bd55-4897b3dbc579",
+   "frente": "imagens/1bd32b95-1f35-458f-bd55-4897b3dbc579/front.png",
+   "verso": null,
+   "nome": "Mecanotitã Cataclísmico",
+   "tipo": "Criatura Artefato — Constructo",
+   "texto": "Vigilância\nQuando Mecanotitã Cataclísmico entra no campo de batalha, cada jogador escolhe um artefato, uma criatura, um encantamento e um planeswalker dentre as permanentes não de terreno que este controla e, em seguida, sacrifica as restantes.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Smuggler's Copter": {
+  "en": {
+   "id": "2680ed41-da35-475a-9d80-ae2f4686feed",
+   "frente": "imagens/2680ed41-da35-475a-9d80-ae2f4686feed/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "79afadca-5ae3-4795-9f18-41307932f99f",
+   "frente": "imagens/79afadca-5ae3-4795-9f18-41307932f99f/front.png",
+   "verso": null,
+   "nome": "Cóptero do Contrabandista",
+   "tipo": "Artefato — Veículo",
+   "texto": "Voar\nToda vez que Cóptero do Contrabandista ataca ou bloqueia, você pode comprar um card. Se fizer isso, descarte um card.\nTripular 1 (Vire qualquer número de criaturas que você controla com total de poder igual ou superior a 1: Este Veículo torna-se uma criatura artefato até o final do turno.)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Aeronaut Admiral": {
+  "en": {
+   "id": "943f7244-aa62-423f-aaaa-680bdfb4f47e",
+   "frente": "imagens/943f7244-aa62-423f-aaaa-680bdfb4f47e/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "3ba04536-99f2-4868-b14b-470a0af92844",
+   "frente": "imagens/3ba04536-99f2-4868-b14b-470a0af92844/front.png",
+   "verso": null,
+   "nome": "Almirante Aeronauta",
+   "tipo": "Criatura — Humano Piloto",
+   "texto": "Voar\nOs Veículos que você controla têm voar.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Peacewalker Colossus": {
+  "en": {
+   "id": "e66a27a1-f15d-46d6-8247-f098603957f1",
+   "frente": "imagens/e66a27a1-f15d-46d6-8247-f098603957f1/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "8ad40ad2-9187-49c4-a263-2992b0a6e208",
+   "frente": "imagens/8ad40ad2-9187-49c4-a263-2992b0a6e208/front.png",
+   "verso": null,
+   "nome": "Colosso Caminhante da Paz",
+   "tipo": "Artefato — Veículo",
+   "texto": "{1}{W}: Outro Veículo alvo que você controla se torna uma criatura artefato até o final do turno.\nTripular 4 (Vire qualquer número de criaturas que você controla com total de poder igual ou superior a 4: Este Veículo torna-se uma criatura artefato até o final do turno.)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Spire of Industry": {
+  "en": {
+   "id": "db4f8604-4c00-4efa-819f-f643a78e4119",
+   "frente": "imagens/db4f8604-4c00-4efa-819f-f643a78e4119/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "b34ac5bf-fa95-449b-8667-444d3e4838b6",
+   "frente": "imagens/b34ac5bf-fa95-449b-8667-444d3e4838b6/front.png",
+   "verso": null,
+   "nome": "Torre da Indústria",
+   "tipo": "Terreno",
+   "texto": "{T}: Adicione {C}.\n{T}, pague 1 ponto de vida: Adicione um mana de qualquer cor. Ative somente se você controlar um artefato.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Gold Myr": {
+  "en": {
+   "id": "12331b1d-a561-4a8c-8e85-ed3a607ce508",
+   "frente": "imagens/12331b1d-a561-4a8c-8e85-ed3a607ce508/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "1d486979-4e31-4b9c-bc03-1a6c3f7b37a8",
+   "frente": "imagens/1d486979-4e31-4b9c-bc03-1a6c3f7b37a8/front.png",
+   "verso": null,
+   "nome": "Myr de Ouro",
+   "tipo": "Criatura Artefato — Myr",
+   "texto": "{T}: Adicione {W}.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Indomitable Archangel": {
+  "en": {
+   "id": "23f4b149-fad5-4ba2-a484-dd29d97d120d",
+   "frente": "imagens/23f4b149-fad5-4ba2-a484-dd29d97d120d/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "5578b73c-a5fc-452a-8311-797f3df5b018",
+   "frente": "imagens/5578b73c-a5fc-452a-8311-797f3df5b018/front.png",
+   "verso": null,
+   "nome": "Arcanjo Indomável",
+   "tipo": "Criatura — Anjo",
+   "texto": "Voar\nMaestria com metais — Os artefatos que você controla terão manto enquanto você controlar três ou mais artefatos. (Um artefato com manto não pode ser alvo de mágicas ou habilidades.)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Myrsmith": {
+  "en": {
+   "id": "218a4867-e04f-498a-b384-9d7c6d44fb4f",
+   "frente": "imagens/218a4867-e04f-498a-b384-9d7c6d44fb4f/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "4e95c6d2-9015-47a8-9c80-b961ebb5fde2",
+   "frente": "imagens/4e95c6d2-9015-47a8-9c80-b961ebb5fde2/front.png",
+   "verso": null,
+   "nome": "Forjador de Myr",
+   "tipo": "Criatura — Humano Artesão",
+   "texto": "Toda vez que você conjura uma mágica de artefato, você pode pagar {1}. Se fizer isso, crie uma ficha de criatura artefato Myr incolor 1/1.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Riddlesmith": {
+  "en": {
+   "id": "640ff8a9-9dff-4fc7-bafa-6afaa3d9c153",
+   "frente": "imagens/640ff8a9-9dff-4fc7-bafa-6afaa3d9c153/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "ee7215ff-078e-4e6d-ab5b-451d2f1d5cb7",
+   "frente": "imagens/ee7215ff-078e-4e6d-ab5b-451d2f1d5cb7/front.png",
+   "verso": null,
+   "nome": "Forjador de Enigma",
+   "tipo": "Criatura — Humano Artesão",
+   "texto": "Toda vez que você conjura uma mágica de artefato, você pode comprar um card. Se fizer isso, descarte um card.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Vedalken Engineer": {
+  "en": {
+   "id": "2c3bbbe9-91a3-4da5-a1b4-6aed4bd684de",
+   "frente": "imagens/2c3bbbe9-91a3-4da5-a1b4-6aed4bd684de/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "a2300b83-41b7-48e6-90e0-fb85c1dc51ca",
+   "frente": "imagens/a2300b83-41b7-48e6-90e0-fb85c1dc51ca/front.png",
+   "verso": null,
+   "nome": "Engenheiro Vedalkeano",
+   "tipo": "Criatura — Vedalkeano Artesão",
+   "texto": "{T}: Adicione dois manas de uma cor à sua escolha. Gaste este mana somente para conjurar mágicas de artefato ou ativar habilidades de artefatos.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Parhelion II": {
+  "en": {
+   "id": "871279e6-9a59-470e-8acc-fd5fe4fda5b3",
+   "frente": "imagens/871279e6-9a59-470e-8acc-fd5fe4fda5b3/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "4f05c99a-2730-4315-a2f0-aeb1a91b5e05",
+   "frente": "imagens/4f05c99a-2730-4315-a2f0-aeb1a91b5e05/front.png",
+   "verso": null,
+   "nome": "Parélio II",
+   "tipo": "Artefato Lendário — Veículo",
+   "texto": "Voar, iniciativa, vigilância\nToda vez que Parélio II atacar, crie duas fichas de criatura Anjo branca 4/4 com voar e vigilância que estão atacando.\nTripular 4 (Vire qualquer número de criaturas que você controla com total de poder igual ou superior a 4: Este Veículo torna-se uma criatura artefato até o final do turno.)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Weatherlight": {
+  "en": {
+   "id": "c86cf087-c50a-487a-bc1a-eee5410f14d9",
+   "frente": "imagens/c86cf087-c50a-487a-bc1a-eee5410f14d9/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "bdf769c3-f743-4119-a5fa-8c7dbd8f0dc8",
+   "frente": "imagens/bdf769c3-f743-4119-a5fa-8c7dbd8f0dc8/front.png",
+   "verso": null,
+   "nome": "Bons Ventos",
+   "tipo": "Artefato Lendário — Veículo",
+   "texto": "Voar\nToda vez que Bons Ventos causar dano de combate a um jogador, olhe os cinco cards do topo de seu grimório. Você pode revelar um card histórico dentre eles e colocá-lo em sua mão. Coloque o restante no fundo de seu grimório em ordem aleatória. (Os artefatos, os cards lendários e as Sagas são cards históricos.)\nTripular 3",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Armed and Armored": {
+  "en": {
+   "id": "133424c1-4d10-4da2-9d7c-c6ea00c0c98a",
+   "frente": "imagens/133424c1-4d10-4da2-9d7c-c6ea00c0c98a/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "bb11c038-dcb9-4ab2-aac1-1ef29a723e40",
+   "frente": "imagens/bb11c038-dcb9-4ab2-aac1-1ef29a723e40/front.png",
+   "verso": null,
+   "nome": "Armados e Blindados",
+   "tipo": "Mágica Instantânea",
+   "texto": "Os Veículos que você controla se tornam criaturas artefato até o final do turno. Escolha um Anão que você controla. Anexe qualquer número de Equipamentos que você controla a ele.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Raiders' Karve": {
+  "en": {
+   "id": "a24dfde7-0b29-4adb-914a-90eb2dd09ece",
+   "frente": "imagens/a24dfde7-0b29-4adb-914a-90eb2dd09ece/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "2744ae2e-9210-4ffe-a23d-3219f7d23eea",
+   "frente": "imagens/2744ae2e-9210-4ffe-a23d-3219f7d23eea/front.png",
+   "verso": null,
+   "nome": "Karve dos Salteadores",
+   "tipo": "Artefato — Veículo",
+   "texto": "Toda vez que Karve dos Salteadores atacar, olhe o card do topo de seu grimório. Se for um card de terreno, você poderá colocá-lo no campo de batalha virado.\nTripular 3 (Vire qualquer número de criaturas que você controla com total de poder igual ou superior a 3: Este Veículo torna-se uma criatura artefato até o final do turno.)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Colossal Plow": {
+  "en": {
+   "id": "53b1bbce-db5b-41a5-ab0a-22c3cd4cfd8e",
+   "frente": "imagens/53b1bbce-db5b-41a5-ab0a-22c3cd4cfd8e/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "f430ca0e-577a-497e-8b4c-7a4882ee52b8",
+   "frente": "imagens/f430ca0e-577a-497e-8b4c-7a4882ee52b8/front.png",
+   "verso": null,
+   "nome": "Arado Colossal",
+   "tipo": "Artefato — Veículo",
+   "texto": "Toda vez que Arado Colossal atacar, adicione {W}{W}{W} e ganhe 3 pontos de vida. Até o final do turno, você não perde esse mana quando as etapas e fases terminam.\nTripular 6 (Vire qualquer número de criaturas que você controla com total de poder igual ou superior a 6: Este Veículo torna-se uma criatura artefato até o final do turno.)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Surgehacker Mech": {
+  "en": {
+   "id": "3c4bf679-01cc-4786-a3bd-89c8ae70fdfa",
+   "frente": "imagens/3c4bf679-01cc-4786-a3bd-89c8ae70fdfa/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "9b48fb3b-764b-4434-a902-7ebbf10dd7d9",
+   "frente": "imagens/9b48fb3b-764b-4434-a902-7ebbf10dd7d9/front.png",
+   "verso": null,
+   "nome": "Meca Hacker de Energia",
+   "tipo": "Artefato — Veículo",
+   "texto": "Ameaçar\nQuando Meca Hacker de Energia entra no campo de batalha, ele causa à criatura ou ao planeswalker alvo que um oponente controla dano igual ao dobro do número de Veículos que você controla.\nTripular 4",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Prodigy's Prototype": {
+  "en": {
+   "id": "be046e0a-6509-450b-b34f-29d5a5e3472e",
+   "frente": "imagens/be046e0a-6509-450b-b34f-29d5a5e3472e/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "01457c9d-d7af-43c8-bc04-b652c9a32192",
+   "frente": "imagens/01457c9d-d7af-43c8-bc04-b652c9a32192/front.png",
+   "verso": null,
+   "nome": "Protótipo do Prodígio",
+   "tipo": "Artefato — Veículo",
+   "texto": "Toda vez que um ou mais Veículos que você controla atacarem, crie uma ficha de criatura Piloto incolor 1/1 com \"Esta criatura tripula Veículos como se seu poder fosse 2 pontos maior\".\nTripular 2 (Vire qualquer número de criaturas que você controla com total de poder igual ou superior a 2: Este Veículo torna-se uma criatura artefato até o final do turno.)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Mobilizer Mech": {
+  "en": {
+   "id": "cf4bb9de-ba7c-4916-b8ed-e2e644c06b58",
+   "frente": "imagens/cf4bb9de-ba7c-4916-b8ed-e2e644c06b58/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "fca1b469-5d1d-4ecb-916a-3b66a12c9219",
+   "frente": "imagens/fca1b469-5d1d-4ecb-916a-3b66a12c9219/front.png",
+   "verso": null,
+   "nome": "Meca Mobilizador",
+   "tipo": "Artefato — Veículo",
+   "texto": "Voar\nToda vez que Meca Mobilizador se torna tripulado, até um outro Veículo alvo que você controla se torna uma criatura artefato até o final do turno.\nTripular 3 (Vire qualquer número de criaturas que você controla com total de poder igual ou superior a 3: Este Veículo torna-se uma criatura artefato até o final do turno.)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Imperial Recovery Unit": {
+  "en": {
+   "id": "ac9b2c7b-c93b-4b97-999e-86faed8a26ee",
+   "frente": "imagens/ac9b2c7b-c93b-4b97-999e-86faed8a26ee/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "9bc68d06-1e9c-4efb-ab4e-84770a964d45",
+   "frente": "imagens/9bc68d06-1e9c-4efb-ab4e-84770a964d45/front.png",
+   "verso": null,
+   "nome": "Unidade de Recuperação Imperial",
+   "tipo": "Artefato — Veículo",
+   "texto": "Toda vez que Unidade de Recuperação Imperial atacar, devolva de seu cemitério para sua mão o card de criatura ou Veículo alvo com valor de mana igual ou inferior a 2.\nTripular 2 (Vire qualquer número de criaturas que você controla com total de poder igual ou superior a 2: Este Veículo torna-se uma criatura artefato até o final do turno.)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Imposter Mech": {
+  "en": {
+   "id": "59b7450c-3163-4f12-9af1-2e998a6c36cf",
+   "frente": "imagens/59b7450c-3163-4f12-9af1-2e998a6c36cf/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "4d4a28df-559c-45e2-a90e-dc20eed42705",
+   "frente": null,
+   "verso": null,
+   "nome": "Meca Impostor",
+   "tipo": "Artefato — Veículo",
+   "texto": "Você pode fazer com que Meca Impostor entre no campo de batalha como uma cópia de uma criatura que um oponente controla, exceto por ser um artefato Veículo com tripular 3 e perder todos os outros tipos de card.\nTripular 3",
+   "faces": null,
+   "reserva": true
+  }
+ },
+ "Access Denied": {
+  "en": {
+   "id": "1642df77-6fe8-47cf-b750-ca4dd9b331ba",
+   "frente": "imagens/1642df77-6fe8-47cf-b750-ca4dd9b331ba/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "41d7b7fb-0c62-42fa-85ba-134cf85c32a1",
+   "frente": null,
+   "verso": null,
+   "nome": "Acesso Negado",
+   "tipo": "Mágica Instantânea",
+   "texto": "Anule a mágica alvo. Crie X fichas de criatura artefato Tóptero incolor 1/1 com voar, sendo X o valor de mana daquela mágica.",
+   "faces": null,
+   "reserva": true
+  }
+ },
+ "Cyberdrive Awakener": {
+  "en": {
+   "id": "2a2c0a2f-07fb-4cc0-9b99-e5ff4303028d",
+   "frente": "imagens/2a2c0a2f-07fb-4cc0-9b99-e5ff4303028d/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "b6ab7191-4250-4781-b7b2-f6ecc2c222be",
+   "frente": null,
+   "verso": null,
+   "nome": "Despertador da Ciberpropulsão",
+   "tipo": "Criatura Artefato — Constructo",
+   "texto": "Voar\nAs outras criaturas artefato que você controla têm voar.\nQuando Despertador da Ciberpropulsão entra no campo de batalha, até o final do turno, cada artefato não criatura que você controla se torna uma criatura artefato com poder e resistência básicos 4/4.",
+   "faces": null,
+   "reserva": true
+  }
+ },
+ "Ironsoul Enforcer": {
+  "en": {
+   "id": "c2c0dfeb-2af0-4c91-bdfe-5270f64dff03",
+   "frente": "imagens/c2c0dfeb-2af0-4c91-bdfe-5270f64dff03/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "91077d99-f2c3-4675-8c8b-d23bad37e2ab",
+   "frente": null,
+   "verso": null,
+   "nome": "Impositor da Alma Férrea",
+   "tipo": "Criatura Artefato — Humano Samurai",
+   "texto": "Toda vez que Impositor da Alma Férrea ou um comandante que você controla atacar sozinho, devolva o card de artefato alvo de seu cemitério para o campo de batalha.",
+   "faces": null,
+   "reserva": true
+  }
+ },
+ "Universal Surveillance": {
+  "en": {
+   "id": "4b2f5584-df67-439b-b0f0-9c0fdf62f18f",
+   "frente": "imagens/4b2f5584-df67-439b-b0f0-9c0fdf62f18f/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "520c7599-d8f2-4037-9bb4-707a5e6f539c",
+   "frente": null,
+   "verso": null,
+   "nome": "Vigilância Universal",
+   "tipo": "Feitiço",
+   "texto": "Improvisar (Seus artefatos podem ajudar a conjurar esta mágica. Cada artefato que você vira após terminar de ativar habilidades de mana paga por {1}.)\nCompre X cards.",
+   "faces": null,
+   "reserva": true
+  }
+ },
+ "Katsumasa, the Animator": {
+  "en": {
+   "id": "ab4b5ff5-fd6a-4948-9c54-440bf6324bd1",
+   "frente": "imagens/ab4b5ff5-fd6a-4948-9c54-440bf6324bd1/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "93def8c2-545f-4ef3-bd7a-5dc1755e6df0",
+   "frente": null,
+   "verso": null,
+   "nome": "Katsumasa, o Animador",
+   "tipo": "Criatura Lendária — Cidadão-da-lua Artesão",
+   "texto": "Voar\n{2}{U}: Até o final do turno, o artefato alvo não criatura que você controla se torna uma criatura artefato e ganha voar. Se ele não for um Veículo, ele tem poder e resistência básicos 1/1 até o final do turno.\nNo início de sua manutenção, coloque um marcador +1/+1 em cada um de até três artefatos alvo não criatura.",
+   "faces": null,
+   "reserva": true
+  }
+ },
+ "Organic Extinction": {
+  "en": {
+   "id": "fea0f8be-c242-49dd-bae3-0b306107ac0b",
+   "frente": "imagens/fea0f8be-c242-49dd-bae3-0b306107ac0b/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "eef27b5b-c07d-4640-94c4-c83e4279f80b",
+   "frente": null,
+   "verso": null,
+   "nome": "Extinção Orgânica",
+   "tipo": "Feitiço",
+   "texto": "Improvisar (Seus artefatos podem ajudar a conjurar esta mágica. Cada artefato que você vira após terminar de ativar habilidades de mana paga por {1}.)\nDestrua todas as criaturas não artefato.",
+   "faces": null,
+   "reserva": true
+  }
+ },
+ "Aerial Surveyor": {
+  "en": {
+   "id": "7c474f31-336d-44df-a7da-27aefd220e22",
+   "frente": "imagens/7c474f31-336d-44df-a7da-27aefd220e22/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "5558956e-d0c8-48cd-a8f0-63f29665ab78",
+   "frente": null,
+   "verso": null,
+   "nome": "Monitorador Aéreo",
+   "tipo": "Artefato — Veículo",
+   "texto": "Voar\nToda vez que Monitorador Aéreo atacar, se o jogador defensor controlar mais terrenos que você, procure em seu grimório um card de Planície básico, coloque-o no campo de batalha virado e depois embaralhe.\nTripular 2",
+   "faces": null,
+   "reserva": true
+  }
+ },
+ "Release to Memory": {
+  "en": {
+   "id": "b45c4bbf-2c61-4d49-96c8-34a0fb0d6d02",
+   "frente": "imagens/b45c4bbf-2c61-4d49-96c8-34a0fb0d6d02/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "278aa2e6-0941-407c-80f4-3b8bfa7cb1d0",
+   "frente": null,
+   "verso": null,
+   "nome": "Soltar na Memória",
+   "tipo": "Mágica Instantânea",
+   "texto": "Exile o cemitério do oponente alvo. Para cada card de criatura exilado dessa forma, crie uma ficha de criatura Espírito incolor 1/1.",
+   "faces": null,
+   "reserva": true
+  }
+ },
+ "Shorikai, Genesis Engine": {
+  "en": {
+   "id": "969ac7dd-f3aa-4888-9ff0-d16a31b5e7a9",
+   "frente": "imagens/969ac7dd-f3aa-4888-9ff0-d16a31b5e7a9/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "f4c9f470-1a7d-4d26-aad6-9abf0f7e904f",
+   "frente": "imagens/f4c9f470-1a7d-4d26-aad6-9abf0f7e904f/front.png",
+   "verso": null,
+   "nome": "Shorikai, Motor da Gênese",
+   "tipo": "Artefato Lendário — Veículo",
+   "texto": "{1}, {T}: Compre dois cards e depois descarte um card. Crie uma ficha de criatura Piloto incolor 1/1 com \"Esta criatura tripula Veículos como se seu poder fosse 2 pontos maior\".\nTripular 8 (Vire qualquer número de criaturas que você controla com total de poder igual ou superior a 8: Este Veículo torna-se uma criatura artefato até o final do turno.)\nShorikai, Motor da Gênese, pode ser seu comandante.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Giada, Font of Hope": {
+  "en": {
+   "id": "4ebc7622-08a1-4f43-92dd-8675d395e8f6",
+   "frente": "imagens/4ebc7622-08a1-4f43-92dd-8675d395e8f6/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "d8fdb864-0bd6-4b4f-8777-00860eec30e8",
+   "frente": "imagens/d8fdb864-0bd6-4b4f-8777-00860eec30e8/front.png",
+   "verso": null,
+   "nome": "Giada, Fonte de Esperança",
+   "tipo": "Criatura Lendária — Anjo",
+   "texto": "Voar, vigilância\nCada outro Anjo que você controla entra no campo de batalha com um marcador +1/+1 adicional para cada Anjo que você já controla.\n{T}: Adicione {W}. Gaste este mana somente para conjurar uma mágica de Anjo.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Grasp of Fate": {
+  "en": {
+   "id": "808b7b00-7072-4587-8383-2bf64a9bb38b",
+   "frente": "imagens/808b7b00-7072-4587-8383-2bf64a9bb38b/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "958c8ad4-2bb8-449b-877c-a01a324dabb7",
+   "frente": "imagens/958c8ad4-2bb8-449b-877c-a01a324dabb7/front.png",
+   "verso": null,
+   "nome": "Garras do Destino",
+   "tipo": "Encantamento",
+   "texto": "Quando Garras do Destino entrar no campo de batalha, para cada oponente, exile até uma permanente alvo não de terreno que aquele jogador controla, até que Garras do Destino deixe o campo de batalha.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Angel of Vitality": {
+  "en": {
+   "id": "dbb38f33-9f51-48cb-9f69-9a62f2c4b907",
+   "frente": "imagens/dbb38f33-9f51-48cb-9f69-9a62f2c4b907/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "e7196585-2407-4d1a-bdd3-228231124824",
+   "frente": "imagens/e7196585-2407-4d1a-bdd3-228231124824/front.png",
+   "verso": null,
+   "nome": "Anjo da Vitalidade",
+   "tipo": "Criatura — Anjo",
+   "texto": "Voar\nSe você ganharia pontos de vida, em vez disso, você ganha aquela quantidade de pontos de vida mais 1.\nAnjo da Vitalidade receberá +2/+2 enquanto você tiver 25 ou mais pontos de vida.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Bishop of Wings": {
+  "en": {
+   "id": "e4a34101-1be3-44ae-b709-f0398998d4c4",
+   "frente": "imagens/e4a34101-1be3-44ae-b709-f0398998d4c4/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "6d8538c8-8b69-4b8a-9801-16f397c792a3",
+   "frente": "imagens/6d8538c8-8b69-4b8a-9801-16f397c792a3/front.png",
+   "verso": null,
+   "nome": "Bispa das Asas",
+   "tipo": "Criatura — Humano Clérigo",
+   "texto": "Toda vez que um Anjo entra no campo de batalha sob o seu controle, você ganha 4 pontos de vida.\nToda vez que um Anjo que você controla morrer, crie uma ficha de criatura branca 1/1 do tipo Espírito com voar.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Sephara, Sky's Blade": {
+  "en": {
+   "id": "dd9723a6-51e1-41c3-9fbd-3e18c3ffead3",
+   "frente": "imagens/dd9723a6-51e1-41c3-9fbd-3e18c3ffead3/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "c1f4aced-3b36-4e78-ae1d-4a7b3c4c32bb",
+   "frente": null,
+   "verso": null,
+   "nome": "Sephara, Lâmina dos Céus",
+   "tipo": "Criatura Lendária — Anjo",
+   "texto": "Você pode pagar {W} e virar quatro criaturas com voar desviradas que você controla em vez de pagar o custo de mana desta mágica.\nVoar, vínculo com a vida\nAs outras criaturas que você controla com voar têm indestrutível.",
+   "faces": null,
+   "reserva": true
+  }
+ },
+ "Reya Dawnbringer": {
+  "en": {
+   "id": "8384c346-17f5-458f-bd56-6b0f04d6f375",
+   "frente": "imagens/8384c346-17f5-458f-bd56-6b0f04d6f375/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "352a0da9-d85a-4198-8aac-06f2e4909218",
+   "frente": "imagens/352a0da9-d85a-4198-8aac-06f2e4909218/front.png",
+   "verso": null,
+   "nome": "Reya, Portadora da Alvorada",
+   "tipo": "Criatura Lendária — Anjo",
+   "texto": "Voar (Esta criatura só pode ser bloqueada por criaturas com a habilidade de voar ou alcance.)\nNo início de sua manutenção, você pode devolver o card de criatura alvo de seu cemitério para o jogo.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Marble Diamond": {
+  "en": {
+   "id": "103029b9-4b0e-47c7-a714-ff93fc2ba66b",
+   "frente": "imagens/103029b9-4b0e-47c7-a714-ff93fc2ba66b/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "5b64c7ba-0627-4300-aef6-7116c22cebb2",
+   "frente": "imagens/5b64c7ba-0627-4300-aef6-7116c22cebb2/front.png",
+   "verso": null,
+   "nome": "Diamante de Mármore",
+   "tipo": "Artefato",
+   "texto": "Diamante de Mármore entra no campo de batalha virado.\n{T}: Adicione {W}.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Day of Judgment": {
+  "en": {
+   "id": "3b3307b6-e597-4f2c-8ad8-f8602e0ac461",
+   "frente": "imagens/3b3307b6-e597-4f2c-8ad8-f8602e0ac461/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "cc79a7c0-981f-48ba-8a5b-4091404e89eb",
+   "frente": "imagens/cc79a7c0-981f-48ba-8a5b-4091404e89eb/front.png",
+   "verso": null,
+   "nome": "Dia do Julgamento",
+   "tipo": "Feitiço",
+   "texto": "Destrua todas as criaturas.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Angel of Finality": {
+  "en": {
+   "id": "ed1e014c-8cf9-4193-ac8e-86a7b2311f59",
+   "frente": "imagens/ed1e014c-8cf9-4193-ac8e-86a7b2311f59/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "84415655-5da4-4b75-8260-623dd8db3a9c",
+   "frente": "imagens/84415655-5da4-4b75-8260-623dd8db3a9c/front.png",
+   "verso": null,
+   "nome": "Anjo da Finalidade",
+   "tipo": "Criatura — Anjo",
+   "texto": "Voar\nQuando Anjo da Finalidade entrar no campo de batalha, exile o cemitério do jogador alvo.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Emeria Shepherd": {
+  "en": {
+   "id": "08ef3822-592f-456f-823d-a4d5cc85ddf9",
+   "frente": "imagens/08ef3822-592f-456f-823d-a4d5cc85ddf9/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "d7967ec9-29a6-459b-99a1-3f8521133ff9",
+   "frente": "imagens/d7967ec9-29a6-459b-99a1-3f8521133ff9/front.png",
+   "verso": null,
+   "nome": "Pastora de Emeria",
+   "tipo": "Criatura — Anjo",
+   "texto": "Voar\nAterragem — Toda vez que um terreno entra no campo de batalha sob seu controle, você pode devolver o card de permanente alvo que não seja um terreno de seu cemitério para sua mão. Se aquele terreno for uma Planície, você pode, em vez disso, devolver aquele card de permanente que não seja um terreno para o campo de batalha.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Always Watching": {
+  "en": {
+   "id": "1c9a58d6-e1d8-4f9a-816f-d5ba7c84ca3e",
+   "frente": "imagens/1c9a58d6-e1d8-4f9a-816f-d5ba7c84ca3e/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "1d647f99-f488-491b-a49a-8d73b55b1c0f",
+   "frente": "imagens/1d647f99-f488-491b-a49a-8d73b55b1c0f/front.png",
+   "verso": null,
+   "nome": "Sempre Vigilante",
+   "tipo": "Encantamento",
+   "texto": "As criaturas que você controla que não sejam fichas recebem +1/+1 e têm vigilância.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Sunblast Angel": {
+  "en": {
+   "id": "2b5e1bb7-14a3-4737-bdac-8da4c3746e7d",
+   "frente": "imagens/2b5e1bb7-14a3-4737-bdac-8da4c3746e7d/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "e86f3594-b65c-44cd-aa33-dedc25783a9a",
+   "frente": "imagens/e86f3594-b65c-44cd-aa33-dedc25783a9a/front.png",
+   "verso": null,
+   "nome": "Anjo da Explosão Solar",
+   "tipo": "Criatura — Anjo",
+   "texto": "Voar\nQuando Anjo da Explosão Solar entrar no campo de batalha, destrua todas as criaturas viradas.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Segovian Angel": {
+  "en": {
+   "id": "675c227e-3da0-452c-aea2-5c9a7c55f5ca",
+   "frente": "imagens/675c227e-3da0-452c-aea2-5c9a7c55f5ca/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "4e5b2258-510e-407e-a433-962f36a75300",
+   "frente": "imagens/4e5b2258-510e-407e-a433-962f36a75300/front.png",
+   "verso": null,
+   "nome": "Anjo Segoviano",
+   "tipo": "Criatura — Anjo",
+   "texto": "Voar, vigilância",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Serra Avenger": {
+  "en": {
+   "id": "fd18cc57-9c28-4cd5-9ac0-389c4992eaff",
+   "frente": "imagens/fd18cc57-9c28-4cd5-9ac0-389c4992eaff/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "a3bd2e47-d177-4e40-a4cd-8f8ba9063720",
+   "frente": "imagens/a3bd2e47-d177-4e40-a4cd-8f8ba9063720/front.png",
+   "verso": null,
+   "nome": "Vingadora de Serra",
+   "tipo": "Criatura — Anjo",
+   "texto": "Você não pode conjurar esta mágica no primeiro, segundo ou terceiro turno do jogo.\nVoar, vigilância",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Defy Death": {
+  "en": {
+   "id": "46643da0-44a9-4df5-a7d0-076af2c7c132",
+   "frente": "imagens/46643da0-44a9-4df5-a7d0-076af2c7c132/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "bfde32be-0a97-496a-b3fb-6a5029749d07",
+   "frente": "imagens/bfde32be-0a97-496a-b3fb-6a5029749d07/front.png",
+   "verso": null,
+   "nome": "Desafio à Morte",
+   "tipo": "Feitiço",
+   "texto": "Devolva o card de criatura alvo de seu cemitério para o campo de batalha. Se for um Anjo, coloque dois marcadores +1/+1 sobre ele.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Herald of War": {
+  "en": {
+   "id": "5bba2910-975b-46d4-9d50-4d9a83caaa77",
+   "frente": "imagens/5bba2910-975b-46d4-9d50-4d9a83caaa77/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "c56fc0a6-bf67-4675-a3fe-3197a5cdc508",
+   "frente": "imagens/c56fc0a6-bf67-4675-a3fe-3197a5cdc508/front.png",
+   "verso": null,
+   "nome": "Arauta da Guerra",
+   "tipo": "Criatura — Anjo",
+   "texto": "Voar\nToda vez que Arauta da Guerra atacar, coloque um marcador +1/+1 nela.\nAs mágicas de Anjos e Humanos que você conjura custam {1} a menos para serem conjuradas para cada marcador +1/+1 em Arauta da Guerra.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Seraph of the Sword": {
+  "en": {
+   "id": "3dbfbdba-52d0-4b49-8c86-8f1686e2285b",
+   "frente": "imagens/3dbfbdba-52d0-4b49-8c86-8f1686e2285b/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "e549920d-03db-413e-8f9b-84e35dcc236a",
+   "frente": "imagens/e549920d-03db-413e-8f9b-84e35dcc236a/front.png",
+   "verso": null,
+   "nome": "Serafim da Espada",
+   "tipo": "Criatura — Anjo",
+   "texto": "VoarPrevina todo dano de combate que seria causado a Serafim da Espada.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Angelic Field Marshal": {
+  "en": {
+   "id": "b4f751ad-336d-479a-b63c-d2d193a42ccf",
+   "frente": "imagens/b4f751ad-336d-479a-b63c-d2d193a42ccf/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "55824b43-d37b-4036-8bb8-3977d6909da0",
+   "frente": null,
+   "verso": null,
+   "nome": "Marechal-de-campo Angelical",
+   "tipo": "Criatura — Anjo",
+   "texto": "Voar\nTenente — Enquanto você controla seu comandante, Marechal-de-Campo Angelical recebe +2/+2 e as criaturas que você controla têm vigilância.",
+   "faces": null,
+   "reserva": true
+  }
+ },
+ "Archangel of Tithes": {
+  "en": {
+   "id": "5699c00b-99a0-4db6-a592-e93efbe391bf",
+   "frente": "imagens/5699c00b-99a0-4db6-a592-e93efbe391bf/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "a847457e-826b-4243-aa43-09f777c54e6c",
+   "frente": "imagens/a847457e-826b-4243-aa43-09f777c54e6c/front.png",
+   "verso": null,
+   "nome": "Arcanjo dos Dízimos",
+   "tipo": "Criatura — Anjo",
+   "texto": "Voar\nEnquanto Arcanjo dos Dízimos estiver desvirada, as criaturas não poderão atacar você nem planeswalkers que você controla, a menos que seu controlador pague {1} por cada uma daquelas criaturas.\nEnquanto Arcanjo dos Dízimos estiver atacando, as criaturas não poderão bloquear, a menos que seu controlador pague {1} por cada uma daquelas criaturas.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Linvala, the Preserver": {
+  "en": {
+   "id": "3c31c48d-7833-4235-bc49-7e12a4ed607a",
+   "frente": "imagens/3c31c48d-7833-4235-bc49-7e12a4ed607a/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "6449ef65-7dc1-4ba7-b37e-17bd99b4f704",
+   "frente": "imagens/6449ef65-7dc1-4ba7-b37e-17bd99b4f704/front.png",
+   "verso": null,
+   "nome": "Linvala, a Preservadora",
+   "tipo": "Criatura Lendária — Anjo",
+   "texto": "Voar\nQuando Linvala, a Preservadora, entrar no campo de batalha, se um oponente tiver mais pontos de vida que você, você ganhará 5 pontos de vida.\nQuando Linvala entrar no campo de batalha, se um oponente controlar mais criaturas que você, coloque no campo de batalha uma ficha de criatura branca 3/3 do tipo Anjo com voar.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Lyra Dawnbringer": {
+  "en": {
+   "id": "15e10422-44e9-421c-b9ec-4006245f71a2",
+   "frente": "imagens/15e10422-44e9-421c-b9ec-4006245f71a2/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "cc8d165e-25db-4e00-b1a9-ce5e292b1722",
+   "frente": "imagens/cc8d165e-25db-4e00-b1a9-ce5e292b1722/front.png",
+   "verso": null,
+   "nome": "Lyra, Portadora da Alvorada",
+   "tipo": "Criatura Lendária — Anjo",
+   "texto": "Voar, iniciativa, vínculo com a vida\nOs outros Anjos que você controla recebem +1/+1 e têm vínculo com a vida.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Invoke the Divine": {
+  "en": {
+   "id": "2d9d2b52-8f33-4936-927a-4c71ddd8acb8",
+   "frente": "imagens/2d9d2b52-8f33-4936-927a-4c71ddd8acb8/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "c73352fc-7e18-4dbe-9588-d5935b57a79c",
+   "frente": "imagens/c73352fc-7e18-4dbe-9588-d5935b57a79c/front.png",
+   "verso": null,
+   "nome": "Invocar o Divino",
+   "tipo": "Mágica Instantânea",
+   "texto": "Destrua o artefato ou encantamento alvo. Você ganha 4 pontos de vida.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Court of Grace": {
+  "en": {
+   "id": "f0deb485-4895-4a3e-b1a7-e3c969593f97",
+   "frente": "imagens/f0deb485-4895-4a3e-b1a7-e3c969593f97/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "119eec4c-4c45-4b52-8a3b-4fc16f6090d4",
+   "frente": "imagens/119eec4c-4c45-4b52-8a3b-4fc16f6090d4/front.png",
+   "verso": null,
+   "nome": "Corte da Graça",
+   "tipo": "Encantamento",
+   "texto": "Quando Corte da Graça entra no campo de batalha, você se torna o monarca.\nNo início de sua manutenção, crie uma ficha de criatura Espírito branca 1/1 com voar. Se você for o monarca, em vez disso, crie uma ficha de criatura Anjo branca 4/4 com voar.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Starnheim Aspirant": {
+  "en": {
+   "id": "5a99580f-bdf5-41fd-8281-c615c6568826",
+   "frente": "imagens/5a99580f-bdf5-41fd-8281-c615c6568826/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "ef7b1aa3-ed5d-4d7c-98dc-560b1a79bd1b",
+   "frente": "imagens/ef7b1aa3-ed5d-4d7c-98dc-560b1a79bd1b/front.png",
+   "verso": null,
+   "nome": "Aspirante de Starnheim",
+   "tipo": "Criatura — Humano Clérigo",
+   "texto": "As mágicas de Anjo que você conjura custam {2} a menos para serem conjuradas.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Youthful Valkyrie": {
+  "en": {
+   "id": "9577d16a-e6ed-4d98-b90f-2abfc9b9586a",
+   "frente": "imagens/9577d16a-e6ed-4d98-b90f-2abfc9b9586a/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "8a7d18cc-a8b0-4f6f-9987-639ce03336d6",
+   "frente": "imagens/8a7d18cc-a8b0-4f6f-9987-639ce03336d6/front.png",
+   "verso": null,
+   "nome": "Valquíria Jovem",
+   "tipo": "Criatura — Anjo",
+   "texto": "Voar\nToda vez que outro Anjo entrar no campo de batalha sob seu controle, coloque um marcador +1/+1 em Valquíria Jovem.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Righteous Valkyrie": {
+  "en": {
+   "id": "c43a1592-2d28-4244-a579-4deab02e92b5",
+   "frente": "imagens/c43a1592-2d28-4244-a579-4deab02e92b5/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "1bac0194-a91b-4de0-a0cd-5bac98cd6dff",
+   "frente": "imagens/1bac0194-a91b-4de0-a0cd-5bac98cd6dff/front.png",
+   "verso": null,
+   "nome": "Valquíria Justa",
+   "tipo": "Criatura — Anjo Clérigo",
+   "texto": "Voar\nToda vez que outro Anjo ou Clérigo entra no campo de batalha sob seu controle, você ganha uma quantidade de pontos de vida igual à resistência daquela criatura.\nEnquanto você tiver ao menos 7 pontos de vida a mais que seu total inicial, as criaturas que você controla receberão +2/+2.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Secret Rendezvous": {
+  "en": {
+   "id": "c62d5dc4-f89c-43a9-924c-5d7361ddfacb",
+   "frente": "imagens/c62d5dc4-f89c-43a9-924c-5d7361ddfacb/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "c4845996-1067-4bc5-87b7-1a0a227f5df7",
+   "frente": "imagens/c4845996-1067-4bc5-87b7-1a0a227f5df7/front.png",
+   "verso": null,
+   "nome": "Encontro Sagrado",
+   "tipo": "Feitiço",
+   "texto": "Você e o oponente alvo compram, cada um, três cards.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Thraben Watcher": {
+  "en": {
+   "id": "0b85b4a9-ce44-443f-9a5d-4b75fcbad076",
+   "frente": "imagens/0b85b4a9-ce44-443f-9a5d-4b75fcbad076/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "58ad65b5-950b-4741-8003-383926fc8cd8",
+   "frente": "imagens/58ad65b5-950b-4741-8003-383926fc8cd8/front.png",
+   "verso": null,
+   "nome": "Vigia de Thraben",
+   "tipo": "Criatura — Anjo",
+   "texto": "Voar, vigilância\nAs outras criaturas não ficha que você controla recebem +1/+1 e têm vigilância.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Search the Premises": {
+  "en": {
+   "id": "ec91933d-8da0-4044-87d3-52d509756e7d",
+   "frente": "imagens/ec91933d-8da0-4044-87d3-52d509756e7d/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "dcb025cd-a414-4fcc-b670-a27bedf76dea",
+   "frente": "imagens/dcb025cd-a414-4fcc-b670-a27bedf76dea/front.png",
+   "verso": null,
+   "nome": "Vasculhar o Local",
+   "tipo": "Encantamento",
+   "texto": "Toda vez que uma criatura atacar você ou um planeswalker que você controla, investigue. (Crie uma ficha de artefato Pista incolor com \"{2}, sacrifique este artefato: Compre um card\".)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Fateful Absence": {
+  "en": {
+   "id": "168a41be-fa21-4d09-baf8-af3afd516d9b",
+   "frente": "imagens/168a41be-fa21-4d09-baf8-af3afd516d9b/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "e31d0a2f-7363-47e6-9a93-09ff714b4271",
+   "frente": "imagens/e31d0a2f-7363-47e6-9a93-09ff714b4271/front.png",
+   "verso": null,
+   "nome": "Ausência Fatídica",
+   "tipo": "Mágica Instantânea",
+   "texto": "Destrua a criatura ou o planeswalker alvo. O controlador daquela permanente investiga. (Ele cria uma ficha de artefato Pista incolor com \"{2}, sacrifique este artefato: Compre um card\".)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Inspiring Overseer": {
+  "en": {
+   "id": "d04d0a9b-a5a7-423a-bc27-8ea9b2cbff75",
+   "frente": "imagens/d04d0a9b-a5a7-423a-bc27-8ea9b2cbff75/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "559495a7-1f1f-411c-b27a-b680c4a3c260",
+   "frente": "imagens/559495a7-1f1f-411c-b27a-b680c4a3c260/front.png",
+   "verso": null,
+   "nome": "Supervisor Inspirador",
+   "tipo": "Criatura — Anjo Clérigo",
+   "texto": "Voar\nQuando Supervisor Inspirador entra no campo de batalha, você ganha 1 ponto de vida e compra um card.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Angelic Sleuth": {
+  "en": {
+   "id": "68905611-fb68-421a-84b6-b41e379a6361",
+   "frente": "imagens/68905611-fb68-421a-84b6-b41e379a6361/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "4da5e891-6752-449c-8b37-55148b8acaea",
+   "frente": "imagens/4da5e891-6752-449c-8b37-55148b8acaea/front.png",
+   "verso": null,
+   "nome": "Investigadora Angelical",
+   "tipo": "Criatura — Anjo Conselheiro",
+   "texto": "Voar\nToda vez que outra permanente que você controla deixa o campo de batalha, se ela tinha marcadores, investigue. (Crie uma ficha de artefato Pista incolor com \"{2}, sacrifique este artefato: Compre um card\".)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Norn's Choirmaster": {
+  "en": {
+   "id": "c7459da4-1081-4550-88c4-936f3662c5c8",
+   "frente": "imagens/c7459da4-1081-4550-88c4-936f3662c5c8/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "ef0e3450-e40d-43f5-81c3-3639389f1e04",
+   "frente": "imagens/ef0e3450-e40d-43f5-81c3-3639389f1e04/front.png",
+   "verso": null,
+   "nome": "Mestre do Coro de Norn",
+   "tipo": "Criatura — Phyrexiano Anjo",
+   "texto": "Voar, iniciativa\nToda vez que um comandante que você controla entrar no campo de batalha ou atacar, prolifere. (Escolha qualquer número de permanentes e/ou jogadores. Em seguida, dê a cada um deles outro marcador de cada tipo que eles já tenham.)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Metropolis Reformer": {
+  "en": {
+   "id": "2ea3aa21-0999-4178-928a-5216b66b1a24",
+   "frente": "imagens/2ea3aa21-0999-4178-928a-5216b66b1a24/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "d72dce91-9b89-490e-92d1-3dae5c3a872b",
+   "frente": "imagens/d72dce91-9b89-490e-92d1-3dae5c3a872b/front.png",
+   "verso": null,
+   "nome": "Reformadora da Metrópole",
+   "tipo": "Criatura — Anjo Clérigo",
+   "texto": "Voar, vigilância\nVocê tem resistência a magia.\nToda vez que Reformadora da Metrópole sofre dano, você ganha aquela quantidade de pontos de vida.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Wojek Investigator": {
+  "en": {
+   "id": "59f11982-7822-4847-ab0f-de2022e750a7",
+   "frente": "imagens/59f11982-7822-4847-ab0f-de2022e750a7/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "f3040923-a3a7-4236-86cb-a31fb869e74b",
+   "frente": "imagens/f3040923-a3a7-4236-86cb-a31fb869e74b/front.png",
+   "verso": null,
+   "nome": "Investigadora Wojek",
+   "tipo": "Criatura — Anjo Detetive",
+   "texto": "Voar, vigilância\nNo início de sua manutenção, investigue uma vez por cada oponente que tenha mais cards na mão que você. (Para investigar, crie uma ficha de Pista. Ela é um artefato com \"{2}, sacrifique este artefato: Compre um card\".)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Merchant of Truth": {
+  "en": {
+   "id": "45cb7d19-0cdb-4e6a-b1ba-59c74306105b",
+   "frente": "imagens/45cb7d19-0cdb-4e6a-b1ba-59c74306105b/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Exorcise": {
+  "en": {
+   "id": "be5b4b1d-fd4e-4783-9393-85e08d9ae0df",
+   "frente": "imagens/be5b4b1d-fd4e-4783-9393-85e08d9ae0df/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Herald of Eternal Dawn": {
+  "en": {
+   "id": "bdcddceb-6b5e-4c19-9069-457c3736932d",
+   "frente": "imagens/bdcddceb-6b5e-4c19-9069-457c3736932d/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Exemplar of Light": {
+  "en": {
+   "id": "4331836b-fa3c-4505-9361-a0b82aef63f5",
+   "frente": "imagens/4331836b-fa3c-4505-9361-a0b82aef63f5/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Vanguard Seraph": {
+  "en": {
+   "id": "e545bc61-02f9-4f3f-b5ba-f9d32ea515d2",
+   "frente": "imagens/e545bc61-02f9-4f3f-b5ba-f9d32ea515d2/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Dazzling Angel": {
+  "en": {
+   "id": "a1a8cc0d-c2ac-4dfe-a0a1-996bfadb7d54",
+   "frente": "imagens/a1a8cc0d-c2ac-4dfe-a0a1-996bfadb7d54/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Ghalta, Primal Hunger": {
+  "en": {
+   "id": "5d9951d1-3228-4d69-8e63-6e6f0a893a86",
+   "frente": "imagens/5d9951d1-3228-4d69-8e63-6e6f0a893a86/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "2c077ff0-4b6e-4513-8d8c-002f675048ea",
+   "frente": "imagens/2c077ff0-4b6e-4513-8d8c-002f675048ea/front.png",
+   "verso": null,
+   "nome": "Ghalta, Fome Primordial",
+   "tipo": null,
+   "texto": "Esta mágica custa {X} a menos para ser conjurada, sendo X o total de poder das criaturas que você controla.\nAtropelar",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Kenrith's Transformation": {
+  "en": {
+   "id": "f265caeb-d1d2-4d95-ba38-9425482746e7",
+   "frente": "imagens/f265caeb-d1d2-4d95-ba38-9425482746e7/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "be90f32b-c92e-478a-aa06-bf90c432d100",
+   "frente": "imagens/be90f32b-c92e-478a-aa06-bf90c432d100/front.png",
+   "verso": null,
+   "nome": "Transformação de Kenrith",
+   "tipo": "Encantamento — Aura",
+   "texto": "Encantar criatura\nQuando Transformação de Kenrith entrar no campo de batalha, compre um card.\nA criatura encantada perde todas as habilidades e é uma criatura Alce verde com poder e resistência básicos 3/3. (Ela perde todos os outros tipos de card e criatura.)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Dungrove Elder": {
+  "en": {
+   "id": "528fc1b2-62c9-4d83-bb43-58a59713a62b",
+   "frente": "imagens/528fc1b2-62c9-4d83-bb43-58a59713a62b/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "c796dce5-2e0c-4cc8-b071-7dab17a3c2dc",
+   "frente": "imagens/c796dce5-2e0c-4cc8-b071-7dab17a3c2dc/front.png",
+   "verso": null,
+   "nome": "Ancião Bosque Pardo",
+   "tipo": "Criatura — Ent",
+   "texto": "Resistência à magia (Esta criatura alvo não pode ser alvo de mágicas nem de habilidades que seus oponentes controlam.)\nO poder e a resistência de Ancião Bosque Pardo são ambos iguais ao número de florestas que você controla.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Rhonas's Monument": {
+  "en": {
+   "id": "5e00229b-80cb-4abc-929f-fc7c6fe1cd17",
+   "frente": "imagens/5e00229b-80cb-4abc-929f-fc7c6fe1cd17/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "b9923457-6f25-47c7-95f9-b85d2dd9cba7",
+   "frente": "imagens/b9923457-6f25-47c7-95f9-b85d2dd9cba7/front.png",
+   "verso": null,
+   "nome": "Monumento de Rhonas",
+   "tipo": "Artefato Lendário",
+   "texto": "As mágicas de criatura verdes que você conjura custam {1} a menos para serem conjuradas.\nToda vez que você conjura uma mágica de criatura, a criatura alvo que você controla recebe +2/+2 e ganha atropelar até o final do turno.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Thrashing Brontodon": {
+  "en": {
+   "id": "d268088d-a929-44eb-804c-02d625a7b019",
+   "frente": "imagens/d268088d-a929-44eb-804c-02d625a7b019/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "ca7047c7-0d7c-4ef9-8485-6f07142b3542",
+   "frente": "imagens/ca7047c7-0d7c-4ef9-8485-6f07142b3542/front.png",
+   "verso": null,
+   "nome": "Brontodonte Destruidor",
+   "tipo": "Criatura — Dinossauro",
+   "texto": "{1}, sacrifique Brontodonte Destruidor: Destrua o artefato ou encantamento alvo.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Elder Gargaroth": {
+  "en": {
+   "id": "be0d51ff-9a01-41bd-8e80-ee1e7117d695",
+   "frente": "imagens/be0d51ff-9a01-41bd-8e80-ee1e7117d695/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "c860c7eb-08fe-4cfc-95a4-fb7516c029cc",
+   "frente": "imagens/c860c7eb-08fe-4cfc-95a4-fb7516c029cc/front.png",
+   "verso": null,
+   "nome": "Gargarote Ancião",
+   "tipo": "Criatura — Besta",
+   "texto": "Vigilância, alcance, atropelar\nToda vez que Gargarote Ancião atacar ou bloquear, escolha um —\n• Crie uma ficha de criatura verde 3/3 do tipo Besta.\n• Você ganha 3 pontos de vida.\n• Compre um card.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Garruk's Uprising": {
+  "en": {
+   "id": "93ee55e0-9a2a-43f2-bd19-05e7ab04b262",
+   "frente": "imagens/93ee55e0-9a2a-43f2-bd19-05e7ab04b262/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "00dde275-9327-48b7-ab15-4554831ffe2d",
+   "frente": "imagens/00dde275-9327-48b7-ab15-4554831ffe2d/front.png",
+   "verso": null,
+   "nome": "Levante de Garruk",
+   "tipo": "Encantamento",
+   "texto": "Quando Levante de Garruk entrar no campo de batalha, se você controlar uma criatura com poder igual ou superior a 4, compre um card.\nAs criaturas que você controla têm atropelar.\nToda vez que uma criatura com poder igual ou superior a 4 entrar no campo de batalha sob seu controle, compre um card.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Scavenging Ooze": {
+  "en": {
+   "id": "7a4e636a-2926-4ee3-aae0-a5c784ce5edc",
+   "frente": "imagens/7a4e636a-2926-4ee3-aae0-a5c784ce5edc/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "4b3f9625-41f5-4343-a154-040e0b8353ed",
+   "frente": "imagens/4b3f9625-41f5-4343-a154-040e0b8353ed/front.png",
+   "verso": null,
+   "nome": "Lodo Necrófago",
+   "tipo": "Criatura — Lodo",
+   "texto": "{G}: Exile o card alvo de um cemitério. Se era um card de criatura, coloque um marcador +1/+1 em Lodo Necrófago e ganhe 1 ponto de vida.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Ripjaw Raptor": {
+  "en": {
+   "id": "0b384383-c069-40ab-b078-04d00c103963",
+   "frente": "imagens/0b384383-c069-40ab-b078-04d00c103963/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "7ee2b4f0-6060-4dea-8d51-550f9c601240",
+   "frente": "imagens/7ee2b4f0-6060-4dea-8d51-550f9c601240/front.png",
+   "verso": null,
+   "nome": "Raptor Maxilácero",
+   "tipo": "Criatura — Dinossauro",
+   "texto": "Enfurecer — Toda vez que Raptor Maxilácero sofrer dano, compre um card.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Whiptongue Hydra": {
+  "en": {
+   "id": "43f7ccca-7810-42de-86e2-ef09eb4a54c8",
+   "frente": "imagens/43f7ccca-7810-42de-86e2-ef09eb4a54c8/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "2e6d53e7-afc2-4949-9fb3-058cc11f7ddb",
+   "frente": "imagens/2e6d53e7-afc2-4949-9fb3-058cc11f7ddb/front.png",
+   "verso": null,
+   "nome": "Hidra Língua-de-chicote",
+   "tipo": "Criatura — Lagarto Hidra",
+   "texto": "Alcance\nQuando Hidra Língua-de-chicote entrar no campo de batalha, destrua todas as criaturas com voar. Coloque um marcador +1/+1 em Hidra Língua-de-chicote para cada criatura destruída dessa forma.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Colossal Majesty": {
+  "en": {
+   "id": "2f545da8-0f7d-40e3-ace1-3bb8522f5b29",
+   "frente": "imagens/2f545da8-0f7d-40e3-ace1-3bb8522f5b29/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "44ebaa93-6f7c-410e-ac03-64001f5de45a",
+   "frente": "imagens/44ebaa93-6f7c-410e-ac03-64001f5de45a/front.png",
+   "verso": null,
+   "nome": "Majestade Colossal",
+   "tipo": "Encantamento",
+   "texto": "No início de sua manutenção, se você controlar uma criatura com poder igual ou superior a 4, compre um card.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Elemental Bond": {
+  "en": {
+   "id": "4d14aac7-3551-4837-a00e-74cb71667bbe",
+   "frente": "imagens/4d14aac7-3551-4837-a00e-74cb71667bbe/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "be7d40c8-c524-4ba7-b336-3cd11b644b69",
+   "frente": "imagens/be7d40c8-c524-4ba7-b336-3cd11b644b69/front.png",
+   "verso": null,
+   "nome": "Elo Elemental",
+   "tipo": "Encantamento",
+   "texto": "Toda vez que uma criatura com poder igual ou superior a 3 entrar no campo de batalha sob seu controle, compre um card.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Garruk's Packleader": {
+  "en": {
+   "id": "0975d711-aebe-4e31-8e27-19368ec9873c",
+   "frente": "imagens/0975d711-aebe-4e31-8e27-19368ec9873c/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "48c0f2dc-1eff-4895-babc-8ddd0569db59",
+   "frente": "imagens/48c0f2dc-1eff-4895-babc-8ddd0569db59/front.png",
+   "verso": null,
+   "nome": "Líder de Matilha de Garruk",
+   "tipo": "Criatura — Besta",
+   "texto": "Toda vez que outra criatura com poder igual ou superior a 3 entra no campo de batalha sob seu controle, você pode comprar um card.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Fyndhorn Elves": {
+  "en": {
+   "id": "f9f617e9-4142-4c49-ad6e-aaaeee91d59c",
+   "frente": "imagens/f9f617e9-4142-4c49-ad6e-aaaeee91d59c/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "e78b31a7-1a2a-427d-ba0d-5cdd2c317083",
+   "frente": "imagens/e78b31a7-1a2a-427d-ba0d-5cdd2c317083/front.png",
+   "verso": null,
+   "nome": "Elfos de Fyndhorn",
+   "tipo": "Criatura — Elfo Druida",
+   "texto": "{T}: Adicione {G}.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Mosswort Bridge": {
+  "en": {
+   "id": "94aff478-6040-4a13-be89-24e0edf1ffe5",
+   "frente": "imagens/94aff478-6040-4a13-be89-24e0edf1ffe5/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "336a4741-f582-4583-adbc-64d9754f886a",
+   "frente": "imagens/336a4741-f582-4583-adbc-64d9754f886a/front.png",
+   "verso": null,
+   "nome": "Ponte Musgomosto",
+   "tipo": "Terreno",
+   "texto": "Refúgio 4 (Quando este terreno entrar no campo de batalha, olhe os quatro cards do topo de seu grimório, exile um com a face voltada para baixo e depois coloque o restante no fundo em ordem aleatória.)\nPonte Musgomosto entra no campo de batalha virada.\n{T}: Adicione {G}.\n{G}, {T}: Você pode jogar o card exilado sem pagar seu custo de mana se as criaturas que você controla tiverem poder total igual ou superior a 10.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Managorger Hydra": {
+  "en": {
+   "id": "50d4b86b-0868-4c25-a52d-8c1d40698682",
+   "frente": "imagens/50d4b86b-0868-4c25-a52d-8c1d40698682/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "cc54a739-692b-452f-9395-3e1d77247cdb",
+   "frente": "imagens/cc54a739-692b-452f-9395-3e1d77247cdb/front.png",
+   "verso": null,
+   "nome": "Hidra Devoradora de Mana",
+   "tipo": "Criatura — Hidra",
+   "texto": "Atropelar\nToda vez que um jogador conjurar uma mágica, coloque um marcador +1/+1 em Hidra Devoradora de Mana.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Gigantosaurus": {
+  "en": {
+   "id": "22c1d3c2-f038-4eab-8d6d-0e1001ee81cb",
+   "frente": "imagens/22c1d3c2-f038-4eab-8d6d-0e1001ee81cb/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "887a26a3-54d0-45f5-8590-8296aae0243b",
+   "frente": "imagens/887a26a3-54d0-45f5-8590-8296aae0243b/front.png",
+   "verso": null,
+   "nome": "Gigantossauro",
+   "tipo": "Criatura — Dinossauro",
+   "texto": null,
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Ilysian Caryatid": {
+  "en": {
+   "id": "c9dfb2e5-3ffe-4559-bdcb-50b98d4f16c6",
+   "frente": "imagens/c9dfb2e5-3ffe-4559-bdcb-50b98d4f16c6/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "0453e284-c8dd-4589-b476-29aa27128dcf",
+   "frente": null,
+   "verso": null,
+   "nome": "Cariátide Ilisiana",
+   "tipo": "Criatura — Planta",
+   "texto": "{T}: Adicione um mana de qualquer cor. Se você controlar uma criatura com poder igual ou superior a 4, em vez disso, adicione dois manas de qualquer cor.",
+   "faces": null,
+   "reserva": true
+  }
+ },
+ "Beast Whisperer": {
+  "en": {
+   "id": "e08be63d-8e8e-4b7a-a5ad-f4df45ca6070",
+   "frente": "imagens/e08be63d-8e8e-4b7a-a5ad-f4df45ca6070/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "56aedfa3-57d9-47a8-92d4-d404221d3387",
+   "frente": "imagens/56aedfa3-57d9-47a8-92d4-d404221d3387/front.png",
+   "verso": null,
+   "nome": "Encantador de Feras",
+   "tipo": "Criatura — Elfo Druida",
+   "texto": "Toda vez que você conjurar uma mágica de criatura, compre um card.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Monstrous Onslaught": {
+  "en": {
+   "id": "99ae5d53-3485-4773-850f-61d30293280f",
+   "frente": "imagens/99ae5d53-3485-4773-850f-61d30293280f/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "46a49e61-d4f9-4b20-8eeb-d20392db71c1",
+   "frente": "imagens/46a49e61-d4f9-4b20-8eeb-d20392db71c1/front.png",
+   "verso": null,
+   "nome": "Investida Monstruosa",
+   "tipo": "Feitiço",
+   "texto": "Investida Monstruosa causa X pontos de dano divididos à sua escolha a qualquer número de criaturas alvo, sendo X o maior poder entre as criaturas que você controla conforme conjura esta mágica.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Rishkar, Peema Renegade": {
+  "en": {
+   "id": "f542fbf8-3700-4b86-83d8-d8bdf8f14285",
+   "frente": "imagens/f542fbf8-3700-4b86-83d8-d8bdf8f14285/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "45087c30-a690-4e55-aafe-8f0ca09f4e0b",
+   "frente": null,
+   "verso": null,
+   "nome": "Rishkar, Renegado de Peema",
+   "tipo": "Criatura Lendária — Elfo Druida",
+   "texto": "Quando Rishkar, Renegado de Peema, entrar no campo de batalha, coloque um marcador +1/+1 em cada uma de até duas criaturas alvo.\nCada criatura que você controla com um marcador tem \"{T}: Adicione {G}\".",
+   "faces": null,
+   "reserva": true
+  }
+ },
+ "Rishkar's Expertise": {
+  "en": {
+   "id": "c2354a0a-1fb6-4de3-bcc9-df5565b3ceba",
+   "frente": "imagens/c2354a0a-1fb6-4de3-bcc9-df5565b3ceba/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "ab5d6fc0-ee1b-406e-a834-d31e0d5a85ea",
+   "frente": "imagens/ab5d6fc0-ee1b-406e-a834-d31e0d5a85ea/front.png",
+   "verso": null,
+   "nome": "Especialidade de Rishkar",
+   "tipo": "Feitiço",
+   "texto": "Compre uma quantidade de cards equivalente ao maior poder entre as criaturas que você controla.\nVocê pode conjurar uma mágica com valor de mana igual ou inferior a 5 de sua mão sem pagar seu custo de mana.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Challenger Troll": {
+  "en": {
+   "id": "eae3c792-cc9c-4442-a15a-7bab50a30dff",
+   "frente": "imagens/eae3c792-cc9c-4442-a15a-7bab50a30dff/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "ffb7772c-8136-4bd0-a08d-0e04abd8c051",
+   "frente": "imagens/ffb7772c-8136-4bd0-a08d-0e04abd8c051/front.png",
+   "verso": null,
+   "nome": "Trol Desafiante",
+   "tipo": "Criatura — Trol",
+   "texto": "Cada criatura que você controla com poder igual ou superior a 4 não pode ser bloqueada por mais de uma criatura.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Paradise Druid": {
+  "en": {
+   "id": "0e8f1205-fbe0-4a60-a215-172d94eba349",
+   "frente": "imagens/0e8f1205-fbe0-4a60-a215-172d94eba349/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "e83a6260-aa2e-40c0-ba32-f10f565f76d9",
+   "frente": "imagens/e83a6260-aa2e-40c0-ba32-f10f565f76d9/front.png",
+   "verso": null,
+   "nome": "Druida do Paraíso",
+   "tipo": "Criatura — Elfo Druida",
+   "texto": "Druida do Paraíso terá resistência a magia enquanto estiver desvirada.(Ela não pode ser alvo de mágicas nem de habilidades que seus oponentes controlam.)\n{T}: Adicione um mana de qualquer cor.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Llanowar Tribe": {
+  "en": {
+   "id": "9a373b9d-1c4c-4335-b7f8-30c5d6fef559",
+   "frente": "imagens/9a373b9d-1c4c-4335-b7f8-30c5d6fef559/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "71774f74-81a1-4a67-9df3-70410533a51c",
+   "frente": "imagens/71774f74-81a1-4a67-9df3-70410533a51c/front.png",
+   "verso": null,
+   "nome": "Tribo de Llanowar",
+   "tipo": "Criatura — Elfo Druida",
+   "texto": "{T}: Adicione {G}{G}{G}.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Rhonas the Indomitable": {
+  "en": {
+   "id": "3bd07126-f507-4c8a-952f-d564bbb6526d",
+   "frente": "imagens/3bd07126-f507-4c8a-952f-d564bbb6526d/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "bf496e63-a976-4365-89f0-8cf104a52a30",
+   "frente": "imagens/bf496e63-a976-4365-89f0-8cf104a52a30/front.png",
+   "verso": null,
+   "nome": "Rhonas, o Indômito",
+   "tipo": "Criatura Lendária — Deus",
+   "texto": "Toque mortífero, indestrutível\nRhonas, o Indômito, não pode atacar nem bloquear a menos que você controle outra criatura com poder igual ou superior a 4.\n{2}{G}: Outra criatura alvo recebe +2/+0 e ganha atropelar até o final do turno.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Whisperer of the Wilds": {
+  "en": {
+   "id": "50d5f384-5a9e-4151-b3cf-2d68e6fa85f6",
+   "frente": "imagens/50d5f384-5a9e-4151-b3cf-2d68e6fa85f6/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "b91a8402-bf3b-4519-94b7-4d1395eeb18d",
+   "frente": "imagens/b91a8402-bf3b-4519-94b7-4d1395eeb18d/front.png",
+   "verso": null,
+   "nome": "Sussurradora das Selvas",
+   "tipo": "Criatura — Humano Xamã",
+   "texto": "{T}: Adicione {G} à sua reserva de mana.\nFeroz — {T}: Adicione {G}{G} à sua reserva de mana. Ative esta habilidade somente se você controlar uma criatura com poder igual ou superior a 4.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Arachnogenesis": {
+  "en": {
+   "id": "0cc5faf4-c42b-4bbe-bd1f-92be522330b3",
+   "frente": "imagens/0cc5faf4-c42b-4bbe-bd1f-92be522330b3/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "b73f09d4-256c-4a6e-9600-4d598871f0b5",
+   "frente": null,
+   "verso": null,
+   "nome": "Aracnogênese",
+   "tipo": "Mágica Instantânea",
+   "texto": "Crie X fichas de criatura Aranha verde 1/2, sendo X o número de criaturas atacando você. Previna todo o dano de combate que seria causado neste turno por criaturas não Aranha.",
+   "faces": null,
+   "reserva": true
+  }
+ },
+ "Ezuri's Predation": {
+  "en": {
+   "id": "d43ef6eb-99ed-45a6-aee1-e87d3780d094",
+   "frente": "imagens/d43ef6eb-99ed-45a6-aee1-e87d3780d094/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "eff09fa4-71d8-4714-a7d0-f48324c206b2",
+   "frente": null,
+   "verso": null,
+   "nome": "Predação de Ezuri",
+   "tipo": "Feitiço",
+   "texto": "Para cada criatura que seus oponentes controlam, crie uma ficha de criatura Phyrexiano Besta verde 4/4. Cada uma daquelas fichas luta contra uma criatura diferente entre aquelas.",
+   "faces": null,
+   "reserva": true
+  }
+ },
+ "Ram Through": {
+  "en": {
+   "id": "33516226-4b97-4cd1-a47f-a9b40631daea",
+   "frente": "imagens/33516226-4b97-4cd1-a47f-a9b40631daea/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "fb3ed8d1-5532-4235-8e7b-60195b520f0e",
+   "frente": null,
+   "verso": null,
+   "nome": "Carneirada",
+   "tipo": "Mágica Instantânea",
+   "texto": "A criatura alvo que você controla causa dano igual ao seu poder à criatura alvo que você não controla. Se a criatura que você controla tem atropelar, em vez disso, o dano excedente é causado ao controlador da outra criatura.",
+   "faces": null,
+   "reserva": true
+  }
+ },
+ "Steel Leaf Champion": {
+  "en": {
+   "id": "d5362bf5-de79-4ad8-866a-1c590998fc96",
+   "frente": "imagens/d5362bf5-de79-4ad8-866a-1c590998fc96/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "30b5567f-8de8-41c0-8367-e47ee4c577c2",
+   "frente": "imagens/30b5567f-8de8-41c0-8367-e47ee4c577c2/front.png",
+   "verso": null,
+   "nome": "Campeão da Lâmina de Aço",
+   "tipo": "Criatura — Elfo Cavaleiro",
+   "texto": "Campeão da Lâmina de Aço não pode ser bloqueado por criaturas de poder igual ou inferior a 2.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Surrak, the Hunt Caller": {
+  "en": {
+   "id": "a1864bc3-d829-4146-ba4e-87736b0daa41",
+   "frente": "imagens/a1864bc3-d829-4146-ba4e-87736b0daa41/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "4adf9f31-c9d7-423f-a59d-34ee1bcfbe54",
+   "frente": null,
+   "verso": null,
+   "nome": "Surrak, o Convocador da Caçada",
+   "tipo": "Criatura Lendária — Humano Guerreiro",
+   "texto": "Formidável — No início do combate no seu turno, se o total de poder das criaturas que você controla for igual ou superior a 8, a criatura alvo que você controla ganha ímpeto até o final do turno.",
+   "faces": null,
+   "reserva": true
+  }
+ },
+ "Yeva, Nature's Herald": {
+  "en": {
+   "id": "15f742a6-7dbe-4d13-b25b-0b5a50f4550f",
+   "frente": "imagens/15f742a6-7dbe-4d13-b25b-0b5a50f4550f/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "33d075fe-e4c7-4585-9e2a-8830f9de99f1",
+   "frente": "imagens/33d075fe-e4c7-4585-9e2a-8830f9de99f1/front.png",
+   "verso": null,
+   "nome": "Yeva, Arauto da Natureza",
+   "tipo": "Criatura Lendária — Elfo Xamã",
+   "texto": "Lampejo\nVocê pode conjurar mágicas de criatura verdes como se elas tivessem lampejo.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Goreclaw, Terror of Qal Sisma": {
+  "en": {
+   "id": "c7091f2e-1a10-48f0-881a-405b43634556",
+   "frente": "imagens/c7091f2e-1a10-48f0-881a-405b43634556/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "6b53ccff-fb16-4f82-8d5d-b5037bd1cb5b",
+   "frente": null,
+   "verso": null,
+   "nome": "Garra Cruenta, Terror de Qal Sisma",
+   "tipo": "Criatura Lendária — Urso",
+   "texto": "As mágicas de criatura com poder igual ou superior a 4 que você conjura custam {2} a menos para serem conjuradas.\nToda vez que Garra Cruenta, Terror de Qal Sisma, ataca, cada criatura que você controla com poder igual ou superior a 4 recebe +1/+1 e ganha atropelar até o final do turno.",
+   "faces": null,
+   "reserva": true
+  }
+ },
+ "Carnage Tyrant": {
+  "en": {
+   "id": "fb56d3be-40e8-42fc-9d07-c3effe757052",
+   "frente": "imagens/fb56d3be-40e8-42fc-9d07-c3effe757052/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "f24e6b5c-011f-4ba6-8529-e231d9b8f1dc",
+   "frente": "imagens/f24e6b5c-011f-4ba6-8529-e231d9b8f1dc/front.png",
+   "verso": null,
+   "nome": "Tirano da Carnificina",
+   "tipo": null,
+   "texto": "Esta mágica não pode ser anulada.\nAtropelar, resistência a magia",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Verdant Sun's Avatar": {
+  "en": {
+   "id": "474aa068-bf84-46c6-a94c-9af1d69ad03a",
+   "frente": "imagens/474aa068-bf84-46c6-a94c-9af1d69ad03a/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "46d0c62b-0b18-4798-af4e-39fb6d9001c8",
+   "frente": "imagens/46d0c62b-0b18-4798-af4e-39fb6d9001c8/front.png",
+   "verso": null,
+   "nome": "Avatar do Sol Verdejante",
+   "tipo": "Criatura — Dinossauro Avatar",
+   "texto": "Toda vez que Avatar do Sol Verdejante ou outra criatura entra no campo de batalha sob seu controle, você ganha uma quantidade de pontos de vida igual à resistência daquela criatura.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Witch's Clinic": {
+  "en": {
+   "id": "60461a4f-a337-46b0-908f-fbd7479c235a",
+   "frente": "imagens/60461a4f-a337-46b0-908f-fbd7479c235a/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "ab549c17-b3a1-416b-88ca-0beb5d1c1262",
+   "frente": "imagens/ab549c17-b3a1-416b-88ca-0beb5d1c1262/front.png",
+   "verso": null,
+   "nome": "Clínica da Bruxa",
+   "tipo": "Terreno",
+   "texto": "{T}: Adicione {C}.\n{2}, {T}: O comandante alvo ganha vínculo com a vida até o final do turno.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Unnatural Growth": {
+  "en": {
+   "id": "48325111-3702-4521-b4c2-39177530e569",
+   "frente": "imagens/48325111-3702-4521-b4c2-39177530e569/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "70899aca-8a27-4962-b606-4f1e5e52b2c1",
+   "frente": "imagens/70899aca-8a27-4962-b606-4f1e5e52b2c1/front.png",
+   "verso": null,
+   "nome": "Crescimento Antinatural",
+   "tipo": "Encantamento",
+   "texto": "No início de cada combate, dobre o poder e a resistência de cada criatura que você controla até o final do turno.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Tamiyo's Safekeeping": {
+  "en": {
+   "id": "1d167110-e5dd-409f-8744-016c26a14f1d",
+   "frente": "imagens/1d167110-e5dd-409f-8744-016c26a14f1d/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "4540c563-cdd4-4efb-9146-d08ebec15643",
+   "frente": "imagens/4540c563-cdd4-4efb-9146-d08ebec15643/front.png",
+   "verso": null,
+   "nome": "Custódia de Tamiyo",
+   "tipo": "Mágica Instantânea",
+   "texto": "A permanente alvo que você controla ganha resistência a magia e indestrutível até o final do turno. Você ganha 2 pontos de vida.(Uma permanente com resistência a magia e indestrutível não pode ser alvo de mágicas nem de habilidades controladas por seus oponentes. O dano e os efeitos que dizem \"destrua\" não a destroem.)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Bite Down": {
+  "en": {
+   "id": "179344e8-ffb5-4bc1-9e35-307b390da01f",
+   "frente": "imagens/179344e8-ffb5-4bc1-9e35-307b390da01f/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "ce909530-4839-4f40-8a63-99c96ff0c643",
+   "frente": "imagens/ce909530-4839-4f40-8a63-99c96ff0c643/front.png",
+   "verso": null,
+   "nome": "Abocanhar",
+   "tipo": "Mágica Instantânea",
+   "texto": "A criatura alvo que você controla causa dano igual ao seu poder à criatura ou ao planeswalker alvo que você não controla.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Tangleweave Armor": {
+  "en": {
+   "id": "9fd7ac91-8f76-4fd1-afc5-9a3fd5ce6894",
+   "frente": "imagens/9fd7ac91-8f76-4fd1-afc5-9a3fd5ce6894/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "386a95a8-96aa-4216-aedd-cdf73ce62a1b",
+   "frente": "imagens/386a95a8-96aa-4216-aedd-cdf73ce62a1b/front.png",
+   "verso": null,
+   "nome": "Armadura Emaranhada",
+   "tipo": "Artefato — Equipamento",
+   "texto": "Arma viva (Quando este Equipamento entrar no campo de batalha, crie uma ficha de criatura Germe Phyrexiano preta 0/0 e anexe-o a ela.)\nA criatura equipada recebe +X/+X, sendo X o maior valor de mana entre seus comandantes.\nEquipar {4}",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Surrak and Goreclaw": {
+  "en": {
+   "id": "22f0a911-5a48-4da4-bb02-950babaead2c",
+   "frente": "imagens/22f0a911-5a48-4da4-bb02-950babaead2c/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "8aee75c6-da43-4521-8e8d-01e141b3b250",
+   "frente": "imagens/8aee75c6-da43-4521-8e8d-01e141b3b250/front.png",
+   "verso": null,
+   "nome": "Surrak e Garra Cruenta",
+   "tipo": "Criatura Lendária — Humano Urso",
+   "texto": "Atropelar\nAs outras criaturas que você controla têm atropelar.\nToda vez que outra criatura não ficha entrar no campo de batalha sob seu controle, coloque um marcador +1/+1 nela. Ela ganha ímpeto até o final do turno.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Pugnacious Hammerskull": {
+  "en": {
+   "id": "f8676812-9ac5-4a99-9c19-6bfb8bd765a0",
+   "frente": "imagens/f8676812-9ac5-4a99-9c19-6bfb8bd765a0/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "9124d508-0d62-48bb-b595-5e715e9182cd",
+   "frente": "imagens/9124d508-0d62-48bb-b595-5e715e9182cd/front.png",
+   "verso": null,
+   "nome": "Malhocéfalo Pugnaz",
+   "tipo": "Criatura — Dinossauro",
+   "texto": "Toda vez que Malhocéfalo Pugnaz atacar enquanto você não controlar outro Dinossauro, coloque um marcador de atordoamento nele. (Se uma permanente com um marcador de atordoamento se tornaria desvirada, em vez disso, remova um marcador de atordoamento dela.)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Hulking Raptor": {
+  "en": {
+   "id": "10ddd8c1-6424-41cf-be1f-5fdc0b70a787",
+   "frente": "imagens/10ddd8c1-6424-41cf-be1f-5fdc0b70a787/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "9261ca69-3ce6-4aca-9e48-323e630baf5a",
+   "frente": "imagens/9261ca69-3ce6-4aca-9e48-323e630baf5a/front.png",
+   "verso": null,
+   "nome": "Raptor Corpulento",
+   "tipo": "Criatura — Dinossauro",
+   "texto": "Salvaguarda {2}\nNo início de sua fase principal pré-combate, adicione {G}{G}.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Curious Altisaur": {
+  "en": {
+   "id": "d5c8619f-753b-472f-a6cd-00bd9e897279",
+   "frente": "imagens/d5c8619f-753b-472f-a6cd-00bd9e897279/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "e6a3dfd6-8ecd-478f-9046-11582079e988",
+   "frente": "imagens/e6a3dfd6-8ecd-478f-9046-11582079e988/front.png",
+   "verso": null,
+   "nome": "Altissauro Curioso",
+   "tipo": "Criatura — Dinossauro",
+   "texto": "Vigilância, alcance\nToda vez que um Dinossauro que você controla causar dano de combate a um jogador, compre um card.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Collective Resistance": {
+  "en": {
+   "id": "1fa97b3c-7780-4f53-9b74-20e7f8e41602",
+   "frente": "imagens/1fa97b3c-7780-4f53-9b74-20e7f8e41602/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "89acc908-1878-4e34-ab52-7f7da176fa70",
+   "frente": "imagens/89acc908-1878-4e34-ab52-7f7da176fa70/front.png",
+   "verso": null,
+   "nome": "Resistência Coletiva",
+   "tipo": "Mágica Instantânea",
+   "texto": "Escalar {G} (Pague este custo por cada modo escolhido além do primeiro.)\nEscolha um ou mais —\n• Destrua o artefato alvo.\n• Destrua o encantamento alvo.\n• A criatura alvo ganha resistência a magia e indestrutível até o final do turno.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Clifftop Lookout": {
+  "en": {
+   "id": "af8090e5-039e-4c74-b0fb-a6428d6340c1",
+   "frente": "imagens/af8090e5-039e-4c74-b0fb-a6428d6340c1/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Scrapshooter": {
+  "en": {
+   "id": "54816109-6152-44d6-8d6f-8c73aaa58049",
+   "frente": "imagens/54816109-6152-44d6-8d6f-8c73aaa58049/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Thickest in the Thicket": {
+  "en": {
+   "id": "2534da93-ef25-4020-bea5-d3f75bfc44f8",
+   "frente": "imagens/2534da93-ef25-4020-bea5-d3f75bfc44f8/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Loot, Exuberant Explorer": {
+  "en": {
+   "id": "b3efa417-b093-4924-9ff3-be9c43c963a1",
+   "frente": "imagens/b3efa417-b093-4924-9ff3-be9c43c963a1/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Terrian, World Tyrant": {
+  "en": {
+   "id": "d2066390-7947-425c-ab6e-933b56f6a47a",
+   "frente": "imagens/d2066390-7947-425c-ab6e-933b56f6a47a/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Regal Imperiosaur": {
+  "en": {
+   "id": "c14646ba-8ac8-4bca-a2b3-67fc1f338f25",
+   "frente": "imagens/c14646ba-8ac8-4bca-a2b3-67fc1f338f25/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Gonti, Canny Acquisitor": {
+  "en": {
+   "id": "03a7e79f-625a-49ac-9cb1-e1fe5f51f5a0",
+   "frente": "imagens/03a7e79f-625a-49ac-9cb1-e1fe5f51f5a0/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Baleful Strix": {
+  "en": {
+   "id": "be8439e6-f779-49f0-806a-b04995697a6a",
+   "frente": "imagens/be8439e6-f779-49f0-806a-b04995697a6a/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "7ab6a284-07b9-49d1-8b5f-657d0a41d66d",
+   "frente": "imagens/7ab6a284-07b9-49d1-8b5f-657d0a41d66d/front.png",
+   "verso": null,
+   "nome": "Estrige Maligna",
+   "tipo": "Criatura Artefato — Ave",
+   "texto": "Voar, toque mortífero\nQuando Estrige Maligna entrar no campo de batalha, compre um card.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Gonti, Lord of Luxury": {
+  "en": {
+   "id": "fbbb3aef-af1f-4b77-b7d6-64cfd706a9d9",
+   "frente": "imagens/fbbb3aef-af1f-4b77-b7d6-64cfd706a9d9/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "42c3bb5b-71e4-4f15-858a-d186a37a7f2e",
+   "frente": null,
+   "verso": null,
+   "nome": "Gonti, Senhor da Opulência",
+   "tipo": "Criatura Lendária — Etergênito Ladino",
+   "texto": "Toque mortífero\nQuando Gonti, Senhor da Opulência, entrar no campo de batalha, olhe os quatro cards do topo do grimório do oponente alvo, exile um deles com a face voltada para baixo e, em seguida, coloque o restante no fundo daquele grimório em ordem aleatória. Você pode olhar e conjurar aquele card enquanto ele permanecer exilado, e pode gastar mana de qualquer tipo para conjurá-lo.",
+   "faces": null,
+   "reserva": true
+  }
+ },
+ "Rampant Growth": {
+  "en": {
+   "id": "6c074663-37be-4329-a21d-9ea551edbb6b",
+   "frente": "imagens/6c074663-37be-4329-a21d-9ea551edbb6b/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "7f4f716e-292b-4b0f-9d54-ed0d2dfc8f94",
+   "frente": "imagens/7f4f716e-292b-4b0f-9d54-ed0d2dfc8f94/front.png",
+   "verso": null,
+   "nome": "Crescimento Exuberante",
+   "tipo": "Feitiço",
+   "texto": "Procure um card de terreno básico em seu grimório, coloque aquele card no campo de batalha virado e depois embaralhe.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Silhana Ledgewalker": {
+  "en": {
+   "id": "21a2d11e-48b7-4e9a-a574-838cc26c2b17",
+   "frente": "imagens/21a2d11e-48b7-4e9a-a574-838cc26c2b17/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "f0c9a3c5-62b2-4ddc-8e5b-8c723a942c34",
+   "frente": "imagens/f0c9a3c5-62b2-4ddc-8e5b-8c723a942c34/front.png",
+   "verso": null,
+   "nome": "Silhana Saltador de Peitoril",
+   "tipo": "Criatura — Elfo Ladino",
+   "texto": "Resistência a magia\nSilhana Saltador de Peitoril só pode ser bloqueado por criaturas com voar.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Slither Blade": {
+  "en": {
+   "id": "859e5ca5-c184-47ee-a2ea-8075847f46d9",
+   "frente": "imagens/859e5ca5-c184-47ee-a2ea-8075847f46d9/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "4d1633d0-4c71-4854-9f8b-86739b83ddcc",
+   "frente": "imagens/4d1633d0-4c71-4854-9f8b-86739b83ddcc/front.png",
+   "verso": null,
+   "nome": "Lâmina Sinuosa",
+   "tipo": "Criatura — Naga Ladino",
+   "texto": "Lâmina Sinuosa não pode ser bloqueada.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Ghostly Pilferer": {
+  "en": {
+   "id": "2f6a3605-950d-488b-8e4f-e2c339ef48dc",
+   "frente": "imagens/2f6a3605-950d-488b-8e4f-e2c339ef48dc/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "7326e540-144a-447e-b545-105289c14ed3",
+   "frente": "imagens/7326e540-144a-447e-b545-105289c14ed3/front.png",
+   "verso": null,
+   "nome": "Gatuno Fantasmagórico",
+   "tipo": "Criatura — Espírito Ladino",
+   "texto": "Toda vez que Gatuno Fantasmagórico se torna desvirado, você pode pagar {2}. Se fizer isso, compre um card.\nToda vez que um oponente conjurar uma mágica de qualquer lugar diferente da própria mão, compre um card.\nDescarte um card: Gatuno Fantasmagórico não pode ser bloqueado neste turno.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Temple of Mystery": {
+  "en": {
+   "id": "9d3d1d58-c76f-4c06-8c48-382362e932da",
+   "frente": "imagens/9d3d1d58-c76f-4c06-8c48-382362e932da/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "1479401b-933c-4249-a132-69586f2684fd",
+   "frente": "imagens/1479401b-933c-4249-a132-69586f2684fd/front.png",
+   "verso": null,
+   "nome": "Templo do Mistério",
+   "tipo": "Terreno",
+   "texto": "Templo do Mistério entra no campo de batalha virado.\nQuando Templo do Mistério entrar no campo de batalha, use vidência 1.\n{T}: Adicione {G} ou {U}.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "The Mimeoplasm": {
+  "en": {
+   "id": "998b86f3-e53f-4ebb-b111-6f14577fded1",
+   "frente": "imagens/998b86f3-e53f-4ebb-b111-6f14577fded1/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Dimir Aqueduct": {
+  "en": {
+   "id": "2f527759-84c9-4bd3-9763-a2105c9d93f9",
+   "frente": "imagens/2f527759-84c9-4bd3-9763-a2105c9d93f9/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "c5284514-ddcc-4c18-853e-f49c3e8376db",
+   "frente": "imagens/c5284514-ddcc-4c18-853e-f49c3e8376db/front.png",
+   "verso": null,
+   "nome": "Aqueduto Dimir",
+   "tipo": "Terreno",
+   "texto": "Aqueduto Dimir entra no campo de batalha virado.\nQuando Aqueduto Dimir entrar no campo de batalha, devolva um terreno que você controla para a mão de seu dono.\n{T}: Adicione {U}{B}.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Opulent Palace": {
+  "en": {
+   "id": "dc691e02-c914-468d-8051-de1289171183",
+   "frente": "imagens/dc691e02-c914-468d-8051-de1289171183/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "28444409-940b-4da2-b20e-44f6326049c8",
+   "frente": "imagens/28444409-940b-4da2-b20e-44f6326049c8/front.png",
+   "verso": null,
+   "nome": "Palácio Opulento",
+   "tipo": "Terreno",
+   "texto": "Palácio Opulento entra no campo de batalha virado.\n{T}: Adicione {B}, {G} ou {U}.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Thieving Amalgam": {
+  "en": {
+   "id": "c6225b97-396f-4969-954c-f2885da70c1b",
+   "frente": "imagens/c6225b97-396f-4969-954c-f2885da70c1b/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "1c28dc6c-5547-4b60-bd7a-44a0a6dcf76f",
+   "frente": "imagens/1c28dc6c-5547-4b60-bd7a-44a0a6dcf76f/front.png",
+   "verso": null,
+   "nome": "Amálgama Ladrão",
+   "tipo": "Criatura — Símio Cobra",
+   "texto": "No início da manutenção de cada oponente, você manifesta o card do topo do grimório daquele jogador. (Coloque-o no campo de batalha com a face voltada para baixo como uma criatura 2/2. Volte sua face para cima a qualquer momento pagando seu custo de mana se for um card de criatura.)\nToda vez que uma criatura que não é sua mas que você controla morre, seu dono perde 2 pontos de vida e você ganha 2 pontos de vida.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Yavimaya Coast": {
+  "en": {
+   "id": "0e89587e-f027-4c75-a950-f84f0987588a",
+   "frente": "imagens/0e89587e-f027-4c75-a950-f84f0987588a/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "d9c67d82-5fa0-431d-86cf-bb8c9517e459",
+   "frente": "imagens/d9c67d82-5fa0-431d-86cf-bb8c9517e459/front.png",
+   "verso": null,
+   "nome": "Costa de Yavimaya",
+   "tipo": "Terreno",
+   "texto": "{T}: Adicione {C}.\n{T}: Adicione {G} ou {U}. Costa de Yavimaya causa 1 ponto de dano a você.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Kodama's Reach": {
+  "en": {
+   "id": "eddf5231-7c46-417b-82c3-f6a8ede5ac9c",
+   "frente": "imagens/eddf5231-7c46-417b-82c3-f6a8ede5ac9c/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "556604de-5c4a-4648-af1e-0c94b6251e98",
+   "frente": "imagens/556604de-5c4a-4648-af1e-0c94b6251e98/front.png",
+   "verso": null,
+   "nome": "Alcance do Kodama",
+   "tipo": "Feitiço — Arcana",
+   "texto": "Procure até dois cards de terreno básico em seu grimório, revele-os e coloque um deles no campo de batalha virado e o outro na sua mão. Depois, embaralhe.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Diluvian Primordial": {
+  "en": {
+   "id": "eb14cd77-d37e-4849-816f-cd36e2a37765",
+   "frente": "imagens/eb14cd77-d37e-4849-816f-cd36e2a37765/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "c73d1406-b75b-4f24-881e-b5dd33ecbadd",
+   "frente": "imagens/c73d1406-b75b-4f24-881e-b5dd33ecbadd/front.png",
+   "verso": null,
+   "nome": "Primordial Diluviano",
+   "tipo": "Criatura — Avatar",
+   "texto": "Voar\nQuando Primordial Diluviano entra no campo de batalha, para cada oponente, você pode conjurar até um card de mágica instantânea ou de feitiço alvo do cemitério daquele jogador sem pagar seu custo de mana. Se uma mágica conjurada dessa maneira seria colocada num cemitério neste turno, em vez disso, exile-a.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Oblivion Sower": {
+  "en": {
+   "id": "82bc94b5-8c22-4120-87ba-6125c62b271b",
+   "frente": "imagens/82bc94b5-8c22-4120-87ba-6125c62b271b/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "5571569c-2bad-4bee-8eaf-14d5a569b011",
+   "frente": "imagens/5571569c-2bad-4bee-8eaf-14d5a569b011/front.png",
+   "verso": null,
+   "nome": "Semeador do Oblívio",
+   "tipo": "Criatura — Eldrazi",
+   "texto": "Quando você conjura Semeador do Oblívio, o oponente alvo exila os quatro cards do topo do próprio grimório. Depois, você pode colocar qualquer número de cards de terreno exilados daquele jogador no campo de batalha sob o seu controle.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Silent-Blade Oni": {
+  "en": {
+   "id": "7ae71886-9e93-4d1c-b8f7-da7aafa83cf9",
+   "frente": "imagens/7ae71886-9e93-4d1c-b8f7-da7aafa83cf9/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "f26a9d25-bc49-4d03-afd6-542eb9e03994",
+   "frente": "imagens/f26a9d25-bc49-4d03-afd6-542eb9e03994/front.png",
+   "verso": null,
+   "nome": "Oni da Lâmina Silenciosa",
+   "tipo": "Criatura — Demônio Ninja",
+   "texto": "Ninjutsu {4}{U}{B}, ({4}{U}{B}, devolva para a mão um atacante que você controla que não tenha sido bloqueado: Coloque este card no campo de batalha de sua mão, virado e atacando.)\nToda vez que Oni da Lâmina Silenciosa causa dano de combate a um jogador, olhe a mão daquele jogador. Você pode conjurar uma mágica dentre aqueles cards sem pagar seu custo de mana.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Prismatic Lens": {
+  "en": {
+   "id": "74e8d3a8-5937-4108-b2fe-23e049379345",
+   "frente": "imagens/74e8d3a8-5937-4108-b2fe-23e049379345/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "c8474b78-8829-44f8-8b32-69e2a0f45b15",
+   "frente": null,
+   "verso": null,
+   "nome": "Lente Prismática",
+   "tipo": "Artefato",
+   "texto": "{T}: Adicione {C}.\n{1}, {T}: Adicione um mana de qualquer cor.",
+   "faces": null,
+   "reserva": true
+  }
+ },
+ "Trygon Predator": {
+  "en": {
+   "id": "c89b3895-de35-48a4-acc0-e0056fa760bf",
+   "frente": "imagens/c89b3895-de35-48a4-acc0-e0056fa760bf/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "98d07504-61f3-4c47-9b1d-75bdc1ed0fcf",
+   "frente": "imagens/98d07504-61f3-4c47-9b1d-75bdc1ed0fcf/front.png",
+   "verso": null,
+   "nome": "Arraia Predadora",
+   "tipo": "Criatura — Besta",
+   "texto": "Voar\nToda vez que Arraia Predadora causa dano de combate a um jogador, você pode destruir o artefato ou encantamento alvo que aquele jogador controla.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Void Attendant": {
+  "en": {
+   "id": "b3ccc905-bd43-4925-8eb9-fb9abcc81e29",
+   "frente": "imagens/b3ccc905-bd43-4925-8eb9-fb9abcc81e29/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "c5703841-6aa3-4f0a-954e-7f083acaaa62",
+   "frente": "imagens/c5703841-6aa3-4f0a-954e-7f083acaaa62/front.png",
+   "verso": null,
+   "nome": "Assistente do Vazio",
+   "tipo": "Criatura — Eldrazi Processador",
+   "texto": "Desprovido (Este card não tem cor.){1}{G}, Coloque um card exilado de um oponente no cemitério dele: Coloque no campo de batalha uma ficha de criatura incolor 1/1 do tipo Rebento Eldrazi. Ela tem \"Sacrifique esta criatura: Adicione {1} à sua reserva de mana.\".",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Flooded Grove": {
+  "en": {
+   "id": "5a1c7863-c831-452d-ab6d-818e68491b05",
+   "frente": "imagens/5a1c7863-c831-452d-ab6d-818e68491b05/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "5ce491e0-30ae-4308-bfba-50052da13da2",
+   "frente": "imagens/5ce491e0-30ae-4308-bfba-50052da13da2/front.png",
+   "verso": null,
+   "nome": "Bosque Alagado",
+   "tipo": "Terreno",
+   "texto": "{T}: Adicione {C}.\n{G/U}, {T}: Adicione {G}{G}, {G}{U} ou {U}{U}.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Cold-Eyed Selkie": {
+  "en": {
+   "id": "8c39dc54-611e-48a8-adba-9cc31afa87d0",
+   "frente": "imagens/8c39dc54-611e-48a8-adba-9cc31afa87d0/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "8fcb9624-8f38-4f62-973b-fc4916e7990a",
+   "frente": "imagens/8fcb9624-8f38-4f62-973b-fc4916e7990a/front.png",
+   "verso": null,
+   "nome": "Selkie Olhos-frios",
+   "tipo": "Criatura — Tritão Ladino",
+   "texto": "Travessia de Ilha (Esta criatura não poderá ser bloqueada enquanto o jogador defensor controlar uma Ilha.)\nToda vez que Selkie Olhos-frios causa dano de combate a um jogador, você pode comprar aquela quantidade de cards.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Darkslick Shores": {
+  "en": {
+   "id": "c49305d1-ac95-43ea-b02d-c3c7205bcda6",
+   "frente": "imagens/c49305d1-ac95-43ea-b02d-c3c7205bcda6/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "fa45e117-ecf4-4f72-af99-68a1ff9d0bd6",
+   "frente": "imagens/fa45e117-ecf4-4f72-af99-68a1ff9d0bd6/front.png",
+   "verso": null,
+   "nome": "Litorais de Mancha Negra",
+   "tipo": "Terreno",
+   "texto": "Litorais de Mancha Negra entra no campo de batalha virado, a menos que você controle dois outros terrenos ou menos.\n{T}: Adicione {U} ou {B}.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Shadowmage Infiltrator": {
+  "en": {
+   "id": "2ac920d7-013f-40ad-b79f-0bb59062d42a",
+   "frente": "imagens/2ac920d7-013f-40ad-b79f-0bb59062d42a/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "69d69e45-89c4-4d8e-ab08-c9e5e08e85af",
+   "frente": "imagens/69d69e45-89c4-4d8e-ab08-c9e5e08e85af/front.png",
+   "verso": null,
+   "nome": "Mago das Sombras Infiltrador",
+   "tipo": "Criatura — Humano Mago",
+   "texto": "Amedrontar (Esta criatura só pode ser bloqueada por criaturas pretas e/ou criaturas artefato.)\nToda vez que Mago das Sombras Infiltrador causa dano de combate a um jogador, você pode comprar um card.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Fallen Shinobi": {
+  "en": {
+   "id": "979076a7-313f-4227-a4c3-548e86997e0a",
+   "frente": "imagens/979076a7-313f-4227-a4c3-548e86997e0a/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "91dfadfb-d232-4be9-9040-f9f62c7b3f89",
+   "frente": "imagens/91dfadfb-d232-4be9-9040-f9f62c7b3f89/front.png",
+   "verso": null,
+   "nome": "Shinobi Caído",
+   "tipo": "Criatura — Zumbi Ninja",
+   "texto": "Ninjutsu {2}{U}{B} ({2}{U}{B}, devolva para a mão um atacante que você controla que não tenha sido bloqueado: Coloque este card no campo de batalha de sua mão, virado e atacando.)\nToda vez que Shinobi Caído causa dano de combate a um jogador, aquele jogador exila os dois cards do topo do próprio grimório. Até o final do turno, você pode jogar aqueles cards sem pagar seus custos de mana.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Cazur, Ruthless Stalker": {
+  "en": {
+   "id": "6ee4fda8-07cd-4091-8850-a6925080b464",
+   "frente": "imagens/6ee4fda8-07cd-4091-8850-a6925080b464/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "d7b70226-e4b5-4645-bc4f-e954b01e98f8",
+   "frente": "imagens/d7b70226-e4b5-4645-bc4f-e954b01e98f8/front.png",
+   "verso": null,
+   "nome": "Cazur, Espreitador Impiedoso",
+   "tipo": "Criatura Lendária — Humano Guerreiro",
+   "texto": "Parceiro de Ukkima, Sombra Espreitadora (Quando esta criatura entra no campo de batalha, o jogador alvo pode colocar Ukkima na própria mão do próprio cemitério e, em seguida, embaralhar.)\nToda vez que uma criatura que você controla causar dano de combate a um jogador, coloque um marcador +1/+1 naquela criatura.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Ukkima, Stalking Shadow": {
+  "en": {
+   "id": "c66b452b-9c49-4c58-9966-6bafbfa34c36",
+   "frente": "imagens/c66b452b-9c49-4c58-9966-6bafbfa34c36/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "c72c173d-715f-43cc-81b8-07dd09720b7c",
+   "frente": "imagens/c72c173d-715f-43cc-81b8-07dd09720b7c/front.png",
+   "verso": null,
+   "nome": "Ukkima, Sombra Espreitadora",
+   "tipo": "Criatura Lendária — Baleia Lobo",
+   "texto": "Parceiro de Cazur, Espreitador Impiedoso (Quando esta criatura entra no campo de batalha, o jogador alvo pode colocar Cazur na própria mão do próprio cemitério e, em seguida, embaralhar.)\nUkkima, Sombra Espreitadora, não pode ser bloqueada.\nQuando Ukkima deixa o campo de batalha, ela causa X pontos de dano ao jogador alvo e você ganha X pontos de vida, sendo X o poder de Ukkima.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Villainous Wealth": {
+  "en": {
+   "id": "a467072c-99d9-4013-8d28-607a06cf50fe",
+   "frente": "imagens/a467072c-99d9-4013-8d28-607a06cf50fe/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "19bb8704-3c17-4ece-b988-33b3e01254c4",
+   "frente": "imagens/19bb8704-3c17-4ece-b988-33b3e01254c4/front.png",
+   "verso": null,
+   "nome": "Riqueza Abominável",
+   "tipo": "Feitiço",
+   "texto": "O oponente alvo exila X cards do topo do próprio grimório. Você pode conjurar qualquer número de mágicas com valor de mana igual ou inferior a X dentre eles sem pagar seus custos de mana.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Edric, Spymaster of Trest": {
+  "en": {
+   "id": "22d6a4c9-4bdd-4e70-8481-95260e6aa7ab",
+   "frente": "imagens/22d6a4c9-4bdd-4e70-8481-95260e6aa7ab/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "0b1f76d8-59e4-4955-8a6b-21339f5732c6",
+   "frente": "imagens/0b1f76d8-59e4-4955-8a6b-21339f5732c6/front.png",
+   "verso": null,
+   "nome": "Edric, Espião-mestre de Trest",
+   "tipo": "Criatura Lendária — Elfo Ladino",
+   "texto": "Toda vez que uma criatura causa dano de combate a um de seus oponentes, seu controlador pode comprar um card.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Triton Shorestalker": {
+  "en": {
+   "id": "511bff25-3213-42c4-8abd-9eda49f8dc96",
+   "frente": "imagens/511bff25-3213-42c4-8abd-9eda49f8dc96/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "6c9d872c-850f-436e-a4ae-57d92484a801",
+   "frente": "imagens/6c9d872c-850f-436e-a4ae-57d92484a801/front.png",
+   "verso": null,
+   "nome": "Talassido Vigia-costa",
+   "tipo": "Criatura — Tritão Ladino",
+   "texto": "Talassido Vigia-costa não pode ser bloqueado.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Stolen Goods": {
+  "en": {
+   "id": "495c8498-a446-4617-ae5e-f09ef63c7cb7",
+   "frente": "imagens/495c8498-a446-4617-ae5e-f09ef63c7cb7/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "462d3407-c056-467b-ac57-20d44cca8f2d",
+   "frente": "imagens/462d3407-c056-467b-ac57-20d44cca8f2d/front.png",
+   "verso": null,
+   "nome": "Mercadoria Roubada",
+   "tipo": "Feitiço",
+   "texto": "O oponente alvo exila cards do topo do próprio grimório até exilar um card que não seja um terreno. Até o final do turno, você pode conjurar aquele card sem pagar seu custo de mana.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Plasm Capture": {
+  "en": {
+   "id": "11ee15d5-1c93-4c30-911f-32e2aabf020e",
+   "frente": "imagens/11ee15d5-1c93-4c30-911f-32e2aabf020e/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "230485d9-fac7-4116-80b5-6f0726c1ca59",
+   "frente": "imagens/230485d9-fac7-4116-80b5-6f0726c1ca59/front.png",
+   "verso": null,
+   "nome": null,
+   "tipo": null,
+   "texto": null,
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Curse of the Swine": {
+  "en": {
+   "id": "c423ecbc-518e-4ff9-ac0c-38c8eec66b54",
+   "frente": "imagens/c423ecbc-518e-4ff9-ac0c-38c8eec66b54/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "ed9da466-e6c8-40c3-bbf2-8bfab6975f76",
+   "frente": "imagens/ed9da466-e6c8-40c3-bbf2-8bfab6975f76/front.png",
+   "verso": null,
+   "nome": "Maldição do Suíno",
+   "tipo": "Feitiço",
+   "texto": "Exile X criaturas alvo. Para cada criatura exilada desta forma, seu controlador cria uma ficha de criatura Javali verde 2/2.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Thieving Skydiver": {
+  "en": {
+   "id": "06996ff1-7f57-4e73-940a-a58c4482cadd",
+   "frente": "imagens/06996ff1-7f57-4e73-940a-a58c4482cadd/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "877457f8-1e98-4fd0-b706-76c292570810",
+   "frente": "imagens/877457f8-1e98-4fd0-b706-76c292570810/front.png",
+   "verso": null,
+   "nome": "Mergulhadora Celeste Ladra",
+   "tipo": "Criatura — Tritão Ladino",
+   "texto": "Reforçar {X}. X não pode ser igual a 0. (Você pode pagar um custo adicional de {X} ao conjurar esta mágica.)\nVoar\nQuando Mergulhadora Celeste Ladra entrar no campo de batalha, se ela tiver sido reforçada, ganhe o controle do artefato alvo com valor de mana igual ou inferior a X. Se aquele artefato for um Equipamento, anexe-o a Mergulhadora Celeste Ladra.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Bladegriff Prototype": {
+  "en": {
+   "id": "0093bdcf-6626-40ab-9b87-8ab9e4a306a4",
+   "frente": "imagens/0093bdcf-6626-40ab-9b87-8ab9e4a306a4/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "3ae2b27f-21a4-4408-bbab-29589942e331",
+   "frente": "imagens/3ae2b27f-21a4-4408-bbab-29589942e331/front.png",
+   "verso": null,
+   "nome": "Protótipo de Laminogrifo",
+   "tipo": "Criatura Artefato — Grifo",
+   "texto": "Voar\nToda vez que Protótipo de Laminogrifo causar dano de combate a um jogador, destrua a permanente alvo que não seja um terreno que um de seus oponentes controla à escolha daquele jogador.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Sage of the Beyond": {
+  "en": {
+   "id": "226a4c5d-bf49-40d8-a7a4-341c18029634",
+   "frente": "imagens/226a4c5d-bf49-40d8-a7a4-341c18029634/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "38eb358c-02ce-4cb7-aa12-7e17d7e74d29",
+   "frente": "imagens/38eb358c-02ce-4cb7-aa12-7e17d7e74d29/front.png",
+   "verso": null,
+   "nome": "Sábio do Além",
+   "tipo": "Criatura — Espírito Gigante",
+   "texto": "Voar\nAs mágicas que você conjurar de qualquer lugar que não seja sua mão custam {2} a menos para serem conjuradas.\nProfetizar {4}{U} (Durante o seu turno, você pode pagar {2} e exilar este card de sua mão voltado para baixo. Conjure-o em um turno posterior pagando seu custo de profetizar.)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Baleful Mastery": {
+  "en": {
+   "id": "579e20e7-1395-4a6c-a836-ae3419fc8808",
+   "frente": "imagens/579e20e7-1395-4a6c-a836-ae3419fc8808/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "11ed3089-12de-4f05-b356-f4032b87d943",
+   "frente": "imagens/11ed3089-12de-4f05-b356-f4032b87d943/front.png",
+   "verso": null,
+   "nome": "Maestria Funesta",
+   "tipo": "Mágica Instantânea",
+   "texto": "Você pode pagar {1}{B} em vez de pagar o custo de mana desta mágica.\nSe o custo de {1}{B} foi pago, um oponente compra um card.\nExile a criatura ou o planeswalker alvo.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Cunning Rhetoric": {
+  "en": {
+   "id": "4a163794-db93-4cf6-a2ea-1af288109dc1",
+   "frente": "imagens/4a163794-db93-4cf6-a2ea-1af288109dc1/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "235ba1e8-2988-4762-a468-724c4d674177",
+   "frente": "imagens/235ba1e8-2988-4762-a468-724c4d674177/front.png",
+   "verso": null,
+   "nome": "Retórica Sagaz",
+   "tipo": "Encantamento",
+   "texto": "Toda vez que um oponente atacar você e/ou um ou mais planeswalkers que você controla, exile o card do topo do grimório daquele jogador. Você pode jogar aquele card enquanto ele permanecer exilado, e pode gastar mana como se fosse de qualquer cor para conjurá-lo.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Extract Brain": {
+  "en": {
+   "id": "8c3a4a44-5e75-42a4-8140-2105c2becff9",
+   "frente": "imagens/8c3a4a44-5e75-42a4-8140-2105c2becff9/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "a394cb81-1a29-4405-8812-842c394fdaf9",
+   "frente": "imagens/a394cb81-1a29-4405-8812-842c394fdaf9/front.png",
+   "verso": null,
+   "nome": "Extrair Cérebro",
+   "tipo": "Feitiço",
+   "texto": "O oponente alvo escolhe X cards da própria mão. Olhe aqueles cards. Você pode conjurar uma mágica dentre eles sem pagar seu custo de mana.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Siphon Insight": {
+  "en": {
+   "id": "28a6b23f-a854-469a-9b06-119507dd9d42",
+   "frente": "imagens/28a6b23f-a854-469a-9b06-119507dd9d42/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "45ed0d4a-8c35-4574-a20b-212676d6eb33",
+   "frente": "imagens/45ed0d4a-8c35-4574-a20b-212676d6eb33/front.png",
+   "verso": null,
+   "nome": "Sugar Conhecimento",
+   "tipo": "Mágica Instantânea",
+   "texto": "Olhe os dois cards do topo do grimório do oponente alvo. Exile um deles com a face voltada para baixo e coloque o outro no fundo daquele grimório. Você poderá jogar o card exilado enquanto ele permanecer exilado, e poderá gastar mana como se fosse de qualquer cor para conjurar aquela mágica.\nRecapitular {1}{U}{B}",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Brainstealer Dragon": {
+  "en": {
+   "id": "884d4eea-77c0-4b78-bb83-3f855cc77298",
+   "frente": "imagens/884d4eea-77c0-4b78-bb83-3f855cc77298/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "3bef038b-6f40-40df-b160-10faf5b01c57",
+   "frente": "imagens/3bef038b-6f40-40df-b160-10faf5b01c57/front.png",
+   "verso": null,
+   "nome": "Dragão Ladrão de Cérebros",
+   "tipo": "Criatura — Dragão Horror",
+   "texto": "Voar\nNo início de sua etapa final, exile o card do topo do grimório de cada oponente. Você poderá jogar aqueles cards enquanto eles permanecerem exilados. Se você conjurar uma mágica dessa forma, você poderá gastar mana como se fosse de qualquer cor para conjurá-la.\nToda vez que uma permanente não de terreno que um oponente possui entra no campo de batalha sob seu controle, aquele oponente perde uma quantidade de pontos de vida igual ao valor de mana daquela permanente.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Overflowing Basin": {
+  "en": {
+   "id": "3fc2f320-18e1-4380-a1d7-d8c1e3ca5837",
+   "frente": "imagens/3fc2f320-18e1-4380-a1d7-d8c1e3ca5837/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Doc Aurlock, Grizzled Genius": {
+  "en": {
+   "id": "6fc27b30-8c8e-434c-a72c-e1d409efc1ae",
+   "frente": "imagens/6fc27b30-8c8e-434c-a72c-e1d409efc1ae/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "53bbe1f8-9e00-43e6-8790-d43796c8edaa",
+   "frente": "imagens/53bbe1f8-9e00-43e6-8790-d43796c8edaa/front.png",
+   "verso": null,
+   "nome": "Dr Aurock, Gênio Grisalho",
+   "tipo": "Criatura Lendária — Urso Druida",
+   "texto": "As mágicas que você conjura de seu cemitério ou do exílio custam {2} a menos para serem conjuradas.\nTramar cards de sua mão custa {2} a menos.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Thieving Varmint": {
+  "en": {
+   "id": "8e66d567-9f06-47c1-aa9f-f29ba5e9906a",
+   "frente": "imagens/8e66d567-9f06-47c1-aa9f-f29ba5e9906a/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Heartless Conscription": {
+  "en": {
+   "id": "52fc4862-b57b-42d7-be8b-d9915a0bb4fd",
+   "frente": "imagens/52fc4862-b57b-42d7-be8b-d9915a0bb4fd/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Orochi Soul-Reaver": {
+  "en": {
+   "id": "ec8f372a-d8c7-4f5d-a91d-ec7e5eb17104",
+   "frente": "imagens/ec8f372a-d8c7-4f5d-a91d-ec7e5eb17104/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Smirking Spelljacker": {
+  "en": {
+   "id": "01d1e394-1b0c-4b40-ba85-f55973703d41",
+   "frente": "imagens/01d1e394-1b0c-4b40-ba85-f55973703d41/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Arcane Heist": {
+  "en": {
+   "id": "3ceb13f4-ac9e-4ddd-9170-545f8d37b87a",
+   "frente": "imagens/3ceb13f4-ac9e-4ddd-9170-545f8d37b87a/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Tower Winder": {
+  "en": {
+   "id": "97bf6a6a-e377-4f42-84dd-baf6055c0fb1",
+   "frente": "imagens/97bf6a6a-e377-4f42-84dd-baf6055c0fb1/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Dream-Thief's Bandana": {
+  "en": {
+   "id": "dccdb6cc-dfad-4c7e-9550-3dd12f3e9c79",
+   "frente": "imagens/dccdb6cc-dfad-4c7e-9550-3dd12f3e9c79/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Savvy Trader": {
+  "en": {
+   "id": "118f25cf-faa6-4d60-a156-27bf7aedf7eb",
+   "frente": "imagens/118f25cf-faa6-4d60-a156-27bf7aedf7eb/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Nashi, Moon Sage's Scion": {
+  "en": {
+   "id": "1e62de3b-6a41-43e3-93ad-9a1e3894be3b",
+   "frente": "imagens/1e62de3b-6a41-43e3-93ad-9a1e3894be3b/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "72917525-5508-46ee-bfd5-adc491e384d1",
+   "frente": "imagens/72917525-5508-46ee-bfd5-adc491e384d1/front.png",
+   "verso": null,
+   "nome": "Nashi, Herdeiro da Sábia da Lua",
+   "tipo": "Criatura Lendária — Rato Ninja",
+   "texto": "Ninjutsu {3}{B} ({3}{B}, devolva para a mão um atacante não bloqueado que você controla: Coloque este card no campo de batalha de sua mão, virado e atacando.)\nToda vez que Nashi, Herdeiro da Sábia da Lua, causar dano de combate a um jogador, exile o card do topo do grimório de cada jogador. Até o final do turno, você pode jogar um daqueles cards. Se você conjurar uma mágica dessa forma, pague uma quantidade de pontos de vida igual ao valor de mana dela, em vez de pagar seu custo de mana.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Felix Five-Boots": {
+  "en": {
+   "id": "6800e935-d327-464c-ab88-7c0193827da3",
+   "frente": "imagens/6800e935-d327-464c-ab88-7c0193827da3/front.png",
+   "verso": null
+  },
+  "pt": null
  }
 }

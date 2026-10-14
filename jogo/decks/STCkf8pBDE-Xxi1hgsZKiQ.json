@@ -1,0 +1,292 @@
+{
+ "formato": 1,
+ "id": "STCkf8pBDE-Xxi1hgsZKiQ",
+ "ordem": 105,
+ "nome": "Calling All Angels (Foundations Commander Precon Decklist)",
+ "link": "https://moxfield.com/decks/STCkf8pBDE-Xxi1hgsZKiQ",
+ "importadoEm": "2026-10-14T17:50:13.514Z",
+ "verificadoEm": "2026-10-14T17:50:13.514Z",
+ "atual": null,
+ "preparacao": {
+  "comandante": "Giada, Font of Hope",
+  "cartas": [
+   {
+    "nome": "Plains",
+    "quantidade": 32
+   },
+   {
+    "nome": "Arcane Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Heraldic Banner",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tome of Legends",
+    "quantidade": 1
+   },
+   {
+    "nome": "Secluded Steppe",
+    "quantidade": 1
+   },
+   {
+    "nome": "Angelic Destiny",
+    "quantidade": 1
+   },
+   {
+    "nome": "Grasp of Fate",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mind Stone",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Swords to Plowshares",
+    "quantidade": 1
+   },
+   {
+    "nome": "Temple of the False God",
+    "quantidade": 1
+   },
+   {
+    "nome": "Radiant Fountain",
+    "quantidade": 1
+   },
+   {
+    "nome": "Speaker of the Heavens",
+    "quantidade": 1
+   },
+   {
+    "nome": "Angel of Vitality",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bishop of Wings",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sephara, Sky's Blade",
+    "quantidade": 1
+   },
+   {
+    "nome": "Commander's Sphere",
+    "quantidade": 1
+   },
+   {
+    "nome": "Swiftfoot Boots",
+    "quantidade": 1
+   },
+   {
+    "nome": "Endless Atlas",
+    "quantidade": 1
+   },
+   {
+    "nome": "Reya Dawnbringer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Marble Diamond",
+    "quantidade": 1
+   },
+   {
+    "nome": "Day of Judgment",
+    "quantidade": 1
+   },
+   {
+    "nome": "Angel of Finality",
+    "quantidade": 1
+   },
+   {
+    "nome": "Emeria Shepherd",
+    "quantidade": 1
+   },
+   {
+    "nome": "Always Watching",
+    "quantidade": 1
+   },
+   {
+    "nome": "Metallic Mimic",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sunblast Angel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Segovian Angel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cleansing Nova",
+    "quantidade": 1
+   },
+   {
+    "nome": "Austere Command",
+    "quantidade": 1
+   },
+   {
+    "nome": "Valorous Stance",
+    "quantidade": 1
+   },
+   {
+    "nome": "Serra Avenger",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bonders' Enclave",
+    "quantidade": 1
+   },
+   {
+    "nome": "Defy Death",
+    "quantidade": 1
+   },
+   {
+    "nome": "Herald of War",
+    "quantidade": 1
+   },
+   {
+    "nome": "Seraph Sanctuary",
+    "quantidade": 1
+   },
+   {
+    "nome": "Seraph of the Sword",
+    "quantidade": 1
+   },
+   {
+    "nome": "Angelic Field Marshal",
+    "quantidade": 1
+   },
+   {
+    "nome": "Archangel of Tithes",
+    "quantidade": 1
+   },
+   {
+    "nome": "Linvala, the Preserver",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lyra Dawnbringer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Invoke the Divine",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vanquisher's Banner",
+    "quantidade": 1
+   },
+   {
+    "nome": "Court of Grace",
+    "quantidade": 1
+   },
+   {
+    "nome": "War Room",
+    "quantidade": 1
+   },
+   {
+    "nome": "Starnheim Aspirant",
+    "quantidade": 1
+   },
+   {
+    "nome": "Youthful Valkyrie",
+    "quantidade": 1
+   },
+   {
+    "nome": "Righteous Valkyrie",
+    "quantidade": 1
+   },
+   {
+    "nome": "Secret Rendezvous",
+    "quantidade": 1
+   },
+   {
+    "nome": "Angel of the Ruins",
+    "quantidade": 1
+   },
+   {
+    "nome": "Thraben Watcher",
+    "quantidade": 1
+   },
+   {
+    "nome": "Search the Premises",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fateful Absence",
+    "quantidade": 1
+   },
+   {
+    "nome": "Inspiring Overseer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Angelic Sleuth",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cut a Deal",
+    "quantidade": 1
+   },
+   {
+    "nome": "Destroy Evil",
+    "quantidade": 1
+   },
+   {
+    "nome": "Norn's Choirmaster",
+    "quantidade": 1
+   },
+   {
+    "nome": "Firemane Commando",
+    "quantidade": 1
+   },
+   {
+    "nome": "Metropolis Reformer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Wojek Investigator",
+    "quantidade": 1
+   },
+   {
+    "nome": "Merchant of Truth",
+    "quantidade": 1
+   },
+   {
+    "nome": "Patchwork Banner",
+    "quantidade": 1
+   },
+   {
+    "nome": "Exorcise",
+    "quantidade": 1
+   },
+   {
+    "nome": "Herald of Eternal Dawn",
+    "quantidade": 1
+   },
+   {
+    "nome": "Exemplar of Light",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vanguard Seraph",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dazzling Angel",
+    "quantidade": 1
+   }
+  ],
+  "origem": {
+   "versao": 0,
+   "atualizadoEm": "2026-09-28T20:58:48.883Z"
+  },
+  "desde": "2026-10-14T17:50:13.514Z"
+ }
+}

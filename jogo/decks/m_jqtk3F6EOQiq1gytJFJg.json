@@ -1,0 +1,292 @@
+{
+ "formato": 1,
+ "id": "m_jqtk3F6EOQiq1gytJFJg",
+ "ordem": 106,
+ "nome": "Tramplesaurus Rex (Foundations Commander Precon Decklist)",
+ "link": "https://moxfield.com/decks/m_jqtk3F6EOQiq1gytJFJg",
+ "importadoEm": "2026-10-14T17:50:40.066Z",
+ "verificadoEm": "2026-10-14T17:50:40.066Z",
+ "atual": null,
+ "preparacao": {
+  "comandante": "Ghalta, Primal Hunger",
+  "cartas": [
+   {
+    "nome": "Forest",
+    "quantidade": 32
+   },
+   {
+    "nome": "Arasta of the Endless Web",
+    "quantidade": 1
+   },
+   {
+    "nome": "Kenrith's Transformation",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tranquil Thicket",
+    "quantidade": 1
+   },
+   {
+    "nome": "Beast Within",
+    "quantidade": 1
+   },
+   {
+    "nome": "Birds of Paradise",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dungrove Elder",
+    "quantidade": 1
+   },
+   {
+    "nome": "Harmonize",
+    "quantidade": 1
+   },
+   {
+    "nome": "Llanowar Elves",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rhonas's Monument",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rogue's Passage",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shamanic Revelation",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Thrashing Brontodon",
+    "quantidade": 1
+   },
+   {
+    "nome": "Elder Gargaroth",
+    "quantidade": 1
+   },
+   {
+    "nome": "Garruk's Uprising",
+    "quantidade": 1
+   },
+   {
+    "nome": "Scavenging Ooze",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ripjaw Raptor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Commander's Sphere",
+    "quantidade": 1
+   },
+   {
+    "nome": "Swiftfoot Boots",
+    "quantidade": 1
+   },
+   {
+    "nome": "Whiptongue Hydra",
+    "quantidade": 1
+   },
+   {
+    "nome": "Colossal Majesty",
+    "quantidade": 1
+   },
+   {
+    "nome": "Elemental Bond",
+    "quantidade": 1
+   },
+   {
+    "nome": "Garruk's Packleader",
+    "quantidade": 1
+   },
+   {
+    "nome": "Overwhelming Stampede",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fyndhorn Elves",
+    "quantidade": 1
+   },
+   {
+    "nome": "Elvish Mystic",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mosswort Bridge",
+    "quantidade": 1
+   },
+   {
+    "nome": "Managorger Hydra",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gigantosaurus",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ilysian Caryatid",
+    "quantidade": 1
+   },
+   {
+    "nome": "Beast Whisperer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Scavenger Grounds",
+    "quantidade": 1
+   },
+   {
+    "nome": "Monstrous Onslaught",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rishkar, Peema Renegade",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rishkar's Expertise",
+    "quantidade": 1
+   },
+   {
+    "nome": "Challenger Troll",
+    "quantidade": 1
+   },
+   {
+    "nome": "Paradise Druid",
+    "quantidade": 1
+   },
+   {
+    "nome": "Llanowar Tribe",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rhonas the Indomitable",
+    "quantidade": 1
+   },
+   {
+    "nome": "Whisperer of the Wilds",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arachnogenesis",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ezuri's Predation",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bonders' Enclave",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ram Through",
+    "quantidade": 1
+   },
+   {
+    "nome": "Steel Leaf Champion",
+    "quantidade": 1
+   },
+   {
+    "nome": "Surrak, the Hunt Caller",
+    "quantidade": 1
+   },
+   {
+    "nome": "Yeva, Nature's Herald",
+    "quantidade": 1
+   },
+   {
+    "nome": "Goreclaw, Terror of Qal Sisma",
+    "quantidade": 1
+   },
+   {
+    "nome": "Carnage Tyrant",
+    "quantidade": 1
+   },
+   {
+    "nome": "Verdant Sun's Avatar",
+    "quantidade": 1
+   },
+   {
+    "nome": "War Room",
+    "quantidade": 1
+   },
+   {
+    "nome": "Witch's Clinic",
+    "quantidade": 1
+   },
+   {
+    "nome": "Unnatural Growth",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tamiyo's Safekeeping",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bite Down",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tangleweave Armor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Surrak and Goreclaw",
+    "quantidade": 1
+   },
+   {
+    "nome": "Pugnacious Hammerskull",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hulking Raptor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Curious Altisaur",
+    "quantidade": 1
+   },
+   {
+    "nome": "Collective Resistance",
+    "quantidade": 1
+   },
+   {
+    "nome": "Clifftop Lookout",
+    "quantidade": 1
+   },
+   {
+    "nome": "Scrapshooter",
+    "quantidade": 1
+   },
+   {
+    "nome": "Thickest in the Thicket",
+    "quantidade": 1
+   },
+   {
+    "nome": "Loot, Exuberant Explorer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Terrian, World Tyrant",
+    "quantidade": 1
+   },
+   {
+    "nome": "Regal Imperiosaur",
+    "quantidade": 1
+   }
+  ],
+  "origem": {
+   "versao": 0,
+   "atualizadoEm": "2026-09-28T20:59:04.7Z"
+  },
+  "desde": "2026-10-14T17:50:40.066Z"
+ }
+}

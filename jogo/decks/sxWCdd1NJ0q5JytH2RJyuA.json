@@ -1,0 +1,356 @@
+{
+ "formato": 1,
+ "id": "sxWCdd1NJ0q5JytH2RJyuA",
+ "ordem": 103,
+ "nome": "Squirreled Away (Bloomburrow Commander Precon Decklist)",
+ "link": "https://moxfield.com/decks/sxWCdd1NJ0q5JytH2RJyuA",
+ "importadoEm": "2026-10-14T17:44:43.704Z",
+ "verificadoEm": "2026-10-14T17:44:43.704Z",
+ "atual": null,
+ "preparacao": {
+  "comandante": "Hazel of the Rootbloom",
+  "cartas": [
+   {
+    "nome": "Forest",
+    "quantidade": 9
+   },
+   {
+    "nome": "Swamp",
+    "quantidade": 8
+   },
+   {
+    "nome": "Arasta of the Endless Web",
+    "quantidade": 1
+   },
+   {
+    "nome": "Woe Strider",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arcane Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Chittering Witch",
+    "quantidade": 1
+   },
+   {
+    "nome": "Command Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gilded Goose",
+    "quantidade": 1
+   },
+   {
+    "nome": "Barren Moor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bojuka Bog",
+    "quantidade": 1
+   },
+   {
+    "nome": "Maelstrom Pulse",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tranquil Thicket",
+    "quantidade": 1
+   },
+   {
+    "nome": "Beastmaster Ascension",
+    "quantidade": 1
+   },
+   {
+    "nome": "Evolving Wilds",
+    "quantidade": 1
+   },
+   {
+    "nome": "Jungle Hollow",
+    "quantidade": 1
+   },
+   {
+    "nome": "Plaguecrafter",
+    "quantidade": 1
+   },
+   {
+    "nome": "Putrefy",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shamanic Revelation",
+    "quantidade": 1
+   },
+   {
+    "nome": "Skullclamp",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Temple of Malady",
+    "quantidade": 1
+   },
+   {
+    "nome": "Moldervine Reclamation",
+    "quantidade": 1
+   },
+   {
+    "nome": "Exotic Orchard",
+    "quantidade": 1
+   },
+   {
+    "nome": "Golgari Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Golgari Rot Farm",
+    "quantidade": 1
+   },
+   {
+    "nome": "Terramorphic Expanse",
+    "quantidade": 1
+   },
+   {
+    "nome": "Path of Ancestry",
+    "quantidade": 1
+   },
+   {
+    "nome": "Windgrace's Judgment",
+    "quantidade": 1
+   },
+   {
+    "nome": "Idol of Oblivion",
+    "quantidade": 1
+   },
+   {
+    "nome": "Llanowar Wastes",
+    "quantidade": 1
+   },
+   {
+    "nome": "Second Harvest",
+    "quantidade": 1
+   },
+   {
+    "nome": "Squirrel Nest",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tainted Wood",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ogre Slumlord",
+    "quantidade": 1
+   },
+   {
+    "nome": "Decree of Pain",
+    "quantidade": 1
+   },
+   {
+    "nome": "Grim Backwoods",
+    "quantidade": 1
+   },
+   {
+    "nome": "Oran-Rief, the Vastwood",
+    "quantidade": 1
+   },
+   {
+    "nome": "End-Raze Forerunners",
+    "quantidade": 1
+   },
+   {
+    "nome": "Zulaport Cutthroat",
+    "quantidade": 1
+   },
+   {
+    "nome": "Twilight Mire",
+    "quantidade": 1
+   },
+   {
+    "nome": "Casualties of War",
+    "quantidade": 1
+   },
+   {
+    "nome": "Deep Forest Hermit",
+    "quantidade": 1
+   },
+   {
+    "nome": "Talisman of Resilience",
+    "quantidade": 1
+   },
+   {
+    "nome": "Wolfwillow Haven",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bastion of Remembrance",
+    "quantidade": 1
+   },
+   {
+    "nome": "Swarmyard",
+    "quantidade": 1
+   },
+   {
+    "nome": "Woodland Cemetery",
+    "quantidade": 1
+   },
+   {
+    "nome": "Poison-Tip Archer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Nadier's Nightblade",
+    "quantidade": 1
+   },
+   {
+    "nome": "Toski, Bearer of Secrets",
+    "quantidade": 1
+   },
+   {
+    "nome": "Binding the Old Gods",
+    "quantidade": 1
+   },
+   {
+    "nome": "Maskwood Nexus",
+    "quantidade": 1
+   },
+   {
+    "nome": "Necroblossom Snarl",
+    "quantidade": 1
+   },
+   {
+    "nome": "Plumb the Forbidden",
+    "quantidade": 1
+   },
+   {
+    "nome": "Beledros Witherbloom",
+    "quantidade": 1
+   },
+   {
+    "nome": "Prosperous Innkeeper",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ravenous Squirrel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Squirrel Sovereign",
+    "quantidade": 1
+   },
+   {
+    "nome": "Chatterfang, Squirrel General",
+    "quantidade": 1
+   },
+   {
+    "nome": "Chatterstorm",
+    "quantidade": 1
+   },
+   {
+    "nome": "Academy Manufactor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tireless Provisioner",
+    "quantidade": 1
+   },
+   {
+    "nome": "Chitterspitter",
+    "quantidade": 1
+   },
+   {
+    "nome": "Nested Shambler",
+    "quantidade": 1
+   },
+   {
+    "nome": "Deadly Dispute",
+    "quantidade": 1
+   },
+   {
+    "nome": "Morbid Opportunist",
+    "quantidade": 1
+   },
+   {
+    "nome": "Saw in Half",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tear Asunder",
+    "quantidade": 1
+   },
+   {
+    "nome": "Haunted Mire",
+    "quantidade": 1
+   },
+   {
+    "nome": "Skyfisher Spider",
+    "quantidade": 1
+   },
+   {
+    "nome": "Haywire Mite",
+    "quantidade": 1
+   },
+   {
+    "nome": "Viridescent Bog",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cache Grab",
+    "quantidade": 1
+   },
+   {
+    "nome": "Honored Dreyleader",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gourmand's Talent",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hazel's Brewmaster",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rootcast Apprenticeship",
+    "quantidade": 1
+   },
+   {
+    "nome": "Insatiable Frugivore",
+    "quantidade": 1
+   },
+   {
+    "nome": "Moonstone Eulogist",
+    "quantidade": 1
+   },
+   {
+    "nome": "Swarmyard Massacre",
+    "quantidade": 1
+   },
+   {
+    "nome": "Scurry of Squirrels",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sword of the Squeak",
+    "quantidade": 1
+   },
+   {
+    "nome": "Garruk, Cursed Huntsman",
+    "quantidade": 1
+   },
+   {
+    "nome": "The Odd Acorn Gang",
+    "quantidade": 1
+   }
+  ],
+  "origem": {
+   "versao": 0,
+   "atualizadoEm": "2024-10-31T17:10:32.007Z"
+  },
+  "desde": "2026-10-14T17:44:43.704Z"
+ }
+}

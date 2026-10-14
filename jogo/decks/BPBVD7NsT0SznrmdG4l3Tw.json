@@ -1,0 +1,360 @@
+{
+ "formato": 1,
+ "id": "BPBVD7NsT0SznrmdG4l3Tw",
+ "ordem": 102,
+ "nome": "Blame Game (Murders at Karlov Manor Commander Precon Decklis",
+ "link": "https://moxfield.com/decks/BPBVD7NsT0SznrmdG4l3Tw",
+ "importadoEm": "2026-10-14T17:42:28.100Z",
+ "verificadoEm": "2026-10-14T17:42:28.100Z",
+ "atual": null,
+ "preparacao": {
+  "comandante": "Nelly Borca, Impulsive Accuser",
+  "cartas": [
+   {
+    "nome": "Mountain",
+    "quantidade": 7
+   },
+   {
+    "nome": "Plains",
+    "quantidade": 9
+   },
+   {
+    "nome": "Labyrinth of Skophos",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arcane Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Castle Ardenvale",
+    "quantidade": 1
+   },
+   {
+    "nome": "Command Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tome of Legends",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ash Barrens",
+    "quantidade": 1
+   },
+   {
+    "nome": "Boros Reckoner",
+    "quantidade": 1
+   },
+   {
+    "nome": "Curse of Opulence",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mind Stone",
+    "quantidade": 1
+   },
+   {
+    "nome": "Reliquary Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rogue's Passage",
+    "quantidade": 1
+   },
+   {
+    "nome": "Seal of Cleansing",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Solemn Simulacrum",
+    "quantidade": 1
+   },
+   {
+    "nome": "Temple of the False God",
+    "quantidade": 1
+   },
+   {
+    "nome": "Thought Vessel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Wall of Omens",
+    "quantidade": 1
+   },
+   {
+    "nome": "Brash Taunter",
+    "quantidade": 1
+   },
+   {
+    "nome": "Temple of Triumph",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fiendish Duo",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fellwar Stone",
+    "quantidade": 1
+   },
+   {
+    "nome": "Anya, Merciless Angel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Boros Garrison",
+    "quantidade": 1
+   },
+   {
+    "nome": "Exotic Orchard",
+    "quantidade": 1
+   },
+   {
+    "nome": "Duelist's Heritage",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gisela, Blade of Goldnight",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rite of the Raging Storm",
+    "quantidade": 1
+   },
+   {
+    "nome": "Orzhov Advokist",
+    "quantidade": 1
+   },
+   {
+    "nome": "Steel Hellkite",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sun Titan",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ancient Stone Idol",
+    "quantidade": 1
+   },
+   {
+    "nome": "Disrupt Decorum",
+    "quantidade": 1
+   },
+   {
+    "nome": "Selfless Squire",
+    "quantidade": 1
+   },
+   {
+    "nome": "Stalking Leonin",
+    "quantidade": 1
+   },
+   {
+    "nome": "Throne of the High City",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bloodthirsty Blade",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ghostly Prison",
+    "quantidade": 1
+   },
+   {
+    "nome": "Myriad Landscape",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sevinne's Reclamation",
+    "quantidade": 1
+   },
+   {
+    "nome": "Kher Keep",
+    "quantidade": 1
+   },
+   {
+    "nome": "Soul Snare",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vow of Duty",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vow of Lightning",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sunhome, Fortress of the Legion",
+    "quantidade": 1
+   },
+   {
+    "nome": "Scavenger Grounds",
+    "quantidade": 1
+   },
+   {
+    "nome": "Winds of Rath",
+    "quantidade": 1
+   },
+   {
+    "nome": "Windborn Muse",
+    "quantidade": 1
+   },
+   {
+    "nome": "Etali, Primal Storm",
+    "quantidade": 1
+   },
+   {
+    "nome": "Darien, King of Kjeldor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gideon's Sacrifice",
+    "quantidade": 1
+   },
+   {
+    "nome": "Talisman of Conviction",
+    "quantidade": 1
+   },
+   {
+    "nome": "Agitator Ant",
+    "quantidade": 1
+   },
+   {
+    "nome": "Frontier Warmonger",
+    "quantidade": 1
+   },
+   {
+    "nome": "Martial Impetus",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shiny Impetus",
+    "quantidade": 1
+   },
+   {
+    "nome": "Elspeth, Sun's Champion",
+    "quantidade": 1
+   },
+   {
+    "nome": "Kazuul, Tyrant of the Cliffs",
+    "quantidade": 1
+   },
+   {
+    "nome": "Slayers' Stronghold",
+    "quantidade": 1
+   },
+   {
+    "nome": "Deflecting Palm",
+    "quantidade": 1
+   },
+   {
+    "nome": "Comeuppance",
+    "quantidade": 1
+   },
+   {
+    "nome": "Needle Spires",
+    "quantidade": 1
+   },
+   {
+    "nome": "Keeper of the Accord",
+    "quantidade": 1
+   },
+   {
+    "nome": "War Room",
+    "quantidade": 1
+   },
+   {
+    "nome": "Furycalm Snarl",
+    "quantidade": 1
+   },
+   {
+    "nome": "Access Tunnel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Angel of the Ruins",
+    "quantidade": 1
+   },
+   {
+    "nome": "Promise of Loyalty",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vengeful Ancestor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Smuggler's Share",
+    "quantidade": 1
+   },
+   {
+    "nome": "Spectacular Showdown",
+    "quantidade": 1
+   },
+   {
+    "nome": "Loran of the Third Path",
+    "quantidade": 1
+   },
+   {
+    "nome": "Escape Tunnel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ransom Note",
+    "quantidade": 1
+   },
+   {
+    "nome": "Trouble in Pairs",
+    "quantidade": 1
+   },
+   {
+    "nome": "Take the Bait",
+    "quantidade": 1
+   },
+   {
+    "nome": "Prisoner's Dilemma",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hot Pursuit",
+    "quantidade": 1
+   },
+   {
+    "nome": "Havoc Eater",
+    "quantidade": 1
+   },
+   {
+    "nome": "Immortal Obligation",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mob Verdict",
+    "quantidade": 1
+   },
+   {
+    "nome": "Redemption Arc",
+    "quantidade": 1
+   },
+   {
+    "nome": "Otherworldly Escort",
+    "quantidade": 1
+   },
+   {
+    "nome": "Feather, Radiant Arbiter",
+    "quantidade": 1
+   }
+  ],
+  "origem": {
+   "versao": 0,
+   "atualizadoEm": "2024-10-31T17:27:01.763Z"
+  },
+  "desde": "2026-10-14T17:42:28.100Z"
+ }
+}

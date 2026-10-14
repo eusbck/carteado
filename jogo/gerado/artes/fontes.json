@@ -671,5 +671,158 @@
   ],
   "candidatas": [],
   "baixadoEm": "2026-10-13T01:36:29.110Z"
+ },
+ "Nelly Borca, Impulsive Accuser": {
+  "imagemLocal": "2ef59aa9-f5e1-413a-869b-d287db95efd0",
+  "impressao": {
+   "id": "bc3e8132-676f-4597-b3c7-1d84b8561f24",
+   "colecao": "mkc",
+   "numero": "318",
+   "moldura": "2015 black extendedart legendary",
+   "artista": "James Ryman",
+   "url": "https://cards.scryfall.io/png/front/b/c/bc3e8132-676f-4597-b3c7-1d84b8561f24.png?1783912943"
+  },
+  "recorte": {
+   "x": 0,
+   "y": 135,
+   "largura": 744,
+   "altura": 442
+  },
+  "tamanho": [
+   744,
+   442
+  ],
+  "candidatas": [
+   "mkc/318 black extendedart+legendary",
+   "mkc/52 black legendary+inverted+etched",
+   "mkc/4 black legendary"
+  ],
+  "baixadoEm": "2026-10-14T17:42:30.838Z"
+ },
+ "Hazel of the Rootbloom": {
+  "imagemLocal": "1269ca79-907e-4932-9e77-a9a5d2929060",
+  "impressao": {
+   "id": "1269ca79-907e-4932-9e77-a9a5d2929060",
+   "colecao": "blc",
+   "numero": "2",
+   "moldura": "2015 borderless legendary inverted",
+   "artista": "Anna Pavleeva",
+   "url": "https://cards.scryfall.io/png/front/1/2/1269ca79-907e-4932-9e77-a9a5d2929060.png?1783910738"
+  },
+  "recorte": {
+   "x": 0,
+   "y": 135,
+   "largura": 744,
+   "altura": 442
+  },
+  "tamanho": [
+   744,
+   442
+  ],
+  "candidatas": [
+   "blc/2 borderless legendary+inverted"
+  ],
+  "baixadoEm": "2026-10-14T17:44:49.614Z"
+ },
+ "Kotori, Pilot Prodigy": {
+  "imagemLocal": "fea6c1c8-eff9-4b66-b96d-e23016f0bb62",
+  "impressao": {
+   "id": "b847d395-d8b4-438c-8188-6c3074af1ccd",
+   "colecao": "nec",
+   "numero": "75",
+   "moldura": "2015 black legendary extendedart",
+   "artista": "Aaron J. Riley",
+   "url": "https://cards.scryfall.io/png/front/b/8/b847d395-d8b4-438c-8188-6c3074af1ccd.png?1783923970"
+  },
+  "recorte": {
+   "x": 0,
+   "y": 135,
+   "largura": 745,
+   "altura": 442
+  },
+  "tamanho": [
+   745,
+   442
+  ],
+  "candidatas": [
+   "prm/98091 black legendary",
+   "nec/78 black legendary+inverted+etched",
+   "nec/75 black legendary+extendedart",
+   "nec/2 black legendary"
+  ],
+  "baixadoEm": "2026-10-14T17:44:54.905Z"
+ },
+ "Giada, Font of Hope": {
+  "imagemLocal": "d8fdb864-0bd6-4b4f-8777-00860eec30e8",
+  "impressao": {
+   "id": "c78b6d2e-29dd-4659-a162-3de5910ce948",
+   "colecao": "snc",
+   "numero": "442",
+   "moldura": "2015 black showcase legendary inverted",
+   "artista": "Scott M. Fischer",
+   "url": "https://cards.scryfall.io/art_crop/front/c/7/c78b6d2e-29dd-4659-a162-3de5910ce948.jpg?1783922974"
+  },
+  "recorte": "art_crop",
+  "tamanho": [
+   626,
+   457
+  ],
+  "candidatas": [
+   "snc/442 black showcase+legendary+inverted",
+   "snc/342 black showcase+legendary",
+   "snc/342 black legendary"
+  ],
+  "baixadoEm": "2026-10-14T17:50:19.037Z"
+ },
+ "Ghalta, Primal Hunger": {
+  "imagemLocal": "2c077ff0-4b6e-4513-8d8c-002f675048ea",
+  "impressao": {
+   "id": "f16c4abb-917a-4bd5-b0bc-b700611cd5b9",
+   "colecao": "spg",
+   "numero": "11",
+   "moldura": "2015 borderless legendary inverted",
+   "artista": "Joshua Raphael",
+   "url": "https://cards.scryfall.io/png/front/f/1/f16c4abb-917a-4bd5-b0bc-b700611cd5b9.png?1783913621"
+  },
+  "recorte": {
+   "x": 0,
+   "y": 135,
+   "largura": 744,
+   "altura": 442
+  },
+  "tamanho": [
+   744,
+   442
+  ],
+  "candidatas": [
+   "spg/11 borderless legendary+inverted",
+   "spg/11 borderless legendary"
+  ],
+  "baixadoEm": "2026-10-14T17:50:43.549Z"
+ },
+ "Gonti, Canny Acquisitor": {
+  "imagemLocal": "03a7e79f-625a-49ac-9cb1-e1fe5f51f5a0",
+  "impressao": {
+   "id": "03a7e79f-625a-49ac-9cb1-e1fe5f51f5a0",
+   "colecao": "otc",
+   "numero": "1",
+   "moldura": "2015 borderless legendary fullart inverted",
+   "artista": "Anna Podedworna",
+   "url": "https://cards.scryfall.io/png/front/0/3/03a7e79f-625a-49ac-9cb1-e1fe5f51f5a0.png?1783911972"
+  },
+  "recorte": {
+   "x": 0,
+   "y": 135,
+   "largura": 744,
+   "altura": 442
+  },
+  "tamanho": [
+   744,
+   442
+  ],
+  "candidatas": [
+   "otc/1 borderless legendary+fullart+inverted"
+  ],
+  "baixadoEm": "2026-10-14T17:54:43.766Z"
  }
 }

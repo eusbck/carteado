@@ -1,0 +1,304 @@
+{
+ "formato": 1,
+ "id": "QTZDODqtBUOQGIoEbEDbCQ",
+ "ordem": 104,
+ "nome": "Buckle Up (Kamigawa: Neon Dynasty Commander Precon Decklist)",
+ "link": "https://moxfield.com/decks/QTZDODqtBUOQGIoEbEDbCQ",
+ "importadoEm": "2026-10-14T17:44:47.876Z",
+ "verificadoEm": "2026-10-14T17:44:47.876Z",
+ "atual": null,
+ "preparacao": {
+  "comandante": "Kotori, Pilot Prodigy",
+  "cartas": [
+   {
+    "nome": "Island",
+    "quantidade": 15
+   },
+   {
+    "nome": "Plains",
+    "quantidade": 15
+   },
+   {
+    "nome": "Temple of Enlightenment",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arcane Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arcanist's Owl",
+    "quantidade": 1
+   },
+   {
+    "nome": "Command Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dance of the Manse",
+    "quantidade": 1
+   },
+   {
+    "nome": "Emry, Lurker of the Loch",
+    "quantidade": 1
+   },
+   {
+    "nome": "Foundry Inspector",
+    "quantidade": 1
+   },
+   {
+    "nome": "Raff Capashen, Ship's Mage",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Solemn Simulacrum",
+    "quantidade": 1
+   },
+   {
+    "nome": "Swords to Plowshares",
+    "quantidade": 1
+   },
+   {
+    "nome": "Thoughtcast",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fellwar Stone",
+    "quantidade": 1
+   },
+   {
+    "nome": "Exotic Orchard",
+    "quantidade": 1
+   },
+   {
+    "nome": "Prairie Stream",
+    "quantidade": 1
+   },
+   {
+    "nome": "Reality Shift",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hanna, Ship's Navigator",
+    "quantidade": 1
+   },
+   {
+    "nome": "Skycloud Expanse",
+    "quantidade": 1
+   },
+   {
+    "nome": "Etherium Sculptor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Master of Etherium",
+    "quantidade": 1
+   },
+   {
+    "nome": "Jace, Architect of Thought",
+    "quantidade": 1
+   },
+   {
+    "nome": "Thopter Spy Network",
+    "quantidade": 1
+   },
+   {
+    "nome": "Port Town",
+    "quantidade": 1
+   },
+   {
+    "nome": "Whirler Rogue",
+    "quantidade": 1
+   },
+   {
+    "nome": "Crush Contraband",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cataclysmic Gearhulk",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cultivator's Caravan",
+    "quantidade": 1
+   },
+   {
+    "nome": "Smuggler's Copter",
+    "quantidade": 1
+   },
+   {
+    "nome": "Skysovereign, Consul Flagship",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mirage Mirror",
+    "quantidade": 1
+   },
+   {
+    "nome": "Aeronaut Admiral",
+    "quantidade": 1
+   },
+   {
+    "nome": "Peacewalker Colossus",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sram, Senior Edificer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Spire of Industry",
+    "quantidade": 1
+   },
+   {
+    "nome": "Azorius Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dispatch",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gold Myr",
+    "quantidade": 1
+   },
+   {
+    "nome": "Silver Myr",
+    "quantidade": 1
+   },
+   {
+    "nome": "Indomitable Archangel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Myrsmith",
+    "quantidade": 1
+   },
+   {
+    "nome": "Riddlesmith",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vedalken Engineer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Parhelion II",
+    "quantidade": 1
+   },
+   {
+    "nome": "Generous Gift",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shimmer Myr",
+    "quantidade": 1
+   },
+   {
+    "nome": "Teshar, Ancestor's Apostle",
+    "quantidade": 1
+   },
+   {
+    "nome": "Weatherlight",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sai, Master Thopterist",
+    "quantidade": 1
+   },
+   {
+    "nome": "Armed and Armored",
+    "quantidade": 1
+   },
+   {
+    "nome": "Raiders' Karve",
+    "quantidade": 1
+   },
+   {
+    "nome": "Colossal Plow",
+    "quantidade": 1
+   },
+   {
+    "nome": "Surgehacker Mech",
+    "quantidade": 1
+   },
+   {
+    "nome": "Prodigy's Prototype",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mobilizer Mech",
+    "quantidade": 1
+   },
+   {
+    "nome": "Imperial Recovery Unit",
+    "quantidade": 1
+   },
+   {
+    "nome": "Kappa Cannoneer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Imposter Mech",
+    "quantidade": 1
+   },
+   {
+    "nome": "Access Denied",
+    "quantidade": 1
+   },
+   {
+    "nome": "Research Thief",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cyberdrive Awakener",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ironsoul Enforcer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Universal Surveillance",
+    "quantidade": 1
+   },
+   {
+    "nome": "Katsumasa, the Animator",
+    "quantidade": 1
+   },
+   {
+    "nome": "Swift Reconfiguration",
+    "quantidade": 1
+   },
+   {
+    "nome": "Drumbellower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Organic Extinction",
+    "quantidade": 1
+   },
+   {
+    "nome": "Aerial Surveyor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Release to Memory",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shorikai, Genesis Engine",
+    "quantidade": 1
+   }
+  ],
+  "origem": {
+   "versao": 0,
+   "atualizadoEm": "2025-01-20T23:39:10.977Z"
+  },
+  "desde": "2026-10-14T17:44:47.876Z"
+ }
+}
