@@ -90,6 +90,15 @@ function temCor(s: ManaSymbol, cores: Color[]): boolean {
   return false;
 }
 
+/** notas dos rulings gerais de devoção (CR 700.5) */
+export const DEVOCAO = {
+  semGenerico: 'regra geral: CR 700.5 — {C}, genéricos e {X} não contam (cartas/milagres.ts devocao)',
+  soCusto: 'regra geral: CR 700.5 — só o custo de mana conta, não o texto (cartas/milagres.ts devocao)',
+  hibridos: 'regra geral: CR 700.5 — híbridos, {2/B} e phyrexianos contam (cartas/milagres.ts devocao)',
+  naResolucao: 'regra geral: CR 700.5 — a devoção é contada quando é usada, com a própria permanente se ela estiver no campo',
+  aura: 'regra geral: CR 700.5 — conta o que você controla, até a sua Aura presa à permanente de outro jogador',
+};
+
 /** CR 700.5, 700.5a: devoção a uma ou duas cores; um símbolo híbrido das duas conta uma vez só (ruling de Athreos) */
 export function devocao(g: G, p: PlayerId, cores: Color[]): number {
   return controlledBy(g, p).reduce((n, id) => n + (chars(g, id).manaCost ?? []).filter((s) => temCor(s, cores)).length, 0);
