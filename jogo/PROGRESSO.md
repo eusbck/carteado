@@ -1,5 +1,79 @@
 # Progresso
 
+## Oito precons novos jogáveis: os seis em espera, Quick Draw e Miracle Worker — 14/10/2026
+
+Pedido do Caio: pôr para funcionar os seis precons importados em 14/10 que estavam em espera; no meio do trabalho,
+adicionar também Quick Draw e Miracle Worker ("um deles o sistema não deixou, ajuste isso"). Feito na branch
+`icaio/add-missing-precon-decks` (worktree `C:/Users/icaio/orca/workspaces/Magic-Commander/oarfish`), com cinco agentes
+em worktrees irmãs (`precons-wt-a` a `e`, branches `precons-a` a `e`), juntados nela. A `main` e a mesa da 8080 não
+foram tocadas; os arquivos da importação dos seis, sem commit na `main`, foram copiados iguais para esta branch.
+
+| Deck | Comandante | Cartas novas | Agente |
+| --- | --- | ---: | --- |
+| Blame Game | Nelly Borca, Impulsive Accuser | 41 | a |
+| Squirreled Away | Hazel of the Rootbloom | 47 | a |
+| Grand Larceny | Gonti, Canny Acquisitor | 53 | b |
+| Calling All Angels | Giada, Font of Hope | 41 | b |
+| Tramplesaurus Rex | Ghalta, Primal Hunger | 52 (+ Tranquil Thicket, do a) | c |
+| Buckle Up | Kotori, Pilot Prodigy | 38 | c |
+| Quick Draw | Stella Lee, Wild Card | 37 | d |
+| Miracle Worker | Aminatou, Veil Piercer | 51 | e |
+
+São 360 cartas novas, cada uma com teste e rulings. 35 decks jogáveis nesta branch.
+
+- **Importação (o deck que o sistema recusava):** o Miracle Worker vem no Moxfield com 10 esquemas do Archenemy, brinde
+  do precon de Duskmourn, e o importador recusava o deck inteiro. Os esquemas agora ficam de fora com aviso, como a
+  reserva (`servidor/catalogo/moxfield.ts`, teste em `testes/catalogo/moxfield.test.ts`). Planos (Planechase),
+  companheiro e as outras zonas continuam recusando. `decks.ts pendentes` deixou de dar o alerta falso "o motor ainda
+  não tem" para Salas, modais e aventuras (usa `LAYOUTS_SUPORTADOS` do motor).
+- **Motor (tudo aditivo, cada recurso com teste de regra em `testes/regras-*.test.ts`):**
+  - a: dano prevenido vira evento (`damagePrevented`); redirecionar dano para qualquer permanente; quem causou dano a
+    cada jogador e o que entrou no turno; habilidades de quem está virado para baixo (encobrir: resguardo {2}); X da
+    habilidade de mana pela quantidade escolhida (Hazel).
+  - b: predizer (`motor/predizer.ts`); outro jogador escolhe os alvos de um gatilho; custo próprio de carta (`custom`);
+    lote de eventos no `extraTriggers`; restrição de mana que olha a unidade; custo para bloquear (`blockCost`); turnos
+    tomados por jogador; "não pode vencer o jogo" (`cantWinGame`).
+  - c: "não pode ser bloqueada por mais de N" (`maxBlockers`); terreno adicional por efeito contínuo
+    (`extraLandPlays`); tripular com bônus (`crewPowerBonus`, ficha Pilot); presente em mágica de permanente.
+  - d: planejar (`motor/planejar.ts`); custo alternativo "sem pagar o custo de mana" (`AltCastDef.free`); exilar a
+    mágica só quando resolve (Forger's Foundry).
+  - e: milagre (`motor/milagre.ts`, pergunta só quando a primeira carta comprada no turno tem milagre); estática "não
+    pode ter" depois das outras da camada; permissão de conjurar que vale da mão; terreno do topo do grimório com
+    permissão; marcador que não pode ser removido.
+  - **Laço de ações obrigatórias (CR 104.4b, 732.4):** uma partida de bots com o Miracle Worker ficou presa: Ajani's
+    Chosen com Secret Arcade cria Gatos que são encantamentos e disparam de novo, sem fim. Agora, 500 habilidades
+    desencadeadas resolvidas seguidas na mesma etapa, sem ninguém fazer nada além de passar, empatam a partida
+    (`motor/turn.ts`, `testes/regras-laco-obrigatorio.test.ts`). Antes, na mesa, isso travaria a partida.
+- **Ajudantes de deck:** `cartas/culpa.ts` (suspeitar, encobrir, goad), `cartas/esquilos.ts` (tempestade, esvanecer,
+  Classe, Squirrel/Food), `cartas/roubo.ts` (jogar cartas de oponentes), `cartas/dinossauros.ts`, `cartas/veiculos.ts`,
+  `cartas/saque.ts` (segunda mágica no turno, cópias grátis), `cartas/milagres.ts` (Salas, devoção, topo do grimório).
+  Fichas novas no fim de `cartas/fichas.ts`. A junção por união de `cartas/fichas.test.ts` engoliu duas vezes o
+  `});` comum entre blocos de branches diferentes; corrigido à mão.
+- **Simplificações, para conferir se alguém estranhar na mesa:**
+  - Trouble in Pairs: a parte dos turnos extras não faz nada (o motor não tem turnos extras).
+  - Escolhas "secretas" (Prisoner's Dilemma, Mob Verdict): cada um escolhe na sua vez, em ordem APNAP; o resultado só
+    aparece no registro depois de todos.
+  - "Gastar mana como se fosse de qualquer cor" (Cunning Rhetoric, Siphon Insight, Brainstealer Dragon, Arvinox) usa
+    "de qualquer tipo", como as cartas de roubo que já existiam.
+  - Doc Aurlock: "tramar custa {2} a menos" fica só no texto (nenhuma carta dos decks tem tramar).
+  - Parhelion II: os Anjos atacam um oponente escolhido, não planeswalkers.
+  - Archangel of Tithes: o custo para bloquear aparece no pedido de pagamento, não na tela de bloqueio.
+  - Milagre: os bots sempre revelam e conjuram; um bot pode lançar Terminus ou Time Wipe contra o próprio campo.
+  - Terrian, World Tyrant e Gigantosaurus são mesmo sem texto (conferido no Scryfall).
+- **Verificação:**
+  - `decks.ts conferir` dos 8: 100 cartas, todas com regras, nada faltando nem sobrando em relação ao Moxfield.
+  - Bots com cada deck obrigatório: 8 partidas de 4 jogadores e 12 de 2 (aleatórios), 4 de 2 (heurísticos), 192 no
+    total, sem erro (as do Miracle Worker depois da regra do laço). Com o motor final, mais 48 partidas curtas dos seis
+    primeiros (4 de 4 jogadores e 4 de 2 por deck), sem erro.
+  - `npm run typecheck` sem erros.
+  - Suíte inteira (`vitest run --shard=i/32 --maxWorkers=2`): **incompleta**. No commit final (`bd23d6d5`), as fatias
+    1 a 3 passaram (189 arquivos, 420 testes, zero falhas) e o sistema encerrou a rodada por falta de memória na
+    fatia 4. Antes, com os seis primeiros decks juntados, as fatias 1 a 15 passaram (900 arquivos, 2119 testes, zero
+    falhas). Cada agente rodou os testes das suas cartas e dos arquivos de regra vizinhos, sem falhas. Falta rodar as
+    fatias 4 a 32 no commit final.
+- **Falta:** juntar na `main` e reiniciar a mesa da 8080 (espera o OK do Caio). A `main` tem, sem commit, os mesmos
+  arquivos da importação dos seis (iguais aos desta branch): descartá-los antes do merge.
+
 ## Decks da mesa: Lula e Bolsonaro — 12/10/2026
 
 Dois decks de sátira com cartas próprias (não vêm do Moxfield), na branch `decks/brasil`, worktree
