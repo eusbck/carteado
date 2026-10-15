@@ -278,7 +278,7 @@ export function totalSpellCost(g: G, player: PlayerId, o: GameObject, method: Ca
   // a da face escolhida; a mágica fundida custa as duas metades (CR 702.102c), o custo de mana das duas juntas
   const c = castChars(g, player, o, method);
   let cost: ManaSymbol[];
-  if (method.free || method.permission?.free) cost = [];
+  if (method.free || method.permission?.free || method.alt?.free) cost = [];
   else if (method.permission?.mana) cost = parseCost(method.permission.mana);
   else if (method.alt?.useManaCost) cost = c.manaCost ? [...c.manaCost] : []; // retraçar (CR 702.81a)
   else if (method.alt) cost = method.alt.mana === null ? [] : parseCost(method.alt.mana);
@@ -433,7 +433,7 @@ function* castInner(g: G, player: PlayerId, cardId: ObjId, method: CastMethod): 
   // X do custo impresso ou do custo alternativo (madness {X}{R}: Avacyn's Judgment)
   const manaHasX = (chars(g, spellId).manaCost ?? []).some((s) => s.k === 'X') || (!!method.alt?.mana && parseCost(method.alt.mana).some((s) => s.k === 'X'));
   const otherHasX = !!sp?.xMax || (custosAdicionais(g, player, spellId, f)).some((ac) => ac.parts.some((p) => (p.k === 'life' || p.k === 'sacrifice' || p.k === 'blight') && (p as { n: unknown }).n === 'X'));
-  const free = !!(method.free || method.permission?.free);
+  const free = !!(method.free || method.permission?.free || method.alt?.free);
   // CR 107.3b: sem pagar o custo de mana, o X do custo de mana só pode ser 0; X de custos
   // adicionais (pagar X de vida, sacrificar X…) continua sendo escolhido (ruling de Toxic Deluge)
   if ((manaHasX && !free) || (otherHasX && !manaHasX)) {

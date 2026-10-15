@@ -36,3 +36,5 @@ export type { CopyExcept, CopyValues } from './types.ts';
 export { removeEffect } from './state.ts';
 // precons-b: predizer (foretell, CR 702.143)
 export * from './predizer.ts';
+// precons-d: planejar (plot, CR 702.170)
+export * from './planejar.ts';

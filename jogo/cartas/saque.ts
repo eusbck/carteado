@@ -98,3 +98,10 @@ export const PROXIMA_MAIS_BARATA = defineAbility<StaticDef>('rule:saque:proximaM
 export function conjuradasDoTipo(g: G, p: PlayerId, tipo: 'Instant' | 'Sorcery'): number {
   return (g.state.turnStats[p]?.castLog ?? []).filter((m) => m.types.includes(tipo)).length;
 }
+
+/** "Você não tem tamanho máximo de mão pelo resto da partida" (Finale of Revelation; CR 402.2): efeito de regra com
+ *  `params: { player }` e duração permanente */
+export const SEM_LIMITE_DE_MAO = defineAbility<StaticDef>('rule:saque:semLimiteDeMao', {
+  kind: 'static',
+  rules: { noMaxHandSize: (c, p) => (c as SCtx & { params?: { player: PlayerId } }).params?.player === p },
+});
