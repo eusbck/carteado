@@ -478,3 +478,9 @@ export const EldraziScion = token('Eldrazi Scion', 'Eldrazi Scion', ['Creature']
 export const Boar22 = token('Boar', 'Boar', ['Creature'], ['Boar'], ['G'], 2, 2);
 /** Angel 3/3 branca com voar (Linvala, the Preserver) */
 export const Angel33 = token('Angel 3/3', 'Angel', ['Creature'], ['Angel'], ['W'], 3, 3, keywords('flying'));
+
+// precons-e (Miracle Worker)
+/** Glimmer 1/1 branca, criatura encantamento (Soaring Lightbringer) */
+export const Glimmer11 = token('Glimmer', 'Glimmer', ['Enchantment', 'Creature'], ['Glimmer'], ['W'], 1, 1);
+/** Horror 2/2 preta, criatura encantamento (Phenomenon Investigators) */
+export const Horror22 = token('Horror 2/2', 'Horror', ['Enchantment', 'Creature'], ['Horror'], ['B'], 2, 2);

@@ -155,6 +155,9 @@ const esperadas: Record<string, [string, string[], string[], string[], number | 
   'Eldrazi Scion': ['Eldrazi Scion', ['Creature'], ['Eldrazi', 'Scion'], [], 1, 1, []],
   'Boar': ['Boar', ['Creature'], ['Boar'], ['G'], 2, 2, []],
   'Angel 3/3': ['Angel', ['Creature'], ['Angel'], ['W'], 3, 3, ['flying']],
+  // precons-e
+  'Glimmer': ['Glimmer', ['Enchantment', 'Creature'], ['Glimmer'], ['W'], 1, 1, []],
+  'Horror 2/2': ['Horror', ['Enchantment', 'Creature'], ['Horror'], ['B'], 2, 2, []],
 };
 
 describe('Fichas: características', () => {
