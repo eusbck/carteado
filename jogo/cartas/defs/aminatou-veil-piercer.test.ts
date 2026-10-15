@@ -28,6 +28,22 @@ describe(AMINATOU, () => {
     expect(tg.find('Ghostly Prison')).not.toBeNull();
   });
 
+  it('numa Sala, o custo de milagre é o da porta escolhida menos {4}', () => {
+    // Cramped Vents {3}{B} → {B}; Access Maze {5}{B}{B} → {1}{B}{B}
+    const tg = setup({ active: 1, battlefield: [[AMINATOU, 'Swamp'], [{ name: 'Indomitable Ancients', damage: 4 }]], library: [['Cramped Vents // Access Maze'], ['Forest']] });
+    let opcoes: string[] = [];
+    tg.yes('Milagre: revelar', true).yes('Milagre: conjurar', true);
+    tg.script.push((d) => (d.kind === 'select' && d.prompt.includes('Milagre: como conjurar') ? (opcoes = d.items.map((i) => i.label), { kind: 'select', ids: [d.items[0].id] }) : null));
+    runEffect(tg, draw(tg.g, 0, 1));
+    tg.resolve();
+    expect(opcoes).toEqual(['Conjurar Cramped Vents por milagre {B}', 'Conjurar Access Maze por milagre {1}{B}{B}']);
+    expect(tg.find('Cramped Vents // Access Maze', 'stack')).not.toBeNull();
+    expect(tg.state.objects[tg.bf('Swamp')].tapped).toBe(true);
+    tg.resolve(); // a Sala entra com Cramped Vents destrancada
+    tg.resolve(); // 6 de dano na criatura do oponente
+    expect(tg.find('Indomitable Ancients')).toBeNull();
+  });
+
   it('só as cartas de encantamento na sua mão têm milagre, e só com Aminatou no campo', () => {
     const tg = setup({ battlefield: [[AMINATOU], []], hand: [['Ghostly Prison', 'Wall of Omens'], ['Ghostly Prison']] });
     expect(hasKw(tg.g, tg.find('Ghostly Prison', 'hand', 0)!, 'miracle')).toBe(true);
