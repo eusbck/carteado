@@ -50,15 +50,21 @@ São 360 cartas novas, cada uma com teste e rulings. 35 decks jogáveis nesta br
   Fichas novas no fim de `cartas/fichas.ts`. A junção por união de `cartas/fichas.test.ts` engoliu duas vezes o
   `});` comum entre blocos de branches diferentes; corrigido à mão.
 - **Simplificações, para conferir se alguém estranhar na mesa:**
-  - Trouble in Pairs: a parte dos turnos extras não faz nada (o motor não tem turnos extras).
-  - Escolhas "secretas" (Prisoner's Dilemma, Mob Verdict): cada um escolhe na sua vez, em ordem APNAP; o resultado só
-    aparece no registro depois de todos.
+  - Trouble in Pairs: a parte dos turnos extras não faz nada. Está certo: nenhuma carta do jogo dá turno extra (só a
+    Stranglehold e ela mesma falam disso, e as duas impedem).
+  - Escolhas em segredo (Prisoner's Dilemma, Mob Verdict): cada um escolhe na sua vez, em ordem APNAP, sem ver a dos
+    outros; o resultado só aparece no registro depois de todos. Os bots do Difícil para cima espiavam a escolha de
+    quem veio antes ao simular; corrigido em 15/10 (decisão com `secret`, que eles não simulam; e a escolha da
+    Stalking Leonin é sorteada nos mundos dos outros jogadores). Teste em `testes/bots-segredo-milagre.test.ts`.
   - "Gastar mana como se fosse de qualquer cor" (Cunning Rhetoric, Siphon Insight, Brainstealer Dragon, Arvinox) usa
     "de qualquer tipo", como as cartas de roubo que já existiam.
   - Doc Aurlock: "tramar custa {2} a menos" fica só no texto (nenhuma carta dos decks tem tramar).
   - Parhelion II: os Anjos atacam um oponente escolhido, não planeswalkers.
   - Archangel of Tithes: o custo para bloquear aparece no pedido de pagamento, não na tela de bloqueio.
-  - Milagre: os bots sempre revelam e conjuram; um bot pode lançar Terminus ou Time Wipe contra o próprio campo.
+  - Milagre: do Difícil para cima, o bot já comparava em simulação; Iniciante, Fácil e Intermediário conjuravam
+    sempre, até Terminus contra o próprio campo. Corrigido em 15/10: as perguntas do milagre dizem a carta (`about`) e
+    esses níveis só revelam e conjuram uma varredura quando as criaturas dos oponentes valem mais que as suas.
+    Terminus passa a contar como varredura (`bots/papeis.ts`).
   - Terrian, World Tyrant e Gigantosaurus são mesmo sem texto (conferido no Scryfall).
 - **Verificação:**
   - `decks.ts conferir` dos 8: 100 cartas, todas com regras, nada faltando nem sobrando em relação ao Moxfield.
