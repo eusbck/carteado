@@ -755,6 +755,8 @@ export function removeCounters(g: G, target: TargetRef, kind: string, n: number)
   const have = bag[kind] ?? 0;
   const rem = Math.min(have, n);
   if (rem <= 0) return 0;
+  // precons-e: "não podem ser removidos" (Fear of Sleep Paralysis)
+  if (target.kind === 'obj' && hooks(g, 'cantRemoveCounters').some((h) => h.fn(h.ctx, kind, target.id))) return 0;
   if (have - rem <= 0) delete bag[kind];
   else bag[kind] = have - rem;
   g.bump();

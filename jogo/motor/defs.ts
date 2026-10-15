@@ -263,6 +263,9 @@ export interface RuleHooks {
   cantWinGame?: (c: SCtx, player: PlayerId) => boolean;
   /** "[permanentes] não podem receber marcadores [tipo]" (CR 122): vale também para os que entram com marcadores */
   cantHaveCountersPut?: (c: SCtx, kind: string, target: { controller: PlayerId; chars: Chars }) => boolean;
+  /** precons-e: "[esses] marcadores não podem ser removidos de [permanentes]" (Fear of Sleep Paralysis): removeCounters não tira
+   *  nada; o marcador de atordoamento que não sai também não deixa a permanente desvirar (CR 122.1d, ruling) */
+  cantRemoveCounters?: (c: SCtx, kind: string, obj: ObjId) => boolean;
   /** proteção de um jogador (CR 702.16b, 702.16e): qualidades no formato de protectionMatches ('type:Creature'…) */
   playerProtection?: (c: SCtx, player: PlayerId) => unknown[];
   /** "Se você fosse perder mana não gasta, ela se torna incolor" (Omnath, Locus of the Void; CR 106.4, 500.5) */
@@ -471,6 +474,9 @@ export interface CastPermission {
   bottomInstead?: boolean;
   /** "Se uma mágica conjurada assim fosse para o seu cemitério, exile-a em vez disso" (Kess, Dissident Mage) */
   exileInstead?: boolean;
+  /** precons-e: a permissão vale também para cartas na sua mão, como mais um jeito de conjurá-las ("você pode conjurar uma
+   *  mágica da sua mão pagando vida": Access Maze, Demon of Fate's Design, One with the Multiverse) */
+  fromHand?: boolean;
 }
 
 export interface SpellDef {

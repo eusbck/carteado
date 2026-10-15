@@ -66,6 +66,11 @@ function opcoesDeFaces(g: G, p: PlayerId, id: ObjId, zone: ZoneName, out: CastOp
       push('hand', f, rotuloConjurar(def, f));
       for (const alt of altCosts(f, 'hand')) push(alt.key, f, `${alt.label}: ${nomeDaFace(def, f)}`, { label: alt.label, alt });
     }
+    // precons-e: permissões que valem também da mão (CastPermission.fromHand)
+    for (const prm of permissionsFor(g, p, id)) {
+      if (!prm.fromHand || (prm.filter && !prm.filter({ g, you: p, source: id }, id))) continue;
+      for (const f of faces) if (f !== FACE_AMBAS) push(`perm:${prm.key}`, f, `${prm.label}: ${nomeDaFace(def, f)}`, { label: prm.label, permission: prm });
+    }
   } else if (zone === 'command') {
     if (o.owner === p && o.card !== null && s.cards[o.card].isCommander) for (const f of faces) if (f !== FACE_AMBAS) push('command', f, rotuloConjurar(def, f, 'Conjurar da zona de comando:'), { label: 'conjurar da zona de comando' });
   } else {
@@ -99,6 +104,11 @@ export function castOptions(g: G, p: PlayerId): CastOption[] {
     if (zone === 'hand') {
       out.push({ obj: id, method: { key: 'hand', label: 'conjurar', zone } });
       for (const alt of f?.altCosts ?? []) if (alt.zone === 'hand' && (!alt.condition || alt.condition({ g, you: p, source: id }))) out.push({ obj: id, method: { key: alt.key, label: alt.label, zone, alt } });
+      // precons-e: permissões que valem também da mão (CastPermission.fromHand)
+      for (const prm of permissionsFor(g, p, id)) {
+        if (!prm.fromHand || (prm.filter && !prm.filter({ g, you: p, source: id }, id))) continue;
+        out.push({ obj: id, method: { key: `perm:${prm.key}`, label: prm.label, zone, permission: prm } });
+      }
     } else if (zone === 'command') {
       if (o.owner === p && o.card !== null && s.cards[o.card].isCommander) out.push({ obj: id, method: { key: 'command', label: 'conjurar da zona de comando', zone } });
     } else {
@@ -218,6 +228,11 @@ function landPlayOptions(g: G, p: PlayerId): { obj: ObjId; key: string; face: nu
       const prm = permissionsFor(g, p, id).find((x) => x.land);
       if (prm) for (const face of faces) out.push({ obj: id, key: chaveComFace(`perm:${prm.key}`, face), face });
     }
+  }
+  // precons-e: o terreno do topo do grimório com permissão de jogar dali (Verge Rangers, One with the Multiverse)
+  for (const id of s.zones.library[p].slice(0, 1)) {
+    const prm = permissionsFor(g, p, id).find((x) => x.land);
+    if (prm) for (const face of facesJogaveis(g, id)) out.push({ obj: id, key: chaveComFace(`perm:${prm.key}`, face), face });
   }
   return out;
 }
