@@ -445,6 +445,8 @@ export interface AltCastDef {
   fromCommandZone?: boolean;
   /** a permanente entra virada e atacando quem o atacante devolvido no custo atacava (sneak, CR 702.190b) */
   enterAttacking?: boolean;
+  /** "sem pagar o custo de mana" (CR 118.9): X vale 0 (107.3b); a carta planejada (CR 702.170d) */
+  free?: boolean;
 }
 
 export interface CastPermission {

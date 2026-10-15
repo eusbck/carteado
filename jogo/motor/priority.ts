@@ -15,6 +15,7 @@ import {
 } from './formatos.ts';
 import { oracle } from './oracle.ts';
 import { canForetell, CUSTO_PREDIZER, doForetell, foretellParam } from './predizer.ts';
+import { canPlot, doPlot, plotParam } from './planejar.ts';
 import { payMana } from './costs.ts';
 import { emit } from './triggers.ts';
 import type { ManaSymbol, ObjId, PlayerId, PriorityAction, ZoneName } from './types.ts';
@@ -277,6 +278,12 @@ export function legalActions(g: G, p: PlayerId): PriorityAction[] {
     if (!canForetell(g, p, id) || !canAfford(g, p, parseCost(CUSTO_PREDIZER), { purpose: { kind: 'effect' } })) continue;
     acts.push({ id: `foretell:${id}`, kind: 'special', label: `Predizer ${nameOf(g, id)} ({2}; depois conjure por ${foretellParam(g, id)})`, obj: id });
   }
+  // ação especial: planejar uma carta da mão, na sua fase principal com a pilha vazia, pagando o custo (CR 116.2k, 702.170a)
+  for (const id of s.zones.hand[p]) {
+    const custo = plotParam(g, id);
+    if (custo === null || !canPlot(g, p, id) || !canAfford(g, p, parseCost(custo), { purpose: { kind: 'effect' } })) continue;
+    acts.push({ id: `plot:${id}`, kind: 'special', label: `Planejar ${nameOf(g, id)} (${custo}; depois conjure sem pagar o custo de mana)`, obj: id });
+  }
   // ação especial: destrancar a porta de uma Sala sua, como feitiço, pagando o custo dela (CR 116.2m, 709.5e)
   if (timing.sorcery) {
     for (const id of s.zones.battlefield) {
@@ -349,6 +356,7 @@ export function* performAction(g: G, p: PlayerId, actionId: string): Gen<boolean
   if (kind === 'morph') return yield* turnFaceUpMorph(g, p, Number(a));
   if (kind === 'suspend') return yield* doSuspend(g, p, Number(a));
   if (kind === 'foretell') return yield* doForetell(g, p, Number(a));
+  if (kind === 'plot') return yield* doPlot(g, p, Number(a));
   if (kind === 'mana') {
     const key = actionId.slice(5);
     const opt = manaOptions(g, p).find((m) => m.key === key);

@@ -478,3 +478,16 @@ export const EldraziScion = token('Eldrazi Scion', 'Eldrazi Scion', ['Creature']
 export const Boar22 = token('Boar', 'Boar', ['Creature'], ['Boar'], ['G'], 2, 2);
 /** Angel 3/3 branca com voar (Linvala, the Preserver) */
 export const Angel33 = token('Angel 3/3', 'Angel', ['Creature'], ['Angel'], ['W'], 3, 3, keywords('flying'));
+
+// precons-d (Quick Draw)
+import { prowess as prowessPreconsD } from '../motor/api.ts';
+/** Elemental 1/1 vermelho (Young Pyromancer) */
+export const Elemental11Vermelho = token('Elemental 1/1 vermelho', 'Elemental', ['Creature'], ['Elemental'], ['R'], 1, 1);
+/** Bird Illusion 1/1 azul com voar (Murmuring Mystic) */
+export const BirdIllusion = token('Bird Illusion', 'Bird Illusion', ['Creature'], ['Bird', 'Illusion'], ['U'], 1, 1, keywords('flying'));
+/** Ape 3/3 verde (Pongify) */
+export const Ape33 = token('Ape', 'Ape', ['Creature'], ['Ape'], ['G'], 3, 3);
+/** Soldier 1/1 incolor, criatura artefato (Third Path Iconoclast) */
+export const SoldierArtefato = token('Soldier artefato', 'Soldier', ['Artifact', 'Creature'], ['Soldier'], [], 1, 1);
+/** Dragon Elemental 4/4 vermelho com voar e bravura (Elemental Eruption, Eris, Roar of the Storm) */
+export const DragonElemental = token('Dragon Elemental', 'Dragon Elemental', ['Creature'], ['Dragon', 'Elemental'], ['R'], 4, 4, [...keywords('flying'), ...prowessPreconsD()]);

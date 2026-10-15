@@ -38,6 +38,8 @@ function* finalDestination(g: G, o: GameObject, to: ZoneName, cause: string, dep
   if (o.zone === 'stack' && o.stack?.data.bottomInsteadOfGraveyard && dest === 'graveyard') dest = 'library';
   // "se essa mágica fosse para o cemitério, exile-a em vez disso" (Kess, Dissident Mage): só o cemitério é trocado
   if (o.zone === 'stack' && o.stack?.data.exileInsteadOfGraveyard && dest === 'graveyard') dest = 'exile';
+  // "exile essa mágica em vez de pô-la no cemitério do dono ao resolver" (Forger's Foundry): só na resolução
+  if (o.zone === 'stack' && o.stack?.data.exileAsResolves && dest === 'graveyard' && cause === 'resolve') dest = 'exile';
   if (o.zone === 'battlefield' && dest !== 'battlefield') {
     // marcador de finalidade (CR 122.1h)
     if (dest === 'graveyard' && (o.counters.finality ?? 0) > 0) dest = 'exile';
