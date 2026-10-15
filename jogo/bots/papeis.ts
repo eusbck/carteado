@@ -10,7 +10,8 @@ const PADROES: [Papel, RegExp][] = [
   ['anula', /counter target/],
   ['compra', /draw (a|two|three|four|x|\w+) cards?|draws? cards? equal/],
   ['rampa', /add \{|add (one|two|three) mana|search your library for (a|up to \w+) basic land|land cards?.{0,40}onto the battlefield|put (a|up to \w+) land/],
-  ['varredura', /(destroy|exile) all|each creature (gets|deals)|deals? \d+ damage to each/],
+  // Terminus põe todas no fundo do grimório; Evacuation devolve todas para a mão
+  ['varredura', /(destroy|exile) all|put all creatures|return all (other )?creatures to their owners'? hands?|each creature (gets|deals)|deals? \d+ damage to each/],
   ['tutor', /search your library for (a|an|up to \w+) (card|creature|artifact|enchantment|instant|sorcery)/],
   ['protecao', /(gains?|have|has) (hexproof|indestructible|protection|shroud)/],
   ['fichas', /create (a|an|two|three|x|\w+) .{0,40}tokens?/],

@@ -278,7 +278,9 @@ export class HeuristicBot {
         if (this.p.combate === 'simulado' && ctx.copia) return this.bloquearSimulado(ctx);
         return this.p.combate === 'obvio' ? bloquearObvio(d, ctx.g, this.eu, (a) => ctx.valida(a), this.e.rng) : bloquear(d, ctx.g, this.eu, (a) => ctx.valida(a));
       case 'select':
-        if (this.p.escolhaSimulada && ctx.copia) return this.escolhaSimulada(ctx);
+        // escolha em segredo: a cópia refaz a partida com as escolhas que os outros já fizeram, então simular seria
+        // espiar (Prisoner's Dilemma, Mob Verdict); fica a heurística, que só vê a mesa
+        if (this.p.escolhaSimulada && ctx.copia && !d.secret) return this.escolhaSimulada(ctx);
         return escolher(d, ctx.g, this.eu, this.e.rng, false, (a) => ctx.valida(a), this.p.erro);
       default:
         return escolher(d, ctx.g, this.eu, this.e.rng, false, (a) => ctx.valida(a), this.p.erro);
@@ -561,6 +563,8 @@ export class HeuristicBot {
 /** a decisão só mostra o que é público (nenhuma carta que só quem decide vê: grimório, mão, virada para baixo) */
 export function publicaNaVista(d: Decision, v: GameView): boolean {
   if (d.kind !== 'select' && d.kind !== 'arrange') return true;
+  // escolha em segredo: decidida de novo, nunca tirada de uma simulação
+  if (d.kind === 'select' && d.secret) return false;
   let publicos: Set<ObjId> | null = null;
   for (const it of d.items) {
     if (it.card) return false;
@@ -721,6 +725,24 @@ function maiorX(d: D<'number'>, g: G, eu: PlayerId): number {
   const ctx = { purpose: { kind: 'ability' as const, obj: h.id }, excludeSource: vira ? h.fonte : undefined };
   for (let x = max; x > d.min; x--) if (canAfford(g, eu, withX(base, x), ctx)) return x;
   return d.min;
+}
+
+/**
+ * Revelar ou conjurar por milagre a carta da pergunta (`about`): se ela é uma varredura (Terminus), só quando as
+ * criaturas dos oponentes valem mais que as minhas; antes o bot conjurava sempre, até contra o próprio campo. Do
+ * Difícil em diante, a escolha ainda é comparada em simulação.
+ */
+function compensaVarredura(g: G, carta: ObjId, eu: PlayerId): boolean {
+  const o = g.state.objects[carta];
+  if (!o || !papelDe(o.def).papeis.has('varredura')) return true;
+  let meus = 0;
+  let deles = 0;
+  for (const id of g.state.zones.battlefield) {
+    if (!isCreature(g, id)) continue;
+    if (controllerOf(g, id) === eu) meus += valorPermanente(g, id);
+    else deles += valorPermanente(g, id);
+  }
+  return deles > meus;
 }
 
 /**
@@ -901,7 +923,10 @@ function selecionar(d: D<'select'>, g: G, eu: PlayerId, rng: RngState, aleatorio
   // sim ou não: aceita, a não ser que seja pagar algo sem ganhar nada claro
   const sim = itens.find((i) => i.id === 'yes');
   const nao = itens.find((i) => i.id === 'no');
-  if (sim && nao && itens.length === 2) return { kind: 'select', ids: [podePagarOpcional(d, sim, g, eu) ? sim.id : nao.id] };
+  if (sim && nao && itens.length === 2) {
+    if (d.about !== undefined && !compensaVarredura(g, d.about, eu)) return { kind: 'select', ids: [nao.id] };
+    return { kind: 'select', ids: [podePagarOpcional(d, sim, g, eu) ? sim.id : nao.id] };
+  }
   if (max === 0) return { kind: 'select', ids: [] };
 
   const o = ordemDaEscolha(d, g, eu);

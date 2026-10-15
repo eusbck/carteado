@@ -17,7 +17,7 @@ export default defineCard({
         for (const p of jogadores) {
           const outros = jogadores.filter((x) => x !== p);
           if (!outros.length) continue;
-          const [v] = yield* chooseItems(c.g, p, 'Mob Verdict: vote em segredo em outro jogador', outros.map((x) => playerItem(c.g, x)), 1, 1);
+          const [v] = yield* chooseItems(c.g, p, 'Mob Verdict: vote em segredo em outro jogador', outros.map((x) => playerItem(c.g, x)), 1, 1, false, { secret: true });
           const alvo = Number(v.slice(1));
           votos.set(alvo, (votos.get(alvo) ?? 0) + 1);
           quem.push(`${c.g.state.players[p].name} → ${c.g.state.players[alvo].name}`);

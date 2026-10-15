@@ -907,7 +907,7 @@ function* revelaMilagre(g: G, player: PlayerId, id: ObjId): Gen<void> {
   const o = g.state.objects[id];
   if (!g.state.started || !o || o.zone !== 'hand' || !chars(g, id).abilities.some((a) => a.kw === 'miracle')) return;
   // ruling 5: revelar é opcional
-  if (!(yield* yesNo(g, player, `Milagre: revelar ${nameOf(g, id)}, a primeira carta que você comprou neste turno, para poder conjurá-la pelo custo de milagre?`, 'Revelar', 'Não revelar'))) return;
+  if (!(yield* yesNo(g, player, `Milagre: revelar ${nameOf(g, id)}, a primeira carta que você comprou neste turno, para poder conjurá-la pelo custo de milagre?`, 'Revelar', 'Não revelar', { about: id }))) return;
   const antes = o.visibleTo;
   o.visibleTo = 'all';
   g.bump();

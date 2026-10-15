@@ -15,7 +15,7 @@ export default defineCard({
         // cada oponente escolhe na sua vez, sem ver as outras escolhas (o registro só mostra depois de todos)
         const escolhas = new Map<PlayerId, string>();
         for (const p of c.g.apnap().filter((x) => c.g.isOpponent(c.you, x) && !c.g.state.players[x].left)) {
-          escolhas.set(p, yield* chooseOne(c.g, p, "Prisoner's Dilemma: escolha em segredo", [{ id: 'silencio', label: 'Silêncio' }, { id: 'delatar', label: 'Delatar' }]));
+          escolhas.set(p, yield* chooseOne(c.g, p, "Prisoner's Dilemma: escolha em segredo", [{ id: 'silencio', label: 'Silêncio' }, { id: 'delatar', label: 'Delatar' }], { secret: true }));
         }
         if (!escolhas.size) return;
         c.g.log(`Prisoner's Dilemma: ${[...escolhas].map(([p, e]) => `${c.g.state.players[p].name} escolheu ${e === 'silencio' ? 'silêncio' : 'delatar'}`).join('; ')}.`);

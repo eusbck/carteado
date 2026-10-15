@@ -116,6 +116,14 @@ export function ocultar(g: G, eu: PlayerId, rng: RngState, info: InfoOculta = {}
       o.copyOf = null;
     }
   }
+  // escolha secreta guardada numa permanente de outro jogador (Stalking Leonin: o oponente escolhido, até ser
+  // revelado): `eu` não sabe qual foi, então ela também é sorteada
+  for (const id of s.zones.battlefield) {
+    const o = s.objects[id];
+    if (!o || o.controller === eu || o.data.leoninEscolhido === undefined || o.data.leoninUsado) continue;
+    const ops = s.players.filter((p) => p.id !== o.controller && !p.left).map((p) => p.id);
+    if (ops.length) o.data.leoninEscolhido = ops[int(rng, ops.length)];
+  }
   // última informação conhecida de cartas que andaram por zonas escondidas: o nome nunca apareceu para `eu`
   const lki: GameState['lki'] = {};
   for (const [k, v] of Object.entries(s.lki)) {

@@ -79,7 +79,7 @@ export const MIRACLE_TRIGGER = defineAbility('mecanica:milagre', triggered({ kin
   if (!o || o.zone !== 'hand' || o.owner !== c.you) return;
   const nome = nameOf(c.g, id);
   const opcoes = custosDeMilagre(c.g, id);
-  if (opcoes.length && (yield* yesNo(c.g, c.you, `Milagre: conjurar ${nome} por ${opcoes.length === 1 ? opcoes[0].custo || '{0}' : 'um custo de milagre'}? (senão, ela fica na mão)`))) {
+  if (opcoes.length && (yield* yesNo(c.g, c.you, `Milagre: conjurar ${nome} por ${opcoes.length === 1 ? opcoes[0].custo || '{0}' : 'um custo de milagre'}? (senão, ela fica na mão)`, 'Sim', 'Não', { about: id }))) {
     let op = opcoes[0];
     if (opcoes.length > 1) {
       const [r] = yield* chooseItems(c.g, c.you, `Milagre: como conjurar ${nome}?`, opcoes.map((x, i) => ({ id: String(i), label: x.rotulo })), 1, 1);

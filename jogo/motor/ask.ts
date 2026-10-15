@@ -110,19 +110,22 @@ export function validateShape(d: Decision, a: Answer): string | null {
 // ---------------------------------------------------------------------------
 // Atalhos
 // ---------------------------------------------------------------------------
-export function* chooseItems(g: G, player: PlayerId, prompt: string, items: ChoiceItem[], min: number, max: number, ordered = false): Gen<string[]> {
+/** o que mais uma escolha diz: se é em segredo e de qual carta ela trata (campos `secret` e `about` da decisão) */
+export interface ExtrasDaEscolha { secret?: boolean; about?: ObjId }
+
+export function* chooseItems(g: G, player: PlayerId, prompt: string, items: ChoiceItem[], min: number, max: number, ordered = false, extras: ExtrasDaEscolha = {}): Gen<string[]> {
   if (items.filter((i) => !i.disabled).length === 0 && min === 0) return [];
-  const a = yield* ask<Extract<Answer, { kind: 'select' }>>(g, { kind: 'select', player, prompt, items, min, max, ordered });
+  const a = yield* ask<Extract<Answer, { kind: 'select' }>>(g, { kind: 'select', player, prompt, items, min, max, ordered, ...extras });
   return a.ids;
 }
 
-export function* chooseOne(g: G, player: PlayerId, prompt: string, items: ChoiceItem[]): Gen<string> {
-  const ids = yield* chooseItems(g, player, prompt, items, 1, 1);
+export function* chooseOne(g: G, player: PlayerId, prompt: string, items: ChoiceItem[], extras: ExtrasDaEscolha = {}): Gen<string> {
+  const ids = yield* chooseItems(g, player, prompt, items, 1, 1, false, extras);
   return ids[0];
 }
 
-export function* yesNo(g: G, player: PlayerId, prompt: string, yes = 'Sim', no = 'Não'): Gen<boolean> {
-  const r = yield* chooseOne(g, player, prompt, [{ id: 'yes', label: yes }, { id: 'no', label: no }]);
+export function* yesNo(g: G, player: PlayerId, prompt: string, yes = 'Sim', no = 'Não', extras: ExtrasDaEscolha = {}): Gen<boolean> {
+  const r = yield* chooseOne(g, player, prompt, [{ id: 'yes', label: yes }, { id: 'no', label: no }], extras);
   return r === 'yes';
 }
 

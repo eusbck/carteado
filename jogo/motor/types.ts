@@ -538,7 +538,14 @@ export type Decision = {
   prompt: string;
 } & (
   | { kind: 'priority'; actions: PriorityAction[] }
-  | { kind: 'select'; items: ChoiceItem[]; min: number; max: number; ordered?: boolean }
+  | {
+    kind: 'select'; items: ChoiceItem[]; min: number; max: number; ordered?: boolean;
+    /** escolha em segredo (Prisoner's Dilemma, votos do Mob Verdict): quem decide não sabe o que os outros escolheram,
+     *  e os bots não a simulam, porque a simulação refaria a partida com as escolhas que já foram feitas */
+    secret?: boolean;
+    /** a carta de que a pergunta trata (milagre: revelar ou conjurar esta carta) */
+    about?: ObjId;
+  }
   | { kind: 'number'; min: number; max: number }
   | { kind: 'payment'; cost: string; remaining: string; sources: PaymentSource[]; canAuto: boolean; lifeOptions: number; canCancel: boolean }
   | { kind: 'attackers'; candidates: { obj: ObjId; targets: TargetRef[]; /** alvos que cumprem as exigências de ataque (CR 508.1d); ausente se não houver */ required?: TargetRef[]; /** mana genérica a pagar para atacar cada alvo, na ordem de targets (CR 508.1h); ausente se tudo for de graça */ costs?: number[] }[]; error?: string }
