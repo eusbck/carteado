@@ -6,8 +6,7 @@
  "link": "https://moxfield.com/decks/UbO_Mq2RREaIUQhbCr3lOw",
  "importadoEm": "2026-10-14T23:22:45.781Z",
  "verificadoEm": "2026-10-14T23:22:45.781Z",
- "atual": null,
- "preparacao": {
+ "atual": {
   "comandante": "Stella Lee, Wild Card",
   "cartas": [
    {
@@ -312,5 +311,6 @@
    "atualizadoEm": "2024-04-13T01:42:58.17Z"
   },
   "desde": "2026-10-14T23:22:45.781Z"
- }
+ },
+ "preparacao": null
 }

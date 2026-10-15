@@ -6,8 +6,7 @@
  "link": "https://moxfield.com/decks/dL6gcTQ7hUq6nQq7fijzUA",
  "importadoEm": "2026-10-14T23:24:47.872Z",
  "verificadoEm": "2026-10-14T23:24:47.872Z",
- "atual": null,
- "preparacao": {
+ "atual": {
   "comandante": "Aminatou, Veil Piercer",
   "cartas": [
    {
@@ -368,5 +367,6 @@
    "atualizadoEm": "2024-10-31T17:22:04.38Z"
   },
   "desde": "2026-10-14T23:24:47.872Z"
- }
+ },
+ "preparacao": null
 }

@@ -11077,5 +11077,667 @@
     "quantidade": 1
    }
   ]
+ },
+ {
+  "id": "UbO_Mq2RREaIUQhbCr3lOw",
+  "nome": "Quick Draw Commander Precon Decklist",
+  "comandante": "Stella Lee, Wild Card",
+  "cartas": [
+   {
+    "nome": "Island",
+    "quantidade": 14
+   },
+   {
+    "nome": "Mountain",
+    "quantidade": 13
+   },
+   {
+    "nome": "Arcane Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Command Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Midnight Clock",
+    "quantidade": 1
+   },
+   {
+    "nome": "Opt",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arcane Denial",
+    "quantidade": 1
+   },
+   {
+    "nome": "Chaos Warp",
+    "quantidade": 1
+   },
+   {
+    "nome": "Deep Analysis",
+    "quantidade": 1
+   },
+   {
+    "nome": "Faithless Looting",
+    "quantidade": 1
+   },
+   {
+    "nome": "Guttersnipe",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mizzix's Mastery",
+    "quantidade": 1
+   },
+   {
+    "nome": "Preordain",
+    "quantidade": 1
+   },
+   {
+    "nome": "Propaganda",
+    "quantidade": 1
+   },
+   {
+    "nome": "Reliquary Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Talrand, Sky Summoner",
+    "quantidade": 1
+   },
+   {
+    "nome": "Temple of the False God",
+    "quantidade": 1
+   },
+   {
+    "nome": "Treasure Cruise",
+    "quantidade": 1
+   },
+   {
+    "nome": "Young Pyromancer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Temple of Epiphany",
+    "quantidade": 1
+   },
+   {
+    "nome": "Serum Visions",
+    "quantidade": 1
+   },
+   {
+    "nome": "Exotic Orchard",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tezzeret's Gambit",
+    "quantidade": 1
+   },
+   {
+    "nome": "Windfall",
+    "quantidade": 1
+   },
+   {
+    "nome": "Izzet Boilerworks",
+    "quantidade": 1
+   },
+   {
+    "nome": "Think Twice",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shivan Reef",
+    "quantidade": 1
+   },
+   {
+    "nome": "Pteramander",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dig Through Time",
+    "quantidade": 1
+   },
+   {
+    "nome": "Izzet Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Electrostatic Field",
+    "quantidade": 1
+   },
+   {
+    "nome": "Goblin Electromancer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Niv-Mizzet, Parun",
+    "quantidade": 1
+   },
+   {
+    "nome": "Murmuring Mystic",
+    "quantidade": 1
+   },
+   {
+    "nome": "Radical Idea",
+    "quantidade": 1
+   },
+   {
+    "nome": "Baral's Expertise",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cascade Bluffs",
+    "quantidade": 1
+   },
+   {
+    "nome": "Finale of Promise",
+    "quantidade": 1
+   },
+   {
+    "nome": "Finale of Revelation",
+    "quantidade": 1
+   },
+   {
+    "nome": "Epic Experiment",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vandalblast",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ponder",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shark Typhoon",
+    "quantidade": 1
+   },
+   {
+    "nome": "Pongify",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sulfur Falls",
+    "quantidade": 1
+   },
+   {
+    "nome": "Curse of the Swine",
+    "quantidade": 1
+   },
+   {
+    "nome": "Kaza, Roil Chaser",
+    "quantidade": 1
+   },
+   {
+    "nome": "Volcanic Torrent",
+    "quantidade": 1
+   },
+   {
+    "nome": "Archmage Emeritus",
+    "quantidade": 1
+   },
+   {
+    "nome": "Storm-Kiln Artist",
+    "quantidade": 1
+   },
+   {
+    "nome": "Frostboil Snarl",
+    "quantidade": 1
+   },
+   {
+    "nome": "Expressive Iteration",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cursed Mirror",
+    "quantidade": 1
+   },
+   {
+    "nome": "Octavia, Living Thesis",
+    "quantidade": 1
+   },
+   {
+    "nome": "Veyran, Voice of Duality",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rousing Refrain",
+    "quantidade": 1
+   },
+   {
+    "nome": "Winged Boots",
+    "quantidade": 1
+   },
+   {
+    "nome": "Galvanic Iteration",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bloodthirsty Adversary",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arcane Bombardment",
+    "quantidade": 1
+   },
+   {
+    "nome": "Big Score",
+    "quantidade": 1
+   },
+   {
+    "nome": "Haughty Djinn",
+    "quantidade": 1
+   },
+   {
+    "nome": "Third Path Iconoclast",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ferrous Lake",
+    "quantidade": 1
+   },
+   {
+    "nome": "Smoldering Stagecoach",
+    "quantidade": 1
+   },
+   {
+    "nome": "Thunderclap Drake",
+    "quantidade": 1
+   },
+   {
+    "nome": "Pyretic Charge",
+    "quantidade": 1
+   },
+   {
+    "nome": "Elemental Eruption",
+    "quantidade": 1
+   },
+   {
+    "nome": "Crackling Spellslinger",
+    "quantidade": 1
+   },
+   {
+    "nome": "Leyline Dowser",
+    "quantidade": 1
+   },
+   {
+    "nome": "Forger's Foundry",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lock and Load",
+    "quantidade": 1
+   },
+   {
+    "nome": "Eris, Roar of the Storm",
+    "quantidade": 1
+   }
+  ]
+ },
+ {
+  "id": "dL6gcTQ7hUq6nQq7fijzUA",
+  "nome": "Miracle Worker (Duskmourn Commander Precon Decklist)",
+  "comandante": "Aminatou, Veil Piercer",
+  "cartas": [
+   {
+    "nome": "Island",
+    "quantidade": 4
+   },
+   {
+    "nome": "Plains",
+    "quantidade": 5
+   },
+   {
+    "nome": "Swamp",
+    "quantidade": 5
+   },
+   {
+    "nome": "Nightmare Shepherd",
+    "quantidade": 1
+   },
+   {
+    "nome": "Temple of Deceit",
+    "quantidade": 1
+   },
+   {
+    "nome": "Temple of Enlightenment",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arcane Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Command Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mirrormade",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bojuka Bog",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sigil of the Empty Throne",
+    "quantidade": 1
+   },
+   {
+    "nome": "Aminatou's Augury",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arcane Sanctum",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arcane Denial",
+    "quantidade": 1
+   },
+   {
+    "nome": "Archetype of Imagination",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ash Barrens",
+    "quantidade": 1
+   },
+   {
+    "nome": "Brainstorm",
+    "quantidade": 1
+   },
+   {
+    "nome": "Burnished Hart",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cast Out",
+    "quantidade": 1
+   },
+   {
+    "nome": "Evolving Wilds",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mind Stone",
+    "quantidade": 1
+   },
+   {
+    "nome": "Orzhov Basilica",
+    "quantidade": 1
+   },
+   {
+    "nome": "Portent",
+    "quantidade": 1
+   },
+   {
+    "nome": "Read the Bones",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Solemn Simulacrum",
+    "quantidade": 1
+   },
+   {
+    "nome": "Swords to Plowshares",
+    "quantidade": 1
+   },
+   {
+    "nome": "The Eldest Reborn",
+    "quantidade": 1
+   },
+   {
+    "nome": "Temple of Silence",
+    "quantidade": 1
+   },
+   {
+    "nome": "Starfield Mystic",
+    "quantidade": 1
+   },
+   {
+    "nome": "Azorius Chancery",
+    "quantidade": 1
+   },
+   {
+    "nome": "Commander's Sphere",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dimir Aqueduct",
+    "quantidade": 1
+   },
+   {
+    "nome": "Orzhov Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Terramorphic Expanse",
+    "quantidade": 1
+   },
+   {
+    "nome": "Underground River",
+    "quantidade": 1
+   },
+   {
+    "nome": "Adarkar Wastes",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tainted Isle",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tainted Field",
+    "quantidade": 1
+   },
+   {
+    "nome": "Halimar Depths",
+    "quantidade": 1
+   },
+   {
+    "nome": "Prognostic Sphinx",
+    "quantidade": 1
+   },
+   {
+    "nome": "Auramancer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mesa Enchantress",
+    "quantidade": 1
+   },
+   {
+    "nome": "Return to Dust",
+    "quantidade": 1
+   },
+   {
+    "nome": "Telling Time",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dream Eater",
+    "quantidade": 1
+   },
+   {
+    "nome": "Azorius Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Entreat the Angels",
+    "quantidade": 1
+   },
+   {
+    "nome": "Terminus",
+    "quantidade": 1
+   },
+   {
+    "nome": "Caves of Koilos",
+    "quantidade": 1
+   },
+   {
+    "nome": "Doomwake Giant",
+    "quantidade": 1
+   },
+   {
+    "nome": "Time Wipe",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hall of Heliod's Generosity",
+    "quantidade": 1
+   },
+   {
+    "nome": "Verge Rangers",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sphere of Safety",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ponder",
+    "quantidade": 1
+   },
+   {
+    "nome": "Diabolic Vision",
+    "quantidade": 1
+   },
+   {
+    "nome": "Athreos, Shroud-Veiled",
+    "quantidade": 1
+   },
+   {
+    "nome": "Thirst for Meaning",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shark Typhoon",
+    "quantidade": 1
+   },
+   {
+    "nome": "Thriving Heath",
+    "quantidade": 1
+   },
+   {
+    "nome": "Thriving Moor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Thriving Isle",
+    "quantidade": 1
+   },
+   {
+    "nome": "Utter End",
+    "quantidade": 1
+   },
+   {
+    "nome": "Timely Ward",
+    "quantidade": 1
+   },
+   {
+    "nome": "Monologue Tax",
+    "quantidade": 1
+   },
+   {
+    "nome": "Inkshield",
+    "quantidade": 1
+   },
+   {
+    "nome": "Brainstone",
+    "quantidade": 1
+   },
+   {
+    "nome": "Moon-Blessed Cleric",
+    "quantidade": 1
+   },
+   {
+    "nome": "Otherworldly Gaze",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arvinox, the Mind Flail",
+    "quantidade": 1
+   },
+   {
+    "nome": "Spirit-Sister's Call",
+    "quantidade": 1
+   },
+   {
+    "nome": "Obscura Storefront",
+    "quantidade": 1
+   },
+   {
+    "nome": "Extravagant Replication",
+    "quantidade": 1
+   },
+   {
+    "nome": "Life Insurance",
+    "quantidade": 1
+   },
+   {
+    "nome": "One with the Multiverse",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ondu Spiritdancer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Demon of Fate's Design",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bottomless Pool // Locker Room",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cramped Vents // Access Maze",
+    "quantidade": 1
+   },
+   {
+    "nome": "Redress Fate",
+    "quantidade": 1
+   },
+   {
+    "nome": "Metamorphosis Fanatic",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ancient Cellarspawn",
+    "quantidade": 1
+   },
+   {
+    "nome": "Phenomenon Investigators",
+    "quantidade": 1
+   },
+   {
+    "nome": "Secret Arcade // Dusty Parlor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Soaring Lightbringer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fear of Sleep Paralysis",
+    "quantidade": 1
+   },
+   {
+    "nome": "The Master of Keys",
+    "quantidade": 1
+   }
+  ]
  }
 ]
