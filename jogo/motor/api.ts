@@ -38,3 +38,5 @@ export { removeEffect } from './state.ts';
 export * from './predizer.ts';
 // precons-d: planejar (plot, CR 702.170)
 export * from './planejar.ts';
+// precons-e: milagre (miracle, CR 702.94)
+export * from './milagre.ts';

@@ -381,7 +381,7 @@ function computeAll(g: G): void {
         if (!r.affected) continue;
         r.started = true;
         const def = r.st.def;
-        entries.push({ ts: r.st.timestamp, cda: !!def.cda, objs: r.affected, mods: (o) => def.mods!(ctx, s.objects[o]).filter((m) => modLayer(m, def.cda) === L) });
+        entries.push({ ts: def.cantHave ? Number.MAX_SAFE_INTEGER : r.st.timestamp, cda: !!def.cda, objs: r.affected, mods: (o) => def.mods!(ctx, s.objects[o]).filter((m) => modLayer(m, def.cda) === L) });
       }
       for (const e of effects) {
         const ms = e.mods.filter((m) => modLayer(m) === L);

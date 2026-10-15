@@ -491,3 +491,8 @@ export const Ape33 = token('Ape', 'Ape', ['Creature'], ['Ape'], ['G'], 3, 3);
 export const SoldierArtefato = token('Soldier artefato', 'Soldier', ['Artifact', 'Creature'], ['Soldier'], [], 1, 1);
 /** Dragon Elemental 4/4 vermelho com voar e bravura (Elemental Eruption, Eris, Roar of the Storm) */
 export const DragonElemental = token('Dragon Elemental', 'Dragon Elemental', ['Creature'], ['Dragon', 'Elemental'], ['R'], 4, 4, [...keywords('flying'), ...prowessPreconsD()]);
+// precons-e (Miracle Worker)
+/** Glimmer 1/1 branca, criatura encantamento (Soaring Lightbringer) */
+export const Glimmer11 = token('Glimmer', 'Glimmer', ['Enchantment', 'Creature'], ['Glimmer'], ['W'], 1, 1);
+/** Horror 2/2 preta, criatura encantamento (Phenomenon Investigators) */
+export const Horror22 = token('Horror 2/2', 'Horror', ['Enchantment', 'Creature'], ['Horror'], ['B'], 2, 2);
