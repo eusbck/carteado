@@ -430,6 +430,9 @@ export interface GameState {
   turn: TurnState;
   priority: PlayerId | null;
   passesInRow: number;
+  /** habilidades desencadeadas que resolveram seguidas, com todos passando, na etapa `onde` (turno:etapa): detecta o laço
+   *  obrigatório que empata a partida (CR 104.4b, motor/turn.ts); ausente fora disso e em partidas salvas antes */
+  gatilhosSemAcao?: { onde: string; n: number };
   objects: Record<number, GameObject>;
   cards: Record<number, CardInst>;
   zones: {

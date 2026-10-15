@@ -256,6 +256,7 @@ function* priorityLoop(g: G): Gen<void> {
       if (g.state.passesInRow >= g.playersInGame().length) {
         g.state.passesInRow = 0;
         if (g.state.zones.stack.length === 0) return; // CR 117.4: a etapa termina
+        if (lacoObrigatorio(g)) return;
         yield* resolveTop(g); // CR 117.4: resolve o topo
         g.state.priority = g.state.turn.active; // CR 117.3b
         if (g.state.players[g.state.priority].left) g.state.priority = g.nextPlayer(g.state.priority);
@@ -265,9 +266,32 @@ function* priorityLoop(g: G): Gen<void> {
       continue;
     }
     const did = a.action === 'manual' ? yield* performManual(g, p, a.manual!) : yield* performAction(g, p, a.action);
-    if (did) { g.state.passesInRow = 0; g.state.priority = p; } // CR 117.3c
+    if (did) { g.state.passesInRow = 0; g.state.priority = p; delete g.state.gatilhosSemAcao; } // CR 117.3c
   }
   void s;
+}
+
+/** quantas habilidades desencadeadas seguidas podem resolver, na mesma etapa, sem ninguém fazer nada além de passar */
+export const LIMITE_LACO_OBRIGATORIO = 500;
+
+/**
+ * CR 104.4b, 732.4: um laço só de ações obrigatórias, que se repete sem que ninguém possa pará-lo, empata a partida
+ * (Ajani's Chosen com Secret Arcade: cada ficha de Gato é um encantamento e dispara de novo). O motor não prova o laço:
+ * conta as habilidades desencadeadas que resolvem seguidas com todos passando, na mesma etapa; qualquer jogada zera a
+ * conta. Passado o limite, a partida termina empatada. Devolve true se terminou.
+ */
+function lacoObrigatorio(g: G): boolean {
+  const s = g.state;
+  const topo = s.objects[s.zones.stack[s.zones.stack.length - 1]];
+  if (topo?.stack?.kind !== 'triggered') return false;
+  const onde = `${s.turn.number}:${s.turn.step}`;
+  const conta = s.gatilhosSemAcao?.onde === onde ? s.gatilhosSemAcao.n + 1 : 1;
+  s.gatilhosSemAcao = { onde, n: conta };
+  if (conta <= LIMITE_LACO_OBRIGATORIO) return false;
+  s.gameOver = { winners: [], draw: true, reason: 'laço de ações obrigatórias sem fim' };
+  g.log(`A partida termina empatada: ${LIMITE_LACO_OBRIGATORIO} habilidades desencadeadas resolveram seguidas sem ninguém poder parar o laço.`, { rule: '104.4b' });
+  g.bump();
+  return true;
 }
 
 function emptyManaPools(g: G): void {
