@@ -76,8 +76,13 @@ São 360 cartas novas, cada uma com teste e rulings. 35 decks jogáveis nesta br
     32 fatias com `vitest run --shard=i/32 --maxWorkers=2`, uma por vez e em primeiro plano (em segundo plano o
     sistema encerrava a rodada por falta de memória). **2006 arquivos, 5034 testes aprovados, 1 ignorado que já
     existia, zero falhas.** Cada fatia levou de 4 a 7 minutos.
-- **Falta:** juntar na `main` e reiniciar a mesa da 8080 (espera o OK do Caio). A `main` tem, sem commit, os mesmos
-  arquivos da importação dos seis (iguais aos desta branch): descartá-los antes do merge.
+- **Na mesa (15/10, com o OK do Caio):** os 496 arquivos da importação dos seis que estavam sem commit na `main` foram
+  conferidos um a um (iguais aos do commit `b974239d`) e descartados; a `main` avançou por fast-forward até
+  `bc3c1f4b`; o servidor da 8080 foi reiniciado pelo vigia do `abrir-mesa.ps1` (mesmo túnel, cliente sem mudança,
+  sem erros no registro) e lê 35 decks jogáveis; a `main` foi para o GitHub.
+- Worktrees desta frente que podem sair (tudo juntado): `oarfish` e `precons-wt-a` a `e`, em
+  `C:/Users/icaio/orca/workspaces/Magic-Commander/`. O `node_modules` de cada uma é um atalho para o da `main`: tirar
+  com `cmd /c rmdir` antes de `git worktree remove --force`.
 
 ## Decks da mesa: Lula e Bolsonaro — 12/10/2026
 
