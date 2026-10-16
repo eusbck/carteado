@@ -72,11 +72,10 @@ São 360 cartas novas, cada uma com teste e rulings. 35 decks jogáveis nesta br
     total, sem erro (as do Miracle Worker depois da regra do laço). Com o motor final, mais 48 partidas curtas dos seis
     primeiros (4 de 4 jogadores e 4 de 2 por deck), sem erro.
   - `npm run typecheck` sem erros.
-  - Suíte inteira (`vitest run --shard=i/32 --maxWorkers=2`): **incompleta**. No commit final (`bd23d6d5`), as fatias
-    1 a 3 passaram (189 arquivos, 420 testes, zero falhas) e o sistema encerrou a rodada por falta de memória na
-    fatia 4. Antes, com os seis primeiros decks juntados, as fatias 1 a 15 passaram (900 arquivos, 2119 testes, zero
-    falhas). Cada agente rodou os testes das suas cartas e dos arquivos de regra vizinhos, sem falhas. Falta rodar as
-    fatias 4 a 32 no commit final.
+  - Suíte inteira em 15/10, no commit `f4815877` (os oito decks, a regra do laço e as correções dos bots):
+    32 fatias com `vitest run --shard=i/32 --maxWorkers=2`, uma por vez e em primeiro plano (em segundo plano o
+    sistema encerrava a rodada por falta de memória). **2006 arquivos, 5034 testes aprovados, 1 ignorado que já
+    existia, zero falhas.** Cada fatia levou de 4 a 7 minutos.
 - **Falta:** juntar na `main` e reiniciar a mesa da 8080 (espera o OK do Caio). A `main` tem, sem commit, os mesmos
   arquivos da importação dos seis (iguais aos desta branch): descartá-los antes do merge.
 
