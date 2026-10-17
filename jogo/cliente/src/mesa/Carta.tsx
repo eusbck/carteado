@@ -13,7 +13,7 @@ export type Selo = 'espada' | 'escudo' | 'espera';
 
 const NOME_SELO: Record<Selo, string> = { espada: 'atacando', escudo: 'bloqueando', espera: 'marcada para atacar, sem alvo' };
 
-const MARCADORES: Record<string, string> = { '+1/+1': '+1/+1', '-1/-1': '−1/−1', loyalty: 'lealdade', poison: 'veneno', charge: 'carga', time: 'tempo', oil: 'óleo', stun: 'atordoamento', shield: 'escudo', lore: 'conhecimento', plan: 'plano' };
+const MARCADORES: Record<string, string> = { '+1/+1': '+1/+1', '-1/-1': '−1/−1', loyalty: 'lealdade', poison: 'veneno', charge: 'carga', time: 'tempo', oil: 'óleo', stun: 'atordoamento', shield: 'escudo', lore: 'conhecimento', plan: 'plano', acorn: 'bolota', quest: 'missão' };
 
 export interface CartaProps {
   o: ObjView;
@@ -68,6 +68,8 @@ function CartaBase({ o, realce = null, selo, numero, deitada, onClick, onZoom, o
   const pendente = !oculta && !!info(o.def)?.pendente;
   const criatura = o.types.includes('Creature');
   const marcadores = Object.entries(o.counters).filter(([, n]) => n > 0);
+  // nível de uma Classe (CR 716): começa no 1 e sobe pelas habilidades de nível (Gourmand's Talent)
+  const nivelClasse = !oculta && o.subtypes.includes('Class') ? o.classLevel : 0;
   const virada = o.tapped ? (deitada ? 'deitada-virada' : 'virada') : '';
   const classes = ['carta', deitada ? 'deitada' : '', virada, onPointerDown ? 'arrastavel' : '', criatura && o.sick ? 'enjoo' : '', realce ? `realce-${realce}` : '', onClick ? 'clicavel' : '', o.phasedOut ? 'em-fase' : '', classe ?? ''].filter(Boolean).join(' ');
   const rect = (e: Event) => (e.currentTarget as HTMLElement).getBoundingClientRect();
@@ -97,9 +99,10 @@ function CartaBase({ o, realce = null, selo, numero, deitada, onClick, onZoom, o
           </div>
         )}
       </div>
-      {(marcadores.length > 0 || o.damage > 0 || pendente || o.goaded || o.monstrous || o.ringBearer || !!o.regen || !!o.sector || (o.faceDown && !oculta)) && (
+      {(marcadores.length > 0 || nivelClasse > 0 || o.damage > 0 || pendente || o.goaded || o.monstrous || o.ringBearer || !!o.regen || !!o.sector || (o.faceDown && !oculta)) && (
         <div class="carta-etiquetas">
           {marcadores.map(([k, n]) => <span key={k} class={`marca marca-${k === '-1/-1' ? 'menos' : k === '+1/+1' ? 'mais' : 'outro'}`}>{k === '+1/+1' ? `+${n}` : k === '-1/-1' ? `−${n}` : `${n} ${MARCADORES[k] ?? k}`}</span>)}
+          {nivelClasse > 0 && <span class="marca marca-outro" title="Nível da Classe: ela tem as habilidades até este nível">nível {nivelClasse}</span>}
           {o.damage > 0 && <span class="marca marca-dano">{o.damage} de dano</span>}
           {o.goaded && <span class="marca marca-outro">provocada</span>}
           {/* só quem controla vê a face (CR 708.5); a etiqueta lembra que os outros veem o verso */}
