@@ -20,4 +20,15 @@ describe(NOME, () => {
     tg.cast(NOME).resolveAll();
     expect(tg.all('Food').length).toBe(1);
   });
+
+  it('sempre que ataca, exila até uma carta alvo de um cemitério e cria outra Food', () => {
+    const tg = setup({ battlefield: [[NOME], []], graveyard: [[], ['Gilded Goose']] });
+    tg.choose('até uma carta alvo', ['Gilded Goose']);
+    tg.attack([[NOME, 1]]).passTo('declareBlockers');
+    expect(tg.names(1, 'exile')).toEqual(['Gilded Goose']);
+    expect(tg.all('Food').length).toBe(1);
+    // a Food tem as habilidades ativadas da Goose, inclusive a de mana
+    const d = tg.pending!;
+    expect(d.kind === 'priority' && d.actions.some((a) => a.obj === tg.bf('Food') && a.kind === 'mana')).toBe(true);
+  });
 });

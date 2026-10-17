@@ -12,4 +12,11 @@ describe(N, () => {
     const pista = tg.bf('Clue');
     expect(controllerOf(tg.g, pista)).toBe(1);
   });
+
+  it('alvo indestrutível não é destruído, mas o controlador dele investiga mesmo assim', () => {
+    const tg = setup({ battlefield: [['Plains', 'Plains'], ['Toski, Bearer of Secrets']], hand: [[N], []] });
+    tg.choose('criatura ou planeswalker alvo', ['Toski, Bearer of Secrets']).cast(N).resolveAll();
+    expect(tg.find('Toski, Bearer of Secrets')).not.toBeNull();
+    expect(controllerOf(tg.g, tg.bf('Clue'))).toBe(1);
+  });
 });

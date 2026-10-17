@@ -25,4 +25,19 @@ describe(N, () => {
     tg.resolveAll();
     expect(tg.state.zones.hand[0]).toHaveLength(1);
   });
+
+  it('CR 122.6: entrando com o marcador +1/+1 de Giada, conta como pôr marcadores nela e compra uma carta', () => {
+    const tg = setup({ battlefield: [['Giada, Font of Hope', 'Plains', 'Plains', 'Plains', 'Plains'], []], hand: [[N], []] });
+    tg.cast(N).resolveAll();
+    expect(tg.state.objects[tg.bf(N)].counters['+1/+1']).toBe(1);
+    expect(tg.state.zones.hand[0]).toHaveLength(1);
+  });
+
+  it('comer uma Food (ganhar vida) põe um marcador e compra uma carta', () => {
+    const tg = setup({ battlefield: [[N, 'Plains', 'Plains', { name: 'Food', token: true }], []] });
+    tg.activate('Food').resolveAll();
+    expect(tg.life(0)).toBe(43);
+    expect(tg.state.objects[tg.bf(N)].counters['+1/+1']).toBe(1);
+    expect(tg.state.zones.hand[0]).toHaveLength(1);
+  });
 });
