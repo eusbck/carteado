@@ -22,4 +22,17 @@ describe(NOME, () => {
     runEffect(tg, createTokens(tg.g, 0, 'Treasure', 1));
     expect(conta(tg)).toEqual([3, 3, 3]);
   });
+
+  it('Gilded Goose cria uma Food pela habilidade: viram uma Clue, uma Food e um Treasure', () => {
+    const tg = setup({ battlefield: [[NOME, 'Gilded Goose', 'Forest', 'Forest'], []] });
+    tg.activate('Gilded Goose', '{1}{G}').resolve();
+    expect(conta(tg)).toEqual([1, 1, 1]);
+  });
+
+  it('a cópia de uma ficha Food também é uma Food: Hazel copia a Food e cria uma de cada', () => {
+    const tg = setup({ step: 'main2', battlefield: [[NOME, 'Hazel of the Rootbloom', { name: 'Food', token: true }], []] });
+    tg.choose('ficha alvo', ['Food']);
+    tg.passUntil((x) => x.state.turn.step === 'end' && x.state.zones.stack.length === 0);
+    expect(conta(tg)).toEqual([1, 2, 1]);
+  });
 });
