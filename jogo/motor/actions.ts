@@ -71,6 +71,26 @@ function* finalDestination(g: G, o: GameObject, to: ZoneName, cause: string, dep
 }
 
 /**
+ * CR 610.3: chave de `linked` das cartas exiladas "até esta permanente sair do campo" (Grasp of Fate). Exile com
+ * `exile(g, ids, { linkTo: { obj: fonte, key: ATE_SAIR } })`; quando a fonte sai do campo, as cartas voltam logo em
+ * seguida, sem pilha e antes de qualquer ação de estado (610.3), sob o controle dos donos (610.3c) e juntas quando várias
+ * fontes saem ao mesmo tempo (610.3d). Também quando o dono da fonte deixa a partida (CR 800.4a): `voltasAteSair`.
+ * A carta exilada que já não está no exílio, ou a ficha (CR 111.7), não volta.
+ */
+export const ATE_SAIR = 'ate-sair';
+
+/** devolve ao campo, juntas, as cartas exiladas "até" (CR 610.3) que ainda estão no exílio, sob o controle dos donos */
+export function* voltarAteSair(g: G, ids: ObjId[]): Gen<ObjId[]> {
+  const prontas = [...new Set(ids)].filter((id) => {
+    const x = g.state.objects[id];
+    return !!x && x.zone === 'exile' && !x.isToken && !g.state.players[x.owner].left;
+  });
+  if (!prontas.length) return [];
+  g.log(`${prontas.map((id) => nameOf(g, id)).join(', ')} volta${prontas.length > 1 ? 'm' : ''} do exílio para o campo.`, { rule: '610.3' });
+  return yield* putOntoBattlefield(g, prontas.map((id) => ({ id, controller: g.state.objects[id].owner })), 'effect');
+}
+
+/**
  * Move objetos simultaneamente (exceto para o campo: use putOntoBattlefield).
  * Devolve os ids novos (null quando o objeto não se moveu).
  */
@@ -79,6 +99,8 @@ export function* moveObjects(g: G, reqs: MoveReq[], cause: string, by?: PlayerId
   const events: GameEvent[] = [];
   const plans: { o: GameObject; dest: ZoneName; req: MoveReq; loucura?: unknown }[] = [];
   const depois: (() => Gen<void>)[] = [];
+  // CR 610.3: cartas exiladas "até" uma das permanentes que saem do campo agora
+  const voltam: ObjId[] = [];
   for (const r of reqs) {
     const o = g.state.objects[r.id];
     if (!o) { plans.push({ o: null as unknown as GameObject, dest: r.to, req: r }); continue; }
@@ -111,10 +133,13 @@ export function* moveObjects(g: G, reqs: MoveReq[], cause: string, by?: PlayerId
     }
     if (cause === 'sacrifice') events.push({ type: 'sacrifice', player: controller, old: o.id, obj: newId });
     if (from === 'battlefield') removeFromCombat(g, o.id);
+    if (from === 'battlefield' && o.linked[ATE_SAIR]?.length) voltam.push(...o.linked[ATE_SAIR]);
   }
   emit(g, events);
   // o resto do evento de substituição (a ficha do Kalitas), depois de mover
   for (const f of depois) yield* f();
+  // CR 610.3, 610.3d: o efeito que devolve as cartas exiladas "até" acontece logo depois de a permanente sair
+  if (voltam.length) yield* voltarAteSair(g, voltam);
   return out;
 }
 

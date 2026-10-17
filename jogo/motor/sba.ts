@@ -1,6 +1,6 @@
 // Ações baseadas em estado (CR 704) e saída de jogadores da partida (CR 800.4).
 
-import { moveObjects, regenerateOrDestroy, removeFromCombat } from './actions.ts';
+import { ATE_SAIR, moveObjects, regenerateOrDestroy, removeFromCombat, voltarAteSair } from './actions.ts';
 import { chooseItems, objItem, yesNo } from './ask.ts';
 import { chars, controllerOf, hasKw, hooks, isBestowed, isCreature, nameOf } from './chars.ts';
 import type { GameEvent } from './events.ts';
@@ -17,6 +17,13 @@ import type { ObjId, PlayerId, ZoneName } from './types.ts';
 export function* performSBAs(g: G): Gen<boolean> {
   const s = g.state;
   let performed = false;
+  // CR 610.3, 800.4a: o que estava exilado "até" uma permanente de quem deixou a partida sair do campo volta agora (a
+  // saída da partida não passa por moveObjects, que devolve na hora)
+  if (s.voltasAteSair?.length) {
+    const ids = s.voltasAteSair;
+    delete s.voltasAteSair;
+    if ((yield* voltarAteSair(g, ids)).length) performed = true;
+  }
   // CR 506.4: a atacante ou bloqueadora que deixa de ser criatura sai do combate. Não é ação baseada em estado, mas é
   // conferida aqui, antes de alguém receber prioridade (Swift Reconfiguration, Imprisoned in the Moon)
   if (s.combat) {
@@ -202,6 +209,11 @@ export function leaveGame(g: G, p: PlayerId): void {
   const pl = s.players[p];
   if (pl.left) return;
   pl.left = true;
+  // CR 610.3 (ruling 5 de Grasp of Fate): as permanentes que saem do campo agora (as dele e as que ele ainda controla,
+  // exiladas abaixo) devolvem o que exilaram "até sair do campo"; o efeito não usa a pilha, então não some com ele
+  const saem = s.zones.battlefield.filter((id) => s.objects[id]?.owner === p || controllerOf(g, id) === p);
+  const voltam = saem.flatMap((id) => s.objects[id]?.linked[ATE_SAIR] ?? []);
+  if (voltam.length) s.voltasAteSair = [...(s.voltasAteSair ?? []), ...voltam];
   // objetos que o jogador possui saem do jogo
   for (const zone of ['battlefield', 'stack', 'exile', 'command'] as const) {
     for (const id of [...s.zones[zone]]) if (s.objects[id]?.owner === p) { removeFromCombat(g, id); destroyObject(g, id); }

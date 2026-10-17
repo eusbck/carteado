@@ -40,3 +40,5 @@ export * from './predizer.ts';
 export * from './planejar.ts';
 // precons-e: milagre (miracle, CR 702.94)
 export * from './milagre.ts';
+// revisão B: exilar "até esta permanente sair do campo" (CR 610.3): a carta volta logo que a fonte sai
+export { ATE_SAIR } from './actions.ts';

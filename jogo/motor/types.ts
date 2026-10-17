@@ -415,6 +415,10 @@ export interface GameState {
   /** precons-a: permanentes que entraram no campo neste turno (Oran-Rief: "cada criatura verde que entrou neste turno");
    *  opcional, como os de cima */
   enteredThisTurn?: { turn: number; objs: ObjId[] };
+  /** revisão B: cartas exiladas "até" uma permanente sair do campo (CR 610.3) cuja permanente saiu porque o dono deixou a
+   *  partida (CR 800.4a, que não passa por moveObjects): voltam ao campo na próxima verificação de ações de estado.
+   *  Opcional, como os de cima */
+  voltasAteSair?: ObjId[];
   /** quantas mágicas de cada nome cada jogador conjurou na partida (chave `jogador:nome`; Approach of the Second Sun);
    *  opcional, como os de cima */
   castNames?: Record<string, number>;
