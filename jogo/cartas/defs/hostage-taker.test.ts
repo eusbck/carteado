@@ -31,4 +31,22 @@ describe(N, () => {
     tg.resolveAll();
     expect(tg.state.objects[elfo].controller).toBe(0);
   });
+
+  it('saindo Hostage Taker, já não dá para conjurar a carta enquanto ela volta para o dono', () => {
+    // Smirking Spelljacker tem lampejo: com a volta na pilha, daria para conjurá-la em resposta se a permissão durasse
+    const tg = setup({ battlefield: [['Island', 'Island', 'Island', 'Island', 'Swamp'], ['Smirking Spelljacker']], library: [lib, lib] });
+    tg.choose('outra criatura ou artefato alvo', ['Smirking Spelljacker']);
+    const id = enterCard(tg, N, 0)!;
+    tg.resolveAll();
+    const strix = tg.find('Smirking Spelljacker', 'exile')!;
+    const podeConjurar = () => tg.actionIds().some((a) => a.startsWith('cast:') && a.split(':').includes(String(strix)));
+    expect(podeConjurar()).toBe(true);
+    tg.run(destroy(tg.g, [id]));
+    // a volta está na pilha: a permissão já acabou
+    expect(tg.state.zones.stack.length).toBe(1);
+    expect(tg.state.objects[strix].zone).toBe('exile');
+    expect(podeConjurar()).toBe(false);
+    tg.resolveAll();
+    expect(tg.names(1, 'battlefield')).toEqual(['Smirking Spelljacker']);
+  });
 });

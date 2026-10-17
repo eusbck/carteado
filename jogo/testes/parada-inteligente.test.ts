@@ -82,4 +82,20 @@ describe('parada inteligente', () => {
     expect(passaSozinho(tg, 1, { ...PADRAO, passUntilTurnEnds: tg.state.turn.number })).toBe(false);
     expect(passaSozinho(tg, 1, { ...SEM_INTELIGENTE, passUntilTurnEnds: tg.state.turn.number })).toBe(true);
   });
+  it('CR 702.49a: no próprio turno, depois dos bloqueios, para quem tem um ninja para o ninjutsu; sem ele, passa', () => {
+    const tg = setup({ battlefield: [['Slither Blade', 'Island', 'Island', 'Swamp', 'Swamp'], []], hand: [['Fallen Shinobi'], []] });
+    tg.attack([['Slither Blade', 1]]).passTo('declareBlockers');
+    expect(tg.state.turn.step).toBe('declareBlockers');
+    expect(passaSozinho(tg, 0)).toBe(false);
+    expect(passaSozinho(tg, 0, SEM_INTELIGENTE)).toBe(true);
+    expect(passaSozinho(tg, 0, { ...PADRAO, passUntilTurnEnds: tg.state.turn.number })).toBe(true);
+    // sem mana para o ninjutsu, não há o que fazer: passa
+    const sem = setup({ battlefield: [['Slither Blade', 'Island'], []], hand: [['Fallen Shinobi'], []] });
+    sem.attack([['Slither Blade', 1]]).passTo('declareBlockers');
+    expect(passaSozinho(sem, 0)).toBe(true);
+    // uma instantânea qualquer na mão não faz parar no próprio combate
+    const inst = setup({ battlefield: [['Slither Blade', 'Plains'], ['Elvish Mystic']], hand: [['Swords to Plowshares'], []] });
+    inst.attack([['Slither Blade', 1]]).passTo('declareBlockers');
+    expect(passaSozinho(inst, 0)).toBe(true);
+  });
 });

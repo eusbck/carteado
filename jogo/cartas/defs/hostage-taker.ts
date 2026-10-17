@@ -16,7 +16,9 @@ export default defineCard({
         const [ex] = yield* exile(c.g, [id], { linkTo: { obj: c.source, key: CHAVE } });
         // ruling 4: a ficha deixa de existir; ruling 5: conjurada, a carta vira um objeto novo que é seu
         if (ex === null || ex === undefined || c.g.state.objects[ex]?.zone !== 'exile') return;
-        allowPlay(c.g, c.you, c.source, [ex], { kind: 'permanent' }, { anyType: true, spellsOnly: true });
+        // ruling 6: saindo Hostage Taker, a carta volta na hora (CR 610.3c); aqui a volta é um gatilho, então a permissão
+        // acaba junto com Hostage Taker, para não sobrar uma janela em que ainda daria para conjurá-la
+        allowPlay(c.g, c.you, c.source, [ex], { kind: 'whileOnBattlefield', obj: c.source }, { anyType: true, spellsOnly: true });
       }, {
         // ruling 1: não pode mirar a si mesmo
         targets: [t.permanent(and(or(is.creature, is.artifact), is.other), 'outra criatura ou artefato alvo')],
@@ -35,7 +37,7 @@ export default defineCard({
     3: 'regra geral: CR 400.7 — a carta exilada é um objeto novo: Auras vão para o cemitério, Equipamentos soltam e marcadores somem',
     4: 'regra geral: CR 111.7 — a ficha exilada deixa de existir, não volta e não pode ser conjurada',
     5: 'teste: você conjura a carta exilada com mana de qualquer tipo e fica com ela mesmo que Hostage Taker saia',
-    6: 'teste: exila outra criatura ou artefato até sair do campo; saindo, a carta volta para o dono',
+    6: 'teste: saindo Hostage Taker, já não dá para conjurar a carta enquanto ela volta para o dono',
     7: 'regra geral: CR 610.3c — a carta volta sob o controle do dono, também quando o dono de Hostage Taker deixa a partida',
     8: 'regra geral: CR 800.4a — quando você sai da partida, o que você controla de outros donos é exilado (motor/actions.ts)',
   },

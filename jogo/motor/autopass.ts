@@ -3,7 +3,8 @@
 // O servidor aplica o mesmo atraso a todo passe automático, para não revelar se a pessoa
 // tinha ou não alguma resposta.
 
-import type { Decision, GameState, PlayerId, Step } from './types.ts';
+import { registry } from './defs.ts';
+import type { Decision, GameState, PlayerId, PriorityAction, Step } from './types.ts';
 
 export interface StopSettings {
   /** etapas em que paro no meu turno, com a pilha vazia */
@@ -48,6 +49,7 @@ export function shouldAutoPass(s: GameState, d: Decision, player: PlayerId, st: 
   if (meaningful.length === 0 && st.skipWhenNothing !== false) return true;
   const passandoOTurno = st.passUntilTurnEnds !== null && st.passUntilTurnEnds === s.turn.number;
   if (meaningful.length > 0 && st.respondWhenAble !== false && momentoDeResponder(s, player, passandoOTurno)) return false;
+  if (st.respondWhenAble !== false && !passandoOTurno && ninjaNaMao(s, player, meaningful)) return false;
   if (st.passUntilTurnEnds !== null && st.passUntilTurnEnds === s.turn.number) {
     if (!st.stopOnOpponentStack) return true;
     const top = s.zones.stack[s.zones.stack.length - 1];
@@ -63,6 +65,21 @@ export function shouldAutoPass(s: GameState, d: Decision, player: PlayerId, st: 
   const mine = s.turn.active === player;
   const stops = mine ? st.myTurn : st.othersTurn;
   return !stops.includes(s.turn.step);
+}
+
+/**
+ * Ninjutsu e sneak (CR 702.49a, 702.190a) só podem ser usados depois de declarados os bloqueadores, e a etapa de
+ * declarar bloqueadores do próprio turno não é parada padrão: sem isto, a mesa passava sozinha e o ninja na mão nunca
+ * aparecia. A parada inteligente espera ali quando há um deles para usar (pilha vazia, seu turno).
+ */
+function ninjaNaMao(s: GameState, player: PlayerId, acoes: PriorityAction[]): boolean {
+  if (s.turn.active !== player || s.turn.step !== 'declareBlockers' || s.zones.stack.length > 0) return false;
+  return acoes.some((a) => {
+    if (a.kind === 'cast') return a.id.endsWith(':sneak');
+    if (a.kind !== 'activate') return false;
+    const kw = registry.abilities.get(a.id.split(':').slice(2).join(':'))?.kw;
+    return kw === 'ninjutsu' || kw === 'commander ninjutsu';
+  });
 }
 
 /** os momentos da parada inteligente: algo de um oponente no topo da pilha (em qualquer turno) e, no turno de outro,

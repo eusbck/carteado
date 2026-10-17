@@ -665,8 +665,20 @@ export function Mesa() {
     if (d?.kind === 'payment') for (const f of d.sources) m.set(f.obj, [...(m.get(f.obj) ?? []), f]);
     return m;
   }, [d]);
-  // ações que não estão presas a nenhuma carta à vista ficam num painel próprio
-  const acoesSoltas = d?.kind === 'priority' ? d.actions.filter((a) => !['pass', 'manual', 'mana'].includes(a.kind) && (a.obj === undefined || !todos.has(a.obj))) : [];
+  // cartas à vista sem abrir janela: campo, mão, comando e só o topo de cada cemitério e de cada exílio (AreaJogador)
+  const aVista = useMemo(() => {
+    const m = new Set<ObjId>([...v.battlefield, ...v.hand, ...v.command].map((o) => o.id));
+    for (const j of v.players) {
+      const cem = j.graveyard[j.graveyard.length - 1];
+      if (cem) m.add(cem.id);
+      const ex = v.exile.filter((o) => o.owner === j.id);
+      if (ex.length) m.add(ex[ex.length - 1].id);
+    }
+    return m;
+  }, [v]);
+  // ações que não estão presas a nenhuma carta à vista ficam num painel próprio (a carta roubada com Gonti no meio do
+  // exílio de um oponente, a retrospectiva embaixo de outras cartas no cemitério)
+  const acoesSoltas = d?.kind === 'priority' ? d.actions.filter((a) => !['pass', 'manual', 'mana'].includes(a.kind) && (a.obj === undefined || !aVista.has(a.obj))) : [];
   const atacantesCand = d?.kind === 'attackers' ? new Map(d.candidates.map((c) => [c.obj, c.targets])) : null;
   const bloqueadoresCand = d?.kind === 'blockers' ? new Map(d.candidates.map((c) => [c.obj, c.canBlock])) : null;
   const atacando = new Map((v.combat?.attackers ?? []).map((a) => [a.id, a]));

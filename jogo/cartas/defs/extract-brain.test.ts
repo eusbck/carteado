@@ -16,7 +16,7 @@ describe(N, () => {
     let ofertas: string[] = [];
     tg.script.push((d) => {
       if (d.kind !== 'select' || !d.prompt.includes('escolha uma mágica para conjurar')) return null;
-      ofertas = d.items.map((i) => i.label);
+      ofertas = d.items.filter((i) => !i.disabled).map((i) => i.label);
       return { kind: 'select', ids: [d.items.find((i) => i.label === 'Sol Ring')!.id] };
     });
     tg.cast(N).resolveAll();
@@ -24,5 +24,19 @@ describe(N, () => {
     expect(ofertas).toEqual(['Não conjurar', 'Sol Ring', 'Prismatic Lens']);
     expect(tg.state.objects[tg.bf('Sol Ring')].controller).toBe(0);
     expect(tg.names(1, 'hand').sort()).toEqual(['Baleful Strix', 'Prismatic Lens']);
+  });
+
+  it('você olha as cartas escolhidas, inclusive os terrenos, que não podem ser conjurados', () => {
+    const tg = setup({ battlefield: [['Island', 'Swamp', 'Island', 'Swamp'], []], hand: [[N], ['Forest', 'Sol Ring']] });
+    tg.number('valor de X', 2);
+    let vistas: string[] = [];
+    tg.script.push((d) => {
+      if (d.kind !== 'select' || !d.prompt.includes('Extract Brain (mão')) return null;
+      vistas = d.items.filter((i) => i.disabled).map((i) => i.label);
+      return { kind: 'select', ids: [''] };
+    });
+    tg.cast(N).resolveAll();
+    expect(vistas).toEqual(['Forest (terreno)']);
+    expect(tg.names(1, 'hand').sort()).toEqual(['Forest', 'Sol Ring']);
   });
 });
