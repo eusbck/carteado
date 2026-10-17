@@ -21,7 +21,7 @@ export default defineCard({
         const escolhidas: ObjId[] = n === mao.length ? [...mao]
           : (yield* chooseItems(g, p, `Extract Brain: escolha ${n} carta(s) da sua mão para ${g.state.players[c.you].name} olhar`, mao.map((id) => ({ id: String(id), label: nameOf(g, id), obj: id, card: { def: g.state.objects[id].def } })), n, n)).map(Number);
         g.log(`${g.state.players[c.you].name} olha ${n} carta(s) da mão de ${g.state.players[p].name}.`);
-        yield* conjuraDentreGratis(c, escolhidas, { rotulo: `Extract Brain (mão de ${g.state.players[p].name})`, varias: false });
+        yield* conjuraDentreGratis(c, escolhidas, { rotulo: `Extract Brain (mão de ${g.state.players[p].name})`, varias: false, olhar: true });
       },
     },
   }],

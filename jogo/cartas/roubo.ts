@@ -25,17 +25,25 @@ export function* exilaTopoViradoJogavel(c: Ctx, jogador: PlayerId): Gen<ObjId | 
  * "Você pode conjurar [quantas quiser / uma] mágica(s) dentre essas cartas sem pagar o custo de mana" durante a
  * resolução (CR 608.2g, 118.9): uma de cada vez, na ordem que o jogador escolher; terrenos não (CR 305.9). Devolve
  * quantas foram conjuradas.
+ *
+ * Com `olhar` ("olhe a mão desse jogador": Silent-Blade Oni, Extract Brain), as cartas que não podem ser conjuradas
+ * assim (terrenos) aparecem também, indisponíveis, para a pessoa ver todas as que olhou, mesmo sem nada para conjurar.
  */
-export function* conjuraDentreGratis(c: Ctx, cartas: ObjId[], opts: { rotulo: string; varias: boolean; filtro?: (id: ObjId) => boolean; exilaEmVezDoCemiterio?: boolean }): Gen<number> {
+export function* conjuraDentreGratis(c: Ctx, cartas: ObjId[], opts: { rotulo: string; varias: boolean; filtro?: (id: ObjId) => boolean; exilaEmVezDoCemiterio?: boolean; olhar?: boolean }): Gen<number> {
   const s = c.g.state;
   let n = 0;
   const tentadas = new Set<ObjId>();
+  let mostrou = false;
   for (;;) {
-    const podem = cartas.filter((id) => !tentadas.has(id) && !!s.objects[id] && !isLand(c.g, id) && (!opts.filtro || opts.filtro(id)));
-    if (!podem.length) return n;
-    const [esc] = yield* chooseItems(c.g, c.you, `${opts.rotulo}: escolha uma mágica para conjurar sem pagar o custo de mana`, [
+    const vivas = cartas.filter((id) => !tentadas.has(id) && !!s.objects[id]);
+    const podem = vivas.filter((id) => !isLand(c.g, id) && (!opts.filtro || opts.filtro(id)));
+    const soVistas = opts.olhar ? vivas.filter((id) => !podem.includes(id)) : [];
+    if (!podem.length && (!soVistas.length || mostrou)) return n;
+    mostrou = true;
+    const [esc] = yield* chooseItems(c.g, c.you, podem.length ? `${opts.rotulo}: escolha uma mágica para conjurar sem pagar o custo de mana` : `${opts.rotulo}: nenhuma destas cartas pode ser conjurada assim`, [
       { id: '', label: n > 0 ? 'Parar de conjurar' : 'Não conjurar' },
       ...podem.map((id) => ({ id: String(id), label: nameOf(c.g, id), obj: id, card: { def: s.objects[id].def } })),
+      ...soVistas.map((id) => ({ id: `v${id}`, label: `${nameOf(c.g, id)} (${isLand(c.g, id) ? 'terreno' : 'não pode ser conjurada assim'})`, card: { def: s.objects[id].def }, disabled: true })),
     ], 1, 1);
     if (!esc) return n;
     const id = Number(esc);

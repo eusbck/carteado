@@ -41,4 +41,22 @@ describe(N, () => {
     const tg = setup({ battlefield: [[N, 'Forest', 'Island'], []], exile: [['Sol Ring'], []] });
     expect(tg.actionIds().some((a) => a.startsWith('act:'))).toBe(false);
   });
+
+  it('uma carta virada para baixo que você pode olhar (roubada por Gonti) é escolhida pelo nome', () => {
+    const ilhas = Array(8).fill('Island');
+    const tg = setup({ battlefield: [[N, 'Gonti, Canny Acquisitor', 'Forest', 'Island'], []], library: [ilhas, ['Swamp', 'Sol Ring', ...ilhas]] });
+    tg.attack([['Gonti, Canny Acquisitor', 1]]).passTo('main2', 0);
+    const pantano = tg.find('Swamp', 'exile')!;
+    expect(tg.state.objects[pantano].faceDown).toBe(true);
+    let opcoes: string[] = [];
+    tg.script.push((d) => {
+      if (d.kind !== 'select' || !d.prompt.includes('Void Attendant: escolha')) return null;
+      opcoes = d.items.map((i) => i.label);
+      return { kind: 'select', ids: [String(pantano)] };
+    });
+    tg.activate(N).resolveAll();
+    expect(opcoes).toEqual(['Swamp (de Bruno, virada para baixo)']);
+    expect(tg.names(1, 'graveyard')).toEqual(['Swamp']);
+    expect(tg.find('Eldrazi Scion')).not.toBeNull();
+  });
 });

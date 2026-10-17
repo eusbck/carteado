@@ -16,5 +16,7 @@ describe(N, () => {
     expect(tg.names(0, 'graveyard').sort()).toEqual([N, 'Sol Ring'].sort());
     expect(tg.names(1, 'battlefield').sort()).toEqual(['Colossal Majesty', 'Indomitable Ancients', 'Island']);
     expect(tg.names(1, 'graveyard')).toEqual(['Elvish Mystic']);
+    // ruling 1: quem escolhe depois sabe o que os anteriores escolheram
+    expect(tg.state.log.some((l) => l.text === 'Ana mantém Gold Myr, Ripjaw Raptor (Cataclysmic Gearhulk).')).toBe(true);
   });
 });

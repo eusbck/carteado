@@ -29,6 +29,17 @@ export function sorceryTiming(g: G, p: PlayerId): boolean {
   return isMainPhase(g) && g.state.turn.active === p && g.state.zones.stack.length === 0;
 }
 
+/**
+ * rótulo da ação de conjurar por uma permissão de efeito resolvido (rule:mayPlay): diz de onde e como se paga, para a
+ * pessoa achar a carta roubada ("Conjurar do exílio com mana de qualquer tipo: Elvish Mystic")
+ */
+function rotuloPermissao(g: G, card: ObjId, prm: { free?: boolean; anyType?: boolean }): string {
+  const zona = g.state.objects[card]?.zone;
+  const de = zona === 'exile' ? ' do exílio' : zona === 'graveyard' ? ' do cemitério' : zona === 'library' ? ' do topo do grimório' : '';
+  const como = prm.free ? ' sem pagar o custo de mana' : prm.anyType ? ' com mana de qualquer tipo' : '';
+  return `Conjurar${de}${como}`;
+}
+
 /** permissões de jogar/conjurar de outras zonas (efeitos resolvidos e estáticas) */
 export function permissionsFor(g: G, p: PlayerId, card: ObjId): CastPermission[] {
   const out: CastPermission[] = [];
@@ -38,7 +49,7 @@ export function permissionsFor(g: G, p: PlayerId, card: ObjId): CastPermission[]
     if (!prm || prm.player !== p || !prm.objs.includes(card)) continue;
     // "conjure uma mágica dentre elas": a permissão acaba ao ser usada (Locke)
     const onUse = prm.once ? (c: { g: G }) => { c.g.state.effects = c.g.state.effects.filter((x) => x.id !== e.id); c.g.bump(); } : undefined;
-    out.push({ key: prm.key ?? `eff${e.id}`, label: 'permissão', free: prm.free, anyType: prm.anyType, land: !prm.spellsOnly, bottomInstead: prm.bottomInstead, onUse });
+    out.push({ key: prm.key ?? `eff${e.id}`, label: rotuloPermissao(g, card, prm), free: prm.free, anyType: prm.anyType, land: !prm.spellsOnly, bottomInstead: prm.bottomInstead, onUse });
   }
   for (const h of hooks(g, 'mayPlayFrom')) {
     const r = h.fn(h.ctx, p, card);
@@ -313,7 +324,11 @@ export function legalActions(g: G, p: PlayerId): PriorityAction[] {
   for (const id of s.zones.battlefield) {
     if (controllerOf(g, id) !== p) continue;
     const custo = manifestFaceUpCost(g, id);
-    if (custo && canAfford(g, p, custo, { purpose: { kind: 'effect' } })) acts.push({ id: `faceup:${id}`, kind: 'special', label: `Virar para cima ${nameOf(g, id)} (${formatCost(custo)})`, obj: id });
+    // a decisão só vai para o controlador, que pode olhar a carta manifestada (CR 708.6): o rótulo diz qual é
+    if (custo && canAfford(g, p, custo, { purpose: { kind: 'effect' } })) {
+      const o = s.objects[id];
+      acts.push({ id: `faceup:${id}`, kind: 'special', label: `Virar para cima ${printedChars(o.copyOf?.def ?? o.def, 0, o.owner).name} (manifestada, ${formatCost(custo)})`, obj: id });
+    }
     // morph (CR 702.37e): virar para cima pagando o custo de metamorfose
     const morph = morphFaceUpCost(g, id);
     if (morph && canAfford(g, p, morph, { purpose: { kind: 'effect' } })) {

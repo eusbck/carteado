@@ -27,19 +27,21 @@ export default defineCard({
             const s = c.g.state;
             const todas = exiladasDeOponentes(c);
             if (!todas.length) return false;
-            // ruling 9: as viradas para baixo não podem ser olhadas; ruling 10: escolhe-se o grupo e a carta sai ao acaso
-            // (simplificação: o grupo é o das viradas para baixo de cada dono)
-            const abertas = todas.filter((id) => !s.objects[id].faceDown);
-            const donosViradas = [...new Set(todas.filter((id) => s.objects[id].faceDown).map((id) => s.objects[id].owner))];
+            // ruling 9: as viradas para baixo não podem ser olhadas, a menos que um efeito deixe (as que você roubou com
+            // Gonti, Siphon Insight…: essas você escolhe pelo nome); ruling 10: das outras, escolhe-se o grupo e a carta
+            // sai ao acaso (simplificação: o grupo é o das viradas para baixo de cada dono que você não pode olhar)
+            const podeOlhar = (id: ObjId) => { const v = s.objects[id].visibleTo; return Array.isArray(v) ? v.includes(c.you) : v === 'all'; };
+            const abertas = todas.filter((id) => !s.objects[id].faceDown || podeOlhar(id));
+            const donosViradas = [...new Set(todas.filter((id) => s.objects[id].faceDown && !podeOlhar(id)).map((id) => s.objects[id].owner))];
             const itens = [
-              ...abertas.map((id) => ({ id: String(id), label: `${nameOf(c.g, id)} (de ${s.players[s.objects[id].owner].name})`, obj: id, card: { def: s.objects[id].def } })),
+              ...abertas.map((id) => ({ id: String(id), label: `${nameOf(c.g, id)} (de ${s.players[s.objects[id].owner].name}${s.objects[id].faceDown ? ', virada para baixo' : ''})`, obj: id, card: { def: s.objects[id].def } })),
               ...donosViradas.map((p) => ({ id: `v${p}`, label: `Uma carta virada para baixo de ${s.players[p].name} (ao acaso)` })),
             ];
             const [esc] = yield* chooseItems(c.g, c.you, 'Void Attendant: escolha a carta exilada que vai para o cemitério do dono', itens, 1, 1);
             let carta: ObjId;
             if (esc.startsWith('v')) {
               const dono = Number(esc.slice(1));
-              const viradas = todas.filter((id) => s.objects[id].faceDown && s.objects[id].owner === dono);
+              const viradas = todas.filter((id) => s.objects[id].faceDown && !podeOlhar(id) && s.objects[id].owner === dono);
               carta = viradas[int(s.rng, viradas.length)];
             } else carta = Number(esc);
             yield* moveObjects(c.g, [{ id: carta, to: 'graveyard' }], 'cost', c.you);
@@ -60,8 +62,8 @@ export default defineCard({
     6: 'regra geral: CR 613.1e — a cor é definida antes de perder a habilidade',
     7: 'não se aplica: o custo pede uma carta só',
     8: 'não se aplica: nenhuma carta dos decks exila o que iria para o cemitério',
-    9: 'teste: uma carta virada para baixo é escolhida pelo dono, ao acaso, sem ser olhada',
-    10: 'teste: uma carta virada para baixo é escolhida pelo dono, ao acaso, sem ser olhada',
+    9: 'teste: uma carta virada para baixo que você pode olhar (roubada por Gonti) é escolhida pelo nome',
+    10: 'teste: uma carta virada para baixo é escolhida pelo dono, ao acaso, sem ser olhada (o grupo é o de cada dono: simplificação)',
     11: 'regra geral: ficha Eldrazi Scion 1/1 (cartas/fichas.test.ts)',
     12: 'regra geral: subtipos Eldrazi e Scion (cartas/fichas.test.ts)',
     13: 'regra geral: CR 605.1a — sacrificar a ficha para adicionar {C} é habilidade de mana (cartas/fichas.test.ts)',
