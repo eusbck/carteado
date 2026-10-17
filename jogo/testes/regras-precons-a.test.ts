@@ -76,6 +76,22 @@ describe('dano prevenido (evento damagePrevented)', () => {
     expect(tg.life(1)).toBe(38);
     expect(vistos).toEqual([{ source: anc, target: { kind: 'player', id: 0 }, amount: 4, combat: false }]);
   });
+
+  it('CR 616.1e: a prevenção que faz algo com o dano (preventsSomeDamageFirst) vem antes das outras e recebe o dano inteiro', () => {
+    const vistosPrimeiro: number[] = [];
+    const TUDO = defineAbility<StaticDef>('teste:previne-tudo-a-ana-2', { kind: 'static', rules: { preventsDamage: (_c, alvo) => alvo.kind === 'player' && alvo.id === 0 } });
+    const METADE = defineAbility<StaticDef>('teste:previne-metade-a-ana', { kind: 'static', rules: { preventsSomeDamage: (_c, alvo, _f, n) => (alvo.kind === 'player' && alvo.id === 0 ? Math.ceil(n / 2) : 0) } });
+    const PRIMEIRO = defineAbility<StaticDef>('teste:previne-e-devolve', { kind: 'static', rules: { preventsSomeDamageFirst: (_c, alvo, _f, n) => { if (alvo.kind !== 'player' || alvo.id !== 0) return 0; vistosPrimeiro.push(n); return n; } } });
+    const tg = setup({ battlefield: [['Wall of Omens'], ['Indomitable Ancients']] });
+    const anc = tg.bf('Indomitable Ancients');
+    // as outras foram criadas antes: mesmo assim a que devolve vem primeiro
+    ruleEffect(ctxDe(tg, 0, anc), TUDO.id!, { kind: 'endOfTurn' });
+    ruleEffect(ctxDe(tg, 0, anc), METADE.id!, { kind: 'endOfTurn' });
+    ruleEffect(ctxDe(tg, 0, anc), PRIMEIRO.id!, { kind: 'endOfTurn' });
+    dealDamage(tg.g, [{ source: anc, target: { kind: 'player', id: 0 }, amount: 6, combat: false }]);
+    expect(tg.life(0)).toBe(40);
+    expect(vistosPrimeiro).toEqual([6]);
+  });
 });
 
 describe('redirecionamento para a criatura ou planeswalker escolhido (rule:redirectDamageTo com permanents)', () => {

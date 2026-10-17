@@ -8,7 +8,7 @@ import type { StaticDef } from '../../motor/defs.ts';
 const DEVOLVE = defineAbility<StaticDef>('Comeuppance:devolve', {
   kind: 'static',
   rules: {
-    preventsSomeDamage: (c, alvo, fonte, quantidade) => {
+    preventsSomeDamageFirst: (c, alvo, fonte, quantidade) => {
       const meu = alvo.kind === 'player'
         ? alvo.id === c.you
         : !!c.g.state.objects[alvo.id] && isType(c.g, alvo.id, 'Planeswalker') && controllerOf(c.g, alvo.id) === c.you;

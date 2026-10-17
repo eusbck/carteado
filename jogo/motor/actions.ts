@@ -541,6 +541,12 @@ export function dealDamage(g: G, reqs: DamageReq[]): { dealt: number; to: Target
     // prevenção (CR 615): proteção (702.16e) e escudos registrados
     const antesDaPrevencao = amount;
     if (!cantPrevent) {
+      // revisão precons-a: a prevenção que devolve o dano (Comeuppance, Deflecting Palm) vem antes das outras; o jogador
+      // afetado escolhe a ordem (CR 616.1e), e as outras dariam o mesmo resultado para ele, sem a devolução
+      for (const h of hooks(g, 'preventsSomeDamageFirst')) {
+        if (amount <= 0) break;
+        amount -= Math.min(amount, Math.max(0, h.fn(h.ctx, r.target, r.source, amount, r.combat)));
+      }
       if (r.target.kind === 'obj' && kwParams(g, r.target.id, 'protection').some((q) => protectionMatches(g, q, { colors: sc.colors, types: sc.types, id: r.source }))) amount = 0;
       if (r.target.kind === 'player' && playerProtectedFrom(g, r.target.id, { colors: sc.colors, types: sc.types, id: r.source })) amount = 0; // CR 702.16e
       if (amount > 0 && hooks(g, 'preventsDamage').some((h) => h.fn(h.ctx, r.target, r.source, r.combat))) amount = 0; // CR 615.1a

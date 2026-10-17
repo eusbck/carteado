@@ -284,6 +284,12 @@ export interface RuleHooks {
    * que a carta manda fazer com a quantidade prevenida (CR 615.1, 615.5).
    */
   preventsSomeDamage?: (c: SCtx, target: TargetRef, source: ObjId, amount: number, combat: boolean) => number;
+  /**
+   * Como preventsSomeDamage, mas aplicada antes de todas as outras prevenções: a do jogador afetado que faz algo com o
+   * dano prevenido (Comeuppance, Deflecting Palm). Quem recebe o dano escolhe a ordem das prevenções (CR 616.1e) e põe
+   * esta primeiro: as outras só preveniriam o mesmo dano sem devolver nada.
+   */
+  preventsSomeDamageFirst?: (c: SCtx, target: TargetRef, source: ObjId, amount: number, combat: boolean) => number;
   /** "se [esse jogador] fosse perder vida, em vez disso perde o dobro" (Bloodletter of Aclazotz) */
   lifeLossDouble?: (c: SCtx, player: PlayerId) => boolean;
   /** "…causa esse dano mais N" (Thor, Asgard's Avenger): devolve N para este pedido de dano */

@@ -10,7 +10,7 @@ import type { ObjId } from '../../motor/types.ts';
 const ESCUDO = defineAbility<StaticDef>('Deflecting Palm:escudo', {
   kind: 'static',
   rules: {
-    preventsSomeDamage: (c, alvo, fonte, quantidade) => {
+    preventsSomeDamageFirst: (c, alvo, fonte, quantidade) => {
       const prm = (c as SCtx & { params?: { fonte: ObjId; usado?: boolean } }).params;
       if (!prm || prm.usado || prm.fonte !== fonte || alvo.kind !== 'player' || alvo.id !== c.you) return 0;
       prm.usado = true;
@@ -36,7 +36,7 @@ export default defineCard({
     },
   }],
   rulings: {
-    1: 'regra geral: CR 616.1 — com várias prevenções, o motor as aplica na ordem em que foram criadas',
+    1: 'teste: CR 616.1e: com Gisela, o escudo vem antes da metade dela e devolve o dano inteiro',
     2: 'teste: escolhe a fonte na resolução; o próximo dano dela a você é prevenido e devolvido ao controlador dela, uma vez só',
   },
 });

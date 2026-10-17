@@ -35,4 +35,15 @@ describe(NOME, () => {
     expect(tg.life(0)).toBe(40);
     expect(tg.life(1)).toBe(40);
   });
+
+  it('CR 616.1e: com Selfless Squire, Comeuppance previne primeiro e devolve o dano; o Squire ganha os marcadores', () => {
+    const tg = setup({ active: 1, battlefield: [[...Array(8).fill('Plains')], ['Indomitable Ancients']], hand: [[NOME, 'Selfless Squire'], []] });
+    tg.attack([['Indomitable Ancients', 0]]);
+    tg.passUntil((x) => x.pending?.player === 0 && x.state.turn.step === 'declareAttackers');
+    tg.cast('Selfless Squire').cast(NOME).resolveAll();
+    tg.passTo('main2', 1);
+    expect(tg.life(0)).toBe(40);
+    expect(tg.state.objects[tg.bf('Indomitable Ancients')].damage).toBe(2);
+    expect(tg.state.objects[tg.bf('Selfless Squire')].counters['+1/+1']).toBe(2);
+  });
 });

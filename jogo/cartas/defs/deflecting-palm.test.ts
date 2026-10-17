@@ -20,4 +20,13 @@ describe(NOME, () => {
     expect(tg.life(0)).toBe(37);
     expect(tg.life(1)).toBe(36);
   });
+
+  it('CR 616.1e: com Gisela, o escudo vem antes da metade dela e devolve o dano inteiro', () => {
+    const tg = setup({ battlefield: [['Mountain', 'Plains', 'Gisela, Blade of Goldnight'], ['Indomitable Ancients']], hand: [[NOME], []] });
+    tg.choose('Deflecting Palm: escolha a fonte', ['Indomitable Ancients']).cast(NOME).resolve();
+    dealDamage(tg.g, [{ source: tg.bf('Indomitable Ancients'), target: { kind: 'player', id: 0 }, amount: 4, combat: false }]);
+    expect(tg.life(0)).toBe(40);
+    // os 4 voltam para Bruno, e a Gisela dobra o dano a um oponente: 8
+    expect(tg.life(1)).toBe(32);
+  });
 });
