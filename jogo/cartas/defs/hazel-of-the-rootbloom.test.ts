@@ -37,4 +37,29 @@ describe(NOME, () => {
     tg.passUntil((x) => x.state.turn.step === 'end' && x.state.zones.stack.length === 0);
     expect(tg.all('Food').length).toBe(2);
   });
+
+  it('no pagamento de uma mágica: escolhe X = 2, vira as duas fichas escolhidas e paga 2 de vida', () => {
+    const tg = setup({ battlefield: [[NOME, { name: 'Squirrel', token: true }, { name: 'Squirrel', token: true }, { name: 'Food', token: true }], []], hand: [['Chatterstorm'], []] });
+    let pedido = '';
+    let feito = false;
+    tg.script.push((d) => {
+      if (d.kind !== 'payment' || feito) return null;
+      feito = true;
+      const fonte = d.sources.find((x) => (x.label.match(/\{\*\}/g) ?? []).length === 2);
+      return { kind: 'payment', activate: { source: fonte!.id } };
+    });
+    tg.script.push((d) => {
+      if (d.kind !== 'select' || !d.prompt.startsWith('Vire')) return null;
+      pedido = d.prompt;
+      return { kind: 'select', ids: d.items.filter((i) => i.label === 'Squirrel').map((i) => i.id) };
+    });
+    tg.script.push((x) => (x.kind === 'select' && x.prompt.includes('cor') ? { kind: 'select', ids: ['G'] } : null));
+    tg.script.push((x) => (x.kind === 'select' && x.prompt.includes('cor') ? { kind: 'select', ids: ['B'] } : null));
+    tg.cast('Chatterstorm');
+    expect(pedido).toBe('Vire 2 ficha(s) desvirada(s) que você controla');
+    expect(tg.state.zones.stack.some((id) => tg.state.objects[id].def === 'Chatterstorm')).toBe(true);
+    expect(tg.life(0)).toBe(38);
+    expect(tg.all('Squirrel').every((id) => tg.state.objects[id].tapped)).toBe(true);
+    expect(tg.state.objects[tg.bf('Food')].tapped).toBe(false);
+  });
 });

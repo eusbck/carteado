@@ -11,7 +11,7 @@ export default defineCard({
     // CR 118.9: custo alternativo; ruling 1: vale virar criaturas que acabaram de entrar
     altCosts: [{
       key: 'sephara', label: 'Conjurar por {W} virando quatro criaturas com voar', zone: 'hand', mana: '{W}',
-      parts: [{ k: 'tapCreatures', n: 4, filter: (c, id) => hasKw(c.g, id, 'flying'), label: 'quatro criaturas desviradas com voar que você controla' }],
+      parts: [{ k: 'tapCreatures', n: 4, filter: (c, id) => hasKw(c.g, id, 'flying'), label: 'criatura(s) desvirada(s) com voar' }],
     }],
     abilities: [
       ...keywords('flying', 'lifelink'),
