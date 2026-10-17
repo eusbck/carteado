@@ -1,5 +1,58 @@
 # Progresso
 
+## Revisão carta a carta dos seis precons — 16 e 17/10/2026
+
+O Caio jogou com os seis precons de 14/10 e disse que "aparentemente tem muitas mecânicas quebradas"; pediu a revisão
+carta a carta. Três revisores em worktrees irmãs (`precons-wt-a` a `c`, branches `revisao-a` a `c`), juntados na
+branch `revisao-precons`. Cada carta foi conferida contra o Oracle e os rulings: o que ela faz na mesa, o que a pessoa
+vê e se os bots conseguem jogá-la. As repetidas entre decks contaram uma vez; terrenos básicos ficaram de fora.
+
+Resultado (tabela carta a carta: https://claude.ai/artifact/Fqr9V3wiMPG5AvvR4b11kC):
+
+| Deck | Cartas | Corrigidas | Limitação |
+| --- | ---: | ---: | ---: |
+| Blame Game | 84 | 14 | 1 |
+| Tramplesaurus Rex | 58 | 0 | 0 |
+| Squirreled Away | 79 | 5 | 0 |
+| Calling All Angels | 61 | 3 | 0 |
+| Grand Larceny | 72 | 9 | 1 |
+| Buckle Up | 62 | 5 | 0 |
+
+- **Regra:**
+  - ninjutsu nunca aparecia na mesa: a etapa de declarar bloqueadores do próprio turno passava sozinha. Afeta Fallen
+    Shinobi, Silent-Blade Oni, Orochi Soul-Reaver e Nashi, e também sneak e ninjutsu de comandante. A parada
+    inteligente (`motor/autopass.ts`) agora espera ali;
+  - Comeuppance e Deflecting Palm: as outras prevenções (Selfless Squire, Gisela, Take the Bait) vinham antes e eles
+    não devolviam o dano. Gancho novo `preventsSomeDamageFirst`;
+  - Winds of Rath deixava regenerar;
+  - Mob Verdict dava o dano em pedaços e disparava gatilhos em dobro;
+  - Grasp of Fate deixava as cartas exiladas para sempre se o dono saísse da partida; a volta agora é na hora, sem
+    pilha (chave `ATE_SAIR` em `motor/actions.ts`, `voltasAteSair` em `sba.ts`);
+  - Academy Manufactor não trocava a cópia de uma ficha Food, Clue ou Treasure;
+  - Hostage Taker deixava conjurar a carta com a volta dela ainda na pilha;
+  - Parhelion II: as fichas que entram atacando também podem atacar planeswalkers (CR 508.4).
+- **Mesa e textos:**
+  - a ação das cartas roubadas (Gonti e companhia) diz "Conjurar do exílio com mana de qualquer tipo" e vai para
+    "Outras ações";
+  - etiquetas "suspeita" e "nível N" da Classe; o resguardo da carta encoberta aparece para todos (CR 708.2);
+  - o custo da Archangel of Tithes aparece nas telas de ataque e bloqueio;
+  - marcadores em português (dever, voto, página, bolota, missão e os de palavra-chave);
+  - a mana de Hazel aparece como "N manas de qualquer cor";
+  - cartas que mandam olhar (Arcanist's Owl, Weatherlight, Raiders' Karve, Extract Brain, Silent-Blade Oni) mostram
+    as cartas;
+  - os votos e escolhas em ordem (Orzhov Advokist, Agitator Ant, Cataclysmic Gearhulk) vão para o registro na hora;
+  - textos com "que você controla que você controla" e "iniciativa" no lugar de primeiro golpe.
+- **Limitações:**
+  - Gideon's Sacrifice com Comeuppance no mesmo turno: o motor aplica o redirecionamento primeiro, sem perguntar a
+    ordem (CR 616.1e);
+  - Bladegriff Prototype: se o jogador atingido sai antes do gatilho, quem escolhe o alvo é o próximo oponente, não
+    um escolhido por você.
+- **Verificação na `revisao-precons` (`6a600b5e`):**
+  - `npm run typecheck` sem erros; o cliente compila (numa pasta temporária);
+  - 60 partidas de bots, 10 por deck (4 de 4 jogadores e 4 de 2 aleatórios, 2 de 2 heurísticos), sem erro;
+  - suíte inteira em 48 fatias (`--shard=i/48 --maxWorkers=2`), uma por vez em primeiro plano: **2007 arquivos,
+    5067 testes aprovados, 1 ignorado que já existia, zero falhas**.
+
 ## Oito precons novos jogáveis: os seis em espera, Quick Draw e Miracle Worker — 14/10/2026
 
 Pedido do Caio: pôr para funcionar os seis precons importados em 14/10 que estavam em espera; no meio do trabalho,
