@@ -11,12 +11,23 @@ describe(N, () => {
     });
     tg.choose('Tripular:', ['Ripjaw Raptor']).choose('Tripular:', ['done']).activate(N, 'Tripular').resolveAll();
     let oferecidas: string[] = [];
-    tg.script.push((d) => (d.kind === 'select' && d.prompt.includes('Weatherlight:') ? (oferecidas = d.items.filter((i) => !i.disabled).map((i) => i.label), { kind: 'select', ids: [d.items.find((i) => i.label === 'Rishkar, Peema Renegade')!.id] }) : null));
+    tg.script.push((d) => (d.kind === 'select' && d.prompt.includes('Weatherlight (') ? (oferecidas = d.items.filter((i) => !i.disabled).map((i) => i.label), { kind: 'select', ids: [d.items.find((i) => i.label === 'Rishkar, Peema Renegade')!.id] }) : null));
     tg.attack([[N, 1]]).passTo('main2');
     expect(tg.life(1)).toBe(36);
     expect(oferecidas.sort()).toEqual(['Rishkar, Peema Renegade', 'Sol Ring']);
     expect(tg.names(0, 'hand')).toEqual(['Rishkar, Peema Renegade']);
     const lib = tg.names(0, 'library');
     expect(lib.slice(0, 2)).toEqual(['Plains', 'Swamp']);
+  });
+
+  it('sem carta histórica entre as cinco, você as vê do mesmo jeito e todas vão para o fundo', () => {
+    const tg = setup({ battlefield: [[N, 'Ripjaw Raptor'], []], library: [['Forest', 'Island', 'Plains', 'Swamp', 'Mountain', 'Sol Ring'], Array(10).fill('Forest')] });
+    tg.choose('Tripular:', ['Ripjaw Raptor']).choose('Tripular:', ['done']).activate(N, 'Tripular').resolveAll();
+    let vistas: string[] = [];
+    tg.script.push((d) => (d.kind === 'select' && d.prompt.includes('Weatherlight (') ? ((vistas = d.items.filter((i) => i.disabled).map((i) => i.label)), { kind: 'select', ids: [''] }) : null));
+    tg.attack([[N, 1]]).passTo('main2');
+    expect(vistas).toEqual(['Forest', 'Island', 'Plains', 'Swamp', 'Mountain']);
+    expect(tg.names(0, 'hand')).toEqual([]);
+    expect(tg.names(0, 'library')[0]).toBe('Sol Ring');
   });
 });

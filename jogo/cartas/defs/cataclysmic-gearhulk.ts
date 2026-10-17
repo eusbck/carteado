@@ -28,6 +28,8 @@ export default defineCard({
             const [esc] = cands.length === 1 ? [String(cands[0])] : yield* chooseItems(c.g, p, `Cataclysmic Gearhulk: escolha ${rotulo} para manter`, cands.map((id) => objItem(c.g, id, nameOf(c.g, id))), 1, 1);
             fica.add(Number(esc));
           }
+          // ruling 1: os que escolhem depois sabem o que os anteriores escolheram
+          if (naoTerrenos.length) c.g.log(`${s.players[p].name} mantém ${[...fica].map((id) => nameOf(c.g, id)).join(', ') || 'nada'} (Cataclysmic Gearhulk).`);
           // ruling 4: terrenos não são escolhidos nem sacrificados; ruling 3: ela mesma também pode ser sacrificada
           sacrificados.push(...naoTerrenos.filter((id) => !fica.has(id)));
         }
@@ -36,7 +38,7 @@ export default defineCard({
     ],
   }],
   rulings: {
-    1: 'teste: cada jogador fica com um de cada tipo e sacrifica o resto; terrenos ficam',
+    1: 'teste: cada jogador fica com um de cada tipo e sacrifica o resto; terrenos ficam (o registro mostra o que cada um manteve, na ordem APNAP)',
     2: 'teste: cada jogador fica com um de cada tipo e sacrifica o resto; terrenos ficam',
     3: 'teste: cada jogador fica com um de cada tipo e sacrifica o resto; terrenos ficam',
     4: 'teste: cada jogador fica com um de cada tipo e sacrifica o resto; terrenos ficam',
