@@ -553,7 +553,7 @@ export type Decision = {
   | { kind: 'number'; min: number; max: number }
   | { kind: 'payment'; cost: string; remaining: string; sources: PaymentSource[]; canAuto: boolean; lifeOptions: number; canCancel: boolean }
   | { kind: 'attackers'; candidates: { obj: ObjId; targets: TargetRef[]; /** alvos que cumprem as exigências de ataque (CR 508.1d); ausente se não houver */ required?: TargetRef[]; /** mana genérica a pagar para atacar cada alvo, na ordem de targets (CR 508.1h); ausente se tudo for de graça */ costs?: number[] }[]; error?: string }
-  | { kind: 'blockers'; candidates: { obj: ObjId; canBlock: ObjId[] }[]; attackers: ObjId[]; /** atacantes que precisam ser bloqueados por exatamente uma criatura se puder */ required?: ObjId[]; error?: string }
+  | { kind: 'blockers'; candidates: { obj: ObjId; canBlock: ObjId[]; /** revisão B: mana genérica a pagar para bloquear cada atacante, na ordem de canBlock (CR 509.1d: Archangel of Tithes); ausente se tudo for de graça */ costs?: number[] }[]; attackers: ObjId[]; /** atacantes que precisam ser bloqueados por exatamente uma criatura se puder */ required?: ObjId[]; error?: string }
   | { kind: 'damage'; attacker: ObjId; amount: number; recipients: TargetRef[]; lethal: number[]; trample: boolean; error?: string }
   | { kind: 'arrange'; items: ChoiceItem[]; destinations: ('top' | 'bottom' | 'graveyard')[] }
   | { kind: 'mulligan'; handSize: number; mulligans: number }

@@ -41,4 +41,29 @@ describe(N, () => {
     expect(erro).toMatch(/bloquear/);
     expect(tg.life(1)).toBe(37);
   });
+
+  it('CR 509.1d: a decisão de bloqueio já mostra o custo de cada bloqueio, antes de confirmar', () => {
+    const tg = setup({ battlefield: [[N, 'Segovian Angel'], ['Baleful Strix', 'Island']] });
+    let custos: Record<string, number[]> = {};
+    tg.script.push((d) => {
+      if (d.kind !== 'blockers') return null;
+      custos = Object.fromEntries(d.candidates.map((c) => [tg.state.objects[c.obj].def, c.costs ?? []]));
+      return { kind: 'blockers', blocks: [] };
+    });
+    tg.attack([[N, 1], ['Segovian Angel', 1]]).passTo('main2', 0);
+    // bloquear qualquer atacante custa {1} enquanto Archangel of Tithes ataca
+    expect(custos['Baleful Strix']).toEqual([1, 1]);
+  });
+
+  it('sem estar atacando, bloquear não custa nada', () => {
+    const tg = setup({ battlefield: [[N, 'Segovian Angel'], ['Baleful Strix']] });
+    let custos: number[] | undefined = [9];
+    tg.script.push((d) => {
+      if (d.kind !== 'blockers') return null;
+      custos = d.candidates[0].costs;
+      return { kind: 'blockers', blocks: [] };
+    });
+    tg.attack([['Segovian Angel', 1]]).passTo('main2', 0);
+    expect(custos).toBeUndefined();
+  });
 });
