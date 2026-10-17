@@ -25,7 +25,8 @@ export interface StopSettings {
   /**
    * parada inteligente (como no MTG Arena; padrão: sim): com algo instantâneo para jogar, parar quando um oponente põe
    * algo na pilha, quando ataca no turno dele e na etapa final dele, mesmo sem essas paradas marcadas. Sem jogada, a
-   * mesa segue. A espera revela que a pessoa tem resposta; foi aceito (09/10), para dar para responder no turno dos outros
+   * mesa segue. A espera revela que a pessoa tem resposta; foi aceito (09/10), para dar para responder no turno dos outros.
+   * No próprio turno, também para depois dos bloqueios quando há ninjutsu ou sneak para usar (ninjaNaMao, 16/10)
    */
   respondWhenAble?: boolean;
 }
