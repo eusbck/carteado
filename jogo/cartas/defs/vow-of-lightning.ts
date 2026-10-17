@@ -8,7 +8,7 @@ export default defineCard({
   name: 'Vow of Lightning',
   faces: [{
     enchant: t.creature(undefined, 'criatura'),
-    abilities: [...voto('first strike', 'A criatura encantada recebe +2/+2, tem iniciativa e não pode atacar você nem planeswalkers que você controla.')],
+    abilities: [...voto('first strike', 'A criatura encantada recebe +2/+2, tem primeiro golpe e não pode atacar você nem planeswalkers que você controla.')],
   }],
   rulings: {},
 });

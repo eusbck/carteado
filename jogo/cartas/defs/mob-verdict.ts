@@ -3,6 +3,7 @@
 // opponent received, Mob Verdict deals 2 damage to that player and each creature that player controls. For each vote
 // you received, draw a card.
 import { chooseItems, controlledBy, dealDamage, defineCard, draw, isCreature, playerItem } from '../../motor/api.ts';
+import type { DamageReq } from '../../motor/actions.ts';
 import type { PlayerId } from '../../motor/types.ts';
 
 export default defineCard({
@@ -23,13 +24,16 @@ export default defineCard({
           quem.push(`${c.g.state.players[p].name} → ${c.g.state.players[alvo].name}`);
         }
         c.g.log(`Mob Verdict, votos: ${quem.join('; ')}.`);
-        // 2 de dano por voto a cada oponente votado e às criaturas dele
+        // 2 de dano por voto a cada oponente votado e a cada criatura dele, tudo de uma vez: um oponente com dois votos
+        // recebe 4 de dano num evento só, não duas vezes 2 (CR 120.4: dano causado ao mesmo tempo é um evento)
+        const reqs: DamageReq[] = [];
         for (const p of jogadores.filter((x) => c.g.isOpponent(c.you, x))) {
-          for (let i = 0; i < (votos.get(p) ?? 0); i++) {
-            const alvos = [{ kind: 'player' as const, id: p }, ...controlledBy(c.g, p, (id) => isCreature(c.g, id)).map((id) => ({ kind: 'obj' as const, id }))];
-            dealDamage(c.g, alvos.map((target) => ({ source: c.source, target, amount: 2, combat: false })));
-          }
+          const n = 2 * (votos.get(p) ?? 0);
+          if (n <= 0) continue;
+          const alvos = [{ kind: 'player' as const, id: p }, ...controlledBy(c.g, p, (id) => isCreature(c.g, id)).map((id) => ({ kind: 'obj' as const, id }))];
+          reqs.push(...alvos.map((target) => ({ source: c.source, target, amount: n, combat: false })));
         }
+        if (reqs.length) dealDamage(c.g, reqs);
         const meus = votos.get(c.you) ?? 0;
         if (meus > 0) yield* draw(c.g, c.you, meus);
       },

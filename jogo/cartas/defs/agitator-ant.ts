@@ -19,6 +19,8 @@ export default defineCard({
           const [esc] = yield* chooseItems(c.g, p, 'Agitator Ant: colocar dois marcadores +1/+1 numa criatura sua? (ela fica goadada)',
             [{ id: 'nao', label: 'Não colocar marcadores' }, ...minhas.map((id) => objItem(c.g, id, nameOf(c.g, id)))], 1, 1);
           if (esc !== 'nao') escolhas.push({ p, id: Number(esc) });
+          // ruling: quem escolhe depois sabe o que os anteriores escolheram
+          c.g.log(`Agitator Ant: ${c.g.state.players[p].name} ${esc === 'nao' ? 'não coloca marcadores' : `escolhe ${nameOf(c.g, Number(esc))}`}.`);
         }
         // ruling 6: só fica goadada a que recebeu marcadores de fato
         for (const { p, id } of escolhas) if (addCounters(c.g, { kind: 'obj', id }, '+1/+1', 2, p) > 0) goad(c.g, id, c.you);

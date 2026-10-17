@@ -7,6 +7,7 @@ import { setup } from './harness.ts';
 import { createTokens, dealDamage, defineAbility, on, ruleEffect, triggered, untilEndOfTurn } from '../motor/api.ts';
 import { hasKw } from '../motor/chars.ts';
 import type { Ctx, StaticDef } from '../motor/defs.ts';
+import { buildView } from '../motor/view.ts';
 import { encobrir, suspeita, suspeitar } from '../cartas/culpa.ts';
 
 const vistos: Record<string, unknown>[] = [];
@@ -106,6 +107,25 @@ describe('encobrir (cartas/culpa.ts) e habilidades de face para baixo (data.face
     expect(tg.state.objects[id]?.zone).toBe('battlefield');
     expect(tg.state.objects[id].damage).toBe(0);
     expect(tg.names(1, 'graveyard')).toEqual(['Lightning Bolt']);
+  });
+
+  it('CR 708.2, 701.58a: na vista, o oponente vê o resguardo da encoberta, mas não a carta', () => {
+    const tg = setup({ battlefield: [[], []], library: [['Indomitable Ancients'], []] });
+    const id = tg.run(encobrir(tg.g, 0))!;
+    const doOponente = buildView(tg.g, 1, null).battlefield.find((o) => o.id === id)!;
+    expect(doOponente).toMatchObject({ def: '', power: 2, toughness: 2, keywords: ['ward'] });
+    expect(JSON.stringify(doOponente)).not.toContain('Indomitable');
+  });
+});
+
+describe('vista: designação de suspeita', () => {
+  it('CR 701.60b: a criatura suspeita vem marcada na vista (a mesa mostra a etiqueta); ao sair do campo, deixa de ser', () => {
+    const tg = setup({ battlefield: [[], ['Indomitable Ancients', 'Wall of Omens']] });
+    const anc = tg.bf('Indomitable Ancients');
+    suspeitar(tg.g, anc, 0);
+    const v = buildView(tg.g, 1, null).battlefield;
+    expect(v.find((o) => o.id === anc)!.suspected).toBe(true);
+    expect(v.find((o) => o.id === tg.bf('Wall of Omens'))!.suspected).toBeUndefined();
   });
 });
 

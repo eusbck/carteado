@@ -33,9 +33,11 @@ export default defineCard({
           const minhas = controlledBy(c.g, p, (id) => isCreature(c.g, id));
           if (!minhas.length) continue;
           const nao = { id: 'nao', label: 'Não colocar marcadores' };
-          const [esc] = yield* chooseItems(c.g, p, 'Orzhov Advokist: colocar dois marcadores +1/+1 numa criatura sua? (se colocar, suas criaturas não podem atacar o dono da carta nem os planeswalkers dele até o próximo turno dele)',
+          const [esc] = yield* chooseItems(c.g, p, `Orzhov Advokist: colocar dois marcadores +1/+1 numa criatura sua? (se colocar, suas criaturas não podem atacar ${c.g.state.players[c.you].name} nem os planeswalkers dele até o próximo turno dele)`,
             [nao, ...minhas.map((id) => objItem(c.g, id, nameOf(c.g, id)))], 1, 1);
           if (esc !== 'nao') escolhas.push({ p, id: Number(esc) });
+          // ruling: quem escolhe depois sabe o que os anteriores escolheram
+          c.g.log(`Orzhov Advokist: ${c.g.state.players[p].name} ${esc === 'nao' ? 'não coloca marcadores' : `escolhe ${nameOf(c.g, Number(esc))}`}.`);
         }
         for (const { p, id } of escolhas) {
           addCounters(c.g, { kind: 'obj', id }, '+1/+1', 2, p);

@@ -14,9 +14,12 @@ const DEVOLVE = defineAbility<StaticDef>('Comeuppance:devolve', {
         : !!c.g.state.objects[alvo.id] && isType(c.g, alvo.id, 'Planeswalker') && controllerOf(c.g, alvo.id) === c.you;
       if (!meu || controllerOf(c.g, fonte) === c.you) return 0;
       // ruling 1: Comeuppance é a fonte do dano novo, que não é de combate (CR 615.5)
-      const criatura = !!c.g.state.objects[fonte] && c.g.state.objects[fonte].zone === 'battlefield' && !!lkiChars(c.g, fonte)?.types.includes('Creature');
-      if (criatura) dealDamage(c.g, [{ source: c.source, target: { kind: 'obj', id: fonte }, amount: quantidade, combat: false }]);
-      else dealDamage(c.g, [{ source: c.source, target: { kind: 'player', id: controllerOf(c.g, fonte) }, amount: quantidade, combat: false }]);
+      // fonte criatura: o dano vai para ela; se ela já saiu do campo (o gatilho de morte de uma criatura, pela última
+      // informação), não há a quem causar o dano e ele não vai para o controlador
+      const criatura = !!lkiChars(c.g, fonte)?.types.includes('Creature');
+      if (criatura) {
+        if (c.g.state.objects[fonte]?.zone === 'battlefield') dealDamage(c.g, [{ source: c.source, target: { kind: 'obj', id: fonte }, amount: quantidade, combat: false }]);
+      } else dealDamage(c.g, [{ source: c.source, target: { kind: 'player', id: controllerOf(c.g, fonte) }, amount: quantidade, combat: false }]);
       return quantidade;
     },
   },

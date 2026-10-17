@@ -55,6 +55,8 @@ export interface ObjView {
   // lote2-d: designações e escudos (ausentes no caso normal)
   /** monstruosa (CR 701.37b) */
   monstrous?: boolean;
+  /** suspeita (CR 701.60b): designação, não habilidade; a mesa mostra a etiqueta */
+  suspected?: boolean;
   /** Portador do Anel do controlador (CR 701.54b) */
   ringBearer?: boolean;
   /** escudos de regeneração que valem neste turno (CR 701.19a) */
@@ -179,8 +181,10 @@ export function objView(g: G, id: ObjId, viewer: PlayerId | null): ObjView {
     loyalty: semCaracteristicas ? null : c.loyalty,
     manaCost: hiddenFaceDown ? '' : (c.manaCost ? formatCost(c.manaCost) : ''),
     colors: semCaracteristicas ? [] : c.colors,
-    keywords: hiddenFaceDown ? [] : keywords,
-    abilities: hiddenFaceDown ? [] : abilityTexts,
+    // no campo e na pilha, as características da virada para baixo são as da face para baixo, conhecidas por todos
+    // (CR 708.2: 2/2 sem nome; encoberta, com resguardo {2}, CR 701.58a; e o que outros efeitos derem a ela)
+    keywords: semCaracteristicas ? [] : keywords,
+    abilities: semCaracteristicas ? [] : abilityTexts,
     commander: o.card !== null && !!g.state.cards[o.card]?.isCommander && visible,
     sick: o.zone === 'battlefield' && summoningSick(g, id),
     prepared: o.prepared,
@@ -190,6 +194,7 @@ export function objView(g: G, id: ObjId, viewer: PlayerId | null): ObjView {
     ...(byToughness ? { damageByToughness: byToughness } : {}),
     ...(o.manaTap && g.state.config.desvirarSoComMana && !manaDesfazivel(g.state, id) ? { manaGasta: true } : {}),
     ...(o.zone === 'battlefield' && o.data.monstrous ? { monstrous: true } : {}),
+    ...(o.zone === 'battlefield' && o.data.suspeita ? { suspected: true } : {}),
     ...(o.zone === 'battlefield' && o.data.ringBearer !== undefined && o.data.ringBearer === controllerOf(g, id) ? { ringBearer: true } : {}),
     ...(o.zone === 'battlefield' ? regenView(g, id) : {}),
     ...(o.zone === 'battlefield' && o.data.setor !== undefined && setorDe(g, id) ? { sector: setorDe(g, id)! } : {}),

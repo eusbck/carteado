@@ -7,7 +7,8 @@ export default defineCard({
     spell: {
       *effect(c) {
         const ctx = { g: c.g, you: c.you, source: c.source };
-        yield* destroy(c.g, allCreatures(c.g).filter((id) => !is.enchanted(ctx, id)));
+        // "elas não podem ser regeneradas" (CR 701.19c): escudos de regeneração não as salvam
+        yield* destroy(c.g, allCreatures(c.g).filter((id) => !is.enchanted(ctx, id)), { cantRegenerate: true });
       },
     },
   }],

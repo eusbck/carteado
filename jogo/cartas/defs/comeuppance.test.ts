@@ -24,4 +24,15 @@ describe(NOME, () => {
     dealDamage(tg.g, [{ source: tg.bf('Wall of Omens'), target: { kind: 'player', id: 0 }, amount: 1, combat: false }]);
     expect(tg.life(0)).toBe(39);
   });
+
+  it('criatura que já saiu do campo (gatilho de morte): o dano é prevenido e não vai para o controlador', () => {
+    const tg = setup({ battlefield: [['Plains', 'Plains', 'Plains', 'Plains', 'Mountain'], ['Boros Reckoner']], hand: [[NOME, 'Lightning Bolt'], []] });
+    tg.cast(NOME).resolve();
+    // o Bolt mata o Boros Reckoner de Bruno, que ainda dispara e mira Ana; a fonte é a criatura que morreu
+    tg.choose('qualquer alvo', ['Boros Reckoner']).choose('qualquer alvo', ['Ana']);
+    tg.cast('Lightning Bolt').resolveAll();
+    expect(tg.names(1, 'graveyard')).toEqual(['Boros Reckoner']);
+    expect(tg.life(0)).toBe(40);
+    expect(tg.life(1)).toBe(40);
+  });
 });

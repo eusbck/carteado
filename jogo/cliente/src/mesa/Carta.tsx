@@ -5,6 +5,7 @@ import { memo } from 'preact/compat';
 import type { ObjView } from '../../../motor/view.ts';
 import { info, nomeCarta, urlImagem } from '../cartas.ts';
 import { IconeEscudo, IconeEspada } from '../icones.tsx';
+import { palavraChave } from '../pt.ts';
 
 /** 'bloqueavel': atacante que a sua criatura escolhida pode bloquear (anel azul que pulsa, diferente da 'mira' vermelha) */
 export type Realce = 'acao' | 'escolhivel' | 'escolhido' | 'atacante' | 'bloqueador' | 'ativo' | 'mira' | 'bloqueavel' | null;
@@ -13,7 +14,7 @@ export type Selo = 'espada' | 'escudo' | 'espera';
 
 const NOME_SELO: Record<Selo, string> = { espada: 'atacando', escudo: 'bloqueando', espera: 'marcada para atacar, sem alvo' };
 
-const MARCADORES: Record<string, string> = { '+1/+1': '+1/+1', '-1/-1': '−1/−1', loyalty: 'lealdade', poison: 'veneno', charge: 'carga', time: 'tempo', oil: 'óleo', stun: 'atordoamento', shield: 'escudo', lore: 'conhecimento', plan: 'plano' };
+const MARCADORES: Record<string, string> = { '+1/+1': '+1/+1', '-1/-1': '−1/−1', loyalty: 'lealdade', poison: 'veneno', charge: 'carga', time: 'tempo', oil: 'óleo', stun: 'atordoamento', shield: 'escudo', lore: 'conhecimento', plan: 'plano', duty: 'dever', vow: 'voto', page: 'página' };
 
 export interface CartaProps {
   o: ObjView;
@@ -97,13 +98,16 @@ function CartaBase({ o, realce = null, selo, numero, deitada, onClick, onZoom, o
           </div>
         )}
       </div>
-      {(marcadores.length > 0 || o.damage > 0 || pendente || o.goaded || o.monstrous || o.ringBearer || !!o.regen || !!o.sector || (o.faceDown && !oculta)) && (
+      {(marcadores.length > 0 || o.damage > 0 || pendente || o.goaded || o.suspected || o.monstrous || o.ringBearer || !!o.regen || !!o.sector || (o.faceDown && (!oculta || o.keywords.length > 0))) && (
         <div class="carta-etiquetas">
-          {marcadores.map(([k, n]) => <span key={k} class={`marca marca-${k === '-1/-1' ? 'menos' : k === '+1/+1' ? 'mais' : 'outro'}`}>{k === '+1/+1' ? `+${n}` : k === '-1/-1' ? `−${n}` : `${n} ${MARCADORES[k] ?? k}`}</span>)}
+          {marcadores.map(([k, n]) => <span key={k} class={`marca marca-${k === '-1/-1' ? 'menos' : k === '+1/+1' ? 'mais' : 'outro'}`}>{k === '+1/+1' ? `+${n}` : k === '-1/-1' ? `−${n}` : `${n} ${MARCADORES[k] ?? palavraChave(k)}`}</span>)}
           {o.damage > 0 && <span class="marca marca-dano">{o.damage} de dano</span>}
           {o.goaded && <span class="marca marca-outro">provocada</span>}
+          {o.suspected && <span class="marca marca-outro" title="Suspeita: tem ameaçar e não pode bloquear">suspeita</span>}
           {/* só quem controla vê a face (CR 708.5); a etiqueta lembra que os outros veem o verso */}
           {o.faceDown && !oculta && <span class="marca marca-outro">virada para baixo</span>}
+          {/* as palavras-chave da face para baixo são públicas (encoberta: resguardo {2}, CR 701.58a) */}
+          {o.faceDown && oculta && o.keywords.length > 0 && <span class="marca marca-outro">{o.keywords.map(palavraChave).join(', ')}</span>}
           {o.ringBearer && <span class="marca marca-outro" title="Portador do Anel: lendário e não pode ser bloqueado por criaturas com força maior">portador do Anel</span>}
           {o.monstrous && <span class="marca marca-outro">monstruosa</span>}
           {o.sector && <span class="marca marca-outro" title="Setor do campo dividido por Space Beleren">setor {o.sector === 'alpha' ? 'alfa' : o.sector === 'beta' ? 'beta' : 'gama'}</span>}
