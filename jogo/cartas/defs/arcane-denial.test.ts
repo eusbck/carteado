@@ -20,9 +20,25 @@ describe('Arcane Denial', () => {
     expect(tg.state.zones.hand[1].length).toBe(1); // Bruno compra 1 (antes da compra normal)
   });
 
-  it('anulada na manutenção, a compra fica para a manutenção do turno seguinte', () => {
-    const tg = setup({ step: 'upkeep', battlefield: [['Swamp', 'Swamp'], ['Island', 'Island']], hand: [['Infernal Grasp'], ['Arcane Denial']], library: [['Plains'], ['Island', 'Island']] });
-    tg.state.objects[tg.find('Infernal Grasp', 'hand')!].data = {};
-    expect(tg.canCast('Infernal Grasp')).toBe(false); // sem criatura alvo; usa outra mágica
+  it('CR 603.7: anulada durante a manutenção, as compras ficam para a manutenção do turno seguinte', () => {
+    const tg = setup({
+      step: 'upkeep',
+      battlefield: [['Mountain'], ['Island', 'Island']],
+      hand: [['Lightning Bolt'], ['Arcane Denial']],
+      library: [['Plains', 'Plains', 'Plains', 'Plains'], ['Island', 'Island', 'Island']],
+    });
+    tg.choose('alvo', ['Bruno']).cast('Lightning Bolt').pass();
+    tg.choose('mágica alvo', ['Lightning Bolt']).cast('Arcane Denial').resolve();
+    expect(tg.names(0, 'graveyard')).toContain('Lightning Bolt');
+    expect(tg.life(1)).toBe(40);
+    // ainda no turno de Ana: só a compra normal dela
+    tg.passTo('main1', 0);
+    expect(tg.state.zones.hand[0].length).toBe(1);
+    expect(tg.state.zones.hand[1].length).toBe(0);
+    tg.number('quantas cartas', 2);
+    tg.passTo('upkeep', 1);
+    tg.resolveAll();
+    expect(tg.state.zones.hand[0].length).toBe(3); // a compra do turno e as duas da Arcane Denial
+    expect(tg.state.zones.hand[1].length).toBe(1); // a de Bruno, antes da compra normal dele
   });
 });

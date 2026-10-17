@@ -4,7 +4,7 @@ import { defineCard, staticAbility } from '../../motor/api.ts';
 
 export default defineCard({
   name: "Propaganda",
-  faces: [{ abilities: [staticAbility({ rules: { attackCost: (c, _a, target) => target.kind === 'player' && target.id === c.you ? 2 : 0 }, text: 'Para cada criatura que ataca você, seu controlador paga {2}.' })] }],
+  faces: [{ abilities: [staticAbility({ rules: { attackCost: (c, _a, target) => target.kind === 'player' && target.id === c.you ? 2 : 0 }, text: 'Criaturas não podem atacar você a menos que o controlador delas pague {2} por criatura dele que esteja atacando você.' })] }],
   rulings: {
     "1": "CR 508.1h: teste: o custo aplica-se ao jogador, não a seu planeswalker.",
     "2": "não se aplica: formato Gigante de Duas Cabeças fora do escopo; a mesa usa 1v1 ou Commander multiplayer.",

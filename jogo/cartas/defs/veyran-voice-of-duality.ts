@@ -11,7 +11,7 @@ export default defineCard({
       // rulings 1-3, 5: magecraft dispara por conjurar ou copiar uma mágica (não por copiar uma carta)
       magecraft(function* (c) {
         if (c.g.state.objects[c.source]?.zone === 'battlefield') untilEndOfTurn(c, [c.source], [{ k: 'pt', p: 1, t: 1 }]);
-      }, 'Magecraft — Sempre que você conjura ou copia uma mágica instantânea ou de feitiço, Veyran recebe +1/+1 até o fim do turno.'),
+      }, 'Sempre que você conjura ou copia uma mágica instantânea ou de feitiço, Veyran recebe +1/+1 até o fim do turno.'),
       // rulings 4, 6-7: cada Veyran soma um disparo; as escolhas são feitas para cada instância
       staticAbility({
         rules: {
