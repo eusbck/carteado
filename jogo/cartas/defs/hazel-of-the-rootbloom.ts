@@ -15,7 +15,7 @@ const MANA: ManaAbilityDef = {
   ...mana((c) => Array.from({ length: fichasDesviradas(c).length }, (_, i) => Array<ManaType>(i + 1).fill('*' as ManaType)), {
     text: '{T}, Pague 2 de vida, Vire X fichas desviradas que você controla: Adicione X manas em qualquer combinação de cores.',
   }),
-  cost: [...cost('{T}, Pay 2 life'), { k: 'tapPermanents', n: 'X', filter: (c, id) => id !== c.source && ehFicha(c.g, id), label: 'ficha(s) desvirada(s) que você controla' }],
+  cost: [...cost('{T}, Pay 2 life'), { k: 'tapPermanents', n: 'X', filter: (c, id) => id !== c.source && ehFicha(c.g, id), label: 'ficha(s) desvirada(s)' }],
   // o X do custo é a quantidade de mana da alternativa escolhida (motor/costs.ts activateManaAbility)
   xFromAlt: true,
 };

@@ -13,6 +13,9 @@ export function Simbolos({ custo, tam = 16 }: { custo: string; tam?: number }) {
 
 /** texto com símbolos embutidos ("{T}: Adicione {G}.") */
 export function TextoComSimbolos({ texto }: { texto: string }) {
+  // "{*}" é mana de uma cor que você escolhe ao ativar ("qualquer combinação de cores": Hazel of the Rootbloom); não há
+  // símbolo para ele, então vira texto
+  texto = texto.replace(/(\{\*\})+/g, (m) => { const n = m.length / 3; return `${n} mana${n > 1 ? 's' : ''} de qualquer cor`; });
   const partes = texto.split(/(\{[^}]+\})/g);
   return (
     <>

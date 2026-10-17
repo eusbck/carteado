@@ -415,6 +415,10 @@ export interface GameState {
   /** precons-a: permanentes que entraram no campo neste turno (Oran-Rief: "cada criatura verde que entrou neste turno");
    *  opcional, como os de cima */
   enteredThisTurn?: { turn: number; objs: ObjId[] };
+  /** revisão B: cartas exiladas "até" uma permanente sair do campo (CR 610.3) cuja permanente saiu porque o dono deixou a
+   *  partida (CR 800.4a, que não passa por moveObjects): voltam ao campo na próxima verificação de ações de estado.
+   *  Opcional, como os de cima */
+  voltasAteSair?: ObjId[];
   /** quantas mágicas de cada nome cada jogador conjurou na partida (chave `jogador:nome`; Approach of the Second Sun);
    *  opcional, como os de cima */
   castNames?: Record<string, number>;
@@ -549,7 +553,7 @@ export type Decision = {
   | { kind: 'number'; min: number; max: number }
   | { kind: 'payment'; cost: string; remaining: string; sources: PaymentSource[]; canAuto: boolean; lifeOptions: number; canCancel: boolean }
   | { kind: 'attackers'; candidates: { obj: ObjId; targets: TargetRef[]; /** alvos que cumprem as exigências de ataque (CR 508.1d); ausente se não houver */ required?: TargetRef[]; /** mana genérica a pagar para atacar cada alvo, na ordem de targets (CR 508.1h); ausente se tudo for de graça */ costs?: number[] }[]; error?: string }
-  | { kind: 'blockers'; candidates: { obj: ObjId; canBlock: ObjId[] }[]; attackers: ObjId[]; /** atacantes que precisam ser bloqueados por exatamente uma criatura se puder */ required?: ObjId[]; error?: string }
+  | { kind: 'blockers'; candidates: { obj: ObjId; canBlock: ObjId[]; /** revisão B: mana genérica a pagar para bloquear cada atacante, na ordem de canBlock (CR 509.1d: Archangel of Tithes); ausente se tudo for de graça */ costs?: number[] }[]; attackers: ObjId[]; /** atacantes que precisam ser bloqueados por exatamente uma criatura se puder */ required?: ObjId[]; error?: string }
   | { kind: 'damage'; attacker: ObjId; amount: number; recipients: TargetRef[]; lethal: number[]; trample: boolean; error?: string }
   | { kind: 'arrange'; items: ChoiceItem[]; destinations: ('top' | 'bottom' | 'graveyard')[] }
   | { kind: 'mulligan'; handSize: number; mulligans: number }

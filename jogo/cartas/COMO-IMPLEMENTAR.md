@@ -236,6 +236,9 @@ Formatos de carta (`motor/formatos.ts`). O nome da definição e o slug usam o n
   "a criatura equipada ou encantada causa dano de combate a um jogador" (`c.event.jogador`, `dano`, `criatura`).
 - Nos testes, as compras da etapa de compra tiram cartas do topo do grimório montado: ponha a carta que a busca deve
   achar depois das que serão compradas até lá.
+- "Exile … até esta permanente sair do campo" (CR 610.3): `exile(g, ids, { linkTo: { obj: c.source, key: ATE_SAIR } })`.
+  O motor devolve as cartas logo que a fonte sai do campo, sem pilha e sob o controle dos donos, também quando o dono
+  da fonte deixa a partida (Grasp of Fate). Não escreva o gatilho de "quando sai do campo" para isso.
 
 ## Testes
 

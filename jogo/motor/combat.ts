@@ -340,7 +340,7 @@ export function* declareBlockers(g: G): Gen<void> {
     let a: Extract<Answer, { kind: 'blockers' }>;
     for (;;) {
       a = yield* ask<Extract<Answer, { kind: 'blockers' }>>(g, {
-        kind: 'blockers', player: quemEscolhe, prompt: quemEscolhe === d ? 'Declare os bloqueadores' : `Declare os bloqueadores de ${s.players[d].name}`, candidates: cands, attackers, required: mustBeBlockedByOne(g, attackers),
+        kind: 'blockers', player: quemEscolhe, prompt: quemEscolhe === d ? 'Declare os bloqueadores' : `Declare os bloqueadores de ${s.players[d].name}`, candidates: cands.map((c) => { const custos = c.canBlock.map((at) => blockCostFor(g, c.obj, at)); return custos.some((n) => n > 0) ? { ...c, costs: custos } : c; }), attackers, required: mustBeBlockedByOne(g, attackers),
       }, (ans) => validateBlocks(g, d, ans.blocks));
       // custos para bloquear (CR 509.1d-f): o defensor paga; desistindo, declara de novo
       const total = a.blocks.reduce((n, [b, at]) => n + blockCostFor(g, b, at), 0);

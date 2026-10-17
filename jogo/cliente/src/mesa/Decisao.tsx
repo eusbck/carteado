@@ -201,12 +201,17 @@ function Atacantes({ d, ui, nomeObj, nomeCombate, numeroCombate, nomeAlvo, aux, 
   // as que ainda dá para marcar de uma vez (as que só atacam pagando ficam de fora: CR 508.1h)
   const faltam = d.candidates.filter((c) => !(c.obj in ui.ataques) && !(c.costs?.every((n) => n > 0))).length;
   const semAlvo = marcadas.some(([, t]) => t === null);
+  // custos para atacar (CR 508.1h: Archangel of Tithes, Ghostly Prison): mostrados antes de confirmar; o pagamento vem depois
+  const custoAtaque = (o: ObjId, t: TargetRef): number => { const c = d.candidates.find((x) => x.obj === o); const i = c ? c.targets.findIndex((x) => mesmoAlvo(x, t)) : -1; return i >= 0 ? (c!.costs?.[i] ?? 0) : 0; };
+  const temCusto = d.candidates.some((c) => c.costs?.some((n) => n > 0));
+  const custoMarcado = marcadas.reduce((n, [o, t]) => n + (t ? custoAtaque(o, t) : 0), 0);
   return (
     <div ref={painel} class={`decisao combate ${escondidas ? 'transborda' : ''}`}>
       <p class="decisao-titulo">Ataque</p>
       <Recusa recusa={recusa} d={d} aux={aux} />
       {!marcadas.length ? <p class="dica-combate">Clique nas suas criaturas e depois no oponente</p>
         : semAlvo && <p class="dica-combate">Agora clique no oponente que vai ser atacado</p>}
+      {temCusto && <p class="dica-combate">{custoMarcado > 0 ? <>Este ataque custa <Simbolos custo={`{${custoMarcado}}`} tam={14} />, pago ao confirmar.</> : 'Atacar alguns alvos custa mana por criatura; o pagamento vem ao confirmar.'}</p>}
       {aux.alvos ? (
         <div class="linhas">
           {d.candidates.map((c) => (
@@ -214,7 +219,7 @@ function Atacantes({ d, ui, nomeObj, nomeCombate, numeroCombate, nomeAlvo, aux, 
               <span class="linha-nome">{nomeCombate(c.obj)}{c.required?.length ? <span class="linha-aviso"> · precisa atacar</span> : null}</span>
               <span class="linha-botoes">
                 {c.targets.map((t) => (
-                  <button key={`${t.kind}${t.id}`} class={`botao pequeno ${ui.ataques[c.obj] && mesmoAlvo(ui.ataques[c.obj]!, t) ? 'ativo' : ''}`} onClick={() => alternar(c.obj, t)}>{nomeAlvo(t)}</button>
+                  <button key={`${t.kind}${t.id}`} class={`botao pequeno ${ui.ataques[c.obj] && mesmoAlvo(ui.ataques[c.obj]!, t) ? 'ativo' : ''}`} onClick={() => alternar(c.obj, t)}>{nomeAlvo(t)}{custoAtaque(c.obj, t) > 0 && <> <Simbolos custo={`{${custoAtaque(c.obj, t)}}`} tam={12} /></>}</button>
                 ))}
               </span>
             </div>
@@ -258,11 +263,16 @@ function Bloqueadores({ d, ui, nomeObj, nomeCombate, aux, recusa }: { d: D<'bloc
     ui.setBloqueadorAtivo(e.ativo);
   };
   const lista = Object.entries(ui.bloqueios).map(([b, a]) => [Number(b), a] as [ObjId, ObjId]);
+  // custos para bloquear (CR 509.1d: Archangel of Tithes atacando): mostrados antes de confirmar; o pagamento vem depois
+  const custoBloqueio = (b: ObjId, a: ObjId): number => { const c = d.candidates.find((x) => x.obj === b); const i = c ? c.canBlock.indexOf(a) : -1; return i >= 0 ? (c!.costs?.[i] ?? 0) : 0; };
+  const temCusto = d.candidates.some((c) => c.costs?.some((n) => n > 0));
+  const custoMarcado = lista.reduce((n, [b, a]) => n + custoBloqueio(b, a), 0);
   return (
     <div ref={painel} class={`decisao combate ${escondidas ? 'transborda' : ''}`}>
       <p class="decisao-titulo">Bloqueio</p>
       <Recusa recusa={recusa} d={d} aux={aux} />
       <p class="dica-combate">{ui.bloqueadorAtivo === null ? 'Clique numa criatura sua e depois no atacante' : 'Agora clique no atacante que ela vai bloquear'}</p>
+      {temCusto && <p class="dica-combate">{custoMarcado > 0 ? <>Este bloqueio custa <Simbolos custo={`{${custoMarcado}}`} tam={14} />, pago ao confirmar.</> : 'Bloquear agora custa mana por criatura; o pagamento vem ao confirmar.'}</p>}
       {aux.alvos ? (
         <div class="linhas">
           {d.candidates.filter((c) => c.canBlock.length > 0).map((c) => (
@@ -270,7 +280,7 @@ function Bloqueadores({ d, ui, nomeObj, nomeCombate, aux, recusa }: { d: D<'bloc
               <span class="linha-nome">{nomeObj(c.obj)}</span>
               <span class="linha-botoes">
                 {c.canBlock.map((a) => (
-                  <button key={a} class={`botao pequeno ${ui.bloqueios[c.obj] === a ? 'ativo' : ''}`} onClick={() => alternar(c.obj, a)}>bloquear {nomeCombate(a)}</button>
+                  <button key={a} class={`botao pequeno ${ui.bloqueios[c.obj] === a ? 'ativo' : ''}`} onClick={() => alternar(c.obj, a)}>bloquear {nomeCombate(a)}{custoBloqueio(c.obj, a) > 0 && <> <Simbolos custo={`{${custoBloqueio(c.obj, a)}}`} tam={12} /></>}</button>
                 ))}
               </span>
             </div>
