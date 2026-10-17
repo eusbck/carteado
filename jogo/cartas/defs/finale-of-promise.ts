@@ -35,17 +35,30 @@ export default defineCard({
           if (magica !== null) magicas.push(magica);
         }
         // ruling 1: depois de conjurar, com X 10 ou mais, duas cópias de cada uma (um lote de cópias por mágica)
+        // As cópias vão para a pilha uma de cada vez, na ordem que o jogador quiser (a última posta resolve primeiro);
+        // cada mágica é um lote de cópias para a Twinning Staff (semExtra a partir da segunda cópia dela).
         if (c.x >= 10) {
-          for (const m of magicas) {
-            yield* copySpell(c.g, m, c.you, { newTargets: true });
-            yield* copySpell(c.g, m, c.you, { newTargets: true, semExtra: true });
+          const faltam = new Map(magicas.map((m) => [m, 2]));
+          const copiadas = new Set<ObjId>();
+          for (;;) {
+            const vivas = [...faltam].filter(([, n]) => n > 0).map(([m]) => m);
+            if (!vivas.length) break;
+            let m = vivas[0];
+            if (vivas.length > 1) {
+              const [esc] = yield* chooseItems(c.g, c.you, 'Finale of Promise: de qual mágica é a próxima cópia a ir para a pilha? (a última posta resolve primeiro)',
+                vivas.map((id) => objItem(c.g, id, `Cópia de ${nameOf(c.g, id)} (${faltam.get(id)} por pôr)`)), 1, 1);
+              m = Number(esc);
+            }
+            faltam.set(m, (faltam.get(m) ?? 1) - 1);
+            yield* copySpell(c.g, m, c.you, { newTargets: true, semExtra: copiadas.has(m) });
+            copiadas.add(m);
           }
         }
       },
     },
   }],
   rulings: {
-    1: 'teste: com X 10 ou mais, conjura as duas e copia cada uma duas vezes',
+    1: 'teste: com X 10 ou mais, conjura as duas e copia cada uma duas vezes; as cópias vão para a pilha na ordem escolhida',
     2: 'não se aplica: nenhuma carta dividida de instantânea e feitiço nos decks',
     3: 'regra geral: CR 107.3b — sem pagar o custo de mana, X vale 0 (motor/stack.ts)',
     4: 'regra geral: CR 118.9a — sem pagar o custo de mana não se escolhe custo alternativo; custos adicionais continuam (motor/stack.ts)',

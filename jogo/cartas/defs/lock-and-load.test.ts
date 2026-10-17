@@ -22,6 +22,38 @@ describe(N, () => {
     expect(tg.names(0, 'hand').length).toBe(antes - 1 + 3);
   });
 
+  it('cópia conjurada pela Mizzix\'s Mastery conta como esta mágica, não como outra (CR 707.12)', () => {
+    const tg = setup({
+      battlefield: [['Island', 'Island', 'Island', 'Island', 'Mountain'], []],
+      hand: [['Opt', "Mizzix's Mastery"], []], graveyard: [[N], []], library: [cartas(10), []],
+    });
+    tg.cast('Opt').resolveAll();
+    const antes = tg.names(0, 'hand').length;
+    tg.choose('carta de instantânea ou de feitiço alvo', [N]).choose('escolha uma mágica para conjurar', [N]).cast("Mizzix's Mastery").resolveAll();
+    // outras: Opt e a Mastery; a cópia conjurada não conta a si mesma: 1 + 2
+    expect(tg.state.turnStats[0].instantSorceryCast).toBe(3);
+    expect(tg.names(0, 'hand').length).toBe(antes - 1 + 3);
+  });
+
+  it('cópia feita na pilha (Stella Lee) não foi conjurada: todas as conjuradas são outras', () => {
+    const tg = setup({
+      battlefield: [['Stella Lee, Wild Card', 'Island', 'Island', 'Island', 'Island', 'Island'], []],
+      hand: [['Opt', 'Opt', N], []], library: [cartas(20), []],
+    });
+    tg.cast('Opt').resolveAll();
+    tg.cast('Opt').resolveAll();
+    tg.cast(N);
+    tg.choose('mágica instantânea ou de feitiço alvo que você controla', [N]).activate('Stella Lee, Wild Card');
+    tg.resolve();
+    const antes = tg.names(0, 'hand').length;
+    // a cópia: 1 + 3 (as duas Opts e o Lock and Load original)
+    tg.resolve();
+    expect(tg.names(0, 'hand').length).toBe(antes + 4);
+    // o original: 1 + 2
+    tg.resolveAll();
+    expect(tg.names(0, 'hand').length).toBe(antes + 4 + 3);
+  });
+
   it('planejada, só pode ser conjurada num turno posterior, de graça, na fase principal com a pilha vazia', () => {
     const tg = setup({ battlefield: [['Island', 'Island', 'Island', 'Island'], []], hand: [[N, 'Opt'], []], library: [cartas(10), cartas(10)] });
     const planejar = tg.actionIds().find((a) => a.startsWith('plot:'))!;

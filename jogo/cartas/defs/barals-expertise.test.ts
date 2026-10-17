@@ -9,7 +9,11 @@ describe(N, () => {
     const tg = setup({ battlefield: [[...ilhas(5), 'Wall of Omens'], ['Indomitable Ancients', 'Sol Ring', 'Plains']], hand: [[N], []], library: [['Island'], []] });
     tg.choose('artefato e/ou criatura alvo', ['Indomitable Ancients', 'Sol Ring', 'Wall of Omens']);
     tg.choose('valor de mana 4 ou menos', ['Wall of Omens']);
+    // escolhida a carta, não pergunta de novo se quer conjurá-la
+    let repetida = false;
+    tg.script.push((d) => { if (d.kind === 'select' && d.prompt.includes('sem pagar o custo de mana?')) repetida = true; return null; });
     tg.cast(N).resolve();
+    expect(repetida).toBe(false);
     expect(tg.names(1, 'hand').sort()).toEqual(['Indomitable Ancients', 'Sol Ring']);
     expect(tg.find('Plains')).not.toBeNull();
     // o Wall of Omens foi conjurado de graça: está na pilha, e as Ilhas pagaram só a Expertise

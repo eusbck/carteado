@@ -27,5 +27,8 @@ describe(N, () => {
     // na limpeza não descarta nada; no turno seguinte também não
     tg.passTo('cleanup');
     expect(tg.names(0, 'hand')).toHaveLength(10);
+    tg.passTo('main1', 0);
+    tg.passTo('cleanup', 0);
+    expect(tg.names(0, 'hand')).toHaveLength(11);
   });
 });

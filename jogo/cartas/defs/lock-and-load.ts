@@ -15,9 +15,10 @@ export default defineCard({
     spell: {
       *effect(c) {
         // ruling 1: contam as instantâneas e feitiços conjurados no turno, resolvidos ou não; esta não conta, mas uma
-        // cópia dela não foi conjurada (CR 707.10) e então todas as conjuradas são "outras"
+        // cópia dela feita na pilha não foi conjurada (CR 707.10) e então todas as conjuradas são "outras". A cópia de
+        // carta conjurada (Mizzix's Mastery, Arcane Bombardment, CR 707.12) foi conjurada: conta como esta.
         const conjuradas = c.g.state.turnStats[c.you]?.instantSorceryCast ?? 0;
-        const estaFoiConjurada = !c.g.state.objects[c.source]?.isCopy;
+        const estaFoiConjurada = c.castFrom !== undefined;
         const outras = Math.max(0, conjuradas - (estaFoiConjurada ? 1 : 0));
         yield* draw(c.g, c.you, 1 + outras);
       },

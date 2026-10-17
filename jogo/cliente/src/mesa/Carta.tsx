@@ -14,7 +14,7 @@ export type Selo = 'espada' | 'escudo' | 'espera';
 
 const NOME_SELO: Record<Selo, string> = { espada: 'atacando', escudo: 'bloqueando', espera: 'marcada para atacar, sem alvo' };
 
-const MARCADORES: Record<string, string> = { '+1/+1': '+1/+1', '-1/-1': '−1/−1', loyalty: 'lealdade', poison: 'veneno', charge: 'carga', time: 'tempo', oil: 'óleo', stun: 'atordoamento', shield: 'escudo', lore: 'conhecimento', plan: 'plano', duty: 'dever', vow: 'voto', page: 'página', acorn: 'bolota', quest: 'missão' };
+const MARCADORES: Record<string, string> = { '+1/+1': '+1/+1', '-1/-1': '−1/−1', loyalty: 'lealdade', poison: 'veneno', charge: 'carga', time: 'tempo', oil: 'óleo', stun: 'atordoamento', shield: 'escudo', lore: 'conhecimento', plan: 'plano', duty: 'dever', vow: 'voto', page: 'página', acorn: 'bolota', quest: 'missão', hour: 'hora' };
 
 export interface CartaProps {
   o: ObjView;

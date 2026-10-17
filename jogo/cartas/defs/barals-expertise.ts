@@ -1,7 +1,8 @@
 // Baral's Expertise
 // Return up to three target artifacts and/or creatures to their owners' hands.
 // You may cast a spell with mana value 4 or less from your hand without paying its mana cost.
-import { chooseItems, defineCard, is, isLand, manaValue, mayCastFree, nameOf, objItem, or, returnToHand, t, tgtsAll, upTo } from '../../motor/api.ts';
+import { chooseItems, defineCard, is, isLand, manaValue, nameOf, objItem, or, returnToHand, t, tgtsAll, upTo } from '../../motor/api.ts';
+import { conjuraGratis } from '../roubo.ts';
 
 export default defineCard({
   name: "Baral's Expertise",
@@ -15,7 +16,8 @@ export default defineCard({
         const cartas = c.g.state.zones.hand[c.you].filter((id) => !isLand(c.g, id) && manaValue(c.g, id) <= 4);
         if (!cartas.length) return;
         const esc = yield* chooseItems(c.g, c.you, "Baral's Expertise: você pode conjurar uma mágica com valor de mana 4 ou menos da mão sem pagar o custo de mana", cartas.map((id) => objItem(c.g, id, nameOf(c.g, id))), 0, 1);
-        if (esc.length) yield* mayCastFree(c.g, c.you, Number(esc[0]));
+        // a escolha já é o "pode": conjura direto, sem perguntar de novo
+        if (esc.length) yield* conjuraGratis(c, Number(esc[0]));
       },
     },
   }],
