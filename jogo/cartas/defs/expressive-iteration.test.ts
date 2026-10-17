@@ -19,4 +19,22 @@ describe('Expressive Iteration', () => {
     expect(tg.names(0, 'exile')).toEqual([]);
     expect(tg.names(0, 'library')).toEqual(['Plains']);
   });
+  it('copiada pela Galvanic Iteration: a carta exilada pela cópia também pode ser jogada neste turno', () => {
+    const tg = setup({
+      battlefield: [['Island', 'Mountain', 'Island', 'Mountain', 'Plains'], []],
+      hand: [['Galvanic Iteration', 'Expressive Iteration'], []],
+      library: [['Island', 'Swamp', 'Forest', 'Plains', 'Swamp', 'Sol Ring', 'Island'], []],
+    });
+    tg.cast('Galvanic Iteration').resolveAll();
+    // a cópia resolve primeiro e olha as três do topo; depois a original olha as três seguintes
+    tg.choose('vai para a mão', ['Island']).choose('vai para o fundo', ['Swamp']);
+    tg.choose('vai para a mão', ['Plains']).choose('vai para o fundo', ['Swamp']);
+    tg.cast('Expressive Iteration').resolveAll();
+    expect(tg.names(0, 'hand').sort()).toEqual(['Island', 'Plains']);
+    expect(tg.names(0, 'exile').sort()).toEqual(['Forest', 'Sol Ring']);
+    tg.play('Forest');
+    expect(tg.find('Forest')).not.toBeNull();
+    tg.cast('Sol Ring', '*').resolveAll();
+    expect(tg.find('Sol Ring')).not.toBeNull();
+  });
 });
