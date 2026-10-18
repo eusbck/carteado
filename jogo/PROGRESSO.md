@@ -47,6 +47,20 @@ Resultado (tabela carta a carta: https://claude.ai/artifact/Fqr9V3wiMPG5AvvR4b11
     ordem (CR 616.1e);
   - Bladegriff Prototype: se o jogador atingido sai antes do gatilho, quem escolhe o alvo é o próximo oponente, não
     um escolhido por você.
+- **Quick Draw (pedido em seguida):** 73 cartas, 7 já revisadas acima; dois revisores (`revisao-qd-novas` e
+  `revisao-qd-antigas`). Das 66, 61 OK e 5 corrigidas, nenhuma limitação:
+  - Lock and Load conjurada como cópia (Mizzix's Mastery, Arcane Bombardment) contava a si mesma e comprava uma a
+    mais;
+  - Finale of Promise: agora você escolhe a ordem das cópias;
+  - Baral's Expertise perguntava duas vezes se queria conjurar de graça;
+  - o marcador do Midnight Clock aparecia como "hour";
+  - o texto do Veyran repetia "Magecraft".
+
+  As interações com cópias e com a contagem de mágicas no turno (Guttersnipe, magecraft, Veyran, Galvanic e
+  Expressive Iteration) foram conferidas e ganharam testes. Verificação depois de juntar (`62384fea`): typecheck, o
+  cliente compila, as 72 cartas do deck que têm teste (180 testes), os 68 arquivos de testes gerais e as fichas
+  (788 testes, 1 ignorado que já existia) e 10 partidas de bots com o deck, sem falhas. A suíte inteira não rodou de
+  novo, porque as mudanças são só de cartas do deck e de um rótulo da mesa.
 - **Verificação na `revisao-precons` (`6a600b5e`):**
   - `npm run typecheck` sem erros; o cliente compila (numa pasta temporária);
   - 60 partidas de bots, 10 por deck (4 de 4 jogadores e 4 de 2 aleatórios, 2 de 2 heurísticos), sem erro;
