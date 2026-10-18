@@ -61,6 +61,12 @@ Resultado (tabela carta a carta: https://claude.ai/artifact/Fqr9V3wiMPG5AvvR4b11
   cliente compila, as 72 cartas do deck que têm teste (180 testes), os 68 arquivos de testes gerais e as fichas
   (788 testes, 1 ignorado que já existia) e 10 partidas de bots com o deck, sem falhas. A suíte inteira não rodou de
   novo, porque as mudanças são só de cartas do deck e de um rótulo da mesa.
+- **Na mesa (18/10, com o OK do Caio):** a `main` avançou por fast-forward até `c42f934b`. O cliente foi compilado
+  numa pasta temporária e copiado para `cliente/dist`, com a cópia anterior guardada para voltar se preciso. O
+  servidor da 8080 foi reiniciado pelo vigia do `abrir-mesa.ps1`, com o mesmo túnel; ele serve o build novo, não há
+  erros no registro e há 35 decks jogáveis. A `main` foi para o GitHub.
+- Falta revisar o Miracle Worker. Worktrees desta frente que podem sair: `precons-wt-a` a `e` (branches `revisao-*`,
+  todas juntadas).
 - **Verificação na `revisao-precons` (`6a600b5e`):**
   - `npm run typecheck` sem erros; o cliente compila (numa pasta temporária);
   - 60 partidas de bots, 10 por deck (4 de 4 jogadores e 4 de 2 aleatórios, 2 de 2 heurísticos), sem erro;
