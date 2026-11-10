@@ -18,7 +18,7 @@ import { novaRajada, segurarPilha, type RajadaPilha } from './pilha-visivel.ts';
 import type { Banco } from './banco.ts';
 import { alvoDesfazer, linhasDesfeitas, reconstruir, type MetaEntrada } from './desfazer.ts';
 import { avatarValido } from './avatares.ts';
-import { tipoMsg, validarMsg, type EtapaSaguao, type LinhaDesfeita, type Modo, type MsgChat, type MsgCliente, type MsgServidor, type PedidoDesfazer, type Posicoes, type RegraAuxilios, type RegraMulligan, type SalaPublica, type TipoAssento } from './protocolo.ts';
+import { MIN_LUGARES, tipoMsg, validarMsg, type EtapaSaguao, type LinhaDesfeita, type Modo, type MsgChat, type MsgCliente, type MsgServidor, type PedidoDesfazer, type Posicoes, type RegraAuxilios, type RegraMulligan, type SalaPublica, type TipoAssento } from './protocolo.ts';
 
 export interface Conexao {
   enviar(m: MsgServidor): void;
@@ -92,7 +92,8 @@ interface DadosPartida {
 interface DadosSala {
   codigo: string;
   senha: string;
-  modo: Modo;
+  /** salas de antes dos lugares de 2 a 6 guardam o modo ('4p' ou '1v1'); hoje o tamanho é o de `assentos` */
+  modo?: Modo;
   estado: SalaPublica['estado'];
   assentos: Assento[];
   anfitriao: number;
@@ -164,6 +165,7 @@ async function confereSenhaAssincrono(senha: string, guardada: string): Promise<
   return timingSafeEqual(h, Buffer.from(hash, 'hex'));
 }
 const novoToken = () => randomBytes(24).toString('base64url');
+const assentoVazio = (): Assento => ({ tipo: 'vazio', nome: null, deck: null, token: null, paradas: paradasPadrao() });
 /** identificador público da partida: hash curto da semente (a semente refaz os embaralhamentos: fica só no servidor) */
 export const idPartida = (semente: string): string => createHash('sha256').update(semente).digest('hex').slice(0, 12);
 /** id público de quem ocupa um assento, o autor no chat: hash do token (que continua secreto). Muda quando outra
@@ -234,7 +236,7 @@ export class Sala {
     const conectados = new Set([...this.conexoes].map((c) => c.assento));
     const p = this.d.partida;
     return {
-      codigo: this.d.codigo, modo: this.d.modo, estado: this.d.estado, anfitriao: this.d.anfitriao, mulligan: this.d.mulligan ?? 'londres', auxilios: this.d.auxilios ?? 'permitidos',
+      codigo: this.d.codigo, estado: this.d.estado, anfitriao: this.d.anfitriao, mulligan: this.d.mulligan ?? 'londres', auxilios: this.d.auxilios ?? 'permitidos',
       partida: this.d.partida ? idPartida(this.d.partida.config.seed) : null, etapa: this.d.etapa ?? 'lugares',
       cronometro: p?.iniciadaEm !== undefined ? { iniciadaEm: p.iniciadaEm, encerradaEm: p.encerradaEm ?? null } : null,
       assentos: this.d.assentos.map((a, i) => ({ indice: i, tipo: a.tipo, nome: a.nome, deck: a.deck, conectado: a.tipo === 'bot' || conectados.has(i), nivel: a.tipo === 'bot' ? a.nivel ?? NIVEL_PADRAO : null, avatar: a.tipo === 'humano' ? a.avatar ?? null : null })),
@@ -401,6 +403,39 @@ export class Sala {
     this.gerente.pensadores?.esquecer(this.d.codigo);
   }
 
+  /**
+   * A sala fica só com os lugares ocupados (sala esperando; a encerrada volta antes para o saguão). Erro se sobrarem
+   * menos de dois jogadores.
+   */
+  private tirarLivres(): string | null {
+    const ocupados = this.d.assentos.flatMap((a, k) => (a.tipo === 'vazio' ? [] : [k]));
+    if (ocupados.length === this.d.assentos.length) return null;
+    if (ocupados.length < MIN_LUGARES) return 'A partida precisa de pelo menos 2 jogadores: chame alguém ou ponha um bot';
+    if (this.d.estado === 'fim') this.voltarAoSaguao();
+    this.reindexar(ocupados);
+    return null;
+  }
+
+  /**
+   * Fica só com os assentos de `manter`, nesta ordem (sala sem partida). O anfitrião, as conexões e o autor das
+   * mensagens do chat seguem o assento deles; o token de cada assento vai junto, e quem volta pelo token cai no lugar novo.
+   */
+  private reindexar(manter: number[]): void {
+    const novo = new Map(manter.map((k, j) => [k, j] as const));
+    this.d.assentos = manter.map((k) => this.d.assentos[k]);
+    this.d.anfitriao = novo.get(this.d.anfitriao) ?? Math.max(0, this.d.assentos.findIndex((a) => a.tipo === 'humano' && !a.saiu));
+    for (const c of [...this.conexoes]) {
+      const j = c.assento === null ? undefined : novo.get(c.assento);
+      if (j === undefined) this.soltar(c);
+      else c.assento = j;
+    }
+    // quem escreveu e saiu deixa de ter assento: a mensagem fica, com a cor de um lugar que não existe mais
+    for (const msg of this.d.chat ?? []) msg.de = novo.get(msg.de) ?? -1;
+    // o limite do chat segue o assento; a conversa vai de novo para todos (a cor de cada autor mudou com o lugar)
+    this.ritmoChat = new Map([...this.ritmoChat].flatMap(([k, t]) => { const j = novo.get(k); return j === undefined ? [] : [[j, t] as const]; }));
+    for (const c of this.conexoes) c.enviar({ t: 'chat', msgs: this.d.chat ?? [], tudo: true });
+  }
+
   tratar(c: Conexao, m: MsgCliente): string | null {
     const i = c.assento!;
     const anfitriao = i === this.d.anfitriao;
@@ -512,8 +547,35 @@ export class Sala {
         if (!anfitriao) return 'Só quem criou a sala avança o saguão';
         if (this.d.estado === 'jogando') return 'A partida já começou';
         if (m.etapa !== 'lugares' && m.etapa !== 'regras' && m.etapa !== 'decks') return 'Passo desconhecido';
-        if (m.etapa !== 'lugares' && this.d.assentos.some((a) => a.tipo === 'vazio')) return 'Ainda há lugares livres (chame alguém ou ponha um bot)';
+        // seguir com lugares livres: a sala fica só com quem está sentado (dá para jogar a três, sem bot, numa sala de quatro)
+        if (m.etapa !== 'lugares') {
+          const erro = this.tirarLivres();
+          if (erro) return erro;
+        }
         this.d.etapa = m.etapa;
+        break;
+      }
+      case 'lugares': {
+        if (!anfitriao) return 'Só quem criou a sala muda o número de lugares';
+        if (this.d.estado === 'jogando') return 'A partida já começou';
+        const atual = this.d.assentos.length;
+        if (m.n === atual) return null;
+        const livres = this.d.assentos.flatMap((a, k) => (a.tipo === 'vazio' ? [k] : []));
+        if (m.n < atual && livres.length < atual - m.n) {
+          const ocupados = atual - livres.length;
+          return `Há ${ocupados} jogadores na sala: tire um bot antes de diminuir`;
+        }
+        // a partida encerrada usa os assentos de antes: a sala volta para o saguão sem ela
+        if (this.d.estado === 'fim') this.voltarAoSaguao();
+        if (m.n > atual) {
+          for (let k = atual; k < m.n; k++) this.d.assentos.push(assentoVazio());
+          // lugar novo para alguém entrar: o saguão volta para os lugares
+          this.d.etapa = 'lugares';
+        } else {
+          // tira os lugares livres do fim para o começo
+          const tirar = new Set(livres.slice(livres.length - (atual - m.n)));
+          this.reindexar(this.d.assentos.flatMap((_, k) => (tirar.has(k) ? [] : [k])));
+        }
         break;
       }
       case 'desfazer': return this.pedirDesfazer(i);
@@ -613,9 +675,16 @@ export class Sala {
 
   // ------------------------------------------------------------------ partida
   private iniciar(): string | null {
-    const ocupados = this.d.assentos.filter((a) => a.tipo !== 'vazio');
-    if (ocupados.length !== this.d.assentos.length) return 'Ainda há assentos vazios (chame alguém ou ponha um bot)';
-    if (ocupados.some((a) => !a.deck)) return 'Todos precisam escolher um deck';
+    // os decks de quem está sentado são conferidos antes de tirar os lugares livres: o início recusado não muda a sala
+    // (a recusa não grava nem transmite nada: a sala encolhida ficaria só na memória, e cada um com o assento antigo)
+    const sentados = this.d.assentos.filter((a) => a.tipo !== 'vazio');
+    if (sentados.length >= MIN_LUGARES) {
+      if (sentados.some((a) => !a.deck)) return 'Todos precisam escolher um deck';
+      if (sentados.some((a) => !this.gerente.deck(a.deck!))) return 'Um dos decks escolhidos não está mais disponível; escolha outro';
+    }
+    // lugares livres: a partida começa com quem está sentado (pelo menos dois)
+    const livres = this.tirarLivres();
+    if (livres) return livres;
     // 96 bits sorteados: o hash curto que sai na sala (idPartida) não dá para desfazer tentando sementes
     const semente = this.gerente.sementeFixa ?? `${this.d.codigo}-${Date.now().toString(36)}-${randomBytes(12).toString('base64url')}`;
     const config: GameConfig = {
@@ -623,7 +692,8 @@ export class Sala {
       players: this.d.assentos.map((a, i) => ({ name: a.nome ?? `Jogador ${i + 1}`, deckId: a.deck! })),
       startingLife: 40, // CR 903.7
       turnLimit: null,
-      multiplayer: this.d.modo === '4p',
+      // CR 103.8a: só no duelo o primeiro jogador pula a compra do primeiro turno; o mulligan grátis é do multiplayer
+      multiplayer: this.d.assentos.length > 2,
       manualMode: true,
       mulligan: this.d.mulligan ?? 'londres',
       // partidas novas: desvirar à mão tira a mana da reserva (as salvas antes ficam sem a chave e não mudam)
@@ -1131,13 +1201,13 @@ export class Gerente {
         const nome = limparNome(m.nome);
         if (!nome) return 'Escolha um nome';
         if (typeof m.senhaSala !== 'string' || m.senhaSala.length < 3 || m.senhaSala.length > 64) return 'A senha da sala precisa ter de 3 a 64 caracteres';
-        if (m.modo !== '4p' && m.modo !== '1v1') return 'Modo inválido';
-        const { senhaSala, modo } = m;
+        if (m.modo !== undefined && m.modo !== '4p' && m.modo !== '1v1') return 'Modo inválido';
+        // de 2 a 6 lugares (a forma já conferiu o intervalo); o pedido antigo vem com o modo
+        const n = m.lugares ?? (m.modo === '1v1' ? 2 : 4);
+        const { senhaSala } = m;
         return this.comSenha(c, () => hashSenha(senhaSala), () => hashSenhaAssincrono(senhaSala), (senha) => {
           const codigo = this.novoCodigo();
-          const n = modo === '4p' ? 4 : 2;
-          const vazio = (): Assento => ({ tipo: 'vazio', nome: null, deck: null, token: null, paradas: paradasPadrao() });
-          const s = new Sala({ codigo, senha, modo, estado: 'espera', assentos: Array.from({ length: n }, vazio), anfitriao: 0, partida: null }, this);
+          const s = new Sala({ codigo, senha, estado: 'espera', assentos: Array.from({ length: n }, assentoVazio), anfitriao: 0, partida: null }, this);
           this.salas.set(codigo, s);
           s.sentar(c, nome);
           s.salvar();

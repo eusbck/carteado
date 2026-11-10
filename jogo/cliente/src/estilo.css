@@ -32,6 +32,9 @@
   /* azul de mana: bloqueio; violeta do preto de mana: seleção de grupo */
   --azul: #3d9be0;
   --roxo: #a48bd0;
+  /* cores do quinto e do sexto jogador */
+  --rosa: #e57ab8;
+  --ciano: #36c2b4;
   --sombra: 0 14px 40px rgba(0, 0, 0, .5);
   --sombra-carta: 0 2px 8px rgba(0, 0, 0, .6);
   --fonte: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
@@ -241,6 +244,15 @@ input.campo-grande { font-size: 17px; padding: 13px 14px; }
 .saguao-codigo strong { display: block; font-family: var(--mono); font-size: 26px; letter-spacing: .22em; color: var(--ouro); }
 .saguao-codigo p { font-size: 13px; }
 .lugares { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+/* três, cinco ou seis lugares: três por linha; com cinco ou seis, cartões mais baixos (cabem numa tela de 768 px) */
+.lugares-3, .lugares-5, .lugares-6 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.lugares-5 .lugar, .lugares-6 .lugar { padding: 12px 14px; gap: 8px 12px; }
+.lugares-5 .nivel-select > span, .lugares-6 .nivel-select > span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+/* número de jogadores (ao criar a sala e no saguão, para o anfitrião) */
+.escolha-lugares { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.escolha-lugares button { font-size: 16px; font-weight: 800; }
+.saguao-tamanho { display: flex; align-items: center; gap: 14px; }
+.saguao-tamanho .escolha-lugares { width: min(420px, 100%); }
 .lugar { display: grid; grid-template-columns: 52px minmax(0, 1fr); align-items: center; gap: 14px; padding: 16px; border-radius: 14px; border: 1.5px solid var(--linha); background: rgba(255, 255, 255, .03); animation: lugar-entra .35s ease-out both; transition: border-color .25s ease, background .25s ease; }
 .lugar.meu { border-color: color-mix(in srgb, var(--ouro) 45%, transparent); }
 .lugar-vazio { border-style: dashed; background: transparent; }
@@ -417,6 +429,8 @@ input.campo-grande { font-size: 17px; padding: 13px 14px; }
 .oponentes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2px; min-height: 0; }
 .mesa-duelo .oponentes { grid-template-columns: 1fr; }
 .oponentes.n2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.oponentes.n4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.oponentes.n5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 
 /* área de um jogador */
 /* overflow: clip (e não hidden): a área não pode rolar quando uma carta da mão recebe o foco */
@@ -500,6 +514,16 @@ button.zona:hover .slot { border-color: rgba(255, 255, 255, .45); }
 .zonas > .zona .mao-fechada { min-width: 0; max-width: 100%; overflow: hidden; justify-content: flex-end; }
 .mao-fechada .carta { flex-shrink: 0; }
 .compacta .zona-rotulo { font-size: 10.5px; }
+/* oponente numa área estreita (5 ou 6 jogadores em telas menores): as zonas sem rótulo, com a contagem sobre a pilha
+   (o nome vem no title e no aria-label), e a etiqueta só com o nome (sem o nível do bot) */
+.estreita .zona-rotulo { display: none; }
+.estreita .zona { position: relative; }
+.zona-conta { position: absolute; left: 50%; bottom: -5px; translate: -50% 0; min-width: 18px; padding: 0 5px; border-radius: 6px; background: rgba(0, 0, 0, .82); border: 1px solid var(--linha-forte); color: var(--texto); font-size: 10.5px; font-weight: 800; line-height: 16px; text-align: center; font-variant-numeric: tabular-nums; pointer-events: none; z-index: 2; }
+.estreita .tag-jogador .nivel-bot { display: none; }
+/* o dano de comandante desce para baixo do nome (ao lado ele apertava o nome até sumir), e o topo para antes do retrato */
+.estreita .area-topo { flex-direction: column; right: calc(var(--tam-avatar, 48px) * 1.25 + 16px); }
+.area-oponente.estreita .vida { margin: 0; align-items: flex-start; }
+.estreita .dano-cmd { justify-content: flex-start; }
 .mao-fechada { display: flex; }
 .mao-fechada .carta { --w: var(--wz, 40px); }
 .mao-fechada .carta + .carta { margin-left: calc(var(--wz, 40px) * -.66); }

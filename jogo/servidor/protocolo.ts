@@ -6,6 +6,7 @@ import type { StopSettings } from '../motor/autopass.ts';
 import type { Answer } from '../motor/types.ts';
 import type { GameView } from '../motor/view.ts';
 
+/** jeito antigo de pedir o tamanho da sala ('4p': quatro lugares, '1v1': dois); hoje vale `lugares`, de 2 a 6 */
 export type Modo = '4p' | '1v1';
 export type RegraMulligan = 'londres' | 'livre';
 /** auxílios da interface (brilhos, avisos, pagar automaticamente): cada um escolhe, ou a sala proíbe todos */
@@ -27,9 +28,9 @@ export interface AssentoPublico {
   avatar?: string | null;
 }
 
+/** o número de lugares da sala é o tamanho de `assentos` (de MIN_LUGARES a MAX_ASSENTOS) */
 export interface SalaPublica {
   codigo: string;
-  modo: Modo;
   estado: 'espera' | 'jogando' | 'fim';
   assentos: AssentoPublico[];
   anfitriao: number;
@@ -204,7 +205,8 @@ export interface MsgChat {
 }
 
 export type MsgCliente =
-  | { t: 'criar'; nome: string; senhaSala: string; modo: Modo }
+  /** `lugares`: quantos jogadores (2 a 6); sem ele, `modo` (o jeito antigo) e, sem os dois, quatro */
+  | { t: 'criar'; nome: string; senhaSala: string; lugares?: number; modo?: Modo }
   | { t: 'entrar'; codigo: string; senhaSala: string; nome: string }
   | { t: 'retomar'; codigo: string; token: string }
   | { t: 'deck'; deck: string }
@@ -224,6 +226,8 @@ export type MsgCliente =
   | { t: 'auxilios'; regra: RegraAuxilios }
   /** o anfitrião muda o passo do saguão */
   | { t: 'etapa'; etapa: EtapaSaguao }
+  /** o anfitrião muda o número de lugares da sala (só tira lugares livres) */
+  | { t: 'lugares'; n: number }
   /** o retrato do seu assento (null: volta ao do comandante do deck) */
   | { t: 'avatar'; avatar: string | null }
   /** pedir para desfazer a sua última jogada deste turno; responder ou cancelar um pedido aberto */
@@ -248,8 +252,10 @@ export type Posicoes = Record<string, [number, number]>;
 // mensagem própria de cada caso. Textos têm um teto de tamanho (a sala ainda limpa e corta).
 // ---------------------------------------------------------------------------------------------------------------
 
-/** maior número de assentos de uma sala (4 jogadores) */
-export const MAX_ASSENTOS = 4;
+/** maior número de assentos de uma sala (6 jogadores) */
+export const MAX_ASSENTOS = 6;
+/** menor número de lugares de uma sala (o duelo) */
+export const MIN_LUGARES = 2;
 /** teto de tamanho de qualquer texto de uma mensagem (nome, senha, código, deck, chat…) */
 const TEXTO_MAX = 2000;
 
@@ -260,7 +266,7 @@ const curto = (x: unknown) => typeof x !== 'string' || x.length <= TEXTO_MAX;
 const sempre = () => true;
 
 const FORMAS: { [T in MsgCliente['t']]: (m: Record<string, unknown>) => boolean } = {
-  criar: (m) => curto(m.nome) && curto(m.senhaSala),
+  criar: (m) => curto(m.nome) && curto(m.senhaSala) && (m.lugares === undefined || inteiro(m.lugares, MIN_LUGARES, MAX_ASSENTOS)),
   entrar: (m) => curto(m.codigo) && curto(m.senhaSala) && curto(m.nome),
   retomar: (m) => curto(m.codigo) && curto(m.token),
   deck: (m) => curto(m.deck),
@@ -278,6 +284,7 @@ const FORMAS: { [T in MsgCliente['t']]: (m: Record<string, unknown>) => boolean 
   mulligan: sempre,
   auxilios: sempre,
   etapa: sempre,
+  lugares: (m) => inteiro(m.n, MIN_LUGARES, MAX_ASSENTOS),
   avatar: (m) => curto(m.avatar),
   desfazer: sempre,
   desfazerResposta: (m) => typeof m.aceitar === 'boolean',

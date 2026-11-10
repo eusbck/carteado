@@ -50,11 +50,14 @@ janela mostra o endereço `https://` e a senha de acesso para mandar ao grupo. D
 1. Entre com a senha do servidor (a abertura dá as boas-vindas aos feiticeiros: o M em brasa, as cinco joias de
    mana acendendo e brasas subindo no escuro).
 2. A tela inicial vai um passo por vez: o nome (fica guardado no navegador, então da próxima vez ela já
-   começa no passo seguinte), depois criar ou entrar numa sala. Quem cria escolhe o formato (quatro jogadores
-   ou um contra um) e uma senha, e passa o código e a senha para os outros; quem entra digita os dois.
+   começa no passo seguinte), depois criar ou entrar numa sala. Quem cria escolhe quantos jogam (de 2 a 6:
+   com 2 é o duelo, de 3 a 6 todos contra todos) e uma senha, e passa o código e a senha para os outros; quem
+   entra digita os dois.
 3. O saguão também vai em passos, iguais para a mesa toda (quem criou a sala avança):
    - **Lugares:** quem joga entra; quem criou a sala põe bots nos lugares livres (com o nível de cada um) ou
-     tira. Os bots jogam com os mesmos decks e veem só o que um jogador veria.
+     tira, e pode mudar o número de lugares. Não precisa de bot: com lugares livres, o botão vira "Continuar com
+     N jogadores" e a partida fica só com quem está sentado (pelo menos dois). Os bots jogam com os mesmos decks
+     e veem só o que um jogador veria.
    - **Regras:** quem criou a sala escolhe a regra de mulligan (Londres, o padrão, ou Livre: troca a mão
      inteira, até 3 vezes, sem pôr nada no fundo) e a de auxílios (permitidos ou proibidos); os outros
      acompanham.

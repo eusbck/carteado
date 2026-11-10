@@ -6,7 +6,8 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'preact/hooks';
 import type { ComponentChildren } from 'preact';
 import { Marca } from '../icones.tsx';
 import { loja } from '../loja.ts';
-import type { Modo } from '../../../servidor/protocolo.ts';
+import { descricaoLugares } from '../lugares.ts';
+import { EscolhaLugares } from './EscolhaLugares.tsx';
 
 const NOME = 'commander-da-mesa:nome';
 function nomeGuardado(): string {
@@ -50,7 +51,7 @@ export function Inicio() {
   const [nome, setNome] = useState(nomeGuardado());
   const [passo, setPassoAtual] = useState<Passo>(() => (nomeGuardado().trim() ? 'escolha' : 'nome'));
   const [sentido, setSentido] = useState<'frente' | 'tras'>('frente');
-  const [modo, setModo] = useState<Modo>('4p');
+  const [lugares, setLugares] = useState(4);
   const [senhaNova, setSenhaNova] = useState('');
   const [codigo, setCodigo] = useState('');
   const [senha, setSenha] = useState('');
@@ -86,7 +87,7 @@ export function Inicio() {
   const criar = (ev: Event) => {
     ev.preventDefault();
     if (senhaNova.length < 3) return;
-    loja.enviar({ t: 'criar', nome: nomeLimpo, senhaSala: senhaNova, modo });
+    loja.enviar({ t: 'criar', nome: nomeLimpo, senhaSala: senhaNova, lugares });
   };
   const entrar = (ev: Event) => {
     ev.preventDefault();
@@ -126,10 +127,11 @@ export function Inicio() {
       <form class="passo-form" onSubmit={criar}>
         <button type="button" class="passo-voltar" onClick={voltar}><IconeVoltar />Voltar</button>
         <h1 class="passo-titulo">Criar sala</h1>
-        <fieldset class="segmentado" style={{ border: 0, margin: 0 }} aria-label="Formato">
-          <button type="button" class={modo === '4p' ? 'ativo' : ''} onClick={() => setModo('4p')}>Quatro jogadores<small>todos contra todos</small></button>
-          <button type="button" class={modo === '1v1' ? 'ativo' : ''} onClick={() => setModo('1v1')}>Um contra um<small>duelo</small></button>
-        </fieldset>
+        <div class="campo-passo">
+          Jogadores
+          <EscolhaLugares valor={lugares} mudar={setLugares} />
+          <small>{descricaoLugares(lugares)}. Dá para mudar no saguão, e começar sem preencher todos os lugares.</small>
+        </div>
         <label class="campo-passo">
           Senha da sala
           <input type="password" value={senhaNova} onInput={val(setSenhaNova)} minLength={3} maxLength={64} data-foco autoComplete="new-password" />

@@ -143,7 +143,11 @@ export function AreaJogador(p: AreaProps) {
   const mao = p.mao ?? [];
   const n = mao.length;
   const lado: LadoAvatar = p.avatarLado ?? 'canto';
-  const m = medirArea({ w: tam.w, h: tam.h, eu: !!p.mao, compacta: p.compacta, duelo: p.duelo, lado, nMao: n, emblemas: emblemas.length > 0, reservaDireita: p.reservaDireita, colunaAberta: p.colunaAberta });
+  // oponentes lado a lado em mesas de 5 ou 6 (ou de 4 numa tela menor): abaixo de 330 px as zonas perdem o rótulo e
+  // mostram a contagem sobre a pilha; abaixo de 420 px o dano de comandante mostra só o primeiro nome
+  const estreita = p.compacta && tam.w > 0 && tam.w < 330;
+  const apertada = p.compacta && tam.w > 0 && tam.w < 420;
+  const m = medirArea({ w: tam.w, h: tam.h, eu: !!p.mao, compacta: p.compacta, estreita, duelo: p.duelo, lado, nMao: n, emblemas: emblemas.length > 0, reservaDireita: p.reservaDireita, colunaAberta: p.colunaAberta });
   const { wz, topo, campoW, campoH, livreW, wBase, wMin, tamAvatar } = m;
   // as mesmas medidas, a mesma lista de retângulos (a arrumação não se refaz à toa)
   const vaosNovos = m.vaos;
@@ -171,7 +175,7 @@ export function AreaJogador(p: AreaProps) {
   const contadores = Object.entries(j.counters).filter(([, n]) => n > 0);
   const danoCmd = j.commanderDamage.filter((d) => d.amount > 0);
   const ladoClasse = p.mao ? (lado === 'canto' ? `avatar-no-canto${p.colunaAberta ? ' coluna-aberta' : ''}` : 'avatar-a-esquerda') : '';
-  const classes = ['area', p.eu ? 'area-eu' : 'area-oponente', ladoClasse, p.ativo ? 'area-ativa' : '', p.decidindo ? 'area-decidindo' : '', j.left ? 'area-fora' : '', p.compacta ? 'compacta' : '', p.jogadorRealce ? `alvo-${p.jogadorRealce}` : ''].filter(Boolean).join(' ');
+  const classes = ['area', p.eu ? 'area-eu' : 'area-oponente', ladoClasse, p.ativo ? 'area-ativa' : '', p.decidindo ? 'area-decidindo' : '', j.left ? 'area-fora' : '', p.compacta ? 'compacta' : '', estreita ? 'estreita' : '', p.jogadorRealce ? `alvo-${p.jogadorRealce}` : ''].filter(Boolean).join(' ');
   const topoCemiterio = j.graveyard[j.graveyard.length - 1];
   // na sua área, a reserva fica do lado da vida (à esquerda ela cairia embaixo da faixa de fases)
   const reserva = <span class="selo reserva" title="Reserva de mana"><span class="rot">Reserva</span><Simbolos custo={j.manaPool} tam={16} /></span>;
@@ -219,7 +223,10 @@ export function AreaJogador(p: AreaProps) {
           {j.manaPool && p.eu && reserva}
           {danoCmd.length > 0 && (
             <div class="dano-cmd" title="Dano de comandante recebido (CR 903.10a)">
-              {danoCmd.map((d) => <span key={d.from}>{nomeCarta(d.from, d.from).split(',')[0]} · {d.amount}</span>)}
+              {danoCmd.map((d) => {
+                const nome = nomeCarta(d.from, d.from).split(',')[0];
+                return <span key={d.from} title={`${nome}: ${d.amount} de dano de comandante`}>{apertada ? nome.split(' ')[0] : nome} · {d.amount}</span>;
+              })}
             </div>
           )}
         </div>
@@ -288,26 +295,27 @@ export function AreaJogador(p: AreaProps) {
           )}
         </div>
         {!p.eu && (
-          <div class="zona" aria-label={`Mão de ${j.name}`}>
+          <div class="zona" aria-label={`Mão de ${j.name}`} title={estreita ? `Mão (${j.handCount})` : undefined}>
             <span class="zona-rotulo">Mão <b>({j.handCount})</b></span>
+            {estreita && <span class="zona-conta">{j.handCount}</span>}
             <div class="mao-fechada">
               {j.handCount === 0 ? <span class="mao-fechada-vazia" /> : Array.from({ length: Math.min(j.handCount, 7) }, (_, i) => <div key={i} class="carta"><div class="carta-face"><div class="verso" /></div></div>)}
             </div>
           </div>
         )}
         <div class="zonas-grupo">
-          <div class="zona" aria-label="Grimório">
+          <div class="zona" aria-label="Grimório" title={estreita ? `Grimório (${j.libraryCount})` : undefined}>
             <span class="zona-rotulo">Grimório <b>({j.libraryCount})</b></span>
             {/* a carta do topo, quando o jogador pode olhá-la a qualquer momento (Vesuvan Drifter, Realmwalker): só ele recebe */}
-            <div class="slot">{j.topCard ? <Carta o={j.topCard} onZoom={p.onZoom} /> : j.libraryCount > 0 && <div class="carta"><div class="carta-face"><div class="verso" /></div></div>}</div>
+            <div class="slot">{j.topCard ? <Carta o={j.topCard} onZoom={p.onZoom} /> : j.libraryCount > 0 && <div class="carta"><div class="carta-face"><div class="verso" /></div></div>}{estreita && <span class="zona-conta">{j.libraryCount}</span>}</div>
           </div>
-          <button type="button" class="zona botao-zona" onClick={() => p.onZona('graveyard')} aria-label={`Cemitério de ${j.name}, ${j.graveyard.length} cartas`}>
+          <button type="button" class="zona botao-zona" onClick={() => p.onZona('graveyard')} aria-label={`Cemitério de ${j.name}, ${j.graveyard.length} cartas`} title={estreita ? `Cemitério (${j.graveyard.length})` : undefined}>
             <span class="zona-rotulo">Cemitério <b>({j.graveyard.length})</b></span>
-            <div class="slot">{topoCemiterio && <Carta o={topoCemiterio} realce={p.realce(topoCemiterio)} onZoom={p.onZoom} />}</div>
+            <div class="slot">{topoCemiterio && <Carta o={topoCemiterio} realce={p.realce(topoCemiterio)} onZoom={p.onZoom} />}{estreita && <span class="zona-conta">{j.graveyard.length}</span>}</div>
           </button>
-          <button type="button" class="zona botao-zona" onClick={() => p.onZona('exile')} aria-label={`Exílio de ${j.name}, ${p.exilio.length} cartas`}>
+          <button type="button" class="zona botao-zona" onClick={() => p.onZona('exile')} aria-label={`Exílio de ${j.name}, ${p.exilio.length} cartas`} title={estreita ? `Exílio (${p.exilio.length})` : undefined}>
             <span class="zona-rotulo">Exílio <b>({p.exilio.length})</b></span>
-            <div class="slot">{topoExilio && <Carta o={topoExilio} realce={p.realce(topoExilio)} onZoom={p.onZoom} />}</div>
+            <div class="slot">{topoExilio && <Carta o={topoExilio} realce={p.realce(topoExilio)} onZoom={p.onZoom} />}{estreita && <span class="zona-conta">{p.exilio.length}</span>}</div>
           </button>
         </div>
       </footer>

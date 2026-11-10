@@ -1,5 +1,35 @@
 # Progresso
 
+## Mesas de 2 a 6 jogadores, sem precisar de bot — 08/11/2026
+
+Pedido do Caio antes de pôr o jogo numa VPS: dar para jogar com até 6 pessoas, em mesas de 2, 3, 4, 5 ou 6, e
+sem bots. Branch `mesas-2a6` (worktree `oarfish`).
+
+- **Sala:** quem cria escolhe de 2 a 6 lugares (`criar` com `lugares`; o `modo` antigo, `4p` ou `1v1`, ainda é
+  aceito). O tamanho é o de `assentos`; `SalaPublica.modo` saiu. Salas gravadas antes continuam (o `modo` delas
+  fica ignorado).
+- **Saguão:** o anfitrião muda o número de lugares no passo Lugares (mensagem `lugares`; diminuir só tira lugares
+  livres). Com lugares livres e pelo menos duas pessoas ou bots sentados, o botão vira "Continuar com N jogadores":
+  a sala fica só com os lugares ocupados (`tirarLivres` e `reindexar` em `servidor/salas.ts`; o anfitrião, as
+  conexões e o autor das mensagens do chat seguem o próprio assento, e o token continua valendo).
+- **Regras:** `multiplayer` (mulligan grátis; o primeiro jogador não pula a compra, CR 103.8a) vale de 3
+  jogadores para cima; com 2, é o duelo.
+- **Mesa:** oponentes numa fileira em cima, de 1 a 5; seis cores de jogador (`--rosa` e `--laranja` novas). A
+  abertura (VS) já era para N lados.
+
+### Plano do jogo online (combinado em 08/11, depois das mesas de 2 a 6)
+
+1. **Contas** no lugar da senha única do servidor: usuário e senha (scrypt), cadastro por convite de uso único,
+   redefinição de senha por link gerado pelo admin; perfil com nome, retrato e deck favorito; o assento preso à
+   conta (volta de qualquer aparelho). Tela Decks só para o admin.
+2. **Ajustes para a internet:** o servidor ouvindo só em 127.0.0.1 atrás do Caddy; o IP real lido do jeito do
+   Caddy (hoje `ipDe` confia no `cf-connecting-ip`, que atrás do Caddy qualquer um forja e fura o limite de
+   tentativas); limite de salas e bots por pessoa; limpeza de salas abandonadas.
+3. **VPS** (Hetzner, o plano mais barato, ou Oracle Always Free) com domínio próprio, Caddy (HTTPS automático),
+   serviço do systemd, script de atualização (pull, build, reiniciar) e backup diário do `jogo.sqlite`. A conta no
+   provedor e o domínio ficam com o Caio.
+4. Depois: histórico de partidas e estatísticas no perfil, lista de mesas abertas no saguão, login com Discord.
+
 ## Revisão carta a carta dos seis precons — 16 e 17/10/2026
 
 O Caio jogou com os seis precons de 14/10 e disse que "aparentemente tem muitas mecânicas quebradas"; pediu a revisão

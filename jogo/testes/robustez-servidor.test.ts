@@ -105,10 +105,15 @@ describe('validação das mensagens', () => {
     g.tratar(ana, { t: 'criar', nome: 'Ana', senhaSala: 'segredo', modo: '4p' });
     const codigo = ana.ultima('sala')!.sala.codigo;
     const s = g.salas.get(codigo)!;
-    for (const assento of ['__proto__', 'constructor', 'length', -1, 4, 1.5, '1', null, undefined, Infinity]) {
+    for (const assento of ['__proto__', 'constructor', 'length', -1, 6, 1.5, '1', null, undefined, Infinity]) {
       const n = ana.msgs.length;
       g.tratar(ana, { t: 'bot', assento, deck: null } as never);
       expect(ana.msgs.slice(n)).toEqual([{ t: 'erro', msg: 'Mensagem inválida', de: 'bot' }]);
+    }
+    // 4 e 5 têm a forma de um assento (as salas vão até 6 lugares), mas esta sala tem 4: a sala recusa
+    for (const assento of [4, 5]) {
+      g.tratar(ana, { t: 'bot', assento, deck: DECKS[1].id });
+      expect(ana.ultima('erro')?.msg).toMatch(/não está livre/);
     }
     g.tratar(ana, { t: 'bot', assento: 0, deck: DECKS[1].id } as never);
     expect(ana.ultima('erro')?.msg).toMatch(/não está livre/);
