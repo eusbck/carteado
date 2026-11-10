@@ -65,7 +65,11 @@ if (aplicados.length) {
 }
 const imagens = new Imagens(join(RAIZ, '..', 'cartas'), join(RAIZ, '.cache', 'miniaturas'), undefined, [pastas.imagens, join(RAIZ, 'proprias', 'imagens')]);
 const INFO = JSON.stringify(infoCartas());
-const resumir = (decks: DeckList[]): DeckResumo[] => decks.map((d) => ({ id: d.id, nome: d.nome, comandante: d.comandante, cores: oracle(d.comandante).colorIdentity }));
+const resumir = (decks: DeckList[]): DeckResumo[] => decks.map((d) => {
+  // parceiros (CR 702.124c): a identidade de cor é a dos dois
+  const cores = new Set([...oracle(d.comandante).colorIdentity, ...(d.parceiro ? oracle(d.parceiro).colorIdentity : [])]);
+  return { id: d.id, nome: d.nome, comandante: d.comandante, parceiro: d.parceiro ?? null, cores: ['W', 'U', 'B', 'R', 'G'].filter((c) => cores.has(c as never)) };
+});
 let resumoDecks = resumir(catalogo.listasJogaveis());
 
 const tarefas: TarefasDecks = new TarefasDecks({

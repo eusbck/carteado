@@ -163,7 +163,7 @@ function CartaoDeck({ d, meu, de, escolher, abrir }: { d: DeckResumo; meu: boole
         {de.length > 0 && <span class="deck-quem">{de.join(', ')}</span>}
         <span class="deck-info">
           <span class="deck-nome">{d.nome}</span>
-          <span class="deck-cmd"><span>{nomeCarta(d.comandante, d.comandante).split(',')[0]}</span><Simbolos custo={cores(d)} /></span>
+          <span class="deck-cmd"><span>{nomeCarta(d.comandante, d.comandante).split(',')[0]}{d.parceiro ? ` e ${nomeCarta(d.parceiro, d.parceiro).split(',')[0]}` : ''}</span><Simbolos custo={cores(d)} /></span>
         </span>
       </button>
       <button type="button" class="deck-ver" onClick={abrir} aria-label={`Ver cartas de ${d.nome}`}>Ver cartas</button>

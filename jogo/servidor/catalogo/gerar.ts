@@ -137,7 +137,8 @@ function portugues(p: Printing | undefined): PtGerada | null {
 }
 
 /** nomes de uma lista, com o comandante */
-export const nomesDaLista = (l: { comandante: string; cartas: { nome: string }[] }) => [...new Set([l.comandante, ...l.cartas.map((c) => c.nome)])];
+export const nomesDaLista = (l: { comandante: string; parceiro?: string; cartas: { nome: string }[] }) =>
+  [...new Set([l.comandante, ...(l.parceiro ? [l.parceiro] : []), ...l.cartas.map((c) => c.nome)])];
 
 // ---------------------------------------------------------------------------- junção
 
@@ -198,7 +199,7 @@ export function gerar(o: { originais: Originais; novas: NovasCartas; decks: Deck
     if (!d.atual) continue;
     const falta = nomesDaLista(d.atual).filter((n) => !cartas[n]);
     if (falta.length) { avisos.push(`${d.nome}: fora da lista de decks, sem dados de ${falta.join(', ')}`); continue; }
-    decks.push({ id: d.id, nome: d.nome, comandante: d.atual.comandante, cartas: d.atual.cartas.map((c) => ({ nome: c.nome, quantidade: c.quantidade })) });
+    decks.push({ id: d.id, nome: d.nome, comandante: d.atual.comandante, ...(d.atual.parceiro ? { parceiro: d.atual.parceiro } : {}), cartas: d.atual.cartas.map((c) => ({ nome: c.nome, quantidade: c.quantidade })) });
   }
 
   const ordenado = Object.fromEntries(Object.entries(cartas).sort(([a], [b]) => a.localeCompare(b)));

@@ -9,6 +9,8 @@ export interface EntradaLista { nome: string; quantidade: number }
 
 export interface Lista {
   comandante: string;
+  /** segundo comandante (parceiros, CR 702.124) */
+  parceiro?: string;
   cartas: EntradaLista[];
 }
 
