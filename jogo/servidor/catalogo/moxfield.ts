@@ -60,14 +60,14 @@ const RECUSADAS: Record<string, string> = {
   companions: 'companheiro',
   signatureSpells: 'mágica de assinatura',
   attractions: 'atrações',
-  stickers: 'adesivos',
   contraptions: 'engenhocas',
   planes: 'planos',
 };
 /** zonas com cartas fora das 100 do Commander: o deck entra sem elas, com um aviso. Os esquemas do Archenemy vêm de brinde
- *  nos precons de Duskmourn (Miracle Worker) e não fazem parte do deck */
+ *  nos precons de Duskmourn (Miracle Worker) e não fazem parte do deck; as folhas de adesivos (Unfinity) ficam fora do
+ *  deck e só servem às cartas que põem adesivos, que precisam de regras próprias como qualquer outra */
 const IGNORADAS: Record<string, string> = {
-  sideboard: 'reserva (sideboard)', maybeboard: '"talvez" (maybeboard)', tokens: 'fichas (tokens)', schemes: 'esquemas do Archenemy',
+  sideboard: 'reserva (sideboard)', maybeboard: '"talvez" (maybeboard)', tokens: 'fichas (tokens)', schemes: 'esquemas do Archenemy', stickers: 'folhas de adesivos',
 };
 
 function entradas(z: ZonaMox | undefined): EntradaMox[] {

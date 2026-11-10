@@ -78,6 +78,14 @@ describe('normalizar', () => {
     expect(d.ignoradas).toEqual(['esquemas do Archenemy']);
   });
 
+  it('folhas de adesivos (Unfinity) ficam fora do deck, com aviso, e o deck entra', () => {
+    const r = respostaMox('Teste12345', 'T', { nome: 'Inalla, Archmage Ritualist' }, [{ nome: 'Opt' }]);
+    (r.boards as Record<string, unknown>).stickers = respostaMox('a', 'b', { nome: 'A' }, [{ nome: 'Trendy Circus Pirate' }]).boards.mainboard;
+    const d = normalizar(r, 'Teste12345');
+    expect(d.principal.map((e) => e.nome)).toEqual(['Opt']);
+    expect(d.ignoradas).toEqual(['folhas de adesivos']);
+  });
+
   it('o nome do deck é limpo e cortado em 60 caracteres', () => {
     const r = respostaMox('Teste12345', `  Deck\u0000 com\n  ${'x'.repeat(80)}`, { nome: 'Jace' }, [{ nome: 'Opt' }]);
     const n = normalizar(r, 'Teste12345').nome;

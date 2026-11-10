@@ -1,0 +1,416 @@
+{
+ "formato": 1,
+ "id": "shj-af8AiUWaoFVbNORQig",
+ "ordem": 115,
+ "nome": "cEDH Inalla - Wizard's Chess",
+ "link": "https://moxfield.com/decks/shj-af8AiUWaoFVbNORQig",
+ "importadoEm": "2026-11-10T23:37:03.465Z",
+ "verificadoEm": "2026-11-10T23:37:03.465Z",
+ "atual": null,
+ "preparacao": {
+  "comandante": "Inalla, Archmage Ritualist",
+  "cartas": [
+   {
+    "nome": "Thassa's Oracle",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arcane Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Command Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Wishclaw Talisman",
+    "quantidade": 1
+   },
+   {
+    "nome": "Animate Dead",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dark Ritual",
+    "quantidade": 1
+   },
+   {
+    "nome": "Daze",
+    "quantidade": 1
+   },
+   {
+    "nome": "Demonic Tutor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Faithless Looting",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lotus Petal",
+    "quantidade": 1
+   },
+   {
+    "nome": "Misdirection",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rhystic Study",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fellwar Stone",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mana Vault",
+    "quantidade": 1
+   },
+   {
+    "nome": "Scholar of the Ages",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bloodline Necromancer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Burnt Offering",
+    "quantidade": 1
+   },
+   {
+    "nome": "Badlands",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sacrifice",
+    "quantidade": 1
+   },
+   {
+    "nome": "Underground Sea",
+    "quantidade": 1
+   },
+   {
+    "nome": "City of Brass",
+    "quantidade": 1
+   },
+   {
+    "nome": "City of Traitors",
+    "quantidade": 1
+   },
+   {
+    "nome": "Culling the Weak",
+    "quantidade": 1
+   },
+   {
+    "nome": "Reanimate",
+    "quantidade": 1
+   },
+   {
+    "nome": "Intuition",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cabal Ritual",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bloodstained Mire",
+    "quantidade": 1
+   },
+   {
+    "nome": "Entomb",
+    "quantidade": 1
+   },
+   {
+    "nome": "Flooded Strand",
+    "quantidade": 1
+   },
+   {
+    "nome": "Forbidden Orchard",
+    "quantidade": 1
+   },
+   {
+    "nome": "Pact of Negation",
+    "quantidade": 1
+   },
+   {
+    "nome": "Slaughter Pact",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vedalken Aethermage",
+    "quantidade": 1
+   },
+   {
+    "nome": "Force of Will",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lim-Dûl's Vault",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mystic Remora",
+    "quantidade": 1
+   },
+   {
+    "nome": "Overeager Apprentice",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mystical Tutor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Watery Grave",
+    "quantidade": 1
+   },
+   {
+    "nome": "Spellseeker",
+    "quantidade": 1
+   },
+   {
+    "nome": "Chrome Mox",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gamble",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vampiric Tutor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Essence Flux",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ancient Tomb",
+    "quantidade": 1
+   },
+   {
+    "nome": "Blood Crypt",
+    "quantidade": 1
+   },
+   {
+    "nome": "Apprentice Necromancer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arid Mesa",
+    "quantidade": 1
+   },
+   {
+    "nome": "Marsh Flats",
+    "quantidade": 1
+   },
+   {
+    "nome": "Misty Rainforest",
+    "quantidade": 1
+   },
+   {
+    "nome": "Scalding Tarn",
+    "quantidade": 1
+   },
+   {
+    "nome": "Verdant Catacombs",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mana Confluence",
+    "quantidade": 1
+   },
+   {
+    "nome": "Polluted Delta",
+    "quantidade": 1
+   },
+   {
+    "nome": "Wooded Foothills",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mox Diamond",
+    "quantidade": 1
+   },
+   {
+    "nome": "Flusterstorm",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mox Opal",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rite of Flame",
+    "quantidade": 1
+   },
+   {
+    "nome": "Talisman of Dominance",
+    "quantidade": 1
+   },
+   {
+    "nome": "Peat Bog",
+    "quantidade": 1
+   },
+   {
+    "nome": "Blood Pet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Final Fortune",
+    "quantidade": 1
+   },
+   {
+    "nome": "Grim Monolith",
+    "quantidade": 1
+   },
+   {
+    "nome": "Unearth",
+    "quantidade": 1
+   },
+   {
+    "nome": "Volcanic Island",
+    "quantidade": 1
+   },
+   {
+    "nome": "Finale of Promise",
+    "quantidade": 1
+   },
+   {
+    "nome": "Talisman of Indulgence",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lion's Eye Diamond",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mental Misstep",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ad Nauseam",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fatestitcher",
+    "quantidade": 1
+   },
+   {
+    "nome": "Springleaf Drum",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shallow Grave",
+    "quantidade": 1
+   },
+   {
+    "nome": "Jeweled Amulet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Chain of Vapor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gemstone Caverns",
+    "quantidade": 1
+   },
+   {
+    "nome": "Simian Spirit Guide",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tarnished Citadel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tainted Pact",
+    "quantidade": 1
+   },
+   {
+    "nome": "Unmarked Grave",
+    "quantidade": 1
+   },
+   {
+    "nome": "Grief",
+    "quantidade": 1
+   },
+   {
+    "nome": "Step Through",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ragavan, Nimble Pilferer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Persist",
+    "quantidade": 1
+   },
+   {
+    "nome": "Saw in Half",
+    "quantidade": 1
+   },
+   {
+    "nome": "Otawara, Soaring City",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ruthless Technomancer",
+    "quantidade": 1
+   },
+   {
+    "nome": "An Offer You Can't Refuse",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hoarding Broodlord",
+    "quantidade": 1
+   },
+   {
+    "nome": "Beseech the Mirror",
+    "quantidade": 1
+   },
+   {
+    "nome": "Undercity Sewers",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lively Dirge",
+    "quantidade": 1
+   },
+   {
+    "nome": "Kefka, Court Mage // Kefka, Ruler of Ruin",
+    "quantidade": 1
+   },
+   {
+    "nome": "Starting Town",
+    "quantidade": 1
+   },
+   {
+    "nome": "Morphic Pool",
+    "quantidade": 1
+   },
+   {
+    "nome": "Imperial Seal",
+    "quantidade": 1
+   },
+   {
+    "nome": "Strike It Rich",
+    "quantidade": 1
+   }
+  ],
+  "origem": {
+   "versao": 0,
+   "atualizadoEm": "2026-10-24T13:09:37.68Z"
+  },
+  "desde": "2026-11-10T23:37:03.465Z"
+ }
+}

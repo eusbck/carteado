@@ -1,0 +1,396 @@
+{
+ "formato": 1,
+ "id": "x_R7MWbxrUq4A2ST0PqldA",
+ "ordem": 110,
+ "nome": "Cloud",
+ "link": "https://moxfield.com/decks/x_R7MWbxrUq4A2ST0PqldA",
+ "importadoEm": "2026-10-30T01:10:27.310Z",
+ "verificadoEm": "2026-10-30T01:10:27.310Z",
+ "atual": null,
+ "preparacao": {
+  "comandante": "Cloud, Ex-SOLDIER",
+  "cartas": [
+   {
+    "nome": "Mountain",
+    "quantidade": 3
+   },
+   {
+    "nome": "Forest",
+    "quantidade": 3
+   },
+   {
+    "nome": "Plains",
+    "quantidade": 2
+   },
+   {
+    "nome": "Arcane Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Command Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fling",
+    "quantidade": 1
+   },
+   {
+    "nome": "Basilisk Collar",
+    "quantidade": 1
+   },
+   {
+    "nome": "Danitha Capashen, Paragon",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lightning Greaves",
+    "quantidade": 1
+   },
+   {
+    "nome": "Loxodon Warhammer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mind Stone",
+    "quantidade": 1
+   },
+   {
+    "nome": "Nature's Lore",
+    "quantidade": 1
+   },
+   {
+    "nome": "Path to Exile",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rampant Growth",
+    "quantidade": 1
+   },
+   {
+    "nome": "Reliquary Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rogue's Passage",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sword of the Animist",
+    "quantidade": 1
+   },
+   {
+    "nome": "Swords to Plowshares",
+    "quantidade": 1
+   },
+   {
+    "nome": "Whispersilk Cloak",
+    "quantidade": 1
+   },
+   {
+    "nome": "Heroic Intervention",
+    "quantidade": 1
+   },
+   {
+    "nome": "Exotic Orchard",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hammer of Nazahn",
+    "quantidade": 1
+   },
+   {
+    "nome": "Path of Ancestry",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cinder Glade",
+    "quantidade": 1
+   },
+   {
+    "nome": "Steelshaper's Gift",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sacred Foundry",
+    "quantidade": 1
+   },
+   {
+    "nome": "Stomping Ground",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bountiful Promenade",
+    "quantidade": 1
+   },
+   {
+    "nome": "Canopy Vista",
+    "quantidade": 1
+   },
+   {
+    "nome": "Command Beacon",
+    "quantidade": 1
+   },
+   {
+    "nome": "Game Trail",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fortified Village",
+    "quantidade": 1
+   },
+   {
+    "nome": "Open the Armory",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sigarda's Aid",
+    "quantidade": 1
+   },
+   {
+    "nome": "Temple Garden",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sram, Senior Edificer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Spire of Industry",
+    "quantidade": 1
+   },
+   {
+    "nome": "Battlefield Forge",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dispatch",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rootbound Crag",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sunpetal Grove",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sword of Feast and Famine",
+    "quantidade": 1
+   },
+   {
+    "nome": "Austere Command",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sunforger",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vandalblast",
+    "quantidade": 1
+   },
+   {
+    "nome": "Puresteel Paladin",
+    "quantidade": 1
+   },
+   {
+    "nome": "Blackblade Reforged",
+    "quantidade": 1
+   },
+   {
+    "nome": "Masterwork of Ingenuity",
+    "quantidade": 1
+   },
+   {
+    "nome": "Clifftop Retreat",
+    "quantidade": 1
+   },
+   {
+    "nome": "Helm of the Host",
+    "quantidade": 1
+   },
+   {
+    "nome": "Akiri, Fearless Voyager",
+    "quantidade": 1
+   },
+   {
+    "nome": "Armored Skyhunter",
+    "quantidade": 1
+   },
+   {
+    "nome": "Akroma's Will",
+    "quantidade": 1
+   },
+   {
+    "nome": "Halvar, God of Battle // Sword of the Realms",
+    "quantidade": 1
+   },
+   {
+    "nome": "Furycalm Snarl",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bruenor Battlehammer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Robe of Stars",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sundown Pass",
+    "quantidade": 1
+   },
+   {
+    "nome": "Kodama of the West Tree",
+    "quantidade": 1
+   },
+   {
+    "nome": "Jetmir's Garden",
+    "quantidade": 1
+   },
+   {
+    "nome": "The Reaver Cleaver",
+    "quantidade": 1
+   },
+   {
+    "nome": "Wooded Ridgeline",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sacred Peaks",
+    "quantidade": 1
+   },
+   {
+    "nome": "Clever Concealment",
+    "quantidade": 1
+   },
+   {
+    "nome": "Forge Anew",
+    "quantidade": 1
+   },
+   {
+    "nome": "Codsworth, Handy Helper",
+    "quantidade": 1
+   },
+   {
+    "nome": "Inventory Management",
+    "quantidade": 1
+   },
+   {
+    "nome": "Silver Shroud Costume",
+    "quantidade": 1
+   },
+   {
+    "nome": "Brotherhood Regalia",
+    "quantidade": 1
+   },
+   {
+    "nome": "Excalibur, Sword of Eden",
+    "quantidade": 1
+   },
+   {
+    "nome": "The Aetherspark",
+    "quantidade": 1
+   },
+   {
+    "nome": "Jumbo Cactuar",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tifa, Martial Artist",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cloud, Midgar Mercenary",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gilgamesh, Master-at-Arms",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lightning, Army of One",
+    "quantidade": 1
+   },
+   {
+    "nome": "Starting Town",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ishgard, the Holy See // Faith & Grief",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bugenhagen, Wise Elder",
+    "quantidade": 1
+   },
+   {
+    "nome": "Professor Hojo",
+    "quantidade": 1
+   },
+   {
+    "nome": "Nibelheim Aflame",
+    "quantidade": 1
+   },
+   {
+    "nome": "Buster Sword",
+    "quantidade": 1
+   },
+   {
+    "nome": "Aettir and Priwen",
+    "quantidade": 1
+   },
+   {
+    "nome": "Windurst, Federation Center",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gongaga, Reactor Town",
+    "quantidade": 1
+   },
+   {
+    "nome": "Genji Glove",
+    "quantidade": 1
+   },
+   {
+    "nome": "Swordsman's Steel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Kíli the Resourceful",
+    "quantidade": 1
+   },
+   {
+    "nome": "Birds of Paradise",
+    "quantidade": 1
+   },
+   {
+    "nome": "Stoneforge Mystic",
+    "quantidade": 1
+   },
+   {
+    "nome": "Wyleth, Soul of Steel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Nahiri, Forged in Fury",
+    "quantidade": 1
+   },
+   {
+    "nome": "Danitha, New Benalia's Light",
+    "quantidade": 1
+   }
+  ],
+  "origem": {
+   "versao": 27,
+   "atualizadoEm": "2026-10-30T01:05:51.75Z"
+  },
+  "desde": "2026-10-30T01:10:27.310Z"
+ }
+}
