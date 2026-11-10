@@ -11,9 +11,12 @@ export function validateDeck(deck: DeckList, buscar: (name: string) => OracleCar
   const out: DeckProblem[] = [];
   const cmd = buscar(deck.comandante);
   const f = cmd.faces[0];
-  // CR 903.3: comandante lendário e criatura (ou "pode ser seu comandante", 903.3a)
+  // CR 903.3: comandante lendário e (a) criatura, (b) Veículo ou (c) Espaçonave com caixa de poder/resistência
+  // (texto das CR de 25/09/2026); ou "pode ser seu comandante", 903.3a
   const canBe = f.oracleText.includes('can be your commander');
-  if (!(f.supertypes.includes('Legendary') && (f.types.includes('Creature') || canBe))) {
+  const temPT = f.power !== null || f.toughness !== null || f.ptStar;
+  const tipoOk = f.types.includes('Creature') || f.subtypes.includes('Vehicle') || (f.subtypes.includes('Spacecraft') && temPT);
+  if (!(f.supertypes.includes('Legendary') && (tipoOk || canBe))) {
     out.push({ rule: '903.3', message: `${deck.comandante} não pode ser comandante` });
   }
   // CR 903.5a: exatamente 100 cartas com o comandante
