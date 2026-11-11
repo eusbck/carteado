@@ -432,6 +432,8 @@ export interface AdditionalCostDef {
   capByMana?: boolean;
   /** pago uma vez para cada modo escolhido além do primeiro, sem perguntar (escalada, CR 702.120a) */
   perExtraMode?: boolean;
+  /** pago sem perguntar quando este modo é escolhido (escalonado/tiered: "escolha um custo adicional", CR 702.183) */
+  whenMode?: number;
 }
 
 export interface AltCastDef {

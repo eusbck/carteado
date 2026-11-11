@@ -400,6 +400,8 @@ function* castInner(g: G, player: PlayerId, cardId: ObjId, method: CastMethod): 
   for (const ac of custosAdicionais(g, player, spellId, f)) {
     // escalada (CR 702.120a): uma vez para cada modo além do primeiro, sem escolha
     if (ac.perExtraMode) { info.paid[ac.key] = Math.max(0, info.modes.length - 1); continue; }
+    // escalonado (tiered): o custo adicional do modo escolhido é pago sem pergunta
+    if (ac.whenMode !== undefined) { info.paid[ac.key] = info.modes.includes(ac.whenMode); continue; }
     if (ac.repeatable) {
       // não dá para repetir mais vezes do que é possível pagar (sacrificar: quantos permanentes servem)
       let vezes = 10;

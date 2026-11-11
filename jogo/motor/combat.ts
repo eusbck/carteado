@@ -219,7 +219,7 @@ export function* declareAttackers(g: G): Gen<void> {
 // ---------------------------------------------------------------------------
 // Bloqueadores (CR 509, 802.4)
 // ---------------------------------------------------------------------------
-function defendingPlayerOf(g: G, t: TargetRef): PlayerId {
+export function defendingPlayerOf(g: G, t: TargetRef): PlayerId {
   return t.kind === 'player' ? t.id : controllerOf(g, t.id);
 }
 
