@@ -35,15 +35,23 @@ describe('CR 702.184 e 721: estação', () => {
     expect(acoes().some((l) => l.includes('Estação'))).toBe(false);
   });
 
-  it('CR 721.2a: faixa sem quadro de força e resistência só dá a habilidade (Borg Scout Sphere 6+)', () => {
+  it('CR 721.2b: a faixa com quadro dá as habilidades e torna a permanente criatura (Borg Scout Sphere 6+)', () => {
     const tg = setup({ battlefield: [[{ name: ESFERA, counters: { charge: 5 } }, 'Steel Overseer', 'Wall of Omens'], []] });
     const ov = tg.bf('Steel Overseer');
     expect(hasKw(tg.g, ov, 'flying')).toBe(false);
+    expect(chars(tg.g, tg.bf(ESFERA)).types).not.toContain('Creature');
     tg.state.objects[tg.bf(ESFERA)].counters.charge = 6;
     tg.g.bump();
     expect(hasKw(tg.g, ov, 'flying')).toBe(true);
     expect(hasKw(tg.g, tg.bf('Wall of Omens'), 'flying')).toBe(false);
-    expect(chars(tg.g, tg.bf(ESFERA)).types).not.toContain('Creature');
+    expect(tg.pt(tg.bf(ESFERA))).toEqual([5, 5]);
+  });
+
+  it('CR 721.2a: faixa sem quadro de força e resistência só dá a habilidade (Transwarp Hub 3+)', () => {
+    const tg = setup({ battlefield: [[{ name: 'Transwarp Hub', counters: { charge: 3 } }, 'Steel Overseer'], []] });
+    const hub = tg.bf('Transwarp Hub');
+    expect(chars(tg.g, hub).types).not.toContain('Creature');
+    expect(tg.actionIds().filter((a) => a.startsWith('act:') && a.split(':').includes(String(hub)))).toHaveLength(2);
   });
 
   it("Queen's Diamond: a mana, de uma cor por marcador, só paga o seu comandante", () => {

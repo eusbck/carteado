@@ -496,3 +496,6 @@ export const DragonElemental = token('Dragon Elemental', 'Dragon Elemental', ['C
 export const Glimmer11 = token('Glimmer', 'Glimmer', ['Enchantment', 'Creature'], ['Glimmer'], ['W'], 1, 1);
 /** Horror 2/2 preta, criatura encantamento (Phenomenon Investigators) */
 export const Horror22 = token('Horror 2/2', 'Horror', ['Enchantment', 'Creature'], ['Horror'], ['B'], 2, 2);
+// lote3-b (We Are The Borg)
+/** Borg 1/1 incolor, criatura artefato */
+export const Borg11 = token('Borg', 'Borg', ['Artifact', 'Creature'], ['Borg'], [], 1, 1);

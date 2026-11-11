@@ -176,6 +176,8 @@ export interface EnterReq {
   data?: Record<string, unknown>;
   /** face que fica para cima ao entrar ("volta ao campo transformado", CR 712.14) */
   face?: number;
+  /** lote3-b: efeitos que começam junto com a entrada (assimilar: "é uma criatura artefato Borg"), CR 614.1c */
+  enterEffects?: EnterEvent['enterEffects'];
 }
 
 function wouldBeChars(g: G, r: EnterReq) {
@@ -299,6 +301,7 @@ export function* putOntoBattlefield(g: G, reqs: EnterReq[], cause: string): Gen<
       obj: r.id ?? -1, controller: r.controller, tapped: !!r.tapped, counters: { ...(r.counters ?? {}) },
       attachTo: r.attachTo ?? null, fromZone: fromObj?.zone ?? 'command', choices: { ...(r.choices ?? {}) },
       copyOf: r.token?.copyOf ?? r.copyOf ?? null, faceDown: r.faceDown, spell: r.spell,
+      ...(r.enterEffects ? { enterEffects: [...r.enterEffects] } : {}),
     };
     // Aura que entra sem ser mágica: escolhe o que encantar (CR 303.4f); sem opção, não entra (303.4g)
     // (a Aura que resolveu encantando um jogador já vem com ele em data.enchantedPlayer: CR 303.4b)

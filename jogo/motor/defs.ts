@@ -55,8 +55,9 @@ export type EffectFn = (c: Ctx) => Gen<void>;
 export interface TargetSpec {
   /** 'object' = permanente (padrão); 'player'; 'any' = criatura, planeswalker ou jogador (115.4);
    *  'spell' = mágica na pilha; 'card' = carta numa zona (cemitério…); 'spellOrPermanent' = mágica na pilha ou
-   *  permanente ("mágica ou criatura alvo"; o filtro separa os dois) */
-  what: 'object' | 'player' | 'any' | 'spell' | 'card' | 'spellOrPermanent' | 'ability';
+   *  permanente ("mágica ou criatura alvo"; o filtro separa os dois); 'stackObject' = mágica ou habilidade na pilha
+   *  (lote3-b, Disallow: "mágica, habilidade ativada ou habilidade desencadeada alvo") */
+  what: 'object' | 'player' | 'any' | 'spell' | 'card' | 'spellOrPermanent' | 'ability' | 'stackObject';
   zone?: ZoneName;
   filter?: (c: SCtx, t: TargetRef) => boolean;
   min?: number;
@@ -348,6 +349,11 @@ export interface RuleHooks {
   lookAtTopOfLibrary?: (c: SCtx, player: PlayerId) => boolean;
   /** "Você não perde mana [vermelha] não gasta quando as etapas e fases terminam" (Leyline Tyrant; CR 106.4, 500.5) */
   keepsUnspentMana?: (c: SCtx, player: PlayerId, unit: ManaUnit) => boolean;
+  /** lote3-b: o efeito de regra acaba quando [esse jogador] conjura uma mágica assim ("a próxima mágica … tem destemido",
+   *  Võx). Só vale em efeitos de regra (Mod rule) criados por resolução; o efeito é removido depois que a mágica é conjurada */
+  consumedByCast?: (c: SCtx, player: PlayerId, spell: ObjId) => boolean;
+  /** lote3-b: "os jogadores não podem ativar habilidades de lealdade de planeswalkers" (The Immortal Sun) */
+  cantActivateLoyalty?: (c: SCtx, player: PlayerId) => boolean;
 }
 
 /** fichas que um evento vai criar para um jogador (CR 111.1). `de` aponta o pedido de onde a ficha veio: o resto do

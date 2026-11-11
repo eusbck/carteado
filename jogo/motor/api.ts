@@ -44,3 +44,6 @@ export * from './milagre.ts';
 export { ATE_SAIR } from './actions.ts';
 // lote3-b: estação (station, CR 702.184) e cartas de estação (CR 721)
 export * from './estacao.ts';
+// lote3-b: assimilar (Star Trek), destemido da próxima mágica (undaunted, CR 702.125)
+export * from './assimilar.ts';
+export * from './destemido.ts';
