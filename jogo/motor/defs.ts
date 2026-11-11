@@ -35,7 +35,7 @@ export interface Ctx {
   division?: number[][];
   method?: string;
   castFrom?: ZoneName;
-  manaSpent?: { total: number; byType: Partial<Record<ManaType, number>>; colors: number; fromArtifacts?: number };
+  manaSpent?: { total: number; byType: Partial<Record<ManaType, number>>; colors: number; fromArtifacts?: number; fromTreasures?: number };
 }
 
 /** contexto de estáticas, filtros e condições (sem pilha) */
@@ -361,6 +361,13 @@ export interface RuleHooks {
   cantCastFrom?: (c: SCtx, player: PlayerId, zone: ZoneName) => boolean;
   /** lote3-d: "habilidades ativadas de criaturas não podem ser ativadas" (Cursed Totem): vale também para as de mana */
   cantActivate?: (c: SCtx, player: PlayerId, source: ObjId) => boolean;
+  // lote3-e
+  /** "Você pode gastar mana como se fosse mana de qualquer cor" (Chromatic Orrery; CR 609.4b): qualquer mana paga símbolos
+   *  coloridos; {C} continua pedindo mana incolor */
+  spendAsAnyColor?: (c: SCtx, player: PlayerId) => boolean;
+  /** substituição de outro permanente sobre como algo entra que pode pedir escolha (riot concedido por Rhythm of the Wild;
+   *  CR 614.1c, 614.12): roda depois das substituições do próprio objeto e antes de enterModifier */
+  enterReplacement?: (c: SCtx, ev: EnterEvent, wouldBe: Chars) => Gen<void> | null;
 }
 
 /** fichas que um evento vai criar para um jogador (CR 111.1). `de` aponta o pedido de onde a ficha veio: o resto do
@@ -412,6 +419,8 @@ export interface EnterEvent {
   spell?: { x: number; paid: Record<string, number | boolean>; method?: string; manaSpent?: Ctx['manaSpent']; castFrom?: ZoneName; giftTo?: PlayerId };
   /** efeitos que começam junto com a entrada (Cursed Mirror: "ao entrar, vira uma cópia … até o fim do turno") */
   enterEffects?: { mods: Mod[]; duration: Duration; controller: PlayerId; sourceDef: string }[];
+  /** lote3-e: em vez de entrar, vai para esta zona (Mox Diamond: "se não fizer, ponha-o no cemitério do dono"; CR 614.1c) */
+  instead?: ZoneName;
 }
 
 export interface ReplacementDef extends AbilityCommon {
@@ -443,6 +452,12 @@ export interface AdditionalCostDef {
   capByMana?: boolean;
   /** pago uma vez para cada modo escolhido além do primeiro, sem perguntar (escalada, CR 702.120a) */
   perExtraMode?: boolean;
+  /** lote3-e: farra (CR 702.172a): o custo do modo com este índice, pago só se o modo for escolhido */
+  perMode?: number;
+  /** lote3-e: custo concedido que olha os alvos ("mágicas que tenham esta criatura como alvo custam 3 de vida a mais",
+   *  Terror of the Peaks): o gancho grantedAdditionalCosts é consultado de novo depois dos alvos e o custo é pago sem
+   *  pergunta; só partes que não são mana */
+  afterTargets?: boolean;
 }
 
 export interface AltCastDef {
@@ -498,6 +513,8 @@ export interface CastPermission {
   /** precons-e: a permissão vale também para cartas na sua mão, como mais um jeito de conjurá-las ("você pode conjurar uma
    *  mágica da sua mão pagando vida": Access Maze, Demon of Fate's Design, One with the Multiverse) */
   fromHand?: boolean;
+  /** lote3-e: vale também para o seu comandante na zona de comando (Dracogenesis: "mágicas de Dragon"); o imposto continua */
+  fromCommand?: boolean;
 }
 
 export interface SpellDef {

@@ -499,3 +499,8 @@ export const Horror22 = token('Horror 2/2', 'Horror', ['Enchantment', 'Creature'
 // lote3-d (Twitch Control)
 /** Bird 2/2 azul com voar (Swan Song, Strix Serenade) */
 export const Bird22Azul = token('Bird 2/2 azul', 'Bird', ['Creature'], ['Bird'], ['U'], 2, 2, keywords('flying'));
+// lote3-e (How to Train Ur-Dragon)
+/** Dinosaur 3/1 vermelho (Bonehoard Dracosaur) */
+export const Dinosaur31 = token('Dinosaur 3/1', 'Dinosaur', ['Creature'], ['Dinosaur'], ['R'], 3, 1);
+/** Faerie Dragon 1/1 azul com voar (Ancient Gold Dragon) */
+export const FaerieDragon = token('Faerie Dragon', 'Faerie Dragon', ['Creature'], ['Faerie', 'Dragon'], ['U'], 1, 1, keywords('flying'));

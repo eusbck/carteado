@@ -356,6 +356,11 @@ function* resolveTriggeredMana(g: G): Gen<void> {
   throw new Error('Laço de habilidades de mana engatilhadas sem fim');
 }
 
+/** lote3-e: "você pode gastar mana como se fosse mana de qualquer cor" (Chromatic Orrery; CR 609.4b) */
+function gastaComoQualquerCor(g: G, player: PlayerId): boolean {
+  return hooks(g, 'spendAsAnyColor').some((h) => h.fn(h.ctx, player));
+}
+
 function canSpendFn(g: G, ctx: PayContext): (u: ManaUnit) => boolean {
   return (u) => {
     if (!u.restriction) return true;
@@ -372,7 +377,7 @@ function canSpendFn(g: G, ctx: PayContext): (u: ManaUnit) => boolean {
  * saber se dá para pagar, basta achar um plano qualquer).
  */
 export function planPayment(g: G, player: PlayerId, cost: ManaSymbol[], ctx: PayContext, life = 0, enxuto = false): ManaOption[] | null {
-  const spend: SpendContext = { canSpend: canSpendFn(g, ctx), anyType: ctx.anyType, lifeForPhyrexian: life };
+  const spend: SpendContext = { canSpend: canSpendFn(g, ctx), anyType: ctx.anyType, anyColor: ctx.anyColor || gastaComoQualquerCor(g, player), lifeForPhyrexian: life };
   const pool0 = g.state.players[player].manaPool.slice();
   if (matchPool(cost, pool0, spend)) return [];
   const opts = manaOptions(g, player, { excludeSource: ctx.excludeSource }).sort((a, b) => a.rank - b.rank || a.obj - b.obj);
@@ -495,7 +500,7 @@ export function* payMana(g: G, player: PlayerId, cost: ManaSymbol[], ctx: PayCon
   let lifeChoice = 0;
   if (cost.length === 0) return { units: [], lifePaid: 0 };
   for (;;) {
-    const spend: SpendContext = { canSpend: canSpendFn(g, ctx), anyType: ctx.anyType, lifeForPhyrexian: lifeChoice };
+    const spend: SpendContext = { canSpend: canSpendFn(g, ctx), anyType: ctx.anyType, anyColor: ctx.anyColor || gastaComoQualquerCor(g, player), lifeForPhyrexian: lifeChoice };
     const opts = manaOptions(g, player, { excludeSource: ctx.excludeSource });
     const auto = planPayment(g, player, cost, ctx, lifeChoice, true);
     const sources: PaymentSource[] = opts.map((o) => ({ id: o.key, obj: o.obj, label: `${nameOf(g, o.obj)}: ${o.alt.map((t) => `{${t}}`).join('')}`, produces: o.alt }));
@@ -547,7 +552,7 @@ export function* payMana(g: G, player: PlayerId, cost: ManaSymbol[], ctx: PayCon
       continue;
     }
     if (a.auto || a.pay) {
-      const finalSpend: SpendContext = { canSpend: canSpendFn(g, ctx), anyType: ctx.anyType, lifeForPhyrexian: lifeChoice };
+      const finalSpend: SpendContext = { canSpend: canSpendFn(g, ctx), anyType: ctx.anyType, anyColor: ctx.anyColor || gastaComoQualquerCor(g, player), lifeForPhyrexian: lifeChoice };
       const m = matchPool(cost, p.manaPool, finalSpend);
       if (!m) continue;
       const units = m.map((i) => p.manaPool[i]);

@@ -166,6 +166,9 @@ const esperadas: Record<string, [string, string[], string[], string[], number | 
   'Horror 2/2': ['Horror', ['Enchantment', 'Creature'], ['Horror'], ['B'], 2, 2, []],
   // lote3-d
   'Bird 2/2 azul': ['Bird', ['Creature'], ['Bird'], ['U'], 2, 2, ['flying']],
+  // lote3-e
+  'Dinosaur 3/1': ['Dinosaur', ['Creature'], ['Dinosaur'], ['R'], 3, 1, []],
+  'Faerie Dragon': ['Faerie Dragon', ['Creature'], ['Faerie', 'Dragon'], ['U'], 1, 1, ['flying']],
 };
 
 describe('Fichas: características', () => {

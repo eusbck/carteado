@@ -46,11 +46,14 @@ export function permissionsFor(g: G, p: PlayerId, card: ObjId): CastPermission[]
   const out: CastPermission[] = [];
   for (const e of g.state.effects) for (const m of e.mods) {
     if (m.k !== 'rule' || m.id !== 'rule:mayPlay') continue;
-    const prm = m.params as { objs: ObjId[]; player: PlayerId; free?: boolean; anyType?: boolean; key?: string; bottomInstead?: boolean; once?: boolean; spellsOnly?: boolean } | undefined;
+    const prm = m.params as { objs: ObjId[]; player: PlayerId; free?: boolean; anyType?: boolean; key?: string; bottomInstead?: boolean; once?: boolean; spellsOnly?: boolean; mana?: string; label?: string; fromTurn?: number } | undefined;
     if (!prm || prm.player !== p || !prm.objs.includes(card)) continue;
+    // lote3-e: só a partir de um turno (dobra: "depois que o turno atual terminar", CR 702.185a)
+    if (prm.fromTurn !== undefined && g.state.turn.number < prm.fromTurn) continue;
     // "conjure uma mágica dentre elas": a permissão acaba ao ser usada (Locke)
     const onUse = prm.once ? (c: { g: G }) => { c.g.state.effects = c.g.state.effects.filter((x) => x.id !== e.id); c.g.bump(); } : undefined;
-    out.push({ key: prm.key ?? `eff${e.id}`, label: rotuloPermissao(g, card, prm), free: prm.free, anyType: prm.anyType, land: !prm.spellsOnly, bottomInstead: prm.bottomInstead, onUse });
+    // lote3-e: custo de mana próprio da permissão (dobrar o ar: "conjurá-la pagando {2}", CR 701.65a)
+    out.push({ key: prm.key ?? `eff${e.id}`, label: prm.label ?? rotuloPermissao(g, card, prm), free: prm.free, anyType: prm.anyType, land: !prm.spellsOnly, bottomInstead: prm.bottomInstead, onUse, ...(prm.mana ? { mana: prm.mana } : {}) });
   }
   for (const h of hooks(g, 'mayPlayFrom')) {
     const r = h.fn(h.ctx, p, card);
@@ -123,7 +126,14 @@ export function castOptions(g: G, p: PlayerId): CastOption[] {
         out.push({ obj: id, method: { key: `perm:${prm.key}`, label: prm.label, zone, permission: prm } });
       }
     } else if (zone === 'command') {
-      if (o.owner === p && o.card !== null && s.cards[o.card].isCommander) out.push({ obj: id, method: { key: 'command', label: 'conjurar da zona de comando', zone } });
+      if (o.owner === p && o.card !== null && s.cards[o.card].isCommander) {
+        out.push({ obj: id, method: { key: 'command', label: 'conjurar da zona de comando', zone } });
+        // lote3-e: permissões que valem também para o comandante (CastPermission.fromCommand); o imposto é somado
+        for (const prm of permissionsFor(g, p, id)) {
+          if (!prm.fromCommand || (prm.filter && !prm.filter({ g, you: p, source: id }, id))) continue;
+          out.push({ obj: id, method: { key: `perm:${prm.key}`, label: prm.label, zone, permission: prm } });
+        }
+      }
     } else {
       if (zone === 'graveyard' && o.owner === p) for (const alt of f?.altCosts ?? []) if (alt.zone === 'graveyard' && (!alt.condition || alt.condition({ g, you: p, source: id }))) out.push({ obj: id, method: { key: alt.key, label: alt.label, zone, alt } });
       // custo alternativo de conjurar do exílio (a carta predita, CR 702.143a)
@@ -185,6 +195,8 @@ export function canStartCast(g: G, p: PlayerId, opt: CastOption): boolean {
   // "os seus oponentes não podem conjurar mágicas que não são de criatura neste turno" (Permission Denied)
   if (!c.types.includes('Creature') && g.state.effects.some((e) => !!e.affectedPlayers?.includes(p) && e.mods.some((m) => m.k === 'rule' && m.id === 'rule:cantCastNoncreature'))) return false;
   if (f?.castOnlyIf && !f.castOnlyIf({ g, you: p, source: opt.obj })) return false;
+  // lote3-e: "não podem conjurar mágicas de nenhum lugar que não seja a mão" (Avatar's Wrath)
+  if (opt.method.zone !== 'hand' && g.state.effects.some((e) => !!e.affectedPlayers?.includes(p) && e.mods.some((m) => m.k === 'rule' && m.id === 'rule:castOnlyFromHand'))) return false;
   // proibição por valor de mana: com {X} no custo o valor só é conhecido ao conjurar (conferido de novo em stack.ts)
   if (!(c.manaCost ?? []).some((x) => x.k === 'X') && hooks(g, 'cantCastSpell').some((h) => h.fn(h.ctx, p, opt.obj, opt.method.alt?.faceDown ? 0 : c.manaValue))) return false;
   // alvos obrigatórios possíveis

@@ -4,7 +4,7 @@
 import { addEffect, cloneState, createObject, destroyObject, moveRaw, newTimestamp, removeEffect } from './state.ts';
 import { ask, chooseItems, chooseNumber, objItem, playerItem, yesNo } from './ask.ts';
 import type { GameEvent } from './events.ts';
-import { moveObject, moveObjects, protectionMatches, putOntoBattlefield, enchantCandidates, tap } from './actions.ts';
+import { moveObject, moveObjects, protectionMatches, putOntoBattlefield, enchantCandidates, shuffleLibrary, tap } from './actions.ts';
 import { abilityDefs, chars, colorsOf, controllerOf, hasKw, hooks, isType, kwParams, nameOf, printedChars, currentFace } from './chars.ts';
 import { playerProtectedFrom } from './actions.ts';
 import { canAfford, canPayParts, manaOptions, manaPart, payMana, payParts, type PayContext } from './costs.ts';
@@ -15,7 +15,7 @@ import {
 import type { G } from './game-context.ts';
 import { addGeneric, convokeOne, formatCost, manaValueOf, parseCost, reduceGeneric, withX } from './mana.ts';
 import { emit } from './triggers.ts';
-import { ehAventura, ehDividida, FACE_AMBAS, facesConjuraveis, metadeAftermath, rotuloConjurar, temVariasFaces } from './formatos.ts';
+import { ehAventura, ehDividida, ehPresagio, FACE_AMBAS, facesConjuraveis, metadeAftermath, rotuloConjurar, temVariasFaces } from './formatos.ts';
 import type { Answer, Chars, Duration, GameObject, GameState, ManaSymbol, Mod, ObjId, PlayerId, StackInfo, TargetRef, ZoneName } from './types.ts';
 import { HEXPROOF_FROM_ABILITIES, sourceIsAbility, splitSecondActive } from './controle-base.ts';
 
@@ -383,7 +383,9 @@ function* castInner(g: G, player: PlayerId, cardId: ObjId, method: CastMethod): 
   // aftermath conjurada do cemitério: exilada ao sair da pilha (CR 702.127a)
   if (method.zone === 'graveyard' && !o.copyOf && metadeAftermath(o.def) === o.face) info.data.exileOnLeave = true;
   // conjurada como aventura: vai para o exílio ao resolver (CR 715.3d)
-  if (!o.copyOf && ehAventura(o.def) && o.face === 1) info.data.adventure = true;
+  // lote3-e: conjurada como presságio: é embaralhada no grimório do dono ao resolver (CR 720.3d)
+  if (!o.copyOf && ehPresagio(o.def) && o.face === 1) info.data.omen = true;
+  else if (!o.copyOf && ehAventura(o.def) && o.face === 1) info.data.adventure = true;
   if (method.permission?.bottomInstead) info.data.bottomInsteadOfGraveyard = true;
   if (method.permission?.exileInstead) info.data.exileInsteadOfGraveyard = true;
   if (method.key === 'bestow') info.data.bestow = true;
@@ -411,8 +413,11 @@ function* castInner(g: G, player: PlayerId, cardId: ObjId, method: CastMethod): 
     }
   }
   for (const ac of custosAdicionais(g, player, spellId, f)) {
+    if (ac.afterTargets) continue; // lote3-e: decidido depois dos alvos
     // escalada (CR 702.120a): uma vez para cada modo além do primeiro, sem escolha
     if (ac.perExtraMode) { info.paid[ac.key] = Math.max(0, info.modes.length - 1); continue; }
+    // lote3-e: farra (CR 702.172a): o custo de cada modo escolhido, sem pergunta
+    if (ac.perMode !== undefined) { info.paid[ac.key] = info.modes.includes(ac.perMode); continue; }
     if (ac.repeatable) {
       // não dá para repetir mais vezes do que é possível pagar (sacrificar: quantos permanentes servem)
       let vezes = 10;
@@ -527,6 +532,8 @@ function* castInner(g: G, player: PlayerId, cardId: ObjId, method: CastMethod): 
   const otherParts = [
     ...(method.alt?.parts ?? []), ...(method.permission?.parts ?? []),
     ...(custosAdicionais(g, player, spellId, f)).flatMap((ac) => {
+      // lote3-e: custo concedido que depende dos alvos (Terror of the Peaks) só aparece agora, já com os alvos (CR 601.2f)
+      if (ac.afterTargets) { info.paid[ac.key] = true; return ac.parts.filter((p) => p.k !== 'mana'); }
       const times = typeof info.paid[ac.key] === 'number' ? (info.paid[ac.key] as number) : info.paid[ac.key] ? 1 : 0;
       const parts = (info.paid[`${ac.key}:or`] ? ac.orParts ?? [] : ac.parts).filter((p) => p.k !== 'mana');
       // escalada: "vire uma criatura" duas vezes é virar duas criaturas de uma vez (o mesmo recurso não paga duas)
@@ -546,7 +553,9 @@ function* castInner(g: G, player: PlayerId, cardId: ObjId, method: CastMethod): 
   for (const u of paidMana.units) byType[u.type] = (byType[u.type] ?? 0) + 1;
   // mana vinda de fontes que são artefatos (Coin of Mastery): olha a fonte agora, ou a última informação dela
   const deArtefatos = paidMana.units.filter((u) => u.source !== null && u.source !== undefined && !!(g.state.objects[u.source] ? chars(g, u.source) : g.state.lki[u.source]?.chars)?.types.includes('Artifact')).length;
-  info.manaSpent = { total: paidMana.units.length, byType, colors: Object.keys(byType).filter((t) => t !== 'C').length, ...(deArtefatos ? { fromArtifacts: deArtefatos } : {}) };
+  // lote3-e: mana vinda de Tesouros (Smaug, Wicked Worm), pela última informação da fonte já sacrificada
+  const deTesouros = paidMana.units.filter((u) => u.source !== null && u.source !== undefined && !!(g.state.objects[u.source] ? chars(g, u.source) : g.state.lki[u.source]?.chars)?.subtypes.includes('Treasure')).length;
+  info.manaSpent = { total: paidMana.units.length, byType, colors: Object.keys(byType).filter((t) => t !== 'C').length, ...(deArtefatos ? { fromArtifacts: deArtefatos } : {}), ...(deTesouros ? { fromTreasures: deTesouros } : {}) };
   if (paidMana.lifePaid) info.paid.phyrexianLife = paidMana.lifePaid;
   // 601.2i: a mágica foi conjurada
   if (method.zone === 'command' && o.card !== null) {
@@ -974,6 +983,13 @@ export function* resolveTop(g: G): Gen<void> {
   // 608.2n: vai para o cemitério do dono (se ainda estiver na pilha)
   if (g.state.objects[id]?.zone === 'stack') {
     if (g.state.objects[id].isCopy) destroyObject(g, id);
+    else if (st.data.omen) {
+      // presságio (CR 720.3d): embaralhada no grimório do dono em vez de ir para o cemitério
+      const dono = g.state.objects[id].owner;
+      g.log(`${c.name} é embaralhada no grimório de ${g.state.players[dono].name} (presságio).`, { rule: '720.3d' });
+      yield* moveObject(g, id, 'library', 'omen');
+      shuffleLibrary(g, dono);
+    }
     else if (st.data.adventure) {
       // aventura: quem a controla a exila em vez de pô-la no cemitério e pode conjurar a carta enquanto ela ficar
       // exilada (CR 715.3d); essa permissão é só deste exílio (ruling 5)
@@ -1040,6 +1056,8 @@ export function* counter(g: G, id: ObjId): Gen<boolean> {
   if (o.stack?.kind === 'spell') {
     const f = faceDefOf(o);
     if (f?.cantBeCountered) return false;
+    // lote3-e: "essa mágica não pode ser anulada" preso à mana gasta (Cavern of Souls, Delighted Halfling); a cópia pode
+    if (!o.isCopy && o.stack.data.cantBeCountered) return false;
     if (hooks(g, 'cantBeCountered').some((h) => h.fn(h.ctx, id))) return false;
     g.log(`${nameOf(g, id)} é anulada.`, { rule: '701.6' });
     if (o.isCopy) destroyObject(g, id);

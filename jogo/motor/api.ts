@@ -45,3 +45,6 @@ export { ATE_SAIR } from './actions.ts';
 // lote3-d: manutenção cumulativa, segundo dividido, energia, trocar o controle, manifestar o pavor, resistência a magia
 // contra habilidades
 export * from './controle.ts';
+// lote3-e: rolar dado, dobrar o ar, exaurir, farra e dobra (deck Ur-Dragon); presságio em formatos.ts
+export * from './mecanicas-ur.ts';
+export { ehPresagio } from './formatos.ts';
