@@ -7,6 +7,8 @@ import type { Answer, Decision, ObjId, TargetRef } from '../motor/types.ts';
 
 export class RandomBot {
   rng: RngState;
+  /** ações seguidas sem passar a prioridade */
+  private seguidas = 0;
   constructor(seed: string) { this.rng = seedFrom(`bot:${seed}`); }
 
   private pick<T>(arr: T[]): T { return arr[int(this.rng, arr.length)]; }
@@ -17,7 +19,11 @@ export class RandomBot {
     switch (d.kind) {
       case 'priority': {
         const nonMana = d.actions.filter((a) => a.kind !== 'mana' && a.kind !== 'pass' && a.kind !== 'manual');
-        if (nonMana.length === 0 || next(this.rng) < 0.35) return { kind: 'priority', action: 'pass' };
+        // a chance de passar cresce a cada ação seguida sem passar: uma ação grátis e repetível (Puresteel Paladin com
+        // equipar {0}) não prende mais a partida num laço sem fim
+        const passar = Math.min(0.95, 0.35 + 0.1 * this.seguidas);
+        if (nonMana.length === 0 || next(this.rng) < passar) { this.seguidas = 0; return { kind: 'priority', action: 'pass' }; }
+        this.seguidas++;
         return { kind: 'priority', action: this.pick(nonMana).id };
       }
       case 'select': {
