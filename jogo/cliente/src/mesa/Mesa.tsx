@@ -137,7 +137,8 @@ function MenuFlutuante({ menu, fechar }: { menu: Menu; fechar: () => void }) {
 
 /** cor de cada jogador na sua tela: você em ouro (o multicolorido do Magic), os outros em cores de mana
  * (azul, verde e o violeta do preto), na ordem dos assentos */
-const CORES = ['var(--ouro)', 'var(--azul)', 'var(--positivo)', 'var(--roxo)'];
+// uma cor por jogador, na ordem dos turnos a partir de você (mesas de até seis)
+const CORES = ['var(--ouro)', 'var(--azul)', 'var(--positivo)', 'var(--roxo)', 'var(--rosa)', 'var(--ciano)'];
 /** jogador sem permanentes: sempre a mesma lista vazia (a arrumação da área não se refaz à toa) */
 const SEM_OBJS: ObjView[] = [];
 /** fora do combate: sempre o mesmo mapa vazio (idem) */
@@ -1133,7 +1134,8 @@ export function Mesa() {
   const tLeque = useEstavel(clicarLeque);
   const fecharMenu = useEstavel(() => setMenu(null));
 
-  const duelo = sala.modo === '1v1';
+  // a mesa do duelo (um oponente só, com mais altura); de três a seis jogadores, os oponentes lado a lado em cima
+  const duelo = v.players.length === 2;
   // uma decisão pede cartas da sua mão (descartar, escolher) ou o ajuste manual pede uma carta: a mão fica erguida
   const maoAberta = !!pegar || (d?.kind === 'select' && !enviando && d.items.some((it) => it.obj !== undefined && v.hand.some((h) => h.id === it.obj)));
   const area = (j: PlayerView, compacta: boolean) => {
@@ -1236,7 +1238,8 @@ export function Mesa() {
     const comandante = deck ? nomeCarta(deck.comandante, deck.comandante).split(',')[0] : null;
     // sem o complemento entre parênteses dos decks importados ("(Reality Fracture Commander Decklist)"), e sem repetir
     // quando o deck tem o nome do comandante ("Terra")
-    const nomeDeck = deck ? deck.nome.replace(/\s*\([^)]*\)\s*$/, '') : null;
+    // (o nome importado vem cortado em 60 letras, às vezes sem o ")" do fim)
+    const nomeDeck = deck ? deck.nome.replace(/\s*\([^)]*\)?\s*$/, '') : null;
     return {
       jogador: p,
       nome: v.players[p].name,
@@ -1337,7 +1340,7 @@ export function Mesa() {
           <JanelaEscolha v={v} d={escolha} ui={ui} todos={todos} cor={cor} aux={aux} recolhida={escolhaRecolhida} recolher={setEscolhaRecolhida}
             reservaDireita={v.stack.length > 0 ? 336 : 0} onZoom={mostrarZoom} />
         )}
-        {preJogo && <MaoInicial v={v} d={d} enviando={enviando} regra={sala.mulligan ?? 'londres'} multiplayer={sala.modo === '4p'} sel={sel} setSel={setSel} />}
+        {preJogo && <MaoInicial v={v} d={d} enviando={enviando} regra={sala.mulligan ?? 'londres'} multiplayer={v.players.length > 2} sel={sel} setSel={setSel} />}
       </main>
 
       <aside class="lateral" aria-label="Menu da partida">

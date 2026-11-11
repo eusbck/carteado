@@ -83,7 +83,7 @@ describe('cronômetro: ciclo da partida e protocolo', () => {
     verificar();
     g.tratar(pessoas[1], { t: 'sair' });
     g.tratar(ana, { t: 'iniciar' });
-    expect(ana.ultima('erro')?.msg).toMatch(/assentos vazios/);
+    expect(ana.ultima('erro')?.msg).toMatch(/pelo menos 2 jogadores/);
     verificar();
     g.tratar(pessoas[1], { t: 'entrar', codigo: s.codigo, nome: 'Bruno', senhaSala: 'segredo' });
     g.tratar(ana, { t: 'iniciar' });

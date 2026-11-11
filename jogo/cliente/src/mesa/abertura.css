@@ -71,8 +71,9 @@
 
 /* três ou quatro: faixas inclinadas lado a lado */
 .vs-n .vs-tinta { background: radial-gradient(ellipse 16% 26% at var(--cx) 96%, var(--aura), transparent); }
-.vs-n .vs-nome { bottom: calc(var(--u) * 2.2); width: calc(var(--u) * 22); max-width: 22%; text-align: center; justify-items: center; transform: translateX(-50%); }
-.vs-n .vs-nome b { font-size: calc(var(--u) * 2.3); }
+/* o nome cabe na faixa (100/n da largura, com folga para a inclinação): com 5 ou 6 jogadores, mais estreito e menor */
+.vs-n .vs-nome { bottom: calc(var(--u) * 2.2); width: calc(var(--u) * min(22, 86 / var(--n, 4))); max-width: 22%; text-align: center; justify-items: center; transform: translateX(-50%); }
+.vs-n .vs-nome b { font-size: calc(var(--u) * min(2.3, 9 / var(--n, 4))); max-width: 100%; overflow-wrap: break-word; }
 .vs-n .vs-papel { font-size: calc(var(--u) * 1.05); }
 .vs-n .vs-deck { font-size: calc(var(--u) * .92); max-width: 100%; }
 .vs-n .vs-comeca { justify-self: center; font-size: calc(var(--u) * .78); }

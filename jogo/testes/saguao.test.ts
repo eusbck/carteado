@@ -1,7 +1,8 @@
 // Saguão em passos e prévia dos decks, no servidor, sem rede (conexões falsas, banco em memória e pastas
 // temporárias):
-//  - etapa do saguão (lugares → regras → decks): começa nos lugares, só o anfitrião muda, não avança com lugar
-//    livre, volta para os lugares quando um lugar vaga (humano que sai ou bot tirado) sem perder os decks
+//  - etapa do saguão (lugares → regras → decks): começa nos lugares, só o anfitrião muda, avançar com lugar livre
+//    deixa a sala só com quem está sentado (com uma pessoa só, não avança; testes/lugares.test.ts cobre o resto),
+//    volta para os lugares quando um lugar vaga (humano que sai ou bot tirado) sem perder os decks
 //    escolhidos, não muda com a partida em andamento, fica salva com a sala; e `iniciar` não depende dela (a etapa
 //    só guia a interface);
 //  - lista de um deck para a prévia no saguão: `Catalogo.lista` (lista atual, comandante à parte, dados de cada
@@ -81,21 +82,26 @@ describe('saguão: etapa (lugares, regras, decks)', () => {
     expect(ana.erros()).toEqual([]);
   });
 
-  it('com lugar livre o anfitrião não avança (nem para as regras nem para os decks); voltar aos lugares sempre vale', async () => {
-    const { g, ana, codigo } = salaDeDois();
+  it('com uma pessoa só o anfitrião não avança (nem para as regras nem para os decks); com lugar livre e dois sentados, avança só com eles; voltar aos lugares sempre vale', async () => {
+    const { g, ana, bruno, codigo } = salaDeDois();
+    g.tratar(bruno, { t: 'sair' });
     g.tratar(ana, { t: 'etapa', etapa: 'regras' });
-    expect(ana.ultima('erro')?.msg).toMatch(/Ainda há lugares livres/);
+    expect(ana.ultima('erro')?.msg).toMatch(/pelo menos 2 jogadores/);
     g.tratar(ana, { t: 'etapa', etapa: 'decks' });
     expect(ana.erros()).toHaveLength(2);
-    expect(ana.ultima('erro')?.msg).toMatch(/Ainda há lugares livres/);
-    // um bot só: ainda falta um lugar
-    g.tratar(ana, { t: 'bot', assento: 2, deck: DECKS[2].id });
-    g.tratar(ana, { t: 'etapa', etapa: 'regras' });
-    expect(ana.erros()).toHaveLength(3);
+    expect(ana.ultima('erro')?.msg).toMatch(/pelo menos 2 jogadores/);
     g.tratar(ana, { t: 'etapa', etapa: 'lugares' });
-    expect(ana.erros()).toHaveLength(3);
+    expect(ana.erros()).toHaveLength(2);
     await espera();
     expect(g.salas.get(codigo)!.publica().etapa).toBe('lugares');
+    expect(g.salas.get(codigo)!.d.assentos).toHaveLength(4);
+    // um bot só, com dois lugares ainda livres: avança, e a sala fica com os dois sentados
+    g.tratar(ana, { t: 'bot', assento: 2, deck: DECKS[2].id });
+    g.tratar(ana, { t: 'etapa', etapa: 'regras' });
+    expect(ana.erros()).toHaveLength(2);
+    await espera();
+    expect(g.salas.get(codigo)!.publica().etapa).toBe('regras');
+    expect(ana.ultima('sala')!.sala.assentos.map((a) => [a.tipo, a.deck])).toEqual([['humano', null], ['bot', DECKS[2].id]]);
   });
 
   it('com os lugares cheios (bots), avança para as regras e para os decks, volta, e todos recebem a etapa', async () => {
@@ -162,9 +168,12 @@ describe('saguão: etapa (lugares, regras, decks)', () => {
     expect(sala.assentos[1]).toMatchObject({ tipo: 'vazio', nome: null, deck: null });
     expect(sala.assentos[0]).toMatchObject({ tipo: 'humano', nome: 'Ana', deck: DECKS[0].id });
     expect(sala.assentos.slice(2).map((a) => [a.tipo, a.deck])).toEqual([['bot', DECKS[2].id], ['bot', DECKS[3].id]]);
-    // com o lugar livre, não dá para avançar de novo
+    // com o lugar livre, avançar de novo deixa a sala só com quem ficou (a anfitriã e os bots, com os decks)
     g.tratar(ana, { t: 'etapa', etapa: 'regras' });
-    expect(ana.ultima('erro')?.msg).toMatch(/Ainda há lugares livres/);
+    await espera();
+    expect(ana.erros()).toEqual([]);
+    expect(ana.ultima('sala')!.sala.etapa).toBe('regras');
+    expect(ana.ultima('sala')!.sala.assentos.map((a) => [a.tipo, a.deck])).toEqual([['humano', DECKS[0].id], ['bot', DECKS[2].id], ['bot', DECKS[3].id]]);
   });
 
   it('quando a anfitriã sai, o saguão volta para os lugares e quem ficou passa a conduzir', async () => {

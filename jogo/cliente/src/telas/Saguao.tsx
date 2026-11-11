@@ -1,5 +1,5 @@
 // Saguão em passos, um de cada vez e o mesmo para a mesa toda (a etapa fica no servidor): primeiro quem joga entra e
-// o anfitrião põe bots nos lugares livres; depois o anfitrião define as regras (mulligan e auxílios) enquanto os
+// o anfitrião põe bots nos lugares livres, muda o número de lugares (2 a 6) ou segue só com quem entrou; depois o anfitrião define as regras (mulligan e auxílios) enquanto os
 // outros acompanham; por fim cada um escolhe o deck, com um botão separado para ver as cartas. Cada passo entra
 // deslizando para o lado em que a mesa andou. Se um lugar vagar, a sala volta para os lugares (os decks escolhidos
 // continuam marcados).
@@ -11,6 +11,8 @@ import { nomeCarta, urlArte } from '../cartas.ts';
 import { Simbolos } from '../mesa/Simbolos.tsx';
 import { quandoOcioso } from '../ocioso.ts';
 import { EscolhaRetrato } from './EscolhaRetrato.tsx';
+import { EscolhaLugares } from './EscolhaLugares.tsx';
+import { descricaoLugares } from '../lugares.ts';
 import { Avatar } from '../mesa/Avatar.tsx';
 import { avatarDoAssento } from '../avatares.ts';
 import type { AssentoPublico, DeckResumo, EtapaSaguao, SalaPublica } from '../../../servidor/protocolo.ts';
@@ -57,6 +59,7 @@ function PassoLugares({ sala, eu, decks }: { sala: SalaPublica; eu: number; deck
   const [trocarRetrato, setTrocarRetrato] = useState(false);
   const retratoDe = (a: AssentoPublico) => avatarDoAssento(a.avatar, decks.find((d) => d.id === a.deck)?.comandante);
   const livres = sala.assentos.filter((a) => a.tipo === 'vazio').length;
+  const ocupados = sala.assentos.length - livres;
   const deckSorteado = () => {
     const usados = new Set(sala.assentos.map((a) => a.deck));
     const sobra = decks.filter((d) => !usados.has(d.id));
@@ -73,9 +76,15 @@ function PassoLugares({ sala, eu, decks }: { sala: SalaPublica; eu: number; deck
           <span class="rot">Código da sala</span>
           <strong>{sala.codigo}</strong>
         </div>
-        <p class="suave">Passe o código e a senha para quem vai jogar. {sala.modo === '4p' ? 'Quatro jogadores, todos contra todos.' : 'Um contra um.'}</p>
+        <p class="suave">Passe o código e a senha para quem vai jogar. {descricaoLugares(sala.assentos.length)}.</p>
         <button type="button" class="botao pequeno" onClick={copiar}>{copiado ? 'Copiado' : 'Copiar código'}</button>
       </div>
+      {anfitriao && (
+        <div class="saguao-tamanho">
+          <span class="rot">Jogadores</span>
+          <EscolhaLugares valor={sala.assentos.length} minimo={Math.max(2, ocupados)} mudar={(n) => loja.enviar({ t: 'lugares', n })} />
+        </div>
+      )}
       <ol class={`lugares lugares-${sala.assentos.length}`}>
         {sala.assentos.map((a) => (
           <li key={a.indice} class={`lugar lugar-${a.tipo} ${a.indice === eu ? 'meu' : ''}`}>
@@ -107,8 +116,12 @@ function PassoLugares({ sala, eu, decks }: { sala: SalaPublica; eu: number; deck
       <footer class="saguao-rodape">
         {anfitriao
           ? <>
-              <p class="suave">{livres ? `${livres === 1 ? 'Falta 1 lugar' : `Faltam ${livres} lugares`}: espere alguém entrar ou ponha um bot.` : 'Todos os lugares estão ocupados.'}</p>
-              <button class="botao cheio grande" disabled={livres > 0} onClick={() => loja.enviar({ t: 'etapa', etapa: 'regras' })}>Continuar para as regras</button>
+              <p class="suave">{!livres ? 'Todos os lugares estão ocupados.'
+                : ocupados >= 2 ? `${livres === 1 ? 'Há 1 lugar livre' : `Há ${livres} lugares livres`}: espere alguém entrar, ponha um bot ou siga só com quem está aqui.`
+                : `${livres === 1 ? 'Falta 1 lugar' : `Faltam ${livres} lugares`}: espere alguém entrar ou ponha um bot.`}</p>
+              <button class="botao cheio grande" disabled={ocupados < 2} onClick={() => loja.enviar({ t: 'etapa', etapa: 'regras' })}>
+                {livres && ocupados >= 2 ? `Continuar com ${ocupados} jogadores` : 'Continuar para as regras'}
+              </button>
             </>
           : <p class="saguao-espera"><span class="pulso" aria-hidden="true" />{livres ? 'Esperando os outros entrarem.' : 'Esperando o anfitrião continuar.'}</p>}
       </footer>
@@ -257,7 +270,7 @@ export function Saguao() {
         <header class="saguao-topo">
           <div>
             <h1 class="sala-codigo">Sala {sala.codigo}</h1>
-            <p class="sala-sub">{sala.modo === '4p' ? 'Quatro jogadores, todos contra todos' : 'Um contra um'}</p>
+            <p class="sala-sub">{descricaoLugares(sala.assentos.length)}</p>
           </div>
           <ol class="saguao-passos" aria-label="Passos do saguão">
             {PASSOS.map(([id, nome], i) => (
