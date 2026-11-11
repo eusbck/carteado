@@ -2157,3 +2157,26 @@ para depois.
 - Worktrees: além das 18 antigas, `../Magic-Commander-brasil`, `../Magic-Commander-lote2` e
   `../Magic-Commander-regras-decks` podem sair (todas inteiras na `main`, sem nada por commitar; o Caio aprovou). O
   modo automático barrou a remoção; ficou com o Caio. Só `jogo-wt-bots` (Codex) fica.
+
+## 11/11/2026 — Lote 3: seis decks novos jogáveis (41 decks)
+
+- Pedido do Caio: Cloud, Ex-SOLDIER (`x_R7MWbxrUq4A2ST0PqldA`), The Borg Queen (`ALne8k6SV06cVQolK5RMTw`),
+  Commander Spock (`vNWUamZY7Uu0gqg6xKepyw`), Orvar cEDH (`Y2cdFYZw_0-isKafmKXgNw`), The Ur-Dragon
+  (`oTndvxb8bkqLPK_kANUrkA`) e Inalla cEDH (`shj-af8AiUWaoFVbNORQig`). "Se não houver a mecânica, crie."
+- 313 cartas novas, feitas em seis frentes (worktrees `precons-wt-a..f`, branches `lote3-a..f`) e juntadas em
+  `decks/lote3`. Mecânicas novas no motor, entre outras: segundo dividido (split second), spree, turnos extras com
+  "pula o turno extra" (Stranglehold, Trouble in Pairs), estações, mana da mão (Simian Spirit Guide), fases de
+  combate extras e "termina o turno".
+- Importação: folhas de adesivos (Unfinity) agora ficam fora do deck com aviso, como os esquemas do Archenemy
+  (o Inalla era recusado por isso).
+- `decks.ts conferir` antes e depois: os seis com 100/100, iguais ao Moxfield, jogáveis.
+- Bots: 120 partidas aleatórias (8 de 4 jogadores e 12 de 2 por deck) mais as heurísticas, sem erro depois de
+  dois achados: Wishclaw Talisman passava o controle para um jogador inexistente com 3+ jogadores, e o bot
+  aleatório prendia a partida no equipar {0} do Puresteel Paladin (agora a chance de passar cresce a cada ação
+  seguida).
+- Suíte inteira em 32 fatias: tudo passa; `tsc` limpo.
+- Simplificações conhecidas: cartas que trocam texto (Crystal Spray etc.); Kefka descarta em ordem APNAP; Captain
+  Kirk escolhe grimório ou cemitério; bots não usam Lion's Eye Diamond; a permissão do Dracogenesis vale só da mão
+  e do comando; a ímpeto do Hellkite Courser dura até o fim do turno; Wyleth usa a contagem de anexos do ataque;
+  alvo do Vedalken Aethermage Sliver; a compra do U.S.S. Farragut fica no gatilho atrasado; a ficha de Tribble é
+  branca; caso de borda do Ancient Greenwarden.
