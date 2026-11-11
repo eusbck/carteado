@@ -6,8 +6,7 @@
  "link": "https://moxfield.com/decks/oTndvxb8bkqLPK_kANUrkA",
  "importadoEm": "2026-11-08T22:56:25.962Z",
  "verificadoEm": "2026-11-08T22:56:25.962Z",
- "atual": null,
- "preparacao": {
+ "atual": {
   "comandante": "The Ur-Dragon",
   "cartas": [
    {
@@ -412,5 +411,6 @@
    "atualizadoEm": "2026-09-27T14:36:11.647Z"
   },
   "desde": "2026-11-08T22:56:25.962Z"
- }
+ },
+ "preparacao": null
 }

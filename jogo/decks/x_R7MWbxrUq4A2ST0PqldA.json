@@ -6,8 +6,7 @@
  "link": "https://moxfield.com/decks/x_R7MWbxrUq4A2ST0PqldA",
  "importadoEm": "2026-10-30T01:10:27.310Z",
  "verificadoEm": "2026-10-30T01:10:27.310Z",
- "atual": null,
- "preparacao": {
+ "atual": {
   "comandante": "Cloud, Ex-SOLDIER",
   "cartas": [
    {
@@ -392,5 +391,6 @@
    "atualizadoEm": "2026-10-30T01:05:51.75Z"
   },
   "desde": "2026-10-30T01:10:27.310Z"
- }
+ },
+ "preparacao": null
 }

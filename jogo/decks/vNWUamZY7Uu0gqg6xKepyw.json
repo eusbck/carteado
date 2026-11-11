@@ -6,8 +6,7 @@
  "link": "https://moxfield.com/decks/vNWUamZY7Uu0gqg6xKepyw",
  "importadoEm": "2026-11-08T22:55:10.458Z",
  "verificadoEm": "2026-11-08T22:55:10.458Z",
- "atual": null,
- "preparacao": {
+ "atual": {
   "comandante": "Commander Spock",
   "cartas": [
    {
@@ -392,5 +391,6 @@
    "atualizadoEm": "2026-10-29T18:26:02.43Z"
   },
   "desde": "2026-11-08T22:55:10.458Z"
- }
+ },
+ "preparacao": null
 }

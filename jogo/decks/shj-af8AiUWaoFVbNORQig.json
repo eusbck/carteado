@@ -6,8 +6,7 @@
  "link": "https://moxfield.com/decks/shj-af8AiUWaoFVbNORQig",
  "importadoEm": "2026-11-10T23:37:03.465Z",
  "verificadoEm": "2026-11-10T23:37:03.465Z",
- "atual": null,
- "preparacao": {
+ "atual": {
   "comandante": "Inalla, Archmage Ritualist",
   "cartas": [
    {
@@ -412,5 +411,6 @@
    "atualizadoEm": "2026-10-24T13:09:37.68Z"
   },
   "desde": "2026-11-10T23:37:03.465Z"
- }
+ },
+ "preparacao": null
 }

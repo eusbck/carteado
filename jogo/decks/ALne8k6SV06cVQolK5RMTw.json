@@ -6,8 +6,7 @@
  "link": "https://moxfield.com/decks/ALne8k6SV06cVQolK5RMTw",
  "importadoEm": "2026-11-08T22:54:57.411Z",
  "verificadoEm": "2026-11-08T22:54:57.411Z",
- "atual": null,
- "preparacao": {
+ "atual": {
   "comandante": "The Borg Queen",
   "cartas": [
    {
@@ -376,5 +375,6 @@
    "atualizadoEm": "2026-10-27T17:27:56.533Z"
   },
   "desde": "2026-11-08T22:54:57.411Z"
- }
+ },
+ "preparacao": null
 }
