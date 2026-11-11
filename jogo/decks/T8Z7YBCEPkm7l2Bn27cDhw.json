@@ -1,0 +1,401 @@
+{
+ "formato": 1,
+ "id": "T8Z7YBCEPkm7l2Bn27cDhw",
+ "ordem": 117,
+ "nome": "Foods",
+ "link": "https://moxfield.com/decks/T8Z7YBCEPkm7l2Bn27cDhw",
+ "importadoEm": "2026-11-10T19:57:20.571Z",
+ "verificadoEm": "2026-11-10T19:57:20.571Z",
+ "atual": null,
+ "preparacao": {
+  "comandante": "Sam, Loyal Attendant",
+  "parceiro": "Frodo, Adventurous Hobbit",
+  "cartas": [
+   {
+    "nome": "Plains",
+    "quantidade": 2
+   },
+   {
+    "nome": "Forest",
+    "quantidade": 2
+   },
+   {
+    "nome": "Swamp",
+    "quantidade": 2
+   },
+   {
+    "nome": "Arcane Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gilded Goose",
+    "quantidade": 1
+   },
+   {
+    "nome": "Savvy Hunter",
+    "quantidade": 1
+   },
+   {
+    "nome": "Trail of Crumbs",
+    "quantidade": 1
+   },
+   {
+    "nome": "Witch's Oven",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bojuka Bog",
+    "quantidade": 1
+   },
+   {
+    "nome": "Birds of Paradise",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Swords to Plowshares",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fellwar Stone",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sylvan Library",
+    "quantidade": 1
+   },
+   {
+    "nome": "Exotic Orchard",
+    "quantidade": 1
+   },
+   {
+    "nome": "Idol of Oblivion",
+    "quantidade": 1
+   },
+   {
+    "nome": "Llanowar Wastes",
+    "quantidade": 1
+   },
+   {
+    "nome": "Brushland",
+    "quantidade": 1
+   },
+   {
+    "nome": "City of Brass",
+    "quantidade": 1
+   },
+   {
+    "nome": "Reanimate",
+    "quantidade": 1
+   },
+   {
+    "nome": "Horizon Canopy",
+    "quantidade": 1
+   },
+   {
+    "nome": "Godless Shrine",
+    "quantidade": 1
+   },
+   {
+    "nome": "Viscera Seer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bountiful Promenade",
+    "quantidade": 1
+   },
+   {
+    "nome": "Assassin's Trophy",
+    "quantidade": 1
+   },
+   {
+    "nome": "Overgrown Tomb",
+    "quantidade": 1
+   },
+   {
+    "nome": "Temple Garden",
+    "quantidade": 1
+   },
+   {
+    "nome": "Marsh Flats",
+    "quantidade": 1
+   },
+   {
+    "nome": "Verdant Catacombs",
+    "quantidade": 1
+   },
+   {
+    "nome": "Windswept Heath",
+    "quantidade": 1
+   },
+   {
+    "nome": "Caves of Koilos",
+    "quantidade": 1
+   },
+   {
+    "nome": "Chord of Calling",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sunpetal Grove",
+    "quantidade": 1
+   },
+   {
+    "nome": "Eladamri's Call",
+    "quantidade": 1
+   },
+   {
+    "nome": "Unearth",
+    "quantidade": 1
+   },
+   {
+    "nome": "Finale of Devastation",
+    "quantidade": 1
+   },
+   {
+    "nome": "Deadly Rollick",
+    "quantidade": 1
+   },
+   {
+    "nome": "Isolated Chapel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Three Visits",
+    "quantidade": 1
+   },
+   {
+    "nome": "Indatha Triome",
+    "quantidade": 1
+   },
+   {
+    "nome": "Collected Company",
+    "quantidade": 1
+   },
+   {
+    "nome": "Woodland Cemetery",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vault of Champions",
+    "quantidade": 1
+   },
+   {
+    "nome": "Undergrowth Stadium",
+    "quantidade": 1
+   },
+   {
+    "nome": "Nadier's Nightblade",
+    "quantidade": 1
+   },
+   {
+    "nome": "Prosperous Innkeeper",
+    "quantidade": 1
+   },
+   {
+    "nome": "Chatterfang, Squirrel General",
+    "quantidade": 1
+   },
+   {
+    "nome": "Academy Manufactor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Esper Sentinel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tireless Provisioner",
+    "quantidade": 1
+   },
+   {
+    "nome": "Deadly Dispute",
+    "quantidade": 1
+   },
+   {
+    "nome": "Boseiju, Who Endures",
+    "quantidade": 1
+   },
+   {
+    "nome": "Jaheira, Friend of the Forest",
+    "quantidade": 1
+   },
+   {
+    "nome": "Black Market Connections",
+    "quantidade": 1
+   },
+   {
+    "nome": "Braids, Arisen Nightmare",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mondrak, Glory Dominus",
+    "quantidade": 1
+   },
+   {
+    "nome": "The One Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "The Shire",
+    "quantidade": 1
+   },
+   {
+    "nome": "Call of the Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Delighted Halfling",
+    "quantidade": 1
+   },
+   {
+    "nome": "Boromir, Warden of the Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mirkwood Bats",
+    "quantidade": 1
+   },
+   {
+    "nome": "Samwise Gamgee",
+    "quantidade": 1
+   },
+   {
+    "nome": "Peregrin Took",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bilbo, Birthday Celebrant",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lotho, Corrupt Shirriff",
+    "quantidade": 1
+   },
+   {
+    "nome": "The Battle of Bywater",
+    "quantidade": 1
+   },
+   {
+    "nome": "Elanor Gardner",
+    "quantidade": 1
+   },
+   {
+    "nome": "The Gaffer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Prize Pig",
+    "quantidade": 1
+   },
+   {
+    "nome": "Treebeard, Gracious Host",
+    "quantidade": 1
+   },
+   {
+    "nome": "Nuka-Cola Vending Machine",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lush Portico",
+    "quantidade": 1
+   },
+   {
+    "nome": "Underground Mortuary",
+    "quantidade": 1
+   },
+   {
+    "nome": "Delney, Streetwise Lookout",
+    "quantidade": 1
+   },
+   {
+    "nome": "Kambal, Profiteering Mayor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sorin of House Markov // Sorin, Ravenous Neonate",
+    "quantidade": 1
+   },
+   {
+    "nome": "Warren Soultrader",
+    "quantidade": 1
+   },
+   {
+    "nome": "Marionette Apprentice",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ocelot Pride",
+    "quantidade": 1
+   },
+   {
+    "nome": "Camellia, the Seedmiser",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ygra, Eater of All",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hazel's Brewmaster",
+    "quantidade": 1
+   },
+   {
+    "nome": "Stridehangar Automaton",
+    "quantidade": 1
+   },
+   {
+    "nome": "Umbral Collar Zealot",
+    "quantidade": 1
+   },
+   {
+    "nome": "The Cabbage Merchant",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ninja Pizza",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tippy-Toe, Terrific Partner",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bilbo, Fellow Conspirator",
+    "quantidade": 1
+   },
+   {
+    "nome": "Belladonna Took",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gleaming Splendor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Command Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fabled Passage",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mana Confluence",
+    "quantidade": 1
+   },
+   {
+    "nome": "The Sackville-Bagginses",
+    "quantidade": 1
+   }
+  ],
+  "origem": {
+   "versao": 37,
+   "atualizadoEm": "2026-11-10T18:36:51.08Z"
+  },
+  "desde": "2026-11-10T19:57:20.571Z"
+ }
+}

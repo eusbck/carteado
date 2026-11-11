@@ -26,6 +26,9 @@ function contagem(l: Lista): Map<string, number> {
   return m;
 }
 
+/** o comandante, ou os dois parceiros ("A e B") */
+export const comandantesDe = (l: Lista) => (l.parceiro ? `${l.comandante} e ${l.parceiro}` : l.comandante);
+
 /** o que entra e o que sai de `antiga` para `nova` (por nome e quantidade; o comandante à parte) */
 export function diferenca(antiga: Lista | null, nova: Lista): Diferenca {
   const a = antiga ? contagem(antiga) : new Map<string, number>();
@@ -38,7 +41,7 @@ export function diferenca(antiga: Lista | null, nova: Lista): Diferenca {
   return {
     entram: entram.sort(ordem),
     saem: saem.sort(ordem),
-    comandante: antiga && antiga.comandante !== nova.comandante ? { de: antiga.comandante, para: nova.comandante } : null,
+    comandante: antiga && comandantesDe(antiga) !== comandantesDe(nova) ? { de: comandantesDe(antiga), para: comandantesDe(nova) } : null,
   };
 }
 
@@ -128,7 +131,7 @@ export class Catalogo {
   listasJogaveis(): DeckList[] {
     return this.todos()
       .filter((d) => d.atual && this.faltam(d.atual).length === 0)
-      .map((d) => ({ id: d.id, nome: d.nome, comandante: d.atual!.comandante, cartas: d.atual!.cartas.map((c) => ({ ...c })) }));
+      .map((d) => ({ id: d.id, nome: d.nome, comandante: d.atual!.comandante, ...(d.atual!.parceiro ? { parceiro: d.atual!.parceiro } : {}), cartas: d.atual!.cartas.map((c) => ({ ...c })) }));
   }
 
   /** versões em preparação cujas cartas ficaram todas prontas viram a lista atual; devolve os ids trocados */
@@ -153,7 +156,11 @@ export class Catalogo {
       const i = info.carta(e.nome);
       return { nome: e.nome, quantidade: e.quantidade, pt: i?.pt ?? null, img: i?.img ?? null, tipo: i?.tipo ?? '', pronta: this.pronta(e.nome) };
     };
-    return { id: d.id, nome: d.nome, comandante: carta({ nome: l.comandante, quantidade: 1 }), cartas: l.cartas.filter((c) => c.nome !== l.comandante).map(carta) };
+    return {
+      id: d.id, nome: d.nome, comandante: carta({ nome: l.comandante, quantidade: 1 }),
+      ...(l.parceiro ? { parceiro: carta({ nome: l.parceiro, quantidade: 1 }) } : {}),
+      cartas: l.cartas.filter((c) => c.nome !== l.comandante && c.nome !== l.parceiro).map(carta),
+    };
   }
 
   /** resumo de cada deck para a tela Decks */
@@ -164,11 +171,12 @@ export class Catalogo {
     };
     const faltamDe = (l: VersaoLista) => {
       const q = contagem(l);
-      return this.faltam(l).map((n) => carta({ nome: n, quantidade: n === l.comandante ? 1 : q.get(n) ?? 1 }));
+      return this.faltam(l).map((n) => carta({ nome: n, quantidade: n === l.comandante || n === l.parceiro ? 1 : q.get(n) ?? 1 }));
     };
     return this.todos().map((d) => {
       const base = d.atual ?? d.preparacao!;
       const cmd = info.carta(base.comandante);
+      const par = base.parceiro ? info.carta(base.parceiro) : null;
       const jogavel = !!d.atual && this.faltam(d.atual).length === 0;
       const prep = d.preparacao;
       const dif = prep ? diferenca(d.atual, prep) : null;
@@ -178,7 +186,9 @@ export class Catalogo {
         link: d.link,
         comandante: base.comandante,
         comandantePt: cmd?.pt ?? null,
-        cores: cmd?.cores ?? [],
+        parceiro: base.parceiro ?? null,
+        parceiroPt: par?.pt ?? null,
+        cores: ordenarCores([...(cmd?.cores ?? []), ...(par?.cores ?? [])]),
         arte: cmd?.img ?? null,
         estado: jogavel ? (prep ? 'atualizacao' : 'pronto') : 'preparacao',
         importadoEm: d.importadoEm,
@@ -232,4 +242,9 @@ export function infoDoDisco(pastaGerado: string): InfoDisco {
       return { pt: i?.pt?.nome ?? null, img: escolhida?.id ?? null, tipo: c?.faces[0]?.typeLine ?? '', cores: c?.colorIdentity ?? [] };
     },
   };
+}
+
+/** cores sem repetir, na ordem WUBRG */
+function ordenarCores(c: string[]): string[] {
+  return ['W', 'U', 'B', 'R', 'G'].filter((x) => c.includes(x));
 }

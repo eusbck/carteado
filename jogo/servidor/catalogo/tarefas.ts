@@ -241,6 +241,7 @@ export class TarefasDecks {
     const cartas = juntar(deck.principal.map((e) => ({ nome: nome(e.nome), quantidade: e.quantidade })));
     const lista: Lista = {
       comandante: nome(deck.comandantes[0].nome),
+      ...(deck.comandantes[1] ? { parceiro: nome(deck.comandantes[1].nome) } : {}),
       cartas: existente?.atual ? mesclarOrdem(existente.atual.cartas, cartas) : cartas,
     };
 
@@ -304,9 +305,11 @@ export class TarefasDecks {
       novo: !existente,
       comandante: lista.comandante,
       comandantePt: gerado.imagens[lista.comandante]?.pt?.nome ?? null,
+      parceiro: lista.parceiro ?? null,
+      parceiroPt: lista.parceiro ? gerado.imagens[lista.parceiro]?.pt?.nome ?? null : null,
       total: nomesDaLista(lista).length,
       prontas: nomesDaLista(lista).length - n,
-      faltam: faltam.map((x) => info({ nome: x, quantidade: x === lista.comandante ? 1 : quantidade.get(x) ?? 1 })),
+      faltam: faltam.map((x) => info({ nome: x, quantidade: x === lista.comandante || x === lista.parceiro ? 1 : quantidade.get(x) ?? 1 })),
       entram: dif.entram.map(info),
       saem: dif.saem.map(info),
       trocaComandante: dif.comandante,

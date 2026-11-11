@@ -78,15 +78,15 @@ export function PreviaDeck({ d, meu, escolher, fechar }: { d: DeckResumo; meu: b
   }, [d.id, decks]);
   const arte = urlArte(d.comandante);
   const cores = d.cores.map((c) => `{${c}}`).join('');
-  const total = lista && lista !== 'carregando' ? 1 + lista.cartas.reduce((s, c) => s + c.quantidade, 0) : null;
+  const total = lista && lista !== 'carregando' ? (lista.parceiro ? 2 : 1) + lista.cartas.reduce((s, c) => s + c.quantidade, 0) : null;
   const grande = imagem(destaque ?? (lista && lista !== 'carregando' ? lista.comandante : null), 'm');
 
   return (
     <Janela titulo={d.nome} larga classe="previa-deck" fechar={fechar}>
       <header class="previa-topo" style={arte ? { backgroundImage: `url(${arte})` } : undefined}>
         <div class="previa-topo-texto">
-          <span class="rot">Comandante</span>
-          <strong>{nomeCarta(d.comandante, d.comandante)}</strong>
+          <span class="rot">{d.parceiro ? 'Comandantes' : 'Comandante'}</span>
+          <strong>{nomeCarta(d.comandante, d.comandante)}{d.parceiro ? ` e ${nomeCarta(d.parceiro, d.parceiro)}` : ''}</strong>
           <span class="previa-topo-linha"><Simbolos custo={cores} />{total !== null && <span>{total} cartas</span>}</span>
         </div>
       </header>
@@ -95,7 +95,7 @@ export function PreviaDeck({ d, meu, escolher, fechar }: { d: DeckResumo; meu: b
       {lista && lista !== 'carregando' && (
         <div class="previa-corpo">
           <div class="previa-grupos" onMouseLeave={() => setDestaque(null)}>
-            {emColunas(agrupar(lista.cartas), 3).map((coluna, k) => <div key={k} class="previa-coluna">{coluna.map((g) => (
+            {emColunas(agrupar(lista.parceiro ? [lista.parceiro, ...lista.cartas] : lista.cartas), 3).map((coluna, k) => <div key={k} class="previa-coluna">{coluna.map((g) => (
               <section key={g.nome} class="previa-grupo">
                 <h3 class="rot">{g.nome} <span>{g.total}</span></h3>
                 <ul>

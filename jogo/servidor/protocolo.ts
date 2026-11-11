@@ -51,6 +51,8 @@ export interface DeckResumo {
   id: string;
   nome: string;
   comandante: string;
+  /** segundo comandante (parceiros) */
+  parceiro?: string | null;
   cores: string[];
 }
 
@@ -72,6 +74,8 @@ export interface ListaDeck {
   id: string;
   nome: string;
   comandante: CartaCatalogo;
+  /** segundo comandante (parceiros) */
+  parceiro?: CartaCatalogo | null;
   /** as outras cartas (sem o comandante) */
   cartas: CartaCatalogo[];
 }
@@ -83,6 +87,8 @@ export interface DeckCatalogo {
   link: string;
   comandante: string;
   comandantePt: string | null;
+  parceiro?: string | null;
+  parceiroPt?: string | null;
   cores: string[];
   /** id da imagem do comandante (arte de fundo do cartão) */
   arte: string | null;
@@ -116,6 +122,8 @@ export interface Proposta {
   novo: boolean;
   comandante: string;
   comandantePt: string | null;
+  parceiro?: string | null;
+  parceiroPt?: string | null;
   /** cartas diferentes da lista nova (com o comandante) e quantas já têm regras */
   total: number;
   prontas: number;

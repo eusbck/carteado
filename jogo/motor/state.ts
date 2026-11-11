@@ -14,6 +14,8 @@ export interface DeckList {
   id: string;
   nome: string;
   comandante: string;
+  /** segundo comandante, quando o primeiro tem uma habilidade de parceiro (CR 702.124) */
+  parceiro?: string;
   cartas: { nome: string; quantidade: number }[];
 }
 
@@ -118,6 +120,7 @@ export function createGameState(config: GameConfig, decks: DeckList[]): GameStat
       else state.zones.library[p].push(id);
     };
     add(deck.comandante, true);
+    if (deck.parceiro) add(deck.parceiro, true); // CR 702.124b: os dois começam na zona de comando
     for (const e of deck.cartas) for (let i = 0; i < e.quantidade; i++) add(e.nome, false);
     shuffle(rng, state.zones.library[p]);
   });
