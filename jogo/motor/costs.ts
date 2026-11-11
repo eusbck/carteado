@@ -194,13 +194,26 @@ function emparelhar(vagas: ObjId[][], peso: (id: ObjId) => number): Set<ObjId> |
   return new Set(dono.keys());
 }
 
+/** cartas cuja definição impressa tem habilidade de mana que funciona da mão (atalho para não calcular as características
+ *  de cada carta da mão a cada consulta); refeito quando o registro muda de tamanho */
+let manaDaMao: { n: number; nomes: Set<string> } | null = null;
+function temManaDaMao(def: string | undefined): boolean {
+  if (def === undefined) return false;
+  if (!manaDaMao || manaDaMao.n !== registry.cards.size) {
+    const nomes = new Set<string>();
+    for (const [nome, c] of registry.cards) if (c.faces.some((f) => f.abilities?.some((a) => a.kind === 'mana' && !!a.zones?.includes('hand')))) nomes.add(nome);
+    manaDaMao = { n: registry.cards.size, nomes };
+  }
+  return manaDaMao.nomes.has(def);
+}
+
 /** opções de mana disponíveis para um jogador agora */
 export function manaOptions(g: G, player: PlayerId, opts: { excludeSource?: ObjId; paying?: boolean } = {}): ManaOption[] {
   const out: ManaOption[] = [];
   const bonusHooks = hooks(g, 'extraManaForPlanning');
   // lote3-f: habilidades de mana que funcionam da mão (Simian Spirit Guide: "Exile este card da sua mão: adicione {R}";
   // CR 113.6, 605.1a). As do campo continuam como eram; as que dizem só a mão não valem no campo
-  const daMao = g.state.zones.hand[player].filter((id) => abilityDefs(g, id).some(({ def }) => def.kind === 'mana' && !!def.zones?.includes('hand')));
+  const daMao = g.state.zones.hand[player].filter((id) => temManaDaMao(g.state.objects[id]?.def) && abilityDefs(g, id).some(({ def }) => def.kind === 'mana' && !!def.zones?.includes('hand')));
   for (const id of [...g.state.zones.battlefield, ...daMao]) {
     if (id === opts.excludeSource) continue;
     const o = g.state.objects[id];
