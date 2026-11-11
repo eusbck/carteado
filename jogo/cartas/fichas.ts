@@ -496,3 +496,6 @@ export const DragonElemental = token('Dragon Elemental', 'Dragon Elemental', ['C
 export const Glimmer11 = token('Glimmer', 'Glimmer', ['Enchantment', 'Creature'], ['Glimmer'], ['W'], 1, 1);
 /** Horror 2/2 preta, criatura encantamento (Phenomenon Investigators) */
 export const Horror22 = token('Horror 2/2', 'Horror', ['Enchantment', 'Creature'], ['Horror'], ['B'], 2, 2);
+// lote3-d (Twitch Control)
+/** Bird 2/2 azul com voar (Swan Song, Strix Serenade) */
+export const Bird22Azul = token('Bird 2/2 azul', 'Bird', ['Creature'], ['Bird'], ['U'], 2, 2, keywords('flying'));
