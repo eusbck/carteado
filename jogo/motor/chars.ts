@@ -24,7 +24,7 @@ export function modLayer(m: Mod, cda = false): Layer | null {
   switch (m.k) {
     case 'copy': return '1a';
     case 'control': return '2';
-    case 'setText': return '3';
+    case 'setText': case 'textChange': return '3';
     case 'addTypes': case 'setTypes': case 'removeTypes': return '4';
     case 'setColors': return '5';
     case 'addKeyword': case 'addAbility': case 'loseAllAbilities': case 'loseKeyword': return '6';
@@ -267,9 +267,13 @@ function applyMod(c: Chars, m: Mod): void {
       c.subtypes = [...m.subtypes];
       if (!m.keepSupertypes) c.supertypes = c.supertypes.filter((s) => s === 'Legendary' || s === 'Basic');
       break;
-    case 'removeTypes': c.types = c.types.filter((t) => !m.types.includes(t)); break;
+    case 'removeTypes':
+      c.types = c.types.filter((t) => !m.types.includes(t));
+      if (m.supertypes) c.supertypes = c.supertypes.filter((t) => !m.supertypes!.includes(t));
+      break;
     case 'setColors': c.colors = [...m.colors]; break;
     case 'setText': c.abilities = m.abilities.map((a) => ({ ...a })); break;
+    case 'textChange': aplicaTrocaDeTexto(c, m); break;
     case 'addKeyword': c.abilities.push({ id: `kw:${m.kw}`, kw: m.kw, param: m.param }); break;
     case 'addAbility': { const a = ability(m.id); c.abilities.push({ id: m.id, kw: a.kw, param: a.param }); break; }
     case 'loseAllAbilities': c.abilities = []; break;
@@ -282,6 +286,37 @@ function applyMod(c: Chars, m: Mod): void {
       break;
     default: break;
   }
+}
+
+/** cor de cada tipo básico de terreno (CR 305.6) */
+const COR_DO_TIPO: Record<string, string> = { Plains: 'W', Island: 'U', Swamp: 'B', Mountain: 'R', Forest: 'G' };
+
+/**
+ * lote3-d: troca de texto (CR 612.2). Tipo básico de terreno: na linha de tipo (o subtipo), com a habilidade de mana
+ * intrínseca que vem dele (305.6), e nas palavras-chave de "travessia" (islandwalk…). Cor: nos parâmetros de palavra-chave
+ * que citam a cor (proteção contra [cor]). O resto do texto das cartas é código e não muda (simplificação).
+ */
+function aplicaTrocaDeTexto(c: Chars, m: Extract<Mod, { k: 'textChange' }>): void {
+  if (m.from === m.to) return;
+  if (m.kind === 'landType') {
+    if (c.subtypes.includes(m.from)) c.subtypes = [...new Set(c.subtypes.map((s) => (s === m.from ? m.to : s)))];
+    const de = COR_DO_TIPO[m.from];
+    const para = COR_DO_TIPO[m.to];
+    const walkDe = m.from.toLowerCase() + 'walk';
+    const walkPara = m.to.toLowerCase() + 'walk';
+    c.abilities = c.abilities.map((a) => {
+      if (de && para && a.id === 'basic:' + de) return { id: 'basic:' + para };
+      if (a.kw === walkDe) return { ...a, kw: walkPara };
+      return a;
+    });
+    return;
+  }
+  const troca = (v: unknown): unknown => {
+    if (typeof v === 'string') return v === m.from ? m.to : v.endsWith(':' + m.from) ? v.slice(0, v.length - m.from.length) + m.to : v;
+    if (Array.isArray(v)) return v.map(troca);
+    return v;
+  };
+  c.abilities = c.abilities.map((a) => (a.param !== undefined && a.kw ? { ...a, param: troca(a.param) } : a));
 }
 
 /** marcadores de palavra-chave (CR 122.1b) */

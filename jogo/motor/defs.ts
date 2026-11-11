@@ -68,6 +68,9 @@ export interface TargetSpec {
   validateSet?: (c: SCtx, chosen: TargetRef[]) => boolean;
   /** alvo da parte que só vale se o presente foi prometido: sem presente, não se escolhe (CR 702.174m) */
   gift?: boolean;
+  /** lote3-d: com what 'object', também cartas desta zona servem ("permanente ou carta suspensa alvo": Clockspinning);
+   *  o filtro decide quais */
+  alsoZone?: ZoneName;
 }
 
 export interface ModeSpec {
@@ -208,6 +211,9 @@ export interface TriggeredDef extends AbilityCommon {
   /** quem escolhe os alvos ao pôr a habilidade na pilha, se não for o controlador ("à escolha desse jogador": Bladegriff
    *  Prototype; CR 603.3d, 601.2c). A legalidade dos alvos continua sendo a do controlador. */
   targetChooser?: (c: SCtx & { event: Record<string, unknown> }) => PlayerId;
+  /** lote3-d: "esta habilidade resolve mesmo que o alvo fique ilegal" (Gilded Drake): com todos os alvos ilegais ela
+   *  resolve assim mesmo, com os alvos null (exceção escrita na carta à CR 608.2b) */
+  resolvesWithIllegalTargets?: boolean;
 }
 
 export interface RuleHooks {
@@ -348,6 +354,13 @@ export interface RuleHooks {
   lookAtTopOfLibrary?: (c: SCtx, player: PlayerId) => boolean;
   /** "Você não perde mana [vermelha] não gasta quando as etapas e fases terminam" (Leyline Tyrant; CR 106.4, 500.5) */
   keepsUnspentMana?: (c: SCtx, player: PlayerId, unit: ManaUnit) => boolean;
+  /** lote3-d: "cartas de criatura em cemitérios e grimórios não podem entrar no campo" (Grafdigger's Cage): a carta, a zona
+   *  de onde viria e se entraria virada para baixo (manifestar). A carta é vista como está na zona (ruling 3) */
+  cantEnterBattlefieldFrom?: (c: SCtx, card: ObjId, from: ZoneName, faceDown: boolean) => boolean;
+  /** lote3-d: "os jogadores não podem conjurar mágicas de cemitérios ou grimórios" (Grafdigger's Cage) */
+  cantCastFrom?: (c: SCtx, player: PlayerId, zone: ZoneName) => boolean;
+  /** lote3-d: "habilidades ativadas de criaturas não podem ser ativadas" (Cursed Totem): vale também para as de mana */
+  cantActivate?: (c: SCtx, player: PlayerId, source: ObjId) => boolean;
 }
 
 /** fichas que um evento vai criar para um jogador (CR 111.1). `de` aponta o pedido de onde a ficha veio: o resto do
@@ -519,6 +532,9 @@ export interface FaceDef {
   flash?: boolean;
   /** "Conjure esta mágica somente [quando…]" (Master Warcraft: antes de os atacantes serem declarados; CR 601.3) */
   castOnlyIf?: (c: SCtx) => boolean;
+  /** lote3-d: ação com a carta da mão inicial, depois dos mulligans (CR 103.6): Gemstone Caverns. `condition` diz se o
+   *  jogador pode fazê-la; `act` faz (a pergunta "quer fazer?" é do motor) */
+  openingHand?: { label: string; condition?: (c: SCtx) => boolean; act: (c: SCtx) => Gen<void> };
 }
 
 export interface CardDef {

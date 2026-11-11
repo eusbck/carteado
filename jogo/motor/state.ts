@@ -271,6 +271,7 @@ export function endEffectsTiedTo(g: G, id: ObjId): void {
   g.state.effects = g.state.effects.filter((e) => {
     if (e.duration.kind === 'whileOnBattlefield' && e.duration.obj === id) return false;
     if (e.duration.kind === 'whileControlled' && e.duration.obj === id) return false;
+    if (e.duration.kind === 'whileHasCounter' && e.duration.obj === id) return false;
     return true;
   });
   // efeitos que afetam objetos que deixaram de existir são inofensivos, mas limpamos os vazios

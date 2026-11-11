@@ -77,8 +77,31 @@ function* startGame(g: G): Gen<void> {
     }
     for (const p of order) s.turnStats[p] = emptyTurnStats();
   }
+  yield* openingHandActions(g, order);
   s.started = true;
   beginTurn(g, order[0], true);
+}
+
+/**
+ * lote3-d: ações com cartas da mão inicial (CR 103.6): depois dos mulligans, o jogador inicial faz as dele, depois cada um
+ * na ordem dos turnos (103.6). Só pergunta a quem tem uma carta assim (Gemstone Caverns), então partidas sem elas não mudam.
+ */
+function* openingHandActions(g: G, order: PlayerId[]): Gen<void> {
+  const s = g.state;
+  for (const p of order) {
+    if (s.players[p].left) continue;
+    for (const id of [...s.zones.hand[p]]) {
+      const o = s.objects[id];
+      if (!o || o.zone !== 'hand') continue;
+      const acao = registry.cards.get(o.def)?.faces[0]?.openingHand;
+      if (!acao) continue;
+      const ctx = { g, you: p, source: id };
+      if (acao.condition && !acao.condition(ctx)) continue;
+      const [r] = yield* chooseItems(g, p, `${nameOf(g, id)} (mão inicial): ${acao.label}?`, [{ id: 'yes', label: 'Sim' }, { id: 'no', label: 'Não' }], 1, 1);
+      if (r !== 'yes') continue;
+      yield* acao.act(ctx);
+    }
+  }
 }
 
 // ---------------------------------------------------------------------------

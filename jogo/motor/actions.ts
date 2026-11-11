@@ -295,6 +295,11 @@ export function* putOntoBattlefield(g: G, reqs: EnterReq[], cause: string): Gen<
     if (r.id !== undefined && !fromObj) continue;
     // ficha ou cópia que já saiu do campo/pilha não volta (CR 111.8, 707.10a)
     if (fromObj && ((fromObj.isToken && fromObj.zone !== 'battlefield') || (fromObj.isCopy && fromObj.zone !== 'stack'))) continue;
+    // lote3-d: Grafdigger's Cage (cartas de criatura de cemitérios e grimórios não entram)
+    if (fromObj && (fromObj.zone === 'graveyard' || fromObj.zone === 'library') && hooks(g, 'cantEnterBattlefieldFrom').some((h) => h.fn(h.ctx, fromObj.id, fromObj.zone, !!r.faceDown))) {
+      g.log(`${nameOf(g, fromObj.id)} não pode entrar no campo vindo de ${fromObj.zone === 'graveyard' ? 'um cemitério' : 'um grimório'}.`);
+      continue;
+    }
     const ev: EnterEvent = {
       obj: r.id ?? -1, controller: r.controller, tapped: !!r.tapped, counters: { ...(r.counters ?? {}) },
       attachTo: r.attachTo ?? null, fromZone: fromObj?.zone ?? 'command', choices: { ...(r.choices ?? {}) },
@@ -792,6 +797,10 @@ export function removeCounters(g: G, target: TargetRef, kind: string, n: number)
   if (target.kind === 'obj' && hooks(g, 'cantRemoveCounters').some((h) => h.fn(h.ctx, kind, target.id))) return 0;
   if (have - rem <= 0) delete bag[kind];
   else bag[kind] = have - rem;
+  // lote3-d: efeitos "enquanto tiver um marcador [tipo]" acabam quando sai o último (Aquitect's Will)
+  if (target.kind === 'obj' && !bag[kind]) {
+    g.state.effects = g.state.effects.filter((e) => !(e.duration.kind === 'whileHasCounter' && e.duration.obj === target.id && e.duration.counter === kind));
+  }
   g.bump();
   emit(g, [{ type: 'countersRemoved', target, kind, amount: rem }]);
   return rem;

@@ -19,6 +19,7 @@ import { canPlot, doPlot, plotParam } from './planejar.ts';
 import { payMana } from './costs.ts';
 import { emit } from './triggers.ts';
 import type { ManaSymbol, ObjId, PlayerId, PriorityAction, ZoneName } from './types.ts';
+import { splitSecondActive } from './controle-base.ts';
 
 export function isMainPhase(g: G): boolean {
   return g.state.turn.step === 'main1' || g.state.turn.step === 'main2';
@@ -180,6 +181,7 @@ export function canStartCast(g: G, p: PlayerId, opt: CastOption): boolean {
   if (opt.method.alt?.timing) { if (!opt.method.alt.timing({ g, you: p, source: opt.obj })) return false; }
   else if (!instantSpeed && !sorceryTiming(g, p)) return false;
   if (hooks(g, 'cantCastSpells').some((h) => h.fn(h.ctx, p))) return false;
+  if (hooks(g, 'cantCastFrom').some((h) => h.fn(h.ctx, p, opt.method.zone))) return false; // lote3-d: Grafdigger's Cage
   // "os seus oponentes não podem conjurar mágicas que não são de criatura neste turno" (Permission Denied)
   if (!c.types.includes('Creature') && g.state.effects.some((e) => !!e.affectedPlayers?.includes(p) && e.mods.some((m) => m.k === 'rule' && m.id === 'rule:cantCastNoncreature'))) return false;
   if (f?.castOnlyIf && !f.castOnlyIf({ g, you: p, source: opt.obj })) return false;
@@ -276,14 +278,17 @@ export function legalActions(g: G, p: PlayerId): PriorityAction[] {
     const nome = !o.copyOf && temVariasFaces(o.def) ? nomeDaFace(o.def, l.face) : nameOf(g, l.obj);
     acts.push({ id: `play:${l.obj}:${l.key}`, kind: 'play', label: `Jogar ${nome}`, obj: l.obj });
   }
-  for (const opt of castOptions(g, p)) {
+  // lote3-d: com uma mágica com segundo dividido na pilha, ninguém conjura nem ativa habilidade que não seja de mana;
+  // ações especiais e habilidades de mana continuam (CR 702.61a-b)
+  const segundoDividido = splitSecondActive(g);
+  for (const opt of segundoDividido ? [] : castOptions(g, p)) {
     if (canStartCast(g, p, opt)) acts.push({ id: `cast:${opt.obj}:${opt.method.key}`, kind: 'cast', label: opt.method.title ?? `${opt.method.key === 'hand' ? 'Conjurar' : opt.method.label}: ${nameOf(g, opt.obj)}`, obj: opt.obj });
   }
   const timing = { sorcery: sorceryTiming(g, p) };
   // da zona de comando: o ninjutsu de comandante (CR 702.49d)
   const zones: ObjId[] = [...s.zones.battlefield, ...s.zones.hand[p], ...s.zones.graveyard[p], ...s.zones.exile.filter((id) => s.objects[id].owner === p),
     ...s.zones.command.filter((id) => s.objects[id].owner === p && s.objects[id].card !== null)];
-  for (const id of zones) {
+  for (const id of segundoDividido ? [] : zones) {
     for (const { inst, def } of abilityDefs(g, id)) {
       if (def.kind !== 'activated') continue;
       if (!canActivate(g, p, id, def as ActivatedDef, timing)) continue;

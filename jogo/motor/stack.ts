@@ -16,7 +16,8 @@ import type { G } from './game-context.ts';
 import { addGeneric, convokeOne, formatCost, manaValueOf, parseCost, reduceGeneric, withX } from './mana.ts';
 import { emit } from './triggers.ts';
 import { ehAventura, ehDividida, FACE_AMBAS, facesConjuraveis, metadeAftermath, rotuloConjurar, temVariasFaces } from './formatos.ts';
-import type { Answer, Chars, GameObject, GameState, ManaSymbol, ObjId, PlayerId, StackInfo, TargetRef, ZoneName } from './types.ts';
+import type { Answer, Chars, Duration, GameObject, GameState, ManaSymbol, Mod, ObjId, PlayerId, StackInfo, TargetRef, ZoneName } from './types.ts';
+import { HEXPROOF_FROM_ABILITIES, sourceIsAbility, splitSecondActive } from './controle-base.ts';
 
 // ---------------------------------------------------------------------------
 // Alvos (CR 115, 608.2b)
@@ -50,6 +51,7 @@ export function isLegalTarget(g: G, spec: TargetSpec, t: TargetRef, controller: 
   if (spec.what === 'ability') { if (o.zone !== 'stack' || !o.stack || o.stack.kind === 'spell') return false; } // habilidade ativada ou desencadeada na pilha
   else if (spec.what === 'spell' || (spec.what === 'spellOrPermanent' && o.zone === 'stack')) { if (o.zone !== 'stack' || o.stack?.kind !== 'spell') return false; if (t.id === source) return false; } // CR 115.5
   else if (spec.what === 'card') { if (o.zone !== (spec.zone ?? 'graveyard')) return false; }
+  else if (spec.alsoZone && spec.what === 'object' && o.zone === spec.alsoZone) { /* lote3-d: carta na zona extra; o filtro decide */ }
   else {
     if (o.zone !== 'battlefield' || o.phasedOut) return false;
     if (spec.what === 'any' && !chars(g, t.id).types.some((x) => x === 'Creature' || x === 'Planeswalker' || x === 'Battle')) return false; // CR 115.4
@@ -57,6 +59,8 @@ export function isLegalTarget(g: G, spec: TargetSpec, t: TargetRef, controller: 
     const lose = hooks(g, 'loseHexproof').some((h) => h.fn(h.ctx, t.id));
     if (!lose && hasKw(g, t.id, 'shroud')) return false;
     if (!lose && hasKw(g, t.id, 'hexproof') && g.isOpponent(controller, controllerOf(g, t.id))) return false;
+    // lote3-d: resistência a magia contra habilidades ativadas e desencadeadas de oponentes (CR 702.11d)
+    if (!lose && hasKw(g, t.id, HEXPROOF_FROM_ABILITIES) && g.isOpponent(controller, controllerOf(g, t.id)) && sourceIsAbility(g, source)) return false;
     const q = sourceQualities(g, source);
     if (kwParams(g, t.id, 'protection').some((p) => protectionMatches(g, p, q))) return false;
   }
@@ -69,6 +73,11 @@ export function candidateTargets(g: G, spec: TargetSpec, controller: PlayerId, s
   const out: TargetRef[] = [];
   if (spec.what === 'player' || spec.what === 'any') for (const p of g.playersInGame()) out.push({ kind: 'player', id: p });
   if (spec.what === 'object' || spec.what === 'any' || spec.what === 'spellOrPermanent') for (const id of s.zones.battlefield) out.push({ kind: 'obj', id });
+  if (spec.what === 'object' && spec.alsoZone) {
+    const z = spec.alsoZone;
+    const ids = z === 'graveyard' || z === 'hand' || z === 'library' ? s.zones[z].flat() : s.zones[z];
+    for (const id of ids) out.push({ kind: 'obj', id });
+  }
   if (spec.what === 'spell' || spec.what === 'spellOrPermanent' || spec.what === 'ability') for (const id of s.zones.stack) out.push({ kind: 'obj', id });
   if (spec.what === 'card') {
     const zone = spec.zone ?? 'graveyard';
@@ -335,6 +344,10 @@ export function* castSpell(g: G, player: PlayerId, cardId: ObjId, method: CastMe
 function* castInner(g: G, player: PlayerId, cardId: ObjId, method: CastMethod): Gen<ObjId | null> {
   const orig = g.state.objects[cardId];
   if (!orig) return null;
+  // lote3-d: segundo dividido (CR 702.61a) também impede conjurar durante a resolução de outra coisa (ruling de Samut)
+  if (splitSecondActive(g)) return null;
+  // lote3-d: Grafdigger's Cage ("não podem conjurar mágicas de cemitérios ou grimórios")
+  if (hooks(g, 'cantCastFrom').some((h) => h.fn(h.ctx, player, method.zone))) return null;
   // carta de várias faces conjurada por um efeito ("conjure-a sem pagar"): escolhe a face antes de pô-la na pilha
   // (CR 709.3, 712.11b, 715.3)
   if (method.face === undefined && !orig.copyOf && temVariasFaces(orig.def)) {
@@ -597,6 +610,8 @@ function* activateInner(g: G, player: PlayerId, sourceId: ObjId, abilityId: stri
   const def = ability(abilityId) as ActivatedDef;
   const src = g.state.objects[sourceId];
   if (!src) return null;
+  if (splitSecondActive(g)) return null; // lote3-d: segundo dividido (CR 702.61a)
+  if (hooks(g, 'cantActivate').some((h) => h.fn(h.ctx, player, sourceId))) return null; // lote3-d: Cursed Totem
   const label = `${nameOf(g, sourceId)}${def.kw ? ` (${def.kw})` : ''}`;
   // 602.2a: a habilidade vai para a pilha
   const ab = createObject(g, { def: '', owner: player, controller: player, zone: 'stack' });
@@ -660,6 +675,7 @@ export function canActivate(g: G, player: PlayerId, sourceId: ObjId, def: Activa
   }
   if (def.oncePerTurn && o.usedThisTurn[def.id!] === g.state.turn.number) return false;
   if (def.condition && !def.condition({ g, you: player, source: sourceId })) return false;
+  if (hooks(g, 'cantActivate').some((h) => h.fn(h.ctx, player, sourceId))) return false; // lote3-d: Cursed Totem
   if (!canPayParts(g, player, def.cost.filter((p) => p.k !== 'mana'), sourceId, 0)) return false;
   // precisa ter alvos possíveis
   const { specs } = abilityTargetSpecs(def, []);
@@ -777,7 +793,7 @@ export function* copyStackAbility(g: G, abId: ObjId, controller: PlayerId, opts:
  * controlador. Devolve true se algum alvo mudou. `noTriggerFor`: nome das permanentes cujas habilidades não disparam
  * com esta mudança (Psychic Battle).
  */
-export function* changeTargets(g: G, id: ObjId, chooser: PlayerId, opts: { noTriggerFor?: string } = {}): Gen<boolean> {
+export function* changeTargets(g: G, id: ObjId, chooser: PlayerId, opts: { noTriggerFor?: string; mustChange?: boolean } = {}): Gen<boolean> {
   const o = g.state.objects[id];
   const st = o?.stack;
   if (!o || o.zone !== 'stack' || !st || st.targets.flat().length === 0) return false;
@@ -796,6 +812,15 @@ export function* changeTargets(g: G, id: ObjId, chooser: PlayerId, opts: { noTri
     label = triggerLabel(g, st.abilityId!, source);
   }
   const travadas = specs.map((sp, i) => ({ ...sp, min: st.targets[i]?.length ?? 0, max: st.targets[i]?.length ?? 0 }));
+  // lote3-d: "mude o alvo" (Misdirection): o alvo novo precisa ser outro; sem outro legal, nada muda
+  if (opts.mustChange) {
+    travadas.forEach((sp, i) => {
+      const atuais = st.targets[i] ?? [];
+      const f = sp.filter;
+      sp.filter = (c, t) => !atuais.some((a) => a.kind === t.kind && a.id === t.id) && (!f || f(c, t));
+    });
+    if (travadas.some((sp) => sp.min > 0 && candidateTargets(g, sp, st.controller, source, st.event, st.x).length < sp.min)) return false;
+  }
   const novos = yield* chooseTargets(g, st.controller, travadas, source, `Mudar os alvos de ${label}`, st.x, st.event, chooser);
   if (!novos) return false;
   const chave = (t: TargetRef[][]) => JSON.stringify(t.map((grp) => grp.map((x) => `${x.kind}:${x.id}`)));
@@ -842,7 +867,9 @@ export function* resolveTop(g: G): Gen<void> {
       return;
     }
     const { specs, groups } = abilityTargetSpecs(def, st.modes);
-    const targets = checkTargets(g, o, specs, st.source!);
+    let targets = checkTargets(g, o, specs, st.source!);
+    // lote3-d: a carta diz que resolve mesmo com o alvo ilegal (Gilded Drake)
+    if (targets === null && def.kind === 'triggered' && def.resolvesWithIllegalTargets) targets = st.targets.map((grp) => grp.map(() => null));
     if (targets === null) {
       g.log(`${triggerLabel(g, st.abilityId!, st.source!)} não resolve: alvos ilegais.`, { rule: '608.2b' });
       destroyObject(g, id);
@@ -897,6 +924,11 @@ export function* resolveTop(g: G): Gen<void> {
     }], 'resolve');
     if (res.length === 0 && g.state.objects[id]) yield* moveObject(g, id, 'graveyard', 'resolve'); // CR 608.3e
     // habilidades concedidas à mágica que continuam no permanente (Serra Paragon: "ela ganha …")
+    // lote3-d: efeitos que afetavam a mágica e continuam no permanente em que ela vira (troca de texto, ruling de Glamerdye)
+    const herdados = st.data.carryToPermanent as { mods: Mod[]; duration: Duration; controller: PlayerId; source: ObjId }[] | undefined;
+    if (herdados?.length && res[0] !== undefined) {
+      for (const h of herdados) addEffect(g, { source: h.source, sourceDef: '', controller: h.controller, duration: h.duration.kind === 'permanent' ? { kind: 'whileOnBattlefield', obj: res[0] } : h.duration, affected: [res[0]], mods: h.mods });
+    }
     const conceder = st.data.grantOnEnter as string[] | undefined;
     if (conceder?.length && res[0] !== undefined) {
       addEffect(g, { source: res[0], sourceDef: '', controller: st.controller, duration: { kind: 'whileOnBattlefield', obj: res[0] }, affected: [res[0]], mods: conceder.map((a) => ({ k: 'addAbility' as const, id: a })) });

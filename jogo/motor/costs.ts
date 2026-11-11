@@ -198,10 +198,12 @@ function emparelhar(vagas: ObjId[][], peso: (id: ObjId) => number): Set<ObjId> |
 export function manaOptions(g: G, player: PlayerId, opts: { excludeSource?: ObjId } = {}): ManaOption[] {
   const out: ManaOption[] = [];
   const bonusHooks = hooks(g, 'extraManaForPlanning');
+  const proibidas = hooks(g, 'cantActivate');
   for (const id of g.state.zones.battlefield) {
     if (id === opts.excludeSource) continue;
     const o = g.state.objects[id];
     if (o.phasedOut || controllerOf(g, id) !== player) continue;
+    if (proibidas.length && proibidas.some((h) => h.fn(h.ctx, player, id))) continue; // lote3-d: Cursed Totem
     for (const { inst, def } of abilityDefs(g, id)) {
       if (def.kind !== 'mana') continue;
       const ctx: SCtx = { g, you: player, source: id };

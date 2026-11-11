@@ -165,7 +165,9 @@ export type Duration =
   | { kind: 'endOfYourNextTurn'; player: PlayerId; afterTurn: number }
   | { kind: 'whileOnBattlefield'; obj: ObjId }
   | { kind: 'whileControlled'; obj: ObjId; player: PlayerId }
-  | { kind: 'permanent' };
+  | { kind: 'permanent' }
+  /** lote3-d: "enquanto tiver um marcador [tipo]" (Aquitect's Will): acaba quando o último sai ou o objeto sai do campo */
+  | { kind: 'whileHasCounter'; obj: ObjId; counter: string };
 
 export type Layer = '1a' | '1b' | '2' | '3' | '4' | '5' | '6' | '7a' | '7b' | '7c' | '7d';
 
@@ -174,10 +176,14 @@ export type Mod =
   | { k: 'control'; player: PlayerId }
   | { k: 'addTypes'; types?: string[]; subtypes?: string[]; supertypes?: string[] }
   | { k: 'setTypes'; types: string[]; subtypes: string[]; keepSupertypes?: boolean }
-  | { k: 'removeTypes'; types: string[] }
+  /** lote3-d: `supertypes` tira supertipos ("deixa de ser snow", Thermal Flux) */
+  | { k: 'removeTypes'; types: string[]; supertypes?: string[] }
   | { k: 'setColors'; colors: Color[] }
   /** efeito de mudança de texto (camada 3, CR 613.1c): o texto de regras passa a ser este (Exchange of Words) */
   | { k: 'setText'; abilities: { id: string; kw?: string; param?: unknown }[] }
+  /** lote3-d: troca de palavra no texto (camada 3, CR 612.2): uma palavra de cor por outra ou um tipo básico de terreno por
+   *  outro, onde ela é usada assim (Crystal Spray, Alter Reality) */
+  | { k: 'textChange'; kind: 'color' | 'landType'; from: string; to: string }
   | { k: 'addKeyword'; kw: string; param?: unknown }
   | { k: 'addAbility'; id: string }
   | { k: 'loseAllAbilities' }

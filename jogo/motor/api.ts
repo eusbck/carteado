@@ -42,3 +42,6 @@ export * from './planejar.ts';
 export * from './milagre.ts';
 // revisão B: exilar "até esta permanente sair do campo" (CR 610.3): a carta volta logo que a fonte sai
 export { ATE_SAIR } from './actions.ts';
+// lote3-d: manutenção cumulativa, segundo dividido, energia, trocar o controle, manifestar o pavor, resistência a magia
+// contra habilidades
+export * from './controle.ts';
