@@ -52,6 +52,12 @@ export function defaultAnswer(d: Decision): Answer {
     case 'blockers': {
       const usados = new Set<ObjId>();
       const blocks: [ObjId, ObjId][] = [];
+      // "bloqueia [atacante] se puder" primeiro (CR 509.1c), depois "bloqueada por exatamente uma"
+      for (const [b, quais] of d.forced ?? []) {
+        const c = d.candidates.find((x) => x.obj === b);
+        const a = quais.find((q) => c?.canBlock.includes(q));
+        if (c && a !== undefined && !usados.has(b)) { usados.add(b); blocks.push([b, a]); }
+      }
       for (const a of d.required ?? []) {
         const b = d.candidates.find((c) => !usados.has(c.obj) && c.canBlock.includes(a));
         if (b) { usados.add(b.obj); blocks.push([b.obj, a]); }

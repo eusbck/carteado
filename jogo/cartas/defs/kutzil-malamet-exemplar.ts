@@ -10,7 +10,7 @@ import type { ObjId } from '../../motor/types.ts';
 export function acimaDaBase(g: G, id: ObjId): boolean {
   const o = g.state.objects[id];
   if (!o) return false;
-  const base = o.token ? null : printedChars(o.def, o.face ?? 0, o.owner).power;
+  const base = o.isToken ? null : printedChars(o.def, o.face ?? 0, o.owner).power;
   return base !== null && power(g, id) > base;
 }
 

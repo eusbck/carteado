@@ -268,6 +268,24 @@ export function mustBeBlockedByOne(g: G, attackers: ObjId[]): ObjId[] {
   return attackers.filter((a) => !hasKw(g, a, 'menace') && hooks(g, 'mustBeBlockedByExactlyOne').some((h) => h.fn(h.ctx, a)));
 }
 
+/**
+ * "[criatura] bloqueia [atacante] neste combate se puder" (Fighter Class; exigência de bloqueio, CR 509.1c): para cada
+ * bloqueador possível, as atacantes que ele precisa bloquear e que ele consegue bloquear.
+ */
+export function forcedBlocks(g: G, cands: { obj: ObjId; canBlock: ObjId[] }[]): [ObjId, ObjId[]][] {
+  const out: [ObjId, ObjId[]][] = [];
+  for (const c of cands) {
+    const quais: ObjId[] = [];
+    for (const e of g.state.effects) for (const m of e.mods) {
+      if (m.k !== 'rule' || m.id !== 'rule:blocksIfAble' || !e.affected?.includes(c.obj)) continue;
+      const a = m.params?.attacker as ObjId | undefined;
+      if (a !== undefined && c.canBlock.includes(a) && !quais.includes(a)) quais.push(a);
+    }
+    if (quais.length) out.push([c.obj, quais]);
+  }
+  return out;
+}
+
 /** um bloqueio que cumpre o máximo de exigências "bloqueada por exatamente uma" que dá para cumprir, um bloqueador para cada */
 export function requiredBlocks(cands: { obj: ObjId; canBlock: ObjId[] }[], required: ObjId[]): [ObjId, ObjId][] {
   const usados = new Set<ObjId>();
@@ -320,6 +338,12 @@ export function validateBlocks(g: G, defender: PlayerId, blocks: [ObjId, ObjId][
     const cumpridas = exigem.filter((a) => count.get(a) === 1).length;
     if (cumpridas < requiredBlocks(cands, exigem).length) return `${nameOf(g, exigem[0])} precisa ser bloqueada por exatamente uma criatura se puder (CR 509.1c)`;
   }
+  // "bloqueia [atacante] se puder" (CR 509.1c): quem pode cumprir precisa bloquear uma das atacantes exigidas
+  // (simplificação: não pesa exigências contra restrições de outras criaturas, como ameaçar)
+  for (const [b, quais] of forcedBlocks(g, cands)) {
+    const bloqueia = blocks.find(([x]) => x === b);
+    if (!bloqueia || !quais.includes(bloqueia[1])) return `${nameOf(g, b)} precisa bloquear ${quais.map((a) => nameOf(g, a)).join(' ou ')} se puder (CR 509.1c)`;
+  }
   // custos para bloquear (CR 509.1d): a declaração só é aceita se der para pagá-los
   const custo = blocks.reduce((n, [b, a]) => n + blockCostFor(g, b, a), 0);
   if (custo > 0 && !canAfford(g, defender, [{ k: 'generic', n: custo }], { purpose: { kind: 'effect' } })) return `Não há mana para pagar {${custo}} para bloquear (CR 509.1d)`;
@@ -340,7 +364,7 @@ export function* declareBlockers(g: G): Gen<void> {
     let a: Extract<Answer, { kind: 'blockers' }>;
     for (;;) {
       a = yield* ask<Extract<Answer, { kind: 'blockers' }>>(g, {
-        kind: 'blockers', player: quemEscolhe, prompt: quemEscolhe === d ? 'Declare os bloqueadores' : `Declare os bloqueadores de ${s.players[d].name}`, candidates: cands.map((c) => { const custos = c.canBlock.map((at) => blockCostFor(g, c.obj, at)); return custos.some((n) => n > 0) ? { ...c, costs: custos } : c; }), attackers, required: mustBeBlockedByOne(g, attackers),
+        kind: 'blockers', player: quemEscolhe, prompt: quemEscolhe === d ? 'Declare os bloqueadores' : `Declare os bloqueadores de ${s.players[d].name}`, candidates: cands.map((c) => { const custos = c.canBlock.map((at) => blockCostFor(g, c.obj, at)); return custos.some((n) => n > 0) ? { ...c, costs: custos } : c; }), attackers, required: mustBeBlockedByOne(g, attackers), forced: forcedBlocks(g, cands),
       }, (ans) => validateBlocks(g, d, ans.blocks));
       // custos para bloquear (CR 509.1d-f): o defensor paga; desistindo, declara de novo
       const total = a.blocks.reduce((n, [b, at]) => n + blockCostFor(g, b, at), 0);
