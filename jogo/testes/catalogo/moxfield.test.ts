@@ -51,14 +51,18 @@ describe('normalizar', () => {
     expect(normalizar(r, 'Teste12345').principal.map((e) => [e.nome, e.quantidade])).toEqual([['Island', 5], ['Opt', 1]]);
   });
 
-  it('recusa sem comandante, com parceiros, com companheiro ou atrações, e ficha no deck', () => {
+  it('recusa sem comandante, com mais de dois comandantes, com companheiro ou atrações, e ficha no deck', () => {
     const base = (extra: Record<string, unknown>, cmd = { nome: 'Jace' }) => respostaMox('Teste12345', 'T', cmd, [{ nome: 'Opt' }], extra);
     const semCmd = base({});
     semCmd.boards.commanders.cards = {};
     expect(() => normalizar(semCmd, 'x')).toThrow(/não tem comandante/);
+    // parceiros (CR 702.124): dois comandantes entram; se a dupla vale, quem confere é a validação do deck
     const dois = base({});
     dois.boards.commanders = respostaMox('a', 'b', { nome: 'A' }, [{ nome: 'A' }, { nome: 'B' }]).boards.mainboard;
-    expect(() => normalizar(dois, 'x')).toThrow(/mais de um comandante/);
+    expect(normalizar(dois, 'x').comandantes.map((c) => c.nome)).toEqual(['A', 'B']);
+    const tres = base({});
+    tres.boards.commanders = respostaMox('a', 'b', { nome: 'A' }, [{ nome: 'A' }, { nome: 'B' }, { nome: 'C' }]).boards.mainboard;
+    expect(() => normalizar(tres, 'x')).toThrow(/mais de dois comandantes/);
     const comp = base({});
     (comp.boards as Record<string, unknown>).companions = respostaMox('a', 'b', { nome: 'A' }, [{ nome: 'Lurrus' }]).boards.mainboard;
     expect(() => normalizar(comp, 'x')).toThrow(/companheiro/);

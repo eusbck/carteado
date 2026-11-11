@@ -62,7 +62,7 @@ function CorpoProposta({ p }: { p: Proposta }) {
       <div class="cat-proposta-topo">
         <div>
           <p class="cat-proposta-nome">{p.nome}</p>
-          <p class="suave">Comandante: {p.comandantePt ?? p.comandante}{p.comandantePt ? ` (${p.comandante})` : ''} · <a href={p.link} target="_blank" rel="noopener noreferrer">ver no Moxfield</a></p>
+          <p class="suave">{p.parceiro ? 'Comandantes' : 'Comandante'}: {p.comandantePt ?? p.comandante}{p.comandantePt ? ` (${p.comandante})` : ''}{p.parceiro ? ` e ${p.parceiroPt ?? p.parceiro}${p.parceiroPt ? ` (${p.parceiro})` : ''}` : ''} · <a href={p.link} target="_blank" rel="noopener noreferrer">ver no Moxfield</a></p>
         </div>
       </div>
       {p.erros.length > 0 && (
@@ -209,7 +209,7 @@ function JanelaDetalhes({ d, fechar }: { d: DeckCatalogo; fechar: () => void }) 
     <Janela titulo={d.nome} fechar={fechar} larga={!!p && d.estado === 'atualizacao'} classe="cat-janela">
       <div class="cat-proposta">
         <p class="suave">
-          Comandante: {d.comandantePt ?? d.comandante} · {d.total} cartas diferentes{d.link ? <> · <a href={d.link} target="_blank" rel="noopener noreferrer">ver no Moxfield</a></> : ' · deck da mesa'}
+          {d.parceiro ? 'Comandantes' : 'Comandante'}: {d.comandantePt ?? d.comandante}{d.parceiro ? ` e ${d.parceiroPt ?? d.parceiro}` : ''} · {d.total} cartas diferentes{d.link ? <> · <a href={d.link} target="_blank" rel="noopener noreferrer">ver no Moxfield</a></> : ' · deck da mesa'}
           <br />Importado em {data(d.importadoEm)}{d.verificadoEm ? `; buscado no Moxfield em ${data(d.verificadoEm)}` : ''}.
         </p>
         {d.estado === 'pronto' && <p class="cat-resumo jogavel">Todas as cartas têm regras: o deck está no saguão.</p>}

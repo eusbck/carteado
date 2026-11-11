@@ -1,0 +1,356 @@
+{
+ "formato": 1,
+ "id": "qRtSdDIfr0GcsyePCZkocw",
+ "ordem": 120,
+ "nome": "Sephiroth, Fabled SOLDIER",
+ "link": "https://moxfield.com/decks/qRtSdDIfr0GcsyePCZkocw",
+ "importadoEm": "2026-11-10T19:42:18.708Z",
+ "verificadoEm": "2026-11-10T19:42:18.708Z",
+ "atual": null,
+ "preparacao": {
+  "comandante": "Sephiroth, Fabled SOLDIER // Sephiroth, One-Winged Angel",
+  "cartas": [
+   {
+    "nome": "Swamp",
+    "quantidade": 16
+   },
+   {
+    "nome": "Arcane Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ayara, First of Locthwain",
+    "quantidade": 1
+   },
+   {
+    "nome": "Command Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Witch's Cottage",
+    "quantidade": 1
+   },
+   {
+    "nome": "Barren Moor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bojuka Bog",
+    "quantidade": 1
+   },
+   {
+    "nome": "Black Market",
+    "quantidade": 1
+   },
+   {
+    "nome": "Blood Artist",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dark Ritual",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dread Return",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gray Merchant of Asphodel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Innocent Blood",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lightning Greaves",
+    "quantidade": 1
+   },
+   {
+    "nome": "Night's Whisper",
+    "quantidade": 1
+   },
+   {
+    "nome": "Phyrexian Arena",
+    "quantidade": 1
+   },
+   {
+    "nome": "Plaguecrafter",
+    "quantidade": 1
+   },
+   {
+    "nome": "Read the Bones",
+    "quantidade": 1
+   },
+   {
+    "nome": "Reassembling Skeleton",
+    "quantidade": 1
+   },
+   {
+    "nome": "Reliquary Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Skullclamp",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vito, Thorn of the Dusk Rose",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bitterblossom",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bloodghast",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fleshbag Marauder",
+    "quantidade": 1
+   },
+   {
+    "nome": "Grave Pact",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mortuary Mire",
+    "quantidade": 1
+   },
+   {
+    "nome": "Memorial to Folly",
+    "quantidade": 1
+   },
+   {
+    "nome": "Reanimate",
+    "quantidade": 1
+   },
+   {
+    "nome": "Polluted Mire",
+    "quantidade": 1
+   },
+   {
+    "nome": "Phyrexian Altar",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cabal Coffers",
+    "quantidade": 1
+   },
+   {
+    "nome": "Pawn of Ulamog",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gilded Lotus",
+    "quantidade": 1
+   },
+   {
+    "nome": "Endrek Sahr, Master Breeder",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ophiomancer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Viscera Seer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Diabolic Intent",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vampiric Tutor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Victimize",
+    "quantidade": 1
+   },
+   {
+    "nome": "Diabolic Tutor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Urborg, Tomb of Yawgmoth",
+    "quantidade": 1
+   },
+   {
+    "nome": "Phyrexian Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Zulaport Cutthroat",
+    "quantidade": 1
+   },
+   {
+    "nome": "Falkenrath Noble",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bolas's Citadel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bontu's Monument",
+    "quantidade": 1
+   },
+   {
+    "nome": "Charcoal Diamond",
+    "quantidade": 1
+   },
+   {
+    "nome": "Witch of the Moors",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bastion of Remembrance",
+    "quantidade": 1
+   },
+   {
+    "nome": "Soldevi Adnate",
+    "quantidade": 1
+   },
+   {
+    "nome": "Crypt of Agadeem",
+    "quantidade": 1
+   },
+   {
+    "nome": "Pitiless Plunderer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tevesh Szat, Doom of Fools",
+    "quantidade": 1
+   },
+   {
+    "nome": "The Meathook Massacre",
+    "quantidade": 1
+   },
+   {
+    "nome": "Crowded Crypt",
+    "quantidade": 1
+   },
+   {
+    "nome": "Black Market Connections",
+    "quantidade": 1
+   },
+   {
+    "nome": "Braids, Arisen Nightmare",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sheoldred's Edict",
+    "quantidade": 1
+   },
+   {
+    "nome": "The Dross Pits",
+    "quantidade": 1
+   },
+   {
+    "nome": "Drivnod, Carnage Dominus",
+    "quantidade": 1
+   },
+   {
+    "nome": "Corrupted Conviction",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mirkwood Bats",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lich-Knights' Conquest",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gisa, the Hellraiser",
+    "quantidade": 1
+   },
+   {
+    "nome": "Forsaken Miner",
+    "quantidade": 1
+   },
+   {
+    "nome": "Flare of Malice",
+    "quantidade": 1
+   },
+   {
+    "nome": "Warren Soultrader",
+    "quantidade": 1
+   },
+   {
+    "nome": "Accursed Marauder",
+    "quantidade": 1
+   },
+   {
+    "nome": "Enduring Tenacity",
+    "quantidade": 1
+   },
+   {
+    "nome": "Nine-Lives Familiar",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vengeful Bloodwitch",
+    "quantidade": 1
+   },
+   {
+    "nome": "Meathook Massacre II",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bloodthirsty Conqueror",
+    "quantidade": 1
+   },
+   {
+    "nome": "Blasphemous Edict",
+    "quantidade": 1
+   },
+   {
+    "nome": "Venerated Stormsinger",
+    "quantidade": 1
+   },
+   {
+    "nome": "Avenger of the Fallen",
+    "quantidade": 1
+   },
+   {
+    "nome": "Will of the Abzan",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vincent Valentine // Galian Beast",
+    "quantidade": 1
+   },
+   {
+    "nome": "The Masamune",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ashnod's Altar",
+    "quantidade": 1
+   },
+   {
+    "nome": "Westvale Abbey // Ormendahl, Profane Prince",
+    "quantidade": 1
+   },
+   {
+    "nome": "Funeral Room // Awakening Hall",
+    "quantidade": 1
+   }
+  ],
+  "origem": {
+   "versao": 25,
+   "atualizadoEm": "2026-11-10T19:11:09.087Z"
+  },
+  "desde": "2026-11-10T19:42:18.708Z"
+ }
+}

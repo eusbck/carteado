@@ -1019,5 +1019,133 @@
    "c17/38 black"
   ],
   "baixadoEm": "2026-11-10T23:37:09.238Z"
+ },
+ "Sin, Spira's Punishment": {
+  "imagemLocal": "ce15bf1d-debf-4e0f-a69d-a57619d4b0ee",
+  "impressao": {
+   "id": "ce15bf1d-debf-4e0f-a69d-a57619d4b0ee",
+   "colecao": "fin",
+   "numero": "348",
+   "moldura": "2015 borderless legendary inverted",
+   "artista": "Ayami Nakashima",
+   "url": "https://cards.scryfall.io/png/front/c/e/ce15bf1d-debf-4e0f-a69d-a57619d4b0ee.png?1783906524"
+  },
+  "recorte": {
+   "x": 0,
+   "y": 135,
+   "largura": 744,
+   "altura": 442
+  },
+  "tamanho": [
+   744,
+   442
+  ],
+  "candidatas": [
+   "fin/348 borderless legendary+inverted"
+  ],
+  "baixadoEm": "2026-11-10T19:28:43.926Z"
+ },
+ "Voja, Jaws of the Conclave": {
+  "imagemLocal": "07964ab9-77c5-4ce6-970f-e47b9492baeb",
+  "impressao": {
+   "id": "bfa1bd2f-25bd-4fbd-877b-cef00ab7f92f",
+   "colecao": "mkm",
+   "numero": "432",
+   "moldura": "2015 black legendary",
+   "artista": "Valera Lutfullina",
+   "url": "https://cards.scryfall.io/art_crop/front/b/f/bfa1bd2f-25bd-4fbd-877b-cef00ab7f92f.jpg?1783912763"
+  },
+  "recorte": "art_crop",
+  "tamanho": [
+   626,
+   457
+  ],
+  "candidatas": [
+   "mkm/432 black legendary",
+   "mkm/432 black legendary"
+  ],
+  "baixadoEm": "2026-11-10T19:31:24.817Z"
+ },
+ "Yuriko, the Tiger's Shadow": {
+  "imagemLocal": "7ad78b7f-4b29-4df2-9e43-959612171e10",
+  "impressao": {
+   "id": "f058f8e8-aa01-4dc0-a6a5-0490521b83d4",
+   "colecao": "cmm",
+   "numero": "597",
+   "moldura": "2015 black inverted legendary etched",
+   "artista": "Yongjae Choi",
+   "url": "https://cards.scryfall.io/art_crop/front/f/0/f058f8e8-aa01-4dc0-a6a5-0490521b83d4.jpg?1783915526"
+  },
+  "recorte": "art_crop",
+  "tamanho": [
+   626,
+   457
+  ],
+  "candidatas": [
+   "cmm/597 black inverted+legendary+etched",
+   "cmm/364 black legendary",
+   "plg21/C2 black legendary",
+   "prm/86214 black",
+   "cmr/542 black inverted+etched+legendary",
+   "plst/C18-52 black legendary",
+   "j19/6 black legendary",
+   "pz2/70651 black legendary",
+   "c18/52 black legendary",
+   "c18/52 black legendary"
+  ],
+  "baixadoEm": "2026-11-10T19:45:07.498Z"
+ },
+ "Hearthhull, the Worldseed": {
+  "imagemLocal": "6b913e79-a9f6-44d4-bb37-c4f6f66b8151",
+  "impressao": {
+   "id": "6b913e79-a9f6-44d4-bb37-c4f6f66b8151",
+   "colecao": "eoc",
+   "numero": "1",
+   "moldura": "2015 borderless legendary inverted",
+   "artista": "Daniel Ljunggren",
+   "url": "https://cards.scryfall.io/png/front/6/b/6b913e79-a9f6-44d4-bb37-c4f6f66b8151.png?1783906067"
+  },
+  "recorte": {
+   "x": 0,
+   "y": 135,
+   "largura": 744,
+   "altura": 442
+  },
+  "tamanho": [
+   744,
+   442
+  ],
+  "candidatas": [
+   "eoc/1 borderless legendary+inverted"
+  ],
+  "baixadoEm": "2026-11-10T19:53:30.424Z"
+ },
+ "Sam, Loyal Attendant": {
+  "imagemLocal": "557c1d1d-90ff-4399-bc56-a8c86c466699",
+  "impressao": {
+   "id": "601402f4-8647-4c41-9a0f-63d10ce89d02",
+   "colecao": "ltc",
+   "numero": "90",
+   "moldura": "2015 black legendary extendedart",
+   "artista": "Campbell White",
+   "url": "https://cards.scryfall.io/png/front/6/0/601402f4-8647-4c41-9a0f-63d10ce89d02.png?1783916006"
+  },
+  "recorte": {
+   "x": 0,
+   "y": 135,
+   "largura": 745,
+   "altura": 442
+  },
+  "tamanho": [
+   745,
+   442
+  ],
+  "candidatas": [
+   "ltc/476 black showcase+legendary",
+   "ltc/90 black legendary+extendedart",
+   "ltc/7 black legendary",
+   "ltc/7 black legendary"
+  ],
+  "baixadoEm": "2026-11-10T19:57:23.412Z"
  }
 }

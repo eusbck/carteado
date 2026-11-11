@@ -95,7 +95,9 @@ export function normalizar(r: RespostaMox, idPedido: string): DeckMox {
   }
   const comandantes = entradas(zonas.commanders);
   if (comandantes.length === 0) throw new ErroDeck('O deck não tem comandante no Moxfield');
-  if (comandantes.length > 1 || comandantes[0].quantidade > 1) throw new ErroDeck('O deck tem mais de um comandante (parceiros ainda não existem no jogo)');
+  // até dois comandantes (parceiros, CR 702.124g: nunca mais de dois); se a dupla vale, a validação do deck confere
+  if (comandantes.some((c) => c.quantidade > 1)) throw new ErroDeck('O deck repete o comandante');
+  if (comandantes.length > 2) throw new ErroDeck('O deck tem mais de dois comandantes (CR 702.124g)');
   const principal = entradas(zonas.mainboard);
   // a mesma carta em duas linhas (edições diferentes) vira uma linha só
   const juntas = new Map<string, EntradaMox>();

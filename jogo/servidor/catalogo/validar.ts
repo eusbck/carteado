@@ -19,9 +19,9 @@ export function validarLista(
   buscar: (nome: string) => OracleCard,
   o: { banidas?: Set<string>; legalidade?: (nome: string) => string | null } = {},
 ): { erros: string[]; avisos: string[] } {
-  const erros = validateDeck({ id: '', nome: '', comandante: lista.comandante, cartas: lista.cartas }, buscar).map((p) => `${p.message} — CR ${p.rule}`);
+  const erros = validateDeck({ id: '', nome: '', comandante: lista.comandante, parceiro: lista.parceiro, cartas: lista.cartas }, buscar).map((p) => `${p.message} — CR ${p.rule}`);
   const avisos: string[] = [];
-  for (const nome of new Set([lista.comandante, ...lista.cartas.map((c) => c.nome)])) {
+  for (const nome of new Set([lista.comandante, ...(lista.parceiro ? [lista.parceiro] : []), ...lista.cartas.map((c) => c.nome)])) {
     const leg = o.legalidade?.(nome) ?? null;
     if (o.banidas?.has(nome) || leg === 'banned') avisos.push(`${nome} está banida no Commander`);
     else if (leg === 'not_legal') avisos.push(`${nome} não é legal no Commander`);
