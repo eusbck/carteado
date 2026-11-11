@@ -173,6 +173,9 @@ export interface ManaAbilityDef extends AbilityCommon {
   /** precons-a: o X do custo é a quantidade de mana da alternativa escolhida ("vire X fichas: adicione X manas",
    *  Hazel of the Rootbloom); sem isto, X = 0 nas habilidades de mana */
   xFromAlt?: boolean;
+  /** lote3-f: "ative somente como uma instantânea" numa habilidade de mana (Lion's Eye Diamond): precisa de prioridade, então
+   *  não pode ser ativada enquanto se paga um custo (conjurando, ativando ou pagando durante a resolução; CR 605.3a, 117.1b) */
+  notWhilePaying?: boolean;
 }
 
 export interface ActivatedDef extends AbilityCommon {
@@ -189,6 +192,9 @@ export interface ActivatedDef extends AbilityCommon {
   xMax?: (c: SCtx) => number;
   /** redução do próprio custo de ativação, fixada antes do pagamento (CR 602.2b, 601.2f) */
   selfCost?: (c: SCtx, x: number) => { reduce?: number; increase?: number };
+  /** lote3-f: chamado logo depois de a mana do custo ser paga, com os tipos gastos ("anote o tipo de mana gasto para pagar
+   *  este custo de ativação": Jeweled Amulet; CR 602.2h) */
+  onManaPaid?: (c: SCtx, types: ManaType[]) => void;
 }
 
 export interface TriggeredDef extends AbilityCommon {
@@ -430,6 +436,9 @@ export interface AdditionalCostDef {
   capByMana?: boolean;
   /** pago uma vez para cada modo escolhido além do primeiro, sem perguntar (escalada, CR 702.120a) */
   perExtraMode?: boolean;
+  /** lote3-f: custo do modo de índice N, pago (uma vez, sem perguntar) só se esse modo foi escolhido (escalonar/spree,
+   *  CR 702.172a) */
+  forMode?: number;
 }
 
 export interface AltCastDef {

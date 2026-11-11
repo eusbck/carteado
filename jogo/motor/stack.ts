@@ -400,6 +400,8 @@ function* castInner(g: G, player: PlayerId, cardId: ObjId, method: CastMethod): 
   for (const ac of custosAdicionais(g, player, spellId, f)) {
     // escalada (CR 702.120a): uma vez para cada modo além do primeiro, sem escolha
     if (ac.perExtraMode) { info.paid[ac.key] = Math.max(0, info.modes.length - 1); continue; }
+    // spree (CR 702.172a): o custo de cada modo escolhido entra no custo total
+    if (ac.forMode !== undefined) { info.paid[ac.key] = info.modes.includes(ac.forMode) ? 1 : 0; continue; }
     if (ac.repeatable) {
       // não dá para repetir mais vezes do que é possível pagar (sacrificar: quantos permanentes servem)
       let vezes = 10;
@@ -627,6 +629,7 @@ function* activateInner(g: G, player: PlayerId, sourceId: ObjId, abilityId: stri
   const usesSource = def.cost.some((p) => p.k === 'tap' || p.k === 'untap' || p.k === 'sacrificeSelf' || p.k === 'exileSelf');
   const paid = yield* payMana(g, player, cost, { purpose: { kind: 'ability', obj: ab.id }, canCancel: true, label, excludeSource: usesSource ? sourceId : undefined });
   if (paid === null) return null;
+  def.onManaPaid?.({ g, you: player, source: sourceId }, paid.units.map((u) => u.type));
   const parts = def.cost.filter((p) => p.k !== 'mana');
   const r = yield* payParts(g, player, parts, sourceId, info.x);
   if (r === false) return null;

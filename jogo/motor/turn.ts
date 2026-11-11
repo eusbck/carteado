@@ -377,7 +377,19 @@ function advance(g: G): void {
     g.bump();
     return;
   }
-  const nextPlayer = g.nextPlayer(t.active);
+  // CR 500.7: turnos extras vêm antes do próximo turno normal; o criado por último é tomado primeiro. O de quem saiu da
+  // partida deixa de existir (CR 800.4a)
+  while (s.extraTurns?.length) {
+    const extra = s.extraTurns.pop()!;
+    if (s.players[extra.player].left) continue;
+    const resumeAfter = t.resumeAfter ?? t.active;
+    beginTurn(g, extra.player);
+    s.turn.extraTurnId = extra.id;
+    s.turn.resumeAfter = resumeAfter;
+    g.log(`${s.players[extra.player].name} toma um turno extra.`, { rule: '500.7' });
+    return;
+  }
+  const nextPlayer = g.nextPlayer(t.resumeAfter ?? t.active);
   beginTurn(g, nextPlayer);
 }
 

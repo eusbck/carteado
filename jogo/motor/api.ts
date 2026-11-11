@@ -42,3 +42,6 @@ export * from './planejar.ts';
 export * from './milagre.ts';
 // revisão B: exilar "até esta permanente sair do campo" (CR 610.3): a carta volta logo que a fonte sai
 export { ATE_SAIR } from './actions.ts';
+// lote3-f: devoção, turno extra, evocar, dash, barganha e spree (cEDH Inalla)
+export * from './cedh.ts';
+export { successor } from './state.ts';
