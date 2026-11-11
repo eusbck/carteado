@@ -354,6 +354,36 @@ export function* endTheTurn(g: G): Gen<void> {
   g.log('O turno é encerrado.', { rule: '724.1' });
 }
 
+/**
+ * lote3-c: encerrar a fase de combate (CR 724.2, Merciful Mandate). Fora de uma fase de combate, nada acontece (724.2g)
+ * e devolve false. Os gatilhos que ainda não foram para a pilha deixam de existir (724.2a), tudo na pilha é exilado,
+ * inclusive a mágica que está resolvendo (724.2b), as criaturas saem do combate e os efeitos "até o fim do combate"
+ * terminam (724.2d); o jogo vai direto para a fase seguinte, sem a etapa de fim de combate (724.2e) e sem prioridade
+ * nesta etapa (724.2c, 724.2f).
+ */
+export function* endTheCombatPhase(g: G): Gen<boolean> {
+  const s = g.state;
+  const t = s.turn;
+  if (!COMBAT_STEPS.includes(t.step) && t.step !== 'firstStrikeDamage') return false;
+  s.pendingTriggers = [];
+  for (const id of [...s.zones.stack]) {
+    const o = s.objects[id];
+    if (!o) continue;
+    if (o.def === '' || o.isCopy) destroyObject(g, id);
+    else yield* moveObjects(g, [{ id, to: 'exile' }], 'endCombatPhase');
+  }
+  if (s.combat) endCombat(g);
+  // as etapas que faltam desta fase de combate (até o fim do combate dela) são puladas
+  if (t.step !== 'endCombat') {
+    const i = t.queue.indexOf('endCombat');
+    if (i >= 0) t.queue.splice(0, i + 1);
+  }
+  t.ending = true;
+  g.bump();
+  g.log('A fase de combate é encerrada.', { rule: '724.2' });
+  return true;
+}
+
 function advance(g: G): void {
   const s = g.state;
   const t = s.turn;
