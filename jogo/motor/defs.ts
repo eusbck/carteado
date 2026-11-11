@@ -333,7 +333,7 @@ export interface RuleHooks {
   /** condição da substituição de compra da mesma permanente; sem este gancho, ela vale sempre */
   drawReplaceApplies?: (c: SCtx, player: PlayerId) => boolean;
   /** "habilidades ativadas de [essas fontes] custam {N} a menos", sem baixar a mana do custo a menos de minMana (Convergence of Dominion) */
-  abilityCostModifier?: (c: SCtx, player: PlayerId, source: ObjId, def: ActivatedDef) => { reduce: number; minMana?: number } | null;
+  abilityCostModifier?: (c: SCtx, player: PlayerId, source: ObjId, def: ActivatedDef, targets?: TargetRef[][]) => { reduce: number; minMana?: number } | null;
   /**
    * Ação baseada em estado definida pela carta (CR 704), conferida junto com as do jogo e podendo pedir escolhas
    * (Space Beleren: quem controla uma criatura sem setor a põe num setor). Devolve true se fez alguma coisa; precisa
@@ -348,6 +348,14 @@ export interface RuleHooks {
   lookAtTopOfLibrary?: (c: SCtx, player: PlayerId) => boolean;
   /** "Você não perde mana [vermelha] não gasta quando as etapas e fases terminam" (Leyline Tyrant; CR 106.4, 500.5) */
   keepsUnspentMana?: (c: SCtx, player: PlayerId, unit: ManaUnit) => boolean;
+  /**
+   * lote3-a: "você pode pagar {0} em vez do custo de equipar da primeira habilidade de equipar que você ativar [em cada
+   * turno]" (Bruenor Battlehammer, Forge Anew, Kíli). O motor só pergunta na primeira ativação de equipar do jogador no
+   * turno (turnStats.equipActivated); o gancho diz se a permanente oferece isso agora (CR 118.9, 702.6).
+   */
+  equipForZero?: (c: SCtx, player: PlayerId, source: ObjId, def: ActivatedDef) => boolean;
+  /** lote3-a: "você pode ativar habilidades de equipar a qualquer momento em que poderia conjurar uma mágica instantânea" (Forge Anew) */
+  equipAsInstant?: (c: SCtx, player: PlayerId, source: ObjId) => boolean;
 }
 
 /** fichas que um evento vai criar para um jogador (CR 111.1). `de` aponta o pedido de onde a ficha veio: o resto do

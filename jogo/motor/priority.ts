@@ -9,8 +9,9 @@ import type { G } from './game-context.ts';
 import { convokeAll, formatCost, parseCost, reduceGeneric } from './mana.ts';
 import { doSuspend, manifestFaceUpCost, suspendParams, turnFaceUp } from './mecanicas.ts';
 import { activateAbility, candidateTargets, canActivate, castChars, castSpell, chooseModes, custosAdicionais, spellTargetSpecs, totalSpellCost, faceDefFor, faceDefOf, type CastMethod } from './stack.ts';
+import { segundoDivididoNaPilha } from './equipar.ts';
 import {
-  chaveComFace, ehAventura, ehSala, FACE_AMBAS, FACE_NENHUMA, faceDaChave, facesConjuraveis, facesDeTerreno, metadeAftermath,
+  chaveComFace, ehAventura, faceEhTerreno, ehSala, FACE_AMBAS, FACE_NENHUMA, faceDaChave, facesConjuraveis, facesDeTerreno, metadeAftermath,
   nomeDaFace, rotuloConjurar, temVariasFaces,
 } from './formatos.ts';
 import { oracle } from './oracle.ts';
@@ -93,7 +94,7 @@ function opcoesDeFaces(g: G, p: PlayerId, id: ObjId, zone: ZoneName, out: CastOp
       if (af !== null) out.push({ obj: id, method: { key: 'aftermath', label: 'aftermath', zone, face: af, title: `Conjurar ${nomeDaFace(def, af)} do cemitério (aftermath)` } });
     }
     // aventura que resolveu: quem a conjurou pode conjurar a carta do exílio, mas não como aventura (CR 715.3d)
-    if (zone === 'exile' && ehAventura(def) && o.data.adventureOf === p) out.push({ obj: id, method: { key: 'adventure', label: 'aventura', zone, face: 0, title: `Conjurar ${nomeDaFace(def, 0)} do exílio (aventura)` } });
+    if (zone === 'exile' && ehAventura(def) && o.data.adventureOf === p && !faceEhTerreno(def, 0)) out.push({ obj: id, method: { key: 'adventure', label: 'aventura', zone, face: 0, title: `Conjurar ${nomeDaFace(def, 0)} do exílio (aventura)` } });
     for (const prm of permissionsFor(g, p, id)) {
       if (prm.filter && !prm.filter({ g, you: p, source: id }, id)) continue;
       for (const f of faces) if (f !== FACE_AMBAS) push(`perm:${prm.key}`, f, `${prm.label}: ${nomeDaFace(def, f)}`, { label: prm.label, permission: prm });
@@ -167,6 +168,8 @@ export function enoughTargets(g: G, specs: import('./defs.ts').TargetSpec[], p: 
 /** checagem rápida: dá para começar a conjurar e pagar? (CR 601.3) */
 export function canStartCast(g: G, p: PlayerId, opt: CastOption): boolean {
   const s = g.state;
+  // CR 702.61a: com segundo dividido na pilha, ninguém conjura mágicas (lote3-a)
+  if (segundoDivididoNaPilha(g)) return false;
   // virada para baixo (morph): criatura 2/2 sem texto, outra checagem (CR 708.4)
   if (opt.method.alt?.faceDown) return canStartFaceDown(g, p, opt);
   const o = s.objects[opt.obj];
@@ -240,6 +243,12 @@ function landPlayOptions(g: G, p: PlayerId): { obj: ObjId; key: string; face: nu
       const prm = permissionsFor(g, p, id).find((x) => x.land);
       if (prm) for (const face of faces) out.push({ obj: id, key: chaveComFace(`perm:${prm.key}`, face), face });
     }
+  }
+  // lote3-a: aventura cuja carta é um terreno (as cidades de Final Fantasy): depois de resolver a aventura, quem a
+  // conjurou pode jogar o terreno do exílio, com as regras normais de jogar terreno (CR 715.3d; ruling 4 de Ishgard)
+  for (const id of s.zones.exile) {
+    const o = s.objects[id];
+    if (!o.copyOf && ehAventura(o.def) && o.data.adventureOf === p && faceEhTerreno(o.def, 0)) out.push({ obj: id, key: 'adventure', face: 0 });
   }
   // precons-e: o terreno do topo do grimório com permissão de jogar dali (Verge Rangers, One with the Multiverse)
   for (const id of s.zones.library[p].slice(0, 1)) {

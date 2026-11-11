@@ -42,3 +42,6 @@ export * from './planejar.ts';
 export * from './milagre.ts';
 // revisão B: exilar "até esta permanente sair do campo" (CR 610.3): a carta volta logo que a fonte sai
 export { ATE_SAIR } from './actions.ts';
+// lote3-a (deck Cloud): equipar por {0}, equipar como instantânea, segundo dividido, histórico
+export * from './equipar.ts';
+export * from './historia.ts';
