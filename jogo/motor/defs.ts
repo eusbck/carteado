@@ -332,6 +332,8 @@ export interface RuleHooks {
   drawReplace?: (c: SCtx, player: PlayerId) => Gen<void>;
   /** condição da substituição de compra da mesma permanente; sem este gancho, ela vale sempre */
   drawReplaceApplies?: (c: SCtx, player: PlayerId) => boolean;
+  /** "você pode ativar [estas habilidades de feitiço] a qualquer momento em que poderia conjurar uma instantânea" (Forge Anew: equipar durante o seu turno; CR 602.5d) */
+  activateAsInstant?: (c: SCtx, player: PlayerId, source: ObjId, def: ActivatedDef) => boolean;
   /** "habilidades ativadas de [essas fontes] custam {N} a menos", sem baixar a mana do custo a menos de minMana (Convergence of Dominion) */
   abilityCostModifier?: (c: SCtx, player: PlayerId, source: ObjId, def: ActivatedDef) => { reduce: number; minMana?: number } | null;
   /**

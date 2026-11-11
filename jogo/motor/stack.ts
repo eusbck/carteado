@@ -653,7 +653,8 @@ export function canActivate(g: G, player: PlayerId, sourceId: ObjId, def: Activa
   const owner = o.zone === 'battlefield' ? controllerOf(g, sourceId) : o.owner;
   if (def.activator === 'opponents') { if (!g.isOpponent(owner, player)) return false; }
   else if (owner !== player) return false;
-  if (def.timing === 'sorcery' && !timingOk.sorcery) return false;
+  // "você pode ativar [essas habilidades] a qualquer momento em que poderia conjurar uma instantânea" (Forge Anew; CR 602.5d)
+  if (def.timing === 'sorcery' && !timingOk.sorcery && !hooks(g, 'activateAsInstant').some((h) => h.fn(h.ctx, player, sourceId, def))) return false;
   if (def.cost.some((p) => p.k === 'loyalty')) {
     if (!timingOk.sorcery) return false; // CR 606.3
     if (o.usedThisTurn['loyalty'] === g.state.turn.number) return false;
