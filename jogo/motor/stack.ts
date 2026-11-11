@@ -400,6 +400,8 @@ function* castInner(g: G, player: PlayerId, cardId: ObjId, method: CastMethod): 
   for (const ac of custosAdicionais(g, player, spellId, f)) {
     // escalada (CR 702.120a): uma vez para cada modo além do primeiro, sem escolha
     if (ac.perExtraMode) { info.paid[ac.key] = Math.max(0, info.modes.length - 1); continue; }
+    // escalonado (CR 702.183a): o custo do modo escolhido, sem escolha
+    if (ac.perMode !== undefined) { info.paid[ac.key] = info.modes.includes(ac.perMode); continue; }
     if (ac.repeatable) {
       // não dá para repetir mais vezes do que é possível pagar (sacrificar: quantos permanentes servem)
       let vezes = 10;
@@ -622,7 +624,7 @@ function* activateInner(g: G, player: PlayerId, sourceId: ObjId, abilityId: stri
     info.targets = t;
   }
   // 601.2f-h
-  const cost = totalAbilityCost(g, player, sourceId, def, info.x);
+  const cost = totalAbilityCost(g, player, sourceId, def, info.x, info.targets.flat());
   // a fonte que vai ser virada/sacrificada no custo não pode também pagar a mana
   const usesSource = def.cost.some((p) => p.k === 'tap' || p.k === 'untap' || p.k === 'sacrificeSelf' || p.k === 'exileSelf');
   const paid = yield* payMana(g, player, cost, { purpose: { kind: 'ability', obj: ab.id }, canCancel: true, label, excludeSource: usesSource ? sourceId : undefined });
@@ -631,6 +633,12 @@ function* activateInner(g: G, player: PlayerId, sourceId: ObjId, abilityId: stri
   const r = yield* payParts(g, player, parts, sourceId, info.x);
   if (r === false) return null;
   info.data.costInfo = r;
+  // registro das ativações do turno (Bruenor, Forge Anew, Professor Hojo)
+  const ts = g.state.turnStats[player];
+  if (ts) {
+    const criaturaSua = info.targets.flat().some((t) => t.kind === 'obj' && g.state.objects[t.id]?.zone === 'battlefield' && chars(g, t.id).types.includes('Creature') && controllerOf(g, t.id) === player);
+    (ts.activationLog ??= []).push({ kw: def.kw, ownCreatureTargeted: criaturaSua });
+  }
   const s0 = g.state.objects[sourceId];
   if (s0) {
     if (def.oncePerTurn) s0.usedThisTurn[abilityId] = g.state.turn.number;
@@ -653,7 +661,7 @@ export function canActivate(g: G, player: PlayerId, sourceId: ObjId, def: Activa
   const owner = o.zone === 'battlefield' ? controllerOf(g, sourceId) : o.owner;
   if (def.activator === 'opponents') { if (!g.isOpponent(owner, player)) return false; }
   else if (owner !== player) return false;
-  if (def.timing === 'sorcery' && !timingOk.sorcery) return false;
+  if (def.timing === 'sorcery' && !timingOk.sorcery && !hooks(g, 'activateAsInstant').some((h) => h.fn(h.ctx, player, sourceId, def))) return false;
   if (def.cost.some((p) => p.k === 'loyalty')) {
     if (!timingOk.sorcery) return false; // CR 606.3
     if (o.usedThisTurn['loyalty'] === g.state.turn.number) return false;
@@ -671,12 +679,14 @@ export function canActivate(g: G, player: PlayerId, sourceId: ObjId, def: Activa
 }
 
 /** CR 602.2b, 601.2f: determine uma vez o custo total, antes de ativar habilidades de mana ou pagar partes. */
-export function totalAbilityCost(g: G, player: PlayerId, source: ObjId, def: ActivatedDef, x: number): ManaSymbol[] {
+export function totalAbilityCost(g: G, player: PlayerId, source: ObjId, def: ActivatedDef, x: number, targets?: TargetRef[]): ManaSymbol[] {
+  const modificadores = hooks(g, 'abilityCostModifier').map((h) => h.fn(h.ctx, player, source, def, targets));
+  // "você pode pagar {0} em vez do custo" (CR 118.9): custo alternativo; o motor sempre o usa (Bruenor, Forge Anew)
+  if (modificadores.some((r) => r?.free)) return [];
   const adjustment = def.selfCost?.({ g, you: player, source }, x);
   let custo = reduceGeneric(addGeneric(withX(manaPart(def.cost), x), adjustment?.increase ?? 0), adjustment?.reduce ?? 0);
   // reduções vindas de outras permanentes (Convergence of Dominion), com piso na mana total do custo
-  for (const h of hooks(g, 'abilityCostModifier')) {
-    const r = h.fn(h.ctx, player, source, def);
+  for (const r of modificadores) {
     if (!r || r.reduce <= 0) continue;
     const total = custo.reduce((n, s) => n + (s.k === 'generic' ? s.n : s.k === 'X' ? 0 : 1), 0);
     const pode = Math.max(0, total - (r.minMana ?? 0));

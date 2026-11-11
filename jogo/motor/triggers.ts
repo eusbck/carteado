@@ -91,6 +91,8 @@ function updateStats(g: G, events: GameEvent[]): void {
       case 'attackers':
         if (e.attackers.length) {
           st[e.player].attacked = true;
+          // criaturas que atacaram neste turno (Full Throttle); falta nas partidas salvas antes
+          (st[e.player].attackersThisTurn ??= []).push(...e.attackers.map((a) => a.obj));
           for (const a of e.attackers) if (a.target.kind === 'player' && !st[e.player].attackedPlayers.includes(a.target.id)) st[e.player].attackedPlayers.push(a.target.id);
         }
         break;

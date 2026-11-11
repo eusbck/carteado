@@ -70,7 +70,7 @@ const ehTerreno = (def: string, face: number) => (oracle(def).faces[face]?.types
  * - modal de duas faces: cada face que não é terreno (CR 712.11b, 305.9);
  * - dividida: cada metade (709.3), menos a com aftermath fora do cemitério (702.127a; ruling 7); as duas juntas
  *   (FACE_AMBAS) com fusão, da mão (702.102a);
- * - aventura: a carta normal e a aventura (715.3);
+ * - aventura: a carta normal (se não for terreno) e a aventura (715.3);
  * - as outras: a face da frente, se não for terreno.
  */
 export function facesConjuraveis(def: string, zona: ZoneName): number[] {
@@ -82,7 +82,8 @@ export function facesConjuraveis(def: string, zona: ZoneName): number[] {
     if (temFusao(def) && zona === 'hand') out.push(FACE_AMBAS);
     return out;
   }
-  if (l === 'adventure') return [0, 1];
+  // a carta normal que é terreno (Ishgard, the Holy See) não se conjura, só se joga (CR 305.9)
+  if (l === 'adventure') return [0, 1].filter((f) => !ehTerreno(def, f));
   return l !== null && ehTerreno(def, 0) ? [] : [0];
 }
 

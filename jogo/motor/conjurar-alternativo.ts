@@ -363,6 +363,22 @@ export function escalate(parts: CostPart[], label: string): AdditionalCostDef {
 }
 
 // ---------------------------------------------------------------------------
+// Escalonado (CR 702.183)
+// ---------------------------------------------------------------------------
+/**
+ * Tiered (CR 702.183a): "escolha um; como custo adicional, pague o custo associado a esse modo". Use com
+ * `modes: modal(1, 1, [...])` e `additionalCosts: tiered(['{0}', '{1}', '{3}{W}'])`, um custo de mana por modo, na
+ * ordem dos modos. O custo do modo escolhido entra no custo total (601.2f) sem pergunta; os outros, não. O valor de mana
+ * da mágica continua sendo o do custo impresso (ruling de Tiered).
+ */
+export function tiered(custos: string[]): AdditionalCostDef[] {
+  return custos.map((cost, i) => ({
+    key: `tiered:${i}`, label: `escalonado — ${cost}`, optional: true, perMode: i,
+    parts: cost === '{0}' || cost === '' ? [] : [{ k: 'mana' as const, cost }],
+  }));
+}
+
+// ---------------------------------------------------------------------------
 // Baixa / casualty (CR 702.153)
 // ---------------------------------------------------------------------------
 /**

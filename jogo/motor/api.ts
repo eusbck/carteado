@@ -32,6 +32,7 @@ export * from './conjurar-alternativo.ts';
 export * from './criaturas.ts';
 export { unattach, canSearchLibraries, regenerationShields, cantBeRegenerated } from './actions.ts';
 export { copyValuesChars } from './chars.ts';
+export { basePower } from './chars.ts';
 export type { CopyExcept, CopyValues } from './types.ts';
 export { removeEffect } from './state.ts';
 // precons-b: predizer (foretell, CR 702.143)

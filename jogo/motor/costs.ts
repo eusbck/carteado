@@ -598,6 +598,8 @@ export function* payParts(g: G, player: PlayerId, parts: CostPart[], source: Obj
         const o = s.objects[source];
         info.sacrificed = [o?.id];
         info.sacrificedLki = source;
+        // o que estava anexado a ela ao ser sacrificada (Zack Fair)
+        info.attachments = s.zones.battlefield.filter((id) => s.objects[id].attachedTo === source);
         yield* sacrifice(g, [source]);
         break;
       }

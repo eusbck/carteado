@@ -93,7 +93,7 @@ function opcoesDeFaces(g: G, p: PlayerId, id: ObjId, zone: ZoneName, out: CastOp
       if (af !== null) out.push({ obj: id, method: { key: 'aftermath', label: 'aftermath', zone, face: af, title: `Conjurar ${nomeDaFace(def, af)} do cemitério (aftermath)` } });
     }
     // aventura que resolveu: quem a conjurou pode conjurar a carta do exílio, mas não como aventura (CR 715.3d)
-    if (zone === 'exile' && ehAventura(def) && o.data.adventureOf === p) out.push({ obj: id, method: { key: 'adventure', label: 'aventura', zone, face: 0, title: `Conjurar ${nomeDaFace(def, 0)} do exílio (aventura)` } });
+    if (zone === 'exile' && ehAventura(def) && o.data.adventureOf === p && faces.includes(0)) out.push({ obj: id, method: { key: 'adventure', label: 'aventura', zone, face: 0, title: `Conjurar ${nomeDaFace(def, 0)} do exílio (aventura)` } });
     for (const prm of permissionsFor(g, p, id)) {
       if (prm.filter && !prm.filter({ g, you: p, source: id }, id)) continue;
       for (const f of faces) if (f !== FACE_AMBAS) push(`perm:${prm.key}`, f, `${prm.label}: ${nomeDaFace(def, f)}`, { label: prm.label, permission: prm });
@@ -240,6 +240,13 @@ function landPlayOptions(g: G, p: PlayerId): { obj: ObjId; key: string; face: nu
       const prm = permissionsFor(g, p, id).find((x) => x.land);
       if (prm) for (const face of faces) out.push({ obj: id, key: chaveComFace(`perm:${prm.key}`, face), face });
     }
+  }
+  // aventura cuja carta normal é terreno (Ishgard, the Holy See): depois de resolver, quem a conjurou pode jogar o
+  // terreno do exílio, com a jogada de terreno de sempre (CR 715.3d, 305.1; ruling 4)
+  for (const id of s.zones.exile) {
+    const o = s.objects[id];
+    if (o.copyOf || !ehAventura(o.def) || o.data.adventureOf !== p) continue;
+    for (const face of facesDeTerreno(o.def)) out.push({ obj: id, key: chaveComFace('adventure', face), face });
   }
   // precons-e: o terreno do topo do grimório com permissão de jogar dali (Verge Rangers, One with the Multiverse)
   for (const id of s.zones.library[p].slice(0, 1)) {

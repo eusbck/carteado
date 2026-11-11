@@ -52,6 +52,8 @@ export function defaultAnswer(d: Decision): Answer {
     case 'blockers': {
       const usados = new Set<ObjId>();
       const blocks: [ObjId, ObjId][] = [];
+      // bloqueios exigidos (CR 509.1c; Fighter Class) primeiro
+      for (const [b, a] of d.requiredBlocks ?? []) if (!usados.has(b)) { usados.add(b); blocks.push([b, a]); }
       for (const a of d.required ?? []) {
         const b = d.candidates.find((c) => !usados.has(c.obj) && c.canBlock.includes(a));
         if (b) { usados.add(b.obj); blocks.push([b.obj, a]); }

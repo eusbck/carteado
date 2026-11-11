@@ -333,7 +333,12 @@ export interface RuleHooks {
   /** condição da substituição de compra da mesma permanente; sem este gancho, ela vale sempre */
   drawReplaceApplies?: (c: SCtx, player: PlayerId) => boolean;
   /** "habilidades ativadas de [essas fontes] custam {N} a menos", sem baixar a mana do custo a menos de minMana (Convergence of Dominion) */
-  abilityCostModifier?: (c: SCtx, player: PlayerId, source: ObjId, def: ActivatedDef) => { reduce: number; minMana?: number } | null;
+  abilityCostModifier?: (c: SCtx, player: PlayerId, source: ObjId, def: ActivatedDef, targets?: TargetRef[]) => { reduce: number; minMana?: number; free?: boolean } | null;
+  // `targets`: os alvos já escolhidos (ausente na estimativa de "dá para ativar?": aí o gancho deve ser otimista;
+  // Professor Hojo). `free`: "você pode pagar {0} em vez do custo" (custo alternativo de mana, CR 118.9; Bruenor
+  // Battlehammer, Forge Anew); o motor sempre usa, e as reduções não se somam a ele.
+  /** "você pode ativar [estas habilidades] a qualquer momento em que poderia conjurar uma mágica instantânea" (Forge Anew) */
+  activateAsInstant?: (c: SCtx, player: PlayerId, source: ObjId, def: ActivatedDef) => boolean;
   /**
    * Ação baseada em estado definida pela carta (CR 704), conferida junto com as do jogo e podendo pedir escolhas
    * (Space Beleren: quem controla uma criatura sem setor a põe num setor). Devolve true se fez alguma coisa; precisa
@@ -430,6 +435,8 @@ export interface AdditionalCostDef {
   capByMana?: boolean;
   /** pago uma vez para cada modo escolhido além do primeiro, sem perguntar (escalada, CR 702.120a) */
   perExtraMode?: boolean;
+  /** pago, sem perguntar, quando o modo de índice `perMode` é o escolhido (escalonado, CR 702.183a) */
+  perMode?: number;
 }
 
 export interface AltCastDef {

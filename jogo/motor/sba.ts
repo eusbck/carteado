@@ -30,6 +30,22 @@ export function* performSBAs(g: G): Gen<boolean> {
     const emCombate = [...s.combat.attackers.filter((a) => !a.removed).map((a) => a.id), ...s.combat.blockers.map((b) => b.id)];
     for (const id of emCombate) if (s.objects[id]?.zone === 'battlefield' && !isCreature(g, id)) { removeFromCombat(g, id); g.bump(); }
   }
+  // CR 611.2b: "enquanto você controlar X" acaba quando outro jogador passa a controlar X (sair do campo já é tratado em
+  // endEffectsTiedTo). Não é ação de estado, mas é conferida aqui, antes de alguém receber prioridade (Yuffie)
+  const semControle = s.effects.filter((e) => e.duration.kind === 'whileControlled' && s.objects[e.duration.obj]?.zone === 'battlefield'
+    && controllerOf(g, e.duration.obj) !== e.duration.player);
+  if (semControle.length) {
+    const afetados = [...new Set(semControle.flatMap((e) => e.affected ?? []))].filter((id) => s.objects[id]?.zone === 'battlefield');
+    const antes = new Map(afetados.map((id) => [id, controllerOf(g, id)]));
+    s.effects = s.effects.filter((e) => !semControle.includes(e));
+    g.bump();
+    for (const id of afetados) {
+      if (controllerOf(g, id) === antes.get(id)) continue;
+      s.objects[id].controlledSince = s.turn.number; // CR 302.6
+      removeFromCombat(g, id); // CR 506.4
+    }
+    performed = true;
+  }
   const losers: { p: PlayerId; reason: string; rule: string }[] = [];
   for (const p of g.playersInGame()) {
     const pl = s.players[p];

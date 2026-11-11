@@ -404,6 +404,8 @@ function computeAll(g: G): void {
         // CR 613.1b: depois dos efeitos de controle, "você" de uma estática do campo é quem controla a fonte agora
         for (const r of runs) if (r.st.zone === 'battlefield' && !r.started) r.st.controller = work.get(r.st.source)?.controller ?? r.st.controller;
       }
+      // CR 208 (rulings de Kutzil): a força-base é a que sai das camadas 7a e 7b, sem modificações nem marcadores
+      if (L === '7b') for (const c of work.values()) forcaBase.set(c, c.power);
       if (L === '7c') {
         for (const id of bf) {
           const c = work.get(id)!;
@@ -600,6 +602,15 @@ export const PERMANENT_TYPES = ['Artifact', 'Battle', 'Creature', 'Enchantment',
 
 export function isPermanentCard(g: G, id: ObjId): boolean {
   return chars(g, id).types.some((t) => PERMANENT_TYPES.includes(t));
+}
+
+/** força-base (CR 208.1, 613.4b): a impressa ou a definida por CDA e por efeitos que definem a força (camadas 7a-7b),
+ *  sem as modificações da camada 7c nem os marcadores. Fora do campo, a força atual. */
+const forcaBase = new WeakMap<Chars, number | null>();
+export function basePower(g: G, id: ObjId): number {
+  const c = chars(g, id);
+  const b = forcaBase.get(c);
+  return (b === undefined ? c.power : b) ?? 0;
 }
 
 export function power(g: G, id: ObjId): number {

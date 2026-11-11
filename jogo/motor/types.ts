@@ -341,6 +341,12 @@ export interface TurnStats {
   landsEntered?: number;
   /** fichas que este jogador criou neste turno (Idol of Oblivion); falta nas partidas salvas antes */
   tokensCreated?: number;
+  /** criaturas declaradas atacantes por este jogador neste turno, em todos os combates (Full Throttle); falta nas
+   *  partidas salvas antes */
+  attackersThisTurn?: ObjId[];
+  /** habilidades ativadas por este jogador no turno, na ordem (Bruenor, Forge Anew: "a primeira habilidade de equipar";
+   *  Professor Hojo: "a primeira que tem como alvo uma criatura sua"); falta nas partidas salvas antes */
+  activationLog?: { kw?: string; ownCreatureTargeted: boolean }[];
 }
 
 export interface LogEntry {
@@ -553,7 +559,7 @@ export type Decision = {
   | { kind: 'number'; min: number; max: number }
   | { kind: 'payment'; cost: string; remaining: string; sources: PaymentSource[]; canAuto: boolean; lifeOptions: number; canCancel: boolean }
   | { kind: 'attackers'; candidates: { obj: ObjId; targets: TargetRef[]; /** alvos que cumprem as exigências de ataque (CR 508.1d); ausente se não houver */ required?: TargetRef[]; /** mana genérica a pagar para atacar cada alvo, na ordem de targets (CR 508.1h); ausente se tudo for de graça */ costs?: number[] }[]; error?: string }
-  | { kind: 'blockers'; candidates: { obj: ObjId; canBlock: ObjId[]; /** revisão B: mana genérica a pagar para bloquear cada atacante, na ordem de canBlock (CR 509.1d: Archangel of Tithes); ausente se tudo for de graça */ costs?: number[] }[]; attackers: ObjId[]; /** atacantes que precisam ser bloqueados por exatamente uma criatura se puder */ required?: ObjId[]; error?: string }
+  | { kind: 'blockers'; candidates: { obj: ObjId; canBlock: ObjId[]; /** revisão B: mana genérica a pagar para bloquear cada atacante, na ordem de canBlock (CR 509.1d: Archangel of Tithes); ausente se tudo for de graça */ costs?: number[] }[]; attackers: ObjId[]; /** atacantes que precisam ser bloqueados por exatamente uma criatura se puder */ required?: ObjId[]; /** bloqueios exigidos ("[bloqueadora] bloqueia [atacante] se puder", CR 509.1c; Fighter Class) */ requiredBlocks?: [ObjId, ObjId][]; error?: string }
   | { kind: 'damage'; attacker: ObjId; amount: number; recipients: TargetRef[]; lethal: number[]; trample: boolean; error?: string }
   | { kind: 'arrange'; items: ChoiceItem[]; destinations: ('top' | 'bottom' | 'graveyard')[] }
   | { kind: 'mulligan'; handSize: number; mulligans: number }
