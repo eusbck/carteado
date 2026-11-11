@@ -359,6 +359,9 @@ export interface RuleHooks {
   multiDrawInstead?: (c: SCtx, player: PlayerId, n: number) => boolean;
   /** "Seus oponentes não podem procurar em grimórios" (Stranglehold; CR 701.23) */
   cantSearchLibraries?: (c: SCtx, player: PlayerId) => boolean;
+  /** "se um oponente fosse começar um turno extra, em vez disso esse jogador pula esse turno" (Stranglehold, Trouble in
+   *  Pairs; CR 614.10): consultado quando o turno extra começaria, não quando é criado (rulings 5 e 3) */
+  skipsExtraTurn?: (c: SCtx, player: PlayerId) => boolean;
   /** "Você pode olhar a carta do topo do seu grimório a qualquer momento" (Vesuvan Drifter, Realmwalker) */
   lookAtTopOfLibrary?: (c: SCtx, player: PlayerId) => boolean;
   /** "Você não perde mana [vermelha] não gasta quando as etapas e fases terminam" (Leyline Tyrant; CR 106.4, 500.5) */

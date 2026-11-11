@@ -8,8 +8,8 @@ export default defineCard({
   name: 'Trouble in Pairs',
   faces: [{
     abilities: [
-      // o jogo não tem turnos extras: a primeira habilidade não tem o que substituir (como Stranglehold)
-      staticAbility({ text: 'Se um oponente fosse começar um turno extra, em vez disso esse jogador pula esse turno.' }),
+      // CR 614.10: o turno extra do oponente é pulado quando começaria (motor/turn.ts)
+      staticAbility({ rules: { skipsExtraTurn: (c, p) => c.g.isOpponent(c.you, p) }, text: 'Se um oponente fosse começar um turno extra, em vez disso esse jogador pula esse turno.' }),
       // ruling 5: cada um dos três acontecimentos dispara separadamente
       triggered(on.custom((e, c) => {
         if (e.type === 'attackers') return c.g.isOpponent(c.you, e.player) && e.attackers.filter((a) => a.target.kind === 'player' && a.target.id === c.you).length >= 2;
@@ -23,9 +23,9 @@ export default defineCard({
     ],
   }],
   rulings: {
-    1: 'não se aplica: o motor não tem turnos extras',
+    1: 'regra geral: CR 500.7 — turno extra é o criado por mágica ou habilidade (motor/cedh.ts takeExtraTurn)',
     2: 'teste: a segunda mágica do oponente no turno faz você comprar; a primeira e a terceira não',
-    3: 'não se aplica: o motor não tem turnos extras',
+    3: 'regra geral: CR 614.10 — o turno extra só é pulado quando começaria (motor/turn.ts; testes/regras-turno-extra.test.ts)',
     4: 'teste: a segunda compra do oponente no turno faz você comprar, mesmo com Trouble in Pairs entrando depois da primeira',
     5: 'teste: Bruno ataca você com duas criaturas: você compra uma carta',
     6: 'regra geral: CR 506.1 — cada declaração de ataque (num combate adicional também) é um acontecimento novo',

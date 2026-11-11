@@ -44,4 +44,24 @@ describe('turno extra', () => {
     expect(tg.state.turn.active).toBe(1);
     expect(tg.state.turn.extraTurnId).toBeUndefined();
   });
+
+  it('CR 614.10: com Stranglehold de um oponente no campo, o turno extra é pulado quando começaria (ruling 5)', () => {
+    const tg = setup({ players: 3, battlefield: [[], [], ['Stranglehold']], library: [BIB(5), BIB(5), BIB(5)] });
+    takeExtraTurn(tg.g, 1);
+    tg.refresh();
+    const turno = tg.state.turn.number;
+    tg.passUntil((t) => t.state.turn.number !== turno);
+    // Bruno pula o extra e o turno normal segue: Bruno (normal)
+    expect(tg.state.turn.active).toBe(1);
+    expect(tg.state.turn.extraTurnId).toBeUndefined();
+  });
+
+  it('CR 614.10: Stranglehold do próprio jogador não pula o turno extra dele; e quem saiu antes do turno não pula nada', () => {
+    const tg = setup({ players: 3, battlefield: [[], ['Stranglehold'], []], library: [BIB(5), BIB(5), BIB(5)] });
+    const extra = takeExtraTurn(tg.g, 1);
+    tg.refresh();
+    const turno = tg.state.turn.number;
+    tg.passUntil((t) => t.state.turn.number !== turno);
+    expect(tg.state.turn.extraTurnId).toBe(extra);
+  });
 });

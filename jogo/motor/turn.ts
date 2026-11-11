@@ -435,6 +435,11 @@ function advance(g: G): void {
   while (s.extraTurns?.length) {
     const extra = s.extraTurns.pop()!;
     if (s.players[extra.player].left) continue;
+    // CR 614.10: pular o turno extra (Stranglehold); vale o que está no campo quando o turno começaria
+    if (hooks(g, 'skipsExtraTurn').some((h) => h.fn(h.ctx, extra.player))) {
+      g.log(`${s.players[extra.player].name} pula um turno extra.`, { rule: '614.10' });
+      continue;
+    }
     const resumeAfter = t.resumeAfter ?? t.active;
     beginTurn(g, extra.player);
     s.turn.extraTurnId = extra.id;
