@@ -332,7 +332,8 @@ export function etb(effect: EffectFn, opts: Omit<Partial<TriggeredDef>, 'kind' |
 export function equip(costText: string): ActivatedDef {
   return activated(costText, function* (c) {
     const target = tgt(c);
-    if (target !== null && c.g.state.objects[c.source]) attach(c.g, c.source, target);
+    // CR 702.26b: o Equipamento fora de fase é tratado como se não existisse e não se move (ruling 2 de Robe of Stars)
+    if (target !== null && c.g.state.objects[c.source] && !c.g.state.objects[c.source].phasedOut) attach(c.g, c.source, target);
   }, { kw: 'equip', param: costText, timing: 'sorcery', targets: [t.creature(is.yours, 'criatura alvo que você controla')], text: `Equipar ${costText}` });
 }
 

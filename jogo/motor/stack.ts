@@ -18,6 +18,7 @@ import { emit } from './triggers.ts';
 import { ehAventura, ehDividida, ehPresagio, FACE_AMBAS, facesConjuraveis, metadeAftermath, rotuloConjurar, temVariasFaces } from './formatos.ts';
 import type { Answer, Chars, Duration, GameObject, GameState, ManaSymbol, Mod, ObjId, PlayerId, StackInfo, TargetRef, ZoneName } from './types.ts';
 import { HEXPROOF_FROM_ABILITIES, sourceIsAbility, splitSecondActive } from './controle-base.ts';
+import { equiparComoInstantanea, equiparPorZero, registraAtivacao, segundoDivididoNaPilha } from './equipar.ts';
 
 // ---------------------------------------------------------------------------
 // Alvos (CR 115, 608.2b)
@@ -652,12 +653,15 @@ function* activateInner(g: G, player: PlayerId, sourceId: ObjId, abilityId: stri
     info.targets = t;
   }
   // 601.2f-h
-  const cost = totalAbilityCost(g, player, sourceId, def, info.x);
+  let cost = totalAbilityCost(g, player, sourceId, def, info.x, info.targets);
+  // lote3-a: "pagar {0} em vez do custo de equipar" (CR 118.9): troca o custo inteiro da ativação
+  let custoZero = false;
+  if (equiparPorZero(g, player, sourceId, def) && (yield* yesNo(g, player, `${label}: pagar {0} em vez do custo de equipar?`))) { cost = []; custoZero = true; }
   // a fonte que vai ser virada/sacrificada no custo não pode também pagar a mana
   const usesSource = def.cost.some((p) => p.k === 'tap' || p.k === 'untap' || p.k === 'sacrificeSelf' || p.k === 'exileSelf');
   const paid = yield* payMana(g, player, cost, { purpose: { kind: 'ability', obj: ab.id }, canCancel: true, label, excludeSource: usesSource ? sourceId : undefined });
   if (paid === null) return null;
-  const parts = def.cost.filter((p) => p.k !== 'mana');
+  const parts = custoZero ? [] : def.cost.filter((p) => p.k !== 'mana');
   const r = yield* payParts(g, player, parts, sourceId, info.x);
   if (r === false) return null;
   info.data.costInfo = r;
@@ -666,6 +670,7 @@ function* activateInner(g: G, player: PlayerId, sourceId: ObjId, abilityId: stri
     if (def.oncePerTurn) s0.usedThisTurn[abilityId] = g.state.turn.number;
     if (def.cost.some((p) => p.k === 'loyalty')) s0.usedThisTurn['loyalty'] = g.state.turn.number; // CR 606.3
   }
+  registraAtivacao(g, player, def, info.targets);
   g.bump();
   g.log(`${g.state.players[player].name} ativa ${label}${info.targets.flat().length ? ` (alvos: ${info.targets.flat().map((t) => targetLabel(g, t)).join(', ')})` : ''}.`, { rule: '602.2' });
   const events: Parameters<typeof emit>[1] = [{ type: 'activate', obj: ab.id, source: sourceId, player, abilityId }];
@@ -683,7 +688,9 @@ export function canActivate(g: G, player: PlayerId, sourceId: ObjId, def: Activa
   const owner = o.zone === 'battlefield' ? controllerOf(g, sourceId) : o.owner;
   if (def.activator === 'opponents') { if (!g.isOpponent(owner, player)) return false; }
   else if (owner !== player) return false;
-  if (def.timing === 'sorcery' && !timingOk.sorcery) return false;
+  if (def.timing === 'sorcery' && !timingOk.sorcery && !equiparComoInstantanea(g, player, sourceId, def)) return false;
+  // CR 702.61a: com segundo dividido na pilha, só habilidades de mana
+  if (segundoDivididoNaPilha(g)) return false;
   if (def.cost.some((p) => p.k === 'loyalty')) {
     if (!timingOk.sorcery) return false; // CR 606.3
     if (o.usedThisTurn['loyalty'] === g.state.turn.number) return false;
@@ -692,23 +699,24 @@ export function canActivate(g: G, player: PlayerId, sourceId: ObjId, def: Activa
   if (def.oncePerTurn && o.usedThisTurn[def.id!] === g.state.turn.number) return false;
   if (def.condition && !def.condition({ g, you: player, source: sourceId })) return false;
   if (hooks(g, 'cantActivate').some((h) => h.fn(h.ctx, player, sourceId))) return false; // lote3-d: Cursed Totem
-  if (!canPayParts(g, player, def.cost.filter((p) => p.k !== 'mana'), sourceId, 0)) return false;
+  const zero = equiparPorZero(g, player, sourceId, def);
+  if (!zero && !canPayParts(g, player, def.cost.filter((p) => p.k !== 'mana'), sourceId, 0)) return false;
   // precisa ter alvos possíveis
   const { specs } = abilityTargetSpecs(def, []);
   if (specs.some((sp) => (sp.min ?? 1) > 0 && candidateTargets(g, sp, player, sourceId).length < (sp.min ?? 1))) return false;
   const mp = totalAbilityCost(g, player, sourceId, def, 0);
   const usesSource = def.cost.some((p) => p.k === 'tap' || p.k === 'untap' || p.k === 'sacrificeSelf' || p.k === 'exileSelf');
-  if (mp.length && !canAfford(g, player, mp, { purpose: { kind: 'ability', obj: sourceId }, excludeSource: usesSource ? sourceId : undefined })) return false;
+  if (!zero && mp.length && !canAfford(g, player, mp, { purpose: { kind: 'ability', obj: sourceId }, excludeSource: usesSource ? sourceId : undefined })) return false;
   return true;
 }
 
 /** CR 602.2b, 601.2f: determine uma vez o custo total, antes de ativar habilidades de mana ou pagar partes. */
-export function totalAbilityCost(g: G, player: PlayerId, source: ObjId, def: ActivatedDef, x: number): ManaSymbol[] {
+export function totalAbilityCost(g: G, player: PlayerId, source: ObjId, def: ActivatedDef, x: number, targets?: TargetRef[][]): ManaSymbol[] {
   const adjustment = def.selfCost?.({ g, you: player, source }, x);
   let custo = reduceGeneric(addGeneric(withX(manaPart(def.cost), x), adjustment?.increase ?? 0), adjustment?.reduce ?? 0);
   // reduções vindas de outras permanentes (Convergence of Dominion), com piso na mana total do custo
   for (const h of hooks(g, 'abilityCostModifier')) {
-    const r = h.fn(h.ctx, player, source, def);
+    const r = h.fn(h.ctx, player, source, def, targets);
     if (!r || r.reduce <= 0) continue;
     const total = custo.reduce((n, s) => n + (s.k === 'generic' ? s.n : s.k === 'X' ? 0 : 1), 0);
     const pode = Math.max(0, total - (r.minMana ?? 0));

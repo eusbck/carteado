@@ -53,3 +53,6 @@ export * from './estacao.ts';
 // lote3-b: assimilar (Star Trek), destemido da próxima mágica (undaunted, CR 702.125)
 export * from './assimilar.ts';
 export * from './destemido.ts';
+// lote3-a (deck Cloud): equipar por {0}, equipar como instantânea, segundo dividido, histórico
+export * from './equipar.ts';
+export * from './historia.ts';

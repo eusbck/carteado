@@ -305,6 +305,8 @@ export interface PlayerState {
   lastTurn: number;
   /** quantos turnos o jogador já começou na partida, contando os extras (Serra Avenger); ausente em partidas salvas antes */
   turnsTaken?: number;
+  /** lote3-a: designação "história duradoura" (CR 702.195b), para o resto da partida */
+  enduringStory?: boolean;
 }
 
 /** estatísticas do turno atual por jogador, para cartas que olham "neste turno" */
@@ -348,6 +350,10 @@ export interface TurnStats {
   landsEntered?: number;
   /** fichas que este jogador criou neste turno (Idol of Oblivion); falta nas partidas salvas antes */
   tokensCreated?: number;
+  /** lote3-a: habilidades de equipar que este jogador ativou neste turno (Bruenor, Forge Anew: "o primeiro equipar") */
+  equipActivated?: number;
+  /** lote3-a: habilidades ativadas por este jogador neste turno com uma criatura dele como alvo (Professor Hojo) */
+  activatedTargetingOwnCreature?: number;
 }
 
 export interface LogEntry {

@@ -70,6 +70,8 @@ export function nomeDaFace(def: string, face: number): string {
 }
 
 const ehTerreno = (def: string, face: number) => (oracle(def).faces[face]?.types ?? []).includes('Land');
+/** a face é um terreno? (lote3-a: aventura cuja carta é um terreno) */
+export const faceEhTerreno = ehTerreno;
 
 /**
  * Faces que podem ser conjuradas a partir da zona (só o formato; tempo, custo e alvos ficam para quem conjura):
@@ -88,7 +90,8 @@ export function facesConjuraveis(def: string, zona: ZoneName): number[] {
     if (temFusao(def) && zona === 'hand') out.push(FACE_AMBAS);
     return out;
   }
-  if (l === 'adventure') return [0, 1];
+  // a carta de uma aventura pode ser um terreno (Ishgard, the Holy See): essa face não se conjura (CR 305.9)
+  if (l === 'adventure') return [0, 1].filter((f) => f !== 0 || !ehTerreno(def, 0));
   // presságio: a carta normal ou o presságio, de qualquer zona de onde se possa conjurar (CR 720.3)
   if (ehPresagio(def)) return [0, 1];
   return l !== null && ehTerreno(def, 0) ? [] : [0];
