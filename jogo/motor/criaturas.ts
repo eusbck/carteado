@@ -359,27 +359,30 @@ const SACRIFICA_MOBILIZADAS = defineAbility('kw:mobilize:sacrifica', nextEndStep
 
 /** CR 702.181a: Mobilizar N — sempre que ataca, crie N fichas 1/1 vermelhas de Guerreiro viradas e atacando (cada uma
  *  ataca quem você escolher, ruling 1); sacrifique-as no início da próxima etapa final */
-export function mobilize(n: number): TriggeredDef {
+/** Mobilizar N (CR 702.181); N pode ser calculado na resolução ("Mobilize X, onde X é…": Avenger of the Fallen) */
+export function mobilize(n: number | ((c: SCtx) => number), rotulo?: string): TriggeredDef {
   const a = triggered(on.selfAttacks(), function* (c) {
     const s = c.g.state;
     if (!s.combat) return;
+    const k = typeof n === 'function' ? n(c) : n;
+    if (k <= 0) return;
     const alvos = alvosDeAtaque(c.g, c.you);
     if (!alvos.length) return;
     const reqs: TargetRef[] = [];
-    for (let i = 0; i < n; i++) {
+    for (let i = 0; i < k; i++) {
       let alvo = alvos[0];
       if (alvos.length > 1) {
         const itens = alvos.map((x) => (x.kind === 'player' ? playerItem(c.g, x.id) : objItem(c.g, x.id, nameOf(c.g, x.id))));
-        const [esc] = yield* chooseItems(c.g, c.you, `Mobilizar ${n}: quem a ficha de Guerreiro ${i + 1} ataca?`, itens, 1, 1);
+        const [esc] = yield* chooseItems(c.g, c.you, `Mobilizar ${k}: quem a ficha de Guerreiro ${i + 1} ataca?`, itens, 1, 1);
         alvo = esc.startsWith('p') ? { kind: 'player', id: Number(esc.slice(1)) } : { kind: 'obj', id: Number(esc) };
       }
       reqs.push(alvo);
     }
     const fichas = yield* putOntoBattlefield(c.g, reqs.map((alvo) => ({ controller: c.you, token: { def: 'Warrior vermelho' }, tapped: true, attacking: alvo })), 'token');
     if (fichas.length) delayed(c, SACRIFICA_MOBILIZADAS.id!, { data: { fichas } });
-  }, { text: `Mobilizar ${n} (sempre que esta criatura ataca, crie ${n} ficha(s) de criatura Guerreiro vermelha 1/1 virada(s) e atacando; sacrifique-as no início da próxima etapa final).` });
+  }, { text: `Mobilizar ${rotulo ?? n} (sempre que esta criatura ataca, crie ${rotulo ?? n} ficha(s) de criatura Guerreiro vermelha 1/1 virada(s) e atacando; sacrifique-as no início da próxima etapa final).` });
   a.kw = 'mobilize';
-  a.param = n;
+  a.param = typeof n === 'function' ? rotulo : n;
   return a;
 }
 

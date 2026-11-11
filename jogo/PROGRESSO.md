@@ -28,8 +28,27 @@ Feito nesta conversa, porque as rodadas automáticas da tarefa semanal terminava
 - **Verificação:** `npm run typecheck` sem erros; testes de cada carta nova; testes gerais (`vitest run testes`):
   69 arquivos, só falham os 7 de imagem (a cópia usada não tem imagens); bots com o Cloud Nine obrigatório: 8 de 4
   jogadores e 8 de 2 (aleatórios), 4 de 2 (heurísticos), sem erro. A suíte inteira não rodou.
-- **Faltam (cartas sem regras):** LandReanimator 60, Voja 58, yuriko 58, Sephiroth 46, The Borg Queen 43; e os decks
-  ainda não importados (Abusive Terraforming e mais dois links).
+- **The Borg Queen: pronto.** As 43 cartas que faltavam, cada uma com teste. 37 decks jogáveis.
+  - `cartas/estacao.ts`: Estação (CR 702.184) e os níveis {N+} das Espaçonaves (CR 721.2); o custo de virar
+    criaturas agora guarda quais foram viradas (`costInfo.tappedCreatures`, motor/costs.ts).
+  - `cartas/borg.ts`: assimilar (texto de lembrete) e "exile e devolva" (piscar).
+  - Motor: alvo `stackObject` (mágica ou habilidade na pilha: Disallow).
+  - Simplificações: Type-03 Borg Vessel cria o Borg só com 7+ cargas (a linha está na caixa de 7+); Queen's Diamond
+    aceita a mana para qualquer comandante (não confere o dono); Iron Man e Hugh copiam a mágica de artefato e a cópia
+    vira ficha ao resolver.
+  - Verificação: bots com o deck obrigatório (8×4 e 8×2 aleatórios, 4×2 heurísticos) sem erro.
+- **Sephiroth, Fabled SOLDIER: pronto.** As 46 cartas que faltavam, cada uma com teste. 38 decks jogáveis.
+  - `cartas/crime.ts` ("sempre que você comete um crime", CR 700.13: um disparo por mágica ou habilidade);
+    `cartas/morte.ts` (gatilhos por criatura morrendo: Drivnod e The Masamune disparam uma vez a mais).
+  - Motor: Mobilizar X calculado na resolução (Avenger of the Fallen). Fichas novas: Borg, Faerie Rogue, Thrull,
+    Thrull 0/1, Human Cleric e Zombie Rogue (na tabela de `cartas/fichas.test.ts`).
+  - Simplificações: Endrek Sahr é sacrificado na conferência de estado, sem usar a pilha; The Masamune não obriga os
+    bloqueadores ("precisa ser bloqueada se puder"); o emblema de Sephiroth vem quando a própria habilidade dele o
+    transforma.
+  - Verificação: testes gerais (só os 7 de imagem falham), bots com o deck obrigatório (8×4 e 8×2 aleatórios,
+    4×2 heurísticos) sem erro.
+- **Faltam (cartas sem regras):** LandReanimator 60, Voja 58, yuriko 58; e os decks ainda não importados (Abusive
+  Terraforming e mais dois links).
 
 ## Revisão carta a carta dos seis precons — 16 e 17/10/2026
 

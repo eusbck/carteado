@@ -48,6 +48,7 @@ export function isLegalTarget(g: G, spec: TargetSpec, t: TargetRef, controller: 
   if (!o) return false;
   if (spec.what === 'player') return false;
   if (spec.what === 'ability') { if (o.zone !== 'stack' || !o.stack || o.stack.kind === 'spell') return false; } // habilidade ativada ou desencadeada na pilha
+  else if (spec.what === 'stackObject') { if (o.zone !== 'stack' || !o.stack || t.id === source) return false; } // mágica ou habilidade na pilha (Disallow)
   else if (spec.what === 'spell' || (spec.what === 'spellOrPermanent' && o.zone === 'stack')) { if (o.zone !== 'stack' || o.stack?.kind !== 'spell') return false; if (t.id === source) return false; } // CR 115.5
   else if (spec.what === 'card') { if (o.zone !== (spec.zone ?? 'graveyard')) return false; }
   else {
@@ -69,7 +70,7 @@ export function candidateTargets(g: G, spec: TargetSpec, controller: PlayerId, s
   const out: TargetRef[] = [];
   if (spec.what === 'player' || spec.what === 'any') for (const p of g.playersInGame()) out.push({ kind: 'player', id: p });
   if (spec.what === 'object' || spec.what === 'any' || spec.what === 'spellOrPermanent') for (const id of s.zones.battlefield) out.push({ kind: 'obj', id });
-  if (spec.what === 'spell' || spec.what === 'spellOrPermanent' || spec.what === 'ability') for (const id of s.zones.stack) out.push({ kind: 'obj', id });
+  if (spec.what === 'spell' || spec.what === 'spellOrPermanent' || spec.what === 'ability' || spec.what === 'stackObject') for (const id of s.zones.stack) out.push({ kind: 'obj', id });
   if (spec.what === 'card') {
     const zone = spec.zone ?? 'graveyard';
     const ids = zone === 'graveyard' || zone === 'hand' || zone === 'library' ? s.zones[zone].flat() : s.zones[zone];

@@ -669,6 +669,8 @@ export function* payParts(g: G, player: PlayerId, parts: CostPart[], source: Obj
         const cands = s.zones.battlefield.filter((id) => (p.includeSelf || id !== source) && controllerOf(g, id) === player && isCreature(g, id) && !s.objects[id].tapped && (!p.filter || p.filter(ctx, id)));
         const ids = yield* chooseItems(g, player, `Vire ${p.n} ${p.label ?? 'criatura(s) desvirada(s)'} que você controla`, cands.map((id) => objItem(g, id, nameOf(g, id))), p.n, p.n);
         for (const id of ids) tap(g, Number(id));
+        // quem foi virada no custo (estação, CR 702.184a: a força dela define os marcadores)
+        info.tappedCreatures = [...((info.tappedCreatures as ObjId[] | undefined) ?? []), ...ids.map(Number)];
         break;
       }
       case 'untapCreatures': {

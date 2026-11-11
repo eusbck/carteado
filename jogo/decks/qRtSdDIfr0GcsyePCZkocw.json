@@ -6,8 +6,7 @@
  "link": "https://moxfield.com/decks/qRtSdDIfr0GcsyePCZkocw",
  "importadoEm": "2026-11-10T19:42:18.708Z",
  "verificadoEm": "2026-11-10T19:42:18.708Z",
- "atual": null,
- "preparacao": {
+ "atual": {
   "comandante": "Sephiroth, Fabled SOLDIER // Sephiroth, One-Winged Angel",
   "cartas": [
    {
@@ -352,5 +351,6 @@
    "atualizadoEm": "2026-11-10T19:11:09.087Z"
   },
   "desde": "2026-11-10T19:42:18.708Z"
- }
+ },
+ "preparacao": null
 }

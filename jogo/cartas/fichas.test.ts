@@ -164,6 +164,13 @@ const esperadas: Record<string, [string, string[], string[], string[], number | 
   // precons-e
   'Glimmer': ['Glimmer', ['Enchantment', 'Creature'], ['Glimmer'], ['W'], 1, 1, []],
   'Horror 2/2': ['Horror', ['Enchantment', 'Creature'], ['Horror'], ['B'], 2, 2, []],
+  // semanal 11/11/2026: The Borg Queen e Sephiroth
+  'Borg': ['Borg', ['Artifact', 'Creature'], ['Borg'], [], 1, 1, []],
+  'Faerie Rogue': ['Faerie Rogue', ['Creature'], ['Faerie', 'Rogue'], ['B'], 1, 1, ['flying']],
+  'Thrull': ['Thrull', ['Creature'], ['Thrull'], ['B'], 1, 1, []],
+  'Thrull 0/1': ['Thrull', ['Creature'], ['Thrull'], ['B'], 0, 1, []],
+  'Human Cleric': ['Human Cleric', ['Creature'], ['Human', 'Cleric'], ['B', 'W'], 1, 1, []],
+  'Zombie Rogue': ['Zombie Rogue', ['Creature'], ['Zombie', 'Rogue'], ['B', 'U'], 2, 2, []],
 };
 
 describe('Fichas: características', () => {

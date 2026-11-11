@@ -496,3 +496,13 @@ export const DragonElemental = token('Dragon Elemental', 'Dragon Elemental', ['C
 export const Glimmer11 = token('Glimmer', 'Glimmer', ['Enchantment', 'Creature'], ['Glimmer'], ['W'], 1, 1);
 /** Horror 2/2 preta, criatura encantamento (Phenomenon Investigators) */
 export const Horror22 = token('Horror 2/2', 'Horror', ['Enchantment', 'Creature'], ['Horror'], ['B'], 2, 2);
+
+// The Borg Queen (10/11/2026)
+/** Borg 1/1 incolor, criatura-artefato (Locutus of Borg, Type-03 Borg Vessel, Borg Incursion) */
+export const Borg = token('Borg', 'Borg', ['Artifact', 'Creature'], ['Borg'], [], 1, 1);
+// deck Sephiroth (11/11/2026)
+export const FaerieRogue = token('Faerie Rogue', 'Faerie Rogue', ['Creature'], ['Faerie', 'Rogue'], ['B'], 1, 1, keywords('flying'));
+export const Thrull = token('Thrull', 'Thrull', ['Creature'], ['Thrull'], ['B'], 1, 1);
+export const Thrull01 = token('Thrull 0/1', 'Thrull', ['Creature'], ['Thrull'], ['B'], 0, 1);
+export const HumanCleric = token('Human Cleric', 'Human Cleric', ['Creature'], ['Human', 'Cleric'], ['B', 'W'], 1, 1);
+export const ZombieRogue = token('Zombie Rogue', 'Zombie Rogue', ['Creature'], ['Zombie', 'Rogue'], ['B', 'U'], 2, 2);
