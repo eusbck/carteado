@@ -266,6 +266,10 @@ export interface TurnState {
   skip?: ('draw' | 'main' | 'combat')[];
   /** um efeito encerrou o turno (CR 724.1): a etapa atual acaba sem prioridade e o jogo vai direto para a limpeza */
   ending?: boolean;
+  /** lote3-f: este é um turno extra (CR 500.7); o número identifica o turno criado por takeExtraTurn (Final Fortune) */
+  extraTurnId?: number;
+  /** lote3-f: num turno extra, quem tinha o turno normal antes dele; a ordem normal continua depois desse jogador */
+  resumeAfter?: PlayerId;
 }
 
 export interface CombatState {
@@ -438,6 +442,9 @@ export interface GameState {
   /** a ordem dos turnos está invertida em relação à dos assentos (Aeon Engine); `turnOrder` continua sendo a dos
    *  assentos, e quem pergunta "quem é o próximo" usa G.order() */
   turnReversed?: boolean;
+  /** lote3-f: turnos extras que ainda vão ser tomados (CR 500.7: o criado por último é tomado primeiro); opcional, como
+   *  os de cima */
+  extraTurns?: { player: PlayerId; id: number }[];
   engineVersion: number;
   version: number;
   config: GameConfig;

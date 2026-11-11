@@ -56,3 +56,6 @@ export * from './destemido.ts';
 // lote3-a (deck Cloud): equipar por {0}, equipar como instantânea, segundo dividido, histórico
 export * from './equipar.ts';
 export * from './historia.ts';
+// lote3-f: devoção, turno extra, evocar, dash, barganha e spree (cEDH Inalla)
+export * from './cedh.ts';
+export { successor } from './state.ts';

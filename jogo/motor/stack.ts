@@ -661,6 +661,7 @@ function* activateInner(g: G, player: PlayerId, sourceId: ObjId, abilityId: stri
   const usesSource = def.cost.some((p) => p.k === 'tap' || p.k === 'untap' || p.k === 'sacrificeSelf' || p.k === 'exileSelf');
   const paid = yield* payMana(g, player, cost, { purpose: { kind: 'ability', obj: ab.id }, canCancel: true, label, excludeSource: usesSource ? sourceId : undefined });
   if (paid === null) return null;
+  def.onManaPaid?.({ g, you: player, source: sourceId }, paid.units.map((u) => u.type));
   const parts = custoZero ? [] : def.cost.filter((p) => p.k !== 'mana');
   const r = yield* payParts(g, player, parts, sourceId, info.x);
   if (r === false) return null;
