@@ -211,7 +211,7 @@ function temManaDaMao(def: string | undefined): boolean {
 export function manaOptions(g: G, player: PlayerId, opts: { excludeSource?: ObjId; paying?: boolean } = {}): ManaOption[] {
   const out: ManaOption[] = [];
   const bonusHooks = hooks(g, 'extraManaForPlanning');
-  // lote3-f: habilidades de mana que funcionam da mão (Simian Spirit Guide: "Exile este card da sua mão: adicione {R}";
+  // lote3-f: habilidades de mana que funcionam da mão (Simian Spirit Guide: "Exile esta carta da sua mão: adicione {R}";
   // CR 113.6, 605.1a). As do campo continuam como eram; as que dizem só a mão não valem no campo
   const daMao = g.state.zones.hand[player].filter((id) => temManaDaMao(g.state.objects[id]?.def) && abilityDefs(g, id).some(({ def }) => def.kind === 'mana' && !!def.zones?.includes('hand')));
   for (const id of [...g.state.zones.battlefield, ...daMao]) {

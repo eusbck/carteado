@@ -57,7 +57,7 @@ export function evoked(o: GameObject | null | undefined): boolean {
 /**
  * Evocar [custo] (CR 702.74a): "você pode conjurar esta carta pagando [custo] em vez do custo de mana" e "quando esta
  * permanente entra, se o custo de evocar foi pago, o controlador dela a sacrifica". `mana` é a parte de mana do custo
- * ('' se não tiver) e `parts` o resto ("exile um card preto da sua mão": Grief). Ponha `altCost` em altCosts e
+ * ('' se não tiver) e `parts` o resto ("exile uma carta preta da sua mão": Grief). Ponha `altCost` em altCosts e
  * `abilities` em abilities.
  */
 export function evoke(mana: string, parts: CostPart[], label: string): { altCost: AltCastDef; abilities: AbilityDef[] } {
