@@ -1,5 +1,36 @@
 # Progresso
 
+## Semanal — 10 e 11/11/2026 (Dadinho, com o Claude)
+
+Feito nesta conversa, porque as rodadas automáticas da tarefa semanal terminavam em 3 segundos sem trabalhar.
+
+- **Comandante (CR 903.3):** Veículo lendário e Espaçonave lendária com caixa de P/R também podem ser comandante
+  (Hearthhull, the Worldseed era recusado).
+- **Parceiros (CR 702.124):** o deck guarda o segundo comandante em `parceiro`; a dupla é conferida (partner,
+  partner—[texto], partner with, choose a Background, Doctor's companion); os dois começam na zona de comando,
+  identidade somada, 100 cartas com os dois; Decks, prévia e saguão mostram "A e B".
+- **Decks importados no PC do Dadinho em 10/11** (em preparação): The Borg Queen, Cloud Nine, Sephiroth, Voja,
+  yuriko e LandReanimator, com os dados das cartas em `decks/cartas.json` e `decks/rulings.json`.
+- **Cloud Nine (Cloud, Ex-SOLDIER): pronto.** As 37 cartas que faltavam, cada uma com teste e rulings. 36 decks
+  jogáveis.
+- **Motor (aditivo, com teste):** `activateAsInstant` (Forge Anew: equipar como instantânea, CR 602.5d); custo
+  adicional por modo `whenMode` (escalonado/tiered, CR 702.183: Cloud's Limit Break); exigência de bloqueio
+  `rule:blocksIfAble` (CR 509.1c: Fighter Class), com a resposta padrão e os bots cumprindo
+  (`testes/regras-bloqueio-obrigatorio.test.ts`). `cartas/armaria.ts`: primeiro equipar do turno por {0}.
+- **Simplificações, para conferir na mesa:**
+  - Kutzil: "força base" é a impressa; efeitos que definem a base (Wrecking Ball Arm, Sephiroth) não mudam a
+    comparação.
+  - Zack Fair: o Equipamento a anexar é escolhido entre os seus soltos (o que estava em Zack cai ao ele sair).
+  - Professor Hojo: a redução vale para a primeira habilidade do turno que pode mirar criatura (o custo é calculado
+    antes da escolha dos alvos).
+  - Bruenor e Forge Anew: "a primeira de equipar do turno" só conta as ativadas com um deles no campo.
+  - Fighter Class nível 3: a exigência de bloqueio não é pesada contra restrições de outras criaturas (ameaçar).
+- **Verificação:** `npm run typecheck` sem erros; testes de cada carta nova; testes gerais (`vitest run testes`):
+  69 arquivos, só falham os 7 de imagem (a cópia usada não tem imagens); bots com o Cloud Nine obrigatório: 8 de 4
+  jogadores e 8 de 2 (aleatórios), 4 de 2 (heurísticos), sem erro. A suíte inteira não rodou.
+- **Faltam (cartas sem regras):** LandReanimator 60, Voja 58, yuriko 58, Sephiroth 46, The Borg Queen 43; e os decks
+  ainda não importados (Abusive Terraforming e mais dois links).
+
 ## Revisão carta a carta dos seis precons — 16 e 17/10/2026
 
 O Caio jogou com os seis precons de 14/10 e disse que "aparentemente tem muitas mecânicas quebradas"; pediu a revisão
