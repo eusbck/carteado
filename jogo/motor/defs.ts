@@ -328,8 +328,10 @@ export interface RuleHooks {
    * "se um jogador fosse comprar uma carta, em vez disso ele [faz outra coisa]" (Shared Fate; CR 614.1a): o gerador faz
    * o que entra no lugar da compra. Com mais de um, quem compraria escolhe qual se aplica (CR 616.1); a compra é
    * substituída uma vez só.
+   * lote3-c: substituição opcional ("você pode, em vez disso…", Pavel Chekov): o gerador devolve `false` quando o
+   * jogador não quis, e a compra acontece normalmente (CR 614.5: a mesma substituição não é oferecida de novo).
    */
-  drawReplace?: (c: SCtx, player: PlayerId) => Gen<void>;
+  drawReplace?: (c: SCtx, player: PlayerId) => Gen<void | boolean>;
   /** condição da substituição de compra da mesma permanente; sem este gancho, ela vale sempre */
   drawReplaceApplies?: (c: SCtx, player: PlayerId) => boolean;
   /** "habilidades ativadas de [essas fontes] custam {N} a menos", sem baixar a mana do custo a menos de minMana (Convergence of Dominion) */
