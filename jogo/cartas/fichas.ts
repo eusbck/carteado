@@ -496,3 +496,19 @@ export const DragonElemental = token('Dragon Elemental', 'Dragon Elemental', ['C
 export const Glimmer11 = token('Glimmer', 'Glimmer', ['Enchantment', 'Creature'], ['Glimmer'], ['W'], 1, 1);
 /** Horror 2/2 preta, criatura encantamento (Phenomenon Investigators) */
 export const Horror22 = token('Horror 2/2', 'Horror', ['Enchantment', 'Creature'], ['Horror'], ['B'], 2, 2);
+// lote3-c (Landing Party, Star Trek)
+/** Insect 1/1 verde (Scute Swarm) */
+export const InsectVerde = defineToken({
+  id: 'Insect verde', name: 'Insect', types: ['Creature'], subtypes: ['Insect'], colors: ['G'], power: 1, toughness: 1, abilities: [],
+  // a impressa sem texto (há outra Insect 1/1 verde, com voar e toque mortífero)
+  image: fichasOracle.find((f) => f.faces[0].name === 'Insect' && f.faces[0].power === 1 && f.faces[0].colors.join() === 'G' && f.faces[0].oracleText === '')?.oracleId,
+});
+/** Officer 1/1 vermelha (M'Ress, Crew Coordinator; Shuttlecraft Galileo) */
+export const Officer11 = token('Officer', 'Officer', ['Creature'], ['Officer'], ['R'], 1, 1);
+/** Tribble 1/1 branca: "Esta ficha não pode bloquear." (Tribble Cluster). A ficha impressa no banco de fichas está sem
+ *  cor; a carta diz branca, e vale a carta (CR 111.4). */
+export const Tribble11 = defineToken({
+  id: 'Tribble', name: 'Tribble', types: ['Creature'], subtypes: ['Tribble'], colors: ['W'], power: 1, toughness: 1,
+  abilities: [{ ...keyword('cantBlock'), text: 'Esta ficha não pode bloquear.' }],
+  image: img('Tribble', 1, 1),
+});
