@@ -135,6 +135,8 @@ export interface SpendContext {
   canSpend?: (unit: ManaUnit) => boolean;
   /** "mana de qualquer tipo pode ser gasta" (CR 118.14) */
   anyType?: boolean;
+  /** lote3-e: "como se fosse mana de qualquer cor" (CR 609.4b): qualquer mana paga símbolo colorido, não o {C} */
+  anyColor?: boolean;
   /** quantos símbolos phyrexianos serão pagos com 2 de vida (CR 107.4f) */
   lifeForPhyrexian?: number;
 }
@@ -152,7 +154,7 @@ export function matchPool(cost: ManaSymbol[], pool: ManaUnit[], ctx: SpendContex
   const reqs: { alts: Slot[][]; weight: number }[] = [];
   const any: Slot = () => true;
   // '*' = mana de cor ainda não escolhida (planejamento de "qualquer combinação de cores")
-  const of = (c: ManaType): Slot => (t) => ctx.anyType || t === c || ((t as string) === '*' && c !== 'C');
+  const of = (c: ManaType): Slot => (t) => ctx.anyType || t === c || (!!ctx.anyColor && c !== 'C') || ((t as string) === '*' && c !== 'C');
   for (const s of cost) {
     switch (s.k) {
       case 'generic': for (let i = 0; i < s.n; i++) reqs.push({ alts: [[any]], weight: 0 }); break;

@@ -63,11 +63,35 @@ function face(f: RawFace, layout: string, devoid = false): OracleFace {
   };
 }
 
+/**
+ * lote3-e: texto Oracle de faces que a impressão reversível do Scryfall traz errado. A versão reversível de uma carta
+ * de presságio (Marang River Regent // Coil and Catch // Marang River Regent) repete o texto da criatura na face do
+ * presságio; o texto certo é o da carta normal (layout 'adventure' no Scryfall).
+ */
+const TEXTO_CORRIGIDO: Record<string, string> = {
+  'Coil and Catch': "Draw three cards, then discard a card. (Then shuffle this card into its owner's library.)",
+};
+
+/**
+ * lote3-e: carta "reversível" que na verdade é uma carta de presságio (CR 720): o Scryfall a dá com três faces (criatura,
+ * presságio e a criatura de novo, que é o verso). Fica uma face por nome, e a face do presságio (instantânea ou
+ * feitiço) não tem força nem resistência.
+ */
+function facesReversivel(faces: RawFace[]): RawFace[] {
+  if (new Set(faces.map((f) => f.name)).size === 1) return faces;
+  const vistas = new Set<string>();
+  return faces.filter((f) => !vistas.has(f.name) && vistas.add(f.name)).map((f) => {
+    if (!f.subtypes.includes('Omen')) return f;
+    return { ...f, power: null, toughness: null, oracleText: TEXTO_CORRIGIDO[f.name] ?? f.oracleText };
+  });
+}
+
 function convert(c: RawCard): OracleCard {
+  const faces = c.layout === 'reversible_card' ? facesReversivel(c.faces) : c.faces;
   return {
     name: c.name, oracleId: c.oracleId, layout: c.layout, manaValue: c.manaValue,
     colorIdentity: c.colorIdentity as Color[], keywords: c.keywords,
-    faces: c.faces.map((f) => face(f, c.layout, c.keywords.includes('Devoid'))),
+    faces: faces.map((f) => face(f, c.layout, c.keywords.includes('Devoid'))),
   };
 }
 

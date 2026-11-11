@@ -332,6 +332,13 @@ export function* putOntoBattlefield(g: G, reqs: EnterReq[], cause: string): Gen<
         if (def?.kind === 'replacement' && (def as ReplacementDef).enters) yield* (def as ReplacementDef).enters!({ g, you: r.controller, source: r.id ?? -1 }, ev);
       }
     }
+    // lote3-e: "se não fizer, ponha-o no cemitério do dono" (Mox Diamond): o objeto não entra (CR 614.1c, ruling 1)
+    if (ev.instead && r.id !== undefined) {
+      if (s.objects[r.id]) yield* moveObject(g, r.id, ev.instead, cause);
+      continue;
+    }
+    // lote3-e: substituições de outros permanentes que pedem escolha (riot concedido: Rhythm of the Wild)
+    for (const h of hooks(g, 'enterReplacement')) { const gen = h.fn(h.ctx, ev, wcFinal); if (gen) yield* gen; }
     // substituições de outros permanentes ("criaturas entram com…")
     for (const h of hooks(g, 'enterModifier')) h.fn(h.ctx, ev, wcFinal);
     // "se marcadores fossem ser postos…": entrar com marcadores também conta (CR 122.6, 614.1)

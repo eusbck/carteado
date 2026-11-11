@@ -42,3 +42,6 @@ export * from './planejar.ts';
 export * from './milagre.ts';
 // revisão B: exilar "até esta permanente sair do campo" (CR 610.3): a carta volta logo que a fonte sai
 export { ATE_SAIR } from './actions.ts';
+// lote3-e: rolar dado, dobrar o ar, exaurir, farra e dobra (deck Ur-Dragon); presságio em formatos.ts
+export * from './mecanicas-ur.ts';
+export { ehPresagio } from './formatos.ts';

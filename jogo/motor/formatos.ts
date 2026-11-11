@@ -31,11 +31,17 @@ export const ehDividida = (def: string): boolean => oracleLayout(def) === 'split
 export const ehAventura = (def: string): boolean => oracleLayout(def) === 'adventure';
 /** carta reversível: as duas faces são iguais e vale a da frente (o CR não trata delas) */
 export const ehReversivel = (def: string): boolean => oracleLayout(def) === 'reversible_card';
+/** lote3-e: carta de presságio (CR 720): a segunda face é uma instantânea ou feitiço Omen. O Scryfall dá essas cartas
+ *  como 'adventure' (ou 'reversible_card' na impressão reversível); conjura-se como a aventura, mas resolve de outro jeito */
+export const ehPresagio = (def: string): boolean => {
+  const l = oracleLayout(def);
+  return (l === 'adventure' || l === 'reversible_card') && !!oracle(def).faces[1]?.subtypes.includes('Omen');
+};
 
 /** formatos em que a pessoa escolhe a face ao conjurar ou jogar */
 export function temVariasFaces(def: string): boolean {
   const l = oracleLayout(def);
-  return l === 'modal_dfc' || l === 'split' || l === 'adventure';
+  return l === 'modal_dfc' || l === 'split' || l === 'adventure' || ehPresagio(def);
 }
 
 /** carta dividida de permanente com uma linha de tipo compartilhada (CR 709.5): as Salas */
@@ -83,6 +89,8 @@ export function facesConjuraveis(def: string, zona: ZoneName): number[] {
     return out;
   }
   if (l === 'adventure') return [0, 1];
+  // presságio: a carta normal ou o presságio, de qualquer zona de onde se possa conjurar (CR 720.3)
+  if (ehPresagio(def)) return [0, 1];
   return l !== null && ehTerreno(def, 0) ? [] : [0];
 }
 
@@ -107,5 +115,6 @@ export function faceDaChave(chave: string): [string, number] {
 export function rotuloConjurar(def: string, face: number, verbo = 'Conjurar'): string {
   if (face === FACE_AMBAS) return `${verbo} ${oracle(def).faces.map((f) => f.name).join(' e ')} (fusão)`;
   const nome = nomeDaFace(def, face);
+  if (ehPresagio(def) && face === 1) return `${verbo} ${nome} (presságio)`;
   return ehAventura(def) && face === 1 ? `${verbo} ${nome} (aventura)` : `${verbo} ${nome}`;
 }

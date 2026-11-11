@@ -496,3 +496,8 @@ export const DragonElemental = token('Dragon Elemental', 'Dragon Elemental', ['C
 export const Glimmer11 = token('Glimmer', 'Glimmer', ['Enchantment', 'Creature'], ['Glimmer'], ['W'], 1, 1);
 /** Horror 2/2 preta, criatura encantamento (Phenomenon Investigators) */
 export const Horror22 = token('Horror 2/2', 'Horror', ['Enchantment', 'Creature'], ['Horror'], ['B'], 2, 2);
+// lote3-e (How to Train Ur-Dragon)
+/** Dinosaur 3/1 vermelho (Bonehoard Dracosaur) */
+export const Dinosaur31 = token('Dinosaur 3/1', 'Dinosaur', ['Creature'], ['Dinosaur'], ['R'], 3, 1);
+/** Faerie Dragon 1/1 azul com voar (Ancient Gold Dragon) */
+export const FaerieDragon = token('Faerie Dragon', 'Faerie Dragon', ['Creature'], ['Faerie', 'Dragon'], ['U'], 1, 1, keywords('flying'));
