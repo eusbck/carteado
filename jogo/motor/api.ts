@@ -42,3 +42,5 @@ export * from './planejar.ts';
 export * from './milagre.ts';
 // revisão B: exilar "até esta permanente sair do campo" (CR 610.3): a carta volta logo que a fonte sai
 export { ATE_SAIR } from './actions.ts';
+// lote3-b: estação (station, CR 702.184) e cartas de estação (CR 721)
+export * from './estacao.ts';
