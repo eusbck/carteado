@@ -1,5 +1,46 @@
 # Progresso
 
+## Semanal — 11/11/2026
+
+Rodada extra pedida pelo Dadinho ("dispare até colocar tudo"). Parte do pacote ainda não enviado
+`correcao-comandante` (branch `correcao/comandantes`: comandantes Veículo/Espaçonave e parceiros) e junta a `main`
+(mesas de 2 a 6).
+
+- **Decks importados no PC do Dadinho** entraram no repositório (`decks/<id>.json`, `decks/cartas.json` e
+  `decks/rulings.json`, que no PC eram superconjunto dos da main): The Borg Queen, Cloud Nine, Sephiroth, Fabled
+  SOLDIER, Voja, yuriko, LandReanimator e dois novos, Jund Lands Midrange | Signs of Extinction e Foods.
+- **Cloud Nine (Cloud, Ex-SOLDIER) ficou jogável:** as 37 cartas que faltavam, com 162 testes de carta e todos os
+  rulings mapeados. Quatro implementadores em paralelo:
+  - equipar: Bruenor Battlehammer, Fighter Class, Forge Anew, Firion, Akiri, Zack Fair, Wrecking Ball Arm,
+    Colossus Hammer, Professor Hojo, Cid; ajudantes em `cartas/equipar.ts`;
+  - equipamentos: Conqueror's Flail, Darksteel Plate, Trailblazer's Boots, Champion's Helm, Conformer Shuriken,
+    Summoning Materia, Open the Armory, Heroic Intervention, Bronze Guardian, Red XIII;
+  - criaturas: Cloud, Aerith, Hellkite Tyrant, Kutzil, Full Throttle, Tifa, Sephiroth, Fallen Hero, Gilgamesh,
+    Yuffie, Bugenhagen;
+  - mágicas: Farewell, Ishgard // Faith & Grief, Cloud's Limit Break, Elena, SOLDIER Military Program, Ultimate
+    Magic: Holy, Nibelheim Aflame.
+- **Motor (pequeno e aditivo, com testes de regra novos):**
+  - `abilityCostModifier` recebe os alvos e aceita `free` ("pague {0}"); gancho `activateAsInstant` (Forge Anew);
+    `turnStats.activationLog`; o que estava anexado à fonte sacrificada fica em `costInfo.attachments`;
+    "bloqueia se puder" (`rule:blocksIfAble`, CR 509.1c) conferido na declaração de bloqueadores
+    (`testes/regras-equipar.test.ts`);
+  - Escalonado/Tiered (CR 702.183): `tiered(custos)` e `perMode` nos custos adicionais
+    (`testes/regras-escalonado.test.ts`);
+  - aventura com face de terreno: a face de terreno não é conjurável e, do exílio, pode ser jogada como terreno
+    (CR 715.3d; `testes/regras-aventura-terreno.test.ts`);
+  - `basePower` (força base, camadas 7a–7b), `turnStats.attackersThisTurn`, e efeitos "enquanto você controlar"
+    acabam quando o controle muda (CR 611.2b) (`testes/regras-forca-base-ataque-controle.test.ts`).
+- **Simplificações:** "pode pagar {0}" do Bruenor e do Forge Anew é aplicado sem perguntar; a redução do Professor
+  Hojo é otimista na estimativa de "dá para ativar?"; Cloud's Limit Break estima só o custo base ao oferecer a
+  conjuração (se o modo escolhido não puder ser pago, a conjuração é desfeita); o fim de "enquanto você controlar"
+  acontece na próxima verificação de ações baseadas em estado; "bloqueia se puder" não procura a combinação que
+  cumpre o máximo de exigências e o cliente não destaca o bloqueio exigido.
+- **Faltam:** The Borg Queen 43, Sephiroth, Fabled SOLDIER 46, Foods 54, yuriko 58, Voja 58, LandReanimator 60,
+  Jund Lands Midrange 63. `FILA.md` criado com as pendências.
+- **Verificação:** `npm run typecheck` sem erros; `vitest run testes`: 73 arquivos, 680 testes passam, 7 falham só
+  por falta de imagens na cópia (avatares, artes, cartas próprias); 41 arquivos de teste novos (177 testes) passam; fatias 1 e 2 de 48 da suíte inteira (86 arquivos, 217 testes) passam — a suíte completa não coube na máquina da nuvem (2 CPUs) e vale rodá-la antes de juntar; 6 partidas de bots de 4 jogadores com o Cloud Nine obrigatório, sem erro; `decks.ts conferir` não roda na nuvem (o Moxfield bloqueia).
+- **Próxima rodada:** The Borg Queen, depois Sephiroth, Fabled SOLDIER (divide cartas de Final Fantasy com o Cloud).
+
 ## Mesas de 2 a 6 jogadores, sem precisar de bot — 08/11/2026
 
 Pedido do Caio antes de pôr o jogo numa VPS: dar para jogar com até 6 pessoas, em mesas de 2, 3, 4, 5 ou 6, e
