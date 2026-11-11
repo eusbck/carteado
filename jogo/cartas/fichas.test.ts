@@ -171,6 +171,10 @@ const esperadas: Record<string, [string, string[], string[], string[], number | 
   'Faerie Dragon': ['Faerie Dragon', ['Creature'], ['Faerie', 'Dragon'], ['U'], 1, 1, ['flying']],
   // lote3-b
   'Borg': ['Borg', ['Artifact', 'Creature'], ['Borg'], [], 1, 1, []],
+  // lote3-c
+  'Insect verde': ['Insect', ['Creature'], ['Insect'], ['G'], 1, 1, []],
+  'Officer': ['Officer', ['Creature'], ['Officer'], ['R'], 1, 1, []],
+  'Tribble': ['Tribble', ['Creature'], ['Tribble'], ['W'], 1, 1, []],
 };
 
 describe('Fichas: características', () => {
@@ -187,7 +191,8 @@ describe('Fichas: características', () => {
       expect(face.name).toBe(nome);
       expect(face.types).toEqual(tipos);
       expect(face.subtypes).toEqual(subtipos);
-      expect([...face.colors].sort()).toEqual(cores);
+      // lote3-c: a ficha Tribble impressa no banco de fichas está sem cor; a Tribble Cluster diz branca (vale a carta)
+      expect([...face.colors].sort()).toEqual(id === 'Tribble' ? [] : cores);
       if (p !== null) expect([face.power, face.toughness]).toEqual([p, t]);
       expect(o!.keywords.map((k: string) => k.toLowerCase()).sort()).toEqual([...kws].sort());
       // e a ficha criada no jogo (Aura só entra presa a algo; testada pela carta que a cria)

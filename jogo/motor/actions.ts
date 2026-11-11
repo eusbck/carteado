@@ -928,8 +928,8 @@ export function* draw(g: G, player: PlayerId, n = 1, opts: { aplicadas?: ObjId[]
           const [esc] = yield* chooseItems(g, player, 'Escolha qual efeito substitui a sua compra', subs.map((h, k) => ({ id: String(k), label: `${nameOf(g, h.ctx.source)} de ${g.state.players[h.ctx.you].name}` })), 1, 1);
           escolhida = subs[Number(esc)];
         }
-        yield* escolhida.fn(escolhida.ctx, player);
-        continue;
+        // lote3-c: `false` = substituição opcional recusada; a compra segue normal
+        if ((yield* escolhida.fn(escolhida.ctx, player)) !== false) continue;
       }
     }
     const lib = g.state.zones.library[player];
