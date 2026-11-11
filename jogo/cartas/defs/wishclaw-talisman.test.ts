@@ -16,6 +16,13 @@ describe(NOME, () => {
     expect(tg.actionIds().some((a) => a.startsWith('act:') && a.includes(String(id)))).toBe(false);
   });
 
+  it('com três jogadores, quem ativa escolhe qual oponente ganha o controle', () => {
+    const tg = setup({ players: 3, battlefield: [[{ name: NOME, counters: { wish: 3 } }, 'Swamp'], [], []], library: [['Island', 'Zetalpa, Primal Dawn'], [], []] });
+    tg.choose('Procure', ['Zetalpa, Primal Dawn']).choose('escolha o oponente', [tg.state.players[2].name]).activate(NOME).resolve();
+    expect(tg.names(2, 'battlefield')).toContain(NOME);
+    expect(tg.names(1, 'battlefield')).not.toContain(NOME);
+  });
+
   it('sem marcadores de desejo, a habilidade não pode ser ativada', () => {
     const tg = setup({ battlefield: [[{ name: NOME, counters: { wish: 0 } }, 'Swamp'], []] });
     expect(tg.actionIds().some((a) => a.startsWith('act:'))).toBe(false);

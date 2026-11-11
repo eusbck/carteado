@@ -16,8 +16,11 @@ export default defineCard({
         // ruling 2: o oponente é escolhido na resolução; se ele sair da partida, o controle volta (CR 800.4a)
         const ops = g.opponents(c.you).filter((p) => !g.state.players[p].left);
         if (!ops.length || g.state.objects[c.source]?.zone !== 'battlefield') return;
-        const [p] = ops.length === 1 ? [String(ops[0])] : yield* chooseItems(g, c.you, 'Wishclaw Talisman: escolha o oponente que ganha o controle', ops.map((x) => playerItem(g, x)), 1, 1);
-        gainControl(g, c.source, Number(p), { kind: 'permanent' }, c.source);
+        const itens = ops.map((x) => playerItem(g, x));
+        const [id] = ops.length === 1 ? [itens[0].id] : yield* chooseItems(g, c.you, 'Wishclaw Talisman: escolha o oponente que ganha o controle', itens, 1, 1);
+        // o id do item de jogador é "p<n>": o jogador vem do próprio item
+        const p = itens.find((it) => it.id === id)?.player;
+        if (p !== undefined) gainControl(g, c.source, p, { kind: 'permanent' }, c.source);
       }, {
         // "Ative somente durante o seu turno"
         condition: (c) => c.g.state.turn.active === c.you,
