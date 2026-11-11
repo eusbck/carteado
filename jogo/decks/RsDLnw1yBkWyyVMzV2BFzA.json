@@ -1,0 +1,332 @@
+{
+ "formato": 1,
+ "id": "RsDLnw1yBkWyyVMzV2BFzA",
+ "ordem": 115,
+ "nome": "yuriko",
+ "link": "https://moxfield.com/decks/RsDLnw1yBkWyyVMzV2BFzA",
+ "importadoEm": "2026-11-10T19:45:04.831Z",
+ "verificadoEm": "2026-11-10T19:45:04.831Z",
+ "atual": null,
+ "preparacao": {
+  "comandante": "Yuriko, the Tiger's Shadow",
+  "cartas": [
+   {
+    "nome": "Island",
+    "quantidade": 15
+   },
+   {
+    "nome": "Swamp",
+    "quantidade": 8
+   },
+   {
+    "nome": "Temple of Deceit",
+    "quantidade": 1
+   },
+   {
+    "nome": "Command Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gingerbrute",
+    "quantidade": 1
+   },
+   {
+    "nome": "Baleful Strix",
+    "quantidade": 1
+   },
+   {
+    "nome": "Brainstorm",
+    "quantidade": 1
+   },
+   {
+    "nome": "Calculated Dismissal",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cancel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dismal Backwater",
+    "quantidade": 1
+   },
+   {
+    "nome": "Draco",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ninja of the Deep Hours",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ornithopter",
+    "quantidade": 1
+   },
+   {
+    "nome": "Slither Blade",
+    "quantidade": 1
+   },
+   {
+    "nome": "Treasure Cruise",
+    "quantidade": 1
+   },
+   {
+    "nome": "Universal Automaton",
+    "quantidade": 1
+   },
+   {
+    "nome": "Miscast",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ink-Eyes, Servant of Oni",
+    "quantidade": 1
+   },
+   {
+    "nome": "Spell Pierce",
+    "quantidade": 1
+   },
+   {
+    "nome": "Spectral Sailor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sunken Hollow",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sensei's Divining Top",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lim-Dûl's Vault",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dimir Infiltrator",
+    "quantidade": 1
+   },
+   {
+    "nome": "Higure, the Still Wind",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mistblade Shinobi",
+    "quantidade": 1
+   },
+   {
+    "nome": "Silent-Blade Oni",
+    "quantidade": 1
+   },
+   {
+    "nome": "Skullsnatcher",
+    "quantidade": 1
+   },
+   {
+    "nome": "Choked Estuary",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dig Through Time",
+    "quantidade": 1
+   },
+   {
+    "nome": "Price of Fame",
+    "quantidade": 1
+   },
+   {
+    "nome": "Familiar's Ruse",
+    "quantidade": 1
+   },
+   {
+    "nome": "Skyline Cascade",
+    "quantidade": 1
+   },
+   {
+    "nome": "Spell Shrivel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Polluted Delta",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mothdust Changeling",
+    "quantidade": 1
+   },
+   {
+    "nome": "Memnite",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sage Owl",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mutavault",
+    "quantidade": 1
+   },
+   {
+    "nome": "Index",
+    "quantidade": 1
+   },
+   {
+    "nome": "Scroll Rack",
+    "quantidade": 1
+   },
+   {
+    "nome": "Changeling Outcast",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cunning Evasion",
+    "quantidade": 1
+   },
+   {
+    "nome": "Faerie Seer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fallen Shinobi",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ingenious Infiltrator",
+    "quantidade": 1
+   },
+   {
+    "nome": "Moonblade Shinobi",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mist-Syndicate Naga",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fierce Guardianship",
+    "quantidade": 1
+   },
+   {
+    "nome": "Soaring Seacliff",
+    "quantidade": 1
+   },
+   {
+    "nome": "Temporal Trespass",
+    "quantidade": 1
+   },
+   {
+    "nome": "Triton Shorestalker",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ponder",
+    "quantidade": 1
+   },
+   {
+    "nome": "Xenograft",
+    "quantidade": 1
+   },
+   {
+    "nome": "Trickery Charm",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gudul Lurker",
+    "quantidade": 1
+   },
+   {
+    "nome": "Curtains' Call",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tetsuko Umezawa, Fugitive",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mist-Cloaked Herald",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arcane Adaptation",
+    "quantidade": 1
+   },
+   {
+    "nome": "Unwind",
+    "quantidade": 1
+   },
+   {
+    "nome": "Clearwater Pathway // Murkwater Pathway",
+    "quantidade": 1
+   },
+   {
+    "nome": "Maskwood Nexus",
+    "quantidade": 1
+   },
+   {
+    "nome": "Thousand-Faced Shadow",
+    "quantidade": 1
+   },
+   {
+    "nome": "Silver-Fur Master",
+    "quantidade": 1
+   },
+   {
+    "nome": "Biting-Palm Ninja",
+    "quantidade": 1
+   },
+   {
+    "nome": "Moon-Circuit Hacker",
+    "quantidade": 1
+   },
+   {
+    "nome": "Prosperous Thief",
+    "quantidade": 1
+   },
+   {
+    "nome": "Nashi, Moon Sage's Scion",
+    "quantidade": 1
+   },
+   {
+    "nome": "Moonsnare Specialist",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shadow of Mortality",
+    "quantidade": 1
+   },
+   {
+    "nome": "Filter Out",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rivendell",
+    "quantidade": 1
+   },
+   {
+    "nome": "Faerie Dreamthief",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ingenious Prodigy",
+    "quantidade": 1
+   },
+   {
+    "nome": "Satoru, the Infiltrator",
+    "quantidade": 1
+   },
+   {
+    "nome": "Splinter, Hamato Yoshi",
+    "quantidade": 1
+   },
+   {
+    "nome": "Yuriko, Hope from the Shadows",
+    "quantidade": 1
+   }
+  ],
+  "origem": {
+   "versao": 37,
+   "atualizadoEm": "2026-11-10T19:28:40.31Z"
+  },
+  "desde": "2026-11-10T19:45:04.831Z"
+ }
+}

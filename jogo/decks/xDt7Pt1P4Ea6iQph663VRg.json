@@ -1,0 +1,380 @@
+{
+ "formato": 1,
+ "id": "xDt7Pt1P4Ea6iQph663VRg",
+ "ordem": 110,
+ "nome": "LandReanimator",
+ "link": "https://moxfield.com/decks/xDt7Pt1P4Ea6iQph663VRg",
+ "importadoEm": "2026-11-10T19:28:41.855Z",
+ "verificadoEm": "2026-11-10T19:28:41.855Z",
+ "atual": null,
+ "preparacao": {
+  "comandante": "Sin, Spira's Punishment",
+  "cartas": [
+   {
+    "nome": "Island",
+    "quantidade": 3
+   },
+   {
+    "nome": "Swamp",
+    "quantidade": 3
+   },
+   {
+    "nome": "Forest",
+    "quantidade": 6
+   },
+   {
+    "nome": "Command Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fabled Passage",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bojuka Bog",
+    "quantidade": 1
+   },
+   {
+    "nome": "Beast Within",
+    "quantidade": 1
+   },
+   {
+    "nome": "Crop Rotation",
+    "quantidade": 1
+   },
+   {
+    "nome": "Counterspell",
+    "quantidade": 1
+   },
+   {
+    "nome": "Explore",
+    "quantidade": 1
+   },
+   {
+    "nome": "Farseek",
+    "quantidade": 1
+   },
+   {
+    "nome": "Harrow",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hedron Crab",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lightning Greaves",
+    "quantidade": 1
+   },
+   {
+    "nome": "Nature's Lore",
+    "quantidade": 1
+   },
+   {
+    "nome": "Negate",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rampant Growth",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rhystic Study",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sakura-Tribe Elder",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tatyova, Benthic Druid",
+    "quantidade": 1
+   },
+   {
+    "nome": "The Gitrog Monster",
+    "quantidade": 1
+   },
+   {
+    "nome": "Life from the Loam",
+    "quantidade": 1
+   },
+   {
+    "nome": "Strip Mine",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sylvan Library",
+    "quantidade": 1
+   },
+   {
+    "nome": "Field of the Dead",
+    "quantidade": 1
+   },
+   {
+    "nome": "Yarok, the Desecrated",
+    "quantidade": 1
+   },
+   {
+    "nome": "Stitch Together",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bayou",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tropical Island",
+    "quantidade": 1
+   },
+   {
+    "nome": "Underground Sea",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rampaging Baloths",
+    "quantidade": 1
+   },
+   {
+    "nome": "Second Harvest",
+    "quantidade": 1
+   },
+   {
+    "nome": "Concordant Crossroads",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mana Drain",
+    "quantidade": 1
+   },
+   {
+    "nome": "City of Brass",
+    "quantidade": 1
+   },
+   {
+    "nome": "Reanimate",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sylvan Safekeeper",
+    "quantidade": 1
+   },
+   {
+    "nome": "Crucible of Worlds",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mystic Remora",
+    "quantidade": 1
+   },
+   {
+    "nome": "Zuran Orb",
+    "quantidade": 1
+   },
+   {
+    "nome": "Breeding Pool",
+    "quantidade": 1
+   },
+   {
+    "nome": "Watery Grave",
+    "quantidade": 1
+   },
+   {
+    "nome": "Avenger of Zendikar",
+    "quantidade": 1
+   },
+   {
+    "nome": "Krosan Grip",
+    "quantidade": 1
+   },
+   {
+    "nome": "Toxic Deluge",
+    "quantidade": 1
+   },
+   {
+    "nome": "Titania, Protector of Argoth",
+    "quantidade": 1
+   },
+   {
+    "nome": "Growth Spiral",
+    "quantidade": 1
+   },
+   {
+    "nome": "World Shaper",
+    "quantidade": 1
+   },
+   {
+    "nome": "Glimpse the Unthinkable",
+    "quantidade": 1
+   },
+   {
+    "nome": "Assassin's Trophy",
+    "quantidade": 1
+   },
+   {
+    "nome": "Overgrown Tomb",
+    "quantidade": 1
+   },
+   {
+    "nome": "Craterhoof Behemoth",
+    "quantidade": 1
+   },
+   {
+    "nome": "Misty Rainforest",
+    "quantidade": 1
+   },
+   {
+    "nome": "Verdant Catacombs",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mana Confluence",
+    "quantidade": 1
+   },
+   {
+    "nome": "Polluted Delta",
+    "quantidade": 1
+   },
+   {
+    "nome": "Reprocess",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lotus Cobra",
+    "quantidade": 1
+   },
+   {
+    "nome": "Reflecting Pool",
+    "quantidade": 1
+   },
+   {
+    "nome": "Finale of Devastation",
+    "quantidade": 1
+   },
+   {
+    "nome": "Prismatic Vista",
+    "quantidade": 1
+   },
+   {
+    "nome": "Exploration",
+    "quantidade": 1
+   },
+   {
+    "nome": "Three Visits",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mesmeric Orb",
+    "quantidade": 1
+   },
+   {
+    "nome": "Zagoth Triome",
+    "quantidade": 1
+   },
+   {
+    "nome": "Scapeshift",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ob Nixilis, the Fallen",
+    "quantidade": 1
+   },
+   {
+    "nome": "Parallel Lives",
+    "quantidade": 1
+   },
+   {
+    "nome": "Scute Swarm",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ancient Greenwarden",
+    "quantidade": 1
+   },
+   {
+    "nome": "Aesi, Tyrant of Gyre Strait",
+    "quantidade": 1
+   },
+   {
+    "nome": "Adrix and Nev, Twincasters",
+    "quantidade": 1
+   },
+   {
+    "nome": "Boseiju, Who Endures",
+    "quantidade": 1
+   },
+   {
+    "nome": "Otawara, Soaring City",
+    "quantidade": 1
+   },
+   {
+    "nome": "Takenuma, Abandoned Mire",
+    "quantidade": 1
+   },
+   {
+    "nome": "Awaken the Woods",
+    "quantidade": 1
+   },
+   {
+    "nome": "Entish Restoration",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hedge Maze",
+    "quantidade": 1
+   },
+   {
+    "nome": "Undercity Sewers",
+    "quantidade": 1
+   },
+   {
+    "nome": "Underground Mortuary",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lumra, Bellow of the Woods",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gloomlake Verge",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hedge Shredder",
+    "quantidade": 1
+   },
+   {
+    "nome": "Wastewood Verge",
+    "quantidade": 1
+   },
+   {
+    "nome": "Willowrush Verge",
+    "quantidade": 1
+   },
+   {
+    "nome": "Teval, the Balanced Scale",
+    "quantidade": 1
+   },
+   {
+    "nome": "Icetill Explorer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shared Roots",
+    "quantidade": 1
+   },
+   {
+    "nome": "Genesis Device",
+    "quantidade": 1
+   },
+   {
+    "nome": "Breach the Multiverse",
+    "quantidade": 1
+   }
+  ],
+  "origem": {
+   "versao": 105,
+   "atualizadoEm": "2026-11-10T19:01:47.763Z"
+  },
+  "desde": "2026-11-10T19:28:41.855Z"
+ }
+}
