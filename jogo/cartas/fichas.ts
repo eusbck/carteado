@@ -506,3 +506,18 @@ export const Thrull = token('Thrull', 'Thrull', ['Creature'], ['Thrull'], ['B'],
 export const Thrull01 = token('Thrull 0/1', 'Thrull', ['Creature'], ['Thrull'], ['B'], 0, 1);
 export const HumanCleric = token('Human Cleric', 'Human Cleric', ['Creature'], ['Human', 'Cleric'], ['B', 'W'], 1, 1);
 export const ZombieRogue = token('Zombie Rogue', 'Zombie Rogue', ['Creature'], ['Zombie', 'Rogue'], ['B', 'U'], 2, 2);
+// deck Hearthhull (11/11/2026)
+import { fetchBasicToBattlefield as buscaBasico } from '../motor/api.ts';
+export const Elemental53 = token('Elemental 5/3', 'Elemental', ['Creature'], ['Elemental'], ['G'], 5, 3);
+export const Beast44 = token('Beast 4/4', 'Beast', ['Creature'], ['Beast'], ['G'], 4, 4);
+export const Lander = defineToken({
+  id: 'Lander', name: 'Lander', types: ['Artifact'], subtypes: ['Lander'], colors: [], power: null, toughness: null,
+  abilities: [activated('{2}, {T}, Sacrifice this token', function* (c) { yield* buscaBasico(c, 1, { tapped: true, prompt: 'Procure uma carta de terreno básico' }); },
+    { text: '{2}, {T}, Sacrifique esta ficha: Procure uma carta de terreno básico, coloque-a no campo virada e depois embaralhe.' })],
+  image: fichasOracle.find((f) => f.name === 'Lander')?.oracleId,
+});
+export const Heartwood = defineToken({
+  id: 'Heartwood', name: 'Heartwood', types: ['Artifact'], subtypes: ['Heartwood'], colors: ['G', 'R'], power: null, toughness: null,
+  abilities: [mana(['R', 'G'])],
+  image: fichasOracle.find((f) => f.name === 'Heartwood')?.oracleId,
+});

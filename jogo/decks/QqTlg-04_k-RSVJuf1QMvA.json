@@ -1,0 +1,372 @@
+{
+ "formato": 1,
+ "id": "QqTlg-04_k-RSVJuf1QMvA",
+ "ordem": 116,
+ "nome": "Jund Lands Midrange | Signs of Extinction",
+ "link": "https://moxfield.com/decks/QqTlg-04_k-RSVJuf1QMvA",
+ "importadoEm": "2026-11-10T19:53:27.804Z",
+ "verificadoEm": "2026-11-10T19:53:27.804Z",
+ "atual": {
+  "comandante": "Hearthhull, the Worldseed",
+  "cartas": [
+   {
+    "nome": "Mountain",
+    "quantidade": 3
+   },
+   {
+    "nome": "Swamp",
+    "quantidade": 3
+   },
+   {
+    "nome": "Forest",
+    "quantidade": 8
+   },
+   {
+    "nome": "Command Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fabled Passage",
+    "quantidade": 1
+   },
+   {
+    "nome": "Korvold, Fae-Cursed King",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bojuka Bog",
+    "quantidade": 1
+   },
+   {
+    "nome": "Crop Rotation",
+    "quantidade": 1
+   },
+   {
+    "nome": "Farseek",
+    "quantidade": 1
+   },
+   {
+    "nome": "Harrow",
+    "quantidade": 1
+   },
+   {
+    "nome": "Nature's Lore",
+    "quantidade": 1
+   },
+   {
+    "nome": "The Gitrog Monster",
+    "quantidade": 1
+   },
+   {
+    "nome": "Strip Mine",
+    "quantidade": 1
+   },
+   {
+    "nome": "Elvish Reclaimer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lotus Field",
+    "quantidade": 1
+   },
+   {
+    "nome": "Blasphemous Act",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cinder Glade",
+    "quantidade": 1
+   },
+   {
+    "nome": "Llanowar Wastes",
+    "quantidade": 1
+   },
+   {
+    "nome": "Karplusan Forest",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sulfurous Springs",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sylvan Safekeeper",
+    "quantidade": 1
+   },
+   {
+    "nome": "Crucible of Worlds",
+    "quantidade": 1
+   },
+   {
+    "nome": "Zuran Orb",
+    "quantidade": 1
+   },
+   {
+    "nome": "Stomping Ground",
+    "quantidade": 1
+   },
+   {
+    "nome": "Smoldering Marsh",
+    "quantidade": 1
+   },
+   {
+    "nome": "Splendid Reclamation",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mazirek, Kraul Death Priest",
+    "quantidade": 1
+   },
+   {
+    "nome": "Titania, Protector of Argoth",
+    "quantidade": 1
+   },
+   {
+    "nome": "Blood Crypt",
+    "quantidade": 1
+   },
+   {
+    "nome": "Overgrown Tomb",
+    "quantidade": 1
+   },
+   {
+    "nome": "Verdant Catacombs",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tunneling Geopede",
+    "quantidade": 1
+   },
+   {
+    "nome": "Squandered Resources",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mayhem Devil",
+    "quantidade": 1
+   },
+   {
+    "nome": "Springbloom Druid",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rocky Tar Pit",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mountain Valley",
+    "quantidade": 1
+   },
+   {
+    "nome": "Exploration",
+    "quantidade": 1
+   },
+   {
+    "nome": "Glacial Chasm",
+    "quantidade": 1
+   },
+   {
+    "nome": "Three Visits",
+    "quantidade": 1
+   },
+   {
+    "nome": "Oracle of Mul Daya",
+    "quantidade": 1
+   },
+   {
+    "nome": "Scapeshift",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mirrorpool",
+    "quantidade": 1
+   },
+   {
+    "nome": "Wayward Swordtooth",
+    "quantidade": 1
+   },
+   {
+    "nome": "The Mending of Dominaria",
+    "quantidade": 1
+   },
+   {
+    "nome": "Need for Speed",
+    "quantidade": 1
+   },
+   {
+    "nome": "Roiling Regrowth",
+    "quantidade": 1
+   },
+   {
+    "nome": "Valakut Exploration",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ignoble Hierarch",
+    "quantidade": 1
+   },
+   {
+    "nome": "Infernal Grasp",
+    "quantidade": 1
+   },
+   {
+    "nome": "Braids, Arisen Nightmare",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tiller Engine",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tear Asunder",
+    "quantidade": 1
+   },
+   {
+    "nome": "Demolition Field",
+    "quantidade": 1
+   },
+   {
+    "nome": "Spelunking",
+    "quantidade": 1
+   },
+   {
+    "nome": "Escape Tunnel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Aftermath Analyst",
+    "quantidade": 1
+   },
+   {
+    "nome": "Worldsoul's Rage",
+    "quantidade": 1
+   },
+   {
+    "nome": "Viridescent Bog",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lumra, Bellow of the Woods",
+    "quantidade": 1
+   },
+   {
+    "nome": "Urza's Cave",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fell the Profane // Fell Mire",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shifting Woodland",
+    "quantidade": 1
+   },
+   {
+    "nome": "Boggart Trawler // Boggart Bog",
+    "quantidade": 1
+   },
+   {
+    "nome": "Malevolent Rumble",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hedge Shredder",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sabotender",
+    "quantidade": 1
+   },
+   {
+    "nome": "Baloth Prime",
+    "quantidade": 1
+   },
+   {
+    "nome": "Horizon Explorer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Planetary Annihilation",
+    "quantidade": 1
+   },
+   {
+    "nome": "Exploration Broodship",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vernal Fen",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mightform Harmonizer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Icetill Explorer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Formidable Speaker",
+    "quantidade": 1
+   },
+   {
+    "nome": "Planar Engineering",
+    "quantidade": 1
+   },
+   {
+    "nome": "Elven Passage",
+    "quantidade": 1
+   },
+   {
+    "nome": "Heartwood Crafter // Soul Tether",
+    "quantidade": 1
+   },
+   {
+    "nome": "Carnivorous Cultivator // Enroot",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vraska, the Cutting Glare",
+    "quantidade": 1
+   },
+   {
+    "nome": "Koth, the Geomancer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Marwyn, the Preserver",
+    "quantidade": 1
+   },
+   {
+    "nome": "Evolving Wilds",
+    "quantidade": 1
+   },
+   {
+    "nome": "World Shaper",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tannuk, Memorial Ensign",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tectonic Split",
+    "quantidade": 1
+   },
+   {
+    "nome": "Midnight Tilling",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tenured Tethermage",
+    "quantidade": 1
+   }
+  ],
+  "origem": {
+   "versao": 26,
+   "atualizadoEm": "2026-11-10T19:27:24.557Z"
+  },
+  "desde": "2026-11-10T19:53:27.804Z"
+ },
+ "preparacao": null
+}

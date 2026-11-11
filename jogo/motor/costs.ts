@@ -59,7 +59,7 @@ export function canPayParts(g: G, player: PlayerId, parts: CostPart[], source: O
       case 'untap': if (!o || o.zone !== 'battlefield' || !o.tapped || summoningSick(g, source)) return false; break;
       case 'sacrificeSelf': if (!o || o.zone !== 'battlefield') return false; break;
       case 'sacrifice': {
-        const n = p.n === 'X' ? x : p.n;
+        const n = typeof p.n === 'function' ? p.n(ctx) : p.n === 'X' ? x : p.n;
         if (s.zones.battlefield.filter((id) => controllerOf(g, id) === player && !s.objects[id].phasedOut && p.filter(ctx, id)).length < n) return false;
         break;
       }
@@ -122,7 +122,7 @@ function recursosDistintos(g: G, player: PlayerId, parts: CostPart[], source: Ob
     else if (p.k === 'tapPermanents') viradas += p.n === 'X' ? x : p.n;
     else if (p.k === 'crew') tripular += p.power;
     else if (p.k === 'sacrificeSelf' || p.k === 'exileSelf' || p.k === 'returnPermanent') saidas++;
-    else if (p.k === 'sacrifice') saidas += p.n === 'X' ? x : p.n;
+    else if (p.k === 'sacrifice') saidas += typeof p.n === 'function' ? p.n({ g, you: player, source }) : p.n === 'X' ? x : p.n;
     else if (p.k === 'life') vidas++;
   }
   if (viradas + (tripular > 0 ? 1 : 0) < 2 && saidas < 2 && vidas < 2) return true;
@@ -140,7 +140,7 @@ function recursosDistintos(g: G, player: PlayerId, parts: CostPart[], source: Ob
       case 'tapPermanents': repetir(vagasVirar, costPermanents(g, player, (id) => !s.objects[id].tapped && p.filter(ctx, id)), p.n === 'X' ? x : p.n); break;
       case 'sacrificeSelf': vagasSair.push([source]); break;
       case 'exileSelf': if (noCampo) vagasSair.push([source]); break;
-      case 'sacrifice': repetir(vagasSair, costPermanents(g, player, (id) => p.filter(ctx, id)), p.n === 'X' ? x : p.n); break;
+      case 'sacrifice': repetir(vagasSair, costPermanents(g, player, (id) => p.filter(ctx, id)), typeof p.n === 'function' ? p.n(ctx) : p.n === 'X' ? x : p.n); break;
       case 'returnPermanent': vagasSair.push(costPermanents(g, player, (id) => p.filter(ctx, id))); break;
       case 'life': {
         vida += Math.max(0, typeof p.n === 'function' ? p.n(ctx) : p.n === 'X' ? x : p.n);
@@ -602,7 +602,7 @@ export function* payParts(g: G, player: PlayerId, parts: CostPart[], source: Obj
         break;
       }
       case 'sacrifice': {
-        const n = p.n === 'X' ? x : p.n;
+        const n = typeof p.n === 'function' ? p.n(ctx) : p.n === 'X' ? x : p.n;
         if (n === 0) break;
         const cands = s.zones.battlefield.filter((id) => controllerOf(g, id) === player && !s.objects[id].phasedOut && p.filter(ctx, id));
         const ids = yield* chooseItems(g, player, `Sacrifique ${n === 1 ? p.label : `${n} × ${p.label}`}`, cands.map((id) => objItem(g, id, nameOf(g, id))), n, n);

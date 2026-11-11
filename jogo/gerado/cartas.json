@@ -961,6 +961,41 @@
     }
    ]
   },
+  "Aftermath Analyst": {
+   "name": "Aftermath Analyst",
+   "oracleId": "374e54d8-8e73-4268-9dde-c28c77bbbf32",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "G"
+   ],
+   "keywords": [
+    "Mill"
+   ],
+   "faces": [
+    {
+     "name": "Aftermath Analyst",
+     "manaCost": "{1}{G}",
+     "typeLine": "Creature — Elf Detective",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Elf",
+      "Detective"
+     ],
+     "oracleText": "When this creature enters, mill three cards. (Put the top three cards of your library into your graveyard.)\n{3}{G}, Sacrifice this creature: Return all land cards from your graveyard to the battlefield tapped.",
+     "power": 1,
+     "toughness": 3,
+     "loyalty": null,
+     "colors": [
+      "G"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Agadeem's Awakening // Agadeem, the Undercrypt": {
    "name": "Agadeem's Awakening // Agadeem, the Undercrypt",
    "oracleId": "562d71b9-1646-474e-9293-55da6947a758",
@@ -5030,6 +5065,38 @@
     }
    ]
   },
+  "Baloth Prime": {
+   "name": "Baloth Prime",
+   "oracleId": "dba3dcc1-2177-4a8c-8cf3-7d4fb83c7a16",
+   "layout": "normal",
+   "manaValue": 4,
+   "colorIdentity": [
+    "G"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Baloth Prime",
+     "manaCost": "{3}{G}",
+     "typeLine": "Creature — Beast",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Beast"
+     ],
+     "oracleText": "This creature enters tapped with six stun counters on it. (If a permanent with a stun counter would become untapped, remove one from it instead.)\nWhenever you sacrifice a land, create a tapped 4/4 green Beast creature token and untap this creature.\n{4}, Sacrifice a land: You gain 2 life.",
+     "power": 10,
+     "toughness": 10,
+     "loyalty": null,
+     "colors": [
+      "G"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Banco Master do Vorcaro": {
    "name": "Banco Master do Vorcaro",
    "oracleId": "433e0efa-0fdb-a62d-2fac-8935a01cc63a",
@@ -5884,6 +5951,41 @@
     }
    ]
   },
+  "Belladonna Took": {
+   "name": "Belladonna Took",
+   "oracleId": "011da9c5-aa8a-4fa0-b1f2-62b9f3760476",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "W"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Belladonna Took",
+     "manaCost": "{1}{W}",
+     "typeLine": "Legendary Creature — Halfling Citizen",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Halfling",
+      "Citizen"
+     ],
+     "oracleText": "Whenever a token you control enters, you gain 1 life if this is the first time this ability has resolved this turn. If it's the second time, draw a card. If it's the third time, put a +1/+1 counter on each creature you control.",
+     "power": 2,
+     "toughness": 2,
+     "loyalty": null,
+     "colors": [
+      "W"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Betor, Ancestor's Voice": {
    "name": "Betor, Ancestor's Voice",
    "oracleId": "990b5e12-6e04-4832-9d64-87278f12cbda",
@@ -6010,6 +6112,83 @@
      "loyalty": null,
      "colors": [
       "R"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Bilbo, Birthday Celebrant": {
+   "name": "Bilbo, Birthday Celebrant",
+   "oracleId": "5789520c-e4b2-44b2-b756-3f6b468dc55b",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "B",
+    "G",
+    "W"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Bilbo, Birthday Celebrant",
+     "manaCost": "{W}{B}{G}",
+     "typeLine": "Legendary Creature — Halfling Rogue",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Halfling",
+      "Rogue"
+     ],
+     "oracleText": "If you would gain life, you gain that much life plus 1 instead.\n{2}{W}{B}{G}, {T}, Exile Bilbo: Search your library for any number of creature cards, put them onto the battlefield, then shuffle. Activate only if you have 111 or more life.",
+     "power": 2,
+     "toughness": 3,
+     "loyalty": null,
+     "colors": [
+      "B",
+      "G",
+      "W"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Bilbo, Fellow Conspirator": {
+   "name": "Bilbo, Fellow Conspirator",
+   "oracleId": "d273f87d-1271-49d2-a628-2d1bd888f56c",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "G"
+   ],
+   "keywords": [
+    "Treasure",
+    "Food"
+   ],
+   "faces": [
+    {
+     "name": "Bilbo, Fellow Conspirator",
+     "manaCost": "{2}{G}",
+     "typeLine": "Legendary Creature — Halfling Citizen",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Halfling",
+      "Citizen"
+     ],
+     "oracleText": "If you would create a Food token, instead create a Food token and a Treasure token.",
+     "power": 2,
+     "toughness": 3,
+     "loyalty": null,
+     "colors": [
+      "G"
      ],
      "colorIndicator": null
     }
@@ -6804,6 +6983,38 @@
     }
    ]
   },
+  "Blood Crypt": {
+   "name": "Blood Crypt",
+   "oracleId": "43985bbc-a0f6-4812-984e-392bc8562633",
+   "layout": "normal",
+   "manaValue": 0,
+   "colorIdentity": [
+    "B",
+    "R"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Blood Crypt",
+     "manaCost": "",
+     "typeLine": "Land — Swamp Mountain",
+     "supertypes": [],
+     "types": [
+      "Land"
+     ],
+     "subtypes": [
+      "Swamp",
+      "Mountain"
+     ],
+     "oracleText": "({T}: Add {B} or {R}.)\nAs this land enters, you may pay 2 life. If you don't, it enters tapped.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Bloodghast": {
    "name": "Bloodghast",
    "oracleId": "e97f9c2b-b41e-4f36-9245-77c0ac125647",
@@ -7405,6 +7616,54 @@
     }
    ]
   },
+  "Boggart Trawler // Boggart Bog": {
+   "name": "Boggart Trawler // Boggart Bog",
+   "oracleId": "727f3201-1cfc-4ab2-9dfe-be4f7251f42f",
+   "layout": "modal_dfc",
+   "manaValue": 3,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Boggart Trawler",
+     "manaCost": "{2}{B}",
+     "typeLine": "Creature — Goblin",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Goblin"
+     ],
+     "oracleText": "When this creature enters, exile target player's graveyard.",
+     "power": 3,
+     "toughness": 1,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    },
+    {
+     "name": "Boggart Bog",
+     "manaCost": "",
+     "typeLine": "Land",
+     "supertypes": [],
+     "types": [
+      "Land"
+     ],
+     "subtypes": [],
+     "oracleText": "As this land enters, you may pay 3 life. If you don't, it enters tapped.\n{T}: Add {B}.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Bogslither's Embrace": {
    "name": "Bogslither's Embrace",
    "oracleId": "21695c70-f746-4d77-b6d3-e2713a5c929e",
@@ -7785,6 +8044,43 @@
      "loyalty": null,
      "colors": [
       "U"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Boromir, Warden of the Tower": {
+   "name": "Boromir, Warden of the Tower",
+   "oracleId": "d72b57e5-1c6e-4f02-968f-7e2dd24f0d3c",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "W"
+   ],
+   "keywords": [
+    "Vigilance"
+   ],
+   "faces": [
+    {
+     "name": "Boromir, Warden of the Tower",
+     "manaCost": "{2}{W}",
+     "typeLine": "Legendary Creature — Human Soldier",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Human",
+      "Soldier"
+     ],
+     "oracleText": "Vigilance\nWhenever an opponent casts a spell, if no mana was spent to cast it, counter that spell.\nSacrifice Boromir: Creatures you control gain indestructible until end of turn. The Ring tempts you.",
+     "power": 3,
+     "toughness": 3,
+     "loyalty": null,
+     "colors": [
+      "W"
      ],
      "colorIndicator": null
     }
@@ -9219,6 +9515,36 @@
     }
    ]
   },
+  "Call of the Ring": {
+   "name": "Call of the Ring",
+   "oracleId": "9fcb920c-b8d7-4a79-a335-f63050182cca",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Call of the Ring",
+     "manaCost": "{1}{B}",
+     "typeLine": "Enchantment",
+     "supertypes": [],
+     "types": [
+      "Enchantment"
+     ],
+     "subtypes": [],
+     "oracleText": "At the beginning of your upkeep, the Ring tempts you.\nWhenever you choose a creature as your Ring-bearer, you may pay 2 life. If you do, draw a card.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Call the Skybreaker": {
    "name": "Call the Skybreaker",
    "oracleId": "a7213bef-0e9c-44e1-97cb-d1da0ef370bf",
@@ -9280,6 +9606,46 @@
      "colors": [
       "G",
       "W"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Camellia, the Seedmiser": {
+   "name": "Camellia, the Seedmiser",
+   "oracleId": "312c7a7b-2084-42b0-9b13-0a6d3e43a73d",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "B",
+    "G"
+   ],
+   "keywords": [
+    "Forage",
+    "Menace"
+   ],
+   "faces": [
+    {
+     "name": "Camellia, the Seedmiser",
+     "manaCost": "{1}{B}{G}",
+     "typeLine": "Legendary Creature — Squirrel Warlock",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Squirrel",
+      "Warlock"
+     ],
+     "oracleText": "Menace\nOther Squirrels you control have menace.\nWhenever you sacrifice one or more Foods, create a 1/1 green Squirrel creature token.\n{2}, Forage: Put a +1/+1 counter on each other Squirrel you control. (To forage, exile three cards from your graveyard or sacrifice a Food.)",
+     "power": 3,
+     "toughness": 3,
+     "loyalty": null,
+     "colors": [
+      "B",
+      "G"
      ],
      "colorIndicator": null
     }
@@ -9838,6 +10204,56 @@
      "colors": [
       "B"
      ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Carnivorous Cultivator // Enroot": {
+   "name": "Carnivorous Cultivator // Enroot",
+   "oracleId": "db655c5a-06f6-42bc-8180-d9ca1c1d939a",
+   "layout": "prepare",
+   "manaValue": 2,
+   "colorIdentity": [
+    "G"
+   ],
+   "keywords": [
+    "Prepared",
+    "Deathtouch"
+   ],
+   "faces": [
+    {
+     "name": "Carnivorous Cultivator",
+     "manaCost": "{1}{G}",
+     "typeLine": "Creature — Elf Warlock",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Elf",
+      "Warlock"
+     ],
+     "oracleText": "Deathtouch\nThis creature enters prepared.\nWhenever this creature deals combat damage to a player, return target land card from your graveyard to your hand.",
+     "power": 2,
+     "toughness": 3,
+     "loyalty": null,
+     "colors": [],
+     "colorIndicator": null
+    },
+    {
+     "name": "Enroot",
+     "manaCost": "{G}",
+     "typeLine": "Sorcery",
+     "supertypes": [],
+     "types": [
+      "Sorcery"
+     ],
+     "subtypes": [],
+     "oracleText": "Search your library for a land card, put it into your graveyard, then shuffle.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [],
      "colorIndicator": null
     }
    ]
@@ -11129,6 +11545,38 @@
     }
    ]
   },
+  "Chord of Calling": {
+   "name": "Chord of Calling",
+   "oracleId": "6789a170-f2c5-4fc0-8a45-2b2361e67410",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "G"
+   ],
+   "keywords": [
+    "Convoke"
+   ],
+   "faces": [
+    {
+     "name": "Chord of Calling",
+     "manaCost": "{X}{G}{G}{G}",
+     "typeLine": "Instant",
+     "supertypes": [],
+     "types": [
+      "Instant"
+     ],
+     "subtypes": [],
+     "oracleText": "Convoke (Your creatures can help cast this spell. Each creature you tap while casting this spell pays for {1} or one mana of that creature's color.)\nSearch your library for a creature card with mana value X or less, put it onto the battlefield, then shuffle.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "G"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Chromatic Lantern": {
    "name": "Chromatic Lantern",
    "oracleId": "539f5396-d99a-417d-a84c-dff7930b5900",
@@ -12043,6 +12491,36 @@
      "colors": [
       "G",
       "U"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Collected Company": {
+   "name": "Collected Company",
+   "oracleId": "0bbcb563-09b3-499d-a9cc-3a6d7501dd81",
+   "layout": "normal",
+   "manaValue": 4,
+   "colorIdentity": [
+    "G"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Collected Company",
+     "manaCost": "{3}{G}",
+     "typeLine": "Instant",
+     "supertypes": [],
+     "types": [
+      "Instant"
+     ],
+     "subtypes": [],
+     "oracleText": "Look at the top six cards of your library. Put up to two creature cards with mana value 3 or less from among them onto the battlefield. Put the rest on the bottom of your library in any order.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "G"
      ],
      "colorIndicator": null
     }
@@ -15550,6 +16028,36 @@
     }
    ]
   },
+  "Deadly Rollick": {
+   "name": "Deadly Rollick",
+   "oracleId": "0456ec64-2c81-4763-a352-8ff64a4c3d6b",
+   "layout": "normal",
+   "manaValue": 4,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Deadly Rollick",
+     "manaCost": "{3}{B}",
+     "typeLine": "Instant",
+     "supertypes": [],
+     "types": [
+      "Instant"
+     ],
+     "subtypes": [],
+     "oracleText": "If you control a commander, you may cast this spell without paying its mana cost.\nExile target creature.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Death Baron": {
    "name": "Death Baron",
    "oracleId": "99024aa8-5687-4d38-8a4b-feef42d6c1ff",
@@ -15894,6 +16402,74 @@
      "oracleText": "Return target creature card from your graveyard to the battlefield. If it's an Angel, put two +1/+1 counters on it.",
      "power": null,
      "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "W"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Delighted Halfling": {
+   "name": "Delighted Halfling",
+   "oracleId": "f9d3b046-0b95-4103-a630-4b3fb88bb60b",
+   "layout": "normal",
+   "manaValue": 1,
+   "colorIdentity": [
+    "G"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Delighted Halfling",
+     "manaCost": "{G}",
+     "typeLine": "Creature — Halfling Citizen",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Halfling",
+      "Citizen"
+     ],
+     "oracleText": "{T}: Add {C}.\n{T}: Add one mana of any color. Spend this mana only to cast a legendary spell, and that spell can't be countered.",
+     "power": 1,
+     "toughness": 2,
+     "loyalty": null,
+     "colors": [
+      "G"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Delney, Streetwise Lookout": {
+   "name": "Delney, Streetwise Lookout",
+   "oracleId": "245d0ccf-87b6-460a-8b99-9e2079f2d375",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "W"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Delney, Streetwise Lookout",
+     "manaCost": "{2}{W}",
+     "typeLine": "Legendary Creature — Human Scout",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Human",
+      "Scout"
+     ],
+     "oracleText": "Creatures you control with power 2 or less can't be blocked by creatures with power 3 or greater.\nIf a triggered ability of a creature you control with power 2 or less triggers, that ability triggers an additional time.",
+     "power": 2,
+     "toughness": 2,
      "loyalty": null,
      "colors": [
       "W"
@@ -18921,6 +19497,75 @@
     }
    ]
   },
+  "Eladamri's Call": {
+   "name": "Eladamri's Call",
+   "oracleId": "4acb6612-54e8-428d-acb6-c7259a5ad6a8",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "G",
+    "W"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Eladamri's Call",
+     "manaCost": "{G}{W}",
+     "typeLine": "Instant",
+     "supertypes": [],
+     "types": [
+      "Instant"
+     ],
+     "subtypes": [],
+     "oracleText": "Search your library for a creature card, reveal that card, put it into your hand, then shuffle.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "G",
+      "W"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Elanor Gardner": {
+   "name": "Elanor Gardner",
+   "oracleId": "ad4c39d6-a8b3-4dd9-816d-09761fc9651d",
+   "layout": "normal",
+   "manaValue": 4,
+   "colorIdentity": [
+    "G"
+   ],
+   "keywords": [
+    "Food"
+   ],
+   "faces": [
+    {
+     "name": "Elanor Gardner",
+     "manaCost": "{3}{G}",
+     "typeLine": "Legendary Creature — Halfling Scout",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Halfling",
+      "Scout"
+     ],
+     "oracleText": "When Elanor enters, create a Food token.\nAt the beginning of your end step, if you sacrificed a Food this turn, you may search your library for a basic land card, put that card onto the battlefield tapped, then shuffle.",
+     "power": 2,
+     "toughness": 4,
+     "loyalty": null,
+     "colors": [
+      "G"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Elder Gargaroth": {
    "name": "Elder Gargaroth",
    "oracleId": "397b9dcf-690a-4a58-8637-bb9baab7cc2f",
@@ -19225,6 +19870,34 @@
     }
    ]
   },
+  "Elven Passage": {
+   "name": "Elven Passage",
+   "oracleId": "97a2cd39-6b54-496b-b3ac-dab9dfed7edc",
+   "layout": "normal",
+   "manaValue": 0,
+   "colorIdentity": [],
+   "keywords": [
+    "Behold"
+   ],
+   "faces": [
+    {
+     "name": "Elven Passage",
+     "manaCost": "",
+     "typeLine": "Land",
+     "supertypes": [],
+     "types": [
+      "Land"
+     ],
+     "subtypes": [],
+     "oracleText": "{T}, Pay 1 life, Sacrifice this land: Search your library for a basic land card, put it onto the battlefield tapped, then shuffle. You may behold an Elf. If you do, untap that land. (To behold an Elf, choose an Elf you control or reveal an Elf card from your hand.)",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Elvish Archdruid": {
    "name": "Elvish Archdruid",
    "oracleId": "6e2c2423-d854-4478-99e6-64f29851f026",
@@ -19316,6 +19989,39 @@
      "oracleText": "{T}: Add {G}.",
      "power": 1,
      "toughness": 1,
+     "loyalty": null,
+     "colors": [
+      "G"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Elvish Reclaimer": {
+   "name": "Elvish Reclaimer",
+   "oracleId": "94f01534-7bb3-4b1e-8f77-e84156408686",
+   "layout": "normal",
+   "manaValue": 1,
+   "colorIdentity": [
+    "G"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Elvish Reclaimer",
+     "manaCost": "{G}",
+     "typeLine": "Creature — Elf Warrior",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Elf",
+      "Warrior"
+     ],
+     "oracleText": "This creature gets +2/+2 as long as there are three or more land cards in your graveyard.\n{2}, {T}, Sacrifice a land: Search your library for a land card, put it onto the battlefield tapped, then shuffle.",
+     "power": 1,
+     "toughness": 2,
      "loyalty": null,
      "colors": [
       "G"
@@ -20897,6 +21603,40 @@
      "oracleText": "You may play an additional land on each of your turns.",
      "power": null,
      "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "G"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Exploration Broodship": {
+   "name": "Exploration Broodship",
+   "oracleId": "8a83ecee-092b-456c-803f-a9aaa17c4da9",
+   "layout": "normal",
+   "manaValue": 1,
+   "colorIdentity": [
+    "G"
+   ],
+   "keywords": [
+    "Station"
+   ],
+   "faces": [
+    {
+     "name": "Exploration Broodship",
+     "manaCost": "{G}",
+     "typeLine": "Artifact — Spacecraft",
+     "supertypes": [],
+     "types": [
+      "Artifact"
+     ],
+     "subtypes": [
+      "Spacecraft"
+     ],
+     "oracleText": "Station (Tap another creature you control: Put charge counters equal to its power on this Spacecraft. Station only as a sorcery. It's an artifact creature at 8+.)\n3+ | You may play an additional land on each of your turns.\n8+ | Flying\nOnce during each of your turns, you may cast a permanent spell from your graveyard by sacrificing a land in addition to paying its other costs.",
+     "power": 4,
+     "toughness": 4,
      "loyalty": null,
      "colors": [
       "G"
@@ -23865,6 +24605,39 @@
     }
    ]
   },
+  "Formidable Speaker": {
+   "name": "Formidable Speaker",
+   "oracleId": "5bd06f9e-9a42-455d-ad26-24bc04e51c7c",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "G"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Formidable Speaker",
+     "manaCost": "{2}{G}",
+     "typeLine": "Creature — Elf Druid",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Elf",
+      "Druid"
+     ],
+     "oracleText": "When this creature enters, you may discard a card. If you do, search your library for a creature card, reveal it, put it into your hand, then shuffle.\n{1}, {T}: Untap another target permanent.",
+     "power": 2,
+     "toughness": 4,
+     "loyalty": null,
+     "colors": [
+      "G"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Forsaken Miner": {
    "name": "Forsaken Miner",
    "oracleId": "d37e0127-6f68-438e-8b9e-a71bb3c34733",
@@ -24197,6 +24970,47 @@
      "loyalty": null,
      "colors": [
       "U"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Frodo, Adventurous Hobbit": {
+   "name": "Frodo, Adventurous Hobbit",
+   "oracleId": "58ee8c10-7be8-4889-944d-13cae0a4166d",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "B",
+    "W"
+   ],
+   "keywords": [
+    "Partner with",
+    "Vigilance",
+    "Partner"
+   ],
+   "faces": [
+    {
+     "name": "Frodo, Adventurous Hobbit",
+     "manaCost": "{W}{B}",
+     "typeLine": "Legendary Creature — Halfling Scout",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Halfling",
+      "Scout"
+     ],
+     "oracleText": "Partner with Sam, Loyal Attendant\nVigilance\nWhenever Frodo attacks, if you gained 3 or more life this turn, the Ring tempts you. Then if Frodo is your Ring-bearer and the Ring has tempted you two or more times this game, draw a card.",
+     "power": 1,
+     "toughness": 3,
+     "loyalty": null,
+     "colors": [
+      "B",
+      "W"
      ],
      "colorIndicator": null
     }
@@ -25634,6 +26448,34 @@
     }
    ]
   },
+  "Glacial Chasm": {
+   "name": "Glacial Chasm",
+   "oracleId": "73e7a2ad-d11c-4867-b97d-f971809da778",
+   "layout": "normal",
+   "manaValue": 0,
+   "colorIdentity": [],
+   "keywords": [
+    "Cumulative upkeep"
+   ],
+   "faces": [
+    {
+     "name": "Glacial Chasm",
+     "manaCost": "",
+     "typeLine": "Land",
+     "supertypes": [],
+     "types": [
+      "Land"
+     ],
+     "subtypes": [],
+     "oracleText": "Cumulative upkeep—Pay 2 life. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)\nWhen this land enters, sacrifice a land.\nCreatures you control can't attack.\nPrevent all damage that would be dealt to you.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Glacial Fortress": {
    "name": "Glacial Fortress",
    "oracleId": "027dd013-baa7-4111-b3c9-f4d1414e9c45",
@@ -25688,6 +26530,38 @@
      "loyalty": null,
      "colors": [
       "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Gleaming Splendor": {
+   "name": "Gleaming Splendor",
+   "oracleId": "c01aeaa5-1d3b-4493-9575-30175dcd780d",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "W"
+   ],
+   "keywords": [
+    "Treasure"
+   ],
+   "faces": [
+    {
+     "name": "Gleaming Splendor",
+     "manaCost": "{1}{W}",
+     "typeLine": "Enchantment",
+     "supertypes": [],
+     "types": [
+      "Enchantment"
+     ],
+     "subtypes": [],
+     "oracleText": "Whenever an opponent draws their second card each turn, you create a Treasure token.\n{2}{W}: Two target players each draw a card.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "W"
      ],
      "colorIndicator": null
     }
@@ -28744,6 +29618,46 @@
     }
    ]
   },
+  "Hearthhull, the Worldseed": {
+   "name": "Hearthhull, the Worldseed",
+   "oracleId": "8d6f82d9-5c5b-4c41-8857-c0936f2d894c",
+   "layout": "normal",
+   "manaValue": 4,
+   "colorIdentity": [
+    "B",
+    "G",
+    "R"
+   ],
+   "keywords": [
+    "Station"
+   ],
+   "faces": [
+    {
+     "name": "Hearthhull, the Worldseed",
+     "manaCost": "{1}{B}{R}{G}",
+     "typeLine": "Legendary Artifact — Spacecraft",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Artifact"
+     ],
+     "subtypes": [
+      "Spacecraft"
+     ],
+     "oracleText": "Station (Tap another creature you control: Put charge counters equal to its power on this Spacecraft. Station only as a sorcery. It's an artifact creature at 8+.)\n2+ | {1}, {T}, Sacrifice a land: Draw two cards. You may play an additional land this turn.\n8+ | Flying, vigilance, haste\nWhenever you sacrifice a land, each opponent loses 2 life.",
+     "power": 6,
+     "toughness": 7,
+     "loyalty": null,
+     "colors": [
+      "B",
+      "G",
+      "R"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Heartless Conscription": {
    "name": "Heartless Conscription",
    "oracleId": "cb9b317b-bb31-4c19-8b78-0fb9a61324b3",
@@ -28770,6 +29684,56 @@
      "colors": [
       "B"
      ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Heartwood Crafter // Soul Tether": {
+   "name": "Heartwood Crafter // Soul Tether",
+   "oracleId": "c8b3a070-408e-4a8f-8597-6476eeec0a5f",
+   "layout": "prepare",
+   "manaValue": 1,
+   "colorIdentity": [
+    "G",
+    "R"
+   ],
+   "keywords": [
+    "Prepared"
+   ],
+   "faces": [
+    {
+     "name": "Heartwood Crafter",
+     "manaCost": "{G}",
+     "typeLine": "Creature — Elf Artificer",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Elf",
+      "Artificer"
+     ],
+     "oracleText": "This creature enters prepared. (While it's prepared, you may cast a copy of its spell. Doing so unprepares it.)\n{T}: Add {C}. This mana can't be spent to cast spells from your hand.",
+     "power": 1,
+     "toughness": 1,
+     "loyalty": null,
+     "colors": [],
+     "colorIndicator": null
+    },
+    {
+     "name": "Soul Tether",
+     "manaCost": "{2}{R/G}",
+     "typeLine": "Sorcery",
+     "supertypes": [],
+     "types": [
+      "Sorcery"
+     ],
+     "subtypes": [],
+     "oracleText": "Create a Heartwood token. (It's a red and green artifact with \"{T}: Add {R} or {G}.\")",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [],
      "colorIndicator": null
     }
    ]
@@ -29877,6 +30841,39 @@
     }
    ]
   },
+  "Horizon Explorer": {
+   "name": "Horizon Explorer",
+   "oracleId": "e8d20361-d9b7-4f9c-8ec5-3ac7c460dcb2",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "G"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Horizon Explorer",
+     "manaCost": "{2}{G}",
+     "typeLine": "Creature — Insect Scout",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Insect",
+      "Scout"
+     ],
+     "oracleText": "Lands you control enter untapped.\nWhenever you attack a player, create a Lander token. (It's an artifact with \"{2}, {T}, Sacrifice this token: Search your library for a basic land card, put it onto the battlefield tapped, then shuffle.\")",
+     "power": 2,
+     "toughness": 4,
+     "loyalty": null,
+     "colors": [
+      "G"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Hornet Nest": {
    "name": "Hornet Nest",
    "oracleId": "123d2b6e-114e-4767-860d-50790382ca4a",
@@ -30905,6 +31902,42 @@
      "colors": [
       "B"
      ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Indatha Triome": {
+   "name": "Indatha Triome",
+   "oracleId": "ec2b3779-55f7-4169-aa66-6312fb52721f",
+   "layout": "normal",
+   "manaValue": 0,
+   "colorIdentity": [
+    "B",
+    "G",
+    "W"
+   ],
+   "keywords": [
+    "Cycling"
+   ],
+   "faces": [
+    {
+     "name": "Indatha Triome",
+     "manaCost": "",
+     "typeLine": "Land — Plains Swamp Forest",
+     "supertypes": [],
+     "types": [
+      "Land"
+     ],
+     "subtypes": [
+      "Plains",
+      "Swamp",
+      "Forest"
+     ],
+     "oracleText": "({T}: Add {W}, {B}, or {G}.)\nThis land enters tapped.\nCycling {3} ({3}, Discard this card: Draw a card.)",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [],
      "colorIndicator": null
     }
    ]
@@ -32344,6 +33377,44 @@
     }
    ]
   },
+  "Jaheira, Friend of the Forest": {
+   "name": "Jaheira, Friend of the Forest",
+   "oracleId": "0aeeb0d7-15a3-4722-ad67-8fc7fe89220d",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "G"
+   ],
+   "keywords": [
+    "Choose a background"
+   ],
+   "faces": [
+    {
+     "name": "Jaheira, Friend of the Forest",
+     "manaCost": "{2}{G}",
+     "typeLine": "Legendary Creature — Human Elf Druid",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Human",
+      "Elf",
+      "Druid"
+     ],
+     "oracleText": "Tokens you control have \"{T}: Add {G}.\"\nChoose a Background (You can have a Background as a second commander.)",
+     "power": 2,
+     "toughness": 3,
+     "loyalty": null,
+     "colors": [
+      "G"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Jair Renan, o 04": {
    "name": "Jair Renan, o 04",
    "oracleId": "711109fd-a107-1eff-e525-106128dd8f4a",
@@ -33166,6 +34237,43 @@
      "loyalty": null,
      "colors": [
       "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Kambal, Profiteering Mayor": {
+   "name": "Kambal, Profiteering Mayor",
+   "oracleId": "619e0686-e88c-4238-8364-75395e733533",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "B",
+    "W"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Kambal, Profiteering Mayor",
+     "manaCost": "{1}{W}{B}",
+     "typeLine": "Legendary Creature — Human Advisor",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Human",
+      "Advisor"
+     ],
+     "oracleText": "Whenever one or more tokens your opponents control enter, for each of them, create a tapped token that's a copy of it. This ability triggers only once each turn.\nWhenever one or more tokens you control enter, each opponent loses 1 life and you gain 1 life.",
+     "power": 2,
+     "toughness": 4,
+     "loyalty": null,
+     "colors": [
+      "B",
+      "W"
      ],
      "colorIndicator": null
     }
@@ -34504,6 +35612,85 @@
      "loyalty": null,
      "colors": [
       "W"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Korvold, Fae-Cursed King": {
+   "name": "Korvold, Fae-Cursed King",
+   "oracleId": "9ae669dd-7e60-4649-b96e-35da28be641a",
+   "layout": "normal",
+   "manaValue": 5,
+   "colorIdentity": [
+    "B",
+    "G",
+    "R"
+   ],
+   "keywords": [
+    "Flying"
+   ],
+   "faces": [
+    {
+     "name": "Korvold, Fae-Cursed King",
+     "manaCost": "{2}{B}{R}{G}",
+     "typeLine": "Legendary Creature — Dragon Noble",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Dragon",
+      "Noble"
+     ],
+     "oracleText": "Flying\nWhenever Korvold enters or attacks, sacrifice another permanent.\nWhenever you sacrifice a permanent, put a +1/+1 counter on Korvold and draw a card.",
+     "power": 4,
+     "toughness": 4,
+     "loyalty": null,
+     "colors": [
+      "B",
+      "G",
+      "R"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Koth, the Geomancer": {
+   "name": "Koth, the Geomancer",
+   "oracleId": "3b17da84-ae4d-4fc1-a327-85e54e6156c6",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "R"
+   ],
+   "keywords": [
+    "Reach",
+    "Landfall"
+   ],
+   "faces": [
+    {
+     "name": "Koth, the Geomancer",
+     "manaCost": "{2}{R}",
+     "typeLine": "Legendary Creature — Human Warrior",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Human",
+      "Warrior"
+     ],
+     "oracleText": "Reach\nLandfall — Whenever a land you control enters, Koth deals 1 damage to each opponent. If that land is a Mountain, add {R}.",
+     "power": 3,
+     "toughness": 2,
+     "loyalty": null,
+     "colors": [
+      "R"
      ],
      "colorIndicator": null
     }
@@ -36784,6 +37971,45 @@
     }
    ]
   },
+  "Lotho, Corrupt Shirriff": {
+   "name": "Lotho, Corrupt Shirriff",
+   "oracleId": "135cc078-1c45-465e-b0b9-7168c89f56f4",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "B",
+    "W"
+   ],
+   "keywords": [
+    "Treasure"
+   ],
+   "faces": [
+    {
+     "name": "Lotho, Corrupt Shirriff",
+     "manaCost": "{W}{B}",
+     "typeLine": "Legendary Creature — Halfling Rogue",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Halfling",
+      "Rogue"
+     ],
+     "oracleText": "Whenever a player casts their second spell each turn, you lose 1 life and create a Treasure token. (It's an artifact with \"{T}, Sacrifice this token: Add one mana of any color.\")",
+     "power": 2,
+     "toughness": 1,
+     "loyalty": null,
+     "colors": [
+      "B",
+      "W"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Lotus Cobra": {
    "name": "Lotus Cobra",
    "oracleId": "8ad91f64-ccab-4edc-bd54-b2ee9267d614",
@@ -37144,6 +38370,40 @@
      "colors": [
       "G"
      ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Lush Portico": {
+   "name": "Lush Portico",
+   "oracleId": "d51831b1-7394-456e-a1de-6787a59f5932",
+   "layout": "normal",
+   "manaValue": 0,
+   "colorIdentity": [
+    "G",
+    "W"
+   ],
+   "keywords": [
+    "Surveil"
+   ],
+   "faces": [
+    {
+     "name": "Lush Portico",
+     "manaCost": "",
+     "typeLine": "Land — Forest Plains",
+     "supertypes": [],
+     "types": [
+      "Land"
+     ],
+     "subtypes": [
+      "Forest",
+      "Plains"
+     ],
+     "oracleText": "({T}: Add {G} or {W}.)\nThis land enters tapped.\nWhen this land enters, surveil 1. (Look at the top card of your library. You may put it into your graveyard.)",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [],
      "colorIndicator": null
     }
    ]
@@ -37644,6 +38904,36 @@
     }
    ]
   },
+  "Malevolent Rumble": {
+   "name": "Malevolent Rumble",
+   "oracleId": "d30d8968-ec24-4155-97e2-28efd52c8810",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "G"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Malevolent Rumble",
+     "manaCost": "{1}{G}",
+     "typeLine": "Sorcery",
+     "supertypes": [],
+     "types": [
+      "Sorcery"
+     ],
+     "subtypes": [],
+     "oracleText": "Reveal the top four cards of your library. You may put a permanent card from among them into your hand. Put the rest into your graveyard. Create a 0/1 colorless Eldrazi Spawn creature token with \"Sacrifice this token: Add {C}.\"",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "G"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Malfegor": {
    "name": "Malfegor",
    "oracleId": "52e1546a-63eb-48d7-acc4-81b912aabc90",
@@ -38073,6 +39363,41 @@
     }
    ]
   },
+  "Marionette Apprentice": {
+   "name": "Marionette Apprentice",
+   "oracleId": "726d9d2c-736a-4852-9938-a0f50d8fd89f",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [
+    "Fabricate"
+   ],
+   "faces": [
+    {
+     "name": "Marionette Apprentice",
+     "manaCost": "{1}{B}",
+     "typeLine": "Creature — Human Artificer",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Human",
+      "Artificer"
+     ],
+     "oracleText": "Fabricate 1 (When this creature enters, put a +1/+1 counter on it or create a 1/1 colorless Servo artifact creature token.)\nWhenever another creature or artifact you control is put into a graveyard from the battlefield, each opponent loses 1 life.",
+     "power": 1,
+     "toughness": 2,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Marisi, Breaker of the Coil": {
    "name": "Marisi, Breaker of the Coil",
    "oracleId": "17475cf0-661d-4361-827b-1e4d638089f1",
@@ -38274,6 +39599,41 @@
      "colors": [
       "B",
       "U"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Marwyn, the Preserver": {
+   "name": "Marwyn, the Preserver",
+   "oracleId": "eb03f6c1-c94f-4f09-b2e9-a55ce5533653",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "G"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Marwyn, the Preserver",
+     "manaCost": "{1}{G}",
+     "typeLine": "Legendary Creature — Elf Druid",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Elf",
+      "Druid"
+     ],
+     "oracleText": "Lands you control have hexproof. (They can't be the targets of spells or abilities your opponents control.)\n{2}: Return target land card from your graveyard to your hand.",
+     "power": 3,
+     "toughness": 2,
+     "loyalty": null,
+     "colors": [
+      "G"
      ],
      "colorIndicator": null
     }
@@ -38635,6 +39995,40 @@
      "loyalty": null,
      "colors": [
       "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Mayhem Devil": {
+   "name": "Mayhem Devil",
+   "oracleId": "4709f11c-aef8-45ac-b2bf-e640c568dfac",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "B",
+    "R"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Mayhem Devil",
+     "manaCost": "{1}{B}{R}",
+     "typeLine": "Creature — Devil",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Devil"
+     ],
+     "oracleText": "Whenever a player sacrifices a permanent, this creature deals 1 damage to any target.",
+     "power": 3,
+     "toughness": 3,
+     "loyalty": null,
+     "colors": [
+      "B",
+      "R"
      ],
      "colorIndicator": null
     }
@@ -39536,6 +40930,75 @@
     }
    ]
   },
+  "Midnight Tilling": {
+   "name": "Midnight Tilling",
+   "oracleId": "79bc2c6d-b03d-4ceb-b468-293378ec73ae",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "G"
+   ],
+   "keywords": [
+    "Mill"
+   ],
+   "faces": [
+    {
+     "name": "Midnight Tilling",
+     "manaCost": "{1}{G}",
+     "typeLine": "Instant",
+     "supertypes": [],
+     "types": [
+      "Instant"
+     ],
+     "subtypes": [],
+     "oracleText": "Mill four cards, then you may return a permanent card from among them to your hand. (To mill four cards, put the top four cards of your library into your graveyard.)",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "G"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Mightform Harmonizer": {
+   "name": "Mightform Harmonizer",
+   "oracleId": "8e025cda-71c5-4d06-8436-decd408667af",
+   "layout": "normal",
+   "manaValue": 4,
+   "colorIdentity": [
+    "G"
+   ],
+   "keywords": [
+    "Warp",
+    "Double",
+    "Landfall"
+   ],
+   "faces": [
+    {
+     "name": "Mightform Harmonizer",
+     "manaCost": "{2}{G}{G}",
+     "typeLine": "Creature — Insect Druid",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Insect",
+      "Druid"
+     ],
+     "oracleText": "Landfall — Whenever a land you control enters, double the power of target creature you control until end of turn.\nWarp {2}{G} (You may cast this card from your hand for its warp cost. Exile this creature at the beginning of the next end step, then you may cast it from exile on a later turn.)",
+     "power": 4,
+     "toughness": 4,
+     "loyalty": null,
+     "colors": [
+      "G"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Milei, El Loco da Motosserra": {
    "name": "Milei, El Loco da Motosserra",
    "oracleId": "4edb36d3-161e-9959-975f-c6997de1a78d",
@@ -40053,6 +41516,32 @@
      "colors": [
       "U"
      ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Mirrorpool": {
+   "name": "Mirrorpool",
+   "oracleId": "57b86d5c-3269-44bc-a838-3c5439d820d9",
+   "layout": "normal",
+   "manaValue": 0,
+   "colorIdentity": [],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Mirrorpool",
+     "manaCost": "",
+     "typeLine": "Land",
+     "supertypes": [],
+     "types": [
+      "Land"
+     ],
+     "subtypes": [],
+     "oracleText": "This land enters tapped.\n{T}: Add {C}.\n{2}{C}, {T}, Sacrifice this land: Copy target instant or sorcery spell you control. You may choose new targets for the copy.\n{4}{C}, {T}, Sacrifice this land: Create a token that's a copy of target creature you control.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [],
      "colorIndicator": null
     }
    ]
@@ -40820,6 +42309,41 @@
     }
    ]
   },
+  "Mondrak, Glory Dominus": {
+   "name": "Mondrak, Glory Dominus",
+   "oracleId": "fe83087d-c6c1-40be-9295-baaa1c6b2db1",
+   "layout": "normal",
+   "manaValue": 4,
+   "colorIdentity": [
+    "W"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Mondrak, Glory Dominus",
+     "manaCost": "{2}{W}{W}",
+     "typeLine": "Legendary Creature — Phyrexian Horror",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Phyrexian",
+      "Horror"
+     ],
+     "oracleText": "If one or more tokens would be created under your control, twice that many of those tokens are created instead.\n{1}{W/P}{W/P}, Sacrifice two other artifacts and/or creatures: Put an indestructible counter on Mondrak. ({W/P} can be paid with either {W} or 2 life.)",
+     "power": 4,
+     "toughness": 4,
+     "loyalty": null,
+     "colors": [
+      "W"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Monologue Tax": {
    "name": "Monologue Tax",
    "oracleId": "ace8e88e-ca6a-4bdf-8c6d-1b914fc00259",
@@ -41554,6 +43078,32 @@
       "Mountain"
      ],
      "oracleText": "({T}: Add {R}.)",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Mountain Valley": {
+   "name": "Mountain Valley",
+   "oracleId": "0b7393aa-d563-45bc-9946-8e7d1729d498",
+   "layout": "normal",
+   "manaValue": 0,
+   "colorIdentity": [],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Mountain Valley",
+     "manaCost": "",
+     "typeLine": "Land",
+     "supertypes": [],
+     "types": [
+      "Land"
+     ],
+     "subtypes": [],
+     "oracleText": "This land enters tapped.\n{T}, Sacrifice this land: Search your library for a Mountain or Forest card, put it onto the battlefield, then shuffle.",
      "power": null,
      "toughness": null,
      "loyalty": null,
@@ -42652,6 +44202,36 @@
     }
    ]
   },
+  "Need for Speed": {
+   "name": "Need for Speed",
+   "oracleId": "8894ab96-17e1-41d8-a4fb-28b510807394",
+   "layout": "normal",
+   "manaValue": 1,
+   "colorIdentity": [
+    "R"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Need for Speed",
+     "manaCost": "{R}",
+     "typeLine": "Enchantment",
+     "supertypes": [],
+     "types": [
+      "Enchantment"
+     ],
+     "subtypes": [],
+     "oracleText": "Sacrifice a land: Target creature gains haste until end of turn.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "R"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Needle Spires": {
    "name": "Needle Spires",
    "oracleId": "e7bb8160-0a4b-4e46-b196-7a19fb388d8e",
@@ -43618,6 +45198,35 @@
     }
    ]
   },
+  "Nuka-Cola Vending Machine": {
+   "name": "Nuka-Cola Vending Machine",
+   "oracleId": "6cfb03e5-aca6-4fe2-a3f1-93e1f0cbf9e1",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [],
+   "keywords": [
+    "Treasure",
+    "Food"
+   ],
+   "faces": [
+    {
+     "name": "Nuka-Cola Vending Machine",
+     "manaCost": "{3}",
+     "typeLine": "Artifact",
+     "supertypes": [],
+     "types": [
+      "Artifact"
+     ],
+     "subtypes": [],
+     "oracleText": "{1}, {T}: Create a Food token. (It's an artifact with \"{2}, {T}, Sacrifice this token: You gain 3 life.\")\nWhenever you sacrifice a Food, create a tapped Treasure token. (It's an artifact with \"{T}, Sacrifice this token: Add one mana of any color.\")",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Nunca Antes na História Deste País": {
    "name": "Nunca Antes na História Deste País",
    "oracleId": "c65c85bb-dd1a-4fa3-3af8-a14d22cb0b1c",
@@ -43868,6 +45477,42 @@
      "loyalty": null,
      "colors": [
       "U"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Ocelot Pride": {
+   "name": "Ocelot Pride",
+   "oracleId": "b4ce2c8f-a19c-461e-8a2e-0ec2bd3ebca3",
+   "layout": "normal",
+   "manaValue": 1,
+   "colorIdentity": [
+    "W"
+   ],
+   "keywords": [
+    "Lifelink",
+    "Ascend",
+    "First strike"
+   ],
+   "faces": [
+    {
+     "name": "Ocelot Pride",
+     "manaCost": "{W}",
+     "typeLine": "Creature — Cat",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Cat"
+     ],
+     "oracleText": "First strike, lifelink\nAscend (If you control ten or more permanents, you get the city's blessing for the rest of the game.)\nAt the beginning of your end step, if you gained life this turn, create a 1/1 white Cat creature token. Then if you have the city's blessing, for each token you control that entered this turn, create a token that's a copy of it.",
+     "power": 1,
+     "toughness": 1,
+     "loyalty": null,
+     "colors": [
+      "W"
      ],
      "colorIndicator": null
     }
@@ -44459,6 +46104,39 @@
      "toughness": null,
      "loyalty": null,
      "colors": [],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Oracle of Mul Daya": {
+   "name": "Oracle of Mul Daya",
+   "oracleId": "6c5b02eb-7829-436a-8555-fea200e4b67f",
+   "layout": "normal",
+   "manaValue": 4,
+   "colorIdentity": [
+    "G"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Oracle of Mul Daya",
+     "manaCost": "{3}{G}",
+     "typeLine": "Creature — Elf Shaman",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Elf",
+      "Shaman"
+     ],
+     "oracleText": "You may play an additional land on each of your turns.\nPlay with the top card of your library revealed.\nYou may play lands from the top of your library.",
+     "power": 2,
+     "toughness": 2,
+     "loyalty": null,
+     "colors": [
+      "G"
+     ],
      "colorIndicator": null
     }
    ]
@@ -46229,6 +47907,43 @@
     }
    ]
   },
+  "Peregrin Took": {
+   "name": "Peregrin Took",
+   "oracleId": "188da0ad-8524-4fb2-915e-1876dc9df89f",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "G"
+   ],
+   "keywords": [
+    "Food"
+   ],
+   "faces": [
+    {
+     "name": "Peregrin Took",
+     "manaCost": "{2}{G}",
+     "typeLine": "Legendary Creature — Halfling Citizen",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Halfling",
+      "Citizen"
+     ],
+     "oracleText": "If one or more tokens would be created under your control, those tokens plus an additional Food token are created instead. (It's an artifact with \"{2}, {T}, Sacrifice this token: You gain 3 life.\")\nSacrifice three Foods: Draw a card.",
+     "power": 2,
+     "toughness": 3,
+     "loyalty": null,
+     "colors": [
+      "G"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Perforating Artist": {
    "name": "Perforating Artist",
    "oracleId": "a3643f66-dfa2-4275-a093-23e162496354",
@@ -46964,6 +48679,36 @@
     }
    ]
   },
+  "Planar Engineering": {
+   "name": "Planar Engineering",
+   "oracleId": "dc48079a-b1c4-4c43-a989-418c78a264ec",
+   "layout": "normal",
+   "manaValue": 4,
+   "colorIdentity": [
+    "G"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Planar Engineering",
+     "manaCost": "{3}{G}",
+     "typeLine": "Sorcery",
+     "supertypes": [],
+     "types": [
+      "Sorcery"
+     ],
+     "subtypes": [],
+     "oracleText": "Sacrifice two lands. Search your library for four basic land cards, put them onto the battlefield tapped, then shuffle.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "G"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Planeswalker's Mischief": {
    "name": "Planeswalker's Mischief",
    "oracleId": "78e87805-19e3-415b-ad0b-3275183d7297",
@@ -46989,6 +48734,36 @@
      "loyalty": null,
      "colors": [
       "U"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Planetary Annihilation": {
+   "name": "Planetary Annihilation",
+   "oracleId": "1d45f248-5b83-4377-a3ba-4eae48e63ca1",
+   "layout": "normal",
+   "manaValue": 5,
+   "colorIdentity": [
+    "R"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Planetary Annihilation",
+     "manaCost": "{3}{R}{R}",
+     "typeLine": "Sorcery",
+     "supertypes": [],
+     "types": [
+      "Sorcery"
+     ],
+     "subtypes": [],
+     "oracleText": "Each player chooses six lands they control, then sacrifices the rest. Planetary Annihilation deals 6 damage to each creature.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "R"
      ],
      "colorIndicator": null
     }
@@ -47941,6 +49716,38 @@
      "loyalty": null,
      "colors": [
       "R"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Prize Pig": {
+   "name": "Prize Pig",
+   "oracleId": "14f55fc9-ec19-4b4a-b3de-d75898c19edf",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "G"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Prize Pig",
+     "manaCost": "{1}{G}",
+     "typeLine": "Creature — Boar",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Boar"
+     ],
+     "oracleText": "Whenever you gain life, put that many ribbon counters on this creature. Then if there are three or more ribbon counters on this creature, remove those counters and untap it.\n{T}: Add one mana of any color.",
+     "power": 0,
+     "toughness": 3,
+     "loyalty": null,
+     "colors": [
+      "G"
      ],
      "colorIndicator": null
     }
@@ -52499,6 +54306,32 @@
     }
    ]
   },
+  "Rocky Tar Pit": {
+   "name": "Rocky Tar Pit",
+   "oracleId": "8709b5b1-ef9e-45b2-bf4f-ef4c4d613dcd",
+   "layout": "normal",
+   "manaValue": 0,
+   "colorIdentity": [],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Rocky Tar Pit",
+     "manaCost": "",
+     "typeLine": "Land",
+     "supertypes": [],
+     "types": [
+      "Land"
+     ],
+     "subtypes": [],
+     "oracleText": "This land enters tapped.\n{T}, Sacrifice this land: Search your library for a Swamp or Mountain card, put it onto the battlefield, then shuffle.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Rogue's Passage": {
    "name": "Rogue's Passage",
    "oracleId": "f29dc596-2121-4421-8463-15f6c2e8b9b3",
@@ -52521,6 +54354,36 @@
      "toughness": null,
      "loyalty": null,
      "colors": [],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Roiling Regrowth": {
+   "name": "Roiling Regrowth",
+   "oracleId": "65d63518-3261-40b5-87b8-19c152b29ee3",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "G"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Roiling Regrowth",
+     "manaCost": "{2}{G}",
+     "typeLine": "Instant",
+     "supertypes": [],
+     "types": [
+      "Instant"
+     ],
+     "subtypes": [],
+     "oracleText": "Sacrifice a land. Search your library for up to two basic land cards, put them onto the battlefield tapped, then shuffle.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "G"
+     ],
      "colorIndicator": null
     }
    ]
@@ -52845,6 +54708,41 @@
     }
    ]
   },
+  "Sabotender": {
+   "name": "Sabotender",
+   "oracleId": "65385311-1158-4e94-892a-683997706ca8",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "R"
+   ],
+   "keywords": [
+    "Reach",
+    "Landfall"
+   ],
+   "faces": [
+    {
+     "name": "Sabotender",
+     "manaCost": "{1}{R}",
+     "typeLine": "Creature — Plant",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Plant"
+     ],
+     "oracleText": "Reach\nLandfall — Whenever a land you control enters, this creature deals 1 damage to each opponent.",
+     "power": 2,
+     "toughness": 1,
+     "loyalty": null,
+     "colors": [
+      "R"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Sacred Foundry": {
    "name": "Sacred Foundry",
    "oracleId": "45181cb8-2090-4471-ba90-e5a8f04d525f",
@@ -53113,6 +55011,86 @@
      "loyalty": null,
      "colors": [
       "G"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Sam, Loyal Attendant": {
+   "name": "Sam, Loyal Attendant",
+   "oracleId": "2837be10-23ad-49d2-943e-b1e00edbbbd9",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "G",
+    "W"
+   ],
+   "keywords": [
+    "Partner with",
+    "Food",
+    "Partner"
+   ],
+   "faces": [
+    {
+     "name": "Sam, Loyal Attendant",
+     "manaCost": "{1}{G}{W}",
+     "typeLine": "Legendary Creature — Halfling Peasant",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Halfling",
+      "Peasant"
+     ],
+     "oracleText": "Partner with Frodo, Adventurous Hobbit (When this creature enters, target player may put Frodo into their hand from their library, then shuffle.)\nAt the beginning of combat on your turn, create a Food token. (It's an artifact with \"{2}, {T}, Sacrifice this token: You gain 3 life.\")\nActivated abilities of Foods you control cost {1} less to activate.",
+     "power": 2,
+     "toughness": 4,
+     "loyalty": null,
+     "colors": [
+      "G",
+      "W"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Samwise Gamgee": {
+   "name": "Samwise Gamgee",
+   "oracleId": "7ce37c26-91ea-493f-bfc3-a890d4538bc1",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "G",
+    "W"
+   ],
+   "keywords": [
+    "Food"
+   ],
+   "faces": [
+    {
+     "name": "Samwise Gamgee",
+     "manaCost": "{G}{W}",
+     "typeLine": "Legendary Creature — Halfling Peasant",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Halfling",
+      "Peasant"
+     ],
+     "oracleText": "Whenever another nontoken creature you control enters, create a Food token. (It's an artifact with \"{2}, {T}, Sacrifice this token: You gain 3 life.\")\nSacrifice three Foods: Return target historic card from your graveyard to your hand. (Artifacts, legendaries, and Sagas are historic.)",
+     "power": 2,
+     "toughness": 2,
+     "loyalty": null,
+     "colors": [
+      "G",
+      "W"
      ],
      "colorIndicator": null
     }
@@ -53488,6 +55466,43 @@
      "toughness": null,
      "loyalty": null,
      "colors": [],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Savvy Hunter": {
+   "name": "Savvy Hunter",
+   "oracleId": "602132c2-8ee8-41f8-bfac-cb17d32203f5",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "B",
+    "G"
+   ],
+   "keywords": [
+    "Food"
+   ],
+   "faces": [
+    {
+     "name": "Savvy Hunter",
+     "manaCost": "{1}{B}{G}",
+     "typeLine": "Creature — Human Warrior",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Human",
+      "Warrior"
+     ],
+     "oracleText": "Whenever this creature attacks or blocks, create a Food token. (It's an artifact with \"{2}, {T}, Sacrifice this token: You gain 3 life.\")\nSacrifice two Foods: Draw a card.",
+     "power": 3,
+     "toughness": 3,
+     "loyalty": null,
+     "colors": [
+      "B",
+      "G"
+     ],
      "colorIndicator": null
     }
    ]
@@ -56333,6 +58348,36 @@
     }
    ]
   },
+  "Shifting Woodland": {
+   "name": "Shifting Woodland",
+   "oracleId": "7c2a4fe5-43e8-4e20-bef2-0278d18afc4b",
+   "layout": "normal",
+   "manaValue": 0,
+   "colorIdentity": [
+    "G"
+   ],
+   "keywords": [
+    "Delirium"
+   ],
+   "faces": [
+    {
+     "name": "Shifting Woodland",
+     "manaCost": "",
+     "typeLine": "Land",
+     "supertypes": [],
+     "types": [
+      "Land"
+     ],
+     "subtypes": [],
+     "oracleText": "This land enters tapped unless you control a Forest.\n{T}: Add {G}.\nDelirium — {2}{G}{G}: This land becomes a copy of target permanent card in your graveyard until end of turn. Activate only if there are four or more card types among cards in your graveyard.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Shimmer Dragon": {
    "name": "Shimmer Dragon",
    "oracleId": "de1316f2-1cca-4ac4-aead-0fd8b4036d88",
@@ -58877,6 +60922,73 @@
     }
    ]
   },
+  "Sorin of House Markov // Sorin, Ravenous Neonate": {
+   "name": "Sorin of House Markov // Sorin, Ravenous Neonate",
+   "oracleId": "84e84532-498b-40ea-9510-46fb2403939b",
+   "layout": "transform",
+   "manaValue": 2,
+   "colorIdentity": [
+    "B",
+    "W"
+   ],
+   "keywords": [
+    "Lifelink",
+    "Extort",
+    "Transform",
+    "Food"
+   ],
+   "faces": [
+    {
+     "name": "Sorin of House Markov",
+     "manaCost": "{1}{B}",
+     "typeLine": "Legendary Creature — Human Noble",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Human",
+      "Noble"
+     ],
+     "oracleText": "Lifelink\nExtort (Whenever you cast a spell, you may pay {W/B}. If you do, each opponent loses 1 life and you gain that much life.)\nAt the beginning of each of your postcombat main phases, if you gained 3 or more life this turn, exile Sorin, then return him to the battlefield transformed under his owner's control.",
+     "power": 1,
+     "toughness": 4,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    },
+    {
+     "name": "Sorin, Ravenous Neonate",
+     "manaCost": "",
+     "typeLine": "Legendary Planeswalker — Sorin",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Planeswalker"
+     ],
+     "subtypes": [
+      "Sorin"
+     ],
+     "oracleText": "Extort (Whenever you cast a spell, you may pay {W/B}. If you do, each opponent loses 1 life and you gain that much life.)\n+2: Create a Food token.\n−1: Sorin deals damage equal to the amount of life you gained this turn to any target.\n−6: Gain control of target creature. It becomes a Vampire in addition to its other types. Put a lifelink counter on it if you control a white permanent other than that creature or Sorin.",
+     "power": null,
+     "toughness": null,
+     "loyalty": 3,
+     "colors": [
+      "B",
+      "W"
+     ],
+     "colorIndicator": [
+      "B",
+      "W"
+     ]
+    }
+   ]
+  },
   "Soul Immolation": {
    "name": "Soul Immolation",
    "oracleId": "338747e8-bed8-4e60-8b19-5c2b80799477",
@@ -59495,6 +61607,36 @@
     }
    ]
   },
+  "Spelunking": {
+   "name": "Spelunking",
+   "oracleId": "2962fe4c-bf48-454b-8a6b-0f8253352ae8",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "G"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Spelunking",
+     "manaCost": "{2}{G}",
+     "typeLine": "Enchantment",
+     "supertypes": [],
+     "types": [
+      "Enchantment"
+     ],
+     "subtypes": [],
+     "oracleText": "When this enchantment enters, draw a card, then you may put a land card from your hand onto the battlefield. If you put a Cave onto the battlefield this way, you gain 4 life.\nLands you control enter untapped.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "G"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Sphere of Safety": {
    "name": "Sphere of Safety",
    "oracleId": "92f6c063-a740-4c3c-a60a-569fd298854d",
@@ -59871,6 +62013,36 @@
     }
    ]
   },
+  "Splendid Reclamation": {
+   "name": "Splendid Reclamation",
+   "oracleId": "13fe5e46-77a6-45d8-ac0b-c3d740eccf86",
+   "layout": "normal",
+   "manaValue": 4,
+   "colorIdentity": [
+    "G"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Splendid Reclamation",
+     "manaCost": "{3}{G}",
+     "typeLine": "Sorcery",
+     "supertypes": [],
+     "types": [
+      "Sorcery"
+     ],
+     "subtypes": [],
+     "oracleText": "Return all land cards from your graveyard to the battlefield tapped.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "G"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Splinter, Hamato Yoshi": {
    "name": "Splinter, Hamato Yoshi",
    "oracleId": "41fbdaa2-7a7a-44d5-a8f4-77624350eedd",
@@ -60073,6 +62245,38 @@
      "colors": [
       "B",
       "W"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Squandered Resources": {
+   "name": "Squandered Resources",
+   "oracleId": "620d0572-6d22-43e2-83a9-000e605c8a2b",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "B",
+    "G"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Squandered Resources",
+     "manaCost": "{B}{G}",
+     "typeLine": "Enchantment",
+     "supertypes": [],
+     "types": [
+      "Enchantment"
+     ],
+     "subtypes": [],
+     "oracleText": "Sacrifice a land: Add one mana of any type the sacrificed land could produce.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "B",
+      "G"
      ],
      "colorIndicator": null
     }
@@ -61087,6 +63291,35 @@
       "B",
       "R"
      ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Stridehangar Automaton": {
+   "name": "Stridehangar Automaton",
+   "oracleId": "9070c98b-fd01-4eeb-a4ec-fc464946c7c0",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Stridehangar Automaton",
+     "manaCost": "{3}",
+     "typeLine": "Artifact Creature — Construct",
+     "supertypes": [],
+     "types": [
+      "Artifact",
+      "Creature"
+     ],
+     "subtypes": [
+      "Construct"
+     ],
+     "oracleText": "Thopters you control get +1/+1.\nIf one or more artifact tokens would be created under your control, those tokens plus an additional 1/1 colorless Thopter artifact creature token with flying are created instead.",
+     "power": 1,
+     "toughness": 4,
+     "loyalty": null,
+     "colors": [],
      "colorIndicator": null
     }
    ]
@@ -63482,6 +65715,45 @@
     }
    ]
   },
+  "Tannuk, Memorial Ensign": {
+   "name": "Tannuk, Memorial Ensign",
+   "oracleId": "76cb1912-3791-44b8-b594-b92dab21bafc",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "G",
+    "R"
+   ],
+   "keywords": [
+    "Landfall"
+   ],
+   "faces": [
+    {
+     "name": "Tannuk, Memorial Ensign",
+     "manaCost": "{1}{R}{G}",
+     "typeLine": "Legendary Creature — Kavu Pilot",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Kavu",
+      "Pilot"
+     ],
+     "oracleText": "Landfall — Whenever a land you control enters, Tannuk deals 1 damage to each opponent. If this is the second time this ability has resolved this turn, draw a card.",
+     "power": 2,
+     "toughness": 4,
+     "loyalty": null,
+     "colors": [
+      "G",
+      "R"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Tarcísio, o Plano B": {
    "name": "Tarcísio, o Plano B",
    "oracleId": "88891242-6d46-0c34-3467-9c1cea5437aa",
@@ -63832,6 +66104,38 @@
      "loyalty": null,
      "colors": [
       "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Tectonic Split": {
+   "name": "Tectonic Split",
+   "oracleId": "b71c3c1e-f927-4192-ac3a-cf6a442ffd00",
+   "layout": "normal",
+   "manaValue": 6,
+   "colorIdentity": [
+    "G"
+   ],
+   "keywords": [
+    "Hexproof"
+   ],
+   "faces": [
+    {
+     "name": "Tectonic Split",
+     "manaCost": "{4}{G}{G}",
+     "typeLine": "Enchantment",
+     "supertypes": [],
+     "types": [
+      "Enchantment"
+     ],
+     "subtypes": [],
+     "oracleText": "As an additional cost to cast this spell, sacrifice half the lands you control, rounded up.\nHexproof\nLands you control have \"{T}: Add three mana of any one color.\"",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "G"
      ],
      "colorIndicator": null
     }
@@ -64457,6 +66761,41 @@
     }
    ]
   },
+  "Tenured Tethermage": {
+   "name": "Tenured Tethermage",
+   "oracleId": "571cb06d-55b5-46e4-9678-1f74aca73068",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "G",
+    "R"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Tenured Tethermage",
+     "manaCost": "{1}{R}{G}",
+     "typeLine": "Creature — Human Artificer",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Human",
+      "Artificer"
+     ],
+     "oracleText": "When this creature enters, you may sacrifice a land. If you do, create two tapped Heartwood tokens. (They're red and green artifacts with \"{T}: Add {R} or {G}.\")\nTap two untapped artifacts you control: Put two +1/+1 counters on this creature.",
+     "power": 1,
+     "toughness": 1,
+     "loyalty": null,
+     "colors": [
+      "G",
+      "R"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Terminate": {
    "name": "Terminate",
    "oracleId": "6257c2fd-005f-41e3-8a72-af76df1eb134",
@@ -64986,6 +67325,38 @@
     }
    ]
   },
+  "The Battle of Bywater": {
+   "name": "The Battle of Bywater",
+   "oracleId": "a94c191d-a938-458e-bc1b-2f44fd8873a3",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "W"
+   ],
+   "keywords": [
+    "Food"
+   ],
+   "faces": [
+    {
+     "name": "The Battle of Bywater",
+     "manaCost": "{1}{W}{W}",
+     "typeLine": "Sorcery",
+     "supertypes": [],
+     "types": [
+      "Sorcery"
+     ],
+     "subtypes": [],
+     "oracleText": "Destroy all creatures with power 3 or greater. Then create a Food token for each creature you control. (It's an artifact with \"{2}, {T}, Sacrifice this token: You gain 3 life.\")",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "W"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "The Black Gate": {
    "name": "The Black Gate",
    "oracleId": "40eb9904-dea3-47cf-963a-04821f98ba64",
@@ -65055,6 +67426,43 @@
       "B",
       "U",
       "W"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "The Cabbage Merchant": {
+   "name": "The Cabbage Merchant",
+   "oracleId": "e31808bb-fb6e-487b-a973-db44961c84ee",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "G"
+   ],
+   "keywords": [
+    "Food"
+   ],
+   "faces": [
+    {
+     "name": "The Cabbage Merchant",
+     "manaCost": "{2}{G}",
+     "typeLine": "Legendary Creature — Human Citizen",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Human",
+      "Citizen"
+     ],
+     "oracleText": "Whenever an opponent casts a noncreature spell, create a Food token. (It's an artifact with \"{2}, {T}, Sacrifice this token: You gain 3 life.\")\nWhenever a creature deals combat damage to you, sacrifice a Food token.\nTap two untapped Foods you control: Add one mana of any color.",
+     "power": 2,
+     "toughness": 2,
+     "loyalty": null,
+     "colors": [
+      "G"
      ],
      "colorIndicator": null
     }
@@ -65219,6 +67627,41 @@
      "loyalty": null,
      "colors": [
       "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "The Gaffer": {
+   "name": "The Gaffer",
+   "oracleId": "a177295e-3b58-4e46-a1cb-fc003a7a0848",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "W"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "The Gaffer",
+     "manaCost": "{2}{W}",
+     "typeLine": "Legendary Creature — Halfling Peasant",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Halfling",
+      "Peasant"
+     ],
+     "oracleText": "At the beginning of each end step, if you gained 3 or more life this turn, draw a card.",
+     "power": 2,
+     "toughness": 3,
+     "loyalty": null,
+     "colors": [
+      "W"
      ],
      "colorIndicator": null
     }
@@ -65390,6 +67833,40 @@
      "loyalty": null,
      "colors": [
       "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "The Mending of Dominaria": {
+   "name": "The Mending of Dominaria",
+   "oracleId": "9b0b8f00-6367-4dc9-b33e-680470b3a36c",
+   "layout": "saga",
+   "manaValue": 5,
+   "colorIdentity": [
+    "G"
+   ],
+   "keywords": [
+    "Mill"
+   ],
+   "faces": [
+    {
+     "name": "The Mending of Dominaria",
+     "manaCost": "{3}{G}{G}",
+     "typeLine": "Enchantment — Saga",
+     "supertypes": [],
+     "types": [
+      "Enchantment"
+     ],
+     "subtypes": [
+      "Saga"
+     ],
+     "oracleText": "(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)\nI, II — Mill two cards, then you may return a creature card from your graveyard to your hand.\nIII — Return all land cards from your graveyard to the battlefield, then shuffle your graveyard into your library.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "G"
      ],
      "colorIndicator": null
     }
@@ -65621,6 +68098,43 @@
     }
    ]
   },
+  "The Sackville-Bagginses": {
+   "name": "The Sackville-Bagginses",
+   "oracleId": "e3a665f9-6e51-4e0d-923b-e9552d5978a4",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [
+    "Treasure"
+   ],
+   "faces": [
+    {
+     "name": "The Sackville-Bagginses",
+     "manaCost": "{1}{B}",
+     "typeLine": "Legendary Creature — Halfling Citizen",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Halfling",
+      "Citizen"
+     ],
+     "oracleText": "When The Sackville-Bagginses enter, you may sacrifice another creature or artifact. If you do, draw a card and create a Treasure token.\nWhenever you sacrifice a token, target opponent loses 1 life.",
+     "power": 2,
+     "toughness": 2,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "The Scorpion God": {
    "name": "The Scorpion God",
    "oracleId": "aff223d4-6338-460d-a4d5-d45f522864dc",
@@ -65653,6 +68167,38 @@
       "B",
       "R"
      ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "The Shire": {
+   "name": "The Shire",
+   "oracleId": "9abf9a0e-8e7d-406b-a01d-d4870b30134e",
+   "layout": "normal",
+   "manaValue": 0,
+   "colorIdentity": [
+    "G"
+   ],
+   "keywords": [
+    "Food"
+   ],
+   "faces": [
+    {
+     "name": "The Shire",
+     "manaCost": "",
+     "typeLine": "Legendary Land",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Land"
+     ],
+     "subtypes": [],
+     "oracleText": "The Shire enters tapped unless you control a legendary creature.\n{T}: Add {G}.\n{1}{G}, {T}, Tap an untapped creature you control: Create a Food token.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [],
      "colorIndicator": null
     }
    ]
@@ -67012,6 +69558,35 @@
     }
    ]
   },
+  "Tiller Engine": {
+   "name": "Tiller Engine",
+   "oracleId": "62f6baba-da3b-45b8-a3c1-efb75763cca8",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Tiller Engine",
+     "manaCost": "{2}",
+     "typeLine": "Artifact Creature — Construct",
+     "supertypes": [],
+     "types": [
+      "Artifact",
+      "Creature"
+     ],
+     "subtypes": [
+      "Construct"
+     ],
+     "oracleText": "Whenever a land you control enters tapped, choose one —\n• Untap that land.\n• Tap target nonland permanent an opponent controls.",
+     "power": 1,
+     "toughness": 3,
+     "loyalty": null,
+     "colors": [],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Time Stop": {
    "name": "Time Stop",
    "oracleId": "55bc6a7e-2356-48f0-a93a-8bf19044ee4b",
@@ -67170,6 +69745,43 @@
      "loyalty": null,
      "colors": [
       "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Tippy-Toe, Terrific Partner": {
+   "name": "Tippy-Toe, Terrific Partner",
+   "oracleId": "6a1bce89-0c11-4d8d-aacb-c0a5a5effffc",
+   "layout": "normal",
+   "manaValue": 4,
+   "colorIdentity": [
+    "G"
+   ],
+   "keywords": [
+    "Food"
+   ],
+   "faces": [
+    {
+     "name": "Tippy-Toe, Terrific Partner",
+     "manaCost": "{3}{G}",
+     "typeLine": "Legendary Creature — Squirrel Hero",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Squirrel",
+      "Hero"
+     ],
+     "oracleText": "If you would create one or more tokens, instead create those tokens plus an additional Food token. (It's an artifact with \"{2}, {T}, Sacrifice this token: You gain 3 life.\")\nAt the beginning of your end step, if you gained life this turn, draw a card.",
+     "power": 2,
+     "toughness": 4,
+     "loyalty": null,
+     "colors": [
+      "G"
      ],
      "colorIndicator": null
     }
@@ -68049,6 +70661,38 @@
     }
    ]
   },
+  "Trail of Crumbs": {
+   "name": "Trail of Crumbs",
+   "oracleId": "185d6356-8f8d-4b32-8259-b4eb0a95866c",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "G"
+   ],
+   "keywords": [
+    "Food"
+   ],
+   "faces": [
+    {
+     "name": "Trail of Crumbs",
+     "manaCost": "{1}{G}",
+     "typeLine": "Enchantment",
+     "supertypes": [],
+     "types": [
+      "Enchantment"
+     ],
+     "subtypes": [],
+     "oracleText": "When this enchantment enters, create a Food token. (It's an artifact with \"{2}, {T}, Sacrifice this token: You gain 3 life.\")\nWhenever you sacrifice a Food, you may pay {1}. If you do, look at the top two cards of your library. You may reveal a permanent card from among them and put it into your hand. Put the rest on the bottom of your library in any order.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "G"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Trailblazer's Boots": {
    "name": "Trailblazer's Boots",
    "oracleId": "634d5009-cbf3-44cb-8c15-7057f501a210",
@@ -68342,6 +70986,46 @@
      "loyalty": null,
      "colors": [
       "G"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Treebeard, Gracious Host": {
+   "name": "Treebeard, Gracious Host",
+   "oracleId": "83860749-1603-46e9-9065-e98001244193",
+   "layout": "normal",
+   "manaValue": 4,
+   "colorIdentity": [
+    "G",
+    "W"
+   ],
+   "keywords": [
+    "Food",
+    "Trample",
+    "Ward"
+   ],
+   "faces": [
+    {
+     "name": "Treebeard, Gracious Host",
+     "manaCost": "{2}{G}{W}",
+     "typeLine": "Legendary Creature — Treefolk",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Treefolk"
+     ],
+     "oracleText": "Trample, ward {2}\nWhen Treebeard enters, create two Food tokens.\nWhenever you gain life, put that many +1/+1 counters on target Halfling or Treefolk.",
+     "power": 0,
+     "toughness": 5,
+     "loyalty": null,
+     "colors": [
+      "G",
+      "W"
      ],
      "colorIndicator": null
     }
@@ -68786,6 +71470,40 @@
      "toughness": null,
      "loyalty": null,
      "colors": [],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Tunneling Geopede": {
+   "name": "Tunneling Geopede",
+   "oracleId": "78cd6d20-033f-471f-a86e-59ec8307ae1f",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "R"
+   ],
+   "keywords": [
+    "Landfall"
+   ],
+   "faces": [
+    {
+     "name": "Tunneling Geopede",
+     "manaCost": "{2}{R}",
+     "typeLine": "Creature — Insect",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Insect"
+     ],
+     "oracleText": "Landfall — Whenever a land you control enters, this creature deals 1 damage to each opponent.",
+     "power": 3,
+     "toughness": 2,
+     "loyalty": null,
+     "colors": [
+      "R"
+     ],
      "colorIndicator": null
     }
    ]
@@ -69843,6 +72561,38 @@
     }
    ]
   },
+  "Unearth": {
+   "name": "Unearth",
+   "oracleId": "4e0b647a-6e1a-421b-bca9-8d5e346bda80",
+   "layout": "normal",
+   "manaValue": 1,
+   "colorIdentity": [
+    "B"
+   ],
+   "keywords": [
+    "Cycling"
+   ],
+   "faces": [
+    {
+     "name": "Unearth",
+     "manaCost": "{B}",
+     "typeLine": "Sorcery",
+     "supertypes": [],
+     "types": [
+      "Sorcery"
+     ],
+     "subtypes": [],
+     "oracleText": "Return target creature card with mana value 3 or less from your graveyard to the battlefield.\nCycling {2} ({2}, Discard this card: Draw a card.)",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "B"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Unexpected Windfall": {
    "name": "Unexpected Windfall",
    "oracleId": "498c10c9-253d-4b15-b48c-1509381b17e8",
@@ -70216,6 +72966,35 @@
     }
    ]
   },
+  "Urza's Cave": {
+   "name": "Urza's Cave",
+   "oracleId": "4474ecee-0ec3-409b-90df-738d9313fe3c",
+   "layout": "normal",
+   "manaValue": 0,
+   "colorIdentity": [],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Urza's Cave",
+     "manaCost": "",
+     "typeLine": "Land — Urza's Cave",
+     "supertypes": [],
+     "types": [
+      "Land"
+     ],
+     "subtypes": [
+      "Urza's",
+      "Cave"
+     ],
+     "oracleText": "{T}: Add {C}.\n{3}, {T}, Sacrifice this land: Search your library for a land card, put it onto the battlefield tapped, then shuffle.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Urza's Saga": {
    "name": "Urza's Saga",
    "oracleId": "4c6a0c30-b547-4eff-8ff4-0ca25803c076",
@@ -70338,6 +73117,38 @@
      "oracleText": "Flying\nWhenever a Dragon you control attacks, create a 6/6 red Dragon creature token with flying.",
      "power": 6,
      "toughness": 6,
+     "loyalty": null,
+     "colors": [
+      "R"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Valakut Exploration": {
+   "name": "Valakut Exploration",
+   "oracleId": "d6861319-ae16-4e6c-af87-a264f667d694",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "R"
+   ],
+   "keywords": [
+    "Landfall"
+   ],
+   "faces": [
+    {
+     "name": "Valakut Exploration",
+     "manaCost": "{2}{R}",
+     "typeLine": "Enchantment",
+     "supertypes": [],
+     "types": [
+      "Enchantment"
+     ],
+     "subtypes": [],
+     "oracleText": "Landfall — Whenever a land you control enters, exile the top card of your library. You may play that card for as long as it remains exiled.\nAt the beginning of your end step, if there are cards exiled with this enchantment, put them into their owner's graveyard, then this enchantment deals that much damage to each opponent.",
+     "power": null,
+     "toughness": null,
      "loyalty": null,
      "colors": [
       "R"
@@ -72576,6 +75387,46 @@
     }
    ]
   },
+  "Vraska, the Cutting Glare": {
+   "name": "Vraska, the Cutting Glare",
+   "oracleId": "580de511-863c-4b7a-9d2e-fcdf6e12d54b",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "B",
+    "G"
+   ],
+   "keywords": [
+    "Treasure",
+    "Deathtouch"
+   ],
+   "faces": [
+    {
+     "name": "Vraska, the Cutting Glare",
+     "manaCost": "{B}{B}{G}",
+     "typeLine": "Legendary Creature — Gorgon Assassin",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Gorgon",
+      "Assassin"
+     ],
+     "oracleText": "Deathtouch\nWhen Vraska enters, if you control six or more lands, destroy target permanent an opponent controls. They create a Treasure token. (It's an artifact with \"{T}, Sacrifice this token: Add one mana of any color.\")",
+     "power": 4,
+     "toughness": 4,
+     "loyalty": null,
+     "colors": [
+      "B",
+      "G"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "W'Kabi, Shield of the Nation": {
    "name": "W'Kabi, Shield of the Nation",
    "oracleId": "66950068-adf4-42d7-ad72-fdb4a0e58922",
@@ -73293,6 +76144,40 @@
      "toughness": null,
      "loyalty": null,
      "colors": [],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Wayward Swordtooth": {
+   "name": "Wayward Swordtooth",
+   "oracleId": "3875aef0-3102-4fbf-be90-e4139f7a2348",
+   "layout": "normal",
+   "manaValue": 3,
+   "colorIdentity": [
+    "G"
+   ],
+   "keywords": [
+    "Ascend"
+   ],
+   "faces": [
+    {
+     "name": "Wayward Swordtooth",
+     "manaCost": "{2}{G}",
+     "typeLine": "Creature — Dinosaur",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Dinosaur"
+     ],
+     "oracleText": "Ascend (If you control ten or more permanents, you get the city's blessing for the rest of the game.)\nYou may play an additional land on each of your turns.\nThis creature can't attack or block unless you have the city's blessing.",
+     "power": 5,
+     "toughness": 5,
+     "loyalty": null,
+     "colors": [
+      "G"
+     ],
      "colorIndicator": null
     }
    ]
@@ -74503,6 +77388,34 @@
     }
    ]
   },
+  "Witch's Oven": {
+   "name": "Witch's Oven",
+   "oracleId": "8fa0fe02-2452-4386-8e0c-165757b0f0a3",
+   "layout": "normal",
+   "manaValue": 1,
+   "colorIdentity": [],
+   "keywords": [
+    "Food"
+   ],
+   "faces": [
+    {
+     "name": "Witch's Oven",
+     "manaCost": "{1}",
+     "typeLine": "Artifact",
+     "supertypes": [],
+     "types": [
+      "Artifact"
+     ],
+     "subtypes": [],
+     "oracleText": "{T}, Sacrifice a creature: Create a Food token. If the sacrificed creature's toughness was 4 or greater, create two Food tokens instead. (They're artifacts with \"{2}, {T}, Sacrifice this token: You gain 3 life.\")",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Witherbloom Campus": {
    "name": "Witherbloom Campus",
    "oracleId": "6cd58a88-6434-4c55-bf93-a739b5ed9bc1",
@@ -74860,6 +77773,38 @@
      "loyalty": null,
      "colors": [
       "G"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Worldsoul's Rage": {
+   "name": "Worldsoul's Rage",
+   "oracleId": "3b6ef144-bb98-4686-9718-204f1c3cf020",
+   "layout": "normal",
+   "manaValue": 2,
+   "colorIdentity": [
+    "G",
+    "R"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Worldsoul's Rage",
+     "manaCost": "{X}{R}{G}",
+     "typeLine": "Sorcery",
+     "supertypes": [],
+     "types": [
+      "Sorcery"
+     ],
+     "subtypes": [],
+     "oracleText": "Worldsoul's Rage deals X damage to any target. Put up to X land cards from your hand and/or graveyard onto the battlefield tapped.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "G",
+      "R"
      ],
      "colorIndicator": null
     }
@@ -75226,6 +78171,45 @@
      "toughness": 4,
      "loyalty": null,
      "colors": [
+      "G"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Ygra, Eater of All": {
+   "name": "Ygra, Eater of All",
+   "oracleId": "62511d43-8eaf-405a-9c81-7bd593d3a01e",
+   "layout": "normal",
+   "manaValue": 5,
+   "colorIdentity": [
+    "B",
+    "G"
+   ],
+   "keywords": [
+    "Ward"
+   ],
+   "faces": [
+    {
+     "name": "Ygra, Eater of All",
+     "manaCost": "{3}{B}{G}",
+     "typeLine": "Legendary Creature — Elemental Cat",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Elemental",
+      "Cat"
+     ],
+     "oracleText": "Ward—Sacrifice a Food.\nOther creatures are Food artifacts in addition to their other types and have \"{2}, {T}, Sacrifice this permanent: You gain 3 life.\"\nWhenever a Food is put into a graveyard from the battlefield, put two +1/+1 counters on Ygra.",
+     "power": 6,
+     "toughness": 6,
+     "loyalty": null,
+     "colors": [
+      "B",
       "G"
      ],
      "colorIndicator": null
@@ -82056,6 +85040,115 @@
    "imagem": {
     "id": "ebccb29b-8b69-4813-94bb-d96e117b609e",
     "frente": "imagens/ebccb29b-8b69-4813-94bb-d96e117b609e/front.png",
+    "verso": null
+   }
+  },
+  {
+   "name": "Lander",
+   "oracleId": "d7b177cf-59fd-44dc-9c56-1c4bcacb8468",
+   "layout": "token",
+   "manaValue": 0,
+   "colorIdentity": [],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Lander",
+     "manaCost": "",
+     "typeLine": "Token Artifact — Lander",
+     "supertypes": [],
+     "types": [
+      "Artifact"
+     ],
+     "subtypes": [
+      "Lander"
+     ],
+     "oracleText": "{2}, {T}, Sacrifice this token: Search your library for a basic land card, put it onto the battlefield tapped, then shuffle.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [],
+     "colorIndicator": null
+    }
+   ],
+   "imagem": {
+    "id": "85ef1950-219f-401b-8ff5-914f9aaec122",
+    "frente": "imagens/85ef1950-219f-401b-8ff5-914f9aaec122/front.png",
+    "verso": null
+   }
+  },
+  {
+   "name": "Heartwood",
+   "oracleId": "ed1d8118-b182-413b-99ba-52844d35a35b",
+   "layout": "token",
+   "manaValue": 0,
+   "colorIdentity": [
+    "G",
+    "R"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Heartwood",
+     "manaCost": "",
+     "typeLine": "Token Artifact — Heartwood",
+     "supertypes": [],
+     "types": [
+      "Artifact"
+     ],
+     "subtypes": [
+      "Heartwood"
+     ],
+     "oracleText": "{T}: Add {R} or {G}.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "G",
+      "R"
+     ],
+     "colorIndicator": null
+    }
+   ],
+   "imagem": {
+    "id": "eb4bf635-04d7-4994-9f70-4ff573a767e7",
+    "frente": "imagens/eb4bf635-04d7-4994-9f70-4ff573a767e7/front.png",
+    "verso": null
+   }
+  },
+  {
+   "name": "Cat",
+   "oracleId": "5ae6251d-cef9-4fb7-bdcd-e870a062f042",
+   "layout": "token",
+   "manaValue": 0,
+   "colorIdentity": [
+    "W"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Cat",
+     "manaCost": "",
+     "typeLine": "Token Creature — Cat",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Cat"
+     ],
+     "oracleText": "",
+     "power": 1,
+     "toughness": 1,
+     "loyalty": null,
+     "colors": [
+      "W"
+     ],
+     "colorIndicator": null
+    }
+   ],
+   "imagem": {
+    "id": "74bacab2-a4c6-4ba5-a208-6bd09ae4cf9f",
+    "frente": "imagens/74bacab2-a4c6-4ba5-a208-6bd09ae4cf9f/front.png",
     "verso": null
    }
   }

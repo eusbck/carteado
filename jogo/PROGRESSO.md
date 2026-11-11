@@ -47,8 +47,16 @@ Feito nesta conversa, porque as rodadas automáticas da tarefa semanal terminava
     transforma.
   - Verificação: testes gerais (só os 7 de imagem falham), bots com o deck obrigatório (8×4 e 8×2 aleatórios,
     4×2 heurísticos) sem erro.
-- **Faltam (cartas sem regras):** LandReanimator 60, Voja 58, yuriko 58; e os decks ainda não importados (Abusive
-  Terraforming e mais dois links).
+- **Jund Lands Midrange (Hearthhull, the Worldseed): pronto.** As 62 cartas que faltavam, cada uma com teste. 39
+  decks jogáveis.
+  - `cartas/terras.ts`: sacrificar terrenos (gatilhos e custo), terrenos do cemitério ao campo, buscas por tipo
+    (fetchlands). Fichas novas: Elemental 5/3, Beast 4/4, Lander e Heartwood.
+  - Motor: custo de sacrificar com quantidade calculada ao pagar (Tectonic Split: metade dos terrenos).
+  - Simplificações: Mightform Harmonizer sem dobra (warp); Oracle of Mul Daya mostra o topo só para o dono;
+    Squandered Resources oferece as cores dos tipos básicos dos seus terrenos.
+  - Verificação: testes gerais (só os 7 de imagem), bots com o deck obrigatório (8×4, 8×2 aleatórios, 4×2
+    heurísticos) sem erro.
+- **Faltam (cartas sem regras):** LandReanimator 44 (16 vieram com o Hearthhull), Voja 56, yuriko 58, Foods (Sam e Frodo) 49.
 
 ## Revisão carta a carta dos seis precons — 16 e 17/10/2026
 

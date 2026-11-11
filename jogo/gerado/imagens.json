@@ -33900,5 +33900,1219 @@
    "verso": null
   },
   "pt": null
+ },
+ "Hearthhull, the Worldseed": {
+  "en": {
+   "id": "6b913e79-a9f6-44d4-bb37-c4f6f66b8151",
+   "frente": "imagens/6b913e79-a9f6-44d4-bb37-c4f6f66b8151/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Korvold, Fae-Cursed King": {
+  "en": {
+   "id": "607c1793-8e5a-4ebf-87c6-7f9c99bbd29a",
+   "frente": "imagens/607c1793-8e5a-4ebf-87c6-7f9c99bbd29a/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Elvish Reclaimer": {
+  "en": {
+   "id": "dbd4accf-8957-4afa-b2a7-a7779dc4d0d3",
+   "frente": "imagens/dbd4accf-8957-4afa-b2a7-a7779dc4d0d3/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "b3d221d2-c927-46eb-a8eb-7767a2e52340",
+   "frente": "imagens/b3d221d2-c927-46eb-a8eb-7767a2e52340/front.png",
+   "verso": null,
+   "nome": "Reivindicador Élfico",
+   "tipo": "Criatura — Elfo Guerreiro",
+   "texto": "Reivindicador Élfico receberá +2/+2 enquanto houver três ou mais cards de terreno em seu cemitério.\n{2}, {T}, sacrifique um terreno: Procure um card de terreno em seu grimório, coloque-o no campo de batalha virado e depois embaralhe seu grimório.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Splendid Reclamation": {
+  "en": {
+   "id": "7e17e172-3a46-4957-b711-edc53f70a284",
+   "frente": "imagens/7e17e172-3a46-4957-b711-edc53f70a284/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "df402f6d-7706-451c-9c6e-087e7eb428f2",
+   "frente": "imagens/df402f6d-7706-451c-9c6e-087e7eb428f2/front.png",
+   "verso": null,
+   "nome": "Reivindicação Esplêndida",
+   "tipo": "Feitiço",
+   "texto": "Devolva todos os cards de terreno de seu cemitério para o campo de batalha virados.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Blood Crypt": {
+  "en": {
+   "id": "6da63cc5-4624-4491-abd9-9b600c3fefe2",
+   "frente": "imagens/6da63cc5-4624-4491-abd9-9b600c3fefe2/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "2968cb7d-38b3-4bc8-861b-1345ad151dd8",
+   "frente": "imagens/2968cb7d-38b3-4bc8-861b-1345ad151dd8/front.png",
+   "verso": null,
+   "nome": "Cripta de Sangue",
+   "tipo": "Terreno — Pântano Montanha",
+   "texto": "Conforme Cripta de Sangue entra no campo de batalha, você pode pagar 2 pontos de vida. Se não fizer isso, ela entrará no campo de batalha virada.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Tunneling Geopede": {
+  "en": {
+   "id": "d4071152-5e64-4133-88a2-8fa5cb0eeb6c",
+   "frente": "imagens/d4071152-5e64-4133-88a2-8fa5cb0eeb6c/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "3ce16533-6077-46b1-a95d-f240376a4124",
+   "frente": "imagens/3ce16533-6077-46b1-a95d-f240376a4124/front.png",
+   "verso": null,
+   "nome": "Geopede Tunelador",
+   "tipo": "Criatura — Inseto",
+   "texto": "Aterragem — Toda vez que um terreno entra no campo de batalha sob seu controle, Geopede Tunelador causa 1 ponto de dano a cada oponente.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Squandered Resources": {
+  "en": {
+   "id": "fcddbea7-3025-47b1-a597-2d2b2711fb81",
+   "frente": "imagens/fcddbea7-3025-47b1-a597-2d2b2711fb81/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "7289e4b3-d4ab-42b2-9f9c-82a70b8d4e68",
+   "frente": null,
+   "verso": null,
+   "nome": "Recursos Malbaratados",
+   "tipo": null,
+   "texto": null,
+   "faces": null,
+   "reserva": true
+  }
+ },
+ "Mayhem Devil": {
+  "en": {
+   "id": "674f3a8a-4552-4289-b92a-06ce158f115c",
+   "frente": "imagens/674f3a8a-4552-4289-b92a-06ce158f115c/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "8893bca3-3987-4db2-8316-5590289055ba",
+   "frente": "imagens/8893bca3-3987-4db2-8316-5590289055ba/front.png",
+   "verso": null,
+   "nome": "Diabo do Pandemônio",
+   "tipo": "Criatura — Diabo",
+   "texto": "Toda vez que um jogador sacrifica uma permanente, Diabo do Pandemônio causa 1 ponto de dano a qualquer alvo.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Rocky Tar Pit": {
+  "en": {
+   "id": "2aa1f7c6-f888-4384-9626-f106571e164c",
+   "frente": "imagens/2aa1f7c6-f888-4384-9626-f106571e164c/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "d4a2feea-42b4-467e-bd33-cad7c48dba11",
+   "frente": "imagens/d4a2feea-42b4-467e-bd33-cad7c48dba11/front.png",
+   "verso": null,
+   "nome": "Poço de Piche Rochoso",
+   "tipo": "Terreno",
+   "texto": "Poço de Piche Rochoso entra no campo de batalha virado.\n{T}, sacrifique Poço de Piche Rochoso: Procure um card de Pântano ou Montanha em seu grimório, coloque-o no campo de batalha e depois embaralhe.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Mountain Valley": {
+  "en": {
+   "id": "3094800e-9994-47c3-9ebc-536bf5de13cd",
+   "frente": "imagens/3094800e-9994-47c3-9ebc-536bf5de13cd/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "6fcba2b1-8f2f-4049-bfce-3f36e5aecdd4",
+   "frente": "imagens/6fcba2b1-8f2f-4049-bfce-3f36e5aecdd4/front.png",
+   "verso": null,
+   "nome": "Desfiladeiro",
+   "tipo": "Terreno",
+   "texto": "Desfiladeiro entra no campo de batalha virado.\n{T}, sacrifique Desfiladeiro: Procure um card de Montanha ou Floresta em seu grimório, coloque-o no campo de batalha e depois embaralhe.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Glacial Chasm": {
+  "en": {
+   "id": "3d23f800-7a6f-40e3-b242-9f5955e47a75",
+   "frente": "imagens/3d23f800-7a6f-40e3-b242-9f5955e47a75/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "c278c5bb-f01c-428b-86b4-5396569415d5",
+   "frente": null,
+   "verso": null,
+   "nome": "Abismo Glacial",
+   "tipo": null,
+   "texto": null,
+   "faces": null,
+   "reserva": true
+  }
+ },
+ "Oracle of Mul Daya": {
+  "en": {
+   "id": "ab19808f-a5b8-4dfd-800e-2064cd6538c8",
+   "frente": "imagens/ab19808f-a5b8-4dfd-800e-2064cd6538c8/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "267b2997-3cfd-411f-aac2-9c7b2df7d6c6",
+   "frente": "imagens/267b2997-3cfd-411f-aac2-9c7b2df7d6c6/front.png",
+   "verso": null,
+   "nome": "Oráculo de Mul Daya",
+   "tipo": "Criatura — Elfo Xamã",
+   "texto": "Você pode jogar um terreno adicional em cada um de seus turnos.\nJogue com o card do topo de seu grimório revelado.\nVocê pode jogar o card do topo de seu grimório se ele for um card de terreno.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Mirrorpool": {
+  "en": {
+   "id": "edbea2b5-eed3-464b-9d5c-9591f309f298",
+   "frente": "imagens/edbea2b5-eed3-464b-9d5c-9591f309f298/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "fab0842c-6de5-425c-9d23-ab7876e6b839",
+   "frente": "imagens/fab0842c-6de5-425c-9d23-ab7876e6b839/front.png",
+   "verso": null,
+   "nome": "Poço-espelho",
+   "tipo": "Terreno",
+   "texto": "Poço-espelho entra no campo de batalha virado.\n{T}: Adicione {C} à sua reserva de mana.\n{2}{C}, {T}, Sacrifique Poço-espelho: Copie a mágica instantânea ou o feitiço alvo que você controla. Você pode escolher novos alvos para a cópia.\n{4}{C}, {T}, Sacrifique Poço-espelho: Coloque no campo de batalha uma ficha que seja uma cópia da criatura alvo que você controla.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Wayward Swordtooth": {
+  "en": {
+   "id": "1f8b4ee8-2457-4db4-a8fa-c87e2db0c265",
+   "frente": "imagens/1f8b4ee8-2457-4db4-a8fa-c87e2db0c265/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "4b2354b9-8b6a-4055-b2a4-7c9f3d98e4fd",
+   "frente": null,
+   "verso": null,
+   "nome": "Gladiodonte Descontrolado",
+   "tipo": "Criatura — Dinossauro",
+   "texto": "Ascender (Se você controla dez ou mais permanentes, você recebe a bênção da cidade pelo restante do jogo.)\nVocê pode jogar um terreno adicional em cada um de seus turnos.\nGladiodonte Descontrolado não pode atacar nem bloquear, a menos que você tenha a bênção da cidade.",
+   "faces": null,
+   "reserva": true
+  }
+ },
+ "The Mending of Dominaria": {
+  "en": {
+   "id": "726feeb3-6403-4f23-8415-a4a6878faf61",
+   "frente": "imagens/726feeb3-6403-4f23-8415-a4a6878faf61/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "d8a4df45-a4ef-40ab-a15b-64dc14487597",
+   "frente": "imagens/d8a4df45-a4ef-40ab-a15b-64dc14487597/front.png",
+   "verso": null,
+   "nome": "A Emenda de Dominária",
+   "tipo": "Encantamento — Saga",
+   "texto": "(Conforme esta Saga entra e após sua etapa de compra, adicione um marcador de conhecimento. Sacrifique-a após III.)\nI, II — Triture dois cards. Em seguida você pode devolver um card de criatura de seu cemitério para sua mão.\nIII — Devolva todos os cards de terreno de seu cemitério para o campo de batalha e depois embaralhe seu cemitério em seu grimório.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Need for Speed": {
+  "en": {
+   "id": "8407b02f-66b3-4cfa-a3c4-105f314fd037",
+   "frente": "imagens/8407b02f-66b3-4cfa-a3c4-105f314fd037/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "41b6163c-fcdd-49ee-bc4c-f3f0cbe5f781",
+   "frente": null,
+   "verso": null,
+   "nome": "Necessidade de Velocidade",
+   "tipo": "Encantamento",
+   "texto": "Sacrifique um terreno: A criatura alvo ganha ímpeto até o final do turno.",
+   "faces": null,
+   "reserva": true
+  }
+ },
+ "Roiling Regrowth": {
+  "en": {
+   "id": "5fa531b2-ccd5-489b-9edf-4cab01aca7fd",
+   "frente": "imagens/5fa531b2-ccd5-489b-9edf-4cab01aca7fd/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "3c5975e4-bd4d-44c0-a419-3c295011f710",
+   "frente": "imagens/3c5975e4-bd4d-44c0-a419-3c295011f710/front.png",
+   "verso": null,
+   "nome": "Recrescimento Turbilhonante",
+   "tipo": "Mágica Instantânea",
+   "texto": "Sacrifique um terreno. Procure até dois cards de terreno básico em seu grimório, coloque-os no campo de batalha virados e, depois, embaralhe seu grimório.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Valakut Exploration": {
+  "en": {
+   "id": "18cb7bf6-9c7c-4e62-a678-7b75862e2f64",
+   "frente": "imagens/18cb7bf6-9c7c-4e62-a678-7b75862e2f64/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "62744c97-cdf7-4111-8417-36369dd1103e",
+   "frente": "imagens/62744c97-cdf7-4111-8417-36369dd1103e/front.png",
+   "verso": null,
+   "nome": "Exploração de Valakut",
+   "tipo": "Encantamento",
+   "texto": "Aterragem — Toda vez que um terreno entrar no campo de batalha sob seu controle, exile o card do topo de seu grimório. Você poderá jogar aquele card enquanto ele permanecer exilado.\nNo início de sua etapa final, se houver qualquer número de cards exilados com Exploração de Valakut, coloque-os no cemitério de seu dono. Em seguida, Exploração de Valakut causa aquela quantidade de dano a cada oponente.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Tiller Engine": {
+  "en": {
+   "id": "fa793e56-827c-4ba0-b330-4010a84e75f3",
+   "frente": "imagens/fa793e56-827c-4ba0-b330-4010a84e75f3/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "39880049-89d6-4fd9-b5e4-69a5fa2da18b",
+   "frente": "imagens/39880049-89d6-4fd9-b5e4-69a5fa2da18b/front.png",
+   "verso": null,
+   "nome": "Máquina Agricultora",
+   "tipo": "Criatura Artefato — Constructo",
+   "texto": "Toda vez que um terreno entrar no campo de batalha virado e sob seu controle, escolha um —\n• Desvire aquele terreno.\n• Vire a permanente não de terreno alvo que um oponente controla.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Spelunking": {
+  "en": {
+   "id": "d3be4257-2316-4a2e-b347-f71c0368a947",
+   "frente": "imagens/d3be4257-2316-4a2e-b347-f71c0368a947/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "64d908e9-d263-4e49-a482-2cf6e6e1866c",
+   "frente": "imagens/64d908e9-d263-4e49-a482-2cf6e6e1866c/front.png",
+   "verso": null,
+   "nome": "Exploração de Cavernas",
+   "tipo": "Encantamento",
+   "texto": "Quando Exploração de Cavernas entrar no campo de batalha, compre um card e depois você pode colocar no campo de batalha um card de terreno de sua mão. Se você coloca uma Caverna no campo de batalha dessa forma, você ganha 4 pontos de vida.\nOs terrenos que você controla entram no campo de batalha desvirados.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Aftermath Analyst": {
+  "en": {
+   "id": "66f135b4-8cb3-4a4e-86ae-81a3cf4b7259",
+   "frente": "imagens/66f135b4-8cb3-4a4e-86ae-81a3cf4b7259/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "438ea490-b6b7-4878-81f4-371c1fba47d2",
+   "frente": "imagens/438ea490-b6b7-4878-81f4-371c1fba47d2/front.png",
+   "verso": null,
+   "nome": "Analista em Retrospecto",
+   "tipo": "Criatura — Elfo Detetive",
+   "texto": "Quando Analista em Retrospecto entrar no campo de batalha, triture três cards.\n{3}{G}, sacrifique Analista em Retrospecto: Devolva todos os cards de terreno de seu cemitério ao campo de batalha virados.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Worldsoul's Rage": {
+  "en": {
+   "id": "1a54246e-1e22-4660-b2c8-fdfa2110b4fe",
+   "frente": "imagens/1a54246e-1e22-4660-b2c8-fdfa2110b4fe/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "f45317d1-468f-4f1f-a3ec-ffec9bde52ea",
+   "frente": "imagens/f45317d1-468f-4f1f-a3ec-ffec9bde52ea/front.png",
+   "verso": null,
+   "nome": "Fúria da Anima Mundi",
+   "tipo": "Feitiço",
+   "texto": "Fúria da Anima Mundi causa X pontos de dano a qualquer alvo. Coloque até X cards de terreno de sua mão e/ou cemitério no campo de batalha virados.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Urza's Cave": {
+  "en": {
+   "id": "926916ed-2f22-4ba9-9427-194886ad6c1e",
+   "frente": "imagens/926916ed-2f22-4ba9-9427-194886ad6c1e/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "d2a163ad-34bb-4d97-8cc1-5c6ebc97c37b",
+   "frente": "imagens/d2a163ad-34bb-4d97-8cc1-5c6ebc97c37b/front.png",
+   "verso": null,
+   "nome": "Caverna de Urza",
+   "tipo": "Terreno — Caverna de Urza",
+   "texto": "{T}: Adicione {C}.\n{3}, {T}, sacrifique Caverna de Urza: Procure em seu grimório um card de terreno, coloque-o no campo de batalha virado e depois embaralhe.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Shifting Woodland": {
+  "en": {
+   "id": "059164e1-894d-4586-9800-e60d6fbd6eb6",
+   "frente": "imagens/059164e1-894d-4586-9800-e60d6fbd6eb6/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "0b98f181-49c3-4d41-be96-a08003325e7d",
+   "frente": "imagens/0b98f181-49c3-4d41-be96-a08003325e7d/front.png",
+   "verso": null,
+   "nome": "Bosque Mutável",
+   "tipo": "Terreno",
+   "texto": "Bosque Mutável entra no campo de batalha virado, a menos que você controle uma Floresta.\n{T}: Adicione {G}.\nDelírio — {2}{G}{G}: Bosque Mutável se torna uma cópia do card de permanente alvo em seu cemitério até o final do turno. Ative somente se houver quatro ou mais tipos de card entre os cards de seu cemitério.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Boggart Trawler // Boggart Bog": {
+  "en": {
+   "id": "d0d484a6-5610-4f1d-95ec-eda273c255e4",
+   "frente": "imagens/d0d484a6-5610-4f1d-95ec-eda273c255e4/front.png",
+   "verso": "imagens/d0d484a6-5610-4f1d-95ec-eda273c255e4/back.png"
+  },
+  "pt": {
+   "id": "5306ac94-c78e-4797-a72c-0cbdaacebe80",
+   "frente": "imagens/5306ac94-c78e-4797-a72c-0cbdaacebe80/front.png",
+   "verso": "imagens/5306ac94-c78e-4797-a72c-0cbdaacebe80/back.png",
+   "nome": "Trainadora Papão",
+   "tipo": "Criatura — Goblin",
+   "texto": null,
+   "faces": [
+    {
+     "nome": "Trainadora Papão",
+     "tipo": "Criatura — Goblin",
+     "texto": "Quando Trainadora Papão entrar no campo de batalha, exile o cemitério do jogador alvo.\nTerreno\n{T}: Adicione {B}."
+    },
+    {
+     "nome": "Charco dos Papões",
+     "tipo": "Terreno",
+     "texto": "Conforme Charco dos Papões entra no campo de batalha, você pode pagar 3 pontos de vida. Se não fizer isso, ele entrará no campo de batalha virado.\n{T}: Adicione {B}.\nGoblin\n{2}{B}"
+    }
+   ],
+   "reserva": false
+  }
+ },
+ "Malevolent Rumble": {
+  "en": {
+   "id": "a178cfe8-f9fa-4255-88d0-54a0bed079f5",
+   "frente": "imagens/a178cfe8-f9fa-4255-88d0-54a0bed079f5/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "1d6f9a70-112f-4f14-af7a-f874cebbbe90",
+   "frente": "imagens/1d6f9a70-112f-4f14-af7a-f874cebbbe90/front.png",
+   "verso": null,
+   "nome": "Estrondo Malévolo",
+   "tipo": "Feitiço",
+   "texto": "Revele os quatro cards do topo de seu grimório. Você pode colocar um card de permanente dentre eles na sua mão. Coloque o restante em seu cemitério. Crie uma ficha de criatura Prole Eldrazi incolor 0/1 com \"Sacrifique esta criatura: Adicione {C}\".",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Sabotender": {
+  "en": {
+   "id": "12df1295-8b08-4c8e-bac9-55b4f514c0be",
+   "frente": "imagens/12df1295-8b08-4c8e-bac9-55b4f514c0be/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Baloth Prime": {
+  "en": {
+   "id": "2c723fc9-d5c9-4126-a9a6-f80c247a4b6b",
+   "frente": "imagens/2c723fc9-d5c9-4126-a9a6-f80c247a4b6b/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Horizon Explorer": {
+  "en": {
+   "id": "a5873a4d-ab6e-4dd2-9380-5eaa367a8396",
+   "frente": "imagens/a5873a4d-ab6e-4dd2-9380-5eaa367a8396/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Planetary Annihilation": {
+  "en": {
+   "id": "8695796f-b6ed-46db-b1b8-07ed0cc5a5e5",
+   "frente": "imagens/8695796f-b6ed-46db-b1b8-07ed0cc5a5e5/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Exploration Broodship": {
+  "en": {
+   "id": "3410f9c6-ac11-4e7f-aefd-69fba43e1315",
+   "frente": "imagens/3410f9c6-ac11-4e7f-aefd-69fba43e1315/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Mightform Harmonizer": {
+  "en": {
+   "id": "9be5ea99-a478-4e2e-9c79-3e167609746c",
+   "frente": "imagens/9be5ea99-a478-4e2e-9c79-3e167609746c/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Formidable Speaker": {
+  "en": {
+   "id": "1444f39f-042b-4bb3-8307-6b8878198086",
+   "frente": "imagens/1444f39f-042b-4bb3-8307-6b8878198086/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Planar Engineering": {
+  "en": {
+   "id": "aa718734-4e2f-4b88-abf9-46a061c6a4bd",
+   "frente": "imagens/aa718734-4e2f-4b88-abf9-46a061c6a4bd/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Elven Passage": {
+  "en": {
+   "id": "dd1fd2ab-2565-4798-a832-fc849df82f74",
+   "frente": "imagens/dd1fd2ab-2565-4798-a832-fc849df82f74/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Heartwood Crafter // Soul Tether": {
+  "en": {
+   "id": "910a1f41-17fd-4ab0-9597-7151e79dc760",
+   "frente": "imagens/910a1f41-17fd-4ab0-9597-7151e79dc760/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Carnivorous Cultivator // Enroot": {
+  "en": {
+   "id": "b06313ea-bf64-407b-878a-a2764055c851",
+   "frente": "imagens/b06313ea-bf64-407b-878a-a2764055c851/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Vraska, the Cutting Glare": {
+  "en": {
+   "id": "5c28b012-5efb-488f-a1c1-09e2dddfd6ee",
+   "frente": "imagens/5c28b012-5efb-488f-a1c1-09e2dddfd6ee/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Koth, the Geomancer": {
+  "en": {
+   "id": "54f64e95-5a97-4d7c-9939-7f33a3165562",
+   "frente": "imagens/54f64e95-5a97-4d7c-9939-7f33a3165562/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Marwyn, the Preserver": {
+  "en": {
+   "id": "447c324a-1e66-44fc-9d6e-5e1bbbd7cc03",
+   "frente": "imagens/447c324a-1e66-44fc-9d6e-5e1bbbd7cc03/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Tannuk, Memorial Ensign": {
+  "en": {
+   "id": "52498b7b-0389-4e7b-b29f-7ac86aab9229",
+   "frente": "imagens/52498b7b-0389-4e7b-b29f-7ac86aab9229/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Tectonic Split": {
+  "en": {
+   "id": "704b3385-bd73-4479-9579-4d9e38711529",
+   "frente": "imagens/704b3385-bd73-4479-9579-4d9e38711529/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Midnight Tilling": {
+  "en": {
+   "id": "c5112bbf-752c-41e7-9c61-4c81e6a77463",
+   "frente": "imagens/c5112bbf-752c-41e7-9c61-4c81e6a77463/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Tenured Tethermage": {
+  "en": {
+   "id": "1703306d-6a3d-4ab8-bf58-a9992236ef0f",
+   "frente": "imagens/1703306d-6a3d-4ab8-bf58-a9992236ef0f/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Sam, Loyal Attendant": {
+  "en": {
+   "id": "cfdfa303-2578-455b-929c-a217a0261bb3",
+   "frente": "imagens/cfdfa303-2578-455b-929c-a217a0261bb3/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "557c1d1d-90ff-4399-bc56-a8c86c466699",
+   "frente": "imagens/557c1d1d-90ff-4399-bc56-a8c86c466699/front.png",
+   "verso": null,
+   "nome": "Sam, Ajudante Leal",
+   "tipo": "Criatura Lendária — Pequenino Plebeu",
+   "texto": "Parceiro de Frodo, Hobbit Aventureiro (Quando esta criatura entra no campo de batalha, o jogador alvo pode colocar Frodo do próprio grimório na própria mão e, em seguida, embaralha.)\nNo início do combate no seu turno, crie uma ficha de Comida. (Ela é um artefato com \"{2}, {T}, sacrifique este artefato: Você ganha 3 pontos de vida\".)\nAs habilidades ativadas de Comidas que você controla custam {1} a menos para serem ativadas.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Frodo, Adventurous Hobbit": {
+  "en": {
+   "id": "a223c85f-3952-40d0-88d4-d5c3e8cd864d",
+   "frente": "imagens/a223c85f-3952-40d0-88d4-d5c3e8cd864d/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "f6c5d04b-1c0d-4b75-9c42-3a235b950365",
+   "frente": "imagens/f6c5d04b-1c0d-4b75-9c42-3a235b950365/front.png",
+   "verso": null,
+   "nome": "Frodo, Hobbit Aventureiro",
+   "tipo": "Criatura Lendária — Pequenino Batedor",
+   "texto": "Parceiro de Sam, Ajudante Leal\nVigilância\nToda vez que Frodo, Hobbit Aventureiro, atacar, se você ganhou 3 ou mais pontos de vida neste turno, o Anel tentará você. Depois, se Frodo for o seu Guardião do Anel e se o Anel tiver tentado você duas ou mais vezes neste jogo, compre um card.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Savvy Hunter": {
+  "en": {
+   "id": "15c98441-2b31-4e48-a399-f36dffcfa41d",
+   "frente": "imagens/15c98441-2b31-4e48-a399-f36dffcfa41d/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "e6876d55-eec0-43a6-a9cc-bb3c9ddf95d6",
+   "frente": "imagens/e6876d55-eec0-43a6-a9cc-bb3c9ddf95d6/front.png",
+   "verso": null,
+   "nome": "Caçadora Calejada",
+   "tipo": "Criatura — Humano Guerreiro",
+   "texto": "Toda vez que Caçadora Calejada atacar ou bloquear, crie uma ficha de Comida. (Ela é um artefato com \"{2}, {T}, sacrifique este artefato: Você ganha 3 pontos de vida.\")\nSacrifique duas Comidas: Compre um card.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Trail of Crumbs": {
+  "en": {
+   "id": "2688ac16-4ed6-4e79-815a-be173deb4603",
+   "frente": "imagens/2688ac16-4ed6-4e79-815a-be173deb4603/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "454471cf-c08f-4077-a957-9c0bf11039ef",
+   "frente": "imagens/454471cf-c08f-4077-a957-9c0bf11039ef/front.png",
+   "verso": null,
+   "nome": "Trilha de Migalhas",
+   "tipo": "Encantamento",
+   "texto": "Quando Trilha de Migalhas entrar no campo de batalha, crie uma ficha de Comida.\nToda vez que sacrifica uma Comida, você pode pagar {1}. Se fizer isso, olhe os dois cards do topo de seu grimório. Você pode revelar um card de permanente dentre eles e colocá-lo em sua mão. Coloque o restante no fundo de seu grimório em qualquer ordem.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Witch's Oven": {
+  "en": {
+   "id": "04ef8493-d986-45f8-a718-617b028f7ad4",
+   "frente": "imagens/04ef8493-d986-45f8-a718-617b028f7ad4/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "9a7a7027-b680-46d0-94e1-d48de10bd979",
+   "frente": "imagens/9a7a7027-b680-46d0-94e1-d48de10bd979/front.png",
+   "verso": null,
+   "nome": "Forno da Bruxa",
+   "tipo": "Artefato",
+   "texto": "{T}, sacrifique uma criatura: Crie uma ficha de Comida. Se a resistência da criatura sacrificada era igual ou superior a 4, em vez disso, crie duas fichas de Comida. (Elas são artefatos com \"{2}, {T}, sacrifique este artefato: Você ganha 3 pontos de vida.\")",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Chord of Calling": {
+  "en": {
+   "id": "e064174b-8f07-4fea-9eef-c3b5d0220b1a",
+   "frente": "imagens/e064174b-8f07-4fea-9eef-c3b5d0220b1a/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "552d4e44-96f1-4d2d-bea8-6819e53ba928",
+   "frente": null,
+   "verso": null,
+   "nome": "Acorde do Chamado",
+   "tipo": "Mágica Instantânea",
+   "texto": "Convocar (Cada criatura que você vira ao jogar esta mágica reduz seu custo em {1} ou em um mana da cor daquela criatura.)\nProcure em seu grimório um card de criatura com custo de mana convertido menor ou igual a X e coloque-o em jogo. Depois, embaralhe seu grimório.",
+   "faces": null,
+   "reserva": true
+  }
+ },
+ "Eladamri's Call": {
+  "en": {
+   "id": "ea751fe2-b64a-4265-8885-a9016b29b5b3",
+   "frente": "imagens/ea751fe2-b64a-4265-8885-a9016b29b5b3/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "695193b0-986d-499a-95b2-c97dd4caf435",
+   "frente": "imagens/695193b0-986d-499a-95b2-c97dd4caf435/front.png",
+   "verso": null,
+   "nome": "Chamado de Eladamri",
+   "tipo": "Mágica Instantânea",
+   "texto": "Procure um card de criatura em seu grimório, revele-o, coloque-o em sua mão e depois embaralhe seu grimório.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Unearth": {
+  "en": {
+   "id": "c431aeda-3f4d-43c2-9471-da3ff642cc7e",
+   "frente": "imagens/c431aeda-3f4d-43c2-9471-da3ff642cc7e/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "612e1e59-b123-46a3-a325-9a387ac7a2a1",
+   "frente": "imagens/612e1e59-b123-46a3-a325-9a387ac7a2a1/front.png",
+   "verso": null,
+   "nome": "Desenterrar",
+   "tipo": "Feitiço",
+   "texto": "Devolva o card de criatura alvo com custo de mana convertido igual ou inferior a 3 de seu cemitério para o campo de batalha.\nReciclar {2} ({2}, descarte este card: Compre um card.)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Deadly Rollick": {
+  "en": {
+   "id": "701335fe-657c-408e-9030-85c9d6f4a666",
+   "frente": "imagens/701335fe-657c-408e-9030-85c9d6f4a666/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "848046ac-e6df-458e-943a-5ffeae32ee62",
+   "frente": null,
+   "verso": null,
+   "nome": "Brincadeira Mortal",
+   "tipo": "Mágica Instantânea",
+   "texto": "Se você controla um comandante, você pode conjurar esta mágica sem pagar seu custo de mana.\nExile a criatura alvo.",
+   "faces": null,
+   "reserva": true
+  }
+ },
+ "Indatha Triome": {
+  "en": {
+   "id": "62bbdc86-f5a0-4738-a5f6-f2347c8b2a58",
+   "frente": "imagens/62bbdc86-f5a0-4738-a5f6-f2347c8b2a58/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "c1a9b1fe-4939-446c-8c38-61bedc6e934b",
+   "frente": "imagens/c1a9b1fe-4939-446c-8c38-61bedc6e934b/front.png",
+   "verso": null,
+   "nome": "Trioma de Indatha",
+   "tipo": "Terreno — Planície Pântano Floresta",
+   "texto": "({T}: Adicione {W}, {B} ou {G}.)\nTrioma de Indatha entra no campo de batalha virado.\nReciclar {3} ({3}, descarte este card: Compre um card.)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Collected Company": {
+  "en": {
+   "id": "f41a69ae-a0c4-4053-a795-940d76226e08",
+   "frente": "imagens/f41a69ae-a0c4-4053-a795-940d76226e08/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "8bd33b5e-4618-4e8f-b9d9-5b78e15f0b6b",
+   "frente": "imagens/8bd33b5e-4618-4e8f-b9d9-5b78e15f0b6b/front.png",
+   "verso": null,
+   "nome": "Companhia Agrupada",
+   "tipo": "Mágica Instantânea",
+   "texto": "Olhe os seis cards do topo de seu grimório. Coloque até dois cards de criatura com custo de mana convertido igual ou inferior a 3 dentre eles no campo de batalha. Coloque o restante no fundo de seu grimório em qualquer ordem.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Jaheira, Friend of the Forest": {
+  "en": {
+   "id": "feb7ad1b-4466-48f7-b46d-cc83d4e22b51",
+   "frente": "imagens/feb7ad1b-4466-48f7-b46d-cc83d4e22b51/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "ed8cce07-50b8-4e00-ad75-26b7b4fcad49",
+   "frente": "imagens/ed8cce07-50b8-4e00-ad75-26b7b4fcad49/front.png",
+   "verso": null,
+   "nome": "Jaheira, Amiga da Floresta",
+   "tipo": "Criatura Lendária — Humano Elfo Druida",
+   "texto": "As fichas que você controla têm \"{T}: Adicione {G}\".\nEscolha um Antecedente (Você pode ter um Antecedente como segundo comandante.)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Mondrak, Glory Dominus": {
+  "en": {
+   "id": "8296a455-21d5-498e-9029-2bdf0da855a8",
+   "frente": "imagens/8296a455-21d5-498e-9029-2bdf0da855a8/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "28fe7175-c86b-4d40-a658-dba701514614",
+   "frente": "imagens/28fe7175-c86b-4d40-a658-dba701514614/front.png",
+   "verso": null,
+   "nome": "Mondrak, Domina da Glória",
+   "tipo": "Criatura Lendária — Phyrexiano Horror",
+   "texto": "Se uma ou mais fichas seriam criadas sob seu controle, em vez disso, cria-se o dobro.\n{1}{W/P}{W/P}, sacrifique dois outros artefatos e/ou criaturas: Coloque um marcador de indestrutível em Mondrak, Domina da Glória. ({W/P} pode ser pago com {W} ou 2 pontos de vida.)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "The Shire": {
+  "en": {
+   "id": "d5178a1b-588b-4414-a370-ac6eed51187a",
+   "frente": "imagens/d5178a1b-588b-4414-a370-ac6eed51187a/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "78f81ca2-2977-4628-a0d3-e29e1f1914c4",
+   "frente": "imagens/78f81ca2-2977-4628-a0d3-e29e1f1914c4/front.png",
+   "verso": null,
+   "nome": "O Condado",
+   "tipo": "Terreno Lendário",
+   "texto": "O Condado entra no campo de batalha virado, a menos que você controle uma criatura lendária.\n{T}: Adicione {G}.\n{1}{G}, {T}, vire uma criatura desvirada que você controla: Crie uma ficha de Comida.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Call of the Ring": {
+  "en": {
+   "id": "a92a2c5a-e450-494a-b23b-7ac0a6c50535",
+   "frente": "imagens/a92a2c5a-e450-494a-b23b-7ac0a6c50535/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "ddff5dc1-eb52-40c5-a1e9-6dd094c8144f",
+   "frente": "imagens/ddff5dc1-eb52-40c5-a1e9-6dd094c8144f/front.png",
+   "verso": null,
+   "nome": "Chamado do Anel",
+   "tipo": "Encantamento",
+   "texto": "No início de sua manutenção, o Anel tenta você.\nToda vez que você escolhe uma criatura como seu Guardião do Anel, você pode pagar 2 pontos de vida. Se fizer isso, compre um card.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Delighted Halfling": {
+  "en": {
+   "id": "71384418-173a-4f77-adab-56e52fa23692",
+   "frente": "imagens/71384418-173a-4f77-adab-56e52fa23692/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "613f14b1-0b65-4299-9d25-7c39c66adf18",
+   "frente": "imagens/613f14b1-0b65-4299-9d25-7c39c66adf18/front.png",
+   "verso": null,
+   "nome": "Pequenina Deliciada",
+   "tipo": "Criatura — Pequenino Cidadão",
+   "texto": "{T}: Adicione {C}.\n{T}: Adicione um mana de qualquer cor. Gaste este mana somente para conjurar uma mágica lendária, e aquela mágica não pode ser anulada.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Boromir, Warden of the Tower": {
+  "en": {
+   "id": "e186ef93-f369-4b4d-a683-36f338b6ce3f",
+   "frente": "imagens/e186ef93-f369-4b4d-a683-36f338b6ce3f/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "9544a7f9-09b3-42b6-997f-c31eb44d069d",
+   "frente": "imagens/9544a7f9-09b3-42b6-997f-c31eb44d069d/front.png",
+   "verso": null,
+   "nome": "Boromir, Guardião da Torre",
+   "tipo": "Criatura Lendária — Humano Soldado",
+   "texto": "Vigilância\nToda vez que um oponente conjurar uma mágica, se nenhum mana tiver sido gasto para conjurá-la, anule aquela mágica.\nSacrifique Boromir, Guardião da Torre: As criaturas que você controla ganham indestrutível até o final do turno. O Anel tenta você.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Samwise Gamgee": {
+  "en": {
+   "id": "a1b6f13e-63d0-46bf-aa57-23c2dbdf62dd",
+   "frente": "imagens/a1b6f13e-63d0-46bf-aa57-23c2dbdf62dd/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "44caa1eb-c50f-48e2-b8f0-48862b75d494",
+   "frente": "imagens/44caa1eb-c50f-48e2-b8f0-48862b75d494/front.png",
+   "verso": null,
+   "nome": "Samwise Gamgi",
+   "tipo": "Criatura Lendária — Pequenino Plebeu",
+   "texto": "Toda vez que outra criatura não ficha entrar no campo de batalha sob seu controle, crie uma ficha de Comida. (Ela é um artefato com \"{2}, {T}, sacrifique este artefato: Você ganha 3 pontos de vida\".)\nSacrifique três Comidas: Devolva o card histórico alvo de seu cemitério para sua mão. (Os artefatos, os cards lendários e as Sagas são cards históricos.)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Peregrin Took": {
+  "en": {
+   "id": "fbbdd288-83ec-4be9-b55f-17771fd5ecc4",
+   "frente": "imagens/fbbdd288-83ec-4be9-b55f-17771fd5ecc4/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "e99e9a25-e0e4-4d6a-8378-6f649417becd",
+   "frente": "imagens/e99e9a25-e0e4-4d6a-8378-6f649417becd/front.png",
+   "verso": null,
+   "nome": "Peregrin Tûk",
+   "tipo": "Criatura Lendária — Pequenino Cidadão",
+   "texto": "Se uma ou mais fichas seriam criadas sob seu controle, em vez disso, são criadas aquelas fichas mais uma ficha de Comida adicional.\nSacrifique três Comidas: Compre um card.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Bilbo, Birthday Celebrant": {
+  "en": {
+   "id": "4cf6c13b-d898-4066-b006-9a7fa896d55a",
+   "frente": "imagens/4cf6c13b-d898-4066-b006-9a7fa896d55a/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "be7bb18c-b757-4972-bd94-5e218abc2b19",
+   "frente": "imagens/be7bb18c-b757-4972-bd94-5e218abc2b19/front.png",
+   "verso": null,
+   "nome": "Bilbo, Aniversariante",
+   "tipo": "Criatura Lendária — Pequenino Ladino",
+   "texto": "Se você ganharia pontos de vida, em vez disso, você ganha aquela quantidade de pontos de vida mais 1.\n{2}{W}{B}{G}, {T}, exile Bilbo, Aniversariante: Procure em seu grimório qualquer número de cards de criatura, coloque-os no campo de batalha e depois embaralhe. Ative somente se você tiver 111 ou mais pontos de vida.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Lotho, Corrupt Shirriff": {
+  "en": {
+   "id": "81886cb8-2c7b-41fa-8512-5e16d46a0fd6",
+   "frente": "imagens/81886cb8-2c7b-41fa-8512-5e16d46a0fd6/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "1d1b078d-7cbf-4762-996b-fc7f01250147",
+   "frente": "imagens/1d1b078d-7cbf-4762-996b-fc7f01250147/front.png",
+   "verso": null,
+   "nome": "Lotho, Condestável Corrupto",
+   "tipo": "Criatura Lendária — Pequenino Ladino",
+   "texto": "Toda vez que um jogador conjura a segunda mágica a cada turno, você perde 1 ponto de vida e cria uma ficha de Tesouro. (Ela é um artefato com \"{T}, sacrifique este artefato: Adicione um mana de qualquer cor\".)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "The Battle of Bywater": {
+  "en": {
+   "id": "9bae7a4d-9117-43c5-a048-80a0ddadc034",
+   "frente": "imagens/9bae7a4d-9117-43c5-a048-80a0ddadc034/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "50279bd6-5962-40a4-bce8-ed64fa64ef92",
+   "frente": "imagens/50279bd6-5962-40a4-bce8-ed64fa64ef92/front.png",
+   "verso": null,
+   "nome": "A Batalha de Beirágua",
+   "tipo": "Feitiço",
+   "texto": "Destrua todas as criaturas com poder igual ou superior a 3. Em seguida, crie uma ficha de Comida para cada criatura que você controla. (Ela é um artefato com \"{2}, {T}, sacrifique este artefato: Você ganha 3 pontos de vida\".)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Elanor Gardner": {
+  "en": {
+   "id": "6165eb73-49a8-4337-aa5d-7d9d48b916c9",
+   "frente": "imagens/6165eb73-49a8-4337-aa5d-7d9d48b916c9/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "43108323-d127-404d-891e-3f309d0e89e5",
+   "frente": "imagens/43108323-d127-404d-891e-3f309d0e89e5/front.png",
+   "verso": null,
+   "nome": "Elanor Jardineiro",
+   "tipo": "Criatura Lendária — Pequenino Batedor",
+   "texto": "Quando Elanor Jardineiro entrar no campo de batalha, crie uma ficha de Comida.\nNo início de sua etapa final, se você sacrificou uma Comida neste turno, você pode procurar um card de terreno básico em seu grimório, colocá-lo no campo de batalha virado e depois embaralhar.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "The Gaffer": {
+  "en": {
+   "id": "86d03419-0e21-4a3f-a56b-a05fd37a5a80",
+   "frente": "imagens/86d03419-0e21-4a3f-a56b-a05fd37a5a80/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "593ab75f-e305-46b2-814d-5e5fdf653f0b",
+   "frente": "imagens/593ab75f-e305-46b2-814d-5e5fdf653f0b/front.png",
+   "verso": null,
+   "nome": "O Feitor",
+   "tipo": "Criatura Lendária — Pequenino Plebeu",
+   "texto": "No início de cada etapa final, se você ganhou 3 ou mais pontos de vida neste turno, compre um card.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Prize Pig": {
+  "en": {
+   "id": "a0b202d8-3c25-467e-86ed-6bea19bb869f",
+   "frente": "imagens/a0b202d8-3c25-467e-86ed-6bea19bb869f/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "081dc01b-7c4e-489c-9da6-be466118d344",
+   "frente": "imagens/081dc01b-7c4e-489c-9da6-be466118d344/front.png",
+   "verso": null,
+   "nome": "Porco de Competição",
+   "tipo": "Criatura — Javali",
+   "texto": "Toda vez que você ganhar pontos de vida, coloque aquela quantidade de marcadores de fita em Porco de Competição. Depois, se houver três ou mais marcadores de fita em Porco de Competição, remova aqueles marcadores e desvire-o.\n{T}: Adicione um mana de qualquer cor.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Treebeard, Gracious Host": {
+  "en": {
+   "id": "cf6be41a-1acd-4668-8f13-ccd495fbc7bd",
+   "frente": "imagens/cf6be41a-1acd-4668-8f13-ccd495fbc7bd/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "90d3448e-9715-462c-84f6-95a1d7efba26",
+   "frente": "imagens/90d3448e-9715-462c-84f6-95a1d7efba26/front.png",
+   "verso": null,
+   "nome": "Barbárvore, Anfitrião Gracioso",
+   "tipo": "Criatura Lendária — Ent",
+   "texto": "Atropelar, salvaguarda {2}\nQuando Barbárvore, Anfitrião Gracioso, entrar no campo de batalha, crie duas fichas de Comida.\nToda vez que você ganhar pontos de vida, coloque aquela quantidade de marcadores +1/+1 no Pequenino ou Ent alvo.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Nuka-Cola Vending Machine": {
+  "en": {
+   "id": "405df7c7-0e37-499e-9826-6bf9f5db7a40",
+   "frente": "imagens/405df7c7-0e37-499e-9826-6bf9f5db7a40/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Lush Portico": {
+  "en": {
+   "id": "c17816e8-28b1-4295-a637-efb0e5c18873",
+   "frente": "imagens/c17816e8-28b1-4295-a637-efb0e5c18873/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "98cb9343-8bc1-4b21-8d43-5097af8bec8a",
+   "frente": "imagens/98cb9343-8bc1-4b21-8d43-5097af8bec8a/front.png",
+   "verso": null,
+   "nome": "Pórtico Vicejante",
+   "tipo": "Terreno — Floresta Planície",
+   "texto": "({T}: Adicione {G} ou {W}.)\nPórtico Vicejante entra no campo de batalha virado.\nQuando Pórtico Vicejante entrar no campo de batalha, use vigiar 1. (Olhe o card do topo de seu grimório. Você pode colocá-lo em seu cemitério.)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Delney, Streetwise Lookout": {
+  "en": {
+   "id": "eed14b5f-c23b-4651-9c58-28a88feb3641",
+   "frente": "imagens/eed14b5f-c23b-4651-9c58-28a88feb3641/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "eba8546c-0bfa-4675-b93f-542f4bdce0c6",
+   "frente": "imagens/eba8546c-0bfa-4675-b93f-542f4bdce0c6/front.png",
+   "verso": null,
+   "nome": "Delney, Sentinela das Ruas",
+   "tipo": "Criatura Lendária — Humano Batedor",
+   "texto": "As criaturas que você controla com poder igual ou inferior a 2 não podem ser bloqueadas por criaturas com poder igual ou superior a 3.\nSe uma habilidade de uma criatura que você controla com poder igual ou inferior a 2 for desencadeada, ela será desencadeada uma vez adicional.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Kambal, Profiteering Mayor": {
+  "en": {
+   "id": "bede38d7-40c8-4e1d-b5ce-6f782c121c0d",
+   "frente": "imagens/bede38d7-40c8-4e1d-b5ce-6f782c121c0d/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "55d88c63-5cb7-4672-aab7-0ac9e2f2fc91",
+   "frente": "imagens/55d88c63-5cb7-4672-aab7-0ac9e2f2fc91/front.png",
+   "verso": null,
+   "nome": "Kambal, Prefeito Especulador",
+   "tipo": "Criatura Lendária — Humano Conselheiro",
+   "texto": "Toda vez que uma ou mais fichas entrarem no campo de batalha sob o controle de seus oponentes, por cada uma delas, crie uma ficha virada que seja uma cópia dela. Esta habilidade é desencadeada apenas uma vez a cada turno.\nToda vez que uma ou mais fichas entrarem no campo de batalha sob seu controle, cada oponente perde 1 ponto de vida e você ganha 1 ponto de vida.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Sorin of House Markov // Sorin, Ravenous Neonate": {
+  "en": {
+   "id": "1d7474fc-0042-4be9-81f3-5f66f4b16740",
+   "frente": "imagens/1d7474fc-0042-4be9-81f3-5f66f4b16740/front.png",
+   "verso": "imagens/1d7474fc-0042-4be9-81f3-5f66f4b16740/back.png"
+  },
+  "pt": {
+   "id": "e8b4fcf7-28cd-45c2-99a4-643a94368308",
+   "frente": "imagens/e8b4fcf7-28cd-45c2-99a4-643a94368308/front.png",
+   "verso": "imagens/e8b4fcf7-28cd-45c2-99a4-643a94368308/back.png",
+   "nome": "Sorin da Casa Markov",
+   "tipo": "Criatura Lendária — Humano Nobre",
+   "texto": null,
+   "faces": [
+    {
+     "nome": "Sorin da Casa Markov",
+     "tipo": "Criatura Lendária — Humano Nobre",
+     "texto": "Vínculo com a vida\nExtorquir\nNo início da sua fase principal pós-combate, se tiver ganho 3 ou mais pontos de vida neste turno, exile Sorin da Casa Markov e devolva-o ao campo de batalha transformado sob o controle de seu dono."
+    },
+    {
+     "nome": "Sorin, Neonato Voraz",
+     "tipo": "Planeswalker Lendário — Sorin",
+     "texto": "Extorquir\n+2: Crie uma ficha de Comida.\n−1: Sorin, Neonato Voraz, causa dano igual à quantidade de pontos de vida que você ganhou neste turno a qualquer alvo.\n−6: Ganhe o controle da criatura alvo. Ela se torna um Vampiro além de seus outros tipos. Coloque um marcador de vínculo com a vida nela se você controlar uma permanente branca que não seja essa criatura ou Sorin."
+    }
+   ],
+   "reserva": false
+  }
+ },
+ "Marionette Apprentice": {
+  "en": {
+   "id": "22b5a3dd-0b5a-434e-afee-a83b0279fd15",
+   "frente": "imagens/22b5a3dd-0b5a-434e-afee-a83b0279fd15/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "5e490ec5-f42a-42ff-aabd-9abb46f55d62",
+   "frente": "imagens/5e490ec5-f42a-42ff-aabd-9abb46f55d62/front.png",
+   "verso": null,
+   "nome": "Aprendiz de Marionete",
+   "tipo": "Criatura — Humano Artesão",
+   "texto": "Fabricar 1\nToda vez que outra criatura ou artefato que você controla é colocado em um cemitério vindo do campo de batalha, cada oponente perde 1 ponto de vida.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Ocelot Pride": {
+  "en": {
+   "id": "89cf6f57-230f-497e-a14e-ad1e8737fd42",
+   "frente": "imagens/89cf6f57-230f-497e-a14e-ad1e8737fd42/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "cb3b3ea7-3ae0-4adc-ad92-c04acaaa1d2d",
+   "frente": "imagens/cb3b3ea7-3ae0-4adc-ad92-c04acaaa1d2d/front.png",
+   "verso": null,
+   "nome": "Bando de Ocelot",
+   "tipo": "Criatura — Felino",
+   "texto": "Iniciativa, vínculo com a vida\nAscender (Se você controla dez ou mais permanentes, você recebe a bênção da cidade pelo restante do jogo.)\nNo início de sua etapa final, se você ganhou pontos de vida neste turno, crie uma ficha de criatura Felino branca 1/1. Em seguida, se você tiver a bênção da cidade, por cada ficha que você controla que tenha entrado no campo de batalha neste turno, crie uma ficha que seja uma cópia dela.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Camellia, the Seedmiser": {
+  "en": {
+   "id": "761a2b0e-dfdb-45a9-b14d-5cbef69bc259",
+   "frente": "imagens/761a2b0e-dfdb-45a9-b14d-5cbef69bc259/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Ygra, Eater of All": {
+  "en": {
+   "id": "f3031fda-cd8b-43ee-95e8-6181e8270d95",
+   "frente": "imagens/f3031fda-cd8b-43ee-95e8-6181e8270d95/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Stridehangar Automaton": {
+  "en": {
+   "id": "4c398d11-a2fc-43e2-96e9-7f3383e1a43c",
+   "frente": "imagens/4c398d11-a2fc-43e2-96e9-7f3383e1a43c/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "The Cabbage Merchant": {
+  "en": {
+   "id": "65ffb473-0a11-44c2-9311-f39d69eef713",
+   "frente": "imagens/65ffb473-0a11-44c2-9311-f39d69eef713/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Tippy-Toe, Terrific Partner": {
+  "en": {
+   "id": "6082ab9f-290e-4230-84a0-46c7f8ed712d",
+   "frente": "imagens/6082ab9f-290e-4230-84a0-46c7f8ed712d/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Bilbo, Fellow Conspirator": {
+  "en": {
+   "id": "84a95ac5-e2f6-4cf5-bc5e-ac4410168c06",
+   "frente": "imagens/84a95ac5-e2f6-4cf5-bc5e-ac4410168c06/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Belladonna Took": {
+  "en": {
+   "id": "0ff767b1-b04d-4d1d-bc91-3bd1361c5ee8",
+   "frente": "imagens/0ff767b1-b04d-4d1d-bc91-3bd1361c5ee8/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Gleaming Splendor": {
+  "en": {
+   "id": "3b087bd4-bbb7-4963-bdb6-0a700ff19a04",
+   "frente": "imagens/3b087bd4-bbb7-4963-bdb6-0a700ff19a04/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "The Sackville-Bagginses": {
+  "en": {
+   "id": "11144267-15d1-47b4-8c26-d57328e11422",
+   "frente": "imagens/11144267-15d1-47b4-8c26-d57328e11422/front.png",
+   "verso": null
+  },
+  "pt": null
  }
 }

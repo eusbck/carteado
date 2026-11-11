@@ -25146,6 +25146,1793 @@
     "comment": "Spells can only be cast for their sneak costs any time you could play an instant during the declare blockers step on your turn (after your opponent has decided whether to block)."
    }
   ],
-  "983f4fde-ab04-44f0-a294-c3b472de0b19": []
+  "983f4fde-ab04-44f0-a294-c3b472de0b19": [],
+  "8d6f82d9-5c5b-4c41-8857-c0936f2d894c": [
+   {
+    "source": "wotc",
+    "published_at": "2025-07-25",
+    "comment": "The effect of Hearthhull’s second ability is cumulative with similar effects. For example, if you control Icetill Explorer and you activate Hearthhull’s ability, you’ll be able to play three lands on that turn."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2025-07-25",
+    "comment": "Hearthhull’s second ability doesn’t allow you to play lands on other players’ turns."
+   }
+  ],
+  "9ae669dd-7e60-4649-b96e-35da28be641a": [
+   {
+    "source": "wotc",
+    "published_at": "2019-10-04",
+    "comment": "If you somehow control no other permanents, you can attack with Korvold. You won't sacrifice anything, and there's no penalty for being unable to do so."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2019-10-04",
+    "comment": "A legendary permanent that is put into a graveyard because of the \"legend rule\" isn't sacrificed."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2019-10-04",
+    "comment": "Korvold's last ability is a triggered ability, not an activated ability. It doesn't allow you to sacrifice a permanent whenever you want; rather, you need some other way of sacrificing permanents, such as Korvold's first triggered ability."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2019-10-04",
+    "comment": "If you sacrifice a permanent as part of a spell or activated ability's cost, Korvold's last ability will resolve before that spell or ability."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2019-10-04",
+    "comment": "If you sacrifice Korvold, its last ability triggers. You won't put a +1/+1 counter on anything, but you'll draw a card."
+   }
+  ],
+  "94f01534-7bb3-4b1e-8f77-e84156408686": [],
+  "13fe5e46-77a6-45d8-ac0b-c3d740eccf86": [
+   {
+    "source": "wotc",
+    "published_at": "2016-07-13",
+    "comment": "If an effect states that a land enters the battlefield tapped unless a condition is met, Splendid Reclamation's effect puts that land onto the battlefield tapped even if that condition is true. For example, you may reveal a Plains as Port Town (from the Shadows over Innistrad set) is returned to the battlefield, but Port Town will still enter tapped."
+   }
+  ],
+  "43985bbc-a0f6-4812-984e-392bc8562633": [
+   {
+    "source": "wotc",
+    "published_at": "2025-11-17",
+    "comment": "This land has two basic land types. It's not basic, so cards such as Tend the Sprigs can't find it, but it does have the appropriate land types for effects such as that of Kishla Village (from the Tarkir: Dragonstorm release)."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2025-11-17",
+    "comment": "If an effect puts this land onto the battlefield tapped, you may pay 2 life, but it still enters tapped."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-10-05",
+    "comment": "Unlike most dual lands, this land has two basic land types. It's not basic, so cards such as District Guide can't find it, but it does have the appropriate land types for effects such as that of Drowned Catacomb (from the Ixalan set)."
+   }
+  ],
+  "78cd6d20-033f-471f-a86e-59ec8307ae1f": [
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "A landfall ability triggers whenever a land you control enters for any reason. It triggers whenever you play a land, as well as whenever a spell or ability puts a land onto the battlefield under your control."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "A landfall ability doesn't trigger if a permanent already on the battlefield becomes a land."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "Whenever a land you control enters, each landfall ability of the permanents you control will trigger. You can put them   on the stack in any order. The last ability you put on the stack will be the first one to resolve (As a result, you can have those abilities resolve in the order of your choosing.)."
+   }
+  ],
+  "620d0572-6d22-43e2-83a9-000e605c8a2b": [
+   {
+    "source": "wotc",
+    "published_at": "2004-10-04",
+    "comment": "Can sacrifice a land which can’t produce mana, but you don’t get any mana from this ability."
+   }
+  ],
+  "4709f11c-aef8-45ac-b2bf-e640c568dfac": [
+   {
+    "source": "wotc",
+    "published_at": "2019-05-03",
+    "comment": "A legendary permanent that is put into a graveyard because of the \"legend rule\" isn't sacrificed."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2019-05-03",
+    "comment": "You control Mayhem Devil's triggered ability and choose the target, no matter who sacrificed the permanent."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2019-05-03",
+    "comment": "If a permanent is sacrificed to pay a cost of a spell or ability, Mayhem Devil's ability will resolve before that spell or ability. Conversely, if a permanent is sacrificed during the resolution of a spell or ability, that spell or ability will finish resolving before Mayhem Devil's ability is put onto the stack."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2019-05-03",
+    "comment": "Mayhem Devil itself doesn't allow any player to sacrifice any permanents. Its ability triggers whenever a player sacrifices a permanent because some other spell, ability, or cost instructed the player to do so."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2019-05-03",
+    "comment": "If you sacrifice Mayhem Devil, its ability triggers."
+   }
+  ],
+  "8709b5b1-ef9e-45b2-bf4f-ef4c4d613dcd": [
+   {
+    "source": "wotc",
+    "published_at": "2004-10-04",
+    "comment": "Because the “search” requires you to find a card with certain characteristics, you don't have to find the card if you don't want to."
+   }
+  ],
+  "0b7393aa-d563-45bc-9946-8e7d1729d498": [
+   {
+    "source": "wotc",
+    "published_at": "2004-10-04",
+    "comment": "You do not have to find a mountain or forest card if you do not want to."
+   }
+  ],
+  "73e7a2ad-d11c-4867-b97d-f971809da778": [
+   {
+    "source": "wotc",
+    "published_at": "2008-08-01",
+    "comment": "When Glacial Chasm's \"enters\" ability resolves, if you don't control any other lands, you must sacrifice Glacial Chasm itself."
+   }
+  ],
+  "6c5b02eb-7829-436a-8555-fea200e4b67f": [
+   {
+    "source": "wotc",
+    "published_at": "2009-10-01",
+    "comment": "If you control more than one Oracle of Mul Daya, the effects of their first abilities are cumulative. If you control two, for example, you can play three lands on your turn."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2009-10-01",
+    "comment": "Oracle of Mul Daya doesn't change the times when you can play a land card from the top of your library. You can play a land only during your main phase when you have priority and the stack is empty. Doing so counts as one of your land plays for the turn."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2009-10-01",
+    "comment": "If you play your first land of the turn from the top of your library, and the new top card is another land card, you can play that one too."
+   }
+  ],
+  "57b86d5c-3269-44bc-a838-3c5439d820d9": [
+   {
+    "source": "wotc",
+    "published_at": "2016-01-22",
+    "comment": "Mirrorpool’s third ability can target (and copy) any instant or sorcery spell, not just one with targets."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2016-01-22",
+    "comment": "The copy is created on the stack, so it’s not cast. Abilities that trigger when a player casts a spell won’t trigger. The copy will then resolve like a normal spell, after players get a chance to cast spells and activate abilities."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2016-01-22",
+    "comment": "The copy will have the same targets as the spell it’s copying unless you choose new ones. You may change any number of the targets, including all of them or none of them. If, for one of the targets, you can’t choose a new legal target, then it remains unchanged (even if the current target is illegal)."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2016-01-22",
+    "comment": "If the copied spell is modal (that is, it says “Choose one —” or the like), the copy will have the same modes. You can’t choose different ones."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2016-01-22",
+    "comment": "If the copied spell has an X whose value was determined as it was cast (like Fall of the Titans does), the copy has the same value of X."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2016-01-22",
+    "comment": "You can’t choose to pay any additional costs for the copy. However, effects based on any additional costs that were paid for the original spell are copied as though those same costs were paid for the copy, too. For example, if a player sacrifices a 3/3 creature to cast Fling, and you copy it, the copy of Fling will also deal 3 damage to its target."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2016-01-22",
+    "comment": "For Mirrorpool’s last ability, the token copies exactly what’s printed on the original creature and nothing else (unless that creature is copying something else; see below). It doesn’t copy whether that creature is tapped or untapped, whether it has any counters on it or Auras and Equipment attached to it, or any non-copy effects that have changed its power, toughness, types, color, and so on."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2016-01-22",
+    "comment": "For example, if a token copies a Plains that’s been affected by a spell with awaken, the token will be just a land, even though the object being copied is currently a land creature. The same is true if the land has an ability that animates it."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2016-01-22",
+    "comment": "If the copied creature has {X} in its mana cost, X is 0."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2016-01-22",
+    "comment": "If the copied creature is copying something else when the ability resolves, then the token enters the battlefield as a copy of whatever that creature is copying."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2016-01-22",
+    "comment": "Any enters-the-battlefield abilities of the copied creature will trigger when the token enters the battlefield. Any “as [this permanent] enters the battlefield” or “[this permanent] enters the battlefield with” abilities of the copied creature will also work."
+   }
+  ],
+  "3875aef0-3102-4fbf-be90-e4139f7a2348": [
+   {
+    "source": "wotc",
+    "published_at": "2018-01-19",
+    "comment": "Wayward Swordtooth's middle ability is cumulative if you control more than one. It's also cumulative with other effects that let you play additional lands, such as the one from Enter the Unknown."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-01-19",
+    "comment": "Once you have the city's blessing, you have it for the rest of the game, even if you lose control of some or all of your permanents. The city's blessing isn't a permanent itself and can't be removed by any effect."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-01-19",
+    "comment": "A permanent is any object on the battlefield, including tokens and lands. Spells and emblems aren't permanents."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-01-19",
+    "comment": "If you cast a spell with ascend, you don't get the city's blessing until it resolves. Players may respond to that spell by trying to change whether you get the city's blessing."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-01-19",
+    "comment": "If you control ten permanents but don't control a permanent or resolving spell with ascend, you don't get the city's blessing. For example, if you control ten permanents, lose control of one, then cast Golden Demise, you won't have the city's blessing and the spell will affect creatures you control."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-01-19",
+    "comment": "If your tenth permanent enters the battlefield and then a permanent leaves the battlefield immediately afterwards (most likely due to the \"Legend Rule\" or due to being a creature with 0 toughness), you get the city's blessing before it leaves the battlefield."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-01-19",
+    "comment": "Ascend on a permanent isn't a triggered ability and doesn't use the stack. Players can respond to a spell that will give you your tenth permanent, but they can't respond to getting the city's blessing once you control that tenth permanent. This means that if your tenth permanent is a land you play, players can't respond before you get the city's blessing."
+   }
+  ],
+  "9b0b8f00-6367-4dc9-b33e-680470b3a36c": [
+   {
+    "source": "wotc",
+    "published_at": "2018-04-27",
+    "comment": "As a Saga enters the battlefield, its controller puts a lore counter on it. As your precombat main phase begins (immediately after your draw step), you put another lore counter on each Saga you control. Putting a lore counter on a Saga in either of these ways doesn't use the stack."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-04-27",
+    "comment": "Each symbol on the left of a Saga's text box represents a chapter ability. A chapter ability is a triggered ability that triggers when a lore counter that is put on the Saga causes the number of lore counters on the Saga to become equal to or greater than the ability's chapter number. Chapter abilities are put onto the stack and may be responded to."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-04-27",
+    "comment": "A chapter ability doesn't trigger if a lore counter is put on a Saga that already had a number of lore counters greater than or equal to that chapter's number. For example, the third lore counter put on a Saga causes the III chapter ability to trigger, but I and II won't trigger again."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-04-27",
+    "comment": "Once a chapter ability has triggered, the ability on the stack won't be affected if the Saga gains or loses counters, or if it leaves the battlefield."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-04-27",
+    "comment": "If multiple chapter abilities trigger at the same time, their controller puts them on the stack in any order. If any of them require targets, those targets are chosen as you put the abilities on the stack, before any of those abilities resolve."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-04-27",
+    "comment": "If counters are removed from a Saga, the appropriate chapter abilities will trigger again when the Saga receives lore counters. Removing lore counters won't cause a previous chapter ability to trigger."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2018-04-27",
+    "comment": "Once the number of lore counters on a Saga is greater than or equal to the greatest number among its chapter abilities—in the Dominaria set, this is always three—the Saga's controller sacrifices it as soon as its chapter ability has left the stack, most likely by resolving or being countered. This state-based action doesn't use the stack."
+   }
+  ],
+  "8894ab96-17e1-41d8-a4fb-28b510807394": [],
+  "65d63518-3261-40b5-87b8-19c152b29ee3": [],
+  "d6861319-ae16-4e6c-af87-a264f667d694": [
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "A landfall ability triggers whenever a land you control enters for any reason. It triggers whenever you play a land, as well as whenever a spell or ability puts a land onto the battlefield under your control."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "A landfall ability doesn't trigger if a permanent already on the battlefield becomes a land."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "Whenever a land you control enters, each landfall ability of the permanents you control will trigger. You can put them   on the stack in any order. The last ability you put on the stack will be the first one to resolve (As a result, you can have those abilities resolve in the order of your choosing.)."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2020-09-25",
+    "comment": "If you play the card in response to the end step triggered ability, that card won't be put into your graveyard and won't be counted when determining how much damage to deal."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2020-09-25",
+    "comment": "You must follow the normal timing permissions and restrictions for the exiled card. If it's a land, you can't play it unless you have land plays available."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2020-09-25",
+    "comment": "In a Two-Headed Giant game, the end step triggered ability causes the opposing team to lose 2 life for each card put into its owner's graveyard."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2020-09-25",
+    "comment": "If Valakut Exploration leaves the battlefield, any cards exiled with it remain exiled and can be played. The end step triggered ability won't trigger, and the cards won't be put into their owner's graveyard."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2020-09-25",
+    "comment": "You'll still pay all costs for a spell cast this way, including additional costs. You may also pay alternative costs if any are available."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2020-09-25",
+    "comment": "If you play a card this way, it leaves exile and becomes a new object. If it returns to exile later in the turn, you can't play it again."
+   }
+  ],
+  "62f6baba-da3b-45b8-a3c1-efb75763cca8": [],
+  "2962fe4c-bf48-454b-8a6b-0f8253352ae8": [
+   {
+    "source": "wotc",
+    "published_at": "2023-11-10",
+    "comment": "If a land has an ability that says it enters the battlefield tapped, you choose the order in which that ability's effect and Spelunking's effect apply. This means you can choose to have the land enter tapped or untapped. If a land you control is simply put onto the battlefield tapped without a replacement effect being applied, it always enters untapped if you control Spelunking."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-11-10",
+    "comment": "If Spelunking would enter the battlefield at the same time a land you control would enter the battlefield tapped, that land still enters the battlefield tapped."
+   }
+  ],
+  "374e54d8-8e73-4268-9dde-c28c77bbbf32": [],
+  "3b6ef144-bb98-4686-9718-204f1c3cf020": [],
+  "4474ecee-0ec3-409b-90df-738d9313fe3c": [],
+  "7c2a4fe5-43e8-4e20-bef2-0278d18afc4b": [
+   {
+    "source": "wotc",
+    "published_at": "2024-06-07",
+    "comment": "You must already control a Forest as Shifting Woodland enters the battlefield for it to enter untapped. If it enters the battlefield at the same time as a Forest when you control no other Forests, it will enter tapped."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-06-07",
+    "comment": "Shifting Woodland copies exactly what was printed on the original card and nothing else. It doesn't copy any information about the object the card was before it was put into your graveyard."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-06-07",
+    "comment": "Any effects that applied to Shifting Woodland before it becomes a copy of another card will continue to apply after it becomes a copy. The same is true of any counters that are on Shifting Woodland."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-06-07",
+    "comment": "If a card in your graveyard has {X} in its mana cost, X is considered to be 0."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-06-07",
+    "comment": "Because Shifting Woodland isn't entering the battlefield when it becomes a copy of a card, any \"When [this creature] enters the battlefield\" or \"[This creature] enters the battlefield with\" abilities of the copied card won't apply."
+   }
+  ],
+  "727f3201-1cfc-4ab2-9dfe-be4f7251f42f": [
+   {
+    "source": "wotc",
+    "published_at": "2024-06-07",
+    "comment": "If an effect allows you to play a specific modal double-faced card, you may cast it as a spell or play it as a land, as determined by which face you choose to play. If an effect allows you to cast (rather than \"play\") a specific modal double-faced card, you can't play it as a land."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-06-07",
+    "comment": "To determine whether it is legal to play a modal double-faced card, consider only the characteristics of the face you're playing and ignore the other face's characteristics. For example, if an effect stops you from casting creature spells, you can't cast Disciple of Freyalise, but you can still play Garden of Freyalise."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-06-07",
+    "comment": "If an effect allows you to play a land or cast a spell from among a group of cards, you may play or cast a modal double-faced card with any face that fits the criteria of that effect. For example, if an effect allows you to play lands from your graveyard, you can play Garden of Freyalise, but you can't cast Disciple of Freyalise."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-06-07",
+    "comment": "If an effect allows you to put a card with particular characteristics onto the battlefield without instructing you to play or cast it, you consider only the characteristics of a modal double-faced card's front face to see if that card qualifies. If it does, it enters the battlefield with its front face up. For example, if an effect allows you to put a creature card from your graveyard onto the battlefield, you can put Disciple of Freyalise onto the battlefield. However, an effect that lets you return a land card from your graveyard to your hand won't let you return Garden of Freyalise to your hand, as that card has only its front face's characteristics while in the graveyard."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-06-07",
+    "comment": "The mana value of a modal double-faced card is based on the characteristics of the face that's being considered. On the stack or the battlefield, consider whichever face is up. In all other zones, consider only the front face. This is different than how the mana value of a transforming double-faced card is determined."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-06-07",
+    "comment": "A modal double-faced card can't be transformed or be put onto the battlefield transformed. Ignore any instruction to transform a modal double-faced card or to put one onto the battlefield transformed."
+   }
+  ],
+  "d30d8968-ec24-4155-97e2-28efd52c8810": [],
+  "65385311-1158-4e94-892a-683997706ca8": [
+   {
+    "source": "wotc",
+    "published_at": "2025-07-25",
+    "comment": "Whenever a land you control enters, each landfall ability of permanents you control will trigger. You can put them on the stack in any order. The last ability you put on the stack will be the first one to resolve. As a result, you can have those abilities resolve in the order of your choosing."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2025-07-25",
+    "comment": "A landfall ability doesn't trigger if a permanent already on the battlefield becomes a land."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2025-07-25",
+    "comment": "A landfall ability triggers whenever a land you control enters for any reason. It triggers whenever you play a land, as well as whenever a spell or ability puts a land onto the battlefield under your control."
+   }
+  ],
+  "dba3dcc1-2177-4a8c-8cf3-7d4fb83c7a16": [
+   {
+    "source": "wotc",
+    "published_at": "2025-07-25",
+    "comment": "If Baloth Prime leaves the battlefield at the same time as you sacrifice one or more lands (probably because you also sacrificed Baloth Prime), its second ability triggers for each of those lands."
+   }
+  ],
+  "e8d20361-d9b7-4f9c-8ec5-3ac7c460dcb2": [
+   {
+    "source": "wotc",
+    "published_at": "2025-07-25",
+    "comment": "If a land has an ability that says it enters tapped, you choose the order in which that ability’s effect and the effect of Horizon Explorer’s first ability apply. This means you can choose to have the land enter tapped or untapped. If a land you control is simply put onto the battlefield tapped without a replacement effect being applied, it always enters untapped if you control Horizon Explorer."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2025-07-25",
+    "comment": "Horizon Explorer’s last ability will trigger once for each player you attack."
+   }
+  ],
+  "1d45f248-5b83-4377-a3ba-4eae48e63ca1": [],
+  "8a83ecee-092b-456c-803f-a9aaa17c4da9": [
+   {
+    "source": "wotc",
+    "published_at": "2025-07-25",
+    "comment": "You pay all costs and follow all timing rules for cards cast with the permission granted by Exploration Broodship’s last ability. For example, you may cast a creature spell from your graveyard only during your main phase while the stack is empty."
+   }
+  ],
+  "8e025cda-71c5-4d06-8436-decd408667af": [
+   {
+    "source": "wotc",
+    "published_at": "2025-07-25",
+    "comment": "If a creature’s power is less than 0 when it’s doubled, instead that creature gets -X/-0, where X is how much less than 0 its power is. For example, if an effect has given Bear Cub, a 2/2 creature, -4/-0 so that it’s a -2/2 creature, doubling its power and toughness gives it -2/+2, and it becomes a -4/4 creature."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2025-07-25",
+    "comment": "If an effect instructs you to “double” a creature’s power, that creature gets +X/+0, where X is its power as that effect begins to apply. Similarly, a creature whose toughness is doubled gets +0/+X, where X is its toughness as the effect begins to apply."
+   }
+  ],
+  "5bd06f9e-9a42-455d-ad26-24bc04e51c7c": [],
+  "dc48079a-b1c4-4c43-a989-418c78a264ec": [],
+  "97a2cd39-6b54-496b-b3ac-dab9dfed7edc": [
+   {
+    "source": "wotc",
+    "published_at": "2026-06-29",
+    "comment": "If a card in your hand is already revealed (perhaps because it was revealed to pay a cost of a spell that's still on the stack or due to the effect of a card like Telepathy), you may reveal it again to pay the cost of another spell or ability that requires you to reveal a card from your hand."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2026-06-29",
+    "comment": "Effects that say \"If a [quality] was beheld\" only care if a card of that quality was revealed or a permanent you control of that quality was chosen. No matter what happens to that card or permanent after that, it was still beheld, and any additional effects that depend on that card or permanent being beheld will still happen."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2026-06-29",
+    "comment": "If an effect refers to a \"[subtype] card,\" it refers only to a card that has that subtype. For example, Elven Chorus is not an Elf, despite referencing elves in its name and featuring elves in its art."
+   }
+  ],
+  "c8b3a070-408e-4a8f-8597-6476eeec0a5f": [
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "While copies of spells in zones other than the stack cease to exist when state-based actions are checked, this does not apply to copies of prepare spells in exile that were created as a creature became prepared."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "Creating a copy of a creature's prepare spell in exile ignores copy exceptions applied to that creature that would affect the copiable values of that spell. For example, say a player casts Croaking Counterpart (a sorcery that says \"Create a token that's a copy of target non-Frog creature, except it's a 1/1 green Frog\") targeting Diviner of Victory. The token copy of Diviner of Victory will enter prepared as a 1/1 green Frog creature, but the copy of Unwind History in exile will still be a blue sorcery. The copy of Unwind History won't be green, a creature, or a Frog, and it won't have power or toughness."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "Casting a copy of a prepare spell from exile isn't casting it for an alternative cost. Effects that allow you to cast a spell for an alternative cost or without paying its mana cost may allow you to apply those to a copy of a prepare spell cast from exile."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "If an effect causes a creature to become unprepared, a prepared creature stops being prepared and the associated copy of its prepare spell in exile ceases to exist. If it wasn't prepared at that time, nothing happens."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "A preparation card is a creature card in every zone. For example, while it's in your graveyard, Diviner of Victory is a blue creature card whose mana value is 1. It can't be the target of Stingcaster Mage's triggered ability (\"When this creature enters, target instant or sorcery card in your graveyard gains flashback until end of turn. The flashback cost is equal to its mana cost.\")."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "If a prepared creature loses all abilities, it won't stop being prepared, and nothing will happen to its alternative characteristics or to the copy of its prepare spell in exile."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "A creature without a prepare spell can't become prepared."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "Being prepared isn't a copiable value. If a permanent becomes a copy of a prepared creature, it won't be prepared. That permanent will have the alternative characteristics, though, and some other effect could cause it to become prepared later."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "As an effect causes a creature with a prepare spell to become prepared (including effects that state that a creature \"enters prepared\"), that creature's controller creates a copy of that creature's prepare spell in exile. That copy remains in exile for as long as that permanent is on the battlefield and is prepared. That creature's controller may cast that copy as long as it remains in exile. As they cast it, that creature stops being prepared."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "A creature with a prepare spell can't become prepared more than once at the same time. For example, say Bloodline Recollector is on the battlefield and is prepared. During the current turn, three creatures die. At the beginning of the end step, Bloodline Recollector's last ability triggers. When that ability resolves, since Bloodline Recollector is already prepared, the ability won't cause it to become prepared a second time or create a second copy of Ancestral Craving in exile."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "Heartwood tokens are a kind of predefined token. Each one is a red and green artifact with the artifact subtype Heartwood and the ability \"{T}: Add {R} or {G}.\""
+   },
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "If a prepare spell with one or more targets has no legal targets when it tries to resolve, it won't resolve and none of its effects will happen. Since the spell was cast, the associated permanent will still not be prepared."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "Only the current controller of a prepared creature can cast the copy of its prepare spell in exile. It doesn't matter who owns that creature or who controlled it when it became prepared."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "If an effect instructs you to choose a card name, you may choose the alternative prepare spell's name. Consider only the alternative characteristics to determine whether that is an appropriate name to choose."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "Preparation cards can be cast only with their base characteristics."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "If a prepared creature stops being a creature, it will still be prepared, and the copy of its prepare spell will remain in exile. That permanent's controller will still be able to cast it. The same is true if a prepared creature becomes a copy of something else, even if it's then a permanent without a prepare spell."
+   }
+  ],
+  "db655c5a-06f6-42bc-8180-d9ca1c1d939a": [
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "If a prepared creature stops being a creature, it will still be prepared, and the copy of its prepare spell will remain in exile. That permanent's controller will still be able to cast it. The same is true if a prepared creature becomes a copy of something else, even if it's then a permanent without a prepare spell."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "Only the current controller of a prepared creature can cast the copy of its prepare spell in exile. It doesn't matter who owns that creature or who controlled it when it became prepared."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "Creating a copy of a creature's prepare spell in exile ignores copy exceptions applied to that creature that would affect the copiable values of that spell. For example, say a player casts Croaking Counterpart (a sorcery that says \"Create a token that's a copy of target non-Frog creature, except it's a 1/1 green Frog\") targeting Diviner of Victory. The token copy of Diviner of Victory will enter prepared as a 1/1 green Frog creature, but the copy of Unwind History in exile will still be a blue sorcery. The copy of Unwind History won't be green, a creature, or a Frog, and it won't have power or toughness."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "If a prepared creature loses all abilities, it won't stop being prepared, and nothing will happen to its alternative characteristics or to the copy of its prepare spell in exile."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "Preparation cards can be cast only with their base characteristics."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "If an effect causes a creature to become unprepared, a prepared creature stops being prepared and the associated copy of its prepare spell in exile ceases to exist. If it wasn't prepared at that time, nothing happens."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "While copies of spells in zones other than the stack cease to exist when state-based actions are checked, this does not apply to copies of prepare spells in exile that were created as a creature became prepared."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "If a prepare spell with one or more targets has no legal targets when it tries to resolve, it won't resolve and none of its effects will happen. Since the spell was cast, the associated permanent will still not be prepared."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "A preparation card is a creature card in every zone. For example, while it's in your graveyard, Diviner of Victory is a blue creature card whose mana value is 1. It can't be the target of Stingcaster Mage's triggered ability (\"When this creature enters, target instant or sorcery card in your graveyard gains flashback until end of turn. The flashback cost is equal to its mana cost.\")."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "If an effect instructs you to choose a card name, you may choose the alternative prepare spell's name. Consider only the alternative characteristics to determine whether that is an appropriate name to choose."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "Being prepared isn't a copiable value. If a permanent becomes a copy of a prepared creature, it won't be prepared. That permanent will have the alternative characteristics, though, and some other effect could cause it to become prepared later."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "As an effect causes a creature with a prepare spell to become prepared (including effects that state that a creature \"enters prepared\"), that creature's controller creates a copy of that creature's prepare spell in exile. That copy remains in exile for as long as that permanent is on the battlefield and is prepared. That creature's controller may cast that copy as long as it remains in exile. As they cast it, that creature stops being prepared."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "Casting a copy of a prepare spell from exile isn't casting it for an alternative cost. Effects that allow you to cast a spell for an alternative cost or without paying its mana cost may allow you to apply those to a copy of a prepare spell cast from exile."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "A creature with a prepare spell can't become prepared more than once at the same time. For example, say Bloodline Recollector is on the battlefield and is prepared. During the current turn, three creatures die. At the beginning of the end step, Bloodline Recollector's last ability triggers. When that ability resolves, since Bloodline Recollector is already prepared, the ability won't cause it to become prepared a second time or create a second copy of Ancestral Craving in exile."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "A creature without a prepare spell can't become prepared."
+   }
+  ],
+  "580de511-863c-4b7a-9d2e-fcdf6e12d54b": [
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "Vraska's last ability checks at the moment it would trigger to see if you control six or more lands. If you don't, the ability won't trigger at all. If it does trigger, the ability will check again as it tries to resolve. If you don't control six or more lands at that time, the ability won't resolve and its effect won't happen."
+   }
+  ],
+  "3b17da84-ae4d-4fc1-a327-85e54e6156c6": [],
+  "eb03f6c1-c94f-4f09-b2e9-a55ce5533653": [],
+  "76cb1912-3791-44b8-b594-b92dab21bafc": [],
+  "b71c3c1e-f927-4192-ac3a-cf6a442ffd00": [],
+  "79bc2c6d-b03d-4ceb-b468-293378ec73ae": [],
+  "571cb06d-55b5-46e4-9678-1f74aca73068": [
+   {
+    "source": "wotc",
+    "published_at": "2026-08-21",
+    "comment": "Heartwood tokens are a kind of predefined token. Each one is a red and green artifact with the artifact subtype Heartwood and the ability \"{T}: Add {R} or {G}.\""
+   }
+  ],
+  "2837be10-23ad-49d2-943e-b1e00edbbbd9": [
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "If an effect refers to a Food, it means any Food artifact, not just a Food artifact token. For example, you can sacrifice Tough Cookie (an Artifact Creature — Food Golem) to activate Maraleaf Rider's ability (an ability with \"Sacrifice a Food\" in its cost)."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "Food is an artifact type. Even though it appears on some creatures, it's never a creature type."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "You can't sacrifice a Food to pay multiple costs. For example, you can't sacrifice a Food token to activate its own ability and also to activate Maraleaf Rider's ability."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "Whatever you do, don't eat the delicious cards."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "Both commanders start in the command zone, and the remaining 98 cards of your deck are shuffled to become your library."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "To have two commanders, both must have the partner ability or corresponding \"partner with\" abilities as the game begins. A creature with a \"partner with\" ability can't partner with any creature other than its designated partner. Losing a partner ability during the game doesn't cause either to cease to be your commander."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "\"Partner with [name]\" represents two abilities. The first is a triggered ability: \"When this permanent enters the battlefield, target player may search their library for a card named [name], reveal it, put it into their hand, then shuffle their library.\""
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "An effect that checks whether you control your commander is satisfied if you control one or both of your two commanders."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "The triggered ability of the \"partner with\" keyword still triggers in a Commander game. If your other commander has somehow ended up in your library, you can find it. You can also target another player, whether or not they have that card in their library."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "Once the game begins, your two commanders are tracked separately. If you cast one, you won't have to pay an additional {2} the first time you cast the other. A player loses the game after having been dealt 21 damage from one of them, not from both of them combined. Command Beacon's effect puts one into your hand from the command zone, not both."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "Note that the target player searches their library (which may be affected by effects such as that of Stranglehold) and that the card they find is revealed, even though these words aren't included in the ability's reminder text."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "The second ability represented by the \"partner with [name]\" keyword modifies the rules for deck construction in the Commander variant and has no function outside of that variant. If a legendary creature card with \"partner with [name]\" is designated as your commander, the named legendary creature card can also be designated as your commander. For more information on the Commander variant, please visit Wizards.com/Commander."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "If your Commander deck has two commanders, you can only include cards whose own color identities are also found in your commanders' combined color identities. If Frodo, Adventurous Hobbit and Sam, Loyal Attendant are your commanders, your deck may contain cards with white, black, and/or green in their color identity, but not blue or red."
+   }
+  ],
+  "58ee8c10-7be8-4889-944d-13cae0a4166d": [
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "The Ring tempts you just once, no matter how much life you've gained past 3 life."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "Frodo, Adventurous Hobbit's ability looks at how much life you've gained in the turn, even if it wasn't on the battlefield when you gained life. It doesn't care if you also lost life, even if you lost more life than you gained."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "If you haven't gained 3 or more life by the time Frodo, Adventurous Hobbit attacks, the ability won't trigger at all."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "As the Ring tempts you, you get an emblem named The Ring if you don't have one. Then your emblem gains its next ability and you choose a creature you control to become (or remain) your Ring-bearer."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "The Ring can tempt you even if you don't control a creature. In this case, abilities that trigger \"whenever the Ring tempts you\" will still trigger."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "If the creature you choose as your Ring-bearer was already your Ring-bearer, that still counts as choosing that creature as your Ring-bearer for the purpose of abilities that trigger \"whenever you choose a creature as your Ring-bearer\" or abilities that care about which creature was chosen as your Ring-bearer."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "The Ring gains its abilities in order from top to bottom. Once it gains an ability, it has that ability for the rest of the game."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "Each time the Ring tempts you, you must choose a creature if you control one."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "Each player can have only one emblem named The Ring and only one Ring-bearer at a time."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "Some spells and abilities that cause the Ring to tempt you may require targets. If each target chosen is an illegal target as that spell or ability tries to resolve, it won't resolve. The Ring won't tempt you."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "\"Partner with [name]\" represents two abilities. The first is a triggered ability: \"When this permanent enters the battlefield, target player may search their library for a card named [name], reveal it, put it into their hand, then shuffle their library.\""
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "Note that the target player searches their library (which may be affected by effects such as that of Stranglehold) and that the card they find is revealed, even though these words aren't included in the ability's reminder text."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "The second ability represented by the \"partner with [name]\" keyword modifies the rules for deck construction in the Commander variant and has no function outside of that variant. If a legendary creature card with \"partner with [name]\" is designated as your commander, the named legendary creature card can also be designated as your commander. For more information on the Commander variant, please visit Wizards.com/Commander."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "If your Commander deck has two commanders, you can only include cards whose own color identities are also found in your commanders' combined color identities. If Frodo, Adventurous Hobbit and Sam, Loyal Attendant are your commanders, your deck may contain cards with white, black, and/or green in their color identity, but not blue or red."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "Both commanders start in the command zone, and the remaining 98 cards of your deck are shuffled to become your library."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "To have two commanders, both must have the partner ability or corresponding \"partner with\" abilities as the game begins. A creature with a \"partner with\" ability can't partner with any creature other than its designated partner. Losing a partner ability during the game doesn't cause either to cease to be your commander."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "Once the game begins, your two commanders are tracked separately. If you cast one, you won't have to pay an additional {2} the first time you cast the other. A player loses the game after having been dealt 21 damage from one of them, not from both of them combined. Command Beacon's effect puts one into your hand from the command zone, not both."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "An effect that checks whether you control your commander is satisfied if you control one or both of your two commanders."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "The triggered ability of the \"partner with\" keyword still triggers in a Commander game. If your other commander has somehow ended up in your library, you can find it. You can also target another player, whether or not they have that card in their library."
+   }
+  ],
+  "602132c2-8ee8-41f8-bfac-cb17d32203f5": [
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "If an effect refers to a Food, it means any Food artifact, not just a Food artifact token. For example, you can sacrifice Tough Cookie (an Artifact Creature — Food Golem) to activate Maraleaf Rider's ability (an ability with \"Sacrifice a Food\" in its cost)."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "Food is an artifact type. Even though it appears on some creatures, it's never a creature type."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "You can't sacrifice a Food to pay multiple costs. For example, you can't sacrifice a Food token to activate its own ability and also to activate Maraleaf Rider's ability."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "Whatever you do, don't eat the delicious cards."
+   }
+  ],
+  "185d6356-8f8d-4b32-8259-b4eb0a95866c": [
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "If an effect refers to a Food, it means any Food artifact, not just a Food artifact token. For example, you can sacrifice Tough Cookie (an Artifact Creature — Food Golem) to activate Maraleaf Rider's ability (an ability with \"Sacrifice a Food\" in its cost)."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "Food is an artifact type. Even though it appears on some creatures, it's never a creature type."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "You can't sacrifice a Food to pay multiple costs. For example, you can't sacrifice a Food token to activate its own ability and also to activate Maraleaf Rider's ability."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "Whatever you do, don't eat the delicious cards."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2019-10-04",
+    "comment": "While resolving the second triggered ability, you can't pay {1} multiple times to look at more cards."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2019-10-04",
+    "comment": "A permanent card is an artifact, creature, enchantment, land, or planeswalker card."
+   }
+  ],
+  "8fa0fe02-2452-4386-8e0c-165757b0f0a3": [
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "Food is an artifact type. Even though it appears on some creatures, it's never a creature type."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "You can't sacrifice a Food to pay multiple costs. For example, you can't sacrifice a Food token to activate its own ability and also to activate Maraleaf Rider's ability."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "Whatever you do, don't eat the delicious cards."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2019-10-04",
+    "comment": "No player may take actions between the time you announce you're activating Witch's Oven's ability and the time you sacrifice a creature. Notably, they can't try to remove or shrink the creature you'd like to bake."
+   }
+  ],
+  "6789a170-f2c5-4fc0-8a45-2b2361e67410": [
+   {
+    "source": "wotc",
+    "published_at": "2024-01-12",
+    "comment": "When using convoke to cast a spell with {X} in its mana cost, first choose the value for X. That choice, plus any cost increases or decreases, will determine the spell's total cost. Then you can tap creatures you control to help pay that cost. For example, if you cast Chord of Calling (a spell with convoke and mana cost {X}{G}{G}{G}) and choose X to be 3, the total cost is {3}{G}{G}{G}. If you tap two green creatures and two red creatures, you'll have to pay {1}{G}."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-01-12",
+    "comment": "You can tap any untapped creature you control to convoke a spell, even one you haven't controlled continuously since the beginning of your most recent turn."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-01-12",
+    "comment": "Tapping an untapped creature that's attacking or blocking to convoke a spell won't cause that creature to stop attacking or blocking."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-01-12",
+    "comment": "When calculating a spell's total cost, include any alternative costs, additional costs, or anything else that increases or reduces the cost to cast the spell. Convoke applies after the total cost is calculated. Convoke doesn't change a spell's mana cost or mana value."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-01-12",
+    "comment": "If a creature you control has a mana ability with {T} in the cost, activating that ability while casting a spell with convoke will result in the creature being tapped before you pay the spell's costs. You won't be able to tap it again for convoke. Similarly, if you sacrifice a creature to activate a mana ability while casting a spell with convoke, that creature won't be on the battlefield when you pay the spell's costs, so you won't be able to tap it for convoke."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-01-12",
+    "comment": "Because convoke isn't an alternative cost, it can be used in conjunction with alternative costs."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-01-12",
+    "comment": "Tapping a multicolored creature using convoke will pay for {1} or one mana of your choice of any of that creature's colors."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2020-08-07",
+    "comment": "If a card in a player's library has {X} in its mana cost, X is considered to be 0."
+   }
+  ],
+  "4acb6612-54e8-428d-acb6-c7259a5ad6a8": [
+   {
+    "source": "wotc",
+    "published_at": "2004-10-04",
+    "comment": "Because the \"search\" requires you to find a card with certain characteristics, you don't have to find the card if you don't want to."
+   }
+  ],
+  "4e0b647a-6e1a-421b-bca9-8d5e346bda80": [
+   {
+    "source": "wotc",
+    "published_at": "2019-06-14",
+    "comment": "If a card in a player's graveyard has {X} in its mana cost, X is considered to be 0."
+   }
+  ],
+  "0456ec64-2c81-4763-a352-8ff64a4c3d6b": [
+   {
+    "source": "wotc",
+    "published_at": "2020-04-17",
+    "comment": "It doesn't matter whose commander you control. Any one will do. If you have two commanders, you just need to control one of them."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2020-04-17",
+    "comment": "Once you begin casting this spell, players can't take any other actions until you're done casting it. Notably, they can't try to remove the commander you control to make you pay its cost."
+   }
+  ],
+  "ec2b3779-55f7-4169-aa66-6312fb52721f": [],
+  "0bbcb563-09b3-499d-a9cc-3a6d7501dd81": [
+   {
+    "source": "wotc",
+    "published_at": "2015-02-25",
+    "comment": "Each of the creature cards can have mana value 3 or less. It's not the total mana value of the two cards."
+   }
+  ],
+  "0aeeb0d7-15a3-4722-ad67-8fc7fe89220d": [
+   {
+    "source": "wotc",
+    "published_at": "2022-06-10",
+    "comment": "Jaheira's ability gives the mana ability to all tokens you control, not just creature tokens."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2022-06-10",
+    "comment": "You won't be able to activate the mana abilities of creature tokens you control on the turn they're created unless they have haste. Conversely, you will be able to activate the mana abilities of noncreature tokens you control on the turn they're created (provided they're untapped)."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2022-06-10",
+    "comment": "Choose a Background is a variant of the partner ability. You may have two commanders if one of them is a legendary creature with the choose a background ability and the other is a legendary Background enchantment. Backgrounds and cards with choose a Background do not interact with cards which have any other partner ability."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2022-06-10",
+    "comment": "If your Commander deck has two commanders, you can include only cards whose own color identities are also found in your commanders’ combined color identities."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2022-06-10",
+    "comment": "Both commanders start in the command zone, and the remaining 98 cards (or 58 cards in a Commander Draft game) of your deck are shuffled to become your library."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2022-06-10",
+    "comment": "If your commander loses the choose a Background ability or stops being a Background during the game, as appropriate, it is still your commander."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2022-06-10",
+    "comment": "Once the game begins, your two commanders are tracked separately. If you cast one, you won’t have to pay an additional {2} the first time you cast the other. A player loses the game after having been dealt 21 combat damage from any one of them, not from both of them combined (although your Background won’t usually be a creature anyway)."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2022-06-10",
+    "comment": "If something refers to your commander while you have two commanders, it refers to one of them of your choice. If you are instructed to perform an action on your commander (e.g. put it from the command zone into your hand due to Command Beacon), you choose one of your commanders at the time the effect happens."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2022-06-10",
+    "comment": "An effect that checks whether you control your commander is satisfied if you control one or both of your two commanders."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2022-06-10",
+    "comment": "You can choose two commanders that are the same color or colors."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2022-06-10",
+    "comment": "If a card refers to a commander creature you own, a Background won't usually be counted or included for that effect. If another spell or ability causes your Background to become a creature, however, it will be included. Any effect that refers to your commander or a commander you own or control without specifying creature will apply to a Background that is your commander, as appropriate."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2022-06-10",
+    "comment": "If you control a Background that grants an ability to commander creatures you own, and you own more than one commander creature, each of them will have that ability."
+   }
+  ],
+  "fe83087d-c6c1-40be-9295-baaa1c6b2db1": [
+   {
+    "source": "wotc",
+    "published_at": "2023-02-04",
+    "comment": "Everything that is specified by the effect creating the original token or tokens will also be true about the additional token or tokens created by Mondrak's replacement effect. For example, if an effect tells you to create a token \"tapped and attacking,\" the additional tokens will also be tapped and attacking. Similarly, if an effect creates a token and puts counters on it (such as a Fractal token) the additional token will also get those counters."
+   }
+  ],
+  "9abf9a0e-8e7d-406b-a01d-d4870b30134e": [
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "Food is an artifact type. Even though it appears on some creatures, it's never a creature type."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "You can't sacrifice a Food to pay multiple costs. For example, you can't sacrifice a Food token to activate its own ability and also to activate Maraleaf Rider's ability."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "Whatever you do, don't eat the delicious cards."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "The legendary creature must already be on the battlefield as the land enters the battlefield. If it enters the battlefield at the same time, the land will enter tapped."
+   }
+  ],
+  "9fcb920c-b8d7-4a79-a335-f63050182cca": [
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "Call of the Ring's last ability will trigger any time you choose a creature as your Ring-bearer, even if that creature was already your Ring-bearer."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "If the Ring tempts you but you can't choose a creature as your Ring-bearer (probably because you control no creatures), Call of the Ring's last ability won't trigger."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "As the Ring tempts you, you get an emblem named The Ring if you don't have one. Then your emblem gains its next ability and you choose a creature you control to become (or remain) your Ring-bearer."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "The Ring can tempt you even if you don't control a creature. In this case, abilities that trigger \"whenever the Ring tempts you\" will still trigger."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "If the creature you choose as your Ring-bearer was already your Ring-bearer, that still counts as choosing that creature as your Ring-bearer for the purpose of abilities that trigger \"whenever you choose a creature as your Ring-bearer\" or abilities that care about which creature was chosen as your Ring-bearer."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "The Ring gains its abilities in order from top to bottom. Once it gains an ability, it has that ability for the rest of the game."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "Each time the Ring tempts you, you must choose a creature if you control one."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "Each player can have only one emblem named The Ring and only one Ring-bearer at a time."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "Some spells and abilities that cause the Ring to tempt you may require targets. If each target chosen is an illegal target as that spell or ability tries to resolve, it won't resolve. The Ring won't tempt you."
+   }
+  ],
+  "f9d3b046-0b95-4103-a630-4b3fb88bb60b": [
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "If the legendary spell you cast this way is copied, the copy can be countered."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "The legendary spell can't be countered if the mana produced by Delighted Halfling is spent to pay any portion of the spell's cost, even an additional cost or an alternative cost. This is true even if you pay an additional cost while casting a spell \"without paying its mana cost.\""
+   }
+  ],
+  "d72b57e5-1c6e-4f02-968f-7e2dd24f0d3c": [
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "Players may cast spells that they know Boromir, Warden of the Tower will counter. Any abilities that trigger when spells are cast will still trigger and resolve if appropriate, and any effects that count how many spells are cast will still count those spells if appropriate."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "If a spell is cast with an alternative cost that includes mana (such as flashback), Boromir's second ability won't trigger and won't counter that spell. Similarly, if a spell is cast without paying its mana cost, but the player did pay mana for additional costs such as from kicker or from Thorn of Amethyst, Boromir's second ability won't trigger and won't counter that spell."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "As the Ring tempts you, you get an emblem named The Ring if you don't have one. Then your emblem gains its next ability and you choose a creature you control to become (or remain) your Ring-bearer."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "The Ring can tempt you even if you don't control a creature. In this case, abilities that trigger \"whenever the Ring tempts you\" will still trigger."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "If the creature you choose as your Ring-bearer was already your Ring-bearer, that still counts as choosing that creature as your Ring-bearer for the purpose of abilities that trigger \"whenever you choose a creature as your Ring-bearer\" or abilities that care about which creature was chosen as your Ring-bearer."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "The Ring gains its abilities in order from top to bottom. Once it gains an ability, it has that ability for the rest of the game."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "Each time the Ring tempts you, you must choose a creature if you control one."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "Each player can have only one emblem named The Ring and only one Ring-bearer at a time."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "Some spells and abilities that cause the Ring to tempt you may require targets. If each target chosen is an illegal target as that spell or ability tries to resolve, it won't resolve. The Ring won't tempt you."
+   }
+  ],
+  "7ce37c26-91ea-493f-bfc3-a890d4538bc1": [
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "Whatever you do, don't eat the delicious cards."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "If an effect refers to a Food, it means any Food artifact, not just a Food artifact token. For example, you can sacrifice Tough Cookie (an Artifact Creature — Food Golem) to activate Maraleaf Rider's ability (an ability with \"Sacrifice a Food\" in its cost)."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "Food is an artifact type. Even though it appears on some creatures, it's never a creature type."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "You can't sacrifice a Food to pay multiple costs. For example, you can't sacrifice a Food token to activate its own ability and also to activate Maraleaf Rider's ability."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "A card, spell, or permanent is historic if it has the legendary supertype, the artifact card type, or the Saga subtype. Having two of those qualities doesn't make an object more historic than another or provide an additional bonus—an object either is historic or it isn't."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "Some abilities trigger \"whenever you cast a historic spell.\" Such an ability resolves before the spell that caused it to trigger. It resolves even if that spell is countered."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "An ability that triggers \"whenever you cast a historic spell\" doesn't trigger if a historic card is put onto the battlefield without being cast."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "Lands are never cast, so abilities that trigger \"whenever you cast a historic spell\" won't trigger if you play a legendary land. They also won't trigger if a card on the battlefield transforms into a card with the legendary supertype, the artifact card type, or the Saga subtype."
+   }
+  ],
+  "188da0ad-8524-4fb2-915e-1876dc9df89f": [
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "If an effect refers to a Food, it means any Food artifact, not just a Food artifact token. For example, you can sacrifice Tough Cookie (an Artifact Creature — Food Golem) to activate Maraleaf Rider's ability (an ability with \"Sacrifice a Food\" in its cost)."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "Food is an artifact type. Even though it appears on some creatures, it's never a creature type."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "You can't sacrifice a Food to pay multiple costs. For example, you can't sacrifice a Food token to activate its own ability and also to activate Maraleaf Rider's ability."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "Whatever you do, don't eat the delicious cards."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "The additional Food tokens won't have any abilities the other tokens were created with. Anything else specified in the effect creating the token (such as tapped or \"Exile that token at end of combat\") applies to both the original tokens and the Food."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "You don't need to control the spell or ability that creates the tokens, but you do have to be the one creating the tokens for Peregrin Took's ability to apply."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "Peregrin Took's first ability applies to all kinds of tokens that its controller creates, not just Food tokens."
+   }
+  ],
+  "5789520c-e4b2-44b2-b756-3f6b468dc55b": [
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "If you somehow control two Bilbo, Birthday Celebrants and you would gain life, you gain that much life plus 2. A third Bilbo, Birthday Celebrant has you gain that much life plus 3, and so on."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "Bilbo, Birthday Celebrant's first ability applies just once to each life-gaining event, no matter how much life is gained. If you gain an amount of life \"for each\" of something or \"equal to the number\" of something, that life is gained as one event and the ability of Bilbo, Birthday Celebrant applies only once."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "Each creature with lifelink dealing combat damage causes a separate life-gaining event. For example, if two creatures you control with lifelink deal combat damage at the same time, Bilbo, Birthday Celebrant's first ability will apply to those two events separately. However, if a single creature you control with lifelink deals combat damage to multiple creatures, players, and/or planeswalkers at the same time (perhaps because it has trample or was blocked by more than one creature), the ability will apply only once."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "In a Two-Headed Giant game, life gained by your teammate won't cause Bilbo, Birthday Celebrant's first ability to apply, even though it will cause your team's life total to increase."
+   }
+  ],
+  "135cc078-1c45-465e-b0b9-7168c89f56f4": [
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "Spells that were cast before Lotho, Corrupt Shirriff count. If Lotho, Corrupt Shirriff was the first spell you cast this turn, the next spell you cast this turn is your second spell."
+   }
+  ],
+  "a94c191d-a938-458e-bc1b-2f44fd8873a3": [
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "Food is an artifact type. Even though it appears on some creatures, it's never a creature type."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "You can't sacrifice a Food to pay multiple costs. For example, you can't sacrifice a Food token to activate its own ability and also to activate Maraleaf Rider's ability."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "Whatever you do, don't eat the delicious cards."
+   }
+  ],
+  "ad4c39d6-a8b3-4dd9-816d-09761fc9651d": [
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "If an effect refers to a Food, it means any Food artifact, not just a Food artifact token. For example, you can sacrifice Tough Cookie (an Artifact Creature — Food Golem) to activate Maraleaf Rider's ability (an ability with \"Sacrifice a Food\" in its cost)."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "Food is an artifact type. Even though it appears on some creatures, it's never a creature type."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "You can't sacrifice a Food to pay multiple costs. For example, you can't sacrifice a Food token to activate its own ability and also to activate Maraleaf Rider's ability."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "Whatever you do, don't eat the delicious cards."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "Elanor Gardner doesn't need to have been on the battlefield when you sacrificed a Food this turn. For example, if you sacrifice a Food during your first main phase and you cast Elanor Gardner during your second main phase, its last ability will trigger at the beginning of your end step."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "Elanor Gardner's last ability will trigger only once during your end step, no matter how many Foods you sacrificed this turn. However, if you haven't sacrificed any Foods this turn as your end step begins, the ability won't trigger at all. It's not possible to sacrifice a Food during the end step in time to have the ability trigger."
+   }
+  ],
+  "a177295e-3b58-4e46-a1cb-fc003a7a0848": [
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "You draw just one card, no matter how much life you've gained past 3 life."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "The Gaffer's ability looks at how much life you've gained in the turn, even if it wasn't on the battlefield when you gained life. It doesn't care if you also lost life, even if you lost more life than you gained."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "If you haven't gained 3 or more life by the time an end step begins, The Gaffer's ability won't trigger at all."
+   }
+  ],
+  "14f55fc9-ec19-4b4a-b3de-d75898c19edf": [
+   {
+    "source": "wotc",
+    "published_at": "2023-06-16",
+    "comment": "If there are three or more ribbon counters on Prize Pig after you put ribbon counters on it, all of the counters will be removed. It does not matter whether or not Prize Pig is already untapped."
+   }
+  ],
+  "83860749-1603-46e9-9065-e98001244193": [
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "Food is an artifact type. Even though it appears on some creatures, it's never a creature type."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "You can't sacrifice a Food to pay multiple costs. For example, you can't sacrifice a Food token to activate its own ability and also to activate Maraleaf Rider's ability."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "Whatever you do, don't eat the delicious cards."
+   }
+  ],
+  "6cfb03e5-aca6-4fe2-a3f1-93e1f0cbf9e1": [
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "Food is an artifact type. Even though it appears on some creatures, it's never a creature type."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "You can't sacrifice a Food to pay multiple costs. For example, you can't sacrifice a Food token to activate its own ability and also to activate Maraleaf Rider's ability."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "Whatever you do, don't eat the delicious cards."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-03-08",
+    "comment": "If an effect refers to a Food, it means any Food artifact, not just a Food artifact token. For example, if you sacrifice a nontoken Food artifact, such as Candy Trail from the Wilds of Eldraine set, Nuka-Cola Vending Machine's last ability will trigger."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-03-08",
+    "comment": "Nuka-Cola Vending Machine's last ability triggers whenever you sacrifice a Food for any reason, not just to activate a Food's activated ability."
+   }
+  ],
+  "d51831b1-7394-456e-a1de-6787a59f5932": [],
+  "245d0ccf-87b6-460a-8b99-9e2079f2d375": [
+   {
+    "source": "wotc",
+    "published_at": "2024-02-02",
+    "comment": "Once a creature you control has become blocked, reducing its power to 2 or less and/or increasing the power of the creature blocking it to 3 or greater won't cause it to become unblocked."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-02-02",
+    "comment": "Triggered abilities use the word \"when,\" \"whenever,\" or \"at.\" They're often written as \"[Trigger condition], [effect].\" Some keyword abilities are triggered abilities and will have \"when,\" \"whenever,\" or \"at the beginning of\" in their reminder text."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-02-02",
+    "comment": "Replacement effects are unaffected by Delney, Streetwise Lookout's last ability. For example, a 1/1 creature that enters the battlefield under your control with one +1/+1 counter on it won't receive an additional +1/+1 counter."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-02-02",
+    "comment": "Abilities that apply \"as [this creature] enters the battlefield\" or \"as [this creature] is turned face up\" are also unaffected."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-02-02",
+    "comment": "Delney, Streetwise Lookout's last ability doesn't copy the triggered ability; it just causes the ability to trigger an additional time. Any choices made as you put the ability onto the stack, such as modes and targets, are made separately for each instance of the ability. Any choices made on resolution, such as whether to put counters on a permanent, are also made individually."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-02-02",
+    "comment": "If you somehow control two Delney, Streetwise Lookouts, abilities of creatures you control with power 2 or less trigger three times. A third Delney causes such abilities to trigger four times, a fourth causes such abilities to trigger five times, and so on."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-02-02",
+    "comment": "If a triggered ability is linked to a second ability, additional instances of that triggered ability are also linked to that second ability. If the second ability refers to \"the exiled card,\" it refers to all cards exiled by instances of the triggered ability."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-02-02",
+    "comment": "In some cases involving linked abilities, an ability requires information about \"the exiled card.\" When this happens, the ability gets multiple answers. If these answers are being used to determine the value of a variable, the sum is used. For example, if Elite Arcanist's enters-the-battlefield ability triggers twice, two cards are exiled. The value of X in the activation cost of Elite Arcanist's other ability is the sum of the two cards' mana values. As the ability resolves, you create copies of both cards and can cast none, one, or both of the copies in any order."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-02-02",
+    "comment": "Abilities that apply \"when [this creature] is turned face up\" will trigger an additional time only if that creature's power is 2 or less once it has been turned face up."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-02-02",
+    "comment": "Once an ability of a creature you control has triggered, reducing its power to 2 or less won't cause that ability to trigger an additional time. Similarly, once an ability of a creature you control with power 2 or less has triggered an additional time due to Delney, Streetwise Lookout's last ability, increasing its power to 3 or greater won't remove that additional triggered ability from the stack."
+   }
+  ],
+  "619e0686-e88c-4238-8364-75395e733533": [
+   {
+    "source": "wotc",
+    "published_at": "2024-04-12",
+    "comment": "Each of the new tokens copies the original characteristics of the appropriate token as stated by the effect that created that token and nothing else (unless that creature is copying something else; see below). It doesn’t copy whether the opponent’s token is tapped or untapped, whether it has any counters on it or Auras and Equipment attached to it, or any non-copy effects that have changed its power, toughness, types, color, and so on."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-04-12",
+    "comment": "If the copied token has {X} in its mana cost, X is 0. (Most tokens don’t have a mana cost unless they’re copying something else.)"
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-04-12",
+    "comment": "If the copied token is copying something else, then the new token enters the battlefield as whatever that token copied."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-04-12",
+    "comment": "Any enters-the-battlefield abilities of the copied token will trigger when the token enters the battlefield. Any “as [this permanent] enters the battlefield” or “[this permanent] enters the battlefield with” abilities of the copied token will also work."
+   }
+  ],
+  "84e84532-498b-40ea-9510-46fb2403939b": [
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "Food is an artifact type. Even though it appears on some creatures, it's never a creature type."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "You can't sacrifice a Food to pay multiple costs. For example, you can't sacrifice a Food token to activate its own ability and also to activate Maraleaf Rider's ability."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "Whatever you do, don't eat the delicious cards."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-06-07",
+    "comment": "In some rare cases, a spell or ability may cause Sorin of House Markov to transform while he's a creature (front face up) on the battlefield. If this happens, Sorin, Ravenous Neonate won't have any loyalty counters on him and will subsequently be put into his owner's graveyard."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-06-07",
+    "comment": "You can activate one of Sorin, Ravenous Neonate's loyalty abilities the turn he enters the battlefield. However, you may do so only during one of your main phases when the stack is empty. For example, if you control another permanent with an ability that triggers at the beginning of your postcombat main phase and that ability is on the stack below Sorin of House Markov's last ability, there will be an opportunity for your opponent to remove Sorin, Ravenous Neonate before you can activate one of his abilities."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-06-07",
+    "comment": "You may pay {W}{B} a maximum of one time for each extort triggered ability. You decide whether to pay when the ability resolves."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-06-07",
+    "comment": "The amount of life you gain from extort is based on the total amount of life lost, not necessarily the number of opponents you have. For example, if your opponent's life total can't change (perhaps because that player controls Platinum Emperion), you won't gain any life."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-06-07",
+    "comment": "The extort ability doesn't target any player."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-06-07",
+    "comment": "Sorin of House Markov doesn't need to have been on the battlefield when you gained the life. For example, if you gained 3 or more life during your upkeep and you cast Sorin of House Markov during your first main phase, its last ability will trigger at the beginning of your postcombat main phase."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-06-07",
+    "comment": "Each transforming double-faced card in this set is cast with its front face up. In every zone other than the battlefield, consider only the characteristics of its front face. If it is on the battlefield, consider only the characteristics of the face that's up; the other face's characteristics are ignored."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-06-07",
+    "comment": "Sorin, Ravenous Neonate's second loyalty ability counts the total amount of life you gained without taking into account any life you lost during that turn. For example, if you gained 3 life and lost 3 life earlier in the turn, Sorin, Ravenous Neonate will deal 3 damage to the target."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-06-07",
+    "comment": "The control effect created by Sorin, Ravenous Neonate's last ability lasts indefinitely. It doesn't wear off during the cleanup step or if Sorin, Ravenous Neonate leaves the battlefield."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-06-07",
+    "comment": "Each face of a transforming double-faced card has its own set of characteristics: name, types, subtypes, abilities, and so on. While a transforming double-faced permanent is on the battlefield, consider only the characteristics of the face that's currently up. The other set of characteristics is ignored."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-06-07",
+    "comment": "In the Commander variant, a double-faced card's color identity is determined by the mana costs and mana symbols in the rules text of both faces combined. If either face has a color indicator or basic land type, those are also considered. For example, Ral, Monsoon Mage's color identity is blue and red, since its front face is red and its back face has a blue and red color indicator."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-06-07",
+    "comment": "A transforming double-faced card enters the battlefield with its front face up by default, unless a spell or ability instructs you to put it onto the battlefield transformed or allows you to cast it transformed, in which case it enters with its back face up."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-06-07",
+    "comment": "If you are instructed to put a card that isn't a double-faced card onto the battlefield transformed, it will not enter the battlefield at all. In that case, it stays in the zone it was previously in. For example, if a single-faced card is a copy of Ral, Monsoon Mage, choosing to exile that permanent during the resolution of its triggered ability will cause it to remain in exile."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-06-07",
+    "comment": "Sorin of House Markov's last ability will trigger only once during your postcombat main phase, no matter how much life you gained this turn. However, if you haven't gained life so far this turn as your postcombat main phase begins, the ability won't trigger at all. It's not possible to gain life during your postcombat main phase in time for the ability to trigger."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-06-07",
+    "comment": "The mana value of a transforming double-faced card is the mana value of its front face, no matter which face is up."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-06-07",
+    "comment": "The back face of a transforming double-faced card usually has a color indicator that defines its color. Colorless back faces, such as lands, do not."
+   }
+  ],
+  "726d9d2c-736a-4852-9938-a0f50d8fd89f": [
+   {
+    "source": "wotc",
+    "published_at": "2024-06-07",
+    "comment": "You choose whether to put a +1/+1 counter on the creature or create a Servo token as the fabricate ability is resolving. No player may take actions between the time you choose and the time that a counter is added or a token is created."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-06-07",
+    "comment": "Fabricate doesn't cause the creature with the ability to enter the battlefield with +1/+1 counters already on it. For example, Marionette Apprentice will enter the battlefield as a 1/2 creature, then its fabricate ability goes on the stack. Players may take actions (such as casting instants) while the ability is waiting to resolve."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-06-07",
+    "comment": "If you can't put a +1/+1 counter on the creature for any reason as fabricate resolves (for instance, if it's no longer on the battlefield), you just create a Servo token."
+   }
+  ],
+  "b4ce2c8f-a19c-461e-8a2e-0ec2bd3ebca3": [
+   {
+    "source": "wotc",
+    "published_at": "2024-06-07",
+    "comment": "Once you have the city's blessing, you have it for the rest of the game, even if you lose control of some or all your permanents. The city's blessing isn't a permanent itself and can't be removed by any effect."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-06-07",
+    "comment": "A permanent is any object on the battlefield, including tokens and lands. Spells and emblems aren't permanents."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-06-07",
+    "comment": "If you control ten permanents but don't control a permanent or resolving spell with ascend, you don't get the city's blessing. For example, if you control ten permanents, lose control of two, then cast Ocelot Pride, you won't have the city's blessing."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-06-07",
+    "comment": "If your tenth permanent enters the battlefield and then a permanent leaves the battlefield immediately afterwards (most likely due to the \"legend rule\" or due to being a creature with 0 toughness), you get the city's blessing before it leaves the battlefield."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-06-07",
+    "comment": "Ascend on a permanent isn't a triggered ability and doesn't use the stack. Players can respond to a spell that will give you your tenth permanent, but they can't respond to you getting the city's blessing once you control that tenth permanent. This means that if your tenth permanent is a land you play, players can't respond before you get the city's blessing."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-06-07",
+    "comment": "Ocelot Pride doesn't need to have been on the battlefield when you gained life. For example, if a creature with lifelink deals combat damage on your turn and you cast Ocelot Pride during your second main phase, its last ability will trigger at the beginning of your end step."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-06-07",
+    "comment": "If the creature token created by Ocelot Pride's last ability is your tenth permanent, you'll get the city's blessing before the ability would check to see if you have the city's blessing."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-06-07",
+    "comment": "Ocelot Pride's last ability doesn't target any of the tokens."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-06-07",
+    "comment": "Each of the token copies you create copies the original characteristics of the token it's copying as stated by the effect that created that token. The newly created token doesn't copy whether the original token is tapped or untapped, whether it has any counters on it, whether it has any Auras and/or Equipment attached to it, or any non-copy effects that changed its power, toughness, types, color, and so on."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-06-07",
+    "comment": "If the original token is copying something else, the token copy you create will use the copiable values of the original token. In most cases, it will be a copy of whatever the original token is copying. If it's copying a permanent or card with {X} in its mana cost, X is 0."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-06-07",
+    "comment": "Any enters-the-battlefield abilities of tokens you create will trigger when they enter the battlefield. Any \"As [this permanent] enters the battlefield\" or \"[This permanent] enters the battlefield with\" abilities of the tokens will also work."
+   }
+  ],
+  "312c7a7b-2084-42b0-9b13-0a6d3e43a73d": [
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "Food is an artifact type. Even though it appears on some creatures, it's never a creature type."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "You can't sacrifice a Food to pay multiple costs. For example, you can't sacrifice a Food token to activate its own ability and also to activate Maraleaf Rider's ability."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "Whatever you do, don't eat the delicious cards."
+   }
+  ],
+  "62511d43-8eaf-405a-9c81-7bd593d3a01e": [
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "If an effect refers to a Food, it means any Food artifact, not just a Food artifact token. For example, you can sacrifice Tough Cookie (an Artifact Creature — Food Golem) to activate Maraleaf Rider's ability (an ability with \"Sacrifice a Food\" in its cost)."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "Food is an artifact type. Even though it appears on some creatures, it's never a creature type."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "You can't sacrifice a Food to pay multiple costs. For example, you can't sacrifice a Food token to activate its own ability and also to activate Maraleaf Rider's ability."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "Whatever you do, don't eat the delicious cards."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-07-26",
+    "comment": "Replacement effects that modify artifacts as they enter will apply after you apply Ygra's effect. For example, if you control Ygra and there is an effect that says artifacts enter tapped, creatures will enter tapped."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-07-26",
+    "comment": "Creatures that die while you control Ygra are still Food artifacts as they leave the battlefield, so Ygra's last ability will trigger whenever a creature affected by its second ability dies."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-07-26",
+    "comment": "The affected creatures retain their other types and abilities."
+   }
+  ],
+  "9070c98b-fd01-4eeb-a4ec-fc464946c7c0": [
+   {
+    "source": "wotc",
+    "published_at": "2025-02-07",
+    "comment": "The additional Thopter token won’t have any abilities the other tokens were created with. Anything else specified in the effect creating the token (such as tapped, attacking, or “Exile that token at end of combat”) applies to both the original tokens and the Thopter. Similarly, if the effect that creates the token has an additional effect that gives the token an ability, such as “That token gains haste,” that effect will also apply to the Thopter."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2025-02-07",
+    "comment": "You don’t need to control the spell or ability that creates the tokens, but the tokens do need to be created under your control."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2025-02-07",
+    "comment": "If an effect changes under whose control a token would be created, that effect applies before this creature’s effect applies. If an effect changes under whose control a token would enter the battlefield, that effect applies after this creature’s effect is able to be applied."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2025-02-07",
+    "comment": "If another effect modifies which or how many tokens you create, you choose the order to apply those effects. For example, if you control this creature and Anointed Procession (“If an effect would create one or more tokens under your control, it creates twice that many of those tokens instead.”), each time you create tokens, you can choose to apply Anointed Procession’s effect to double those tokens first, then apply this creature’s effect to create an additional Thopter token. Or you can choose to apply this creature’s effect first followed by Anointed Procession’s effect, allowing you to create double the original tokens plus two additional Thopter tokens."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2025-02-07",
+    "comment": "If you copy a permanent spell, that copy becomes a token on the battlefield, but that’s not the same as creating a token. You won’t get an additional Thopter token that way."
+   }
+  ],
+  "e31808bb-fb6e-487b-a973-db44961c84ee": [
+   {
+    "source": "wotc",
+    "published_at": "2025-10-02",
+    "comment": "Food is an artifact type. Even though it appears on some creatures, it's never a creature type."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2025-10-02",
+    "comment": "If an effect refers to a Food, it means any Food artifact, not just a Food artifact token. For example, you can sacrifice Tough Cookie (an Artifact Creature — Food Golem) to activate Bosco, Just a Bear's ability (an ability with \"Sacrifice a Food\" in its cost). You can't sacrifice a Food to pay multiple costs. For example, you can't sacrifice a Food token to activate its own ability and also to activate Bosco, Just a Bear's ability."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2025-10-02",
+    "comment": "Whatever you do, don't eat the delicious cards."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2025-10-02",
+    "comment": "Food sacrificed due to The Cabbage Merchant's second triggered ability is not being sacrificed to the Food's own ability, so you will not gain any life."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2025-10-02",
+    "comment": "Some spells and abilities that create Food tokens may require targets. If each target chosen is an illegal target as that spell or ability tries to resolve, it won't resolve. You won't create any Food tokens."
+   }
+  ],
+  "6a1bce89-0c11-4d8d-aacb-c0a5a5effffc": [],
+  "d273f87d-1271-49d2-a628-2d1bd888f56c": [
+   {
+    "source": "wotc",
+    "published_at": "2026-06-29",
+    "comment": "If you control Bilbo and would create some number of Food tokens, you will instead create that many Food tokens and that many Treasure tokens."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2026-06-29",
+    "comment": "If you somehow control two Bilbo, Fellow Conspirators and would create some number of Food tokens, you will instead create that many Food tokens and twice that many Treasure tokens. Three Bilbos means that many Food tokens and three times that many Treasure tokens, and so on."
+   }
+  ],
+  "011da9c5-aa8a-4fa0-b1f2-62b9f3760476": [
+   {
+    "source": "wotc",
+    "published_at": "2026-06-29",
+    "comment": "Belladonna Took's ability has no effect each time beyond the third it resolves in a turn."
+   }
+  ],
+  "c01aeaa5-1d3b-4493-9575-30175dcd780d": [
+   {
+    "source": "wotc",
+    "published_at": "2026-06-29",
+    "comment": "Gleaming Splendor doesn't need to have been under your control when the first card is drawn for its ability to trigger. As long as you control it when an opponent draws their second card in a turn, that ability will trigger. The ability can trigger only once each turn for each opponent."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2026-06-29",
+    "comment": "Gleaming Splendor's activated ability requires two different target players. You cannot target the same player twice with a single activation of the ability."
+   }
+  ],
+  "e3a665f9-6e51-4e0d-923b-e9552d5978a4": []
  }
 }

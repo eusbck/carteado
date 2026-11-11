@@ -170,6 +170,10 @@ const esperadas: Record<string, [string, string[], string[], string[], number | 
   'Thrull': ['Thrull', ['Creature'], ['Thrull'], ['B'], 1, 1, []],
   'Thrull 0/1': ['Thrull', ['Creature'], ['Thrull'], ['B'], 0, 1, []],
   'Human Cleric': ['Human Cleric', ['Creature'], ['Human', 'Cleric'], ['B', 'W'], 1, 1, []],
+  'Elemental 5/3': ['Elemental', ['Creature'], ['Elemental'], ['G'], 5, 3, []],
+  'Beast 4/4': ['Beast', ['Creature'], ['Beast'], ['G'], 4, 4, []],
+  'Lander': ['Lander', ['Artifact'], ['Lander'], [], null, null, []],
+  'Heartwood': ['Heartwood', ['Artifact'], ['Heartwood'], ['G', 'R'], null, null, []],
   'Zombie Rogue': ['Zombie Rogue', ['Creature'], ['Zombie', 'Rogue'], ['B', 'U'], 2, 2, []],
 };
 
