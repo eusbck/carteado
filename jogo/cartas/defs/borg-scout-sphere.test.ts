@@ -16,5 +16,8 @@ describe(N, () => {
     tg.choose('Vire 1', ['Solemn Simulacrum']).activate(N, 'Estação').resolveAll();
     expect(tg.state.objects[tg.bf(N)].counters.charge).toBe(6);
     expect(hasKw(tg.g, tg.bf('Steel Overseer'), 'flying')).toBe(true);
+    // CR 721.2b: vira uma criatura artefato 5/5, que também voa
+    expect(tg.pt(tg.bf(N))).toEqual([5, 5]);
+    expect(hasKw(tg.g, tg.bf(N), 'flying')).toBe(true);
   });
 });

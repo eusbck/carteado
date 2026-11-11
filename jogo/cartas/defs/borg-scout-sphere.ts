@@ -11,10 +11,11 @@ export default defineCard({
     abilities: [
       etb(function* (c) { yield* draw(c.g, c.you, 1); }, { text: 'Quando esta Espaçonave entra, compre uma carta.' }),
       station(),
-      // CR 721.2a: sem quadro de força e resistência, a faixa 6+ só dá a habilidade (não vira criatura)
+      // CR 721.2b: com 6 ou mais marcadores é uma criatura 5/5, e as criaturas artefato suas voam (ela também)
       ...stationLevel(6, {
+        creature: true,
         statics: [anthem(and(is.creature, is.artifact, is.yours), () => [{ k: 'addKeyword', kw: 'flying' }], '6+ | As criaturas artefato que você controla têm voar.')],
-        text: 'As criaturas artefato que você controla têm voar.',
+        text: 'As criaturas artefato que você controla têm voar. 5/5',
       }),
     ],
   }],
