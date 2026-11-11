@@ -49,6 +49,7 @@ export function isLegalTarget(g: G, spec: TargetSpec, t: TargetRef, controller: 
   if (!o) return false;
   if (spec.what === 'player') return false;
   if (spec.what === 'ability') { if (o.zone !== 'stack' || !o.stack || o.stack.kind === 'spell') return false; } // habilidade ativada ou desencadeada na pilha
+  else if (spec.what === 'stackObject') { if (o.zone !== 'stack' || !o.stack || t.id === source) return false; } // mágica ou habilidade na pilha (CR 115.5)
   else if (spec.what === 'spell' || (spec.what === 'spellOrPermanent' && o.zone === 'stack')) { if (o.zone !== 'stack' || o.stack?.kind !== 'spell') return false; if (t.id === source) return false; } // CR 115.5
   else if (spec.what === 'card') { if (o.zone !== (spec.zone ?? 'graveyard')) return false; }
   else if (spec.alsoZone && spec.what === 'object' && o.zone === spec.alsoZone) { /* lote3-d: carta na zona extra; o filtro decide */ }
@@ -78,7 +79,7 @@ export function candidateTargets(g: G, spec: TargetSpec, controller: PlayerId, s
     const ids = z === 'graveyard' || z === 'hand' || z === 'library' ? s.zones[z].flat() : s.zones[z];
     for (const id of ids) out.push({ kind: 'obj', id });
   }
-  if (spec.what === 'spell' || spec.what === 'spellOrPermanent' || spec.what === 'ability') for (const id of s.zones.stack) out.push({ kind: 'obj', id });
+  if (spec.what === 'spell' || spec.what === 'spellOrPermanent' || spec.what === 'ability' || spec.what === 'stackObject') for (const id of s.zones.stack) out.push({ kind: 'obj', id });
   if (spec.what === 'card') {
     const zone = spec.zone ?? 'graveyard';
     const ids = zone === 'graveyard' || zone === 'hand' || zone === 'library' ? s.zones[zone].flat() : s.zones[zone];
@@ -578,6 +579,11 @@ function* castInner(g: G, player: PlayerId, cardId: ObjId, method: CastMethod): 
   for (const e of [...g.state.effects]) {
     if (e.mods.some((m) => m.k === 'rule' && m.id === 'rule:flashNext' && m.params?.player === player && c.subtypes.includes(m.params?.tipo as string))) removeEffect(g, e.id);
   }
+  // lote3-b: efeitos de regra que acabam quando a mágica é conjurada ("a próxima mágica … tem destemido")
+  for (const h of hooks(g, 'consumedByCast')) {
+    const ef = (h.ctx as { effect?: { id: number } }).effect;
+    if (ef && h.fn(h.ctx, player, spellId)) removeEffect(g, ef.id);
+  }
   if (c.types.includes('Instant') || c.types.includes('Sorcery')) {
     st.instantSorceryCast++;
     st.greatestInstantSorceryMV = Math.max(st.greatestInstantSorceryMV, c.manaValue);
@@ -681,6 +687,7 @@ export function canActivate(g: G, player: PlayerId, sourceId: ObjId, def: Activa
   if (def.cost.some((p) => p.k === 'loyalty')) {
     if (!timingOk.sorcery) return false; // CR 606.3
     if (o.usedThisTurn['loyalty'] === g.state.turn.number) return false;
+    if (hooks(g, 'cantActivateLoyalty').some((h) => h.fn(h.ctx, player))) return false; // The Immortal Sun
   }
   if (def.oncePerTurn && o.usedThisTurn[def.id!] === g.state.turn.number) return false;
   if (def.condition && !def.condition({ g, you: player, source: sourceId })) return false;

@@ -256,6 +256,8 @@ function applyMod(c: Chars, m: Mod): void {
     case 'control': c.controller = m.player; break;
     case 'addTypes': {
       for (const t of m.types ?? []) if (!c.types.includes(t)) c.types.push(t);
+      // "perde todos os outros tipos de criatura" (assimilar, CR 205.1b): os subtipos que não são de criatura ficam
+      if (m.loseOtherCreatureTypes) c.subtypes = c.subtypes.filter((t) => !CREATURE_SUBTYPES.has(t));
       // polimorfo acrescenta centenas de tipos de criatura (CR 702.73a): conjunto para não ficar quadrático
       const tem = new Set(c.subtypes);
       for (const t of m.subtypes ?? []) if (!tem.has(t)) { c.subtypes.push(t); tem.add(t); }

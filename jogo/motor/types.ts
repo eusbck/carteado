@@ -174,7 +174,8 @@ export type Layer = '1a' | '1b' | '2' | '3' | '4' | '5' | '6' | '7a' | '7b' | '7
 export type Mod =
   | { k: 'copy'; of: CopyValues }
   | { k: 'control'; player: PlayerId }
-  | { k: 'addTypes'; types?: string[]; subtypes?: string[]; supertypes?: string[] }
+  /** loseOtherCreatureTypes (lote3-b, assimilar): perde os outros tipos de criatura antes de ganhar os subtipos */
+  | { k: 'addTypes'; types?: string[]; subtypes?: string[]; supertypes?: string[]; loseOtherCreatureTypes?: boolean }
   | { k: 'setTypes'; types: string[]; subtypes: string[]; keepSupertypes?: boolean }
   /** lote3-d: `supertypes` tira supertipos ("deixa de ser snow", Thermal Flux) */
   | { k: 'removeTypes'; types: string[]; supertypes?: string[] }

@@ -504,3 +504,6 @@ export const Bird22Azul = token('Bird 2/2 azul', 'Bird', ['Creature'], ['Bird'],
 export const Dinosaur31 = token('Dinosaur 3/1', 'Dinosaur', ['Creature'], ['Dinosaur'], ['R'], 3, 1);
 /** Faerie Dragon 1/1 azul com voar (Ancient Gold Dragon) */
 export const FaerieDragon = token('Faerie Dragon', 'Faerie Dragon', ['Creature'], ['Faerie', 'Dragon'], ['U'], 1, 1, keywords('flying'));
+// lote3-b (We Are The Borg)
+/** Borg 1/1 incolor, criatura artefato */
+export const Borg11 = token('Borg', 'Borg', ['Artifact', 'Creature'], ['Borg'], [], 1, 1);

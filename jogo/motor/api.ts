@@ -48,3 +48,8 @@ export * from './controle.ts';
 // lote3-e: rolar dado, dobrar o ar, exaurir, farra e dobra (deck Ur-Dragon); presságio em formatos.ts
 export * from './mecanicas-ur.ts';
 export { ehPresagio } from './formatos.ts';
+// lote3-b: estação (station, CR 702.184) e cartas de estação (CR 721)
+export * from './estacao.ts';
+// lote3-b: assimilar (Star Trek), destemido da próxima mágica (undaunted, CR 702.125)
+export * from './assimilar.ts';
+export * from './destemido.ts';
