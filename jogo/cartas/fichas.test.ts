@@ -199,6 +199,8 @@ const esperadas: Record<string, [string, string[], string[], string[], number | 
   'Voja, Friend to Elves': ['Voja, Friend to Elves', ['Creature'], ['Wolf'], ['G', 'W'], 3, 3, []],
   'Voja Fenstalker': ['Voja Fenstalker', ['Creature'], ['Wolf'], ['G', 'W'], 5, 5, ['trample']],
   'Mutavault': ['Mutavault', ['Land'], [], [], null, null, []],
+  // lote4-d
+  'Illusion 1/1': ['Illusion', ['Creature'], ['Illusion'], ['U'], 1, 1, ['flying']],
 };
 
 describe('Fichas: características', () => {

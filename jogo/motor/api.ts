@@ -78,3 +78,5 @@ export * from './harmonizar.ts';
 export * from './terra.ts';
 // lote4 (junção de B e C): as exigências de bloqueio contadas juntas (CR 509.1c)
 export * from './exigencias-bloqueio.ts';
+// lote4-d: megamorfose (megamorph, CR 702.37b)
+export * from './megamorfose.ts';

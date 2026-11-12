@@ -598,3 +598,6 @@ export const MutavaultToken = defineToken({
   ],
   image: img('Mutavault', null, null),
 });
+// lote4-d (Yuriko)
+/** Illusion 1/1 azul com voar (Moonblade Shinobi) */
+export const IllusionVoadora = token('Illusion 1/1', 'Illusion', ['Creature'], ['Illusion'], ['U'], 1, 1, keywords('flying'));
