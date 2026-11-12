@@ -104,6 +104,8 @@ function textoCusto(custo: string): string {
   const b = custo.match(/^blight:(\d+)$/);
   if (b) return `blight ${b[1]}`;
   if (custo === 'discard') return 'Descarte uma carta';
+  const sac = custo.match(/^sacrifice:(\w+)$/);
+  if (sac) return `Sacrifique um(a) ${sac[1]}`;
   const { mana, vida } = custoComVida(custo);
   if (vida === 0) return custo;
   return mana ? `${mana} e pagar ${vida} de vida` : `pagar ${vida} de vida`;
@@ -135,6 +137,15 @@ function gatilhoResguardo(custo: string): TriggeredDef {
       // CR 702.21a: o custo é descartar uma carta; sem carta na mão, não dá para pagar
       if (c.g.state.zones.hand[quem].length > 0 && (yield* yesNo(c.g, quem, `Resguardo de ${nameOf(c.g, c.source)}: descartar uma carta para não ter a mágica ou habilidade anulada?`))) {
         pagou = (yield* discard(c.g, quem, 1)).length > 0;
+      }
+    } else if (/^sacrifice:\w+$/.test(custo)) {
+      // foods-b: 'sacrifice:Food' (Ygra, Eater of All): sacrificar um permanente do subtipo (CR 702.21a, 701.21a)
+      const sub = custo.slice('sacrifice:'.length);
+      const s = c.g.state;
+      const cands = s.zones.battlefield.filter((id) => !s.objects[id].phasedOut && controllerOf(c.g, id) === quem && chars(c.g, id).subtypes.includes(sub));
+      if (cands.length && (yield* yesNo(c.g, quem, `Resguardo de ${nameOf(c.g, c.source)}: sacrificar um(a) ${sub} para não ter a mágica ou habilidade anulada?`))) {
+        const [esc] = cands.length === 1 ? [String(cands[0])] : yield* chooseItems(c.g, quem, `Sacrifique um(a) ${sub}`, cands.map((id) => objItem(c.g, id, nameOf(c.g, id))), 1, 1);
+        if (esc !== undefined) pagou = (yield* sacrifice(c.g, [Number(esc)])).some((x) => x !== null);
       }
     } else if (custoComVida(custo).vida > 0) {
       // pagar vida só com vida suficiente (CR 119.4); a mana e a vida são pagas juntas

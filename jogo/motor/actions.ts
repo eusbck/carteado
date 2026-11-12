@@ -940,6 +940,8 @@ export function* draw(g: G, player: PlayerId, n = 1, opts: { aplicadas?: ObjId[]
     if (newId !== null && g.state.objects[newId]) {
       out.push(newId);
       emit(g, [{ type: 'draw', player, obj: newId, nth: before + 1 }]);
+      // foods-b: "cartas compradas neste turno" (CR 121.1, 121.5: só compra de verdade; Sylvan Library)
+      { const ts = g.state.turnStats[player]; ts.cardsDrawnIds = [...(ts.cardsDrawnIds ?? []), newId]; }
       // precons-e: milagre (CR 702.94a), só para a primeira carta comprada no turno
       if (before === 0) yield* revelaMilagre(g, player, newId);
     }

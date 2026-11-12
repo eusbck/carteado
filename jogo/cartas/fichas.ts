@@ -523,3 +523,12 @@ export const Tribble11 = defineToken({
   abilities: [{ ...keyword('cantBlock'), text: 'Esta ficha não pode bloquear.' }],
   image: img('Tribble', 1, 1),
 });
+// foods-b (Foods, Sam e Frodo)
+/** Servo 1/1 incolor, criatura artefato (fabricar, CR 702.123a: Marionette Apprentice) */
+export const Servo = token('Servo', 'Servo', ['Artifact', 'Creature'], ['Servo'], [], 1, 1);
+/** Cat 1/1 branco (Ocelot Pride) */
+export const CatBranco11 = defineToken({
+  id: 'Cat 1/1 branco', name: 'Cat', types: ['Creature'], subtypes: ['Cat'], colors: ['W'], power: 1, toughness: 1, abilities: [],
+  // a impressa sem texto (há outra Cat 1/1 branca, com vínculo com a vida)
+  image: fichasOracle.find((f) => f.faces[0].name === 'Cat' && f.faces[0].power === 1 && f.faces[0].colors.join() === 'W' && f.faces[0].oracleText === '')?.oracleId,
+});

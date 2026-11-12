@@ -175,6 +175,9 @@ const esperadas: Record<string, [string, string[], string[], string[], number | 
   'Insect verde': ['Insect', ['Creature'], ['Insect'], ['G'], 1, 1, []],
   'Officer': ['Officer', ['Creature'], ['Officer'], ['R'], 1, 1, []],
   'Tribble': ['Tribble', ['Creature'], ['Tribble'], ['W'], 1, 1, []],
+  // foods-b
+  'Servo': ['Servo', ['Artifact', 'Creature'], ['Servo'], [], 1, 1, []],
+  'Cat 1/1 branco': ['Cat', ['Creature'], ['Cat'], ['W'], 1, 1, []],
 };
 
 describe('Fichas: características', () => {
