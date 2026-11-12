@@ -88,6 +88,8 @@ export interface ModeSpec {
   available?: (c: SCtx, mode: number) => boolean;
   /** chamado quando os modos são escolhidos, antes de a mágica ou habilidade ir para a pilha */
   onChosen?: (c: SCtx, modes: number[]) => void;
+  /** lote4-c: modos com patinhas (CR 700.2i): quantas patinhas cada modo custa e o total; veja motor/patinhas.ts */
+  pawprints?: import('./patinhas.ts').Patinhas;
 }
 
 // ---------------------------------------------------------------------------
@@ -523,6 +525,8 @@ export interface AltCastDef {
   enterAttacking?: boolean;
   /** "sem pagar o custo de mana" (CR 118.9): X vale 0 (107.3b); a carta planejada (CR 702.170d) */
   free?: boolean;
+  /** lote4-c: harmonizar (CR 702.180a): vira até uma criatura sua e reduz o genérico pela força dela (motor/harmonizar.ts) */
+  harmonize?: boolean;
 }
 
 export interface CastPermission {

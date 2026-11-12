@@ -8,8 +8,10 @@ import { registry, type Gen } from './defs.ts';
 import type { G } from './game-context.ts';
 import { protectionMatches } from './actions.ts';
 import { emit } from './triggers.ts';
-import { precisamSerBloqueadas, validaBloqueioObrigatorio } from './bloqueio-obrigatorio.ts';
+import { precisamSerBloqueadas } from './bloqueio-obrigatorio.ts';
 import type { Answer, CombatState, ObjId, PlayerId, TargetRef } from './types.ts';
+import { exigenciasCumpriveis } from './bloquear-se-puder.ts';
+import { validaExigenciasDeBloqueio } from './exigencias-bloqueio.ts';
 
 export function newCombat(): CombatState {
   return { attackers: [], blockers: [], firstStrikers: [], firstStrikeStep: false, declared: false };
@@ -321,9 +323,9 @@ export function validateBlocks(g: G, defender: PlayerId, blocks: [ObjId, ObjId][
     const cumpridas = exigem.filter((a) => count.get(a) === 1).length;
     if (cumpridas < requiredBlocks(cands, exigem).length) return `${nameOf(g, exigem[0])} precisa ser bloqueada por exatamente uma criatura se puder (CR 509.1c)`;
   }
-  // lote4-b: "precisa ser bloqueada se possível" (CR 509.1c; The Masamune)
-  const obrigatorio = validaBloqueioObrigatorio(g, cands, atacandoMe, blocks);
-  if (obrigatorio) return obrigatorio;
+  // lote4-b e lote4-c: "precisa ser bloqueada se possível" e "bloqueia [atacante] se puder", contadas juntas (CR 509.1c)
+  const exigencia = validaExigenciasDeBloqueio(g, defender, cands, atacandoMe, blocks);
+  if (exigencia) return exigencia;
   // custos para bloquear (CR 509.1d): a declaração só é aceita se der para pagá-los
   const custo = blocks.reduce((n, [b, a]) => n + blockCostFor(g, b, a), 0);
   if (custo > 0 && !canAfford(g, defender, [{ k: 'generic', n: custo }], { purpose: { kind: 'effect' } })) return `Não há mana para pagar {${custo}} para bloquear (CR 509.1d)`;
@@ -344,7 +346,7 @@ export function* declareBlockers(g: G): Gen<void> {
     let a: Extract<Answer, { kind: 'blockers' }>;
     for (;;) {
       a = yield* ask<Extract<Answer, { kind: 'blockers' }>>(g, {
-        kind: 'blockers', player: quemEscolhe, prompt: quemEscolhe === d ? 'Declare os bloqueadores' : `Declare os bloqueadores de ${s.players[d].name}`, candidates: cands.map((c) => { const custos = c.canBlock.map((at) => blockCostFor(g, c.obj, at)); return custos.some((n) => n > 0) ? { ...c, costs: custos } : c; }), attackers, required: mustBeBlockedByOne(g, attackers),
+        kind: 'blockers', player: quemEscolhe, prompt: quemEscolhe === d ? 'Declare os bloqueadores' : `Declare os bloqueadores de ${s.players[d].name}`, candidates: cands.map((c) => { const custos = c.canBlock.map((at) => blockCostFor(g, c.obj, at)); return custos.some((n) => n > 0) ? { ...c, costs: custos } : c; }), attackers, required: mustBeBlockedByOne(g, attackers), ...((pares) => (pares.length ? { requiredPairs: pares } : {}))(exigenciasCumpriveis(g, d, cands)),
         ...(precisamSerBloqueadas(g, attackers).length ? { mustBlock: precisamSerBloqueadas(g, attackers), mustBlockMenace: precisamSerBloqueadas(g, attackers).filter((a) => hasKw(g, a, 'menace')) } : {}),
       }, (ans) => validateBlocks(g, d, ans.blocks));
       // custos para bloquear (CR 509.1d-f): o defensor paga; desistindo, declara de novo

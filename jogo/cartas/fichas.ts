@@ -571,3 +571,30 @@ export const FaerieRogue = token('Faerie Rogue', 'Faerie Rogue', ['Creature'], [
 export const HumanCleric = token('Human Cleric', 'Human Cleric', ['Creature'], ['Human', 'Cleric'], ['B', 'W'], 1, 1);
 /** Zombie Rogue 2/2 azul e preta (Gisa, the Hellraiser) */
 export const ZombieRogue = token('Zombie Rogue', 'Zombie Rogue', ['Creature'], ['Zombie', 'Rogue'], ['B', 'U'], 2, 2);
+// lote4-c (Voja, Jaws of the Conclave)
+import { allCreatureTypes } from '../motor/api.ts';
+/** Shapeshifter 2/2 incolor com polimorfo (Irregular Cohort) */
+export const Shapeshifter22Incolor = token('Shapeshifter 2/2 incolor', 'Shapeshifter', ['Creature'], ['Shapeshifter'], [], 2, 2, [changeling()]);
+/** Voja, Friend to Elves: Lobo lendário 3/3 verde e branco (Tolsimir, Friend to Wolves) */
+export const VojaFriendToElves = defineToken({
+  id: 'Voja, Friend to Elves', name: 'Voja, Friend to Elves', types: ['Creature'], subtypes: ['Wolf'], supertypes: ['Legendary'], colors: ['G', 'W'],
+  power: 3, toughness: 3, abilities: [], image: img('Voja, Friend to Elves', 3, 3),
+});
+/** Voja Fenstalker: Lobo lendário 5/5 verde e branco com atropelar (Tolsimir, Midnight's Light) */
+export const VojaFenstalker = defineToken({
+  id: 'Voja Fenstalker', name: 'Voja Fenstalker', types: ['Creature'], subtypes: ['Wolf'], supertypes: ['Legendary'], colors: ['G', 'W'],
+  power: 5, toughness: 5, abilities: keywords('trample'), image: img('Voja Fenstalker', 5, 5),
+});
+/** Mutavault: ficha de terreno com "{T}: Adicione {C}" e "{1}: vira criatura 2/2 com todos os tipos de criatura até o fim
+ *  do turno" (Mutable Explorer) */
+export const MutavaultToken = defineToken({
+  id: 'Mutavault', name: 'Mutavault', types: ['Land'], subtypes: [], colors: [], power: null, toughness: null,
+  abilities: [
+    mana('C'),
+    activated('{1}', function* (c) {
+      if (c.g.state.objects[c.source]?.zone !== 'battlefield') return;
+      untilEndOfTurn(c, [c.source], [{ k: 'addTypes', types: ['Creature'], subtypes: allCreatureTypes() }, { k: 'setPT', p: 2, t: 2 }]);
+    }, { text: '{1}: Até o fim do turno, esta ficha vira uma criatura 2/2 com todos os tipos de criatura. Continua sendo terreno.' }),
+  ],
+  image: img('Mutavault', null, null),
+});
