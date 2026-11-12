@@ -88,6 +88,8 @@ export interface ModeSpec {
   available?: (c: SCtx, mode: number) => boolean;
   /** chamado quando os modos são escolhidos, antes de a mágica ou habilidade ir para a pilha */
   onChosen?: (c: SCtx, modes: number[]) => void;
+  /** lote4-c: modos com patinhas (CR 700.2i): quantas patinhas cada modo custa e o total; veja motor/patinhas.ts */
+  pawprints?: import('./patinhas.ts').Patinhas;
 }
 
 // ---------------------------------------------------------------------------

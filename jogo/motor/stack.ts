@@ -19,6 +19,7 @@ import { ehAventura, ehDividida, ehPresagio, FACE_AMBAS, facesConjuraveis, metad
 import type { Answer, Chars, Duration, GameObject, GameState, ManaSymbol, Mod, ObjId, PlayerId, StackInfo, TargetRef, ZoneName } from './types.ts';
 import { HEXPROOF_FROM_ABILITIES, sourceIsAbility, splitSecondActive } from './controle-base.ts';
 import { equiparComoInstantanea, equiparPorZero, registraAtivacao, segundoDivididoNaPilha } from './equipar.ts';
+import { escolherModosComPatinhas } from './patinhas.ts';
 
 // ---------------------------------------------------------------------------
 // Alvos (CR 115, 608.2b)
@@ -217,6 +218,12 @@ export function* chooseModes(g: G, player: PlayerId, ms: ModeSpec, source: ObjId
     const possible = (m.targets ?? []).every((t) => (t.min ?? 1) === 0 || candidateTargets(g, t, player, source, event).length >= (t.min ?? 1));
     return { id: String(i), label: m.text, disabled: !possible || (ms.available ? !ms.available(ctx, i) : false) };
   });
+  // lote4-c: modos com patinhas (CR 700.2i), escolhidos um por vez até o total (motor/patinhas.ts)
+  if (ms.pawprints) {
+    const escolhidos = yield* escolherModosComPatinhas(g, player, ms, (i) => !items[i].disabled, label);
+    ms.onChosen?.(ctx, escolhidos);
+    return escolhidos;
+  }
   // "você pode escolher o mesmo modo mais de uma vez" (CR 700.2d): uma escolha por vez, exatamente `max` modos
   if (ms.repeat) {
     const total = forceMax ?? (typeof ms.max === 'function' ? ms.max(ctx) : ms.max);

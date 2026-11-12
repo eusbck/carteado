@@ -59,3 +59,5 @@ export * from './historia.ts';
 // lote3-f: devoção, turno extra, evocar, dash, barganha e spree (cEDH Inalla)
 export * from './cedh.ts';
 export { successor } from './state.ts';
+// lote4-c: modos com patinhas (CR 700.2i), terra-dobra (earthbend, CR 701.66), harmonizar (CR 702.180) e bloqueio obrigatório
+export * from './patinhas.ts';
