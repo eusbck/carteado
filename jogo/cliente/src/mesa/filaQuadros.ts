@@ -5,7 +5,7 @@
 // Saltos (a fila vai direto ao último quadro, sem esperar):
 // - vista que não continua a anterior (`reinicio`: conectar, partida nova, desfazer), modo Desempenho, aba escondida;
 // - fila atrasada: mais de MAX_FILA quadros esperando, ou o mais antigo esperando há mais de ATRASO_MAX;
-// - um quadro com decisão sua não espera mais que TETO_DECISAO (1,2 s) depois de chegar (os de antes dele são pulados,
+// - um quadro com decisão sua não espera mais que TETO_DECISAO (2,6 s, o mesmo do quadro) depois de chegar (os de antes dele são pulados,
 //   e as animações que eles já começaram seguem na camada dos efeitos);
 // - pular() (clique na mesa ou Espaço).
 //
@@ -34,10 +34,13 @@ const relogioPadrao: Relogio = {
 
 /** teto das animações de um quadro: o seguinte entra no máximo nisso, diga Efeitos o que disser. Maior que o da
  * decisão: uma destruição em massa (N1) dura até ~2,4 s, e o quadro seguinte não pode cortá-la (meta: zero animações
- * cortadas). A decisão não espera tanto: ela tem o TETO_DECISAO, contado da chegada */
+ * cortadas). A decisão tem o TETO_DECISAO, contado da chegada */
 export const TETO_QUADRO = 2600;
-/** o quadro com decisão sua vira o atual, e a cena dele acaba, no máximo isso depois de chegar */
-export const TETO_DECISAO = 1200;
+/** o quadro com decisão sua vira o atual, e a cena dele acaba, no máximo isso depois de chegar. Era 1,2 s (o teto do
+ * eventos-5 no estudo), mas a meta da fase é a decisão nunca abrir antes do fim da cena, e a destruição em massa e os
+ * golpes de um combate grande passam de 2 s (medido em 12/11: com 1,2 s a decisão abria ~0,9 a 1,2 s antes). Quem
+ * não quer esperar clica na mesa ou aperta Espaço */
+export const TETO_DECISAO = 2600;
 /** quadros esperando além disso: salta para o último */
 export const MAX_FILA = 3;
 /** o mais antigo esperando há mais disso: salta para o último */

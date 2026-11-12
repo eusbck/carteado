@@ -1374,7 +1374,8 @@ export function Mesa() {
               ))}
             </div>
           )}
-          {v.gameOver && (
+          {/* o cartão do fim espera a cena (os golpes que acabaram a partida) */}
+          {v.gameOver && !cena && (
             <div class="cartao fim">
               <p class="decisao-titulo">Fim de partida</p>
               <p>{v.gameOver.draw ? 'Empate.' : `Venceu: ${v.gameOver.winners.map((w) => v.players[w].name).join(', ')}.`}</p>
