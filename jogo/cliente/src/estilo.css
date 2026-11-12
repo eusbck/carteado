@@ -585,8 +585,10 @@ button.etapa:hover { background: rgba(255, 255, 255, .07); color: var(--texto); 
 .parar-pilha:hover { color: var(--suave); background: rgba(255, 255, 255, .04); }
 .parar-pilha.ligada { border-style: solid; border-color: color-mix(in srgb, var(--ouro) 50%, transparent); color: var(--ouro); }
 .fases.esperando-voce { border-color: color-mix(in srgb, var(--ouro) 75%, transparent); box-shadow: 0 0 0 1px color-mix(in srgb, var(--ouro) 35%, transparent), 0 0 22px color-mix(in srgb, var(--ouro) 30%, transparent), 0 8px 24px rgba(0, 0, 0, .42); }
-.fases.esperando-voce .fases-acao .botao.cheio { animation: chamar 1.4s ease-in-out infinite; }
-@keyframes chamar { 50% { box-shadow: 0 0 0 4px color-mix(in srgb, var(--ouro) 35%, transparent); } }
+/* o anel que chama é desenhado uma vez num ::after e só a opacidade pulsa (animar box-shadow repinta a cada quadro) */
+.fases.esperando-voce .fases-acao .botao.cheio { position: relative; }
+.fases.esperando-voce .fases-acao .botao.cheio::after { content: ''; position: absolute; inset: 0; border-radius: inherit; box-shadow: 0 0 0 4px color-mix(in srgb, var(--ouro) 35%, transparent); opacity: 0; pointer-events: none; animation: chamar 1.4s ease-in-out infinite; }
+@keyframes chamar { 50% { opacity: 1; } }
 .aviso-prioridade {
   position: absolute; left: 50%; top: calc(100% + 8px); transform: translateX(-50%); padding: 7px 14px; border-radius: 10px; white-space: nowrap; max-width: 90vw; overflow: hidden; text-overflow: ellipsis;
   background: rgba(16, 14, 17, .92); border: 1px solid color-mix(in srgb, var(--ouro) 60%, transparent); color: var(--texto); font-size: 14px; box-shadow: 0 8px 24px rgba(0, 0, 0, .5); animation: entrar-aviso-prioridade .25s ease-out; pointer-events: none;
@@ -1186,20 +1188,22 @@ img.mini { width: 40px; aspect-ratio: 63 / 88; object-fit: cover; border-radius:
 .entrada-brasao { position: relative; width: 168px; height: 112px; display: grid; place-items: center; animation: brasao-surge 1.3s cubic-bezier(.2, .8, .2, 1) .1s both; }
 .entrada-brasao img { position: relative; width: 100%; height: auto; filter: drop-shadow(0 0 18px rgba(255, 110, 40, .55)) drop-shadow(0 4px 10px rgba(0, 0, 0, .8)); }
 .entrada-halo { position: absolute; inset: -40px -60px; border-radius: 50%; background: radial-gradient(ellipse, rgba(255, 120, 40, .32), rgba(232, 93, 40, .1) 45%, transparent 70%); animation: halo-respira 4.5s ease-in-out 1.2s infinite; }
-@keyframes brasao-surge { from { opacity: 0; scale: .7; filter: blur(10px) brightness(2); } }
+@keyframes brasao-surge { /* repinta: entrada da tela inicial, uma vez só (o desfoque some com o brasão) */ from { opacity: 0; scale: .7; filter: blur(10px) brightness(2); } }
 @keyframes halo-respira { 50% { opacity: .55; scale: 1.12; } }
 .entrada-titulo { font-family: var(--fonte-epica); font-size: clamp(30px, 5vw, 46px); font-weight: 800; letter-spacing: .14em; text-transform: uppercase; line-height: 1.05; background: linear-gradient(180deg, #fff3d8 0%, #e9c27a 48%, #b8803a 100%); -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 2px 12px rgba(0, 0, 0, .7)); animation: titulo-surge 1.4s cubic-bezier(.2, .8, .2, 1) .45s both; }
 .entrada-titulo span { color: inherit; }
-@keyframes titulo-surge { from { opacity: 0; letter-spacing: .5em; filter: blur(6px); } }
+@keyframes titulo-surge { /* repinta: entrada da tela inicial, uma vez só */ from { opacity: 0; letter-spacing: .5em; filter: blur(6px); } }
 .orbes { display: flex; gap: 14px; margin: 2px 0 6px; }
-.orbe { width: 16px; height: 16px; border-radius: 50%; box-shadow: inset -2px -3px 4px rgba(0, 0, 0, .45), inset 2px 2px 3px rgba(255, 255, 255, .55), 0 0 0 1.5px rgba(0, 0, 0, .6); opacity: 0; animation: orbe-acende .6s ease-out calc(1s + var(--i) * .15s) forwards, orbe-pulsa 5s ease-in-out calc(2.2s + var(--i) * .5s) infinite; }
+.orbe { width: 16px; height: 16px; border-radius: 50%; box-shadow: inset -2px -3px 4px rgba(0, 0, 0, .45), inset 2px 2px 3px rgba(255, 255, 255, .55), 0 0 0 1.5px rgba(0, 0, 0, .6); opacity: 0; position: relative; animation: orbe-acende .6s ease-out calc(1s + var(--i) * .15s) forwards; }
+/* o brilho da orbe: desenhado uma vez, só a opacidade pulsa */
+.orbe::after { content: ''; position: absolute; inset: 0; border-radius: 50%; box-shadow: 0 0 16px 4px var(--brilho); opacity: 0; pointer-events: none; animation: orbe-pulsa 5s ease-in-out calc(2.2s + var(--i) * .5s) infinite; }
 .orbe-w { background: radial-gradient(circle at 35% 30%, #fffbea, #f4e7bc 55%, #b9a876); --brilho: rgba(255, 245, 210, .8); }
 .orbe-u { background: radial-gradient(circle at 35% 30%, #bfe6ff, #2489cf 55%, #0f4f80); --brilho: rgba(60, 160, 240, .8); }
 .orbe-b { background: radial-gradient(circle at 35% 30%, #a99bb3, #39303d 55%, #140f17); --brilho: rgba(170, 140, 210, .7); }
 .orbe-r { background: radial-gradient(circle at 35% 30%, #ffb7a6, #d94732 55%, #7d1c10); --brilho: rgba(240, 90, 60, .85); }
 .orbe-g { background: radial-gradient(circle at 35% 30%, #b6f0c6, #27884b 55%, #0e4224); --brilho: rgba(70, 200, 110, .8); }
 @keyframes orbe-acende { from { opacity: 0; scale: .3; } 60% { opacity: 1; scale: 1.25; } to { opacity: 1; scale: 1; } }
-@keyframes orbe-pulsa { 0%, 70%, 100% { box-shadow: inset -2px -3px 4px rgba(0, 0, 0, .45), inset 2px 2px 3px rgba(255, 255, 255, .55), 0 0 0 1.5px rgba(0, 0, 0, .6); } 80% { box-shadow: inset -2px -3px 4px rgba(0, 0, 0, .45), inset 2px 2px 3px rgba(255, 255, 255, .55), 0 0 0 1.5px rgba(0, 0, 0, .6), 0 0 16px 4px var(--brilho); } }
+@keyframes orbe-pulsa { 0%, 70%, 100% { opacity: 0; } 80% { opacity: 1; } }
 .entrada-saudacao { font-family: var(--fonte-epica); font-size: clamp(19px, 2.6vw, 24px); font-weight: 700; color: var(--texto); letter-spacing: .04em; text-shadow: 0 2px 10px rgba(0, 0, 0, .8); animation: surge-baixo .9s ease-out 1.55s both; }
 @keyframes surge-baixo { from { opacity: 0; translate: 0 10px; } }
 .entrada-form { width: min(400px, 100%); margin-top: 12px; padding: 22px 24px; display: grid; gap: 14px; text-align: left; border-radius: 18px; background: rgba(22, 20, 23, .62); border: 1px solid color-mix(in srgb, var(--ouro) 30%, transparent); box-shadow: 0 24px 60px rgba(0, 0, 0, .55), inset 0 1px 0 rgba(255, 255, 255, .05); backdrop-filter: blur(8px); animation: surge-baixo 1s cubic-bezier(.2, .8, .2, 1) 1.95s both; }
@@ -1213,7 +1217,7 @@ img.mini { width: 40px; aspect-ratio: 63 / 88; object-fit: cover; border-radius:
 .marca-jogo .marca-logo { filter: drop-shadow(0 0 6px rgba(255, 110, 40, .45)) drop-shadow(0 1px 2px rgba(0, 0, 0, .6)); }
 
 @media (prefers-reduced-motion: reduce) {
-  .brasa, .aurora, .entrada-halo, .orbe { animation: none; }
+  .brasa, .aurora, .entrada-halo, .orbe, .orbe::after { animation: none; }
   .brasa { display: none; }
   .orbe { opacity: 1; }
   .entrada-brasao, .entrada-titulo, .entrada-saudacao, .entrada-form, .entrada-rodape { animation: none; }
@@ -1308,8 +1312,8 @@ img.mini { width: 40px; aspect-ratio: 63 / 88; object-fit: cover; border-radius:
 [data-desempenho] .fundo-arte-img { animation-name: fundo-entra; }
 [data-desempenho] .brasa { display: none; }
 [data-desempenho] .aurora, [data-desempenho] .entrada-halo { animation: none; }
-[data-desempenho] .orbe { animation-name: orbe-acende; }
+[data-desempenho] .orbe::after { animation: none; }
 [data-desempenho] .avatar.ativo .avatar-aura { animation: none; }
-[data-desempenho] .fases.esperando-voce .fases-acao .botao.cheio { animation: none; }
+[data-desempenho] .fases.esperando-voce .fases-acao .botao.cheio::after { animation: none; }
 /* o halo do atacante que dá para bloquear fica parado */
 [data-desempenho] .realce-bloqueavel::after { animation: none; opacity: .8; }
