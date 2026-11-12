@@ -9,6 +9,7 @@
 
 import { useEffect, useState } from 'preact/hooks';
 import type { ObjView } from '../../../motor/view.ts';
+import { aoMudarCena, emCena } from './cenaLoja.ts';
 
 export interface ZoomAtual { o: ObjView; lado: 'esq' | 'dir' }
 
@@ -50,6 +51,9 @@ export function segurarZoom(sim: boolean): void {
   pendente = null;
   trocar(p);
 }
+
+// a cena da fila de quadros (cenaLoja) segura e solta o zoom
+aoMudarCena(() => segurarZoom(emCena()));
 
 export function useZoom(): ZoomAtual | null {
   const [, forcar] = useState(0);
