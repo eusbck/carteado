@@ -51,6 +51,8 @@ export interface AreaProps {
   /** clique no espaço da área (não numa carta): escolher este jogador como alvo de um ataque */
   onCliqueArea?: () => void;
   onZona: (zona: 'graveyard' | 'exile') => void;
+  /** abre a lista das cartas do deck deste jogador */
+  onDeck: () => void;
   /** a sua mão (só na sua área) */
   mao?: ObjView[];
   /** uma decisão pede cartas da sua mão: ela fica erguida (sem isso, descansa abaixada e sobe com o mouse) */
@@ -304,16 +306,17 @@ export function AreaJogador(p: AreaProps) {
           </div>
         )}
         <div class="zonas-grupo">
-          <div class="zona" aria-label="Grimório" title={estreita ? `Grimório (${j.libraryCount})` : undefined}>
+          {/* clicar mostra a lista do deck (as cartas por tipo, como na prévia do saguão), não o grimório nem a ordem dele */}
+          <button type="button" class="zona botao-zona" data-zona="library" onClick={p.onDeck} aria-label={`Grimório de ${j.name}, ${j.libraryCount} cartas. Ver as cartas do deck`} title={estreita ? `Grimório (${j.libraryCount}): ver as cartas do deck` : 'Ver as cartas do deck'}>
             <span class="zona-rotulo">Grimório <b>({j.libraryCount})</b></span>
             {/* a carta do topo, quando o jogador pode olhá-la a qualquer momento (Vesuvan Drifter, Realmwalker): só ele recebe */}
             <div class="slot">{j.topCard ? <Carta o={j.topCard} onZoom={p.onZoom} /> : j.libraryCount > 0 && <div class="carta"><div class="carta-face"><div class="verso" /></div></div>}{estreita && <span class="zona-conta">{j.libraryCount}</span>}</div>
-          </div>
-          <button type="button" class="zona botao-zona" onClick={() => p.onZona('graveyard')} aria-label={`Cemitério de ${j.name}, ${j.graveyard.length} cartas`} title={estreita ? `Cemitério (${j.graveyard.length})` : undefined}>
+          </button>
+          <button type="button" class="zona botao-zona" data-zona="graveyard" onClick={() => p.onZona('graveyard')} aria-label={`Cemitério de ${j.name}, ${j.graveyard.length} cartas`} title={estreita ? `Cemitério (${j.graveyard.length})` : undefined}>
             <span class="zona-rotulo">Cemitério <b>({j.graveyard.length})</b></span>
             <div class="slot">{topoCemiterio && <Carta o={topoCemiterio} realce={p.realce(topoCemiterio)} onZoom={p.onZoom} />}{estreita && <span class="zona-conta">{j.graveyard.length}</span>}</div>
           </button>
-          <button type="button" class="zona botao-zona" onClick={() => p.onZona('exile')} aria-label={`Exílio de ${j.name}, ${p.exilio.length} cartas`} title={estreita ? `Exílio (${p.exilio.length})` : undefined}>
+          <button type="button" class="zona botao-zona" data-zona="exile" onClick={() => p.onZona('exile')} aria-label={`Exílio de ${j.name}, ${p.exilio.length} cartas`} title={estreita ? `Exílio (${p.exilio.length})` : undefined}>
             <span class="zona-rotulo">Exílio <b>({p.exilio.length})</b></span>
             <div class="slot">{topoExilio && <Carta o={topoExilio} realce={p.realce(topoExilio)} onZoom={p.onZoom} />}{estreita && <span class="zona-conta">{p.exilio.length}</span>}</div>
           </button>
