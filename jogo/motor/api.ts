@@ -63,3 +63,4 @@ export { successor } from './state.ts';
 export * from './patinhas.ts';
 export * from './bloquear-se-puder.ts';
 export * from './harmonizar.ts';
+export * from './terra.ts';
