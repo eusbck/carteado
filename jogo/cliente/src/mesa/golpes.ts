@@ -6,6 +6,8 @@
 // etapa de bloqueadores não vira golpe) e houve dano ou morte de fato. Primeiro golpe e golpe duplo (CR 510.4): na
 // etapa de primeiro golpe só golpeiam os que têm um dos dois; na normal, os sem primeiro golpe e os de golpe duplo; as
 // duas etapas juntas numa vista só (a sala mandou as duas de uma vez) golpeiam todos uma vez.
+//
+// Também daqui: quem sai do campo e para onde (planejarSaidas) e a ordem da destruição em massa (ordenarGrupo).
 
 import type { ObjId, PlayerId, Step } from '../../../motor/types.ts';
 import type { GameView, ObjView } from '../../../motor/view.ts';
@@ -92,4 +94,81 @@ export function planejarCombate(a: GameView, v: GameView): PlanoCombate {
   }
   // atacante e dano juntos numa vista só (a sala pulou a vista do ataque): fica só o golpe
   return { declarados: golpes.length ? [] : declarados, golpes };
+}
+
+// ---------------------------------------------------------------- quem sai do campo (N2) e a destruição em massa (N1)
+// Qualquer permanente que sai do campo tem destino, deduzido pela zona do dono que cresceu entre as duas vistas (o
+// eventos-8 troca a dedução pelo motivo do servidor). O jeito da saída: criatura e planeswalker morrem (racham,
+// escurecem e voam); terreno, artefato e encantamento saem secos (sem racha); quem volta para a mão ou o grimório só
+// voa (de verso quando a carta some da vista: a mão de um oponente, o grimório); a ficha some no lugar.
+
+/** a zona para onde foi uma carta que saiu do campo */
+export type ZonaSaida = 'graveyard' | 'exile' | 'command' | 'hand' | 'library';
+export type JeitoSaida = 'morte' | 'seca' | 'volta' | 'some';
+export interface Saida { o: ObjView; zona: ZonaSaida | null; jeito: JeitoSaida; verso: boolean }
+
+/** a zona do dono `p` que cresceu de `a` para `v`, na ordem cemitério, exílio, comando, mão, grimório; null se nenhuma */
+export function zonaQueCresceu(a: GameView, v: GameView, p: PlayerId): ZonaSaida | null {
+  const jog = (x: GameView) => x.players.find((j) => j.id === p);
+  const conta: [ZonaSaida, (x: GameView) => number][] = [
+    ['graveyard', (x) => jog(x)?.graveyard.length ?? 0],
+    ['exile', (x) => x.exile.filter((e) => e.owner === p).length],
+    ['command', (x) => x.command.filter((e) => e.owner === p && !e.emblem).length],
+    ['hand', (x) => jog(x)?.handCount ?? 0],
+    ['library', (x) => jog(x)?.libraryCount ?? 0],
+  ];
+  for (const [z, n] of conta) if (n(v) > n(a)) return z;
+  return null;
+}
+
+const morre = (o: ObjView) => o.types.includes('Creature') || o.types.includes('Planeswalker');
+
+/** as permanentes que saíram do campo de `a` para `v`, com destino e jeito (a carta sem destino conhecido fica de fora) */
+export function planejarSaidas(a: GameView, v: GameView, eu: PlayerId): Saida[] {
+  const agora = new Set(v.battlefield.map((x) => x.id));
+  const zonas = new Map<PlayerId, ZonaSaida | null>();
+  const zonaDe = (p: PlayerId) => { if (!zonas.has(p)) zonas.set(p, zonaQueCresceu(a, v, p)); return zonas.get(p)!; };
+  return a.battlefield.filter((x) => !agora.has(x.id)).flatMap((o): Saida[] => {
+    // a ficha deixa de existir fora do campo (CR 111.7): some no lugar
+    if (o.token) return [{ o, zona: null, jeito: 'some', verso: false }];
+    const zona = zonaDe(o.owner);
+    if (!zona) return [];
+    if (zona === 'hand' || zona === 'library') return [{ o, zona, jeito: 'volta', verso: zona === 'library' || o.owner !== eu }];
+    return [{ o, zona, jeito: morre(o) ? 'morte' : 'seca', verso: false }];
+  });
+}
+
+/** destruição em massa: a partir de quantas criaturas saindo juntas, sem golpe, a saída vira uma cena de grupo */
+export const GRUPO_MIN = 4;
+/** intervalo entre uma morte e a seguinte (ms): mín(90; 1300 ÷ n) */
+export const GRUPO_PASSO = 90, GRUPO_TOTAL = 1300;
+/** cópias voando no grupo (o resto apaga no lugar) */
+export const GRUPO_COPIAS = 12;
+
+/** a saída de `saidas` (sem as que morreram num golpe, `noGolpe`) vira cena de grupo? */
+export function ehGrupo(saidas: readonly Saida[], noGolpe: ReadonlySet<ObjId>): boolean {
+  return saidas.filter((s) => !noGolpe.has(s.o.id) && s.o.types.includes('Creature')).length >= GRUPO_MIN;
+}
+
+export const passoGrupo = (n: number): number => (n > 1 ? Math.min(GRUPO_PASSO, GRUPO_TOTAL / n) : 0);
+
+/** um item do grupo: onde está, se tem de voar (comandante para o Comando) e se pode voar (a ficha só some) */
+export interface ItemGrupo { x: number; y: number; deveVoar: boolean; podeVoar: boolean }
+
+/**
+ * A ordem do grupo: pela distância da origem (a onda passa e eles caem), o intervalo de passoGrupo e quem voa (os que
+ * têm de voar e, dos outros, os primeiros até GRUPO_COPIAS cópias no total). Devolve, na ordem da entrada, o instante de
+ * começo (ms depois de `inicio`) e se a cópia voa.
+ */
+export function ordenarGrupo(itens: readonly ItemGrupo[], origem: { x: number; y: number }, inicio = 0): { inicio: number; voa: boolean }[] {
+  const ordem = itens.map((it, i) => ({ i, d: Math.hypot(it.x - origem.x, it.y - origem.y) })).sort((p, q) => p.d - q.d || p.i - q.i);
+  const passo = passoGrupo(itens.length);
+  let livres = GRUPO_COPIAS - itens.filter((it) => it.deveVoar).length;
+  const r: { inicio: number; voa: boolean }[] = new Array(itens.length);
+  ordem.forEach(({ i }, k) => {
+    const it = itens[i];
+    const voa = it.deveVoar || (it.podeVoar && livres-- > 0);
+    r[i] = { inicio: Math.round(inicio + k * passo), voa };
+  });
+  return r;
 }
