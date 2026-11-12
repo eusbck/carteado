@@ -100,15 +100,15 @@ describe('fila de quadros (protocolo-2)', () => {
 
     const c = montar();
     c.chega(1);
-    c.f.duracao(TETO_QUADRO);
+    c.f.duracao(500);
     c.chega(2);
     c.chega(3);
-    c.r.andar(1000);
-    c.chega(4);
-    c.r.andar(TETO_QUADRO - 1000); // o 1 acaba: o 2 entra (esperou TETO_QUADRO, menos que ATRASO_MAX)
+    c.r.andar(500); // o 1 acaba: o 2 entra (esperou 500 ms)
     expect(c.mostrados).toEqual([1, 2]);
     c.f.duracao(TETO_QUADRO);
-    c.r.andar(TETO_QUADRO);
+    c.r.andar(500);
+    c.chega(4);
+    c.r.andar(TETO_QUADRO - 500);
     // o 3 esperava havia mais de ATRASO_MAX: sai, e entra o 4
     expect(c.mostrados).toEqual([1, 2, 4]);
   });
@@ -116,15 +116,15 @@ describe('fila de quadros (protocolo-2)', () => {
   it('o quadro com decisão vira o atual no máximo TETO_DECISAO depois de chegar, e a cena dele acaba', () => {
     const { r, f, mostrados, estado, chega } = montar();
     chega(1);
-    f.duracao(TETO_QUADRO);
+    f.duracao(800);
     r.andar(600);
     chega(2);
     chega(3, true);
-    r.andar(600); // o 1 acaba: o 2 entra
+    r.andar(200); // o 1 acaba em 800: o 2 entra
     expect(mostrados).toEqual([1, 2]);
     f.duracao(TETO_QUADRO);
-    r.andar(TETO_DECISAO - 600);
-    // o 3 chegou há TETO_DECISAO: entra já, sem cena
+    r.andar(TETO_DECISAO - 200);
+    // o 3 chegou há TETO_DECISAO: entra já, sem cena (a do 2 acaba ali)
     expect(mostrados).toEqual([1, 2, 3]);
     expect(estado).toEqual({ fila: 0, animando: false });
   });

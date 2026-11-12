@@ -5,7 +5,8 @@
 // Saltos (a fila vai direto ao último quadro, sem esperar):
 // - vista que não continua a anterior (`reinicio`: conectar, partida nova, desfazer), modo Desempenho, aba escondida;
 // - fila atrasada: mais de MAX_FILA quadros esperando, ou o mais antigo esperando há mais de ATRASO_MAX;
-// - um quadro com decisão sua não espera mais que TETO_DECISAO depois de chegar (os de antes dele são pulados);
+// - um quadro com decisão sua não espera mais que TETO_DECISAO (1,2 s) depois de chegar (os de antes dele são pulados,
+//   e as animações que eles já começaram seguem na camada dos efeitos);
 // - pular() (clique na mesa ou Espaço).
 //
 // O estado da cena (para a Mesa e o zoom) fica em cenaLoja.ts; esta classe não conhece a loja nem o DOM (testes com
@@ -31,8 +32,10 @@ const relogioPadrao: Relogio = {
   cancelar: (t) => clearTimeout(t as ReturnType<typeof setTimeout>),
 };
 
-/** teto das animações de um quadro: a cena dele acaba no máximo nisso, diga Efeitos o que disser */
-export const TETO_QUADRO = 1200;
+/** teto das animações de um quadro: o seguinte entra no máximo nisso, diga Efeitos o que disser. Maior que o da
+ * decisão: uma destruição em massa (N1) dura até ~2,4 s, e o quadro seguinte não pode cortá-la (meta: zero animações
+ * cortadas). A decisão não espera tanto: ela tem o TETO_DECISAO, contado da chegada */
+export const TETO_QUADRO = 2600;
 /** o quadro com decisão sua vira o atual, e a cena dele acaba, no máximo isso depois de chegar */
 export const TETO_DECISAO = 1200;
 /** quadros esperando além disso: salta para o último */

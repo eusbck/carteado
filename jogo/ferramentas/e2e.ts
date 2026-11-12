@@ -29,7 +29,8 @@ async function subirServidor(): Promise<void> {
   });
   servidor.stderr!.on('data', (d) => process.stderr.write(`[servidor] ${d}`));
   await new Promise<void>((ok, falha) => {
-    const t = setTimeout(() => falha(new Error('servidor não subiu')), 60000);
+    // com a máquina ocupada (outras rodadas, outras cópias do jogo) carregar as cartas passa de um minuto
+    const t = setTimeout(() => falha(new Error('servidor não subiu')), 180000);
     servidor.stdout!.on('data', (d) => { if (String(d).includes('http://localhost')) { clearTimeout(t); ok(); } });
   });
 }
@@ -173,7 +174,8 @@ async function escrever(p: Page, texto: string): Promise<void> {
 
 async function criarSala(anfitriao: Page, modo: '4p' | '1v1'): Promise<string> {
   await anfitriao.getByRole('button', { name: /^Criar sala/ }).click();
-  if (modo === '1v1') await anfitriao.getByRole('button', { name: 'Um contra um' }).click();
+  // desde as mesas de 2 a 6 (08/11), o número de jogadores no lugar do "Um contra um"
+  if (modo === '1v1') await anfitriao.getByRole('radiogroup', { name: 'Número de jogadores' }).getByRole('radio', { name: /^2/ }).click();
   await anfitriao.locator('form').filter({ hasText: 'Criar sala' }).getByLabel('Senha da sala').fill('mesa-e2e');
   await anfitriao.getByRole('button', { name: 'Criar', exact: true }).click();
   await anfitriao.locator('.lugares').waitFor();
