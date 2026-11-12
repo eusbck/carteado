@@ -1,6 +1,6 @@
 // lote4-a: peças repetidas das cartas de "terrenos importam" (deck Jund Lands, Hearthhull). Genéricas, para servir também
 // às outras frentes (LandReanimator).
-import { controllerOf, dealDamage, eachSacrifices, isLand, lkiChars, on, putOntoBattlefield, staticAbility } from '../motor/api.ts';
+import { chars, controllerOf, dealDamage, eachSacrifices, isLand, lkiChars, on, putOntoBattlefield, staticAbility } from '../motor/api.ts';
 import type { Ctx, Gen, StaticDef, TriggerSpec } from '../motor/defs.ts';
 import type { ObjId, PlayerId } from '../motor/types.ts';
 
@@ -59,6 +59,13 @@ export function* devolveTerrenosDoCemiterio(c: Ctx, p: PlayerId = c.you): Gen<Ob
   const terrenos = c.g.state.zones.graveyard[p].filter((id) => isLand(c.g, id));
   if (!terrenos.length) return [];
   return (yield* putOntoBattlefield(c.g, terrenos.map((id) => ({ id, controller: p, tapped: true })), 'effect')).filter((x): x is ObjId => x !== null);
+}
+
+/** quantos tipos de carta há entre as cartas do cemitério do jogador (delírio) */
+export function tiposNoCemiterio(c: { g: Ctx['g'] }, p: PlayerId): number {
+  const tipos = new Set<string>();
+  for (const id of c.g.state.zones.graveyard[p]) for (const t of chars(c.g, id).types) tipos.add(t);
+  return tipos.size;
 }
 
 /** cartas de terreno do cemitério do jogador */
