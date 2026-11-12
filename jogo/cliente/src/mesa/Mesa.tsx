@@ -35,6 +35,7 @@ import { PedidoDesfazer } from './Desfazer.tsx';
 import { useEfeitos } from './Efeitos.tsx';
 import { emCena, pularCena, useCena } from './cenaLoja.ts';
 import { Setas, type Seta } from './Setas.tsx';
+import { FaixaTurno } from './FaixaTurno.tsx';
 import { MaoInicial } from './MaoInicial.tsx';
 import { Abertura, aberturaVista, chaveAbertura, marcarAbertura, type LadoVS } from './Abertura.tsx';
 import { Manual, type PegarCarta, type Tipo as TipoManual } from './Manual.tsx';
@@ -1351,6 +1352,7 @@ export function Mesa() {
         <div class={`oponentes n${oponentes.length}`}>{oponentes.map((j) => area(j, true))}</div>
         {area(minha, false)}
         <Setas setas={setas} versao={v} />
+        <FaixaTurno turno={v.turn.number} rodada={v.turn.round} nome={v.turn.active === eu ? null : v.players[v.turn.active].name} cor={cor(v.turn.active)} />
         <FaixaFases v={v} eu={eu} d={d} enviando={enviando} paradas={e.paradas} cor={cor} desfazivel={e.desfazivel} parada={!!e.desfazer} />
         {e.desfazer && <PedidoDesfazer p={e.desfazer} eu={eu} nomes={v.players.map((p) => p.name)} cor={cor} />}
 

@@ -97,6 +97,9 @@ export function useEfeitos(v: GameView, eu: number, efeitos: boolean): void {
     // o aviso do seu turno passa por cima da música: ela abaixa por um instante
     if (somTurno === 'meu' && preferencias().volume > 0) abafarMusica();
 
+    // a onda do desvirar antes de qualquer medida (Desempenho, "reduzir movimento" e efeitos desligados: o giro de sempre)
+    const onda = efeitos && !document.hidden && !preferencias().desempenho && !movimentoReduzido() ? desvirarEmOnda(a, v) : 0;
+
     const plano = planejarCombate(a, v);
     const antes = fotos.current;
     // as fotos desta vista são lidas junto com as medidas dos efeitos, antes de qualquer elemento novo (um layout só)
@@ -106,6 +109,6 @@ export function useEfeitos(v: GameView, eu: number, efeitos: boolean): void {
     // teto). Uma versão que ainda não devolve o número cai na estimativa pelas constantes
     const ms: unknown = efeitosDaVista(a, v, plano, antes, { eu, reduzir: movimentoReduzido(), leve: preferencias().desempenho, efeitos });
     const animacoes = typeof ms === 'number' ? ms : efeitos && !document.hidden ? estimarEfeitos(a, v, plano) : 0;
-    informarDuracao(Math.max(animacoes, campoMudou(a, v) ? ARRUMACAO_MS : 0));
+    informarDuracao(Math.max(animacoes, onda, campoMudou(a, v) ? ARRUMACAO_MS : 0));
   }, [v]);
 }

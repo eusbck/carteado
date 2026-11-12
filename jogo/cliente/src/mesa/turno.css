@@ -1,0 +1,42 @@
+/* N7: a faixa da troca de turno (FaixaTurno.tsx) e a borda da área ativa por um véu.
+   Só transform e opacity animam; nada aqui pega clique. */
+
+/* ---------------------------------------------------------------- faixa "Vez de Ana · Rodada 5" */
+.faixa-turno {
+  position: absolute; left: 0; right: 0; top: var(--divisa, 41%); z-index: 60; height: 0;
+  display: flex; justify-content: center; pointer-events: none;
+}
+.faixa-turno-fita {
+  translate: 0 -50%; display: flex; align-items: center; gap: 14px; padding: 12px 56px;
+  font-size: 22px; font-weight: 700; letter-spacing: .02em; white-space: nowrap; color: var(--texto);
+  /* o fundo e a linha de cor são desenhados uma vez; só a fita anda e aparece */
+  background: linear-gradient(90deg, transparent, rgba(10, 9, 12, .86) 18%, rgba(10, 9, 12, .86) 82%, transparent);
+  border-block: 1.5px solid color-mix(in srgb, var(--cor, var(--ouro)) 70%, transparent);
+  animation: faixa-turno 1.2s cubic-bezier(.2, .8, .3, 1) both;
+}
+.faixa-turno-fita b { color: var(--cor, var(--ouro)); }
+.faixa-turno-ponto { color: var(--suave); }
+@keyframes faixa-turno {
+  0% { opacity: 0; transform: translateX(-60px) scaleX(.92); }
+  18% { opacity: 1; transform: translateX(0) scaleX(1); }
+  78% { opacity: 1; transform: translateX(10px); }
+  100% { opacity: 0; transform: translateX(70px); }
+}
+/* modo Desempenho: só um fade curto, parado */
+.faixa-turno.leve .faixa-turno-fita { animation: faixa-turno-leve .7s ease-out both; }
+@keyframes faixa-turno-leve { 0% { opacity: 0; } 25% { opacity: 1; } 70% { opacity: 1; } 100% { opacity: 0; } }
+
+/* ---------------------------------------------------------------- borda da área ativa: um véu que cruza a opacidade */
+/* a borda deixa de trocar de um quadro para o outro: cada área tem a sua desenhada uma vez, e só a opacidade muda */
+.tabuleiro .area.area-ativa { box-shadow: none; }
+.tabuleiro .area::before {
+  content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  box-shadow: inset 0 0 0 2px var(--acao); opacity: 0; transition: opacity .45s ease;
+}
+.tabuleiro .area.area-ativa::before { opacity: 1; }
+/* as bordas de escolha (alvo) continuam por cima, como antes */
+.tabuleiro .area.alvo-escolhivel { box-shadow: inset 0 0 0 3px var(--acao); }
+.tabuleiro .area.alvo-escolhido { box-shadow: inset 0 0 0 3px var(--ouro); }
+
+/* ---------------------------------------------------------------- setas do combate saindo juntas (Setas.tsx) */
+.setas-combate.saindo { opacity: 0; transition: opacity .22s ease-out; }
