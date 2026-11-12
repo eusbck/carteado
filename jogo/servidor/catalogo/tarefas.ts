@@ -20,6 +20,7 @@ import type { Pastas } from './caminhos.ts';
 import { Catalogo, diferenca, listasIguais, mesclarOrdem } from './catalogo.ts';
 import { cartaGerada, escreverGerado, gerar, lerAnterior, lerNovas, lerOriginais, nomesDaLista, type CartasGeradas, type ImagensGeradas } from './gerar.ts';
 import { baixarDeck, ErroDeck, lerLink, linkDoDeck, type DeckMox } from './moxfield.ts';
+import { novoIdCriado } from './montar.ts';
 import type { Rede } from './rede.ts';
 import { baixarImagens, colecao, ehFicha, escolherImpressao, impressoes, oracleIdDe, paraCarta, paraImpressao, partesFicha, porNome, rulings } from './scryfall.ts';
 import type { DeckArquivo, EntradaLista, ImagemLocal, Lista, Ruling, ScryObjeto, VersaoLista } from './tipos.ts';
@@ -191,6 +192,53 @@ export class TarefasDecks {
     if (ex.atrasado) { clearTimeout(ex.atrasado); ex.atrasado = null; }
     ex.ultimoAviso = agora;
     this.o.aoAndamento?.(ex.t);
+  }
+
+  // ---------------------------------------------------------------- decks montados na mesa (tela Montar deck)
+
+  /**
+   * Grava um deck montado na mesa (novo, sem `id`, ou trocando a lista de um montado antes) e regenera gerado/. As
+   * cartas já foram conferidas (montar.ts): todas têm regras, então a lista é a jogável. Devolve o id.
+   */
+  async salvarCriado(o: { id: string | null; nome: string; lista: Lista; autor: string | null }): Promise<string> {
+    const id = await this.gravar(() => {
+      const cat = this.o.catalogo;
+      const agora = this.agora().toISOString();
+      const existente = o.id ? cat.ler(o.id) : null;
+      if (o.id && !existente?.criado) throw new ErroDeck('Só os decks montados na mesa podem ser editados');
+      const d: DeckArquivo = existente ?? {
+        formato: 1, id: novoIdCriado(), ordem: cat.proximaOrdem(), nome: o.nome, link: '',
+        importadoEm: agora, verificadoEm: null, atual: null, preparacao: null,
+      };
+      d.nome = o.nome;
+      if (!(existente?.atual && listasIguais(existente.atual, o.lista))) {
+        // as cartas que ficam mantêm a posição (o embaralhamento com semente das partidas não muda à toa)
+        d.atual = { ...o.lista, cartas: mesclarOrdem(existente?.atual?.cartas ?? null, o.lista.cartas), origem: { versao: null, atualizadoEm: null }, desde: agora };
+      }
+      d.preparacao = null;
+      d.criado = { autor: existente?.criado?.autor ?? o.autor, editadoEm: agora };
+      cat.salvar(d);
+      this.regenerarGerado();
+      return d.id;
+    });
+    this.o.aoMudar?.(true);
+    return id;
+  }
+
+  /** apaga um deck montado na mesa (as partidas que já começaram com ele guardam a lista e seguem) */
+  async apagarCriado(id: string): Promise<void> {
+    await this.gravar(() => {
+      const d = this.o.catalogo.ler(id);
+      if (!d?.criado) throw new ErroDeck('Só os decks montados na mesa podem ser apagados');
+      this.o.catalogo.apagar(id);
+      this.regenerarGerado();
+    });
+    this.o.aoMudar?.(true);
+  }
+
+  private regenerarGerado(): void {
+    const p = this.o.pastas;
+    escreverGerado(p.gerado, gerar({ originais: lerOriginais(p.cartasOriginais), novas: lerNovas(p.decks), decks: this.o.catalogo.todos(), anterior: lerAnterior(p.gerado) }));
   }
 
   /** as gravações em decks/ e gerado/ uma de cada vez, e nunca junto com a linha de comando (a trava) */

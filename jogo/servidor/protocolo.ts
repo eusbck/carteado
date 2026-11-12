@@ -69,6 +69,24 @@ export interface CartaCatalogo {
   pronta: boolean;
 }
 
+/** uma carta que um deck montado na mesa pode ter (tela Montar deck); nome em português, imagem, tipo e texto vêm de
+ * /api/cartas */
+export interface CartaMontagem {
+  nome: string;
+  /** custo de mana como no Oracle ("{2}{G}{G}"; faces separadas por " // ") */
+  custo: string;
+  /** valor de mana */
+  vm: number;
+  /** identidade de cor (W U B R G) */
+  ci: string[];
+  /** pode ser comandante sozinha (CR 903.3) */
+  comandante: boolean;
+  /** com quem pode formar dupla de comandantes (parceiros e Backgrounds, CR 702.124) */
+  parceiros?: string[];
+  /** cópias que o deck pode ter além de uma: 0 sem limite (básicos, "any number"), N até N; sem o campo, uma */
+  teto?: number;
+}
+
 /** a lista de um deck jogável, para a prévia no saguão */
 export interface ListaDeck {
   id: string;
@@ -100,6 +118,8 @@ export interface DeckCatalogo {
   atualizadoEm: string | null;
   /** cartas diferentes da lista (com o comandante) */
   total: number;
+  /** deck montado na mesa (tela Montar deck): dá para editar e apagar */
+  criado?: { autor: string | null; editadoEm: string };
   /** versão que espera cartas: um deck novo ou uma atualização */
   preparacao: {
     prontas: number;

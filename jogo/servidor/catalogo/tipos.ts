@@ -41,6 +41,8 @@ export interface DeckArquivo {
   atual: VersaoLista | null;
   /** lista que espera cartas sem regras; entra sozinha quando todas ficarem prontas */
   preparacao: VersaoLista | null;
+  /** deck montado na própria mesa (tela Montar deck), sem link do Moxfield: quem montou e quando mexeu por último */
+  criado?: { autor: string | null; editadoEm: string };
 }
 
 // ---------------------------------------------------------------------------- dados do Scryfall
