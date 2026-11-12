@@ -65,3 +65,9 @@ export * from './terrenos.ts';
 export * from './dragar.ts';
 // lote4-e: regra do mundo (CR 704.5k)
 export { regraDoMundo } from './mundo.ts';
+// lote4-b (deck Sephiroth): cometer um crime (CR 700.13), "uma criatura morrer faz disparar" (Drivnod, The Masamune),
+// "a N-ésima vez que esta habilidade resolveu neste turno" e "precisa ser bloqueada se possível" (CR 509.1c)
+export * from './crime.ts';
+export * from './morte-dispara.ts';
+export * from './resolucoes.ts';
+export * from './bloqueio-obrigatorio.ts';

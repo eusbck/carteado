@@ -560,3 +560,14 @@ export const ForestDryad = token('Forest Dryad', 'Forest Dryad', ['Land', 'Creat
 export const Elemental53 = token('Elemental 5/3', 'Elemental', ['Creature'], ['Elemental'], ['G'], 5, 3);
 /** Zombie Druid 2/2 preta (Teval, the Balanced Scale) */
 export const ZombieDruid = token('Zombie Druid', 'Zombie Druid', ['Creature'], ['Zombie', 'Druid'], ['B'], 2, 2);
+// lote4-b (deck Sephiroth)
+/** Thrull 1/1 preta (Endrek Sahr, Master Breeder) */
+export const Thrull = token('Thrull', 'Thrull', ['Creature'], ['Thrull'], ['B'], 1, 1);
+/** Thrull 0/1 preta (Tevesh Szat, Doom of Fools) */
+export const Thrull01 = token('Thrull 0/1', 'Thrull', ['Creature'], ['Thrull'], ['B'], 0, 1);
+/** Faerie Rogue 1/1 preta com voar (Bitterblossom) */
+export const FaerieRogue = token('Faerie Rogue', 'Faerie Rogue', ['Creature'], ['Faerie', 'Rogue'], ['B'], 1, 1, keywords('flying'));
+/** Human Cleric 1/1 branca e preta (Westvale Abbey) */
+export const HumanCleric = token('Human Cleric', 'Human Cleric', ['Creature'], ['Human', 'Cleric'], ['B', 'W'], 1, 1);
+/** Zombie Rogue 2/2 azul e preta (Gisa, the Hellraiser) */
+export const ZombieRogue = token('Zombie Rogue', 'Zombie Rogue', ['Creature'], ['Zombie', 'Rogue'], ['B', 'U'], 2, 2);

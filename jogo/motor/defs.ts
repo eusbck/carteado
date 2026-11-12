@@ -181,7 +181,7 @@ export interface ManaAbilityDef extends AbilityCommon {
    *  não pode ser ativada enquanto se paga um custo (conjurando, ativando ou pagando durante a resolução; CR 605.3a, 117.1b) */
   notWhilePaying?: boolean;
   /** lote4-a: a mana depende do que foi pago no custo ("adicione uma mana de qualquer tipo que o terreno sacrificado
-   *  poderia produzir": Squandered Resources; CR 106.7). Chamada depois de pagar, com o costInfo; `produce` fica como a
+   *  poderia produzir": Squandered Resources; CR 106.7; também Soldevi Adnate, frente B: uma opção só). Chamada depois de pagar, com o costInfo; `produce` fica como a
    *  estimativa usada no planejamento. Lista vazia: nenhuma mana (motor/terrenos.ts manaDoCusto) */
   produceFromCost?: (c: SCtx, costInfo: Record<string, unknown>) => ManaType[][];
 }
@@ -336,6 +336,8 @@ export interface RuleHooks {
   crewPowerBonus?: (c: SCtx, creature: ObjId) => number;
   /** "esta criatura precisa ser bloqueada por exatamente uma criatura se puder" (Nacatl War-Pride) */
   mustBeBlockedByExactlyOne?: (c: SCtx, attacker: ObjId) => boolean;
+  /** lote4-b: "precisa ser bloqueada se possível" (The Masamune; CR 509.1c): motor/bloqueio-obrigatorio.ts */
+  mustBeBlockedIfAble?: (c: SCtx, attacker: ObjId) => boolean;
   /**
    * "se [esse jogador] fosse comprar uma carta que não a primeira da etapa de compra dele, em vez disso ele pula essa
    * compra e você compra uma carta" (Notion Thief). O motor só consulta fora da primeira compra da etapa de compra.
@@ -433,6 +435,9 @@ export interface StaticDef extends AbilityCommon {
    *  as modificações desta estática se aplicam depois das outras da mesma camada, qualquer que seja o registro de data e hora */
   cantHave?: boolean;
   rules?: RuleHooks;
+  /** lote4-b: o gancho extraTriggers desta estática também vale no lote em que a permanente sai do campo, olhando para trás
+   *  (CR 603.10a; ruling 8 de Drivnod, Carnage Dominus): motor/morte-dispara.ts */
+  lookBack?: boolean;
 }
 
 export interface EnterEvent {
