@@ -10,6 +10,7 @@ import { fileURLToPath } from 'node:url';
 import { chromium, type Browser, type Page } from 'playwright';
 
 const RAIZ = join(dirname(fileURLToPath(import.meta.url)), '..');
+// E2E_ESTATICOS: o cliente compilado noutra pasta (o cliente/dist pode estar servindo a mesa de verdade)
 // E2E_DADOS e PORTA_E2E deixam duas rodadas correrem ao mesmo tempo (cada uma com o seu banco e a sua porta)
 const DADOS = process.env.E2E_DADOS ?? join(RAIZ, '.cache', 'e2e-dados');
 const SAIDA = join(RAIZ, '.cache', 'e2e');
@@ -23,7 +24,7 @@ mkdirSync(SAIDA, { recursive: true });
 let servidor!: ChildProcess;
 async function subirServidor(): Promise<void> {
   servidor = spawn(process.execPath, [join(RAIZ, 'servidor', 'index.ts')], {
-    env: { ...process.env, PORTA: String(PORTA), DADOS, SENHA_ACESSO: SENHA, IMAGENS: join(RAIZ, 'dados-locais', 'imagens'), ESTATICOS: join(RAIZ, 'cliente', 'dist') },
+    env: { ...process.env, PORTA: String(PORTA), DADOS, SENHA_ACESSO: SENHA, IMAGENS: join(RAIZ, 'dados-locais', 'imagens'), ESTATICOS: process.env.E2E_ESTATICOS ?? join(RAIZ, 'cliente', 'dist') },
     stdio: ['ignore', 'pipe', 'pipe'],
   });
   servidor.stderr!.on('data', (d) => process.stderr.write(`[servidor] ${d}`));
@@ -114,6 +115,8 @@ async function pularAbertura(p: Page, como: 'clique' | 'esc'): Promise<boolean> 
 
 /** uma ação simples para a decisão pendente da pessoa (se houver); devolve true se agiu */
 async function agir(p: Page): Promise<boolean> {
+  // a mesa ainda mostra os quadros que chegaram (protocolo-2): a decisão só aparece com a fila vazia (data-fila="0")
+  if (await p.evaluate(() => (document.documentElement.dataset.fila ?? '0') !== '0').catch(() => false)) return false;
   if (await p.getByText('Você tem prioridade').isVisible().catch(() => false)) {
     if (await jogarDaMao(p, /^Jogar /)) return true;
     if (Math.random() < 0.5 && await jogarDaMao(p, /^Conjurar: /)) return true;

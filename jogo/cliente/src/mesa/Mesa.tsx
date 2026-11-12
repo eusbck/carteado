@@ -32,6 +32,7 @@ import { ehEscolha } from './escolhas.ts';
 import { EscolhaRecolhida, JanelaEscolha } from './JanelaEscolha.tsx';
 import { PedidoDesfazer } from './Desfazer.tsx';
 import { useEfeitos } from './Efeitos.tsx';
+import { emCena, pularCena, useCena } from './cenaLoja.ts';
 import { Setas, type Seta } from './Setas.tsx';
 import { MaoInicial } from './MaoInicial.tsx';
 import { Abertura, aberturaVista, chaveAbertura, marcarAbertura, type LadoVS } from './Abertura.tsx';
@@ -394,7 +395,15 @@ export function Mesa() {
   const v = e.vista!;
   const sala = e.sala!;
   const eu = v.you!;
-  const d = v.decision;
+  // a decisão espera a cena (eventos-5, versão ponte): ela, a janela de escolha e os realces de "pode jogar" só
+  // aparecem quando a fila de quadros esvazia e as animações do quadro acabam (filaQuadros.ts, com teto). Uma vez
+  // liberada, a mesma decisão não some de novo por uma cena que venha depois (uma posição que você mudou, um aviso).
+  // `dReal` é a pendente de fato, para o que não é mostrar nem clicar (o ajuste manual aberto, a carta que você soltou)
+  const cena = useCena();
+  const dReal = v.decision;
+  const liberada = useRef<number | null>(null);
+  if (dReal && !cena) liberada.current = dReal.id;
+  const d = dReal && liberada.current === dReal.id ? dReal : null;
   const enviando = !!d && e.respondida === d.id;
   useMusica();
 
@@ -428,6 +437,17 @@ export function Mesa() {
   // janela de escolha recolhida para olhar a mesa (volta aberta a cada decisão nova)
   const [escolhaRecolhida, setEscolhaRecolhida] = useState(false);
   useEffect(() => { setEscolhaRecolhida(false); }, [d?.id]);
+  // aba escondida quando uma decisão sua abre: o título da aba pisca até você voltar (o Arena pisca a barra de tarefas)
+  useEffect(() => {
+    if (!d || typeof document === 'undefined' || !document.hidden) return;
+    const titulo = document.title;
+    let aceso = false;
+    const piscar = setInterval(() => { aceso = !aceso; document.title = aceso ? 'Sua vez de decidir' : titulo; }, 1000);
+    const parar = () => { clearInterval(piscar); document.title = titulo; document.removeEventListener('visibilitychange', voltou); };
+    const voltou = () => { if (!document.hidden) parar(); };
+    document.addEventListener('visibilitychange', voltou);
+    return parar;
+  }, [d?.id]);
   const autoFeito = useRef(new Set<number>());
   useEffect(() => { setSel([]); setAtaques({}); setAtacanteAtivo(null); setUltimoAlvo(null); setBloqueios({}); setBloqueadorAtivo(null); setMenu(null); }, [d?.id]);
   const salaProibe = sala.auxilios === 'proibidos';
@@ -456,6 +476,18 @@ export function Mesa() {
     loja.enviar({ t: 'paradas', paradas: novo });
   }, [e.paradas, aux.jogaveis]);
   const recolher = (x: boolean) => mudarPreferencias({ registro: !x });
+  // pular a cena: Espaço (fora dos campos de texto) ou um clique em qualquer lugar da mesa (onPointerDownCapture abaixo)
+  useEffect(() => {
+    const tecla = (ev: KeyboardEvent) => {
+      if (ev.key !== ' ' || !emCena()) return;
+      const alvo = ev.target as HTMLElement | null;
+      if (alvo?.closest('input, textarea, select, [contenteditable="true"]')) return;
+      ev.preventDefault();
+      pularCena();
+    };
+    addEventListener('keydown', tecla);
+    return () => removeEventListener('keydown', tecla);
+  }, []);
   // a carta sob o mouse some junto com a janela (o mouseleave não chega)
   useEffect(() => { esconderZoom(); }, [modal]);
 
@@ -573,7 +605,7 @@ export function Mesa() {
       return;
     }
     const naPilha = v.stack.some((s) => s.controller === eu && s.def === p.def);
-    if (!naPilha && !(d && d.player === eu && d.kind !== 'priority')) { posPendente.current = null; setConjurando(null); encerrarPouso(); }
+    if (!naPilha && !(dReal && dReal.player === eu && dReal.kind !== 'priority')) { posPendente.current = null; setConjurando(null); encerrarPouso(); }
   }, [v]);
   useEffect(() => {
     if (!fila.length || enviando || d?.kind !== 'priority' || !d.actions.some((a) => a.kind === 'manual')) return;
@@ -1171,7 +1203,7 @@ export function Mesa() {
         jogadorRealce={itemJ !== undefined ? (sel.includes(itemJ) ? 'escolhido' : aux.alvos ? 'escolhivel' : null) : alvoJogador ? 'escolhivel' : null}
         onJogador={itemJ !== undefined ? () => clicarJogador(j.id) : atacarJ ? () => alvoAtaque({ kind: 'player', id: j.id }) : undefined}
         onCliqueArea={atacarJ ? () => alvoAtaque({ kind: 'player', id: j.id }) : undefined}
-        conjurando={j.id === eu && conjurando && d && d.player === eu && d.kind !== 'priority' && v.stack.some((x) => x.controller === eu && x.def === conjurando.o.def) ? conjurando : null}
+        conjurando={j.id === eu && conjurando && dReal && dReal.player === eu && dReal.kind !== 'priority' && v.stack.some((x) => x.controller === eu && x.def === conjurando.o.def) ? conjurando : null}
         onZona={(zona) => setModal({ tipo: 'zona', jogador: j.id, zona })}
         mao={j.id === eu ? v.hand : undefined}
         reservaDireita={j.id === eu ? 336 : 0}
@@ -1220,7 +1252,7 @@ export function Mesa() {
     relogiosChat.current.add(t);
   }, [ultimaChat, recolhida]);
   const naoLidas = recolhida ? e.chat.filter((m) => m.id > lidaChat && m.quem !== e.quem).length : 0;
-  const decisaoManual = d?.kind === 'priority' && d.actions.some((a) => a.kind === 'manual') ? d.id : null;
+  const decisaoManual = dReal?.kind === 'priority' && dReal.actions.some((a) => a.kind === 'manual') ? dReal.id : null;
   // sem prioridade, o ajuste manual fecha (antes ele sumia e voltava sozinho na prioridade seguinte)
   useEffect(() => { if (decisaoManual === null) { setManualAberto(false); setManualTipo(undefined); setPegar(null); } }, [decisaoManual]);
   const preJogo = v.turn.number === 0 && !v.gameOver;
@@ -1262,7 +1294,7 @@ export function Mesa() {
   const escolha = d && !v.gameOver && !enviando && !preJogo && ehEscolha(d) ? d : null;
 
   return (<>
-    <div class={`mesa ${duelo ? 'mesa-duelo' : ''} ${ladoAvatar === 'canto' && !colunaAberta ? 'avatar-canto' : ''} ${recolhida ? 'recolhida' : ''} ${aux.jogaveis ? 'aux-jogaveis' : ''} ${e.desfazer ? 'parada' : ''}`} onClick={() => setMenu(null)}>
+    <div class={`mesa ${duelo ? 'mesa-duelo' : ''} ${ladoAvatar === 'canto' && !colunaAberta ? 'avatar-canto' : ''} ${recolhida ? 'recolhida' : ''} ${aux.jogaveis ? 'aux-jogaveis' : ''} ${e.desfazer ? 'parada' : ''}`} onClick={() => setMenu(null)} onPointerDownCapture={() => pularCena()}>
       <main class="tabuleiro" onContextMenu={(ev) => ev.preventDefault()}>
         <div class={`oponentes n${oponentes.length}`}>{oponentes.map((j) => area(j, true))}</div>
         {area(minha, false)}

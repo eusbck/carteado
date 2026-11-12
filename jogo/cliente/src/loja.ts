@@ -12,6 +12,12 @@ import type { ReferenciaRelogio } from './cronometro.ts';
 import { auxiliosAtivos, preferencias } from './preferencias.ts';
 import { tocar } from './sons.ts';
 import { avatarGuardado } from './avatares.ts';
+import { ligarControle, marcarCena, vistaSemAnimacao } from './mesa/cenaLoja.ts';
+import { FilaQuadros, type Quadro } from './mesa/filaQuadros.ts';
+
+type MsgJogo = Extract<MsgServidor, { t: 'jogo' }>;
+/** uma vista na fila de quadros (protocolo-2) */
+interface QuadroJogo extends Quadro { m: MsgJogo }
 
 export interface Estado {
   fase: 'carregando' | 'entrada' | 'inicio' | 'decks' | 'sala';
@@ -99,6 +105,16 @@ class Loja {
   private seqRevelada = 0;
   /** salas em que o retrato guardado neste navegador já foi mandado (uma vez por sala enquanto a página está aberta) */
   private avatarMandado = new Set<string>();
+  /** as vistas que chegaram, mostradas uma de cada vez (protocolo-2); a cena fica em mesa/cenaLoja.ts */
+  readonly quadros = new FilaQuadros<QuadroJogo>((q) => this.aplicarJogo(q.m), marcarCena);
+  /** o número da última vista recebida nesta conexão */
+  private seqJogo = 0;
+
+  constructor() {
+    ligarControle({ duracao: (ms) => this.quadros.duracao(ms), pular: () => this.quadros.pular() });
+    // aba escondida: nada anima, a mesa vai direto ao último quadro
+    if (typeof document !== 'undefined') document.addEventListener('visibilitychange', () => { if (document.hidden) this.quadros.pular(); });
+  }
 
   mudar(p: Partial<Estado>): void {
     // nada mudou de fato (a mesma sala de novo, a mesma vista): ninguém se desenha de novo
@@ -171,6 +187,7 @@ class Loja {
     this.ws = ws;
     ws.onopen = () => {
       this.tentativas = 0;
+      this.seqJogo = 0;
       this.mudar({ conectado: true });
       const s = salaGuardada();
       if (s) ws.send(JSON.stringify({ t: 'retomar', codigo: s.codigo, token: s.token } satisfies MsgCliente));
@@ -283,6 +300,24 @@ class Loja {
   }
   manual(decisao: number, manual: ManualAction): void { this.responder(decisao, { kind: 'priority', action: 'manual', manual }); }
 
+  /** mostra uma vista (o quadro da vez); devolve se algo da partida mudou de fato */
+  private aplicarJogo(m: MsgJogo): boolean {
+    // o que chegou igual fica com a mesma referência (as cartas que não mudaram não se desenham de novo)
+    const pedido = m.desfazer ? { ...m.desfazer, ate: Date.now() + m.desfazer.restanteMs } : null;
+    const ant = this.e.desfazer;
+    const mesmoPedido = !!pedido && !!ant && ant.de === pedido.de && Math.abs(ant.ate - pedido.ate) < 1500
+      && JSON.stringify([ant.linhas, ant.aceitaram, ant.faltam]) === JSON.stringify([pedido.linhas, pedido.aceitaram, pedido.faltam]);
+    const vista = compartilhar(this.e.vista, m.vista);
+    const mudou = vista !== this.e.vista;
+    this.mudar({
+      vista, paradas: compartilhar(this.e.paradas, m.paradas), posicoes: compartilhar(this.e.posicoes, m.posicoes ?? {}),
+      respondida: m.vista.decision?.id === this.e.respondida ? this.e.respondida : null,
+      recusaCombate: m.vista.decision?.id === this.e.recusaCombate?.decisao ? this.e.recusaCombate : null,
+      desfazivel: !!m.desfazivel, desfazer: mesmoPedido ? ant : pedido,
+    });
+    return mudou;
+  }
+
   private tratar(m: MsgServidor): void {
     switch (m.t) {
       case 'sala': {
@@ -296,21 +331,20 @@ class Loja {
           this.enviar({ t: 'avatar', avatar: guardado });
         }
         // a tela Decks aberta pelo saguão continua aberta enquanto a partida não começa (alguém entrou, trocou de deck…)
+        if (m.sala.estado === 'espera') this.quadros.limpar();
         this.mudar({ sala: compartilhar(this.e.sala, m.sala), relogio, voce: m.voce, quem: m.quem ?? null, fase: this.e.fase === 'decks' && m.sala.estado !== 'jogando' ? 'decks' : 'sala', vista: m.sala.estado === 'espera' ? null : this.e.vista });
         break;
       }
       case 'jogo': {
-        // o que chegou igual fica com a mesma referência (as cartas que não mudaram não se desenham de novo)
-        const pedido = m.desfazer ? { ...m.desfazer, ate: Date.now() + m.desfazer.restanteMs } : null;
-        const ant = this.e.desfazer;
-        const mesmoPedido = !!pedido && !!ant && ant.de === pedido.de && Math.abs(ant.ate - pedido.ate) < 1500
-          && JSON.stringify([ant.linhas, ant.aceitaram, ant.faltam]) === JSON.stringify([pedido.linhas, pedido.aceitaram, pedido.faltam]);
-        this.mudar({
-          vista: compartilhar(this.e.vista, m.vista), paradas: compartilhar(this.e.paradas, m.paradas), posicoes: compartilhar(this.e.posicoes, m.posicoes ?? {}),
-          respondida: m.vista.decision?.id === this.e.respondida ? this.e.respondida : null,
-          recusaCombate: m.vista.decision?.id === this.e.recusaCombate?.decisao ? this.e.recusaCombate : null,
-          desfazivel: !!m.desfazivel, desfazer: mesmoPedido ? ant : pedido,
-        });
+        // vista repetida ou fora de ordem na mesma conexão (não deveria acontecer): fica a mais nova
+        if (m.seq !== undefined) {
+          if (!m.reinicio && m.seq <= this.seqJogo) break;
+          this.seqJogo = m.seq;
+        }
+        // sem cena: vista que não continua a anterior, a primeira, modo Desempenho, aba escondida
+        const saltar = !!m.reinicio || !this.e.vista || preferencias().desempenho || (typeof document !== 'undefined' && document.hidden);
+        if (m.reinicio) vistaSemAnimacao();
+        this.quadros.receber({ chegada: performance.now(), decisao: !!m.vista.decision, m }, saltar);
         break;
       }
       case 'aviso': {
@@ -345,6 +379,7 @@ class Loja {
         if (this.e.catalogo && (m.mudou || (m.tarefa?.tipo === 'confirmar' && m.tarefa.estado !== 'andando'))) void this.recarregarCatalogo();
         break;
       case 'saiu':
+        this.quadros.limpar();
         guardarSala(null);
         // voltando a esta sala (ou a outra) depois, o retrato guardado vai de novo para o assento novo
         this.avatarMandado.clear();

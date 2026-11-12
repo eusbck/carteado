@@ -184,8 +184,19 @@ describe('fase 8: desfazer com aceite da mesa', () => {
     const d = p.vista.decision!;
     g.tratar(p, respostaPadrao(d));
     expect(p.ultima('erro')?.msg).toMatch(/parada/);
+    const nAntes = { p: p.msgs.length, outro: outro.msgs.length };
     g.tratar(outro, { t: 'desfazerResposta', aceitar: true });
     await espera();
+    // protocolo-2: cada vista tem o seu número nesta conexão (1, 2, 3…); a primeira vai como 'cheia' e a primeira depois
+    // do desfazer como 'desfeita' (o cliente esvazia a fila de quadros e não anima a volta); as outras continuam
+    for (const [x, n] of [[p, nAntes.p], [outro, nAntes.outro]] as const) {
+      const jogos = x.msgs.filter((m): m is Extract<MsgServidor, { t: 'jogo' }> => m.t === 'jogo');
+      expect(jogos.map((m) => m.seq)).toEqual(jogos.map((_, i) => i + 1));
+      expect(jogos[0].reinicio).toBe('cheia');
+      const depois = x.msgs.slice(n).filter((m): m is Extract<MsgServidor, { t: 'jogo' }> => m.t === 'jogo');
+      expect(depois[0]?.reinicio).toBe('desfeita');
+      expect(jogos.filter((m) => m.reinicio).length).toBe(2);
+    }
     expect(p.vista.hand.map((c) => c.id).sort()).toEqual([...antes.mao].sort());
     expect(noCampo(p, terreno)).toBe(antes.campo);
     expect(p.vista.decision?.id).toBe(antes.decisao);
