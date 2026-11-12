@@ -9,7 +9,7 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'preact/hooks';
 import type { ChoiceItem, Decision, ObjId } from '../../../motor/types.ts';
 import type { GameView, ObjView, PlayerView, StackView } from '../../../motor/view.ts';
-import { info, nomeCarta, traduzir } from '../cartas.ts';
+import { cartasNoTexto, info, nomeCarta, traduzir } from '../cartas.ts';
 import { IconeVida } from '../icones.tsx';
 import { loja } from '../loja.ts';
 import type { Auxilios } from '../preferencias.ts';
@@ -126,6 +126,8 @@ export function JanelaEscolha(p: JanelaEscolhaProps) {
   }, [recolhida]);
 
   const titulo = gatilhos ? 'Ordem dos seus gatilhos' : traduzir(d.prompt);
+  // perguntas de texto que citam cartas ("você olhou Sol Ring, Island…") mostram a imagem de cada uma
+  const citadas = useMemo(() => (formato === 'simnao' || formato === 'opcoes' || formato === 'numero') && !gatilhos ? cartasDoEnunciado(d.prompt) : [], [d.id, formato]);
   const corpo = (() => {
     switch (formato) {
       case 'numero': return <CorpoNumero d={d as D<'number'>} />;
@@ -138,7 +140,7 @@ export function JanelaEscolha(p: JanelaEscolhaProps) {
   // quantas cartas lado a lado (o tamanho delas na linha sai disso)
   const n = visuais.filter((x) => x.tipo !== 'jogador' && x.tipo !== 'texto').length;
   return (
-    <section ref={caixa} class={`janela-escolha f-${formato} ${recolhida ? 'recolhida' : ''} ${espiando ? 'espiando' : ''}`}
+    <section ref={caixa} class={`janela-escolha f-${formato} ${citadas.length ? 'com-citadas' : ''} ${recolhida ? 'recolhida' : ''} ${espiando ? 'espiando' : ''}`}
       style={{ '--reserva': `${p.reservaDireita}px`, '--n': String(Math.max(1, Math.min(n, 8))) }}
       role="dialog" aria-label={titulo} aria-hidden={recolhida || espiando ? 'true' : undefined}>
       <header class="escolha-topo">
@@ -150,6 +152,7 @@ export function JanelaEscolha(p: JanelaEscolhaProps) {
           <IconeOlho />Ver a mesa
         </button>
       </header>
+      {citadas.length > 0 && <CartasCitadas defs={citadas} dono={d.player} classe="escolha-citadas" onZoom={p.onZoom} />}
       {corpo}
     </section>
   );
@@ -168,6 +171,21 @@ export function EscolhaRecolhida({ d, ui, voltar }: { d: DecisaoEscolha; ui: Est
         <button type="button" class="botao cheio" onClick={voltar}>Voltar à escolha</button>
         {sel && <button type="button" class="botao principal" disabled={!quantidadeOk(ui.sel.length, sel.min, sel.max)} onClick={() => loja.responder(sel.id, { kind: 'select', ids: ui.sel })}>{ui.sel.length === 0 && sel.min === 0 ? 'Nenhum' : 'Confirmar'}</button>}
       </div>
+    </div>
+  );
+}
+
+/** as cartas citadas no enunciado; a fonte no começo ("Lim-Dûl's Vault: …") sai (já está na pilha) */
+function cartasDoEnunciado(prompt: string): string[] {
+  const defs = cartasNoTexto(prompt);
+  return prompt.startsWith(`${defs[0]}:`) ? defs.slice(1) : defs;
+}
+
+/** imagens de cartas citadas num texto (com zoom ao passar o mouse) */
+function CartasCitadas({ defs, dono, classe, onZoom }: { defs: string[]; dono: number; classe: string; onZoom: Zoom }) {
+  return (
+    <div class={classe} style={{ '--nc': String(Math.max(1, Math.min(defs.length, 6))) }}>
+      {defs.map((def, i) => <Carta key={def} o={pseudo(def, def, 0, -3000 - i, dono)} onZoom={onZoom} />)}
     </div>
   );
 }
@@ -256,10 +274,13 @@ function CorpoSelecao(p: SelecaoProps) {
     const pos = d.ordered && marcados.length ? sel.indexOf(marcados[0]) + 1 : 0;
     const desligado = bloqueado(it);
     if (x.tipo === 'texto') {
+      const citadas = cartasNoTexto(it.label);
       return (
         <button key={g.chave} type="button" class={`item item-opcao ${marcados.length ? 'escolhido' : ''}`} disabled={desligado} onClick={() => clicar(ids)}>
           {pos > 0 && <span class="item-ordem">{pos}</span>}
           <TextoComSimbolos texto={nome} />
+          {/* opções que citam cartas ("Pilha virada para cima: Sol Ring, Island") mostram a imagem delas */}
+          {citadas.length > 0 && <CartasCitadas defs={citadas} dono={d.player} classe="opcao-citadas" onZoom={desligado ? () => {} : p.onZoom} />}
         </button>
       );
     }
