@@ -388,3 +388,45 @@ export type MsgServidor =
   /** `de`: o tipo da mensagem do cliente que causou o erro (ausente quando o erro não responde a uma mensagem, como
    * o aviso a toda a mesa de um erro do motor numa jogada de bot) */
   | { t: 'erro'; msg: string; de?: MsgCliente['t'] };
+
+// ---------------------------------------------------------------------------
+// Relatos de erro (botão "Reportar erro"): o que a pessoa escreve, as imagens e o contexto do cliente. O servidor
+// junta a partida da sala (entradas e checkpoint, para refazer o erro) e grava tudo em dados-locais/relatos/<id>/.
+// Quem cuida do jogo lê com: node ferramentas/relatos.ts
+// ---------------------------------------------------------------------------
+
+export type TipoRelato = 'regra' | 'visual' | 'travou' | 'bot' | 'outro';
+export type RepeteRelato = 'sempre' | 'as-vezes' | 'uma-vez' | 'nao-sei';
+
+export interface ImagemRelato {
+  /** data URL (image/png, image/jpeg ou image/webp) */
+  dados: string;
+  /** tela: o print da página feito pelo jogo; aba: captura da aba pelo navegador; anexo: arquivo ou colado */
+  origem: 'tela' | 'aba' | 'anexo';
+  /** nome do arquivo anexado, se houver */
+  nome?: string;
+  /** a pessoa riscou em cima (Marcador) */
+  marcada?: boolean;
+}
+
+export interface PedidoRelato {
+  tipo: TipoRelato;
+  /** o que aconteceu (obrigatório) */
+  oque: string;
+  esperado?: string;
+  passos?: string;
+  repete?: RepeteRelato;
+  /** cartas envolvidas (nomes em inglês, como no motor) */
+  cartas?: string[];
+  /** quem relata */
+  nome?: string;
+  imagens: ImagemRelato[];
+  /** a sala em que a pessoa está, com o token do assento: o servidor só junta a partida se o token conferir */
+  sala?: { codigo: string; token: string } | null;
+  /** junta a partida (entradas, checkpoint e listas) para refazer o erro */
+  anexarPartida: boolean;
+  /** o que o cliente sabe na hora: tela, navegador, erros, últimas mensagens, a vista da mesa… */
+  contexto: Record<string, unknown>;
+}
+
+export type RespostaRelato = { ok: true; id: string } | { ok: false; erro: string };

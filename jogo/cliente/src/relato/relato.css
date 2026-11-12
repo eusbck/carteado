@@ -1,0 +1,77 @@
+/* ---------------------------------------------------------------- Reportar erro (relato/Relato.tsx) */
+.janela-caixa.relato { width: min(860px, 100%); }
+.relato-form { display: grid; gap: 16px; }
+.relato-intro { font-size: 13.5px; margin: 0; }
+.relato-campo { display: grid; gap: 7px; margin: 0; padding: 0; border: 0; min-width: 0; color: var(--suave); font-size: 13px; }
+.relato-campo > legend { padding: 0; margin-bottom: 7px; }
+.relato-campo small { font-size: 12px; }
+.relato-obrigatorio { font-style: normal; font-weight: 600; letter-spacing: 0; text-transform: none; color: var(--acao); margin-left: 6px; font-size: 11px; }
+.relato-form textarea {
+  width: 100%; resize: vertical; min-height: 64px; background: rgba(255, 255, 255, .04); border: 1.5px solid var(--linha-forte); border-radius: 9px;
+  padding: 9px 11px; color: var(--texto); font: inherit; font-size: 14px; line-height: 1.45;
+}
+.relato-form textarea:focus { outline: none; border-color: var(--acao); }
+.relato-form textarea::placeholder, .relato-form input::placeholder { color: var(--apagado); }
+.relato-duas { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.relato-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.relato-chip {
+  display: inline-flex; align-items: center; min-height: 32px; padding: 0 13px; border-radius: 999px; border: 1px solid var(--linha-forte);
+  background: rgba(0, 0, 0, .2); color: var(--suave); font: inherit; font-size: 13px; font-weight: 600; cursor: pointer;
+}
+.relato-chip:hover { color: var(--texto); border-color: rgba(255, 255, 255, .35); }
+.relato-chip.ativo { color: var(--ouro-texto); background: var(--ouro); border-color: var(--ouro); }
+.relato-chip.pequeno { min-height: 26px; padding: 0 10px; font-size: 12px; }
+.relato-sugestoes { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.relato-cartas { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.relato-cartas li { display: inline-flex; align-items: center; gap: 4px; height: 28px; padding: 0 4px 0 11px; border-radius: 999px; background: var(--ouro-fundo); border: 1px solid color-mix(in srgb, var(--ouro) 55%, transparent); color: var(--texto); font-size: 12.5px; font-weight: 600; }
+.relato-cartas button { width: 22px; height: 22px; border: 0; border-radius: 50%; background: none; color: var(--suave); font-size: 16px; line-height: 1; cursor: pointer; }
+.relato-cartas button:hover { background: rgba(255, 255, 255, .1); color: var(--texto); }
+.relato-imagens { padding: 12px; border: 1.5px dashed var(--linha-forte); border-radius: 12px; transition: border-color .15s, background .15s; }
+.relato-imagens.arrastando { border-color: var(--ouro); background: var(--ouro-fundo); }
+.relato-conta { margin-left: 6px; color: var(--apagado); letter-spacing: .04em; }
+.relato-galeria { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 12px; }
+.relato-galeria li { display: grid; gap: 6px; align-content: start; min-width: 0; }
+.relato-miniatura { display: block; padding: 0; border: 1px solid var(--linha-forte); border-radius: 9px; overflow: hidden; background: #000; cursor: crosshair; aspect-ratio: 16 / 10; }
+.relato-miniatura img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.relato-miniatura:hover { border-color: var(--ouro); }
+.relato-legenda { font-size: 12px; color: var(--suave); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.relato-nome { max-width: 360px; }
+.relato-check { display: flex; align-items: flex-start; gap: 9px; color: var(--texto); font-size: 13.5px; font-weight: 500; cursor: pointer; }
+.relato-check input { margin-top: 2px; flex: 0 0 auto; }
+.relato-check small { display: inline; font-size: 12px; }
+.relato-detalhes { font-size: 12.5px; color: var(--suave); }
+.relato-detalhes summary { cursor: pointer; font-weight: 600; }
+.relato-detalhes ul { margin: 8px 0 0; padding-left: 18px; display: grid; gap: 3px; }
+.relato-aviso { margin: 0; padding: 9px 12px; border-radius: 9px; border: 1px solid color-mix(in srgb, var(--ouro) 50%, transparent); background: var(--ouro-fundo); color: var(--texto); font-size: 13px; }
+.relato-erro { margin: 0; padding: 9px 12px; border-radius: 9px; border: 1px solid var(--vermelho); background: var(--vermelho-fundo); color: #ffd2d2; font-size: 13px; }
+.relato-acoes { justify-content: flex-end; padding-top: 4px; }
+.relato-espaco { flex: 1; }
+.relato-dica { flex: 1; font-size: 12.5px; }
+.relato-ok { display: grid; justify-items: center; gap: 8px; text-align: center; padding: 10px 0 6px; }
+.relato-ok p { margin: 0; }
+.relato-ok-marca { display: grid; place-items: center; width: 52px; height: 52px; border-radius: 50%; background: var(--positivo); color: var(--positivo-texto); font-size: 28px; font-weight: 800; }
+.relato-numero { font-family: var(--mono); font-size: 30px; letter-spacing: .3em; color: var(--ouro); padding-left: .3em; }
+/* fora da janela: o aviso enquanto o print sai e a contagem do "Novo print" */
+.relato-capturando, .relato-contagem {
+  position: fixed; left: 50%; bottom: 22px; transform: translateX(-50%); z-index: 400; display: flex; align-items: center; gap: 12px;
+  padding: 10px 16px; border-radius: 12px; background: var(--vidro); border: 1px solid var(--ouro); color: var(--texto); font-weight: 600; box-shadow: var(--sombra);
+}
+.relato-contagem b { color: var(--ouro); font-size: 18px; }
+/* botão das telas de fora da mesa (na mesa ele fica no menu lateral) */
+.relato-flutuante {
+  position: fixed; right: 14px; bottom: 14px; z-index: 150; display: inline-flex; align-items: center; gap: 7px; height: 34px; padding: 0 13px;
+  border-radius: 999px; border: 1px solid var(--linha-forte); background: rgba(18, 16, 19, .78); color: var(--suave); font: inherit; font-size: 12.5px; font-weight: 600;
+  cursor: pointer; backdrop-filter: blur(4px);
+}
+.relato-flutuante:hover { color: var(--texto); border-color: var(--ouro); }
+.relato-flutuante svg { width: 16px; height: 16px; }
+.aviso-erro .relato-do-aviso { margin-left: 12px; vertical-align: middle; }
+/* Marcar na imagem (relato/Marcador.tsx) */
+.janela-caixa.marcador { width: min(1280px, 100%); }
+.marcador-barra { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; }
+.marcador-grupo { display: flex; gap: 6px; align-items: center; }
+.marcador-cor { width: 26px; height: 26px; border-radius: 50%; border: 2px solid rgba(255, 255, 255, .25); background: var(--cor); cursor: pointer; padding: 0; }
+.marcador-cor.ativa { border-color: #fff; box-shadow: 0 0 0 2px var(--cor); }
+.marcador-area { display: grid; place-items: center; min-height: 200px; background: #000; border-radius: 10px; overflow: hidden; }
+.marcador-area canvas { display: block; max-width: 100%; max-height: calc(100dvh - 260px); cursor: crosshair; touch-action: none; }
+@media (max-width: 700px) { .relato-duas { grid-template-columns: 1fr; } .relato-espaco { display: none; } }

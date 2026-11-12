@@ -12,6 +12,7 @@ import type { ReferenciaRelogio } from './cronometro.ts';
 import { auxiliosAtivos, preferencias } from './preferencias.ts';
 import { tocar } from './sons.ts';
 import { avatarGuardado } from './avatares.ts';
+import { registrarEnvio, registrarErroServidor } from './relato/diagnostico.ts';
 
 export interface Estado {
   fase: 'carregando' | 'entrada' | 'inicio' | 'decks' | 'sala';
@@ -57,7 +58,8 @@ export interface Estado {
 
 const CHAVE = 'commander-da-mesa:sala';
 
-function salaGuardada(): { codigo: string; token: string } | null {
+/** a sala e o token do seu assento (o relato de erro manda para o servidor juntar a partida) */
+export function salaGuardada(): { codigo: string; token: string } | null {
   try {
     const s = localStorage.getItem(CHAVE);
     return s ? JSON.parse(s) : null;
@@ -324,6 +326,7 @@ class Loja {
   }
 
   enviar(m: MsgCliente): void {
+    registrarEnvio(m);
     if (this.ws && this.ws.readyState === WebSocket.OPEN) this.ws.send(JSON.stringify(m));
     else this.fila.push(m);
   }
@@ -405,6 +408,7 @@ class Loja {
       case 'pong':
         break;
       case 'erro': {
+        registrarErroServidor(m.de ? `${m.msg} (de: ${m.de})` : m.msg);
         // só o erro que responde a uma jogada (`de: 'responder'`) mexe na decisão; o do chat, de uma posição ou de
         // outra mensagem só avisa (antes, o limite do chat que chegasse com uma resposta pendente virava "jogada
         // recusada" e sumia). Servidor de antes do `de`: vale como antes, pela resposta pendente

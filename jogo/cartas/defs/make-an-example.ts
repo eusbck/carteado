@@ -15,7 +15,7 @@ export default defineCard({
         // CR 101.4: os oponentes separam em ordem de turno; uma pilha pode ficar vazia
         for (const p of g.apnap().filter((x) => g.isOpponent(c.you, x))) {
           const criaturas = creaturesOf(g, p);
-          const esc = criaturas.length ? yield* chooseItems(g, p, 'Make an Example: separe as suas criaturas em duas pilhas — escolha as da primeira pilha (as outras ficam na segunda)', criaturas.map((id) => objItem(g, id, nameOf(g, id))), 0, criaturas.length) : [];
+          const esc = criaturas.length ? yield* chooseItems(g, p, 'Make an Example: separe as suas criaturas em duas pilhas — escolha as da primeira pilha (as outras ficam na segunda)', criaturas.map((id) => objItem(g, id, nameOf(g, id))), 0, criaturas.length, false, { split: true }) : [];
           const a = esc.map(Number);
           pilhas.push({ p, a, b: criaturas.filter((id) => !a.includes(id)) });
         }
@@ -24,8 +24,8 @@ export default defineCard({
         for (const { p, a, b } of pilhas) {
           const nomes = (ids: ObjId[]) => (ids.length ? ids.map((id) => nameOf(g, id)).join(', ') : 'vazia');
           const [qual] = yield* chooseItems(g, c.you, `Make an Example: qual pilha ${s.players[p].name} sacrifica?`, [
-            { id: 'a', label: `Primeira pilha: ${nomes(a)}` },
-            { id: 'b', label: `Segunda pilha: ${nomes(b)}` },
+            { id: 'a', label: `Primeira pilha: ${nomes(a)}`, pile: a },
+            { id: 'b', label: `Segunda pilha: ${nomes(b)}`, pile: b },
           ], 1, 1);
           sacrificar.push(...(qual === 'a' ? a : b));
         }

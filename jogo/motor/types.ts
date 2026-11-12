@@ -550,6 +550,8 @@ export interface ChoiceItem {
   /** carta mostrada só a quem decide (grimório, mão de outro…) */
   card?: { def: string; face?: number };
   disabled?: boolean;
+  /** a opção é uma pilha de cartas (Fact or Fiction, Make an Example…): os objetos dela, para os bots pesarem */
+  pile?: ObjId[];
 }
 
 export interface PriorityAction {
@@ -580,6 +582,9 @@ export type Decision = {
     secret?: boolean;
     /** a carta de que a pergunta trata (milagre: revelar ou conjurar esta carta) */
     about?: ObjId;
+    /** separar em duas pilhas: os itens escolhidos formam a primeira, o resto a segunda, e outro jogador escolhe uma
+     *  delas (Fact or Fiction, Make an Example) */
+    split?: boolean;
   }
   | { kind: 'number'; min: number; max: number }
   | { kind: 'payment'; cost: string; remaining: string; sources: PaymentSource[]; canAuto: boolean; lifeOptions: number; canCancel: boolean }
