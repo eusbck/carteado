@@ -15,6 +15,7 @@ import { EscolhaLugares } from './EscolhaLugares.tsx';
 import { descricaoLugares } from '../lugares.ts';
 import { Avatar } from '../mesa/Avatar.tsx';
 import { avatarDoAssento } from '../avatares.ts';
+import { BotoesOrigem, passaNoFiltro, SeloOrigem, useFiltroOrigem } from './FiltroOrigem.tsx';
 import type { AssentoPublico, DeckResumo, EtapaSaguao, SalaPublica } from '../../../servidor/protocolo.ts';
 import { NIVEIS_BOT, NIVEL_PADRAO, nomeNivel, type NivelBot } from '../../../bots/niveis.ts';
 
@@ -175,6 +176,7 @@ function CartaoDeck({ d, meu, de, escolher, abrir }: { d: DeckResumo; meu: boole
         {meu && <span class="deck-selo">Seu deck</span>}
         {de.length > 0 && <span class="deck-quem">{de.join(', ')}</span>}
         <span class="deck-info">
+          <SeloOrigem origem={d.origem} />
           <span class="deck-nome">{d.nome}</span>
           <span class="deck-cmd"><span>{nomeCarta(d.comandante, d.comandante).split(',')[0]}{d.parceiro ? ` e ${nomeCarta(d.parceiro, d.parceiro).split(',')[0]}` : ''}</span><Simbolos custo={cores(d)} /></span>
         </span>
@@ -193,6 +195,9 @@ function PassoDecks({ sala, eu, decks }: { sala: SalaPublica; eu: number; decks:
   const deckDe = (id: string | null) => decks.find((d) => d.id === id) ?? null;
   const faltam = sala.assentos.filter((a) => a.tipo !== 'vazio' && !a.deck).length;
   const pronto = sala.assentos.every((a) => a.tipo !== 'vazio' && a.deck);
+  const [filtro, setFiltro] = useFiltroOrigem();
+  // o deck escolhido continua à vista mesmo fora do filtro
+  const visiveis = ordenados(decks).filter((d) => passaNoFiltro(filtro, d) || d.id === meuDeck);
   return (
     <div class="saguao-passo saguao-decks">
       <aside class="decks-lugares">
@@ -229,8 +234,9 @@ function PassoDecks({ sala, eu, decks }: { sala: SalaPublica; eu: number; decks:
             <button type="button" class="botao pequeno" onClick={() => void loja.abrirDecks()} title="Importar um deck pelo link do Moxfield ou atualizar os da mesa">Decks</button>
           </span>
         </div>
+        <BotoesOrigem decks={decks} valor={filtro} mudar={setFiltro} />
         <div class="decks">
-          {ordenados(decks).map((d) => (
+          {visiveis.map((d) => (
             <CartaoDeck key={d.id} d={d} meu={d.id === meuDeck} abrir={() => setPrevia(d)}
               escolher={() => loja.enviar({ t: 'deck', deck: d.id })}
               de={sala.assentos.filter((a) => a.deck === d.id && a.indice !== eu && a.tipo !== 'vazio').map((a) => a.nome ?? '?')} />

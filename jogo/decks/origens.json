@@ -1,0 +1,270 @@
+{
+ "formato": 1,
+ "decks": {
+  "-73tFnDWzkaLqk6HWSxYsA": {
+   "tipo": "precon",
+   "produto": "Wakanda Forever",
+   "codigo": "MSC",
+   "conferidoEm": "2026-11-12T19:20:11.125Z"
+  },
+  "21PMEusrfEmeqhQVYP59dA": {
+   "tipo": "precon",
+   "produto": "Odds and Ends",
+   "codigo": "SLD",
+   "conferidoEm": "2026-11-12T19:20:11.826Z"
+  },
+  "6AR9GAj1bkW2zwOCvuyQ0Q": {
+   "tipo": "montado",
+   "conferidoEm": "2026-11-12T19:20:10.910Z"
+  },
+  "80zkHrncgEKyre0fMIJbng": {
+   "tipo": "precon",
+   "produto": "Keen Engineering",
+   "codigo": "FDC",
+   "conferidoEm": "2026-11-12T19:20:11.768Z"
+  },
+  "8ufvofa2ZkWCvXRR1lCFKQ": {
+   "tipo": "precon",
+   "produto": "Necron Dynasties",
+   "codigo": "40K",
+   "conferidoEm": "2026-11-12T19:20:11.589Z"
+  },
+  "ALne8k6SV06cVQolK5RMTw": {
+   "tipo": "precon",
+   "produto": "We Are the Borg",
+   "codigo": "TRC",
+   "conferidoEm": "2026-11-12T19:20:12.651Z"
+  },
+  "BPBVD7NsT0SznrmdG4l3Tw": {
+   "tipo": "precon",
+   "produto": "Blame Game",
+   "codigo": "MKC",
+   "conferidoEm": "2026-11-12T19:20:11.944Z"
+  },
+  "brasil-bolsonaro": {
+   "tipo": "casa",
+   "conferidoEm": "2026-11-12T19:20:11.944Z"
+  },
+  "brasil-lula": {
+   "tipo": "casa",
+   "conferidoEm": "2026-11-12T19:20:11.944Z"
+  },
+  "dL6gcTQ7hUq6nQq7fijzUA": {
+   "tipo": "precon",
+   "produto": "Miracle Worker",
+   "codigo": "DSC",
+   "conferidoEm": "2026-11-12T19:20:12.474Z"
+  },
+  "fbMRiG7ia0-hm464dMWcEQ": {
+   "tipo": "precon",
+   "produto": "Avengers Assemble",
+   "codigo": "MSC",
+   "conferidoEm": "2026-11-12T19:20:11.703Z"
+  },
+  "flLw5YvIOE2tBprZ_GTsmQ": {
+   "tipo": "precon",
+   "produto": "Maestros Massacre",
+   "codigo": "NCC",
+   "conferidoEm": "2026-11-12T19:20:11.529Z"
+  },
+  "G0y9ltIwoUysUSoAYtyFfA": {
+   "tipo": "precon",
+   "produto": "Raining Cats and Dogs",
+   "codigo": "SLD",
+   "conferidoEm": "2026-11-12T19:20:11.470Z"
+  },
+  "G1OgAfZWPXGNR69mOTQcVA": {
+   "tipo": "modificado",
+   "produto": "Witherbloom Pestilence",
+   "codigo": "SOC",
+   "trocas": 6,
+   "conferidoEm": "2026-11-12T19:20:10.675Z"
+  },
+  "G1OgAYgqlH2LnNRydDvJZA": {
+   "tipo": "modificado",
+   "produto": "Silverquill Influence",
+   "codigo": "SOC",
+   "trocas": 6,
+   "conferidoEm": "2026-11-12T19:20:10.521Z"
+  },
+  "GlOgAc8-TnKWpvRoIoHulw": {
+   "tipo": "modificado",
+   "produto": "Abzan Armor",
+   "codigo": "TDC",
+   "trocas": 4,
+   "conferidoEm": "2026-11-12T19:20:10.219Z"
+  },
+  "GlOgAfgTAnKDYn2lIU_Phg": {
+   "tipo": "modificado",
+   "produto": "Blight Curse",
+   "codigo": "ECC",
+   "trocas": 11,
+   "conferidoEm": "2026-11-12T19:20:10.301Z"
+  },
+  "GlOgAfT6uXulKGLB5NBi5A": {
+   "tipo": "modificado",
+   "produto": "Prismari Artistry",
+   "codigo": "SOC",
+   "trocas": 10,
+   "conferidoEm": "2026-11-12T19:20:10.451Z"
+  },
+  "GlOgAZd3aH2ggq5J8q0AVg": {
+   "tipo": "modificado",
+   "produto": "Lorehold Spirit",
+   "codigo": "SOC",
+   "trocas": 7,
+   "conferidoEm": "2026-11-12T19:20:10.361Z"
+  },
+  "gzvtI9o53U6g06GgzF9keQ": {
+   "tipo": "precon",
+   "produto": "The Fantastic Four",
+   "codigo": "MSC",
+   "conferidoEm": "2026-11-12T19:20:11.333Z"
+  },
+  "HAKhAUw1_Xqr0ZxAoQgsCg": {
+   "tipo": "modificado",
+   "produto": "Wretched Ranks",
+   "codigo": "FDC",
+   "trocas": 10,
+   "conferidoEm": "2026-11-12T19:20:10.839Z"
+  },
+  "HAKhAXl1RHyly2_QGDPvzg": {
+   "tipo": "modificado",
+   "produto": "Multiverse Reforged",
+   "codigo": "FRC",
+   "trocas": 7,
+   "conferidoEm": "2026-11-12T19:20:10.758Z"
+  },
+  "JHjwO92ZUEyNdPzE7D5d7A": {
+   "tipo": "precon",
+   "produto": "Turtle Power!",
+   "codigo": "TMC",
+   "conferidoEm": "2026-11-12T19:20:11.195Z"
+  },
+  "JNIylOIFGEmjh2WgU7Et9g": {
+   "tipo": "precon",
+   "produto": "Grand Larceny",
+   "codigo": "OTC",
+   "conferidoEm": "2026-11-12T19:20:12.284Z"
+  },
+  "lava2X1Op0aSeUHhPC5cfQ": {
+   "tipo": "precon",
+   "produto": "Vampiric Bloodline",
+   "codigo": "VOC",
+   "conferidoEm": "2026-11-12T19:20:11.646Z"
+  },
+  "m_jqtk3F6EOQiq1gytJFJg": {
+   "tipo": "precon",
+   "produto": "Tramplesaurus Rex",
+   "codigo": "FDC",
+   "conferidoEm": "2026-11-12T19:20:12.177Z"
+  },
+  "mWQACuymy0OV-2MJgx2-TQ": {
+   "tipo": "precon",
+   "produto": "Doom Prevails",
+   "codigo": "MSC",
+   "conferidoEm": "2026-11-12T19:20:11.060Z"
+  },
+  "n3QS3JZ_zkmwLhmLDTc8Sw": {
+   "tipo": "precon",
+   "produto": "Hatsune Miku",
+   "codigo": "SLD",
+   "conferidoEm": "2026-11-12T19:20:11.263Z"
+  },
+  "oTndvxb8bkqLPK_kANUrkA": {
+   "tipo": "montado",
+   "conferidoEm": "2026-11-12T19:20:12.971Z"
+  },
+  "QqTlg-04_k-RSVJuf1QMvA": {
+   "tipo": "montado",
+   "conferidoEm": "2026-11-12T19:20:13.656Z"
+  },
+  "qRtSdDIfr0GcsyePCZkocw": {
+   "tipo": "montado",
+   "conferidoEm": "2026-11-12T19:20:13.376Z"
+  },
+  "QTZDODqtBUOQGIoEbEDbCQ": {
+   "tipo": "precon",
+   "produto": "Buckle Up",
+   "codigo": "NEC",
+   "conferidoEm": "2026-11-12T19:20:12.060Z"
+  },
+  "Rfkjiccwo0CXLUWqsIriDQ": {
+   "tipo": "montado",
+   "conferidoEm": "2026-11-12T19:20:13.281Z"
+  },
+  "RjnJ0tpS-UyYyu6jVUmR7g": {
+   "tipo": "precon",
+   "produto": "Heavenly Inferno",
+   "codigo": "CMA",
+   "conferidoEm": "2026-11-12T19:20:11.883Z"
+  },
+  "RsDLnw1yBkWyyVMzV2BFzA": {
+   "tipo": "montado",
+   "conferidoEm": "2026-11-12T19:20:13.509Z"
+  },
+  "shj-af8AiUWaoFVbNORQig": {
+   "tipo": "montado",
+   "conferidoEm": "2026-11-12T19:20:13.084Z"
+  },
+  "shVPe5yzCU2zxRPfg2eOrQ": {
+   "tipo": "modificado",
+   "produto": "Revival Trance (FINAL FANTASY VI)",
+   "codigo": "FIC",
+   "trocas": 16,
+   "conferidoEm": "2026-11-12T19:20:10.600Z"
+  },
+  "STCkf8pBDE-Xxi1hgsZKiQ": {
+   "tipo": "precon",
+   "produto": "Calling All Angels",
+   "codigo": "FDC",
+   "conferidoEm": "2026-11-12T19:20:12.114Z"
+  },
+  "sxWCdd1NJ0q5JytH2RJyuA": {
+   "tipo": "precon",
+   "produto": "Squirreled Away",
+   "codigo": "BLC",
+   "conferidoEm": "2026-11-12T19:20:12.005Z"
+  },
+  "T8Z7YBCEPkm7l2Bn27cDhw": {
+   "tipo": "montado",
+   "conferidoEm": "2026-11-12T19:20:13.765Z"
+  },
+  "tsKfnd0haUax0CLKMHWVHQ": {
+   "tipo": "precon",
+   "produto": "Reign of Dragons",
+   "codigo": "FDC",
+   "conferidoEm": "2026-11-12T19:20:11.410Z"
+  },
+  "UbO_Mq2RREaIUQhbCr3lOw": {
+   "tipo": "precon",
+   "produto": "Quick Draw",
+   "codigo": "OTC",
+   "conferidoEm": "2026-11-12T19:20:12.365Z"
+  },
+  "vNWUamZY7Uu0gqg6xKepyw": {
+   "tipo": "precon",
+   "produto": "Landing Party",
+   "codigo": "TRC",
+   "conferidoEm": "2026-11-12T19:20:12.772Z"
+  },
+  "x_R7MWbxrUq4A2ST0PqldA": {
+   "tipo": "montado",
+   "conferidoEm": "2026-11-12T19:20:12.564Z"
+  },
+  "xDt7Pt1P4Ea6iQph663VRg": {
+   "tipo": "montado",
+   "conferidoEm": "2026-11-12T19:20:13.191Z"
+  },
+  "Y2cdFYZw_0-isKafmKXgNw": {
+   "tipo": "montado",
+   "conferidoEm": "2026-11-12T19:20:12.875Z"
+  },
+  "Z4cD-XEZRUuH4W9jB_SvuA": {
+   "tipo": "precon",
+   "produto": "The Hosts of Mordor",
+   "codigo": "LTC",
+   "conferidoEm": "2026-11-12T19:20:10.986Z"
+  }
+ }
+}
