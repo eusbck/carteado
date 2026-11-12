@@ -59,3 +59,5 @@ export * from './historia.ts';
 // lote3-f: devoção, turno extra, evocar, dash, barganha e spree (cEDH Inalla)
 export * from './cedh.ts';
 export { successor } from './state.ts';
+// lote4-a: mana que depende do custo pago (Squandered Resources) e manutenção cumulativa pagando vida (Glacial Chasm)
+export * from './terrenos.ts';

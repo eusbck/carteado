@@ -178,6 +178,10 @@ const esperadas: Record<string, [string, string[], string[], string[], number | 
   // foods-b
   'Servo': ['Servo', ['Artifact', 'Creature'], ['Servo'], [], 1, 1, []],
   'Cat 1/1 branco': ['Cat', ['Creature'], ['Cat'], ['W'], 1, 1, []],
+  // lote4-a
+  'Heartwood': ['Heartwood', ['Artifact'], ['Heartwood'], ['G', 'R'], null, null, []],
+  'Lander': ['Lander', ['Artifact'], ['Lander'], [], null, null, []],
+  'Beast 4/4': ['Beast', ['Creature'], ['Beast'], ['G'], 4, 4, []],
 };
 
 describe('Fichas: características', () => {
@@ -404,5 +408,21 @@ describe("Fichas: 'Eldrazi Scion'", () => {
     tg.cast('Sol Ring').resolve();
     expect(tg.find('Eldrazi Scion')).toBeNull();
     expect(tg.find('Sol Ring')).not.toBeNull();
+  });
+});
+
+// lote4-a
+describe("Fichas: 'Heartwood' e 'Lander'", () => {
+  it('Heartwood: {T}: adicione {R} ou {G}', () => {
+    const tg = setup({ battlefield: [[{ name: 'Heartwood', token: true }], []] });
+    const id = tg.bf('Heartwood');
+    expect(manaOptions(tg.g, 0).filter((o) => o.obj === id).map((o) => o.alt.join('')).sort()).toEqual(['G', 'R']);
+  });
+  it('Lander: {2}, {T}, sacrifique: um terreno básico do grimório para o campo virado', () => {
+    const tg = setup({ battlefield: [[{ name: 'Lander', token: true }, 'Sol Ring'], []], library: [['Island', 'Forest'], []] });
+    tg.choose('terreno básico', ['Forest']).activate('Lander').resolve();
+    expect(tg.find('Lander')).toBeNull();
+    const f = tg.bf('Forest');
+    expect(tg.state.objects[f].tapped).toBe(true);
   });
 });

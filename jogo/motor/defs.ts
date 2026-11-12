@@ -180,6 +180,10 @@ export interface ManaAbilityDef extends AbilityCommon {
   /** lote3-f: "ative somente como uma instantânea" numa habilidade de mana (Lion's Eye Diamond): precisa de prioridade, então
    *  não pode ser ativada enquanto se paga um custo (conjurando, ativando ou pagando durante a resolução; CR 605.3a, 117.1b) */
   notWhilePaying?: boolean;
+  /** lote4-a: a mana depende do que foi pago no custo ("adicione uma mana de qualquer tipo que o terreno sacrificado
+   *  poderia produzir": Squandered Resources; CR 106.7). Chamada depois de pagar, com o costInfo; `produce` fica como a
+   *  estimativa usada no planejamento. Lista vazia: nenhuma mana (motor/terrenos.ts manaDoCusto) */
+  produceFromCost?: (c: SCtx, costInfo: Record<string, unknown>) => ManaType[][];
 }
 
 export interface ActivatedDef extends AbilityCommon {
@@ -364,6 +368,8 @@ export interface RuleHooks {
   skipsExtraTurn?: (c: SCtx, player: PlayerId) => boolean;
   /** "Você pode olhar a carta do topo do seu grimório a qualquer momento" (Vesuvan Drifter, Realmwalker) */
   lookAtTopOfLibrary?: (c: SCtx, player: PlayerId) => boolean;
+  /** lote4-a: "jogue com a carta do topo do seu grimório revelada" (Oracle of Mul Daya): todos veem o topo (motor/view.ts) */
+  topOfLibraryRevealed?: (c: SCtx, player: PlayerId) => boolean;
   /** "Você não perde mana [vermelha] não gasta quando as etapas e fases terminam" (Leyline Tyrant; CR 106.4, 500.5) */
   keepsUnspentMana?: (c: SCtx, player: PlayerId, unit: ManaUnit) => boolean;
   /** lote3-d: "cartas de criatura em cemitérios e grimórios não podem entrar no campo" (Grafdigger's Cage): a carta, a zona

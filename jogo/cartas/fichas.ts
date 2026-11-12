@@ -1,7 +1,7 @@
 // Fichas (CR 111) criadas pelas cartas dos decks. Cada uma aponta para a imagem da ficha
 // correspondente em ../cartas/data (pelo nome, força/resistência e cores).
 
-import { activated, addCounters, allowPlay, chars, chooseItems, controlledBy, controllerOf, cost, createTokens, creaturesOf, decayed, defineToken, draw, exile, gainLife, is, isLand, isType, keywords, lkiChars, lookAndArrange, loseLife, mana, moveObjects, nameOf, objItem, on, putOntoBattlefield, sacrifice, selfGets, t, tgt, triggered, untilEndOfTurn, yesNo, type AbilityDef, type G, type Gen } from '../motor/api.ts';
+import { activated, addCounters, fetchBasicToBattlefield, allowPlay, chars, chooseItems, controlledBy, controllerOf, cost, createTokens, creaturesOf, decayed, defineToken, draw, exile, gainLife, is, isLand, isType, keywords, lkiChars, lookAndArrange, loseLife, mana, moveObjects, nameOf, objItem, on, putOntoBattlefield, sacrifice, selfGets, t, tgt, triggered, untilEndOfTurn, yesNo, type AbilityDef, type G, type Gen } from '../motor/api.ts';
 import type { Ctx } from '../motor/defs.ts';
 import { fichasOracle } from '../motor/oracle.ts';
 import type { Color, ObjId } from '../motor/types.ts';
@@ -531,4 +531,21 @@ export const CatBranco11 = defineToken({
   id: 'Cat 1/1 branco', name: 'Cat', types: ['Creature'], subtypes: ['Cat'], colors: ['W'], power: 1, toughness: 1, abilities: [],
   // a impressa sem texto (há outra Cat 1/1 branca, com vínculo com a vida)
   image: fichasOracle.find((f) => f.faces[0].name === 'Cat' && f.faces[0].power === 1 && f.faces[0].colors.join() === 'W' && f.faces[0].oracleText === '')?.oracleId,
+});
+// lote4-a (Jund Lands, Hearthhull)
+/** Heartwood: artefato vermelho e verde com "{T}: Adicione {R} ou {G}." (ficha predefinida; Tenured Tethermage, Soul Tether) */
+export const Heartwood = token('Heartwood', 'Heartwood', ['Artifact'], ['Heartwood'], ['R', 'G'], null, null, [
+  mana(['R', 'G'], { text: '{T}: Adicione {R} ou {G}.' }),
+]);
+/** Lander: artefato com "{2}, {T}, Sacrifique esta ficha: procure um terreno básico, ponha-o no campo virado, embaralhe"
+ *  (ficha predefinida; Horizon Explorer) */
+export const Lander = token('Lander', 'Lander', ['Artifact'], ['Lander'], [], null, null, [
+  activated('{2}, {T}, Sacrifice this token', function* (c) {
+    yield* fetchBasicToBattlefield(c, 1, { tapped: true, prompt: 'Procure uma carta de terreno básico' });
+  }, { text: '{2}, {T}, Sacrifique esta ficha: Procure no seu grimório uma carta de terreno básico, coloque-a no campo virada e depois embaralhe.' }),
+]);
+/** Beast 4/4 verde (Baloth Prime) */
+export const Beast44 = defineToken({
+  id: 'Beast 4/4', name: 'Beast', types: ['Creature'], subtypes: ['Beast'], colors: ['G'], power: 4, toughness: 4, abilities: [],
+  image: fichasOracle.find((f) => f.faces[0].name === 'Beast' && f.faces[0].power === 4 && f.faces[0].colors.join() === 'G' && f.faces[0].oracleText === '')?.oracleId,
 });
