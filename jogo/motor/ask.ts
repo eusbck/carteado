@@ -52,6 +52,12 @@ export function defaultAnswer(d: Decision): Answer {
     case 'blockers': {
       const usados = new Set<ObjId>();
       const blocks: [ObjId, ObjId][] = [];
+      // lote4-c: "bloqueia [atacante] se puder" (CR 509.1c): o bloqueador exigido bloqueia esse atacante
+      for (const [b, a] of d.requiredPairs ?? []) {
+        if (usados.has(b) || !d.candidates.find((c) => c.obj === b)?.canBlock.includes(a)) continue;
+        usados.add(b);
+        blocks.push([b, a]);
+      }
       for (const a of d.required ?? []) {
         const b = d.candidates.find((c) => !usados.has(c.obj) && c.canBlock.includes(a));
         if (b) { usados.add(b.obj); blocks.push([b.obj, a]); }
