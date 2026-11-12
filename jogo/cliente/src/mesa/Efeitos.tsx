@@ -9,7 +9,7 @@ import type { GameView } from '../../../motor/view.ts';
 import { abafarMusica } from '../musica.ts';
 import { preferencias } from '../preferencias.ts';
 import { somDaTroca } from '../somTurno.ts';
-import { tocar } from '../sons.ts';
+import { tocar, tocarDesvirar } from '../sons.ts';
 import { informarDuracao, vistasSemAnimacao } from './cenaLoja.ts';
 import { planejarCombate, type PlanoCombate } from './golpes.ts';
 import { efeitosDaVista, fotografar, type Foto } from './impacto.ts';
@@ -99,6 +99,8 @@ export function useEfeitos(v: GameView, eu: number, efeitos: boolean): void {
 
     // a onda do desvirar antes de qualquer medida (Desempenho, "reduzir movimento" e efeitos desligados: o giro de sempre)
     const onda = efeitos && !document.hidden && !preferencias().desempenho && !movimentoReduzido() ? desvirarEmOnda(a, v) : 0;
+    // um som só para a onda inteira (N7)
+    if (onda > 0) tocarDesvirar(onda);
 
     const plano = planejarCombate(a, v);
     const antes = fotos.current;
