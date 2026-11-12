@@ -4,6 +4,7 @@ import type { CSSProperties } from 'preact';
 import { memo } from 'preact/compat';
 import type { ObjView } from '../../../motor/view.ts';
 import { info, nomeCarta, urlImagem } from '../cartas.ts';
+import { prepararImagem } from '../imagens.ts';
 import { IconeEscudo, IconeEspada } from '../icones.tsx';
 import { palavraChave } from '../pt.ts';
 
@@ -65,6 +66,8 @@ export const Carta = memo(CartaBase, (a, b) =>
 function CartaBase({ o, realce = null, selo, numero, deitada, onClick, onZoom, onPointerDown, onDoubleClick, onMenu, estilo, classe }: CartaProps) {
   const oculta = !o.def;
   const img = oculta ? null : urlImagem(o.copyOfDef ?? o.def, o.face, 'p');
+  // N30: a imagem já costuma estar pronta (preparada quando a vista chegou); aqui só marca o uso para ela ficar no mapa
+  if (img) void prepararImagem(img);
   const nome = oculta ? o.name : nomeCarta(o.def, o.name);
   const pendente = !oculta && !!info(o.def)?.pendente;
   const criatura = o.types.includes('Creature');
@@ -92,7 +95,7 @@ function CartaBase({ o, realce = null, selo, numero, deitada, onClick, onZoom, o
       onMouseLeave={onZoom ? () => onZoom(null) : undefined}
     >
       <div class="carta-face">
-        {img ? <img src={img} alt={nome} loading="lazy" decoding="async" draggable={false} /> : oculta ? <div class="verso" /> : (
+        {img ? <img src={img} alt={nome} decoding="async" draggable={false} /> : oculta ? <div class="verso" /> : (
           <div class="sem-arte">
             <strong>{nome}</strong>
             <span>{o.types.join(' ')}</span>
