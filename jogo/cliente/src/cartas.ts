@@ -10,6 +10,8 @@ export async function carregarCartas(): Promise<void> {
   if (!r.ok) throw new Error(`cartas: ${r.status}`);
   INFO = await r.json();
   RE = null;
+  RE_NOMES = null;
+  prepararNomes();
 }
 
 export function info(def: string): InfoCarta | undefined {
@@ -126,4 +128,34 @@ export function traduzir(texto: string): string {
     RE = nomes.length ? new RegExp(String.raw`(?<![\p{L}\p{N}])(` + nomes.join('|') + String.raw`)(?![\p{L}\p{N}])`, 'gu') : /$^/;
   }
   return texto.replace(RE, (m) => MAPA.get(m) ?? m);
+}
+
+// nomes de cartas citados num texto do motor ("Lim-Dûl's Vault: você olhou Sol Ring, Island…"), para a janela de
+// escolha mostrar a imagem de cada uma em vez de só o nome
+let RE_NOMES: RegExp | null = null;
+let SUBTIPOS = new Set<string>();
+
+/** as cartas (defs) citadas no texto, na ordem em que aparecem e sem repetir; fichas e nomes muito curtos ficam de fora */
+export function cartasNoTexto(texto: string): string[] {
+  if (!RE_NOMES) {
+    SUBTIPOS = new Set(Object.values(INFO).flatMap((i) => i.tipo.split(' // ').flatMap((t) => (t.split(' — ')[1] ?? '').split(' '))));
+    const nomes = Object.entries(INFO).filter(([n, i]) => !i.ficha && i.f && n.length >= 3).map(([n]) => n).sort((a, b) => b.length - a.length).map(escapar);
+    RE_NOMES = nomes.length ? new RegExp(String.raw`(?<![\p{L}\p{N}])(` + nomes.join('|') + String.raw`)(?![\p{L}\p{N}])`, 'gu') : /$^/g;
+  }
+  const achadas: string[] = [];
+  for (const m of texto.matchAll(RE_NOMES)) {
+    // um nome que também é subtipo ("Hero", "Island") pode estar falando do tipo: "uma carta Hero", "Forest ou Island"
+    if (SUBTIPOS.has(m[1])) {
+      const antes = texto.slice(0, m.index), depois = texto.slice(m.index! + m[1].length);
+      if (/\b(cartas?|tipos?|criaturas?|terrenos?|permanentes?|um|uma)( de)?\s+$|\bou\s+$/i.test(antes) || /^\s+ou\b/i.test(depois)) continue;
+    }
+    if (!achadas.includes(m[1])) achadas.push(m[1]);
+  }
+  return achadas;
+}
+
+/** monta a busca dos nomes com a mesa ociosa, para a primeira janela de escolha não travar */
+export function prepararNomes(): void {
+  const ocioso = (globalThis as { requestIdleCallback?: (f: () => void) => void }).requestIdleCallback ?? ((f: () => void) => setTimeout(f, 500));
+  ocioso(() => cartasNoTexto(''));
 }

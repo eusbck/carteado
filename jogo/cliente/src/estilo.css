@@ -977,6 +977,15 @@ img.mini { width: 40px; aspect-ratio: 63 / 88; object-fit: cover; border-radius:
 .janela-escolha.f-grade { --largura-escolha: 1400px; }
 .janela-escolha.f-arranjo { --largura-escolha: 1240px; }
 .janela-escolha.f-cartas { width: fit-content; min-width: min(480px, calc(100% - var(--reserva) - 32px)); max-width: calc(100% - var(--reserva) - 32px); }
+/* pergunta de texto que cita cartas ("você olhou Sol Ring, Island…"): a imagem de cada uma numa faixa acima das
+   opções, e a janela alarga até caber a faixa */
+.janela-escolha.com-citadas { width: fit-content; min-width: min(480px, calc(100% - var(--reserva) - 32px)); max-width: calc(100% - var(--reserva) - 32px); }
+.escolha-citadas { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; padding: 16px 20px 0; flex: none; }
+.escolha-citadas .carta { --w: clamp(104px, min(calc((100cqw - var(--reserva) - 120px - (var(--nc) - 1) * 12px) / var(--nc)), 28vh), 220px); }
+/* com opções embaixo, a faixa fica mais baixa para as opções caberem sem rolar */
+.f-opcoes .escolha-citadas .carta { --w: clamp(96px, min(calc((100cqw - var(--reserva) - 120px - (var(--nc) - 1) * 12px) / var(--nc)), 20vh), 180px); }
+.opcao-citadas { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.opcao-citadas .carta { --w: 84px; }
 
 .escolha-topo { flex: 0 0 auto; display: flex; justify-content: space-between; align-items: flex-start; gap: 14px; padding: 14px 14px 12px 20px; border-bottom: 1px solid var(--linha); }
 .escolha-titulos { display: grid; gap: 3px; min-width: 0; }
