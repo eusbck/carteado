@@ -2245,3 +2245,23 @@ para depois.
   completos, nenhum comandante sem fundo.
 - Testes `avatar` e `fase9-artes`: 19/19 com limite maior (os dois laços dos retratos ganharam 30 s, agora são 42);
   `tsc --noEmit` sem erros. Cliente não recompilado nesta sessão (outra sessão tem mudanças não salvas no cliente).
+
+## 12/11/2026 — Ver o deck na partida e "Reportar erro"
+
+- Ver o deck: clicar no grimório de qualquer jogador abre a lista das cartas do deck dele (a prévia do saguão, sem o
+  botão de escolher). É a lista do deck, não a ordem do grimório (`d209c3fe`).
+- Reportar erro: no menu lateral da mesa e num botão no canto das outras telas; também no aviso vermelho de erro.
+  - Ao abrir, tira um print da página (modern-screenshot, sem pedir permissão) antes da janela aparecer e guarda a mesa
+    como estava. A pessoa escolhe o tipo, conta o que aconteceu (obrigatório), o que esperava, o que fez antes, se
+    repete, e aponta as cartas (busca em português ou inglês; sugere as que estão na mesa).
+  - Imagens (até 8): "Novo print da tela" (a janela some 3 s para arrumar a tela), "Capturar a aba" (getDisplayMedia,
+    idêntica à tela), anexar, colar (Ctrl+V) ou arrastar. "Marcar" desenha caixa, seta ou caneta em cima.
+  - Vai junto: a partida inteira (o servidor junta pelo token do assento: config, listas, entradas, checkpoints, sem a
+    senha nem os tokens), a vista da mesa, navegador e tela, os erros da página, as últimas ações (senha e token
+    mascarados), os avisos do servidor para a pessoa e o diário de erros do servidor na última hora.
+  - O texto fica como rascunho até o envio dar certo. Enviado, a pessoa recebe um número de 4 letras.
+  - Grava em `dados-locais/relatos/<id>/` (fora do git). Ler: `node ferramentas/relatos.ts listar | ver <número> |
+    reproduzir <número> | resolver <número> [nota]`. `reproduzir` refaz a partida com o motor de agora e compara com a
+    mesa que a pessoa via.
+  - Código: `cliente/src/relato/`, `servidor/relatos.ts`, `servidor/diario-erros.ts`, rota `POST /api/relatos`,
+    `Gerente.paraRelato`. Testes: `testes/relatos.test.ts`, `testes/relato-cliente.test.ts`.

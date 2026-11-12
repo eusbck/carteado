@@ -14,6 +14,11 @@ export async function carregarCartas(): Promise<void> {
   prepararNomes();
 }
 
+/** todas as cartas que o jogo conhece: o nome do motor (inglês) e o da impressão em português, se houver */
+export function todasAsCartas(): { def: string; pt: string | null }[] {
+  return Object.entries(INFO).map(([def, i]) => ({ def, pt: i.pt }));
+}
+
 export function info(def: string): InfoCarta | undefined {
   return INFO[def];
 }

@@ -232,6 +232,30 @@ export class Sala {
 
   get codigo(): string { return this.d.codigo; }
 
+  /**
+   * A sala e a partida como estão agora, para um relato de erro (ferramentas/relatos.ts refaz a partida com isto):
+   * configuração, listas, todas as entradas e os checkpoints. Vai sem a senha da sala e sem os tokens dos assentos.
+   */
+  paraRelato(assento: number): Record<string, unknown> {
+    const p = this.d.partida;
+    const g = this.game;
+    let listas: DeckList[] | null = p?.listas ?? null;
+    if (p && !listas) { try { listas = this.decks(); } catch { listas = null; } }
+    return {
+      codigo: this.d.codigo, estado: this.d.estado, voce: assento, anfitriao: this.d.anfitriao,
+      assentos: this.d.assentos.map(({ token: _token, ...a }) => a),
+      erro: this.erro,
+      falhasSeguidas: this.falhas,
+      partida: p ? {
+        config: p.config, deckIds: p.deckIds, listas, iniciadaEm: p.iniciadaEm ?? null, encerradaEm: p.encerradaEm ?? null,
+        checkpoint: p.checkpoint, checkpoints: this.cps,
+        // as da partida na memória (as gravadas no banco podem estar esperando a gravação agrupada)
+        entradas: g ? g.inputs : this.gerente.banco.entradas(this.d.codigo),
+        metas: g ? this.metas : this.gerente.banco.metas(this.d.codigo),
+      } : null,
+    };
+  }
+
   publica(): SalaPublica {
     const conectados = new Set([...this.conexoes].map((c) => c.assento));
     const p = this.d.partida;
@@ -1108,6 +1132,14 @@ export class Gerente {
   }
 
   deck(id: string): DeckList | undefined { return this.decks.get(id); }
+
+  /** a partida de quem relata um erro: só com o token de um assento da sala (null: sala ou token que não conferem) */
+  paraRelato(codigo: string, token: string): Record<string, unknown> | null {
+    const s = this.salas.get(codigo.toUpperCase().trim());
+    if (!s || !token) return null;
+    const i = s.d.assentos.findIndex((a) => a.token === token);
+    return i < 0 ? null : s.paraRelato(i);
+  }
 
   /** grava o que as salas deixaram para depois (Atrasos.gravacao): o servidor chama ao encerrar */
   salvarTudo(): void {
