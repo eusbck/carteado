@@ -46,10 +46,22 @@ export function esconderZoom(): void {
 export function segurarZoom(sim: boolean): void {
   if (sim === segurado) return;
   segurado = sim;
-  if (sim) { pendente = atual; return; }
-  const p = pendente;
+  if (sim) {
+    // a carta do zoom saiu de baixo do mouse sem mouseleave (conjurada do duplo clique, foi para a pilha): o zoom
+    // fechava só no fim da cena, cobrindo o Passar. Sem nada com zoom sob o mouse, fecha já
+    pendente = semNadaSobOMouse() ? null : atual;
+    if (!pendente) trocar(null);
+    return;
+  }
+  const p = pendente && semNadaSobOMouse() ? null : pendente;
   pendente = null;
   trocar(p);
+}
+
+/** nenhuma carta (nem item da pilha) sob o mouse; fora do navegador (testes), não dá para saber: false */
+function semNadaSobOMouse(): boolean {
+  if (typeof document === 'undefined') return false;
+  return !document.querySelector('.carta:hover, .pilha li:hover');
 }
 
 // a cena da fila de quadros (cenaLoja) segura e solta o zoom
