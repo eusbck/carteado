@@ -59,3 +59,5 @@ export * from './historia.ts';
 // lote3-f: devoção, turno extra, evocar, dash, barganha e spree (cEDH Inalla)
 export * from './cedh.ts';
 export { successor } from './state.ts';
+// lote4-d: megamorfose (megamorph, CR 702.37b)
+export * from './megamorfose.ts';

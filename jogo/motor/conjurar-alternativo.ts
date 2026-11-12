@@ -21,6 +21,7 @@ import { activated, on, triggered } from './dsl.ts';
 import type { G } from './game-context.ts';
 import { formatCost, parseCost } from './mana.ts';
 import { copiableValues, mayCastFree, timesPaid } from './mecanicas.ts';
+import { aoVirarPorMorph } from './megamorfose.ts';
 import { shuffle } from './rng.ts';
 import { castSpell, copySpell, faceDefOf, totalSpellCost, type CastMethod } from './stack.ts';
 import { emit } from './triggers.ts';
@@ -60,11 +61,16 @@ export function morph(custo: string): StaticDef {
 
 /** custo de morph da carta (o impresso, mesmo virada para baixo: CR 702.37e "se estivesse virada para cima") */
 export function morphCost(g: G, id: ObjId): string | null {
+  return morphKw(g, id)?.custo ?? null;
+}
+
+/** a palavra-chave de morph da carta e o custo dela; um custo de megamorfose é um custo de morph (CR 702.37b) */
+function morphKw(g: G, id: ObjId): { kw: string; custo: string } | null {
   const o = g.state.objects[id];
   if (!o) return null;
   const abil = o.faceDown ? printedChars(o.copyOf?.def ?? o.def, 0, o.owner).abilities : chars(g, id).abilities;
-  const k = abil.find((a) => a.kw === 'morph');
-  return typeof k?.param === 'string' ? k.param : null;
+  const k = abil.find((a) => a.kw === 'morph' || a.kw === 'megamorph');
+  return k?.kw && typeof k.param === 'string' ? { kw: k.kw, custo: k.param } : null;
 }
 
 /** custo para virar para cima pelo morph a permanente virada para baixo que o jogador controla (CR 702.37e); null se não dá */
@@ -84,6 +90,7 @@ export function* turnFaceUpMorph(g: G, p: PlayerId, id: ObjId): Gen<boolean> {
   if (custo === null || controllerOf(g, id) !== p) return false;
   const o0 = g.state.objects[id];
   const nome = printedChars(o0.copyOf?.def ?? o0.def, 0, o0.owner).name;
+  const kw = morphKw(g, id)?.kw;
   const pago = yield* payMana(g, p, custo, { purpose: { kind: 'effect' }, canCancel: true, label: `virar ${nome} para cima (metamorfose)` });
   if (pago === null) return false;
   const o = g.state.objects[id];
@@ -92,6 +99,8 @@ export function* turnFaceUpMorph(g: G, p: PlayerId, id: ObjId): Gen<boolean> {
   delete o.data.manifestada;
   g.bump();
   g.log(`${g.state.players[p].name} paga a metamorfose ${formatCost(custo)} e vira para cima ${nome}.`, { rule: '702.37e' });
+  // lote4-d: megamorfose põe o marcador +1/+1 ao virar (CR 702.37b, motor/megamorfose.ts)
+  aoVirarPorMorph(g, id, kw, p);
   emit(g, [{ type: 'turnedFaceUp', obj: id }]);
   return true;
 }
