@@ -47,6 +47,16 @@ export interface SalaPublica {
   etapa: EtapaSaguao;
 }
 
+/** de onde o deck vem (servidor/catalogo/origem.ts): precon igual ao produto, precon com cartas trocadas, lista
+ * montada por alguém ou deck criado aqui */
+export interface OrigemPublica {
+  tipo: 'precon' | 'modificado' | 'montado' | 'casa';
+  /** o precon oficial (precon e modificado) */
+  produto?: string;
+  /** cartas trocadas em relação ao precon (modificado) */
+  trocas?: number;
+}
+
 export interface DeckResumo {
   id: string;
   nome: string;
@@ -54,6 +64,7 @@ export interface DeckResumo {
   /** segundo comandante (parceiros) */
   parceiro?: string | null;
   cores: string[];
+  origem?: OrigemPublica;
 }
 
 /** uma carta na tela Decks */
@@ -120,6 +131,7 @@ export interface DeckCatalogo {
   total: number;
   /** deck montado na mesa (tela Montar deck): dá para editar e apagar */
   criado?: { autor: string | null; editadoEm: string };
+  origem: OrigemPublica;
   /** versão que espera cartas: um deck novo ou uma atualização */
   preparacao: {
     prontas: number;

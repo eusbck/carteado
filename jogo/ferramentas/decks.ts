@@ -14,6 +14,10 @@
 //                                                          dados e imagens de cada carta e quantas ainda sem regras
 //                                                          (rodar ao adicionar ou completar um deck pelo chat)
 //   node ferramentas/decks.ts imagens                      baixa de novo as imagens das cartas novas que faltarem
+//   node ferramentas/decks.ts classificar [id…|todos]      compara cada deck com as listas oficiais dos precons
+//                                                          (MTGJSON) e grava em decks/origens.json se é precon,
+//                                                          precon modificado, montado ou criado aqui (o filtro do
+//                                                          saguão e da tela Decks); sem id, só os que faltam
 //
 // Sem --confirmar, importar e atualizar só mostram o que mudaria. Com a mesa aberta, prefira a tela Decks: o que a
 // linha de comando muda só aparece no saguão quando o servidor subir de novo.
@@ -31,6 +35,8 @@ import { lerAnterior, lerNovas, nomesDaLista, regenerar } from '../servidor/cata
 import { migrar } from '../servidor/catalogo/migrar.ts';
 import { baixarDeck, lerLink } from '../servidor/catalogo/moxfield.ts';
 import { cartaPronta } from '../servidor/catalogo/prontidao.ts';
+import { preconsOficiais } from '../servidor/catalogo/mtgjson.ts';
+import { classificar, gravarOrigens, lerOrigens, ROTULO_ORIGEM } from '../servidor/catalogo/origem.ts';
 import { redeReal, type Rede } from '../servidor/catalogo/rede.ts';
 import { TarefasDecks, mensagem } from '../servidor/catalogo/tarefas.ts';
 import { comTrava } from '../servidor/catalogo/trava.ts';
@@ -228,6 +234,31 @@ async function imagens(): Promise<void> {
   console.log(n ? `${n} imagens baixadas.` : 'Nenhuma imagem faltando.');
 }
 
+async function classificarDecks(): Promise<void> {
+  const todos = catalogo.todos();
+  const origens = lerOrigens(pastas.decks);
+  const alvos = args[0] === 'todos' ? todos : args.length ? todos.filter((d) => args.includes(d.id)) : todos.filter((d) => !origens.decks[d.id]);
+  if (!alvos.length) { console.log(args.length ? 'Nenhum desses ids está em decks/.' : 'Todos os decks já estão classificados (use "todos" para refazer).'); return; }
+  const precons = alvos.some((d) => d.link) ? await preconsOficiais(rede(), join(dirname(pastas.decks), '.cache', 'mtgjson'), (m) => console.log(m)) : [];
+  for (const d of alvos) {
+    const lista = d.atual ?? d.preparacao;
+    if (!lista) continue;
+    const o = classificar(d, lista, precons);
+    origens.decks[d.id] = o;
+    const det = o.tipo === 'precon' ? ` (${o.produto}, ${o.codigo})` : o.tipo === 'modificado' ? ` (${o.produto}, ${o.codigo}; ${o.trocas} carta(s) trocada(s))` : '';
+    console.log(`${d.nome}: ${ROTULO_ORIGEM[o.tipo]}${det}`);
+  }
+  await comTrava(pastas.decks, async () => {
+    // relê para não apagar o que outro comando gravou enquanto este baixava
+    const atuais = lerOrigens(pastas.decks);
+    for (const d of alvos) if (origens.decks[d.id]) atuais.decks[d.id] = origens.decks[d.id];
+    gravarOrigens(pastas.decks, atuais);
+  });
+  const c = (t: string) => Object.values(lerOrigens(pastas.decks).decks).filter((o) => o.tipo === t).length;
+  console.log(`
+decks/origens.json: ${c('precon')} precon(s), ${c('modificado')} modificado(s), ${c('montado')} montado(s), ${c('casa')} criado(s) aqui.`);
+}
+
 try {
   switch (comando) {
     case 'migrar': {
@@ -281,6 +312,9 @@ try {
     }
     case 'imagens':
       await imagens();
+      break;
+    case 'classificar':
+      await classificarDecks();
       break;
     default:
       console.log(readFileSync(new URL(import.meta.url), 'utf8').split('\n').filter((l) => l.startsWith('//')).map((l) => l.slice(3)).join('\n'));
