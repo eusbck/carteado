@@ -5,10 +5,17 @@
 // (`preparacao`). As cartas que ../cartas não tem ficam em decks/cartas.json, no mesmo formato dos dados de
 // ../cartas/data (cards.json e printings.json), para que a mesma junção gere jogo/gerado/.
 
+import type { ModoJogo } from '../../motor/modos.ts';
+
 export interface EntradaLista { nome: string; quantidade: number }
 
 export interface Lista {
-  comandante: string;
+  /** modo de jogo (motor/modos.ts); sem a chave é Commander */
+  formato?: ModoJogo;
+  /** o comandante; só nos decks de Commander */
+  comandante?: string;
+  /** carta que ilustra o deck sem comandante (a arte do cartão no saguão e o retrato padrão) */
+  capa?: string;
   /** segundo comandante (parceiros, CR 702.124) */
   parceiro?: string;
   cartas: EntradaLista[];

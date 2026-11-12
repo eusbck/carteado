@@ -51,7 +51,7 @@ describe('importar', () => {
     const { p, rede, catalogo, t, mudancas } = montar();
     const ordem = catalogo.proximaOrdem();
     const antes = JSON.parse(readFileSync(join(p.gerado, 'decks.json'), 'utf8')) as DeckList[];
-    rede.deck('NovoDeckConhecido1', respostaMox('NovoDeckConhecido1', 'Terra de novo', { nome: TERRA.comandante }, entradas(TERRA)));
+    rede.deck('NovoDeckConhecido1', respostaMox('NovoDeckConhecido1', 'Terra de novo', { nome: TERRA.comandante! }, entradas(TERRA)));
     const prop = await t.verificar('https://moxfield.com/decks/NovoDeckConhecido1');
     expect(prop).toMatchObject({ novo: true, destino: 'jogavel', erros: [], prontas: prop.total });
     expect(rede.pedidos.filter((x) => x.includes('scryfall'))).toEqual([]);
@@ -82,7 +82,7 @@ describe('importar', () => {
     const recrutadorPt = { ...recrutador, id: '99999999-0000-4000-8000-000000000001', lang: 'pt', printed_name: 'Recrutador em Português', image_status: 'lowres', image_uris: { png: 'https://cards.scryfall.io/png/front/p/t/pt.png' } };
     rede.carta(soldado, artefato, recrutador, recrutadorPt);
     rede.rulings.set(recrutador.id, [{ source: 'wotc', published_at: '2026-01-01', comment: 'Uma regra.' }]);
-    rede.deck('DeckComNovas1234', respostaMox('DeckComNovas1234', 'Com cartas novas', { nome: TERRA.comandante },
+    rede.deck('DeckComNovas1234', respostaMox('DeckComNovas1234', 'Com cartas novas', { nome: TERRA.comandante! },
       terraTrocada([{ nome: 'Artefato de Teste', scryfallId: artefato.id }, { nome: 'Recrutador de Teste', scryfallId: null }])));
     const prop = await t.verificar('DeckComNovas1234');
     expect(prop).toMatchObject({ destino: 'preparacao', erros: [], total: TERRA.cartas.length + 1, prontas: TERRA.cartas.length - 1 });
@@ -112,7 +112,7 @@ describe('importar', () => {
 
   it('regras de Commander: lista ilegal não pode ser confirmada', async () => {
     const { rede, t } = montar();
-    rede.deck('DeckIlegal123456', respostaMox('DeckIlegal123456', 'Ilegal', { nome: TERRA.comandante }, entradas(TERRA).slice(1)));
+    rede.deck('DeckIlegal123456', respostaMox('DeckIlegal123456', 'Ilegal', { nome: TERRA.comandante! }, entradas(TERRA).slice(1)));
     const prop = await t.verificar('DeckIlegal123456');
     expect(prop.erros.join(' ')).toMatch(/99 cartas/);
     expect(prop.resumo).toMatch(/não cumpre as regras/);
@@ -123,7 +123,7 @@ describe('importar', () => {
 describe('atualizar', () => {
   it('troca por cartas que o jogo já tem: a lista nova vale na hora, com a ordem das que ficam', async () => {
     const { rede, catalogo, t, mudancas } = montar();
-    rede.deck(TERRA.id, respostaMox(TERRA.id, 'Terra', { nome: TERRA.comandante }, terraTrocada([{ nome: 'Fellwar Stone' }, { nome: 'Bag of Holding' }])));
+    rede.deck(TERRA.id, respostaMox(TERRA.id, 'Terra', { nome: TERRA.comandante! }, terraTrocada([{ nome: 'Fellwar Stone' }, { nome: 'Bag of Holding' }])));
     const prop = await t.verificar(`https://moxfield.com/decks/${TERRA.id}`);
     expect(prop).toMatchObject({ novo: false, destino: 'jogavel' });
     expect(prop.entram.map((c) => c.nome)).toEqual(['Bag of Holding', 'Fellwar Stone']);
@@ -140,7 +140,7 @@ describe('atualizar', () => {
     const { rede, catalogo, t } = montar();
     const nova = cartaFalsa('Pedra de Teste');
     rede.carta(nova);
-    rede.deck(ABZAN.id, respostaMox(ABZAN.id, 'Abzan Armor', { nome: ABZAN.comandante }, [...entradas(ABZAN).slice(0, -1), { nome: 'Pedra de Teste', scryfallId: nova.id }]));
+    rede.deck(ABZAN.id, respostaMox(ABZAN.id, 'Abzan Armor', { nome: ABZAN.comandante! }, [...entradas(ABZAN).slice(0, -1), { nome: 'Pedra de Teste', scryfallId: nova.id }]));
     const prop = await t.verificar(ABZAN.id);
     expect(prop.destino).toBe('preparacao');
     expect(prop.resumo).toMatch(/segue com a lista atual/);
@@ -154,7 +154,7 @@ describe('atualizar', () => {
     expect(de_novo.destino).toBe('nada');
     expect(de_novo.resumo).toMatch(/já está guardada/);
     // o dono voltou a lista no Moxfield: confirmar descarta a atualização guardada
-    rede.deck(ABZAN.id, respostaMox(ABZAN.id, 'Abzan Armor', { nome: ABZAN.comandante }, entradas(ABZAN)));
+    rede.deck(ABZAN.id, respostaMox(ABZAN.id, 'Abzan Armor', { nome: ABZAN.comandante! }, entradas(ABZAN)));
     const volta = await t.verificar(ABZAN.id);
     expect(volta.destino).toBe('jogavel');
     await t.confirmar(volta.token);
@@ -163,7 +163,7 @@ describe('atualizar', () => {
 
   it('nada mudou no Moxfield', async () => {
     const { rede, t } = montar();
-    rede.deck(TERRA.id, respostaMox(TERRA.id, 'Terra', { nome: TERRA.comandante }, entradas(TERRA)));
+    rede.deck(TERRA.id, respostaMox(TERRA.id, 'Terra', { nome: TERRA.comandante! }, entradas(TERRA)));
     const prop = await t.verificar(TERRA.id);
     expect(prop).toMatchObject({ destino: 'nada', entram: [], saem: [] });
     expect(prop.resumo).toMatch(/Nenhuma carta mudou/);
@@ -176,7 +176,7 @@ describe('segurança da gravação', () => {
     const nova = cartaFalsa('Quebrada de Teste');
     rede.carta(nova);
     rede.falhar.add(nova.image_uris!.png);
-    rede.deck(TERRA.id, respostaMox(TERRA.id, 'Terra', { nome: TERRA.comandante }, terraTrocada([{ nome: 'Fellwar Stone' }, { nome: 'Quebrada de Teste', scryfallId: nova.id }])));
+    rede.deck(TERRA.id, respostaMox(TERRA.id, 'Terra', { nome: TERRA.comandante! }, terraTrocada([{ nome: 'Fellwar Stone' }, { nome: 'Quebrada de Teste', scryfallId: nova.id }])));
     const antes = readFileSync(join(p.decks, `${TERRA.id}.json`), 'utf8');
     const geradoAntes = readFileSync(join(p.gerado, 'cartas.json'), 'utf8');
     const prop = await t.verificar(TERRA.id);
@@ -209,8 +209,8 @@ describe('segurança da gravação', () => {
 describe('várias importações ao mesmo tempo', () => {
   it('decks diferentes andam juntos; o mesmo deck duas vezes ao mesmo tempo é recusado', async () => {
     const { rede, t } = montar();
-    rede.deck(TERRA.id, respostaMox(TERRA.id, 'Terra', { nome: TERRA.comandante }, entradas(TERRA)));
-    rede.deck(ABZAN.id, respostaMox(ABZAN.id, 'Abzan Armor', { nome: ABZAN.comandante }, entradas(ABZAN)));
+    rede.deck(TERRA.id, respostaMox(TERRA.id, 'Terra', { nome: TERRA.comandante! }, entradas(TERRA)));
+    rede.deck(ABZAN.id, respostaMox(ABZAN.id, 'Abzan Armor', { nome: ABZAN.comandante! }, entradas(ABZAN)));
     const a = t.iniciarVerificar(TERRA.id);
     const b = t.iniciarVerificar(`https://moxfield.com/decks/${ABZAN.id}`);
     expect(a).not.toBe(b);
@@ -236,8 +236,8 @@ describe('várias importações ao mesmo tempo', () => {
     const b = cartaFalsa('Recrutador B de Teste', criaSoldado);
     const comum = cartaFalsa('Artefato Comum de Teste');
     rede.carta(soldado, a, b, comum);
-    rede.deck('DeckJuntoA123456', respostaMox('DeckJuntoA123456', 'Junto A', { nome: TERRA.comandante }, terraTrocada([{ nome: a.name, scryfallId: a.id }, { nome: comum.name, scryfallId: comum.id }])));
-    rede.deck('DeckJuntoB123456', respostaMox('DeckJuntoB123456', 'Junto B', { nome: TERRA.comandante }, terraTrocada([{ nome: b.name, scryfallId: b.id }, { nome: comum.name, scryfallId: comum.id }])));
+    rede.deck('DeckJuntoA123456', respostaMox('DeckJuntoA123456', 'Junto A', { nome: TERRA.comandante! }, terraTrocada([{ nome: a.name, scryfallId: a.id }, { nome: comum.name, scryfallId: comum.id }])));
+    rede.deck('DeckJuntoB123456', respostaMox('DeckJuntoB123456', 'Junto B', { nome: TERRA.comandante! }, terraTrocada([{ nome: b.name, scryfallId: b.id }, { nome: comum.name, scryfallId: comum.id }])));
     const ia = t.iniciarImportar('https://moxfield.com/decks/DeckJuntoA123456');
     const ib = t.iniciarImportar('https://moxfield.com/decks/DeckJuntoB123456');
     await ate(() => terminaram(t));
@@ -265,8 +265,8 @@ describe('várias importações ao mesmo tempo', () => {
     const a = cartaFalsa('Carta Dupla de Teste');
     const b = cartaFalsa('Carta Dupla de Teste', { oracle: a.oracle_id!, set: 'out' });
     rede.carta(a, b);
-    rede.deck('DuplaPrimeira123', respostaMox('DuplaPrimeira123', 'Dupla 1', { nome: TERRA.comandante }, terraTrocada([{ nome: a.name, scryfallId: a.id }, { nome: 'Fellwar Stone' }])));
-    rede.deck('DuplaSegunda1234', respostaMox('DuplaSegunda1234', 'Dupla 2', { nome: TERRA.comandante }, terraTrocada([{ nome: b.name, scryfallId: b.id }, { nome: 'Fellwar Stone' }])));
+    rede.deck('DuplaPrimeira123', respostaMox('DuplaPrimeira123', 'Dupla 1', { nome: TERRA.comandante! }, terraTrocada([{ nome: a.name, scryfallId: a.id }, { nome: 'Fellwar Stone' }])));
+    rede.deck('DuplaSegunda1234', respostaMox('DuplaSegunda1234', 'Dupla 2', { nome: TERRA.comandante! }, terraTrocada([{ nome: b.name, scryfallId: b.id }, { nome: 'Fellwar Stone' }])));
     t.iniciarImportar('DuplaPrimeira123');
     t.iniciarImportar('DuplaSegunda1234');
     await ate(() => terminaram(t));
@@ -289,7 +289,7 @@ describe('várias importações ao mesmo tempo', () => {
     const t = new TarefasDecks({ pastas: p, rede, catalogo, pronta: cartaPronta, artes: false, aoAndamento: (x) => vistos.push(x.etapa) });
     const nova = cartaFalsa('Etapas de Teste');
     rede.carta(nova);
-    rede.deck('EtapasTeste12345', respostaMox('EtapasTeste12345', 'Etapas', { nome: TERRA.comandante }, terraTrocada([{ nome: nova.name, scryfallId: nova.id }, { nome: 'Fellwar Stone' }])));
+    rede.deck('EtapasTeste12345', respostaMox('EtapasTeste12345', 'Etapas', { nome: TERRA.comandante! }, terraTrocada([{ nome: nova.name, scryfallId: nova.id }, { nome: 'Fellwar Stone' }])));
     // a gravação espera a trava (a "linha de comando") por um tempo: a tela precisa saber
     writeFileSync(join(p.decks, '.trava'), JSON.stringify({ pid: process.pid, desde: 'x' }));
     const id = t.iniciarImportar('EtapasTeste12345');
@@ -303,9 +303,9 @@ describe('várias importações ao mesmo tempo', () => {
 
   it('importar direto: deck novo vai até o fim; link de deck da mesa e lista ilegal param na prévia', async () => {
     const { rede, catalogo, t } = montar();
-    rede.deck('NovoDireto123456', respostaMox('NovoDireto123456', 'Direto', { nome: TERRA.comandante }, entradas(TERRA)));
-    rede.deck(TERRA.id, respostaMox(TERRA.id, 'Terra', { nome: TERRA.comandante }, terraTrocada([{ nome: 'Fellwar Stone' }, { nome: 'Bag of Holding' }])));
-    rede.deck('DiretoIlegal1234', respostaMox('DiretoIlegal1234', 'Ilegal', { nome: TERRA.comandante }, entradas(TERRA).slice(1)));
+    rede.deck('NovoDireto123456', respostaMox('NovoDireto123456', 'Direto', { nome: TERRA.comandante! }, entradas(TERRA)));
+    rede.deck(TERRA.id, respostaMox(TERRA.id, 'Terra', { nome: TERRA.comandante! }, terraTrocada([{ nome: 'Fellwar Stone' }, { nome: 'Bag of Holding' }])));
+    rede.deck('DiretoIlegal1234', respostaMox('DiretoIlegal1234', 'Ilegal', { nome: TERRA.comandante! }, entradas(TERRA).slice(1)));
     const novo = t.iniciarImportar('NovoDireto123456');
     const existente = t.iniciarImportar(TERRA.id);
     const ilegal = t.iniciarImportar('DiretoIlegal1234');
@@ -325,7 +325,7 @@ describe('várias importações ao mesmo tempo', () => {
 
   it('com a linha de comando gravando, a importação espera a vez; se demorar demais, desiste com aviso', async () => {
     const { p, rede, catalogo, t } = montar(pastasTemp(), 3000);
-    rede.deck('EsperaTrava12345', respostaMox('EsperaTrava12345', 'Espera', { nome: TERRA.comandante }, entradas(TERRA)));
+    rede.deck('EsperaTrava12345', respostaMox('EsperaTrava12345', 'Espera', { nome: TERRA.comandante! }, entradas(TERRA)));
     // a trava com o pid de um processo vivo (este) faz o papel da linha de comando
     writeFileSync(join(p.decks, '.trava'), JSON.stringify({ pid: process.pid, desde: 'x' }));
     const id = t.iniciarImportar('EsperaTrava12345');
@@ -339,7 +339,7 @@ describe('várias importações ao mesmo tempo', () => {
     expect(catalogo.ler('EsperaTrava12345')).not.toBeNull();
 
     const curto = montar(pastasTemp(), 100);
-    curto.rede.deck('EsperaTrava12345', respostaMox('EsperaTrava12345', 'Espera', { nome: TERRA.comandante }, entradas(TERRA)));
+    curto.rede.deck('EsperaTrava12345', respostaMox('EsperaTrava12345', 'Espera', { nome: TERRA.comandante! }, entradas(TERRA)));
     writeFileSync(join(curto.p.decks, '.trava'), JSON.stringify({ pid: process.pid, desde: 'x' }));
     const id2 = curto.t.iniciarImportar('EsperaTrava12345');
     await ate(() => terminaram(curto.t));
@@ -349,8 +349,8 @@ describe('várias importações ao mesmo tempo', () => {
 
   it('rotas: importar começa direto, o GET traz todas as tarefas e o mesmo deck de novo dá 409', async () => {
     const { rede, catalogo, t } = montar();
-    rede.deck('RotaDireta123456', respostaMox('RotaDireta123456', 'Pela rota', { nome: TERRA.comandante }, entradas(TERRA)));
-    rede.deck(ABZAN.id, respostaMox(ABZAN.id, 'Abzan Armor', { nome: ABZAN.comandante }, entradas(ABZAN)));
+    rede.deck('RotaDireta123456', respostaMox('RotaDireta123456', 'Pela rota', { nome: TERRA.comandante! }, entradas(TERRA)));
+    rede.deck(ABZAN.id, respostaMox(ABZAN.id, 'Abzan Armor', { nome: ABZAN.comandante! }, entradas(ABZAN)));
     const rotas = new RotasCatalogo({ catalogo, tarefas: t, info: { carta: () => null } });
     const pedir = (caminho: string, corpo: unknown) => rotas.tratar('POST', caminho, JSON.stringify(corpo), '127.0.0.1')!;
     const r1 = pedir('/api/catalogo/importar', { link: 'https://moxfield.com/decks/RotaDireta123456' });

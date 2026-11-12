@@ -1,5 +1,32 @@
 # Progresso
 
+## Modos de jogo: Commander e Standard — 12/11/2026
+
+Pedido do Caio: preparar o jogo para ter outros modos além do Commander, com o Standard já agora, e ao jogar cada
+modo o saguão mostrar só os decks dele. Branch `modos/standard` (worktree `modos-wt`).
+
+- **Motor:** `motor/modos.ts` tem a tabela dos modos (`MODOS`: nome, vida inicial, se tem comandante, tamanho de mesa
+  sugerido, nome do formato nas legalidades do Scryfall). `DeckList.formato` (sem a chave: Commander) e `comandante`
+  opcional; sem comandante a zona de comando começa vazia. `GameConfig.formato` (só fora do Commander) e a vista
+  (`GameView.formato`) deixam a mesa esconder a zona de comando vazia. `validateDeck` valida no modo do deck: Standard
+  com 60 cartas ou mais, até 4 cópias (básicos e "any number of cards named" sem limite, "up to seven" com o número),
+  sem comandante e só cartas legais (MTR 3.3), quando a legalidade é conhecida.
+- **Catálogo:** a lista guarda `formato` e `capa` (a carta que ilustra o deck sem comandante: o destaque do Moxfield,
+  ou a primeira que não é básico). O Moxfield diz o modo: com comandante é Commander; sem, o `format` precisa ser
+  `standard` (outro formato é recusado dizendo os modos que existem). Na importação de Standard a legalidade de todas
+  as cartas vem do Scryfall (`/cards/collection`); carta fora do formato impede confirmar. Um deck não muda de modo
+  numa atualização.
+- **Sala:** `formato` escolhido ao criar (Commander sugere 4 lugares, Standard 2) e trocado pelo anfitrião no passo
+  Regras (mensagem `formato`): os decks do outro modo saem dos assentos das pessoas e os bots ganham um sorteado do
+  modo novo. O servidor recusa deck de outro modo (pessoa e bot) e não começa a partida com um deles; a vida inicial
+  vem do modo (40 ou 20).
+- **Cliente:** escolha do modo no passo Criar sala; o saguão mostra o modo no topo e só os decks dele (com aviso
+  quando ainda não há nenhum); o cartão, a prévia e a tela Decks mostram a capa e "Deck de Standard" no lugar do
+  comandante.
+- **Decks de Standard:** ainda nenhum na mesa. Entram pela tela Decks com o link do Moxfield; as cartas que ainda
+  não têm regras deixam o deck em preparação, como nos de Commander.
+- **Testes:** `testes/modos.test.ts`.
+
 ## Mesas de 2 a 6 jogadores, sem precisar de bot — 08/11/2026
 
 Pedido do Caio antes de pôr o jogo numa VPS: dar para jogar com até 6 pessoas, em mesas de 2, 3, 4, 5 ou 6, e

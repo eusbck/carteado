@@ -377,6 +377,9 @@ export interface LogEntry {
   rule?: string;
 }
 
+export type { ModoJogo } from './modos.ts';
+import type { ModoJogo } from './modos.ts';
+
 export interface GameConfig {
   seed: string;
   players: { name: string; deckId: string }[];
@@ -385,6 +388,9 @@ export interface GameConfig {
   turnLimit: number | null;
   /** partida de dois jogadores (CR 100.1a) ou multijogador (CR 100.1b) */
   multiplayer: boolean;
+  /** modo de jogo (motor/modos.ts); sem a chave é Commander. As regras que mudam com ele já vêm na configuração
+   *  (startingLife) e nos decks (comandante ou não) */
+  formato?: ModoJogo;
   /** permite ajustes manuais (para aplicar o efeito de cartas ainda sem definição); ficam no log */
   manualMode?: boolean;
   /**

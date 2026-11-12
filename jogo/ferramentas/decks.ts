@@ -18,6 +18,7 @@
 // Sem --confirmar, importar e atualizar só mostram o que mudaria. Com a mesa aberta, prefira a tela Decks: o que a
 // linha de comando muda só aparece no saguão quando o servidor subir de novo.
 
+import { MODOS } from '../motor/modos.ts';
 import '../cartas/index.ts';
 import { existsSync, mkdirSync, readFileSync, renameSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
@@ -83,7 +84,7 @@ function redeSemCache(): Rede {
 function mostrar(p: Proposta): void {
   const nome = (c: { nome: string; pt: string | null; quantidade: number }) => `${c.quantidade > 1 ? `${c.quantidade}× ` : ''}${c.nome}${c.pt ? ` (${c.pt})` : ''}`;
   console.log(`\n${p.nome} (${p.link})${p.novo ? ' — deck novo' : ''}`);
-  console.log(`${p.parceiro ? `Comandantes: ${p.comandante} e ${p.parceiro}` : `Comandante: ${p.comandante}`}. Cartas com regras: ${p.prontas} de ${p.total}.`);
+  console.log(`${!p.comandante ? `Modo: ${MODOS[p.formato].nome}` : p.parceiro ? `Comandantes: ${p.comandante} e ${p.parceiro}` : `Comandante: ${p.comandante}`}. Cartas com regras: ${p.prontas} de ${p.total}.`);
   if (p.trocaComandante) console.log(`Troca de comandante: ${p.trocaComandante.de} → ${p.trocaComandante.para}`);
   if (p.entram.length) console.log(`Entram (${p.entram.length}):\n${p.entram.map((c) => `  + ${nome(c)}${c.pronta ? '' : ' [sem regras]'}`).join('\n')}`);
   if (p.saem.length) console.log(`Saem (${p.saem.length}):\n${p.saem.map((c) => `  - ${nome(c)}`).join('\n')}`);

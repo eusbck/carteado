@@ -12,12 +12,13 @@
 
 import { randomBytes } from 'node:crypto';
 import { join } from 'node:path';
+import { MODOS, modoDe } from '../../motor/modos.ts';
 import { oracleDeDados, type OracleCard } from '../../motor/oracle.ts';
 import type { CartaCatalogo, Proposta, TarefaPublica } from '../protocolo.ts';
 import { baixarArte, gravarFontes, lerFontes, temArte } from './artes.ts';
 import { gravarJson, lerRulingsNovos } from './base.ts';
 import type { Pastas } from './caminhos.ts';
-import { Catalogo, diferenca, listasIguais, mesclarOrdem } from './catalogo.ts';
+import { capaDe, Catalogo, diferenca, listasIguais, mesclarOrdem } from './catalogo.ts';
 import { cartaGerada, escreverGerado, gerar, lerAnterior, lerNovas, lerOriginais, nomesDaLista, type CartasGeradas, type ImagensGeradas } from './gerar.ts';
 import { baixarDeck, ErroDeck, lerLink, linkDoDeck, type DeckMox } from './moxfield.ts';
 import type { Rede } from './rede.ts';
@@ -240,10 +241,34 @@ export class TarefasDecks {
     const existente = this.o.catalogo.ler(deck.publicId);
     const cartas = juntar(deck.principal.map((e) => ({ nome: nome(e.nome), quantidade: e.quantidade })));
     const lista: Lista = {
-      comandante: nome(deck.comandantes[0].nome),
+      // Commander fica sem a chave (como os decks gravados antes dos modos)
+      ...(deck.modo !== 'commander' ? { formato: deck.modo } : {}),
+      ...(deck.comandantes[0] ? { comandante: nome(deck.comandantes[0].nome) } : {}),
       ...(deck.comandantes[1] ? { parceiro: nome(deck.comandantes[1].nome) } : {}),
+      // sem comandante, a carta de destaque do Moxfield ilustra o deck
+      ...(!deck.comandantes.length && deck.destaque ? { capa: nome(deck.destaque) } : {}),
       cartas: existente?.atual ? mesclarOrdem(existente.atual.cartas, cartas) : cartas,
     };
+    if (existente) {
+      const antes = modoDe(existente.atual ?? existente.preparacao);
+      if (antes !== deck.modo) throw new ErroDeck(`Esse deck está na mesa como ${MODOS[antes].nome}; no Moxfield ele agora é ${MODOS[deck.modo].nome}. Importe como um deck novo.`);
+    }
+
+    // Standard: a legalidade de todas as cartas (as que o jogo já conhece também), pelos dados do Scryfall
+    const legalidades = new Map<string, Record<string, string>>();
+    for (const [n, obj] of novas) if (obj.legalities) legalidades.set(n, obj.legalities);
+    if (deck.modo === 'standard') {
+      const ids = deck.principal.filter((e) => !novas.has(nome(e.nome)) && e.scryfallId).map((e) => e.scryfallId!);
+      if (ids.length) {
+        p.etapa('Conferindo quais cartas valem no Standard', 0, 0);
+        try {
+          const { cartas: objs } = await colecao(this.o.rede, ids);
+          for (const o of objs) if (o.legalities) legalidades.set(o.name, o.legalities);
+        } catch (e) {
+          console.error('legalidades no Scryfall:', e);
+        }
+      }
+    }
 
     // regras de deck, com os dados de gerado/ (no disco) e os do Scryfall para as cartas novas
     const buscar = (n: string): OracleCard => {
@@ -255,9 +280,10 @@ export class TarefasDecks {
     };
     const { erros, avisos } = validarLista(lista, buscar, {
       banidas: lerBanidas(this.o.pastas.dados),
-      legalidade: (n) => novas.get(n)?.legalities?.commander ?? null,
+      legalidade: (n) => legalidades.get(n)?.[MODOS[deck.modo].legalidade] ?? null,
     });
-    if (deck.ignoradas.length) avisos.push(`Só o comandante e o deck principal entram no jogo; ficam de fora: ${deck.ignoradas.join(', ')}`);
+    if (deck.modo === 'standard' && legalidades.size < nomesDaLista(lista).length) avisos.push('Não deu para conferir no Scryfall se todas as cartas valem no Standard');
+    if (deck.ignoradas.length) avisos.push(`${deck.modo === 'commander' ? 'Só o comandante e o deck principal entram' : 'Só o deck principal entra'} no jogo; ficam de fora: ${deck.ignoradas.join(', ')}`);
 
     const faltam = nomesDaLista(lista).filter((n) => !this.o.pronta(n));
     const base = existente?.atual ?? existente?.preparacao ?? null;
@@ -270,7 +296,7 @@ export class TarefasDecks {
     const prontasTxt = n === 1 ? 'até ela ficar pronta' : 'até elas ficarem prontas';
     if (erros.length) {
       destino = n === 0 ? 'jogavel' : 'preparacao';
-      resumo = 'A lista não cumpre as regras de deck do Commander: corrija no Moxfield e busque de novo.';
+      resumo = `A lista não cumpre as regras de deck do ${MODOS[deck.modo].nome}: corrija no Moxfield e busque de novo.`;
     } else if (existente && listasIguais(existente.atual, lista)) {
       destino = existente.preparacao ? 'jogavel' : 'nada';
       resumo = existente.preparacao
@@ -303,8 +329,9 @@ export class TarefasDecks {
       nome: deck.nome,
       link: linkDoDeck(deck.publicId),
       novo: !existente,
-      comandante: lista.comandante,
-      comandantePt: gerado.imagens[lista.comandante]?.pt?.nome ?? null,
+      formato: deck.modo,
+      comandante: lista.comandante ?? null,
+      comandantePt: lista.comandante ? gerado.imagens[lista.comandante]?.pt?.nome ?? null : null,
       parceiro: lista.parceiro ?? null,
       parceiroPt: lista.parceiro ? gerado.imagens[lista.parceiro]?.pt?.nome ?? null : null,
       total: nomesDaLista(lista).length,
@@ -396,12 +423,14 @@ export class TarefasDecks {
     });
 
     // 3. arte do comandante em alta qualidade (sem ela, o servidor recorta a imagem da carta)
-    if (this.o.artes !== false && gravado.imagens) {
-      passo.etapa('Baixando a arte do comandante');
+    const tipos = lista.comandante ? null : this.lerGerado().cartas;
+    const capa = capaDe(lista, (n) => /^Basic\b.*Land/.test(tipos?.[n]?.faces[0]?.typeLine ?? ''));
+    if (this.o.artes !== false && gravado.imagens && capa) {
+      passo.etapa(lista.comandante ? 'Baixando a arte do comandante' : 'Baixando a arte do deck');
       try {
-        await this.garantirArte(lista.comandante, gravado.imagens);
+        await this.garantirArte(capa, gravado.imagens);
       } catch (e) {
-        console.error(`arte de ${lista.comandante}:`, e);
+        console.error(`arte de ${capa}:`, e);
       }
     }
 

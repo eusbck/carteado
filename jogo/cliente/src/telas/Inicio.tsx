@@ -8,6 +8,7 @@ import { Marca } from '../icones.tsx';
 import { loja } from '../loja.ts';
 import { descricaoLugares } from '../lugares.ts';
 import { EscolhaLugares } from './EscolhaLugares.tsx';
+import { LISTA_MODOS, MODOS, type ModoJogo } from '../../../motor/modos.ts';
 
 const NOME = 'commander-da-mesa:nome';
 function nomeGuardado(): string {
@@ -51,7 +52,10 @@ export function Inicio() {
   const [nome, setNome] = useState(nomeGuardado());
   const [passo, setPassoAtual] = useState<Passo>(() => (nomeGuardado().trim() ? 'escolha' : 'nome'));
   const [sentido, setSentido] = useState<'frente' | 'tras'>('frente');
-  const [lugares, setLugares] = useState(4);
+  const [formato, setFormato] = useState<ModoJogo>('commander');
+  const [lugares, setLugares] = useState(MODOS.commander.lugaresPadrao);
+  // cada modo sugere um tamanho de mesa (Commander a quatro, Standard em duelo); dá para mudar depois
+  const escolherFormato = (f: ModoJogo) => { setFormato(f); setLugares(MODOS[f].lugaresPadrao); };
   const [senhaNova, setSenhaNova] = useState('');
   const [codigo, setCodigo] = useState('');
   const [senha, setSenha] = useState('');
@@ -87,7 +91,7 @@ export function Inicio() {
   const criar = (ev: Event) => {
     ev.preventDefault();
     if (senhaNova.length < 3) return;
-    loja.enviar({ t: 'criar', nome: nomeLimpo, senhaSala: senhaNova, lugares });
+    loja.enviar({ t: 'criar', nome: nomeLimpo, senhaSala: senhaNova, lugares, formato });
   };
   const entrar = (ev: Event) => {
     ev.preventDefault();
@@ -127,6 +131,16 @@ export function Inicio() {
       <form class="passo-form" onSubmit={criar}>
         <button type="button" class="passo-voltar" onClick={voltar}><IconeVoltar />Voltar</button>
         <h1 class="passo-titulo">Criar sala</h1>
+        <div class="campo-passo">
+          Modo de jogo
+          <div class="segmentado" role="radiogroup" aria-label="Modo de jogo">
+            {LISTA_MODOS.map((m) => (
+              <button key={m.id} type="button" role="radio" aria-checked={formato === m.id} class={formato === m.id ? 'ativo' : ''}
+                onClick={() => escolherFormato(m.id)}>{m.nome}<small>{m.descricao}</small></button>
+            ))}
+          </div>
+          <small>No saguão aparecem só os decks deste modo.</small>
+        </div>
         <div class="campo-passo">
           Jogadores
           <EscolhaLugares valor={lugares} mudar={setLugares} />

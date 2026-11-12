@@ -10,6 +10,7 @@ import { Marca } from '../icones.tsx';
 import { desfecho, nomeCurto } from '../Importacoes.tsx';
 import { loja, useLoja } from '../loja.ts';
 import { Simbolos } from '../mesa/Simbolos.tsx';
+import { MODOS } from '../../../motor/modos.ts';
 
 const data = (iso: string | null) => (iso ? new Date(iso).toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' }) : null);
 const cartasTxt = (n: number) => (n === 1 ? '1 carta' : `${n} cartas`);
@@ -62,7 +63,7 @@ function CorpoProposta({ p }: { p: Proposta }) {
       <div class="cat-proposta-topo">
         <div>
           <p class="cat-proposta-nome">{p.nome}</p>
-          <p class="suave">{p.parceiro ? 'Comandantes' : 'Comandante'}: {p.comandantePt ?? p.comandante}{p.comandantePt ? ` (${p.comandante})` : ''}{p.parceiro ? ` e ${p.parceiroPt ?? p.parceiro}${p.parceiroPt ? ` (${p.parceiro})` : ''}` : ''} · <a href={p.link} target="_blank" rel="noopener noreferrer">ver no Moxfield</a></p>
+          <p class="suave">{p.comandante ? <>{p.parceiro ? 'Comandantes' : 'Comandante'}: {p.comandantePt ?? p.comandante}{p.comandantePt ? ` (${p.comandante})` : ''}{p.parceiro ? ` e ${p.parceiroPt ?? p.parceiro}${p.parceiroPt ? ` (${p.parceiro})` : ''}` : ''}</> : `Deck de ${MODOS[p.formato].nome}`} · <a href={p.link} target="_blank" rel="noopener noreferrer">ver no Moxfield</a></p>
         </div>
       </div>
       {p.erros.length > 0 && (
@@ -209,7 +210,7 @@ function JanelaDetalhes({ d, fechar }: { d: DeckCatalogo; fechar: () => void }) 
     <Janela titulo={d.nome} fechar={fechar} larga={!!p && d.estado === 'atualizacao'} classe="cat-janela">
       <div class="cat-proposta">
         <p class="suave">
-          {d.parceiro ? 'Comandantes' : 'Comandante'}: {d.comandantePt ?? d.comandante}{d.parceiro ? ` e ${d.parceiroPt ?? d.parceiro}` : ''} · {d.total} cartas diferentes{d.link ? <> · <a href={d.link} target="_blank" rel="noopener noreferrer">ver no Moxfield</a></> : ' · deck da mesa'}
+          {d.comandante ? <>{d.parceiro ? 'Comandantes' : 'Comandante'}: {d.comandantePt ?? d.comandante}{d.parceiro ? ` e ${d.parceiroPt ?? d.parceiro}` : ''}</> : `Deck de ${MODOS[d.formato].nome}`} · {d.total} cartas diferentes{d.link ? <> · <a href={d.link} target="_blank" rel="noopener noreferrer">ver no Moxfield</a></> : ' · deck da mesa'}
           <br />Importado em {data(d.importadoEm)}{d.verificadoEm ? `; buscado no Moxfield em ${data(d.verificadoEm)}` : ''}.
         </p>
         {d.estado === 'pronto' && <p class="cat-resumo jogavel">Todas as cartas têm regras: o deck está no saguão.</p>}
@@ -249,7 +250,7 @@ function CartaoDeck({ d, ocupado, buscando, abrir, atualizar }: { d: DeckCatalog
         {selo}
         <span class="deck-info">
           <span class="deck-nome" title={d.nome}>{d.nome}</span>
-          <span class="deck-cmd"><span>{(d.comandantePt ?? d.comandante).split(',')[0]}</span><Simbolos custo={d.cores.map((c) => `{${c}}`).join('')} /></span>
+          <span class="deck-cmd"><span>{d.comandante ? (d.comandantePt ?? d.comandante).split(',')[0] : MODOS[d.formato].nome}</span><Simbolos custo={d.cores.map((c) => `{${c}}`).join('')} /></span>
         </span>
       </button>
       <div class="cat-deck-pe">

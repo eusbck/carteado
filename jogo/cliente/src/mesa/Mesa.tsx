@@ -1115,7 +1115,7 @@ export function Mesa() {
   const arrumar = useArrumar(objsPorJogador.get(eu), anexos);
   const fundoDe = (p: number) => {
     const deck = e.decks.find((x) => x.id === sala.assentos[p]?.deck);
-    return deck ? urlFundo(deck.comandante) : null;
+    return deck ? urlFundo(deck.capa) : null;
   };
   // retrato de cada jogador: o que a pessoa escolheu, ou o do comandante do deck dela
   const avatarDe = (p: number) => avatarDoAssento(sala.assentos[p]?.avatar, e.decks.find((x) => x.id === sala.assentos[p]?.deck)?.comandante);
@@ -1153,6 +1153,7 @@ export function Mesa() {
         objs={objsPorJogador.get(j.id) ?? SEM_OBJS}
         anexos={anexos}
         comandantes={v.command.filter((o) => o.owner === j.id)}
+        semComandante={!!v.formato}
         exilio={v.exile.filter((o) => o.owner === j.id)}
         eu={j.id === eu}
         ativo={v.turn.active === j.id}
@@ -1235,7 +1236,7 @@ export function Mesa() {
   const ladosVS = (): LadoVS[] => ordem.map((p) => {
     const a = sala.assentos[p];
     const deck = e.decks.find((x) => x.id === a?.deck);
-    const comandante = deck ? nomeCarta(deck.comandante, deck.comandante).split(',')[0] : null;
+    const comandante = deck?.comandante ? nomeCarta(deck.comandante, deck.comandante).split(',')[0] : null;
     // sem o complemento entre parênteses dos decks importados ("(Reality Fracture Commander Decklist)"), e sem repetir
     // quando o deck tem o nome do comandante ("Terra")
     // (o nome importado vem cortado em 60 letras, às vezes sem o ")" do fim)
@@ -1247,7 +1248,7 @@ export function Mesa() {
       comandante,
       deck: nomeDeck && nomeDeck !== comandante ? nomeDeck : null,
       fundo: fundoDe(p),
-      foco: deck ? rostoNoFundo(deck.comandante) : [0.5, 0.3],
+      foco: deck ? rostoNoFundo(deck.capa) : [0.5, 0.3],
       aura: avatarDe(p)?.aura ?? cor(p),
       // a ordem dos turnos já vem sorteada: o primeiro dela joga o primeiro turno
       comeca: p === v.turnOrder[0],

@@ -16,7 +16,8 @@ import type { DeckList } from '../motor/state.ts';
 import { Banco } from './banco.ts';
 import { infoCartas } from './cartas-info.ts';
 import { pastasPadrao } from './catalogo/caminhos.ts';
-import { Catalogo, infoDoDisco } from './catalogo/catalogo.ts';
+import { capaDe, Catalogo, infoDoDisco } from './catalogo/catalogo.ts';
+import { modoDe } from '../motor/modos.ts';
 import { regenerar } from './catalogo/gerar.ts';
 import { cartaPronta } from './catalogo/prontidao.ts';
 import { redeReal } from './catalogo/rede.ts';
@@ -66,9 +67,16 @@ if (aplicados.length) {
 const imagens = new Imagens(join(RAIZ, '..', 'cartas'), join(RAIZ, '.cache', 'miniaturas'), undefined, [pastas.imagens, join(RAIZ, 'proprias', 'imagens')]);
 const INFO = JSON.stringify(infoCartas());
 const resumir = (decks: DeckList[]): DeckResumo[] => decks.map((d) => {
-  // parceiros (CR 702.124c): a identidade de cor é a dos dois
-  const cores = new Set([...oracle(d.comandante).colorIdentity, ...(d.parceiro ? oracle(d.parceiro).colorIdentity : [])]);
-  return { id: d.id, nome: d.nome, comandante: d.comandante, parceiro: d.parceiro ?? null, cores: ['W', 'U', 'B', 'R', 'G'].filter((c) => cores.has(c as never)) };
+  // parceiros (CR 702.124c): a identidade de cor é a dos dois; sem comandante, a das cartas do deck
+  const cores = new Set(d.comandante
+    ? [...oracle(d.comandante).colorIdentity, ...(d.parceiro ? oracle(d.parceiro).colorIdentity : [])]
+    : d.cartas.flatMap((e) => oracle(e.nome).colorIdentity));
+  const basico = (n: string) => { const f = oracle(n).faces[0]; return f.supertypes.includes('Basic') && f.types.includes('Land'); };
+  return {
+    id: d.id, nome: d.nome, formato: modoDe(d), comandante: d.comandante ?? null, parceiro: d.parceiro ?? null,
+    capa: capaDe(d, basico) ?? '', total: d.cartas.reduce((n, e) => n + e.quantidade, 0) + (d.comandante ? 1 : 0) + (d.parceiro ? 1 : 0),
+    cores: ['W', 'U', 'B', 'R', 'G'].filter((c) => cores.has(c as never)),
+  };
 });
 let resumoDecks = resumir(catalogo.listasJogaveis());
 
