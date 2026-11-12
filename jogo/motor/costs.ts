@@ -267,7 +267,7 @@ export function* activateManaAbility(g: G, player: PlayerId, opt: ManaOption, hi
   // "qualquer combinação de cores": cada '*' vira uma cor escolhida agora (CR 106.1a)
   const alt: ManaType[] = [];
   let hi = 0;
-  for (const t of opt.alt) {
+  for (const t of opt.def.produceFromCost ? opt.def.produceFromCost(ctx, paid) : opt.alt) {
     if ((t as string) !== '*') { alt.push(t); continue; }
     const h = hint[hi++];
     if (h && h !== 'C') alt.push(h);

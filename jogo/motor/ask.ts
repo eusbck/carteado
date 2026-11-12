@@ -56,6 +56,15 @@ export function defaultAnswer(d: Decision): Answer {
         const b = d.candidates.find((c) => !usados.has(c.obj) && c.canBlock.includes(a));
         if (b) { usados.add(b.obj); blocks.push([b.obj, a]); }
       }
+      // lote4-b: "precisa ser bloqueada se possível" (CR 509.1c): um bloqueador livre (dois, com ameaçar) para cada uma
+      const opcoes = (a: ObjId) => d.candidates.filter((c) => c.canBlock.includes(a)).length;
+      for (const a of [...(d.mustBlock ?? [])].sort((x, y) => opcoes(x) - opcoes(y))) {
+        if (blocks.some(([, x]) => x === a)) continue;
+        const livres = d.candidates.filter((c) => !usados.has(c.obj) && c.canBlock.includes(a));
+        const n = d.mustBlockMenace?.includes(a) ? 2 : 1;
+        if (livres.length < n) continue;
+        for (const c of livres.slice(0, n)) { usados.add(c.obj); blocks.push([c.obj, a]); }
+      }
       return { kind: 'blockers', blocks };
     }
     case 'damage': return { kind: 'damage', assign: danoPadrao(d) };

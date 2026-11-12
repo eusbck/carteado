@@ -180,6 +180,9 @@ export interface ManaAbilityDef extends AbilityCommon {
   /** lote3-f: "ative somente como uma instantânea" numa habilidade de mana (Lion's Eye Diamond): precisa de prioridade, então
    *  não pode ser ativada enquanto se paga um custo (conjurando, ativando ou pagando durante a resolução; CR 605.3a, 117.1b) */
   notWhilePaying?: boolean;
+  /** lote4-b: a mana produzida depende do que foi pago no custo ("adicione {B} igual ao valor de mana da criatura
+   *  sacrificada", Soldevi Adnate). `produce` continua sendo a estimativa do planejador; ao ativar vale esta */
+  produceFromCost?: (c: Ctx, costInfo: Record<string, unknown>) => ManaType[];
 }
 
 export interface ActivatedDef extends AbilityCommon {
@@ -332,6 +335,8 @@ export interface RuleHooks {
   crewPowerBonus?: (c: SCtx, creature: ObjId) => number;
   /** "esta criatura precisa ser bloqueada por exatamente uma criatura se puder" (Nacatl War-Pride) */
   mustBeBlockedByExactlyOne?: (c: SCtx, attacker: ObjId) => boolean;
+  /** lote4-b: "precisa ser bloqueada se possível" (The Masamune; CR 509.1c): motor/bloqueio-obrigatorio.ts */
+  mustBeBlockedIfAble?: (c: SCtx, attacker: ObjId) => boolean;
   /**
    * "se [esse jogador] fosse comprar uma carta que não a primeira da etapa de compra dele, em vez disso ele pula essa
    * compra e você compra uma carta" (Notion Thief). O motor só consulta fora da primeira compra da etapa de compra.
@@ -427,6 +432,9 @@ export interface StaticDef extends AbilityCommon {
    *  as modificações desta estática se aplicam depois das outras da mesma camada, qualquer que seja o registro de data e hora */
   cantHave?: boolean;
   rules?: RuleHooks;
+  /** lote4-b: o gancho extraTriggers desta estática também vale no lote em que a permanente sai do campo, olhando para trás
+   *  (CR 603.10a; ruling 8 de Drivnod, Carnage Dominus): motor/morte-dispara.ts */
+  lookBack?: boolean;
 }
 
 export interface EnterEvent {
