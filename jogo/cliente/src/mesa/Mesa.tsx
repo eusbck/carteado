@@ -35,6 +35,7 @@ import { EscolhaRecolhida, JanelaEscolha } from './JanelaEscolha.tsx';
 import { PedidoDesfazer } from './Desfazer.tsx';
 import { useEfeitos } from './Efeitos.tsx';
 import { emCena, pularCena, useCena } from './cenaLoja.ts';
+import { useDepoisDaCena } from './depoisDaCena.ts';
 import { Setas, type Seta } from './Setas.tsx';
 import { FaixaTurno } from './FaixaTurno.tsx';
 import { MaoInicial } from './MaoInicial.tsx';
@@ -278,7 +279,7 @@ function FaixaFases({ v, eu, d, enviando, paradas, cor, desfazivel, parada }: Fa
 function Avisos({ v, cor }: { v: GameView; cor: (p: number) => string }) {
   // os avisos do servidor (pedido de desfazer aceito, recusado…), assinados aqui e não na mesa
   const doServidor = useLoja((x) => x.avisos);
-  const [lista, setLista] = useState<{ id: number; texto: string; quem: number | null }[]>([]);
+  const [lista, setLista] = useState<{ id: number; texto: string; quem: number | null; fim: boolean }[]>([]);
   const anterior = useRef<GameView['log'] | null>(null);
   const seq = useRef(0);
   // cada aviso some sozinho; os relógios que faltam param quando a mesa sai da tela
@@ -295,17 +296,19 @@ function Avisos({ v, cor }: { v: GameView; cor: (p: number) => string }) {
     if (ultima) for (let i = v.log.length - 1; i >= 0; i--) if (v.log[i].turn === ultima.turn && v.log[i].text === ultima.text) { k = i; break; }
     const novas = v.log.slice(k + 1).filter((l) => / (joga|conjura|ativa|revela) |ataca:|perde a partida|vence a partida|\(ajuste manual\)/.test(l.text));
     if (!novas.length) return;
-    const itens = novas.slice(-3).map((l) => ({ id: seq.current++, texto: traduzir(l.text), quem: v.players.find((p) => l.text.startsWith(`${p.name} `) || l.text.startsWith(`${p.name}:`))?.id ?? null }));
+    const itens = novas.slice(-3).map((l) => ({ id: seq.current++, texto: traduzir(l.text), fim: / (perde|vence) a partida/.test(l.text), quem: v.players.find((p) => l.text.startsWith(`${p.name} `) || l.text.startsWith(`${p.name}:`))?.id ?? null }));
     setLista((a) => [...a, ...itens].slice(-3));
     const ids = new Set(itens.map((i) => i.id));
     const t = setTimeout(() => { relogios.current.delete(t); setLista((a) => a.filter((x) => !ids.has(x.id))); }, 5000);
     relogios.current.add(t);
   }, [v.log]);
+  // o fim da partida só é avisado quando os golpes que a acabaram chegam (a ponte até o N34)
+  const fimLiberado = useDepoisDaCena(lista.some((a) => a.fim));
   if (!lista.length && !doServidor.length) return null;
   return (
     <div class="avisos" aria-live="polite">
       {doServidor.map((a) => <div key={`s${a.id}`} class="aviso aviso-mesa">{traduzir(a.texto)}</div>)}
-      {lista.map((a) => {
+      {lista.filter((a) => !a.fim || fimLiberado).map((a) => {
         const nome = a.quem !== null ? v.players[a.quem].name : null;
         return (
           <div key={a.id} class="aviso" style={{ '--cor': a.quem !== null ? cor(a.quem) : 'var(--texto)' }}>
