@@ -1,7 +1,7 @@
 // Estado do cliente e conexão com o servidor (WebSocket com reconexão).
 // O cliente nunca decide regras: só mostra a vista que o servidor manda e envia escolhas.
 
-import { useEffect, useState } from 'preact/hooks';
+import { useEffect, useRef, useState } from 'preact/hooks';
 import type { StopSettings } from '../../motor/autopass.ts';
 import type { Answer, ManualAction } from '../../motor/types.ts';
 import type { GameView } from '../../motor/view.ts';
@@ -12,6 +12,7 @@ import type { ReferenciaRelogio } from './cronometro.ts';
 import { auxiliosAtivos, preferencias } from './preferencias.ts';
 import { tocar } from './sons.ts';
 import { avatarGuardado } from './avatares.ts';
+import { rasa } from './igualdade.ts';
 import { ligarControle, marcarCena, vistaSemAnimacao } from './mesa/cenaLoja.ts';
 import { FilaQuadros, type Quadro } from './mesa/filaQuadros.ts';
 
@@ -414,14 +415,31 @@ class Loja {
 
 export const loja = new Loja();
 
-export function useLoja(): Estado {
+const tudo = (e: Estado) => e;
+
+/**
+ * O estado da loja num componente (N27). Sem argumentos, o estado inteiro (o componente se desenha de novo a cada
+ * mudança); com `seletor`, só o pedaço que ele usa, e ele só se desenha de novo quando esse pedaço muda pela igualdade
+ * `igual` (rasa, por padrão: um seletor que devolve { vista, sala } novo a cada chamada não redesenha nada se os dois
+ * campos são os mesmos). Uma mensagem do chat, um "pensando…" ou um aviso deixam de redesenhar a mesa inteira.
+ */
+export function useLoja(): Estado;
+export function useLoja<T>(seletor: (e: Estado) => T, igual?: (a: T, b: T) => boolean): T;
+export function useLoja<T>(seletor: (e: Estado) => T = tudo as unknown as (e: Estado) => T, igual: (a: T, b: T) => boolean = rasa): T {
   const [, forcar] = useState(0);
-  const visto = loja.e;
+  const valor = seletor(loja.e);
+  // o seletor e a igualdade de agora (podem depender de props) e o último valor desenhado
+  const atual = useRef({ seletor, igual, valor });
+  atual.current = { seletor, igual, valor };
   useEffect(() => {
-    const desfazer = loja.assinar(() => forcar((x) => x + 1));
+    const conferir = () => {
+      const a = atual.current;
+      if (!a.igual(a.valor, a.seletor(loja.e))) forcar((x) => x + 1);
+    };
+    const desfazer = loja.assinar(conferir);
     // o estado pode ter mudado entre a renderização e a assinatura (o efeito roda depois)
-    if (loja.e !== visto) forcar((x) => x + 1);
+    conferir();
     return desfazer;
   }, []);
-  return loja.e;
+  return valor;
 }
