@@ -8,11 +8,10 @@
 //
 // A cada vista nova, as cartas que podem aparecer em seguida (a pilha, o campo, a mão, o comando e o topo dos
 // cemitérios) são preparadas no tamanho da mesa ('p'). Um feitiço que entra na pilha já tem a imagem pronta quando
-// pousa no campo.
+// pousa no campo. A ligação com a loja fica em mesa/prepararImagens.ts (este módulo não depende dela e roda nos testes).
 
 import type { GameView } from '../../motor/view.ts';
 import { urlImagem } from './cartas.ts';
-import { loja } from './loja.ts';
 
 const SOLTAR_DEPOIS_MS = 90_000;
 
@@ -77,18 +76,17 @@ let ultimaVista: GameView | null = null;
 let vigiando = false;
 let varredura: ReturnType<typeof setInterval> | null = null;
 
-function aoMudarLoja(): void {
-  const v = loja.e.vista;
+/** prepara as cartas que podem aparecer depois desta vista (a mesma vista de novo não faz nada) */
+export function prepararVista(v: GameView | null): void {
   if (!v || v === ultimaVista) return;
   ultimaVista = v;
   for (const u of urlsDaVista(v)) void prepararImagem(u);
 }
 
-/** liga uma vez: a varredura dos 90 s e o preparo a cada vista nova */
+/** liga uma vez a varredura dos 90 s */
 function vigiar(): void {
   if (vigiando) return;
   vigiando = true;
-  loja.assinar(aoMudarLoja);
   varredura = setInterval(() => {
     const limite = performance.now() - SOLTAR_DEPOIS_MS;
     for (const [u, e] of cache) if (e.uso < limite) cache.delete(u);

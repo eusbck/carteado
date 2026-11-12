@@ -5,8 +5,12 @@ import { memo } from 'preact/compat';
 import type { ObjView } from '../../../motor/view.ts';
 import { info, nomeCarta, urlImagem } from '../cartas.ts';
 import { prepararImagem } from '../imagens.ts';
+import { ligarPreparoDasImagens } from './prepararImagens.ts';
 import { IconeEscudo, IconeEspada } from '../icones.tsx';
 import { palavraChave } from '../pt.ts';
+
+// N30: as imagens das próximas cartas começam a ser decodificadas quando cada vista chega
+ligarPreparoDasImagens();
 
 /** 'bloqueavel': atacante que a sua criatura escolhida pode bloquear (anel azul que pulsa, diferente da 'mira' vermelha) */
 export type Realce = 'acao' | 'escolhivel' | 'escolhido' | 'atacante' | 'bloqueador' | 'ativo' | 'mira' | 'bloqueavel' | null;

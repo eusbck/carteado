@@ -4,10 +4,8 @@
 import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
 import type { GameView, ObjView } from '../motor/view.ts';
 
-vi.mock('../cliente/src/loja.ts', () => ({ loja: { e: { vista: null }, assinar: () => () => {} } }));
-
 const { carregarCartas } = await import('../cliente/src/cartas.ts');
-const { imagemPronta, prepararImagem, urlsDaVista, zerarImagens } = await import('../cliente/src/imagens.ts');
+const { imagemPronta, prepararImagem, prepararVista, urlsDaVista, zerarImagens } = await import('../cliente/src/imagens.ts');
 
 /** Image de mentira: decode resolve, ou rejeita para endereços com "quebrada" */
 class ImagemFalsa {
@@ -59,5 +57,8 @@ describe('imagens prontas antes de a carta aparecer (N30)', () => {
       players: [{ graveyard: [o('B'), o('A')] }, { graveyard: [] }],
     } as unknown as GameView;
     expect(urlsDaVista(v).sort()).toEqual(['/img/a/frente/p', '/img/b/frente/p', '/img/b2/verso/p'].sort());
+    prepararVista(v);
+    prepararVista(v);
+    expect(ImagemFalsa.criadas).toBe(3);
   });
 });
