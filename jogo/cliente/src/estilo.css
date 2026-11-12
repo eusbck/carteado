@@ -969,7 +969,7 @@ img.mini { width: 40px; aspect-ratio: 63 / 88; object-fit: cover; border-radius:
 .mesa.parada .janela-escolha { z-index: 70; }
 .janela-escolha.recolhida { display: none; }
 .janela-escolha.espiando { opacity: 0; pointer-events: none; }
-.janela-escolha.f-simnao, .janela-escolha.f-numero { --largura-escolha: 560px; }
+.janela-escolha.f-simnao, .janela-escolha.f-numero { --largura-escolha: 560px; width: fit-content; min-width: min(420px, calc(100% - var(--reserva) - 32px)); max-width: min(var(--largura-escolha), calc(100% - var(--reserva) - 32px)); }
 .janela-escolha.f-opcoes { --largura-escolha: 720px; }
 .janela-escolha.f-fila { --largura-escolha: 780px; }
 .janela-escolha.f-grade { --largura-escolha: 1400px; }
@@ -1070,6 +1070,11 @@ img.mini { width: 40px; aspect-ratio: 63 / 88; object-fit: cover; border-radius:
 /* recolhida: a decisão continua pendente, num cartão da coluna da direita */
 .escolha-recolhida { border-color: color-mix(in srgb, var(--ouro) 60%, transparent); gap: 8px; }
 .escolha-recolhida > .rot { color: var(--ouro); margin-bottom: 0; }
+/* o cartão tem a altura e a largura do que mostra: não encolhe (o .cartao corta o que passa e o botão sumia) e
+   o enunciado comprido fica em até 4 linhas, com o texto todo no title */
+.coluna-dir > .cartao.escolha-recolhida { flex: 0 0 auto; min-height: 0; align-self: flex-end; width: fit-content; min-width: min(240px, 100%); max-width: 100%; }
+.escolha-recolhida > .decisao-titulo { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; line-clamp: 4; overflow: hidden; }
+.escolha-recolhida > .botoes-linha .botao { flex: 1 0 auto; }
 
 /* ---------------------------------------------------------------- tela Decks (importar e atualizar pelo Moxfield) */
 .cat-topo { display: flex; justify-content: space-between; align-items: center; gap: 12px; }

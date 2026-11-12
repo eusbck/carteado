@@ -1290,6 +1290,8 @@ export function Mesa() {
               {sala.anfitriao === eu && <button class="botao principal" onClick={() => loja.enviar({ t: 'novaPartida' })}>Nova partida com a mesma mesa</button>}
             </div>
           )}
+          {/* acima da pilha: quem encolhe na falta de espaço é a pilha, e o "Voltar à escolha" fica sempre à vista */}
+          {escolha && escolhaRecolhida && <EscolhaRecolhida d={escolha} ui={ui} voltar={() => setEscolhaRecolhida(false)} />}
           {v.stack.length > 0 && (
             <section class="cartao pilha" aria-label="Pilha">
               <div class="pilha-cab"><span class="rot">Pilha</span><span class="rot">{v.stack.length}</span></div>
@@ -1312,7 +1314,6 @@ export function Mesa() {
               </ol>
             </section>
           )}
-          {escolha && escolhaRecolhida && <EscolhaRecolhida d={escolha} ui={ui} voltar={() => setEscolhaRecolhida(false)} />}
           {d && mostrarDecisao && (
             <div class="cartao">
               <p class="rot">{rotuloDecisao(d)}</p>
