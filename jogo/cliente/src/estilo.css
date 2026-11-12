@@ -1074,6 +1074,17 @@ img.mini { width: 40px; aspect-ratio: 63 / 88; object-fit: cover; border-radius:
 /* ---------------------------------------------------------------- tela Decks (importar e atualizar pelo Moxfield) */
 .cat-topo { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
 .cat-tela { width: min(1320px, 100%); padding: 30px 32px 34px; display: grid; gap: 20px; align-content: start; min-height: min(820px, calc(100vh - 64px)); }
+/* filtro dos decks pela origem (FiltroOrigem.tsx), no saguão e na tela Decks */
+.filtro-origem { display: flex; flex-wrap: wrap; gap: 8px; }
+.filtro-origem-op { display: inline-flex; align-items: center; gap: 7px; height: 32px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--linha-forte); background: rgba(0, 0, 0, .25); color: var(--suave); font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; }
+.filtro-origem-op:hover { color: var(--texto); border-color: rgba(255, 255, 255, .35); }
+.filtro-origem-op[aria-pressed='true'] { color: var(--ouro-texto); background: var(--ouro); border-color: var(--ouro); }
+.filtro-origem-n { font-size: 11px; font-weight: 800; opacity: .75; }
+.deck-origem { justify-self: start; font-size: 10.5px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; padding: 2px 7px; border-radius: 5px; background: rgba(0, 0, 0, .55); border: 1px solid currentColor; }
+.deck-origem.precon { color: var(--ouro); }
+.deck-origem.modificado { color: #e0b48a; }
+.deck-origem.montado { color: #a9c7e8; }
+.deck-origem.casa { color: #9fd7a4; }
 .cat-titulo { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
 .cat-importar { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px 12px; align-items: end; }
 .cat-importar input, .cat-importar .botao { height: 42px; min-height: 42px; }

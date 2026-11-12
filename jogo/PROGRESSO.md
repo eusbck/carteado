@@ -26,6 +26,25 @@ modo o saguão mostrar só os decks dele. Branch `modos/standard` (worktree `mod
 - **Decks de Standard:** ainda nenhum na mesa. Entram pela tela Decks com o link do Moxfield; as cartas que ainda
   não têm regras deixam o deck em preparação, como nos de Commander.
 - **Testes:** `testes/modos.test.ts`.
+## Filtro dos decks pela origem (precon, precon modificado, montado, criado aqui) — 12/11/2026
+
+Pedido do Caio: saber quais decks são precons de verdade (os que se compram na loja) e quais foram montados a
+partir de links.
+
+- **Como se sabe:** `node ferramentas/decks.ts classificar [id…|todos]` compara cada lista com as listas oficiais
+  dos precons de Commander do MTGJSON (índice e listas guardados em `.cache/mtgjson/`) e grava em
+  `decks/origens.json`: `precon` (igual ao produto), `modificado` (75+ cartas em comum, com o número de trocas),
+  `montado` ou `casa` (sem link: Lula e Bolsonaro). Deck que ainda não passou pela comparação usa um palpite
+  ("Precon" no nome: precon; sem link: criado aqui; o resto: montado). Módulos `servidor/catalogo/origem.ts` e
+  `mtgjson.ts`; teste `testes/catalogo/origem.test.ts`. **Ao adicionar um deck, rodar `classificar` depois.**
+- **Resultado (47 decks):** 25 precons, 9 precons modificados, 11 montados, 2 criados aqui. Os 7 do João são todos
+  precons com trocas (Abzan Armor 4, Blight Curse 11, Lorehold Spirit 7, Prismari Artistry 10, Silverquill
+  Influence 6, Terra/Revival Trance 16, Witherbloom Pestilence 6); também Jace/Multiverse Reforged (7) e
+  Gisa/Wretched Ranks (10), cujos links no Moxfield diferem da lista oficial.
+- **Na tela:** `DeckResumo.origem` e `DeckCatalogo.origem`; no passo Decks do saguão e na tela Decks, botões
+  Todos / Precons / Precons modificados / Montados / Criados aqui com a contagem (`telas/FiltroOrigem.tsx`, a
+  escolha fica no navegador) e um selo acima do nome de cada deck ("Precon", "Precon · 4 trocas", "Montado",
+  "Criado aqui"; o produto aparece ao passar o mouse). O deck que você escolheu continua à vista fora do filtro.
 
 ## Mesas de 2 a 6 jogadores, sem precisar de bot — 08/11/2026
 
@@ -2231,3 +2250,24 @@ para depois.
   - `conferir`: 100/100, igual ao Moxfield, 97 de 97 cartas com regras.
   - Bots: 20 partidas com o Foods (aleatórias e heurísticas, 2 e 4 jogadores), sem erro.
 - Testes do motor de cartas: rodar `vitest run cartas/defs` com `--no-isolate` (141 s); no modo isolado leva horas.
+
+## 12/11/2026 — Banners e ícones dos decks novos (Codex)
+
+- Pedido do Caio: o Codex criar as imagens da mesa e os ícones dos decks que entraram sem elas. Levantamento nos 42
+  decks jogáveis: 14 sem banner nem ícone (Blame Game, Squirreled Away, Buckle Up, Calling All Angels, Tramplesaurus
+  Rex, Grand Larceny, Quick Draw, Miracle Worker, Cloud, We Are The Borg, Landing Party, Twitch Control, How to Train
+  Ur-Dragon, Wizard's Chess) e 3 só sem ícone (Black Panther, Invisible Woman, Captain America, recusados em 11/10).
+- Geração: `codex exec` (image_gen embutido), 5 lotes em paralelo, a partir da arte da impressão usada na mesa
+  (`artes-comandantes/27..40 - *.png`, entradas novas em `indice.json` e em `ferramentas/artes-comandantes.mjs`).
+  Prompts no mesmo formato dos anteriores, em `artes-comandantes/gerados/<id>-banner.txt` / `<id>-icone.txt`.
+- Resultado: 14 banners (1672 × 941) e 16 ícones (1254 × 1254 com alfa real), conferidos numa prancha. O ícone do
+  **Captain America** foi recusado de novo (`moderation_blocked`, saída, categoria `other`, duas vezes); segue como
+  única pendência em `pendencias.json`, e o assento dele fica com a inicial.
+- Instalados com `artes-comandantes.mjs import`: fundos em `gerado/fundos/<imagem>.webp`, retratos de 512 e 256 px;
+  catálogo de retratos com 42 (`servidor/avatares.ts`), rosto marcado em `ROSTO_NO_FUNDO` para os 14 banners e
+  `VERSAO_FUNDO` 7 (cache dos fundos).
+- Correção de passagem: índice e manifesto das artes ainda apontavam o Food and Fellowship para as impressões antigas
+  (renomeadas em e3840342), o que quebrava a galeria; agora usam 557c1d1d/f6c5d04b. Galeria: 31 de 32 conjuntos
+  completos, nenhum comandante sem fundo.
+- Testes `avatar` e `fase9-artes`: 19/19 com limite maior (os dois laços dos retratos ganharam 30 s, agora são 42);
+  `tsc --noEmit` sem erros. Cliente não recompilado nesta sessão (outra sessão tem mudanças não salvas no cliente).
