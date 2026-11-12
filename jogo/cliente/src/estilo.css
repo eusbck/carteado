@@ -682,6 +682,15 @@ img.mini { width: 40px; aspect-ratio: 63 / 88; object-fit: cover; border-radius:
 .zoom { --zi: 300px; --ze: 1; position: fixed; top: 16px; z-index: 250; pointer-events: none; display: flex; flex-direction: column; align-items: center; background: var(--vidro); border: 1px solid var(--linha-forte); border-radius: 16px; padding: 8px; box-shadow: 0 24px 60px rgba(0, 0, 0, .75); backdrop-filter: blur(12px); }
 .zoom.esq { left: 16px; }
 .zoom.dir { right: calc(var(--lateral) + 16px); }
+/* N24: o zoom entra vindo do lado da carta apontada (85% → 100%), e o texto chega meio segundo depois (só scale,
+   translate e opacity) */
+.zoom { animation: zoom-entra .3s cubic-bezier(.2, .8, .2, 1) both; }
+.zoom.esq { --zoom-de: 28px; }
+.zoom.dir { --zoom-de: -28px; }
+.zoom .zoom-texto { animation: zoom-texto-entra .18s ease-out .5s both; }
+@keyframes zoom-entra { from { opacity: 0; scale: .85; translate: var(--zoom-de) 0; } }
+@keyframes zoom-texto-entra { from { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .zoom, .zoom .zoom-texto { animation: none; } }
 .zoom[data-modo="lado"] { flex-direction: row; gap: 10px; }
 .zoom.dir[data-modo="lado"] { flex-direction: row-reverse; }
 .camada-zoom.recolhida { --lateral: 64px; }
@@ -1317,3 +1326,4 @@ img.mini { width: 40px; aspect-ratio: 63 / 88; object-fit: cover; border-radius:
 [data-desempenho] .fases.esperando-voce .fases-acao .botao.cheio::after { animation: none; }
 /* o halo do atacante que dá para bloquear fica parado */
 [data-desempenho] .realce-bloqueavel::after { animation: none; opacity: .8; }
+[data-desempenho] .zoom { animation: none; }
