@@ -58,7 +58,15 @@ export class FilaQuadros<Q extends Quadro> {
    * `aplicar` mostra o quadro (muda a loja) e devolve se a vista mudou de fato (sem mudança, nada vai animar e a cena
    * acaba na hora); `marcar` recebe os quadros esperando e se o atual anima (cenaLoja.marcarCena).
    */
-  constructor(private aplicar: (q: Q) => boolean, private marcar: (fila: number, animando: boolean) => void = () => {}, private r: Relogio = relogioPadrao) {}
+  private aplicar: (q: Q) => boolean;
+  private marcar: (fila: number, animando: boolean) => void;
+  private r: Relogio;
+
+  constructor(aplicar: (q: Q) => boolean, marcar: (fila: number, animando: boolean) => void = () => {}, r: Relogio = relogioPadrao) {
+    this.aplicar = aplicar;
+    this.marcar = marcar;
+    this.r = r;
+  }
 
   /** chegou um quadro; `saltar`: mostra já, sem cena e sem os que esperavam */
   receber(q: Q, saltar = false): void {
