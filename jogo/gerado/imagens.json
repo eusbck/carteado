@@ -38479,5 +38479,56 @@
    "verso": null
   },
   "pt": null
+ },
+ "Embermaw Hellion": {
+  "en": {
+   "id": "664f60a8-e80a-4fe0-b76c-2d76c728329e",
+   "frente": "imagens/664f60a8-e80a-4fe0-b76c-2d76c728329e/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "ce47a6b6-05fd-410c-8905-4da947d03ced",
+   "frente": "imagens/ce47a6b6-05fd-410c-8905-4da947d03ced/front.png",
+   "verso": null,
+   "nome": "Avernal Boca de Brasa",
+   "tipo": "Criatura — Avernal",
+   "texto": "Atropelar (Esta criatura pode causar seu dano de combate excedente ao planeswalker ou jogador defensor ao atacar.)Se outra fonte vermelha sob seu controle for causar dano a uma permanente ou jogador, ela causará, em vez disso, aquela quantidade de dano mais 1 àquela permanente ou jogador.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Magmatic Insight": {
+  "en": {
+   "id": "7a5d6f4d-31c7-4663-8c65-e84973ae118d",
+   "frente": "imagens/7a5d6f4d-31c7-4663-8c65-e84973ae118d/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "283c4746-4191-4c6e-9c53-55ddee9a8017",
+   "frente": "imagens/283c4746-4191-4c6e-9c53-55ddee9a8017/front.png",
+   "verso": null,
+   "nome": "Percepção Magmática",
+   "tipo": "Feitiço",
+   "texto": "Como custo adicional para conjurar Percepção Magmática, descarte um card de terreno.Compre dois cards.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Greensleeves, Maro-Sorcerer": {
+  "en": {
+   "id": "643b6832-0fa1-4ce8-bda8-00fe9810ffeb",
+   "frente": "imagens/643b6832-0fa1-4ce8-bda8-00fe9810ffeb/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "0b036fd2-347b-45e4-bbf7-7fa5e6c6cc23",
+   "frente": "imagens/0b036fd2-347b-45e4-bbf7-7fa5e6c6cc23/front.png",
+   "verso": null,
+   "nome": "Mangasverdes, Feiticeira-maro",
+   "tipo": "Criatura Lendária — Elemental",
+   "texto": "Proteção contra planeswalkers e Magos\nO poder e a resistência de Mangasverdes, Feiticeira-maro, são ambos iguais ao número de terrenos que você controla.\nToda vez que um terreno entrar no campo de batalha sob seu controle, crie uma ficha de criatura Texugo verde 3/3.",
+   "faces": null,
+   "reserva": false
+  }
  }
 }

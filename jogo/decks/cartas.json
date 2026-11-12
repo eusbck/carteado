@@ -81139,6 +81139,148 @@
    "printing_ids": [
     "74bacab2-a4c6-4ba5-a208-6bd09ae4cf9f"
    ]
+  },
+  "01c39670-3677-49df-a4f6-e5062e0909d5": {
+   "id": "01c39670-3677-49df-a4f6-e5062e0909d5",
+   "oracle_id": "01c39670-3677-49df-a4f6-e5062e0909d5",
+   "name": "Embermaw Hellion",
+   "layout": "normal",
+   "cmc": 5,
+   "mana_cost": "{3}{R}{R}",
+   "type_line": "Creature — Hellion",
+   "oracle_text": "Trample (This creature can deal excess combat damage to the player or planeswalker it's attacking.)\nIf another red source you control would deal damage to a permanent or player, it deals that much damage plus 1 to that permanent or player instead.",
+   "power": "4",
+   "toughness": "5",
+   "loyalty": null,
+   "colors": [
+    "R"
+   ],
+   "color_identity": [
+    "R"
+   ],
+   "keywords": [
+    "Trample"
+   ],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "664f60a8-e80a-4fe0-b76c-2d76c728329e",
+    "ce47a6b6-05fd-410c-8905-4da947d03ced"
+   ]
+  },
+  "6a9031b6-3f4d-4a36-90e1-ac77b8518cee": {
+   "id": "6a9031b6-3f4d-4a36-90e1-ac77b8518cee",
+   "oracle_id": "6a9031b6-3f4d-4a36-90e1-ac77b8518cee",
+   "name": "Magmatic Insight",
+   "layout": "normal",
+   "cmc": 1,
+   "mana_cost": "{R}",
+   "type_line": "Sorcery",
+   "oracle_text": "As an additional cost to cast this spell, discard a land card.\nDraw two cards.",
+   "power": null,
+   "toughness": null,
+   "loyalty": null,
+   "colors": [
+    "R"
+   ],
+   "color_identity": [
+    "R"
+   ],
+   "keywords": [],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": null,
+   "printing_ids": [
+    "283c4746-4191-4c6e-9c53-55ddee9a8017",
+    "7a5d6f4d-31c7-4663-8c65-e84973ae118d"
+   ]
+  },
+  "2ac2d483-2d2a-4912-8db4-04a5a2080831": {
+   "id": "2ac2d483-2d2a-4912-8db4-04a5a2080831",
+   "oracle_id": "2ac2d483-2d2a-4912-8db4-04a5a2080831",
+   "name": "Greensleeves, Maro-Sorcerer",
+   "layout": "normal",
+   "cmc": 5,
+   "mana_cost": "{3}{G}{G}",
+   "type_line": "Legendary Creature — Elemental Sorcerer",
+   "oracle_text": "Protection from planeswalkers and from Wizards\nGreensleeves's power and toughness are each equal to the number of lands you control.\nLandfall — Whenever a land you control enters, create a 3/3 green Badger creature token.",
+   "power": "*",
+   "toughness": "*",
+   "loyalty": null,
+   "colors": [
+    "G"
+   ],
+   "color_identity": [
+    "G"
+   ],
+   "keywords": [
+    "Protection",
+    "Landfall"
+   ],
+   "legalities": {
+    "commander": "legal"
+   },
+   "card_faces": null,
+   "all_parts": [
+    {
+     "id": "643b6832-0fa1-4ce8-bda8-00fe9810ffeb",
+     "component": "combo_piece",
+     "name": "Greensleeves, Maro-Sorcerer"
+    },
+    {
+     "id": "4e42cb2e-578f-4fec-a9a4-33b95b78229c",
+     "component": "token",
+     "name": "Badger"
+    }
+   ],
+   "printing_ids": [
+    "0b036fd2-347b-45e4-bbf7-7fa5e6c6cc23",
+    "643b6832-0fa1-4ce8-bda8-00fe9810ffeb"
+   ]
+  },
+  "432a3442-c9d8-4756-b635-f37f05e2ab9b": {
+   "id": "432a3442-c9d8-4756-b635-f37f05e2ab9b",
+   "oracle_id": "432a3442-c9d8-4756-b635-f37f05e2ab9b",
+   "name": "Badger",
+   "layout": "token",
+   "cmc": 0,
+   "mana_cost": "",
+   "type_line": "Token Creature — Badger",
+   "oracle_text": "",
+   "power": "3",
+   "toughness": "3",
+   "loyalty": null,
+   "colors": [
+    "G"
+   ],
+   "color_identity": [
+    "G"
+   ],
+   "keywords": [],
+   "legalities": {
+    "commander": "not_legal"
+   },
+   "card_faces": null,
+   "all_parts": [
+    {
+     "id": "162d5e1b-f725-44b1-be82-8e161a370d7c",
+     "component": "combo_piece",
+     "name": "Greensleeves, Maro-Sorcerer"
+    },
+    {
+     "id": "4e42cb2e-578f-4fec-a9a4-33b95b78229c",
+     "component": "token",
+     "name": "Badger"
+    }
+   ],
+   "printing_ids": [
+    "4e42cb2e-578f-4fec-a9a4-33b95b78229c"
+   ]
   }
  },
  "printings": {
@@ -186365,6 +186507,202 @@
      "source_url": "https://cards.scryfall.io/png/front/7/4/74bacab2-a4c6-4ba5-a208-6bd09ae4cf9f.png?1783911119"
     }
    ]
+  },
+  "664f60a8-e80a-4fe0-b76c-2d76c728329e": {
+   "id": "664f60a8-e80a-4fe0-b76c-2d76c728329e",
+   "oracle_id": "01c39670-3677-49df-a4f6-e5062e0909d5",
+   "name": "Embermaw Hellion",
+   "lang": "en",
+   "layout": "normal",
+   "set": "ori",
+   "collector_number": "141",
+   "type_line": "Creature — Hellion",
+   "oracle_text": "Trample (This creature can deal excess combat damage to the player or planeswalker it's attacking.)\nIf another red source you control would deal damage to a permanent or player, it deals that much damage plus 1 to that permanent or player instead.",
+   "power": "4",
+   "toughness": "5",
+   "colors": [
+    "R"
+   ],
+   "printed_name": null,
+   "printed_type_line": null,
+   "printed_text": null,
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/664f60a8-e80a-4fe0-b76c-2d76c728329e/front.png",
+     "source_url": "https://cards.scryfall.io/png/front/6/6/664f60a8-e80a-4fe0-b76c-2d76c728329e.png?1783938332"
+    }
+   ]
+  },
+  "ce47a6b6-05fd-410c-8905-4da947d03ced": {
+   "id": "ce47a6b6-05fd-410c-8905-4da947d03ced",
+   "oracle_id": "01c39670-3677-49df-a4f6-e5062e0909d5",
+   "name": "Embermaw Hellion",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "ori",
+   "collector_number": "141",
+   "type_line": "Creature — Hellion",
+   "oracle_text": "Trample (This creature can deal excess combat damage to the player or planeswalker it's attacking.)\nIf another red source you control would deal damage to a permanent or player, it deals that much damage plus 1 to that permanent or player instead.",
+   "power": "4",
+   "toughness": "5",
+   "colors": [
+    "R"
+   ],
+   "printed_name": "Avernal Boca de Brasa",
+   "printed_type_line": "Criatura — Avernal",
+   "printed_text": "Atropelar (Esta criatura pode causar seu dano de combate excedente ao planeswalker ou jogador defensor ao atacar.)Se outra fonte vermelha sob seu controle for causar dano a uma permanente ou jogador, ela causará, em vez disso, aquela quantidade de dano mais 1 àquela permanente ou jogador.",
+   "card_faces": null,
+   "image_status": "lowres",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/ce47a6b6-05fd-410c-8905-4da947d03ced/front.png",
+     "source_url": "https://cards.scryfall.io/png/front/c/e/ce47a6b6-05fd-410c-8905-4da947d03ced.png?1782960505"
+    }
+   ]
+  },
+  "7a5d6f4d-31c7-4663-8c65-e84973ae118d": {
+   "id": "7a5d6f4d-31c7-4663-8c65-e84973ae118d",
+   "oracle_id": "6a9031b6-3f4d-4a36-90e1-ac77b8518cee",
+   "name": "Magmatic Insight",
+   "lang": "en",
+   "layout": "normal",
+   "set": "plst",
+   "collector_number": "ORI-155",
+   "type_line": "Sorcery",
+   "oracle_text": "As an additional cost to cast this spell, discard a land card.\nDraw two cards.",
+   "power": null,
+   "toughness": null,
+   "colors": [
+    "R"
+   ],
+   "printed_name": null,
+   "printed_type_line": null,
+   "printed_text": null,
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/7a5d6f4d-31c7-4663-8c65-e84973ae118d/front.png",
+     "source_url": "https://cards.scryfall.io/png/front/7/a/7a5d6f4d-31c7-4663-8c65-e84973ae118d.png?1783910124"
+    }
+   ]
+  },
+  "283c4746-4191-4c6e-9c53-55ddee9a8017": {
+   "id": "283c4746-4191-4c6e-9c53-55ddee9a8017",
+   "oracle_id": "6a9031b6-3f4d-4a36-90e1-ac77b8518cee",
+   "name": "Magmatic Insight",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "ori",
+   "collector_number": "155",
+   "type_line": "Sorcery",
+   "oracle_text": "As an additional cost to cast this spell, discard a land card.\nDraw two cards.",
+   "power": null,
+   "toughness": null,
+   "colors": [
+    "R"
+   ],
+   "printed_name": "Percepção Magmática",
+   "printed_type_line": "Feitiço",
+   "printed_text": "Como custo adicional para conjurar Percepção Magmática, descarte um card de terreno.Compre dois cards.",
+   "card_faces": null,
+   "image_status": "lowres",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/283c4746-4191-4c6e-9c53-55ddee9a8017/front.png",
+     "source_url": "https://cards.scryfall.io/png/front/2/8/283c4746-4191-4c6e-9c53-55ddee9a8017.png?1782960381"
+    }
+   ]
+  },
+  "643b6832-0fa1-4ce8-bda8-00fe9810ffeb": {
+   "id": "643b6832-0fa1-4ce8-bda8-00fe9810ffeb",
+   "oracle_id": "2ac2d483-2d2a-4912-8db4-04a5a2080831",
+   "name": "Greensleeves, Maro-Sorcerer",
+   "lang": "en",
+   "layout": "normal",
+   "set": "sld",
+   "collector_number": "2193",
+   "type_line": "Legendary Creature — Elemental Sorcerer",
+   "oracle_text": "Protection from planeswalkers and from Wizards\nGreensleeves's power and toughness are each equal to the number of lands you control.\nLandfall — Whenever a land you control enters, create a 3/3 green Badger creature token.",
+   "power": "*",
+   "toughness": "*",
+   "colors": [
+    "G"
+   ],
+   "printed_name": null,
+   "printed_type_line": null,
+   "printed_text": null,
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/643b6832-0fa1-4ce8-bda8-00fe9810ffeb/front.png",
+     "source_url": "https://cards.scryfall.io/png/front/6/4/643b6832-0fa1-4ce8-bda8-00fe9810ffeb.png?1783905377"
+    }
+   ]
+  },
+  "0b036fd2-347b-45e4-bbf7-7fa5e6c6cc23": {
+   "id": "0b036fd2-347b-45e4-bbf7-7fa5e6c6cc23",
+   "oracle_id": "2ac2d483-2d2a-4912-8db4-04a5a2080831",
+   "name": "Greensleeves, Maro-Sorcerer",
+   "lang": "pt",
+   "layout": "normal",
+   "set": "dmc",
+   "collector_number": "27",
+   "type_line": "Legendary Creature — Elemental Sorcerer",
+   "oracle_text": "Protection from planeswalkers and from Wizards\nGreensleeves's power and toughness are each equal to the number of lands you control.\nLandfall — Whenever a land you control enters, create a 3/3 green Badger creature token.",
+   "power": "*",
+   "toughness": "*",
+   "colors": [
+    "G"
+   ],
+   "printed_name": "Mangasverdes, Feiticeira-maro",
+   "printed_type_line": "Criatura Lendária — Elemental",
+   "printed_text": "Proteção contra planeswalkers e Magos\nO poder e a resistência de Mangasverdes, Feiticeira-maro, são ambos iguais ao número de terrenos que você controla.\nToda vez que um terreno entrar no campo de batalha sob seu controle, crie uma ficha de criatura Texugo verde 3/3.",
+   "card_faces": null,
+   "image_status": "lowres",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/0b036fd2-347b-45e4-bbf7-7fa5e6c6cc23/front.png",
+     "source_url": "https://cards.scryfall.io/png/front/0/b/0b036fd2-347b-45e4-bbf7-7fa5e6c6cc23.png?1782846216"
+    }
+   ]
+  },
+  "4e42cb2e-578f-4fec-a9a4-33b95b78229c": {
+   "id": "4e42cb2e-578f-4fec-a9a4-33b95b78229c",
+   "oracle_id": "432a3442-c9d8-4756-b635-f37f05e2ab9b",
+   "name": "Badger",
+   "lang": "en",
+   "layout": "token",
+   "set": "tdmu",
+   "collector_number": "15",
+   "type_line": "Token Creature — Badger",
+   "oracle_text": "",
+   "power": "3",
+   "toughness": "3",
+   "colors": [
+    "G"
+   ],
+   "printed_name": null,
+   "printed_type_line": null,
+   "printed_text": null,
+   "card_faces": null,
+   "image_status": "highres_scan",
+   "local_images": [
+    {
+     "face": "front",
+     "path": "imagens/4e42cb2e-578f-4fec-a9a4-33b95b78229c/front.png",
+     "source_url": "https://cards.scryfall.io/png/front/4/e/4e42cb2e-578f-4fec-a9a4-33b95b78229c.png?1783921127"
+    }
+   ]
   }
  },
  "escolhas": {
@@ -194851,6 +195189,18 @@
   "The Sackville-Bagginses": {
    "en": "11144267-15d1-47b4-8c26-d57328e11422",
    "pt": null
+  },
+  "Embermaw Hellion": {
+   "en": "664f60a8-e80a-4fe0-b76c-2d76c728329e",
+   "pt": "ce47a6b6-05fd-410c-8905-4da947d03ced"
+  },
+  "Magmatic Insight": {
+   "en": "7a5d6f4d-31c7-4663-8c65-e84973ae118d",
+   "pt": "283c4746-4191-4c6e-9c53-55ddee9a8017"
+  },
+  "Greensleeves, Maro-Sorcerer": {
+   "en": "643b6832-0fa1-4ce8-bda8-00fe9810ffeb",
+   "pt": "0b036fd2-347b-45e4-bbf7-7fa5e6c6cc23"
   }
  },
  "fichas": [
@@ -194987,6 +195337,7 @@
   "bd0289dc-f406-4157-9776-401b662df719",
   "d7b177cf-59fd-44dc-9c56-1c4bcacb8468",
   "ed1d8118-b182-413b-99ba-52844d35a35b",
-  "5ae6251d-cef9-4fb7-bdcd-e870a062f042"
+  "5ae6251d-cef9-4fb7-bdcd-e870a062f042",
+  "432a3442-c9d8-4756-b635-f37f05e2ab9b"
  ]
 }

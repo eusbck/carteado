@@ -5,7 +5,7 @@
  "nome": "LandReanimator",
  "link": "https://moxfield.com/decks/xDt7Pt1P4Ea6iQph663VRg",
  "importadoEm": "2026-11-10T19:28:41.855Z",
- "verificadoEm": "2026-11-10T19:28:41.855Z",
+ "verificadoEm": "2026-11-12T19:20:57.850Z",
  "atual": null,
  "preparacao": {
   "comandante": "Sin, Spira's Punishment",
@@ -215,10 +215,6 @@
     "quantidade": 1
    },
    {
-    "nome": "Craterhoof Behemoth",
-    "quantidade": 1
-   },
-   {
     "nome": "Misty Rainforest",
     "quantidade": 1
    },
@@ -311,6 +307,10 @@
     "quantidade": 1
    },
    {
+    "nome": "Greensleeves, Maro-Sorcerer",
+    "quantidade": 1
+   },
+   {
     "nome": "Awaken the Woods",
     "quantidade": 1
    },
@@ -372,9 +372,9 @@
    }
   ],
   "origem": {
-   "versao": 105,
-   "atualizadoEm": "2026-11-10T19:01:47.763Z"
+   "versao": 110,
+   "atualizadoEm": "2026-11-12T18:31:20.257Z"
   },
-  "desde": "2026-11-10T19:28:41.855Z"
+  "desde": "2026-11-12T19:20:57.850Z"
  }
 }

@@ -5,22 +5,50 @@
  "nome": "Jund Lands Midrange | Signs of Extinction",
  "link": "https://moxfield.com/decks/QqTlg-04_k-RSVJuf1QMvA",
  "importadoEm": "2026-11-10T19:53:27.804Z",
- "verificadoEm": "2026-11-10T19:53:27.804Z",
+ "verificadoEm": "2026-11-12T19:19:22.408Z",
  "atual": null,
  "preparacao": {
   "comandante": "Hearthhull, the Worldseed",
   "cartas": [
    {
     "nome": "Mountain",
-    "quantidade": 3
-   },
-   {
-    "nome": "Swamp",
-    "quantidade": 3
+    "quantidade": 6
    },
    {
     "nome": "Forest",
     "quantidade": 8
+   },
+   {
+    "nome": "Swamp",
+    "quantidade": 1
+   },
+   {
+    "nome": "Evolving Wilds",
+    "quantidade": 1
+   },
+   {
+    "nome": "World Shaper",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tannuk, Memorial Ensign",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tectonic Split",
+    "quantidade": 1
+   },
+   {
+    "nome": "Midnight Tilling",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tenured Tethermage",
+    "quantidade": 1
+   },
+   {
+    "nome": "Marwyn, the Preserver",
+    "quantidade": 1
    },
    {
     "nome": "Command Tower",
@@ -111,6 +139,10 @@
     "quantidade": 1
    },
    {
+    "nome": "Embermaw Hellion",
+    "quantidade": 1
+   },
+   {
     "nome": "Splendid Reclamation",
     "quantidade": 1
    },
@@ -179,15 +211,15 @@
     "quantidade": 1
    },
    {
+    "nome": "Magmatic Insight",
+    "quantidade": 1
+   },
+   {
     "nome": "Mirrorpool",
     "quantidade": 1
    },
    {
     "nome": "Wayward Swordtooth",
-    "quantidade": 1
-   },
-   {
-    "nome": "The Mending of Dominaria",
     "quantidade": 1
    },
    {
@@ -251,10 +283,6 @@
     "quantidade": 1
    },
    {
-    "nome": "Urza's Cave",
-    "quantidade": 1
-   },
-   {
     "nome": "Fell the Profane // Fell Mire",
     "quantidade": 1
    },
@@ -268,10 +296,6 @@
    },
    {
     "nome": "Malevolent Rumble",
-    "quantidade": 1
-   },
-   {
-    "nome": "Hedge Shredder",
     "quantidade": 1
    },
    {
@@ -333,40 +357,12 @@
    {
     "nome": "Koth, the Geomancer",
     "quantidade": 1
-   },
-   {
-    "nome": "Marwyn, the Preserver",
-    "quantidade": 1
-   },
-   {
-    "nome": "Evolving Wilds",
-    "quantidade": 1
-   },
-   {
-    "nome": "World Shaper",
-    "quantidade": 1
-   },
-   {
-    "nome": "Tannuk, Memorial Ensign",
-    "quantidade": 1
-   },
-   {
-    "nome": "Tectonic Split",
-    "quantidade": 1
-   },
-   {
-    "nome": "Midnight Tilling",
-    "quantidade": 1
-   },
-   {
-    "nome": "Tenured Tethermage",
-    "quantidade": 1
    }
   ],
   "origem": {
-   "versao": 26,
-   "atualizadoEm": "2026-11-10T19:27:24.557Z"
+   "versao": 63,
+   "atualizadoEm": "2026-11-12T15:32:07.163Z"
   },
-  "desde": "2026-11-10T19:53:27.804Z"
+  "desde": "2026-11-12T19:19:22.408Z"
  }
 }
