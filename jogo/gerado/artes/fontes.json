@@ -1147,5 +1147,30 @@
    "ltc/7 black legendary"
   ],
   "baixadoEm": "2026-11-10T19:57:23.412Z"
+ },
+ "Sephiroth, Fabled SOLDIER // Sephiroth, One-Winged Angel": {
+  "imagemLocal": "83c82209-47d5-4c4c-b8ec-96ab907e15d3",
+  "impressao": {
+   "id": "83c82209-47d5-4c4c-b8ec-96ab907e15d3",
+   "colecao": "fin",
+   "numero": "317",
+   "moldura": "2015 borderless legendary inverted",
+   "artista": "Tetsuya Nomura",
+   "url": "https://cards.scryfall.io/png/front/8/3/83c82209-47d5-4c4c-b8ec-96ab907e15d3.png?1783906538"
+  },
+  "recorte": {
+   "x": 0,
+   "y": 135,
+   "largura": 744,
+   "altura": 442
+  },
+  "tamanho": [
+   744,
+   442
+  ],
+  "candidatas": [
+   "fin/317 borderless legendary+inverted"
+  ],
+  "baixadoEm": "2026-11-12T22:08:36.802Z"
  }
 }

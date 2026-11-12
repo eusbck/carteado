@@ -16,7 +16,15 @@ interface Impressao {
   id: string; set: string; collector_number: string; lang: string; illustration_id?: string; artist?: string;
   border_color: string; frame: string; frame_effects?: string[]; full_art: boolean; highres_image: boolean;
   type_line: string; image_uris?: { png: string; art_crop: string }; prints_search_uri: string;
+  card_faces?: { illustration_id?: string; artist?: string; type_line?: string; image_uris?: { png: string; art_crop: string } }[];
 }
+
+/** carta de duas faces com uma imagem por face (transformar, modal): vale a face da frente, a que fica na zona de comando */
+const frente = (p: Impressao): Impressao => {
+  const f = p.card_faces?.[0];
+  if (p.image_uris || !f?.image_uris) return p;
+  return { ...p, image_uris: f.image_uris, illustration_id: p.illustration_id ?? f.illustration_id, artist: p.artist ?? f.artist, type_line: f.type_line ?? p.type_line };
+};
 interface Lista { data: Impressao[]; has_more: boolean; next_page?: string }
 
 export interface RegistroArte {
@@ -59,11 +67,11 @@ export function temArte(pastaArtes: string, nome: string, idLocal: string, regis
 /** baixa a arte de um comandante e grava gerado/artes/<idLocal>.webp; devolve o registro para fontes.json */
 export async function baixarArte(o: { rede: Rede; nome: string; idLocal: string; pastaArtes: string }): Promise<RegistroArte> {
   const { rede } = o;
-  const carta = await rede.json<Impressao>(`https://api.scryfall.com/cards/${o.idLocal}`);
+  const carta = frente(await rede.json<Impressao>(`https://api.scryfall.com/cards/${o.idLocal}`));
   const todas: Impressao[] = [];
   for (let url: string | undefined = `${carta.prints_search_uri}&include_extras=true&include_variations=true`; url;) {
     const l: Lista = await rede.json<Lista>(url);
-    todas.push(...l.data);
+    todas.push(...l.data.map(frente));
     url = l.has_more ? l.next_page : undefined;
   }
   // só a mesma ilustração da carta do deck (outras impressões podem ter outra arte) e com imagem de uma face
