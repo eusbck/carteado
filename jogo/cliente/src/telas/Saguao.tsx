@@ -248,7 +248,7 @@ function PassoDecks({ sala, eu, decks }: { sala: SalaPublica; eu: number; decks:
             <button type="button" class="botao pequeno" onClick={() => void loja.abrirDecks()} title="Importar um deck pelo link do Moxfield ou atualizar os da mesa">Decks</button>
           </span>
         </div>
-        <BotoesOrigem decks={decks} valor={filtro} mudar={setFiltro} />
+        {decks.length > 0 && <BotoesOrigem decks={decks} valor={filtro} mudar={setFiltro} />}
         {!decks.length && (
           <p class="faixa">Ainda não há decks de {MODOS[sala.formato].nome} na mesa. Importe um pelo link do Moxfield em Decks
             (os que têm cartas sem regras ficam em preparação), ou o anfitrião troca o modo no passo Regras.</p>
