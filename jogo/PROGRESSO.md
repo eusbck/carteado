@@ -2180,3 +2180,27 @@ para depois.
   e do comando; a ímpeto do Hellkite Courser dura até o fim do turno; Wyleth usa a contagem de anexos do ataque;
   alvo do Vedalken Aethermage Sliver; a compra do U.S.S. Farragut fica no gatilho atrasado; a ficha de Tribble é
   branca; caso de borda do Ancient Greenwarden.
+
+## 12/11/2026 — Parceiros (do amigo do Caio) e o deck Foods (Sam + Frodo): 42 decks
+
+- Um amigo do Caio (Dadinho13) mandou direto para a `main` do GitHub o commit `138601ac`. Ele trouxe:
+  - a mecânica de parceiros, com dois comandantes (CR 702.124: Partner, Partner with, Friends forever, Background,
+    Doctor's companion), validação e telas;
+  - comandantes Veículo/Espaçonave (CR 903.3);
+  - 8 decks em preparação;
+  - `Abrir a mesa (porta 8090).cmd`.
+- O código foi revisado e está bom. O merge no lote 3 (`d59c8e87`) foi feito por chave nos JSON gerados, ficando com as
+  escolhas de imagem do lote 3. As ordens dos decks dele repetiam as do lote 3 e passaram para 116–123.
+- Pelo pedido do Caio, um deck por comandante: saíram o Borg Queen e o Cloud Nine dele (ficam os do lote 3). Os outros 6
+  seguem em preparação: Sephiroth, Sin, Voja, Yuriko, Hearthhull e Foods.
+- Sugestão ao Caio: deixar o amigo só com leitura no GitHub e pedir que ele mande os links.
+- `decks.ts conferir` agora conta o segundo comandante.
+- Foods (`T8Z7YBCEPkm7l2Bn27cDhw`): 47 cartas, feitas em duas frentes (`foods-a`, `foods-b`).
+  - Recursos novos no motor:
+    - `TurnStats.cardsDrawnIds` (Sylvan Library);
+    - `TurnStats.foodsSacrificed` (Elanor Gardner);
+    - resguardo com custo de sacrificar uma Food (Ygra);
+    - ajudantes em `cartas/forragear.ts` (forragear, fabricar, gatilhos de Food) e `cartas/condado.ts`.
+  - `conferir`: 100/100, igual ao Moxfield, 97 de 97 cartas com regras.
+  - Bots: 20 partidas com o Foods (aleatórias e heurísticas, 2 e 4 jogadores), sem erro.
+- Testes do motor de cartas: rodar `vitest run cartas/defs` com `--no-isolate` (141 s); no modo isolado leva horas.
