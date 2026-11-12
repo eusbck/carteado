@@ -25,5 +25,5 @@ export default defineCard({
       }, { text: 'Sempre que uma ou mais cartas saem do seu cemitério, crie uma ficha de criatura Zumbi Druida 2/2 preta.' }),
     ],
   }],
-  rulings: { 1: 'teste: no ataque, mói três e devolve um terreno virado; a saída do cemitério cria um Zombie Druid' },
+  rulings: { 1: 'teste: várias cartas saindo juntas criam um Zombie Druid só' },
 });

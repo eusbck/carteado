@@ -73,6 +73,6 @@ export function ehBasico(g: G, id: ObjId): boolean {
  * Shredder: só do grimório). Olha a carta já no cemitério.
  */
 export function terrenosAoCemiterio(g: G, evs: GameEvent[], p: PlayerId, de?: string): ObjId[] {
-  return evs.flatMap((e) => (e.type === 'zone' && e.to === 'graveyard' && e.owner === p && (!de || e.from === de) && g.state.objects[e.obj]?.zone === 'graveyard' && cartaDeTerreno(g, e.obj) ? [e.obj] : []));
+  return evs.flatMap((e) => (e.type === 'zone' && e.to === 'graveyard' && !e.token && e.owner === p && (!de || e.from === de) && g.state.objects[e.obj]?.zone === 'graveyard' && cartaDeTerreno(g, e.obj) ? [e.obj] : []));
 }
 
