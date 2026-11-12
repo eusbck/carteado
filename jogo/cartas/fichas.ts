@@ -532,3 +532,6 @@ export const CatBranco11 = defineToken({
   // a impressa sem texto (há outra Cat 1/1 branca, com vínculo com a vida)
   image: fichasOracle.find((f) => f.faces[0].name === 'Cat' && f.faces[0].power === 1 && f.faces[0].colors.join() === 'W' && f.faces[0].oracleText === '')?.oracleId,
 });
+// lote4-d (Yuriko)
+/** Illusion 1/1 azul com voar (Moonblade Shinobi) */
+export const IllusionVoadora = token('Illusion 1/1', 'Illusion', ['Creature'], ['Illusion'], ['U'], 1, 1, keywords('flying'));

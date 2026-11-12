@@ -178,6 +178,8 @@ const esperadas: Record<string, [string, string[], string[], string[], number | 
   // foods-b
   'Servo': ['Servo', ['Artifact', 'Creature'], ['Servo'], [], 1, 1, []],
   'Cat 1/1 branco': ['Cat', ['Creature'], ['Cat'], ['W'], 1, 1, []],
+  // lote4-d
+  'Illusion 1/1': ['Illusion', ['Creature'], ['Illusion'], ['U'], 1, 1, ['flying']],
 };
 
 describe('Fichas: características', () => {
