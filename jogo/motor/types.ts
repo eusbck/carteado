@@ -358,6 +358,9 @@ export interface TurnStats {
   equipActivated?: number;
   /** lote3-a: habilidades ativadas por este jogador neste turno com uma criatura dele como alvo (Professor Hojo) */
   activatedTargetingOwnCreature?: number;
+  /** foods-a: Foods (artefatos Food, fichas ou não) que este jogador sacrificou neste turno (Elanor Gardner); falta nas
+   *  partidas salvas antes */
+  foodsSacrificed?: number;
 }
 
 export interface LogEntry {
