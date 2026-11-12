@@ -61,3 +61,7 @@ export * from './cedh.ts';
 export { successor } from './state.ts';
 // lote4-a: mana que depende do custo pago (Squandered Resources) e manutenção cumulativa pagando vida (Glacial Chasm)
 export * from './terrenos.ts';
+// lote4-e: dragar (dredge, CR 702.52)
+export * from './dragar.ts';
+// lote4-e: regra do mundo (CR 704.5k)
+export { regraDoMundo } from './mundo.ts';

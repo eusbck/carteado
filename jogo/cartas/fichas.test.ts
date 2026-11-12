@@ -182,6 +182,12 @@ const esperadas: Record<string, [string, string[], string[], string[], number | 
   'Heartwood': ['Heartwood', ['Artifact'], ['Heartwood'], ['G', 'R'], null, null, []],
   'Lander': ['Lander', ['Artifact'], ['Lander'], [], null, null, []],
   'Beast 4/4': ['Beast', ['Creature'], ['Beast'], ['G'], 4, 4, []],
+  // lote4-e
+  'Plant 0/1': ['Plant', ['Creature'], ['Plant'], ['G'], 0, 1, []],
+  'Badger': ['Badger', ['Creature'], ['Badger'], ['G'], 3, 3, []],
+  'Forest Dryad': ['Forest Dryad', ['Land', 'Creature'], ['Forest', 'Dryad'], ['G'], 1, 1, []],
+  'Elemental 5/3': ['Elemental', ['Creature'], ['Elemental'], ['G'], 5, 3, []],
+  'Zombie Druid': ['Zombie Druid', ['Creature'], ['Zombie', 'Druid'], ['B'], 2, 2, []],
 };
 
 describe('Fichas: características', () => {
