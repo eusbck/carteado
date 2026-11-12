@@ -331,6 +331,8 @@ export interface TurnStats {
   instantSorceryCast: number;
   greatestInstantSorceryMV: number;
   cardsDrawn: number;
+  /** foods-b: cartas compradas neste turno, com o id que receberam na mão (Sylvan Library); falta nas partidas salvas antes */
+  cardsDrawnIds?: ObjId[];
   cardsLeftGraveyard: number;
   attacked: boolean;
   attackedPlayers: PlayerId[];
