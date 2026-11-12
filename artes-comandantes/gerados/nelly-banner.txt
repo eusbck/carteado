@@ -1,0 +1,8 @@
+Use case: identity-preserve. Asset: ONE finished landscape banner/background for a Magic Commander game table.
+Input 1 is the exact identity, costume, anatomy and environment reference. Faithfully preserve the main character; expand and recompose the supplied art into a coherent cinematic wide scene.
+Composition: 16:9 landscape, hero large within the central 55%, head at x=50%, y=28%, body at least chest/waist-up; atmosphere fills both edges. Lower third calmer for game cards. Ideally 2048x1152, at least 1672x941 or a larger 16:9 landscape.
+Opaque full-bleed background. No text or card title, no lettering except a character's existing emblem, no card frame, no UI, no added watermark. One banner only.
+Deck: Blame Game.
+Subject and setting: Nelly Borca, Impulsive Accuser, the same warm light-olive-skinned human woman with an expressive angular face, dark eyebrows, brown eyes and dark brown curly hair tied back with loose curls at the cheeks. Preserve her red-brown brimmed investigator's hat with its raised gold front plate, white fur-trimmed collar, red scarf, white/silver fitted breastplate with ornate gold edging and broad gold shoulder plates, embossed gold forearm armor, brown leather gloves and loaded utility belt, white trousers and long split red coat panels. Her open mouth and confident accusing expression, with one gloved index finger pointing outward, are characteristic. Extend the source's warmly lit ochre stone city street with pale masonry, red civic banners and softly indicated townsfolk; retain a restrained ribbon of golden magical energy as an environmental accent.
+Style/medium: polished realistic painterly fantasy game illustration with warm gold afternoon light, red cloth, white fur and richly worked gold metal.
+

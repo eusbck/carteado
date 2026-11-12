@@ -28,6 +28,21 @@ const configuracao = [
   [24, 'kaalia', 'Heavenly Inferno', 'Kaalia', '#e08b61'],
   [25, 'timey-wimey', 'Timey-Wimey', 'Décimo Doutor e Rose', '#738de9'],
   [26, 'food-and-fellowship', 'Food and Fellowship', 'Frodo e Sam', '#b6bd70'],
+  // decks novos (precons de 14/10 e lote 3), artes feitas pelo Codex em 12/11/2026
+  [27, 'nelly', 'Blame Game', 'Nelly Borca', '#d9584a'],
+  [28, 'hazel', 'Squirreled Away', 'Hazel', '#8fbf5a'],
+  [29, 'kotori', 'Buckle Up', 'Kotori', '#5fb7e8'],
+  [30, 'giada', 'Calling All Angels', 'Giada', '#f0dca0'],
+  [31, 'ghalta', 'Tramplesaurus Rex', 'Ghalta', '#6fcf4f'],
+  [32, 'gonti', 'Grand Larceny', 'Gonti', '#8f7ad9'],
+  [33, 'stella-lee', 'Quick Draw', 'Stella Lee', '#e6743a'],
+  [34, 'aminatou', 'Miracle Worker', 'Aminatou', '#8fa6e8'],
+  [35, 'cloud', 'Cloud', 'Cloud', '#7fb0d8'],
+  [36, 'borg-queen', 'We Are The Borg', 'Rainha Borg', '#6fd17a'],
+  [37, 'spock', 'Landing Party', 'Spock', '#5aa0e8'],
+  [38, 'orvar', 'Twitch Control', 'Orvar', '#4fc9e0'],
+  [39, 'ur-dragon', 'How to Train Ur-Dragon', 'Ur-Dragão', '#e05a3a'],
+  [40, 'inalla', "Wizard's Chess", 'Inalla', '#a86bd8'],
 ];
 
 const ler = (arquivo) => JSON.parse(readFileSync(arquivo, 'utf8'));

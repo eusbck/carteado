@@ -492,5 +492,257 @@
    941
   ],
   "bytes": 316006
+ },
+ "Nelly Borca, Impulsive Accuser": {
+  "deck": "Blame Game",
+  "imagem": "2ef59aa9-f5e1-413a-869b-d287db95efd0",
+  "imagens": [
+   "2ef59aa9-f5e1-413a-869b-d287db95efd0"
+  ],
+  "original": "artes-comandantes/gerados/nelly-banner.png",
+  "referencias": [
+   "artes-comandantes/27 - Nelly Borca, Impulsive Accuser (Blame Game).png"
+  ],
+  "ferramenta": "image_gen interna",
+  "modeloSolicitado": "GPT IMAGE 2",
+  "tamanho": [
+   1672,
+   941
+  ],
+  "bytes": 336774
+ },
+ "Hazel of the Rootbloom": {
+  "deck": "Squirreled Away",
+  "imagem": "1269ca79-907e-4932-9e77-a9a5d2929060",
+  "imagens": [
+   "1269ca79-907e-4932-9e77-a9a5d2929060"
+  ],
+  "original": "artes-comandantes/gerados/hazel-banner.png",
+  "referencias": [
+   "artes-comandantes/28 - Hazel of the Rootbloom (Squirreled Away).png"
+  ],
+  "ferramenta": "image_gen interna",
+  "modeloSolicitado": "GPT IMAGE 2",
+  "tamanho": [
+   1672,
+   941
+  ],
+  "bytes": 541984
+ },
+ "Kotori, Pilot Prodigy": {
+  "deck": "Buckle Up",
+  "imagem": "fea6c1c8-eff9-4b66-b96d-e23016f0bb62",
+  "imagens": [
+   "fea6c1c8-eff9-4b66-b96d-e23016f0bb62"
+  ],
+  "original": "artes-comandantes/gerados/kotori-banner.png",
+  "referencias": [
+   "artes-comandantes/29 - Kotori, Pilot Prodigy (Buckle Up).png"
+  ],
+  "ferramenta": "image_gen interna",
+  "modeloSolicitado": "GPT IMAGE 2",
+  "tamanho": [
+   1672,
+   941
+  ],
+  "bytes": 452462
+ },
+ "Giada, Font of Hope": {
+  "deck": "Calling All Angels",
+  "imagem": "d8fdb864-0bd6-4b4f-8777-00860eec30e8",
+  "imagens": [
+   "d8fdb864-0bd6-4b4f-8777-00860eec30e8"
+  ],
+  "original": "artes-comandantes/gerados/giada-banner.png",
+  "referencias": [
+   "artes-comandantes/30 - Giada, Font of Hope (Calling All Angels).png"
+  ],
+  "ferramenta": "image_gen interna",
+  "modeloSolicitado": "GPT IMAGE 2",
+  "tamanho": [
+   1672,
+   941
+  ],
+  "bytes": 394698
+ },
+ "Ghalta, Primal Hunger": {
+  "deck": "Tramplesaurus Rex",
+  "imagem": "2c077ff0-4b6e-4513-8d8c-002f675048ea",
+  "imagens": [
+   "2c077ff0-4b6e-4513-8d8c-002f675048ea"
+  ],
+  "original": "artes-comandantes/gerados/ghalta-banner.png",
+  "referencias": [
+   "artes-comandantes/31 - Ghalta, Primal Hunger (Tramplesaurus Rex).png"
+  ],
+  "ferramenta": "image_gen interna",
+  "modeloSolicitado": "GPT IMAGE 2",
+  "tamanho": [
+   1672,
+   941
+  ],
+  "bytes": 358518
+ },
+ "Gonti, Canny Acquisitor": {
+  "deck": "Grand Larceny",
+  "imagem": "03a7e79f-625a-49ac-9cb1-e1fe5f51f5a0",
+  "imagens": [
+   "03a7e79f-625a-49ac-9cb1-e1fe5f51f5a0"
+  ],
+  "original": "artes-comandantes/gerados/gonti-banner.png",
+  "referencias": [
+   "artes-comandantes/32 - Gonti, Canny Acquisitor (Grand Larceny).png"
+  ],
+  "ferramenta": "image_gen interna",
+  "modeloSolicitado": "GPT IMAGE 2",
+  "tamanho": [
+   1672,
+   941
+  ],
+  "bytes": 346274
+ },
+ "Stella Lee, Wild Card": {
+  "deck": "Quick Draw",
+  "imagem": "2a8a7696-b5d9-4378-9d5c-2c9007e4df63",
+  "imagens": [
+   "2a8a7696-b5d9-4378-9d5c-2c9007e4df63"
+  ],
+  "original": "artes-comandantes/gerados/stella-lee-banner.png",
+  "referencias": [
+   "artes-comandantes/33 - Stella Lee, Wild Card (Quick Draw).png"
+  ],
+  "ferramenta": "image_gen interna",
+  "modeloSolicitado": "GPT IMAGE 2",
+  "tamanho": [
+   1672,
+   941
+  ],
+  "bytes": 348998
+ },
+ "Aminatou, Veil Piercer": {
+  "deck": "Miracle Worker",
+  "imagem": "9f868023-6035-403d-ba91-7a4840c6c392",
+  "imagens": [
+   "9f868023-6035-403d-ba91-7a4840c6c392"
+  ],
+  "original": "artes-comandantes/gerados/aminatou-banner.png",
+  "referencias": [
+   "artes-comandantes/34 - Aminatou, Veil Piercer (Miracle Worker).png"
+  ],
+  "ferramenta": "image_gen interna",
+  "modeloSolicitado": "GPT IMAGE 2",
+  "tamanho": [
+   1672,
+   941
+  ],
+  "bytes": 349824
+ },
+ "Cloud, Ex-SOLDIER": {
+  "deck": "Cloud",
+  "imagem": "15ce92a3-0d51-4c8e-bbce-d225021b4c35",
+  "imagens": [
+   "15ce92a3-0d51-4c8e-bbce-d225021b4c35"
+  ],
+  "original": "artes-comandantes/gerados/cloud-banner.png",
+  "referencias": [
+   "artes-comandantes/35 - Cloud, Ex-SOLDIER (Cloud).png"
+  ],
+  "ferramenta": "image_gen interna",
+  "modeloSolicitado": "GPT IMAGE 2",
+  "tamanho": [
+   1672,
+   941
+  ],
+  "bytes": 307698
+ },
+ "The Borg Queen": {
+  "deck": "We Are The Borg",
+  "imagem": "8ed939ba-bf8d-4a68-ae9f-f8ca4eb301ab",
+  "imagens": [
+   "8ed939ba-bf8d-4a68-ae9f-f8ca4eb301ab"
+  ],
+  "original": "artes-comandantes/gerados/borg-queen-banner.png",
+  "referencias": [
+   "artes-comandantes/36 - The Borg Queen (We Are The Borg).png"
+  ],
+  "ferramenta": "image_gen interna",
+  "modeloSolicitado": "GPT IMAGE 2",
+  "tamanho": [
+   1672,
+   941
+  ],
+  "bytes": 180620
+ },
+ "Commander Spock": {
+  "deck": "Landing Party",
+  "imagem": "cf114392-a38d-4117-aa41-911d6dc1051b",
+  "imagens": [
+   "cf114392-a38d-4117-aa41-911d6dc1051b"
+  ],
+  "original": "artes-comandantes/gerados/spock-banner.png",
+  "referencias": [
+   "artes-comandantes/37 - Commander Spock (Landing Party).png"
+  ],
+  "ferramenta": "image_gen interna",
+  "modeloSolicitado": "GPT IMAGE 2",
+  "tamanho": [
+   1672,
+   941
+  ],
+  "bytes": 160746
+ },
+ "Orvar, the All-Form": {
+  "deck": "Twitch Control",
+  "imagem": "1cc9e7cb-d4f4-4f06-b232-f91eb39fe1b3",
+  "imagens": [
+   "1cc9e7cb-d4f4-4f06-b232-f91eb39fe1b3"
+  ],
+  "original": "artes-comandantes/gerados/orvar-banner.png",
+  "referencias": [
+   "artes-comandantes/38 - Orvar, the All-Form (Twitch Control).png"
+  ],
+  "ferramenta": "image_gen interna",
+  "modeloSolicitado": "GPT IMAGE 2",
+  "tamanho": [
+   1672,
+   941
+  ],
+  "bytes": 268396
+ },
+ "The Ur-Dragon": {
+  "deck": "How to Train Ur-Dragon",
+  "imagem": "ea949741-af94-47ae-a577-2953c69ab71d",
+  "imagens": [
+   "ea949741-af94-47ae-a577-2953c69ab71d"
+  ],
+  "original": "artes-comandantes/gerados/ur-dragon-banner.png",
+  "referencias": [
+   "artes-comandantes/39 - The Ur-Dragon (How to Train Ur-Dragon).png"
+  ],
+  "ferramenta": "image_gen interna",
+  "modeloSolicitado": "GPT IMAGE 2",
+  "tamanho": [
+   1672,
+   941
+  ],
+  "bytes": 482746
+ },
+ "Inalla, Archmage Ritualist": {
+  "deck": "Wizard's Chess",
+  "imagem": "d6d0ddcc-691e-4237-8696-c7a4896ce68d",
+  "imagens": [
+   "d6d0ddcc-691e-4237-8696-c7a4896ce68d"
+  ],
+  "original": "artes-comandantes/gerados/inalla-banner.png",
+  "referencias": [
+   "artes-comandantes/40 - Inalla, Archmage Ritualist (Wizard's Chess).png"
+  ],
+  "ferramenta": "image_gen interna",
+  "modeloSolicitado": "GPT IMAGE 2",
+  "tamanho": [
+   1672,
+   941
+  ],
+  "bytes": 186592
  }
 }

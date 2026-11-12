@@ -5,133 +5,6 @@
   "decisaoUsuario": "Manter os arquivos ainda recusados pendentes para geração interna; não substituir por recortes, imagens prontas, outra API ou outro modelo",
   "artes": [
     {
-      "id": "black-panther",
-      "tipo": "icone",
-      "deck": "Wakanda Forever",
-      "comandante": "T'Challa, the Black Panther",
-      "requestIds": [
-        "af46c502-763e-4e82-b434-4a947c904986",
-        "cd8a0380-9e79-42b1-adc9-aebf0ac76fe0",
-        "5e49192f-2cf4-49aa-9ecc-dc4ea4b3dc3e",
-        "70e24fb8-a476-43e2-9dc6-ac223528b2ab",
-        "91adb381-db75-9a14-bd09-da00c7bb0460"
-      ],
-      "status": "pendente para geração interna",
-      "erro": "moderation_blocked",
-      "etapa": "output",
-      "categoria": "other",
-      "motivoDetalhado": null,
-      "promptOriginal": "artes-comandantes/gerados/black-panther-icone.txt",
-      "tentativasRetomada": [
-        {
-          "id": "black-panther",
-          "tipo": "icone",
-          "promptArquivo": "artes-comandantes/gerados/tentativas/black-panther-icone-retomada-2026-10-11.txt",
-          "referencias": [
-            "artes-comandantes/12 - T'Challa, the Black Panther (Wakanda Forever).png",
-            "artes-comandantes/gerados/black-panther-banner.png",
-            "artes-comandantes/gerados/sauron-icone.png"
-          ],
-          "transparenciaSolicitada": true,
-          "inicioUTC": "2026-10-12T01:21:10.052Z",
-          "fimUTC": "2026-10-12T01:23:10.856Z",
-          "resultado": "recusada",
-          "requestId": "70e24fb8-a476-43e2-9dc6-ac223528b2ab",
-          "erro": "moderation_blocked",
-          "etapa": "output",
-          "categoria": "other",
-          "motivoDetalhado": null,
-          "erroBruto": "image generation failed: http 400 Bad Request: Some(\"{\\n  \\\"error\\\": {\\n    \\\"message\\\": \\\"Your request was rejected by the safety system. If you believe this is an error, contact us at help.openai.com and include the request ID 70e24fb8-a476-43e2-9dc6-ac223528b2ab.\\\",\\n    \\\"type\\\": \\\"image_generation_user_error\\\",\\n    \\\"param\\\": null,\\n    \\\"code\\\": \\\"moderation_blocked\\\",\\n    \\\"moderation_details\\\": {\\n      \\\"moderation_stage\\\": \\\"output\\\",\\n      \\\"categories\\\": [\\n        \\\"other\\\"\\n      ]\\n    }\\n  }\\n}\")",
-          "arquivoGerado": null,
-          "metadadosSaida": null
-        },
-        {
-          "id": "black-panther",
-          "tipo": "icone",
-          "promptArquivo": "artes-comandantes/gerados/tentativas/black-panther-icone-nova-tentativa-2.txt",
-          "referencias": [
-            "artes-comandantes/12 - T'Challa, the Black Panther (Wakanda Forever).png",
-            "artes-comandantes/gerados/black-panther-banner.png",
-            "artes-comandantes/gerados/sauron-icone.png"
-          ],
-          "transparenciaSolicitada": true,
-          "inicioUTC": "2026-10-12T01:50:06.151Z",
-          "fimUTC": "2026-10-12T01:52:11.844Z",
-          "resultado": "recusada",
-          "requestId": "91adb381-db75-9a14-bd09-da00c7bb0460",
-          "erro": "moderation_blocked",
-          "etapa": "output",
-          "categoria": "other",
-          "motivoDetalhado": null,
-          "erroBruto": "image generation failed: http 400 Bad Request: Some(\"{\\n  \\\"error\\\": {\\n    \\\"message\\\": \\\"Your request was rejected by the safety system. If you believe this is an error, contact us at help.openai.com and include the request ID 91adb381-db75-9a14-bd09-da00c7bb0460.\\\",\\n    \\\"type\\\": \\\"image_generation_user_error\\\",\\n    \\\"param\\\": null,\\n    \\\"code\\\": \\\"moderation_blocked\\\",\\n    \\\"moderation_details\\\": {\\n      \\\"moderation_stage\\\": \\\"output\\\",\\n      \\\"categories\\\": [\\n        \\\"other\\\"\\n      ]\\n    }\\n  }\\n}\")",
-          "arquivoGerado": null,
-          "metadadosSaida": null
-        }
-      ]
-    },
-    {
-      "id": "invisible-woman",
-      "tipo": "icone",
-      "deck": "The Fantastic Four Collector's Edition",
-      "comandante": "Invisible Woman",
-      "requestIds": [
-        "92f43276-68f4-44e4-a20b-dea115338818",
-        "813d2ea9-f929-4dc0-85ef-b207e7901e2e",
-        "e99fc89b-e7fb-4042-8695-e528e9916dd0",
-        "bd3a23d3-50e9-408e-8a89-829a94986505"
-      ],
-      "status": "pendente para geração interna",
-      "erro": "moderation_blocked",
-      "etapa": "output",
-      "categoria": "other",
-      "motivoDetalhado": null,
-      "promptOriginal": "artes-comandantes/gerados/invisible-woman-icone.txt",
-      "tentativasRetomada": [
-        {
-          "id": "invisible-woman",
-          "tipo": "icone",
-          "promptArquivo": "artes-comandantes/gerados/tentativas/invisible-woman-icone-retomada-2026-10-11.txt",
-          "referencias": [
-            "artes-comandantes/15 - Invisible Woman (The Fantastic Four Collector's Edition).png",
-            "artes-comandantes/gerados/sai-icone.png"
-          ],
-          "transparenciaSolicitada": true,
-          "inicioUTC": "2026-10-12T01:23:13.653Z",
-          "fimUTC": "2026-10-12T01:25:54.495Z",
-          "resultado": "recusada",
-          "requestId": "e99fc89b-e7fb-4042-8695-e528e9916dd0",
-          "erro": "moderation_blocked",
-          "etapa": "output",
-          "categoria": "other",
-          "motivoDetalhado": null,
-          "erroBruto": "image generation failed: http 400 Bad Request: Some(\"{\\n  \\\"error\\\": {\\n    \\\"message\\\": \\\"Your request was rejected by the safety system. If you believe this is an error, contact us at help.openai.com and include the request ID e99fc89b-e7fb-4042-8695-e528e9916dd0.\\\",\\n    \\\"type\\\": \\\"image_generation_user_error\\\",\\n    \\\"param\\\": null,\\n    \\\"code\\\": \\\"moderation_blocked\\\",\\n    \\\"moderation_details\\\": {\\n      \\\"moderation_stage\\\": \\\"output\\\",\\n      \\\"categories\\\": [\\n        \\\"other\\\"\\n      ]\\n    }\\n  }\\n}\")",
-          "arquivoGerado": null,
-          "metadadosSaida": null
-        },
-        {
-          "id": "invisible-woman",
-          "tipo": "icone",
-          "promptArquivo": "artes-comandantes/gerados/tentativas/invisible-woman-icone-nova-tentativa-2.txt",
-          "referencias": [
-            "artes-comandantes/15 - Invisible Woman (The Fantastic Four Collector's Edition).png",
-            "artes-comandantes/gerados/sai-icone.png"
-          ],
-          "transparenciaSolicitada": true,
-          "inicioUTC": "2026-10-12T01:50:06.152Z",
-          "fimUTC": "2026-10-12T01:53:11.802Z",
-          "resultado": "recusada",
-          "requestId": "bd3a23d3-50e9-408e-8a89-829a94986505",
-          "erro": "moderation_blocked",
-          "etapa": "output",
-          "categoria": "other",
-          "motivoDetalhado": null,
-          "erroBruto": "image generation failed: http 400 Bad Request: Some(\"{\\n  \\\"error\\\": {\\n    \\\"message\\\": \\\"Your request was rejected by the safety system. If you believe this is an error, contact us at help.openai.com and include the request ID bd3a23d3-50e9-408e-8a89-829a94986505.\\\",\\n    \\\"type\\\": \\\"image_generation_user_error\\\",\\n    \\\"param\\\": null,\\n    \\\"code\\\": \\\"moderation_blocked\\\",\\n    \\\"moderation_details\\\": {\\n      \\\"moderation_stage\\\": \\\"output\\\",\\n      \\\"categories\\\": [\\n        \\\"other\\\"\\n      ]\\n    }\\n  }\\n}\")",
-          "arquivoGerado": null,
-          "metadadosSaida": null
-        }
-      ]
-    },
-    {
       "id": "captain-america",
       "tipo": "icone",
       "deck": "Avengers Assemble Collector's Edition",
@@ -190,6 +63,15 @@
           "erroBruto": "image generation failed: http 400 Bad Request: Some(\"{\\n  \\\"error\\\": {\\n    \\\"message\\\": \\\"Your request was rejected by the safety system. If you believe this is an error, contact us at help.openai.com and include the request ID 59d5328c-bd4d-4243-9fee-9b8991682c2f.\\\",\\n    \\\"type\\\": \\\"image_generation_user_error\\\",\\n    \\\"param\\\": null,\\n    \\\"code\\\": \\\"moderation_blocked\\\",\\n    \\\"moderation_details\\\": {\\n      \\\"moderation_stage\\\": \\\"output\\\",\\n      \\\"categories\\\": [\\n        \\\"other\\\"\\n      ]\\n    }\\n  }\\n}\")",
           "arquivoGerado": null,
           "metadadosSaida": null
+        }
+      ],
+      "tentativasCodex2026_11_12": [
+        {
+          "resultado": "recusada duas vezes",
+          "erro": "moderation_blocked",
+          "etapa": "output",
+          "categoria": "other",
+          "promptArquivo": "artes-comandantes/gerados/captain-america-icone.txt"
         }
       ]
     }
@@ -405,6 +287,133 @@
           "erroBruto": null,
           "arquivoGerado": "C:\\Users\\icaio\\.codex\\generated_images\\01a12dad-26a3-7952-9501-087ce36358b5\\exec-d168bd35-beb9-4ae9-a76d-b36208d5092d.png",
           "metadadosSaida": "Generated images are saved to C:\\Users\\icaio\\.codex\\generated_images\\01a12dad-26a3-7952-9501-087ce36358b5 as C:\\Users\\icaio\\.codex\\generated_images\\01a12dad-26a3-7952-9501-087ce36358b5\\exec-d168bd35-beb9-4ae9-a76d-b36208d5092d.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+        }
+      ]
+    },
+    {
+      "id": "black-panther",
+      "tipo": "icone",
+      "deck": "Wakanda Forever",
+      "comandante": "T'Challa, the Black Panther",
+      "requestIds": [
+        "af46c502-763e-4e82-b434-4a947c904986",
+        "cd8a0380-9e79-42b1-adc9-aebf0ac76fe0",
+        "5e49192f-2cf4-49aa-9ecc-dc4ea4b3dc3e",
+        "70e24fb8-a476-43e2-9dc6-ac223528b2ab",
+        "91adb381-db75-9a14-bd09-da00c7bb0460"
+      ],
+      "status": "resolvida em 12/11/2026 pelo Codex (image_gen), artes-comandantes/gerados/black-panther-icone.png",
+      "erro": "moderation_blocked",
+      "etapa": "output",
+      "categoria": "other",
+      "motivoDetalhado": null,
+      "promptOriginal": "artes-comandantes/gerados/black-panther-icone.txt",
+      "tentativasRetomada": [
+        {
+          "id": "black-panther",
+          "tipo": "icone",
+          "promptArquivo": "artes-comandantes/gerados/tentativas/black-panther-icone-retomada-2026-10-11.txt",
+          "referencias": [
+            "artes-comandantes/12 - T'Challa, the Black Panther (Wakanda Forever).png",
+            "artes-comandantes/gerados/black-panther-banner.png",
+            "artes-comandantes/gerados/sauron-icone.png"
+          ],
+          "transparenciaSolicitada": true,
+          "inicioUTC": "2026-10-12T01:21:10.052Z",
+          "fimUTC": "2026-10-12T01:23:10.856Z",
+          "resultado": "recusada",
+          "requestId": "70e24fb8-a476-43e2-9dc6-ac223528b2ab",
+          "erro": "moderation_blocked",
+          "etapa": "output",
+          "categoria": "other",
+          "motivoDetalhado": null,
+          "erroBruto": "image generation failed: http 400 Bad Request: Some(\"{\\n  \\\"error\\\": {\\n    \\\"message\\\": \\\"Your request was rejected by the safety system. If you believe this is an error, contact us at help.openai.com and include the request ID 70e24fb8-a476-43e2-9dc6-ac223528b2ab.\\\",\\n    \\\"type\\\": \\\"image_generation_user_error\\\",\\n    \\\"param\\\": null,\\n    \\\"code\\\": \\\"moderation_blocked\\\",\\n    \\\"moderation_details\\\": {\\n      \\\"moderation_stage\\\": \\\"output\\\",\\n      \\\"categories\\\": [\\n        \\\"other\\\"\\n      ]\\n    }\\n  }\\n}\")",
+          "arquivoGerado": null,
+          "metadadosSaida": null
+        },
+        {
+          "id": "black-panther",
+          "tipo": "icone",
+          "promptArquivo": "artes-comandantes/gerados/tentativas/black-panther-icone-nova-tentativa-2.txt",
+          "referencias": [
+            "artes-comandantes/12 - T'Challa, the Black Panther (Wakanda Forever).png",
+            "artes-comandantes/gerados/black-panther-banner.png",
+            "artes-comandantes/gerados/sauron-icone.png"
+          ],
+          "transparenciaSolicitada": true,
+          "inicioUTC": "2026-10-12T01:50:06.151Z",
+          "fimUTC": "2026-10-12T01:52:11.844Z",
+          "resultado": "recusada",
+          "requestId": "91adb381-db75-9a14-bd09-da00c7bb0460",
+          "erro": "moderation_blocked",
+          "etapa": "output",
+          "categoria": "other",
+          "motivoDetalhado": null,
+          "erroBruto": "image generation failed: http 400 Bad Request: Some(\"{\\n  \\\"error\\\": {\\n    \\\"message\\\": \\\"Your request was rejected by the safety system. If you believe this is an error, contact us at help.openai.com and include the request ID 91adb381-db75-9a14-bd09-da00c7bb0460.\\\",\\n    \\\"type\\\": \\\"image_generation_user_error\\\",\\n    \\\"param\\\": null,\\n    \\\"code\\\": \\\"moderation_blocked\\\",\\n    \\\"moderation_details\\\": {\\n      \\\"moderation_stage\\\": \\\"output\\\",\\n      \\\"categories\\\": [\\n        \\\"other\\\"\\n      ]\\n    }\\n  }\\n}\")",
+          "arquivoGerado": null,
+          "metadadosSaida": null
+        }
+      ]
+    },
+    {
+      "id": "invisible-woman",
+      "tipo": "icone",
+      "deck": "The Fantastic Four Collector's Edition",
+      "comandante": "Invisible Woman",
+      "requestIds": [
+        "92f43276-68f4-44e4-a20b-dea115338818",
+        "813d2ea9-f929-4dc0-85ef-b207e7901e2e",
+        "e99fc89b-e7fb-4042-8695-e528e9916dd0",
+        "bd3a23d3-50e9-408e-8a89-829a94986505"
+      ],
+      "status": "resolvida em 12/11/2026 pelo Codex (image_gen), artes-comandantes/gerados/invisible-woman-icone.png",
+      "erro": "moderation_blocked",
+      "etapa": "output",
+      "categoria": "other",
+      "motivoDetalhado": null,
+      "promptOriginal": "artes-comandantes/gerados/invisible-woman-icone.txt",
+      "tentativasRetomada": [
+        {
+          "id": "invisible-woman",
+          "tipo": "icone",
+          "promptArquivo": "artes-comandantes/gerados/tentativas/invisible-woman-icone-retomada-2026-10-11.txt",
+          "referencias": [
+            "artes-comandantes/15 - Invisible Woman (The Fantastic Four Collector's Edition).png",
+            "artes-comandantes/gerados/sai-icone.png"
+          ],
+          "transparenciaSolicitada": true,
+          "inicioUTC": "2026-10-12T01:23:13.653Z",
+          "fimUTC": "2026-10-12T01:25:54.495Z",
+          "resultado": "recusada",
+          "requestId": "e99fc89b-e7fb-4042-8695-e528e9916dd0",
+          "erro": "moderation_blocked",
+          "etapa": "output",
+          "categoria": "other",
+          "motivoDetalhado": null,
+          "erroBruto": "image generation failed: http 400 Bad Request: Some(\"{\\n  \\\"error\\\": {\\n    \\\"message\\\": \\\"Your request was rejected by the safety system. If you believe this is an error, contact us at help.openai.com and include the request ID e99fc89b-e7fb-4042-8695-e528e9916dd0.\\\",\\n    \\\"type\\\": \\\"image_generation_user_error\\\",\\n    \\\"param\\\": null,\\n    \\\"code\\\": \\\"moderation_blocked\\\",\\n    \\\"moderation_details\\\": {\\n      \\\"moderation_stage\\\": \\\"output\\\",\\n      \\\"categories\\\": [\\n        \\\"other\\\"\\n      ]\\n    }\\n  }\\n}\")",
+          "arquivoGerado": null,
+          "metadadosSaida": null
+        },
+        {
+          "id": "invisible-woman",
+          "tipo": "icone",
+          "promptArquivo": "artes-comandantes/gerados/tentativas/invisible-woman-icone-nova-tentativa-2.txt",
+          "referencias": [
+            "artes-comandantes/15 - Invisible Woman (The Fantastic Four Collector's Edition).png",
+            "artes-comandantes/gerados/sai-icone.png"
+          ],
+          "transparenciaSolicitada": true,
+          "inicioUTC": "2026-10-12T01:50:06.152Z",
+          "fimUTC": "2026-10-12T01:53:11.802Z",
+          "resultado": "recusada",
+          "requestId": "bd3a23d3-50e9-408e-8a89-829a94986505",
+          "erro": "moderation_blocked",
+          "etapa": "output",
+          "categoria": "other",
+          "motivoDetalhado": null,
+          "erroBruto": "image generation failed: http 400 Bad Request: Some(\"{\\n  \\\"error\\\": {\\n    \\\"message\\\": \\\"Your request was rejected by the safety system. If you believe this is an error, contact us at help.openai.com and include the request ID bd3a23d3-50e9-408e-8a89-829a94986505.\\\",\\n    \\\"type\\\": \\\"image_generation_user_error\\\",\\n    \\\"param\\\": null,\\n    \\\"code\\\": \\\"moderation_blocked\\\",\\n    \\\"moderation_details\\\": {\\n      \\\"moderation_stage\\\": \\\"output\\\",\\n      \\\"categories\\\": [\\n        \\\"other\\\"\\n      ]\\n    }\\n  }\\n}\")",
+          "arquivoGerado": null,
+          "metadadosSaida": null
         }
       ]
     }

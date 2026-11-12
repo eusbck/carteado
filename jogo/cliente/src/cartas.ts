@@ -33,7 +33,7 @@ export function urlArte(def: string): string | null {
 }
 
 /** o servidor manda as imagens com cache imutável: mudar a fonte dos fundos pede um número novo aqui */
-const VERSAO_FUNDO = 6;
+const VERSAO_FUNDO = 7;
 
 /** fundo da área do jogador: o feito para o deck (gerado/fundos) ou a arte do comandante ampliada */
 export function urlFundo(def: string): string | null {
@@ -79,6 +79,21 @@ const ROSTO_NO_FUNDO: Record<string, readonly [number, number]> = {
   'Rose Tyler': [0.53, 0.27],
   'Frodo, Adventurous Hobbit': [0.49, 0.29],
   'Sam, Loyal Attendant': [0.49, 0.29],
+  // banners feitos pelo Codex em 12/11/2026
+  'Nelly Borca, Impulsive Accuser': [0.51, 0.17],
+  'Hazel of the Rootbloom': [0.55, 0.26],
+  'Kotori, Pilot Prodigy': [0.42, 0.28],
+  'Giada, Font of Hope': [0.45, 0.13],
+  'Ghalta, Primal Hunger': [0.57, 0.13],
+  'Gonti, Canny Acquisitor': [0.48, 0.28],
+  'Stella Lee, Wild Card': [0.54, 0.28],
+  'Aminatou, Veil Piercer': [0.49, 0.19],
+  'Cloud, Ex-SOLDIER': [0.24, 0.21],
+  'The Borg Queen': [0.51, 0.17],
+  'Commander Spock': [0.39, 0.34],
+  'Orvar, the All-Form': [0.49, 0.26],
+  'The Ur-Dragon': [0.53, 0.28],
+  'Inalla, Archmage Ritualist': [0.41, 0.23],
 };
 /** o rosto do comandante no fundo; sem marca (a arte da carta ampliada), o meio, um pouco acima */
 export const rostoNoFundo = (def: string): readonly [number, number] => ROSTO_NO_FUNDO[def] ?? [0.5, 0.3];
