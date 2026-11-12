@@ -178,6 +178,11 @@ const esperadas: Record<string, [string, string[], string[], string[], number | 
   // foods-b
   'Servo': ['Servo', ['Artifact', 'Creature'], ['Servo'], [], 1, 1, []],
   'Cat 1/1 branco': ['Cat', ['Creature'], ['Cat'], ['W'], 1, 1, []],
+  // lote4-c
+  'Shapeshifter 2/2 incolor': ['Shapeshifter', ['Creature'], ['Shapeshifter'], [], 2, 2, ['changeling']],
+  'Voja, Friend to Elves': ['Voja, Friend to Elves', ['Creature'], ['Wolf'], ['G', 'W'], 3, 3, []],
+  'Voja Fenstalker': ['Voja Fenstalker', ['Creature'], ['Wolf'], ['G', 'W'], 5, 5, ['trample']],
+  'Mutavault': ['Mutavault', ['Land'], [], [], null, null, []],
 };
 
 describe('Fichas: características', () => {
@@ -404,5 +409,20 @@ describe("Fichas: 'Eldrazi Scion'", () => {
     tg.cast('Sol Ring').resolve();
     expect(tg.find('Eldrazi Scion')).toBeNull();
     expect(tg.find('Sol Ring')).not.toBeNull();
+  });
+});
+
+// lote4-c
+describe("Fichas: 'Mutavault'", () => {
+  it('{T}: adicione {C}; {1}: vira criatura 2/2 com todos os tipos de criatura até o fim do turno, e continua terreno', () => {
+    const tg = setup({ battlefield: [[{ name: 'Mutavault', token: true }, 'Forest'], []] });
+    const id = tg.bf('Mutavault');
+    expect(manaOptions(tg.g, 0).filter((o) => o.obj === id).map((o) => o.alt.join(''))).toEqual(['C']);
+    expect(chars(tg.g, id).supertypes).not.toContain('Legendary');
+    tg.activate('Mutavault').resolve();
+    const c = chars(tg.g, id);
+    expect(c.types).toEqual(expect.arrayContaining(['Land', 'Creature']));
+    expect(c.subtypes).toEqual(expect.arrayContaining(['Elf', 'Wolf']));
+    expect(tg.pt(id)).toEqual([2, 2]);
   });
 });
