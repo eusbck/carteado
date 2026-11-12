@@ -500,6 +500,8 @@ button.zona { cursor: pointer; }
 .slot .carta-pt, .slot .carta-etiquetas { display: none; }
 .slot-pilha > .carta + .carta { inset: auto; left: 4px; top: 4px; }
 button.zona:hover .slot { border-color: rgba(255, 255, 255, .45); }
+/* o grimório tem o verso cobrindo o espaço: o realce vai na carta (clicar abre a lista do deck) */
+[data-zona='library']:hover .slot .carta { filter: brightness(1.18); box-shadow: 0 0 0 2px rgba(255, 255, 255, .45); border-radius: 6px; }
 .emblemas { display: flex; flex-direction: column; gap: 4px; max-width: 120px; }
 .emblema { display: flex; align-items: center; gap: 5px; font: inherit; font-size: 11px; font-weight: 700; line-height: 1.2; text-align: left; color: var(--texto); background: rgba(18, 16, 19, .85); border: 1px solid var(--ouro); border-radius: 8px; padding: 4px 7px; cursor: help; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 120px; }
 .emblema:hover { background: rgba(46, 36, 20, .95); }

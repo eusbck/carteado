@@ -79,11 +79,11 @@ const meio = (c: Caixa) => [c.x + c.w / 2, c.y + c.h / 2] as const;
 
 /** cemitério ou exílio do dono, conforme a zona que cresceu; null se foi para a mão ou o grimório */
 function zonaDestino(a: GameView, v: GameView, o: ObjView): Element | null {
-  const zonas = area(o.owner)?.querySelectorAll('.botao-zona .slot');
+  const zona = (z: 'graveyard' | 'exile') => area(o.owner)?.querySelector(`[data-zona="${z}"] .slot`) ?? null;
   const cem = (x: GameView) => x.players.find((p) => p.id === o.owner)?.graveyard.length ?? 0;
   const exi = (x: GameView) => x.exile.filter((e) => e.owner === o.owner).length;
-  if (cem(v) > cem(a)) return zonas?.[0] ?? null;
-  if (exi(v) > exi(a)) return zonas?.[1] ?? null;
+  if (cem(v) > cem(a)) return zona('graveyard');
+  if (exi(v) > exi(a)) return zona('exile');
   return null;
 }
 
