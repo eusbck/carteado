@@ -66,7 +66,9 @@ function emColunas<T extends { cartas: unknown[] }>(grupos: T[], n: number): T[]
 
 const imagem = (c: CartaCatalogo | null, tamanho: 'p' | 'm') => (c?.img ? `/img/${c.img}/frente/${tamanho}` : null);
 
-export function PreviaDeck({ d, meu, escolher, fechar }: { d: DeckResumo; meu: boolean; escolher: () => void; fechar: () => void }) {
+/** sem `escolher`, é só para ver (a lista do deck de um jogador durante a partida): sai o botão de escolher, e `titulo`
+ * troca o nome do deck no alto da janela */
+export function PreviaDeck({ d, meu, escolher, fechar, titulo }: { d: DeckResumo; meu?: boolean; escolher?: () => void; fechar: () => void; titulo?: string }) {
   const [lista, setLista] = useState<ListaDeck | null | 'carregando'>('carregando');
   const [destaque, setDestaque] = useState<CartaCatalogo | null>(null);
   // a lista de decks da mesa: muda quando um deck é importado ou atualizado (a prévia aberta busca de novo)
@@ -82,7 +84,7 @@ export function PreviaDeck({ d, meu, escolher, fechar }: { d: DeckResumo; meu: b
   const grande = imagem(destaque ?? (lista && lista !== 'carregando' ? lista.comandante : null), 'm');
 
   return (
-    <Janela titulo={d.nome} larga classe="previa-deck" fechar={fechar}>
+    <Janela titulo={titulo ?? d.nome} larga classe="previa-deck" fechar={fechar}>
       <header class="previa-topo" style={arte ? { backgroundImage: `url(${arte})` } : undefined}>
         <div class="previa-topo-texto">
           <span class="rot">{d.parceiro ? 'Comandantes' : 'Comandante'}</span>
@@ -119,7 +121,7 @@ export function PreviaDeck({ d, meu, escolher, fechar }: { d: DeckResumo; meu: b
       )}
       <div class="botoes-linha previa-acoes">
         <button class="botao" onClick={fechar}>Fechar</button>
-        <button class="botao cheio grande" disabled={meu} onClick={() => { escolher(); fechar(); }}>{meu ? 'Este já é o seu deck' : 'Escolher este deck'}</button>
+        {escolher && <button class="botao cheio grande" disabled={meu} onClick={() => { escolher(); fechar(); }}>{meu ? 'Este já é o seu deck' : 'Escolher este deck'}</button>}
       </div>
     </Janela>
   );

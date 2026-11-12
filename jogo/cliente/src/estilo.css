@@ -500,6 +500,8 @@ button.zona { cursor: pointer; }
 .slot .carta-pt, .slot .carta-etiquetas { display: none; }
 .slot-pilha > .carta + .carta { inset: auto; left: 4px; top: 4px; }
 button.zona:hover .slot { border-color: rgba(255, 255, 255, .45); }
+/* o grimório tem o verso cobrindo o espaço: o realce vai na carta (clicar abre a lista do deck) */
+[data-zona='library']:hover .slot .carta { filter: brightness(1.18); box-shadow: 0 0 0 2px rgba(255, 255, 255, .45); border-radius: 6px; }
 .emblemas { display: flex; flex-direction: column; gap: 4px; max-width: 120px; }
 .emblema { display: flex; align-items: center; gap: 5px; font: inherit; font-size: 11px; font-weight: 700; line-height: 1.2; text-align: left; color: var(--texto); background: rgba(18, 16, 19, .85); border: 1px solid var(--ouro); border-radius: 8px; padding: 4px 7px; cursor: help; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 120px; }
 .emblema:hover { background: rgba(46, 36, 20, .95); }
@@ -980,7 +982,7 @@ img.mini { width: 40px; aspect-ratio: 63 / 88; object-fit: cover; border-radius:
 .mesa.parada .janela-escolha { z-index: 70; }
 .janela-escolha.recolhida { display: none; }
 .janela-escolha.espiando { opacity: 0; pointer-events: none; }
-.janela-escolha.f-simnao, .janela-escolha.f-numero { --largura-escolha: 560px; }
+.janela-escolha.f-simnao, .janela-escolha.f-numero { --largura-escolha: 560px; width: fit-content; min-width: min(420px, calc(100% - var(--reserva) - 32px)); max-width: min(var(--largura-escolha), calc(100% - var(--reserva) - 32px)); }
 .janela-escolha.f-opcoes { --largura-escolha: 720px; }
 .janela-escolha.f-fila { --largura-escolha: 780px; }
 .janela-escolha.f-grade { --largura-escolha: 1400px; }
@@ -1081,10 +1083,26 @@ img.mini { width: 40px; aspect-ratio: 63 / 88; object-fit: cover; border-radius:
 /* recolhida: a decisão continua pendente, num cartão da coluna da direita */
 .escolha-recolhida { border-color: color-mix(in srgb, var(--ouro) 60%, transparent); gap: 8px; }
 .escolha-recolhida > .rot { color: var(--ouro); margin-bottom: 0; }
+/* o cartão tem a altura e a largura do que mostra: não encolhe (o .cartao corta o que passa e o botão sumia) e
+   o enunciado comprido fica em até 4 linhas, com o texto todo no title */
+.coluna-dir > .cartao.escolha-recolhida { flex: 0 0 auto; min-height: 0; align-self: flex-end; width: fit-content; min-width: min(240px, 100%); max-width: 100%; }
+.escolha-recolhida > .decisao-titulo { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; line-clamp: 4; overflow: hidden; }
+.escolha-recolhida > .botoes-linha .botao { flex: 1 0 auto; }
 
 /* ---------------------------------------------------------------- tela Decks (importar e atualizar pelo Moxfield) */
 .cat-topo { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
 .cat-tela { width: min(1320px, 100%); padding: 30px 32px 34px; display: grid; gap: 20px; align-content: start; min-height: min(820px, calc(100vh - 64px)); }
+/* filtro dos decks pela origem (FiltroOrigem.tsx), no saguão e na tela Decks */
+.filtro-origem { display: flex; flex-wrap: wrap; gap: 8px; }
+.filtro-origem-op { display: inline-flex; align-items: center; gap: 7px; height: 32px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--linha-forte); background: rgba(0, 0, 0, .25); color: var(--suave); font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; }
+.filtro-origem-op:hover { color: var(--texto); border-color: rgba(255, 255, 255, .35); }
+.filtro-origem-op[aria-pressed='true'] { color: var(--ouro-texto); background: var(--ouro); border-color: var(--ouro); }
+.filtro-origem-n { font-size: 11px; font-weight: 800; opacity: .75; }
+.deck-origem { justify-self: start; font-size: 10.5px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; padding: 2px 7px; border-radius: 5px; background: rgba(0, 0, 0, .55); border: 1px solid currentColor; }
+.deck-origem.precon { color: var(--ouro); }
+.deck-origem.modificado { color: #e0b48a; }
+.deck-origem.montado { color: #a9c7e8; }
+.deck-origem.casa { color: #9fd7a4; }
 .cat-titulo { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
 .cat-importar { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px 12px; align-items: end; }
 .cat-importar input, .cat-importar .botao { height: 42px; min-height: 42px; }

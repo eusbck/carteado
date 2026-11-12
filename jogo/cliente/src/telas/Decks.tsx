@@ -5,6 +5,7 @@
 
 import { useEffect, useState } from 'preact/hooks';
 import type { CartaCatalogo, DeckCatalogo, Proposta, TarefaPublica } from '../../../servidor/protocolo.ts';
+import { BotoesOrigem, passaNoFiltro, SeloOrigem, useFiltroOrigem } from './FiltroOrigem.tsx';
 import { Janela } from '../Janela.tsx';
 import { Marca } from '../icones.tsx';
 import { desfecho, nomeCurto } from '../Importacoes.tsx';
@@ -248,6 +249,7 @@ function CartaoDeck({ d, ocupado, buscando, abrir, atualizar }: { d: DeckCatalog
       <button type="button" class="cat-deck-arte" style={d.arte ? { backgroundImage: `url(/img/${d.arte}/arte)` } : undefined} onClick={abrir} aria-label={`Detalhes de ${d.nome}`}>
         {selo}
         <span class="deck-info">
+          <SeloOrigem origem={d.origem} />
           <span class="deck-nome" title={d.nome}>{d.nome}</span>
           <span class="deck-cmd"><span>{(d.comandantePt ?? d.comandante).split(',')[0]}</span><Simbolos custo={d.cores.map((c) => `{${c}}`).join('')} /></span>
         </span>
@@ -274,6 +276,7 @@ export function Decks() {
   const andandoNo = (id: string) => todas.some((t) => t.estado === 'andando' && t.deck === id);
   const decks = [...(e.catalogo ?? [])].sort((a, b) => a.nome.localeCompare(b.nome));
   const prontos = decks.filter((d) => d.estado !== 'preparacao').length;
+  const [filtro, setFiltro] = useFiltroOrigem();
   const aberto = decks.find((d) => d.id === detalhe) ?? null;
   const janela = aberta !== null && e.minhasTarefas.includes(aberta) ? e.tarefasDeck[aberta] ?? null : null;
 
@@ -326,13 +329,16 @@ export function Decks() {
         {e.catalogo === null
           ? <p class="suave">Carregando…</p>
           : (
+            <>
+            <BotoesOrigem decks={decks} valor={filtro} mudar={setFiltro} />
             <div class="cat-grade">
-              {decks.map((d) => (
+              {decks.filter((d) => passaNoFiltro(filtro, d)).map((d) => (
                 <CartaoDeck key={d.id} d={d} ocupado={andandoNo(d.id)} abrir={() => setDetalhe(d.id)}
                   buscando={minhas.some((t) => t.estado === 'andando' && t.deck === d.id && t.tipo === 'verificar')}
                   atualizar={async () => { const id = await loja.buscarDeck({ id: d.id }); if (id !== null) setEsperando(id); }} />
               ))}
             </div>
+            </>
           )}
       </main>
       {aberto && <JanelaDetalhes d={aberto} fechar={() => setDetalhe(null)} />}
