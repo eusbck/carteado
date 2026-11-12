@@ -375,7 +375,30 @@ export interface LogEntry {
   /** texto alternativo para quem não pode ver os detalhes */
   hiddenText?: string;
   rule?: string;
+  // F3 (registro estruturado): campos opcionais; linhas antigas (checkpoints salvos) têm só os de cima
+  /** número da linha (a posição no registro quando foi gravada); a vista usa o índice se faltar */
+  seq?: number;
+  /** a etapa em que aconteceu */
+  step?: Step;
+  kind?: LogKind;
+  /** quem fez (null = ninguém, linha de sistema) */
+  actor?: PlayerId | null;
+  /** cartas e jogadores citados */
+  refs?: LogRef[];
+  /** o texto em pedaços: literais e {ref: n} (índice em `refs`) */
+  parts?: LogPart[];
 }
+
+/** F3: o tipo da linha do registro */
+export type LogKind =
+  | 'turno' | 'mulligan' | 'conjura' | 'ativa' | 'terreno' | 'gatilho' | 'resolve' | 'nao-resolve'
+  | 'ataque' | 'bloqueio' | 'dano' | 'vida' | 'zona' | 'compra' | 'revela' | 'manual' | 'fim' | 'sistema' | 'outro';
+export type LogPapel = 'fonte' | 'alvo' | 'vitima';
+export type LogRef =
+  /** `vis`: quem via a carta quando a linha foi gravada (null = todos); a vista só manda o `id` a quem via */
+  | { k: 'obj'; id: ObjId; card: CardId | null; name: string; papel?: LogPapel; vis: PlayerId[] | null }
+  | { k: 'jogador'; id: PlayerId; papel?: LogPapel };
+export type LogPart = string | { ref: number };
 
 export type { ModoJogo } from './modos.ts';
 import type { ModoJogo } from './modos.ts';

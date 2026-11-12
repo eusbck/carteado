@@ -11,7 +11,7 @@ import { formatCost } from './mana.ts';
 import { manaDesfazivel } from './manual.ts';
 import { setorDe } from './setores.ts';
 import { rodadaDe, STEP_NAMES } from './turn.ts';
-import type { Decision, GameObject, ModoJogo, ObjId, PlayerId, Step, TargetRef } from './types.ts';
+import type { Decision, GameObject, LogKind, LogPapel, LogPart, ModoJogo, ObjId, PlayerId, Step, TargetRef } from './types.ts';
 
 export interface ObjView {
   id: ObjId;
@@ -120,11 +120,39 @@ export interface GameView {
   combat: { attackers: { id: ObjId; target: TargetRef; blocked: boolean; blockers: ObjId[] }[] } | null;
   decision: Decision | null;
   waiting: { player: PlayerId; kind: string } | null;
-  log: { turn: number; round?: number; text: string; rule?: string }[];
+  log: LogLinhaView[];
   gameOver: { winners: PlayerId[]; draw: boolean; reason: string } | null;
 }
 
-function canSee(g: G, o: GameObject, viewer: PlayerId | null): boolean {
+/** F3: uma ref de linha do registro, como vai para um espectador. A carta que ele não via quando a linha foi gravada
+ *  vai sem `id` (o nome e a def continuam, porque o texto da linha já os mostra; o id permitiria seguir a carta). */
+export type LogRefView =
+  | { k: 'obj'; id?: ObjId; def: string | null; name: string; papel?: LogPapel }
+  | { k: 'jogador'; id: PlayerId; papel?: LogPapel };
+
+/** F3: uma linha do registro na vista. `seq` é a chave estável. Linhas antigas vêm só com turn/text/rule. */
+export interface LogLinhaView {
+  seq: number;
+  turn: number;
+  round?: number;
+  step?: Step;
+  kind?: LogKind;
+  actor?: PlayerId | null;
+  text: string;
+  rule?: string;
+  /** só quando o espectador vê o texto completo (não o hiddenText) */
+  refs?: LogRefView[];
+  parts?: LogPart[];
+}
+
+/** F1/F3: quem vê o objeto agora (null = todos os jogadores) */
+export function quemVe(g: G, o: GameObject): PlayerId[] | null {
+  const ps = g.state.players.map((p) => p.id);
+  const veem = ps.filter((p) => canSee(g, o, p));
+  return veem.length === ps.length ? null : veem;
+}
+
+export function canSee(g: G, o: GameObject, viewer: PlayerId | null): boolean {
   if (o.zone === 'library') return o.visibleTo === 'all' || (viewer !== null && Array.isArray(o.visibleTo) && o.visibleTo.includes(viewer));
   if (o.zone === 'hand') return viewer === o.owner || o.visibleTo === 'all' || (viewer !== null && Array.isArray(o.visibleTo) && o.visibleTo.includes(viewer));
   if (o.faceDown) {
@@ -258,8 +286,10 @@ export function buildView(g: G, viewer: PlayerId | null, pending: Decision | nul
     ...(ringView(g, p.id) ? { ring: ringView(g, p.id) } : {}),
     ...(topCardView(g, p.id, viewer) ? { topCard: topCardView(g, p.id, viewer) } : {}),
   }));
-  const log = s.log.slice(-200).filter((e) => e.visibleTo === null || (viewer !== null && e.visibleTo.includes(viewer)) || e.hiddenText)
-    .map((e) => ({ turn: e.turn, ...(e.round !== undefined ? { round: e.round } : {}), text: e.visibleTo === null || (viewer !== null && e.visibleTo.includes(viewer)) ? e.text : e.hiddenText!, rule: e.rule }));
+  // F3: TODO (agente C) mandar step/kind/actor/refs/parts redigidos por espectador
+  const base = Math.max(0, s.log.length - 200);
+  const log: LogLinhaView[] = s.log.slice(base).map((e, i) => ({ e, seq: e.seq ?? base + i })).filter(({ e }) => e.visibleTo === null || (viewer !== null && e.visibleTo.includes(viewer)) || e.hiddenText)
+    .map(({ e, seq }) => ({ seq, turn: e.turn, ...(e.round !== undefined ? { round: e.round } : {}), text: e.visibleTo === null || (viewer !== null && e.visibleTo.includes(viewer)) ? e.text : e.hiddenText!, rule: e.rule }));
   return {
     you: viewer,
     turn: { number: s.turn.number, round: rodadaDe(s), active: s.turn.active, step: s.turn.step, stepName: STEP_NAMES[s.turn.step] },

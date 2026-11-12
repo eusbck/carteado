@@ -3,6 +3,7 @@
 
 import type { Chars, GameObject, GameState, LogEntry, ObjId, PlayerId, PlayerState, ZoneName } from './types.ts';
 import type { ActiveStatic } from './chars.ts';
+import type { Diario } from './diario.ts';
 
 export class G {
   state: GameState;
@@ -10,6 +11,9 @@ export class G {
   derived: { version: number; chars: Map<ObjId, Chars>; statics: ActiveStatic[] } | null = null;
   /** durante o cálculo das camadas, características parciais */
   computing: Map<ObjId, Chars> | null = null;
+  /** F1: diário de eventos (motor/diario.ts). Fica null (desligado) nas simulações dos bots; o servidor liga no
+   *  `Game` da sala. Fora do GameState: não vai para checkpoint. */
+  diario: Diario | null = null;
   /** estatísticas de desempenho/depuração */
   counters = { charsComputations: 0 };
 
@@ -103,7 +107,14 @@ export class G {
   }
 
   log(text: string, opts: Partial<Omit<LogEntry, 'text' | 'turn'>> = {}): void {
-    this.state.log.push({ turn: this.state.turn.number, round: this.state.turn.round, text, visibleTo: opts.visibleTo ?? null, hiddenText: opts.hiddenText, rule: opts.rule });
+    const t = this.state.turn;
+    const e: LogEntry = { turn: t.number, round: t.round, text, visibleTo: opts.visibleTo ?? null, hiddenText: opts.hiddenText, rule: opts.rule, seq: this.state.log.length, step: t.step };
+    // F3: os campos estruturados só entram quando vêm (linhas ainda só com texto ficam como antes)
+    if (opts.kind !== undefined) e.kind = opts.kind;
+    if (opts.actor !== undefined) e.actor = opts.actor;
+    if (opts.refs?.length) e.refs = opts.refs;
+    if (opts.parts?.length) e.parts = opts.parts;
+    this.state.log.push(e);
   }
 
   get turnNumber(): number {

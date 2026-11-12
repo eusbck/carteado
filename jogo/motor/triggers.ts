@@ -4,6 +4,7 @@
 //  - para eventos de sair do campo, as habilidades dos objetos como existiam antes (CR 603.10a);
 //  - gatilhos atrasados (CR 603.7).
 
+import { registrarLote } from './diario.ts';
 import { chars, hooks } from './chars.ts';
 import { registry, type TriggerCtx, type TriggeredDef } from './defs.ts';
 import type { GameEvent } from './events.ts';
@@ -108,6 +109,7 @@ function safeChars(g: G, id: ObjId): Chars | null {
 /** registra os eventos e cria os gatilhos pendentes */
 export function emit(g: G, events: GameEvent[]): void {
   if (events.length === 0) return;
+  if (g.diario) registrarLote(g, events);
   updateStats(g, events);
   const s = g.state;
   const sources: Source[] = [];
