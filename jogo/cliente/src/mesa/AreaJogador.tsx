@@ -10,6 +10,7 @@ import { nomeCarta } from '../cartas.ts';
 import type { AvatarCliente } from '../avatares.ts';
 import { arrumarCampo, type Vao } from './arrumacao.ts';
 import { Avatar } from './Avatar.tsx';
+import { useLoja } from '../loja.ts';
 import { Carta, type Realce, type Selo } from './Carta.tsx';
 import { useMesmo } from './estavel.ts';
 import { medirArea, type LadoAvatar } from './geometriaArea.ts';
@@ -32,8 +33,6 @@ export interface AreaProps {
   eu: boolean;
   ativo: boolean;
   decidindo: boolean;
-  /** bot pensando há mais de um segundo (fase 9) */
-  pensando?: boolean;
   /** nível do bot, mostrado junto do nome ("ROBSON · Cartomante") */
   nivel?: string | null;
   compacta: boolean;
@@ -214,7 +213,7 @@ export function AreaJogador(p: AreaProps) {
         <div class="area-selos">
           <button type="button" class="tag-jogador" onClick={p.onJogador} disabled={!p.onJogador} aria-label={`${j.name}${p.nivel ? `, bot ${p.nivel}` : ''}, ${j.life} de vida`}>{j.name}{p.nivel && <span class="nivel-bot"> · {p.nivel}</span>}</button>
           {p.ativo && <span class="selo turno">turno</span>}
-          {p.pensando && !p.eu ? <span class="selo decidindo pensando">pensando…</span> : p.decidindo && !p.eu && <span class="selo decidindo">decidindo</span>}
+          {p.decidindo && !p.eu && <SeloDecidindo jogador={j.id} />}
           {j.monarch && <span class="selo">monarca</span>}
           {j.ring && <span class="selo" title={`O Anel tentou ${j.name} ${j.ring.tempted} ${j.ring.tempted === 1 ? 'vez' : 'vezes'} (CR 701.54): o emblema tem ${Math.min(4, j.ring.tempted)} de 4 habilidades${j.ring.bearer === null ? '; sem Portador do Anel' : ''}`}>Anel {Math.min(4, j.ring.tempted)}/4</span>}
           {j.left && <span class="selo etiqueta alerta">{j.won ? 'venceu' : 'fora da partida'}</span>}
@@ -339,4 +338,11 @@ export function AreaJogador(p: AreaProps) {
       )}
     </section>
   );
+}
+
+/** "decidindo", ou "pensando…" com o bot pensando há mais de um segundo (fase 9). Assina só o `pensando` da loja: o
+ * aviso que vai e vem não redesenha a mesa (N27) */
+function SeloDecidindo({ jogador }: { jogador: number }) {
+  const pensando = useLoja((e) => e.pensando === jogador);
+  return pensando ? <span class="selo decidindo pensando">pensando…</span> : <span class="selo decidindo">decidindo</span>;
 }

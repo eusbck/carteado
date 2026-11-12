@@ -44,7 +44,7 @@ function aviso(t: TarefaPublica): Aviso {
 }
 
 export function Importacoes({ lugar }: { lugar: 'canto' | 'lateral' | 'coluna' }) {
-  const e = useLoja();
+  const e = useLoja((x) => ({ minhasTarefas: x.minhasTarefas, tarefasDeck: x.tarefasDeck }));
   const minhas = e.minhasTarefas.map((id) => e.tarefasDeck[id]).filter((t): t is TarefaPublica => !!t);
   const andando = minhas.filter((t) => t.estado === 'andando');
   const [avisos, setAvisos] = useState<Aviso[]>([]);

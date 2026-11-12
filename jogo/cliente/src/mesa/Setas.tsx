@@ -71,13 +71,25 @@ function retratos(base: DOMRect, alvoJogador: number | null): Caixa[] {
   return l;
 }
 
+/** o fade das setas quando o combate acaba (turno.css, .setas-combate.saindo) */
+const SAIDA_MS = 220;
+
 export function Setas({ setas, versao }: { setas: Seta[]; versao: unknown }) {
   const svg = useRef<SVGSVGElement>(null);
   const [linhas, setLinhas] = useState<Linha[]>([]);
+  // o combate acabou: as setas que estavam na tela saem juntas, num fade curto (N7), em vez de sumir com a vista
+  const [saindo, setSaindo] = useState(false);
   const chave = setas.map((s) => `${s.tipo[0]}${s.de}>${alvoChave(s.para)}`).join(' ');
   useLayoutEffect(() => {
-    // sem setas: só limpa se ainda havia linhas (um [] novo a cada vista redesenhava a camada à toa)
-    if (!setas.length) { setLinhas((l) => (l.length ? [] : l)); return; }
+    // sem setas: as que havia saem num fade (SAIDA_MS) e então a camada esvazia (um [] novo a cada vista redesenhava
+    // a camada à toa)
+    if (!setas.length) {
+      if (!linhas.length) return;
+      setSaindo(true);
+      const t = setTimeout(() => { setLinhas([]); setSaindo(false); }, SAIDA_MS);
+      return () => { clearTimeout(t); setSaindo(false); };
+    }
+    setSaindo(false);
     let quadro = 0;
     let ultima: Linha[] | null = null;
     const ate = performance.now() + 600;
@@ -105,7 +117,7 @@ export function Setas({ setas, versao }: { setas: Seta[]; versao: unknown }) {
 
   // os mesmos tons de --vermelho (ataque) e --azul (bloqueio) do estilo.css (atributo de SVG não lê var())
   return (
-    <svg ref={svg} class="setas-combate" aria-hidden="true">
+    <svg ref={svg} class={`setas-combate ${saindo ? 'saindo' : ''}`} aria-hidden="true">
       <defs>
         <marker id="seta-ponta" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="4.2" markerHeight="4.2" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#e0464f" /></marker>
         <marker id="seta-bola" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="3.4" markerHeight="3.4"><circle cx="5" cy="5" r="4" fill="#3d9be0" /></marker>
