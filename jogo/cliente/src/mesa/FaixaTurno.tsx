@@ -27,12 +27,13 @@ export function FaixaTurno({ turno, rodada, nome, cor }: { turno: number; rodada
     if (turno <= anterior || turno === 0 || reduzir || (typeof document !== 'undefined' && document.hidden)) { setFaixa(null); return; }
     const leve = preferencias().desempenho;
     setFaixa({ chave: turno, nome, rodada, cor, leve });
-    const t = setTimeout(() => setFaixa((f) => (f?.chave === turno ? null : f)), leve ? FAIXA_LEVE_MS : FAIXA_TURNO_MS);
+    // sai no animationend da fita; o relógio (com folga) é só a rede, se a animação não terminar (aba escondida…)
+    const t = setTimeout(() => setFaixa((f) => (f?.chave === turno ? null : f)), (leve ? FAIXA_LEVE_MS : FAIXA_TURNO_MS) + 400);
     return () => clearTimeout(t);
   }, [turno]);
   if (!faixa) return null;
   return (
-    <div key={faixa.chave} class={`faixa-turno ${faixa.leve ? 'leve' : ''}`} style={{ '--cor': faixa.cor }} role="status" aria-live="polite">
+    <div key={faixa.chave} class={`faixa-turno ${faixa.leve ? 'leve' : ''}`} onAnimationEnd={() => setFaixa((f) => (f?.chave === faixa.chave ? null : f))} style={{ '--cor': faixa.cor }} role="status" aria-live="polite">
       <div class="faixa-turno-fita">
         {faixa.nome === null ? <span><b>Sua vez</b></span> : <span>Vez de <b>{faixa.nome}</b></span>}<span class="faixa-turno-ponto" aria-hidden="true">·</span><span>Rodada {faixa.rodada}</span>
       </div>

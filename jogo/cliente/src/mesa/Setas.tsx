@@ -86,7 +86,8 @@ export function Setas({ setas, versao }: { setas: Seta[]; versao: unknown }) {
     if (!setas.length) {
       if (!linhas.length) return;
       setSaindo(true);
-      const t = setTimeout(() => { setLinhas([]); setSaindo(false); }, SAIDA_MS);
+      // a folga: com a máquina ocupada, o relógio vencia antes de o fade (transition de SAIDA_MS) acabar
+      const t = setTimeout(() => { setLinhas([]); setSaindo(false); }, SAIDA_MS + 120);
       return () => { clearTimeout(t); setSaindo(false); };
     }
     setSaindo(false);

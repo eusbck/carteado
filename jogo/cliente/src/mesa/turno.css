@@ -3,7 +3,7 @@
 
 /* ---------------------------------------------------------------- faixa "Vez de Ana · Rodada 5" */
 .faixa-turno {
-  position: absolute; left: 0; right: 0; top: var(--divisa, 41%); z-index: 60; height: 0;
+  position: absolute; left: 0; right: 0; top: var(--divisa, 41%); z-index: 61; height: 0; /* acima da faixa de fases (.fases, 60), que fica na mesma altura */
   display: flex; justify-content: center; pointer-events: none;
 }
 .faixa-turno-fita {
