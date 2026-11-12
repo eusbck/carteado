@@ -10,6 +10,7 @@ import { fileURLToPath } from 'node:url';
 import { chromium, type Browser, type Page } from 'playwright';
 
 const RAIZ = join(dirname(fileURLToPath(import.meta.url)), '..');
+// E2E_ESTATICOS: o cliente compilado noutra pasta (o cliente/dist pode estar servindo a mesa de verdade)
 // E2E_DADOS e PORTA_E2E deixam duas rodadas correrem ao mesmo tempo (cada uma com o seu banco e a sua porta)
 const DADOS = process.env.E2E_DADOS ?? join(RAIZ, '.cache', 'e2e-dados');
 const SAIDA = join(RAIZ, '.cache', 'e2e');
@@ -23,12 +24,13 @@ mkdirSync(SAIDA, { recursive: true });
 let servidor!: ChildProcess;
 async function subirServidor(): Promise<void> {
   servidor = spawn(process.execPath, [join(RAIZ, 'servidor', 'index.ts')], {
-    env: { ...process.env, PORTA: String(PORTA), DADOS, SENHA_ACESSO: SENHA, IMAGENS: join(RAIZ, 'dados-locais', 'imagens'), ESTATICOS: join(RAIZ, 'cliente', 'dist') },
+    env: { ...process.env, PORTA: String(PORTA), DADOS, SENHA_ACESSO: SENHA, IMAGENS: join(RAIZ, 'dados-locais', 'imagens'), ESTATICOS: process.env.E2E_ESTATICOS ?? join(RAIZ, 'cliente', 'dist') },
     stdio: ['ignore', 'pipe', 'pipe'],
   });
   servidor.stderr!.on('data', (d) => process.stderr.write(`[servidor] ${d}`));
   await new Promise<void>((ok, falha) => {
-    const t = setTimeout(() => falha(new Error('servidor não subiu')), 60000);
+    // com a máquina ocupada (outras rodadas, outras cópias do jogo) carregar as cartas passa de um minuto
+    const t = setTimeout(() => falha(new Error('servidor não subiu')), 180000);
     servidor.stdout!.on('data', (d) => { if (String(d).includes('http://localhost')) { clearTimeout(t); ok(); } });
   });
 }
@@ -114,6 +116,8 @@ async function pularAbertura(p: Page, como: 'clique' | 'esc'): Promise<boolean> 
 
 /** uma ação simples para a decisão pendente da pessoa (se houver); devolve true se agiu */
 async function agir(p: Page): Promise<boolean> {
+  // a mesa ainda mostra os quadros que chegaram (protocolo-2): a decisão só aparece com a fila vazia (data-fila="0")
+  if (await p.evaluate(() => (document.documentElement.dataset.fila ?? '0') !== '0').catch(() => false)) return false;
   if (await p.getByText('Você tem prioridade').isVisible().catch(() => false)) {
     if (await jogarDaMao(p, /^Jogar /)) return true;
     if (Math.random() < 0.5 && await jogarDaMao(p, /^Conjurar: /)) return true;
@@ -170,7 +174,8 @@ async function escrever(p: Page, texto: string): Promise<void> {
 
 async function criarSala(anfitriao: Page, modo: '4p' | '1v1'): Promise<string> {
   await anfitriao.getByRole('button', { name: /^Criar sala/ }).click();
-  if (modo === '1v1') await anfitriao.getByRole('button', { name: 'Um contra um' }).click();
+  // desde as mesas de 2 a 6 (08/11), o número de jogadores no lugar do "Um contra um"
+  if (modo === '1v1') await anfitriao.getByRole('radiogroup', { name: 'Número de jogadores' }).getByRole('radio', { name: /^2/ }).click();
   await anfitriao.locator('form').filter({ hasText: 'Criar sala' }).getByLabel('Senha da sala').fill('mesa-e2e');
   await anfitriao.getByRole('button', { name: 'Criar', exact: true }).click();
   await anfitriao.locator('.lugares').waitFor();

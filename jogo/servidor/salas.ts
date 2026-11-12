@@ -19,7 +19,7 @@ import { novaRajada, segurarPilha, type RajadaPilha } from './pilha-visivel.ts';
 import type { Banco } from './banco.ts';
 import { alvoDesfazer, linhasDesfeitas, reconstruir, type MetaEntrada } from './desfazer.ts';
 import { avatarValido } from './avatares.ts';
-import { MIN_LUGARES, tipoMsg, validarMsg, type EtapaSaguao, type LinhaDesfeita, type Modo, type MsgChat, type MsgCliente, type MsgServidor, type PedidoDesfazer, type Posicoes, type RegraAuxilios, type RegraMulligan, type SalaPublica, type TipoAssento } from './protocolo.ts';
+import { MIN_LUGARES, tipoMsg, validarMsg, type EtapaSaguao, type LinhaDesfeita, type Modo, type MsgChat, type MsgCliente, type MsgServidor, type PedidoDesfazer, type Posicoes, type RegraAuxilios, type Reinicio, type RegraMulligan, type SalaPublica, type TipoAssento } from './protocolo.ts';
 
 export interface Conexao {
   enviar(m: MsgServidor): void;
@@ -218,8 +218,12 @@ export class Sala {
   private ritmoChat = new Map<number, number[]>();
   /** gravação marcada (salvarDepois) */
   private gravarDepois: ReturnType<typeof setTimeout> | null = null;
-  /** a última 'sala' e o último 'jogo' (JSON) mandados a cada conexão (enviarSeMudou) */
-  private ultimas = new WeakMap<Conexao, { sala?: string; jogo?: string }>();
+  /** a última 'sala' e o último 'jogo' (JSON) mandados a cada conexão (enviarSeMudou), o número da última vista
+   * (`seq`) e o último reinício da partida que ela já recebeu */
+  private ultimas = new WeakMap<Conexao, { sala?: string; jogo?: string; seq?: number; reinicio?: number }>();
+  /** a partida foi trocada inteira (nova, refeita, desfeita): a próxima vista de cada conexão vai com `reinicio`. `n`
+   * conta as trocas; cada conexão guarda a última que já recebeu */
+  private reinicio: { n: number; tipo: Reinicio } = { n: 0, tipo: 'cheia' };
   /** falhas seguidas do motor na mesma posição das entradas (falha) */
   private falhas = { indice: -1, n: 0 };
   /** a pilha já mostrada de cada partida (segurar): partida nova, desfazer e refazer recomeçam a conta (os números de
@@ -322,11 +326,28 @@ export class Sala {
     let u = this.ultimas.get(c);
     if (!u) this.ultimas.set(c, (u = {}));
     if (u[m.t] === texto) return;
+    const primeira = m.t === 'jogo' && u.jogo === undefined;
     u[m.t] = texto;
-    // a passagem do tempo não muda a sala: a referência do relógio só entra depois da comparação
-    const enviada = m.t === 'sala' ? { ...m, agora: Date.now() } : m;
-    if (c.enviarTexto) c.enviarTexto(m.t === 'sala' ? JSON.stringify(enviada) : texto);
-    else c.enviar(enviada);
+    if (m.t === 'sala') {
+      // a passagem do tempo não muda a sala: a referência do relógio só entra depois da comparação
+      const enviada = { ...m, agora: Date.now() };
+      if (c.enviarTexto) c.enviarTexto(JSON.stringify(enviada));
+      else c.enviar(enviada);
+      return;
+    }
+    // a vista ganha o número dela nesta conexão e, se não continua a anterior, o motivo (protocolo-2): os dois ficam
+    // fora da comparação e entram no fim do JSON já pronto (a vista não é serializada de novo)
+    const seq = u.seq = (u.seq ?? 0) + 1;
+    const reinicio: Reinicio | null = primeira ? 'cheia' : (u.reinicio ?? 0) < this.reinicio.n ? this.reinicio.tipo : null;
+    u.reinicio = this.reinicio.n;
+    const extra = { seq, ...(reinicio ? { reinicio } : {}) };
+    if (c.enviarTexto) c.enviarTexto(`${texto.slice(0, -1)},${JSON.stringify(extra).slice(1)}`);
+    else c.enviar({ ...m, ...extra });
+  }
+
+  /** a partida foi trocada inteira: a próxima vista de cada conexão sai com `reinicio` (o cliente não anima a diferença) */
+  private marcarReinicio(tipo: Reinicio): void {
+    this.reinicio = { n: this.reinicio.n + 1, tipo };
   }
 
   private get semAuxilios(): boolean { return this.d.auxilios === 'proibidos'; }
@@ -779,6 +800,7 @@ export class Sala {
     const decks = this.decks();
     const { game, aplicadas, erro } = Game.replayAteFalhar(p.config, decks, entradas, cp);
     this.game = game;
+    this.marcarReinicio('cheia');
     if (aplicadas < entradas.length) {
       console.error(`[sala ${this.d.codigo}] a partida salva foi refeita até a entrada ${aplicadas} de ${entradas.length}; a seguinte não vale mais (${erro?.message}). Entradas descartadas:`, JSON.stringify(entradas.slice(aplicadas)));
       this.gerente.banco.truncarEntradas(this.d.codigo, aplicadas);
@@ -940,6 +962,7 @@ export class Sala {
     this.pedido = null;
     const partida = this.d.partida!;
     this.game = p.voltar;
+    this.marcarReinicio('desfeita');
     this.metas = this.metas.slice(0, p.alvo);
     this.salvas = p.alvo;
     this.cps = this.cps.filter((c) => c.inputIndex <= p.alvo);
@@ -1029,6 +1052,7 @@ export class Sala {
       console.error(`[sala ${this.d.codigo}] não foi possível refazer a partida depois do erro:`, e);
       return false;
     }
+    this.marcarReinicio('cheia');
     this.metas.length = this.game.inputs.length;
     // respostas pensadas para a partida de antes não valem (os bots continuam com a memória deles)
     this.geracao++;

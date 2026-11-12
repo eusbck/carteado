@@ -165,6 +165,29 @@ export function tocar(som: Som, forca = 1): () => void {
   return preferencias().sons[som] ? gerar(som, forca) : nada;
 }
 
+/**
+ * A destruição em massa (mesa/impacto.ts): um som de grupo (um sopro grave descendo e um ronco) e até 3 baques em
+ * `baques` (ms depois de agora). Tudo num ganho só, mais baixo que o dos outros sons, para a soma não estourar (ainda
+ * não há limitador de áudio). Liga e desliga com a chave do som de impacto.
+ */
+export function tocarDestruicao(baques: number[]): void {
+  const p = preferencias();
+  if (!p.sons.impacto || p.volume <= 0) return;
+  const c = contexto();
+  if (!c || c.state !== 'running') return;
+  const mestre = c.createGain();
+  mestre.gain.value = Math.min(1, p.volume) * 0.38;
+  mestre.connect(c.destination);
+  const t = c.currentTime + 0.01;
+  rajada(c, mestre, t, 0.9, 0.32, 1600, 160);
+  nota(c, mestre, 72, t, 1.1, 0.5, 'sine', 34);
+  for (const ms of baques.slice(0, 3)) {
+    const b = t + ms / 1000;
+    nota(c, mestre, 120, b, 0.3, 0.55, 'sine', 40);
+    sopro(c, mestre, b, 0.1, 0.22, 700);
+  }
+}
+
 /** o botão de ouvir das Configurações: toca mesmo com o som desligado (no volume dos efeitos) */
 export function ouvir(som: Som): void {
   gerar(som, 1);

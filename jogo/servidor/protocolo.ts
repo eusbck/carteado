@@ -365,10 +365,17 @@ export function validarMsg(m: unknown): string | null {
   return FORMAS[m.t as MsgCliente['t']](m) ? null : 'Mensagem inválida';
 }
 
+/** por que uma vista não continua a anterior (mensagem `jogo`) */
+export type Reinicio = 'cheia' | 'desfeita';
+
 export type MsgServidor =
   /** `quem`: o seu id de autor; `agora`: hora do servidor em ms, acrescentada só ao enviar, fora da comparação */
   | { t: 'sala'; sala: SalaPublica; voce: number; token: string; quem: string; agora: number }
-  | { t: 'jogo'; vista: GameView; paradas: StopSettings; posicoes: Posicoes; desfazivel: boolean; desfazer: PedidoDesfazer | null }
+  /** `seq`: número da vista nesta conexão (1, 2, 3…; recomeça a cada conexão), acrescentado só ao enviar, fora da
+   * comparação. `reinicio`: a vista não continua a anterior: 'cheia' (a primeira desta conexão, partida nova ou refeita)
+   * ou 'desfeita' (um pedido de desfazer voltou a partida). Sem ele, continua: o cliente põe a vista na fila de quadros
+   * e anima a diferença; com ele, esvazia a fila e mostra a vista na hora, sem animação */
+  | { t: 'jogo'; vista: GameView; paradas: StopSettings; posicoes: Posicoes; desfazivel: boolean; desfazer: PedidoDesfazer | null; seq?: number; reinicio?: Reinicio }
   /** aviso curto para a mesa (pedido de desfazer aceito, recusado ou expirado) */
   | { t: 'aviso'; msg: string }
   | { t: 'saiu' }

@@ -20,7 +20,8 @@ const carregarDecks = () => import('./telas/Decks.tsx');
 const Decks = lazy(() => carregarDecks().then((m) => ({ default: m.Decks })));
 
 export function App() {
-  const e = useLoja();
+  // só o que escolhe a tela (N27): a vista de cada jogada e o chat não redesenham daqui (a mesa assina o dela)
+  const e = useLoja((x) => ({ fase: x.fase, vista: !!x.vista, sala: x.sala ? x.sala.estado : null, erro: x.erro, conectado: x.conectado }));
   const antesDosDecks = e.fase === 'inicio' || e.fase === 'sala';
   useEffect(() => (antesDosDecks ? quandoOcioso(() => void carregarDecks()) : undefined), [antesDosDecks]);
   let tela;
@@ -31,7 +32,7 @@ export function App() {
   else if (e.fase === 'inicio') tela = <Inicio />;
   // enquanto o código chega: o mesmo fundo da tela Decks (por cima dos wallpapers) com o "Carregando…" do começo
   else if (e.fase === 'decks') tela = <Suspense fallback={<div class="tela-fundo"><p class="suave">Carregando…</p></div>}><Decks /></Suspense>;
-  else if (e.vista && e.sala && e.sala.estado !== 'espera') { tela = <Mesa />; fundo = false; }
+  else if (e.vista && e.sala && e.sala !== 'espera') { tela = <Mesa />; fundo = false; }
   else tela = <Saguao />;
   return (
     <>
