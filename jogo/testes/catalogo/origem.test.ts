@@ -44,8 +44,15 @@ describe('origem dos decks', () => {
     expect(classificar({ link: '', nome: 'Deck da casa' }, lista(0), [precon]).tipo).toBe('casa');
   });
 
+  it('montado na tela Montar deck: comparado com os precons como os do Moxfield', () => {
+    const criado = { link: '', nome: 'Meu deck', criado: { autor: 'Caio', editadoEm: '2026-11-12T00:00:00.000Z' } };
+    expect(classificar(criado, lista(0), [precon]).tipo).toBe('precon');
+    expect(classificar(criado, lista(40), [precon]).tipo).toBe('montado');
+  });
+
   it('sem comparação gravada, o palpite', () => {
     expect(palpite({ link: '', nome: 'x' }).tipo).toBe('casa');
+    expect(palpite({ link: '', nome: 'x', criado: { autor: null, editadoEm: '2026-11-12T00:00:00.000Z' } }).tipo).toBe('montado');
     expect(palpite({ link: 'l', nome: 'Blame Game (Commander Precon Decklist)' }).tipo).toBe('precon');
     expect(palpite({ link: 'l', nome: 'Voja' }).tipo).toBe('montado');
   });

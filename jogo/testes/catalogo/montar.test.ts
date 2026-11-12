@@ -103,6 +103,7 @@ describe('gravar, editar e apagar', () => {
     const gerados = JSON.parse(readFileSync(join(p.gerado, 'decks.json'), 'utf8')) as DeckList[];
     expect(gerados.some((x) => x.id === id)).toBe(true);
     expect(catalogo.publico(INFO).find((x) => x.id === id)?.criado?.autor).toBe('Caio');
+    expect(catalogo.publico(INFO).find((x) => x.id === id)?.origem.tipo).toBe('montado');
 
     // editar: troca uma carta, o id e o autor ficam, e as cartas que ficam mantêm a posição
     // sai Arcane Signet, entra mais um básico que a lista já tem

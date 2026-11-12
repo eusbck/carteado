@@ -21,6 +21,7 @@ import { Catalogo, diferenca, listasIguais, mesclarOrdem } from './catalogo.ts';
 import { cartaGerada, escreverGerado, gerar, lerAnterior, lerNovas, lerOriginais, nomesDaLista, type CartasGeradas, type ImagensGeradas } from './gerar.ts';
 import { baixarDeck, ErroDeck, lerLink, linkDoDeck, type DeckMox } from './moxfield.ts';
 import { novoIdCriado } from './montar.ts';
+import { gravarOrigens, lerOrigens } from './origem.ts';
 import type { Rede } from './rede.ts';
 import { baixarImagens, colecao, ehFicha, escolherImpressao, impressoes, oracleIdDe, paraCarta, paraImpressao, partesFicha, porNome, rulings } from './scryfall.ts';
 import type { DeckArquivo, EntradaLista, ImagemLocal, Lista, Ruling, ScryObjeto, VersaoLista } from './tipos.ts';
@@ -218,6 +219,7 @@ export class TarefasDecks {
       d.preparacao = null;
       d.criado = { autor: existente?.criado?.autor ?? o.autor, editadoEm: agora };
       cat.salvar(d);
+      esquecerOrigem(this.o.pastas.decks, d.id);
       this.regenerarGerado();
       return d.id;
     });
@@ -231,6 +233,7 @@ export class TarefasDecks {
       const d = this.o.catalogo.ler(id);
       if (!d?.criado) throw new ErroDeck('Só os decks montados na mesa podem ser apagados');
       this.o.catalogo.apagar(id);
+      esquecerOrigem(this.o.pastas.decks, id);
       this.regenerarGerado();
     });
     this.o.aoMudar?.(true);
@@ -548,4 +551,13 @@ export function mensagem(e: unknown): string {
   if (e instanceof ErroTrava) return e.message;
   console.error('importação de deck:', e);
   return e instanceof Error ? `Erro na importação: ${e.message}` : 'Erro na importação';
+}
+
+/** tira a comparação com os precons gravada para um deck (a lista mudou ou o deck saiu): vale o palpite até rodar
+ * `decks.ts classificar` de novo */
+function esquecerOrigem(pastaDecks: string, id: string): void {
+  const o = lerOrigens(pastaDecks);
+  if (!o.decks[id]) return;
+  delete o.decks[id];
+  gravarOrigens(pastaDecks, o);
 }
