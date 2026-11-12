@@ -10,6 +10,7 @@ import { destroyObject } from './state.ts';
 import { enchantCandidates } from './actions.ts';
 import { protectionBlocksEquip } from './actions.ts';
 import { cantLoseGame } from './veneno-emblema.ts';
+import { regraDoMundo } from './mundo.ts';
 import { emit } from './triggers.ts';
 import type { ObjId, PlayerId, ZoneName } from './types.ts';
 
@@ -174,6 +175,8 @@ export function* performSBAs(g: G): Gen<boolean> {
     }
   }
   g.state.commanderOffered = offered.filter((id) => g.state.objects[id]);
+  // lote4-e: regra do mundo (CR 704.5k)
+  if (!g.state.gameOver && (yield* regraDoMundo(g))) performed = true;
   // ações baseadas em estado definidas por uma carta (Space Beleren: a criatura sem setor é posta num setor)
   if (!g.state.gameOver) for (const h of hooks(g, 'stateAction')) if (yield* h.fn(h.ctx)) performed = true;
   checkGameEnd(g);

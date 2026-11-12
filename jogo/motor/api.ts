@@ -59,3 +59,7 @@ export * from './historia.ts';
 // lote3-f: devoção, turno extra, evocar, dash, barganha e spree (cEDH Inalla)
 export * from './cedh.ts';
 export { successor } from './state.ts';
+// lote4-e: dragar (dredge, CR 702.52)
+export * from './dragar.ts';
+// lote4-e: regra do mundo (CR 704.5k)
+export { regraDoMundo } from './mundo.ts';

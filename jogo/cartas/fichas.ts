@@ -532,3 +532,16 @@ export const CatBranco11 = defineToken({
   // a impressa sem texto (há outra Cat 1/1 branca, com vínculo com a vida)
   image: fichasOracle.find((f) => f.faces[0].name === 'Cat' && f.faces[0].power === 1 && f.faces[0].colors.join() === 'W' && f.faces[0].oracleText === '')?.oracleId,
 });
+// lote4-e (LandReanimator, Sin)
+/** Beast 4/4 verde (Rampaging Baloths) */
+export const Beast44 = token('Beast 4/4', 'Beast', ['Creature'], ['Beast'], ['G'], 4, 4);
+/** Plant 0/1 verde (Avenger of Zendikar) */
+export const Plant01 = token('Plant 0/1', 'Plant', ['Creature'], ['Plant'], ['G'], 0, 1);
+/** Badger 3/3 verde (Greensleeves, Maro-Sorcerer) */
+export const Badger33 = token('Badger', 'Badger', ['Creature'], ['Badger'], ['G'], 3, 3);
+/** Forest Dryad 1/1 verde, criatura terreno (Awaken the Woods); a mana vem do tipo Forest (CR 305.6) */
+export const ForestDryad = token('Forest Dryad', 'Forest Dryad', ['Land', 'Creature'], ['Forest', 'Dryad'], ['G'], 1, 1);
+/** Elemental 5/3 verde (Titania, Protector of Argoth) */
+export const Elemental53 = token('Elemental 5/3', 'Elemental', ['Creature'], ['Elemental'], ['G'], 5, 3);
+/** Zombie Druid 2/2 preta (Teval, the Balanced Scale) */
+export const ZombieDruid = token('Zombie Druid', 'Zombie Druid', ['Creature'], ['Zombie', 'Druid'], ['B'], 2, 2);
