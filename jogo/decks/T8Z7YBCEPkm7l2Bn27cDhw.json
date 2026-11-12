@@ -6,8 +6,7 @@
  "link": "https://moxfield.com/decks/T8Z7YBCEPkm7l2Bn27cDhw",
  "importadoEm": "2026-11-10T19:57:20.571Z",
  "verificadoEm": "2026-11-10T19:57:20.571Z",
- "atual": null,
- "preparacao": {
+ "atual": {
   "comandante": "Sam, Loyal Attendant",
   "parceiro": "Frodo, Adventurous Hobbit",
   "cartas": [
@@ -397,5 +396,6 @@
    "atualizadoEm": "2026-11-10T18:36:51.08Z"
   },
   "desde": "2026-11-10T19:57:20.571Z"
- }
+ },
+ "preparacao": null
 }
