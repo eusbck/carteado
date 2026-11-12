@@ -162,7 +162,7 @@ export function EscolhaRecolhida({ d, ui, voltar }: { d: DecisaoEscolha; ui: Est
   return (
     <div class="cartao escolha-recolhida" role="status">
       <p class="rot">Escolha pendente</p>
-      <p class="decisao-titulo"><TextoComSimbolos texto={ordemDeGatilhos(d) ? 'Ordem dos seus gatilhos' : traduzir(d.prompt)} /></p>
+      <p class="decisao-titulo" title={ordemDeGatilhos(d) ? undefined : traduzir(d.prompt)}><TextoComSimbolos texto={ordemDeGatilhos(d) ? 'Ordem dos seus gatilhos' : traduzir(d.prompt)} /></p>
       {sel && <p class="suave">{ui.sel.length} escolhida{ui.sel.length === 1 ? '' : 's'} · {faixaEscolha(sel.min, sel.max).toLowerCase()}</p>}
       <div class="botoes-linha">
         <button type="button" class="botao cheio" onClick={voltar}>Voltar à escolha</button>

@@ -1511,7 +1511,7 @@ try {
   await p.getByRole('button', { name: 'Abrir a barra' }).click();
   // a janela de escolha (fase 9) fica no meio da mesa: responde o que estiver pendente antes de abrir o cemitério
   await jogarAteMinhaPrioridade(p, 80);
-  await p.locator('.botao-zona').first().click();
+  await p.locator('[data-zona="graveyard"]').first().click();
   await foto(p, '12-cemiterio');
   await ctx.close();
 
