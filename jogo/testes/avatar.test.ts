@@ -32,9 +32,9 @@ class Falsa implements Conexao {
 const espera = () => new Promise((r) => setTimeout(r, 0));
 
 describe('avatares: catálogo', () => {
-  it('26 retratos com ids únicos; os comandantes dos 9 decks da mesa em 06cc7f3 continuam jogáveis e com o seu', () => {
-    expect(AVATARES).toHaveLength(26);
-    expect(new Set(AVATARES.map((a) => a.id)).size).toBe(26);
+  it('42 retratos com ids únicos; os comandantes dos 9 decks da mesa em 06cc7f3 continuam jogáveis e com o seu', () => {
+    expect(AVATARES).toHaveLength(42);
+    expect(new Set(AVATARES.map((a) => a.id)).size).toBe(42);
     for (const d of decksOriginais) {
       expect(decksMesa.some((x) => x.id === d.id && x.comandante === d.comandante), d.comandante).toBe(true);
       expect(avatarDoComandante(d.comandante), d.comandante).not.toBeNull();
@@ -46,9 +46,11 @@ describe('avatares: catálogo', () => {
     expect(avatarDoComandante('The Tenth Doctor')).toBe('timey-wimey');
     expect(avatarDoComandante('Rose Tyler')).toBe('timey-wimey');
     expect(avatarDoComandante('Doctor Doom, King of Latveria')).toBe('doctor-doom');
-    for (const pendente of ["T'Challa, the Black Panther", 'Invisible Woman', 'Captain America, Team Leader']) {
-      expect(avatarDoComandante(pendente)).toBeNull();
-    }
+    expect(avatarDoComandante("T'Challa, the Black Panther")).toBe('black-panther');
+    expect(avatarDoComandante('Invisible Woman')).toBe('invisible-woman');
+    expect(avatarDoComandante('The Ur-Dragon')).toBe('ur-dragon');
+    // o gerador recusou o retrato do Capitão América (moderation_blocked): o assento fica com a inicial
+    expect(avatarDoComandante('Captain America, Team Leader')).toBeNull();
     expect(avatarValido('jace')).toBe(true);
     expect(avatarValido('../jace')).toBe(false);
     expect(avatarValido(3)).toBe(false);
@@ -77,7 +79,7 @@ describe('avatares: catálogo', () => {
       expect(m.hasAlpha, a.id).toBe(true);
       expect((await sharp(arquivo).stats()).isOpaque, a.id).toBe(false);
     }
-  });
+  }, 30_000);
 
   it('cada retrato tem a cópia de 256 px para a mesa (ferramentas/avatares-mesa.ts), com transparência', async () => {
     for (const a of AVATARES) {
@@ -88,7 +90,7 @@ describe('avatares: catálogo', () => {
       expect(m.hasAlpha, a.id).toBe(true);
       expect((await sharp(arquivo).stats()).isOpaque, a.id).toBe(false);
     }
-  });
+  }, 30_000);
 });
 
 describe('avatares: escolha no servidor', () => {
