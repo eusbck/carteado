@@ -23,6 +23,7 @@ import { cartaPronta } from './catalogo/prontidao.ts';
 import { redeReal } from './catalogo/rede.ts';
 import { RotasCatalogo } from './catalogo/rotas.ts';
 import { TarefasDecks } from './catalogo/tarefas.ts';
+import { lerBanidas } from './catalogo/validar.ts';
 import { Arquivos } from './http-arquivos.ts';
 import { Imagens, type Tamanho } from './imagens.ts';
 import { tipoMsg, type DeckResumo, type MsgCliente, type MsgServidor } from './protocolo.ts';
@@ -96,7 +97,7 @@ const tarefas: TarefasDecks = new TarefasDecks({
   },
   aoAndamento: (t) => anunciar({ t: 'catalogo', tarefa: t, mudou: false }),
 });
-const rotasCatalogo = new RotasCatalogo({ catalogo, tarefas, info: infoDoDisco(pastas.gerado) });
+const rotasCatalogo = new RotasCatalogo({ catalogo, tarefas, info: infoDoDisco(pastas.gerado), pronta: cartaPronta, banidas: lerBanidas(pastas.dados) });
 
 // ---------------------------------------------------------------------------
 // sessões
@@ -184,9 +185,11 @@ async function rotear(req: IncomingMessage, res: ServerResponse): Promise<void> 
   if (p === '/api/catalogo' || p.startsWith('/api/catalogo/')) {
     let corpo = '';
     if (req.method === 'POST') {
-      try { corpo = await lerCorpo(req); } catch { return json(res, 413, { erro: 'Pedido grande demais' }); }
+      // um deck montado na mesa traz a lista inteira (100 cartas)
+      try { corpo = await lerCorpo(req, 32768); } catch { return json(res, 413, { erro: 'Pedido grande demais' }); }
     }
-    const r = rotasCatalogo.tratar(req.method ?? 'GET', p, corpo, ipDe(req));
+    const gravacao = rotasCatalogo.gravacao(req.method ?? 'GET', p, corpo);
+    const r = gravacao ? await gravacao : rotasCatalogo.tratar(req.method ?? 'GET', p, corpo, ipDe(req));
     if (r) return json(res, r.status, r.corpo);
   }
 

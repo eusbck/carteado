@@ -58,14 +58,16 @@ export function gravarOrigens(pastaDecks: string, o: OrigensArquivo): void {
 }
 
 /** palpite para um deck que ainda não foi comparado com os precons */
-export function palpite(d: Pick<DeckArquivo, 'link' | 'nome'>): OrigemDeck {
+export function palpite(d: Pick<DeckArquivo, 'link' | 'nome' | 'criado'>): OrigemDeck {
+  // feito na tela Montar deck (servidor/catalogo/montar.ts): cartas reais, montado de propósito
+  if (d.criado) return { tipo: 'montado' };
   if (!d.link) return { tipo: 'casa' };
   if (/\bprecon\b/i.test(d.nome)) return { tipo: 'precon' };
   return { tipo: 'montado' };
 }
 
 /** a origem de um deck: a comparação gravada ou o palpite */
-export function origemDe(origens: OrigensArquivo, d: Pick<DeckArquivo, 'id' | 'link' | 'nome'>): OrigemDeck {
+export function origemDe(origens: OrigensArquivo, d: Pick<DeckArquivo, 'id' | 'link' | 'nome' | 'criado'>): OrigemDeck {
   return origens.decks[d.id] ?? palpite(d);
 }
 
@@ -92,8 +94,9 @@ export function cartasDaLista(l: Lista): { nome: string; quantidade: number }[] 
 }
 
 /** compara a lista com os precons oficiais e diz de onde ela vem */
-export function classificar(d: Pick<DeckArquivo, 'link' | 'nome'>, lista: Lista, precons: PreconOficial[], agora = new Date()): OrigemDeck {
-  if (!d.link) return { tipo: 'casa', conferidoEm: agora.toISOString() };
+export function classificar(d: Pick<DeckArquivo, 'link' | 'nome' | 'criado'>, lista: Lista, precons: PreconOficial[], agora = new Date()): OrigemDeck {
+  // um deck da tela Montar deck também é comparado: alguém pode ter montado um precon nele
+  if (!d.link && !d.criado) return { tipo: 'casa', conferidoEm: agora.toISOString() };
   const minha = contar(cartasDaLista(lista));
   const total = [...minha.values()].reduce((s, q) => s + q, 0);
   let melhor: { p: PreconOficial; iguais: number } | null = null;

@@ -1,6 +1,7 @@
 // Tela Decks: os decks da mesa, importar um deck pelo link do Moxfield e atualizar um deck que mudou lá.
 // Um deck só entra no saguão quando todas as cartas têm regras no jogo; o que falta fica "em preparação" até o
-// anfitrião pedir ao Claude Code para implementar essas cartas. Várias importações andam juntas: o campo libera na
+// anfitrião pedir ao Claude Code para implementar essas cartas. "Montar um deck" abre o construtor (Construtor.tsx), com as
+// cartas que o jogo já tem; os decks montados assim podem ser editados e apagados aqui. Várias importações andam juntas: o campo libera na
 // hora para o próximo link, a lista "Importações" mostra cada uma, e dá para sair da tela (o selo no canto segue).
 
 import { useEffect, useState } from 'preact/hooks';
@@ -12,6 +13,7 @@ import { desfecho, nomeCurto } from '../Importacoes.tsx';
 import { loja, useLoja } from '../loja.ts';
 import { Simbolos } from '../mesa/Simbolos.tsx';
 import { MODOS } from '../../../motor/modos.ts';
+import { Construtor, deckVazio, rascunhoGuardado, type DeckInicial } from './Construtor.tsx';
 
 const data = (iso: string | null) => (iso ? new Date(iso).toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' }) : null);
 const cartasTxt = (n: number) => (n === 1 ? '1 carta' : `${n} cartas`);
@@ -205,14 +207,26 @@ function LinhaImportacao({ t, abrir }: { t: TarefaPublica; abrir: () => void }) 
   );
 }
 
-function JanelaDetalhes({ d, fechar }: { d: DeckCatalogo; fechar: () => void }) {
+/** a lista de um deck da mesa como ponto de partida do construtor (editar um montado ou copiar um deck) */
+async function deckParaMontar(d: DeckCatalogo, copia: boolean): Promise<DeckInicial | null> {
+  const l = await loja.listaDoDeck(d.id);
+  if (!l) return null;
+  const cartas: Record<string, number> = {};
+  for (const c of l.cartas) cartas[c.nome] = (cartas[c.nome] ?? 0) + c.quantidade;
+  return { id: copia ? null : d.id, nome: copia ? `${d.nome} (cópia)`.slice(0, 60) : d.nome, comandante: l.comandante?.nome ?? null, parceiro: l.parceiro?.nome ?? null, cartas };
+}
+
+function JanelaDetalhes({ d, fechar, montar }: { d: DeckCatalogo; fechar: () => void; montar: (copia: boolean) => void }) {
+  const [apagando, setApagando] = useState(false);
   const p = d.preparacao;
   return (
     <Janela titulo={d.nome} fechar={fechar} larga={!!p && d.estado === 'atualizacao'} classe="cat-janela">
       <div class="cat-proposta">
         <p class="suave">
           {d.comandante ? <>{d.parceiro ? 'Comandantes' : 'Comandante'}: {d.comandantePt ?? d.comandante}{d.parceiro ? ` e ${d.parceiroPt ?? d.parceiro}` : ''}</> : `Deck de ${MODOS[d.formato].nome}`} · {d.total} cartas diferentes{d.link ? <> · <a href={d.link} target="_blank" rel="noopener noreferrer">ver no Moxfield</a></> : ' · deck da mesa'}
-          <br />Importado em {data(d.importadoEm)}{d.verificadoEm ? `; buscado no Moxfield em ${data(d.verificadoEm)}` : ''}.
+          <br />{d.criado
+            ? <>Montado aqui{d.criado.autor ? ` por ${d.criado.autor}` : ''} em {data(d.importadoEm)}{d.criado.editadoEm !== d.importadoEm ? `; editado em ${data(d.criado.editadoEm)}` : ''}.</>
+            : <>Importado em {data(d.importadoEm)}{d.verificadoEm ? `; buscado no Moxfield em ${data(d.verificadoEm)}` : ''}.</>}
         </p>
         {d.estado === 'pronto' && <p class="cat-resumo jogavel">Todas as cartas têm regras: o deck está no saguão.</p>}
         {p && d.estado === 'preparacao' && (
@@ -233,12 +247,24 @@ function JanelaDetalhes({ d, fechar }: { d: DeckCatalogo; fechar: () => void }) 
           </>
         )}
       </div>
-      <div class="botoes-linha cat-acoes"><button class="botao" onClick={fechar}>Fechar</button></div>
+      <div class="botoes-linha cat-acoes">
+        {d.criado && (
+          <button class="botao fantasma perigo" disabled={apagando} onClick={async () => {
+            if (!confirm(`Apagar o deck ${d.nome}? Partidas que já começaram com ele continuam.`)) return;
+            setApagando(true);
+            if (await loja.apagarDeckCriado(d.id)) { fechar(); void loja.recarregarCatalogo(); } else setApagando(false);
+          }}>{apagando ? 'Apagando…' : 'Apagar'}</button>
+        )}
+        {/* o construtor monta só decks de Commander */}
+        {d.estado !== 'preparacao' && d.formato === 'commander' && <button class="botao fantasma" onClick={() => montar(true)} title="Abre o construtor com uma cópia desta lista">Usar como base</button>}
+        {d.criado && <button class="botao principal" onClick={() => montar(false)}>Editar</button>}
+        <button class="botao" onClick={fechar}>Fechar</button>
+      </div>
     </Janela>
   );
 }
 
-function CartaoDeck({ d, ocupado, buscando, abrir, atualizar }: { d: DeckCatalogo; ocupado: boolean; buscando: boolean; abrir: () => void; atualizar: () => void }) {
+function CartaoDeck({ d, ocupado, buscando, abrir, atualizar, editar }: { d: DeckCatalogo; ocupado: boolean; buscando: boolean; abrir: () => void; atualizar: () => void; editar: () => void }) {
   const p = d.preparacao;
   const selo = d.estado === 'pronto'
     ? <span class="cat-selo pronto">No saguão</span>
@@ -256,8 +282,12 @@ function CartaoDeck({ d, ocupado, buscando, abrir, atualizar }: { d: DeckCatalog
         </span>
       </button>
       <div class="cat-deck-pe">
-        <span class="suave">{d.atualizadoEm ? `Moxfield: ${data(d.atualizadoEm)}` : `Desde ${data(d.importadoEm)}`}</span>
-        <button class="botao pequeno" disabled={ocupado} onClick={atualizar}>{buscando ? 'Buscando…' : ocupado ? 'Importando…' : 'Atualizar'}</button>
+        {d.criado
+          ? <span class="suave">Montado{d.criado.autor ? ` por ${d.criado.autor}` : ' aqui'}</span>
+          : <span class="suave">{d.atualizadoEm ? `Moxfield: ${data(d.atualizadoEm)}` : `Desde ${data(d.importadoEm)}`}</span>}
+        {d.criado
+          ? <button class="botao pequeno" onClick={editar}>Editar</button>
+          : d.link ? <button class="botao pequeno" disabled={ocupado} onClick={atualizar}>{buscando ? 'Buscando…' : ocupado ? 'Importando…' : 'Atualizar'}</button> : null}
       </div>
     </article>
   );
@@ -271,6 +301,8 @@ export function Decks() {
   const [aberta, setAberta] = useState<number | null>(null);
   /** o Atualizar que você clicou: a prévia abre sozinha quando chegar */
   const [esperando, setEsperando] = useState<number | null>(null);
+  /** o construtor aberto (Montar um deck, Editar, Usar como base) */
+  const [montando, setMontando] = useState<{ inicial: DeckInicial; rascunho: boolean } | null>(null);
   const todas = Object.values(e.tarefasDeck);
   const minhas = e.minhasTarefas.map((id) => e.tarefasDeck[id]).filter((t): t is TarefaPublica => !!t);
   const deOutros = todas.filter((t) => t.estado === 'andando' && !e.minhasTarefas.includes(t.id));
@@ -294,6 +326,22 @@ export function Decks() {
     if (link.trim() && (await loja.buscarDeck({ link: link.trim() })) !== null) setLink('');
   };
 
+  const abrirConstrutor = async (d: DeckCatalogo, copia: boolean) => {
+    const inicial = await deckParaMontar(d, copia);
+    if (inicial) { setDetalhe(null); setMontando({ inicial, rascunho: false }); }
+  };
+
+  if (montando) {
+    return (
+      <div class="tela-fundo">
+        <main class="janela cat-tela mt-tela">
+          <Construtor inicial={montando.inicial} rascunho={montando.rascunho}
+            sair={(gravou) => { setMontando(null); if (gravou) void loja.recarregarCatalogo(); }} />
+        </main>
+      </div>
+    );
+  }
+
   return (
     <div class="tela-fundo">
       <main class="janela cat-tela">
@@ -304,6 +352,8 @@ export function Decks() {
         <div class="cat-titulo">
           <h1 class="titulo">Decks da mesa</h1>
           <span class="suave">{prontos} no saguão{decks.length > prontos ? `, ${decks.length - prontos} em preparação` : ''}</span>
+          <button class="botao principal" onClick={() => setMontando({ inicial: rascunhoGuardado() ?? deckVazio(), rascunho: true })}
+            title="Monte um deck com as cartas que o jogo já tem">Montar um deck</button>
         </div>
 
         <form class="bloco cat-importar" onSubmit={buscar}>
@@ -336,13 +386,14 @@ export function Decks() {
               {decks.filter((d) => passaNoFiltro(filtro, d)).map((d) => (
                 <CartaoDeck key={d.id} d={d} ocupado={andandoNo(d.id)} abrir={() => setDetalhe(d.id)}
                   buscando={minhas.some((t) => t.estado === 'andando' && t.deck === d.id && t.tipo === 'verificar')}
-                  atualizar={async () => { const id = await loja.buscarDeck({ id: d.id }); if (id !== null) setEsperando(id); }} />
+                  atualizar={async () => { const id = await loja.buscarDeck({ id: d.id }); if (id !== null) setEsperando(id); }}
+                  editar={() => void abrirConstrutor(d, false)} />
               ))}
             </div>
             </>
           )}
       </main>
-      {aberto && <JanelaDetalhes d={aberto} fechar={() => setDetalhe(null)} />}
+      {aberto && <JanelaDetalhes d={aberto} fechar={() => setDetalhe(null)} montar={(copia) => void abrirConstrutor(aberto, copia)} />}
       {janela && <JanelaTarefa key={janela.id} t={janela} fechar={() => setAberta(null)} />}
     </div>
   );

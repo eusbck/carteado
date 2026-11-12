@@ -5,7 +5,7 @@ import { useEffect, useState } from 'preact/hooks';
 import type { StopSettings } from '../../motor/autopass.ts';
 import type { Answer, ManualAction } from '../../motor/types.ts';
 import type { GameView } from '../../motor/view.ts';
-import type { DeckCatalogo, DeckResumo, MsgChat, MsgCliente, MsgServidor, PedidoDesfazer, Posicoes, SalaPublica, TarefaPublica } from '../../servidor/protocolo.ts';
+import type { CartaMontagem, DeckCatalogo, DeckResumo, ListaDeck,MsgChat, MsgCliente, MsgServidor, PedidoDesfazer, Posicoes, SalaPublica, TarefaPublica } from '../../servidor/protocolo.ts';
 import { carregarCartas } from './cartas.ts';
 import { compartilhar } from './compartilhar.ts';
 import type { ReferenciaRelogio } from './cronometro.ts';
@@ -253,6 +253,58 @@ class Loja {
     const minhas = this.e.minhasTarefas.filter((x) => x !== id);
     guardarTarefas(minhas);
     this.mudar({ minhasTarefas: minhas });
+  }
+
+  // ---------------------------------------------------------------- tela Montar deck
+
+  /** as cartas que um deck montado na mesa pode ter (as que têm regras no jogo); null se não deu */
+  async cartasParaMontar(): Promise<CartaMontagem[] | null> {
+    try {
+      const r = await fetch('/api/catalogo/montar/cartas');
+      if (!r.ok) throw new Error(String(r.status));
+      return ((await r.json()) as { cartas: CartaMontagem[] }).cartas;
+    } catch {
+      this.erro('Não foi possível carregar as cartas');
+      return null;
+    }
+  }
+
+  /** a lista de um deck da mesa (para editar um montado ou usar um deck como base); null se não deu */
+  async listaDoDeck(id: string): Promise<ListaDeck | null> {
+    try {
+      const r = await fetch(`/api/catalogo/${encodeURIComponent(id)}/cartas`);
+      if (!r.ok) throw new Error(String(r.status));
+      return (await r.json()) as ListaDeck;
+    } catch {
+      this.erro('Não foi possível abrir a lista do deck');
+      return null;
+    }
+  }
+
+  /** grava um deck montado na mesa (sem id: um novo). Devolve o id, ou o erro e as regras que a lista quebra */
+  async salvarDeckCriado(d: { id: string | null; nome: string; comandante: string; parceiro: string | null; cartas: { nome: string; quantidade: number }[] }): Promise<{ id: string } | { erro: string; erros: string[] }> {
+    let autor: string | null = null;
+    try { autor = localStorage.getItem('commander-da-mesa:nome'); } catch { /* sem armazenamento */ }
+    try {
+      const r = await fetch('/api/catalogo/montar', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ ...d, autor }) });
+      const j = await r.json().catch(() => ({})) as { id?: string; erro?: string; erros?: string[] };
+      if (r.ok && j.id) return { id: j.id };
+      return { erro: j.erro ?? 'Não foi possível gravar o deck', erros: j.erros ?? [] };
+    } catch {
+      return { erro: 'Não foi possível falar com o servidor', erros: [] };
+    }
+  }
+
+  async apagarDeckCriado(id: string): Promise<boolean> {
+    try {
+      const r = await fetch(`/api/catalogo/${encodeURIComponent(id)}/apagar`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: '{}' });
+      if (r.ok) return true;
+      const j = await r.json().catch(() => ({})) as { erro?: string };
+      this.erro(j.erro ?? 'Não foi possível apagar o deck');
+    } catch {
+      this.erro('Não foi possível falar com o servidor');
+    }
+    return false;
   }
 
   private async pedirTarefa(url: string, corpo: unknown): Promise<number | null> {
