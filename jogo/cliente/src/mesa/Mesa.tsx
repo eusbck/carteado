@@ -4,6 +4,7 @@
 // auxílios que cada um liga nas Configurações (ou que a sala proíbe). As regras continuam no motor.
 
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'preact/hooks';
+import { lazy, Suspense } from 'preact/compat';
 import type { StopSettings } from '../../../motor/autopass.ts';
 import type { Decision, ManualAction, ObjId, PaymentSource, PriorityAction, Step, TargetRef } from '../../../motor/types.ts';
 import type { GameView, ObjView, PlayerView } from '../../../motor/view.ts';
@@ -48,7 +49,10 @@ import { esconderZoom, mostrarZoom, useZoom } from './zoomLoja.ts';
 import { zoomDaPilha } from './zoomPilha.ts';
 import { mesmaLista, mesmasPosicoes, mesmoMapaDeListas, useEstavel, useMesmo } from './estavel.ts';
 
-type Modal = { tipo: 'zona'; jogador: number; zona: 'graveyard' | 'exile' } | { tipo: 'paradas' } | { tipo: 'registro' } | { tipo: 'conceder' } | { tipo: 'config' } | { tipo: 'carta'; o: ObjView } | null;
+// a lista do deck (clique no grimório) só carrega quando alguém abre, como a prévia no saguão
+const PreviaDeck = lazy(() => import('../telas/PreviaDeck.tsx').then((m) => ({ default: m.PreviaDeck })));
+
+type Modal = { tipo: 'zona'; jogador: number; zona: 'graveyard' | 'exile' } | { tipo: 'deck'; jogador: number } | { tipo: 'paradas' } | { tipo: 'registro' } | { tipo: 'conceder' } | { tipo: 'config' } | { tipo: 'carta'; o: ObjView } | null;
 type ItemMenu =
   | { tipo?: 'acao'; id: string; label: string; fazer: () => void; legal?: boolean; desativado?: boolean }
   | { tipo: 'grupo'; id: string; label: string }
@@ -1173,6 +1177,7 @@ export function Mesa() {
         onCliqueArea={atacarJ ? () => alvoAtaque({ kind: 'player', id: j.id }) : undefined}
         conjurando={j.id === eu && conjurando && d && d.player === eu && d.kind !== 'priority' && v.stack.some((x) => x.controller === eu && x.def === conjurando.o.def) ? conjurando : null}
         onZona={(zona) => setModal({ tipo: 'zona', jogador: j.id, zona })}
+        onDeck={() => setModal({ tipo: 'deck', jogador: j.id })}
         mao={j.id === eu ? v.hand : undefined}
         reservaDireita={j.id === eu ? 336 : 0}
         avatarLado={j.id === eu ? ladoAvatar : undefined}
@@ -1290,6 +1295,8 @@ export function Mesa() {
               {sala.anfitriao === eu && <button class="botao principal" onClick={() => loja.enviar({ t: 'novaPartida' })}>Nova partida com a mesma mesa</button>}
             </div>
           )}
+          {/* acima da pilha: quem encolhe na falta de espaço é a pilha, e o "Voltar à escolha" fica sempre à vista */}
+          {escolha && escolhaRecolhida && <EscolhaRecolhida d={escolha} ui={ui} voltar={() => setEscolhaRecolhida(false)} />}
           {v.stack.length > 0 && (
             <section class="cartao pilha" aria-label="Pilha">
               <div class="pilha-cab"><span class="rot">Pilha</span><span class="rot">{v.stack.length}</span></div>
@@ -1312,7 +1319,6 @@ export function Mesa() {
               </ol>
             </section>
           )}
-          {escolha && escolhaRecolhida && <EscolhaRecolhida d={escolha} ui={ui} voltar={() => setEscolhaRecolhida(false)} />}
           {d && mostrarDecisao && (
             <div class="cartao">
               <p class="rot">{rotuloDecisao(d)}</p>
@@ -1395,6 +1401,14 @@ export function Mesa() {
           </div>
         </Janela>
       );
+    })()}
+
+    {modal?.tipo === 'deck' && (() => {
+      // a lista do deck (todas as cartas, por tipo), não o grimório: nada da ordem nem do que já saiu dele
+      const deck = e.decks.find((x) => x.id === sala.assentos[modal.jogador]?.deck);
+      const j = v.players[modal.jogador];
+      if (!deck) return <Janela titulo={`Deck de ${j.name}`} fechar={() => setModal(null)}><p class="suave">Este deck não está mais na mesa.</p></Janela>;
+      return <Suspense fallback={null}><PreviaDeck d={deck} titulo={modal.jogador === eu ? `Seu deck: ${deck.nome}` : `Deck de ${j.name}: ${deck.nome}`} fechar={() => setModal(null)} /></Suspense>;
     })()}
 
     {modal?.tipo === 'paradas' && e.paradas && <Paradas atual={e.paradas} fechar={() => setModal(null)} />}

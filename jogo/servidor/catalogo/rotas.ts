@@ -5,11 +5,18 @@
 //   POST /api/catalogo/<id>/verificar      começa a buscar de novo um deck da mesa (Atualizar)
 //   POST /api/catalogo/confirmar {token}   confirma a prévia
 //   GET  /api/catalogo/<id>/cartas         a lista atual de um deck (prévia no saguão)
+//   GET  /api/catalogo/montar/cartas       as cartas que um deck montado na mesa pode ter (tela Montar deck)
+//   POST /api/catalogo/montar {id?, nome, comandante, parceiro?, cartas, autor?}
+//                                          grava um deck montado na mesa (sem id: um novo); 400 com `erros` quando a
+//                                          lista quebra uma regra de deck
+//   POST /api/catalogo/<id>/apagar         apaga um deck montado na mesa
 // A busca roda em segundo plano: a resposta traz o número da tarefa, e o andamento e a prévia chegam pelo
 // WebSocket (`catalogo`). Respostas longas pela rota esbarrariam no prazo do túnel. Várias tarefas andam juntas (o
 // mesmo deck, uma de cada vez).
 
+import type { CartaMontagem } from '../protocolo.ts';
 import type { Catalogo, InfoDisco } from './catalogo.ts';
+import { cartasParaMontar, conferirCriado, ehIdCriado, lerPedido } from './montar.ts';
 import { lerLink } from './moxfield.ts';
 import { ErroOcupado, mensagem, type TarefasDecks } from './tarefas.ts';
 
@@ -24,11 +31,31 @@ export class RotasCatalogo {
   private tarefas: TarefasDecks;
   private info: InfoDisco;
   private pedidos = new Map<string, number[]>();
+  /** carta tem regras no jogo (a tela Montar deck só oferece essas) */
+  private pronta: (nome: string) => boolean;
+  private banidas: Set<string>;
+  /** as cartas para montar, calculadas uma vez (as regras das cartas só mudam com o servidor subindo de novo) */
+  private paraMontar: CartaMontagem[] | null = null;
 
-  constructor(o: { catalogo: Catalogo; tarefas: TarefasDecks; info: InfoDisco }) {
+  constructor(o: { catalogo: Catalogo; tarefas: TarefasDecks; info: InfoDisco; pronta?: (nome: string) => boolean; banidas?: Set<string> }) {
     this.catalogo = o.catalogo;
     this.tarefas = o.tarefas;
     this.info = o.info;
+    this.pronta = o.pronta ?? (() => false);
+    this.banidas = o.banidas ?? new Set();
+  }
+
+  /** as rotas que gravam um deck montado na mesa (montar, apagar): respondem depois da gravação. null: não é uma delas */
+  gravacao(metodo: string, caminho: string, corpo: string): Promise<RespostaRota> | null {
+    const apagar = caminho.match(/^\/api\/catalogo\/([A-Za-z0-9_-]{8,40})\/apagar$/);
+    if (metodo !== 'POST' || (caminho !== '/api/catalogo/montar' && !apagar)) return null;
+    if (apagar) {
+      if (!ehIdCriado(apagar[1]) || !this.catalogo.ler(apagar[1])?.criado) return Promise.resolve({ status: 404, corpo: { erro: 'Só os decks montados na mesa podem ser apagados' } });
+      return this.tarefas.apagarCriado(apagar[1]).then(() => ({ status: 200, corpo: { ok: true } }), (e) => ({ status: 500, corpo: { erro: mensagem(e) } }));
+    }
+    let dados: Record<string, unknown> = {};
+    try { dados = corpo ? JSON.parse(corpo) : {}; } catch { return Promise.resolve({ status: 400, corpo: { erro: 'Pedido inválido' } }); }
+    return Promise.resolve(this.montar(dados));
   }
 
   /** null: não é uma rota do catálogo */
@@ -37,6 +64,10 @@ export class RotasCatalogo {
       return { status: 200, corpo: { decks: this.catalogo.publico(this.info), tarefas: this.tarefas.lista() } };
     }
     if (!caminho.startsWith('/api/catalogo/')) return null;
+    if (caminho === '/api/catalogo/montar/cartas' && metodo === 'GET') {
+      this.paraMontar ??= cartasParaMontar(this.pronta);
+      return { status: 200, corpo: { cartas: this.paraMontar } };
+    }
     const lista = caminho.match(/^\/api\/catalogo\/([^/]+)\/cartas$/);
     if (lista && metodo === 'GET') {
       const l = /^[A-Za-z0-9_-]{8,40}$/.test(lista[1]) ? this.catalogo.lista(lista[1], this.info) : null;
@@ -70,6 +101,19 @@ export class RotasCatalogo {
       return { status: e instanceof ErroOcupado ? 409 : 500, corpo: { erro: mensagem(e) } };
     }
     return { status: 404, corpo: { erro: 'Rota desconhecida' } };
+  }
+
+  /** grava um deck montado na mesa, depois de conferir a lista */
+  private montar(dados: Record<string, unknown>): RespostaRota | Promise<RespostaRota> {
+    const id = typeof dados.id === 'string' && dados.id ? dados.id : null;
+    if (id && (!ehIdCriado(id) || !this.catalogo.ler(id)?.criado)) return { status: 404, corpo: { erro: 'Só os decks montados na mesa podem ser editados' } };
+    const p = lerPedido(dados);
+    if (typeof p === 'string') return { status: 400, corpo: { erro: p } };
+    const { erros } = conferirCriado(p.lista, this.pronta, this.banidas);
+    if (erros.length) return { status: 400, corpo: { erro: 'O deck não cumpre as regras de Commander', erros } };
+    const autor = typeof dados.autor === 'string' ? dados.autor.replace(/\s+/g, ' ').trim().slice(0, 40) || null : null;
+    return this.tarefas.salvarCriado({ id, nome: p.nome, lista: p.lista, autor })
+      .then((novo) => ({ status: id ? 200 : 201, corpo: { id: novo } }), (e) => ({ status: 500, corpo: { erro: mensagem(e) } }));
   }
 
   private muitos(ip: string): boolean {

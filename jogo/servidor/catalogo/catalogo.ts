@@ -5,10 +5,11 @@
 // ainda espera cartas fica em `preparacao`; quando as cartas ficam prontas (o servidor sobe de novo com elas),
 // `aplicarPreparacoesProntas` a troca pela atual.
 
-import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, statSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import type { DeckList } from '../../motor/state.ts';
-import type { CartaCatalogo, DeckCatalogo, ListaDeck } from '../protocolo.ts';
+import type { CartaCatalogo, DeckCatalogo, ListaDeck, OrigemPublica } from '../protocolo.ts';
+import { lerOrigens, origemDe } from './origem.ts';
 import { nomesDaLista, type CartasGeradas, type ImagensGeradas } from './gerar.ts';
 import type { DeckArquivo, EntradaLista, Lista, VersaoLista } from './tipos.ts';
 
@@ -118,6 +119,12 @@ export class Catalogo {
     renameSync(arq + '.novo', arq);
   }
 
+  /** tira o arquivo do deck */
+  apagar(id: string): void {
+    if (!/^[A-Za-z0-9_-]{8,40}$/.test(id)) throw new Error(`id de deck inválido: ${id}`);
+    rmSync(join(this.pasta, `${id}.json`), { force: true });
+  }
+
   proximaOrdem(): number {
     return this.todos().reduce((m, d) => Math.max(m, d.ordem + 1), 0);
   }
@@ -163,8 +170,18 @@ export class Catalogo {
     };
   }
 
+  /** de onde cada deck vem (decks/origens.json, ou o palpite para quem ainda não foi classificado) */
+  origens(): Map<string, OrigemPublica> {
+    const o = lerOrigens(this.pasta);
+    return new Map(this.todos().map((d) => {
+      const { tipo, produto, trocas } = origemDe(o, d);
+      return [d.id, { tipo, ...(produto ? { produto } : {}), ...(trocas ? { trocas } : {}) }];
+    }));
+  }
+
   /** resumo de cada deck para a tela Decks */
   publico(info: InfoDisco): DeckCatalogo[] {
+    const origens = this.origens();
     const carta = (e: EntradaLista): CartaCatalogo => {
       const i = info.carta(e.nome);
       return { nome: e.nome, quantidade: e.quantidade, pt: i?.pt ?? null, img: i?.img ?? null, tipo: i?.tipo ?? '', pronta: this.pronta(e.nome) };
@@ -195,6 +212,8 @@ export class Catalogo {
         verificadoEm: d.verificadoEm,
         atualizadoEm: (prep ?? d.atual)?.origem.atualizadoEm ?? null,
         total: nomesDaLista(base).length,
+        ...(d.criado ? { criado: d.criado } : {}),
+        origem: origens.get(d.id)!,
         preparacao: prep && dif ? {
           prontas: nomesDaLista(prep).length - this.faltam(prep).length,
           total: nomesDaLista(prep).length,
