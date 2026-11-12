@@ -62,3 +62,4 @@ export { successor } from './state.ts';
 // lote4-c: modos com patinhas (CR 700.2i), terra-dobra (earthbend, CR 701.66), harmonizar (CR 702.180) e bloqueio obrigatório
 export * from './patinhas.ts';
 export * from './bloquear-se-puder.ts';
+export * from './harmonizar.ts';
