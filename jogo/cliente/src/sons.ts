@@ -162,7 +162,17 @@ const nada = () => {};
  * função que cala o som em seguida (a abertura pulada no meio não deixa o impacto tocar sobre a mesa).
  */
 export function tocar(som: Som, forca = 1): () => void {
-  return preferencias().sons[som] ? gerar(som, forca) : nada;
+  if (!preferencias().sons[som]) return nada;
+  tocadoEm.set(som, performance.now());
+  return gerar(som, forca);
+}
+
+const tocadoEm = new Map<Som, number>();
+
+/** quando `som` foi pedido pela última vez com a chave ligada (ms do relógio da página; -Infinity: nunca). O som de
+ * decisão não toca logo depois do som do seu turno (somDecisao.ts) */
+export function ultimaVez(som: Som): number {
+  return tocadoEm.get(som) ?? -Infinity;
 }
 
 /**
@@ -236,6 +246,13 @@ export function desenharSom(c: BaseAudioContext, mestre: AudioNode, som: Som, t:
       nota(c, mestre, SOL2 * 1.5, t + 0.3, 0.5, 0.45, 'sine', SOL2);
       sopro(c, mestre, t + 0.3, 0.09, 0.18, 500);
       nota(c, mestre, SOL5 * 2, t + 0.32, 0.9, 0.05, 'sine');
+      break;
+    case 'decisao': // só o "paam" do seu turno: o acorde sustentado (ré agudo, sol, sol grave) com o tímpano, sem a subida
+      trompa(c, mestre, RE5, t, 0.8, 0.15);
+      trompa(c, mestre, SOL4, t, 0.8, 0.12);
+      trompa(c, mestre, SOL3, t, 0.8, 0.09);
+      nota(c, mestre, SOL2 * 1.5, t, 0.45, 0.4, 'sine', SOL2);
+      sopro(c, mestre, t, 0.09, 0.16, 500);
       break;
     case 'turnoAdversario': // dois toques de harpa descendo, abafados e discretos
       harpa(c, mestre, SOL4, t, 0.55, 0.2);
