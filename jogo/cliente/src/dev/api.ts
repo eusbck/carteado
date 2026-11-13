@@ -72,6 +72,8 @@ export interface SalaDev {
   assentos: { nome: string | null; tipo: string; deck: string | null; nivel: string | null; conectado: boolean }[];
   partida: { id: string; iniciadaEm: number | null; encerradaEm: number | null; entradas: number | null; turno: number | null; rodada: number | null; vidas: { vida: number; perdeu: boolean }[] | null } | null;
   erro: string | null; falhas: number; atualizada: number | null;
+  /** desde quando está sem ninguém (null: tem gente agora) e quando a limpeza automática a apaga */
+  ociosaDesde: number | null; apagaEm: number | null;
 }
 
 export interface DecksDev {

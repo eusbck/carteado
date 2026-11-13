@@ -65,7 +65,7 @@ export class Banco {
       criarSessao: p('insert into sessoes (token, criada) values (?, ?)'),
       sessao: p('select 1 from sessoes where token = ?'),
       salvarSala: p('insert into salas (codigo, dados, atualizada) values (?, ?, ?) on conflict(codigo) do update set dados = excluded.dados, atualizada = excluded.atualizada'),
-      salas: p('select codigo, dados from salas'),
+      salas: p('select codigo, dados, atualizada from salas'),
       apagarSala: p('delete from salas where codigo = ?'),
       apagarEntradas: p('delete from entradas where codigo = ?'),
       adicionarEntrada: p('insert or replace into entradas (codigo, n, json, meta) values (?, ?, ?, ?)'),
@@ -81,8 +81,9 @@ export class Banco {
   salvarSala(codigo: string, dados: unknown): void {
     this.st.salvarSala.run(codigo, JSON.stringify(dados), Date.now());
   }
-  salas(): { codigo: string; dados: unknown }[] {
-    return (this.st.salas.all() as { codigo: string; dados: string }[]).map((r) => ({ codigo: r.codigo, dados: JSON.parse(r.dados) }));
+  /** as salas gravadas; `atualizada`: quando a sala foi gravada pela última vez (ms) */
+  salas(): { codigo: string; dados: unknown; atualizada: number }[] {
+    return (this.st.salas.all() as { codigo: string; dados: string; atualizada: number }[]).map((r) => ({ codigo: r.codigo, dados: JSON.parse(r.dados), atualizada: Number(r.atualizada) }));
   }
   apagarSala(codigo: string): void {
     this.st.apagarSala.run(codigo);

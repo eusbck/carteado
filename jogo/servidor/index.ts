@@ -33,7 +33,7 @@ import { conferirPedido, LIMITE_CORPO_RELATO, numeroCurto, Relatos } from './rel
 import { AcessoDev, chaveDev } from './dev/acesso.ts';
 import { conferirErroCliente, ErrosCliente } from './dev/erros-cliente.ts';
 import { RotasDev } from './dev/rotas.ts';
-import { Gerente, type Conexao } from './salas.ts';
+import { Gerente, INTERVALO_LIMPEZA, type Conexao } from './salas.ts';
 
 // os erros e avisos do servidor ficam guardados em memória para irem junto dos relatos de erro
 instalarDiario();
@@ -73,6 +73,8 @@ const catalogo = new Catalogo({ pasta: pastas.decks, pronta: cartaPronta });
 if (!catalogo.todos().length) console.warn('Nenhum deck em decks/: rode node ferramentas/decks.ts migrar');
 const gerente = new Gerente(banco, catalogo.listasJogaveis());
 gerente.restaurar();
+// limpeza automática: salas sem ninguém além do prazo (PRAZO_OCIOSA em salas.ts) saem da memória e do banco
+setInterval(() => { try { gerente.limparOciosas(); } catch (e) { console.error('limpeza das salas:', e); } }, INTERVALO_LIMPEZA).unref();
 // versões que esperavam cartas e agora têm todas prontas (implementadas desde a última vez) entram no saguão
 // depois de restaurar: as salas antigas guardam antes as listas com que começaram
 const aplicados = catalogo.aplicarPreparacoesProntas();

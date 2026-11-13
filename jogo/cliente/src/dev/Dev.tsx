@@ -28,6 +28,12 @@ function haQuanto(v: string | number): string {
   if (s < 86400) return `há ${Math.round(s / 3600)} h`;
   return `há ${Math.round(s / 86400)} d`;
 }
+function daquiA(v: number): string {
+  const s = Math.round((v - Date.now()) / 1000);
+  if (s < 3600) return `em ${Math.max(1, Math.round(s / 60))} min`;
+  if (s < 86400) return `em ${Math.round(s / 3600)} h`;
+  return `em ${Math.round(s / 86400)} d`;
+}
 function duracao(s: number): string {
   const d = Math.floor(s / 86400), h = Math.floor((s % 86400) / 3600), m = Math.floor((s % 3600) / 60);
   return d ? `${d} d ${h} h` : h ? `${h} h ${m} min` : `${m} min`;
@@ -498,8 +504,17 @@ function Servidor() {
 
 // ---------------------------------------------------------------------------
 function Salas() {
-  const { dados, erro } = usePedido<SalaDev[]>('salas', 5000);
+  const { dados, erro, recarregar } = usePedido<SalaDev[]>('salas', 5000);
   const [ver, setVer] = useState<'ativas' | 'todas'>('ativas');
+  const [falha, setFalha] = useState<string | null>(null);
+  const apagar = async (s: SalaDev) => {
+    const gente = s.conexoes ? `
+
+${s.conexoes} pessoa(s) conectada(s) agora voltam para o início.` : '';
+    if (!confirm(`Apagar a sala ${s.codigo}? A partida e o chat somem de vez.${gente}`)) return;
+    try { await pedir(`salas/${s.codigo}/apagar`, {}); setFalha(null); } catch (e) { setFalha(e instanceof Error ? e.message : String(e)); }
+    recarregar();
+  };
   const lista = (dados ?? []).filter((s) => ver === 'todas' || s.conexoes > 0 || s.estado === 'jogando' || s.erro)
     .sort((a, b) => b.conexoes - a.conexoes || (b.partida?.iniciadaEm ?? 0) - (a.partida?.iniciadaEm ?? 0));
   return (
@@ -507,7 +522,7 @@ function Salas() {
       <div class="dev-cabeca">
         <div>
           <h2>Salas</h2>
-          <p class="dev-suave">Só o que está à vista de todos na mesa (nada de mão nem grimório). Atualiza a cada 5 s.</p>
+          <p class="dev-suave">Só o que está à vista de todos na mesa (nada de mão nem grimório). Atualiza a cada 5 s. Sala sem ninguém é apagada sozinha: 1 dia na espera ou encerrada, 7 dias com partida em andamento.</p>
         </div>
         <div class="dev-segmentos">
           <button type="button" class={ver === 'ativas' ? 'ativa' : ''} onClick={() => setVer('ativas')}>Com gente ou jogando</button>
@@ -515,6 +530,7 @@ function Salas() {
         </div>
       </div>
       {erro && <p class="dev-erro">{erro}</p>}
+      {falha && <p class="dev-erro">{falha}</p>}
       {!dados ? <p class="dev-suave">Carregando…</p> : !lista.length ? <p class="dev-vazio">Nenhuma sala {ver === 'ativas' ? 'com gente agora' : 'guardada'}.</p> : (
         <div class="dev-salas">
           {lista.map((s) => (
@@ -524,7 +540,11 @@ function Salas() {
                 <span class="dev-tag">{s.estado}</span>
                 <span class="dev-tag">{s.formato}</span>
                 <span class="dev-suave">{s.conexoes} conexão(ões)</span>
+                <button type="button" class="dev-btn dev-perigo dev-sala-apagar" onClick={() => void apagar(s)}>Apagar</button>
               </header>
+              {s.ociosaDesde !== null && (
+                <p class="dev-suave">Sem ninguém {haQuanto(s.ociosaDesde)}{s.apagaEm !== null ? ` · ${s.apagaEm <= Date.now() ? 'sai na próxima limpeza' : `apagada sozinha ${daquiA(s.apagaEm)}`}` : ''}</p>
+              )}
               {s.partida && (
                 <p class="dev-suave">
                   {s.partida.rodada !== null ? `Rodada ${s.partida.rodada} · turno ${s.partida.turno} · ` : ''}

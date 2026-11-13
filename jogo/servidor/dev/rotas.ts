@@ -12,6 +12,7 @@
 //   POST /api/dev/erros/<assinatura>         {resolvido: bool} ou {apagar: true}
 //   GET  /api/dev/diario                     erros, avisos e mensagens do servidor (memória)
 //   GET  /api/dev/salas                      salas e partidas (só o que é público na mesa: nada de mão ou grimório)
+//   POST /api/dev/salas/<codigo>/apagar      apaga a sala (memória e banco); quem está nela volta para o início
 //   GET  /api/dev/decks                      decks jogáveis, em preparação e as cartas que faltam implementar
 //   GET  /api/dev/acesso                     sessões abertas e registro de acessos;  POST /api/dev/acesso {encerrar}
 
@@ -135,6 +136,13 @@ export class RotasDev {
         if (m) {
           if (!this.existe(m[1])) { json(res, 404, { erro: 'Relato não encontrado' }); return true; }
           json(res, 200, this.reproduzir(m[1]));
+          return true;
+        }
+        m = p.match(/^\/api\/dev\/salas\/([A-Z0-9]{5})\/apagar$/);
+        if (m) {
+          if (!this.o.gerente.apagarSala(m[1], 'O desenvolvedor encerrou esta sala.')) { json(res, 404, { erro: 'Sala não encontrada' }); return true; }
+          console.log(`Área do desenvolvedor: sala ${m[1]} apagada`);
+          json(res, 200, { ok: true });
           return true;
         }
         m = p.match(/^\/api\/dev\/erros\/([0-9a-f]{16})$/);
