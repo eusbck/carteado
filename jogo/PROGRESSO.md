@@ -2291,3 +2291,37 @@ para depois.
     mesa que a pessoa via.
   - Código: `cliente/src/relato/`, `servidor/relatos.ts`, `servidor/diario-erros.ts`, rota `POST /api/relatos`,
     `Gerente.paraRelato`. Testes: `testes/relatos.test.ts`, `testes/relato-cliente.test.ts`.
+
+## 12/11/2026 — Lote 4: os cinco decks em preparação jogáveis (47 decks)
+
+- Pedido do Caio: Hearthhull (`QqTlg-04_k-RSVJuf1QMvA`), Sephiroth (`qRtSdDIfr0GcsyePCZkocw`), Voja
+  (`Rfkjiccwo0CXLUWqsIriDQ`), Yuriko (`RsDLnw1yBkWyyVMzV2BFzA`) e Sin (`xDt7Pt1P4Ea6iQph663VRg`). "Se faltar mecânica,
+  crie."
+- `conferir` antes: o Hearthhull (5 cartas) e o Sin (Craterhoof → Greensleeves) tinham mudado no Moxfield e foram
+  atualizados (`decks.ts atualizar`). Depois: os cinco com 100/100, iguais ao Moxfield, todas as cartas com regras.
+- 231 cartas novas em cinco frentes (worktrees `precons-wt-a..e`, branches `lote4-a..e`), juntadas em `decks/lote4`
+  (worktree própria `Magic-Commander/lote4`). As cartas repetidas entre o Hearthhull e o Sin ficaram numa frente só.
+- Motor novo (cada um com `testes/regras-*.test.ts`):
+  - dragar (`motor/dragar.ts`, CR 702.52) e regra do mundo (`motor/mundo.ts`, CR 704.5k);
+  - mana que depende do que foi pago no custo (`ManaAbilityDef.produceFromCost` + `manaDoCusto` em `motor/terrenos.ts`;
+    Squandered Resources e Soldevi Adnate, que as frentes A e B fizeram cada uma a seu modo e ficaram numa forma só),
+    manutenção cumulativa paga com vida, gancho `topOfLibraryRevealed`;
+  - cometer um crime (`motor/crime.ts`, CR 700.13), "a morte de uma criatura faz disparar" (`motor/morte-dispara.ts`),
+    contagem de resoluções no turno (`motor/resolucoes.ts`), mobilizar X;
+  - exigências de bloqueio (CR 509.1c): "precisa ser bloqueada se possível" (frente B) e "bloqueia se puder" (frente C)
+    contadas juntas em `motor/exigencias-bloqueio.ts`;
+  - modos com patinhas (`motor/patinhas.ts`, CR 700.2i), harmonizar (`motor/harmonizar.ts`, CR 702.180), dobrar a terra
+    (`motor/terra.ts`, CR 701.66), megamorfose (`motor/megamorfose.ts`, CR 702.37b);
+  - correção em `land.payLifeOrTapped` (quebrava com ficha cópia de terreno: Sin copiando Breeding Pool).
+- Ajudantes: `cartas/terras.ts` e `cartas/reanimar-terrenos.ts` (terrenos), `cartas/sephiroth.ts`, `cartas/voja.ts`,
+  `cartas/ninjas.ts`, `cartas/naoanula.ts`, `cartas/dominio.ts`.
+- `baixar-artes.ts` aceita comandante de duas faces (arte da face da frente; Sephiroth).
+- Bots: 90 partidas (por deck, 8 aleatórias de 4 jogadores, 6 de 2 e 4 heurísticas de 4), sem erro. `tsc` limpo.
+- Suíte: `cartas/defs` em 4 fatias com `--no-isolate` (2522 arquivos, 5508 testes) e os outros 118 arquivos isolados,
+  tudo passando. Com a máquina carregada, testes de tempo real (`fase9-servidor`: prazo de 12 s da thread de pensar;
+  resposta em menos de 150 ms) falham também na `main`; rodados sozinhos, os outros longos passam.
+- Simplificações conhecidas: Spelunking/Horizon Explorer põem o terreno sempre desvirado; Squandered Resources fica
+  fora do pagamento automático; a última faixa de estação do Hearthhull e do Exploration Broodship vale só com 8+;
+  emblema do Sephiroth só na transformação pela própria habilidade; The Masamune dá a habilidade pelo Equipamento;
+  a exigência de bloqueio é estimada por distribuição gulosa; harmonizar escolhe a criatura ao pagar; dois
+  permanentes "mundo" que entram juntos: fica o mais novo.
