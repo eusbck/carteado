@@ -9,7 +9,8 @@ import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, rmSync, s
 import { join } from 'node:path';
 import { modoDe } from '../../motor/modos.ts';
 import type { DeckList } from '../../motor/state.ts';
-import type { CartaCatalogo, DeckCatalogo, ListaDeck, OrigemPublica } from '../protocolo.ts';
+import type { CartaCatalogo, DeckCatalogo, ForcaPublica, ListaDeck, OrigemPublica } from '../protocolo.ts';
+import { bracketDe, complexidadeDe, dadosOracle, hashLista, lerForca } from './forca.ts';
 import { lerOrigens, origemDe } from './origem.ts';
 import { nomesDaLista, type CartasGeradas, type ImagensGeradas } from './gerar.ts';
 import type { DeckArquivo, EntradaLista, Lista, VersaoLista } from './tipos.ts';
@@ -197,9 +198,31 @@ export class Catalogo {
     }));
   }
 
+  /** força (bracket) e complexidade de cada deck: a análise gravada em decks/forca.json (ou a estimativa pelos Game
+   * Changers) e a conta da complexidade pelo texto das cartas, guardada enquanto a lista não muda */
+  forcas(): Map<string, ForcaPublica> {
+    const analises = lerForca(this.pasta).decks;
+    return new Map(this.todos().flatMap((d) => {
+      const l = d.atual ?? d.preparacao;
+      if (!l) return [];
+      const a = analises[d.id] ?? null;
+      const chave = `${hashLista(l)}|${a?.lista ?? ''}|${a?.conferidoEm ?? ''}|${d.nome}`;
+      let f = this.cacheForca.get(d.id);
+      if (f?.chave !== chave) {
+        const b = bracketDe(d.nome, l, a);
+        const c = complexidadeDe(l, dadosOracle);
+        f = { chave, forca: { bracket: b.bracket, estimado: b.estimado, gameChangers: b.gameChangers, motivos: b.motivos, complexidade: c.nivel, motivosComplexidade: c.motivos } };
+        this.cacheForca.set(d.id, f);
+      }
+      return [[d.id, f.forca] as const];
+    }));
+  }
+  private cacheForca = new Map<string, { chave: string; forca: ForcaPublica }>();
+
   /** resumo de cada deck para a tela Decks */
   publico(info: InfoDisco): DeckCatalogo[] {
     const origens = this.origens();
+    const forcas = this.forcas();
     const carta = (e: EntradaLista): CartaCatalogo => {
       const i = info.carta(e.nome);
       return { nome: e.nome, quantidade: e.quantidade, pt: i?.pt ?? null, img: i?.img ?? null, tipo: i?.tipo ?? '', pronta: this.pronta(e.nome) };
@@ -236,6 +259,7 @@ export class Catalogo {
         total: nomesDaLista(base).length,
         ...(d.criado ? { criado: d.criado } : {}),
         origem: origens.get(d.id)!,
+        ...(forcas.has(d.id) ? { forca: forcas.get(d.id)! } : {}),
         preparacao: prep && dif ? {
           prontas: nomesDaLista(prep).length - this.faltam(prep).length,
           total: nomesDaLista(prep).length,

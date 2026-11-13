@@ -9,6 +9,7 @@ import { Janela } from '../Janela.tsx';
 import { useLoja } from '../loja.ts';
 import { Simbolos } from '../mesa/Simbolos.tsx';
 import { MODOS } from '../../../motor/modos.ts';
+import { ForcaDetalhe } from './Forca.tsx';
 
 /** as listas já buscadas, de uma geração da lista de decks da mesa: o servidor manda uma lista nova (mensagem 'decks')
  * quando um deck é importado ou atualizado, e aí as guardadas não valem mais (antes a prévia continuava mostrando as
@@ -97,6 +98,7 @@ export function PreviaDeck({ d, meu, escolher, fechar, titulo }: { d: DeckResumo
           <span class="previa-topo-linha"><Simbolos custo={cores} />{total !== null && <span>{total} cartas</span>}</span>
         </div>
       </header>
+      <ForcaDetalhe forca={d.forca} />
       {lista === 'carregando' && <p class="suave previa-aviso">Carregando a lista…</p>}
       {lista === null && <p class="suave previa-aviso">Não foi possível carregar a lista deste deck.</p>}
       {lista && lista !== 'carregando' && (

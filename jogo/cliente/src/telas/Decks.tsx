@@ -7,6 +7,7 @@
 import { useEffect, useState } from 'preact/hooks';
 import type { CartaCatalogo, DeckCatalogo, Proposta, TarefaPublica } from '../../../servidor/protocolo.ts';
 import { BotoesOrigem, passaNoFiltro, SeloOrigem, useFiltroOrigem } from './FiltroOrigem.tsx';
+import { ForcaDetalhe, SeloForca } from './Forca.tsx';
 import { Janela } from '../Janela.tsx';
 import { Marca } from '../icones.tsx';
 import { desfecho, nomeCurto } from '../Importacoes.tsx';
@@ -228,6 +229,7 @@ function JanelaDetalhes({ d, fechar, montar }: { d: DeckCatalogo; fechar: () => 
             ? <>Montado aqui{d.criado.autor ? ` por ${d.criado.autor}` : ''} em {data(d.importadoEm)}{d.criado.editadoEm !== d.importadoEm ? `; editado em ${data(d.criado.editadoEm)}` : ''}.</>
             : <>Importado em {data(d.importadoEm)}{d.verificadoEm ? `; buscado no Moxfield em ${data(d.verificadoEm)}` : ''}.</>}
         </p>
+        <ForcaDetalhe forca={d.forca} />
         {d.estado === 'pronto' && <p class="cat-resumo jogavel">Todas as cartas têm regras: o deck está no saguão.</p>}
         {p && d.estado === 'preparacao' && (
           <>
@@ -276,7 +278,7 @@ function CartaoDeck({ d, ocupado, buscando, abrir, atualizar, editar }: { d: Dec
       <button type="button" class="cat-deck-arte" style={d.arte ? { backgroundImage: `url(/img/${d.arte}/arte)` } : undefined} onClick={abrir} aria-label={`Detalhes de ${d.nome}`}>
         {selo}
         <span class="deck-info">
-          <SeloOrigem origem={d.origem} />
+          <span class="deck-selos"><SeloOrigem origem={d.origem} /><SeloForca forca={d.forca} /></span>
           <span class="deck-nome" title={d.nome}>{d.nome}</span>
           <span class="deck-cmd"><span>{d.comandante ? (d.comandantePt ?? d.comandante).split(',')[0] : MODOS[d.formato].nome}</span><Simbolos custo={d.cores.map((c) => `{${c}}`).join('')} /></span>
         </span>

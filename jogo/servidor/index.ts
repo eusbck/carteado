@@ -85,7 +85,7 @@ if (aplicados.length) {
 }
 const imagens = new Imagens(join(RAIZ, '..', 'cartas'), join(RAIZ, '.cache', 'miniaturas'), undefined, [pastas.imagens, join(RAIZ, 'proprias', 'imagens')]);
 const INFO = JSON.stringify(infoCartas());
-const resumir = (decks: DeckList[]): DeckResumo[] => { const origens = catalogo.origens(); return decks.map((d) => {
+const resumir = (decks: DeckList[]): DeckResumo[] => { const origens = catalogo.origens(); const forcas = catalogo.forcas(); return decks.map((d) => {
   // parceiros (CR 702.124c): a identidade de cor é a dos dois; sem comandante, a das cartas do deck
   const cores = new Set(d.comandante
     ? [...oracle(d.comandante).colorIdentity, ...(d.parceiro ? oracle(d.parceiro).colorIdentity : [])]
@@ -94,7 +94,7 @@ const resumir = (decks: DeckList[]): DeckResumo[] => { const origens = catalogo.
   return {
     id: d.id, nome: d.nome, formato: modoDe(d), comandante: d.comandante ?? null, parceiro: d.parceiro ?? null,
     capa: capaDe(d, basico) ?? '', total: d.cartas.reduce((n, e) => n + e.quantidade, 0) + (d.comandante ? 1 : 0) + (d.parceiro ? 1 : 0),
-    cores: ['W', 'U', 'B', 'R', 'G'].filter((c) => cores.has(c as never)), origem: origens.get(d.id),
+    cores: ['W', 'U', 'B', 'R', 'G'].filter((c) => cores.has(c as never)), origem: origens.get(d.id), forca: forcas.get(d.id),
   };
 }); };
 let resumoDecks = resumir(catalogo.listasJogaveis());

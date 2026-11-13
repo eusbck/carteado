@@ -63,6 +63,21 @@ export interface OrigemPublica {
   trocas?: number;
 }
 
+/** força e complexidade do deck (servidor/catalogo/forca.ts) */
+export interface ForcaPublica {
+  /** bracket do Commander, 1 Exibição a 5 cEDH */
+  bracket: 1 | 2 | 3 | 4 | 5;
+  /** só pelos Game Changers (ainda sem a análise de combos e terrenos do Commander Spellbook) */
+  estimado: boolean;
+  gameChangers: string[];
+  /** por que deu esse bracket */
+  motivos: string[];
+  /** 1 Baixa, 2 Média, 3 Alta */
+  complexidade: 1 | 2 | 3;
+  /** o que mais pesa na complexidade */
+  motivosComplexidade: string[];
+}
+
 export interface DeckResumo {
   id: string;
   nome: string;
@@ -78,6 +93,7 @@ export interface DeckResumo {
   total: number;
   cores: string[];
   origem?: OrigemPublica;
+  forca?: ForcaPublica;
 }
 
 /** uma carta na tela Decks */
@@ -149,6 +165,7 @@ export interface DeckCatalogo {
   /** deck montado na mesa (tela Montar deck): dá para editar e apagar */
   criado?: { autor: string | null; editadoEm: string };
   origem: OrigemPublica;
+  forca?: ForcaPublica;
   /** versão que espera cartas: um deck novo ou uma atualização */
   preparacao: {
     prontas: number;

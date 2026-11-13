@@ -1,5 +1,30 @@
 # Progresso
 
+## Força (bracket) e complexidade de cada deck — 13/11/2026
+
+Pedido do Caio: mostrar a força de cada deck pelo "bracket" do Commander e também o nível de complexidade.
+
+- **Bracket:** o sistema oficial da Wizards (beta desde fev/2025, última mudança em 09/02/2026), de 1 Exibição a
+  5 cEDH. A conta segue as regras oficiais olhando só as cartas: Game Changers (lista de 53 em
+  `servidor/catalogo/forca.ts`; 1 a 3 → 3, 4 ou mais → 4), destruição de terrenos em massa (→ 4), combos (Ruthless
+  no Spellbook → 4, combo de fim de jogo → 3) e turnos extras (3 ou mais → 3). O 1 nunca sai da conta (depende da
+  intenção); o 5 só para deck 4 que se declara cEDH no nome. Combos, terrenos e turnos extras vêm do Commander
+  Spellbook (`POST backend.commanderspellbook.com/estimate-bracket`, só nomes de cartas), por
+  `node ferramentas/decks.ts forca [id…|todos]`, gravado em `decks/forca.json` com o hash da lista. Lista mudada ou
+  sem análise: estimativa só pelos Game Changers, com "?" no selo. **Ao adicionar ou atualizar um deck, rodar
+  `forca` depois** (junto com `classificar`).
+- **Complexidade:** não há medida oficial por deck. Conta da mesa sobre o texto Oracle (habilidades disparadas e
+  ativadas, escolhas, instantâneas/contramágicas, cemitério, tutores e custos alternativos, fichas e marcadores,
+  palavras-chave, tamanho do texto; o comandante pesa 6), com pesos e limiares (`LIMIARES_COMPLEXIDADE`) calibrados
+  nos 47 decks: Baixa < 1,9 ≤ Média < 2,35 ≤ Alta.
+- **Resultado (47 decks):** bracket 2: 32; 3: 8 (Abzan Armor, Hosts of Mordor, Miracle Worker, LandReanimator, Voja,
+  yuriko, Jund Lands, Foods); 4: 5 (Blight Curse, Cloud, Ur-Dragon, Jin's Vengeance, Sephiroth); 5: os 2 cEDH.
+  Complexidade: 15 Baixa, 25 Média, 7 Alta.
+- **Na tela:** no cartão do deck (saguão e tela Decks), ao lado do selo de origem, "B2" colorido e três barrinhas
+  da complexidade, com a explicação ao passar o mouse; na prévia do deck e nos detalhes da tela Decks, as duas
+  linhas por extenso (`cliente/src/telas/Forca.tsx`). Teste `testes/catalogo/forca.test.ts`.
+
+
 ## Modo espectador — 12/11/2026 (Dadinho, com o Claude; trazido do PR #3 em 13/11)
 
 Amigos com o código e a senha da sala assistem sem ocupar assento (desenho e plano em `docs/superpowers/`).
