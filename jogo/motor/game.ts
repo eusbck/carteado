@@ -198,13 +198,29 @@ export class Game {
       return game;
     }
     // fora de uma decisão de prioridade o laço não é retomável: refaz da origem com todas as entradas (a contagem
-    // `entrada` sai a mesma). Atenção: um fork cujo estado foi mexido por fora depois de criado (os mundos dos bots)
-    // volta ao estado sem essas mudanças; os bots só fazem fork numa decisão de prioridade
+    // `entrada` sai a mesma). Uma partida cujo estado foi mexido por fora do motor depois de criada (os mundos dos bots,
+    // com as cartas escondidas sorteadas de novo: bots/mundo.ts) não se refaz assim: a cópia voltaria ao estado
+    // verdadeiro, com o que estava escondido. Por isso a cópia refeita tem de sair igual à partida; se não sair, ela é
+    // descartada e o fork falha (só custa neste caminho; o fork numa decisão de prioridade copia o estado)
+    // (as entradas do mundo podem nem caber na partida verdadeira: a reprodução diverge, e o erro é o mesmo)
     const todas = this.prefixo.concat(this.inputs);
-    return this.cpOrigem ? Game.fromCheckpoint(this.cpOrigem, this.decks, todas) : Game.replay(this.state.config, this.decks, todas);
+    const erro = (cause?: unknown) => new Error('fork fora de uma decisão de prioridade: refazer a partida não reproduz o estado atual (alterado por fora do motor, como nos mundos dos bots); a cópia voltaria ao que estava escondido', { cause });
+    let nova: Game;
+    try {
+      nova = this.cpOrigem ? Game.fromCheckpoint(this.cpOrigem, this.decks, todas) : Game.replay(this.state.config, this.decks, todas);
+    } catch (e) {
+      throw erro(e);
+    }
+    if (assinatura(nova.state) !== assinatura(this.state)) throw erro();
+    return nova;
   }
 
   pendingDecision(): Decision | null {
     return this.pending;
   }
+}
+
+/** o estado inteiro, menos o contador de versão (que só serve ao cache), para comparar uma partida refeita */
+function assinatura(s: GameState): string {
+  return JSON.stringify({ ...s, version: 0 });
 }

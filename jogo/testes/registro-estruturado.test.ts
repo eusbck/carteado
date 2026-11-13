@@ -11,6 +11,8 @@ import { setup, type TestGame } from './harness.ts';
 import decks from './decks-teste.json' with { type: 'json' };
 import { RandomBot } from '../bots/aleatorio.ts';
 import { Game } from '../motor/game.ts';
+import { determinizar } from '../bots/mundo.ts';
+import { seedFrom } from '../motor/rng.ts';
 import type { DeckList } from '../motor/state.ts';
 
 const ultima = (tg: TestGame): LogEntry => tg.state.log[tg.state.log.length - 1];
@@ -233,5 +235,44 @@ describe('registro estruturado: entrada (elo com o replay)', () => {
     for (let k = 20; k < game.inputs.length && !cp; k++) cp = Game.replay(game.state.config, DECKS.slice(0, 2), game.inputs.slice(0, k)).checkpoint();
     const retomada = Game.fromCheckpoint(cp!, DECKS.slice(0, 2), game.inputs);
     expect(resumo(retomada.fork())).toEqual(resumo(game));
+  });
+
+  it('mundo dos bots (escondidas sorteadas de novo): o fork fora de prioridade falha em vez de voltar ao estado verdadeiro', () => {
+    const game = Game.create(config('mundo'), DECKS.slice(0, 2));
+    jogar(game, 60);
+    while (game.pending?.kind !== 'priority') jogar(game, 1);
+    const eu = game.pending!.player;
+    const mundo = determinizar(game, eu, seedFrom('mundo'));
+    // o mundo tem a mão do oponente sorteada de novo
+    const op = 1 - eu;
+    const defs = (g: Game) => g.state.zones.hand[op].concat(g.state.zones.library[op]).map((id) => g.state.objects[id].def).join('|');
+    expect(defs(mundo)).not.toBe(defs(game));
+    // numa decisão de prioridade o fork copia o mundo (continua sorteado)
+    expect(defs(mundo.fork())).toBe(defs(mundo));
+    // fora de prioridade: refazer daria o estado verdadeiro, então falha
+    const bots = mundo.state.players.map((p) => new RandomBot(`mundo:${p.id}`));
+    for (let i = 0; i < 400 && mundo.pending && !mundo.isOver() && (i === 0 || mundo.pending.kind === 'priority'); i++) mundo.answer(mundo.pending.player, bots[mundo.pending.player].answer(mundo.pending));
+    expect(mundo.pending && mundo.pending.kind !== 'priority').toBe(true);
+    expect(() => mundo.fork()).toThrow(/alterado por fora do motor/);
+  });
+
+  it('estado mexido por fora sem mudar o que dá para jogar: a cópia refeita sai diferente e o fork falha', () => {
+    const game = Game.create(config('mexido'), DECKS.slice(0, 2));
+    jogar(game, 60);
+    while (game.pending?.kind !== 'priority') jogar(game, 1);
+    const f = game.fork();
+    // troca duas cartas do fundo do grimório de um jogador (o topo é o índice 0), como o sorteio dos bots faria
+    const lib = f.state.zones.library[0];
+    const [a, b] = [f.state.objects[lib[lib.length - 1]], f.state.objects[lib[lib.length - 2]]];
+    expect(a.def).not.toBe(b.def);
+    [a.def, b.def, a.card, b.card] = [b.def, a.def, b.card, a.card];
+    const bots = f.state.players.map((p) => new RandomBot(`mexido:${p.id}`));
+    for (let i = 0; i < 400 && f.pending && !f.isOver() && (i === 0 || f.pending.kind === 'priority'); i++) f.answer(f.pending.player, bots[f.pending.player].answer(f.pending));
+    expect(f.pending && f.pending.kind !== 'priority').toBe(true);
+    // a reprodução andou até o fim (sem divergir): quem barra é a comparação do estado
+    let pego: Error | null = null;
+    try { f.fork(); } catch (e) { pego = e as Error; }
+    expect(pego?.message).toMatch(/alterado por fora do motor/);
+    expect(pego?.cause).toBeUndefined();
   });
 });
