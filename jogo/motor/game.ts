@@ -5,6 +5,7 @@
 import { defaultAnswer, validateShape, type LiveDecision } from './ask.ts';
 import type { Gen } from './defs.ts';
 import { G } from './game-context.ts';
+import { novoDiario } from './diario.ts';
 import { cloneState, createGameState, type DeckList } from './state.ts';
 import { concede as doConcede, mainLoop } from './turn.ts';
 import type { Answer, Decision, GameConfig, GameState, PlayerId } from './types.ts';
@@ -65,6 +66,15 @@ export class Game {
 
   get state(): GameState {
     return this.g.state;
+  }
+
+  /**
+   * F1: liga o diário de eventos (motor/diario.ts) nesta partida; só o Game da sala chama. Fica em `this.g`, fora do
+   * estado: checkpoint, `fork()` e as partidas refeitas (replay, fromCheckpoint) nascem com um G novo, sem diário, e
+   * quem refaz precisa ligar de novo. Ligar de novo numa partida que já tem diário não faz nada (os cursores seguem).
+   */
+  ligarDiario(teto?: number): void {
+    this.g.diario ??= novoDiario(teto);
   }
 
   private step(answer: Answer | undefined): void {

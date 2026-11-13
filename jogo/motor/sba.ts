@@ -11,6 +11,7 @@ import { enchantCandidates } from './actions.ts';
 import { protectionBlocksEquip } from './actions.ts';
 import { cantLoseGame } from './veneno-emblema.ts';
 import { emit } from './triggers.ts';
+import { dicaDeMotivo } from './diario.ts';
 import type { ObjId, PlayerId, ZoneName } from './types.ts';
 
 /** executa uma rodada de ações baseadas em estado; devolve true se alguma foi executada */
@@ -150,6 +151,7 @@ export function* performSBAs(g: G): Gen<boolean> {
   const moves = [...new Set([...toGraveyard, ...destruidos, ...legendLosers])].filter((id) => s.objects[id]);
   if (moves.length || sagaSac.length) {
     const reqs = moves.map((id) => ({ id, to: 'graveyard' as ZoneName }));
+    dicaDeMotivo(g, legendLosers.filter((id) => moves.includes(id)), 'legenda');
     yield* moveObjects(g, reqs, 'sba');
     if (sagaSac.length) yield* moveObjects(g, sagaSac.filter((id) => g.state.objects[id]).map((id) => ({ id, to: 'graveyard' as ZoneName })), 'sacrifice');
   }
