@@ -36,6 +36,25 @@ describe('memória dos bots lê as revelações pelas refs (Q7)', () => {
     expect(m.naMao).toEqual({ 1: ['Akiri, Fearless Voyager'] });
   });
 
+  it('carta revelada da mão (milagre) e conjurada não fica "na mão" quando o jogador também compra do grimório', () => {
+    const tg = setup({ hand: [[], ['Akiri, Fearless Voyager']], library: [['Island'], ['Giada, Font of Hope', 'Island']] });
+    const milagre = tg.find('Akiri, Fearless Voyager', 'hand', 1)!;
+    reg(tg.g, 'revela', { rule: '702.94a' })`${jog(1)} revela ${obj(milagre)} (milagre).`;
+    moveRaw(tg.g, milagre, 'stack');
+    moveRaw(tg.g, tg.find('Giada, Font of Hope', 'library', 1)!, 'hand');
+    const m = memoriaVazia();
+    observar(m, tg.g, 0);
+    expect(m.naMao[1] ?? []).toEqual([]);
+  });
+
+  it('carta revelada da mão que continua lá fica marcada "na mão" (sem depender de compra)', () => {
+    const tg = setup({ hand: [[], ['Akiri, Fearless Voyager', 'Island']], library: [['Island'], ['Island']] });
+    reg(tg.g, 'revela', { rule: '701.20' })`${jog(1)} revela ${obj(tg.find('Akiri, Fearless Voyager', 'hand', 1)!)}.`;
+    const m = memoriaVazia();
+    observar(m, tg.g, 0);
+    expect(m.naMao[1]).toEqual(['Akiri, Fearless Voyager']);
+  });
+
   it('o próprio jogador e linhas só com texto (de checkpoint antigo) não entram', () => {
     const tg = setup({ library: [['Island'], [...COM_VIRGULA, 'Island']] });
     const ids = COM_VIRGULA.map((n) => tg.find(n, 'library', 1)!);

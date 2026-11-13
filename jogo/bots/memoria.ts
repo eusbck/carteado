@@ -70,6 +70,12 @@ export function observar(m: DadosMemoria, g: G, eu: PlayerId): void {
     for (const r of e.refs) {
       if (r.k === 'jogador') { quem = r.id; continue; }
       if (quem === null || quem === eu) continue;
+      // de onde a carta foi revelada (a zona é pública): o objeto ainda no mesmo lugar, ou a última informação dele.
+      // Da mão (milagre, terreno que pede revelar): se continua lá, a memória já sabe que está na mão; se saiu, nada
+      // (antes entrava na conta das compras do grimório e ficava marcada "na mão" sem estar)
+      const agora = s.objects[r.id];
+      const zona = agora?.zone ?? s.lki[r.id]?.obj.zone;
+      if (zona === 'hand') { if (agora) (m.naMao[quem] ??= []).push(r.name); continue; }
       revelados.set(quem, [...(revelados.get(quem) ?? []), r.name]);
     }
   }
