@@ -91,7 +91,8 @@ export function linhasDesfeitas(atual: Game, voltar: Game, entrada: Input): Linh
     const texto = e.visibleTo === null ? e.text : e.hiddenText;
     // F3: pelo tipo e pelo autor gravados na linha (são linhas novas, feitas agora pelo motor). Linha sem autor
     // (de sistema, ou que o motor ainda grava só com texto) conta como da própria pessoa
-    if (!texto || e.kind === 'turno') continue;
+    // Onda B: as linhas do redator (compras, vida, gatilhos…) são consequência da jogada, não a jogada
+    if (!texto || e.kind === 'turno' || e.grupo) continue;
     const autor = e.actor ?? null;
     linhas.push({ texto, outro: autor !== null && autor !== quem });
   }

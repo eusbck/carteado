@@ -5,6 +5,7 @@
 //  - gatilhos atrasados (CR 603.7).
 
 import { registrarLote } from './diario.ts';
+import { redigirLote } from './redator.ts';
 import { chars, hooks } from './chars.ts';
 import { extraTriggersDeQuemSaiu } from './morte-dispara.ts';
 import { registry, type TriggerCtx, type TriggeredDef } from './defs.ts';
@@ -111,6 +112,8 @@ function safeChars(g: G, id: ObjId): Chars | null {
 export function emit(g: G, events: GameEvent[]): void {
   if (events.length === 0) return;
   if (g.diario) registrarLote(g, events);
+  // Onda B: o redator escreve no registro o que o lote conta (compras, mortes, vida, fichas, gatilhos)
+  if (g.state.config.registroDetalhado) redigirLote(g, events);
   updateStats(g, events);
   const s = g.state;
   const sources: Source[] = [];

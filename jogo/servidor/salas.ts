@@ -21,7 +21,7 @@ import { novaRajada, segurarPilha, type RajadaPilha } from './pilha-visivel.ts';
 import type { Banco } from './banco.ts';
 import { alvoDesfazer, linhasDesfeitas, reconstruir, type MetaEntrada } from './desfazer.ts';
 import { avatarValido } from './avatares.ts';
-import { MIN_LUGARES, tipoMsg, validarMsg, type Cena, type EtapaSaguao, type LinhaDesfeita, type Modo, type MsgChat, type MsgCliente, type MsgServidor, type PedidoDesfazer, type Posicoes, type RegraAuxilios, type Reinicio, type RegraMulligan, type SalaPublica, type TipoAssento } from './protocolo.ts';
+import { MIN_LUGARES, tipoMsg, validarMsg, type Cena, type EtapaSaguao, type LinhaDesfeita, type LinhaSistema, type Modo, type MsgChat, type MsgCliente, type MsgServidor, type PedidoDesfazer, type Posicoes, type RegraAuxilios, type Reinicio, type RegraMulligan, type SalaPublica, type TipoAssento } from './protocolo.ts';
 
 export interface Conexao {
   enviar(m: MsgServidor): void;
@@ -101,6 +101,8 @@ interface DadosPartida {
   checkpoint: Checkpoint | null;
   /** onde cada pessoa arrumou as próprias permanentes (só visual, fora do motor) */
   posicoes?: Posicoes;
+  /** Onda B: linhas de sistema do registro (entrou, saiu, desfazer), fora do motor */
+  sistema?: LinhaSistema[];
 }
 
 interface DadosSala {
@@ -190,6 +192,10 @@ export const idPartida = (semente: string): string => createHash('sha256').updat
  * pessoa senta no assento (token novo) e fica o mesmo para quem volta pelo token */
 export const idAutor = (token: string | null): string => (token ? createHash('sha256').update(`autor:${token}`).digest('base64url').slice(0, 12) : '');
 const limparNome = (s: unknown) => (typeof s === 'string' ? s.replace(/\s+/g, ' ').trim().slice(0, 24) : '');
+
+/** Onda B: quantas linhas de sistema a partida guarda, e em quanto tempo a volta de quem caiu vira uma linha só */
+const SISTEMA_GUARDADAS = 100;
+const SISTEMA_VOLTA_MS = 120_000;
 
 /** chat: tamanho de uma mensagem, quantas a sala guarda e o ritmo (no máximo CHAT_RAJADA a cada CHAT_JANELA ms) */
 export const CHAT_TAMANHO = 280;
@@ -491,12 +497,53 @@ export class Sala {
 
   ligar(c: Conexao, assento: number): void {
     if (c.sala && c.sala !== this) c.sala.desligar(c);
+    const jaEstava = [...this.conexoes].some((x) => x !== c && x.assento === assento);
     c.sala = this;
     c.assento = assento;
     c.token = this.d.assentos[assento].token;
     this.conexoes.add(c);
     this.ultimas.delete(c);
     c.enviar({ t: 'chat', msgs: this.d.chat ?? [], tudo: true });
+    c.enviar({ t: 'sistema', linhas: this.d.partida?.sistema ?? [], tudo: true });
+    if (!jaEstava) this.anotarSistema('entrou', `${this.nome(assento)} voltou à mesa.`, assento);
+  }
+
+  /**
+   * Onda B (registro R8): uma linha de sistema no registro, só com a partida em andamento. Quem perde a conexão e volta
+   * logo vira uma linha só ("caiu e voltou"), sem encher o registro a cada recarga da página.
+   * `tipo` e `texto` podem mudar aqui (a volta depois de muito tempo).
+   */
+  private anotarSistema(tipo: LinhaSistema['tipo'], texto: string, quem: number | null = null): void {
+    const p = this.d.partida;
+    if (!p || !this.game || this.d.estado !== 'jogando') return;
+    const lista = p.sistema ??= [];
+    const agora = Date.now();
+    const ult = lista.at(-1);
+    if (tipo === 'entrou') {
+      // com a partida andando, ninguém senta num lugar novo: entrar é voltar. Só conta depois de uma queda registrada
+      // (o servidor que reinicia não registra quedas, e a volta de todos não vira linha)
+      const caiu = [...lista].reverse().find((l) => l.quem === quem && (l.tipo === 'saiu' || l.tipo === 'voltou' || l.tipo === 'entrou'));
+      if (caiu?.tipo !== 'saiu' || caiu.texto.endsWith('saiu da partida.')) return;
+      if (caiu === ult && agora - ult.em < SISTEMA_VOLTA_MS) {
+        // caiu e voltou de novo logo depois de outra volta, sem nada no meio: a linha de antes ganha a conta
+        const antes = lista.at(-2);
+        if (antes?.tipo === 'voltou' && antes.quem === quem && antes.apos === ult.apos && agora - antes.em < SISTEMA_VOLTA_MS) {
+          lista.pop();
+          antes.vezes = (antes.vezes ?? 1) + 1;
+          Object.assign(antes, { texto: `${this.nome(quem!)} caiu e voltou (${antes.vezes} vezes).`, em: agora });
+        } else Object.assign(ult, { tipo: 'voltou', texto: `${this.nome(quem!)} caiu e voltou.`, em: agora });
+        for (const c of this.conexoes) c.enviar({ t: 'sistema', linhas: lista, tudo: true });
+        this.salvarDepois();
+        return;
+      }
+      tipo = 'voltou';
+      texto = `${this.nome(quem!)} voltou à mesa.`;
+    }
+    const linha: LinhaSistema = { id: (ult?.id ?? 0) + 1, apos: this.game.state.log.length - 1, tipo, texto, quem, em: agora };
+    lista.push(linha);
+    if (lista.length > SISTEMA_GUARDADAS) lista.splice(0, lista.length - SISTEMA_GUARDADAS);
+    for (const c of this.conexoes) c.enviar({ t: 'sistema', linhas: [linha] });
+    this.salvarDepois();
   }
 
   /** liga a conexão como espectador (com o registro novo ou o de quem volta) */
@@ -508,6 +555,7 @@ export class Sala {
     c.espectador = true;
     this.conexoes.add(c);
     this.ultimas.delete(c);
+    c.enviar({ t: 'sistema', linhas: this.d.partida?.sistema ?? [], tudo: true });
   }
 
   /** o espectador sai de vez (o registro some e ele não volta pelo retomar) */
@@ -519,7 +567,9 @@ export class Sala {
   }
 
   desligar(c: Conexao): void {
+    const assento = c.assento;
     this.conexoes.delete(c);
+    if (assento !== null && !c.espectador && ![...this.conexoes].some((x) => x.assento === assento)) this.anotarSistema('saiu', `${this.nome(assento)} perdeu a conexão.`, assento);
     c.sala = null;
     c.assento = null;
     c.token = null;
@@ -664,6 +714,7 @@ export class Sala {
         if (this.d.estado === 'jogando' && this.game && !this.game.isOver()) {
           // o assento fica com a pessoa até a partida acabar (o jogador dela na partida saiu); aí ele vaga (vagarQuemSaiu)
           this.d.assentos[i].saiu = true;
+          this.anotarSistema('saiu', `${this.nome(i)} saiu da partida.`, i);
           this.registrar(() => this.game!.concede(i));
         }
         if (this.d.estado !== 'jogando') {
@@ -906,6 +957,8 @@ export class Sala {
       desvirarTiraMana: true,
       // e só desvira o que foi virado para mana com essa mana toda ainda na reserva (sem mana de graça)
       desvirarSoComMana: true,
+      // o registro conta também compras, mortes, vida, fichas e gatilhos (motor/redator.ts)
+      registroDetalhado: true,
     };
     const deckIds = this.d.assentos.map((a) => a.deck!);
     const listas = deckIds.map((id) => this.gerente.deck(id));
@@ -916,6 +969,8 @@ export class Sala {
     this.salvas = 0;
     this.erro = null;
     this.criarGame(null, []);
+    // partida nova: as linhas de sistema da anterior saem da tela de todos
+    for (const c of this.conexoes) c.enviar({ t: 'sistema', linhas: [], tudo: true });
     // a criação validada já chegou à primeira decisão (mulligan); a abertura também entra no tempo
     this.d.partida.iniciadaEm = Date.now();
     this.d.partida.encerradaEm = null;
@@ -1072,6 +1127,7 @@ export class Sala {
     const prazo = Date.now() + this.gerente.atrasos.prazoDesfazer;
     const timer = setTimeout(() => { if (this.pedido?.timer === timer) this.encerrarPedido(`O pedido de desfazer de ${this.nome(i)} não teve resposta a tempo.`); }, this.gerente.atrasos.prazoDesfazer);
     this.pedido = { de: i, alvo, voltar, linhas: linhasDesfeitas(g, voltar, g.inputs[alvo]), aceitaram, faltam, prazo, timer };
+    this.anotarSistema('desfazer', `${this.nome(i)} pede para desfazer: ${this.pedido.linhas[0]?.texto ?? 'a última jogada'}.`, i);
     if (faltam.size === 0) this.aplicarDesfazer();
     else this.transmitir();
     return null;
@@ -1110,8 +1166,10 @@ export class Sala {
     this.seguir();
   }
 
+  /** os avisos do servidor são todos do desfazer (aceito, recusado, sem resposta): também entram no registro */
   private avisar(msg: string): void {
     for (const c of this.conexoes) c.enviar({ t: 'aviso', msg });
+    this.anotarSistema('desfazer', /[.!?]$/.test(msg) ? msg : `${msg}.`);
   }
 
   /**

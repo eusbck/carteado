@@ -33,7 +33,7 @@ describe('registro estruturado: helper reg', () => {
       { k: 'jogador', id: 0 },
       { k: 'obj', id: kami, card: tg.state.objects[kami].card, name: 'Kami of Ancient Law', papel: 'fonte', vis: null },
       { k: 'jogador', id: 1, papel: 'alvo' },
-      { k: 'obj', id: relic, card: tg.state.objects[relic].card, name: 'Relic Retriever', papel: 'alvo', vis: null },
+      { k: 'obj', id: relic, card: tg.state.objects[relic].card, name: 'Relic Retriever', papel: 'alvo', vis: null, ctl: 0 },
     ]);
   });
 
@@ -155,7 +155,8 @@ describe('registro estruturado: redação na vista', () => {
         for (const r of l.refs ?? []) {
           expect(r).not.toHaveProperty('card');
           expect(r).not.toHaveProperty('vis');
-          expect(Object.keys(r).every((k) => ['k', 'id', 'def', 'name', 'papel'].includes(k))).toBe(true);
+          // ctl (Onda B): quem controlava a carta citada como alvo ou vítima, que é público
+          expect(Object.keys(r).every((k) => ['k', 'id', 'def', 'name', 'papel', 'ctl'].includes(k))).toBe(true);
         }
       }
       expect(JSON.stringify(log)).not.toMatch(/"card"/);

@@ -1897,13 +1897,13 @@ try {
     await tela(TELAS[0]);
     await pg.getByRole('button', { name: 'Registro', exact: true }).click();
     await pg.locator('.registro-janela').waitFor();
-    if (await pg.locator('.registro-turno-bloco').count() < 2) throw new Error('o registro devia separar as linhas por turno');
+    if (await pg.locator('.registro-vez').count() < 2) throw new Error('o registro devia separar as linhas pela vez de cada jogador');
     const fimDoRegistro = await pg.locator('.registro-lista').evaluate((e) => e.scrollHeight - e.scrollTop - e.clientHeight);
     if (fimDoRegistro > 40) throw new Error(`o registro devia abrir no fim (faltam ${fimDoRegistro} px)`);
     await foto(pg, '44b-registro-janela-1920');
     await pg.getByLabel('Procurar no registro').fill('joga');
     await pg.waitForTimeout(200);
-    const linhasBusca = await pg.locator('.registro-turno-bloco li').allTextContents();
+    const linhasBusca = await pg.locator('.registro-etapa li').allTextContents();
     if (!linhasBusca.length || linhasBusca.some((l) => !/joga/i.test(l))) throw new Error('a busca do registro devia deixar só as linhas com "joga"');
     await foto(pg, '44c-registro-busca-1920');
     await pg.keyboard.press('Escape');
