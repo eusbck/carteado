@@ -12,7 +12,7 @@ import type { ReferenciaRelogio } from './cronometro.ts';
 import { auxiliosAtivos, preferencias } from './preferencias.ts';
 import { tocar } from './sons.ts';
 import { abafarMusica } from './musica.ts';
-import { deveTocarDecisao } from './somDecisao.ts';
+import { buzinaNaChegada, estadoBuzinaNovo } from './somDecisao.ts';
 import { avatarGuardado } from './avatares.ts';
 import { registrarEnvio, registrarErroServidor } from './relato/diagnostico.ts';
 import { rasa } from './igualdade.ts';
@@ -128,9 +128,8 @@ class Loja {
   readonly cenas: Cena[] = [];
   /** o número da última vista recebida nesta conexão */
   private seqJogo = 0;
-  /** som de decisão (somDecisao.ts): a última decisão sua já avisada e quando a buzina tocou */
-  private decisaoAvisada: number | null = null;
-  private ultimoSomDecisao = -Infinity;
+  /** a buzina da decisão (somDecisao.ts): por quem a mesa esperou desde a sua última decisão */
+  private buzina = estadoBuzinaNovo();
 
   constructor() {
     ligarControle({ duracao: (ms) => this.quadros.duracao(ms), estender: (ms) => this.quadros.estender(ms), pular: () => this.quadros.pular() });
@@ -404,14 +403,11 @@ class Loja {
     return mudou;
   }
 
-  /** a buzina sempre que chega uma decisão sua, na hora em que chega do servidor (somDecisao.ts); a música abaixa por
-   * baixo dela */
-  private avisarDecisao(decisao: number | null): void {
-    const agora = performance.now();
-    const tocarAgora = deveTocarDecisao({ decisao, anterior: this.decisaoAvisada, agora, ultimoSom: this.ultimoSomDecisao, ligado: preferencias().sons.decisao });
-    if (decisao !== null) this.decisaoAvisada = decisao;
+  /** a buzina quando a vez de decidir passa de outro jogador para você, na hora em que a vista chega do servidor
+   * (somDecisao.ts); a música abaixa por baixo dela */
+  private avisarDecisao(v: GameView): void {
+    const tocarAgora = buzinaNaChegada(this.buzina, { agora: performance.now(), eu: v.you, decisao: v.decision?.id ?? null, log: v.log, ligado: preferencias().sons.decisao });
     if (!tocarAgora) return;
-    this.ultimoSomDecisao = agora;
     tocar('decisao');
     if (preferencias().volume > 0) abafarMusica(1.6);
   }
@@ -441,7 +437,7 @@ class Loja {
         }
         if (m.cena) guardarCena(this.cenas, m.cena);
         // a buzina toca na chegada, não quando a fila mostra o quadro (que espera a cena da jogada anterior, até 3 s)
-        this.avisarDecisao(m.vista.decision?.id ?? null);
+        this.avisarDecisao(m.vista);
         // sem cena: vista que não continua a anterior, a primeira, modo Desempenho, aba escondida
         const saltar = !!m.reinicio || !this.e.vista || preferencias().desempenho || (typeof document !== 'undefined' && document.hidden);
         if (m.reinicio) vistaSemAnimacao();
