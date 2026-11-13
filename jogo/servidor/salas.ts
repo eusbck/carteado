@@ -537,6 +537,8 @@ export class Sala {
     this.d.assentos = manter.map((k) => this.d.assentos[k]);
     this.d.anfitriao = novo.get(this.d.anfitriao) ?? Math.max(0, this.d.assentos.findIndex((a) => a.tipo === 'humano' && !a.saiu));
     for (const c of [...this.conexoes]) {
+      // quem assiste não tem assento: continua assistindo
+      if (c.espectador) continue;
       const j = c.assento === null ? undefined : novo.get(c.assento);
       if (j === undefined) this.soltar(c);
       else c.assento = j;
@@ -545,7 +547,7 @@ export class Sala {
     for (const msg of this.d.chat ?? []) msg.de = novo.get(msg.de) ?? -1;
     // o limite do chat segue o assento; a conversa vai de novo para todos (a cor de cada autor mudou com o lugar)
     this.ritmoChat = new Map([...this.ritmoChat].flatMap(([k, t]) => { const j = novo.get(k); return j === undefined ? [] : [[j, t] as const]; }));
-    for (const c of this.conexoes) c.enviar({ t: 'chat', msgs: this.d.chat ?? [], tudo: true });
+    for (const c of this.conexoes) if (!c.espectador) c.enviar({ t: 'chat', msgs: this.d.chat ?? [], tudo: true });
   }
 
   tratar(c: Conexao, m: MsgCliente): string | null {

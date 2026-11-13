@@ -135,4 +135,21 @@ describe('modo espectador', () => {
     expect(carla.ultima('saiu')).toBeDefined();
     expect(ana.ultima('sala')!.sala.espectadores).toEqual([]);
   });
+
+  it('continua assistindo quando a partida começa e os lugares livres saem', async () => {
+    const g = new Gerente(new Banco(':memory:'), DECKS, SEM_ATRASO);
+    const ana = new Falsa();
+    g.tratar(ana, { t: 'criar', nome: 'Ana', senhaSala: 'segredo', lugares: 4 });
+    const codigo = ana.ultima('sala')!.sala.codigo;
+    const carla = new Falsa();
+    g.tratar(carla, { t: 'assistir', codigo, senhaSala: 'segredo', nome: 'Carla' });
+    g.tratar(ana, { t: 'deck', deck: DECKS[0].id });
+    g.tratar(ana, { t: 'bot', assento: 1, deck: DECKS[1].id });
+    g.tratar(ana, { t: 'iniciar' });
+    await espera();
+    expect(ana.ultima('erro')).toBeUndefined();
+    expect(carla.ultima('saiu')).toBeUndefined();
+    expect(carla.ultima('jogo')!.vista.players).toHaveLength(2);
+    expect(ana.ultima('sala')!.sala.espectadores).toEqual(['Carla']);
+  });
 });
