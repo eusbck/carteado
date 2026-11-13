@@ -1117,6 +1117,27 @@ img.mini { width: 40px; aspect-ratio: 63 / 88; object-fit: cover; border-radius:
 .deck-origem.modificado { color: #e0b48a; }
 .deck-origem.montado { color: #a9c7e8; }
 .deck-origem.casa { color: #9fd7a4; }
+/* força (bracket 1 a 5) e complexidade do deck (telas/Forca.tsx) */
+.deck-selos { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; justify-self: start; }
+.deck-bracket { font-size: 10.5px; font-weight: 800; letter-spacing: .04em; padding: 2px 6px; border-radius: 5px; background: rgba(0, 0, 0, .55); border: 1px solid currentColor; cursor: help; }
+.deck-bracket.b1 { color: #9fd7a4; }
+.deck-bracket.b2 { color: #a9c7e8; }
+.deck-bracket.b3 { color: var(--ouro); }
+.deck-bracket.b4 { color: #f0a26b; }
+.deck-bracket.b5 { color: #ff8a8a; }
+.deck-complexidade { display: inline-flex; align-items: flex-end; gap: 2px; height: 19px; padding: 2px 6px; border-radius: 5px; background: rgba(0, 0, 0, .55); border: 1px solid rgba(255, 255, 255, .25); cursor: help; box-sizing: border-box; }
+.deck-complexidade i { display: block; width: 3px; border-radius: 1px; background: rgba(255, 255, 255, .25); }
+.deck-complexidade i:nth-child(1) { height: 5px; }
+.deck-complexidade i:nth-child(2) { height: 8px; }
+.deck-complexidade i:nth-child(3) { height: 11px; }
+.deck-complexidade.c1 i:nth-child(-n+1), .deck-complexidade.c2 i:nth-child(-n+2), .deck-complexidade.c3 i { background: #e8e2d0; }
+.deck-bracket.grande, .deck-complexidade.grande { justify-self: start; font-size: 12px; height: auto; padding: 4px 9px; white-space: nowrap; align-items: center; gap: 3px; }
+.deck-complexidade.grande { align-items: flex-end; font-weight: 700; }
+.deck-complexidade.grande i { margin-bottom: 2px; }
+.forca-detalhe { display: grid; gap: 8px; margin: 10px 0 4px; font-size: 13px; }
+.forca-linha { display: grid; grid-template-columns: 185px minmax(0, 1fr); gap: 10px; align-items: start; }
+.forca-texto { color: var(--suave); line-height: 1.45; }
+@media (max-width: 560px) { .forca-linha { grid-template-columns: 1fr; gap: 4px; } }
 .cat-titulo { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
 .cat-importar { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px 12px; align-items: end; }
 .cat-importar input, .cat-importar .botao { height: 42px; min-height: 42px; }

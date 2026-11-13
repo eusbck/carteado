@@ -18,6 +18,10 @@
 //                                                          (MTGJSON) e grava em decks/origens.json se é precon,
 //                                                          precon modificado, montado ou criado aqui (o filtro do
 //                                                          saguão e da tela Decks); sem id, só os que faltam
+//   node ferramentas/decks.ts forca [id…|todos]            força (bracket do Commander, 1 a 5) e complexidade de cada
+//                                                          deck: pede ao Commander Spellbook a análise de combos,
+//                                                          turnos extras e destruição de terrenos em massa e grava em
+//                                                          decks/forca.json; sem id, só os que faltam ou mudaram
 //
 // Sem --confirmar, importar e atualizar só mostram o que mudaria. Com a mesa aberta, prefira a tela Decks: o que a
 // linha de comando muda só aparece no saguão quando o servidor subir de novo.
@@ -37,6 +41,7 @@ import { migrar } from '../servidor/catalogo/migrar.ts';
 import { baixarDeck, lerLink } from '../servidor/catalogo/moxfield.ts';
 import { cartaPronta } from '../servidor/catalogo/prontidao.ts';
 import { preconsOficiais } from '../servidor/catalogo/mtgjson.ts';
+import { analisar, bracketDe, complexidadeDe, dadosOracle, gravarForca, hashLista, lerForca, NOME_BRACKET, NOME_COMPLEXIDADE } from '../servidor/catalogo/forca.ts';
 import { classificar, gravarOrigens, lerOrigens, ROTULO_ORIGEM } from '../servidor/catalogo/origem.ts';
 import { redeReal, type Rede } from '../servidor/catalogo/rede.ts';
 import { TarefasDecks, mensagem } from '../servidor/catalogo/tarefas.ts';
@@ -235,6 +240,40 @@ async function imagens(): Promise<void> {
   console.log(n ? `${n} imagens baixadas.` : 'Nenhuma imagem faltando.');
 }
 
+async function forcaDecks(): Promise<void> {
+  const todos = catalogo.todos();
+  const forca = lerForca(pastas.decks);
+  const lista = (d: (typeof todos)[number]) => d.atual ?? d.preparacao;
+  const alvos = (args[0] === 'todos' ? todos : args.length ? todos.filter((d) => args.includes(d.id))
+    : todos.filter((d) => { const l = lista(d); return l && forca.decks[d.id]?.lista !== hashLista(l); })).filter((d) => lista(d));
+  if (!alvos.length) { console.log(args.length ? 'Nenhum desses ids está em decks/.' : 'Todos os decks já têm a análise da lista atual (use "todos" para refazer).'); return; }
+  let falhas = 0;
+  for (const d of alvos) {
+    const l = lista(d)!;
+    try {
+      forca.decks[d.id] = await analisar(rede(), l);
+    } catch (e) {
+      falhas++;
+      console.log(`${d.nome}: a análise do Commander Spellbook falhou (${mensagem(e)})`);
+      continue;
+    }
+    const b = bracketDe(d.nome, l, forca.decks[d.id]);
+    const c = complexidadeDe(l, dadosOracle);
+    console.log(`${d.nome}: bracket ${b.bracket} (${NOME_BRACKET[b.bracket]}); complexidade ${NOME_COMPLEXIDADE[c.nivel]} (${c.pontos})
+  ${b.motivos.join('; ')}`);
+    // o Spellbook pede poucas consultas por vez
+    await new Promise((ok) => setTimeout(ok, 800));
+  }
+  await comTrava(pastas.decks, async () => {
+    const atuais = lerForca(pastas.decks);
+    for (const d of alvos) if (forca.decks[d.id]) atuais.decks[d.id] = forca.decks[d.id];
+    gravarForca(pastas.decks, atuais);
+  });
+  console.log(`
+decks/forca.json: ${alvos.length - falhas} deck(s) analisado(s)${falhas ? `, ${falhas} falha(s)` : ''}. Análise de combos: Commander Spellbook (commanderspellbook.com).`);
+  if (falhas) process.exitCode = 1;
+}
+
 async function classificarDecks(): Promise<void> {
   const todos = catalogo.todos();
   const origens = lerOrigens(pastas.decks);
@@ -316,6 +355,9 @@ try {
       break;
     case 'classificar':
       await classificarDecks();
+      break;
+    case 'forca':
+      await forcaDecks();
       break;
     default:
       console.log(readFileSync(new URL(import.meta.url), 'utf8').split('\n').filter((l) => l.startsWith('//')).map((l) => l.slice(3)).join('\n'));

@@ -17,6 +17,7 @@ import { descricaoLugares } from '../lugares.ts';
 import { Avatar } from '../mesa/Avatar.tsx';
 import { avatarDoAssento } from '../avatares.ts';
 import { BotoesOrigem, passaNoFiltro, SeloOrigem, useFiltroOrigem } from './FiltroOrigem.tsx';
+import { SeloForca } from './Forca.tsx';
 import type { AssentoPublico, DeckResumo, EtapaSaguao, SalaPublica } from '../../../servidor/protocolo.ts';
 import { NIVEIS_BOT, NIVEL_PADRAO, nomeNivel, type NivelBot } from '../../../bots/niveis.ts';
 import { LISTA_MODOS, MODOS } from '../../../motor/modos.ts';
@@ -188,7 +189,7 @@ function CartaoDeck({ d, meu, de, escolher, abrir }: { d: DeckResumo; meu: boole
         {meu && <span class="deck-selo">Seu deck</span>}
         {de.length > 0 && <span class="deck-quem">{de.join(', ')}</span>}
         <span class="deck-info">
-          <SeloOrigem origem={d.origem} />
+          <span class="deck-selos"><SeloOrigem origem={d.origem} /><SeloForca forca={d.forca} /></span>
           <span class="deck-nome">{d.nome}</span>
           <span class="deck-cmd"><span>{d.comandante
             ? <>{nomeCarta(d.comandante, d.comandante).split(',')[0]}{d.parceiro ? ` e ${nomeCarta(d.parceiro, d.parceiro).split(',')[0]}` : ''}</>

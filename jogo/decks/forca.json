@@ -1,0 +1,2368 @@
+{
+ "formato": 1,
+ "decks": {
+  "-73tFnDWzkaLqk6HWSxYsA": {
+   "lista": "180cde164aa4f09f",
+   "etiqueta": "E",
+   "gameChangers": [],
+   "terrenosEmMassa": [],
+   "turnosExtras": [],
+   "combos": [],
+   "conferidoEm": "2026-11-13T22:49:08.225Z"
+  },
+  "21PMEusrfEmeqhQVYP59dA": {
+   "lista": "b9ee833455a94ed5",
+   "etiqueta": "E",
+   "gameChangers": [],
+   "terrenosEmMassa": [],
+   "turnosExtras": [],
+   "combos": [],
+   "conferidoEm": "2026-11-13T22:49:24.821Z"
+  },
+  "6AR9GAj1bkW2zwOCvuyQ0Q": {
+   "lista": "c1a3e194883bfe0e",
+   "etiqueta": "R",
+   "gameChangers": [
+    "Teferi's Protection",
+    "Chrome Mox",
+    "Enlightened Tutor",
+    "Ancient Tomb",
+    "Smothering Tithe",
+    "Cyclonic Rift",
+    "The One Ring",
+    "Force of Will",
+    "Fierce Guardianship"
+   ],
+   "terrenosEmMassa": [],
+   "turnosExtras": [],
+   "combos": [
+    {
+     "cartas": [
+      "Shredder, Shadow Master",
+      "Bloodletter of Aclazotz"
+     ],
+     "resultado": [
+      "Each opponent loses the game",
+      "Infinite lifeloss"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Dark Leo & Shredder",
+      "Bloodletter of Aclazotz"
+     ],
+     "resultado": [
+      "Infinite lifeloss for target opponent"
+     ],
+     "duasCartas": false,
+     "relevante": false
+    },
+    {
+     "cartas": [
+      "Super State",
+      "Tainted Strike"
+     ],
+     "resultado": [
+      "Each opponent loses the game"
+     ],
+     "duasCartas": true,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Super State",
+      "Grafted Exoskeleton"
+     ],
+     "resultado": [
+      "Each opponent loses the game"
+     ],
+     "duasCartas": true,
+     "relevante": true
+    }
+   ],
+   "conferidoEm": "2026-11-13T22:49:03.725Z"
+  },
+  "80zkHrncgEKyre0fMIJbng": {
+   "lista": "9a4b381359374b8a",
+   "etiqueta": "E",
+   "gameChangers": [],
+   "terrenosEmMassa": [],
+   "turnosExtras": [],
+   "combos": [],
+   "conferidoEm": "2026-11-13T22:49:23.481Z"
+  },
+  "8ufvofa2ZkWCvXRR1lCFKQ": {
+   "lista": "63bca1385d0d7fbd",
+   "etiqueta": "E",
+   "gameChangers": [],
+   "terrenosEmMassa": [],
+   "turnosExtras": [],
+   "combos": [],
+   "conferidoEm": "2026-11-13T22:49:19.364Z"
+  },
+  "ALne8k6SV06cVQolK5RMTw": {
+   "lista": "0678e62369856c3c",
+   "etiqueta": "E",
+   "gameChangers": [],
+   "terrenosEmMassa": [],
+   "turnosExtras": [],
+   "combos": [],
+   "conferidoEm": "2026-11-13T22:49:45.914Z"
+  },
+  "BPBVD7NsT0SznrmdG4l3Tw": {
+   "lista": "83820d1bdf7213dc",
+   "etiqueta": "E",
+   "gameChangers": [],
+   "terrenosEmMassa": [],
+   "turnosExtras": [],
+   "combos": [],
+   "conferidoEm": "2026-11-13T22:49:30.645Z"
+  },
+  "brasil-bolsonaro": {
+   "lista": "b3a3d968c95d5f50",
+   "etiqueta": "E",
+   "gameChangers": [],
+   "terrenosEmMassa": [],
+   "turnosExtras": [],
+   "combos": [],
+   "conferidoEm": "2026-11-13T22:49:29.293Z"
+  },
+  "brasil-lula": {
+   "lista": "a8682a99ae1b3b88",
+   "etiqueta": "E",
+   "gameChangers": [],
+   "terrenosEmMassa": [],
+   "turnosExtras": [],
+   "combos": [],
+   "conferidoEm": "2026-11-13T22:49:27.929Z"
+  },
+  "dL6gcTQ7hUq6nQq7fijzUA": {
+   "lista": "a30556651b9c4f2a",
+   "etiqueta": "S",
+   "gameChangers": [],
+   "terrenosEmMassa": [],
+   "turnosExtras": [],
+   "combos": [
+    {
+     "cartas": [
+      "Ondu Spiritdancer",
+      "Secret Arcade // Dusty Parlor"
+     ],
+     "resultado": [
+      "Infinite creature ETB",
+      "Infinite creature tokens"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    }
+   ],
+   "conferidoEm": "2026-11-13T22:49:42.586Z"
+  },
+  "fbMRiG7ia0-hm464dMWcEQ": {
+   "lista": "b494740843c33d51",
+   "etiqueta": "E",
+   "gameChangers": [],
+   "terrenosEmMassa": [],
+   "turnosExtras": [],
+   "combos": [],
+   "conferidoEm": "2026-11-13T22:49:22.053Z"
+  },
+  "flLw5YvIOE2tBprZ_GTsmQ": {
+   "lista": "992767ddc1722fb8",
+   "etiqueta": "E",
+   "gameChangers": [],
+   "terrenosEmMassa": [],
+   "turnosExtras": [],
+   "combos": [],
+   "conferidoEm": "2026-11-13T22:49:17.268Z"
+  },
+  "G0y9ltIwoUysUSoAYtyFfA": {
+   "lista": "8af2292d7bfea36e",
+   "etiqueta": "E",
+   "gameChangers": [],
+   "terrenosEmMassa": [],
+   "turnosExtras": [],
+   "combos": [],
+   "conferidoEm": "2026-11-13T22:49:15.546Z"
+  },
+  "G1OgAfZWPXGNR69mOTQcVA": {
+   "lista": "e5fb733c8e82cb71",
+   "etiqueta": "E",
+   "gameChangers": [],
+   "terrenosEmMassa": [],
+   "turnosExtras": [],
+   "combos": [],
+   "conferidoEm": "2026-11-13T22:48:59.081Z"
+  },
+  "G1OgAYgqlH2LnNRydDvJZA": {
+   "lista": "f573e5ae7c32cb7f",
+   "etiqueta": "E",
+   "gameChangers": [],
+   "terrenosEmMassa": [],
+   "turnosExtras": [],
+   "combos": [],
+   "conferidoEm": "2026-11-13T22:48:56.265Z"
+  },
+  "GlOgAc8-TnKWpvRoIoHulw": {
+   "lista": "ea9128ef24c113c1",
+   "etiqueta": "P",
+   "gameChangers": [
+    "Seedborn Muse"
+   ],
+   "terrenosEmMassa": [],
+   "turnosExtras": [],
+   "combos": [],
+   "conferidoEm": "2026-11-13T22:48:49.394Z"
+  },
+  "GlOgAfgTAnKDYn2lIU_Phg": {
+   "lista": "44cc6c3ac604f89c",
+   "etiqueta": "R",
+   "gameChangers": [],
+   "terrenosEmMassa": [],
+   "turnosExtras": [],
+   "combos": [
+    {
+     "cartas": [
+      "Tree of Perdition",
+      "Soul Immolation"
+     ],
+     "resultado": [
+      "Near-infinite damage",
+      "Target opponent loses the game"
+     ],
+     "duasCartas": true,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Blowfly Infestation",
+      "Flourishing Defenses"
+     ],
+     "resultado": [
+      "Infinite creature ETB",
+      "Infinite creature LTB",
+      "Infinite death triggers"
+     ],
+     "duasCartas": false,
+     "relevante": false
+    },
+    {
+     "cartas": [
+      "Blowfly Infestation",
+      "Nest of Scarabs"
+     ],
+     "resultado": [
+      "Infinite death triggers",
+      "Infinite creature ETB",
+      "Infinite creature LTB"
+     ],
+     "duasCartas": false,
+     "relevante": false
+    },
+    {
+     "cartas": [
+      "Blowfly Infestation",
+      "Hapatra, Vizier of Poisons"
+     ],
+     "resultado": [
+      "Infinite death triggers",
+      "Infinite creature ETB",
+      "Infinite creature LTB"
+     ],
+     "duasCartas": false,
+     "relevante": false
+    }
+   ],
+   "conferidoEm": "2026-11-13T22:48:51.615Z"
+  },
+  "GlOgAfT6uXulKGLB5NBi5A": {
+   "lista": "6dc5345ed1259bf9",
+   "etiqueta": "E",
+   "gameChangers": [],
+   "terrenosEmMassa": [],
+   "turnosExtras": [],
+   "combos": [],
+   "conferidoEm": "2026-11-13T22:48:54.791Z"
+  },
+  "GlOgAZd3aH2ggq5J8q0AVg": {
+   "lista": "a602b38a29acb6aa",
+   "etiqueta": "E",
+   "gameChangers": [],
+   "terrenosEmMassa": [],
+   "turnosExtras": [],
+   "combos": [],
+   "conferidoEm": "2026-11-13T22:48:53.093Z"
+  },
+  "gzvtI9o53U6g06GgzF9keQ": {
+   "lista": "55a61c148538c56a",
+   "etiqueta": "E",
+   "gameChangers": [],
+   "terrenosEmMassa": [],
+   "turnosExtras": [],
+   "combos": [],
+   "conferidoEm": "2026-11-13T22:49:12.411Z"
+  },
+  "HAKhAUw1_Xqr0ZxAoQgsCg": {
+   "lista": "96d28598d3438250",
+   "etiqueta": "E",
+   "gameChangers": [],
+   "terrenosEmMassa": [],
+   "turnosExtras": [],
+   "combos": [],
+   "conferidoEm": "2026-11-13T22:49:02.310Z"
+  },
+  "HAKhAXl1RHyly2_QGDPvzg": {
+   "lista": "9b269ee47680d9ef",
+   "etiqueta": "E",
+   "gameChangers": [],
+   "terrenosEmMassa": [],
+   "turnosExtras": [],
+   "combos": [
+    {
+     "cartas": [
+      "Hullbreaker Horror",
+      "Sol Ring"
+     ],
+     "resultado": [
+      "Infinite colorless mana",
+      "Infinite storm count"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    }
+   ],
+   "conferidoEm": "2026-11-13T22:49:00.799Z"
+  },
+  "JHjwO92ZUEyNdPzE7D5d7A": {
+   "lista": "ba1e54209d5819dd",
+   "etiqueta": "E",
+   "gameChangers": [],
+   "terrenosEmMassa": [],
+   "turnosExtras": [],
+   "combos": [],
+   "conferidoEm": "2026-11-13T22:49:09.648Z"
+  },
+  "JNIylOIFGEmjh2WgU7Et9g": {
+   "lista": "d1e579f3b31b71de",
+   "etiqueta": "E",
+   "gameChangers": [],
+   "terrenosEmMassa": [],
+   "turnosExtras": [],
+   "combos": [],
+   "conferidoEm": "2026-11-13T22:49:38.785Z"
+  },
+  "lava2X1Op0aSeUHhPC5cfQ": {
+   "lista": "705df5ea5bd40ea2",
+   "etiqueta": "E",
+   "gameChangers": [],
+   "terrenosEmMassa": [],
+   "turnosExtras": [],
+   "combos": [],
+   "conferidoEm": "2026-11-13T22:49:20.716Z"
+  },
+  "m_jqtk3F6EOQiq1gytJFJg": {
+   "lista": "5f55c462b731b4a6",
+   "etiqueta": "E",
+   "gameChangers": [],
+   "terrenosEmMassa": [],
+   "turnosExtras": [],
+   "combos": [],
+   "conferidoEm": "2026-11-13T22:49:37.111Z"
+  },
+  "mWQACuymy0OV-2MJgx2-TQ": {
+   "lista": "ac15df709649e1a6",
+   "etiqueta": "E",
+   "gameChangers": [],
+   "terrenosEmMassa": [],
+   "turnosExtras": [],
+   "combos": [],
+   "conferidoEm": "2026-11-13T22:49:06.851Z"
+  },
+  "n3QS3JZ_zkmwLhmLDTc8Sw": {
+   "lista": "5256b7b9ed4ada6f",
+   "etiqueta": "E",
+   "gameChangers": [],
+   "terrenosEmMassa": [],
+   "turnosExtras": [],
+   "combos": [],
+   "conferidoEm": "2026-11-13T22:49:11.048Z"
+  },
+  "oTndvxb8bkqLPK_kANUrkA": {
+   "lista": "d530740aeecd20bd",
+   "etiqueta": "R",
+   "gameChangers": [
+    "Demonic Tutor",
+    "Teferi's Protection",
+    "Mana Vault",
+    "Chrome Mox",
+    "Smothering Tithe",
+    "Mox Diamond",
+    "The One Ring"
+   ],
+   "terrenosEmMassa": [],
+   "turnosExtras": [],
+   "combos": [
+    {
+     "cartas": [
+      "Ganax, Astral Hunter",
+      "Draconic Visitor"
+     ],
+     "resultado": [
+      "Draw the game",
+      "Infinite creature ETB",
+      "Infinite creature tokens"
+     ],
+     "duasCartas": true,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Gleaming Splendor",
+      "Smothering Tithe",
+      "Goldspan Dragon"
+     ],
+     "resultado": [
+      "Infinite card draw for any number of players",
+      "Infinite draw triggers for any number of players",
+      "Near-infinite Treasure tokens",
+      "Near-infinite colored mana",
+      "Near-infinite artifact ETB",
+      "Near-infinite artifact LTB",
+      "Near-infinite artifact sacrifice triggers"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Dragon Tempest",
+      "Ancient Gold Dragon"
+     ],
+     "resultado": [
+      "Near-infinite damage"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    }
+   ],
+   "conferidoEm": "2026-11-13T22:49:51.593Z"
+  },
+  "QqTlg-04_k-RSVJuf1QMvA": {
+   "lista": "3d0cdc61873d84b5",
+   "etiqueta": "S",
+   "gameChangers": [
+    "Crop Rotation",
+    "Glacial Chasm"
+   ],
+   "terrenosEmMassa": [],
+   "turnosExtras": [],
+   "combos": [
+    {
+     "cartas": [
+      "Mirrorpool",
+      "Splendid Reclamation",
+      "Zuran Orb",
+      "Spelunking"
+     ],
+     "resultado": [
+      "Infinite lifegain triggers",
+      "Infinite lifegain",
+      "Infinite mana lands you control can produce",
+      "Infinite magecraft triggers",
+      "Infinite landfall triggers"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Mirrorpool",
+      "Splendid Reclamation",
+      "Zuran Orb",
+      "Horizon Explorer"
+     ],
+     "resultado": [
+      "Infinite lifegain triggers",
+      "Infinite lifegain",
+      "Infinite mana lands you control can produce",
+      "Infinite magecraft triggers",
+      "Infinite landfall triggers"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Mirrorpool",
+      "Splendid Reclamation",
+      "Need for Speed",
+      "Spelunking"
+     ],
+     "resultado": [
+      "Infinite mana lands you control can produce",
+      "Infinite magecraft triggers",
+      "Infinite landfall triggers"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Mirrorpool",
+      "Splendid Reclamation",
+      "Need for Speed",
+      "Horizon Explorer"
+     ],
+     "resultado": [
+      "Infinite mana lands you control can produce",
+      "Infinite magecraft triggers",
+      "Infinite landfall triggers"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Mirrorpool",
+      "Splendid Reclamation",
+      "Zuran Orb",
+      "Tiller Engine"
+     ],
+     "resultado": [
+      "Infinite lifegain triggers",
+      "Infinite lifegain",
+      "Infinite mana lands you control can produce",
+      "Infinite magecraft triggers",
+      "Infinite landfall triggers"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Mirrorpool",
+      "Splendid Reclamation",
+      "Tiller Engine",
+      "Need for Speed"
+     ],
+     "resultado": [
+      "Infinite mana lands you control can produce",
+      "Infinite magecraft triggers",
+      "Infinite landfall triggers"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Glacial Chasm",
+      "Icetill Explorer"
+     ],
+     "resultado": [
+      "Prevent all damage that would be dealt to you",
+      "Lock"
+     ],
+     "duasCartas": false,
+     "relevante": false
+    },
+    {
+     "cartas": [
+      "Lumra, Bellow of the Woods",
+      "Mirrorpool",
+      "Zuran Orb",
+      "Horizon Explorer"
+     ],
+     "resultado": [
+      "Infinite creature ETB",
+      "Infinite death triggers",
+      "Infinite self-mill",
+      "Infinite lifegain triggers",
+      "Infinite lifegain",
+      "Infinite mana lands you control can produce",
+      "Infinite landfall triggers",
+      "Put all land cards from your library and graveyard onto the battlefield"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Lumra, Bellow of the Woods",
+      "Mirrorpool",
+      "Need for Speed",
+      "Horizon Explorer"
+     ],
+     "resultado": [
+      "Infinite creature ETB",
+      "Infinite death triggers",
+      "Infinite self-mill",
+      "Infinite mana lands you control can produce",
+      "Infinite landfall triggers",
+      "Put all land cards from your library and graveyard onto the battlefield"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Glacial Chasm",
+      "Crucible of Worlds",
+      "Exploration Broodship"
+     ],
+     "resultado": [
+      "Prevent all damage that would be dealt to you",
+      "Lock"
+     ],
+     "duasCartas": false,
+     "relevante": false
+    },
+    {
+     "cartas": [
+      "Lumra, Bellow of the Woods",
+      "Mirrorpool",
+      "Zuran Orb",
+      "Spelunking"
+     ],
+     "resultado": [
+      "Infinite creature ETB",
+      "Infinite death triggers",
+      "Infinite self-mill",
+      "Infinite lifegain triggers",
+      "Infinite lifegain",
+      "Infinite mana lands you control can produce",
+      "Infinite landfall triggers",
+      "Put all land cards from your library and graveyard onto the battlefield"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Lumra, Bellow of the Woods",
+      "Mirrorpool",
+      "Spelunking",
+      "Sylvan Safekeeper"
+     ],
+     "resultado": [
+      "Infinite creature ETB",
+      "Infinite death triggers",
+      "Infinite self-mill",
+      "Infinite mana lands you control can produce",
+      "Infinite landfall triggers",
+      "Put all land cards from your library and graveyard onto the battlefield"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Lumra, Bellow of the Woods",
+      "Mirrorpool",
+      "Need for Speed",
+      "Spelunking"
+     ],
+     "resultado": [
+      "Infinite creature ETB",
+      "Infinite death triggers",
+      "Infinite self-mill",
+      "Infinite mana lands you control can produce",
+      "Infinite landfall triggers",
+      "Put all land cards from your library and graveyard onto the battlefield"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Lumra, Bellow of the Woods",
+      "Mirrorpool",
+      "Zuran Orb",
+      "Tiller Engine"
+     ],
+     "resultado": [
+      "Infinite creature ETB",
+      "Infinite death triggers",
+      "Infinite self-mill",
+      "Infinite lifegain triggers",
+      "Infinite lifegain",
+      "Infinite mana lands you control can produce",
+      "Infinite landfall triggers",
+      "Put all land cards from your library and graveyard onto the battlefield"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Lumra, Bellow of the Woods",
+      "Mirrorpool",
+      "Tiller Engine",
+      "Sylvan Safekeeper"
+     ],
+     "resultado": [
+      "Infinite creature ETB",
+      "Infinite death triggers",
+      "Infinite self-mill",
+      "Infinite mana lands you control can produce",
+      "Infinite landfall triggers",
+      "Put all land cards from your library and graveyard onto the battlefield"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Lumra, Bellow of the Woods",
+      "Mirrorpool",
+      "Tiller Engine",
+      "Need for Speed"
+     ],
+     "resultado": [
+      "Infinite creature ETB",
+      "Infinite death triggers",
+      "Infinite self-mill",
+      "Infinite mana lands you control can produce",
+      "Infinite landfall triggers",
+      "Put all land cards from your library and graveyard onto the battlefield"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Shifting Woodland",
+      "Aftermath Analyst",
+      "Tiller Engine",
+      "Sylvan Safekeeper"
+     ],
+     "resultado": [
+      "Infinite creature LTB",
+      "Infinite creature sacrifice triggers",
+      "Infinite death triggers",
+      "Infinite mana lands you control can produce",
+      "Infinite landfall triggers"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Shifting Woodland",
+      "Aftermath Analyst",
+      "Spelunking",
+      "Sylvan Safekeeper"
+     ],
+     "resultado": [
+      "Infinite creature LTB",
+      "Infinite creature sacrifice triggers",
+      "Infinite death triggers",
+      "Infinite mana lands you control can produce",
+      "Infinite landfall triggers"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Shifting Woodland",
+      "Aftermath Analyst",
+      "Zuran Orb",
+      "Spelunking"
+     ],
+     "resultado": [
+      "Infinite creature LTB",
+      "Infinite creature sacrifice triggers",
+      "Infinite death triggers",
+      "Infinite lifegain triggers",
+      "Infinite lifegain",
+      "Infinite mana lands you control can produce",
+      "Infinite landfall triggers"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Shifting Woodland",
+      "Aftermath Analyst",
+      "Zuran Orb",
+      "Tiller Engine"
+     ],
+     "resultado": [
+      "Infinite creature LTB",
+      "Infinite creature sacrifice triggers",
+      "Infinite death triggers",
+      "Infinite lifegain triggers",
+      "Infinite lifegain",
+      "Infinite mana lands you control can produce",
+      "Infinite landfall triggers"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Shifting Woodland",
+      "Aftermath Analyst",
+      "Need for Speed",
+      "Spelunking"
+     ],
+     "resultado": [
+      "Infinite creature LTB",
+      "Infinite creature sacrifice triggers",
+      "Infinite death triggers",
+      "Infinite mana lands you control can produce",
+      "Infinite landfall triggers"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Shifting Woodland",
+      "Aftermath Analyst",
+      "Tiller Engine",
+      "Need for Speed"
+     ],
+     "resultado": [
+      "Infinite creature LTB",
+      "Infinite creature sacrifice triggers",
+      "Infinite death triggers",
+      "Infinite mana lands you control can produce",
+      "Infinite landfall triggers"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Shifting Woodland",
+      "Aftermath Analyst",
+      "Squandered Resources"
+     ],
+     "resultado": [
+      "Infinite death triggers",
+      "Infinite landfall triggers",
+      "Infinite creature LTB",
+      "Infinite mana lands you control can produce",
+      "Infinite creature sacrifice triggers"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Glacial Chasm",
+      "The Gitrog Monster",
+      "Crucible of Worlds"
+     ],
+     "resultado": [
+      "Prevent all damage that would be dealt to you",
+      "Lock"
+     ],
+     "duasCartas": false,
+     "relevante": false
+    },
+    {
+     "cartas": [
+      "Glacial Chasm",
+      "Crucible of Worlds",
+      "Wayward Swordtooth"
+     ],
+     "resultado": [
+      "Prevent all damage that would be dealt to you",
+      "Lock"
+     ],
+     "duasCartas": false,
+     "relevante": false
+    },
+    {
+     "cartas": [
+      "Glacial Chasm",
+      "Crucible of Worlds",
+      "Exploration"
+     ],
+     "resultado": [
+      "Prevent all damage that would be dealt to you",
+      "Lock"
+     ],
+     "duasCartas": false,
+     "relevante": false
+    },
+    {
+     "cartas": [
+      "Glacial Chasm",
+      "Crucible of Worlds",
+      "Oracle of Mul Daya"
+     ],
+     "resultado": [
+      "Prevent all damage that would be dealt to you",
+      "Lock"
+     ],
+     "duasCartas": false,
+     "relevante": false
+    },
+    {
+     "cartas": [
+      "Glacial Chasm",
+      "Zuran Orb",
+      "Crucible of Worlds"
+     ],
+     "resultado": [
+      "Prevent all damage that would be dealt to you",
+      "Lock"
+     ],
+     "duasCartas": false,
+     "relevante": false
+    }
+   ],
+   "conferidoEm": "2026-11-13T22:50:02.212Z"
+  },
+  "qRtSdDIfr0GcsyePCZkocw": {
+   "lista": "45174f1d0696ab2c",
+   "etiqueta": "R",
+   "gameChangers": [
+    "Vampiric Tutor",
+    "Bolas's Citadel"
+   ],
+   "terrenosEmMassa": [],
+   "turnosExtras": [],
+   "combos": [
+    {
+     "cartas": [
+      "Warren Soultrader",
+      "Pitiless Plunderer",
+      "Falkenrath Noble",
+      "Reassembling Skeleton"
+     ],
+     "resultado": [
+      "Infinite artifact ETB",
+      "Infinite artifact LTB",
+      "Infinite artifact sacrifice triggers",
+      "Infinite creature ETB",
+      "Infinite creature LTB",
+      "Infinite creature sacrifice triggers",
+      "Infinite death triggers",
+      "Infinite lifeloss"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Warren Soultrader",
+      "Pitiless Plunderer",
+      "Reassembling Skeleton",
+      "Funeral Room // Awakening Hall"
+     ],
+     "resultado": [
+      "Infinite artifact ETB",
+      "Infinite artifact LTB",
+      "Infinite artifact sacrifice triggers",
+      "Infinite creature ETB",
+      "Infinite creature LTB",
+      "Infinite creature sacrifice triggers",
+      "Infinite death triggers",
+      "Infinite lifeloss"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Warren Soultrader",
+      "Pitiless Plunderer",
+      "Reassembling Skeleton",
+      "Blood Artist"
+     ],
+     "resultado": [
+      "Infinite artifact ETB",
+      "Infinite artifact LTB",
+      "Infinite artifact sacrifice triggers",
+      "Infinite creature ETB",
+      "Infinite creature LTB",
+      "Infinite creature sacrifice triggers",
+      "Infinite death triggers",
+      "Infinite lifeloss"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Warren Soultrader",
+      "Pitiless Plunderer",
+      "Zulaport Cutthroat",
+      "Reassembling Skeleton"
+     ],
+     "resultado": [
+      "Infinite artifact ETB",
+      "Infinite artifact LTB",
+      "Infinite artifact sacrifice triggers",
+      "Infinite creature ETB",
+      "Infinite creature LTB",
+      "Infinite creature sacrifice triggers",
+      "Infinite death triggers",
+      "Infinite lifeloss"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Warren Soultrader",
+      "Pitiless Plunderer",
+      "Reassembling Skeleton",
+      "Sephiroth, Fabled SOLDIER // Sephiroth, One-Winged Angel"
+     ],
+     "resultado": [
+      "Infinite artifact ETB",
+      "Infinite artifact LTB",
+      "Infinite artifact sacrifice triggers",
+      "Infinite creature ETB",
+      "Infinite creature LTB",
+      "Infinite creature sacrifice triggers",
+      "Infinite death triggers",
+      "Infinite lifeloss"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Warren Soultrader",
+      "Pitiless Plunderer",
+      "Reassembling Skeleton",
+      "Vengeful Bloodwitch"
+     ],
+     "resultado": [
+      "Infinite artifact ETB",
+      "Infinite artifact LTB",
+      "Infinite artifact sacrifice triggers",
+      "Infinite creature ETB",
+      "Infinite creature LTB",
+      "Infinite creature sacrifice triggers",
+      "Infinite death triggers",
+      "Infinite lifeloss"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Warren Soultrader",
+      "Pitiless Plunderer",
+      "Reassembling Skeleton",
+      "Bastion of Remembrance"
+     ],
+     "resultado": [
+      "Infinite artifact ETB",
+      "Infinite artifact LTB",
+      "Infinite artifact sacrifice triggers",
+      "Infinite creature ETB",
+      "Infinite creature LTB",
+      "Infinite creature sacrifice triggers",
+      "Infinite death triggers",
+      "Infinite lifeloss"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Warren Soultrader",
+      "Pitiless Plunderer",
+      "Reassembling Skeleton",
+      "Venerated Stormsinger"
+     ],
+     "resultado": [
+      "Infinite artifact ETB",
+      "Infinite artifact LTB",
+      "Infinite artifact sacrifice triggers",
+      "Infinite creature ETB",
+      "Infinite creature LTB",
+      "Infinite creature sacrifice triggers",
+      "Infinite death triggers",
+      "Infinite lifeloss"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Warren Soultrader",
+      "Forsaken Miner",
+      "Sephiroth, Fabled SOLDIER // Sephiroth, One-Winged Angel"
+     ],
+     "resultado": [
+      "Infinite creature LTB",
+      "Infinite creature ETB",
+      "Infinite creature sacrifice triggers",
+      "Infinite death triggers",
+      "Infinite lifegain triggers",
+      "Infinite lifeloss"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Forsaken Miner",
+      "Phyrexian Altar",
+      "Sephiroth, Fabled SOLDIER // Sephiroth, One-Winged Angel"
+     ],
+     "resultado": [
+      "Infinite creature LTB",
+      "Infinite creature ETB",
+      "Infinite creature sacrifice triggers",
+      "Infinite death triggers",
+      "Infinite lifegain triggers",
+      "Infinite lifegain",
+      "Infinite lifeloss"
+     ],
+     "duasCartas": true,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Pitiless Plunderer",
+      "Reassembling Skeleton",
+      "Viscera Seer",
+      "The Masamune"
+     ],
+     "resultado": [
+      "Infinite creature LTB",
+      "Infinite creature ETB",
+      "Infinite creature sacrifice triggers",
+      "Infinite death triggers",
+      "Infinite scry 1"
+     ],
+     "duasCartas": false,
+     "relevante": false
+    },
+    {
+     "cartas": [
+      "Pitiless Plunderer",
+      "Reassembling Skeleton",
+      "Viscera Seer",
+      "Drivnod, Carnage Dominus"
+     ],
+     "resultado": [
+      "Infinite creature LTB",
+      "Infinite creature ETB",
+      "Infinite creature sacrifice triggers",
+      "Infinite death triggers",
+      "Infinite scry 1"
+     ],
+     "duasCartas": false,
+     "relevante": false
+    },
+    {
+     "cartas": [
+      "Forsaken Miner",
+      "Phyrexian Altar",
+      "Vengeful Bloodwitch"
+     ],
+     "resultado": [
+      "Infinite creature LTB",
+      "Infinite creature ETB",
+      "Infinite creature sacrifice triggers",
+      "Infinite death triggers",
+      "Infinite lifegain triggers",
+      "Infinite lifegain",
+      "Infinite lifeloss"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Forsaken Miner",
+      "Phyrexian Altar",
+      "Falkenrath Noble"
+     ],
+     "resultado": [
+      "Infinite creature LTB",
+      "Infinite creature ETB",
+      "Infinite creature sacrifice triggers",
+      "Infinite death triggers",
+      "Infinite lifegain triggers",
+      "Infinite lifegain",
+      "Infinite lifeloss"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Vito, Thorn of the Dusk Rose",
+      "Bloodthirsty Conqueror"
+     ],
+     "resultado": [
+      "Infinite lifegain triggers",
+      "Infinite lifeloss",
+      "Infinite lifegain"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Enduring Tenacity",
+      "Bloodthirsty Conqueror"
+     ],
+     "resultado": [
+      "Infinite lifegain triggers",
+      "Infinite lifeloss",
+      "Infinite lifegain"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Warren Soultrader",
+      "Forsaken Miner",
+      "Vengeful Bloodwitch"
+     ],
+     "resultado": [
+      "Infinite creature LTB",
+      "Infinite creature ETB",
+      "Infinite creature sacrifice triggers",
+      "Infinite death triggers",
+      "Infinite lifegain triggers",
+      "Infinite lifeloss"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Warren Soultrader",
+      "Forsaken Miner",
+      "Falkenrath Noble"
+     ],
+     "resultado": [
+      "Infinite death triggers",
+      "Infinite creature ETB",
+      "Infinite lifegain triggers",
+      "Infinite lifeloss",
+      "Infinite creature LTB",
+      "Infinite creature sacrifice triggers"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Warren Soultrader",
+      "Forsaken Miner",
+      "Blood Artist"
+     ],
+     "resultado": [
+      "Infinite death triggers",
+      "Infinite creature ETB",
+      "Infinite creature LTB",
+      "Infinite lifegain triggers",
+      "Infinite lifeloss",
+      "Infinite creature sacrifice triggers"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Forsaken Miner",
+      "Phyrexian Altar",
+      "Blood Artist"
+     ],
+     "resultado": [
+      "Infinite death triggers",
+      "Infinite creature ETB",
+      "Infinite lifegain",
+      "Infinite lifegain triggers",
+      "Infinite lifeloss",
+      "Infinite creature LTB",
+      "Infinite creature sacrifice triggers"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Reassembling Skeleton",
+      "Phyrexian Altar",
+      "Pawn of Ulamog"
+     ],
+     "resultado": [
+      "Infinite death triggers",
+      "Infinite creature ETB",
+      "Infinite creature LTB",
+      "Infinite creature sacrifice triggers"
+     ],
+     "duasCartas": false,
+     "relevante": false
+    },
+    {
+     "cartas": [
+      "Pitiless Plunderer",
+      "Ashnod's Altar",
+      "Reassembling Skeleton"
+     ],
+     "resultado": [
+      "Infinite colorless mana",
+      "Infinite death triggers",
+      "Infinite creature ETB",
+      "Infinite creature LTB",
+      "Infinite creature sacrifice triggers"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Pitiless Plunderer",
+      "Reassembling Skeleton",
+      "Phyrexian Altar"
+     ],
+     "resultado": [
+      "Infinite death triggers",
+      "Infinite creature ETB",
+      "Infinite creature LTB",
+      "Infinite creature sacrifice triggers"
+     ],
+     "duasCartas": false,
+     "relevante": false
+    }
+   ],
+   "conferidoEm": "2026-11-13T22:49:58.159Z"
+  },
+  "QTZDODqtBUOQGIoEbEDbCQ": {
+   "lista": "7767d4fb660fbfa9",
+   "etiqueta": "E",
+   "gameChangers": [],
+   "terrenosEmMassa": [],
+   "turnosExtras": [],
+   "combos": [],
+   "conferidoEm": "2026-11-13T22:49:33.929Z"
+  },
+  "Rfkjiccwo0CXLUWqsIriDQ": {
+   "lista": "cd60c2d0df5c1a5f",
+   "etiqueta": "P",
+   "gameChangers": [
+    "Teferi's Protection"
+   ],
+   "terrenosEmMassa": [],
+   "turnosExtras": [],
+   "combos": [
+    {
+     "cartas": [
+      "Wirewood Symbiote",
+      "Mirror Entity",
+      "Priest of Titania"
+     ],
+     "resultado": [
+      "Infinite creature LTB",
+      "Infinite creature ETB",
+      "Infinite storm count",
+      "Infinite green mana",
+      "Infinitely large creatures you control until end of turn"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Wirewood Symbiote",
+      "Mirror Entity",
+      "Gyre Sage"
+     ],
+     "resultado": [
+      "Infinite creature LTB",
+      "Infinite creature ETB",
+      "Infinite storm count",
+      "Infinite green mana",
+      "Infinitely large creatures you control until end of turn"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Wirewood Symbiote",
+      "Mirror Entity",
+      "Elvish Archdruid"
+     ],
+     "resultado": [
+      "Infinite creature LTB",
+      "Infinite creature ETB",
+      "Infinite storm count",
+      "Infinite green mana",
+      "Infinitely large creatures you control until end of turn"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Wirewood Symbiote",
+      "Mirror Entity",
+      "Bloom Tender"
+     ],
+     "resultado": [
+      "Infinite creature LTB",
+      "Infinite creature ETB",
+      "Infinite storm count",
+      "Infinite mana of colors among permanents you control",
+      "Infinitely large creatures you control until end of turn"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Wirewood Symbiote",
+      "Mirror Entity",
+      "Selvala, Heart of the Wilds"
+     ],
+     "resultado": [
+      "Infinite creature LTB",
+      "Infinite creature ETB",
+      "Infinite storm count",
+      "Infinite colored mana",
+      "Infinitely large creatures you control until end of turn"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Wirewood Symbiote",
+      "Mirror Entity",
+      "Kami of Whispered Hopes"
+     ],
+     "resultado": [
+      "Infinite creature LTB",
+      "Infinite creature ETB",
+      "Infinite storm count",
+      "Infinite colored mana",
+      "Infinitely large creatures you control until end of turn"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    }
+   ],
+   "conferidoEm": "2026-11-13T22:49:56.365Z"
+  },
+  "RjnJ0tpS-UyYyu6jVUmR7g": {
+   "lista": "bc5d4f23602de406",
+   "etiqueta": "E",
+   "gameChangers": [],
+   "terrenosEmMassa": [],
+   "turnosExtras": [],
+   "combos": [],
+   "conferidoEm": "2026-11-13T22:49:26.565Z"
+  },
+  "RsDLnw1yBkWyyVMzV2BFzA": {
+   "lista": "39267559fa3e5871",
+   "etiqueta": "P",
+   "gameChangers": [
+    "Fierce Guardianship"
+   ],
+   "terrenosEmMassa": [],
+   "turnosExtras": [
+    "Temporal Trespass"
+   ],
+   "combos": [],
+   "conferidoEm": "2026-11-13T22:50:00.513Z"
+  },
+  "shj-af8AiUWaoFVbNORQig": {
+   "lista": "6e516c1e10636e9d",
+   "etiqueta": "R",
+   "gameChangers": [
+    "Thassa's Oracle",
+    "Demonic Tutor",
+    "Rhystic Study",
+    "Mana Vault",
+    "Intuition",
+    "Force of Will",
+    "Mystical Tutor",
+    "Chrome Mox",
+    "Gamble",
+    "Vampiric Tutor",
+    "Ancient Tomb",
+    "Mox Diamond",
+    "Grim Monolith",
+    "Lion's Eye Diamond",
+    "Ad Nauseam",
+    "Imperial Seal"
+   ],
+   "terrenosEmMassa": [],
+   "turnosExtras": [
+    "Final Fortune"
+   ],
+   "combos": [
+    {
+     "cartas": [
+      "Saw in Half",
+      "Cabal Ritual",
+      "Scholar of the Ages"
+     ],
+     "resultado": [
+      "Infinite creature ETB",
+      "Infinite creature LTB",
+      "Infinite creature tokens",
+      "Infinite death triggers",
+      "Infinite magecraft triggers",
+      "Infinite storm count",
+      "Return all instant and sorcery cards from your graveyard to your hand"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Scholar of the Ages",
+      "Culling the Weak",
+      "Persist"
+     ],
+     "resultado": [
+      "Infinite black mana",
+      "Infinite creature ETB",
+      "Infinite creature LTB",
+      "Infinite creature sacrifice triggers",
+      "Infinite death triggers",
+      "Infinite magecraft triggers",
+      "Infinite storm count",
+      "Return all instant and sorcery cards from your graveyard to your hand"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Scholar of the Ages",
+      "Shallow Grave",
+      "Culling the Weak"
+     ],
+     "resultado": [
+      "Infinite black mana",
+      "Infinite creature ETB",
+      "Infinite creature LTB",
+      "Infinite creature sacrifice triggers",
+      "Infinite death triggers",
+      "Infinite magecraft triggers",
+      "Infinite storm count",
+      "Return all instant and sorcery cards from your graveyard to your hand"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Scholar of the Ages",
+      "Sacrifice",
+      "Persist"
+     ],
+     "resultado": [
+      "Infinite black mana",
+      "Infinite creature ETB",
+      "Infinite creature LTB",
+      "Infinite creature sacrifice triggers",
+      "Infinite death triggers",
+      "Infinite magecraft triggers",
+      "Infinite storm count",
+      "Return all instant and sorcery cards from your graveyard to your hand"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Scholar of the Ages",
+      "Burnt Offering",
+      "Persist"
+     ],
+     "resultado": [
+      "Infinite black mana",
+      "Infinite creature ETB",
+      "Infinite creature LTB",
+      "Infinite creature sacrifice triggers",
+      "Infinite death triggers",
+      "Infinite magecraft triggers",
+      "Infinite storm count",
+      "Return all instant and sorcery cards from your graveyard to your hand"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Saw in Half",
+      "Burnt Offering",
+      "Scholar of the Ages"
+     ],
+     "resultado": [
+      "Infinite creature LTB",
+      "Infinite creature ETB",
+      "Infinite creature sacrifice triggers",
+      "Infinite death triggers",
+      "Infinite storm count",
+      "Infinite red mana",
+      "Infinite magecraft triggers",
+      "Infinite black mana",
+      "Return all instant and sorcery cards from your graveyard to your hand"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Saw in Half",
+      "Culling the Weak",
+      "Scholar of the Ages"
+     ],
+     "resultado": [
+      "Infinite creature LTB",
+      "Infinite creature ETB",
+      "Infinite death triggers",
+      "Infinite storm count",
+      "Infinite magecraft triggers",
+      "Return all instant and sorcery cards from your graveyard to your hand"
+     ],
+     "duasCartas": false,
+     "relevante": false
+    },
+    {
+     "cartas": [
+      "Inalla, Archmage Ritualist",
+      "Bloodline Necromancer",
+      "Ruthless Technomancer"
+     ],
+     "resultado": [
+      "Infinite artifact ETB",
+      "Infinite artifact LTB",
+      "Infinite artifact sacrifice triggers",
+      "Infinite artifact tokens",
+      "Infinite colored mana",
+      "Infinite creature tokens with haste",
+      "Infinite death triggers",
+      "Infinite creature ETB",
+      "Infinite lifeloss",
+      "Infinite creature LTB",
+      "Infinite creature sacrifice triggers",
+      "Infinite Treasure tokens",
+      "Return all creature cards from your graveyard to the battlefield"
+     ],
+     "duasCartas": true,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Saw in Half",
+      "Sacrifice",
+      "Scholar of the Ages"
+     ],
+     "resultado": [
+      "Infinite black mana",
+      "Cast a subset of spells in your graveyard",
+      "Infinite death triggers",
+      "Infinite creature ETB",
+      "Infinite creature LTB",
+      "Infinite magecraft triggers",
+      "Infinite creature sacrifice triggers",
+      "Infinite storm count",
+      "Return all instant and sorcery cards from your graveyard to your hand"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Scholar of the Ages",
+      "Burnt Offering",
+      "Shallow Grave"
+     ],
+     "resultado": [
+      "Infinite creature sacrifice triggers",
+      "Infinite black mana",
+      "Infinite death triggers",
+      "Infinite creature ETB",
+      "Infinite creature LTB",
+      "Infinite magecraft triggers",
+      "Infinite storm count",
+      "Return all instant and sorcery cards from your graveyard to your hand"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Scholar of the Ages",
+      "Sacrifice",
+      "Shallow Grave"
+     ],
+     "resultado": [
+      "Infinite black mana",
+      "Infinite death triggers",
+      "Infinite creature ETB",
+      "Infinite creature LTB",
+      "Infinite magecraft triggers",
+      "Infinite creature sacrifice triggers",
+      "Infinite storm count",
+      "Return all instant and sorcery cards from your graveyard to your hand"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Tainted Pact",
+      "Thassa's Oracle"
+     ],
+     "resultado": [
+      "Win the game"
+     ],
+     "duasCartas": true,
+     "relevante": true
+    }
+   ],
+   "conferidoEm": "2026-11-13T22:49:53.415Z"
+  },
+  "shVPe5yzCU2zxRPfg2eOrQ": {
+   "lista": "600469c1c5f74aa8",
+   "etiqueta": "E",
+   "gameChangers": [],
+   "terrenosEmMassa": [],
+   "turnosExtras": [],
+   "combos": [],
+   "conferidoEm": "2026-11-13T22:48:57.724Z"
+  },
+  "STCkf8pBDE-Xxi1hgsZKiQ": {
+   "lista": "7ad5a045b01a9e8e",
+   "etiqueta": "E",
+   "gameChangers": [],
+   "terrenosEmMassa": [],
+   "turnosExtras": [],
+   "combos": [],
+   "conferidoEm": "2026-11-13T22:49:35.655Z"
+  },
+  "sxWCdd1NJ0q5JytH2RJyuA": {
+   "lista": "7bd138996b73fd2d",
+   "etiqueta": "E",
+   "gameChangers": [],
+   "terrenosEmMassa": [],
+   "turnosExtras": [],
+   "combos": [
+    {
+     "cartas": [
+      "Hazel's Brewmaster",
+      "Gourmand's Talent",
+      "Academy Manufactor",
+      "Gilded Goose"
+     ],
+     "resultado": [
+      "Infinite artifact ETB",
+      "Infinite artifact tokens",
+      "Infinite tapped Food tokens",
+      "Infinite tapped Treasure tokens",
+      "Infinite tapped Clue tokens"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    }
+   ],
+   "conferidoEm": "2026-11-13T22:49:32.231Z"
+  },
+  "T8Z7YBCEPkm7l2Bn27cDhw": {
+   "lista": "280f9d70065dac66",
+   "etiqueta": "S",
+   "gameChangers": [
+    "The One Ring"
+   ],
+   "terrenosEmMassa": [],
+   "turnosExtras": [],
+   "combos": [
+    {
+     "cartas": [
+      "Camellia, the Seedmiser",
+      "Umbral Collar Zealot",
+      "Tippy-Toe, Terrific Partner"
+     ],
+     "resultado": [
+      "Infinite artifact ETB",
+      "Infinite artifact LTB",
+      "Infinite artifact sacrifice triggers",
+      "Infinite creature ETB",
+      "Infinite creature LTB",
+      "Infinite creature sacrifice triggers",
+      "Infinite creature tokens",
+      "Infinite death triggers",
+      "Infinite surveil"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Camellia, the Seedmiser",
+      "Ninja Pizza",
+      "Tippy-Toe, Terrific Partner"
+     ],
+     "resultado": [
+      "Infinite artifact ETB",
+      "Infinite artifact LTB",
+      "Infinite artifact sacrifice triggers",
+      "Infinite +1/+1 counters on Squirrels you control",
+      "Infinite creature ETB",
+      "Infinite colored mana",
+      "Infinite creature tokens",
+      "Infinite lifegain",
+      "Infinite lifegain triggers"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Stridehangar Automaton",
+      "Warren Soultrader",
+      "Peregrin Took"
+     ],
+     "resultado": [
+      "Infinite artifact ETB",
+      "Infinite artifact LTB",
+      "Infinite artifact sacrifice triggers",
+      "Infinite artifact tokens",
+      "Infinite creature ETB",
+      "Infinite Food tokens",
+      "Infinite creature LTB",
+      "Infinite Treasure tokens",
+      "Infinite card draw",
+      "Infinite colored mana",
+      "Infinite death triggers",
+      "Infinite draw triggers",
+      "Infinite lifegain",
+      "Infinite lifegain triggers",
+      "Infinite creature sacrifice triggers"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Camellia, the Seedmiser",
+      "Ninja Pizza",
+      "Peregrin Took"
+     ],
+     "resultado": [
+      "Infinite artifact ETB",
+      "Infinite artifact LTB",
+      "Infinite artifact sacrifice triggers",
+      "Infinite card draw",
+      "Infinite colored mana",
+      "Infinite creature tokens",
+      "Infinite draw triggers",
+      "Infinite lifegain",
+      "Infinite lifegain triggers",
+      "Infinite +1/+1 counters on Squirrels you control",
+      "Infinite creature ETB",
+      "Infinite Food tokens"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Sam, Loyal Attendant",
+      "Peregrin Took",
+      "Camellia, the Seedmiser",
+      "Academy Manufactor"
+     ],
+     "resultado": [
+      "Infinite artifact ETB",
+      "Infinite artifact LTB",
+      "Infinite artifact sacrifice triggers",
+      "Infinite artifact tokens",
+      "Infinite Clue tokens",
+      "Infinite creature ETB",
+      "Infinite Food tokens",
+      "Infinite card draw",
+      "Infinite creature tokens",
+      "Infinite draw triggers",
+      "Infinite lifegain",
+      "Infinite lifegain triggers"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Ygra, Eater of All",
+      "Camellia, the Seedmiser",
+      "Academy Manufactor",
+      "Chatterfang, Squirrel General",
+      "Peregrin Took"
+     ],
+     "resultado": [
+      "Infinite artifact tokens",
+      "Infinite creature LTB",
+      "Infinite creature ETB",
+      "Infinite creature sacrifice triggers",
+      "Infinite death triggers",
+      "Infinite creature tokens",
+      "Infinite card draw",
+      "Infinite draw triggers",
+      "Infinite Clue tokens",
+      "Infinite Food tokens",
+      "Reduce the toughness of creatures opponents control to 0",
+      "Infinite +1/+1 counters on a creature"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Camellia, the Seedmiser",
+      "Peregrin Took",
+      "Hazel's Brewmaster",
+      "Gilded Goose"
+     ],
+     "resultado": [
+      "Infinite artifact ETB",
+      "Infinite artifact LTB",
+      "Infinite artifact sacrifice triggers",
+      "Infinite creature ETB",
+      "Infinite lifegain triggers",
+      "Infinite lifegain",
+      "Infinite creature tokens",
+      "Infinite card draw",
+      "Infinite draw triggers",
+      "Infinite Food tokens",
+      "Infinite +1/+1 counters on certain creatures"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Camellia, the Seedmiser",
+      "Peregrin Took",
+      "Umbral Collar Zealot"
+     ],
+     "resultado": [
+      "Infinite artifact ETB",
+      "Infinite artifact LTB",
+      "Infinite artifact sacrifice triggers",
+      "Infinite creature LTB",
+      "Infinite creature ETB",
+      "Infinite creature sacrifice triggers",
+      "Infinite death triggers",
+      "Infinite creature tokens",
+      "Infinite surveil",
+      "Infinite card draw",
+      "Infinite draw triggers",
+      "Infinite Food tokens"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Ygra, Eater of All",
+      "Camellia, the Seedmiser",
+      "Umbral Collar Zealot"
+     ],
+     "resultado": [
+      "Infinite creature LTB",
+      "Infinite creature ETB",
+      "Infinite creature sacrifice triggers",
+      "Infinite death triggers",
+      "Infinite surveil",
+      "Infinite +1/+1 counters on a creature"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Nuka-Cola Vending Machine",
+      "Academy Manufactor",
+      "Umbral Collar Zealot"
+     ],
+     "resultado": [
+      "Infinite artifact ETB",
+      "Infinite artifact tokens",
+      "Infinite tapped Food tokens",
+      "Infinite tapped Treasure tokens",
+      "Infinite tapped Clue tokens",
+      "Infinite surveil"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Camellia, the Seedmiser",
+      "Peregrin Took",
+      "Academy Manufactor",
+      "Jaheira, Friend of the Forest"
+     ],
+     "resultado": [
+      "Infinite artifact ETB",
+      "Infinite artifact LTB",
+      "Infinite artifact sacrifice triggers",
+      "Infinite artifact tokens",
+      "Infinite creature ETB",
+      "Infinite colored mana",
+      "Infinite lifegain triggers",
+      "Infinite lifegain",
+      "Infinite card draw",
+      "Infinite draw triggers",
+      "Infinite Treasure tokens",
+      "Infinite Clue tokens",
+      "Infinite +1/+1 counters on an infinite number of creature tokens",
+      "Infinite +1/+1 counters on Squirrels you control"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Camellia, the Seedmiser",
+      "Peregrin Took",
+      "Academy Manufactor",
+      "Mondrak, Glory Dominus"
+     ],
+     "resultado": [
+      "Infinite artifact tokens",
+      "Infinite creature ETB",
+      "Infinite lifegain triggers",
+      "Infinite lifegain",
+      "Infinite card draw",
+      "Infinite draw triggers",
+      "Infinite Clue tokens",
+      "Infinite Food tokens",
+      "Infinite +1/+1 counters on an infinite number of creature tokens",
+      "Infinite +1/+1 counters on Squirrels you control"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Camellia, the Seedmiser",
+      "Peregrin Took",
+      "Jaheira, Friend of the Forest",
+      "Mondrak, Glory Dominus"
+     ],
+     "resultado": [
+      "Infinite creature ETB",
+      "Infinite card draw",
+      "Infinite draw triggers",
+      "Infinite tapped Food tokens",
+      "Infinite +1/+1 counters on an infinite number of creature tokens",
+      "Infinite +1/+1 counters on Squirrels you control"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Warren Soultrader",
+      "Prosperous Innkeeper",
+      "Stridehangar Automaton"
+     ],
+     "resultado": [
+      "Infinite artifact ETB",
+      "Infinite artifact LTB",
+      "Infinite artifact sacrifice triggers",
+      "Infinite artifact tokens",
+      "Infinite creature LTB",
+      "Infinite creature ETB",
+      "Infinite colored mana",
+      "Infinite creature sacrifice triggers",
+      "Infinite death triggers",
+      "Infinite lifegain triggers",
+      "Infinite Treasure tokens"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Warren Soultrader",
+      "Nadier's Nightblade",
+      "Stridehangar Automaton"
+     ],
+     "resultado": [
+      "Infinite artifact ETB",
+      "Infinite artifact LTB",
+      "Infinite artifact sacrifice triggers",
+      "Infinite artifact tokens",
+      "Infinite creature LTB",
+      "Infinite creature ETB",
+      "Infinite colored mana",
+      "Infinite creature sacrifice triggers",
+      "Infinite death triggers",
+      "Infinite lifegain triggers",
+      "Infinite lifeloss",
+      "Infinite Treasure tokens"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Chatterfang, Squirrel General",
+      "Warren Soultrader",
+      "Academy Manufactor"
+     ],
+     "resultado": [
+      "Infinite artifact ETB",
+      "Infinite artifact LTB",
+      "Infinite artifact sacrifice triggers",
+      "Infinite artifact tokens",
+      "Infinite creature LTB",
+      "Infinite creature ETB",
+      "Infinite colored mana",
+      "Infinite creature sacrifice triggers",
+      "Infinite death triggers",
+      "Infinite lifegain triggers",
+      "Infinite lifegain",
+      "Infinite card draw",
+      "Infinite draw triggers",
+      "Infinite Treasure tokens",
+      "Infinite Clue tokens",
+      "Infinite Food tokens",
+      "Infinite creature tokens",
+      "Destroy all creatures opponents control",
+      "Reduce the toughness of creatures opponents control to 0"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Chatterfang, Squirrel General",
+      "Warren Soultrader",
+      "Peregrin Took"
+     ],
+     "resultado": [
+      "Infinite artifact ETB",
+      "Infinite artifact LTB",
+      "Infinite artifact sacrifice triggers",
+      "Infinite artifact tokens",
+      "Infinite creature LTB",
+      "Infinite creature ETB",
+      "Infinite colored mana",
+      "Infinite creature sacrifice triggers",
+      "Infinite death triggers",
+      "Infinite lifegain triggers",
+      "Infinite lifegain",
+      "Infinite card draw",
+      "Infinite draw triggers",
+      "Infinite Treasure tokens",
+      "Infinite Food tokens",
+      "Infinite creature tokens",
+      "Reduce the toughness of creatures opponents control to 0"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Warren Soultrader",
+      "Chatterfang, Squirrel General",
+      "Nadier's Nightblade"
+     ],
+     "resultado": [
+      "Infinite artifact ETB",
+      "Infinite artifact LTB",
+      "Infinite artifact sacrifice triggers",
+      "Infinite artifact tokens",
+      "Infinite creature LTB",
+      "Infinite creature ETB",
+      "Infinite colored mana",
+      "Infinite creature sacrifice triggers",
+      "Infinite death triggers",
+      "Infinite lifegain triggers",
+      "Infinite lifeloss",
+      "Infinite Treasure tokens"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Ygra, Eater of All",
+      "Camellia, the Seedmiser",
+      "Viscera Seer"
+     ],
+     "resultado": [
+      "Infinite creature LTB",
+      "Infinite creature ETB",
+      "Infinite creature sacrifice triggers",
+      "Infinite death triggers",
+      "Infinite scry 1",
+      "Infinite +1/+1 counters on a creature"
+     ],
+     "duasCartas": false,
+     "relevante": false
+    },
+    {
+     "cartas": [
+      "Warren Soultrader",
+      "Chatterfang, Squirrel General",
+      "Prosperous Innkeeper"
+     ],
+     "resultado": [
+      "Infinite artifact ETB",
+      "Infinite artifact LTB",
+      "Infinite artifact sacrifice triggers",
+      "Infinite artifact tokens",
+      "Infinite colored mana",
+      "Infinite death triggers",
+      "Infinite creature ETB",
+      "Infinite lifegain triggers",
+      "Infinite creature LTB",
+      "Infinite creature sacrifice triggers",
+      "Infinite Treasure tokens"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Peregrin Took",
+      "Nuka-Cola Vending Machine"
+     ],
+     "resultado": [
+      "Infinite card draw",
+      "Infinite draw triggers",
+      "Near-infinite tapped Treasure tokens"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    }
+   ],
+   "conferidoEm": "2026-11-13T22:50:04.222Z"
+  },
+  "tsKfnd0haUax0CLKMHWVHQ": {
+   "lista": "01dc8fd27bdf25d3",
+   "etiqueta": "E",
+   "gameChangers": [],
+   "terrenosEmMassa": [],
+   "turnosExtras": [],
+   "combos": [],
+   "conferidoEm": "2026-11-13T22:49:14.172Z"
+  },
+  "UbO_Mq2RREaIUQhbCr3lOw": {
+   "lista": "3d4bc818ba68f5c3",
+   "etiqueta": "E",
+   "gameChangers": [],
+   "terrenosEmMassa": [],
+   "turnosExtras": [],
+   "combos": [],
+   "conferidoEm": "2026-11-13T22:49:40.165Z"
+  },
+  "vNWUamZY7Uu0gqg6xKepyw": {
+   "lista": "297ab12bdd84ca17",
+   "etiqueta": "E",
+   "gameChangers": [],
+   "terrenosEmMassa": [],
+   "turnosExtras": [],
+   "combos": [],
+   "conferidoEm": "2026-11-13T22:49:48.044Z"
+  },
+  "x_R7MWbxrUq4A2ST0PqldA": {
+   "lista": "2c495eabf32e6bf6",
+   "etiqueta": "R",
+   "gameChangers": [],
+   "terrenosEmMassa": [],
+   "turnosExtras": [],
+   "combos": [
+    {
+     "cartas": [
+      "Swords to Plowshares",
+      "Jumbo Cactuar"
+     ],
+     "resultado": [
+      "Near-infinite lifegain"
+     ],
+     "duasCartas": true,
+     "relevante": true
+    }
+   ],
+   "conferidoEm": "2026-11-13T22:49:43.999Z"
+  },
+  "xDt7Pt1P4Ea6iQph663VRg": {
+   "lista": "71ed94e35eba5a1e",
+   "etiqueta": "P",
+   "gameChangers": [
+    "Crop Rotation",
+    "Rhystic Study",
+    "Field of the Dead"
+   ],
+   "terrenosEmMassa": [],
+   "turnosExtras": [],
+   "combos": [],
+   "conferidoEm": "2026-11-13T22:49:55.002Z"
+  },
+  "Y2cdFYZw_0-isKafmKXgNw": {
+   "lista": "a11c460c28980b56",
+   "etiqueta": "R",
+   "gameChangers": [
+    "Rhystic Study",
+    "Mana Vault",
+    "Intuition",
+    "Gifts Ungiven",
+    "Force of Will",
+    "Mystical Tutor",
+    "Chrome Mox",
+    "Ancient Tomb",
+    "Cyclonic Rift",
+    "Grim Monolith",
+    "Fierce Guardianship",
+    "The One Ring"
+   ],
+   "terrenosEmMassa": [],
+   "turnosExtras": [],
+   "combos": [
+    {
+     "cartas": [
+      "Orvar, the All-Form",
+      "Clockspinning",
+      "Roaming Throne"
+     ],
+     "resultado": [
+      "Infinite artifact ETB",
+      "Infinite creature ETB",
+      "Infinite storm count",
+      "Infinite creature tokens",
+      "Infinite magecraft triggers",
+      "Infinite landfall triggers",
+      "Infinite mana permanents you control can produce",
+      "Infinite copies of permanents you control"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    }
+   ],
+   "conferidoEm": "2026-11-13T22:49:49.776Z"
+  },
+  "Z4cD-XEZRUuH4W9jB_SvuA": {
+   "lista": "138202ff2519c544",
+   "etiqueta": "P",
+   "gameChangers": [
+    "Notion Thief"
+   ],
+   "terrenosEmMassa": [],
+   "turnosExtras": [],
+   "combos": [],
+   "conferidoEm": "2026-11-13T22:49:05.443Z"
+  }
+ }
+}
