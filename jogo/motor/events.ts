@@ -66,8 +66,16 @@ export type GameEvent =
   /** uma habilidade desencadeada foi para a pilha (CR 603.3); `obj` é a habilidade na pilha (Aboleth Spawn) */
   | { type: 'triggerOnStack'; obj: ObjId; source: ObjId; abilityId: string; controller: PlayerId }
   // precons-a: dano prevenido (CR 615): emitido com o lote do dano, para "sempre que o dano que seria causado a você é
-  // prevenido" (Selfless Squire)
-  | { type: 'damagePrevented'; source: ObjId; target: TargetRef; amount: number; combat: boolean };
+  // prevenido" (Selfless Squire). `controller`: controlador da fonte naquele momento (o servidor redige por ele)
+  | { type: 'damagePrevented'; source: ObjId; controller: PlayerId; target: TargetRef; amount: number; combat: boolean }
+  // F1 (diário, motor/diario.ts): os três abaixo só vão ao diário (`anotarNoDiario`), nunca ao `emit`; nenhuma carta
+  // dispara com eles e as simulações dos bots não pagam nada
+  /** o objeto do topo da pilha começa a resolver (CR 608.1); `abilityId` só em habilidade. Vem antes de `fizzled` */
+  | { type: 'resolving'; obj: ObjId; controller: PlayerId; abilityId?: string }
+  /** mágica ou habilidade anulada (CR 701.6); vem antes da troca de zona (motivo 'anulada'). Habilidade some sem zona */
+  | { type: 'countered'; obj: ObjId; controller: PlayerId; abilityId?: string }
+  /** não resolve: alvos ilegais (CR 608.2b, 608.3b); vem antes da troca de zona (motivo 'sem-alvos') ou do sumiço */
+  | { type: 'fizzled'; obj: ObjId; controller: PlayerId; abilityId?: string };
 
 export function isDies(ev: GameEvent): ev is Extract<GameEvent, { type: 'zone' }> {
   return ev.type === 'zone' && ev.from === 'battlefield' && ev.to === 'graveyard';

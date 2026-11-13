@@ -73,6 +73,15 @@ export function registrarLote(g: G, events: GameEvent[]): void {
 }
 
 /**
+ * Eventos que só interessam à cena ('resolving', 'countered', 'fizzled'): vão ao diário, num lote próprio, sem passar
+ * por `emit` (que procura gatilhos em todo o campo e atualiza as estatísticas do turno: custo à toa nos bots e risco de
+ * um `on.custom` reagir a um tipo novo). Sem diário, não faz nada.
+ */
+export function anotarNoDiario(g: G, events: GameEvent[]): void {
+  if (g.diario) registrarLote(g, events);
+}
+
+/**
  * Antes de mover, o motor pode dizer o motivo que a `cause` não distingue (a regra da lenda sai com 'sba', junto com as
  * mortes, porque as ações de estado são simultâneas, CR 704.3). Indexado pelo id antigo; não faz nada sem diário.
  */

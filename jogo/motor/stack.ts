@@ -15,6 +15,7 @@ import {
 import type { G } from './game-context.ts';
 import { addGeneric, convokeOne, formatCost, manaValueOf, parseCost, reduceGeneric, withX } from './mana.ts';
 import { emit } from './triggers.ts';
+import { anotarNoDiario } from './diario.ts';
 import { alvo, jog, lista, obj, reg, trecho, type ValorReg } from './registro.ts';
 import { ehAventura, ehDividida, ehPresagio, FACE_AMBAS, facesConjuraveis, metadeAftermath, rotuloConjurar, temVariasFaces } from './formatos.ts';
 import type { Answer, Chars, Duration, GameObject, GameState, ManaSymbol, Mod, ObjId, PlayerId, StackInfo, TargetRef, ZoneName } from './types.ts';
@@ -901,6 +902,8 @@ export function* resolveTop(g: G): Gen<void> {
   const id = s.zones.stack[s.zones.stack.length - 1];
   const o = s.objects[id];
   const st = o.stack!;
+  // F1: o começo da resolução, só no diário (CR 608.1)
+  anotarNoDiario(g, [{ type: 'resolving', obj: id, controller: st.controller, ...(st.kind !== 'spell' ? { abilityId: st.abilityId } : {}) }]);
   if (st.kind !== 'spell') {
     const def = registry.abilities.get(st.abilityId!) as ActivatedDef | TriggeredDef | undefined;
     if (!def) { destroyObject(g, id); return; }
@@ -915,6 +918,7 @@ export function* resolveTop(g: G): Gen<void> {
     if (targets === null && def.kind === 'triggered' && def.resolvesWithIllegalTargets) targets = st.targets.map((grp) => grp.map(() => null));
     if (targets === null) {
       reg(g, 'nao-resolve', { rule: '608.2b' })`${triggerReg(g, st.abilityId!, st.source!)} não resolve: alvos ilegais.`;
+      anotarNoDiario(g, [{ type: 'fizzled', obj: id, controller: st.controller, abilityId: st.abilityId }]);
       destroyObject(g, id);
       return;
     }
@@ -947,6 +951,7 @@ export function* resolveTop(g: G): Gen<void> {
           g.bump();
         } else {
           reg(g, 'nao-resolve', { rule: '608.3b' })`${obj(id, 'fonte', c.name)} não resolve: alvo ilegal.`;
+          anotarNoDiario(g, [{ type: 'fizzled', obj: id, controller: st.controller }]);
           yield* moveObject(g, id, 'graveyard', 'fizzle');
           return;
         }
@@ -981,6 +986,7 @@ export function* resolveTop(g: G): Gen<void> {
   const targets = checkTargets(g, o, specs, id);
   if (targets === null) {
     reg(g, 'nao-resolve', { rule: '608.2b' })`${obj(id, 'fonte', c.name)} não resolve: todos os alvos ficaram ilegais.`;
+    anotarNoDiario(g, [{ type: 'fizzled', obj: id, controller: st.controller }]);
     yield* moveObject(g, id, 'graveyard', 'fizzle');
     return;
   }
@@ -1094,10 +1100,12 @@ export function* counter(g: G, id: ObjId): Gen<boolean> {
     if (!o.isCopy && o.stack.data.cantBeCountered) return false;
     if (hooks(g, 'cantBeCountered').some((h) => h.fn(h.ctx, id))) return false;
     reg(g, 'nao-resolve', { rule: '701.6' })`${obj(id)} é anulada.`;
+    anotarNoDiario(g, [{ type: 'countered', obj: id, controller: o.stack.controller }]);
     if (o.isCopy) destroyObject(g, id);
     else yield* moveObject(g, id, 'graveyard', 'counter');
   } else {
     reg(g, 'nao-resolve', { rule: '701.6' })`Uma habilidade é anulada.`;
+    if (o.stack) anotarNoDiario(g, [{ type: 'countered', obj: id, controller: o.stack.controller, abilityId: o.stack.abilityId }]);
     destroyObject(g, id);
   }
   return true;

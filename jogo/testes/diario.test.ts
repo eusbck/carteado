@@ -8,6 +8,10 @@ import { createTokens, destroy, discard, draw, mill, sacrifice } from '../motor/
 import { diarioDesde, type EntradaDiario } from '../motor/diario.ts';
 import { emit } from '../motor/triggers.ts';
 import type { GameEvent } from '../motor/events.ts';
+import { dealDamage, defineAbility, ruleEffect } from '../motor/api.ts';
+import type { Ctx, StaticDef } from '../motor/defs.ts';
+
+const PREVINE = defineAbility<StaticDef>('teste:diario-previne-ana', { kind: 'static', rules: { preventsDamage: (_c, alvo) => alvo.kind === 'player' && alvo.id === 0 } });
 
 /** roda um gerador do motor sem refresh (o refresh do harness faz fork, e o fork não leva o diário) */
 function runEffect<T>(tg: TestGame, gen: Gen<T>): T {
@@ -160,5 +164,64 @@ describe('diário de eventos (F1)', () => {
       return JSON.stringify(tg.state);
     };
     expect(roda(true)).toBe(roda(false));
+  });
+
+  it('resolving no começo da resolução, antes da troca de zona e do resolved', () => {
+    const tg = ligado(setup({ battlefield: [['Swamp', 'Swamp'], []], hand: [["Night's Whisper"], []], library: [['Forest', 'Forest'], []] }));
+    tg.cast("Night's Whisper").resolve();
+    const es = entradas(tg);
+    const ini = es.findIndex((e) => e.ev.type === 'resolving');
+    const compra = es.findIndex((e) => e.ev.type === 'draw');
+    const fimR = es.findIndex((e) => e.ev.type === 'resolved');
+    expect(ini).toBeGreaterThanOrEqual(0);
+    expect(ini).toBeLessThan(compra);
+    expect(compra).toBeLessThan(fimR);
+    const ev = es[ini].ev as Extract<GameEvent, { type: 'resolving' }>;
+    expect(ev).toEqual({ type: 'resolving', obj: (es[fimR].ev as { obj: number }).obj, controller: 0 });
+    expect(es[ini].vis[ev.obj]).toBe('all');
+    // lote próprio: não passa por emit
+    expect(es.filter((e) => e.lote === es[ini].lote).length).toBe(1);
+  });
+
+  it('countered antes da troca de zona com motivo anulada', () => {
+    const tg = ligado(setup({ battlefield: [['Swamp', 'Swamp', 'Swamp'], ['Island', 'Island']], hand: [["Night's Whisper"], ['Counterspell']], library: [['Forest', 'Forest'], []] }));
+    tg.cast("Night's Whisper").pass();
+    tg.choose('mágica alvo', ["Night's Whisper"]).cast('Counterspell').resolve();
+    const es = entradas(tg);
+    const anul = es.findIndex((e) => e.ev.type === 'countered');
+    expect(anul).toBeGreaterThanOrEqual(0);
+    const ev = es[anul].ev as Extract<GameEvent, { type: 'countered' }>;
+    expect(ev.controller).toBe(0);
+    const zona = es.findIndex((e) => e.ev.type === 'zone' && (e.ev as { old: number }).old === ev.obj);
+    expect(zona).toBeGreaterThan(anul);
+    expect(es[zona].motivo).toBe('anulada');
+    // a Counterspell resolveu: resolving dela; a Night's Whisper nunca começou a resolver
+    expect(es.filter((e) => e.ev.type === 'resolving').map((e) => (e.ev as { obj: number }).obj)).not.toContain(ev.obj);
+  });
+
+  it('fizzled quando o alvo some: depois do resolving, antes da zona com motivo sem-alvos', () => {
+    const tg = ligado(setup({ battlefield: [['Mountain'], ['Elvish Mystic']], hand: [['Lightning Bolt'], []] }));
+    tg.choose('qualquer alvo', ['Elvish Mystic']).cast('Lightning Bolt');
+    runEffect(tg, destroy(tg.g, [tg.bf('Elvish Mystic')]));
+    tg.resolve();
+    const es = entradas(tg);
+    const ini = es.findIndex((e) => e.ev.type === 'resolving');
+    const fiz = es.findIndex((e) => e.ev.type === 'fizzled');
+    const zona = zonas(tg).find((e) => e.motivo === 'sem-alvos');
+    expect(ini).toBeGreaterThanOrEqual(0);
+    expect(fiz).toBeGreaterThan(ini);
+    expect(zona && es.indexOf(zona)).toBeGreaterThan(fiz);
+    expect(es.some((e) => e.ev.type === 'resolved')).toBe(false);
+    expect(tg.names(0, 'graveyard')).toEqual(['Lightning Bolt']);
+  });
+
+  it('damagePrevented leva o controlador da fonte', () => {
+    const tg = ligado(setup({ battlefield: [['Wall of Omens'], ['Indomitable Ancients']] }));
+    const anc = tg.bf('Indomitable Ancients');
+    ruleEffect({ g: tg.g, you: 0, source: anc } as unknown as Ctx, PREVINE.id!, { kind: 'endOfTurn' });
+    dealDamage(tg.g, [{ source: anc, target: { kind: 'player', id: 0 }, amount: 4, combat: false }]);
+    const p = entradas(tg).find((e) => e.ev.type === 'damagePrevented')!;
+    expect(p.ev).toMatchObject({ type: 'damagePrevented', source: anc, controller: 1, amount: 4 });
+    expect(tg.life(0)).toBe(40);
   });
 });

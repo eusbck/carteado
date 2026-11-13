@@ -626,7 +626,7 @@ export function dealDamage(g: G, reqs: DamageReq[]): { dealt: number; to: Target
     }
     // precons-a: o dano prevenido vira um evento do mesmo lote (Selfless Squire: "sempre que o dano que seria causado a
     // você é prevenido"; CR 615)
-    if (amount < antesDaPrevencao) events.push({ type: 'damagePrevented', source: r.source, target: r.target, amount: antesDaPrevencao - Math.max(0, amount), combat: r.combat });
+    if (amount < antesDaPrevencao) events.push({ type: 'damagePrevented', source: r.source, controller, target: r.target, amount: antesDaPrevencao - Math.max(0, amount), combat: r.combat });
     if (amount <= 0) continue;
     results.push({ dealt: amount, to: r.target, source: r.source });
     events.push({ type: 'damage', source: r.source, controller, target: r.target, amount, combat: r.combat });
