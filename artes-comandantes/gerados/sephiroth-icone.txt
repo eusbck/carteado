@@ -1,0 +1,7 @@
+Use case: identity-preserve. Asset: ONE square transparent bust portrait icon for a Magic Commander game medalion.
+Input 1 is the exact character's identity, costume, anatomy and color reference. Input 2 is ONLY a reference for existing game portrait framing and finish, not a face, armor or person to reproduce.
+Create a close chest-up bust faithful to Input 1, preserving exact facial/head/helmet features, colors and costume. Keep complete head/helmet and readable face centered around x=50%, y=30%, wide shoulders in the lower half, transparent margins around the entire silhouette. Leave a clearly visible 8% TRANSPARENT SAFETY MARGIN ON ALL FOUR SIDES: the entire head and finished lower bust edge must fit inside x=8%-92%, y=8%-92%. Every pixel in the outer 6% border must have alpha=0. Readable at 80px, ideally 1024x1024.
+Genuinely transparent alpha background outside the subject. Clean anti-aliased edges. No scenery or rectangular fill, no circular frame, no ring, no badge, no aura, no card border, no text or watermark. One icon only.
+Deck: Sephiroth, Fabled SOLDIER.
+Subject: Sephiroth, adult swordsman with very long straight silver hair with long middle-parted bangs, pale skin, glowing green slit-pupil eyes and a cold confident expression, black leather high-collared coat with silver pauldrons and black chest straps; a hint of black feathers behind one shoulder inside the silhouette.
+Render only head and chest with cool blue rim light; omit the sword arm and all scenery.

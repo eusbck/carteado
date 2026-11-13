@@ -562,5 +562,65 @@
   "artista": "Yongjae Choi",
   "temFundo": false,
   "obs": "lote 3 / decks novos, 12/11/2026"
+ },
+ {
+  "ordem": 41,
+  "arquivo": "41 - Hearthhull, the Worldseed (Jund Lands Midrange).png",
+  "comandante": "Hearthhull, the Worldseed",
+  "deck": "Jund Lands Midrange",
+  "idImagem": "6b913e79-a9f6-44d4-bb37-c4f6f66b8151",
+  "tamanho": "744x442",
+  "fonte": "gerado/artes",
+  "artista": "",
+  "temFundo": false,
+  "obs": "lote 4, 13/11/2026"
+ },
+ {
+  "ordem": 42,
+  "arquivo": "42 - Sephiroth, Fabled SOLDIER (Sephiroth, Fabled SOLDIER).png",
+  "comandante": "Sephiroth, Fabled SOLDIER // Sephiroth, One-Winged Angel",
+  "deck": "Sephiroth, Fabled SOLDIER",
+  "idImagem": "83c82209-47d5-4c4c-b8ec-96ab907e15d3",
+  "tamanho": "744x442",
+  "fonte": "gerado/artes",
+  "artista": "",
+  "temFundo": false,
+  "obs": "lote 4, 13/11/2026"
+ },
+ {
+  "ordem": 43,
+  "arquivo": "43 - Voja, Jaws of the Conclave (Voja).png",
+  "comandante": "Voja, Jaws of the Conclave",
+  "deck": "Voja",
+  "idImagem": "07964ab9-77c5-4ce6-970f-e47b9492baeb",
+  "tamanho": "626x457",
+  "fonte": "gerado/artes",
+  "artista": "",
+  "temFundo": false,
+  "obs": "lote 4, 13/11/2026"
+ },
+ {
+  "ordem": 44,
+  "arquivo": "44 - Yuriko, the Tiger's Shadow (Yuriko).png",
+  "comandante": "Yuriko, the Tiger's Shadow",
+  "deck": "Yuriko",
+  "idImagem": "7ad78b7f-4b29-4df2-9e43-959612171e10",
+  "tamanho": "626x457",
+  "fonte": "gerado/artes",
+  "artista": "",
+  "temFundo": false,
+  "obs": "lote 4, 13/11/2026"
+ },
+ {
+  "ordem": 45,
+  "arquivo": "45 - Sin, Spira's Punishment (LandReanimator).png",
+  "comandante": "Sin, Spira's Punishment",
+  "deck": "LandReanimator",
+  "idImagem": "ce15bf1d-debf-4e0f-a69d-a57619d4b0ee",
+  "tamanho": "744x442",
+  "fonte": "gerado/artes",
+  "artista": "",
+  "temFundo": false,
+  "obs": "lote 4, 13/11/2026"
  }
 ]

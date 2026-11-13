@@ -57,6 +57,11 @@ export const AVATARES: Avatar[] = [
   { id: 'orvar', nome: 'Orvar', deck: 'Twitch Control', comandante: 'Orvar, the All-Form', aura: '#4fc9e0' },
   { id: 'ur-dragon', nome: 'Ur-Dragão', deck: 'How to Train Ur-Dragon', comandante: 'The Ur-Dragon', aura: '#e05a3a' },
   { id: 'inalla', nome: 'Inalla', deck: "Wizard's Chess", comandante: 'Inalla, Archmage Ritualist', aura: '#a86bd8' },
+  { id: 'hearthhull', nome: 'Hearthhull', deck: 'Jund Lands Midrange', comandante: 'Hearthhull, the Worldseed', aura: '#4fd0b0' },
+  { id: 'sephiroth', nome: 'Sephiroth', deck: 'Sephiroth, Fabled SOLDIER', comandante: 'Sephiroth, Fabled SOLDIER // Sephiroth, One-Winged Angel', aura: '#8fa0d8' },
+  { id: 'voja', nome: 'Voja', deck: 'Voja', comandante: 'Voja, Jaws of the Conclave', aura: '#e0a54a' },
+  { id: 'yuriko', nome: 'Yuriko', deck: 'Yuriko', comandante: "Yuriko, the Tiger's Shadow", aura: '#9a6fd8' },
+  { id: 'sin', nome: 'Sin', deck: 'LandReanimator', comandante: "Sin, Spira's Punishment", aura: '#6fa8a0' },
   { id: 'lula',nome: 'Lula', deck: 'Brasil Pronto pra Mais', comandante: 'Lula, o Espanca Pobre', aura: '#d8392f' },
   { id: 'bolsonaro', nome: 'Bolsonaro', deck: 'O Brasil Vai Vencer', comandante: 'Bolsonaro, o Genocida', aura: '#e3c341' },
 ];

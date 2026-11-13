@@ -744,5 +744,95 @@
    941
   ],
   "bytes": 186592
+ },
+ "Hearthhull, the Worldseed": {
+  "deck": "Jund Lands Midrange",
+  "imagem": "6b913e79-a9f6-44d4-bb37-c4f6f66b8151",
+  "imagens": [
+   "6b913e79-a9f6-44d4-bb37-c4f6f66b8151"
+  ],
+  "original": "artes-comandantes/gerados/hearthhull-banner.png",
+  "referencias": [
+   "artes-comandantes/41 - Hearthhull, the Worldseed (Jund Lands Midrange).png"
+  ],
+  "ferramenta": "image_gen interna",
+  "modeloSolicitado": "GPT IMAGE 2",
+  "tamanho": [
+   1672,
+   941
+  ],
+  "bytes": 277376
+ },
+ "Sephiroth, Fabled SOLDIER // Sephiroth, One-Winged Angel": {
+  "deck": "Sephiroth, Fabled SOLDIER",
+  "imagem": "83c82209-47d5-4c4c-b8ec-96ab907e15d3",
+  "imagens": [
+   "83c82209-47d5-4c4c-b8ec-96ab907e15d3"
+  ],
+  "original": "artes-comandantes/gerados/sephiroth-banner.png",
+  "referencias": [
+   "artes-comandantes/42 - Sephiroth, Fabled SOLDIER (Sephiroth, Fabled SOLDIER).png"
+  ],
+  "ferramenta": "image_gen interna",
+  "modeloSolicitado": "GPT IMAGE 2",
+  "tamanho": [
+   1672,
+   941
+  ],
+  "bytes": 271244
+ },
+ "Voja, Jaws of the Conclave": {
+  "deck": "Voja",
+  "imagem": "07964ab9-77c5-4ce6-970f-e47b9492baeb",
+  "imagens": [
+   "07964ab9-77c5-4ce6-970f-e47b9492baeb"
+  ],
+  "original": "artes-comandantes/gerados/voja-banner.png",
+  "referencias": [
+   "artes-comandantes/43 - Voja, Jaws of the Conclave (Voja).png"
+  ],
+  "ferramenta": "image_gen interna",
+  "modeloSolicitado": "GPT IMAGE 2",
+  "tamanho": [
+   1672,
+   941
+  ],
+  "bytes": 387230
+ },
+ "Yuriko, the Tiger's Shadow": {
+  "deck": "Yuriko",
+  "imagem": "7ad78b7f-4b29-4df2-9e43-959612171e10",
+  "imagens": [
+   "7ad78b7f-4b29-4df2-9e43-959612171e10"
+  ],
+  "original": "artes-comandantes/gerados/yuriko-banner.png",
+  "referencias": [
+   "artes-comandantes/44 - Yuriko, the Tiger's Shadow (Yuriko).png"
+  ],
+  "ferramenta": "image_gen interna",
+  "modeloSolicitado": "GPT IMAGE 2",
+  "tamanho": [
+   1672,
+   941
+  ],
+  "bytes": 202702
+ },
+ "Sin, Spira's Punishment": {
+  "deck": "LandReanimator",
+  "imagem": "ce15bf1d-debf-4e0f-a69d-a57619d4b0ee",
+  "imagens": [
+   "ce15bf1d-debf-4e0f-a69d-a57619d4b0ee"
+  ],
+  "original": "artes-comandantes/gerados/sin-banner.png",
+  "referencias": [
+   "artes-comandantes/45 - Sin, Spira's Punishment (LandReanimator).png"
+  ],
+  "ferramenta": "image_gen interna",
+  "modeloSolicitado": "GPT IMAGE 2",
+  "tamanho": [
+   1672,
+   941
+  ],
+  "bytes": 341344
  }
 }

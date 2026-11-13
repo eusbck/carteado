@@ -1,0 +1,7 @@
+Use case: identity-preserve. Asset: ONE finished landscape banner/background for a Magic Commander game table.
+Input 1 is the exact identity, costume, anatomy and environment reference. Faithfully preserve the main character; expand and recompose the supplied art into a coherent cinematic wide scene.
+Composition: 16:9 landscape, hero large within the central 55%, head at x=50%, y=28%, body at least chest/waist-up; atmosphere fills both edges. Lower third calmer for game cards. Ideally 2048x1152, or at least 1672x941 at approximately 16:9.
+Opaque full-bleed background. No text or card title, no lettering except a character's existing emblem, no card frame, no UI, no added watermark. One banner only.
+Deck: Sephiroth, Fabled SOLDIER.
+Subject and setting: Sephiroth, the same tall adult swordsman with very long straight silver hair parted in the middle with long bangs, pale skin, piercing green slit-pupil eyes and a cold confident expression. Preserve his long black leather coat with silver pauldrons, black chest straps and his raised arm holding the extremely long thin katana. A single huge black feathered wing rises behind him, its feathers catching iridescent blue, violet and gold light.
+Style/medium: polished painterly anime-influenced fantasy game illustration, deep black and blue-violet palette with golden accents; the scene expands into a dark sky with drifting black feathers and faint flames on the far edges. Calm darker lower third.

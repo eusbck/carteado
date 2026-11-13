@@ -1,0 +1,7 @@
+Use case: identity-preserve. Asset: ONE finished landscape banner/background for a Magic Commander game table.
+Input 1 is the exact identity, costume, anatomy and environment reference. Faithfully preserve the main character; expand and recompose the supplied art into a coherent cinematic wide scene.
+Composition: 16:9 landscape, hero large within the central 55%, head at x=50%, y=28%, body at least chest/waist-up; atmosphere fills both edges. Lower third calmer for game cards. Ideally 2048x1152, or at least 1672x941 at approximately 16:9.
+Opaque full-bleed background. No text or card title, no lettering except a character's existing emblem, no card frame, no UI, no added watermark. One banner only.
+Deck: Jund Lands Midrange.
+Subject and setting: Hearthhull, the Worldseed, a colossal living seed-ship of organic teal-green carapace with ribbed bone-like hull plates, a crown of serrated fern-like fins at its prow and glowing cyan pod lights along its flanks, falling prow-first toward a lush green planet. The ship's prow and fin crown play the role of the head: place the prow crown at x=50%, y=28%, the hull filling the center. Keep the violet nebula sky, the cratered moon, small seed-pods drifting in a swarm and the curved planet horizon with green continents and orange molten fissures.
+Style/medium: polished realistic sci-fi fantasy game illustration, violet and magenta space haze, teal-green biomechanical hull, cyan lights, warm orange hints of molten land. Simplify the lower third into soft cloud and planet haze.

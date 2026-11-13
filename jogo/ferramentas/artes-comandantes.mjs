@@ -43,6 +43,12 @@ const configuracao = [
   [38, 'orvar', 'Twitch Control', 'Orvar', '#4fc9e0'],
   [39, 'ur-dragon', 'How to Train Ur-Dragon', 'Ur-Dragão', '#e05a3a'],
   [40, 'inalla', "Wizard's Chess", 'Inalla', '#a86bd8'],
+  // lote 4, artes feitas pelo Codex em 13/11/2026
+  [41, 'hearthhull', 'Jund Lands Midrange', 'Hearthhull', '#4fd0b0'],
+  [42, 'sephiroth', 'Sephiroth, Fabled SOLDIER', 'Sephiroth', '#8fa0d8'],
+  [43, 'voja', 'Voja', 'Voja', '#e0a54a'],
+  [44, 'yuriko', 'Yuriko', 'Yuriko', '#9a6fd8'],
+  [45, 'sin', 'LandReanimator', 'Sin', '#6fa8a0'],
 ];
 
 const ler = (arquivo) => JSON.parse(readFileSync(arquivo, 'utf8'));

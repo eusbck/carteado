@@ -1,0 +1,7 @@
+Use case: identity-preserve. Asset: ONE finished landscape banner/background for a Magic Commander game table.
+Input 1 is the exact identity, costume, anatomy and environment reference. Faithfully preserve the main character; expand and recompose the supplied art into a coherent cinematic wide scene.
+Composition: 16:9 landscape, hero large within the central 55%, head at x=50%, y=28%, body at least chest/waist-up; atmosphere fills both edges. Lower third calmer for game cards. Ideally 2048x1152, or at least 1672x941 at approximately 16:9.
+Opaque full-bleed background. No text or card title, no lettering except a character's existing emblem, no card frame, no UI, no added watermark. One banner only.
+Deck: yuriko.
+Subject and setting: Yuriko, the Tiger's Shadow, the same young adult ninja woman with pale skin, dark eyes, black hair tied up in a topknot with loose strands framing her face, calm confident expression. Preserve her layered dark navy and black ninja garments with violet sheen, black armored bracers and greaves, rope belt with an ornate bronze tiger-head buckle, and a long chain-sickle with a curved claw-like hook. She crouches on a curved temple rooftop at dusk, a pagoda roof and dramatic violet-pink clouds behind her.
+Style/medium: polished realistic painterly fantasy game illustration, violet dusk sky, deep navy fabrics, blue blade glints, soft pink light. Simplify the lower third into roof tiles and mist.

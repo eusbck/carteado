@@ -1,0 +1,40 @@
+Voja image generation log
+Built-in image_gen used for all generations. References loaded from the supplied local files.
+Final prompt texts are copied verbatim below. No prompt rewording was used.
+
+Banner: 1 attempt; succeeded. Opaque PNG, 1672 x 941 (approximately 16:9).
+Icon: 2 attempts; both succeeded with real alpha transparency.
+Icon attempt 2 was a quality retry using the same exact prompt after attempt 1 missed the transparent safety margin.
+Moderation refusals: 0. Moderation retries: 0. Opaque-background retries: 0.
+Final icon: square 1254 x 1254; alpha channel present; alpha range 0-255;
+730986 fully transparent pixels (46.485%).
+Margin limitation: the generator did not fully satisfy the 8% safety margin / completely clear outer 6% border.
+Final icon has 5549 pixels with nonzero alpha inside the outer 6% border (attempt 1 had 16365).
+Only image_gen created the images; sharp was used read-only to inspect dimensions and alpha.
+PNG files were copied intact from the newest file in each generation's returned output folder.
+
+banner, attempt 1: success; source: C:\Users\icaio\.codex\generated_images\01a1d6d8-0ee5-7c90-bdba-0f8258e7a769\exec-3642bd83-9129-4cde-a1ff-5e8d93f95e75.png
+icon, attempt 1: success; source: C:\Users\icaio\.codex\generated_images\01a1d6d8-0ee5-7c90-bdba-0f8258e7a769\exec-36557b24-9a06-4a08-858e-c3ed70e66b66.png
+icon, attempt 2: success; source: C:\Users\icaio\.codex\generated_images\01a1d6d8-0ee5-7c90-bdba-0f8258e7a769\exec-22c08666-5034-4475-84cf-959d70e874c0.png; reason: quality retry: first icon had real transparency but did not satisfy requested transparent safety margin
+
+Final banner output: C:\Users\icaio\AppData\Local\Temp\claude\b47dc424cd7f8a08\73039e94-dbee-4c2f-bd87-9ea96ba3b9be\scratchpad\saida\voja-banner.png
+Final icon output: C:\Users\icaio\AppData\Local\Temp\claude\b47dc424cd7f8a08\73039e94-dbee-4c2f-bd87-9ea96ba3b9be\scratchpad\saida\voja-icone.png
+
+--- FINAL BANNER PROMPT (verbatim) ---
+Use case: identity-preserve. Asset: ONE finished landscape banner/background for a Magic Commander game table.
+Input 1 is the exact identity, costume, anatomy and environment reference. Faithfully preserve the main character; expand and recompose the supplied art into a coherent cinematic wide scene.
+Composition: 16:9 landscape, hero large within the central 55%, head at x=50%, y=28%, body at least chest/waist-up; atmosphere fills both edges. Lower third calmer for game cards. Ideally 2048x1152, or at least 1672x941 at approximately 16:9.
+Opaque full-bleed background. No text or card title, no lettering except a character's existing emblem, no card frame, no UI, no added watermark. One banner only.
+Deck: Voja.
+Subject and setting: Voja, Jaws of the Conclave, a huge cream-white shaggy wolf with red eyes, snarling with open jaws, wearing an ornate gold-and-bronze face mask on its brow with harness straps, and gold scale armor on its shoulders. Place the wolf's masked head at x=50%, y=28%, front legs planted on a stone ledge. Behind, an elf archer in a green cloak and ruined vine-covered temple arches; flames and embers on both sides.
+Style/medium: polished realistic painterly fantasy game illustration, warm amber firelight, cream fur, gold armor highlights, soft forest greens in the background. Keep the lower third calmer with stone steps and low smoke.
+
+--- FINAL ICON PROMPT (verbatim; used for both icon attempts) ---
+Use case: identity-preserve. Asset: ONE square transparent bust portrait icon for a Magic Commander game medalion.
+Input 1 is the exact character's identity, costume, anatomy and color reference. Input 2 is ONLY a reference for existing game portrait framing and finish, not a face, armor or person to reproduce.
+Create a close chest-up bust faithful to Input 1, preserving exact facial/head/helmet features, colors and costume. Keep complete head/helmet and readable face centered around x=50%, y=30%, wide shoulders in the lower half, transparent margins around the entire silhouette. Leave a clearly visible 8% TRANSPARENT SAFETY MARGIN ON ALL FOUR SIDES: the entire head and finished lower bust edge must fit inside x=8%-92%, y=8%-92%. Every pixel in the outer 6% border must have alpha=0. Readable at 80px, ideally 1024x1024.
+Genuinely transparent alpha background outside the subject. Clean anti-aliased edges. No scenery or rectangular fill, no circular frame, no ring, no badge, no aura, no card border, no text or watermark. One icon only.
+Deck: Voja.
+Subject: Voja, a huge cream-white shaggy wolf with red eyes and snarling open jaws, wearing an ornate gold-and-bronze brow mask with harness straps and gold scale shoulder armor. Head and upper chest/shoulders facing the viewer, mask fully visible.
+Render only the wolf head and chest with warm amber rim light; omit the elf, fire and scenery.
+
