@@ -12,7 +12,7 @@ import {
 } from './actions.ts';
 import { chooseItems, chooseNumber, objItem, playerItem, yesNo } from './ask.ts';
 import { chars, controllerOf, copyValuesChars, isCreature, isLand, landPlaysAllowed, manaValue, nameOf, power } from './chars.ts';
-import { defineAbility, defineEmblem, type AbilityDef, type ActivatedDef, type EnterEvent, type Gen, type ReplacementDef, type SCtx, type StaticDef, type TriggeredDef, type TriggerSpec } from './defs.ts';
+import { defineAbility, defineEmblem, type AbilityDef, type ActivatedDef, type Ctx, type EnterEvent, type Gen, type ReplacementDef, type SCtx, type StaticDef, type TriggeredDef, type TriggerSpec } from './defs.ts';
 import { activated, and, asEnters, cost, is, keyword, lkiChars, lkiObj, on, t, tgt, triggered } from './dsl.ts';
 import { allCreatureTypes, delayed, nextEndStepTrigger, untilEndOfTurn } from './efeitos.ts';
 import type { G } from './game-context.ts';
@@ -359,10 +359,13 @@ const SACRIFICA_MOBILIZADAS = defineAbility('kw:mobilize:sacrifica', nextEndStep
 
 /** CR 702.181a: Mobilizar N — sempre que ataca, crie N fichas 1/1 vermelhas de Guerreiro viradas e atacando (cada uma
  *  ataca quem você escolher, ruling 1); sacrifique-as no início da próxima etapa final */
-export function mobilize(n: number): TriggeredDef {
+export function mobilize(nOuX: number | ((c: Ctx) => number), textoX?: string): TriggeredDef {
   const a = triggered(on.selfAttacks(), function* (c) {
     const s = c.g.state;
     if (!s.combat) return;
+    // lote4-b: Mobilizar X (Avenger of the Fallen): X é calculado uma vez, quando a habilidade resolve (ruling 1)
+    const n = typeof nOuX === 'number' ? nOuX : Math.max(0, nOuX(c));
+    if (n <= 0) return;
     const alvos = alvosDeAtaque(c.g, c.you);
     if (!alvos.length) return;
     const reqs: TargetRef[] = [];
@@ -377,9 +380,9 @@ export function mobilize(n: number): TriggeredDef {
     }
     const fichas = yield* putOntoBattlefield(c.g, reqs.map((alvo) => ({ controller: c.you, token: { def: 'Warrior vermelho' }, tapped: true, attacking: alvo })), 'token');
     if (fichas.length) delayed(c, SACRIFICA_MOBILIZADAS.id!, { data: { fichas } });
-  }, { text: `Mobilizar ${n} (sempre que esta criatura ataca, crie ${n} ficha(s) de criatura Guerreiro vermelha 1/1 virada(s) e atacando; sacrifique-as no início da próxima etapa final).` });
+  }, { text: typeof nOuX === 'number' ? `Mobilizar ${nOuX} (sempre que esta criatura ataca, crie ${nOuX} ficha(s) de criatura Guerreiro vermelha 1/1 virada(s) e atacando; sacrifique-as no início da próxima etapa final).` : textoX ?? 'Mobilizar X' });
   a.kw = 'mobilize';
-  a.param = n;
+  a.param = typeof nOuX === 'number' ? nOuX : 'X';
   return a;
 }
 

@@ -9,8 +9,8 @@ import type { GameView } from '../../../motor/view.ts';
 import { abafarMusica } from '../musica.ts';
 import { preferencias } from '../preferencias.ts';
 import { somDaTroca } from '../somTurno.ts';
-import { tocar } from '../sons.ts';
-import { informarDuracao, vistasSemAnimacao } from './cenaLoja.ts';
+import { tocar, tocarDesvirar } from '../sons.ts';
+import { estenderCena, informarDuracao, vistasSemAnimacao } from './cenaLoja.ts';
 import { planejarCombate, type PlanoCombate } from './golpes.ts';
 import { efeitosDaVista, fotografar, type Foto } from './impacto.ts';
 import './efeitos.css';
@@ -99,6 +99,8 @@ export function useEfeitos(v: GameView, eu: number, efeitos: boolean): void {
 
     // a onda do desvirar antes de qualquer medida (Desempenho, "reduzir movimento" e efeitos desligados: o giro de sempre)
     const onda = efeitos && !document.hidden && !preferencias().desempenho && !movimentoReduzido() ? desvirarEmOnda(a, v) : 0;
+    // um som só para a onda inteira (N7)
+    if (onda > 0) tocarDesvirar(onda);
 
     const plano = planejarCombate(a, v);
     const antes = fotos.current;
@@ -109,6 +111,10 @@ export function useEfeitos(v: GameView, eu: number, efeitos: boolean): void {
     // teto). Uma versão que ainda não devolve o número cai na estimativa pelas constantes
     const ms: unknown = efeitosDaVista(a, v, plano, antes, { eu, reduzir: movimentoReduzido(), leve: preferencias().desempenho, efeitos });
     const animacoes = typeof ms === 'number' ? ms : efeitos && !document.hidden ? estimarEfeitos(a, v, plano) : 0;
-    informarDuracao(Math.max(animacoes, onda, campoMudou(a, v) ? ARRUMACAO_MS : 0));
+    const dura = Math.max(animacoes, onda, campoMudou(a, v) ? ARRUMACAO_MS : 0);
+    informarDuracao(dura);
+    // as animações só começam no próximo quadro desenhado; com a página ocupada ele atrasa, e a cena acabaria antes
+    // delas: ali, a cena passa a contar a partir de quando elas começaram de fato
+    if (dura > 0 && !document.hidden) requestAnimationFrame(() => estenderCena(dura));
   }, [v]);
 }

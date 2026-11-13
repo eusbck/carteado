@@ -59,3 +59,24 @@ export * from './historia.ts';
 // lote3-f: devoção, turno extra, evocar, dash, barganha e spree (cEDH Inalla)
 export * from './cedh.ts';
 export { successor } from './state.ts';
+// lote4-a: mana que depende do custo pago (Squandered Resources) e manutenção cumulativa pagando vida (Glacial Chasm)
+export * from './terrenos.ts';
+// lote4-e: dragar (dredge, CR 702.52)
+export * from './dragar.ts';
+// lote4-e: regra do mundo (CR 704.5k)
+export { regraDoMundo } from './mundo.ts';
+// lote4-b (deck Sephiroth): cometer um crime (CR 700.13), "uma criatura morrer faz disparar" (Drivnod, The Masamune),
+// "a N-ésima vez que esta habilidade resolveu neste turno" e "precisa ser bloqueada se possível" (CR 509.1c)
+export * from './crime.ts';
+export * from './morte-dispara.ts';
+export * from './resolucoes.ts';
+export * from './bloqueio-obrigatorio.ts';
+// lote4-c: modos com patinhas (CR 700.2i), terra-dobra (earthbend, CR 701.66), harmonizar (CR 702.180) e bloqueio obrigatório
+export * from './patinhas.ts';
+export * from './bloquear-se-puder.ts';
+export * from './harmonizar.ts';
+export * from './terra.ts';
+// lote4 (junção de B e C): as exigências de bloqueio contadas juntas (CR 509.1c)
+export * from './exigencias-bloqueio.ts';
+// lote4-d: megamorfose (megamorph, CR 702.37b)
+export * from './megamorfose.ts';

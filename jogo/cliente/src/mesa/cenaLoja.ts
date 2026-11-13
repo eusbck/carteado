@@ -55,6 +55,8 @@ export function vistasSemAnimacao(): number { return saltos; }
 export interface ControleCena {
   /** as animações do quadro que acabou de entrar duram tanto (ms, contados de agora) */
   duracao(ms: number): void;
+  /** a cena do quadro atual acaba no mínimo `ms` depois de agora (dentro do teto) */
+  estender(ms: number): void;
   /** pula: mostra o último quadro que chegou e encerra a cena na hora */
   pular(): void;
 }
@@ -70,6 +72,11 @@ export function ligarControle(c: ControleCena): () => void {
 /** Efeitos.tsx: as animações do quadro atual acabam daqui a `ms` */
 export function informarDuracao(ms: number): void {
   controle?.duracao(ms);
+}
+
+/** Efeitos.tsx, no quadro em que as animações começaram de fato: ainda faltam `ms` */
+export function estenderCena(ms: number): void {
+  controle?.estender(ms);
 }
 
 /** clique na mesa ou Espaço: a decisão aparece na hora */

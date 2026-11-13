@@ -188,6 +188,25 @@ export function tocarDestruicao(baques: number[]): void {
   }
 }
 
+/**
+ * O desvirar em onda do começo do turno (N7, mesa/Efeitos.tsx): um som só para a onda inteira, um farfalhar que sobe
+ * enquanto as cartas giram (`ms`, quanto a onda dura). Baixo, por baixo do som de turno. Liga e desliga com a chave do
+ * som de impacto, como a destruição em massa.
+ */
+export function tocarDesvirar(ms: number): void {
+  const p = preferencias();
+  if (!p.sons.impacto || p.volume <= 0) return;
+  const c = contexto();
+  if (!c || c.state !== 'running') return;
+  const mestre = c.createGain();
+  mestre.gain.value = Math.min(1, p.volume) * 0.22;
+  mestre.connect(c.destination);
+  const t = c.currentTime + 0.01;
+  const dur = Math.min(1.2, Math.max(0.25, ms / 1000));
+  rajada(c, mestre, t, dur, 0.3, 700, 2600);
+  sopro(c, mestre, t + dur - 0.06, 0.08, 0.18, 1800);
+}
+
 /** o botão de ouvir das Configurações: toca mesmo com o som desligado (no volume dos efeitos) */
 export function ouvir(som: Som): void {
   gerar(som, 1);

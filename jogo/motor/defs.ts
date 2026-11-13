@@ -88,6 +88,8 @@ export interface ModeSpec {
   available?: (c: SCtx, mode: number) => boolean;
   /** chamado quando os modos são escolhidos, antes de a mágica ou habilidade ir para a pilha */
   onChosen?: (c: SCtx, modes: number[]) => void;
+  /** lote4-c: modos com patinhas (CR 700.2i): quantas patinhas cada modo custa e o total; veja motor/patinhas.ts */
+  pawprints?: import('./patinhas.ts').Patinhas;
 }
 
 // ---------------------------------------------------------------------------
@@ -180,6 +182,10 @@ export interface ManaAbilityDef extends AbilityCommon {
   /** lote3-f: "ative somente como uma instantânea" numa habilidade de mana (Lion's Eye Diamond): precisa de prioridade, então
    *  não pode ser ativada enquanto se paga um custo (conjurando, ativando ou pagando durante a resolução; CR 605.3a, 117.1b) */
   notWhilePaying?: boolean;
+  /** lote4-a: a mana depende do que foi pago no custo ("adicione uma mana de qualquer tipo que o terreno sacrificado
+   *  poderia produzir": Squandered Resources; CR 106.7; também Soldevi Adnate, frente B: uma opção só). Chamada depois de pagar, com o costInfo; `produce` fica como a
+   *  estimativa usada no planejamento. Lista vazia: nenhuma mana (motor/terrenos.ts manaDoCusto) */
+  produceFromCost?: (c: SCtx, costInfo: Record<string, unknown>) => ManaType[][];
 }
 
 export interface ActivatedDef extends AbilityCommon {
@@ -332,6 +338,8 @@ export interface RuleHooks {
   crewPowerBonus?: (c: SCtx, creature: ObjId) => number;
   /** "esta criatura precisa ser bloqueada por exatamente uma criatura se puder" (Nacatl War-Pride) */
   mustBeBlockedByExactlyOne?: (c: SCtx, attacker: ObjId) => boolean;
+  /** lote4-b: "precisa ser bloqueada se possível" (The Masamune; CR 509.1c): motor/bloqueio-obrigatorio.ts */
+  mustBeBlockedIfAble?: (c: SCtx, attacker: ObjId) => boolean;
   /**
    * "se [esse jogador] fosse comprar uma carta que não a primeira da etapa de compra dele, em vez disso ele pula essa
    * compra e você compra uma carta" (Notion Thief). O motor só consulta fora da primeira compra da etapa de compra.
@@ -364,6 +372,8 @@ export interface RuleHooks {
   skipsExtraTurn?: (c: SCtx, player: PlayerId) => boolean;
   /** "Você pode olhar a carta do topo do seu grimório a qualquer momento" (Vesuvan Drifter, Realmwalker) */
   lookAtTopOfLibrary?: (c: SCtx, player: PlayerId) => boolean;
+  /** lote4-a: "jogue com a carta do topo do seu grimório revelada" (Oracle of Mul Daya): todos veem o topo (motor/view.ts) */
+  topOfLibraryRevealed?: (c: SCtx, player: PlayerId) => boolean;
   /** "Você não perde mana [vermelha] não gasta quando as etapas e fases terminam" (Leyline Tyrant; CR 106.4, 500.5) */
   keepsUnspentMana?: (c: SCtx, player: PlayerId, unit: ManaUnit) => boolean;
   /** lote3-d: "cartas de criatura em cemitérios e grimórios não podem entrar no campo" (Grafdigger's Cage): a carta, a zona
@@ -427,6 +437,9 @@ export interface StaticDef extends AbilityCommon {
    *  as modificações desta estática se aplicam depois das outras da mesma camada, qualquer que seja o registro de data e hora */
   cantHave?: boolean;
   rules?: RuleHooks;
+  /** lote4-b: o gancho extraTriggers desta estática também vale no lote em que a permanente sai do campo, olhando para trás
+   *  (CR 603.10a; ruling 8 de Drivnod, Carnage Dominus): motor/morte-dispara.ts */
+  lookBack?: boolean;
 }
 
 export interface EnterEvent {
@@ -512,6 +525,8 @@ export interface AltCastDef {
   enterAttacking?: boolean;
   /** "sem pagar o custo de mana" (CR 118.9): X vale 0 (107.3b); a carta planejada (CR 702.170d) */
   free?: boolean;
+  /** lote4-c: harmonizar (CR 702.180a): vira até uma criatura sua e reduz o genérico pela força dela (motor/harmonizar.ts) */
+  harmonize?: boolean;
 }
 
 export interface CastPermission {

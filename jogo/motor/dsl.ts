@@ -451,8 +451,9 @@ export const land = {
   /** "Ao entrar, você pode pagar N de vida. Se não pagar, entra virado." (pagar vida: CR 119.4, só com vida suficiente) */
   payLifeOrTapped: (n: number): ReplacementDef => asEnters(function* (c, ev) {
     const pode = c.g.state.players[ev.controller].life >= n;
-    if (pode && (yield* askModule.yesNo(c.g, ev.controller, `Pagar ${n} de vida para ${nameOf(c.g, ev.obj)} entrar desvirado?`, `Pagar ${n} de vida`, 'Entrar virado'))) {
-      loseLifeAct(c.g, ev.controller, n, ev.obj);
+    // lote4-e: uma ficha cópia (Sin) ainda não tem objeto (ev.obj é -1): o nome vem da carta copiada
+    if (pode && (yield* askModule.yesNo(c.g, ev.controller, `Pagar ${n} de vida para ${c.g.state.objects[ev.obj] ? nameOf(c.g, ev.obj) : ev.copyOf?.def ?? 'o terreno'} entrar desvirado?`, `Pagar ${n} de vida`, 'Entrar virado'))) {
+      loseLifeAct(c.g, ev.controller, n, c.g.state.objects[ev.obj] ? ev.obj : null);
     } else ev.tapped = true;
   }, `Ao entrar, você pode pagar ${n} de vida. Se não pagar, entra virado.`),
   /** "…a menos que você controle dois ou mais terrenos básicos." */

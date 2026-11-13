@@ -178,6 +178,29 @@ const esperadas: Record<string, [string, string[], string[], string[], number | 
   // foods-b
   'Servo': ['Servo', ['Artifact', 'Creature'], ['Servo'], [], 1, 1, []],
   'Cat 1/1 branco': ['Cat', ['Creature'], ['Cat'], ['W'], 1, 1, []],
+  // lote4-a
+  'Heartwood': ['Heartwood', ['Artifact'], ['Heartwood'], ['G', 'R'], null, null, []],
+  'Lander': ['Lander', ['Artifact'], ['Lander'], [], null, null, []],
+  'Beast 4/4': ['Beast', ['Creature'], ['Beast'], ['G'], 4, 4, []],
+  // lote4-e
+  'Plant 0/1': ['Plant', ['Creature'], ['Plant'], ['G'], 0, 1, []],
+  'Badger': ['Badger', ['Creature'], ['Badger'], ['G'], 3, 3, []],
+  'Forest Dryad': ['Forest Dryad', ['Land', 'Creature'], ['Forest', 'Dryad'], ['G'], 1, 1, []],
+  'Elemental 5/3': ['Elemental', ['Creature'], ['Elemental'], ['G'], 5, 3, []],
+  'Zombie Druid': ['Zombie Druid', ['Creature'], ['Zombie', 'Druid'], ['B'], 2, 2, []],
+  // lote4-b
+  'Thrull': ['Thrull', ['Creature'], ['Thrull'], ['B'], 1, 1, []],
+  'Thrull 0/1': ['Thrull', ['Creature'], ['Thrull'], ['B'], 0, 1, []],
+  'Faerie Rogue': ['Faerie Rogue', ['Creature'], ['Faerie', 'Rogue'], ['B'], 1, 1, ['flying']],
+  'Human Cleric': ['Human Cleric', ['Creature'], ['Human', 'Cleric'], ['B', 'W'], 1, 1, []],
+  'Zombie Rogue': ['Zombie Rogue', ['Creature'], ['Zombie', 'Rogue'], ['B', 'U'], 2, 2, []],
+  // lote4-c
+  'Shapeshifter 2/2 incolor': ['Shapeshifter', ['Creature'], ['Shapeshifter'], [], 2, 2, ['changeling']],
+  'Voja, Friend to Elves': ['Voja, Friend to Elves', ['Creature'], ['Wolf'], ['G', 'W'], 3, 3, []],
+  'Voja Fenstalker': ['Voja Fenstalker', ['Creature'], ['Wolf'], ['G', 'W'], 5, 5, ['trample']],
+  'Mutavault': ['Mutavault', ['Land'], [], [], null, null, []],
+  // lote4-d
+  'Illusion 1/1': ['Illusion', ['Creature'], ['Illusion'], ['U'], 1, 1, ['flying']],
 };
 
 describe('Fichas: características', () => {
@@ -404,5 +427,36 @@ describe("Fichas: 'Eldrazi Scion'", () => {
     tg.cast('Sol Ring').resolve();
     expect(tg.find('Eldrazi Scion')).toBeNull();
     expect(tg.find('Sol Ring')).not.toBeNull();
+  });
+});
+
+// lote4-a
+describe("Fichas: 'Heartwood' e 'Lander'", () => {
+  it('Heartwood: {T}: adicione {R} ou {G}', () => {
+    const tg = setup({ battlefield: [[{ name: 'Heartwood', token: true }], []] });
+    const id = tg.bf('Heartwood');
+    expect(manaOptions(tg.g, 0).filter((o) => o.obj === id).map((o) => o.alt.join('')).sort()).toEqual(['G', 'R']);
+  });
+  it('Lander: {2}, {T}, sacrifique: um terreno básico do grimório para o campo virado', () => {
+    const tg = setup({ battlefield: [[{ name: 'Lander', token: true }, 'Sol Ring'], []], library: [['Island', 'Forest'], []] });
+    tg.choose('terreno básico', ['Forest']).activate('Lander').resolve();
+    expect(tg.find('Lander')).toBeNull();
+    const f = tg.bf('Forest');
+    expect(tg.state.objects[f].tapped).toBe(true);
+  });
+});
+
+// lote4-c
+describe("Fichas: 'Mutavault'", () => {
+  it('{T}: adicione {C}; {1}: vira criatura 2/2 com todos os tipos de criatura até o fim do turno, e continua terreno', () => {
+    const tg = setup({ battlefield: [[{ name: 'Mutavault', token: true }, 'Forest'], []] });
+    const id = tg.bf('Mutavault');
+    expect(manaOptions(tg.g, 0).filter((o) => o.obj === id).map((o) => o.alt.join(''))).toEqual(['C']);
+    expect(chars(tg.g, id).supertypes).not.toContain('Legendary');
+    tg.activate('Mutavault').resolve();
+    const c = chars(tg.g, id);
+    expect(c.types).toEqual(expect.arrayContaining(['Land', 'Creature']));
+    expect(c.subtypes).toEqual(expect.arrayContaining(['Elf', 'Wolf']));
+    expect(tg.pt(id)).toEqual([2, 2]);
   });
 });

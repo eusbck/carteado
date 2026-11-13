@@ -52,9 +52,24 @@ export function defaultAnswer(d: Decision): Answer {
     case 'blockers': {
       const usados = new Set<ObjId>();
       const blocks: [ObjId, ObjId][] = [];
+      // lote4-c: "bloqueia [atacante] se puder" (CR 509.1c): o bloqueador exigido bloqueia esse atacante
+      for (const [b, a] of d.requiredPairs ?? []) {
+        if (usados.has(b) || !d.candidates.find((c) => c.obj === b)?.canBlock.includes(a)) continue;
+        usados.add(b);
+        blocks.push([b, a]);
+      }
       for (const a of d.required ?? []) {
         const b = d.candidates.find((c) => !usados.has(c.obj) && c.canBlock.includes(a));
         if (b) { usados.add(b.obj); blocks.push([b.obj, a]); }
+      }
+      // lote4-b: "precisa ser bloqueada se possível" (CR 509.1c): um bloqueador livre (dois, com ameaçar) para cada uma
+      const opcoes = (a: ObjId) => d.candidates.filter((c) => c.canBlock.includes(a)).length;
+      for (const a of [...(d.mustBlock ?? [])].sort((x, y) => opcoes(x) - opcoes(y))) {
+        if (blocks.some(([, x]) => x === a)) continue;
+        const livres = d.candidates.filter((c) => !usados.has(c.obj) && c.canBlock.includes(a));
+        const n = d.mustBlockMenace?.includes(a) ? 2 : 1;
+        if (livres.length < n) continue;
+        for (const c of livres.slice(0, n)) { usados.add(c.obj); blocks.push([c.obj, a]); }
       }
       return { kind: 'blockers', blocks };
     }
