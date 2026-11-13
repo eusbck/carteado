@@ -298,12 +298,18 @@ function Avisos({ v, cor }: { v: GameView; cor: (p: number) => string }) {
     const novas = v.log.slice(k + 1).filter((l) => / (joga|conjura|ativa|revela) |ataca:|perde a partida|vence a partida|\(ajuste manual\)/.test(l.text));
     // o que um efeito revela ("Caio revela Plains.", "Ana revela a mão: …") aparece com a imagem, como o Revelar do menu;
     // o que vem entre parênteses é a origem ("(Fact or Fiction)", "(milagre)"), não carta revelada
+    // confronto e Psychic Battle juntam todos numa linha: "Confronto: Ana revela X; Caio revela Y."
     for (const l of novas) {
-      const m = / revela (?:a mão: )?(.*)$/.exec(l.text);
-      if (!m) continue;
-      const de = v.players.find((p) => l.text.startsWith(`${p.name} revela `))?.id;
-      if (de === undefined) continue;
-      loja.mostrarReveladas(de, cartasNoTexto(m[1].replace(/\([^)]*\)/g, '')), 'todos', true);
+      if (!l.text.includes(' revela ')) continue;
+      for (const trecho of l.text.split('; ')) {
+        for (const p of v.players) {
+          const i = trecho.indexOf(`${p.name} revela `);
+          if (i < 0 || (i > 0 && !trecho.slice(0, i).endsWith(': '))) continue;
+          const resto = trecho.slice(i + p.name.length + ' revela '.length).replace(/^a mão: /, '');
+          loja.mostrarReveladas(p.id, cartasNoTexto(resto.replace(/\([^)]*\)/g, '')), 'todos', true);
+          break;
+        }
+      }
     }
     if (!novas.length) return;
     const itens = novas.slice(-3).map((l) => ({ id: seq.current++, texto: traduzir(l.text), fim: / (perde|vence) a partida/.test(l.text), quem: v.players.find((p) => l.text.startsWith(`${p.name} `) || l.text.startsWith(`${p.name}:`))?.id ?? null }));
