@@ -110,8 +110,9 @@ export function validateShape(d: Decision, a: Answer): string | null {
 // ---------------------------------------------------------------------------
 // Atalhos
 // ---------------------------------------------------------------------------
-/** o que mais uma escolha diz: se é em segredo e de qual carta ela trata (campos `secret` e `about` da decisão) */
-export interface ExtrasDaEscolha { secret?: boolean; about?: ObjId }
+/** o que mais uma escolha diz: se é em segredo, de qual carta ela trata e se separa pilhas (campos `secret`, `about` e
+ *  `split` da decisão) */
+export interface ExtrasDaEscolha { secret?: boolean; about?: ObjId; split?: boolean }
 
 export function* chooseItems(g: G, player: PlayerId, prompt: string, items: ChoiceItem[], min: number, max: number, ordered = false, extras: ExtrasDaEscolha = {}): Gen<string[]> {
   if (items.filter((i) => !i.disabled).length === 0 && min === 0) return [];

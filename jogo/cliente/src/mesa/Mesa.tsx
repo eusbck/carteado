@@ -12,7 +12,8 @@ import type { GameView, ObjView, PlayerView } from '../../../motor/view.ts';
 import type { MsgChat } from '../../../servidor/protocolo.ts';
 import { avatarDoAssento } from '../avatares.ts';
 import { nomeCarta, rostoNoFundo, traduzir, urlFundo, urlImagem } from '../cartas.ts';
-import { IconeAjuste, IconeConceder, IconeRecolher as IconeSeta, IconeConfig, IconeDesfazer, IconeFimTurno, IconeParadas, IconePassar, IconeRecolher, IconeRegistro, IconeSair, Marca } from '../icones.tsx';
+import { abrirRelato } from '../relato/relatoLoja.ts';
+import { IconeAjuste, IconeErro, IconeConceder, IconeRecolher as IconeSeta, IconeConfig, IconeDesfazer, IconeFimTurno, IconeParadas, IconePassar, IconeRecolher, IconeRegistro, IconeSair, Marca } from '../icones.tsx';
 import { Importacoes } from '../Importacoes.tsx';
 import { loja, useLoja } from '../loja.ts';
 import { reservaPaga } from '../mana.ts';
@@ -1197,7 +1198,7 @@ export function Mesa() {
   const arrumar = useArrumar(objsPorJogador.get(eu), anexos);
   const fundoDe = (p: number) => {
     const deck = e.decks.find((x) => x.id === sala.assentos[p]?.deck);
-    return deck ? urlFundo(deck.comandante) : null;
+    return deck ? urlFundo(deck.capa) : null;
   };
   // retrato de cada jogador: o que a pessoa escolheu, ou o do comandante do deck dela
   const avatarDe = (p: number) => avatarDoAssento(sala.assentos[p]?.avatar, e.decks.find((x) => x.id === sala.assentos[p]?.deck)?.comandante);
@@ -1235,6 +1236,7 @@ export function Mesa() {
         objs={objsPorJogador.get(j.id) ?? SEM_OBJS}
         anexos={anexos}
         comandantes={v.command.filter((o) => o.owner === j.id)}
+        semComandante={!!v.formato}
         exilio={v.exile.filter((o) => o.owner === j.id)}
         eu={j.id === eu}
         ativo={v.turn.active === j.id}
@@ -1328,7 +1330,7 @@ export function Mesa() {
   const ladosVS = (): LadoVS[] => ordem.map((p) => {
     const a = sala.assentos[p];
     const deck = e.decks.find((x) => x.id === a?.deck);
-    const comandante = deck ? nomeCarta(deck.comandante, deck.comandante).split(',')[0] : null;
+    const comandante = deck?.comandante ? nomeCarta(deck.comandante, deck.comandante).split(',')[0] : null;
     // sem o complemento entre parênteses dos decks importados ("(Reality Fracture Commander Decklist)"), e sem repetir
     // quando o deck tem o nome do comandante ("Terra")
     // (o nome importado vem cortado em 60 letras, às vezes sem o ")" do fim)
@@ -1340,7 +1342,7 @@ export function Mesa() {
       comandante,
       deck: nomeDeck && nomeDeck !== comandante ? nomeDeck : null,
       fundo: fundoDe(p),
-      foco: deck ? rostoNoFundo(deck.comandante) : [0.5, 0.3],
+      foco: deck ? rostoNoFundo(deck.capa) : [0.5, 0.3],
       aura: avatarDe(p)?.aura ?? cor(p),
       // a ordem dos turnos já vem sorteada: o primeiro dela joga o primeiro turno
       comeca: p === v.turnOrder[0],
@@ -1431,6 +1433,7 @@ export function Mesa() {
           <li><button title="Paradas" aria-label="Paradas" onClick={() => setModal({ tipo: 'paradas' })}><IconeParadas /><span class="rotulo">Paradas</span></button></li>
           <li><button title="Ajuste manual" aria-label="Ajuste manual" disabled={decisaoManual === null} onClick={() => setManualAberto(true)}><IconeAjuste /><span class="rotulo">Ajuste manual</span></button></li>
           <li><button title="Configurações" aria-label="Configurações" onClick={() => setModal({ tipo: 'config' })}><IconeConfig /><span class="rotulo">Configurações</span></button></li>
+          <li><button title="Reportar um erro: tira um print da mesa e manda junto com a partida" aria-label="Reportar erro" onClick={() => abrirRelato()}><IconeErro /><span class="rotulo">Reportar erro</span></button></li>
           {!v.gameOver && !minha.left && <li><button title="Conceder" aria-label="Conceder" onClick={() => setModal({ tipo: 'conceder' })}><IconeConceder /><span class="rotulo">Conceder</span></button></li>}
           <li><button title="Sair" aria-label="Sair" onClick={() => loja.enviar({ t: 'sair' })}><IconeSair /><span class="rotulo">Sair</span></button></li>
           <li>

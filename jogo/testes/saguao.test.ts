@@ -334,6 +334,7 @@ describe('prévia dos decks: Catalogo.lista', () => {
     expect(lista).toEqual({
       id: 'Deck123456',
       nome: 'Deck Pronto',
+      formato: 'commander',
       comandante: { nome: 'Cmd', quantidade: 1, pt: 'Comandante em pt', img: 'img-Cmd', tipo: 'Legendary Creature — Human Wizard', pronta: true },
       cartas: [
         { nome: 'A', quantidade: 1, pt: null, img: 'img-A', tipo: 'Instant', pronta: true },
@@ -350,7 +351,7 @@ describe('prévia dos decks: Catalogo.lista', () => {
   it('o comandante não aparece entre as cartas, mesmo se o arquivo também o listar ali', () => {
     const { c } = catalogo();
     const lista = c.lista('Dupl123456', INFO)!;
-    expect(lista.comandante.nome).toBe('Cmd');
+    expect(lista.comandante!.nome).toBe('Cmd');
     expect(lista.cartas.map((x) => x.nome)).toEqual(['A']);
   });
 
@@ -370,7 +371,7 @@ describe('prévia dos decks: rota GET /api/catalogo/<id>/cartas', () => {
     expect(r?.status).toBe(200);
     expect(r?.corpo).toEqual(c.lista('Deck123456', INFO));
     const corpo = r!.corpo as ListaDeck;
-    expect(corpo.comandante.nome).toBe('Cmd');
+    expect(corpo.comandante!.nome).toBe('Cmd');
     expect(corpo.cartas).toHaveLength(4);
   });
 

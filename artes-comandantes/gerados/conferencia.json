@@ -1,6 +1,6 @@
 {
-  "completos": 15,
-  "total": 18,
+  "completos": 31,
+  "total": 32,
   "assets": [
     {
       "id": "jin-sakai",
@@ -107,14 +107,29 @@
     {
       "id": "black-panther",
       "deck": "Wakanda Forever",
-      "completo": false,
+      "completo": true,
       "banner": {
         "largura": 1672,
         "altura": 941,
         "proporcao": 1.7768331562167907,
         "variantes": 1
       },
-      "icones": [],
+      "icones": [
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/black-panther.webp",
+          "largura": 512,
+          "altura": 512,
+          "transparente": true,
+          "alfa": true
+        },
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/mesa/black-panther.webp",
+          "largura": 256,
+          "altura": 256,
+          "transparente": true,
+          "alfa": true
+        }
+      ],
       "imagensAtuais": [
         {
           "comandante": "T'Challa, the Black Panther",
@@ -194,14 +209,29 @@
     {
       "id": "invisible-woman",
       "deck": "The Fantastic Four Collector's Edition",
-      "completo": false,
+      "completo": true,
       "banner": {
         "largura": 1672,
         "altura": 941,
         "proporcao": 1.7768331562167907,
         "variantes": 1
       },
-      "icones": [],
+      "icones": [
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/invisible-woman.webp",
+          "largura": 512,
+          "altura": 512,
+          "transparente": true,
+          "alfa": true
+        },
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/mesa/invisible-woman.webp",
+          "largura": 256,
+          "altura": 256,
+          "transparente": true,
+          "alfa": true
+        }
+      ],
       "imagensAtuais": [
         {
           "comandante": "Invisible Woman",
@@ -555,7 +585,494 @@
           "alfa": true
         }
       ],
-      "imagensAtuais": []
+      "imagensAtuais": [
+        {
+          "comandante": "Sam, Loyal Attendant",
+          "imagem": "557c1d1d-90ff-4399-bc56-a8c86c466699",
+          "fundo": true
+        },
+        {
+          "comandante": "Frodo, Adventurous Hobbit",
+          "imagem": "f6c5d04b-1c0d-4b75-9c42-3a235b950365",
+          "fundo": true
+        }
+      ]
+    },
+    {
+      "id": "nelly",
+      "deck": "Blame Game",
+      "completo": true,
+      "banner": {
+        "largura": 1672,
+        "altura": 941,
+        "proporcao": 1.7768331562167907,
+        "variantes": 1
+      },
+      "icones": [
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/nelly.webp",
+          "largura": 512,
+          "altura": 512,
+          "transparente": true,
+          "alfa": true
+        },
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/mesa/nelly.webp",
+          "largura": 256,
+          "altura": 256,
+          "transparente": true,
+          "alfa": true
+        }
+      ],
+      "imagensAtuais": [
+        {
+          "comandante": "Nelly Borca, Impulsive Accuser",
+          "imagem": "2ef59aa9-f5e1-413a-869b-d287db95efd0",
+          "fundo": true
+        }
+      ]
+    },
+    {
+      "id": "hazel",
+      "deck": "Squirreled Away",
+      "completo": true,
+      "banner": {
+        "largura": 1672,
+        "altura": 941,
+        "proporcao": 1.7768331562167907,
+        "variantes": 1
+      },
+      "icones": [
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/hazel.webp",
+          "largura": 512,
+          "altura": 512,
+          "transparente": true,
+          "alfa": true
+        },
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/mesa/hazel.webp",
+          "largura": 256,
+          "altura": 256,
+          "transparente": true,
+          "alfa": true
+        }
+      ],
+      "imagensAtuais": [
+        {
+          "comandante": "Hazel of the Rootbloom",
+          "imagem": "1269ca79-907e-4932-9e77-a9a5d2929060",
+          "fundo": true
+        }
+      ]
+    },
+    {
+      "id": "kotori",
+      "deck": "Buckle Up",
+      "completo": true,
+      "banner": {
+        "largura": 1672,
+        "altura": 941,
+        "proporcao": 1.7768331562167907,
+        "variantes": 1
+      },
+      "icones": [
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/kotori.webp",
+          "largura": 512,
+          "altura": 512,
+          "transparente": true,
+          "alfa": true
+        },
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/mesa/kotori.webp",
+          "largura": 256,
+          "altura": 256,
+          "transparente": true,
+          "alfa": true
+        }
+      ],
+      "imagensAtuais": [
+        {
+          "comandante": "Kotori, Pilot Prodigy",
+          "imagem": "fea6c1c8-eff9-4b66-b96d-e23016f0bb62",
+          "fundo": true
+        }
+      ]
+    },
+    {
+      "id": "giada",
+      "deck": "Calling All Angels",
+      "completo": true,
+      "banner": {
+        "largura": 1672,
+        "altura": 941,
+        "proporcao": 1.7768331562167907,
+        "variantes": 1
+      },
+      "icones": [
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/giada.webp",
+          "largura": 512,
+          "altura": 512,
+          "transparente": true,
+          "alfa": true
+        },
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/mesa/giada.webp",
+          "largura": 256,
+          "altura": 256,
+          "transparente": true,
+          "alfa": true
+        }
+      ],
+      "imagensAtuais": [
+        {
+          "comandante": "Giada, Font of Hope",
+          "imagem": "d8fdb864-0bd6-4b4f-8777-00860eec30e8",
+          "fundo": true
+        }
+      ]
+    },
+    {
+      "id": "ghalta",
+      "deck": "Tramplesaurus Rex",
+      "completo": true,
+      "banner": {
+        "largura": 1672,
+        "altura": 941,
+        "proporcao": 1.7768331562167907,
+        "variantes": 1
+      },
+      "icones": [
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/ghalta.webp",
+          "largura": 512,
+          "altura": 512,
+          "transparente": true,
+          "alfa": true
+        },
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/mesa/ghalta.webp",
+          "largura": 256,
+          "altura": 256,
+          "transparente": true,
+          "alfa": true
+        }
+      ],
+      "imagensAtuais": [
+        {
+          "comandante": "Ghalta, Primal Hunger",
+          "imagem": "2c077ff0-4b6e-4513-8d8c-002f675048ea",
+          "fundo": true
+        }
+      ]
+    },
+    {
+      "id": "gonti",
+      "deck": "Grand Larceny",
+      "completo": true,
+      "banner": {
+        "largura": 1672,
+        "altura": 941,
+        "proporcao": 1.7768331562167907,
+        "variantes": 1
+      },
+      "icones": [
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/gonti.webp",
+          "largura": 512,
+          "altura": 512,
+          "transparente": true,
+          "alfa": true
+        },
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/mesa/gonti.webp",
+          "largura": 256,
+          "altura": 256,
+          "transparente": true,
+          "alfa": true
+        }
+      ],
+      "imagensAtuais": [
+        {
+          "comandante": "Gonti, Canny Acquisitor",
+          "imagem": "03a7e79f-625a-49ac-9cb1-e1fe5f51f5a0",
+          "fundo": true
+        }
+      ]
+    },
+    {
+      "id": "stella-lee",
+      "deck": "Quick Draw",
+      "completo": true,
+      "banner": {
+        "largura": 1672,
+        "altura": 941,
+        "proporcao": 1.7768331562167907,
+        "variantes": 1
+      },
+      "icones": [
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/stella-lee.webp",
+          "largura": 512,
+          "altura": 512,
+          "transparente": true,
+          "alfa": true
+        },
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/mesa/stella-lee.webp",
+          "largura": 256,
+          "altura": 256,
+          "transparente": true,
+          "alfa": true
+        }
+      ],
+      "imagensAtuais": [
+        {
+          "comandante": "Stella Lee, Wild Card",
+          "imagem": "2a8a7696-b5d9-4378-9d5c-2c9007e4df63",
+          "fundo": true
+        }
+      ]
+    },
+    {
+      "id": "aminatou",
+      "deck": "Miracle Worker",
+      "completo": true,
+      "banner": {
+        "largura": 1672,
+        "altura": 941,
+        "proporcao": 1.7768331562167907,
+        "variantes": 1
+      },
+      "icones": [
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/aminatou.webp",
+          "largura": 512,
+          "altura": 512,
+          "transparente": true,
+          "alfa": true
+        },
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/mesa/aminatou.webp",
+          "largura": 256,
+          "altura": 256,
+          "transparente": true,
+          "alfa": true
+        }
+      ],
+      "imagensAtuais": [
+        {
+          "comandante": "Aminatou, Veil Piercer",
+          "imagem": "9f868023-6035-403d-ba91-7a4840c6c392",
+          "fundo": true
+        }
+      ]
+    },
+    {
+      "id": "cloud",
+      "deck": "Cloud",
+      "completo": true,
+      "banner": {
+        "largura": 1672,
+        "altura": 941,
+        "proporcao": 1.7768331562167907,
+        "variantes": 1
+      },
+      "icones": [
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/cloud.webp",
+          "largura": 512,
+          "altura": 512,
+          "transparente": true,
+          "alfa": true
+        },
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/mesa/cloud.webp",
+          "largura": 256,
+          "altura": 256,
+          "transparente": true,
+          "alfa": true
+        }
+      ],
+      "imagensAtuais": [
+        {
+          "comandante": "Cloud, Ex-SOLDIER",
+          "imagem": "15ce92a3-0d51-4c8e-bbce-d225021b4c35",
+          "fundo": true
+        }
+      ]
+    },
+    {
+      "id": "borg-queen",
+      "deck": "We Are The Borg",
+      "completo": true,
+      "banner": {
+        "largura": 1672,
+        "altura": 941,
+        "proporcao": 1.7768331562167907,
+        "variantes": 1
+      },
+      "icones": [
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/borg-queen.webp",
+          "largura": 512,
+          "altura": 512,
+          "transparente": true,
+          "alfa": true
+        },
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/mesa/borg-queen.webp",
+          "largura": 256,
+          "altura": 256,
+          "transparente": true,
+          "alfa": true
+        }
+      ],
+      "imagensAtuais": [
+        {
+          "comandante": "The Borg Queen",
+          "imagem": "8ed939ba-bf8d-4a68-ae9f-f8ca4eb301ab",
+          "fundo": true
+        }
+      ]
+    },
+    {
+      "id": "spock",
+      "deck": "Landing Party",
+      "completo": true,
+      "banner": {
+        "largura": 1672,
+        "altura": 941,
+        "proporcao": 1.7768331562167907,
+        "variantes": 1
+      },
+      "icones": [
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/spock.webp",
+          "largura": 512,
+          "altura": 512,
+          "transparente": true,
+          "alfa": true
+        },
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/mesa/spock.webp",
+          "largura": 256,
+          "altura": 256,
+          "transparente": true,
+          "alfa": true
+        }
+      ],
+      "imagensAtuais": [
+        {
+          "comandante": "Commander Spock",
+          "imagem": "cf114392-a38d-4117-aa41-911d6dc1051b",
+          "fundo": true
+        }
+      ]
+    },
+    {
+      "id": "orvar",
+      "deck": "Twitch Control",
+      "completo": true,
+      "banner": {
+        "largura": 1672,
+        "altura": 941,
+        "proporcao": 1.7768331562167907,
+        "variantes": 1
+      },
+      "icones": [
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/orvar.webp",
+          "largura": 512,
+          "altura": 512,
+          "transparente": true,
+          "alfa": true
+        },
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/mesa/orvar.webp",
+          "largura": 256,
+          "altura": 256,
+          "transparente": true,
+          "alfa": true
+        }
+      ],
+      "imagensAtuais": [
+        {
+          "comandante": "Orvar, the All-Form",
+          "imagem": "1cc9e7cb-d4f4-4f06-b232-f91eb39fe1b3",
+          "fundo": true
+        }
+      ]
+    },
+    {
+      "id": "ur-dragon",
+      "deck": "How to Train Ur-Dragon",
+      "completo": true,
+      "banner": {
+        "largura": 1672,
+        "altura": 941,
+        "proporcao": 1.7768331562167907,
+        "variantes": 1
+      },
+      "icones": [
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/ur-dragon.webp",
+          "largura": 512,
+          "altura": 512,
+          "transparente": true,
+          "alfa": true
+        },
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/mesa/ur-dragon.webp",
+          "largura": 256,
+          "altura": 256,
+          "transparente": true,
+          "alfa": true
+        }
+      ],
+      "imagensAtuais": [
+        {
+          "comandante": "The Ur-Dragon",
+          "imagem": "ea949741-af94-47ae-a577-2953c69ab71d",
+          "fundo": true
+        }
+      ]
+    },
+    {
+      "id": "inalla",
+      "deck": "Wizard's Chess",
+      "completo": true,
+      "banner": {
+        "largura": 1672,
+        "altura": 941,
+        "proporcao": 1.7768331562167907,
+        "variantes": 1
+      },
+      "icones": [
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/inalla.webp",
+          "largura": 512,
+          "altura": 512,
+          "transparente": true,
+          "alfa": true
+        },
+        {
+          "arquivo": "jogo/cliente/src/imagens/avatares/mesa/inalla.webp",
+          "largura": 256,
+          "altura": 256,
+          "transparente": true,
+          "alfa": true
+        }
+      ],
+      "imagensAtuais": [
+        {
+          "comandante": "Inalla, Archmage Ritualist",
+          "imagem": "d6d0ddcc-691e-4237-8696-c7a4896ce68d",
+          "fundo": true
+        }
+      ]
     }
   ]
 }

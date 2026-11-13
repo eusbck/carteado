@@ -21,7 +21,7 @@ describe('Decks próprios da mesa', () => {
       const l = ler(id).atual!;
       expect(l.cartas.reduce((n, c) => n + c.quantidade, 0) + 1).toBe(100);
       expect(validateDeck({ id, nome: id, comandante: l.comandante, cartas: l.cartas }, oracle)).toEqual([]);
-      expect([l.comandante, ...l.cartas.map((c) => c.nome)].filter((n) => !cartaPronta(n))).toEqual([]);
+      expect([l.comandante!, ...l.cartas.map((c) => c.nome)].filter((n) => !cartaPronta(n))).toEqual([]);
     });
   }
 

@@ -30,6 +30,8 @@ export interface AreaProps {
   objs: ObjView[];
   anexos: Map<ObjId, ObjView[]>;
   comandantes: ObjView[];
+  /** partida sem comandante (Standard): a zona de comando só aparece se alguma carta for parar lá */
+  semComandante?: boolean;
   exilio: ObjView[];
   eu: boolean;
   ativo: boolean;
@@ -275,13 +277,15 @@ export function AreaJogador(p: AreaProps) {
 
       <footer class="zonas">
         <div class="zonas-grupo">
-          <div class="zona" aria-label="Zona de comando">
-            <span class="zona-rotulo">Comando</span>
-            <div class={`slot ${comandantes.length > 1 ? 'slot-pilha' : ''}`}>
-              {comandantes.map((o) => <Carta key={o.id} o={o} realce={p.realce(o)} onClick={p.onCarta} onZoom={p.onZoom} onMenu={p.onMenuCarta} />)}
-              {j.commanderTax > 0 && <span class="slot-imposto" title="Imposto de comandante (CR 903.8)">+{j.commanderTax}</span>}
+          {(!p.semComandante || comandantes.length > 0) && (
+            <div class="zona" aria-label="Zona de comando">
+              <span class="zona-rotulo">Comando</span>
+              <div class={`slot ${comandantes.length > 1 ? 'slot-pilha' : ''}`}>
+                {comandantes.map((o) => <Carta key={o.id} o={o} realce={p.realce(o)} onClick={p.onCarta} onZoom={p.onZoom} onMenu={p.onMenuCarta} />)}
+                {j.commanderTax > 0 && <span class="slot-imposto" title="Imposto de comandante (CR 903.8)">+{j.commanderTax}</span>}
+              </div>
             </div>
-          </div>
+          )}
           {/* emblemas (CR 114): não são cartas; o nome e as habilidades aparecem no zoom */}
           {emblemas.length > 0 && (
             <div class="zona" aria-label="Emblemas">

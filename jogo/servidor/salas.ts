@@ -8,6 +8,7 @@ import { NIVEL_PADRAO, nivelValido, type NivelBot } from '../bots/niveis.ts';
 import { defaultAnswer } from '../motor/ask.ts';
 import { shouldAutoPass, type StopSettings } from '../motor/autopass.ts';
 import { Game, type Checkpoint, type Input } from '../motor/game.ts';
+import { ehModo, MODOS, modoDe, type ModoJogo } from '../motor/modos.ts';
 import type { DeckList } from '../motor/state.ts';
 import type { Answer, Decision, GameConfig, Step } from '../motor/types.ts';
 import { controllerOf } from '../motor/chars.ts';
@@ -100,6 +101,8 @@ interface DadosSala {
   partida: DadosPartida | null;
   mulligan?: RegraMulligan;
   auxilios?: RegraAuxilios;
+  /** modo de jogo (motor/modos.ts); salas de antes dos modos não têm: são de Commander */
+  formato?: ModoJogo;
   /** as últimas mensagens do chat (continuam numa partida nova e depois de reiniciar o servidor) */
   chat?: MsgChat[];
   /** passo do saguão (salas de antes não têm: começam nos lugares) */
@@ -236,12 +239,36 @@ export class Sala {
 
   get codigo(): string { return this.d.codigo; }
 
+  /**
+   * A sala e a partida como estão agora, para um relato de erro (ferramentas/relatos.ts refaz a partida com isto):
+   * configuração, listas, todas as entradas e os checkpoints. Vai sem a senha da sala e sem os tokens dos assentos.
+   */
+  paraRelato(assento: number): Record<string, unknown> {
+    const p = this.d.partida;
+    const g = this.game;
+    let listas: DeckList[] | null = p?.listas ?? null;
+    if (p && !listas) { try { listas = this.decks(); } catch { listas = null; } }
+    return {
+      codigo: this.d.codigo, estado: this.d.estado, voce: assento, anfitriao: this.d.anfitriao,
+      assentos: this.d.assentos.map(({ token: _token, ...a }) => a),
+      erro: this.erro,
+      falhasSeguidas: this.falhas,
+      partida: p ? {
+        config: p.config, deckIds: p.deckIds, listas, iniciadaEm: p.iniciadaEm ?? null, encerradaEm: p.encerradaEm ?? null,
+        checkpoint: p.checkpoint, checkpoints: this.cps,
+        // as da partida na memória (as gravadas no banco podem estar esperando a gravação agrupada)
+        entradas: g ? g.inputs : this.gerente.banco.entradas(this.d.codigo),
+        metas: g ? this.metas : this.gerente.banco.metas(this.d.codigo),
+      } : null,
+    };
+  }
+
   publica(): SalaPublica {
     const conectados = new Set([...this.conexoes].map((c) => c.assento));
     const p = this.d.partida;
     return {
       codigo: this.d.codigo, estado: this.d.estado, anfitriao: this.d.anfitriao, mulligan: this.d.mulligan ?? 'londres', auxilios: this.d.auxilios ?? 'permitidos',
-      partida: this.d.partida ? idPartida(this.d.partida.config.seed) : null, etapa: this.d.etapa ?? 'lugares',
+      partida: this.d.partida ? idPartida(this.d.partida.config.seed) : null, etapa: this.d.etapa ?? 'lugares', formato: modoDe(this.d),
       cronometro: p?.iniciadaEm !== undefined ? { iniciadaEm: p.iniciadaEm, encerradaEm: p.encerradaEm ?? null } : null,
       assentos: this.d.assentos.map((a, i) => ({ indice: i, tipo: a.tipo, nome: a.nome, deck: a.deck, conectado: a.tipo === 'bot' || conectados.has(i), nivel: a.tipo === 'bot' ? a.nivel ?? NIVEL_PADRAO : null, avatar: a.tipo === 'humano' ? a.avatar ?? null : null })),
     };
@@ -463,7 +490,9 @@ export class Sala {
     switch (m.t) {
       case 'deck': {
         if (this.d.estado === 'jogando') return 'A partida já começou';
-        if (!this.gerente.deck(m.deck)) return 'Deck desconhecido';
+        const deck = this.gerente.deck(m.deck);
+        if (!deck) return 'Deck desconhecido';
+        if (modoDe(deck) !== modoDe(this.d)) return `Esse deck é de ${MODOS[modoDe(deck)].nome}; a sala é de ${MODOS[modoDe(this.d)].nome}`;
         this.d.assentos[i].deck = m.deck;
         break;
       }
@@ -478,7 +507,9 @@ export class Sala {
           this.d.etapa = 'lugares';
           if (this.d.estado === 'fim') this.voltarAoSaguao();
         } else {
-          if (!this.gerente.deck(m.deck)) return 'Deck desconhecido';
+          const deck = this.gerente.deck(m.deck);
+          if (!deck) return 'Deck desconhecido';
+          if (modoDe(deck) !== modoDe(this.d)) return `Esse deck é de ${MODOS[modoDe(deck)].nome}; a sala é de ${MODOS[modoDe(this.d)].nome}`;
           if (m.nivel !== undefined && !nivelValido(m.nivel)) return 'Nível de bot desconhecido';
           // o nome é sorteado quando o bot entra no assento e fica com ele (trocar o deck ou o nível não muda)
           const nome = a.tipo === 'bot' && a.nome ? a.nome : this.sortearNome(m.assento);
@@ -555,6 +586,25 @@ export class Sala {
       case 'avatar': {
         if (m.avatar !== null && !avatarValido(m.avatar)) return 'Retrato desconhecido';
         this.d.assentos[i].avatar = m.avatar;
+        break;
+      }
+      case 'formato': {
+        if (!anfitriao) return 'Só quem criou a sala escolhe o modo de jogo';
+        if (this.d.estado === 'jogando') return 'A partida já começou';
+        if (!ehModo(m.formato)) return 'Modo de jogo desconhecido';
+        if (m.formato === modoDe(this.d)) break;
+        this.d.formato = m.formato;
+        // os decks do outro modo saem: cada pessoa escolhe de novo, e os bots ganham um sorteado do modo novo
+        const usados = new Set<string>();
+        const doModo = this.gerente.decksDoModo(m.formato);
+        for (const a of this.d.assentos) {
+          if (!a.deck || modoDe(this.gerente.deck(a.deck)) === m.formato) { if (a.deck) usados.add(a.deck); continue; }
+          if (a.tipo !== 'bot') { a.deck = null; continue; }
+          const sobra = doModo.filter((d) => !usados.has(d.id));
+          const l = sobra.length ? sobra : doModo;
+          a.deck = l.length ? l[Math.floor(Math.random() * l.length)].id : null;
+          if (a.deck) usados.add(a.deck);
+        }
         break;
       }
       case 'auxilios': {
@@ -702,6 +752,7 @@ export class Sala {
     if (sentados.length >= MIN_LUGARES) {
       if (sentados.some((a) => !a.deck)) return 'Todos precisam escolher um deck';
       if (sentados.some((a) => !this.gerente.deck(a.deck!))) return 'Um dos decks escolhidos não está mais disponível; escolha outro';
+      if (sentados.some((a) => modoDe(this.gerente.deck(a.deck!)) !== modoDe(this.d))) return `Todos precisam escolher um deck de ${MODOS[modoDe(this.d)].nome}`;
     }
     // lugares livres: a partida começa com quem está sentado (pelo menos dois)
     const livres = this.tirarLivres();
@@ -711,7 +762,9 @@ export class Sala {
     const config: GameConfig = {
       seed: semente,
       players: this.d.assentos.map((a, i) => ({ name: a.nome ?? `Jogador ${i + 1}`, deckId: a.deck! })),
-      startingLife: 40, // CR 903.7
+      // CR 103.4: 20; Commander, 903.7: 40
+      startingLife: MODOS[modoDe(this.d)].vida,
+      ...(modoDe(this.d) !== 'commander' ? { formato: modoDe(this.d) } : {}),
       turnLimit: null,
       // CR 103.8a: só no duelo o primeiro jogador pula a compra do primeiro turno; o mulligan grátis é do multiplayer
       multiplayer: this.d.assentos.length > 2,
@@ -1132,6 +1185,16 @@ export class Gerente {
   }
 
   deck(id: string): DeckList | undefined { return this.decks.get(id); }
+  /** os decks do saguão de um modo de jogo */
+  decksDoModo(modo: ModoJogo): DeckList[] { return [...this.decks.values()].filter((d) => modoDe(d) === modo); }
+
+  /** a partida de quem relata um erro: só com o token de um assento da sala (null: sala ou token que não conferem) */
+  paraRelato(codigo: string, token: string): Record<string, unknown> | null {
+    const s = this.salas.get(codigo.toUpperCase().trim());
+    if (!s || !token) return null;
+    const i = s.d.assentos.findIndex((a) => a.token === token);
+    return i < 0 ? null : s.paraRelato(i);
+  }
 
   /** grava o que as salas deixaram para depois (Atrasos.gravacao): o servidor chama ao encerrar */
   salvarTudo(): void {
@@ -1227,11 +1290,13 @@ export class Gerente {
         if (typeof m.senhaSala !== 'string' || m.senhaSala.length < 3 || m.senhaSala.length > 64) return 'A senha da sala precisa ter de 3 a 64 caracteres';
         if (m.modo !== undefined && m.modo !== '4p' && m.modo !== '1v1') return 'Modo inválido';
         // de 2 a 6 lugares (a forma já conferiu o intervalo); o pedido antigo vem com o modo
-        const n = m.lugares ?? (m.modo === '1v1' ? 2 : 4);
+        if (m.formato !== undefined && !ehModo(m.formato)) return 'Modo de jogo desconhecido';
+        const formato = m.formato ?? 'commander';
+        const n = m.lugares ?? (m.modo === '1v1' ? 2 : m.modo === '4p' ? 4 : MODOS[formato].lugaresPadrao);
         const { senhaSala } = m;
         return this.comSenha(c, () => hashSenha(senhaSala), () => hashSenhaAssincrono(senhaSala), (senha) => {
           const codigo = this.novoCodigo();
-          const s = new Sala({ codigo, senha, estado: 'espera', assentos: Array.from({ length: n }, assentoVazio), anfitriao: 0, partida: null }, this);
+          const s = new Sala({ codigo, senha, estado: 'espera', assentos: Array.from({ length: n }, assentoVazio), anfitriao: 0, partida: null, ...(formato !== 'commander' ? { formato } : {}) }, this);
           this.salas.set(codigo, s);
           s.sentar(c, nome);
           s.salvar();

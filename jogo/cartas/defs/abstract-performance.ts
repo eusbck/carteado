@@ -22,8 +22,8 @@ export default defineCard({
         // ruling 4: o oponente não vê a pilha virada para baixo
         const quem = op.startsWith('p') ? Number(op.slice(1)) : Number(op);
         const [pilha] = yield* chooseItems(c.g, quem, 'Abstract Performance: escolha a pilha que vai para o cemitério', [
-          { id: 'fechada', label: `Pilha virada para baixo (${fechada.length} cartas)` },
-          { id: 'aberta', label: `Pilha virada para cima: ${aberta.map((id) => nameOf(c.g, id)).join(', ') || 'vazia'}` },
+          { id: 'fechada', label: `Pilha virada para baixo (${fechada.length} cartas)`, pile: fechada },
+          { id: 'aberta', label: `Pilha virada para cima: ${aberta.map((id) => nameOf(c.g, id)).join(', ') || 'vazia'}`, pile: aberta },
         ], 1, 1);
         const vai = pilha === 'fechada' ? fechada : aberta;
         const fica = pilha === 'fechada' ? aberta : fechada;

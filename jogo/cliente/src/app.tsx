@@ -9,6 +9,10 @@ import { Entrada } from './telas/Entrada.tsx';
 import { Inicio } from './telas/Inicio.tsx';
 import { Saguao } from './telas/Saguao.tsx';
 import { Mesa } from './mesa/Mesa.tsx';
+import { IconeErro } from './icones.tsx';
+import { FORA_DO_PRINT } from './relato/captura.ts';
+import { Relato } from './relato/Relato.tsx';
+import { abrirRelato } from './relato/relatoLoja.ts';
 
 // a tela Decks (importar e atualizar pelo Moxfield) fica fora do pacote inicial: o código vem com a página parada,
 // depois da tela inicial ou do saguão (os dois têm o botão Decks), e o clique quase nunca chega a ver o "Carregando…"
@@ -38,10 +42,23 @@ export function App() {
       {/* as primeiras telas ganham a atmosfera (brasas subindo) por cima dos wallpapers */}
       {(e.fase === 'entrada' || e.fase === 'inicio') && <Atmosfera />}
       {tela}
-      {e.erro && <div class="aviso-erro" role="alert">{e.erro}</div>}
+      {e.erro && (
+        <div class="aviso-erro" role="alert">
+          {e.erro}
+          {/* erro do servidor ou do motor: dá para reportar dali mesmo, com o aviso já no texto */}
+          {e.fase !== 'entrada' && /erro|falh|inválid|não foi possível/i.test(e.erro) && (
+            <button type="button" class={`botao pequeno relato-do-aviso ${FORA_DO_PRINT}`} onClick={() => abrirRelato({ tipo: 'travou', texto: `Apareceu o aviso: "${e.erro}"\n\n` })}>Reportar</button>
+          )}
+        </div>
+      )}
       {e.fase !== 'entrada' && e.fase !== 'carregando' && !e.conectado && <div class="aviso-conexao">Reconectando ao servidor…</div>}
       {/* as importações de deck seguem fora da tela Decks: o selo mostra o andamento (na mesa ele fica na lateral) */}
       {fundo && e.fase !== 'entrada' && e.fase !== 'decks' && <Importacoes lugar="canto" />}
+      {/* Reportar erro: na mesa fica no menu lateral; nas outras telas (depois de entrar), este botão no canto */}
+      {fundo && e.fase !== 'entrada' && e.fase !== 'carregando' && (
+        <button type="button" class={`relato-flutuante ${FORA_DO_PRINT}`} onClick={() => abrirRelato()} title="Reportar um erro: tira um print da tela e manda junto com o que você escrever"><IconeErro />Reportar erro</button>
+      )}
+      <Relato />
     </>
   );
 }
