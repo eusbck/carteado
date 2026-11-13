@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from 'preact/hooks';
 import type { StopSettings } from '../../motor/autopass.ts';
 import type { Answer, ManualAction } from '../../motor/types.ts';
 import type { GameView } from '../../motor/view.ts';
-import type { CartaMontagem, Cena, DeckCatalogo, DeckResumo, ListaDeck,MsgChat, MsgCliente, MsgServidor, PedidoDesfazer, Posicoes, SalaPublica, TarefaPublica } from '../../servidor/protocolo.ts';
+import type { CartaMontagem, Cena, DeckCatalogo, DeckResumo, LinhaSistema, ListaDeck,MsgChat, MsgCliente, MsgServidor, PedidoDesfazer, Posicoes, SalaPublica, TarefaPublica } from '../../servidor/protocolo.ts';
 import { carregarCartas } from './cartas.ts';
 import { compartilhar } from './compartilhar.ts';
 import type { ReferenciaRelogio } from './cronometro.ts';
@@ -60,6 +60,8 @@ export interface Estado {
   minhasTarefas: number[];
   /** chat da sala (as mensagens guardadas no servidor e as que chegaram depois) */
   chat: MsgChat[];
+  /** Onda B: linhas de sistema do registro (entrou, saiu, desfazer), vindas da sala */
+  sistema: LinhaSistema[];
   /** o seu id de autor no chat (vem com a sala): as suas mensagens são as com esse `quem` */
   quem: string | null;
   /** F2: a cena (eventos redigidos do servidor) que veio com a última vista mostrada; ainda não é usada na mesa */
@@ -110,7 +112,7 @@ function guardarTarefas(l: number[]): void {
 }
 
 class Loja {
-  e: Estado = { fase: 'carregando', conectado: false, sala: null, relogio: null, voce: null, vista: null, paradas: null, posicoes: {}, reveladas: [], erro: null, decks: [], respondida: null, desfazivel: false, desfazer: null, avisos: [], recusa: 0, recusaCombate: null, pensando: null, catalogo: null, tarefasDeck: {}, minhasTarefas: tarefasGuardadas(), chat: [], quem: null, cena: null };
+  e: Estado = { fase: 'carregando', conectado: false, sala: null, relogio: null, voce: null, vista: null, paradas: null, posicoes: {}, reveladas: [], erro: null, decks: [], respondida: null, desfazivel: false, desfazer: null, avisos: [], recusa: 0, recusaCombate: null, pensando: null, catalogo: null, tarefasDeck: {}, minhasTarefas: tarefasGuardadas(), chat: [], sistema: [], quem: null, cena: null };
   private ouvintes = new Set<() => void>();
   private ws: WebSocket | null = null;
   private fila: MsgCliente[] = [];
@@ -450,6 +452,13 @@ class Loja {
         if (novas.some((x) => x.quem !== this.e.quem)) tocar('chat');
         break;
       }
+      case 'sistema': {
+        if (m.tudo) { this.mudar({ sistema: m.linhas }); break; }
+        const ja = new Set(this.e.sistema.map((x) => x.id));
+        const novas = m.linhas.filter((x) => !ja.has(x.id));
+        if (novas.length) this.mudar({ sistema: [...this.e.sistema, ...novas].slice(-100) });
+        break;
+      }
       case 'decks':
         this.mudar({ decks: m.decks });
         break;
@@ -462,7 +471,7 @@ class Loja {
         guardarSala(null);
         // voltando a esta sala (ou a outra) depois, o retrato guardado vai de novo para o assento novo
         this.avatarMandado.clear();
-        this.mudar({ sala: null, relogio: null, voce: null, vista: null, fase: 'inicio', chat: [], quem: null });
+        this.mudar({ sala: null, relogio: null, voce: null, vista: null, fase: 'inicio', chat: [], sistema: [], quem: null });
         break;
       case 'pong':
         break;

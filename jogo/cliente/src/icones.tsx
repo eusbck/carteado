@@ -29,3 +29,17 @@ export const IconeVida = () => <svg viewBox="0 0 24 24" aria-hidden="true"><path
 
 /** o "M" do logo do Magic, em brasa: ao lado de "COMMANDER" ele faz as vezes de "Magic" (e é o que o leitor de tela lê) */
 export const Marca = () => <img class="marca-logo" src={logoM} alt="Magic" draggable={false} />;
+
+// Onda B: um ícone por tipo de linha do Registro (mesmo traço dos outros)
+export const IconeRegMagia = () => <Svg><path d="M12 3l1.8 4.7L18.5 9l-4.7 1.8L12 15.5l-1.8-4.7L5.5 9l4.7-1.3z" /><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z" /></Svg>;
+export const IconeRegGatilho = () => <Svg><path d="M13 2 4 14h7l-1 8 9-12h-7z" /></Svg>;
+export const IconeRegAtaque = () => <Svg><path d="M14.5 17.5 3 6V3h3l11.5 11.5" /><path d="m13 19 6-6M16 16l4 4M19 21l2-2" /></Svg>;
+export const IconeRegDano = () => <Svg><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8" /></Svg>;
+export const IconeRegVida = () => <Svg><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z" /></Svg>;
+export const IconeRegMorte = () => <Svg><path d="M12 3a7 7 0 0 0-7 7v3l2 2v3h10v-3l2-2v-3a7 7 0 0 0-7-7z" /><path d="M9 11h.01M15 11h.01M10 18v-2M14 18v-2" /></Svg>;
+export const IconeRegCompra = () => <Svg><rect x="6" y="3" width="12" height="17" rx="2" /><path d="M12 8v6M9 11h6" /></Svg>;
+export const IconeRegFicha = () => <Svg><circle cx="12" cy="12" r="8" /><circle cx="12" cy="12" r="3" /></Svg>;
+export const IconeRegSistema = () => <Svg><circle cx="12" cy="12" r="9" /><path d="M12 8h.01M11 12h1v5h1" /></Svg>;
+export const IconeRegManual = () => <Svg><path d="M12 20h9" /><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z" /></Svg>;
+export const IconeRegOutro = () => <Svg><circle cx="12" cy="12" r="2" /></Svg>;
+export const IconeCopiar = () => <Svg><rect x="9" y="9" width="12" height="12" rx="2" /><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" /></Svg>;

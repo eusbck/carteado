@@ -21,7 +21,7 @@ export function cartaDaPilha(s: StackView, todos: Map<ObjId, ObjView>): ObjView 
 
 let regra: HTMLStyleElement | null = null;
 /** acende as cartas com este data-obj (null apaga) */
-function acenderFonte(id: ObjId | null): void {
+export function acenderFonte(id: ObjId | null): void {
   if (!regra && id === null) return;
   regra ??= document.head.appendChild(document.createElement('style'));
   // contorno parado (animar o contorno redesenharia a carta a cada quadro)
