@@ -1,13 +1,22 @@
-// Stomping Ground — ({T}: Add {R} or {G}.) As this land enters, you may pay 2 life. If you don't, it enters tapped.
-import { defineCard, land, mana } from '../../motor/api.ts';
+// Stomping Ground
+// ({T}: Add {R} or {G}.)
+// As this land enters, you may pay 2 life. If you don't, it enters tapped.
+import { asEnters, defineCard, loseLife, yesNo } from '../../motor/api.ts';
 
 export default defineCard({
   name: 'Stomping Ground',
-  faces: [{ abilities: [land.payLifeOrTapped(2), mana(['R', 'G'])] }],
+  // a mana vem dos tipos Mountain e Forest (CR 305.6)
+  faces: [{ abilities: [
+    // CR 614.1c: substituição de "ao entrar"; CR 119.4: só paga quem tem pelo menos 2 de vida.
+    // Se um efeito já o põe virado, pagar não o desvira (ruling 2).
+    asEnters(function* (c, ev) {
+      const paga = c.g.state.players[c.you].life >= 2 && (yield* yesNo(c.g, c.you, 'Stomping Ground: pagar 2 de vida para entrar desvirado?'));
+      if (paga) loseLife(c.g, c.you, 2, c.source);
+      else ev.tapped = true;
+    }, 'Ao entrar, você pode pagar 2 de vida. Se não pagar, entra virado.'),
+  ] }],
   rulings: {
-    1: 'regra geral: CR 305.6 — tem os dois tipos básicos e é achado por buscas desses tipos',
-    2: 'regra geral: CR 119.4 — só paga 2 de vida quem tem 2 ou mais',
-    3: 'regra geral: CR 614.12 — a escolha é feita conforme ele entra, de qualquer zona',
-    4: 'regra geral: CR 305.7 — continua não básico',
+    1: 'teste: CR 305.6 e 305.8: tem dois tipos básicos de terreno, mas não é básico',
+    2: 'teste: posto no campo virado por um efeito, pode pagar 2 de vida mas continua virado',
   },
 });

@@ -2,13 +2,11 @@
 // Flying
 // Whenever Korvold enters or attacks, sacrifice another permanent.
 // Whenever you sacrifice a permanent, put a +1/+1 counter on Korvold and draw a card.
-import { addCounters, controlledBy, defineCard, draw, keyword, on, sacrificeYours, triggered } from '../../motor/api.ts';
-import type { Ctx, Gen } from '../../motor/defs.ts';
-import { voceSacrificaPermanente } from '../terras.ts';
+import { addCounters, defineCard, draw, eachSacrifices, keyword, on, triggered } from '../../motor/api.ts';
 
-function* sacrificaOutro(c: Ctx): Gen<void> {
-  if (!controlledBy(c.g, c.you, (id) => id !== c.source).length) return;
-  yield* sacrificeYours(c, c.you, (id) => id !== c.source, 1, 'outro permanente');
+function* sacrificaOutro(c: Parameters<Parameters<typeof triggered>[1]>[0]) {
+  // ruling 1: sem outro permanente, não acontece nada
+  yield* eachSacrifices(c, [c.you], (id) => id !== c.source, 1, 'outro permanente');
 }
 
 export default defineCard({
@@ -16,19 +14,20 @@ export default defineCard({
   faces: [{
     abilities: [
       keyword('flying'),
-      triggered(on.selfEnters(), sacrificaOutro, { text: 'Sempre que Korvold entra, sacrifique outro permanente.' }),
-      triggered(on.selfAttacks(), sacrificaOutro, { text: 'Sempre que Korvold ataca, sacrifique outro permanente.' }),
-      triggered(voceSacrificaPermanente(), function* (c) {
+      triggered(on.selfEnters(), sacrificaOutro, { text: 'Sempre que Korvold entra ou ataca, sacrifique outro permanente.' }),
+      triggered(on.selfAttacks(), sacrificaOutro, { text: 'Sempre que Korvold entra ou ataca, sacrifique outro permanente.' }),
+      // ruling 2: a regra da lenda não é sacrifício; ruling 5: sacrificando Korvold, ainda compra
+      triggered(on.custom((e, c) => e.type === 'sacrifice' && e.player === c.you), function* (c) {
         if (c.g.state.objects[c.source]?.zone === 'battlefield') addCounters(c.g, { kind: 'obj', id: c.source }, '+1/+1', 1, c.you);
         yield* draw(c.g, c.you, 1);
-      }, { text: 'Sempre que você sacrifica um permanente, coloque um marcador +1/+1 em Korvold e compre uma carta.' }),
+      }, { zones: ['battlefield'], text: 'Sempre que você sacrifica um permanente, coloque um marcador +1/+1 em Korvold e compre uma carta.' }),
     ],
   }],
   rulings: {
-    1: 'regra geral: CR 603.2 — cada permanente sacrificado dispara uma vez',
-    2: 'regra geral: CR 701.21a — sem outro permanente, não sacrifica nada',
-    3: 'regra geral: CR 603.10a — dispara mesmo se Korvold for sacrificado junto',
-    4: 'regra geral: CR 111.1 — fichas sacrificadas também contam (Treasure, Food)',
-    5: 'regra geral: CR 701.21a — só conta o que você sacrifica, não o que outros jogadores sacrificam',
+    1: 'teste: sem outro permanente, não sacrifica nada',
+    2: 'regra geral: CR 704.5j — ir para o cemitério pela regra da lenda não é sacrificar (motor/sba.ts)',
+    3: 'regra geral: CR 701.21a — a habilidade só dispara quando algo manda sacrificar (motor/actions.ts sacrifice)',
+    4: 'teste: sacrificar como custo dispara; o gatilho resolve antes da habilidade',
+    5: 'teste: sacrificando Korvold, compra uma carta sem pôr marcador',
   },
 });

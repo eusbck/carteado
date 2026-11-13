@@ -91,7 +91,7 @@ export interface StackInfo {
   /** custo alternativo usado (flashback, escape, bestow, free, prepared...) */
   method?: string;
   castFrom?: ZoneName;
-  manaSpent?: { total: number; byType: Partial<Record<ManaType, number>>; colors: number; fromArtifacts?: number };
+  manaSpent?: { total: number; byType: Partial<Record<ManaType, number>>; colors: number; fromArtifacts?: number; fromTreasures?: number };
   /** dados do evento que disparou a habilidade */
   event?: Record<string, unknown>;
   data: Record<string, unknown>;
@@ -165,19 +165,26 @@ export type Duration =
   | { kind: 'endOfYourNextTurn'; player: PlayerId; afterTurn: number }
   | { kind: 'whileOnBattlefield'; obj: ObjId }
   | { kind: 'whileControlled'; obj: ObjId; player: PlayerId }
-  | { kind: 'permanent' };
+  | { kind: 'permanent' }
+  /** lote3-d: "enquanto tiver um marcador [tipo]" (Aquitect's Will): acaba quando o último sai ou o objeto sai do campo */
+  | { kind: 'whileHasCounter'; obj: ObjId; counter: string };
 
 export type Layer = '1a' | '1b' | '2' | '3' | '4' | '5' | '6' | '7a' | '7b' | '7c' | '7d';
 
 export type Mod =
   | { k: 'copy'; of: CopyValues }
   | { k: 'control'; player: PlayerId }
-  | { k: 'addTypes'; types?: string[]; subtypes?: string[]; supertypes?: string[] }
+  /** loseOtherCreatureTypes (lote3-b, assimilar): perde os outros tipos de criatura antes de ganhar os subtipos */
+  | { k: 'addTypes'; types?: string[]; subtypes?: string[]; supertypes?: string[]; loseOtherCreatureTypes?: boolean }
   | { k: 'setTypes'; types: string[]; subtypes: string[]; keepSupertypes?: boolean }
-  | { k: 'removeTypes'; types: string[] }
+  /** lote3-d: `supertypes` tira supertipos ("deixa de ser snow", Thermal Flux) */
+  | { k: 'removeTypes'; types: string[]; supertypes?: string[] }
   | { k: 'setColors'; colors: Color[] }
   /** efeito de mudança de texto (camada 3, CR 613.1c): o texto de regras passa a ser este (Exchange of Words) */
   | { k: 'setText'; abilities: { id: string; kw?: string; param?: unknown }[] }
+  /** lote3-d: troca de palavra no texto (camada 3, CR 612.2): uma palavra de cor por outra ou um tipo básico de terreno por
+   *  outro, onde ela é usada assim (Crystal Spray, Alter Reality) */
+  | { k: 'textChange'; kind: 'color' | 'landType'; from: string; to: string }
   | { k: 'addKeyword'; kw: string; param?: unknown }
   | { k: 'addAbility'; id: string }
   | { k: 'loseAllAbilities' }
@@ -259,6 +266,10 @@ export interface TurnState {
   skip?: ('draw' | 'main' | 'combat')[];
   /** um efeito encerrou o turno (CR 724.1): a etapa atual acaba sem prioridade e o jogo vai direto para a limpeza */
   ending?: boolean;
+  /** lote3-f: este é um turno extra (CR 500.7); o número identifica o turno criado por takeExtraTurn (Final Fortune) */
+  extraTurnId?: number;
+  /** lote3-f: num turno extra, quem tinha o turno normal antes dele; a ordem normal continua depois desse jogador */
+  resumeAfter?: PlayerId;
 }
 
 export interface CombatState {
@@ -298,6 +309,8 @@ export interface PlayerState {
   lastTurn: number;
   /** quantos turnos o jogador já começou na partida, contando os extras (Serra Avenger); ausente em partidas salvas antes */
   turnsTaken?: number;
+  /** lote3-a: designação "história duradoura" (CR 702.195b), para o resto da partida */
+  enduringStory?: boolean;
 }
 
 /** estatísticas do turno atual por jogador, para cartas que olham "neste turno" */
@@ -318,6 +331,8 @@ export interface TurnStats {
   instantSorceryCast: number;
   greatestInstantSorceryMV: number;
   cardsDrawn: number;
+  /** foods-b: cartas compradas neste turno, com o id que receberam na mão (Sylvan Library); falta nas partidas salvas antes */
+  cardsDrawnIds?: ObjId[];
   cardsLeftGraveyard: number;
   attacked: boolean;
   attackedPlayers: PlayerId[];
@@ -341,6 +356,13 @@ export interface TurnStats {
   landsEntered?: number;
   /** fichas que este jogador criou neste turno (Idol of Oblivion); falta nas partidas salvas antes */
   tokensCreated?: number;
+  /** lote3-a: habilidades de equipar que este jogador ativou neste turno (Bruenor, Forge Anew: "o primeiro equipar") */
+  equipActivated?: number;
+  /** lote3-a: habilidades ativadas por este jogador neste turno com uma criatura dele como alvo (Professor Hojo) */
+  activatedTargetingOwnCreature?: number;
+  /** foods-a: Foods (artefatos Food, fichas ou não) que este jogador sacrificou neste turno (Elanor Gardner); falta nas
+   *  partidas salvas antes */
+  foodsSacrificed?: number;
 }
 
 export interface LogEntry {
@@ -355,6 +377,9 @@ export interface LogEntry {
   rule?: string;
 }
 
+export type { ModoJogo } from './modos.ts';
+import type { ModoJogo } from './modos.ts';
+
 export interface GameConfig {
   seed: string;
   players: { name: string; deckId: string }[];
@@ -363,6 +388,9 @@ export interface GameConfig {
   turnLimit: number | null;
   /** partida de dois jogadores (CR 100.1a) ou multijogador (CR 100.1b) */
   multiplayer: boolean;
+  /** modo de jogo (motor/modos.ts); sem a chave é Commander. As regras que mudam com ele já vêm na configuração
+   *  (startingLife) e nos decks (comandante ou não) */
+  formato?: ModoJogo;
   /** permite ajustes manuais (para aplicar o efeito de cartas ainda sem definição); ficam no log */
   manualMode?: boolean;
   /**
@@ -425,6 +453,9 @@ export interface GameState {
   /** a ordem dos turnos está invertida em relação à dos assentos (Aeon Engine); `turnOrder` continua sendo a dos
    *  assentos, e quem pergunta "quem é o próximo" usa G.order() */
   turnReversed?: boolean;
+  /** lote3-f: turnos extras que ainda vão ser tomados (CR 500.7: o criado por último é tomado primeiro); opcional, como
+   *  os de cima */
+  extraTurns?: { player: PlayerId; id: number }[];
   engineVersion: number;
   version: number;
   config: GameConfig;
@@ -519,6 +550,8 @@ export interface ChoiceItem {
   /** carta mostrada só a quem decide (grimório, mão de outro…) */
   card?: { def: string; face?: number };
   disabled?: boolean;
+  /** a opção é uma pilha de cartas (Fact or Fiction, Make an Example…): os objetos dela, para os bots pesarem */
+  pile?: ObjId[];
 }
 
 export interface PriorityAction {
@@ -549,6 +582,9 @@ export type Decision = {
     secret?: boolean;
     /** a carta de que a pergunta trata (milagre: revelar ou conjurar esta carta) */
     about?: ObjId;
+    /** separar em duas pilhas: os itens escolhidos formam a primeira, o resto a segunda, e outro jogador escolhe uma
+     *  delas (Fact or Fiction, Make an Example) */
+    split?: boolean;
   }
   | { kind: 'number'; min: number; max: number }
   | { kind: 'payment'; cost: string; remaining: string; sources: PaymentSource[]; canAuto: boolean; lifeOptions: number; canCancel: boolean }

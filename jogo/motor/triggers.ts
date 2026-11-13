@@ -86,6 +86,8 @@ function updateStats(g: G, events: GameEvent[]): void {
       case 'sacrifice': {
         const lki = g.state.lki[e.old];
         if (lki?.chars.types.includes('Creature')) st[e.player].sacrificedCreature = true;
+        // foods-a: "se você sacrificou uma Food neste turno" (Elanor Gardner): Food é tipo de artefato (CR 205.3g)
+        if (lki?.chars.types.includes('Artifact') && lki.chars.subtypes.includes('Food')) st[e.player].foodsSacrificed = (st[e.player].foodsSacrificed ?? 0) + 1;
         break;
       }
       case 'attackers':

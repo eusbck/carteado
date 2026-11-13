@@ -1,11 +1,16 @@
 import { describe, expect, it } from 'vitest';
-import { setup } from '../../testes/harness.ts';
+import { hasKw } from '../../motor/chars.ts';
+import { fixture as setup } from '../../testes/artefatos.ts';
 
-describe('Locutus of Borg', () => {
-  it('criatura-artefato que causa dano de combate cria uma ficha Borg', () => {
-    const tg = setup({ battlefield: [['Locutus of Borg', { name: 'Ornithopter', counters: { '+1/+1': 1 } }], []], library: [['Opt'], ['Opt']], step: 'main1' });
-    tg.attack([['Ornithopter', 1]]).passTo('endCombat');
-    tg.resolveAll();
-    expect(tg.all('Borg').length).toBe(1);
+const N = 'Locutus of Borg';
+
+describe(N, () => {
+  it('tem vínculo com a vida; a criatura artefato que causa dano de combate a um jogador cria uma ficha Borg', () => {
+    const tg = setup({ battlefield: [[N, { name: 'Borg', token: true }], []] });
+    expect(hasKw(tg.g, tg.bf(N), 'lifelink')).toBe(true);
+    tg.attack([[N, 1], [tg.bf('Borg'), 1]]).passTo('main2');
+    // Locutus (2/4 com vínculo) e a ficha causam dano: duas fichas novas
+    expect(tg.all('Borg')).toHaveLength(3);
+    expect(tg.life(0)).toBeGreaterThan(40);
   });
 });

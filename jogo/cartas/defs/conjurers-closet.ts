@@ -1,7 +1,7 @@
 // Conjurer's Closet
 // At the beginning of your end step, you may exile target creature you control, then return that card to the battlefield under your control.
 import { and, defineCard, is, on, or, t, tgt, triggered, upTo } from '../../motor/api.ts';
-import { piscar } from '../borg.ts';
+import { piscar } from '../piscar.ts';
 
 export default defineCard({
   name: "Conjurer's Closet",

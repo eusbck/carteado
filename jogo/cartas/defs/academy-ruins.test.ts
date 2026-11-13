@@ -1,11 +1,14 @@
 import { describe, expect, it } from 'vitest';
-import { setup } from '../../testes/harness.ts';
+import { fixture as setup } from '../../testes/artefatos.ts';
 
-describe('Academy Ruins', () => {
-  it('põe um artefato do cemitério no topo do grimório', () => {
-    const tg = setup({ battlefield: [['Academy Ruins', 'Island', 'Island'], []], graveyard: [['Sol Ring'], []], library: [['Opt'], []] });
-    tg.choose('carta de artefato', ['Sol Ring']).activate('Academy Ruins', '{1}{U}').resolve();
-    const lib = tg.state.zones.library[0];
-    expect(tg.state.objects[lib[lib.length - 1]].def === 'Sol Ring' || tg.state.objects[lib[0]].def === 'Sol Ring').toBe(true);
+const N = 'Academy Ruins';
+
+describe(N, () => {
+  it('{1}{U}, {T}: põe a carta de artefato alvo do seu cemitério no topo do grimório', () => {
+    const tg = setup({ battlefield: [[N, 'Island', 'Island'], []], graveyard: [['Sol Ring', 'Wall of Omens'], []] });
+    tg.choose('carta de artefato alvo', ['Sol Ring']).activate(N, 'Coloque').resolveAll();
+    const topo = tg.state.zones.library[0][0];
+    expect(tg.state.objects[topo].def).toBe('Sol Ring');
+    expect(tg.names(0, 'graveyard')).toEqual(['Wall of Omens']);
   });
 });

@@ -176,6 +176,8 @@ export interface EnterReq {
   data?: Record<string, unknown>;
   /** face que fica para cima ao entrar ("volta ao campo transformado", CR 712.14) */
   face?: number;
+  /** lote3-b: efeitos que começam junto com a entrada (assimilar: "é uma criatura artefato Borg"), CR 614.1c */
+  enterEffects?: EnterEvent['enterEffects'];
 }
 
 function wouldBeChars(g: G, r: EnterReq) {
@@ -295,10 +297,16 @@ export function* putOntoBattlefield(g: G, reqs: EnterReq[], cause: string): Gen<
     if (r.id !== undefined && !fromObj) continue;
     // ficha ou cópia que já saiu do campo/pilha não volta (CR 111.8, 707.10a)
     if (fromObj && ((fromObj.isToken && fromObj.zone !== 'battlefield') || (fromObj.isCopy && fromObj.zone !== 'stack'))) continue;
+    // lote3-d: Grafdigger's Cage (cartas de criatura de cemitérios e grimórios não entram)
+    if (fromObj && (fromObj.zone === 'graveyard' || fromObj.zone === 'library') && hooks(g, 'cantEnterBattlefieldFrom').some((h) => h.fn(h.ctx, fromObj.id, fromObj.zone, !!r.faceDown))) {
+      g.log(`${nameOf(g, fromObj.id)} não pode entrar no campo vindo de ${fromObj.zone === 'graveyard' ? 'um cemitério' : 'um grimório'}.`);
+      continue;
+    }
     const ev: EnterEvent = {
       obj: r.id ?? -1, controller: r.controller, tapped: !!r.tapped, counters: { ...(r.counters ?? {}) },
       attachTo: r.attachTo ?? null, fromZone: fromObj?.zone ?? 'command', choices: { ...(r.choices ?? {}) },
       copyOf: r.token?.copyOf ?? r.copyOf ?? null, faceDown: r.faceDown, spell: r.spell,
+      ...(r.enterEffects ? { enterEffects: [...r.enterEffects] } : {}),
     };
     // Aura que entra sem ser mágica: escolhe o que encantar (CR 303.4f); sem opção, não entra (303.4g)
     // (a Aura que resolveu encantando um jogador já vem com ele em data.enchantedPlayer: CR 303.4b)
@@ -332,6 +340,13 @@ export function* putOntoBattlefield(g: G, reqs: EnterReq[], cause: string): Gen<
         if (def?.kind === 'replacement' && (def as ReplacementDef).enters) yield* (def as ReplacementDef).enters!({ g, you: r.controller, source: r.id ?? -1 }, ev);
       }
     }
+    // lote3-e: "se não fizer, ponha-o no cemitério do dono" (Mox Diamond): o objeto não entra (CR 614.1c, ruling 1)
+    if (ev.instead && r.id !== undefined) {
+      if (s.objects[r.id]) yield* moveObject(g, r.id, ev.instead, cause);
+      continue;
+    }
+    // lote3-e: substituições de outros permanentes que pedem escolha (riot concedido: Rhythm of the Wild)
+    for (const h of hooks(g, 'enterReplacement')) { const gen = h.fn(h.ctx, ev, wcFinal); if (gen) yield* gen; }
     // substituições de outros permanentes ("criaturas entram com…")
     for (const h of hooks(g, 'enterModifier')) h.fn(h.ctx, ev, wcFinal);
     // "se marcadores fossem ser postos…": entrar com marcadores também conta (CR 122.6, 614.1)
@@ -792,6 +807,10 @@ export function removeCounters(g: G, target: TargetRef, kind: string, n: number)
   if (target.kind === 'obj' && hooks(g, 'cantRemoveCounters').some((h) => h.fn(h.ctx, kind, target.id))) return 0;
   if (have - rem <= 0) delete bag[kind];
   else bag[kind] = have - rem;
+  // lote3-d: efeitos "enquanto tiver um marcador [tipo]" acabam quando sai o último (Aquitect's Will)
+  if (target.kind === 'obj' && !bag[kind]) {
+    g.state.effects = g.state.effects.filter((e) => !(e.duration.kind === 'whileHasCounter' && e.duration.obj === target.id && e.duration.counter === kind));
+  }
   g.bump();
   emit(g, [{ type: 'countersRemoved', target, kind, amount: rem }]);
   return rem;
@@ -909,8 +928,8 @@ export function* draw(g: G, player: PlayerId, n = 1, opts: { aplicadas?: ObjId[]
           const [esc] = yield* chooseItems(g, player, 'Escolha qual efeito substitui a sua compra', subs.map((h, k) => ({ id: String(k), label: `${nameOf(g, h.ctx.source)} de ${g.state.players[h.ctx.you].name}` })), 1, 1);
           escolhida = subs[Number(esc)];
         }
-        yield* escolhida.fn(escolhida.ctx, player);
-        continue;
+        // lote3-c: `false` = substituição opcional recusada; a compra segue normal
+        if ((yield* escolhida.fn(escolhida.ctx, player)) !== false) continue;
       }
     }
     const lib = g.state.zones.library[player];
@@ -921,6 +940,8 @@ export function* draw(g: G, player: PlayerId, n = 1, opts: { aplicadas?: ObjId[]
     if (newId !== null && g.state.objects[newId]) {
       out.push(newId);
       emit(g, [{ type: 'draw', player, obj: newId, nth: before + 1 }]);
+      // foods-b: "cartas compradas neste turno" (CR 121.1, 121.5: só compra de verdade; Sylvan Library)
+      { const ts = g.state.turnStats[player]; ts.cardsDrawnIds = [...(ts.cardsDrawnIds ?? []), newId]; }
       // precons-e: milagre (CR 702.94a), só para a primeira carta comprada no turno
       if (before === 0) yield* revelaMilagre(g, player, newId);
     }

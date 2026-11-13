@@ -35,7 +35,7 @@ export interface Ctx {
   division?: number[][];
   method?: string;
   castFrom?: ZoneName;
-  manaSpent?: { total: number; byType: Partial<Record<ManaType, number>>; colors: number; fromArtifacts?: number };
+  manaSpent?: { total: number; byType: Partial<Record<ManaType, number>>; colors: number; fromArtifacts?: number; fromTreasures?: number };
 }
 
 /** contexto de estáticas, filtros e condições (sem pilha) */
@@ -55,7 +55,8 @@ export type EffectFn = (c: Ctx) => Gen<void>;
 export interface TargetSpec {
   /** 'object' = permanente (padrão); 'player'; 'any' = criatura, planeswalker ou jogador (115.4);
    *  'spell' = mágica na pilha; 'card' = carta numa zona (cemitério…); 'spellOrPermanent' = mágica na pilha ou
-   *  permanente ("mágica ou criatura alvo"; o filtro separa os dois) */
+   *  permanente ("mágica ou criatura alvo"; o filtro separa os dois); 'stackObject' = mágica ou habilidade na pilha
+   *  (lote3-b, Disallow: "mágica, habilidade ativada ou habilidade desencadeada alvo") */
   what: 'object' | 'player' | 'any' | 'spell' | 'card' | 'spellOrPermanent' | 'ability' | 'stackObject';
   zone?: ZoneName;
   filter?: (c: SCtx, t: TargetRef) => boolean;
@@ -68,6 +69,9 @@ export interface TargetSpec {
   validateSet?: (c: SCtx, chosen: TargetRef[]) => boolean;
   /** alvo da parte que só vale se o presente foi prometido: sem presente, não se escolhe (CR 702.174m) */
   gift?: boolean;
+  /** lote3-d: com what 'object', também cartas desta zona servem ("permanente ou carta suspensa alvo": Clockspinning);
+   *  o filtro decide quais */
+  alsoZone?: ZoneName;
 }
 
 export interface ModeSpec {
@@ -174,6 +178,9 @@ export interface ManaAbilityDef extends AbilityCommon {
   /** precons-a: o X do custo é a quantidade de mana da alternativa escolhida ("vire X fichas: adicione X manas",
    *  Hazel of the Rootbloom); sem isto, X = 0 nas habilidades de mana */
   xFromAlt?: boolean;
+  /** lote3-f: "ative somente como uma instantânea" numa habilidade de mana (Lion's Eye Diamond): precisa de prioridade, então
+   *  não pode ser ativada enquanto se paga um custo (conjurando, ativando ou pagando durante a resolução; CR 605.3a, 117.1b) */
+  notWhilePaying?: boolean;
 }
 
 export interface ActivatedDef extends AbilityCommon {
@@ -190,6 +197,9 @@ export interface ActivatedDef extends AbilityCommon {
   xMax?: (c: SCtx) => number;
   /** redução do próprio custo de ativação, fixada antes do pagamento (CR 602.2b, 601.2f) */
   selfCost?: (c: SCtx, x: number) => { reduce?: number; increase?: number };
+  /** lote3-f: chamado logo depois de a mana do custo ser paga, com os tipos gastos ("anote o tipo de mana gasto para pagar
+   *  este custo de ativação": Jeweled Amulet; CR 602.2h) */
+  onManaPaid?: (c: SCtx, types: ManaType[]) => void;
 }
 
 export interface TriggeredDef extends AbilityCommon {
@@ -209,6 +219,9 @@ export interface TriggeredDef extends AbilityCommon {
   /** quem escolhe os alvos ao pôr a habilidade na pilha, se não for o controlador ("à escolha desse jogador": Bladegriff
    *  Prototype; CR 603.3d, 601.2c). A legalidade dos alvos continua sendo a do controlador. */
   targetChooser?: (c: SCtx & { event: Record<string, unknown> }) => PlayerId;
+  /** lote3-d: "esta habilidade resolve mesmo que o alvo fique ilegal" (Gilded Drake): com todos os alvos ilegais ela
+   *  resolve assim mesmo, com os alvos null (exceção escrita na carta à CR 608.2b) */
+  resolvesWithIllegalTargets?: boolean;
 }
 
 export interface RuleHooks {
@@ -329,14 +342,16 @@ export interface RuleHooks {
    * "se um jogador fosse comprar uma carta, em vez disso ele [faz outra coisa]" (Shared Fate; CR 614.1a): o gerador faz
    * o que entra no lugar da compra. Com mais de um, quem compraria escolhe qual se aplica (CR 616.1); a compra é
    * substituída uma vez só.
+   * lote3-c: substituição opcional ("você pode, em vez disso…", Pavel Chekov): o gerador devolve `false` quando o
+   * jogador não quis, e a compra acontece normalmente (CR 614.5: a mesma substituição não é oferecida de novo).
    */
-  drawReplace?: (c: SCtx, player: PlayerId) => Gen<void>;
+  drawReplace?: (c: SCtx, player: PlayerId) => Gen<void | boolean>;
   /** condição da substituição de compra da mesma permanente; sem este gancho, ela vale sempre */
   drawReplaceApplies?: (c: SCtx, player: PlayerId) => boolean;
   /** "você pode ativar [estas habilidades de feitiço] a qualquer momento em que poderia conjurar uma instantânea" (Forge Anew: equipar durante o seu turno; CR 602.5d) */
   activateAsInstant?: (c: SCtx, player: PlayerId, source: ObjId, def: ActivatedDef) => boolean;
   /** "habilidades ativadas de [essas fontes] custam {N} a menos", sem baixar a mana do custo a menos de minMana (Convergence of Dominion) */
-  abilityCostModifier?: (c: SCtx, player: PlayerId, source: ObjId, def: ActivatedDef) => { reduce: number; minMana?: number } | null;
+  abilityCostModifier?: (c: SCtx, player: PlayerId, source: ObjId, def: ActivatedDef, targets?: TargetRef[][]) => { reduce: number; minMana?: number } | null;
   /**
    * Ação baseada em estado definida pela carta (CR 704), conferida junto com as do jogo e podendo pedir escolhas
    * (Space Beleren: quem controla uma criatura sem setor a põe num setor). Devolve true se fez alguma coisa; precisa
@@ -347,10 +362,40 @@ export interface RuleHooks {
   multiDrawInstead?: (c: SCtx, player: PlayerId, n: number) => boolean;
   /** "Seus oponentes não podem procurar em grimórios" (Stranglehold; CR 701.23) */
   cantSearchLibraries?: (c: SCtx, player: PlayerId) => boolean;
+  /** "se um oponente fosse começar um turno extra, em vez disso esse jogador pula esse turno" (Stranglehold, Trouble in
+   *  Pairs; CR 614.10): consultado quando o turno extra começaria, não quando é criado (rulings 5 e 3) */
+  skipsExtraTurn?: (c: SCtx, player: PlayerId) => boolean;
   /** "Você pode olhar a carta do topo do seu grimório a qualquer momento" (Vesuvan Drifter, Realmwalker) */
   lookAtTopOfLibrary?: (c: SCtx, player: PlayerId) => boolean;
   /** "Você não perde mana [vermelha] não gasta quando as etapas e fases terminam" (Leyline Tyrant; CR 106.4, 500.5) */
   keepsUnspentMana?: (c: SCtx, player: PlayerId, unit: ManaUnit) => boolean;
+  /** lote3-d: "cartas de criatura em cemitérios e grimórios não podem entrar no campo" (Grafdigger's Cage): a carta, a zona
+   *  de onde viria e se entraria virada para baixo (manifestar). A carta é vista como está na zona (ruling 3) */
+  cantEnterBattlefieldFrom?: (c: SCtx, card: ObjId, from: ZoneName, faceDown: boolean) => boolean;
+  /** lote3-d: "os jogadores não podem conjurar mágicas de cemitérios ou grimórios" (Grafdigger's Cage) */
+  cantCastFrom?: (c: SCtx, player: PlayerId, zone: ZoneName) => boolean;
+  /** lote3-d: "habilidades ativadas de criaturas não podem ser ativadas" (Cursed Totem): vale também para as de mana */
+  cantActivate?: (c: SCtx, player: PlayerId, source: ObjId) => boolean;
+  // lote3-e
+  /** "Você pode gastar mana como se fosse mana de qualquer cor" (Chromatic Orrery; CR 609.4b): qualquer mana paga símbolos
+   *  coloridos; {C} continua pedindo mana incolor */
+  spendAsAnyColor?: (c: SCtx, player: PlayerId) => boolean;
+  /** substituição de outro permanente sobre como algo entra que pode pedir escolha (riot concedido por Rhythm of the Wild;
+   *  CR 614.1c, 614.12): roda depois das substituições do próprio objeto e antes de enterModifier */
+  enterReplacement?: (c: SCtx, ev: EnterEvent, wouldBe: Chars) => Gen<void> | null;
+  /** lote3-b: o efeito de regra acaba quando [esse jogador] conjura uma mágica assim ("a próxima mágica … tem destemido",
+   *  Võx). Só vale em efeitos de regra (Mod rule) criados por resolução; o efeito é removido depois que a mágica é conjurada */
+  consumedByCast?: (c: SCtx, player: PlayerId, spell: ObjId) => boolean;
+  /** lote3-b: "os jogadores não podem ativar habilidades de lealdade de planeswalkers" (The Immortal Sun) */
+  cantActivateLoyalty?: (c: SCtx, player: PlayerId) => boolean;
+  /**
+   * lote3-a: "você pode pagar {0} em vez do custo de equipar da primeira habilidade de equipar que você ativar [em cada
+   * turno]" (Bruenor Battlehammer, Forge Anew, Kíli). O motor só pergunta na primeira ativação de equipar do jogador no
+   * turno (turnStats.equipActivated); o gancho diz se a permanente oferece isso agora (CR 118.9, 702.6).
+   */
+  equipForZero?: (c: SCtx, player: PlayerId, source: ObjId, def: ActivatedDef) => boolean;
+  /** lote3-a: "você pode ativar habilidades de equipar a qualquer momento em que poderia conjurar uma mágica instantânea" (Forge Anew) */
+  equipAsInstant?: (c: SCtx, player: PlayerId, source: ObjId) => boolean;
 }
 
 /** fichas que um evento vai criar para um jogador (CR 111.1). `de` aponta o pedido de onde a ficha veio: o resto do
@@ -402,6 +447,8 @@ export interface EnterEvent {
   spell?: { x: number; paid: Record<string, number | boolean>; method?: string; manaSpent?: Ctx['manaSpent']; castFrom?: ZoneName; giftTo?: PlayerId };
   /** efeitos que começam junto com a entrada (Cursed Mirror: "ao entrar, vira uma cópia … até o fim do turno") */
   enterEffects?: { mods: Mod[]; duration: Duration; controller: PlayerId; sourceDef: string }[];
+  /** lote3-e: em vez de entrar, vai para esta zona (Mox Diamond: "se não fizer, ponha-o no cemitério do dono"; CR 614.1c) */
+  instead?: ZoneName;
 }
 
 export interface ReplacementDef extends AbilityCommon {
@@ -435,6 +482,12 @@ export interface AdditionalCostDef {
   perExtraMode?: boolean;
   /** pago sem perguntar quando este modo é escolhido (escalonado/tiered: "escolha um custo adicional", CR 702.183) */
   whenMode?: number;
+  /** lote3-e: farra (CR 702.172a): o custo do modo com este índice, pago só se o modo for escolhido */
+  perMode?: number;
+  /** lote3-e: custo concedido que olha os alvos ("mágicas que tenham esta criatura como alvo custam 3 de vida a mais",
+   *  Terror of the Peaks): o gancho grantedAdditionalCosts é consultado de novo depois dos alvos e o custo é pago sem
+   *  pergunta; só partes que não são mana */
+  afterTargets?: boolean;
 }
 
 export interface AltCastDef {
@@ -490,6 +543,8 @@ export interface CastPermission {
   /** precons-e: a permissão vale também para cartas na sua mão, como mais um jeito de conjurá-las ("você pode conjurar uma
    *  mágica da sua mão pagando vida": Access Maze, Demon of Fate's Design, One with the Multiverse) */
   fromHand?: boolean;
+  /** lote3-e: vale também para o seu comandante na zona de comando (Dracogenesis: "mágicas de Dragon"); o imposto continua */
+  fromCommand?: boolean;
 }
 
 export interface SpellDef {
@@ -524,6 +579,9 @@ export interface FaceDef {
   flash?: boolean;
   /** "Conjure esta mágica somente [quando…]" (Master Warcraft: antes de os atacantes serem declarados; CR 601.3) */
   castOnlyIf?: (c: SCtx) => boolean;
+  /** lote3-d: ação com a carta da mão inicial, depois dos mulligans (CR 103.6): Gemstone Caverns. `condition` diz se o
+   *  jogador pode fazê-la; `act` faz (a pergunta "quer fazer?" é do motor) */
+  openingHand?: { label: string; condition?: (c: SCtx) => boolean; act: (c: SCtx) => Gen<void> };
 }
 
 export interface CardDef {

@@ -496,10 +496,42 @@ export const DragonElemental = token('Dragon Elemental', 'Dragon Elemental', ['C
 export const Glimmer11 = token('Glimmer', 'Glimmer', ['Enchantment', 'Creature'], ['Glimmer'], ['W'], 1, 1);
 /** Horror 2/2 preta, criatura encantamento (Phenomenon Investigators) */
 export const Horror22 = token('Horror 2/2', 'Horror', ['Enchantment', 'Creature'], ['Horror'], ['B'], 2, 2);
-
-// The Borg Queen (10/11/2026)
-/** Borg 1/1 incolor, criatura-artefato (Locutus of Borg, Type-03 Borg Vessel, Borg Incursion) */
-export const Borg = token('Borg', 'Borg', ['Artifact', 'Creature'], ['Borg'], [], 1, 1);
+// lote3-d (Twitch Control)
+/** Bird 2/2 azul com voar (Swan Song, Strix Serenade) */
+export const Bird22Azul = token('Bird 2/2 azul', 'Bird', ['Creature'], ['Bird'], ['U'], 2, 2, keywords('flying'));
+// lote3-e (How to Train Ur-Dragon)
+/** Dinosaur 3/1 vermelho (Bonehoard Dracosaur) */
+export const Dinosaur31 = token('Dinosaur 3/1', 'Dinosaur', ['Creature'], ['Dinosaur'], ['R'], 3, 1);
+/** Faerie Dragon 1/1 azul com voar (Ancient Gold Dragon) */
+export const FaerieDragon = token('Faerie Dragon', 'Faerie Dragon', ['Creature'], ['Faerie', 'Dragon'], ['U'], 1, 1, keywords('flying'));
+// lote3-b (We Are The Borg)
+/** Borg 1/1 incolor, criatura artefato */
+export const Borg11 = token('Borg', 'Borg', ['Artifact', 'Creature'], ['Borg'], [], 1, 1);
+// lote3-c (Landing Party, Star Trek)
+/** Insect 1/1 verde (Scute Swarm) */
+export const InsectVerde = defineToken({
+  id: 'Insect verde', name: 'Insect', types: ['Creature'], subtypes: ['Insect'], colors: ['G'], power: 1, toughness: 1, abilities: [],
+  // a impressa sem texto (há outra Insect 1/1 verde, com voar e toque mortífero)
+  image: fichasOracle.find((f) => f.faces[0].name === 'Insect' && f.faces[0].power === 1 && f.faces[0].colors.join() === 'G' && f.faces[0].oracleText === '')?.oracleId,
+});
+/** Officer 1/1 vermelha (M'Ress, Crew Coordinator; Shuttlecraft Galileo) */
+export const Officer11 = token('Officer', 'Officer', ['Creature'], ['Officer'], ['R'], 1, 1);
+/** Tribble 1/1 branca: "Esta ficha não pode bloquear." (Tribble Cluster). A ficha impressa no banco de fichas está sem
+ *  cor; a carta diz branca, e vale a carta (CR 111.4). */
+export const Tribble11 = defineToken({
+  id: 'Tribble', name: 'Tribble', types: ['Creature'], subtypes: ['Tribble'], colors: ['W'], power: 1, toughness: 1,
+  abilities: [{ ...keyword('cantBlock'), text: 'Esta ficha não pode bloquear.' }],
+  image: img('Tribble', 1, 1),
+});
+// foods-b (Foods, Sam e Frodo)
+/** Servo 1/1 incolor, criatura artefato (fabricar, CR 702.123a: Marionette Apprentice) */
+export const Servo = token('Servo', 'Servo', ['Artifact', 'Creature'], ['Servo'], [], 1, 1);
+/** Cat 1/1 branco (Ocelot Pride) */
+export const CatBranco11 = defineToken({
+  id: 'Cat 1/1 branco', name: 'Cat', types: ['Creature'], subtypes: ['Cat'], colors: ['W'], power: 1, toughness: 1, abilities: [],
+  // a impressa sem texto (há outra Cat 1/1 branca, com vínculo com a vida)
+  image: fichasOracle.find((f) => f.faces[0].name === 'Cat' && f.faces[0].power === 1 && f.faces[0].colors.join() === 'W' && f.faces[0].oracleText === '')?.oracleId,
+});
 // deck Sephiroth (11/11/2026)
 export const FaerieRogue = token('Faerie Rogue', 'Faerie Rogue', ['Creature'], ['Faerie', 'Rogue'], ['B'], 1, 1, keywords('flying'));
 export const Thrull = token('Thrull', 'Thrull', ['Creature'], ['Thrull'], ['B'], 1, 1);

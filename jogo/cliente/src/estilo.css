@@ -32,6 +32,9 @@
   /* azul de mana: bloqueio; violeta do preto de mana: seleção de grupo */
   --azul: #3d9be0;
   --roxo: #a48bd0;
+  /* cores do quinto e do sexto jogador */
+  --rosa: #e57ab8;
+  --ciano: #36c2b4;
   --sombra: 0 14px 40px rgba(0, 0, 0, .5);
   --sombra-carta: 0 2px 8px rgba(0, 0, 0, .6);
   --fonte: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
@@ -241,6 +244,15 @@ input.campo-grande { font-size: 17px; padding: 13px 14px; }
 .saguao-codigo strong { display: block; font-family: var(--mono); font-size: 26px; letter-spacing: .22em; color: var(--ouro); }
 .saguao-codigo p { font-size: 13px; }
 .lugares { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+/* três, cinco ou seis lugares: três por linha; com cinco ou seis, cartões mais baixos (cabem numa tela de 768 px) */
+.lugares-3, .lugares-5, .lugares-6 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.lugares-5 .lugar, .lugares-6 .lugar { padding: 12px 14px; gap: 8px 12px; }
+.lugares-5 .nivel-select > span, .lugares-6 .nivel-select > span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+/* número de jogadores (ao criar a sala e no saguão, para o anfitrião) */
+.escolha-lugares { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.escolha-lugares button { font-size: 16px; font-weight: 800; }
+.saguao-tamanho { display: flex; align-items: center; gap: 14px; }
+.saguao-tamanho .escolha-lugares { width: min(420px, 100%); }
 .lugar { display: grid; grid-template-columns: 52px minmax(0, 1fr); align-items: center; gap: 14px; padding: 16px; border-radius: 14px; border: 1.5px solid var(--linha); background: rgba(255, 255, 255, .03); animation: lugar-entra .35s ease-out both; transition: border-color .25s ease, background .25s ease; }
 .lugar.meu { border-color: color-mix(in srgb, var(--ouro) 45%, transparent); }
 .lugar-vazio { border-style: dashed; background: transparent; }
@@ -417,6 +429,8 @@ input.campo-grande { font-size: 17px; padding: 13px 14px; }
 .oponentes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2px; min-height: 0; }
 .mesa-duelo .oponentes { grid-template-columns: 1fr; }
 .oponentes.n2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.oponentes.n4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.oponentes.n5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 
 /* área de um jogador */
 /* overflow: clip (e não hidden): a área não pode rolar quando uma carta da mão recebe o foco */
@@ -486,6 +500,8 @@ button.zona { cursor: pointer; }
 .slot .carta-pt, .slot .carta-etiquetas { display: none; }
 .slot-pilha > .carta + .carta { inset: auto; left: 4px; top: 4px; }
 button.zona:hover .slot { border-color: rgba(255, 255, 255, .45); }
+/* o grimório tem o verso cobrindo o espaço: o realce vai na carta (clicar abre a lista do deck) */
+[data-zona='library']:hover .slot .carta { filter: brightness(1.18); box-shadow: 0 0 0 2px rgba(255, 255, 255, .45); border-radius: 6px; }
 .emblemas { display: flex; flex-direction: column; gap: 4px; max-width: 120px; }
 .emblema { display: flex; align-items: center; gap: 5px; font: inherit; font-size: 11px; font-weight: 700; line-height: 1.2; text-align: left; color: var(--texto); background: rgba(18, 16, 19, .85); border: 1px solid var(--ouro); border-radius: 8px; padding: 4px 7px; cursor: help; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 120px; }
 .emblema:hover { background: rgba(46, 36, 20, .95); }
@@ -500,6 +516,16 @@ button.zona:hover .slot { border-color: rgba(255, 255, 255, .45); }
 .zonas > .zona .mao-fechada { min-width: 0; max-width: 100%; overflow: hidden; justify-content: flex-end; }
 .mao-fechada .carta { flex-shrink: 0; }
 .compacta .zona-rotulo { font-size: 10.5px; }
+/* oponente numa área estreita (5 ou 6 jogadores em telas menores): as zonas sem rótulo, com a contagem sobre a pilha
+   (o nome vem no title e no aria-label), e a etiqueta só com o nome (sem o nível do bot) */
+.estreita .zona-rotulo { display: none; }
+.estreita .zona { position: relative; }
+.zona-conta { position: absolute; left: 50%; bottom: -5px; translate: -50% 0; min-width: 18px; padding: 0 5px; border-radius: 6px; background: rgba(0, 0, 0, .82); border: 1px solid var(--linha-forte); color: var(--texto); font-size: 10.5px; font-weight: 800; line-height: 16px; text-align: center; font-variant-numeric: tabular-nums; pointer-events: none; z-index: 2; }
+.estreita .tag-jogador .nivel-bot { display: none; }
+/* o dano de comandante desce para baixo do nome (ao lado ele apertava o nome até sumir), e o topo para antes do retrato */
+.estreita .area-topo { flex-direction: column; right: calc(var(--tam-avatar, 48px) * 1.25 + 16px); }
+.area-oponente.estreita .vida { margin: 0; align-items: flex-start; }
+.estreita .dano-cmd { justify-content: flex-start; }
 .mao-fechada { display: flex; }
 .mao-fechada .carta { --w: var(--wz, 40px); }
 .mao-fechada .carta + .carta { margin-left: calc(var(--wz, 40px) * -.66); }
@@ -561,8 +587,10 @@ button.etapa:hover { background: rgba(255, 255, 255, .07); color: var(--texto); 
 .parar-pilha:hover { color: var(--suave); background: rgba(255, 255, 255, .04); }
 .parar-pilha.ligada { border-style: solid; border-color: color-mix(in srgb, var(--ouro) 50%, transparent); color: var(--ouro); }
 .fases.esperando-voce { border-color: color-mix(in srgb, var(--ouro) 75%, transparent); box-shadow: 0 0 0 1px color-mix(in srgb, var(--ouro) 35%, transparent), 0 0 22px color-mix(in srgb, var(--ouro) 30%, transparent), 0 8px 24px rgba(0, 0, 0, .42); }
-.fases.esperando-voce .fases-acao .botao.cheio { animation: chamar 1.4s ease-in-out infinite; }
-@keyframes chamar { 50% { box-shadow: 0 0 0 4px color-mix(in srgb, var(--ouro) 35%, transparent); } }
+/* o anel que chama é desenhado uma vez num ::after e só a opacidade pulsa (animar box-shadow repinta a cada quadro) */
+.fases.esperando-voce .fases-acao .botao.cheio { position: relative; }
+.fases.esperando-voce .fases-acao .botao.cheio::after { content: ''; position: absolute; inset: 0; border-radius: inherit; box-shadow: 0 0 0 4px color-mix(in srgb, var(--ouro) 35%, transparent); opacity: 0; pointer-events: none; animation: chamar 1.4s ease-in-out infinite; }
+@keyframes chamar { 50% { opacity: 1; } }
 .aviso-prioridade {
   position: absolute; left: 50%; top: calc(100% + 8px); transform: translateX(-50%); padding: 7px 14px; border-radius: 10px; white-space: nowrap; max-width: 90vw; overflow: hidden; text-overflow: ellipsis;
   background: rgba(16, 14, 17, .92); border: 1px solid color-mix(in srgb, var(--ouro) 60%, transparent); color: var(--texto); font-size: 14px; box-shadow: 0 8px 24px rgba(0, 0, 0, .5); animation: entrar-aviso-prioridade .25s ease-out; pointer-events: none;
@@ -656,6 +684,15 @@ img.mini { width: 40px; aspect-ratio: 63 / 88; object-fit: cover; border-radius:
 .zoom { --zi: 300px; --ze: 1; position: fixed; top: 16px; z-index: 250; pointer-events: none; display: flex; flex-direction: column; align-items: center; background: var(--vidro); border: 1px solid var(--linha-forte); border-radius: 16px; padding: 8px; box-shadow: 0 24px 60px rgba(0, 0, 0, .75); backdrop-filter: blur(12px); }
 .zoom.esq { left: 16px; }
 .zoom.dir { right: calc(var(--lateral) + 16px); }
+/* N24: o zoom entra vindo do lado da carta apontada (85% → 100%), e o texto chega meio segundo depois (só scale,
+   translate e opacity) */
+.zoom { animation: zoom-entra .3s cubic-bezier(.2, .8, .2, 1) both; }
+.zoom.esq { --zoom-de: 28px; }
+.zoom.dir { --zoom-de: -28px; }
+.zoom .zoom-texto { animation: zoom-texto-entra .18s ease-out .5s both; }
+@keyframes zoom-entra { from { opacity: 0; scale: .85; translate: var(--zoom-de) 0; } }
+@keyframes zoom-texto-entra { from { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .zoom, .zoom .zoom-texto { animation: none; } }
 .zoom[data-modo="lado"] { flex-direction: row; gap: 10px; }
 .zoom.dir[data-modo="lado"] { flex-direction: row-reverse; }
 .camada-zoom.recolhida { --lateral: 64px; }
@@ -945,12 +982,21 @@ img.mini { width: 40px; aspect-ratio: 63 / 88; object-fit: cover; border-radius:
 .mesa.parada .janela-escolha { z-index: 70; }
 .janela-escolha.recolhida { display: none; }
 .janela-escolha.espiando { opacity: 0; pointer-events: none; }
-.janela-escolha.f-simnao, .janela-escolha.f-numero { --largura-escolha: 560px; }
+.janela-escolha.f-simnao, .janela-escolha.f-numero { --largura-escolha: 560px; width: fit-content; min-width: min(420px, calc(100% - var(--reserva) - 32px)); max-width: min(var(--largura-escolha), calc(100% - var(--reserva) - 32px)); }
 .janela-escolha.f-opcoes { --largura-escolha: 720px; }
 .janela-escolha.f-fila { --largura-escolha: 780px; }
 .janela-escolha.f-grade { --largura-escolha: 1400px; }
 .janela-escolha.f-arranjo { --largura-escolha: 1240px; }
 .janela-escolha.f-cartas { width: fit-content; min-width: min(480px, calc(100% - var(--reserva) - 32px)); max-width: calc(100% - var(--reserva) - 32px); }
+/* pergunta de texto que cita cartas ("você olhou Sol Ring, Island…"): a imagem de cada uma numa faixa acima das
+   opções, e a janela alarga até caber a faixa */
+.janela-escolha.com-citadas { width: fit-content; min-width: min(480px, calc(100% - var(--reserva) - 32px)); max-width: calc(100% - var(--reserva) - 32px); }
+.escolha-citadas { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; padding: 16px 20px 0; flex: none; }
+.escolha-citadas .carta { --w: clamp(104px, min(calc((100cqw - var(--reserva) - 120px - (var(--nc) - 1) * 12px) / var(--nc)), 28vh), 220px); }
+/* com opções embaixo, a faixa fica mais baixa para as opções caberem sem rolar */
+.f-opcoes .escolha-citadas .carta { --w: clamp(96px, min(calc((100cqw - var(--reserva) - 120px - (var(--nc) - 1) * 12px) / var(--nc)), 20vh), 180px); }
+.opcao-citadas { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.opcao-citadas .carta { --w: 84px; }
 
 .escolha-topo { flex: 0 0 auto; display: flex; justify-content: space-between; align-items: flex-start; gap: 14px; padding: 14px 14px 12px 20px; border-bottom: 1px solid var(--linha); }
 .escolha-titulos { display: grid; gap: 3px; min-width: 0; }
@@ -1046,10 +1092,26 @@ img.mini { width: 40px; aspect-ratio: 63 / 88; object-fit: cover; border-radius:
 /* recolhida: a decisão continua pendente, num cartão da coluna da direita */
 .escolha-recolhida { border-color: color-mix(in srgb, var(--ouro) 60%, transparent); gap: 8px; }
 .escolha-recolhida > .rot { color: var(--ouro); margin-bottom: 0; }
+/* o cartão tem a altura e a largura do que mostra: não encolhe (o .cartao corta o que passa e o botão sumia) e
+   o enunciado comprido fica em até 4 linhas, com o texto todo no title */
+.coluna-dir > .cartao.escolha-recolhida { flex: 0 0 auto; min-height: 0; align-self: flex-end; width: fit-content; min-width: min(240px, 100%); max-width: 100%; }
+.escolha-recolhida > .decisao-titulo { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; line-clamp: 4; overflow: hidden; }
+.escolha-recolhida > .botoes-linha .botao { flex: 1 0 auto; }
 
 /* ---------------------------------------------------------------- tela Decks (importar e atualizar pelo Moxfield) */
 .cat-topo { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
 .cat-tela { width: min(1320px, 100%); padding: 30px 32px 34px; display: grid; gap: 20px; align-content: start; min-height: min(820px, calc(100vh - 64px)); }
+/* filtro dos decks pela origem (FiltroOrigem.tsx), no saguão e na tela Decks */
+.filtro-origem { display: flex; flex-wrap: wrap; gap: 8px; }
+.filtro-origem-op { display: inline-flex; align-items: center; gap: 7px; height: 32px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--linha-forte); background: rgba(0, 0, 0, .25); color: var(--suave); font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; }
+.filtro-origem-op:hover { color: var(--texto); border-color: rgba(255, 255, 255, .35); }
+.filtro-origem-op[aria-pressed='true'] { color: var(--ouro-texto); background: var(--ouro); border-color: var(--ouro); }
+.filtro-origem-n { font-size: 11px; font-weight: 800; opacity: .75; }
+.deck-origem { justify-self: start; font-size: 10.5px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; padding: 2px 7px; border-radius: 5px; background: rgba(0, 0, 0, .55); border: 1px solid currentColor; }
+.deck-origem.precon { color: var(--ouro); }
+.deck-origem.modificado { color: #e0b48a; }
+.deck-origem.montado { color: #a9c7e8; }
+.deck-origem.casa { color: #9fd7a4; }
 .cat-titulo { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
 .cat-importar { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px 12px; align-items: end; }
 .cat-importar input, .cat-importar .botao { height: 42px; min-height: 42px; }
@@ -1162,20 +1224,22 @@ img.mini { width: 40px; aspect-ratio: 63 / 88; object-fit: cover; border-radius:
 .entrada-brasao { position: relative; width: 168px; height: 112px; display: grid; place-items: center; animation: brasao-surge 1.3s cubic-bezier(.2, .8, .2, 1) .1s both; }
 .entrada-brasao img { position: relative; width: 100%; height: auto; filter: drop-shadow(0 0 18px rgba(255, 110, 40, .55)) drop-shadow(0 4px 10px rgba(0, 0, 0, .8)); }
 .entrada-halo { position: absolute; inset: -40px -60px; border-radius: 50%; background: radial-gradient(ellipse, rgba(255, 120, 40, .32), rgba(232, 93, 40, .1) 45%, transparent 70%); animation: halo-respira 4.5s ease-in-out 1.2s infinite; }
-@keyframes brasao-surge { from { opacity: 0; scale: .7; filter: blur(10px) brightness(2); } }
+@keyframes brasao-surge { /* repinta: entrada da tela inicial, uma vez só (o desfoque some com o brasão) */ from { opacity: 0; scale: .7; filter: blur(10px) brightness(2); } }
 @keyframes halo-respira { 50% { opacity: .55; scale: 1.12; } }
 .entrada-titulo { font-family: var(--fonte-epica); font-size: clamp(30px, 5vw, 46px); font-weight: 800; letter-spacing: .14em; text-transform: uppercase; line-height: 1.05; background: linear-gradient(180deg, #fff3d8 0%, #e9c27a 48%, #b8803a 100%); -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 2px 12px rgba(0, 0, 0, .7)); animation: titulo-surge 1.4s cubic-bezier(.2, .8, .2, 1) .45s both; }
 .entrada-titulo span { color: inherit; }
-@keyframes titulo-surge { from { opacity: 0; letter-spacing: .5em; filter: blur(6px); } }
+@keyframes titulo-surge { /* repinta: entrada da tela inicial, uma vez só */ from { opacity: 0; letter-spacing: .5em; filter: blur(6px); } }
 .orbes { display: flex; gap: 14px; margin: 2px 0 6px; }
-.orbe { width: 16px; height: 16px; border-radius: 50%; box-shadow: inset -2px -3px 4px rgba(0, 0, 0, .45), inset 2px 2px 3px rgba(255, 255, 255, .55), 0 0 0 1.5px rgba(0, 0, 0, .6); opacity: 0; animation: orbe-acende .6s ease-out calc(1s + var(--i) * .15s) forwards, orbe-pulsa 5s ease-in-out calc(2.2s + var(--i) * .5s) infinite; }
+.orbe { width: 16px; height: 16px; border-radius: 50%; box-shadow: inset -2px -3px 4px rgba(0, 0, 0, .45), inset 2px 2px 3px rgba(255, 255, 255, .55), 0 0 0 1.5px rgba(0, 0, 0, .6); opacity: 0; position: relative; animation: orbe-acende .6s ease-out calc(1s + var(--i) * .15s) forwards; }
+/* o brilho da orbe: desenhado uma vez, só a opacidade pulsa */
+.orbe::after { content: ''; position: absolute; inset: 0; border-radius: 50%; box-shadow: 0 0 16px 4px var(--brilho); opacity: 0; pointer-events: none; animation: orbe-pulsa 5s ease-in-out calc(2.2s + var(--i) * .5s) infinite; }
 .orbe-w { background: radial-gradient(circle at 35% 30%, #fffbea, #f4e7bc 55%, #b9a876); --brilho: rgba(255, 245, 210, .8); }
 .orbe-u { background: radial-gradient(circle at 35% 30%, #bfe6ff, #2489cf 55%, #0f4f80); --brilho: rgba(60, 160, 240, .8); }
 .orbe-b { background: radial-gradient(circle at 35% 30%, #a99bb3, #39303d 55%, #140f17); --brilho: rgba(170, 140, 210, .7); }
 .orbe-r { background: radial-gradient(circle at 35% 30%, #ffb7a6, #d94732 55%, #7d1c10); --brilho: rgba(240, 90, 60, .85); }
 .orbe-g { background: radial-gradient(circle at 35% 30%, #b6f0c6, #27884b 55%, #0e4224); --brilho: rgba(70, 200, 110, .8); }
 @keyframes orbe-acende { from { opacity: 0; scale: .3; } 60% { opacity: 1; scale: 1.25; } to { opacity: 1; scale: 1; } }
-@keyframes orbe-pulsa { 0%, 70%, 100% { box-shadow: inset -2px -3px 4px rgba(0, 0, 0, .45), inset 2px 2px 3px rgba(255, 255, 255, .55), 0 0 0 1.5px rgba(0, 0, 0, .6); } 80% { box-shadow: inset -2px -3px 4px rgba(0, 0, 0, .45), inset 2px 2px 3px rgba(255, 255, 255, .55), 0 0 0 1.5px rgba(0, 0, 0, .6), 0 0 16px 4px var(--brilho); } }
+@keyframes orbe-pulsa { 0%, 70%, 100% { opacity: 0; } 80% { opacity: 1; } }
 .entrada-saudacao { font-family: var(--fonte-epica); font-size: clamp(19px, 2.6vw, 24px); font-weight: 700; color: var(--texto); letter-spacing: .04em; text-shadow: 0 2px 10px rgba(0, 0, 0, .8); animation: surge-baixo .9s ease-out 1.55s both; }
 @keyframes surge-baixo { from { opacity: 0; translate: 0 10px; } }
 .entrada-form { width: min(400px, 100%); margin-top: 12px; padding: 22px 24px; display: grid; gap: 14px; text-align: left; border-radius: 18px; background: rgba(22, 20, 23, .62); border: 1px solid color-mix(in srgb, var(--ouro) 30%, transparent); box-shadow: 0 24px 60px rgba(0, 0, 0, .55), inset 0 1px 0 rgba(255, 255, 255, .05); backdrop-filter: blur(8px); animation: surge-baixo 1s cubic-bezier(.2, .8, .2, 1) 1.95s both; }
@@ -1189,7 +1253,7 @@ img.mini { width: 40px; aspect-ratio: 63 / 88; object-fit: cover; border-radius:
 .marca-jogo .marca-logo { filter: drop-shadow(0 0 6px rgba(255, 110, 40, .45)) drop-shadow(0 1px 2px rgba(0, 0, 0, .6)); }
 
 @media (prefers-reduced-motion: reduce) {
-  .brasa, .aurora, .entrada-halo, .orbe { animation: none; }
+  .brasa, .aurora, .entrada-halo, .orbe, .orbe::after { animation: none; }
   .brasa { display: none; }
   .orbe { opacity: 1; }
   .entrada-brasao, .entrada-titulo, .entrada-saudacao, .entrada-form, .entrada-rodape { animation: none; }
@@ -1284,11 +1348,85 @@ img.mini { width: 40px; aspect-ratio: 63 / 88; object-fit: cover; border-radius:
 [data-desempenho] .fundo-arte-img { animation-name: fundo-entra; }
 [data-desempenho] .brasa { display: none; }
 [data-desempenho] .aurora, [data-desempenho] .entrada-halo { animation: none; }
-[data-desempenho] .orbe { animation-name: orbe-acende; }
+[data-desempenho] .orbe::after { animation: none; }
 [data-desempenho] .avatar.ativo .avatar-aura { animation: none; }
-[data-desempenho] .fases.esperando-voce .fases-acao .botao.cheio { animation: none; }
+[data-desempenho] .fases.esperando-voce .fases-acao .botao.cheio::after { animation: none; }
 /* o halo do atacante que dá para bloquear fica parado */
 [data-desempenho] .realce-bloqueavel::after { animation: none; opacity: .8; }
+
+/* ---------------------------------------------------------------- tela Montar deck (telas/Construtor.tsx) */
+.cat-titulo .botao.principal { margin-left: auto; }
+.mt-tela { width: min(1500px, 100%); }
+.mt { display: grid; gap: 16px; min-height: 0; }
+.mt-topo { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.mt-nome { flex: 1 1 260px; font-size: 17px; font-weight: 700; }
+.mt-corpo { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 18px; align-items: start; }
+.mt-colecao { display: grid; gap: 10px; min-width: 0; }
+.mt-aviso-modo { display: flex; gap: 12px; align-items: center; justify-content: space-between; min-height: 32px; }
+.mt-aviso-modo p { margin: 0; font-size: 13.5px; }
+.mt-filtros { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.mt-filtros input[type=search] { flex: 1 1 260px; width: auto; min-width: 0; }
+.mt-filtros select { flex: 0 0 auto; width: auto; padding: 8px 10px; }
+.mt-cores { display: inline-flex; gap: 4px; }
+.mt-cor { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; border: 1.5px solid var(--linha-forte); background: transparent; cursor: pointer; opacity: .55; padding: 0; }
+.mt-cor.ligada { opacity: 1; border-color: var(--ouro); background: var(--ouro-fundo); }
+.mt-cor:hover { opacity: 1; }
+.mt-conta { margin: 0; font-size: 12.5px; }
+.mt-grade { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(132px, 1fr)); gap: 10px; }
+.mt-carta { position: relative; display: block; width: 100%; padding: 0; border: 0; background: none; border-radius: 7px; cursor: pointer; transition: transform .12s ease; }
+.mt-carta:hover:not(:disabled) { transform: translateY(-3px); }
+.mt-carta:focus-visible { outline: 2px solid var(--acao); outline-offset: 2px; }
+.mt-carta.no-deck .mt-img { box-shadow: 0 0 0 2px var(--positivo); }
+.mt-carta.cheia { cursor: default; }
+.mt-carta.cheia .mt-img { opacity: .45; }
+.mt-img { display: block; width: 100%; aspect-ratio: 63 / 88; border-radius: 6px; object-fit: cover; background: var(--painel-3); box-shadow: var(--sombra-carta); }
+.mt-img.sem-imagem { display: grid; place-items: center; padding: 8px; text-align: center; font-size: 12px; color: var(--suave); border: 1px dashed var(--linha-forte); box-shadow: none; }
+.mt-selo { position: absolute; top: 6px; right: 6px; min-width: 24px; height: 24px; padding: 0 6px; border-radius: 12px; display: grid; place-items: center; font-weight: 800; font-size: 13px; background: var(--positivo); color: var(--positivo-texto); }
+.mt-mais { justify-self: center; }
+.mt-deck { position: sticky; top: 12px; display: grid; gap: 12px; padding: 14px; border-radius: 14px; border: 1px solid var(--linha-forte); background: var(--painel-2); max-height: calc(100vh - 40px); overflow: auto; }
+.mt-zoom { display: grid; justify-items: center; }
+.mt-zoom .mt-img { width: 230px; }
+.mt-comandantes { display: grid; gap: 8px; }
+.mt-cmd { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 10px; align-items: center; }
+.mt-cmd .rot { grid-column: 1 / -1; }
+.mt-cmd b { overflow-wrap: anywhere; }
+.mt-total { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 10px; align-items: center; font-size: 13.5px; }
+.mt-total.ok b { color: var(--positivo); }
+.mt-total.passou b { color: var(--vermelho); }
+.mt-basicos { display: flex; flex-wrap: wrap; gap: 6px; }
+.mt-basico { display: inline-flex; gap: 5px; align-items: center; padding: 3px 4px 3px 9px; border-radius: 8px; border: 1px solid var(--linha); font-size: 12.5px; }
+.mt-basico b { min-width: 18px; text-align: center; }
+.mt-mm { width: 24px; height: 24px; border-radius: 6px; border: 1px solid var(--linha-forte); background: transparent; cursor: pointer; line-height: 1; padding: 0; }
+.mt-mm:hover:not(:disabled) { background: rgba(255, 255, 255, .08); }
+.mt-mm:disabled { opacity: .35; cursor: default; }
+.mt-curva { display: grid; grid-template-columns: repeat(8, 1fr); gap: 4px; height: 64px; align-items: end; }
+.mt-barra { display: grid; grid-template-rows: 1fr auto; height: 100%; text-align: center; }
+.mt-barra > span { align-self: end; display: block; border-radius: 3px 3px 0 0; background: color-mix(in srgb, var(--ouro) 70%, transparent); min-height: 2px; }
+.mt-barra small { font-size: 10.5px; color: var(--suave); }
+.mt-problemas { display: grid; gap: 6px; padding: 10px 12px; border-radius: 10px; background: var(--vermelho-fundo); border: 1px solid color-mix(in srgb, var(--vermelho) 40%, transparent); font-size: 13px; }
+.mt-problemas p, .mt-problemas ul { margin: 0; }
+.mt-problemas ul { padding-left: 18px; }
+.mt-problemas .botao { justify-self: start; }
+.mt-lista { display: grid; gap: 12px; }
+.mt-lista h3 { margin: 0 0 4px; }
+.mt-lista ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.mt-linha { display: grid; grid-template-columns: 22px minmax(0, 1fr) auto auto; gap: 8px; align-items: center; padding: 3px 4px 3px 6px; border-radius: 7px; font-size: 13.5px; }
+.mt-linha:hover { background: rgba(255, 255, 255, .05); }
+.mt-linha.ruim { background: var(--vermelho-fundo); }
+.mt-linha.ruim .mt-linha-nome { color: var(--vermelho); }
+.mt-qtd { font-weight: 800; color: var(--suave); text-align: right; }
+.mt-linha-nome { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mt-mais-menos { display: inline-flex; gap: 3px; }
+@media (max-width: 980px) {
+  .mt-corpo { grid-template-columns: 1fr; }
+  /* no celular o deck vem antes da coleção, com a lista rolando dentro */
+  .mt-deck { position: static; order: -1; max-height: 60vh; }
+  .mt-zoom { display: none; }
+}
+@media (max-width: 520px) {
+  .mt-grade { grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 8px; }
+}
+[data-desempenho] .zoom { animation: none; }
 
 /* modo espectador: o selo "Você está assistindo" e o seletor de quem fica embaixo, na lateral da mesa */
 .assistindo { display: flex; flex-direction: column; gap: 6px; padding: 8px 10px; }

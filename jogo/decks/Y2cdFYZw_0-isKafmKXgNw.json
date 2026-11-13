@@ -1,0 +1,360 @@
+{
+ "formato": 1,
+ "id": "Y2cdFYZw_0-isKafmKXgNw",
+ "ordem": 113,
+ "nome": "[cEDH] - Twitch Control {Primer} 🐙🎯",
+ "link": "https://moxfield.com/decks/Y2cdFYZw_0-isKafmKXgNw",
+ "importadoEm": "2026-11-08T22:55:53.763Z",
+ "verificadoEm": "2026-11-08T22:55:53.763Z",
+ "atual": {
+  "comandante": "Orvar, the All-Form",
+  "cartas": [
+   {
+    "nome": "Island",
+    "quantidade": 15
+   },
+   {
+    "nome": "Arcane Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mystic Sanctuary",
+    "quantidade": 1
+   },
+   {
+    "nome": "Swan Song",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arcane Denial",
+    "quantidade": 1
+   },
+   {
+    "nome": "Misdirection",
+    "quantidade": 1
+   },
+   {
+    "nome": "Phyrexian Metamorph",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rhystic Study",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Whir of Invention",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fellwar Stone",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mana Vault",
+    "quantidade": 1
+   },
+   {
+    "nome": "Grafdigger's Cage",
+    "quantidade": 1
+   },
+   {
+    "nome": "Aquitect's Will",
+    "quantidade": 1
+   },
+   {
+    "nome": "Transmute Artifact",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mana Drain",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hydroblast",
+    "quantidade": 1
+   },
+   {
+    "nome": "Crystal Spray",
+    "quantidade": 1
+   },
+   {
+    "nome": "Intuition",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cephalid Coliseum",
+    "quantidade": 1
+   },
+   {
+    "nome": "Alter Reality",
+    "quantidade": 1
+   },
+   {
+    "nome": "Flooded Strand",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gifts Ungiven",
+    "quantidade": 1
+   },
+   {
+    "nome": "Venser, Shaper Savant",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vedalken Aethermage",
+    "quantidade": 1
+   },
+   {
+    "nome": "Force of Will",
+    "quantidade": 1
+   },
+   {
+    "nome": "High Tide",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mystic Remora",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mystical Tutor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Spellseeker",
+    "quantidade": 1
+   },
+   {
+    "nome": "Chrome Mox",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ancient Tomb",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ipnu Rivulet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cyclonic Rift",
+    "quantidade": 1
+   },
+   {
+    "nome": "Misty Rainforest",
+    "quantidade": 1
+   },
+   {
+    "nome": "Scalding Tarn",
+    "quantidade": 1
+   },
+   {
+    "nome": "Twitch",
+    "quantidade": 1
+   },
+   {
+    "nome": "Spellstutter Sprite",
+    "quantidade": 1
+   },
+   {
+    "nome": "Counterbalance",
+    "quantidade": 1
+   },
+   {
+    "nome": "Thermal Flux",
+    "quantidade": 1
+   },
+   {
+    "nome": "Merchant Scroll",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sapphire Medallion",
+    "quantidade": 1
+   },
+   {
+    "nome": "Whim of Volrath",
+    "quantidade": 1
+   },
+   {
+    "nome": "Grim Monolith",
+    "quantidade": 1
+   },
+   {
+    "nome": "Archmage's Charm",
+    "quantidade": 1
+   },
+   {
+    "nome": "Force of Negation",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fierce Guardianship",
+    "quantidade": 1
+   },
+   {
+    "nome": "Argent Mutation",
+    "quantidade": 1
+   },
+   {
+    "nome": "Infuse",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cursed Totem",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gilded Drake",
+    "quantidade": 1
+   },
+   {
+    "nome": "Jolt",
+    "quantidade": 1
+   },
+   {
+    "nome": "Pongify",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mind Games",
+    "quantidade": 1
+   },
+   {
+    "nome": "Muddle the Mixture",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shimmering Mirage",
+    "quantidade": 1
+   },
+   {
+    "nome": "Clockspinning",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gemstone Caverns",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mindbreak Trap",
+    "quantidade": 1
+   },
+   {
+    "nome": "Glamerdye",
+    "quantidade": 1
+   },
+   {
+    "nome": "Archmage Emeritus",
+    "quantidade": 1
+   },
+   {
+    "nome": "Resculpt",
+    "quantidade": 1
+   },
+   {
+    "nome": "Urza's Saga",
+    "quantidade": 1
+   },
+   {
+    "nome": "Otawara, Soaring City",
+    "quantidade": 1
+   },
+   {
+    "nome": "The One Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lórien Revealed",
+    "quantidade": 1
+   },
+   {
+    "nome": "Roaming Throne",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tishana's Tidebinder",
+    "quantidade": 1
+   },
+   {
+    "nome": "Volatile Stormdrake",
+    "quantidade": 1
+   },
+   {
+    "nome": "Strix Serenade",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sink into Stupor // Soporific Springs",
+    "quantidade": 1
+   },
+   {
+    "nome": "Amphibian Downpour",
+    "quantidade": 1
+   },
+   {
+    "nome": "Horizon of Progress",
+    "quantidade": 1
+   },
+   {
+    "nome": "Talon Gates of Madara",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fear of Impostors",
+    "quantidade": 1
+   },
+   {
+    "nome": "Voracious Bibliophile",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bender's Waterskin",
+    "quantidade": 1
+   },
+   {
+    "nome": "Wan Shi Tong, Librarian",
+    "quantidade": 1
+   },
+   {
+    "nome": "Agna Qel'a",
+    "quantidade": 1
+   },
+   {
+    "nome": "Theorist's Sanctum",
+    "quantidade": 1
+   },
+   {
+    "nome": "Samut, Tyrant of Naktamun",
+    "quantidade": 1
+   },
+   {
+    "nome": "Minamo, School at Water's Edge",
+    "quantidade": 1
+   },
+   {
+    "nome": "Polluted Delta",
+    "quantidade": 1
+   },
+   {
+    "nome": "Flusterstorm",
+    "quantidade": 1
+   },
+   {
+    "nome": "Step Through",
+    "quantidade": 1
+   }
+  ],
+  "origem": {
+   "versao": 0,
+   "atualizadoEm": "2026-09-27T22:41:34.003Z"
+  },
+  "desde": "2026-11-08T22:55:53.763Z"
+ },
+ "preparacao": null
+}

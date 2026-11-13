@@ -1,16 +1,19 @@
 // Verdant Catacombs
-// {T}, Pay 1 life, Sacrifice this land: Search your library for a Swamp or Forest card, put it onto the battlefield, then shuffle.
-import { activated, defineCard } from '../../motor/api.ts';
-import { buscaTerrenos, tipoDeTerreno } from '../terras.ts';
+// {T}, Pay 1 life, Sacrifice this land: Search your library for a Swamp or Forest card, put it onto the battlefield, then
+// shuffle.
+import { activated, chars, defineCard, searchTo } from '../../motor/api.ts';
+
+const TIPOS = ['Swamp', 'Forest'];
 
 export default defineCard({
-  name: "Verdant Catacombs",
+  name: 'Verdant Catacombs',
   faces: [{
     abilities: [
+      // qualquer carta com um dos subtipos serve, básica ou não (CR 205.3i, 305.8); entra desvirada
       activated('{T}, Pay 1 life, Sacrifice this land', function* (c) {
-        yield* buscaTerrenos(c, 1, (id) => tipoDeTerreno(c.g, id, 'Swamp', 'Forest'), false, 'Procure uma carta de Swamp ou Forest');
-      }, { text: '{T}, Pague 1 de vida, Sacrifique este terreno: Procure uma carta de Swamp ou Forest, coloque-a no campo de batalha e depois embaralhe.' }),
+        yield* searchTo(c, c.you, (id) => chars(c.g, id).subtypes.some((s) => TIPOS.includes(s)), 1, 'battlefield', { prompt: 'Procure uma carta de Swamp ou Forest' });
+      }, { text: '{T}, Pague 1 de vida, Sacrifique este terreno: Procure uma carta de Swamp ou Forest, coloque-a no campo e embaralhe.' }),
     ],
   }],
-  rulings: { 1: 'regra geral: CR 305.7 — acha qualquer carta com o tipo, inclusive terrenos não básicos com ele' },
+  rulings: {},
 });

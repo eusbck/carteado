@@ -7,8 +7,7 @@ export default defineCard({
   faces: [{
     spell: {
       *effect(c) {
-        const ids = controlledBy(c.g, c.you, (id) => isType(c.g, id, 'Artifact'));
-        if (ids.length) untilEndOfTurn(c, ids, [{ k: 'addKeyword', kw: 'hexproof' }, { k: 'addKeyword', kw: 'indestructible' }]);
+        untilEndOfTurn(c, controlledBy(c.g, c.you, (id) => isType(c.g, id, 'Artifact')), [{ k: 'addKeyword', kw: 'hexproof' }, { k: 'addKeyword', kw: 'indestructible' }]);
       },
     },
   }],

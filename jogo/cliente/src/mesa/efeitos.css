@@ -53,3 +53,9 @@
 .fx-numero.pequeno { font-size: 22px; }
 .fx-numero.dano { color: #ff6b6b; text-shadow: 0 2px 0 #3a0b0b, 0 0 16px color-mix(in srgb, var(--vermelho) 85%, transparent); }
 .fx-numero.vida { color: #74d69c; text-shadow: 0 2px 0 #0b2b18, 0 0 16px color-mix(in srgb, var(--positivo) 85%, transparent); }
+
+/* ---------------------------------------------------------------- saídas do campo e destruição em massa
+   A volta para a mão de um oponente ou para o grimório chega de verso (o verso acende por cima da cópia). A onda da
+   destruição em massa é um anel desenhado uma vez, do tamanho final; só scale e opacity animam. */
+.fx-verso { position: absolute; inset: 0; border-radius: inherit; opacity: 0; pointer-events: none; background: #5a3a14 url('../imagens/verso.webp') center / 100% 100% no-repeat; }
+.fx-onda-massa { border-radius: 50%; background: radial-gradient(circle, rgba(255, 236, 214, 0) 58%, rgba(255, 214, 170, .22) 66%, rgba(255, 244, 228, .75) 69.5%, rgba(255, 214, 170, .2) 71%, rgba(255, 214, 170, 0) 74%); }

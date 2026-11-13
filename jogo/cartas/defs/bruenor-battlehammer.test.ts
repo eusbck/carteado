@@ -1,18 +1,20 @@
 import { describe, expect, it } from 'vitest';
-import { setup } from '../../testes/harness.ts';
+import { fixture as setup } from '../../testes/artefatos.ts';
 
-const C = 'Bruenor Battlehammer';
+const N = 'Bruenor Battlehammer';
 
-describe(C, () => {
-  it('+2/+0 para cada Equipamento anexado', () => {
-    const tg = setup({ battlefield: [[C, { name: 'Basilisk Collar', attachTo: 'Elvish Mystic' }, { name: 'Darksteel Plate', attachTo: 'Elvish Mystic' }, 'Elvish Mystic'], []] });
-    expect(tg.pt(tg.bf('Elvish Mystic'))).toEqual([5, 1]);
+describe(N, () => {
+  it('cada criatura sua recebe +2/+0 para cada Equipamento anexado a ela', () => {
+    const tg = setup({ battlefield: [[N, 'Silver Myr', { name: 'Lightning Greaves', attachTo: 'Silver Myr' }, { name: 'Swiftfoot Boots', attachTo: 'Silver Myr' }], ['Wall of Omens']] });
+    expect(tg.pt(tg.bf('Silver Myr'))).toEqual([5, 1]);
+    expect(tg.pt(tg.bf(N))).toEqual([5, 3]);
   });
-  it('só a primeira habilidade de equipar do turno sai por {0}', () => {
-    const tg = setup({ battlefield: [[C, 'Basilisk Collar', 'Darksteel Plate', 'Elvish Mystic'], []] });
-    tg.choose('criatura alvo', ['Elvish Mystic']).activate('Basilisk Collar', 'Equipar').resolve();
-    expect(tg.state.objects[tg.bf('Basilisk Collar')].attachedTo).toBe(tg.bf('Elvish Mystic'));
-    // sem terrenos: o segundo equipar já não sai de graça
-    expect(tg.actionIds().some((a) => a.startsWith('activate') && a.includes(String(tg.bf('Darksteel Plate'))))).toBe(false);
+
+  it('CR 118.9 — a primeira habilidade de equipar do turno pode custar {0}; a segunda paga o custo', () => {
+    const tg = setup({ battlefield: [[N, 'Silver Myr', 'Loxodon Warhammer', 'Blackblade Reforged'], []] });
+    tg.yes('pagar {0}', true).choose('criatura alvo', ['Silver Myr']).activate('Loxodon Warhammer', 'Equipar').resolveAll();
+    expect(tg.state.objects[tg.bf('Loxodon Warhammer')].attachedTo).toBe(tg.bf('Silver Myr'));
+    // sem terrenos, a segunda (equipar {7}) não pode ser ativada
+    expect(tg.pending?.kind === 'priority' && tg.pending.actions.some((a) => a.label.includes('Blackblade Reforged: Equipar'))).toBe(false);
   });
 });

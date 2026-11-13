@@ -10,6 +10,7 @@ import { nomeCarta } from '../cartas.ts';
 import type { AvatarCliente } from '../avatares.ts';
 import { arrumarCampo, type Vao } from './arrumacao.ts';
 import { Avatar } from './Avatar.tsx';
+import { useLoja } from '../loja.ts';
 import { Carta, type Realce, type Selo } from './Carta.tsx';
 import { useMesmo } from './estavel.ts';
 import { medirArea, type LadoAvatar } from './geometriaArea.ts';
@@ -28,12 +29,12 @@ export interface AreaProps {
   objs: ObjView[];
   anexos: Map<ObjId, ObjView[]>;
   comandantes: ObjView[];
+  /** partida sem comandante (Standard): a zona de comando só aparece se alguma carta for parar lá */
+  semComandante?: boolean;
   exilio: ObjView[];
   eu: boolean;
   ativo: boolean;
   decidindo: boolean;
-  /** bot pensando há mais de um segundo (fase 9) */
-  pensando?: boolean;
   /** nível do bot, mostrado junto do nome ("ROBSON · Cartomante") */
   nivel?: string | null;
   compacta: boolean;
@@ -51,6 +52,8 @@ export interface AreaProps {
   /** clique no espaço da área (não numa carta): escolher este jogador como alvo de um ataque */
   onCliqueArea?: () => void;
   onZona: (zona: 'graveyard' | 'exile') => void;
+  /** abre a lista das cartas do deck deste jogador */
+  onDeck: () => void;
   /** a sua mão (só na sua área) */
   mao?: ObjView[];
   /** uma decisão pede cartas da sua mão: ela fica erguida (sem isso, descansa abaixada e sobe com o mouse) */
@@ -143,7 +146,11 @@ export function AreaJogador(p: AreaProps) {
   const mao = p.mao ?? [];
   const n = mao.length;
   const lado: LadoAvatar = p.avatarLado ?? 'canto';
-  const m = medirArea({ w: tam.w, h: tam.h, eu: !!p.mao, compacta: p.compacta, duelo: p.duelo, lado, nMao: n, emblemas: emblemas.length > 0, reservaDireita: p.reservaDireita, colunaAberta: p.colunaAberta });
+  // oponentes lado a lado em mesas de 5 ou 6 (ou de 4 numa tela menor): abaixo de 330 px as zonas perdem o rótulo e
+  // mostram a contagem sobre a pilha; abaixo de 420 px o dano de comandante mostra só o primeiro nome
+  const estreita = p.compacta && tam.w > 0 && tam.w < 330;
+  const apertada = p.compacta && tam.w > 0 && tam.w < 420;
+  const m = medirArea({ w: tam.w, h: tam.h, eu: !!p.mao, compacta: p.compacta, estreita, duelo: p.duelo, lado, nMao: n, emblemas: emblemas.length > 0, reservaDireita: p.reservaDireita, colunaAberta: p.colunaAberta });
   const { wz, topo, campoW, campoH, livreW, wBase, wMin, tamAvatar } = m;
   // as mesmas medidas, a mesma lista de retângulos (a arrumação não se refaz à toa)
   const vaosNovos = m.vaos;
@@ -171,7 +178,7 @@ export function AreaJogador(p: AreaProps) {
   const contadores = Object.entries(j.counters).filter(([, n]) => n > 0);
   const danoCmd = j.commanderDamage.filter((d) => d.amount > 0);
   const ladoClasse = p.mao ? (lado === 'canto' ? `avatar-no-canto${p.colunaAberta ? ' coluna-aberta' : ''}` : 'avatar-a-esquerda') : '';
-  const classes = ['area', p.eu ? 'area-eu' : 'area-oponente', ladoClasse, p.ativo ? 'area-ativa' : '', p.decidindo ? 'area-decidindo' : '', j.left ? 'area-fora' : '', p.compacta ? 'compacta' : '', p.jogadorRealce ? `alvo-${p.jogadorRealce}` : ''].filter(Boolean).join(' ');
+  const classes = ['area', p.eu ? 'area-eu' : 'area-oponente', ladoClasse, p.ativo ? 'area-ativa' : '', p.decidindo ? 'area-decidindo' : '', j.left ? 'area-fora' : '', p.compacta ? 'compacta' : '', estreita ? 'estreita' : '', p.jogadorRealce ? `alvo-${p.jogadorRealce}` : ''].filter(Boolean).join(' ');
   const topoCemiterio = j.graveyard[j.graveyard.length - 1];
   // na sua área, a reserva fica do lado da vida (à esquerda ela cairia embaixo da faixa de fases)
   const reserva = <span class="selo reserva" title="Reserva de mana"><span class="rot">Reserva</span><Simbolos custo={j.manaPool} tam={16} /></span>;
@@ -208,7 +215,7 @@ export function AreaJogador(p: AreaProps) {
         <div class="area-selos">
           <button type="button" class="tag-jogador" onClick={p.onJogador} disabled={!p.onJogador} aria-label={`${j.name}${p.nivel ? `, bot ${p.nivel}` : ''}, ${j.life} de vida`}>{j.name}{p.nivel && <span class="nivel-bot"> · {p.nivel}</span>}</button>
           {p.ativo && <span class="selo turno">turno</span>}
-          {p.pensando && !p.eu ? <span class="selo decidindo pensando">pensando…</span> : p.decidindo && !p.eu && <span class="selo decidindo">decidindo</span>}
+          {p.decidindo && !p.eu && <SeloDecidindo jogador={j.id} />}
           {j.monarch && <span class="selo">monarca</span>}
           {j.ring && <span class="selo" title={`O Anel tentou ${j.name} ${j.ring.tempted} ${j.ring.tempted === 1 ? 'vez' : 'vezes'} (CR 701.54): o emblema tem ${Math.min(4, j.ring.tempted)} de 4 habilidades${j.ring.bearer === null ? '; sem Portador do Anel' : ''}`}>Anel {Math.min(4, j.ring.tempted)}/4</span>}
           {j.left && <span class="selo etiqueta alerta">{j.won ? 'venceu' : 'fora da partida'}</span>}
@@ -219,7 +226,10 @@ export function AreaJogador(p: AreaProps) {
           {j.manaPool && p.eu && reserva}
           {danoCmd.length > 0 && (
             <div class="dano-cmd" title="Dano de comandante recebido (CR 903.10a)">
-              {danoCmd.map((d) => <span key={d.from}>{nomeCarta(d.from, d.from).split(',')[0]} · {d.amount}</span>)}
+              {danoCmd.map((d) => {
+                const nome = nomeCarta(d.from, d.from).split(',')[0];
+                return <span key={d.from} title={`${nome}: ${d.amount} de dano de comandante`}>{apertada ? nome.split(' ')[0] : nome} · {d.amount}</span>;
+              })}
             </div>
           )}
         </div>
@@ -264,13 +274,15 @@ export function AreaJogador(p: AreaProps) {
 
       <footer class="zonas">
         <div class="zonas-grupo">
-          <div class="zona" aria-label="Zona de comando">
-            <span class="zona-rotulo">Comando</span>
-            <div class={`slot ${comandantes.length > 1 ? 'slot-pilha' : ''}`}>
-              {comandantes.map((o) => <Carta key={o.id} o={o} realce={p.realce(o)} onClick={p.onCarta} onZoom={p.onZoom} onMenu={p.onMenuCarta} />)}
-              {j.commanderTax > 0 && <span class="slot-imposto" title="Imposto de comandante (CR 903.8)">+{j.commanderTax}</span>}
+          {(!p.semComandante || comandantes.length > 0) && (
+            <div class="zona" aria-label="Zona de comando">
+              <span class="zona-rotulo">Comando</span>
+              <div class={`slot ${comandantes.length > 1 ? 'slot-pilha' : ''}`}>
+                {comandantes.map((o) => <Carta key={o.id} o={o} realce={p.realce(o)} onClick={p.onCarta} onZoom={p.onZoom} onMenu={p.onMenuCarta} />)}
+                {j.commanderTax > 0 && <span class="slot-imposto" title="Imposto de comandante (CR 903.8)">+{j.commanderTax}</span>}
+              </div>
             </div>
-          </div>
+          )}
           {/* emblemas (CR 114): não são cartas; o nome e as habilidades aparecem no zoom */}
           {emblemas.length > 0 && (
             <div class="zona" aria-label="Emblemas">
@@ -288,26 +300,28 @@ export function AreaJogador(p: AreaProps) {
           )}
         </div>
         {!p.eu && (
-          <div class="zona" aria-label={`Mão de ${j.name}`}>
+          <div class="zona" aria-label={`Mão de ${j.name}`} title={estreita ? `Mão (${j.handCount})` : undefined}>
             <span class="zona-rotulo">Mão <b>({j.handCount})</b></span>
+            {estreita && <span class="zona-conta">{j.handCount}</span>}
             <div class="mao-fechada">
               {j.handCount === 0 ? <span class="mao-fechada-vazia" /> : Array.from({ length: Math.min(j.handCount, 7) }, (_, i) => <div key={i} class="carta"><div class="carta-face"><div class="verso" /></div></div>)}
             </div>
           </div>
         )}
         <div class="zonas-grupo">
-          <div class="zona" aria-label="Grimório">
+          {/* clicar mostra a lista do deck (as cartas por tipo, como na prévia do saguão), não o grimório nem a ordem dele */}
+          <button type="button" class="zona botao-zona" data-zona="library" onClick={p.onDeck} aria-label={`Grimório de ${j.name}, ${j.libraryCount} cartas. Ver as cartas do deck`} title={estreita ? `Grimório (${j.libraryCount}): ver as cartas do deck` : 'Ver as cartas do deck'}>
             <span class="zona-rotulo">Grimório <b>({j.libraryCount})</b></span>
             {/* a carta do topo, quando o jogador pode olhá-la a qualquer momento (Vesuvan Drifter, Realmwalker): só ele recebe */}
-            <div class="slot">{j.topCard ? <Carta o={j.topCard} onZoom={p.onZoom} /> : j.libraryCount > 0 && <div class="carta"><div class="carta-face"><div class="verso" /></div></div>}</div>
-          </div>
-          <button type="button" class="zona botao-zona" onClick={() => p.onZona('graveyard')} aria-label={`Cemitério de ${j.name}, ${j.graveyard.length} cartas`}>
-            <span class="zona-rotulo">Cemitério <b>({j.graveyard.length})</b></span>
-            <div class="slot">{topoCemiterio && <Carta o={topoCemiterio} realce={p.realce(topoCemiterio)} onZoom={p.onZoom} />}</div>
+            <div class="slot">{j.topCard ? <Carta o={j.topCard} onZoom={p.onZoom} /> : j.libraryCount > 0 && <div class="carta"><div class="carta-face"><div class="verso" /></div></div>}{estreita && <span class="zona-conta">{j.libraryCount}</span>}</div>
           </button>
-          <button type="button" class="zona botao-zona" onClick={() => p.onZona('exile')} aria-label={`Exílio de ${j.name}, ${p.exilio.length} cartas`}>
+          <button type="button" class="zona botao-zona" data-zona="graveyard" onClick={() => p.onZona('graveyard')} aria-label={`Cemitério de ${j.name}, ${j.graveyard.length} cartas`} title={estreita ? `Cemitério (${j.graveyard.length})` : undefined}>
+            <span class="zona-rotulo">Cemitério <b>({j.graveyard.length})</b></span>
+            <div class="slot">{topoCemiterio && <Carta o={topoCemiterio} realce={p.realce(topoCemiterio)} onZoom={p.onZoom} />}{estreita && <span class="zona-conta">{j.graveyard.length}</span>}</div>
+          </button>
+          <button type="button" class="zona botao-zona" data-zona="exile" onClick={() => p.onZona('exile')} aria-label={`Exílio de ${j.name}, ${p.exilio.length} cartas`} title={estreita ? `Exílio (${p.exilio.length})` : undefined}>
             <span class="zona-rotulo">Exílio <b>({p.exilio.length})</b></span>
-            <div class="slot">{topoExilio && <Carta o={topoExilio} realce={p.realce(topoExilio)} onZoom={p.onZoom} />}</div>
+            <div class="slot">{topoExilio && <Carta o={topoExilio} realce={p.realce(topoExilio)} onZoom={p.onZoom} />}{estreita && <span class="zona-conta">{p.exilio.length}</span>}</div>
           </button>
         </div>
       </footer>
@@ -328,4 +342,11 @@ export function AreaJogador(p: AreaProps) {
       )}
     </section>
   );
+}
+
+/** "decidindo", ou "pensando…" com o bot pensando há mais de um segundo (fase 9). Assina só o `pensando` da loja: o
+ * aviso que vai e vem não redesenha a mesa (N27) */
+function SeloDecidindo({ jogador }: { jogador: number }) {
+  const pensando = useLoja((e) => e.pensando === jogador);
+  return pensando ? <span class="selo decidindo pensando">pensando…</span> : <span class="selo decidindo">decidindo</span>;
 }

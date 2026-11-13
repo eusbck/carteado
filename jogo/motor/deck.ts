@@ -1,7 +1,9 @@
-// Validação de deck de Commander (CR 903.3, 903.4, 903.5) e de dupla de comandantes (parceiros, CR 702.124).
+// Validação de deck de cada modo de jogo (motor/modos.ts): Commander (CR 903.3, 903.4, 903.5) com a dupla de
+// comandantes (parceiros, CR 702.124) e Standard (CR 100.2a; MTR 3.3 e 6.1).
 
 import { BASIC_LAND_MANA, oracle, type OracleCard, type OracleFace } from './oracle.ts';
 import type { DeckList } from './state.ts';
+import { MODOS, modoDe } from './modos.ts';
 import type { Color } from './types.ts';
 
 export interface DeckProblem { rule: string; message: string }
@@ -57,9 +59,55 @@ export function duplaValida(a: OracleCard, b: OracleCard): boolean {
   return false;
 }
 
-/** `buscar` troca a fonte dos dados Oracle (importação: cartas que ainda não estão em gerado/) */
-export function validateDeck(deck: DeckList, buscar: (name: string) => OracleCard = oracle): DeckProblem[] {
+/** legalidade de uma carta num formato, como o Scryfall dá ('legal', 'not_legal', 'banned', 'restricted');
+ *  undefined quando não se sabe (a validação não acusa nada) */
+export type Legalidade = (nome: string, formato: string) => string | undefined;
+
+/**
+ * Problemas do deck no modo dele (DeckList.formato; sem a chave, Commander). `buscar` troca a fonte dos dados Oracle
+ * (importação: cartas que ainda não estão em gerado/); `legalidade` vem dos dados do Scryfall, quando há.
+ */
+export function validateDeck(deck: DeckList, buscar: (name: string) => OracleCard = oracle, legalidade?: Legalidade): DeckProblem[] {
+  return modoDe(deck) === 'standard' ? validarStandard(deck, buscar, legalidade) : validarCommander(deck, buscar);
+}
+
+const NUMEROS: Record<string, number> = { one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9, ten: 10 };
+
+/** quantas cópias o deck pode ter (CR 100.2a: até 4, fora os básicos; a carta pode mudar isso, ex.: Relentless Rats,
+ *  Seven Dwarves); Infinity para sem limite */
+export function limiteDeCopias(c: OracleCard): number {
+  const f = c.faces[0];
+  if (f.supertypes.includes('Basic') && f.types.includes('Land')) return Infinity;
+  const texto = c.faces.map((x) => x.oracleText).join('\n');
+  if (/A deck can have any number of cards named/i.test(texto)) return Infinity;
+  const m = texto.match(/A deck can have up to (\w+) cards named/i);
+  if (m) return NUMEROS[m[1].toLowerCase()] ?? (Number(m[1]) || 4);
+  return 4;
+}
+
+/** Standard: 60 cartas ou mais no deck principal (CR 100.2a), até 4 cópias, só cartas legais no formato (MTR 3.3) */
+function validarStandard(deck: DeckList, buscar: (name: string) => OracleCard, legalidade?: Legalidade): DeckProblem[] {
   const out: DeckProblem[] = [];
+  if (deck.comandante || deck.parceiro) out.push({ rule: '100.2a', message: 'Deck de Standard não tem comandante' });
+  const total = deck.cartas.reduce((n, e) => n + e.quantidade, 0);
+  if (total < 60) out.push({ rule: '100.2a', message: `O deck tem ${total} cartas (precisa de pelo menos 60)` });
+  // a mesma carta pode vir em mais de uma linha (edições diferentes): conta o nome
+  const porNome = new Map<string, number>();
+  for (const e of deck.cartas) porNome.set(e.nome, (porNome.get(e.nome) ?? 0) + e.quantidade);
+  for (const [nome, q] of porNome) {
+    const c = buscar(nome);
+    const limite = limiteDeCopias(c);
+    if (q > limite) out.push({ rule: '100.2a', message: `${nome} aparece ${q} vezes (no máximo ${limite})` });
+    const l = legalidade?.(nome, MODOS.standard.legalidade);
+    if (l === 'banned') out.push({ rule: 'MTR 3.3', message: `${nome} está banida no Standard` });
+    else if (l && l !== 'legal') out.push({ rule: 'MTR 3.3', message: `${nome} não é legal no Standard` });
+  }
+  return out;
+}
+
+function validarCommander(deck: DeckList, buscar: (name: string) => OracleCard): DeckProblem[] {
+  const out: DeckProblem[] = [];
+  if (!deck.comandante) return [{ rule: '903.3', message: 'O deck de Commander precisa de um comandante' }];
   const cmd = buscar(deck.comandante);
   const par = deck.parceiro ? buscar(deck.parceiro) : null;
   if (par) {

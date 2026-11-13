@@ -1,5 +1,7 @@
 // Os efeitos que todos veem quando chega uma vista nova: o ataque declarado (a investida), o dano de combate (o golpe),
-// quem morre voando para o cemitério ou o exílio, e a vida que muda. Os planos vêm de golpes.ts; aqui eles viram tela.
+// a permanente que sai do campo voando para onde foi (cemitério, exílio, comando, mão ou grimório), a destruição em
+// massa em três tempos (a onda, as mortes em sequência, a arrumação no fim) e a vida que muda. Os planos vêm de
+// golpes.ts; aqui eles viram tela.
 //
 // Regras de desempenho (a primeira prévia derrubava o FPS):
 // - só transform e opacity animam. Brilho, sombra e gradiente são desenhados uma vez em elementos próprios e só a
@@ -16,8 +18,8 @@
 
 import type { ObjId, PlayerId } from '../../../motor/types.ts';
 import type { GameView, ObjView } from '../../../motor/view.ts';
-import { tocar } from '../sons.ts';
-import { danoDe, type Golpe, type PlanoCombate } from './golpes.ts';
+import { tocar, tocarDestruicao } from '../sons.ts';
+import { danoDe, ehGrupo, ordenarGrupo, passoGrupo, planejarSaidas, type Golpe, type JeitoSaida, type PlanoCombate, type ZonaSaida } from './golpes.ts';
 
 // ---------------------------------------------------------------- tempos (os da prévia aprovada)
 /** duração de um golpe: recua, dispara, congela no impacto, volta */
@@ -28,8 +30,12 @@ const RECUO = 0.26, IMPACTO = 0.4, PARADA = 0.13, VOLTA = 0.1;
 const ESCALONA = 120, LEVA_MAX = 1100;
 const BRANCO = 140, LAMPEJO = 200, ONDA = 360, RISCO = 220, LASCA = 420, LASCA_VARIA = 120, TRANCO = 300, CLARAO = 110;
 const VINHETA = 650, NUMERO_GOLPE = 1200, NUMERO = 1250, CONTRA = 280;
-/** morte: racha, treme e voa; começa um pouco depois do impacto que a matou */
-const MORTE = 900, MORTE_DEPOIS = 140, MORTE_SEM_GOLPE = 60, SOME = 400;
+/** morte: racha, treme e voa; começa um pouco depois do impacto que a matou. Seca (terreno, artefato, encantamento) e
+ * volta (para a mão ou o grimório): sem racha, mais curtas */
+const MORTE = 900, MORTE_DEPOIS = 140, MORTE_SEM_GOLPE = 60, SOME = 400, SECA = 650, VOLTA_MAO = 560;
+/** destruição em massa: a onda de abertura, quando a primeira morte começa depois dela, e a arrumação que espera a
+ * última morte levantar (fração de MORTE) e então desliza */
+const ONDA_MASSA = 560, MASSA_PRIMEIRA = 170, SEGURA_ATE = 0.35, ARRUMA = 320;
 /** ataque declarado: a investida de cada atacante e o anel vermelho que acende e apaga */
 const INVESTIDA = 380, INVESTIDA_ESCALONA = 60, ANEL = 620, ANEL_DEPOIS = 150;
 const VIDA_BRILHO = 900, AVATAR_BRILHO = 750, TREME_VIDA = 420, TRANCO_AVATAR = 380, AREA_BRILHO = 900;
@@ -56,20 +62,47 @@ export function medirCarta(el: HTMLElement): Foto {
   const r = el.getBoundingClientRect();
   // o giro final pela classe (no meio da transição de virar, o giro lido ainda é o de antes)
   const rot = el.classList.contains('inclinada') ? 12 : el.classList.contains('virada') ? 90 : 0;
-  return { cx: r.left + r.width / 2, cy: r.top + r.height / 2, w: el.offsetWidth, h: el.offsetHeight, rot, r: { width: r.width, height: r.height }, img: el.querySelector('img')?.getAttribute('src') ?? null };
+  // o lugar final: no meio do deslize da arrumação (left/top em transição), a caixa lida ainda é a do caminho; a
+  // diferença entre o left/top do estilo e o da tela é o que falta andar (a foto da vista vale até a vista seguinte)
+  const fx = el.style.left.endsWith('px') ? parseFloat(el.style.left) - el.offsetLeft : 0;
+  const fy = el.style.top.endsWith('px') ? parseFloat(el.style.top) - el.offsetTop : 0;
+  return { cx: r.left + r.width / 2 + fx, cy: r.top + r.height / 2 + fy, w: el.offsetWidth, h: el.offsetHeight, rot, r: { width: r.width, height: r.height }, img: el.querySelector('img')?.getAttribute('src') ?? null };
 }
 
-/** onde estava cada criatura do campo (a que sair na próxima vista voa dali) */
+/** o topo da pilha na última foto (de onde sai a onda da destruição em massa quando ele resolve) */
+type FotoPilha = { id: ObjId; x: number; y: number } | null;
+let pilhaAntes: FotoPilha = null;
+/** a foto de antes dessa (Efeitos.tsx fotografa a vista nova antes de chamar efeitosDaVista: o topo que resolveu fica aqui) */
+let pilhaAnterior: FotoPilha = null;
+
+/** onde estava cada permanente do campo (a que sair na próxima vista voa dali) e o topo da pilha */
 export function fotografar(v: GameView): Map<ObjId, Foto> {
   const m = new Map<ObjId, Foto>();
-  const criaturas = new Set(v.battlefield.filter((o) => o.types.includes('Creature')).map((o) => o.id));
-  if (!criaturas.size) return m;
-  for (const el of document.querySelectorAll<HTMLElement>('.campo [data-obj]')) {
-    const id = Number(el.dataset.obj);
-    if (criaturas.has(id)) m.set(id, medirCarta(el));
-  }
+  const topo = v.stack[0] ? document.querySelector('.pilha li.topo') : null;
+  pilhaAnterior = pilhaAntes;
+  if (topo) { const [x, y] = meio(caixa(topo)); pilhaAntes = { id: v.stack[0].id, x, y }; } else pilhaAntes = null;
+  const ids = new Set(v.battlefield.map((o) => o.id));
+  if (!ids.size) return m;
+  const medir = (refeita: boolean) => {
+    for (const el of document.querySelectorAll<HTMLElement>('.campo [data-obj]')) {
+      const id = Number(el.dataset.obj);
+      if (!ids.has(id)) continue;
+      // na foto refeita, a carta que um efeito ainda move (golpe, investida, arrumação segurada) fica com a primeira
+      // (só as animações de script: as de CSS, como o brilho de quem pode jogar, e os deslizes não contam)
+      if (refeita && el.getAnimations().some((a) => a.constructor === Animation && a.playState === 'running')) continue;
+      m.set(id, medirCarta(el));
+    }
+  };
+  medir(false);
+  // a arrumação ainda pode andar sem vista nova (a área mede o tamanho dela depois de desenhar, a barra lateral abre):
+  // um pouco depois, a foto é refeita no mesmo mapa (o que Efeitos.tsx guarda), se esta ainda for a última
+  ultimaFoto = m;
+  setTimeout(() => { if (ultimaFoto === m && !document.hidden) medir(true); }, REFOTO);
   return m;
 }
+let ultimaFoto: Map<ObjId, Foto> | null = null;
+/** quando a foto é refeita (depois do deslize de .25 s da arrumação) */
+const REFOTO = 450;
 
 const cartaNaMesa = (id: ObjId) => document.querySelector<HTMLElement>(`.campo [data-obj="${id}"]`);
 const area = (p: PlayerId) => document.querySelector<HTMLElement>(`[data-jogador="${p}"]`);
@@ -77,14 +110,21 @@ const caixa = (el: Element) => { const r = el.getBoundingClientRect(); return { 
 type Caixa = ReturnType<typeof caixa>;
 const meio = (c: Caixa) => [c.x + c.w / 2, c.y + c.h / 2] as const;
 
-/** cemitério ou exílio do dono, conforme a zona que cresceu; null se foi para a mão ou o grimório */
-function zonaDestino(a: GameView, v: GameView, o: ObjView): Element | null {
-  const zonas = area(o.owner)?.querySelectorAll('.botao-zona .slot');
-  const cem = (x: GameView) => x.players.find((p) => p.id === o.owner)?.graveyard.length ?? 0;
-  const exi = (x: GameView) => x.exile.filter((e) => e.owner === o.owner).length;
-  if (cem(v) > cem(a)) return zonas?.[0] ?? null;
-  if (exi(v) > exi(a)) return zonas?.[1] ?? null;
-  return null;
+/** a caixa da zona `z` do jogador `p` na tela (o destino de quem saiu do campo). Procura primeiro pelo atributo
+ * data-zona e cai para a ordem antiga dos botões (cemitério, exílio) e os rótulos das zonas */
+function zonaDestino(p: PlayerId, z: ZonaSaida): Element | null {
+  const ar = area(p);
+  if (!ar) return null;
+  const marcada = ar.querySelector(`[data-zona="${z}"] .slot`) ?? ar.querySelector(`[data-zona="${z}"]`);
+  if (marcada) return marcada;
+  switch (z) {
+    case 'graveyard': return ar.querySelectorAll('.botao-zona .slot')[0] ?? null;
+    case 'exile': return ar.querySelectorAll('.botao-zona .slot')[1] ?? null;
+    case 'command': return ar.querySelector('[aria-label="Zona de comando"] .slot');
+    case 'library': return ar.querySelector('[aria-label="Grimório"] .slot');
+    // a sua mão (o leque embaixo) ou o contador de cartas na mão do oponente
+    case 'hand': return ar.querySelector('.mao-cartas') ?? ar.querySelector('[aria-label^="Mão de"] .mao-fechada') ?? ar.querySelector('[aria-label^="Mão de"]');
+  }
 }
 
 // ---------------------------------------------------------------- a camada dos efeitos
@@ -114,10 +154,21 @@ function novo(classe: string, x: number, y: number, w?: number, h?: number, visi
   return e;
 }
 
+/** o fim (ms depois da vista) da última animação agendada nesta vista: o que efeitosDaVista devolve */
+let fimDaVista = 0;
+const marcar = (o: KeyframeAnimationOptions) => { fimDaVista = Math.max(fimDaVista, (o.delay ?? 0) + (typeof o.duration === 'number' ? o.duration : 0)); };
+/** anima um elemento da mesa (não da camada), contando no fim da vista */
+function animaEl(e: HTMLElement | null | undefined, quadros: Keyframe[], o: KeyframeAnimationOptions): void {
+  if (!e) return;
+  e.animate(quadros, o);
+  marcar(o);
+}
+
 const pendentes = new WeakMap<Element, number>();
 /** anima um elemento da camada; ele sai quando a última animação dele acaba */
 function anima(e: HTMLElement, quadros: Keyframe[], o: KeyframeAnimationOptions): void {
   const a = e.animate(quadros, o);
+  marcar(o);
   pendentes.set(e, (pendentes.get(e) ?? 0) + 1);
   const fim = () => { const n = (pendentes.get(e) ?? 1) - 1; pendentes.set(e, n); if (n <= 0) e.remove(); };
   a.onfinish = fim;
@@ -159,9 +210,15 @@ interface GolpeMedido {
 /** números, brilhos e tremidas de uma vida que mudou, já medidos */
 interface VidaMedida { p: PlayerId; d: number; t: number; vida: Caixa; local: boolean; retratos: Caixa[]; avatar: HTMLElement | null; vidaEl: HTMLElement; area: Caixa | null; noGolpe: boolean }
 
-export function efeitosDaVista(a: GameView, v: GameView, plano: PlanoCombate, fotos: Map<ObjId, Foto>, o: Opcoes): void {
+/**
+ * Agenda os efeitos e os sons da troca de `a` para `v`. Devolve os ms até a última animação deste quadro acabar (a fila
+ * de quadros, mesa/cenaLoja.ts, espera isso); 0 quando não há nada a esperar (aba escondida, efeitos desligados, nada
+ * mudou). Os sons por setTimeout não contam.
+ */
+export function efeitosDaVista(a: GameView, v: GameView, plano: PlanoCombate, fotos: Map<ObjId, Foto>, o: Opcoes): number {
   const visual = o.efeitos && typeof document !== 'undefined' && !document.hidden;
   const mov = visual && !o.reduzir;
+  fimDaVista = 0;
 
   // ------------------------------------------------ o que mudou (sem medir nada ainda)
   const vidaAntes = new Map(a.players.map((p) => [p.id, p.life]));
@@ -170,7 +227,8 @@ export function efeitosDaVista(a: GameView, v: GameView, plano: PlanoCombate, fo
   const agora = new Set(v.battlefield.map((x) => x.id));
   const danoCriatura = v.battlefield.filter((x) => (antes.get(x.id)?.damage ?? x.damage) < x.damage);
   const lealdade = v.battlefield.filter((x) => (antes.get(x.id)?.counters.loyalty ?? 0) > (x.counters.loyalty ?? 0));
-  const sairam = a.battlefield.filter((x) => !agora.has(x.id) && x.types.includes('Creature'));
+  // quem saiu do campo, para onde e de que jeito (golpes.ts)
+  const saidas = planejarSaidas(a, v, o.eu);
 
   // ------------------------------------------------ o tempo de cada golpe (vale também só para os sons)
   const n = plano.golpes.length;
@@ -188,16 +246,26 @@ export function efeitosDaVista(a: GameView, v: GameView, plano: PlanoCombate, fo
   });
   const primeiro = tempos.length ? tempos[0].t : 0;
   const quando = (p: PlayerId) => tJogador.get(p) ?? primeiro;
+  /** destruição em massa: 4 ou mais criaturas saindo sem golpe; o grupo é tudo o que saiu sem golpe nesta vista */
+  const grupo = ehGrupo(saidas, new Set(tCriatura.keys())) ? saidas.filter((x) => !tCriatura.has(x.o.id)) : [];
+  /** quando o grupo começa: a onda sai já (ou depois do primeiro golpe, se houver) e a primeira morte vem logo atrás */
+  const baseGrupo = primeiro ? primeiro + MORTE_DEPOIS : 0;
 
   // ------------------------------------------------ sons (com ou sem efeitos visuais)
   if (!document.hidden) {
     if (plano.declarados.length && !n) tocar('investida');
     plano.golpes.slice(0, MAX_SONS).forEach((g, i) => setTimeout(() => tocar('impacto', g.alvo.tipo === 'jogador' ? 1 : 0.9), tempos[i].t));
+    // o som do grupo e até 3 baques escalonados (a primeira morte, a do meio e a última), num volume só (sons.ts)
+    if (grupo.length) {
+      const k = grupo.length, ps = passoGrupo(k);
+      const baques = [...new Set([0, Math.floor((k - 1) / 2), k - 1])].map((i) => MASSA_PRIMEIRA + i * ps);
+      if (baseGrupo) setTimeout(() => tocarDestruicao(baques), baseGrupo); else tocarDestruicao(baques);
+    }
   }
   const danos = mudancas.filter((x) => x.d < 0), curas = mudancas.filter((x) => x.d > 0);
   if (danos.length) { const t = Math.min(...danos.map((x) => quando(x.p))), f = danos.some((x) => x.p === o.eu) ? 1 : 0.55; if (t) setTimeout(() => tocar('dano', f), t); else tocar('dano', f); }
   if (curas.length) { const t = primeiro, f = curas.some((x) => x.p === o.eu) ? 1 : 0.55; if (t) setTimeout(() => tocar('vida', f), t); else tocar('vida', f); }
-  if (!visual) return;
+  if (!visual) return 0;
 
   // ------------------------------------------------ medidas, todas juntas (um layout só)
   const fotoDe = (id: ObjId): { f: Foto | null; el: HTMLElement | null } => {
@@ -240,13 +308,40 @@ export function efeitosDaVista(a: GameView, v: GameView, plano: PlanoCombate, fo
     const dano = c.damage - (antes.get(c.id)?.damage ?? 0) || (antes.get(c.id)?.counters.loyalty ?? 0) - (c.counters.loyalty ?? 0);
     numerosCriatura.push({ x: r.left + r.width / 2 - 16, y: r.top - 6, texto: `−${dano}`, t: tCriatura.get(c.id) ?? primeiro, golpe: tCriatura.has(c.id), dano });
   }
-  // quem morreu: de onde (a foto da vista de antes), para onde, e quando (o impacto que o matou)
-  // (a ficha deixa de existir: racha e some no lugar; a carta que voltou para a mão ou o grimório não tem efeito)
-  const mortes = sairam.flatMap((c) => {
-    const f = fotos.get(c.id), destino = zonaDestino(a, v, c);
-    if (!f || (!destino && !c.token)) return [];
-    return [{ c, f, destino: destino ? caixa(destino) : null, t: tCriatura.get(c.id) }];
+  // quem saiu: de onde (a foto da vista de antes), para onde, e quando (o impacto que o matou)
+  // (a ficha deixa de existir: some no lugar; a zona de destino fora da tela: sem efeito)
+  const mortes = saidas.flatMap((x) => {
+    const f = fotos.get(x.o.id), destino = x.zona ? zonaDestino(x.o.owner, x.zona) : null;
+    if (!f || (x.zona && !destino)) return [];
+    return [{ x, c: x.o, f, destino: destino ? caixa(destino) : null, t: tCriatura.get(x.o.id) }];
   });
+  // destruição em massa: a origem da onda (o topo da pilha que acabou de resolver, ou o centro da mesa)
+  const doGrupo = new Set(grupo.map((x) => x.o.id));
+  const mortesGrupo = mortes.filter((m) => doGrupo.has(m.c.id));
+  let origem: { x: number; y: number } | null = null;
+  const segurar: { el: HTMLElement; dx: number; dy: number }[] = [];
+  if (mortesGrupo.length) {
+    const resolveu = a.stack[0] && !v.stack.some((x) => x.id === a.stack[0].id) ? a.stack[0].id : null;
+    const pilha = resolveu !== null ? [pilhaAntes, pilhaAnterior].find((x) => x?.id === resolveu) : undefined;
+    if (pilha) origem = { x: pilha.x, y: pilha.y };
+    else {
+      const areas = [...document.querySelectorAll('[data-jogador]')].map(caixa);
+      origem = areas.length
+        ? { x: (Math.min(...areas.map((c) => c.x)) + Math.max(...areas.map((c) => c.x + c.w))) / 2, y: (Math.min(...areas.map((c) => c.y)) + Math.max(...areas.map((c) => c.y + c.h))) / 2 }
+        : { x: innerWidth / 2, y: innerHeight / 2 };
+    }
+    // o fecho: as permanentes que ficaram só deslizam para a arrumação nova depois da última morte. O deslize de CSS
+    // (left/top) é cortado aqui e cada uma fica onde estava (por transform) até a hora de andar
+    if (mov) {
+      const ficam = v.battlefield.flatMap((x) => { const f = fotos.get(x.id), el = cartaNaMesa(x.id); return f && el ? [{ f, el }] : []; });
+      for (const q of ficam) q.el.style.transition = 'none';
+      for (const q of ficam) {
+        const agoraF = medirCarta(q.el), dx = q.f.cx - agoraF.cx, dy = q.f.cy - agoraF.cy;
+        if (Math.hypot(dx, dy) > 1) segurar.push({ el: q.el, dx, dy });
+      }
+      for (const q of ficam) q.el.style.transition = '';
+    }
+  }
   // o ataque declarado (com o dano junto na mesma vista, fica só o golpe)
   const declarados = n ? [] : plano.declarados.slice(0, MAX_COPIAS).flatMap((x) => {
     const el = cartaNaMesa(x.id);
@@ -280,11 +375,11 @@ export function efeitosDaVista(a: GameView, v: GameView, plano: PlanoCombate, fo
         { transform: em(g.chega * 0.8, 1.04, -g.ux * 2), offset: IMPACTO + PARADA + VOLTA },
         { transform: em(0), opacity: 1 },
       ], { duration: T_GOLPE, delay: g.atraso });
-      g.el?.animate([{ opacity: 0 }, { opacity: 0 }], { duration: T_GOLPE, delay: g.atraso });
+      animaEl(g.el, [{ opacity: 0 }, { opacity: 0 }], { duration: T_GOLPE, delay: g.atraso });
     } else if (mov && g.el) {
       // além das 12 cópias: um empurrão da própria carta na direção do alvo
       const k = Math.min(34, g.chega * 0.25);
-      g.el.animate([{ transform: 'translate(0,0)' }, { transform: `translate(${(g.ux * k).toFixed(1)}px,${(g.uy * k).toFixed(1)}px)`, offset: 0.4 }, { transform: 'translate(0,0)' }], { duration: 460, delay: g.atraso, easing: 'ease-in-out' });
+      animaEl(g.el, [{ transform: 'translate(0,0)' }, { transform: `translate(${(g.ux * k).toFixed(1)}px,${(g.uy * k).toFixed(1)}px)`, offset: 0.4 }, { transform: 'translate(0,0)' }], { duration: 460, delay: g.atraso, easing: 'ease-in-out' });
     }
     if (g.g.morreu) morreNoGolpe.set(g.g.atacante, { atraso: g.atraso, fimCopia: comCopia ? g.atraso + T_GOLPE : null });
 
@@ -295,7 +390,7 @@ export function efeitosDaVista(a: GameView, v: GameView, plano: PlanoCombate, fo
       const b = copia({ ...x.f, img: null }, false, 'fx-branco-carta');
       anima(b, [{ opacity: 1, transform: `rotate(${x.f.rot}deg)` }, { opacity: 0, transform: `rotate(${x.f.rot}deg)` }], { duration: BRANCO, delay: g.t, easing: 'ease-out' });
       // os bloqueadores recuam com a pancada (o que morre, na cópia que fica no lugar dele)
-      if (mov && x.el) x.el.animate([{ transform: 'translate(0,0)' }, { transform: `translate(${(g.ux * 18).toFixed(1)}px,${(g.uy * 18).toFixed(1)}px) rotate(-5deg)`, offset: 0.3 }, { transform: 'translate(0,0)' }], { duration: CONTRA, delay: g.t });
+      if (mov && x.el) animaEl(x.el, [{ transform: 'translate(0,0)' }, { transform: `translate(${(g.ux * 18).toFixed(1)}px,${(g.uy * 18).toFixed(1)}px) rotate(-5deg)`, offset: 0.3 }, { transform: 'translate(0,0)' }], { duration: CONTRA, delay: g.t });
       else if (mov && x.id !== undefined) morreNoGolpe.set(x.id, { atraso: 0, fimCopia: null, recua: { ux: g.ux, uy: g.uy, t: g.t } });
     }
     if (!mov || i >= MAX_COPIAS) return;
@@ -330,7 +425,7 @@ export function efeitosDaVista(a: GameView, v: GameView, plano: PlanoCombate, fo
     // seguinte toma o lugar do anterior (somar com 'add' tiraria a animação do compositor e ela rodaria na linha principal)
     const amp = (g.g.dano >= 5 ? 9 : g.g.dano >= 4 ? 7 : 4) * (o.leve ? 0.6 : 1);
     const p = (k: number, lado = 0) => `translate(${(g.ux * amp * k + g.uy * amp * lado).toFixed(1)}px,${(g.uy * amp * k - g.ux * amp * lado).toFixed(1)}px)`;
-    for (const c of campos) c.animate([
+    for (const c of campos) animaEl(c, [
       { transform: 'translate(0,0)' }, { transform: p(1), offset: 0.12 }, { transform: p(-0.7, 0.4), offset: 0.3 },
       { transform: p(0.35), offset: 0.52 }, { transform: p(-0.12), offset: 0.75 }, { transform: 'translate(0,0)' },
     ], { duration: TRANCO, delay: g.t, easing: 'linear' });
@@ -360,15 +455,86 @@ export function efeitosDaVista(a: GameView, v: GameView, plano: PlanoCombate, fo
   }
   for (const m of vidas) efeitoVida(m, o, mov);
 
-  // ------------------------------------------------ mortes: rachar, tremer e voar para o cemitério ou o exílio
+  // ------------------------------------------------ destruição em massa: a onda, as mortes em sequência, a arrumação no fim
+  if (mortesGrupo.length && origem) {
+    const ordem = ordenarGrupo(mortesGrupo.map((m) => ({ x: m.f.cx, y: m.f.cy, deveVoar: m.x.zona === 'command' && !!m.destino, podeVoar: m.x.jeito !== 'some' && !!m.destino })),
+      origem, baseGrupo + MASSA_PRIMEIRA);
+    if (mov) {
+      const de = origem, raio = Math.max(...mortesGrupo.map((m) => Math.hypot(m.f.cx - de.x, m.f.cy - de.y))) + 140;
+      anima(novo('fx-onda-massa', de.x - raio, de.y - raio, raio * 2, raio * 2), [
+        { transform: 'scale(.04)', opacity: 0 }, { transform: 'scale(.2)', opacity: 0.9, offset: 0.12 }, { transform: 'scale(1)', opacity: 0 },
+      ], { duration: ONDA_MASSA, delay: baseGrupo, easing: 'cubic-bezier(.2,.7,.4,1)' });
+    }
+    mortesGrupo.forEach((m, i) => {
+      const { inicio, voa } = ordem[i];
+      if (voa) sair(m.x.jeito, m.c, m.f, m.destino, inicio, true, mov, m.x.verso);
+      else apagar(m.f, inicio, mov);
+    });
+    if (segurar.length) {
+      const ate = Math.max(...ordem.map((x) => x.inicio)) + Math.round(MORTE * SEGURA_ATE), dura = ate + ARRUMA;
+      for (const q of segurar) {
+        const t = `translate(${q.dx.toFixed(1)}px,${q.dy.toFixed(1)}px)`;
+        animaEl(q.el, [{ transform: t }, { transform: t, offset: ate / dura, easing: 'cubic-bezier(.2,.8,.3,1)' }, { transform: 'translate(0,0)' }], { duration: dura });
+      }
+    }
+  }
+
+  // ------------------------------------------------ as outras saídas: cada uma para onde foi, do jeito dela
   for (const m of mortes) {
+    if (doGrupo.has(m.c.id)) continue;
     const noGolpe = morreNoGolpe.get(m.c.id);
     let inicio: number, visivel = true;
     if (noGolpe?.fimCopia != null) { inicio = noGolpe.fimCopia; visivel = false; } // o atacante volta do golpe e então morre
     else if (m.t !== undefined) inicio = m.t + MORTE_DEPOIS;
     else inicio = primeiro ? primeiro + MORTE_DEPOIS : MORTE_SEM_GOLPE;
-    morte(m.f, m.destino, inicio, visivel, mov, noGolpe?.recua);
+    sair(m.x.jeito, m.c, m.f, m.destino, inicio, visivel, mov, m.x.verso, noGolpe?.recua);
   }
+  return Math.ceil(fimDaVista);
+}
+
+/** a saída de uma permanente do jeito dela: morte (criatura e planeswalker), seca (o resto), volta (mão ou grimório) ou
+ * some (a ficha: a criatura racha e some, o resto só apaga) */
+function sair(jeito: JeitoSaida, c: ObjView, f: Foto, destino: Caixa | null, inicio: number, visivel: boolean, mov: boolean, verso: boolean, recua?: { ux: number; uy: number; t: number }): void {
+  const criatura = c.types.includes('Creature') || c.types.includes('Planeswalker');
+  if (jeito === 'morte' || (jeito === 'some' && criatura)) morte(f, jeito === 'some' ? null : destino, inicio, visivel, mov, recua);
+  else if (jeito === 'some') apagar(f, inicio, mov);
+  else if (jeito === 'volta') volta(f, destino, inicio, verso, mov);
+  else seca(f, destino, inicio, mov);
+}
+
+/** apaga no lugar (a ficha que não é criatura, e no grupo quem passou das cópias que voam) */
+function apagar(f: Foto, inicio: number, mov: boolean): void {
+  const c = copia(f, true, 'fx-carta fx-morte');
+  const g = (s: number) => `rotate(${f.rot}deg) scale(${s})`;
+  anima(c, mov ? [{ transform: g(1), opacity: 1 }, { transform: g(0.92), opacity: 0 }] : [{ opacity: 1 }, { opacity: 0 }], { duration: SOME, delay: inicio, easing: 'ease-out' });
+}
+
+/** a saída seca (terreno, artefato, encantamento): sem racha nem tremida; escurece um pouco, levanta e vai para a zona */
+function seca(f: Foto, destino: Caixa | null, inicio: number, mov: boolean): void {
+  if (!mov || !destino) { apagar(f, inicio, mov); return; }
+  const c = copia(f, true, 'fx-carta fx-morte');
+  anima(veu(c, 'fx-escuro'), [{ opacity: 0 }, { opacity: 0.6 }], { duration: SECA, delay: inicio });
+  const [x1, y1] = meio(destino), dx = x1 - f.cx, dy = y1 - f.cy;
+  anima(c, [
+    { transform: `translate(0,0) rotate(${f.rot}deg) scale(1)`, opacity: 1 },
+    { transform: `translate(0,-8px) rotate(${f.rot}deg) scale(1.03)`, opacity: 1, offset: 0.18 },
+    { transform: `translate(${dx.toFixed(1)}px,${dy.toFixed(1)}px) rotate(${f.rot + 8}deg) scale(.42)`, opacity: 0 },
+  ], { duration: SECA, delay: inicio, easing: 'cubic-bezier(.4,0,.6,1)' });
+}
+
+/** a volta para a mão ou o grimório: levanta e voa sem escurecer; `verso`: chega de costas (a mão de um oponente, o
+ * grimório), o verso acende por cima da cópia no caminho */
+function volta(f: Foto, destino: Caixa | null, inicio: number, verso: boolean, mov: boolean): void {
+  if (!mov || !destino) { apagar(f, inicio, mov); return; }
+  const c = copia(f, true);
+  if (verso) anima(veu(c, 'fx-verso'), [{ opacity: 0 }, { opacity: 0, offset: 0.15 }, { opacity: 1, offset: 0.5 }, { opacity: 1 }], { duration: VOLTA_MAO, delay: inicio });
+  const [x1, y1] = meio(destino), dx = x1 - f.cx, dy = y1 - f.cy;
+  anima(c, [
+    { transform: `translate(0,0) rotate(${f.rot}deg) scale(1)`, opacity: 1 },
+    { transform: 'translate(0,-14px) rotate(0deg) scale(1.06)', opacity: 1, offset: 0.2 },
+    { transform: `translate(${(dx * 0.92).toFixed(1)}px,${(dy * 0.92).toFixed(1)}px) rotate(0deg) scale(.55)`, opacity: 1, offset: 0.85 },
+    { transform: `translate(${dx.toFixed(1)}px,${dy.toFixed(1)}px) rotate(0deg) scale(.5)`, opacity: 0 },
+  ], { duration: VOLTA_MAO, delay: inicio, easing: 'cubic-bezier(.3,.6,.4,1)' });
 }
 
 /** um número que aparece no tempo `t`: no golpe, batendo (cresce com o dano); fora dele, subindo como sempre */
@@ -413,8 +579,8 @@ function efeitoVida(m: VidaMedida, o: Opcoes, mov: boolean): void {
     if (dano && m.area) anima(novo('fx-brilho-area', m.area.x, m.area.y, m.area.w, m.area.h), [{ opacity: 0 }, { opacity: 1, offset: 0.2 }, { opacity: 0 }], { duration: AREA_BRILHO, delay: m.t, easing: 'ease-out' });
   }
   if (dano && mov) {
-    m.vidaEl.animate([{ transform: 'translateX(0)' }, { transform: 'translateX(-5px)' }, { transform: 'translateX(5px)' }, { transform: 'translateX(-3px)' }, { transform: 'translateX(2px)' }, { transform: 'translateX(0)' }], { duration: TREME_VIDA, delay: m.t, easing: 'ease-out' });
-    m.avatar?.animate([{ transform: 'scale(1)' }, { transform: 'scale(.93)' }, { transform: 'scale(1.03)' }, { transform: 'scale(1)' }], { duration: TRANCO_AVATAR, delay: m.t, easing: 'ease-out' });
+    animaEl(m.vidaEl, [{ transform: 'translateX(0)' }, { transform: 'translateX(-5px)' }, { transform: 'translateX(5px)' }, { transform: 'translateX(-3px)' }, { transform: 'translateX(2px)' }, { transform: 'translateX(0)' }], { duration: TREME_VIDA, delay: m.t, easing: 'ease-out' });
+    animaEl(m.avatar, [{ transform: 'scale(1)' }, { transform: 'scale(.93)' }, { transform: 'scale(1.03)' }, { transform: 'scale(1)' }], { duration: TRANCO_AVATAR, delay: m.t, easing: 'ease-out' });
   }
 }
 
@@ -426,8 +592,8 @@ function morte(f: Foto, destino: Caixa | null, inicio: number, visivel: boolean,
   const branco = veu(c, 'fx-branco'), escuro = veu(c, 'fx-escuro');
   const g = (s: string) => `${s} rotate(${f.rot}deg)`;
   if (recua) anima(c, [{ transform: g('translate(0,0)') }, { transform: `translate(${(recua.ux * 18).toFixed(1)}px,${(recua.uy * 18).toFixed(1)}px) rotate(${f.rot - 5}deg)`, offset: 0.3 }, { transform: g('translate(0,0)') }], { duration: CONTRA, delay: recua.t });
-  branco.animate([{ opacity: 0 }, { opacity: 0.9, offset: 0.1 }, { opacity: 0, offset: 0.3 }, { opacity: 0 }], { duration: MORTE, delay: inicio });
-  escuro.animate([{ opacity: 0 }, { opacity: 0, offset: 0.25 }, { opacity: 1 }], { duration: MORTE, delay: inicio });
+  animaEl(branco, [{ opacity: 0 }, { opacity: 0.9, offset: 0.1 }, { opacity: 0, offset: 0.3 }, { opacity: 0 }], { duration: MORTE, delay: inicio });
+  animaEl(escuro, [{ opacity: 0 }, { opacity: 0, offset: 0.25 }, { opacity: 1 }], { duration: MORTE, delay: inicio });
   const [x1, y1] = destino ? meio(destino) : [f.cx, f.cy - 30];
   const dx = x1 - f.cx, dy = y1 - f.cy;
   anima(c, [
@@ -451,7 +617,7 @@ function investida(el: HTMLElement, f: Foto, alvo: readonly [number, number], at
   anel.style.borderRadius = `${(f.w * 0.07).toFixed(1)}px`;
   if (f.rot) anel.style.transform = `rotate(${f.rot}deg)`;
   if (mov) {
-    el.animate(quadros(0), { duration: INVESTIDA, delay: atraso, easing: 'cubic-bezier(.3,.7,.3,1)' });
+    animaEl(el, quadros(0), { duration: INVESTIDA, delay: atraso, easing: 'cubic-bezier(.3,.7,.3,1)' });
     anima(anel, quadros(f.rot), { duration: INVESTIDA, delay: atraso, easing: 'cubic-bezier(.3,.7,.3,1)' });
   }
   // acende depois que a carta terminou de virar (a transição de virar leva ~0,2 s)

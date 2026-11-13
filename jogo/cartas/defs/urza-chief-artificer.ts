@@ -5,7 +5,7 @@
 // +1/+1 for each artifact you control."
 import { and, anthem, createTokens, defineCard, is, on, triggered } from '../../motor/api.ts';
 import type { SCtx } from '../../motor/defs.ts';
-import { artefatoCriatura } from '../borg.ts';
+import { artefatoCriatura } from '../piscar.ts';
 
 const afinidade = (c: SCtx) => ({ reduce: c.g.state.zones.battlefield.filter((id) => artefatoCriatura(c.g, id) && is.yours(c, id)).length });
 

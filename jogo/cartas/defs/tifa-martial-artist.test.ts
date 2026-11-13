@@ -1,23 +1,23 @@
 import { describe, expect, it } from 'vitest';
-import { dealDamage } from '../../motor/api.ts';
-import { setup } from '../../testes/harness.ts';
+import { fixture as setup } from '../../testes/artefatos.ts';
 
-const C = 'Tifa, Martial Artist';
+const N = 'Tifa, Martial Artist';
 
-describe(C, () => {
-  it('força 7 causa dano: desvira suas criaturas e há um combate a mais', () => {
-    const tg = setup({ battlefield: [[C, { name: 'Colossus Hammer', attachTo: 'Elvish Mystic' }, { name: 'Elvish Mystic', tapped: true }, { name: 'Wall of Omens', tapped: true }], []], step: 'combatDamage' });
-    const fila = tg.state.turn.queue.length;
-    dealDamage(tg.g, [{ source: tg.bf('Elvish Mystic'), target: { kind: 'player', id: 1 }, amount: 11, combat: true }]);
-    tg.refresh().settle();
-    tg.resolveAll();
-    expect(tg.state.objects[tg.bf('Wall of Omens')].tapped).toBe(false);
-    expect(tg.state.turn.queue.length).toBeGreaterThan(fila);
+describe(N, () => {
+  it('com força 7 ou mais no primeiro combate, desvira as criaturas e há um combate adicional, sem fase principal no meio', () => {
+    const tg = setup({ battlefield: [[N, 'Jumbo Cactuar', 'Silver Myr'], []], step: 'beginCombat', life: 20000 });
+    tg.attack([['Jumbo Cactuar', 1], ['Silver Myr', 1]]).passUntil((t) => t.state.turn.step === 'endCombat');
+    expect(tg.state.objects[tg.bf('Jumbo Cactuar')].tapped).toBe(false);
+    expect(tg.state.objects[tg.bf('Silver Myr')].tapped).toBe(false);
+    tg.passUntil((t) => t.state.turn.step !== 'endCombat');
+    expect(tg.state.turn.step).toBe('beginCombat');
+    expect(tg.state.turn.combatCount).toBe(2);
   });
-  it('força menor que 7 não dispara', () => {
-    const tg = setup({ battlefield: [[C, { name: 'Wall of Omens', tapped: true }, 'Elvish Mystic'], []], step: 'combatDamage' });
-    dealDamage(tg.g, [{ source: tg.bf('Elvish Mystic'), target: { kind: 'player', id: 1 }, amount: 1, combat: true }]);
-    tg.refresh().settle();
-    expect(tg.state.zones.stack.length).toBe(0);
+
+  it('a força de cada criatura conta sozinha; duas de força 4 não disparam', () => {
+    const tg = setup({ battlefield: [[N, 'Zetalpa, Primal Dawn', { name: 'Silver Myr', counters: { '+1/+1': 2 } }], []], step: 'beginCombat' });
+    tg.attack([['Zetalpa, Primal Dawn', 1], ['Silver Myr', 1]]).passTo('main2', 0);
+    expect(tg.state.turn.combatCount).toBe(1);
+    expect(tg.state.objects[tg.bf('Silver Myr')].tapped).toBe(true);
   });
 });

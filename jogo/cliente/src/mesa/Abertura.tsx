@@ -153,7 +153,7 @@ export function Abertura({ lados, fim }: { lados: LadoVS[]; fim: () => void }) {
   const px = (o: Record<string, number>) => Object.fromEntries(Object.entries(o).map(([k, v]) => [k, `${v}px`]));
   return (
     <div ref={raiz} class={`abertura ${fase} ${efeitos ? '' : 'sem-efeitos'}`} role="dialog" aria-label={`Começa a partida: ${lados.map((l) => l.nome).join(' contra ')}`} onClick={sair}>
-      <div class={`vs ${duelo ? 'vs-2' : 'vs-n'}`}>
+      <div class={`vs ${duelo ? 'vs-2' : 'vs-n'}`} style={{ '--n': n }}>
         <div class="vs-treme">
           {lados.map((l, i) => {
             // faixa i: de i/n a (i+1)/n da largura, com o alto deslocado para a direita; a arte com o rosto no meio dela

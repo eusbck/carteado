@@ -3,6 +3,7 @@
 
 import { chars } from './chars.ts';
 import type { G } from './game-context.ts';
+import type { ModoJogo } from './modos.ts';
 import { seedFrom, shuffle } from './rng.ts';
 import type {
   CardId, Chars, ContinuousEffect, GameConfig, GameObject, GameState, ObjId, PlayerId, PlayerState, TurnStats, ZoneName,
@@ -13,7 +14,10 @@ export const ENGINE_VERSION = 1;
 export interface DeckList {
   id: string;
   nome: string;
-  comandante: string;
+  /** modo de jogo do deck (motor/modos.ts); sem a chave é Commander */
+  formato?: ModoJogo;
+  /** o comandante (CR 903.3); só nos modos com comandante */
+  comandante?: string;
   /** segundo comandante, quando o primeiro tem uma habilidade de parceiro (CR 702.124) */
   parceiro?: string;
   cartas: { nome: string; quantidade: number }[];
@@ -60,7 +64,7 @@ export function blankObject(id: ObjId, partial: Partial<GameObject> & Pick<GameO
 }
 
 /**
- * Cria a partida (CR 103): assentos aleatórios (CR 806.3), comandante na zona de comando
+ * Cria a partida (CR 103): assentos aleatórios (CR 806.3), comandante na zona de comando quando o deck tem
  * (CR 903.6), grimórios embaralhados (CR 103.3), vida inicial (CR 103.4c / 903.7).
  * O jogador inicial é sorteado (CR 103.1).
  */
@@ -119,8 +123,9 @@ export function createGameState(config: GameConfig, decks: DeckList[]): GameStat
       if (isCommander) { state.zones.command.push(id); players[p].commanders.push(cid); }
       else state.zones.library[p].push(id);
     };
-    add(deck.comandante, true);
-    if (deck.parceiro) add(deck.parceiro, true); // CR 702.124b: os dois começam na zona de comando
+    // sem comandante (Standard e os outros modos de 60 cartas) a zona de comando começa vazia
+    if (deck.comandante) add(deck.comandante, true);
+    if (deck.comandante && deck.parceiro) add(deck.parceiro, true); // CR 702.124b: os dois começam na zona de comando
     for (const e of deck.cartas) for (let i = 0; i < e.quantidade; i++) add(e.nome, false);
     shuffle(rng, state.zones.library[p]);
   });
@@ -274,6 +279,7 @@ export function endEffectsTiedTo(g: G, id: ObjId): void {
   g.state.effects = g.state.effects.filter((e) => {
     if (e.duration.kind === 'whileOnBattlefield' && e.duration.obj === id) return false;
     if (e.duration.kind === 'whileControlled' && e.duration.obj === id) return false;
+    if (e.duration.kind === 'whileHasCounter' && e.duration.obj === id) return false;
     return true;
   });
   // efeitos que afetam objetos que deixaram de existir são inofensivos, mas limpamos os vazios

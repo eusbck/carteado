@@ -3,7 +3,7 @@
 // At the beginning of your end step, assimilate target creature card from a graveyard. (Put it onto the battlefield
 // under your control with a +1/+1 counter. It's a Borg artifact creature and loses all other creature types.)
 import { and, anthem, defineCard, is, on, t, tgt, triggered } from '../../motor/api.ts';
-import { assimilar } from '../borg.ts';
+import { assimilar } from '../piscar.ts';
 
 export default defineCard({
   name: 'Death Is Irrelevant',

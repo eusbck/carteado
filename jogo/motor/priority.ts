@@ -9,8 +9,9 @@ import type { G } from './game-context.ts';
 import { convokeAll, formatCost, parseCost, reduceGeneric } from './mana.ts';
 import { doSuspend, manifestFaceUpCost, suspendParams, turnFaceUp } from './mecanicas.ts';
 import { activateAbility, candidateTargets, canActivate, castChars, castSpell, chooseModes, custosAdicionais, spellTargetSpecs, totalSpellCost, faceDefFor, faceDefOf, type CastMethod } from './stack.ts';
+import { segundoDivididoNaPilha } from './equipar.ts';
 import {
-  chaveComFace, ehAventura, ehSala, FACE_AMBAS, FACE_NENHUMA, faceDaChave, facesConjuraveis, facesDeTerreno, metadeAftermath,
+  chaveComFace, ehAventura, faceEhTerreno, ehSala, FACE_AMBAS, FACE_NENHUMA, faceDaChave, facesConjuraveis, facesDeTerreno, metadeAftermath,
   nomeDaFace, rotuloConjurar, temVariasFaces,
 } from './formatos.ts';
 import { oracle } from './oracle.ts';
@@ -19,6 +20,7 @@ import { canPlot, doPlot, plotParam } from './planejar.ts';
 import { payMana } from './costs.ts';
 import { emit } from './triggers.ts';
 import type { ManaSymbol, ObjId, PlayerId, PriorityAction, ZoneName } from './types.ts';
+import { splitSecondActive } from './controle-base.ts';
 
 export function isMainPhase(g: G): boolean {
   return g.state.turn.step === 'main1' || g.state.turn.step === 'main2';
@@ -45,11 +47,14 @@ export function permissionsFor(g: G, p: PlayerId, card: ObjId): CastPermission[]
   const out: CastPermission[] = [];
   for (const e of g.state.effects) for (const m of e.mods) {
     if (m.k !== 'rule' || m.id !== 'rule:mayPlay') continue;
-    const prm = m.params as { objs: ObjId[]; player: PlayerId; free?: boolean; anyType?: boolean; key?: string; bottomInstead?: boolean; once?: boolean; spellsOnly?: boolean } | undefined;
+    const prm = m.params as { objs: ObjId[]; player: PlayerId; free?: boolean; anyType?: boolean; key?: string; bottomInstead?: boolean; once?: boolean; spellsOnly?: boolean; mana?: string; label?: string; fromTurn?: number } | undefined;
     if (!prm || prm.player !== p || !prm.objs.includes(card)) continue;
+    // lote3-e: só a partir de um turno (dobra: "depois que o turno atual terminar", CR 702.185a)
+    if (prm.fromTurn !== undefined && g.state.turn.number < prm.fromTurn) continue;
     // "conjure uma mágica dentre elas": a permissão acaba ao ser usada (Locke)
     const onUse = prm.once ? (c: { g: G }) => { c.g.state.effects = c.g.state.effects.filter((x) => x.id !== e.id); c.g.bump(); } : undefined;
-    out.push({ key: prm.key ?? `eff${e.id}`, label: rotuloPermissao(g, card, prm), free: prm.free, anyType: prm.anyType, land: !prm.spellsOnly, bottomInstead: prm.bottomInstead, onUse });
+    // lote3-e: custo de mana próprio da permissão (dobrar o ar: "conjurá-la pagando {2}", CR 701.65a)
+    out.push({ key: prm.key ?? `eff${e.id}`, label: prm.label ?? rotuloPermissao(g, card, prm), free: prm.free, anyType: prm.anyType, land: !prm.spellsOnly, bottomInstead: prm.bottomInstead, onUse, ...(prm.mana ? { mana: prm.mana } : {}) });
   }
   for (const h of hooks(g, 'mayPlayFrom')) {
     const r = h.fn(h.ctx, p, card);
@@ -93,7 +98,7 @@ function opcoesDeFaces(g: G, p: PlayerId, id: ObjId, zone: ZoneName, out: CastOp
       if (af !== null) out.push({ obj: id, method: { key: 'aftermath', label: 'aftermath', zone, face: af, title: `Conjurar ${nomeDaFace(def, af)} do cemitério (aftermath)` } });
     }
     // aventura que resolveu: quem a conjurou pode conjurar a carta do exílio, mas não como aventura (CR 715.3d)
-    if (zone === 'exile' && ehAventura(def) && o.data.adventureOf === p) out.push({ obj: id, method: { key: 'adventure', label: 'aventura', zone, face: 0, title: `Conjurar ${nomeDaFace(def, 0)} do exílio (aventura)` } });
+    if (zone === 'exile' && ehAventura(def) && o.data.adventureOf === p && !faceEhTerreno(def, 0)) out.push({ obj: id, method: { key: 'adventure', label: 'aventura', zone, face: 0, title: `Conjurar ${nomeDaFace(def, 0)} do exílio (aventura)` } });
     for (const prm of permissionsFor(g, p, id)) {
       if (prm.filter && !prm.filter({ g, you: p, source: id }, id)) continue;
       for (const f of faces) if (f !== FACE_AMBAS) push(`perm:${prm.key}`, f, `${prm.label}: ${nomeDaFace(def, f)}`, { label: prm.label, permission: prm });
@@ -122,7 +127,14 @@ export function castOptions(g: G, p: PlayerId): CastOption[] {
         out.push({ obj: id, method: { key: `perm:${prm.key}`, label: prm.label, zone, permission: prm } });
       }
     } else if (zone === 'command') {
-      if (o.owner === p && o.card !== null && s.cards[o.card].isCommander) out.push({ obj: id, method: { key: 'command', label: 'conjurar da zona de comando', zone } });
+      if (o.owner === p && o.card !== null && s.cards[o.card].isCommander) {
+        out.push({ obj: id, method: { key: 'command', label: 'conjurar da zona de comando', zone } });
+        // lote3-e: permissões que valem também para o comandante (CastPermission.fromCommand); o imposto é somado
+        for (const prm of permissionsFor(g, p, id)) {
+          if (!prm.fromCommand || (prm.filter && !prm.filter({ g, you: p, source: id }, id))) continue;
+          out.push({ obj: id, method: { key: `perm:${prm.key}`, label: prm.label, zone, permission: prm } });
+        }
+      }
     } else {
       if (zone === 'graveyard' && o.owner === p) for (const alt of f?.altCosts ?? []) if (alt.zone === 'graveyard' && (!alt.condition || alt.condition({ g, you: p, source: id }))) out.push({ obj: id, method: { key: alt.key, label: alt.label, zone, alt } });
       // custo alternativo de conjurar do exílio (a carta predita, CR 702.143a)
@@ -167,6 +179,8 @@ export function enoughTargets(g: G, specs: import('./defs.ts').TargetSpec[], p: 
 /** checagem rápida: dá para começar a conjurar e pagar? (CR 601.3) */
 export function canStartCast(g: G, p: PlayerId, opt: CastOption): boolean {
   const s = g.state;
+  // CR 702.61a: com segundo dividido na pilha, ninguém conjura mágicas (lote3-a)
+  if (segundoDivididoNaPilha(g)) return false;
   // virada para baixo (morph): criatura 2/2 sem texto, outra checagem (CR 708.4)
   if (opt.method.alt?.faceDown) return canStartFaceDown(g, p, opt);
   const o = s.objects[opt.obj];
@@ -180,9 +194,12 @@ export function canStartCast(g: G, p: PlayerId, opt: CastOption): boolean {
   if (opt.method.alt?.timing) { if (!opt.method.alt.timing({ g, you: p, source: opt.obj })) return false; }
   else if (!instantSpeed && !sorceryTiming(g, p)) return false;
   if (hooks(g, 'cantCastSpells').some((h) => h.fn(h.ctx, p))) return false;
+  if (hooks(g, 'cantCastFrom').some((h) => h.fn(h.ctx, p, opt.method.zone))) return false; // lote3-d: Grafdigger's Cage
   // "os seus oponentes não podem conjurar mágicas que não são de criatura neste turno" (Permission Denied)
   if (!c.types.includes('Creature') && g.state.effects.some((e) => !!e.affectedPlayers?.includes(p) && e.mods.some((m) => m.k === 'rule' && m.id === 'rule:cantCastNoncreature'))) return false;
   if (f?.castOnlyIf && !f.castOnlyIf({ g, you: p, source: opt.obj })) return false;
+  // lote3-e: "não podem conjurar mágicas de nenhum lugar que não seja a mão" (Avatar's Wrath)
+  if (opt.method.zone !== 'hand' && g.state.effects.some((e) => !!e.affectedPlayers?.includes(p) && e.mods.some((m) => m.k === 'rule' && m.id === 'rule:castOnlyFromHand'))) return false;
   // proibição por valor de mana: com {X} no custo o valor só é conhecido ao conjurar (conferido de novo em stack.ts)
   if (!(c.manaCost ?? []).some((x) => x.k === 'X') && hooks(g, 'cantCastSpell').some((h) => h.fn(h.ctx, p, opt.obj, opt.method.alt?.faceDown ? 0 : c.manaValue))) return false;
   // alvos obrigatórios possíveis
@@ -241,6 +258,12 @@ function landPlayOptions(g: G, p: PlayerId): { obj: ObjId; key: string; face: nu
       if (prm) for (const face of faces) out.push({ obj: id, key: chaveComFace(`perm:${prm.key}`, face), face });
     }
   }
+  // lote3-a: aventura cuja carta é um terreno (as cidades de Final Fantasy): depois de resolver a aventura, quem a
+  // conjurou pode jogar o terreno do exílio, com as regras normais de jogar terreno (CR 715.3d; ruling 4 de Ishgard)
+  for (const id of s.zones.exile) {
+    const o = s.objects[id];
+    if (!o.copyOf && ehAventura(o.def) && o.data.adventureOf === p && faceEhTerreno(o.def, 0)) out.push({ obj: id, key: 'adventure', face: 0 });
+  }
   // precons-e: o terreno do topo do grimório com permissão de jogar dali (Verge Rangers, One with the Multiverse)
   for (const id of s.zones.library[p].slice(0, 1)) {
     const prm = permissionsFor(g, p, id).find((x) => x.land);
@@ -276,14 +299,17 @@ export function legalActions(g: G, p: PlayerId): PriorityAction[] {
     const nome = !o.copyOf && temVariasFaces(o.def) ? nomeDaFace(o.def, l.face) : nameOf(g, l.obj);
     acts.push({ id: `play:${l.obj}:${l.key}`, kind: 'play', label: `Jogar ${nome}`, obj: l.obj });
   }
-  for (const opt of castOptions(g, p)) {
+  // lote3-d: com uma mágica com segundo dividido na pilha, ninguém conjura nem ativa habilidade que não seja de mana;
+  // ações especiais e habilidades de mana continuam (CR 702.61a-b)
+  const segundoDividido = splitSecondActive(g);
+  for (const opt of segundoDividido ? [] : castOptions(g, p)) {
     if (canStartCast(g, p, opt)) acts.push({ id: `cast:${opt.obj}:${opt.method.key}`, kind: 'cast', label: opt.method.title ?? `${opt.method.key === 'hand' ? 'Conjurar' : opt.method.label}: ${nameOf(g, opt.obj)}`, obj: opt.obj });
   }
   const timing = { sorcery: sorceryTiming(g, p) };
   // da zona de comando: o ninjutsu de comandante (CR 702.49d)
   const zones: ObjId[] = [...s.zones.battlefield, ...s.zones.hand[p], ...s.zones.graveyard[p], ...s.zones.exile.filter((id) => s.objects[id].owner === p),
     ...s.zones.command.filter((id) => s.objects[id].owner === p && s.objects[id].card !== null)];
-  for (const id of zones) {
+  for (const id of segundoDividido ? [] : zones) {
     for (const { inst, def } of abilityDefs(g, id)) {
       if (def.kind !== 'activated') continue;
       if (!canActivate(g, p, id, def as ActivatedDef, timing)) continue;

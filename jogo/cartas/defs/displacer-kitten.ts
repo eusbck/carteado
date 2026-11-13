@@ -2,7 +2,7 @@
 // Avoidance — Whenever you cast a noncreature spell, exile up to one target nonland permanent you control, then return
 // that card to the battlefield under its owner's control.
 import { defineCard, is, not, on, t, tgt, triggered, upTo } from '../../motor/api.ts';
-import { piscar } from '../borg.ts';
+import { piscar } from '../piscar.ts';
 
 export default defineCard({
   name: 'Displacer Kitten',

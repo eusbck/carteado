@@ -3,7 +3,7 @@
 // Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you
 // may cast this card from exile without paying its mana cost.)
 import { defineCard, is, rebound, t, tgt } from '../../motor/api.ts';
-import { piscar } from '../borg.ts';
+import { piscar } from '../piscar.ts';
 
 export default defineCard({
   name: 'Ephemerate',

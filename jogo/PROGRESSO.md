@@ -19,6 +19,11 @@ Amigos com o código e a senha da sala assistem sem ocupar assento (desenho e pl
 
 ## Semanal — 10 e 11/11/2026 (Dadinho, com o Claude)
 
+**Integração com a main de 12/11 (68d0f14):** os parceiros e o comandante Espaçonave já tinham entrado pela main; as
+cartas que a main já tinha (lote 3: deck do Borg, Cloud Nine, Foods e outras 42) ficaram com a versão da main, e as
+peças próprias deste semanal que o lote 3 não trouxe (piscar, assimilar das cartas que sobraram) foram para
+`cartas/piscar.ts`. As linhas abaixo sobre Cloud Nine e The Borg Queen descrevem o trabalho feito antes da integração.
+
 Feito nesta conversa, porque as rodadas automáticas da tarefa semanal terminavam em 3 segundos sem trabalhar.
 
 - **Comandante (CR 903.3):** Veículo lendário e Espaçonave lendária com caixa de P/R também podem ser comandante
@@ -74,6 +79,81 @@ Feito nesta conversa, porque as rodadas automáticas da tarefa semanal terminava
   - Verificação: testes gerais (só os 7 de imagem), bots com o deck obrigatório (8×4, 8×2 aleatórios, 4×2
     heurísticos) sem erro.
 - **Faltam (cartas sem regras):** LandReanimator 44 (16 vieram com o Hearthhull), Voja 56, yuriko 58, Foods (Sam e Frodo) 49.
+## Modos de jogo: Commander e Standard — 12/11/2026
+
+Pedido do Caio: preparar o jogo para ter outros modos além do Commander, com o Standard já agora, e ao jogar cada
+modo o saguão mostrar só os decks dele. Branch `modos/standard` (worktree `modos-wt`).
+
+- **Motor:** `motor/modos.ts` tem a tabela dos modos (`MODOS`: nome, vida inicial, se tem comandante, tamanho de mesa
+  sugerido, nome do formato nas legalidades do Scryfall). `DeckList.formato` (sem a chave: Commander) e `comandante`
+  opcional; sem comandante a zona de comando começa vazia. `GameConfig.formato` (só fora do Commander) e a vista
+  (`GameView.formato`) deixam a mesa esconder a zona de comando vazia. `validateDeck` valida no modo do deck: Standard
+  com 60 cartas ou mais, até 4 cópias (básicos e "any number of cards named" sem limite, "up to seven" com o número),
+  sem comandante e só cartas legais (MTR 3.3), quando a legalidade é conhecida.
+- **Catálogo:** a lista guarda `formato` e `capa` (a carta que ilustra o deck sem comandante: o destaque do Moxfield,
+  ou a primeira que não é básico). O Moxfield diz o modo: com comandante é Commander; sem, o `format` precisa ser
+  `standard` (outro formato é recusado dizendo os modos que existem). Na importação de Standard a legalidade de todas
+  as cartas vem do Scryfall (`/cards/collection`); carta fora do formato impede confirmar. Um deck não muda de modo
+  numa atualização.
+- **Sala:** `formato` escolhido ao criar (Commander sugere 4 lugares, Standard 2) e trocado pelo anfitrião no passo
+  Regras (mensagem `formato`): os decks do outro modo saem dos assentos das pessoas e os bots ganham um sorteado do
+  modo novo. O servidor recusa deck de outro modo (pessoa e bot) e não começa a partida com um deles; a vida inicial
+  vem do modo (40 ou 20).
+- **Cliente:** escolha do modo no passo Criar sala; o saguão mostra o modo no topo e só os decks dele (com aviso
+  quando ainda não há nenhum); o cartão, a prévia e a tela Decks mostram a capa e "Deck de Standard" no lugar do
+  comandante.
+- **Decks de Standard:** ainda nenhum na mesa. Entram pela tela Decks com o link do Moxfield; as cartas que ainda
+  não têm regras deixam o deck em preparação, como nos de Commander.
+- **Testes:** `testes/modos.test.ts`.
+## Filtro dos decks pela origem (precon, precon modificado, montado, criado aqui) — 12/11/2026
+
+Pedido do Caio: saber quais decks são precons de verdade (os que se compram na loja) e quais foram montados a
+partir de links.
+
+- **Como se sabe:** `node ferramentas/decks.ts classificar [id…|todos]` compara cada lista com as listas oficiais
+  dos precons de Commander do MTGJSON (índice e listas guardados em `.cache/mtgjson/`) e grava em
+  `decks/origens.json`: `precon` (igual ao produto), `modificado` (75+ cartas em comum, com o número de trocas),
+  `montado` ou `casa` (sem link: Lula e Bolsonaro). Deck que ainda não passou pela comparação usa um palpite
+  ("Precon" no nome: precon; sem link: criado aqui; o resto: montado). Módulos `servidor/catalogo/origem.ts` e
+  `mtgjson.ts`; teste `testes/catalogo/origem.test.ts`. **Ao adicionar um deck, rodar `classificar` depois.**
+- **Resultado (47 decks):** 25 precons, 9 precons modificados, 11 montados, 2 criados aqui. Os 7 do João são todos
+  precons com trocas (Abzan Armor 4, Blight Curse 11, Lorehold Spirit 7, Prismari Artistry 10, Silverquill
+  Influence 6, Terra/Revival Trance 16, Witherbloom Pestilence 6); também Jace/Multiverse Reforged (7) e
+  Gisa/Wretched Ranks (10), cujos links no Moxfield diferem da lista oficial.
+- **Na tela:** `DeckResumo.origem` e `DeckCatalogo.origem`; no passo Decks do saguão e na tela Decks, botões
+  Todos / Precons / Precons modificados / Montados / Criados aqui com a contagem (`telas/FiltroOrigem.tsx`, a
+  escolha fica no navegador) e um selo acima do nome de cada deck ("Precon", "Precon · 4 trocas", "Montado",
+  "Criado aqui"; o produto aparece ao passar o mouse). O deck que você escolheu continua à vista fora do filtro.
+
+## Mesas de 2 a 6 jogadores, sem precisar de bot — 08/11/2026
+
+Pedido do Caio antes de pôr o jogo numa VPS: dar para jogar com até 6 pessoas, em mesas de 2, 3, 4, 5 ou 6, e
+sem bots. Branch `mesas-2a6` (worktree `oarfish`).
+
+- **Sala:** quem cria escolhe de 2 a 6 lugares (`criar` com `lugares`; o `modo` antigo, `4p` ou `1v1`, ainda é
+  aceito). O tamanho é o de `assentos`; `SalaPublica.modo` saiu. Salas gravadas antes continuam (o `modo` delas
+  fica ignorado).
+- **Saguão:** o anfitrião muda o número de lugares no passo Lugares (mensagem `lugares`; diminuir só tira lugares
+  livres). Com lugares livres e pelo menos duas pessoas ou bots sentados, o botão vira "Continuar com N jogadores":
+  a sala fica só com os lugares ocupados (`tirarLivres` e `reindexar` em `servidor/salas.ts`; o anfitrião, as
+  conexões e o autor das mensagens do chat seguem o próprio assento, e o token continua valendo).
+- **Regras:** `multiplayer` (mulligan grátis; o primeiro jogador não pula a compra, CR 103.8a) vale de 3
+  jogadores para cima; com 2, é o duelo.
+- **Mesa:** oponentes numa fileira em cima, de 1 a 5; seis cores de jogador (`--rosa` e `--laranja` novas). A
+  abertura (VS) já era para N lados.
+
+### Plano do jogo online (combinado em 08/11, depois das mesas de 2 a 6)
+
+1. **Contas** no lugar da senha única do servidor: usuário e senha (scrypt), cadastro por convite de uso único,
+   redefinição de senha por link gerado pelo admin; perfil com nome, retrato e deck favorito; o assento preso à
+   conta (volta de qualquer aparelho). Tela Decks só para o admin.
+2. **Ajustes para a internet:** o servidor ouvindo só em 127.0.0.1 atrás do Caddy; o IP real lido do jeito do
+   Caddy (hoje `ipDe` confia no `cf-connecting-ip`, que atrás do Caddy qualquer um forja e fura o limite de
+   tentativas); limite de salas e bots por pessoa; limpeza de salas abandonadas.
+3. **VPS** (Hetzner, o plano mais barato, ou Oracle Always Free) com domínio próprio, Caddy (HTTPS automático),
+   serviço do systemd, script de atualização (pull, build, reiniciar) e backup diário do `jogo.sqlite`. A conta no
+   provedor e o domínio ficam com o Caio.
+4. Depois: histórico de partidas e estatísticas no perfil, lista de mesas abertas no saguão, login com Discord.
 
 ## Revisão carta a carta dos seis precons — 16 e 17/10/2026
 
@@ -2202,3 +2282,91 @@ para depois.
 - Worktrees: além das 18 antigas, `../Magic-Commander-brasil`, `../Magic-Commander-lote2` e
   `../Magic-Commander-regras-decks` podem sair (todas inteiras na `main`, sem nada por commitar; o Caio aprovou). O
   modo automático barrou a remoção; ficou com o Caio. Só `jogo-wt-bots` (Codex) fica.
+
+## 11/11/2026 — Lote 3: seis decks novos jogáveis (41 decks)
+
+- Pedido do Caio: Cloud, Ex-SOLDIER (`x_R7MWbxrUq4A2ST0PqldA`), The Borg Queen (`ALne8k6SV06cVQolK5RMTw`),
+  Commander Spock (`vNWUamZY7Uu0gqg6xKepyw`), Orvar cEDH (`Y2cdFYZw_0-isKafmKXgNw`), The Ur-Dragon
+  (`oTndvxb8bkqLPK_kANUrkA`) e Inalla cEDH (`shj-af8AiUWaoFVbNORQig`). "Se não houver a mecânica, crie."
+- 313 cartas novas, feitas em seis frentes (worktrees `precons-wt-a..f`, branches `lote3-a..f`) e juntadas em
+  `decks/lote3`. Mecânicas novas no motor, entre outras: segundo dividido (split second), spree, turnos extras com
+  "pula o turno extra" (Stranglehold, Trouble in Pairs), estações, mana da mão (Simian Spirit Guide), fases de
+  combate extras e "termina o turno".
+- Importação: folhas de adesivos (Unfinity) agora ficam fora do deck com aviso, como os esquemas do Archenemy
+  (o Inalla era recusado por isso).
+- `decks.ts conferir` antes e depois: os seis com 100/100, iguais ao Moxfield, jogáveis.
+- Bots: 120 partidas aleatórias (8 de 4 jogadores e 12 de 2 por deck) mais as heurísticas, sem erro depois de
+  dois achados: Wishclaw Talisman passava o controle para um jogador inexistente com 3+ jogadores, e o bot
+  aleatório prendia a partida no equipar {0} do Puresteel Paladin (agora a chance de passar cresce a cada ação
+  seguida).
+- Suíte inteira em 32 fatias: tudo passa; `tsc` limpo.
+- Simplificações conhecidas: cartas que trocam texto (Crystal Spray etc.); Kefka descarta em ordem APNAP; Captain
+  Kirk escolhe grimório ou cemitério; bots não usam Lion's Eye Diamond; a permissão do Dracogenesis vale só da mão
+  e do comando; a ímpeto do Hellkite Courser dura até o fim do turno; Wyleth usa a contagem de anexos do ataque;
+  alvo do Vedalken Aethermage Sliver; a compra do U.S.S. Farragut fica no gatilho atrasado; a ficha de Tribble é
+  branca; caso de borda do Ancient Greenwarden.
+
+## 12/11/2026 — Parceiros (do amigo do Caio) e o deck Foods (Sam + Frodo): 42 decks
+
+- Um amigo do Caio (Dadinho13) mandou direto para a `main` do GitHub o commit `138601ac`. Ele trouxe:
+  - a mecânica de parceiros, com dois comandantes (CR 702.124: Partner, Partner with, Friends forever, Background,
+    Doctor's companion), validação e telas;
+  - comandantes Veículo/Espaçonave (CR 903.3);
+  - 8 decks em preparação;
+  - `Abrir a mesa (porta 8090).cmd`.
+- O código foi revisado e está bom. O merge no lote 3 (`d59c8e87`) foi feito por chave nos JSON gerados, ficando com as
+  escolhas de imagem do lote 3. As ordens dos decks dele repetiam as do lote 3 e passaram para 116–123.
+- Pelo pedido do Caio, um deck por comandante: saíram o Borg Queen e o Cloud Nine dele (ficam os do lote 3). Os outros 6
+  seguem em preparação: Sephiroth, Sin, Voja, Yuriko, Hearthhull e Foods.
+- Sugestão ao Caio: deixar o amigo só com leitura no GitHub e pedir que ele mande os links.
+- `decks.ts conferir` agora conta o segundo comandante.
+- Foods (`T8Z7YBCEPkm7l2Bn27cDhw`): 47 cartas, feitas em duas frentes (`foods-a`, `foods-b`).
+  - Recursos novos no motor:
+    - `TurnStats.cardsDrawnIds` (Sylvan Library);
+    - `TurnStats.foodsSacrificed` (Elanor Gardner);
+    - resguardo com custo de sacrificar uma Food (Ygra);
+    - ajudantes em `cartas/forragear.ts` (forragear, fabricar, gatilhos de Food) e `cartas/condado.ts`.
+  - `conferir`: 100/100, igual ao Moxfield, 97 de 97 cartas com regras.
+  - Bots: 20 partidas com o Foods (aleatórias e heurísticas, 2 e 4 jogadores), sem erro.
+- Testes do motor de cartas: rodar `vitest run cartas/defs` com `--no-isolate` (141 s); no modo isolado leva horas.
+
+## 12/11/2026 — Banners e ícones dos decks novos (Codex)
+
+- Pedido do Caio: o Codex criar as imagens da mesa e os ícones dos decks que entraram sem elas. Levantamento nos 42
+  decks jogáveis: 14 sem banner nem ícone (Blame Game, Squirreled Away, Buckle Up, Calling All Angels, Tramplesaurus
+  Rex, Grand Larceny, Quick Draw, Miracle Worker, Cloud, We Are The Borg, Landing Party, Twitch Control, How to Train
+  Ur-Dragon, Wizard's Chess) e 3 só sem ícone (Black Panther, Invisible Woman, Captain America, recusados em 11/10).
+- Geração: `codex exec` (image_gen embutido), 5 lotes em paralelo, a partir da arte da impressão usada na mesa
+  (`artes-comandantes/27..40 - *.png`, entradas novas em `indice.json` e em `ferramentas/artes-comandantes.mjs`).
+  Prompts no mesmo formato dos anteriores, em `artes-comandantes/gerados/<id>-banner.txt` / `<id>-icone.txt`.
+- Resultado: 14 banners (1672 × 941) e 16 ícones (1254 × 1254 com alfa real), conferidos numa prancha. O ícone do
+  **Captain America** foi recusado de novo (`moderation_blocked`, saída, categoria `other`, duas vezes); segue como
+  única pendência em `pendencias.json`, e o assento dele fica com a inicial.
+- Instalados com `artes-comandantes.mjs import`: fundos em `gerado/fundos/<imagem>.webp`, retratos de 512 e 256 px;
+  catálogo de retratos com 42 (`servidor/avatares.ts`), rosto marcado em `ROSTO_NO_FUNDO` para os 14 banners e
+  `VERSAO_FUNDO` 7 (cache dos fundos).
+- Correção de passagem: índice e manifesto das artes ainda apontavam o Food and Fellowship para as impressões antigas
+  (renomeadas em e3840342), o que quebrava a galeria; agora usam 557c1d1d/f6c5d04b. Galeria: 31 de 32 conjuntos
+  completos, nenhum comandante sem fundo.
+- Testes `avatar` e `fase9-artes`: 19/19 com limite maior (os dois laços dos retratos ganharam 30 s, agora são 42);
+  `tsc --noEmit` sem erros. Cliente não recompilado nesta sessão (outra sessão tem mudanças não salvas no cliente).
+
+## 12/11/2026 — Ver o deck na partida e "Reportar erro"
+
+- Ver o deck: clicar no grimório de qualquer jogador abre a lista das cartas do deck dele (a prévia do saguão, sem o
+  botão de escolher). É a lista do deck, não a ordem do grimório (`d209c3fe`).
+- Reportar erro: no menu lateral da mesa e num botão no canto das outras telas; também no aviso vermelho de erro.
+  - Ao abrir, tira um print da página (modern-screenshot, sem pedir permissão) antes da janela aparecer e guarda a mesa
+    como estava. A pessoa escolhe o tipo, conta o que aconteceu (obrigatório), o que esperava, o que fez antes, se
+    repete, e aponta as cartas (busca em português ou inglês; sugere as que estão na mesa).
+  - Imagens (até 8): "Novo print da tela" (a janela some 3 s para arrumar a tela), "Capturar a aba" (getDisplayMedia,
+    idêntica à tela), anexar, colar (Ctrl+V) ou arrastar. "Marcar" desenha caixa, seta ou caneta em cima.
+  - Vai junto: a partida inteira (o servidor junta pelo token do assento: config, listas, entradas, checkpoints, sem a
+    senha nem os tokens), a vista da mesa, navegador e tela, os erros da página, as últimas ações (senha e token
+    mascarados), os avisos do servidor para a pessoa e o diário de erros do servidor na última hora.
+  - O texto fica como rascunho até o envio dar certo. Enviado, a pessoa recebe um número de 4 letras.
+  - Grava em `dados-locais/relatos/<id>/` (fora do git). Ler: `node ferramentas/relatos.ts listar | ver <número> |
+    reproduzir <número> | resolver <número> [nota]`. `reproduzir` refaz a partida com o motor de agora e compara com a
+    mesa que a pessoa via.
+  - Código: `cliente/src/relato/`, `servidor/relatos.ts`, `servidor/diario-erros.ts`, rota `POST /api/relatos`,
+    `Gerente.paraRelato`. Testes: `testes/relatos.test.ts`, `testes/relato-cliente.test.ts`.

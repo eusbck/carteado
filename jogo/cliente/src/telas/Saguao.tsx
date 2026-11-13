@@ -1,6 +1,7 @@
 // Saguão em passos, um de cada vez e o mesmo para a mesa toda (a etapa fica no servidor): primeiro quem joga entra e
-// o anfitrião põe bots nos lugares livres; depois o anfitrião define as regras (mulligan e auxílios) enquanto os
-// outros acompanham; por fim cada um escolhe o deck, com um botão separado para ver as cartas. Cada passo entra
+// o anfitrião põe bots nos lugares livres, muda o número de lugares (2 a 6) ou segue só com quem entrou; depois o anfitrião define as regras (mulligan e auxílios) enquanto os
+// outros acompanham, e pode trocar o modo de jogo; por fim cada um escolhe o deck (só os do modo da sala), com um botão
+// separado para ver as cartas. Cada passo entra
 // deslizando para o lado em que a mesa andou. Se um lugar vagar, a sala volta para os lugares (os decks escolhidos
 // continuam marcados).
 
@@ -11,10 +12,14 @@ import { nomeCarta, urlArte } from '../cartas.ts';
 import { Simbolos } from '../mesa/Simbolos.tsx';
 import { quandoOcioso } from '../ocioso.ts';
 import { EscolhaRetrato } from './EscolhaRetrato.tsx';
+import { EscolhaLugares } from './EscolhaLugares.tsx';
+import { descricaoLugares } from '../lugares.ts';
 import { Avatar } from '../mesa/Avatar.tsx';
 import { avatarDoAssento } from '../avatares.ts';
+import { BotoesOrigem, passaNoFiltro, SeloOrigem, useFiltroOrigem } from './FiltroOrigem.tsx';
 import type { AssentoPublico, DeckResumo, EtapaSaguao, SalaPublica } from '../../../servidor/protocolo.ts';
 import { NIVEIS_BOT, NIVEL_PADRAO, nomeNivel, type NivelBot } from '../../../bots/niveis.ts';
+import { LISTA_MODOS, MODOS } from '../../../motor/modos.ts';
 
 // a prévia do deck fica fora do pacote inicial: o código vem com a página parada assim que o passo dos decks aparece
 // (o botão Ver cartas já o encontra carregado; se não, a janela abre um instante depois, sem nada no lugar)
@@ -57,6 +62,7 @@ function PassoLugares({ sala, eu, decks }: { sala: SalaPublica; eu: number; deck
   const [trocarRetrato, setTrocarRetrato] = useState(false);
   const retratoDe = (a: AssentoPublico) => avatarDoAssento(a.avatar, decks.find((d) => d.id === a.deck)?.comandante);
   const livres = sala.assentos.filter((a) => a.tipo === 'vazio').length;
+  const ocupados = sala.assentos.length - livres;
   const deckSorteado = () => {
     const usados = new Set(sala.assentos.map((a) => a.deck));
     const sobra = decks.filter((d) => !usados.has(d.id));
@@ -73,9 +79,15 @@ function PassoLugares({ sala, eu, decks }: { sala: SalaPublica; eu: number; deck
           <span class="rot">Código da sala</span>
           <strong>{sala.codigo}</strong>
         </div>
-        <p class="suave">Passe o código e a senha para quem vai jogar. {sala.modo === '4p' ? 'Quatro jogadores, todos contra todos.' : 'Um contra um.'}</p>
+        <p class="suave">Passe o código e a senha para quem vai jogar. {descricaoLugares(sala.assentos.length)}.</p>
         <button type="button" class="botao pequeno" onClick={copiar}>{copiado ? 'Copiado' : 'Copiar código'}</button>
       </div>
+      {anfitriao && (
+        <div class="saguao-tamanho">
+          <span class="rot">Jogadores</span>
+          <EscolhaLugares valor={sala.assentos.length} minimo={Math.max(2, ocupados)} mudar={(n) => loja.enviar({ t: 'lugares', n })} />
+        </div>
+      )}
       <ol class={`lugares lugares-${sala.assentos.length}`}>
         {sala.assentos.map((a) => (
           <li key={a.indice} class={`lugar lugar-${a.tipo} ${a.indice === eu ? 'meu' : ''}`}>
@@ -107,8 +119,12 @@ function PassoLugares({ sala, eu, decks }: { sala: SalaPublica; eu: number; deck
       <footer class="saguao-rodape">
         {anfitriao
           ? <>
-              <p class="suave">{livres ? `${livres === 1 ? 'Falta 1 lugar' : `Faltam ${livres} lugares`}: espere alguém entrar ou ponha um bot.` : 'Todos os lugares estão ocupados.'}</p>
-              <button class="botao cheio grande" disabled={livres > 0} onClick={() => loja.enviar({ t: 'etapa', etapa: 'regras' })}>Continuar para as regras</button>
+              <p class="suave">{!livres ? 'Todos os lugares estão ocupados.'
+                : ocupados >= 2 ? `${livres === 1 ? 'Há 1 lugar livre' : `Há ${livres} lugares livres`}: espere alguém entrar, ponha um bot ou siga só com quem está aqui.`
+                : `${livres === 1 ? 'Falta 1 lugar' : `Faltam ${livres} lugares`}: espere alguém entrar ou ponha um bot.`}</p>
+              <button class="botao cheio grande" disabled={ocupados < 2} onClick={() => loja.enviar({ t: 'etapa', etapa: 'regras' })}>
+                {livres && ocupados >= 2 ? `Continuar com ${ocupados} jogadores` : 'Continuar para as regras'}
+              </button>
             </>
           : <p class="saguao-espera"><span class="pulso" aria-hidden="true" />{livres ? 'Esperando os outros entrarem.' : 'Esperando o anfitrião continuar.'}</p>}
       </footer>
@@ -122,6 +138,16 @@ function PassoRegras({ sala, eu }: { sala: SalaPublica; eu: number }) {
   return (
     <div class="saguao-passo">
       <div class="regras">
+        <section class="opcao">
+          <h2 class="rot">Modo de jogo</h2>
+          <div class="segmentado" role="radiogroup" aria-label="Modo de jogo">
+            {LISTA_MODOS.map((m) => (
+              <button key={m.id} type="button" role="radio" aria-checked={sala.formato === m.id} class={sala.formato === m.id ? 'ativo' : ''} disabled={!anfitriao}
+                onClick={() => loja.enviar({ t: 'formato', formato: m.id })}>{m.nome}<small>{m.descricao}</small></button>
+            ))}
+          </div>
+          <p class="suave dica-opcao">Trocar o modo tira os decks do outro modo dos lugares: cada um escolhe de novo.</p>
+        </section>
         <section class="opcao">
           <h2 class="rot">Regra de mulligan</h2>
           <div class="segmentado" role="radiogroup" aria-label="Regra de mulligan">
@@ -155,15 +181,18 @@ function PassoRegras({ sala, eu }: { sala: SalaPublica; eu: number }) {
 }
 
 function CartaoDeck({ d, meu, de, escolher, abrir }: { d: DeckResumo; meu: boolean; de: string[]; escolher: () => void; abrir: () => void }) {
-  const arte = urlArte(d.comandante);
+  const arte = urlArte(d.capa);
   return (
     <div class={`deck ${meu ? 'ativo' : ''}`} style={arte ? { backgroundImage: `url(${arte})` } : undefined}>
       <button type="button" class="deck-escolher" onClick={escolher} aria-pressed={meu} aria-label={`Escolher deck ${d.nome}`} title="Escolher este deck">
         {meu && <span class="deck-selo">Seu deck</span>}
         {de.length > 0 && <span class="deck-quem">{de.join(', ')}</span>}
         <span class="deck-info">
+          <SeloOrigem origem={d.origem} />
           <span class="deck-nome">{d.nome}</span>
-          <span class="deck-cmd"><span>{nomeCarta(d.comandante, d.comandante).split(',')[0]}{d.parceiro ? ` e ${nomeCarta(d.parceiro, d.parceiro).split(',')[0]}` : ''}</span><Simbolos custo={cores(d)} /></span>
+          <span class="deck-cmd"><span>{d.comandante
+            ? <>{nomeCarta(d.comandante, d.comandante).split(',')[0]}{d.parceiro ? ` e ${nomeCarta(d.parceiro, d.parceiro).split(',')[0]}` : ''}</>
+            : `${d.total} cartas`}</span><Simbolos custo={cores(d)} /></span>
         </span>
       </button>
       <button type="button" class="deck-ver" onClick={abrir} aria-label={`Ver cartas de ${d.nome}`}>Ver cartas</button>
@@ -180,6 +209,9 @@ function PassoDecks({ sala, eu, decks }: { sala: SalaPublica; eu: number; decks:
   const deckDe = (id: string | null) => decks.find((d) => d.id === id) ?? null;
   const faltam = sala.assentos.filter((a) => a.tipo !== 'vazio' && !a.deck).length;
   const pronto = sala.assentos.every((a) => a.tipo !== 'vazio' && a.deck);
+  const [filtro, setFiltro] = useFiltroOrigem();
+  // o deck escolhido continua à vista mesmo fora do filtro
+  const visiveis = ordenados(decks).filter((d) => passaNoFiltro(filtro, d) || d.id === meuDeck);
   return (
     <div class="saguao-passo saguao-decks">
       <aside class="decks-lugares">
@@ -187,7 +219,7 @@ function PassoDecks({ sala, eu, decks }: { sala: SalaPublica; eu: number; decks:
         <ol>
           {sala.assentos.map((a) => {
             const deck = deckDe(a.deck);
-            const arte = deck ? urlArte(deck.comandante) : null;
+            const arte = deck ? urlArte(deck.capa) : null;
             return (
               <li key={a.indice} class={`assento ${deck ? 'com-deck' : ''}`}>
                 <span class={`assento-arte ${arte ? 'com-arte' : ''}`} style={arte ? { backgroundImage: `url(${arte})` } : undefined} />
@@ -216,8 +248,13 @@ function PassoDecks({ sala, eu, decks }: { sala: SalaPublica; eu: number; decks:
             <button type="button" class="botao pequeno" onClick={() => void loja.abrirDecks()} title="Importar um deck pelo link do Moxfield ou atualizar os da mesa">Decks</button>
           </span>
         </div>
+        {decks.length > 0 && <BotoesOrigem decks={decks} valor={filtro} mudar={setFiltro} />}
+        {!decks.length && (
+          <p class="faixa">Ainda não há decks de {MODOS[sala.formato].nome} na mesa. Importe um pelo link do Moxfield em Decks
+            (os que têm cartas sem regras ficam em preparação), ou o anfitrião troca o modo no passo Regras.</p>
+        )}
         <div class="decks">
-          {ordenados(decks).map((d) => (
+          {visiveis.map((d) => (
             <CartaoDeck key={d.id} d={d} meu={d.id === meuDeck} abrir={() => setPrevia(d)}
               escolher={() => loja.enviar({ t: 'deck', deck: d.id })}
               de={sala.assentos.filter((a) => a.deck === d.id && a.indice !== eu && a.tipo !== 'vazio').map((a) => a.nome ?? '?')} />
@@ -271,6 +308,8 @@ export function Saguao() {
   const sala = e.sala!;
   const espectador = ehEspectador(e);
   const eu = e.voce ?? 0;
+  // só os decks do modo da sala (o servidor recusa os outros)
+  const decks = e.decks.filter((d) => d.formato === sala.formato);
   const etapa = sala.etapa ?? 'lugares';
   // o passo novo entra do lado em que a mesa andou
   const anterior = useRef(etapa);
@@ -286,7 +325,7 @@ export function Saguao() {
         <header class="saguao-topo">
           <div>
             <h1 class="sala-codigo">Sala {sala.codigo}</h1>
-            <p class="sala-sub">{sala.modo === '4p' ? 'Quatro jogadores, todos contra todos' : 'Um contra um'}</p>
+            <p class="sala-sub">{MODOS[sala.formato].nome} · {descricaoLugares(sala.assentos.length)}</p>
           </div>
           <ol class="saguao-passos" aria-label="Passos do saguão">
             {PASSOS.map(([id, nome], i) => (
@@ -300,11 +339,11 @@ export function Saguao() {
         <ListaEspectadores sala={sala} />
         {sala.estado === 'fim' && <p class="faixa">A última partida terminou. Quem criou a sala pode começar outra.</p>}
         {espectador
-          ? <PassoAssistindo sala={sala} decks={e.decks} />
+          ? <PassoAssistindo sala={sala} decks={decks} />
           : <div key={etapa} class={`passo passo-${sentido.current}`}>
-              {etapa === 'lugares' && <PassoLugares sala={sala} eu={eu} decks={e.decks} />}
+              {etapa === 'lugares' && <PassoLugares sala={sala} eu={eu} decks={decks} />}
               {etapa === 'regras' && <PassoRegras sala={sala} eu={eu} />}
-              {etapa === 'decks' && <PassoDecks sala={sala} eu={eu} decks={e.decks} />}
+              {etapa === 'decks' && <PassoDecks sala={sala} eu={eu} decks={decks} />}
             </div>}
       </main>
     </div>

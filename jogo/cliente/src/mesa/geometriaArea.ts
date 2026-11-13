@@ -29,6 +29,9 @@ export interface EntradaArea {
   /** a sua área (com a mão) */
   eu: boolean;
   compacta: boolean;
+  /** oponente numa área estreita (5 ou 6 jogadores em telas menores): as zonas vão sem rótulo, com a contagem sobre
+   *  a pilha, e sobra essa altura para o campo */
+  estreita?: boolean;
   duelo: boolean;
   lado?: LadoAvatar;
   /** cartas na mão (a sua área) */
@@ -115,7 +118,7 @@ function faixaDaMao(n: number, wm: number, hm: number, passo: number, baixo: num
 export function medirArea(e: EntradaArea): MedidasArea {
   const { w, h } = e;
   const wz = e.compacta ? (e.duelo ? limitar(44, h * .13, 56) : limitar(34, h * .1, 42)) : limitar(54, h * .13, 76);
-  const zonasH = Math.round(wz * PROPORCAO) + 26;
+  const zonasH = Math.round(wz * PROPORCAO) + (e.estreita ? 12 : 26);
   const topo = e.compacta ? 44 : 58;
   const wBase = e.compacta ? (e.duelo ? limitar(54, h * .19, 84) : limitar(40, h * .15, 62)) : limitar(62, h * .17, 92);
   const wMin = e.compacta ? 28 : 40;

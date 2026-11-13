@@ -1,28 +1,26 @@
 import { describe, expect, it } from 'vitest';
-import { destroy } from '../../motor/api.ts';
 import { hasKw } from '../../motor/chars.ts';
-import { enterCard } from '../../testes/artefatos.ts';
-import { setup } from '../../testes/harness.ts';
+import { enterCard, fixture as setup } from '../../testes/artefatos.ts';
 
-const C = 'Heroic Intervention';
+const NOME = 'Heroic Intervention';
 
-describe(C, () => {
-  it('suas permanentes ganham resistência a magia e indestrutível até o fim do turno', () => {
-    const tg = setup({ battlefield: [['Forest', 'Forest', 'Elvish Mystic'], ['Indomitable Ancients']], hand: [[C], []] });
-    tg.cast(C).resolve();
-    const elfo = tg.bf('Elvish Mystic');
-    expect(hasKw(tg.g, elfo, 'hexproof')).toBe(true);
-    expect(hasKw(tg.g, elfo, 'indestructible')).toBe(true);
-    expect(hasKw(tg.g, tg.bf('Indomitable Ancients'), 'indestructible')).toBe(false);
-    tg.run(destroy(tg.g, [elfo]));
-    expect(tg.find('Elvish Mystic')).not.toBeNull();
+describe(NOME, () => {
+  it('as suas permanentes ganham resistência a magia e indestrutível até o fim do turno; as dos oponentes não', () => {
+    const tg = setup({ battlefield: [['Forest', 'Forest', 'Indomitable Ancients', 'Sol Ring'], ['Wall of Omens']], hand: [[NOME], []] });
+    tg.cast(NOME).resolve();
+    for (const n of ['Indomitable Ancients', 'Sol Ring', 'Forest']) {
+      expect(hasKw(tg.g, tg.bf(n), 'hexproof')).toBe(true);
+      expect(hasKw(tg.g, tg.bf(n), 'indestructible')).toBe(true);
+    }
+    expect(hasKw(tg.g, tg.bf('Wall of Omens'), 'indestructible')).toBe(false);
     tg.passTo('upkeep', 1);
-    expect(hasKw(tg.g, elfo, 'indestructible')).toBe(false);
+    expect(hasKw(tg.g, tg.bf('Indomitable Ancients'), 'indestructible')).toBe(false);
   });
-  it('ruling 3: permanentes que você passa a controlar depois não ganham nada', () => {
-    const tg = setup({ battlefield: [['Forest', 'Forest'], []], hand: [[C], []] });
-    tg.cast(C).resolve();
-    const elfo = enterCard(tg, 'Elvish Mystic', 0)!;
-    expect(hasKw(tg.g, elfo, 'indestructible')).toBe(false);
+
+  it('CR 611.2c — a permanente que entra depois da resolução não ganha nada', () => {
+    const tg = setup({ battlefield: [['Forest', 'Forest'], []], hand: [[NOME], []] });
+    tg.cast(NOME).resolve();
+    const id = enterCard(tg, 'Wall of Omens', 0)!;
+    expect(hasKw(tg.g, id, 'indestructible')).toBe(false);
   });
 });

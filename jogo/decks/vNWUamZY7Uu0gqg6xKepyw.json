@@ -1,0 +1,396 @@
+{
+ "formato": 1,
+ "id": "vNWUamZY7Uu0gqg6xKepyw",
+ "ordem": 112,
+ "nome": "Landing Party (Star Trek Commander Decklist)",
+ "link": "https://moxfield.com/decks/vNWUamZY7Uu0gqg6xKepyw",
+ "importadoEm": "2026-11-08T22:55:10.458Z",
+ "verificadoEm": "2026-11-08T22:55:10.458Z",
+ "atual": {
+  "comandante": "Commander Spock",
+  "cartas": [
+   {
+    "nome": "Island",
+    "quantidade": 2
+   },
+   {
+    "nome": "Plains",
+    "quantidade": 2
+   },
+   {
+    "nome": "Forest",
+    "quantidade": 4
+   },
+   {
+    "nome": "Temple of Plenty",
+    "quantidade": 1
+   },
+   {
+    "nome": "Temple of Enlightenment",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arcane Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Command Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fabled Passage",
+    "quantidade": 1
+   },
+   {
+    "nome": "Beast Within",
+    "quantidade": 1
+   },
+   {
+    "nome": "Brainstorm",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cultivate",
+    "quantidade": 1
+   },
+   {
+    "nome": "Evolving Wilds",
+    "quantidade": 1
+   },
+   {
+    "nome": "Farseek",
+    "quantidade": 1
+   },
+   {
+    "nome": "Harmonize",
+    "quantidade": 1
+   },
+   {
+    "nome": "Nature's Lore",
+    "quantidade": 1
+   },
+   {
+    "nome": "Path to Exile",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rampant Growth",
+    "quantidade": 1
+   },
+   {
+    "nome": "Reliquary Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Temple of the False God",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tireless Tracker",
+    "quantidade": 1
+   },
+   {
+    "nome": "Heroic Intervention",
+    "quantidade": 1
+   },
+   {
+    "nome": "Temple of Mystery",
+    "quantidade": 1
+   },
+   {
+    "nome": "Wrath of God",
+    "quantidade": 1
+   },
+   {
+    "nome": "Exotic Orchard",
+    "quantidade": 1
+   },
+   {
+    "nome": "Seaside Citadel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sun Titan",
+    "quantidade": 1
+   },
+   {
+    "nome": "Terramorphic Expanse",
+    "quantidade": 1
+   },
+   {
+    "nome": "Path of Ancestry",
+    "quantidade": 1
+   },
+   {
+    "nome": "Prairie Stream",
+    "quantidade": 1
+   },
+   {
+    "nome": "Reality Shift",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mosswort Bridge",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sea of Clouds",
+    "quantidade": 1
+   },
+   {
+    "nome": "Canopy Vista",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fortified Village",
+    "quantidade": 1
+   },
+   {
+    "nome": "Port Town",
+    "quantidade": 1
+   },
+   {
+    "nome": "Satyr Wayfinder",
+    "quantidade": 1
+   },
+   {
+    "nome": "Growth Spiral",
+    "quantidade": 1
+   },
+   {
+    "nome": "Guardian Project",
+    "quantidade": 1
+   },
+   {
+    "nome": "Glacial Fortress",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sunpetal Grove",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mutavault",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lotus Cobra",
+    "quantidade": 1
+   },
+   {
+    "nome": "Echo of Eons",
+    "quantidade": 1
+   },
+   {
+    "nome": "Irrigated Farmland",
+    "quantidade": 1
+   },
+   {
+    "nome": "Scattered Groves",
+    "quantidade": 1
+   },
+   {
+    "nome": "Austere Command",
+    "quantidade": 1
+   },
+   {
+    "nome": "Exploration",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ponder",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hinterland Harbor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Scute Swarm",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ancient Greenwarden",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vineglimmer Snarl",
+    "quantidade": 1
+   },
+   {
+    "nome": "Augur of Autumn",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tranquil Landscape",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sodden Verdure",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rain-Slicked Copse",
+    "quantidade": 1
+   },
+   {
+    "nome": "Captain Kirk, Boldly Going",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cold-Blooded Crew",
+    "quantidade": 1
+   },
+   {
+    "nome": "Syndicate Liquidators",
+    "quantidade": 1
+   },
+   {
+    "nome": "Christine Chapel, Combat Medic",
+    "quantidade": 1
+   },
+   {
+    "nome": "Starship Enterprise",
+    "quantidade": 1
+   },
+   {
+    "nome": "Command Chair",
+    "quantidade": 1
+   },
+   {
+    "nome": "Starfleet Communicator",
+    "quantidade": 1
+   },
+   {
+    "nome": "Earth, Sector 001",
+    "quantidade": 1
+   },
+   {
+    "nome": "Risa",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vulcan",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shore Leave Planet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Temporal Tribulation",
+    "quantidade": 1
+   },
+   {
+    "nome": "Merciful Mandate",
+    "quantidade": 1
+   },
+   {
+    "nome": "M'Ress, Crew Coordinator",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shuttlecraft Galileo",
+    "quantidade": 1
+   },
+   {
+    "nome": "Balance of Terror",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tribble Cluster",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sam Kirk, Xenoanthropologist",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lieutenant Nyota Uhura",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lieutenant Hikaru Sulu",
+    "quantidade": 1
+   },
+   {
+    "nome": "Janice Rand, Essential Aide",
+    "quantidade": 1
+   },
+   {
+    "nome": "Giant Space Amoeba",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fleet Captain Christopher Pike",
+    "quantidade": 1
+   },
+   {
+    "nome": "Chief Montgomery Scott",
+    "quantidade": 1
+   },
+   {
+    "nome": "Colossal Clone Master",
+    "quantidade": 1
+   },
+   {
+    "nome": "Chief Kyle, Transporter Tech",
+    "quantidade": 1
+   },
+   {
+    "nome": "Amanda Grayson, Logic's Link",
+    "quantidade": 1
+   },
+   {
+    "nome": "U.S.S. Defiant, Mirror Migrant",
+    "quantidade": 1
+   },
+   {
+    "nome": "U.S.S. Farragut, Bold Explorer",
+    "quantidade": 1
+   },
+   {
+    "nome": "T'Pring, Never Parted",
+    "quantidade": 1
+   },
+   {
+    "nome": "The Guardian of Forever",
+    "quantidade": 1
+   },
+   {
+    "nome": "S.S. Botany Bay",
+    "quantidade": 1
+   },
+   {
+    "nome": "Planet Killer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Pavel Chekov, First Posting",
+    "quantidade": 1
+   },
+   {
+    "nome": "McCoy, Not a Bricklayer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lt. Arex, Ever-Adapting",
+    "quantidade": 1
+   },
+   {
+    "nome": "Jefferies Tube",
+    "quantidade": 1
+   }
+  ],
+  "origem": {
+   "versao": 1,
+   "atualizadoEm": "2026-10-29T18:26:02.43Z"
+  },
+  "desde": "2026-11-08T22:55:10.458Z"
+ },
+ "preparacao": null
+}

@@ -1,7 +1,7 @@
 // Teleportation Circle
 // At the beginning of your end step, exile up to one target artifact or creature you control, then return that card to the battlefield under its owner's control.
 import { and, defineCard, is, on, or, t, tgt, triggered, upTo } from '../../motor/api.ts';
-import { piscar } from '../borg.ts';
+import { piscar } from '../piscar.ts';
 
 export default defineCard({
   name: "Teleportation Circle",

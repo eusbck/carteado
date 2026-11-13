@@ -26,13 +26,13 @@ export default defineCard({
           quem = Number(p.slice(1));
         }
         // ruling 1: uma pilha pode ficar vazia
-        const pilha1 = (yield* chooseItems(c.g, quem, 'Fact or Fiction: separe as cartas em duas pilhas — escolha as cartas da primeira pilha (as outras formam a segunda)', cartas.map(item), 0, cartas.length)).map(Number);
+        const pilha1 = (yield* chooseItems(c.g, quem, 'Fact or Fiction: separe as cartas em duas pilhas — escolha as cartas da primeira pilha (as outras formam a segunda)', cartas.map(item), 0, cartas.length, false, { split: true })).map(Number);
         const pilha2 = cartas.filter((id) => !pilha1.includes(id));
         const nomes = (p: ObjId[]) => p.map((id) => nameOf(c.g, id)).join(', ') || 'vazia';
         c.g.log(`${s.players[quem].name} separa as pilhas: [${nomes(pilha1)}] e [${nomes(pilha2)}].`);
         const [esc] = yield* chooseItems(c.g, c.you, 'Fact or Fiction: escolha a pilha que vai para a sua mão (a outra vai para o cemitério)', [
-          { id: '1', label: `Pilha 1: ${nomes(pilha1)}` },
-          { id: '2', label: `Pilha 2: ${nomes(pilha2)}` },
+          { id: '1', label: `Pilha 1: ${nomes(pilha1)}`, pile: pilha1 },
+          { id: '2', label: `Pilha 2: ${nomes(pilha2)}`, pile: pilha2 },
         ], 1, 1);
         const mao = esc === '1' ? pilha1 : pilha2;
         const cemiterio = esc === '1' ? pilha2 : pilha1;

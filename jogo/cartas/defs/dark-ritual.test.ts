@@ -1,14 +1,10 @@
 import { describe, expect, it } from 'vitest';
-import { hasKw, isCreature } from '../../motor/chars.ts';
 import { setup } from '../../testes/harness.ts';
 
-void hasKw; void isCreature;
-const C = "Dark Ritual";
-
-describe(C, () => {
+describe('Dark Ritual', () => {
   it('adiciona {B}{B}{B}', () => {
-    const tg = setup({ battlefield: [['Swamp'], []], hand: [[C], []] });
-    tg.cast(C).resolve();
-    expect(tg.state.players[0].manaPool.length).toBe(3);
+    const tg = setup({ battlefield: [['Swamp'], []], hand: [['Dark Ritual'], []] });
+    tg.cast('Dark Ritual').resolve();
+    expect(tg.state.players[0].manaPool.map((m) => m.type)).toEqual(['B', 'B', 'B']);
   });
 });

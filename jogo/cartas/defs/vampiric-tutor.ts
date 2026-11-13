@@ -1,18 +1,18 @@
 // Vampiric Tutor
 // Search your library for a card, then shuffle and put that card on top. You lose 2 life.
-import { defineCard, loseLife, moveObjects, searchLibrary, shuffleLibrary } from '../../motor/api.ts';
+import { defineCard, loseLife } from '../../motor/api.ts';
+import { tutor } from '../cedh.ts';
 
 export default defineCard({
   name: 'Vampiric Tutor',
   faces: [{
     spell: {
       *effect(c) {
-        const [carta] = yield* searchLibrary(c.g, c.you, c.you, { max: 1, prompt: 'Procure uma carta para pôr no topo' });
-        shuffleLibrary(c.g, c.you);
-        if (carta !== undefined) yield* moveObjects(c.g, [{ id: carta, to: 'library', position: 'top' }], 'effect');
+        // ruling 1: embaralhar e pôr no topo é uma ação só (cartas/cedh.ts tutor)
+        yield* tutor(c, 'top');
         loseLife(c.g, c.you, 2, c.source);
       },
     },
   }],
-  rulings: { 1: 'regra geral: CR 119.3 — perde 2 de vida mesmo sem achar a carta' },
+  rulings: { 1: 'teste: procura uma carta, ela fica no topo do grimório e você perde 2 de vida' },
 });

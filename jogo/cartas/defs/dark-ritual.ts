@@ -4,6 +4,9 @@ import { addMana, defineCard } from '../../motor/api.ts';
 
 export default defineCard({
   name: 'Dark Ritual',
-  faces: [{ spell: { *effect(c) { addMana(c.g, c.you, ['B', 'B', 'B'], { source: c.source }); } } }],
+  faces: [{
+    // CR 106.4: a mana vai para a reserva e se esvazia no fim da etapa
+    spell: { *effect(c) { addMana(c.g, c.you, ['B', 'B', 'B'], { source: c.source }); } },
+  }],
   rulings: {},
 });

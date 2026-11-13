@@ -1,11 +1,19 @@
 import { describe, expect, it } from 'vitest';
-import { setup } from '../../testes/harness.ts';
+import { fixture as setup } from '../../testes/artefatos.ts';
 
-describe('Unwinding Clock', () => {
-  it('desvira os seus artefatos na etapa de desvirar do outro jogador', () => {
-    const tg = setup({ battlefield: [['Unwinding Clock', { name: 'Sol Ring', tapped: true }, { name: 'Island', tapped: true }], []], library: [['Opt'], ['Opt']] });
-    tg.passTo('upkeep', 1);
+const N = 'Unwinding Clock';
+
+describe(N, () => {
+  it('na etapa de desvirar do oponente, os seus artefatos desviram e as outras permanentes não', () => {
+    const tg = setup({ battlefield: [[N, { name: 'Sol Ring', tapped: true }, { name: 'Island', tapped: true }], []], step: 'end' });
+    tg.passTo('main1', 1);
     expect(tg.state.objects[tg.bf('Sol Ring')].tapped).toBe(false);
     expect(tg.state.objects[tg.bf('Island')].tapped).toBe(true);
+  });
+
+  it('com dois Unwinding Clock, os artefatos desviram uma vez só', () => {
+    const tg = setup({ battlefield: [[N, N, { name: 'Sol Ring', tapped: true }], []], step: 'end' });
+    tg.passTo('main1', 1);
+    expect(tg.state.objects[tg.bf('Sol Ring')].tapped).toBe(false);
   });
 });

@@ -5,7 +5,7 @@
 // battlefield under your control.
 // {3}{U}: Tap another target creature.
 import { activated, and, defineCard, is, keyword, on, staticAbility, t, tap, tgt, triggered, upTo } from '../../motor/api.ts';
-import { piscar } from '../borg.ts';
+import { piscar } from '../piscar.ts';
 import { DEVOCAO, devocao } from '../milagres.ts';
 
 export default defineCard({

@@ -137,8 +137,8 @@ function portugues(p: Printing | undefined): PtGerada | null {
 }
 
 /** nomes de uma lista, com o comandante */
-export const nomesDaLista = (l: { comandante: string; parceiro?: string; cartas: { nome: string }[] }) =>
-  [...new Set([l.comandante, ...(l.parceiro ? [l.parceiro] : []), ...l.cartas.map((c) => c.nome)])];
+export const nomesDaLista = (l: { comandante?: string; parceiro?: string; cartas: { nome: string }[] }) =>
+  [...new Set([...(l.comandante ? [l.comandante] : []), ...(l.parceiro ? [l.parceiro] : []), ...l.cartas.map((c) => c.nome)])];
 
 // ---------------------------------------------------------------------------- junção
 

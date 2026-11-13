@@ -1,7 +1,7 @@
 // Cloudshift
 // Exile target creature you control, then return that card to the battlefield under your control.
 import { defineCard, is, t, tgt } from '../../motor/api.ts';
-import { piscar } from '../borg.ts';
+import { piscar } from '../piscar.ts';
 
 export default defineCard({
   name: 'Cloudshift',

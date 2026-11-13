@@ -1,0 +1,380 @@
+{
+ "formato": 1,
+ "id": "ALne8k6SV06cVQolK5RMTw",
+ "ordem": 111,
+ "nome": "We Are The Borg (Star Trek Commander Decklist)",
+ "link": "https://moxfield.com/decks/ALne8k6SV06cVQolK5RMTw",
+ "importadoEm": "2026-11-08T22:54:57.411Z",
+ "verificadoEm": "2026-11-08T22:54:57.411Z",
+ "atual": {
+  "comandante": "The Borg Queen",
+  "cartas": [
+   {
+    "nome": "Island",
+    "quantidade": 4
+   },
+   {
+    "nome": "Plains",
+    "quantidade": 4
+   },
+   {
+    "nome": "Swamp",
+    "quantidade": 4
+   },
+   {
+    "nome": "Arcane Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Command Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tempered Steel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arcane Sanctum",
+    "quantidade": 1
+   },
+   {
+    "nome": "Evolving Wilds",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rogue's Passage",
+    "quantidade": 1
+   },
+   {
+    "nome": "Skullclamp",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Thoughtcast",
+    "quantidade": 1
+   },
+   {
+    "nome": "Astral Cornucopia",
+    "quantidade": 1
+   },
+   {
+    "nome": "Commander's Sphere",
+    "quantidade": 1
+   },
+   {
+    "nome": "Everflowing Chalice",
+    "quantidade": 1
+   },
+   {
+    "nome": "Exotic Orchard",
+    "quantidade": 1
+   },
+   {
+    "nome": "Swiftfoot Boots",
+    "quantidade": 1
+   },
+   {
+    "nome": "Terramorphic Expanse",
+    "quantidade": 1
+   },
+   {
+    "nome": "Underground River",
+    "quantidade": 1
+   },
+   {
+    "nome": "Wayfarer's Bauble",
+    "quantidade": 1
+   },
+   {
+    "nome": "Path of Ancestry",
+    "quantidade": 1
+   },
+   {
+    "nome": "Prairie Stream",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sunken Hollow",
+    "quantidade": 1
+   },
+   {
+    "nome": "Skycloud Expanse",
+    "quantidade": 1
+   },
+   {
+    "nome": "Toxic Deluge",
+    "quantidade": 1
+   },
+   {
+    "nome": "Morphic Pool",
+    "quantidade": 1
+   },
+   {
+    "nome": "Anguished Unmaking",
+    "quantidade": 1
+   },
+   {
+    "nome": "Choked Estuary",
+    "quantidade": 1
+   },
+   {
+    "nome": "Port Town",
+    "quantidade": 1
+   },
+   {
+    "nome": "Return to Dust",
+    "quantidade": 1
+   },
+   {
+    "nome": "Disallow",
+    "quantidade": 1
+   },
+   {
+    "nome": "Spire of Industry",
+    "quantidade": 1
+   },
+   {
+    "nome": "Academy Ruins",
+    "quantidade": 1
+   },
+   {
+    "nome": "Thirst for Knowledge",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dispatch",
+    "quantidade": 1
+   },
+   {
+    "nome": "Talisman of Progress",
+    "quantidade": 1
+   },
+   {
+    "nome": "Drowned Catacomb",
+    "quantidade": 1
+   },
+   {
+    "nome": "Glacial Fortress",
+    "quantidade": 1
+   },
+   {
+    "nome": "Talisman of Dominance",
+    "quantidade": 1
+   },
+   {
+    "nome": "Talisman of Hierarchy",
+    "quantidade": 1
+   },
+   {
+    "nome": "Irrigated Farmland",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fetid Pools",
+    "quantidade": 1
+   },
+   {
+    "nome": "Isolated Chapel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Unwinding Clock",
+    "quantidade": 1
+   },
+   {
+    "nome": "Darksteel Plate",
+    "quantidade": 1
+   },
+   {
+    "nome": "Door of Destinies",
+    "quantidade": 1
+   },
+   {
+    "nome": "The Immortal Sun",
+    "quantidade": 1
+   },
+   {
+    "nome": "Forsaken Monument",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shineshadow Snarl",
+    "quantidade": 1
+   },
+   {
+    "nome": "Stonespeaker Crystal",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bitter Triumph",
+    "quantidade": 1
+   },
+   {
+    "nome": "Contaminated Landscape",
+    "quantidade": 1
+   },
+   {
+    "nome": "Eclipsed Steppe",
+    "quantidade": 1
+   },
+   {
+    "nome": "Umbral Expanse",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hive Mind Coprocessor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Locutus of Borg",
+    "quantidade": 1
+   },
+   {
+    "nome": "Locutus, the One Who Speaks",
+    "quantidade": 1
+   },
+   {
+    "nome": "Join the Collective",
+    "quantidade": 1
+   },
+   {
+    "nome": "Conquest Mission",
+    "quantidade": 1
+   },
+   {
+    "nome": "Command Subadjunct",
+    "quantidade": 1
+   },
+   {
+    "nome": "One, Borg Evolved",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ambulatory Reactor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Collective Override",
+    "quantidade": 1
+   },
+   {
+    "nome": "Co-Option Adjutant",
+    "quantidade": 1
+   },
+   {
+    "nome": "Extraction Integrant",
+    "quantidade": 1
+   },
+   {
+    "nome": "Maturation Chamber",
+    "quantidade": 1
+   },
+   {
+    "nome": "Optimization Annex",
+    "quantidade": 1
+   },
+   {
+    "nome": "Reclamation Specialist",
+    "quantidade": 1
+   },
+   {
+    "nome": "Seven of Nine, Tertiary Adjunct",
+    "quantidade": 1
+   },
+   {
+    "nome": "Type-03 Borg Vessel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Võx, Child of the Collective",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shore Leave Planet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Borg Incursion",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hugh, First of Many",
+    "quantidade": 1
+   },
+   {
+    "nome": "Emergency Regeneration",
+    "quantidade": 1
+   },
+   {
+    "nome": "Class-4 Tactical Cube",
+    "quantidade": 1
+   },
+   {
+    "nome": "Jurati, Cordial Queen",
+    "quantidade": 1
+   },
+   {
+    "nome": "Queen's Diamond",
+    "quantidade": 1
+   },
+   {
+    "nome": "Reconnaissance Partition",
+    "quantidade": 1
+   },
+   {
+    "nome": "Battle of Wolf 359",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gift of Perfection",
+    "quantidade": 1
+   },
+   {
+    "nome": "Deliver from Chaos",
+    "quantidade": 1
+   },
+   {
+    "nome": "Borg Scout Sphere",
+    "quantidade": 1
+   },
+   {
+    "nome": "The Best of Both Worlds",
+    "quantidade": 1
+   },
+   {
+    "nome": "Transwarp Hub",
+    "quantidade": 1
+   },
+   {
+    "nome": "Stratagem Emulator",
+    "quantidade": 1
+   },
+   {
+    "nome": "Korok, Liberated Rage",
+    "quantidade": 1
+   },
+   {
+    "nome": "Supplementation Node",
+    "quantidade": 1
+   },
+   {
+    "nome": "Assimilate the Wounded",
+    "quantidade": 1
+   },
+   {
+    "nome": "Assimilation Assessor",
+    "quantidade": 1
+   }
+  ],
+  "origem": {
+   "versao": 0,
+   "atualizadoEm": "2026-10-27T17:27:56.533Z"
+  },
+  "desde": "2026-11-08T22:54:57.411Z"
+ },
+ "preparacao": null
+}

@@ -1,38 +1,86 @@
-// Peças do deck The Borg Queen: assimilar, exilar e devolver (piscar), artefatos-criatura.
-import { addEffect, chars, controllerOf, exile, isCreature, isType, putOntoBattlefield } from '../motor/api.ts';
-import type { Ctx, Gen } from '../motor/defs.ts';
+// Peças repetidas nas cartas do deck We Are The Borg (Star Trek): fichas Borg, "criaturas artefato que você controlam
+// recebem/têm…", o dano de combate de uma criatura artefato e "exile/revele do topo até uma carta de criatura".
+// A ação de assimilar está em motor/assimilar.ts; a estação, em motor/estacao.ts.
+import {
+  and, anthem, assimilateCard, chars, controllerOf, createTokens, is, lkiChars, moveObjects, nameOf, on, triggered,
+} from '../motor/api.ts';
+import type { Ctx, EffectFn, Gen, SCtx, StaticDef, TriggerSpec } from '../motor/defs.ts';
+import { defineAbility } from '../motor/defs.ts';
 import type { G } from '../motor/game-context.ts';
-import type { ObjId, PlayerId } from '../motor/types.ts';
+import { shuffle } from '../motor/rng.ts';
+import type { Mod, ObjId, PlayerId } from '../motor/types.ts';
 
-export const artefatoCriatura = (g: G, id: ObjId) => isCreature(g, id) && isType(g, id, 'Artifact');
+/** é uma criatura artefato? */
+export function criaturaArtefato(c: SCtx, id: ObjId): boolean {
+  return is.creature(c, id) && is.artifact(c, id);
+}
+
+/** "crie N fichas de criatura artefato Borg 1/1 incolor" */
+export function* criaBorg(c: Ctx, n: number): Gen<ObjId[]> {
+  return n > 0 ? yield* createTokens(c.g, c.you, 'Borg', n) : [];
+}
+
+/** "As criaturas artefato que você controla recebem/têm [mods]" */
+export function artefatosRecebem(mods: Mod[], texto: string): StaticDef {
+  return anthem(and(is.creature, is.artifact, is.yours), () => mods, texto);
+}
+
+/** "As criaturas artefato que você controla têm '[habilidade]'": `id` é a habilidade definida com defineAbility */
+export function artefatosTem(id: string, texto: string): StaticDef {
+  return artefatosRecebem([{ k: 'addAbility', id }], texto);
+}
+
+/** "Sempre que esta criatura causa dano de combate a um jogador" (para conceder): c.event.player é o jogador */
+export function danoDeCombateAJogador(): TriggerSpec {
+  return on.selfDealsCombatDamageToPlayer();
+}
+
+/** habilidade concedida "Sempre que esta criatura causa dano de combate a um jogador, [efeito]" */
+export function concedidaDanoDeCombate(id: string, efeito: EffectFn, texto: string): string {
+  defineAbility(id, triggered(danoDeCombateAJogador(), efeito, { text: texto }));
+  return id;
+}
+
+/** põe as cartas no fundo do grimório do dono em ordem aleatória, saindo de onde estiverem (exílio ou grimório) */
+export function* fundoAleatorio(g: G, ids: ObjId[]): Gen<void> {
+  const s = g.state;
+  const vivos = shuffle(s.rng, ids.filter((id) => !!s.objects[id]));
+  const doGrimorio = vivos.filter((id) => s.objects[id].zone === 'library');
+  for (const id of doGrimorio) {
+    const dono = s.objects[id].owner;
+    s.zones.library[dono] = [...s.zones.library[dono].filter((x) => x !== id), id];
+  }
+  const outros = vivos.filter((id) => s.objects[id].zone !== 'library');
+  if (outros.length) yield* moveObjects(g, outros.map((id) => ({ id, to: 'library' as const, position: 'bottom' as const })), 'effect');
+  g.bump();
+}
 
 /**
- * Assimilar: põe a carta no campo sob o seu controle com um marcador +1/+1; ela é uma criatura-artefato Borg e perde os
- * outros tipos de criatura (texto de lembrete das cartas). Devolve o id no campo, ou null.
+ * "[O oponente] exila cartas do topo do grimório até exilar uma carta de criatura. Assimile essa carta. Ele põe o resto
+ * no fundo em ordem aleatória" (The Borg Queen).
  */
-export function* assimilar(c: Ctx, carta: ObjId): Gen<ObjId | null> {
-  if (!c.g.state.objects[carta]) return null;
-  const [novo] = yield* putOntoBattlefield(c.g, [{ id: carta, controller: c.you, counters: { '+1/+1': 1 } }], 'effect');
-  if (novo === null || novo === undefined || c.g.state.objects[novo]?.zone !== 'battlefield') return null;
-  const ch = chars(c.g, novo);
-  const tipos = [...new Set([...ch.types, 'Artifact', 'Creature'])];
-  // subtipos que não são de criatura ficam (de artefato, por exemplo); os de criatura viram só Borg
-  const naoCriatura = ch.subtypes.filter((s) => ['Equipment', 'Vehicle', 'Spacecraft', 'Treasure', 'Food', 'Clue', 'Aura'].includes(s));
-  addEffect(c.g, { source: c.source, sourceDef: '', controller: c.you, affected: [novo], duration: { kind: 'permanent' }, mods: [{ k: 'setTypes', types: tipos, subtypes: ['Borg', ...naoCriatura], keepSupertypes: true }] });
-  c.g.log(`${c.g.state.players[c.you].name} assimila ${ch.name}.`);
-  return novo;
+export function* exilaAteCriaturaEAssimila(c: Ctx, op: PlayerId): Gen<ObjId | null> {
+  const s = c.g.state;
+  const lib = s.zones.library[op];
+  const i = lib.findIndex((id) => chars(c.g, id).types.includes('Creature'));
+  const tiradas = i < 0 ? [...lib] : lib.slice(0, i + 1);
+  if (!tiradas.length) return null;
+  c.g.log(`${s.players[op].name} exila ${tiradas.map((id) => nameOf(c.g, id)).join(', ')}.`);
+  const novos = (yield* moveObjects(c.g, tiradas.map((id) => ({ id, to: 'exile' as const })), 'effect')).filter((x): x is ObjId => x !== null);
+  const criatura = i < 0 ? null : novos[novos.length - 1] ?? null;
+  let assimilada: ObjId | null = null;
+  if (criatura !== null && s.objects[criatura]?.zone === 'exile') assimilada = yield* assimilateCard(c.g, c.you, criatura, c.source, nameOf(c.g, c.source));
+  yield* fundoAleatorio(c.g, novos.filter((id) => id !== criatura && s.objects[id]?.zone === 'exile'));
+  return assimilada;
 }
 
-/** "exile [permanente], depois devolva essa carta ao campo sob o controle de [quem]" (CR 610.3) */
-export function* piscar(c: Ctx, id: ObjId, quem: 'voce' | 'dono'): Gen<ObjId | null> {
-  const o = c.g.state.objects[id];
-  if (!o || o.zone !== 'battlefield') return null;
-  const dono: PlayerId = o.owner;
-  const [ex] = yield* exile(c.g, [id]);
-  if (ex === null || ex === undefined || c.g.state.objects[ex]?.zone !== 'exile') return null;
-  // fichas deixam de existir no exílio (CR 111.7)
-  const [novo] = yield* putOntoBattlefield(c.g, [{ id: ex, controller: quem === 'voce' ? c.you : dono }], 'effect');
-  return novo ?? null;
+/** cartas do campo que este objeto assimilou (ainda o mesmo objeto) */
+export function assimiladosPor(g: G, fonte: ObjId): ObjId[] {
+  return g.state.zones.battlefield.filter((id) => g.state.objects[id].data.assimilado === true && g.state.objects[id].data.assimiladoPor === fonte);
 }
 
-export { controllerOf };
+/** a fonte de um dano de combate é uma criatura artefato que `p` controla? (pela última informação) */
+export function criaturaArtefatoDe(g: G, id: ObjId, p: PlayerId): boolean {
+  const ch = g.state.objects[id] ? chars(g, id) : lkiChars(g, id);
+  return !!ch && ch.types.includes('Artifact') && ch.types.includes('Creature') && (g.state.objects[id] ? controllerOf(g, id) : ch.controller) === p;
+}

@@ -280,7 +280,9 @@ export class HeuristicBot {
       case 'select':
         // escolha em segredo: a cópia refaz a partida com as escolhas que os outros já fizeram, então simular seria
         // espiar (Prisoner's Dilemma, Mob Verdict); fica a heurística, que só vê a mesa
-        if (this.p.escolhaSimulada && ctx.copia && !d.secret) return this.escolhaSimulada(ctx);
+        // pilhas (Fact or Fiction, Make an Example): a heurística já é a jogada certa (equilibrar ao separar, a pilha
+        // que vale mais ao escolher), e simular não ajuda
+        if (this.p.escolhaSimulada && ctx.copia && !d.secret && !ehDePilhas(d)) return this.escolhaSimulada(ctx);
         return escolher(d, ctx.g, this.eu, this.e.rng, false, (a) => ctx.valida(a), this.p.erro);
       default:
         return escolher(d, ctx.g, this.eu, this.e.rng, false, (a) => ctx.valida(a), this.p.erro);
@@ -826,6 +828,48 @@ function valorItem(g: G, it: ChoiceItem, eu: PlayerId): { valor: number; meu: bo
 }
 
 type Avaliado = { it: ChoiceItem; valor: number; meu: boolean };
+
+/** escolha de pilhas: separar em duas ou escolher uma delas */
+export const ehDePilhas = (d: D<'select'>): boolean => !!d.split || (d.items.length >= 2 && d.items.every((i) => i.pile));
+
+/** quanto uma pilha vale (a carta virada para baixo que eu não vejo conta como uma carta média) */
+function valorPilha(g: G, ids: ObjId[], eu: PlayerId): number {
+  const s = g.state;
+  let total = 0;
+  for (const id of ids) {
+    const o = s.objects[id];
+    if (!o) continue;
+    total += o.faceDown && o.owner !== eu ? 3 : Math.max(0, valorItem(g, { id: String(id), label: '', obj: id }, eu).valor);
+  }
+  return total;
+}
+
+/**
+ * Separar em duas pilhas para outro escolher uma: o outro fica com a que valer mais, então a melhor separação é a que
+ * deixa a pilha mais valiosa com o menor valor possível (as duas o mais parecidas que der). Até 14 cartas, todas as
+ * separações; acima disso, a mais valiosa que ainda falta vai para a pilha mais leve.
+ */
+function separarPilhas(itens: ChoiceItem[], g: G, eu: PlayerId): string[] {
+  const v = itens.map((it) => Math.max(0, valorItem(g, it, eu).valor));
+  const total = v.reduce((a, b) => a + b, 0);
+  if (itens.length <= 14) {
+    let melhor = 0;
+    let pior = Infinity;
+    for (let m = 0; m < 1 << itens.length; m++) {
+      let soma = 0;
+      for (let i = 0; i < itens.length; i++) if (m & (1 << i)) soma += v[i];
+      const maior = Math.max(soma, total - soma);
+      if (maior < pior - 1e-9) { pior = maior; melhor = m; }
+    }
+    return itens.filter((_, i) => melhor & (1 << i)).map((it) => it.id);
+  }
+  const ordem = itens.map((it, i) => ({ id: it.id, v: v[i] })).sort((a, b) => b.v - a.v);
+  const um: string[] = [];
+  let a = 0;
+  let b = 0;
+  for (const x of ordem) { if (a <= b) { um.push(x.id); a += x.v; } else b += x.v; }
+  return um;
+}
 /** o item não é de ninguém (modo, sim ou não) */
 const neutro = (x: Avaliado) => x.it.player === undefined && x.it.obj === undefined && !Number.isFinite(Number(x.it.id));
 
@@ -928,6 +972,13 @@ function selecionar(d: D<'select'>, g: G, eu: PlayerId, rng: RngState, aleatorio
     return { kind: 'select', ids: [podePagarOpcional(d, sim, g, eu) ? sim.id : nao.id] };
   }
   if (max === 0) return { kind: 'select', ids: [] };
+  // pilhas: quem separa equilibra as duas (o outro fica com a que valer mais); quem escolhe fica com a que vale mais
+  if (d.split) { const a = tenta(separarPilhas(itens, g, eu)); if (a) return a; }
+  if (itens.length >= 2 && itens.every((i) => i.pile)) {
+    const melhor = [...itens].sort((a, b) => valorPilha(g, b.pile!, eu) - valorPilha(g, a.pile!, eu))[0];
+    const a = tenta([melhor.id]);
+    if (a) return a;
+  }
 
   const o = ordemDaEscolha(d, g, eu);
   let ids = o.ids;

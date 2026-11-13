@@ -3,7 +3,7 @@
 // As this creature enters, choose a creature type.
 // This creature is the chosen type in addition to its other types.
 // If a triggered ability of another creature you control of the chosen type triggers, it triggers an additional time.
-import { asEnters, chars, chooseCreatureType, controllerOf, defineCard, isCreature, selfGets, staticAbility, ward } from '../../motor/api.ts';
+import { asEnters, chooseCreatureType, controllerOf, defineCard, lkiChars, selfGets, staticAbility, ward } from '../../motor/api.ts';
 import { tipoEscolhido } from '../vingadores.ts';
 
 export default defineCard({
@@ -11,19 +11,24 @@ export default defineCard({
   faces: [{
     abilities: [
       ...ward('{2}'),
+      // CR 614.12: o tipo é escolhido antes de entrar
       asEnters(function* (c, ev) {
-        ev.choices.creatureType = yield* chooseCreatureType(c.g, c.you, 'Roaming Throne: escolha um tipo de criatura');
+        ev.choices.creatureType = yield* chooseCreatureType(c.g, ev.controller, 'Roaming Throne: escolha um tipo de criatura');
       }, 'Conforme esta criatura entra, escolha um tipo de criatura.'),
-      selfGets((c) => { const tipo = tipoEscolhido(c); return tipo ? [{ k: 'addTypes', subtypes: [tipo] }] : [{ k: 'addTypes', subtypes: [] }]; },
-        'Esta criatura é do tipo escolhido além dos outros tipos.'),
+      selfGets((c) => { const tipo = tipoEscolhido(c); return tipo ? [{ k: 'addTypes', subtypes: [tipo] }] : []; }, 'Esta criatura é do tipo escolhido, além dos outros tipos.'),
+      // ruling 1: dispara uma vez a mais (não é cópia); cada instância escolhe seus alvos. Ruling 2: cada Roaming Throne
+      // com o mesmo tipo soma uma vez. A fonte que saiu do campo (gatilho de morrer) é vista pela última informação
       staticAbility({
         rules: {
-          extraTriggers: (c, tr) => {
+          extraTriggers: (c, t) => {
             const tipo = tipoEscolhido(c);
-            const s = c.g.state;
-            if (!tipo || tr.source === c.source || s.objects[tr.source]?.zone !== 'battlefield') return 0;
-            if (controllerOf(c.g, tr.source) !== c.you || !isCreature(c.g, tr.source)) return 0;
-            return chars(c.g, tr.source).subtypes.includes(tipo) ? 1 : 0;
+            if (!tipo || t.source === c.source || t.controller !== c.you) return 0;
+            const ch = lkiChars(c.g, t.source);
+            if (!ch || !ch.types.includes('Creature') || !ch.subtypes.includes(tipo)) return 0;
+            const naMesa = c.g.state.objects[t.source]?.zone === 'battlefield';
+            if (naMesa && controllerOf(c.g, t.source) !== c.you) return 0;
+            if (!naMesa && ch.controller !== c.you) return 0;
+            return 1;
           },
         },
         text: 'Se uma habilidade desencadeada de outra criatura do tipo escolhido que você controla disparar, ela dispara uma vez a mais.',
@@ -31,7 +36,7 @@ export default defineCard({
     ],
   }],
   rulings: {
-    1: 'regra geral: CR 603.2 — só vale para habilidades de criaturas no campo; não afeta habilidades de "quando morre" que olham para trás',
-    2: 'regra geral: CR 603.2c — cada Roaming Throne soma um disparo',
+    1: 'teste: o gatilho de entrar de uma criatura do tipo escolhido dispara duas vezes',
+    2: 'teste: dois Roaming Thrones com o mesmo tipo fazem o gatilho disparar três vezes',
   },
 });

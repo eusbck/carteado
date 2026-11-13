@@ -3,14 +3,17 @@
 // Na mesa real (padrão) a interface não orienta: brilhos, avisos e pagamento automático são
 // auxílios que cada um liga nas Configurações (ou que a sala proíbe). As regras continuam no motor.
 
+import { memo } from 'preact/compat';
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'preact/hooks';
+import { lazy, Suspense } from 'preact/compat';
 import type { StopSettings } from '../../../motor/autopass.ts';
 import type { Decision, ManualAction, ObjId, PaymentSource, PriorityAction, Step, TargetRef } from '../../../motor/types.ts';
 import type { GameView, ObjView, PlayerView } from '../../../motor/view.ts';
 import type { MsgChat } from '../../../servidor/protocolo.ts';
 import { avatarDoAssento } from '../avatares.ts';
 import { nomeCarta, rostoNoFundo, traduzir, urlFundo, urlImagem } from '../cartas.ts';
-import { IconeAjuste, IconeConceder, IconeRecolher as IconeSeta, IconeConfig, IconeDesfazer, IconeFimTurno, IconeParadas, IconePassar, IconeRecolher, IconeRegistro, IconeSair, Marca } from '../icones.tsx';
+import { abrirRelato } from '../relato/relatoLoja.ts';
+import { IconeAjuste, IconeErro, IconeConceder, IconeRecolher as IconeSeta, IconeConfig, IconeDesfazer, IconeFimTurno, IconeParadas, IconePassar, IconeRecolher, IconeRegistro, IconeSair, Marca } from '../icones.tsx';
 import { Importacoes } from '../Importacoes.tsx';
 import { loja, useLoja } from '../loja.ts';
 import { ListaEspectadores } from '../telas/Saguao.tsx';
@@ -33,7 +36,9 @@ import { ehEscolha } from './escolhas.ts';
 import { EscolhaRecolhida, JanelaEscolha } from './JanelaEscolha.tsx';
 import { PedidoDesfazer } from './Desfazer.tsx';
 import { useEfeitos } from './Efeitos.tsx';
+import { emCena, pularCena, useCena } from './cenaLoja.ts';
 import { Setas, type Seta } from './Setas.tsx';
+import { FaixaTurno } from './FaixaTurno.tsx';
 import { MaoInicial } from './MaoInicial.tsx';
 import { Abertura, aberturaVista, chaveAbertura, marcarAbertura, type LadoVS } from './Abertura.tsx';
 import { Manual, type PegarCarta, type Tipo as TipoManual } from './Manual.tsx';
@@ -49,7 +54,10 @@ import { esconderZoom, mostrarZoom, useZoom } from './zoomLoja.ts';
 import { zoomDaPilha } from './zoomPilha.ts';
 import { mesmaLista, mesmasPosicoes, mesmoMapaDeListas, useEstavel, useMesmo } from './estavel.ts';
 
-type Modal = { tipo: 'zona'; jogador: number; zona: 'graveyard' | 'exile' } | { tipo: 'paradas' } | { tipo: 'registro' } | { tipo: 'conceder' } | { tipo: 'config' } | { tipo: 'carta'; o: ObjView } | null;
+// a lista do deck (clique no grimório) só carrega quando alguém abre, como a prévia no saguão
+const PreviaDeck = lazy(() => import('../telas/PreviaDeck.tsx').then((m) => ({ default: m.PreviaDeck })));
+
+type Modal = { tipo: 'zona'; jogador: number; zona: 'graveyard' | 'exile' } | { tipo: 'deck'; jogador: number } | { tipo: 'paradas' } | { tipo: 'registro' } | { tipo: 'conceder' } | { tipo: 'config' } | { tipo: 'carta'; o: ObjView } | null;
 type ItemMenu =
   | { tipo?: 'acao'; id: string; label: string; fazer: () => void; legal?: boolean; desativado?: boolean }
   | { tipo: 'grupo'; id: string; label: string }
@@ -138,7 +146,8 @@ function MenuFlutuante({ menu, fechar }: { menu: Menu; fechar: () => void }) {
 
 /** cor de cada jogador na sua tela: você em ouro (o multicolorido do Magic), os outros em cores de mana
  * (azul, verde e o violeta do preto), na ordem dos assentos */
-const CORES = ['var(--ouro)', 'var(--azul)', 'var(--positivo)', 'var(--roxo)'];
+// uma cor por jogador, na ordem dos turnos a partir de você (mesas de até seis)
+const CORES = ['var(--ouro)', 'var(--azul)', 'var(--positivo)', 'var(--roxo)', 'var(--rosa)', 'var(--ciano)'];
 /** jogador sem permanentes: sempre a mesma lista vazia (a arrumação da área não se refaz à toa) */
 const SEM_OBJS: ObjView[] = [];
 /** fora do combate: sempre o mesmo mapa vazio (idem) */
@@ -176,11 +185,11 @@ interface FaixaProps {
   desfazivel: boolean;
   /** pedido de desfazer aberto: a mesa está parada */
   parada: boolean;
-  /** bot pensando há mais de um segundo */
-  pensando: number | null;
 }
 
-function FaixaFases({ v, eu, d, enviando, paradas, cor, desfazivel, parada, pensando }: FaixaProps) {
+function FaixaFases({ v, eu, d, enviando, paradas, cor, desfazivel, parada }: FaixaProps) {
+  // bot pensando há mais de um segundo (assinado aqui: o aviso que vai e vem não redesenha a mesa)
+  const pensando = useLoja((x) => x.pensando);
   const passo = v.turn.step;
   const iFase = FASES.findIndex((f) => f.etapas.includes(passo));
   const contexto = v.turn.active === eu ? 'myTurn' : 'othersTurn';
@@ -268,7 +277,9 @@ function FaixaFases({ v, eu, d, enviando, paradas, cor, desfazivel, parada, pens
 }
 
 /** avisos curtos do que acabou de acontecer (jogadas, ataques, ajustes manuais) */
-function Avisos({ v, cor, doServidor }: { v: GameView; cor: (p: number) => string; doServidor: { id: number; texto: string }[] }) {
+function Avisos({ v, cor }: { v: GameView; cor: (p: number) => string }) {
+  // os avisos do servidor (pedido de desfazer aceito, recusado…), assinados aqui e não na mesa
+  const doServidor = useLoja((x) => x.avisos);
   const [lista, setLista] = useState<{ id: number; texto: string; quem: number | null }[]>([]);
   const anterior = useRef<GameView['log'] | null>(null);
   const seq = useRef(0);
@@ -306,6 +317,38 @@ function Avisos({ v, cor, doServidor }: { v: GameView; cor: (p: number) => strin
       })}
     </div>
   );
+}
+
+/** a pilha da coluna da direita: só se desenha de novo quando a pilha, os objetos à vista ou os nomes mudam */
+const Pilha = memo(function Pilha({ pilha, todos, nomes, cor }: { pilha: GameView['stack']; todos: Map<ObjId, ObjView>; nomes: string[]; cor: (p: number) => string }) {
+  return (
+    <section class="cartao pilha" aria-label="Pilha">
+      <div class="pilha-cab"><span class="rot">Pilha</span><span class="rot">{pilha.length}</span></div>
+      <ol>
+        {pilha.map((s, i) => {
+          const img = s.def ? urlImagem(s.def, 0, 'p') : null;
+          return (
+            <li key={s.id} class={`${i === 0 ? 'topo' : ''} ${img ? '' : 'sem-imagem'}`} style={{ '--cor': cor(s.controller) }} {...zoomDaPilha(s, todos)}>
+              {img && <img src={img} alt="" class="mini" />}
+              <div>
+                <strong>{s.def ? nomeCarta(s.def, s.name) : s.name}</strong>
+                <span><span class="quem">{nomes[s.controller]}</span><span class="suave">{s.kind !== 'spell' ? (s.kind === 'triggered' ? ' · gatilho' : ' · habilidade') : ''}</span></span>
+                {s.text && <p class="pilha-texto"><TextoComSimbolos texto={traduzir(s.text)} /></p>}
+                {s.targets.length > 0 && <p class="pilha-texto">Alvos: {traduzir(s.targets.join(', '))}</p>}
+                {s.x > 0 && <p class="pilha-texto">X = {s.x}</p>}
+              </div>
+            </li>
+          );
+        })}
+      </ol>
+    </section>
+  );
+});
+
+/** o chat da barra lateral: assina as mensagens ele mesmo (cada mensagem não redesenha a mesa) */
+function ChatLateral({ cor }: { cor: (p: number) => string }) {
+  const { chat, quem } = useLoja((x) => ({ chat: x.chat, quem: x.quem }));
+  return <Chat msgs={chat} quem={quem} cor={cor} />;
 }
 
 /** a carta que segue o ponteiro durante um arrasto, e a área onde soltar */
@@ -390,14 +433,26 @@ function Configuracoes({ pref, salaProibe, fechar, reorganizar }: { pref: Prefer
 }
 
 export function Mesa() {
-  const e = useLoja();
+  // só o que a mesa usa (N27): o chat (com a barra aberta), o "pensando…" e os avisos do servidor têm os assinantes deles
+  const e = useLoja((x) => ({
+    vista: x.vista, sala: x.sala, respondida: x.respondida, recusa: x.recusa, recusaCombate: x.recusaCombate, erro: x.erro, paradas: x.paradas,
+    posicoes: x.posicoes, desfazivel: x.desfazivel, desfazer: x.desfazer, decks: x.decks, reveladas: x.reveladas, relogio: x.relogio,
+  }));
   const v = e.vista!;
   const sala = e.sala!;
   // modo espectador: a vista vem neutra (you: null) e quem fica embaixo é escolhido aqui (começa pelo anfitrião)
   const espectador = v.you === null;
   const [baixo, setBaixo] = useState(sala.anfitriao);
   const eu = espectador ? (v.players[baixo] ? baixo : 0) : v.you!;
-  const d = v.decision;
+  // a decisão espera a cena (eventos-5, versão ponte): ela, a janela de escolha e os realces de "pode jogar" só
+  // aparecem quando a fila de quadros esvazia e as animações do quadro acabam (filaQuadros.ts, com teto). Uma vez
+  // liberada, a mesma decisão não some de novo por uma cena que venha depois (uma posição que você mudou, um aviso).
+  // `dReal` é a pendente de fato, para o que não é mostrar nem clicar (o ajuste manual aberto, a carta que você soltou)
+  const cena = useCena();
+  const dReal = v.decision;
+  const liberada = useRef<number | null>(null);
+  if (dReal && !cena) liberada.current = dReal.id;
+  const d = dReal && liberada.current === dReal.id ? dReal : null;
   const enviando = !!d && e.respondida === d.id;
   useMusica();
 
@@ -431,6 +486,17 @@ export function Mesa() {
   // janela de escolha recolhida para olhar a mesa (volta aberta a cada decisão nova)
   const [escolhaRecolhida, setEscolhaRecolhida] = useState(false);
   useEffect(() => { setEscolhaRecolhida(false); }, [d?.id]);
+  // aba escondida quando uma decisão sua abre: o título da aba pisca até você voltar (o Arena pisca a barra de tarefas)
+  useEffect(() => {
+    if (!d || typeof document === 'undefined' || !document.hidden) return;
+    const titulo = document.title;
+    let aceso = false;
+    const piscar = setInterval(() => { aceso = !aceso; document.title = aceso ? 'Sua vez de decidir' : titulo; }, 1000);
+    const parar = () => { clearInterval(piscar); document.title = titulo; document.removeEventListener('visibilitychange', voltou); };
+    const voltou = () => { if (!document.hidden) parar(); };
+    document.addEventListener('visibilitychange', voltou);
+    return parar;
+  }, [d?.id]);
   const autoFeito = useRef(new Set<number>());
   useEffect(() => { setSel([]); setAtaques({}); setAtacanteAtivo(null); setUltimoAlvo(null); setBloqueios({}); setBloqueadorAtivo(null); setMenu(null); }, [d?.id]);
   const salaProibe = sala.auxilios === 'proibidos';
@@ -459,6 +525,18 @@ export function Mesa() {
     loja.enviar({ t: 'paradas', paradas: novo });
   }, [e.paradas, aux.jogaveis]);
   const recolher = (x: boolean) => mudarPreferencias({ registro: !x });
+  // pular a cena: Espaço (fora dos campos de texto) ou um clique em qualquer lugar da mesa (onPointerDownCapture abaixo)
+  useEffect(() => {
+    const tecla = (ev: KeyboardEvent) => {
+      if (ev.key !== ' ' || !emCena()) return;
+      const alvo = ev.target as HTMLElement | null;
+      if (alvo?.closest('input, textarea, select, [contenteditable="true"]')) return;
+      ev.preventDefault();
+      pularCena();
+    };
+    addEventListener('keydown', tecla);
+    return () => removeEventListener('keydown', tecla);
+  }, []);
   // a carta sob o mouse some junto com a janela (o mouseleave não chega)
   useEffect(() => { esconderZoom(); }, [modal]);
 
@@ -576,7 +654,7 @@ export function Mesa() {
       return;
     }
     const naPilha = v.stack.some((s) => s.controller === eu && s.def === p.def);
-    if (!naPilha && !(d && d.player === eu && d.kind !== 'priority')) { posPendente.current = null; setConjurando(null); encerrarPouso(); }
+    if (!naPilha && !(dReal && dReal.player === eu && dReal.kind !== 'priority')) { posPendente.current = null; setConjurando(null); encerrarPouso(); }
   }, [v]);
   useEffect(() => {
     if (!fila.length || enviando || d?.kind !== 'priority' || !d.actions.some((a) => a.kind === 'manual')) return;
@@ -632,12 +710,15 @@ export function Mesa() {
   // as mesmas posições de antes ficam com a mesma referência: a arrumação de cada área só se refaz se algo mudou
   const posicoes = useMesmo(posicoesNovas, mesmasPosicoes);
 
-  // índice de objetos visíveis
+  // índice de objetos visíveis. Depende só das zonas (N27), não da vista inteira: a vida, a fase ou a pilha que mudam
+  // não refazem o índice (cada zona que não mudou chega com a mesma referência, compartilhar.ts). Os cemitérios ficam
+  // dentro dos jogadores: a lista deles vale como dependência, um por um
+  const cemiterios = useMesmo(v.players.map((p) => p.graveyard), mesmaLista);
   const todos = useMemo(() => {
     const m = new Map<ObjId, ObjView>();
-    for (const o of [...v.battlefield, ...v.hand, ...v.exile, ...v.command, ...v.players.flatMap((p) => p.graveyard)]) m.set(o.id, o);
+    for (const o of [...v.battlefield, ...v.hand, ...v.exile, ...v.command, ...cemiterios.flat()]) m.set(o.id, o);
     return m;
-  }, [v]);
+  }, [v.battlefield, v.hand, v.exile, v.command, cemiterios]);
   const nomeObj = (id: ObjId) => { const o = todos.get(id); return o ? nomeCarta(o.def, o.name) : (v.stack.find((s) => s.id === id)?.name ?? `objeto ${id}`); };
   const nomeAlvo = (t: TargetRef) => (t.kind === 'player' ? v.players[t.id].name : nomeObj(t.id));
 
@@ -646,7 +727,8 @@ export function Mesa() {
     const i = v.turnOrder.indexOf(eu);
     return [...v.turnOrder.slice(i), ...v.turnOrder.slice(0, i)];
   }, [v.turnOrder, eu]);
-  const cor = (p: number) => CORES[Math.max(0, ordem.indexOf(p)) % CORES.length];
+  // a mesma função enquanto a ordem não muda (a pilha e os avisos não se desenham de novo por ela)
+  const cor = useMemo(() => (p: number) => CORES[Math.max(0, ordem.indexOf(p)) % CORES.length], [ordem]);
 
   // o que cada carta pode fazer na decisão atual
   const itemPorObj = useMemo(() => {
@@ -672,14 +754,13 @@ export function Mesa() {
   // cartas à vista sem abrir janela: campo, mão, comando e só o topo de cada cemitério e de cada exílio (AreaJogador)
   const aVista = useMemo(() => {
     const m = new Set<ObjId>([...v.battlefield, ...v.hand, ...v.command].map((o) => o.id));
-    for (const j of v.players) {
-      const cem = j.graveyard[j.graveyard.length - 1];
-      if (cem) m.add(cem.id);
-      const ex = v.exile.filter((o) => o.owner === j.id);
+    cemiterios.forEach((cem, j) => {
+      if (cem.length) m.add(cem[cem.length - 1].id);
+      const ex = v.exile.filter((o) => o.owner === v.players[j].id);
       if (ex.length) m.add(ex[ex.length - 1].id);
-    }
+    });
     return m;
-  }, [v]);
+  }, [v.battlefield, v.hand, v.command, v.exile, cemiterios]);
   // ações que não estão presas a nenhuma carta à vista ficam num painel próprio (a carta roubada com Gonti no meio do
   // exílio de um oponente, a retrospectiva embaixo de outras cartas no cemitério)
   const acoesSoltas = d?.kind === 'priority' ? d.actions.filter((a) => !['pass', 'manual', 'mana'].includes(a.kind) && (a.obj === undefined || !aVista.has(a.obj))) : [];
@@ -1118,7 +1199,7 @@ export function Mesa() {
   const arrumar = useArrumar(objsPorJogador.get(eu), anexos);
   const fundoDe = (p: number) => {
     const deck = e.decks.find((x) => x.id === sala.assentos[p]?.deck);
-    return deck ? urlFundo(deck.comandante) : null;
+    return deck ? urlFundo(deck.capa) : null;
   };
   // retrato de cada jogador: o que a pessoa escolheu, ou o do comandante do deck dela
   const avatarDe = (p: number) => avatarDoAssento(sala.assentos[p]?.avatar, e.decks.find((x) => x.id === sala.assentos[p]?.deck)?.comandante);
@@ -1137,7 +1218,8 @@ export function Mesa() {
   const tLeque = useEstavel(clicarLeque);
   const fecharMenu = useEstavel(() => setMenu(null));
 
-  const duelo = sala.modo === '1v1';
+  // a mesa do duelo (um oponente só, com mais altura); de três a seis jogadores, os oponentes lado a lado em cima
+  const duelo = v.players.length === 2;
   // uma decisão pede cartas da sua mão (descartar, escolher) ou o ajuste manual pede uma carta: a mão fica erguida
   const maoAberta = !!pegar || (d?.kind === 'select' && !enviando && d.items.some((it) => it.obj !== undefined && v.hand.some((h) => h.id === it.obj)));
   const area = (j: PlayerView, compacta: boolean) => {
@@ -1155,11 +1237,11 @@ export function Mesa() {
         objs={objsPorJogador.get(j.id) ?? SEM_OBJS}
         anexos={anexos}
         comandantes={v.command.filter((o) => o.owner === j.id)}
+        semComandante={!!v.formato}
         exilio={v.exile.filter((o) => o.owner === j.id)}
         eu={j.id === eu}
         ativo={v.turn.active === j.id}
         decidindo={v.waiting?.player === j.id}
-        pensando={e.pensando === j.id && v.waiting?.player === j.id}
         nivel={sala.assentos[j.id]?.tipo === 'bot' ? nomeNivel(sala.assentos[j.id].nivel ?? NIVEL_PADRAO) : null}
         compacta={compacta}
         duelo={duelo}
@@ -1173,8 +1255,9 @@ export function Mesa() {
         jogadorRealce={itemJ !== undefined ? (sel.includes(itemJ) ? 'escolhido' : aux.alvos ? 'escolhivel' : null) : alvoJogador ? 'escolhivel' : null}
         onJogador={itemJ !== undefined ? () => clicarJogador(j.id) : atacarJ ? () => alvoAtaque({ kind: 'player', id: j.id }) : undefined}
         onCliqueArea={atacarJ ? () => alvoAtaque({ kind: 'player', id: j.id }) : undefined}
-        conjurando={j.id === eu && conjurando && d && d.player === eu && d.kind !== 'priority' && v.stack.some((x) => x.controller === eu && x.def === conjurando.o.def) ? conjurando : null}
+        conjurando={j.id === eu && conjurando && dReal && dReal.player === eu && dReal.kind !== 'priority' && v.stack.some((x) => x.controller === eu && x.def === conjurando.o.def) ? conjurando : null}
         onZona={(zona) => setModal({ tipo: 'zona', jogador: j.id, zona })}
+        onDeck={() => setModal({ tipo: 'deck', jogador: j.id })}
         mao={!espectador && j.id === eu ? v.hand : undefined}
         reservaDireita={j.id === eu ? 336 : 0}
         avatarLado={j.id === eu ? ladoAvatar : undefined}
@@ -1200,19 +1283,29 @@ export function Mesa() {
     );
   };
 
+  // os nomes dos jogadores, a mesma lista enquanto ninguém troca de nome (a pilha não se desenha de novo pela vida)
+  const nomes = useMesmo(v.players.map((p) => p.name), mesmaLista);
   const oponentes = ordem.slice(1).map((p) => v.players[p]);
   const minha = v.players[eu];
-  // chat com a barra recolhida: conta as mensagens novas dos outros e mostra cada uma por alguns segundos
-  const ultimaChat = e.chat[e.chat.length - 1]?.id ?? 0;
+  // chat com a barra recolhida: conta as mensagens novas dos outros e mostra cada uma por alguns segundos. A mesa só
+  // assina o chat com a barra recolhida (aberta, quem mostra é o ChatLateral); ao recolher, o que já estava lá conta
+  // como lido
+  const chatRec = useLoja((x) => (recolhida ? { chat: x.chat, quem: x.quem } : null));
+  const chat = chatRec?.chat ?? loja.e.chat;
+  const quemSou = chatRec?.quem ?? loja.e.quem;
+  const ultimaChat = chat[chat.length - 1]?.id ?? 0;
   const [lidaChat, setLidaChat] = useState(ultimaChat);
+  /** a barra estava recolhida no último efeito (na passagem de aberta para recolhida, tudo o que havia está lido) */
+  const recolhidaAntes = useRef(recolhida);
   const [chatNovo, setChatNovo] = useState<MsgChat[]>([]);
   // a última mensagem que já apareceu na mesa: depois de sumir, ela não volta com a mensagem seguinte
   const chatAvisado = useRef(ultimaChat);
   const relogiosChat = useRef(new Set<ReturnType<typeof setTimeout>>());
   useEffect(() => () => { for (const t of relogiosChat.current) clearTimeout(t); }, []);
   useEffect(() => {
-    if (!recolhida) { setLidaChat(ultimaChat); chatAvisado.current = ultimaChat; setChatNovo([]); return; }
-    const novas = e.chat.filter((m) => m.id > Math.max(lidaChat, chatAvisado.current) && m.quem !== e.quem);
+    if (!recolhida) { recolhidaAntes.current = false; setChatNovo([]); return; }
+    if (!recolhidaAntes.current) { recolhidaAntes.current = true; setLidaChat(ultimaChat); chatAvisado.current = ultimaChat; return; }
+    const novas = chat.filter((m) => m.id > Math.max(lidaChat, chatAvisado.current) && m.quem !== quemSou);
     chatAvisado.current = Math.max(chatAvisado.current, ultimaChat);
     if (!novas.length) return;
     setChatNovo((a) => [...a, ...novas].slice(-3));
@@ -1221,8 +1314,9 @@ export function Mesa() {
     const t = setTimeout(() => { relogiosChat.current.delete(t); setChatNovo((a) => a.filter((m) => !ids.has(m.id))); }, 6000);
     relogiosChat.current.add(t);
   }, [ultimaChat, recolhida]);
-  const naoLidas = recolhida ? e.chat.filter((m) => m.id > lidaChat && m.quem !== e.quem).length : 0;
-  const decisaoManual = d?.kind === 'priority' && d.actions.some((a) => a.kind === 'manual') ? d.id : null;
+  const lida = recolhidaAntes.current ? lidaChat : ultimaChat;
+  const naoLidas = recolhida ? chat.filter((m) => m.id > lida && m.quem !== quemSou).length : 0;
+  const decisaoManual = dReal?.kind === 'priority' && dReal.actions.some((a) => a.kind === 'manual') ? dReal.id : null;
   // sem prioridade, o ajuste manual fecha (antes ele sumia e voltava sozinho na prioridade seguinte)
   useEffect(() => { if (decisaoManual === null) { setManualAberto(false); setManualTipo(undefined); setPegar(null); } }, [decisaoManual]);
   const preJogo = v.turn.number === 0 && !v.gameOver;
@@ -1237,10 +1331,11 @@ export function Mesa() {
   const ladosVS = (): LadoVS[] => ordem.map((p) => {
     const a = sala.assentos[p];
     const deck = e.decks.find((x) => x.id === a?.deck);
-    const comandante = deck ? nomeCarta(deck.comandante, deck.comandante).split(',')[0] : null;
+    const comandante = deck?.comandante ? nomeCarta(deck.comandante, deck.comandante).split(',')[0] : null;
     // sem o complemento entre parênteses dos decks importados ("(Reality Fracture Commander Decklist)"), e sem repetir
     // quando o deck tem o nome do comandante ("Terra")
-    const nomeDeck = deck ? deck.nome.replace(/\s*\([^)]*\)\s*$/, '') : null;
+    // (o nome importado vem cortado em 60 letras, às vezes sem o ")" do fim)
+    const nomeDeck = deck ? deck.nome.replace(/\s*\([^)]*\)?\s*$/, '') : null;
     return {
       jogador: p,
       nome: v.players[p].name,
@@ -1248,7 +1343,7 @@ export function Mesa() {
       comandante,
       deck: nomeDeck && nomeDeck !== comandante ? nomeDeck : null,
       fundo: fundoDe(p),
-      foco: deck ? rostoNoFundo(deck.comandante) : [0.5, 0.3],
+      foco: deck ? rostoNoFundo(deck.capa) : [0.5, 0.3],
       aura: avatarDe(p)?.aura ?? cor(p),
       // a ordem dos turnos já vem sorteada: o primeiro dela joga o primeiro turno
       comeca: p === v.turnOrder[0],
@@ -1263,16 +1358,17 @@ export function Mesa() {
   const escolha = d && !v.gameOver && !enviando && !preJogo && ehEscolha(d) ? d : null;
 
   return (<>
-    <div class={`mesa ${duelo ? 'mesa-duelo' : ''} ${ladoAvatar === 'canto' && !colunaAberta ? 'avatar-canto' : ''} ${recolhida ? 'recolhida' : ''} ${aux.jogaveis ? 'aux-jogaveis' : ''} ${e.desfazer ? 'parada' : ''}`} onClick={() => setMenu(null)}>
+    <div class={`mesa ${duelo ? 'mesa-duelo' : ''} ${ladoAvatar === 'canto' && !colunaAberta ? 'avatar-canto' : ''} ${recolhida ? 'recolhida' : ''} ${aux.jogaveis ? 'aux-jogaveis' : ''} ${e.desfazer ? 'parada' : ''}`} onClick={() => setMenu(null)} onPointerDownCapture={() => pularCena()}>
       <main class="tabuleiro" onContextMenu={(ev) => ev.preventDefault()}>
         <div class={`oponentes n${oponentes.length}`}>{oponentes.map((j) => area(j, true))}</div>
         {area(minha, false)}
         <Setas setas={setas} versao={v} />
-        <FaixaFases v={v} eu={eu} d={d} enviando={enviando} paradas={e.paradas} cor={cor} desfazivel={e.desfazivel} parada={!!e.desfazer} pensando={e.pensando} />
+        <FaixaTurno turno={v.turn.number} rodada={v.turn.round} nome={v.turn.active === eu ? null : v.players[v.turn.active].name} cor={cor(v.turn.active)} />
+        <FaixaFases v={v} eu={eu} d={d} enviando={enviando} paradas={e.paradas} cor={cor} desfazivel={e.desfazivel} parada={!!e.desfazer} />
         {e.desfazer && <PedidoDesfazer p={e.desfazer} eu={eu} nomes={v.players.map((p) => p.name)} cor={cor} />}
 
         <div class="coluna-dir">
-          <Avisos v={v} cor={cor} doServidor={e.avisos} />
+          <Avisos v={v} cor={cor} />
           {/* importações de deck com a barra recolhida (com ela aberta, o selo fica acima do chat) */}
           {recolhida && <Importacoes lugar="coluna" />}
           {recolhida && chatNovo.length > 0 && (
@@ -1284,36 +1380,17 @@ export function Mesa() {
               ))}
             </div>
           )}
-          {v.gameOver && (
+          {/* o cartão do fim espera a cena (os golpes que acabaram a partida) */}
+          {v.gameOver && !cena && (
             <div class="cartao fim">
               <p class="decisao-titulo">Fim de partida</p>
               <p>{v.gameOver.draw ? 'Empate.' : `Venceu: ${v.gameOver.winners.map((w) => v.players[w].name).join(', ')}.`}</p>
               {!espectador && sala.anfitriao === eu && <button class="botao principal" onClick={() => loja.enviar({ t: 'novaPartida' })}>Nova partida com a mesma mesa</button>}
             </div>
           )}
-          {v.stack.length > 0 && (
-            <section class="cartao pilha" aria-label="Pilha">
-              <div class="pilha-cab"><span class="rot">Pilha</span><span class="rot">{v.stack.length}</span></div>
-              <ol>
-                {v.stack.map((s, i) => {
-                  const img = s.def ? urlImagem(s.def, 0, 'p') : null;
-                  return (
-                    <li key={s.id} class={`${i === 0 ? 'topo' : ''} ${img ? '' : 'sem-imagem'}`} style={{ '--cor': cor(s.controller) }} {...zoomDaPilha(s, todos)}>
-                      {img && <img src={img} alt="" class="mini" />}
-                      <div>
-                        <strong>{s.def ? nomeCarta(s.def, s.name) : s.name}</strong>
-                        <span><span class="quem">{v.players[s.controller].name}</span><span class="suave">{s.kind !== 'spell' ? (s.kind === 'triggered' ? ' · gatilho' : ' · habilidade') : ''}</span></span>
-                        {s.text && <p class="pilha-texto"><TextoComSimbolos texto={traduzir(s.text)} /></p>}
-                        {s.targets.length > 0 && <p class="pilha-texto">Alvos: {traduzir(s.targets.join(', '))}</p>}
-                        {s.x > 0 && <p class="pilha-texto">X = {s.x}</p>}
-                      </div>
-                    </li>
-                  );
-                })}
-              </ol>
-            </section>
-          )}
+          {/* acima da pilha: quem encolhe na falta de espaço é a pilha, e o "Voltar à escolha" fica sempre à vista */}
           {escolha && escolhaRecolhida && <EscolhaRecolhida d={escolha} ui={ui} voltar={() => setEscolhaRecolhida(false)} />}
+          {v.stack.length > 0 && <Pilha pilha={v.stack} todos={todos} nomes={nomes} cor={cor} />}
           {d && mostrarDecisao && (
             <div class="cartao">
               <p class="rot">{rotuloDecisao(d)}</p>
@@ -1341,7 +1418,7 @@ export function Mesa() {
           <JanelaEscolha v={v} d={escolha} ui={ui} todos={todos} cor={cor} aux={aux} recolhida={escolhaRecolhida} recolher={setEscolhaRecolhida}
             reservaDireita={v.stack.length > 0 ? 336 : 0} onZoom={mostrarZoom} />
         )}
-        {preJogo && !espectador && <MaoInicial v={v} d={d} enviando={enviando} regra={sala.mulligan ?? 'londres'} multiplayer={sala.modo === '4p'} sel={sel} setSel={setSel} />}
+        {preJogo && !espectador && <MaoInicial v={v} d={d} enviando={enviando} regra={sala.mulligan ?? 'londres'} multiplayer={v.players.length > 2} sel={sel} setSel={setSel} />}
       </main>
 
       <aside class="lateral" aria-label="Menu da partida">
@@ -1369,6 +1446,7 @@ export function Mesa() {
           {!espectador && <li><button title="Paradas" aria-label="Paradas" onClick={() => setModal({ tipo: 'paradas' })}><IconeParadas /><span class="rotulo">Paradas</span></button></li>}
           {!espectador && <li><button title="Ajuste manual" aria-label="Ajuste manual" disabled={decisaoManual === null} onClick={() => setManualAberto(true)}><IconeAjuste /><span class="rotulo">Ajuste manual</span></button></li>}
           <li><button title="Configurações" aria-label="Configurações" onClick={() => setModal({ tipo: 'config' })}><IconeConfig /><span class="rotulo">Configurações</span></button></li>
+          <li><button title="Reportar um erro: tira um print da mesa e manda junto com a partida" aria-label="Reportar erro" onClick={() => abrirRelato()}><IconeErro /><span class="rotulo">Reportar erro</span></button></li>
           {!espectador && !v.gameOver && !minha.left && <li><button title="Conceder" aria-label="Conceder" onClick={() => setModal({ tipo: 'conceder' })}><IconeConceder /><span class="rotulo">Conceder</span></button></li>}
           <li><button title="Sair" aria-label="Sair" onClick={() => loja.enviar({ t: 'sair' })}><IconeSair /><span class="rotulo">Sair</span></button></li>
           <li>
@@ -1380,7 +1458,7 @@ export function Mesa() {
           </li>
         </ul>
         {!recolhida && <Importacoes lugar="lateral" />}
-        {!recolhida && !espectador && <Chat msgs={e.chat} quem={e.quem} cor={cor} />}
+        {!recolhida && !espectador && <ChatLateral cor={cor} />}
       </aside>
     </div>
 
@@ -1408,6 +1486,14 @@ export function Mesa() {
           </div>
         </Janela>
       );
+    })()}
+
+    {modal?.tipo === 'deck' && (() => {
+      // a lista do deck (todas as cartas, por tipo), não o grimório: nada da ordem nem do que já saiu dele
+      const deck = e.decks.find((x) => x.id === sala.assentos[modal.jogador]?.deck);
+      const j = v.players[modal.jogador];
+      if (!deck) return <Janela titulo={`Deck de ${j.name}`} fechar={() => setModal(null)}><p class="suave">Este deck não está mais na mesa.</p></Janela>;
+      return <Suspense fallback={null}><PreviaDeck d={deck} titulo={modal.jogador === eu ? `Seu deck: ${deck.nome}` : `Deck de ${j.name}: ${deck.nome}`} fechar={() => setModal(null)} /></Suspense>;
     })()}
 
     {modal?.tipo === 'paradas' && e.paradas && <Paradas atual={e.paradas} fechar={() => setModal(null)} />}

@@ -1,11 +1,15 @@
 import { describe, expect, it } from 'vitest';
 import { hasKw } from '../../motor/chars.ts';
-import { setup } from '../../testes/harness.ts';
+import { fixture as setup } from '../../testes/artefatos.ts';
 
-describe('One, Borg Evolved', () => {
-  it('criaturas-artefato suas ganham as seis habilidades', () => {
-    const tg = setup({ battlefield: [['One, Borg Evolved', 'Ornithopter'], []] });
-    const o = tg.bf('Ornithopter');
-    for (const kw of ['flying', 'double strike', 'vigilance', 'menace', 'lifelink', 'ward']) expect(hasKw(tg.g, o, kw)).toBe(true);
+const N = 'One, Borg Evolved';
+
+describe(N, () => {
+  it('as criaturas artefato que você controla têm voar, golpe duplo, vigilância, ameaçar, vínculo com a vida e resguardo {2}', () => {
+    const tg = setup({ battlefield: [[N, { name: 'Borg', token: true }, 'Wall of Omens'], []] });
+    for (const id of [tg.bf(N), tg.bf('Borg')]) {
+      for (const kw of ['flying', 'double strike', 'vigilance', 'menace', 'lifelink', 'ward']) expect(hasKw(tg.g, id, kw), kw).toBe(true);
+    }
+    expect(hasKw(tg.g, tg.bf('Wall of Omens'), 'flying')).toBe(false);
   });
 });

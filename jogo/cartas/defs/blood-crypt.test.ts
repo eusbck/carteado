@@ -1,16 +1,20 @@
 import { describe, expect, it } from 'vitest';
-import { hasKw, isCreature } from '../../motor/chars.ts';
 import { setup } from '../../testes/harness.ts';
 
-void hasKw; void isCreature;
-const C = "Blood Crypt";
+const NOME = 'Blood Crypt';
 
-describe(C, () => {
-  it('entra virado sem pagar', () => {
-    const tg = setup({ hand: [[C], []] });
-    tg.lenient = true;
-    tg.script.push((d) => (d.kind === 'select' && /Pagar 2/.test(d.items.map((i) => i.label).join()) ? { kind: 'select', ids: [d.items.find((i) => !/Pagar/.test(i.label))!.id] } : null));
-    tg.play(C); tg.settle();
-    expect(tg.state.objects[tg.bf(C)].tapped).toBe(true);
+describe(NOME, () => {
+  it('pagando 2 de vida entra desvirado e produz {B} ou {R}', () => {
+    const tg = setup({ hand: [[NOME], []] });
+    tg.yes('Pagar 2 de vida', true).play(NOME);
+    expect(tg.state.objects[tg.bf(NOME)].tapped).toBe(false);
+    expect(tg.life(0)).toBe(38);
+  });
+
+  it('sem pagar, entra virado', () => {
+    const tg = setup({ hand: [[NOME], []] });
+    tg.yes('Pagar 2 de vida', false).play(NOME);
+    expect(tg.state.objects[tg.bf(NOME)].tapped).toBe(true);
+    expect(tg.life(0)).toBe(40);
   });
 });

@@ -1,8 +1,7 @@
 // Essence Flux
 // Exile target creature you control, then return that card to the battlefield under its owner's control. If it's a
 // Spirit, put a +1/+1 counter on it.
-import { addCounters, chars, defineCard, is, t, tgt } from '../../motor/api.ts';
-import { piscar } from '../borg.ts';
+import { addCounters, chars, defineCard, exile, is, putOntoBattlefield, t, tgt } from '../../motor/api.ts';
 
 export default defineCard({
   name: 'Essence Flux',
@@ -12,15 +11,21 @@ export default defineCard({
       *effect(c) {
         const id = tgt(c);
         if (id === null) return;
-        const novo = yield* piscar(c, id, 'dono');
-        if (novo !== null && chars(c.g, novo).subtypes.includes('Spirit')) addCounters(c.g, { kind: 'obj', id: novo }, '+1/+1', 1, c.you);
+        const [ex] = yield* exile(c.g, [id]);
+        // ruling 3: ficha exilada deixa de existir e não volta (CR 111.8)
+        if (ex === null || ex === undefined || c.g.state.objects[ex]?.zone !== 'exile') return;
+        const dono = c.g.state.objects[ex].owner;
+        // ruling 4: carta de duas faces volta com a frente para cima (CR 712.14)
+        const [volta] = yield* putOntoBattlefield(c.g, [{ id: ex, controller: dono }], 'effect');
+        // ruling 1: confere se é Espírito depois de voltar
+        if (volta !== undefined && chars(c.g, volta).subtypes.includes('Spirit')) addCounters(c.g, { kind: 'obj', id: volta }, '+1/+1', 1, c.you);
       },
     },
   }],
   rulings: {
-    1: 'regra geral: CR 400.7 — volta como objeto novo (motor/actions.ts)',
-    2: 'regra geral: CR 111.7 — ficha exilada não volta (motor/sba.ts)',
-    3: 'teste: volta sob o controle do dono; um Spirit ganha um marcador +1/+1',
-    4: 'regra geral: CR 205.3 — confere se é Spirit já no campo (cartas/defs/essence-flux.ts)',
+    1: 'teste: um Espírito volta com um marcador +1/+1',
+    2: 'teste: volta sem os marcadores, como um objeto novo',
+    3: 'regra geral: CR 111.8 — ficha exilada deixa de existir e não volta (motor/actions.ts putOntoBattlefield)',
+    4: 'regra geral: CR 712.14 — carta de duas faces volta com a frente para cima (motor/actions.ts)',
   },
 });

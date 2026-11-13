@@ -23,7 +23,7 @@ export { parseCost, formatCost, manaValueOf } from './mana.ts';
 export type { G } from './game-context.ts';
 export type { Chars, Color, GameObject, ManaType, Mod, ObjId, PlayerId, TargetRef, ZoneName } from './types.ts';
 export * from './mecanicas.ts';
-export { addCombatPhaseAfterCurrent, endTheTurn } from './turn.ts';
+export { addCombatPhaseAfterCurrent, endTheTurn, endTheCombatPhase } from './turn.ts';
 export * from './veneno-emblema.ts';
 export { playerProtectedFrom } from './actions.ts';
 // lote2-c: jeitos de conjurar e custos (inclui o contemplar, CR 701.4)
@@ -42,3 +42,20 @@ export * from './planejar.ts';
 export * from './milagre.ts';
 // revisão B: exilar "até esta permanente sair do campo" (CR 610.3): a carta volta logo que a fonte sai
 export { ATE_SAIR } from './actions.ts';
+// lote3-d: manutenção cumulativa, segundo dividido, energia, trocar o controle, manifestar o pavor, resistência a magia
+// contra habilidades
+export * from './controle.ts';
+// lote3-e: rolar dado, dobrar o ar, exaurir, farra e dobra (deck Ur-Dragon); presságio em formatos.ts
+export * from './mecanicas-ur.ts';
+export { ehPresagio } from './formatos.ts';
+// lote3-b: estação (station, CR 702.184) e cartas de estação (CR 721)
+export * from './estacao.ts';
+// lote3-b: assimilar (Star Trek), destemido da próxima mágica (undaunted, CR 702.125)
+export * from './assimilar.ts';
+export * from './destemido.ts';
+// lote3-a (deck Cloud): equipar por {0}, equipar como instantânea, segundo dividido, histórico
+export * from './equipar.ts';
+export * from './historia.ts';
+// lote3-f: devoção, turno extra, evocar, dash, barganha e spree (cEDH Inalla)
+export * from './cedh.ts';
+export { successor } from './state.ts';

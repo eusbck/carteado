@@ -1,17 +1,25 @@
 // Estado do cliente e conexão com o servidor (WebSocket com reconexão).
 // O cliente nunca decide regras: só mostra a vista que o servidor manda e envia escolhas.
 
-import { useEffect, useState } from 'preact/hooks';
+import { useEffect, useRef, useState } from 'preact/hooks';
 import type { StopSettings } from '../../motor/autopass.ts';
 import type { Answer, ManualAction } from '../../motor/types.ts';
 import type { GameView } from '../../motor/view.ts';
-import type { DeckCatalogo, DeckResumo, MsgChat, MsgCliente, MsgServidor, PedidoDesfazer, Posicoes, SalaPublica, TarefaPublica } from '../../servidor/protocolo.ts';
+import type { CartaMontagem, DeckCatalogo, DeckResumo, ListaDeck,MsgChat, MsgCliente, MsgServidor, PedidoDesfazer, Posicoes, SalaPublica, TarefaPublica } from '../../servidor/protocolo.ts';
 import { carregarCartas } from './cartas.ts';
 import { compartilhar } from './compartilhar.ts';
 import type { ReferenciaRelogio } from './cronometro.ts';
 import { auxiliosAtivos, preferencias } from './preferencias.ts';
 import { tocar } from './sons.ts';
 import { avatarGuardado } from './avatares.ts';
+import { registrarEnvio, registrarErroServidor } from './relato/diagnostico.ts';
+import { rasa } from './igualdade.ts';
+import { ligarControle, marcarCena, vistaSemAnimacao } from './mesa/cenaLoja.ts';
+import { FilaQuadros, type Quadro } from './mesa/filaQuadros.ts';
+
+type MsgJogo = Extract<MsgServidor, { t: 'jogo' }>;
+/** uma vista na fila de quadros (protocolo-2) */
+interface QuadroJogo extends Quadro { m: MsgJogo }
 
 export interface Estado {
   fase: 'carregando' | 'entrada' | 'inicio' | 'decks' | 'sala';
@@ -57,7 +65,8 @@ export interface Estado {
 
 const CHAVE = 'commander-da-mesa:sala';
 
-function salaGuardada(): { codigo: string; token: string } | null {
+/** a sala e o token do seu assento (o relato de erro manda para o servidor juntar a partida) */
+export function salaGuardada(): { codigo: string; token: string } | null {
   try {
     const s = localStorage.getItem(CHAVE);
     return s ? JSON.parse(s) : null;
@@ -99,6 +108,16 @@ class Loja {
   private seqRevelada = 0;
   /** salas em que o retrato guardado neste navegador já foi mandado (uma vez por sala enquanto a página está aberta) */
   private avatarMandado = new Set<string>();
+  /** as vistas que chegaram, mostradas uma de cada vez (protocolo-2); a cena fica em mesa/cenaLoja.ts */
+  readonly quadros = new FilaQuadros<QuadroJogo>((q) => this.aplicarJogo(q.m), marcarCena);
+  /** o número da última vista recebida nesta conexão */
+  private seqJogo = 0;
+
+  constructor() {
+    ligarControle({ duracao: (ms) => this.quadros.duracao(ms), pular: () => this.quadros.pular() });
+    // aba escondida: nada anima, a mesa vai direto ao último quadro
+    if (typeof document !== 'undefined') document.addEventListener('visibilitychange', () => { if (document.hidden) this.quadros.pular(); });
+  }
 
   mudar(p: Partial<Estado>): void {
     // nada mudou de fato (a mesma sala de novo, a mesma vista): ninguém se desenha de novo
@@ -171,6 +190,7 @@ class Loja {
     this.ws = ws;
     ws.onopen = () => {
       this.tentativas = 0;
+      this.seqJogo = 0;
       this.mudar({ conectado: true });
       const s = salaGuardada();
       if (s) ws.send(JSON.stringify({ t: 'retomar', codigo: s.codigo, token: s.token } satisfies MsgCliente));
@@ -255,6 +275,58 @@ class Loja {
     this.mudar({ minhasTarefas: minhas });
   }
 
+  // ---------------------------------------------------------------- tela Montar deck
+
+  /** as cartas que um deck montado na mesa pode ter (as que têm regras no jogo); null se não deu */
+  async cartasParaMontar(): Promise<CartaMontagem[] | null> {
+    try {
+      const r = await fetch('/api/catalogo/montar/cartas');
+      if (!r.ok) throw new Error(String(r.status));
+      return ((await r.json()) as { cartas: CartaMontagem[] }).cartas;
+    } catch {
+      this.erro('Não foi possível carregar as cartas');
+      return null;
+    }
+  }
+
+  /** a lista de um deck da mesa (para editar um montado ou usar um deck como base); null se não deu */
+  async listaDoDeck(id: string): Promise<ListaDeck | null> {
+    try {
+      const r = await fetch(`/api/catalogo/${encodeURIComponent(id)}/cartas`);
+      if (!r.ok) throw new Error(String(r.status));
+      return (await r.json()) as ListaDeck;
+    } catch {
+      this.erro('Não foi possível abrir a lista do deck');
+      return null;
+    }
+  }
+
+  /** grava um deck montado na mesa (sem id: um novo). Devolve o id, ou o erro e as regras que a lista quebra */
+  async salvarDeckCriado(d: { id: string | null; nome: string; comandante: string; parceiro: string | null; cartas: { nome: string; quantidade: number }[] }): Promise<{ id: string } | { erro: string; erros: string[] }> {
+    let autor: string | null = null;
+    try { autor = localStorage.getItem('commander-da-mesa:nome'); } catch { /* sem armazenamento */ }
+    try {
+      const r = await fetch('/api/catalogo/montar', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ ...d, autor }) });
+      const j = await r.json().catch(() => ({})) as { id?: string; erro?: string; erros?: string[] };
+      if (r.ok && j.id) return { id: j.id };
+      return { erro: j.erro ?? 'Não foi possível gravar o deck', erros: j.erros ?? [] };
+    } catch {
+      return { erro: 'Não foi possível falar com o servidor', erros: [] };
+    }
+  }
+
+  async apagarDeckCriado(id: string): Promise<boolean> {
+    try {
+      const r = await fetch(`/api/catalogo/${encodeURIComponent(id)}/apagar`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: '{}' });
+      if (r.ok) return true;
+      const j = await r.json().catch(() => ({})) as { erro?: string };
+      this.erro(j.erro ?? 'Não foi possível apagar o deck');
+    } catch {
+      this.erro('Não foi possível falar com o servidor');
+    }
+    return false;
+  }
+
   private async pedirTarefa(url: string, corpo: unknown): Promise<number | null> {
     try {
       const r = await fetch(url, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(corpo) });
@@ -274,6 +346,7 @@ class Loja {
   enviar(m: MsgCliente): void {
     // quem assiste não age: cliques que mandariam jogadas (paradas, posições, respostas) não saem daqui
     if (ehEspectador(this.e) && !['sair', 'ping', 'assistir', 'entrar', 'criar', 'retomar'].includes(m.t)) return;
+    registrarEnvio(m);
     if (this.ws && this.ws.readyState === WebSocket.OPEN) this.ws.send(JSON.stringify(m));
     else this.fila.push(m);
   }
@@ -284,6 +357,24 @@ class Loja {
     this.mudar({ respondida: decisao, recusaCombate: null });
   }
   manual(decisao: number, manual: ManualAction): void { this.responder(decisao, { kind: 'priority', action: 'manual', manual }); }
+
+  /** mostra uma vista (o quadro da vez); devolve se algo da partida mudou de fato */
+  private aplicarJogo(m: MsgJogo): boolean {
+    // o que chegou igual fica com a mesma referência (as cartas que não mudaram não se desenham de novo)
+    const pedido = m.desfazer ? { ...m.desfazer, ate: Date.now() + m.desfazer.restanteMs } : null;
+    const ant = this.e.desfazer;
+    const mesmoPedido = !!pedido && !!ant && ant.de === pedido.de && Math.abs(ant.ate - pedido.ate) < 1500
+      && JSON.stringify([ant.linhas, ant.aceitaram, ant.faltam]) === JSON.stringify([pedido.linhas, pedido.aceitaram, pedido.faltam]);
+    const vista = compartilhar(this.e.vista, m.vista);
+    const mudou = vista !== this.e.vista;
+    this.mudar({
+      vista, paradas: compartilhar(this.e.paradas, m.paradas), posicoes: compartilhar(this.e.posicoes, m.posicoes ?? {}),
+      respondida: m.vista.decision?.id === this.e.respondida ? this.e.respondida : null,
+      recusaCombate: m.vista.decision?.id === this.e.recusaCombate?.decisao ? this.e.recusaCombate : null,
+      desfazivel: !!m.desfazivel, desfazer: mesmoPedido ? ant : pedido,
+    });
+    return mudou;
+  }
 
   private tratar(m: MsgServidor): void {
     switch (m.t) {
@@ -298,21 +389,20 @@ class Loja {
           this.enviar({ t: 'avatar', avatar: guardado });
         }
         // a tela Decks aberta pelo saguão continua aberta enquanto a partida não começa (alguém entrou, trocou de deck…)
+        if (m.sala.estado === 'espera') this.quadros.limpar();
         this.mudar({ sala: compartilhar(this.e.sala, m.sala), relogio, voce: m.voce, quem: m.quem ?? null, fase: this.e.fase === 'decks' && m.sala.estado !== 'jogando' ? 'decks' : 'sala', vista: m.sala.estado === 'espera' ? null : this.e.vista });
         break;
       }
       case 'jogo': {
-        // o que chegou igual fica com a mesma referência (as cartas que não mudaram não se desenham de novo)
-        const pedido = m.desfazer ? { ...m.desfazer, ate: Date.now() + m.desfazer.restanteMs } : null;
-        const ant = this.e.desfazer;
-        const mesmoPedido = !!pedido && !!ant && ant.de === pedido.de && Math.abs(ant.ate - pedido.ate) < 1500
-          && JSON.stringify([ant.linhas, ant.aceitaram, ant.faltam]) === JSON.stringify([pedido.linhas, pedido.aceitaram, pedido.faltam]);
-        this.mudar({
-          vista: compartilhar(this.e.vista, m.vista), paradas: compartilhar(this.e.paradas, m.paradas), posicoes: compartilhar(this.e.posicoes, m.posicoes ?? {}),
-          respondida: m.vista.decision?.id === this.e.respondida ? this.e.respondida : null,
-          recusaCombate: m.vista.decision?.id === this.e.recusaCombate?.decisao ? this.e.recusaCombate : null,
-          desfazivel: !!m.desfazivel, desfazer: mesmoPedido ? ant : pedido,
-        });
+        // vista repetida ou fora de ordem na mesma conexão (não deveria acontecer): fica a mais nova
+        if (m.seq !== undefined) {
+          if (!m.reinicio && m.seq <= this.seqJogo) break;
+          this.seqJogo = m.seq;
+        }
+        // sem cena: vista que não continua a anterior, a primeira, modo Desempenho, aba escondida
+        const saltar = !!m.reinicio || !this.e.vista || preferencias().desempenho || (typeof document !== 'undefined' && document.hidden);
+        if (m.reinicio) vistaSemAnimacao();
+        this.quadros.receber({ chegada: performance.now(), decisao: !!m.vista.decision, m }, saltar);
         break;
       }
       case 'aviso': {
@@ -347,6 +437,7 @@ class Loja {
         if (this.e.catalogo && (m.mudou || (m.tarefa?.tipo === 'confirmar' && m.tarefa.estado !== 'andando'))) void this.recarregarCatalogo();
         break;
       case 'saiu':
+        this.quadros.limpar();
         guardarSala(null);
         // voltando a esta sala (ou a outra) depois, o retrato guardado vai de novo para o assento novo
         this.avatarMandado.clear();
@@ -355,6 +446,7 @@ class Loja {
       case 'pong':
         break;
       case 'erro': {
+        registrarErroServidor(m.de ? `${m.msg} (de: ${m.de})` : m.msg);
         // só o erro que responde a uma jogada (`de: 'responder'`) mexe na decisão; o do chat, de uma posição ou de
         // outra mensagem só avisa (antes, o limite do chat que chegasse com uma resposta pendente virava "jogada
         // recusada" e sumia). Servidor de antes do `de`: vale como antes, pela resposta pendente
@@ -381,16 +473,33 @@ class Loja {
 
 export const loja = new Loja();
 
-export function useLoja(): Estado {
+const tudo = (e: Estado) => e;
+
+/**
+ * O estado da loja num componente (N27). Sem argumentos, o estado inteiro (o componente se desenha de novo a cada
+ * mudança); com `seletor`, só o pedaço que ele usa, e ele só se desenha de novo quando esse pedaço muda pela igualdade
+ * `igual` (rasa, por padrão: um seletor que devolve { vista, sala } novo a cada chamada não redesenha nada se os dois
+ * campos são os mesmos). Uma mensagem do chat, um "pensando…" ou um aviso deixam de redesenhar a mesa inteira.
+ */
+export function useLoja(): Estado;
+export function useLoja<T>(seletor: (e: Estado) => T, igual?: (a: T, b: T) => boolean): T;
+export function useLoja<T>(seletor: (e: Estado) => T = tudo as unknown as (e: Estado) => T, igual: (a: T, b: T) => boolean = rasa): T {
   const [, forcar] = useState(0);
-  const visto = loja.e;
+  const valor = seletor(loja.e);
+  // o seletor e a igualdade de agora (podem depender de props) e o último valor desenhado
+  const atual = useRef({ seletor, igual, valor });
+  atual.current = { seletor, igual, valor };
   useEffect(() => {
-    const desfazer = loja.assinar(() => forcar((x) => x + 1));
+    const conferir = () => {
+      const a = atual.current;
+      if (!a.igual(a.valor, a.seletor(loja.e))) forcar((x) => x + 1);
+    };
+    const desfazer = loja.assinar(conferir);
     // o estado pode ter mudado entre a renderização e a assinatura (o efeito roda depois)
-    if (loja.e !== visto) forcar((x) => x + 1);
+    conferir();
     return desfazer;
   }, []);
-  return loja.e;
+  return valor;
 }
 
 /** a pessoa assiste a sala sem assento (modo espectador) */

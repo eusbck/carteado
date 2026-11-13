@@ -37,6 +37,8 @@ export type GameEvent =
   | { type: 'unlock'; obj: ObjId; halves: number[]; player: PlayerId; full: boolean }
   | { type: 'prepared'; obj: ObjId }
   | { type: 'phaseOut'; obj: ObjId }
+  /** lote3-d: um jogador manifestou o pavor (CR 701.62b), mesmo que parte tenha sido impossível */
+  | { type: 'manifestDread'; player: PlayerId; obj: ObjId | null }
   | { type: 'phaseIn'; obj: ObjId }
   | { type: 'turnedFaceUp'; obj: ObjId }
   | { type: 'resolved'; obj: ObjId; abilityId?: string; controller: PlayerId }

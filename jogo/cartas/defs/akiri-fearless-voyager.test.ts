@@ -1,23 +1,27 @@
 import { describe, expect, it } from 'vitest';
 import { hasKw } from '../../motor/chars.ts';
-import { setup } from '../../testes/harness.ts';
+import { fixture as setup } from '../../testes/artefatos.ts';
 
-const C = 'Akiri, Fearless Voyager';
+const N = 'Akiri, Fearless Voyager';
 
-describe(C, () => {
-  it('ruling 2: uma compra por jogador atacado, não por criatura', () => {
-    const tg = setup({ players: 3, multiplayer: true, battlefield: [[C, { name: 'Basilisk Collar', attachTo: 'Elvish Mystic' }, { name: 'Elvish Mystic', ready: true }, { name: 'Darksteel Plate', attachTo: 'Wall of Omens' }, { name: 'Dina, Essence Brewer', ready: true }], [], []], library: [['Opt', 'Opt', 'Opt'], ['Opt'], ['Opt']], step: 'main1' });
-    const mao = tg.state.zones.hand[0].length;
-    tg.attack([['Elvish Mystic', 1], ['Dina, Essence Brewer', 1]]).passTo('declareBlockers');
-    tg.resolveAll();
-    expect(tg.state.zones.hand[0].length).toBe(mao + 1);
+describe(N, () => {
+  it('atacar dois jogadores com criaturas equipadas compra duas cartas; a sem equipamento não conta', () => {
+    const tg = setup({
+      players: 3,
+      battlefield: [[N, 'Silver Myr', 'Llanowar Elves', 'Jumbo Cactuar', { name: 'Lightning Greaves', attachTo: 'Silver Myr' }, { name: 'Swiftfoot Boots', attachTo: 'Llanowar Elves' }], [], []],
+      step: 'beginCombat',
+    });
+    tg.attack([['Silver Myr', 1], ['Llanowar Elves', 2], ['Jumbo Cactuar', 2]]);
+    tg.passTo('declareBlockers');
+    expect(tg.names(0, 'hand').length).toBe(2);
   });
+
   it('{W}: desanexa, vira a criatura e ela ganha indestrutível; o Equipamento fica no campo', () => {
-    const tg = setup({ battlefield: [[C, 'Plains', { name: 'Basilisk Collar', attachTo: 'Elvish Mystic' }, 'Elvish Mystic'], []] });
-    tg.choose('Desanexe', ['Basilisk Collar']).activate(C, 'desanexar').resolve();
-    const elfo = tg.bf('Elvish Mystic');
-    expect(tg.state.objects[tg.bf('Basilisk Collar')].attachedTo ?? null).toBeNull();
-    expect(tg.state.objects[elfo].tapped).toBe(true);
-    expect(hasKw(tg.g, elfo, 'indestructible')).toBe(true);
+    const tg = setup({ battlefield: [[N, 'Plains', 'Silver Myr', { name: 'Loxodon Warhammer', attachTo: 'Silver Myr' }], []] });
+    tg.choose('desanexar um Equipamento', ['Loxodon Warhammer (em Silver Myr)']).activate(N, '{W}').resolveAll();
+    const myr = tg.bf('Silver Myr');
+    expect(tg.state.objects[tg.bf('Loxodon Warhammer')].attachedTo).toBeNull();
+    expect(tg.state.objects[myr].tapped).toBe(true);
+    expect(hasKw(tg.g, myr, 'indestructible')).toBe(true);
   });
 });

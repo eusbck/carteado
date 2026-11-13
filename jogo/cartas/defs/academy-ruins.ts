@@ -11,7 +11,7 @@ export default defineCard({
       activated('{1}{U}, {T}', function* (c) {
         const id = tgt(c);
         if (id !== null) yield* moveObjects(c.g, [{ id, to: 'library', position: 'top' }], 'effect');
-      }, { targets: [t.card('graveyard', is.artifact, 'carta de artefato alvo do seu cemitério', 'you')], text: '{1}{U}, {T}: Coloque a carta de artefato alvo do seu cemitério no topo do seu grimório.' }),
+      }, { targets: [t.card('graveyard', is.artifact, 'carta de artefato alvo do seu cemitério')], text: '{1}{U}, {T}: Coloque a carta de artefato alvo do seu cemitério no topo do seu grimório.' }),
     ],
   }],
   rulings: {},

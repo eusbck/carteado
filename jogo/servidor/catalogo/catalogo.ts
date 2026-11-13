@@ -5,10 +5,12 @@
 // ainda espera cartas fica em `preparacao`; quando as cartas ficam prontas (o servidor sobe de novo com elas),
 // `aplicarPreparacoesProntas` a troca pela atual.
 
-import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, statSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { modoDe } from '../../motor/modos.ts';
 import type { DeckList } from '../../motor/state.ts';
-import type { CartaCatalogo, DeckCatalogo, ListaDeck } from '../protocolo.ts';
+import type { CartaCatalogo, DeckCatalogo, ListaDeck, OrigemPublica } from '../protocolo.ts';
+import { lerOrigens, origemDe } from './origem.ts';
 import { nomesDaLista, type CartasGeradas, type ImagensGeradas } from './gerar.ts';
 import type { DeckArquivo, EntradaLista, Lista, VersaoLista } from './tipos.ts';
 
@@ -26,8 +28,14 @@ function contagem(l: Lista): Map<string, number> {
   return m;
 }
 
-/** o comandante, ou os dois parceiros ("A e B") */
-export const comandantesDe = (l: Lista) => (l.parceiro ? `${l.comandante} e ${l.parceiro}` : l.comandante);
+/** o comandante, ou os dois parceiros ("A e B"); vazio no deck sem comandante */
+export const comandantesDe = (l: Lista) => (l.parceiro ? `${l.comandante} e ${l.parceiro}` : l.comandante ?? '');
+
+/** a carta que ilustra o deck: o comandante, ou a capa (decks sem comandante), ou a primeira carta que não é terreno
+ *  básico; `ehBasico` diz quais pular (sem ela, a primeira da lista) */
+export function capaDe(l: Pick<Lista, "comandante" | "capa" | "cartas">, ehBasico: (nome: string) => boolean = () => false): string | null {
+  return l.comandante ?? l.capa ?? l.cartas.find((c) => !ehBasico(c.nome))?.nome ?? l.cartas[0]?.nome ?? null;
+}
 
 /** o que entra e o que sai de `antiga` para `nova` (por nome e quantidade; o comandante à parte) */
 export function diferenca(antiga: Lista | null, nova: Lista): Diferenca {
@@ -41,7 +49,7 @@ export function diferenca(antiga: Lista | null, nova: Lista): Diferenca {
   return {
     entram: entram.sort(ordem),
     saem: saem.sort(ordem),
-    comandante: antiga && comandantesDe(antiga) !== comandantesDe(nova) ? { de: comandantesDe(antiga), para: comandantesDe(nova) } : null,
+    comandante: antiga && (antiga.comandante || nova.comandante) && comandantesDe(antiga) !== comandantesDe(nova) ? { de: comandantesDe(antiga), para: comandantesDe(nova) } : null,
   };
 }
 
@@ -118,6 +126,12 @@ export class Catalogo {
     renameSync(arq + '.novo', arq);
   }
 
+  /** tira o arquivo do deck */
+  apagar(id: string): void {
+    if (!/^[A-Za-z0-9_-]{8,40}$/.test(id)) throw new Error(`id de deck inválido: ${id}`);
+    rmSync(join(this.pasta, `${id}.json`), { force: true });
+  }
+
   proximaOrdem(): number {
     return this.todos().reduce((m, d) => Math.max(m, d.ordem + 1), 0);
   }
@@ -131,7 +145,18 @@ export class Catalogo {
   listasJogaveis(): DeckList[] {
     return this.todos()
       .filter((d) => d.atual && this.faltam(d.atual).length === 0)
-      .map((d) => ({ id: d.id, nome: d.nome, comandante: d.atual!.comandante, ...(d.atual!.parceiro ? { parceiro: d.atual!.parceiro } : {}), cartas: d.atual!.cartas.map((c) => ({ ...c })) }));
+      .map((d) => {
+        const l = d.atual!;
+        return {
+          id: d.id, nome: d.nome,
+          // Commander fica sem a chave (como os decks e as partidas gravadas antes dos modos)
+          ...(l.formato && l.formato !== 'commander' ? { formato: l.formato } : {}),
+          ...(l.comandante ? { comandante: l.comandante } : {}),
+          ...(l.parceiro ? { parceiro: l.parceiro } : {}),
+          ...(l.capa ? { capa: l.capa } : {}),
+          cartas: l.cartas.map((c) => ({ ...c })),
+        };
+      });
   }
 
   /** versões em preparação cujas cartas ficaram todas prontas viram a lista atual; devolve os ids trocados */
@@ -157,14 +182,24 @@ export class Catalogo {
       return { nome: e.nome, quantidade: e.quantidade, pt: i?.pt ?? null, img: i?.img ?? null, tipo: i?.tipo ?? '', pronta: this.pronta(e.nome) };
     };
     return {
-      id: d.id, nome: d.nome, comandante: carta({ nome: l.comandante, quantidade: 1 }),
+      id: d.id, nome: d.nome, formato: modoDe(l), comandante: l.comandante ? carta({ nome: l.comandante, quantidade: 1 }) : null,
       ...(l.parceiro ? { parceiro: carta({ nome: l.parceiro, quantidade: 1 }) } : {}),
       cartas: l.cartas.filter((c) => c.nome !== l.comandante && c.nome !== l.parceiro).map(carta),
     };
   }
 
+  /** de onde cada deck vem (decks/origens.json, ou o palpite para quem ainda não foi classificado) */
+  origens(): Map<string, OrigemPublica> {
+    const o = lerOrigens(this.pasta);
+    return new Map(this.todos().map((d) => {
+      const { tipo, produto, trocas } = origemDe(o, d);
+      return [d.id, { tipo, ...(produto ? { produto } : {}), ...(trocas ? { trocas } : {}) }];
+    }));
+  }
+
   /** resumo de cada deck para a tela Decks */
   publico(info: InfoDisco): DeckCatalogo[] {
+    const origens = this.origens();
     const carta = (e: EntradaLista): CartaCatalogo => {
       const i = info.carta(e.nome);
       return { nome: e.nome, quantidade: e.quantidade, pt: i?.pt ?? null, img: i?.img ?? null, tipo: i?.tipo ?? '', pronta: this.pronta(e.nome) };
@@ -175,7 +210,9 @@ export class Catalogo {
     };
     return this.todos().map((d) => {
       const base = d.atual ?? d.preparacao!;
-      const cmd = info.carta(base.comandante);
+      const capa = capaDe(base, (n) => /^Basic\b.*Land/.test(info.carta(n)?.tipo ?? ''));
+      const cmd = base.comandante ? info.carta(base.comandante) : null;
+      const arteCapa = capa ? info.carta(capa) : null;
       const par = base.parceiro ? info.carta(base.parceiro) : null;
       const jogavel = !!d.atual && this.faltam(d.atual).length === 0;
       const prep = d.preparacao;
@@ -184,17 +221,21 @@ export class Catalogo {
         id: d.id,
         nome: d.nome,
         link: d.link,
-        comandante: base.comandante,
+        formato: modoDe(base),
+        comandante: base.comandante ?? null,
         comandantePt: cmd?.pt ?? null,
         parceiro: base.parceiro ?? null,
         parceiroPt: par?.pt ?? null,
-        cores: ordenarCores([...(cmd?.cores ?? []), ...(par?.cores ?? [])]),
-        arte: cmd?.img ?? null,
+        // sem comandante, as cores do deck são as das cartas
+        cores: ordenarCores(cmd ? [...cmd.cores, ...(par?.cores ?? [])] : base.cartas.flatMap((c) => info.carta(c.nome)?.cores ?? [])),
+        arte: arteCapa?.img ?? null,
         estado: jogavel ? (prep ? 'atualizacao' : 'pronto') : 'preparacao',
         importadoEm: d.importadoEm,
         verificadoEm: d.verificadoEm,
         atualizadoEm: (prep ?? d.atual)?.origem.atualizadoEm ?? null,
         total: nomesDaLista(base).length,
+        ...(d.criado ? { criado: d.criado } : {}),
+        origem: origens.get(d.id)!,
         preparacao: prep && dif ? {
           prontas: nomesDaLista(prep).length - this.faltam(prep).length,
           total: nomesDaLista(prep).length,

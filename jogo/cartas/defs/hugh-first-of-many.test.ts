@@ -1,12 +1,23 @@
 import { describe, expect, it } from 'vitest';
-import { setup } from '../../testes/harness.ts';
+import { fixture as setup } from '../../testes/artefatos.ts';
 
-describe('Hugh, First of Many', () => {
-  it('mágicas de artefato têm replicar {2}{U}', () => {
-    const tg = setup({ battlefield: [['Hugh, First of Many', ...Array(3).fill('Island')], []], hand: [['Ornithopter'], []] });
-    tg.number('replicar', 1);
-    tg.script.push((d) => (d.kind === 'select' && d.prompt.includes('replicar') ? { kind: 'select', ids: [d.items.find((i) => /Pagar|1/.test(i.label))?.id ?? d.items[0].id] } : null));
-    tg.cast('Ornithopter').resolveAll();
-    expect(tg.all('Ornithopter').length).toBe(2);
+const N = 'Hugh, First of Many';
+
+describe(N, () => {
+  it('CR 702.56a: a mágica de artefato com replicar pago duas vezes é copiada duas vezes; as cópias viram fichas', () => {
+    const tg = setup({ battlefield: [[N, ...Array(8).fill('Island')], []], hand: [['Steel Overseer'], []] });
+    tg.number('quantas vezes', 2).cast('Steel Overseer').resolveAll();
+    const ids = tg.all('Steel Overseer');
+    expect(ids).toHaveLength(3);
+    expect(ids.filter((id) => tg.state.objects[id].isToken)).toHaveLength(2);
+  });
+
+  it('mágicas que não são de artefato não têm replicar', () => {
+    const tg = setup({ battlefield: [[N, ...Array(8).fill('Plains')], []], hand: [['Wall of Omens'], []] });
+    let perguntou = false;
+    tg.script.push((d) => { if (d.prompt.includes('quantas vezes')) perguntou = true; return null; });
+    tg.cast('Wall of Omens').resolveAll();
+    expect(perguntou).toBe(false);
+    expect(tg.all('Wall of Omens')).toHaveLength(1);
   });
 });

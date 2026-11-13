@@ -1,15 +1,14 @@
 import { describe, expect, it } from 'vitest';
-import { hasKw, isCreature } from '../../motor/chars.ts';
 import { setup } from '../../testes/harness.ts';
 
-void hasKw; void isCreature;
-const C = "Vampiric Tutor";
+const NOME = 'Vampiric Tutor';
 
-describe(C, () => {
-  it('põe a carta no topo e perde 2 de vida', () => {
-    const tg = setup({ battlefield: [['Swamp'], []], hand: [[C], []], library: [['Opt', 'Sol Ring', 'Forest'], []] });
-    tg.choose('topo', ['Sol Ring']).cast(C).resolve();
-    expect(tg.state.objects[tg.state.zones.library[0][0]].def).toBe('Sol Ring');
+describe(NOME, () => {
+  it('procura uma carta, ela fica no topo do grimório e você perde 2 de vida', () => {
+    const tg = setup({ battlefield: [['Swamp'], []], hand: [[NOME], []], library: [['Island', 'Forest', 'Zetalpa, Primal Dawn', 'Plains'], []] });
+    tg.choose('Procure', ['Zetalpa, Primal Dawn']).cast(NOME).resolve();
+    expect(tg.names(0, 'library')[0]).toBe('Zetalpa, Primal Dawn');
+    expect(tg.names(0, 'library')).toHaveLength(4);
     expect(tg.life(0)).toBe(38);
   });
 });

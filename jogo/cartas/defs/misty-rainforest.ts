@@ -1,0 +1,19 @@
+// Misty Rainforest
+// {T}, Pay 1 life, Sacrifice this land: Search your library for a Forest or Island card, put it onto the battlefield, then
+// shuffle.
+import { activated, chars, defineCard, searchTo } from '../../motor/api.ts';
+
+const TIPOS = ['Forest', 'Island'];
+
+export default defineCard({
+  name: 'Misty Rainforest',
+  faces: [{
+    abilities: [
+      // qualquer carta com um dos subtipos serve, básica ou não (CR 205.3i, 305.8); entra desvirada
+      activated('{T}, Pay 1 life, Sacrifice this land', function* (c) {
+        yield* searchTo(c, c.you, (id) => chars(c.g, id).subtypes.some((s) => TIPOS.includes(s)), 1, 'battlefield', { prompt: 'Procure uma carta de Forest ou Island' });
+      }, { text: '{T}, Pague 1 de vida, Sacrifique este terreno: Procure uma carta de Forest ou Island, coloque-a no campo e embaralhe.' }),
+    ],
+  }],
+  rulings: {},
+});

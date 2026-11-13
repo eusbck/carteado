@@ -16,7 +16,7 @@ const catalogo = new Catalogo({ pasta: P.decks, pronta: cartaPronta });
 
 describe('decks/ e gerado/ de verdade', () => {
   it('um arquivo por deck, com o nome igual ao id e a ordem sem repetir', () => {
-    const arquivos = readdirSync(P.decks).filter((f) => f.endsWith('.json') && f !== 'cartas.json' && f !== 'rulings.json');
+    const arquivos = readdirSync(P.decks).filter((f) => f.endsWith('.json') && f !== 'cartas.json' && f !== 'rulings.json' && f !== 'origens.json');
     const decks = catalogo.todos();
     expect(decks.map((d) => `${d.id}.json`).sort()).toEqual(arquivos.sort());
     expect(new Set(decks.map((d) => d.ordem)).size).toBe(decks.length);

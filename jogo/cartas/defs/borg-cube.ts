@@ -6,7 +6,7 @@
 // 12+ | Artifact creatures you control have flying.
 import { and, anthem, chooseItems, defineCard, exile, is, isCreature, linkedExiled, objItem, on, t, tgt, triggered, upTo } from '../../motor/api.ts';
 import type { Ctx, Gen, SCtx } from '../../motor/defs.ts';
-import { artefatoCriatura, assimilar } from '../borg.ts';
+import { artefatoCriatura, assimilar } from '../piscar.ts';
 import { cargas, estacao, nivelDeEstacao } from '../estacao.ts';
 
 const CHAVE = 'borg-cube';

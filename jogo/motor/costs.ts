@@ -194,16 +194,38 @@ function emparelhar(vagas: ObjId[][], peso: (id: ObjId) => number): Set<ObjId> |
   return new Set(dono.keys());
 }
 
+/** cartas cuja definição impressa tem habilidade de mana que funciona da mão (atalho para não calcular as características
+ *  de cada carta da mão a cada consulta); refeito quando o registro muda de tamanho */
+let manaDaMao: { n: number; nomes: Set<string> } | null = null;
+function temManaDaMao(def: string | undefined): boolean {
+  if (def === undefined) return false;
+  if (!manaDaMao || manaDaMao.n !== registry.cards.size) {
+    const nomes = new Set<string>();
+    for (const [nome, c] of registry.cards) if (c.faces.some((f) => f.abilities?.some((a) => a.kind === 'mana' && !!a.zones?.includes('hand')))) nomes.add(nome);
+    manaDaMao = { n: registry.cards.size, nomes };
+  }
+  return manaDaMao.nomes.has(def);
+}
+
 /** opções de mana disponíveis para um jogador agora */
-export function manaOptions(g: G, player: PlayerId, opts: { excludeSource?: ObjId } = {}): ManaOption[] {
+export function manaOptions(g: G, player: PlayerId, opts: { excludeSource?: ObjId; paying?: boolean } = {}): ManaOption[] {
   const out: ManaOption[] = [];
   const bonusHooks = hooks(g, 'extraManaForPlanning');
-  for (const id of g.state.zones.battlefield) {
+  const proibidas = hooks(g, 'cantActivate');
+  // lote3-f: habilidades de mana que funcionam da mão (Simian Spirit Guide: "Exile esta carta da sua mão: adicione {R}";
+  // CR 113.6, 605.1a). As do campo continuam como eram; as que dizem só a mão não valem no campo
+  const daMao = g.state.zones.hand[player].filter((id) => temManaDaMao(g.state.objects[id]?.def) && abilityDefs(g, id).some(({ def }) => def.kind === 'mana' && !!def.zones?.includes('hand')));
+  for (const id of [...g.state.zones.battlefield, ...daMao]) {
     if (id === opts.excludeSource) continue;
     const o = g.state.objects[id];
-    if (o.phasedOut || controllerOf(g, id) !== player) continue;
+    const naMao = o.zone === 'hand';
+    if (!naMao && (o.phasedOut || controllerOf(g, id) !== player)) continue;
+    if (proibidas.length && proibidas.some((h) => h.fn(h.ctx, player, id))) continue; // lote3-d: Cursed Totem
     for (const { inst, def } of abilityDefs(g, id)) {
       if (def.kind !== 'mana') continue;
+      if (naMao ? !def.zones?.includes('hand') : def.zones && !def.zones.includes('battlefield')) continue;
+      // "ative somente como uma instantânea" (Lion's Eye Diamond): não durante o pagamento de um custo
+      if (def.notWhilePaying && opts.paying) continue;
       const ctx: SCtx = { g, you: player, source: id };
       if (def.condition && !def.condition(ctx)) continue;
       if (def.oncePerTurn && o.usedThisTurn[inst.id] === g.state.turn.number) continue;
@@ -217,6 +239,7 @@ export function manaOptions(g: G, player: PlayerId, opts: { excludeSource?: ObjI
         let rank = 0;
         if (isCreature(g, id)) rank += 2;
         if (def.cost.some((p) => p.k === 'sacrificeSelf')) rank += 6;
+        if (naMao) rank += 8; // gastar uma carta da mão é o último recurso
         if (def.cost.some((p) => p.k === 'life' || p.k === 'mill' || p.k === 'removeCounter' || p.k === 'addCounterSelf')) rank += 4;
         if (def.extra) rank += 3;
         if (manaCost.length) rank += 1;
@@ -354,6 +377,11 @@ function* resolveTriggeredMana(g: G): Gen<void> {
   throw new Error('Laço de habilidades de mana engatilhadas sem fim');
 }
 
+/** lote3-e: "você pode gastar mana como se fosse mana de qualquer cor" (Chromatic Orrery; CR 609.4b) */
+function gastaComoQualquerCor(g: G, player: PlayerId): boolean {
+  return hooks(g, 'spendAsAnyColor').some((h) => h.fn(h.ctx, player));
+}
+
 function canSpendFn(g: G, ctx: PayContext): (u: ManaUnit) => boolean {
   return (u) => {
     if (!u.restriction) return true;
@@ -370,10 +398,10 @@ function canSpendFn(g: G, ctx: PayContext): (u: ManaUnit) => boolean {
  * saber se dá para pagar, basta achar um plano qualquer).
  */
 export function planPayment(g: G, player: PlayerId, cost: ManaSymbol[], ctx: PayContext, life = 0, enxuto = false): ManaOption[] | null {
-  const spend: SpendContext = { canSpend: canSpendFn(g, ctx), anyType: ctx.anyType, lifeForPhyrexian: life };
+  const spend: SpendContext = { canSpend: canSpendFn(g, ctx), anyType: ctx.anyType, anyColor: ctx.anyColor || gastaComoQualquerCor(g, player), lifeForPhyrexian: life };
   const pool0 = g.state.players[player].manaPool.slice();
   if (matchPool(cost, pool0, spend)) return [];
-  const opts = manaOptions(g, player, { excludeSource: ctx.excludeSource }).sort((a, b) => a.rank - b.rank || a.obj - b.obj);
+  const opts = manaOptions(g, player, { excludeSource: ctx.excludeSource, paying: true }).sort((a, b) => a.rank - b.rank || a.obj - b.obj);
   // agrupa por fonte (cada fonte só pode ser ativada uma vez quando tem {T})
   const bySource = new Map<string, ManaOption[]>();
   for (const o of opts) {
@@ -407,7 +435,7 @@ export function planPayment(g: G, player: PlayerId, cost: ManaSymbol[], ctx: Pay
     if (gi >= groups.length) return false;
     const group = groups[gi];
     const objId = group[0].obj;
-    const tapsSelf = group[0].def.cost.some((p) => p.k === 'tap' || p.k === 'sacrificeSelf');
+    const tapsSelf = group[0].def.cost.some((p) => p.k === 'tap' || p.k === 'sacrificeSelf' || p.k === 'exileSelf');
     if (!(tapsSelf && usedObjs.has(objId))) {
       const alts = [...group].sort((a, b) => score(a.alt) - score(b.alt));
       for (const o of alts) {
@@ -442,7 +470,7 @@ export function planPayment(g: G, player: PlayerId, cost: ManaSymbol[], ctx: Pay
     return pool;
   };
   const livresSem = (lista: ManaOption[]): number => {
-    const used = new Set(lista.filter((o) => o.def.cost.some((p) => p.k === 'tap' || p.k === 'sacrificeSelf')).map((o) => o.obj));
+    const used = new Set(lista.filter((o) => o.def.cost.some((p) => p.k === 'tap' || p.k === 'sacrificeSelf' || p.k === 'exileSelf')).map((o) => o.obj));
     return improvisers.filter((id) => !used.has(id)).length;
   };
   if (ctx.improvise) {
@@ -493,8 +521,8 @@ export function* payMana(g: G, player: PlayerId, cost: ManaSymbol[], ctx: PayCon
   let lifeChoice = 0;
   if (cost.length === 0) return { units: [], lifePaid: 0 };
   for (;;) {
-    const spend: SpendContext = { canSpend: canSpendFn(g, ctx), anyType: ctx.anyType, lifeForPhyrexian: lifeChoice };
-    const opts = manaOptions(g, player, { excludeSource: ctx.excludeSource });
+    const spend: SpendContext = { canSpend: canSpendFn(g, ctx), anyType: ctx.anyType, anyColor: ctx.anyColor || gastaComoQualquerCor(g, player), lifeForPhyrexian: lifeChoice };
+    const opts = manaOptions(g, player, { excludeSource: ctx.excludeSource, paying: true });
     const auto = planPayment(g, player, cost, ctx, lifeChoice, true);
     const sources: PaymentSource[] = opts.map((o) => ({ id: o.key, obj: o.obj, label: `${nameOf(g, o.obj)}: ${o.alt.map((t) => `{${t}}`).join('')}`, produces: o.alt }));
     const improvisers = ctx.improvise && genericOf(cost) > 0 ? improviseCandidates(g, player) : [];
@@ -521,7 +549,7 @@ export function* payMana(g: G, player: PlayerId, cost: ManaSymbol[], ctx: PayCon
     if (a.auto) {
       const hint = colorHint(g, player, cost);
       for (const o of auto!) {
-        const fresh = manaOptions(g, player, { excludeSource: ctx.excludeSource }).find((x) => x.key === o.key);
+        const fresh = manaOptions(g, player, { excludeSource: ctx.excludeSource, paying: true }).find((x) => x.key === o.key);
         if (fresh) yield* activateManaAbility(g, player, fresh, hint);
       }
       if (ctx.improvise) {
@@ -545,7 +573,7 @@ export function* payMana(g: G, player: PlayerId, cost: ManaSymbol[], ctx: PayCon
       continue;
     }
     if (a.auto || a.pay) {
-      const finalSpend: SpendContext = { canSpend: canSpendFn(g, ctx), anyType: ctx.anyType, lifeForPhyrexian: lifeChoice };
+      const finalSpend: SpendContext = { canSpend: canSpendFn(g, ctx), anyType: ctx.anyType, anyColor: ctx.anyColor || gastaComoQualquerCor(g, player), lifeForPhyrexian: lifeChoice };
       const m = matchPool(cost, p.manaPool, finalSpend);
       if (!m) continue;
       const units = m.map((i) => p.manaPool[i]);

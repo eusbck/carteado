@@ -8,6 +8,7 @@ import { nomeCarta, urlArte } from '../cartas.ts';
 import { Janela } from '../Janela.tsx';
 import { useLoja } from '../loja.ts';
 import { Simbolos } from '../mesa/Simbolos.tsx';
+import { MODOS } from '../../../motor/modos.ts';
 
 /** as listas já buscadas, de uma geração da lista de decks da mesa: o servidor manda uma lista nova (mensagem 'decks')
  * quando um deck é importado ou atualizado, e aí as guardadas não valem mais (antes a prévia continuava mostrando as
@@ -66,7 +67,9 @@ function emColunas<T extends { cartas: unknown[] }>(grupos: T[], n: number): T[]
 
 const imagem = (c: CartaCatalogo | null, tamanho: 'p' | 'm') => (c?.img ? `/img/${c.img}/frente/${tamanho}` : null);
 
-export function PreviaDeck({ d, meu, escolher, fechar }: { d: DeckResumo; meu: boolean; escolher: () => void; fechar: () => void }) {
+/** sem `escolher`, é só para ver (a lista do deck de um jogador durante a partida): sai o botão de escolher, e `titulo`
+ * troca o nome do deck no alto da janela */
+export function PreviaDeck({ d, meu, escolher, fechar, titulo }: { d: DeckResumo; meu?: boolean; escolher?: () => void; fechar: () => void; titulo?: string }) {
   const [lista, setLista] = useState<ListaDeck | null | 'carregando'>('carregando');
   const [destaque, setDestaque] = useState<CartaCatalogo | null>(null);
   // a lista de decks da mesa: muda quando um deck é importado ou atualizado (a prévia aberta busca de novo)
@@ -76,17 +79,21 @@ export function PreviaDeck({ d, meu, escolher, fechar }: { d: DeckResumo; meu: b
     void buscarLista(d.id, decks).then((l) => { if (vivo) setLista(l); });
     return () => { vivo = false; };
   }, [d.id, decks]);
-  const arte = urlArte(d.comandante);
+  const arte = urlArte(d.capa);
   const cores = d.cores.map((c) => `{${c}}`).join('');
-  const total = lista && lista !== 'carregando' ? (lista.parceiro ? 2 : 1) + lista.cartas.reduce((s, c) => s + c.quantidade, 0) : null;
-  const grande = imagem(destaque ?? (lista && lista !== 'carregando' ? lista.comandante : null), 'm');
+  const total = lista && lista !== 'carregando' ? (lista.comandante ? 1 : 0) + (lista.parceiro ? 1 : 0) + lista.cartas.reduce((s, c) => s + c.quantidade, 0) : null;
+  // sem destaque: o comandante, ou a capa nos decks sem comandante
+  const inicial = lista && lista !== 'carregando' ? lista.comandante ?? lista.cartas.find((c) => c.nome === d.capa) ?? null : null;
+  const grande = imagem(destaque ?? inicial, 'm');
 
   return (
-    <Janela titulo={d.nome} larga classe="previa-deck" fechar={fechar}>
+    <Janela titulo={titulo ?? d.nome} larga classe="previa-deck" fechar={fechar}>
       <header class="previa-topo" style={arte ? { backgroundImage: `url(${arte})` } : undefined}>
         <div class="previa-topo-texto">
-          <span class="rot">{d.parceiro ? 'Comandantes' : 'Comandante'}</span>
-          <strong>{nomeCarta(d.comandante, d.comandante)}{d.parceiro ? ` e ${nomeCarta(d.parceiro, d.parceiro)}` : ''}</strong>
+          {d.comandante
+            ? <><span class="rot">{d.parceiro ? 'Comandantes' : 'Comandante'}</span>
+                <strong>{nomeCarta(d.comandante, d.comandante)}{d.parceiro ? ` e ${nomeCarta(d.parceiro, d.parceiro)}` : ''}</strong></>
+            : <><span class="rot">Deck de {MODOS[d.formato].nome}</span><strong>{d.nome}</strong></>}
           <span class="previa-topo-linha"><Simbolos custo={cores} />{total !== null && <span>{total} cartas</span>}</span>
         </div>
       </header>
@@ -119,7 +126,7 @@ export function PreviaDeck({ d, meu, escolher, fechar }: { d: DeckResumo; meu: b
       )}
       <div class="botoes-linha previa-acoes">
         <button class="botao" onClick={fechar}>Fechar</button>
-        <button class="botao cheio grande" disabled={meu} onClick={() => { escolher(); fechar(); }}>{meu ? 'Este já é o seu deck' : 'Escolher este deck'}</button>
+        {escolher && <button class="botao cheio grande" disabled={meu} onClick={() => { escolher(); fechar(); }}>{meu ? 'Este já é o seu deck' : 'Escolher este deck'}</button>}
       </div>
     </Janela>
   );

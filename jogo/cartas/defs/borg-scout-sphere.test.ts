@@ -1,16 +1,23 @@
 import { describe, expect, it } from 'vitest';
-import { hasKw, isCreature } from '../../motor/chars.ts';
-import { setup } from '../../testes/harness.ts';
+import { hasKw } from '../../motor/chars.ts';
+import { fixture as setup } from '../../testes/artefatos.ts';
 
-const C = 'Borg Scout Sphere';
+const N = 'Borg Scout Sphere';
 
-describe(C, () => {
-  it('estação: vira outra criatura e recebe cargas iguais à força; com 6+ é criatura e dá voar', () => {
-    const tg = setup({ battlefield: [[{ name: C, counters: { charge: 3 } }, { name: 'Ornithopter', counters: { '+1/+1': 3 } }], []] });
-    expect(isCreature(tg.g, tg.bf(C))).toBe(false);
-    tg.choose('outra criatura', ['Ornithopter']).activate(C, 'Estação').resolve();
-    expect(tg.state.objects[tg.bf(C)].counters.charge).toBe(6);
-    expect(isCreature(tg.g, tg.bf(C))).toBe(true);
-    expect(hasKw(tg.g, tg.bf('Ornithopter'), 'flying')).toBe(true);
+describe(N, () => {
+  it('ao entrar compra uma carta; com 6 marcadores de carga as criaturas artefato suas voam', () => {
+    const tg = setup({ battlefield: [['Island', 'Island', 'Island', 'Zetalpa, Primal Dawn', 'Steel Overseer', 'Solemn Simulacrum'], []], hand: [[N], []] });
+    const mao = tg.names(0, 'hand').length;
+    tg.cast(N).resolveAll();
+    expect(tg.names(0, 'hand').length).toBe(mao); // saiu a Esfera, entrou a carta comprada
+    tg.choose('Vire 1', ['Zetalpa, Primal Dawn']).activate(N, 'Estação').resolveAll();
+    expect(tg.state.objects[tg.bf(N)].counters.charge).toBe(4);
+    expect(hasKw(tg.g, tg.bf('Steel Overseer'), 'flying')).toBe(false);
+    tg.choose('Vire 1', ['Solemn Simulacrum']).activate(N, 'Estação').resolveAll();
+    expect(tg.state.objects[tg.bf(N)].counters.charge).toBe(6);
+    expect(hasKw(tg.g, tg.bf('Steel Overseer'), 'flying')).toBe(true);
+    // CR 721.2b: vira uma criatura artefato 5/5, que também voa
+    expect(tg.pt(tg.bf(N))).toEqual([5, 5]);
+    expect(hasKw(tg.g, tg.bf(N), 'flying')).toBe(true);
   });
 });

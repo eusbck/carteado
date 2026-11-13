@@ -77,8 +77,31 @@ function* startGame(g: G): Gen<void> {
     }
     for (const p of order) s.turnStats[p] = emptyTurnStats();
   }
+  yield* openingHandActions(g, order);
   s.started = true;
   beginTurn(g, order[0], true);
+}
+
+/**
+ * lote3-d: ações com cartas da mão inicial (CR 103.6): depois dos mulligans, o jogador inicial faz as dele, depois cada um
+ * na ordem dos turnos (103.6). Só pergunta a quem tem uma carta assim (Gemstone Caverns), então partidas sem elas não mudam.
+ */
+function* openingHandActions(g: G, order: PlayerId[]): Gen<void> {
+  const s = g.state;
+  for (const p of order) {
+    if (s.players[p].left) continue;
+    for (const id of [...s.zones.hand[p]]) {
+      const o = s.objects[id];
+      if (!o || o.zone !== 'hand') continue;
+      const acao = registry.cards.get(o.def)?.faces[0]?.openingHand;
+      if (!acao) continue;
+      const ctx = { g, you: p, source: id };
+      if (acao.condition && !acao.condition(ctx)) continue;
+      const [r] = yield* chooseItems(g, p, `${nameOf(g, id)} (mão inicial): ${acao.label}?`, [{ id: 'yes', label: 'Sim' }, { id: 'no', label: 'Não' }], 1, 1);
+      if (r !== 'yes') continue;
+      yield* acao.act(ctx);
+    }
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -354,6 +377,36 @@ export function* endTheTurn(g: G): Gen<void> {
   g.log('O turno é encerrado.', { rule: '724.1' });
 }
 
+/**
+ * lote3-c: encerrar a fase de combate (CR 724.2, Merciful Mandate). Fora de uma fase de combate, nada acontece (724.2g)
+ * e devolve false. Os gatilhos que ainda não foram para a pilha deixam de existir (724.2a), tudo na pilha é exilado,
+ * inclusive a mágica que está resolvendo (724.2b), as criaturas saem do combate e os efeitos "até o fim do combate"
+ * terminam (724.2d); o jogo vai direto para a fase seguinte, sem a etapa de fim de combate (724.2e) e sem prioridade
+ * nesta etapa (724.2c, 724.2f).
+ */
+export function* endTheCombatPhase(g: G): Gen<boolean> {
+  const s = g.state;
+  const t = s.turn;
+  if (!COMBAT_STEPS.includes(t.step) && t.step !== 'firstStrikeDamage') return false;
+  s.pendingTriggers = [];
+  for (const id of [...s.zones.stack]) {
+    const o = s.objects[id];
+    if (!o) continue;
+    if (o.def === '' || o.isCopy) destroyObject(g, id);
+    else yield* moveObjects(g, [{ id, to: 'exile' }], 'endCombatPhase');
+  }
+  if (s.combat) endCombat(g);
+  // as etapas que faltam desta fase de combate (até o fim do combate dela) são puladas
+  if (t.step !== 'endCombat') {
+    const i = t.queue.indexOf('endCombat');
+    if (i >= 0) t.queue.splice(0, i + 1);
+  }
+  t.ending = true;
+  g.bump();
+  g.log('A fase de combate é encerrada.', { rule: '724.2' });
+  return true;
+}
+
 function advance(g: G): void {
   const s = g.state;
   const t = s.turn;
@@ -377,7 +430,24 @@ function advance(g: G): void {
     g.bump();
     return;
   }
-  const nextPlayer = g.nextPlayer(t.active);
+  // CR 500.7: turnos extras vêm antes do próximo turno normal; o criado por último é tomado primeiro. O de quem saiu da
+  // partida deixa de existir (CR 800.4a)
+  while (s.extraTurns?.length) {
+    const extra = s.extraTurns.pop()!;
+    if (s.players[extra.player].left) continue;
+    // CR 614.10: pular o turno extra (Stranglehold); vale o que está no campo quando o turno começaria
+    if (hooks(g, 'skipsExtraTurn').some((h) => h.fn(h.ctx, extra.player))) {
+      g.log(`${s.players[extra.player].name} pula um turno extra.`, { rule: '614.10' });
+      continue;
+    }
+    const resumeAfter = t.resumeAfter ?? t.active;
+    beginTurn(g, extra.player);
+    s.turn.extraTurnId = extra.id;
+    s.turn.resumeAfter = resumeAfter;
+    g.log(`${s.players[extra.player].name} toma um turno extra.`, { rule: '500.7' });
+    return;
+  }
+  const nextPlayer = g.nextPlayer(t.resumeAfter ?? t.active);
   beginTurn(g, nextPlayer);
 }
 

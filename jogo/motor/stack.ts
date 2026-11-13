@@ -4,7 +4,7 @@
 import { addEffect, cloneState, createObject, destroyObject, moveRaw, newTimestamp, removeEffect } from './state.ts';
 import { ask, chooseItems, chooseNumber, objItem, playerItem, yesNo } from './ask.ts';
 import type { GameEvent } from './events.ts';
-import { moveObject, moveObjects, protectionMatches, putOntoBattlefield, enchantCandidates, tap } from './actions.ts';
+import { moveObject, moveObjects, protectionMatches, putOntoBattlefield, enchantCandidates, shuffleLibrary, tap } from './actions.ts';
 import { abilityDefs, chars, colorsOf, controllerOf, hasKw, hooks, isType, kwParams, nameOf, printedChars, currentFace } from './chars.ts';
 import { playerProtectedFrom } from './actions.ts';
 import { canAfford, canPayParts, manaOptions, manaPart, payMana, payParts, type PayContext } from './costs.ts';
@@ -15,8 +15,10 @@ import {
 import type { G } from './game-context.ts';
 import { addGeneric, convokeOne, formatCost, manaValueOf, parseCost, reduceGeneric, withX } from './mana.ts';
 import { emit } from './triggers.ts';
-import { ehAventura, ehDividida, FACE_AMBAS, facesConjuraveis, metadeAftermath, rotuloConjurar, temVariasFaces } from './formatos.ts';
-import type { Answer, Chars, GameObject, GameState, ManaSymbol, ObjId, PlayerId, StackInfo, TargetRef, ZoneName } from './types.ts';
+import { ehAventura, ehDividida, ehPresagio, FACE_AMBAS, facesConjuraveis, metadeAftermath, rotuloConjurar, temVariasFaces } from './formatos.ts';
+import type { Answer, Chars, Duration, GameObject, GameState, ManaSymbol, Mod, ObjId, PlayerId, StackInfo, TargetRef, ZoneName } from './types.ts';
+import { HEXPROOF_FROM_ABILITIES, sourceIsAbility, splitSecondActive } from './controle-base.ts';
+import { equiparComoInstantanea, equiparPorZero, registraAtivacao, segundoDivididoNaPilha } from './equipar.ts';
 
 // ---------------------------------------------------------------------------
 // Alvos (CR 115, 608.2b)
@@ -48,9 +50,10 @@ export function isLegalTarget(g: G, spec: TargetSpec, t: TargetRef, controller: 
   if (!o) return false;
   if (spec.what === 'player') return false;
   if (spec.what === 'ability') { if (o.zone !== 'stack' || !o.stack || o.stack.kind === 'spell') return false; } // habilidade ativada ou desencadeada na pilha
-  else if (spec.what === 'stackObject') { if (o.zone !== 'stack' || !o.stack || t.id === source) return false; } // mágica ou habilidade na pilha (Disallow)
+  else if (spec.what === 'stackObject') { if (o.zone !== 'stack' || !o.stack || t.id === source) return false; } // mágica ou habilidade na pilha (CR 115.5)
   else if (spec.what === 'spell' || (spec.what === 'spellOrPermanent' && o.zone === 'stack')) { if (o.zone !== 'stack' || o.stack?.kind !== 'spell') return false; if (t.id === source) return false; } // CR 115.5
   else if (spec.what === 'card') { if (o.zone !== (spec.zone ?? 'graveyard')) return false; }
+  else if (spec.alsoZone && spec.what === 'object' && o.zone === spec.alsoZone) { /* lote3-d: carta na zona extra; o filtro decide */ }
   else {
     if (o.zone !== 'battlefield' || o.phasedOut) return false;
     if (spec.what === 'any' && !chars(g, t.id).types.some((x) => x === 'Creature' || x === 'Planeswalker' || x === 'Battle')) return false; // CR 115.4
@@ -58,6 +61,8 @@ export function isLegalTarget(g: G, spec: TargetSpec, t: TargetRef, controller: 
     const lose = hooks(g, 'loseHexproof').some((h) => h.fn(h.ctx, t.id));
     if (!lose && hasKw(g, t.id, 'shroud')) return false;
     if (!lose && hasKw(g, t.id, 'hexproof') && g.isOpponent(controller, controllerOf(g, t.id))) return false;
+    // lote3-d: resistência a magia contra habilidades ativadas e desencadeadas de oponentes (CR 702.11d)
+    if (!lose && hasKw(g, t.id, HEXPROOF_FROM_ABILITIES) && g.isOpponent(controller, controllerOf(g, t.id)) && sourceIsAbility(g, source)) return false;
     const q = sourceQualities(g, source);
     if (kwParams(g, t.id, 'protection').some((p) => protectionMatches(g, p, q))) return false;
   }
@@ -70,6 +75,11 @@ export function candidateTargets(g: G, spec: TargetSpec, controller: PlayerId, s
   const out: TargetRef[] = [];
   if (spec.what === 'player' || spec.what === 'any') for (const p of g.playersInGame()) out.push({ kind: 'player', id: p });
   if (spec.what === 'object' || spec.what === 'any' || spec.what === 'spellOrPermanent') for (const id of s.zones.battlefield) out.push({ kind: 'obj', id });
+  if (spec.what === 'object' && spec.alsoZone) {
+    const z = spec.alsoZone;
+    const ids = z === 'graveyard' || z === 'hand' || z === 'library' ? s.zones[z].flat() : s.zones[z];
+    for (const id of ids) out.push({ kind: 'obj', id });
+  }
   if (spec.what === 'spell' || spec.what === 'spellOrPermanent' || spec.what === 'ability' || spec.what === 'stackObject') for (const id of s.zones.stack) out.push({ kind: 'obj', id });
   if (spec.what === 'card') {
     const zone = spec.zone ?? 'graveyard';
@@ -336,6 +346,10 @@ export function* castSpell(g: G, player: PlayerId, cardId: ObjId, method: CastMe
 function* castInner(g: G, player: PlayerId, cardId: ObjId, method: CastMethod): Gen<ObjId | null> {
   const orig = g.state.objects[cardId];
   if (!orig) return null;
+  // lote3-d: segundo dividido (CR 702.61a) também impede conjurar durante a resolução de outra coisa (ruling de Samut)
+  if (splitSecondActive(g)) return null;
+  // lote3-d: Grafdigger's Cage ("não podem conjurar mágicas de cemitérios ou grimórios")
+  if (hooks(g, 'cantCastFrom').some((h) => h.fn(h.ctx, player, method.zone))) return null;
   // carta de várias faces conjurada por um efeito ("conjure-a sem pagar"): escolhe a face antes de pô-la na pilha
   // (CR 709.3, 712.11b, 715.3)
   if (method.face === undefined && !orig.copyOf && temVariasFaces(orig.def)) {
@@ -371,7 +385,9 @@ function* castInner(g: G, player: PlayerId, cardId: ObjId, method: CastMethod): 
   // aftermath conjurada do cemitério: exilada ao sair da pilha (CR 702.127a)
   if (method.zone === 'graveyard' && !o.copyOf && metadeAftermath(o.def) === o.face) info.data.exileOnLeave = true;
   // conjurada como aventura: vai para o exílio ao resolver (CR 715.3d)
-  if (!o.copyOf && ehAventura(o.def) && o.face === 1) info.data.adventure = true;
+  // lote3-e: conjurada como presságio: é embaralhada no grimório do dono ao resolver (CR 720.3d)
+  if (!o.copyOf && ehPresagio(o.def) && o.face === 1) info.data.omen = true;
+  else if (!o.copyOf && ehAventura(o.def) && o.face === 1) info.data.adventure = true;
   if (method.permission?.bottomInstead) info.data.bottomInsteadOfGraveyard = true;
   if (method.permission?.exileInstead) info.data.exileInsteadOfGraveyard = true;
   if (method.key === 'bestow') info.data.bestow = true;
@@ -399,10 +415,13 @@ function* castInner(g: G, player: PlayerId, cardId: ObjId, method: CastMethod): 
     }
   }
   for (const ac of custosAdicionais(g, player, spellId, f)) {
+    if (ac.afterTargets) continue; // lote3-e: decidido depois dos alvos
     // escalada (CR 702.120a): uma vez para cada modo além do primeiro, sem escolha
     if (ac.perExtraMode) { info.paid[ac.key] = Math.max(0, info.modes.length - 1); continue; }
     // escalonado (tiered): o custo adicional do modo escolhido é pago sem pergunta
     if (ac.whenMode !== undefined) { info.paid[ac.key] = info.modes.includes(ac.whenMode); continue; }
+    // lote3-e: farra (CR 702.172a): o custo de cada modo escolhido, sem pergunta
+    if (ac.perMode !== undefined) { info.paid[ac.key] = info.modes.includes(ac.perMode); continue; }
     if (ac.repeatable) {
       // não dá para repetir mais vezes do que é possível pagar (sacrificar: quantos permanentes servem)
       let vezes = 10;
@@ -517,6 +536,8 @@ function* castInner(g: G, player: PlayerId, cardId: ObjId, method: CastMethod): 
   const otherParts = [
     ...(method.alt?.parts ?? []), ...(method.permission?.parts ?? []),
     ...(custosAdicionais(g, player, spellId, f)).flatMap((ac) => {
+      // lote3-e: custo concedido que depende dos alvos (Terror of the Peaks) só aparece agora, já com os alvos (CR 601.2f)
+      if (ac.afterTargets) { info.paid[ac.key] = true; return ac.parts.filter((p) => p.k !== 'mana'); }
       const times = typeof info.paid[ac.key] === 'number' ? (info.paid[ac.key] as number) : info.paid[ac.key] ? 1 : 0;
       const parts = (info.paid[`${ac.key}:or`] ? ac.orParts ?? [] : ac.parts).filter((p) => p.k !== 'mana');
       // escalada: "vire uma criatura" duas vezes é virar duas criaturas de uma vez (o mesmo recurso não paga duas)
@@ -536,7 +557,9 @@ function* castInner(g: G, player: PlayerId, cardId: ObjId, method: CastMethod): 
   for (const u of paidMana.units) byType[u.type] = (byType[u.type] ?? 0) + 1;
   // mana vinda de fontes que são artefatos (Coin of Mastery): olha a fonte agora, ou a última informação dela
   const deArtefatos = paidMana.units.filter((u) => u.source !== null && u.source !== undefined && !!(g.state.objects[u.source] ? chars(g, u.source) : g.state.lki[u.source]?.chars)?.types.includes('Artifact')).length;
-  info.manaSpent = { total: paidMana.units.length, byType, colors: Object.keys(byType).filter((t) => t !== 'C').length, ...(deArtefatos ? { fromArtifacts: deArtefatos } : {}) };
+  // lote3-e: mana vinda de Tesouros (Smaug, Wicked Worm), pela última informação da fonte já sacrificada
+  const deTesouros = paidMana.units.filter((u) => u.source !== null && u.source !== undefined && !!(g.state.objects[u.source] ? chars(g, u.source) : g.state.lki[u.source]?.chars)?.subtypes.includes('Treasure')).length;
+  info.manaSpent = { total: paidMana.units.length, byType, colors: Object.keys(byType).filter((t) => t !== 'C').length, ...(deArtefatos ? { fromArtifacts: deArtefatos } : {}), ...(deTesouros ? { fromTreasures: deTesouros } : {}) };
   if (paidMana.lifePaid) info.paid.phyrexianLife = paidMana.lifePaid;
   // 601.2i: a mágica foi conjurada
   if (method.zone === 'command' && o.card !== null) {
@@ -558,6 +581,11 @@ function* castInner(g: G, player: PlayerId, cardId: ObjId, method: CastMethod): 
   // "a próxima mágica do tipo escolhido": a permissão de lampejo acaba quando essa mágica é conjurada, com ou sem lampejo
   for (const e of [...g.state.effects]) {
     if (e.mods.some((m) => m.k === 'rule' && m.id === 'rule:flashNext' && m.params?.player === player && c.subtypes.includes(m.params?.tipo as string))) removeEffect(g, e.id);
+  }
+  // lote3-b: efeitos de regra que acabam quando a mágica é conjurada ("a próxima mágica … tem destemido")
+  for (const h of hooks(g, 'consumedByCast')) {
+    const ef = (h.ctx as { effect?: { id: number } }).effect;
+    if (ef && h.fn(h.ctx, player, spellId)) removeEffect(g, ef.id);
   }
   if (c.types.includes('Instant') || c.types.includes('Sorcery')) {
     st.instantSorceryCast++;
@@ -600,6 +628,8 @@ function* activateInner(g: G, player: PlayerId, sourceId: ObjId, abilityId: stri
   const def = ability(abilityId) as ActivatedDef;
   const src = g.state.objects[sourceId];
   if (!src) return null;
+  if (splitSecondActive(g)) return null; // lote3-d: segundo dividido (CR 702.61a)
+  if (hooks(g, 'cantActivate').some((h) => h.fn(h.ctx, player, sourceId))) return null; // lote3-d: Cursed Totem
   const label = `${nameOf(g, sourceId)}${def.kw ? ` (${def.kw})` : ''}`;
   // 602.2a: a habilidade vai para a pilha
   const ab = createObject(g, { def: '', owner: player, controller: player, zone: 'stack' });
@@ -625,12 +655,16 @@ function* activateInner(g: G, player: PlayerId, sourceId: ObjId, abilityId: stri
     info.targets = t;
   }
   // 601.2f-h
-  const cost = totalAbilityCost(g, player, sourceId, def, info.x);
+  let cost = totalAbilityCost(g, player, sourceId, def, info.x, info.targets);
+  // lote3-a: "pagar {0} em vez do custo de equipar" (CR 118.9): troca o custo inteiro da ativação
+  let custoZero = false;
+  if (equiparPorZero(g, player, sourceId, def) && (yield* yesNo(g, player, `${label}: pagar {0} em vez do custo de equipar?`))) { cost = []; custoZero = true; }
   // a fonte que vai ser virada/sacrificada no custo não pode também pagar a mana
   const usesSource = def.cost.some((p) => p.k === 'tap' || p.k === 'untap' || p.k === 'sacrificeSelf' || p.k === 'exileSelf');
   const paid = yield* payMana(g, player, cost, { purpose: { kind: 'ability', obj: ab.id }, canCancel: true, label, excludeSource: usesSource ? sourceId : undefined });
   if (paid === null) return null;
-  const parts = def.cost.filter((p) => p.k !== 'mana');
+  def.onManaPaid?.({ g, you: player, source: sourceId }, paid.units.map((u) => u.type));
+  const parts = custoZero ? [] : def.cost.filter((p) => p.k !== 'mana');
   const r = yield* payParts(g, player, parts, sourceId, info.x);
   if (r === false) return null;
   info.data.costInfo = r;
@@ -639,6 +673,7 @@ function* activateInner(g: G, player: PlayerId, sourceId: ObjId, abilityId: stri
     if (def.oncePerTurn) s0.usedThisTurn[abilityId] = g.state.turn.number;
     if (def.cost.some((p) => p.k === 'loyalty')) s0.usedThisTurn['loyalty'] = g.state.turn.number; // CR 606.3
   }
+  registraAtivacao(g, player, def, info.targets);
   g.bump();
   g.log(`${g.state.players[player].name} ativa ${label}${info.targets.flat().length ? ` (alvos: ${info.targets.flat().map((t) => targetLabel(g, t)).join(', ')})` : ''}.`, { rule: '602.2' });
   const events: Parameters<typeof emit>[1] = [{ type: 'activate', obj: ab.id, source: sourceId, player, abilityId }];
@@ -656,31 +691,35 @@ export function canActivate(g: G, player: PlayerId, sourceId: ObjId, def: Activa
   const owner = o.zone === 'battlefield' ? controllerOf(g, sourceId) : o.owner;
   if (def.activator === 'opponents') { if (!g.isOpponent(owner, player)) return false; }
   else if (owner !== player) return false;
-  // "você pode ativar [essas habilidades] a qualquer momento em que poderia conjurar uma instantânea" (Forge Anew; CR 602.5d)
-  if (def.timing === 'sorcery' && !timingOk.sorcery && !hooks(g, 'activateAsInstant').some((h) => h.fn(h.ctx, player, sourceId, def))) return false;
+  if (def.timing === 'sorcery' && !timingOk.sorcery && !equiparComoInstantanea(g, player, sourceId, def)) return false;
+  // CR 702.61a: com segundo dividido na pilha, só habilidades de mana
+  if (segundoDivididoNaPilha(g)) return false;
   if (def.cost.some((p) => p.k === 'loyalty')) {
     if (!timingOk.sorcery) return false; // CR 606.3
     if (o.usedThisTurn['loyalty'] === g.state.turn.number) return false;
+    if (hooks(g, 'cantActivateLoyalty').some((h) => h.fn(h.ctx, player))) return false; // The Immortal Sun
   }
   if (def.oncePerTurn && o.usedThisTurn[def.id!] === g.state.turn.number) return false;
   if (def.condition && !def.condition({ g, you: player, source: sourceId })) return false;
-  if (!canPayParts(g, player, def.cost.filter((p) => p.k !== 'mana'), sourceId, 0)) return false;
+  if (hooks(g, 'cantActivate').some((h) => h.fn(h.ctx, player, sourceId))) return false; // lote3-d: Cursed Totem
+  const zero = equiparPorZero(g, player, sourceId, def);
+  if (!zero && !canPayParts(g, player, def.cost.filter((p) => p.k !== 'mana'), sourceId, 0)) return false;
   // precisa ter alvos possíveis
   const { specs } = abilityTargetSpecs(def, []);
   if (specs.some((sp) => (sp.min ?? 1) > 0 && candidateTargets(g, sp, player, sourceId).length < (sp.min ?? 1))) return false;
   const mp = totalAbilityCost(g, player, sourceId, def, 0);
   const usesSource = def.cost.some((p) => p.k === 'tap' || p.k === 'untap' || p.k === 'sacrificeSelf' || p.k === 'exileSelf');
-  if (mp.length && !canAfford(g, player, mp, { purpose: { kind: 'ability', obj: sourceId }, excludeSource: usesSource ? sourceId : undefined })) return false;
+  if (!zero && mp.length && !canAfford(g, player, mp, { purpose: { kind: 'ability', obj: sourceId }, excludeSource: usesSource ? sourceId : undefined })) return false;
   return true;
 }
 
 /** CR 602.2b, 601.2f: determine uma vez o custo total, antes de ativar habilidades de mana ou pagar partes. */
-export function totalAbilityCost(g: G, player: PlayerId, source: ObjId, def: ActivatedDef, x: number): ManaSymbol[] {
+export function totalAbilityCost(g: G, player: PlayerId, source: ObjId, def: ActivatedDef, x: number, targets?: TargetRef[][]): ManaSymbol[] {
   const adjustment = def.selfCost?.({ g, you: player, source }, x);
   let custo = reduceGeneric(addGeneric(withX(manaPart(def.cost), x), adjustment?.increase ?? 0), adjustment?.reduce ?? 0);
   // reduções vindas de outras permanentes (Convergence of Dominion), com piso na mana total do custo
   for (const h of hooks(g, 'abilityCostModifier')) {
-    const r = h.fn(h.ctx, player, source, def);
+    const r = h.fn(h.ctx, player, source, def, targets);
     if (!r || r.reduce <= 0) continue;
     const total = custo.reduce((n, s) => n + (s.k === 'generic' ? s.n : s.k === 'X' ? 0 : 1), 0);
     const pode = Math.max(0, total - (r.minMana ?? 0));
@@ -781,7 +820,7 @@ export function* copyStackAbility(g: G, abId: ObjId, controller: PlayerId, opts:
  * controlador. Devolve true se algum alvo mudou. `noTriggerFor`: nome das permanentes cujas habilidades não disparam
  * com esta mudança (Psychic Battle).
  */
-export function* changeTargets(g: G, id: ObjId, chooser: PlayerId, opts: { noTriggerFor?: string } = {}): Gen<boolean> {
+export function* changeTargets(g: G, id: ObjId, chooser: PlayerId, opts: { noTriggerFor?: string; mustChange?: boolean } = {}): Gen<boolean> {
   const o = g.state.objects[id];
   const st = o?.stack;
   if (!o || o.zone !== 'stack' || !st || st.targets.flat().length === 0) return false;
@@ -800,6 +839,15 @@ export function* changeTargets(g: G, id: ObjId, chooser: PlayerId, opts: { noTri
     label = triggerLabel(g, st.abilityId!, source);
   }
   const travadas = specs.map((sp, i) => ({ ...sp, min: st.targets[i]?.length ?? 0, max: st.targets[i]?.length ?? 0 }));
+  // lote3-d: "mude o alvo" (Misdirection): o alvo novo precisa ser outro; sem outro legal, nada muda
+  if (opts.mustChange) {
+    travadas.forEach((sp, i) => {
+      const atuais = st.targets[i] ?? [];
+      const f = sp.filter;
+      sp.filter = (c, t) => !atuais.some((a) => a.kind === t.kind && a.id === t.id) && (!f || f(c, t));
+    });
+    if (travadas.some((sp) => sp.min > 0 && candidateTargets(g, sp, st.controller, source, st.event, st.x).length < sp.min)) return false;
+  }
   const novos = yield* chooseTargets(g, st.controller, travadas, source, `Mudar os alvos de ${label}`, st.x, st.event, chooser);
   if (!novos) return false;
   const chave = (t: TargetRef[][]) => JSON.stringify(t.map((grp) => grp.map((x) => `${x.kind}:${x.id}`)));
@@ -846,7 +894,9 @@ export function* resolveTop(g: G): Gen<void> {
       return;
     }
     const { specs, groups } = abilityTargetSpecs(def, st.modes);
-    const targets = checkTargets(g, o, specs, st.source!);
+    let targets = checkTargets(g, o, specs, st.source!);
+    // lote3-d: a carta diz que resolve mesmo com o alvo ilegal (Gilded Drake)
+    if (targets === null && def.kind === 'triggered' && def.resolvesWithIllegalTargets) targets = st.targets.map((grp) => grp.map(() => null));
     if (targets === null) {
       g.log(`${triggerLabel(g, st.abilityId!, st.source!)} não resolve: alvos ilegais.`, { rule: '608.2b' });
       destroyObject(g, id);
@@ -901,6 +951,11 @@ export function* resolveTop(g: G): Gen<void> {
     }], 'resolve');
     if (res.length === 0 && g.state.objects[id]) yield* moveObject(g, id, 'graveyard', 'resolve'); // CR 608.3e
     // habilidades concedidas à mágica que continuam no permanente (Serra Paragon: "ela ganha …")
+    // lote3-d: efeitos que afetavam a mágica e continuam no permanente em que ela vira (troca de texto, ruling de Glamerdye)
+    const herdados = st.data.carryToPermanent as { mods: Mod[]; duration: Duration; controller: PlayerId; source: ObjId }[] | undefined;
+    if (herdados?.length && res[0] !== undefined) {
+      for (const h of herdados) addEffect(g, { source: h.source, sourceDef: '', controller: h.controller, duration: h.duration.kind === 'permanent' ? { kind: 'whileOnBattlefield', obj: res[0] } : h.duration, affected: [res[0]], mods: h.mods });
+    }
     const conceder = st.data.grantOnEnter as string[] | undefined;
     if (conceder?.length && res[0] !== undefined) {
       addEffect(g, { source: res[0], sourceDef: '', controller: st.controller, duration: { kind: 'whileOnBattlefield', obj: res[0] }, affected: [res[0]], mods: conceder.map((a) => ({ k: 'addAbility' as const, id: a })) });
@@ -946,6 +1001,13 @@ export function* resolveTop(g: G): Gen<void> {
   // 608.2n: vai para o cemitério do dono (se ainda estiver na pilha)
   if (g.state.objects[id]?.zone === 'stack') {
     if (g.state.objects[id].isCopy) destroyObject(g, id);
+    else if (st.data.omen) {
+      // presságio (CR 720.3d): embaralhada no grimório do dono em vez de ir para o cemitério
+      const dono = g.state.objects[id].owner;
+      g.log(`${c.name} é embaralhada no grimório de ${g.state.players[dono].name} (presságio).`, { rule: '720.3d' });
+      yield* moveObject(g, id, 'library', 'omen');
+      shuffleLibrary(g, dono);
+    }
     else if (st.data.adventure) {
       // aventura: quem a controla a exila em vez de pô-la no cemitério e pode conjurar a carta enquanto ela ficar
       // exilada (CR 715.3d); essa permissão é só deste exílio (ruling 5)
@@ -1012,6 +1074,8 @@ export function* counter(g: G, id: ObjId): Gen<boolean> {
   if (o.stack?.kind === 'spell') {
     const f = faceDefOf(o);
     if (f?.cantBeCountered) return false;
+    // lote3-e: "essa mágica não pode ser anulada" preso à mana gasta (Cavern of Souls, Delighted Halfling); a cópia pode
+    if (!o.isCopy && o.stack.data.cantBeCountered) return false;
     if (hooks(g, 'cantBeCountered').some((h) => h.fn(h.ctx, id))) return false;
     g.log(`${nameOf(g, id)} é anulada.`, { rule: '701.6' });
     if (o.isCopy) destroyObject(g, id);

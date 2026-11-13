@@ -6,16 +6,20 @@ export default defineCard({
   name: 'Disallow',
   faces: [{
     spell: {
+      // CR 115.5: a própria mágica não pode ser alvo; habilidades de mana nunca estão na pilha (CR 605.3b)
       targets: [{ what: 'stackObject', label: 'mágica, habilidade ativada ou habilidade desencadeada alvo' }],
-      *effect(c) { const id = tgt(c); if (id !== null) yield* counter(c.g, id); },
+      *effect(c) {
+        const id = tgt(c);
+        if (id !== null) yield* counter(c.g, id);
+      },
     },
   }],
   rulings: {
-    1: 'regra geral: CR 605.3 — habilidades de mana não usam a pilha e não podem ser alvo',
-    2: 'regra geral: CR 701.6b — anular uma habilidade a remove da pilha; o custo pago não volta (motor/stack.ts counter)',
-    3: 'regra geral: CR 701.6b — anular uma habilidade não afeta a fonte dela',
-    4: 'regra geral: CR 701.6a — uma mágica que "não pode ser anulada" continua na pilha (motor/stack.ts counter)',
-    5: 'regra geral: CR 113.7a — a habilidade anulada de uma fonte que já saiu não resolve',
-    6: 'regra geral: CR 113.3d — habilidades estáticas não usam a pilha e não podem ser anuladas',
+    1: 'não se aplica: texto sobre a história (sem efeito no jogo)',
+    2: 'teste: anula uma habilidade ativada (equipar) e o efeito não acontece',
+    3: 'teste: anula uma habilidade desencadeada',
+    4: 'regra geral: CR 603.7 — gatilho atrasado anulado não dispara de novo (motor/efeitos.ts delayed)',
+    5: 'regra geral: CR 605.3b — habilidades de mana não vão para a pilha, então não podem ser alvo',
+    6: 'regra geral: CR 614.1c — substituições "ao entrar" não usam a pilha, então não podem ser alvo',
   },
 });
