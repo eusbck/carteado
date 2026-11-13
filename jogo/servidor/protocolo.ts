@@ -237,6 +237,24 @@ export interface LinhaDesfeita {
   outro: boolean;
 }
 
+/**
+ * Onda B (registro R8): linha de sistema do registro, guardada pela sala (fora do motor: a partida se refaz pelas
+ * entradas e estas linhas não vêm delas). `apos` é o seq da última linha do registro do motor quando aconteceu; o
+ * cliente intercala por ele.
+ */
+export interface LinhaSistema {
+  id: number;
+  apos: number;
+  tipo: 'entrou' | 'saiu' | 'voltou' | 'desfazer' | 'partida';
+  texto: string;
+  /** assento de quem a linha fala, se for de alguém */
+  quem: number | null;
+  /** quando aconteceu (ms desde 1970) */
+  em: number;
+  /** "caiu e voltou" repetido em seguida vira uma linha só, com a conta */
+  vezes?: number;
+}
+
 /** pedido de desfazer aberto: a mesa fica parada até todos os humanos aceitarem */
 export interface PedidoDesfazer {
   de: number;
@@ -462,6 +480,8 @@ export type MsgServidor =
   | { t: 'catalogo'; tarefa: TarefaPublica | null; mudou: boolean }
   /** chat da sala: `tudo` traz a conversa guardada inteira (ao entrar ou voltar); sem ele, só as mensagens novas */
   | { t: 'chat'; msgs: MsgChat[]; tudo?: boolean }
+  /** Onda B: linhas de sistema do registro (entrou, saiu, desfazer…); `tudo`: a lista inteira, troca a de antes */
+  | { t: 'sistema'; linhas: LinhaSistema[]; tudo?: boolean }
   /** resposta ao batimento (`ping`) */
   | { t: 'pong' }
   /** `de`: o tipo da mensagem do cliente que causou o erro (ausente quando o erro não responde a uma mensagem, como

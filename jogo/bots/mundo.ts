@@ -154,6 +154,11 @@ function lkiRecente(s: GameState): GameState['lki'] {
   return recente;
 }
 
+/** Onda B: a cópia do bot não escreve o registro detalhado (motor/redator.ts): custo à toa nas simulações */
+function semRedator(s: GameState): void {
+  if (s.config.registroDetalhado) s.config = { ...s.config, registroDetalhado: false };
+}
+
 /** cópia da partida numa decisão de prioridade, com o que `eu` não vê sorteado de novo */
 export function determinizar(game: Game, eu: PlayerId, rng: RngState, info?: InfoOculta): Game {
   const s = game.state;
@@ -163,6 +168,7 @@ export function determinizar(game: Game, eu: PlayerId, rng: RngState, info?: Inf
   s.lki = lkiRecente(s);
   let f: Game;
   try { f = game.fork(); } finally { s.log = log; s.lki = lki; }
+  semRedator(f.g.state);
   ocultar(f.g, eu, rng, info, citados(game.pending));
   return f;
 }
@@ -176,6 +182,7 @@ export function estadoOculto(game: Game, eu: PlayerId, rng: RngState, info?: Inf
   s.lki = lkiRecente(s);
   let st: GameState;
   try { st = structuredClone(s); } finally { s.log = log; s.lki = lki; }
+  semRedator(st);
   const g = new G(st);
   ocultar(g, eu, rng, info, citados(game.pending));
   return g;
@@ -199,9 +206,11 @@ export function refazer(r: Refazer, eu: PlayerId, rng: RngState, info?: InfoOcul
     const st = r.cp.state;
     const log = st.log;
     const lki = st.lki;
+    const config = st.config;
     st.log = [];
     st.lki = lkiRecente(st);
-    try { game = Game.fromCheckpoint({ state: st, inputIndex: 0 }, r.decks, r.entradas); } finally { st.log = log; st.lki = lki; }
+    st.config = { ...config, registroDetalhado: false };
+    try { game = Game.fromCheckpoint({ state: st, inputIndex: 0 }, r.decks, r.entradas); } finally { st.log = log; st.lki = lki; st.config = config; }
   } catch {
     return null;
   }

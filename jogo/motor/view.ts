@@ -130,7 +130,7 @@ export interface GameView {
  *  vai sem `id` (o nome continua, porque o texto da linha já o mostra; o id permitiria seguir a carta). A `def` também
  *  continua, salvo quando o nome mostrado não é o da carta (virada para baixo): aí vai null. */
 export type LogRefView =
-  | { k: 'obj'; id?: ObjId; def: string | null; name: string; papel?: LogPapel }
+  | { k: 'obj'; id?: ObjId; def: string | null; name: string; papel?: LogPapel; ctl?: PlayerId }
   | { k: 'jogador'; id: PlayerId; papel?: LogPapel };
 
 /** F3: uma linha do registro na vista. `seq` é a chave estável. Linhas antigas vêm só com turn/text/rule. */
@@ -292,7 +292,7 @@ export function logLinhaView(g: G, e: LogEntry, seq: number, viewer: PlayerId | 
       const def = r.card !== null ? g.state.cards[r.card]?.def ?? null : null;
       // quem não via a carta só recebe a def quando o texto já diz qual é (uma criatura virada para baixo citada numa
       // linha pública aparece como "carta virada para baixo": a def a entregaria)
-      return { k: 'obj', ...(via ? { id: r.id } : {}), def: def !== null && (via || nomeRevelaDef(def, r.name)) ? def : null, name: r.name, ...(r.papel ? { papel: r.papel } : {}) };
+      return { k: 'obj', ...(via ? { id: r.id } : {}), def: def !== null && (via || nomeRevelaDef(def, r.name)) ? def : null, name: r.name, ...(r.papel ? { papel: r.papel } : {}), ...(r.ctl !== undefined ? { ctl: r.ctl } : {}) };
     });
     if (e.parts?.length) l.parts = e.parts;
   }

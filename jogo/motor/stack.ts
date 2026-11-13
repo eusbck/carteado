@@ -16,6 +16,7 @@ import type { G } from './game-context.ts';
 import { addGeneric, convokeOne, formatCost, manaValueOf, parseCost, reduceGeneric, withX } from './mana.ts';
 import { emit } from './triggers.ts';
 import { anotarNoDiario } from './diario.ts';
+import { redigirResolucao } from './redator.ts';
 import { alvo, jog, lista, obj, reg, trecho, type ValorReg } from './registro.ts';
 import { ehAventura, ehDividida, ehPresagio, FACE_AMBAS, facesConjuraveis, metadeAftermath, rotuloConjurar, temVariasFaces } from './formatos.ts';
 import type { Answer, Chars, Duration, GameObject, GameState, ManaSymbol, Mod, ObjId, PlayerId, StackInfo, TargetRef, ZoneName } from './types.ts';
@@ -914,6 +915,8 @@ export function* resolveTop(g: G): Gen<void> {
   const st = o.stack!;
   // F1: o começo da resolução, só no diário (CR 608.1)
   anotarNoDiario(g, [{ type: 'resolving', obj: id, controller: st.controller, ...(st.kind !== 'spell' ? { abilityId: st.abilityId } : {}) }]);
+  // Onda B: "X resolve." no registro, quando alguém respondeu
+  redigirResolucao(g, id);
   if (st.kind !== 'spell') {
     const def = registry.abilities.get(st.abilityId!) as ActivatedDef | TriggeredDef | undefined;
     if (!def) { destroyObject(g, id); return; }

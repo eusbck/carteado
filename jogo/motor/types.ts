@@ -390,16 +390,34 @@ export interface LogEntry {
   refs?: LogRef[];
   /** o texto em pedaços: literais e {ref: n} (índice em `refs`) */
   parts?: LogPart[];
+  /** Onda B: linha escrita pelo redator (motor/redator.ts) a partir dos eventos; o que ela junta (compras, fichas,
+   *  vida da mesma jogada viram uma linha só). Não vai para a vista */
+  grupo?: GrupoRegistro;
+}
+
+/** Onda B: o que uma linha do redator já juntou, para somar a próxima igual da mesma jogada */
+export interface GrupoRegistro {
+  chave: string;
+  /** cartas citadas (ids e nomes no momento), na ordem */
+  ids: ObjId[];
+  nomes: string[];
+  /** a quantidade somada (cartas, vida) e quantas vezes aconteceu */
+  n: number;
+  vezes: number;
+  /** de onde veio (a fonte da vida), enquanto for uma só */
+  fonte?: ObjId | null;
 }
 
 /** F3: o tipo da linha do registro */
 export type LogKind =
   | 'turno' | 'mulligan' | 'conjura' | 'ativa' | 'terreno' | 'gatilho' | 'resolve' | 'nao-resolve'
-  | 'ataque' | 'bloqueio' | 'dano' | 'vida' | 'zona' | 'compra' | 'revela' | 'manual' | 'fim' | 'sistema' | 'outro';
+  | 'ataque' | 'bloqueio' | 'dano' | 'vida' | 'zona' | 'compra' | 'revela' | 'manual' | 'fim' | 'sistema' | 'outro'
+  // Onda B (motor/redator.ts): permanentes que morrem, são destruídas ou sacrificadas; fichas criadas
+  | 'morte' | 'ficha';
 export type LogPapel = 'fonte' | 'alvo' | 'vitima';
 export type LogRef =
   /** `vis`: quem via a carta quando a linha foi gravada (null = todos); a vista só manda o `id` a quem via */
-  | { k: 'obj'; id: ObjId; card: CardId | null; name: string; papel?: LogPapel; vis: PlayerId[] | null }
+  | { k: 'obj'; id: ObjId; card: CardId | null; name: string; papel?: LogPapel; vis: PlayerId[] | null; ctl?: PlayerId }
   | { k: 'jogador'; id: PlayerId; papel?: LogPapel };
 export type LogPart = string | { ref: number };
 
@@ -437,6 +455,12 @@ export interface GameConfig {
    * reproduzem como foram jogadas.
    */
   desvirarSoComMana?: boolean;
+  /**
+   * Onda B: o registro também conta o que vem dos eventos (compras, mortes, vida fora do combate, fichas, gatilhos,
+   * resoluções; motor/redator.ts). Só as partidas da sala ligam; as dos testes e as cópias dos bots ficam sem (custo e
+   * contagem de linhas). Está na configuração para a partida refeita pelas entradas ter as mesmas linhas.
+   */
+  registroDetalhado?: boolean;
 }
 
 /** quantas vezes dá para trocar a mão no mulligan livre */

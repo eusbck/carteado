@@ -118,6 +118,7 @@ export class G {
     if (opts.actor !== undefined) e.actor = opts.actor;
     if (opts.refs?.length) e.refs = opts.refs;
     if (opts.parts?.length) e.parts = opts.parts;
+    if (opts.grupo) e.grupo = opts.grupo;
     this.state.log.push(e);
   }
 
