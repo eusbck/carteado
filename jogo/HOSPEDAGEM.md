@@ -36,6 +36,12 @@ Proteções que já vêm prontas:
 - **Informação oculta no servidor**: cada navegador só recebe o que o jogador pode ver.
 - **HTTPS**: quem cuida é o túnel ou o proxy. Com `HTTPS=1`, o cookie de sessão só trafega
   criptografado.
+- **Área do desenvolvedor** (`/dev`): relatos de erro, erros automáticos do navegador, diário do
+  servidor, salas e cartas que faltam. Tem chave própria, separada da senha do grupo
+  (`dados-locais/senha-dev.txt`, sorteada na primeira vez, ou `SENHA_DEV`). Por padrão só abre no
+  computador que roda o servidor (`http://localhost:8080/dev`); pelo túnel ela responde 404. Num
+  servidor sempre ligado, `DEV_REMOTO=1` libera pela internet (a chave continua valendo, com
+  bloqueio após 5 erros e registro em `dados-locais/dev-acessos.log`).
 
 Para guardar as partidas, basta copiar `dados-locais/jogo.sqlite` de vez em quando.
 

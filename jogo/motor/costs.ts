@@ -11,6 +11,7 @@ import type { G } from './game-context.ts';
 import { formatCost, genericOf, matchPool, parseCost, phyrexianCount, poolToString, reduceGeneric, type SpendContext } from './mana.ts';
 import { addPending, emit } from './triggers.ts';
 import { oracle } from './oracle.ts';
+import { manaDoCusto } from './terrenos.ts';
 import type { Answer, ManaSymbol, ManaType, ManaUnit, ObjId, PaymentSource, PlayerId } from './types.ts';
 import { jog, obj, reg } from './registro.ts';
 
@@ -268,7 +269,9 @@ export function* activateManaAbility(g: G, player: PlayerId, opt: ManaOption, hi
   // "qualquer combinação de cores": cada '*' vira uma cor escolhida agora (CR 106.1a)
   const alt: ManaType[] = [];
   let hi = 0;
-  for (const t of opt.alt) {
+  // lote4-a: a mana que depende do que foi pago (Squandered Resources)
+  const produzida = opt.def.produceFromCost ? yield* manaDoCusto(g, player, opt.obj, opt.def, paid, opt.alt) : opt.alt;
+  for (const t of produzida) {
     if ((t as string) !== '*') { alt.push(t); continue; }
     const h = hint[hi++];
     if (h && h !== 'C') alt.push(h);

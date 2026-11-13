@@ -383,6 +383,11 @@ input.campo-grande { font-size: 17px; padding: 13px 14px; }
 .selo-combate.escudo { background: var(--azul); }
 .selo-combate.espera { background: #2a272c; color: var(--vermelho); box-shadow: 0 0 0 2px var(--vermelho), 0 6px 14px rgba(0, 0, 0, .6); }
 .virada .selo-combate { rotate: -90deg; }
+/* N7: o combate acabou, o selo sai junto com as setas (Carta.tsx, SELO_SAINDO_MS) */
+.selo-combate.saindo { animation: selo-sai .22s ease-in forwards; }
+@keyframes selo-sai { to { opacity: 0; scale: .6; } }
+@media (prefers-reduced-motion: reduce) { .selo-combate.saindo { display: none; } }
+[data-desempenho] .selo-combate.saindo { display: none; }
 @keyframes selo-entra { from { scale: .4; opacity: 0; } }
 /* a marcada para atacar inclina e sobe, mas sem z-index: fica na ordem do leque, embaixo das seguintes, e não cobre
    nem rouba o clique das vizinhas (com z 300 ela cobria as três de cima do leque e o clique ia parar nela) */
@@ -1427,3 +1432,9 @@ img.mini { width: 40px; aspect-ratio: 63 / 88; object-fit: cover; border-radius:
   .mt-grade { grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 8px; }
 }
 [data-desempenho] .zoom { animation: none; }
+
+/* modo espectador: o selo "Você está assistindo" e o seletor de quem fica embaixo, na lateral da mesa */
+.assistindo { display: flex; flex-direction: column; gap: 6px; padding: 8px 10px; }
+.assistindo select { max-width: 100%; }
+.mesa.recolhida .assistindo { display: none; }
+.espectadores { margin: 4px 0 0; font-size: 0.85em; }

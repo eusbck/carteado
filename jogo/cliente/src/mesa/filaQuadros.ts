@@ -56,6 +56,9 @@ export class FilaQuadros<Q extends Quadro> {
   /** o atual ainda não recebeu a duração das animações dele (só a primeira notícia vale) */
   private semDuracao = false;
   private fimCena: unknown = null;
+  /** quando o quadro atual entrou e quando a cena dele acaba (relógio da fila), para estender sem passar do teto */
+  private inicioQuadro = 0;
+  private fimEm = 0;
   private tetos = new Set<unknown>();
 
   /**
@@ -97,7 +100,27 @@ export class FilaQuadros<Q extends Quadro> {
     this.pararFim();
     const espera = Math.min(TETO_QUADRO, Math.max(0, Number.isFinite(ms) ? ms : 0));
     if (espera <= 0) this.proximo();
-    else this.fimCena = this.r.depois(() => { this.fimCena = null; this.proximo(); }, espera);
+    else this.agendarFim(espera);
+  }
+
+  /**
+   * Efeitos.tsx, no primeiro quadro desenhado depois da vista: as animações começam ali, não quando foram agendadas
+   * (com a página ocupada, esse quadro atrasa e a cena acabava antes das animações: medido em 12/11, a decisão do
+   * combate grande abria ~0,23 s antes). A cena acaba no mínimo `ms` depois de agora, sem passar do TETO_QUADRO
+   * contado da entrada do quadro. Só estende uma cena que já tem fim marcado.
+   */
+  estender(ms: number): void {
+    if (!this.atual || this.semDuracao || this.fimCena === null || !Number.isFinite(ms)) return;
+    const agora = this.r.agora();
+    const fim = Math.min(agora + ms, this.inicioQuadro + TETO_QUADRO);
+    if (fim <= this.fimEm) return;
+    this.pararFim();
+    this.agendarFim(fim - agora);
+  }
+
+  private agendarFim(espera: number): void {
+    this.fimEm = this.r.agora() + espera;
+    this.fimCena = this.r.depois(() => { this.fimCena = null; this.proximo(); }, espera);
   }
 
   /** mostra o último quadro que chegou e encerra a cena na hora */
@@ -131,6 +154,7 @@ export class FilaQuadros<Q extends Quadro> {
     if (this.espera.length > MAX_FILA || agora - this.espera[0].chegada > ATRASO_MAX) this.espera = this.espera.slice(-1);
     const q = this.espera.shift()!;
     this.atual = q;
+    this.inicioQuadro = this.r.agora();
     this.semDuracao = true;
     this.avisar();
     const mudou = this.aplicar(q);

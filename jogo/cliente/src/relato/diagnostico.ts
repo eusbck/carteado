@@ -28,18 +28,45 @@ const descrever = (v: unknown): string => {
   try { return JSON.stringify(v); } catch { return String(v); }
 };
 
+// Erros automáticos: exceções e promessas rejeitadas vão sozinhas para o servidor (área do desenvolvedor), sem a pessoa
+// precisar reportar. No máximo 20 por página aberta, cada erro igual uma vez só, e nada de erros de recurso (imagem que
+// não carregou) nem de extensões do navegador.
+const MAX_ENVIOS = 20;
+const enviados = new Set<string>();
+let telaAtual: () => string = () => '';
+
+function enviarErro(tipo: 'erro' | 'promessa', v: unknown): void {
+  const texto = v instanceof Error ? `${v.name}: ${v.message}` : typeof v === 'string' ? v : descrever(v);
+  const pilha = v instanceof Error ? v.stack ?? '' : '';
+  if (/extension:\/\/|ResizeObserver loop/.test(`${texto}\n${pilha}`)) return;
+  const chave = `${tipo}|${texto}|${pilha.split('\n')[1] ?? ''}`;
+  if (enviados.has(chave) || enviados.size >= MAX_ENVIOS) return;
+  enviados.add(chave);
+  let tela = '';
+  try { tela = telaAtual(); } catch { /* a loja ainda não existe */ }
+  void fetch('/api/erros-cliente', {
+    method: 'POST', headers: { 'content-type': 'application/json' }, keepalive: true,
+    body: JSON.stringify({ tipo, texto: texto.slice(0, 2000), pilha: pilha.slice(0, 6000), tela, navegador: navigator.userAgent }),
+  }).catch(() => {});
+}
+
 let instalado = false;
-/** começa a registrar (main.tsx chama antes de desenhar a página) */
-export function instalarDiagnostico(): void {
+/** começa a registrar (main.tsx chama antes de desenhar a página); com `enviarErros`, também manda os erros sozinhos */
+export function instalarDiagnostico(o: { enviarErros?: boolean; tela?: () => string } = {}): void {
   if (instalado) return;
   instalado = true;
+  if (o.tela) telaAtual = o.tela;
   addEventListener('error', (e) => {
     // erro de recurso (imagem que não carregou) vem sem `error`: só a origem interessa
     const alvo = e.target as HTMLElement | null;
     if (alvo && alvo !== (window as unknown) && 'src' in alvo) { guardar(erros, 'erro', `recurso não carregou: ${(alvo as HTMLImageElement).src}`); return; }
     guardar(erros, 'erro', e.error ? descrever(e.error) : `${e.message} (${e.filename}:${e.lineno}:${e.colno})`);
+    if (o.enviarErros) enviarErro('erro', e.error ?? `${e.message} (${e.filename}:${e.lineno}:${e.colno})`);
   }, true);
-  addEventListener('unhandledrejection', (e) => guardar(erros, 'promessa', descrever(e.reason)));
+  addEventListener('unhandledrejection', (e) => {
+    guardar(erros, 'promessa', descrever(e.reason));
+    if (o.enviarErros) enviarErro('promessa', e.reason);
+  });
   const original = console.error.bind(console);
   console.error = (...args: unknown[]) => {
     guardar(erros, 'console', args.map(descrever).join(' '));

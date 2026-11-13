@@ -6,6 +6,7 @@
 
 import { registrarLote } from './diario.ts';
 import { chars, hooks } from './chars.ts';
+import { extraTriggersDeQuemSaiu } from './morte-dispara.ts';
 import { registry, type TriggerCtx, type TriggeredDef } from './defs.ts';
 import type { GameEvent } from './events.ts';
 import type { G } from './game-context.ts';
@@ -228,7 +229,7 @@ function checkAbility(g: G, def: TriggeredDef, src: Source, events: GameEvent[])
     }
     if (def.condition && !def.condition({ g, you: src.controller, source: src.obj.id, event: r })) continue;
     let times = 1;
-    for (const h of hooks(g, 'extraTriggers')) times += h.fn(h.ctx, { abilityId: def.id!, source: src.obj.id, controller: src.controller, event: r, cause, batch: events });
+    for (const h of [...hooks(g, 'extraTriggers'), ...extraTriggersDeQuemSaiu(g, events)]) times += h.fn(h.ctx, { abilityId: def.id!, source: src.obj.id, controller: src.controller, event: r, cause, batch: events });
     for (let i = 0; i < times; i++) addPending(g, def.id!, src.obj.id, src.controller, r, {});
   }
 }

@@ -31,6 +31,8 @@ export interface Conexao {
   assento: number | null;
   /** o token com que esta conexão tomou o assento (ao sentar ou ao retomar); a sala o confere a cada transmissão */
   token?: string | null;
+  /** a conexão assiste a sala sem assento (modo espectador): recebe só a vista neutra e não age */
+  espectador?: boolean;
 }
 
 export interface Atrasos {
@@ -109,6 +111,8 @@ interface DadosSala {
   chat?: MsgChat[];
   /** passo do saguão (salas de antes não têm: começam nos lugares) */
   etapa?: EtapaSaguao;
+  /** quem assiste (modo espectador): nome e token para voltar */
+  espectadores?: { nome: string; token: string }[];
 }
 
 interface Pedido {
@@ -180,6 +184,10 @@ const limparNome = (s: unknown) => (typeof s === 'string' ? s.replace(/\s+/g, ' 
 
 /** chat: tamanho de uma mensagem, quantas a sala guarda e o ritmo (no máximo CHAT_RAJADA a cada CHAT_JANELA ms) */
 export const CHAT_TAMANHO = 280;
+/** teto de espectadores por sala */
+export const MAX_ESPECTADORES = 8;
+/** resposta a qualquer jogada de quem só assiste */
+const SO_ASSISTEM = 'Espectadores só assistem';
 const CHAT_GUARDADAS = 200;
 const CHAT_RAJADA = 5;
 const CHAT_JANELA = 5000;
@@ -266,12 +274,34 @@ export class Sala {
     };
   }
 
+  /** para a área do desenvolvedor: o estado da sala e da partida, só com o que está à vista de todos na mesa (vida,
+   * turno, quem está conectado), sem senha, tokens, mãos nem grimórios */
+  paraDev(): Record<string, unknown> {
+    const p = this.d.partida;
+    const st = this.game?.g.state;
+    const conectados = new Set([...this.conexoes].map((c) => c.assento));
+    return {
+      codigo: this.d.codigo, estado: this.d.estado, formato: modoDe(this.d), etapa: this.d.etapa ?? 'lugares', anfitriao: this.d.anfitriao,
+      conexoes: this.conexoes.size,
+      assentos: this.d.assentos.map((a, i) => ({ nome: a.nome, tipo: a.tipo, deck: a.deck ? this.gerente.deck(a.deck)?.nome ?? a.deck : null, nivel: a.tipo === 'bot' ? a.nivel ?? NIVEL_PADRAO : null, conectado: a.tipo === 'bot' || conectados.has(i) })),
+      partida: p ? {
+        id: idPartida(p.config.seed), iniciadaEm: p.iniciadaEm ?? null, encerradaEm: p.encerradaEm ?? null,
+        entradas: this.game ? this.game.inputs.length : null,
+        turno: st ? st.turn.number : null, rodada: st ? st.turn.round ?? null : null,
+        vidas: st ? st.players.map((j) => ({ vida: j.life, perdeu: j.lost })) : null,
+      } : null,
+      erro: this.erro, falhas: this.falhas.n, atualizada: null,
+    };
+  }
+
   publica(): SalaPublica {
     const conectados = new Set([...this.conexoes].map((c) => c.assento));
+    const assistindo = new Set([...this.conexoes].filter((c) => c.espectador).map((c) => c.token));
     const p = this.d.partida;
     return {
       codigo: this.d.codigo, estado: this.d.estado, anfitriao: this.d.anfitriao, mulligan: this.d.mulligan ?? 'londres', auxilios: this.d.auxilios ?? 'permitidos',
       partida: this.d.partida ? idPartida(this.d.partida.config.seed) : null, etapa: this.d.etapa ?? 'lugares', formato: modoDe(this.d),
+      espectadores: (this.d.espectadores ?? []).filter((e) => assistindo.has(e.token)).map((e) => e.nome),
       cronometro: p?.iniciadaEm !== undefined ? { iniciadaEm: p.iniciadaEm, encerradaEm: p.encerradaEm ?? null } : null,
       assentos: this.d.assentos.map((a, i) => ({ indice: i, tipo: a.tipo, nome: a.nome, deck: a.deck, conectado: a.tipo === 'bot' || conectados.has(i), nivel: a.tipo === 'bot' ? a.nivel ?? NIVEL_PADRAO : null, avatar: a.tipo === 'humano' ? a.avatar ?? null : null })),
     };
@@ -302,6 +332,13 @@ export class Sala {
   transmitir(pendente: Decision | null = this.pendenteVisivel): void {
     const pub = this.publica();
     for (const c of this.conexoes) {
+      if (c.espectador) {
+        // quem assiste e saiu (ou foi tirado) deixa de receber
+        if (!c.token || !(this.d.espectadores ?? []).some((e) => e.token === c.token)) { this.soltar(c); continue; }
+        this.enviarSeMudou(c, { t: 'sala', sala: pub, voce: null, token: c.token, quem: '' });
+        this.enviarJogo(c, pendente);
+        continue;
+      }
       if (c.assento === null) continue;
       const token = this.d.assentos[c.assento]?.token ?? null;
       // o assento mudou de dono (vagou, outra pessoa sentou) desde que esta conexão o tomou: ela sai, e nunca recebe o
@@ -313,6 +350,12 @@ export class Sala {
   }
 
   enviarJogo(c: Conexao, pendente: Decision | null = this.pendenteVisivel): void {
+    if (this.game && c.espectador) {
+      // a vista neutra: nenhuma mão, grimório ou carta virada para baixo, e nenhuma decisão
+      const vista = buildView(this.game.g, null, pendente);
+      this.enviarSeMudou(c, { t: 'jogo', vista, paradas: paradasPadrao(), posicoes: this.posicoesNoCampo(), desfazivel: false, desfazer: this.pedidoPublico() });
+      return;
+    }
     if (!this.game || c.assento === null) return;
     const vista = buildView(this.game.g, c.assento, pendente);
     const desfazivel = !this.pedido && !this.game.isOver() && this.alvoDesfazer(c.assento) !== null;
@@ -422,11 +465,31 @@ export class Sala {
     c.enviar({ t: 'chat', msgs: this.d.chat ?? [], tudo: true });
   }
 
+  /** liga a conexão como espectador (com o registro novo ou o de quem volta) */
+  assistir(c: Conexao, registro: { nome: string; token: string }): void {
+    if (c.sala && c.sala !== this) c.sala.desligar(c);
+    c.sala = this;
+    c.assento = null;
+    c.token = registro.token;
+    c.espectador = true;
+    this.conexoes.add(c);
+    this.ultimas.delete(c);
+  }
+
+  /** o espectador sai de vez (o registro some e ele não volta pelo retomar) */
+  deixarDeAssistir(c: Conexao): void {
+    this.d.espectadores = (this.d.espectadores ?? []).filter((e) => e.token !== c.token);
+    this.soltar(c);
+    this.salvar();
+    this.transmitir();
+  }
+
   desligar(c: Conexao): void {
     this.conexoes.delete(c);
     c.sala = null;
     c.assento = null;
     c.token = null;
+    c.espectador = false;
     this.transmitir();
   }
 
@@ -437,6 +500,7 @@ export class Sala {
     c.sala = null;
     c.assento = null;
     c.token = null;
+    c.espectador = false;
   }
 
   /** todas as conexões de um assento saem (a pessoa saiu: a segunda aba dela não fica no assento) */
@@ -505,6 +569,8 @@ export class Sala {
     this.d.assentos = manter.map((k) => this.d.assentos[k]);
     this.d.anfitriao = novo.get(this.d.anfitriao) ?? Math.max(0, this.d.assentos.findIndex((a) => a.tipo === 'humano' && !a.saiu));
     for (const c of [...this.conexoes]) {
+      // quem assiste não tem assento: continua assistindo
+      if (c.espectador) continue;
       const j = c.assento === null ? undefined : novo.get(c.assento);
       if (j === undefined) this.soltar(c);
       else c.assento = j;
@@ -513,7 +579,7 @@ export class Sala {
     for (const msg of this.d.chat ?? []) msg.de = novo.get(msg.de) ?? -1;
     // o limite do chat segue o assento; a conversa vai de novo para todos (a cor de cada autor mudou com o lugar)
     this.ritmoChat = new Map([...this.ritmoChat].flatMap(([k, t]) => { const j = novo.get(k); return j === undefined ? [] : [[j, t] as const]; }));
-    for (const c of this.conexoes) c.enviar({ t: 'chat', msgs: this.d.chat ?? [], tudo: true });
+    for (const c of this.conexoes) if (!c.espectador) c.enviar({ t: 'chat', msgs: this.d.chat ?? [], tudo: true });
   }
 
   tratar(c: Conexao, m: MsgCliente): string | null {
@@ -708,7 +774,7 @@ export class Sala {
         if (!para || (para !== 'todos' && para.length === 0)) return 'Escolha para quem mostrar';
         const o = g.state.objects[obj];
         const aviso: MsgServidor = { t: 'revelada', de: i, def: o.def, nome: o.def, para };
-        for (const c of this.conexoes) if (c.assento === i || para === 'todos' || para.includes(c.assento!)) c.enviar(aviso);
+        for (const c of this.conexoes) if (!c.espectador && (c.assento === i || para === 'todos' || para.includes(c.assento!))) c.enviar(aviso);
         return null;
       }
       case 'chat': {
@@ -1353,8 +1419,34 @@ export class Gerente {
           return null;
         });
       }
+      case 'assistir': {
+        const s = this.salas.get(String(m.codigo ?? '').toUpperCase().trim());
+        if (!s || typeof m.senhaSala !== 'string') return 'Código ou senha da sala incorretos';
+        const { senhaSala, nome: nomePedido } = m;
+        return this.comSenha(c, () => confereSenha(senhaSala, s.d.senha), () => confereSenhaAssincrono(senhaSala, s.d.senha), (certa) => {
+          if (!certa) return 'Código ou senha da sala incorretos';
+          const nome = limparNome(nomePedido);
+          if (!nome) return 'Escolha um nome';
+          if (c.sala === s) return 'Você já está nesta sala';
+          const lista = (s.d.espectadores ??= []);
+          if (lista.length >= MAX_ESPECTADORES) return `A sala já tem ${MAX_ESPECTADORES} espectadores`;
+          const registro = { nome, token: novoToken() };
+          lista.push(registro);
+          s.assistir(c, registro);
+          s.salvar();
+          s.transmitir();
+          return null;
+        });
+      }
       case 'retomar': {
         const s = this.salas.get(String(m.codigo ?? '').toUpperCase().trim());
+        const esp = s && typeof m.token === 'string' ? (s.d.espectadores ?? []).find((e) => e.token === m.token) : undefined;
+        if (s && esp) {
+          s.garantirPartida();
+          s.assistir(c, esp);
+          s.transmitir();
+          return null;
+        }
         const i = s ? s.d.assentos.findIndex((a) => a.token && typeof m.token === 'string' && a.token === m.token) : -1;
         if (!s || i < 0) return 'Não foi possível voltar à sala';
         // quem tinha saído no meio da partida e volta fica com o assento quando ela acabar
@@ -1365,6 +1457,10 @@ export class Gerente {
         return null;
       }
       default:
+        if (c.espectador && c.sala) {
+          if (m.t === 'sair') { c.sala.deixarDeAssistir(c); return null; }
+          return SO_ASSISTEM;
+        }
         if (!c.sala || c.assento === null) return 'Entre numa sala primeiro';
         return c.sala.tratar(c, m);
     }

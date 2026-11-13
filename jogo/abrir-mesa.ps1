@@ -113,12 +113,21 @@ try {
   # tunel rapido (sem conta): o endereco muda a cada vez que a mesa abre
   $url = $null
   if ($cf) {
-    $tunel = Start-Process -FilePath $cf -ArgumentList @('tunnel', '--no-autoupdate', '--url', "http://localhost:$Porta") -WindowStyle Hidden -PassThru -RedirectStandardError $logTunel -RedirectStandardOutput "$logTunel.out"
-    for ($i = 0; $i -lt 90 -and -not $url; $i++) {
-      Start-Sleep -Milliseconds 500
-      $m = Select-String -Path $logTunel -Pattern 'https://[a-z0-9-]+\.trycloudflare\.com' -ErrorAction SilentlyContinue | Select-Object -First 1
-      if ($m) { $url = $m.Matches[0].Value }
-      if ($tunel.HasExited) { break }
+    # o servico gratuito as vezes demora ou trava ao dar o endereco: espera ate 75 s e tenta de novo, ate 3 vezes
+    for ($tentativa = 1; $tentativa -le 3 -and -not $url; $tentativa++) {
+      if ($tentativa -gt 1) {
+        Write-Host "O tunel demorou; tentando de novo ($tentativa de 3)..."
+        if (-not $tunel.HasExited) { Stop-Process -Id $tunel.Id -Force -ErrorAction SilentlyContinue }
+        Start-Sleep -Seconds 2
+        Remove-Item $logTunel, "$logTunel.out" -ErrorAction SilentlyContinue
+      }
+      $tunel = Start-Process -FilePath $cf -ArgumentList @('tunnel', '--no-autoupdate', '--url', "http://localhost:$Porta") -WindowStyle Hidden -PassThru -RedirectStandardError $logTunel -RedirectStandardOutput "$logTunel.out"
+      for ($i = 0; $i -lt 150 -and -not $url; $i++) {
+        Start-Sleep -Milliseconds 500
+        $m = Select-String -Path $logTunel -Pattern 'https://[a-z0-9-]+\.trycloudflare\.com' -ErrorAction SilentlyContinue | Select-Object -First 1
+        if ($m) { $url = $m.Matches[0].Value }
+        if ($tunel.HasExited) { break }
+      }
     }
     if (-not $url) { Write-Host 'O tunel nao abriu. Veja .cache\mesa-tunel.log'; Get-Content $logTunel -ErrorAction SilentlyContinue | Select-Object -Last 10; exit 1 }
   }

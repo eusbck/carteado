@@ -236,9 +236,11 @@ function ringView(g: G, p: PlayerId): PlayerView['ring'] {
 
 /** o topo do grimório para quem pode olhá-lo a qualquer momento (o próprio jogador) */
 function topCardView(g: G, p: PlayerId, viewer: PlayerId | null): ObjView | undefined {
-  if (viewer !== p) return undefined;
+  // lote4-a: com o topo revelado (Oracle of Mul Daya), todos veem a carta
+  const revelado = hooks(g, 'topOfLibraryRevealed').some((h) => h.fn(h.ctx, p));
+  if (viewer !== p && !revelado) return undefined;
   const top = g.state.zones.library[p][0];
-  if (top === undefined || !hooks(g, 'lookAtTopOfLibrary').some((h) => h.fn(h.ctx, p))) return undefined;
+  if (top === undefined || (!revelado && !hooks(g, 'lookAtTopOfLibrary').some((h) => h.fn(h.ctx, p)))) return undefined;
   const v = objView(g, top, null);
   const o = g.state.objects[top];
   return { ...v, def: o.def, name: chars(g, top).name };

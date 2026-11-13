@@ -6,8 +6,7 @@
  "link": "https://moxfield.com/decks/Rfkjiccwo0CXLUWqsIriDQ",
  "importadoEm": "2026-11-10T19:31:22.602Z",
  "verificadoEm": "2026-11-10T19:31:22.602Z",
- "atual": null,
- "preparacao": {
+ "atual": {
   "comandante": "Voja, Jaws of the Conclave",
   "cartas": [
    {
@@ -388,5 +387,6 @@
    "atualizadoEm": "2026-11-10T19:11:26.457Z"
   },
   "desde": "2026-11-10T19:31:22.602Z"
- }
+ },
+ "preparacao": null
 }

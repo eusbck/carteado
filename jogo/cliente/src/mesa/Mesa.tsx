@@ -16,6 +16,7 @@ import { abrirRelato } from '../relato/relatoLoja.ts';
 import { IconeAjuste, IconeErro, IconeConceder, IconeRecolher as IconeSeta, IconeConfig, IconeDesfazer, IconeFimTurno, IconeParadas, IconePassar, IconeRecolher, IconeRegistro, IconeSair, Marca } from '../icones.tsx';
 import { Importacoes } from '../Importacoes.tsx';
 import { loja, useLoja } from '../loja.ts';
+import { ListaEspectadores } from '../telas/Saguao.tsx';
 import { reservaPaga } from '../mana.ts';
 import { Janela } from '../Janela.tsx';
 import { AUXILIOS, auxiliosAtivos, auxiliosDoNivel, barraAberta, mudarPreferencias, NIVEIS, usePreferencias, type Auxilios, type Preferencias } from '../preferencias.ts';
@@ -36,6 +37,7 @@ import { EscolhaRecolhida, JanelaEscolha } from './JanelaEscolha.tsx';
 import { PedidoDesfazer } from './Desfazer.tsx';
 import { useEfeitos } from './Efeitos.tsx';
 import { emCena, pularCena, useCena } from './cenaLoja.ts';
+import { useDepoisDaCena } from './depoisDaCena.ts';
 import { Setas, type Seta } from './Setas.tsx';
 import { FaixaTurno } from './FaixaTurno.tsx';
 import { MaoInicial } from './MaoInicial.tsx';
@@ -282,7 +284,7 @@ const KINDS_AVISO = new Set<string>(['terreno', 'conjura', 'ativa', 'revela', 'a
 function Avisos({ v, cor }: { v: GameView; cor: (p: number) => string }) {
   // os avisos do servidor (pedido de desfazer aceito, recusado…), assinados aqui e não na mesa
   const doServidor = useLoja((x) => x.avisos);
-  const [lista, setLista] = useState<{ id: number; texto: string; quem: number | null }[]>([]);
+  const [lista, setLista] = useState<{ id: number; texto: string; quem: number | null; fim: boolean }[]>([]);
   const anterior = useRef<GameView['log'] | null>(null);
   const seq = useRef(0);
   // cada aviso some sozinho; os relógios que faltam param quando a mesa sai da tela
@@ -300,18 +302,37 @@ function Avisos({ v, cor }: { v: GameView; cor: (p: number) => string }) {
     // pelo tipo da linha (o ataque só quando cita criatura: "Fulano não ataca." não vira aviso); linhas sem tipo (de
     // checkpoint salvo) não viram aviso
     const novas = v.log.filter((l) => l.seq > ultima && l.kind !== undefined && KINDS_AVISO.has(l.kind) && (l.kind !== 'ataque' || !!l.refs?.some((r) => r.k === 'obj')));
+    // o que um efeito revela aparece com a imagem, como o Revelar do menu: pelas refs da linha 'revela' (cada carta é de
+    // quem foi citado logo antes dela, como no confronto, "Confronto: Ana revela X; Caio revela Y."; senão, do autor). A
+    // ref sem def (carta que quem olha não pode identificar) não aparece
+    for (const l of v.log) {
+      if (l.seq <= ultima || l.kind !== 'revela' || !l.parts || !l.refs) continue;
+      const porJogador = new Map<number, string[]>();
+      let dono = l.actor ?? null;
+      for (const parte of l.parts) {
+        if (typeof parte === 'string') continue;
+        const r = l.refs[parte.ref];
+        if (!r) continue;
+        if (r.k === 'jogador') { dono = r.id; continue; }
+        if (dono === null || !r.def) continue;
+        porJogador.set(dono, [...(porJogador.get(dono) ?? []), r.def]);
+      }
+      for (const [p, defs] of porJogador) loja.mostrarReveladas(p, defs, 'todos', true);
+    }
     if (!novas.length) return;
-    const itens = novas.slice(-3).map((l) => ({ id: seq.current++, texto: textoDaLinha(l, v.players), quem: l.actor ?? null }));
+    const itens = novas.slice(-3).map((l) => ({ id: seq.current++, texto: textoDaLinha(l, v.players), fim: l.kind === 'fim', quem: l.actor ?? null }));
     setLista((a) => [...a, ...itens].slice(-3));
     const ids = new Set(itens.map((i) => i.id));
     const t = setTimeout(() => { relogios.current.delete(t); setLista((a) => a.filter((x) => !ids.has(x.id))); }, 5000);
     relogios.current.add(t);
   }, [v.log]);
+  // o fim da partida só é avisado quando os golpes que a acabaram chegam (a ponte até o N34)
+  const fimLiberado = useDepoisDaCena(lista.some((a) => a.fim));
   if (!lista.length && !doServidor.length) return null;
   return (
     <div class="avisos" aria-live="polite">
       {doServidor.map((a) => <div key={`s${a.id}`} class="aviso aviso-mesa">{traduzir(a.texto)}</div>)}
-      {lista.map((a) => {
+      {lista.filter((a) => !a.fim || fimLiberado).map((a) => {
         const nome = a.quem !== null ? v.players[a.quem].name : null;
         return (
           <div key={a.id} class="aviso" style={{ '--cor': a.quem !== null ? cor(a.quem) : 'var(--texto)' }}>
@@ -444,7 +465,10 @@ export function Mesa() {
   }));
   const v = e.vista!;
   const sala = e.sala!;
-  const eu = v.you!;
+  // modo espectador: a vista vem neutra (you: null) e quem fica embaixo é escolhido aqui (começa pelo anfitrião)
+  const espectador = v.you === null;
+  const [baixo, setBaixo] = useState(sala.anfitriao);
+  const eu = espectador ? (v.players[baixo] ? baixo : 0) : v.you!;
   // a decisão espera a cena (eventos-5, versão ponte): ela, a janela de escolha e os realces de "pode jogar" só
   // aparecem quando a fila de quadros esvazia e as animações do quadro acabam (filaQuadros.ts, com teto). Uma vez
   // liberada, a mesma decisão não some de novo por uma cena que venha depois (uma posição que você mudou, um aviso).
@@ -1259,7 +1283,7 @@ export function Mesa() {
         conjurando={j.id === eu && conjurando && dReal && dReal.player === eu && dReal.kind !== 'priority' && v.stack.some((x) => x.controller === eu && x.def === conjurando.o.def) ? conjurando : null}
         onZona={(zona) => setModal({ tipo: 'zona', jogador: j.id, zona })}
         onDeck={() => setModal({ tipo: 'deck', jogador: j.id })}
-        mao={j.id === eu ? v.hand : undefined}
+        mao={!espectador && j.id === eu ? v.hand : undefined}
         reservaDireita={j.id === eu ? 336 : 0}
         avatarLado={j.id === eu ? ladoAvatar : undefined}
         colunaAberta={j.id === eu && colunaAberta}
@@ -1269,14 +1293,14 @@ export function Mesa() {
         pousadas={j.id === eu ? pousadas.current : undefined}
         posicoes={posicoes}
         arrastando={arrastando}
-        onPegarCampo={j.id === eu && !v.gameOver ? tPegarCampo : undefined}
-        onPegarCampoVazio={j.id === eu && !v.gameOver ? tPegarCampoVazio : undefined}
-        selecionadas={j.id === eu ? arrumar.selecao : undefined}
+        onPegarCampo={!espectador && j.id === eu && !v.gameOver ? tPegarCampo : undefined}
+        onPegarCampoVazio={!espectador && j.id === eu && !v.gameOver ? tPegarCampoVazio : undefined}
+        selecionadas={!espectador && j.id === eu ? arrumar.selecao : undefined}
         ordemZ={j.id === eu ? arrumar.ordemZ : undefined}
-        onPegarMao={j.id === eu ? tPegarMao : undefined}
-        onDuploMao={j.id === eu ? tJogar : undefined}
-        onMenuCarta={tMenuCarta}
-        onMenuArea={j.id === eu ? tMenuArea : undefined}
+        onPegarMao={!espectador && j.id === eu ? tPegarMao : undefined}
+        onDuploMao={!espectador && j.id === eu ? tJogar : undefined}
+        onMenuCarta={espectador ? undefined : tMenuCarta}
+        onMenuArea={!espectador && j.id === eu ? tMenuArea : undefined}
         lequeLargo={lequeLargo}
         chaveCombate={chaveCombate}
         onLeque={j.id === eu && d?.kind === 'attackers' && !enviando ? tLeque : undefined}
@@ -1340,7 +1364,7 @@ export function Mesa() {
     return {
       jogador: p,
       nome: v.players[p].name,
-      papel: p === eu ? 'Você' : a?.tipo === 'bot' ? `Oponente · bot ${nomeNivel(a.nivel ?? NIVEL_PADRAO)}` : 'Oponente',
+      papel: !espectador && p === eu ? 'Você' : a?.tipo === 'bot' ? `Oponente · bot ${nomeNivel(a.nivel ?? NIVEL_PADRAO)}` : 'Oponente',
       comandante,
       deck: nomeDeck && nomeDeck !== comandante ? nomeDeck : null,
       fundo: fundoDe(p),
@@ -1386,7 +1410,7 @@ export function Mesa() {
             <div class="cartao fim">
               <p class="decisao-titulo">Fim de partida</p>
               <p>{v.gameOver.draw ? 'Empate.' : `Venceu: ${v.gameOver.winners.map((w) => v.players[w].name).join(', ')}.`}</p>
-              {sala.anfitriao === eu && <button class="botao principal" onClick={() => loja.enviar({ t: 'novaPartida' })}>Nova partida com a mesma mesa</button>}
+              {!espectador && sala.anfitriao === eu && <button class="botao principal" onClick={() => loja.enviar({ t: 'novaPartida' })}>Nova partida com a mesma mesa</button>}
             </div>
           )}
           {/* acima da pilha: quem encolhe na falta de espaço é a pilha, e o "Voltar à escolha" fica sempre à vista */}
@@ -1408,7 +1432,8 @@ export function Mesa() {
               const para = r.para === 'todos' ? 'todos' : r.para.map((p) => v.players[p]?.name).join(', ');
               return (
                 <div key={r.id} class="revelada" style={{ '--cor': cor(r.de) }}>
-                  <p>{r.de === eu ? <>Você mostrou para <b>{para}</b></> : <><b>{v.players[r.de]?.name}</b> mostrou{r.para === 'todos' ? '' : ' para você'}</>}</p>
+                  <p>{r.efeito ? (r.de === eu ? <>Você revelou</> : <><b>{v.players[r.de]?.name}</b> revelou</>)
+                    : r.de === eu ? <>Você mostrou para <b>{para}</b></> : <><b>{v.players[r.de]?.name}</b> mostrou{r.para === 'todos' ? '' : ' para você'}</>}</p>
                   {img ? <img src={img} alt={nomeCarta(r.def, r.def)} /> : <strong>{nomeCarta(r.def, r.def)}</strong>}
                 </div>
               );
@@ -1419,7 +1444,7 @@ export function Mesa() {
           <JanelaEscolha v={v} d={escolha} ui={ui} todos={todos} cor={cor} aux={aux} recolhida={escolhaRecolhida} recolher={setEscolhaRecolhida}
             reservaDireita={v.stack.length > 0 ? 336 : 0} onZoom={mostrarZoom} />
         )}
-        {preJogo && <MaoInicial v={v} d={d} enviando={enviando} regra={sala.mulligan ?? 'londres'} multiplayer={v.players.length > 2} sel={sel} setSel={setSel} />}
+        {preJogo && !espectador && <MaoInicial v={v} d={d} enviando={enviando} regra={sala.mulligan ?? 'londres'} multiplayer={v.players.length > 2} sel={sel} setSel={setSel} />}
       </main>
 
       <aside class="lateral" aria-label="Menu da partida">
@@ -1429,14 +1454,26 @@ export function Mesa() {
           <span class="vez">{v.turn.number ? <>vez de <span>{v.players[v.turn.active].name}</span></> : 'antes da 1ª rodada'}</span>
           <Cronometro cronometro={sala.cronometro} relogio={e.relogio} />
           {salaProibe && <span class="selo-sala" title="Quem criou a sala proibiu os auxílios: todos jogam em Mesa real">Sala sem auxílios</span>}
+          <ListaEspectadores sala={sala} />
         </div>
+        {espectador && (
+          <div class="assistindo" aria-label="Modo espectador">
+            <span class="selo-sala">Você está assistindo</span>
+            <label class="nivel-select">
+              <span>Ver de baixo</span>
+              <select value={eu} onChange={(ev) => setBaixo(Number((ev.target as HTMLSelectElement).value))}>
+                {v.players.map((p) => <option key={p.id} value={p.id}>{p.name}{p.left ? ' (saiu)' : ''}</option>)}
+              </select>
+            </label>
+          </div>
+        )}
         <ul class="menu-lateral">
           <li><button title="Registro da partida" aria-label="Registro" onClick={() => setModal({ tipo: 'registro' })}><IconeRegistro /><span class="rotulo">Registro</span></button></li>
-          <li><button title="Paradas" aria-label="Paradas" onClick={() => setModal({ tipo: 'paradas' })}><IconeParadas /><span class="rotulo">Paradas</span></button></li>
-          <li><button title="Ajuste manual" aria-label="Ajuste manual" disabled={decisaoManual === null} onClick={() => setManualAberto(true)}><IconeAjuste /><span class="rotulo">Ajuste manual</span></button></li>
+          {!espectador && <li><button title="Paradas" aria-label="Paradas" onClick={() => setModal({ tipo: 'paradas' })}><IconeParadas /><span class="rotulo">Paradas</span></button></li>}
+          {!espectador && <li><button title="Ajuste manual" aria-label="Ajuste manual" disabled={decisaoManual === null} onClick={() => setManualAberto(true)}><IconeAjuste /><span class="rotulo">Ajuste manual</span></button></li>}
           <li><button title="Configurações" aria-label="Configurações" onClick={() => setModal({ tipo: 'config' })}><IconeConfig /><span class="rotulo">Configurações</span></button></li>
-          <li><button title="Reportar um erro: tira um print da mesa e manda junto com a partida" aria-label="Reportar erro" onClick={() => abrirRelato()}><IconeErro /><span class="rotulo">Reportar erro</span></button></li>
-          {!v.gameOver && !minha.left && <li><button title="Conceder" aria-label="Conceder" onClick={() => setModal({ tipo: 'conceder' })}><IconeConceder /><span class="rotulo">Conceder</span></button></li>}
+          {!espectador && <li><button title="Reportar um erro: tira um print da mesa e manda junto com a partida" aria-label="Reportar erro" onClick={() => abrirRelato()}><IconeErro /><span class="rotulo">Reportar erro</span></button></li>}
+          {!espectador && !v.gameOver && !minha.left && <li><button title="Conceder" aria-label="Conceder" onClick={() => setModal({ tipo: 'conceder' })}><IconeConceder /><span class="rotulo">Conceder</span></button></li>}
           <li><button title="Sair" aria-label="Sair" onClick={() => loja.enviar({ t: 'sair' })}><IconeSair /><span class="rotulo">Sair</span></button></li>
           <li>
             <button class="recolher" title={recolhida ? (naoLidas ? `Abrir a barra e o chat (${naoLidas} ${naoLidas === 1 ? 'mensagem nova' : 'mensagens novas'})` : 'Abrir a barra e o chat') : 'Recolher a barra (a mesa fica mais larga)'}
@@ -1447,7 +1484,7 @@ export function Mesa() {
           </li>
         </ul>
         {!recolhida && <Importacoes lugar="lateral" />}
-        {!recolhida && <ChatLateral cor={cor} />}
+        {!recolhida && !espectador && <ChatLateral cor={cor} />}
       </aside>
     </div>
 

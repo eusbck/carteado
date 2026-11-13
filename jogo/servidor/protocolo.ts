@@ -47,6 +47,8 @@ export interface SalaPublica {
   cronometro: { iniciadaEm: number; encerradaEm: number | null } | null;
   /** passo do saguão em que a sala está (vale com a sala esperando) */
   etapa: EtapaSaguao;
+  /** nomes de quem está assistindo agora (conectados), na ordem de chegada */
+  espectadores: string[];
   /** modo de jogo da sala (motor/modos.ts): o saguão só mostra os decks dele */
   formato: ModoJogo;
 }
@@ -265,6 +267,8 @@ export type MsgCliente =
   /** `lugares`: quantos jogadores (2 a 6); sem ele, `modo` (o jeito antigo) e, sem os dois, quatro */
   | { t: 'criar'; nome: string; senhaSala: string; lugares?: number; modo?: Modo; formato?: ModoJogo }
   | { t: 'entrar'; codigo: string; senhaSala: string; nome: string }
+  /** assistir a sala sem ocupar assento (modo espectador) */
+  | { t: 'assistir'; codigo: string; senhaSala: string; nome: string }
   | { t: 'retomar'; codigo: string; token: string }
   | { t: 'deck'; deck: string }
   /** pôr (ou trocar o deck ou o nível de) um bot num assento; deck null tira o bot */
@@ -327,6 +331,7 @@ const sempre = () => true;
 const FORMAS: { [T in MsgCliente['t']]: (m: Record<string, unknown>) => boolean } = {
   criar: (m) => curto(m.nome) && curto(m.senhaSala) && curto(m.formato) && (m.lugares === undefined || inteiro(m.lugares, MIN_LUGARES, MAX_ASSENTOS)),
   entrar: (m) => curto(m.codigo) && curto(m.senhaSala) && curto(m.nome),
+  assistir: (m) => curto(m.codigo) && curto(m.senhaSala) && curto(m.nome),
   retomar: (m) => curto(m.codigo) && curto(m.token),
   deck: (m) => curto(m.deck),
   // o assento vira índice da lista de assentos: inteiro e no intervalo (a sala confere o tamanho dela)
@@ -435,7 +440,8 @@ export interface Cena { epoca: number; de: number; ate: number; eventos: EventoC
 
 export type MsgServidor =
   /** `quem`: o seu id de autor; `agora`: hora do servidor em ms, acrescentada só ao enviar, fora da comparação */
-  | { t: 'sala'; sala: SalaPublica; voce: number; token: string; quem: string; agora: number }
+  /** `voce`: null para quem assiste (modo espectador) */
+  | { t: 'sala'; sala: SalaPublica; voce: number | null; token: string; quem: string; agora: number }
   /** `seq`: número da vista nesta conexão (1, 2, 3…; recomeça a cada conexão), acrescentado só ao enviar, fora da
    * comparação. `reinicio`: a vista não continua a anterior: 'cheia' (a primeira desta conexão, partida nova ou refeita)
    * ou 'desfeita' (um pedido de desfazer voltou a partida). Sem ele, continua: o cliente põe a vista na fila de quadros

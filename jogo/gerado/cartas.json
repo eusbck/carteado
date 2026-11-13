@@ -22135,6 +22135,40 @@
     }
    ]
   },
+  "Embermaw Hellion": {
+   "name": "Embermaw Hellion",
+   "oracleId": "01c39670-3677-49df-a4f6-e5062e0909d5",
+   "layout": "normal",
+   "manaValue": 5,
+   "colorIdentity": [
+    "R"
+   ],
+   "keywords": [
+    "Trample"
+   ],
+   "faces": [
+    {
+     "name": "Embermaw Hellion",
+     "manaCost": "{3}{R}{R}",
+     "typeLine": "Creature — Hellion",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Hellion"
+     ],
+     "oracleText": "Trample (This creature can deal excess combat damage to the player or planeswalker it's attacking.)\nIf another red source you control would deal damage to a permanent or player, it deals that much damage plus 1 to that permanent or player instead.",
+     "power": 4,
+     "toughness": 5,
+     "loyalty": null,
+     "colors": [
+      "R"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
   "Emenda Pix": {
    "name": "Emenda Pix",
    "oracleId": "7f6dd6fc-eba1-bd60-4769-efd3943f144e",
@@ -30757,6 +30791,44 @@
      "oracleText": "Trample\nChannel — {2}{G}, Discard this card: Search your library for a basic land card, put it onto the battlefield tapped, then shuffle.",
      "power": 6,
      "toughness": 5,
+     "loyalty": null,
+     "colors": [
+      "G"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Greensleeves, Maro-Sorcerer": {
+   "name": "Greensleeves, Maro-Sorcerer",
+   "oracleId": "2ac2d483-2d2a-4912-8db4-04a5a2080831",
+   "layout": "normal",
+   "manaValue": 5,
+   "colorIdentity": [
+    "G"
+   ],
+   "keywords": [
+    "Protection",
+    "Landfall"
+   ],
+   "faces": [
+    {
+     "name": "Greensleeves, Maro-Sorcerer",
+     "manaCost": "{3}{G}{G}",
+     "typeLine": "Legendary Creature — Elemental Sorcerer",
+     "supertypes": [
+      "Legendary"
+     ],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Elemental",
+      "Sorcerer"
+     ],
+     "oracleText": "Protection from planeswalkers and from Wizards\nGreensleeves's power and toughness are each equal to the number of lands you control.\nLandfall — Whenever a land you control enters, create a 3/3 green Badger creature token.",
+     "power": "*",
+     "toughness": "*",
      "loyalty": null,
      "colors": [
       "G"
@@ -42943,6 +43015,36 @@
      ],
      "subtypes": [],
      "oracleText": "Magmaquake deals X damage to each creature without flying and each planeswalker.",
+     "power": null,
+     "toughness": null,
+     "loyalty": null,
+     "colors": [
+      "R"
+     ],
+     "colorIndicator": null
+    }
+   ]
+  },
+  "Magmatic Insight": {
+   "name": "Magmatic Insight",
+   "oracleId": "6a9031b6-3f4d-4a36-90e1-ac77b8518cee",
+   "layout": "normal",
+   "manaValue": 1,
+   "colorIdentity": [
+    "R"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Magmatic Insight",
+     "manaCost": "{R}",
+     "typeLine": "Sorcery",
+     "supertypes": [],
+     "types": [
+      "Sorcery"
+     ],
+     "subtypes": [],
+     "oracleText": "As an additional cost to cast this spell, discard a land card.\nDraw two cards.",
      "power": null,
      "toughness": null,
      "loyalty": null,
@@ -93682,6 +93784,43 @@
    "imagem": {
     "id": "74bacab2-a4c6-4ba5-a208-6bd09ae4cf9f",
     "frente": "imagens/74bacab2-a4c6-4ba5-a208-6bd09ae4cf9f/front.png",
+    "verso": null
+   }
+  },
+  {
+   "name": "Badger",
+   "oracleId": "432a3442-c9d8-4756-b635-f37f05e2ab9b",
+   "layout": "token",
+   "manaValue": 0,
+   "colorIdentity": [
+    "G"
+   ],
+   "keywords": [],
+   "faces": [
+    {
+     "name": "Badger",
+     "manaCost": "",
+     "typeLine": "Token Creature — Badger",
+     "supertypes": [],
+     "types": [
+      "Creature"
+     ],
+     "subtypes": [
+      "Badger"
+     ],
+     "oracleText": "",
+     "power": 3,
+     "toughness": 3,
+     "loyalty": null,
+     "colors": [
+      "G"
+     ],
+     "colorIndicator": null
+    }
+   ],
+   "imagem": {
+    "id": "4e42cb2e-578f-4fec-a9a4-33b95b78229c",
+    "frente": "imagens/4e42cb2e-578f-4fec-a9a4-33b95b78229c/front.png",
     "verso": null
    }
   }

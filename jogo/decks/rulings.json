@@ -30213,6 +30213,52 @@
     "comment": "Belladonna Took's ability has no effect each time beyond the third it resolves in a turn."
    }
   ],
-  "e3a665f9-6e51-4e0d-923b-e9552d5978a4": []
+  "e3a665f9-6e51-4e0d-923b-e9552d5978a4": [],
+  "01c39670-3677-49df-a4f6-e5062e0909d5": [
+   {
+    "source": "wotc",
+    "published_at": "2015-06-22",
+    "comment": "Embermaw Hellion’s last ability doesn’t cause Embermaw Hellion to deal damage; it affects the amount of damage dealt by the original red source."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2015-06-22",
+    "comment": "If the player or permanent being dealt damage is also affected by a damage prevention effect, that player or the controller of that permanent can apply that effect and Embermaw Hellion’s effect in any order. If all of the damage is prevented, Embermaw Hellion’s effect can’t apply to it."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2015-06-22",
+    "comment": "Multiple Embermaw Hellions are cumulative. If you control two of them, you’ll add 2 to the damage dealt by another red source you control. In this case, you would also add 1 to the damage dealt by either Embermaw Hellion."
+   }
+  ],
+  "6a9031b6-3f4d-4a36-90e1-ac77b8518cee": [
+   {
+    "source": "wotc",
+    "published_at": "2015-06-22",
+    "comment": "You must discard exactly one land card to cast Magmatic Insight. You can't cast it without discarding a land card, and you can't discard additional cards."
+   }
+  ],
+  "2ac2d483-2d2a-4912-8db4-04a5a2080831": [
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "A landfall ability triggers whenever a land you control enters for any reason. It triggers whenever you play a land, as well as whenever a spell or ability puts a land onto the battlefield under your control."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "A landfall ability doesn't trigger if a permanent already on the battlefield becomes a land."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2024-11-08",
+    "comment": "Whenever a land you control enters, each landfall ability of the permanents you control will trigger. You can put them   on the stack in any order. The last ability you put on the stack will be the first one to resolve (As a result, you can have those abilities resolve in the order of your choosing.)."
+   },
+   {
+    "source": "wotc",
+    "published_at": "2022-09-09",
+    "comment": "The ability that defines Greensleeves, Maro-Sorcerer's power and toughness works in all zones, not just on the battlefield."
+   }
+  ]
  }
 }

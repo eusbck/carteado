@@ -39,6 +39,29 @@ function montar(mudou = true) {
 }
 
 describe('fila de quadros (protocolo-2)', () => {
+  it('estender: a cena conta a partir do quadro em que as animações começaram, sem passar do teto', () => {
+    const { r, f, mostrados, chega } = montar();
+    chega(1);
+    chega(2);
+    f.duracao(1000);
+    // o primeiro quadro desenhado atrasou 250 ms: as animações acabam em 1250, não em 1000
+    r.andar(250);
+    f.estender(1000);
+    r.andar(999);
+    expect(mostrados).toEqual([1]);
+    r.andar(1);
+    expect(mostrados).toEqual([1, 2]);
+    // estender nunca encurta, e não passa do TETO_QUADRO contado da entrada do quadro
+    f.duracao(2900);
+    f.estender(100);
+    r.andar(200);
+    f.estender(2900);
+    r.andar(TETO_QUADRO - 200 - 1);
+    expect(f.pendentes).toBe(1);
+    r.andar(1);
+    expect(f.pendentes).toBe(0);
+  });
+
   it('mostra um quadro de cada vez: o seguinte só entra quando as animações do atual acabam', () => {
     const { r, f, mostrados, estado, chega } = montar();
     chega(1);

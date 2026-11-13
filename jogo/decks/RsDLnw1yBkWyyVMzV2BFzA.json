@@ -6,8 +6,7 @@
  "link": "https://moxfield.com/decks/RsDLnw1yBkWyyVMzV2BFzA",
  "importadoEm": "2026-11-10T19:45:04.831Z",
  "verificadoEm": "2026-11-10T19:45:04.831Z",
- "atual": null,
- "preparacao": {
+ "atual": {
   "comandante": "Yuriko, the Tiger's Shadow",
   "cartas": [
    {
@@ -328,5 +327,6 @@
    "atualizadoEm": "2026-11-10T19:28:40.31Z"
   },
   "desde": "2026-11-10T19:45:04.831Z"
- }
+ },
+ "preparacao": null
 }

@@ -1,7 +1,7 @@
 // Fichas (CR 111) criadas pelas cartas dos decks. Cada uma aponta para a imagem da ficha
 // correspondente em ../cartas/data (pelo nome, força/resistência e cores).
 
-import { activated, addCounters, allowPlay, chars, chooseItems, controlledBy, controllerOf, cost, createTokens, creaturesOf, decayed, defineToken, draw, exile, gainLife, is, isLand, isType, keywords, lkiChars, lookAndArrange, loseLife, mana, moveObjects, nameOf, objItem, on, putOntoBattlefield, sacrifice, selfGets, t, tgt, triggered, untilEndOfTurn, yesNo, type AbilityDef, type G, type Gen } from '../motor/api.ts';
+import { activated, addCounters, fetchBasicToBattlefield, allowPlay, chars, chooseItems, controlledBy, controllerOf, cost, createTokens, creaturesOf, decayed, defineToken, draw, exile, gainLife, is, isLand, isType, keywords, lkiChars, lookAndArrange, loseLife, mana, moveObjects, nameOf, objItem, on, putOntoBattlefield, sacrifice, selfGets, t, tgt, triggered, untilEndOfTurn, yesNo, type AbilityDef, type G, type Gen } from '../motor/api.ts';
 import type { Ctx } from '../motor/defs.ts';
 import { fichasOracle } from '../motor/oracle.ts';
 import type { Color, ObjId } from '../motor/types.ts';
@@ -532,3 +532,72 @@ export const CatBranco11 = defineToken({
   // a impressa sem texto (há outra Cat 1/1 branca, com vínculo com a vida)
   image: fichasOracle.find((f) => f.faces[0].name === 'Cat' && f.faces[0].power === 1 && f.faces[0].colors.join() === 'W' && f.faces[0].oracleText === '')?.oracleId,
 });
+// lote4-a (Jund Lands, Hearthhull)
+/** Heartwood: artefato vermelho e verde com "{T}: Adicione {R} ou {G}." (ficha predefinida; Tenured Tethermage, Soul Tether) */
+export const Heartwood = token('Heartwood', 'Heartwood', ['Artifact'], ['Heartwood'], ['R', 'G'], null, null, [
+  mana(['R', 'G'], { text: '{T}: Adicione {R} ou {G}.' }),
+]);
+/** Lander: artefato com "{2}, {T}, Sacrifique esta ficha: procure um terreno básico, ponha-o no campo virado, embaralhe"
+ *  (ficha predefinida; Horizon Explorer) */
+export const Lander = token('Lander', 'Lander', ['Artifact'], ['Lander'], [], null, null, [
+  activated('{2}, {T}, Sacrifice this token', function* (c) {
+    yield* fetchBasicToBattlefield(c, 1, { tapped: true, prompt: 'Procure uma carta de terreno básico' });
+  }, { text: '{2}, {T}, Sacrifique esta ficha: Procure no seu grimório uma carta de terreno básico, coloque-a no campo virada e depois embaralhe.' }),
+]);
+/** Beast 4/4 verde (Baloth Prime) */
+export const Beast44 = defineToken({
+  id: 'Beast 4/4', name: 'Beast', types: ['Creature'], subtypes: ['Beast'], colors: ['G'], power: 4, toughness: 4, abilities: [],
+  image: fichasOracle.find((f) => f.faces[0].name === 'Beast' && f.faces[0].power === 4 && f.faces[0].colors.join() === 'G' && f.faces[0].oracleText === '')?.oracleId,
+});
+// lote4-e (LandReanimator, Sin)
+/** Plant 0/1 verde (Avenger of Zendikar) */
+export const Plant01 = token('Plant 0/1', 'Plant', ['Creature'], ['Plant'], ['G'], 0, 1);
+/** Badger 3/3 verde (Greensleeves, Maro-Sorcerer) */
+export const Badger33 = token('Badger', 'Badger', ['Creature'], ['Badger'], ['G'], 3, 3);
+/** Forest Dryad 1/1 verde, criatura terreno (Awaken the Woods); a mana vem do tipo Forest (CR 305.6) */
+export const ForestDryad = token('Forest Dryad', 'Forest Dryad', ['Land', 'Creature'], ['Forest', 'Dryad'], ['G'], 1, 1);
+/** Elemental 5/3 verde (Titania, Protector of Argoth) */
+export const Elemental53 = token('Elemental 5/3', 'Elemental', ['Creature'], ['Elemental'], ['G'], 5, 3);
+/** Zombie Druid 2/2 preta (Teval, the Balanced Scale) */
+export const ZombieDruid = token('Zombie Druid', 'Zombie Druid', ['Creature'], ['Zombie', 'Druid'], ['B'], 2, 2);
+// lote4-b (deck Sephiroth)
+/** Thrull 1/1 preta (Endrek Sahr, Master Breeder) */
+export const Thrull = token('Thrull', 'Thrull', ['Creature'], ['Thrull'], ['B'], 1, 1);
+/** Thrull 0/1 preta (Tevesh Szat, Doom of Fools) */
+export const Thrull01 = token('Thrull 0/1', 'Thrull', ['Creature'], ['Thrull'], ['B'], 0, 1);
+/** Faerie Rogue 1/1 preta com voar (Bitterblossom) */
+export const FaerieRogue = token('Faerie Rogue', 'Faerie Rogue', ['Creature'], ['Faerie', 'Rogue'], ['B'], 1, 1, keywords('flying'));
+/** Human Cleric 1/1 branca e preta (Westvale Abbey) */
+export const HumanCleric = token('Human Cleric', 'Human Cleric', ['Creature'], ['Human', 'Cleric'], ['B', 'W'], 1, 1);
+/** Zombie Rogue 2/2 azul e preta (Gisa, the Hellraiser) */
+export const ZombieRogue = token('Zombie Rogue', 'Zombie Rogue', ['Creature'], ['Zombie', 'Rogue'], ['B', 'U'], 2, 2);
+// lote4-c (Voja, Jaws of the Conclave)
+import { allCreatureTypes } from '../motor/api.ts';
+/** Shapeshifter 2/2 incolor com polimorfo (Irregular Cohort) */
+export const Shapeshifter22Incolor = token('Shapeshifter 2/2 incolor', 'Shapeshifter', ['Creature'], ['Shapeshifter'], [], 2, 2, [changeling()]);
+/** Voja, Friend to Elves: Lobo lendário 3/3 verde e branco (Tolsimir, Friend to Wolves) */
+export const VojaFriendToElves = defineToken({
+  id: 'Voja, Friend to Elves', name: 'Voja, Friend to Elves', types: ['Creature'], subtypes: ['Wolf'], supertypes: ['Legendary'], colors: ['G', 'W'],
+  power: 3, toughness: 3, abilities: [], image: img('Voja, Friend to Elves', 3, 3),
+});
+/** Voja Fenstalker: Lobo lendário 5/5 verde e branco com atropelar (Tolsimir, Midnight's Light) */
+export const VojaFenstalker = defineToken({
+  id: 'Voja Fenstalker', name: 'Voja Fenstalker', types: ['Creature'], subtypes: ['Wolf'], supertypes: ['Legendary'], colors: ['G', 'W'],
+  power: 5, toughness: 5, abilities: keywords('trample'), image: img('Voja Fenstalker', 5, 5),
+});
+/** Mutavault: ficha de terreno com "{T}: Adicione {C}" e "{1}: vira criatura 2/2 com todos os tipos de criatura até o fim
+ *  do turno" (Mutable Explorer) */
+export const MutavaultToken = defineToken({
+  id: 'Mutavault', name: 'Mutavault', types: ['Land'], subtypes: [], colors: [], power: null, toughness: null,
+  abilities: [
+    mana('C'),
+    activated('{1}', function* (c) {
+      if (c.g.state.objects[c.source]?.zone !== 'battlefield') return;
+      untilEndOfTurn(c, [c.source], [{ k: 'addTypes', types: ['Creature'], subtypes: allCreatureTypes() }, { k: 'setPT', p: 2, t: 2 }]);
+    }, { text: '{1}: Até o fim do turno, esta ficha vira uma criatura 2/2 com todos os tipos de criatura. Continua sendo terreno.' }),
+  ],
+  image: img('Mutavault', null, null),
+});
+// lote4-d (Yuriko)
+/** Illusion 1/1 azul com voar (Moonblade Shinobi) */
+export const IllusionVoadora = token('Illusion 1/1', 'Illusion', ['Creature'], ['Illusion'], ['U'], 1, 1, keywords('flying'));

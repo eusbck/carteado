@@ -33,7 +33,8 @@ export interface Estado {
   /** onde cada pessoa arrumou as próprias permanentes */
   posicoes: Posicoes;
   /** cartas que alguém mostrou da mão, por alguns segundos */
-  reveladas: { id: number; de: number; def: string; para: number[] | 'todos' }[];
+  /** cartas mostradas na mesa: pelo menu Revelar (para quem escolheu) ou por um efeito que revela (efeito: true, para todos) */
+  reveladas: { id: number; de: number; def: string; para: number[] | 'todos'; efeito?: boolean }[];
   erro: string | null;
   decks: DeckResumo[];
   /** decisão já respondida, esperando a próxima vista (evita clique duplo) */
@@ -127,9 +128,18 @@ class Loja {
   private seqJogo = 0;
 
   constructor() {
-    ligarControle({ duracao: (ms) => this.quadros.duracao(ms), pular: () => this.quadros.pular() });
+    ligarControle({ duracao: (ms) => this.quadros.duracao(ms), estender: (ms) => this.quadros.estender(ms), pular: () => this.quadros.pular() });
     // aba escondida: nada anima, a mesa vai direto ao último quadro
     if (typeof document !== 'undefined') document.addEventListener('visibilitychange', () => { if (document.hidden) this.quadros.pular(); });
+  }
+
+  /** mostra cartas reveladas por cima da mesa; cada uma some sozinha depois de alguns segundos */
+  mostrarReveladas(de: number, defs: string[], para: number[] | 'todos', efeito = false): void {
+    if (!defs.length) return;
+    const novas = defs.map((def) => ({ id: ++this.seqRevelada, de, def, para, efeito }));
+    this.mudar({ reveladas: [...this.e.reveladas, ...novas].slice(-4) });
+    const ids = new Set(novas.map((r) => r.id));
+    setTimeout(() => this.mudar({ reveladas: this.e.reveladas.filter((r) => !ids.has(r.id)) }), 8000);
   }
 
   mudar(p: Partial<Estado>): void {
@@ -357,6 +367,8 @@ class Loja {
   }
 
   enviar(m: MsgCliente): void {
+    // quem assiste não age: cliques que mandariam jogadas (paradas, posições, respostas) não saem daqui
+    if (ehEspectador(this.e) && !['sair', 'ping', 'assistir', 'entrar', 'criar', 'retomar'].includes(m.t)) return;
     registrarEnvio(m);
     if (this.ws && this.ws.readyState === WebSocket.OPEN) this.ws.send(JSON.stringify(m));
     else this.fila.push(m);
@@ -393,7 +405,7 @@ class Loja {
         const relogio: ReferenciaRelogio = { agora: m.agora, recebidoEm: performance.now() };
         guardarSala({ codigo: m.sala.codigo, token: m.token });
         // o retrato escolhido antes (noutra sala) vale também nesta
-        const meu = m.sala.assentos[m.voce];
+        const meu = m.voce === null ? undefined : m.sala.assentos[m.voce];
         const guardado = avatarGuardado();
         if (guardado && meu?.tipo === 'humano' && (meu.avatar ?? null) !== guardado && !this.avatarMandado.has(m.sala.codigo)) {
           this.avatarMandado.add(m.sala.codigo);
@@ -423,12 +435,9 @@ class Loja {
         setTimeout(() => this.mudar({ avisos: this.e.avisos.filter((a) => a.id !== id) }), 7000);
         break;
       }
-      case 'revelada': {
-        const id = ++this.seqRevelada;
-        this.mudar({ reveladas: [...this.e.reveladas, { id, de: m.de, def: m.def, para: m.para }].slice(-3) });
-        setTimeout(() => this.mudar({ reveladas: this.e.reveladas.filter((r) => r.id !== id) }), 8000);
+      case 'revelada':
+        this.mostrarReveladas(m.de, [m.def], m.para);
         break;
-      }
       case 'pensando':
         this.mudar({ pensando: m.assento });
         break;
@@ -512,4 +521,9 @@ export function useLoja<T>(seletor: (e: Estado) => T = tudo as unknown as (e: Es
     return desfazer;
   }, []);
   return valor;
+}
+
+/** a pessoa assiste a sala sem assento (modo espectador) */
+export function ehEspectador(e: Estado): boolean {
+  return !!e.sala && e.voce === null;
 }

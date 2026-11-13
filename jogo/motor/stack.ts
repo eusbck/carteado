@@ -21,6 +21,8 @@ import { ehAventura, ehDividida, ehPresagio, FACE_AMBAS, facesConjuraveis, metad
 import type { Answer, Chars, Duration, GameObject, GameState, ManaSymbol, Mod, ObjId, PlayerId, StackInfo, TargetRef, ZoneName } from './types.ts';
 import { HEXPROOF_FROM_ABILITIES, sourceIsAbility, splitSecondActive } from './controle-base.ts';
 import { equiparComoInstantanea, equiparPorZero, registraAtivacao, segundoDivididoNaPilha } from './equipar.ts';
+import { escolherModosComPatinhas } from './patinhas.ts';
+import { forcaParaHarmonizar, reducaoHarmonizar } from './harmonizar.ts';
 
 // ---------------------------------------------------------------------------
 // Alvos (CR 115, 608.2b)
@@ -225,6 +227,12 @@ export function* chooseModes(g: G, player: PlayerId, ms: ModeSpec, source: ObjId
     const possible = (m.targets ?? []).every((t) => (t.min ?? 1) === 0 || candidateTargets(g, t, player, source, event).length >= (t.min ?? 1));
     return { id: String(i), label: m.text, disabled: !possible || (ms.available ? !ms.available(ctx, i) : false) };
   });
+  // lote4-c: modos com patinhas (CR 700.2i), escolhidos um por vez até o total (motor/patinhas.ts)
+  if (ms.pawprints) {
+    const escolhidos = yield* escolherModosComPatinhas(g, player, ms, (i) => !items[i].disabled, label);
+    ms.onChosen?.(ctx, escolhidos);
+    return escolhidos;
+  }
   // "você pode escolher o mesmo modo mais de uma vez" (CR 700.2d): uma escolha por vez, exatamente `max` modos
   if (ms.repeat) {
     const total = forceMax ?? (typeof ms.max === 'function' ? ms.max(ctx) : ms.max);
@@ -465,7 +473,7 @@ function* castInner(g: G, player: PlayerId, cardId: ObjId, method: CastMethod): 
   // CR 107.3b: sem pagar o custo de mana, o X do custo de mana só pode ser 0; X de custos
   // adicionais (pagar X de vida, sacrificar X…) continua sendo escolhido (ruling de Toxic Deluge)
   if ((manaHasX && !free) || (otherHasX && !manaHasX)) {
-    const cap = sp?.xMax ? sp.xMax({ g, you: player, source: spellId }) : maxX(g, player, spellId);
+    const cap = sp?.xMax ? sp.xMax({ g, you: player, source: spellId }) : maxX(g, player, spellId) + (method.alt?.harmonize ? forcaParaHarmonizar(g, player, spellId) : 0);
     info.x = yield* chooseNumber(g, player, `${label}: escolha o valor de X`, 0, Math.max(0, cap));
   }
   // 601.2c: alvos
@@ -515,6 +523,8 @@ function* castInner(g: G, player: PlayerId, cardId: ObjId, method: CastMethod): 
       }
     }
   }
+  // lote4-c: harmonizar (CR 702.180a-b): virar até uma criatura sua reduz o genérico pela força dela
+  if (method.alt?.harmonize) cost = yield* reducaoHarmonizar(g, player, cost, label, spellId);
   // Convoke (CR 702.51a): virar criaturas suas paga {1} ou uma mana da cor de cada uma, depois do custo total (ruling)
   if (f?.convoke || hooks(g, 'spellsHaveConvoke').some((h) => h.fn(h.ctx, player, spellId, chars(g, spellId)))) {
     const criaturas = g.state.zones.battlefield.filter((id) => controllerOf(g, id) === player && isType(g, id, 'Creature') && !g.state.objects[id].tapped);
