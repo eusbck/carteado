@@ -272,6 +272,8 @@ class Loja {
   }
 
   enviar(m: MsgCliente): void {
+    // quem assiste não age: cliques que mandariam jogadas (paradas, posições, respostas) não saem daqui
+    if (ehEspectador(this.e) && !['sair', 'ping', 'assistir', 'entrar', 'criar', 'retomar'].includes(m.t)) return;
     if (this.ws && this.ws.readyState === WebSocket.OPEN) this.ws.send(JSON.stringify(m));
     else this.fila.push(m);
   }

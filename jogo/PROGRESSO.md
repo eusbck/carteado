@@ -1,5 +1,22 @@
 # Progresso
 
+## Modo espectador — 12/11/2026 (Dadinho, com o Claude)
+
+Amigos com o código e a senha da sala assistem sem ocupar assento (desenho e plano em `docs/superpowers/`).
+
+- **Servidor:** mensagem `assistir`; os espectadores ficam em `DadosSala.espectadores` (nome e token, voltam pelo
+  `retomar`, inclusive depois de reiniciar); recebem a sala com `voce: null` e a vista neutra do motor
+  (`buildView(g, null)`: sem mãos, grimórios, cartas viradas para baixo nem decisão); não recebem chat nem cartas
+  mostradas; toda outra mensagem volta "Espectadores só assistem". Nunca recusados por sala cheia ou partida
+  começada; teto de 8 por sala. `SalaPublica.espectadores` lista quem assiste. Testes: `testes/espectador.test.ts`.
+- **Cliente:** botão "Assistir" na entrada da sala; saguão só de leitura; mesa sem mão, chat, paradas, ajuste manual
+  e conceder, com "Ver de baixo" para escolher quem fica embaixo (começa pelo anfitrião); "Assistindo: …" no saguão e
+  na lateral da mesa para todos. A loja não manda jogadas de quem assiste.
+- **Envio semanal:** `_semanal/enviar-semanal.cmd` passa o pacote por `refs/semanal/<branch>` antes do push (com a
+  branch aberta no GitHub Desktop o Git recusava atualizá-la, e o GitHub ficava no pacote antigo).
+- **Falta conferir na mesa:** a aparência do modo espectador (esta cópia não tem as imagens e o `vite build` não
+  roda aqui).
+
 ## Semanal — 10 e 11/11/2026 (Dadinho, com o Claude)
 
 Feito nesta conversa, porque as rodadas automáticas da tarefa semanal terminavam em 3 segundos sem trabalhar.

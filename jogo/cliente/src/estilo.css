@@ -1289,3 +1289,9 @@ img.mini { width: 40px; aspect-ratio: 63 / 88; object-fit: cover; border-radius:
 [data-desempenho] .fases.esperando-voce .fases-acao .botao.cheio { animation: none; }
 /* o halo do atacante que dá para bloquear fica parado */
 [data-desempenho] .realce-bloqueavel::after { animation: none; opacity: .8; }
+
+/* modo espectador: o selo "Você está assistindo" e o seletor de quem fica embaixo, na lateral da mesa */
+.assistindo { display: flex; flex-direction: column; gap: 6px; padding: 8px 10px; }
+.assistindo select { max-width: 100%; }
+.mesa.recolhida .assistindo { display: none; }
+.espectadores { margin: 4px 0 0; font-size: 0.85em; }
