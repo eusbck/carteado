@@ -1,0 +1,7 @@
+Use case: identity-preserve. Asset: ONE finished landscape banner/background for a Magic Commander game table.
+Input 1 is the exact identity, costume, anatomy and environment reference. Faithfully preserve the main character; expand and recompose the supplied art into a coherent cinematic wide scene.
+Composition: 16:9 landscape, hero large within the central 55%, head at x=50%, y=28%, body at least chest/waist-up; atmosphere fills both edges. Lower third calmer for game cards. Ideally 2048x1152, or at least 1672x941 at approximately 16:9.
+Opaque full-bleed background. No text or card title, no lettering except a character's existing emblem, no card frame, no UI, no added watermark. One banner only.
+Deck: LandReanimator.
+Subject and setting: Sin, Spira's Punishment, a colossal ancient whale-like leviathan with a massive wedge-shaped armored head, layered dark slate-green stone-like plates with swirling engraved patterns, a ruined spire structure atop its brow, and huge jagged fin-like wings ending in claws. It rises through stormy night clouds with a pale full moon. Place the head at x=50%, y=28%, the body filling the frame.
+Style/medium: illustrated comic-ink fantasy game art like the reference, with fine linework, muted teal-grey palette, pale moonlight and drifting sparks. Calm cloudy lower third.

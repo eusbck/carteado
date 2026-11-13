@@ -76,6 +76,8 @@ const SALAS: MesaSalva[] = [
   // aberturas: nomes de deck longos, com emoji e com "//" no comandante
   { codigo: 'VSCIN', nomes: ['Ana', 'Bruno', 'Carolina', 'Dani', 'Eduarda'], decks: [2, 28, 10, 30, 6], minRodada: null },
   { codigo: 'VSSEI', nomes: ['Ana', 'Bruno', 'Carolina', 'Dani', 'Eduarda', LONGO], decks: [9, 32, 10, 17, 18, 34], minRodada: null },
+  // abertura com os decks do lote 4 (Sin, Voja, Sephiroth, Yuriko, Hearthhull) e Inalla: o rosto de cada um no meio da faixa
+  { codigo: 'VSLOTE4', nomes: ['Ana', 'Bruno', 'Carolina', 'Dani', 'Eduarda', 'Fábio'], decks: [41, 42, 43, 44, 45, 40], minRodada: null },
 ];
 
 function gravarSala(banco: Banco, s: MesaSalva, game: Game, config: GameConfig): void {
@@ -431,14 +433,14 @@ async function mesas(): Promise<void> {
 }
 
 async function aberturas(): Promise<void> {
-  for (const [codigo, n] of [['VSCIN', 5], ['VSSEI', 6]] as const) {
+  for (const [codigo, n, rotulo] of [['VSCIN', 5, '5'], ['VSSEI', 6, '6'], ['VSLOTE4', 6, '6-lote4']] as const) {
     for (const t of TELAS) {
       let ok = false;
       // cada contexto novo vê a abertura de novo (ela fica marcada no sessionStorage da página)
       for (let tentativa = 0; tentativa < 3 && !ok; tentativa++) {
-        const { c, p } = await abrirSalva(codigo, `vs${n}-${t.width}`, t);
-        ok = await fotoAbertura(p, `e-abertura-${n}-jogadores-${t.width}`);
-        if (ok && n === 6) {
+        const { c, p } = await abrirSalva(codigo, `vs${rotulo}-${t.width}`, t);
+        ok = await fotoAbertura(p, `e-abertura-${rotulo}-jogadores-${t.width}`);
+        if (ok && codigo === 'VSSEI') {
           await p.locator('.abertura').waitFor({ state: 'detached', timeout: 10000 });
           await p.getByText('Mão inicial').waitFor({ timeout: 60000 });
           await esperarFundos(p);

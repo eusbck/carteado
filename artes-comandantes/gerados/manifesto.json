@@ -1407,6 +1407,221 @@
         ],
         "prompt": "Use case: identity-preserve. Asset: ONE square transparent bust portrait icon for a Magic Commander game medalion.\nInput 1 is the exact character's identity, costume, anatomy and color reference. Input 2 is ONLY a reference for existing game portrait framing and finish, not a face, armor or person to reproduce.\nCreate a close chest-up bust faithful to Input 1, preserving exact facial/head/helmet features, colors and costume. Keep complete head/helmet and readable face centered around x=50%, y=30%, wide shoulders in the lower half, transparent margins around the entire silhouette. Readable at 80px, ideally 1024x1024.\nGenuinely transparent alpha background outside the bust. Clean anti-aliased edges. No scenery or rectangular fill, no circular frame, no ring, no badge, no aura, no card border, no text or watermark. One icon only.\nDeck: Wizard's Chess.\nSubject and setting: Inalla, the same regal adult woman with medium-brown skin, sculpted cheekbones, dark eyes, purple-magenta eye makeup, and sleek dark hair drawn tightly back from her forehead. Preserve her pale blue disc earrings, deep royal-blue high-collared cape, black fitted ritual clothing, angular dark metallic breastplate with bronze-gold fastenings, metal upper-arm bands, and long sculpted silver-bronze bracers. Her right hand is raised in a precise spellcasting gesture. A shadowy blue stone ritual chamber surrounds her, with bowed hooded acolytes wearing dark robes, magenta sleeves and metallic shoulder pieces, low cyan mist and tiny suspended blue magical fragments.\nStyle/medium: polished realistic painterly fantasy game illustration with deep indigo fabric, restrained bronze armor highlights, cool cyan rim light and magenta reflected accents. Frame her complete head, earrings, cape collar and armored upper chest; omit the raised arm from this close portrait.\nRender only the character head and chest with restrained light inspired by the scene; omit all scenery. Small identity props can stay close to the chest inside the silhouette."
       }
+    },
+    {
+      "ordem": 41,
+      "id": "hearthhull",
+      "deck": "Jund Lands Midrange",
+      "nome": "Hearthhull",
+      "aura": "#4fd0b0",
+      "comandantes": [
+        "Hearthhull, the Worldseed"
+      ],
+      "imagensNoJogo": [
+        "6b913e79-a9f6-44d4-bb37-c4f6f66b8151"
+      ],
+      "referencias": [
+        {
+          "arquivo": "artes-comandantes/41 - Hearthhull, the Worldseed (Jund Lands Midrange).png",
+          "comandante": "Hearthhull, the Worldseed",
+          "artista": ""
+        }
+      ],
+      "banner": {
+        "original": "artes-comandantes/gerados/hearthhull-banner.png",
+        "tamanhoOriginal": [
+          1672,
+          941
+        ],
+        "destinos": [
+          "jogo/gerado/fundos/6b913e79-a9f6-44d4-bb37-c4f6f66b8151.webp"
+        ],
+        "prompt": "Use case: identity-preserve. Asset: ONE finished landscape banner/background for a Magic Commander game table.\nInput 1 is the exact identity, costume, anatomy and environment reference. Faithfully preserve the main character; expand and recompose the supplied art into a coherent cinematic wide scene.\nComposition: 16:9 landscape, hero large within the central 55%, head at x=50%, y=28%, body at least chest/waist-up; atmosphere fills both edges. Lower third calmer for game cards. Ideally 2048x1152, or at least 1672x941 at approximately 16:9.\nOpaque full-bleed background. No text or card title, no lettering except a character's existing emblem, no card frame, no UI, no added watermark. One banner only.\nDeck: Jund Lands Midrange.\nSubject and setting: Hearthhull, the Worldseed, a colossal living seed-ship of organic teal-green carapace with ribbed bone-like hull plates, a crown of serrated fern-like fins at its prow and glowing cyan pod lights along its flanks, falling prow-first toward a lush green planet. The ship's prow and fin crown play the role of the head: place the prow crown at x=50%, y=28%, the hull filling the center. Keep the violet nebula sky, the cratered moon, small seed-pods drifting in a swarm and the curved planet horizon with green continents and orange molten fissures.\nStyle/medium: polished realistic sci-fi fantasy game illustration, violet and magenta space haze, teal-green biomechanical hull, cyan lights, warm orange hints of molten land. Simplify the lower third into soft cloud and planet haze.\n"
+      },
+      "icone": {
+        "original": "artes-comandantes/gerados/hearthhull-icone.png",
+        "tamanhoOriginal": [
+          1254,
+          1254
+        ],
+        "destinos": [
+          "jogo/cliente/src/imagens/avatares/hearthhull.webp",
+          "jogo/cliente/src/imagens/avatares/mesa/hearthhull.webp"
+        ],
+        "prompt": "Use case: identity-preserve. Asset: ONE square transparent bust portrait icon for a Magic Commander game medalion.\nInput 1 is the exact character's identity, costume, anatomy and color reference. Input 2 is ONLY a reference for existing game portrait framing and finish, not a face, armor or person to reproduce.\nCreate a close chest-up bust faithful to Input 1, preserving exact facial/head/helmet features, colors and costume. Keep complete head/helmet and readable face centered around x=50%, y=30%, wide shoulders in the lower half, transparent margins around the entire silhouette. Leave a clearly visible 8% TRANSPARENT SAFETY MARGIN ON ALL FOUR SIDES: the entire head and finished lower bust edge must fit inside x=8%-92%, y=8%-92%. Every pixel in the outer 6% border must have alpha=0. Readable at 80px, ideally 1024x1024.\nGenuinely transparent alpha background outside the subject. Clean anti-aliased edges. No scenery or rectangular fill, no circular frame, no ring, no badge, no aura, no card border, no text or watermark. One icon only.\nDeck: Jund Lands Midrange.\nSubject: Hearthhull, the Worldseed, a living seed-ship with teal-green organic ribbed carapace, serrated fern-like fin crown and glowing cyan pod lights. As it has no face, render the upper hull seen three-quarter from the front: the crown of fins on top (like a head), the prow and the first two glowing cyan pods filling the medallion, finished in a clean rounded silhouette at the bottom.\nRender only the ship fragment with restrained teal and violet light; omit planets, stars and scenery.\n"
+      }
+    },
+    {
+      "ordem": 42,
+      "id": "sephiroth",
+      "deck": "Sephiroth, Fabled SOLDIER",
+      "nome": "Sephiroth",
+      "aura": "#8fa0d8",
+      "comandantes": [
+        "Sephiroth, Fabled SOLDIER // Sephiroth, One-Winged Angel"
+      ],
+      "imagensNoJogo": [
+        "83c82209-47d5-4c4c-b8ec-96ab907e15d3"
+      ],
+      "referencias": [
+        {
+          "arquivo": "artes-comandantes/42 - Sephiroth, Fabled SOLDIER (Sephiroth, Fabled SOLDIER).png",
+          "comandante": "Sephiroth, Fabled SOLDIER // Sephiroth, One-Winged Angel",
+          "artista": ""
+        }
+      ],
+      "banner": {
+        "original": "artes-comandantes/gerados/sephiroth-banner.png",
+        "tamanhoOriginal": [
+          1672,
+          941
+        ],
+        "destinos": [
+          "jogo/gerado/fundos/83c82209-47d5-4c4c-b8ec-96ab907e15d3.webp"
+        ],
+        "prompt": "Use case: identity-preserve. Asset: ONE finished landscape banner/background for a Magic Commander game table.\nInput 1 is the exact identity, costume, anatomy and environment reference. Faithfully preserve the main character; expand and recompose the supplied art into a coherent cinematic wide scene.\nComposition: 16:9 landscape, hero large within the central 55%, head at x=50%, y=28%, body at least chest/waist-up; atmosphere fills both edges. Lower third calmer for game cards. Ideally 2048x1152, or at least 1672x941 at approximately 16:9.\nOpaque full-bleed background. No text or card title, no lettering except a character's existing emblem, no card frame, no UI, no added watermark. One banner only.\nDeck: Sephiroth, Fabled SOLDIER.\nSubject and setting: Sephiroth, the same tall adult swordsman with very long straight silver hair parted in the middle with long bangs, pale skin, piercing green slit-pupil eyes and a cold confident expression. Preserve his long black leather coat with silver pauldrons, black chest straps and his raised arm holding the extremely long thin katana. A single huge black feathered wing rises behind him, its feathers catching iridescent blue, violet and gold light.\nStyle/medium: polished painterly anime-influenced fantasy game illustration, deep black and blue-violet palette with golden accents; the scene expands into a dark sky with drifting black feathers and faint flames on the far edges. Calm darker lower third.\n"
+      },
+      "icone": {
+        "original": "artes-comandantes/gerados/sephiroth-icone.png",
+        "tamanhoOriginal": [
+          1254,
+          1254
+        ],
+        "destinos": [
+          "jogo/cliente/src/imagens/avatares/sephiroth.webp",
+          "jogo/cliente/src/imagens/avatares/mesa/sephiroth.webp"
+        ],
+        "prompt": "Use case: identity-preserve. Asset: ONE square transparent bust portrait icon for a Magic Commander game medalion.\nInput 1 is the exact character's identity, costume, anatomy and color reference. Input 2 is ONLY a reference for existing game portrait framing and finish, not a face, armor or person to reproduce.\nCreate a close chest-up bust faithful to Input 1, preserving exact facial/head/helmet features, colors and costume. Keep complete head/helmet and readable face centered around x=50%, y=30%, wide shoulders in the lower half, transparent margins around the entire silhouette. Leave a clearly visible 8% TRANSPARENT SAFETY MARGIN ON ALL FOUR SIDES: the entire head and finished lower bust edge must fit inside x=8%-92%, y=8%-92%. Every pixel in the outer 6% border must have alpha=0. Readable at 80px, ideally 1024x1024.\nGenuinely transparent alpha background outside the subject. Clean anti-aliased edges. No scenery or rectangular fill, no circular frame, no ring, no badge, no aura, no card border, no text or watermark. One icon only.\nDeck: Sephiroth, Fabled SOLDIER.\nSubject: Sephiroth, adult swordsman with very long straight silver hair with long middle-parted bangs, pale skin, glowing green slit-pupil eyes and a cold confident expression, black leather high-collared coat with silver pauldrons and black chest straps; a hint of black feathers behind one shoulder inside the silhouette.\nRender only head and chest with cool blue rim light; omit the sword arm and all scenery.\n"
+      }
+    },
+    {
+      "ordem": 43,
+      "id": "voja",
+      "deck": "Voja",
+      "nome": "Voja",
+      "aura": "#e0a54a",
+      "comandantes": [
+        "Voja, Jaws of the Conclave"
+      ],
+      "imagensNoJogo": [
+        "07964ab9-77c5-4ce6-970f-e47b9492baeb"
+      ],
+      "referencias": [
+        {
+          "arquivo": "artes-comandantes/43 - Voja, Jaws of the Conclave (Voja).png",
+          "comandante": "Voja, Jaws of the Conclave",
+          "artista": ""
+        }
+      ],
+      "banner": {
+        "original": "artes-comandantes/gerados/voja-banner.png",
+        "tamanhoOriginal": [
+          1672,
+          941
+        ],
+        "destinos": [
+          "jogo/gerado/fundos/07964ab9-77c5-4ce6-970f-e47b9492baeb.webp"
+        ],
+        "prompt": "Use case: identity-preserve. Asset: ONE finished landscape banner/background for a Magic Commander game table.\nInput 1 is the exact identity, costume, anatomy and environment reference. Faithfully preserve the main character; expand and recompose the supplied art into a coherent cinematic wide scene.\nComposition: 16:9 landscape, hero large within the central 55%, head at x=50%, y=28%, body at least chest/waist-up; atmosphere fills both edges. Lower third calmer for game cards. Ideally 2048x1152, or at least 1672x941 at approximately 16:9.\nOpaque full-bleed background. No text or card title, no lettering except a character's existing emblem, no card frame, no UI, no added watermark. One banner only.\nDeck: Voja.\nSubject and setting: Voja, Jaws of the Conclave, a huge cream-white shaggy wolf with red eyes, snarling with open jaws, wearing an ornate gold-and-bronze face mask on its brow with harness straps, and gold scale armor on its shoulders. Place the wolf's masked head at x=50%, y=28%, front legs planted on a stone ledge. Behind, an elf archer in a green cloak and ruined vine-covered temple arches; flames and embers on both sides.\nStyle/medium: polished realistic painterly fantasy game illustration, warm amber firelight, cream fur, gold armor highlights, soft forest greens in the background. Keep the lower third calmer with stone steps and low smoke.\n"
+      },
+      "icone": {
+        "original": "artes-comandantes/gerados/voja-icone.png",
+        "tamanhoOriginal": [
+          1254,
+          1254
+        ],
+        "destinos": [
+          "jogo/cliente/src/imagens/avatares/voja.webp",
+          "jogo/cliente/src/imagens/avatares/mesa/voja.webp"
+        ],
+        "prompt": "Use case: identity-preserve. Asset: ONE square transparent bust portrait icon for a Magic Commander game medalion.\nInput 1 is the exact character's identity, costume, anatomy and color reference. Input 2 is ONLY a reference for existing game portrait framing and finish, not a face, armor or person to reproduce.\nCreate a close chest-up bust faithful to Input 1, preserving exact facial/head/helmet features, colors and costume. Keep complete head/helmet and readable face centered around x=50%, y=30%, wide shoulders in the lower half, transparent margins around the entire silhouette. Leave a clearly visible 8% TRANSPARENT SAFETY MARGIN ON ALL FOUR SIDES: the entire head and finished lower bust edge must fit inside x=8%-92%, y=8%-92%. Every pixel in the outer 6% border must have alpha=0. Readable at 80px, ideally 1024x1024.\nGenuinely transparent alpha background outside the subject. Clean anti-aliased edges. No scenery or rectangular fill, no circular frame, no ring, no badge, no aura, no card border, no text or watermark. One icon only.\nDeck: Voja.\nSubject: Voja, a huge cream-white shaggy wolf with red eyes and snarling open jaws, wearing an ornate gold-and-bronze brow mask with harness straps and gold scale shoulder armor. Head and upper chest/shoulders facing the viewer, mask fully visible.\nRender only the wolf head and chest with warm amber rim light; omit the elf, fire and scenery.\n"
+      }
+    },
+    {
+      "ordem": 44,
+      "id": "yuriko",
+      "deck": "Yuriko",
+      "nome": "Yuriko",
+      "aura": "#9a6fd8",
+      "comandantes": [
+        "Yuriko, the Tiger's Shadow"
+      ],
+      "imagensNoJogo": [
+        "7ad78b7f-4b29-4df2-9e43-959612171e10"
+      ],
+      "referencias": [
+        {
+          "arquivo": "artes-comandantes/44 - Yuriko, the Tiger's Shadow (Yuriko).png",
+          "comandante": "Yuriko, the Tiger's Shadow",
+          "artista": ""
+        }
+      ],
+      "banner": {
+        "original": "artes-comandantes/gerados/yuriko-banner.png",
+        "tamanhoOriginal": [
+          1672,
+          941
+        ],
+        "destinos": [
+          "jogo/gerado/fundos/7ad78b7f-4b29-4df2-9e43-959612171e10.webp"
+        ],
+        "prompt": "Use case: identity-preserve. Asset: ONE finished landscape banner/background for a Magic Commander game table.\nInput 1 is the exact identity, costume, anatomy and environment reference. Faithfully preserve the main character; expand and recompose the supplied art into a coherent cinematic wide scene.\nComposition: 16:9 landscape, hero large within the central 55%, head at x=50%, y=28%, body at least chest/waist-up; atmosphere fills both edges. Lower third calmer for game cards. Ideally 2048x1152, or at least 1672x941 at approximately 16:9.\nOpaque full-bleed background. No text or card title, no lettering except a character's existing emblem, no card frame, no UI, no added watermark. One banner only.\nDeck: yuriko.\nSubject and setting: Yuriko, the Tiger's Shadow, the same young adult ninja woman with pale skin, dark eyes, black hair tied up in a topknot with loose strands framing her face, calm confident expression. Preserve her layered dark navy and black ninja garments with violet sheen, black armored bracers and greaves, rope belt with an ornate bronze tiger-head buckle, and a long chain-sickle with a curved claw-like hook. She crouches on a curved temple rooftop at dusk, a pagoda roof and dramatic violet-pink clouds behind her.\nStyle/medium: polished realistic painterly fantasy game illustration, violet dusk sky, deep navy fabrics, blue blade glints, soft pink light. Simplify the lower third into roof tiles and mist.\n"
+      },
+      "icone": {
+        "original": "artes-comandantes/gerados/yuriko-icone.png",
+        "tamanhoOriginal": [
+          1254,
+          1254
+        ],
+        "destinos": [
+          "jogo/cliente/src/imagens/avatares/yuriko.webp",
+          "jogo/cliente/src/imagens/avatares/mesa/yuriko.webp"
+        ],
+        "prompt": "Use case: identity-preserve. Asset: ONE square transparent bust portrait icon for a Magic Commander game medalion.\nInput 1 is the exact character's identity, costume, anatomy and color reference. Input 2 is ONLY a reference for existing game portrait framing and finish, not a face, armor or person to reproduce.\nCreate a close chest-up bust faithful to Input 1, preserving exact facial/head/helmet features, colors and costume. Keep complete head/helmet and readable face centered around x=50%, y=30%, wide shoulders in the lower half, transparent margins around the entire silhouette. Leave a clearly visible 8% TRANSPARENT SAFETY MARGIN ON ALL FOUR SIDES: the entire head and finished lower bust edge must fit inside x=8%-92%, y=8%-92%. Every pixel in the outer 6% border must have alpha=0. Readable at 80px, ideally 1024x1024.\nGenuinely transparent alpha background outside the subject. Clean anti-aliased edges. No scenery or rectangular fill, no circular frame, no ring, no badge, no aura, no card border, no text or watermark. One icon only.\nDeck: yuriko.\nSubject: Yuriko, young adult ninja woman with pale skin, dark eyes, black hair in a topknot with loose strands framing her face, calm confident expression, dark navy-black layered ninja garments with violet sheen, high collar, and a hint of the bronze tiger-head buckle at the bottom edge.\nRender only head and chest with violet dusk rim light; omit weapons and scenery.\n"
+      }
+    },
+    {
+      "ordem": 45,
+      "id": "sin",
+      "deck": "LandReanimator",
+      "nome": "Sin",
+      "aura": "#6fa8a0",
+      "comandantes": [
+        "Sin, Spira's Punishment"
+      ],
+      "imagensNoJogo": [
+        "ce15bf1d-debf-4e0f-a69d-a57619d4b0ee"
+      ],
+      "referencias": [
+        {
+          "arquivo": "artes-comandantes/45 - Sin, Spira's Punishment (LandReanimator).png",
+          "comandante": "Sin, Spira's Punishment",
+          "artista": ""
+        }
+      ],
+      "banner": {
+        "original": "artes-comandantes/gerados/sin-banner.png",
+        "tamanhoOriginal": [
+          1672,
+          941
+        ],
+        "destinos": [
+          "jogo/gerado/fundos/ce15bf1d-debf-4e0f-a69d-a57619d4b0ee.webp"
+        ],
+        "prompt": "Use case: identity-preserve. Asset: ONE finished landscape banner/background for a Magic Commander game table.\nInput 1 is the exact identity, costume, anatomy and environment reference. Faithfully preserve the main character; expand and recompose the supplied art into a coherent cinematic wide scene.\nComposition: 16:9 landscape, hero large within the central 55%, head at x=50%, y=28%, body at least chest/waist-up; atmosphere fills both edges. Lower third calmer for game cards. Ideally 2048x1152, or at least 1672x941 at approximately 16:9.\nOpaque full-bleed background. No text or card title, no lettering except a character's existing emblem, no card frame, no UI, no added watermark. One banner only.\nDeck: LandReanimator.\nSubject and setting: Sin, Spira's Punishment, a colossal ancient whale-like leviathan with a massive wedge-shaped armored head, layered dark slate-green stone-like plates with swirling engraved patterns, a ruined spire structure atop its brow, and huge jagged fin-like wings ending in claws. It rises through stormy night clouds with a pale full moon. Place the head at x=50%, y=28%, the body filling the frame.\nStyle/medium: illustrated comic-ink fantasy game art like the reference, with fine linework, muted teal-grey palette, pale moonlight and drifting sparks. Calm cloudy lower third.\n"
+      },
+      "icone": {
+        "original": "artes-comandantes/gerados/sin-icone.png",
+        "tamanhoOriginal": [
+          1254,
+          1254
+        ],
+        "destinos": [
+          "jogo/cliente/src/imagens/avatares/sin.webp",
+          "jogo/cliente/src/imagens/avatares/mesa/sin.webp"
+        ],
+        "prompt": "Use case: identity-preserve. Asset: ONE square transparent bust portrait icon for a Magic Commander game medalion.\nInput 1 is the exact character's identity, costume, anatomy and color reference. Input 2 is ONLY a reference for existing game portrait framing and finish, not a face, armor or person to reproduce.\nCreate a close chest-up bust faithful to Input 1, preserving exact facial/head/helmet features, colors and costume. Keep complete head/helmet and readable face centered around x=50%, y=30%, wide shoulders in the lower half, transparent margins around the entire silhouette. Leave a clearly visible 8% TRANSPARENT SAFETY MARGIN ON ALL FOUR SIDES: the entire head and finished lower bust edge must fit inside x=8%-92%, y=8%-92%. Every pixel in the outer 6% border must have alpha=0. Readable at 80px, ideally 1024x1024.\nGenuinely transparent alpha background outside the subject. Clean anti-aliased edges. No scenery or rectangular fill, no circular frame, no ring, no badge, no aura, no card border, no text or watermark. One icon only.\nDeck: LandReanimator.\nSubject: Sin, a colossal leviathan with a massive wedge-shaped armored head, dark slate-green stone-like plates with swirling engraved patterns and a small ruined spire atop its brow. Show the head in three-quarter view with the front of the neck and upper body below it, as a bust.\nRender only the creature head and upper body with fine ink linework and pale moonlit rim light; omit clouds, moon and scenery.\n"
+      }
     }
   ],
   "pendencias": [
@@ -1599,6 +1814,5 @@
         }
       ]
     }
-  ],
-  "decisaoUsuario": "Manter os arquivos ainda recusados pendentes para geração interna; não substituir por recortes, imagens prontas, outra API ou outro modelo"
+  ]
 }

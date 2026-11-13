@@ -1,0 +1,7 @@
+Use case: identity-preserve. Asset: ONE square transparent bust portrait icon for a Magic Commander game medalion.
+Input 1 is the exact character's identity, costume, anatomy and color reference. Input 2 is ONLY a reference for existing game portrait framing and finish, not a face, armor or person to reproduce.
+Create a close chest-up bust faithful to Input 1, preserving exact facial/head/helmet features, colors and costume. Keep complete head/helmet and readable face centered around x=50%, y=30%, wide shoulders in the lower half, transparent margins around the entire silhouette. Leave a clearly visible 8% TRANSPARENT SAFETY MARGIN ON ALL FOUR SIDES: the entire head and finished lower bust edge must fit inside x=8%-92%, y=8%-92%. Every pixel in the outer 6% border must have alpha=0. Readable at 80px, ideally 1024x1024.
+Genuinely transparent alpha background outside the subject. Clean anti-aliased edges. No scenery or rectangular fill, no circular frame, no ring, no badge, no aura, no card border, no text or watermark. One icon only.
+Deck: Jund Lands Midrange.
+Subject: Hearthhull, the Worldseed, a living seed-ship with teal-green organic ribbed carapace, serrated fern-like fin crown and glowing cyan pod lights. As it has no face, render the upper hull seen three-quarter from the front: the crown of fins on top (like a head), the prow and the first two glowing cyan pods filling the medallion, finished in a clean rounded silhouette at the bottom.
+Render only the ship fragment with restrained teal and violet light; omit planets, stars and scenery.

@@ -1,0 +1,37 @@
+Sin - image generation log
+Tool: built-in image_gen only. No external generation API, drawing, cropping, or image editing.
+Input 1: refs/45-sin.png (character). Input 2 for icon only: refs/moldura-icone.png (framing/finish).
+All calls used the exact corresponding prompt file, unchanged. No prompt rewording.
+Banner: 1 generation, 0 retries, 0 refusals. transparent_background=false.
+Banner validation: 1672 x 941 PNG; hasAlpha=false; fully opaque.
+Banner source: C:\Users\icaio\.codex\generated_images\01a1d6d8-0f60-7a63-bee0-3acd4ee9cceb\exec-24fd8d63-9f1e-4767-ab35-89223b17c651.png
+Banner output: C:\Users\icaio\AppData\Local\Temp\claude\b47dc424cd7f8a08\73039e94-dbee-4c2f-bd87-9ea96ba3b9be\scratchpad\saida\sin-banner.png
+Icon: 2 generations, 1 quality retry, 0 refusals. transparent_background=true on both calls.
+Icon retry reason: first icon had real alpha, but residual nontransparent pixels violated the requested safety margins. Repeated once with the same exact prompt.
+Final icon validation: 1254 x 1254 PNG; hasAlpha=true; alpha range 0-255; 755894 fully transparent pixels out of 1572516.
+Remaining limitation: requested 8% transparent safety margins and a fully transparent outer 6% border were not fully achieved. The final outer 6% border contains 11752 pixels with alpha > 0 (first attempt: 12932). No manual edits were applied.
+Icon source: C:\Users\icaio\.codex\generated_images\01a1d6d8-0f60-7a63-bee0-3acd4ee9cceb\exec-197db6f8-2d02-4719-be7b-c5dd402f18e5.png
+Icon output: C:\Users\icaio\AppData\Local\Temp\claude\b47dc424cd7f8a08\73039e94-dbee-4c2f-bd87-9ea96ba3b9be\scratchpad\saida\sin-icone.png
+Transparency retry for opacity: not needed; both icon generations had transparent pixels.
+Moderation refusals: 0. Moderation retries: 0.
+banner attempt 1: 2026-11-13T21:39:10.053Z to 2026-11-13T21:39:49.044Z; generated.
+icon attempt 1: 2026-11-13T21:42:14.368Z to 2026-11-13T21:43:25.241Z; generated.
+icon attempt 2: 2026-11-13T21:45:05.328Z to 2026-11-13T21:46:06.897Z; generated.
+
+FINAL BANNER PROMPT (verbatim from prompts/sin-banner.txt):
+Use case: identity-preserve. Asset: ONE finished landscape banner/background for a Magic Commander game table.
+Input 1 is the exact identity, costume, anatomy and environment reference. Faithfully preserve the main character; expand and recompose the supplied art into a coherent cinematic wide scene.
+Composition: 16:9 landscape, hero large within the central 55%, head at x=50%, y=28%, body at least chest/waist-up; atmosphere fills both edges. Lower third calmer for game cards. Ideally 2048x1152, or at least 1672x941 at approximately 16:9.
+Opaque full-bleed background. No text or card title, no lettering except a character's existing emblem, no card frame, no UI, no added watermark. One banner only.
+Deck: LandReanimator.
+Subject and setting: Sin, Spira's Punishment, a colossal ancient whale-like leviathan with a massive wedge-shaped armored head, layered dark slate-green stone-like plates with swirling engraved patterns, a ruined spire structure atop its brow, and huge jagged fin-like wings ending in claws. It rises through stormy night clouds with a pale full moon. Place the head at x=50%, y=28%, the body filling the frame.
+Style/medium: illustrated comic-ink fantasy game art like the reference, with fine linework, muted teal-grey palette, pale moonlight and drifting sparks. Calm cloudy lower third.
+
+FINAL ICON PROMPT (verbatim from prompts/sin-icone.txt):
+Use case: identity-preserve. Asset: ONE square transparent bust portrait icon for a Magic Commander game medalion.
+Input 1 is the exact character's identity, costume, anatomy and color reference. Input 2 is ONLY a reference for existing game portrait framing and finish, not a face, armor or person to reproduce.
+Create a close chest-up bust faithful to Input 1, preserving exact facial/head/helmet features, colors and costume. Keep complete head/helmet and readable face centered around x=50%, y=30%, wide shoulders in the lower half, transparent margins around the entire silhouette. Leave a clearly visible 8% TRANSPARENT SAFETY MARGIN ON ALL FOUR SIDES: the entire head and finished lower bust edge must fit inside x=8%-92%, y=8%-92%. Every pixel in the outer 6% border must have alpha=0. Readable at 80px, ideally 1024x1024.
+Genuinely transparent alpha background outside the subject. Clean anti-aliased edges. No scenery or rectangular fill, no circular frame, no ring, no badge, no aura, no card border, no text or watermark. One icon only.
+Deck: LandReanimator.
+Subject: Sin, a colossal leviathan with a massive wedge-shaped armored head, dark slate-green stone-like plates with swirling engraved patterns and a small ruined spire atop its brow. Show the head in three-quarter view with the front of the neck and upper body below it, as a bust.
+Render only the creature head and upper body with fine ink linework and pale moonlit rim light; omit clouds, moon and scenery.

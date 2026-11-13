@@ -41,7 +41,7 @@ export function urlArte(def: string): string | null {
 }
 
 /** o servidor manda as imagens com cache imutável: mudar a fonte dos fundos pede um número novo aqui */
-const VERSAO_FUNDO = 7;
+const VERSAO_FUNDO = 8;
 
 /** fundo da área do jogador: o feito para o deck (gerado/fundos) ou a arte do comandante ampliada */
 export function urlFundo(def: string): string | null {
@@ -61,7 +61,7 @@ const ROSTO_NO_FUNDO: Record<string, readonly [number, number]> = {
   'Auntie Ool, Cursewretch': [0.36, 0.26],
   'Quintorius, History Chaser': [0.49, 0.25],
   'Jace, Multiverse Architect': [0.48, 0.21],
-  'Rootha, Mastering the Moment': [0.43, 0.3],
+  'Rootha, Mastering the Moment': [0.27, 0.22],
   'Killian, Decisive Mentor': [0.67, 0.19],
   'Terra, Herald of Hope': [0.57, 0.19],
   'Dina, Essence Brewer': [0.49, 0.26],
@@ -69,10 +69,10 @@ const ROSTO_NO_FUNDO: Record<string, readonly [number, number]> = {
   'Jin Sakai, Ghost of Tsushima': [0.5, 0.25],
   'Sauron, Lord of the Rings': [0.48, 0.34],
   'Doctor Doom, King of Latveria': [0.5, 0.2],
-  "T'Challa, the Black Panther": [0.52, 0.37],
-  'Leonardo, the Balance': [0.5, 0.3],
+  "T'Challa, the Black Panther": [0.52, 0.33],
+  'Leonardo, the Balance': [0.5, 0.2],
   "Trostani, Selesnya's Voice": [0.46, 0.26],
-  'Invisible Woman': [0.39, 0.22],
+  'Invisible Woman': [0.39, 0.16],
   'Lathliss, Dragon Queen': [0.5, 0.15],
   'Rin and Seri, Inseparable // Rin and Seri, Inseparable': [0.54, 0.36],
   'Rin and Seri, Inseparable': [0.54, 0.36],
@@ -90,18 +90,24 @@ const ROSTO_NO_FUNDO: Record<string, readonly [number, number]> = {
   // banners feitos pelo Codex em 12/11/2026
   'Nelly Borca, Impulsive Accuser': [0.51, 0.17],
   'Hazel of the Rootbloom': [0.55, 0.26],
-  'Kotori, Pilot Prodigy': [0.42, 0.28],
+  'Kotori, Pilot Prodigy': [0.45, 0.21],
   'Giada, Font of Hope': [0.45, 0.13],
   'Ghalta, Primal Hunger': [0.57, 0.13],
   'Gonti, Canny Acquisitor': [0.48, 0.28],
   'Stella Lee, Wild Card': [0.54, 0.28],
   'Aminatou, Veil Piercer': [0.49, 0.19],
-  'Cloud, Ex-SOLDIER': [0.24, 0.21],
+  'Cloud, Ex-SOLDIER': [0.46, 0.19],
   'The Borg Queen': [0.51, 0.17],
-  'Commander Spock': [0.39, 0.34],
+  'Commander Spock': [0.5, 0.3],
   'Orvar, the All-Form': [0.49, 0.26],
   'The Ur-Dragon': [0.53, 0.28],
-  'Inalla, Archmage Ritualist': [0.41, 0.23],
+  'Inalla, Archmage Ritualist': [0.51, 0.2],
+  // lote 4, banners feitos pelo Codex em 13/11/2026 (Hearthhull é uma nave: a marca fica na proa)
+  'Hearthhull, the Worldseed': [0.5, 0.22],
+  'Sephiroth, Fabled SOLDIER // Sephiroth, One-Winged Angel': [0.5, 0.21],
+  'Voja, Jaws of the Conclave': [0.4, 0.33],
+  "Yuriko, the Tiger's Shadow": [0.46, 0.2],
+  "Sin, Spira's Punishment": [0.62, 0.17],
 };
 /** o rosto do comandante no fundo; sem marca (a arte da carta ampliada), o meio, um pouco acima */
 export const rostoNoFundo = (def: string): readonly [number, number] => ROSTO_NO_FUNDO[def] ?? [0.5, 0.3];

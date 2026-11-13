@@ -119,6 +119,21 @@ describe('arte do comandante para o fundo da área', () => {
     // um fundo por deck jogável: o tempo cresce com o número de decks (16 em 11/10/2026), além dos 5 s padrão
   }, 60_000);
 
+  // a tela VS põe o rosto marcado no meio de cada faixa; com 5 ou 6 jogadores a faixa é estreita e, sem a marca (ou
+  // com ela errada), aparece um pedaço qualquer do banner. Deck novo com banner precisa da marca em cliente/src/cartas.ts
+  it('cada deck jogável com banner feito para ele tem o rosto marcado (ROSTO_NO_FUNDO), dentro da imagem', () => {
+    const fontes = JSON.parse(readFileSync(join(import.meta.dirname, '..', 'gerado', 'fundos', 'fontes.json'), 'utf8')) as Record<string, unknown>;
+    const codigo = readFileSync(join(import.meta.dirname, '..', 'cliente', 'src', 'cartas.ts'), 'utf8');
+    const bloco = codigo.slice(codigo.indexOf('const ROSTO_NO_FUNDO'), codigo.indexOf('};', codigo.indexOf('const ROSTO_NO_FUNDO')));
+    const marcas = new Map([...bloco.matchAll(/^\s*(['"])(.+?)\1: \[([\d.]+), ([\d.]+)\],/gm)].map((m) => [m[2].replace(/\\'/g, "'"), [Number(m[3]), Number(m[4])]]));
+    for (const d of decksJson as { comandante: string }[]) {
+      if (!fontes[d.comandante]) continue;
+      const m = marcas.get(d.comandante);
+      expect(m, d.comandante).toBeDefined();
+      for (const v of m!) expect(v > 0 && v < 1, d.comandante).toBe(true);
+    }
+  });
+
   it('id inválido ou sem imagem nenhuma: nada', async () => {
     const { img } = await preparar();
     expect(await img.arte('../../segredo', 'fundo')).toBeNull();

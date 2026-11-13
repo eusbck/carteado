@@ -1,0 +1,39 @@
+Tool: built-in image_gen.imagegen. All generations used the original prompt files verbatim.
+No other generation API, crop, or image editing tool used. Sharp was used only to inspect/decode PNG data.
+Moderation refusals: 0. Moderation retries: 0.
+
+BANNER: success on attempt 1; retries 0; transparent_background=false.
+Input 1: refs/44-yuriko.png
+Generated source: C:\Users\icaio\.codex\generated_images\01a1d6d8-0f31-7a52-8558-2687811c047a\exec-c97bb755-5a7e-4f25-b921-471f32bf0993.png
+Output: C:\Users\icaio\AppData\Local\Temp\claude\b47dc424cd7f8a08\73039e94-dbee-4c2f-bd87-9ea96ba3b9be\scratchpad\saida\yuriko-banner.png
+Verified: 1672x941, opaque PNG, exact source copy (SHA-256).
+Final prompt used verbatim from prompts/yuriko-banner.txt:
+Use case: identity-preserve. Asset: ONE finished landscape banner/background for a Magic Commander game table.
+Input 1 is the exact identity, costume, anatomy and environment reference. Faithfully preserve the main character; expand and recompose the supplied art into a coherent cinematic wide scene.
+Composition: 16:9 landscape, hero large within the central 55%, head at x=50%, y=28%, body at least chest/waist-up; atmosphere fills both edges. Lower third calmer for game cards. Ideally 2048x1152, or at least 1672x941 at approximately 16:9.
+Opaque full-bleed background. No text or card title, no lettering except a character's existing emblem, no card frame, no UI, no added watermark. One banner only.
+Deck: yuriko.
+Subject and setting: Yuriko, the Tiger's Shadow, the same young adult ninja woman with pale skin, dark eyes, black hair tied up in a topknot with loose strands framing her face, calm confident expression. Preserve her layered dark navy and black ninja garments with violet sheen, black armored bracers and greaves, rope belt with an ornate bronze tiger-head buckle, and a long chain-sickle with a curved claw-like hook. She crouches on a curved temple rooftop at dusk, a pagoda roof and dramatic violet-pink clouds behind her.
+Style/medium: polished realistic painterly fantasy game illustration, violet dusk sky, deep navy fabrics, blue blade glints, soft pink light. Simplify the lower third into roof tiles and mist.
+
+ICON: 2 attempts; one quality retry because the first icon contained nontransparent pixels inside the required empty outer border.
+Both attempts used the exact same original prompt and transparent_background=true; neither was refused or opaque.
+Input 1: refs/44-yuriko.png; Input 2: refs/moldura-icone.png (framing/finish only).
+Attempt 1 source: C:\Users\icaio\.codex\generated_images\01a1d6d8-0f31-7a52-8558-2687811c047a\exec-2bb64c76-2216-4108-863f-4c8e327c1b0a.png
+Attempt 1 outer 6% border nontransparent pixel count: 17956
+Attempt 2 source: C:\Users\icaio\.codex\generated_images\01a1d6d8-0f31-7a52-8558-2687811c047a\exec-03194ada-e596-421f-880f-2cf74ad2eed5.png
+Attempt 2 outer 6% border nontransparent pixel count: 12509
+Selected attempt: 2 (lower proportion of nontransparent pixels in outer 6% border).
+Output: C:\Users\icaio\AppData\Local\Temp\claude\b47dc424cd7f8a08\73039e94-dbee-4c2f-bd87-9ea96ba3b9be\scratchpad\saida\yuriko-icone.png
+Verified: 1254x1254, real alpha channel, 861688 fully transparent pixels (54.8%), alpha min=0, max=255, exact source copy (SHA-256).
+Strict outer 6% border alpha=0 requirement: NOT FULLY MET; 12509 pixels have alpha > 0. The requested full 8% transparent safety margin is not guaranteed. No post-processing was applied.
+Final prompt used verbatim from prompts/yuriko-icone.txt:
+Use case: identity-preserve. Asset: ONE square transparent bust portrait icon for a Magic Commander game medalion.
+Input 1 is the exact character's identity, costume, anatomy and color reference. Input 2 is ONLY a reference for existing game portrait framing and finish, not a face, armor or person to reproduce.
+Create a close chest-up bust faithful to Input 1, preserving exact facial/head/helmet features, colors and costume. Keep complete head/helmet and readable face centered around x=50%, y=30%, wide shoulders in the lower half, transparent margins around the entire silhouette. Leave a clearly visible 8% TRANSPARENT SAFETY MARGIN ON ALL FOUR SIDES: the entire head and finished lower bust edge must fit inside x=8%-92%, y=8%-92%. Every pixel in the outer 6% border must have alpha=0. Readable at 80px, ideally 1024x1024.
+Genuinely transparent alpha background outside the subject. Clean anti-aliased edges. No scenery or rectangular fill, no circular frame, no ring, no badge, no aura, no card border, no text or watermark. One icon only.
+Deck: yuriko.
+Subject: Yuriko, young adult ninja woman with pale skin, dark eyes, black hair in a topknot with loose strands framing her face, calm confident expression, dark navy-black layered ninja garments with violet sheen, high collar, and a hint of the bronze tiger-head buckle at the bottom edge.
+Render only head and chest with violet dusk rim light; omit weapons and scenery.
+
+File selection note: concurrent generations existed in the shared generated_images folder. An initial newest-file banner copy was corrected before delivery using the exact source returned by the tool; both final copies were verified by SHA-256.

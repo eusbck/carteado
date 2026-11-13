@@ -1,0 +1,43 @@
+Hearthhull ? image generation log
+Tool: built-in image_gen.imagegen only. No image drawing, cropping, editing, or external API was used.
+Final prompts: exact contents of the two supplied prompt files, reproduced below. Both icon attempts used the unchanged icon prompt.
+Moderation refusals: 0. Moderation retries: 0. Opaque-background retries: 0.
+Quality retries: 1, because the first icon did not meet the strict transparent safety margin.
+
+Banner: attempt 1 selected.
+Source: C:\Users\icaio\.codex\generated_images\01a1d6d8-0ee5-74e3-b1b3-59d687615d41\exec-a8293f9b-107c-4aa9-856c-7b0d923845c3.png
+Output: C:\Users\icaio\AppData\Local\Temp\claude\b47dc424cd7f8a08\73039e94-dbee-4c2f-bd87-9ea96ba3b9be\scratchpad\saida\hearthhull-banner.png
+Validation via sharp: PNG, 1672x941, opaque=true, alpha channel=false.
+Copy selection: concurrent tasks wrote other PNGs to the shared generated_images folder. A global-newest copy was detected as belonging to another task, then corrected using the source path returned by this generation.
+
+Icon: attempt 1 selected after comparing both versions; it has fewer nontransparent pixels within the outer 6% border.
+Source: C:\Users\icaio\.codex\generated_images\01a1d6d8-0ee5-74e3-b1b3-59d687615d41\exec-a3a7ad8c-3c45-49ff-8b90-54f12cce9237.png
+Output: C:\Users\icaio\AppData\Local\Temp\claude\b47dc424cd7f8a08\73039e94-dbee-4c2f-bd87-9ea96ba3b9be\scratchpad\saida\hearthhull-icone.png
+Validation via sharp: PNG, 1254x1254, alpha channel=true, channels=4, opaque=false, transparent pixels (alpha=0)=977396/1572516, alpha range=0-255.
+Safety-border check: FAIL ? 10388 pixels in the outer 6% border have nonzero alpha.
+Limitation: genuine transparency is verified, but the generated icon does not fully satisfy the prompt's strict outer 6% alpha=0 border or 8% safety margin. No pixel modification was applied.
+Icon quality retry (attempt 2): returned PNG with real alpha; 12890 nontransparent pixels in the outer 6% border. Not selected.
+Retry source retained: C:\Users\icaio\.codex\generated_images\01a1d6d8-0ee5-74e3-b1b3-59d687615d41\exec-f0e7366b-2894-41a9-a64e-b28549dbe3fd.png
+
+Attempt timings (UTC):
+banner attempt 1: 2026-11-13T21:39:10.045Z ? 2026-11-13T21:39:49.064Z; success
+icon attempt 1: 2026-11-13T21:42:15.832Z ? 2026-11-13T21:43:12.068Z; success
+icon attempt 2: 2026-11-13T21:44:34.131Z ? 2026-11-13T21:45:21.900Z; success
+
+FINAL BANNER PROMPT (verbatim):
+Use case: identity-preserve. Asset: ONE finished landscape banner/background for a Magic Commander game table.
+Input 1 is the exact identity, costume, anatomy and environment reference. Faithfully preserve the main character; expand and recompose the supplied art into a coherent cinematic wide scene.
+Composition: 16:9 landscape, hero large within the central 55%, head at x=50%, y=28%, body at least chest/waist-up; atmosphere fills both edges. Lower third calmer for game cards. Ideally 2048x1152, or at least 1672x941 at approximately 16:9.
+Opaque full-bleed background. No text or card title, no lettering except a character's existing emblem, no card frame, no UI, no added watermark. One banner only.
+Deck: Jund Lands Midrange.
+Subject and setting: Hearthhull, the Worldseed, a colossal living seed-ship of organic teal-green carapace with ribbed bone-like hull plates, a crown of serrated fern-like fins at its prow and glowing cyan pod lights along its flanks, falling prow-first toward a lush green planet. The ship's prow and fin crown play the role of the head: place the prow crown at x=50%, y=28%, the hull filling the center. Keep the violet nebula sky, the cratered moon, small seed-pods drifting in a swarm and the curved planet horizon with green continents and orange molten fissures.
+Style/medium: polished realistic sci-fi fantasy game illustration, violet and magenta space haze, teal-green biomechanical hull, cyan lights, warm orange hints of molten land. Simplify the lower third into soft cloud and planet haze.
+
+FINAL ICON PROMPT (verbatim; identical for both icon attempts):
+Use case: identity-preserve. Asset: ONE square transparent bust portrait icon for a Magic Commander game medalion.
+Input 1 is the exact character's identity, costume, anatomy and color reference. Input 2 is ONLY a reference for existing game portrait framing and finish, not a face, armor or person to reproduce.
+Create a close chest-up bust faithful to Input 1, preserving exact facial/head/helmet features, colors and costume. Keep complete head/helmet and readable face centered around x=50%, y=30%, wide shoulders in the lower half, transparent margins around the entire silhouette. Leave a clearly visible 8% TRANSPARENT SAFETY MARGIN ON ALL FOUR SIDES: the entire head and finished lower bust edge must fit inside x=8%-92%, y=8%-92%. Every pixel in the outer 6% border must have alpha=0. Readable at 80px, ideally 1024x1024.
+Genuinely transparent alpha background outside the subject. Clean anti-aliased edges. No scenery or rectangular fill, no circular frame, no ring, no badge, no aura, no card border, no text or watermark. One icon only.
+Deck: Jund Lands Midrange.
+Subject: Hearthhull, the Worldseed, a living seed-ship with teal-green organic ribbed carapace, serrated fern-like fin crown and glowing cyan pod lights. As it has no face, render the upper hull seen three-quarter from the front: the crown of fins on top (like a head), the prow and the first two glowing cyan pods filling the medallion, finished in a clean rounded silhouette at the bottom.
+Render only the ship fragment with restrained teal and violet light; omit planets, stars and scenery.
