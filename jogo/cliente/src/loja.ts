@@ -401,11 +401,11 @@ class Loja {
       recusaCombate: m.vista.decision?.id === this.e.recusaCombate?.decisao ? this.e.recusaCombate : null,
       desfazivel: !!m.desfazivel, desfazer: mesmoPedido ? ant : pedido, cena: m.cena ?? null,
     });
-    this.avisarDecisao(m.vista.decision?.id ?? null);
     return mudou;
   }
 
-  /** a buzina sempre que uma decisão sua aparece na mesa (somDecisao.ts); a música abaixa por baixo dela */
+  /** a buzina sempre que chega uma decisão sua, na hora em que chega do servidor (somDecisao.ts); a música abaixa por
+   * baixo dela */
   private avisarDecisao(decisao: number | null): void {
     const agora = performance.now();
     const tocarAgora = deveTocarDecisao({ decisao, anterior: this.decisaoAvisada, agora, ultimoSom: this.ultimoSomDecisao, ligado: preferencias().sons.decisao });
@@ -440,6 +440,8 @@ class Loja {
           this.seqJogo = m.seq;
         }
         if (m.cena) guardarCena(this.cenas, m.cena);
+        // a buzina toca na chegada, não quando a fila mostra o quadro (que espera a cena da jogada anterior, até 3 s)
+        this.avisarDecisao(m.vista.decision?.id ?? null);
         // sem cena: vista que não continua a anterior, a primeira, modo Desempenho, aba escondida
         const saltar = !!m.reinicio || !this.e.vista || preferencias().desempenho || (typeof document !== 'undefined' && document.hidden);
         if (m.reinicio) vistaSemAnimacao();
