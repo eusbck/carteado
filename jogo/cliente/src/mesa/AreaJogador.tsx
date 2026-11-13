@@ -13,6 +13,7 @@ import { Avatar } from './Avatar.tsx';
 import { useLoja } from '../loja.ts';
 import { Carta, type Realce, type Selo } from './Carta.tsx';
 import { useMesmo } from './estavel.ts';
+import { useDepoisDaCena } from './depoisDaCena.ts';
 import { medirArea, type LadoAvatar } from './geometriaArea.ts';
 import { Simbolos } from './Simbolos.tsx';
 
@@ -137,6 +138,8 @@ function useTamanho<T extends HTMLElement>(): [{ current: T | null }, { w: numbe
 
 export function AreaJogador(p: AreaProps) {
   const { j } = p;
+  // eliminado: a área escurece quando a cena que o eliminou acaba, não junto com a vista (ponte até o N34)
+  const fora = useDepoisDaCena(j.left);
   const comandantes = p.comandantes.filter((o) => !o.emblem);
   const emblemas = p.comandantes.filter((o) => o.emblem);
   const [ref, tam] = useTamanho<HTMLElement>();
@@ -178,7 +181,7 @@ export function AreaJogador(p: AreaProps) {
   const contadores = Object.entries(j.counters).filter(([, n]) => n > 0);
   const danoCmd = j.commanderDamage.filter((d) => d.amount > 0);
   const ladoClasse = p.mao ? (lado === 'canto' ? `avatar-no-canto${p.colunaAberta ? ' coluna-aberta' : ''}` : 'avatar-a-esquerda') : '';
-  const classes = ['area', p.eu ? 'area-eu' : 'area-oponente', ladoClasse, p.ativo ? 'area-ativa' : '', p.decidindo ? 'area-decidindo' : '', j.left ? 'area-fora' : '', p.compacta ? 'compacta' : '', estreita ? 'estreita' : '', p.jogadorRealce ? `alvo-${p.jogadorRealce}` : ''].filter(Boolean).join(' ');
+  const classes = ['area', p.eu ? 'area-eu' : 'area-oponente', ladoClasse, p.ativo ? 'area-ativa' : '', p.decidindo ? 'area-decidindo' : '', fora ? 'area-fora' : '', p.compacta ? 'compacta' : '', estreita ? 'estreita' : '', p.jogadorRealce ? `alvo-${p.jogadorRealce}` : ''].filter(Boolean).join(' ');
   const topoCemiterio = j.graveyard[j.graveyard.length - 1];
   // na sua área, a reserva fica do lado da vida (à esquerda ela cairia embaixo da faixa de fases)
   const reserva = <span class="selo reserva" title="Reserva de mana"><span class="rot">Reserva</span><Simbolos custo={j.manaPool} tam={16} /></span>;
@@ -218,7 +221,7 @@ export function AreaJogador(p: AreaProps) {
           {p.decidindo && !p.eu && <SeloDecidindo jogador={j.id} />}
           {j.monarch && <span class="selo">monarca</span>}
           {j.ring && <span class="selo" title={`O Anel tentou ${j.name} ${j.ring.tempted} ${j.ring.tempted === 1 ? 'vez' : 'vezes'} (CR 701.54): o emblema tem ${Math.min(4, j.ring.tempted)} de 4 habilidades${j.ring.bearer === null ? '; sem Portador do Anel' : ''}`}>Anel {Math.min(4, j.ring.tempted)}/4</span>}
-          {j.left && <span class="selo etiqueta alerta">{j.won ? 'venceu' : 'fora da partida'}</span>}
+          {fora && <span class="selo etiqueta alerta">{j.won ? 'venceu' : 'fora da partida'}</span>}
           {contadores.map(([k, q]) => <span class="selo" key={k}>{q} {NOME_CONTADOR[k] ?? k}</span>)}
           {j.manaPool && !p.eu && reserva}
         </div>
@@ -237,7 +240,7 @@ export function AreaJogador(p: AreaProps) {
 
       {tam.w > 0 && (
         <Avatar jogador={j.id} avatar={p.avatar} vida={j.life} nome={j.name} local={false} lugar={p.mao && lado === 'esquerda' ? 'esquerda' : undefined}
-          ativo={p.ativo} fora={j.left} tamanho={tamAvatar} cor={p.cor} onVida={p.onJogador} />
+          ativo={p.ativo} fora={fora} tamanho={tamAvatar} cor={p.cor} onVida={p.onJogador} />
       )}
 
       <div class="campo" aria-label="Campo de batalha" data-larg={livreW} data-alt={campoH} data-carta-w={arr.w} data-tile-w={arr.tile.w} data-tile-h={arr.tile.h}

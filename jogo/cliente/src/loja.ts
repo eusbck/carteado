@@ -114,7 +114,7 @@ class Loja {
   private seqJogo = 0;
 
   constructor() {
-    ligarControle({ duracao: (ms) => this.quadros.duracao(ms), pular: () => this.quadros.pular() });
+    ligarControle({ duracao: (ms) => this.quadros.duracao(ms), estender: (ms) => this.quadros.estender(ms), pular: () => this.quadros.pular() });
     // aba escondida: nada anima, a mesa vai direto ao último quadro
     if (typeof document !== 'undefined') document.addEventListener('visibilitychange', () => { if (document.hidden) this.quadros.pular(); });
   }
