@@ -387,7 +387,13 @@ export type EventoCena = { seq: number; lote: number } & (
   | { tipo: 'ativar'; id?: ObjId; fonte?: ObjId; jogador: PlayerId }
   | { tipo: 'gatilho'; id?: ObjId; fonte?: ObjId; controlador: PlayerId }
   | { tipo: 'alvo'; alvo: AlvoCena; fonte?: ObjId; controlador: PlayerId; magica: boolean }
+  /** começo da resolução do topo da pilha (vem antes de `resolver`, ou de `sem-alvos`) */
+  | { tipo: 'resolvendo'; id?: ObjId; controlador: PlayerId }
   | { tipo: 'resolver'; id?: ObjId; controlador: PlayerId }
+  /** mágica ou habilidade anulada; vem antes da troca de zona (motivo 'anulada'); a habilidade some sem zona */
+  | { tipo: 'anulada'; id?: ObjId; controlador: PlayerId }
+  /** não resolveu por alvos ilegais; vem antes da troca de zona (motivo 'sem-alvos') ou do sumiço da habilidade */
+  | { tipo: 'sem-alvos'; id?: ObjId; controlador: PlayerId }
   /** `id`: a carta na mão, só para quem a vê (o dono); os outros sabem só que comprou */
   | { tipo: 'comprar'; jogador: PlayerId; id?: ObjId; n: number }
   | { tipo: 'descartar'; jogador: PlayerId; id?: ObjId }
@@ -400,7 +406,7 @@ export type EventoCena = { seq: number; lote: number } & (
   | { tipo: 'atacantes'; jogador: PlayerId; ataques: { id?: ObjId; alvo: AlvoCena }[] }
   /** [bloqueador, atacante] */
   | { tipo: 'bloqueadores'; bloqueios: [ObjId | null, ObjId | null][] }
-  | { tipo: 'dano'; fonte?: ObjId; controlador: PlayerId; alvo: AlvoCena; quantidade: number; combate: boolean }
+  | { tipo: 'dano'; fonte?: ObjId; controlador: PlayerId; alvo: AlvoCena; quantidade: number; combate: boolean; prevenido?: true }
   /** `quantidade`: positiva ganhou, negativa perdeu */
   | { tipo: 'vida'; jogador: PlayerId; quantidade: number; fonte?: ObjId }
   /** `quantidade`: positiva pôs, negativa tirou */

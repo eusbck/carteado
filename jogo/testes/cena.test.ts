@@ -120,6 +120,33 @@ describe('cena: redação por assento', () => {
     expect(idsDe(eventosPara(1, es))).toEqual([80, 81, 81, 82]);
   });
 
+  it('zona pública: o id da virada para baixo no campo vai a todos (como na vista); o da mão alheia não', () => {
+    // 82: manifestada no campo (vis só do controlador); 83: carta na mão do jogador 1
+    const publico = (id: number) => id === 82;
+    const es = [ent({ type: 'tap', obj: 82 }, { 82: [1] }), ent({ type: 'draw', player: 1, obj: 83, nth: 1 }, { 83: [1] })];
+    expect(idsDe(eventosPara(0, es, publico))).toEqual([82]);
+    expect(idsDe(eventosPara(0, es))).toEqual([]);
+    expect(idsDe(eventosPara(1, es, publico))).toEqual([82, 83]);
+  });
+
+  it('pilha: começo da resolução, anulada e sem alvos, sem abilityId; dano prevenido com o controlador da fonte', () => {
+    const es = [
+      ent({ type: 'resolving', obj: 110, controller: 2, abilityId: 'Ezuri, Claw of Progress:1' }, { 110: 'all' }),
+      ent({ type: 'countered', obj: 111, controller: 1 }, { 111: 'all' }),
+      ent({ type: 'fizzled', obj: 112, controller: 1, abilityId: 'Ezuri, Claw of Progress:2' }, { 112: [1] }),
+      ent({ type: 'damagePrevented', source: 113, controller: 3, target: { kind: 'player', id: 0 }, amount: 2, combat: true }, { 113: 'all' }),
+    ];
+    const ev = eventosPara(0, es).map(({ seq: _s, lote: _l, ...r }) => r);
+    expect(ev).toEqual([
+      { tipo: 'resolvendo', id: 110, controlador: 2 },
+      { tipo: 'anulada', id: 111, controlador: 1 },
+      { tipo: 'sem-alvos', controlador: 1 },
+      { tipo: 'dano', fonte: 113, controlador: 3, alvo: { jogador: 0 }, quantidade: 2, combate: true, prevenido: true },
+    ]);
+    expect(JSON.stringify(ev)).not.toContain('Ezuri');
+    expect(eventosPara(1, es)[2]).toMatchObject({ tipo: 'sem-alvos', id: 112 });
+  });
+
   it('sem prioridade nem passe; sacrifício é só o motivo da zona; vida e marcadores com sinal', () => {
     const es = [
       ent({ type: 'sacrifice', player: 1, old: 90, obj: 91 }, { 90: 'all', 91: 'all' }),

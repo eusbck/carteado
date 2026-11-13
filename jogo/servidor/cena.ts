@@ -10,19 +10,37 @@
 //   carta depois). Quem compra recebe o id da carta na mão, que basta para a animação.
 // - Prioridade e passe não viram evento (vazariam paradas e passe automático); `sacrifice` sozinho é motivo da zona.
 // - Lista branca por tipo: evento do motor que não está aqui não sai.
+// - O id de um objeto numa zona pública (campo, pilha, cemitério, exílio, comando) vai a todos, como na vista, mesmo
+//   virado para baixo (a identidade continua só na vista, que passa por canSee): `publico` (idPublicoNoJogo) diz isso.
 
 import type { EntradaDiario } from '../motor/diario.ts';
-import type { ObjId, PlayerId, TargetRef } from '../motor/types.ts';
+import type { G } from '../motor/game-context.ts';
+import type { ObjId, PlayerId, TargetRef, ZoneName } from '../motor/types.ts';
 import type { AlvoCena, EventoCena, LadoZona } from './protocolo.ts';
 
 /** mais do que isto numa mensagem vira salto (o cliente só desenha a vista) */
 export const TETO_CENA = 60;
 
-/** os eventos de cena de `entradas` que o `assento` pode saber (null: espectador, só o público) */
-export function eventosPara(assento: PlayerId | null, entradas: readonly EntradaDiario[]): EventoCena[] {
+const ZONAS_PUBLICAS: ReadonlySet<ZoneName> = new Set(['battlefield', 'stack', 'graveyard', 'exile', 'command']);
+
+/**
+ * se o id do objeto é público (a vista o mostra a todos): ele está, ou estava ao sair (LKI), numa zona pública. Vale
+ * olhar depois do evento porque um ObjId nunca passa de uma zona escondida a uma pública (toda troca de zona cria um id
+ * novo, moveRaw; só o mulligan move ids, e da mão para o grimório). Objeto que nem existe nem ficou no LKI: não.
+ */
+export function idPublicoNoJogo(g: G): (id: ObjId) => boolean {
+  return (id) => {
+    const o = g.state.objects[id] ?? g.state.lki[id]?.obj;
+    return !!o && ZONAS_PUBLICAS.has(o.zone);
+  };
+}
+
+/** os eventos de cena de `entradas` que o `assento` pode saber (null: espectador, só o público). `publico`: ids que a
+ * vista mostra a todos (idPublicoNoJogo); sem ele, só o `vis` de cada entrada */
+export function eventosPara(assento: PlayerId | null, entradas: readonly EntradaDiario[], publico?: (id: ObjId) => boolean): EventoCena[] {
   const out: EventoCena[] = [];
   for (const e of entradas) {
-    const r = redigir(assento, e);
+    const r = redigir(assento, e, publico);
     if (r) out.push({ seq: e.seq, lote: e.lote, ...r } as EventoCena);
   }
   return out;
@@ -31,12 +49,12 @@ export function eventosPara(assento: PlayerId | null, entradas: readonly Entrada
 /** o evento sem seq e lote (redigir monta; eventosPara acrescenta os dois) */
 type Corpo = EventoCena extends infer T ? (T extends EventoCena ? Omit<T, 'seq' | 'lote'> : never) : never;
 
-function redigir(assento: PlayerId | null, e: EntradaDiario): Corpo | null {
-  /** o id, se o assento via o objeto quando o evento aconteceu */
+function redigir(assento: PlayerId | null, e: EntradaDiario, publico?: (id: ObjId) => boolean): Corpo | null {
+  /** o id, se o assento via o objeto quando o evento aconteceu (ou se o objeto está numa zona pública) */
   const ver = (id: ObjId | null | undefined): ObjId | undefined => {
     if (id === null || id === undefined) return undefined;
     const v = e.vis[id];
-    if (v === 'all') return id;
+    if (v === 'all' || publico?.(id)) return id;
     return assento !== null && Array.isArray(v) && v.includes(assento) ? id : undefined;
   };
   /** `{ [k]: id }` só se o assento o via */
@@ -89,8 +107,14 @@ function redigir(assento: PlayerId | null, e: EntradaDiario): Corpo | null {
     case 'damage':
       return { tipo: 'dano', ...campo('fonte', ev.source), controlador: ev.controller, alvo: alvo(ev.target), quantidade: ev.amount, combate: ev.combat };
     case 'damagePrevented':
-      // o controlador da fonte não vem no evento; quem anima procura a fonte na vista
-      return null;
+      return { tipo: 'dano', ...campo('fonte', ev.source), controlador: ev.controller, alvo: alvo(ev.target), quantidade: ev.amount, combate: ev.combat, prevenido: true };
+    // sem abilityId nos três (diria a carta de uma fonte virada para baixo)
+    case 'resolving':
+      return { tipo: 'resolvendo', ...campo('id', ev.obj), controlador: ev.controller };
+    case 'countered':
+      return { tipo: 'anulada', ...campo('id', ev.obj), controlador: ev.controller };
+    case 'fizzled':
+      return { tipo: 'sem-alvos', ...campo('id', ev.obj), controlador: ev.controller };
     case 'lifeGain':
       return { tipo: 'vida', jogador: ev.player, quantidade: ev.amount, ...campo('fonte', ev.source) };
     case 'lifeLoss':

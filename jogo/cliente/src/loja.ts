@@ -67,6 +67,14 @@ export interface Estado {
 
 const CHAVE = 'commander-da-mesa:sala';
 
+const TETO_CENAS = 50;
+/** acrescenta a cena que chegou; época nova (partida trocada) descarta as de antes */
+function guardarCena(cenas: Cena[], c: Cena): void {
+  if (cenas.length && cenas[cenas.length - 1].epoca !== c.epoca) cenas.length = 0;
+  cenas.push(c);
+  if (cenas.length > TETO_CENAS) cenas.splice(0, cenas.length - TETO_CENAS);
+}
+
 /** a sala e o token do seu assento (o relato de erro manda para o servidor juntar a partida) */
 export function salaGuardada(): { codigo: string; token: string } | null {
   try {
@@ -112,6 +120,9 @@ class Loja {
   private avatarMandado = new Set<string>();
   /** as vistas que chegaram, mostradas uma de cada vez (protocolo-2); a cena fica em mesa/cenaLoja.ts */
   readonly quadros = new FilaQuadros<QuadroJogo>((q) => this.aplicarJogo(q.m), marcarCena);
+  /** F2: as cenas como chegaram (antes da fila de quadros, que pode pular quadros), em ordem, só as da época atual e
+   * no máximo TETO_CENAS; fora do Estado de propósito (guardar não redesenha nada; a mesa ainda não usa) */
+  readonly cenas: Cena[] = [];
   /** o número da última vista recebida nesta conexão */
   private seqJogo = 0;
 
@@ -399,6 +410,7 @@ class Loja {
           if (!m.reinicio && m.seq <= this.seqJogo) break;
           this.seqJogo = m.seq;
         }
+        if (m.cena) guardarCena(this.cenas, m.cena);
         // sem cena: vista que não continua a anterior, a primeira, modo Desempenho, aba escondida
         const saltar = !!m.reinicio || !this.e.vista || preferencias().desempenho || (typeof document !== 'undefined' && document.hidden);
         if (m.reinicio) vistaSemAnimacao();

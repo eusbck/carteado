@@ -14,7 +14,7 @@ import type { Answer, Decision, GameConfig, Step } from '../motor/types.ts';
 import { controllerOf } from '../motor/chars.ts';
 import { buildView } from '../motor/view.ts';
 import { diarioDesde } from '../motor/diario.ts';
-import { eventosPara, TETO_CENA } from './cena.ts';
+import { eventosPara, idPublicoNoJogo, TETO_CENA } from './cena.ts';
 import { Pensadores } from './pensadores.ts';
 import { NOMES_BOTS } from './nomes.ts';
 import { novaRajada, segurarPilha, type RajadaPilha } from './pilha-visivel.ts';
@@ -365,7 +365,7 @@ export class Sala {
     if (!cursor || cursor.epoca !== epoca) return { cena: { epoca, de: fim, ate: fim, eventos: [] }, nova: false };
     const { entradas, salto } = diarioDesde(d, cursor.seq);
     if (!entradas.length && !salto) return { cena: { epoca, de: cursor.seq, ate: cursor.seq, eventos: [] }, nova: false };
-    const eventos = salto ? [] : eventosPara(assento, entradas);
+    const eventos = salto ? [] : eventosPara(assento, entradas, idPublicoNoJogo(this.game!.g));
     if (salto || eventos.length > TETO_CENA) return { cena: { epoca, de: cursor.seq, ate: fim, eventos: [], salto: true }, nova: true };
     return { cena: { epoca, de: cursor.seq, ate: entradas[entradas.length - 1].seq, eventos }, nova: eventos.length > 0 };
   }

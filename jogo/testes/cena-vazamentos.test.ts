@@ -15,7 +15,7 @@ import type { DeckList } from '../motor/state.ts';
 import type { Decision, PlayerId } from '../motor/types.ts';
 import { buildView, canSee, type GameView } from '../motor/view.ts';
 import { Banco } from '../servidor/banco.ts';
-import { eventosPara } from '../servidor/cena.ts';
+import { eventosPara, idPublicoNoJogo } from '../servidor/cena.ts';
 import type { EventoCena, MsgCliente, MsgServidor } from '../servidor/protocolo.ts';
 import { Gerente, SEM_ATRASO, type Conexao } from '../servidor/salas.ts';
 import { setup, type TestGame } from './harness.ts';
@@ -42,6 +42,7 @@ function idsDaVista(v: GameView): Set<number> {
   return s;
 }
 
+const PUBLICAS = new Set(['battlefield', 'stack', 'graveyard', 'exile', 'command']);
 const noGrimorio = (g: G) => new Set(g.state.zones.library.flat());
 
 interface Foto { vista: GameView; grimorio: Set<number> }
@@ -56,11 +57,12 @@ function conferir(g: G, assento: PlayerId, eventos: EventoCena[], v1: Foto, v2: 
     // R4: id de objeto no grimório nunca (nem antes nem depois)
     expect(v1.grimorio.has(id) || v2.grimorio.has(id), `${ctx}: id ${id} de grimório`).toBe(false);
     if (vistos.has(id)) continue;
-    // objeto que nasceu e sumiu entre as duas vistas: só se era público para o assento (nunca uma carta na mão alheia)
+    // objeto que nasceu e sumiu entre as duas vistas: só se o id era público (zona pública, como na vista) ou o assento
+    // o via (nunca uma carta na mão alheia)
     const o = g.state.objects[id] ?? g.state.lki[id]?.obj;
     expect(o, `${ctx}: id ${id} desconhecido`).toBeTruthy();
     expect(o!.zone, `${ctx}: id ${id}`).not.toBe('library');
-    expect(canSee(g, o!, assento), `${ctx}: id ${id} (${o!.zone}) que o assento ${assento} não via`).toBe(true);
+    expect(PUBLICAS.has(o!.zone) || canSee(g, o!, assento), `${ctx}: id ${id} (${o!.zone}) que o assento ${assento} não via`).toBe(true);
   }
   // R3: a compra de outro jogador vai sem id
   for (const e of eventos) {
@@ -76,7 +78,11 @@ class Espiao {
   cursor: number;
   fotos: Foto[];
   cenas: EventoCena[][];
-  constructor(readonly g: G, readonly n: number) {
+  readonly g: G;
+  readonly n: number;
+  constructor(g: G, n: number) {
+    this.g = g;
+    this.n = n;
     this.cursor = g.diario!.prox - 1;
     this.fotos = Array.from({ length: n }, (_, a) => foto(g, a));
     this.cenas = Array.from({ length: n }, () => []);
@@ -86,7 +92,7 @@ class Espiao {
     expect(salto).toBe(false);
     const out: EventoCena[][] = [];
     for (let a = 0; a < this.n; a++) {
-      const eventos = eventosPara(a, entradas);
+      const eventos = eventosPara(a, entradas, idPublicoNoJogo(this.g));
       const v2 = foto(this.g, a);
       conferir(this.g, a, eventos, this.fotos[a], v2, `${ctx} assento ${a}`);
       this.fotos[a] = v2;
@@ -117,7 +123,7 @@ describe('cena: vazamentos numa partida de 4 com bots', () => {
     // a partida teve o que conferir: compras de todos, trocas de zona, passos
     for (let a = 0; a < 4; a++) {
       const tipos = new Set(esp.cenas[a].map((e) => e.tipo));
-      for (const t of ['passo', 'comprar', 'zona', 'virar']) expect(tipos, `assento ${a}`).toContain(t);
+      for (const t of ['passo', 'comprar', 'zona', 'virar', 'resolvendo', 'resolver']) expect(tipos, `assento ${a}`).toContain(t);
       expect(esp.cenas[a].some((e) => e.tipo === 'comprar' && e.jogador !== a)).toBe(true);
       expect(esp.cenas[a].some((e) => e.tipo === 'comprar' && e.jogador === a && e.id !== undefined)).toBe(true);
     }
@@ -162,7 +168,7 @@ describe('cena: vazamentos roteirizados', () => {
     }
   });
 
-  it('carta manifestada (virada para baixo): o grimório não sai, e só quem a controla recebe o id dela', () => {
+  it('carta manifestada (virada para baixo): o grimório não sai; o id dela vai a todos, como na vista, sem a carta', () => {
     const N = 'Orochi Soul-Reaver';
     const ilhas = Array(8).fill('Island');
     const { tg, esp } = mesa({ battlefield: [[N], [], [], []], library: [ilhas, ['Baleful Strix', ...ilhas], ilhas, ilhas] });
@@ -173,8 +179,9 @@ describe('cena: vazamentos roteirizados', () => {
     const entrou = (a: number) => cenas[a].find((e) => e.tipo === 'zona' && e.de.zona === 'library' && e.para.zona === 'battlefield');
     expect(entrou(0)).toMatchObject({ de: { zona: 'library', dono: 1 }, para: { id: manifestada } });
     for (const a of [1, 2, 3]) {
-      expect(entrou(a), `assento ${a}`).toBeDefined();
-      expect(idsDaCena(entrou(a))).toEqual([]);
+      expect(entrou(a), `assento ${a}`).toMatchObject({ de: { zona: 'library', dono: 1 }, para: { id: manifestada, zona: 'battlefield' } });
+      expect(idsDaCena(entrou(a))).toEqual([manifestada]);
+      expect(buildView(tg.g, a, null).battlefield.some((o) => o.id === manifestada)).toBe(true);
       expect(JSON.stringify(cenas[a])).not.toContain('Strix');
     }
   });
@@ -243,7 +250,7 @@ describe('cena: na sala', () => {
       for (const id of idsDaCena(cena.eventos)) {
         if (ids.has(id)) continue;
         const o = sala.game!.g.state.objects[id] ?? sala.game!.g.state.lki[id]?.obj;
-        expect(o && o.zone !== 'library' && canSee(sala.game!.g, o, 0), `vista ${k}: id ${id}`).toBe(true);
+        expect(o && o.zone !== 'library' && (PUBLICAS.has(o.zone) || canSee(sala.game!.g, o, 0)), `vista ${k}: id ${id}`).toBe(true);
       }
       vistos += cena.eventos.length;
     }
