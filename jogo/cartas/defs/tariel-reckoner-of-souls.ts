@@ -2,8 +2,9 @@
 // Flying, vigilance
 // {T}: Choose a creature card at random from target opponent's graveyard. Put that card onto the battlefield under your
 // control.
-import { activated, defineCard, isCreature, keywords, nameOf, putOntoBattlefield, t, tgtPlayer } from '../../motor/api.ts';
+import { activated, defineCard, isCreature, keywords, putOntoBattlefield, t, tgtPlayer } from '../../motor/api.ts';
 import { shuffle } from '../../motor/rng.ts';
+import { jog, obj, reg } from '../../motor/registro.ts';
 
 export default defineCard({
   name: 'Tariel, Reckoner of Souls',
@@ -18,7 +19,7 @@ export default defineCard({
         const cartas = s.zones.graveyard[p].filter((id) => isCreature(c.g, id));
         if (!cartas.length) return;
         const [carta] = shuffle(s.rng, [...cartas]);
-        c.g.log(`Tariel sorteia ${nameOf(c.g, carta)} do cemitério de ${s.players[p].name}.`);
+        reg(c.g, 'outro', { actor: c.you })`Tariel sorteia ${obj(carta)} do cemitério de ${jog(p)}.`;
         yield* putOntoBattlefield(c.g, [{ id: carta, controller: c.you }], 'effect');
       }, {
         // ruling 1: o único alvo é o oponente

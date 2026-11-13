@@ -4,6 +4,7 @@
 // into your hand. If you search your library this way, shuffle.
 import { chooseItems, chooseOne, defineCard, etb, keywords, moveObjects, nameOf, objItem, searchLibrary, shuffleLibrary } from '../../motor/api.ts';
 import type { ObjId } from '../../motor/types.ts';
+import { jog, obj, reg } from '../../motor/registro.ts';
 
 const TORRE = 'Command Tower';
 
@@ -36,7 +37,7 @@ export default defineCard({
           }
         } else if (noCemiterio.length) achada = noCemiterio[0];
         if (achada !== null) {
-          c.g.log(`${s.players[c.you].name} revela ${nameOf(c.g, achada)}.`, { rule: '701.20' });
+          reg(c.g, 'revela', { rule: '701.20' })`${jog(c.you)} revela ${obj(achada)}.`;
           yield* moveObjects(c.g, [{ id: achada, to: 'hand' }], 'search');
         }
         if (onde !== 'cemiterio') shuffleLibrary(c.g, c.you);

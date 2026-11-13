@@ -3,6 +3,7 @@
 // Whenever Yennett attacks, reveal the top card of your library. You may cast it without paying its mana cost if its
 // mana value is odd. If you don't cast it, draw a card.
 import { defineCard, draw, keywords, manaValue, mayCastFree, nameOf, on, triggered } from '../../motor/api.ts';
+import { jog, obj, reg } from '../../motor/registro.ts';
 
 export default defineCard({
   name: 'Yennett, Cryptic Sovereign',
@@ -14,7 +15,7 @@ export default defineCard({
         const topo = s.zones.library[c.you][0];
         let conjurou = false;
         if (topo !== undefined) {
-          c.g.log(`${s.players[c.you].name} revela ${nameOf(c.g, topo)} do topo do grimório.`, { rule: '701.20' });
+          reg(c.g, 'revela', { rule: '701.20' })`${jog(c.you)} revela ${obj(topo)} do topo do grimório.`;
           // ruling 4: só agora, durante a resolução; rulings 2-3 são do motor (sem custo alternativo, X = 0)
           if (manaValue(c.g, topo) % 2 === 1) conjurou = yield* mayCastFree(c.g, c.you, topo, `Yennett: conjurar ${nameOf(c.g, topo)} sem pagar o custo de mana?`);
         }

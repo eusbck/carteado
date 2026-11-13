@@ -3,7 +3,8 @@
 // Parley — At the beginning of combat on your turn, each player reveals the top card of their library. For each land card
 // revealed this way, you create a 1/1 green and white Citizen creature token. Then creatures you control get +1/+1 until
 // end of turn for each nonland card revealed this way. Then each player draws a card.
-import { and, anthem, createTokens, creaturesOf, defineCard, draw, is, isLand, nameOf, on, triggered, untilEndOfTurn } from '../../motor/api.ts';
+import { and, anthem, createTokens, creaturesOf, defineCard, draw, is, isLand, on, triggered, untilEndOfTurn } from '../../motor/api.ts';
+import { jog, obj, reg } from '../../motor/registro.ts';
 
 export default defineCard({
   name: "Phabine, Boss's Confidant",
@@ -18,7 +19,7 @@ export default defineCard({
         for (const p of c.g.apnap()) {
           const topo = s.zones.library[p][0];
           if (topo === undefined) continue;
-          c.g.log(`${s.players[p].name} revela ${nameOf(c.g, topo)} (parlamentar).`, { rule: '701.20a' });
+          reg(c.g, 'revela', { rule: '701.20a' })`${jog(p)} revela ${obj(topo)} (parlamentar).`;
           if (isLand(c.g, topo)) terrenos++; else outras++;
         }
         if (terrenos > 0) yield* createTokens(c.g, c.you, 'Citizen', terrenos);

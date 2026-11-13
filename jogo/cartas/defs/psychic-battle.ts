@@ -3,8 +3,9 @@
 // reveals the card with the greatest mana value may change the target or targets. If two or more cards are tied for
 // greatest, the target or targets remain unchanged. Changing targets this way doesn't trigger abilities of permanents
 // named Psychic Battle.
-import { changeTargets, defineCard, manaValue, nameOf, on, triggered, yesNo } from '../../motor/api.ts';
+import { changeTargets, defineCard, manaValue, on, triggered, yesNo } from '../../motor/api.ts';
 import type { ObjId, PlayerId } from '../../motor/types.ts';
+import { jog, lista, obj, reg, trecho } from '../../motor/registro.ts';
 
 const NOME = 'Psychic Battle';
 
@@ -29,10 +30,10 @@ export default defineCard({
           if (topo !== undefined) reveladas.push({ p, id: topo, mv: manaValue(c.g, topo) });
         }
         if (!reveladas.length) return;
-        c.g.log(`Psychic Battle: ${reveladas.map((r) => `${s.players[r.p].name} revela ${nameOf(c.g, r.id)} (${r.mv})`).join('; ')}.`, { rule: '701.20' });
+        reg(c.g, 'revela', { rule: '701.20' })`Psychic Battle: ${lista(reveladas.map((r) => trecho`${jog(r.p)} revela ${obj(r.id)} (${r.mv})`), '; ')}.`;
         const maior = Math.max(...reveladas.map((r) => r.mv));
         const vencedores = reveladas.filter((r) => r.mv === maior);
-        if (vencedores.length !== 1) { c.g.log('Psychic Battle: empate no maior valor de mana; os alvos não mudam.'); return; }
+        if (vencedores.length !== 1) { reg(c.g, 'outro')`Psychic Battle: empate no maior valor de mana; os alvos não mudam.`; return; }
         const quem = vencedores[0].p;
         // ruling 2: pode mudar todos, alguns ou nenhum; ruling 3: a quantidade não muda e os novos têm de ser legais
         if (!(yield* yesNo(c.g, quem, 'Psychic Battle: você revelou o maior valor de mana. Mudar o alvo ou os alvos?'))) return;

@@ -4,9 +4,10 @@
 // historic card from among them and put it into your hand. Put the rest on the bottom of your library in a random order.
 // (Artifacts, legendaries, and Sagas are historic.)
 // Crew 3
-import { crew, defineCard, keyword, moveObjects, nameOf, on, triggered } from '../../motor/api.ts';
+import { crew, defineCard, keyword, moveObjects, on, triggered } from '../../motor/api.ts';
 import { ehHistorica } from '../jin.ts';
 import { olhaEPegaUma, restoNoFundo } from '../veiculos.ts';
+import { jog, obj, reg } from '../../motor/registro.ts';
 
 export default defineCard({
   name: 'Weatherlight',
@@ -20,7 +21,7 @@ export default defineCard({
         // ruling 1: histórica é artefato, lendária ou Saga (CR 700.6); você vê as cinco, mesmo sem nenhuma histórica
         const escolhida = yield* olhaEPegaUma(c, topo, (id) => ehHistorica(c.g, id), 'Weatherlight (carta histórica)');
         if (escolhida !== null) {
-          c.g.log(`${s.players[c.you].name} revela ${nameOf(c.g, escolhida)}.`, { rule: '701.20' });
+          reg(c.g, 'revela', { rule: '701.20' })`${jog(c.you)} revela ${obj(escolhida)}.`;
           yield* moveObjects(c.g, [{ id: escolhida, to: 'hand' }], 'effect');
         }
         restoNoFundo(c.g, c.you, topo.filter((id) => id !== escolhida));

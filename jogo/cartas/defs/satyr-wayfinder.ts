@@ -3,6 +3,7 @@
 // your hand. Put the rest into your graveyard.
 import { chooseItems, defineCard, etb, isLand, moveObjects, nameOf } from '../../motor/api.ts';
 import type { ChoiceItem } from '../../motor/types.ts';
+import { jog, objs, reg } from '../../motor/registro.ts';
 
 export default defineCard({
   name: 'Satyr Wayfinder',
@@ -12,7 +13,7 @@ export default defineCard({
         const s = c.g.state;
         const topo = s.zones.library[c.you].slice(0, 4);
         if (!topo.length) return;
-        c.g.log(`${s.players[c.you].name} revela ${topo.map((id) => nameOf(c.g, id)).join(', ')}.`, { rule: '701.20' });
+        reg(c.g, 'revela', { rule: '701.20' })`${jog(c.you)} revela ${objs(topo)}.`;
         const itens: ChoiceItem[] = topo.map((id) => ({ id: String(id), label: nameOf(c.g, id), obj: id, card: { def: s.objects[id].def }, disabled: !isLand(c.g, id) }));
         const esc = itens.some((i) => !i.disabled) ? yield* chooseItems(c.g, c.you, 'Satyr Wayfinder: você pode pôr uma carta de terreno na sua mão', itens, 0, 1) : [];
         const terreno = esc.length ? Number(esc[0]) : null;

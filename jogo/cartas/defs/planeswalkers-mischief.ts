@@ -2,9 +2,10 @@
 // {3}{U}: Target opponent reveals a card at random from their hand. If it's an instant or sorcery card, exile it. You may
 // cast it without paying its mana cost for as long as it remains exiled. At the beginning of the next end step, if you
 // haven't cast it, return it to its owner's hand. Activate only as a sorcery.
-import { activated, allowPlay, defineAbility, defineCard, delayed, exile, is, moveObjects, nameOf, nextEndStepTrigger, t, tgtPlayer } from '../../motor/api.ts';
+import { activated, allowPlay, defineAbility, defineCard, delayed, exile, is, moveObjects, nextEndStepTrigger, t, tgtPlayer } from '../../motor/api.ts';
 import { shuffle } from '../../motor/rng.ts';
 import type { ObjId } from '../../motor/types.ts';
+import { jog, obj, reg } from '../../motor/registro.ts';
 
 // ruling 2: o gatilho atrasado não depende de Planeswalker's Mischief continuar no campo
 const DEVOLVE = defineAbility("Planeswalker's Mischief:devolve", nextEndStepTrigger(function* (c) {
@@ -22,7 +23,7 @@ export default defineCard({
         // ruling 1: sem cartas na mão, nada acontece
         if (p === null || !s.zones.hand[p].length) return;
         const [carta] = shuffle(s.rng, [...s.zones.hand[p]]);
-        c.g.log(`${s.players[p].name} revela ${nameOf(c.g, carta)} ao acaso.`, { rule: '701.20' });
+        reg(c.g, 'revela', { rule: '701.20' })`${jog(p)} revela ${obj(carta)} ao acaso.`;
         if (!is.instantOrSorcery({ g: c.g, you: c.you, source: c.source }, carta)) return;
         const [ex] = yield* exile(c.g, [carta]);
         if (ex === null || ex === undefined || s.objects[ex]?.zone !== 'exile') return;

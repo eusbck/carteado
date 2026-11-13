@@ -4,6 +4,7 @@
 // Activate only once.
 import { activated, chooseItems, controllerOf, defineCard, etb, exile, t, tgt } from '../../motor/api.ts';
 import type { PlayerId } from '../../motor/types.ts';
+import { jog, reg } from '../../motor/registro.ts';
 
 export default defineCard({
   name: 'Stalking Leonin',
@@ -23,7 +24,7 @@ export default defineCard({
         const escolhido = o?.data.leoninEscolhido as PlayerId | undefined;
         if (o) o.data.leoninUsado = true;
         if (escolhido === undefined) return;
-        c.g.log(`Stalking Leonin: o jogador escolhido era ${c.g.state.players[escolhido].name}.`);
+        reg(c.g, 'outro', { actor: c.you })`Stalking Leonin: o jogador escolhido era ${jog(escolhido)}.`;
         const id = tgt(c);
         if (id !== null && controllerOf(c.g, id) === escolhido) yield* exile(c.g, [id]);
       }, {

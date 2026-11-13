@@ -6,6 +6,7 @@
 import { defineCard, ninjutsu, on, triggered } from '../../motor/api.ts';
 import type { PlayerId } from '../../motor/types.ts';
 import { conjuraDentreGratis, ROUBO } from '../roubo.ts';
+import { jog, reg } from '../../motor/registro.ts';
 
 export default defineCard({
   name: 'Silent-Blade Oni',
@@ -15,7 +16,7 @@ export default defineCard({
       triggered(on.selfDealsCombatDamageToPlayer(), function* (c) {
         const p = c.event.player as PlayerId;
         const mao = [...c.g.state.zones.hand[p]];
-        c.g.log(`${c.g.state.players[c.you].name} olha a mão de ${c.g.state.players[p].name}.`);
+        reg(c.g, 'outro')`${jog(c.you)} olha a mão de ${jog(p)}.`;
         // a escolha mostra ao controlador a mão inteira; os terrenos aparecem, indisponíveis
         yield* conjuraDentreGratis(c, mao, { rotulo: `Silent-Blade Oni (mão de ${c.g.state.players[p].name})`, varias: false, olhar: true });
       }, { text: 'Sempre que esta criatura causa dano de combate a um jogador, olhe a mão desse jogador. Você pode conjurar uma mágica dentre essas cartas sem pagar o custo de mana dela.' }),

@@ -2,8 +2,9 @@
 // Exile all creatures you control. At the beginning of the next end step, reveal cards from the top of your library
 // until you reveal that many creature cards, put all creature cards revealed this way onto the battlefield, then shuffle
 // the rest of the revealed cards into your library.
-import { creaturesOf, defineAbility, defineCard, delayed, exile, isCreature, nameOf, nextEndStepTrigger, putOntoBattlefield, shuffleLibrary } from '../../motor/api.ts';
+import { creaturesOf, defineAbility, defineCard, delayed, exile, isCreature, nextEndStepTrigger, putOntoBattlefield, shuffleLibrary } from '../../motor/api.ts';
 import type { ObjId } from '../../motor/types.ts';
+import { jog, objs, reg } from '../../motor/registro.ts';
 
 /** CR 603.7: gatilho atrasado criado na resolução; "você" é quem controlava a mágica (603.7d) */
 const REVELA = defineAbility('Synthetic Destiny:revela', nextEndStepTrigger(function* (c) {
@@ -15,7 +16,7 @@ const REVELA = defineAbility('Synthetic Destiny:revela', nextEndStepTrigger(func
   let i = 0;
   for (; i < grimorio.length && criaturas.length < n; i++) if (isCreature(c.g, grimorio[i])) criaturas.push(grimorio[i]);
   const reveladas = grimorio.slice(0, i);
-  if (n > 0) c.g.log(`${s.players[c.you].name} revela ${reveladas.map((x) => nameOf(c.g, x)).join(', ') || 'nada (grimório vazio)'}.`, { rule: '701.20' });
+  if (n > 0) reg(c.g, 'revela', { rule: '701.20' })`${jog(c.you)} revela ${objs(reveladas, undefined, ', ', 'nada (grimório vazio)')}.`;
   // ruling 1: entram ao mesmo tempo
   if (criaturas.length) yield* putOntoBattlefield(c.g, criaturas.map((id) => ({ id, controller: c.you })), 'effect');
   // ruling 4: embaralha mesmo que só tenha revelado cartas de criatura

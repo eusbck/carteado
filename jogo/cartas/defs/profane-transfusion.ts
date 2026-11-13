@@ -2,6 +2,7 @@
 // Two target players exchange life totals. You create an X/X colorless Horror artifact creature token, where X is the
 // difference between those players' life totals.
 import { createTokens, defineCard, gainLife, hooks, loseLife, t, tgtPlayer } from '../../motor/api.ts';
+import { jog, reg } from '../../motor/registro.ts';
 
 export default defineCard({
   name: 'Profane Transfusion',
@@ -22,7 +23,7 @@ export default defineCard({
             // ruling 1 (CR 701.12c): cada um ganha ou perde o que falta para chegar ao total anterior do outro
             gainLife(c.g, menor, diferenca, c.source);
             loseLife(c.g, maior, diferenca, c.source);
-            c.g.log(`${s.players[a].name} e ${s.players[b].name} trocam os totais de vida.`, { rule: '701.12c' });
+            reg(c.g, 'vida', { rule: '701.12c' })`${jog(a)} e ${jog(b)} trocam os totais de vida.`;
           }
         }
         // ruling 3: a diferença depois da troca

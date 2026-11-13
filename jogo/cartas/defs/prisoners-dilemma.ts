@@ -5,6 +5,7 @@
 // Flashback {5}{R}{R}
 import { chooseOne, dealDamage, defineCard, flashback } from '../../motor/api.ts';
 import type { PlayerId } from '../../motor/types.ts';
+import { jog, lista, reg, trecho } from '../../motor/registro.ts';
 
 export default defineCard({
   name: "Prisoner's Dilemma",
@@ -18,7 +19,7 @@ export default defineCard({
           escolhas.set(p, yield* chooseOne(c.g, p, "Prisoner's Dilemma: escolha em segredo", [{ id: 'silencio', label: 'Silêncio' }, { id: 'delatar', label: 'Delatar' }], { secret: true }));
         }
         if (!escolhas.size) return;
-        c.g.log(`Prisoner's Dilemma: ${[...escolhas].map(([p, e]) => `${c.g.state.players[p].name} escolheu ${e === 'silencio' ? 'silêncio' : 'delatar'}`).join('; ')}.`);
+        reg(c.g, 'outro')`Prisoner's Dilemma: ${lista([...escolhas].map(([p, e]) => trecho`${jog(p)} escolheu ${e === 'silencio' ? 'silêncio' : 'delatar'}`), '; ')}.`;
         const todos = [...escolhas.values()];
         const ops = [...escolhas.keys()];
         let reqs: { p: PlayerId; n: number }[];

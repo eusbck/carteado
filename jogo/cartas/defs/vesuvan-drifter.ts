@@ -4,6 +4,7 @@
 // At the beginning of each combat, you may reveal the top card of your library. If you reveal a creature card this way,
 // this creature becomes a copy of that card until end of turn, except it has flying.
 import { becomeCopy, defineCard, isCreature, keyword, nameOf, on, staticAbility, triggered, yesNo } from '../../motor/api.ts';
+import { jog, obj, reg } from '../../motor/registro.ts';
 
 export default defineCard({
   name: 'Vesuvan Drifter',
@@ -17,7 +18,7 @@ export default defineCard({
         const topo = s.zones.library[c.you][0];
         if (topo === undefined || s.objects[c.source]?.zone !== 'battlefield') return;
         if (!(yield* yesNo(c.g, c.you, `Vesuvan Drifter: revelar ${nameOf(c.g, topo)}, a carta do topo do seu grimório?`))) return;
-        c.g.log(`${s.players[c.you].name} revela ${nameOf(c.g, topo)} do topo do grimório.`, { rule: '701.20' });
+        reg(c.g, 'revela', { rule: '701.20' })`${jog(c.you)} revela ${obj(topo)} do topo do grimório.`;
         if (!isCreature(c.g, topo)) return;
         // rulings 4-6: copia só o que está impresso na carta (X = 0), com voar; o que já a afetava continua
         becomeCopy(c, c.source, topo, { except: { addKeywords: ['flying'] }, duration: { kind: 'endOfTurn' } });

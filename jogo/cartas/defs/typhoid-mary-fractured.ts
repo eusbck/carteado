@@ -5,6 +5,7 @@
 // • Bloody Mary — Each opponent loses 2 life and you gain 2 life.
 import { chooseItems, createTokens, defineCard, draw, gainLife, loseLife, on, triggered } from '../../motor/api.ts';
 import { int } from '../../motor/rng.ts';
+import { reg } from '../../motor/registro.ts';
 
 const MODOS = [
   'Mary — Crie uma ficha de Treasure',
@@ -25,7 +26,7 @@ export default defineCard({
           modo = Number(esc);
         } else {
           modo = int(s.rng, MODOS.length);
-          c.g.log(`Typhoid Mary: modo sorteado — ${MODOS[modo]}.`);
+          reg(c.g, 'outro', { actor: c.you })`Typhoid Mary: modo sorteado — ${MODOS[modo]}.`;
         }
         if (modo === 0) yield* createTokens(c.g, c.you, 'Treasure', 1);
         else if (modo === 1) yield* draw(c.g, c.you, 1);

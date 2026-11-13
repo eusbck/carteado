@@ -3,8 +3,9 @@
 // library. Each player puts all artifact, creature, and land cards revealed this way onto the battlefield, then does the
 // same for enchantment cards, then puts all cards revealed this way that weren't put onto the battlefield on the bottom
 // of their library.
-import { defineCard, isType, moveObjects, nameOf, putOntoBattlefield, shuffleLibrary } from '../../motor/api.ts';
+import { defineCard, isType, moveObjects, putOntoBattlefield, shuffleLibrary } from '../../motor/api.ts';
 import type { ObjId } from '../../motor/types.ts';
+import { jog, objs, reg } from '../../motor/registro.ts';
 
 export default defineCard({
   name: 'Warp World',
@@ -24,7 +25,7 @@ export default defineCard({
         const reveladas = new Map<number, ObjId[]>(jogadores.map((p) => [p, s.zones.library[p].slice(0, conta.get(p) ?? 0)]));
         for (const p of jogadores) {
           const cartas = reveladas.get(p) ?? [];
-          if (cartas.length) g.log(`${s.players[p].name} revela ${cartas.map((id) => nameOf(g, id)).join(', ')}.`, { rule: '701.20a' });
+          if (cartas.length) reg(g, 'revela', { rule: '701.20a' })`${jog(p)} revela ${objs(cartas)}.`;
         }
         const todas = jogadores.flatMap((p) => (reveladas.get(p) ?? []).map((id) => ({ id, dono: p })));
         const eh = (id: ObjId, tipos: string[]) => tipos.some((t) => isType(g, id, t));

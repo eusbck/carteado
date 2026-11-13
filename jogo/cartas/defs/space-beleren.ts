@@ -7,6 +7,7 @@
 import { activated, addCounters, allCreatures, chooseOne, controllerOf, defineAbility, defineCard, destroy, nameOf, ruleEffect, staticAbility } from '../../motor/api.ts';
 import type { Ctx, Gen, StaticDef } from '../../motor/defs.ts';
 import { eraDosSetores, ESCULTOR, escultores, SETORES, setorDe, type Setor } from '../../motor/setores.ts';
+import { jog, obj, reg } from '../../motor/registro.ts';
 
 const NOME_DO_SETOR: Record<Setor, string> = { alpha: 'alfa', beta: 'beta', gamma: 'gama' };
 
@@ -54,7 +55,7 @@ export default defineCard({
                   // ruling 6: o setor fica com a criatura, mesmo que ela mude de controlador
                   s.objects[id].data.setor = esc;
                   s.objects[id].data.setorEra = era;
-                  c.g.log(`${s.players[p].name} põe ${nameOf(c.g, id)} no setor ${NOME_DO_SETOR[esc as Setor]}.`);
+                  reg(c.g, 'outro')`${jog(p)} põe ${obj(id)} no setor ${NOME_DO_SETOR[esc as Setor]}.`;
                 }
               }
               c.g.bump();

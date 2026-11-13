@@ -2,7 +2,8 @@
 // This land enters tapped.
 // When this land enters, target creature an opponent controls doesn't untap during its controller's next untap step.
 // {T}: Add {U}.
-import { defineCard, etb, is, land, mana, nameOf, t, tgt } from '../../motor/api.ts';
+import { defineCard, etb, is, land, mana, t, tgt } from '../../motor/api.ts';
+import { obj, reg } from '../../motor/registro.ts';
 
 export default defineCard({
   name: 'Skyline Cascade',
@@ -16,7 +17,7 @@ export default defineCard({
         // rulings 1-2: não vira a criatura; a marca fica na criatura (vale na próxima etapa de desvirar de quem a controlar)
         o.data.skipNextUntap = true;
         c.g.bump();
-        c.g.log(`${nameOf(c.g, o.id)} não desvira na próxima etapa de desvirar do controlador.`);
+        reg(c.g, 'outro', { actor: c.you })`${obj(o.id)} não desvira na próxima etapa de desvirar do controlador.`;
       }, { targets: [t.creature(is.opponents, 'criatura alvo que um oponente controla')], text: 'Quando este terreno entra, a criatura alvo que um oponente controla não desvira durante a próxima etapa de desvirar do controlador dela.' }),
       mana('U'),
     ],

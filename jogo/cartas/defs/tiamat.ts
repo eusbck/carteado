@@ -4,6 +4,7 @@
 // different names, reveal them, put them into your hand, then shuffle.
 import { defineCard, etb, keyword, moveObjects, nameOf, searchLibrary, shuffleLibrary } from '../../motor/api.ts';
 import { ehDragao } from '../dragoes.ts';
+import { jog, objs, reg } from '../../motor/registro.ts';
 
 export default defineCard({
   name: 'Tiamat',
@@ -21,7 +22,7 @@ export default defineCard({
         const nomes = new Set<string>();
         const ficam = achados.filter((id) => { const n = nameOf(g, id); if (nomes.has(n)) return false; nomes.add(n); return true; });
         if (ficam.length) {
-          g.log(`${g.state.players[c.you].name} revela ${ficam.map((id) => nameOf(g, id)).join(', ')} (Tiamat).`);
+          reg(g, 'revela')`${jog(c.you)} revela ${objs(ficam)} (Tiamat).`;
           yield* moveObjects(g, ficam.map((id) => ({ id, to: 'hand' as const })), 'search');
         }
         shuffleLibrary(g, c.you);

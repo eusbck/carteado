@@ -5,6 +5,7 @@
 // a random order.
 import { defineCard, enchantCandidates, isSubtype, moveObjects, nameOf, on, putOntoBattlefield, t, triggered, yesNo } from '../../motor/api.ts';
 import { shuffle } from '../../motor/rng.ts';
+import { jog, objs, reg } from '../../motor/registro.ts';
 
 export default defineCard({
   name: "Songbirds' Blessing",
@@ -18,7 +19,7 @@ export default defineCard({
       const lib = s.zones.library[c.you];
       const i = lib.findIndex((id) => isSubtype(c.g, id, 'Aura'));
       const reveladas = i < 0 ? [...lib] : lib.slice(0, i + 1);
-      c.g.log(`${s.players[c.you].name} revela ${reveladas.map((id) => nameOf(c.g, id)).join(', ') || 'nada'}.`, { rule: '701.20' });
+      reg(c.g, 'revela', { rule: '701.20' })`${jog(c.you)} revela ${objs(reveladas, undefined, ', ', 'nada')}.`;
       if (i >= 0) {
         const aura = lib[i];
         // ruling 1: não mira; escolhe o que encantar ao entrar; se não puder encantar nada, vai para a mão

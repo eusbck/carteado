@@ -3,6 +3,7 @@
 // those cards with a number of additional +1/+1 counters on it equal to the power of the other card.
 import { asEnters, chars, chooseItems, defineCard, isCreature, moveObjects, nameOf, yesNo } from '../../motor/api.ts';
 import type { ObjId } from '../../motor/types.ts';
+import { obj, reg } from '../../motor/registro.ts';
 
 export default defineCard({
   name: 'The Mimeoplasm',
@@ -28,7 +29,7 @@ export default defineCard({
         yield* moveObjects(g, [{ id: modelo, to: 'exile' }, { id: outra, to: 'exile' }], 'effect', ev.controller);
         ev.copyOf = copia;
         if (forca > 0) ev.counters['+1/+1'] = (ev.counters['+1/+1'] ?? 0) + forca;
-        g.log(`The Mimeoplasm entra como cópia de ${nomeModelo} com ${Math.max(0, forca)} marcador(es) +1/+1 a mais.`, { rule: '707.5' });
+        reg(g, 'outro', { rule: '707.5', actor: ev.controller })`The Mimeoplasm entra como cópia de ${obj(modelo, undefined, nomeModelo)} com ${Math.max(0, forca)} marcador(es) +1/+1 a mais.`;
       }, 'Ao entrar, você pode exilar duas cartas de criatura de cemitérios. Se fizer isso, ela entra como uma cópia de uma delas, com marcadores +1/+1 a mais iguais à força da outra.'),
     ],
   }],

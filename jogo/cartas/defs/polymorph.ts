@@ -3,7 +3,8 @@
 // they reveal a creature card. The player puts that card onto the battlefield, then shuffles all other cards revealed
 // this way into their library.
 // (Nenhuma carta dos decks regenera; "não pode ser regenerada" não muda o resultado.)
-import { controllerOf, defineCard, destroy, isCreature, nameOf, putOntoBattlefield, shuffleLibrary, t, tgt } from '../../motor/api.ts';
+import { controllerOf, defineCard, destroy, isCreature, putOntoBattlefield, shuffleLibrary, t, tgt } from '../../motor/api.ts';
+import { jog, objs, reg } from '../../motor/registro.ts';
 
 export default defineCard({
   name: 'Polymorph',
@@ -22,7 +23,7 @@ export default defineCard({
         const grimorio = s.zones.library[quem];
         const i = grimorio.findIndex((x) => isCreature(c.g, x));
         const reveladas = i < 0 ? [...grimorio] : grimorio.slice(0, i + 1);
-        c.g.log(`${s.players[quem].name} revela ${reveladas.map((x) => nameOf(c.g, x)).join(', ') || 'nada (grimório vazio)'}.`, { rule: '701.20' });
+        reg(c.g, 'revela', { rule: '701.20' })`${jog(quem)} revela ${objs(reveladas, undefined, ', ', 'nada (grimório vazio)')}.`;
         if (i >= 0) yield* putOntoBattlefield(c.g, [{ id: grimorio[i], controller: quem }], 'effect');
         // rulings 3, 5: sem criatura, revela o grimório todo; embaralha de qualquer jeito
         shuffleLibrary(c.g, quem);

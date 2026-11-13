@@ -3,6 +3,7 @@
 // the top of their library until they reveal a creature card. The player puts that card onto the battlefield and the
 // rest on the bottom of their library in any order. Activate only as a sorcery.
 import { activated, chooseItems, controllerOf, defineCard, isCreature, moveObjects, nameOf, putOntoBattlefield, t, tgt } from '../../motor/api.ts';
+import { jog, objs, reg } from '../../motor/registro.ts';
 
 export default defineCard({
   name: 'Proteus Staff',
@@ -20,7 +21,7 @@ export default defineCard({
         const cartas = s.zones.library[quem].filter((x) => !s.objects[x].isToken);
         const i = cartas.findIndex((x) => isCreature(c.g, x));
         const reveladas = i < 0 ? cartas : cartas.slice(0, i + 1);
-        c.g.log(`${s.players[quem].name} revela ${reveladas.map((x) => nameOf(c.g, x)).join(', ') || 'nada (grimório vazio)'}.`, { rule: '701.20' });
+        reg(c.g, 'revela', { rule: '701.20' })`${jog(quem)} revela ${objs(reveladas, undefined, ', ', 'nada (grimório vazio)')}.`;
         if (i >= 0) yield* putOntoBattlefield(c.g, [{ id: cartas[i], controller: quem }], 'effect');
         // o resto vai para o fundo na ordem que o jogador escolher
         s = c.g.state;

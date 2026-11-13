@@ -4,6 +4,7 @@
 // those cards.
 import { chooseItems, defineCard, linkedExiled, moveObjects, playerItem, staticAbility } from '../../motor/api.ts';
 import type { PlayerId } from '../../motor/types.ts';
+import { jog, reg } from '../../motor/registro.ts';
 
 // ruling 1: cada Shared Fate guarda as cartas que ela exilou, separadas por jogador (CR 607.2a)
 const chave = (p: PlayerId) => `destino:${p}`;
@@ -18,7 +19,7 @@ export default defineCard({
           drawReplace: function* (c, jogador) {
             const s = c.g.state;
             const comCartas = c.g.opponents(jogador).filter((p) => s.zones.library[p].length > 0);
-            if (!comCartas.length) { c.g.log(`Shared Fate: ${s.players[jogador].name} não compra, e os oponentes não têm cartas no grimório para exilar.`, { rule: '614.1a' }); return; }
+            if (!comCartas.length) { reg(c.g, 'outro', { rule: '614.1a', actor: jogador })`Shared Fate: ${jog(jogador)} não compra, e os oponentes não têm cartas no grimório para exilar.`; return; }
             let de = comCartas[0];
             if (comCartas.length > 1) {
               const [esc] = yield* chooseItems(c.g, jogador, 'Shared Fate: em vez de comprar, exile a carta do topo do grimório de qual oponente?', comCartas.map((p) => playerItem(c.g, p)), 1, 1);
@@ -31,7 +32,7 @@ export default defineCard({
               fonte.linked[chave(jogador)] = [...(fonte.linked[chave(jogador)] ?? []), ex];
               c.g.bump();
             }
-            c.g.log(`Shared Fate: em vez de comprar, ${s.players[jogador].name} exila virada para baixo a carta do topo do grimório de ${s.players[de].name}.`, { rule: '614.1a' });
+            reg(c.g, 'zona', { rule: '614.1a', actor: jogador })`Shared Fate: em vez de comprar, ${jog(jogador)} exila virada para baixo a carta do topo do grimório de ${jog(de)}.`;
           },
           // rulings 2 e 5: joga o terreno ou conjura a mágica pagando os custos, no tempo normal; a carta não está na mão
           mayPlayFrom: (c, jogador, carta) => (linkedExiled(c.g, c.source, chave(jogador)).includes(carta) ? { key: `shared-fate:${c.source}`, label: 'Shared Fate', land: true } : null),

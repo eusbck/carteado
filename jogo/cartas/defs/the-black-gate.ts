@@ -5,6 +5,7 @@
 // that player controls this turn.
 import { activated, asEnters, chooseItems, controllerOf, defineAbility, defineCard, loseLife, mana, playerItem, ruleEffect, staticAbility, t, tgt, yesNo } from '../../motor/api.ts';
 import type { ObjId, PlayerId } from '../../motor/types.ts';
+import { jog, reg } from '../../motor/registro.ts';
 
 // a restrição de bloqueio criada pela habilidade: vale para a criatura alvo até o fim do turno, contra as criaturas
 // do jogador escolhido, inclusive as que entrarem depois (ruling 2)
@@ -41,7 +42,7 @@ export default defineCard({
         const [esc] = yield* chooseItems(c.g, c.you, 'The Black Gate: escolha um jogador com mais vida (ou empatado)', empatados.map((p) => playerItem(c.g, p)), 1, 1);
         jogador = Number(esc.replace(/^p/, ''));
       }
-      c.g.log(`The Black Gate: ${c.g.state.players[jogador].name} é o jogador escolhido.`);
+      reg(c.g, 'outro', { actor: c.you })`The Black Gate: ${jog(jogador)} é o jogador escolhido.`;
       ruleEffect(c, BLOQUEIO.id!, { kind: 'endOfTurn' }, { objs: [id], params: { jogador } });
     }, {
       targets: [t.creature()],

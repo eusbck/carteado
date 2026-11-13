@@ -5,6 +5,7 @@
 import { chars, createTokens, defineCard, exile, is, keyword, on, triggered, type Gen } from '../../motor/api.ts';
 import type { Ctx } from '../../motor/defs.ts';
 import { shuffle } from '../../motor/rng.ts';
+import { obj, reg } from '../../motor/registro.ts';
 
 /** o processo do Sin: exila uma carta de permanente aleatória e cria a cópia virada; repete enquanto sair terreno */
 function* processo(c: Ctx): Gen<void> {
@@ -17,7 +18,7 @@ function* processo(c: Ctx): Gen<void> {
     const o = g.state.objects[sorteada];
     const def = o.def;
     const terreno = chars(g, sorteada).types.includes('Land');
-    g.log(`${chars(g, c.source).name}: ${chars(g, sorteada).name} é exilada ao acaso do cemitério.`);
+    reg(g, 'zona', { actor: c.you })`${obj(c.source, undefined, chars(g, c.source).name)}: ${obj(sorteada, undefined, chars(g, sorteada).name)} é exilada ao acaso do cemitério.`;
     const [ex] = yield* exile(g, [sorteada]);
     if (ex === null || ex === undefined) return;
     // ruling 2: a ficha copia a carta impressa (a face da frente); ruling 3: os gatilhos e substituições de entrar dela

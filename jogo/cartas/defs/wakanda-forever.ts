@@ -4,6 +4,7 @@
 // graveyard.
 import { chooseItems, defineCard, isPermanentCard, moveObjects, nameOf, objItem, putOntoBattlefield } from '../../motor/api.ts';
 import type { ObjId } from '../../motor/types.ts';
+import { jog, objs, reg } from '../../motor/registro.ts';
 
 export default defineCard({
   name: 'Wakanda Forever!',
@@ -13,7 +14,7 @@ export default defineCard({
         const s = c.g.state;
         const topo = s.zones.library[c.you].slice(0, 6);
         if (!topo.length) return;
-        c.g.log(`${s.players[c.you].name} revela ${topo.map((id) => nameOf(c.g, id)).join(', ')}.`, { rule: '701.20' });
+        reg(c.g, 'revela', { rule: '701.20' })`${jog(c.you)} revela ${objs(topo)}.`;
         const itens = (ids: ObjId[]) => ids.map((id) => ({ ...objItem(c.g, id, nameOf(c.g, id)), card: { def: s.objects[id].def }, disabled: !isPermanentCard(c.g, id) }));
         const paraOCampo = yield* chooseItems(c.g, c.you, 'Wakanda Forever!: você pode colocar uma carta de permanente no campo com um marcador de indestrutível', itens(topo), 0, 1);
         // CR 122.1b: o marcador de indestrutível dá a palavra-chave à permanente
