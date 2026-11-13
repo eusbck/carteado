@@ -152,6 +152,43 @@ function rajada(c: BaseAudioContext, saida: AudioNode, inicio: number, duracao: 
   s.stop(inicio + duracao + 0.02);
 }
 
+/**
+ * A buzina de caminhão do som de decisão: três dentes de serra graves (sol, si bemol e ré, a tríade de sol menor, o tom
+ * da música) que entram um pouco abaixo da nota e sobem nela, como o ar enchendo a corneta, saturados (tanh) para
+ * ficarem grossos e altos perto do topo da escala, num filtro que corta o chiado. ~1,1 s. Medido em 13/11: pico ~0,7 e
+ * RMS ~0,29 no volume padrão (0,7), ~1,0 no volume máximo; o som do seu turno chega a 0,48 de pico.
+ */
+function buzina(c: BaseAudioContext, saida: AudioNode, t: number): void {
+  const DURA = 1.1;
+  const sat = c.createWaveShaper();
+  const curva = new Float32Array(1024);
+  for (let i = 0; i < curva.length; i++) { const x = (i / (curva.length - 1)) * 2 - 1; curva[i] = Math.tanh(3 * x) / Math.tanh(3); }
+  sat.curve = curva;
+  const filtro = c.createBiquadFilter();
+  filtro.type = 'lowpass';
+  filtro.frequency.value = 3200;
+  const g = c.createGain();
+  g.gain.setValueAtTime(0.0001, t);
+  g.gain.exponentialRampToValueAtTime(0.72, t + 0.03);
+  g.gain.setValueAtTime(0.72, t + DURA - 0.15);
+  g.gain.exponentialRampToValueAtTime(0.0001, t + DURA);
+  const soma = c.createGain();
+  soma.gain.value = 0.32;
+  soma.connect(sat).connect(filtro).connect(g).connect(saida);
+  for (const freq of [196, 233.08, 293.66]) {
+    for (const desafino of [-8, 8]) {
+      const o = c.createOscillator();
+      o.type = 'sawtooth';
+      o.frequency.setValueAtTime(freq * 0.96, t);
+      o.frequency.exponentialRampToValueAtTime(freq, t + 0.08);
+      o.detune.value = desafino;
+      o.connect(soma);
+      o.start(t);
+      o.stop(t + DURA + 0.03);
+    }
+  }
+}
+
 // sol: as notas dos sons de turno (sem a terça, servem a sol maior e a sol menor)
 const SOL2 = 98, SOL3 = 196, RE4 = 293.66, SOL4 = 392, RE5 = 587.33, SOL5 = 783.99;
 
@@ -162,17 +199,7 @@ const nada = () => {};
  * função que cala o som em seguida (a abertura pulada no meio não deixa o impacto tocar sobre a mesa).
  */
 export function tocar(som: Som, forca = 1): () => void {
-  if (!preferencias().sons[som]) return nada;
-  tocadoEm.set(som, performance.now());
-  return gerar(som, forca);
-}
-
-const tocadoEm = new Map<Som, number>();
-
-/** quando `som` foi pedido pela última vez com a chave ligada (ms do relógio da página; -Infinity: nunca). O som de
- * decisão não toca logo depois do som do seu turno (somDecisao.ts) */
-export function ultimaVez(som: Som): number {
-  return tocadoEm.get(som) ?? -Infinity;
+  return preferencias().sons[som] ? gerar(som, forca) : nada;
 }
 
 /**
@@ -228,7 +255,9 @@ function gerar(som: Som, forca: number): () => void {
   const c = contexto();
   if (!c || c.state !== 'running') return nada;
   const mestre = c.createGain();
-  mestre.gain.value = Math.min(1, p.volume) * 0.55 * Math.max(0.2, Math.min(1, forca));
+  // a buzina da decisão não tem o redutor dos outros sons: ela existe para chamar a atenção (o volume dos efeitos
+  // ainda vale, e no zero ela cala)
+  mestre.gain.value = Math.min(1, p.volume) * (som === 'decisao' ? 1 : 0.55 * Math.max(0.2, Math.min(1, forca)));
   mestre.connect(c.destination);
   desenharSom(c, mestre, som, c.currentTime + 0.01);
   return () => mestre.gain.setTargetAtTime(0, c.currentTime, 0.04);
@@ -247,12 +276,8 @@ export function desenharSom(c: BaseAudioContext, mestre: AudioNode, som: Som, t:
       sopro(c, mestre, t + 0.3, 0.09, 0.18, 500);
       nota(c, mestre, SOL5 * 2, t + 0.32, 0.9, 0.05, 'sine');
       break;
-    case 'decisao': // só o "paam" do seu turno: o acorde sustentado (ré agudo, sol, sol grave) com o tímpano, sem a subida
-      trompa(c, mestre, RE5, t, 0.8, 0.15);
-      trompa(c, mestre, SOL4, t, 0.8, 0.12);
-      trompa(c, mestre, SOL3, t, 0.8, 0.09);
-      nota(c, mestre, SOL2 * 1.5, t, 0.45, 0.4, 'sine', SOL2);
-      sopro(c, mestre, t, 0.09, 0.16, 500);
+    case 'decisao': // buzina de caminhão: uma rajada longa e saturada (veja buzina())
+      buzina(c, mestre, t);
       break;
     case 'turnoAdversario': // dois toques de harpa descendo, abafados e discretos
       harpa(c, mestre, SOL4, t, 0.55, 0.2);
