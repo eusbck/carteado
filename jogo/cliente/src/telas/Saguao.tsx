@@ -7,7 +7,7 @@
 
 import { useEffect, useRef, useState } from 'preact/hooks';
 import { lazy, Suspense } from 'preact/compat';
-import { loja, useLoja } from '../loja.ts';
+import { ehEspectador, loja, useLoja } from '../loja.ts';
 import { nomeCarta, urlArte } from '../cartas.ts';
 import { Simbolos } from '../mesa/Simbolos.tsx';
 import { quandoOcioso } from '../ocioso.ts';
@@ -275,10 +275,39 @@ function PassoDecks({ sala, eu, decks }: { sala: SalaPublica; eu: number; decks:
   );
 }
 
+/** saguão de quem só assiste: os lugares e os decks escolhidos, sem nenhum controle */
+function PassoAssistindo({ sala, decks }: { sala: SalaPublica; decks: DeckResumo[] }) {
+  return (
+    <div class="saguao-passo">
+      <ol class={`lugares lugares-${sala.assentos.length}`}>
+        {sala.assentos.map((a) => (
+          <li key={a.indice} class={`lugar lugar-${a.tipo}`}>
+            <span class="lugar-avatar" aria-hidden="true">{a.tipo === 'vazio' ? '' : a.tipo === 'bot' ? '⚙' : (a.nome ?? '?').slice(0, 1).toUpperCase()}</span>
+            <span class="lugar-texto">
+              <span class="assento-nome">{nomeAssento(a) ?? <em class="suave">Lugar livre</em>}<Selo a={a} sala={sala} /></span>
+              <span class="lugar-sub">{a.deck ? decks.find((d) => d.id === a.deck)?.nome ?? 'deck escolhido' : a.tipo === 'vazio' ? 'esperando alguém entrar' : 'escolhendo o deck'}</span>
+            </span>
+          </li>
+        ))}
+      </ol>
+      <footer class="saguao-rodape">
+        <p class="saguao-espera"><span class="pulso" aria-hidden="true" />Você está assistindo. A mesa aparece quando a partida começar.</p>
+      </footer>
+    </div>
+  );
+}
+
+/** "Assistindo: Carla, Davi" (todos veem) */
+export function ListaEspectadores({ sala }: { sala: SalaPublica }) {
+  const l = sala.espectadores ?? [];
+  return l.length ? <p class="suave espectadores" aria-label="Quem está assistindo">Assistindo: {l.join(', ')}</p> : null;
+}
+
 export function Saguao() {
   const e = useLoja();
   const sala = e.sala!;
-  const eu = e.voce!;
+  const espectador = ehEspectador(e);
+  const eu = e.voce ?? 0;
   // só os decks do modo da sala (o servidor recusa os outros)
   const decks = e.decks.filter((d) => d.formato === sala.formato);
   const etapa = sala.etapa ?? 'lugares';
@@ -307,12 +336,15 @@ export function Saguao() {
           </ol>
           <button class="botao fantasma" onClick={() => loja.enviar({ t: 'sair' })}>Sair da sala</button>
         </header>
+        <ListaEspectadores sala={sala} />
         {sala.estado === 'fim' && <p class="faixa">A última partida terminou. Quem criou a sala pode começar outra.</p>}
-        <div key={etapa} class={`passo passo-${sentido.current}`}>
-          {etapa === 'lugares' && <PassoLugares sala={sala} eu={eu} decks={decks} />}
-          {etapa === 'regras' && <PassoRegras sala={sala} eu={eu} />}
-          {etapa === 'decks' && <PassoDecks sala={sala} eu={eu} decks={decks} />}
-        </div>
+        {espectador
+          ? <PassoAssistindo sala={sala} decks={decks} />
+          : <div key={etapa} class={`passo passo-${sentido.current}`}>
+              {etapa === 'lugares' && <PassoLugares sala={sala} eu={eu} decks={decks} />}
+              {etapa === 'regras' && <PassoRegras sala={sala} eu={eu} />}
+              {etapa === 'decks' && <PassoDecks sala={sala} eu={eu} decks={decks} />}
+            </div>}
       </main>
     </div>
   );

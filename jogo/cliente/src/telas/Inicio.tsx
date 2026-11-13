@@ -98,6 +98,11 @@ export function Inicio() {
     if (codigo.length !== 5 || !senha) return;
     loja.enviar({ t: 'entrar', codigo, senhaSala: senha, nome: nomeLimpo });
   };
+  // modo espectador: o mesmo código e senha, sem ocupar assento (nunca recusa por sala cheia ou partida começada)
+  const assistir = () => {
+    if (codigo.length !== 5 || !senha) return;
+    loja.enviar({ t: 'assistir', codigo, senhaSala: senha, nome: nomeLimpo });
+  };
 
   let conteudo;
   if (passo === 'nome') {
@@ -168,6 +173,8 @@ export function Inicio() {
           <input type="password" value={senha} onInput={val(setSenha)} autoComplete="off" />
         </label>
         <button class="botao cheio grande" type="submit" disabled={codigo.length !== 5 || !senha}>Entrar</button>
+        <button class="botao grande" type="button" onClick={assistir} disabled={codigo.length !== 5 || !senha}>Assistir</button>
+        <small class="suave">Assistir: você vê a mesa sem jogar, mesmo com a partida já começada.</small>
       </form>
     );
   }
