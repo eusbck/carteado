@@ -11,7 +11,7 @@ import type { Decision, ManualAction, ObjId, PaymentSource, PriorityAction, Step
 import type { GameView, ObjView, PlayerView } from '../../../motor/view.ts';
 import type { MsgChat } from '../../../servidor/protocolo.ts';
 import { avatarDoAssento } from '../avatares.ts';
-import { nomeCarta, rostoNoFundo, traduzir, urlFundo, urlImagem } from '../cartas.ts';
+import { nomeCarta, rostoNoFundo, textoDaLinha, traduzir, urlFundo, urlImagem } from '../cartas.ts';
 import { abrirRelato } from '../relato/relatoLoja.ts';
 import { IconeAjuste, IconeErro, IconeConceder, IconeRecolher as IconeSeta, IconeConfig, IconeDesfazer, IconeFimTurno, IconeParadas, IconePassar, IconeRecolher, IconeRegistro, IconeSair, Marca } from '../icones.tsx';
 import { Importacoes } from '../Importacoes.tsx';
@@ -275,6 +275,9 @@ function FaixaFases({ v, eu, d, enviando, paradas, cor, desfazivel, parada }: Fa
   );
 }
 
+/** os tipos de linha do registro que viram aviso */
+const KINDS_AVISO = new Set<string>(['terreno', 'conjura', 'ativa', 'revela', 'ataque', 'fim', 'manual']);
+
 /** avisos curtos do que acabou de acontecer (jogadas, ataques, ajustes manuais) */
 function Avisos({ v, cor }: { v: GameView; cor: (p: number) => string }) {
   // os avisos do servidor (pedido de desfazer aceito, recusado…), assinados aqui e não na mesa
@@ -289,14 +292,15 @@ function Avisos({ v, cor }: { v: GameView; cor: (p: number) => string }) {
     const ant = anterior.current;
     anterior.current = v.log;
     if (!ant) return;
-    // o registro encolheu (uma jogada foi desfeita): os avisos do que voltou saem
-    if (v.log.length < ant.length) { setLista([]); return; }
-    const ultima = ant[ant.length - 1];
-    let k = -1;
-    if (ultima) for (let i = v.log.length - 1; i >= 0; i--) if (v.log[i].turn === ultima.turn && v.log[i].text === ultima.text) { k = i; break; }
-    const novas = v.log.slice(k + 1).filter((l) => / (joga|conjura|ativa|revela) |ataca:|perde a partida|vence a partida|\(ajuste manual\)/.test(l.text));
+    // F3: as linhas novas pelo `seq` (cresce sempre); o registro voltou para trás (uma jogada foi desfeita): os avisos
+    // do que voltou saem
+    const ultima = ant.length ? ant[ant.length - 1].seq : -1;
+    const fim = v.log.length ? v.log[v.log.length - 1].seq : -1;
+    if (fim < ultima) { setLista([]); return; }
+    // pelo tipo da linha; linhas sem tipo (de checkpoint salvo) não viram aviso
+    const novas = v.log.filter((l) => l.seq > ultima && l.kind !== undefined && KINDS_AVISO.has(l.kind));
     if (!novas.length) return;
-    const itens = novas.slice(-3).map((l) => ({ id: seq.current++, texto: traduzir(l.text), quem: v.players.find((p) => l.text.startsWith(`${p.name} `) || l.text.startsWith(`${p.name}:`))?.id ?? null }));
+    const itens = novas.slice(-3).map((l) => ({ id: seq.current++, texto: textoDaLinha(l, v.players), quem: l.actor ?? null }));
     setLista((a) => [...a, ...itens].slice(-3));
     const ids = new Set(itens.map((i) => i.id));
     const t = setTimeout(() => { relogios.current.delete(t); setLista((a) => a.filter((x) => !ids.has(x.id))); }, 5000);
@@ -310,7 +314,7 @@ function Avisos({ v, cor }: { v: GameView; cor: (p: number) => string }) {
         const nome = a.quem !== null ? v.players[a.quem].name : null;
         return (
           <div key={a.id} class="aviso" style={{ '--cor': a.quem !== null ? cor(a.quem) : 'var(--texto)' }}>
-            {nome ? <><b>{nome}</b>{a.texto.slice(nome.length)}</> : a.texto}
+            {nome && (a.texto.startsWith(`${nome} `) || a.texto.startsWith(`${nome}:`)) ? <><b>{nome}</b>{a.texto.slice(nome.length)}</> : a.texto}
           </div>
         );
       })}

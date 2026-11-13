@@ -1,5 +1,6 @@
 // Imagens e textos das cartas (vindos do servidor uma vez, depois da autenticação).
 
+import type { LogLinhaView, LogRefView } from '../../motor/view.ts';
 import type { InfoCarta } from '../../servidor/protocolo.ts';
 
 let INFO: Record<string, InfoCarta> = {};
@@ -133,6 +134,22 @@ export function traduzir(texto: string): string {
     RE = nomes.length ? new RegExp(String.raw`(?<![\p{L}\p{N}])(` + nomes.join('|') + String.raw`)(?![\p{L}\p{N}])`, 'gu') : /$^/;
   }
   return texto.replace(RE, (m) => MAPA.get(m) ?? m);
+}
+
+/** nome de uma ref para mostrar: a carta pelo nome impresso em português (pela def), o jogador pelo nome dele */
+export function nomeDaRef(r: LogRefView, jogadores: readonly { name: string }[]): string {
+  if (r.k === 'jogador') return jogadores[r.id]?.name ?? '?';
+  // o nome da ref é o de `nameOf` (pode ser a outra face, ou a cópia): pela def só quando é o próprio nome da carta
+  return r.def && r.name === r.def ? nomeCarta(r.def, r.name) : traduzir(r.name);
+}
+
+/**
+ * F3: o texto de uma linha, montado pelas partes quando ela tem (cartas em português pela def). Linha antiga (de
+ * checkpoint salvo) ou sem partes: o texto do motor, só com a tradução dos nomes.
+ */
+export function textoDaLinha(l: LogLinhaView, jogadores: readonly { name: string }[]): string {
+  if (!l.parts?.length || !l.refs) return traduzir(l.text);
+  return l.parts.map((p) => (typeof p === 'string' ? traduzir(p) : l.refs![p.ref] ? nomeDaRef(l.refs![p.ref], jogadores) : '')).join('');
 }
 
 // nomes de cartas citados num texto do motor ("Lim-Dûl's Vault: você olhou Sol Ring, Island…"), para a janela de

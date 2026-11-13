@@ -89,9 +89,11 @@ export function linhasDesfeitas(atual: Game, voltar: Game, entrada: Input): Linh
   }
   for (const e of atual.state.log.slice(voltar.state.log.length)) {
     const texto = e.visibleTo === null ? e.text : e.hiddenText;
-    if (!texto || /^Turno \d+:/.test(texto)) continue;
-    const autor = nomes.findIndex((n) => texto.startsWith(`${n} `) || texto.startsWith(`${n}:`));
-    linhas.push({ texto, outro: autor >= 0 && autor !== quem });
+    // F3: pelo tipo e pelo autor gravados na linha (são linhas novas, feitas agora pelo motor). Linha sem autor
+    // (de sistema, ou que o motor ainda grava só com texto) conta como da própria pessoa
+    if (!texto || e.kind === 'turno') continue;
+    const autor = e.actor ?? null;
+    linhas.push({ texto, outro: autor !== null && autor !== quem });
   }
   // conjurar, jogar ou ativar já aparecem no registro do jeito de sempre ("Ana conjura…"): a descrição sai
   const passe = entrada.t === 'a' && entrada.a.kind === 'priority' && entrada.a.action === 'pass';

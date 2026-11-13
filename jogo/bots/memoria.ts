@@ -1,7 +1,8 @@
 // Memória da Cartomante (fase 9): o que um jogador atento à mesa sabe e deduz, sem nunca olhar o escondido.
 //
 // - Cartas que voltaram de uma zona pública para a mão de alguém (todos viram) e cartas reveladas que foram para a
-//   mão (o registro diz "X revela Y"): ficam marcadas como "na mão" até aparecerem de novo numa zona pública.
+//   mão (a linha 'revela' do registro, com as cartas citadas): ficam marcadas como "na mão" até aparecerem de novo
+//   numa zona pública.
 // - Leitura do jeito de jogar, no fim do turno de cada oponente: não jogou terreno tendo cartas na mão → provavelmente
 //   não tem terreno; passou o turno com dois terrenos ou mais desvirados → provavelmente guarda uma mágica de instante.
 // A lista do deck menos o que já saiu é o que o sorteio de bots/mundo.ts já usa para todos os níveis.
@@ -60,11 +61,12 @@ export function observar(m: DadosMemoria, g: G, eu: PlayerId): void {
     const e = s.log[i];
     if (!visivel(e)) continue;
     m.linhas++;
-    const r = /^(.+?) revela (.+)\.$/.exec(e.text);
-    if (!r) continue;
-    const p = s.players.find((x) => x.name === r[1]);
-    if (!p || p.id === eu) continue;
-    revelados.set(p.id, [...(revelados.get(p.id) ?? []), ...r[2].split(', ')]);
+    // F3: pelo tipo da linha e pelas cartas citadas, uma por ref (o texto separado por vírgula partia "Gisa, Glorious
+    // Resurrector" em duas). Vale o nome gravado na ref, que é o mesmo do texto (público); o objeto pelo id não: na
+    // cópia do bot o escondido é sorteado. Linhas sem tipo (de checkpoint salvo) ficam de fora
+    if (e.kind !== 'revela' || e.actor == null || e.actor === eu || !e.refs) continue;
+    const nomes = e.refs.flatMap((r) => (r.k === 'obj' ? [r.name] : []));
+    if (nomes.length) revelados.set(e.actor, [...(revelados.get(e.actor) ?? []), ...nomes]);
   }
   m.bruto = s.log.length;
   // 2. cartas que passaram por zona pública (o nome é público) e quantas cartas escondidas foram para a mão: só as
