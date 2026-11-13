@@ -1,14 +1,18 @@
 // Os últimos erros e avisos do servidor (console.error e console.warn), guardados em memória para irem junto dos
-// relatos de erro: quando alguém reporta, o relato leva o que o servidor registrou pouco antes.
+// relatos de erro: quando alguém reporta, o relato leva o que o servidor registrou pouco antes. As mensagens comuns
+// (console.log) ficam numa lista à parte, só para a área do desenvolvedor.
 
 export interface LinhaDiario {
   em: number;
-  nivel: 'erro' | 'aviso';
+  nivel: 'erro' | 'aviso' | 'info';
   texto: string;
 }
 
 const MAXIMO = 200;
 const linhas: LinhaDiario[] = [];
+/** as mensagens comuns (console.log), separadas para não empurrarem os erros para fora */
+const MAXIMO_INFO = 300;
+const infos: LinhaDiario[] = [];
 let instalado = false;
 
 function texto(args: unknown[]): string {
@@ -27,6 +31,17 @@ export function instalarDiario(): void {
       original(...args);
     };
   }
+  const log = console.log.bind(console);
+  console.log = (...args: unknown[]) => {
+    infos.push({ em: Date.now(), nivel: 'info', texto: texto(args) });
+    if (infos.length > MAXIMO_INFO) infos.splice(0, infos.length - MAXIMO_INFO);
+    log(...args);
+  };
+}
+
+/** tudo o que está guardado (erros, avisos e mensagens), na ordem do tempo: para a área do desenvolvedor */
+export function diarioCompleto(): LinhaDiario[] {
+  return [...linhas, ...infos].sort((a, b) => a.em - b.em);
 }
 
 /** as linhas dos últimos `ms` milissegundos (as mais antigas primeiro) */

@@ -263,6 +263,26 @@ export class Sala {
     };
   }
 
+  /** para a área do desenvolvedor: o estado da sala e da partida, só com o que está à vista de todos na mesa (vida,
+   * turno, quem está conectado), sem senha, tokens, mãos nem grimórios */
+  paraDev(): Record<string, unknown> {
+    const p = this.d.partida;
+    const st = this.game?.g.state;
+    const conectados = new Set([...this.conexoes].map((c) => c.assento));
+    return {
+      codigo: this.d.codigo, estado: this.d.estado, formato: modoDe(this.d), etapa: this.d.etapa ?? 'lugares', anfitriao: this.d.anfitriao,
+      conexoes: this.conexoes.size,
+      assentos: this.d.assentos.map((a, i) => ({ nome: a.nome, tipo: a.tipo, deck: a.deck ? this.gerente.deck(a.deck)?.nome ?? a.deck : null, nivel: a.tipo === 'bot' ? a.nivel ?? NIVEL_PADRAO : null, conectado: a.tipo === 'bot' || conectados.has(i) })),
+      partida: p ? {
+        id: idPartida(p.config.seed), iniciadaEm: p.iniciadaEm ?? null, encerradaEm: p.encerradaEm ?? null,
+        entradas: this.game ? this.game.inputs.length : null,
+        turno: st ? st.turn.number : null, rodada: st ? st.turn.round ?? null : null,
+        vidas: st ? st.players.map((j) => ({ vida: j.life, perdeu: j.lost })) : null,
+      } : null,
+      erro: this.erro, falhas: this.falhas.n, atualizada: null,
+    };
+  }
+
   publica(): SalaPublica {
     const conectados = new Set([...this.conexoes].map((c) => c.assento));
     const p = this.d.partida;

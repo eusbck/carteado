@@ -30,6 +30,9 @@ import { Arquivos } from './http-arquivos.ts';
 import { Imagens, type Tamanho } from './imagens.ts';
 import { tipoMsg, type DeckResumo, type MsgCliente, type MsgServidor, type RespostaRelato } from './protocolo.ts';
 import { conferirPedido, LIMITE_CORPO_RELATO, numeroCurto, Relatos } from './relatos.ts';
+import { AcessoDev, chaveDev } from './dev/acesso.ts';
+import { conferirErroCliente, ErrosCliente } from './dev/erros-cliente.ts';
+import { RotasDev } from './dev/rotas.ts';
 import { Gerente, type Conexao } from './salas.ts';
 
 // os erros e avisos do servidor ficam guardados em memória para irem junto dos relatos de erro
@@ -226,6 +229,18 @@ async function receberRelato(req: IncomingMessage, res: ServerResponse): Promise
   return responder(200, { ok: true, id });
 }
 
+// ---------------------------------------------------------------------------
+// área do desenvolvedor (/dev e /api/dev/*): chave própria, por padrão só deste computador (servidor/dev/acesso.ts)
+// ---------------------------------------------------------------------------
+const chave = chaveDev(DADOS);
+if (chave.criada) console.log(`Chave da área do desenvolvedor criada em ${chave.arquivo} (abra http://localhost:${PORTA}/dev)`);
+const acessoDev = new AcessoDev({ banco, chave: chave.chave, dados: DADOS, https: HTTPS, remoto: process.env.DEV_REMOTO === '1', ipDe });
+const errosCliente = new ErrosCliente(banco, () => VERSAO);
+const rotasDev = new RotasDev({
+  raiz: RAIZ, acesso: acessoDev, relatos, erros: errosCliente, gerente, catalogo, arquivos, versao: VERSAO, iniciadoEm: INICIADO_EM,
+  conexoes: () => wss.clients.size, decksJogaveis: () => resumoDecks.length,
+});
+
 async function rotear(req: IncomingMessage, res: ServerResponse): Promise<void> {
   const url = new URL(req.url ?? '/', 'http://x');
   const p = url.pathname;
@@ -243,6 +258,10 @@ async function rotear(req: IncomingMessage, res: ServerResponse): Promise<void> 
     return json(res, 200, { ok: true }, { 'set-cookie': `sessao=${token}; HttpOnly; SameSite=Lax; Path=/; Max-Age=31536000${HTTPS ? '; Secure' : ''}` });
   }
   if (p === '/api/sessao') return json(res, 200, { ok: autenticado(req) });
+  // a área do desenvolvedor tem a própria chave (não pede a senha do grupo)
+  if (await rotasDev.tratar(req, res, p)) return;
+  // fora deste computador (sem DEV_REMOTO), a página /dev nem aparece
+  if ((p === '/dev' || p.startsWith('/dev/')) && !acessoDev.alcancavel(req)) return json(res, 404, { erro: 'Página não encontrada' });
 
   // a partir daqui, só com sessão
   const precisaSessao = p.startsWith('/api/') || p.startsWith('/img/') || p.startsWith('/simbolo/');
@@ -250,6 +269,12 @@ async function rotear(req: IncomingMessage, res: ServerResponse): Promise<void> 
 
   if (p === '/api/decks') return json(res, 200, resumoDecks);
   if (p === '/api/relatos' && req.method === 'POST') return receberRelato(req, res);
+  if (p === '/api/erros-cliente' && req.method === 'POST') {
+    let e;
+    try { e = conferirErroCliente(JSON.parse(await lerCorpo(req, 16384))); } catch { return json(res, 400, { erro: 'Pedido inválido' }); }
+    if (!e) return json(res, 400, { erro: 'Pedido inválido' });
+    return json(res, errosCliente.receber(e, ipDe(req)) ? 200 : 429, { ok: true });
+  }
   // as informações das cartas (centenas de KB): o navegador revalida pelo ETag e só baixa de novo quando mudam
   if (p === '/api/cartas') return arquivos.texto(req, res, INFO, 'application/json; charset=utf-8', 'private, no-cache');
   if (p === '/api/catalogo' || p.startsWith('/api/catalogo/')) {

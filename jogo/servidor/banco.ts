@@ -6,6 +6,34 @@ import { DatabaseSync, type StatementSync } from 'node:sqlite';
 import { mkdirSync } from 'node:fs';
 import { dirname } from 'node:path';
 
+/** um erro automático do navegador, agrupado pela assinatura (servidor/dev/erros-cliente.ts) */
+export interface ErroClienteGravado {
+  assinatura: string;
+  tipo: 'erro' | 'promessa';
+  texto: string;
+  pilha: string;
+  tela: string;
+  navegador: string;
+  primeiro: number;
+  ultimo: number;
+  vezes: number;
+  /** vezes nas últimas 24 h (das últimas 100 ocorrências guardadas) */
+  vezes24h: number;
+  versao: string;
+  /** navegadores diferentes (pelo hash do endereço) */
+  pessoas: number;
+  resolvido: boolean;
+  resolvidoEm: number | null;
+}
+
+interface LinhaErroCliente {
+  assinatura: string; tipo: string; texto: string; pilha: string; tela: string; navegador: string;
+  primeiro: number; ultimo: number; vezes: number; versao: string; ips: string; recentes: string; resolvido: number; resolvido_em: number | null;
+}
+
+/** quantos erros diferentes o banco guarda (os mais antigos saem) */
+const MAX_ERROS_CLIENTE = 500;
+
 export class Banco {
   private db: DatabaseSync;
   /** comandos preparados uma vez só (antes, cada gravação preparava o seu de novo) */
@@ -22,6 +50,12 @@ export class Banco {
       create table if not exists sessoes (token text primary key, criada integer not null);
       create table if not exists salas (codigo text primary key, dados text not null, atualizada integer not null);
       create table if not exists entradas (codigo text not null, n integer not null, json text not null, primary key (codigo, n));
+      create table if not exists sessoes_dev (hash text primary key, criada integer not null, expira integer not null, ip text not null, agente text not null);
+      create table if not exists erros_cliente (
+        assinatura text primary key, tipo text not null, texto text not null, pilha text not null, tela text not null, navegador text not null,
+        primeiro integer not null, ultimo integer not null, vezes integer not null, versao text not null, ips text not null, recentes text not null,
+        resolvido integer not null default 0, resolvido_em integer
+      );
     `);
     // fase 8: turno de cada entrada e se foi a pessoa que fez (para o Desfazer); bancos antigos ganham a coluna
     const colunas = (this.db.prepare('pragma table_info(entradas)').all() as { name: string }[]).map((c) => c.name);
@@ -75,6 +109,50 @@ export class Banco {
   limparEntradas(codigo: string): void { this.st.apagarEntradas.run(codigo); }
   /** apaga as entradas a partir da posição n (desfazer) */
   truncarEntradas(codigo: string, n: number): void { this.st.truncarEntradas.run(codigo, n); }
+
+  // área do desenvolvedor: sessões (pelo hash do token) e erros automáticos do navegador
+  criarSessaoDev(hash: string, criada: number, expira: number, ip: string, agente: string): void {
+    this.db.prepare('delete from sessoes_dev where expira < ?').run(criada);
+    this.db.prepare('insert into sessoes_dev (hash, criada, expira, ip, agente) values (?, ?, ?, ?, ?)').run(hash, criada, expira, ip, agente);
+  }
+  sessaoDev(hash: string): { expira: number } | null {
+    return (this.db.prepare('select expira from sessoes_dev where hash = ?').get(hash) as { expira: number } | undefined) ?? null;
+  }
+  apagarSessaoDev(hash: string): void { this.db.prepare('delete from sessoes_dev where hash = ?').run(hash); }
+  sessoesDev(): { hash: string; criada: number; expira: number; ip: string; agente: string }[] {
+    return this.db.prepare('select hash, criada, expira, ip, agente from sessoes_dev order by criada desc').all() as never;
+  }
+
+  registrarErroCliente(e: { assinatura: string; tipo: string; texto: string; pilha: string; tela: string; navegador: string; em: number; versao: string; ip: string }): void {
+    const atual = this.db.prepare('select ips, recentes from erros_cliente where assinatura = ?').get(e.assinatura) as { ips: string; recentes: string } | undefined;
+    if (!atual) {
+      this.db.prepare(`insert into erros_cliente (assinatura, tipo, texto, pilha, tela, navegador, primeiro, ultimo, vezes, versao, ips, recentes, resolvido)
+        values (?, ?, ?, ?, ?, ?, ?, ?, 1, ?, ?, ?, 0)`).run(e.assinatura, e.tipo, e.texto, e.pilha, e.tela, e.navegador, e.em, e.em, e.versao, JSON.stringify([e.ip]), JSON.stringify([e.em]));
+      const n = (this.db.prepare('select count(*) as n from erros_cliente').get() as { n: number }).n;
+      if (n > MAX_ERROS_CLIENTE) this.db.prepare('delete from erros_cliente where assinatura in (select assinatura from erros_cliente order by ultimo limit ?)').run(n - MAX_ERROS_CLIENTE);
+      return;
+    }
+    const ips = new Set(JSON.parse(atual.ips) as string[]);
+    if (ips.size < 200) ips.add(e.ip);
+    const recentes = [...(JSON.parse(atual.recentes) as number[]), e.em].slice(-100);
+    // voltou a acontecer: reabre
+    this.db.prepare(`update erros_cliente set texto = ?, pilha = ?, tela = ?, navegador = ?, ultimo = ?, vezes = vezes + 1, versao = ?, ips = ?, recentes = ?, resolvido = 0, resolvido_em = null
+      where assinatura = ?`).run(e.texto, e.pilha, e.tela, e.navegador, e.em, e.versao, JSON.stringify([...ips]), JSON.stringify(recentes), e.assinatura);
+  }
+  errosCliente(agora = Date.now()): ErroClienteGravado[] {
+    return (this.db.prepare('select * from erros_cliente order by resolvido, ultimo desc').all() as unknown as LinhaErroCliente[]).map((l) => ({
+      assinatura: l.assinatura, tipo: l.tipo === 'promessa' ? 'promessa' : 'erro', texto: l.texto, pilha: l.pilha, tela: l.tela, navegador: l.navegador,
+      primeiro: l.primeiro, ultimo: l.ultimo, vezes: l.vezes, versao: l.versao,
+      vezes24h: (JSON.parse(l.recentes) as number[]).filter((t) => agora - t < 86400_000).length,
+      pessoas: (JSON.parse(l.ips) as string[]).length, resolvido: !!l.resolvido, resolvidoEm: l.resolvido_em,
+    }));
+  }
+  marcarErroCliente(assinatura: string, resolvido: boolean): boolean {
+    return Number(this.db.prepare('update erros_cliente set resolvido = ?, resolvido_em = ? where assinatura = ?').run(resolvido ? 1 : 0, resolvido ? Date.now() : null, assinatura).changes) > 0;
+  }
+  apagarErroCliente(assinatura: string): boolean {
+    return Number(this.db.prepare('delete from erros_cliente where assinatura = ?').run(assinatura).changes) > 0;
+  }
 
   fechar(): void { this.db.close(); }
 }
