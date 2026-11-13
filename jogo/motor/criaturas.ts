@@ -278,8 +278,8 @@ export function* ringTempts(g: G, p: PlayerId): Gen<ObjId | null> {
     g.state.objects[bearer].data.ringBearer = p;
   }
   g.bump();
-  if (bearer !== null) reg(g, 'outro', { rule: '701.54a', actor: p })`O Anel tenta ${jog(p)} (${e.data.tempted}ª vez); ${refObj(bearer)} é o Portador do Anel.`;
-  else reg(g, 'outro', { rule: '701.54a', actor: p })`O Anel tenta ${jog(p)} (${e.data.tempted}ª vez).`;
+  if (bearer !== null) reg(g, 'outro', { rule: '701.54a', actor: p })`O Anel tenta ${jog(p)} (${e.data.tempted as number}ª vez); ${refObj(bearer)} é o Portador do Anel.`;
+  else reg(g, 'outro', { rule: '701.54a', actor: p })`O Anel tenta ${jog(p)} (${e.data.tempted as number}ª vez).`;
   emit(g, [{ type: 'ringTempts', player: p, bearer }]);
   return bearer;
 }
