@@ -96,14 +96,24 @@ function nomeSeguro(g: G, id: ObjId): string {
   return l?.chars.name || 'carta virada para baixo';
 }
 
-/** "A, B ×2, C": cada nome uma vez (a ref é a primeira cópia), com a contagem quando repete */
-function nomesAgrupados(ids: ObjId[], nomes: string[], papel?: 'vitima' | 'fonte'): ValorReg[] {
+/**
+ * "A, B ×2 e C": cada nome uma vez (a ref é a primeira cópia), com a contagem quando repete. Com vírgula num nome
+ * ("Terra, Herald of Hope"), os itens se separam por ponto e vírgula.
+ */
+function nomesAgrupados(ids: ObjId[], nomes: string[], papel?: 'vitima' | 'fonte'): ValorReg {
   const ordem: { id: ObjId; nome: string; n: number }[] = [];
   nomes.forEach((nome, i) => {
     const x = ordem.find((o) => o.nome === nome);
     if (x) x.n++; else ordem.push({ id: ids[i], nome, n: 1 });
   });
-  return ordem.map((o) => lista([obj(o.id, papel, o.nome), o.n > 1 ? ` ×${o.n}` : ''], ''));
+  const sep = ordem.some((o) => o.nome.includes(',')) ? '; ' : ', ';
+  const vals: ValorReg[] = [];
+  ordem.forEach((o, i) => {
+    if (i) vals.push(i === ordem.length - 1 ? ' e ' : sep);
+    vals.push(obj(o.id, papel, o.nome));
+    if (o.n > 1) vals.push(` ×${o.n}`);
+  });
+  return lista(vals, '');
 }
 
 const plural = (n: number, um: string, varios: string) => (n === 1 ? um : varios);
@@ -172,19 +182,19 @@ function somar(g: G, tipo: Somavel, p: PlayerId, ids: ObjId[], nomes: string[], 
   switch (tipo) {
     case 'compra': {
       const cartas = `${grupo.n} ${plural(grupo.n, 'carta', 'cartas')}`;
-      gravar(g, 'compra', [jog(p), ' compra ', lista(nomesAgrupados(grupo.ids, grupo.nomes)), '.'], { rule: '121.1', actor: p, grupo, visibleTo: [p], hiddenText: `${nome} compra ${cartas}.`, ...subst });
+      gravar(g, 'compra', [jog(p), ' compra ', nomesAgrupados(grupo.ids, grupo.nomes), '.'], { rule: '121.1', actor: p, grupo, visibleTo: [p], hiddenText: `${nome} compra ${cartas}.`, ...subst });
       return;
     }
     case 'gatilho': {
       const varios = grupo.n > 1;
-      gravar(g, 'gatilho', [jog(p), varios ? ': gatilhos de ' : ': gatilho de ', lista(nomesAgrupados(grupo.ids, grupo.nomes, 'fonte')), varios ? ' vão para a pilha.' : ' vai para a pilha.'], { rule: '603.3', actor: p, grupo, ...subst });
+      gravar(g, 'gatilho', [jog(p), varios ? ': gatilhos de ' : ': gatilho de ', nomesAgrupados(grupo.ids, grupo.nomes, 'fonte'), varios ? ' vão para a pilha.' : ' vai para a pilha.'], { rule: '603.3', actor: p, grupo, ...subst });
       return;
     }
     case 'ficha': {
       const nomesDistintos = new Set(grupo.nomes);
       const vals: ValorReg[] = nomesDistintos.size === 1
         ? [jog(p), grupo.n === 1 ? ' cria uma ficha ' : ` cria ${grupo.n} fichas `, obj(grupo.ids[0], undefined, grupo.nomes[0]), '.']
-        : [jog(p), ` cria ${grupo.n} fichas: `, lista(nomesAgrupados(grupo.ids, grupo.nomes)), '.'];
+        : [jog(p), ` cria ${grupo.n} fichas: `, nomesAgrupados(grupo.ids, grupo.nomes), '.'];
       gravar(g, 'ficha', vals, { rule: '111.1', actor: p, grupo, ...subst });
       return;
     }
@@ -212,10 +222,10 @@ function linhaDeSaida(g: G, m: MotivoZona, evs: Ev<'zone'>[]): void {
     // um grupo por quem sacrificou
     const por = new Map<PlayerId, number[]>();
     ids.forEach((id, i) => por.set(ctl(id, i), [...(por.get(ctl(id, i)) ?? []), i]));
-    for (const [p, is] of por) gravar(g, 'morte', [jog(p), ' sacrifica ', lista(nomesAgrupados(is.map((i) => ids[i]), is.map((i) => nomes[i]), 'vitima')), '.'], { rule: '701.21a', actor: p });
+    for (const [p, is] of por) gravar(g, 'morte', [jog(p), ' sacrifica ', nomesAgrupados(is.map((i) => ids[i]), is.map((i) => nomes[i]), 'vitima'), '.'], { rule: '701.21a', actor: p });
     return;
   }
-  const quem = lista(nomesAgrupados(ids, nomes, 'vitima'));
+  const quem = nomesAgrupados(ids, nomes, 'vitima');
   const actor = null;
   const fim: Partial<Record<MotivoZona, [string, string, string?]>> = {
     morrer: [' morre.', ' morrem.'],

@@ -33,7 +33,7 @@ describe('redator: compras', () => {
     tg.choose('jogador alvo', ['Ana']).cast('Sign in Blood').resolve();
     const c = linhas(tg, 'compra');
     expect(c).toHaveLength(1);
-    expect(c[0]).toMatchObject({ text: 'Ana compra Island, Forest.', visibleTo: [0], hiddenText: 'Ana compra 2 cartas.', actor: 0, rule: '121.1' });
+    expect(c[0]).toMatchObject({ text: 'Ana compra Island e Forest.', visibleTo: [0], hiddenText: 'Ana compra 2 cartas.', actor: 0, rule: '121.1' });
     expect(remonta(c[0])).toBe(c[0].text);
     // a vista: Ana vê as cartas (com a def); Bruno e o espectador, só a contagem, sem refs
     const ana = buildView(tg.g, 0, null).log.find((l) => l.seq === c[0].seq)!;
@@ -90,7 +90,7 @@ describe('redator: mortes, dano e vida', () => {
     tg.resolveAll();
     const mortes = linhas(tg, 'morte');
     expect(mortes).toHaveLength(1);
-    expect(mortes[0].text).toBe('Blood Artist, Wall of Omens, Indomitable Ancients são destruídas.');
+    expect(mortes[0].text).toBe('Blood Artist, Wall of Omens e Indomitable Ancients são destruídas.');
     // os três gatilhos foram para a pilha juntos
     expect(textos(tg, 'gatilho')).toEqual(['Ana: gatilhos de Blood Artist ×3 vão para a pilha.']);
     // a vida de cada um soma, mesmo resolvendo um por um (são entradas diferentes só no Game; aqui é a mesma)
