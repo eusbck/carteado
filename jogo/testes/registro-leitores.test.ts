@@ -25,6 +25,17 @@ describe('memória dos bots lê as revelações pelas refs (Q7)', () => {
     expect(m.naMao[1]).toEqual(COM_VIRGULA);
   });
 
+  it('numa linha com vários jogadores (confronto), cada carta é de quem foi citado antes dela', () => {
+    const tg = setup({ library: [['Giada, Font of Hope', 'Island'], ['Akiri, Fearless Voyager', 'Island']] });
+    const minha = tg.find('Giada, Font of Hope', 'library', 0)!;
+    const dele = tg.find('Akiri, Fearless Voyager', 'library', 1)!;
+    reg(tg.g, 'revela', { rule: '701.30a', actor: 0 })`Confronto: ${jog(0)} revela ${obj(minha)}; ${jog(1)} revela ${obj(dele)}.`;
+    moveRaw(tg.g, dele, 'hand');
+    const m = memoriaVazia();
+    observar(m, tg.g, 0);
+    expect(m.naMao).toEqual({ 1: ['Akiri, Fearless Voyager'] });
+  });
+
   it('o próprio jogador e linhas só com texto (de checkpoint antigo) não entram', () => {
     const tg = setup({ library: [['Island'], [...COM_VIRGULA, 'Island']] });
     const ids = COM_VIRGULA.map((n) => tg.find(n, 'library', 1)!);

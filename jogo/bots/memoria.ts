@@ -63,10 +63,15 @@ export function observar(m: DadosMemoria, g: G, eu: PlayerId): void {
     m.linhas++;
     // F3: pelo tipo da linha e pelas cartas citadas, uma por ref (o texto separado por vírgula partia "Gisa, Glorious
     // Resurrector" em duas). Vale o nome gravado na ref, que é o mesmo do texto (público); o objeto pelo id não: na
-    // cópia do bot o escondido é sorteado. Linhas sem tipo (de checkpoint salvo) ficam de fora
-    if (e.kind !== 'revela' || e.actor == null || e.actor === eu || !e.refs) continue;
-    const nomes = e.refs.flatMap((r) => (r.k === 'obj' ? [r.name] : []));
-    if (nomes.length) revelados.set(e.actor, [...(revelados.get(e.actor) ?? []), ...nomes]);
+    // cópia do bot o escondido é sorteado. Cada carta é de quem foi citado antes dela na linha (no confronto, cada
+    // jogador revela a sua), ou do autor. Linhas sem tipo (de checkpoint salvo) ficam de fora
+    if (e.kind !== 'revela' || !e.refs) continue;
+    let quem = e.actor ?? null;
+    for (const r of e.refs) {
+      if (r.k === 'jogador') { quem = r.id; continue; }
+      if (quem === null || quem === eu) continue;
+      revelados.set(quem, [...(revelados.get(quem) ?? []), r.name]);
+    }
   }
   m.bruto = s.log.length;
   // 2. cartas que passaram por zona pública (o nome é público) e quantas cartas escondidas foram para a mão: só as

@@ -297,8 +297,9 @@ function Avisos({ v, cor }: { v: GameView; cor: (p: number) => string }) {
     const ultima = ant.length ? ant[ant.length - 1].seq : -1;
     const fim = v.log.length ? v.log[v.log.length - 1].seq : -1;
     if (fim < ultima) { setLista([]); return; }
-    // pelo tipo da linha; linhas sem tipo (de checkpoint salvo) não viram aviso
-    const novas = v.log.filter((l) => l.seq > ultima && l.kind !== undefined && KINDS_AVISO.has(l.kind));
+    // pelo tipo da linha (o ataque só quando cita criatura: "Fulano não ataca." não vira aviso); linhas sem tipo (de
+    // checkpoint salvo) não viram aviso
+    const novas = v.log.filter((l) => l.seq > ultima && l.kind !== undefined && KINDS_AVISO.has(l.kind) && (l.kind !== 'ataque' || !!l.refs?.some((r) => r.k === 'obj')));
     if (!novas.length) return;
     const itens = novas.slice(-3).map((l) => ({ id: seq.current++, texto: textoDaLinha(l, v.players), quem: l.actor ?? null }));
     setLista((a) => [...a, ...itens].slice(-3));
