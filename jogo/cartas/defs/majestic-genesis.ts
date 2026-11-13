@@ -5,6 +5,7 @@
 import { chooseItems, defineCard, isPermanentCard, manaValue, moveObjects, nameOf, objItem, putOntoBattlefield, type G } from '../../motor/api.ts';
 import { shuffle } from '../../motor/rng.ts';
 import type { PlayerId } from '../../motor/types.ts';
+import { jog, objs, reg } from '../../motor/registro.ts';
 
 /** maior valor de mana entre os comandantes de que o jogador é dono no campo ou na zona de comando (ruling 1: mesmo
  *  controlado por outro jogador) */
@@ -26,7 +27,7 @@ export default defineCard({
         const x = maiorComandante(g, c.you);
         const topo = g.state.zones.library[c.you].slice(0, x);
         if (!topo.length) return;
-        g.log(`${g.state.players[c.you].name} revela ${topo.map((id) => nameOf(g, id)).join(', ')} (Majestic Genesis).`);
+        reg(g, 'revela')`${jog(c.you)} revela ${objs(topo)} (Majestic Genesis).`;
         const cands = topo.filter((id) => isPermanentCard(g, id));
         const esc = cands.length
           ? (yield* chooseItems(g, c.you, 'Majestic Genesis: escolha as cartas de permanente que vão para o campo', cands.map((id) => objItem(g, id, nameOf(g, id))), 0, cands.length)).map(Number)

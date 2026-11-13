@@ -6,6 +6,7 @@
 import { assimilateCard, chars, chooseItems, defineCard, nameOf, objItem } from '../../motor/api.ts';
 import type { ObjId } from '../../motor/types.ts';
 import { fundoAleatorio } from '../borg.ts';
+import { jog, objs, reg } from '../../motor/registro.ts';
 
 export default defineCard({
   name: 'Gift of Perfection',
@@ -20,7 +21,7 @@ export default defineCard({
           const i = lib.findIndex((id) => chars(c.g, id).types.includes('Creature'));
           const tiradas = i < 0 ? [...lib] : lib.slice(0, i + 1);
           if (!tiradas.length) continue;
-          c.g.log(`${s.players[op].name} revela ${tiradas.map((id) => nameOf(c.g, id)).join(', ')}.`);
+          reg(c.g, 'revela')`${jog(op)} revela ${objs(tiradas)}.`;
           reveladas.push(...tiradas);
           if (i >= 0) criaturas.push(lib[i]);
         }

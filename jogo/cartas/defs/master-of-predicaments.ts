@@ -4,6 +4,7 @@
 // card's mana value is greater than 4. If the player guessed wrong, you may cast the card without paying its mana cost.
 import { chooseItems, defineCard, keyword, manaValue, mayCastFree, nameOf, objItem, on, triggered, yesNo } from '../../motor/api.ts';
 import type { PlayerId } from '../../motor/types.ts';
+import { jog, reg } from '../../motor/registro.ts';
 
 export default defineCard({
   name: 'Master of Predicaments',
@@ -22,7 +23,7 @@ export default defineCard({
         const maior = manaValue(c.g, carta) > 4;
         const palpite = yield* yesNo(c.g, p, `Master of Predicaments: o valor de mana da carta que ${s.players[c.you].name} escolheu é maior que 4?`, 'Maior que 4', '4 ou menos');
         // ruling 3: sem conjurar, a carta não é revelada, e o registro não diz se o palpite estava certo
-        c.g.log(`${s.players[p].name} diz que o valor de mana é ${palpite ? 'maior que 4' : '4 ou menos'}.`);
+        reg(c.g, 'outro')`${jog(p)} diz que o valor de mana é ${palpite ? 'maior que 4' : '4 ou menos'}.`;
         if (palpite === maior) return;
         // rulings 2, 5-7: conjurada agora, sem custo alternativo e com X = 0; terreno não pode ser jogado
         yield* mayCastFree(c.g, c.you, carta, `Master of Predicaments: o palpite estava errado. Conjurar ${nameOf(c.g, carta)} sem pagar o custo de mana?`);

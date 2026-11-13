@@ -2,6 +2,7 @@
 // Whenever an opponent casts a spell, reveal the top card of your library. If it's a creature card, put it onto the
 // battlefield. Otherwise, you may put that card on the bottom of your library.
 import { defineCard, isCreature, moveObjects, nameOf, on, putOntoBattlefield, triggered, yesNo } from '../../motor/api.ts';
+import { jog, obj, reg } from '../../motor/registro.ts';
 
 export default defineCard({
   name: 'Lurking Predators',
@@ -11,7 +12,7 @@ export default defineCard({
       triggered(on.custom((e, c) => e.type === 'cast' && !e.copy && c.g.isOpponent(c.you, e.player)), function* (c) {
         const topo = c.g.state.zones.library[c.you][0];
         if (topo === undefined) return;
-        c.g.log(`${c.g.state.players[c.you].name} revela ${nameOf(c.g, topo)} (Lurking Predators).`, { rule: '701.20a' });
+        reg(c.g, 'revela', { rule: '701.20a' })`${jog(c.you)} revela ${obj(topo)} (Lurking Predators).`;
         // ruling 2: carta de criatura entra obrigatoriamente; ruling 3: qualquer carta com o tipo criatura
         if (isCreature(c.g, topo)) {
           yield* putOntoBattlefield(c.g, [{ id: topo, controller: c.you }], 'effect');

@@ -12,6 +12,7 @@ import {
 } from '../../motor/api.ts';
 import { shuffle } from '../../motor/rng.ts';
 import type { PlayerId } from '../../motor/types.ts';
+import { jog, objs, reg } from '../../motor/registro.ts';
 
 // "as criaturas que eles controlam não podem atacar Jaces que você controla neste turno": restrição de ataque
 // (CR 508.1c) que olha o controlador da criatura e do Jace na hora de declarar
@@ -36,7 +37,7 @@ export default defineCard({
         if (c.g.state.players[op].left) return;
         if (yield* mayPay(c, op, '{2}', `que suas criaturas possam atacar Jaces de ${c.g.state.players[c.you].name} neste turno`)) return;
         ruleEffect(c, NAO_ATACA_JACES.id!, { kind: 'endOfTurn' }, { params: { player: op } });
-        c.g.log(`${c.g.state.players[op].name} não paga {2}: suas criaturas não podem atacar Jaces de ${c.g.state.players[c.you].name} neste turno.`);
+        reg(c.g, 'outro')`${jog(op)} não paga {2}: suas criaturas não podem atacar Jaces de ${jog(c.you)} neste turno.`;
       }, { text: 'No início do combate no turno de cada oponente, ele pode pagar {2}. Se não pagar, as criaturas que ele controla não podem atacar Jaces que você controla neste turno.' }),
       activated('+1', function* (c) {
         yield* draw(c.g, c.you, 2);
@@ -53,7 +54,7 @@ export default defineCard({
         const lib = s.zones.library[c.you];
         const i = lib.findIndex((id) => { const ch = chars(c.g, id); return ch.types.includes('Creature') || ch.types.includes('Planeswalker'); });
         const reveladas = i < 0 ? [...lib] : lib.slice(0, i + 1);
-        c.g.log(`${s.players[c.you].name} revela ${reveladas.map((id) => nameOf(c.g, id)).join(', ') || 'nada'}.`, { rule: '701.20' });
+        reg(c.g, 'revela', { rule: '701.20' })`${jog(c.you)} revela ${objs(reveladas, undefined, ', ', 'nada')}.`;
         if (i >= 0) yield* putOntoBattlefield(c.g, [{ id: lib[i], controller: c.you }], 'effect');
         // o resto vai para o fundo em ordem aleatória
         const resto = shuffle(s.rng, reveladas.filter((id) => s.objects[id]?.zone === 'library'));

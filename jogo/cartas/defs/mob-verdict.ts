@@ -5,6 +5,7 @@
 import { chooseItems, controlledBy, dealDamage, defineCard, draw, isCreature, playerItem } from '../../motor/api.ts';
 import type { DamageReq } from '../../motor/actions.ts';
 import type { PlayerId } from '../../motor/types.ts';
+import { jog, lista, reg, trecho, type ValorReg } from '../../motor/registro.ts';
 
 export default defineCard({
   name: 'Mob Verdict',
@@ -14,16 +15,16 @@ export default defineCard({
         const jogadores = c.g.apnap().filter((p) => !c.g.state.players[p].left);
         // rulings 1, 2 e 4: cada um vota num outro jogador, sem ver os votos dos outros; todos são revelados juntos
         const votos = new Map<PlayerId, number>();
-        const quem: string[] = [];
+        const quem: ValorReg[] = [];
         for (const p of jogadores) {
           const outros = jogadores.filter((x) => x !== p);
           if (!outros.length) continue;
           const [v] = yield* chooseItems(c.g, p, 'Mob Verdict: vote em segredo em outro jogador', outros.map((x) => playerItem(c.g, x)), 1, 1, false, { secret: true });
           const alvo = Number(v.slice(1));
           votos.set(alvo, (votos.get(alvo) ?? 0) + 1);
-          quem.push(`${c.g.state.players[p].name} → ${c.g.state.players[alvo].name}`);
+          quem.push(trecho`${jog(p)} → ${jog(alvo)}`);
         }
-        c.g.log(`Mob Verdict, votos: ${quem.join('; ')}.`);
+        reg(c.g, 'outro', { actor: c.you })`Mob Verdict, votos: ${lista(quem, '; ')}.`;
         // 2 de dano por voto a cada oponente votado e a cada criatura dele, tudo de uma vez: um oponente com dois votos
         // recebe 4 de dano num evento só, não duas vezes 2 (CR 120.4: dano causado ao mesmo tempo é um evento)
         const reqs: DamageReq[] = [];

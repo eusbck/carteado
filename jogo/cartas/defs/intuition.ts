@@ -3,6 +3,7 @@
 // the rest into your graveyard. Then shuffle.
 import { chooseItems, defineCard, moveObjects, nameOf, objItem, searchLibrary, shuffleLibrary, t, tgtPlayer } from '../../motor/api.ts';
 import type { ZoneName } from '../../motor/types.ts';
+import { jog, objs, reg } from '../../motor/registro.ts';
 
 export default defineCard({
   name: 'Intuition',
@@ -16,7 +17,7 @@ export default defineCard({
         const n = Math.min(3, c.g.state.zones.library[c.you].length);
         const achadas = yield* searchLibrary(c.g, c.you, c.you, { max: 3, min: n, prompt: 'Procure três cartas' });
         if (achadas.length) {
-          c.g.log(`${c.g.state.players[c.you].name} revela ${achadas.map((id) => nameOf(c.g, id)).join(', ')}.`, { rule: '701.20' });
+          reg(c.g, 'revela', { rule: '701.20' })`${jog(c.you)} revela ${objs(achadas)}.`;
           let paraMao = achadas[0];
           if (op !== null && achadas.length > 1) {
             const [r] = yield* chooseItems(c.g, op, `Intuition: escolha a carta que vai para a mão de ${c.g.state.players[c.you].name} (as outras vão para o cemitério)`, achadas.map((id) => objItem(c.g, id, nameOf(c.g, id))), 1, 1);

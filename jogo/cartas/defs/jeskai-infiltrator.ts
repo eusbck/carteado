@@ -6,6 +6,7 @@
 import { creaturesOf, defineCard, moveObjects, on, putOntoBattlefield, staticAbility, triggered } from '../../motor/api.ts';
 import { shuffle } from '../../motor/rng.ts';
 import type { ObjId } from '../../motor/types.ts';
+import { jog, reg } from '../../motor/registro.ts';
 
 export default defineCard({
   name: 'Jeskai Infiltrator',
@@ -30,7 +31,7 @@ export default defineCard({
         for (const id of shuffle(s.rng, [...exiladas])) {
           yield* putOntoBattlefield(c.g, [{ id, controller: c.you, faceDown: true, data: { manifestada: true } }], 'manifest');
         }
-        c.g.log(`${s.players[c.you].name} manifesta ${exiladas.length} carta(s).`, { rule: '701.40' });
+        reg(c.g, 'zona', { rule: '701.40' })`${jog(c.you)} manifesta ${exiladas.length} carta(s).`;
       }, { text: 'Quando esta criatura causa dano de combate a um jogador, exile-a com a carta do topo do seu grimório numa pilha virada para baixo, embaralhe essa pilha e manifeste essas cartas. (Para manifestar uma carta, coloque-a no campo virada para baixo como uma criatura 2/2. Vire-a para cima a qualquer momento pelo custo de mana dela, se for uma carta de criatura.)' }),
     ],
   }],

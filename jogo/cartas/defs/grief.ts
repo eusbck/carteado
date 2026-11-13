@@ -4,6 +4,7 @@
 // discards that card.
 // Evoke—Exile a black card from your hand.
 import { chars, chooseItems, defineCard, discard, etb, evoke, isLand, keyword, nameOf, t, tgtPlayer } from '../../motor/api.ts';
+import { jog, objs, reg } from '../../motor/registro.ts';
 
 const EVOCAR = evoke('', [{ k: 'exileFromHand', n: 1, filter: (c, id) => chars(c.g, id).colors.includes('B'), label: 'carta preta' }], 'exile uma carta preta da sua mão');
 
@@ -18,7 +19,7 @@ export default defineCard({
         const p = tgtPlayer(c);
         if (p === null) return;
         const mao = g.state.zones.hand[p];
-        g.log(`${g.state.players[p].name} revela a mão: ${mao.map((id) => nameOf(g, id)).join(', ') || 'vazia'}.`, { rule: '701.20' });
+        reg(g, 'revela', { rule: '701.20' })`${jog(p)} revela a mão: ${objs(mao, undefined, ', ', 'vazia')}.`;
         const cands = mao.filter((id) => !isLand(g, id));
         if (!cands.length) return;
         const [esc] = yield* chooseItems(g, c.you, 'Grief: escolha uma carta que não seja terreno para o oponente descartar', cands.map((id) => ({ id: String(id), label: nameOf(g, id), obj: id, card: { def: g.state.objects[id].def } })), 1, 1);

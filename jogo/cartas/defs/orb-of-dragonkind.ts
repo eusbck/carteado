@@ -6,6 +6,7 @@
 import { activated, chars, chooseItems, defineCard, defineFn, mana, moveObjects, nameOf, objItem, type G } from '../../motor/api.ts';
 import { shuffle } from '../../motor/rng.ts';
 import type { ManaType } from '../../motor/types.ts';
+import { jog, obj, reg } from '../../motor/registro.ts';
 
 // CR 106.6: mana com restrição de gasto — só mágicas de Dragon ou habilidades ativadas de Dragons
 const SO_DRAGOES = 'Orb of Dragonkind:dragoes';
@@ -37,7 +38,7 @@ export default defineCard({
         const esc = yield* chooseItems(c.g, c.you, 'Orb of Dragonkind: você pode revelar uma carta de Dragon entre as sete do topo e pô-la na mão', itens, 0, 1);
         const escolhida = esc.length ? Number(esc[0]) : null;
         if (escolhida !== null) {
-          c.g.log(`${s.players[c.you].name} revela ${nameOf(c.g, escolhida)}.`, { rule: '701.20' });
+          reg(c.g, 'revela', { rule: '701.20' })`${jog(c.you)} revela ${obj(escolhida)}.`;
           yield* moveObjects(c.g, [{ id: escolhida, to: 'hand' }], 'effect');
         }
         const resto = shuffle(s.rng, topo.filter((id) => id !== escolhida && s.objects[id]?.zone === 'library'));

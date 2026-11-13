@@ -3,13 +3,14 @@
 // • Khans — At the beginning of your upkeep, exile the top card of your library. Until end of turn, you may play that
 // card.
 // • Dragons — Whenever a creature you control leaves the battlefield, this enchantment deals 1 damage to any target.
-import { allowPlay, asEnters, chooseOne, dealDamage, defineAbility, defineCard, exile, nameOf, on, selfGets, t, tgtRef, triggered } from '../../motor/api.ts';
+import { allowPlay, asEnters, chooseOne, dealDamage, defineAbility, defineCard, exile, on, selfGets, t, tgtRef, triggered } from '../../motor/api.ts';
+import { jog, obj, reg } from '../../motor/registro.ts';
 
 const KHANS = defineAbility('Outpost Siege:khans', triggered(on.upkeep('you'), function* (c) {
   const topo = c.g.state.zones.library[c.you][0];
   if (topo === undefined) return;
   // ruling 1: exilada com a face para cima; jogar segue as regras normais (custos, momento, jogada de terreno)
-  c.g.log(`${c.g.state.players[c.you].name} exila ${nameOf(c.g, topo)} do topo do grimório (Outpost Siege).`);
+  reg(c.g, 'zona')`${jog(c.you)} exila ${obj(topo)} do topo do grimório (Outpost Siege).`;
   const [ex] = yield* exile(c.g, [topo]);
   if (ex !== null && ex !== undefined) allowPlay(c.g, c.you, c.source, [ex], { kind: 'endOfTurn' });
 }, { text: 'Khans — No início da sua manutenção, exile a carta do topo do seu grimório. Até o fim do turno, você pode jogar aquela carta.' }));

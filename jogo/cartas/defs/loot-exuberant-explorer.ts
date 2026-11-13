@@ -6,6 +6,7 @@
 import { activated, chooseItems, controlledBy, defineCard, isCreature, isLand, manaValue, nameOf, putOntoBattlefield, staticAbility } from '../../motor/api.ts';
 import { shuffle } from '../../motor/rng.ts';
 import type { ChoiceItem } from '../../motor/types.ts';
+import { jog, obj, reg } from '../../motor/registro.ts';
 
 export default defineCard({
   name: 'Loot, Exuberant Explorer',
@@ -29,7 +30,7 @@ export default defineCard({
           : [];
         const escolhida = esc.length ? Number(esc[0]) : null;
         if (escolhida !== null) {
-          c.g.log(`${s.players[c.you].name} revela ${nameOf(c.g, escolhida)}.`, { rule: '701.20' });
+          reg(c.g, 'revela', { rule: '701.20' })`${jog(c.you)} revela ${obj(escolhida)}.`;
           yield* putOntoBattlefield(c.g, [{ id: escolhida, controller: c.you }], 'effect');
         }
         const resto = shuffle(s.rng, topo.filter((id) => id !== escolhida && s.objects[id]?.zone === 'library'));

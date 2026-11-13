@@ -3,10 +3,11 @@
 // historic permanent card. You put that card onto the battlefield under your control and lose life equal to that
 // permanent's mana value. That player puts the rest of the revealed cards on the bottom of their library in a random
 // order. (Artifacts, legendaries, and Sagas are historic.)
-import { chars, defineCard, isPermanentCard, loseLife, nameOf, on, putOntoBattlefield, t, tgtPlayer, triggered } from '../../motor/api.ts';
+import { chars, defineCard, isPermanentCard, loseLife, on, putOntoBattlefield, t, tgtPlayer, triggered } from '../../motor/api.ts';
 import { shuffle } from '../../motor/rng.ts';
 import type { G } from '../../motor/game-context.ts';
 import type { ObjId } from '../../motor/types.ts';
+import { jog, objs, reg } from '../../motor/registro.ts';
 
 /** CR 700.6: histórico = lendário, artefato ou Saga; aqui, carta de permanente */
 function historica(g: G, id: ObjId): boolean {
@@ -25,7 +26,7 @@ export default defineCard({
         const lib = s.zones.library[op];
         const i = lib.findIndex((id) => historica(c.g, id));
         const reveladas = i < 0 ? [...lib] : lib.slice(0, i + 1);
-        c.g.log(`${s.players[op].name} revela ${reveladas.map((id) => nameOf(c.g, id)).join(', ') || 'nada'}.`, { rule: '701.20' });
+        reg(c.g, 'revela', { rule: '701.20' })`${jog(op)} revela ${objs(reveladas, undefined, ', ', 'nada')}.`;
         if (i >= 0) {
           // o dono continua sendo o oponente (CR 108.3); quem controla é você
           const [novo] = yield* putOntoBattlefield(c.g, [{ id: lib[i], controller: c.you }], 'effect');

@@ -3,6 +3,7 @@
 // cards. Put the chosen cards into your graveyard and the rest into your hand. Then shuffle.
 import { chooseItems, defineCard, moveObjects, nameOf, objItem, searchLibrary, shuffleLibrary, t, tgtPlayer } from '../../motor/api.ts';
 import type { ObjId, ZoneName } from '../../motor/types.ts';
+import { jog, objs, reg } from '../../motor/registro.ts';
 
 export default defineCard({
   name: 'Gifts Ungiven',
@@ -23,7 +24,7 @@ export default defineCard({
           achadas.push(prox[0]);
         }
         if (achadas.length) {
-          c.g.log(`${c.g.state.players[c.you].name} revela ${achadas.map((id) => nameOf(c.g, id)).join(', ')}.`, { rule: '701.20' });
+          reg(c.g, 'revela', { rule: '701.20' })`${jog(c.you)} revela ${objs(achadas)}.`;
           // ruling 1: com duas ou menos, todas vão para o cemitério
           let cemiterio = achadas;
           if (achadas.length > 2 && op !== null) {

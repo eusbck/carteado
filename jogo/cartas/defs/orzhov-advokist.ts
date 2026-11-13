@@ -7,6 +7,7 @@ import {
 } from '../../motor/api.ts';
 import type { SCtx, StaticDef } from '../../motor/defs.ts';
 import type { ObjId, PlayerId } from '../../motor/types.ts';
+import { jog, obj, reg, trecho } from '../../motor/registro.ts';
 
 // "as criaturas desse jogador não podem atacar você nem os planeswalkers que você controla" (CR 508.1c)
 const NAO_ATACA = defineAbility<StaticDef>('Orzhov Advokist:naoAtaca', {
@@ -37,7 +38,7 @@ export default defineCard({
             [nao, ...minhas.map((id) => objItem(c.g, id, nameOf(c.g, id)))], 1, 1);
           if (esc !== 'nao') escolhas.push({ p, id: Number(esc) });
           // ruling: quem escolhe depois sabe o que os anteriores escolheram
-          c.g.log(`Orzhov Advokist: ${c.g.state.players[p].name} ${esc === 'nao' ? 'não coloca marcadores' : `escolhe ${nameOf(c.g, Number(esc))}`}.`);
+          reg(c.g, 'outro', { actor: p })`Orzhov Advokist: ${jog(p)} ${esc === 'nao' ? 'não coloca marcadores' : trecho`escolhe ${obj(Number(esc))}`}.`;
         }
         for (const { p, id } of escolhas) {
           addCounters(c.g, { kind: 'obj', id }, '+1/+1', 2, p);

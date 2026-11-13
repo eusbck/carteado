@@ -2,8 +2,9 @@
 // Exile all creatures you control, then reveal cards from the top of your library until you reveal that many creature
 // cards. Put all creature cards revealed this way onto the battlefield, then shuffle the rest of the revealed cards into
 // your library.
-import { creaturesOf, defineCard, exile, isCreature, nameOf, putOntoBattlefield, shuffleLibrary } from '../../motor/api.ts';
+import { creaturesOf, defineCard, exile, isCreature, putOntoBattlefield, shuffleLibrary } from '../../motor/api.ts';
 import type { ObjId } from '../../motor/types.ts';
+import { jog, objs, reg } from '../../motor/registro.ts';
 
 export default defineCard({
   name: 'Mass Polymorph',
@@ -20,7 +21,7 @@ export default defineCard({
         let i = 0;
         for (; i < grimorio.length && criaturas.length < n; i++) if (isCreature(c.g, grimorio[i])) criaturas.push(grimorio[i]);
         const reveladas = grimorio.slice(0, i);
-        if (n > 0) c.g.log(`${s.players[c.you].name} revela ${reveladas.map((x) => nameOf(c.g, x)).join(', ') || 'nada (grimório vazio)'}.`, { rule: '701.20' });
+        if (n > 0) reg(c.g, 'revela', { rule: '701.20' })`${jog(c.you)} revela ${objs(reveladas, undefined, ', ', 'nada (grimório vazio)')}.`;
         // ruling 3: todas entram ao mesmo tempo; ruling 2: os gatilhos esperam o fim da resolução
         if (criaturas.length) yield* putOntoBattlefield(c.g, criaturas.map((id) => ({ id, controller: c.you })), 'effect');
         shuffleLibrary(c.g, c.you);

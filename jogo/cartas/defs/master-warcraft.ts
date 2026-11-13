@@ -3,6 +3,7 @@
 // You choose which creatures attack this turn.
 // You choose which creatures block this turn and how those creatures block.
 import { defineCard, ruleEffect } from '../../motor/api.ts';
+import { jog, reg } from '../../motor/registro.ts';
 
 export default defineCard({
   name: 'Master Warcraft',
@@ -17,7 +18,7 @@ export default defineCard({
         // rulings 3-4: as decisões de ataque e de bloqueio deste turno passam a ser suas, de quem for o turno e de quem
         // forem as criaturas; as escolhas continuam tendo de ser legais (motor/combat.ts combatChooser)
         ruleEffect(c, 'rule:combatChooser', { kind: 'endOfTurn' }, { params: { player: c.you } });
-        c.g.log(`${c.g.state.players[c.you].name} escolhe quais criaturas atacam e bloqueiam neste turno.`);
+        reg(c.g, 'outro')`${jog(c.you)} escolhe quais criaturas atacam e bloqueiam neste turno.`;
       },
     },
   }],

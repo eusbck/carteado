@@ -9,6 +9,7 @@ import {
   playerItem, searchLibrary, shuffleLibrary, triggered, untilEndOfTurn,
 } from '../../motor/api.ts';
 import type { ChoiceItem, ObjId, PlayerId } from '../../motor/types.ts';
+import { jog, objs, reg } from '../../motor/registro.ts';
 
 /** o gatilho atrasado do +1: vale até o seu próximo turno começar (ruling 1: não importa quem a criatura ataca) */
 const ENFRAQUECE = defineAbility('Jace, Architect of Thought:enfraquece', triggered({
@@ -39,7 +40,7 @@ export default defineCard({
         const s = c.g.state;
         const cartas = s.zones.library[c.you].slice(0, 3);
         if (!cartas.length) return;
-        c.g.log(`${s.players[c.you].name} revela ${cartas.map((id) => nameOf(c.g, id)).join(', ')} (Jace).`, { rule: '701.20a' });
+        reg(c.g, 'revela', { rule: '701.20a' })`${jog(c.you)} revela ${objs(cartas)} (Jace).`;
         for (const id of cartas) s.objects[id].visibleTo = 'all';
         c.g.bump();
         const item = (id: ObjId): ChoiceItem => ({ id: String(id), label: nameOf(c.g, id), obj: id, card: { def: s.objects[id].def } });
@@ -55,7 +56,7 @@ export default defineCard({
         const pilha1 = (yield* chooseItems(c.g, quem, 'Jace: separe as cartas em duas pilhas — escolha as cartas da primeira pilha (as outras formam a segunda)', cartas.map(item), 0, cartas.length, false, { split: true })).map(Number);
         const pilha2 = cartas.filter((id) => !pilha1.includes(id));
         const nomes = (p: ObjId[]) => p.map((id) => nameOf(c.g, id)).join(', ') || 'vazia';
-        c.g.log(`${s.players[quem].name} separa as pilhas: [${nomes(pilha1)}] e [${nomes(pilha2)}].`);
+        reg(c.g, 'outro')`${jog(quem)} separa as pilhas: [${objs(pilha1, undefined, ', ', 'vazia')}] e [${objs(pilha2, undefined, ', ', 'vazia')}].`;
         const [esc] = yield* chooseItems(c.g, c.you, 'Jace: escolha a pilha que vai para a sua mão (a outra vai para o fundo do grimório)', [
           { id: '1', label: `Pilha 1: ${nomes(pilha1)}`, pile: pilha1 },
           { id: '2', label: `Pilha 2: ${nomes(pilha2)}`, pile: pilha2 },

@@ -7,6 +7,7 @@ import { controllerOf, copiableValues, createTokens, defineCard, hasKw, keyword,
 import type { G } from '../../motor/game-context.ts';
 import type { PlayerId } from '../../motor/types.ts';
 import { fichasQueEntraramNoTurno } from '../forragear.ts';
+import { jog, reg } from '../../motor/registro.ts';
 
 /** CR 702.131b-c: a bênção vem assim que você controla dez permanentes com um de ascensão, mesmo no meio da resolução
  *  (ruling 7: o Cat criado pode ser o décimo) */
@@ -16,7 +17,7 @@ function confereBencao(g: G, p: PlayerId): void {
   const meus = s.zones.battlefield.filter((id) => !s.objects[id].phasedOut && controllerOf(g, id) === p);
   if (meus.length >= 10 && meus.some((id) => hasKw(g, id, 'ascend'))) {
     s.players[p].citysBlessing = true;
-    g.log(`${s.players[p].name} recebe a bênção da cidade.`, { rule: '702.131c' });
+    reg(g, 'outro', { rule: '702.131c' })`${jog(p)} recebe a bênção da cidade.`;
     g.bump();
   }
 }

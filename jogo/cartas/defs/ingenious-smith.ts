@@ -5,6 +5,7 @@
 // once each turn.
 import { addCounters, and, chooseItems, defineCard, etb, is, isType, moveObjects, nameOf, objItem, on, triggered } from '../../motor/api.ts';
 import { shuffle } from '../../motor/rng.ts';
+import { jog, obj, reg } from '../../motor/registro.ts';
 
 export default defineCard({
   name: 'Ingenious Smith',
@@ -18,7 +19,7 @@ export default defineCard({
         const esc = yield* chooseItems(c.g, c.you, 'Ingenious Smith: você pode revelar uma carta de artefato entre as quatro do topo e colocá-la na mão', itens, 0, 1);
         const escolhida = esc.length ? Number(esc[0]) : null;
         if (escolhida !== null) {
-          c.g.log(`${s.players[c.you].name} revela ${nameOf(c.g, escolhida)}.`, { rule: '701.20' });
+          reg(c.g, 'revela', { rule: '701.20' })`${jog(c.you)} revela ${obj(escolhida)}.`;
           yield* moveObjects(c.g, [{ id: escolhida, to: 'hand' }], 'effect');
         }
         const resto = shuffle(s.rng, topo.filter((id) => id !== escolhida && s.objects[id]?.zone === 'library'));

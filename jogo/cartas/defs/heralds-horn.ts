@@ -5,6 +5,7 @@
 // you may reveal it and put it into your hand.
 import { asEnters, chars, chooseCreatureType, defineCard, isCreature, moveObjects, nameOf, on, staticAbility, triggered, yesNo } from '../../motor/api.ts';
 import type { SCtx } from '../../motor/defs.ts';
+import { jog, obj, reg } from '../../motor/registro.ts';
 
 /** CR 607.2d: o tipo escolhido ao entrar fica gravado no objeto */
 const escolhido = (c: SCtx): string | undefined => c.g.state.objects[c.source]?.choices.creatureType as string | undefined;
@@ -32,11 +33,11 @@ export default defineCard({
         const topo = s.zones.library[c.you][0];
         if (topo === undefined) return;
         const tipo = escolhido(c);
-        c.g.log(`${s.players[c.you].name} olha a carta do topo do grimório (Herald's Horn).`, { visibleTo: [c.you], hiddenText: `${s.players[c.you].name} olha a carta do topo do grimório (Herald's Horn).` });
+        reg(c.g, 'outro', { visibleTo: [c.you], hiddenText: `${s.players[c.you].name} olha a carta do topo do grimório (Herald's Horn).` })`${jog(c.you)} olha a carta do topo do grimório (Herald's Horn).`;
         // ruling 2: sem tipo escolhido, nunca vai para a mão; ruling 6: se não for, fica no topo sem revelar
         if (!tipo || !isCreature(c.g, topo) || !chars(c.g, topo).subtypes.includes(tipo)) return;
         if (!(yield* yesNo(c.g, c.you, `Herald's Horn: revelar ${nameOf(c.g, topo)} e pô-la na sua mão?`))) return;
-        c.g.log(`${s.players[c.you].name} revela ${nameOf(c.g, topo)}.`, { rule: '701.20a' });
+        reg(c.g, 'revela', { rule: '701.20a' })`${jog(c.you)} revela ${obj(topo)}.`;
         yield* moveObjects(c.g, [{ id: topo, to: 'hand' }], 'effect');
       }, { text: 'No início da sua manutenção, olhe a carta do topo do seu grimório. Se for uma carta de criatura do tipo escolhido, você pode revelá-la e colocá-la na sua mão.' }),
     ],

@@ -3,8 +3,9 @@
 // Landfall — Whenever a land you control enters, draw a card. Then if this is the first time this ability has resolved
 // this turn, reveal cards from the top of your library until you reveal a creature card. Put that card onto the
 // battlefield and the rest on the bottom of your library in a random order.
-import { defineCard, draw, isCreature, keywords, nameOf, on, putOntoBattlefield, triggered } from '../../motor/api.ts';
+import { defineCard, draw, isCreature, keywords, on, putOntoBattlefield, triggered } from '../../motor/api.ts';
 import { shuffle } from '../../motor/rng.ts';
+import { jog, objs, reg } from '../../motor/registro.ts';
 
 export default defineCard({
   name: 'Nissa, Leyline Tamer',
@@ -23,7 +24,7 @@ export default defineCard({
         const lib = s.zones.library[c.you];
         const i = lib.findIndex((id) => isCreature(c.g, id));
         const reveladas = i < 0 ? [...lib] : lib.slice(0, i + 1);
-        c.g.log(`${s.players[c.you].name} revela ${reveladas.map((id) => nameOf(c.g, id)).join(', ') || 'nada'}.`, { rule: '701.20' });
+        reg(c.g, 'revela', { rule: '701.20' })`${jog(c.you)} revela ${objs(reveladas, undefined, ', ', 'nada')}.`;
         if (i >= 0) yield* putOntoBattlefield(c.g, [{ id: lib[i], controller: c.you }], 'effect');
         const resto = shuffle(s.rng, reveladas.filter((id) => s.objects[id]?.zone === 'library'));
         s.zones.library[c.you] = [...s.zones.library[c.you].filter((id) => !resto.includes(id)), ...resto];

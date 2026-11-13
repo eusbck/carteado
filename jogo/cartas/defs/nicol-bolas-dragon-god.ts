@@ -8,6 +8,7 @@ import {
   type Mod,
 } from '../../motor/api.ts';
 import type { ObjId } from '../../motor/types.ts';
+import { jog, reg } from '../../motor/registro.ts';
 
 /** habilidade de lealdade: ativada com o símbolo de lealdade no custo (CR 606.2) */
 function deLealdade(id: string): boolean {
@@ -67,7 +68,7 @@ export default defineCard({
         });
         const perdem = c.g.opponents(c.you).filter((p) => !temLenda(p));
         for (const p of perdem) {
-          c.g.log(`${s.players[p].name} perde a partida: não controla criatura nem planeswalker lendário (Nicol Bolas, Dragon-God).`, { rule: '104.3e' });
+          reg(c.g, 'fim', { rule: '104.3e' })`${jog(p)} perde a partida: não controla criatura nem planeswalker lendário (Nicol Bolas, Dragon-God).`;
           loseGame(c.g, p);
         }
       }, { text: '−8: Cada oponente que não controla uma criatura ou planeswalker lendário perde o jogo.' }),
