@@ -4,7 +4,8 @@
 import type { NivelBot } from '../bots/niveis.ts';
 import type { StopSettings } from '../motor/autopass.ts';
 import type { ModoJogo } from '../motor/modos.ts';
-import type { Answer } from '../motor/types.ts';
+import type { MotivoZona } from '../motor/diario.ts';
+import type { Answer, ManaType, ObjId, PlayerId, Step, ZoneName } from '../motor/types.ts';
 import type { GameView } from '../motor/view.ts';
 
 /** jeito antigo de pedir o tamanho da sala ('4p': quatro lugares, '1v1': dois); hoje vale `lugares`, de 2 a 6 */
@@ -368,14 +369,73 @@ export function validarMsg(m: unknown): string | null {
 /** por que uma vista não continua a anterior (mensagem `jogo`) */
 export type Reinicio = 'cheia' | 'desfeita';
 
+// ------------------------------------------------------------------ cena (F2 do estudo do Arena)
+// Os eventos do motor desde a última vista, já filtrados e redigidos para o assento (servidor/cena.ts). Nunca levam
+// CardId nem def (a identidade vem da vista); um id só vai a quem via o objeto naquela encarnação; nenhum id de
+// grimório; movimento entre zonas escondidas vira contagem; prioridade e passe não viram evento.
+
+/** um lado de uma troca de zona: `id` só se o assento via o objeto daquele lado */
+export interface LadoZona { id?: ObjId; zona: ZoneName | 'nowhere'; dono: PlayerId }
+/** alvo, dano ou marcador: num jogador, ou num objeto (`id` só se o assento o via; sem id = um objeto oculto) */
+export type AlvoCena = { jogador: PlayerId } | { id?: ObjId };
+
+export type EventoCena = { seq: number; lote: number } & (
+  | { tipo: 'passo'; etapa: Step; ativo: PlayerId; primeiraPrincipal?: true }
+  | { tipo: 'zona'; de: LadoZona; para: LadoZona; motivo: MotivoZona; controlador: PlayerId; ficha?: true; por?: PlayerId }
+  | { tipo: 'conjurar'; id?: ObjId; jogador: PlayerId; de: ZoneName; copia?: true }
+  | { tipo: 'copiar'; id?: ObjId; jogador: PlayerId }
+  | { tipo: 'ativar'; id?: ObjId; fonte?: ObjId; jogador: PlayerId }
+  | { tipo: 'gatilho'; id?: ObjId; fonte?: ObjId; controlador: PlayerId }
+  | { tipo: 'alvo'; alvo: AlvoCena; fonte?: ObjId; controlador: PlayerId; magica: boolean }
+  | { tipo: 'resolver'; id?: ObjId; controlador: PlayerId }
+  /** `id`: a carta na mão, só para quem a vê (o dono); os outros sabem só que comprou */
+  | { tipo: 'comprar'; jogador: PlayerId; id?: ObjId; n: number }
+  | { tipo: 'descartar'; jogador: PlayerId; id?: ObjId }
+  /** `ids`: as que o assento vê no cemitério; `n`: quantas */
+  | { tipo: 'moer'; jogador: PlayerId; ids: ObjId[]; n: number }
+  | { tipo: 'embaralhar'; jogador: PlayerId }
+  | { tipo: 'buscar'; jogador: PlayerId; grimorio: PlayerId }
+  /** vidência ou vigiar: só quantas cartas, nunca quais */
+  | { tipo: 'olhar'; jogador: PlayerId; n: number; como: 'videncia' | 'vigiar' }
+  | { tipo: 'atacantes'; jogador: PlayerId; ataques: { id?: ObjId; alvo: AlvoCena }[] }
+  /** [bloqueador, atacante] */
+  | { tipo: 'bloqueadores'; bloqueios: [ObjId | null, ObjId | null][] }
+  | { tipo: 'dano'; fonte?: ObjId; controlador: PlayerId; alvo: AlvoCena; quantidade: number; combate: boolean }
+  /** `quantidade`: positiva ganhou, negativa perdeu */
+  | { tipo: 'vida'; jogador: PlayerId; quantidade: number; fonte?: ObjId }
+  /** `quantidade`: positiva pôs, negativa tirou */
+  | { tipo: 'marcadores'; alvo: AlvoCena; marcador: string; quantidade: number; por?: PlayerId }
+  | { tipo: 'virar'; id?: ObjId; desvirar?: true; mana?: true }
+  | { tipo: 'mana'; jogador: PlayerId; fonte?: ObjId; cores: ManaType[] }
+  | { tipo: 'ficha'; id?: ObjId; jogador: PlayerId }
+  /** `face`: a face nova (transformar); `revelada`: a permanente virada para baixo ficou de frente */
+  | { tipo: 'transformar'; id?: ObjId; face?: number; revelada?: true }
+  | { tipo: 'fase'; id?: ObjId; saiu: boolean }
+  | { tipo: 'anexar'; id?: ObjId; a?: ObjId; solto?: true }
+  | { tipo: 'controle'; id?: ObjId; de: PlayerId; para: PlayerId }
+  | { tipo: 'regenerar'; id?: ObjId }
+  | { tipo: 'designacao'; qual: 'monarca' | 'anel' | 'monstruoso' | 'preparado' | 'tripulado' | 'nivel' | 'destrancar' | 'pavor'; jogador?: PlayerId; id?: ObjId; n?: number }
+  | { tipo: 'mecanica'; qual: 'tramar' | 'exercito' | 'confronto' | 'definhar'; jogador: PlayerId; id?: ObjId; ids?: ObjId[]; n?: number; venceu?: boolean }
+  | { tipo: 'jogador'; jogador: PlayerId; saiu: true }
+);
+
+/**
+ * a cena que vai junto com a vista. `epoca` muda quando a partida é trocada inteira (nova, desfeita, refeita,
+ * retomada): o cliente descarta o que esperava. `de`: o último evento já entregue antes desta (exclusivo); `ate`: o
+ * último coberto por esta (a próxima começa dele). `salto`: eventos demais ou perdidos; vem sem eventos e o cliente só
+ * desenha a vista. A conexão nova começa no fim, sem passado.
+ */
+export interface Cena { epoca: number; de: number; ate: number; eventos: EventoCena[]; salto?: true }
+
 export type MsgServidor =
   /** `quem`: o seu id de autor; `agora`: hora do servidor em ms, acrescentada só ao enviar, fora da comparação */
   | { t: 'sala'; sala: SalaPublica; voce: number; token: string; quem: string; agora: number }
   /** `seq`: número da vista nesta conexão (1, 2, 3…; recomeça a cada conexão), acrescentado só ao enviar, fora da
    * comparação. `reinicio`: a vista não continua a anterior: 'cheia' (a primeira desta conexão, partida nova ou refeita)
    * ou 'desfeita' (um pedido de desfazer voltou a partida). Sem ele, continua: o cliente põe a vista na fila de quadros
-   * e anima a diferença; com ele, esvazia a fila e mostra a vista na hora, sem animação */
-  | { t: 'jogo'; vista: GameView; paradas: StopSettings; posicoes: Posicoes; desfazivel: boolean; desfazer: PedidoDesfazer | null; seq?: number; reinicio?: Reinicio }
+   * e anima a diferença; com ele, esvazia a fila e mostra a vista na hora, sem animação. `cena`: os eventos desde a
+   * vista anterior, redigidos para o assento (Cena), também fora da comparação */
+  | { t: 'jogo'; vista: GameView; paradas: StopSettings; posicoes: Posicoes; desfazivel: boolean; desfazer: PedidoDesfazer | null; seq?: number; reinicio?: Reinicio; cena?: Cena }
   /** aviso curto para a mesa (pedido de desfazer aceito, recusado ou expirado) */
   | { t: 'aviso'; msg: string }
   | { t: 'saiu' }

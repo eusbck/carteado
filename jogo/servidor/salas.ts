@@ -13,13 +13,15 @@ import type { DeckList } from '../motor/state.ts';
 import type { Answer, Decision, GameConfig, Step } from '../motor/types.ts';
 import { controllerOf } from '../motor/chars.ts';
 import { buildView } from '../motor/view.ts';
+import { diarioDesde } from '../motor/diario.ts';
+import { eventosPara, TETO_CENA } from './cena.ts';
 import { Pensadores } from './pensadores.ts';
 import { NOMES_BOTS } from './nomes.ts';
 import { novaRajada, segurarPilha, type RajadaPilha } from './pilha-visivel.ts';
 import type { Banco } from './banco.ts';
 import { alvoDesfazer, linhasDesfeitas, reconstruir, type MetaEntrada } from './desfazer.ts';
 import { avatarValido } from './avatares.ts';
-import { MIN_LUGARES, tipoMsg, validarMsg, type EtapaSaguao, type LinhaDesfeita, type Modo, type MsgChat, type MsgCliente, type MsgServidor, type PedidoDesfazer, type Posicoes, type RegraAuxilios, type Reinicio, type RegraMulligan, type SalaPublica, type TipoAssento } from './protocolo.ts';
+import { MIN_LUGARES, tipoMsg, validarMsg, type Cena, type EtapaSaguao, type LinhaDesfeita, type Modo, type MsgChat, type MsgCliente, type MsgServidor, type PedidoDesfazer, type Posicoes, type RegraAuxilios, type Reinicio, type RegraMulligan, type SalaPublica, type TipoAssento } from './protocolo.ts';
 
 export interface Conexao {
   enviar(m: MsgServidor): void;
@@ -219,10 +221,11 @@ export class Sala {
   /** gravação marcada (salvarDepois) */
   private gravarDepois: ReturnType<typeof setTimeout> | null = null;
   /** a última 'sala' e o último 'jogo' (JSON) mandados a cada conexão (enviarSeMudou), o número da última vista
-   * (`seq`) e o último reinício da partida que ela já recebeu */
-  private ultimas = new WeakMap<Conexao, { sala?: string; jogo?: string; seq?: number; reinicio?: number }>();
+   * (`seq`), o último reinício da partida que ela já recebeu e o cursor da cena (a época e o último evento do diário
+   * entregue a ela) */
+  private ultimas = new WeakMap<Conexao, { sala?: string; jogo?: string; seq?: number; reinicio?: number; cena?: { epoca: number; seq: number } }>();
   /** a partida foi trocada inteira (nova, refeita, desfeita): a próxima vista de cada conexão vai com `reinicio`. `n`
-   * conta as trocas; cada conexão guarda a última que já recebeu */
+   * conta as trocas; cada conexão guarda a última que já recebeu. `n` é também a época da cena (protocolo.ts, Cena) */
   private reinicio: { n: number; tipo: Reinicio } = { n: 0, tipo: 'cheia' };
   /** falhas seguidas do motor na mesma posição das entradas (falha) */
   private falhas = { indice: -1, n: 0 };
@@ -325,7 +328,10 @@ export class Sala {
     const texto = JSON.stringify(m);
     let u = this.ultimas.get(c);
     if (!u) this.ultimas.set(c, (u = {}));
-    if (u[m.t] === texto) return;
+    // a cena fica fora da comparação: eventos novos para este assento fazem a vista sair mesmo igual; sem eles, a vista
+    // igual não sai e o cursor fica onde estava (ele só anda quando a mensagem sai)
+    const cena = m.t === 'jogo' ? this.cenaPara(c.assento, u.cena) : null;
+    if (u[m.t] === texto && !cena?.nova) return;
     const primeira = m.t === 'jogo' && u.jogo === undefined;
     u[m.t] = texto;
     if (m.t === 'sala') {
@@ -340,14 +346,40 @@ export class Sala {
     const seq = u.seq = (u.seq ?? 0) + 1;
     const reinicio: Reinicio | null = primeira ? 'cheia' : (u.reinicio ?? 0) < this.reinicio.n ? this.reinicio.tipo : null;
     u.reinicio = this.reinicio.n;
-    const extra = { seq, ...(reinicio ? { reinicio } : {}) };
+    if (cena) u.cena = { epoca: cena.cena.epoca, seq: cena.cena.ate };
+    const extra = { seq, ...(reinicio ? { reinicio } : {}), ...(cena ? { cena: cena.cena } : {}) };
     if (c.enviarTexto) c.enviarTexto(`${texto.slice(0, -1)},${JSON.stringify(extra).slice(1)}`);
     else c.enviar({ ...m, ...extra });
   }
 
-  /** a partida foi trocada inteira: a próxima vista de cada conexão sai com `reinicio` (o cliente não anima a diferença) */
+  /**
+   * A cena que vai com a próxima vista do assento (F2): os eventos do diário depois do cursor, redigidos
+   * (servidor/cena.ts). Sem cursor (conexão nova ou retomada) ou de outra época (partida trocada), começa no fim, sem
+   * passado; buraco no cursor ou eventos demais viram salto. `nova`: tem o que entregar (força a vista a sair).
+   */
+  private cenaPara(assento: number | null, cursor: { epoca: number; seq: number } | undefined): { cena: Cena; nova: boolean } | null {
+    const d = this.game?.g.diario;
+    if (!d) return null;
+    const epoca = this.reinicio.n;
+    const fim = d.prox - 1;
+    if (!cursor || cursor.epoca !== epoca) return { cena: { epoca, de: fim, ate: fim, eventos: [] }, nova: false };
+    const { entradas, salto } = diarioDesde(d, cursor.seq);
+    if (!entradas.length && !salto) return { cena: { epoca, de: cursor.seq, ate: cursor.seq, eventos: [] }, nova: false };
+    const eventos = salto ? [] : eventosPara(assento, entradas);
+    if (salto || eventos.length > TETO_CENA) return { cena: { epoca, de: cursor.seq, ate: fim, eventos: [], salto: true }, nova: true };
+    return { cena: { epoca, de: cursor.seq, ate: entradas[entradas.length - 1].seq, eventos }, nova: eventos.length > 0 };
+  }
+
+  /** a partida foi trocada inteira: a próxima vista de cada conexão sai com `reinicio` (o cliente não anima a diferença)
+   * e a cena muda de época; a partida nova ganha o diário de eventos (o Game de antes ficou para trás) */
   private marcarReinicio(tipo: Reinicio): void {
     this.reinicio = { n: this.reinicio.n + 1, tipo };
+    this.ligarDiario();
+  }
+
+  /** liga o diário de eventos do motor no Game da sala (desligado por padrão: as simulações dos bots não o pagam) */
+  private ligarDiario(): void {
+    this.game?.ligarDiario();
   }
 
   private get semAuxilios(): boolean { return this.d.auxilios === 'proibidos'; }

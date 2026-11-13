@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from 'preact/hooks';
 import type { StopSettings } from '../../motor/autopass.ts';
 import type { Answer, ManualAction } from '../../motor/types.ts';
 import type { GameView } from '../../motor/view.ts';
-import type { CartaMontagem, DeckCatalogo, DeckResumo, ListaDeck,MsgChat, MsgCliente, MsgServidor, PedidoDesfazer, Posicoes, SalaPublica, TarefaPublica } from '../../servidor/protocolo.ts';
+import type { CartaMontagem, Cena, DeckCatalogo, DeckResumo, ListaDeck,MsgChat, MsgCliente, MsgServidor, PedidoDesfazer, Posicoes, SalaPublica, TarefaPublica } from '../../servidor/protocolo.ts';
 import { carregarCartas } from './cartas.ts';
 import { compartilhar } from './compartilhar.ts';
 import type { ReferenciaRelogio } from './cronometro.ts';
@@ -61,6 +61,8 @@ export interface Estado {
   chat: MsgChat[];
   /** o seu id de autor no chat (vem com a sala): as suas mensagens são as com esse `quem` */
   quem: string | null;
+  /** F2: a cena (eventos redigidos do servidor) que veio com a última vista mostrada; ainda não é usada na mesa */
+  cena: Cena | null;
 }
 
 const CHAVE = 'commander-da-mesa:sala';
@@ -99,7 +101,7 @@ function guardarTarefas(l: number[]): void {
 }
 
 class Loja {
-  e: Estado = { fase: 'carregando', conectado: false, sala: null, relogio: null, voce: null, vista: null, paradas: null, posicoes: {}, reveladas: [], erro: null, decks: [], respondida: null, desfazivel: false, desfazer: null, avisos: [], recusa: 0, recusaCombate: null, pensando: null, catalogo: null, tarefasDeck: {}, minhasTarefas: tarefasGuardadas(), chat: [], quem: null };
+  e: Estado = { fase: 'carregando', conectado: false, sala: null, relogio: null, voce: null, vista: null, paradas: null, posicoes: {}, reveladas: [], erro: null, decks: [], respondida: null, desfazivel: false, desfazer: null, avisos: [], recusa: 0, recusaCombate: null, pensando: null, catalogo: null, tarefasDeck: {}, minhasTarefas: tarefasGuardadas(), chat: [], quem: null, cena: null };
   private ouvintes = new Set<() => void>();
   private ws: WebSocket | null = null;
   private fila: MsgCliente[] = [];
@@ -369,7 +371,7 @@ class Loja {
       vista, paradas: compartilhar(this.e.paradas, m.paradas), posicoes: compartilhar(this.e.posicoes, m.posicoes ?? {}),
       respondida: m.vista.decision?.id === this.e.respondida ? this.e.respondida : null,
       recusaCombate: m.vista.decision?.id === this.e.recusaCombate?.decisao ? this.e.recusaCombate : null,
-      desfazivel: !!m.desfazivel, desfazer: mesmoPedido ? ant : pedido,
+      desfazivel: !!m.desfazivel, desfazer: mesmoPedido ? ant : pedido, cena: m.cena ?? null,
     });
     return mudou;
   }
