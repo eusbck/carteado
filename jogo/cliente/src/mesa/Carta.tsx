@@ -68,11 +68,12 @@ export const Carta = memo(CartaBase, (a, b) =>
   a.o === b.o && a.realce === b.realce && a.selo === b.selo && a.numero === b.numero && a.deitada === b.deitada && a.classe === b.classe && mesmoEstilo(a.estilo, b.estilo)
   && a.onClick === b.onClick && a.onZoom === b.onZoom && a.onPointerDown === b.onPointerDown && a.onDoubleClick === b.onDoubleClick && a.onMenu === b.onMenu);
 
-/** N7: o selo que a carta perdeu (o combate acabou) fica mais isto saindo, junto com as setas (Setas.tsx, 220 ms) */
-const SELO_SAINDO_MS = 240;
+/** N7: o selo que a carta perdeu (o combate acabou) sai no fim do fade (animationend, .selo-combate.saindo, 220 ms);
+ *  o relógio é só a rede, com folga (com a página ocupada ele vencia antes do fade acabar) */
+const SELO_SAINDO_MS = 600;
 
 /** o selo que acabou de sair, enquanto o fade dele roda; antes de pintar (useLayoutEffect), sem um quadro sem selo */
-function useSeloSaindo(selo: Selo | undefined): Selo | undefined {
+function useSeloSaindo(selo: Selo | undefined): [Selo | undefined, () => void] {
   const [saindo, setSaindo] = useState<Selo | undefined>(undefined);
   const antes = useRef(selo);
   useLayoutEffect(() => {
@@ -83,11 +84,11 @@ function useSeloSaindo(selo: Selo | undefined): Selo | undefined {
     const t = setTimeout(() => setSaindo(undefined), SELO_SAINDO_MS);
     return () => clearTimeout(t);
   }, [selo]);
-  return selo ? undefined : saindo;
+  return [selo ? undefined : saindo, () => setSaindo(undefined)];
 }
 
 function CartaBase({ o, realce = null, selo, numero, deitada, onClick, onZoom, onPointerDown, onDoubleClick, onMenu, estilo, classe }: CartaProps) {
-  const seloSaindo = useSeloSaindo(selo);
+  const [seloSaindo, seloSaiu] = useSeloSaindo(selo);
   const oculta = !o.def;
   const img = oculta ? null : urlImagem(o.copyOfDef ?? o.def, o.face, 'p');
   // N30: a imagem já costuma estar pronta (preparada quando a vista chegou); aqui só marca o uso para ela ficar no mapa
@@ -148,7 +149,7 @@ function CartaBase({ o, realce = null, selo, numero, deitada, onClick, onZoom, o
       {/* virada para baixo no campo: os outros veem o verso, uma criatura 2/2 (CR 708.2a) */}
       {criatura && o.power !== null && (img || (oculta && o.faceDown)) && <span class={o.damageByToughness ? 'carta-pt pela-resistencia' : 'carta-pt'}><ForcaResistencia o={o} /></span>}
       {selo && <span class={`selo-combate ${selo}`} title={NOME_SELO[selo]}>{selo === 'escudo' ? <IconeEscudo /> : <IconeEspada />}</span>}
-      {seloSaindo && <span class={`selo-combate ${seloSaindo} saindo`} aria-hidden="true">{seloSaindo === 'escudo' ? <IconeEscudo /> : <IconeEspada />}</span>}
+      {seloSaindo && <span class={`selo-combate ${seloSaindo} saindo`} aria-hidden="true" onAnimationEnd={seloSaiu}>{seloSaindo === 'escudo' ? <IconeEscudo /> : <IconeEspada />}</span>}
       {numero !== undefined && <span class="carta-n" aria-hidden="true">#{numero}</span>}
       {deitada && <span class="tile-nome" aria-hidden="true">{nome}</span>}
       {deitada && o.tapped && <img class="tile-t" src="/simbolo/T" alt="" aria-hidden="true" draggable={false} />}
