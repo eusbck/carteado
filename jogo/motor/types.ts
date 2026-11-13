@@ -380,6 +380,9 @@ export interface LogEntry {
   seq?: number;
   /** a etapa em que aconteceu */
   step?: Step;
+  /** R1: quantas entradas do Game já estavam aplicadas quando a linha foi gravada (a linha nasceu da entrada de índice
+   *  `entrada`); é o elo com o replay e o "rever um momento" */
+  entrada?: number;
   kind?: LogKind;
   /** quem fez (null = ninguém, linha de sistema) */
   actor?: PlayerId | null;

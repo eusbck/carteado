@@ -14,6 +14,9 @@ export class G {
   /** F1: diário de eventos (motor/diario.ts). Fica null (desligado) nas simulações dos bots; o servidor liga no
    *  `Game` da sala. Fora do GameState: não vai para checkpoint. */
   diario: Diario | null = null;
+  /** R1: índice da entrada do Game que está sendo aplicada (`inputs.length` antes dela); o Game atualiza antes de cada
+   *  passo. null fora de um Game (o registro não grava `entrada`) */
+  entrada: number | null = null;
   /** estatísticas de desempenho/depuração */
   counters = { charsComputations: 0 };
 
@@ -110,6 +113,7 @@ export class G {
     const t = this.state.turn;
     const e: LogEntry = { turn: t.number, round: t.round, text, visibleTo: opts.visibleTo ?? null, hiddenText: opts.hiddenText, rule: opts.rule, seq: this.state.log.length, step: t.step };
     // F3: os campos estruturados só entram quando vêm (linhas ainda só com texto ficam como antes)
+    if (this.entrada !== null) e.entrada = this.entrada;
     if (opts.kind !== undefined) e.kind = opts.kind;
     if (opts.actor !== undefined) e.actor = opts.actor;
     if (opts.refs?.length) e.refs = opts.refs;

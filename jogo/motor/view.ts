@@ -139,6 +139,8 @@ export interface LogLinhaView {
   turn: number;
   round?: number;
   step?: Step;
+  /** R1: o número da jogada (entradas aplicadas) em que a linha nasceu; público */
+  entrada?: number;
   kind?: LogKind;
   actor?: PlayerId | null;
   text: string;
@@ -278,6 +280,7 @@ export function logLinhaView(g: G, e: LogEntry, seq: number, viewer: PlayerId | 
   if (!vePleno && !e.hiddenText) return null;
   const l: LogLinhaView = { seq, turn: e.turn, ...(e.round !== undefined ? { round: e.round } : {}), text: vePleno ? e.text : e.hiddenText!, rule: e.rule };
   if (e.step !== undefined) l.step = e.step;
+  if (e.entrada !== undefined) l.entrada = e.entrada;
   if (e.kind !== undefined) l.kind = e.kind;
   if (e.actor !== undefined) l.actor = e.actor;
   if (vePleno && e.refs?.length) {

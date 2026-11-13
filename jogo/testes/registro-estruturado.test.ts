@@ -8,6 +8,10 @@ import { jog, lista, obj, objs, reg, trecho } from '../motor/registro.ts';
 import type { LogEntry } from '../motor/types.ts';
 import { buildView, type LogLinhaView } from '../motor/view.ts';
 import { setup, type TestGame } from './harness.ts';
+import decks from './decks-teste.json' with { type: 'json' };
+import { RandomBot } from '../bots/aleatorio.ts';
+import { Game } from '../motor/game.ts';
+import type { DeckList } from '../motor/state.ts';
 
 const ultima = (tg: TestGame): LogEntry => tg.state.log[tg.state.log.length - 1];
 const linhas = (tg: TestGame, kind: string): LogEntry[] => tg.state.log.filter((e) => e.kind === kind);
@@ -161,5 +165,48 @@ describe('registro estruturado: redação na vista', () => {
       // os seq são únicos
       expect(new Set(log.map((l) => l.seq)).size).toBe(log.length);
     }
+  });
+});
+
+describe('registro estruturado: entrada (elo com o replay)', () => {
+  const DECKS = decks as DeckList[];
+  const config = (seed: string) => ({ seed, players: [0, 1].map((i) => ({ name: `J${i}`, deckId: DECKS[i].id })), startingLife: 40, turnLimit: 6, multiplayer: false });
+  const jogar = (game: Game, passos: number) => {
+    const bots = game.state.players.map((p) => new RandomBot(`entrada:${p.id}`));
+    for (let i = 0; i < passos && game.pending && !game.isOver(); i++) {
+      const d = game.pending;
+      const r = game.answer(d.player, bots[d.player].answer(d));
+      if (!r.ok) throw new Error(r.error);
+    }
+  };
+  const numeros = (game: Game) => game.state.log.map((e) => e.entrada);
+
+  it('cada linha guarda o índice da entrada que a gerou; replay e checkpoint refazem os mesmos números', () => {
+    const game = Game.create(config('entrada'), DECKS.slice(0, 2));
+    jogar(game, 120);
+    const ns = numeros(game);
+    expect(ns.every((n) => typeof n === 'number')).toBe(true);
+    // não decrescem e nunca passam do número de entradas aplicadas
+    expect(ns.every((n, i) => i === 0 || n! >= ns[i - 1]!)).toBe(true);
+    expect(Math.max(...(ns as number[]))).toBeLessThanOrEqual(game.inputs.length);
+    // as linhas antes da primeira resposta (ordem dos assentos) são da entrada 0
+    expect(ns[0]).toBe(0);
+    // a vista leva o número para todos
+    const v = buildView(game.g, 1, null);
+    for (const l of v.log) expect(l.entrada).toBe(game.state.log[l.seq].entrada);
+    // replay
+    expect(numeros(Game.replay(game.state.config, DECKS.slice(0, 2), game.inputs))).toEqual(ns);
+    // checkpoint no meio + entradas seguintes
+    let cp = null;
+    for (let k = 40; k < game.inputs.length && !cp; k++) cp = Game.replay(game.state.config, DECKS.slice(0, 2), game.inputs.slice(0, k)).checkpoint();
+    expect(cp).not.toBeNull();
+    const retomada = Game.fromCheckpoint(cp!, DECKS.slice(0, 2), game.inputs);
+    expect(numeros(retomada)).toEqual(ns);
+    expect(numeros(Game.replayAteFalhar(game.state.config, DECKS.slice(0, 2), game.inputs, cp).game)).toEqual(ns);
+    // fork de um checkpoint continua a contagem
+    const f = game.fork();
+    const antes = f.state.log.length;
+    jogar(f, 5);
+    expect(f.state.log.slice(antes).every((e) => e.entrada! >= game.inputs.length)).toBe(true);
   });
 });

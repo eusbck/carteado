@@ -28,13 +28,22 @@ export class Game {
   inputs: Input[] = [];
   readonly decks: DeckList[];
   error: Error | null = null;
+  /** R1: quantas entradas vieram antes de `inputs[0]` (o fork de um checkpoint começa com a lista vazia) */
+  private readonly entradaBase: number;
 
-  private constructor(state: GameState, decks: DeckList[], inputs: Input[] = []) {
+  private constructor(state: GameState, decks: DeckList[], inputs: Input[] = [], entradaBase = 0) {
     this.g = new G(state);
     this.decks = decks;
     this.inputs = inputs;
+    this.entradaBase = entradaBase;
     this.gen = mainLoop(this.g);
+    this.marcaEntrada();
     this.step(undefined);
+  }
+
+  /** R1: as linhas do registro gravadas a partir daqui são da entrada de índice `inputs.length` */
+  private marcaEntrada(): void {
+    this.g.entrada = this.entradaBase + this.inputs.length;
   }
 
   static create(config: GameConfig, decks: DeckList[]): Game {
@@ -119,9 +128,11 @@ export class Game {
         const err = this.check(inp.p, inp.a);
         if (err) throw new Error(`Reprodução divergiu: ${err}`);
       }
+      this.marcaEntrada();
       this.step(inp.a);
       this.inputs.push(inp);
     } else {
+      this.marcaEntrada();
       doConcede(this.g, inp.p);
       // se a decisão pendente era de quem saiu, responde por ele (CR 800.4g-h)
       while (this.pending && this.state.players[this.pending.player]?.left) this.step(defaultAnswer(this.pending));
@@ -172,7 +183,7 @@ export class Game {
     if (cp) {
       const state = cp.state;
       state.decisionSeq = Math.max(0, state.decisionSeq - 1);
-      const game = new Game(state, this.decks, []);
+      const game = new Game(state, this.decks, [], this.entradaBase + this.inputs.length);
       return game;
     }
     return Game.replay(this.state.config, this.decks, this.inputs);
