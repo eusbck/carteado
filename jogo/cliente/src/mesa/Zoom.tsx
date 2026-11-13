@@ -54,9 +54,11 @@ export function Zoom({ o, lado = 'esq', fixo = false, enjoo = true }: { o: ObjVi
   const dano = o.damageByToughness;
   const fonteDano = dano?.source ? ` (${nomeCarta(dano.sourceDef, dano.source)})` : '';
   return (
-    <aside ref={caixa} class={fixo ? 'zoom-fixo' : `zoom ${lado}`} aria-hidden={fixo ? undefined : 'true'}>
+    // N24: a caixa entra vinda do lado da carta (a chave pelo lado refaz a entrada quando ele troca) e o texto chega
+    // depois, um por carta (a chave pela carta): na varredura rápida com o mouse, só a imagem aparece
+    <aside key={fixo ? undefined : lado} ref={caixa} class={fixo ? 'zoom-fixo' : `zoom ${lado}`} aria-hidden={fixo ? undefined : 'true'}>
       <div class="zoom-imagem" style={previa ? { backgroundImage: `url(${previa})` } : undefined}>{img ? <img src={img} alt="" /> : <div class="zoom-sem-arte"><strong>{nomeCarta(def, o.name)}</strong></div>}</div>
-      <div class="zoom-texto" ref={texto}>
+      <div class="zoom-texto" ref={texto} key={fixo ? undefined : o.id}>
         <strong>{nomeCarta(def, o.name)}</strong>
         {i?.pendente && <p class="pendente-aviso">Carta em modo manual: aplique o efeito com "Ajuste manual". O texto está na própria carta.</p>}
         {/* o que não é criatura não tem força nem resistência (CR 208.3: Overlord iminente, Veículo parado) */}

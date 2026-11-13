@@ -11,7 +11,7 @@ import { formatCost } from './mana.ts';
 import { manaDesfazivel } from './manual.ts';
 import { setorDe } from './setores.ts';
 import { rodadaDe, STEP_NAMES } from './turn.ts';
-import type { Decision, GameObject, ObjId, PlayerId, Step, TargetRef } from './types.ts';
+import type { Decision, GameObject, ModoJogo, ObjId, PlayerId, Step, TargetRef } from './types.ts';
 
 export interface ObjView {
   id: ObjId;
@@ -114,6 +114,8 @@ export interface GameView {
   stack: StackView[];
   exile: ObjView[];
   command: ObjView[];
+  /** modo de jogo, só fora do Commander (motor/modos.ts): a mesa esconde o que é do Commander */
+  formato?: ModoJogo;
   hand: ObjView[];
   combat: { attackers: { id: ObjId; target: TargetRef; blocked: boolean; blockers: ObjId[] }[] } | null;
   decision: Decision | null;
@@ -270,6 +272,7 @@ export function buildView(g: G, viewer: PlayerId | null, pending: Decision | nul
     stack: s.zones.stack.map((id) => stackView(g, id, viewer)).reverse(),
     exile: s.zones.exile.map((id) => objView(g, id, viewer)),
     command: s.zones.command.map((id) => objView(g, id, viewer)),
+    ...(s.config.formato && s.config.formato !== 'commander' ? { formato: s.config.formato } : {}),
     hand: viewer === null ? [] : s.zones.hand[viewer].map((id) => objView(g, id, viewer)),
     combat: s.combat ? { attackers: s.combat.attackers.filter((a) => !a.removed).map((a) => ({ id: a.id, target: a.target, blocked: a.blocked, blockers: a.blockers })) } : null,
     decision: pending && viewer !== null && pending.player === viewer ? stripDecision(pending) : null,

@@ -91,7 +91,7 @@ export function lerPedido(dados: Record<string, unknown>): PedidoCriado | string
  * exceções de cópias que a própria carta dá ("any number of cards named", "up to seven").
  */
 export function conferirCriado(l: Lista, pronta: (nome: string) => boolean, banidas?: Set<string>): { erros: string[]; avisos: string[] } {
-  const nomes = [l.comandante, ...(l.parceiro ? [l.parceiro] : []), ...l.cartas.map((c) => c.nome)];
+  const nomes = [...(l.comandante ? [l.comandante] : []), ...(l.parceiro ? [l.parceiro] : []), ...l.cartas.map((c) => c.nome)];
   const faltam = [...new Set(nomes)].filter((n) => !hasOracle(n) || !pronta(n));
   if (faltam.length) return { erros: faltam.map((n) => `${n} não está entre as cartas do jogo`), avisos: [] };
   const { erros, avisos } = validarLista(l, oracle, { banidas });

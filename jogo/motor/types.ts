@@ -377,6 +377,9 @@ export interface LogEntry {
   rule?: string;
 }
 
+export type { ModoJogo } from './modos.ts';
+import type { ModoJogo } from './modos.ts';
+
 export interface GameConfig {
   seed: string;
   players: { name: string; deckId: string }[];
@@ -385,6 +388,9 @@ export interface GameConfig {
   turnLimit: number | null;
   /** partida de dois jogadores (CR 100.1a) ou multijogador (CR 100.1b) */
   multiplayer: boolean;
+  /** modo de jogo (motor/modos.ts); sem a chave é Commander. As regras que mudam com ele já vêm na configuração
+   *  (startingLife) e nos decks (comandante ou não) */
+  formato?: ModoJogo;
   /** permite ajustes manuais (para aplicar o efeito de cartas ainda sem definição); ficam no log */
   manualMode?: boolean;
   /**
@@ -544,6 +550,8 @@ export interface ChoiceItem {
   /** carta mostrada só a quem decide (grimório, mão de outro…) */
   card?: { def: string; face?: number };
   disabled?: boolean;
+  /** a opção é uma pilha de cartas (Fact or Fiction, Make an Example…): os objetos dela, para os bots pesarem */
+  pile?: ObjId[];
 }
 
 export interface PriorityAction {
@@ -574,6 +582,9 @@ export type Decision = {
     secret?: boolean;
     /** a carta de que a pergunta trata (milagre: revelar ou conjurar esta carta) */
     about?: ObjId;
+    /** separar em duas pilhas: os itens escolhidos formam a primeira, o resto a segunda, e outro jogador escolhe uma
+     *  delas (Fact or Fiction, Make an Example) */
+    split?: boolean;
   }
   | { kind: 'number'; min: number; max: number }
   | { kind: 'payment'; cost: string; remaining: string; sources: PaymentSource[]; canAuto: boolean; lifeOptions: number; canCancel: boolean }

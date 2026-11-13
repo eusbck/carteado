@@ -96,9 +96,9 @@
 .abertura.tocando .vs-pular { animation: vs-aparece .5s 1.2s both; }
 .abertura.sem-efeitos .vs-treme, .abertura.sem-efeitos .vs-clarao { animation: none; }
 @keyframes vs-entra-lado { from { transform: translate(var(--de)); opacity: 0; } to { transform: none; opacity: 1; } }
-@keyframes vs-aproxima { from { transform: scale(1.14); filter: brightness(1.6) saturate(1.08); } 18% { filter: brightness(.82) saturate(1.08); } to { transform: scale(1); filter: brightness(.82) saturate(1.08); } }
+@keyframes vs-aproxima { /* repinta: tela VS, uma vez por partida (o brilho do fundo) */ from { transform: scale(1.14); filter: brightness(1.6) saturate(1.08); } 18% { filter: brightness(.82) saturate(1.08); } to { transform: scale(1); filter: brightness(.82) saturate(1.08); } }
 @keyframes vs-risca { from { transform: translate(-50%, -50%) rotate(var(--ang)) scaleY(0); } to { transform: translate(-50%, -50%) rotate(var(--ang)) scaleY(1); } }
-@keyframes vs-crava { 0% { transform: translate(-50%, -50%) scale(3.4); opacity: 0; filter: blur(10px); } 55% { transform: translate(-50%, -50%) scale(.9); opacity: 1; filter: blur(0); } 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; } }
+@keyframes vs-crava { /* repinta: tela VS, uma vez por partida (o desfoque do VS cravando) */ 0% { transform: translate(-50%, -50%) scale(3.4); opacity: 0; filter: blur(10px); } 55% { transform: translate(-50%, -50%) scale(.9); opacity: 1; filter: blur(0); } 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; } }
 @keyframes vs-onda { from { transform: scale(.4); opacity: .95; } to { transform: scale(3.2); opacity: 0; } }
 @keyframes vs-clarao { 0% { opacity: 0; } 18% { opacity: .9; } 100% { opacity: 0; } }
 @keyframes vs-treme { 0%, 100% { transform: none; } 20% { transform: translate(calc(var(--u) * -.5), calc(var(--u) * .3)); } 40% { transform: translate(calc(var(--u) * .45), calc(var(--u) * -.25)); } 60% { transform: translate(calc(var(--u) * -.3), calc(var(--u) * -.2)); } 80% { transform: translate(calc(var(--u) * .2), calc(var(--u) * .15)); } }

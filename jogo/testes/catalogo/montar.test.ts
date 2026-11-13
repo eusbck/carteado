@@ -36,7 +36,7 @@ describe('cartas para montar', () => {
   it('só cartas com regras, sem fichas, com o comandante marcado', () => {
     expect(cartas.length).toBeGreaterThan(500);
     expect(cartas.every((c) => cartaPronta(c.nome))).toBe(true);
-    expect(por.get(TERRA.comandante)).toMatchObject({ comandante: true });
+    expect(por.get(TERRA.comandante!)).toMatchObject({ comandante: true });
     expect(por.get('Arcane Signet')).toMatchObject({ comandante: false, vm: 2, ci: [] });
     expect(por.get('Arcane Signet')!.teto).toBeUndefined();
   });

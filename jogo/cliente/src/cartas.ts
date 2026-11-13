@@ -10,6 +10,13 @@ export async function carregarCartas(): Promise<void> {
   if (!r.ok) throw new Error(`cartas: ${r.status}`);
   INFO = await r.json();
   RE = null;
+  RE_NOMES = null;
+  prepararNomes();
+}
+
+/** todas as cartas que o jogo conhece: o nome do motor (inglês) e o da impressão em português, se houver */
+export function todasAsCartas(): { def: string; pt: string | null }[] {
+  return Object.entries(INFO).map(([def, i]) => ({ def, pt: i.pt }));
 }
 
 export function info(def: string): InfoCarta | undefined {
@@ -33,7 +40,7 @@ export function urlArte(def: string): string | null {
 }
 
 /** o servidor manda as imagens com cache imutável: mudar a fonte dos fundos pede um número novo aqui */
-const VERSAO_FUNDO = 6;
+const VERSAO_FUNDO = 7;
 
 /** fundo da área do jogador: o feito para o deck (gerado/fundos) ou a arte do comandante ampliada */
 export function urlFundo(def: string): string | null {
@@ -79,6 +86,21 @@ const ROSTO_NO_FUNDO: Record<string, readonly [number, number]> = {
   'Rose Tyler': [0.53, 0.27],
   'Frodo, Adventurous Hobbit': [0.49, 0.29],
   'Sam, Loyal Attendant': [0.49, 0.29],
+  // banners feitos pelo Codex em 12/11/2026
+  'Nelly Borca, Impulsive Accuser': [0.51, 0.17],
+  'Hazel of the Rootbloom': [0.55, 0.26],
+  'Kotori, Pilot Prodigy': [0.42, 0.28],
+  'Giada, Font of Hope': [0.45, 0.13],
+  'Ghalta, Primal Hunger': [0.57, 0.13],
+  'Gonti, Canny Acquisitor': [0.48, 0.28],
+  'Stella Lee, Wild Card': [0.54, 0.28],
+  'Aminatou, Veil Piercer': [0.49, 0.19],
+  'Cloud, Ex-SOLDIER': [0.24, 0.21],
+  'The Borg Queen': [0.51, 0.17],
+  'Commander Spock': [0.39, 0.34],
+  'Orvar, the All-Form': [0.49, 0.26],
+  'The Ur-Dragon': [0.53, 0.28],
+  'Inalla, Archmage Ritualist': [0.41, 0.23],
 };
 /** o rosto do comandante no fundo; sem marca (a arte da carta ampliada), o meio, um pouco acima */
 export const rostoNoFundo = (def: string): readonly [number, number] => ROSTO_NO_FUNDO[def] ?? [0.5, 0.3];
@@ -111,4 +133,34 @@ export function traduzir(texto: string): string {
     RE = nomes.length ? new RegExp(String.raw`(?<![\p{L}\p{N}])(` + nomes.join('|') + String.raw`)(?![\p{L}\p{N}])`, 'gu') : /$^/;
   }
   return texto.replace(RE, (m) => MAPA.get(m) ?? m);
+}
+
+// nomes de cartas citados num texto do motor ("Lim-Dûl's Vault: você olhou Sol Ring, Island…"), para a janela de
+// escolha mostrar a imagem de cada uma em vez de só o nome
+let RE_NOMES: RegExp | null = null;
+let SUBTIPOS = new Set<string>();
+
+/** as cartas (defs) citadas no texto, na ordem em que aparecem e sem repetir; fichas e nomes muito curtos ficam de fora */
+export function cartasNoTexto(texto: string): string[] {
+  if (!RE_NOMES) {
+    SUBTIPOS = new Set(Object.values(INFO).flatMap((i) => i.tipo.split(' // ').flatMap((t) => (t.split(' — ')[1] ?? '').split(' '))));
+    const nomes = Object.entries(INFO).filter(([n, i]) => !i.ficha && i.f && n.length >= 3).map(([n]) => n).sort((a, b) => b.length - a.length).map(escapar);
+    RE_NOMES = nomes.length ? new RegExp(String.raw`(?<![\p{L}\p{N}])(` + nomes.join('|') + String.raw`)(?![\p{L}\p{N}])`, 'gu') : /$^/g;
+  }
+  const achadas: string[] = [];
+  for (const m of texto.matchAll(RE_NOMES)) {
+    // um nome que também é subtipo ("Hero", "Island") pode estar falando do tipo: "uma carta Hero", "Forest ou Island"
+    if (SUBTIPOS.has(m[1])) {
+      const antes = texto.slice(0, m.index), depois = texto.slice(m.index! + m[1].length);
+      if (/\b(cartas?|tipos?|criaturas?|terrenos?|permanentes?|um|uma)( de)?\s+$|\bou\s+$/i.test(antes) || /^\s+ou\b/i.test(depois)) continue;
+    }
+    if (!achadas.includes(m[1])) achadas.push(m[1]);
+  }
+  return achadas;
+}
+
+/** monta a busca dos nomes com a mesa ociosa, para a primeira janela de escolha não travar */
+export function prepararNomes(): void {
+  const ocioso = (globalThis as { requestIdleCallback?: (f: () => void) => void }).requestIdleCallback ?? ((f: () => void) => setTimeout(f, 500));
+  ocioso(() => cartasNoTexto(''));
 }

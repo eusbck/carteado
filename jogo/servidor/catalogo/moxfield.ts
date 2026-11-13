@@ -1,7 +1,9 @@
 // Deck do Moxfield pelo link: https://moxfield.com/decks/<publicId>.
 // A API pública que o próprio site usa (api2.moxfield.com/v3/decks/all/<id>; a v2 se a v3 não achar) devolve as
-// zonas em `boards`. O jogo usa o comandante e o deck principal; reserva, "talvez" e fichas ficam de fora.
+// zonas em `boards`. O jogo usa o comandante e o deck principal; reserva, "talvez" e fichas ficam de fora. O modo de
+// jogo vem do formato do deck no Moxfield (`format`): com comandante é Commander; sem, só o Standard por enquanto.
 
+import { MODOS, type ModoJogo } from '../../motor/modos.ts';
 import { ErroRede, type Rede } from './rede.ts';
 
 const API = 'https://api2.moxfield.com';
@@ -36,6 +38,10 @@ export interface DeckMox {
   nome: string;
   versao: number | null;
   atualizadoEm: string | null;
+  /** modo de jogo do deck (motor/modos.ts) */
+  modo: ModoJogo;
+  /** carta de destaque do deck no Moxfield (a capa dos decks sem comandante); null se não houver */
+  destaque: string | null;
   comandantes: EntradaMox[];
   principal: EntradaMox[];
   /** zonas ignoradas que tinham cartas (para avisar) */
@@ -48,7 +54,8 @@ interface ItemMox {
 }
 interface ZonaMox { count?: number; cards?: Record<string, ItemMox> }
 interface RespostaMox {
-  publicId?: string; name?: string; version?: number; lastUpdatedAtUtc?: string;
+  publicId?: string; name?: string; version?: number; lastUpdatedAtUtc?: string; format?: string;
+  main?: { name?: string };
   boards?: Record<string, ZonaMox>;
   [zona: string]: unknown;
 }
@@ -94,7 +101,16 @@ export function normalizar(r: RespostaMox, idPedido: string): DeckMox {
     if (Object.keys(zonas[k]?.cards ?? {}).length) throw new ErroDeck(`O deck usa ${nome}, que o jogo ainda não tem`);
   }
   const comandantes = entradas(zonas.commanders);
-  if (comandantes.length === 0) throw new ErroDeck('O deck não tem comandante no Moxfield');
+  const formato = typeof r.format === 'string' ? r.format.toLowerCase() : '';
+  // sem comandante, o formato do Moxfield diz o modo; só os que o jogo tem (motor/modos.ts) entram
+  const modo: ModoJogo = comandantes.length ? 'commander' : formato === 'standard' ? 'standard' : (() => {
+    if (formato && formato !== 'commander') {
+      const nomes = Object.values(MODOS).map((m) => m.nome).join(' e ');
+      throw new ErroDeck(`O deck é do formato ${formato} no Moxfield; o jogo tem os modos ${nomes}`);
+    }
+    throw new ErroDeck('O deck não tem comandante no Moxfield');
+  })();
+  if (modo === 'standard' && Object.keys(zonas.commanders?.cards ?? {}).length) throw new ErroDeck('Deck de Standard não tem comandante');
   // até dois comandantes (parceiros, CR 702.124g: nunca mais de dois); se a dupla vale, a validação do deck confere
   if (comandantes.some((c) => c.quantidade > 1)) throw new ErroDeck('O deck repete o comandante');
   if (comandantes.length > 2) throw new ErroDeck('O deck tem mais de dois comandantes (CR 702.124g)');
@@ -114,6 +130,8 @@ export function normalizar(r: RespostaMox, idPedido: string): DeckMox {
     nome,
     versao: typeof r.version === 'number' ? r.version : null,
     atualizadoEm: typeof r.lastUpdatedAtUtc === 'string' ? r.lastUpdatedAtUtc : null,
+    modo,
+    destaque: typeof r.main?.name === 'string' && juntas.has(r.main.name) ? r.main.name : null,
     comandantes,
     principal: [...juntas.values()],
     ignoradas,

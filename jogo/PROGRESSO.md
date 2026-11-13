@@ -1,5 +1,31 @@
 # Progresso
 
+## Modos de jogo: Commander e Standard — 12/11/2026
+
+Pedido do Caio: preparar o jogo para ter outros modos além do Commander, com o Standard já agora, e ao jogar cada
+modo o saguão mostrar só os decks dele. Branch `modos/standard` (worktree `modos-wt`).
+
+- **Motor:** `motor/modos.ts` tem a tabela dos modos (`MODOS`: nome, vida inicial, se tem comandante, tamanho de mesa
+  sugerido, nome do formato nas legalidades do Scryfall). `DeckList.formato` (sem a chave: Commander) e `comandante`
+  opcional; sem comandante a zona de comando começa vazia. `GameConfig.formato` (só fora do Commander) e a vista
+  (`GameView.formato`) deixam a mesa esconder a zona de comando vazia. `validateDeck` valida no modo do deck: Standard
+  com 60 cartas ou mais, até 4 cópias (básicos e "any number of cards named" sem limite, "up to seven" com o número),
+  sem comandante e só cartas legais (MTR 3.3), quando a legalidade é conhecida.
+- **Catálogo:** a lista guarda `formato` e `capa` (a carta que ilustra o deck sem comandante: o destaque do Moxfield,
+  ou a primeira que não é básico). O Moxfield diz o modo: com comandante é Commander; sem, o `format` precisa ser
+  `standard` (outro formato é recusado dizendo os modos que existem). Na importação de Standard a legalidade de todas
+  as cartas vem do Scryfall (`/cards/collection`); carta fora do formato impede confirmar. Um deck não muda de modo
+  numa atualização.
+- **Sala:** `formato` escolhido ao criar (Commander sugere 4 lugares, Standard 2) e trocado pelo anfitrião no passo
+  Regras (mensagem `formato`): os decks do outro modo saem dos assentos das pessoas e os bots ganham um sorteado do
+  modo novo. O servidor recusa deck de outro modo (pessoa e bot) e não começa a partida com um deles; a vida inicial
+  vem do modo (40 ou 20).
+- **Cliente:** escolha do modo no passo Criar sala; o saguão mostra o modo no topo e só os decks dele (com aviso
+  quando ainda não há nenhum); o cartão, a prévia e a tela Decks mostram a capa e "Deck de Standard" no lugar do
+  comandante.
+- **Decks de Standard:** ainda nenhum na mesa. Entram pela tela Decks com o link do Moxfield; as cartas que ainda
+  não têm regras deixam o deck em preparação, como nos de Commander.
+- **Testes:** `testes/modos.test.ts`.
 ## Filtro dos decks pela origem (precon, precon modificado, montado, criado aqui) — 12/11/2026
 
 Pedido do Caio: saber quais decks são precons de verdade (os que se compram na loja) e quais foram montados a
@@ -2245,3 +2271,23 @@ para depois.
   completos, nenhum comandante sem fundo.
 - Testes `avatar` e `fase9-artes`: 19/19 com limite maior (os dois laços dos retratos ganharam 30 s, agora são 42);
   `tsc --noEmit` sem erros. Cliente não recompilado nesta sessão (outra sessão tem mudanças não salvas no cliente).
+
+## 12/11/2026 — Ver o deck na partida e "Reportar erro"
+
+- Ver o deck: clicar no grimório de qualquer jogador abre a lista das cartas do deck dele (a prévia do saguão, sem o
+  botão de escolher). É a lista do deck, não a ordem do grimório (`d209c3fe`).
+- Reportar erro: no menu lateral da mesa e num botão no canto das outras telas; também no aviso vermelho de erro.
+  - Ao abrir, tira um print da página (modern-screenshot, sem pedir permissão) antes da janela aparecer e guarda a mesa
+    como estava. A pessoa escolhe o tipo, conta o que aconteceu (obrigatório), o que esperava, o que fez antes, se
+    repete, e aponta as cartas (busca em português ou inglês; sugere as que estão na mesa).
+  - Imagens (até 8): "Novo print da tela" (a janela some 3 s para arrumar a tela), "Capturar a aba" (getDisplayMedia,
+    idêntica à tela), anexar, colar (Ctrl+V) ou arrastar. "Marcar" desenha caixa, seta ou caneta em cima.
+  - Vai junto: a partida inteira (o servidor junta pelo token do assento: config, listas, entradas, checkpoints, sem a
+    senha nem os tokens), a vista da mesa, navegador e tela, os erros da página, as últimas ações (senha e token
+    mascarados), os avisos do servidor para a pessoa e o diário de erros do servidor na última hora.
+  - O texto fica como rascunho até o envio dar certo. Enviado, a pessoa recebe um número de 4 letras.
+  - Grava em `dados-locais/relatos/<id>/` (fora do git). Ler: `node ferramentas/relatos.ts listar | ver <número> |
+    reproduzir <número> | resolver <número> [nota]`. `reproduzir` refaz a partida com o motor de agora e compara com a
+    mesa que a pessoa via.
+  - Código: `cliente/src/relato/`, `servidor/relatos.ts`, `servidor/diario-erros.ts`, rota `POST /api/relatos`,
+    `Gerente.paraRelato`. Testes: `testes/relatos.test.ts`, `testes/relato-cliente.test.ts`.

@@ -12,6 +12,7 @@ import { Marca } from '../icones.tsx';
 import { desfecho, nomeCurto } from '../Importacoes.tsx';
 import { loja, useLoja } from '../loja.ts';
 import { Simbolos } from '../mesa/Simbolos.tsx';
+import { MODOS } from '../../../motor/modos.ts';
 import { Construtor, deckVazio, rascunhoGuardado, type DeckInicial } from './Construtor.tsx';
 
 const data = (iso: string | null) => (iso ? new Date(iso).toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' }) : null);
@@ -65,7 +66,7 @@ function CorpoProposta({ p }: { p: Proposta }) {
       <div class="cat-proposta-topo">
         <div>
           <p class="cat-proposta-nome">{p.nome}</p>
-          <p class="suave">{p.parceiro ? 'Comandantes' : 'Comandante'}: {p.comandantePt ?? p.comandante}{p.comandantePt ? ` (${p.comandante})` : ''}{p.parceiro ? ` e ${p.parceiroPt ?? p.parceiro}${p.parceiroPt ? ` (${p.parceiro})` : ''}` : ''} · <a href={p.link} target="_blank" rel="noopener noreferrer">ver no Moxfield</a></p>
+          <p class="suave">{p.comandante ? <>{p.parceiro ? 'Comandantes' : 'Comandante'}: {p.comandantePt ?? p.comandante}{p.comandantePt ? ` (${p.comandante})` : ''}{p.parceiro ? ` e ${p.parceiroPt ?? p.parceiro}${p.parceiroPt ? ` (${p.parceiro})` : ''}` : ''}</> : `Deck de ${MODOS[p.formato].nome}`} · <a href={p.link} target="_blank" rel="noopener noreferrer">ver no Moxfield</a></p>
         </div>
       </div>
       {p.erros.length > 0 && (
@@ -212,7 +213,7 @@ async function deckParaMontar(d: DeckCatalogo, copia: boolean): Promise<DeckInic
   if (!l) return null;
   const cartas: Record<string, number> = {};
   for (const c of l.cartas) cartas[c.nome] = (cartas[c.nome] ?? 0) + c.quantidade;
-  return { id: copia ? null : d.id, nome: copia ? `${d.nome} (cópia)`.slice(0, 60) : d.nome, comandante: l.comandante.nome, parceiro: l.parceiro?.nome ?? null, cartas };
+  return { id: copia ? null : d.id, nome: copia ? `${d.nome} (cópia)`.slice(0, 60) : d.nome, comandante: l.comandante?.nome ?? null, parceiro: l.parceiro?.nome ?? null, cartas };
 }
 
 function JanelaDetalhes({ d, fechar, montar }: { d: DeckCatalogo; fechar: () => void; montar: (copia: boolean) => void }) {
@@ -222,7 +223,7 @@ function JanelaDetalhes({ d, fechar, montar }: { d: DeckCatalogo; fechar: () => 
     <Janela titulo={d.nome} fechar={fechar} larga={!!p && d.estado === 'atualizacao'} classe="cat-janela">
       <div class="cat-proposta">
         <p class="suave">
-          {d.parceiro ? 'Comandantes' : 'Comandante'}: {d.comandantePt ?? d.comandante}{d.parceiro ? ` e ${d.parceiroPt ?? d.parceiro}` : ''} · {d.total} cartas diferentes{d.link ? <> · <a href={d.link} target="_blank" rel="noopener noreferrer">ver no Moxfield</a></> : ' · deck da mesa'}
+          {d.comandante ? <>{d.parceiro ? 'Comandantes' : 'Comandante'}: {d.comandantePt ?? d.comandante}{d.parceiro ? ` e ${d.parceiroPt ?? d.parceiro}` : ''}</> : `Deck de ${MODOS[d.formato].nome}`} · {d.total} cartas diferentes{d.link ? <> · <a href={d.link} target="_blank" rel="noopener noreferrer">ver no Moxfield</a></> : ' · deck da mesa'}
           <br />{d.criado
             ? <>Montado aqui{d.criado.autor ? ` por ${d.criado.autor}` : ''} em {data(d.importadoEm)}{d.criado.editadoEm !== d.importadoEm ? `; editado em ${data(d.criado.editadoEm)}` : ''}.</>
             : <>Importado em {data(d.importadoEm)}{d.verificadoEm ? `; buscado no Moxfield em ${data(d.verificadoEm)}` : ''}.</>}
@@ -254,7 +255,8 @@ function JanelaDetalhes({ d, fechar, montar }: { d: DeckCatalogo; fechar: () => 
             if (await loja.apagarDeckCriado(d.id)) { fechar(); void loja.recarregarCatalogo(); } else setApagando(false);
           }}>{apagando ? 'Apagando…' : 'Apagar'}</button>
         )}
-        {d.estado !== 'preparacao' && <button class="botao fantasma" onClick={() => montar(true)} title="Abre o construtor com uma cópia desta lista">Usar como base</button>}
+        {/* o construtor monta só decks de Commander */}
+        {d.estado !== 'preparacao' && d.formato === 'commander' && <button class="botao fantasma" onClick={() => montar(true)} title="Abre o construtor com uma cópia desta lista">Usar como base</button>}
         {d.criado && <button class="botao principal" onClick={() => montar(false)}>Editar</button>}
         <button class="botao" onClick={fechar}>Fechar</button>
       </div>
@@ -276,7 +278,7 @@ function CartaoDeck({ d, ocupado, buscando, abrir, atualizar, editar }: { d: Dec
         <span class="deck-info">
           <SeloOrigem origem={d.origem} />
           <span class="deck-nome" title={d.nome}>{d.nome}</span>
-          <span class="deck-cmd"><span>{(d.comandantePt ?? d.comandante).split(',')[0]}</span><Simbolos custo={d.cores.map((c) => `{${c}}`).join('')} /></span>
+          <span class="deck-cmd"><span>{d.comandante ? (d.comandantePt ?? d.comandante).split(',')[0] : MODOS[d.formato].nome}</span><Simbolos custo={d.cores.map((c) => `{${c}}`).join('')} /></span>
         </span>
       </button>
       <div class="cat-deck-pe">

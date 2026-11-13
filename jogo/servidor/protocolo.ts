@@ -3,6 +3,7 @@
 
 import type { NivelBot } from '../bots/niveis.ts';
 import type { StopSettings } from '../motor/autopass.ts';
+import type { ModoJogo } from '../motor/modos.ts';
 import type { Answer } from '../motor/types.ts';
 import type { GameView } from '../motor/view.ts';
 
@@ -45,6 +46,8 @@ export interface SalaPublica {
   cronometro: { iniciadaEm: number; encerradaEm: number | null } | null;
   /** passo do saguão em que a sala está (vale com a sala esperando) */
   etapa: EtapaSaguao;
+  /** modo de jogo da sala (motor/modos.ts): o saguão só mostra os decks dele */
+  formato: ModoJogo;
 }
 
 /** de onde o deck vem (servidor/catalogo/origem.ts): precon igual ao produto, precon com cartas trocadas, lista
@@ -60,9 +63,16 @@ export interface OrigemPublica {
 export interface DeckResumo {
   id: string;
   nome: string;
-  comandante: string;
+  /** modo de jogo do deck (motor/modos.ts) */
+  formato: ModoJogo;
+  /** null nos decks sem comandante (Standard) */
+  comandante: string | null;
   /** segundo comandante (parceiros) */
   parceiro?: string | null;
+  /** carta que ilustra o deck: o comandante ou, sem ele, a capa escolhida */
+  capa: string;
+  /** cartas no deck (com o comandante) */
+  total: number;
   cores: string[];
   origem?: OrigemPublica;
 }
@@ -102,7 +112,9 @@ export interface CartaMontagem {
 export interface ListaDeck {
   id: string;
   nome: string;
-  comandante: CartaCatalogo;
+  formato: ModoJogo;
+  /** null nos decks sem comandante */
+  comandante: CartaCatalogo | null;
   /** segundo comandante (parceiros) */
   parceiro?: CartaCatalogo | null;
   /** as outras cartas (sem o comandante) */
@@ -114,12 +126,14 @@ export interface DeckCatalogo {
   id: string;
   nome: string;
   link: string;
-  comandante: string;
+  formato: ModoJogo;
+  /** null nos decks sem comandante */
+  comandante: string | null;
   comandantePt: string | null;
   parceiro?: string | null;
   parceiroPt?: string | null;
   cores: string[];
-  /** id da imagem do comandante (arte de fundo do cartão) */
+  /** id da imagem do comandante, ou da capa sem ele (arte de fundo do cartão) */
   arte: string | null;
   /** pronto: no saguão; preparacao: falta implementar cartas; atualizacao: jogável, com uma versão nova esperando cartas */
   estado: 'pronto' | 'preparacao' | 'atualizacao';
@@ -152,7 +166,9 @@ export interface Proposta {
   link: string;
   /** o deck ainda não está na mesa */
   novo: boolean;
-  comandante: string;
+  formato: ModoJogo;
+  /** null nos decks sem comandante */
+  comandante: string | null;
   comandantePt: string | null;
   parceiro?: string | null;
   parceiroPt?: string | null;
@@ -246,7 +262,7 @@ export interface MsgChat {
 
 export type MsgCliente =
   /** `lugares`: quantos jogadores (2 a 6); sem ele, `modo` (o jeito antigo) e, sem os dois, quatro */
-  | { t: 'criar'; nome: string; senhaSala: string; lugares?: number; modo?: Modo }
+  | { t: 'criar'; nome: string; senhaSala: string; lugares?: number; modo?: Modo; formato?: ModoJogo }
   | { t: 'entrar'; codigo: string; senhaSala: string; nome: string }
   | { t: 'retomar'; codigo: string; token: string }
   | { t: 'deck'; deck: string }
@@ -264,6 +280,8 @@ export type MsgCliente =
   | { t: 'posicao'; obj?: number; x?: number; y?: number; limpar?: boolean; lista?: { obj: number; x: number; y: number }[] }
   | { t: 'mulligan'; regra: RegraMulligan }
   | { t: 'auxilios'; regra: RegraAuxilios }
+  /** o anfitrião troca o modo de jogo da sala (os decks de outro modo saem dos assentos) */
+  | { t: 'formato'; formato: ModoJogo }
   /** o anfitrião muda o passo do saguão */
   | { t: 'etapa'; etapa: EtapaSaguao }
   /** o anfitrião muda o número de lugares da sala (só tira lugares livres) */
@@ -306,7 +324,7 @@ const curto = (x: unknown) => typeof x !== 'string' || x.length <= TEXTO_MAX;
 const sempre = () => true;
 
 const FORMAS: { [T in MsgCliente['t']]: (m: Record<string, unknown>) => boolean } = {
-  criar: (m) => curto(m.nome) && curto(m.senhaSala) && (m.lugares === undefined || inteiro(m.lugares, MIN_LUGARES, MAX_ASSENTOS)),
+  criar: (m) => curto(m.nome) && curto(m.senhaSala) && curto(m.formato) && (m.lugares === undefined || inteiro(m.lugares, MIN_LUGARES, MAX_ASSENTOS)),
   entrar: (m) => curto(m.codigo) && curto(m.senhaSala) && curto(m.nome),
   retomar: (m) => curto(m.codigo) && curto(m.token),
   deck: (m) => curto(m.deck),
@@ -323,6 +341,7 @@ const FORMAS: { [T in MsgCliente['t']]: (m: Record<string, unknown>) => boolean 
   posicao: (m) => m.lista === undefined || (Array.isArray(m.lista) && m.lista.length <= 300),
   mulligan: sempre,
   auxilios: sempre,
+  formato: (m) => curto(m.formato),
   etapa: sempre,
   lugares: (m) => inteiro(m.n, MIN_LUGARES, MAX_ASSENTOS),
   avatar: (m) => curto(m.avatar),
@@ -346,10 +365,17 @@ export function validarMsg(m: unknown): string | null {
   return FORMAS[m.t as MsgCliente['t']](m) ? null : 'Mensagem inválida';
 }
 
+/** por que uma vista não continua a anterior (mensagem `jogo`) */
+export type Reinicio = 'cheia' | 'desfeita';
+
 export type MsgServidor =
   /** `quem`: o seu id de autor; `agora`: hora do servidor em ms, acrescentada só ao enviar, fora da comparação */
   | { t: 'sala'; sala: SalaPublica; voce: number; token: string; quem: string; agora: number }
-  | { t: 'jogo'; vista: GameView; paradas: StopSettings; posicoes: Posicoes; desfazivel: boolean; desfazer: PedidoDesfazer | null }
+  /** `seq`: número da vista nesta conexão (1, 2, 3…; recomeça a cada conexão), acrescentado só ao enviar, fora da
+   * comparação. `reinicio`: a vista não continua a anterior: 'cheia' (a primeira desta conexão, partida nova ou refeita)
+   * ou 'desfeita' (um pedido de desfazer voltou a partida). Sem ele, continua: o cliente põe a vista na fila de quadros
+   * e anima a diferença; com ele, esvazia a fila e mostra a vista na hora, sem animação */
+  | { t: 'jogo'; vista: GameView; paradas: StopSettings; posicoes: Posicoes; desfazivel: boolean; desfazer: PedidoDesfazer | null; seq?: number; reinicio?: Reinicio }
   /** aviso curto para a mesa (pedido de desfazer aceito, recusado ou expirado) */
   | { t: 'aviso'; msg: string }
   | { t: 'saiu' }
@@ -369,3 +395,45 @@ export type MsgServidor =
   /** `de`: o tipo da mensagem do cliente que causou o erro (ausente quando o erro não responde a uma mensagem, como
    * o aviso a toda a mesa de um erro do motor numa jogada de bot) */
   | { t: 'erro'; msg: string; de?: MsgCliente['t'] };
+
+// ---------------------------------------------------------------------------
+// Relatos de erro (botão "Reportar erro"): o que a pessoa escreve, as imagens e o contexto do cliente. O servidor
+// junta a partida da sala (entradas e checkpoint, para refazer o erro) e grava tudo em dados-locais/relatos/<id>/.
+// Quem cuida do jogo lê com: node ferramentas/relatos.ts
+// ---------------------------------------------------------------------------
+
+export type TipoRelato = 'regra' | 'visual' | 'travou' | 'bot' | 'outro';
+export type RepeteRelato = 'sempre' | 'as-vezes' | 'uma-vez' | 'nao-sei';
+
+export interface ImagemRelato {
+  /** data URL (image/png, image/jpeg ou image/webp) */
+  dados: string;
+  /** tela: o print da página feito pelo jogo; aba: captura da aba pelo navegador; anexo: arquivo ou colado */
+  origem: 'tela' | 'aba' | 'anexo';
+  /** nome do arquivo anexado, se houver */
+  nome?: string;
+  /** a pessoa riscou em cima (Marcador) */
+  marcada?: boolean;
+}
+
+export interface PedidoRelato {
+  tipo: TipoRelato;
+  /** o que aconteceu (obrigatório) */
+  oque: string;
+  esperado?: string;
+  passos?: string;
+  repete?: RepeteRelato;
+  /** cartas envolvidas (nomes em inglês, como no motor) */
+  cartas?: string[];
+  /** quem relata */
+  nome?: string;
+  imagens: ImagemRelato[];
+  /** a sala em que a pessoa está, com o token do assento: o servidor só junta a partida se o token conferir */
+  sala?: { codigo: string; token: string } | null;
+  /** junta a partida (entradas, checkpoint e listas) para refazer o erro */
+  anexarPartida: boolean;
+  /** o que o cliente sabe na hora: tela, navegador, erros, últimas mensagens, a vista da mesa… */
+  contexto: Record<string, unknown>;
+}
+
+export type RespostaRelato = { ok: true; id: string } | { ok: false; erro: string };
