@@ -6,8 +6,7 @@
  "link": "https://moxfield.com/decks/xDt7Pt1P4Ea6iQph663VRg",
  "importadoEm": "2026-11-10T19:28:41.855Z",
  "verificadoEm": "2026-11-10T19:28:41.855Z",
- "atual": null,
- "preparacao": {
+ "atual": {
   "comandante": "Sin, Spira's Punishment",
   "cartas": [
    {
@@ -376,5 +375,6 @@
    "atualizadoEm": "2026-11-10T19:01:47.763Z"
   },
   "desde": "2026-11-10T19:28:41.855Z"
- }
+ },
+ "preparacao": null
 }

@@ -553,3 +553,8 @@ export const Heartwood = defineToken({
   abilities: [mana(['R', 'G'])],
   image: fichasOracle.find((f) => f.name === 'Heartwood')?.oracleId,
 });
+// deck LandReanimator (13/11/2026)
+export const Plant01 = token('Plant 0/1', 'Plant', ['Creature'], ['Plant'], ['G'], 0, 1);
+/** Forest Dryad 1/1 verde, terreno criatura Forest Dryad (Awaken the Woods): o tipo Forest dá {T}: Adicione {G} (CR 305.6) */
+export const ForestDryad = token('Forest Dryad', 'Forest Dryad', ['Land', 'Creature'], ['Forest', 'Dryad'], ['G'], 1, 1);
+export const ZombieDruid = token('Zombie Druid', 'Zombie Druid', ['Creature'], ['Zombie', 'Druid'], ['B'], 2, 2);

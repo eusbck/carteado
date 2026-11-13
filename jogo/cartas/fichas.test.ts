@@ -179,6 +179,9 @@ const esperadas: Record<string, [string, string[], string[], string[], number | 
   'Servo': ['Servo', ['Artifact', 'Creature'], ['Servo'], [], 1, 1, []],
   'Cat 1/1 branco': ['Cat', ['Creature'], ['Cat'], ['W'], 1, 1, []],
   // semanal 11/11/2026: Sephiroth e Hearthhull
+  'Plant 0/1': ['Plant', ['Creature'], ['Plant'], ['G'], 0, 1, []],
+  'Forest Dryad': ['Forest Dryad', ['Land', 'Creature'], ['Forest', 'Dryad'], ['G'], 1, 1, []],
+  'Zombie Druid': ['Zombie Druid', ['Creature'], ['Zombie', 'Druid'], ['B'], 2, 2, []],
   'Faerie Rogue': ['Faerie Rogue', ['Creature'], ['Faerie', 'Rogue'], ['B'], 1, 1, ['flying']],
   'Thrull': ['Thrull', ['Creature'], ['Thrull'], ['B'], 1, 1, []],
   'Thrull 0/1': ['Thrull', ['Creature'], ['Thrull'], ['B'], 0, 1, []],
