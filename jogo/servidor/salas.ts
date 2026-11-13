@@ -740,7 +740,7 @@ export class Sala {
         if (!para || (para !== 'todos' && para.length === 0)) return 'Escolha para quem mostrar';
         const o = g.state.objects[obj];
         const aviso: MsgServidor = { t: 'revelada', de: i, def: o.def, nome: o.def, para };
-        for (const c of this.conexoes) if (c.assento === i || para === 'todos' || para.includes(c.assento!)) c.enviar(aviso);
+        for (const c of this.conexoes) if (!c.espectador && (c.assento === i || para === 'todos' || para.includes(c.assento!))) c.enviar(aviso);
         return null;
       }
       case 'chat': {
