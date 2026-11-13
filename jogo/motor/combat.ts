@@ -8,6 +8,7 @@ import { registry, type Gen } from './defs.ts';
 import type { G } from './game-context.ts';
 import { protectionMatches } from './actions.ts';
 import { emit } from './triggers.ts';
+import { alvo, jog, lista, obj, reg, trecho } from './registro.ts';
 import type { Answer, CombatState, ObjId, PlayerId, TargetRef } from './types.ts';
 
 export function newCombat(): CombatState {
@@ -150,7 +151,7 @@ export function reselectAttacker(g: G, attacker: ObjId, target: TargetRef): bool
   if (!a || !reselectAttackTargets(g, attacker).some((t) => t.kind === target.kind && t.id === target.id)) return false;
   a.target = { ...target };
   g.bump();
-  g.log(`${nameOf(g, attacker)} passa a atacar ${target.kind === 'player' ? g.state.players[target.id].name : nameOf(g, target.id)}.`, { rule: '508.7' });
+  reg(g, 'ataque', { rule: '508.7', actor: controllerOf(g, attacker) })`${obj(attacker, 'fonte')} passa a atacar ${alvo(target)}.`;
   // O evento de declaração e seu histórico permanecem os originais; isto não é outro ataque.
   return true;
 }
@@ -209,9 +210,9 @@ export function* declareAttackers(g: G): Gen<void> {
     combat.attackers.push({ id, target, blocked: false, blockers: [], removed: false });
   }
   if (attacks.length) {
-    const names = attacks.map(([id, t]) => `${nameOf(g, id)} → ${t.kind === 'player' ? s.players[t.id].name : nameOf(g, t.id)}`).join('; ');
-    g.log(`${s.players[player].name} ataca: ${names}.`, { rule: '508.1' });
-  } else g.log(`${s.players[player].name} não ataca.`, { rule: '508.1' });
+    const names = lista(attacks.map(([id, t]) => trecho`${obj(id, 'fonte')} → ${alvo(t)}`), '; ');
+    reg(g, 'ataque', { rule: '508.1' })`${jog(player)} ataca: ${names}.`;
+  } else reg(g, 'ataque', { rule: '508.1' })`${jog(player)} não ataca.`;
   g.bump();
   emit(g, [{ type: 'attackers', player, attackers: attacks.map(([obj, target]) => ({ obj, target })) }]);
 }
@@ -358,7 +359,7 @@ export function* declareBlockers(g: G): Gen<void> {
     at.blocked = true;
     at.blockers.push(b);
   }
-  if (all.length) g.log(`Bloqueios: ${all.map(([b, a]) => `${nameOf(g, b)} bloqueia ${nameOf(g, a)}`).join('; ')}.`, { rule: '509.1' });
+  if (all.length) reg(g, 'bloqueio', { rule: '509.1' })`Bloqueios: ${lista(all.map(([b, a]) => trecho`${obj(b, 'fonte')} bloqueia ${obj(a, 'alvo')}`), '; ')}.`;
   g.bump();
   emit(g, [{ type: 'blockers', blocks: all }]);
 }
@@ -473,7 +474,7 @@ export function* combatDamage(g: G, first: boolean): Gen<void> {
     if (n > 0 && fn) yield* fn(g, e.controller, n);
   }
   const dealt = reqs.filter((r) => r.target.kind === 'player');
-  if (reqs.length) g.log(`Dano de combate: ${reqs.map((r) => `${nameOf(g, r.source)} causa ${r.amount} a ${r.target.kind === 'player' ? s.players[r.target.id].name : nameOf(g, r.target.id)}`).join('; ')}.`, { rule: '510.2' });
+  if (reqs.length) reg(g, 'dano', { rule: '510.2' })`Dano de combate: ${lista(reqs.map((r) => trecho`${obj(r.source, 'fonte')} causa ${r.amount} a ${alvo(r.target, 'vitima')}`), '; ')}.`;
   void dealt;
 }
 

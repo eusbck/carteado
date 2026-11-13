@@ -10,6 +10,7 @@ import type { G } from './game-context.ts';
 import { shuffle as shuffleArr } from './rng.ts';
 import { addEffect, createObject, destroyObject, moveRaw, newTimestamp, objOrLki, recordLki, type Position } from './state.ts';
 import { addPending, emit } from './triggers.ts';
+import { jog, obj, objs, reg } from './registro.ts';
 import { oracleLayout } from './oracle.ts';
 import { playerProtections, toxicValue } from './veneno-emblema.ts';
 import type { Answer, CardId, Chars, Color, ContinuousEffect, CopyValues, Duration, GameObject, ManaType, ManaUnit, ObjId, PlayerId, TargetRef, ZoneName } from './types.ts';
@@ -86,7 +87,7 @@ export function* voltarAteSair(g: G, ids: ObjId[]): Gen<ObjId[]> {
     return !!x && x.zone === 'exile' && !x.isToken && !g.state.players[x.owner].left;
   });
   if (!prontas.length) return [];
-  g.log(`${prontas.map((id) => nameOf(g, id)).join(', ')} volta${prontas.length > 1 ? 'm' : ''} do exílio para o campo.`, { rule: '610.3' });
+  reg(g, 'zona', { rule: '610.3' })`${objs(prontas)} volta${prontas.length > 1 ? 'm' : ''} do exílio para o campo.`;
   return yield* putOntoBattlefield(g, prontas.map((id) => ({ id, controller: g.state.objects[id].owner })), 'effect');
 }
 
@@ -299,7 +300,7 @@ export function* putOntoBattlefield(g: G, reqs: EnterReq[], cause: string): Gen<
     if (fromObj && ((fromObj.isToken && fromObj.zone !== 'battlefield') || (fromObj.isCopy && fromObj.zone !== 'stack'))) continue;
     // lote3-d: Grafdigger's Cage (cartas de criatura de cemitérios e grimórios não entram)
     if (fromObj && (fromObj.zone === 'graveyard' || fromObj.zone === 'library') && hooks(g, 'cantEnterBattlefieldFrom').some((h) => h.fn(h.ctx, fromObj.id, fromObj.zone, !!r.faceDown))) {
-      g.log(`${nameOf(g, fromObj.id)} não pode entrar no campo vindo de ${fromObj.zone === 'graveyard' ? 'um cemitério' : 'um grimório'}.`);
+      reg(g, 'outro')`${obj(fromObj.id)} não pode entrar no campo vindo de ${fromObj.zone === 'graveyard' ? 'um cemitério' : 'um grimório'}.`;
       continue;
     }
     const ev: EnterEvent = {
@@ -439,7 +440,7 @@ export function prepare(g: G, id: ObjId): boolean {
   const ctrl = controllerOf(g, id);
   const copia = createObject(g, { def: f.def, owner: ctrl, controller: ctrl, zone: 'exile', isCopy: true, copyOf: { def: f.def, face: 1 }, face: 1 });
   copia.data.preparedBy = id;
-  g.log(`${nameOf(g, id)} fica preparado.`, { rule: '722.3' });
+  reg(g, 'outro', { rule: '722.3' })`${obj(id)} fica preparado.`;
   g.bump();
   emit(g, [{ type: 'prepared', obj: id }]);
   return true;
@@ -734,7 +735,7 @@ export function regenerateOrDestroy(g: G, ids: ObjId[], cantRegenerate = false):
     tap(g, id);
     removeFromCombat(g, id);
     g.bump();
-    g.log(`${nameOf(g, id)} regenera.`, { rule: '701.19a' });
+    reg(g, 'outro', { rule: '701.19a' })`${obj(id)} regenera.`;
     emit(g, [{ type: 'regenerate', obj: id }]);
   }
   return out;
@@ -887,7 +888,7 @@ export function* draw(g: G, player: PlayerId, n = 1, opts: { aplicadas?: ObjId[]
         const [esc] = yield* chooseItems(g, player, 'Escolha qual efeito substitui a sua compra', subs.map((h, i) => ({ id: String(i), label: `${nameOf(g, h.ctx.source)} de ${g.state.players[h.ctx.you].name}` })), 1, 1);
         escolhida = subs[Number(esc)];
       }
-      g.log(`${nameOf(g, escolhida.ctx.source)}: em vez de comprar ${n} cartas, ${g.state.players[escolhida.ctx.you].name} e ${p.name} compram uma carta cada.`, { rule: '614.1a' });
+      reg(g, 'compra', { rule: '614.1a', actor: player })`${obj(escolhida.ctx.source, 'fonte')}: em vez de comprar ${n} cartas, ${jog(escolhida.ctx.you)} e ${jog(player)} compram uma carta cada.`;
       yield* draw(g, escolhida.ctx.you, 1);
       return yield* draw(g, player, 1);
     }
@@ -911,7 +912,7 @@ export function* draw(g: G, player: PlayerId, n = 1, opts: { aplicadas?: ObjId[]
             const [esc] = yield* chooseItems(g, player, 'Escolha qual efeito substitui a sua compra', subs.map((h, k) => ({ id: String(k), label: `${nameOf(g, h.ctx.source)} de ${g.state.players[h.ctx.you].name}` })), 1, 1);
             escolhida = subs[Number(esc)];
           }
-          g.log(`${nameOf(g, escolhida.ctx.source)}: ${p.name} pula a compra e ${g.state.players[escolhida.ctx.you].name} compra uma carta.`, { rule: '614.1a' });
+          reg(g, 'compra', { rule: '614.1a', actor: player })`${obj(escolhida.ctx.source, 'fonte')}: ${jog(player)} pula a compra e ${jog(escolhida.ctx.you)} compra uma carta.`;
           yield* draw(g, escolhida.ctx.you, 1, { aplicadas: [...aplicadas, escolhida.ctx.source] });
           continue;
         }
@@ -963,7 +964,7 @@ function* revelaMilagre(g: G, player: PlayerId, id: ObjId): Gen<void> {
   const antes = o.visibleTo;
   o.visibleTo = 'all';
   g.bump();
-  g.log(`${g.state.players[player].name} revela ${nameOf(g, id)} (milagre).`, { rule: '702.94a' });
+  reg(g, 'revela', { rule: '702.94a' })`${jog(player)} revela ${obj(id)} (milagre).`;
   addPending(g, 'mecanica:milagre', id, player, { visivelAntes: antes }, {});
 }
 
@@ -990,7 +991,7 @@ export function* searchLibrary(g: G, player: PlayerId, library: PlayerId, opts: 
   // "não pode procurar em grimórios" (Stranglehold): a busca não acontece; o embaralhar de "procure… depois embaralhe"
   // continua com quem chamou (ruling 2)
   if (!canSearchLibraries(g, player)) {
-    g.log(`${g.state.players[player].name} não pode procurar no grimório.`, { rule: '701.23' });
+    reg(g, 'outro', { rule: '701.23' })`${jog(player)} não pode procurar no grimório.`;
     return [];
   }
   const lib = g.state.zones.library[library];
@@ -1113,7 +1114,7 @@ export function becomeMonarch(g: G, player: PlayerId): void {
   if (g.state.players[player].left) return;
   g.state.monarch = player;
   g.bump();
-  g.log(`${g.state.players[player].name} se torna o monarca.`, { rule: '725' });
+  reg(g, 'outro', { rule: '725' })`${jog(player)} se torna o monarca.`;
   emit(g, [{ type: 'monarch', player }]);
 }
 

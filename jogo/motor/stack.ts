@@ -15,6 +15,7 @@ import {
 import type { G } from './game-context.ts';
 import { addGeneric, convokeOne, formatCost, manaValueOf, parseCost, reduceGeneric, withX } from './mana.ts';
 import { emit } from './triggers.ts';
+import { alvo, jog, lista, obj, reg, trecho, type ValorReg } from './registro.ts';
 import { ehAventura, ehDividida, ehPresagio, FACE_AMBAS, facesConjuraveis, metadeAftermath, rotuloConjurar, temVariasFaces } from './formatos.ts';
 import type { Answer, Chars, Duration, GameObject, GameState, ManaSymbol, Mod, ObjId, PlayerId, StackInfo, TargetRef, ZoneName } from './types.ts';
 import { HEXPROOF_FROM_ABILITIES, sourceIsAbility, splitSecondActive } from './controle-base.ts';
@@ -25,6 +26,12 @@ import { equiparComoInstantanea, equiparPorZero, registraAtivacao, segundoDividi
 // ---------------------------------------------------------------------------
 export function targetLabel(g: G, t: TargetRef): string {
   return t.kind === 'player' ? g.state.players[t.id].name : nameOf(g, t.id);
+}
+
+/** F3: " (alvos: A, B)" das linhas de conjurar/ativar, com os alvos como refs (vazio se não há alvos) */
+function alvosReg(targets: TargetRef[][]): ValorReg {
+  const ts = targets.flat();
+  return ts.length ? trecho` (alvos: ${lista(ts.map((t) => alvo(t)))})` : '';
 }
 
 function sourceQualities(g: G, source: ObjId) {
@@ -590,10 +597,9 @@ function* castInner(g: G, player: PlayerId, cardId: ObjId, method: CastMethod): 
     st.greatestInstantSorceryMV = Math.max(st.greatestInstantSorceryMV, c.manaValue);
   }
   g.bump();
-  const textoConjura = `${g.state.players[player].name} conjura ${label}${info.targets.flat().length ? ` (alvos: ${info.targets.flat().map((t) => targetLabel(g, t)).join(', ')})` : ''}.`;
   // virada para baixo, só quem conjura sabe qual é (CR 708.5)
-  if (o.faceDown) g.log(textoConjura, { rule: '702.37c', visibleTo: [player], hiddenText: `${g.state.players[player].name} conjura uma criatura virada para baixo.` });
-  else g.log(textoConjura, { rule: '601.2' });
+  const optsConjura = o.faceDown ? { rule: '702.37c', visibleTo: [player], hiddenText: `${g.state.players[player].name} conjura uma criatura virada para baixo.` } : { rule: '601.2' };
+  reg(g, 'conjura', optsConjura)`${jog(player)} conjura ${obj(spellId, 'fonte', label)}${alvosReg(info.targets)}.`;
   const events: Parameters<typeof emit>[1] = [{ type: 'cast', obj: spellId, player, from: method.zone, copy: false }];
   for (const t of info.targets.flat()) events.push({ type: 'target', target: t, by: spellId, controller: player, spell: true });
   emit(g, events);
@@ -628,7 +634,8 @@ function* activateInner(g: G, player: PlayerId, sourceId: ObjId, abilityId: stri
   if (!src) return null;
   if (splitSecondActive(g)) return null; // lote3-d: segundo dividido (CR 702.61a)
   if (hooks(g, 'cantActivate').some((h) => h.fn(h.ctx, player, sourceId))) return null; // lote3-d: Cursed Totem
-  const label = `${nameOf(g, sourceId)}${def.kw ? ` (${def.kw})` : ''}`;
+  const nomeFonte = nameOf(g, sourceId);
+  const label = `${nomeFonte}${def.kw ? ` (${def.kw})` : ''}`;
   // 602.2a: a habilidade vai para a pilha
   const ab = createObject(g, { def: '', owner: player, controller: player, zone: 'stack' });
   const info: StackInfo = { kind: 'activated', controller: player, abilityId, source: sourceId, modes: [], targets: [], x: 0, paid: {}, data: {}, isCopy: false };
@@ -673,7 +680,7 @@ function* activateInner(g: G, player: PlayerId, sourceId: ObjId, abilityId: stri
   }
   registraAtivacao(g, player, def, info.targets);
   g.bump();
-  g.log(`${g.state.players[player].name} ativa ${label}${info.targets.flat().length ? ` (alvos: ${info.targets.flat().map((t) => targetLabel(g, t)).join(', ')})` : ''}.`, { rule: '602.2' });
+  reg(g, 'ativa', { rule: '602.2' })`${jog(player)} ativa ${obj(sourceId, 'fonte', nomeFonte)}${def.kw ? ` (${def.kw})` : ''}${alvosReg(info.targets)}.`;
   const events: Parameters<typeof emit>[1] = [{ type: 'activate', obj: ab.id, source: sourceId, player, abilityId }];
   for (const t of info.targets.flat()) events.push({ type: 'target', target: t, by: ab.id, controller: player, spell: false });
   emit(g, events);
@@ -756,6 +763,14 @@ export function triggerLabel(g: G, abilityId: string, source: ObjId): string {
   return `${name}${def?.text ? `: ${def.text}` : ''}`;
 }
 
+/** F3: o mesmo texto de `triggerLabel`, com a fonte como ref (sem fonte conhecida, só o texto "regra do jogo") */
+export function triggerReg(g: G, abilityId: string, source: ObjId): ValorReg {
+  const name = g.state.objects[source] ? nameOf(g, source) : g.state.lki[source]?.chars.name;
+  const def = registry.abilities.get(abilityId);
+  const resto = def?.text ? `: ${def.text}` : '';
+  return name === undefined ? `regra do jogo${resto}` : trecho`${obj(source, 'fonte', name)}${resto}`;
+}
+
 export function* putTriggerOnStack(g: G, abilityId: string, source: ObjId, controller: PlayerId, event: Record<string, unknown>, data: Record<string, unknown>): Gen<ObjId | null> {
   const def = registry.abilities.get(abilityId) as TriggeredDef | undefined;
   if (!def) return null;
@@ -797,7 +812,7 @@ export function* copyStackAbility(g: G, abId: ObjId, controller: PlayerId, opts:
   const copia = createObject(g, { def: '', owner: controller, controller, zone: 'stack' });
   copia.stack = { ...structuredClone(st), controller, isCopy: true };
   const label = `cópia de ${triggerLabel(g, st.abilityId!, source)}`;
-  g.log(`${g.state.players[controller].name} copia a habilidade de ${triggerLabel(g, st.abilityId!, source)}.`, { rule: '707.10' });
+  reg(g, 'outro', { rule: '707.10' })`${jog(controller)} copia a habilidade de ${triggerReg(g, st.abilityId!, source)}.`;
   if (opts.newTargets && st.targets.flat().length > 0) {
     const { specs } = abilityTargetSpecs(def, st.modes);
     if (specs.length && (yield* yesNo(g, controller, `Escolher novos alvos para a ${label}?`))) {
@@ -825,16 +840,19 @@ export function* changeTargets(g: G, id: ObjId, chooser: PlayerId, opts: { noTri
   let specs: TargetSpec[];
   let source: ObjId;
   let label: string;
+  let rotulo: ValorReg; // F3: o mesmo rótulo, com a ref da fonte
   if (st.kind === 'spell') {
     specs = spellTargetSpecs(o, st.modes, st.method).specs;
     source = id;
     label = nameOf(g, id);
+    rotulo = obj(id, 'fonte', label);
   } else {
     const def = registry.abilities.get(st.abilityId!) as ActivatedDef | TriggeredDef | undefined;
     if (!def) return false;
     specs = abilityTargetSpecs(def, st.modes).specs;
     source = st.source ?? id;
     label = triggerLabel(g, st.abilityId!, source);
+    rotulo = triggerReg(g, st.abilityId!, source);
   }
   const travadas = specs.map((sp, i) => ({ ...sp, min: st.targets[i]?.length ?? 0, max: st.targets[i]?.length ?? 0 }));
   // lote3-d: "mude o alvo" (Misdirection): o alvo novo precisa ser outro; sem outro legal, nada muda
@@ -852,7 +870,7 @@ export function* changeTargets(g: G, id: ObjId, chooser: PlayerId, opts: { noTri
   if (chave(novos) === chave(st.targets)) return false;
   st.targets = novos;
   g.bump();
-  g.log(`${g.state.players[chooser].name} muda os alvos de ${label}: ${novos.flat().map((t) => targetLabel(g, t)).join(', ')}.`, { rule: '115.7' });
+  reg(g, 'outro', { rule: '115.7' })`${jog(chooser)} muda os alvos de ${rotulo}: ${lista(novos.flat().map((t) => alvo(t)))}.`;
   emit(g, novos.flat().map((t) => ({ type: 'target' as const, target: t, by: id, controller: st.controller, spell: st.kind === 'spell', noTriggerFor: opts.noTriggerFor })));
   return true;
 }
@@ -896,7 +914,7 @@ export function* resolveTop(g: G): Gen<void> {
     // lote3-d: a carta diz que resolve mesmo com o alvo ilegal (Gilded Drake)
     if (targets === null && def.kind === 'triggered' && def.resolvesWithIllegalTargets) targets = st.targets.map((grp) => grp.map(() => null));
     if (targets === null) {
-      g.log(`${triggerLabel(g, st.abilityId!, st.source!)} não resolve: alvos ilegais.`, { rule: '608.2b' });
+      reg(g, 'nao-resolve', { rule: '608.2b' })`${triggerReg(g, st.abilityId!, st.source!)} não resolve: alvos ilegais.`;
       destroyObject(g, id);
       return;
     }
@@ -928,7 +946,7 @@ export function* resolveTop(g: G): Gen<void> {
           st.data.bestow = false; // CR 702.103e: vira mágica de criatura
           g.bump();
         } else {
-          g.log(`${c.name} não resolve: alvo ilegal.`, { rule: '608.3b' });
+          reg(g, 'nao-resolve', { rule: '608.3b' })`${obj(id, 'fonte', c.name)} não resolve: alvo ilegal.`;
           yield* moveObject(g, id, 'graveyard', 'fizzle');
           return;
         }
@@ -962,7 +980,7 @@ export function* resolveTop(g: G): Gen<void> {
   }
   const targets = checkTargets(g, o, specs, id);
   if (targets === null) {
-    g.log(`${c.name} não resolve: todos os alvos ficaram ilegais.`, { rule: '608.2b' });
+    reg(g, 'nao-resolve', { rule: '608.2b' })`${obj(id, 'fonte', c.name)} não resolve: todos os alvos ficaram ilegais.`;
     yield* moveObject(g, id, 'graveyard', 'fizzle');
     return;
   }
@@ -980,7 +998,7 @@ export function* resolveTop(g: G): Gen<void> {
   // Gift (CR 702.174j): o oponente escolhido recebe o presente antes dos outros efeitos da mágica
   const presenteado = st.paid.gift ? (st.data.giftTo as PlayerId | undefined) : undefined;
   if (f?.gift && presenteado !== undefined && !g.state.players[presenteado].left) {
-    g.log(`${g.state.players[presenteado].name} recebe o presente de ${c.name}: ${f.gift.label}.`, { rule: '702.174j' });
+    reg(g, 'outro', { rule: '702.174j' })`${jog(presenteado)} recebe o presente de ${obj(id, 'fonte', c.name)}: ${f.gift.label}.`;
     yield* f.gift.give(ctx, presenteado);
   }
   if (sp?.effect) {
@@ -1002,7 +1020,7 @@ export function* resolveTop(g: G): Gen<void> {
     else if (st.data.omen) {
       // presságio (CR 720.3d): embaralhada no grimório do dono em vez de ir para o cemitério
       const dono = g.state.objects[id].owner;
-      g.log(`${c.name} é embaralhada no grimório de ${g.state.players[dono].name} (presságio).`, { rule: '720.3d' });
+      reg(g, 'zona', { rule: '720.3d' })`${obj(id, undefined, c.name)} é embaralhada no grimório de ${jog(dono)} (presságio).`;
       yield* moveObject(g, id, 'library', 'omen');
       shuffleLibrary(g, dono);
     }
@@ -1019,7 +1037,7 @@ export function* resolveTop(g: G): Gen<void> {
       if (novo !== null && g.state.objects[novo]?.zone === 'exile') {
         const s2 = g.state;
         s2.delayedTriggers.push({ id: s2.nextId++, abilityId: 'kw:rebound', source: novo, controller: st.controller, data: {}, once: true, expiresTurn: null, createdTurn: s2.turn.number, createdStep: s2.turn.step });
-        g.log(`${c.name} vai para o exílio (ricochete).`, { rule: '702.88a' });
+        reg(g, 'zona', { rule: '702.88a' })`${obj(novo, undefined, c.name)} vai para o exílio (ricochete).`;
         g.bump();
       }
     } else yield* moveObject(g, id, 'graveyard', 'resolve');
@@ -1045,7 +1063,7 @@ export function* copySpell(g: G, spellId: ObjId, controller: PlayerId, opts: { n
   delete dados.exileInsteadOfGraveyard;
   // a cópia não foi conjurada (CR 707.10): não tem zona de origem
   copia.stack = { ...structuredClone(st), controller, isCopy: true, data: dados, castFrom: undefined };
-  g.log(`${g.state.players[controller].name} copia ${nameOf(g, spellId)}.`, { rule: '707.10' });
+  reg(g, 'outro', { rule: '707.10' })`${jog(controller)} copia ${obj(spellId, 'fonte')}.`;
   if (opts.newTargets && st.targets.flat().length > 0) {
     const { specs } = spellTargetSpecs(copia, st.modes, st.method);
     if (specs.length && (yield* yesNo(g, controller, `Escolher novos alvos para a cópia de ${nameOf(g, spellId)}?`))) {
@@ -1075,11 +1093,11 @@ export function* counter(g: G, id: ObjId): Gen<boolean> {
     // lote3-e: "essa mágica não pode ser anulada" preso à mana gasta (Cavern of Souls, Delighted Halfling); a cópia pode
     if (!o.isCopy && o.stack.data.cantBeCountered) return false;
     if (hooks(g, 'cantBeCountered').some((h) => h.fn(h.ctx, id))) return false;
-    g.log(`${nameOf(g, id)} é anulada.`, { rule: '701.6' });
+    reg(g, 'nao-resolve', { rule: '701.6' })`${obj(id)} é anulada.`;
     if (o.isCopy) destroyObject(g, id);
     else yield* moveObject(g, id, 'graveyard', 'counter');
   } else {
-    g.log('Uma habilidade é anulada.', { rule: '701.6' });
+    reg(g, 'nao-resolve', { rule: '701.6' })`Uma habilidade é anulada.`;
     destroyObject(g, id);
   }
   return true;

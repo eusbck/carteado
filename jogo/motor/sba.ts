@@ -12,6 +12,7 @@ import { protectionBlocksEquip } from './actions.ts';
 import { cantLoseGame } from './veneno-emblema.ts';
 import { emit } from './triggers.ts';
 import { dicaDeMotivo } from './diario.ts';
+import { jog, reg } from './registro.ts';
 import type { ObjId, PlayerId, ZoneName } from './types.ts';
 
 /** executa uma rodada de ações baseadas em estado; devolve true se alguma foi executada */
@@ -49,7 +50,7 @@ export function* performSBAs(g: G): Gen<boolean> {
     const meus = s.zones.battlefield.filter((id) => !s.objects[id].phasedOut && controllerOf(g, id) === p);
     if (meus.length >= 10 && meus.some((id) => hasKw(g, id, 'ascend'))) {
       pl.citysBlessing = true;
-      g.log(`${pl.name} recebe a bênção da cidade.`, { rule: '702.131c' });
+      reg(g, 'outro', { rule: '702.131c' })`${jog(p)} recebe a bênção da cidade.`;
       g.bump();
     }
   }
@@ -156,7 +157,7 @@ export function* performSBAs(g: G): Gen<boolean> {
     if (sagaSac.length) yield* moveObjects(g, sagaSac.filter((id) => g.state.objects[id]).map((id) => ({ id, to: 'graveyard' as ZoneName })), 'sacrifice');
   }
   for (const l of losers) {
-    g.log(`${g.state.players[l.p].name} perde a partida: ${l.reason}.`, { rule: l.rule });
+    reg(g, 'fim', { rule: l.rule })`${jog(l.p)} perde a partida: ${l.reason}.`;
     loseGame(g, l.p);
   }
   // comandante no cemitério ou exílio desde a última verificação (CR 903.9a, 704.6d)
@@ -196,12 +197,12 @@ export function winGame(g: G, p: PlayerId, reason: string): void {
   if (s.gameOver || s.players[p].left) return;
   // "seus oponentes não podem vencer o jogo" (Herald of Eternal Dawn): o efeito que faria vencer não faz nada
   if (hooks(g, 'cantWinGame').some((h) => h.fn(h.ctx, p))) {
-    g.log(`${s.players[p].name} não pode vencer a partida.`, { rule: '104.2b' });
+    reg(g, 'fim', { rule: '104.2b' })`${jog(p)} não pode vencer a partida.`;
     return;
   }
   s.players[p].won = true;
   s.gameOver = { winners: [p], draw: false, reason };
-  g.log(`${s.players[p].name} vence a partida (${reason}).`, { rule: '104.2b' });
+  reg(g, 'fim', { rule: '104.2b' })`${jog(p)} vence a partida (${reason}).`;
   g.bump();
 }
 
@@ -257,9 +258,9 @@ export function checkGameEnd(g: G): void {
   if (alive.length === 1) {
     s.players[alive[0]].won = true;
     s.gameOver = { winners: alive, draw: false, reason: 'todos os oponentes saíram da partida' };
-    g.log(`${s.players[alive[0]].name} vence a partida.`, { rule: '104.2a' });
+    reg(g, 'fim', { rule: '104.2a' })`${jog(alive[0])} vence a partida.`;
   } else if (alive.length === 0) {
     s.gameOver = { winners: [], draw: true, reason: 'todos perderam ao mesmo tempo' };
-    g.log('A partida termina empatada.', { rule: '104.4a' });
+    reg(g, 'fim', { rule: '104.4a' })`A partida termina empatada.`;
   }
 }

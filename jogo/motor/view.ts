@@ -9,9 +9,11 @@ import { registry } from './defs.ts';
 import type { G } from './game-context.ts';
 import { formatCost } from './mana.ts';
 import { manaDesfazivel } from './manual.ts';
+import { hasOracle, oracle } from './oracle.ts';
+import { canSee, quemVe } from './visibilidade.ts';
 import { setorDe } from './setores.ts';
 import { rodadaDe, STEP_NAMES } from './turn.ts';
-import type { Decision, GameObject, LogKind, LogPapel, LogPart, ModoJogo, ObjId, PlayerId, Step, TargetRef } from './types.ts';
+import type { Decision, GameObject, LogEntry, LogKind, LogPapel, LogPart, ModoJogo, ObjId, PlayerId, Step, TargetRef } from './types.ts';
 
 export interface ObjView {
   id: ObjId;
@@ -125,7 +127,8 @@ export interface GameView {
 }
 
 /** F3: uma ref de linha do registro, como vai para um espectador. A carta que ele não via quando a linha foi gravada
- *  vai sem `id` (o nome e a def continuam, porque o texto da linha já os mostra; o id permitiria seguir a carta). */
+ *  vai sem `id` (o nome continua, porque o texto da linha já o mostra; o id permitiria seguir a carta). A `def` também
+ *  continua, salvo quando o nome mostrado não é o da carta (virada para baixo): aí vai null. */
 export type LogRefView =
   | { k: 'obj'; id?: ObjId; def: string | null; name: string; papel?: LogPapel }
   | { k: 'jogador'; id: PlayerId; papel?: LogPapel };
@@ -145,23 +148,8 @@ export interface LogLinhaView {
   parts?: LogPart[];
 }
 
-/** F1/F3: quem vê o objeto agora (null = todos os jogadores) */
-export function quemVe(g: G, o: GameObject): PlayerId[] | null {
-  const ps = g.state.players.map((p) => p.id);
-  const veem = ps.filter((p) => canSee(g, o, p));
-  return veem.length === ps.length ? null : veem;
-}
-
-export function canSee(g: G, o: GameObject, viewer: PlayerId | null): boolean {
-  if (o.zone === 'library') return o.visibleTo === 'all' || (viewer !== null && Array.isArray(o.visibleTo) && o.visibleTo.includes(viewer));
-  if (o.zone === 'hand') return viewer === o.owner || o.visibleTo === 'all' || (viewer !== null && Array.isArray(o.visibleTo) && o.visibleTo.includes(viewer));
-  if (o.faceDown) {
-    // CR 708.6: o controlador pode olhar o permanente virado para baixo; no exílio, quem tiver permissão
-    if (o.zone === 'battlefield' || o.zone === 'stack') return viewer !== null && (controllerOf(g, o.id) === viewer || (Array.isArray(o.visibleTo) && o.visibleTo.includes(viewer)));
-    return viewer !== null && Array.isArray(o.visibleTo) && o.visibleTo.includes(viewer);
-  }
-  return true;
-}
+// canSee e quemVe moram em visibilidade.ts (módulo-folha, sem ciclo de import); reexportados daqui
+export { canSee, quemVe };
 
 /** dano pela resistência (a mesma regra do combate, combat.ts); undefined quando a criatura atribui pela força */
 function damageByToughnessView(g: G, id: ObjId): ObjView['damageByToughness'] {
@@ -272,6 +260,40 @@ function stackView(g: G, id: ObjId, viewer: PlayerId | null): StackView {
   return { id, kind: st.kind, controller: st.controller, name: srcName, def: src?.def ?? '', text: def?.text ?? '', targets: st.targets.flat().map(targetName), x: st.x, ...(src ? { source: src.id } : {}) };
 }
 
+/**
+ * F3: uma linha do registro como vai para `viewer` (null se ele não a vê). Quem não vê a linha e recebe o `hiddenText`
+ * fica só com o texto, o tipo e o autor (sem refs nem parts). Nas refs de carta, o `id` só vai para quem via a carta
+ * quando a linha foi gravada; o CardId nunca sai (a carta vai pela `def`).
+ */
+/** o nome mostrado na linha é o da carta (ou de uma das faces)? */
+function nomeRevelaDef(def: string, nome: string): boolean {
+  if (nome === def) return true;
+  if (!hasOracle(def)) return false;
+  const c = oracle(def);
+  return c.name === nome || c.faces.some((f) => f.name === nome);
+}
+
+export function logLinhaView(g: G, e: LogEntry, seq: number, viewer: PlayerId | null): LogLinhaView | null {
+  const vePleno = e.visibleTo === null || (viewer !== null && e.visibleTo.includes(viewer));
+  if (!vePleno && !e.hiddenText) return null;
+  const l: LogLinhaView = { seq, turn: e.turn, ...(e.round !== undefined ? { round: e.round } : {}), text: vePleno ? e.text : e.hiddenText!, rule: e.rule };
+  if (e.step !== undefined) l.step = e.step;
+  if (e.kind !== undefined) l.kind = e.kind;
+  if (e.actor !== undefined) l.actor = e.actor;
+  if (vePleno && e.refs?.length) {
+    l.refs = e.refs.map((r): LogRefView => {
+      if (r.k === 'jogador') return { k: 'jogador', id: r.id, ...(r.papel ? { papel: r.papel } : {}) };
+      const via = r.vis === null || (viewer !== null && r.vis.includes(viewer));
+      const def = r.card !== null ? g.state.cards[r.card]?.def ?? null : null;
+      // quem não via a carta só recebe a def quando o texto já diz qual é (uma criatura virada para baixo citada numa
+      // linha pública aparece como "carta virada para baixo": a def a entregaria)
+      return { k: 'obj', ...(via ? { id: r.id } : {}), def: def !== null && (via || nomeRevelaDef(def, r.name)) ? def : null, name: r.name, ...(r.papel ? { papel: r.papel } : {}) };
+    });
+    if (e.parts?.length) l.parts = e.parts;
+  }
+  return l;
+}
+
 export function buildView(g: G, viewer: PlayerId | null, pending: Decision | null): GameView {
   const s = g.state;
   const players: PlayerView[] = s.players.map((p) => ({
@@ -286,10 +308,10 @@ export function buildView(g: G, viewer: PlayerId | null, pending: Decision | nul
     ...(ringView(g, p.id) ? { ring: ringView(g, p.id) } : {}),
     ...(topCardView(g, p.id, viewer) ? { topCard: topCardView(g, p.id, viewer) } : {}),
   }));
-  // F3: TODO (agente C) mandar step/kind/actor/refs/parts redigidos por espectador
+  // F3: as 200 últimas linhas, redigidas para este espectador (logLinhaView)
   const base = Math.max(0, s.log.length - 200);
-  const log: LogLinhaView[] = s.log.slice(base).map((e, i) => ({ e, seq: e.seq ?? base + i })).filter(({ e }) => e.visibleTo === null || (viewer !== null && e.visibleTo.includes(viewer)) || e.hiddenText)
-    .map(({ e, seq }) => ({ seq, turn: e.turn, ...(e.round !== undefined ? { round: e.round } : {}), text: e.visibleTo === null || (viewer !== null && e.visibleTo.includes(viewer)) ? e.text : e.hiddenText!, rule: e.rule }));
+  const log: LogLinhaView[] = [];
+  s.log.slice(base).forEach((e, i) => { const l = logLinhaView(g, e, e.seq ?? base + i, viewer); if (l) log.push(l); });
   return {
     you: viewer,
     turn: { number: s.turn.number, round: rodadaDe(s), active: s.turn.active, step: s.turn.step, stepName: STEP_NAMES[s.turn.step] },

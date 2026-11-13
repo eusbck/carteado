@@ -19,6 +19,7 @@ import { canForetell, CUSTO_PREDIZER, doForetell, foretellParam } from './prediz
 import { canPlot, doPlot, plotParam } from './planejar.ts';
 import { payMana } from './costs.ts';
 import { emit } from './triggers.ts';
+import { jog, obj, reg } from './registro.ts';
 import type { ManaSymbol, ObjId, PlayerId, PriorityAction, ZoneName } from './types.ts';
 import { splitSecondActive } from './controle-base.ts';
 
@@ -286,7 +287,7 @@ export function unlockDoor(g: G, id: ObjId, half: number, player: PlayerId): boo
   if (!o || o.zone !== 'battlefield' || !ehSala(o.def) || o.face === FACE_AMBAS || o.face === half) return false;
   o.face = o.face === FACE_NENHUMA ? half : FACE_AMBAS;
   g.bump();
-  g.log(`${g.state.players[player].name} destranca ${nomeDaFace(o.def, half)}.`, { rule: '709.5e' });
+  reg(g, 'outro', { rule: '709.5e' })`${jog(player)} destranca ${obj(id, 'fonte', nomeDaFace(o.def, half))}.`;
   emit(g, [{ type: 'unlock', obj: id, halves: [half], player, full: o.face === FACE_AMBAS }]);
   return true;
 }
@@ -377,7 +378,7 @@ export function* performAction(g: G, p: PlayerId, actionId: string): Gen<boolean
     // face de terreno escolhida do modal de duas faces: entra com ela para cima (CR 712.12)
     const [chave, face] = faceDaChave(b ?? '');
     g.state.turn.landsPlayed++;
-    g.log(`${g.state.players[p].name} joga ${face && !o.copyOf && temVariasFaces(o.def) ? nomeDaFace(o.def, face) : nameOf(g, id)}.`, { rule: face ? '712.12' : '305.1' });
+    reg(g, 'terreno', { rule: face ? '712.12' : '305.1' })`${jog(p)} joga ${obj(id, 'fonte', face && !o.copyOf && temVariasFaces(o.def) ? nomeDaFace(o.def, face) : nameOf(g, id))}.`;
     if (chave.startsWith('perm:')) {
       const prm = permissionsFor(g, p, id).find((x) => `perm:${x.key}` === chave);
       const [nid] = yield* putOntoBattlefield(g, [{ id, controller: p, face }], 'play');

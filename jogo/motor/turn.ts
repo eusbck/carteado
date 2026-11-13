@@ -11,6 +11,7 @@ import type { G } from './game-context.ts';
 import { legalActions, performAction } from './priority.ts';
 import { performManual, validateManual } from './manual.ts';
 import { checkGameEnd, leaveGame, performSBAs } from './sba.ts';
+import { jog, jogs, reg } from './registro.ts';
 import { putTriggersOnStack, resolveTop } from './stack.ts';
 import { destroyObject, emptyTurnStats } from './state.ts';
 import { shuffle } from './rng.ts';
@@ -34,7 +35,7 @@ export const STEP_NAMES: Record<Step, string> = {
 function* startGame(g: G): Gen<void> {
   const s = g.state;
   const order = s.turnOrder;
-  g.log(`Ordem dos assentos: ${order.map((p) => s.players[p].name).join(', ')}. ${s.players[order[0]].name} começa.`, { rule: '103.1' });
+  reg(g, 'sistema', { rule: '103.1' })`Ordem dos assentos: ${jogs(order)}. ${jog(order[0])} começa.`;
   for (const p of order) yield* draw(g, p, 7); // CR 103.5 (não conta como compra de etapa)
   for (const p of order) s.turnStats[p] = emptyTurnStats();
   const livre = s.config.mulligan === 'livre';
@@ -60,7 +61,8 @@ function* startGame(g: G): Gen<void> {
       for (const id of [...s.zones.hand[p]]) { s.zones.hand[p].splice(s.zones.hand[p].indexOf(id), 1); s.objects[id].zone = 'library'; s.zones.library[p].push(id); }
       shuffle(s.rng, s.zones.library[p]);
       g.bump();
-      g.log(livre ? `${pl.name} faz mulligan livre (${pl.mulligans} de ${MULLIGANS_LIVRES}).` : `${pl.name} faz mulligan.`, livre ? {} : { rule: '103.5' });
+      if (livre) reg(g, 'mulligan')`${jog(p)} faz mulligan livre (${pl.mulligans} de ${MULLIGANS_LIVRES}).`;
+      else reg(g, 'mulligan', { rule: '103.5' })`${jog(p)} faz mulligan.`;
       yield* draw(g, p, 7);
       const n = livre ? 0 : Math.max(0, pl.mulligans - (s.config.multiplayer ? 1 : 0));
       const hand = s.zones.hand[p];
@@ -140,7 +142,7 @@ function beginTurn(g: G, active: PlayerId, first = false): void {
   // CR 103.8a: em partida de dois jogadores, quem começa não compra no primeiro turno
   if (first && !s.config.multiplayer) s.turn.queue = s.turn.queue.filter((x) => x !== 'draw');
   g.bump();
-  g.log(`Turno ${s.turn.number}: ${s.players[active].name}.`, { rule: '500.1' });
+  reg(g, 'turno', { rule: '500.1', actor: active })`Turno ${s.turn.number}: ${jog(active)}.`;
 }
 
 /** etapas que dão prioridade (CR 117.3a, 502.4, 514.3) */
@@ -312,7 +314,7 @@ function lacoObrigatorio(g: G): boolean {
   s.gatilhosSemAcao = { onde, n: conta };
   if (conta <= LIMITE_LACO_OBRIGATORIO) return false;
   s.gameOver = { winners: [], draw: true, reason: 'laço de ações obrigatórias sem fim' };
-  g.log(`A partida termina empatada: ${LIMITE_LACO_OBRIGATORIO} habilidades desencadeadas resolveram seguidas sem ninguém poder parar o laço.`, { rule: '104.4b' });
+  reg(g, 'fim', { rule: '104.4b' })`A partida termina empatada: ${LIMITE_LACO_OBRIGATORIO} habilidades desencadeadas resolveram seguidas sem ninguém poder parar o laço.`;
   g.bump();
   return true;
 }
@@ -374,7 +376,7 @@ export function* endTheTurn(g: G): Gen<void> {
   s.turn.queue = ['cleanup'];
   s.turn.ending = true;
   g.bump();
-  g.log('O turno é encerrado.', { rule: '724.1' });
+  reg(g, 'sistema', { rule: '724.1' })`O turno é encerrado.`;
 }
 
 /**
@@ -403,7 +405,7 @@ export function* endTheCombatPhase(g: G): Gen<boolean> {
   }
   t.ending = true;
   g.bump();
-  g.log('A fase de combate é encerrada.', { rule: '724.2' });
+  reg(g, 'sistema', { rule: '724.2' })`A fase de combate é encerrada.`;
   return true;
 }
 
@@ -426,7 +428,7 @@ function advance(g: G): void {
   // fim do turno
   if (s.config.turnLimit !== null && t.number >= s.config.turnLimit) {
     s.gameOver = { winners: [], draw: true, reason: `limite de ${s.config.turnLimit} turnos` };
-    g.log(`A partida termina empatada pelo limite de ${s.config.turnLimit} turnos.`);
+    reg(g, 'fim')`A partida termina empatada pelo limite de ${s.config.turnLimit} turnos.`;
     g.bump();
     return;
   }
@@ -437,14 +439,14 @@ function advance(g: G): void {
     if (s.players[extra.player].left) continue;
     // CR 614.10: pular o turno extra (Stranglehold); vale o que está no campo quando o turno começaria
     if (hooks(g, 'skipsExtraTurn').some((h) => h.fn(h.ctx, extra.player))) {
-      g.log(`${s.players[extra.player].name} pula um turno extra.`, { rule: '614.10' });
+      reg(g, 'turno', { rule: '614.10' })`${jog(extra.player)} pula um turno extra.`;
       continue;
     }
     const resumeAfter = t.resumeAfter ?? t.active;
     beginTurn(g, extra.player);
     s.turn.extraTurnId = extra.id;
     s.turn.resumeAfter = resumeAfter;
-    g.log(`${s.players[extra.player].name} toma um turno extra.`, { rule: '500.7' });
+    reg(g, 'turno', { rule: '500.7' })`${jog(extra.player)} toma um turno extra.`;
     return;
   }
   const nextPlayer = g.nextPlayer(t.resumeAfter ?? t.active);
@@ -488,7 +490,7 @@ export function concede(g: G, p: PlayerId): void {
   if (pl.left) return;
   pl.conceded = true;
   pl.lost = true;
-  g.log(`${pl.name} concede a partida.`, { rule: '104.3a' });
+  reg(g, 'fim', { rule: '104.3a' })`${jog(p)} concede a partida.`;
   leaveGame(g, p);
   checkGameEnd(g);
 }
