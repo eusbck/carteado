@@ -63,6 +63,15 @@ export interface Atrasos {
 }
 
 export const ATRASOS_PADRAO: Atrasos = { botAcao: 700, botPasse: 90, autoPasse: 60, pilhaNova: 1800, simulacoesBot: null, prazoDesfazer: 30000, threads: 2, avisoPensando: 1000, gravacao: 250 };
+const HORA = 3600_000;
+/**
+ * Limpeza automática: a sala sem ninguém conectado há mais que isto sai da memória e do banco (Gerente.limparOciosas).
+ * Partida em andamento espera mais (os amigos podem voltar para terminar); sala de espera ou de partida encerrada, um dia.
+ */
+export const PRAZO_OCIOSA: Record<SalaPublica['estado'], number> = { espera: 24 * HORA, fim: 24 * HORA, jogando: 7 * 24 * HORA };
+/** de quanto em quanto tempo o servidor procura salas ociosas */
+export const INTERVALO_LIMPEZA = 10 * 60_000;
+
 // testes do servidor: sem atrasos e com bots que pensam pouco (o fluxo da sala é o que importa)
 export const SEM_ATRASO: Atrasos = { botAcao: 0, botPasse: 0, autoPasse: 0, pilhaNova: 0, simulacoesBot: 3, prazoDesfazer: 30000, threads: 0, avisoPensando: 1000, tempoBot: 300, senhaNaHora: true };
 
@@ -243,10 +252,15 @@ export class Sala {
   /** o passe automático de uma pessoa segura a pilha: toda vista que sai enquanto isso vai sem decisão pendente */
   private vistaNeutra = false;
   erro: string | null = null;
+  /** desde quando a sala está sem ninguém conectado (null: tem gente agora). Ao voltar do banco, a última gravação;
+   * a varredura da limpeza (Gerente.limparOciosas) acerta o valor a cada passada */
+  ociosaDesde: number | null;
+  /** a sala foi apagada (dev ou limpeza): não grava mais nada, para não voltar ao banco */
+  private apagada = false;
 
   private gerente: Gerente;
 
-  constructor(d: DadosSala, gerente: Gerente) { this.d = d; this.gerente = gerente; }
+  constructor(d: DadosSala, gerente: Gerente, ociosaDesde: number = Date.now()) { this.d = d; this.gerente = gerente; this.ociosaDesde = ociosaDesde; }
 
   get codigo(): string { return this.d.codigo; }
 
@@ -291,7 +305,26 @@ export class Sala {
         vidas: st ? st.players.map((j) => ({ vida: j.life, perdeu: j.lost })) : null,
       } : null,
       erro: this.erro, falhas: this.falhas.n, atualizada: null,
+      ociosaDesde: this.conexoes.size ? null : this.ociosaDesde,
+      apagaEm: this.conexoes.size || this.ociosaDesde === null ? null : this.ociosaDesde + PRAZO_OCIOSA[this.d.estado],
     };
+  }
+
+  /**
+   * Apaga a sala de vez (botão da área do desenvolvedor ou limpeza automática): quem está nela volta para o início com
+   * um aviso, a condução da partida para (os bots largam o que pensavam) e nada mais é gravado. Quem tira a sala do
+   * banco e do Gerente é Gerente.apagarSala.
+   */
+  encerrarDeVez(motivo: string): void {
+    this.apagada = true;
+    if (this.gravarDepois) { clearTimeout(this.gravarDepois); this.gravarDepois = null; }
+    if (this.pedido) { clearTimeout(this.pedido.timer); this.pedido = null; }
+    for (const c of [...this.conexoes]) { c.enviar({ t: 'aviso', msg: motivo }); this.soltar(c); }
+    this.game = null;
+    this.bots = new Map();
+    this.rapidos = new Map();
+    this.geracao++;
+    this.gerente.pensadores?.esquecer(this.d.codigo);
   }
 
   publica(): SalaPublica {
@@ -309,6 +342,7 @@ export class Sala {
 
   salvar(): void {
     if (this.gravarDepois) { clearTimeout(this.gravarDepois); this.gravarDepois = null; }
+    if (this.apagada) return;
     this.gerente.banco.salvarSala(this.d.codigo, this.d);
   }
 
@@ -1304,14 +1338,47 @@ export class Gerente {
     this.decks = new Map(decks.map((d) => [d.id, d]));
   }
 
-  /** recarrega as salas salvas e retoma as partidas em andamento */
-  restaurar(): void {
-    for (const { dados } of this.banco.salas()) {
+  /**
+   * Apaga uma sala da memória e do banco (com as entradas da partida). Quem está nela volta para o início com o aviso.
+   * false: não existe sala com esse código.
+   */
+  apagarSala(codigo: string, motivo = 'Esta sala foi encerrada.'): boolean {
+    const s = this.salas.get(codigo);
+    if (!s) return false;
+    s.encerrarDeVez(motivo);
+    this.salas.delete(codigo);
+    this.banco.apagarSala(codigo);
+    return true;
+  }
+
+  /**
+   * Limpeza automática (PRAZO_OCIOSA): acerta desde quando cada sala está vazia e apaga as que passaram do prazo.
+   * Devolve os códigos apagados.
+   */
+  limparOciosas(agora = Date.now()): string[] {
+    const apagadas: string[] = [];
+    for (const [codigo, s] of [...this.salas]) {
+      if (s.conexoes.size) { s.ociosaDesde = null; continue; }
+      s.ociosaDesde ??= agora;
+      if (agora - s.ociosaDesde < PRAZO_OCIOSA[s.d.estado]) continue;
+      this.apagarSala(codigo, 'A sala ficou muito tempo sem ninguém e foi encerrada.');
+      apagadas.push(codigo);
+    }
+    if (apagadas.length) console.log(`Limpeza: ${apagadas.length} sala(s) sem ninguém apagada(s): ${apagadas.join(', ')}`);
+    return apagadas;
+  }
+
+  /** recarrega as salas salvas e retoma as partidas em andamento; as que já passaram do prazo de ociosa
+   * (PRAZO_OCIOSA, contado da última gravação) saem do banco sem ser refeitas */
+  restaurar(agora = Date.now()): void {
+    const vencidas: string[] = [];
+    for (const { codigo, dados, atualizada } of this.banco.salas()) {
       const d = dados as DadosSala;
+      if (agora - atualizada >= PRAZO_OCIOSA[d.estado]) { this.banco.apagarSala(codigo); vencidas.push(codigo); continue; }
       for (const a of d.assentos) if (paradasAntigas(a.paradas)) a.paradas = { ...paradasPadrao(), skipWhenNothing: a.paradas.skipWhenNothing };
       // mensagens do chat de antes do id de autor: de ninguém (o cliente não as toma como suas)
       for (const m of d.chat ?? []) m.quem ??= '';
-      const s = new Sala(d, this);
+      const s = new Sala(d, this, atualizada);
       this.salas.set(d.codigo, s);
       if (d.partida && !d.partida.listas && preencherListas(d.partida, (id) => this.deck(id))) s.salvar();
       // só as partidas em andamento são refeitas ao subir; as encerradas, quando alguém volta (garantirPartida)
@@ -1325,6 +1392,7 @@ export class Gerente {
         }
       }
     }
+    if (vencidas.length) console.log(`Limpeza: ${vencidas.length} sala(s) parada(s) além do prazo apagada(s) ao subir: ${vencidas.join(', ')}`);
   }
 
   private novoCodigo(): string {
