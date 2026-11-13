@@ -25,7 +25,8 @@ export interface Estado {
   /** onde cada pessoa arrumou as próprias permanentes */
   posicoes: Posicoes;
   /** cartas que alguém mostrou da mão, por alguns segundos */
-  reveladas: { id: number; de: number; def: string; para: number[] | 'todos' }[];
+  /** cartas mostradas na mesa: pelo menu Revelar (para quem escolheu) ou por um efeito que revela (efeito: true, para todos) */
+  reveladas: { id: number; de: number; def: string; para: number[] | 'todos'; efeito?: boolean }[];
   erro: string | null;
   decks: DeckResumo[];
   /** decisão já respondida, esperando a próxima vista (evita clique duplo) */
@@ -99,6 +100,15 @@ class Loja {
   private seqRevelada = 0;
   /** salas em que o retrato guardado neste navegador já foi mandado (uma vez por sala enquanto a página está aberta) */
   private avatarMandado = new Set<string>();
+
+  /** mostra cartas reveladas por cima da mesa; cada uma some sozinha depois de alguns segundos */
+  mostrarReveladas(de: number, defs: string[], para: number[] | 'todos', efeito = false): void {
+    if (!defs.length) return;
+    const novas = defs.map((def) => ({ id: ++this.seqRevelada, de, def, para, efeito }));
+    this.mudar({ reveladas: [...this.e.reveladas, ...novas].slice(-4) });
+    const ids = new Set(novas.map((r) => r.id));
+    setTimeout(() => this.mudar({ reveladas: this.e.reveladas.filter((r) => !ids.has(r.id)) }), 8000);
+  }
 
   mudar(p: Partial<Estado>): void {
     // nada mudou de fato (a mesma sala de novo, a mesma vista): ninguém se desenha de novo
@@ -371,12 +381,9 @@ class Loja {
         setTimeout(() => this.mudar({ avisos: this.e.avisos.filter((a) => a.id !== id) }), 7000);
         break;
       }
-      case 'revelada': {
-        const id = ++this.seqRevelada;
-        this.mudar({ reveladas: [...this.e.reveladas, { id, de: m.de, def: m.def, para: m.para }].slice(-3) });
-        setTimeout(() => this.mudar({ reveladas: this.e.reveladas.filter((r) => r.id !== id) }), 8000);
+      case 'revelada':
+        this.mostrarReveladas(m.de, [m.def], m.para);
         break;
-      }
       case 'pensando':
         this.mudar({ pensando: m.assento });
         break;

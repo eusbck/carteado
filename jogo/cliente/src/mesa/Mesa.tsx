@@ -10,7 +10,7 @@ import type { Decision, ManualAction, ObjId, PaymentSource, PriorityAction, Step
 import type { GameView, ObjView, PlayerView } from '../../../motor/view.ts';
 import type { MsgChat } from '../../../servidor/protocolo.ts';
 import { avatarDoAssento } from '../avatares.ts';
-import { nomeCarta, rostoNoFundo, traduzir, urlFundo, urlImagem } from '../cartas.ts';
+import { cartasNoTexto, nomeCarta, rostoNoFundo, traduzir, urlFundo, urlImagem } from '../cartas.ts';
 import { IconeAjuste, IconeConceder, IconeRecolher as IconeSeta, IconeConfig, IconeDesfazer, IconeFimTurno, IconeParadas, IconePassar, IconeRecolher, IconeRegistro, IconeSair, Marca } from '../icones.tsx';
 import { Importacoes } from '../Importacoes.tsx';
 import { loja, useLoja } from '../loja.ts';
@@ -289,6 +289,15 @@ function Avisos({ v, cor, doServidor }: { v: GameView; cor: (p: number) => strin
     let k = -1;
     if (ultima) for (let i = v.log.length - 1; i >= 0; i--) if (v.log[i].turn === ultima.turn && v.log[i].text === ultima.text) { k = i; break; }
     const novas = v.log.slice(k + 1).filter((l) => / (joga|conjura|ativa|revela) |ataca:|perde a partida|vence a partida|\(ajuste manual\)/.test(l.text));
+    // o que um efeito revela ("Caio revela Plains.", "Ana revela a mão: …") aparece com a imagem, como o Revelar do menu;
+    // o que vem entre parênteses é a origem ("(Fact or Fiction)", "(milagre)"), não carta revelada
+    for (const l of novas) {
+      const m = / revela (?:a mão: )?(.*)$/.exec(l.text);
+      if (!m) continue;
+      const de = v.players.find((p) => l.text.startsWith(`${p.name} revela `))?.id;
+      if (de === undefined) continue;
+      loja.mostrarReveladas(de, cartasNoTexto(m[1].replace(/\([^)]*\)/g, '')), 'todos', true);
+    }
     if (!novas.length) return;
     const itens = novas.slice(-3).map((l) => ({ id: seq.current++, texto: traduzir(l.text), quem: v.players.find((p) => l.text.startsWith(`${p.name} `) || l.text.startsWith(`${p.name}:`))?.id ?? null }));
     setLista((a) => [...a, ...itens].slice(-3));
@@ -1335,7 +1344,8 @@ export function Mesa() {
               const para = r.para === 'todos' ? 'todos' : r.para.map((p) => v.players[p]?.name).join(', ');
               return (
                 <div key={r.id} class="revelada" style={{ '--cor': cor(r.de) }}>
-                  <p>{r.de === eu ? <>Você mostrou para <b>{para}</b></> : <><b>{v.players[r.de]?.name}</b> mostrou{r.para === 'todos' ? '' : ' para você'}</>}</p>
+                  <p>{r.efeito ? (r.de === eu ? <>Você revelou</> : <><b>{v.players[r.de]?.name}</b> revelou</>)
+                    : r.de === eu ? <>Você mostrou para <b>{para}</b></> : <><b>{v.players[r.de]?.name}</b> mostrou{r.para === 'todos' ? '' : ' para você'}</>}</p>
                   {img ? <img src={img} alt={nomeCarta(r.def, r.def)} /> : <strong>{nomeCarta(r.def, r.def)}</strong>}
                 </div>
               );
