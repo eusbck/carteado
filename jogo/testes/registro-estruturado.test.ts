@@ -209,4 +209,29 @@ describe('registro estruturado: entrada (elo com o replay)', () => {
     jogar(f, 5);
     expect(f.state.log.slice(antes).every((e) => e.entrada! >= game.inputs.length)).toBe(true);
   });
+
+  it('fork fora de uma decisão de prioridade (refeito por replay) mantém o estado e a contagem, também de um fork', () => {
+    const resumo = (g: Game) => ({ zonas: JSON.stringify(g.state.zones), log: g.state.log.map((e) => [e.text, e.entrada]), proxima: g.entradaAtual });
+    const parar = (g: Game) => { const bots = g.state.players.map((p) => new RandomBot(`fora:${p.id}`)); for (let i = 0; i < 400 && g.pending && !g.isOver() && (g.pending.kind === 'priority' || i === 0); i++) g.answer(g.pending.player, bots[g.pending.player].answer(g.pending)); };
+    const game = Game.create(config('fora'), DECKS.slice(0, 2));
+    jogar(game, 60);
+    while (game.pending?.kind !== 'priority') jogar(game, 1);
+    // fork de checkpoint, que depois chega numa decisão que não é de prioridade
+    const f = game.fork();
+    parar(f);
+    expect(f.pending && f.pending.kind !== 'priority').toBe(true);
+    const ff = f.fork();
+    expect(resumo(ff)).toEqual(resumo(f));
+    // o fork refeito continua contando: a próxima linha dele é da mesma entrada que seria no original
+    expect(ff.entradaAtual).toBe(game.inputs.length + f.inputs.length);
+    // da partida original, fora de prioridade, também
+    parar(game);
+    expect(game.pending && game.pending.kind !== 'priority').toBe(true);
+    expect(resumo(game.fork())).toEqual(resumo(game));
+    // de uma partida retomada de checkpoint
+    let cp = null;
+    for (let k = 20; k < game.inputs.length && !cp; k++) cp = Game.replay(game.state.config, DECKS.slice(0, 2), game.inputs.slice(0, k)).checkpoint();
+    const retomada = Game.fromCheckpoint(cp!, DECKS.slice(0, 2), game.inputs);
+    expect(resumo(retomada.fork())).toEqual(resumo(game));
+  });
 });

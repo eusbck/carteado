@@ -28,22 +28,32 @@ export class Game {
   inputs: Input[] = [];
   readonly decks: DeckList[];
   error: Error | null = null;
-  /** R1: quantas entradas vieram antes de `inputs[0]` (o fork de um checkpoint começa com a lista vazia) */
-  private readonly entradaBase: number;
+  /**
+   * De onde a partida se refaz: o estado é `fromCheckpoint(cpOrigem, prefixo + inputs)` (ou, sem checkpoint, o replay
+   * de `prefixo + inputs` desde a configuração). O fork de um checkpoint começa com `inputs` vazio e herda no
+   * `prefixo` as entradas de quem o criou; `prefixo.length` é também a base da contagem `entrada` do registro (R1).
+   */
+  private cpOrigem: Checkpoint | null = null;
+  private prefixo: Input[] = [];
 
-  private constructor(state: GameState, decks: DeckList[], inputs: Input[] = [], entradaBase = 0) {
+  private constructor(state: GameState, decks: DeckList[], inputs: Input[] = [], origem?: { cp: Checkpoint | null; prefixo: Input[] }) {
     this.g = new G(state);
     this.decks = decks;
     this.inputs = inputs;
-    this.entradaBase = entradaBase;
+    if (origem) { this.cpOrigem = origem.cp; this.prefixo = origem.prefixo; }
     this.gen = mainLoop(this.g);
     this.marcaEntrada();
     this.step(undefined);
   }
 
+  /** R1: o índice da próxima entrada (contando as que vieram antes de um fork) */
+  get entradaAtual(): number {
+    return this.prefixo.length + this.inputs.length;
+  }
+
   /** R1: as linhas do registro gravadas a partir daqui são da entrada de índice `inputs.length` */
   private marcaEntrada(): void {
-    this.g.entrada = this.entradaBase + this.inputs.length;
+    this.g.entrada = this.entradaAtual;
   }
 
   static create(config: GameConfig, decks: DeckList[]): Game {
@@ -68,7 +78,8 @@ export class Game {
     // LKI compartilhada
     const state = cloneState(cp.state);
     state.decisionSeq = Math.max(0, state.decisionSeq - 1); // a decisão pendente é refeita
-    const game = new Game(state, decks, allInputs.slice(0, cp.inputIndex));
+    // o checkpoint continua intacto (a partida usa a cópia): serve de origem para o fork fora de prioridade
+    const game = new Game(state, decks, allInputs.slice(0, cp.inputIndex), { cp, prefixo: [] });
     for (const inp of allInputs.slice(cp.inputIndex)) game.applyInput(inp, true);
     return game;
   }
@@ -183,10 +194,14 @@ export class Game {
     if (cp) {
       const state = cp.state;
       state.decisionSeq = Math.max(0, state.decisionSeq - 1);
-      const game = new Game(state, this.decks, [], this.entradaBase + this.inputs.length);
+      const game = new Game(state, this.decks, [], { cp: this.cpOrigem, prefixo: this.prefixo.concat(this.inputs) });
       return game;
     }
-    return Game.replay(this.state.config, this.decks, this.inputs);
+    // fora de uma decisão de prioridade o laço não é retomável: refaz da origem com todas as entradas (a contagem
+    // `entrada` sai a mesma). Atenção: um fork cujo estado foi mexido por fora depois de criado (os mundos dos bots)
+    // volta ao estado sem essas mudanças; os bots só fazem fork numa decisão de prioridade
+    const todas = this.prefixo.concat(this.inputs);
+    return this.cpOrigem ? Game.fromCheckpoint(this.cpOrigem, this.decks, todas) : Game.replay(this.state.config, this.decks, todas);
   }
 
   pendingDecision(): Decision | null {
