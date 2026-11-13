@@ -16,6 +16,7 @@ import { abrirRelato } from '../relato/relatoLoja.ts';
 import { IconeAjuste, IconeErro, IconeConceder, IconeRecolher as IconeSeta, IconeConfig, IconeDesfazer, IconeFimTurno, IconeParadas, IconePassar, IconeRecolher, IconeRegistro, IconeSair, Marca } from '../icones.tsx';
 import { Importacoes } from '../Importacoes.tsx';
 import { loja, useLoja } from '../loja.ts';
+import { ListaEspectadores } from '../telas/Saguao.tsx';
 import { reservaPaga } from '../mana.ts';
 import { Janela } from '../Janela.tsx';
 import { AUXILIOS, auxiliosAtivos, auxiliosDoNivel, barraAberta, mudarPreferencias, NIVEIS, usePreferencias, type Auxilios, type Preferencias } from '../preferencias.ts';
@@ -457,7 +458,10 @@ export function Mesa() {
   }));
   const v = e.vista!;
   const sala = e.sala!;
-  const eu = v.you!;
+  // modo espectador: a vista vem neutra (you: null) e quem fica embaixo é escolhido aqui (começa pelo anfitrião)
+  const espectador = v.you === null;
+  const [baixo, setBaixo] = useState(sala.anfitriao);
+  const eu = espectador ? (v.players[baixo] ? baixo : 0) : v.you!;
   // a decisão espera a cena (eventos-5, versão ponte): ela, a janela de escolha e os realces de "pode jogar" só
   // aparecem quando a fila de quadros esvazia e as animações do quadro acabam (filaQuadros.ts, com teto). Uma vez
   // liberada, a mesma decisão não some de novo por uma cena que venha depois (uma posição que você mudou, um aviso).
@@ -1272,7 +1276,7 @@ export function Mesa() {
         conjurando={j.id === eu && conjurando && dReal && dReal.player === eu && dReal.kind !== 'priority' && v.stack.some((x) => x.controller === eu && x.def === conjurando.o.def) ? conjurando : null}
         onZona={(zona) => setModal({ tipo: 'zona', jogador: j.id, zona })}
         onDeck={() => setModal({ tipo: 'deck', jogador: j.id })}
-        mao={j.id === eu ? v.hand : undefined}
+        mao={!espectador && j.id === eu ? v.hand : undefined}
         reservaDireita={j.id === eu ? 336 : 0}
         avatarLado={j.id === eu ? ladoAvatar : undefined}
         colunaAberta={j.id === eu && colunaAberta}
@@ -1282,14 +1286,14 @@ export function Mesa() {
         pousadas={j.id === eu ? pousadas.current : undefined}
         posicoes={posicoes}
         arrastando={arrastando}
-        onPegarCampo={j.id === eu && !v.gameOver ? tPegarCampo : undefined}
-        onPegarCampoVazio={j.id === eu && !v.gameOver ? tPegarCampoVazio : undefined}
-        selecionadas={j.id === eu ? arrumar.selecao : undefined}
+        onPegarCampo={!espectador && j.id === eu && !v.gameOver ? tPegarCampo : undefined}
+        onPegarCampoVazio={!espectador && j.id === eu && !v.gameOver ? tPegarCampoVazio : undefined}
+        selecionadas={!espectador && j.id === eu ? arrumar.selecao : undefined}
         ordemZ={j.id === eu ? arrumar.ordemZ : undefined}
-        onPegarMao={j.id === eu ? tPegarMao : undefined}
-        onDuploMao={j.id === eu ? tJogar : undefined}
-        onMenuCarta={tMenuCarta}
-        onMenuArea={j.id === eu ? tMenuArea : undefined}
+        onPegarMao={!espectador && j.id === eu ? tPegarMao : undefined}
+        onDuploMao={!espectador && j.id === eu ? tJogar : undefined}
+        onMenuCarta={espectador ? undefined : tMenuCarta}
+        onMenuArea={!espectador && j.id === eu ? tMenuArea : undefined}
         lequeLargo={lequeLargo}
         chaveCombate={chaveCombate}
         onLeque={j.id === eu && d?.kind === 'attackers' && !enviando ? tLeque : undefined}
@@ -1353,7 +1357,7 @@ export function Mesa() {
     return {
       jogador: p,
       nome: v.players[p].name,
-      papel: p === eu ? 'Você' : a?.tipo === 'bot' ? `Oponente · bot ${nomeNivel(a.nivel ?? NIVEL_PADRAO)}` : 'Oponente',
+      papel: !espectador && p === eu ? 'Você' : a?.tipo === 'bot' ? `Oponente · bot ${nomeNivel(a.nivel ?? NIVEL_PADRAO)}` : 'Oponente',
       comandante,
       deck: nomeDeck && nomeDeck !== comandante ? nomeDeck : null,
       fundo: fundoDe(p),
@@ -1399,7 +1403,7 @@ export function Mesa() {
             <div class="cartao fim">
               <p class="decisao-titulo">Fim de partida</p>
               <p>{v.gameOver.draw ? 'Empate.' : `Venceu: ${v.gameOver.winners.map((w) => v.players[w].name).join(', ')}.`}</p>
-              {sala.anfitriao === eu && <button class="botao principal" onClick={() => loja.enviar({ t: 'novaPartida' })}>Nova partida com a mesma mesa</button>}
+              {!espectador && sala.anfitriao === eu && <button class="botao principal" onClick={() => loja.enviar({ t: 'novaPartida' })}>Nova partida com a mesma mesa</button>}
             </div>
           )}
           {/* acima da pilha: quem encolhe na falta de espaço é a pilha, e o "Voltar à escolha" fica sempre à vista */}
@@ -1433,7 +1437,7 @@ export function Mesa() {
           <JanelaEscolha v={v} d={escolha} ui={ui} todos={todos} cor={cor} aux={aux} recolhida={escolhaRecolhida} recolher={setEscolhaRecolhida}
             reservaDireita={v.stack.length > 0 ? 336 : 0} onZoom={mostrarZoom} />
         )}
-        {preJogo && <MaoInicial v={v} d={d} enviando={enviando} regra={sala.mulligan ?? 'londres'} multiplayer={v.players.length > 2} sel={sel} setSel={setSel} />}
+        {preJogo && !espectador && <MaoInicial v={v} d={d} enviando={enviando} regra={sala.mulligan ?? 'londres'} multiplayer={v.players.length > 2} sel={sel} setSel={setSel} />}
       </main>
 
       <aside class="lateral" aria-label="Menu da partida">
@@ -1443,14 +1447,26 @@ export function Mesa() {
           <span class="vez">{v.turn.number ? <>vez de <span>{v.players[v.turn.active].name}</span></> : 'antes da 1ª rodada'}</span>
           <Cronometro cronometro={sala.cronometro} relogio={e.relogio} />
           {salaProibe && <span class="selo-sala" title="Quem criou a sala proibiu os auxílios: todos jogam em Mesa real">Sala sem auxílios</span>}
+          <ListaEspectadores sala={sala} />
         </div>
+        {espectador && (
+          <div class="assistindo" aria-label="Modo espectador">
+            <span class="selo-sala">Você está assistindo</span>
+            <label class="nivel-select">
+              <span>Ver de baixo</span>
+              <select value={eu} onChange={(ev) => setBaixo(Number((ev.target as HTMLSelectElement).value))}>
+                {v.players.map((p) => <option key={p.id} value={p.id}>{p.name}{p.left ? ' (saiu)' : ''}</option>)}
+              </select>
+            </label>
+          </div>
+        )}
         <ul class="menu-lateral">
           <li><button title="Registro da partida" aria-label="Registro" onClick={() => setModal({ tipo: 'registro' })}><IconeRegistro /><span class="rotulo">Registro</span></button></li>
-          <li><button title="Paradas" aria-label="Paradas" onClick={() => setModal({ tipo: 'paradas' })}><IconeParadas /><span class="rotulo">Paradas</span></button></li>
-          <li><button title="Ajuste manual" aria-label="Ajuste manual" disabled={decisaoManual === null} onClick={() => setManualAberto(true)}><IconeAjuste /><span class="rotulo">Ajuste manual</span></button></li>
+          {!espectador && <li><button title="Paradas" aria-label="Paradas" onClick={() => setModal({ tipo: 'paradas' })}><IconeParadas /><span class="rotulo">Paradas</span></button></li>}
+          {!espectador && <li><button title="Ajuste manual" aria-label="Ajuste manual" disabled={decisaoManual === null} onClick={() => setManualAberto(true)}><IconeAjuste /><span class="rotulo">Ajuste manual</span></button></li>}
           <li><button title="Configurações" aria-label="Configurações" onClick={() => setModal({ tipo: 'config' })}><IconeConfig /><span class="rotulo">Configurações</span></button></li>
-          <li><button title="Reportar um erro: tira um print da mesa e manda junto com a partida" aria-label="Reportar erro" onClick={() => abrirRelato()}><IconeErro /><span class="rotulo">Reportar erro</span></button></li>
-          {!v.gameOver && !minha.left && <li><button title="Conceder" aria-label="Conceder" onClick={() => setModal({ tipo: 'conceder' })}><IconeConceder /><span class="rotulo">Conceder</span></button></li>}
+          {!espectador && <li><button title="Reportar um erro: tira um print da mesa e manda junto com a partida" aria-label="Reportar erro" onClick={() => abrirRelato()}><IconeErro /><span class="rotulo">Reportar erro</span></button></li>}
+          {!espectador && !v.gameOver && !minha.left && <li><button title="Conceder" aria-label="Conceder" onClick={() => setModal({ tipo: 'conceder' })}><IconeConceder /><span class="rotulo">Conceder</span></button></li>}
           <li><button title="Sair" aria-label="Sair" onClick={() => loja.enviar({ t: 'sair' })}><IconeSair /><span class="rotulo">Sair</span></button></li>
           <li>
             <button class="recolher" title={recolhida ? (naoLidas ? `Abrir a barra e o chat (${naoLidas} ${naoLidas === 1 ? 'mensagem nova' : 'mensagens novas'})` : 'Abrir a barra e o chat') : 'Recolher a barra (a mesa fica mais larga)'}
@@ -1461,7 +1477,7 @@ export function Mesa() {
           </li>
         </ul>
         {!recolhida && <Importacoes lugar="lateral" />}
-        {!recolhida && <ChatLateral cor={cor} />}
+        {!recolhida && !espectador && <ChatLateral cor={cor} />}
       </aside>
     </div>
 

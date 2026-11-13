@@ -1,5 +1,20 @@
 # Progresso
 
+## Modo espectador — 12/11/2026 (Dadinho, com o Claude; trazido do PR #3 em 13/11)
+
+Amigos com o código e a senha da sala assistem sem ocupar assento (desenho e plano em `docs/superpowers/`).
+
+- **Servidor:** mensagem `assistir`; os espectadores ficam em `DadosSala.espectadores` (nome e token, voltam pelo
+  `retomar`, inclusive depois de reiniciar); recebem a sala com `voce: null` e a vista neutra do motor
+  (`buildView(g, null)`: sem mãos, grimórios, cartas viradas para baixo nem decisão); não recebem chat nem cartas
+  mostradas; toda outra mensagem volta "Espectadores só assistem". Nunca recusados por sala cheia ou partida
+  começada; teto de 8 por sala. `SalaPublica.espectadores` lista quem assiste. Testes: `testes/espectador.test.ts`.
+- **Cliente:** botão "Assistir" na entrada da sala; saguão só de leitura; mesa sem mão, chat, paradas, ajuste manual
+  e conceder, com "Ver de baixo" para escolher quem fica embaixo (começa pelo anfitrião); "Assistindo: …" no saguão e
+  na lateral da mesa para todos. A loja não manda jogadas de quem assiste.
+- **Falta conferir na mesa:** a aparência do modo espectador (esta cópia não tem as imagens e o `vite build` não
+  roda aqui).
+
 ## Modos de jogo: Commander e Standard — 12/11/2026
 
 Pedido do Caio: preparar o jogo para ter outros modos além do Commander, com o Standard já agora, e ao jogar cada
