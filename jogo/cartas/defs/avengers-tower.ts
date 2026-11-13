@@ -5,6 +5,7 @@
 // your hand. Put the rest on the bottom of your library in any order.
 import { activated, chars, chooseItems, defineCard, defineFn, mana, moveObjects, nameOf, type G } from '../../motor/api.ts';
 import type { ChoiceItem } from '../../motor/types.ts';
+import { jog, obj, reg } from '../../motor/registro.ts';
 
 const heroi = (g: G, id: number) => chars(g, id).subtypes.includes('Hero');
 
@@ -27,7 +28,7 @@ export default defineCard({
         const [esc] = yield* chooseItems(c.g, c.you, 'Avengers Tower: você pode revelar uma carta Hero entre as três do topo e pô-la na mão', itens(topo, (id) => heroi(c.g, id)), 0, 1);
         const escolhida = esc !== undefined ? Number(esc) : null;
         if (escolhida !== null) {
-          c.g.log(`${s.players[c.you].name} revela ${nameOf(c.g, escolhida)}.`, { rule: '701.20' });
+          reg(c.g, 'revela', { rule: '701.20' })`${jog(c.you)} revela ${obj(escolhida)}.`;
           yield* moveObjects(c.g, [{ id: escolhida, to: 'hand' }], 'effect');
         }
         // o resto vai para o fundo na ordem que você escolher (a primeira escolhida fica mais em cima)

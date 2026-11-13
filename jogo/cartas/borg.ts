@@ -9,6 +9,7 @@ import { defineAbility } from '../motor/defs.ts';
 import type { G } from '../motor/game-context.ts';
 import { shuffle } from '../motor/rng.ts';
 import type { Mod, ObjId, PlayerId } from '../motor/types.ts';
+import { jog, objs, reg } from '../motor/registro.ts';
 
 /** é uma criatura artefato? */
 export function criaturaArtefato(c: SCtx, id: ObjId): boolean {
@@ -65,7 +66,7 @@ export function* exilaAteCriaturaEAssimila(c: Ctx, op: PlayerId): Gen<ObjId | nu
   const i = lib.findIndex((id) => chars(c.g, id).types.includes('Creature'));
   const tiradas = i < 0 ? [...lib] : lib.slice(0, i + 1);
   if (!tiradas.length) return null;
-  c.g.log(`${s.players[op].name} exila ${tiradas.map((id) => nameOf(c.g, id)).join(', ')}.`);
+  reg(c.g, 'zona')`${jog(op)} exila ${objs(tiradas)}.`;
   const novos = (yield* moveObjects(c.g, tiradas.map((id) => ({ id, to: 'exile' as const })), 'effect')).filter((x): x is ObjId => x !== null);
   const criatura = i < 0 ? null : novos[novos.length - 1] ?? null;
   let assimilada: ObjId | null = null;

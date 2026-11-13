@@ -9,6 +9,7 @@
 import { activated, addCounters, defineCard, emit, gainLife, is, isCreature, on, putOntoBattlefield, staticAbility, t, tgt, toughness, triggered } from '../../motor/api.ts';
 import type { ActivatedDef } from '../../motor/defs.ts';
 import { GANHO_DE_VIDA } from '../miku.ts';
+import { obj, reg } from '../../motor/registro.ts';
 
 /** CR 716.2a: "[custo]: nível N" — o nível desta Classe passa a ser N; só no nível N-1 e só como feitiço */
 function nivel(custo: string, n: number): ActivatedDef {
@@ -17,7 +18,7 @@ function nivel(custo: string, n: number): ActivatedDef {
     if (!o || o.zone !== 'battlefield' || o.classLevel !== n - 1) return;
     o.classLevel = n;
     c.g.bump();
-    c.g.log(`Cleric Class passa ao nível ${n}.`, { rule: '716.2a' });
+    reg(c.g, 'outro', { rule: '716.2a', actor: c.you })`${obj(c.source, undefined, 'Cleric Class')} passa ao nível ${n}.`;
     emit(c.g, [{ type: 'levelUp', obj: c.source, level: n }]);
   }, { timing: 'sorcery', condition: (c) => c.g.state.objects[c.source]?.classLevel === n - 1, text: `${custo}: Nível ${n}` });
 }

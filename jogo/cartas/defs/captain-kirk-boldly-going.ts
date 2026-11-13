@@ -6,6 +6,7 @@
 import { anthem, chars, chooseOne, controllerOf, defineCard, isCreature, isLand, keyword, moveObjects, nameOf, on, searchLibrary, shuffleLibrary, triggered } from '../../motor/api.ts';
 import type { Ctx, Gen } from '../../motor/defs.ts';
 import type { ChoiceItem, ObjId } from '../../motor/types.ts';
+import { jog, obj, reg } from '../../motor/registro.ts';
 
 const serve = (c: Ctx, id: ObjId): boolean => (isLand(c.g, id) && chars(c.g, id).supertypes.includes('Basic')) || nameOf(c.g, id) === 'Starship Enterprise';
 
@@ -25,7 +26,7 @@ function* busca(c: Ctx): Gen<void> {
     carta = achou[0] ?? null;
   } else carta = Number(esc);
   if (carta !== null) {
-    c.g.log(`${s.players[c.you].name} revela ${nameOf(c.g, carta)}.`, { rule: '701.20' });
+    reg(c.g, 'revela', { rule: '701.20' })`${jog(c.you)} revela ${obj(carta)}.`;
     yield* moveObjects(c.g, [{ id: carta, to: 'hand' }], 'search');
   }
   if (esc === GRIMORIO) shuffleLibrary(c.g, c.you);

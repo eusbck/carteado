@@ -3,6 +3,7 @@ import { chooseItems, lkiChars, moveObjects, nameOf, on } from '../motor/api.ts'
 import type { Ctx, Gen, TriggerSpec } from '../motor/defs.ts';
 import type { G } from '../motor/game-context.ts';
 import type { ChoiceItem, ObjId, PlayerId } from '../motor/types.ts';
+import { jog, obj, reg } from '../motor/registro.ts';
 
 /** o objeto que saiu (pela última informação conhecida) era uma Food? Food é tipo de artefato (CR 205.3g) */
 export function eraFood(g: G, antigo: ObjId): boolean {
@@ -44,7 +45,7 @@ export function* olhaTopoEPoeUmaNaMao(c: Ctx, n: number, filtro: (id: ObjId) => 
   const [esc] = yield* chooseItems(c.g, c.you, `${fonte}: você pode revelar ${oQue} entre as cartas do topo e pô-la na mão`, itens(topo, filtro), 0, 1);
   const escolhida = esc !== undefined ? Number(esc) : null;
   if (escolhida !== null) {
-    c.g.log(`${s.players[c.you].name} revela ${nameOf(c.g, escolhida)}.`, { rule: '701.20' });
+    reg(c.g, 'revela', { rule: '701.20' })`${jog(c.you)} revela ${obj(escolhida)}.`;
     yield* moveObjects(c.g, [{ id: escolhida, to: 'hand' }], 'effect');
   }
   // o resto vai para o fundo na ordem que você escolher (a primeira escolhida fica mais em cima)

@@ -3,10 +3,11 @@
 // todos." O tempo é o carimbo de tempo do permanente (CR 613.7d: um permanente ganha carimbo ao entrar); um que ganhou
 // o supertipo depois de entrar não é distinguido (nenhuma carta dos decks dá o supertipo mundo).
 import { moveObjects } from './actions.ts';
-import { chars, nameOf } from './chars.ts';
+import { chars } from './chars.ts';
 import type { Gen } from './defs.ts';
 import type { G } from './game-context.ts';
 import type { ZoneName } from './types.ts';
+import { obj, reg } from './registro.ts';
 
 export function* regraDoMundo(g: G): Gen<boolean> {
   const s = g.state;
@@ -15,7 +16,7 @@ export function* regraDoMundo(g: G): Gen<boolean> {
   const maisNovo = Math.max(...mundos.map((id) => s.objects[id].timestamp));
   const novos = mundos.filter((id) => s.objects[id].timestamp === maisNovo);
   const saem = novos.length > 1 ? mundos : mundos.filter((id) => !novos.includes(id));
-  for (const id of saem) g.log(`Regra do mundo: ${nameOf(g, id)} vai para o cemitério.`, { rule: '704.5k' });
+  for (const id of saem) reg(g, 'zona', { rule: '704.5k' })`Regra do mundo: ${obj(id)} vai para o cemitério.`;
   yield* moveObjects(g, saem.map((id) => ({ id, to: 'graveyard' as ZoneName })), 'sba');
   return true;
 }

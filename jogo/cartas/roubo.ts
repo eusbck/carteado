@@ -2,6 +2,7 @@
 import { allowPlay, castSpell, chooseItems, isLand, moveObjects, nameOf, putOntoBattlefield } from '../motor/api.ts';
 import type { Ctx, Gen, SCtx } from '../motor/defs.ts';
 import type { ObjId, PlayerId } from '../motor/types.ts';
+import { jog, reg } from '../motor/registro.ts';
 
 /**
  * "Olhe a carta do topo do grimório desse jogador e exile-a virada para baixo. Você pode jogar essa carta enquanto ela
@@ -16,7 +17,7 @@ export function* exilaTopoViradoJogavel(c: Ctx, jogador: PlayerId): Gen<ObjId | 
   if (topo === undefined) return null;
   const [ex] = yield* moveObjects(c.g, [{ id: topo, to: 'exile', faceDown: true, visibleTo: [c.you] }], 'exile');
   if (ex === null || ex === undefined || s.objects[ex]?.zone !== 'exile') return null;
-  c.g.log(`${s.players[c.you].name} exila virada para baixo a carta do topo do grimório de ${s.players[jogador].name}.`);
+  reg(c.g, 'zona')`${jog(c.you)} exila virada para baixo a carta do topo do grimório de ${jog(jogador)}.`;
   allowPlay(c.g, c.you, c.source, [ex], { kind: 'permanent' }, { anyType: true });
   return ex;
 }
@@ -76,7 +77,7 @@ export function* manifestaTopoDe(c: Ctx, dono: PlayerId): Gen<ObjId | null> {
   const topo = s.zones.library[dono]?.[0];
   if (topo === undefined || s.players[dono].left || s.players[c.you].left) return null;
   const [id] = yield* putOntoBattlefield(c.g, [{ id: topo, controller: c.you, faceDown: true, data: { manifestada: true } }], 'manifest');
-  if (id !== undefined) c.g.log(`${s.players[c.you].name} manifesta a carta do topo do grimório de ${s.players[dono].name}.`, { rule: '701.40a' });
+  if (id !== undefined) reg(c.g, 'zona', { rule: '701.40a' })`${jog(c.you)} manifesta a carta do topo do grimório de ${jog(dono)}.`;
   return id ?? null;
 }
 

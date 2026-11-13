@@ -2,8 +2,9 @@
 // Flying
 // When this creature enters, look at the top four cards of your library. You may reveal an artifact or enchantment card
 // from among them and put it into your hand. Put the rest on the bottom of your library in a random order.
-import { defineCard, etb, isType, keyword, moveObjects, nameOf } from '../../motor/api.ts';
+import { defineCard, etb, isType, keyword, moveObjects } from '../../motor/api.ts';
 import { olhaEPegaUma, restoNoFundo } from '../veiculos.ts';
+import { jog, obj, reg } from '../../motor/registro.ts';
 
 export default defineCard({
   name: "Arcanist's Owl",
@@ -17,7 +18,7 @@ export default defineCard({
         // você vê as quatro, mesmo sem nenhum artefato ou encantamento entre elas
         const escolhida = yield* olhaEPegaUma(c, topo, (id) => isType(c.g, id, 'Artifact') || isType(c.g, id, 'Enchantment'), "Arcanist's Owl (artefato ou encantamento)");
         if (escolhida !== null) {
-          c.g.log(`${s.players[c.you].name} revela ${nameOf(c.g, escolhida)}.`, { rule: '701.20' });
+          reg(c.g, 'revela', { rule: '701.20' })`${jog(c.you)} revela ${obj(escolhida)}.`;
           yield* moveObjects(c.g, [{ id: escolhida, to: 'hand' }], 'effect');
         }
         restoNoFundo(c.g, c.you, topo.filter((id) => id !== escolhida));

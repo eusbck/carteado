@@ -5,6 +5,7 @@
 // less. You may cast it without paying its mana cost. Put the exiled cards on the bottom in a random order.)
 import { cascade, defineCard, keyword, moveObjects, on, triggered } from '../../motor/api.ts';
 import type { ObjId } from '../../motor/types.ts';
+import { jog, reg } from '../../motor/registro.ts';
 
 export default defineCard({
   name: 'Enigma Sphinx',
@@ -22,7 +23,7 @@ export default defineCard({
         // ruling 10: com menos de duas cartas no grimório, fica no fundo
         const posicao = Math.min(2, s.zones.library[dono].length);
         yield* moveObjects(c.g, [{ id, to: 'library', position: posicao }], 'effect');
-        c.g.log(`Enigma Sphinx vai para o grimório de ${s.players[dono].name}, como a terceira carta a partir do topo.`);
+        reg(c.g, 'zona', { actor: dono })`Enigma Sphinx vai para o grimório de ${jog(dono)}, como a terceira carta a partir do topo.`;
       }, { text: 'Quando esta criatura é colocada no seu cemitério vinda do campo de batalha, coloque-a no seu grimório como a terceira carta a partir do topo.' }),
       // CR 702.85a
       cascade(),

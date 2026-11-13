@@ -9,6 +9,7 @@ import { defineAbility, type Ctx, type Gen, type TriggeredDef } from './defs.ts'
 import { delayed } from './efeitos.ts';
 import { addEffect } from './state.ts';
 import type { ObjId } from './types.ts';
+import { obj, reg } from './registro.ts';
 
 /** gatilho atrasado de dobrar a terra: quando o terreno morre ou é exilado, volta ao campo virado (CR 701.66a) */
 const VOLTA: TriggeredDef = defineAbility<TriggeredDef>('motor:earthbend:volta', {
@@ -43,7 +44,7 @@ export function* earthbend(c: Ctx, terreno: ObjId, n: number): Gen<void> {
     source: c.source, sourceDef: '', controller: c.you, duration: { kind: 'whileOnBattlefield', obj: terreno }, affected: [terreno],
     mods: [{ k: 'addTypes', types: ['Creature'] }, { k: 'setPT', p: 0, t: 0 }, { k: 'addKeyword', kw: 'haste' }],
   });
-  g.log(`${nameOf(g, terreno)} é dobrado pela terra (${n}).`, { rule: '701.66a' });
+  reg(g, 'outro', { rule: '701.66a', actor: c.you })`${obj(terreno)} é dobrado pela terra (${n}).`;
   if (n > 0) addCounters(g, { kind: 'obj', id: terreno }, '+1/+1', n, c.you);
   delayed(c, VOLTA.id!, { data: { terreno } });
 }

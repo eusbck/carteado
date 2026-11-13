@@ -2,6 +2,7 @@
 // Search your library for up to two basic land cards, reveal those cards, put one onto the battlefield tapped and the
 // other into your hand, then shuffle.
 import { chooseItems, defineCard, isBasicLand, moveObjects, nameOf, objItem, putOntoBattlefield, searchLibrary, shuffleLibrary } from '../../motor/api.ts';
+import { jog, objs, reg } from '../../motor/registro.ts';
 
 export default defineCard({
   name: 'Cultivate',
@@ -10,7 +11,7 @@ export default defineCard({
       *effect(c) {
         const achados = yield* searchLibrary(c.g, c.you, c.you, { max: 2, filter: (id) => isBasicLand(c.g, id), prompt: 'Procure até duas cartas de terreno básico' });
         if (achados.length) {
-          c.g.log(`${c.g.state.players[c.you].name} revela ${achados.map((id) => nameOf(c.g, id)).join(', ')}.`, { rule: '701.20' });
+          reg(c.g, 'revela', { rule: '701.20' })`${jog(c.you)} revela ${objs(achados)}.`;
           // ruling 1: com uma só, ela vai para o campo
           let campo = achados[0];
           if (achados.length === 2) {

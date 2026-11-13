@@ -5,6 +5,7 @@ import {
   type AdditionalCostDef, type Ctx, type G, type Gen,
 } from '../motor/api.ts';
 import type { Answer, ObjId, PlayerId } from '../motor/types.ts';
+import { jog, obj, reg } from '../motor/registro.ts';
 
 /** "Como custo adicional para conjurar esta mágica, sacrifique uma criatura" (exatamente uma, obrigatória: CR 118.8) */
 export function sacrificaCriatura(): AdditionalCostDef {
@@ -27,7 +28,7 @@ export function valorDaSacrificada(c: Ctx): number {
 export function* tutor(c: Ctx, destino: 'hand' | 'graveyard' | 'top', opts: { filter?: (id: ObjId) => boolean; prompt?: string; reveal?: boolean } = {}): Gen<ObjId | null> {
   const g = c.g;
   const [achada] = yield* searchLibrary(g, c.you, c.you, { max: 1, filter: opts.filter, prompt: opts.prompt ?? 'Procure uma carta' });
-  if (achada !== undefined && opts.reveal) g.log(`${g.state.players[c.you].name} revela ${nameOf(g, achada)}.`, { rule: '701.20' });
+  if (achada !== undefined && opts.reveal) reg(g, 'revela', { rule: '701.20' })`${jog(c.you)} revela ${obj(achada)}.`;
   if (destino === 'top') {
     shuffleLibrary(g, c.you);
     if (achada !== undefined && g.state.objects[achada]?.zone === 'library') {
@@ -55,7 +56,7 @@ export function pactoNaManutencao(carta: string, custo: string): string {
     // CR 118.12: pagar é opcional; quem não paga (ou não consegue) perde o jogo (CR 104.3e)
     const pagou = yield* mayPay(c, c.you, custo, `não perder o jogo (${carta})`);
     if (!pagou) {
-      c.g.log(`${c.g.state.players[c.you].name} não paga ${custo} e perde o jogo (${carta}).`, { rule: '104.3e' });
+      reg(c.g, 'fim', { rule: '104.3e' })`${jog(c.you)} não paga ${custo} e perde o jogo (${carta}).`;
       loseGame(c.g, c.you);
     }
   }, { text: `No início da sua próxima manutenção, pague ${custo}. Se não pagar, você perde o jogo.` })).id!;

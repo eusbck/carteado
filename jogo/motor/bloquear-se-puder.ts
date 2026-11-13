@@ -4,9 +4,10 @@
 // cumpridas pagando um custo para bloquear não contam (CR 509.1c). A validação, junto com "precisa ser bloqueada se
 // possível", está em motor/exigencias-bloqueio.ts.
 import { addEffect } from './state.ts';
-import { controllerOf, hasKw, hooks, nameOf } from './chars.ts';
+import { controllerOf, hasKw, hooks } from './chars.ts';
 import type { G } from './game-context.ts';
 import type { ObjId, PlayerId } from './types.ts';
+import { obj, reg } from './registro.ts';
 
 export const BLOQUEIA_SE_PUDER = 'rule:blocksIfAble';
 
@@ -16,7 +17,7 @@ export function exigeBloqueio(c: { g: G; you: PlayerId; source: ObjId }, bloquea
     source: c.source, sourceDef: '', controller: c.you, duration: { kind: 'endOfCombat' }, affected: [bloqueador],
     mods: [{ k: 'rule', id: BLOQUEIA_SE_PUDER, params: { atacante } }],
   });
-  c.g.log(`${nameOf(c.g, bloqueador)} bloqueia ${nameOf(c.g, atacante)} neste combate se puder.`, { rule: '509.1c' });
+  reg(c.g, 'outro', { rule: '509.1c' })`${obj(bloqueador)} bloqueia ${obj(atacante)} neste combate se puder.`;
 }
 
 /** pares [bloqueador, atacante] exigidos para os bloqueadores do defensor, ainda válidos (os dois no campo, o atacante no combate) */

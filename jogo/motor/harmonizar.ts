@@ -9,6 +9,7 @@ import type { AltCastDef, Gen } from './defs.ts';
 import type { G } from './game-context.ts';
 import { reduceGeneric } from './mana.ts';
 import type { ManaSymbol, ObjId, PlayerId } from './types.ts';
+import { jog, obj, reg } from './registro.ts';
 
 /** "Harmonize [custo]" na face: vai em `altCosts` (CR 702.180a: custo alternativo, do cemitério, exila ao sair da pilha) */
 export function harmonize(custo: string): AltCastDef {
@@ -30,7 +31,7 @@ export function* reducaoHarmonizar(g: G, player: PlayerId, cost: ManaSymbol[], l
   const id = Number(esc[0]);
   const reducao = Math.max(0, power(g, id));
   tap(g, id);
-  g.log(`${s.players[player].name} vira ${nameOf(g, id)} para harmonizar (reduz {${reducao}}).`, { rule: '702.180a' });
+  reg(g, 'outro', { rule: '702.180a' })`${jog(player)} vira ${obj(id)} para harmonizar (reduz {${reducao}}).`;
   return reduceGeneric(cost, reducao);
 }
 

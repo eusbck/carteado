@@ -9,6 +9,7 @@ import {
 } from '../../motor/api.ts';
 import type { Ctx, Gen } from '../../motor/defs.ts';
 import { conjuraGratis } from '../roubo.ts';
+import { jog, obj, reg } from '../../motor/registro.ts';
 
 const CHAVE = 'cifra';
 
@@ -41,7 +42,7 @@ function* cifrar(c: Ctx): Gen<void> {
   alvo.linked[CHAVE] = [...(alvo.linked[CHAVE] ?? []), ex];
   // ruling 7: se a criatura sair do campo, a carta deixa de estar codificada (objeto novo, CR 400.7)
   addEffect(g, { source: criatura, sourceDef: '', controller: c.you, duration: { kind: 'whileOnBattlefield', obj: criatura }, affected: [criatura], mods: [{ k: 'addAbility', id: CODIFICADA.id! }] });
-  g.log(`${g.state.players[c.you].name} codifica Arcane Heist em ${nameOf(g, criatura)}.`, { rule: '702.99a' });
+  reg(g, 'outro', { rule: '702.99a' })`${jog(c.you)} codifica ${obj(ex, undefined, 'Arcane Heist')} em ${obj(criatura)}.`;
 }
 
 export default defineCard({

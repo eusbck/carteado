@@ -4,6 +4,7 @@
 // When a Dragon you control enters, return this enchantment to its owner's hand.
 import { and, defineCard, etb, is, isLand, manaValue, mayCastFree, moveObjects, nameOf, on, returnToHand, triggered } from '../../motor/api.ts';
 import type { ObjId } from '../../motor/types.ts';
+import { jog, objs, reg } from '../../motor/registro.ts';
 
 export default defineCard({
   name: 'Breaching Dragonstorm',
@@ -15,7 +16,7 @@ export default defineCard({
         const i = lib.findIndex((id) => !isLand(g, id));
         const tiradas = i < 0 ? [...lib] : lib.slice(0, i + 1);
         if (!tiradas.length) return;
-        g.log(`Breaching Dragonstorm: ${g.state.players[c.you].name} exila ${tiradas.map((id) => nameOf(g, id)).join(', ')}.`);
+        reg(g, 'zona', { actor: c.you })`Breaching Dragonstorm: ${jog(c.you)} exila ${objs(tiradas)}.`;
         const novos = (yield* moveObjects(g, tiradas.map((id) => ({ id, to: 'exile' as const })), 'effect')).filter((x): x is ObjId => x !== null);
         const achada = i < 0 ? null : novos[novos.length - 1] ?? null;
         if (achada === null || g.state.objects[achada]?.zone !== 'exile') return;

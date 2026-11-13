@@ -2,8 +2,9 @@
 // Reach
 // When this creature enters, reveal cards from the top of your library until you reveal a land card. Put that card onto
 // the battlefield tapped and the rest on the bottom of your library in a random order.
-import { defineCard, etb, isLand, keyword, nameOf, putOntoBattlefield } from '../../motor/api.ts';
+import { defineCard, etb, isLand, keyword, putOntoBattlefield } from '../../motor/api.ts';
 import { shuffle } from '../../motor/rng.ts';
+import { jog, objs, reg } from '../../motor/registro.ts';
 
 export default defineCard({
   name: 'Clifftop Lookout',
@@ -16,7 +17,7 @@ export default defineCard({
         const i = lib.findIndex((id) => isLand(c.g, id));
         // ruling 1: sem terreno, revela o grimório inteiro e o põe em ordem aleatória
         const reveladas = i < 0 ? [...lib] : lib.slice(0, i + 1);
-        c.g.log(`${s.players[c.you].name} revela ${reveladas.map((id) => nameOf(c.g, id)).join(', ') || 'nada'}.`, { rule: '701.20' });
+        reg(c.g, 'revela', { rule: '701.20' })`${jog(c.you)} revela ${objs(reveladas, undefined, ', ', 'nada')}.`;
         if (i >= 0) yield* putOntoBattlefield(c.g, [{ id: lib[i], controller: c.you, tapped: true }], 'effect');
         const resto = shuffle(s.rng, reveladas.filter((id) => s.objects[id]?.zone === 'library'));
         s.zones.library[c.you] = [...s.zones.library[c.you].filter((id) => !resto.includes(id)), ...resto];

@@ -2,6 +2,7 @@
 // Reveal the top card of your library and put that card into your hand. You lose life equal to its mana value. You may
 // repeat this process any number of times.
 import { defineCard, loseLife, manaValue, moveObjects, nameOf, yesNo } from '../../motor/api.ts';
+import { jog, obj, reg } from '../../motor/registro.ts';
 
 export default defineCard({
   name: 'Ad Nauseam',
@@ -15,7 +16,7 @@ export default defineCard({
           // ruling 2: {X} vale 0 no grimório (CR 107.3)
           const valor = manaValue(g, topo);
           const nome = nameOf(g, topo);
-          g.log(`${g.state.players[c.you].name} revela ${nome}.`, { rule: '701.20' });
+          reg(g, 'revela', { rule: '701.20' })`${jog(c.you)} revela ${obj(topo, undefined, nome)}.`;
           yield* moveObjects(g, [{ id: topo, to: 'hand' }], 'effect');
           if (valor > 0) loseLife(g, c.you, valor, c.source);
           // ruling 1: decide a cada carta; ruling 3: pode continuar com 0 ou menos de vida (perde só ao parar, CR 704.5a)

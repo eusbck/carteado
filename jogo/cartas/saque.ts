@@ -1,11 +1,12 @@
 // Peças repetidas nas cartas do deck Quick Draw (Stella Lee, Wild Card): "sempre que você conjura a sua segunda mágica
 // em cada turno", instantâneas e feitiços no cemitério, impulso (jump-start, CR 702.133), adaptar (CR 701.46), copiar
 // cartas e conjurar as cópias (CR 707.12) e "a próxima mágica instantânea ou de feitiço que você conjurar neste turno".
-import { addCounters, createObject, defineAbility, is, isType, manaValue, nameOf, on } from '../motor/api.ts';
+import { addCounters, createObject, defineAbility, is, isType, manaValue, on } from '../motor/api.ts';
 import type { AltCastDef, Ctx, Gen, SCtx, StaticDef, TriggerSpec } from '../motor/defs.ts';
 import type { G } from '../motor/game-context.ts';
 import type { ObjId, PlayerId } from '../motor/types.ts';
 import { conjuraDentreGratis } from './roubo.ts';
+import { obj, reg } from '../motor/registro.ts';
 
 /**
  * "Sempre que você conjura a sua segunda mágica em cada turno" (Stella Lee, Eris): a contagem do turno já inclui a mágica
@@ -48,7 +49,7 @@ export function adaptar(g: G, id: ObjId, n: number, por: PlayerId): boolean {
   const o = g.state.objects[id];
   if (!o || o.zone !== 'battlefield' || (o.counters['+1/+1'] ?? 0) > 0) return false;
   addCounters(g, { kind: 'obj', id }, '+1/+1', n, por);
-  g.log(`${nameOf(g, id)} se adapta (${n} marcadores +1/+1).`, { rule: '701.46a' });
+  reg(g, 'outro', { rule: '701.46a', actor: por })`${obj(id)} se adapta (${n} marcadores +1/+1).`;
   return true;
 }
 

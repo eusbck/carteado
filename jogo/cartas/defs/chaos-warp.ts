@@ -1,7 +1,8 @@
 // Chaos Warp
 // The owner of target permanent shuffles it into their library, then reveals the top card of their library.
 // If it's a permanent card, they put it onto the battlefield.
-import { defineCard, isPermanentCard, moveObjects, nameOf, putOntoBattlefield, shuffleLibrary, t, tgt } from '../../motor/api.ts';
+import { defineCard, isPermanentCard, moveObjects, putOntoBattlefield, shuffleLibrary, t, tgt } from '../../motor/api.ts';
+import { jog, obj, reg } from '../../motor/registro.ts';
 
 export default defineCard({
   name: 'Chaos Warp',
@@ -18,7 +19,7 @@ export default defineCard({
         // a ficha embaralhada não é carta (CR 111.8: fica lá até as SBAs); revela a primeira carta de verdade
         const top = c.g.state.zones.library[owner].find((id) => !c.g.state.objects[id].isToken);
         if (top === undefined) return;
-        c.g.log(`${c.g.state.players[owner].name} revela ${nameOf(c.g, top)} do topo do grimório.`, { rule: '701.20' });
+        reg(c.g, 'revela', { rule: '701.20' })`${jog(owner)} revela ${obj(top)} do topo do grimório.`;
         // ruling 1, 3: só entra se for card de permanente e puder entrar; senão fica no topo
         if (isPermanentCard(c.g, top)) yield* putOntoBattlefield(c.g, [{ id: top, controller: owner }], 'chaos');
       },

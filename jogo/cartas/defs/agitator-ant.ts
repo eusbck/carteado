@@ -5,6 +5,7 @@
 import { addCounters, chooseItems, controlledBy, defineCard, goad, isCreature, nameOf, objItem, on, triggered } from '../../motor/api.ts';
 import type { ObjId, PlayerId } from '../../motor/types.ts';
 import { GOAD } from '../culpa.ts';
+import { jog, obj, reg, trecho } from '../../motor/registro.ts';
 
 export default defineCard({
   name: 'Agitator Ant',
@@ -20,7 +21,7 @@ export default defineCard({
             [{ id: 'nao', label: 'Não colocar marcadores' }, ...minhas.map((id) => objItem(c.g, id, nameOf(c.g, id)))], 1, 1);
           if (esc !== 'nao') escolhas.push({ p, id: Number(esc) });
           // ruling: quem escolhe depois sabe o que os anteriores escolheram
-          c.g.log(`Agitator Ant: ${c.g.state.players[p].name} ${esc === 'nao' ? 'não coloca marcadores' : `escolhe ${nameOf(c.g, Number(esc))}`}.`);
+          reg(c.g, 'outro', { actor: p })`Agitator Ant: ${jog(p)} ${esc === 'nao' ? 'não coloca marcadores' : trecho`escolhe ${obj(Number(esc))}`}.`;
         }
         // ruling 6: só fica goadada a que recebeu marcadores de fato
         for (const { p, id } of escolhas) if (addCounters(c.g, { kind: 'obj', id }, '+1/+1', 2, p) > 0) goad(c.g, id, c.you);

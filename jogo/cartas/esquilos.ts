@@ -7,6 +7,7 @@ import {
 import type { AbilityDef, ActivatedDef, Gen, StaticDef, TriggeredDef } from '../motor/defs.ts';
 import type { G } from '../motor/game-context.ts';
 import type { ObjId, PlayerId } from '../motor/types.ts';
+import { obj, reg } from '../motor/registro.ts';
 
 /** é um Squirrel (tipo de criatura, nas características atuais)? */
 export function ehEsquilo(g: G, id: ObjId): boolean {
@@ -97,7 +98,7 @@ export function nivelDeClasse(nome: string, custo: string, n: number): Activated
     if (!o || o.zone !== 'battlefield' || o.classLevel !== n - 1) return;
     o.classLevel = n;
     c.g.bump();
-    c.g.log(`${nome} passa ao nível ${n}.`, { rule: '716.2a' });
+    reg(c.g, 'outro', { rule: '716.2a', actor: c.you })`${obj(c.source, undefined, nome)} passa ao nível ${n}.`;
     emit(c.g, [{ type: 'levelUp', obj: c.source, level: n }]);
   }, { timing: 'sorcery', condition: (c) => c.g.state.objects[c.source]?.classLevel === n - 1, text: `${custo}: Nível ${n}` });
 }

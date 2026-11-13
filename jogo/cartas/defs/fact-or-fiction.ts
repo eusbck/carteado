@@ -3,6 +3,7 @@
 // hand and the other into your graveyard.
 import { chooseItems, defineCard, moveObjects, nameOf, playerItem } from '../../motor/api.ts';
 import type { ObjId, PlayerId, ZoneName } from '../../motor/types.ts';
+import { jog, objs, reg } from '../../motor/registro.ts';
 
 export default defineCard({
   name: 'Fact or Fiction',
@@ -13,7 +14,7 @@ export default defineCard({
         const cartas = s.zones.library[c.you].slice(0, 5);
         if (cartas.length === 0) return;
         // CR 701.20a: reveladas a todos enquanto o efeito precisa delas
-        c.g.log(`${s.players[c.you].name} revela ${cartas.map((id) => nameOf(c.g, id)).join(', ')} (Fact or Fiction).`, { rule: '701.20a' });
+        reg(c.g, 'revela', { rule: '701.20a' })`${jog(c.you)} revela ${objs(cartas)} (Fact or Fiction).`;
         for (const id of cartas) s.objects[id].visibleTo = 'all';
         c.g.bump();
         const item = (id: ObjId) => ({ id: String(id), label: nameOf(c.g, id), obj: id, card: { def: s.objects[id].def } });
@@ -29,7 +30,7 @@ export default defineCard({
         const pilha1 = (yield* chooseItems(c.g, quem, 'Fact or Fiction: separe as cartas em duas pilhas — escolha as cartas da primeira pilha (as outras formam a segunda)', cartas.map(item), 0, cartas.length, false, { split: true })).map(Number);
         const pilha2 = cartas.filter((id) => !pilha1.includes(id));
         const nomes = (p: ObjId[]) => p.map((id) => nameOf(c.g, id)).join(', ') || 'vazia';
-        c.g.log(`${s.players[quem].name} separa as pilhas: [${nomes(pilha1)}] e [${nomes(pilha2)}].`);
+        reg(c.g, 'outro')`${jog(quem)} separa as pilhas: [${objs(pilha1, undefined, ', ', 'vazia')}] e [${objs(pilha2, undefined, ', ', 'vazia')}].`;
         const [esc] = yield* chooseItems(c.g, c.you, 'Fact or Fiction: escolha a pilha que vai para a sua mão (a outra vai para o cemitério)', [
           { id: '1', label: `Pilha 1: ${nomes(pilha1)}`, pile: pilha1 },
           { id: '2', label: `Pilha 2: ${nomes(pilha2)}`, pile: pilha2 },

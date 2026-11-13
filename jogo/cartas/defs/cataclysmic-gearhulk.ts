@@ -4,6 +4,7 @@
 // the nonland permanents they control, then sacrifices the rest.
 import { chooseItems, controlledBy, defineCard, etb, isLand, isType, keyword, nameOf, objItem, sacrifice } from '../../motor/api.ts';
 import type { ObjId } from '../../motor/types.ts';
+import { jog, objs, reg } from '../../motor/registro.ts';
 
 const TIPOS: [string, string][] = [['Artifact', 'um artefato'], ['Creature', 'uma criatura'], ['Enchantment', 'um encantamento'], ['Planeswalker', 'um planeswalker']];
 
@@ -29,7 +30,7 @@ export default defineCard({
             fica.add(Number(esc));
           }
           // ruling 1: os que escolhem depois sabem o que os anteriores escolheram
-          if (naoTerrenos.length) c.g.log(`${s.players[p].name} mantém ${[...fica].map((id) => nameOf(c.g, id)).join(', ') || 'nada'} (Cataclysmic Gearhulk).`);
+          if (naoTerrenos.length) reg(c.g, 'outro')`${jog(p)} mantém ${objs([...fica], undefined, ', ', 'nada')} (Cataclysmic Gearhulk).`;
           // ruling 4: terrenos não são escolhidos nem sacrificados; ruling 3: ela mesma também pode ser sacrificada
           sacrificados.push(...naoTerrenos.filter((id) => !fica.has(id)));
         }

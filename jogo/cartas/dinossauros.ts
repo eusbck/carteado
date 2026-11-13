@@ -3,6 +3,7 @@ import { creaturesOf, isCreature, on, power, triggered } from '../motor/api.ts';
 import type { FaceDef, TriggeredDef } from '../motor/defs.ts';
 import type { G } from '../motor/game-context.ts';
 import type { ObjId, PlayerId } from '../motor/types.ts';
+import { jog, reg } from '../motor/registro.ts';
 
 /** força total das criaturas que o jogador controla; força negativa subtrai (ruling 3 de Ghalta, ruling 1 de Surrak) */
 export function forcaTotal(g: G, p: PlayerId): number {
@@ -34,7 +35,7 @@ export function presenteAoEntrar(gift: NonNullable<FaceDef['gift']>, texto: stri
   return triggered(on.selfEnters(), function* (c) {
     const para = presentePrometidoA(c.g, c.source);
     if (para === null || c.g.state.players[para].left) return;
-    c.g.log(`${c.g.state.players[para].name} recebe o presente: ${gift.label}.`, { rule: '702.174b' });
+    reg(c.g, 'outro', { rule: '702.174b' })`${jog(para)} recebe o presente: ${gift.label}.`;
     yield* gift.give(c, para);
   }, { condition: (c) => presentePrometidoA(c.g, c.source) !== null, text: texto });
 }

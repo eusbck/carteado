@@ -5,6 +5,7 @@
 import { chooseItems, defineCard, moveObjects, nameOf, objItem, on, staticAbility, triggered } from '../../motor/api.ts';
 import { shuffle } from '../../motor/rng.ts';
 import { ehHeroi } from '../vingadores.ts';
+import { jog, obj, reg } from '../../motor/registro.ts';
 
 export default defineCard({
   name: 'Director Nick Fury',
@@ -22,7 +23,7 @@ export default defineCard({
         const esc = yield* chooseItems(c.g, c.you, 'Director Nick Fury: você pode revelar um Hero entre as quatro cartas do topo', itens, 0, 1);
         const pego = esc.length ? Number(esc[0]) : null;
         if (pego !== null) {
-          c.g.log(`${s.players[c.you].name} revela ${nameOf(c.g, pego)}.`, { rule: '701.20' });
+          reg(c.g, 'revela', { rule: '701.20' })`${jog(c.you)} revela ${obj(pego)}.`;
           yield* moveObjects(c.g, [{ id: pego, to: 'hand' }], 'effect');
         }
         const resto = shuffle(s.rng, topo.filter((id) => id !== pego && s.objects[id]?.zone === 'library'));

@@ -6,6 +6,7 @@
 import { addEffect, controlledBy, defineAbility, defineCard, isPermanentCard, moveObjects, on, staticAbility, triggered } from '../../motor/api.ts';
 import type { SCtx, StaticDef } from '../../motor/defs.ts';
 import type { ObjId, PlayerId } from '../../motor/types.ts';
+import { jog, reg } from '../../motor/registro.ts';
 
 /**
  * A permissão das cartas exiladas, num efeito que dura enquanto elas estiverem no exílio (mesmo sem Arvinox): só mágicas
@@ -44,7 +45,7 @@ export default defineCard({
           .filter((id): id is ObjId => id !== null && s.objects[id]?.zone === 'exile');
         if (!ex.length) return;
         addEffect(c.g, { source: c.source, sourceDef: '', controller: c.you, duration: { kind: 'permanent' }, affected: null, mods: [{ k: 'rule', id: PERMISSAO.id!, params: { objs: ex, player: c.you } }] });
-        c.g.log(`${s.players[c.you].name} exila virada para baixo a carta do fundo do grimório de cada oponente (Arvinox).`);
+        reg(c.g, 'zona')`${jog(c.you)} exila virada para baixo a carta do fundo do grimório de cada oponente (Arvinox).`;
       }, { text: 'No começo da sua etapa final, exile virada para baixo a carta do fundo do grimório de cada oponente. Enquanto elas estiverem exiladas, você pode olhá-las, conjurar mágicas de permanente dentre elas e gastar mana como se fosse de qualquer cor para conjurá-las.' }),
     ],
   }],

@@ -4,6 +4,7 @@
 import { addEffect, copiableValues, copyValuesChars, defineCard, etb, t, tgt } from '../../motor/api.ts';
 import type { G } from '../../motor/game-context.ts';
 import type { ObjId } from '../../motor/types.ts';
+import { reg } from '../../motor/registro.ts';
 
 /** o texto de regras da criatura: as habilidades dos valores copiáveis dela, sem o que outros efeitos concederam */
 function textoDe(g: G, id: ObjId): { id: string; kw?: string; param?: unknown }[] {
@@ -27,7 +28,7 @@ export default defineCard({
         const duracao = { kind: 'whileOnBattlefield' as const, obj: c.source };
         addEffect(c.g, { source: c.source, sourceDef: '', controller: c.you, duration: duracao, affected: [a], mods: [{ k: 'setText', abilities: textoB }] });
         addEffect(c.g, { source: c.source, sourceDef: '', controller: c.you, duration: duracao, affected: [b], mods: [{ k: 'setText', abilities: textoA }] });
-        c.g.log('Exchange of Words: as duas criaturas trocam as caixas de texto.', { rule: '612.5' });
+        reg(c.g, 'outro', { rule: '612.5', actor: c.you })`Exchange of Words: as duas criaturas trocam as caixas de texto.`;
       }, {
         targets: [t.creature(undefined, 'primeira criatura alvo'), { ...t.creature(undefined, 'segunda criatura alvo'), differentFrom: [0] }],
         text: 'Quando este encantamento entra, escolha duas criaturas alvo. Enquanto este encantamento continuar no campo, troque as caixas de texto dessas criaturas.',

@@ -121,7 +121,7 @@ export function* empowerJace(c: Ctx, n: number): Gen<void> {
     alvo = Number(id);
   }
   addCounters(c.g, { kind: 'obj', id: alvo }, 'loyalty', n, c.you);
-  c.g.log(`${c.g.state.players[c.you].name} fortalece Jace ${n}.`);
+  reg(c.g, 'outro')`${jog(c.you)} fortalece Jace ${n}.`;
 }
 
 /**
@@ -135,7 +135,7 @@ export function* explore(g: G, id: ObjId): Gen<void> {
   const p = g.state.objects[id] ? controllerOf(g, id) : lki.controller;
   const top = g.state.zones.library[p][0];
   if (top !== undefined) {
-    g.log(`${g.state.players[p].name} revela ${nameOf(g, top)} do topo do grimório (explorar).`, { rule: '701.44a' });
+    reg(g, 'revela', { rule: '701.44a' })`${jog(p)} revela ${obj(top)} do topo do grimório (explorar).`;
     if (isLand(g, top)) { yield* moveObjects(g, [{ id: top, to: 'hand' }], 'explore'); return; }
   }
   // sem carta de terreno revelada (nem com o grimório vazio): marcador +1/+1, se ainda estiver no campo (CR 701.44b)
@@ -573,6 +573,7 @@ export const HumanCleric = token('Human Cleric', 'Human Cleric', ['Creature'], [
 export const ZombieRogue = token('Zombie Rogue', 'Zombie Rogue', ['Creature'], ['Zombie', 'Rogue'], ['B', 'U'], 2, 2);
 // lote4-c (Voja, Jaws of the Conclave)
 import { allCreatureTypes } from '../motor/api.ts';
+import { jog, obj, reg } from '../motor/registro.ts';
 /** Shapeshifter 2/2 incolor com polimorfo (Irregular Cohort) */
 export const Shapeshifter22Incolor = token('Shapeshifter 2/2 incolor', 'Shapeshifter', ['Creature'], ['Shapeshifter'], [], 2, 2, [changeling()]);
 /** Voja, Friend to Elves: Lobo lendário 3/3 verde e branco (Tolsimir, Friend to Wolves) */

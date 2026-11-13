@@ -4,6 +4,7 @@
 import { chooseItems, defineCard, nameOf, t, tgtPlayer } from '../../motor/api.ts';
 import type { ObjId } from '../../motor/types.ts';
 import { conjuraDentreGratis } from '../roubo.ts';
+import { jog, reg } from '../../motor/registro.ts';
 
 export default defineCard({
   name: 'Extract Brain',
@@ -20,7 +21,7 @@ export default defineCard({
         // o oponente escolhe as X cartas (todas, se tiver X ou menos)
         const escolhidas: ObjId[] = n === mao.length ? [...mao]
           : (yield* chooseItems(g, p, `Extract Brain: escolha ${n} carta(s) da sua mão para ${g.state.players[c.you].name} olhar`, mao.map((id) => ({ id: String(id), label: nameOf(g, id), obj: id, card: { def: g.state.objects[id].def } })), n, n)).map(Number);
-        g.log(`${g.state.players[c.you].name} olha ${n} carta(s) da mão de ${g.state.players[p].name}.`);
+        reg(g, 'outro')`${jog(c.you)} olha ${n} carta(s) da mão de ${jog(p)}.`;
         yield* conjuraDentreGratis(c, escolhidas, { rotulo: `Extract Brain (mão de ${g.state.players[p].name})`, varias: false, olhar: true });
       },
     },

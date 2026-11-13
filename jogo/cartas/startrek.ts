@@ -6,6 +6,7 @@ import type { Ctx, Gen } from '../motor/defs.ts';
 import type { G } from '../motor/game-context.ts';
 import type { ObjId, PlayerId } from '../motor/types.ts';
 import { shuffle } from '../motor/rng.ts';
+import { jog, objs, reg } from '../motor/registro.ts';
 
 /**
  * "o número de terrenos com nomes diferentes que você controla" (Strange new worlds é só uma palavra de habilidade,
@@ -63,7 +64,7 @@ export function revelaAte(g: G, p: PlayerId, serve: (id: ObjId) => boolean): { a
     outras.push(id);
   }
   const reveladas = achada === null ? outras : [...outras, achada];
-  if (reveladas.length) g.log(`${g.state.players[p].name} revela ${reveladas.map((id) => nameOf(g, id)).join(', ')}.`, { rule: '701.20' });
+  if (reveladas.length) reg(g, 'revela', { rule: '701.20' })`${jog(p)} revela ${objs(reveladas)}.`;
   return { achada, outras };
 }
 

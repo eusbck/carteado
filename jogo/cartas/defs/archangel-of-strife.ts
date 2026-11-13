@@ -4,6 +4,7 @@
 // Creatures controlled by players who chose war get +3/+0.
 // Creatures controlled by players who chose peace get +0/+3.
 import { asEnters, chooseOne, controllerOf, defineCard, is, keyword, staticAbility } from '../../motor/api.ts';
+import { jog, reg } from '../../motor/registro.ts';
 
 type Escolha = 'war' | 'peace';
 
@@ -17,7 +18,7 @@ export default defineCard({
         const escolhas: Record<number, Escolha> = {};
         for (const p of c.g.apnap()) {
           escolhas[p] = (yield* chooseOne(c.g, p, 'Archangel of Strife: guerra (as suas criaturas recebem +3/+0) ou paz (+0/+3)?', [{ id: 'war', label: 'Guerra' }, { id: 'peace', label: 'Paz' }])) as Escolha;
-          c.g.log(`${c.g.state.players[p].name} escolhe ${escolhas[p] === 'war' ? 'guerra' : 'paz'}.`);
+          reg(c.g, 'outro')`${jog(p)} escolhe ${escolhas[p] === 'war' ? 'guerra' : 'paz'}.`;
         }
         ev.choices.guerraOuPaz = escolhas;
       }, 'Ao entrar, cada jogador escolhe guerra ou paz.'),

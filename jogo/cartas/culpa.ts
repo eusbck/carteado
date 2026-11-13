@@ -1,9 +1,10 @@
 // Peças repetidas nas cartas do deck Blame Game (Murders at Karlov Manor Commander): suspeitar (CR 701.60), encobrir
 // (CR 701.58), "goadada e/ou suspeita" e as notas de rulings de goad, que se repetem em várias cartas.
-import { addEffect, chars, defineAbility, goad, hooks, keyword, nameOf, putOntoBattlefield, wardGranted } from '../motor/api.ts';
+import { addEffect, chars, defineAbility, goad, hooks, keyword, putOntoBattlefield, wardGranted } from '../motor/api.ts';
 import type { Gen, StaticDef } from '../motor/defs.ts';
 import type { G } from '../motor/game-context.ts';
 import type { AbilityInst, ObjId, PlayerId } from '../motor/types.ts';
+import { jog, obj, reg } from '../motor/registro.ts';
 
 /** "Esta criatura não pode bloquear", que a criatura suspeita tem enquanto estiver suspeita (CR 701.60c) */
 const SUSPEITA_NAO_BLOQUEIA = defineAbility<StaticDef>('precons-a:suspeita:naoBloqueia', {
@@ -32,7 +33,7 @@ export function suspeitar(g: G, id: ObjId, por: PlayerId): boolean {
     source: id, sourceDef: '', controller: por, duration: { kind: 'whileOnBattlefield', obj: id }, affected: [id],
     mods: [{ k: 'addKeyword', kw: 'menace' }, { k: 'addAbility', id: SUSPEITA_NAO_BLOQUEIA.id! }],
   });
-  g.log(`${nameOf(g, id)} fica suspeita (tem ameaçar e não pode bloquear).`, { rule: '701.60' });
+  reg(g, 'outro', { rule: '701.60', actor: por })`${obj(id)} fica suspeita (tem ameaçar e não pode bloquear).`;
   return true;
 }
 
@@ -67,7 +68,7 @@ export function* encobrir(g: G, p: PlayerId, carta?: ObjId): Gen<ObjId | null> {
   if (id === undefined || g.state.players[p].left) return null;
   const extras: AbilityInst[] = [{ id: RESGUARDO_2, kw: 'ward', param: '{2}' }];
   const [nova] = yield* putOntoBattlefield(g, [{ id, controller: p, faceDown: true, data: { manifestada: true, encoberta: true, faceDownAbilities: extras } }], 'cloak');
-  if (nova !== undefined) g.log(`${g.state.players[p].name} encobre uma carta (2/2 virada para baixo com resguardo {2}).`, { rule: '701.58a' });
+  if (nova !== undefined) reg(g, 'zona', { rule: '701.58a' })`${jog(p)} encobre uma carta (2/2 virada para baixo com resguardo {2}).`;
   return nova ?? null;
 }
 

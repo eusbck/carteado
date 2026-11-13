@@ -5,6 +5,7 @@
 import { attachedGets, chooseItems, defineCard, equip, isType, moveObjects, nameOf, objItem, on, triggered } from '../../motor/api.ts';
 import { shuffle } from '../../motor/rng.ts';
 import { artifacts } from '../artefatos.ts';
+import { jog, obj, reg } from '../../motor/registro.ts';
 
 export default defineCard({
   name: "Adaptive Omnitool",
@@ -16,7 +17,7 @@ export default defineCard({
         const items = top.map((id) => ({ ...objItem(c.g, id, nameOf(c.g, id)), card: { def: s.objects[id].def }, disabled: !isType(c.g, id, 'Artifact') }));
         const picked = yield* chooseItems(c.g, c.you, 'Adaptive Omnitool: você pode revelar um artefato entre as seis cartas do topo', items, 0, 1);
         const chosen = picked.length ? Number(picked[0]) : null;
-        if (chosen !== null) { c.g.log(s.players[c.you].name + ' revela ' + nameOf(c.g, chosen) + '.', { rule: '701.20' }); yield* moveObjects(c.g, [{ id: chosen, to: 'hand' }], 'effect'); }
+        if (chosen !== null) { reg(c.g, 'revela', { rule: '701.20' })`${jog(c.you)} revela ${obj(chosen)}.`; yield* moveObjects(c.g, [{ id: chosen, to: 'hand' }], 'effect'); }
         const rest = shuffle(s.rng, top.filter((id) => id !== chosen && s.objects[id]?.zone === 'library'));
         s.zones.library[c.you] = [...s.zones.library[c.you].filter((id) => !rest.includes(id)), ...rest]; c.g.bump();
       }, { text: 'Quando a criatura equipada ataca, olhe seis cartas do topo. Pode revelar um artefato e pôr na mão; o resto vai ao fundo em ordem aleatória.' }), equip('{3}'),

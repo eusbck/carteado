@@ -9,6 +9,7 @@ import {
   seatNeighbor, t, tgt,
 } from '../../motor/api.ts';
 import type { ObjId, PlayerId } from '../../motor/types.ts';
+import { jog, reg } from '../../motor/registro.ts';
 
 export default defineCard({
   name: 'Aminatou, the Fateshifter',
@@ -44,7 +45,7 @@ export default defineCard({
           if (vizinho === p) continue;
           for (const id of controlledBy(c.g, vizinho, (x) => !isLand(c.g, x) && x !== c.source)) trocas.push({ id, para: p });
         }
-        c.g.log(`${s.players[c.you].name} escolhe ${dir === 'left' ? 'esquerda' : 'direita'}: cada jogador ganha o controle das permanentes que não são terrenos do jogador à ${dir === 'left' ? 'esquerda' : 'direita'} dele.`);
+        reg(c.g, 'outro')`${jog(c.you)} escolhe ${dir === 'left' ? 'esquerda' : 'direita'}: cada jogador ganha o controle das permanentes que não são terrenos do jogador à ${dir === 'left' ? 'esquerda' : 'direita'} dele.`;
         // ruling 6: sem prazo; não depende de Aminatou nem de quem a controla
         for (const tr of trocas) gainControl(c.g, tr.id, tr.para, { kind: 'permanent' }, c.source);
       }, { text: '−6: Escolha esquerda ou direita. Cada jogador ganha o controle de todas as permanentes que não são terrenos, exceto Aminatou, controladas pelo próximo jogador na direção escolhida.' }),

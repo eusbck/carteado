@@ -8,6 +8,7 @@ import {
 } from '../../motor/api.ts';
 import type { PlayerId } from '../../motor/types.ts';
 import { NINJUTSU } from '../ninjas.ts';
+import { jog, objs, reg } from '../../motor/registro.ts';
 
 // CR 603.12: gatilho reflexivo "quando fizer isso" (ruling 1: vai para a pilha e pode ser respondido)
 const REVELA = defineAbility('Biting-Palm Ninja:revela', triggered({ kind: 'batch', match: () => false }, function* (c) {
@@ -15,7 +16,7 @@ const REVELA = defineAbility('Biting-Palm Ninja:revela', triggered({ kind: 'batc
   const p = c.data.player as PlayerId;
   if (p === undefined || g.state.players[p].left) return;
   const mao = g.state.zones.hand[p];
-  g.log(`${g.state.players[p].name} revela a mão: ${mao.map((id) => nameOf(g, id)).join(', ') || 'vazia'}.`, { rule: '701.20' });
+  reg(g, 'revela', { rule: '701.20' })`${jog(p)} revela a mão: ${objs(mao, undefined, ', ', 'vazia')}.`;
   const cands = mao.filter((id) => !isLand(g, id));
   if (!cands.length) return;
   const [esc] = yield* chooseItems(g, c.you, 'Biting-Palm Ninja: escolha uma carta que não seja terreno para exilar', cands.map((id) => ({ id: String(id), label: nameOf(g, id), obj: id, card: { def: g.state.objects[id].def } })), 1, 1);

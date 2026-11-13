@@ -4,6 +4,7 @@
 // their mana costs.
 import { chooseItems, defineCard, exile, isLand, manaValue, mayCastFree, nameOf, shuffleLibrary, yesNo } from '../../motor/api.ts';
 import type { ObjId } from '../../motor/types.ts';
+import { jog, obj, reg } from '../../motor/registro.ts';
 
 export default defineCard({
   name: 'Dance with Calamity',
@@ -24,7 +25,7 @@ export default defineCard({
           if (ex === null || ex === undefined) break;
           exiladas.push(ex);
           total += manaValue(c.g, ex);
-          c.g.log(`${s.players[c.you].name} exila ${nameOf(c.g, ex)} (total ${total}).`, { rule: '406.3' });
+          reg(c.g, 'zona', { rule: '406.3' })`${jog(c.you)} exila ${obj(ex)} (total ${total}).`;
         }
         // ruling 7: passou de 13, nada é conjurado
         if (total > 13) return;

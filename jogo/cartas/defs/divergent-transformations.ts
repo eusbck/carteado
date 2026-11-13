@@ -2,10 +2,11 @@
 // Undaunted (This spell costs {1} less to cast for each opponent.)
 // Exile two target creatures. For each of those creatures, its controller reveals cards from the top of their library
 // until they reveal a creature card, puts that card onto the battlefield, then shuffles the rest into their library.
-import { controllerOf, defineCard, exactly, exile, isCreature, nameOf, putOntoBattlefield, shuffleLibrary, t, tgtsAll } from '../../motor/api.ts';
+import { controllerOf, defineCard, exactly, exile, isCreature, putOntoBattlefield, shuffleLibrary, t, tgtsAll } from '../../motor/api.ts';
 import type { G } from '../../motor/game-context.ts';
 import type { Gen } from '../../motor/defs.ts';
 import type { PlayerId } from '../../motor/types.ts';
+import { jog, objs, reg } from '../../motor/registro.ts';
 
 /** CR 701.20: revela do topo até uma carta de criatura, põe no campo e embaralha o resto */
 function* trocar(g: G, quem: PlayerId): Gen<void> {
@@ -13,7 +14,7 @@ function* trocar(g: G, quem: PlayerId): Gen<void> {
   const grimorio = s.zones.library[quem];
   const i = grimorio.findIndex((x) => isCreature(g, x));
   const reveladas = i < 0 ? [...grimorio] : grimorio.slice(0, i + 1);
-  g.log(`${s.players[quem].name} revela ${reveladas.map((x) => nameOf(g, x)).join(', ') || 'nada (grimório vazio)'}.`, { rule: '701.20' });
+  reg(g, 'revela', { rule: '701.20' })`${jog(quem)} revela ${objs(reveladas, undefined, ', ', 'nada (grimório vazio)')}.`;
   if (i >= 0) yield* putOntoBattlefield(g, [{ id: grimorio[i], controller: quem }], 'effect');
   // ruling 6: sem carta de criatura, revela o grimório todo e embaralha
   shuffleLibrary(g, quem);

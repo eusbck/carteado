@@ -3,6 +3,7 @@
 // {T}, Exile this artifact: Reverse the game's turn order. (For example, if play had proceeded clockwise around the
 // table, it now goes counterclockwise.)
 import { activated, defineCard, entersTapped } from '../../motor/api.ts';
+import { jog, reg } from '../../motor/registro.ts';
 
 export default defineCard({
   name: 'Aeon Engine',
@@ -14,7 +15,7 @@ export default defineCard({
         // rulings 1-2: a ordem dos assentos não muda; inverter de novo volta à ordem do começo da partida
         s.turnReversed = !s.turnReversed;
         c.g.bump();
-        c.g.log(`A ordem dos turnos é invertida: depois de ${s.players[s.turn.active].name} joga ${s.players[c.g.nextPlayer(s.turn.active)].name}.`);
+        reg(c.g, 'outro', { actor: c.you })`A ordem dos turnos é invertida: depois de ${jog(s.turn.active)} joga ${jog(c.g.nextPlayer(s.turn.active))}.`;
       }, { text: '{T}, Exile este artefato: Inverta a ordem dos turnos da partida. (Por exemplo, se a partida seguia no sentido horário em volta da mesa, passa a seguir no sentido anti-horário.)' }),
     ],
   }],

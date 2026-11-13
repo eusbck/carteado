@@ -2,8 +2,9 @@
 // Demonstrate (When you cast this spell, you may copy it. If you do, choose an opponent to also copy it.)
 // Shuffle your library, then reveal cards from the top of it until you reveal a nonland card. Exile that card and put
 // the rest on the bottom of your library in a random order. You may cast the exiled card without paying its mana cost.
-import { defineCard, demonstrate, exile, isLand, mayCastFree, nameOf, shuffleLibrary } from '../../motor/api.ts';
+import { defineCard, demonstrate, exile, isLand, mayCastFree, shuffleLibrary } from '../../motor/api.ts';
 import { shuffle } from '../../motor/rng.ts';
+import { jog, objs, reg } from '../../motor/registro.ts';
 
 export default defineCard({
   name: 'Creative Technique',
@@ -16,7 +17,7 @@ export default defineCard({
         const lib = s.zones.library[c.you];
         const i = lib.findIndex((id) => !isLand(c.g, id));
         const reveladas = i < 0 ? [...lib] : lib.slice(0, i + 1);
-        c.g.log(`${s.players[c.you].name} revela ${reveladas.map((id) => nameOf(c.g, id)).join(', ') || 'nada'}.`, { rule: '701.20' });
+        reg(c.g, 'revela', { rule: '701.20' })`${jog(c.you)} revela ${objs(reveladas, undefined, ', ', 'nada')}.`;
         let exilada: number | null = null;
         if (i >= 0) [exilada] = yield* exile(c.g, [lib[i]]);
         const resto = shuffle(s.rng, reveladas.filter((id) => s.objects[id]?.zone === 'library'));

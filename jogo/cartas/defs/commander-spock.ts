@@ -6,12 +6,13 @@
 import { defineCard, draw, isLand, manaValue, mayCastFree, nameOf, on, putOntoBattlefield, triggered, yesNo } from '../../motor/api.ts';
 import type { Ctx, Gen } from '../../motor/defs.ts';
 import { terrenosComNomesDiferentes } from '../startrek.ts';
+import { jog, obj, reg } from '../../motor/registro.ts';
 
 function* novosMundos(c: Ctx): Gen<void> {
   const s = c.g.state;
   const topo = s.zones.library[c.you][0];
   if (topo === undefined) return;
-  c.g.log(`${s.players[c.you].name} revela ${nameOf(c.g, topo)}.`, { rule: '701.20' });
+  reg(c.g, 'revela', { rule: '701.20' })`${jog(c.you)} revela ${obj(topo)}.`;
   if (isLand(c.g, topo)) {
     if (yield* yesNo(c.g, c.you, `Commander Spock: pôr ${nameOf(c.g, topo)} no campo, virado?`, 'Pôr no campo', 'Deixar no topo')) {
       yield* putOntoBattlefield(c.g, [{ id: topo, controller: c.you, tapped: true }], 'effect');

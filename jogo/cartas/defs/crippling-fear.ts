@@ -2,6 +2,7 @@
 // Choose a creature type. Creatures that aren't of the chosen type get -3/-3 until end of turn.
 import { allCreatures, allCreatureTypes, chars, chooseItems, creaturesOf, defineCard, isSubtype, untilEndOfTurn } from '../../motor/api.ts';
 import type { Ctx, Gen } from '../../motor/api.ts';
+import { jog, reg } from '../../motor/registro.ts';
 
 // CR 205.3g-i, 205.3k: subtipos de artefato, encantamento, terreno e mágica não são tipos de criatura (CR 205.3m),
 // mesmo quando aparecem numa linha de tipo de criatura ou kindred ("Kindred Enchantment — Eldrazi Aura",
@@ -31,7 +32,7 @@ export default defineCard({
       *effect(c) {
         // rulings 1-2: escolhido na resolução, só um tipo de criatura existente
         const tipo = yield* escolherTipo(c);
-        c.g.log(`${c.g.state.players[c.you].name} escolhe ${tipo}.`);
+        reg(c.g, 'outro')`${jog(c.you)} escolhe ${tipo}.`;
         // ruling 3: conjunto fixado na resolução (CR 611.2c)
         untilEndOfTurn(c, allCreatures(c.g).filter((id) => !isSubtype(c.g, id, tipo)), [{ k: 'pt', p: -3, t: -3 }]);
       },

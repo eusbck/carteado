@@ -8,6 +8,7 @@ import type { Ctx, TargetSpec } from '../motor/defs.ts';
 import { canAfford } from '../motor/costs.ts';
 import { parseCost } from '../motor/mana.ts';
 import type { Color, Duration, Mod, ObjId, PlayerId } from '../motor/types.ts';
+import { obj, reg } from '../motor/registro.ts';
 
 /** "artefato, criatura ou terreno alvo" (Twitch, Jolt, Infuse, Mind Games) */
 export function alvoArtefatoCriaturaOuTerreno(): TargetSpec {
@@ -97,7 +98,7 @@ export function* trocaTexto(c: Ctx, alvo: ObjId, tipos: ('color' | 'landType')[]
     st.data.carryToPermanent = [...lista, { mods: [mod], duration: duracao, controller: c.you, source: c.source }];
   }
   const rot = (x: string) => opcoes.find((y) => y.id === x)?.label ?? x;
-  c.g.log(`${fonte}: no texto de ${nameOf(c.g, alvo)}, "${rot(de)}" passa a ser "${rot(para)}".`, { rule: '612.2' });
+  reg(c.g, 'outro', { rule: '612.2', actor: c.you })`${fonte}: no texto de ${obj(alvo)}, "${rot(de)}" passa a ser "${rot(para)}".`;
 }
 
 /** o jogador tem como pagar este custo de mana agora? (sem isso, nem pergunta) */

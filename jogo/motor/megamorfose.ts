@@ -9,6 +9,7 @@ import { addCounters } from './actions.ts';
 import type { StaticDef } from './defs.ts';
 import type { G } from './game-context.ts';
 import type { ObjId, PlayerId } from './types.ts';
+import { reg } from './registro.ts';
 
 /** palavra-chave megamorfose (CR 702.37b): em `abilities` da carta */
 export function megamorph(custo: string): StaticDef {
@@ -25,5 +26,5 @@ export function megamorph(custo: string): StaticDef {
 export function aoVirarPorMorph(g: G, id: ObjId, kw: string | undefined, p: PlayerId): void {
   if (kw !== 'megamorph') return;
   addCounters(g, { kind: 'obj', id }, '+1/+1', 1, p);
-  g.log('Megamorfose: recebe um marcador +1/+1 ao ser virada para cima.', { rule: '702.37b' });
+  reg(g, 'outro', { rule: '702.37b', actor: p })`Megamorfose: recebe um marcador +1/+1 ao ser virada para cima.`;
 }

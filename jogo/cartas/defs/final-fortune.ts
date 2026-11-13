@@ -1,6 +1,7 @@
 // Final Fortune
 // Take an extra turn after this one. At the beginning of that turn's end step, you lose the game.
 import { defineAbility, defineCard, loseGame, takeExtraTurn, triggered } from '../../motor/api.ts';
+import { jog, reg } from '../../motor/registro.ts';
 
 // o gatilho atrasado só olha o turno extra criado por esta mágica (CR 603.7)
 const PERDE = defineAbility('Final Fortune:perde', triggered({
@@ -10,7 +11,7 @@ const PERDE = defineAbility('Final Fortune:perde', triggered({
     return e.type === 'step' && e.step === 'end' && c.g.state.turn.extraTurnId !== undefined && c.g.state.turn.extraTurnId === d?.data.turno;
   },
 }, function* (c) {
-  c.g.log(`${c.g.state.players[c.you].name} perde o jogo (Final Fortune).`, { rule: '104.3e' });
+  reg(c.g, 'fim', { rule: '104.3e' })`${jog(c.you)} perde o jogo (Final Fortune).`;
   loseGame(c.g, c.you);
 }, { text: 'No início da etapa final desse turno, você perde o jogo.' }));
 

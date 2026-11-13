@@ -14,6 +14,7 @@ import { registry, type SCtx, type StaticDef } from './defs.ts';
 import { staticAbility } from './dsl.ts';
 import type { G } from './game-context.ts';
 import type { ObjId, PlayerId } from './types.ts';
+import { jog, obj, reg } from './registro.ts';
 
 /** as habilidades de dragar e o N de cada uma */
 const dragar = new Map<StaticDef, number>();
@@ -58,7 +59,7 @@ export function dredge(n: number): StaticDef {
           ops.map((o) => ({ id: String(o.id), label: `${nome(o.id)} (dragar ${o.n})` })), 0, 1);
         if (esc === undefined) return false;
         const op = ops.find((o) => String(o.id) === esc)!;
-        g.log(`${g.state.players[player].name} draga ${nome(op.id)}: moe ${op.n} cartas em vez de comprar.`, { rule: '702.52a' });
+        reg(g, 'zona', { rule: '702.52a' })`${jog(player)} draga ${obj(op.id, undefined, nome(op.id))}: moe ${op.n} cartas em vez de comprar.`;
         yield* mill(g, player, op.n);
         // a carta volta para a mão se ainda estiver no cemitério
         if (g.state.objects[op.id]?.zone === 'graveyard') yield* moveObjects(g, [{ id: op.id, to: 'hand' }], 'dredge');

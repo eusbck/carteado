@@ -2,6 +2,7 @@
 // At the beginning of each opponent's upkeep, that player chooses draw step, main phase, or combat phase. The player
 // skips each instance of the chosen step or phase this turn.
 import { chooseOne, defineCard, on, triggered } from '../../motor/api.ts';
+import { jog, reg } from '../../motor/registro.ts';
 
 const OPCOES = [
   { id: 'draw', label: 'Etapa de compra' },
@@ -21,7 +22,7 @@ export default defineCard({
         // rulings 1-2: só o que foi escolhido, todas as ocorrências, mesmo as criadas depois; ruling 3: pode repetir
         s.turn.skip = [...new Set([...(s.turn.skip ?? []), esc])];
         c.g.bump();
-        c.g.log(`${s.players[p].name} pula ${esc === 'draw' ? 'a etapa de compra' : esc === 'main' ? 'as fases principais' : 'as fases de combate'} neste turno.`, { rule: '614.10' });
+        reg(c.g, 'outro', { rule: '614.10' })`${jog(p)} pula ${esc === 'draw' ? 'a etapa de compra' : esc === 'main' ? 'as fases principais' : 'as fases de combate'} neste turno.`;
       }, { text: 'No início da manutenção de cada oponente, esse jogador escolhe etapa de compra, fase principal ou fase de combate. O jogador pula todas as ocorrências da etapa ou fase escolhida neste turno.' }),
     ],
   }],
