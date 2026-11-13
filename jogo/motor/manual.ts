@@ -10,6 +10,7 @@ import { registry, type Gen } from './defs.ts';
 import type { G } from './game-context.ts';
 import { poolToString } from './mana.ts';
 import type { GameState, ManaUnit, ManualAction, ObjId, PlayerId, ZoneName } from './types.ts';
+import { jog, obj, reg } from './registro.ts';
 
 // "de onde" e "para onde", com a contração certa
 const DE: Record<string, string> = {
@@ -80,30 +81,30 @@ function* mover(g: G, p: PlayerId, ids: number[], to: string): Gen<void> {
 
 export function* performManual(g: G, p: PlayerId, m: ManualAction): Gen<boolean> {
   const s = g.state;
-  const quem = `${s.players[p].name} (ajuste manual)`;
+  // toda linha começa com `${jog(p)} (ajuste manual)`; o kind 'manual' marca a linha (antes o cliente procurava o texto)
+  const ajuste = reg(g, 'manual');
   switch (m.k) {
     case 'mover': {
       const o = s.objects[m.obj];
       const oculto = o.zone === 'hand' || o.zone === 'library';
-      const nome = nameOf(g, m.obj);
-      g.log(`${quem} move ${oculto && m.to !== 'battlefield' && m.to !== 'graveyard' && m.to !== 'exile' ? 'uma carta' : nome} ${DE[o.zone]} para ${PARA[m.to]}.`);
+      ajuste`${jog(p)} (ajuste manual) move ${oculto && m.to !== 'battlefield' && m.to !== 'graveyard' && m.to !== 'exile' ? 'uma carta' : obj(m.obj)} ${DE[o.zone]} para ${PARA[m.to]}.`;
       yield* mover(g, p, [m.obj], m.to);
       return true;
     }
     case 'vida': {
-      g.log(`${quem}: ${s.players[m.player].name} ${m.delta > 0 ? 'ganha' : 'perde'} ${Math.abs(m.delta)} de vida.`);
+      ajuste`${jog(p)} (ajuste manual): ${jog(m.player, 'alvo')} ${m.delta > 0 ? 'ganha' : 'perde'} ${Math.abs(m.delta)} de vida.`;
       if (m.delta > 0) gainLife(g, m.player, m.delta, null); else loseLife(g, m.player, -m.delta, null);
       return true;
     }
     case 'marcadores': {
-      const alvo = m.target.kind === 'player' ? s.players[m.target.id].name : nameOf(g, m.target.id);
-      g.log(`${quem}: ${m.delta > 0 ? 'coloca' : 'remove'} ${Math.abs(m.delta)} marcador(es) ${m.kind} ${m.delta > 0 ? 'em' : 'de'} ${alvo}.`);
+      const alvo = m.target.kind === 'player' ? jog(m.target.id, 'alvo') : obj(m.target.id, 'alvo');
+      ajuste`${jog(p)} (ajuste manual): ${m.delta > 0 ? 'coloca' : 'remove'} ${Math.abs(m.delta)} marcador(es) ${m.kind} ${m.delta > 0 ? 'em' : 'de'} ${alvo}.`;
       if (m.delta > 0) addCounters(g, m.target, m.kind, m.delta, p); else removeCounters(g, m.target, m.kind, -m.delta);
       return true;
     }
     case 'virar': {
-      const nome = nameOf(g, m.obj);
-      if (m.tapped) { g.log(`${quem} vira ${nome}.`); tap(g, m.obj); return true; }
+      const nome = obj(m.obj);
+      if (m.tapped) { ajuste`${jog(p)} (ajuste manual) vira ${nome}.`; tap(g, m.obj); return true; }
       // desvirar à mão desfaz o virar para mana. Com config.desvirarSoComMana (partidas novas) só vale com a mana
       // daquele virar inteira na reserva (validateManual) e ela sai toda. Antes (só desvirarTiraMana) saía a que ainda
       // estava lá, e a gasta ficava gasta: desvirar e virar de novo dava mana de graça. Partidas de antes de cada
@@ -114,38 +115,38 @@ export function* performManual(g: G, p: PlayerId, m: ManualAction): Gen<boolean>
         // a regra nova: sai exatamente a mana daquele virar (conferida inteira na reserva pela validação), de quem quer
         // que seja a reserva e quem quer que desvire
         const virar = s.objects[m.obj].manaTap?.seq;
-        if (!untap(g, m.obj)) { g.log(`${quem} tenta desvirar ${nome}, mas ela não desvira.`); return true; }
+        if (!untap(g, m.obj)) { ajuste`${jog(p)} (ajuste manual) tenta desvirar ${nome}, mas ela não desvira.`; return true; }
         const daquele = (u: ManaUnit) => virar !== undefined && (u.tapSource ?? u.source) === m.obj && u.tap === virar;
         const dela = s.players.flatMap((q) => q.manaPool.filter(daquele));
         if (dela.length) { for (const q of s.players) q.manaPool = q.manaPool.filter((u) => !daquele(u)); g.bump(); }
-        g.log(`${quem} desvira ${nome}${dela.length ? ` (a mana dela, ${poolToString(dela)}, sai da reserva)` : ''}.`);
+        ajuste`${jog(p)} (ajuste manual) desvira ${nome}${dela.length ? ` (a mana dela, ${poolToString(dela)}, sai da reserva)` : ''}.`;
         return true;
       }
       const desvirou = untap(g, m.obj);
       const dela = desvirou && dono === p && s.config.desvirarTiraMana ? ctl.manaPool.filter((u) => (u.tapSource ?? u.source) === m.obj) : [];
       if (dela.length) { ctl.manaPool = ctl.manaPool.filter((u) => (u.tapSource ?? u.source) !== m.obj); g.bump(); }
-      g.log(`${quem} desvira ${nome}${dela.length ? ` (a mana dela, ${poolToString(dela)}, sai da reserva)` : ''}.`);
+      ajuste`${jog(p)} (ajuste manual) desvira ${nome}${dela.length ? ` (a mana dela, ${poolToString(dela)}, sai da reserva)` : ''}.`;
       return true;
     }
     case 'ficha': {
-      g.log(`${quem}: ${s.players[m.player].name} cria ${m.n} ficha(s) ${registry.tokens.get(m.def)!.name}.`);
+      ajuste`${jog(p)} (ajuste manual): ${jog(m.player)} cria ${m.n} ficha(s) ${registry.tokens.get(m.def)!.name}.`;
       yield* createTokens(g, m.player, m.def, m.n);
       return true;
     }
-    case 'comprar': g.log(`${quem} compra ${m.n} carta(s).`); yield* draw(g, p, m.n); return true;
-    case 'moer': g.log(`${quem} moi ${m.n} carta(s).`); yield* mill(g, p, m.n); return true;
-    case 'embaralhar': g.log(`${quem} embaralha o grimório.`); shuffleLibrary(g, p); return true;
+    case 'comprar': ajuste`${jog(p)} (ajuste manual) compra ${m.n} carta(s).`; yield* draw(g, p, m.n); return true;
+    case 'moer': ajuste`${jog(p)} (ajuste manual) moi ${m.n} carta(s).`; yield* mill(g, p, m.n); return true;
+    case 'embaralhar': ajuste`${jog(p)} (ajuste manual) embaralha o grimório.`; shuffleLibrary(g, p); return true;
     case 'buscar': {
-      g.log(`${quem} procura no grimório.`);
+      ajuste`${jog(p)} (ajuste manual) procura no grimório.`;
       const achadas = yield* searchLibrary(g, p, p, { max: 1, prompt: `Procure uma carta (ela vai para ${PARA[m.to]})` });
       if (achadas.length) {
-        if (m.to !== 'hand' && m.to !== 'libraryTop') g.log(`${quem}: ${nameOf(g, achadas[0])} vai para ${PARA[m.to]}.`);
+        if (m.to !== 'hand' && m.to !== 'libraryTop') ajuste`${jog(p)} (ajuste manual): ${obj(achadas[0])} vai para ${PARA[m.to]}.`;
         yield* mover(g, p, achadas, m.to);
       }
       if (m.to !== 'libraryTop') shuffleLibrary(g, p);
       return true;
     }
-    case 'videncia': g.log(`${quem}: vidência ${m.n}.`); yield* lookAndArrange(g, p, m.n, 'scry'); return true;
-    case 'vigiar': g.log(`${quem}: vigiar ${m.n}.`); yield* lookAndArrange(g, p, m.n, 'surveil'); return true;
+    case 'videncia': ajuste`${jog(p)} (ajuste manual): vidência ${m.n}.`; yield* lookAndArrange(g, p, m.n, 'scry'); return true;
+    case 'vigiar': ajuste`${jog(p)} (ajuste manual): vigiar ${m.n}.`; yield* lookAndArrange(g, p, m.n, 'surveil'); return true;
   }
 }

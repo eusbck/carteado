@@ -13,6 +13,7 @@ import type { AltCastDef, Gen, SCtx, StaticDef } from './defs.ts';
 import type { G } from './game-context.ts';
 import { parseCost } from './mana.ts';
 import type { ObjId, PlayerId } from './types.ts';
+import { jog, obj, reg } from './registro.ts';
 
 /** fase principal do próprio turno com a pilha vazia (CR 702.170a, 702.170d) */
 function principalComPilhaVazia(g: G, p: PlayerId): boolean {
@@ -74,7 +75,7 @@ export function* doPlot(g: G, p: PlayerId, id: ObjId): Gen<boolean> {
   const [ex] = yield* moveObjects(g, [{ id, to: 'exile' }], 'plot', p);
   if (ex === null || ex === undefined || g.state.objects[ex]?.zone !== 'exile') return true;
   markPlotted(g, ex);
-  g.log(`${g.state.players[p].name} planeja ${nameOf(g, ex)} (exila da mão; pode conjurá-la num turno posterior sem pagar o custo de mana).`, { rule: '702.170a' });
+  reg(g, 'zona', { rule: '702.170a' })`${jog(p)} planeja ${obj(ex)} (exila da mão; pode conjurá-la num turno posterior sem pagar o custo de mana).`;
   return true;
 }
 

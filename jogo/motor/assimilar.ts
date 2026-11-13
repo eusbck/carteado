@@ -15,6 +15,7 @@ import type { Gen } from './defs.ts';
 import type { G } from './game-context.ts';
 import { addEffect } from './state.ts';
 import type { Mod, ObjId, PlayerId } from './types.ts';
+import { jog, obj, reg } from './registro.ts';
 
 /** a mudança de tipo do assimilar */
 export const MODS_ASSIMILAR: Mod[] = [{ k: 'addTypes', types: ['Artifact', 'Creature'], subtypes: ['Borg'], loseOtherCreatureTypes: true }];
@@ -37,7 +38,7 @@ export function* assimilateCard(g: G, p: PlayerId, card: ObjId, source: ObjId, s
     enterEffects: [{ mods: MODS_ASSIMILAR, duration: { kind: 'whileOnBattlefield', obj: -1 }, controller: p, sourceDef }],
   }], 'assimilate');
   if (novo === undefined) return null;
-  g.log(`${g.state.players[p].name} assimila ${nome}.`);
+  reg(g, 'zona')`${jog(p)} assimila ${obj(novo, undefined, nome)}.`;
   return novo;
 }
 
@@ -50,7 +51,7 @@ export function assimilatePermanent(g: G, p: PlayerId, id: ObjId, source: ObjId,
   addEffect(g, { source, sourceDef, controller: p, duration: { kind: 'whileOnBattlefield', obj: id }, affected: [id], mods: MODS_ASSIMILAR });
   o.data.assimilado = true;
   o.data.assimiladoPor = source;
-  g.log(`${g.state.players[p].name} assimila ${nameOf(g, id)}.`);
+  reg(g, 'outro')`${jog(p)} assimila ${obj(id)}.`;
   g.bump();
   return true;
 }

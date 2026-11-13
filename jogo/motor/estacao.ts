@@ -14,6 +14,7 @@ import { isCreature, nameOf, power } from './chars.ts';
 import type { AbilityDef, ActivatedDef, SCtx, StaticDef } from './defs.ts';
 import { activated, lkiChars, staticAbility } from './dsl.ts';
 import type { Mod, ObjId } from './types.ts';
+import { obj, reg } from './registro.ts';
 
 /** marcadores de carga na permanente */
 export function chargeCounters(c: { g: SCtx['g'] }, id: ObjId): number {
@@ -29,7 +30,7 @@ export function station(): ActivatedDef {
     const n = c.g.state.objects[virada]?.zone === 'battlefield' ? power(c.g, virada) : (lkiChars(c.g, virada)?.power ?? 0);
     if (n > 0 && c.g.state.objects[c.source]?.zone === 'battlefield') {
       addCounters(c.g, { kind: 'obj', id: c.source }, 'charge', n, c.you);
-      c.g.log(`${nameOf(c.g, c.source)} recebe ${n} marcador(es) de carga (estação).`, { rule: '702.184a' });
+      reg(c.g, 'outro', { rule: '702.184a', actor: c.you })`${obj(c.source)} recebe ${n} marcador(es) de carga (estação).`;
     }
   }, { kw: 'station', timing: 'sorcery', text: 'Estação (vire outra criatura que você controla: coloque marcadores de carga iguais à força dela nesta permanente. Estação só como feitiço.)' });
 }

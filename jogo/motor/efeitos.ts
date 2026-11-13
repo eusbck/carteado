@@ -12,6 +12,7 @@ import { BASIC_LAND_MANA, NON_CREATURE_SUBTYPES, oracle, allOracleNames } from '
 import { addEffect } from './state.ts';
 import { addPending } from './triggers.ts';
 import type { Duration, ManaType, Mod, ObjId, PlayerId, ZoneName } from './types.ts';
+import { jog, objs, reg } from './registro.ts';
 
 // ---------------------------------------------------------------------------
 // Efeitos com duração
@@ -125,7 +126,7 @@ export function* searchTo(c: Ctx, player: PlayerId, filter: (id: ObjId) => boole
   const found = yield* searchLibrary(c.g, player, player, { max: n, min: opts.exactly ? n : 0, filter, prompt: opts.prompt ?? `Procure até ${n} carta(s)` });
   let res: ObjId[] = [];
   if (found.length) {
-    if (opts.reveal) c.g.log(`${c.g.state.players[player].name} revela ${found.map((id) => nameOf(c.g, id)).join(', ')}.`, { rule: '701.20' });
+    if (opts.reveal) reg(c.g, 'revela', { rule: '701.20' })`${jog(player)} revela ${objs(found)}.`;
     if (to === 'battlefield') res = yield* putOntoBattlefield(c.g, found.map((id) => ({ id, controller: player, tapped: opts.tapped })), 'search');
     else res = (yield* moveObjects(c.g, found.map((id) => ({ id, to })), 'search')).filter((x): x is ObjId => x !== null);
   }

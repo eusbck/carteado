@@ -347,7 +347,7 @@ export function basicLandcycling(costText: string): ActivatedDef {
   return activated([...cost(costText), { k: 'discardSelf' }], function* (c) {
     const found = yield* searchLibrary(c.g, c.you, c.you, { max: 1, filter: (id) => chars(c.g, id).supertypes.includes('Basic') && isLand(c.g, id), prompt: 'Procure uma carta de terreno básico' });
     if (found.length) {
-      c.g.log(`${c.g.state.players[c.you].name} revela ${found.map((id) => nameOf(c.g, id)).join(', ')}.`);
+      reg(c.g, 'revela')`${jog(c.you)} revela ${objs(found)}.`;
       yield* moveObjects(c.g, found.map((id) => ({ id, to: 'hand' as ZoneName })), 'search');
     }
     shuffleLibrary(c.g, c.you);
@@ -498,3 +498,4 @@ export const land = {
 };
 
 import * as askModule from './ask.ts';
+import { jog, objs, reg } from './registro.ts';

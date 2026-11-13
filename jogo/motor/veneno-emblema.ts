@@ -8,6 +8,7 @@ import { registry, type StaticDef } from './defs.ts';
 import type { G } from './game-context.ts';
 import { createObject } from './state.ts';
 import type { ManaUnit, ObjId, PlayerId } from './types.ts';
+import { jog, obj, reg } from './registro.ts';
 
 // ---------------------------------------------------------------------------
 // Tóxico e corrompido
@@ -42,7 +43,7 @@ export function createEmblem(g: G, player: PlayerId, emblem: string): ObjId | nu
   if (!registry.emblems.has(emblem)) throw new Error(`Emblema não registrado: ${emblem}`);
   if (g.state.players[player].left) return null;
   const o = createObject(g, { def: emblem, owner: player, controller: player, zone: 'command' });
-  g.log(`${g.state.players[player].name} recebe um emblema: ${chars(g, o.id).name}.`, { rule: '114.2' });
+  reg(g, 'outro', { rule: '114.2' })`${jog(player)} recebe um emblema: ${obj(o.id, undefined, chars(g, o.id).name)}.`;
   return o.id;
 }
 

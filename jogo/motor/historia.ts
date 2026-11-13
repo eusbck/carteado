@@ -8,6 +8,7 @@ import type { AbilityDef, Gen, SCtx } from './defs.ts';
 import { keyword } from './dsl.ts';
 import type { G } from './game-context.ts';
 import type { PlayerId } from './types.ts';
+import { jog, reg } from './registro.ts';
 
 /** quantas permanentes do jogador são artefato, Saga ou lendária (cada uma conta uma vez, ruling 3) */
 export function permanentesDeHistoria(g: G, p: PlayerId): number {
@@ -37,7 +38,7 @@ export function storied(): AbilityDef[] {
           if (!pl || pl.enduringStory || permanentesDeHistoria(c.g, c.you) < 3) return false;
           pl.enduringStory = true;
           c.g.bump();
-          c.g.log(`${pl.name} tem uma história duradoura.`, { rule: '702.195a' });
+          reg(c.g, 'outro', { rule: '702.195a' })`${jog(c.you)} tem uma história duradoura.`;
           return true;
         },
       },

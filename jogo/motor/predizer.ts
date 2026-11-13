@@ -8,6 +8,7 @@ import type { AltCastDef, Gen, StaticDef } from './defs.ts';
 import type { G } from './game-context.ts';
 import { parseCost } from './mana.ts';
 import type { ObjId, PlayerId } from './types.ts';
+import { jog, reg } from './registro.ts';
 
 /** o custo da ação especial de predizer (CR 702.143a) */
 export const CUSTO_PREDIZER = '{2}';
@@ -64,6 +65,6 @@ export function* doForetell(g: G, p: PlayerId, id: ObjId): Gen<boolean> {
   if (ex === null || ex === undefined || g.state.objects[ex]?.zone !== 'exile') return true;
   g.state.objects[ex].data.foretold = { turn: g.state.turn.number };
   g.bump();
-  g.log(`${g.state.players[p].name} prediz uma carta (exila da mão virada para baixo).`, { rule: '702.143a' });
+  reg(g, 'zona', { rule: '702.143a' })`${jog(p)} prediz uma carta (exila da mão virada para baixo).`;
   return true;
 }

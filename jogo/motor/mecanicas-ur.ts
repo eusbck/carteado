@@ -10,6 +10,7 @@ import type { G } from './game-context.ts';
 import { next as sorteia } from './rng.ts';
 import { addEffect } from './state.ts';
 import type { ObjId, PlayerId } from './types.ts';
+import { jog, obj, objs, reg } from './registro.ts';
 
 // ---------------------------------------------------------------------------
 // Rolar um dado (CR 706)
@@ -17,7 +18,7 @@ import type { ObjId, PlayerId } from './types.ts';
 /** rola um dado de N faces (CR 706.1a) com o gerador da partida e devolve o resultado (de 1 a N) */
 export function rollDie(g: G, p: PlayerId, faces: number): number {
   const r = 1 + Math.floor(sorteia(g.state.rng) * faces);
-  g.log(`${g.state.players[p].name} rola um d${faces} e tira ${r}.`, { rule: '706.2' });
+  reg(g, 'outro', { rule: '706.2' })`${jog(p)} rola um d${faces} e tira ${r}.`;
   return r;
 }
 
@@ -44,7 +45,7 @@ export function* airbend(g: G, controller: PlayerId, source: ObjId, ids: ObjId[]
       mods: [{ k: 'rule', id: 'rule:mayPlay', params: { objs, player: dono, mana: '{2}', spellsOnly: true, label: 'Conjurar do exílio por {2} (ar dobrado)' } }],
     });
   }
-  if (res.length) g.log(`${g.state.players[controller].name} dobra o ar: ${res.map((id) => nameOf(g, id)).join(', ')}.`, { rule: '701.65a' });
+  if (res.length) reg(g, 'zona', { rule: '701.65a' })`${jog(controller)} dobra o ar: ${objs(res)}.`;
   return res;
 }
 
@@ -58,7 +59,7 @@ export function exert(g: G, id: ObjId): boolean {
   if (!o || o.zone !== 'battlefield') return false;
   o.data.skipNextUntap = true;
   g.bump();
-  g.log(`${nameOf(g, id)} é exaurido.`, { rule: '701.43a' });
+  reg(g, 'outro', { rule: '701.43a' })`${obj(id)} é exaurido.`;
   return true;
 }
 
@@ -124,7 +125,7 @@ defineAbility(DOBRA_EXILA, nextEndStepTrigger(function* (c) {
     source: ex, sourceDef: '', controller: o.owner, duration: { kind: 'permanent' }, affected: null,
     mods: [{ k: 'rule', id: 'rule:mayPlay', params: { objs: [ex], player: o.owner, spellsOnly: true, fromTurn: g.state.turn.number + 1, label: 'Conjurar do exílio (dobra)' } }],
   });
-  g.log(`${nameOf(g, ex)} é exilada (dobra); o dono pode conjurá-la num turno posterior.`, { rule: '702.185a' });
+  reg(g, 'zona', { rule: '702.185a' })`${obj(ex)} é exilada (dobra); o dono pode conjurá-la num turno posterior.`;
 }, 'Dobra: exile este permanente; o dono pode conjurá-lo do exílio num turno posterior.'));
 
 /** cartas de artefato ou de criatura vermelha na mão (Tannuk) e outras: para o filtro da permissão de dobra */

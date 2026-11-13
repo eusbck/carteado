@@ -25,6 +25,7 @@ import { shuffle } from './rng.ts';
 import { castSpell, copySpell, faceDefOf, totalSpellCost, type CastMethod } from './stack.ts';
 import { emit } from './triggers.ts';
 import type { GameObject, ManaSymbol, ObjId, PlayerId, TargetRef, ZoneName } from './types.ts';
+import { jog, obj, objs, reg } from './registro.ts';
 
 /** tempo de feitiço (CR 307.5): fase principal do próprio turno, pilha vazia */
 function tempoDeFeitico(g: G, p: PlayerId): boolean {
@@ -91,7 +92,7 @@ export function* turnFaceUpMorph(g: G, p: PlayerId, id: ObjId): Gen<boolean> {
   o.faceDown = false;
   delete o.data.manifestada;
   g.bump();
-  g.log(`${g.state.players[p].name} paga a metamorfose ${formatCost(custo)} e vira para cima ${nome}.`, { rule: '702.37e' });
+  reg(g, 'outro', { rule: '702.37e' })`${jog(p)} paga a metamorfose ${formatCost(custo)} e vira para cima ${obj(id, undefined, nome)}.`;
   emit(g, [{ type: 'turnedFaceUp', obj: id }]);
   return true;
 }
@@ -148,7 +149,7 @@ export function ninjutsu(custo: string, opts: { commander?: boolean } = {}): Act
     const devolvido = (c.data.costInfo as { returnedAttacker?: { target: TargetRef | null } } | undefined)?.returnedAttacker;
     const alvo = devolvido?.target;
     const [novo] = yield* putOntoBattlefield(c.g, [{ id: c.source, controller: c.you, tapped: true, attacking: alvoDeAtaqueValido(c.g, c.you, alvo) ? alvo : undefined }], 'ninjutsu');
-    if (novo !== undefined) c.g.log(`${nameOf(c.g, novo)} entra no campo virada e atacando (${nome.toLowerCase()}).`, { rule: opts.commander ? '702.49d' : '702.49a' });
+    if (novo !== undefined) reg(c.g, 'zona', { rule: opts.commander ? '702.49d' : '702.49a', actor: c.you })`${obj(novo)} entra no campo virada e atacando (${nome.toLowerCase()}).`;
   }, {
     zones: zonas, kw: opts.commander ? 'commander ninjutsu' : 'ninjutsu', param: custo,
     text: `${nome} ${custo} (${custo}, devolva à mão um atacante não bloqueado que você controla: ponha esta carta no campo ${opts.commander ? 'vinda da sua mão ou da zona de comando, ' : ''}virada e atacando)`,
@@ -219,7 +220,7 @@ export const MADNESS_TRIGGER = defineAbility('kw:madness', triggered({ kind: 'ev
   }
   if (!conjurou && c.g.state.objects[id]?.zone === 'exile') {
     yield* moveObjects(c.g, [{ id, to: 'graveyard' }], 'madness');
-    c.g.log(`${nome} vai do exílio para o cemitério (loucura não conjurada).`, { rule: '702.35a' });
+    reg(c.g, 'zona', { rule: '702.35a' })`${obj(id, undefined, nome)} vai do exílio para o cemitério (loucura não conjurada).`;
   }
 }, { text: 'Loucura: quando esta carta é exilada pela loucura, o dono pode conjurá-la pelo custo de loucura; se não conjurar, ela vai para o cemitério.' }));
 
@@ -322,7 +323,7 @@ export function cascade(): TriggeredDef {
     const i = lib.findIndex((id) => !isLand(g, id) && manaValue(g, id) < mv);
     const tiradas = i < 0 ? [...lib] : lib.slice(0, i + 1);
     if (!tiradas.length) return;
-    g.log(`Cascata de ${s.lki[spell]?.chars.name ?? nameOf(g, spell)}: ${s.players[c.you].name} exila ${tiradas.map((id) => nameOf(g, id)).join(', ')}.`, { rule: '702.85a' });
+    reg(g, 'zona', { rule: '702.85a', actor: c.you })`Cascata de ${obj(spell, 'fonte', s.lki[spell]?.chars.name ?? nameOf(g, spell))}: ${jog(c.you)} exila ${objs(tiradas)}.`;
     const novos = (yield* moveObjects(g, tiradas.map((id) => ({ id, to: 'exile' as const })), 'cascade')).filter((x): x is ObjId => x !== null);
     const achada = i < 0 ? null : novos[novos.length - 1] ?? null;
     if (achada !== null && g.state.objects[achada]?.zone === 'exile' && manaValue(g, achada) < mv) {
@@ -469,6 +470,6 @@ export function* behold(c: Ctx | (SCtx & { you: PlayerId }), quality: (id: ObjId
   if (!esc.length) return null;
   const id = Number(esc[0]);
   const from = campo.includes(id) ? 'battlefield' : 'hand';
-  g.log(`${s.players[p].name} contempla ${nameOf(g, id)}${from === 'hand' ? ' (revelada da mão)' : ''}.`, { rule: '701.4a' });
+  reg(g, from === 'hand' ? 'revela' : 'outro', { rule: '701.4a' })`${jog(p)} contempla ${obj(id)}${from === 'hand' ? ' (revelada da mão)' : ''}.`;
   return { id, from };
 }

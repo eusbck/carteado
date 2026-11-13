@@ -19,6 +19,7 @@ import { mayPay } from './efeitos.ts';
 import type { G } from './game-context.ts';
 import { emit } from './triggers.ts';
 import type { ObjId, PlayerId } from './types.ts';
+import { jog, obj, reg } from './registro.ts';
 
 // ---------------------------------------------------------------------------
 // Manutenção cumulativa (CR 702.24)
@@ -78,7 +79,7 @@ export function energyOf(g: G, p: PlayerId): number {
 export function getEnergy(g: G, p: PlayerId, n: number): number {
   if (n <= 0) return 0;
   const k = addCounters(g, { kind: 'player', id: p }, 'energy', n, p);
-  if (k > 0) g.log(`${g.state.players[p].name} recebe ${k} de energia ({E}).`, { rule: '107.14' });
+  if (k > 0) reg(g, 'outro', { rule: '107.14' })`${jog(p)} recebe ${k} de energia ({E}).`;
   return k;
 }
 
@@ -90,7 +91,7 @@ export function payEnergy(g: G, p: PlayerId, n: number): boolean {
   pl.counters.energy -= n;
   if (pl.counters.energy === 0) delete pl.counters.energy;
   g.bump();
-  g.log(`${pl.name} paga ${n} de energia ({E}).`, { rule: '107.14' });
+  reg(g, 'outro', { rule: '107.14' })`${jog(p)} paga ${n} de energia ({E}).`;
   return true;
 }
 
@@ -112,7 +113,7 @@ export function exchangeControl(g: G, a: ObjId, b: ObjId, source: ObjId): boolea
   if (g.state.players[ca].left || g.state.players[cb].left) return false;
   gainControl(g, a, cb, { kind: 'permanent' }, source);
   gainControl(g, b, ca, { kind: 'permanent' }, source);
-  g.log(`${nameOf(g, a)} e ${nameOf(g, b)} trocam de controlador.`, { rule: '701.12b' });
+  reg(g, 'outro', { rule: '701.12b' })`${obj(a)} e ${obj(b)} trocam de controlador.`;
   return true;
 }
 
@@ -139,7 +140,7 @@ export function* manifestDread(g: G, p: PlayerId): Gen<ObjId | null> {
     res = id ?? null;
     const outras = topo.filter((x) => x !== escolhida && g.state.objects[x]?.zone === 'library');
     if (outras.length) yield* moveObjects(g, outras.map((x) => ({ id: x, to: 'graveyard' as const })), 'manifestDread');
-    g.log(`${pl.name} manifesta o pavor.`, { rule: '701.62a', visibleTo: [p], hiddenText: `${pl.name} manifesta o pavor.` });
+    reg(g, 'zona', { rule: '701.62a', visibleTo: [p], hiddenText: `${pl.name} manifesta o pavor.` })`${jog(p)} manifesta o pavor.`;
   }
   emit(g, [{ type: 'manifestDread', player: p, obj: res }]);
   return res;
@@ -171,7 +172,7 @@ export function transmute(custo: string): ActivatedDef {
     const mv = c.g.state.objects[c.source] ? manaValue(c.g, c.source) : (c.g.state.lki[c.source]?.chars.manaValue ?? 0);
     const achadas = yield* searchLibrary(c.g, c.you, c.you, { max: 1, filter: (id) => manaValue(c.g, id) === mv, prompt: `Transmutar: procure uma carta com valor de mana ${mv}` });
     if (achadas.length) {
-      c.g.log(`${c.g.state.players[c.you].name} revela ${nameOf(c.g, achadas[0])}.`, { rule: '701.20' });
+      reg(c.g, 'revela', { rule: '701.20' })`${jog(c.you)} revela ${obj(achadas[0])}.`;
       yield* moveObjects(c.g, [{ id: achadas[0], to: 'hand' }], 'search');
     }
     shuffleLibrary(c.g, c.you);

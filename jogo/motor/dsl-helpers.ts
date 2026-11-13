@@ -3,6 +3,7 @@ import { chooseItems, objItem, yesNo } from './ask.ts';
 import { nameOf } from './chars.ts';
 import type { Gen, SCtx } from './defs.ts';
 import type { ObjId } from './types.ts';
+import { jog, obj, reg } from './registro.ts';
 
 export { dealDamage, lookAndArrange, returnToHand } from './actions.ts';
 
@@ -15,6 +16,6 @@ export function* yesNoReveal(c: SCtx, cands: ObjId[], subtypes: string[]): Gen<b
     const [pick] = yield* chooseItems(c.g, c.you, 'Escolha a carta a revelar', cands.map((x) => objItem(c.g, x, nameOf(c.g, x))), 1, 1);
     id = Number(pick);
   }
-  c.g.log(`${c.g.state.players[c.you].name} revela ${nameOf(c.g, id)}.`, { rule: '701.20' });
+  reg(c.g, 'revela', { rule: '701.20' })`${jog(c.you)} revela ${obj(id)}.`;
   return true;
 }

@@ -12,6 +12,7 @@ import { formatCost, genericOf, matchPool, parseCost, phyrexianCount, poolToStri
 import { addPending, emit } from './triggers.ts';
 import { oracle } from './oracle.ts';
 import type { Answer, ManaSymbol, ManaType, ManaUnit, ObjId, PaymentSource, PlayerId } from './types.ts';
+import { jog, obj, reg } from './registro.ts';
 
 // ---------------------------------------------------------------------------
 // Fontes de mana
@@ -763,7 +764,7 @@ export function* payParts(g: G, player: PlayerId, parts: CostPart[], source: Obj
         if (!o) return false;
         o.visibleTo = 'all';
         g.bump();
-        g.log(`${s.players[player].name} revela ${nameOf(g, source)}${o.zone === 'command' ? ' da zona de comando' : ' da mão'}.`, { rule: '702.49b' });
+        reg(g, 'revela', { rule: '702.49b' })`${jog(player)} revela ${obj(source)}${o.zone === 'command' ? ' da zona de comando' : ' da mão'}.`;
         break;
       }
       case 'custom': {

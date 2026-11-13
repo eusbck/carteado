@@ -39,7 +39,7 @@ export function transform(g: G, id: ObjId): boolean {
   const o = g.state.objects[id];
   if (!o || o.zone !== 'battlefield' || o.faceDown || !canTransform(o.def)) return false;
   o.face = o.face === 0 ? 1 : 0;
-  g.log(`${nameOf(g, id)}: transforma.`, { rule: '701.28' });
+  reg(g, 'outro', { rule: '701.28' })`${obj(id)}: transforma.`;
   g.bump();
   emit(g, [{ type: 'transform', obj: id, to: o.face }]);
   return true;
@@ -68,7 +68,7 @@ export function* incubate(g: G, p: PlayerId, n: number): Gen<ObjId | null> {
   if (g.state.players[p].left) return null;
   const [id] = yield* putOntoBattlefield(g, [{ controller: p, token: { def: 'Incubator' }, counters: n > 0 ? { '+1/+1': n } : {} }], 'token');
   if (id === undefined) return null;
-  g.log(`${g.state.players[p].name} incuba ${n}.`, { rule: '701.53a' });
+  reg(g, 'outro', { rule: '701.53a' })`${jog(p)} incuba ${n}.`;
   return id;
 }
 
@@ -84,7 +84,7 @@ export function* proliferate(g: G, p: PlayerId): Gen<void> {
     if (!o.phasedOut && Object.values(o.counters).some((n) => n > 0)) itens.push(objItem(g, id, nameOf(g, id)));
   }
   for (const pl of s.players) if (!pl.left && Object.values(pl.counters).some((n) => n > 0)) itens.push(playerItem(g, pl.id));
-  g.log(`${s.players[p].name} prolifera.`, { rule: '701.34' });
+  reg(g, 'outro', { rule: '701.34' })`${jog(p)} prolifera.`;
   if (itens.length === 0) return;
   const escolhidos = yield* chooseItems(g, p, 'Proliferar: escolha os permanentes e jogadores que ganham mais um marcador de cada tipo', itens, 0, itens.length);
   for (const sel of escolhidos) {
@@ -288,7 +288,7 @@ export function* discover(g: G, p: PlayerId, n: number): Gen<number | null> {
   const i = lib.findIndex((id) => !isLand(g, id) && chars(g, id).manaValue <= n);
   const tiradas = i < 0 ? [...lib] : lib.slice(0, i + 1);
   const valor = i < 0 ? null : chars(g, lib[i]).manaValue;
-  g.log(`${s.players[p].name} descobre ${n}: exila ${tiradas.map((id) => nameOf(g, id)).join(', ') || 'nada'}.`, { rule: '701.57' });
+  reg(g, 'zona', { rule: '701.57' })`${jog(p)} descobre ${n}: exila ${objs(tiradas, undefined, ', ', 'nada')}.`;
   const novos = (yield* moveObjects(g, tiradas.map((id) => ({ id, to: 'exile' as const })), 'discover')).filter((x): x is ObjId => x !== null);
   const achada = i < 0 ? null : novos[novos.length - 1] ?? null;
   if (achada !== null) {
@@ -403,7 +403,7 @@ export function* manifest(g: G, p: PlayerId): Gen<ObjId | null> {
   const topo = g.state.zones.library[p][0];
   if (topo === undefined || g.state.players[p].left) return null;
   const [id] = yield* putOntoBattlefield(g, [{ id: topo, controller: p, faceDown: true, data: { manifestada: true } }], 'manifest');
-  if (id !== undefined) g.log(`${g.state.players[p].name} manifesta a carta do topo do grimório.`, { rule: '701.40' });
+  if (id !== undefined) reg(g, 'zona', { rule: '701.40' })`${jog(p)} manifesta a carta do topo do grimório.`;
   return id ?? null;
 }
 
@@ -428,7 +428,7 @@ export function* turnFaceUp(g: G, p: PlayerId, id: ObjId): Gen<boolean> {
   o.faceDown = false;
   delete o.data.manifestada;
   g.bump();
-  g.log(`${g.state.players[p].name} vira para cima ${nameOf(g, id)}.`, { rule: '701.40a' });
+  reg(g, 'outro', { rule: '701.40a' })`${jog(p)} vira para cima ${obj(id)}.`;
   emit(g, [{ type: 'turnedFaceUp', obj: id }]);
   return true;
 }
@@ -510,7 +510,7 @@ export function* doSuspend(g: G, p: PlayerId, id: ObjId): Gen<boolean> {
   const [ex] = yield* exile(g, [id]);
   if (ex === null || ex === undefined) return true;
   addCounters(g, { kind: 'obj', id: ex }, 'time', prm.n, p);
-  g.log(`${g.state.players[p].name} suspende ${nameOf(g, ex)} com ${prm.n} marcadores de tempo.`, { rule: '702.62a' });
+  reg(g, 'zona', { rule: '702.62a' })`${jog(p)} suspende ${obj(ex)} com ${prm.n} marcadores de tempo.`;
   return true;
 }
 
@@ -519,6 +519,7 @@ export function* doSuspend(g: G, p: PlayerId, id: ObjId): Gen<boolean> {
 // ---------------------------------------------------------------------------
 import type { AltCastDef } from './defs.ts';
 import type { GameObject } from './types.ts';
+import { jog, obj, objs, reg } from './registro.ts';
 
 /** o permanente veio de uma mágica conjurada pelo custo iminente (CR 702.176a) */
 export function impendingPaid(o: GameObject | null | undefined): boolean {
@@ -626,7 +627,7 @@ export function exchangeLifeAndToughness(c: { g: G; you: PlayerId; source: ObjId
   addEffect(g, { source: c.source, sourceDef: '', controller: c.you, duration: { kind: 'whileOnBattlefield', obj: creature }, affected: [creature], mods: [{ k: 'setT', t: vida }] });
   if (resist > vida) gainLife(g, player, resist - vida, c.source);
   else if (vida > resist) loseLife(g, player, vida - resist, c.source);
-  g.log(`${pl.name} troca o total de vida (${vida}) pela resistência de ${nameOf(g, creature)} (${resist}).`, { rule: '701.12c' });
+  reg(g, 'vida', { rule: '701.12c' })`${jog(player)} troca o total de vida (${vida}) pela resistência de ${obj(creature)} (${resist}).`;
 }
 
 /** "Você pode conjurar [a carta]" durante uma resolução, pagando os custos (CR 608.2g); anyType: mana de qualquer tipo */
@@ -767,7 +768,7 @@ export function* explore(g: G, id: ObjId): Gen<void> {
     if (noCampo()) addCounters(g, { kind: 'obj', id }, '+1/+1', 1, p);
     return;
   }
-  g.log(`${g.state.players[p].name} revela ${nameOf(g, topo)} (explorar).`, { rule: '701.44a' });
+  reg(g, 'revela', { rule: '701.44a' })`${jog(p)} revela ${obj(topo)} (explorar).`;
   if (isLand(g, topo)) {
     yield* moveObjects(g, [{ id: topo, to: 'hand' }], 'effect');
     return;
@@ -779,6 +780,6 @@ export function* explore(g: G, id: ObjId): Gen<void> {
 /** Cara ou coroa (CR 705): devolve true se o jogador ganhou. Usa o gerador da partida, para a partida ser reproduzível. */
 export function flipCoin(g: G, p: PlayerId): boolean {
   const ganhou = sorteia(g.state.rng) < 0.5;
-  g.log(`${g.state.players[p].name} joga cara ou coroa e ${ganhou ? 'ganha' : 'perde'}.`, { rule: '705.2' });
+  reg(g, 'outro', { rule: '705.2' })`${jog(p)} joga cara ou coroa e ${ganhou ? 'ganha' : 'perde'}.`;
   return ganhou;
 }
