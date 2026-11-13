@@ -10,7 +10,8 @@ import { carregarCartas } from './cartas.ts';
 import { compartilhar } from './compartilhar.ts';
 import type { ReferenciaRelogio } from './cronometro.ts';
 import { auxiliosAtivos, preferencias } from './preferencias.ts';
-import { tocar, ultimaVez } from './sons.ts';
+import { tocar } from './sons.ts';
+import { abafarMusica } from './musica.ts';
 import { deveTocarDecisao } from './somDecisao.ts';
 import { avatarGuardado } from './avatares.ts';
 import { registrarEnvio, registrarErroServidor } from './relato/diagnostico.ts';
@@ -127,11 +128,9 @@ class Loja {
   readonly cenas: Cena[] = [];
   /** o número da última vista recebida nesta conexão */
   private seqJogo = 0;
-  /** som de decisão (somDecisao.ts): a última decisão sua já avisada (ou que já estava na mesa), quando o som tocou e
-   * quando você respondeu pela última vez */
+  /** som de decisão (somDecisao.ts): a última decisão sua já avisada e quando a buzina tocou */
   private decisaoAvisada: number | null = null;
   private ultimoSomDecisao = -Infinity;
-  private ultimaResposta = -Infinity;
 
   constructor() {
     ligarControle({ duracao: (ms) => this.quadros.duracao(ms), estender: (ms) => this.quadros.estender(ms), pular: () => this.quadros.pular() });
@@ -383,7 +382,6 @@ class Loja {
   responder(decisao: number, resposta: Answer): void {
     if (this.e.respondida === decisao) return;
     this.enviar({ t: 'responder', decisao, resposta });
-    this.ultimaResposta = performance.now();
     this.mudar({ respondida: decisao, recusaCombate: null });
   }
   manual(decisao: number, manual: ManualAction): void { this.responder(decisao, { kind: 'priority', action: 'manual', manual }); }
@@ -395,7 +393,6 @@ class Loja {
     const ant = this.e.desfazer;
     const mesmoPedido = !!pedido && !!ant && ant.de === pedido.de && Math.abs(ant.ate - pedido.ate) < 1500
       && JSON.stringify([ant.linhas, ant.aceitaram, ant.faltam]) === JSON.stringify([pedido.linhas, pedido.aceitaram, pedido.faltam]);
-    const entrando = !this.e.vista;
     const vista = compartilhar(this.e.vista, m.vista);
     const mudou = vista !== this.e.vista;
     this.mudar({
@@ -404,22 +401,19 @@ class Loja {
       recusaCombate: m.vista.decision?.id === this.e.recusaCombate?.decisao ? this.e.recusaCombate : null,
       desfazivel: !!m.desfazivel, desfazer: mesmoPedido ? ant : pedido, cena: m.cena ?? null,
     });
-    this.avisarDecisao(m.vista.decision?.id ?? null, entrando || !!m.reinicio);
+    this.avisarDecisao(m.vista.decision?.id ?? null);
     return mudou;
   }
 
-  /** o "paam" quando uma decisão sua aparece na mesa (somDecisao.ts). Entrando na partida ou reconectando, a decisão
-   * que já estava lá não toca */
-  private avisarDecisao(decisao: number | null, semSom: boolean): void {
+  /** a buzina sempre que uma decisão sua aparece na mesa (somDecisao.ts); a música abaixa por baixo dela */
+  private avisarDecisao(decisao: number | null): void {
     const agora = performance.now();
-    const tocarAgora = !semSom && deveTocarDecisao({
-      decisao, anterior: this.decisaoAvisada, agora, ultimoSom: this.ultimoSomDecisao, ultimoTurnoMeu: ultimaVez('turnoMeu'),
-      ultimaResposta: this.ultimaResposta, escondida: typeof document !== 'undefined' && document.hidden, ligado: preferencias().sons.decisao,
-    });
+    const tocarAgora = deveTocarDecisao({ decisao, anterior: this.decisaoAvisada, agora, ultimoSom: this.ultimoSomDecisao, ligado: preferencias().sons.decisao });
     if (decisao !== null) this.decisaoAvisada = decisao;
     if (!tocarAgora) return;
     this.ultimoSomDecisao = agora;
     tocar('decisao');
+    if (preferencias().volume > 0) abafarMusica(1.6);
   }
 
   private tratar(m: MsgServidor): void {

@@ -11,7 +11,7 @@ import './config-som.css';
 
 const SONS: { id: Som; nome: string; descricao?: string }[] = [
   { id: 'turnoMeu', nome: 'Som do seu turno', descricao: 'trompas: avisa que é a sua vez' },
-  { id: 'decisao', nome: 'Som da sua decisão', descricao: 'o acorde das trompas quando você tem algo a decidir, mesmo noutra aba' },
+  { id: 'decisao', nome: 'Som da sua decisão', descricao: 'buzina alta sempre que você tem algo a decidir, mesmo noutra aba' },
   { id: 'turnoAdversario', nome: 'Som do turno de um adversário', descricao: 'harpa, mais discreta' },
   { id: 'dano', nome: 'Som de dano' },
   { id: 'vida', nome: 'Som de ganhar vida' },
