@@ -289,7 +289,7 @@ class Loja {
         const relogio: ReferenciaRelogio = { agora: m.agora, recebidoEm: performance.now() };
         guardarSala({ codigo: m.sala.codigo, token: m.token });
         // o retrato escolhido antes (noutra sala) vale também nesta
-        const meu = m.sala.assentos[m.voce];
+        const meu = m.voce === null ? undefined : m.sala.assentos[m.voce];
         const guardado = avatarGuardado();
         if (guardado && meu?.tipo === 'humano' && (meu.avatar ?? null) !== guardado && !this.avatarMandado.has(m.sala.codigo)) {
           this.avatarMandado.add(m.sala.codigo);
@@ -389,4 +389,9 @@ export function useLoja(): Estado {
     return desfazer;
   }, []);
   return loja.e;
+}
+
+/** a pessoa assiste a sala sem assento (modo espectador) */
+export function ehEspectador(e: Estado): boolean {
+  return !!e.sala && e.voce === null;
 }
