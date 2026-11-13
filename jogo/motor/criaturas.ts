@@ -22,6 +22,7 @@ import { addEffect } from './state.ts';
 import { emit } from './triggers.ts';
 import { createEmblem } from './veneno-emblema.ts';
 import type { Chars, CopyExcept, CopyValues, Duration, ObjId, PlayerId, TargetRef } from './types.ts';
+import { jog, lista, obj as refObj, objs, reg, trecho } from './registro.ts';
 
 type C = { g: G; you: PlayerId; source: ObjId };
 
@@ -74,7 +75,7 @@ export function entersAsCopy(opts: {
     ev.copyOf = copyWithExcept(c.g, modelo, opts.except?.(c, ev));
     const dono = ev.obj >= 0 ? (s.objects[ev.obj]?.owner ?? ev.controller) : ev.controller;
     opts.then?.(c, ev, copyValuesChars(ev.copyOf, dono));
-    c.g.log(`${opts.label} entra como cópia de ${nameOf(c.g, modelo)}.`, { rule: '707.5' });
+    reg(c.g, 'outro', { rule: '707.5' })`${opts.label} entra como cópia de ${refObj(modelo)}.`;
   }, opts.text);
 }
 
@@ -89,7 +90,7 @@ export function becomeCopy(c: C, obj: ObjId, model: ObjId, opts: { except?: Copy
   const antes = nameOf(g, obj);
   const of = copyWithExcept(g, model, opts.except);
   addEffect(g, { source: c.source, sourceDef: '', controller: c.you, duration: opts.duration ?? { kind: 'whileOnBattlefield', obj }, affected: [obj], mods: [{ k: 'copy', of }] });
-  g.log(`${antes} vira uma cópia de ${nameOf(g, model)}.`, { rule: '707.2' });
+  reg(g, 'outro', { rule: '707.2' })`${refObj(obj, undefined, antes)} vira uma cópia de ${refObj(model)}.`;
   return true;
 }
 
@@ -129,7 +130,8 @@ export function* connive(g: G, obj: ObjId, n = 1): Gen<void> {
   if (n <= 0) return; // CR 701.50e
   const p = controladorLki(g, obj);
   if (p === null || g.state.players[p].left) return;
-  g.log(`${g.state.objects[obj] ? nameOf(g, obj) : lkiChars(g, obj)?.name ?? 'O permanente'} trama.`, { rule: '701.50a' });
+  const nomeLki = g.state.objects[obj] ? undefined : lkiChars(g, obj)?.name;
+  reg(g, 'outro', { rule: '701.50a', actor: p })`${g.state.objects[obj] ? refObj(obj) : nomeLki !== undefined ? refObj(obj, undefined, nomeLki) : 'O permanente'} trama.`;
   yield* draw(g, p, n);
   const descartadas = yield* discard(g, p, n);
   const naoTerrenos = descartadas.filter((id) => g.state.objects[id] && !isLand(g, id)).length;
@@ -184,7 +186,7 @@ export function* amass(g: G, p: PlayerId, subtype: string, n: number): Gen<ObjId
       addEffect(g, { source: army, sourceDef: '', controller: p, duration: { kind: 'whileOnBattlefield', obj: army }, affected: [army], mods: [{ k: 'addTypes', subtypes: [subtype] }] });
     }
   }
-  g.log(`${g.state.players[p].name} reúne ${subtype} ${n}.`, { rule: '701.47a' });
+  reg(g, 'outro', { rule: '701.47a' })`${jog(p)} reúne ${subtype} ${n}.`;
   emit(g, [{ type: 'amass', player: p, army }]);
   return army;
 }
@@ -276,7 +278,8 @@ export function* ringTempts(g: G, p: PlayerId): Gen<ObjId | null> {
     g.state.objects[bearer].data.ringBearer = p;
   }
   g.bump();
-  g.log(`O Anel tenta ${g.state.players[p].name} (${e.data.tempted}ª vez)${bearer !== null ? `; ${nameOf(g, bearer)} é o Portador do Anel` : ''}.`, { rule: '701.54a' });
+  if (bearer !== null) reg(g, 'outro', { rule: '701.54a', actor: p })`O Anel tenta ${jog(p)} (${e.data.tempted}ª vez); ${refObj(bearer)} é o Portador do Anel.`;
+  else reg(g, 'outro', { rule: '701.54a', actor: p })`O Anel tenta ${jog(p)} (${e.data.tempted}ª vez).`;
   emit(g, [{ type: 'ringTempts', player: p, bearer }]);
   return bearer;
 }
@@ -289,7 +292,7 @@ export function* ringTempts(g: G, p: PlayerId): Gen<ObjId | null> {
 export function regenerate(c: C, id: ObjId): void {
   if (c.g.state.objects[id]?.zone !== 'battlefield') return;
   addEffect(c.g, { source: c.source, sourceDef: '', controller: c.you, duration: { kind: 'endOfTurn' }, affected: [id], mods: [{ k: 'rule', id: 'rule:regenShield' }] });
-  c.g.log(`${nameOf(c.g, id)} recebe um escudo de regeneração.`, { rule: '701.19a' });
+  reg(c.g, 'outro', { rule: '701.19a' })`${refObj(id)} recebe um escudo de regeneração.`;
 }
 
 /** "[permanentes] não podem ser regenerados [neste turno]" (CR 701.19c): os escudos deixam de se aplicar */
@@ -431,7 +434,7 @@ export function becomeMonstrous(g: G, id: ObjId, n: number, by: PlayerId): boole
   o.data.monstrous = true;
   o.data.monstrousX = n;
   g.bump();
-  g.log(`${nameOf(g, id)} fica monstruoso.`, { rule: '701.37a' });
+  reg(g, 'outro', { rule: '701.37a' })`${refObj(id)} fica monstruoso.`;
   emit(g, [{ type: 'monstrous', obj: id, n }]);
   return true;
 }
@@ -474,7 +477,10 @@ export function* clash(g: G, p: PlayerId, opponent: PlayerId | null): Gen<boolea
   const s = g.state;
   const jogadores = [p, ...(opponent !== null ? [opponent] : [])].filter((x) => !s.players[x].left);
   const reveladas = new Map<PlayerId, ObjId | undefined>(jogadores.map((x) => [x, s.zones.library[x][0]]));
-  g.log(`Confronto: ${jogadores.map((x) => `${s.players[x].name} revela ${reveladas.get(x) !== undefined ? nameOf(g, reveladas.get(x)!) : 'nada (grimório vazio)'}`).join('; ')}.`, { rule: '701.30a' });
+  reg(g, 'revela', { rule: '701.30a', actor: p })`Confronto: ${lista(jogadores.map((x) => {
+    const id = reveladas.get(x);
+    return id !== undefined ? trecho`${jog(x)} revela ${refObj(id)}` : trecho`${jog(x)} revela nada (grimório vazio)`;
+  }), '; ')}.`;
   const fundo: ObjId[] = [];
   for (const x of g.apnap().filter((y) => jogadores.includes(y))) {
     const id = reveladas.get(x);
@@ -490,7 +496,7 @@ export function* clash(g: G, p: PlayerId, opponent: PlayerId | null): Gen<boolea
   const valor = (x: PlayerId) => { const id = reveladas.get(x); return id === undefined ? null : manaValue(g, id); };
   const venceu = (x: PlayerId) => { const v = valor(x); return v !== null && jogadores.every((y) => y === x || valor(y) === null || (valor(y) as number) < v); };
   emit(g, jogadores.map((x) => ({ type: 'clash' as const, player: x, won: venceu(x) })));
-  for (const x of jogadores) if (venceu(x)) g.log(`${s.players[x].name} vence o confronto.`, { rule: '701.30d' });
+  for (const x of jogadores) if (venceu(x)) reg(g, 'outro', { rule: '701.30d' })`${jog(x)} vence o confronto.`;
   return venceu(p);
 }
 
@@ -547,7 +553,7 @@ export function hideaway(n: number): TriggeredDef {
     const resto = shuffle(s.rng, topo.filter((id) => id !== escolhida && s.objects[id]?.zone === 'library'));
     s.zones.library[c.you] = [...s.zones.library[c.you].filter((id) => !resto.includes(id)), ...resto];
     c.g.bump();
-    c.g.log(`${s.players[c.you].name} esconde uma carta (esconderijo ${n}).`, { rule: '702.75a' });
+    reg(c.g, 'zona', { rule: '702.75a' })`${jog(c.you)} esconde uma carta (esconderijo ${n}).`;
   }, { text: `Esconderijo ${n} (quando entra, olhe as ${n} cartas do topo do seu grimório, exile uma delas virada para baixo e ponha o resto no fundo em ordem aleatória).` });
   a.kw = 'hideaway';
   a.param = n;
@@ -565,7 +571,7 @@ export function* mayPlayFree(g: G, p: PlayerId, card: ObjId, prompt: string): Ge
     if (g.state.turn.active !== p || g.state.turn.landsPlayed >= landPlaysAllowed(g, p)) return false;
     if (!(yield* yesNo(g, p, prompt))) return false;
     g.state.turn.landsPlayed++;
-    g.log(`${g.state.players[p].name} joga ${nameOf(g, card)}.`, { rule: '305.1' });
+    reg(g, 'terreno', { rule: '305.1' })`${jog(p)} joga ${refObj(card)}.`;
     yield* putOntoBattlefield(g, [{ id: card, controller: p }], 'play');
     return true;
   }
@@ -613,7 +619,7 @@ export function typecycling(tipo: string, costText: string): ActivatedDef {
   return activated([...cost(costText), { k: 'discardSelf' }], function* (c) {
     const achadas = yield* searchLibrary(c.g, c.you, c.you, { max: 1, filter: (id) => { const ch = chars(c.g, id); return ch.subtypes.includes(tipo) || ch.types.includes(tipo); }, prompt: `Procure uma carta de ${nome}` });
     if (achadas.length) {
-      c.g.log(`${c.g.state.players[c.you].name} revela ${achadas.map((id) => nameOf(c.g, id)).join(', ')}.`, { rule: '701.20' });
+      reg(c.g, 'revela', { rule: '701.20' })`${jog(c.you)} revela ${objs(achadas)}.`;
       yield* moveObjects(c.g, achadas.map((id) => ({ id, to: 'hand' as const })), 'search');
     }
     shuffleLibrary(c.g, c.you);
@@ -623,7 +629,7 @@ export function typecycling(tipo: string, costText: string): ActivatedDef {
 /** CR 701.16a: investigar — crie uma ficha Clue (cartas/fichas.ts) */
 export function* investigate(g: G, p: PlayerId, n = 1): Gen<ObjId[]> {
   const ids = yield* createTokens(g, p, 'Clue', n);
-  if (ids.length) g.log(`${g.state.players[p].name} investiga.`, { rule: '701.16a' });
+  if (ids.length) reg(g, 'outro', { rule: '701.16a' })`${jog(p)} investiga.`;
   return ids;
 }
 
@@ -695,14 +701,14 @@ export function encore(custo: string): ActivatedDef {
 export function* populate(g: G, p: PlayerId): Gen<ObjId | null> {
   const s = g.state;
   const fichas = creaturesOf(g, p).filter((id) => s.objects[id].isToken);
-  if (!fichas.length) { g.log(`${s.players[p].name} popula, mas não controla fichas de criatura.`, { rule: '701.36a' }); return null; }
+  if (!fichas.length) { reg(g, 'outro', { rule: '701.36a' })`${jog(p)} popula, mas não controla fichas de criatura.`; return null; }
   let modelo = fichas[0];
   if (fichas.length > 1) {
     const [esc] = yield* chooseItems(g, p, 'Popular: escolha a ficha de criatura que será copiada', fichas.map((id) => objItem(g, id, nameOf(g, id))), 1, 1);
     modelo = Number(esc);
   }
   const [nova] = yield* createTokens(g, p, { copyOf: copiableValues(g, modelo) }, 1);
-  g.log(`${s.players[p].name} popula: cria uma cópia de ${nameOf(g, modelo)}.`, { rule: '701.36a' });
+  reg(g, 'outro', { rule: '701.36a' })`${jog(p)} popula: cria uma cópia de ${refObj(modelo)}.`;
   return nova ?? null;
 }
 
