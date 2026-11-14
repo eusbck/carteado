@@ -111,6 +111,21 @@
    "combos": [],
    "conferidoEm": "2026-11-13T22:49:45.914Z"
   },
+  "b7JEv8j9d06-BicRKi2Lwg": {
+   "lista": "4487d9a18111d703",
+   "etiqueta": "R",
+   "gameChangers": [
+    "Enlightened Tutor",
+    "Chrome Mox",
+    "Ancient Tomb",
+    "Serra's Sanctum",
+    "Drannith Magistrate"
+   ],
+   "terrenosEmMassa": [],
+   "turnosExtras": [],
+   "combos": [],
+   "conferidoEm": "2026-11-14T02:11:31.010Z"
+  },
   "BPBVD7NsT0SznrmdG4l3Tw": {
    "lista": "83820d1bdf7213dc",
    "etiqueta": "E",
@@ -159,6 +174,94 @@
     }
    ],
    "conferidoEm": "2026-11-13T22:49:42.586Z"
+  },
+  "eR3Y8b3mO0mlkopo8Xux7w": {
+   "lista": "2a380d8b03f267af",
+   "etiqueta": "R",
+   "gameChangers": [
+    "Aura Shards",
+    "Crop Rotation",
+    "Teferi's Protection",
+    "Mana Vault",
+    "Seedborn Muse",
+    "Enlightened Tutor",
+    "Ancient Tomb",
+    "Gaea's Cradle",
+    "Jeska's Will",
+    "The One Ring"
+   ],
+   "terrenosEmMassa": [
+    "Winter Orb"
+   ],
+   "turnosExtras": [],
+   "combos": [
+    {
+     "cartas": [
+      "Toph, the First Metalbender",
+      "Bumi, Unleashed",
+      "Liquimetal Torque"
+     ],
+     "resultado": [
+      "Infinite combat phases",
+      "Infinite mana lands you control can produce",
+      "Infinite combat damage",
+      "Infinite untap of lands you control",
+      "Infinite mana nontoken artifacts you control can produce",
+      "Infinite untap of nontoken artifacts you control"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Toph, the First Metalbender",
+      "Candelabra of Tawnos",
+      "Mana Vault"
+     ],
+     "resultado": [
+      "Infinite colorless mana",
+      "Infinite mana lands you control can produce",
+      "Infinite untap of nontoken artifacts you control",
+      "Infinite mana nontoken artifacts you control can produce",
+      "Infinite untap of lands you control"
+     ],
+     "duasCartas": true,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Toph, the First Metalbender",
+      "Candelabra of Tawnos",
+      "Lotus Field"
+     ],
+     "resultado": [
+      "Infinite colored mana",
+      "Infinite mana lands you control can produce",
+      "Infinite untap of nontoken artifacts you control",
+      "Infinite mana nontoken artifacts you control can produce",
+      "Infinite untap of lands you control"
+     ],
+     "duasCartas": true,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Toph, the First Metalbender",
+      "Candelabra of Tawnos",
+      "Gaea's Cradle"
+     ],
+     "resultado": [
+      "Infinite mana lands you control can produce",
+      "Infinite green mana",
+      "Infinite untap of nontoken artifacts you control",
+      "Infinite mana nontoken artifacts you control can produce",
+      "Infinite untap of lands you control"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    }
+   ],
+   "conferidoEm": "2026-11-14T02:11:27.603Z"
   },
   "fbMRiG7ia0-hm464dMWcEQ": {
    "lista": "b494740843c33d51",
@@ -295,6 +398,166 @@
    "combos": [],
    "conferidoEm": "2026-11-13T22:48:53.093Z"
   },
+  "GMft59MvVkq0po8hUB2Ccg": {
+   "lista": "476ebab9eb393876",
+   "etiqueta": "R",
+   "gameChangers": [
+    "Demonic Tutor",
+    "Rhystic Study",
+    "Mana Vault",
+    "Chrome Mox",
+    "Enlightened Tutor",
+    "Vampiric Tutor",
+    "Ancient Tomb",
+    "Smothering Tithe",
+    "Cyclonic Rift",
+    "Mox Diamond",
+    "Gaea's Cradle",
+    "Worldly Tutor",
+    "The One Ring",
+    "Orcish Bowmasters",
+    "Force of Will",
+    "Fierce Guardianship"
+   ],
+   "terrenosEmMassa": [],
+   "turnosExtras": [],
+   "combos": [
+    {
+     "cartas": [
+      "Selvala, Heart of the Wilds",
+      "Emiel the Blessed",
+      "Tyvar, Jubilant Brawler"
+     ],
+     "resultado": [
+      "Infinite creature LTB",
+      "Infinite creature ETB",
+      "Infinite colored mana",
+      "Infinite blinking"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Derevi, Empyrial Tactician",
+      "Emiel the Blessed",
+      "Faeburrow Elder"
+     ],
+     "resultado": [
+      "Infinite untap of permanents you control",
+      "Infinite creature LTB",
+      "Infinite creature ETB",
+      "Infinite blinking",
+      "Infinite mana of colors among permanents you control",
+      "Infinite mana permanents you control can produce"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Derevi, Empyrial Tactician",
+      "Emiel the Blessed",
+      "Bloom Tender"
+     ],
+     "resultado": [
+      "Infinite untap of permanents you control",
+      "Infinite creature LTB",
+      "Infinite creature ETB",
+      "Infinite blinking",
+      "Infinite mana of colors among permanents you control",
+      "Infinite mana permanents you control can produce"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Derevi, Empyrial Tactician",
+      "Emiel the Blessed",
+      "Selvala, Heart of the Wilds"
+     ],
+     "resultado": [
+      "Infinite untap of permanents you control",
+      "Infinite creature LTB",
+      "Infinite creature ETB",
+      "Infinite colored mana",
+      "Infinite blinking",
+      "Infinite mana permanents you control can produce"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Derevi, Empyrial Tactician",
+      "Emiel the Blessed",
+      "Mana Vault"
+     ],
+     "resultado": [
+      "Infinite creature LTB",
+      "Infinite creature ETB"
+     ],
+     "duasCartas": false,
+     "relevante": false
+    },
+    {
+     "cartas": [
+      "Derevi, Empyrial Tactician",
+      "Emiel the Blessed",
+      "Gaea's Cradle"
+     ],
+     "resultado": [
+      "Infinite untap of permanents you control",
+      "Infinite blinking",
+      "Infinite creature ETB",
+      "Infinite creature LTB",
+      "Infinite green mana",
+      "Infinite mana permanents you control can produce"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Derevi, Empyrial Tactician",
+      "Emiel the Blessed",
+      "Chromatic Orrery"
+     ],
+     "resultado": [
+      "Infinite untap of permanents you control",
+      "Infinite blinking",
+      "Infinite creature ETB",
+      "Infinite creature LTB",
+      "Infinite colored mana",
+      "Infinite colorless mana",
+      "Infinite card draw",
+      "Infinite draw triggers",
+      "Infinite mana permanents you control can produce"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Aminatou, the Fateshifter",
+      "Nicol Bolas, Dragon-God",
+      "Oath of Teferi"
+     ],
+     "resultado": [
+      "Exile all of your opponents' permanents and hands",
+      "Infinite card draw",
+      "Infinite creature ETB",
+      "Infinite creature LTB",
+      "Infinite mana lands you control can produce",
+      "Mass Land Denial"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    }
+   ],
+   "conferidoEm": "2026-11-14T02:11:29.341Z"
+  },
   "gzvtI9o53U6g06GgzF9keQ": {
    "lista": "55a61c148538c56a",
    "etiqueta": "E",
@@ -370,6 +633,88 @@
    "turnosExtras": [],
    "combos": [],
    "conferidoEm": "2026-11-13T22:49:37.111Z"
+  },
+  "Mi4yPy0jFUGPx6pI5x3OVw": {
+   "lista": "e5a2fd4e046e6937",
+   "etiqueta": "R",
+   "gameChangers": [
+    "Rhystic Study",
+    "Mana Vault",
+    "Force of Will",
+    "Chrome Mox",
+    "Ancient Tomb",
+    "Mox Diamond",
+    "Grim Monolith",
+    "Fierce Guardianship",
+    "Consecrated Sphinx",
+    "The One Ring"
+   ],
+   "terrenosEmMassa": [],
+   "turnosExtras": [],
+   "combos": [
+    {
+     "cartas": [
+      "Hullbreaker Horror",
+      "Mox Amber"
+     ],
+     "resultado": [
+      "Infinite creature ETB",
+      "Infinite creature LTB",
+      "Infinite colored mana",
+      "Infinite storm count"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Hullbreaker Horror"
+     ],
+     "resultado": [
+      "Infinite creature LTB",
+      "Infinite creature ETB",
+      "Infinite storm count"
+     ],
+     "duasCartas": false,
+     "relevante": false
+    },
+    {
+     "cartas": [
+      "Hullbreaker Horror",
+      "Sol Ring"
+     ],
+     "resultado": [
+      "Infinite colorless mana",
+      "Infinite storm count"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Hullbreaker Horror",
+      "Mana Vault"
+     ],
+     "resultado": [
+      "Infinite colorless mana",
+      "Infinite storm count"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Kinnan, Bonder Prodigy",
+      "Basalt Monolith"
+     ],
+     "resultado": [
+      "Infinite colorless mana"
+     ],
+     "duasCartas": true,
+     "relevante": true
+    }
+   ],
+   "conferidoEm": "2026-11-14T02:11:25.713Z"
   },
   "mWQACuymy0OV-2MJgx2-TQ": {
    "lista": "ac15df709649e1a6",
@@ -1478,6 +1823,168 @@
    "combos": [],
    "conferidoEm": "2026-11-13T22:50:00.513Z"
   },
+  "rXqqlz74JkCv1jFnrbNZSw": {
+   "lista": "d3b2e24bcb22d589",
+   "etiqueta": "P",
+   "gameChangers": [
+    "Ancient Tomb",
+    "Opposition Agent",
+    "Jeska's Will"
+   ],
+   "terrenosEmMassa": [],
+   "turnosExtras": [],
+   "combos": [
+    {
+     "cartas": [
+      "Devastating Onslaught",
+      "Mana Geyser",
+      "Pinnacle Monk // Mystic Peak"
+     ],
+     "resultado": [
+      "Infinite creature LTB",
+      "Infinite creature ETB",
+      "Infinite creature sacrifice triggers",
+      "Infinite death triggers",
+      "Infinite storm count",
+      "Infinite red mana",
+      "Infinite creature tokens with haste",
+      "Infinite magecraft triggers"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Devastating Onslaught",
+      "Terror of the Peaks"
+     ],
+     "resultado": [
+      "Near-infinite damage"
+     ],
+     "duasCartas": true,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Orthion, Hero of Lavabrink",
+      "Terror of the Peaks"
+     ],
+     "resultado": [
+      "Near-infinite damage"
+     ],
+     "duasCartas": true,
+     "relevante": true
+    }
+   ],
+   "conferidoEm": "2026-11-14T02:11:35.780Z"
+  },
+  "sbt8qFFKA0KMHWn8h9pUeg": {
+   "lista": "de2041f1e9b1609c",
+   "etiqueta": "R",
+   "gameChangers": [],
+   "terrenosEmMassa": [],
+   "turnosExtras": [],
+   "combos": [
+    {
+     "cartas": [
+      "Dualcaster Mage",
+      "Electroduplicate"
+     ],
+     "resultado": [
+      "Infinite creature LTB",
+      "Infinite creature ETB",
+      "Infinite creature sacrifice triggers",
+      "Infinite death triggers",
+      "Infinite creature tokens with haste",
+      "Infinite magecraft triggers"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Saw in Half",
+      "Burnt Offering",
+      "Pinnacle Monk // Mystic Peak"
+     ],
+     "resultado": [
+      "Infinite creature LTB",
+      "Infinite creature ETB",
+      "Infinite creature sacrifice triggers",
+      "Infinite death triggers",
+      "Infinite storm count",
+      "Infinite red mana",
+      "Infinite magecraft triggers",
+      "Infinite black mana"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Dualcaster Mage",
+      "Essence Flux"
+     ],
+     "resultado": [
+      "Infinite creature ETB",
+      "Infinite creature LTB",
+      "Infinite magecraft triggers"
+     ],
+     "duasCartas": false,
+     "relevante": false
+    },
+    {
+     "cartas": [
+      "Dualcaster Mage",
+      "Saw in Half"
+     ],
+     "resultado": [
+      "Infinite creature tokens",
+      "Infinite creature ETB",
+      "Infinite magecraft triggers",
+      "Infinite creature LTB",
+      "Infinite death triggers"
+     ],
+     "duasCartas": false,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Dualcaster Mage",
+      "Ghostly Flicker"
+     ],
+     "resultado": [
+      "Infinite artifact ETB",
+      "Infinite artifact LTB",
+      "Infinite creature ETB",
+      "Infinite creature LTB",
+      "Infinite magecraft triggers",
+      "Infinite landfall triggers",
+      "Infinite mana lands you control that enter the battlefield untapped can produce",
+      "Infinite blinking of artifacts",
+      "Infinite blinking of lands",
+      "Infinite blinking"
+     ],
+     "duasCartas": true,
+     "relevante": true
+    },
+    {
+     "cartas": [
+      "Rionya, Fire Dancer",
+      "Combat Celebrant"
+     ],
+     "resultado": [
+      "Infinite combat phases",
+      "Infinite creature tokens with haste",
+      "Infinite creature ETB",
+      "Infinite creature LTB"
+     ],
+     "duasCartas": true,
+     "relevante": true
+    }
+   ],
+   "conferidoEm": "2026-11-14T02:11:21.076Z"
+  },
   "shj-af8AiUWaoFVbNORQig": {
    "lista": "6e516c1e10636e9d",
    "etiqueta": "R",
@@ -2268,6 +2775,52 @@
    "combos": [],
    "conferidoEm": "2026-11-13T22:49:40.165Z"
   },
+  "V6TB_5VN4E2fFmajDMHgGg": {
+   "lista": "fd5a4cb71bb61ab7",
+   "etiqueta": "S",
+   "gameChangers": [
+    "Seedborn Muse",
+    "Smothering Tithe"
+   ],
+   "terrenosEmMassa": [],
+   "turnosExtras": [],
+   "combos": [
+    {
+     "cartas": [
+      "Ms. Bumbleflower",
+      "Shrieking Drake",
+      "Crystalline Crawler"
+     ],
+     "resultado": [
+      "Infinite card draw for opponents",
+      "Infinite draw triggers for each opponent",
+      "Near-infinite creature ETB",
+      "Near-infinite creature LTB",
+      "Near-infinite storm count"
+     ],
+     "duasCartas": false,
+     "relevante": false
+    },
+    {
+     "cartas": [
+      "Ms. Bumbleflower",
+      "Shrieking Drake",
+      "Smothering Tithe"
+     ],
+     "resultado": [
+      "Near-infinite +1/+1 counters on creatures you control",
+      "Near-infinite creature ETB",
+      "Near-infinite storm count",
+      "Near-infinite creature LTB",
+      "Infinite card draw for opponents",
+      "Infinite draw triggers for each opponent"
+     ],
+     "duasCartas": true,
+     "relevante": false
+    }
+   ],
+   "conferidoEm": "2026-11-14T02:11:23.810Z"
+  },
   "vNWUamZY7Uu0gqg6xKepyw": {
    "lista": "297ab12bdd84ca17",
    "etiqueta": "E",
@@ -2276,6 +2829,31 @@
    "turnosExtras": [],
    "combos": [],
    "conferidoEm": "2026-11-13T22:49:48.044Z"
+  },
+  "WCRDLVuQpEi5YR4R5zNitw": {
+   "lista": "c23a424f7e19540a",
+   "etiqueta": "R",
+   "gameChangers": [
+    "Cyclonic Rift",
+    "Bolas's Citadel",
+    "The One Ring"
+   ],
+   "terrenosEmMassa": [],
+   "turnosExtras": [],
+   "combos": [
+    {
+     "cartas": [
+      "Super State",
+      "Triumph of the Hordes"
+     ],
+     "resultado": [
+      "Each opponent loses the game"
+     ],
+     "duasCartas": true,
+     "relevante": true
+    }
+   ],
+   "conferidoEm": "2026-11-14T02:11:32.675Z"
   },
   "x_R7MWbxrUq4A2ST0PqldA": {
    "lista": "2c495eabf32e6bf6",
