@@ -107,7 +107,10 @@ describe('cronômetro: ciclo da partida e protocolo', () => {
     s.transmitir();
     expect(ana.msgs).toHaveLength(n);
     s.desligar(pessoas[1]);
-    expect(ana.msgs.slice(n)).toHaveLength(1);
+    // a queda manda a sala uma vez só; desde a Onda B do Registro vem junto a linha de sistema "perdeu a conexão"
+    const novas = ana.msgs.slice(n);
+    expect(novas.filter((m) => m.t === 'sala')).toHaveLength(1);
+    expect(novas.map((m) => m.t).sort()).toEqual(['sala', 'sistema']);
     expect(ana.ultima('sala')?.agora).toBe(INICIO + 20_000);
     expect(ana.ultima('sala')?.sala.cronometro?.iniciadaEm).toBe(INICIO);
   });
