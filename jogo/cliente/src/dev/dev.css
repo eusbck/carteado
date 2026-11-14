@@ -50,7 +50,7 @@
 
 .dev-topo {
   position: sticky; top: 0; z-index: 5; display: flex; align-items: center; gap: 16px; padding: 10px 16px;
-  background: var(--vidro, rgba(22, 20, 23, .9)); backdrop-filter: blur(8px); border-bottom: 1px solid var(--linha, rgba(242, 232, 213, .09));
+  background: var(--vidro, rgba(22, 20, 23, .9)); border-bottom: 1px solid var(--linha, rgba(242, 232, 213, .09));
 }
 .dev-marca { display: flex; flex-direction: column; line-height: 1.1; }
 .dev-marca span { font-size: 11px; color: var(--acao, #e85d28); text-transform: uppercase; letter-spacing: .1em; }

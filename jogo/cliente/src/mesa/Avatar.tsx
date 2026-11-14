@@ -49,15 +49,18 @@ export function Avatar(p: AvatarProps) {
     <div class={classes} data-avatar={p.avatar?.id ?? ''} data-jogador-avatar={p.jogador}
       style={{ '--tam': `${p.tamanho}px`, '--aura': p.avatar?.aura ?? p.cor, '--cor': p.cor }}>
       <span class="avatar-aura" aria-hidden="true" />
-      <span class="avatar-fundo" aria-hidden="true" />
-      {/* a inicial aparece enquanto o retrato carrega, ou se ele não existir */}
-      {(!comImagem || estado === 'carregando') && <span class="avatar-inicial" aria-hidden="true">{(p.nome || '?').slice(0, 1).toUpperCase()}</span>}
-      {comImagem && <img class="avatar-retrato avatar-dentro" src={url!} {...mesa} alt="" draggable={false} onLoad={() => setCarga({ url: url!, estado: 'pronto' })} onError={() => setCarga({ url: url!, estado: 'erro' })} />}
-      <span class="avatar-anel" aria-hidden="true" />
-      {comImagem && <img class="avatar-retrato avatar-fora" src={url!} {...mesa} alt="" draggable={false} aria-hidden="true" />}
-      <button type="button" class="vida-n avatar-vida" onClick={p.onVida} disabled={!p.onVida} title="Vida" aria-label={`Vida de ${p.nome}: ${p.vida}`}>
-        {p.vida}
-      </button>
+      {/* a sombra do medalhão fica só no corpo (parado): a aura que respira fica fora do filtro e anima só na GPU */}
+      <div class="avatar-corpo">
+        <span class="avatar-fundo" aria-hidden="true" />
+        {/* a inicial aparece enquanto o retrato carrega, ou se ele não existir */}
+        {(!comImagem || estado === 'carregando') && <span class="avatar-inicial" aria-hidden="true">{(p.nome || '?').slice(0, 1).toUpperCase()}</span>}
+        {comImagem && <img class="avatar-retrato avatar-dentro" src={url!} {...mesa} alt="" draggable={false} onLoad={() => setCarga({ url: url!, estado: 'pronto' })} onError={() => setCarga({ url: url!, estado: 'erro' })} />}
+        <span class="avatar-anel" aria-hidden="true" />
+        {comImagem && <img class="avatar-retrato avatar-fora" src={url!} {...mesa} alt="" draggable={false} aria-hidden="true" />}
+        <button type="button" class="vida-n avatar-vida" onClick={p.onVida} disabled={!p.onVida} title="Vida" aria-label={`Vida de ${p.nome}: ${p.vida}`}>
+          {p.vida}
+        </button>
+      </div>
     </div>
   );
 }
