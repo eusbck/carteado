@@ -1,0 +1,392 @@
+{
+ "formato": 1,
+ "id": "eR3Y8b3mO0mlkopo8Xux7w",
+ "ordem": 127,
+ "nome": "I am Melon Lord!",
+ "link": "https://moxfield.com/decks/eR3Y8b3mO0mlkopo8Xux7w",
+ "importadoEm": "2026-11-14T00:19:59.084Z",
+ "verificadoEm": "2026-11-14T00:19:59.084Z",
+ "atual": null,
+ "preparacao": {
+  "comandante": "Toph, the First Metalbender",
+  "cartas": [
+   {
+    "nome": "Mountain",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dryad of the Ilysian Grove",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arcane Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Command Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Akroma's Memorial",
+    "quantidade": 1
+   },
+   {
+    "nome": "Aura Shards",
+    "quantidade": 1
+   },
+   {
+    "nome": "Birds of Paradise",
+    "quantidade": 1
+   },
+   {
+    "nome": "Boompile",
+    "quantidade": 1
+   },
+   {
+    "nome": "Chromatic Lantern",
+    "quantidade": 1
+   },
+   {
+    "nome": "Crop Rotation",
+    "quantidade": 1
+   },
+   {
+    "nome": "Nature's Lore",
+    "quantidade": 1
+   },
+   {
+    "nome": "Path to Exile",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Swords to Plowshares",
+    "quantidade": 1
+   },
+   {
+    "nome": "Teferi's Protection",
+    "quantidade": 1
+   },
+   {
+    "nome": "Wild Growth",
+    "quantidade": 1
+   },
+   {
+    "nome": "Heroic Intervention",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mana Vault",
+    "quantidade": 1
+   },
+   {
+    "nome": "Strip Mine",
+    "quantidade": 1
+   },
+   {
+    "nome": "Winter Orb",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lotus Field",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ichor Wellspring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Plateau",
+    "quantidade": 1
+   },
+   {
+    "nome": "Savannah",
+    "quantidade": 1
+   },
+   {
+    "nome": "Taiga",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ghostly Prison",
+    "quantidade": 1
+   },
+   {
+    "nome": "Seedborn Muse",
+    "quantidade": 1
+   },
+   {
+    "nome": "Strionic Resonator",
+    "quantidade": 1
+   },
+   {
+    "nome": "Candelabra of Tawnos",
+    "quantidade": 1
+   },
+   {
+    "nome": "Pyroblast",
+    "quantidade": 1
+   },
+   {
+    "nome": "Reconnaissance",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sylvan Safekeeper",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bloodstained Mire",
+    "quantidade": 1
+   },
+   {
+    "nome": "Flooded Strand",
+    "quantidade": 1
+   },
+   {
+    "nome": "Kodama's Reach",
+    "quantidade": 1
+   },
+   {
+    "nome": "Boros Charm",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sacred Foundry",
+    "quantidade": 1
+   },
+   {
+    "nome": "Stomping Ground",
+    "quantidade": 1
+   },
+   {
+    "nome": "Enlightened Tutor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Wasteland",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ancient Tomb",
+    "quantidade": 1
+   },
+   {
+    "nome": "Temple Garden",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cataclysmic Gearhulk",
+    "quantidade": 1
+   },
+   {
+    "nome": "Authority of the Consuls",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arid Mesa",
+    "quantidade": 1
+   },
+   {
+    "nome": "Marsh Flats",
+    "quantidade": 1
+   },
+   {
+    "nome": "Scalding Tarn",
+    "quantidade": 1
+   },
+   {
+    "nome": "Windswept Heath",
+    "quantidade": 1
+   },
+   {
+    "nome": "Wooded Foothills",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ethersworn Canonist",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lotus Cobra",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gaea's Cradle",
+    "quantidade": 1
+   },
+   {
+    "nome": "Evolution Sage",
+    "quantidade": 1
+   },
+   {
+    "nome": "Finale of Devastation",
+    "quantidade": 1
+   },
+   {
+    "nome": "Deflecting Swat",
+    "quantidade": 1
+   },
+   {
+    "nome": "Flawless Maneuver",
+    "quantidade": 1
+   },
+   {
+    "nome": "Spinerock Knoll",
+    "quantidade": 1
+   },
+   {
+    "nome": "Windbrisk Heights",
+    "quantidade": 1
+   },
+   {
+    "nome": "Exploration",
+    "quantidade": 1
+   },
+   {
+    "nome": "Three Visits",
+    "quantidade": 1
+   },
+   {
+    "nome": "Amulet of Vigor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Scapeshift",
+    "quantidade": 1
+   },
+   {
+    "nome": "Spectator Seating",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bala Ged Recovery // Bala Ged Sanctuary",
+    "quantidade": 1
+   },
+   {
+    "nome": "Jeska's Will",
+    "quantidade": 1
+   },
+   {
+    "nome": "Urza's Saga",
+    "quantidade": 1
+   },
+   {
+    "nome": "Liquimetal Torque",
+    "quantidade": 1
+   },
+   {
+    "nome": "Yavimaya, Cradle of Growth",
+    "quantidade": 1
+   },
+   {
+    "nome": "Esper Sentinel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Moonsilver Key",
+    "quantidade": 1
+   },
+   {
+    "nome": "Reckless Impulse",
+    "quantidade": 1
+   },
+   {
+    "nome": "Boseiju, Who Endures",
+    "quantidade": 1
+   },
+   {
+    "nome": "Kodama of the West Tree",
+    "quantidade": 1
+   },
+   {
+    "nome": "The One Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Roaming Throne",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bristly Bill, Spine Sower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Annie Joins Up",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dawn's Truce",
+    "quantidade": 1
+   },
+   {
+    "nome": "Untimely Malfunction",
+    "quantidade": 1
+   },
+   {
+    "nome": "Brightglass Gearhulk",
+    "quantidade": 1
+   },
+   {
+    "nome": "Voice of Victory",
+    "quantidade": 1
+   },
+   {
+    "nome": "Herd Heirloom",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gogo, Mysterious Mime",
+    "quantidade": 1
+   },
+   {
+    "nome": "Terrasymbiosis",
+    "quantidade": 1
+   },
+   {
+    "nome": "Patrolling Peacemaker",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bumi, Eclectic Earthbender",
+    "quantidade": 1
+   },
+   {
+    "nome": "Badgermole Cub",
+    "quantidade": 1
+   },
+   {
+    "nome": "Avatar Kyoshi, Earthbender",
+    "quantidade": 1
+   },
+   {
+    "nome": "Toph, Earthbending Master",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bumi, Unleashed",
+    "quantidade": 1
+   },
+   {
+    "nome": "Toph, Greatest Earthbender",
+    "quantidade": 1
+   },
+   {
+    "nome": "Plains",
+    "quantidade": 4
+   },
+   {
+    "nome": "Forest",
+    "quantidade": 4
+   }
+  ],
+  "origem": {
+   "versao": 0,
+   "atualizadoEm": "2026-07-10T07:07:05.01Z"
+  },
+  "desde": "2026-11-14T00:19:59.084Z"
+ }
+}

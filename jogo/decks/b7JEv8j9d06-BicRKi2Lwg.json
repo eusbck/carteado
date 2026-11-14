@@ -1,0 +1,340 @@
+{
+ "formato": 1,
+ "id": "b7JEv8j9d06-BicRKi2Lwg",
+ "ordem": 129,
+ "nome": "Earn Your 9th Tail: Light-Paws EDH [PRIMER]",
+ "link": "https://moxfield.com/decks/b7JEv8j9d06-BicRKi2Lwg",
+ "importadoEm": "2026-11-14T00:20:07.952Z",
+ "verificadoEm": "2026-11-14T00:20:07.952Z",
+ "atual": null,
+ "preparacao": {
+  "comandante": "Light-Paws, Emperor's Voice",
+  "cartas": [
+   {
+    "nome": "All That Glitters",
+    "quantidade": 1
+   },
+   {
+    "nome": "Aetherflux Reservoir",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cartouche of Solidarity",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hyena Umbra",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Swords to Plowshares",
+    "quantidade": 1
+   },
+   {
+    "nome": "Land Tax",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gauntlets of Light",
+    "quantidade": 1
+   },
+   {
+    "nome": "Daybreak Coronet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gift of Granite",
+    "quantidade": 1
+   },
+   {
+    "nome": "Kor Spiritdancer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Spirit Mantle",
+    "quantidade": 1
+   },
+   {
+    "nome": "Enlightened Tutor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gryff's Boon",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cavern of Souls",
+    "quantidade": 1
+   },
+   {
+    "nome": "Saving Grace",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sram, Senior Edificer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cho-Manno's Blessing",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sage's Reverie",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mortal Obstinacy",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ethereal Armor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Triclopean Sight",
+    "quantidade": 1
+   },
+   {
+    "nome": "Heliod's Punishment",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sentinel's Eyes",
+    "quantidade": 1
+   },
+   {
+    "nome": "Solid Footing",
+    "quantidade": 1
+   },
+   {
+    "nome": "Conclave's Blessing",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shield of Duty and Reason",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mask of Law and Grace",
+    "quantidade": 1
+   },
+   {
+    "nome": "Urza's Saga",
+    "quantidade": 1
+   },
+   {
+    "nome": "Esper Sentinel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Curse of Silence",
+    "quantidade": 1
+   },
+   {
+    "nome": "Roadside Reliquary",
+    "quantidade": 1
+   },
+   {
+    "nome": "Stoneskin",
+    "quantidade": 1
+   },
+   {
+    "nome": "Deafening Silence",
+    "quantidade": 1
+   },
+   {
+    "nome": "Angelic Destiny",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lotus Petal",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mother of Runes",
+    "quantidade": 1
+   },
+   {
+    "nome": "Eiganjo Castle",
+    "quantidade": 1
+   },
+   {
+    "nome": "Benevolent Bodyguard",
+    "quantidade": 1
+   },
+   {
+    "nome": "Chrome Mox",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sigarda's Aid",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ancient Tomb",
+    "quantidade": 1
+   },
+   {
+    "nome": "Stony Silence",
+    "quantidade": 1
+   },
+   {
+    "nome": "Flickering Ward",
+    "quantidade": 1
+   },
+   {
+    "nome": "Giver of Runes",
+    "quantidade": 1
+   },
+   {
+    "nome": "On Thin Ice",
+    "quantidade": 1
+   },
+   {
+    "nome": "Null Rod",
+    "quantidade": 1
+   },
+   {
+    "nome": "Springleaf Drum",
+    "quantidade": 1
+   },
+   {
+    "nome": "Detainment Spell",
+    "quantidade": 1
+   },
+   {
+    "nome": "Replenish",
+    "quantidade": 1
+   },
+   {
+    "nome": "Serra's Sanctum",
+    "quantidade": 1
+   },
+   {
+    "nome": "Favorable Destiny",
+    "quantidade": 1
+   },
+   {
+    "nome": "Drannith Magistrate",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gemstone Caverns",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mox Amber",
+    "quantidade": 1
+   },
+   {
+    "nome": "Nykthos, Shrine to Nyx",
+    "quantidade": 1
+   },
+   {
+    "nome": "Benevolent Blessing",
+    "quantidade": 1
+   },
+   {
+    "nome": "Timely Ward",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mantle of the Ancients",
+    "quantidade": 1
+   },
+   {
+    "nome": "Swift Reconfiguration",
+    "quantidade": 1
+   },
+   {
+    "nome": "Plaza of Heroes",
+    "quantidade": 1
+   },
+   {
+    "nome": "Loran's Escape",
+    "quantidade": 1
+   },
+   {
+    "nome": "Military Discipline",
+    "quantidade": 1
+   },
+   {
+    "nome": "Chains of Custody",
+    "quantidade": 1
+   },
+   {
+    "nome": "Skrelv, Defector Mite",
+    "quantidade": 1
+   },
+   {
+    "nome": "Galadriel's Dismissal",
+    "quantidade": 1
+   },
+   {
+    "nome": "Idolized",
+    "quantidade": 1
+   },
+   {
+    "nome": "Feather of Flight",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shardmage's Rescue",
+    "quantidade": 1
+   },
+   {
+    "nome": "Optimistic Scavenger",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sheltered by Ghosts",
+    "quantidade": 1
+   },
+   {
+    "nome": "Twinblade Blessing",
+    "quantidade": 1
+   },
+   {
+    "nome": "Restoration Magic",
+    "quantidade": 1
+   },
+   {
+    "nome": "With Great Power . . .",
+    "quantidade": 1
+   },
+   {
+    "nome": "Brilliant Wings",
+    "quantidade": 1
+   },
+   {
+    "nome": "Enter the Avatar State",
+    "quantidade": 1
+   },
+   {
+    "nome": "Snow-Covered Plains",
+    "quantidade": 20
+   },
+   {
+    "nome": "Reverent Mantra",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lashknife",
+    "quantidade": 1
+   },
+   {
+    "nome": "Eiganjo, Seat of the Empire",
+    "quantidade": 1
+   }
+  ],
+  "origem": {
+   "versao": 0,
+   "atualizadoEm": "2025-11-17T18:10:34.03Z"
+  },
+  "desde": "2026-11-14T00:20:07.952Z"
+ }
+}

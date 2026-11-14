@@ -1,0 +1,416 @@
+{
+ "formato": 1,
+ "id": "Mi4yPy0jFUGPx6pI5x3OVw",
+ "ordem": 126,
+ "nome": "[cEDH] Kinnan NBC (No Bad Cards)",
+ "link": "https://moxfield.com/decks/Mi4yPy0jFUGPx6pI5x3OVw",
+ "importadoEm": "2026-11-14T00:19:47.566Z",
+ "verificadoEm": "2026-11-14T00:19:47.566Z",
+ "atual": null,
+ "preparacao": {
+  "comandante": "Kinnan, Bonder Prodigy",
+  "cartas": [
+   {
+    "nome": "Island",
+    "quantidade": 1
+   },
+   {
+    "nome": "Forest",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arcane Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Command Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mirrormade",
+    "quantidade": 1
+   },
+   {
+    "nome": "Swan Song",
+    "quantidade": 1
+   },
+   {
+    "nome": "Birds of Paradise",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dispel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Llanowar Elves",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lotus Petal",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rhystic Study",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dramatic Reversal",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fellwar Stone",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mana Vault",
+    "quantidade": 1
+   },
+   {
+    "nome": "Basalt Monolith",
+    "quantidade": 1
+   },
+   {
+    "nome": "Copy Artifact",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tropical Island",
+    "quantidade": 1
+   },
+   {
+    "nome": "Clever Impersonator",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sudden Substitution",
+    "quantidade": 1
+   },
+   {
+    "nome": "Yavimaya Coast",
+    "quantidade": 1
+   },
+   {
+    "nome": "Transmute Artifact",
+    "quantidade": 1
+   },
+   {
+    "nome": "City of Brass",
+    "quantidade": 1
+   },
+   {
+    "nome": "Flooded Strand",
+    "quantidade": 1
+   },
+   {
+    "nome": "Pact of Negation",
+    "quantidade": 1
+   },
+   {
+    "nome": "Force of Will",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fyndhorn Elves",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mystic Remora",
+    "quantidade": 1
+   },
+   {
+    "nome": "Breeding Pool",
+    "quantidade": 1
+   },
+   {
+    "nome": "Elvish Mystic",
+    "quantidade": 1
+   },
+   {
+    "nome": "Chrome Mox",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ancient Tomb",
+    "quantidade": 1
+   },
+   {
+    "nome": "Disrupting Shoal",
+    "quantidade": 1
+   },
+   {
+    "nome": "Botanical Sanctum",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ipnu Rivulet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mirage Mirror",
+    "quantidade": 1
+   },
+   {
+    "nome": "Trophy Mage",
+    "quantidade": 1
+   },
+   {
+    "nome": "Misty Rainforest",
+    "quantidade": 1
+   },
+   {
+    "nome": "Scalding Tarn",
+    "quantidade": 1
+   },
+   {
+    "nome": "Verdant Catacombs",
+    "quantidade": 1
+   },
+   {
+    "nome": "Polluted Delta",
+    "quantidade": 1
+   },
+   {
+    "nome": "Windswept Heath",
+    "quantidade": 1
+   },
+   {
+    "nome": "Wooded Foothills",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mox Diamond",
+    "quantidade": 1
+   },
+   {
+    "nome": "Flusterstorm",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mox Opal",
+    "quantidade": 1
+   },
+   {
+    "nome": "Twincast",
+    "quantidade": 1
+   },
+   {
+    "nome": "Grim Monolith",
+    "quantidade": 1
+   },
+   {
+    "nome": "Finale of Devastation",
+    "quantidade": 1
+   },
+   {
+    "nome": "Force of Negation",
+    "quantidade": 1
+   },
+   {
+    "nome": "Waterlogged Grove",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fierce Guardianship",
+    "quantidade": 1
+   },
+   {
+    "nome": "Consecrated Sphinx",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mental Misstep",
+    "quantidade": 1
+   },
+   {
+    "nome": "Copy Enchantment",
+    "quantidade": 1
+   },
+   {
+    "nome": "Springleaf Drum",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gilded Drake",
+    "quantidade": 1
+   },
+   {
+    "nome": "Elvish Spirit Guide",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dizzy Spell",
+    "quantidade": 1
+   },
+   {
+    "nome": "Drift of Phantasms",
+    "quantidade": 1
+   },
+   {
+    "nome": "Chain of Vapor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gemstone Caverns",
+    "quantidade": 1
+   },
+   {
+    "nome": "Snapback",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mox Amber",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hidden Strings",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mindbreak Trap",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tarnished Citadel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rejuvenating Springs",
+    "quantidade": 1
+   },
+   {
+    "nome": "Barkchannel Pathway // Tidechannel Pathway",
+    "quantidade": 1
+   },
+   {
+    "nome": "Subtlety",
+    "quantidade": 1
+   },
+   {
+    "nome": "Endurance",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hullbreaker Horror",
+    "quantidade": 1
+   },
+   {
+    "nome": "Boseiju, Who Endures",
+    "quantidade": 1
+   },
+   {
+    "nome": "Otawara, Soaring City",
+    "quantidade": 1
+   },
+   {
+    "nome": "Imposter Mech",
+    "quantidade": 1
+   },
+   {
+    "nome": "Faerie Mastermind",
+    "quantidade": 1
+   },
+   {
+    "nome": "The One Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Invasion of Ikoria // Zilortha, Apex of Ikoria",
+    "quantidade": 1
+   },
+   {
+    "nome": "Delighted Halfling",
+    "quantidade": 1
+   },
+   {
+    "nome": "Borne Upon a Wind",
+    "quantidade": 1
+   },
+   {
+    "nome": "Flesh Duplicate",
+    "quantidade": 1
+   },
+   {
+    "nome": "Volatile Stormdrake",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sink into Stupor // Soporific Springs",
+    "quantidade": 1
+   },
+   {
+    "nome": "Valley Floodcaller",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mockingbird",
+    "quantidade": 1
+   },
+   {
+    "nome": "Enduring Vitality",
+    "quantidade": 1
+   },
+   {
+    "nome": "High Fae Trickster",
+    "quantidade": 1
+   },
+   {
+    "nome": "Nature's Rhythm",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gene Pollinator",
+    "quantidade": 1
+   },
+   {
+    "nome": "The Cabbage Merchant",
+    "quantidade": 1
+   },
+   {
+    "nome": "Flash Photography",
+    "quantidade": 1
+   },
+   {
+    "nome": "Wan Shi Tong, Librarian",
+    "quantidade": 1
+   },
+   {
+    "nome": "Pia, Aether Ascetic",
+    "quantidade": 1
+   },
+   {
+    "nome": "Misdirection",
+    "quantidade": 1
+   },
+   {
+    "nome": "Thrasios, Triton Hero",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mana Confluence",
+    "quantidade": 1
+   },
+   {
+    "nome": "Chord of Calling",
+    "quantidade": 1
+   },
+   {
+    "nome": "Talisman of Curiosity",
+    "quantidade": 1
+   },
+   {
+    "nome": "Commandeer",
+    "quantidade": 1
+   }
+  ],
+  "origem": {
+   "versao": 0,
+   "atualizadoEm": "2026-11-07T04:48:21.017Z"
+  },
+  "desde": "2026-11-14T00:19:47.566Z"
+ }
+}

@@ -1,0 +1,416 @@
+{
+ "formato": 1,
+ "id": "WCRDLVuQpEi5YR4R5zNitw",
+ "ordem": 130,
+ "nome": "Multiverse of Madness",
+ "link": "https://moxfield.com/decks/WCRDLVuQpEi5YR4R5zNitw",
+ "importadoEm": "2026-11-14T00:20:17.203Z",
+ "verificadoEm": "2026-11-14T00:20:17.203Z",
+ "atual": null,
+ "preparacao": {
+  "comandante": "Jodah, the Unifier",
+  "cartas": [
+   {
+    "nome": "Heliod, Sun-Crowned",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arcane Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Command Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Swan Song",
+    "quantidade": 1
+   },
+   {
+    "nome": "Beast Within",
+    "quantidade": 1
+   },
+   {
+    "nome": "Counterspell",
+    "quantidade": 1
+   },
+   {
+    "nome": "Defense of the Heart",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dictate of Erebos",
+    "quantidade": 1
+   },
+   {
+    "nome": "Farseek",
+    "quantidade": 1
+   },
+   {
+    "nome": "Nature's Lore",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Swords to Plowshares",
+    "quantidade": 1
+   },
+   {
+    "nome": "Triumph of the Hordes",
+    "quantidade": 1
+   },
+   {
+    "nome": "Heroic Intervention",
+    "quantidade": 1
+   },
+   {
+    "nome": "The Mimeoplasm",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fellwar Stone",
+    "quantidade": 1
+   },
+   {
+    "nome": "Exotic Orchard",
+    "quantidade": 1
+   },
+   {
+    "nome": "Crucible of Worlds",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ruhan of the Fomori",
+    "quantidade": 1
+   },
+   {
+    "nome": "Future Sight",
+    "quantidade": 1
+   },
+   {
+    "nome": "Diabolic Tutor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cyclonic Rift",
+    "quantidade": 1
+   },
+   {
+    "nome": "Reflecting Pool",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bolas's Citadel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sisay, Weatherlight Captain",
+    "quantidade": 1
+   },
+   {
+    "nome": "Deadly Rollick",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vandalblast",
+    "quantidade": 1
+   },
+   {
+    "nome": "Three Visits",
+    "quantidade": 1
+   },
+   {
+    "nome": "Luminous Broodmoth",
+    "quantidade": 1
+   },
+   {
+    "nome": "Maddening Cacophony",
+    "quantidade": 1
+   },
+   {
+    "nome": "Greymond, Avacyn's Stalwart",
+    "quantidade": 1
+   },
+   {
+    "nome": "The World Tree",
+    "quantidade": 1
+   },
+   {
+    "nome": "Kardur, Doomscourge // Kardur, Doomscourge",
+    "quantidade": 1
+   },
+   {
+    "nome": "Minsc, Beloved Ranger",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vanquish the Horde",
+    "quantidade": 1
+   },
+   {
+    "nome": "Othelm, Sigardian Outcast",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arvinox, the Mind Flail",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sorin the Mirthless",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vikya, Scorching Stalwart",
+    "quantidade": 1
+   },
+   {
+    "nome": "Spara's Headquarters",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ziatora's Proving Ground",
+    "quantidade": 1
+   },
+   {
+    "nome": "Abaddon the Despoiler",
+    "quantidade": 1
+   },
+   {
+    "nome": "Celestine, the Living Saint",
+    "quantidade": 1
+   },
+   {
+    "nome": "Optimus Prime, Hero // Optimus Prime, Autobot Leader",
+    "quantidade": 1
+   },
+   {
+    "nome": "The One Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Frodo Baggins",
+    "quantidade": 1
+   },
+   {
+    "nome": "Boromir, Warden of the Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Aragorn, the Uniter",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sauron, the Dark Lord",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ian Malcolm, Chaotician",
+    "quantidade": 1
+   },
+   {
+    "nome": "K-9, Mark I",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sonic Screwdriver",
+    "quantidade": 1
+   },
+   {
+    "nome": "The Wise Mothman",
+    "quantidade": 1
+   },
+   {
+    "nome": "Permission Denied",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lara Croft, Tomb Raider",
+    "quantidade": 1
+   },
+   {
+    "nome": "Basim Ibn Ishaq",
+    "quantidade": 1
+   },
+   {
+    "nome": "Deadpool, Trading Card",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lightning, Army of One",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sonic the Hedgehog",
+    "quantidade": 1
+   },
+   {
+    "nome": "Super State",
+    "quantidade": 1
+   },
+   {
+    "nome": "Peter Parker // Amazing Spider-Man",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fire Lord Zuko",
+    "quantidade": 1
+   },
+   {
+    "nome": "Kratos, Stoic Father",
+    "quantidade": 1
+   },
+   {
+    "nome": "Nathan Drake, Treasure Hunter",
+    "quantidade": 1
+   },
+   {
+    "nome": "Jin Sakai, Ghost of Tsushima",
+    "quantidade": 1
+   },
+   {
+    "nome": "Jaws, Relentless Predator",
+    "quantidade": 1
+   },
+   {
+    "nome": "Leonardo, the Balance",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bloodstained Mire",
+    "quantidade": 1
+   },
+   {
+    "nome": "Flooded Strand",
+    "quantidade": 1
+   },
+   {
+    "nome": "Breeding Pool",
+    "quantidade": 1
+   },
+   {
+    "nome": "Godless Shrine",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sacred Foundry",
+    "quantidade": 1
+   },
+   {
+    "nome": "Stomping Ground",
+    "quantidade": 1
+   },
+   {
+    "nome": "Watery Grave",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bountiful Promenade",
+    "quantidade": 1
+   },
+   {
+    "nome": "Luxury Suite",
+    "quantidade": 1
+   },
+   {
+    "nome": "Morphic Pool",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sea of Clouds",
+    "quantidade": 1
+   },
+   {
+    "nome": "Spire Garden",
+    "quantidade": 1
+   },
+   {
+    "nome": "Blood Crypt",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hallowed Fountain",
+    "quantidade": 1
+   },
+   {
+    "nome": "Overgrown Tomb",
+    "quantidade": 1
+   },
+   {
+    "nome": "Steam Vents",
+    "quantidade": 1
+   },
+   {
+    "nome": "Temple Garden",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arid Mesa",
+    "quantidade": 1
+   },
+   {
+    "nome": "Marsh Flats",
+    "quantidade": 1
+   },
+   {
+    "nome": "Misty Rainforest",
+    "quantidade": 1
+   },
+   {
+    "nome": "Scalding Tarn",
+    "quantidade": 1
+   },
+   {
+    "nome": "Verdant Catacombs",
+    "quantidade": 1
+   },
+   {
+    "nome": "Polluted Delta",
+    "quantidade": 1
+   },
+   {
+    "nome": "Windswept Heath",
+    "quantidade": 1
+   },
+   {
+    "nome": "Wooded Foothills",
+    "quantidade": 1
+   },
+   {
+    "nome": "Iron Maiden",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rejuvenating Springs",
+    "quantidade": 1
+   },
+   {
+    "nome": "Spectator Seating",
+    "quantidade": 1
+   },
+   {
+    "nome": "Training Center",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vault of Champions",
+    "quantidade": 1
+   },
+   {
+    "nome": "Undergrowth Stadium",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mastermind Plum",
+    "quantidade": 1
+   }
+  ],
+  "origem": {
+   "versao": 0,
+   "atualizadoEm": "2026-09-25T10:41:49.05Z"
+  },
+  "desde": "2026-11-14T00:20:17.203Z"
+ }
+}

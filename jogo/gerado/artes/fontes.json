@@ -1172,5 +1172,202 @@
    "fin/317 borderless legendary+inverted"
   ],
   "baixadoEm": "2026-11-12T22:08:36.802Z"
+ },
+ "Kefka, Court Mage // Kefka, Ruler of Ruin": {
+  "imagemLocal": "8fcf3fbb-1ddd-437e-81c1-f5a3133f5ee8",
+  "impressao": {
+   "id": "06b7ca77-7194-4a0b-a650-4afd7afb50eb",
+   "colecao": "fin",
+   "numero": "496",
+   "moldura": "2015 black legendary extendedart",
+   "artista": "Xui Ton",
+   "url": "https://cards.scryfall.io/png/front/0/6/06b7ca77-7194-4a0b-a650-4afd7afb50eb.png?1783906466"
+  },
+  "recorte": {
+   "x": 0,
+   "y": 135,
+   "largura": 744,
+   "altura": 442
+  },
+  "tamanho": [
+   744,
+   442
+  ],
+  "candidatas": [
+   "pfin/231s black legendary",
+   "fin/496 black legendary+extendedart",
+   "fin/231 black legendary"
+  ],
+  "baixadoEm": "2026-11-14T00:18:30.339Z"
+ },
+ "Ms. Bumbleflower": {
+  "imagemLocal": "42bbedc1-6b83-46b4-8b3b-a4e05ce77d87",
+  "impressao": {
+   "id": "42bbedc1-6b83-46b4-8b3b-a4e05ce77d87",
+   "colecao": "blc",
+   "numero": "3",
+   "moldura": "2015 borderless legendary inverted",
+   "artista": "Marta Nael",
+   "url": "https://cards.scryfall.io/png/front/4/2/42bbedc1-6b83-46b4-8b3b-a4e05ce77d87.png?1783910739"
+  },
+  "recorte": {
+   "x": 0,
+   "y": 135,
+   "largura": 744,
+   "altura": 442
+  },
+  "tamanho": [
+   744,
+   442
+  ],
+  "candidatas": [
+   "blc/3 borderless legendary+inverted"
+  ],
+  "baixadoEm": "2026-11-14T00:19:49.627Z"
+ },
+ "Kinnan, Bonder Prodigy": {
+  "imagemLocal": "0c6403fa-918f-4bc5-8f32-3e374ef3bba7",
+  "impressao": {
+   "id": "532746e2-f822-4920-ab31-94e0c8baaa84",
+   "colecao": "iko",
+   "numero": "338",
+   "moldura": "2015 black legendary extendedart",
+   "artista": "Jason Rainville",
+   "url": "https://cards.scryfall.io/png/front/5/3/532746e2-f822-4920-ab31-94e0c8baaa84.png?1783930968"
+  },
+  "recorte": {
+   "x": 0,
+   "y": 135,
+   "largura": 745,
+   "altura": 442
+  },
+  "tamanho": [
+   745,
+   442
+  ],
+  "candidatas": [
+   "plst/IKO-192 black legendary",
+   "prm/80851 black legendary",
+   "piko/192s black legendary",
+   "piko/192p black legendary",
+   "iko/338 black legendary+extendedart",
+   "iko/192 black legendary",
+   "iko/192 black legendary"
+  ],
+  "baixadoEm": "2026-11-14T00:19:53.140Z"
+ },
+ "Toph, the First Metalbender": {
+  "imagemLocal": "70b6670f-a9fa-4d75-b0a7-c01b5071a514",
+  "impressao": {
+   "id": "70b6670f-a9fa-4d75-b0a7-c01b5071a514",
+   "colecao": "tla",
+   "numero": "247",
+   "moldura": "2015 black legendary",
+   "artista": "Eilene Cherie",
+   "url": "https://cards.scryfall.io/art_crop/front/7/0/70b6670f-a9fa-4d75-b0a7-c01b5071a514.jpg?1783904920"
+  },
+  "recorte": "art_crop",
+  "tamanho": [
+   626,
+   457
+  ],
+  "candidatas": [
+   "ptla/247s black legendary",
+   "tla/247 black legendary"
+  ],
+  "baixadoEm": "2026-11-14T00:20:02.285Z"
+ },
+ "Sisay, Weatherlight Captain": {
+  "imagemLocal": "7a617191-5f72-412e-855a-adac75173d0c",
+  "impressao": {
+   "id": "bdbe4d40-f902-4971-a596-3c602a964006",
+   "colecao": "prm",
+   "numero": "91211",
+   "moldura": "1997 black",
+   "artista": "Anna Steinbauer",
+   "url": "https://cards.scryfall.io/art_crop/front/b/d/bdbe4d40-f902-4971-a596-3c602a964006.jpg?1783914768"
+  },
+  "recorte": "art_crop",
+  "tamanho": [
+   626,
+   457
+  ],
+  "candidatas": [
+   "prm/91211 black",
+   "plst/MH1-29 black legendary",
+   "h1r/6 black",
+   "mh1/29 black legendary",
+   "mh1/29 black legendary"
+  ],
+  "baixadoEm": "2026-11-14T00:20:09.435Z"
+ },
+ "Light-Paws, Emperor's Voice": {
+  "imagemLocal": "c7ff489e-5ee2-4e33-80d9-34c2b350deb1",
+  "impressao": {
+   "id": "76614523-e51a-44ff-83ad-5be9e322697a",
+   "colecao": "neo",
+   "numero": "367",
+   "moldura": "2015 black showcase legendary inverted",
+   "artista": "NIJIMAARC",
+   "url": "https://cards.scryfall.io/art_crop/front/7/6/76614523-e51a-44ff-83ad-5be9e322697a.jpg?1783923777"
+  },
+  "recorte": "art_crop",
+  "tamanho": [
+   626,
+   457
+  ],
+  "candidatas": [
+   "neo/367 black showcase+legendary+inverted",
+   "neo/367 black legendary"
+  ],
+  "baixadoEm": "2026-11-14T00:20:11.003Z"
+ },
+ "Jodah, the Unifier": {
+  "imagemLocal": "7dd637fd-c995-428e-8929-eb792a7b96a8",
+  "impressao": {
+   "id": "1bb0f569-339e-4400-8044-f5b81271ef40",
+   "colecao": "pdmu",
+   "numero": "203s",
+   "moldura": "2015 black legendary",
+   "artista": "Ryan Pancoast",
+   "url": "https://cards.scryfall.io/art_crop/front/1/b/1bb0f569-339e-4400-8044-f5b81271ef40.jpg?1783921062"
+  },
+  "recorte": "art_crop",
+  "tamanho": [
+   626,
+   457
+  ],
+  "candidatas": [
+   "pdmu/203s black legendary",
+   "pdmu/203p black legendary",
+   "dmu/203 black legendary",
+   "dmu/203 black legendary"
+  ],
+  "baixadoEm": "2026-11-14T00:20:18.508Z"
+ },
+ "Deadpool, Trading Card": {
+  "imagemLocal": "3a14d6c5-cfd1-4860-834a-5a0dc9df0320",
+  "impressao": {
+   "id": "3a14d6c5-cfd1-4860-834a-5a0dc9df0320",
+   "colecao": "sld",
+   "numero": "1753",
+   "moldura": "2015 borderless inverted legendary",
+   "artista": "Justine Cruz",
+   "url": "https://cards.scryfall.io/png/front/3/a/3a14d6c5-cfd1-4860-834a-5a0dc9df0320.png?1783907438"
+  },
+  "recorte": {
+   "x": 0,
+   "y": 135,
+   "largura": 744,
+   "altura": 442
+  },
+  "tamanho": [
+   744,
+   442
+  ],
+  "candidatas": [
+   "sld/1753 borderless inverted+legendary"
+  ],
+  "baixadoEm": "2026-11-14T00:20:21.830Z"
  }
 }

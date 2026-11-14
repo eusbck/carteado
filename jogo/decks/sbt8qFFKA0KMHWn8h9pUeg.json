@@ -1,0 +1,364 @@
+{
+ "formato": 1,
+ "id": "sbt8qFFKA0KMHWn8h9pUeg",
+ "ordem": 124,
+ "nome": "Kefka budget Competitive High Power",
+ "link": "https://moxfield.com/decks/sbt8qFFKA0KMHWn8h9pUeg",
+ "importadoEm": "2026-11-14T00:18:24.749Z",
+ "verificadoEm": "2026-11-14T00:18:24.749Z",
+ "atual": null,
+ "preparacao": {
+  "comandante": "Kefka, Court Mage // Kefka, Ruler of Ruin",
+  "cartas": [
+   {
+    "nome": "Island",
+    "quantidade": 5
+   },
+   {
+    "nome": "Mountain",
+    "quantidade": 5
+   },
+   {
+    "nome": "Swamp",
+    "quantidade": 6
+   },
+   {
+    "nome": "Arcane Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Command Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Wishclaw Talisman",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arcane Denial",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dark Ritual",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dispel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Generator Servant",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lightning Bolt",
+    "quantidade": 1
+   },
+   {
+    "nome": "Memory Lapse",
+    "quantidade": 1
+   },
+   {
+    "nome": "Misdirection",
+    "quantidade": 1
+   },
+   {
+    "nome": "Skirk Prospector",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Miscast",
+    "quantidade": 1
+   },
+   {
+    "nome": "Unsubstantiate",
+    "quantidade": 1
+   },
+   {
+    "nome": "Spell Pierce",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fellwar Stone",
+    "quantidade": 1
+   },
+   {
+    "nome": "Buried Alive",
+    "quantidade": 1
+   },
+   {
+    "nome": "Exotic Orchard",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dualcaster Mage",
+    "quantidade": 1
+   },
+   {
+    "nome": "Underground River",
+    "quantidade": 1
+   },
+   {
+    "nome": "Burnt Offering",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sunken Hollow",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sulfurous Springs",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cephalid Coliseum",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shivan Reef",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tainted Peak",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gemstone Mine",
+    "quantidade": 1
+   },
+   {
+    "nome": "Pentad Prism",
+    "quantidade": 1
+   },
+   {
+    "nome": "Delay",
+    "quantidade": 1
+   },
+   {
+    "nome": "River of Tears",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lim-Dûl's Vault",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rapid Hybridization",
+    "quantidade": 1
+   },
+   {
+    "nome": "Smoldering Marsh",
+    "quantidade": 1
+   },
+   {
+    "nome": "Essence Flux",
+    "quantidade": 1
+   },
+   {
+    "nome": "Izzet Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Abrade",
+    "quantidade": 1
+   },
+   {
+    "nome": "Spire of Industry",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ghostly Flicker",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dragonskull Summit",
+    "quantidade": 1
+   },
+   {
+    "nome": "Commandeer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rite of Flame",
+    "quantidade": 1
+   },
+   {
+    "nome": "Talisman of Dominance",
+    "quantidade": 1
+   },
+   {
+    "nome": "Peat Bog",
+    "quantidade": 1
+   },
+   {
+    "nome": "Blood Pet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Necromancy",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bolt Bend",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mayhem Devil",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fiery Islet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Talisman of Creativity",
+    "quantidade": 1
+   },
+   {
+    "nome": "Talisman of Indulgence",
+    "quantidade": 1
+   },
+   {
+    "nome": "Combat Celebrant",
+    "quantidade": 1
+   },
+   {
+    "nome": "Pongify",
+    "quantidade": 1
+   },
+   {
+    "nome": "Drift of Phantasms",
+    "quantidade": 1
+   },
+   {
+    "nome": "Perplex",
+    "quantidade": 1
+   },
+   {
+    "nome": "Snapback",
+    "quantidade": 1
+   },
+   {
+    "nome": "Naban, Dean of Iteration",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sulfur Falls",
+    "quantidade": 1
+   },
+   {
+    "nome": "Simian Spirit Guide",
+    "quantidade": 1
+   },
+   {
+    "nome": "Siren Stormtamer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Final Parting",
+    "quantidade": 1
+   },
+   {
+    "nome": "Resculpt",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rionya, Fire Dancer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Persist",
+    "quantidade": 1
+   },
+   {
+    "nome": "Strike It Rich",
+    "quantidade": 1
+   },
+   {
+    "nome": "Malevolent Hermit // Benevolent Geist",
+    "quantidade": 1
+   },
+   {
+    "nome": "Saw in Half",
+    "quantidade": 1
+   },
+   {
+    "nome": "An Offer You Can't Refuse",
+    "quantidade": 1
+   },
+   {
+    "nome": "Goldhound",
+    "quantidade": 1
+   },
+   {
+    "nome": "Reckless Barbarian",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hoarding Broodlord",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ringsight",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lively Dirge",
+    "quantidade": 1
+   },
+   {
+    "nome": "Insatiable Avarice",
+    "quantidade": 1
+   },
+   {
+    "nome": "Volatile Stormdrake",
+    "quantidade": 1
+   },
+   {
+    "nome": "Flare of Duplication",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ghostfire Slice",
+    "quantidade": 1
+   },
+   {
+    "nome": "Pinnacle Monk // Mystic Peak",
+    "quantidade": 1
+   },
+   {
+    "nome": "Demonic Counsel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tinybones, Bauble Burglar",
+    "quantidade": 1
+   },
+   {
+    "nome": "Electroduplicate",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fire Magic",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gogo, Mysterious Mime",
+    "quantidade": 1
+   },
+   {
+    "nome": "Chameleon, Master of Disguise",
+    "quantidade": 1
+   }
+  ],
+  "origem": {
+   "versao": 0,
+   "atualizadoEm": "2026-11-02T14:10:53.743Z"
+  },
+  "desde": "2026-11-14T00:18:24.749Z"
+ }
+}

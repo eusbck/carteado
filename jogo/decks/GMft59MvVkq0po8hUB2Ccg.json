@@ -1,0 +1,416 @@
+{
+ "formato": 1,
+ "id": "GMft59MvVkq0po8hUB2Ccg",
+ "ordem": 128,
+ "nome": "Oath of Sisay",
+ "link": "https://moxfield.com/decks/GMft59MvVkq0po8hUB2Ccg",
+ "importadoEm": "2026-11-14T00:20:06.158Z",
+ "verificadoEm": "2026-11-14T00:20:06.158Z",
+ "atual": null,
+ "preparacao": {
+  "comandante": "Sisay, Weatherlight Captain",
+  "cartas": [
+   {
+    "nome": "Arcane Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Command Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Faeburrow Elder",
+    "quantidade": 1
+   },
+   {
+    "nome": "Swan Song",
+    "quantidade": 1
+   },
+   {
+    "nome": "Birds of Paradise",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bloom Tender",
+    "quantidade": 1
+   },
+   {
+    "nome": "Demonic Tutor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dispel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lotus Petal",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rhystic Study",
+    "quantidade": 1
+   },
+   {
+    "nome": "Selvala, Heart of the Wilds",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Swords to Plowshares",
+    "quantidade": 1
+   },
+   {
+    "nome": "Chromatic Orrery",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fellwar Stone",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mana Vault",
+    "quantidade": 1
+   },
+   {
+    "nome": "Exotic Orchard",
+    "quantidade": 1
+   },
+   {
+    "nome": "Aminatou, the Fateshifter",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bayou",
+    "quantidade": 1
+   },
+   {
+    "nome": "Plateau",
+    "quantidade": 1
+   },
+   {
+    "nome": "Scrubland",
+    "quantidade": 1
+   },
+   {
+    "nome": "Savannah",
+    "quantidade": 1
+   },
+   {
+    "nome": "Taiga",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tundra",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tropical Island",
+    "quantidade": 1
+   },
+   {
+    "nome": "Underground Sea",
+    "quantidade": 1
+   },
+   {
+    "nome": "City of Brass",
+    "quantidade": 1
+   },
+   {
+    "nome": "Flooded Strand",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mystic Remora",
+    "quantidade": 1
+   },
+   {
+    "nome": "Noble Hierarch",
+    "quantidade": 1
+   },
+   {
+    "nome": "Derevi, Empyrial Tactician",
+    "quantidade": 1
+   },
+   {
+    "nome": "Chrome Mox",
+    "quantidade": 1
+   },
+   {
+    "nome": "Deathrite Shaman",
+    "quantidade": 1
+   },
+   {
+    "nome": "Enlightened Tutor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vampiric Tutor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ancient Tomb",
+    "quantidade": 1
+   },
+   {
+    "nome": "Smothering Tithe",
+    "quantidade": 1
+   },
+   {
+    "nome": "Abrupt Decay",
+    "quantidade": 1
+   },
+   {
+    "nome": "Saheeli Rai",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cyclonic Rift",
+    "quantidade": 1
+   },
+   {
+    "nome": "Marsh Flats",
+    "quantidade": 1
+   },
+   {
+    "nome": "Misty Rainforest",
+    "quantidade": 1
+   },
+   {
+    "nome": "Scalding Tarn",
+    "quantidade": 1
+   },
+   {
+    "nome": "Verdant Catacombs",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mana Confluence",
+    "quantidade": 1
+   },
+   {
+    "nome": "Polluted Delta",
+    "quantidade": 1
+   },
+   {
+    "nome": "Windswept Heath",
+    "quantidade": 1
+   },
+   {
+    "nome": "Wooded Foothills",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mox Diamond",
+    "quantidade": 1
+   },
+   {
+    "nome": "Flusterstorm",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mox Opal",
+    "quantidade": 1
+   },
+   {
+    "nome": "Silence",
+    "quantidade": 1
+   },
+   {
+    "nome": "Eladamri's Call",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gaea's Cradle",
+    "quantidade": 1
+   },
+   {
+    "nome": "Volcanic Island",
+    "quantidade": 1
+   },
+   {
+    "nome": "Nicol Bolas, Dragon-God",
+    "quantidade": 1
+   },
+   {
+    "nome": "Teferi, Time Raveler",
+    "quantidade": 1
+   },
+   {
+    "nome": "Worldly Tutor",
+    "quantidade": 1
+   },
+   {
+    "nome": "Kinnan, Bonder Prodigy",
+    "quantidade": 1
+   },
+   {
+    "nome": "Emiel the Blessed",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gemstone Caverns",
+    "quantidade": 1
+   },
+   {
+    "nome": "Oath of Teferi",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mox Amber",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tarnished Citadel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Esika, God of the Tree // The Prismatic Bridge",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ignoble Hierarch",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ragavan, Nimble Pilferer",
+    "quantidade": 1
+   },
+   {
+    "nome": "Esper Sentinel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Katilda, Dawnhart Prime",
+    "quantidade": 1
+   },
+   {
+    "nome": "Boseiju, Who Endures",
+    "quantidade": 1
+   },
+   {
+    "nome": "Otawara, Soaring City",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cultist of the Absolute",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dihada, Binder of Wills",
+    "quantidade": 1
+   },
+   {
+    "nome": "Relic of Legends",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tyvar, Jubilant Brawler",
+    "quantidade": 1
+   },
+   {
+    "nome": "Skrelv, Defector Mite",
+    "quantidade": 1
+   },
+   {
+    "nome": "The One Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mount Doom",
+    "quantidade": 1
+   },
+   {
+    "nome": "Delighted Halfling",
+    "quantidade": 1
+   },
+   {
+    "nome": "Pippin, Guard of the Citadel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Orcish Bowmasters",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lotho, Corrupt Shirriff",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ruby, Daring Tracker",
+    "quantidade": 1
+   },
+   {
+    "nome": "Agatha's Soul Cauldron",
+    "quantidade": 1
+   },
+   {
+    "nome": "Legolas's Quick Reflexes",
+    "quantidade": 1
+   },
+   {
+    "nome": "Galadriel's Dismissal",
+    "quantidade": 1
+   },
+   {
+    "nome": "Kutzil, Malamet Exemplar",
+    "quantidade": 1
+   },
+   {
+    "nome": "Strix Serenade",
+    "quantidade": 1
+   },
+   {
+    "nome": "Into the Flood Maw",
+    "quantidade": 1
+   },
+   {
+    "nome": "Marvin, Murderous Mimic",
+    "quantidade": 1
+   },
+   {
+    "nome": "Deadpool, Trading Card",
+    "quantidade": 1
+   },
+   {
+    "nome": "Force of Will",
+    "quantidade": 1
+   },
+   {
+    "nome": "Elvish Spirit Guide",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mindbreak Trap",
+    "quantidade": 1
+   },
+   {
+    "nome": "Deflecting Swat",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fierce Guardianship",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mental Misstep",
+    "quantidade": 1
+   },
+   {
+    "nome": "Touch the Spirit Realm",
+    "quantidade": 1
+   },
+   {
+    "nome": "Colossal Skyturtle",
+    "quantidade": 1
+   }
+  ],
+  "origem": {
+   "versao": 0,
+   "atualizadoEm": "2025-10-23T20:47:57.433Z"
+  },
+  "desde": "2026-11-14T00:20:06.158Z"
+ }
+}

@@ -1,0 +1,368 @@
+{
+ "formato": 1,
+ "id": "rXqqlz74JkCv1jFnrbNZSw",
+ "ordem": 131,
+ "nome": "Deadpool, Commander Deck",
+ "link": "https://moxfield.com/decks/rXqqlz74JkCv1jFnrbNZSw",
+ "importadoEm": "2026-11-14T00:20:19.460Z",
+ "verificadoEm": "2026-11-14T00:20:19.460Z",
+ "atual": null,
+ "preparacao": {
+  "comandante": "Deadpool, Trading Card",
+  "cartas": [
+   {
+    "nome": "Mountain",
+    "quantidade": 8
+   },
+   {
+    "nome": "Swamp",
+    "quantidade": 6
+   },
+   {
+    "nome": "Arcane Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Command Tower",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bojuka Bog",
+    "quantidade": 1
+   },
+   {
+    "nome": "Chaos Warp",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dark Ritual",
+    "quantidade": 1
+   },
+   {
+    "nome": "Impact Tremors",
+    "quantidade": 1
+   },
+   {
+    "nome": "Purphoros, God of the Forge",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rogue's Passage",
+    "quantidade": 1
+   },
+   {
+    "nome": "Terror of the Peaks",
+    "quantidade": 1
+   },
+   {
+    "nome": "Xenic Poltergeist",
+    "quantidade": 1
+   },
+   {
+    "nome": "Blade of Selves",
+    "quantidade": 1
+   },
+   {
+    "nome": "Blasphemous Act",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bloodstained Mire",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mana Geyser",
+    "quantidade": 1
+   },
+   {
+    "nome": "Conjurer's Closet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Luxury Suite",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rakdos Signet",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ancient Tomb",
+    "quantidade": 1
+   },
+   {
+    "nome": "Urborg, Tomb of Yawgmoth",
+    "quantidade": 1
+   },
+   {
+    "nome": "Blood Crypt",
+    "quantidade": 1
+   },
+   {
+    "nome": "Karn, Silver Golem",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dragonskull Summit",
+    "quantidade": 1
+   },
+   {
+    "nome": "Deadly Rollick",
+    "quantidade": 1
+   },
+   {
+    "nome": "Humble Defector",
+    "quantidade": 1
+   },
+   {
+    "nome": "Talisman of Indulgence",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rakdos Charm",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vandalblast",
+    "quantidade": 1
+   },
+   {
+    "nome": "Valakut Awakening // Valakut Stoneforge",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hagra Mauling // Hagra Broodpit",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shatterskull Smashing // Shatterskull, the Hammer Pass",
+    "quantidade": 1
+   },
+   {
+    "nome": "Opposition Agent",
+    "quantidade": 1
+   },
+   {
+    "nome": "Jeska's Will",
+    "quantidade": 1
+   },
+   {
+    "nome": "Kardur, Doomscourge // Kardur, Doomscourge",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cursed Mirror",
+    "quantidade": 1
+   },
+   {
+    "nome": "Liquimetal Torque",
+    "quantidade": 1
+   },
+   {
+    "nome": "Delina, Wild Mage",
+    "quantidade": 1
+   },
+   {
+    "nome": "Share the Spoils",
+    "quantidade": 1
+   },
+   {
+    "nome": "Haunted Ridge",
+    "quantidade": 1
+   },
+   {
+    "nome": "Saw in Half",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mirror Box",
+    "quantidade": 1
+   },
+   {
+    "nome": "Jaxis, the Troublemaker",
+    "quantidade": 1
+   },
+   {
+    "nome": "Life of the Party",
+    "quantidade": 1
+   },
+   {
+    "nome": "Seize the Spotlight",
+    "quantidade": 1
+   },
+   {
+    "nome": "Descent into Avernus",
+    "quantidade": 1
+   },
+   {
+    "nome": "Elturel Survivors",
+    "quantidade": 1
+   },
+   {
+    "nome": "Black Market Connections",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sheoldred, the Apocalypse",
+    "quantidade": 1
+   },
+   {
+    "nome": "Golden Argosy",
+    "quantidade": 1
+   },
+   {
+    "nome": "Slicer, Hired Muscle // Slicer, High-Speed Antagonist",
+    "quantidade": 1
+   },
+   {
+    "nome": "Orthion, Hero of Lavabrink",
+    "quantidade": 1
+   },
+   {
+    "nome": "The Master, Multiplied",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ensnared by the Mara",
+    "quantidade": 1
+   },
+   {
+    "nome": "Dalek Squadron",
+    "quantidade": 1
+   },
+   {
+    "nome": "Vislor Turlough",
+    "quantidade": 1
+   },
+   {
+    "nome": "Raucous Theater",
+    "quantidade": 1
+   },
+   {
+    "nome": "Prisoner's Dilemma",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mob Verdict",
+    "quantidade": 1
+   },
+   {
+    "nome": "Rakdos Joins Up",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sundering Eruption // Volcanic Fissure",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fell the Profane // Fell Mire",
+    "quantidade": 1
+   },
+   {
+    "nome": "Boggart Trawler // Boggart Bog",
+    "quantidade": 1
+   },
+   {
+    "nome": "Arena of Glory",
+    "quantidade": 1
+   },
+   {
+    "nome": "Pinnacle Monk // Mystic Peak",
+    "quantidade": 1
+   },
+   {
+    "nome": "Talon Gates of Madara",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tempt with Mayhem",
+    "quantidade": 1
+   },
+   {
+    "nome": "Alexios, Deimos of Kosmos",
+    "quantidade": 1
+   },
+   {
+    "nome": "Echoing Assault",
+    "quantidade": 1
+   },
+   {
+    "nome": "Blazemire Verge",
+    "quantidade": 1
+   },
+   {
+    "nome": "Electroduplicate",
+    "quantidade": 1
+   },
+   {
+    "nome": "Goldlust Triad",
+    "quantidade": 1
+   },
+   {
+    "nome": "Gogo, Mysterious Mime",
+    "quantidade": 1
+   },
+   {
+    "nome": "Devastating Onslaught",
+    "quantidade": 1
+   },
+   {
+    "nome": "Maximum Carnage",
+    "quantidade": 1
+   },
+   {
+    "nome": "Oft-Nabbed Goat",
+    "quantidade": 1
+   },
+   {
+    "nome": "Changing Loyalty",
+    "quantidade": 1
+   },
+   {
+    "nome": "Smaug, Wicked Worm",
+    "quantidade": 1
+   },
+   {
+    "nome": "Olinda the Oblivious",
+    "quantidade": 1
+   },
+   {
+    "nome": "Lightning Greaves",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sol Ring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Warstorm Surge",
+    "quantidade": 1
+   },
+   {
+    "nome": "Disrupt Decorum",
+    "quantidade": 1
+   },
+   {
+    "nome": "Xantcha, Sleeper Agent",
+    "quantidade": 1
+   },
+   {
+    "nome": "Possibility Storm",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tibalt's Trickery",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shredder, Shadow Master",
+    "quantidade": 1
+   }
+  ],
+  "origem": {
+   "versao": 0,
+   "atualizadoEm": "2026-10-14T02:35:02.863Z"
+  },
+  "desde": "2026-11-14T00:20:19.460Z"
+ }
+}
