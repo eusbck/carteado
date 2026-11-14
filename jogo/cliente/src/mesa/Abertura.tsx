@@ -237,7 +237,8 @@ function particulas(cv: HTMLCanvasElement): { explodir: (x: number, y: number) =
   let W = 0, H = 0, dpr = 1;
   const medir = () => {
     const r = cv.getBoundingClientRect();
-    dpr = Math.min(2, devicePixelRatio || 1);
+    // brasas e faíscas são manchas de luz borradas: na densidade 1 ficam iguais e a tela inteira custa até 4x menos
+    dpr = 1;
     W = r.width; H = r.height;
     cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
   };
