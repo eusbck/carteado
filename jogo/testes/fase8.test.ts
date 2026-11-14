@@ -277,17 +277,69 @@ describe('fase 8: desfazer com aceite da mesa', () => {
     expect(p.vista.decision?.id).toBe(d1.id);
   }, 60000);
 
-  it('jogada de um turno que já passou não se desfaz; o pedido é recusado na hora', async () => {
+  it('depois de passar o turno, dá para voltar ao começo do próprio turno; a mesa espera a pessoa lá', async () => {
+    const g = gerente();
+    const { ana, bruno } = sala(g);
+    pararSempre(g, [ana, bruno]);
+    g.tratar(ana, { t: 'iniciar' });
+    const { p, terreno, antes } = await jogarTerreno(g, [ana, bruno]);
+    const outro = p === ana ? bruno : ana;
+    g.tratar(p, { t: 'passarTurno' });
+    await conduzir(g, [ana, bruno], (_, __, v) => v.turn.number > antes.turno);
+    const voltas = p.ultima('jogo')!.voltas!;
+    expect(voltas.turno).toMatch(/começo do seu turno/);
+    const n = p.msgs.length;
+    g.tratar(p, { t: 'desfazer', ate: 'turno' });
+    expect(p.msgs.slice(n).find((m) => m.t === 'erro')).toBeUndefined();
+    const pedido = outro.ultima('jogo')!.desfazer!;
+    expect(pedido.titulo).toMatch(/começo do seu turno/);
+    expect(pedido.linhas[0].texto).toMatch(/quer voltar para o começo do próprio turno/);
+    g.tratar(outro, { t: 'desfazerResposta', aceitar: true });
+    await espera();
+    expect(p.vista.turn.number).toBe(antes.turno);
+    expect(p.vista.turn.active).toBe(p.assento);
+    expect(noCampo(p, terreno)).toBe(antes.campo);
+    // a mesa espera a pessoa no começo do turno (o passe automático não pula de novo)
+    expect(p.vista.decision?.player).toBe(p.assento);
+    expect(outro.ultima('aviso')?.msg).toMatch(/voltou para o começo do próprio turno/);
+  }, 60000);
+
+  it('um passo, no próprio turno, volta ao começo da etapa mesmo sem jogada (o passe automático conta)', async () => {
+    const g = gerente();
+    const { ana } = sala(g, { bruno: false });
+    g.tratar(ana, { t: 'iniciar' });
+    // paradas padrão: a mesa passa sozinha pelas etapas sem jogada; para no turno da Ana já com algo passado nele
+    await conduzir(g, [ana], (_, d, v) => v.turn.active === ana.assento && v.turn.number >= 2 && d.kind === 'priority' && !!ana.ultima('jogo')!.voltas?.passo);
+    const antes = { turno: ana.vista.turn.number, etapa: ana.vista.turn.step };
+    const voltas = ana.ultima('jogo')!.voltas!;
+    expect(voltas.turno).toMatch(/começo do seu turno/);
+    pedir(g, ana);
+    await espera();
+    expect(ana.ultima('jogo')!.desfazer).toBeNull();
+    expect(ana.vista.turn.number).toBe(antes.turno);
+    expect(ana.vista.turn.step).not.toBe(antes.etapa);
+    expect(ana.vista.decision?.kind).toBe('priority');
+    // passando dali, a partida segue normalmente
+    g.tratar(ana, respostaPadrao(ana.vista.decision!));
+    await espera();
+    expect(ana.ultima('erro')?.msg ?? '').not.toMatch(/parada/);
+  }, 60000);
+
+  it('não volta para antes de um turno que não é o mais recente da pessoa', async () => {
     const g = gerente();
     const { ana, bruno } = sala(g);
     pararSempre(g, [ana, bruno]);
     g.tratar(ana, { t: 'iniciar' });
     const { p, antes } = await jogarTerreno(g, [ana, bruno]);
     g.tratar(p, { t: 'passarTurno' });
-    await conduzir(g, [ana, bruno], (_, __, v) => v.turn.number > antes.turno);
-    expect(p.ultima('jogo')!.desfazivel).toBe(false);
-    g.tratar(p, { t: 'desfazer' });
-    expect(p.ultima('erro')?.msg).toMatch(/Não há jogada sua para desfazer neste turno/);
+    // passa a rodada inteira: chega de novo ao turno de quem jogou, e mais um pouco
+    await conduzir(g, [ana, bruno], (q, d, v) => v.turn.number >= antes.turno + 2 && q === p && d.kind === 'priority');
+    g.tratar(p, { t: 'desfazer', ate: 'turno' });
+    await espera();
+    if (p.ultima('jogo')!.desfazer) g.tratar(p === ana ? bruno : ana, { t: 'desfazerResposta', aceitar: true });
+    await espera();
+    // volta só ao começo do turno atual, não ao do terreno
+    expect(p.vista.turn.number).toBe(antes.turno + 2);
   }, 60000);
 
   it('contra bots: eles aceitam na hora e a jogada volta sem pedido aberto', async () => {

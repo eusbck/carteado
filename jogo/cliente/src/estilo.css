@@ -590,6 +590,10 @@ button.etapa:hover { background: rgba(255, 255, 255, .07); color: var(--texto); 
 .fases-acao .botao.cheio { padding: 0 14px; font-size: 13px; font-weight: 600; }
 .fases-acao .botao.desfazer { border-color: color-mix(in srgb, var(--ouro) 45%, transparent); color: var(--ouro); }
 .fases-acao .botao.desfazer:hover { background: var(--ouro-fundo); }
+/* voltar com dois destinos (um passo, o começo do seu turno): menu pequeno embaixo do botão */
+.voltar-caixa { position: relative; display: inline-flex; }
+.voltar-menu { position: absolute; top: calc(100% + 6px); right: 0; z-index: 60; display: flex; flex-direction: column; gap: 4px; min-width: 230px; padding: 6px; border: 1px solid var(--linha-forte); border-radius: 10px; background: var(--vidro); box-shadow: var(--sombra); backdrop-filter: blur(6px); }
+.fases-acao .voltar-menu .botao { justify-content: flex-start; width: 100%; min-height: 30px; padding: 0 10px; white-space: nowrap; }
 /* fase 9: parada nas mágicas dos oponentes, à vista; e o aviso grande quando a mesa espera você fora do seu turno */
 .parar-pilha { position: relative; display: flex; align-items: center; gap: 5px; height: 28px; padding: 0 9px; border: 1px dashed var(--linha); border-radius: 8px; background: none; color: var(--apagado); font: inherit; font-size: 11px; cursor: pointer; white-space: nowrap; }
 .parar-pilha svg { width: 13px; height: 13px; }

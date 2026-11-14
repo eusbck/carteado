@@ -19,7 +19,7 @@ import { Pensadores } from './pensadores.ts';
 import { NOMES_BOTS } from './nomes.ts';
 import { novaRajada, segurarPilha, type RajadaPilha } from './pilha-visivel.ts';
 import type { Banco } from './banco.ts';
-import { alvoDesfazer, linhasDesfeitas, reconstruir, type MetaEntrada } from './desfazer.ts';
+import { alvoDesfazer, linhasDesfeitas, pontosDeVolta, reconstruir, rotuloVolta, type MetaEntrada, type ModoVolta, type PontoVolta } from './desfazer.ts';
 import { avatarValido } from './avatares.ts';
 import { MIN_LUGARES, tipoMsg, validarMsg, type Cena, type EtapaSaguao, type LinhaDesfeita, type LinhaSistema, type Modo, type MsgChat, type MsgCliente, type MsgServidor, type PedidoDesfazer, type Posicoes, type RegraAuxilios, type Reinicio, type RegraMulligan, type SalaPublica, type TipoAssento } from './protocolo.ts';
 
@@ -130,6 +130,7 @@ interface Pedido {
   de: number;
   /** posição da entrada onde a jogada começa: tudo dali em diante volta */
   alvo: number;
+  ponto: PontoVolta;
   voltar: Game;
   linhas: LinhaDesfeita[];
   aceitaram: Set<number>;
@@ -137,6 +138,9 @@ interface Pedido {
   prazo: number;
   timer: ReturnType<typeof setTimeout>;
 }
+
+/** começos de turno guardados na memória para voltar (uma rodada de 6 lugares e folga) */
+const CHECKPOINTS_TURNOS = 8;
 
 const ALFABETO = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
 
@@ -239,6 +243,8 @@ export class Sala {
   /** estado no começo dos últimos turnos (o desfazer refaz a partida a partir daqui) */
   private cps: Checkpoint[] = [];
   private pedido: Pedido | null = null;
+  /** depois de voltar: a decisão da pessoa naquele ponto espera por ela (o passe automático não a pula de novo) */
+  private retomada: { jogador: number; indice: number } | null = null;
   /** hora das últimas mensagens de chat de cada assento (para o limite de ritmo) */
   private ritmoChat = new Map<number, number[]>();
   /** gravação marcada (salvarDepois) */
@@ -398,8 +404,9 @@ export class Sala {
     }
     if (!this.game || c.assento === null) return;
     const vista = buildView(this.game.g, c.assento, pendente);
-    const desfazivel = !this.pedido && !this.game.isOver() && this.alvoDesfazer(c.assento) !== null;
-    this.enviarSeMudou(c, { t: 'jogo', vista, paradas: this.d.assentos[c.assento].paradas, posicoes: this.posicoesNoCampo(), desfazivel, desfazer: this.pedidoPublico() });
+    const voltas = !this.pedido && !this.game.isOver() ? this.voltasDe(c.assento) : null;
+    const desfazivel = !!voltas && (voltas.passo !== null || voltas.turno !== null);
+    this.enviarSeMudou(c, { t: 'jogo', vista, paradas: this.d.assentos[c.assento].paradas, posicoes: this.posicoesNoCampo(), desfazivel, ...(desfazivel ? { voltas: voltas! } : {}), desfazer: this.pedidoPublico() });
   }
 
   /**
@@ -622,6 +629,7 @@ export class Sala {
     this.rapidos = new Map();
     this.metas = [];
     this.cps = [];
+    this.retomada = null;
     this.salvas = 0;
     this.erro = null;
     this.falhas = { indice: -1, n: 0 };
@@ -833,7 +841,7 @@ export class Sala {
         }
         break;
       }
-      case 'desfazer': return this.pedirDesfazer(i);
+      case 'desfazer': return this.pedirDesfazer(i, m.ate ?? 'passo');
       case 'desfazerResposta': {
         const p = this.pedido;
         if (!p) return 'Não há pedido de desfazer aberto';
@@ -997,6 +1005,7 @@ export class Sala {
     this.salvas = this.game.inputs.length;
     this.metas = this.game.inputs.map((_, k) => metas[k] ?? null);
     this.cps = [];
+    this.retomada = null;
     this.criarBots();
     if (this.game.isOver()) this.encerrarPartida();
   }
@@ -1047,7 +1056,7 @@ export class Sala {
    */
   private registrar(fn: () => unknown, humana = false, autor: number | null = null): void {
     const g = this.game!;
-    const turno = g.state.turn.number;
+    const { number: turno, active: ativo, step: etapa } = g.state.turn;
     const n0 = g.inputs.length;
     try {
       fn();
@@ -1056,7 +1065,7 @@ export class Sala {
       this.falha(e, autor);
       return;
     }
-    for (let k = n0; k < g.inputs.length; k++) this.metas[k] = { turno, humana };
+    for (let k = n0; k < g.inputs.length; k++) this.metas[k] = { turno, humana, ativo, etapa };
     if (g.inputs.length > n0) this.falhas = { indice: -1, n: 0 };
     // Cartomante e Magic God: leem a mesa a cada jogada (só o que é público)
     for (const b of this.bots.values()) if (b.e.memoria) b.observar(g.g);
@@ -1078,7 +1087,7 @@ export class Sala {
     const ultimo = this.cps[this.cps.length - 1];
     if (g.pending?.kind === 'priority' && (!ultimo || ultimo.state.turn.number !== g.state.turn.number)) {
       const cp = g.checkpoint();
-      if (cp) { this.cps.push(cp); if (this.cps.length > 3) this.cps.shift(); }
+      if (cp) { this.cps.push(cp); if (this.cps.length > CHECKPOINTS_TURNOS) this.cps.shift(); }
     }
     if (g.isOver() && this.d.estado === 'jogando') this.encerrarPartida();
   }
@@ -1096,24 +1105,34 @@ export class Sala {
   }
 
   // ------------------------------------------------------------------ desfazer
-  private alvoDesfazer(i: number): number | null {
+  private alvoDesfazer(i: number, modo: ModoVolta): PontoVolta | null {
     const g = this.game;
-    if (!g || this.d.assentos[i]?.tipo !== 'humano') return null;
-    return alvoDesfazer(g.inputs, this.metas, i, g.state.turn.number);
+    if (!g || this.d.assentos[i]?.tipo !== 'humano' || g.state.players[i]?.left) return null;
+    return alvoDesfazer(g.inputs, this.metas, i, g.state.turn.number, g.state.turn.active, modo);
+  }
+
+  /** os dois botões de voltar da pessoa: um passo (o ponto mais recente) e o começo do turno dela */
+  private voltasDe(i: number): { passo: string | null; turno: string | null } | null {
+    const g = this.game;
+    if (!g || this.d.assentos[i]?.tipo !== 'humano' || g.state.players[i]?.left) return null;
+    const { pontos, turno } = pontosDeVolta(g.inputs, this.metas, i, g.state.turn.number, g.state.turn.active);
+    const ultimo = pontos[pontos.length - 1];
+    return { passo: ultimo ? rotuloVolta(ultimo) : null, turno: turno ? rotuloVolta(turno) : null };
   }
 
   private pedidoPublico(): PedidoDesfazer | null {
     const p = this.pedido;
     if (!p) return null;
-    return { de: p.de, linhas: p.linhas, aceitaram: [...p.aceitaram], faltam: [...p.faltam], restanteMs: Math.max(0, p.prazo - Date.now()), totalMs: this.gerente.atrasos.prazoDesfazer };
+    return { de: p.de, titulo: rotuloVolta(p.ponto), linhas: p.linhas, aceitaram: [...p.aceitaram], faltam: [...p.faltam], restanteMs: Math.max(0, p.prazo - Date.now()), totalMs: this.gerente.atrasos.prazoDesfazer };
   }
 
-  private pedirDesfazer(i: number): string | null {
+  private pedirDesfazer(i: number, modo: ModoVolta): string | null {
     const g = this.game;
     if (!g || g.isOver() || this.d.estado !== 'jogando') return 'Não há partida em andamento';
     if (this.pedido) return 'Já há um pedido de desfazer aberto';
-    const alvo = this.alvoDesfazer(i);
-    if (alvo === null) return 'Não há jogada sua para desfazer neste turno';
+    const ponto = this.alvoDesfazer(i, modo);
+    if (ponto === null) return modo === 'turno' ? 'Não há começo do seu turno para onde voltar' : 'Não há ponto anterior seu para onde voltar';
+    const alvo = ponto.alvo;
     let voltar: Game;
     try {
       voltar = reconstruir(this.d.partida!.config, this.decks(), g.inputs, [...this.cps, this.d.partida!.checkpoint], alvo);
@@ -1127,11 +1146,17 @@ export class Sala {
     const aceitaram = new Set(outros.filter((k) => this.d.assentos[k].tipo === 'bot'));
     const prazo = Date.now() + this.gerente.atrasos.prazoDesfazer;
     const timer = setTimeout(() => { if (this.pedido?.timer === timer) this.encerrarPedido(`O pedido de desfazer de ${this.nome(i)} não teve resposta a tempo.`); }, this.gerente.atrasos.prazoDesfazer);
-    this.pedido = { de: i, alvo, voltar, linhas: linhasDesfeitas(g, voltar, g.inputs[alvo]), aceitaram, faltam, prazo, timer };
-    this.anotarSistema('desfazer', `${this.nome(i)} pede para desfazer: ${this.pedido.linhas[0]?.texto ?? 'a última jogada'}.`, i);
+    this.pedido = { de: i, alvo, ponto, voltar, linhas: linhasDesfeitas(g, voltar, g.inputs[alvo], ponto), aceitaram, faltam, prazo, timer };
+    this.anotarSistema('desfazer', ponto.tipo === 'jogada' ? `${this.nome(i)} pede para desfazer: ${this.pedido.linhas[0]?.texto ?? 'a última jogada'}.` : `${this.nome(i)} pede para ${rotuloVolta(ponto).replace('do seu turno', 'do próprio turno')}.`, i);
     if (faltam.size === 0) this.aplicarDesfazer();
     else this.transmitir();
     return null;
+  }
+
+  /** a pessoa acabou de voltar para esta decisão: ela decide (sem isto o passe automático passava de novo) */
+  private esperaRetomada(g: Game, jogador: number): boolean {
+    const r = this.retomada;
+    return !!r && r.jogador === jogador && r.indice === g.inputs.length;
   }
 
   /** fecha o pedido sem desfazer nada, e a mesa segue */
@@ -1151,6 +1176,7 @@ export class Sala {
     this.pedido = null;
     const partida = this.d.partida!;
     this.game = p.voltar;
+    this.retomada = { jogador: p.de, indice: p.alvo };
     this.marcarReinicio('desfeita');
     this.metas = this.metas.slice(0, p.alvo);
     this.salvas = p.alvo;
@@ -1162,7 +1188,7 @@ export class Sala {
     for (const id of Object.keys(partida.posicoes ?? {})) if (!campo.has(Number(id))) delete partida.posicoes![id];
     this.criarBots();
     this.salvar();
-    this.avisar(`${this.nome(p.de)} desfez: ${p.linhas[0]?.texto ?? 'a última jogada'}`);
+    this.avisar(p.ponto.tipo === 'jogada' ? `${this.nome(p.de)} desfez: ${p.linhas[0]?.texto ?? 'a última jogada'}` : `${this.nome(p.de)} voltou ${p.ponto.tipo === 'turno' ? 'para o começo do próprio turno' : `para ${rotuloVolta(p.ponto).replace(/^voltar para /, '').replace('do seu turno', 'do próprio turno')}`}`);
     this.transmitir();
     this.seguir();
   }
@@ -1324,7 +1350,7 @@ export class Sala {
           espera = visivel ? at.botAcao : at.botPasse;
           // um objeto novo na pilha segura a decisão do bot (passe ou resposta) para todos lerem
           if (d.kind === 'priority') espera = Math.max(espera, this.segurar(g, at.pilhaNova));
-        } else if (shouldAutoPass(g.state, d, d.player, this.paradasEfetivas(a))) {
+        } else if (!this.esperaRetomada(g, d.player) && shouldAutoPass(g.state, d, d.player, this.paradasEfetivas(a))) {
           resposta = { kind: 'priority', action: 'pass' };
           espera = at.autoPasse;
           const s = this.segurar(g, at.pilhaNova);

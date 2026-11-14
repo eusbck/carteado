@@ -25,10 +25,10 @@ export function PedidoDesfazer({ p, eu, nomes, cor }: { p: Pedido & { ate: numbe
     <div class="pedido-desfazer" role="alertdialog" aria-label="Pedido de desfazer" style={{ '--cor': cor(p.de) }}>
       <div class="pedido-topo">
         <IconeDesfazer />
-        <p>{meu ? 'Você pediu para desfazer a última jogada' : <><b>{nomes[p.de]}</b> pede para desfazer a última jogada</>}</p>
+        <p>{meu ? `Você pediu para ${p.titulo}` : <><b>{nomes[p.de]}</b> pede para {p.titulo.replace('do seu turno', 'do próprio turno')}</>}</p>
       </div>
       {p.linhas.length > 0 && <ol>{p.linhas.map((l, i) => <li key={i} class={l.outro ? 'outro' : ''}>{linha(l.texto)}</li>)}</ol>}
-      {!meu && <p class="pedido-sub">Volta para antes dessa jogada, neste turno. Tudo o que veio depois volta junto.</p>}
+      {!meu && <p class="pedido-sub">Tudo o que veio depois volta junto. A sorte não muda: as compras e embaralhamentos saem iguais.</p>}
       <div class="pedido-quem">
         {p.aceitaram.map((i) => <span key={`s${i}`} class="sim">{OK}{nomes[i]} aceitou</span>)}
         {p.faltam.map((i) => <span key={`f${i}`}>{i === eu ? 'Você' : nomes[i]}</span>)}
