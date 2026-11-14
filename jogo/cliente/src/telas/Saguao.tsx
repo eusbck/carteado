@@ -11,6 +11,7 @@ import { ehEspectador, loja, useLoja } from '../loja.ts';
 import { nomeCarta, urlArte } from '../cartas.ts';
 import { Simbolos } from '../mesa/Simbolos.tsx';
 import { quandoOcioso } from '../ocioso.ts';
+import { abrirTutorial } from '../tutorial/tutorialLoja.ts';
 import { EscolhaRetrato } from './EscolhaRetrato.tsx';
 import { EscolhaLugares } from './EscolhaLugares.tsx';
 import { descricaoLugares } from '../lugares.ts';
@@ -335,7 +336,10 @@ export function Saguao() {
               </li>
             ))}
           </ol>
-          <button class="botao fantasma" onClick={() => loja.enviar({ t: 'sair' })}>Sair da sala</button>
+          <div class="saguao-topo-botoes">
+            <button type="button" class="botao fantasma" title="Como jogar / How to play" onClick={() => abrirTutorial()}>Como jogar</button>
+            <button class="botao fantasma" onClick={() => loja.enviar({ t: 'sair' })}>Sair da sala</button>
+          </div>
         </header>
         <ListaEspectadores sala={sala} />
         {sala.estado === 'fim' && <p class="faixa">A última partida terminou. Quem criou a sala pode começar outra.</p>}

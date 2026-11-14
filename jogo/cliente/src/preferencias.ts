@@ -55,6 +55,8 @@ export interface Preferencias {
    * animados de dano, e a música tocada por <audio> em vez de decodificada inteira na memória. Vale por
    * <html data-desempenho> (estilo.css) e nos poucos pontos em JavaScript que leem esta chave */
   desempenho: boolean;
+  /** idioma do Como jogar (tutorial/textos.ts); sem valor, português. O resto do jogo é só em português */
+  idiomaTutorial?: 'pt' | 'en';
 }
 
 const CHAVE = 'commander-da-mesa:preferencias';

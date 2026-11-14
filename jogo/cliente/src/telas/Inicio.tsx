@@ -5,6 +5,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'preact/hooks';
 import type { ComponentChildren } from 'preact';
 import { Marca } from '../icones.tsx';
+import { abrirTutorial } from '../tutorial/tutorialLoja.ts';
 import { loja } from '../loja.ts';
 import { descricaoLugares } from '../lugares.ts';
 import { EscolhaLugares } from './EscolhaLugares.tsx';
@@ -184,7 +185,10 @@ export function Inicio() {
       <main class="janela tela-passos">
         <header class="cat-topo">
           <div class="marca-jogo"><Marca /><span>COMMANDER</span></div>
-          <button type="button" class="botao" onClick={() => void loja.abrirDecks()}>Decks</button>
+          <div class="cat-topo-botoes">
+            <button type="button" class="botao fantasma" title="Como jogar / How to play" onClick={() => abrirTutorial()}>Como jogar</button>
+            <button type="button" class="botao" onClick={() => void loja.abrirDecks()}>Decks</button>
+          </div>
         </header>
         <ol class="passos-pontos" aria-label={`Passo ${ORDEM[passo] + 1} de 3`}>
           {[0, 1, 2].map((i) => <li key={i} class={i < ORDEM[passo] ? 'feito' : i === ORDEM[passo] ? 'atual' : ''} />)}

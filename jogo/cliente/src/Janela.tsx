@@ -5,35 +5,23 @@
 
 import type { ComponentChildren } from 'preact';
 import { createPortal } from 'preact/compat';
+import type { RefObject } from 'preact';
 import { useEffect, useId, useRef } from 'preact/hooks';
 import { IconeFechar } from './icones.tsx';
 
 /** janelas abertas, da mais antiga para a mais nova: o Esc fecha só a de cima */
 const abertas: symbol[] = [];
 
-export interface JanelaProps {
-  titulo: ComponentChildren;
-  /** nome para leitores de tela, quando o título não é texto simples */
-  rotulo?: string;
-  fechar: () => void;
-  children: ComponentChildren;
-  larga?: boolean;
-  classe?: string;
-  /** some sem perder o que já foi preenchido (ex.: enquanto você escolhe uma carta na mesa) */
-  escondida?: boolean;
-}
-
-export function Janela({ titulo, rotulo, fechar, children, larga, classe, escondida }: JanelaProps) {
-  const id = useId();
-  const caixa = useRef<HTMLDivElement>(null);
-  const eu = useRef(Symbol('janela'));
+/**
+ * Uma camada por cima de tudo (a Janela, o Como jogar): entra na pilha, recebe o foco, o Esc fecha só a de cima e, ao
+ * sair, o foco volta para onde estava.
+ */
+export function useCamada(caixa: RefObject<HTMLElement | null>, fechar: () => void, ativa = true): void {
+  const eu = useRef(Symbol('camada'));
   const fecharAtual = useRef(fechar);
   fecharAtual.current = fechar;
-  // o clique só fecha se começou e terminou fora da caixa (arrastar uma seleção não fecha)
-  const comecouFora = useRef(false);
-
   useEffect(() => {
-    if (escondida) return;
+    if (!ativa) return;
     const marca = eu.current;
     abertas.push(marca);
     const antes = document.activeElement as HTMLElement | null;
@@ -50,7 +38,28 @@ export function Janela({ titulo, rotulo, fechar, children, larga, classe, escond
       abertas.splice(abertas.indexOf(marca), 1);
       if (antes?.isConnected) antes.focus({ preventScroll: true });
     };
-  }, [escondida]);
+  }, [ativa]);
+}
+
+export interface JanelaProps {
+  titulo: ComponentChildren;
+  /** nome para leitores de tela, quando o título não é texto simples */
+  rotulo?: string;
+  fechar: () => void;
+  children: ComponentChildren;
+  larga?: boolean;
+  classe?: string;
+  /** some sem perder o que já foi preenchido (ex.: enquanto você escolhe uma carta na mesa) */
+  escondida?: boolean;
+}
+
+export function Janela({ titulo, rotulo, fechar, children, larga, classe, escondida }: JanelaProps) {
+  const id = useId();
+  const caixa = useRef<HTMLDivElement>(null);
+  // o clique só fecha se começou e terminou fora da caixa (arrastar uma seleção não fecha)
+  const comecouFora = useRef(false);
+
+  useCamada(caixa, fechar, !escondida);
 
   return createPortal(
     <div class={`janela-fundo ${escondida ? 'escondido' : ''}`}

@@ -13,13 +13,18 @@ import { IconeErro } from './icones.tsx';
 import { FORA_DO_PRINT } from './relato/captura.ts';
 import { Relato } from './relato/Relato.tsx';
 import { abrirRelato } from './relato/relatoLoja.ts';
+import { useTutorial } from './tutorial/tutorialLoja.ts';
 
 // a tela Decks (importar e atualizar pelo Moxfield) fica fora do pacote inicial: o código vem com a página parada,
 // depois da tela inicial ou do saguão (os dois têm o botão Decks), e o clique quase nunca chega a ver o "Carregando…"
 const carregarDecks = () => import('./telas/Decks.tsx');
 const Decks = lazy(() => carregarDecks().then((m) => ({ default: m.Decks })));
 
+// o Como jogar (tutorial/) também fica fora do pacote inicial: só vem quando alguém clica no botão
+const Tutorial = lazy(() => import('./tutorial/Tutorial.tsx').then((m) => ({ default: m.Tutorial })));
+
 export function App() {
+  const tutorial = useTutorial();
   // só o que escolhe a tela (N27): a vista de cada jogada e o chat não redesenham daqui (a mesa assina o dela)
   const e = useLoja((x) => ({ fase: x.fase, vista: !!x.vista, sala: x.sala ? x.sala.estado : null, erro: x.erro, conectado: x.conectado }));
   const antesDosDecks = e.fase === 'inicio' || e.fase === 'sala';
@@ -59,6 +64,7 @@ export function App() {
         <button type="button" class={`relato-flutuante ${FORA_DO_PRINT}`} onClick={() => abrirRelato()} title="Reportar um erro: tira um print da tela e manda junto com o que você escrever"><IconeErro />Reportar erro</button>
       )}
       <Relato />
+      {tutorial && <Suspense fallback={null}><Tutorial /></Suspense>}
     </>
   );
 }

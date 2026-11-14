@@ -13,7 +13,8 @@ import type { MsgChat, VoltasDesfazer } from '../../../servidor/protocolo.ts';
 import { avatarDoAssento } from '../avatares.ts';
 import { nomeCarta, rostoNoFundo, textoDaLinha, traduzir, urlFundo, urlImagem } from '../cartas.ts';
 import { abrirRelato } from '../relato/relatoLoja.ts';
-import { IconeAjuste, IconeErro, IconeConceder, IconeRecolher as IconeSeta, IconeConfig, IconeDesfazer, IconeFimTurno, IconeParadas, IconePassar, IconeRecolher, IconeRegistro, IconeSair, Marca } from '../icones.tsx';
+import { abrirTutorial } from '../tutorial/tutorialLoja.ts';
+import { IconeAjuda, IconeAjuste, IconeErro, IconeConceder, IconeRecolher as IconeSeta, IconeConfig, IconeDesfazer, IconeFimTurno, IconeParadas, IconePassar, IconeRecolher, IconeRegistro, IconeSair, Marca } from '../icones.tsx';
 import { Importacoes } from '../Importacoes.tsx';
 import { loja, useLoja } from '../loja.ts';
 import { ListaEspectadores } from '../telas/Saguao.tsx';
@@ -1498,6 +1499,7 @@ export function Mesa() {
           {!espectador && <li><button title="Paradas" aria-label="Paradas" onClick={() => setModal({ tipo: 'paradas' })}><IconeParadas /><span class="rotulo">Paradas</span></button></li>}
           {!espectador && <li><button title="Ajuste manual" aria-label="Ajuste manual" disabled={decisaoManual === null} onClick={() => setManualAberto(true)}><IconeAjuste /><span class="rotulo">Ajuste manual</span></button></li>}
           <li><button title="Configurações" aria-label="Configurações" onClick={() => setModal({ tipo: 'config' })}><IconeConfig /><span class="rotulo">Configurações</span></button></li>
+          <li><button title="Como jogar / How to play: as regras passo a passo, é só rolar" aria-label="Como jogar" onClick={() => abrirTutorial()}><IconeAjuda /><span class="rotulo">Como jogar</span></button></li>
           {!espectador && <li><button title="Reportar um erro: tira um print da mesa e manda junto com a partida" aria-label="Reportar erro" onClick={() => abrirRelato()}><IconeErro /><span class="rotulo">Reportar erro</span></button></li>}
           {!espectador && !v.gameOver && !minha.left && <li><button title="Conceder" aria-label="Conceder" onClick={() => setModal({ tipo: 'conceder' })}><IconeConceder /><span class="rotulo">Conceder</span></button></li>}
           <li><button title="Sair" aria-label="Sair" onClick={() => loja.enviar({ t: 'sair' })}><IconeSair /><span class="rotulo">Sair</span></button></li>

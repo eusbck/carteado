@@ -18,6 +18,8 @@ export const IconeSair = () => <Svg><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2
 export const IconeDesfazer = () => <Svg><path d="M9 14 4 9l5-5" /><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11" /></Svg>;
 /** inseto: Reportar erro */
 export const IconeErro = () => <Svg><path d="M8 2l1.9 1.9M16 2l-1.9 1.9M9 7.13v-1a3 3 0 1 1 6 0v1" /><path d="M12 20c-3.3 0-6-2.7-6-6v-3a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v3c0 3.3-2.7 6-6 6zM12 20v-9M6.53 9C4.6 8.8 3 7.1 3 5M6 13H2M3 21c0-2.1 1.7-3.9 3.8-4M20.97 5c0 2.1-1.6 3.8-3.5 4M22 13h-4M17.2 17c2.1.1 3.8 1.9 3.8 4" /></Svg>;
+/** interrogação num círculo: Como jogar */
+export const IconeAjuda = () => <Svg><circle cx="12" cy="12" r="9" /><path d="M9.3 9.2a2.8 2.8 0 0 1 5.4 1c0 1.9-2.7 2.3-2.7 4M12 17.2h.01" /></Svg>;
 export const IconeFechar = () => <Svg><path d="M18 6L6 18M6 6l12 12" /></Svg>;
 export const IconeRecolher = () => <Svg><path d="M9 18l6-6-6-6" /></Svg>;
 export const IconePassar = () => <Svg><path d="M5 4l10 8-10 8V4zM19 5v14" /></Svg>;

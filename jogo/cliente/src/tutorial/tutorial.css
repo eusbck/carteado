@@ -1,0 +1,142 @@
+/* Como jogar (tutorial/Tutorial.tsx): página por cima de tudo, com rolagem própria. Tudo o que se move usa só
+   transform e opacity (testes/css-animacoes.test.ts) e nada aqui tem desfoque (leveza). */
+
+.tut { --tut-topo: 56px; position: fixed; inset: 0; z-index: 240; display: grid; grid-template-rows: var(--tut-topo) minmax(0, 1fr); background: var(--fundo); color: var(--texto); animation: tut-entra .22s ease-out; }
+@keyframes tut-entra { from { opacity: 0; } }
+
+/* ---------------------------------------------------------------- barra de cima */
+.tut-topo { display: flex; align-items: center; gap: 14px; padding: 0 12px 0 18px; background: var(--painel); border-bottom: 1px solid var(--linha); }
+.tut-topo .marca-jogo { flex-direction: row; gap: 8px; }
+.tut-topo .marca-jogo .marca-logo { height: 22px; }
+.tut-topo-titulo { margin-right: auto; padding-left: 14px; border-left: 1px solid var(--linha-forte); font-size: 14px; font-weight: 700; color: var(--suave); white-space: nowrap; }
+.tut-idiomas { display: inline-flex; padding: 3px; border-radius: 10px; background: var(--painel-2); border: 1px solid var(--linha); }
+.tut-idiomas button { min-width: 38px; height: 28px; padding: 0 9px; border: 0; border-radius: 7px; background: transparent; color: var(--suave); font: inherit; font-size: 12.5px; font-weight: 800; letter-spacing: .06em; cursor: pointer; }
+.tut-idiomas button:hover { color: var(--texto); }
+.tut-idiomas button[aria-pressed="true"] { background: var(--acao); color: #1a0d06; }
+
+.tut-rolagem { overflow-y: auto; overflow-x: hidden; overscroll-behavior: contain; outline: none; }
+
+/* ---------------------------------------------------------------- abertura e fechamento */
+.tut-abertura, .tut-fim { min-height: calc(100dvh - var(--tut-topo)); padding: 48px 20px; display: grid; align-content: center; justify-items: center; gap: 18px; text-align: center;
+  background: radial-gradient(ellipse 70% 55% at 50% 42%, rgba(232, 93, 40, .16), transparent 70%); }
+.tut-fim { min-height: 80dvh; }
+.tut-titulo { max-width: 16em; font-family: var(--fonte-epica); font-size: clamp(30px, 5.4vw, 60px); font-weight: 800; letter-spacing: .06em; line-height: 1.08; text-transform: uppercase; text-wrap: balance;
+  background: linear-gradient(180deg, #fff3d8 0%, #e9c27a 48%, #b8803a 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.tut-lide { max-width: 40em; font-size: clamp(15.5px, 1.4vw, 18px); line-height: 1.65; color: color-mix(in srgb, var(--texto) 86%, var(--suave)); text-wrap: pretty; }
+.tut-rolar { margin-top: 26px; display: grid; justify-items: center; gap: 10px; font-size: 11.5px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--ouro); }
+.tut-rolar i { width: 12px; height: 12px; border-right: 2px solid var(--ouro); border-bottom: 2px solid var(--ouro); rotate: 45deg; animation: tut-seta 1.6s ease-in-out infinite; }
+@keyframes tut-seta { 50% { translate: 0 8px; opacity: .35; } }
+
+.tut-subtitulo { font-family: var(--fonte-epica); font-size: clamp(22px, 2.5vw, 32px); font-weight: 800; letter-spacing: .04em; line-height: 1.15; text-wrap: balance; }
+.tut-resumo { color: var(--suave); font-size: 15px; line-height: 1.55; }
+
+/* ---------------------------------------------------------------- como ler uma carta */
+.tut-ler { max-width: 1040px; margin: 0 auto; padding: 72px 24px 96px; display: grid; grid-template-columns: minmax(0, 380px) minmax(0, 1fr); gap: 56px; align-items: center; }
+.tut-ler-carta { position: relative; width: 100%; aspect-ratio: 5 / 7; border-radius: 4.6% / 3.3%; box-shadow: var(--sombra); }
+.tut-ler-carta img, .tut-ler-carta .tut-sem-arte { width: 100%; height: 100%; display: block; border-radius: inherit; }
+.tut-ponto { position: absolute; width: 28px; height: 28px; margin: -14px 0 0 -14px; display: grid; place-items: center; border-radius: 50%; border: 2px solid #fff; background: var(--acao); color: #fff; font: inherit; font-size: 13px; font-weight: 800; cursor: pointer; box-shadow: 0 2px 8px rgba(0, 0, 0, .6); transition: scale .18s ease; }
+.tut-ponto::after { content: ''; position: absolute; inset: -7px; border-radius: 50%; border: 2px solid var(--acao); opacity: 0; animation: tut-onda 2.2s ease-out infinite; }
+@keyframes tut-onda { from { opacity: .8; scale: .7; } to { opacity: 0; scale: 1.35; } }
+.tut-ponto:hover, .tut-ponto.ativo { scale: 1.18; }
+.tut-ponto.ativo { background: var(--ouro); color: #1a1206; }
+.tut-ponto.ativo::after { animation: none; }
+.tut-ler-texto { display: grid; gap: 12px; align-content: start; }
+.tut-partes { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 6px; }
+.tut-partes li { border: 1px solid var(--linha); border-radius: 12px; background: var(--painel); }
+.tut-partes li.ativo { border-color: color-mix(in srgb, var(--ouro) 60%, transparent); }
+.tut-partes button { width: 100%; min-height: 46px; padding: 0 14px; display: flex; align-items: center; gap: 12px; border: 0; background: transparent; color: var(--texto); font: inherit; font-size: 15px; font-weight: 700; text-align: left; cursor: pointer; }
+.tut-partes b { flex: 0 0 auto; width: 24px; height: 24px; display: grid; place-items: center; border-radius: 50%; background: var(--acao); color: #fff; font-size: 12px; }
+.tut-partes li.ativo b { background: var(--ouro); color: #1a1206; }
+.tut-partes p { padding: 0 16px 14px 50px; font-size: 14.5px; line-height: 1.6; color: color-mix(in srgb, var(--texto) 84%, var(--suave)); animation: tut-sobe .25s ease-out; }
+.tut-partes .simbolos { display: inline-flex; gap: 1px; vertical-align: -2px; margin: 0 2px; }
+@keyframes tut-sobe { from { opacity: 0; translate: 0 6px; } }
+
+/* ---------------------------------------------------------------- miolo: palco parado, passos rolando */
+.tut-miolo { max-width: 1560px; margin: 0 auto; padding: 0 32px; display: grid; grid-template-columns: minmax(0, 1.7fr) auto minmax(280px, 1fr); gap: 0 30px; border-top: 1px solid var(--linha); }
+.tut-palco-col, .tut-trilha { position: sticky; top: 0; align-self: start; height: calc(100dvh - var(--tut-topo)); display: grid; align-content: center; }
+
+.tut-trilha { justify-items: center; gap: 22px; }
+.tut-trilha::before { content: ''; position: absolute; left: 50%; top: 50%; width: 1px; height: 170px; translate: -50% -50%; background: var(--linha-forte); }
+.tut-trilha button { position: relative; width: 22px; height: 22px; padding: 0; border: 0; border-radius: 50%; background: transparent; cursor: pointer; }
+.tut-trilha button::before { content: ''; position: absolute; inset: 6px; border-radius: 50%; background: var(--suave); transition: scale .25s ease; }
+.tut-trilha button::after { content: ''; position: absolute; inset: 0; border-radius: 50%; border: 2px solid var(--acao); opacity: 0; transition: opacity .25s ease; }
+.tut-trilha button:hover::before { background: var(--texto); }
+.tut-trilha button.atual::before { background: var(--acao); scale: 1.15; }
+.tut-trilha button.atual::after { opacity: 1; }
+
+.tut-passos { padding-bottom: 20vh; }
+.tut-cap-topo { padding: 22vh 0 6vh; display: grid; gap: 8px; }
+.tut-cap-n { font-family: var(--fonte-epica); font-size: 64px; font-weight: 800; line-height: 1; color: var(--acao); }
+.tut-passo { min-height: 78vh; display: grid; align-content: center; gap: 12px; opacity: .28; transition: opacity .4s ease; }
+.tut-passo.ativo { opacity: 1; }
+.tut-passo h3 { font-size: clamp(20px, 2vw, 26px); font-weight: 800; line-height: 1.2; text-wrap: balance; }
+.tut-passo p:last-child { max-width: 34em; font-size: clamp(15.5px, 1.25vw, 17.5px); line-height: 1.68; color: color-mix(in srgb, var(--texto) 88%, var(--suave)); text-wrap: pretty; }
+.tut-passo .rot { color: var(--ouro); }
+
+/* ---------------------------------------------------------------- o palco */
+.tut-palco { width: min(100%, calc((100dvh - var(--tut-topo) - 110px) * 4 / 3)); margin: 0 auto; display: grid; gap: 12px; }
+.tut-fases { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px; transition: opacity .35s ease; }
+.tut-fases.fora { opacity: 0; }
+.tut-fases li { height: 30px; display: grid; place-items: center; border-radius: 8px; border: 1px solid var(--linha); background: var(--painel); font-size: 11.5px; font-weight: 700; color: var(--apagado); white-space: nowrap; overflow: hidden; }
+.tut-fases li.atual { border-color: var(--acao); background: var(--acao); color: #1a0d06; }
+
+.tut-mesa { position: relative; width: 100%; aspect-ratio: 4 / 3; container-type: size; border-radius: 20px; border: 1px solid var(--linha-forte); overflow: hidden;
+  background: radial-gradient(ellipse 80% 70% at 50% 60%, #2b241c 0%, #1b1714 55%, #141113 100%); box-shadow: inset 0 0 0 6px rgba(0, 0, 0, .25), var(--sombra); }
+.tut-meio { position: absolute; left: 4%; right: 4%; top: 25.5%; height: 1px; background: linear-gradient(90deg, transparent, var(--linha-forte) 20%, var(--linha-forte) 80%, transparent); }
+
+.tut-zona { position: absolute; width: 12.9cqw; aspect-ratio: 5 / 7; translate: -50% -50%; border: 1px dashed var(--linha-forte); border-radius: .9cqw; transition: opacity .4s ease; }
+.tut-zona span { position: absolute; left: 50%; bottom: 100%; translate: -50% -.4cqw; font-size: 1.45cqw; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--suave); white-space: nowrap; }
+.tut-zona.comando { border-color: color-mix(in srgb, var(--ouro) 70%, transparent); }
+.tut-zona.comando span { color: var(--ouro); }
+.tut-zona.fora { opacity: 0; }
+
+.tut-vida { position: absolute; translate: -50% -50%; display: grid; justify-items: center; gap: .5cqw; }
+.tut-vida strong { width: 8.4cqw; height: 8.4cqw; display: grid; place-items: center; border-radius: 50%; border: .35cqw solid var(--ouro); background: #17141a; font-family: var(--fonte-epica); font-size: 3.5cqw; font-weight: 800; line-height: 1; font-variant-numeric: tabular-nums; animation: tut-numero .45s ease-out; }
+.tut-vida span { font-size: 1.45cqw; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--suave); }
+.tut-vida.pulso strong { animation: tut-pulso 1.5s ease-in-out infinite; }
+@keyframes tut-numero { from { scale: 1.35; } }
+@keyframes tut-pulso { 50% { scale: 1.14; } }
+
+.tut-carta { position: absolute; left: 0; top: 0; width: 11.5cqw; aspect-ratio: 5 / 7; margin: -8.05cqw 0 0 -5.75cqw; perspective: 60cqw; border-radius: 4.6% / 3.3%;
+  transform: translate(calc(var(--x) * 1cqw), calc(var(--y) * 1cqh)) rotate(var(--r)) scale(var(--s));
+  transition: transform .75s cubic-bezier(.3, .85, .25, 1) var(--d), opacity .45s ease var(--d); }
+.tut-carta.some { opacity: 0; }
+.tut-carta-dentro { position: absolute; inset: 0; border-radius: inherit; transform-style: preserve-3d; transition: transform .6s ease var(--d); }
+.tut-carta.oculta .tut-carta-dentro { transform: rotateY(180deg); }
+.tut-frente, .tut-carta .verso { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: inherit; backface-visibility: hidden; -webkit-backface-visibility: hidden; box-shadow: 0 .4cqw 1.2cqw rgba(0, 0, 0, .55); }
+.tut-carta .verso { transform: rotateY(180deg); }
+/* o destaque é desenhado uma vez; só a opacidade dele muda */
+.tut-carta::after { content: ''; position: absolute; inset: -.45cqw; border-radius: inherit; border: .35cqw solid var(--acao); box-shadow: 0 0 2.4cqw var(--acao); opacity: 0; transition: opacity .35s ease var(--d); pointer-events: none; }
+.tut-carta.brilho::after { opacity: 1; }
+.tut-sem-arte { display: grid; place-items: center; padding: 8%; text-align: center; font-size: 1.3cqw; font-weight: 700; background: linear-gradient(160deg, #2e2b30, #19171a); border: 1px solid var(--linha-forte); }
+.tut-ler-carta .tut-sem-arte { font-size: 18px; }
+
+.tut-marca { position: absolute; z-index: 60; translate: -50% -50%; padding: .5cqw 1.3cqw; border-radius: 999px; font-size: 2.3cqw; font-weight: 800; line-height: 1.2; white-space: nowrap; animation: tut-marca .45s cubic-bezier(.2, 1.4, .4, 1) both; }
+.tut-marca.dano { background: var(--vermelho); color: #fff; }
+.tut-marca.info { background: #17141a; border: .2cqw solid var(--ouro); color: var(--ouro); font-size: 1.6cqw; letter-spacing: .1em; text-transform: uppercase; }
+@keyframes tut-marca { from { opacity: 0; scale: .4; } }
+
+/* ---------------------------------------------------------------- telas estreitas: palco preso no alto, passos por baixo */
+@media (max-width: 1023px) {
+  .tut-ler { grid-template-columns: 1fr; gap: 28px; padding: 48px 20px 64px; justify-items: center; }
+  .tut-ler-carta { width: min(300px, 78vw); }
+  .tut-ler-texto { width: 100%; }
+  .tut-miolo { grid-template-columns: 1fr; padding: 0 18px; }
+  .tut-trilha { display: none; }
+  .tut-palco-col { z-index: 5; height: auto; margin: 0 -18px; padding: 10px 12px; background: var(--fundo); border-bottom: 1px solid var(--linha); }
+  .tut-palco { width: min(100%, calc(44dvh * 4 / 3)); gap: 7px; }
+  .tut-fases li { height: 22px; font-size: 10px; border-radius: 6px; }
+  .tut-cap-topo { padding: 12vh 0 2vh; }
+  .tut-cap-n { font-size: 44px; }
+  .tut-passo { min-height: 46vh; }
+  .tut-passos { padding-bottom: 30vh; }
+}
+@media (max-width: 520px) {
+  .tut-topo-titulo { display: none; }
+  .tut-topo .marca-jogo { margin-right: auto; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tut, .tut-rolar i, .tut-ponto::after, .tut-vida strong, .tut-vida.pulso strong, .tut-marca, .tut-partes p { animation: none; }
+  .tut-carta, .tut-carta-dentro, .tut-carta::after, .tut-passo, .tut-zona, .tut-fases { transition: none; }
+}
