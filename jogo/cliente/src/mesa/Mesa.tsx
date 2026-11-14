@@ -9,7 +9,7 @@ import { lazy, Suspense } from 'preact/compat';
 import type { StopSettings } from '../../../motor/autopass.ts';
 import type { Decision, ManualAction, ObjId, PaymentSource, PriorityAction, Step, TargetRef } from '../../../motor/types.ts';
 import type { GameView, ObjView, PlayerView } from '../../../motor/view.ts';
-import type { MsgChat } from '../../../servidor/protocolo.ts';
+import type { MsgChat, VoltasDesfazer } from '../../../servidor/protocolo.ts';
 import { avatarDoAssento } from '../avatares.ts';
 import { nomeCarta, rostoNoFundo, textoDaLinha, traduzir, urlFundo, urlImagem } from '../cartas.ts';
 import { abrirRelato } from '../relato/relatoLoja.ts';
@@ -175,6 +175,34 @@ function rotuloDecisao(d: Decision): string {
   }
 }
 
+const maiuscula = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+
+/**
+ * Voltar: com um só destino, o botão pede direto; com os dois (um passo e o começo do seu turno), abre um menu
+ * pequeno. O pedido vai para a mesa aceitar.
+ */
+function BotaoVoltar({ voltas }: { voltas: VoltasDesfazer }) {
+  const [aberto, setAberto] = useState(false);
+  const opcoes = ([['passo', voltas.passo], ['turno', voltas.turno]] as const).filter((o): o is readonly ['passo' | 'turno', string] => !!o[1]);
+  // os dois iguais (o último ponto é o começo do turno): fica um só
+  const unicas = opcoes.length === 2 && opcoes[0][1] === opcoes[1][1] ? [opcoes[1]] : opcoes;
+  const pedir = (ate: 'passo' | 'turno') => { setAberto(false); loja.enviar({ t: 'desfazer', ate }); };
+  if (unicas.length === 1) {
+    const [ate, rot] = unicas[0];
+    return <button class="botao icone desfazer" title={maiuscula(rot)} aria-label={maiuscula(rot)} onClick={() => pedir(ate)}><IconeDesfazer /></button>;
+  }
+  return (
+    <span class="voltar-caixa">
+      <button class="botao icone desfazer" title="Voltar" aria-label="Voltar" aria-expanded={aberto} onClick={(ev) => { ev.stopPropagation(); setAberto(!aberto); }}><IconeDesfazer /></button>
+      {aberto && (
+        <span class="voltar-menu" role="menu" onClick={(ev) => ev.stopPropagation()}>
+          {unicas.map(([ate, rot]) => <button key={ate} role="menuitem" class="botao" onClick={() => pedir(ate)}>{maiuscula(rot)}</button>)}
+        </span>
+      )}
+    </span>
+  );
+}
+
 interface FaixaProps {
   v: GameView;
   eu: number;
@@ -182,13 +210,13 @@ interface FaixaProps {
   enviando: boolean;
   paradas: StopSettings | null;
   cor: (p: number) => string;
-  /** há jogada sua deste turno para desfazer */
-  desfazivel: boolean;
+  /** para onde dá para voltar: um passo, o começo do seu turno */
+  voltas: VoltasDesfazer | null;
   /** pedido de desfazer aberto: a mesa está parada */
   parada: boolean;
 }
 
-function FaixaFases({ v, eu, d, enviando, paradas, cor, desfazivel, parada }: FaixaProps) {
+function FaixaFases({ v, eu, d, enviando, paradas, cor, voltas, parada }: FaixaProps) {
   // bot pensando há mais de um segundo (assinado aqui: o aviso que vai e vem não redesenha a mesa)
   const pensando = useLoja((x) => x.pensando);
   const passo = v.turn.step;
@@ -205,9 +233,7 @@ function FaixaFases({ v, eu, d, enviando, paradas, cor, desfazivel, parada }: Fa
   const dica = (s: Step) => `${temParada(s) ? 'Não parar' : 'Parar'} aqui ${contexto === 'myTurn' ? 'no seu turno' : 'no turno dos outros'}`;
   const nomeEtapa = (s: Step) => ETAPAS.find((e) => e.id === s)!;
 
-  const desfazer = desfazivel && !v.gameOver
-    ? <button class="botao icone desfazer" title="Desfazer a minha última jogada" aria-label="Desfazer a minha última jogada" onClick={() => loja.enviar({ t: 'desfazer' })}><IconeDesfazer /></button>
-    : null;
+  const desfazer = voltas && !v.gameOver && (voltas.passo || voltas.turno) ? <BotaoVoltar voltas={voltas} /> : null;
   // parada nas mágicas dos oponentes: à vista na faixa, porque fora dela a mesa anda sozinha no turno dos outros
   const pilhaOponente = !!paradas?.stopOnOpponentStack;
   const alternarPilha = () => {
@@ -461,7 +487,7 @@ export function Mesa() {
   // só o que a mesa usa (N27): o chat (com a barra aberta), o "pensando…" e os avisos do servidor têm os assinantes deles
   const e = useLoja((x) => ({
     vista: x.vista, sala: x.sala, respondida: x.respondida, recusa: x.recusa, recusaCombate: x.recusaCombate, erro: x.erro, paradas: x.paradas,
-    posicoes: x.posicoes, desfazivel: x.desfazivel, desfazer: x.desfazer, decks: x.decks, reveladas: x.reveladas, relogio: x.relogio,
+    posicoes: x.posicoes, voltas: x.voltas, desfazer: x.desfazer, decks: x.decks, reveladas: x.reveladas, relogio: x.relogio,
   }));
   const v = e.vista!;
   const sala = e.sala!;
@@ -1389,7 +1415,7 @@ export function Mesa() {
         {area(minha, false)}
         <Setas setas={setas} versao={v} />
         <FaixaTurno turno={v.turn.number} rodada={v.turn.round} nome={v.turn.active === eu ? null : v.players[v.turn.active].name} cor={cor(v.turn.active)} />
-        <FaixaFases v={v} eu={eu} d={d} enviando={enviando} paradas={e.paradas} cor={cor} desfazivel={e.desfazivel} parada={!!e.desfazer} />
+        <FaixaFases v={v} eu={eu} d={d} enviando={enviando} paradas={e.paradas} cor={cor} voltas={e.voltas} parada={!!e.desfazer} />
         {e.desfazer && <PedidoDesfazer p={e.desfazer} eu={eu} nomes={v.players.map((p) => p.name)} cor={cor} />}
 
         <div class="coluna-dir">

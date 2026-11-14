@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from 'preact/hooks';
 import type { StopSettings } from '../../motor/autopass.ts';
 import type { Answer, ManualAction } from '../../motor/types.ts';
 import type { GameView } from '../../motor/view.ts';
-import type { CartaMontagem, Cena, DeckCatalogo, DeckResumo, LinhaSistema, ListaDeck,MsgChat, MsgCliente, MsgServidor, PedidoDesfazer, Posicoes, SalaPublica, TarefaPublica } from '../../servidor/protocolo.ts';
+import type { CartaMontagem, Cena, DeckCatalogo, DeckResumo, LinhaSistema, ListaDeck,MsgChat, MsgCliente, MsgServidor, PedidoDesfazer, Posicoes, SalaPublica, TarefaPublica, VoltasDesfazer } from '../../servidor/protocolo.ts';
 import { carregarCartas } from './cartas.ts';
 import { compartilhar } from './compartilhar.ts';
 import type { ReferenciaRelogio } from './cronometro.ts';
@@ -41,8 +41,10 @@ export interface Estado {
   decks: DeckResumo[];
   /** decisão já respondida, esperando a próxima vista (evita clique duplo) */
   respondida: number | null;
-  /** há jogada sua deste turno para desfazer */
+  /** há para onde voltar (um passo ou o começo do seu turno) */
   desfazivel: boolean;
+  /** os botões de voltar: o rótulo de cada um, ou null */
+  voltas: VoltasDesfazer | null;
   /** pedido de desfazer aberto, com a hora local em que expira */
   desfazer: (PedidoDesfazer & { ate: number }) | null;
   /** avisos curtos do servidor para a mesa */
@@ -114,7 +116,7 @@ function guardarTarefas(l: number[]): void {
 }
 
 class Loja {
-  e: Estado = { fase: 'carregando', conectado: false, sala: null, relogio: null, voce: null, vista: null, paradas: null, posicoes: {}, reveladas: [], erro: null, decks: [], respondida: null, desfazivel: false, desfazer: null, avisos: [], recusa: 0, recusaCombate: null, pensando: null, catalogo: null, tarefasDeck: {}, minhasTarefas: tarefasGuardadas(), chat: [], sistema: [], quem: null, cena: null };
+  e: Estado = { fase: 'carregando', conectado: false, sala: null, relogio: null, voce: null, vista: null, paradas: null, posicoes: {}, reveladas: [], erro: null, decks: [], respondida: null, desfazivel: false, voltas: null, desfazer: null, avisos: [], recusa: 0, recusaCombate: null, pensando: null, catalogo: null, tarefasDeck: {}, minhasTarefas: tarefasGuardadas(), chat: [], sistema: [], quem: null, cena: null };
   private ouvintes = new Set<() => void>();
   private ws: WebSocket | null = null;
   private fila: MsgCliente[] = [];
@@ -393,14 +395,14 @@ class Loja {
     const pedido = m.desfazer ? { ...m.desfazer, ate: Date.now() + m.desfazer.restanteMs } : null;
     const ant = this.e.desfazer;
     const mesmoPedido = !!pedido && !!ant && ant.de === pedido.de && Math.abs(ant.ate - pedido.ate) < 1500
-      && JSON.stringify([ant.linhas, ant.aceitaram, ant.faltam]) === JSON.stringify([pedido.linhas, pedido.aceitaram, pedido.faltam]);
+      && JSON.stringify([ant.titulo, ant.linhas, ant.aceitaram, ant.faltam]) === JSON.stringify([pedido.titulo, pedido.linhas, pedido.aceitaram, pedido.faltam]);
     const vista = compartilhar(this.e.vista, m.vista);
     const mudou = vista !== this.e.vista;
     this.mudar({
       vista, paradas: compartilhar(this.e.paradas, m.paradas), posicoes: compartilhar(this.e.posicoes, m.posicoes ?? {}),
       respondida: m.vista.decision?.id === this.e.respondida ? this.e.respondida : null,
       recusaCombate: m.vista.decision?.id === this.e.recusaCombate?.decisao ? this.e.recusaCombate : null,
-      desfazivel: !!m.desfazivel, desfazer: mesmoPedido ? ant : pedido, cena: m.cena ?? null,
+      desfazivel: !!m.desfazivel, voltas: compartilhar(this.e.voltas, m.voltas ?? null), desfazer: mesmoPedido ? ant : pedido, cena: m.cena ?? null,
     });
     return mudou;
   }

@@ -93,9 +93,12 @@ janela mostra o endereço `https://` e a senha de acesso para mandar ao grupo. D
      clicar em outro). "Confirmar ataque" vira as criaturas. Arrastar até o oponente também vale.
    - **Bloquear:** clique na sua criatura e depois no atacante (escudo e linha azul) e em "Confirmar
      bloqueio". Setas, dano, ganho de vida e criaturas indo para o cemitério aparecem para todos.
-   - **Desfazer:** o botão com a seta curva, ao lado de Passar, pede para voltar a sua última jogada
-     deste turno (o que os outros fizeram depois volta junto). Os outros têm 30 segundos para aceitar;
-     os bots aceitam na hora; uma recusa ou o prazo cancela. A mesa fica parada enquanto isso.
+   - **Voltar (desfazer):** o botão com a seta curva, ao lado de Passar. "Voltar um passo" desfaz a sua
+     última jogada ou, no seu turno, volta ao começo da etapa (mesmo que a mesa tenha passado sozinha);
+     pedindo de novo, volta mais um. "Voltar ao começo do seu turno" vai direto para lá, inclusive depois
+     de você ter passado o turno. Dá para voltar até o começo do seu turno mais recente; o que os outros
+     fizeram depois volta junto, e a sorte não muda (as compras saem iguais). Os outros têm 30 segundos
+     para aceitar; os bots aceitam na hora; uma recusa ou o prazo cancela. A mesa fica parada enquanto isso.
    - **Clique direito:** nas cartas, ver informações, revelar uma carta da mão e o ajuste manual
      (virar, marcadores, mover); no seu campo vazio, desvirar tudo, criar ficha e marcadores de jogador.
    - A faixa no meio da mesa mostra o turno, as cinco fases com as etapas e o botão Passar. Clicar

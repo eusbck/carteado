@@ -272,9 +272,17 @@ export interface LinhaSistema {
   vezes?: number;
 }
 
+/** os botões de voltar de quem joga: o rótulo de cada um, ou null se não há para onde */
+export interface VoltasDesfazer {
+  passo: string | null;
+  turno: string | null;
+}
+
 /** pedido de desfazer aberto: a mesa fica parada até todos os humanos aceitarem */
 export interface PedidoDesfazer {
   de: number;
+  /** para onde volta: "desfazer a última jogada", "voltar para o começo do seu turno"… */
+  titulo: string;
   linhas: LinhaDesfeita[];
   aceitaram: number[];
   faltam: number[];
@@ -328,8 +336,11 @@ export type MsgCliente =
   | { t: 'lugares'; n: number }
   /** o retrato do seu assento (null: volta ao do comandante do deck) */
   | { t: 'avatar'; avatar: string | null }
-  /** pedir para desfazer a sua última jogada deste turno; responder ou cancelar um pedido aberto */
-  | { t: 'desfazer' }
+  /**
+   * pedir para voltar: um passo (a sua última jogada ou o começo da etapa do seu turno) ou ao começo do seu turno mais
+   * recente; responder ou cancelar um pedido aberto
+   */
+  | { t: 'desfazer'; ate?: 'passo' | 'turno' }
   | { t: 'desfazerResposta'; aceitar: boolean }
   | { t: 'desfazerCancelar' }
   /** mostrar uma carta da sua mão a todos ou a alguns jogadores */
@@ -386,7 +397,7 @@ const FORMAS: { [T in MsgCliente['t']]: (m: Record<string, unknown>) => boolean 
   etapa: sempre,
   lugares: (m) => inteiro(m.n, MIN_LUGARES, MAX_ASSENTOS),
   avatar: (m) => curto(m.avatar),
-  desfazer: sempre,
+  desfazer: (m) => m.ate === undefined || m.ate === 'passo' || m.ate === 'turno',
   desfazerResposta: (m) => typeof m.aceitar === 'boolean',
   desfazerCancelar: sempre,
   revelar: (m) => m.para === 'todos' || (Array.isArray(m.para) && m.para.length <= MAX_ASSENTOS),
@@ -482,7 +493,7 @@ export type MsgServidor =
    * ou 'desfeita' (um pedido de desfazer voltou a partida). Sem ele, continua: o cliente põe a vista na fila de quadros
    * e anima a diferença; com ele, esvazia a fila e mostra a vista na hora, sem animação. `cena`: os eventos desde a
    * vista anterior, redigidos para o assento (Cena), também fora da comparação */
-  | { t: 'jogo'; vista: GameView; paradas: StopSettings; posicoes: Posicoes; desfazivel: boolean; desfazer: PedidoDesfazer | null; seq?: number; reinicio?: Reinicio; cena?: Cena }
+  | { t: 'jogo'; vista: GameView; paradas: StopSettings; posicoes: Posicoes; desfazivel: boolean; voltas?: VoltasDesfazer; desfazer: PedidoDesfazer | null; seq?: number; reinicio?: Reinicio; cena?: Cena }
   /** aviso curto para a mesa (pedido de desfazer aceito, recusado ou expirado) */
   | { t: 'aviso'; msg: string }
   | { t: 'saiu' }
