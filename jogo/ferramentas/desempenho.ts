@@ -11,6 +11,7 @@
 //
 // Uso: node ferramentas/desempenho.ts [raiz do jogo] [saida.json]
 //      node ferramentas/desempenho.ts comparar antes.json depois.json   → tabela em Markdown
+//      DESEMPENHO_SO=tutorial node ferramentas/desempenho.ts   → só o Como jogar (parado, rolando e trocando de cena)
 // Variáveis: PORTA_DESEMPENHO (8130), DESEMPENHO_DADOS (pasta de dados; apagada no começo), MESA_SEGUNDOS (90).
 // O Chrome sem janela desenha por software: os números servem para comparar versões na mesma máquina, não como
 // medida absoluta do que se vê num navegador de verdade.
@@ -218,12 +219,42 @@ async function ateMinhaPrioridade(p: Page, limiteMs = 120000): Promise<boolean> 
   return false;
 }
 
-try {
+try { principal: {
   const ctx = await navegador.newContext({ viewport: { width: 1920, height: 1080 } });
   ctx.setDefaultTimeout(20000);
   await instrumentar(ctx);
   const p = await ctx.newPage();
   const s = await sondar(p);
+
+  // --- Como jogar (tutorial/): a tela inicial parada serve de régua; depois o tutorial parado, a página rolando de
+  // ponta a ponta com a roda do mouse e as cenas do palco tocando uma atrás da outra ---
+  if (process.env.DESEMPENHO_SO === 'tutorial') {
+    await p.goto(URL);
+    await p.getByLabel('Senha do servidor').fill(SENHA);
+    await p.getByRole('button', { name: 'Entrar' }).click();
+    await p.getByLabel('Seu nome na mesa').waitFor();
+    await p.waitForTimeout(2500);
+    await medir('inicio', p, s, 6000);
+    await p.getByRole('button', { name: 'Como jogar' }).click();
+    await p.locator('.tut').waitFor();
+    await p.waitForFunction(() => [...document.querySelectorAll<HTMLImageElement>('.tut img')].every((i) => i.complete && i.naturalWidth > 0), null, { timeout: 60000 });
+    await p.waitForTimeout(1500);
+    await medir('tutorial-parado', p, s, 6000);
+    await p.mouse.move(960, 600);
+    await medir('tutorial-rolando', p, s, async () => {
+      const fim = () => p.locator('.tut-rolagem').evaluate((e) => e.scrollTop + e.clientHeight >= e.scrollHeight - 2);
+      for (let i = 0; i < 600 && !(await fim()); i++) { await p.mouse.wheel(0, 100); await p.waitForTimeout(40); }
+    });
+    await medir('tutorial-cenas', p, s, async () => {
+      for (const cena of ['comprar', 'mulligan', 'terrenos', 'instantaneas', 'inicio', 'dano', 'taxa', 'danoComandante']) {
+        await p.locator(`[data-cena="${cena}"]`).evaluate((e) => e.scrollIntoView({ block: 'center', behavior: 'instant' }));
+        await p.waitForTimeout(3600);
+      }
+    });
+    await p.screenshot({ path: SAIDA.replace(/.json$/, '.png') });
+    await ctx.close();
+    break principal;
+  }
 
   // --- entrada parada (brasas, aurora, joias) ---
   await p.goto(URL);
@@ -302,7 +333,7 @@ try {
   }
   await p.screenshot({ path: SAIDA.replace(/\.json$/, '.png') });
   await ctx.close();
-} finally {
+} } finally {
   writeFileSync(SAIDA, JSON.stringify(resultado, null, 1));
   console.log(`resultado em ${SAIDA}`);
   await navegador.close();
