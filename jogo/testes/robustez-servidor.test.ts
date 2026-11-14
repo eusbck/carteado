@@ -285,11 +285,11 @@ describe('erro do motor: a sala se refaz', () => {
     const config = s.d.partida!.config;
     const esperado = JSON.stringify(Game.replay(config, decks, entradas.slice(0, k)).state);
     // o passo da entrada k lança (o construtor faz o primeiro passo; cada entrada, um)
-    const passo = (Game.prototype as unknown as { step: (a: unknown) => void }).step;
+    const passo = (Game.prototype as unknown as { step: (...a: unknown[]) => void }).step;
     let n = 0;
-    const espiao = vi.spyOn(Game.prototype as unknown as { step: (a: unknown) => void }, 'step').mockImplementation(function (this: Game, a: unknown) {
+    const espiao = vi.spyOn(Game.prototype as unknown as { step: (...a: unknown[]) => void }, 'step').mockImplementation(function (this: Game, ...a: unknown[]) {
       if (n++ === k + 1) { this.error = new Error('quebrou no meio'); throw this.error; }
-      return passo.call(this, a);
+      return passo.apply(this, a);
     });
     let r: ReturnType<typeof Game.replayAteFalhar>;
     try {

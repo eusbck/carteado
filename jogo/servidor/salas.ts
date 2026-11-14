@@ -733,8 +733,9 @@ export class Sala {
         const g = this.game;
         if (!g || !g.pending) return 'Não há decisão pendente';
         if (this.pedido) return 'A mesa está parada esperando o pedido de desfazer';
-        if (g.pending.player !== i) return 'Não é a sua vez de decidir';
-        if (g.pending.id !== m.decisao) return 'Essa decisão já passou';
+        const minha = g.decisaoDe(i);
+        if (!minha) return 'Não é a sua vez de decidir';
+        if (minha.id !== m.decisao) return 'Essa decisão já passou';
         const resposta = m.resposta as Answer;
         if (this.semAuxilios && resposta?.kind === 'payment' && resposta.auto) return 'Esta sala não permite pagamento automático';
         const err = g.check(i, resposta);
@@ -1286,7 +1287,9 @@ export class Sala {
       for (let guarda = 0; guarda < 100000; guarda++) {
         const g = this.game;
         if (!g || !g.pending || g.isOver() || this.erro || this.pedido) break;
-        const d = g.pending;
+        // decisões simultâneas (mulligans): os bots respondem as deles sem esperar as pessoas; sem bot decidindo, a
+        // principal (a de uma pessoa) segue como sempre
+        const d = g.decisoes().find((x) => this.d.assentos[x.player]?.tipo === 'bot') ?? g.pending;
         const a = this.d.assentos[d.player];
         let resposta: Answer | null = null;
         let espera = 0;
@@ -1314,7 +1317,7 @@ export class Sala {
           } else if (!resposta) {
             this.esperandoBot = true;
             try { resposta = await this.pensarBot(bot, d.id, g); } finally { this.esperandoBot = false; }
-            if (this.game !== g || g.pending?.id !== d.id || this.pedido || this.geracao !== geracao) continue; // algo mudou enquanto pensava
+            if (this.game !== g || g.decisaoDe(d.player)?.id !== d.id || this.pedido || this.geracao !== geracao) continue; // algo mudou enquanto pensava
             if (!resposta) resposta = defaultAnswer(d);
           }
           const visivel = (d.kind === 'priority' && resposta.kind === 'priority' && resposta.action !== 'pass') || d.kind === 'attackers' || d.kind === 'blockers';
@@ -1337,7 +1340,7 @@ export class Sala {
           if (a.tipo === 'bot') this.transmitir();
           else { this.vistaNeutra = true; if (pilha) this.transmitir(null); }
           try { await dorme(espera); } finally { this.vistaNeutra = false; }
-          if (this.game !== g || g.pending?.id !== d.id || this.pedido) continue; // algo mudou enquanto esperava
+          if (this.game !== g || g.decisaoDe(d.player)?.id !== d.id || this.pedido) continue; // algo mudou enquanto esperava
         }
         const r = resposta;
         this.registrar(() => {

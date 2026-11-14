@@ -3,7 +3,7 @@
 // pendente: tudo antes dela é idempotente (flags no estado).
 
 import { addCounters, draw, discard, moveObjects, untap } from './actions.ts';
-import { ask, chooseItems } from './ask.ts';
+import { ask, chooseItems, type LiveDecision } from './ask.ts';
 import { chars, controllerOf, hooks, isType, nameOf } from './chars.ts';
 import { combatDamage, declareAttackers, declareBlockers, endCombat, needsFirstStrikeStep, newCombat } from './combat.ts';
 import { registry, type Gen } from './defs.ts';
@@ -38,73 +38,86 @@ function* startGame(g: G): Gen<void> {
   reg(g, 'sistema', { rule: '103.1' })`Ordem dos assentos: ${jogs(order)}. ${jog(order[0])} começa.`;
   for (const p of order) yield* draw(g, p, 7); // CR 103.5 (não conta como compra de etapa)
   for (const p of order) s.turnStats[p] = emptyTurnStats();
-  const livre = s.config.mulligan === 'livre';
-  const baiano = s.config.mulligan === 'baiano';
-  for (;;) {
-    const deciding = order.filter((p) => !s.players[p].kept && !s.players[p].left);
-    if (deciding.length === 0) break;
-    const mull: PlayerId[] = [];
-    /** mulligan baiano: as cartas que cada jogador escolheu trocar */
-    const trocas = new Map<PlayerId, ObjId[]>();
-    for (const p of deciding) {
-      const pl = s.players[p];
-      // CR 103.5: pode fazer mulligan até a mão inicial chegar a zero cartas
-      // (no mulligan livre e no baiano, a mão continua com sete e o limite é o número de trocas)
-      const free = s.config.multiplayer ? 1 : 0;
-      if (livre ? pl.mulligans >= MULLIGANS_LIVRES : baiano ? pl.mulligans >= MULLIGANS_BAIANOS || s.zones.hand[p].length === 0 : 7 - Math.max(0, pl.mulligans + 1 - free) < 0) { pl.kept = true; continue; }
-      const a = yield* ask<Extract<Answer, { kind: 'mulligan' }>>(g, {
-        kind: 'mulligan', player: p, handSize: s.zones.hand[p].length, mulligans: pl.mulligans,
-        prompt: baiano ? (pl.mulligans === 0 ? 'Manter a mão inicial ou escolher cartas para trocar?' : 'Manter esta mão ou trocar mais cartas?')
-          : pl.mulligans === 0 ? 'Manter a mão inicial ou fazer mulligan?' : 'Manter esta mão ou fazer mulligan de novo?',
-        ...(baiano ? { baiano: [...s.zones.hand[p]] } : {}),
-      });
-      if (a.keep) { pl.kept = true; continue; }
-      if (baiano) {
-        // a validação já garantiu cartas da mão, sem repetir
-        trocas.set(p, a.swap!);
-      }
-      mull.push(p);
-    }
-    for (const p of mull) {
-      const pl = s.players[p];
-      pl.mulligans++;
-      if (baiano) {
-        // regra da casa: compra uma carta nova para cada escolhida e só então embaralha as escolhidas no grimório
-        // (assim a troca nunca devolve a mesma carta na hora)
-        const ids = trocas.get(p)!;
-        g.log(`${pl.name} faz mulligan baiano: troca ${ids.length} carta(s) (${pl.mulligans} de ${MULLIGANS_BAIANOS}).`);
-        yield* draw(g, p, ids.length);
-        for (const id of ids) { s.zones.hand[p].splice(s.zones.hand[p].indexOf(id), 1); s.objects[id].zone = 'library'; s.zones.library[p].push(id); }
-        shuffle(s.rng, s.zones.library[p]);
-        g.bump();
-        continue;
-      }
-      // CR 103.5: embaralha a mão no grimório, compra sete e põe no fundo uma por mulligan
-      // (em multijogador o primeiro mulligan não conta, 103.5c)
-      for (const id of [...s.zones.hand[p]]) { s.zones.hand[p].splice(s.zones.hand[p].indexOf(id), 1); s.objects[id].zone = 'library'; s.zones.library[p].push(id); }
-      shuffle(s.rng, s.zones.library[p]);
-      g.bump();
-      if (livre) reg(g, 'mulligan')`${jog(p)} faz mulligan livre (${pl.mulligans} de ${MULLIGANS_LIVRES}).`;
-      else reg(g, 'mulligan', { rule: '103.5' })`${jog(p)} faz mulligan.`;
-      yield* draw(g, p, 7);
-      const n = livre ? 0 : Math.max(0, pl.mulligans - (s.config.multiplayer ? 1 : 0));
-      const hand = s.zones.hand[p];
-      if (n > 0 && hand.length > 0) {
-        const k = Math.min(n, hand.length);
-        const ids = yield* chooseItems(g, p, `Escolha ${k} carta(s) para pôr no fundo do grimório`, hand.map((id) => ({ id: String(id), label: nameOf(g, id), obj: id, card: { def: s.objects[id].def } })), k, k, true);
-        for (const id of ids.map(Number)) {
-          hand.splice(hand.indexOf(id), 1);
-          s.objects[id].zone = 'library';
-          s.zones.library[p].push(id);
-        }
-        g.bump();
-      }
-    }
-    for (const p of order) s.turnStats[p] = emptyTurnStats();
+  // os mulligans são simultâneos (regra da mesa): cada jogador decide no seu ritmo, sem esperar os outros. Cada um tem a
+  // sua sequência (perguntar, trocar, pôr no fundo, perguntar de novo); a mesa mostra todas as decisões abertas de uma
+  // vez e anda a de quem responder primeiro. A ordem das respostas fica nas entradas, então a reprodução é a mesma
+  const subs = new Map<PlayerId, { gen: Gen<void>; d: LiveDecision }>();
+  const avancarSub = (p: PlayerId, gen: Gen<void>, a: Answer | undefined): void => {
+    const r = gen.next(a as Answer);
+    if (r.done) subs.delete(p);
+    else subs.set(p, { gen, d: r.value as LiveDecision });
+  };
+  for (const p of order) avancarSub(p, mulligansDe(g, p), undefined);
+  while (subs.size) {
+    const abertas = order.filter((p) => subs.has(p)).map((p) => subs.get(p)!.d);
+    for (const d of abertas) delete d.paralelas;
+    const principal = abertas[0];
+    if (abertas.length > 1) principal.paralelas = abertas.slice(1);
+    const a = (yield principal) as Answer;
+    const quem = g.respondente ?? principal.player;
+    g.respondente = null;
+    const sub = subs.get(quem) ?? subs.get(principal.player)!;
+    delete sub.d.paralelas;
+    avancarSub(sub.d.player, sub.gen, a);
   }
+  for (const p of order) s.turnStats[p] = emptyTurnStats();
   yield* openingHandActions(g, order);
   s.started = true;
   beginTurn(g, order[0], true);
+}
+
+/** a sequência de mulligans de um jogador (CR 103.5; regras da casa 'livre' e 'baiano'), até ele manter a mão */
+function* mulligansDe(g: G, p: PlayerId): Gen<void> {
+  const s = g.state;
+  const livre = s.config.mulligan === 'livre';
+  const baiano = s.config.mulligan === 'baiano';
+  const pl = s.players[p];
+  for (;;) {
+    if (pl.kept || pl.left) return;
+    // CR 103.5: pode fazer mulligan até a mão inicial chegar a zero cartas
+    // (no mulligan livre e no baiano, a mão continua com sete e o limite é o número de trocas)
+    const free = s.config.multiplayer ? 1 : 0;
+    if (livre ? pl.mulligans >= MULLIGANS_LIVRES : baiano ? pl.mulligans >= MULLIGANS_BAIANOS || s.zones.hand[p].length === 0 : 7 - Math.max(0, pl.mulligans + 1 - free) < 0) { pl.kept = true; return; }
+    const a = yield* ask<Extract<Answer, { kind: 'mulligan' }>>(g, {
+      kind: 'mulligan', player: p, handSize: s.zones.hand[p].length, mulligans: pl.mulligans,
+      prompt: baiano ? (pl.mulligans === 0 ? 'Manter a mão inicial ou escolher cartas para trocar?' : 'Manter esta mão ou trocar mais cartas?')
+        : pl.mulligans === 0 ? 'Manter a mão inicial ou fazer mulligan?' : 'Manter esta mão ou fazer mulligan de novo?',
+      ...(baiano ? { baiano: [...s.zones.hand[p]] } : {}),
+    });
+    if (a.keep) { pl.kept = true; return; }
+    pl.mulligans++;
+    if (baiano) {
+      // regra da casa: compra uma carta nova para cada escolhida e só então embaralha as escolhidas no grimório
+      // (assim a troca nunca devolve a mesma carta na hora); a validação já garantiu cartas da mão, sem repetir
+      const ids = a.swap!;
+      g.log(`${pl.name} faz mulligan baiano: troca ${ids.length} carta(s) (${pl.mulligans} de ${MULLIGANS_BAIANOS}).`);
+      yield* draw(g, p, ids.length);
+      for (const id of ids) { s.zones.hand[p].splice(s.zones.hand[p].indexOf(id), 1); s.objects[id].zone = 'library'; s.zones.library[p].push(id); }
+      shuffle(s.rng, s.zones.library[p]);
+      g.bump();
+      continue;
+    }
+    // CR 103.5: embaralha a mão no grimório, compra sete e põe no fundo uma por mulligan
+    // (em multijogador o primeiro mulligan não conta, 103.5c)
+    for (const id of [...s.zones.hand[p]]) { s.zones.hand[p].splice(s.zones.hand[p].indexOf(id), 1); s.objects[id].zone = 'library'; s.zones.library[p].push(id); }
+    shuffle(s.rng, s.zones.library[p]);
+    g.bump();
+    if (livre) reg(g, 'mulligan')`${jog(p)} faz mulligan livre (${pl.mulligans} de ${MULLIGANS_LIVRES}).`;
+    else reg(g, 'mulligan', { rule: '103.5' })`${jog(p)} faz mulligan.`;
+    yield* draw(g, p, 7);
+    const n = livre ? 0 : Math.max(0, pl.mulligans - (s.config.multiplayer ? 1 : 0));
+    const hand = s.zones.hand[p];
+    if (n > 0 && hand.length > 0) {
+      const k = Math.min(n, hand.length);
+      const ids = yield* chooseItems(g, p, `Escolha ${k} carta(s) para pôr no fundo do grimório`, hand.map((id) => ({ id: String(id), label: nameOf(g, id), obj: id, card: { def: s.objects[id].def } })), k, k, true);
+      for (const id of ids.map(Number)) {
+        hand.splice(hand.indexOf(id), 1);
+        s.objects[id].zone = 'library';
+        s.zones.library[p].push(id);
+      }
+      g.bump();
+    }
+  }
 }
 
 /**

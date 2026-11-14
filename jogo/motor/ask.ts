@@ -9,7 +9,11 @@ import type { Answer, ChoiceItem, Color, Decision, ObjId, PlayerId, TargetRef } 
 export type DecisionInput = Omit<Decision, 'id'> extends infer D ? (D extends unknown ? Omit<D, never> : never) : never;
 
 /** decisão com um validador opcional (não serializado) */
-export type LiveDecision = Decision & { validate?: (a: Answer) => string | null };
+export type LiveDecision = Decision & {
+  validate?: (a: Answer) => string | null;
+  /** decisões de outros jogadores abertas ao mesmo tempo que esta (mulligans simultâneos); não vão para a vista */
+  paralelas?: LiveDecision[];
+};
 
 type WithoutId<T> = T extends unknown ? Omit<T, 'id'> : never;
 

@@ -60,7 +60,9 @@ export function MaoInicial({ v, d, enviando, regra, multiplayer, sel, setSel }: 
   else if (regra === 'baiano') sub = `Regra da mesa: Baiano · clique nas cartas que quer trocar: elas voltam para o grimório e você compra uma nova para cada (até ${MULLIGANS_BAIANOS} vezes, você já usou ${minha.mulligans})`;
   else if (regra === 'livre') sub = `Regra da mesa: Livre · troca a mão inteira, até ${MULLIGANS_LIVRES} vezes (você já usou ${minha.mulligans})`;
   else sub = `Regra da mesa: Londres · ${multiplayer ? 'o primeiro mulligan é grátis' : 'cada mulligan põe uma carta no fundo'}${minha.mulligans ? ` · você já fez ${minha.mulligans}` : ''}`;
-  const esperando = !d && v.waiting ? v.players[v.waiting.player]?.name : null;
+  // os mulligans são simultâneos: quem já decidiu vê todos que ainda estão escolhendo
+  const quem = !d && v.waiting ? (v.waiting.players ?? [v.waiting.player]).map((p) => v.players[p]?.name).filter(Boolean) : [];
+  const esperando = quem.length ? (quem.length === 1 ? `Esperando ${quem[0]} decidir a mão…` : `Esperando ${quem.slice(0, -1).join(', ')} e ${quem[quem.length - 1]} decidirem a mão…`) : null;
 
   return (
     <div class="escurecer" role="dialog" aria-label="Mão inicial">
@@ -94,7 +96,7 @@ export function MaoInicial({ v, d, enviando, regra, multiplayer, sel, setSel }: 
             <button class="botao principal grande" disabled={sel.length < fundo.min || sel.length > fundo.max} onClick={() => loja.responder(fundo.id, { kind: 'select', ids: sel })}>Confirmar</button>
           )}
           {enviando && <span class="sub">Enviando…</span>}
-          {esperando && <span class="sub">Esperando {esperando} decidir a mão…</span>}
+          {esperando && <span class="sub">{esperando}</span>}
         </div>
       </div>
     </div>

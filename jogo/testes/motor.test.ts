@@ -54,7 +54,7 @@ describe('início da partida', () => {
     const g = Game.create(config('mull', 4), DECKS.slice(0, 4));
     const first = g.pending!.player;
     g.answer(first, { kind: 'mulligan', keep: false });
-    for (let i = 0; i < 3; i++) g.answer(g.pending!.player, { kind: 'mulligan', keep: true });
+    for (const p of g.state.turnOrder) if (p !== first) g.answer(p, { kind: 'mulligan', keep: true });
     // o primeiro decide de novo com 7 cartas (nada no fundo)
     expect(g.pending).toMatchObject({ kind: 'mulligan', player: first });
     expect(g.state.zones.hand[first].length).toBe(7);
@@ -63,6 +63,47 @@ describe('início da partida', () => {
     expect(g.pending?.kind).toBe('select');
     g.answer(first, { kind: 'select', ids: [g.pending!.kind === 'select' ? g.pending!.items[0].id : ''] });
     expect(g.state.zones.hand[first].length).toBe(6);
+  });
+
+  it('mulligans simultâneos: todos decidem ao mesmo tempo, sem esperar a vez', () => {
+    const g = Game.create(config('simult', 4), DECKS.slice(0, 4));
+    const [a, b, c, d] = g.state.turnOrder;
+    // as quatro decisões estão abertas desde o começo, e cada um vê a sua
+    expect(g.decisoes().map((x) => x.player)).toEqual([a, b, c, d]);
+    for (const p of [a, b, c, d]) expect(buildView(g.g, p, g.pending).decision).toMatchObject({ kind: 'mulligan', player: p });
+    // o último da ordem responde primeiro, sem esperar ninguém, e já decide de novo com a mão nova
+    expect(g.answer(d, { kind: 'mulligan', keep: false }).ok).toBe(true);
+    expect(g.decisaoDe(d)).toMatchObject({ kind: 'mulligan', player: d, mulligans: 1 });
+    expect(g.answer(d, { kind: 'mulligan', keep: false }).ok).toBe(true);
+    // segundo mulligan dele: escolhe a carta do fundo enquanto os outros ainda pensam na mão inicial
+    const fundo = g.decisaoDe(d)!;
+    expect(fundo.kind).toBe('select');
+    expect(g.decisaoDe(a)).toMatchObject({ kind: 'mulligan', mulligans: 0 });
+    // quem já decidiu vê todos que ainda estão decidindo
+    g.answer(c, { kind: 'mulligan', keep: true });
+    expect(buildView(g.g, c, g.pending)).toMatchObject({ decision: null, waiting: { players: [a, b, d] } });
+    // decisão de quem já decidiu é recusada
+    expect(g.answer(c, { kind: 'mulligan', keep: true }).ok).toBe(false);
+    g.answer(d, { kind: 'select', ids: [fundo.kind === 'select' ? fundo.items[0].id : ''] });
+    g.answer(d, { kind: 'mulligan', keep: true });
+    g.answer(b, { kind: 'mulligan', keep: true });
+    g.answer(a, { kind: 'mulligan', keep: true });
+    expect(g.state.started).toBe(true);
+    expect(g.state.zones.hand[d].length).toBe(6);
+    // a ordem das respostas fica nas entradas: refazer dá o mesmo estado
+    const r = Game.replay(g.state.config, DECKS.slice(0, 4), g.inputs);
+    expect(r.state.zones.hand).toEqual(g.state.zones.hand);
+    expect(r.state.zones.library).toEqual(g.state.zones.library);
+  });
+
+  it('mulligans simultâneos: quem concede no meio não trava os outros', () => {
+    const g = Game.create(config('simult-sai', 3), DECKS.slice(0, 3));
+    const [a, b, c] = g.state.turnOrder;
+    g.answer(c, { kind: 'mulligan', keep: true });
+    g.concede(b);
+    expect(g.decisoes().map((x) => x.player)).toEqual([a]);
+    g.answer(a, { kind: 'mulligan', keep: true });
+    expect(g.state.started).toBe(true);
   });
 
   it('CR 103.5: em dois jogadores o primeiro mulligan já põe uma carta no fundo', () => {

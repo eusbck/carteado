@@ -1266,7 +1266,7 @@ export function Mesa() {
         exilio={v.exile.filter((o) => o.owner === j.id)}
         eu={j.id === eu}
         ativo={v.turn.active === j.id}
-        decidindo={v.waiting?.player === j.id}
+        decidindo={v.waiting?.players ? v.waiting.players.includes(j.id) : v.waiting?.player === j.id}
         nivel={sala.assentos[j.id]?.tipo === 'bot' ? nomeNivel(sala.assentos[j.id].nivel ?? NIVEL_PADRAO) : null}
         compacta={compacta}
         duelo={duelo}

@@ -151,7 +151,7 @@ export class HeuristicBot {
     const copia = r ? (s: RngState) => {
       cop ??= new Copiador(r);
       const f = cop.copia(this.eu, [...s] as RngState, info);
-      return f && f.pending?.id === d.id ? f : null;
+      return f && f.decisaoDe(this.eu)?.id === d.id ? f : null;
     } : null;
     return new Contexto(d, () => estadoOculto(game, this.eu, [...sem] as RngState, info), copia, prazo);
   }

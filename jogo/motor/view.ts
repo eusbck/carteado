@@ -121,7 +121,8 @@ export interface GameView {
   hand: ObjView[];
   combat: { attackers: { id: ObjId; target: TargetRef; blocked: boolean; blockers: ObjId[] }[] } | null;
   decision: Decision | null;
-  waiting: { player: PlayerId; kind: string } | null;
+  /** `players`: com decisões simultâneas (mulligans), todos que ainda estão decidindo, na ordem dos assentos */
+  waiting: { player: PlayerId; kind: string; players?: PlayerId[] } | null;
   log: LogLinhaView[];
   gameOver: { winners: PlayerId[]; draw: boolean; reason: string } | null;
 }
@@ -330,16 +331,23 @@ export function buildView(g: G, viewer: PlayerId | null, pending: Decision | nul
     ...(s.config.formato && s.config.formato !== 'commander' ? { formato: s.config.formato } : {}),
     hand: viewer === null ? [] : s.zones.hand[viewer].map((id) => objView(g, id, viewer)),
     combat: s.combat ? { attackers: s.combat.attackers.filter((a) => !a.removed).map((a) => ({ id: a.id, target: a.target, blocked: a.blocked, blockers: a.blockers })) } : null,
-    decision: pending && viewer !== null && pending.player === viewer ? stripDecision(pending) : null,
-    waiting: pending ? { player: pending.player, kind: pending.kind } : null,
+    decision: pending && viewer !== null ? decisaoVisivel(pending, viewer) : null,
+    waiting: pending ? { player: pending.player, kind: pending.kind, ...((pending as Decision & { paralelas?: Decision[] }).paralelas?.length ? { players: [pending, ...(pending as Decision & { paralelas: Decision[] }).paralelas].map((d) => d.player) } : {}) } : null,
     log,
     gameOver: s.gameOver,
   };
 }
 
 /** remove o validador (função) antes de enviar */
+/** a decisão que este jogador vê: a principal, se for dele, ou a sua entre as simultâneas (mulligans) */
+function decisaoVisivel(pending: Decision, viewer: PlayerId): Decision | null {
+  if (pending.player === viewer) return stripDecision(pending);
+  const p = (pending as Decision & { paralelas?: Decision[] }).paralelas?.find((d) => d.player === viewer);
+  return p ? stripDecision(p) : null;
+}
+
 export function stripDecision(d: Decision): Decision {
-  const { validate: _v, ...rest } = d as Decision & { validate?: unknown };
+  const { validate: _v, paralelas: _p, ...rest } = d as Decision & { validate?: unknown; paralelas?: unknown };
   return JSON.parse(JSON.stringify(rest)) as Decision;
 }
 

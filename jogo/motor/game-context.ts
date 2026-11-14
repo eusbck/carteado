@@ -19,6 +19,8 @@ export class G {
   entrada: number | null = null;
   /** estatísticas de desempenho/depuração */
   counters = { charsComputations: 0 };
+  /** quem respondeu a decisão que o laço está recebendo (decisões simultâneas: a principal ou uma paralela) */
+  respondente: PlayerId | null = null;
 
   constructor(state: GameState) {
     this.state = state;

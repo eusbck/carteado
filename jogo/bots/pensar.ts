@@ -2,7 +2,6 @@
 // testes. Recebe só um checkpoint, as entradas seguintes e o estado do bot; refaz a partida, sorteia de novo o que o
 // assento do bot não vê (bots/mundo.ts) e decide nesse mundo.
 
-import type { LiveDecision } from '../motor/ask.ts';
 import { Game, type Checkpoint, type Input } from '../motor/game.ts';
 import type { DeckList } from '../motor/state.ts';
 import type { Answer, GameConfig, PlayerId } from '../motor/types.ts';
@@ -49,8 +48,8 @@ export function pensar(t: Tarefa, decks: DeckList[]): Pensado {
     const game = Game.replay(t.config!, decks, t.entradas);
     const cp = game.checkpoint();
     if (cp) { base = { state: cp.state, inputIndex: t.entradas.length }; entradas = []; } else {
-      const d = game.pending as LiveDecision | null;
-      if (!d || d.id !== t.decisao || d.player !== t.eu) return { resposta: null, estado: bot.e, cp: null, ms: performance.now() - inicio };
+      const d = game.decisaoDe(t.eu);
+      if (!d || d.id !== t.decisao) return { resposta: null, estado: bot.e, cp: null, ms: performance.now() - inicio };
       const info = bot.infoOculta();
       const sem = ramo(bot.e.rng, 'mundo');
       const ctx = new Contexto(d, () => estadoOculto(game, t.eu, sem, info), null, inicio + bot.p.tempo);
@@ -61,11 +60,11 @@ export function pensar(t: Tarefa, decks: DeckList[]): Pensado {
   const cop = new Copiador({ cp: base, decks, entradas });
   const info = bot.infoOculta();
   const mundo = cop.copia(t.eu, ramo(bot.e.rng, 'mundo'), info);
-  if (!mundo?.pending || mundo.pending.id !== t.decisao || mundo.pending.player !== t.eu) {
+  const d = mundo?.decisaoDe(t.eu);
+  if (!mundo || !d || d.id !== t.decisao) {
     return { resposta: null, estado: bot.e, cp: cop.cp, ms: performance.now() - inicio };
   }
-  const d = mundo.pending as LiveDecision;
-  const ctx = new Contexto(d, () => mundo.g, (s) => { const f = cop.copia(t.eu, [...s] as typeof s, info); return f && f.pending?.id === d.id ? f : null; }, inicio + bot.p.tempo);
+  const ctx = new Contexto(d, () => mundo.g, (s) => { const f = cop.copia(t.eu, [...s] as typeof s, info); return f && f.decisaoDe(t.eu)?.id === d.id ? f : null; }, inicio + bot.p.tempo);
   const resposta = (t.jaImediata ? null : bot.imediata(d, buildView(mundo.g, t.eu, d), (a) => ctx.valida(a))) ?? bot.decidir(ctx);
   return { resposta, estado: bot.e, cp: cop.cp, ms: performance.now() - inicio };
 }

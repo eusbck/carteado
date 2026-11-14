@@ -97,9 +97,21 @@ export class Game {
     this.g.diario ??= novoDiario(teto);
   }
 
-  private step(answer: Answer | undefined): void {
+  /** todas as decisões abertas: a principal e as simultâneas (mulligans), na ordem dos assentos */
+  decisoes(): LiveDecision[] {
+    return this.pending ? [this.pending, ...(this.pending.paralelas ?? [])] : [];
+  }
+
+  /** a decisão aberta deste jogador (a principal ou uma simultânea), se houver */
+  decisaoDe(player: PlayerId): LiveDecision | null {
+    return this.decisoes().find((d) => d.player === player) ?? null;
+  }
+
+  private step(answer: Answer | undefined, player: PlayerId | null = null): void {
     try {
+      this.g.respondente = player;
       const r = this.gen.next(answer as Answer);
+      this.g.respondente = null;
       this.pending = r.done ? null : (r.value as LiveDecision);
     } catch (e) {
       this.error = e as Error;
@@ -110,9 +122,9 @@ export class Game {
 
   /** valida a resposta sem aplicá-la */
   check(player: PlayerId, answer: Answer): string | null {
-    const d = this.pending;
-    if (!d) return 'Nenhuma decisão pendente';
-    if (d.player !== player) return 'Não é sua decisão';
+    if (!this.pending) return 'Nenhuma decisão pendente';
+    const d = this.decisaoDe(player);
+    if (!d) return 'Não é sua decisão';
     const shape = validateShape(d, answer);
     if (shape) return shape;
     return d.validate ? d.validate(answer) : null;
@@ -121,7 +133,7 @@ export class Game {
   answer(player: PlayerId, answer: Answer): { ok: true } | { ok: false; error: string } {
     const err = this.check(player, answer);
     if (err) return { ok: false, error: err };
-    this.applyInput({ t: 'a', p: player, d: this.pending!.id, a: answer }, false);
+    this.applyInput({ t: 'a', p: player, d: this.decisaoDe(player)!.id, a: answer }, false);
     return { ok: true };
   }
 
@@ -140,13 +152,13 @@ export class Game {
         if (err) throw new Error(`Reprodução divergiu: ${err}`);
       }
       this.marcaEntrada();
-      this.step(inp.a);
+      this.step(inp.a, inp.p);
       this.inputs.push(inp);
     } else {
       this.marcaEntrada();
       doConcede(this.g, inp.p);
       // se a decisão pendente era de quem saiu, responde por ele (CR 800.4g-h)
-      while (this.pending && this.state.players[this.pending.player]?.left) this.step(defaultAnswer(this.pending));
+      for (let d = this.decisoes().find((x) => this.state.players[x.player]?.left); d; d = this.decisoes().find((x) => this.state.players[x.player]?.left)) this.step(defaultAnswer(d), d.player);
       if (this.state.gameOver) this.pending = null;
       this.inputs.push(inp);
     }
