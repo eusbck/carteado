@@ -1,8 +1,9 @@
 // Tela da mão inicial (antes do primeiro turno): as sete cartas em leque, manter ou fazer
-// mulligan, e no mulligan de Londres a escolha das cartas que vão para o fundo do grimório.
+// mulligan, no mulligan de Londres a escolha das cartas que vão para o fundo do grimório e, no mulligan baiano, a escolha
+// das cartas que voltam para o grimório (compra uma nova para cada uma).
 
 import { useLayoutEffect, useState } from 'preact/hooks';
-import { MULLIGANS_LIVRES, type Decision } from '../../../motor/types.ts';
+import { MULLIGANS_BAIANOS, MULLIGANS_LIVRES, type Decision } from '../../../motor/types.ts';
 import type { GameView } from '../../../motor/view.ts';
 import type { RegraMulligan } from '../../../servidor/protocolo.ts';
 import { loja } from '../loja.ts';
@@ -40,6 +41,8 @@ export function MaoInicial({ v, d, enviando, regra, multiplayer, sel, setSel }: 
   const mao = v.hand;
   const fundo = d?.kind === 'select' ? d : null;
   const decidindo = d?.kind === 'mulligan' && !enviando;
+  // mulligan baiano: as cartas marcadas voltam para o grimório e vem uma nova para cada
+  const baiano = decidindo && d.kind === 'mulligan' && !!d.baiano;
   const n = mao.length;
   const meio = (n - 1) / 2;
   // o leque cabe na largura da mesa (as cartas giradas abrem um pouco mais nas pontas)
@@ -47,13 +50,14 @@ export function MaoInicial({ v, d, enviando, regra, multiplayer, sel, setSel }: 
   const passo = n > 1 ? Math.max(40, Math.min(122, (largura - 440) / (n - 1))) : 0;
 
   const alternar = (id: string) => {
-    if (!fundo) return;
+    if (!fundo && !baiano) return;
     if (sel.includes(id)) setSel(sel.filter((x) => x !== id));
-    else if (sel.length < fundo.max) setSel([...sel, id]);
+    else if (baiano || sel.length < fundo!.max) setSel([...sel, id]);
   };
 
   let sub: string;
   if (fundo) sub = `Clique nas cartas que vão para o fundo do grimório${fundo.min > 1 ? ' (a primeira escolhida fica mais em cima)' : ''}.`;
+  else if (regra === 'baiano') sub = `Regra da mesa: Baiano · clique nas cartas que quer trocar: elas voltam para o grimório e você compra uma nova para cada (até ${MULLIGANS_BAIANOS} vezes, você já usou ${minha.mulligans})`;
   else if (regra === 'livre') sub = `Regra da mesa: Livre · troca a mão inteira, até ${MULLIGANS_LIVRES} vezes (você já usou ${minha.mulligans})`;
   else sub = `Regra da mesa: Londres · ${multiplayer ? 'o primeiro mulligan é grátis' : 'cada mulligan põe uma carta no fundo'}${minha.mulligans ? ` · você já fez ${minha.mulligans}` : ''}`;
   const esperando = !d && v.waiting ? v.players[v.waiting.player]?.name : null;
@@ -70,13 +74,19 @@ export function MaoInicial({ v, d, enviando, regra, multiplayer, sel, setSel }: 
             const id = String(o.id);
             const marcada = sel.includes(id);
             return (
-              <Carta key={o.id} o={o} classe={marcada ? 'fundo' : ''} onClick={fundo ? () => alternar(id) : undefined}
+              <Carta key={o.id} o={o} classe={marcada ? (baiano ? 'fundo trocar' : 'fundo') : ''} onClick={fundo || baiano ? () => alternar(id) : undefined}
                 estilo={{ left: `calc(50% + ${Math.round((i - meio) * passo)}px)`, top: `${Math.round(18 + (i - meio) ** 2 * 4)}px`, '--r': `${((i - meio) * 4).toFixed(1)}deg`, zIndex: i + 1 }} />
             );
           })}
         </div>
         <div class="botoes-linha centro-linha">
-          {decidindo && (<>
+          {baiano && (<>
+            <button class="botao amarelo grande" disabled={!sel.length} onClick={() => loja.responder(d!.id, { kind: 'mulligan', keep: false, swap: sel.map(Number) })}>
+              {sel.length ? `Trocar ${sel.length} carta${sel.length > 1 ? 's' : ''}` : 'Marque as cartas para trocar'}
+            </button>
+            <button class="botao principal grande" onClick={() => loja.responder(d!.id, { kind: 'mulligan', keep: true })}>Manter</button>
+          </>)}
+          {decidindo && !baiano && (<>
             <button class="botao amarelo grande" onClick={() => loja.responder(d!.id, { kind: 'mulligan', keep: false })}>Mulligan</button>
             <button class="botao principal grande" onClick={() => loja.responder(d!.id, { kind: 'mulligan', keep: true })}>Manter</button>
           </>)}

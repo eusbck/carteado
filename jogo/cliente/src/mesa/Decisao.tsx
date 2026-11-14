@@ -346,7 +346,7 @@ function Mulligan({ d }: { d: D<'mulligan'> }) {
       <p class="suave">{d.mulligans === 0 ? 'Manter estas sete cartas ou fazer mulligan?' : `Você já fez ${d.mulligans} mulligan(s). Ao manter, coloca ${d.mulligans} carta(s) no fundo (o primeiro é grátis em partidas de vários jogadores).`}</p>
       <div class="botoes-linha">
         <button class="botao principal grande" onClick={() => responder(d, { kind: 'mulligan', keep: true })}>Manter</button>
-        <button class="botao" onClick={() => responder(d, { kind: 'mulligan', keep: false })}>Mulligan</button>
+        {!d.baiano && <button class="botao" onClick={() => responder(d, { kind: 'mulligan', keep: false })}>Mulligan</button>}
       </div>
     </div>
   );

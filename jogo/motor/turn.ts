@@ -17,7 +17,7 @@ import { destroyObject, emptyTurnStats } from './state.ts';
 import { shuffle } from './rng.ts';
 import { checkStateTriggers, emit } from './triggers.ts';
 import { loseUnspentMana } from './veneno-emblema.ts';
-import { MULLIGANS_LIVRES, type Answer, type GameState, type ObjId, type PlayerId, type Step } from './types.ts';
+import { MULLIGANS_BAIANOS, MULLIGANS_LIVRES, type Answer, type GameState, type ObjId, type PlayerId, type Step } from './types.ts';
 
 export const TURN_STEPS: Step[] = ['untap', 'upkeep', 'draw', 'main1', 'beginCombat', 'declareAttackers', 'declareBlockers', 'combatDamage', 'endCombat', 'main2', 'end', 'cleanup'];
 const COMBAT_STEPS: Step[] = ['beginCombat', 'declareAttackers', 'declareBlockers', 'combatDamage', 'endCombat'];
@@ -39,23 +39,46 @@ function* startGame(g: G): Gen<void> {
   for (const p of order) yield* draw(g, p, 7); // CR 103.5 (não conta como compra de etapa)
   for (const p of order) s.turnStats[p] = emptyTurnStats();
   const livre = s.config.mulligan === 'livre';
+  const baiano = s.config.mulligan === 'baiano';
   for (;;) {
     const deciding = order.filter((p) => !s.players[p].kept && !s.players[p].left);
     if (deciding.length === 0) break;
     const mull: PlayerId[] = [];
+    /** mulligan baiano: as cartas que cada jogador escolheu trocar */
+    const trocas = new Map<PlayerId, ObjId[]>();
     for (const p of deciding) {
       const pl = s.players[p];
       // CR 103.5: pode fazer mulligan até a mão inicial chegar a zero cartas
-      // (no mulligan livre, a mão continua com sete e o limite é o número de trocas)
+      // (no mulligan livre e no baiano, a mão continua com sete e o limite é o número de trocas)
       const free = s.config.multiplayer ? 1 : 0;
-      if (livre ? pl.mulligans >= MULLIGANS_LIVRES : 7 - Math.max(0, pl.mulligans + 1 - free) < 0) { pl.kept = true; continue; }
-      const a = yield* ask<Extract<Answer, { kind: 'mulligan' }>>(g, { kind: 'mulligan', player: p, prompt: pl.mulligans === 0 ? 'Manter a mão inicial ou fazer mulligan?' : 'Manter esta mão ou fazer mulligan de novo?', handSize: s.zones.hand[p].length, mulligans: pl.mulligans });
-      if (a.keep) pl.kept = true;
-      else mull.push(p);
+      if (livre ? pl.mulligans >= MULLIGANS_LIVRES : baiano ? pl.mulligans >= MULLIGANS_BAIANOS || s.zones.hand[p].length === 0 : 7 - Math.max(0, pl.mulligans + 1 - free) < 0) { pl.kept = true; continue; }
+      const a = yield* ask<Extract<Answer, { kind: 'mulligan' }>>(g, {
+        kind: 'mulligan', player: p, handSize: s.zones.hand[p].length, mulligans: pl.mulligans,
+        prompt: baiano ? (pl.mulligans === 0 ? 'Manter a mão inicial ou escolher cartas para trocar?' : 'Manter esta mão ou trocar mais cartas?')
+          : pl.mulligans === 0 ? 'Manter a mão inicial ou fazer mulligan?' : 'Manter esta mão ou fazer mulligan de novo?',
+        ...(baiano ? { baiano: [...s.zones.hand[p]] } : {}),
+      });
+      if (a.keep) { pl.kept = true; continue; }
+      if (baiano) {
+        // a validação já garantiu cartas da mão, sem repetir
+        trocas.set(p, a.swap!);
+      }
+      mull.push(p);
     }
     for (const p of mull) {
       const pl = s.players[p];
       pl.mulligans++;
+      if (baiano) {
+        // regra da casa: compra uma carta nova para cada escolhida e só então embaralha as escolhidas no grimório
+        // (assim a troca nunca devolve a mesma carta na hora)
+        const ids = trocas.get(p)!;
+        g.log(`${pl.name} faz mulligan baiano: troca ${ids.length} carta(s) (${pl.mulligans} de ${MULLIGANS_BAIANOS}).`);
+        yield* draw(g, p, ids.length);
+        for (const id of ids) { s.zones.hand[p].splice(s.zones.hand[p].indexOf(id), 1); s.objects[id].zone = 'library'; s.zones.library[p].push(id); }
+        shuffle(s.rng, s.zones.library[p]);
+        g.bump();
+        continue;
+      }
       // CR 103.5: embaralha a mão no grimório, compra sete e põe no fundo uma por mulligan
       // (em multijogador o primeiro mulligan não conta, 103.5c)
       for (const id of [...s.zones.hand[p]]) { s.zones.hand[p].splice(s.zones.hand[p].indexOf(id), 1); s.objects[id].zone = 'library'; s.zones.library[p].push(id); }

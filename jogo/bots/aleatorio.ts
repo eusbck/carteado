@@ -90,8 +90,13 @@ export class RandomBot {
         for (const it of d.items) placement[it.id] = this.pick(d.destinations);
         return { kind: 'arrange', placement, order: shuffle(this.rng, d.items.map((i) => i.id)) };
       }
-      case 'mulligan':
-        return { kind: 'mulligan', keep: d.mulligans >= 2 || next(this.rng) < 0.8 };
+      case 'mulligan': {
+        const keep = d.mulligans >= 2 || next(this.rng) < 0.8;
+        if (keep || !d.baiano) return { kind: 'mulligan', keep };
+        // mulligan baiano: troca de 1 a 3 cartas quaisquer da mão
+        const mao = shuffle(this.rng, [...d.baiano]);
+        return { kind: 'mulligan', keep: false, swap: mao.slice(0, 1 + Math.floor(next(this.rng) * Math.min(3, mao.length))) };
+      }
     }
   }
 }

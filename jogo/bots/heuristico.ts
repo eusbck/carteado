@@ -177,7 +177,10 @@ export class HeuristicBot {
       // a própria mão está na vista
       const terrenos = v.hand.filter((o) => o.types.includes('Land')).length;
       const pedras = v.hand.filter((o) => !o.types.includes('Land') && papelDe(o.def).mana > 0).length;
-      return { kind: 'mulligan', keep: ficaComMao(terrenos, pedras, d.mulligans) };
+      const keep = ficaComMao(terrenos, pedras, d.mulligans);
+      // mulligan baiano: escolher as cartas que saem precisa do estado (custo das mágicas), fica para a decisão completa
+      if (keep || !d.baiano) return { kind: 'mulligan', keep };
+      return null;
     }
     if (d.kind === 'attackers' || d.kind === 'blockers' || d.kind === 'select' || d.kind === 'arrange') {
       if (d.kind !== 'attackers' && this.e.plano.length) return this.doPlano(d, valida, publicaNaVista(d, v));
@@ -694,9 +697,28 @@ export function escolher(d: Decision, gameOuG: Game | G, eu: PlayerId, rng: RngS
       const mao = g.state.zones.hand[eu];
       const terrenos = mao.filter((id) => isLand(g, id)).length;
       const pedras = mao.filter((id) => !isLand(g, id) && papelDe(g.state.objects[id].def).mana > 0).length;
-      return { kind: 'mulligan', keep: ficaComMao(terrenos, pedras, d.mulligans) };
+      const keep = ficaComMao(terrenos, pedras, d.mulligans);
+      if (keep || !d.baiano) return { kind: 'mulligan', keep };
+      const swap = trocaBaiana(g, mao);
+      return swap.length ? { kind: 'mulligan', keep: false, swap } : { kind: 'mulligan', keep: true };
     }
   }
+}
+
+/**
+ * mulligan baiano: as cartas que saem para a mão ficar com uns 3 terrenos. Com terreno de menos, troca as mágicas mais
+ * caras (as que mais demoram a sair); com terreno demais, os terrenos mais repetidos.
+ */
+export function trocaBaiana(g: G, mao: ObjId[]): ObjId[] {
+  const terrenos = mao.filter((id) => isLand(g, id));
+  const magias = mao.filter((id) => !isLand(g, id));
+  const alvo = Math.min(3, Math.round(0.45 * mao.length));
+  if (terrenos.length < alvo) return [...magias].sort((a, b) => manaValue(g, b) - manaValue(g, a)).slice(0, alvo - terrenos.length);
+  if (terrenos.length > alvo + 1) {
+    const vezes = (id: ObjId) => terrenos.filter((x) => g.state.objects[x].def === g.state.objects[id].def).length;
+    return [...terrenos].sort((a, b) => vezes(b) - vezes(a)).slice(0, terrenos.length - alvo - 1);
+  }
+  return [];
 }
 
 /** a habilidade ativada no topo da pilha (a que está sendo ativada) */

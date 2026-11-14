@@ -180,6 +180,37 @@ describe('servidor: mesa nova (regra de mulligan, posições, revelar)', () => {
     expect(ana.ultima('erro')?.msg).toMatch(/já começou/);
   });
 
+  it('o mulligan baiano vai para a partida e a troca das cartas escolhidas passa pelo servidor', async () => {
+    const g = new Gerente(new Banco(':memory:'), DECKS, SEM_ATRASO);
+    const ana = new Falsa();
+    g.tratar(ana, { t: 'criar', nome: 'Ana', senhaSala: 'segredo', modo: '1v1' });
+    const codigo = ana.ultima('sala')!.sala.codigo;
+    const bruno = new Falsa();
+    g.tratar(bruno, { t: 'entrar', codigo, senhaSala: 'segredo', nome: 'Bruno' });
+    g.tratar(ana, { t: 'mulligan', regra: 'baiano' });
+    await espera();
+    expect(bruno.ultima('sala')!.sala.mulligan).toBe('baiano');
+    g.tratar(ana, { t: 'deck', deck: DECKS[0].id });
+    g.tratar(bruno, { t: 'deck', deck: DECKS[1].id });
+    g.tratar(ana, { t: 'iniciar' });
+    await espera();
+    const jogo = g.salas.get(codigo)!.game!;
+    expect(jogo.state.config.mulligan).toBe('baiano');
+    const d = jogo.pending!;
+    expect(d.kind === 'mulligan' && d.baiano).toBeTruthy();
+    const quem = [ana, bruno][d.player];
+    const fora = jogo.state.zones.hand[d.player].slice(0, 2);
+    g.tratar(quem, { t: 'responder', decisao: d.id, resposta: { kind: 'mulligan', keep: false, swap: fora } });
+    await espera();
+    // a troca acontece depois que todos decidem a mão: o outro mantém
+    const d2 = jogo.pending!;
+    expect(d2.kind).toBe('mulligan');
+    g.tratar([ana, bruno][d2.player], { t: 'responder', decisao: d2.id, resposta: { kind: 'mulligan', keep: true } });
+    await espera();
+    for (const id of fora) expect(jogo.state.zones.library[d.player]).toContain(id);
+    expect(jogo.state.zones.hand[d.player].length).toBe(7);
+  });
+
   it('cada um arruma só as próprias permanentes; as posições vão para todos e podem ser limpas', async () => {
     const g = new Gerente(new Banco(':memory:'), DECKS, SEM_ATRASO);
     // semente fixa: com a sorteada, algumas mãos faziam a prioridade de Ana não chegar no limite de respostas

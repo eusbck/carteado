@@ -30,7 +30,7 @@ export interface RunResult {
   decks: string[];
 }
 
-export function runGame(seed: string, players: number, makeBot: (p: number, seed: string) => BotLike, opts: { turnLimit?: number; maxDecisions?: number; invariants?: boolean; mulligan?: 'londres' | 'livre'; requiredDeck?: string } = {}): RunResult {
+export function runGame(seed: string, players: number, makeBot: (p: number, seed: string) => BotLike, opts: { turnLimit?: number; maxDecisions?: number; invariants?: boolean; mulligan?: 'londres' | 'livre' | 'baiano'; requiredDeck?: string } = {}): RunResult {
   const rng = seedFrom(`decks:${seed}`);
   const all = decks as DeckList[];
   const chosen: DeckList[] = [];
@@ -90,8 +90,8 @@ if (isMain) {
   const players = Number(process.argv[3] ?? 4);
   const tipo = process.argv[4] ?? 'aleatorio';
   const base = process.argv[5] ?? 'estresse';
-  // regra de mulligan: MULLIGAN=livre (o padrão é o de Londres)
-  const mulligan = process.env.MULLIGAN === 'livre' ? 'livre' : undefined;
+  // regra de mulligan: MULLIGAN=livre ou MULLIGAN=baiano (o padrão é o de Londres)
+  const mulligan = process.env.MULLIGAN === 'livre' || process.env.MULLIGAN === 'baiano' ? process.env.MULLIGAN : undefined;
   // simulações por decisão dos bots heurísticos; no estresse, menos que no servidor
   const simulacoes = Number(process.env.SIMULACOES ?? 16);
   const inicio = Number(process.env.INICIO ?? 0);

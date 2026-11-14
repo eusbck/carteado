@@ -5,7 +5,7 @@ import { RandomBot } from '../bots/aleatorio.ts';
 import { validateDeck } from '../motor/deck.ts';
 import { Game } from '../motor/game.ts';
 import type { DeckList } from '../motor/state.ts';
-import { MULLIGANS_LIVRES } from '../motor/types.ts';
+import { MULLIGANS_BAIANOS, MULLIGANS_LIVRES } from '../motor/types.ts';
 import { buildView } from '../motor/view.ts';
 import { setup } from './harness.ts';
 
@@ -89,6 +89,41 @@ describe('início da partida', () => {
     expect(g.pending?.kind).not.toBe('mulligan');
     expect(g.state.players[first].mulligans).toBe(MULLIGANS_LIVRES);
     expect(g.state.log.some((l) => l.text.includes('mulligan livre (3 de 3)'))).toBe(true);
+  });
+
+  it('mulligan baiano (regra da casa): troca só as cartas escolhidas por outras do grimório, até 3 vezes', () => {
+    const g = Game.create({ ...config('baiano', 2), mulligan: 'baiano' }, DECKS.slice(0, 2));
+    const first = g.pending!.player;
+    const outro = g.state.turnOrder.find((p) => p !== first)!;
+    // sem cartas escolhidas, ou com carta que não está na mão, a troca é recusada
+    expect(g.answer(first, { kind: 'mulligan', keep: false }).ok).toBe(false);
+    expect(g.answer(first, { kind: 'mulligan', keep: false, swap: [g.state.zones.library[first][0]] }).ok).toBe(false);
+    for (let i = 1; i <= MULLIGANS_BAIANOS; i++) {
+      expect(g.pending).toMatchObject({ kind: 'mulligan', player: first, baiano: g.state.zones.hand[first] });
+      const mao = [...g.state.zones.hand[first]];
+      const fora = mao.slice(0, 3);
+      g.answer(first, { kind: 'mulligan', keep: false, swap: fora });
+      if (i === 1) g.answer(outro, { kind: 'mulligan', keep: true });
+      const nova = g.state.zones.hand[first];
+      expect(nova.length).toBe(7);
+      // as quatro que ficaram continuam; as três trocadas voltaram para o grimório
+      for (const id of mao.slice(3)) expect(nova).toContain(id);
+      for (const id of fora) { expect(nova).not.toContain(id); expect(g.state.zones.library[first]).toContain(id); }
+      expect(g.state.zones.library[first].length).toBe(92);
+    }
+    expect(g.pending?.kind).not.toBe('mulligan');
+    expect(g.state.players[first].mulligans).toBe(MULLIGANS_BAIANOS);
+    expect(g.state.log.some((l) => l.text.includes('mulligan baiano: troca 3 carta(s) (3 de 3)'))).toBe(true);
+  });
+
+  it('mulligan baiano: os bots escolhem cartas da própria mão e a partida começa', () => {
+    for (let k = 0; k < 6; k++) {
+      const g = Game.create({ ...config(`baiano-bot${k}`, 4), mulligan: 'baiano' }, DECKS.slice(0, 4));
+      const bots = g.state.turnOrder.map((p) => new RandomBot(`b${k}-${p}`));
+      while (g.pending?.kind === 'mulligan') expect(g.answer(g.pending.player, bots[g.pending.player].answer(g.pending)).ok).toBe(true);
+      expect(g.state.started).toBe(true);
+      for (const p of g.state.turnOrder) expect(g.state.zones.hand[p].length).toBe(7);
+    }
   });
 
   it('CR 103.8a/103.8c: quem começa compra no primeiro turno só em multijogador (Q42, Q43)', () => {

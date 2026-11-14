@@ -762,7 +762,7 @@ export class Sala {
       case 'mulligan': {
         if (!anfitriao) return 'Só quem criou a sala escolhe a regra de mulligan';
         if (this.d.estado === 'jogando') return 'A partida já começou';
-        if (m.regra !== 'londres' && m.regra !== 'livre') return 'Regra desconhecida';
+        if (m.regra !== 'londres' && m.regra !== 'livre' && m.regra !== 'baiano') return 'Regra desconhecida';
         this.d.mulligan = m.regra;
         break;
       }

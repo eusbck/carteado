@@ -439,9 +439,11 @@ export interface GameConfig {
   manualMode?: boolean;
   /**
    * regra de mulligan escolhida na sala: 'londres' (CR 103.5, o padrão) ou 'livre' (regra da casa:
-   * troca a mão inteira por sete cartas novas, sem pôr nada no fundo, até MULLIGANS_LIVRES vezes)
+   * troca a mão inteira por sete cartas novas, sem pôr nada no fundo, até MULLIGANS_LIVRES vezes) ou 'baiano' (regra
+   * da casa: escolhe quais cartas da mão trocar, compra o mesmo número e embaralha as escolhidas de volta no grimório,
+   * até MULLIGANS_BAIANOS vezes)
    */
-  mulligan?: 'londres' | 'livre';
+  mulligan?: 'londres' | 'livre' | 'baiano';
   /**
    * desvirar à mão (ajuste manual) a própria permanente tira da reserva a mana que ela gerou e ainda está lá
    * (motor/manual.ts). As partidas criadas antes dessa regra não têm a chave e desviram sem mexer na reserva, como
@@ -465,6 +467,8 @@ export interface GameConfig {
 
 /** quantas vezes dá para trocar a mão no mulligan livre */
 export const MULLIGANS_LIVRES = 3;
+/** quantas vezes dá para trocar cartas no mulligan baiano */
+export const MULLIGANS_BAIANOS = 3;
 
 /** ajuste manual feito por um jogador com prioridade (modo manual) */
 export type ManualAction =
@@ -642,7 +646,7 @@ export type Decision = {
   | { kind: 'blockers'; candidates: { obj: ObjId; canBlock: ObjId[]; /** revisão B: mana genérica a pagar para bloquear cada atacante, na ordem de canBlock (CR 509.1d: Archangel of Tithes); ausente se tudo for de graça */ costs?: number[] }[]; attackers: ObjId[]; /** atacantes que precisam ser bloqueados por exatamente uma criatura se puder */ required?: ObjId[]; /** lote4-c: pares [bloqueador, atacante] de "bloqueia se puder" (CR 509.1c, motor/bloquear-se-puder.ts) */ requiredPairs?: [ObjId, ObjId][]; /** lote4-b: atacantes que precisam ser bloqueados se possível (CR 509.1c) */ mustBlock?: ObjId[]; /** as de mustBlock com ameaçar (precisam de dois bloqueadores) */ mustBlockMenace?: ObjId[]; error?: string }
   | { kind: 'damage'; attacker: ObjId; amount: number; recipients: TargetRef[]; lethal: number[]; trample: boolean; error?: string }
   | { kind: 'arrange'; items: ChoiceItem[]; destinations: ('top' | 'bottom' | 'graveyard')[] }
-  | { kind: 'mulligan'; handSize: number; mulligans: number }
+  | { kind: 'mulligan'; handSize: number; mulligans: number; /** mulligan baiano: as cartas da mão de quem decide; a resposta de troca diz quais delas saem (`swap`) */ baiano?: ObjId[] }
 );
 
 export type Answer =
@@ -654,4 +658,4 @@ export type Answer =
   | { kind: 'blockers'; blocks: [ObjId, ObjId][] }
   | { kind: 'damage'; assign: number[] }
   | { kind: 'arrange'; placement: Record<string, 'top' | 'bottom' | 'graveyard'>; order: string[] }
-  | { kind: 'mulligan'; keep: boolean };
+  | { kind: 'mulligan'; keep: boolean; /** mulligan baiano: as cartas da mão (ids) que voltam para o grimório */ swap?: ObjId[] };

@@ -10,7 +10,7 @@ import type { GameView } from '../motor/view.ts';
 
 /** jeito antigo de pedir o tamanho da sala ('4p': quatro lugares, '1v1': dois); hoje vale `lugares`, de 2 a 6 */
 export type Modo = '4p' | '1v1';
-export type RegraMulligan = 'londres' | 'livre';
+export type RegraMulligan = 'londres' | 'livre' | 'baiano';
 /** auxílios da interface (brilhos, avisos, pagar automaticamente): cada um escolhe, ou a sala proíbe todos */
 export type RegraAuxilios = 'permitidos' | 'proibidos';
 export type TipoAssento = 'humano' | 'bot' | 'vazio';

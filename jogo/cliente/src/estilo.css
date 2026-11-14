@@ -175,6 +175,8 @@ input.campo-grande { font-size: 17px; padding: 13px 14px; }
 .segmentado { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; border-radius: 11px; background: rgba(255, 255, 255, .04); border: 1px solid var(--linha); }
 .segmentado button { min-height: 40px; border-radius: 8px; border: 0; background: transparent; color: var(--suave); font-weight: 600; font-size: 13px; cursor: pointer; display: grid; place-content: center; gap: 1px; padding: 6px; }
 .segmentado button small { font-size: 11px; font-weight: 500; color: var(--apagado); }
+.segmentado.tres { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.segmentado.tres button { text-align: center; }
 .segmentado button.ativo { background: var(--ouro-fundo); color: var(--ouro); box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--ouro) 60%, transparent); }
 .segmentado button.ativo small { color: color-mix(in srgb, var(--ouro) 60%, var(--texto)); }
 .segmentado button:disabled { cursor: default; }
@@ -914,6 +916,7 @@ img.mini { width: 40px; aspect-ratio: 63 / 88; object-fit: cover; border-radius:
 .leque .carta:hover ~ .carta { --abre: 28px; }
 .leque .carta:has(~ .carta:hover) { --abre: -28px; }
 .leque .carta.fundo, .leque .carta.fundo:hover { translate: -50% 30px; box-shadow: 0 0 0 3px var(--ouro), 0 0 24px color-mix(in srgb, var(--ouro) 55%, transparent); }
+.leque .carta.fundo.trocar::after { content: 'Trocar'; }
 .leque .carta.fundo::after { content: 'Fundo do grimório'; position: absolute; left: 50%; bottom: 10px; transform: translateX(-50%); white-space: nowrap; font-size: 12px; font-weight: 800; padding: 4px 10px; border-radius: 8px; background: var(--ouro); color: var(--ouro-texto); }
 .centro-linha { justify-content: center; gap: 14px; min-height: 48px; }
 

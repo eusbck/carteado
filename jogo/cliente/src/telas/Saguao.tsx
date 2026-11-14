@@ -151,8 +151,8 @@ function PassoRegras({ sala, eu }: { sala: SalaPublica; eu: number }) {
         </section>
         <section class="opcao">
           <h2 class="rot">Regra de mulligan</h2>
-          <div class="segmentado" role="radiogroup" aria-label="Regra de mulligan">
-            {([['londres', 'Londres', 'compra 7 e põe cartas no fundo'], ['livre', 'Livre', 'troca a mão inteira, até 3 vezes']] as const).map(([id, nome, dica]) => (
+          <div class="segmentado tres" role="radiogroup" aria-label="Regra de mulligan">
+            {([['londres', 'Londres', 'compra 7 e põe cartas no fundo'], ['livre', 'Livre', 'troca a mão inteira, até 3 vezes'], ['baiano', 'Baiano', 'escolhe quais cartas trocar, até 3 vezes']] as const).map(([id, nome, dica]) => (
               <button key={id} type="button" role="radio" aria-checked={sala.mulligan === id} class={sala.mulligan === id ? 'ativo' : ''} disabled={!anfitriao}
                 onClick={() => loja.enviar({ t: 'mulligan', regra: id })}>{nome}<small>{dica}</small></button>
             ))}

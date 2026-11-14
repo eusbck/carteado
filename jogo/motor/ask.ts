@@ -118,7 +118,15 @@ export function validateShape(d: Decision, a: Answer): string | null {
       for (const id of ids) if (!d.destinations.includes(ans.placement?.[id])) return 'Destino inválido';
       return null;
     }
-    case 'mulligan': return typeof (a as Extract<Answer, { kind: 'mulligan' }>).keep === 'boolean' ? null : 'Resposta inválida';
+    case 'mulligan': {
+      const ans = a as Extract<Answer, { kind: 'mulligan' }>;
+      if (typeof ans.keep !== 'boolean') return 'Resposta inválida';
+      if (!d.baiano || ans.keep) return null;
+      // mulligan baiano: troca pelo menos uma carta, sem repetir
+      if (!Array.isArray(ans.swap) || ans.swap.length === 0) return 'Escolha as cartas que quer trocar';
+      if (new Set(ans.swap).size !== ans.swap.length || ans.swap.some((id) => !d.baiano!.includes(id))) return 'Seleção inválida';
+      return null;
+    }
   }
 }
 
