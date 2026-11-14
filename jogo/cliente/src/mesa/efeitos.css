@@ -43,7 +43,8 @@
 /* a tela inteira pisca nos golpes fortes; a área de quem levou o golpe fica vermelha nas bordas */
 .fx-camada > .fx-clarao { width: 100%; height: 100%; background: #fff; }
 .fx-vinheta { background: radial-gradient(ellipse at 50% 40%, rgba(224, 70, 79, 0) 40%, rgba(224, 70, 79, .5) 100%); }
-.fx-brilho-area { box-shadow: inset 0 0 110px rgba(224, 70, 79, .42); }
+/* a borda vermelha em gradientes (desenho barato) no lugar de uma sombra interna de 110 px do tamanho da área */
+.fx-brilho-area { background: linear-gradient(to right, rgba(224, 70, 79, .24), rgba(224, 70, 79, .1) 50px, rgba(224, 70, 79, 0) 120px), linear-gradient(to left, rgba(224, 70, 79, .24), rgba(224, 70, 79, .1) 50px, rgba(224, 70, 79, 0) 120px), linear-gradient(to bottom, rgba(224, 70, 79, .24), rgba(224, 70, 79, .1) 50px, rgba(224, 70, 79, 0) 120px), linear-gradient(to top, rgba(224, 70, 79, .24), rgba(224, 70, 79, .1) 50px, rgba(224, 70, 79, 0) 120px); }
 /* a vida que muda: o brilho na vida (--c: a cor em r, g, b) e no retrato */
 .fx-brilho-vida { border-radius: 12px; box-shadow: 0 0 0 2px rgba(var(--c), .95), 0 0 28px 6px rgba(var(--c), .55); }
 .fx-retrato-dano { border-radius: 50%; background: radial-gradient(circle, rgba(255, 150, 100, .5), rgba(224, 70, 79, .42) 58%, rgba(224, 70, 79, 0) 72%); }
