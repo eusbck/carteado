@@ -14,7 +14,9 @@ export default defineCard({
       *effect(c) {
         yield* destroy(c.g, allCreatures(c.g));
         if (!c.paid.collectEvidence) return;
-        const cem = c.g.opponents(c.you).flatMap((p) => c.g.state.zones.graveyard[p]);
+        // CR 111.6–8: fichas mortas ainda podem estar no cemitério durante esta resolução, mas não são cartas.
+        const ehCarta = (carta: number) => !c.g.state.objects[carta].isToken && !c.g.state.objects[carta].isCopy;
+        const cem = c.g.opponents(c.you).flatMap((p) => c.g.state.zones.graveyard[p]).filter(ehCarta);
         if (!cem.length) return;
         // Não é alvo: a escolha acontece depois de destruir, incluindo as criaturas que acabaram de morrer.
         const [esc] = yield* chooseItems(c.g, c.you, 'Deadly Cover-Up: exile uma carta do cemitério de um oponente', cem.map((id) => objItem(c.g, id, nameOf(c.g, id))), 1, 1);
@@ -23,7 +25,7 @@ export default defineCard({
         const nome = nameOf(c.g, id);
         yield* exile(c.g, [id]);
         // CR 701.23a-b: a pessoa olha as zonas inteiras; pode escolher qualquer quantidade com esse nome.
-        const zonas = [...c.g.state.zones.graveyard[dono], ...c.g.state.zones.hand[dono]];
+        const zonas = [...c.g.state.zones.graveyard[dono], ...c.g.state.zones.hand[dono]].filter(ehCarta);
         const itens = zonas.map((carta) => ({ ...objItem(c.g, carta, `${nameOf(c.g, carta)} (${c.g.state.objects[carta].zone === 'hand' ? 'mão' : 'cemitério'})`),
           card: { def: c.g.state.objects[carta].def }, disabled: nameOf(c.g, carta) !== nome }));
         // Pergunta mesmo sem cópias elegíveis: procurar permite olhar a mão inteira (CR 701.23a).

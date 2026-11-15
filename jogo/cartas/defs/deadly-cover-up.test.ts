@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { copySpell } from '../../motor/api.ts';
+import { copiableValues, copySpell, createTokens } from '../../motor/api.ts';
 import { novoDiario } from '../../motor/diario.ts';
 import { runEffect } from '../../testes/artefatos.ts';
 import { setup, type TestGame } from '../../testes/harness.ts';
@@ -122,5 +122,21 @@ describe(N, () => {
     expect(tg.g.diario.entradas.some((e) => e.ev.type === 'shuffle' && e.ev.player === 1)).toBe(true);
     // Uma Forest do grimório fica no grimório ou é a carta comprada, sem ter sido exilada.
     expect([...tg.names(1, 'library'), ...tg.names(1, 'hand')]).toContain('Forest');
+  });
+  it('CR 111.6–8: uma ficha que acabou de morrer não é uma carta para exilar nem causa busca', () => {
+    const tg = setup({ battlefield: [Array(5).fill('Swamp'), [{ name: 'Fish', token: true }]], hand: [[N], ['Forest']], graveyard: [['Zetalpa, Primal Dawn'], []], library: [[], ['Island', 'Plains']] });
+    tg.g.diario = novoDiario();
+    reunir(tg).cast(N).resolveAll();
+    expect(tg.find('Fish')).toBeNull();
+    expect(tg.names(1, 'graveyard')).toEqual([]);
+    expect(tg.names(1, 'hand')).toEqual(['Forest']);
+    expect(tg.g.diario.entradas.some((e) => e.ev.type === 'search' || e.ev.type === 'shuffle')).toBe(false);
+  });
+  it('CR 111.6: a busca no cemitério inclui só cartas, mesmo com uma ficha morta de mesmo nome', () => {
+    const tg = setup({ battlefield: [Array(5).fill('Swamp'), ['Indomitable Ancients']], hand: [[N], []], graveyard: [['Zetalpa, Primal Dawn'], []], library: [[], ['Island', 'Plains']] });
+    runEffect(tg, createTokens(tg.g, 1, { copyOf: copiableValues(tg.g, tg.bf('Indomitable Ancients')) }, 1));
+    reunir(tg).choose('exile uma carta do cemitério', ['Indomitable Ancients']).cast(N).resolveAll();
+    expect(tg.names(1, 'exile')).toEqual(['Indomitable Ancients']);
+    expect(tg.names(1, 'graveyard')).toEqual([]);
   });
 });
