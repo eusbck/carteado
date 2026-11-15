@@ -22,8 +22,8 @@ describe('decks/ e gerado/ de verdade', () => {
     expect(new Set(decks.map((d) => d.ordem)).size).toBe(decks.length);
     for (const d of decks) {
       expect(d.atual ?? d.preparacao, d.id).toBeTruthy();
-      // os decks da mesa (brasil-*) não vêm do Moxfield
-      if (d.id.startsWith('brasil-')) expect(d.link).toBe('');
+      // os decks da mesa (brasil-*) e as listas oficiais do Mundial (mundial32-*, do magic.gg) não vêm do Moxfield
+      if (d.id.startsWith('brasil-') || d.id.startsWith('mundial32-')) expect(d.link).toBe('');
       else expect(d.link).toMatch(/^https:\/\/moxfield\.com\/decks\//);
     }
   });

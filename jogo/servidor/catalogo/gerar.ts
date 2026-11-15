@@ -199,7 +199,16 @@ export function gerar(o: { originais: Originais; novas: NovasCartas; decks: Deck
     if (!d.atual) continue;
     const falta = nomesDaLista(d.atual).filter((n) => !cartas[n]);
     if (falta.length) { avisos.push(`${d.nome}: fora da lista de decks, sem dados de ${falta.join(', ')}`); continue; }
-    decks.push({ id: d.id, nome: d.nome, comandante: d.atual.comandante, ...(d.atual.parceiro ? { parceiro: d.atual.parceiro } : {}), cartas: d.atual.cartas.map((c) => ({ nome: c.nome, quantidade: c.quantidade })) });
+    // a mesma forma de Catalogo.listasJogaveis: Standard leva o modo (sem ele o deck seria lido como Commander) e a capa
+    const l = d.atual;
+    decks.push({
+      id: d.id, nome: d.nome,
+      ...(l.formato && l.formato !== 'commander' ? { formato: l.formato } : {}),
+      ...(l.comandante ? { comandante: l.comandante } : {}),
+      ...(l.parceiro ? { parceiro: l.parceiro } : {}),
+      ...(l.capa ? { capa: l.capa } : {}),
+      cartas: l.cartas.map((c) => ({ nome: c.nome, quantidade: c.quantidade })),
+    });
   }
 
   const ordenado = Object.fromEntries(Object.entries(cartas).sort(([a], [b]) => a.localeCompare(b)));

@@ -16180,6 +16180,8 @@
  {
   "id": "VZ8_mv2M6Eq6o8dx6Bbj3w",
   "nome": "Jund Sacrifice",
+  "formato": "standard",
+  "capa": "Gene Pollinator",
   "cartas": [
    {
     "nome": "Mountain",
@@ -16274,6 +16276,8 @@
  {
   "id": "KY9-wyID8Uawobkbd0jI1g",
   "nome": "Dimir Control",
+  "formato": "standard",
+  "capa": "Marang River Regent // Coil and Catch",
   "cartas": [
    {
     "nome": "Island",
@@ -16364,6 +16368,8 @@
  {
   "id": "mundial32-isael-feitosa",
   "nome": "Mono-Green Landfall (Isael Feitosa, Mundial 32)",
+  "formato": "standard",
+  "capa": "Mossborn Hydra",
   "cartas": [
    {
     "nome": "Earthbender Ascension",
@@ -16438,6 +16444,8 @@
  {
   "id": "mundial32-javier-dominguez",
   "nome": "Selesnya Landfall (Javier Dominguez, Mundial 32)",
+  "formato": "standard",
+  "capa": "Earthbender Ascension",
   "cartas": [
    {
     "nome": "Erode",

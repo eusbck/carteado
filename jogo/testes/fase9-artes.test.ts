@@ -98,7 +98,8 @@ describe('arte do comandante para o fundo da área', () => {
     for (const d of decksOriginais) expect(decks.some((x) => x.id === d.id && x.comandante === d.comandante), d.comandante).toBe(true);
     const { cartas, cache } = await preparar();
     const img = new Imagens(cartas, cache, artes, [], fundos);
-    for (const d of decks) {
+    // decks sem comandante (Standard) usam a capa, não o fundo do comandante
+    for (const d of decks.filter((x) => x.comandante)) {
       const i = imagens[d.comandante];
       const usada = (i?.pt && !i.pt.reserva ? i.pt : i?.en)?.id;
       expect(usada, d.comandante).toBeDefined();
@@ -164,7 +165,7 @@ describe('artes guardadas no repositório (gerado/artes)', () => {
   // os 7 decks originais têm arte de largura toda; um deck importado pode ter só o art_crop (626 px), quando o
   // comandante não tem impressão sem borda
   it('cada comandante dos decks tem a arte, com a origem registrada e mais larga que o recorte antigo (626 px)', async () => {
-    for (const d of decksJson as { comandante: string }[]) {
+    for (const d of (decksJson as { comandante?: string }[]).filter((x): x is { comandante: string } => !!x.comandante)) {
       const i = IMG[d.comandante];
       // a mesma regra de servidor/cartas-info.ts para a imagem que o cliente pede
       const id = (i?.pt && !i.pt.reserva ? i.pt : i?.en)!.id;
