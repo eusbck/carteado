@@ -1,9 +1,9 @@
-// Como jogar (cliente/src/tutorial): o inglês acompanha o português passo a passo, toda cena citada existe, toda cena
-// é usada, e as cartas do palco existem no catálogo do jogo.
+// Como jogar (cliente/src/tutorial): o inglês acompanha o português passo a passo, cada passo tem o seu trecho do
+// filme e na mesma ordem, o filme anda sem buracos, e as cartas ficam dentro do palco.
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { ATORES, CARTA_EXEMPLO, CENAS, estados } from '../cliente/src/tutorial/cenas.ts';
+import { ATORES, CARTA_EXEMPLO, CENAS, FILME, FIM, MARCAS, MUNDO, cenaEm, estadoEm, marcaEm } from '../cliente/src/tutorial/filme.ts';
 import { TEXTOS } from '../cliente/src/tutorial/textos.ts';
 
 /** a forma de um objeto: as chaves, de cima a baixo (os textos em si ficam de fora) */
@@ -18,39 +18,57 @@ describe('Como jogar', () => {
     expect(forma(TEXTOS.en)).toEqual(forma(TEXTOS.pt));
   });
 
-  it('nenhum texto ficou vazio', () => {
-    const vazios: string[] = [];
+  it('nenhum texto ficou vazio e os termos [[ ]] fecham', () => {
+    const ruins: string[] = [];
     const andar = (x: unknown, caminho: string): void => {
-      if (typeof x === 'string') { if (!x.trim()) vazios.push(caminho); }
+      if (typeof x === 'string') { if (!x.trim() || (x.match(/\[\[/g)?.length ?? 0) !== (x.match(/\]\]/g)?.length ?? 0)) ruins.push(caminho); }
       else if (x && typeof x === 'object') for (const [k, v] of Object.entries(x)) andar(v, `${caminho}.${k}`);
     };
     andar(TEXTOS, 'TEXTOS');
-    expect(vazios).toEqual([]);
+    expect(ruins).toEqual([]);
   });
 
-  it('cada passo aponta para uma cena que existe, sem repetir, e toda cena é usada', () => {
-    const citadas = TEXTOS.pt.capitulos.flatMap((c) => c.passos.map((p) => p.cena));
-    expect(new Set(citadas).size).toBe(citadas.length);
-    expect([...citadas].sort()).toEqual(Object.keys(CENAS).sort());
+  it('cada passo do texto tem o seu trecho do filme, na mesma ordem', () => {
+    expect(TEXTOS.pt.capitulos.flatMap((c) => c.passos.map((p) => p.cena))).toEqual(CENAS);
   });
 
-  it('os quadros ficam dentro do palco e o primeiro de cada cena não espera', () => {
-    for (const [nome, quadros] of Object.entries(CENAS)) {
-      expect(quadros.length, nome).toBeGreaterThan(0);
-      expect(quadros[0].espera, nome).toBe(0);
-      for (const q of quadros) {
-        for (const e of Object.values(estados(q))) {
-          expect(e.x, nome).toBeGreaterThanOrEqual(0);
-          expect(e.x, nome).toBeLessThanOrEqual(100);
-          expect(e.y, nome).toBeGreaterThanOrEqual(0);
-          expect(e.y, nome).toBeLessThanOrEqual(100);
+  it('os trechos se emendam: cada um começa onde o anterior termina e o último acaba no fim do filme', () => {
+    let fim = 0;
+    for (const t of FILME.trechos) {
+      expect(t.de, t.cena).toBe(fim);
+      expect(t.passos, t.cena).toBeGreaterThan(0);
+      fim = t.de + t.passos;
+    }
+    expect(fim).toBe(FIM);
+  });
+
+  it('em qualquer ponto do filme as cartas visíveis ficam dentro do palco e nada vira NaN', () => {
+    for (let pos = 0; pos <= FIM; pos += 0.125) {
+      const c = cenaEm(pos);
+      expect(Number.isFinite(c.cam.x + c.cam.y + c.cam.z + c.vida[0] + c.vida[1]), `cena ${pos}`).toBe(true);
+      for (const id of ATORES) {
+        const e = estadoEm(pos, id);
+        expect(Number.isFinite(e.x + e.y + e.r + e.s + e.face + e.o), `${id} em ${pos}`).toBe(true);
+        if (e.o > 0.05) {
+          expect(e.x, `${id} em ${pos}`).toBeGreaterThan(0);
+          expect(e.x, `${id} em ${pos}`).toBeLessThan(MUNDO.w);
+          expect(e.y, `${id} em ${pos}`).toBeGreaterThan(0);
+          expect(e.y, `${id} em ${pos}`).toBeLessThan(MUNDO.h);
         }
       }
+      for (const id of Object.keys(MARCAS)) expect(Number.isFinite(marcaEm(pos, id).o), `${id} em ${pos}`).toBe(true);
     }
   });
 
-  it('as cartas do palco existem no catálogo do jogo', () => {
+  it('toda marca do palco tem texto nos dois idiomas (ou é um número/símbolo fixo)', () => {
+    for (const m of Object.values(MARCAS)) {
+      const fixo = !/^[a-zA-Z]+$/.test(m.t);
+      if (!fixo) for (const idioma of ['pt', 'en'] as const) expect((TEXTOS[idioma].palco.marcas as Record<string, string>)[m.t], `${idioma}: ${m.t}`).toBeTruthy();
+    }
+  });
+
+  it('a carta do "Como ler uma carta" existe no catálogo do jogo', () => {
     const { cartas } = JSON.parse(readFileSync(join(import.meta.dirname, '..', 'gerado', 'cartas.json'), 'utf8')) as { cartas: Record<string, unknown> };
-    for (const nome of [...Object.values(ATORES), CARTA_EXEMPLO]) expect(cartas[nome], nome).toBeDefined();
+    expect(cartas[CARTA_EXEMPLO]).toBeDefined();
   });
 });
