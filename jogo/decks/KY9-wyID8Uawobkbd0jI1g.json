@@ -6,8 +6,7 @@
  "link": "https://moxfield.com/decks/KY9-wyID8Uawobkbd0jI1g",
  "importadoEm": "2026-11-14T23:53:43.150Z",
  "verificadoEm": "2026-11-14T23:53:43.150Z",
- "atual": null,
- "preparacao": {
+ "atual": {
   "formato": "standard",
   "capa": "Marang River Regent // Coil and Catch",
   "cartas": [
@@ -101,5 +100,6 @@
    "atualizadoEm": "2026-04-23T05:30:55.31Z"
   },
   "desde": "2026-11-14T23:53:43.150Z"
- }
+ },
+ "preparacao": null
 }

@@ -16176,5 +16176,345 @@
     "quantidade": 1
    }
   ]
+ },
+ {
+  "id": "VZ8_mv2M6Eq6o8dx6Bbj3w",
+  "nome": "Jund Sacrifice",
+  "cartas": [
+   {
+    "nome": "Mountain",
+    "quantidade": 1
+   },
+   {
+    "nome": "Forest",
+    "quantidade": 1
+   },
+   {
+    "nome": "Swamp",
+    "quantidade": 1
+   },
+   {
+    "nome": "Smaug the Magnificent",
+    "quantidade": 1
+   },
+   {
+    "nome": "Wolverine, Fierce Fighter",
+    "quantidade": 1
+   },
+   {
+    "nome": "Stomping Ground",
+    "quantidade": 3
+   },
+   {
+    "nome": "Blood Crypt",
+    "quantidade": 3
+   },
+   {
+    "nome": "Overgrown Tomb",
+    "quantidade": 3
+   },
+   {
+    "nome": "Umbral Collar Zealot",
+    "quantidade": 3
+   },
+   {
+    "nome": "The Misty Mountains Cold",
+    "quantidade": 3
+   },
+   {
+    "nome": "Blooming Marsh",
+    "quantidade": 4
+   },
+   {
+    "nome": "Greedy Freebooter",
+    "quantidade": 4
+   },
+   {
+    "nome": "Lively Dirge",
+    "quantidade": 4
+   },
+   {
+    "nome": "Starting Town",
+    "quantidade": 4
+   },
+   {
+    "nome": "Biotech Specialist",
+    "quantidade": 4
+   },
+   {
+    "nome": "Gene Pollinator",
+    "quantidade": 4
+   },
+   {
+    "nome": "Obsessive Pursuit",
+    "quantidade": 4
+   },
+   {
+    "nome": "The Sackville-Bagginses",
+    "quantidade": 4
+   },
+   {
+    "nome": "Torch the Tower",
+    "quantidade": 2
+   },
+   {
+    "nome": "Magda, the Hoardmaster",
+    "quantidade": 2
+   },
+   {
+    "nome": "Blazemire Verge",
+    "quantidade": 2
+   },
+   {
+    "nome": "Requiting Hex",
+    "quantidade": 2
+   }
+  ]
+ },
+ {
+  "id": "KY9-wyID8Uawobkbd0jI1g",
+  "nome": "Dimir Control",
+  "cartas": [
+   {
+    "nome": "Island",
+    "quantidade": 4
+   },
+   {
+    "nome": "Consult the Star Charts",
+    "quantidade": 4
+   },
+   {
+    "nome": "Swamp",
+    "quantidade": 5
+   },
+   {
+    "nome": "Essence Scatter",
+    "quantidade": 3
+   },
+   {
+    "nome": "Demolition Field",
+    "quantidade": 3
+   },
+   {
+    "nome": "Restless Reef",
+    "quantidade": 3
+   },
+   {
+    "nome": "Negate",
+    "quantidade": 1
+   },
+   {
+    "nome": "Marang River Regent // Coil and Catch",
+    "quantidade": 1
+   },
+   {
+    "nome": "Watery Grave",
+    "quantidade": 4
+   },
+   {
+    "nome": "Spell Snare",
+    "quantidade": 4
+   },
+   {
+    "nome": "Deadly Cover-Up",
+    "quantidade": 4
+   },
+   {
+    "nome": "Three Steps Ahead",
+    "quantidade": 4
+   },
+   {
+    "nome": "Gloomlake Verge",
+    "quantidade": 4
+   },
+   {
+    "nome": "Requiting Hex",
+    "quantidade": 4
+   },
+   {
+    "nome": "Tishana's Tidebinder",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bitter Triumph",
+    "quantidade": 1
+   },
+   {
+    "nome": "Undercity Sewers",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fountainport",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shoot the Sheriff",
+    "quantidade": 3
+   },
+   {
+    "nome": "Stock Up",
+    "quantidade": 3
+   },
+   {
+    "nome": "Wan Shi Tong, Librarian",
+    "quantidade": 2
+   }
+  ]
+ },
+ {
+  "id": "mundial32-isael-feitosa",
+  "nome": "Mono-Green Landfall (Isael Feitosa, Mundial 32)",
+  "cartas": [
+   {
+    "nome": "Earthbender Ascension",
+    "quantidade": 4
+   },
+   {
+    "nome": "Hard-Hitting Question",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sapling Nursery",
+    "quantidade": 3
+   },
+   {
+    "nome": "Keen-Eyed Curator",
+    "quantidade": 2
+   },
+   {
+    "nome": "Demolition Field",
+    "quantidade": 1
+   },
+   {
+    "nome": "Sazh's Chocobo",
+    "quantidade": 4
+   },
+   {
+    "nome": "Icetill Explorer",
+    "quantidade": 4
+   },
+   {
+    "nome": "Llanowar Elves",
+    "quantidade": 4
+   },
+   {
+    "nome": "Fabled Passage",
+    "quantidade": 4
+   },
+   {
+    "nome": "Elven Passage",
+    "quantidade": 4
+   },
+   {
+    "nome": "Forest",
+    "quantidade": 13
+   },
+   {
+    "nome": "Escape Tunnel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mightform Harmonizer",
+    "quantidade": 3
+   },
+   {
+    "nome": "Carnivorous Cultivator // Enroot",
+    "quantidade": 4
+   },
+   {
+    "nome": "Pit of Offerings",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ba Sing Se",
+    "quantidade": 3
+   },
+   {
+    "nome": "Mossborn Hydra",
+    "quantidade": 4
+   }
+  ]
+ },
+ {
+  "id": "mundial32-javier-dominguez",
+  "nome": "Selesnya Landfall (Javier Dominguez, Mundial 32)",
+  "cartas": [
+   {
+    "nome": "Erode",
+    "quantidade": 4
+   },
+   {
+    "nome": "Earthbender Ascension",
+    "quantidade": 4
+   },
+   {
+    "nome": "Sandman, Shifting Scoundrel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cryptic Caves",
+    "quantidade": 1
+   },
+   {
+    "nome": "Forest",
+    "quantidade": 11
+   },
+   {
+    "nome": "Llanowar Elves",
+    "quantidade": 4
+   },
+   {
+    "nome": "Icetill Explorer",
+    "quantidade": 4
+   },
+   {
+    "nome": "Fabled Passage",
+    "quantidade": 4
+   },
+   {
+    "nome": "Elven Passage",
+    "quantidade": 4
+   },
+   {
+    "nome": "Practiced Offense",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hushwood Verge",
+    "quantidade": 1
+   },
+   {
+    "nome": "Jadzia Dax, Living Legacy",
+    "quantidade": 3
+   },
+   {
+    "nome": "Escape Tunnel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ba Sing Se",
+    "quantidade": 2
+   },
+   {
+    "nome": "Mightform Harmonizer",
+    "quantidade": 4
+   },
+   {
+    "nome": "Carnivorous Cultivator // Enroot",
+    "quantidade": 4
+   },
+   {
+    "nome": "Plains",
+    "quantidade": 2
+   },
+   {
+    "nome": "Vigorbloom Charm",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mossborn Hydra",
+    "quantidade": 4
+   }
+  ]
  }
 ]

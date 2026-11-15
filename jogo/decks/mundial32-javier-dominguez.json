@@ -6,8 +6,7 @@
  "link": "",
  "importadoEm": "2026-11-14T23:56:38.356Z",
  "verificadoEm": "2026-11-14T23:56:38.356Z",
- "atual": null,
- "preparacao": {
+ "atual": {
   "formato": "standard",
   "cartas": [
    {
@@ -93,5 +92,6 @@
   },
   "desde": "2026-11-14T23:56:38.356Z",
   "capa": "Earthbender Ascension"
- }
+ },
+ "preparacao": null
 }

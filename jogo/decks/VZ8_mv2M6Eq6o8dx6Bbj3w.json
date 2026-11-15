@@ -6,8 +6,7 @@
  "link": "https://moxfield.com/decks/VZ8_mv2M6Eq6o8dx6Bbj3w",
  "importadoEm": "2026-11-14T23:47:22.198Z",
  "verificadoEm": "2026-11-14T23:47:22.198Z",
- "atual": null,
- "preparacao": {
+ "atual": {
   "formato": "standard",
   "capa": "Gene Pollinator",
   "cartas": [
@@ -105,5 +104,6 @@
    "atualizadoEm": "2026-11-08T17:56:34.83Z"
   },
   "desde": "2026-11-14T23:47:22.198Z"
- }
+ },
+ "preparacao": null
 }

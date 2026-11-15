@@ -6,8 +6,7 @@
  "link": "",
  "importadoEm": "2026-11-14T23:54:51.489Z",
  "verificadoEm": "2026-11-14T23:54:51.489Z",
- "atual": null,
- "preparacao": {
+ "atual": {
   "formato": "standard",
   "cartas": [
    {
@@ -85,5 +84,6 @@
   },
   "desde": "2026-11-14T23:54:51.489Z",
   "capa": "Mossborn Hydra"
- }
+ },
+ "preparacao": null
 }
