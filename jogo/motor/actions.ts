@@ -991,7 +991,7 @@ export function shuffleLibrary(g: G, player: PlayerId): void {
 }
 
 /** busca no grimório (CR 701.23): o jogador vê o grimório e pode não achar cartas com qualidade */
-export function* searchLibrary(g: G, player: PlayerId, library: PlayerId, opts: { filter?: (id: ObjId) => boolean; max: number; min?: number; prompt: string }): Gen<ObjId[]> {
+export function* searchLibrary(g: G, player: PlayerId, library: PlayerId, opts: { filter?: (id: ObjId) => boolean; max: number; min?: number; prompt: string; lookWhenNoMatch?: boolean }): Gen<ObjId[]> {
   // "não pode procurar em grimórios" (Stranglehold): a busca não acontece; o embaralhar de "procure… depois embaralhe"
   // continua com quem chamou (ruling 2)
   if (!canSearchLibraries(g, player)) {
@@ -1002,7 +1002,10 @@ export function* searchLibrary(g: G, player: PlayerId, library: PlayerId, opts: 
   emit(g, [{ type: 'search', player, library }]);
   const items = lib.map((id) => ({ id: String(id), label: nameOf(g, id), obj: id, card: { def: g.state.objects[id].def }, disabled: opts.filter ? !opts.filter(id) : false }));
   if (items.every((i) => i.disabled)) {
-    yield* chooseItems(g, player, `${opts.prompt} (nenhuma carta serve)`, items, 0, 0);
+    // CR 701.23a: quem procura pode olhar a zona inteira, mesmo sem cartas elegíveis. Opção aditiva para os
+    // efeitos que precisam dessa consulta explícita (Deadly Cover-Up); as chamadas existentes ficam como antes.
+    if (opts.lookWhenNoMatch && items.length) yield* ask(g, { kind: 'select', player, prompt: `${opts.prompt} (nenhuma carta serve)`, items, min: 0, max: 0 });
+    else yield* chooseItems(g, player, `${opts.prompt} (nenhuma carta serve)`, items, 0, 0);
     return [];
   }
   const max = Math.min(opts.max, items.filter((i) => !i.disabled).length);

@@ -4,9 +4,10 @@
 import { addEffect, cloneState, createObject, destroyObject, moveRaw, newTimestamp, removeEffect } from './state.ts';
 import { ask, chooseItems, chooseNumber, objItem, playerItem, yesNo } from './ask.ts';
 import type { GameEvent } from './events.ts';
-import { moveObject, moveObjects, protectionMatches, putOntoBattlefield, enchantCandidates, shuffleLibrary, tap } from './actions.ts';
+import { moveObject, moveObjects, protectionMatches, putOntoBattlefield, enchantCandidates, tap } from './actions.ts';
 import { abilityDefs, chars, colorsOf, controllerOf, hasKw, hooks, isType, kwParams, nameOf, printedChars, currentFace } from './chars.ts';
 import { playerProtectedFrom } from './actions.ts';
+import { resolveOmen } from './presagio.ts';
 import { canAfford, canPayParts, manaOptions, manaPart, payMana, payParts, type PayContext } from './costs.ts';
 import {
   ability, cardDef, registry, type ActivatedDef, type AdditionalCostDef, type AltCastDef, type CastPermission, type Ctx, type FaceDef, type Gen,
@@ -1035,14 +1036,8 @@ export function* resolveTop(g: G): Gen<void> {
   }
   // 608.2n: vai para o cemitério do dono (se ainda estiver na pilha)
   if (g.state.objects[id]?.zone === 'stack') {
-    if (g.state.objects[id].isCopy) destroyObject(g, id);
-    else if (st.data.omen) {
-      // presságio (CR 720.3d): embaralhada no grimório do dono em vez de ir para o cemitério
-      const dono = g.state.objects[id].owner;
-      reg(g, 'zona', { rule: '720.3d' })`${obj(id, undefined, c.name)} é embaralhada no grimório de ${jog(dono)} (presságio).`;
-      yield* moveObject(g, id, 'library', 'omen');
-      shuffleLibrary(g, dono);
-    }
+    if (st.data.omen) yield* resolveOmen(g, id);
+    else if (g.state.objects[id].isCopy) destroyObject(g, id);
     else if (st.data.adventure) {
       // aventura: quem a controla a exila em vez de pô-la no cemitério e pode conjurar a carta enquanto ela ficar
       // exilada (CR 715.3d); essa permissão é só deste exílio (ruling 5)

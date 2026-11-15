@@ -7,6 +7,7 @@ import type { G } from './game-context.ts';
 import { manaValueOf } from './mana.ts';
 import { BASIC_LAND_MANA, faceManaValue, hasOracle, oracle, CREATURE_SUBTYPES } from './oracle.ts';
 import { ehDividida, ehModal, ehSala, FACE_AMBAS, FACE_NENHUMA, nomeDaFace, temVariasFaces } from './formatos.ts';
+import { castCharacteristicsOverride } from './caracteristicas-conjuracao.ts';
 import type { AbilityInst, Chars, Color, CopyValues, GameObject, GameState, Layer, Mod, ObjId, PlayerId, ZoneName } from './types.ts';
 
 export interface ActiveStatic {
@@ -486,6 +487,8 @@ function ensure(g: G): void {
 
 /** características atuais de um objeto */
 export function chars(g: G, id: ObjId): Chars {
+  const naConjuracao = castCharacteristicsOverride(g, id);
+  if (naConjuracao) return naConjuracao;
   if (g.computing) {
     const c = g.computing.get(id);
     if (c) return c;

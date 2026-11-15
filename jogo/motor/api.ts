@@ -86,3 +86,8 @@ export * from './sacrificios.ts';
 export * from './custos-mana-permanentes.ts';
 // Standard c: curar dano e substituição de dano com cura do dano anterior (CR 701.69, 614.1a).
 export * from './curar.ts';
+// Standard, frente d: reunir indícios (CR 701.59), fora da lei (CR 700.12), resolução de presságios (CR 720.3d).
+export * from './indicios.ts';
+export * from './fora-da-lei.ts';
+export * from './presagio.ts';
+export * from './caracteristicas-conjuracao.ts';

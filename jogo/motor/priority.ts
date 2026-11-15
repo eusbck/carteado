@@ -11,7 +11,7 @@ import { doSuspend, manifestFaceUpCost, suspendParams, turnFaceUp } from './meca
 import { activateAbility, candidateTargets, canActivate, castChars, castSpell, chooseModes, custosAdicionais, spellTargetSpecs, totalSpellCost, faceDefFor, faceDefOf, type CastMethod } from './stack.ts';
 import { segundoDivididoNaPilha } from './equipar.ts';
 import {
-  chaveComFace, ehAventura, faceEhTerreno, ehSala, FACE_AMBAS, FACE_NENHUMA, faceDaChave, facesConjuraveis, facesDeTerreno, metadeAftermath,
+  chaveComFace, ehAventura, ehPresagio, faceEhTerreno, ehSala, FACE_AMBAS, FACE_NENHUMA, faceDaChave, facesConjuraveis, facesDeTerreno, metadeAftermath,
   nomeDaFace, rotuloConjurar, temVariasFaces,
 } from './formatos.ts';
 import { oracle } from './oracle.ts';
@@ -22,6 +22,7 @@ import { emit } from './triggers.ts';
 import { jog, obj, reg } from './registro.ts';
 import type { ManaSymbol, ObjId, PlayerId, PriorityAction, ZoneName } from './types.ts';
 import { splitSecondActive } from './controle-base.ts';
+import { withCastCharacteristics } from './caracteristicas-conjuracao.ts';
 
 export function isMainPhase(g: G): boolean {
   return g.state.turn.step === 'main1' || g.state.turn.step === 'main2';
@@ -79,13 +80,20 @@ function opcoesDeFaces(g: G, p: PlayerId, id: ObjId, zone: ZoneName, out: CastOp
   const push = (key: string, face: number, title: string, extra: Partial<CastMethod> = {}) =>
     out.push({ obj: id, method: { key: face === FACE_AMBAS ? 'fuse' : chaveComFace(key, face), label: extra.label ?? 'conjurar', zone, face, title, ...extra } });
   const altCosts = (face: number, zona: ZoneName) => face === FACE_AMBAS ? [] : (cardDef(def)?.faces[face]?.altCosts ?? []).filter((a) => a.zone === zona && (!a.condition || a.condition({ g, you: p, source: id })));
+  // CR 720.3a: consulta tanto o gancho quanto seu filtro com a face pretendida, sem mudar a zona da carta.
+  const permissoesDoPresagio = (face: number) => withCastCharacteristics(g, id, castChars(g, p, o, { face }),
+    () => permissionsFor(g, p, id).filter((prm) => !prm.filter || prm.filter({ g, you: p, source: id }, id)));
   if (zone === 'hand') {
     for (const f of faces) {
       push('hand', f, rotuloConjurar(def, f));
       for (const alt of altCosts(f, 'hand')) push(alt.key, f, `${alt.label}: ${nomeDaFace(def, f)}`, { label: alt.label, alt });
     }
     // precons-e: permissões que valem também da mão (CastPermission.fromHand)
-    for (const prm of permissionsFor(g, p, id)) {
+    if (ehPresagio(def)) {
+      for (const f of faces) for (const prm of permissoesDoPresagio(f)) {
+        if (prm.fromHand) push(`perm:${prm.key}`, f, `${prm.label}: ${nomeDaFace(def, f)}`, { label: prm.label, permission: prm });
+      }
+    } else for (const prm of permissionsFor(g, p, id)) {
       if (!prm.fromHand || (prm.filter && !prm.filter({ g, you: p, source: id }, id))) continue;
       for (const f of faces) if (f !== FACE_AMBAS) push(`perm:${prm.key}`, f, `${prm.label}: ${nomeDaFace(def, f)}`, { label: prm.label, permission: prm });
     }
@@ -100,7 +108,9 @@ function opcoesDeFaces(g: G, p: PlayerId, id: ObjId, zone: ZoneName, out: CastOp
     }
     // aventura que resolveu: quem a conjurou pode conjurar a carta do exílio, mas não como aventura (CR 715.3d)
     if (zone === 'exile' && ehAventura(def) && o.data.adventureOf === p && !faceEhTerreno(def, 0)) out.push({ obj: id, method: { key: 'adventure', label: 'aventura', zone, face: 0, title: `Conjurar ${nomeDaFace(def, 0)} do exílio (aventura)` } });
-    for (const prm of permissionsFor(g, p, id)) {
+    if (ehPresagio(def)) {
+      for (const f of faces) for (const prm of permissoesDoPresagio(f)) push(`perm:${prm.key}`, f, `${prm.label}: ${nomeDaFace(def, f)}`, { label: prm.label, permission: prm });
+    } else for (const prm of permissionsFor(g, p, id)) {
       if (prm.filter && !prm.filter({ g, you: p, source: id }, id)) continue;
       for (const f of faces) if (f !== FACE_AMBAS) push(`perm:${prm.key}`, f, `${prm.label}: ${nomeDaFace(def, f)}`, { label: prm.label, permission: prm });
     }
@@ -153,10 +163,10 @@ export function castOptions(g: G, p: PlayerId): CastOption[] {
   for (const id of s.zones.hand[p]) consider(id, 'hand');
   for (const id of s.zones.command) consider(id, 'command');
   for (const id of s.zones.graveyard[p]) consider(id, 'graveyard');
-  for (const pp of g.playersInGame()) if (pp !== p) for (const id of s.zones.graveyard[pp]) if (permissionsFor(g, p, id).length) consider(id, 'graveyard');
+  for (const pp of g.playersInGame()) if (pp !== p) for (const id of s.zones.graveyard[pp]) if (ehPresagio(s.objects[id].def) || permissionsFor(g, p, id).length) consider(id, 'graveyard');
   for (const id of s.zones.exile) consider(id, 'exile');
   // lote2-d: a carta do topo do grimório com permissão de conjurar dali (Realmwalker)
-  for (const id of s.zones.library[p].slice(0, 1)) if (permissionsFor(g, p, id).length) consider(id, 'library');
+  for (const id of s.zones.library[p].slice(0, 1)) if (ehPresagio(s.objects[id].def) || permissionsFor(g, p, id).length) consider(id, 'library');
   return out;
 }
 

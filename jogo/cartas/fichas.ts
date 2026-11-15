@@ -605,3 +605,6 @@ export const IllusionVoadora = token('Illusion 1/1', 'Illusion', ['Creature'], [
 // Standard c (Magda, the Hoardmaster)
 /** Scorpion Dragon 4/4 vermelha com voar e ímpeto. */
 export const ScorpionDragon44 = token('Scorpion Dragon', 'Scorpion Dragon', ['Creature'], ['Scorpion', 'Dragon'], ['R'], 4, 4, keywords('flying', 'haste'));
+// Standard, frente d (Fountainport)
+/** Fish azul 1/1 sem habilidades. */
+export const Fish = token('Fish', 'Fish', ['Creature'], ['Fish'], ['U'], 1, 1);

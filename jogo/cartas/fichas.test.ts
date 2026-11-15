@@ -203,6 +203,8 @@ const esperadas: Record<string, [string, string[], string[], string[], number | 
   'Illusion 1/1': ['Illusion', ['Creature'], ['Illusion'], ['U'], 1, 1, ['flying']],
   // Standard c
   'Scorpion Dragon': ['Scorpion Dragon', ['Creature'], ['Scorpion', 'Dragon'], ['R'], 4, 4, ['flying', 'haste']],
+  // Standard, frente d
+  'Fish': ['Fish', ['Creature'], ['Fish'], ['U'], 1, 1, []],
 };
 
 describe('Fichas: características', () => {
