@@ -13,6 +13,7 @@ import { addPending, emit } from './triggers.ts';
 import { jog, obj, objs, reg } from './registro.ts';
 import { oracleLayout } from './oracle.ts';
 import { playerProtections, toxicValue } from './veneno-emblema.ts';
+import { healPreviousDamage } from './curar.ts';
 import type { Answer, CardId, Chars, Color, ContinuousEffect, CopyValues, Duration, GameObject, ManaType, ManaUnit, ObjId, PlayerId, TargetRef, ZoneName } from './types.ts';
 
 // ---------------------------------------------------------------------------
@@ -562,6 +563,7 @@ export function dealDamage(g: G, reqs: DamageReq[]): { dealt: number; to: Target
   const results: { dealt: number; to: TargetRef; source: ObjId }[] = [];
   const cantPrevent = hooks(g, 'damageCantBePrevented').some((h) => h.fn(h.ctx));
   const lifelinkGains = new Map<ObjId, { player: PlayerId; amount: number }>();
+  const healed = new Set<ObjId>();
   for (const pedido of reqs) {
     if (pedido.amount <= 0) continue; // CR 120.8
     const r = redirectedDamage(g, pedido);
@@ -579,6 +581,8 @@ export function dealDamage(g: G, reqs: DamageReq[]): { dealt: number; to: Target
       const tc = chars(g, r.target.id);
       if (!tc.types.some((x) => x === 'Creature' || x === 'Planeswalker' || x === 'Battle')) continue; // CR 120.1a
     } else if (s.players[r.target.id].left) continue;
+    // CR 701.69a, 614.5: uma cura do dano anterior por evento, sem apagar o dano simultâneo das demais fontes.
+    healPreviousDamage(g, r.target, r.source, r.combat, healed);
     // prevenção (CR 615): proteção (702.16e) e escudos registrados
     const antesDaPrevencao = amount;
     if (!cantPrevent) {

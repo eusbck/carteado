@@ -8,6 +8,7 @@ import { registrarLote } from './diario.ts';
 import { redigirLote } from './redator.ts';
 import { chars, hooks } from './chars.ts';
 import { extraTriggersDeQuemSaiu } from './morte-dispara.ts';
+import { registrarSacrificio } from './sacrificios.ts';
 import { registry, type TriggerCtx, type TriggeredDef } from './defs.ts';
 import type { GameEvent } from './events.ts';
 import type { G } from './game-context.ts';
@@ -87,6 +88,7 @@ function updateStats(g: G, events: GameEvent[]): void {
         }
         break;
       case 'sacrifice': {
+        registrarSacrificio(g, e.player);
         const lki = g.state.lki[e.old];
         if (lki?.chars.types.includes('Creature')) st[e.player].sacrificedCreature = true;
         // foods-a: "se você sacrificou uma Food neste turno" (Elanor Gardner): Food é tipo de artefato (CR 205.3g)

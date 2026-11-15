@@ -80,3 +80,9 @@ export * from './terra.ts';
 export * from './exigencias-bloqueio.ts';
 // lote4-d: megamorfose (megamorph, CR 702.37b)
 export * from './megamorfose.ts';
+// Standard c: histórico de permanentes sacrificados no turno (CR 701.21).
+export * from './sacrificios.ts';
+// Standard c: recursos distintos no planejamento de habilidades de mana com custos de virar permanentes.
+export * from './custos-mana-permanentes.ts';
+// Standard c: curar dano e substituição de dano com cura do dano anterior (CR 701.69, 614.1a).
+export * from './curar.ts';
