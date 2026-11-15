@@ -1180,6 +1180,9 @@ img.mini { width: 40px; aspect-ratio: 63 / 88; object-fit: cover; border-radius:
 .filtro-origem-op:hover { color: var(--texto); border-color: rgba(255, 255, 255, .35); }
 .filtro-origem-op[aria-pressed='true'] { color: var(--ouro-texto); background: var(--ouro); border-color: var(--ouro); }
 .filtro-origem-n { font-size: 11px; font-weight: 800; opacity: .75; }
+/* filtro pelo modo de jogo (FiltroModo.tsx), na tela Decks aberta pelo início; aberta pela sala vira uma linha de aviso */
+.cat-modo-sala { margin: 0; }
+.filtro-modo + .filtro-origem, .cat-modo-sala + .filtro-origem { margin-top: -10px; }
 .deck-origem { justify-self: start; font-size: 10.5px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; padding: 2px 7px; border-radius: 5px; background: rgba(0, 0, 0, .55); border: 1px solid currentColor; }
 .deck-origem.precon { color: var(--ouro); }
 .deck-origem.modificado { color: #e0b48a; }

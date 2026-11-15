@@ -7,13 +7,14 @@
 import { useEffect, useState } from 'preact/hooks';
 import type { CartaCatalogo, DeckCatalogo, Proposta, TarefaPublica } from '../../../servidor/protocolo.ts';
 import { BotoesOrigem, passaNoFiltro, SeloOrigem, useFiltroOrigem } from './FiltroOrigem.tsx';
+import { BotoesModo, passaNoModo, useFiltroModo } from './FiltroModo.tsx';
 import { ForcaDetalhe, SeloForca } from './Forca.tsx';
 import { Janela } from '../Janela.tsx';
 import { Marca } from '../icones.tsx';
 import { desfecho, nomeCurto } from '../Importacoes.tsx';
 import { loja, useLoja } from '../loja.ts';
 import { Simbolos } from '../mesa/Simbolos.tsx';
-import { MODOS } from '../../../motor/modos.ts';
+import { MODOS, modoDe } from '../../../motor/modos.ts';
 import { Construtor, deckVazio, rascunhoGuardado, type DeckInicial } from './Construtor.tsx';
 
 const data = (iso: string | null) => (iso ? new Date(iso).toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' }) : null);
@@ -309,7 +310,12 @@ export function Decks() {
   const minhas = e.minhasTarefas.map((id) => e.tarefasDeck[id]).filter((t): t is TarefaPublica => !!t);
   const deOutros = todas.filter((t) => t.estado === 'andando' && !e.minhasTarefas.includes(t.id));
   const andandoNo = (id: string) => todas.some((t) => t.estado === 'andando' && t.deck === id);
-  const decks = [...(e.catalogo ?? [])].sort((a, b) => a.nome.localeCompare(b.nome));
+  const todos = [...(e.catalogo ?? [])].sort((a, b) => a.nome.localeCompare(b.nome));
+  // aberta pelo saguão: só os decks do modo da sala; pelo início, o filtro de modo escolhe
+  const modoSala = e.sala ? modoDe(e.sala) : null;
+  const [filtroModo, setFiltroModo] = useFiltroModo();
+  const modo = modoSala ?? filtroModo;
+  const decks = todos.filter((d) => passaNoModo(modo, d));
   const prontos = decks.filter((d) => d.estado !== 'preparacao').length;
   const [filtro, setFiltro] = useFiltroOrigem();
   const aberto = decks.find((d) => d.id === detalhe) ?? null;
@@ -353,7 +359,7 @@ export function Decks() {
         </header>
         <div class="cat-titulo">
           <h1 class="titulo">Decks da mesa</h1>
-          <span class="suave">{prontos} no saguão{decks.length > prontos ? `, ${decks.length - prontos} em preparação` : ''}</span>
+          <span class="suave">{modo !== 'todos' ? `${MODOS[modo].nome}: ` : ''}{prontos} no saguão{decks.length > prontos ? `, ${decks.length - prontos} em preparação` : ''}</span>
           <button class="botao principal" onClick={() => setMontando({ inicial: rascunhoGuardado() ?? deckVazio(), rascunho: true })}
             title="Monte um deck com as cartas que o jogo já tem">Montar um deck</button>
         </div>
@@ -383,7 +389,11 @@ export function Decks() {
           ? <p class="suave">Carregando…</p>
           : (
             <>
+            {modoSala
+              ? <p class="suave cat-modo-sala">Mostrando só os decks de {MODOS[modoSala].nome}, o modo desta sala.</p>
+              : <BotoesModo decks={todos} valor={filtroModo} mudar={setFiltroModo} />}
             <BotoesOrigem decks={decks} valor={filtro} mudar={setFiltro} />
+            {!decks.length && <p class="faixa">Ainda não há decks de {modo === 'todos' ? 'nenhum modo' : MODOS[modo].nome} na mesa. Importe um pelo link do Moxfield ou monte um.</p>}
             <div class="cat-grade">
               {decks.filter((d) => passaNoFiltro(filtro, d)).map((d) => (
                 <CartaoDeck key={d.id} d={d} ocupado={andandoNo(d.id)} abrir={() => setDetalhe(d.id)}
