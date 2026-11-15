@@ -9,7 +9,7 @@ export default defineCard({
   faces: [{ abilities: [
     etb(function* (c) {
       yield* createTokens(c.g, c.you, 'Lander', 1);
-    }, { text: 'Quando esta criatura entra, crie uma ficha de Explorador (Lander).' }),
+    }, { text: 'Quando esta criatura entra, crie uma ficha de artefato Lander.' }),
     // CR 603.10, 608.2h: o tipo do artefato e a fonte que saiu usam a última informação conhecida.
     triggered(on.custom((e, c) => e.type === 'sacrifice' && e.player === c.you && !!lkiChars(c.g, e.old)?.types.includes('Artifact')), function* (c) {
       const p = tgtPlayer(c);

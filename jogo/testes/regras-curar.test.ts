@@ -37,7 +37,7 @@ describe('Curar dano', () => {
     dealDamage(tg.g, [{ source: tg.bf('Indomitable Ancients'), target: { kind: 'obj', id: tg.bf(W) }, amount: 0, combat: false }]);
     expect(tg.state.objects[tg.bf(W)].damage).toBe(4);
   });
-  it('CR 616.1e: aplica cura antes da prevenção, removendo o dano anterior mesmo se o novo for prevenido', () => {
+  it('CR 616.1e: a ordem automática cura antes de prevenir o dano novo', () => {
     const tg = setup({ battlefield: [[{ name: W, damage: 4 }], ['Indomitable Ancients']] });
     const id = tg.bf(W);
     addEffect(tg.g, { source: id, sourceDef: '', controller: 0, duration: { kind: 'endOfTurn' }, affected: [id], mods: [{ k: 'rule', id: 'rule:preventNextDamageTo', params: { to: id, left: 2 } }] });
