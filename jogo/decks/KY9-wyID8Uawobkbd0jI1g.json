@@ -1,0 +1,105 @@
+{
+ "formato": 1,
+ "id": "KY9-wyID8Uawobkbd0jI1g",
+ "ordem": 139,
+ "nome": "Dimir Control",
+ "link": "https://moxfield.com/decks/KY9-wyID8Uawobkbd0jI1g",
+ "importadoEm": "2026-11-14T23:53:43.150Z",
+ "verificadoEm": "2026-11-14T23:53:43.150Z",
+ "atual": null,
+ "preparacao": {
+  "formato": "standard",
+  "capa": "Marang River Regent // Coil and Catch",
+  "cartas": [
+   {
+    "nome": "Island",
+    "quantidade": 4
+   },
+   {
+    "nome": "Consult the Star Charts",
+    "quantidade": 4
+   },
+   {
+    "nome": "Swamp",
+    "quantidade": 5
+   },
+   {
+    "nome": "Essence Scatter",
+    "quantidade": 3
+   },
+   {
+    "nome": "Demolition Field",
+    "quantidade": 3
+   },
+   {
+    "nome": "Restless Reef",
+    "quantidade": 3
+   },
+   {
+    "nome": "Negate",
+    "quantidade": 1
+   },
+   {
+    "nome": "Marang River Regent // Coil and Catch",
+    "quantidade": 1
+   },
+   {
+    "nome": "Watery Grave",
+    "quantidade": 4
+   },
+   {
+    "nome": "Spell Snare",
+    "quantidade": 4
+   },
+   {
+    "nome": "Deadly Cover-Up",
+    "quantidade": 4
+   },
+   {
+    "nome": "Three Steps Ahead",
+    "quantidade": 4
+   },
+   {
+    "nome": "Gloomlake Verge",
+    "quantidade": 4
+   },
+   {
+    "nome": "Requiting Hex",
+    "quantidade": 4
+   },
+   {
+    "nome": "Tishana's Tidebinder",
+    "quantidade": 1
+   },
+   {
+    "nome": "Bitter Triumph",
+    "quantidade": 1
+   },
+   {
+    "nome": "Undercity Sewers",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fountainport",
+    "quantidade": 1
+   },
+   {
+    "nome": "Shoot the Sheriff",
+    "quantidade": 3
+   },
+   {
+    "nome": "Stock Up",
+    "quantidade": 3
+   },
+   {
+    "nome": "Wan Shi Tong, Librarian",
+    "quantidade": 2
+   }
+  ],
+  "origem": {
+   "versao": 0,
+   "atualizadoEm": "2026-04-23T05:30:55.31Z"
+  },
+  "desde": "2026-11-14T23:53:43.150Z"
+ }
+}

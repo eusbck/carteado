@@ -1,0 +1,113 @@
+{
+ "formato": 1,
+ "id": "6Clu_RSbMUOTnf7aYeNS7g",
+ "ordem": 137,
+ "nome": "Azorius Control",
+ "link": "https://moxfield.com/decks/6Clu_RSbMUOTnf7aYeNS7g",
+ "importadoEm": "2026-11-14T23:53:01.492Z",
+ "verificadoEm": "2026-11-14T23:53:01.492Z",
+ "atual": null,
+ "preparacao": {
+  "formato": "standard",
+  "capa": "Elspeth, Storm Slayer",
+  "cartas": [
+   {
+    "nome": "Island",
+    "quantidade": 2
+   },
+   {
+    "nome": "Spell Snare",
+    "quantidade": 2
+   },
+   {
+    "nome": "Fountainport",
+    "quantidade": 2
+   },
+   {
+    "nome": "Elspeth, Storm Slayer",
+    "quantidade": 2
+   },
+   {
+    "nome": "Mistrise Village",
+    "quantidade": 2
+   },
+   {
+    "nome": "Seam Rip",
+    "quantidade": 2
+   },
+   {
+    "nome": "Aang's Iceberg",
+    "quantidade": 2
+   },
+   {
+    "nome": "Plains",
+    "quantidade": 1
+   },
+   {
+    "nome": "Soul-Guide Lantern",
+    "quantidade": 1
+   },
+   {
+    "nome": "Beza, the Bounding Spring",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ultima",
+    "quantidade": 1
+   },
+   {
+    "nome": "Day of Judgment",
+    "quantidade": 3
+   },
+   {
+    "nome": "Demolition Field",
+    "quantidade": 3
+   },
+   {
+    "nome": "Restless Anchorage",
+    "quantidade": 3
+   },
+   {
+    "nome": "Three Steps Ahead",
+    "quantidade": 3
+   },
+   {
+    "nome": "Stock Up",
+    "quantidade": 3
+   },
+   {
+    "nome": "Marang River Regent // Coil and Catch",
+    "quantidade": 3
+   },
+   {
+    "nome": "Hallowed Fountain",
+    "quantidade": 4
+   },
+   {
+    "nome": "Get Lost",
+    "quantidade": 4
+   },
+   {
+    "nome": "Meticulous Archive",
+    "quantidade": 4
+   },
+   {
+    "nome": "No More Lies",
+    "quantidade": 4
+   },
+   {
+    "nome": "Floodfarm Verge",
+    "quantidade": 4
+   },
+   {
+    "nome": "Consult the Star Charts",
+    "quantidade": 4
+   }
+  ],
+  "origem": {
+   "versao": 0,
+   "atualizadoEm": "2026-01-21T20:48:11.767Z"
+  },
+  "desde": "2026-11-14T23:53:01.492Z"
+ }
+}

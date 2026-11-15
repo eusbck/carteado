@@ -151,10 +151,16 @@ async function conferir(t: TarefasDecks, alvo: string): Promise<number> {
   const noMox = soma(deck.comandantes) + soma(deck.principal);
   // a lista que a mesa guarda: a que espera cartas (deck novo ou atualização) ou a jogável
   const lista = d ? d.preparacao ?? d.atual : null;
-  const naMesa = lista ? (lista.parceiro ? 2 : 1) + soma(lista.cartas) : 0;
+  const naMesa = lista ? (lista.comandante ? (lista.parceiro ? 2 : 1) : 0) + soma(lista.cartas) : 0;
   console.log(`\n${p.nome} (${p.link})`);
-  console.log(`Moxfield: ${noMox} cartas, comandante ${deck.comandantes.map((c) => c.nome).join(', ')}.`);
-  if (noMox !== 100) problemas.push(`o deck tem ${noMox} cartas no Moxfield (o Commander pede 100)`);
+  if (deck.modo === 'commander') {
+    console.log(`Moxfield: ${noMox} cartas, comandante ${deck.comandantes.map((c) => c.nome).join(', ')}.`);
+    if (noMox !== 100) problemas.push(`o deck tem ${noMox} cartas no Moxfield (o Commander pede 100)`);
+  } else {
+    // Standard (motor/modos.ts): deck principal de 60 cartas ou mais, sem comandante
+    console.log(`Moxfield: ${noMox} cartas no deck principal (${MODOS[deck.modo].nome}).`);
+    if (noMox < 60) problemas.push(`o deck tem ${noMox} cartas no Moxfield (o ${MODOS[deck.modo].nome} pede 60 ou mais)`);
+  }
   if (!d || !lista) {
     problemas.push('o deck ainda não está na mesa (importe pela tela Decks ou com importar --confirmar)');
   } else {

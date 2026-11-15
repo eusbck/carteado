@@ -1,0 +1,109 @@
+{
+ "formato": 1,
+ "id": "VZ8_mv2M6Eq6o8dx6Bbj3w",
+ "ordem": 132,
+ "nome": "Jund Sacrifice",
+ "link": "https://moxfield.com/decks/VZ8_mv2M6Eq6o8dx6Bbj3w",
+ "importadoEm": "2026-11-14T23:47:22.198Z",
+ "verificadoEm": "2026-11-14T23:47:22.198Z",
+ "atual": null,
+ "preparacao": {
+  "formato": "standard",
+  "capa": "Gene Pollinator",
+  "cartas": [
+   {
+    "nome": "Mountain",
+    "quantidade": 1
+   },
+   {
+    "nome": "Forest",
+    "quantidade": 1
+   },
+   {
+    "nome": "Swamp",
+    "quantidade": 1
+   },
+   {
+    "nome": "Smaug the Magnificent",
+    "quantidade": 1
+   },
+   {
+    "nome": "Wolverine, Fierce Fighter",
+    "quantidade": 1
+   },
+   {
+    "nome": "Stomping Ground",
+    "quantidade": 3
+   },
+   {
+    "nome": "Blood Crypt",
+    "quantidade": 3
+   },
+   {
+    "nome": "Overgrown Tomb",
+    "quantidade": 3
+   },
+   {
+    "nome": "Umbral Collar Zealot",
+    "quantidade": 3
+   },
+   {
+    "nome": "The Misty Mountains Cold",
+    "quantidade": 3
+   },
+   {
+    "nome": "Blooming Marsh",
+    "quantidade": 4
+   },
+   {
+    "nome": "Greedy Freebooter",
+    "quantidade": 4
+   },
+   {
+    "nome": "Lively Dirge",
+    "quantidade": 4
+   },
+   {
+    "nome": "Starting Town",
+    "quantidade": 4
+   },
+   {
+    "nome": "Biotech Specialist",
+    "quantidade": 4
+   },
+   {
+    "nome": "Gene Pollinator",
+    "quantidade": 4
+   },
+   {
+    "nome": "Obsessive Pursuit",
+    "quantidade": 4
+   },
+   {
+    "nome": "The Sackville-Bagginses",
+    "quantidade": 4
+   },
+   {
+    "nome": "Torch the Tower",
+    "quantidade": 2
+   },
+   {
+    "nome": "Magda, the Hoardmaster",
+    "quantidade": 2
+   },
+   {
+    "nome": "Blazemire Verge",
+    "quantidade": 2
+   },
+   {
+    "nome": "Requiting Hex",
+    "quantidade": 2
+   }
+  ],
+  "origem": {
+   "versao": 0,
+   "atualizadoEm": "2026-11-08T17:56:34.83Z"
+  },
+  "desde": "2026-11-14T23:47:22.198Z"
+ }
+}

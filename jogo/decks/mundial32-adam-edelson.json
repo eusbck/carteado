@@ -1,0 +1,97 @@
+{
+ "formato": 1,
+ "id": "mundial32-adam-edelson",
+ "ordem": 144,
+ "nome": "Orzhov Lifegain (Adam Edelson, Mundial 32)",
+ "link": "",
+ "importadoEm": "2026-11-14T23:59:32.403Z",
+ "verificadoEm": "2026-11-14T23:59:32.403Z",
+ "atual": null,
+ "preparacao": {
+  "formato": "standard",
+  "cartas": [
+   {
+    "nome": "Enlightened Confidant",
+    "quantidade": 4
+   },
+   {
+    "nome": "Erode",
+    "quantidade": 3
+   },
+   {
+    "nome": "Concealed Courtyard",
+    "quantidade": 4
+   },
+   {
+    "nome": "Aunt May",
+    "quantidade": 2
+   },
+   {
+    "nome": "Starting Town",
+    "quantidade": 4
+   },
+   {
+    "nome": "Amalia Benavides Aguirre",
+    "quantidade": 4
+   },
+   {
+    "nome": "Fountainport",
+    "quantidade": 1
+   },
+   {
+    "nome": "Haliya, Guided by Light",
+    "quantidade": 4
+   },
+   {
+    "nome": "Case of the Uneaten Feast",
+    "quantidade": 4
+   },
+   {
+    "nome": "Multiversal Passage",
+    "quantidade": 4
+   },
+   {
+    "nome": "Moseo, Vein's New Dean",
+    "quantidade": 4
+   },
+   {
+    "nome": "Lunar Convocation",
+    "quantidade": 3
+   },
+   {
+    "nome": "Hinterland Sanctifier",
+    "quantidade": 4
+   },
+   {
+    "nome": "Plains",
+    "quantidade": 4
+   },
+   {
+    "nome": "Liliana the Faultless",
+    "quantidade": 2
+   },
+   {
+    "nome": "Starscape Cleric",
+    "quantidade": 3
+   },
+   {
+    "nome": "Salt Vampire",
+    "quantidade": 1
+   },
+   {
+    "nome": "Great Arashin City",
+    "quantidade": 1
+   },
+   {
+    "nome": "Godless Shrine",
+    "quantidade": 4
+   }
+  ],
+  "origem": {
+   "versao": null,
+   "atualizadoEm": null
+  },
+  "desde": "2026-11-14T23:59:32.403Z",
+  "capa": "Amalia Benavides Aguirre"
+ }
+}

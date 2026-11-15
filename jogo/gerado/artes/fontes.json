@@ -1369,5 +1369,257 @@
    "sld/1753 borderless inverted+legendary"
   ],
   "baixadoEm": "2026-11-14T00:20:21.830Z"
+ },
+ "Mountain": {
+  "imagemLocal": "8187735b-5155-47ef-96b3-1f8781c20ec3",
+  "impressao": {
+   "id": "8be9bbc9-77f2-4a61-b19f-30f2e61b8e88",
+   "colecao": "mh3",
+   "numero": "503",
+   "moldura": "2015 black",
+   "artista": "Carlos Palma Cruchaga",
+   "url": "https://cards.scryfall.io/art_crop/front/8/b/8be9bbc9-77f2-4a61-b19f-30f2e61b8e88.jpg?1783911141"
+  },
+  "recorte": "art_crop",
+  "tamanho": [
+   626,
+   457
+  ],
+  "candidatas": [
+   "mh3/503 black",
+   "mh3/316 black",
+   "mh3/316 black"
+  ],
+  "baixadoEm": "2026-11-14T23:47:26.659Z"
+ },
+ "Watery Grave": {
+  "imagemLocal": "139b90cd-8272-457a-be32-1298145345be",
+  "impressao": {
+   "id": "139b90cd-8272-457a-be32-1298145345be",
+   "colecao": "rav",
+   "numero": "286",
+   "moldura": "2003 black",
+   "artista": "Rob Alexander",
+   "url": "https://cards.scryfall.io/art_crop/front/1/3/139b90cd-8272-457a-be32-1298145345be.jpg?1783943589"
+  },
+  "recorte": "art_crop",
+  "tamanho": [
+   616,
+   452
+  ],
+  "candidatas": [
+   "rvr/415z black",
+   "rvr/415 black",
+   "rvr/291 black",
+   "rav/286 black"
+  ],
+  "baixadoEm": "2026-11-14T23:47:48.650Z"
+ },
+ "Tolarian Terror": {
+  "imagemLocal": "009c8ade-a294-43c7-a6fc-6a5418bb9724",
+  "impressao": {
+   "id": "2569d4f3-55ed-4f99-9592-34c7df0aab72",
+   "colecao": "fdn",
+   "numero": "167",
+   "moldura": "2015 black",
+   "artista": "Vincent Christiaens",
+   "url": "https://cards.scryfall.io/art_crop/front/2/5/2569d4f3-55ed-4f99-9592-34c7df0aab72.jpg?1783909076"
+  },
+  "recorte": "art_crop",
+  "tamanho": [
+   626,
+   457
+  ],
+  "candidatas": [
+   "fdn/167 black",
+   "plst/DMU-72 black",
+   "dmu/72 black",
+   "dmu/72 black"
+  ],
+  "baixadoEm": "2026-11-14T23:48:38.275Z"
+ },
+ "Island": {
+  "imagemLocal": "d34acd18-ad99-468d-b503-b0f58516a13a",
+  "impressao": {
+   "id": "1cb1ac28-ee04-4892-97ea-2cfdebbafcad",
+   "colecao": "mh3",
+   "numero": "305",
+   "moldura": "2015 black",
+   "artista": "Samuele Bandini",
+   "url": "https://cards.scryfall.io/png/front/1/c/1cb1ac28-ee04-4892-97ea-2cfdebbafcad.png?1783911207"
+  },
+  "recorte": {
+   "x": 0,
+   "y": 135,
+   "largura": 744,
+   "altura": 442
+  },
+  "tamanho": [
+   744,
+   442
+  ],
+  "candidatas": [
+   "mh3/305 black",
+   "mh3/305 black"
+  ],
+  "baixadoEm": "2026-11-14T23:49:01.527Z"
+ },
+ "Soul-Guide Lantern": {
+  "imagemLocal": "d3272f76-bfa8-499c-b019-d5acc417204e",
+  "impressao": {
+   "id": "b005223d-aa57-4238-8c25-290141851177",
+   "colecao": "fdc",
+   "numero": "287",
+   "moldura": "2015 black",
+   "artista": "Iris Compiet",
+   "url": "https://cards.scryfall.io/art_crop/front/b/0/b005223d-aa57-4238-8c25-290141851177.jpg?1789753347"
+  },
+  "recorte": "art_crop",
+  "tamanho": [
+   626,
+   457
+  ],
+  "candidatas": [
+   "fdc/287 black",
+   "eoc/143 black",
+   "fdn/680 black",
+   "woe/251 black",
+   "woe/251 black"
+  ],
+  "baixadoEm": "2026-11-14T23:53:03.547Z"
+ },
+ "Marang River Regent // Coil and Catch": {
+  "imagemLocal": "f890bdc7-32e6-4492-bac7-7cabf54a8bfd",
+  "impressao": {
+   "id": "6c1bfbcb-3f33-4c5c-81f5-141664fd1da5",
+   "colecao": "ptdm",
+   "numero": "51s",
+   "moldura": "2015 black",
+   "artista": "John Tedrick",
+   "url": "https://cards.scryfall.io/art_crop/front/6/c/6c1bfbcb-3f33-4c5c-81f5-141664fd1da5.jpg?1783906901"
+  },
+  "recorte": "art_crop",
+  "tamanho": [
+   626,
+   457
+  ],
+  "candidatas": [
+   "ptdm/51s black",
+   "ptdm/51p black",
+   "tdm/51 black"
+  ],
+  "baixadoEm": "2026-11-14T23:53:45.441Z"
+ },
+ "Momo, Friendly Flier": {
+  "imagemLocal": "c472ef84-a632-4ad7-853c-60588a7a4b12",
+  "impressao": {
+   "id": "c472ef84-a632-4ad7-853c-60588a7a4b12",
+   "colecao": "tla",
+   "numero": "29",
+   "moldura": "2015 black legendary",
+   "artista": "Brandon L. Hunt",
+   "url": "https://cards.scryfall.io/art_crop/front/c/4/c472ef84-a632-4ad7-853c-60588a7a4b12.jpg?1783904997"
+  },
+  "recorte": "art_crop",
+  "tamanho": [
+   626,
+   457
+  ],
+  "candidatas": [
+   "ptla/29s black legendary",
+   "tla/29 black legendary"
+  ],
+  "baixadoEm": "2026-11-14T23:54:04.669Z"
+ },
+ "Earthbender Ascension": {
+  "imagemLocal": "590a58ab-5e98-4031-8aa6-ce396dc1429f",
+  "impressao": {
+   "id": "590a58ab-5e98-4031-8aa6-ce396dc1429f",
+   "colecao": "tla",
+   "numero": "175",
+   "moldura": "2015 black enchantment",
+   "artista": "Logan Feliciano",
+   "url": "https://cards.scryfall.io/art_crop/front/5/9/590a58ab-5e98-4031-8aa6-ce396dc1429f.jpg?1783904943"
+  },
+  "recorte": "art_crop",
+  "tamanho": [
+   626,
+   457
+  ],
+  "candidatas": [
+   "ptla/175s black enchantment",
+   "tla/175 black enchantment"
+  ],
+  "baixadoEm": "2026-11-14T23:54:54.677Z"
+ },
+ "Erode": {
+  "imagemLocal": "32e670da-7563-4f6a-a7db-4c126a440eb8",
+  "impressao": {
+   "id": "67af20f7-666f-48fb-863b-15bc5b17ab09",
+   "colecao": "sos",
+   "numero": "310",
+   "moldura": "2015 black extendedart",
+   "artista": "Florian Herold",
+   "url": "https://cards.scryfall.io/png/front/6/7/67af20f7-666f-48fb-863b-15bc5b17ab09.png?1783903600"
+  },
+  "recorte": {
+   "x": 0,
+   "y": 135,
+   "largura": 744,
+   "altura": 442
+  },
+  "tamanho": [
+   744,
+   442
+  ],
+  "candidatas": [
+   "psos/15p black",
+   "sos/310 black extendedart",
+   "sos/15 black"
+  ],
+  "baixadoEm": "2026-11-14T23:56:50.657Z"
+ },
+ "Surrak, Elusive Hunter": {
+  "imagemLocal": "e4775a26-0b66-40e9-8f64-41d9308ca032",
+  "impressao": {
+   "id": "88599965-5e21-4457-ad2d-c7659d4b0ee8",
+   "colecao": "ptdm",
+   "numero": "161s",
+   "moldura": "2015 black legendary",
+   "artista": "Dan Murayama Scott",
+   "url": "https://cards.scryfall.io/art_crop/front/8/8/88599965-5e21-4457-ad2d-c7659d4b0ee8.jpg?1783906870"
+  },
+  "recorte": "art_crop",
+  "tamanho": [
+   626,
+   457
+  ],
+  "candidatas": [
+   "ptdm/161s black legendary",
+   "ptdm/161p black legendary",
+   "tdm/161 black legendary"
+  ],
+  "baixadoEm": "2026-11-14T23:57:09.260Z"
+ },
+ "Enlightened Confidant": {
+  "imagemLocal": "483fcc58-cc6e-4452-a696-7b38e117c837",
+  "impressao": {
+   "id": "483fcc58-cc6e-4452-a696-7b38e117c837",
+   "colecao": "fra",
+   "numero": "5",
+   "moldura": "2015 black",
+   "artista": "Denman Rooke",
+   "url": "https://cards.scryfall.io/art_crop/front/4/8/483fcc58-cc6e-4452-a696-7b38e117c837.jpg?1788329184"
+  },
+  "recorte": "art_crop",
+  "tamanho": [
+   626,
+   457
+  ],
+  "candidatas": [
+   "pfra/5p black",
+   "fra/5 black"
+  ],
+  "baixadoEm": "2026-11-14T23:59:34.390Z"
  }
 }

@@ -1,0 +1,97 @@
+{
+ "formato": 1,
+ "id": "mundial32-marc-peral",
+ "ordem": 143,
+ "nome": "Selesnya Michelangelo (Marc Peral, Mundial 32)",
+ "link": "",
+ "importadoEm": "2026-11-14T23:57:06.882Z",
+ "verificadoEm": "2026-11-14T23:57:06.882Z",
+ "atual": null,
+ "preparacao": {
+  "formato": "standard",
+  "cartas": [
+   {
+    "nome": "Surrak, Elusive Hunter",
+    "quantidade": 1
+   },
+   {
+    "nome": "Guiding Hydra",
+    "quantidade": 2
+   },
+   {
+    "nome": "Starting Town",
+    "quantidade": 3
+   },
+   {
+    "nome": "Temple Garden",
+    "quantidade": 4
+   },
+   {
+    "nome": "Seam Rip",
+    "quantidade": 2
+   },
+   {
+    "nome": "Llanowar Elves",
+    "quantidade": 4
+   },
+   {
+    "nome": "Forest",
+    "quantidade": 6
+   },
+   {
+    "nome": "Brightglass Gearhulk",
+    "quantidade": 2
+   },
+   {
+    "nome": "Practiced Offense",
+    "quantidade": 4
+   },
+   {
+    "nome": "Gene Pollinator",
+    "quantidade": 4
+   },
+   {
+    "nome": "Bejeweled Warg",
+    "quantidade": 4
+   },
+   {
+    "nome": "Multiversal Passage",
+    "quantidade": 3
+   },
+   {
+    "nome": "Hushwood Verge",
+    "quantidade": 4
+   },
+   {
+    "nome": "Abandoned Air Temple",
+    "quantidade": 1
+   },
+   {
+    "nome": "Meltstrider's Resolve",
+    "quantidade": 2
+   },
+   {
+    "nome": "Pawpatch Recruit",
+    "quantidade": 4
+   },
+   {
+    "nome": "Plains",
+    "quantidade": 2
+   },
+   {
+    "nome": "Michelangelo, Weirdness to 11",
+    "quantidade": 4
+   },
+   {
+    "nome": "Ouroboroid",
+    "quantidade": 4
+   }
+  ],
+  "origem": {
+   "versao": null,
+   "atualizadoEm": null
+  },
+  "desde": "2026-11-14T23:57:06.882Z",
+  "capa": "Michelangelo, Weirdness to 11"
+ }
+}

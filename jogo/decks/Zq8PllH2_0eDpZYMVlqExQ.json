@@ -1,0 +1,85 @@
+{
+ "formato": 1,
+ "id": "Zq8PllH2_0eDpZYMVlqExQ",
+ "ordem": 135,
+ "nome": "Azorius Flyers",
+ "link": "https://moxfield.com/decks/Zq8PllH2_0eDpZYMVlqExQ",
+ "importadoEm": "2026-11-14T23:48:56.696Z",
+ "verificadoEm": "2026-11-14T23:48:56.696Z",
+ "atual": null,
+ "preparacao": {
+  "formato": "standard",
+  "capa": "Spider-Woman, Stunning Savior",
+  "cartas": [
+   {
+    "nome": "Island",
+    "quantidade": 6
+   },
+   {
+    "nome": "Plains",
+    "quantidade": 3
+   },
+   {
+    "nome": "Spectral Sailor",
+    "quantidade": 3
+   },
+   {
+    "nome": "Empyrean Eagle",
+    "quantidade": 4
+   },
+   {
+    "nome": "Spyglass Siren",
+    "quantidade": 4
+   },
+   {
+    "nome": "Mockingbird",
+    "quantidade": 4
+   },
+   {
+    "nome": "Floodfarm Verge",
+    "quantidade": 4
+   },
+   {
+    "nome": "Mischievous Mystic",
+    "quantidade": 4
+   },
+   {
+    "nome": "Starting Town",
+    "quantidade": 4
+   },
+   {
+    "nome": "Multiversal Passage",
+    "quantidade": 4
+   },
+   {
+    "nome": "Momo, Friendly Flier",
+    "quantidade": 4
+   },
+   {
+    "nome": "Spider-Woman, Stunning Savior",
+    "quantidade": 4
+   },
+   {
+    "nome": "Aang, Swift Savior // Aang and La, Ocean's Fury",
+    "quantidade": 4
+   },
+   {
+    "nome": "Air Nomad Legacy",
+    "quantidade": 4
+   },
+   {
+    "nome": "Get Lost",
+    "quantidade": 2
+   },
+   {
+    "nome": "Restless Anchorage",
+    "quantidade": 2
+   }
+  ],
+  "origem": {
+   "versao": 0,
+   "atualizadoEm": "2025-11-13T18:34:52.39Z"
+  },
+  "desde": "2026-11-14T23:48:56.696Z"
+ }
+}

@@ -1,0 +1,93 @@
+{
+ "formato": 1,
+ "id": "bgpDUvrdi02TjIjMh01wkg",
+ "ordem": 136,
+ "nome": "Jeskai Artifacts",
+ "link": "https://moxfield.com/decks/bgpDUvrdi02TjIjMh01wkg",
+ "importadoEm": "2026-11-14T23:52:28.037Z",
+ "verificadoEm": "2026-11-14T23:52:28.037Z",
+ "atual": null,
+ "preparacao": {
+  "formato": "standard",
+  "capa": "Simulacrum Synthesizer",
+  "cartas": [
+   {
+    "nome": "Island",
+    "quantidade": 5
+   },
+   {
+    "nome": "Plains",
+    "quantidade": 5
+   },
+   {
+    "nome": "Authority of the Consuls",
+    "quantidade": 4
+   },
+   {
+    "nome": "Spring-Loaded Sawblades // Bladewheel Chariot",
+    "quantidade": 4
+   },
+   {
+    "nome": "Clay-Fired Bricks // Cosmium Kiln",
+    "quantidade": 4
+   },
+   {
+    "nome": "Simulacrum Synthesizer",
+    "quantidade": 4
+   },
+   {
+    "nome": "Floodfarm Verge",
+    "quantidade": 4
+   },
+   {
+    "nome": "Repurposing Bay",
+    "quantidade": 4
+   },
+   {
+    "nome": "Perilous Snare",
+    "quantidade": 4
+   },
+   {
+    "nome": "United Battlefront",
+    "quantidade": 4
+   },
+   {
+    "nome": "Starting Town",
+    "quantidade": 4
+   },
+   {
+    "nome": "Cryogen Relic",
+    "quantidade": 4
+   },
+   {
+    "nome": "Pinnacle Starcage",
+    "quantidade": 4
+   },
+   {
+    "nome": "The Enigma Jewel // Locus of Enlightenment",
+    "quantidade": 1
+   },
+   {
+    "nome": "Fomori Vault",
+    "quantidade": 1
+   },
+   {
+    "nome": "The Fire Crystal",
+    "quantidade": 1
+   },
+   {
+    "nome": "Adagia, Windswept Bastion",
+    "quantidade": 1
+   },
+   {
+    "nome": "Meticulous Archive",
+    "quantidade": 2
+   }
+  ],
+  "origem": {
+   "versao": 0,
+   "atualizadoEm": "2026-01-06T16:40:01.403Z"
+  },
+  "desde": "2026-11-14T23:52:28.037Z"
+ }
+}

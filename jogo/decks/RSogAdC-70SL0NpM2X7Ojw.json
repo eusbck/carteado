@@ -1,0 +1,97 @@
+{
+ "formato": 1,
+ "id": "RSogAdC-70SL0NpM2X7Ojw",
+ "ordem": 134,
+ "nome": "Dimir Graveyard",
+ "link": "https://moxfield.com/decks/RSogAdC-70SL0NpM2X7Ojw",
+ "importadoEm": "2026-11-14T23:48:36.562Z",
+ "verificadoEm": "2026-11-14T23:48:36.562Z",
+ "atual": null,
+ "preparacao": {
+  "formato": "standard",
+  "capa": "Tolarian Terror",
+  "cartas": [
+   {
+    "nome": "Island",
+    "quantidade": 16
+   },
+   {
+    "nome": "Swamp",
+    "quantidade": 7
+   },
+   {
+    "nome": "Tolarian Terror",
+    "quantidade": 3
+   },
+   {
+    "nome": "Unauthorized Exit",
+    "quantidade": 3
+   },
+   {
+    "nome": "Sidequest: Card Collection // Magicked Card",
+    "quantidade": 3
+   },
+   {
+    "nome": "Crypt Feaster",
+    "quantidade": 2
+   },
+   {
+    "nome": "Emet-Selch, Unsundered // Hades, Sorcerer of Eld",
+    "quantidade": 2
+   },
+   {
+    "nome": "Caustic Exhale",
+    "quantidade": 2
+   },
+   {
+    "nome": "Essence Anchor",
+    "quantidade": 2
+   },
+   {
+    "nome": "Ultimecia, Time Sorceress // Ultimecia, Omnipotent",
+    "quantidade": 2
+   },
+   {
+    "nome": "Matoya, Archon Elder",
+    "quantidade": 2
+   },
+   {
+    "nome": "Swallowed by Leviathan",
+    "quantidade": 2
+   },
+   {
+    "nome": "Lost in Space",
+    "quantidade": 2
+   },
+   {
+    "nome": "Sphinx of Forgotten Lore",
+    "quantidade": 1
+   },
+   {
+    "nome": "Kiora, the Rising Tide",
+    "quantidade": 1
+   },
+   {
+    "nome": "Uncharted Voyage",
+    "quantidade": 1
+   },
+   {
+    "nome": "Stillness in Motion",
+    "quantidade": 1
+   },
+   {
+    "nome": "Retrieve the Esper",
+    "quantidade": 4
+   },
+   {
+    "nome": "Resentful Revelation",
+    "quantidade": 4
+   }
+  ],
+  "origem": {
+   "versao": 0,
+   "atualizadoEm": "2025-11-08T15:52:28.883Z"
+  },
+  "desde": "2026-11-14T23:48:36.562Z"
+ }
+}

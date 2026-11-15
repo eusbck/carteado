@@ -1,0 +1,97 @@
+{
+ "formato": 1,
+ "id": "sPoPvc5ZBkCHFEg7w1hQHQ",
+ "ordem": 138,
+ "nome": "Boros Pixie",
+ "link": "https://moxfield.com/decks/sPoPvc5ZBkCHFEg7w1hQHQ",
+ "importadoEm": "2026-11-14T23:53:26.911Z",
+ "verificadoEm": "2026-11-14T23:53:26.911Z",
+ "atual": null,
+ "preparacao": {
+  "formato": "standard",
+  "capa": "Nurturing Pixie",
+  "cartas": [
+   {
+    "nome": "Mountain",
+    "quantidade": 4
+   },
+   {
+    "nome": "Plains",
+    "quantidade": 4
+   },
+   {
+    "nome": "Sacred Foundry",
+    "quantidade": 4
+   },
+   {
+    "nome": "Inspiring Vantage",
+    "quantidade": 4
+   },
+   {
+    "nome": "Springleaf Drum",
+    "quantidade": 4
+   },
+   {
+    "nome": "Nurturing Pixie",
+    "quantidade": 4
+   },
+   {
+    "nome": "Sunbillow Verge",
+    "quantidade": 4
+   },
+   {
+    "nome": "Sage of the Skies",
+    "quantidade": 4
+   },
+   {
+    "nome": "Momo, Friendly Flier",
+    "quantidade": 4
+   },
+   {
+    "nome": "The Naked Time",
+    "quantidade": 4
+   },
+   {
+    "nome": "Torch the Tower",
+    "quantidade": 3
+   },
+   {
+    "nome": "Voice of Victory",
+    "quantidade": 3
+   },
+   {
+    "nome": "Practiced Offense",
+    "quantidade": 3
+   },
+   {
+    "nome": "Stadium Headliner",
+    "quantidade": 1
+   },
+   {
+    "nome": "Pompous Battlemage // Improvised Act",
+    "quantidade": 1
+   },
+   {
+    "nome": "Guiding Hydra",
+    "quantidade": 1
+   },
+   {
+    "nome": "Haliya, Guided by Light",
+    "quantidade": 2
+   },
+   {
+    "nome": "Starfield Shepherd",
+    "quantidade": 4
+   },
+   {
+    "nome": "Abandoned Air Temple",
+    "quantidade": 2
+   }
+  ],
+  "origem": {
+   "versao": 0,
+   "atualizadoEm": "2026-11-10T22:59:19.9Z"
+  },
+  "desde": "2026-11-14T23:53:26.911Z"
+ }
+}

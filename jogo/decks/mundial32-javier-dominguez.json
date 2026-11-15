@@ -1,0 +1,97 @@
+{
+ "formato": 1,
+ "id": "mundial32-javier-dominguez",
+ "ordem": 142,
+ "nome": "Selesnya Landfall (Javier Dominguez, Mundial 32)",
+ "link": "",
+ "importadoEm": "2026-11-14T23:56:38.356Z",
+ "verificadoEm": "2026-11-14T23:56:38.356Z",
+ "atual": null,
+ "preparacao": {
+  "formato": "standard",
+  "cartas": [
+   {
+    "nome": "Erode",
+    "quantidade": 4
+   },
+   {
+    "nome": "Earthbender Ascension",
+    "quantidade": 4
+   },
+   {
+    "nome": "Sandman, Shifting Scoundrel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Cryptic Caves",
+    "quantidade": 1
+   },
+   {
+    "nome": "Forest",
+    "quantidade": 11
+   },
+   {
+    "nome": "Llanowar Elves",
+    "quantidade": 4
+   },
+   {
+    "nome": "Icetill Explorer",
+    "quantidade": 4
+   },
+   {
+    "nome": "Fabled Passage",
+    "quantidade": 4
+   },
+   {
+    "nome": "Elven Passage",
+    "quantidade": 4
+   },
+   {
+    "nome": "Practiced Offense",
+    "quantidade": 1
+   },
+   {
+    "nome": "Hushwood Verge",
+    "quantidade": 1
+   },
+   {
+    "nome": "Jadzia Dax, Living Legacy",
+    "quantidade": 3
+   },
+   {
+    "nome": "Escape Tunnel",
+    "quantidade": 1
+   },
+   {
+    "nome": "Ba Sing Se",
+    "quantidade": 2
+   },
+   {
+    "nome": "Mightform Harmonizer",
+    "quantidade": 4
+   },
+   {
+    "nome": "Carnivorous Cultivator // Enroot",
+    "quantidade": 4
+   },
+   {
+    "nome": "Plains",
+    "quantidade": 2
+   },
+   {
+    "nome": "Vigorbloom Charm",
+    "quantidade": 1
+   },
+   {
+    "nome": "Mossborn Hydra",
+    "quantidade": 4
+   }
+  ],
+  "origem": {
+   "versao": null,
+   "atualizadoEm": null
+  },
+  "desde": "2026-11-14T23:56:38.356Z",
+  "capa": "Earthbender Ascension"
+ }
+}

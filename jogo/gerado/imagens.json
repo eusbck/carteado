@@ -42822,5 +42822,1277 @@
    "faces": null,
    "reserva": false
   }
+ },
+ "Wolverine, Fierce Fighter": {
+  "en": {
+   "id": "c1c7aa22-51b0-45ee-9a8e-5493a1820d8c",
+   "frente": "imagens/c1c7aa22-51b0-45ee-9a8e-5493a1820d8c/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "The Misty Mountains Cold": {
+  "en": {
+   "id": "3d5f35ff-4146-4844-9da5-031461cc8c05",
+   "frente": "imagens/3d5f35ff-4146-4844-9da5-031461cc8c05/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Blooming Marsh": {
+  "en": {
+   "id": "861caabb-0573-4e94-8b03-342f90465064",
+   "frente": "imagens/861caabb-0573-4e94-8b03-342f90465064/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "6fb3a5b5-7064-4f2c-8b56-25e4f022ff82",
+   "frente": "imagens/6fb3a5b5-7064-4f2c-8b56-25e4f022ff82/front.png",
+   "verso": null,
+   "nome": "Charco Florescente",
+   "tipo": "Terreno",
+   "texto": "Charco Florescente entra no campo de batalha virado, a menos que você controle dois outros terrenos ou menos.\n{T}: Adicione {B} ou {G}.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Greedy Freebooter": {
+  "en": {
+   "id": "692fe4e8-13b4-4bec-938e-a8073a7fbd71",
+   "frente": "imagens/692fe4e8-13b4-4bec-938e-a8073a7fbd71/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "edeb9cbe-d1a2-4035-9549-4d6b2b4c298f",
+   "frente": "imagens/edeb9cbe-d1a2-4035-9549-4d6b2b4c298f/front.png",
+   "verso": null,
+   "nome": "Filibusteiro Ganancioso",
+   "tipo": "Criatura — Humano Pirata",
+   "texto": "Quando Filibusteiro Ganancioso morrer, use vidência 1 e crie uma ficha de Tesouro. (Para usar vidência 1, olhe o card do topo de seu grimório. Você pode colocar aquele card no fundo. Uma ficha de Tesouro é um artefato com \"{T}, sacrifique este artefato: Adicione um mana de qualquer cor\".)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Biotech Specialist": {
+  "en": {
+   "id": "127c221f-94e7-4a0e-a7a6-79ef399862d3",
+   "frente": "imagens/127c221f-94e7-4a0e-a7a6-79ef399862d3/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Obsessive Pursuit": {
+  "en": {
+   "id": "e837e29c-d241-43c8-8f45-05056e082b60",
+   "frente": "imagens/e837e29c-d241-43c8-8f45-05056e082b60/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Torch the Tower": {
+  "en": {
+   "id": "b3d6027c-813f-46df-95b4-e2e305a67620",
+   "frente": "imagens/b3d6027c-813f-46df-95b4-e2e305a67620/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "41406378-97b1-490b-8844-a39fc98579ff",
+   "frente": "imagens/41406378-97b1-490b-8844-a39fc98579ff/front.png",
+   "verso": null,
+   "nome": "Incendiar a Torre",
+   "tipo": "Mágica Instantânea",
+   "texto": "Negociar (Você pode sacrificar um artefato, um encantamento ou uma ficha conforme conjura esta mágica.)\nIncendiar a Torre causa 2 pontos de dano à criatura ou ao planeswalker alvo. Se esta mágica foi negociada, em vez disso, ela causa 3 pontos de dano àquela permanente e você usa vidência 1.\nSe uma permanente que sofreu dano de Incendiar a Torre morreria neste turno, em vez disso, exile-a.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Magda, the Hoardmaster": {
+  "en": {
+   "id": "4443d112-209b-49ec-bc40-3a11dcdb092e",
+   "frente": "imagens/4443d112-209b-49ec-bc40-3a11dcdb092e/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "3d52164e-f4b4-4006-927f-b30f693f2ea5",
+   "frente": "imagens/3d52164e-f4b4-4006-927f-b30f693f2ea5/front.png",
+   "verso": null,
+   "nome": "Magda, a Mestra do Tesouro",
+   "tipo": "Criatura Lendária — Anão Amoque",
+   "texto": "Toda vez que você cometer um crime, crie uma ficha de Tesouro virada. Esta habilidade é desencadeada apenas uma vez a cada turno. (Escolher como alvo oponentes, qualquer coisa que eles controlem e/ou cards no cemitério deles é um crime.)\nSacrifique três Tesouros: Crie uma ficha de criatura Escorpião Dragão vermelha 4/4 com voar e ímpeto. Ative somente como um feitiço.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Requiting Hex": {
+  "en": {
+   "id": "f21b0fb7-91b6-403f-a81a-562665961276",
+   "frente": "imagens/f21b0fb7-91b6-403f-a81a-562665961276/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Spyglass Siren": {
+  "en": {
+   "id": "41e54343-95e5-4dc4-9f18-e4a415fe5e0a",
+   "frente": "imagens/41e54343-95e5-4dc4-9f18-e4a415fe5e0a/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "0ed76d8f-36dc-4828-9e50-68d44c2a6a7f",
+   "frente": "imagens/0ed76d8f-36dc-4828-9e50-68d44c2a6a7f/front.png",
+   "verso": null,
+   "nome": "Sirena da Luneta",
+   "tipo": "Criatura — Sirena Pirata",
+   "texto": "Voar\nQuando Sirena da Luneta entrar no campo de batalha, crie uma ficha de Mapa. (Ela é um artefato com \"{1}, {T}, sacrifique este artefato: A criatura alvo que você controla explora. Ative somente como um feitiço\".)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Kaito, Bane of Nightmares": {
+  "en": {
+   "id": "55a14f30-4ff9-4472-90a6-c3139f1c18e5",
+   "frente": "imagens/55a14f30-4ff9-4472-90a6-c3139f1c18e5/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Floodpits Drowner": {
+  "en": {
+   "id": "a6a62aa3-8edb-4000-8ebd-15ec4b00eed7",
+   "frente": "imagens/a6a62aa3-8edb-4000-8ebd-15ec4b00eed7/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Dream Beavers": {
+  "en": {
+   "id": "600e3bc1-9777-4057-a11e-4f61582636c6",
+   "frente": "imagens/600e3bc1-9777-4057-a11e-4f61582636c6/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Spell Snare": {
+  "en": {
+   "id": "b7551b61-656e-4f37-b9da-73174db983b7",
+   "frente": "imagens/b7551b61-656e-4f37-b9da-73174db983b7/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "565fca81-2a86-46ad-8437-ed721baa7435",
+   "frente": "imagens/565fca81-2a86-46ad-8437-ed721baa7435/front.png",
+   "verso": null,
+   "nome": "Cilada Mágica",
+   "tipo": "Mágica Instantânea",
+   "texto": "Anule a mágica alvo com custo de mana convertido igual a 2.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Realm of Koh": {
+  "en": {
+   "id": "061ac694-610c-479f-b038-a4ef5270d5d7",
+   "frente": "imagens/061ac694-610c-479f-b038-a4ef5270d5d7/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Restless Reef": {
+  "en": {
+   "id": "8a8121c9-2480-419c-aa9c-5b8b55f65014",
+   "frente": "imagens/8a8121c9-2480-419c-aa9c-5b8b55f65014/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "584cb1a6-d4ce-4079-aa9a-8c39505e8794",
+   "frente": "imagens/584cb1a6-d4ce-4079-aa9a-8c39505e8794/front.png",
+   "verso": null,
+   "nome": "Recife Inquieto",
+   "tipo": "Terreno",
+   "texto": "Recife Inquieto entra no campo de batalha virado.\n{T}: Adicione {U} ou {B}.\n{2}{U}{B}: Até o final do turno, Recife Inquieto torna-se uma criatura Tubarão azul e preta 4/4 com toque mortífero. Ela ainda é um terreno.\nToda vez que Recife Inquieto ataca, o jogador alvo tritura quatro cards.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Shoot the Sheriff": {
+  "en": {
+   "id": "180d6528-c524-4bb8-8a72-b3775cd2c177",
+   "frente": "imagens/180d6528-c524-4bb8-8a72-b3775cd2c177/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "b670cc77-5014-49bf-8e97-c3ef6387074d",
+   "frente": "imagens/b670cc77-5014-49bf-8e97-c3ef6387074d/front.png",
+   "verso": null,
+   "nome": "Atirar no Xerife",
+   "tipo": "Mágica Instantânea",
+   "texto": "Destrua a criatura não fora da lei alvo. (Assassinos, Mercenários, Piratas, Ladinos e Bruxos são fora da lei. Todos os demais estão valendo.)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Phantom Interference": {
+  "en": {
+   "id": "00bf4dd1-5468-4594-9c7b-0737610f19d4",
+   "frente": "imagens/00bf4dd1-5468-4594-9c7b-0737610f19d4/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "7679d5b3-bc23-498d-83e3-fa500f462c50",
+   "frente": "imagens/7679d5b3-bc23-498d-83e3-fa500f462c50/front.png",
+   "verso": null,
+   "nome": "Interferência Fantasma",
+   "tipo": "Mágica Instantânea",
+   "texto": "Série (Escolha um ou mais custos adicionais.)\n+ {3} — Crie uma ficha de criatura Espírito branca 2/2 com voar.\n+ {1} — Anule a mágica alvo, a menos que seu controlador pague {2}.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Soulstone Sanctuary": {
+  "en": {
+   "id": "642553a7-6d0f-483d-a873-3a703786db42",
+   "frente": "imagens/642553a7-6d0f-483d-a873-3a703786db42/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Enduring Curiosity": {
+  "en": {
+   "id": "8616629e-08f9-41ad-bfec-f86c8096f1cb",
+   "frente": "imagens/8616629e-08f9-41ad-bfec-f86c8096f1cb/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Super Shredder": {
+  "en": {
+   "id": "37a497b8-e908-4ddc-996e-a8470df72afb",
+   "frente": "imagens/37a497b8-e908-4ddc-996e-a8470df72afb/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Tolarian Terror": {
+  "en": {
+   "id": "42f01cba-43d4-46ad-b7a5-d7631b0e1347",
+   "frente": "imagens/42f01cba-43d4-46ad-b7a5-d7631b0e1347/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "009c8ade-a294-43c7-a6fc-6a5418bb9724",
+   "frente": "imagens/009c8ade-a294-43c7-a6fc-6a5418bb9724/front.png",
+   "verso": null,
+   "nome": "Terror Tolariano",
+   "tipo": "Criatura — Serpente",
+   "texto": "Esta mágica custa {1} a menos para ser conjurada para cada card de mágica instantânea ou de feitiço em seu cemitério.\nSalvaguarda {2} (Toda vez que esta criatura se tornar alvo de uma mágica ou habilidade que um oponente controla, anule-a, a menos que aquele jogador pague {2}.)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Unauthorized Exit": {
+  "en": {
+   "id": "8a458474-d721-46d7-b487-6a47dc063cfd",
+   "frente": "imagens/8a458474-d721-46d7-b487-6a47dc063cfd/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "4bb0c6fa-bd15-4d61-8b24-4c35947608d7",
+   "frente": "imagens/4bb0c6fa-bd15-4d61-8b24-4c35947608d7/front.png",
+   "verso": null,
+   "nome": "Saída Não Autorizada",
+   "tipo": "Mágica Instantânea",
+   "texto": "Devolva a permanente alvo não de terreno à mão de seu dono. Use vigiar 1. (Olhe o card do topo de seu grimório. Você pode colocá-lo em seu cemitério.)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Sidequest: Card Collection // Magicked Card": {
+  "en": {
+   "id": "8ac3d2c9-5978-4cfb-a746-c901decff093",
+   "frente": "imagens/8ac3d2c9-5978-4cfb-a746-c901decff093/front.png",
+   "verso": "imagens/8ac3d2c9-5978-4cfb-a746-c901decff093/back.png"
+  },
+  "pt": null
+ },
+ "Crypt Feaster": {
+  "en": {
+   "id": "3b072811-998a-4a71-b59c-6afecc0dc4b6",
+   "frente": "imagens/3b072811-998a-4a71-b59c-6afecc0dc4b6/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Emet-Selch, Unsundered // Hades, Sorcerer of Eld": {
+  "en": {
+   "id": "75cf4eb8-33e7-4dfc-b890-a7e3b5c1b9d5",
+   "frente": "imagens/75cf4eb8-33e7-4dfc-b890-a7e3b5c1b9d5/front.png",
+   "verso": "imagens/75cf4eb8-33e7-4dfc-b890-a7e3b5c1b9d5/back.png"
+  },
+  "pt": null
+ },
+ "Caustic Exhale": {
+  "en": {
+   "id": "488152ce-2048-4ccb-b2d6-b9628958286f",
+   "frente": "imagens/488152ce-2048-4ccb-b2d6-b9628958286f/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Essence Anchor": {
+  "en": {
+   "id": "e91c4509-918e-44ba-aa13-1991199fee9f",
+   "frente": "imagens/e91c4509-918e-44ba-aa13-1991199fee9f/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Ultimecia, Time Sorceress // Ultimecia, Omnipotent": {
+  "en": {
+   "id": "2d6a2b68-5407-464e-a335-7866fd969c30",
+   "frente": "imagens/2d6a2b68-5407-464e-a335-7866fd969c30/front.png",
+   "verso": "imagens/2d6a2b68-5407-464e-a335-7866fd969c30/back.png"
+  },
+  "pt": null
+ },
+ "Matoya, Archon Elder": {
+  "en": {
+   "id": "1dd61cf6-2fb5-4cff-ab00-7677ac85774c",
+   "frente": "imagens/1dd61cf6-2fb5-4cff-ab00-7677ac85774c/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Swallowed by Leviathan": {
+  "en": {
+   "id": "2270642d-fe2a-4265-aff0-a24a43ebe0a1",
+   "frente": "imagens/2270642d-fe2a-4265-aff0-a24a43ebe0a1/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Lost in Space": {
+  "en": {
+   "id": "6d9d7979-97af-4c85-86f5-1b3704f74e8b",
+   "frente": "imagens/6d9d7979-97af-4c85-86f5-1b3704f74e8b/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Sphinx of Forgotten Lore": {
+  "en": {
+   "id": "ce455a01-87c1-42d1-a51e-1f9a7bd553d6",
+   "frente": "imagens/ce455a01-87c1-42d1-a51e-1f9a7bd553d6/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Kiora, the Rising Tide": {
+  "en": {
+   "id": "83f20a32-9f5d-4a68-8995-549e57554da2",
+   "frente": "imagens/83f20a32-9f5d-4a68-8995-549e57554da2/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Uncharted Voyage": {
+  "en": {
+   "id": "e0846820-e595-4743-8a28-29c57d728677",
+   "frente": "imagens/e0846820-e595-4743-8a28-29c57d728677/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Stillness in Motion": {
+  "en": {
+   "id": "a6289251-17e4-4987-96b9-2fb1a8f90e2a",
+   "frente": "imagens/a6289251-17e4-4987-96b9-2fb1a8f90e2a/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Retrieve the Esper": {
+  "en": {
+   "id": "ebd733f0-8883-434a-b36c-ef76b091fe8e",
+   "frente": "imagens/ebd733f0-8883-434a-b36c-ef76b091fe8e/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Resentful Revelation": {
+  "en": {
+   "id": "945006ea-c6a1-4ee5-abb2-387c2b6d3123",
+   "frente": "imagens/945006ea-c6a1-4ee5-abb2-387c2b6d3123/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Empyrean Eagle": {
+  "en": {
+   "id": "577e99a7-4a55-4314-8f08-2ae0c33b85c7",
+   "frente": "imagens/577e99a7-4a55-4314-8f08-2ae0c33b85c7/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "63377cfc-ea8b-49a9-8eca-c384f9f92f67",
+   "frente": "imagens/63377cfc-ea8b-49a9-8eca-c384f9f92f67/front.png",
+   "verso": null,
+   "nome": "Águia Empírea",
+   "tipo": "Criatura — Ave Espírito",
+   "texto": "Voar\nAs outras criaturas que você controla com voar recebem +1/+1.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Floodfarm Verge": {
+  "en": {
+   "id": "d53ed0db-1199-44b3-8eda-8189dfcf53d1",
+   "frente": "imagens/d53ed0db-1199-44b3-8eda-8189dfcf53d1/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Mischievous Mystic": {
+  "en": {
+   "id": "20d89cec-528b-4b2a-87db-e11ce0000622",
+   "frente": "imagens/20d89cec-528b-4b2a-87db-e11ce0000622/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Multiversal Passage": {
+  "en": {
+   "id": "21502958-a8e3-494a-9be9-bebbbb1dd9dc",
+   "frente": "imagens/21502958-a8e3-494a-9be9-bebbbb1dd9dc/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Momo, Friendly Flier": {
+  "en": {
+   "id": "c472ef84-a632-4ad7-853c-60588a7a4b12",
+   "frente": "imagens/c472ef84-a632-4ad7-853c-60588a7a4b12/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Spider-Woman, Stunning Savior": {
+  "en": {
+   "id": "fbf1ea21-2e90-4792-b399-111ff70a9d06",
+   "frente": "imagens/fbf1ea21-2e90-4792-b399-111ff70a9d06/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Aang, Swift Savior // Aang and La, Ocean's Fury": {
+  "en": {
+   "id": "82866a0e-485a-4f7e-8c49-f7d9ff3f4ad4",
+   "frente": "imagens/82866a0e-485a-4f7e-8c49-f7d9ff3f4ad4/front.png",
+   "verso": "imagens/82866a0e-485a-4f7e-8c49-f7d9ff3f4ad4/back.png"
+  },
+  "pt": null
+ },
+ "Air Nomad Legacy": {
+  "en": {
+   "id": "10874416-fa4c-4aa3-b885-4351d011d208",
+   "frente": "imagens/10874416-fa4c-4aa3-b885-4351d011d208/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Get Lost": {
+  "en": {
+   "id": "522aa72b-2b8c-484c-872b-f082101cee35",
+   "frente": "imagens/522aa72b-2b8c-484c-872b-f082101cee35/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "aad84de7-08d8-4b5c-85d2-b02f7c55a15f",
+   "frente": "imagens/aad84de7-08d8-4b5c-85d2-b02f7c55a15f/front.png",
+   "verso": null,
+   "nome": "Perder-se",
+   "tipo": "Mágica Instantânea",
+   "texto": "Destrua a criatura, o encantamento ou o planeswalker alvo. O controlador dela cria duas fichas de Mapa. (Elas são artefatos com \"{1}, {T}, sacrifique este artefato: A criatura alvo que você controla explora. Ative somente como um feitiço\".)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Spring-Loaded Sawblades // Bladewheel Chariot": {
+  "en": {
+   "id": "24417388-f2bb-4783-bdce-264774531838",
+   "frente": "imagens/24417388-f2bb-4783-bdce-264774531838/front.png",
+   "verso": "imagens/24417388-f2bb-4783-bdce-264774531838/back.png"
+  },
+  "pt": {
+   "id": "52d6d022-c66a-4125-a4d9-eec0605793df",
+   "frente": "imagens/52d6d022-c66a-4125-a4d9-eec0605793df/front.png",
+   "verso": "imagens/52d6d022-c66a-4125-a4d9-eec0605793df/back.png",
+   "nome": "Serra de Mola",
+   "tipo": "Artefato",
+   "texto": null,
+   "faces": [
+    {
+     "nome": "Serra de Mola",
+     "tipo": "Artefato",
+     "texto": "Lampejo\nQuando Serra de Mola entra no campo de batalha, ele causa 5 pontos de dano à criatura virada alvo que um oponente controla.\nConstruir com artefato {3}{W} ({3}{W}, exile este artefato, exile outro artefato que você controla ou um card de artefato de seu cemitério: Devolva este card ao campo de batalha transformado sob o controle de seu dono. Construa somente como um feitiço.)"
+    },
+    {
+     "nome": "Biga de Laminorroda",
+     "tipo": "Artefato — Veículo",
+     "texto": "Vire dois outros artefatos desvirados que você controla: Biga de Laminorroda torna-se uma criatura artefato até o final do turno.\nTripular 1 (Vire qualquer número de criaturas que você controla com total de poder igual ou superior a 1: Este Veículo torna-se uma criatura artefato até o final do turno.)"
+    }
+   ],
+   "reserva": false
+  }
+ },
+ "Clay-Fired Bricks // Cosmium Kiln": {
+  "en": {
+   "id": "8aece300-656b-4e0d-a45f-aa7feaff0a4e",
+   "frente": "imagens/8aece300-656b-4e0d-a45f-aa7feaff0a4e/front.png",
+   "verso": "imagens/8aece300-656b-4e0d-a45f-aa7feaff0a4e/back.png"
+  },
+  "pt": {
+   "id": "6a2e2d0a-f274-43db-bd81-fb84c21e81fc",
+   "frente": "imagens/6a2e2d0a-f274-43db-bd81-fb84c21e81fc/front.png",
+   "verso": "imagens/6a2e2d0a-f274-43db-bd81-fb84c21e81fc/back.png",
+   "nome": "Tijolos Refratários",
+   "tipo": "Artefato",
+   "texto": null,
+   "faces": [
+    {
+     "nome": "Tijolos Refratários",
+     "tipo": "Artefato",
+     "texto": "Quando Tijolos Refratários entrar no campo de batalha, procure um card de Planície básica em seu grimório, revele-o, coloque-o em sua mão e depois embaralhe. Você ganha 2 pontos de vida.\nConstruir com artefato {5}{W}{W} ({5}{W}{W}, exile este artefato, exile outro artefato que você controla ou um card de artefato de seu cemitério: Devolva este card ao campo de batalha transformado sob o controle de seu dono. Construa somente como um feitiço.)"
+    },
+    {
+     "nome": "Forno de Cosmium",
+     "tipo": "Artefato",
+     "texto": "Quando Forno de Cosmium entrar no campo de batalha, crie duas fichas de criatura artefato Gnomo incolor 1/1.\nAs criaturas que você controla recebem +1/+1."
+    }
+   ],
+   "reserva": false
+  }
+ },
+ "Simulacrum Synthesizer": {
+  "en": {
+   "id": "aaa05ad1-5cda-4edd-b6bf-562ae3e5011a",
+   "frente": "imagens/aaa05ad1-5cda-4edd-b6bf-562ae3e5011a/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "7394e3b3-f3a3-4448-b17f-33a9dc114818",
+   "frente": "imagens/7394e3b3-f3a3-4448-b17f-33a9dc114818/front.png",
+   "verso": null,
+   "nome": "Sintetizador de Simulacros",
+   "tipo": "Artefato",
+   "texto": "Quando Sintetizador de Simulacros entrar no campo de batalha, use vidência 2.\nToda vez que outro artefato com valor de mana igual ou superior a 3 entrar no campo de batalha sob seu controle, crie uma ficha de criatura artefato Constructo incolor 0/0 com \"Esta criatura recebe +1/+1 para cada artefato que você controla\".",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Repurposing Bay": {
+  "en": {
+   "id": "0cf1ace1-b7f5-4bd9-a494-ee7cb6c1f854",
+   "frente": "imagens/0cf1ace1-b7f5-4bd9-a494-ee7cb6c1f854/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Perilous Snare": {
+  "en": {
+   "id": "47f7e468-2196-4960-a612-37ab326e2a17",
+   "frente": "imagens/47f7e468-2196-4960-a612-37ab326e2a17/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "United Battlefront": {
+  "en": {
+   "id": "dff398be-4ba4-4976-9acc-be99d2e07a61",
+   "frente": "imagens/dff398be-4ba4-4976-9acc-be99d2e07a61/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Cryogen Relic": {
+  "en": {
+   "id": "7bfb33b6-e2bf-498f-8c58-ae21a840cf75",
+   "frente": "imagens/7bfb33b6-e2bf-498f-8c58-ae21a840cf75/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Pinnacle Starcage": {
+  "en": {
+   "id": "b1f40c4c-a955-4d9c-8225-251fa4159124",
+   "frente": "imagens/b1f40c4c-a955-4d9c-8225-251fa4159124/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "The Enigma Jewel // Locus of Enlightenment": {
+  "en": {
+   "id": "2e98970d-06a8-4c91-ba47-4a02c5b949f2",
+   "frente": "imagens/2e98970d-06a8-4c91-ba47-4a02c5b949f2/front.png",
+   "verso": "imagens/2e98970d-06a8-4c91-ba47-4a02c5b949f2/back.png"
+  },
+  "pt": {
+   "id": "528e96a2-eaeb-40ec-bdb1-b78b61a19672",
+   "frente": "imagens/528e96a2-eaeb-40ec-bdb1-b78b61a19672/front.png",
+   "verso": "imagens/528e96a2-eaeb-40ec-bdb1-b78b61a19672/back.png",
+   "nome": "A Joia do Enigma",
+   "tipo": "Artefato Lendário",
+   "texto": null,
+   "faces": [
+    {
+     "nome": "A Joia do Enigma",
+     "tipo": "Artefato Lendário",
+     "texto": "A Joia do Enigma entra no campo de batalha virada.\n{T}: Adicione {C}{C}. Gaste este mana somente para ativar habilidades.\nConstruir com quatro ou mais não terrenos com habilidades ativadas {8}{U} ({8}{U}, exile este artefato, exile quatro ou mais outras permanentes que você controla e/ou cards em seu cemitério: Devolva este card ao campo de batalha transformado sob o controle de seu dono. Construa somente como um feitiço.)"
+    },
+    {
+     "nome": "Locus do Esclarecimento",
+     "tipo": "Artefato Lendário",
+     "texto": "Locus do Esclarecimento tem cada habilidade ativada dos cards exilados usados para construí-lo. Você pode ativar cada uma dessas habilidades apenas uma vez a cada turno.\nToda vez que você ativar uma habilidade que não seja uma habilidade de mana, copie-a. Você pode escolher novos alvos para a cópia."
+    }
+   ],
+   "reserva": false
+  }
+ },
+ "Fomori Vault": {
+  "en": {
+   "id": "a5433b98-4657-4bbe-9e72-d3c94c6aa8ef",
+   "frente": "imagens/a5433b98-4657-4bbe-9e72-d3c94c6aa8ef/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "76d15e85-f46c-467d-8691-89ea6874dfb1",
+   "frente": "imagens/76d15e85-f46c-467d-8691-89ea6874dfb1/front.png",
+   "verso": null,
+   "nome": "Cofre de Fomori",
+   "tipo": "Terreno",
+   "texto": "{T}: Adicione {C}.\n{3}, {T}, descarte um card: Olhe os X cards do topo do seu grimório, sendo X o número de artefatos que você controla. Coloque um daqueles cards em sua mão e o restante no fundo de seu grimório em ordem aleatória.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "The Fire Crystal": {
+  "en": {
+   "id": "ea430b17-2014-4b8e-b53f-43bcfc06f7cd",
+   "frente": "imagens/ea430b17-2014-4b8e-b53f-43bcfc06f7cd/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Adagia, Windswept Bastion": {
+  "en": {
+   "id": "c634273a-94b0-4104-9d10-ae522ece1fc7",
+   "frente": "imagens/c634273a-94b0-4104-9d10-ae522ece1fc7/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Meticulous Archive": {
+  "en": {
+   "id": "652236c2-84ef-45e4-b5fc-ed6170bc3d6c",
+   "frente": "imagens/652236c2-84ef-45e4-b5fc-ed6170bc3d6c/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "4eab2552-8e55-4ace-8a30-2b0226fb51a1",
+   "frente": "imagens/4eab2552-8e55-4ace-8a30-2b0226fb51a1/front.png",
+   "verso": null,
+   "nome": "Arquivo Meticuloso",
+   "tipo": "Terreno — Planície Ilha",
+   "texto": "Arquivo Meticuloso entra no campo de batalha virado.\nQuando Arquivo Meticuloso entrar no campo de batalha, use vigiar 1.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Fountainport": {
+  "en": {
+   "id": "658cfcb7-81b7-48c6-9dd2-1663d06108cf",
+   "frente": "imagens/658cfcb7-81b7-48c6-9dd2-1663d06108cf/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Elspeth, Storm Slayer": {
+  "en": {
+   "id": "73a065e3-b530-4e62-ab3c-4f6f908184ec",
+   "frente": "imagens/73a065e3-b530-4e62-ab3c-4f6f908184ec/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Mistrise Village": {
+  "en": {
+   "id": "d44bccbf-6fab-46e4-8ddb-6577e27ec6e8",
+   "frente": "imagens/d44bccbf-6fab-46e4-8ddb-6577e27ec6e8/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Seam Rip": {
+  "en": {
+   "id": "9d298847-2d02-4593-b4d3-c5b722edac1e",
+   "frente": "imagens/9d298847-2d02-4593-b4d3-c5b722edac1e/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Aang's Iceberg": {
+  "en": {
+   "id": "720fbd87-b1c1-4b3b-97a1-46b943b115e3",
+   "frente": "imagens/720fbd87-b1c1-4b3b-97a1-46b943b115e3/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Beza, the Bounding Spring": {
+  "en": {
+   "id": "fc310a26-b6a0-4e42-98ab-bdfd7b06cb63",
+   "frente": "imagens/fc310a26-b6a0-4e42-98ab-bdfd7b06cb63/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Ultima": {
+  "en": {
+   "id": "39504a0e-f63f-4907-afd7-c4492f6b8a3b",
+   "frente": "imagens/39504a0e-f63f-4907-afd7-c4492f6b8a3b/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Three Steps Ahead": {
+  "en": {
+   "id": "8fffd839-2337-4a14-9312-cee085a17f4b",
+   "frente": "imagens/8fffd839-2337-4a14-9312-cee085a17f4b/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "1a6e763f-f151-4e7f-baa7-ba6c4906ae73",
+   "frente": "imagens/1a6e763f-f151-4e7f-baa7-ba6c4906ae73/front.png",
+   "verso": null,
+   "nome": "Três Passos à Frente",
+   "tipo": "Mágica Instantânea",
+   "texto": "Série (Escolha um ou mais custos adicionais.)\n+ {1}{U} — Anule a mágica alvo.\n+ {3} — Crie uma ficha que seja uma cópia do artefato ou da criatura alvo que você controla.\n+ {2} — Compre dois cards e depois descarte um card.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Stock Up": {
+  "en": {
+   "id": "0a786855-6eb4-42c0-a528-4842db46809d",
+   "frente": "imagens/0a786855-6eb4-42c0-a528-4842db46809d/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Marang River Regent // Coil and Catch": {
+  "en": {
+   "id": "f890bdc7-32e6-4492-bac7-7cabf54a8bfd",
+   "frente": "imagens/f890bdc7-32e6-4492-bac7-7cabf54a8bfd/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "No More Lies": {
+  "en": {
+   "id": "1e0c695d-62f9-4805-9e2f-7032e8464136",
+   "frente": "imagens/1e0c695d-62f9-4805-9e2f-7032e8464136/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "b632e35c-6ac7-4983-973b-db9f77c76d8c",
+   "frente": "imagens/b632e35c-6ac7-4983-973b-db9f77c76d8c/front.png",
+   "verso": null,
+   "nome": "Chega de Mentiras",
+   "tipo": "Mágica Instantânea",
+   "texto": "Anule a mágica alvo, a menos que seu controlador pague {3}. Se aquela mágica for anulada dessa maneira, exile-a em vez de colocá-la no cemitério de seu dono.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Consult the Star Charts": {
+  "en": {
+   "id": "a16a6555-2e3a-4587-aacd-0307d696b26c",
+   "frente": "imagens/a16a6555-2e3a-4587-aacd-0307d696b26c/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Inspiring Vantage": {
+  "en": {
+   "id": "85df6b6a-2dcf-4828-a4a8-e07d52e1fddd",
+   "frente": "imagens/85df6b6a-2dcf-4828-a4a8-e07d52e1fddd/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "061169f6-f3eb-49b2-988c-4f7427bab00d",
+   "frente": "imagens/061169f6-f3eb-49b2-988c-4f7427bab00d/front.png",
+   "verso": null,
+   "nome": "Vantagem Inspiradora",
+   "tipo": "Terreno",
+   "texto": "Vantagem Inspiradora entra no campo de batalha virado, a menos que você controle dois outros terrenos ou menos.\n{T}: Adicione {R} ou {W}.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Nurturing Pixie": {
+  "en": {
+   "id": "0fe155f6-888b-41a0-a9a0-be7bea998718",
+   "frente": "imagens/0fe155f6-888b-41a0-a9a0-be7bea998718/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "96265524-8609-4612-a72c-e2f1c389dbb2",
+   "frente": "imagens/96265524-8609-4612-a72c-e2f1c389dbb2/front.png",
+   "verso": null,
+   "nome": "Sílfide Acalentadora",
+   "tipo": "Criatura — Fada Ladino",
+   "texto": "Voar\nQuando Sílfide Acalentadora entrar no campo de batalha, devolva até uma permanente não Fada e não de terreno alvo que você controla à mão de seu dono. Se uma permanente tiver sido devolvida dessa forma, coloque um marcador +1/+1 em Sílfide Acalentadora.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Sunbillow Verge": {
+  "en": {
+   "id": "94ed132f-b818-4dbf-9b4a-e5acb067e0a4",
+   "frente": "imagens/94ed132f-b818-4dbf-9b4a-e5acb067e0a4/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Sage of the Skies": {
+  "en": {
+   "id": "6ade6918-6d1d-448d-ab56-93996051e9a9",
+   "frente": "imagens/6ade6918-6d1d-448d-ab56-93996051e9a9/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "The Naked Time": {
+  "en": {
+   "id": "627c2ff6-88be-4c37-a676-0eddf453e8c6",
+   "frente": "imagens/627c2ff6-88be-4c37-a676-0eddf453e8c6/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Practiced Offense": {
+  "en": {
+   "id": "79c7cf94-c0a1-432d-90d7-7f0599c2e7a8",
+   "frente": "imagens/79c7cf94-c0a1-432d-90d7-7f0599c2e7a8/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Stadium Headliner": {
+  "en": {
+   "id": "37d4ab2a-a06a-4768-b5e1-e1def957d7f4",
+   "frente": "imagens/37d4ab2a-a06a-4768-b5e1-e1def957d7f4/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Pompous Battlemage // Improvised Act": {
+  "en": {
+   "id": "aa0f77ac-741a-444a-8bf0-a42c644726bf",
+   "frente": "imagens/aa0f77ac-741a-444a-8bf0-a42c644726bf/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Guiding Hydra": {
+  "en": {
+   "id": "a53eb840-039d-4c45-b701-d58cb26b1a6c",
+   "frente": "imagens/a53eb840-039d-4c45-b701-d58cb26b1a6c/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Haliya, Guided by Light": {
+  "en": {
+   "id": "6f7c63ae-5df3-410f-8643-b8c69133ca9d",
+   "frente": "imagens/6f7c63ae-5df3-410f-8643-b8c69133ca9d/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Starfield Shepherd": {
+  "en": {
+   "id": "1226e575-aa78-4c68-be1d-6e5c2dc6315b",
+   "frente": "imagens/1226e575-aa78-4c68-be1d-6e5c2dc6315b/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Essence Scatter": {
+  "en": {
+   "id": "e1e325e1-f1f9-4448-84e3-1fd929b0bc12",
+   "frente": "imagens/e1e325e1-f1f9-4448-84e3-1fd929b0bc12/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "fb655188-8005-4b66-8743-63668e9a922a",
+   "frente": "imagens/fb655188-8005-4b66-8743-63668e9a922a/front.png",
+   "verso": null,
+   "nome": "Espalhar Essência",
+   "tipo": "Mágica Instantânea",
+   "texto": "Anule a mágica de criatura alvo.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Deadly Cover-Up": {
+  "en": {
+   "id": "de5f8dd8-ba55-4ccd-a6b9-d077dcceb45d",
+   "frente": "imagens/de5f8dd8-ba55-4ccd-a6b9-d077dcceb45d/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "13780d45-1b9c-49d4-a734-ea34479bf258",
+   "frente": "imagens/13780d45-1b9c-49d4-a734-ea34479bf258/front.png",
+   "verso": null,
+   "nome": "Acobertamento Mortal",
+   "tipo": "Feitiço",
+   "texto": "Como custo adicional para conjurar esta mágica, você pode obter indícios 6.\nDestrua todas as criaturas. Se você obteve indícios, exile um card do cemitério de um oponente. Depois, procure um número qualquer de cards com aquele nome no cemitério, na mão e no grimório do dono e exile-os. Aquele jogador embaralha e, em seguida, compra um card por cada card exilado da própria mão desta forma.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Quantum Riddler": {
+  "en": {
+   "id": "f9ac9036-9e8d-43b8-b930-693971fe802f",
+   "frente": "imagens/f9ac9036-9e8d-43b8-b930-693971fe802f/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Daydream": {
+  "en": {
+   "id": "e2b16cb2-b8b2-45df-9695-3c16e9d89e28",
+   "frente": "imagens/e2b16cb2-b8b2-45df-9695-3c16e9d89e28/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Cosmogrand Zenith": {
+  "en": {
+   "id": "d37ba25a-8526-46b3-a826-3c18ce865149",
+   "frente": "imagens/d37ba25a-8526-46b3-a826-3c18ce865149/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Flitterwing Nuisance": {
+  "en": {
+   "id": "ad0f6536-5295-4835-8883-35d711dfe6de",
+   "frente": "imagens/ad0f6536-5295-4835-8883-35d711dfe6de/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Earthbender Ascension": {
+  "en": {
+   "id": "590a58ab-5e98-4031-8aa6-ce396dc1429f",
+   "frente": "imagens/590a58ab-5e98-4031-8aa6-ce396dc1429f/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Hard-Hitting Question": {
+  "en": {
+   "id": "8ad807c2-14a7-4464-bf57-c323fb3c0bd0",
+   "frente": "imagens/8ad807c2-14a7-4464-bf57-c323fb3c0bd0/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "6125ab64-e920-4b87-afa4-b8bda270c018",
+   "frente": "imagens/6125ab64-e920-4b87-afa4-b8bda270c018/front.png",
+   "verso": null,
+   "nome": "Pergunta Contundente",
+   "tipo": "Feitiço",
+   "texto": "A criatura alvo que você controla causa dano igual ao seu poder à criatura ou ao planeswalker alvo que você não controla.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Sapling Nursery": {
+  "en": {
+   "id": "3199bea9-fef7-45fe-8777-2103d84a9347",
+   "frente": "imagens/3199bea9-fef7-45fe-8777-2103d84a9347/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Keen-Eyed Curator": {
+  "en": {
+   "id": "8cf33d80-0704-4dc4-8e8d-1dcbcbc35add",
+   "frente": "imagens/8cf33d80-0704-4dc4-8e8d-1dcbcbc35add/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Sazh's Chocobo": {
+  "en": {
+   "id": "dda6b4d0-1b60-46b0-b321-b9ffe15afff4",
+   "frente": "imagens/dda6b4d0-1b60-46b0-b321-b9ffe15afff4/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Pit of Offerings": {
+  "en": {
+   "id": "bc7d3957-b483-4a1f-a244-293c90032f5e",
+   "frente": "imagens/bc7d3957-b483-4a1f-a244-293c90032f5e/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "a022fb85-2f44-481e-ad7c-5d087b77651a",
+   "frente": "imagens/a022fb85-2f44-481e-ad7c-5d087b77651a/front.png",
+   "verso": null,
+   "nome": "Poço das Oferendas",
+   "tipo": "Terreno — Caverna",
+   "texto": "Poço das Oferendas entra no campo de batalha virado.\nQuando Poço das Oferendas entrar no campo de batalha, exile até três cards alvo de cemitérios.\n{T}: Adicione {C}.\n{T}: Adicione um mana de qualquer das cores dos cards exilados.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Ba Sing Se": {
+  "en": {
+   "id": "bdf3b2be-d0cd-4a3c-a10e-82d32c12d3bd",
+   "frente": "imagens/bdf3b2be-d0cd-4a3c-a10e-82d32c12d3bd/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Mossborn Hydra": {
+  "en": {
+   "id": "7054a0d7-396f-40b4-ab24-db591c3b08f0",
+   "frente": "imagens/7054a0d7-396f-40b4-ab24-db591c3b08f0/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Erode": {
+  "en": {
+   "id": "32e670da-7563-4f6a-a7db-4c126a440eb8",
+   "frente": "imagens/32e670da-7563-4f6a-a7db-4c126a440eb8/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Sandman, Shifting Scoundrel": {
+  "en": {
+   "id": "609ac18c-ec58-4fa7-bbee-3912a69d0ec6",
+   "frente": "imagens/609ac18c-ec58-4fa7-bbee-3912a69d0ec6/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Cryptic Caves": {
+  "en": {
+   "id": "9d126c8f-a3df-497c-aad5-a448c55f51cc",
+   "frente": "imagens/9d126c8f-a3df-497c-aad5-a448c55f51cc/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "71da11ca-77c6-4579-891a-11a87662542e",
+   "frente": "imagens/71da11ca-77c6-4579-891a-11a87662542e/front.png",
+   "verso": null,
+   "nome": "Cavernas Crípticas",
+   "tipo": "Terreno",
+   "texto": "{T}: Adicione {C}.\n{1}, {T}, sacrifique Cavernas Crípticas: Compre um card. Ative esta habilidade somente se você controlar cinco ou mais terrenos.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Hushwood Verge": {
+  "en": {
+   "id": "ec288d76-c1f5-471b-8a53-504f88469c1b",
+   "frente": "imagens/ec288d76-c1f5-471b-8a53-504f88469c1b/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Jadzia Dax, Living Legacy": {
+  "en": {
+   "id": "bd342f8b-9072-487d-8a33-b1bb149f1502",
+   "frente": "imagens/bd342f8b-9072-487d-8a33-b1bb149f1502/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Vigorbloom Charm": {
+  "en": {
+   "id": "2b198e10-b507-4314-a29c-a219f06e48b7",
+   "frente": "imagens/2b198e10-b507-4314-a29c-a219f06e48b7/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Surrak, Elusive Hunter": {
+  "en": {
+   "id": "e4775a26-0b66-40e9-8f64-41d9308ca032",
+   "frente": "imagens/e4775a26-0b66-40e9-8f64-41d9308ca032/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Bejeweled Warg": {
+  "en": {
+   "id": "e95eba5c-e0d6-46b4-a0be-8e373b2185ea",
+   "frente": "imagens/e95eba5c-e0d6-46b4-a0be-8e373b2185ea/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Meltstrider's Resolve": {
+  "en": {
+   "id": "53c08af4-b975-4d9d-baba-73e6727f2778",
+   "frente": "imagens/53c08af4-b975-4d9d-baba-73e6727f2778/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Pawpatch Recruit": {
+  "en": {
+   "id": "7d4d88ba-0ee4-4f66-995b-2e50614f50ee",
+   "frente": "imagens/7d4d88ba-0ee4-4f66-995b-2e50614f50ee/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Michelangelo, Weirdness to 11": {
+  "en": {
+   "id": "18477047-218d-4b2a-a086-37431b6a3025",
+   "frente": "imagens/18477047-218d-4b2a-a086-37431b6a3025/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Ouroboroid": {
+  "en": {
+   "id": "209c591a-4ab2-4e89-9523-a7b766cf4e51",
+   "frente": "imagens/209c591a-4ab2-4e89-9523-a7b766cf4e51/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Enlightened Confidant": {
+  "en": {
+   "id": "483fcc58-cc6e-4452-a696-7b38e117c837",
+   "frente": "imagens/483fcc58-cc6e-4452-a696-7b38e117c837/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Concealed Courtyard": {
+  "en": {
+   "id": "b75df1f0-0513-40e4-a449-454f75de6434",
+   "frente": "imagens/b75df1f0-0513-40e4-a449-454f75de6434/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "7935b6a6-894f-49aa-a307-35b8cc76360c",
+   "frente": "imagens/7935b6a6-894f-49aa-a307-35b8cc76360c/front.png",
+   "verso": null,
+   "nome": "Pátio Oculto",
+   "tipo": "Terreno",
+   "texto": "Pátio Oculto entra no campo de batalha virado, a menos que você controle dois outros terrenos ou menos.\n{T}: Adicione {W} ou {B}.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Aunt May": {
+  "en": {
+   "id": "252c2564-c39d-476d-b7d0-43aee625fcaa",
+   "frente": "imagens/252c2564-c39d-476d-b7d0-43aee625fcaa/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Amalia Benavides Aguirre": {
+  "en": {
+   "id": "9acf80a5-f2ca-45b4-aca8-fbc690e35401",
+   "frente": "imagens/9acf80a5-f2ca-45b4-aca8-fbc690e35401/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "f921597a-21ea-4bd5-8dab-86672419760f",
+   "frente": "imagens/f921597a-21ea-4bd5-8dab-86672419760f/front.png",
+   "verso": null,
+   "nome": "Amalia Benavides Aguirre",
+   "tipo": "Criatura Lendária — Vampiro Batedor",
+   "texto": "Salvaguarda — Pague 3 pontos de vida.\nToda vez que você ganha pontos de vida, Amalia Benavides Aguirre explora. Depois, destrua todas as outras criaturas se o poder dela for exatamente 20. (Para fazer esta criatura explorar, revele o card do topo de seu grimório. Coloque aquele card em sua mão se ele for um terreno. Caso contrário, coloque um marcador +1/+1 nesta criatura e, em seguida, devolva o card ao grimório ou coloque-o em seu cemitério.)",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Case of the Uneaten Feast": {
+  "en": {
+   "id": "ac63941b-3f78-4bd3-8b05-ca12aaaa006c",
+   "frente": "imagens/ac63941b-3f78-4bd3-8b05-ca12aaaa006c/front.png",
+   "verso": null
+  },
+  "pt": {
+   "id": "d09c314c-0f71-4f23-a653-474991ba5afc",
+   "frente": "imagens/d09c314c-0f71-4f23-a653-474991ba5afc/front.png",
+   "verso": null,
+   "nome": "Caso do Banquete Não Comido",
+   "tipo": "Encantamento — Caso",
+   "texto": "Toda vez que uma criatura entra no campo de batalha sob seu controle, você ganha 1 ponto de vida.\nPara Solucionar — Você ganhou 5 ou mais pontos de vida neste turno. (Se o Caso não tiver sido solucionado, solucione-o no início de sua etapa final.)\nSolucionado — Sacrifique este Caso: Os cards de criatura em seu cemitério ganham \"Você pode conjurar este card de seu cemitério\" até o final do turno.",
+   "faces": null,
+   "reserva": false
+  }
+ },
+ "Lunar Convocation": {
+  "en": {
+   "id": "a9ee50d4-c878-457b-964d-29c039ce9852",
+   "frente": "imagens/a9ee50d4-c878-457b-964d-29c039ce9852/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Hinterland Sanctifier": {
+  "en": {
+   "id": "632df69e-6377-43d0-bba5-65518a320aa5",
+   "frente": "imagens/632df69e-6377-43d0-bba5-65518a320aa5/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Liliana the Faultless": {
+  "en": {
+   "id": "70d8c400-87dc-4f15-808f-e54a95d779fc",
+   "frente": "imagens/70d8c400-87dc-4f15-808f-e54a95d779fc/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Starscape Cleric": {
+  "en": {
+   "id": "53a938a7-0154-4350-87cb-00da24ec3824",
+   "frente": "imagens/53a938a7-0154-4350-87cb-00da24ec3824/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Salt Vampire": {
+  "en": {
+   "id": "78faba81-01a3-489f-927e-1adaa8fe4436",
+   "frente": "imagens/78faba81-01a3-489f-927e-1adaa8fe4436/front.png",
+   "verso": null
+  },
+  "pt": null
+ },
+ "Great Arashin City": {
+  "en": {
+   "id": "ecba23b6-9f3a-431e-bc22-f1fb04d27b68",
+   "frente": "imagens/ecba23b6-9f3a-431e-bc22-f1fb04d27b68/front.png",
+   "verso": null
+  },
+  "pt": null
  }
 }

@@ -13,9 +13,17 @@
    "codigo": "SLD",
    "conferidoEm": "2026-11-12T19:20:11.826Z"
   },
+  "4UoyxaUQ6UC7ItKchkCm_A": {
+   "tipo": "montado",
+   "conferidoEm": "2026-11-15T00:00:54.456Z"
+  },
   "6AR9GAj1bkW2zwOCvuyQ0Q": {
    "tipo": "montado",
    "conferidoEm": "2026-11-12T19:20:10.910Z"
+  },
+  "6Clu_RSbMUOTnf7aYeNS7g": {
+   "tipo": "montado",
+   "conferidoEm": "2026-11-15T00:00:54.406Z"
   },
   "80zkHrncgEKyre0fMIJbng": {
    "tipo": "precon",
@@ -34,6 +42,14 @@
    "produto": "We Are the Borg",
    "codigo": "TRC",
    "conferidoEm": "2026-11-12T19:20:12.651Z"
+  },
+  "b7JEv8j9d06-BicRKi2Lwg": {
+   "tipo": "montado",
+   "conferidoEm": "2026-11-15T00:00:54.270Z"
+  },
+  "bgpDUvrdi02TjIjMh01wkg": {
+   "tipo": "montado",
+   "conferidoEm": "2026-11-15T00:00:54.390Z"
   },
   "BPBVD7NsT0SznrmdG4l3Tw": {
    "tipo": "precon",
@@ -54,6 +70,10 @@
    "produto": "Miracle Worker",
    "codigo": "DSC",
    "conferidoEm": "2026-11-12T19:20:12.474Z"
+  },
+  "eR3Y8b3mO0mlkopo8Xux7w": {
+   "tipo": "montado",
+   "conferidoEm": "2026-11-15T00:00:54.237Z"
   },
   "fbMRiG7ia0-hm464dMWcEQ": {
    "tipo": "precon",
@@ -115,6 +135,10 @@
    "trocas": 7,
    "conferidoEm": "2026-11-12T19:20:10.361Z"
   },
+  "GMft59MvVkq0po8hUB2Ccg": {
+   "tipo": "montado",
+   "conferidoEm": "2026-11-15T00:00:54.253Z"
+  },
   "gzvtI9o53U6g06GgzF9keQ": {
    "tipo": "precon",
    "produto": "The Fantastic Four",
@@ -147,6 +171,10 @@
    "codigo": "OTC",
    "conferidoEm": "2026-11-12T19:20:12.284Z"
   },
+  "KY9-wyID8Uawobkbd0jI1g": {
+   "tipo": "montado",
+   "conferidoEm": "2026-11-15T00:00:54.439Z"
+  },
   "lava2X1Op0aSeUHhPC5cfQ": {
    "tipo": "precon",
    "produto": "Vampiric Bloodline",
@@ -158,6 +186,26 @@
    "produto": "Tramplesaurus Rex",
    "codigo": "FDC",
    "conferidoEm": "2026-11-12T19:20:12.177Z"
+  },
+  "Mi4yPy0jFUGPx6pI5x3OVw": {
+   "tipo": "montado",
+   "conferidoEm": "2026-11-15T00:00:54.222Z"
+  },
+  "mundial32-adam-edelson": {
+   "tipo": "casa",
+   "conferidoEm": "2026-11-15T00:00:54.473Z"
+  },
+  "mundial32-isael-feitosa": {
+   "tipo": "casa",
+   "conferidoEm": "2026-11-15T00:00:54.473Z"
+  },
+  "mundial32-javier-dominguez": {
+   "tipo": "casa",
+   "conferidoEm": "2026-11-15T00:00:54.473Z"
+  },
+  "mundial32-marc-peral": {
+   "tipo": "casa",
+   "conferidoEm": "2026-11-15T00:00:54.473Z"
   },
   "mWQACuymy0OV-2MJgx2-TQ": {
    "tipo": "precon",
@@ -189,6 +237,10 @@
    "codigo": "NEC",
    "conferidoEm": "2026-11-12T19:20:12.060Z"
   },
+  "rDExlzmhJk-CGOAfSp7bgw": {
+   "tipo": "montado",
+   "conferidoEm": "2026-11-15T00:00:54.340Z"
+  },
   "Rfkjiccwo0CXLUWqsIriDQ": {
    "tipo": "montado",
    "conferidoEm": "2026-11-12T19:20:13.281Z"
@@ -203,6 +255,18 @@
    "tipo": "montado",
    "conferidoEm": "2026-11-12T19:20:13.509Z"
   },
+  "RSogAdC-70SL0NpM2X7Ojw": {
+   "tipo": "montado",
+   "conferidoEm": "2026-11-15T00:00:54.356Z"
+  },
+  "rXqqlz74JkCv1jFnrbNZSw": {
+   "tipo": "montado",
+   "conferidoEm": "2026-11-15T00:00:54.304Z"
+  },
+  "sbt8qFFKA0KMHWn8h9pUeg": {
+   "tipo": "montado",
+   "conferidoEm": "2026-11-15T00:00:54.179Z"
+  },
   "shj-af8AiUWaoFVbNORQig": {
    "tipo": "montado",
    "conferidoEm": "2026-11-12T19:20:13.084Z"
@@ -213,6 +277,10 @@
    "codigo": "FIC",
    "trocas": 16,
    "conferidoEm": "2026-11-12T19:20:10.600Z"
+  },
+  "sPoPvc5ZBkCHFEg7w1hQHQ": {
+   "tipo": "montado",
+   "conferidoEm": "2026-11-15T00:00:54.423Z"
   },
   "STCkf8pBDE-Xxi1hgsZKiQ": {
    "tipo": "precon",
@@ -242,11 +310,23 @@
    "codigo": "OTC",
    "conferidoEm": "2026-11-12T19:20:12.365Z"
   },
+  "V6TB_5VN4E2fFmajDMHgGg": {
+   "tipo": "montado",
+   "conferidoEm": "2026-11-15T00:00:54.206Z"
+  },
   "vNWUamZY7Uu0gqg6xKepyw": {
    "tipo": "precon",
    "produto": "Landing Party",
    "codigo": "TRC",
    "conferidoEm": "2026-11-12T19:20:12.772Z"
+  },
+  "VZ8_mv2M6Eq6o8dx6Bbj3w": {
+   "tipo": "montado",
+   "conferidoEm": "2026-11-15T00:00:54.322Z"
+  },
+  "WCRDLVuQpEi5YR4R5zNitw": {
+   "tipo": "montado",
+   "conferidoEm": "2026-11-15T00:00:54.287Z"
   },
   "x_R7MWbxrUq4A2ST0PqldA": {
    "tipo": "montado",
@@ -265,6 +345,10 @@
    "produto": "The Hosts of Mordor",
    "codigo": "LTC",
    "conferidoEm": "2026-11-12T19:20:10.986Z"
+  },
+  "Zq8PllH2_0eDpZYMVlqExQ": {
+   "tipo": "montado",
+   "conferidoEm": "2026-11-15T00:00:54.373Z"
   }
  }
 }

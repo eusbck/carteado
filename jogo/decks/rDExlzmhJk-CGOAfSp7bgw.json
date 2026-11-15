@@ -1,0 +1,105 @@
+{
+ "formato": 1,
+ "id": "rDExlzmhJk-CGOAfSp7bgw",
+ "ordem": 133,
+ "nome": "Dimir Midrange",
+ "link": "https://moxfield.com/decks/rDExlzmhJk-CGOAfSp7bgw",
+ "importadoEm": "2026-11-14T23:47:46.579Z",
+ "verificadoEm": "2026-11-14T23:47:46.579Z",
+ "atual": null,
+ "preparacao": {
+  "formato": "standard",
+  "cartas": [
+   {
+    "nome": "Island",
+    "quantidade": 5
+   },
+   {
+    "nome": "Swamp",
+    "quantidade": 4
+   },
+   {
+    "nome": "Watery Grave",
+    "quantidade": 4
+   },
+   {
+    "nome": "Spyglass Siren",
+    "quantidade": 4
+   },
+   {
+    "nome": "Kaito, Bane of Nightmares",
+    "quantidade": 4
+   },
+   {
+    "nome": "Gloomlake Verge",
+    "quantidade": 4
+   },
+   {
+    "nome": "Floodpits Drowner",
+    "quantidade": 4
+   },
+   {
+    "nome": "Requiting Hex",
+    "quantidade": 4
+   },
+   {
+    "nome": "Dream Beavers",
+    "quantidade": 4
+   },
+   {
+    "nome": "Spell Snare",
+    "quantidade": 1
+   },
+   {
+    "nome": "Wan Shi Tong, Librarian",
+    "quantidade": 1
+   },
+   {
+    "nome": "Realm of Koh",
+    "quantidade": 1
+   },
+   {
+    "nome": "Tishana's Tidebinder",
+    "quantidade": 2
+   },
+   {
+    "nome": "Restless Reef",
+    "quantidade": 2
+   },
+   {
+    "nome": "Bitter Triumph",
+    "quantidade": 2
+   },
+   {
+    "nome": "Shoot the Sheriff",
+    "quantidade": 2
+   },
+   {
+    "nome": "Phantom Interference",
+    "quantidade": 2
+   },
+   {
+    "nome": "Soulstone Sanctuary",
+    "quantidade": 2
+   },
+   {
+    "nome": "Starting Town",
+    "quantidade": 2
+   },
+   {
+    "nome": "Enduring Curiosity",
+    "quantidade": 3
+   },
+   {
+    "nome": "Super Shredder",
+    "quantidade": 3
+   }
+  ],
+  "origem": {
+   "versao": 0,
+   "atualizadoEm": "2026-05-10T06:31:32.27Z"
+  },
+  "desde": "2026-11-14T23:47:46.579Z",
+  "capa": "Kaito, Bane of Nightmares"
+ }
+}
