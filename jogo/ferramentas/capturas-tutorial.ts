@@ -50,15 +50,22 @@ async function entrar(p: Page): Promise<void> {
 /** as imagens das cartas do palco chegaram (as miniaturas são geradas no primeiro pedido) */
 const imagensProntas = (p: Page) => p.waitForFunction(() => [...document.querySelectorAll<HTMLImageElement>('.tut img')].every((i) => i.complete && i.naturalWidth > 0), null, { timeout: 60000 });
 
-/** rola até cada passo, espera a cena terminar e fotografa; devolve as cenas vistas, na ordem */
+/** põe o bloco do passo no ponto em que a cena dele já terminou (60% do bloco passou da linha de leitura) */
+const noPasso = (p: Page, cena: string, fracao = 0.62) => p.locator(`.tut-bloco[data-cena="${cena}"]`).evaluate((b, f) => {
+  const raiz = b.closest('.tut-rolagem')!;
+  const r = raiz.getBoundingClientRect(), br = b.getBoundingClientRect();
+  const linha = r.top + r.height * (r.width < 1024 ? 0.7 : 0.5);
+  raiz.scrollTop += br.top + br.height * f - linha;
+}, fracao);
+
+/** rola até cada passo, espera a cena assentar e fotografa; devolve as cenas vistas, na ordem */
 async function percorrer(p: Page, prefixo: string): Promise<string[]> {
-  const cenas = await p.locator('[data-cena]').evaluateAll((els) => els.map((e) => (e as HTMLElement).dataset.cena!));
+  const cenas = await p.locator('.tut-bloco').evaluateAll((els) => els.map((e) => (e as HTMLElement).dataset.cena!));
   const vistas: string[] = [];
   for (const [n, cena] of cenas.entries()) {
-    await p.locator(`[data-cena="${cena}"]`).evaluate((e) => e.scrollIntoView({ block: 'center', behavior: 'instant' }));
-    await p.locator(`[data-cena="${cena}"].ativo`).waitFor({ timeout: 5000 });
-    // a cena mais longa leva uns 3,5 s para chegar ao último quadro
-    await p.waitForTimeout(4300);
+    await noPasso(p, cena);
+    await p.locator(`.tut-bloco[data-cena="${cena}"].ativo`).waitFor({ timeout: 5000 });
+    await p.waitForTimeout(1100);
     vistas.push(cena);
     await foto(p, `${prefixo}-${String(n + 1).padStart(2, '0')}-${cena}`);
   }
@@ -88,7 +95,7 @@ try {
   exigir(await pontos.count() === 6, 'a carta de exemplo não tem seis pontos');
   for (let i = 0; i < 6; i++) {
     await pontos.nth(i).click();
-    exigir(await p.locator('.tut-partes li.ativo p').count() === 1, `o ponto ${i + 1} não abriu o texto`);
+    exigir(await p.locator('.tut-caixa.ativa').count() === 1 && await p.locator('.tut-chips button.ativo').count() === 1, `o ponto ${i + 1} não acendeu a parte`);
   }
   await pontos.nth(1).click();
   await p.waitForTimeout(350);
@@ -102,6 +109,21 @@ try {
   await p.waitForTimeout(1500);
   exigir(await p.locator('.tut-trilha button.atual').getAttribute('aria-label').then((x) => x?.startsWith('4.')), 'a trilha não levou ao capítulo 4');
 
+  // um vídeo da rolagem de ponta a ponta com a rodinha (quadros extraídos depois com ffmpeg)
+  if (process.env.TUTORIAL_VIDEO) {
+    const vctx = await navegador.newContext({ viewport: { width: 1440, height: 900 }, recordVideo: { dir: SAIDA, size: { width: 1440, height: 900 } } });
+    const v = await vctx.newPage();
+    await entrar(v);
+    await v.locator('.tela-passos').waitFor();
+    await v.getByRole('button', { name: 'Como jogar' }).click();
+    await v.locator('.tut').waitFor();
+    await imagensProntas(v);
+    await v.mouse.move(1100, 500);
+    const fimV = () => v.locator('.tut-rolagem').evaluate((e) => e.scrollTop + e.clientHeight >= e.scrollHeight - 2);
+    for (let i = 0; i < 900 && !(await fimV()); i++) { await v.mouse.wheel(0, 90); await v.waitForTimeout(30); }
+    await vctx.close();
+  }
+
   // fechamento
   await p.locator('.tut-fim').evaluate((e) => e.scrollIntoView({ block: 'center', behavior: 'instant' }));
   await p.waitForTimeout(400);
@@ -114,14 +136,15 @@ try {
   await p.waitForTimeout(400);
   await foto(p, '05-en-abertura');
   for (const cena of ['terrenos', 'dano', 'taxa']) {
-    await p.locator(`[data-cena="${cena}"]`).evaluate((e) => e.scrollIntoView({ block: 'center', behavior: 'instant' }));
-    await p.waitForTimeout(4300);
+    await noPasso(p, cena);
+    await p.waitForTimeout(1100);
     await foto(p, `en-${cena}`);
   }
 
   // Esc fecha e o foco volta para o botão que abriu
   await p.keyboard.press('Escape');
   await p.locator('.tut').waitFor({ state: 'detached' });
+  await p.waitForFunction((b) => document.activeElement === b, await botao.elementHandle(), { timeout: 2000 }).catch(() => {});
   exigir(await botao.evaluate((b) => document.activeElement === b), 'o foco não voltou para o botão Como jogar');
   // reabrindo, continua em inglês; o X fecha
   await botao.click();
@@ -162,8 +185,8 @@ try {
   await m.locator('.menu-lateral').getByRole('button', { name: 'Como jogar' }).click();
   await m.locator('.tut').waitFor();
   await imagensProntas(m);
-  await m.locator('[data-cena="bloqueadores"]').evaluate((e) => e.scrollIntoView({ block: 'center', behavior: 'instant' }));
-  await m.waitForTimeout(2500);
+  await noPasso(m, 'bloqueadores');
+  await m.waitForTimeout(1100);
   await foto(m, '08-mesa-tutorial-aberto');
   // o Espaço rola o tutorial e não chega aos atalhos da mesa
   await m.keyboard.press('Space');
@@ -184,7 +207,7 @@ try {
   await imagensProntas(c);
   await c.waitForTimeout(500);
   await foto(c, 'cel-00-abertura');
-  await c.locator('.tut-ler').evaluate((e) => e.scrollIntoView({ block: 'start', behavior: 'instant' }));
+  await c.locator('.tut-ler-carta').evaluate((e) => e.scrollIntoView({ block: 'start', behavior: 'instant' }));
   await c.locator('.tut-ponto').nth(5).click();
   await c.waitForTimeout(400);
   await foto(c, 'cel-01-ler-carta');
@@ -202,9 +225,9 @@ try {
   await r.getByRole('button', { name: 'Como jogar' }).click();
   await r.locator('.tut').waitFor();
   await imagensProntas(r);
-  await r.locator('[data-cena="dano"]').evaluate((e) => e.scrollIntoView({ block: 'center', behavior: 'instant' }));
-  await r.waitForTimeout(350);
-  exigir(await r.locator('.tut-marca.dano').count() === 1, 'menos movimento: a cena do dano não apareceu pronta');
+  await noPasso(r, 'dano');
+  await r.waitForTimeout(150);
+  exigir(await r.locator('.tp-marca[data-marca="d3"]').evaluate((e) => Number(getComputedStyle(e).opacity) > 0.9), 'menos movimento: a cena do dano não apareceu pronta');
   await foto(r, 'calmo-dano');
   await calmo.close();
 
