@@ -80,3 +80,8 @@ export * from './terra.ts';
 export * from './exigencias-bloqueio.ts';
 // lote4-d: megamorfose (megamorph, CR 702.37b)
 export * from './megamorfose.ts';
+// Standard, frente d: reunir indícios (CR 701.59), fora da lei (CR 700.12), resolução de presságios (CR 720.3d).
+export * from './indicios.ts';
+export * from './fora-da-lei.ts';
+export * from './presagio.ts';
+export * from './caracteristicas-conjuracao.ts';

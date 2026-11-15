@@ -7,6 +7,9 @@ import { setup } from './harness.ts';
 import { chars, counter, ehPresagio } from '../motor/api.ts';
 import { ehReversivel, facesConjuraveis, rotuloConjurar, temVariasFaces } from '../motor/formatos.ts';
 import { oracle } from '../motor/oracle.ts';
+import { copySpell, defineAbility, staticAbility, untilEndOfTurn } from '../motor/api.ts';
+import { runEffect } from './artefatos.ts';
+import { novoDiario } from '../motor/diario.ts';
 
 const MR = 'Marang River Regent // Coil and Catch // Marang River Regent';
 
@@ -57,5 +60,64 @@ describe('Presságio (CR 720)', () => {
     tg.cast(MR, 'hand@1');
     tg.run(counter(tg.g, tg.state.zones.stack[0]));
     expect(tg.find(MR, 'graveyard', 0)).not.toBeNull();
+  });
+
+  it('CR 720.3c-d, 704.5e: a cópia é embaralhada antes de deixar de existir, e só seu dono embaralha', () => {
+    const tg = setup({ battlefield: [Array(4).fill('Island'), []], hand: [[MR], []], library: [Array(6).fill('Island'), Array(6).fill('Forest')] });
+    tg.cast(MR, 'hand@1');
+    runEffect(tg, copySpell(tg.g, tg.state.zones.stack[0], 1));
+    tg.g.diario = novoDiario();
+    tg.resolve();
+    const eventos = tg.g.diario.entradas.map((e) => e.ev);
+    expect(eventos.filter((e) => e.type === 'zone' && e.cause === 'omen' && e.to === 'library')).toHaveLength(1);
+    expect(eventos.filter((e) => e.type === 'shuffle').map((e) => e.type === 'shuffle' ? e.player : -1)).toEqual([1]);
+    expect(Object.values(tg.state.objects).some((o) => o.isCopy)).toBe(false);
+    expect(tg.state.zones.stack).toHaveLength(1);
+  });
+
+  it('CR 720.3a: uma permissão que só conjura criaturas não oferece a face de presságio', () => {
+    const tg = setup({ battlefield: [['Thundermane Dragon', ...Array(6).fill('Island')], []], library: [[MR, 'Forest'], []] });
+    const id = tg.find(MR, 'library')!;
+    const acoes = tg.actionIds().filter((a) => a.startsWith(`cast:${id}:`));
+    expect(acoes).toHaveLength(1);
+    expect(acoes[0]).not.toContain('@1');
+    expect(chars(tg.g, id).types).toEqual(['Creature']);
+  });
+
+  it.each([false, true])('CR 720.3a: uma permissão apenas para instantâneas encontra o presságio mesmo com teste no filtro (%s)', (noFiltro) => {
+    const habilidade = defineAbility(`teste:presagio-do-topo:${noFiltro}`, staticAbility({ rules: {
+      mayPlayFrom: (c, p, carta) => {
+        if (p !== c.you || c.g.state.zones.library[p][0] !== carta) return null;
+        const instantanea = () => chars(c.g, carta).types.includes('Instant');
+        if (!noFiltro && !instantanea()) return null;
+        return { key: 'teste-presagio', label: 'Conjurar instantânea do topo', ...(noFiltro ? { filter: instantanea } : {}) };
+      },
+    } }));
+    const tg = setup({ battlefield: [['Sol Ring', ...Array(4).fill('Island')], []], library: [[MR, 'Forest'], []] });
+    const fonte = tg.bf('Sol Ring');
+    const id = tg.find(MR, 'library')!;
+    untilEndOfTurn({ g: tg.g, you: 0, source: fonte }, [fonte], [{ k: 'addAbility', id: habilidade.id! }]);
+    tg.refresh();
+    const acoes = tg.actionIds().filter((a) => a.startsWith(`cast:${id}:`));
+    expect(acoes).toHaveLength(1);
+    expect(acoes[0]).toContain('@1');
+    // A consulta terminou: a carta continua no grimório e com as características normais (CR 720.4).
+    expect(tg.state.objects[id].zone).toBe('library');
+    expect(chars(tg.g, id).manaValue).toBe(6);
+    expect(chars(tg.g, id).types).toEqual(['Creature']);
+  });
+
+  it('CR 720.3a-b: Bolas\'s Citadel oferece ambas as faces e cobra o valor de mana da face escolhida', () => {
+    const tg = setup({ battlefield: [["Bolas's Citadel"], []], library: [[MR, 'Forest'], []] });
+    const id = tg.find(MR, 'library')!;
+    const acoes = tg.pending?.kind === 'priority' ? tg.pending.actions.filter((a) => a.obj === id && a.kind === 'cast') : [];
+    expect(acoes).toHaveLength(2);
+    const presagio = acoes.find((a) => a.id.endsWith('@1'))!;
+    expect(presagio.label).toContain('4 de vida');
+    expect(acoes.find((a) => !a.id.endsWith('@1'))!.label).toContain('6 de vida');
+    tg.answer({ kind: 'priority', action: presagio.id });
+    tg.settle();
+    expect(tg.life(0)).toBe(36);
+    expect(chars(tg.g, tg.state.zones.stack[0]).name).toBe('Coil and Catch');
   });
 });

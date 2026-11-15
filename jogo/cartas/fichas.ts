@@ -602,3 +602,6 @@ export const MutavaultToken = defineToken({
 // lote4-d (Yuriko)
 /** Illusion 1/1 azul com voar (Moonblade Shinobi) */
 export const IllusionVoadora = token('Illusion 1/1', 'Illusion', ['Creature'], ['Illusion'], ['U'], 1, 1, keywords('flying'));
+// Standard, frente d (Fountainport)
+/** Fish azul 1/1 sem habilidades. */
+export const Fish = token('Fish', 'Fish', ['Creature'], ['Fish'], ['U'], 1, 1);

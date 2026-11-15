@@ -201,6 +201,8 @@ const esperadas: Record<string, [string, string[], string[], string[], number | 
   'Mutavault': ['Mutavault', ['Land'], [], [], null, null, []],
   // lote4-d
   'Illusion 1/1': ['Illusion', ['Creature'], ['Illusion'], ['U'], 1, 1, ['flying']],
+  // Standard, frente d
+  'Fish': ['Fish', ['Creature'], ['Fish'], ['U'], 1, 1, []],
 };
 
 describe('Fichas: características', () => {
