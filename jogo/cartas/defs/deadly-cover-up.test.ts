@@ -99,17 +99,24 @@ describe(N, () => {
     expect(tg.names(1, 'hand')).toEqual(['Forest']);
     expect(tg.g.diario.entradas.some((e) => e.ev.type === 'search' || e.ev.type === 'shuffle')).toBe(false);
   });
-  it('CR 701.23a: permite olhar a mão mesmo quando não contém nenhuma cópia elegível', () => {
+  it('CR 701.23a: permite olhar a mão e o grimório mesmo quando não contêm nenhuma cópia elegível', () => {
     const tg = setup({ battlefield: [Array(5).fill('Swamp'), []], hand: [[N], ['Island']], graveyard: [['Zetalpa, Primal Dawn'], ['Forest']], library: [[], ['Plains']] });
     let viuMao = false;
+    let viuGrimorio = false;
     reunir(tg).choose('exile uma carta do cemitério', ['Forest']);
     tg.script.push((d) => {
       if (d.kind !== 'select' || !d.prompt.includes('na mão e no cemitério')) return null;
       viuMao = d.player === 0 && d.min === 0 && d.max === 0 && d.items[0].card?.def === 'Island';
       return { kind: 'select', ids: [] };
     });
+    tg.script.push((d) => {
+      if (d.kind !== 'select' || !d.prompt.includes('no grimório')) return null;
+      viuGrimorio = d.player === 0 && d.min === 0 && d.max === 0 && d.items[0].card?.def === 'Plains';
+      return { kind: 'select', ids: [] };
+    });
     tg.cast(N).resolveAll();
     expect(viuMao).toBe(true);
+    expect(viuGrimorio).toBe(true);
     expect(tg.names(1, 'hand')).toEqual(['Island']);
   });
   it('CR 101.2: proibir buscar no grimório preserva as buscas na mão e no cemitério e o embaralhar', () => {

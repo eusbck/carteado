@@ -35,6 +35,7 @@ export default defineCard({
         })).ids.map(Number) : [];
         const grimorio = yield* searchLibrary(c.g, c.you, dono, {
           filter: (carta) => nameOf(c.g, carta) === nome, max: c.g.state.zones.library[dono].length,
+          lookWhenNoMatch: true,
           prompt: `Deadly Cover-Up: procure cartas chamadas ${nome} no grimório`,
         });
         const todas = [...escolhidas, ...grimorio];
