@@ -36,16 +36,16 @@
 .tut-rolagem { overflow-y: auto; overflow-x: hidden; overscroll-behavior: contain; outline: none; }
 
 /* ---------------------------------------------------------------- abertura */
-.tut-abertura { position: relative; overflow: hidden; min-height: calc(100dvh - var(--tut-topo)); max-width: 1320px; margin: 0 auto; padding: 48px 32px 96px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: 40px; }
+.tut-abertura { position: relative; min-height: calc(100dvh - var(--tut-topo)); max-width: 1320px; margin: 0 auto; padding: 48px 32px 96px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: 40px; }
 .tut-sobre { font-family: var(--tut-fonte); font-size: 18px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--tut-acento); }
 .tut-titulo { margin: 10px 0 18px; font-family: var(--tut-fonte); font-size: clamp(44px, 6.2vw, 92px); font-weight: 800; line-height: .92; letter-spacing: .005em; text-transform: uppercase; text-wrap: balance; color: #fff; text-shadow: 0 6px 40px rgba(130, 60, 220, .45); }
 .tut-lide { max-width: 34em; font-size: clamp(16px, 1.35vw, 19px); line-height: 1.6; color: rgba(244, 240, 255, .82); text-wrap: pretty; }
 .tut-leque { position: relative; height: min(460px, 60vh); }
-.tut-leque-carta { position: absolute; left: 50%; top: 50%; width: clamp(120px, 12vw, 180px); aspect-ratio: 84 / 118; margin: calc(clamp(120px, 12vw, 180px) * -.7) 0 0 calc(clamp(120px, 12vw, 180px) * -.5);
-  transform: translate(calc(var(--i) * 62%), calc(var(--i) * var(--i) * 6%)) rotate(calc(var(--i) * 9deg)); transform-origin: 50% 120%;
+.tut-leque-carta { position: absolute; left: 50%; top: 50%; width: clamp(110px, 10.5vw, 165px); aspect-ratio: 84 / 118; margin: calc(clamp(110px, 10.5vw, 165px) * -.7) 0 0 calc(clamp(110px, 10.5vw, 165px) * -.5);
+  transform: translate(calc(var(--i) * 46%), calc(var(--i) * var(--i) * 5%)) rotate(calc(var(--i) * 8deg)); transform-origin: 50% 120%;
   animation: tut-leque .9s cubic-bezier(.2, .9, .25, 1.05) calc(.15s + (var(--i) + 2) * .09s) both; }
 .tut-leque-carta .ca { box-shadow: 0 18px 30px rgba(0, 0, 0, .5); }
-.tut-leque-carta:nth-child(3) { z-index: 2; width: clamp(140px, 14vw, 210px); margin: calc(clamp(140px, 14vw, 210px) * -.7) 0 0 calc(clamp(140px, 14vw, 210px) * -.5); }
+.tut-leque-carta:nth-child(3) { z-index: 2; width: clamp(130px, 12.5vw, 195px); margin: calc(clamp(130px, 12.5vw, 195px) * -.7) 0 0 calc(clamp(130px, 12.5vw, 195px) * -.5); }
 @keyframes tut-leque { from { opacity: 0; transform: translate(0, 40%) rotate(0deg) scale(.8); } }
 .tut-rolar { position: absolute; left: 50%; bottom: 28px; translate: -50% 0; display: grid; justify-items: center; gap: 10px; font-family: var(--tut-fonte); font-size: 15px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: rgba(244, 240, 255, .75); }
 .tut-rolar i { width: 14px; height: 14px; border-right: 2px solid var(--tut-acento); border-bottom: 2px solid var(--tut-acento); rotate: 45deg; animation: tut-seta 1.6s ease-in-out 1.2s 5; }
@@ -58,7 +58,7 @@
 .tut-ler-carta { position: relative; width: 100%; aspect-ratio: 5 / 7; border-radius: 4.6% / 3.3%; box-shadow: 0 30px 70px rgba(0, 0, 0, .6), 0 0 0 1px rgba(255, 255, 255, .08); }
 .tut-ler-carta img, .tut-ler-carta .tut-sem-arte { width: 100%; height: 100%; display: block; border-radius: inherit; }
 .tut-ler-recorte { position: absolute; inset: 0; border-radius: inherit; overflow: hidden; pointer-events: none; }
-.tut-caixa { position: absolute; border: 2px solid var(--tut-acento); border-radius: 6px; box-shadow: 0 0 0 9999px rgba(8, 6, 20, .5), 0 0 18px rgba(255, 90, 54, .6); opacity: 0; transition: opacity .3s ease; pointer-events: none; }
+.tut-caixa { position: absolute; border: 2px solid var(--tut-acento); border-radius: 6px; background: rgba(255, 90, 54, .12); box-shadow: 0 0 0 2px rgba(255, 255, 255, .35), 0 0 18px rgba(255, 90, 54, .65); opacity: 0; transition: opacity .3s ease; pointer-events: none; }
 .tut-caixa.ativa { opacity: 1; }
 .tut-guia { position: absolute; height: 2px; translate: 0 -1px; background: rgba(255, 255, 255, .55); pointer-events: none; transition: opacity .25s ease; opacity: .55; }
 .tut-guia.ativa { background: var(--tut-acento); opacity: 1; }
@@ -104,7 +104,7 @@
 .tut-paineis-meio { display: grid; grid-template-columns: minmax(0, 1fr); }
 .tut-cabeca-cap { grid-area: 1 / 1; opacity: 0; will-change: opacity, transform; }
 .tut-paineis .tut-passo { grid-area: 2 / 1; align-self: start; opacity: 0; pointer-events: auto; will-change: opacity, transform; }
-.tut-bloco { height: 115dvh; }
+.tut-bloco { height: calc(100dvh - var(--tut-topo)); }
 .tut-cap { font-family: var(--tut-fonte); font-size: clamp(36px, 3.4vw, 54px); font-weight: 800; line-height: .95; text-transform: uppercase; color: #fff; }
 .tut-cap span { color: var(--tut-acento); }
 .tut-cap-resumo { margin: 6px 0 22px; font-size: 16px; color: rgba(244, 240, 255, .72); }
@@ -220,7 +220,7 @@
   .tut-trilha { display: none; }
   .tut-palco-col { z-index: 5; height: auto; margin: 0 -16px; padding: 6px 4px; background: linear-gradient(180deg, #0f0b22 85%, rgba(15, 11, 34, 0)); }
   .tp { height: 44dvh; }
-  .tut-bloco { height: 90dvh; }
+  .tut-bloco { height: 80dvh; }
   .tut-paineis { top: calc(44dvh + 12px); height: calc(100dvh - var(--tut-topo) - 44dvh - 12px); margin-bottom: calc(-1 * (100dvh - var(--tut-topo) - 44dvh - 12px)); align-items: start; padding-top: 10px; }
   .tut-cap { font-size: 30px; }
   .tut-cap-resumo { margin-bottom: 12px; font-size: 14.5px; }

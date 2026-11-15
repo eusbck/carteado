@@ -50,13 +50,19 @@ async function entrar(p: Page): Promise<void> {
 /** as imagens das cartas do palco chegaram (as miniaturas são geradas no primeiro pedido) */
 const imagensProntas = (p: Page) => p.waitForFunction(() => [...document.querySelectorAll<HTMLImageElement>('.tut img')].every((i) => i.complete && i.naturalWidth > 0), null, { timeout: 60000 });
 
-/** põe o bloco do passo no ponto em que a cena dele já terminou (60% do bloco passou da linha de leitura) */
-const noPasso = (p: Page, cena: string, fracao = 0.62) => p.locator(`.tut-bloco[data-cena="${cena}"]`).evaluate((b, f) => {
-  const raiz = b.closest('.tut-rolagem')!;
-  const r = raiz.getBoundingClientRect(), br = b.getBoundingClientRect();
-  const linha = r.top + r.height * (r.width < 1024 ? 0.7 : 0.5);
-  raiz.scrollTop += br.top + br.height * f - linha;
-}, fracao);
+/** põe o bloco do passo no meio da linha de leitura e espera a cena dele terminar de tocar */
+async function noPasso(p: Page, cena: string): Promise<void> {
+  await p.locator(`.tut-bloco[data-cena="${cena}"]`).evaluate((b) => {
+    const raiz = b.closest('.tut-rolagem')!;
+    const r = raiz.getBoundingClientRect(), br = b.getBoundingClientRect();
+    const linha = r.top + r.height * (r.width < 1024 ? 0.7 : 0.5);
+    raiz.scrollTop += br.top + br.height * 0.5 - linha;
+  });
+  await p.locator(`.tut-bloco[data-cena="${cena}"].ativo`).waitFor({ timeout: 5000 });
+  await p.waitForTimeout(80);
+  await p.locator('.tp:not([data-tocando])').waitFor({ timeout: 15000 });
+  await p.waitForTimeout(250);
+}
 
 /** rola até cada passo, espera a cena assentar e fotografa; devolve as cenas vistas, na ordem */
 async function percorrer(p: Page, prefixo: string): Promise<string[]> {
@@ -64,8 +70,6 @@ async function percorrer(p: Page, prefixo: string): Promise<string[]> {
   const vistas: string[] = [];
   for (const [n, cena] of cenas.entries()) {
     await noPasso(p, cena);
-    await p.locator(`.tut-bloco[data-cena="${cena}"].ativo`).waitFor({ timeout: 5000 });
-    await p.waitForTimeout(1100);
     vistas.push(cena);
     await foto(p, `${prefixo}-${String(n + 1).padStart(2, '0')}-${cena}`);
   }
@@ -102,6 +106,25 @@ try {
   await foto(p, '03-ler-carta-custo');
 
   const cenasPt = await percorrer(p, 'pt');
+
+  // um gesto da rodinha (ou a seta) troca de passo e para no meio do passo seguinte
+  await noPasso(p, 'custo');
+  await p.mouse.move(1100, 450);
+  const ativoAgora = () => p.locator('.tut-bloco.ativo').getAttribute('data-cena');
+  await p.mouse.wheel(0, 100);
+  await p.waitForTimeout(1300);
+  exigir(await ativoAgora() === 'terrenos', `a rodinha não levou ao passo seguinte (ficou em ${await ativoAgora()})`);
+  await p.mouse.wheel(0, -100);
+  await p.waitForTimeout(1300);
+  exigir(await ativoAgora() === 'custo', `a rodinha para cima não voltou um passo (ficou em ${await ativoAgora()})`);
+  await p.locator('.tut-rolagem').focus();
+  await p.keyboard.press('ArrowDown');
+  await p.waitForTimeout(1300);
+  exigir(await ativoAgora() === 'terrenos', 'a seta para baixo não levou ao passo seguinte');
+  // uma enxurrada de eventos (touchpad) anda um passo só
+  for (let i = 0; i < 12; i++) { await p.mouse.wheel(0, 40); await p.waitForTimeout(16); }
+  await p.waitForTimeout(1400);
+  exigir(await ativoAgora() === 'permanentes', `a enxurrada do touchpad pulou passos (ficou em ${await ativoAgora()})`);
   exigir(cenasPt.length === 20, `esperava 20 passos, vi ${cenasPt.length}`);
 
   // a trilha leva ao capítulo
@@ -137,7 +160,6 @@ try {
   await foto(p, '05-en-abertura');
   for (const cena of ['terrenos', 'dano', 'taxa']) {
     await noPasso(p, cena);
-    await p.waitForTimeout(1100);
     await foto(p, `en-${cena}`);
   }
 
@@ -186,7 +208,6 @@ try {
   await m.locator('.tut').waitFor();
   await imagensProntas(m);
   await noPasso(m, 'bloqueadores');
-  await m.waitForTimeout(1100);
   await foto(m, '08-mesa-tutorial-aberto');
   // o Espaço rola o tutorial e não chega aos atalhos da mesa
   await m.keyboard.press('Space');
@@ -226,7 +247,6 @@ try {
   await r.locator('.tut').waitFor();
   await imagensProntas(r);
   await noPasso(r, 'dano');
-  await r.waitForTimeout(150);
   exigir(await r.locator('.tp-marca[data-marca="d3"]').evaluate((e) => Number(getComputedStyle(e).opacity) > 0.9), 'menos movimento: a cena do dano não apareceu pronta');
   await foto(r, 'calmo-dano');
   await calmo.close();

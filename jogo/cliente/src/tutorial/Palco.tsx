@@ -8,7 +8,8 @@ import { CartaArte } from './CartaArte.tsx';
 import { ARTES, ATORES, BIB, CAMPO, CARTA, CEM, CMD, MARCAS, MUNDO, VIDA_EU, VIDA_OP, cenaEm, estadoEm, marcaEm } from './filme.ts';
 import type { Textos } from './textos.ts';
 
-export interface Motor { irPara(pos: number, imediato?: boolean): void }
+/** irPara: persegue um ponto do filme (suave); tocar: anda até o ponto num ritmo fixo, quadro a quadro */
+export interface Motor { irPara(pos: number, imediato?: boolean): void; tocar(alvo: number, msPorQuadro: number): void }
 
 const semMovimento = () => typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches;
 const MARCA_IDS = Object.keys(MARCAS);
@@ -36,6 +37,8 @@ export function Palco({ t, registrar }: { t: Textos['palco']; registrar: (m: Mot
 
     let W = 0, H = 0, escala = 1;
     let cur = 0, alvo = 0, raf = 0, antes = 0;
+    /** a cena tocando: de onde, para onde, quando começou e quanto dura */
+    let toque: { de: number; para: number; t0: number; dur: number } | null = null;
     let ultVida = '', ultFase = -2;
 
     const desenhar = (pos: number) => {
@@ -91,13 +94,27 @@ export function Palco({ t, registrar }: { t: Textos['palco']; registrar: (m: Mot
     const tick = (agora: number) => {
       const dt = Math.min(64, agora - antes);
       antes = agora;
-      cur += (alvo - cur) * (1 - Math.exp(-dt / 120));
-      if (Math.abs(alvo - cur) < 0.0008) cur = alvo;
+      if (toque) {
+        const t = Math.min(1, (agora - toque.t0) / toque.dur);
+        cur = toque.de + (toque.para - toque.de) * t;
+        if (t >= 1) { cur = alvo = toque.para; toque = null; }
+      } else {
+        cur += (alvo - cur) * (1 - Math.exp(-dt / 120));
+        if (Math.abs(alvo - cur) < 0.0008) cur = alvo;
+      }
       desenhar(cur);
-      raf = cur === alvo ? 0 : requestAnimationFrame(tick);
+      raf = cur === alvo && !toque ? 0 : requestAnimationFrame(tick);
+      if (!raf) delete raiz.dataset.tocando;
     };
     registrar({
+      tocar(para, msPorQuadro) {
+        alvo = para;
+        if (calmo) { cancelAnimationFrame(raf); raf = 0; toque = null; cur = para; desenhar(para); return; }
+        toque = { de: cur, para, t0: performance.now(), dur: Math.max(1, Math.abs(para - cur) * msPorQuadro) };
+        if (!raf) { antes = performance.now(); raf = requestAnimationFrame(tick); raiz.dataset.tocando = '1'; }
+      },
       irPara(pos, imediato) {
+        toque = null;
         alvo = pos;
         if (imediato || calmo) { cancelAnimationFrame(raf); raf = 0; cur = pos; desenhar(pos); return; }
         if (!raf) { antes = performance.now(); raf = requestAnimationFrame(tick); }

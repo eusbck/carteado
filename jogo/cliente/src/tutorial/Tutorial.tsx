@@ -46,13 +46,18 @@ export function Tutorial() {
   const [atual, setAtual] = useState(-1);
   useCamada(rolagem, fecharTutorial);
 
-  // a rolagem → o ponto do filme, a opacidade dos painéis e a trilha. Lido uma vez por quadro, só quando rola
+  // A rolagem diz em que passo estamos (e a opacidade dos textos e a trilha); a animação de cada passo toca sozinha,
+  // no tempo dela, quando o passo chega. No miolo, cada gesto (rodinha, deslize, setas, Espaço) leva ao passo vizinho,
+  // como trocar de slide; antes e depois do miolo a página rola normalmente.
+  const navegar = useRef<(c: number) => void>(() => {});
   useEffect(() => {
     const raiz = rolagem.current!;
     const blocos = [...raiz.querySelectorAll<HTMLElement>('.tut-bloco')];
     const passos = [...raiz.querySelectorAll<HTMLElement>('.tut-passo')];
     const cabecas = [...raiz.querySelectorAll<HTMLElement>('.tut-cabeca-cap')];
     const enche = raiz.querySelector<HTMLElement>('.tut-trilha-enche');
+    const N = blocos.length;
+    const calmo = matchMedia('(prefers-reduced-motion: reduce)').matches;
     // onde cada capítulo começa e acaba, em passos
     const faixas: [number, number][] = [];
     for (const c of TEXTOS.pt.capitulos) { const de = faixas.length ? faixas[faixas.length - 1][1] : 0; faixas.push([de, de + c.passos.length]); }
@@ -64,7 +69,7 @@ export function Tutorial() {
       el.style.visibility = o < 0.01 ? 'hidden' : 'visible';
       el.toggleAttribute('aria-hidden', o < 0.5);
     };
-    let pedido = 0, ultimo = -2;
+    let pedido = 0, ultimo = -2, s = -1;
     // a medida dos blocos é tirada uma vez (e de novo quando a tela muda de tamanho); a cada quadro só a rolagem é
     // lida, sem forçar o navegador a refazer o layout
     let medida = { linha: 0, topos: [] as number[], alturas: [] as number[] };
@@ -79,23 +84,103 @@ export function Tutorial() {
     const atualizar = () => {
       pedido = 0;
       const y = raiz.scrollTop + medida.linha;
-      let pos = 0, ativo = -1, s = -1;
+      let ativo = -1;
+      s = -1;
       blocos.forEach((_, j) => {
         const p = (y - medida.topos[j]) / medida.alturas[j];
-        const tr = FILME.trechos[j];
         if (j === 0 && p < 0) s = p;
-        if (p >= 0 && p < 1) { ativo = j; s = j + p; pos = tr.de + lim((p - 0.04) / 0.5) * tr.passos; }
-        else if (p >= 1) { pos = Math.max(pos, tr.de + tr.passos); if (j === blocos.length - 1) s = j + p; }
+        if (p >= 0 && p < 1) { ativo = j; s = j + p; }
+        else if (p >= 1 && j === N - 1) { s = j + p; ativo = N - 1; }
       });
       passos.forEach((el, j) => { const d = s - (j + 0.5); pintar(el, aparece(Math.abs(d) - 0.5), d > 0 ? -1 : 1); });
       cabecas.forEach((el, c) => { const [de, ate] = faixas[c]; const fora = Math.max(de - s, s - ate); pintar(el, aparece(fora), s > ate ? -1 : 1); });
-      motor.current?.irPara(Math.min(pos, FIM));
-      if (enche) enche.style.transform = `scaleY(${pos / FIM})`;
-      if (ativo !== ultimo) { ultimo = ativo; setAtual(ativo); }
+      if (enche) enche.style.transform = `scaleY(${lim(s / N)})`;
+      if (ativo !== ultimo) {
+        // o passo seguinte toca a cena inteira no tempo dela; voltar ou pular vai depressa até o fim do passo
+        const seguinte = ativo === ultimo + 1 && ultimo >= 0;
+        const primeiro = ativo === 0 && ultimo === -1;
+        ultimo = ativo;
+        setAtual(ativo);
+        const tr = FILME.trechos[ativo];
+        if (tr) motor.current?.tocar(Math.min(tr.de + tr.passos, FIM), seguinte || primeiro ? 720 : 150);
+        else motor.current?.tocar(0, 150);
+      }
     };
     const pedir = () => { if (!pedido) pedido = requestAnimationFrame(atualizar); };
     const remedir = () => { medir(); pedir(); };
+
+    // ---- a troca de passo: a página desliza até o passo pedido (o centro do bloco na linha de leitura)
+    let animando = 0, travadoAte = 0;
+    const repouso = (j: number) => medida.topos[j] + medida.alturas[j] / 2 - medida.linha;
+    const deslizar = (para: number) => {
+      cancelAnimationFrame(animando);
+      const de = raiz.scrollTop, dist = para - de;
+      if (calmo || Math.abs(dist) < 2) { raiz.scrollTop = para; animando = 0; return; }
+      const dur = Math.min(900, 420 + Math.abs(dist) * 0.18), t0 = performance.now();
+      const passo = (agora: number) => {
+        const t = lim((agora - t0) / dur);
+        const e = t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2;
+        raiz.scrollTop = de + dist * e;
+        animando = t < 1 ? requestAnimationFrame(passo) : 0;
+      };
+      animando = requestAnimationFrame(passo);
+    };
+    const irAoPasso = (j: number) => { medir(); deslizar(repouso(j)); };
+    navegar.current = irAoPasso;
+    /** o passo para onde um gesto leva (ou null: fora do miolo, a página rola sozinha) */
+    const destino = (desce: boolean): number | null => {
+      if (s < -0.85 || s > N + 0.3) return null;
+      const perto = Math.min(N - 1, Math.max(0, Math.round(s - 0.5)));
+      const centro = perto + 0.5;
+      let alvo = desce ? (s >= centro - 0.06 ? perto + 1 : perto) : (s <= centro + 0.06 ? perto - 1 : perto);
+      if (s < 0) alvo = desce ? 0 : -1;
+      return alvo < 0 || alvo >= N ? null : alvo;
+    };
+    const gesto = (desce: boolean, ev: Event): boolean => {
+      const agora = performance.now();
+      if (animando || agora < travadoAte) { ev.preventDefault(); return true; }
+      const alvo = destino(desce);
+      if (alvo === null) return false;
+      ev.preventDefault();
+      irAoPasso(alvo);
+      // um gesto termina quando a rodinha fica 0,32 s parada (a inércia do touchpad continua mandando eventos)
+      travadoAte = agora + 700;
+      return true;
+    };
+    const roda = (e: WheelEvent) => {
+      if (e.ctrlKey || Math.abs(e.deltaY) < 3) return;
+      // a rodinha do touchpad manda uma enxurrada de eventos (com inércia): enquanto ela continua, segura
+      if (animando || performance.now() < travadoAte) { if (destino(e.deltaY > 0) !== null || animando) { e.preventDefault(); travadoAte = Math.max(travadoAte, performance.now() + 320); } return; }
+      gesto(e.deltaY > 0, e);
+    };
+    const tecla = (e: KeyboardEvent) => {
+      if ((e.target as HTMLElement | null)?.closest('input, textarea, select, button')) return;
+      const desce = e.key === 'ArrowDown' || e.key === 'PageDown' || (e.key === ' ' && !e.shiftKey);
+      const sobe = e.key === 'ArrowUp' || e.key === 'PageUp' || (e.key === ' ' && e.shiftKey);
+      if (desce || sobe) gesto(desce, e);
+    };
+    let toqueY: number | null = null, toqueDecidido: boolean | null = null;
+    const toqueIni = (e: TouchEvent) => { toqueY = e.touches[0].clientY; toqueDecidido = null; };
+    const toqueMove = (e: TouchEvent) => {
+      if (toqueY === null) return;
+      const dy = toqueY - e.touches[0].clientY;
+      if (toqueDecidido === null && Math.abs(dy) > 8) toqueDecidido = animando > 0 || destino(dy > 0) !== null;
+      if (toqueDecidido) e.preventDefault();
+    };
+    const toqueFim = (e: TouchEvent) => {
+      if (toqueY !== null && toqueDecidido) {
+        const dy = toqueY - e.changedTouches[0].clientY;
+        if (Math.abs(dy) > 30 && !animando) { const alvo = destino(dy > 0); if (alvo !== null) irAoPasso(alvo); }
+      }
+      toqueY = null; toqueDecidido = null;
+    };
+
     raiz.addEventListener('scroll', pedir, { passive: true });
+    raiz.addEventListener('wheel', roda, { passive: false });
+    raiz.addEventListener('keydown', tecla);
+    raiz.addEventListener('touchstart', toqueIni, { passive: true });
+    raiz.addEventListener('touchmove', toqueMove, { passive: false });
+    raiz.addEventListener('touchend', toqueFim, { passive: true });
     // o tamanho muda com a janela, com a fonte que chega depois e com a troca de idioma (textos de outro tamanho)
     const ro = new ResizeObserver(remedir);
     ro.observe(raiz);
@@ -103,13 +188,17 @@ export function Tutorial() {
     void document.fonts?.ready.then(remedir);
     medir();
     atualizar();
-    return () => { raiz.removeEventListener('scroll', pedir); ro.disconnect(); cancelAnimationFrame(pedido); };
+    return () => {
+      raiz.removeEventListener('scroll', pedir); raiz.removeEventListener('wheel', roda); raiz.removeEventListener('keydown', tecla);
+      raiz.removeEventListener('touchstart', toqueIni); raiz.removeEventListener('touchmove', toqueMove); raiz.removeEventListener('touchend', toqueFim);
+      ro.disconnect(); cancelAnimationFrame(pedido); cancelAnimationFrame(animando);
+    };
   }, []);
 
   const capituloDe = (j: number) => { let n = 0; for (const [c, cap] of t.capitulos.entries()) { if (j < n + cap.passos.length) return c; n += cap.passos.length; } return -1; };
   const capAtual = atual < 0 ? -1 : capituloDe(atual);
   const primeiroDe = (c: number) => t.capitulos.slice(0, c).reduce((s, x) => s + x.passos.length, 0);
-  const irPara = (c: number) => rolagem.current?.querySelectorAll<HTMLElement>('.tut-bloco')[primeiroDe(c)]?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  const irPara = (c: number) => navegar.current(primeiroDe(c));
   const imagem = urlImagem(CARTA_EXEMPLO, 0, 'g');
 
   let j = 0;
@@ -156,7 +245,7 @@ export function Tutorial() {
               </div>
               {IDS_PARTES.map((id, n) => {
                 const q = PARTES[id];
-                const linha = q.lado === 'e' ? { left: '-26px', width: `calc(${q.alvo}% + 26px)` } : { right: '-26px', width: `calc(${100 - q.alvo}% + 26px)` };
+                const linha = q.lado === 'e' ? { left: '-34px', width: '34px' } : { right: '-34px', width: '34px' };
                 return (
                   <Fragment key={id}>
                     <i class={`tut-guia ${q.lado} ${parte === id ? 'ativa' : ''}`} style={{ top: `${q.y}%`, ...linha }} />
@@ -211,7 +300,7 @@ export function Tutorial() {
             </div>
             {t.capitulos.map((c, n) => c.passos.map((passo, k) => {
               const idx = j++;
-              return <section key={passo.cena} class={`tut-bloco ${idx === atual ? 'ativo' : ''}`} data-cena={passo.cena} data-capitulo={k === 0 ? n : undefined} aria-hidden="true" />;
+              return <section key={passo.cena} class={`tut-bloco ${idx === atual ? 'ativo' : ''}`} data-cena={passo.cena} data-capitulo={k === 0 ? n : undefined} data-quadros={FILME.trechos[idx]?.passos} aria-hidden="true" />;
             }))}
           </div>
         </div>
