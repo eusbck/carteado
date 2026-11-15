@@ -315,6 +315,8 @@ export interface RuleHooks {
   damageBonus?: (c: SCtx, source: ObjId, target: TargetRef, combat: boolean) => number;
   /** "dobre todo o dano que [essas fontes] causariam" (Raphael, the Muscle): true dobra o dano deste pedido */
   damageDouble?: (c: SCtx, source: ObjId, target: TargetRef, combat: boolean) => boolean;
+  /** Standard c: substitui dano por esse dano com cura de todo o dano anterior (CR 614.1a, 701.69a). */
+  healsPreviousDamage?: (c: SCtx, target: TargetRef, source: ObjId, combat: boolean) => boolean;
   /** "…em vez disso são postos esses marcadores mais N" (High Score): devolve N para este tipo de marcador nesta permanente */
   countersBonus?: (c: SCtx, kind: string, perm: { controller: PlayerId; chars: Chars }) => number;
   /** "…em vez disso é posto o dobro desses marcadores" (Corpsejack Menace) */

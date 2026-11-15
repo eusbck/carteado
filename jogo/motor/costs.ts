@@ -12,6 +12,7 @@ import { formatCost, genericOf, matchPool, parseCost, phyrexianCount, poolToStri
 import { addPending, emit } from './triggers.ts';
 import { oracle } from './oracle.ts';
 import { manaDoCusto } from './terrenos.ts';
+import { planManaPermanentTaps } from './custos-mana-permanentes.ts';
 import type { Answer, ManaSymbol, ManaType, ManaUnit, ObjId, PaymentSource, PlayerId } from './types.ts';
 import { jog, obj, reg } from './registro.ts';
 
@@ -31,6 +32,8 @@ export interface ManaOption {
   rank: number;
   /** mana adicional prevista; é realmente produzida pelas habilidades engatilhadas, sem pilha */
   bonus: ManaUnit[];
+  /** Standard c: permanentes reservadas para cada parte de virar no plano automático (CR 118.3). */
+  tapPayments?: Record<number, ObjId[]>;
 }
 
 export function basicManaDef(color: ManaType): ManaAbilityDef {
@@ -263,7 +266,12 @@ export function* activateManaAbility(g: G, player: PlayerId, opt: ManaOption, hi
     const ok = yield* payManaFromPoolOnly(g, player, opt.manaCost);
     if (!ok) return false;
   }
-  const paid = yield* payParts(g, player, opt.def.cost.filter((p) => p.k !== 'mana'), opt.obj, opt.def.xFromAlt ? opt.alt.length : 0, true);
+  const parts = opt.def.cost.map((p, i) => {
+    const ids = opt.tapPayments?.[i];
+    if (!ids || (p.k !== 'tapPermanents' && p.k !== 'tapCreatures')) return p;
+    return { ...p, filter: (c: SCtx, id: ObjId) => ids.includes(id) && (!p.filter || p.filter(c, id)) };
+  }).filter((p) => p.k !== 'mana');
+  const paid = yield* payParts(g, player, parts, opt.obj, opt.def.xFromAlt ? opt.alt.length : 0, true);
   if (!paid) return false;
   if (opt.def.oncePerTurn) { const s = g.state.objects[opt.obj]; if (s) s.usedThisTurn[opt.abilityId] = g.state.turn.number; }
   // "qualquer combinação de cores": cada '*' vira uma cor escolhida agora (CR 106.1a)
@@ -435,7 +443,7 @@ export function planPayment(g: G, player: PlayerId, cost: ManaSymbol[], ctx: Pay
   function score(alt: ManaType[]): number { return -alt.filter((t) => needColors.has(t)).length; }
   function dfs(gi: number, pool: ManaUnit[]): boolean {
     if (++nodes > 4000) return false;
-    if (paga(pool, improvisers.filter((id) => !usedObjs.has(id)).length)) return true;
+    if (paga(pool, improvisers.filter((id) => !usedObjs.has(id)).length) && planManaPermanentTaps(g, player, plan) !== null) return true;
     if (gi >= groups.length) return false;
     const group = groups[gi];
     const objId = group[0].obj;
@@ -460,7 +468,7 @@ export function planPayment(g: G, player: PlayerId, cost: ManaSymbol[], ctx: Pay
     return dfs(gi + 1, pool);
   }
   if (!dfs(0, pool0)) return null;
-  if (!enxuto) return plan;
+  if (!enxuto) return planManaPermanentTaps(g, player, plan);
   const reservaCom = (lista: ManaOption[]): ManaUnit[] | null => {
     let pool = pool0;
     for (const o of lista) {
@@ -500,9 +508,9 @@ export function planPayment(g: G, player: PlayerId, cost: ManaSymbol[], ctx: Pay
   for (let i = final.length - 1; i >= 0; i--) {
     const sem = [...final.slice(0, i), ...final.slice(i + 1)];
     const pool = reservaCom(sem);
-    if (pool && paga(pool, livresSem(sem))) final.splice(i, 1);
+    if (pool && paga(pool, livresSem(sem)) && planManaPermanentTaps(g, player, sem) !== null) final.splice(i, 1);
   }
-  return final;
+  return planManaPermanentTaps(g, player, final);
 }
 
 export function canAfford(g: G, player: PlayerId, cost: ManaSymbol[], ctx: PayContext): boolean {
@@ -554,7 +562,7 @@ export function* payMana(g: G, player: PlayerId, cost: ManaSymbol[], ctx: PayCon
       const hint = colorHint(g, player, cost);
       for (const o of auto!) {
         const fresh = manaOptions(g, player, { excludeSource: ctx.excludeSource, paying: true }).find((x) => x.key === o.key);
-        if (fresh) yield* activateManaAbility(g, player, fresh, hint);
+        if (fresh) yield* activateManaAbility(g, player, { ...fresh, tapPayments: o.tapPayments }, hint);
       }
       if (ctx.improvise) {
         // Use apenas os artefatos ainda desvirados depois de todas as habilidades de mana, na ordem de preferência

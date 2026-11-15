@@ -345,6 +345,8 @@ export interface TurnStats {
   /** cartas que foram do campo para o cemitério deste jogador neste turno (Continue?); falta nas partidas salvas antes */
   toGraveyardFromBattlefield?: CardId[];
   sacrificedCreature: boolean;
+  /** Standard c: permanentes sacrificados neste turno (CR 701.21); ausente em partidas antigas. */
+  permanentsSacrificed?: number;
   /** dano que este jogador sofreu neste turno (sede de sangue, Spinerock Knoll); falta nas partidas salvas antes */
   damageTaken?: number;
   /** permanentes que não são terrenos e entraram sob o controle deste jogador neste turno (celebração, CR 207.2c);

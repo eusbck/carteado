@@ -602,3 +602,6 @@ export const MutavaultToken = defineToken({
 // lote4-d (Yuriko)
 /** Illusion 1/1 azul com voar (Moonblade Shinobi) */
 export const IllusionVoadora = token('Illusion 1/1', 'Illusion', ['Creature'], ['Illusion'], ['U'], 1, 1, keywords('flying'));
+// Standard c (Magda, the Hoardmaster)
+/** Scorpion Dragon 4/4 vermelha com voar e ímpeto. */
+export const ScorpionDragon44 = token('Scorpion Dragon', 'Scorpion Dragon', ['Creature'], ['Scorpion', 'Dragon'], ['R'], 4, 4, keywords('flying', 'haste'));
